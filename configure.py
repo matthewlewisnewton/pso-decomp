@@ -257,7 +257,7 @@ if args.map:
     config.ldflags.append("-mapunused")
 
 # Linker version
-config.linker_version = "GC/2.6"
+config.linker_version = "GC/2.0"
 
 # Shift JIS: disabled by default, enable per-object if needed
 config.shift_jis = False
@@ -418,21 +418,25 @@ cflags_native_recovered_auto = [
 # ===================================================================
 # Compilers
 # ===================================================================
-# Sega built the game code with CodeWarrior GC/2.6 (GC/2.5 and GC/2.7 give the
-# same code here; GC/2.0 does not) and cflags_pso. Everything else in
-# PsoV3.dol is libraries linked prebuilt, each built with its own compiler:
-# the Dolphin SDK, runtime and MetroTRK (helpers below), MusyX and the
-# middleware after it (MIDDLEWARE).
-GAME_COMPILER = "GC/2.6"
+# GC/2.0 preserves the former GC/2.6 output except for the documented units
+# below. The full migration passes the original DOL hash and no-loss checks;
+# see docs/evidence/compiler-default-gc20-impact.md. Matching output does not
+# uniquely identify Sega's compiler. Libraries retain their matching profiles.
+GAME_COMPILER = "GC/2.0"
 
-# Game files whose objects came from another compiler (an incremental build
-# keeps an object until its source changes) or with other switches. Every
-# entry is here because a function or data section matches only this way.
+# Per-unit settings that preserve matching code and data for the current source.
+# A successful profile is not proof of the original compiler or build history.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # GC/1.3.2 preserves these aggregate-copy matches under the GC/2.0 default.
+    # TProtocol's other weak helpers are validated through the complete link;
+    # see docs/evidence/compiler-default-gc20-adoption.md.
+    "pso/network/TProtocol.cpp": {"mw_version": "GC/1.3.2"},
+    "pso/object/TObjResultWin.cpp": {"mw_version": "GC/1.3.2"},
+    "pso/misc/TPlyMeetUserExtension_801DAC6C.cpp": {"mw_version": "GC/1.3.2"},
     # Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order.
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
     # GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order.
-    "pso/boss/TBoss2DeRolLe.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline on")},
+    "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
     "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions reproduce both native rope vtables and function order.
@@ -447,6 +451,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #208: fused scale/corner arithmetic; deferred emission puts the
     # compiler vtable before the constructor switch table; class string is rodata.
     "pso/misc/TPlayerFootStamp.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-inline off,deferred", "-str reuse,readonly")},
+    # Native player vtable precedes switch tables; deferred emission preserves
+    # that layout with the recovered unit's reversed function definitions.
+    "pso/player/TObjPlayer_801AF2F0.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TObjPlayer__sub_8015434C fuses offset*sin+pos (fmadds at 0x80154408)
     # and offset*cos+pos (fmadds at 0x8015442C). The same flag leaves every
     # other function in this unit unchanged, including resolve_actor_sphere_contact's
@@ -470,6 +477,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     # The download graph's border pass keeps GC/1.3.2 load scheduling.
     "pso/unk/text_8007ECF0.cpp": {"mw_version": "GC/1.3.2"},
+    # The download status coordinates start at 0x805D92CC, a four-byte boundary.
+    "pso/misc/TDLGraph.cpp": {"cw_align": ".sdata2=4"},
     # The selection plate has the same GC/1.3.2 vertex schedule and fuses its depth offset.
     "pso/ui/TAdSelectGameModeGC_802C4748.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-fp_contract on")},
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
@@ -520,7 +529,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # 97.66% without it). -opt nolifetimes keeps render exact (99.42% without
     # it). -pooldata=off keeps play_sounds' copy prologue (94.54% without it);
     # read-only strings keep the .rodata/.data/.sdata layout.
-    "pso/misc/TOTrapAncient01.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
+    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-pooldata=off", "-opt nolifetimes")},
     # Upstream #180: the 8-byte zanzo motion list stays in .data (-sdata 4).
     "pso/object/TObjDFDemo1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Keep both 8-byte afterimage tables out of .sdata in the demo constructor.
@@ -550,11 +559,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/2.0 interleaves the BML model-table load with the debris initializer's
     # copy tail. Map the original template to CodeWarrior's local aggregate.
-    "pso/unk/text_80049FD8.cpp": {"mw_version": "GC/2.0", "symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
+    "pso/unk/text_80049FD8.cpp": {"symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
     # GC/2.0 schedules the model and position loads across the aggregate copy
     # tails. Disabling pooling keeps the three original debris templates.
     "pso/unk/text_8031EF14.cpp": {
-        "mw_version": "GC/2.0",
         "cflags": _switch(cflags_pso, "-pooldata=off"),
         "symbol_mappings": {
             "recon_death_debris_model_3_params": "@67",
@@ -566,18 +574,18 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # precede the early ones in .text. -fp_contract on: draw_name_labels'
     # half-width nudge and the drop placement fuse multiply-adds.
     # -str reuse,readonly: the literals live in this unit's .rodata.
-    "pso/object/TObjTombstone.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
+    # GC/1.3.2 preserves the record assignment; GC/2.0 changes its scalar copies.
+    "pso/object/TObjTombstone.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly")},
     # Vol Opt scenery is one TU. Deferred emission puts TOBoss4Rock::run_task
     # first; -sdata 4 keeps the 8-byte motion-name array in .data.
     "pso/misc/TOBoss4.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-sdata 4", "-inline deferred")},
     # Dark Falz rocks are one TU, written last-defined first. -fp_contract on
     # fuses the fall and spin multiply-adds.
     "pso/boss/TBoss6Rock.cpp": {"cflags": _switch(cflags_pso, "-fp_contract on", "-str reuse,readonly", "-inline off,deferred")},
-    # GC/2.0: compiler-expanded struct copies take 2.0's registers.
-    # The ending item handler table keeps 2.0's store/load scheduling for its
+    # GC/2.0 preserves the compiler-expanded struct copies and the ending
+    # item handler table's store/load scheduling for its
     # zero-initialized local member-function-pointer array.
     "pso/item/TItemSpecialEvent_803531FC.cpp": {
-        "mw_version": "GC/2.0",
         # The split names the compiler's anonymous PMF initializer image at
         # 0x804F10C0; the source-built object references its first 12-byte
         # entry label. Map the target entry name to the object's image label.
@@ -586,8 +594,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # GC/2.0: run_task's 36-byte PMF array initializer interleaves its copy
     # tail with actor_frame_tick (load, tail load, clrlwi., table load, tail
     # store). GC/2.5, 2.6 and 2.7 pack the tail pair and move the tick
-    # relocation from +0xE4 to +0xEC; GC/2.0p1 and GC/1.3.2 drop the wave
-    # helpers.
+    # relocation from +0xE4 to +0xEC. The current source preserves the wave
+    # helpers under 1.3.2; see compiler-consolidation-gc20.md.
     # -inline off,deferred: the vtables come out in reverse order of their
     # key functions, and .data has TUnk_804DDF04's vtable before this
     # class's while TUnk_804DDF04's destructor comes first in .text.
@@ -599,23 +607,22 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # fmadds.
     # -str reuse,readonly: the two file names and the class name are in this
     # unit's .rodata. See docs/porting-exceptions.md section 5.
-    "pso/effect/TEffIndirectCtrl.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
+    "pso/effect/TEffIndirectCtrl.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-opt noprop", "-fp_contract on", "-str reuse,readonly")},
     # pack_movie_frame: the original keeps every named local in one register
     # (no lifetime splitting), recomputes its pad and stride shifts instead of
     # sharing them, and leaves invariant hoisting to the backend. See
     # docs/porting-exceptions.md section 5.
     "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
-    "pso/boss/Boss5GryphonBehavior.cpp": {"mw_version": "GC/2.0"},
-    "pso/enemy/TObjEneGyaranzo.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
-    "pso/misc/TOExplosiveMachine.cpp": {"mw_version": "GC/2.0"},
-    "pso/enemy/TObjEneSlimeTailAttack.cpp": {"mw_version": "GC/2.0"},
+    # Keep the late-defined thunder constants in .sdata2 while preserving their loads.
+    "pso/misc/TeneFakeTecThunderEff.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/enemy/TObjEneGyaranzo.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # -inline off,deferred: the real TBoss8Dragon constructor addresses
     # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
     # Plain -inline off emits lis/addi of the vtable symbol and the ctor
     # grows 0x554 -> 0x558. Deferred also emits the compiler vtable at
     # .data+0x92C, where the hand table was. Other functions are unchanged.
     # See docs/porting-exceptions.md section 5.
-    "pso/boss/TBoss8Dragon.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
+    "pso/boss/TBoss8Dragon.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair
     # (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others.
     # TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled.
@@ -682,7 +689,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # GC/2.0: the Needle constructor's const emitter copy. Before 2.5 a const
     # local whose address escapes stays out of the worst-case alias set, so
     # the three word loads of pos batch ahead of the stores; 2.6 interleaves.
-    "pso/boss/TBoss7TentacleNeedle.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
+    "pso/boss/TBoss7TentacleNeedle.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
     # Photon bullet run_task contracts a mul-add. Deferred emission puts the
     # compiler vtables in address order while the definitions stay bottom-to-top.
     "pso/boss/TBoss7PhotonBullet_802EF26C.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on")},
@@ -707,9 +714,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # inlined (the inline TUnk_804999E8 destructor and TObject::queue_destruction
     # stay calls).
     "pso/boss/TUnk_804848A0.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    # TItem.cpp is written from its last function back (deferred code
-    # generation; the data keeps source order) and built with GC/2.0, like the
-    # struct-copy units above.
     # The dragonfly base and its cave subclass: vtables come out subclass first.
     "pso/misc/TOBiwaMushi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
     "pso/misc/TODragonflyCave01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-fp_contract on", "-str reuse,readonly", "-sdata 4")},
@@ -724,7 +728,10 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # strike_player, strike_enemy); no other function in the unit changes.
     # The shared zero starts at 0x805DB85C. Keep its original four-byte alignment.
     "pso/misc/TOMineTrap_8016F6F8.cpp": {"cflags": _switch(cflags_pso, "-inline on", "-fp_contract on"), "cw_align": ".sdata2=4"},
-    "pso/item/TItem.cpp": {"mw_version": "GC/2.0", "cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # TItem.cpp is written from its last function back (deferred code
+    # generation; the data keeps source order). The GC/2.0 default preserves
+    # its aggregate-copy scheduling.
+    "pso/item/TItem.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TItemProArmor.cpp, TItemProShield.cpp and TItemProUnit.cpp are written
     # from their last function back (deferred code generation, which also puts
     # each vtable before the switch tables).
@@ -939,7 +946,7 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     ("musyx", 0x803A3858, "GC/1.2.5n", _switch(cflags_musyx, "-opt nocse"), {}),
     ("musyx_hw", 0x803BAC70, "GC/1.2.5n", _switch(cflags_musyx, "-inline auto"), {}),
     # CRI ADX, LSC, SJ, MFCI and GCRNA ("Build:Jun 13 2002").
-    ("cri", 0x803BFE50, "GC/2.6", cflags_middleware, {
+    ("cri", 0x803BFE50, "GC/2.0", cflags_middleware, {
         # Native CRI objects recovered by upstream matchpass 18.
         "pso/system/AdxtInit.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
         "pso/system/AdxEncoder.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
@@ -952,7 +959,8 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/system/AdxStreamRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
     }),
     # Sega's Ginja model library.
-    ("ginja", 0x803D6538, "GC/2.6", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
+    ("ginja", 0x803D6538, "GC/2.0", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
+        "pso/unk/text_803E2D70.cpp": {"cw_align": ".sdata2=4"},
         # render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 /
         # _restgpr_25, and its glyph quads are the inlined SDK FIFO writers
         # (sth/stw to 0xCC008000), not calls. -inline on inlines only functions
@@ -970,7 +978,7 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     }),
     # ntInf ("Ver 1.17.00 Build:Jul 9 2002"). The config initializer at
     # 0x803F3BF8 matches this profile, while the preceding card code matches GC/1.2.5.
-    ("ntinf", 0x803F3BF8, "GC/2.6", cflags_middleware, {
+    ("ntinf", 0x803F3BF8, "GC/2.0", cflags_middleware, {
         "pso/unk/text_803F4D84.cpp": {"cflags": _switch(cflags_middleware, "-O2", "-use_lmw_stmw off")},
     }),
     # ACCESS AVE-TCP ("avetcp.a Ver.1.16.1 Oct 23 2002"); its PPP files were
@@ -988,7 +996,7 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
     # The modem driver (AT command strings).
     ("modem", 0x8042BF48, "GC/1.2.5", cflags_middleware, {}),
     # ntUtl ("Ver 1.16.00 Build:Jul 8 2002"); the SDK's EXI library follows.
-    ("ntutl", 0x8042E8C4, "GC/2.6", cflags_middleware, {}),
+    ("ntutl", 0x8042E8C4, "GC/2.0", cflags_middleware, {}),
 ]
 MIDDLEWARE_END = 0x8042F13C
 
@@ -1047,7 +1055,7 @@ def RuntimeLib(lib_name: str, objects: list) -> dict:
     """
     return {
         "lib": lib_name,
-        "mw_version": "GC/2.6",
+        "mw_version": "GC/2.0",
         "cflags": cflags_runtime,
         "progress_category": "runtime",
         "src_dir": "libs",
@@ -1136,36 +1144,36 @@ if args.target == "psov3":
             "recovered_trk",
             [
                 Unit("TRK_MINNOW_DOLPHIN/support.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("TRK_MINNOW_DOLPHIN/notify.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("TRK_MINNOW_DOLPHIN/flush_cache.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("TRK_MINNOW_DOLPHIN/mem_TRK.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered_auto),
                 Unit("TRK_MINNOW_DOLPHIN/targimpl.c",
-                            mw_version="GC/2.6", cflags=[*cflags_native_recovered, "-sdata 0", "-sdata2 0"]),
+                            mw_version="GC/2.0", cflags=[*cflags_native_recovered, "-sdata 0", "-sdata2 0"]),
                 Unit("TRK_MINNOW_DOLPHIN/targsupp.s", src_dir=f"build/{config.version}/orig_asm"),
                 Unit("TRK_MINNOW_DOLPHIN/exception.s", src_dir=f"build/{config.version}/orig_asm"),
                 Unit("TRK_MINNOW_DOLPHIN/dolphin_trk.c",
-                            mw_version="GC/2.6", cflags=[*cflags_native_recovered, "-sdata 0", "-sdata2 0"]),
+                            mw_version="GC/2.0", cflags=[*cflags_native_recovered, "-sdata 0", "-sdata2 0"]),
             ],
         ),
         RuntimeLib(
             "recovered_runtime",
             [
                 Unit("PowerPC_EABI_Support/Runtime/Src/CPlusLibPPC.cp",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/Runtime/Src/NMWException.cp",
                             mw_version="GC/1.3", cflags=cflags_native_recovered_auto),
                 Unit("PowerPC_EABI_Support/Runtime/Src/ptmf.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/Runtime/Src/runtime.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/Runtime/Src/__mem.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_fp.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered_auto),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/printf.c",
@@ -1175,13 +1183,13 @@ if args.target == "psov3":
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/scanf.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/uart_console_io.c",
-                            mw_version="GC/2.6", cflags=cflags_native_recovered),
+                            mw_version="GC/2.0", cflags=cflags_native_recovered),
             ],
         ),
         DolphinLib(

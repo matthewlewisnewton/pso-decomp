@@ -3,7 +3,7 @@
 #include "pso/map/FloorArea.h"
 #include "pso/misc/TEndingPicStage.h"
 #include "pso/misc/ParticleRadial.h"
-#include "pso/misc/TEndingAB_8008CE08.h"
+#include "pso/TEndingAB.h"
 #include "pso/misc/TEndingC_8008D00C.h"
 #include "pso/misc/TMainTask_80104C40.h"
 #include "pso/TAdMultiChgGameModeGC.h"
@@ -74,8 +74,7 @@ TEnding::TEnding() : TObject(tl_window) {
     case 1: timing_rate = 25; break;
     }
     new TEndingPic(tl_01);
-    void *first = TObject::operator new(0xF0);
-    if (first != NULL) __ct__9TEndingABFv((u8 *)first, (u8 *)this);
+    new TEndingAB(this);
     void *second = TObject::operator new(0x9C);
     if (second != NULL) __ct__8TEndingCFv((u8 *)second, (u8 *)this);
     ending_frame_counter = 0;

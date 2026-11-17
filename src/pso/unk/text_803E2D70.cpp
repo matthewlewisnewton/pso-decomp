@@ -1,6 +1,13 @@
 #include "pso/system/ModelDrawCallback.h"
 #include "pso/system/ChunkVertexJob.h"
 #include "types.h"
+#define PSO_SDK_COMPACT_MATH
+typedef struct _GXVtxDescList GXVtxDescList;
+#include <dolphin/gx/GXGeometry.h>
+#undef PSO_SDK_COMPACT_MATH
+#ifndef __MWERKS__
+#include <math.h>
+#endif
 #include "pso/player/TObjPlayer_803DF7A8.h"
 #include "pso/player/TObjPlayer_803E21B8.h"
 #include "pso/unk/text_803D853C.h"
@@ -9,9 +16,9 @@
 #include "pso/unk/text_803E2D70.h"
 #include "pso/system/memory.h"
 #include "pso/system/ChunkMaterialState.h"
+#include "pso/system/ChunkPolygonList.h"
 #include "pso/player/TObjPlayer.h"
 
-#pragma scheduling off
 #pragma scheduling off
 
 struct FloatColor { f32 a, r, g, b; };
@@ -128,7 +135,6 @@ void post_translate_matrix(void *);
 extern u8 chunk_object_current_matrix[];
 void transform_point_by_current_matrix(u8 *, u8 *);
 void rotate_vector_by_current_matrix(u8 *, u8 *);
-void GXBegin(int, int, u16);
 extern const f32 lbl_805E1088;
 void draw_projected_textured_strip(Vtx_803E2D70 *v, s32 n);
 void Dolphin_GXSetVtxDesc(int, int);
@@ -144,16 +150,13 @@ extern s32 material_alpha_compare_reference;
 extern u8 *current_render_context;
 extern u32 lbl_805E1094;
 extern const u32 lbl_805E1098;
-extern const f32 lbl_805E109C;
-extern const f32 lbl_805E10A0;
-void GXSetVtxAttrFmt(int, int, int, int, u8);
 void draw_chunk_textured_strips(s16 *list, Vtx_803E352C *verts, u32 info, s32 large);
-struct ChunkModel_803E44D4 { u32 *vertices; u16 *polygons; };
+struct ChunkModel_803E44D4 { u32 *vertices; s16 *polygons; };
 struct ChunkBuffer_803E44D4 { void *vertices; s32 bytes; };
 struct ChunkRecording_803E44D4 { ChunkBuffer_803E44D4 buffers[32]; s32 index; };
 void OSReport(const char*, ...);
 void* memmove(void*, const void*, unsigned long);
-void dispatch_chunk_polygon_list(u16*, s32);
+void dispatch_chunk_polygon_list(s16*, s32);
 extern const char lbl_804FC810[];
 extern u32 lbl_805D77E4;
 extern ChunkRecording_803E44D4* chunk_vertex_cache_state;
@@ -166,6 +169,9 @@ s32 GXLoadNrmMtxImm(void *, int);
 s32 GXLoadTexMtxImm(void *, int, int);
 extern Mtx_803E4354 identity_matrix;
 extern s32 chunk_previous_strip_flags;
+extern s32 lbl_805D7798;
+extern u32 chunk_polygon_flags_and_mask;
+extern u32 chunk_polygon_flags_or_mask;
 
 #pragma push
 #pragma dont_inline off
@@ -185,7 +191,7 @@ static inline void GXTexCoord2f32_803E2D70(f32 s, f32 t) {
 void draw_projected_textured_strip(Vtx_803E2D70 *v, s32 n) {
     f32 inv;
     u32 c;
-    GXBegin(0x98, 4, n);
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT4, n);
     for (; n > 0; n--) {
         inv = lbl_805E1088 / v->w;
         GXPosition3f32_803E2D70(v->x * inv, v->y * inv, inv);
@@ -298,6 +304,54 @@ struct VtxOut_803E3390 {
 typedef char ReorderedMatrix_803E3390_size[sizeof(ReorderedMatrix_803E3390) == 0x30 ? 1 : -1];
 typedef char VtxIn_803E3390_size[sizeof(VtxIn_803E3390) == 0x18 ? 1 : -1];
 typedef char VtxOut_803E3390_size[sizeof(VtxOut_803E3390) == 0x20 ? 1 : -1];
+
+// Provisional symbol: weighted indexed position/normal transform, not the SDK descriptor API.
+// Assembly exception authorized by Matt on 2026-11-13; ports use the fused scalar fallback.
+#ifdef __MWERKS__
+asm void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix, u32 accumulate) {
+#include "orig_asm/pso/unk/text_803E2D70/GXSetVtxAttrFmtv.inc"
+}
+#else
+struct WeightedChunkVertex {
+    f32 position[3];
+    f32 normal[3];
+    s16 weight;
+    u16 index;
+};
+
+typedef char WeightedChunkVertex_size[sizeof(WeightedChunkVertex) == 0x1C ? 1 : -1];
+
+void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix, u32 accumulate) {
+    const WeightedChunkVertex *src = (const WeightedChunkVertex *)job->src;
+    for (s32 i = 0; i < job->count; ++i, ++src) {
+        VtxOut_803E3390 *dst = (VtxOut_803E3390 *)(job->dst + src->index * sizeof(VtxOut_803E3390));
+        f32 x = src->position[0], y = src->position[1], z = src->position[2];
+        f32 nx = src->normal[0], ny = src->normal[1], nz = src->normal[2];
+        f32 weight = src->weight * (1.0f / 256.0f);
+        f32 px = fmaf(matrix->m02, z, fmaf(matrix->m01, y, fmaf(matrix->m00, x, matrix->m03)));
+        f32 py = fmaf(matrix->m12, z, fmaf(matrix->m11, y, fmaf(matrix->m10, x, matrix->m13)));
+        f32 pz = fmaf(matrix->m22, z, fmaf(matrix->m21, y, fmaf(matrix->m20, x, matrix->m23)));
+        f32 normal_x = fmaf(matrix->m02, nz, fmaf(matrix->m01, ny, matrix->m00 * nx));
+        f32 normal_y = fmaf(matrix->m12, nz, fmaf(matrix->m11, ny, matrix->m10 * nx));
+        f32 normal_z = fmaf(matrix->m22, nz, fmaf(matrix->m21, ny, matrix->m20 * nx));
+        if (accumulate) {
+            dst->x = fmaf(px, weight, dst->x);
+            dst->y = fmaf(py, weight, dst->y);
+            dst->z = fmaf(pz, weight, dst->z);
+            dst->nx = fmaf(normal_x, weight, dst->nx);
+            dst->ny = fmaf(normal_y, weight, dst->ny);
+            dst->nz = fmaf(normal_z, weight, dst->nz);
+        } else {
+            dst->x = px * weight;
+            dst->y = py * weight;
+            dst->z = pz * weight;
+            dst->nx = normal_x * weight;
+            dst->ny = normal_y * weight;
+            dst->nz = normal_z * weight;
+        }
+    }
+}
+#endif
 
 // One-time no-asm exception approved by Matt on 2026-11-04; see
 // docs/evidence/paired-single-sdk-asm.md. This is hand-scheduled Gekko
@@ -486,7 +540,7 @@ void draw_chunk_textured_strips(s16 *list, Vtx_803E352C *verts, u32 info, s32 la
         }
     }
     TObjPlayer::clear_move_state_bits();
-    GXSetVtxAttrFmt(0, 0xD, 1, 3, large ? 0xC : 8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S16, large ? 0xC : 8);
     GXClearVtxDesc();
     Dolphin_GXSetVtxDesc(9, 1);
     Dolphin_GXSetVtxDesc(0xA, 1);
@@ -497,7 +551,7 @@ void draw_chunk_textured_strips(s16 *list, Vtx_803E352C *verts, u32 info, s32 la
             n = -n;
         }
         if (draw) {
-            GXBegin(0x98, 0, n);
+            GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, n);
         }
         do {
             v = &verts[*list++];
@@ -529,7 +583,7 @@ void draw_strip_list_pos_nrm__10TObjPlayerFPvPvUi(s16 *list, Vtx_803E36C4 *verts
         if (n < 0) {
             n = -n;
         }
-        GXBegin(0x98, 0, n);
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, n);
         do {
             v = &verts[*list++];
             GXPosition3f32_803E36C4(v->x, v->y, v->z);
@@ -545,13 +599,13 @@ s32 dispatch_chunk_vertex_list(u32*, s32);
 #pragma push
 #pragma scheduling off
 #pragma peephole off
-void submit_chunk_material_color(u8 type, s16* data) {
+void submit_chunk_material_color(s32 type, s16* data) {
     FloatColor add;
     ByteColor color;
     ByteColor fallback=lbl_805E1090;
     ByteColor converted;
     ByteColor convertedAdd;
-    if ((u32)((type-0x10)&1)!=0U) {
+    if ((u32)(((u8)type-0x10)&1)!=0U) {
         s16 gb=data[0],ar=data[1];
         color.a=(ar>>8)&255;
         color.r=(u8)ar;
@@ -689,10 +743,10 @@ void set_chunk_blend_depth_mode(s32 arg0, s32 arg1) {
         var_r28 = 1U;
         temp_r4 = (u8 *)((*(Holder_803E3B6C **)(current_render_context + 0x20))->recs[chunk_texture_record_index].p->q);
         id = model_render_flags;
-        if (((u32) (id & 0x10) != 0) && (lbl_805E109C != model_material_color.a)) {
+        if (((u32) (id & 0x10) != 0) && (1.0f != model_material_color.a)) {
             var_r28 = 0U;
         }
-        if (((u32) (id & 0x20) != 0) && (lbl_805E10A0 != model_material_color.a)) {
+        if (((u32) (id & 0x20) != 0) && (0.0f != model_material_color.a)) {
             var_r28 = 0U;
         }
         if ((u32) *(u32 *)((s8 *)temp_r4 + 4) == 0xEU) {
@@ -763,9 +817,107 @@ void set_chunk_blend_depth_mode(s32 arg0, s32 arg1) {
 }
 
 extern "C" {
+#pragma push
+#pragma use_lmw_stmw off
+#pragma bool off
+#pragma opt_propagation off
+void dispatch_chunk_polygon_list(s16 *list, s32 buffer) {
+    // Keep the signed wire word distinct from the working header/strip flags.
+    struct CommandState {
+        s16 wire;
+        int header;
+    } state;
+    s32 type;
+    u32 length;
+    s32 info;
+    u32 changed;
+
+    while ((state.header = (state.wire = *list++)) != 0xFF) {
+        s16 decoded = (s16)(state.header & 0xFF);
+        type = decoded;
+        if (type < 8) {
+            switch (type) {
+            case 1:
+                set_chunk_blend(state.header);
+                break;
+            case 4:
+                chunk_polygon_list_cache[(s16)((state.header >> 8) & 0xFF)] = list;
+                lbl_805D7798++;
+                return;
+            case 5:
+                dispatch_chunk_polygon_list(chunk_polygon_list_cache[(s16)((state.header >> 8) & 0xFF)], buffer);
+                lbl_805D7798--;
+                break;
+            }
+        } else if (type < 0x10) {
+            apply_chunk_texture_command(state.header, (s16)*list);
+            list++;
+        } else if (type < 0x40) {
+            type = (s16)*list++;
+            set_chunk_blend(state.header);
+            submit_chunk_material_color(state.header, (s16 *)list);
+            list += type;
+        } else {
+            length = *(u16 *)list++;
+            info = (s16)*list++;
+            if ((u32)(model_render_flags & 0x800) != 0) {
+                // Each mask operation narrows to the signed 16-bit command word.
+                struct MaskWord {
+                    s16 value;
+                } masked;
+                masked.value = state.wire;
+                masked.value &= chunk_polygon_flags_and_mask;
+                masked.value |= chunk_polygon_flags_or_mask;
+                state.header = masked.value;
+            }
+            state.header = (s16)(state.header >> 8);
+            changed = state.header ^ chunk_previous_strip_flags;
+            changed |= chunk_strip_dirty_flags;
+            chunk_previous_strip_flags = state.header;
+            chunk_strip_dirty_flags = 0;
+            if (changed & 1) {
+                set_strip_lighting_chan_ctrl(state.header);
+            }
+            switch (type) {
+            case 0x40:
+                if (state.header & 0x40) {
+                    set_chunk_blend_depth_mode(state.header, 1);
+                    setup_chunk_tev_stages();
+                    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_NRM, GX_TEXMTX4, GX_FALSE, GX_PTIDENTITY);
+                    draw_strip_pos_normal__10TObjPlayerFPvPvUi((s16 *)list, (Vtx_803E46FC *)buffer, info);
+                } else {
+                    set_chunk_blend_depth_mode(state.header, 0);
+                    TObjPlayer::setup_tev_passclr();
+                    draw_strip_list_pos_nrm__10TObjPlayerFPvPvUi((s16 *)list, (Vtx_803E36C4 *)buffer, info);
+                }
+                break;
+            case 0x41:
+            case 0x42:
+                set_chunk_blend_depth_mode(state.header, 1);
+                if (state.header & 0x40) {
+                    setup_chunk_tev_stages();
+                    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_NRM, GX_TEXMTX4, GX_FALSE, GX_PTIDENTITY);
+                    draw_triangle_strips__10TObjPlayerFPvPvUi((s16 *)list, (Vtx_803E47E0 *)buffer, info);
+                } else if (chunk_has_vertex_colors != 0) {
+                    setup_chunk_tev_stages();
+                    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+                    draw_chunk_color_tex_strips((s16 *)list, (ChunkColorVertex *)buffer, info, (s32)(type == 0x42));
+                } else {
+                    setup_chunk_tev_stages();
+                    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+                    draw_chunk_textured_strips((s16 *)list, (Vtx_803E352C *)buffer, info, (s32)(type == 0x42));
+                }
+                break;
+            }
+            list += length - 1;
+        }
+    }
+}
+#pragma pop
+
 void push_reordered_matrix_ps(void);
 void transform_chunk_vertices_pos_normal(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix);
-void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, s32 matrix, u32 format);
+void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix, u32 format);
 void transform_vertex_list__10TObjPlayerFv(Hdr_803E34B0 *job, s32 matrix);
 }
 
@@ -789,7 +941,7 @@ s32 dispatch_chunk_vertex_list(u32 *list, s32 buffer) {
         if ((type & 0xFF) == 0x29) {
             transform_chunk_vertices_pos_normal(&job, (ReorderedMatrix_803E3390 *)current_matrix);
         } else if ((type & 0xFF) == 0x2C) {
-            GXSetVtxAttrFmtv(&job, current_matrix, ((type & ~0x8000) >> 8) & 0xFF);
+            GXSetVtxAttrFmtv(&job, (ReorderedMatrix_803E3390 *)current_matrix, ((type & ~0x8000) >> 8) & 0xFF);
         } else if ((type & 0xFF) == 0x2A) {
             transform_vertex_list__10TObjPlayerFv(&job, current_matrix);
         } else if ((type & 0xFF) == 0x23) {
@@ -804,6 +956,7 @@ s32 dispatch_chunk_vertex_list(u32 *list, s32 buffer) {
     return total;
 }
 
+
 void TObjPlayer::setup_model_draw_state(void *) {
     Mtx_803E4354 scale;
     Mtx_803E4354 trans;
@@ -812,8 +965,8 @@ void TObjPlayer::setup_model_draw_state(void *) {
         TObjPlayer::reset_particle_counter();
         apply_scene_fog();
     }
-    GXSetVtxAttrFmt(0, 9, 1, 4, 0);
-    GXSetVtxAttrFmt(0, 0xA, 0, 4, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
     GXSetNumChans(1);
     chunk_previous_strip_flags = 0;
     chunk_strip_dirty_flags = -1;
@@ -929,7 +1082,7 @@ void draw_strip_pos_normal__10TObjPlayerFPvPvUi(s16 *list, Vtx_803E46FC *verts, 
         if (n < 0) {
             n = -n;
         }
-        GXBegin(0x98, 0, n);
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, n);
         do {
             v = &verts[*list++];
             GXPosition3f32_803E46FC(v->x, v->y, v->z);
@@ -987,7 +1140,7 @@ void draw_triangle_strips__10TObjPlayerFPvPvUi(s16 *list, Vtx_803E47E0 *verts, u
             n = -n;
         }
         if (draw) {
-            GXBegin(0x98, 0, n);
+            GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, n);
         }
         do {
             v = &verts[*list++];

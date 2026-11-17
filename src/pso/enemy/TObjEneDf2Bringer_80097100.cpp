@@ -1,3 +1,4 @@
+#include "pso/enemy/Df2BringerConstants.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -66,9 +67,6 @@ s32 post_translate_matrix(void *);
 void rotate_matrix_y(s32, s32);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 extern Vec lbl_8043A0E0;
-extern const f32 lbl_805D97D8;
-extern const f32 lbl_805D97DC;
-extern const f32 TObjEneDf2Bringer__data_805D97E0;
 int TObjEneDf2Bringer__sub_800994F8(void*);
 
 void TObjEneDf2Bringer::vfunc_105() {

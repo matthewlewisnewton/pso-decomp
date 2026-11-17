@@ -7,9 +7,11 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Screen and projection constants](screen-projection-constants.md)
 - [Photon Mylla scalar pool](photon-mylla-constant-pool.md)
 - [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
 - [Equipment menu helper scalar ownership](equipment-menu-helper-unit.md)
+- [Ending wall controller complete unit](ending-wall-controller-unit.md)
 - [EXI Ethernet driver completion](exi-ethernet-unit.md)
 - [Audio header parsing and ADX block transfer](audio-formats-and-adx-transfer.md)
 - [Action-palette unit](action-palette-unit.md)
@@ -29,8 +31,21 @@ guides.
 - [Character-select slot clamp inlining](chr-select-slot-clamp-inline.md)
 - [Chunk model node callbacks](chunk-node-callback-evidence.md)
 - [CodeWarrior source order and emitted layout](compiler-emission-evidence.md)
+- [GC/2.0 consolidation: validated migrations and remaining compiler constraints](compiler-consolidation-gc20.md)
+- [GC/2.0 as the primary compiler: reverse migration impact](compiler-default-gc20-impact.md)
+- [GC/2.0 compiler and linker adoption](compiler-default-gc20-adoption.md)
+- [GC/2.0 migration merged with current main: final validation](compiler-default-gc20-main-merge.md)
+- [PSO GameCube development and toolchain history](pso-gamecube-toolchain-history.md)
+- [Sonic Team GameCube toolchain comparisons](sonic-team-gamecube-toolchain-history.md)
+- [TProtocol retained compiler and weak helpers](compiler-default-gc20-protocol.md)
+- [ResultWin and MeetUserExtension compiler profiles](compiler-default-gc20-records.md)
+- [Tombstone and De Rol Le compiler profiles](compiler-default-gc20-tombstone.md)
+- [Earlier compiler candidates for runtime and libraries](compiler-consolidation-older-libraries.md)
+- [Slime source repair for GC/1.3.2](compiler-consolidation-gc132-slime.md)
+- [Gryphon and Dragon source repair feasibility for GC/1.3.2](compiler-consolidation-gc132-game-blockers.md)
 - [Creation-menu icon animation interfaces](creation-icon-animation.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
+- [Gryphon behavior scalar constant unit](gryphon-behavior-constant-pool.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
 - [Crush-rock render/physics unit](crush-rock-physics-unit.md)
 - [Critical-hit effect complete unit](critical-hit-effect-unit.md)
@@ -39,6 +54,7 @@ guides.
 - [DD descendant virtual slot](dd-descendant-slot-evidence.md)
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
+- [Df2 Bringer shared scalar pool](df2-bringer-constant-pool.md)
 - [Download graph recovery](download-graph-recovery.md)
 - [Dragon fireball unit](dragon-fireball-unit.md)
 - [Gol Dragon fireball unit](gol-dragon-fireball-unit.md)
@@ -107,8 +123,11 @@ guides.
 - [Texture input and runtime surface](texture-input-evidence.md)
 - [`vec3_add_to` paired-single exception](vec3-add-to-paired-single.md)
 - [Vector helper contracts](vector-helper-evidence.md)
+- [Window-controller flag accessors](window-controller-flag-accessors.md)
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
 
 - [Word-select formatter completion and table grouping](word-select-completion.md)
 
 - [Zako renderer consolidation](zako-renderer-consolidation.md): exact class/renderer fold, typed color and model access, and retained floating-point contraction.
+
+- [Normal quad-sprite unit completion](quad-sprite-normal-unit.md)

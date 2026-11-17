@@ -196,6 +196,7 @@ pso/audio/GcrnaError.cpp
 pso/audio/GcrnaStream.cpp
 pso/boss/Boss5GryphonActionScripts.cpp
 pso/boss/Boss5GryphonBehavior.cpp
+pso/boss/Boss5GryphonConstants.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
@@ -414,8 +415,10 @@ pso/enemy/DarkGunner.cpp
 pso/enemy/DelDepthConstants.cpp
 pso/enemy/DelDepthData.cpp
 pso/enemy/DelDepthMotion.cpp
+pso/enemy/Df2BringerConstants.cpp
 pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
+pso/enemy/SinowZoaConstants.cpp
 pso/enemy/TEnemyTaskList.cpp
 pso/enemy/TObjEneBalClaw.cpp
 pso/enemy/TObjEneBalClawBody_80090178.cpp
@@ -928,9 +931,6 @@ pso/misc/TDuelEffectNumber_80080290.cpp
 pso/misc/TDuelEffectNumber_80080460.cpp
 pso/misc/TEnding.cpp
 pso/misc/TEndingAB.cpp
-pso/misc/TEndingAB_8008C9FC.cpp
-pso/misc/TEndingAB_8008CCC4.cpp
-pso/misc/TEndingAB_8008CE08.cpp
 pso/misc/TEndingC.cpp
 pso/misc/TEndingC_8008D00C.cpp
 pso/misc/TEndingPic.cpp
@@ -2491,6 +2491,7 @@ pso/player/TObjPlayer_801AE48C.cpp
 pso/player/TObjPlayer_801AEB84.cpp
 pso/player/TObjPlayer_801AEE10.cpp
 pso/player/TObjPlayer_801AEFFC.cpp
+pso/player/TObjPlayer_801AF2F0.cpp
 pso/player/TObjPlayer_801BC140.cpp
 pso/player/TObjPlayer_801BC404.cpp
 pso/player/TObjPlayer_801BC5D4.cpp
@@ -2622,6 +2623,7 @@ pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
 pso/quest/TQuestListVM_801F4398.cpp
 pso/quest/TQuestThread.cpp
+pso/render/ScreenProjectionConstants.cpp
 pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp
@@ -2860,6 +2862,7 @@ pso/unk/TUnk_804A5C18.cpp
 pso/unk/TUnk_804A6CC8.cpp
 pso/unk/TUnk_804CC870.cpp
 pso/unk/data_805D8200.cpp
+pso/unk/data_805D8D28.cpp
 pso/unk/text_8000F740.cpp
 pso/unk/text_8001C388.cpp
 pso/unk/text_8002B164.cpp
@@ -3602,6 +3605,7 @@ pso/unk/text_803E2008.cpp
 pso/unk/text_803E2070.cpp
 pso/unk/text_803E20B0.cpp
 pso/unk/text_803E29B0.cpp
+pso/unk/text_803E2D70.cpp
 pso/unk/text_803E4CE8.cpp
 pso/unk/text_803E4D8C.cpp
 pso/unk/text_803F1804.cpp

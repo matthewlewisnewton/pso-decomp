@@ -1,3 +1,4 @@
+#include "pso/player/PlayerLevelTable.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801BE778.h"
 #include "pso/player/TObjPlayer_801BFED4.h"
@@ -8,21 +9,20 @@
 extern "C" {
 
 s32 get_ptr_4__10TObjPlayerFv();
-s32 get_class_starting_inventory(u8);
 s32 init_technique_levels(s32, s32);
 s32 get_action_data__10TObjPlayerFv(void *);
-s32 init_new_character_stats(void *);
+void init_new_character_stats(void *);
 s32 copy_entries(s32, s32, s32);
 
 
 s32 begin_action_state__10TObjPlayerFPv(u8 *player) {
     s32 temp_r31;
-    u8 temp_r30;
+    char temp_r30;
 
     if (player == NULL) {
         return 0;
     }
-    temp_r30 = *(u8 *)((s8 *)player + 0x3A1);
+    temp_r30 = ((char *)player)[0x3A1];
     *(s8 *)((s8 *)player + 0) = 5;
     copy_entries(5, get_class_starting_inventory(temp_r30), get_ptr_4__10TObjPlayerFv());
     ((TObjPlayer *)player)->set_action_state(1);
