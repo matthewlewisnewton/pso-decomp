@@ -572,6 +572,9 @@ pso/ui/TObjDFJisin.cpp:
 	.sdata      start:0x805D27B8 end:0x805D27CC
 	.sdata2     start:0x805D8AB0 end:0x805D8AB4
 
+pso/boss/DarkFalzEffectConstants.cpp:
+	.sdata2     start:0x805D8AB4 end:0x805D8AE0
+
 pso/ui/TObjDFTenchuFuru_80051B98.cpp:
 	.text       start:0x80051B98 end:0x80051D5C
 
@@ -1678,6 +1681,9 @@ pso/object/TObjCGrass.cpp:
 	.rodata     start:0x8043B650 end:0x8043B658
 	.data       start:0x80492520 end:0x80492558
 	.sdata2     start:0x805D9E60 end:0x805D9E78
+
+pso/unk/data_805D9E78.cpp:
+	.sdata2     start:0x805D9E78 end:0x805D9E98
 
 pso/unk/text_800B9194.cpp:
 	.text       start:0x800B9194 end:0x800B9254

@@ -90,6 +90,14 @@ changing the load and the object layout. The late definition keeps it after
 the digit-transform and opacity literals. Ports can drop the annotation and
 keep the ordinary array and C++ expressions.
 
+### Grass placement angle constant
+
+The two-float `lbl_805D9E78` object in `src/pso/unk/data_805D9E78.cpp` holds
+the 360-degree angle and its original zero word. The guarded CodeWarrior
+section annotation keeps the array in `.sdata2`. The matching declaration
+in `TObjCGrass.cpp` preserves the single small-data float load. Ports use
+the same array and first-element access without the section annotations.
+
 ### Scalar collision-area helper
 
 `TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
@@ -789,6 +797,14 @@ MWCC literal-pool entries; a port can read those constants directly.
 at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
 but requests eight-byte alignment for the pool. Ports can use the
 ordinary C++ coordinates directly and omit the object alignment override.
+
+### Dark Falz effect constant alignment
+
+`pso/boss/DarkFalzEffectConstants.cpp` uses `cw_align: .sdata2=4`. Its
+44-byte float pool starts at `0x805D8AB4`. GC/2.0 requests eight-byte section
+alignment, which would move the pool four bytes forward. The existing alignment
+tool records four-byte alignment in ELF and the CodeWarrior comment section.
+Ports can use the C++ definitions with their compiler's normal alignment.
 
 ### Time setting and calendar startup
 

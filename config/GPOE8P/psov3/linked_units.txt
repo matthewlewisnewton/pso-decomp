@@ -201,6 +201,7 @@ pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
 pso/boss/Boss7DeRolLeCBehavior.cpp
+pso/boss/DarkFalzEffectConstants.cpp
 pso/boss/DragonTailCraterConstants.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
@@ -2864,6 +2865,7 @@ pso/unk/TUnk_804A6CC8.cpp
 pso/unk/TUnk_804CC870.cpp
 pso/unk/data_805D8200.cpp
 pso/unk/data_805D8D28.cpp
+pso/unk/data_805D9E78.cpp
 pso/unk/text_8000F740.cpp
 pso/unk/text_8001C388.cpp
 pso/unk/text_8002B164.cpp
