@@ -32,7 +32,7 @@ source-linked coverage. Unit counts can change when translation units are consol
 | Game | Phantasy Star Online Episode I & II Plus, USA v1.02 (`GPOE8P`) |
 | Disc | SHA-1 `0ff155311f4cc57951c03baeb1a8cc15de5fe1cd` |
 | Executable | `files/PsoV3.dol`, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` |
-| Compiler | Metrowerks CodeWarrior for GameCube: GC/2.6 for most game code, older versions for the SDK, MetroTRK, MusyX and some game units |
+| Compiler | Metrowerks CodeWarrior for GameCube: GC/2.0 for the linker and most game code, older versions for library and game profiles |
 
 ## Building
 

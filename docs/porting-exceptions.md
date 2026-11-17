@@ -731,9 +731,34 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-210 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+The default compiler and linker now use GC/2.0. The
+[adoption record](evidence/compiler-default-gc20-adoption.md) follows the
+[reverse migration](evidence/compiler-default-gc20-impact.md), which found
+3,392 former GC/2.6 objects unchanged under GC/2.0. Four remaining game
+units use the retained GC/1.3.2 compiler, with unchanged source and flags:
+
+| Unit | Reason for GC/1.3.2 | Port should |
+|---|---|---|
+| `pso/network/TProtocol.cpp` | All 79 original-owned functions match. Fourteen other emitted helpers differ; the full link validates weak-definition selection. | Use the port compiler; preserve record layouts and ordinary copy semantics. |
+| `pso/object/TObjTombstone.cpp` | The record assignment's scalar-copy scheduling matches; the complete object is equivalent to GC/2.6. | Use the port compiler; preserve the record layout. |
+| `pso/object/TObjResultWin.cpp` | `copy_challenge_result_record` and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+| `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | The name-field assignment and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+
+Gryphon, Slime and Dragon inherit GC/2.0; their source and effective flags
+remain unchanged. De Rol Le retains main's GC/2.0 profile and `-inline on`, with all 110 functions exact. No compiler or linker assignment requires GC/2.6. The remaining
+older compiler profiles are a separate consolidation task.
+
+The initial [GC/2.0 consolidation](evidence/compiler-consolidation-gc20.md)
+experiment moved nine game units to GC/1.3.2 while planning to retire GC/2.0.
+With GC/2.0 now the default, those nine units inherit it again, preserving
+main's effective compiler, source, flags and symbol mappings. Their earlier
+recovery records remain historical evidence. The current assignments and
+[main-merge validation](evidence/compiler-default-gc20-main-merge.md) are
+authoritative for this PR. Ports use their normal compiler for these units.
+
+Units override the default `GAME_COMPILER = "GC/2.0"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
-1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
+1.2.5n, 1.3, 1.3.2) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
 `configure.py` comment above each entry is its recorded reason (e.g.
 `pso_date.cpp`: GC/1.3.2 scheduling, see
