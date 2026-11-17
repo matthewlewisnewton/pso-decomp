@@ -8343,7 +8343,7 @@ force_active:
   - is_any_player_in_range__16TObjEvtCollisionFf
   - is_any_player_matching_stat__16TOTrapAncient02RFv
   - is_any_player_near__Fl
-  - is_balloon_overlapping__FPUcPUcPUc
+  - is_balloon_overlapping__FPC15TWindowFukidasiPCfPCf
   - is_below_half_hp__14TObjEnePanBARAFv
   - is_broken__15TBoss3VoloptP01Fv
   - is_buffer_blank_checked__19TWindowKeyBoardSoftFv

@@ -127,8 +127,6 @@ struct VOff_8024491C_arg0_card_1 { char pad_0[0x38]; char f_38[1]; };
 
 struct VOff_80244958_arg0_card_1 { char pad_0[0x30]; char f_30[1]; };
 
-struct Win_80244DFC { u8 pad[0xC]; Win_80244DFC *next; };
-
 struct Quad_802455CC { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
 struct Rect_802455CC { f32 x, y, w, h; u8 pad10[0x20 - 0x10]; f32 px, py, sx, sy; u8 pad30[0x38 - 0x30]; f32 depth; };
@@ -145,7 +143,6 @@ void TWindowSubTradeMain__sub_802448E4(void *arg0);
 void fn_8024491C(void *arg0);
 void fn_80244958(void *arg0);
 void fn_802449E0(u8 *arg0);
-Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC *self, void *a, void *b, Win_80244DFC *p);
 s32 sub_80246948__11TWindowBaseFv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
@@ -271,7 +268,6 @@ extern s32 lbl_805D63F0;
 void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void window_request_refresh(u8 *arg0);
 void window_request_show(void *arg0);
-bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2);
 void window_request_refresh(u8 *arg0) {
     if (!((f32) *(s32 *)((s8 *)arg0 + 0x5C) >= 7.5f)) {
         *(s32 *)((s8 *)arg0 + 0x5C) = 7;
@@ -332,49 +328,50 @@ void TWindowBase::set_depth(f32 farg0) {
     resort_window_order__11TWindowBaseFv(this);
 }
 
-bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2) {
-    f32 temp_f1;
-    f32 temp_f2;
-    f32 temp_f2_2;
-    temp_f2_2 = *(f32 *)((s8 *)arg1 + 0);
-    if (temp_f2_2 >= (*(f32 *)((s8 *)arg0 + 0x30) + *(f32 *)((s8 *)arg0 + 0x38))) {
+s32 is_balloon_overlapping(const TWindowFukidasi *balloon, const f32 *position, const f32 *size) {
+    f32 y;
+    f32 top;
+    f32 x = position[0];
+    if (x >= balloon->position[0] + balloon->size[0]) {
         return 0;
     }
-    if ((temp_f2_2 + *(f32 *)((s8 *)arg2 + 0)) <= *(f32 *)((s8 *)arg0 + 0x40)) {
+    if (x + size[0] <= balloon->m_40) {
         return 0;
     }
-    temp_f2 = *(f32 *)((s8 *)arg0 + 0x34);
-    temp_f1 = *(f32 *)((s8 *)arg1 + 4);
-    if (temp_f1 >= (temp_f2 + *(f32 *)((s8 *)arg0 + 0x3C))) {
+    top = balloon->position[1];
+    y = position[1];
+    if (y >= top + balloon->size[1]) {
         return 0;
     }
-    return ((temp_f1 + *(f32 *)((s8 *)arg2 + 4)) <= temp_f2) == 0;
+    if (y + size[1] <= top) {
+        return 0;
+    }
+    return 1;
 }
 
-Win_80244DFC *find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC *self, void *a, void *b, Win_80244DFC *p) {
-    if (TWindowFukidasi__sub_8024695C(self) == 0) {
-        return 0;
+TWindowFukidasi *TWindowFukidasi::find_overlapping_balloon(const f32 *position, const f32 *size, TWindowFukidasi *first) {
+    if (TWindowFukidasi__sub_8024695C(this) == 0) {
+        return NULL;
     }
-    if (((TWindowFukidasi *)self)->is_bit10_set() != 0) {
-        return 0;
+    if (is_bit10_set() != 0) {
+        return NULL;
     }
-    if (((TWindowBase *)self)->sub_80244994() == 0) {
-        return 0;
+    if (((TWindowBase *)this)->sub_80244994() == 0) {
+        return NULL;
     }
-    for (; p != 0; p = p->next) {
-        if (TWindowFukidasi__sub_8024695C(p) != 0 && ((TWindowFukidasi *)p)->is_bit10_set() == 0 &&
-            ((TWindowBase *)p)->sub_80244994() != 0 && p != self &&
-            (((TWindowFukidasi *)self)->get_visible_flag() == 0 || ((TWindowFukidasi *)p)->get_visible_flag() == 0) &&
-            ((s32 (*)(void *, void *, void *))is_balloon_overlapping)(p, a, b) != 0) {
+    for (TWindowFukidasi *p = first; p != NULL; p = p->next) {
+        if (TWindowFukidasi__sub_8024695C(p) != 0 && p->is_bit10_set() == 0 &&
+            ((TWindowBase *)p)->sub_80244994() != 0 && p != this &&
+            (get_visible_flag() == 0 || p->get_visible_flag() == 0) &&
+            is_balloon_overlapping(p, position, size)) {
             return p;
         }
     }
-    return 0;
+    return NULL;
 }
 
-void TWindowFukidasi::find_balloon_overlap_for(s32 arg1) {
-    s32 arg0 = (s32)this;
-    find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv((Win_80244DFC *)(arg0), (void *)(arg0 + 0x30), (void *)(arg0 + 0x38), (Win_80244DFC *)(arg1));
+TWindowFukidasi *TWindowFukidasi::find_balloon_overlap_for(TWindowFukidasi *first) {
+    return find_overlapping_balloon(position, size, first);
 }
 
 void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
