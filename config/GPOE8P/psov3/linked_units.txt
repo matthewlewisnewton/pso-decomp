@@ -414,6 +414,7 @@ pso/enemy/DarkGunner.cpp
 pso/enemy/DelDepthConstants.cpp
 pso/enemy/DelDepthData.cpp
 pso/enemy/DelDepthMotion.cpp
+pso/enemy/Df2BringerConstants.cpp
 pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
 pso/enemy/TEnemyTaskList.cpp

@@ -1494,6 +1494,9 @@ pso/misc/TBreakUpMdl.cpp:
 	.data       start:0x8048F9E8 end:0x8048FA00
 	.sdata2     start:0x805D97C8 end:0x805D97D8
 
+pso/enemy/Df2BringerConstants.cpp:
+	.sdata2     start:0x805D97D8 end:0x805D9850
+
 pso/enemy/TObjEneDf2Bringer_80097100.cpp:
 	.text       start:0x80097100 end:0x800972B0
 	.rodata     start:0x8043A0F0 end:0x8043A0F8
