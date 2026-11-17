@@ -626,6 +626,9 @@ pso/boss/TBoss4Zako.cpp:
 	.sbss       start:0x805D4D88 end:0x805D4D90
 	.sdata2     start:0x805D8D20 end:0x805D8D28
 
+pso/unk/data_805D8D28.cpp:
+	.sdata2     start:0x805D8D28 end:0x805D8D70
+
 original_padding_80487844:
 	.data       start:0x80487844 end:0x80487848 align:4
 
