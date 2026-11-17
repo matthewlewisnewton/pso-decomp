@@ -7262,8 +7262,8 @@ force_active:
   - free_chara_making__10TObjPlayerFv
   - free_chardata__23TAdSinglePlyChrSelectGCFls
   - free_data__23TAdSinglePlyChrSelectGCFv
-  - free_field_98__6TLobbyFv
-  - free_field_98_and_clear__6TLobbyFv
+  - free_field_98
+  - free_field_98_and_clear
   - free_field_FC__23TAdSinglePlyChrSelectGCFv
   - free_if_not_in_arena__11BmlResourceFPv
   - free_item_pmt__Fv
@@ -8042,7 +8042,7 @@ force_active:
   - init_lookup_tables__6TLobbyFv
   - init_map_light__9TObjLightFi
   - init_material_nodes__6TSceneFv
-  - init_md5_state__6TLobbyFv
+  - init_md5_state
   - init_menu_window__12TAdTimeSetGCFv
   - init_mirage__23TObjEneMe3ShinowaMirageFv
   - init_model__23TObjSeabedSuisoBrakableFv
@@ -15805,7 +15805,7 @@ force_active:
   - quest_player_class_name_buffer
   - quest_player_name_buffer
   - quest_vm_load__12TQuestListVMFv
-  - queue_command_81__6TLobbyFv
+  - queue_command_81
   - queue_deferred_photon_blast_hit__FUlllf
   - queue_destruction__12TObjGrassWebFv
   - queue_destruction__12TQuestThreadFPv
@@ -16521,7 +16521,7 @@ force_active:
   - reset_camera_if_fullscreen__6TLobbyFPv
   - reset_color__13TUnk_80490470Fv
   - reset_color__19MaterialOpacityFadeFv
-  - reset_connection_slot__6TLobbyFv
+  - reset_connection_slot
   - reset_connection_state__6TLobbyFv
   - reset_counter__13TRaderMapCoreFv
   - reset_counters__11TBoss6Type2Fv
@@ -17187,7 +17187,7 @@ force_active:
   - save_position__10TBoss2MineFv
   - save_position__10TObjPlayerFv
   - save_position__12TBoss8DragonFv
-  - save_timer_state__6TLobbyFv
+  - save_timer_state
   - saved_depth_alpha_scene_state
   - saver_collision_body_part_table
   - scale_axis_value__16TKeyBoardControlFs

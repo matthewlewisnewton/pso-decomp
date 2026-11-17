@@ -74,12 +74,12 @@ void TLobby__sub_803FF48C(void *context);
 void TLobby__sub_80400988(void *context);
 void TLobby__sub_8040098C(void *context);
 void TLobby__sub_80400B98(void *context);
-void free_field_98__6TLobbyFv(void *context);
-void free_field_98_and_clear__6TLobbyFv(void *context);
-void reset_connection_slot__6TLobbyFv(void *context);
-void queue_command_81__6TLobbyFv(void *context);
-void save_timer_state__6TLobbyFv(void *context);
-void init_md5_state__6TLobbyFv(struct Md5Ctx_80401EB8 *context);
+void free_field_98(void *context);
+void free_field_98_and_clear(void *context);
+void reset_connection_slot(void *context);
+void queue_command_81(void *context);
+void save_timer_state(void *context);
+void init_md5_state(struct Md5Ctx_80401EB8 *context);
 void NetPapDispatch(Conn_804004DC *state, B_803FADA0 *frame);
 B_803FADA0 *NetIPv4WriteHeader(A_80403F4C *config, B_803FADA0 *frame, s32 preserve_checksum);
 #ifdef __cplusplus

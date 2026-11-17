@@ -362,3 +362,80 @@ reference returns, const pointer slots, and independent cast-removal probes
 were tested. The alias-return local remains, is not newly introduced in round
 three, and is an additional unresolved source pattern rather than an approved
 exception. No claim that all PR source blockers are fixed is made.
+
+## Round-four copy rule and sender investigation
+
+The sender is unchanged and still exact with a 0x40 frame. This round does
+not resolve or approve its payload/length reuse, payload-to-buffer casts or
+length-member recovery expression.
+
+Inspection of the pinned GC/1.2.5n compiler identifies a concrete reason why
+ordinary copies can become `addi ...,0`. The executable's SHA-1 is
+`ef0480e9b4a42398bda3e412794c6628e26e1bf7`. Its instruction descriptor table
+at executable VA `0x5654B0` identifies opcode 139 as MR and opcode 63 as
+ADDI. The MR peephole callback registered at `0x4C6D43` is at `0x4C8B90`.
+It rewrites MR into ADDI with immediate zero when:
+
+- the copy's flags do not contain `0x80`;
+- it has at least two operands and its source register is nonzero; and
+- its preceding or following instruction node has `(flags & 3) == 1`.
+
+The descriptor flags classify ordinary integer operations in that last
+category; loads and stores do not qualify. This is a rule on the compiler's
+instruction list at that pass, rather than a rule on the spelling of `x = y`
+or the signedness of a word. It also does not account for every possible
+origin of ADDI: arithmetic/address operations can independently produce it.
+Later scheduling and prologue insertion can change final adjacency.
+
+Same-compiler toys confirm that one formal preserved across a call uses MR,
+whereas two preserved formals produce zero-immediate ADDIs; an actual
+arithmetic operation before the call can also change the preservation copy.
+Signed and unsigned words and pointers share the behavior. An inline reset
+using independent globals can produce ADDI while the equivalent operation
+using the sender's actual global-pool layout produces MR. Exact repository
+examples include the timeout formal in `TLobby__sub_803FC1CC`, the loop
+input in `TLobby__sub_803F7684`, and the three inputs of
+`NetCompareStringsCaseInsensitiveN`. Thus ADDI alone does not establish a
+member-address operation in the original source.
+
+In the closest reset replacement, the copy is between `stw r3,0(r4)` and
+`sth r0,4(r4)`. Those neighboring stores do not trigger this MR rewrite.
+That diagnostic scores 99.294120%/0x40, with MR at `0x803FE714` replacing
+the native ADDI. It still retains the separate, inherited length-reuse
+problem. Moving real reset operations into pointer/reference-return helpers,
+buffer/pool methods, cursor/headroom helpers and macros, and passing an
+explicit initial length, did not reproduce the native copy and schedule.
+No dummy arithmetic or additional optimizer control is retained to trigger
+this rule.
+
+A complete candidate removing all three sender patterns reaches
+98.176470%/0x40. It uses a typed buffer formal, a separate unsigned-halfword
+wire length, and an inline prepender with separate input and output arguments.
+The writer's existing halfword interface remains intact. Its instruction
+positions align, but nonvolatile register allocation and the reset copy
+still differ. All helper-parameter orders tested retain that result. Fresh
+cursor-output helpers, packet-header views, formal widths, control-flow
+helpers and combinations of the existing lifetime/inline controls also fail
+exactness. The native frame has no newly identified local-state accesses;
+there is no evidence here for a padding local. These results explain the
+measured failure, not mathematical impossibility of another natural form.
+
+## Round-four C interfaces
+
+The five provisional callback definitions now use the existing name stems
+as plain C names: `free_field_98` (`0x803FF34C`),
+`free_field_98_and_clear` (`0x803FF430`), `reset_connection_slot`
+(`0x80400B34`), `queue_command_81` (`0x80400B74`), and
+`save_timer_state` (`0x80400BA8`). The same inherited spelling issue on
+`init_md5_state` (`0x80401FA8`) is removed as well. Shared declarations,
+callback references and `symbols.txt` agree on those names. No wrapper,
+new ownership claim or change to a function body is needed. All six remain
+100% exact with their original frames (0x08, 0x18, 0x18, 0x08, 0x18 and
+no frame, respectively).
+
+The VJ return conversion and PAP destination alias remain. Newly tested PAP
+copy/termination helpers remove the alias but reach at best
+92.401040%/0x38; the previous direct getter remains closer at
+99.479164%/0x38. The previous VJ return-width experiments remain applicable.
+No pragma scope changes in round four: the 59 individual PPP register rows
+and +44/-90 source-pragma totals versus main remain unchanged.

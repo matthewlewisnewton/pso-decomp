@@ -1037,7 +1037,7 @@ s16 TLobby__sub_803FC820(Conn_804004DC *c, PppConfigureMessage *hdr, B_803FADA0 
     } else {
         len = NetStringLength(chap->secret);
     }
-    init_md5_state__6TLobbyFv(&ctx);
+    init_md5_state(&ctx);
     TLobby__sub_80401EB8(&ctx, lbl_805C02D0.p18, len + 1);
     TLobby__sub_80401EB8(&ctx, lbl_805C02D0.p8 + 1, lbl_805D7A9A);
     TLobby__sub_80401D2C((u8 *)lbl_805C02D0.p20, &ctx);
@@ -1126,7 +1126,7 @@ void TLobby__sub_803FCC10(Conn_804004DC *connection, PppConfigureMessage *header
   NetMemcpy(lbl_805C02D0.p14 + digest_offset, challenge_slot.value, challenge_length);
   NetMemset(lbl_805C02D0.p1C, 0, lbl_805C02D0.response_capacity);
   *lbl_805C02D0.p1C = 0x10;
-  init_md5_state__6TLobbyFv(&context);
+  init_md5_state(&context);
   TLobby__sub_80401EB8(&context, lbl_805C02D0.p14, digest_offset + challenge_length);
   TLobby__sub_80401D2C(lbl_805C02D0.p1C + 1, &context);
   u32 response_name_length = credential_length;
@@ -2370,11 +2370,11 @@ extern "C" void TLobby__sub_803FEF4C(u8 *self) {
     protocol->terminate=10;
     protocol->unknownB=10;
     protocol->timeout=3000;
-    protocol->f10=free_field_98__6TLobbyFv;
+    protocol->f10=free_field_98;
     protocol->f14=TLobby__sub_803FF48C;
     protocol->f18=TLobby__sub_803FF374;
     protocol->f1C=TLobby__sub_803FF384;
-    protocol->f20=free_field_98_and_clear__6TLobbyFv;
+    protocol->f20=free_field_98_and_clear;
     protocol->f24=TLobby__sub_803FF468;
     protocol->f28=TLobby__sub_80400174;
     protocol->f2C=TLobby__sub_803FF9A4;
@@ -2486,7 +2486,7 @@ s16 TLobby__sub_803FF304(u8 *lobby) {
     return 0;
 }
 
-extern "C" void free_field_98__6TLobbyFv(void *context) {
+extern "C" void free_field_98(void *context) {
     u8 *arg0 = (u8 *)context;
     struct Fields_arg0 { u8 pad_0[48]; u8 * field_30; };
     TLobby__sub_80405000((u32)(*(u32 *)((s8 *)(((Fields_arg0*)arg0)->field_30) + 0x98)));
@@ -2521,7 +2521,7 @@ void TLobby__sub_803FF384(void *context) {
     *(s8 *)((s8 *)arg0 + 0) = 5;
 }
 
-extern "C" void free_field_98_and_clear__6TLobbyFv(void *context) {
+extern "C" void free_field_98_and_clear(void *context) {
     u8 *arg0 = (u8 *)context;
     u8 *temp_r31;
     temp_r31 = (u8 *)(*(u8 **)((s8 *)arg0 + 0x30));
@@ -3130,11 +3130,11 @@ extern "C" void TLobby__sub_8040059C(u8 *self) {
     protocol->unknownB=3;
     protocol->timeout=1000;
     protocol->f10=TLobby__sub_80400988;
-    protocol->f14=save_timer_state__6TLobbyFv;
+    protocol->f14=save_timer_state;
     protocol->f18=TLobby__sub_80400B98;
     protocol->f1C=TLobby__sub_8040098C;
-    protocol->f20=reset_connection_slot__6TLobbyFv;
-    protocol->f24=queue_command_81__6TLobbyFv;
+    protocol->f20=reset_connection_slot;
+    protocol->f24=queue_command_81;
     protocol->f28=TLobby__sub_8040172C;
     protocol->f2C=TLobby__sub_804010A0;
     protocol->f30=TLobby__sub_80400F1C;
@@ -3322,7 +3322,7 @@ void TLobby__sub_80400ACC(O_80400ACC *o) {
     }
 }
 
-extern "C" void reset_connection_slot__6TLobbyFv(void *context) {
+extern "C" void reset_connection_slot(void *context) {
     u8 *arg0 = (u8 *)context;
     struct Fields_arg0 { u8 pad_0[12]; s8 * field_C; };
     s8 *temp_r31;
@@ -3332,7 +3332,7 @@ extern "C" void reset_connection_slot__6TLobbyFv(void *context) {
     ((TLobby *)(temp_r31 + 0x38))->reset_connection_state();
 }
 
-extern "C" void queue_command_81__6TLobbyFv(void *context) {
+extern "C" void queue_command_81(void *context) {
     TLobby__sub_804062A0(0x81);
 }
 
@@ -3343,7 +3343,7 @@ void TLobby__sub_80400B98(void *context) {
 
 typedef char RecoveredGlobal_80401A68_lbl_805C04A8_size[sizeof(RecoveredGlobal_80401A68_lbl_805C04A8) == 0x30 ? 1 : -1];
 
-extern "C" void save_timer_state__6TLobbyFv(void *context) {
+extern "C" void save_timer_state(void *context) {
     St_80400BA8 *s;
     s32 t;
     s = *(St_80400BA8 **)(((u8 *)context) + 0x30);
@@ -3944,7 +3944,7 @@ void TLobby__sub_80401EB8(Md5Ctx_80401EB8 *ctx, u8 *input, u32 len) {
     NetMemcpy(&ctx->buffer[index], &input[i], len - i);
 }
 
-void init_md5_state__6TLobbyFv(Md5Ctx_80401EB8 *ctx) {
+void init_md5_state(Md5Ctx_80401EB8 *ctx) {
     ctx->count[1] = 0;
     ctx->count[0] = 0;
     ctx->state[0] = 0x67452301;
