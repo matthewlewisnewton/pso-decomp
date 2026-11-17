@@ -1633,6 +1633,7 @@ force_active:
   - TObjNpcExpertBase__name
   - TObjNpcExpertBase__shared_resource
   - TObjNpcFemaleBase__ct
+  - TObjNpcHFW00__name
   - TObjNpcHFW01__name
   - TObjNpcHFW01__texture_filename
   - TObjNpcHHM00__body_texture_gvm_handle
@@ -1665,6 +1666,9 @@ force_active:
   - TObjNpcMaleTall__name
   - TObjNpcMaleTall__shared_model_resource
   - TObjNpcMoja__ct
+  - TObjNpcNFM00__name
+  - TObjNpcNFM01__name
+  - TObjNpcNFW00__name
   - TObjNpcNFW01__name
   - TObjNpcNHW00__name
   - TObjNpcNHW00__shared_named_model_object
@@ -8588,13 +8592,17 @@ force_active:
   - lbl_8043F084
   - lbl_8043F168
   - lbl_8043F380
+  - lbl_8043FA28
   - lbl_8043FA38
   - lbl_8043FA4C
   - lbl_8043FA70
+  - lbl_8043FD10
   - lbl_8043FD20
   - lbl_8043FD34
+  - lbl_8043FD48
   - lbl_8043FD58
   - lbl_8043FD6C
+  - lbl_8043FD80
   - lbl_8043FD90
   - lbl_8043FDA4
   - lbl_8043FDC8
