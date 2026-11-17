@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5894 | 889 |
+| pragma | 5895 | 890 |
 | configure.py per-unit override | 215 | 215 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 39, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -91,7 +91,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/misc/TCheckRoomSequence.cpp:292` | `__cntlzw` |
 | `src/pso/misc/THunterGuildSeqOffline_80211FEC.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp:267` | `__cntlzw` |
-| `src/pso/misc/TLoadingCur.cpp:174` | `__cntlzw` |
+| `src/pso/misc/TLoadingCur.cpp:162` | `__cntlzw` |
 | `src/pso/misc/TLobby_80145E40.cpp:28` | `__cntlzw` |
 | `src/pso/misc/TLobby_803C4698.cpp:237` | `__frsqrte` |
 | `src/pso/misc/TLobby_80429598.cpp:16` | `__lhbrx` |
@@ -757,6 +757,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/misc/TKomorebi.cpp` | readonly_strings×1 |
 | `src/pso/misc/TLanguage_803DAF68.cpp` | scheduling×1, peephole×1 |
 | `src/pso/misc/TLevelSelect.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TLoadCtrl.cpp` | pool_data×1 |
 | `src/pso/misc/TLoadingCur.cpp` | fp_contract×3, opt_propagation×1 |
 | `src/pso/misc/TLobby.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobbyEventTheme.cpp` | readonly_strings×1 |
