@@ -4520,25 +4520,32 @@ pso/npc/TObjNpcFemaleBase_80149C7C.cpp:
 	.text       start:0x80149C7C end:0x80149D40
 
 pso/npc/TObjNpcFemaleBase.cpp:
-	.text       start:0x80149D40 end:0x8014A008
+	.text       start:0x80149D40 end:0x80149F80
+	.rodata     start:0x8043F830 end:0x8043F868
 
 pso/npc/TObjNpcFemaleChild.cpp:
-	.text       start:0x8014A008 end:0x8014A1E0
+	.text       start:0x80149F80 end:0x8014A158
+	.rodata     start:0x8043F868 end:0x8043F8A0
 
 pso/npc/TObjNpcFemaleDwarf.cpp:
-	.text       start:0x8014A1E0 end:0x8014A3B8
+	.text       start:0x8014A158 end:0x8014A330
+	.rodata     start:0x8043F8A0 end:0x8043F8E0
 
 pso/npc/TObjNpcFemaleFat.cpp:
-	.text       start:0x8014A3B8 end:0x8014A590
+	.text       start:0x8014A330 end:0x8014A508
+	.rodata     start:0x8043F8E0 end:0x8043F918
 
 pso/npc/TObjNpcFemaleMacho.cpp:
-	.text       start:0x8014A590 end:0x8014A768
+	.text       start:0x8014A508 end:0x8014A6E0
+	.rodata     start:0x8043F918 end:0x8043F950
 
 pso/npc/TObjNpcFemaleOld.cpp:
-	.text       start:0x8014A768 end:0x8014A940
+	.text       start:0x8014A6E0 end:0x8014A8B8
+	.rodata     start:0x8043F950 end:0x8043F990
 
 pso/npc/TObjNpcFemaleTall.cpp:
-	.text       start:0x8014A940 end:0x8014AA48
+	.text       start:0x8014A8B8 end:0x8014AA48
+	.rodata     start:0x8043F990 end:0x8043F9C8
 
 pso/npc/TObjNpcFemaleTall_8014AA48.cpp:
 	.text       start:0x8014AA48 end:0x8014AA60
@@ -4614,10 +4621,12 @@ pso/npc/TObjNpcMaleChild.cpp:
 	.sbss       start:0x805D57E0 end:0x805D57E8
 
 pso/npc/TObjNpcMaleDwarf.cpp:
-	.text       start:0x8014BD1C end:0x8014BF7C
+	.text       start:0x8014BD1C end:0x8014BEF4
+	.rodata     start:0x8043FBE0 end:0x8043FC20
 
 pso/npc/TObjNpcMaleFat.cpp:
-	.text       start:0x8014BF7C end:0x8014C0CC
+	.text       start:0x8014BEF4 end:0x8014C0CC
+	.rodata     start:0x8043FC20 end:0x8043FC58
 
 pso/npc/TObjNpcMaleMacho.cpp:
 	.text       start:0x8014C0CC end:0x8014C2A4

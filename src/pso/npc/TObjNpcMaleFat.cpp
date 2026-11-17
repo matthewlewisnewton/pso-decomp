@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcMaleMacho.h"
 #include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TObjNpcMaleFat.h"
@@ -7,18 +8,38 @@
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
 
+struct RecoveredGlobal_8014BF2C_lbl_804AA580 { s32 value; u8 remaining[0xC]; };
+typedef char RecoveredGlobal_8014BF2C_lbl_804AA580_size[sizeof(RecoveredGlobal_8014BF2C_lbl_804AA580) == 0x10 ? 1 : -1];
+
 struct RecoveredGlobal_8014BFD4___vt__14TObjNpcMaleFat {
     s32 value;
     u8 remaining[0x174];
 };
 
 extern "C" {
+extern const char lbl_8043FC20[] = "n_efm_i_body.nj";
+extern const char lbl_8043FC30[] = "bm_n_efm_i_body.bml";
+extern const char lbl_8043FC44[] = "TObjNpcMaleFat";
+extern RecoveredGlobal_8014BF2C_lbl_804AA580 bm_n_efm_i_body_resource_descriptor;
 extern s32 __vt__14TObjNpcMaleFat[];
 extern s32 TObjNpcMaleFat__name;
-extern u8 *TObjNpcMaleFat__static_model_resource;
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
+
+void TObjNpcMaleFat::free_static_model() {
+    if ((u32) TObjNpcMaleFat__static_model_resource != 0U) {
+        delete (BmlResource *)((void*)TObjNpcMaleFat__static_model_resource);
+        TObjNpcMaleFat__static_model_resource = 0U;
+    }
+}
+void TObjNpcMaleFat::load_static_resource() {
+    BmlResource *temp_r3;
+    BmlResource *var_r0;
+    temp_r3 = new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efm_i_body_resource_descriptor.value), 0, 0, (void *)(0));
+    var_r0 = temp_r3;
+    TObjNpcMaleFat__static_model_resource = var_r0;
+}
 
 void *__dt__14TObjNpcMaleFatFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
