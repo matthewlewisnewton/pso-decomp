@@ -1994,6 +1994,7 @@ force_active:
   - TObjTradeCollision__ct
   - TObjTradeCollision__name
   - TObjTuitate__ct
+  - TObjVoloptPillar_name
   - TObjWaitEntryHairMoveSim__sub_800FE3BC
   - TObjWarnChime_class_name
   - TObjWarnChime_name
@@ -6974,6 +6975,7 @@ force_active:
   - fn_800472D4__15TBoss3VoloptP02Fv
   - fn_800499FC
   - fn_80049A0C
+  - fn_80049FD8
   - fn_8004D9A8
   - fn_8005586C
   - fn_8005D6E4
@@ -20353,6 +20355,8 @@ force_active:
   - volopt_cage_breakup_params
   - volopt_cage_combat_stats
   - volopt_p02_params
+  - volopt_pillar_attack
+  - volopt_pillar_push
   - vsUpdateBuffer
   - vt0__11TBoss4BishiFv
   - vt0__13TBoss6MagMineFv
