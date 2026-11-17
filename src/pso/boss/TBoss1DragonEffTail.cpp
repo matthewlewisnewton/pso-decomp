@@ -1,3 +1,4 @@
+#include "pso/boss/DragonTailCraterConstants.h"
 #include "types.h"
 #include "pso/boss/TBoss1DragonColli.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
@@ -57,7 +58,6 @@ struct Vec_8002BD38 { f32 x, y, z; };
 
 extern "C" {
 void TBoss1Dragon__sub_8002AB6C(u8 *arg0);
-extern const f32 lbl_805D8158;
 extern u8 TBoss1DragonEffTail__collision_body_templates[];
 extern s32 __vt__19TBoss1DragonEffTail[];
 extern s32 TBoss1DragonEffTail__name;
@@ -126,7 +126,7 @@ void TBoss1DragonEffTail__vt18(s32 arg0, s32 arg1) {
 }
 
 void TBoss1DragonEffTail::apply_hit_if_active(void *arg1, f32 *) {
-    ((VObj_18 *)(((u8 *)arg1)))->m20(this->m_ac, lbl_805D8158);
+    ((VObj_18 *)(((u8 *)arg1)))->m20(this->m_ac, dragon_tail_hit_scale);
     if (TObjEneDD::check_v2_mode() != 0) {
         TBoss1Dragon__sub_8002AB6C((((u8 *)arg1)));
     }
