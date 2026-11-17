@@ -153,7 +153,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,894 | 889 |
+| CodeWarrior pragmas (excluding push/pop) | 5,898 | 890 |
 | Per-unit compiler overrides in `configure.py` | 215 | 215 |
 | Approved regressions | 0 | 0 |
 
@@ -841,7 +841,7 @@ A port can use its regular compiler and call the renderer through a
 `ColorLineList` interface. Preserve the fused depth calculation if the port
 requires identical rounding.
 
-### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
+### Vol Opt pillar debris and collision handling
 
 GC/2.0 interleaves the BML resource and model-table loads with the final
 load and store of the initializer copy. It loads all three
@@ -851,8 +851,13 @@ is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
 
 The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
-maps it to the compiler's local `@13` symbol. Ports can use the default
-compiler.
+maps it to the compiler's local `@15` symbol in `TObjVoloptPillar.cpp`.
+
+GC/2.0 pools the collision handler's read-only operands through a shared
+base and changes register allocation when their definitions are in the
+same translation unit. Scoped `pool_data off` in `TObjVoloptPillar::run_task`
+at `0x8004A1CC` restores the separate address loads and all 784 bytes.
+Ports can omit the pragma and use their default compiler.
 
 ### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
 
