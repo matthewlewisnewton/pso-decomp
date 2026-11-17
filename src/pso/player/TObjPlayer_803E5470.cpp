@@ -1,14 +1,10 @@
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/ChunkPolygonList.h"
 
 extern "C" {
 
-typedef struct {
-    f32 x, y, z;
-    u8 pad0C[0x18 - 0x0C];
-    u32 color;
-    u32 pad1C;
-} Vtx_803E549C;
+typedef ChunkColorVertex Vtx_803E549C;
 
 typedef union {
     u8 u8;

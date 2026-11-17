@@ -1,3 +1,4 @@
+#include "pso/player/TObjPlayer_802C367C.h"
 #include "types.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/date.h"
@@ -2935,7 +2936,6 @@ void *copy_char_slot_data__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
 s32 copy_save_data__23TAdSinglePlyChrSelectGCFii(s32 arg0, s32 arg1);
 s32 get_ptr_4__10TObjPlayerFv();
 s32 TAdSinglePlyChrSelectGC__sub_801FCD04(s32);
-s32 init_character_stats_for_level(u8, void *, s32);
 void init_class_starting_inventory(void *arg0);
 s32 memset(void *, s32, s32);
 extern s32 card_character_save_buffer;
@@ -3463,7 +3463,7 @@ void reset_character_data__23TAdSinglePlyChrSelectGCFv(void) {
         } while (var_r31 < 0x1E);
         *(s8 *)((s8 *)selected_character_data + 0) = 0;
         init_class_starting_inventory(selected_character_data);
-        init_character_stats_for_level(*(u8 *)((s8 *)selected_character_data + 0x3A1), selected_character_data, *(s32 *)((s8 *)selected_character_data + 0x364));
+        init_character_stats_for_level(((char *)selected_character_data)[0x3A1], selected_character_data, *(s32 *)((s8 *)selected_character_data + 0x364));
         ((TObjPlayer *)selected_character_data)->reset_action_palette();
         ((TObjPlayer *)selected_character_data)->m_36c = 0;
     }

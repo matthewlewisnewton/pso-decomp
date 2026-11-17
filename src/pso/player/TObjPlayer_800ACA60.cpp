@@ -1,3 +1,4 @@
+#include "pso/enemy/MojaResourceState.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -499,7 +500,6 @@ s32 copy_position_if_valid__10TObjPlayerFii(void *, Vec_800AE18C *);
 
 f32 horizontal_distance_squared(int, void *);
 
-extern u8 **lbl_805D50D4;
 extern const f32 lbl_805D9C34;
 extern const f32 lbl_805D9C38;
 u16 find_nearest_visible_player(void *, int, f32);
@@ -524,7 +524,6 @@ f32 calc_xz_distance_sq(void *, void *, Vec_800AE18C *);
 f32 atan2_float(f32, f32);
 s32 angle_difference_abs(s32, s32);
 extern const f64 lbl_8043B0C8[];
-extern u32 *lbl_805D50CC;
 extern const f32 lbl_805D9C1C;
 extern const f32 lbl_805D9C30;
 
@@ -534,7 +533,6 @@ void set_matrix_identity(u8 *arg0);
 s32 push_matrix();
 
 s32 post_translate_matrix(void *);
-extern void *lbl_805D50DC;
 extern const f32 lbl_805D9C04;
 extern const f32 lbl_805D9C28;
 extern const f32 lbl_805D9C2C;
@@ -1046,7 +1044,8 @@ s32 TObjEneMoja::is_target_in_attack_range() {
             radius = lbl_805D9BE8;
         }
         for (i = 0; i < 3; i++) {
-            this->m_318 = lbl_805D50CC[i + (this->variant) * 3];
+            // m_318 retains the existing address-word interface for the selected attack block.
+            this->m_318 = reinterpret_cast<u32>(lbl_805D50CC[i + (this->variant) * 3]);
             sq = (radius + ((AttackParams *)(this->m_318))->get_attack_range()) *
                  (radius + ((AttackParams *)(this->m_318))->get_attack_range());
             lim = ((AttackParams *)(this->m_318))->get_attack_angle();
@@ -1100,7 +1099,7 @@ s32 TObjEneMoja::is_target_in_attack_range() {
 s32 TObjEneMoja::update_approach_state() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f0_2;
-    u8 *temp_r4;
+    BattleMovementParams *temp_r4;
     TObjChara *temp_r7;
     switch (this->phase) {
     case 0:

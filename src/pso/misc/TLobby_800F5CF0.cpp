@@ -1,5 +1,6 @@
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
+#include "pso/system/ChunkTextureStripCollector.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/enemy/TObjEnemy.h"
 
@@ -15,24 +16,17 @@ struct Stack_800F5D80 {
 };
 
 extern "C" {
-void collect_model_strips_by_texture(void *ctx, s32 model, s32 filter);
-void count_model_strips_by_texture(void *ctx, s32 model, s32 filter);
-
-extern void *plist_strip_write_ptr;
-extern void *plist_strip_uv_write_ptr;
-extern s32 plist_texture_matches_filter;
-
 StripBufferPair::StripBufferPair(s32 model, s32 filter) {
     strip_count = 0;
     uv_count = 0;
     plist_texture_matches_filter = 0;
-    count_model_strips_by_texture(this, model, filter);
-    strips = ::operator new[](strip_count * 8);
-    uvs = ::operator new[](uv_count * 4);
+    count_model_strips_by_texture(this, (NJS_OBJECT *)model, filter);
+    strips = (StripReference *)::operator new[](strip_count * 8);
+    uvs = (s16 *)::operator new[](uv_count * 4);
     plist_strip_write_ptr = strips;
     plist_strip_uv_write_ptr = uvs;
     plist_texture_matches_filter = 0;
-    collect_model_strips_by_texture(this, model, filter);
+    collect_model_strips_by_texture(this, (NJS_OBJECT *)model, filter);
 }
 void TObjEnemy::clear_lobby_object_state() {
     s32 arg0 = (s32)this;

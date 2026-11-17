@@ -1,3 +1,4 @@
+#include "pso/player/PlayerLevelTable.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/misc/TPlyCharData_8007214C.h"
@@ -69,13 +70,13 @@ S_801C20A4 *init_player_telepipe_record(S_801C20A4 *arg0) {
 
 void TObjPlayer__sub_801C210C(void* p, s32 v) { *(s32*)((char*)p + 0x0) = v; }
 int TObjPlayer__sub_801C2114(void) { return 0; }
-u8 TObjPlayer::get_field_5() { return *(u8*)((char*)this + 0x5); }
-u8 TObjPlayer::get_byte_4() { return *(u8*)((char*)this + 0x4); }
-u8 TObjPlayer__sub_801C212C(void* p) { return *(u8*)((char*)p + 0x3); }
-u8 TObjPlayer__sub_801C2134(void* p) { return *(u8*)((char*)p + 0x2); }
-u8 TObjPlayer::get_team_id() { return *(u8*)((char*)this + 0x1); }
-u8 TObjPlayer::get_char_class() { return *(u8*)((char*)this + 0x0); }
-s32 get_level_row_exp_threshold(void* p) { return *(s32*)((char*)p + 0x8); }
+u8 get_field_5__10TObjPlayerFv(const PlayerLevelTableRow *row) { return row->growth[5]; }
+u8 get_byte_4__10TObjPlayerFv(const PlayerLevelTableRow *row) { return row->growth[4]; }
+u8 TObjPlayer__sub_801C212C(const PlayerLevelTableRow *row) { return row->growth[3]; }
+u8 TObjPlayer__sub_801C2134(const PlayerLevelTableRow *row) { return row->growth[2]; }
+u8 get_team_id__10TObjPlayerFv(const PlayerLevelTableRow *row) { return row->growth[1]; }
+u8 get_char_class__10TObjPlayerFv(const PlayerLevelTableRow *row) { return row->growth[0]; }
+s32 get_level_row_exp_threshold(const PlayerLevelTableRow *row) { return row->experience; }
 
 u32 TObjPlayer::unpack_u32_hi() {
     O_801C2154 *self = (O_801C2154 *)this;
