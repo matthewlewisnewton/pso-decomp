@@ -626,6 +626,9 @@ pso/boss/TBoss4Zako.cpp:
 	.sbss       start:0x805D4D88 end:0x805D4D90
 	.sdata2     start:0x805D8D20 end:0x805D8D28
 
+pso/unk/data_805D8D28.cpp:
+	.sdata2     start:0x805D8D28 end:0x805D8D70
+
 original_padding_80487844:
 	.data       start:0x80487844 end:0x80487848 align:4
 
@@ -651,6 +654,9 @@ pso/boss/Boss5GryphonBehavior.cpp:
 	.sdata      start:0x805D27F8 end:0x805D2800
 	.sbss       start:0x805D4D90 end:0x805D4DC8
 	.sdata2     start:0x805D8D70 end:0x805D8E28
+
+pso/boss/Boss5GryphonConstants.cpp:
+	.sdata2     start:0x805D8E28 end:0x805D8ED0
 
 pso/boss/TBoss5GryphonColli.cpp:
 	.text       start:0x80066128 end:0x80066540
@@ -1254,6 +1260,9 @@ pso/effect/TEffect.cpp:
 	.sbss       start:0x805D4ED8 end:0x805D4EE0
 	.sdata2     start:0x805D93B8 end:0x805D93C0
 
+pso/render/ScreenProjectionConstants.cpp:
+	.sdata2     start:0x805D93C0 end:0x805D9410
+
 pso/unk/text_80082C30.cpp:
 	.text       start:0x80082C30 end:0x80082FCC
 	.rodata     start:0x80438F08 end:0x80439348
@@ -1495,6 +1504,9 @@ pso/misc/TBreakUpMdl.cpp:
 	.data       start:0x8048F9E8 end:0x8048FA00
 	.sdata2     start:0x805D97C8 end:0x805D97D8
 
+pso/enemy/Df2BringerConstants.cpp:
+	.sdata2     start:0x805D97D8 end:0x805D9850
+
 pso/enemy/TObjEneDf2Bringer_80097100.cpp:
 	.text       start:0x80097100 end:0x800972B0
 	.rodata     start:0x8043A0F0 end:0x8043A0F8
@@ -1584,6 +1596,7 @@ pso/misc/TeneFakeTecThunderEff.cpp:
 	.text       start:0x800A39A8 end:0x800A4288
 	.rodata     start:0x8043A730 end:0x8043A738
 	.data       start:0x80490A18 end:0x80490A30
+	.sdata2     start:0x805D99F0 end:0x805D9A0C
 
 pso/enemy/SaverLifecycle.cpp:
 	.text       start:0x800A4288 end:0x800A7764
@@ -11290,6 +11303,9 @@ pso/enemy/TObjEneMe3SinowZoa.cpp:
 	.bss        start:0x80542FB0 end:0x80543000
 	.sbss       start:0x805D6AD8 end:0x805D6AE4
 	.sdata2     start:0x805DF358 end:0x805DF368
+
+pso/enemy/SinowZoaConstants.cpp:
+	.sdata2     start:0x805DF368 end:0x805DF390
 
 pso/boss/Boss5GryphonActionScripts.cpp:
 	.data       start:0x804E8D58 end:0x804EC2B0

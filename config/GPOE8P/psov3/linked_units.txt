@@ -196,6 +196,7 @@ pso/audio/GcrnaError.cpp
 pso/audio/GcrnaStream.cpp
 pso/boss/Boss5GryphonActionScripts.cpp
 pso/boss/Boss5GryphonBehavior.cpp
+pso/boss/Boss5GryphonConstants.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
@@ -414,8 +415,10 @@ pso/enemy/DarkGunner.cpp
 pso/enemy/DelDepthConstants.cpp
 pso/enemy/DelDepthData.cpp
 pso/enemy/DelDepthMotion.cpp
+pso/enemy/Df2BringerConstants.cpp
 pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
+pso/enemy/SinowZoaConstants.cpp
 pso/enemy/TEnemyTaskList.cpp
 pso/enemy/TObjEneBalClaw.cpp
 pso/enemy/TObjEneBalClawBody_80090178.cpp
@@ -2619,6 +2622,7 @@ pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
 pso/quest/TQuestListVM_801F4398.cpp
 pso/quest/TQuestThread.cpp
+pso/render/ScreenProjectionConstants.cpp
 pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp
@@ -2857,6 +2861,7 @@ pso/unk/TUnk_804A5C18.cpp
 pso/unk/TUnk_804A6CC8.cpp
 pso/unk/TUnk_804CC870.cpp
 pso/unk/data_805D8200.cpp
+pso/unk/data_805D8D28.cpp
 pso/unk/text_8000F740.cpp
 pso/unk/text_8001C388.cpp
 pso/unk/text_8002B164.cpp
