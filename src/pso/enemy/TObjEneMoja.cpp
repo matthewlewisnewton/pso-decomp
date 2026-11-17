@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/enemy/MojaResourceState.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEneMoja.h"
@@ -79,12 +80,12 @@ CollisionBody moja_enemy_collision_body = {
 extern const MojaNpcModelIds moja_enemy_npc_model_ids;
 extern const NpcAnimationBinding moja_enemy_npc_animation_template;
 extern s32 game_difficulty_selection;
-extern BattleBaseStats **lbl_805D50C8;
-extern AttackParams **lbl_805D50CC;
-extern ActorParamBlock **lbl_805D50D0;
-extern BattleMovementParams **lbl_805D50D4;
-extern BmlResource *lbl_805D50D8;
-extern SampledMotionPoints *lbl_805D50DC;
+BattleBaseStats **lbl_805D50C8;
+AttackParams **lbl_805D50CC;
+ActorParamBlock **lbl_805D50D0;
+BattleMovementParams **lbl_805D50D4;
+BmlResource *lbl_805D50D8;
+SampledMotionPoints *lbl_805D50DC;
 extern const f32 lbl_805D9BD8;
 extern const f32 lbl_805D9BF8;
 extern const f32 lbl_805D9C28;

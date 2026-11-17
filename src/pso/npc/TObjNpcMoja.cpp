@@ -1,3 +1,4 @@
+#include "pso/enemy/MojaResourceState.h"
 #include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -253,7 +254,6 @@ void *__vt__11TObjNpcMoja[95] = {
     (void *)&vfunc_92__11TObjNpcBaseFv, (void *)&draw_debug_info__11TObjNpcBaseFv, (void *)0x0,
 };
 extern s32 TObjNpcMoja__name;
-extern u8 *lbl_805D50D8;
 
 extern void *tl_04;
 
@@ -291,9 +291,9 @@ void *TObjNpcMoja__ct(void *selfv, void *parent, void *arg2v) {
     ((VObj_8014C780 *)self)->m79(arg2);
     ((TObjChara *)self)->initialize_position_copies();
     ((VObj_8014C780 *)self)->m85(0, 1);
-    *(s32 *)(self + 0x34) = (s32)get_bml_model((BmlResource *)lbl_805D50D8, 0);
-    *(s32 *)(self + 0x24) = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D50D8, 0);
-    ((TObjMotion *)self)->init_motion(moja_action_table, (BmlMotionEntry *)*(s32 *)(lbl_805D50D8 + 0x430), *(s16 *)(self + 0xB8));
+    *(s32 *)(self + 0x34) = (s32)get_bml_model(lbl_805D50D8, 0);
+    *(s32 *)(self + 0x24) = (s32)TObjFish__sub_8001EDB0(lbl_805D50D8, 0);
+    ((TObjMotion *)self)->init_motion(moja_action_table, lbl_805D50D8->motions, *(s16 *)(self + 0xB8));
     *(u8 **)(self + 0x350) = npc_movement_parameters;
     ((TObjChara *)self)->set_motion_params(npc_default_battle_stats);
     init_collision_body_parts(self, lbl_804AABD8, 1);

@@ -15,10 +15,10 @@ extern const char *TObjEneDellBiter_Eff_TpAbsorb1__class_name;
 extern u8 lbl_8047511C[];
 extern s32 lbl_80475124[];
 extern DelbiterParticleAngles lbl_8047512C;
-extern const f32 lbl_805DEFA0;
-extern const f32 lbl_805DEFA4;
-extern const f32 lbl_805DEFA8;
-extern const f32 lbl_805DEFAC;
+static const f32 lbl_805DEFA0 = 5.0f;
+static const f32 lbl_805DEFA4 = 16.0f;
+static const f32 lbl_805DEFA8 = 2.5f;
+static const f32 lbl_805DEFAC = 0.0f;
 }
 
 extern "C" {
@@ -30,9 +30,8 @@ f32 cos_table_lookup(s32);
 s32 is_vec_xz_cross_negative(void *, void *);
 s32 rotate_xz_pair_by_angle(void *, void *, s32);
 extern const char *TObjEneDellBiter_Eff_Rush__name;
-extern const f32 lbl_805DEFAC;
-extern const f32 lbl_805DEFB0;
-extern const f32 lbl_805DEFB4;
+static const f32 lbl_805DEFB0 = 0.02f;
+static const f32 lbl_805DEFB4 = 0.8f;
 }
 
 #pragma fp_contract on

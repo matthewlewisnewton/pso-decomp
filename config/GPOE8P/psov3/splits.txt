@@ -1518,7 +1518,7 @@ pso/enemy/TObjEneMe1Canadin.cpp:
 	.rodata     start:0x8043A390 end:0x8043A398
 	.data       start:0x8048FEB0 end:0x80490410
 	.bss        start:0x80500930 end:0x8050096C
-	.sbss       start:0x805D4FE0 end:0x805D4FF0
+	.sbss       start:0x805D4FD0 end:0x805D4FF0
 	.sdata2     start:0x805D98C0 end:0x805D98D0
 
 pso/enemy/CanadinEffects.cpp:
@@ -1629,6 +1629,7 @@ pso/player/TObjPlayer_800ACA60.cpp:
 pso/enemy/TObjEneMoja.cpp:
 	.text       start:0x800AF28C end:0x800AFB28
 	.data       start:0x80491828 end:0x80491B30
+	.sbss       start:0x805D50C8 end:0x805D50E0
 	.sdata2     start:0x805D9C60 end:0x805D9C68
 
 pso/enemy/TObjEneBm3Fly.cpp:
@@ -11010,6 +11011,7 @@ pso/enemy/TObjEneRecon_80302DB0.cpp:
 pso/enemy/TObjEneDellBiterEffects.cpp:
 	.text       start:0x80302DBC end:0x803032EC
 	.data       start:0x804E6AF8 end:0x804E6B6C
+	.sdata2     start:0x805DEFA0 end:0x805DEFB8
 
 pso/enemy/TObjEneDellBiter.cpp:
 	.text       start:0x803032EC end:0x80306994
