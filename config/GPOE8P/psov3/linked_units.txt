@@ -2619,6 +2619,7 @@ pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
 pso/quest/TQuestListVM_801F4398.cpp
 pso/quest/TQuestThread.cpp
+pso/render/ScreenProjectionConstants.cpp
 pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp
