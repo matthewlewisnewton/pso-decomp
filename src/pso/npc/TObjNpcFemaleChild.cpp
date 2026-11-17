@@ -8,8 +8,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct RecoveredGlobal_8014A190_lbl_804A8AE0 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014A190_lbl_804A8AE0_size[sizeof(RecoveredGlobal_8014A190_lbl_804A8AE0) == 0x10 ? 1 : -1];
+struct RecoveredGlobal_80149FB8_lbl_804A8950 { s32 value; u8 remaining[0xC]; };
+typedef char RecoveredGlobal_80149FB8_lbl_804A8950_size[sizeof(RecoveredGlobal_80149FB8_lbl_804A8950) == 0x10 ? 1 : -1];
 
 struct RecoveredGlobal_8014A060___vt__18TObjNpcFemaleChild {
     s32 value;
@@ -17,14 +17,29 @@ struct RecoveredGlobal_8014A060___vt__18TObjNpcFemaleChild {
 };
 
 extern "C" {
-extern RecoveredGlobal_8014A190_lbl_804A8AE0 bm_n_efsw_i_body_resource_descriptor;
-extern u32 TObjNpcFemaleDwarf__static_data;
+extern const char lbl_8043F868[] = "n_ecw_i_body.nj";
+extern const char lbl_8043F878[] = "bm_n_ecw_i_body.bml";
+extern const char lbl_8043F88C[] = "TObjNpcFemaleChild";
+extern RecoveredGlobal_80149FB8_lbl_804A8950 bm_n_ecw_i_body_resource_descriptor;
 extern s32 __vt__18TObjNpcFemaleChild[];
 extern s32 TObjNpcFemaleChild__name;
-extern u8 *TObjNpcFemaleChild__static_instance;
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
+
+void TObjNpcFemaleChild::release_static_instance() {
+    if ((u32) TObjNpcFemaleChild__static_instance != 0U) {
+        delete (BmlResource *)((void*)TObjNpcFemaleChild__static_instance);
+        TObjNpcFemaleChild__static_instance = 0U;
+    }
+}
+void TObjNpcFemaleChild::load_shared_resource() {
+    BmlResource *temp_r3;
+    BmlResource *var_r0;
+    temp_r3 = new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_ecw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
+    var_r0 = temp_r3;
+    TObjNpcFemaleChild__static_instance = var_r0;
+}
 
 void *__dt__18TObjNpcFemaleChildFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -64,20 +79,6 @@ void * TObjNpcFemaleDwarf__create(void *arg0) {
         o2 = TObjNpcFemaleDwarf__ct((u8 *)o2, (s32)o, (s32)arg0);
     }
     return o2;
-}
-
-void TObjNpcFemaleDwarf::unload_static_data() {
-    if ((u32) TObjNpcFemaleDwarf__static_data != 0U) {
-        delete (BmlResource *)((void*)TObjNpcFemaleDwarf__static_data);
-        TObjNpcFemaleDwarf__static_data = 0U;
-    }
-}
-void TObjNpcFemaleDwarf::load_static_resource() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efsw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcFemaleDwarf__static_data) = var_r0;
 }
 
 }

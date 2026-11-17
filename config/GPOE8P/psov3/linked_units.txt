@@ -928,9 +928,6 @@ pso/misc/TDuelEffectNumber_80080290.cpp
 pso/misc/TDuelEffectNumber_80080460.cpp
 pso/misc/TEnding.cpp
 pso/misc/TEndingAB.cpp
-pso/misc/TEndingAB_8008C9FC.cpp
-pso/misc/TEndingAB_8008CCC4.cpp
-pso/misc/TEndingAB_8008CE08.cpp
 pso/misc/TEndingC.cpp
 pso/misc/TEndingC_8008D00C.cpp
 pso/misc/TEndingPic.cpp
@@ -2490,6 +2487,7 @@ pso/player/TObjPlayer_801AE48C.cpp
 pso/player/TObjPlayer_801AEB84.cpp
 pso/player/TObjPlayer_801AEE10.cpp
 pso/player/TObjPlayer_801AEFFC.cpp
+pso/player/TObjPlayer_801AF2F0.cpp
 pso/player/TObjPlayer_801BC140.cpp
 pso/player/TObjPlayer_801BC404.cpp
 pso/player/TObjPlayer_801BC5D4.cpp
@@ -3601,6 +3599,7 @@ pso/unk/text_803E2008.cpp
 pso/unk/text_803E2070.cpp
 pso/unk/text_803E20B0.cpp
 pso/unk/text_803E29B0.cpp
+pso/unk/text_803E2D70.cpp
 pso/unk/text_803E4CE8.cpp
 pso/unk/text_803E4D8C.cpp
 pso/unk/text_803F1804.cpp

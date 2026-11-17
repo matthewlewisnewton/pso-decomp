@@ -822,69 +822,79 @@ extern "C" {
 #pragma bool off
 #pragma opt_propagation off
 void dispatch_chunk_polygon_list(s16 *list, s32 buffer) {
-    s32 header;
+    // Keep the signed wire word distinct from the working header/strip flags.
+    struct CommandState {
+        s16 wire;
+        int header;
+    } state;
     s32 type;
     u32 length;
     s32 info;
     u32 changed;
 
-    while ((header = (s16)*list++) != 0xFF) {
-        s16 decoded = (s16)(header & 0xFF);
+    while ((state.header = (state.wire = *list++)) != 0xFF) {
+        s16 decoded = (s16)(state.header & 0xFF);
         type = decoded;
         if (type < 8) {
             switch (type) {
             case 1:
-                set_chunk_blend(header);
+                set_chunk_blend(state.header);
                 break;
             case 4:
-                chunk_polygon_list_cache[(s16)((header >> 8) & 0xFF)] = list;
+                chunk_polygon_list_cache[(s16)((state.header >> 8) & 0xFF)] = list;
                 lbl_805D7798++;
                 return;
             case 5:
-                dispatch_chunk_polygon_list(chunk_polygon_list_cache[(s16)((header >> 8) & 0xFF)], buffer);
+                dispatch_chunk_polygon_list(chunk_polygon_list_cache[(s16)((state.header >> 8) & 0xFF)], buffer);
                 lbl_805D7798--;
                 break;
             }
         } else if (type < 0x10) {
-            apply_chunk_texture_command(header, (s16)*list);
+            apply_chunk_texture_command(state.header, (s16)*list);
             list++;
         } else if (type < 0x40) {
             type = (s16)*list++;
-            set_chunk_blend(header);
-            submit_chunk_material_color(header, (s16 *)list);
+            set_chunk_blend(state.header);
+            submit_chunk_material_color(state.header, (s16 *)list);
             list += type;
         } else {
             length = *(u16 *)list++;
             info = (s16)*list++;
             if ((u32)(model_render_flags & 0x800) != 0) {
-                header = (s16)(header & chunk_polygon_flags_and_mask);
-                header = (s16)(header | chunk_polygon_flags_or_mask);
+                // Each mask operation narrows to the signed 16-bit command word.
+                struct MaskWord {
+                    s16 value;
+                } masked;
+                masked.value = state.wire;
+                masked.value &= chunk_polygon_flags_and_mask;
+                masked.value |= chunk_polygon_flags_or_mask;
+                state.header = masked.value;
             }
-            header = (s16)(header >> 8);
-            changed = header ^ chunk_previous_strip_flags;
+            state.header = (s16)(state.header >> 8);
+            changed = state.header ^ chunk_previous_strip_flags;
             changed |= chunk_strip_dirty_flags;
-            chunk_previous_strip_flags = header;
+            chunk_previous_strip_flags = state.header;
             chunk_strip_dirty_flags = 0;
             if (changed & 1) {
-                set_strip_lighting_chan_ctrl(header);
+                set_strip_lighting_chan_ctrl(state.header);
             }
             switch (type) {
             case 0x40:
-                if (header & 0x40) {
-                    set_chunk_blend_depth_mode(header, 1);
+                if (state.header & 0x40) {
+                    set_chunk_blend_depth_mode(state.header, 1);
                     setup_chunk_tev_stages();
                     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_NRM, GX_TEXMTX4, GX_FALSE, GX_PTIDENTITY);
                     draw_strip_pos_normal__10TObjPlayerFPvPvUi((s16 *)list, (Vtx_803E46FC *)buffer, info);
                 } else {
-                    set_chunk_blend_depth_mode(header, 0);
+                    set_chunk_blend_depth_mode(state.header, 0);
                     TObjPlayer::setup_tev_passclr();
                     draw_strip_list_pos_nrm__10TObjPlayerFPvPvUi((s16 *)list, (Vtx_803E36C4 *)buffer, info);
                 }
                 break;
             case 0x41:
             case 0x42:
-                set_chunk_blend_depth_mode(header, 1);
-                if (header & 0x40) {
+                set_chunk_blend_depth_mode(state.header, 1);
+                if (state.header & 0x40) {
                     setup_chunk_tev_stages();
                     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_NRM, GX_TEXMTX4, GX_FALSE, GX_PTIDENTITY);
                     draw_triangle_strips__10TObjPlayerFPvPvUi((s16 *)list, (Vtx_803E47E0 *)buffer, info);

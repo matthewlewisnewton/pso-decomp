@@ -2,11 +2,6 @@
 #include "pso/misc/TShopGenerator.h"
 #include "pso/misc/TRaderMapCore.h"
 
-struct RecoveredGlobal_8021E110_TShopGenerator__data_80513ED0 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
 #include <stddef.h>
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/misc/TMedicalCenterMes.h"
@@ -44,7 +39,7 @@ struct Ent_8021DDB8 {
 
 extern "C" {
 s32 TShopGenerator__sub_80222DAC(s32);
-extern RecoveredGlobal_8021E110_TShopGenerator__data_80513ED0 TShopGenerator__slot_active_table;
+s32 TShopGenerator__slot_active_table[4];
 u8 is_slot_active__14TShopGeneratorFi(s32 arg0);
 f32 xyz_distance_squared(u8 *arg0, u8 *arg1);
 f32 vec3_dot(void *, void *);
@@ -213,19 +208,18 @@ void *TShopGenerator__ct(void *shop_generator, s32 arg1) {
     return shop_generator;
 }
 
-typedef char RecoveredGlobal_8021E110_TShopGenerator__data_80513ED0_size[sizeof(RecoveredGlobal_8021E110_TShopGenerator__data_80513ED0) == 0x10 ? 1 : -1];
 u8 is_slot_active__14TShopGeneratorFi(s32 arg0) {
-    return (u8) (*(s32 *)((s8 *)&TShopGenerator__slot_active_table.value + ((TShopGenerator__sub_80222DAC(arg0) * 4) & 0x3FFFC)) == 1);
+    return (u8) (TShopGenerator__slot_active_table[(u16)TShopGenerator__sub_80222DAC(arg0)] == 1);
 }
 
 void TShopGenerator::clear_slot_active(s32 arg0) {
     u16 idx = TShopGenerator__sub_80222DAC(arg0);
-    ((s32 *)&TShopGenerator__slot_active_table)[idx] = 0;
+    TShopGenerator__slot_active_table[idx] = 0;
 }
 
 void THunterGuildSeqOffline__sub_8021E180(s32 arg0) {
     u16 idx = TShopGenerator__sub_80222DAC(arg0);
-    ((s32 *)&TShopGenerator__slot_active_table)[idx] = 1;
+    TShopGenerator__slot_active_table[idx] = 1;
 }
 
 void *TShopGenerator__create(void *arg0) {
@@ -248,7 +242,7 @@ void TShopGenerator::run_fn_table_reverse() {
         f();
     } while (--n > 0);
     for (i = 0; i < 4; i++) {
-        ((s32 *)&TShopGenerator__slot_active_table)[i] = 0;
+        TShopGenerator__slot_active_table[i] = 0;
     }
 }
 void TShopGenerator::run_fn_table_forward() {
@@ -263,7 +257,7 @@ void TShopGenerator::run_fn_table_forward() {
     } while (--n > 0);
     TMedicalCenterMes__sub_80216260();
     for (i = 0; i < 4; i++) {
-        ((s32 *)&TShopGenerator__slot_active_table)[i] = 0;
+        TShopGenerator__slot_active_table[i] = 0;
     }
 }
 

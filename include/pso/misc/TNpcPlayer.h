@@ -88,7 +88,7 @@ struct TNpcPlayer : public TObject {
     void bswap_6x3E();
     void init_6x3E_packet();
     void init_equipment();
-    static s32 send_command(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s8 *arg4);
+    static s32 send_command(char class_index, s32 item_count, s32 items, s32 level, void *character_data);
     static u8 *get_lobby_entry_ptr();
     void copy_entry_by_index(s32 arg1);
     static void send_warp_toward_player(u16 arg0, f32 *arg1);

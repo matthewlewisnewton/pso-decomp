@@ -1,4 +1,8 @@
 #include "types.h"
+#include "pso/misc/TLanguage_801E4874.h"
+#include "pso/unk/text_800F9B84.h"
+#include "pso/misc/TLobby.h"
+#include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/npc/TObjNpcNHW00.h"
 #include "pso/npc/TObjNpcNFW01.h"
 #include "pso/npc/TUnk_804A8640.h"
@@ -10,6 +14,8 @@
 
 extern "C" {
 const char *TObjNpcNFW01__name = "TObjNpcNFW01";
+extern const char lbl_8043FDC8[] = "npc_i01_data.rel";
+extern const char lbl_8043FDDC[] = "n_i01_e_body.gvm";
 }
 
 struct RecoveredGlobal_8014CF50___vt__12TObjNpcNFW01 {
@@ -19,11 +25,26 @@ struct RecoveredGlobal_8014CF50___vt__12TObjNpcNFW01 {
 
 extern "C" {
 extern s32 __vt__12TObjNpcNFW01[];
-extern s32 *TObjNpcNFW01__shared_object_resource;
-extern s32 TObjNpcNFW01__texture_gvm;
+void release_texture_list(void *);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
+
+void TObjNpcNFW01::free_resources() {
+    if ((u32) TObjNpcNFW01__texture_gvm != 0U) {
+        release_texture_list((void*)TObjNpcNFW01__texture_gvm);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFW01__texture_gvm);
+        TObjNpcNFW01__texture_gvm = 0U;
+    }
+    if ((u32) TObjNpcNFW01__shared_object_resource != 0U) {
+        TLobby::free_nodes_with_id((u32)((void*)TObjNpcNFW01__shared_object_resource));
+        TObjNpcNFW01__shared_object_resource = 0U;
+    }
+}
+void TObjNpcNFW01::load_resources() {
+    TObjNpcNFW01__shared_object_resource = (s32 *)create_named_object((s32)lbl_8043FDC8);
+    TObjNpcNFW01__texture_gvm = load_gvm_texture_file(lbl_8043FDDC);
+}
 
 void *__dt__12TObjNpcNFW01Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {

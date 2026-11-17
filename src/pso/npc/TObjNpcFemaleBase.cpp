@@ -10,19 +10,17 @@
 struct RecoveredGlobal_80149DE0_lbl_804A87C0 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_80149DE0_lbl_804A87C0_size[sizeof(RecoveredGlobal_80149DE0_lbl_804A87C0) == 0x10 ? 1 : -1];
 
-struct RecoveredGlobal_80149FB8_lbl_804A8950 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_80149FB8_lbl_804A8950_size[sizeof(RecoveredGlobal_80149FB8_lbl_804A8950) == 0x10 ? 1 : -1];
-
 struct RecoveredGlobal_80149E88___vt__17TObjNpcFemaleBase {
     s32 value;
     u8 remaining[0x174];
 };
 
 extern "C" {
+extern const char lbl_8043F830[] = "n_ebw_i_body.nj";
+extern const char lbl_8043F840[] = "bm_n_ebw_i_body.bml";
+extern const char lbl_8043F854[] = "TObjNpcFemaleBase";
 extern RecoveredGlobal_80149DE0_lbl_804A87C0 bm_n_ebw_i_body_resource_descriptor;
 extern u32 TObjNpcFemaleBase__shared_resource_obj;
-extern RecoveredGlobal_80149FB8_lbl_804A8950 bm_n_ecw_i_body_resource_descriptor;
-extern u32 TObjNpcFemaleChild__static_instance;
 extern s32 __vt__17TObjNpcFemaleBase[];
 extern s32 TObjNpcFemaleBase__name;
 u8 *TObjNpcFemaleBase__ct(u8 *arg0, s32 arg1, s32 arg2);
@@ -100,20 +98,6 @@ void * TObjNpcFemaleChild__create(void *arg0) {
         o2 = TObjNpcFemaleChild__ct((u8 *)o2, (s32)o, (s32)arg0);
     }
     return o2;
-}
-
-void TObjNpcFemaleChild::release_static_instance() {
-    if ((u32) TObjNpcFemaleChild__static_instance != 0U) {
-        delete (BmlResource *)((void*)TObjNpcFemaleChild__static_instance);
-        TObjNpcFemaleChild__static_instance = 0U;
-    }
-}
-void TObjNpcFemaleChild::load_shared_resource() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_ecw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcFemaleChild__static_instance) = var_r0;
 }
 
 }

@@ -25,10 +25,6 @@ extern RecoveredGlobal_8014ABC4_lbl_804A9428 bm_n_soutoku_i_body_resource_descri
 extern u32 TObjNpcGovernorBase__shared_resource;
 extern s32 __vt__19TObjNpcGovernorBase[];
 extern s32 TObjNpcGovernorBase__name;
-extern u32 TObjNpcHFW00__shared_resource_obj;
-extern u32 TObjNpcHFW00__texture_handle;
-extern const char lbl_8043FA38[] = "npc_g00_data.rel";
-extern const char lbl_8043FA4C[] = "n_g00_body.gvm";
 void release_texture_list(void*);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
@@ -87,22 +83,6 @@ void * TObjNpcHFW00__create(void *arg0) {
         o2 = TObjNpcHFW00__ct((u8 *)o2, (s32)o, (s32)arg0);
     }
     return o2;
-}
-
-void TObjNpcHFW00::free_resources() {
-    if ((u32) TObjNpcHFW00__texture_handle != 0U) {
-        release_texture_list((void*)TObjNpcHFW00__texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcHFW00__texture_handle);
-        TObjNpcHFW00__texture_handle = 0U;
-    }
-    if ((u32) TObjNpcHFW00__shared_resource_obj != 0U) {
-        TLobby::free_nodes_with_id((u32)((void*)TObjNpcHFW00__shared_resource_obj));
-        TObjNpcHFW00__shared_resource_obj = 0U;
-    }
-}
-void TObjNpcHFW00::load_resources() {
-    TObjNpcHFW00__shared_resource_obj = (u32)create_named_object((s32)lbl_8043FA38);
-    TObjNpcHFW00__texture_handle = (u32)load_gvm_texture_file(lbl_8043FA4C);
 }
 
 }

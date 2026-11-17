@@ -102,7 +102,8 @@ scalar C equivalent, in the style of the SDK's `C_MTX*` functions, and remain
 unmatched. This was the rationale for the narrow exceptions below. Matt later
 requested renewed source and compiler research, recorded in the
 [compiler research note](chunk-geometry-compiler-research.md); that work has not
-produced a matching source replacement.
+produced a matching source replacement for the native transforms. It did recover
+the polygon dispatcher completely in ordinary C++ and source-link the unit.
 
 **Exception (approved by Matt, 2026-11-04):** `transform_chunk_vertices_pos_normal`.
 Its SDK-style paired-single schedule was not reproduced by the tested MWCC

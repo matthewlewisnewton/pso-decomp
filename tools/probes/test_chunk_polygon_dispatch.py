@@ -103,6 +103,42 @@ int main(int argc, char **argv) {
         dispatch_chunk_polygon_list(call, 0x1234);
         assert(events.size() == 1 && lbl_805D7798 == 0);
         expect(0, "blend", 0xA01);
+    } else if (std::strcmp(argv[1], "mask-boundaries") == 0) {
+        // Derive expected flags from unsigned wire bits, independently of the
+        // dispatcher's signed narrowing and shift operations.
+        const u32 masks[] = {0, 0xFF, 0xFFFF, 0x7FFF, 0x8000, 0xFF00,
+                             0xFFFF0000, 0xFFFFFFFF, 0xA5A55A5A};
+        model_render_flags = 0x800;
+        for (u32 high = 0; high < 256; ++high) {
+          for (u32 tag = 0x40; tag <= 0x42; ++tag) {
+            for (u32 and_mask : masks) {
+                for (u32 or_mask : masks) {
+                    events.clear();
+                    chunk_previous_strip_flags = 0;
+                    chunk_strip_dirty_flags = 1;
+                    chunk_polygon_flags_and_mask = and_mask;
+                    chunk_polygon_flags_or_mask = or_mask;
+                    u32 bits = (high << 8) | tag;
+                    u32 masked = ((bits & and_mask) | or_mask) & 0xFFFF;
+                    s32 expected = masked >> 8;
+                    if (expected & 0x80) expected -= 256;
+                    s16 info = (high & 1) ? -32768 : 32767;
+                    s16 list[] = {(s16)bits, 3, info, 0x1111, 0x2222, 0xFF};
+                    dispatch_chunk_polygon_list(list, 0x1234);
+                    bool projected = (expected & 0x40) != 0;
+                    expect(0, "lighting", expected);
+                    expect(1, "depth", expected, tag != 0x40 || projected);
+                    expect(events.size() - 1,
+                           tag == 0x40 ? (projected ? "normal" : "untextured") :
+                           projected ? "triangle" : "textured",
+                           info, tag == 0x42 && !projected);
+                    assert(chunk_previous_strip_flags == expected);
+                    assert(chunk_strip_dirty_flags == 0);
+                    assert(events.back().data == list + 3);
+                }
+            }
+          }
+        }
     } else {
         bool normal = std::strcmp(argv[1], "normal") == 0;
         bool plain = std::strcmp(argv[1], "plain") == 0;
@@ -157,7 +193,8 @@ class ChunkPolygonDispatchTests(unittest.TestCase):
             result = subprocess.run([compiler, *flags, "-iquote", str(ROOT / "include"), "-I", str(ROOT / "libs/dolphin/include"),
                                      str(fixture), "-o", str(binary)], capture_output=True, text=True, timeout=30)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            for case in ("state", "cache", "normal", "plain", "triangle", "color", "wide", "masked"):
+            for case in ("state", "cache", "normal", "plain", "triangle", "color", "wide", "masked",
+                         "mask-boundaries"):
                 with self.subTest(case=case):
                     result = subprocess.run([str(binary), case], capture_output=True, text=True, timeout=5)
                     self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

@@ -1,3 +1,4 @@
+#include "pso/map/WallQuery.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -16,7 +17,7 @@ struct RecoveredGlobal_800790F0_lbl_804F5800 {
     u8 remaining[0xFC];
 };
 
-struct Obj_8007A32C { s32 f0; f32 f4; s32 f8; u8 fc[4]; };
+
 
 struct E_80079580 { u8 pad[0x24]; u32 f24; };
 
@@ -155,7 +156,7 @@ s32 TObjPlayer__sub_80079118(s32 * _w0);
 void TObjPlayer__sub_80079120(s32 _w0);
 extern u32 lbl_804FFD40[];
 extern s32 lbl_804389E8[];
-void *query_wall_radial(Obj_8007A32C *self);
+CsnQueryResult *query_wall_radial(WallQuery *self);
 void TObjPlayer__sub_80079124(void *, void *);
 u32 TObjPlayer__sub_80079DE0(void *, void *);
 f32 vec_squared_length(Vec *);
@@ -240,7 +241,7 @@ s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *
 }
 }
 extern s32 lbl_80438988[];
-void *query_prepared_wall_polygons(void *self);
+CsnQueryResult *query_prepared_wall_polygons(void *self);
 extern s32 lbl_804389A8[];
 extern E_80079580 *wall_query_scene_buffer;
 s32 query_wall_segment(void *arg0, void *arg1, void *arg2, s32 arg3);
@@ -825,8 +826,8 @@ Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b, 
     return (Wall_8007A138 *)lbl_804FFD40[0];
 }
 
-void *query_prepared_wall_polygons(void *self) {
-    void *r;
+CsnQueryResult *query_prepared_wall_polygons(void *self) {
+    CsnQueryResult *r;
     TObjPlayer__sub_8007911C();
     r = &csn_query_map_object;
     if (select_deepest_wall_ray((Query_80079608 *)(self), (Result_80079608 *)(r)) == 0) {
@@ -836,11 +837,11 @@ void *query_prepared_wall_polygons(void *self) {
     return r;
 }
 
-void *query_wall_radial(Obj_8007A32C *self) {
-    void *r;
+CsnQueryResult *query_wall_radial(WallQuery *self) {
+    CsnQueryResult *r;
     TObjPlayer__sub_8007911C();
     r = &csn_query_map_object;
-    if (prepare_wall_query_polygons(self->fc, self->f4, self->f8) == 0) {
+    if (prepare_wall_query_polygons(self->origin, self->radius, self->mask) == 0) {
         r = 0;
     } else if (select_deepest_wall_ray((Query_80079608 *)(self), (Result_80079608 *)(r)) == 0) {
         r = 0;
