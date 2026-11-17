@@ -485,8 +485,6 @@ void TLobby__sub_8041D398(u8 *, s32, s32);
 s16 TLobby__sub_8040DA54(u8 *, u8 *);
 u8 *TLobby__sub_80406F0C(void *);
 s16 is_addr_unspecified__6TLobbyFPv(void *);
-s32 TLobby__sub_80420410(u32, u32, NetPacket *, TcpTcb *);
-s32 TLobby__sub_8041F204(NetPacket *, u16, TcpTcb *);
 s32 TLobby__sub_8041F11C(TcpTcb *);
 void NetYieldOutsideDispatcherThread(void);
 

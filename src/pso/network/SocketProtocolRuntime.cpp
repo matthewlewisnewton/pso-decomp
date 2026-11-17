@@ -6,6 +6,10 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 
+#ifndef __MWERKS__
+#include <string.h>
+#endif
+
 struct P_8041FE44 { u32 a; u32 b; };
 
 struct O_8041FE44 { u8 pad0[0x228]; u32 now; u8 pad22C[0x2F8 - 0x22C]; P_8041FE44 items[5]; };
@@ -636,8 +640,19 @@ void TLobby__sub_8041FED4(TcpTcb *tcb) {
         }
         for (j = i - 1; j >= 0; j--) {
             if ((s32)(tcb->sack[i].start - tcb->sack[j].start) >= 0 && (s32)(tcb->sack[i].end - tcb->sack[j].end) <= 0) {
-                for (k = i; k < 5; k++) {
-                    tcb->sack[k] = tcb->sack[k + 1];
+                // The last native copy reads seg_top through una as bytes.
+                // Clearing the last range below discards that copy.
+                u32 offset = i * sizeof(TcpSeqRange);
+                s16 destination = i;
+                k = i;
+                for (; k < 5; ++k, offset += sizeof(TcpSeqRange), ++destination) {
+                    const u8 *source = reinterpret_cast<const u8 *>(tcb)
+                        + offsetof(TcpTcb, sack) + sizeof(TcpSeqRange) + offset;
+#ifdef __MWERKS__
+                    __memcpy(tcb->sack + destination, source, sizeof(TcpSeqRange));
+#else
+                    memcpy(tcb->sack + destination, source, sizeof(TcpSeqRange));
+#endif
                 }
                 tcb->sack[4].start = 0;
                 tcb->sack[4].end = 0;
@@ -654,7 +669,10 @@ s32 TLobby__sub_8041FFF8(u32 acknowledged, TcpTcb *control) {
     struct { u32 read_index; } ring;
     TcpSendRequest request;
     NetBufferRef cursor;
-    u8 reserved_stack[8]; // Unreferenced area of the native 96-byte frame.
+#ifdef __MWERKS__
+    // CodeWarrior frame space between the cursor and request reference.
+    u8 native_frame_space[8];
+#endif
     NetBufferRef request_ref;
     NetBufferRef destination;
     s16 handle;

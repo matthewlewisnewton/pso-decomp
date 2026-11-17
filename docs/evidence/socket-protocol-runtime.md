@@ -26,19 +26,42 @@ and loses none. The actual linker selects the compiled socket and TCP
 objects. The rebuilt TCP and callback-provider objects are byte-identical
 to their current-main counterparts.
 
-The SACK compaction still contains an out-of-bounds read of the five-element
-array on main. Limiting the copy to four source elements and then clearing the
-last range preserves the logical result and differs from the native routine by
-one instruction, the loop bound. The compiler's inline byte-copy intrinsic
-can reproduce the two word loads through an in-bounds view of the entire
-control block, but the tested source forms change instruction scheduling or
-register assignment. Those probes are excluded from this integration.
+The source now keeps five SACK ranges and copies from the enclosing control
+block's byte representation. The last copy reads bytes `0x320..0x327`
+containing `seg_top`, its padding and `una`, then immediately clears the
+destination. The intrinsic expands to the native two-word copy. Separate
+destination-index and byte-offset updates reproduce the induction registers.
+An explicit byte cursor differed in 20 instruction words; a numeric byte
+offset reduced the difference to four; giving the destination its own index
+preserved the native order of those four instructions. The final function's
+73 instructions and the entire compiled socket object are unchanged.
+The portable copy passed 200,000 deterministic cases under address,
+undefined-behavior and bounds sanitizers, with whole-block comparison against
+a bounded reference, including wrapped sequence numbers and randomized
+adjacent state.
 
-Removing the unused ACK scratch array changed 22 instruction words.
-Enabling normal lifetimes while removing it changed 44. Neither probe
-explains the original stack layout. The SACK read, ACK frame and complete
-caller and behavioral review remain open. The historical results below
-apply to their cited checkpoints.
+Native ACK frame offsets are `0x14` for the destination, `0x1C` for the
+request reference, `0x2C` for the cursor, `0x34` for the request and `0x4C`
+for the saved registers. No native instruction refers to the eight bytes
+at `0x24..0x2B`. Removing that space changes 22 words, all frame setup,
+restore or stack offsets for the cursor, request and saved registers.
+An older matching reconstruction, upstream `82cb898ff1`, also had a reserved
+eight-byte local, and `7f406a2a68` dropped that match. The later upstream C
+implementation still reserves that space. This branch classifies it as
+CodeWarrior frame space and excludes it from portable builds, following
+the checked-in TCP output frame precedent in [TCP protocol
+unit](tcp-protocol-unit.md). The original reason for the gap remains unknown.
+A host harness with buffer adapters passed focused ACK cases covering ring
+index wrap, partial request writeback, ordered completion callbacks, FIFO
+wrap and insufficient space under the same sanitizers.
+
+All three recovered socket entry points now share declarations with their
+callers. In particular the segmentation signature uses signed offset and
+length, in agreement with its definition and the caller's `int` locals.
+The entire TCP caller object remains byte-identical to current main.
+These probes cover the repaired SACK behavior and selected ACK cases.
+Full caller and behavior review of receive and segmentation, and review
+of the native ACK frame exception, remain open.
 
 ## Checkpoints and current status
 
