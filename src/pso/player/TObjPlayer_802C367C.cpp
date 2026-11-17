@@ -1,3 +1,4 @@
+#include "pso/player/PlayerLevelTable.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_802C367C.h"
 #include "pso/unk/text_802C3AC0.h"
@@ -8,14 +9,12 @@ typedef struct S_802C3720 {
     u32 f3A4;
 } S_802C3720;
 
-struct Stats_802C38B4 { s16 atp, mst, evp, hp, dfp, ata, lck; };
-
 struct Char_802C38B4 {
     u8 pad0;
     s8 f1;
     s8 f2;
     u8 pad3[0x34C - 3];
-    Stats_802C38B4 stats;
+    struct stats stats;
     s16 f35A;
     u8 pad35C[4];
     f32 f360;
@@ -26,11 +25,8 @@ struct Char_802C38B4 {
 
 extern "C" {
 s8 *get_action_data__10TObjPlayerFv(void *);
-void apply_class_level_growth(void *, s32, Stats_802C38B4 *);
-s32 get_current_state_field__10TObjPlayerFScl(void *, s32);
-void *get_class_base_stats(void *);
+s32 get_current_state_field__10TObjPlayerFcl(char, s32);
 extern const f32 lbl_805DE530;
-void init_character_stats_for_level(void *cls, Char_802C38B4 *c, s32 level);
 int TObjPlayer__sub_802C456C(void*, void*, void*);
 }
 int init_character_action_config(void*);
@@ -78,27 +74,27 @@ void TObjPlayer::setup_effect_slots(s32 arg0, s32 arg1) {
     TObjPlayer__sub_802C46E0(arg1, 0, 3, 3, 0);
 }
 
-void init_character_stats_for_level(void *cls, Char_802C38B4 *c, s32 level) {
-    Stats_802C38B4 st;
+void init_character_stats_for_level(char cls, void *c, s32 level) {
+    struct stats st;
     level = TObjPlayer::clamp_index_to_max(level);
-    ((TObjPlayer *)(&st))->copy_stats(get_class_base_stats(cls));
+    copy_stats__10TObjPlayerFPv(&st, get_class_base_stats(cls));
     if (level != 0) {
         apply_class_level_growth(cls, level, &st);
     }
-    c->stats.atp = st.atp;
-    c->stats.mst = st.mst;
-    c->stats.evp = st.evp;
-    c->stats.hp = st.hp;
-    c->stats.dfp = st.dfp;
-    c->stats.ata = st.ata;
-    c->stats.lck = st.lck;
-    c->f35A = 0x28;
-    c->f360 = lbl_805DE530;
-    c->level = level;
-    c->exp = get_current_state_field__10TObjPlayerFScl(cls, level);
-    c->meseta = 300;
-    c->f1 = 0;
-    c->f2 = 0;
+    ((Char_802C38B4 *)c)->stats.atp = st.atp;
+    ((Char_802C38B4 *)c)->stats.mst = st.mst;
+    ((Char_802C38B4 *)c)->stats.evp = st.evp;
+    ((Char_802C38B4 *)c)->stats.hp = st.hp;
+    ((Char_802C38B4 *)c)->stats.dfp = st.dfp;
+    ((Char_802C38B4 *)c)->stats.ata = st.ata;
+    ((Char_802C38B4 *)c)->stats.lck = st.lck;
+    ((Char_802C38B4 *)c)->f35A = 0x28;
+    ((Char_802C38B4 *)c)->f360 = lbl_805DE530;
+    ((Char_802C38B4 *)c)->level = level;
+    ((Char_802C38B4 *)c)->exp = get_current_state_field__10TObjPlayerFcl(cls, level);
+    ((Char_802C38B4 *)c)->meseta = 300;
+    ((Char_802C38B4 *)c)->f1 = 0;
+    ((Char_802C38B4 *)c)->f2 = 0;
     ((TObjPlayer *)c)->set_flag_e7(0);
     ((TObjPlayer *)c)->set_flag_103(0);
     ((TObjPlayer *)c)->set_action_flags(0);
@@ -107,6 +103,6 @@ void init_character_stats_for_level(void *cls, Char_802C38B4 *c, s32 level) {
 }
 
 void init_new_character_stats(void *arg0) {
-    init_character_stats_for_level((void *)(*(u8 *)((s8 *)arg0 + 0x3A1)), (Char_802C38B4 *)(arg0), 0);
+    init_character_stats_for_level(((char *)arg0)[0x3A1], arg0, 0);
 }
 }
