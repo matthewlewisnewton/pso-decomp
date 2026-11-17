@@ -569,6 +569,9 @@ pso/ui/TObjDFJisin.cpp:
 	.sdata      start:0x805D27B8 end:0x805D27CC
 	.sdata2     start:0x805D8AB0 end:0x805D8AB4
 
+pso/boss/DarkFalzEffectConstants.cpp:
+	.sdata2     start:0x805D8AB4 end:0x805D8AE0
+
 pso/ui/TObjDFTenchuFuru_80051B98.cpp:
 	.text       start:0x80051B98 end:0x80051D5C
 

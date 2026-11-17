@@ -790,6 +790,14 @@ at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
 but requests eight-byte alignment for the pool. Ports can use the
 ordinary C++ coordinates directly and omit the object alignment override.
 
+### Dark Falz effect constant alignment
+
+`pso/boss/DarkFalzEffectConstants.cpp` uses `cw_align: .sdata2=4`. Its
+44-byte float pool starts at `0x805D8AB4`. GC/2.0 requests eight-byte section
+alignment, which would move the pool four bytes forward. The existing alignment
+tool records four-byte alignment in ELF and the CodeWarrior comment section.
+Ports can use the C++ definitions with their compiler's normal alignment.
+
 ### Time setting and calendar startup
 
 | File | Scope | Setting | Original layout | Port behavior |
