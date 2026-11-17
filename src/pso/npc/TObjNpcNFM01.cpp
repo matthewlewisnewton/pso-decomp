@@ -17,18 +17,31 @@ struct RecoveredGlobal_8014CBA8___vt__12TObjNpcNFM01 {
 };
 
 extern "C" {
+extern const char lbl_8043FD48[] = "TObjNpcNFM01";
+const char *TObjNpcNFM01__name = lbl_8043FD48;
+extern const char lbl_8043FD58[] = "npc_h01_data.rel";
+extern const char lbl_8043FD6C[] = "n_h01_e_body.gvm";
 extern s32 __vt__12TObjNpcNFM01[];
-extern s32 TObjNpcNFM01__name;
-extern s32 *TObjNpcNFM01__model_object;
-extern s32 TObjNpcNFM01__texture_handle;
-extern u32 TObjNpcNFW00__named_object_resource;
-extern u32 TObjNpcNFW00__texture_gvm_handle;
-extern const char lbl_8043FD90[] = "npc_i00_data.rel";
-extern const char lbl_8043FDA4[] = "n_i00_body.gvm";
 void release_texture_list(void*);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
+
+void TObjNpcNFM01::free_resources() {
+    if ((u32) TObjNpcNFM01__texture_handle != 0U) {
+        release_texture_list((void*)TObjNpcNFM01__texture_handle);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFM01__texture_handle);
+        TObjNpcNFM01__texture_handle = 0U;
+    }
+    if ((u32) TObjNpcNFM01__model_object != 0U) {
+        TLobby::free_nodes_with_id((u32)((void*)TObjNpcNFM01__model_object));
+        TObjNpcNFM01__model_object = 0U;
+    }
+}
+void TObjNpcNFM01::load_resources() {
+    TObjNpcNFM01__model_object = (s32 *)create_named_object((s32)lbl_8043FD58);
+    TObjNpcNFM01__texture_handle = load_gvm_texture_file(lbl_8043FD6C);
+}
 
 void *__dt__12TObjNpcNFM01Fv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -68,22 +81,6 @@ void * TObjNpcNFW00__create(void *arg0) {
         o2 = TObjNpcNFW00__ct((u8 *)o2, (s32)o, (s32)arg0);
     }
     return o2;
-}
-
-void TObjNpcNFW00::free_resources() {
-    if ((u32) TObjNpcNFW00__texture_gvm_handle != 0U) {
-        release_texture_list((void*)TObjNpcNFW00__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFW00__texture_gvm_handle);
-        TObjNpcNFW00__texture_gvm_handle = 0U;
-    }
-    if ((u32) TObjNpcNFW00__named_object_resource != 0U) {
-        TLobby::free_nodes_with_id((u32)((void*)TObjNpcNFW00__named_object_resource));
-        TObjNpcNFW00__named_object_resource = 0U;
-    }
-}
-void TObjNpcNFW00::load_assets() {
-    TObjNpcNFW00__named_object_resource = (u32)create_named_object((s32)lbl_8043FD90);
-    TObjNpcNFW00__texture_gvm_handle = (u32)load_gvm_texture_file(lbl_8043FDA4);
 }
 
 }

@@ -111,11 +111,6 @@ struct VObj_8014C780 : VBase_8014C780 {
 
 s32 create_named_object(s32 arg0);
 extern "C" {
-u8 *load_gvm_texture_file(s32 arg0);
-extern u32 TObjNpcNFM00__shared_named_model_object;
-extern u32 TObjNpcNFM00__texture_gvm_handle;
-extern const char lbl_8043FD20[] = "npc_h00_data.rel";
-extern const char lbl_8043FD34[] = "n_h00_body.gvm";
 void * TObjNpcNFM00__create(void *arg0);
 void *dt__11TObjNpcMojaFPvs(void *arg0, s16 arg1);
 void release_texture_list(void*);
@@ -320,19 +315,4 @@ void * TObjNpcNFM00__create(void *arg0) {
     return o2;
 }
 
-void TObjNpcNFM00::free_resources() {
-    if ((u32) TObjNpcNFM00__texture_gvm_handle != 0U) {
-        release_texture_list((void*)TObjNpcNFM00__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcNFM00__texture_gvm_handle);
-        TObjNpcNFM00__texture_gvm_handle = 0U;
-    }
-    if ((u32) TObjNpcNFM00__shared_named_model_object != 0U) {
-        TLobby::free_nodes_with_id((u32)((void*)TObjNpcNFM00__shared_named_model_object));
-        TObjNpcNFM00__shared_named_model_object = 0U;
-    }
-}
-void TObjNpcNFM00::load_assets() {
-    TObjNpcNFM00__shared_named_model_object = (u32)create_named_object((s32)lbl_8043FD20);
-    TObjNpcNFM00__texture_gvm_handle = (u32)load_gvm_texture_file((s32)lbl_8043FD34);
-}
 }
