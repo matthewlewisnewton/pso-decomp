@@ -59,7 +59,7 @@ struct Self_80402CE0;
 extern "C" {
 #endif
 s16 TLobby__sub_803FE658(struct Self_80402CE0 *state);
-s16 TLobby__sub_803FE6CC(void *state, u8 code, int identifier, void *payload);
+s16 TLobby__sub_803FE6CC(void *state, u8 code, int identifier, B_803FADA0 *payload);
 s16 TLobby__sub_803FE8BC(u8 *header, void *cursor);
 s16 TLobby__sub_80406624(s32, s32, u16 protocol, void *frame);
 void TLobby__sub_803FDBF8(struct Fsm_803FDBF8 *state, B_803FADA0 *frame);

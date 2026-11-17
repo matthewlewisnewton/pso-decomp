@@ -274,11 +274,13 @@ Typed buffer allocation and length functions replace the false `TLobby` interfac
 are removed. No compiler flags or unit overrides change.
 
 **This is a partial rework, not approval of the remaining source patterns.**
-The sender at 0x803FE6CC still reuses its payload formal as a wire length
-and retains the containing-prefix expression in its length-clear helper.
-The comma cast and false allocation/length receivers are removed.
-These remaining patterns require further recovery or Matt's explicit ruling;
-the EXI receiver precedent below does not authorize them.
+The sender at 0x803FE6CC now uses a typed buffer, a separate wire length,
+a counted cursor-range initializer and a direct length-member clear, at
+100%/0x40. Its payload/length reuse and containing-prefix recovery are removed,
+along with its unnecessary lifetime setting and reset. The inherited PAP
+alias-return local, VJ length normalization and bounded opaque/offset callback
+interfaces remain unresolved; the EXI receiver precedent below does not
+authorize them.
 See [PPP rework evidence](evidence/ppp-control-rework.md) for alternatives
 and native storage evidence. Ports can inline the two configuration readers and must
 keep frame pointers and lengths separate, clear the real length member
@@ -286,7 +288,8 @@ directly, and preserve explicit wire-byte order and existing error behavior.
 
 Each row below records one remaining directive in source order, including
 inherited controls. Scores are independent ablations against the final source
-using the existing GC/1.2.5n configuration, remeasured after round three;
+using the existing GC/1.2.5n configuration, remeasured after round three
+with the sender measurements updated in round five;
 every listed function is 100% with the directive present. Push/pop restores belong to the corresponding
 scope. The `reset` row measures omitting that restoration. These are measured
 compiler constraints, not claims about original source pragmas. A port drops
@@ -311,10 +314,8 @@ own independently measured row below.
 | PPP-12 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `opt_common_subs on` | 99.267914% | Drop control; retain C++ semantics. |
 | PPP-13 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `dont_inline off` | 96.595020% | Drop control; retain C++ semantics. |
 | PPP-14 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `inline_depth(4)` | 96.595020% | Drop control; retain C++ semantics. |
-| PPP-15 | TLobby__sub_803FE6CC (`0x803FE6CC`) | `opt_lifetimes off` | 98.058820% | Drop control; retain C++ semantics. |
-| PPP-16 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `dont_inline off` | 90.411766%<br>92.231580% | Drop control; retain C++ semantics. |
-| PPP-17 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `inline_depth(4)` | 90.411766%<br>92.231580% | Drop control; retain C++ semantics. |
-| PPP-18 | TLobby__sub_803FE934 (`0x803FE934`)<br>TLobby__sub_803FE9F8 (`0x803FE9F8`) | `opt_lifetimes reset` | 99.387760%<br>98.055560% | Drop control; retain C++ semantics. |
+| PPP-16 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `dont_inline off` | 89.352940%<br>92.231580% | Drop control; retain C++ semantics. |
+| PPP-17 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `inline_depth(4)` | 89.352940%<br>92.231580% | Drop control; retain C++ semantics. |
 | PPP-19 | TLobby__sub_803FEF4C (`0x803FEF4C`) | `opt_propagation off` | 62.609756% | Drop control; retain C++ semantics. |
 | PPP-20 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `opt_common_subs on` | 96.717170%<br>90.687500% | Drop control; retain C++ semantics. |
 | PPP-21 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `dont_inline off` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |

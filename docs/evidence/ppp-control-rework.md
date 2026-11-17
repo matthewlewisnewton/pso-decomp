@@ -2,7 +2,7 @@
 
 This rework starts at PR #573 head `0b3f5f5666` and merges main
 `f1227326c4`. Round three replaces the staging LCP aggregate with consumed
-configuration readers. It remains a partial improvement: the sender source patterns are not approved by this evidence record.
+configuration readers. Round five replaces the sender's payload/length reuse and containing-prefix recovery with an exact typed-buffer implementation. Other unresolved source patterns remain; see the current-status section below.
 All scores below use the unit's existing GC/1.2.5n options. No compiler
 flags, unit overrides, assembly, alignment directives or link tools change.
 
@@ -106,10 +106,10 @@ length and IPv4-header calls no longer cast between those identical prefixes. No
 parameter types (the mangled portion) are unchanged, and the IPv4 writer
 already has C linkage. No linkage or compiler symbol is newly invented. The comma-operator receiver is removed.
 
-The sender still reuses the payload formal for the word length and still
-uses the containing-prefix expression in its clear helper. Those patterns
-are explicitly unresolved, not endorsed by this partial commit. The word
-writer experiment was reverted; the shared wire-writer ABI is unchanged.
+Round five keeps the sender payload typed as `B_803FADA0 *`, with a separate
+`u16` wire length. It clears the selected buffer's real length member directly.
+The containing-prefix recovery and payload/length pun are removed. The shared
+wire-writer ABI is unchanged. Earlier-round measurements below are historical.
 
 ## Pragma measurements
 
@@ -439,3 +439,45 @@ copy/termination helpers remove the alias but reach at best
 99.479164%/0x38. The previous VJ return-width experiments remain applicable.
 No pragma scope changes in round four: the 59 individual PPP register rows
 and +44/-90 source-pragma totals versus main remain unchanged.
+
+
+## Round-five exact sender and current status
+
+`TLobby__sub_803FE6CC` is 100% exact at size 0x154 and frame 0x40 with
+ordinary typed buffer operations. Whole-unit comparison is 129/129 exact.
+The payload remains a buffer pointer throughout; the wire length is a separate
+`u16` consumed by `write_network_u16_be`.
+
+`initialize_cursor_range` initializes data cursors for a counted range and
+returns its end iterator. Length metadata belongs to the caller. The sender
+initializes one buffer, selects the last initialized element with `end - 1`,
+and clears `payload->len`. A pointer to a single object supports the same
+one-past/previous-element operations as a one-element array. No address of a
+length member is converted back to its containing buffer, no prefix is
+invented, and no raw byte offset recovers an owner. The iterator increment is
+part of the real range traversal; the helper also handles empty and multi-buffer
+ranges. These are plausible source semantics, not a claim to have recovered
+the original SDK helper name or spelling.
+
+The pinned compiler initially emits the iterator advance by `sizeof(B_803FADA0)`
+and selection of the preceding element as two address operations. Its late
+peephole combines those into the native zero-immediate ADDI at 0x803FE714.
+Moving the selected buffer's length clear out of the cursor-range helper also
+supplies the required register interference. Keeping that clear inside the
+range loop gives 97.647060%/0x40 with different register allocation; the split
+form gives 100%/0x40. Direct `buffer_length(payload) + 4`, the consumed magic
+writer inline and the separate saved/output buffers reproduce the complete
+native tail without a pointer/length pun.
+
+The existing sender `opt_lifetimes off` and its reset are now unnecessary:
+removing both preserves all 129 functions exactly, so both are removed.
+Removing either inherited inline control instead gives the sender
+89.352940%/0x38. No new pragma, compiler option, intrinsic, hand-mangled symbol,
+unused local or exception is introduced. External round-five logs retain the
+scored alternatives, instruction comparisons and compiler-pass observations.
+
+This resolves the sender source blockers only. The inherited alias-return local
+in `pap_message_destination_80402E68`, the VJ `(s16)(s64)buffer_length(...)`
+normalization and bounded opaque/offset-based callback interfaces remain
+unresolved as described above. The existing pragma inventory remains a porting
+constraint; the sender change does not approve unrelated source patterns.
