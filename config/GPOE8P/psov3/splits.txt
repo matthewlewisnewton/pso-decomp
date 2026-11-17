@@ -1595,6 +1595,7 @@ pso/misc/TeneFakeTecThunderEff.cpp:
 	.text       start:0x800A39A8 end:0x800A4288
 	.rodata     start:0x8043A730 end:0x8043A738
 	.data       start:0x80490A18 end:0x80490A30
+	.sdata2     start:0x805D99F0 end:0x805D9A0C
 
 pso/enemy/SaverLifecycle.cpp:
 	.text       start:0x800A4288 end:0x800A7764

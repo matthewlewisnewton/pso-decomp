@@ -611,6 +611,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # sharing them, and leaves invariant hoisting to the backend. See
     # docs/porting-exceptions.md section 5.
     "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
+    # Keep the late-defined thunder constants in .sdata2 while preserving their loads.
+    "pso/misc/TeneFakeTecThunderEff.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneGyaranzo.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # -inline off,deferred: the real TBoss8Dragon constructor addresses
     # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
