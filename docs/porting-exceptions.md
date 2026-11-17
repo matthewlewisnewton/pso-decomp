@@ -150,11 +150,11 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
-| MWCC intrinsics | 91 | 57 |
+| Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
+| MWCC intrinsics | 91 | 58 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,893 | 892 |
-| Per-unit compiler overrides in `configure.py` | 214 | 214 |
+| CodeWarrior pragmas (excluding push/pop) | 5,895 | 889 |
+| Per-unit compiler overrides in `configure.py` | 218 | 218 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -358,8 +358,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,893 pragmas in 892 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1162, `inline_depth` 1068, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 266, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,895 pragmas in 889 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1162, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -367,6 +367,45 @@ MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
 check struct layout), `bool`, and `fp_contract` where float results must match
 bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
 small float differences without FMA).
+
+### Player battle reset and wall response
+
+This unit uses `-inline off,deferred` and reversed function definitions to
+emit the native player vtable before the jump tables while preserving the
+original text order. The ten equipment-joint indices and compiler-generated
+vtable reclaim the aligned `.data` prefix at `0x804C3BA8`; ordinary emission
+places the vtable after the jump tables. All 379 function instruction streams
+remain exact. Ports can drop the emission switch and reorder definitions.
+
+`src/pso/player/TObjPlayer_801AF2F0.cpp` uses two new scoped
+`opt_propagation off` settings: `apply_wall_response` retains the original
+scalar float registers, and `spawn_level_change_feedback__10TObjPlayerFv`
+retains the register order of its named constant loads. The wall routine
+also keeps its declaration order. These are measured GC/2.6 constraints,
+not evidence of original pragmas. Ports can drop the steering while keeping
+the same collision queries and arithmetic.
+
+The owned newline and thirteen float constants use `__declspec(section
+".sdata2")` on their declarations and definitions. Without placement,
+CodeWarrior puts the exported constants in `.sdata`, selecting the wrong
+small-data base. Ports should use ordinary read-only constants. The new
+level-row and vector interfaces preserve historical export labels without
+claiming that the records are player objects. The previously matched code
+in this newly linked unit retains its existing provisional offset views,
+legacy receiver aliases and compiler settings; those interfaces still need
+native types when porting.
+
+The recovered class-byte providers, character-stat initializer and NPC builder
+use plain `char`, distinct from `s8`, under the native build's existing
+`-char signed`. Mutable `char` views borrow the encoded class representation;
+they do not create a character-record object in raw storage. A port should
+preserve the signed low-byte interpretation and migrate callers and providers
+together if choosing an explicit byte type. The NPC's visual temporary is the
+existing trivial `disp_data_part2` record; item counts remain full scalar
+words. Its item-address word and the inventory copier's provisional entry
+view remain inherited boundaries. Other legacy player aliases, including the
+no-argument class-normalizer call and word-typed experience-accessor alias,
+are not unified by this recovery.
 
 ### Symbol-chat part-grid rendering
 
@@ -692,9 +731,34 @@ The complete provider now links as three native layout groups; see
 
 ## 5. Per-unit compiler overrides (`configure.py`)
 
-214 units override the default `GAME_COMPILER = "GC/2.6"`/`cflags_pso` in
+The default compiler and linker now use GC/2.0. The
+[adoption record](evidence/compiler-default-gc20-adoption.md) follows the
+[reverse migration](evidence/compiler-default-gc20-impact.md), which found
+3,392 former GC/2.6 objects unchanged under GC/2.0. Four remaining game
+units use the retained GC/1.3.2 compiler, with unchanged source and flags:
+
+| Unit | Reason for GC/1.3.2 | Port should |
+|---|---|---|
+| `pso/network/TProtocol.cpp` | All 79 original-owned functions match. Fourteen other emitted helpers differ; the full link validates weak-definition selection. | Use the port compiler; preserve record layouts and ordinary copy semantics. |
+| `pso/object/TObjTombstone.cpp` | The record assignment's scalar-copy scheduling matches; the complete object is equivalent to GC/2.6. | Use the port compiler; preserve the record layout. |
+| `pso/object/TObjResultWin.cpp` | `copy_challenge_result_record` and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+| `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | The name-field assignment and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+
+Gryphon, Slime and Dragon inherit GC/2.0; their source and effective flags
+remain unchanged. De Rol Le retains main's GC/2.0 profile and `-inline on`, with all 110 functions exact. No compiler or linker assignment requires GC/2.6. The remaining
+older compiler profiles are a separate consolidation task.
+
+The initial [GC/2.0 consolidation](evidence/compiler-consolidation-gc20.md)
+experiment moved nine game units to GC/1.3.2 while planning to retire GC/2.0.
+With GC/2.0 now the default, those nine units inherit it again, preserving
+main's effective compiler, source, flags and symbol mappings. Their earlier
+recovery records remain historical evidence. The current assignments and
+[main-merge validation](evidence/compiler-default-gc20-main-merge.md) are
+authoritative for this PR. Ports use their normal compiler for these units.
+
+Units override the default `GAME_COMPILER = "GC/2.0"`/`cflags_pso` in
 `GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
-1.2.5n, 1.3, 1.3.2, 2.0) and switches (`-inline deferred`, `-fp_contract on`,
+1.2.5n, 1.3, 1.3.2) and switches (`-inline deferred`, `-fp_contract on`,
 `-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
 `configure.py` comment above each entry is its recorded reason (e.g.
 `pso_date.cpp`: GC/1.3.2 scheduling, see
@@ -736,8 +800,12 @@ starts at `0x805DCD0C`; GC/2.6 otherwise requests eight-byte alignment in
 both ELF and its CodeWarrior comment record. The existing alignment tool
 changes those records without changing code, constants or relocations.
 Ports can drop this object-layout override and use normal float alignment.
-The compatible pointer reads of four materialized constants avoid duplicate
-MWCC literal-pool entries; a port can read those constants directly.
+The compatible pointer reads of three materialized constants avoid duplicate
+MWCC literal-pool entries; a port can read those constants directly. The zero
+now comes from the [shared live square-root helper](evidence/balloon-newton-zero.md).
+The existing reciprocal-square-root intrinsic moves with the single body into
+`NewtonSqrtInline.h`. TObjPlayer retains its original FP-contract scope around
+the implementation include; the shared header adds no pragma.
 
 ### Time setting and calendar startup
 
@@ -2177,3 +2245,33 @@ uses ordinary masks instead of `__rlwimi`. A port can keep the ordinary C++
 arithmetic, masks and single-argument release call with its normal compiler;
 the compiler version, operand order and literal-emission order serve native
 matching. See the [complete unit evidence](evidence/tboss2-derolle-register-allocation.md).
+
+### Weighted chunk geometry unit
+
+Matt explicitly authorized the 640-byte `GXSetVtxAttrFmtv` at `0x803E3110` as
+an assembly exception on 2026-11-13. It is the weighted indexed transform,
+not the SDK descriptor-list API. The Metrowerks branch retains the original
+paired-single schedule and GQR1 setup; the scalar C++ fallback uses `fmaf` to
+retain fused rounding and leaves vertex padding untouched. Ports compile the
+fallback and need no GQR state. See [the contract](evidence/paired-single-sdk-asm.md).
+
+The polygon dispatcher uses scoped `use_lmw_stmw off`, `bool off`, and
+`opt_propagation off` to preserve native save/restore helpers, integer predicate
+results, and decoded-word lifetimes. Ports can drop these pragmas and keep the
+ordinary C++ dispatch. Separate signed wire, promoted header, and masked-word
+members permit the native compiler's scalar replacement and register
+coalescing; no bitfield or extra lifetime pragma is required. See the
+[complete unit evidence](evidence/chunk-geometry-compiler-research.md).
+The unit's `.sdata2` contribution begins at
+`0x805E109C`, so `cw_align: .sdata2=4` retains its four-byte alignment in both
+ELF and CodeWarrior metadata without modifying section contents. Ports need no
+object metadata adjustment.
+
+### Rico ring and controller unit
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `pso/menu/TAdRicoRing.cpp`, all 19 functions and both native vtables | Unit `-inline off,deferred`, with reverse definitions | Immediate emission places the ring vtable before the controller vtable. Deferred emission with reverse definitions preserves the original text and both vtable offsets (`.data+0x90` and `+0xA8`). The existing Gee and indirect-controller investigations document the same compiler behavior; see [compiler emission evidence](evidence/compiler-emission-evidence.md). | Use ordinary C++ definitions in any order; retain native constructors and virtual methods. |
+| Same unit, resource names and class names | Unit `-str reuse,readonly` and `-sdata 4` | Readonly strings preserve `.rodata`; the small-data threshold keeps the two eight-byte filename lists in `.data`, before their `BmlResourceDescriptor`. Without these switches the strings enter `.data` and the lists enter `.sdata`. Existing `TOBoss4.cpp` uses the same switches for its resource lists. | Drop the switches; retain the typed lists and resource descriptor. |
+| Same unit, named render records and constants | MWCC-only `RICO_SECTION` annotations | Preserve the existing initialized `.data` records, readonly vector/fan records, and scalar `.sdata2` constants. The macro is empty on other compilers. The three short zero tails are linker alignment, not additional source objects. | Keep the ordinary typed values and ignore their GameCube sections. |
+| Same unit, `TAdRicoRingCtrl::render`, `run_task`, and `sub_8001B424` | Existing scoped `opt_common_subs off` (two), `opt_dead_assignments off` (one), and `fp_contract on` (one), moved with their functions | These controls were already in the retired fragments. Removing render CSE control gives 94.86%; removing its dead-assignment control gives 99.46%; removing both gives 95.29%. Removing the update CSE control gives 97%. Contraction retains the original fused reflected-position calculation. Six formerly manual scalar guards are now native local statics. | Drop the optimization pragmas; retain the scalar calculations and local statics. Preserve fused arithmetic if identical floating-point rounding is required. |

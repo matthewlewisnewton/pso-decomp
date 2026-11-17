@@ -87,7 +87,6 @@ s32 get_gyaranzo_missile_int_parameter(s32 i);
 extern "C" {
 s32 TObjGyaranzoMissile__ct(void *, void *, void *, u16);
 void *__nw__7TObjectFUl(int);
-extern s32 gyaranzo_missile_volley_end_time;
 
 }
 
@@ -138,9 +137,10 @@ extern s32 gyaranzo_boss_stats_handle;
 extern s32 gyaranzo_boss_stats_ptr_b;
 extern s32 gyaranzo_object_handle;
 extern s32 gyaranzo_missile_param_table;
-extern NJS_OBJECT *lbl_805D5200;
-extern NJS_OBJECT *lbl_805D5204;
-extern TUnk_8048FA00 *gyaranzo_breakup_model_obj;
+NJS_OBJECT *lbl_805D5200;
+NJS_OBJECT *lbl_805D5204;
+TUnk_8048FA00 *gyaranzo_breakup_model_obj;
+s32 gyaranzo_missile_volley_end_time;
 extern s32 saved_model_render_flags;
 
 extern const f32 lbl_805DA284;

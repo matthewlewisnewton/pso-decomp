@@ -43,7 +43,7 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 get_csn_group_flags(u8 arg0);
 }
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);
-void *query_prepared_wall_polygons(void *self);
+CsnQueryResult *query_prepared_wall_polygons(void *self);
 s32 query_wall_segment(void *arg0, void *arg1, void *arg2, s32 arg3);
 CsnGroup *select_ground_query_groups(CsnVector *origin, u32 mask);
 

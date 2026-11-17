@@ -1,3 +1,5 @@
+#include "pso/item/InventoryEntryCopy.h"
+#include "pso/player/TObjPlayer_802C367C.h"
 #include "types.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TNpcPlayer_802C3CD0.h"
@@ -23,26 +25,23 @@ void copy_player_visual_record(void *, void *);
 void TObjPlayer__sub_8013A748(void *, void *);
 void clamp_stats__10TObjPlayerFiPv(void *, void *, s32);
 s8 TObjPlayer__sub_801AFD8C(void *);
-s8 query_state_if_present__10TObjPlayerFPv(void *, s32);
 u8 TObjPlayer__sub_801BE7BC(void *);
 u8 get_equip_flags__10TObjPlayerFv(void *);
 u8 get_inventory_state__10TObjPlayerFv(void *);
 u8 get_field_374_state__10TObjPlayerFv(void *);
 u8 get_field_374__10TObjPlayerFv(void *);
 s32 TObjPlayer__sub_801C0124(void *, s16);
-s32 get_ptr_4__10TObjPlayerFv(s8 *);
+void *get_ptr_4__10TObjPlayerFv(void *);
 s32 get_class_stat_entry__10TObjPlayerFPUc(void *);
 void split_capped_value__10TObjPlayerFUcPUcPSc(s32, u8 *, E_802C4698 *);
 u8 *TObjPlayer__sub_802C4688(O_802C4688 *self, s32 i);
 E_802C4698 *TObjPlayer__sub_802C4698(O_802C4698 *self, s32 i);
 s32 reset(s32);
 s32 TObjPlayer__sub_802A1018();
-int init_character_stats_for_level(s32, s8 *, s32);
-int copy_item_entry_array(s8, s32, s32);
 
-s32 TNpcPlayer::send_command(s32 cls, s8 arg1, s32 src, s32 level, s8 *arg4) {
-    *arg4 = arg1;
-    copy_item_entry_array(arg1, src, get_ptr_4__10TObjPlayerFv(arg4));
+s32 TNpcPlayer::send_command(char cls, s32 arg1, s32 src, s32 level, void *arg4) {
+    *(char *)arg4 = (char)arg1;
+    copy_item_entry_array(arg1, (Entry_802C3A50 *)src, (Entry_802C3A50 *)get_ptr_4__10TObjPlayerFv(arg4));
     init_character_stats_for_level(cls, arg4, level);
     return 1;
 }
@@ -55,7 +54,7 @@ void export_character_data__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1) {
     s32 j;
     s32 k;
     ((TObjPlayer *)arg0)->set_flag_80000();
-    *(s8 *)((s8 *)arg1 + 0) = query_state_if_present__10TObjPlayerFPv(arg0, get_ptr_4__10TObjPlayerFv((s8 *)arg1));
+    *(s8 *)((s8 *)arg1 + 0) = ((TObjPlayer *)arg0)->query_state_if_present(get_ptr_4__10TObjPlayerFv(arg1));
     hp = get_actor_hp(arg0);
     facing = get_actor_tp(arg0);
     for (i = 0; i != 0xD; i++) {
@@ -110,7 +109,7 @@ void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
     s32 a;
     s32 m;
     ((TObjPlayer *)arg0)->set_flag_80000();
-    arg1[0] = query_state_if_present__10TObjPlayerFPv(arg0, get_ptr_4__10TObjPlayerFv(arg1));
+    arg1[0] = ((TObjPlayer *)arg0)->query_state_if_present(get_ptr_4__10TObjPlayerFv(arg1));
     hp = get_actor_hp(arg0);
     facing = get_actor_tp(arg0);
     p = items;
@@ -128,7 +127,7 @@ void export_state_to_record__10TObjPlayerFPvPv(u8 *arg0, s8 *arg1) {
         }
     }
     arg1[0] = n;
-    rec = get_ptr_4__10TObjPlayerFv(arg1);
+    rec = (s32)get_ptr_4__10TObjPlayerFv(arg1);
     p = items;
     for (i = 0; i < 30; i++) {
         if (*p != NULL) {

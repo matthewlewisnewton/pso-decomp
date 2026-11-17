@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/npc/TUnk_804A8640.h"
 
+struct BmlResource;
+
 struct TObjNpcFemaleFat : public TUnk_804A8640 {
     virtual ~TObjNpcFemaleFat();
     static void free_static_model();
@@ -25,5 +27,9 @@ void *TObjNpcFemaleMacho__create(void *arg0);
 void *__dt__16TObjNpcFemaleFatFv(void *arg0, s16 arg1);
 }
 // --- end of C functions
+
+extern "C" {
+extern BmlResource *TObjNpcFemaleFat__static_model;
+}
 
 #endif
