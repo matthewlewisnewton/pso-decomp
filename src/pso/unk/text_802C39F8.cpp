@@ -1,3 +1,4 @@
+#include "pso/item/InventoryEntryCopy.h"
 #include "types.h"
 #include "pso/protocol/protocol_types.h"
 #include "pso/misc/TLobby.h"
@@ -12,7 +13,6 @@ struct Entry_802C3A50 {
 struct E_802C39F8 { u8 b[0x1C]; };
 
 extern "C" {
-void copy_item_entry_array(s32 n, struct Entry_802C3A50 *src, struct Entry_802C3A50 *dst);
 s32 fn_801C1BA8(void *, void *);
 void copy_entries(s32 arg0, E_802C39F8 *arg1, E_802C39F8 *arg2);
 

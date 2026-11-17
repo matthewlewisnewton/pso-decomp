@@ -2449,6 +2449,11 @@ void TObjEneMe1CanadinLeader::vfunc_112(s32 mode) {
 }
 
 extern "C" {
+BmlResource *canadin_resources;
+u32 canadin_render_node_index;
+// The native render callback uses this existing address-word cursor.
+s32 TObjEneMe1Canadin__render_point_cursor;
+TUnk_8048FA00 *canadin_leader_breakup_model;
 TUnk_8048FA00 *canadin_follower_breakup_model;
 s32 *canadin_leader_node3_color;
 s32 *canadin_leader_node2_color;

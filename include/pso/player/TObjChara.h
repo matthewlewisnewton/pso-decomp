@@ -234,8 +234,8 @@ public:
     Vec movement_velocity;
     s32 m_314;
     u32 m_318;
-    u8 unk_31C[0x6];
-    s16 m_322;
+    u8 unk_31C[0x4];
+    u32 action_mask;  // Current action bit mask; test_action_mask reads the full word.
     s16 control_state;  // who drives it: 6 a script, 7 a fixed pose
     s16 mode;
     s16 phase;
@@ -251,6 +251,8 @@ public:
     Vec *body_center() { return &body_center_position; }
     Vec *velocity() { return &movement_velocity; }
 };
+
+typedef char CharaActionMaskOffset[offsetof(TObjChara, action_mask) == 0x320 ? 1 : -1];
 
 typedef char TObjChara_size[(sizeof(TObjChara) == 0x334) ? 1 : -1];
 typedef char TObjChara_m_2d4_offset[(offsetof(TObjChara, m_2d4) == 0x2D4) ? 1 : -1];

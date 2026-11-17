@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/npc/TUnk_804A8640.h"
 
+struct BmlResource;
+
 struct TObjNpcFemaleTall : public TUnk_804A8640 {
     virtual ~TObjNpcFemaleTall();
     static void destroy_instance();
@@ -25,5 +27,9 @@ void TObjNpcFemaleTall__sub_8014AA28(void *arg0, s32 arg1);
 void *__dt__17TObjNpcFemaleTallFv(void *arg0, s16 arg1);
 }
 // --- end of C functions
+
+extern "C" {
+extern BmlResource *TObjNpcFemaleTall__instance;
+}
 
 #endif

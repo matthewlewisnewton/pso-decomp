@@ -1,3 +1,5 @@
+#include "pso/player/PlayerEquipmentUpdate.h"
+#include "pso/player/PlayerLevelTable.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -50,12 +52,12 @@ struct VObj_84_801d859c_801D84CC : VObj_84Base_801d859c_801D84CC {
 s32 advance_item_id_counter();
 void send_6x29_delete_item__10TObjPlayerFPvii(void *obj, s32 a, s32 b);
 void *pickup_item__10TObjPlayerFP5TItem(u8 *arg0, u8 *arg1);
-void TObjPlayer__sub_801BE9A8(s32 arg0);
+
 void set_equip_slot_entry(s32 arg0, s32 arg1, s32 arg2);
 s32 get_item_id__5TItemFv();
 s32 get_slot_value__10TObjPlayerFPvi(s32 *arg0, s32 arg1);
 u16 get_entity_id(void *);
-void set_flag_20000__10TObjPlayerFi(s32 arg0);
+
 
 void process_trade_target__10TObjPlayerFiPv(s32 arg0, void *player) {
     void *temp_r3;
@@ -71,9 +73,9 @@ void process_trade_target__10TObjPlayerFiPv(s32 arg0, void *player) {
             set_equip_slot_entry(arg0 + 0xD04, val_ext, 0);
         }
         if (pickup_item__10TObjPlayerFP5TItem((u8 *)arg0, (u8 *)temp_r3) != 0U) {
-            set_flag_20000__10TObjPlayerFi(arg0);
+            set_flag_20000__10TObjPlayerFi((TObjPlayer *)arg0);
             ((TObjPlayer *)arg0)->equip_item_to_slot(temp_r3, 0);
-            TObjPlayer__sub_801BE9A8(arg0);
+            TObjPlayer__sub_801BE9A8((TObjPlayer *)arg0);
         }
     }
 }
@@ -275,16 +277,16 @@ typedef struct Rec_801D8F0C { f32 a, b, c; } Rec_801D8F0C;
 typedef struct Rec_801D8F60 { f32 a, b, c; } Rec_801D8F60;
 
 extern "C" {
-s8 TObjPlayer__sub_801AFDBC(s8);
+char TObjPlayer__sub_801AFDBC(char);
 s32 get_main_phase();
 s32 obj_isState3_324__9TObjCharaFv(int);
 extern s32 game_difficulty_selection;
-s32 get_class_starting_inventory(s8 arg0);
+s32 get_class_starting_inventory(char arg0);
 u8 *get_class_defense_template(TObjPlayer *arg0);
 s32 TObjPlayer__sub_801D8C3C(void);
-player_stats *get_class_stat_caps(s8 arg0);
+
 u8 *get_class_attack_template(TObjPlayer *arg0);
-stats *get_class_base_stats(s8 arg0);
+
 extern const f32 lbl_805DC400;
 s32 TObjPlayer__sub_801D8DCC(TObjPlayer *arg0);
 s32 get_max_level__10TObjPlayerFv(s32);
@@ -307,7 +309,7 @@ int load_encrypted_archive_data(void*);
 void init__17TPlyInventoryItemFv(u8 *arg0);
 }
 extern int ply_level_table;
-s32 get_ply_level_table_row(s8 arg0, s32 arg1);
+
 f32 lookup_attack_marker(s32, s16, s16, s32);
 extern Rec_801D8F0C *photon_blast_motion_timing_tables[6];
 extern const s32 (*player_footstep_floor_table[3])[5];
@@ -475,7 +477,7 @@ u8 *TObjPlayer::get_hospital_position() {
     return (u8 *)hospital_position_table_by_episode[TLobby::get_instance()] + (get_entity_id(this) * 0xC);
 }
 
-s32 get_class_starting_inventory(s8 arg0) {
+s32 get_class_starting_inventory(char arg0) {
     TObjPlayer__sub_801AFDBC(arg0);
     return *(s32 *)((s8 *)class_starting_inventory_table + (arg0 * 4));
 }
@@ -672,19 +674,19 @@ s32 TObjPlayer__sub_801D91B8(s32 arg0) {
     return TObjPlayer::get_current_state_field(((TObjPlayer *)arg0)->get_class_index(), get_max_level__10TObjPlayerFv(arg0));
 }
 
-s32 TObjPlayer::get_current_state_field(s8 _w0, s32 _w1) {
+s32 TObjPlayer::get_current_state_field(char _w0, s32 _w1) {
     return *(s32 *)((s8 *)(get_ply_level_table_row(_w0, _w1)) + 8);
 }
 
 s32 TObjPlayer::get_class_state_field(s32 arg1) {
     s32 arg0 = (s32)this; return TObjPlayer::get_current_state_field(((TObjPlayer *)arg0)->get_class_index(), arg1); }
 
-s32 get_ply_level_table_row(s8 arg0, s32 arg1) {
+PlayerLevelTableRow *get_ply_level_table_row(char arg0, s32 arg1) {
   s32 temp_r30;
   s32 temp_r31;
   temp_r30 = *(*(s32 * *)&ply_level_table);
   ;
-  return (*((s32 *) (((s8 *) temp_r30) + (TObjPlayer__sub_801AFDBC(arg0) * 4)))) + (TObjPlayer::clamp_index_to_max(arg1) * 0xC);
+  return (PlayerLevelTableRow *)((*((s32 *) (((s8 *) temp_r30) + (TObjPlayer__sub_801AFDBC(arg0) * 4)))) + (TObjPlayer::clamp_index_to_max(arg1) * 0xC));
 }
 
 void TObjPlayer__sub_801D92A4(void) { TLobby::free_nodes_with_id(ply_level_table); }
@@ -703,12 +705,12 @@ u8 *get_class_defense_template(TObjPlayer *player) {
     return (u8 *)class_defense_template_table + (player->get_class_index() << 5);
 }
 
-stats *get_class_base_stats(s8 arg0) {
+stats *get_class_base_stats(char arg0) {
     return player_class_base_stat_tables[TObjPlayer__sub_801AFDBC(arg0)];
 }
 
-player_stats *get_class_stat_caps(s8 arg0) {
-    return (player_stats*)&player_class_stat_caps[TObjPlayer__sub_801AFDBC(arg0)];
+const player_stats *get_class_stat_caps(char arg0) {
+    return &player_class_stat_caps[TObjPlayer__sub_801AFDBC(arg0)];
 }
 
 player_stats *TObjPlayer::get_class_stat_entry(u8 *player) {

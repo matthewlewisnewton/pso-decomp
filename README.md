@@ -11,14 +11,14 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 98.84% (4,302,440 of 4,353,092) | 95.41% (4,153,448 of 4,353,092) |
-| Data | 85.44% (1,504,728 of 1,761,104) | 85.32% (1,502,508 of 1,761,104) |
-| Functions | 99.77% (27,508 of 27,572) | |
-| Units | | 71.35% (3,618 of 5,071) |
+| Code | 98.93% (4,306,448 of 4,353,092) | 96.79% (4,213,500 of 4,353,092) |
+| Data | 85.55% (1,506,652 of 1,761,096) | 85.45% (1,504,804 of 1,761,096) |
+| Functions | 99.79% (27,513 of 27,572) | |
+| Units | | 71.46% (3,615 of 5,059) |
 <!-- /progress-table -->
 
-Measured on `PsoV3.dol` on 2026-11-14 at validated source commit
-[`4867e9548c`](https://github.com/matthewlewisnewton/pso-decomp/commit/4867e9548c23323b01fb9f936cd6eae81e57ba0c).
+Measured on `PsoV3.dol` on 2026-11-17 at validated source commit
+[`065445b7c9`](https://github.com/matthewlewisnewton/pso-decomp/commit/065445b7c998d81c3e23d3d6bc48cbafc96b1b98).
 The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
@@ -32,7 +32,7 @@ source-linked coverage. Unit counts can change when translation units are consol
 | Game | Phantasy Star Online Episode I & II Plus, USA v1.02 (`GPOE8P`) |
 | Disc | SHA-1 `0ff155311f4cc57951c03baeb1a8cc15de5fe1cd` |
 | Executable | `files/PsoV3.dol`, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` |
-| Compiler | Metrowerks CodeWarrior for GameCube: GC/2.6 for most game code, older versions for the SDK, MetroTRK, MusyX and some game units |
+| Compiler | Metrowerks CodeWarrior for GameCube: GC/2.0 for the linker and most game code, older versions for library and game profiles |
 
 ## Building
 

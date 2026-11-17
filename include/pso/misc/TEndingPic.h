@@ -3,6 +3,6 @@
 
 #include "pso/TEndingPic.h"
 
-int get_ending_ab_wall_texture_list(void);
+#include "pso/system/EndingWallTextures.h"
 
 #endif

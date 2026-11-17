@@ -190,7 +190,7 @@ extern s32 lbl_805D7C9C;
 s32 TAdSinglePlyChrSelectGC__sub_8042E184(void);
 unsigned long strlen(const char *);
 int memcmp(const void *, const void *, unsigned long);
-extern char lbl_805D4914[4];
+extern char lbl_805D4914[3];
 extern char *modem_exi_ptr_table[22];
 void TAdSinglePlyChrSelectGC__sub_8042D604(void);
 
@@ -1123,6 +1123,59 @@ char lbl_805D489C[5] = "ATZ\r";
 char lbl_805D48A4[8] = "AT+GCI=";
 char lbl_805D48AC[2] = "\r";
 char lbl_805D48B0[6] = "ATE0\r";
+char lbl_805D48B8[2] = "Z";
+char lbl_805D48BC[3] = "+V";
+char lbl_805D48C0[3] = "+G";
+char lbl_805D48C4[3] = "&F";
+char lbl_805D48C8[3] = "&Y";
+char lbl_805D48CC[3] = "&W";
+char lbl_805D48D0[3] = "&Z";
+char lbl_805D48D4[2] = "E";
+char lbl_805D48D8[2] = "Q";
+char lbl_805D48DC[2] = "V";
+char lbl_805D48E0[2] = "W";
+char lbl_805D48E4[2] = "L";
+char lbl_805D48E8[2] = "M";
+char lbl_805D48EC[3] = "&V";
+char lbl_805D48F0[3] = "\\V";
+char lbl_805D48F4[3] = "*B";
+char lbl_805D48F8[3] = "*D";
+char lbl_805D48FC[5] = "+MS?";
+char lbl_805D4904[4] = "#UD";
+char lbl_805D4908[4] = "S24";
+char lbl_805D490C[4] = "S95";
+char lbl_805D4910[2] = "!";
+char lbl_805D4914[3] = "AT";
+char lbl_805D4918[6] = "ATH0\r";
+char lbl_805D4920[5] = "ATDT";
+char lbl_805D4928[7] = "AT&P0\r";
+char lbl_805D4930[5] = "ATDP";
+char lbl_805D4938[7] = "AT&P2\r";
+
+char *modem_exi_ptr_table[22] = {
+    lbl_805D48B8,
+    lbl_805D48BC,
+    lbl_805D48C0,
+    lbl_805D48C4,
+    lbl_805D48C8,
+    lbl_805D48CC,
+    lbl_805D48D0,
+    lbl_805D48D4,
+    lbl_805D48D8,
+    lbl_805D48DC,
+    lbl_805D48E0,
+    lbl_805D48E4,
+    lbl_805D48E8,
+    lbl_805D48EC,
+    lbl_805D48F0,
+    lbl_805D48F4,
+    lbl_805D48F8,
+    lbl_805D48FC,
+    lbl_805D4904,
+    lbl_805D4908,
+    lbl_805D490C,
+    lbl_805D4910,
+};
 }
 
 extern "C" {
