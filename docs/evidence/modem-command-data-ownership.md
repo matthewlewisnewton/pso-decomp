@@ -1,6 +1,8 @@
 # Modem command data ownership
 
-Base: fork main `f9b6cf76d9171b3dce5082b1484a85f4579855cd`.
+Initially based on fork main `f9b6cf76d9171b3dce5082b1484a85f4579855cd`;
+refreshed against `8aaabc087559d217358101920f7cefae081ad884`, including
+the merged ownership work and GC/2.0 default compiler.
 
 `ModemRuntime.cpp` owns the 22-entry command filter table at `.data
 0x804FDA78–0x804FDAD0` and its adjacent command strings/buffers at `.sdata
