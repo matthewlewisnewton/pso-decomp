@@ -1415,6 +1415,7 @@ force_active:
   - TObjEneLappy__model_filename_table
   - TObjEneLappy__resource_list
   - TObjEneLappy__resource_name_table
+  - TObjEneMe1Canadin__render_point_cursor
   - TObjEneMe1Gee_NEEDLE__name
   - TObjEneMe1Gee__render_node_index
   - TObjEneMe1Gee__resource_bundle
@@ -5212,6 +5213,7 @@ force_active:
   - canadin_effect_zero
   - canadin_follower_breakup_model
   - canadin_follower_node3_color
+  - canadin_leader_breakup_model
   - canadin_leader_fade_sequence_table
   - canadin_leader_node2_color
   - canadin_leader_node3_color
@@ -5220,8 +5222,10 @@ force_active:
   - canadin_line_initial_phase_range
   - canadin_movement_params
   - canadin_random_scale
+  - canadin_render_node_index
   - canadin_render_point
   - canadin_resistance_params
+  - canadin_resources
   - canadin_setup_param_block
   - cancel_fade_state__15TObjEneGyaranzoFv
   - cancel_status_effects__10TObjPlayerFv
@@ -9743,6 +9747,8 @@ force_active:
   - lbl_805D505C
   - lbl_805D509C
   - lbl_805D50A0
+  - lbl_805D50C8
+  - lbl_805D50D0
   - lbl_805D5140
   - lbl_805D514C
   - lbl_805D5158
