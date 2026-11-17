@@ -1676,6 +1676,9 @@ pso/object/TObjCGrass.cpp:
 	.data       start:0x80492520 end:0x80492558
 	.sdata2     start:0x805D9E60 end:0x805D9E78
 
+pso/unk/data_805D9E78.cpp:
+	.sdata2     start:0x805D9E78 end:0x805D9E98
+
 pso/unk/text_800B9194.cpp:
 	.text       start:0x800B9194 end:0x800B9254
 

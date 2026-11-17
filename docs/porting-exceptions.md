@@ -90,6 +90,14 @@ changing the load and the object layout. The late definition keeps it after
 the digit-transform and opacity literals. Ports can drop the annotation and
 keep the ordinary array and C++ expressions.
 
+### Grass placement angle constant
+
+The two-float `lbl_805D9E78` object in `src/pso/unk/data_805D9E78.cpp` holds
+the 360-degree angle and its original zero word. The guarded CodeWarrior
+section annotation keeps the array in `.sdata2`. The matching declaration
+in `TObjCGrass.cpp` preserves the single small-data float load. Ports use
+the same array and first-element access without the section annotations.
+
 ### Scalar collision-area helper
 
 `TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
