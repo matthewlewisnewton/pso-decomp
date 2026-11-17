@@ -1256,6 +1256,9 @@ pso/effect/TEffect.cpp:
 	.sbss       start:0x805D4ED8 end:0x805D4EE0
 	.sdata2     start:0x805D93B8 end:0x805D93C0
 
+pso/render/ScreenProjectionConstants.cpp:
+	.sdata2     start:0x805D93C0 end:0x805D9410
+
 pso/unk/text_80082C30.cpp:
 	.text       start:0x80082C30 end:0x80082FCC
 	.rodata     start:0x80438F08 end:0x80439348
