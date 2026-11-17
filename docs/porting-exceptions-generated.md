@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
 | pragma | 5898 | 890 |
-| configure.py per-unit override | 215 | 215 |
+| configure.py per-unit override | 216 | 216 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `pool_data` 42, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -247,6 +247,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/menu/TAdRicoRing.cpp` | `-str reuse,readonly, -sdata 4, -inline off,deferred` | Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order. |
 | `pso/boss/TBoss2DeRolLe.cpp` | `-inline on` | GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order. |
+| `pso/boss/DarkFalzEffectConstants.cpp` | `(multi-line entry; see configure.py)` | The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary. |
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
