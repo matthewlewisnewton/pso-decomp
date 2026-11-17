@@ -120,6 +120,7 @@ guides.
 - [Texture input and runtime surface](texture-input-evidence.md)
 - [`vec3_add_to` paired-single exception](vec3-add-to-paired-single.md)
 - [Vector helper contracts](vector-helper-evidence.md)
+- [Window-controller flag accessors](window-controller-flag-accessors.md)
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
 
 - [Word-select formatter completion and table grouping](word-select-completion.md)
