@@ -16,6 +16,7 @@ struct TcpSendRequest {
 typedef char TcpSendRequest_size_check[sizeof(TcpSendRequest) == 16 ? 1 : -1];
 
 extern "C" {
+s32 set_slot_state_and_resume__6TLobbyFv(s16 handle, TcpOperationCallback callback, s16 status);
 s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control);
 s32 TLobby__sub_8041FFF8(u32 acknowledged, TcpTcb *control);
 s32 TLobby__sub_80420410(s32 offset, s32 length, NetPacket *packet, TcpTcb *control);

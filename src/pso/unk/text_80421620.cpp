@@ -218,7 +218,6 @@ extern u32 lbl_805D7B58;
 extern s32 dhcp_last_tick_ms;
 extern s32 dhcp_server_id;
 extern s32 lbl_805D7B28;
-s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
 s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
 s32 TLobby::cleanup_subsystems() {
     TLobby__sub_80419A7C();
@@ -670,13 +669,16 @@ s16 tcp_receive__FsPFss_vsPUc(s32 a, void *cb, s32 len, void *buf) {
 
 typedef struct S_804220A0 S_804220A0;
 typedef struct T_80422368 T_80422368;
-s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2) {
+#pragma push
+// Retain the native word promotion at both the table index and callback.
+#pragma opt_common_subs off
+s32 set_slot_state_and_resume__6TLobbyFv(s16 idx, void (*cb)(s16, s16), s16 arg2) {
   T_80422368 *s = (T_80422368 *) tcp_protocol_state[0];
   s16 new_var;
-  s += (s16) idx;
+  s += (s32)idx;
   if ((cb != 0) && (!(s->fl & 8)))
   {
-    new_var = (s16) idx;
+    new_var = (s32)idx;
     cb(arg2, new_var);
     s->st = arg2;
     s->fl &= ~1;
@@ -697,6 +699,8 @@ s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2
   }
   return 0;
 }
+
+#pragma pop
 
 typedef struct T_8042276C T_8042276C;
 

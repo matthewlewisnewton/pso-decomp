@@ -10,10 +10,6 @@
 #include <string.h>
 #endif
 
-struct P_8041FE44 { u32 a; u32 b; };
-
-struct O_8041FE44 { u8 pad0[0x228]; u32 now; u8 pad22C[0x2F8 - 0x22C]; P_8041FE44 items[5]; };
-
 struct S_80420BD0 {
     u8 pad0[0x20]; s32 f20; u8 pad24[8]; u8 data2C[8]; u32 f34;
     u8 pad38[0x1FC - 0x38]; s32 f1FC; u8 pad200[4];
@@ -23,14 +19,6 @@ struct S_80420BD0 {
 struct Item_80420FC8 { s16 len; u8 pad2[2]; u8 data[8]; };
 
 struct Pkt_80420FC8 { u8 pad0[4]; s32 count; s32 len; Item_80420FC8 items[1]; };
-
-struct P_8041F66C { s32 a; s32 b; };
-
-struct O_8041F66C {
-    u8 pad0[0xD8]; s32 fD8; u8 padDC[4]; u32 fE0; u8 padE4[0xF4 - 0xE4];
-    s32 total; s16 n; s16 fFA; P_8041F66C items[32]; u8 pad1FC[0x228 - 0x1FC]; s32 now;
-    u8 pad22C[0x534 - 0x22C]; u32 f534;
-};
 
 struct Obj_8041ED8C {
     u8 pad0[6];
@@ -98,8 +86,8 @@ s16 select_source_address__6TLobbyFPvPv(void *, void *);
 s16 TLobby__sub_8040DA54(void *, void *);
 s16 is_addr_unspecified__6TLobbyFPv(void *);
 s16 udp_sendto__6TLobbyFsPvPvPvUsi(s16 id, Pkt_80420FC8 *pkt, NetworkAddress *src, NetworkAddress *dst, u16 port, s32 arg5);
-void TLobby__sub_8041F66C(O_8041F66C *o);
-s32 set_slot_state_and_resume__6TLobbyFv(s16, TcpOperationCallback, s16);
+void TLobby__sub_8041F66C(TcpTcb *o);
+void expire_timeout_entries__6TLobbyFv(TcpTcb *o);
 void TLobby__sub_80406EB8(void *, u32);
 void TLobby__sub_80406FD8(void *, void *, u32);
 void TLobby__sub_8041A9AC(Obj_8041ED8C *);
@@ -382,7 +370,7 @@ s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
         }
 
         complete:
-        TLobby__sub_8041F66C((O_8041F66C *)control);
+        TLobby__sub_8041F66C(control);
 
         return 0;
     }
@@ -390,47 +378,47 @@ s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
 }
 
 
-void TLobby__sub_8041F66C(O_8041F66C *o) {
+void TLobby__sub_8041F66C(TcpTcb *o) {
     s16 i;
     s16 cnt;
     s16 j;
     s32 d;
     u8 unused[8];
-    if (o->n == -1) {
+    if (o->reasm_n == -1) {
         return;
     }
-    for (i = 0; i <= o->n; i++) {
-        if (o->now - o->items[i].b < 0) {
+    for (i = 0; i <= o->reasm_n; i++) {
+        if ((s32)(o->rcv_nxt - o->reasm[i].end) < 0) {
             break;
         }
     }
-    if (i <= o->n && o->now - o->items[i].a >= 0) {
-        d = o->items[i].b - o->now;
+    if (i <= o->reasm_n && (s32)(o->rcv_nxt - o->reasm[i].start) >= 0) {
+        d = o->reasm[i].end - o->rcv_nxt;
         o->fE0 += d;
         if (o->fE0 >= o->f534) {
             o->fE0 -= o->f534;
         }
         cnt = i + 1;
         o->fD8 += d;
-        o->now = o->items[i].b;
+        o->rcv_nxt = o->reasm[i].end;
     } else {
         cnt = i;
     }
-    ((TLobby *)o)->expire_timeout_entries();
+    expire_timeout_entries__6TLobbyFv(o);
     if (cnt <= 0) {
         return;
     }
-    o->n -= cnt;
+    o->reasm_n -= cnt;
     for (j = 0; j < cnt; j++) {
-        o->total -= o->items[j].b - o->items[j].a;
+        o->reasm_total -= o->reasm[j].end - o->reasm[j].start;
     }
-    for (j = 0; j <= o->n; j++) {
-        o->items[j] = o->items[j + cnt];
+    for (j = 0; j <= o->reasm_n; j++) {
+        o->reasm[j] = o->reasm[j + cnt];
     }
-    if (o->n == -1) {
-        o->fFA = -1;
+    if (o->reasm_n == -1) {
+        o->last_reasm = -1;
     } else {
-        o->fFA = 0;
+        o->last_reasm = 0;
     }
 }
 
@@ -597,21 +585,20 @@ void TLobby__sub_8041FDA0(TcpTcb *o, s16 idx, s32 a, s32 b) {
     o->reasm_total += b - a;
 }
 
-void TLobby::expire_timeout_entries() {
-    O_8041FE44 *o = (O_8041FE44 *)this;
+void expire_timeout_entries__6TLobbyFv(TcpTcb *o) {
     s16 i;
     s16 j;
     i = 0;
     while (i < 5) {
-        if (o->items[i].a == o->items[i].b) {
+        if (o->sack[i].start == o->sack[i].end) {
             return;
         }
-        if ((s32)(o->items[i].b - o->now) <= 0) {
+        if ((s32)(o->sack[i].end - o->rcv_nxt) <= 0) {
             for (j = i; j < 4; j++) {
-                o->items[j] = o->items[j + 1];
+                o->sack[j] = o->sack[j + 1];
             }
-            o->items[4].a = 0;
-            o->items[4].b = 0;
+            o->sack[4].start = 0;
+            o->sack[4].end = 0;
         } else {
             i++;
         }

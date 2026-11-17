@@ -59,9 +59,28 @@ All three recovered socket entry points now share declarations with their
 callers. In particular the segmentation signature uses signed offset and
 length, in agreement with its definition and the caller's `int` locals.
 The entire TCP caller object remains byte-identical to current main.
-These probes cover the repaired SACK behavior and selected ACK cases.
-Full caller and behavior review of receive and segmentation, and review
-of the native ACK frame exception, remain open.
+Receive completion and SACK expiration also use the shared control block
+directly; expiration retains its native symbol without a `TLobby` pointer
+cast or a competing declaration.
+
+The input caller supplies an active table entry and a halfword payload skip
+derived from the network and TCP header lengths. The output caller starts
+with an empty fragment list and passes signed offset and length. It handles
+a negative segmentation return by clearing the output count and total.
+Focused host receive cases checked skipped bytes, FIFO wrap, partial request
+completion, synchronous callback reentry and closed receive. Focused
+segmentation cases checked FIFO and queued ring wrap, pending-fragment splits,
+fragment offsets and an out-of-range offset. The harnesses used buffer and
+callback adapters and mapped native address cursors to host-width integers.
+The native call census finds the receive-resume symbol only in the TCP and
+socket runtime objects. Both source callers use a signed halfword handle.
+The provider truncated its handle before both table lookup and callback, so
+the shared interface now declares the halfword directly. Widening the
+caller changed the receive routine. Narrowing the provider instead and
+keeping its word promotions distinct under scoped `opt_common_subs off`
+preserves all 56 native instructions and the complete provider object.
+The targeted host checks do not exhaust the caller domain. The recorded
+native ACK frame space remains a point for source review.
 
 ## Checkpoints and current status
 
