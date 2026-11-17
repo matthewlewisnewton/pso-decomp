@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
 | pragma | 5894 | 889 |
-| configure.py per-unit override | 214 | 214 |
+| configure.py per-unit override | 215 | 215 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -263,6 +263,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `pso/object/TObjCMName.cpp` | `-sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdDialingGC_80328B20.cpp` | `GC/1.3.2` | GC/1.3.2 preserves the per-vertex coordinate loads and store order. |
 | `pso/unk/text_8007ECF0.cpp` | `GC/1.3.2` | The download graph's border pass keeps GC/1.3.2 load scheduling. |
+| `pso/misc/TDLGraph.cpp` | `(multi-line entry; see configure.py)` | The download status coordinates start at 0x805D92CC, a four-byte boundary. |
 | `pso/ui/TAdSelectGameModeGC_802C4748.cpp` | `GC/1.3.2, -fp_contract on` | The selection plate has the same GC/1.3.2 vertex schedule and fuses its depth offset. |
 | `pso/boss/TObjBoss2Tunnel_8003B138.cpp` | `-fp_contract on` | Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact with -fp_contract on (all three tunnel units), so the flag belongs on the unit rather than as per-function pragmas left over from the split units. |
 | `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `(multi-line entry; see configure.py)` | Deferred, with definitions in reverse address order: the ctor's function-local static and guard precede run_task's table guard in .sbss, as in the original (docs/porting-exceptions.md section 5). .sbss starts at 0x805D696C and .sdata2 at 0x805DECCC, both only 4-aligned. mwld takes alignment from the CodeWarrior comment record, which GC/2.6 writes as 8, so the pool and every later sda21 offset shift by 4. cw_align rewrites that record after compile. -sdata 4 does not. |

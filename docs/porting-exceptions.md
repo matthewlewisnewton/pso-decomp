@@ -150,11 +150,11 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 
 | Category | Hits | Files / units |
 |---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 46 source lines | 12 |
+| Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,893 | 892 |
-| Per-unit compiler overrides in `configure.py` | 210 | 210 |
+| CodeWarrior pragmas (excluding push/pop) | 5,894 | 889 |
+| Per-unit compiler overrides in `configure.py` | 215 | 215 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -782,6 +782,13 @@ changes those records without changing code, constants or relocations.
 Ports can drop this object-layout override and use normal float alignment.
 The compatible pointer reads of four materialized constants avoid duplicate
 MWCC literal-pool entries; a port can read those constants directly.
+
+### Download status coordinate alignment
+
+`pso/misc/TDLGraph.cpp` uses `cw_align: .sdata2=4` for the three floats
+at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
+but requests eight-byte alignment for the pool. Ports can use the
+ordinary C++ coordinates directly and omit the object alignment override.
 
 ### Time setting and calendar startup
 
