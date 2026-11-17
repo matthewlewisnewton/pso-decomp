@@ -44,6 +44,7 @@ guides.
 - [Gryphon and Dragon source repair feasibility for GC/1.3.2](compiler-consolidation-gc132-game-blockers.md)
 - [Creation-menu icon animation interfaces](creation-icon-animation.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
+- [Gryphon behavior scalar constant unit](gryphon-behavior-constant-pool.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
 - [Crush-rock render/physics unit](crush-rock-physics-unit.md)
 - [Critical-hit effect complete unit](critical-hit-effect-unit.md)
