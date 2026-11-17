@@ -8,8 +8,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct RecoveredGlobal_8014A8F0_lbl_804A9120 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014A8F0_lbl_804A9120_size[sizeof(RecoveredGlobal_8014A8F0_lbl_804A9120) == 0x10 ? 1 : -1];
+struct RecoveredGlobal_8014A718_lbl_804A8F90 { s32 value; u8 remaining[0xC]; };
+typedef char RecoveredGlobal_8014A718_lbl_804A8F90_size[sizeof(RecoveredGlobal_8014A718_lbl_804A8F90) == 0x10 ? 1 : -1];
 
 struct RecoveredGlobal_8014A7C0___vt__16TObjNpcFemaleOld {
     s32 value;
@@ -17,14 +17,29 @@ struct RecoveredGlobal_8014A7C0___vt__16TObjNpcFemaleOld {
 };
 
 extern "C" {
-extern RecoveredGlobal_8014A8F0_lbl_804A9120 bm_n_etw_i_body_resource_descriptor;
-extern u32 TObjNpcFemaleTall__instance;
+extern const char lbl_8043F950[] = "n_eow_i_body_2.nj";
+extern const char lbl_8043F964[] = "bm_n_eow_i_body.bml";
+extern const char lbl_8043F978[] = "TObjNpcFemaleOld";
+extern RecoveredGlobal_8014A718_lbl_804A8F90 bm_n_eow_i_body_resource_descriptor;
 extern s32 __vt__16TObjNpcFemaleOld[];
 extern s32 TObjNpcFemaleOld__name;
-extern u8 *TObjNpcFemaleOld__static_instance;
 void *__ct__11TObjControlFP7TObject(void *, void *);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
+
+void TObjNpcFemaleOld::destroy_static_instance() {
+    if ((u32) TObjNpcFemaleOld__static_instance != 0U) {
+        delete (BmlResource *)((void*)TObjNpcFemaleOld__static_instance);
+        TObjNpcFemaleOld__static_instance = 0U;
+    }
+}
+void TObjNpcFemaleOld::load_resource_instance() {
+    BmlResource *temp_r3;
+    BmlResource *var_r0;
+    temp_r3 = new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_eow_i_body_resource_descriptor.value), 0, 0, (void *)(0));
+    var_r0 = temp_r3;
+    TObjNpcFemaleOld__static_instance = var_r0;
+}
 
 void *__dt__16TObjNpcFemaleOldFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -64,20 +79,6 @@ void * TObjNpcFemaleTall__create(void *arg0) {
         o2 = TObjNpcFemaleTall__ct((u8 *)o2, (s32)o, (s32)arg0);
     }
     return o2;
-}
-
-void TObjNpcFemaleTall::destroy_instance() {
-    if ((u32) TObjNpcFemaleTall__instance != 0U) {
-        delete (BmlResource *)((void*)TObjNpcFemaleTall__instance);
-        TObjNpcFemaleTall__instance = 0U;
-    }
-}
-void TObjNpcFemaleTall::load_resource_instance() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_etw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcFemaleTall__instance) = var_r0;
 }
 
 }

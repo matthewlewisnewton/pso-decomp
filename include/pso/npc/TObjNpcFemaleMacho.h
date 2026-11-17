@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/npc/TUnk_804A8640.h"
 
+struct BmlResource;
+
 struct TObjNpcFemaleMacho : public TUnk_804A8640 {
     virtual ~TObjNpcFemaleMacho();
     static void close_dialog_window();
@@ -25,5 +27,9 @@ void *TObjNpcFemaleOld__create(void *arg0);
 void *__dt__18TObjNpcFemaleMachoFv(void *arg0, s16 arg1);
 }
 // --- end of C functions
+
+extern "C" {
+extern BmlResource *TObjNpcFemaleMacho__lobby_resource;
+}
 
 #endif
