@@ -1170,10 +1170,10 @@ Ports can drop the compiler switch. The render and target-acquisition bodies in 
 
 `-inline off,deferred` lets CodeWarrior place the seven late-defined beam
 constants in `.sdata2` while keeping the original loads. With immediate
-generation, those definitions land in `.sdata`. Using literals instead changes
-three functions, including the final vertex calculations where the compiler
-folds away the multiplies by one. Reverse definition order preserves the five
-original function offsets under deferred generation. The bridge and item-light
+generation, those definitions land in `.sdata`. Using literals instead
+reorders the increments in the beam builder loop and folds away the final
+vertex calculations' multiplies by one. Reverse definition order preserves
+the five original function offsets under deferred generation. The bridge and item-light
 recovery uses the same late-definition arrangement.
 [Bridge constant ownership](evidence/bridge-item-light-constant-pool.md)
 
