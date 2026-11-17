@@ -54,6 +54,7 @@ guides.
 - [DD descendant virtual slot](dd-descendant-slot-evidence.md)
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
+- [Df2 Bringer shared scalar pool](df2-bringer-constant-pool.md)
 - [Download graph recovery](download-graph-recovery.md)
 - [Dragon fireball unit](dragon-fireball-unit.md)
 - [Gol Dragon fireball unit](gol-dragon-fireball-unit.md)
