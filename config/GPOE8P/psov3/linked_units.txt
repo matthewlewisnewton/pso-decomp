@@ -418,6 +418,7 @@ pso/enemy/DelDepthMotion.cpp
 pso/enemy/Df2BringerConstants.cpp
 pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
+pso/enemy/SinowZoaConstants.cpp
 pso/enemy/TEnemyTaskList.cpp
 pso/enemy/TObjEneBalClaw.cpp
 pso/enemy/TObjEneBalClawBody_80090178.cpp
