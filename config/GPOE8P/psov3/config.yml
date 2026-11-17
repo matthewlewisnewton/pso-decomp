@@ -1128,6 +1128,7 @@ force_active:
   - TObjBgmCol__name
   - TObjBigTuitate__ct
   - TObjBoss1MokoHill_Solo__ct
+  - TObjBoss2CeilJunk__name
   - TObjBoss2CeilJunk__sub_8003A868
   - TObjBoss2DustCtrl__ct
   - TObjBoss2Tunnel__ct

@@ -9,6 +9,7 @@
 #include "pso/object/TObject_80019A50.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "pso/system/GinjaMaterial.h"
+#include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/boss/TObjBoss2CeilJunk.h"
@@ -20,7 +21,7 @@
 #include "pso/player/TObjPlayer.h"
 
 struct RecoveredFields_8003A6F4_arg0 {
- s32 field_0;
+ const char *class_name;
  u8 unknown_4[0x14];
  s32 *unk18;
  u8 unknown_1C[0x2C];
@@ -41,22 +42,9 @@ struct RecoveredFields_8003A6F4_arg0 {
  f32 field_B4;
 };
 
-struct RecoveredGlobal_8003A6F4_lbl_80435BD8 {
-    s32 value;
-    u8 remaining[0x14];
-};
-
 struct RecoveredGlobal_8003A6F4___vt__17TObjBoss2CeilJunk {
     s32 value;
     u8 remaining[0x34];
-};
-
-struct Color_8003A1B4
-{
-  f32 a;
-  s32 b;
-  s32 c;
-  s32 d;
 };
 
 struct Vec_8003A1B4
@@ -114,19 +102,21 @@ struct Junk_8003A314 {
 };
 
 extern "C" {
+const s32 boss2_ceil_junk_model_index_table[] = {0, 1, 2, 4, 3, 5};
+const f32 TObjBoss2CeilJunk__height_offset_table[] = {10.0f, 10.0f, 7.0f, 3.0f, 10.0f, 6.0f};
+const f32 TObjBoss2CeilJunk__radius_table[] = {15.0f, 15.0f, 10.5f, 15.0f, 0.45000002f, 1.2f};
+const char TObjBoss2CeilJunk__class_name_string[] = "TObjBoss2CeilJunk";
+const char *TObjBoss2CeilJunk__name = TObjBoss2CeilJunk__class_name_string;
+const NJS_ARGB boss2_ceil_junk_render_color = {0.0f, 0.0f, 0.0f, 0.0f};
+
 s32 __ct__8TObjBaseFP7TObject();
 s32 rand();
-extern RecoveredGlobal_8003A6F4_lbl_80435BD8 TObjBoss2CeilJunk__height_offset_table;
 extern s32 __vt__17TObjBoss2CeilJunk[];
-extern s32 TObjBoss2CeilJunk__name;
 u8 *TObjBoss2CeilJunk__ct(struct RecoveredFields_8003A6F4_arg0 *arg0, s32 arg1, s32 arg2);
 s32 rotate_matrix_y(int, int);
 s32 rotate_matrix_x(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
-extern s32 boss2_ceil_junk_model_index_table[];
-extern f32 TObjBoss2CeilJunk__radius_table[];
-extern Color_8003A1B4 boss2_ceil_junk_render_color;
 extern Holder_8003A1B4 *boss2_tunnel_instance;
 extern s32 lbl_805D4BEC;
 extern s32 saved_model_render_flags;
@@ -144,11 +134,16 @@ extern const f32 lbl_805D4BE0;
 void run_task__17TObjBoss2CeilJunkFv(Junk_8003A314 *o);
 void __dl__7TObjectFPv(void *);
 
-typedef struct Color_8003A1B4 Color_8003A1B4;
 typedef struct Holder_8003A1B4 Holder_8003A1B4;
 typedef struct Mdl_8003A1B4 Mdl_8003A1B4;
 typedef struct Obj_8003A1B4 Obj_8003A1B4;
 typedef struct Vec_8003A1B4 Vec_8003A1B4;
+
+// The original renderer addresses each of its three data objects independently.
+#ifdef __MWERKS__
+#pragma push
+#pragma pool_data off
+#endif
 void TObjBoss2CeilJunk::render() {
     Obj_8003A1B4 *self = (Obj_8003A1B4 *)this;
   float new_var;
@@ -166,9 +161,9 @@ void TObjBoss2CeilJunk::render() {
   {
     model_render_flags = saved_model_render_flags | 0x8820;
     {
-      Color_8003A1B4 c = boss2_ceil_junk_render_color;
+      NJS_ARGB c = boss2_ceil_junk_render_color;
       c.a = (-1.0f) + self->fB4;
-      set_constant_material((const NJS_ARGB *)(((f32 *)&c)));
+      set_constant_material(&c);
     }
     set_chunk_material_override_pair(0xFF00, 0x800);
     set_chunk_blend(0x2500);
@@ -183,6 +178,10 @@ void TObjBoss2CeilJunk::render() {
   model_render_flags = saved_model_render_flags;
   set_chunk_material_override_pair(0xFF00, 0);
 }
+
+#ifdef __MWERKS__
+#pragma pop
+#endif
 
 void run_task__17TObjBoss2CeilJunkFv(Junk_8003A314 *o) {
     Vec_8003A314 p;
@@ -238,7 +237,7 @@ void run_task__17TObjBoss2CeilJunkFv(Junk_8003A314 *o) {
             hit = 0;
             n = TLobby::get_game_mode();
             top = o->pos.y - o->vel.y;
-            bottom = o->pos.y - ((f32 *)&TObjBoss2CeilJunk__height_offset_table)[o->fAC];
+            bottom = o->pos.y - TObjBoss2CeilJunk__height_offset_table[o->fAC];
             rad = (1e+01f) + TObjBoss2CeilJunk__radius_table[o->fAC];
             for (i = 0; i < n; i++) {
                 pl = (u8 *)get_player_data__10TObjPlayerFi(i);
@@ -296,14 +295,13 @@ extern "C" {
 extern const f32 lbl_805D85A0 = 6.0f;
 #pragma push
 #pragma opt_dead_assignments off
-typedef char RecoveredGlobal_8003A6F4_lbl_80435BD8_size[sizeof(RecoveredGlobal_8003A6F4_lbl_80435BD8) == 0x18 ? 1 : -1];
 typedef char RecoveredGlobal_8003A6F4___vt__17TObjBoss2CeilJunk_size[sizeof(RecoveredGlobal_8003A6F4___vt__17TObjBoss2CeilJunk) == 0x38 ? 1 : -1];
 u8 *TObjBoss2CeilJunk__ct(struct RecoveredFields_8003A6F4_arg0 *arg0, s32 arg1, s32 arg2) {
     f32 temp_f1;
     f32 temp_f2;
     __ct__8TObjBaseFP7TObject();
     arg0->unk18 = &(*(RecoveredGlobal_8003A6F4___vt__17TObjBoss2CeilJunk *)&__vt__17TObjBoss2CeilJunk).value;
-    arg0->field_0 = TObjBoss2CeilJunk__name;
+    arg0->class_name = TObjBoss2CeilJunk__name;
     VecCopy((Vec *)&arg0->unknown_1C[0x1C], (const Vec *)arg2);
     temp_f2 = (f32) rand();
     temp_f1 = (3.0517578e-05f) * temp_f2;
@@ -312,7 +310,7 @@ u8 *TObjBoss2CeilJunk__ct(struct RecoveredFields_8003A6F4_arg0 *arg0, s32 arg1, 
         arg0->field_A8 = 0;
     } else {
         arg0->field_A8 = 2;
-        arg0->field_54 = arg0->field_48 + *(f32 *)((s8 *)((u8 *)&TObjBoss2CeilJunk__height_offset_table.value + (arg0->field_AC * 4)) + 0);
+        arg0->field_54 = arg0->field_48 + TObjBoss2CeilJunk__height_offset_table[arg0->field_AC];
     }
     arg0->field_60 = TObjPlayer::calc_random_scaled();
     arg0->field_5C = (s32) ((4096.0f) * rand_signed_unit());

@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5895 | 890 |
+| pragma | 5896 | 890 |
 | configure.py per-unit override | 215 | 215 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 39, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `pool_data` 40, `opt_lifetimes` 40, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -557,7 +557,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/boss/TBoss8Dragon_8036AEF8.cpp` | fp_contract×1 |
 | `src/pso/boss/TObjBoss1Crater_8002C6B4.cpp` | fp_contract×1 |
 | `src/pso/boss/TObjBoss1Rock.cpp` | fp_contract×1 |
-| `src/pso/boss/TObjBoss2CeilJunk.cpp` | opt_dead_assignments×1 |
+| `src/pso/boss/TObjBoss2CeilJunk.cpp` | pool_data×1, opt_dead_assignments×1 |
 | `src/pso/boss/TObjBoss2DustCtrl.cpp` | opt_propagation×1 |
 | `src/pso/boss/TObjBoss2Tunnel.cpp` | opt_propagation×1 |
 | `src/pso/boss/TObjBoss2Tunnel_802F2070.cpp` | opt_common_subs×1 |
