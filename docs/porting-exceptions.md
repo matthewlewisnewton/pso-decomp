@@ -1166,6 +1166,20 @@ Ports can drop the compiler switch. The render and target-acquisition bodies in 
 |---|---|---|---|---|
 | `pso/boss/TBoss8Dragon.cpp` | `TBoss8Dragon::TBoss8Dragon` (`__ct__12TBoss8DragonFP7TObjectPv`, `0x802FD47C`, 0x554) and the compiler vtable `__vt__12TBoss8Dragon` (`0x804E5534`) | unit switch `-inline off,deferred` | The constructor stores the vptr with `addi r0, r31, 2348` off the `.data` anchor (`TBoss8Dragon__camera_offset_index_table` at `0x804E4C08`). Under plain `-inline off` that store is `lis`/`addi` of `__vt__12TBoss8Dragon` and the function is 0x558. Deferred code generation restores the anchor form and places the 107-slot compiler vtable at `.data+0x92C`. The destructor, `create`, and the other functions keep the same instructions; only their order in the object follows deferred emission. Precedent: [dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was not needed; this is the `-inline off,deferred` form already used for `TObjEneGyaranzo.cpp` and [the per-group inline settings in brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). `-inline auto,deferred` was tried in an earlier pass and rewrote 56 functions. | Drop the switch. Emission order has no semantic effect. |
 
+### `TeneFakeTecThunderEff.cpp` deferred emission
+
+`-inline off,deferred` lets CodeWarrior place the seven late-defined beam
+constants in `.sdata2` while keeping the original loads. With immediate
+generation, those definitions land in `.sdata`. Using literals instead changes
+three functions, including the final vertex calculations where the compiler
+folds away the multiplies by one. Reverse definition order preserves the five
+original function offsets under deferred generation. The bridge and item-light
+recovery uses the same late-definition arrangement.
+[Bridge constant ownership](evidence/bridge-item-light-constant-pool.md)
+
+A port can drop the switch and order the definitions for readability. Keep the
+C++ expressions and constants.
+
 ### `TAdChrSelPlyPlateGC.cpp`: `-fp_contract on` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214), folded by [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
 
 | File | Function | What | Why | Port should |
