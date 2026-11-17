@@ -6333,7 +6333,7 @@ void fill_value_array(s32 address) {
 }
 
 extern "C" {
-extern f32 lbl_805D9E80;
+extern const f32 lbl_805D9E80;
 extern const f32 lbl_805D4AF0 = 3.0f * lbl_805D9E80;
 extern const f32 TBoss1Dragon__gravity_accel = 2.0f * lbl_805D9E80;
 f32 lbl_805D4AF8 = 5.0f * lbl_805D9E80;
