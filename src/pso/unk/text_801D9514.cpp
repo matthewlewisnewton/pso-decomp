@@ -9,7 +9,7 @@ struct RecoveredGlobal_801D9514_lbl_804C49F0
 };
 
 extern "C" {
-s8 TObjPlayer__sub_801AFDBC();
+char TObjPlayer__sub_801AFDBC();
 extern RecoveredGlobal_801D9514_lbl_804C49F0 class_technique_cap_table;
 typedef struct RecoveredGlobal_801D9514_lbl_804C49F0 RecoveredGlobal_801D9514_lbl_804C49F0;
 typedef char RecoveredGlobal_801D9514_lbl_804C49F0_size[((sizeof(RecoveredGlobal_801D9514_lbl_804C49F0)) == 0x30) ? (1) : (-1)];

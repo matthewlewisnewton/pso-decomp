@@ -81,7 +81,6 @@ int vec3_add_to(void *, void *);
 f32 vector_length(void *);
 int subtract_vector(void *, void *);
 extern const f32 TObjGyaranzoMissile__max_range;
-extern s32 gyaranzo_missile_volley_end_time;
 void *__dt__19TObjGyaranzoMissileFv(void *arg0, s16 arg1);
 f32 sin_table_lookup(int);
 s32 post_translate_matrix(void *);

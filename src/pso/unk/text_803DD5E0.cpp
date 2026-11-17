@@ -5,6 +5,7 @@
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TLobby.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/ChunkPolygonList.h"
 
 struct S_803DDD78 { s8 a, b; };
 
@@ -652,5 +653,5 @@ relocate:
 }
 
 s32 TObjLight__gx_light_objects[0x50];
-u8 chunk_polygon_list_cache[0x1F8];
+s16 *chunk_polygon_list_cache[126];
 u8 gvrt_header_read_buffer[0x20];

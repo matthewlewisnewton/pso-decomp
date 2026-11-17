@@ -23,4 +23,6 @@ struct TObjGyaranzoMissile : public TObjCollidable {
 };
 
 typedef char TObjGyaranzoMissile_size[sizeof(TObjGyaranzoMissile) == 0xDC ? 1 : -1];
+// Set by Gyaranzo when starting a volley; shared by its active missiles.
+extern "C" s32 gyaranzo_missile_volley_end_time;
 #endif

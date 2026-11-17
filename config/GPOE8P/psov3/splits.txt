@@ -75,20 +75,14 @@ pso/menu/TAdEndText.cpp:
 	.sbss       start:0x805D49F0 end:0x805D4A00
 	.sdata2     start:0x805D7DF0 end:0x805D7E48
 
-pso/unk/text_8001B424.cpp:
-	.text       start:0x8001B424 end:0x8001B4A0
-
-pso/ui/TAdRicoRingCtrl_8001B4A0.cpp:
-	.text       start:0x8001B4A0 end:0x8001BAC8
-	.data       start:0x804809D0 end:0x80480A58
-	.bss        start:0x804FE138 end:0x804FE148
-
 pso/menu/TAdRicoRing.cpp:
-	.text       start:0x8001BAC8 end:0x8001BE00
-	.data       start:0x80480A58 end:0x80480A70
-
-pso/ui/TAdRicoRingCtrl.cpp:
-	.text       start:0x8001BE00 end:0x8001BED8
+	.text       start:0x8001B424 end:0x8001BED8
+	.rodata     start:0x804347D0 end:0x80434848
+	.data       start:0x804809B0 end:0x80480A70
+	.bss        start:0x804FE138 end:0x804FE148
+	.sdata      start:0x805D2618 end:0x805D2620
+	.sbss       start:0x805D4A00 end:0x805D4A38
+	.sdata2     start:0x805D7E48 end:0x805D7E70
 
 pso/system/FlagWord.cpp:
 	.text       start:0x8001BED8 end:0x8001BF4C
@@ -232,6 +226,9 @@ pso/boss/TBoss8Dragon_8002CC48.cpp:
 	.rodata     start:0x804355D0 end:0x804355D8
 	.data       start:0x80482048 end:0x80482078
 	.sdata2     start:0x805D8178 end:0x805D8200
+
+pso/unk/data_805D8200.cpp:
+	.sdata2     start:0x805D8200 end:0x805D8278
 
 pso/boss/TObjBoss1Rock.cpp:
 	.text       start:0x8002DF7C end:0x8002E090
@@ -1399,21 +1396,13 @@ pso/misc/TEnding.cpp:
 	.rodata     start:0x80439598 end:0x804395A0
 	.data       start:0x8048E828 end:0x8048E840
 
-pso/misc/TEndingAB_8008C9FC.cpp:
-	.text       start:0x8008C9FC end:0x8008CCC0
-	.sdata2     start:0x805D9580 end:0x805D9584
-
 pso/misc/TEndingAB.cpp:
-	.text       start:0x8008CCC0 end:0x8008CCC4
-
-pso/misc/TEndingAB_8008CCC4.cpp:
-	.text       start:0x8008CCC4 end:0x8008CE08
-
-pso/misc/TEndingAB_8008CE08.cpp:
-	.text       start:0x8008CE08 end:0x8008D00C
+	.text       start:0x8008C9FC end:0x8008D00C
 	.rodata     start:0x804395A0 end:0x804398E0
 	.data       start:0x8048E840 end:0x8048EB18
 	.sdata      start:0x805D2958 end:0x805D2960
+	.sbss       start:0x805D4F10 end:0x805D4F18
+	.sdata2     start:0x805D9580 end:0x805D95BC
 
 pso/misc/TEndingC_8008D00C.cpp:
 	.text       start:0x8008D00C end:0x8008D68C
@@ -1529,7 +1518,7 @@ pso/enemy/TObjEneMe1Canadin.cpp:
 	.rodata     start:0x8043A390 end:0x8043A398
 	.data       start:0x8048FEB0 end:0x80490410
 	.bss        start:0x80500930 end:0x8050096C
-	.sbss       start:0x805D4FE0 end:0x805D4FF0
+	.sbss       start:0x805D4FD0 end:0x805D4FF0
 	.sdata2     start:0x805D98C0 end:0x805D98D0
 
 pso/enemy/CanadinEffects.cpp:
@@ -1640,6 +1629,7 @@ pso/player/TObjPlayer_800ACA60.cpp:
 pso/enemy/TObjEneMoja.cpp:
 	.text       start:0x800AF28C end:0x800AFB28
 	.data       start:0x80491828 end:0x80491B30
+	.sbss       start:0x805D50C8 end:0x805D50E0
 	.sdata2     start:0x805D9C60 end:0x805D9C68
 
 pso/enemy/TObjEneBm3Fly.cpp:
@@ -1872,6 +1862,7 @@ pso/enemy/TObjEneGyaranzo.cpp:
 	.rodata     start:0x8043C278 end:0x8043C428
 	.data       start:0x80494108 end:0x804943FC
 	.bss        start:0x80500ED0 end:0x80500F80
+	.sbss       start:0x805D5200 end:0x805D5210
 	.sdata2     start:0x805DA278 end:0x805DA280
 
 pso/object/TObjGyaranzoMissile_800D40D8.cpp:
@@ -2086,6 +2077,7 @@ pso/enemy/TObjEneMe3Stelth.cpp:
 
 pso/system/ChunkTextureStripCollector.cpp:
 	.text       start:0x800F58A4 end:0x800F5BC0
+	.sbss       start:0x805D5318 end:0x805D5328
 
 pso/unk/text_800F5BC0.cpp:
 	.text       start:0x800F5BC0 end:0x800F5CF0
@@ -4529,25 +4521,32 @@ pso/npc/TObjNpcFemaleBase_80149C7C.cpp:
 	.text       start:0x80149C7C end:0x80149D40
 
 pso/npc/TObjNpcFemaleBase.cpp:
-	.text       start:0x80149D40 end:0x8014A008
+	.text       start:0x80149D40 end:0x80149F80
+	.rodata     start:0x8043F830 end:0x8043F868
 
 pso/npc/TObjNpcFemaleChild.cpp:
-	.text       start:0x8014A008 end:0x8014A1E0
+	.text       start:0x80149F80 end:0x8014A158
+	.rodata     start:0x8043F868 end:0x8043F8A0
 
 pso/npc/TObjNpcFemaleDwarf.cpp:
-	.text       start:0x8014A1E0 end:0x8014A3B8
+	.text       start:0x8014A158 end:0x8014A330
+	.rodata     start:0x8043F8A0 end:0x8043F8E0
 
 pso/npc/TObjNpcFemaleFat.cpp:
-	.text       start:0x8014A3B8 end:0x8014A590
+	.text       start:0x8014A330 end:0x8014A508
+	.rodata     start:0x8043F8E0 end:0x8043F918
 
 pso/npc/TObjNpcFemaleMacho.cpp:
-	.text       start:0x8014A590 end:0x8014A768
+	.text       start:0x8014A508 end:0x8014A6E0
+	.rodata     start:0x8043F918 end:0x8043F950
 
 pso/npc/TObjNpcFemaleOld.cpp:
-	.text       start:0x8014A768 end:0x8014A940
+	.text       start:0x8014A6E0 end:0x8014A8B8
+	.rodata     start:0x8043F950 end:0x8043F990
 
 pso/npc/TObjNpcFemaleTall.cpp:
-	.text       start:0x8014A940 end:0x8014AA48
+	.text       start:0x8014A8B8 end:0x8014AA48
+	.rodata     start:0x8043F990 end:0x8043F9C8
 
 pso/npc/TObjNpcFemaleTall_8014AA48.cpp:
 	.text       start:0x8014AA48 end:0x8014AA60
@@ -4562,15 +4561,15 @@ pso/unk/text_8014AB24.cpp:
 	.text       start:0x8014AB24 end:0x8014AB8C
 
 pso/npc/TObjNpcGovernorBase.cpp:
-	.text       start:0x8014AB8C end:0x8014ADF4
-	.rodata     start:0x8043FA38 end:0x8043FA60
+	.text       start:0x8014AB8C end:0x8014AD64
 
 pso/npc/TObjNpcHFW00.cpp:
-	.text       start:0x8014ADF4 end:0x8014AFC8
+	.text       start:0x8014AD64 end:0x8014AF38
+	.rodata     start:0x8043FA28 end:0x8043FA60
 
 pso/npc/TObjNpcHFW01.cpp:
-	.text       start:0x8014AFC8 end:0x8014B10C
-	.rodata     start:0x8043FA60 end:0x8043FA70
+	.text       start:0x8014AF38 end:0x8014B10C
+	.rodata     start:0x8043FA60 end:0x8043FA98
 	.sdata      start:0x805D2DB8 end:0x805D2DC0
 
 pso/npc/TObjNpcHHM00.cpp:
@@ -4622,10 +4621,12 @@ pso/npc/TObjNpcMaleChild.cpp:
 	.sbss       start:0x805D57E0 end:0x805D57E8
 
 pso/npc/TObjNpcMaleDwarf.cpp:
-	.text       start:0x8014BD1C end:0x8014BF7C
+	.text       start:0x8014BD1C end:0x8014BEF4
+	.rodata     start:0x8043FBE0 end:0x8043FC20
 
 pso/npc/TObjNpcMaleFat.cpp:
-	.text       start:0x8014BF7C end:0x8014C0CC
+	.text       start:0x8014BEF4 end:0x8014C0CC
+	.rodata     start:0x8043FC20 end:0x8043FC58
 
 pso/npc/TObjNpcMaleMacho.cpp:
 	.text       start:0x8014C0CC end:0x8014C2A4
@@ -4652,24 +4653,24 @@ pso/player/TObjPlayer_8014C610.cpp:
 	.text       start:0x8014C610 end:0x8014C6C0
 
 pso/npc/TObjNpcMoja.cpp:
-	.text       start:0x8014C6C0 end:0x8014C97C
-	.rodata     start:0x8043FD20 end:0x8043FD48
+	.text       start:0x8014C6C0 end:0x8014C8EC
 	.data       start:0x804AABB8 end:0x804AAD80
 
 pso/npc/TObjNpcNFM00.cpp:
-	.text       start:0x8014C97C end:0x8014CB50
-	.rodata     start:0x8043FD58 end:0x8043FD80
+	.text       start:0x8014C8EC end:0x8014CAC0
+	.rodata     start:0x8043FD10 end:0x8043FD48
 
 pso/npc/TObjNpcNFM01.cpp:
-	.text       start:0x8014CB50 end:0x8014CD24
-	.rodata     start:0x8043FD90 end:0x8043FDB8
+	.text       start:0x8014CAC0 end:0x8014CC94
+	.rodata     start:0x8043FD48 end:0x8043FD80
 
 pso/npc/TObjNpcNFW00.cpp:
-	.text       start:0x8014CD24 end:0x8014CEF8
+	.text       start:0x8014CC94 end:0x8014CE68
+	.rodata     start:0x8043FD80 end:0x8043FDB8
 
 pso/npc/TObjNpcNFW01.cpp:
-	.text       start:0x8014CEF8 end:0x8014D03C
-	.rodata     start:0x8043FDB8 end:0x8043FDC8
+	.text       start:0x8014CE68 end:0x8014D03C
+	.rodata     start:0x8043FDB8 end:0x8043FDF0
 	.sdata      start:0x805D2E38 end:0x805D2E40
 
 pso/npc/TObjNpcNHW00.cpp:
@@ -6432,7 +6433,7 @@ pso/player/TObjPlayer_801AEFFC.cpp:
 pso/player/TObjPlayer_801AF2F0.cpp:
 	.text       start:0x801AF290 end:0x801BC140
 	.rodata     start:0x80446F48 end:0x80446F50
-	.data       start:0x804C3CFC end:0x804C3E38
+	.data       start:0x804C3BA8 end:0x804C3E38
 	.sdata2     start:0x805DC278 end:0x805DC2B0
 
 pso/player/TObjPlayer_801BC140.cpp:
@@ -7141,8 +7142,10 @@ pso/misc/TParticleCtrl_801E5330.cpp:
 
 pso/misc/TQuadSpriteNormal.cpp:
 	.text       start:0x801E5598 end:0x801E58D8
+	.rodata     start:0x80449860 end:0x80449878
 	.data       start:0x804C6910 end:0x804C6928
-	.sdata2     start:0x805DC460 end:0x805DC468
+	.sdata      start:0x805D35A8 end:0x805D35B0
+	.sdata2     start:0x805DC460 end:0x805DC470
 
 pso/misc/TQuadSpriteScl.cpp:
 	.text       start:0x801E58D8 end:0x801E5C24
@@ -7744,6 +7747,7 @@ pso/misc/TShopEquipmentSequence.cpp:
 
 pso/misc/TShopGenerator.cpp:
 	.text       start:0x8021DC30 end:0x8021E2E4
+	.bss        start:0x80513ED0 end:0x80513EE0
 	.sdata2     start:0x805DC6E8 end:0x805DC6F0
 
 pso/misc/TShopEquipmentSequence_8021E2E4.cpp:
@@ -10840,6 +10844,7 @@ pso/boss/TObjBoss7DustCtrl.cpp:
 	.rodata     start:0x80474388 end:0x80474390
 	.data       start:0x804E4948 end:0x804E4960
 	.bss        start:0x80541948 end:0x80541DC8
+	.sdata2     start:0x805DEC70 end:0x805DEC84
 
 pso/boss/TObjBoss7RaftSplash.cpp:
 	.text       start:0x802F15D4 end:0x802F17B0
@@ -11058,6 +11063,7 @@ pso/enemy/TObjEneRecon_80302DB0.cpp:
 pso/enemy/TObjEneDellBiterEffects.cpp:
 	.text       start:0x80302DBC end:0x803032EC
 	.data       start:0x804E6AF8 end:0x804E6B6C
+	.sdata2     start:0x805DEFA0 end:0x805DEFB8
 
 pso/enemy/TObjEneDellBiter.cpp:
 	.text       start:0x803032EC end:0x80306994
@@ -14423,9 +14429,9 @@ pso/misc/TLobby_80429598.cpp:
 
 pso/network/ModemRuntime.cpp:
 	.text       start:0x8042BF48 end:0x8042E8C4
-	.data       start:0x804FDA20 end:0x804FDA78
+	.data       start:0x804FDA20 end:0x804FDAD0
 	.bss        start:0x805D1D20 end:0x805D1E40
-	.sdata      start:0x805D4840 end:0x805D48B8
+	.sdata      start:0x805D4840 end:0x805D4940
 	.sbss       start:0x805D7C90 end:0x805D7CA8
 
 pso/unk/text_8042E8C4.cpp:

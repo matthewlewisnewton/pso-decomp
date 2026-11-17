@@ -1,5 +1,6 @@
 #include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/misc/ActionPaletteTagAbi.h"
+#include "pso/player/PlayerEquipmentUpdate.h"
 #include "pso/math/VectorNormalize.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/math/ScratchVectorStorage.h"
@@ -1290,8 +1291,8 @@ s32 call_subobject_m15__10TObjPlayerFv(void *);
 s32 get_vobj_state_28__10TObjPlayerFv(void *);
 s32 check_flag_4__10TObjPlayerFv(void *);
 s32 clamp_nested_index__10TObjPlayerFv();
-void TObjPlayer__sub_801BE9A8(s32 arg0);
-void set_flag_20000__10TObjPlayerFi(s32 arg0);
+
+
 void set_flag_400000__10TObjPlayerFi(s32 arg0);
 s32 is_status_locked__10TObjPlayerFv();
 s32 is_status_flag_200__10TObjPlayerFv(void);
@@ -2167,7 +2168,7 @@ void TObjPlayer__sub_801C869C(s32 arg0, s16 arg1) {
   }
 }
 
-void TObjPlayer::init_effects() { TObjPlayer__sub_801BE9A8((s32)this); sub_8011E204__10TObjPlayerFl(this, (void*)5); activate_body_collision(); set_indexed_flags((s32)((void*)0), (s32)((void*)1)); reset_player_appearance_opacity(((char*)this + 0x608)); }
+void TObjPlayer::init_effects() { TObjPlayer__sub_801BE9A8(this); sub_8011E204__10TObjPlayerFl(this, (void*)5); activate_body_collision(); set_indexed_flags((s32)((void*)0), (s32)((void*)1)); reset_player_appearance_opacity(((char*)this + 0x608)); }
 
 int TObjPlayer__deactivate_off_floor_body(void* p) { return deactivate_body_collision__10TObjPlayerFv(p); }
 
@@ -2177,7 +2178,7 @@ void TObjPlayer__enter_off_floor_state(u8 *player) {
     ((TObjPlayer *)(player + 0x644))->reset_lobby_model();
     ((TObjPlayer *)player)->set_state_flags(4);
     deactivate_body_collision__10TObjPlayerFv((void *) (player));
-    set_flag_20000__10TObjPlayerFi((s32)(player));
+    set_flag_20000__10TObjPlayerFi((TObjPlayer *)player);
     ((TObjPlayer *)player)->phase = 0;
     ((s32 (*)(void *, int, int))set_action_state__10TObjPlayerFPvss)((void *) (player), 0x16, (int) (((s16 (*)(void))ret_801D26AC)()));
 }
