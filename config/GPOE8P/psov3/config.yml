@@ -65,6 +65,7 @@ force_active:
   - GXSetTevAlphaIn
   - GXSetTevAlphaOp
   - GXSetTevIndirect
+  - GXSetVtxAttrFmtv
   - GXTexImage0Ids
   - GXTexImage1Ids
   - GXTexImage2Ids
@@ -4126,6 +4127,7 @@ force_active:
   - apply_blend_mode_1__10TObjPlayerFv
   - apply_bonuses
   - apply_character_appearance__12TCMCharacterFv
+  - apply_chunk_texture_command__Fll
   - apply_clamped_field_27c__6TLobbyFv
   - apply_confusion_status__11TBoss6Type1Fv
   - apply_confusion_status__12TBoss1DragonFv
@@ -5488,6 +5490,7 @@ force_active:
   - chr_select_b_slot_entry
   - chr_select_buffer_ptr_table
   - chr_select_load_buffer_table
+  - chunk_object_current_matrix
   - circle_arena__13TBoss5GryphonFl
   - circle_destination__13TObjEneBm3FlyFl
   - circling_state__14TObjEneBm5WolfFl
@@ -5853,6 +5856,7 @@ force_active:
   - copy_head_fields__10TObjPlayerFPv
   - copy_header_and_vec__6TSceneFPv
   - copy_lobby_font_header__10TObjPlayerFPv
+  - copy_matrix3x3_for_chunk_tree__10TObjPlayerFv
   - copy_matrix__22TObjTombstoneDropRatesFPf
   - copy_member_record__6TLobbyFPvPv
   - copy_motion_pair__13TUnk_804DDD28FPv
@@ -6258,6 +6262,8 @@ force_active:
   - dispatch_by_index__19TWindowKeyBoardSoftFv
   - dispatch_by_state__6TLobbyFv
   - dispatch_callback__Fv
+  - dispatch_chunk_polygon_list
+  - dispatch_chunk_vertex_list__FPUll
   - dispatch_fish_event__6TLobbyFPv
   - dispatch_if_active__17TObjEneMe3ShinowaFv
   - dispatch_if_active__23TObjEneMe3ShinowaMirageFv
@@ -6377,6 +6383,7 @@ force_active:
   - draw_body_models__11TBoss6Type2Fv
   - draw_body_row__13TUnk_804CF0B8FPvPvffff
   - draw_bottom_bar__20TWindowSubStatusDispFv
+  - draw_chunk_textured_strips
   - draw_closed__8TObjDoorFPv
   - draw_closed_glow__8TObjDoorFPv
   - draw_closing__8TObjDoorFPv
@@ -6503,6 +6510,8 @@ force_active:
   - draw_status_window__15TAdMcSelectMcGCFv
   - draw_streaks__8TObjRainFv
   - draw_stretched_segment__22TObjEneSlimeTailAttackFPvPvf
+  - draw_strip_list_pos_nrm__10TObjPlayerFPvPvUi
+  - draw_strip_pos_normal__10TObjPlayerFPvPvUi
   - draw_switch_light__12TODoorCave01FP10NJS_OBJECTl
   - draw_switch_light__15TODoorMachine01FP10NJS_OBJECTl
   - draw_switch_lights__15TODoorAncient08Fv
@@ -6518,6 +6527,7 @@ force_active:
   - draw_title_layer__10TAdTitleGCFll
   - draw_title_rings
   - draw_trail__11TBoss6ZanzoFv
+  - draw_triangle_strips__10TObjPlayerFPvPvUi
   - draw_value__13TWindowMesetaFl
   - draw_window__17TWindowDuelResultFPv
   - draw_window_frame_strips__11TWindowBaseFPvPv
@@ -17470,6 +17480,8 @@ force_active:
   - set_child_flags__11TBoss6Type1Fv
   - set_child_flags__11TBoss6Type2Fv
   - set_child_windows_enabled__19TWindowSubTradeMainFl
+  - set_chunk_alpha_compare_ref__Fi
+  - set_chunk_blend_depth_mode__Fll
   - set_cmd_87__10TObjPlayerFv
   - set_code_43_6__10TObjPlayerFv
   - set_color__13TObjEneMe1GeeFPC8NJS_ARGB
@@ -17710,6 +17722,7 @@ force_active:
   - set_state_flags__18TObjEneRe4SorcererFPv
   - set_state_ready__15TPlyPhotonChairFv
   - set_stealth_suit_flags__10TObjPlayerFv
+  - set_strip_lighting_chan_ctrl__FUl
   - set_subs_visible__8TItemMagFl
   - set_swim_direction__8TObjFishFPv
   - set_symbol_chat_face_sprite__FPvUc
@@ -17740,6 +17753,7 @@ force_active:
   - setup_action_channel__11TMainCursorFiPviii
   - setup_actor_draw_lighting__Fv
   - setup_attack_stage__10TObjPlayerFv
+  - setup_chunk_tev_stages__Fv
   - setup_color_channels__10TObjPlayerFi
   - setup_counter_camera__17TJudgmentSequenceFv
   - setup_depth_draw__15TObjEneDelDepthFv
@@ -17762,6 +17776,7 @@ force_active:
   - setup_state__14TBoss7TentacleFv
   - setup_state_helper__10TObjPlayerFv
   - setup_telepipe_field__9TTecLukerFv
+  - setup_tev_passclr__10TObjPlayerFv
   - setup_tex_gen__10TObjPlayerFv
   - setup_vertex_format__10TObjPlayerFv
   - setup_view__13TRaderMapCoreFl
@@ -18731,6 +18746,7 @@ force_active:
   - sub_8036E854__21TAdMultiChgGameModeGCFv
   - sub_8036E9EC__21TAdMultiChgGameModeGCFv
   - submit_chat_text__FPUc
+  - submit_chunk_material_color__FlPs
   - submit_cursor_and_notify__16TOTrapAncient02RFv
   - submit_keyboard_input__11TWindowChatFv
   - submit_particle_quad__FPvPfPfl
@@ -18920,6 +18936,9 @@ force_active:
   - trade_message_window_dimensions
   - trade_proposal_state_handlers
   - transfer_to_town__9TObjLukerFv
+  - transform_chunk_object_tree
+  - transform_chunk_vertices_pos_normal
+  - transform_vertex_list__10TObjPlayerFv
   - transform_vertex_list__18TObjTailsTailsMoveFv
   - translate_key_char__16TKeyBoardControlFPvUcPUs
   - translate_view_negated__11TCameraCtrlFfff

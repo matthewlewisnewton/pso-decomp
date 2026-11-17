@@ -2006,6 +2006,27 @@ arithmetic, masks and single-argument release call with its normal compiler;
 the compiler version, operand order and literal-emission order serve native
 matching. See the [complete unit evidence](evidence/tboss2-derolle-register-allocation.md).
 
+### Weighted chunk geometry unit
+
+Matt explicitly authorized the 640-byte `GXSetVtxAttrFmtv` at `0x803E3110` as
+an assembly exception on 2026-11-13. It is the weighted indexed transform,
+not the SDK descriptor-list API. The Metrowerks branch retains the original
+paired-single schedule and GQR1 setup; the scalar C++ fallback uses `fmaf` to
+retain fused rounding and leaves vertex padding untouched. Ports compile the
+fallback and need no GQR state. See [the contract](evidence/paired-single-sdk-asm.md).
+
+The polygon dispatcher uses scoped `use_lmw_stmw off`, `bool off`, and
+`opt_propagation off` to preserve native save/restore helpers, integer predicate
+results, and decoded-word lifetimes. Ports can drop these pragmas and keep the
+ordinary C++ dispatch. Separate signed wire, promoted header, and masked-word
+members permit the native compiler's scalar replacement and register
+coalescing; no bitfield or extra lifetime pragma is required. See the
+[complete unit evidence](evidence/chunk-geometry-compiler-research.md).
+The unit's `.sdata2` contribution begins at
+`0x805E109C`, so `cw_align: .sdata2=4` retains its four-byte alignment in both
+ELF and CodeWarrior metadata without modifying section contents. Ports need no
+object metadata adjustment.
+
 ### Rico ring and controller unit
 
 | Scope | Construct | Evidence and reason | Port action |

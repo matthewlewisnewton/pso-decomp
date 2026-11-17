@@ -7,13 +7,13 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 46 | 12 |
+| asm | 48 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5893 | 889 |
-| configure.py per-unit override | 212 | 212 |
+| pragma | 5895 | 889 |
+| configure.py per-unit override | 213 | 213 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 267, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 57, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -60,7 +60,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/unk/text_803D96A8.cpp:201` | `#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"` |
 | `src/pso/unk/text_803D96A8.cpp:204` | `asm void post_translate_matrix(const f32 *v) {` |
 | `src/pso/unk/text_803D96A8.cpp:205` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
-| `src/pso/unk/text_803E2D70.cpp:315` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
+| `src/pso/unk/text_803E2D70.cpp:311` | `asm void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix, u32 accumulate) {` |
+| `src/pso/unk/text_803E2D70.cpp:312` | `#include "orig_asm/pso/unk/text_803E2D70/GXSetVtxAttrFmtv.inc"` |
+| `src/pso/unk/text_803E2D70.cpp:369` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 | `src/pso/unk/text_8042E8C4.cpp:29` | `asm void LaunchDol(register void* dol) {` |
 | `src/pso/unk/text_8042E8C4.cpp:30` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
 | `src/pso/unk/text_8042E9FC.cpp:10` | `static asm void pad_03_8042E9FC_text(void) {` |
@@ -192,7 +194,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/player/TObjPlayer_803E21B8.cpp:255` | `(*(volatile WGPipe_803E2810 *)0xCC008000).u32 = c;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:258` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:259` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
-| `src/pso/player/TObjPlayer_803E5470.cpp:21` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
+| `src/pso/player/TObjPlayer_803E5470.cpp:17` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
 | `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = (u8 *)0xE0000000;` |
 | `src/pso/system/ChunkMaterialState.cpp:214` | `current_matrix = 0xE0000000;` |
 | `src/pso/system/ModelDrawContext.cpp:218` | `int src = cached_blend_factor_table[(v & 0xE0000000) >> 29];` |
@@ -202,38 +204,38 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/unk/text_801E3F24.cpp:33` | `*(f32 *)0xCC008000 = farg2;` |
 | `src/pso/unk/text_801E3F24.cpp:37` | `*(f32 *)0xCC008000 = farg0;` |
 | `src/pso/unk/text_801E3F24.cpp:38` | `*(f32 *)0xCC008000 = farg1;` |
-| `src/pso/unk/text_803E2D70.cpp:174` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:175` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:176` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:179` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).u32 = c;` |
-| `src/pso/unk/text_803E2D70.cpp:182` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = s;` |
-| `src/pso/unk/text_803E2D70.cpp:183` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:436` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:437` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:438` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:441` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:442` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:443` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:451` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:452` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:453` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:456` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:457` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:458` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:461` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
-| `src/pso/unk/text_803E2D70.cpp:462` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:908` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:909` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:910` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:913` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:914` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:915` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:949` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:950` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:951` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:954` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:955` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:956` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:180` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:181` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:182` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:185` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).u32 = c;` |
+| `src/pso/unk/text_803E2D70.cpp:188` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = s;` |
+| `src/pso/unk/text_803E2D70.cpp:189` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = t;` |
+| `src/pso/unk/text_803E2D70.cpp:490` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:491` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:492` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:495` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:496` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:497` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:505` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:506` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:507` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:510` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:511` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:512` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:515` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
+| `src/pso/unk/text_803E2D70.cpp:516` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
+| `src/pso/unk/text_803E2D70.cpp:1061` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1062` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1063` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:1066` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1067` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1068` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:1102` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1103` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1104` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:1107` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1108` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1109` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
 | `src/pso/unk/text_80421620.cpp:1258` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
@@ -441,6 +443,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `pso/system/AdxExpand.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/system/AdxManager.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/system/AdxStreamRuntime.cpp` | `-inline auto, -str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/unk/text_803E2D70.cpp` | `(multi-line entry; see configure.py)` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/unk/text_803D8098.cpp` | `(multi-line entry; see configure.py)` | render_debug_text (0x803D85D8) saves r25-r31 with bl _savegpr_25 / _restgpr_25, and its glyph quads are the inlined SDK FIFO writers (sth/stw to 0xCC008000), not calls. -inline on inlines only functions marked inline, so queue_debug_text stays a call from debug_printf_at. The matrix helpers in text_803D8910.cpp match under the ginja defaults. |
 | `pso/misc/TKeyBoardControl_803F0C50.cpp` | `GC/1.2.5n` | Epilogue order (mtlr before the restores) only 1.2.5n produces. |
 | `pso/unk/text_803F1804.cpp` | `GC/1.2.5n` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -1339,7 +1342,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/unk/text_803E1FC8.cpp` | scheduling×1, peephole×1 |
 | `src/pso/unk/text_803E2070.cpp` | scheduling×1 |
 | `src/pso/unk/text_803E20B0.cpp` | scheduling×1 |
-| `src/pso/unk/text_803E2D70.cpp` | scheduling×9, peephole×6, dont_inline×5, inline_depth×5, use_lmw_stmw×4, opt_common_subs×1, optimization_level×1 |
+| `src/pso/unk/text_803E2D70.cpp` | scheduling×8, peephole×6, dont_inline×5, inline_depth×5, use_lmw_stmw×5, opt_common_subs×1, bool×1, opt_propagation×1, optimization_level×1 |
 | `src/pso/unk/text_803E4D8C.cpp` | scheduling×3, opt_common_subs×2, peephole×1, optimize_for_size×1, use_lmw_stmw×1 |
 | `src/pso/unk/text_803F4D10.cpp` | scheduling×2, peephole×2, optimization_level×2 |
 | `src/pso/unk/text_803F4D84.cpp` | peephole×20, scheduling×19, optimize_for_size×1 |
