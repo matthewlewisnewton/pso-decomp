@@ -109,6 +109,16 @@ function inherits the existing `fp_contract off` region. A port can use ordinary
 `fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
 behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
 
+### Quadrilateral and sphere contact experiments
+
+`src/pso/player/TObjPlayer_803DF7A8.cpp` uses scoped `opt_loop_invariants off`
+for the quadrilateral and sphere contact routines. The setting reproduces the
+quadrilateral routine's native loop/register layout; the sphere candidate still
+has constant-relocation mismatches. Both use scoped inline controls for the
+square-root helper. Ports can use ordinary inlining and optimization while
+preserving the collision calculations and their floating-point behavior. See
+[the investigation](evidence/quad-sphere-collision-wip.md).
+
 ### Dark Gunner center native emission
 
 `src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
