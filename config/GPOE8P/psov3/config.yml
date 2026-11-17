@@ -9628,6 +9628,34 @@ force_active:
   - lbl_805D48A4
   - lbl_805D48AC
   - lbl_805D48B0
+  - lbl_805D48B8
+  - lbl_805D48BC
+  - lbl_805D48C0
+  - lbl_805D48C4
+  - lbl_805D48C8
+  - lbl_805D48CC
+  - lbl_805D48D0
+  - lbl_805D48D4
+  - lbl_805D48D8
+  - lbl_805D48DC
+  - lbl_805D48E0
+  - lbl_805D48E4
+  - lbl_805D48E8
+  - lbl_805D48EC
+  - lbl_805D48F0
+  - lbl_805D48F4
+  - lbl_805D48F8
+  - lbl_805D48FC
+  - lbl_805D4904
+  - lbl_805D4908
+  - lbl_805D490C
+  - lbl_805D4910
+  - lbl_805D4914
+  - lbl_805D4918
+  - lbl_805D4920
+  - lbl_805D4928
+  - lbl_805D4930
+  - lbl_805D4938
   - lbl_805D4AE0
   - lbl_805D4AF0
   - lbl_805D4AF8
@@ -10749,6 +10777,7 @@ force_active:
   - modem_default_connect_argument
   - modem_delayed_response
   - modem_error_response
+  - modem_exi_ptr_table
   - modem_ok_response
   - modem_pulse_dial_command
   - modem_ring_response
