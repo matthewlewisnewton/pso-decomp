@@ -123,10 +123,11 @@ pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.cpp:
 
 pso/misc/TLoadCtrl.cpp:
 	.text       start:0x8001C60C end:0x8001CAD4
+	.rodata     start:0x804349C0 end:0x804349F0
 
 pso/misc/TLoadingCur.cpp:
 	.text       start:0x8001CAD4 end:0x8001D198
-	.rodata     start:0x80434A08 end:0x80434A10
+	.rodata     start:0x804349F0 end:0x80434A10
 	.data       start:0x80480C80 end:0x80480C98
 	.sdata2     start:0x805D7E90 end:0x805D7EC0
 

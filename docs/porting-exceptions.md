@@ -1891,6 +1891,12 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
 | Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
 | Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
+### Loading-screen data ownership
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TLoadCtrl.cpp`, `TLoadCtrl::run_task` at `0x8001C620` | Scoped `pool_data off` | GC/2.0 otherwise uses a shared read-only data base and saves an extra register. The scope restores the independent addresses and the exact 384-byte function. See [loading-screen data ownership](evidence/loading-screen-data-ownership.md). | Omit the pragma and keep the three vector initializers. |
+
 ### AIFF parsing and ADX block transfer
 
 | Scope | Construct | Evidence and reason | Port action |

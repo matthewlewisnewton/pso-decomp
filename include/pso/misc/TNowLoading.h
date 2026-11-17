@@ -4,6 +4,12 @@
 #include "types.h"
 #include "pso/TObject.h"
 
+struct Vec;
+struct TNowLoading_8001D3A8;
+
+extern "C" TNowLoading_8001D3A8 *TNowLoading__ct(
+    TNowLoading_8001D3A8 *object, void *parent, const Vec *position);
+
 struct TNowLoading : public TObject {
     virtual ~TNowLoading();
     u32 m_1c;
