@@ -262,6 +262,9 @@ pso/boss/TBoss2DeRolLe.cpp:
 	.sbss       start:0x805D4BA8 end:0x805D4BB4
 	.sdata2     start:0x805D8278 end:0x805D8444
 
+pso/unk/data_805D8444.cpp:
+	.sdata2     start:0x805D8444 end:0x805D8498
+
 pso/boss/TBoss2Fin.cpp:
 	.text       start:0x800363B4 end:0x80036824
 	.data       start:0x80482A38 end:0x80482A50

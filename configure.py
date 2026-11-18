@@ -437,6 +437,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
     # GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order.
     "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # The De Rol Le constant pool starts at 0x805D8444, a four-byte boundary.
+    "pso/unk/data_805D8444.cpp": {"cw_align": ".sdata2=4"},
     # The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary.
     "pso/boss/DarkFalzEffectConstants.cpp": {"cw_align": ".sdata2=4"},
     # Keep the eight-byte effect-ID pair in .data beside the state table.

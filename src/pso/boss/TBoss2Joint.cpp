@@ -249,7 +249,10 @@ s32 TBoss2Joint_get_shell_max_hp(void);
 void reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(void *, s32, s32, s32);
 void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);
 extern const f32 lbl_805D846C;
-extern const f32 lbl_805D8490;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805D8490[2];
 void spawn_offset_particle__13TBoss2DeRolLeFiff(s32 arg0, f32 farg0, f32 farg1);
 s32 apply_hp_damage_with_sound__13TBoss2DeRolLeFPvi(s32, s32, u16);
 void free_collision_body_parts(void *);
@@ -463,7 +466,7 @@ s32 TBoss2Joint::init_params() {
     ((TObjEneDD *)self)->check_state_flag_2();
     self->unk350 = prm->unk18;
     self->unk33E = self->hp2B8;
-    self->unk37C = lbl_805D8490;
+    self->unk37C = lbl_805D8490[0];
     self->m94();
     self->unk326 = 0;
     self->m85(self->unk326, 4);

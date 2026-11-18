@@ -98,6 +98,16 @@ section annotation keeps the array in `.sdata2`. The matching declaration
 in `TObjCGrass.cpp` preserves the single small-data float load. Ports use
 the same array and first-element access without the section annotations.
 
+### De Rol Le constant pool
+
+The eight-byte slots at `0x805D8460` and `0x805D8490` each contain a float
+and a trailing zero word. The guarded CodeWarrior section annotations in
+`src/pso/unk/data_805D8444.cpp`, `TBoss2Fin.cpp`, and `TBoss2Joint.cpp`
+keep the definitions in `.sdata2` and preserve the consumers' single float
+loads. The pool starts at `0x805D8444`, so `cw_align: .sdata2=4` records its
+original alignment in ELF and the CodeWarrior comment section. Ports can use
+the C++ arrays and first-element reads with their compiler's default layout.
+
 ### Scalar collision-area helper
 
 `TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
