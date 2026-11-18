@@ -956,7 +956,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
         return 0;
     }
 
-    request_index = 0;
+    request_index = partial_fragment + 1;
     source_end = &control->req.fragments[request_index];
     for (; request_index < (u32)control->req.fragment_count; request_index++) {
         if (length <= (u32)source_end->length) {
@@ -972,7 +972,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
     }
     // source_end delimits the fully consumed prefix of the queued fragments.
     request_index--;
-    while (request_index > -1) {
+    while (request_index > partial_fragment) {
         NetPacketFragment &previous = source_end[-1];
         packet->fragment_count++;
         NetMemcpy(&packet->fragments[output_count].buffer, &previous.buffer, sizeof(NetBufferRef));
@@ -1008,7 +1008,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
         packet->fragment_count++;
         NetMemcpy(&output_tail->buffer, &control->req.fragments[partial_fragment].buffer, sizeof(output_tail->buffer.value));
         TLobby__sub_80406EB8(&output_tail->buffer, ring_offset);
-        packet->total_bytes += output_tail->length = control->req.in_use - ring_offset;
+        packet->total_bytes += output_tail->length = control->req.fragments[partial_fragment].length - ring_offset;
     }
     return 0;
 }

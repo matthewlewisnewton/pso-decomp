@@ -119,8 +119,13 @@ completion events across architectures.
 With GCC 13.3 on x86-64 and AArch64 Linux under QEMU 8.2.2, each binary
 agreed with the retail DOL in 2,400 gather, 1,600 ACK and 1,024 SACK cases,
 including 1,717 completion events. The ARM64 run also passed with undefined-
-behavior and bounds instrumentation enabled. The GameCube socket object from this port branch
-was byte-identical to bounded native checkpoint `7ae77309ec`.
+behavior and bounds instrumentation enabled.
+
+The debug AVE-TCP gatherer uses the selected fragment index to delimit the
+prepend loop and reads the selected fragment's length in its trailing branch.
+The port uses those expressions directly. Checkpoint `7ae77309ec` documents
+the closest native build and the CodeWarrior differences for this form.
+[Debug-build comparison](../docs/evidence/socket-protocol-runtime.md#comparison-with-the-browsers-ave-tcp-debug-build)
 
 GCC 13.3 also compiles the complete 21-function GameCube source as a
 freestanding AArch64 ILP32 object. This build uses four-byte native pointers.
