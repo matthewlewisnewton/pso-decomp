@@ -2140,7 +2140,7 @@ force_active:
   - TQuestVmDownLoadServer__sub_803ED84C
   - TQuestVmDownLoadServer__sub_803EDDA4
   - TQuestVmDownLoadServer__sub_803EE580
-  - TQuestVmDownLoadServer__sub_803EE934
+  - build_all_entry_text
   - TQuestVmDownLoadServer__sub_803EEDC0
   - TQuestVmDownLoadServer__sub_803EEF2C
   - TQuestVmDownLoadServer__sub_803EEFC8
