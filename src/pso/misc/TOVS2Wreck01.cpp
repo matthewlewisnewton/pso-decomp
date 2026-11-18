@@ -1,3 +1,4 @@
+#include "pso/misc/TOVS2WallResources.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/GinjaMaterial.h"
@@ -38,23 +39,16 @@ void *TOVS2Wreck01__create(void *arg0) {
 
 extern s32 __vt__12TOVS2Wreck01[];
 
-void *__dt__12TOVS2Wreck01Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TOVS2Wreck01;
-        __dt__5TOVS2Fv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
 }
 
-extern void *lbl_805D31C8;
+TOVS2Wreck01::~TOVS2Wreck01() {}
+
+extern "C" {
 
 void *TOVS2Wreck01__ct(void *arg0, void *arg1) {
     __ct__5TOVS2FPvl(arg0, arg1, 0);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TOVS2Wreck01;
-    *(void * *)&((TOVS2Wreck01 *)arg0)->m_name = lbl_805D31C8;
+    ((TOVS2Wreck01 *)arg0)->m_name = lbl_805D31C8;
     return arg0;
 }
 

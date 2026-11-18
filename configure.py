@@ -517,6 +517,16 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
+    # The mine display table immediately follows its trap display counterpart.
+    "pso/misc/TOMineDisp.cpp": {"cw_align": ".data=4"},
+    "pso/misc/TOMine.cpp": {"cw_align": ".data=4"},
+    # The seven wreck virtual tables start immediately after the wall's
+    # 316-byte table. Keep their original four-byte alignment in MWLD.
+    **{
+        f"pso/misc/TOVS2Wreck{index:02d}.cpp": {"cw_align": ".data=4"}
+        for index in range(1, 7)
+    },
+    "pso/misc/TOVS2Wall01_8017C7A4.cpp": {"cw_align": ".data=4"},
     # The base collider's vtable follows the derived vtable at 0x804E355C.
     "pso/item/TItemAttackCol_802E4798.cpp": {"cw_align": ".data=4"},
     # The radar-hide vtable and name pointer both start four bytes past an

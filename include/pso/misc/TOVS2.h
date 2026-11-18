@@ -18,9 +18,7 @@ public:
 
 typedef char TOVS2Size[sizeof(TOVS2) == 0xD0 ? 1 : -1];
 
-// The derived constructors and destructors still written out by hand call
-// these by their symbols.
+// The wreck constructors still call the base constructor by its symbol.
 extern "C" void *__ct__5TOVS2FPvl(void *self, void *set_data, s32 index);
-extern "C" void *__dt__5TOVS2Fv(void *self, s16 del);
 
 #endif

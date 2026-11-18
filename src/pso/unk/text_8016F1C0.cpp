@@ -108,8 +108,6 @@ s32 TOMineTrap::show_owner_message(TOMineTrap *trap, TObjChara *actor) {
 
 struct Pkt_8016F558 { u8 code, words; u16 object, sub, idx; };
 
-struct Obj_8016F5B4 { u8 pad0[0x88]; s32 cnt; u8 pad1[0x29A]; s16 state; };
-
 struct Obj_8016F64C { u8 pad0[0x2FC]; u8 sub[0x58]; s32 state; };
 
 struct VBase_8016F418 { u8 pad[0x18]; };
@@ -145,7 +143,6 @@ extern "C" {
 void TOMineTrap__sub_8017141C(void *);
 s32 check_value_equals__7TObjectFPCc(u32, int);
 extern s32 TOMineTrap__data_805D3080;
-f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1);
 
 extern const f32 lbl_805DB864;
 int get_player_data__10TObjPlayerFi(int a0);
@@ -230,21 +227,21 @@ void TOMineTrap::send_state_packet(u16 idx) {
         ((TOMineTrap *)(&pkt))->send_and_handle_60();
     }
 }
-f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1) {
-    switch (arg0->state) {
+f32 TOMineTrap::receive_physical_attack(void *attacker, f32) {
+    switch (this->mode) {
     case 0:
     case 1:
     case 2:
-        if ((arg1 != 0U) && (check_value_equals__7TObjectFPCc(arg1, TOMineTrap__data_805D3080) != 0)) {
-            ((TOMineTrap *)arg0)->set_triggered();
-            if (arg0->cnt > 0xF) {
-                arg0->cnt = 0xF;
+        if ((attacker != 0) && (check_value_equals__7TObjectFPCc((u32)attacker, TOMineTrap__data_805D3080) != 0)) {
+            this->set_triggered();
+            if (this->set_params[1] > 0xF) {
+                this->set_params[1] = 0xF;
             }
             break;
         }
     case 3:
-        ((TOMineTrap *)arg0)->set_state();
-        ((TOMineTrap *)arg0)->send_state_packet((u16)(2));
+        this->set_state();
+        this->send_state_packet((u16)(2));
         break;
     }
     return lbl_805DB85C;

@@ -2425,3 +2425,11 @@ counts and compressed-name decoding.
 IPv4 input at `8040DE4C` uses scoped `opt_lifetimes off` to keep the packet
 length and the later subscription index in one register. A port can use
 separate locals and keep the signed 16-bit loop comparison.
+
+### Seabed wall, wreck, and mine display virtual tables
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TOVS2Wreck01.cpp` through `TOVS2Wreck06.cpp`, and `TOVS2Wall01_8017C7A4.cpp` | `cw_align .data=4` in MWLD metadata | The seven compiler-generated wreck virtual tables follow the wall's 316-byte table at `0x804B513C`. They start four bytes past an eight-byte boundary. CodeWarrior reports eight-byte section alignment by default. The four-byte alignment keeps their original addresses with the existing compiler profile. | Use native destructors and virtual dispatch with the port's normal object alignment. |
+| `src/pso/misc/TOMineDisp.cpp` | `cw_align .data=4` in MWLD metadata | The compiler-generated mine display vtable follows the trap display vtable at `0x804B2F9C`, four bytes past an eight-byte boundary. This preserves the original vtable address with the existing compiler profile. | Use the port’s normal object alignment. |
+| `src/pso/misc/TOMine.cpp` | `cw_align .data=4` in MWLD metadata | The generated base mine vtable starts immediately after the trap vtable at `0x804B312C`, four bytes past an eight-byte boundary. | Use the port’s normal object alignment. |

@@ -10,8 +10,6 @@
 extern "C" {
 extern f32 lbl_805D307C;
 void TOMineTrap__sub_80171368(f32 farg0);
-bool TOMineTrap__vt18(u8 *arg0, s32 arg1);
-bool TOMineTrap__vt19(u8 *arg0, s32 arg1);
 s16 TOMineTrap__sub_80171340(void* p);
 int TOMineTrap__sub_80171350(void);
 u16 TOMineTrap__sub_80171358(void* p);
@@ -40,12 +38,12 @@ void TOMineTrap::set_trap_count(int a0) { mine_trap_count = a0; }
 
 void TOMine::vfunc_84() {  }
 
-bool TOMineTrap__vt18(u8 *arg0, s32 arg1) {
-    return arg1 != *(s32 *)((s8 *)arg0 + 0x2A8);
+s32 TOMineTrap::select_melee_contact_body(void *attacker, f32) {
+    return attacker != target ? 1 : 0;
 }
 
-bool TOMineTrap__vt19(u8 *arg0, s32 arg1) {
-    return arg1 != *(s32 *)((s8 *)arg0 + 0x2A8);
+int TOMineTrap::calc_distance_accuracy_penalty(void *attacker, void *, void *, f32) {
+    return attacker != target ? 1 : 0;
 }
 
 void TOMineTrap::bswap_6x80_trigger_trap() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); }

@@ -5264,6 +5264,13 @@ pso/misc/TOLightMachine01.cpp:
 	.rodata     start:0x80441F38 end:0x80441F40
 	.sdata2     start:0x805DB828 end:0x805DB848
 
+pso/misc/TOMineResources.cpp:
+	.rodata     start:0x80441F40 end:0x804421E0
+	.data       start:0x804B2F08 end:0x804B2F68
+	.sdata      start:0x805D3070 end:0x805D3088
+	.sbss       start:0x805D5A50 end:0x805D5A58
+	.sdata2     start:0x805DB850 end:0x805DB85C
+
 pso/misc/TOMineTrap_8016ED9C.cpp:
 	.text       start:0x8016ED9C end:0x8016EDC8
 
@@ -5281,6 +5288,7 @@ pso/misc/TOMineDisp_8016EF68.cpp:
 
 pso/misc/TOMineDisp.cpp:
 	.text       start:0x8016F168 end:0x8016F1C0
+	.data       start:0x804B2F9C end:0x804B2FD0 align:4
 
 pso/unk/text_8016F1C0.cpp:
 	.text       start:0x8016F1C0 end:0x8016F6F8
@@ -5289,10 +5297,16 @@ pso/unk/text_8016F1C0.cpp:
 pso/misc/TOMineTrap_8016F6F8.cpp:
 	.text       start:0x8016F6F8 end:0x80170EEC
 	.rodata     start:0x804421F8 end:0x80442200
+	.data       start:0x804B2FD0 end:0x804B312C
 	.sdata2     start:0x805DB85C end:0x805DB860 align:4
+
+pso/misc/TOMineConstants.cpp:
+	.rodata     start:0x80442200 end:0x80442208
+	.sdata2     start:0x805DB860 end:0x805DB88C
 
 pso/misc/TOMine.cpp:
 	.text       start:0x80170EEC end:0x80171314
+	.data       start:0x804B312C end:0x804B3288 align:4
 
 pso/misc/TOMineTrap.cpp:
 	.text       start:0x80171314 end:0x80171434
@@ -5579,6 +5593,13 @@ pso/misc/TOTrapAncient02.cpp:
 	.sbss       start:0x805D5AD8 end:0x805D5AE8
 	.sdata2     start:0x805DBA78 end:0x805DBAA8
 
+pso/misc/TOVS2WallResources.cpp:
+	.rodata     start:0x80442F40 end:0x80443168
+	.data       start:0x804B4E78 end:0x804B5000
+	.sdata      start:0x805D31C0 end:0x805D31E4
+	.sbss       start:0x805D5AE8 end:0x805D5AEC
+	.sdata2     start:0x805DBAA8 end:0x805DBAB8
+
 pso/unk/text_8017B8A0.cpp:
 	.text       start:0x8017B9AC end:0x8017BBAC
 
@@ -5590,27 +5611,35 @@ pso/misc/TOVS2Wall01_8017BCC8.cpp:
 
 pso/misc/TOVS2Wall01_8017BE08.cpp:
 	.text       start:0x8017BE08 end:0x8017C1B8
+	.data       start:0x804B5000 end:0x804B513C
 
 pso/misc/TOVS2Wreck06.cpp:
 	.text       start:0x8017C1B8 end:0x8017C2A0
+	.data       start:0x804B513C end:0x804B5174 align:4
 
 pso/misc/TOVS2Wreck05.cpp:
 	.text       start:0x8017C2A0 end:0x8017C388
+	.data       start:0x804B5174 end:0x804B51AC align:4
 
 pso/misc/TOVS2Wreck04.cpp:
 	.text       start:0x8017C388 end:0x8017C470
+	.data       start:0x804B51AC end:0x804B51E4 align:4
 
 pso/misc/TOVS2Wreck03.cpp:
 	.text       start:0x8017C470 end:0x8017C558
+	.data       start:0x804B51E4 end:0x804B521C align:4
 
 pso/misc/TOVS2Wreck02.cpp:
 	.text       start:0x8017C558 end:0x8017C640
+	.data       start:0x804B521C end:0x804B5254 align:4
 
 pso/misc/TOVS2Wreck01.cpp:
 	.text       start:0x8017C640 end:0x8017C7A4
+	.data       start:0x804B5254 end:0x804B528C align:4
 
 pso/misc/TOVS2Wall01_8017C7A4.cpp:
 	.text       start:0x8017C7A4 end:0x8017CB60
+	.data       start:0x804B528C end:0x804B52C4 align:4
 
 pso/object/TObjMapWarpAncient.cpp:
 	.text       start:0x8017CB60 end:0x8017D21C
