@@ -16,6 +16,8 @@ struct TOMine : public TObjChara {
     void sub_8017070C();
     void update_state();
     s32 is_target_in_list(void *);
+    virtual s32 select_melee_contact_body(void *, f32);
+    virtual int calc_distance_accuracy_penalty(void *, void *, void *, f32);
     virtual void vfunc_79();
     virtual void vfunc_80();
     virtual void vfunc_81();

@@ -145,7 +145,6 @@ extern "C" {
 void TOMineTrap__sub_8017141C(void *);
 s32 check_value_equals__7TObjectFPCc(u32, int);
 extern s32 TOMineTrap__data_805D3080;
-f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1);
 
 extern const f32 lbl_805DB864;
 int get_player_data__10TObjPlayerFi(int a0);
@@ -230,7 +229,7 @@ void TOMineTrap::send_state_packet(u16 idx) {
         ((TOMineTrap *)(&pkt))->send_and_handle_60();
     }
 }
-f32 TOMineTrap__vt20(Obj_8016F5B4 *arg0, u32 arg1) {
+f32 receive_physical_attack__10TOMineTrapFPvf(Obj_8016F5B4 *arg0, u32 arg1, f32) {
     switch (arg0->state) {
     case 0:
     case 1:

@@ -121,8 +121,8 @@ void apply_poison_status__9TObjCharaFv();
 void apply_shock_status__9TObjCharaFv();
 void apply_switch_attack__9TObjCharaFv();
 void receive_weapon_special_attack__6TOMineFPvPv();
-void can_trigger__10TOMineTrapFUl();
-void check_trigger__10TOMineTrapFUl();
+void select_melee_contact_body__6TOMineFPvf();
+void calc_distance_accuracy_penalty__6TOMineFPvPvPvf();
 void classify_actor_view_detail__8TObjBaseFfff();
 void clear_all_status_effects__9TObjCharaFv();
 void clear_harmful_statuses__9TObjCharaFv();
@@ -144,7 +144,7 @@ void render_shadows__7TObjectFv();
 void reset_motion_fields__9TObjCharaFv();
 void reset_pose__9TObjCharaFv();
 void run_task__6TOMineFv();
-void spawn_effect__10TOMineTrapFv();
+void vfunc_81__6TOMineFv();
 void receive_physical_attack__6TOMineFPvf();
 void trigger_switch_attack__9TObjCharaFv(s32 arg0);
 void update_action_hold_status__9TObjCharaFv();
@@ -178,8 +178,8 @@ void *__vt__12TOMineIcon04[87] = {
     (void *)update_actor_ground_y__9TObjCharaFv,
     (void *)vfunc_18__9TObjCharaFPUc,
     (void *)is_actor_cadence_frame__9TObjCharaFl,
-    (void *)can_trigger__10TOMineTrapFUl,
-    (void *)check_trigger__10TOMineTrapFUl,
+    (void *)select_melee_contact_body__6TOMineFPvf,
+    (void *)calc_distance_accuracy_penalty__6TOMineFPvPvPvf,
     (void *)receive_physical_attack__6TOMineFPvf,
     (void *)receive_direct_attack__6TOMineFPv19DirectAttackPayloadPvll,
     (void *)receive_weapon_special_attack__6TOMineFPvPv,
@@ -239,7 +239,7 @@ void *__vt__12TOMineIcon04[87] = {
     (void *)vfunc_78__9TObjCharaFl,
     (void *)vfunc_79__6TOMineFv,
     (void *)vfunc_80__12TOMineIcon04Fv,
-    (void *)spawn_effect__10TOMineTrapFv,
+    (void *)vfunc_81__6TOMineFv,
     (void *)vfunc_82__12TOMineIcon04Fv,
     (void *)spawn_disp_objects__6TOMineFv,
     (void *)vfunc_84__12TOMineIcon04Fv,

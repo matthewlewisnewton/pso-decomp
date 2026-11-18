@@ -2745,6 +2745,7 @@ force_active:
   - __dt__10TItemMoneyFv
   - __dt__10TItemTimerFv
   - __dt__10TNpcPlayerFv
+  - __dt__10TOMineTrapFv
   - __dt__10TObjCGrassFv
   - __dt__10TObjCMIconFv
   - __dt__10TObjCMNameFv
@@ -3459,6 +3460,7 @@ force_active:
   - __vt__10TItemTimer
   - __vt__10TNpcPlayer
   - __vt__10TODoorBase
+  - __vt__10TOMineTrap
   - __vt__10TObjCGrass
   - __vt__10TObjCMIcon
   - __vt__10TObjCMName
@@ -4095,6 +4097,7 @@ force_active:
   - __vt__5TOKey
   - __vt__5TOVS2
   - __vt__6TLobby
+  - __vt__6TOMine
   - __vt__6TOTrap
   - __vt__6TScene
   - __vt__7TEffHit
@@ -17185,6 +17188,7 @@ force_active:
   - run_task__10TEndingPicFv
   - run_task__10TItemTimerFv
   - run_task__10TNpcPlayerFv
+  - run_task__10TOMineTrapFv
   - run_task__10TObjCGrassFv
   - run_task__10TObjCMNameFv
   - run_task__10TObjCameraFv
@@ -20805,6 +20809,7 @@ force_active:
   - vfunc_84__15TOTrapAncient01Fv
   - vfunc_84__15TOTrapAncient02Fv
   - vfunc_84__6TOTrapFv
+  - vfunc_86__10TOMineTrapFv
   - vfunc_86__15TOTrapAncient01Fv
   - vfunc_86__15TOTrapAncient02Fv
   - vfunc_88__12TBoss1DragonFv

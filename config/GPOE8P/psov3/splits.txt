@@ -5285,6 +5285,7 @@ pso/unk/text_8016F1C0.cpp:
 pso/misc/TOMineTrap_8016F6F8.cpp:
 	.text       start:0x8016F6F8 end:0x80170EEC
 	.rodata     start:0x804421F8 end:0x80442200
+	.data       start:0x804B2FD0 end:0x804B312C
 	.sdata2     start:0x805DB85C end:0x805DB860 align:4
 
 pso/misc/TOMineConstants.cpp:
@@ -5293,6 +5294,7 @@ pso/misc/TOMineConstants.cpp:
 
 pso/misc/TOMine.cpp:
 	.text       start:0x80170EEC end:0x80171314
+	.data       start:0x804B312C end:0x804B3288 align:4
 
 pso/misc/TOMineTrap.cpp:
 	.text       start:0x80171314 end:0x80171434
