@@ -6,6 +6,7 @@
 
 struct TObjContainerJungEnemy : public TUnk_804B6C24 {
     virtual ~TObjContainerJungEnemy();
+    virtual void vfunc_79() const;
     virtual void vfunc_81();
     virtual void debug_print_item_box_info();
     virtual void vfunc_6(s16 *, s32);
@@ -23,7 +24,6 @@ typedef char TObjContainerJungEnemy_size[sizeof(TObjContainerJungEnemy) == 0x378
 
 extern "C" {
 u8 *TObjContainerJungEnemy__ct(u8 *arg0, s32 arg1, s32 _w2);
-void *__dt__22TObjContainerJungEnemyFv(void *arg0, s16 arg1);
 }
 
 #endif

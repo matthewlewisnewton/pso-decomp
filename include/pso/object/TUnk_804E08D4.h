@@ -9,7 +9,6 @@ public:
     s32 sub_802C1660();
     s32 update_path_steering();
     virtual void vfunc_13(s32);
-    void *dt_path_obj(s16);
     virtual void vfunc_14();
     u8 unk_98[0x4];
     s32 m_9c;

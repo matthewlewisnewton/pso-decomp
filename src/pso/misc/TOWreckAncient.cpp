@@ -1,3 +1,4 @@
+#include "pso/misc/TOWreckAncientResources.h"
 #include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
@@ -12,19 +13,8 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-extern char lbl_804433E8[];
-extern char lbl_804433FC[];
-extern char lbl_80443410[];
-extern char lbl_80443424[];
-extern char lbl_80443438[];
-extern char lbl_8044344C[];
-extern char lbl_80443460[];
-extern char lbl_80443474[];
-extern char lbl_80443488[];
-extern char lbl_8044349C[];
 extern const char *bm_fe_obj_o_hahen_motion_names[];
 extern const char *bm_fe_obj_o_hahen_model_names[10];
-extern BmlResourceDescriptor TOWreckAncient__resource_descriptor;
 
 struct Base1_8017dce0 { char pad[0x18]; };
 struct VObj1_8017dce0 : Base1_8017dce0 {
@@ -33,11 +23,7 @@ struct VObj1_8017dce0 : Base1_8017dce0 {
     virtual s32 m8(f32, f32);
 };
 
-struct RecoveredGlobal_8017DDA8_lbl_804B53D0 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8017DDA8_lbl_804B53D0_size[sizeof(RecoveredGlobal_8017DDA8_lbl_804B53D0) == 0x10 ? 1 : -1];
 
-struct RecoveredGlobal_8017DDA8_lbl_804B5408 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8017DDA8_lbl_804B5408_size[sizeof(RecoveredGlobal_8017DDA8_lbl_804B5408) == 0x10 ? 1 : -1];
 
 struct RecoveredGlobal_8017DE94___vt__14TOWreckAncient {
     s32 value;
@@ -45,22 +31,17 @@ struct RecoveredGlobal_8017DE94___vt__14TOWreckAncient {
 };
 
 extern "C" {
-extern RecoveredGlobal_8017DDA8_lbl_804B53D0 bm_o_wreck_ancient_resource_descriptor;
-extern u32 wreck_ancient_bml_resource;
-extern u32 wreck_ancient_brakable_bml_resource;
 s32 __ct__14TObjCollidableFP7TObject(void *, int);
 extern s32 __vt__14TOWreckAncient[];
-extern s32 TOWreckAncient__name;
+extern const char *TOWreckAncient__name;
 extern s32 tl_05;
 static const f32 lbl_805DBAD0 = 400.0f;
 static const f32 lbl_805DBAD4 = 40.0f;
 u8 *TOWreckAncient__ct(u8 *arg0, s32 arg1);
-void *__dt__14TOWreckAncientFv(void *arg0, s16 arg1);
 s32 post_translate_matrix(void *);
 s32 free_collision_body_parts(void *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
-s32 __dl__7TObjectFPv(void *);
 
 void TOWreckAncient::render() {
     u8 *arg0 = (u8 *)this;
@@ -76,53 +57,35 @@ void TOWreckAncient::render() {
 }
 
 void TOWreckAncient::free_statics() {
-    if ((u32) wreck_ancient_bml_resource != 0U) {
-        delete (BmlResource *)((void*)wreck_ancient_bml_resource);
-        wreck_ancient_bml_resource = 0U;
+    if (wreck_ancient_bml_resource != NULL) {
+        delete wreck_ancient_bml_resource;
+        wreck_ancient_bml_resource = NULL;
     }
-    if ((u32) wreck_ancient_brakable_bml_resource != 0U) {
-        delete (BmlResource *)((void*)wreck_ancient_brakable_bml_resource);
-        wreck_ancient_brakable_bml_resource = 0U;
+    if (wreck_ancient_brakable_bml_resource != NULL) {
+        delete wreck_ancient_brakable_bml_resource;
+        wreck_ancient_brakable_bml_resource = NULL;
     }
 }
 
 void TOWreckAncient::load_resources() {
-    s32 temp_r3;
-    s32 temp_r3_2;
-    s32 var_r0;
-    s32 var_r0_2;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_o_wreck_ancient_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&wreck_ancient_bml_resource) = var_r0;
-    temp_r3_2 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&TOWreckAncient__resource_descriptor), 0, 0, (void *)(0));
-    var_r0_2 = temp_r3_2;
-    (*(s32 *)&wreck_ancient_brakable_bml_resource) = var_r0_2;
+    wreck_ancient_bml_resource = new BmlResource(1, &bm_o_wreck_ancient_resource_descriptor, 0, 0, NULL);
+    wreck_ancient_brakable_bml_resource = new BmlResource(1, &TOWreckAncient__resource_descriptor, 0, 0, NULL);
 }
 
-void *__dt__14TOWreckAncientFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TOWreckAncient;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__14TObjCollidableFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TOWreckAncient::~TOWreckAncient() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
 }
 typedef char RecoveredGlobal_8017DE94___vt__14TOWreckAncient_size[sizeof(RecoveredGlobal_8017DE94___vt__14TOWreckAncient) == 0x3C ? 1 : -1];
 u8 *TOWreckAncient__ct(u8 *wreck_ancient, s32 arg1) {
     __ct__14TObjCollidableFP7TObject(wreck_ancient, tl_05);
     *(s32 **)((s8 *)wreck_ancient + 0x18) = &(*(RecoveredGlobal_8017DE94___vt__14TOWreckAncient *)&__vt__14TOWreckAncient).value;
     *(s32 *)((s8 *)wreck_ancient + 0) = (s32) TOWreckAncient__name;
-    *(s32 *)((s8 *)wreck_ancient + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&wreck_ancient_bml_resource)), (s32)arg1);
-    ((TOWreckAncient *)wreck_ancient)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&wreck_ancient_bml_resource), (s32)arg1);
+    *(s32 *)((s8 *)wreck_ancient + 0x34) = (s32)get_bml_model(wreck_ancient_bml_resource, (s32)arg1);
+    ((TOWreckAncient *)wreck_ancient)->texlist = (s32)TObjFish__sub_8001EDB0(wreck_ancient_bml_resource, (s32)arg1);
     *(f32 *)((s8 *)wreck_ancient + 0xAC) = (f32) lbl_805DBAD0;
     ((TOWreckAncient *)wreck_ancient)->m_b0 = (f32) lbl_805DBAD4;
     return wreck_ancient;
 }
 
-__declspec(section ".data") const char *bm_fe_obj_o_hahen_model_names[10] = { lbl_804433E8, lbl_804433FC, lbl_80443410, lbl_80443424, lbl_80443438, lbl_8044344C, lbl_80443460, lbl_80443474, lbl_80443488, NULL };
-BmlResourceDescriptor TOWreckAncient__resource_descriptor = { lbl_8044349C, bm_fe_obj_o_hahen_model_names, bm_fe_obj_o_hahen_motion_names, 9, 0 };
 }

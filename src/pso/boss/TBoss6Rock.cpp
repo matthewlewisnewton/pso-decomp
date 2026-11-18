@@ -9,6 +9,7 @@
 #include "pso/boss/TBoss6PlotFalz.h"
 #include "pso/boss/TBoss6Rock.h"
 #include "pso/boss/TBoss6Type2.h"
+#include "pso/boss/Boss6Type2Data.h"
 #include "pso/boss/TUnk_804F1280.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixTransforms.h"
@@ -43,7 +44,6 @@ s32 TBoss6PlotFalz__sub_802AB6CC(void *pos, f32 r);
 void TBoss6PlotFalz__sub_802AC724(void *player, void *pos);
 // TBoss6Type2.cpp: the arena radius and centre.
 extern const f32 lbl_805DE3F0;
-extern const Vec TBoss6Type2__data_8047105C;
 int TBoss6Rock__sub_80353A04(void);
 int TBoss6Rock__sub_80353A0C(void);
 s32 TBoss6Rock__sub_80353A14(s32 i, Vec *out, f32 *radius);
@@ -340,7 +340,7 @@ void TBoss6Rock__sub_80354188(void) {
             if (n >= 32) {
                 return;
             }
-            Vec p = TBoss6Type2__data_8047105C;
+            Vec p = boss6_arena_center;
             p.x += r * sin_table_lookup(angle);
             p.z += r * cos_table_lookup(angle);
             VecCopy(&TBoss6Rock__rock_point_table[n], &p);

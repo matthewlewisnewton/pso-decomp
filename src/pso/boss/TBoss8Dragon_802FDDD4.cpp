@@ -57,3 +57,26 @@ void TBoss8Dragon__sub_802FDF10(void) {
 }
 
 __declspec(section ".ctors") static void *const __sinit_TBoss8Dragon_802FDDD4_cpp_ref = (void *)TBoss8Dragon__sub_802FDF10;
+
+extern "C" {
+extern __declspec(section ".rodata") const char lbl_80474B18[] ATTRIBUTE_ALIGN(4) = "dradeath.adx";
+extern __declspec(section ".rodata") const f64 TBoss8Dragon__data_80474B28 = 10430.38043493439;
+extern __declspec(section ".rodata") const char lbl_80474B30[] ATTRIBUTE_ALIGN(4) = "goldeath.adx";
+extern __declspec(section ".rodata") const char lbl_80474B40[] ATTRIBUTE_ALIGN(4) = "draroar.adx";
+
+extern __declspec(section ".sdata2") const f32 lbl_805DEEB0 = 330.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEB4 = 28900.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEB8 = 200.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEBC = 90.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEC0 = -60.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEC4 = -140.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEC8 = -4.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEECC = 1500.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEED0 = 24.5f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEED4 = -100.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEED8 = 6400.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEDC = 185.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEE0 = 1000.0f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEE4 = 0.4f;
+extern __declspec(section ".sdata2") const f32 lbl_805DEEE8 = -1.0f;
+}

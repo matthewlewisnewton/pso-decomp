@@ -1,3 +1,4 @@
+#include "pso/misc/TOVS2WallResources.h"
 #include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -16,26 +17,11 @@ struct TObjGoalWarpAncient;
 #include "pso/object/TObjMapObject.h"
 #include "pso/misc/TOVS2.h"
 
-struct RecoveredGlobal_8017C8EC_lbl_804B4ECC {
-    s32 value;
-    u8 remaining[0x130];
-};
-
-struct RecoveredGlobal_8017C7DC_lbl_804B4EBC
-{
-  s32 value;
-  u8 remaining[0xC];
-};
-
 extern "C" {
-int take_hit__11TOVS2Wall01FPvUi(void*);
+f32 take_hit__11TOVS2Wall01FPvUi(u8 *, u32);
 s32 init_collision_body_parts(void *, void *, int);
-extern RecoveredGlobal_8017C8EC_lbl_804B4ECC ovs2wall01_collision_parts;
-extern const char *lbl_805D31C4;
-extern u32 TOVS2Wall01__bml_resource;
 extern void *tl_05;
 extern const f32 lbl_805DBAB0;
-extern RecoveredGlobal_8017C7DC_lbl_804B4EBC bm_o_vs2_resource_descriptor;
 extern const f32 lbl_805DBAA8;
 extern const f32 lbl_805DBAB4;
 void free_collision_body_parts(void *);
@@ -46,80 +32,65 @@ int bswap_header__6TLobbyFv(void*);
 int init__17TOBarrierEnergy01Fv(void*);
 
 void TOVS2Wall01::release_model() {
-    if ((u32) TOVS2Wall01__bml_resource != 0U) {
-        delete (BmlResource *)((void*)TOVS2Wall01__bml_resource);
-        TOVS2Wall01__bml_resource = 0U;
+    if (TOVS2Wall01__bml_resource != NULL) {
+        delete TOVS2Wall01__bml_resource;
+        TOVS2Wall01__bml_resource = NULL;
     }
 }
 
-typedef struct RecoveredGlobal_8017C7DC_lbl_804B4EBC RecoveredGlobal_8017C7DC_lbl_804B4EBC;
 void TOVS2Wall01::load_resources() {
-  s32 temp_r31;
-  s32 temp_r3;
-  s32 var_r0;
-  temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&bm_o_vs2_resource_descriptor.value), 0, 0, (void *)(0));
-  var_r0 = temp_r3;
-  (*(s32 *)&TOVS2Wall01__bml_resource) = var_r0;
-  ;
-  TMotorcycle::add_entry(0x3A, (int) ((s32)(u8 *)get_bml_model((BmlResource *)((int) (*(s32 *)&TOVS2Wall01__bml_resource)), 5)), (int) (s32)TObjFish__sub_8001EDB0((BmlResource *)var_r0, 5), (f32) lbl_805DBAB4, (f32) lbl_805DBAA8);
+    BmlResource *resource = new BmlResource(1, &bm_o_vs2_resource_descriptor, 0, 0, NULL);
+    TOVS2Wall01__bml_resource = resource;
+    TMotorcycle::add_entry(0x3A, (s32)get_bml_model(TOVS2Wall01__bml_resource, 5),
+                           (s32)TObjFish__sub_8001EDB0(resource, 5), lbl_805DBAB4, lbl_805DBAA8);
 }
 
 }
 
-// The destructor is still written out by hand: compiled, its vtable would
-// open the unit's .data, which the original fills first with the object's
-// resource and collision tables (not owned by this unit yet).
-extern "C" {
-extern void *__vt__5TOVS2[];
-void __dl__7TObjectFPv(void *);
-
-void *__dt__5TOVS2Fv(void *self, s16 del) {
-    if (self != NULL) {
-        *(void **)((u8 *)self + 0x18) = __vt__5TOVS2;
-        if ((void *)((TOVS2 *)self)->m_c8 != NULL) {
-            queue_destruction__7TObjectFv((void *)((TOVS2 *)self)->m_c8);
-            ((TOVS2 *)self)->m_c8 = 0;
-        }
-        ((TOVS2 *)self)->unregister_object_by_id();
-        free_collision_body_parts((TOVS2 *)self);
-        __dt__13TObjMapObjectFv(self, 0);
-        if (del > 0) {
-            __dl__7TObjectFPv(self);
-        }
+TOVS2::~TOVS2() {
+    if (m_c8 != NULL) {
+        queue_destruction__7TObjectFv(m_c8);
+        m_c8 = NULL;
     }
-    return self;
-}
+    unregister_object_by_id();
+    free_collision_body_parts(this);
 }
 
 TOVS2::TOVS2(void *set_data, s32 index) : TObjMapObject((TObject *)tl_05) {
     m_name = lbl_805D31C4;
     apply_object_set_data(set_data);
-    model = (u8 *)get_bml_model((BmlResource *)TOVS2Wall01__bml_resource, index);
+    model = (u8 *)get_bml_model(TOVS2Wall01__bml_resource, index);
     model_radius = lbl_805DBAB0 + *(f32 *)((s8 *)(*(void **)((s8 *)model + 4)) + 0x14);
-    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)TOVS2Wall01__bml_resource, (s32)index);
-    init_collision_body_parts(this, (void *)((u8 *)&ovs2wall01_collision_parts.value + (index * 0x2C)), 1);
+    texlist = (s32)TObjFish__sub_8001EDB0(TOVS2Wall01__bml_resource, (s32)index);
+    init_collision_body_parts(this, &ovs2wall01_collision_parts[index], 1);
     register_object_by_id();
     m_c8 = TObjMapCsn::create(set_data);
     m_cc = 1;
 }
 
+s32 TOVS2Wall01::try_start_action(s32, s32) { return 1; }
+
+s32 TOVS2Wall01::roll_physical_accuracy(void *, s32, f32) { return 1; }
+
+s32 TOVS2Wall01::select_melee_contact_body(void *, f32) { return 1; }
+
+int TOVS2Wall01::calc_distance_accuracy_penalty(void *, void *, void *, f32) { return 1; }
+
+f32 TOVS2Wall01::receive_physical_attack(void *attacker, f32) {
+    return take_hit__11TOVS2Wall01FPvUi((u8 *)this, (u32)attacker);
+}
+
+f32 TOVS2Wall01::receive_direct_attack(void *attacker, DirectAttackPayload, void *, s32, s32) {
+    return take_hit__11TOVS2Wall01FPvUi((u8 *)this, (u32)attacker);
+}
+
+f32 TOVS2Wall01::receive_weapon_special_attack(void *attacker, void *) {
+    return take_hit__11TOVS2Wall01FPvUi((u8 *)this, (u32)attacker);
+}
+
+void TOVS2Wall01::apply_knockback_from_attacker(u8 *, f32) {}
+
 extern "C" {
-
-int TOVS2Wall01__vt24(void) { return 1; }
-
-int TOVS2Wall01__vt25(void) { return 1; }
-
-int TOVS2Wall01__vt18(void) { return 1; }
-
-int TOVS2Wall01__vt19(void) { return 1; }
-
-int TOVS2Wall01__vt20(void* p) { return take_hit__11TOVS2Wall01FPvUi(p); }
-
-int TOVS2Wall01__vt21(void* p) { return take_hit__11TOVS2Wall01FPvUi(p); }
-
-int TOVS2Wall01__vt22(void* p) { return take_hit__11TOVS2Wall01FPvUi(p); }
-
-void TOVS2Wall01__vt23(void) {  }
 
 void TOVS2Wall01__sub_8017CA48(void* p, s32 v) { *(s32*)((char*)p + 0x33c) = v; }
 s32 TOVS2Wall01__sub_8017CA50(void* p) { return *(s32*)((char*)p + 0x33c); }

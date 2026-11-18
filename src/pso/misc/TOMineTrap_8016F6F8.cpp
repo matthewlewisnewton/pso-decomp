@@ -104,8 +104,8 @@ s32 is_locally_controlled__10TObjPlayerFPv(u32 a0);
 s32 get_localized_text_entry(s32 arg0, s32 arg1);
 s32 get_main_phase();
 
-extern s8 mine_trap_effect_table[];
-extern s8 mine_trap_keymachine_table[];
+extern const s32 mine_trap_effect_table[36];
+extern const s32 mine_trap_keymachine_table[36];
 
 extern f32 lbl_805DB864;
 extern const f32 lbl_805DB85C;
@@ -135,11 +135,9 @@ extern s32 TOMineIcon04__name;
 u8 *get_battle_param__10TObjPlayerFi(s32);
 void check_enemy_body_collisions(void *);
 extern const f32 lbl_805DB874;
-void *__dt__10TOMineTrapFv(void *arg0, s16 arg1);
 s32 free_collision_body_parts(void *);
 s32 is_locally_controlled__10TObjPlayerFPv(u32 a0 = 0);
 s32 __dl__7TObjectFPv(void *);
-void *__dt__6TOMineFv(void *arg0, s16 arg1);
 s32 submit_cursor_candidate(void *obj, s32 slot);
 void record_attack_source(void *target, u16 id);
 void TOMineTrap::set_state() { this->mode = 4; }
@@ -349,26 +347,17 @@ s32 create_placed_trap__10TOMineTrapFUiss(u32 arg0, s16 arg1, s16 arg2) {
 
 void*TOMineTrap::get_mine_data_ptr() { return (char*)this + 0x334; }
 
-extern s32 __vt__10TOMineTrap[];
 
-void *__dt__10TOMineTrapFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__10TOMineTrap;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__6TOMineFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TOMineTrap::~TOMineTrap() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
 }
 
 extern void *tl_05;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
 extern const f32 lbl_80442138[];
-extern const f32 lbl_805D307C;
+extern f32 lbl_805D307C;
 extern const f32 lbl_805DB86C;
 extern const f32 lbl_805DB878;
 extern const f32 lbl_805DB87C;
@@ -507,7 +496,8 @@ s32 TOMine::roll_physical_accuracy(void *, s32, f32) { return 1; }
 s32 TOMine::try_start_action(s32, s32) { return 1; }
 void TOMine::apply_knockback_from_attacker(u8 *, f32) {  }
 void TOMine::vfunc_79() {  }
-s32 TOMineTrap::check_trigger(u32 arg1) {
+int TOMine::calc_distance_accuracy_penalty(void *attacker, void *, void *, f32) {
+    u32 arg1 = (u32)attacker;
     if (is_target_in_list((void *)arg1) == 1) {
         return 0;
     }
@@ -519,7 +509,8 @@ s32 TOMineTrap::check_trigger(u32 arg1) {
     }
     return 0;
 }
-s32 TOMineTrap::can_trigger(u32 arg1) {
+s32 TOMine::select_melee_contact_body(void *attacker, f32) {
+    u32 arg1 = (u32)attacker;
     if (is_target_in_list((void *)arg1) == 1) {
         return 0;
     }
@@ -586,23 +577,23 @@ void TOMine::update_state() {
     }
     *(s32 *)&this->m_344 = 2;
 }
-void TOMineTrap::spawn_effect() {
+void TOMine::vfunc_81() {
     s32 arg0 = (s32)this;
     s32 area = get_current_floor_area();
-    s32 elem = *(s32 *)(mine_trap_effect_table + area * 4);
+    s32 elem = mine_trap_effect_table[area];
     if (elem != -1) {
         play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }
 }
-void TOMineTrap::attach_to_keymachine() {
+void TOMine::vfunc_80() {
     s32 arg0 = (s32)this;
     s32 area = get_current_floor_area();
-    s32 elem = *(s32 *)(mine_trap_keymachine_table + area * 4);
+    s32 elem = mine_trap_keymachine_table[area];
     if (elem != -1) {
         play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }
 }
-void TOMineTrap::detonate_if_triggered() {
+void TOMine::vfunc_82() {
     s32 arg0 = (s32)this;
     {
         TParticleCtrl *particle = spawn_particle_effect((const Vec *)((arg0 + 0x2FC)), 0x45);

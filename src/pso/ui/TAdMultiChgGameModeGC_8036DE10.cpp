@@ -47,38 +47,94 @@ struct Self_8036E2AC {
     void *win;
 };
 
-extern const char lbl_8047AD30[];
-extern const char lbl_8047AEB0[];
-extern const char lbl_8047B098[];
-extern const char lbl_8047B0A4[];
-extern const char lbl_8047B0B4[];
-extern const char lbl_8047B118[];
-extern const char lbl_805E0420[];
-extern const char lbl_805E0424[];
-extern const char lbl_8047B124[];
-extern const char lbl_8047B164[];
-extern const char lbl_8047B248[];
-extern const char lbl_8047B250[];
-extern const char lbl_8047B460[];
-extern const char lbl_8047B67C[];
-extern const char lbl_8047B68C[];
-extern const char lbl_8047B6A8[];
-extern const char lbl_8047B704[];
-extern const char lbl_8047B70C[];
-extern const char lbl_8047B714[];
-extern const char lbl_8047B720[];
-extern const char lbl_8047B778[];
-extern const char lbl_8047B894[];
-extern const f32 lbl_8047B8A0[2];
+const char *mode_change_messages_en[11] = {
+    "\"PSO 1&2 Plus\" save files will overwrite\n"
+    "\"PSO 1&2\" save files. When save files\n"
+    "are overwritten the following will occur:\n"
+    "\n"
+    "- Characters created on PSO 1&2 will no longer be\n"
+    "  compatible with older PSO 1&2 game.\n"
+    "- All Item data for all characters (including all\n"
+    "  items in Check Room, and Meseta) will be deleted.\n"
+    "- Character level, game progress, and Guild Card\n"
+    "  will be retained.",
+    "- The Ship (server) for PSO 1&2 and PSO 1&2 Plus\n"
+    "  are separate. Search or exchange of simple mail\n"
+    "  between the PSO 1&2 Ship and the PSO 1&2 Plus\n"
+    "  Ship will not be possible. \n"
+    "- Please use the same Serial Number and\n"
+    "  Access Key from PSO 1&2.\n"
+    "- In order to avoid file corruption, do not turn off\n"
+    "  the power, remove the Memory Card, or open the\n"
+    "  Disc Cover while game data is being  overwritten.\n"
+    "\n"
+    "Select \"Yes\" if you agree with the stated\n"
+    "conditions to have your files overwritten. ",
+    "Next Page",
+    "Are you sure?",
+    "A Memory Card is required to play \n"
+    "Phantasy Star Online. \n"
+    "\n"
+    "Please insert a Memory Card into Slot A.",
+    "\tJ日本語",
+    "YES",
+    "NO",
+    "Saving.\n"
+    "Do not remove the Memory Card or\n"
+    "turn the power off.",
+    "You can play PSO 1&2,\n"
+    "PSO 1&2 [Upgrade for Online play],\n"
+    "PSO 1&2 Plus and PSO Episode 3\n"
+    "using the same Serial Number/Access Key.\n"
+    "\n"
+    "The Serial Number/Access Key from PSO Episode 3\n"
+    "in the Memory Card in Slot A will be recognized.",
+    "Next",
+};
+const char *mode_change_messages_ja[11] = {
+    "\tJ「ＰＳＯ　ＥＰ１＆２（以降ＥＰ１＆２と呼称）」のセーブ\n"
+    "ファイルを、「ＰＳＯ　ＥＰ１＆２　Ｐｌｕｓ（以降ＥＰ１＆２\n"
+    "Ｐｌｕｓと呼称）」で、プレイできるようセーブファイルの書き\n"
+    "かえを行います。セーブファイルの書きかえ操作を行うと、\n"
+    "\n"
+    "・ＥＰ１＆２のキャラクターは遊べなくなります。\n"
+    "・メインキャラクター、オフラインマルチモード用の一時キャラ\n"
+    "　クター等の全アイテムデータ（チェックルームを含む全アイテ\n"
+    "　ムおよびメセタ）が削除され、初期装備となります。\n"
+    "・キャラクターのレベルやゲーム進行度、ギルドカード等は\n"
+    "　そのまま使用できます。",
+    "\tJ・ＥＰ１＆２とＥＰ１＆２Ｐｌｕｓのシップ（サーバ）は別にな\n"
+    "　ります。ＥＰ１＆２とＥＰ１＆２Ｐｌｕｓのシップ（サーバ）\n"
+    "　間での検索やシンプルメール送受信等はできません。\n"
+    "・シリアルナンバー、アクセスキーはＥＰ１＆２でハンターズラ\n"
+    "　イセンスをお買い求めの場合は、ＥＰ１＆２のシリアルナンバ\n"
+    "　ー・アクセスキーをそのままお使い下さい。\n"
+    "・ファイルが壊れる原因となりますので、書きかえ中の本体電源\n"
+    "　ＯＦＦ、メモリーカード抜き差し、ディスクカバーオープンは\n"
+    "　絶対に行わないで下さい。\n"
+    "\n"
+    "以上の点に同意の上、書きかえをおこないます。\n"
+    "よろしいですか？",
+    "\tJ次のページへ",
+    "\tJ本当によろしいですか？",
+    "\tJPSOを遊ぶにはメモリーカードが必要です。\n"
+    "スロットＡにメモリーカードをセットしてください。",
+    "English",
+    "\tJはい",
+    "\tJいいえ",
+    "\tJセーブ中です。\n"
+    "メモリーカードを抜き差ししないでください。\n"
+    "電源を切らないでください。",
+    "\tJ「ＰＳＯ ＥＰ１＆２」「ＰＳＯ ＥＰ１＆２オンライン調整版」\n"
+    "「ＰＳＯ　ＥＰ１＆２Ｐｌｕｓ」と「ＰＳＯ　ＥＰ３」は\n"
+    "同一のシリアルナンバー・アクセスキーで遊ぶことが可能です。\n"
+    "\n"
+    "スロットAのメモリーカード内にある「ＰＳＯ　ＥＰ３」の\n"
+    "シリアルナンバー・アクセスキーの情報を読み込みます。",
+    "\tJ次に進む",
+};
 
-const char *multi_chg_game_mode_text_table_a[11] = {
-    lbl_8047AD30, lbl_8047AEB0, lbl_8047B098, lbl_8047B0A4, lbl_8047B0B4, lbl_8047B118,
-    lbl_805E0420, lbl_805E0424, lbl_8047B124, lbl_8047B164, lbl_8047B248,
-};
-const char *multi_chg_game_mode_text_table_b[11] = {
-    lbl_8047B250, lbl_8047B460, lbl_8047B67C, lbl_8047B68C, lbl_8047B6A8, lbl_8047B704,
-    lbl_8047B70C, lbl_8047B714, lbl_8047B720, lbl_8047B778, lbl_8047B894,
-};
+const f32 multi_chg_game_mode_window_size[2] = {540.0f, 280.0f};
 
 typedef void (TAdMultiChgGameModeGC::*TAdMultiChgGameModeGCAction)();
 
@@ -100,12 +156,12 @@ TAdMultiChgGameModeGCState multi_chg_game_mode_entry_table[11] = {
     {&TAdMultiChgGameModeGC::sub_8036E830, &TAdMultiChgGameModeGC::request_scene_change_vt},
     {&TAdMultiChgGameModeGC::sub_8036DEDC, &TAdMultiChgGameModeGC::close_windows_on_selection},
 };
-__declspec(section ".data") f32 multi_chg_game_mode_window_extent[2] = {0.5f * (640.0f - lbl_8047B8A0[0]), 70.0f};
+__declspec(section ".data") f32 multi_chg_game_mode_window_extent[2] = {0.5f * (640.0f - multi_chg_game_mode_window_size[0]), 70.0f};
 __declspec(section ".data") f32 lbl_804F3A18[2] = {
     20.0f + multi_chg_game_mode_window_extent[0],
-    10.0f + (multi_chg_game_mode_window_extent[1] + lbl_8047B8A0[1]),
+    10.0f + (multi_chg_game_mode_window_extent[1] + multi_chg_game_mode_window_size[1]),
 };
-f32 lbl_805D7020 = lbl_8047B8A0[0] - 40.0f;
+f32 lbl_805D7020 = multi_chg_game_mode_window_size[0] - 40.0f;
 
 extern "C" {
 void *__nw__7TObjectFUl(int);
@@ -135,9 +191,9 @@ s32 TAdMultiChgGameModeGC__sub_8036DE10(s32 arg0, s32 arg1, s32 arg2) {
         return TQuestVmDownLoadServer__sub_8006EF6C((arg1));
     }
     if (arg2 == 0) {
-        return (s32)multi_chg_game_mode_text_table_b[arg1];
+        return (s32)mode_change_messages_ja[arg1];
     }
-    return (s32)multi_chg_game_mode_text_table_a[arg1];
+    return (s32)mode_change_messages_en[arg1];
 }
 
 void TAdMultiChgGameModeGC::close_windows_on_selection() {
@@ -253,7 +309,7 @@ void TAdMultiChgGameModeGC__sub_8036E19C(u8 *arg0, s32 arg1) {
         ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x30)))->close();
         *(u32 *)((s8 *)arg0 + 0x30) = 0U;
     }
-    *(u32 *)((s8 *)arg0 + 0x30) = update_window_mode_from_progress__6TLobbyFPv(multi_chg_game_mode_window_extent, lbl_8047B8A0);
+    *(u32 *)((s8 *)arg0 + 0x30) = update_window_mode_from_progress__6TLobbyFPv(multi_chg_game_mode_window_extent, multi_chg_game_mode_window_size);
     if ((u32) *(u32 *)((s8 *)arg0 + 0x30) != 0U) {
         ((TWindowMessage *)(*(u32 *)((s8 *)arg0 + 0x30)))->append_line((s32)((int) (TAdMultiChgGameModeGC__sub_8036DE10((s32)arg0, (s32)arg1, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x24)))))), 3);
     }

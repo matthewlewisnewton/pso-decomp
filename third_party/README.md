@@ -14,3 +14,7 @@ Code adapted from these projects keeps its original notices in the source files.
 The CRI LSC initialization split and build-banner declaration follow upstream
 [matchpass 18](https://github.com/zeroz41/pso-decomp/commit/b0b44cbda23b206e1e5457a0e3711e0c0dd48bb8)
 under the [upstream MIT license](LICENSES/pso-decomp-MIT.txt).
+
+The reverse-tech scene hook layout and initializer follow upstream
+[matchpass 19](https://github.com/zeroz41/pso-decomp/commit/1542ec2fe0a1f110cad6b88fca8d53a246d2585e)
+under the [upstream MIT license](LICENSES/pso-decomp-MIT.txt).

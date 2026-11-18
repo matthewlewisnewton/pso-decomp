@@ -36,15 +36,7 @@ struct TWindowMainMenu1P : public TWindowMainMenu {
 typedef char TWindowMainMenu1P_size[sizeof(TWindowMainMenu1P) == 0xAC ? 1 : -1];
 
 extern "C" {
-void *TWindowMainMenu1P__ct(TWindowMainMenu1P *arg0);
-u8 *__dt__17TWindowMainMenu1PFv(u8 *arg0, s16 arg1);
-}
-
-// --- C functions defined in TWindowMainMenu1P.cpp ---
-extern "C" {
 void *TWindowMainMenu1P__ct(TWindowMainMenu1P *window_main_menu1_p);
-u8 *__dt__17TWindowMainMenu1PFv(u8 *arg0, s16 arg1);
 }
-// --- end of C functions
 
 #endif

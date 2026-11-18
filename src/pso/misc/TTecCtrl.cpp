@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/misc/TTecCtrl.h"
 #include "pso/TObject.h"
 #include "pso/TTecCtrl.h"
@@ -73,10 +74,6 @@ struct Player_8022D27C {
     u8 tech[1];
 };
 
-typedef struct Col_8022C738 { s32 w[4]; } Col_8022C738;
-
-typedef struct Vec_8022C738 { f32 x, y, z; } Vec_8022C738;
-
 typedef struct Params_8022C738 { u8 pad0[0x12]; s16 f12; u8 pad14[0x20 - 0x14]; s16 f20; } Params_8022C738;
 
 typedef struct LightData_8022C738 { u8 pad0[0x1C]; f32 f1C; u8 pad20[4]; } LightData_8022C738;
@@ -105,31 +102,31 @@ extern s32 local_client_id;
 void launch_technique__10TObjPlayerFv(s32 tech, s32 unused, Player_8022D27C *pl);
 s32 is_locally_controlled__10TObjPlayerFPv(void *);
 void *__nw__7TObjectFUl(u32);
-void *construct_actor_light__9TObjLightFlllllfffl(void *, Col_8022C738 *, Vec_8022C738 *, s32, void *, s32, f32, f32, f32);
+void *construct_actor_light__9TObjLightFlllllfffl(void *, NJS_ARGB *, Vec *, s32, void *, s32, f32, f32, f32);
 void *__ct__13TUnk_804CC794Fll(void *, void *, s32);
 void *__ct__13TUnk_804CC948Fll(void *, void *, s32);
 void *__ct__13TUnk_804CCD0CFll(void *, void *, s32);
 void *construct_resta_charge_sound(void *, void *, s32);
 void *__ct__13TUnk_804CCAC8Fll(void *, void *, s32);
 void *__ct__13TUnk_804CC74CFll(void *, void *, s32);
-extern Col_8022C738 technique_charge_light_color;
-extern Vec_8022C738 lbl_8044CF8C;
-extern Col_8022C738 technique_charge_light_params;
-extern Vec_8022C738 lbl_8044CFA8;
-extern Col_8022C738 lbl_8044CFB4;
-extern Vec_8022C738 lbl_8044CFC4;
-extern Col_8022C738 rabarta_charge_light_color;
-extern Vec_8022C738 lbl_8044CFE0;
-extern Col_8022C738 zonde_charge_light_color;
-extern Vec_8022C738 lbl_8044CFFC;
-extern Col_8022C738 resta_charge_light_color;
-extern Vec_8022C738 lbl_8044D018;
-extern Col_8022C738 ryuker_charge_light_color;
-extern Vec_8022C738 lbl_8044D034;
-extern Col_8022C738 shifta_charge_light_color;
-extern Vec_8022C738 lbl_8044D050;
-extern Col_8022C738 megid_charge_light_color;
-extern Vec_8022C738 lbl_8044D06C;
+extern const NJS_ARGB technique_charge_light_color;
+extern const Vec lbl_8044CF8C;
+extern const NJS_ARGB technique_charge_light_params;
+extern const Vec lbl_8044CFA8;
+extern const NJS_ARGB lbl_8044CFB4;
+extern const Vec lbl_8044CFC4;
+extern const NJS_ARGB rabarta_charge_light_color;
+extern const Vec lbl_8044CFE0;
+extern const NJS_ARGB zonde_charge_light_color;
+extern const Vec lbl_8044CFFC;
+extern const NJS_ARGB resta_charge_light_color;
+extern const Vec lbl_8044D018;
+extern const NJS_ARGB ryuker_charge_light_color;
+extern const Vec lbl_8044D034;
+extern const NJS_ARGB shifta_charge_light_color;
+extern const Vec lbl_8044D050;
+extern const NJS_ARGB megid_charge_light_color;
+extern const Vec lbl_8044D06C;
 extern LightData_8022C738 TObjLight__scene_light_state;
 extern s32 tl_07;
 }
@@ -158,18 +155,18 @@ s32 release_texture_list(void *, s32);
 extern RecoveredGlobal_8022F068_lbl_804CC934 technique_ringwave_texture_list;
 extern u8 *technique_effect_bml;
 extern void **lbl_805D63B0;
-extern u8 technique_resource_descriptor[];
-extern u8 lbl_8044D088[];
-extern u8 lbl_8044D094[];
+extern BmlResourceDescriptor technique_resource_descriptor;
+extern const char technique_texture_archive[];
+extern const char technique_texture_list_name[];
 u8 *load_gvm_texture_file(s32 arg0);
-void bind_gvm_texture_list(void *, void *);
+void bind_gvm_texture_list(const char *, void *);
 void reset_telepipe_visit_counts(void);
 void __ct__7TObjectFP7TObject(void *);
 }
 
 extern s8 lbl_805D63A8;
 extern s32 __vt__8TTecCtrl[];
-extern void *TTecCtrl__name;
+extern const char *TTecCtrl__name;
 typedef char RecoveredGlobal_8022F068_lbl_804CC934_size[sizeof(RecoveredGlobal_8022F068_lbl_804CC934) == 0xC ? 1 : -1];
 
 #define ONE_SLOT()                                                                       \
@@ -208,10 +205,10 @@ typedef char RecoveredGlobal_8022F068_lbl_804CC934_size[sizeof(RecoveredGlobal_8
 // order: they are defined here from the last address to the first.
 
 void load_technique_resources(void) {
-    u8 *p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)technique_resource_descriptor, 0, 0, (void *)0);
+    u8 *p = (u8 *)new BmlResource(1, &technique_resource_descriptor, 0, 0, (void *)0);
     technique_effect_bml = p;
-    lbl_805D63B0 = (void **)load_gvm_texture_file((s32)lbl_8044D088);
-    bind_gvm_texture_list(lbl_8044D094, ((u8 *)&technique_ringwave_texture_list));
+    lbl_805D63B0 = (void **)load_gvm_texture_file((s32)technique_texture_archive);
+    bind_gvm_texture_list(technique_texture_list_name, ((u8 *)&technique_ringwave_texture_list));
     TTecZondeEff::init_resources();
 }
 
@@ -238,7 +235,7 @@ void TLobby__sub_8022F068(void) {
 void *__ct__8TTecCtrlFv(void *tec_ctrl) {
     __ct__7TObjectFP7TObject(tec_ctrl);
     *(s32 **)((s8 *)tec_ctrl + 0x18) = __vt__8TTecCtrl;
-    *(void * *)&((TTecCtrl *)tec_ctrl)->m_name = TTecCtrl__name;
+    ((TTecCtrl *)tec_ctrl)->m_name = TTecCtrl__name;
     *(u32 *)((s8 *)tec_ctrl + 0x1C) = 0;
     return tec_ctrl;
 }
@@ -699,15 +696,13 @@ void capture_technique_targets__10TObjPlayerFv(int kind, Owner_8022CDE8 *owner) 
     }
 }
 
-#pragma push
-#pragma opt_propagation off
 #define CHARGE_LIGHT_8022C738(COL, VEC, INIT)                                                    \
     {                                                                                            \
-        Col_8022C738 c = COL;                                                                    \
-        Vec_8022C738 v = VEC;                                                                    \
+        NJS_ARGB c = COL;                                                                    \
+        Vec v = VEC;                                                                    \
         void *o = __nw__7TObjectFUl(100);                                                        \
         if (o != NULL) {                                                                         \
-            ((void *(*)(f32, f32, f32, void *, Col_8022C738 *, Vec_8022C738 *, s32, void *, s32)) \
+            ((void *(*)(f32, f32, f32, void *, NJS_ARGB *, Vec *, s32, void *, s32)) \
                  construct_actor_light__9TObjLightFlllllfffl)(0.1f, 0.35f, TObjLight__scene_light_state.f1C, \
                                           o, &c, &v, base, owner, tl_07);                        \
         }                                                                                        \
@@ -761,7 +756,6 @@ void create_technique_charge_light(u32 kind, void *owner) {
         break;
     }
 }
-#pragma pop
 
 s32 TObjPlayer::get_level_tier(s32 arg0) {
 

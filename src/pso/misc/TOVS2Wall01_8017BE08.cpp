@@ -1,3 +1,4 @@
+#include "pso/misc/TOVS2WallResources.h"
 #include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
@@ -57,17 +58,12 @@ void __ct__9TObjCharaFP7TObject(void *, void *);
 void obj_setFlags30(void *, s32);
 void activate_and_dispatch__15RenderFadeStateFv(void *, s32, f32);
 void init_collision_body_parts(void *, void *, s32);
-extern u8 ovs2wall01_collision_parts[];
 extern s32 __vt__11TOVS2Wall01[];
-extern s32 TOVS2Wall01__class_name;
-extern s32 TOVS2Wall01__bml_resource;
 extern void *tl_05;
 extern const f32 lbl_805DBAAC;
 extern const f32 lbl_805DBAB0;
 void *TOVS2Wall01__ct(TOVS2Wall01 *arg0, void *arg1);
-void *__dt__11TOVS2Wall01Fv(void *arg0, s16 arg1);
 void free_collision_body_parts(void *);
-void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 int submit_cursor_candidate(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -97,7 +93,7 @@ void TOVS2Wall01::run_task() {
 void TOVS2Wall01::render() {
     u8 *arg0 = (u8 *)this;
     s32 var_r31;
-    update__15RenderFadeStateFv((u8 *)&this->m_340);
+    update__15RenderFadeStateFv((u8 *)&this->fade);
     *(s32 *)&this->m_35c = ((VObj_18_26a62c *)(arg0))->m8(*(f32 *)&this->unk_334, this->m_338);
     if ((s32) this->m_35c == 1) {
         if (TRaderMapCore::is_not_split_screen() == 1) {
@@ -134,19 +130,14 @@ void *TOVS2Wall01::create() {
     return o;
 }
 
-void *__dt__11TOVS2Wall01Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TOVS2Wall01;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__15RenderFadeStateFv((s8 *)arg0 + 0x340, -1);
-        __dt__9TObjCharaFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
 }
+
+TOVS2Wall01::~TOVS2Wall01() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
+}
+
+extern "C" {
 #pragma push
 #pragma opt_common_subs off
 void *TOVS2Wall01__ct(TOVS2Wall01 *arg0, void *arg1) {
@@ -154,13 +145,13 @@ void *TOVS2Wall01__ct(TOVS2Wall01 *arg0, void *arg1) {
     __ct__9TObjCharaFP7TObject(arg0, tl_05);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TOVS2Wall01;
     __ct__15RenderFadeStateFv(((void *)((u8 *)arg0 + 0x340)));
-    *(s32 *)((s8 *)arg0 + 0) = TOVS2Wall01__class_name;
+    arg0->m_name = TOVS2Wall01__class_name;
     arg0->apply_object_set_data(arg1);
     ((TObjChara *)arg0)->calc_attach_pos();
     obj_setFlags30(arg0, 0x60000000);
-    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)TOVS2Wall01__bml_resource, 6);
-    arg0->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)TOVS2Wall01__bml_resource, 6);
-    init_collision_body_parts(arg0, ovs2wall01_collision_parts + 0x108, 1);
+    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model(TOVS2Wall01__bml_resource, 6);
+    arg0->texlist = (s32)TObjFish__sub_8001EDB0(TOVS2Wall01__bml_resource, 6);
+    init_collision_body_parts(arg0, &ovs2wall01_collision_parts[6], 1);
     ((TObjCollidable *)arg0)->set_indexed_flags(0, 0x08000000);
     ((TObjPlayer *)arg0)->register_object_by_id();
     arg0->mode = 0;

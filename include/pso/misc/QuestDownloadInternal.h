@@ -5,6 +5,7 @@
 // quest-download objects. See docs/evidence/quest-download-unit-completion.md.
 #include "types.h"
 #include "pso/misc/QuestDownloadScratch.h"
+#include "pso/misc/QuestDownloadCharTables.h"
 #include "pso/misc/QuestDownloadRecords.h"
 #include "pso/misc/QuestDownloadQueryTypes.h"
 #include "pso/misc/QuestDownloadCacheTypes.h"
@@ -65,13 +66,6 @@ struct RecoveredGlobal_803E6ED0_lbl_805A05D0 {
     s32 value;
     u8 remaining[0xC4];
 };
-
-struct RecoveredGlobal_803E721C_lbl_8047E698 {
-    s32 value;
-    u8 remaining[0x1FC];
-};
-
-struct E_803E6F48 { u16 key; u8 val; u8 pad; };
 
 typedef Req_803EEF2C Msg_803E92C0;
 
@@ -147,7 +141,6 @@ extern QuestDownloadCachedNameIndex lbl_80593EC8;
 extern s8 lbl_805D7868;
 
 extern const u8 lbl_8047F8B8[0x100];
-extern RecoveredGlobal_803E721C_lbl_8047E698 single_byte_to_jis_table;
 s32 strcpy(void *, void *);
 s32 dispatch_request_0x20__19TWindowKeyBoardSoftFll(void *, void *);
 s32 dispatch_request_0x1c__19TWindowKeyBoardSoftFv();
@@ -158,7 +151,6 @@ extern s32 lbl_805D790C;
 extern s32 lbl_805E10D8;
 extern s32 lbl_805E10E0;
 extern s32 lbl_805D7888;
-extern u16 quest_download_char_code_table[];
 
 extern u8 quest_name_index_table[1024][4];
 void __VIRetraceHandler(void);
@@ -173,7 +165,6 @@ QuestDownloadTextNode *TQuestVmDownLoadServer__sub_803EB878(QuestDownloadTextNod
 void TQuestVmDownLoadServer__sub_803ECD1C(QuestDownloadQueueNode *p);
 void TQuestVmDownLoadServer__sub_803ECD8C(QuestDownloadEntryNode *p);
 void TQuestVmDownLoadServer__sub_803ECE5C(QuestDownloadSegment *p);
-extern E_803E6F48 jis_to_single_byte_symbol_table[];
 extern QuestDownloadFileCache quest_download_slot_table;
 QuestDownloadEntryNode *insert_sorted_node__22TQuestVmDownLoadServerFPvPv(QuestDownloadEntryNode *arg0, QuestDownloadEntryNode *arg1);
 int strncmp(const char *, const char *, u32);
@@ -252,14 +243,9 @@ extern QuestDownloadCachePage *file_page_cache_head;
 s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg2);
 void TQuestVmDownLoadServer__sub_803EFF20(u8 *data, s32 a1, s32 a2, s32 *best, u8 *dst, s32 flags);
 extern const char ask_header_signature[];
-extern const s16 quest_download_lz_match_index_table[];
-extern const QuestDownloadMatchToken quest_download_lz_match_entry_table[];
-extern u8 lbl_8047F0F8[];
 const QuestDownloadMatchToken *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2);
 void build_message_packet__22TQuestVmDownLoadServerFPviPvUc(u8 *arg0, s32 arg1, Msg_803E9190 *arg2, u8 arg3);
 s32 lookup_name_entry__22TQuestVmDownLoadServerFPvsPv(char *arg0, s16 arg1, Out_803E8B1C *arg2);
-extern u8 lbl_8047E898[];
-extern u16 lbl_8047E8A4[];
 void TQuestVmDownLoadServer__sub_803EFCB4(u8 *data, s32 a1, s32 a2, s32 *cnt, s32 *total, u8 *buf, s32 flags);
 extern u8 *lbl_805D7824;
 
@@ -521,7 +507,7 @@ QuestDownloadTextNode *TQuestVmDownLoadServer__sub_803EBEFC(QuestDownloadEntryPr
 void TQuestVmDownLoadServer__sub_803EC09C(void);
 s32 TQuestVmDownLoadServer__sub_803EDC20(u32 input_address);
 u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end);
-void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end);
+void process_entry_text_range(s32 start, s32 end);
 void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTextNode *text, QuestDownloadEntryNode *entries);
 void TQuestVmDownLoadServer__sub_803EFCB4(u8 *data, s32 key, s32 sub_key, s32 *cnt, s32 *total, u8 *buf, s32 flags);
 void TQuestVmDownLoadServer__sub_803EFF20(u8 *data, s32 key, s32 sub_key, s32 *best, u8 *dst, s32 flags);
@@ -549,8 +535,6 @@ s32 TQuestVmDownLoadServer__sub_803E7018(u16 arg0);
 s32 TQuestVmDownLoadServer__sub_803E7098(u8 *p, u16 code);
 
 s32 TQuestVmDownLoadServer__sub_803E719C(u8 arg0, s32 arg1);
-
-typedef char RecoveredGlobal_803E721C_lbl_8047E698_size[sizeof(RecoveredGlobal_803E721C_lbl_8047E698) == 0x200 ? 1 : -1];
 
 u16 TQuestVmDownLoadServer__sub_803E721C(u16 arg0);
 
@@ -1047,14 +1031,13 @@ s32 TQuestVmDownLoadServer__sub_803E9F54(s32 arg0);
 // switch behind an explicit range guard at the head of the slot search.
 
 // Scan one slot's match-token chain for segments covering [beg, end). A
-// token names an item pair (a, b); lbl_8047F0F8 maps its displacement byte
-// to an offset into the download buffer, and the first-fill path above
+// token names an item pair (a, b). The dictionary supplies the match length
+// used to step through the download buffer, and the first-fill path
 // covers the empty-slot single-byte case. The walk runs backwards by the
 // token's signed link count.
 QuestDownloadEntryNode *insert_sorted_node__22TQuestVmDownLoadServerFPvPv(QuestDownloadEntryNode *arg0, QuestDownloadEntryNode *arg1);
 void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, QuestDownloadItemNode *t);
 
-extern "C" QuestDownloadItemNode lbl_8047F8A8;
 // Local pass settings preserve the separate generator result and traversal
 // cursor, the cached position and the original write boundary. pragma pop
 // restores the surrounding profile; option recognition is tested separately.
@@ -1712,10 +1695,10 @@ extern u8 lbl_8047F9B8[];
 extern u8 *lbl_8047FBD4[];
 
 // The frontend starts and fills the actual halfword scratch object.
-s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
+s32 convert_romaji_to_kana(const u16 *input, s32 count,
                                       u16 *output, s32 *outputCount);
 
-void TQuestVmDownLoadServer__sub_803EE2E4(void);
+void reset_entry_text_accumulator(void);
 
 extern u8 lbl_8058DC48[0x50];
 extern u8 lbl_8058DCE8[0x50];
@@ -1737,22 +1720,22 @@ struct QuestDownloadRequestView {
     QuestDownloadRequestView(QuestDownloadRequestStorage *value) : storage(value) {}
 };
 
-void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end);
+void process_entry_text_range(s32 start, s32 end);
 
 #pragma pop
 
 // Keep the independent buffer addresses and native call-site lifetimes.
 void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTextNode *text, QuestDownloadEntryNode *entries);
 
-u16 *TQuestVmDownLoadServer__sub_803EE718(s32 i, s32 len);
+u16 *get_entry_text(s32 i, s32 len);
 
-u8 *TQuestVmDownLoadServer__sub_803EE828(void);
+u8 *convert_all_entry_text(void);
 
-void TQuestVmDownLoadServer__sub_803EE870(s32 index, s32 mode);
+void free_slot_node_chain(s32 index, s32 mode);
 
-s32 TQuestVmDownLoadServer__sub_803EE934(void);
+s32 build_all_entry_text(void);
 
-s32 TQuestVmDownLoadServer__sub_803EEA48(s32 arg0, s32 arg1, void *arg2, s32 *arg3);
+s32 format_number_text_all_modes(s32 arg0, s32 arg1, void *arg2, s32 *arg3);
 
 struct Tbl_803EEB10 {
     u8 units[0x14];

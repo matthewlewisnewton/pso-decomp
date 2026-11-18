@@ -1,26 +1,12 @@
+#include "pso/object/TObjWarpResources.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLanguage_801E4874.h"
 #include "pso/unk/text_8019DBB4.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct RecoveredGlobal_8019DBB4_lbl_804B90FC {
-    s32 value;
-    u8 remaining[0xC];
-};
-
-extern "C" {
-}
 extern const char lbl_80446470[] = "fs_obj_warp.gvm";
-extern RecoveredGlobal_8019DBB4_lbl_804B90FC forest_warp_resource_descriptor;
-extern s32 forest_warp_bml_resource;
-extern GinjaTextureList *forest_warp_texture_list;
-typedef char RecoveredGlobal_8019DBB4_lbl_804B90FC_size[sizeof(RecoveredGlobal_8019DBB4_lbl_804B90FC) == 0x10 ? 1 : -1];
 void load_forest_warp_resources(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&forest_warp_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    forest_warp_bml_resource = var_r0;
+    forest_warp_bml_resource = new BmlResource(5, &forest_warp_resource_descriptor, 0, 0, NULL);
     forest_warp_texture_list = load_gvm_texture_file(lbl_80446470);
 }

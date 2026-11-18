@@ -13,7 +13,9 @@
 #include "pso/player/TUnk_804E1F04.h"
 #include "pso/unk/TUnk_804E1BB0.h"
 #include "pso/player/TUnk_804E21F8.h"
+#include "pso/player/TUnk_804E22F4.h"
 #include "pso/item/TItem.h"
+#include "pso/item/WeaponEffectDescriptor.h"
 #include "pso/player/TObjPlayer_802D5B78.h"
 
 
@@ -91,26 +93,32 @@ namespace P802D5318 {
 
 extern "C" {
 
-void setup_radar_marker__10TObjPlayerFPvPv(TObjPlayer *arg0, void *arg1);
 void* setup_state__10TObjPlayerFPv(void* a0);
 int init_state_445__10TObjPlayerFPv(void);
-s32 set_radar_marker_params__10TObjPlayerFPvPv();
 
-
-void setup_radar_marker__10TObjPlayerFPvPv(TObjPlayer *player, void *arg1) {
-    set_radar_marker_params__10TObjPlayerFPvPv();
-    if (((TItemWeapon *)player)->is_mode_two_and_ready() != 0) {
-        player->drain_owner_hp_fraction(0.07f);
-        *(s32 *)((s8 *)arg1 + 0x10) = 0xA;
-        *(s32 *)((s8 *)arg1 + 0x44) = (s32) ((TUnk_804E1CA8 *)player)->second_model;
-        *(f32 *)((s8 *)arg1 + 0x4C) = 1.0f;
+void setup_radar_marker__10TObjPlayerFPvPv(TUnk_804E1CA8 *weapon, Desc_8011E5C4 *desc) {
+    weapon->TUnk_804E23F0::init_weapon_effect_descriptor(desc);
+    if (weapon->is_mode_two_and_ready() != 0) {
+        reinterpret_cast<TObjPlayer *>(weapon)->drain_owner_hp_fraction(0.07f);
+        desc->mode = 0xA;
+        desc->model = weapon->second_model;
+        desc->scale = 1.0f;
     }
 }
 
     extern unsigned char create_needle_pos_effect[];
     extern unsigned char do_action_447_from_packet__10TObjPlayerFPvPv[];
     extern unsigned char lbl_804E1CA8[];
-void* setup_state__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1CA8; *(float*)((char*)a0 + 0x200) = 5.0f; ((TItemWeapon *)a0)->set_weapon_flags(32); ((TUnk_804E1CA8 *)a0)->m_208 = (int)do_action_447_from_packet__10TObjPlayerFPvPv; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; return a0; }
+void *setup_state__10TObjPlayerFPv(void *a0) {
+    TUnk_804E1CA8 *weapon = static_cast<TUnk_804E1CA8 *>(a0);
+    init_state_445__10TObjPlayerFPv();
+    *(int *)((char *)a0 + 0x18) = (int)lbl_804E1CA8;
+    weapon->effect_scale = 5.0f;
+    weapon->set_weapon_flags(32);
+    weapon->m_208 = reinterpret_cast<s32 *>(do_action_447_from_packet__10TObjPlayerFPvPv);
+    weapon->m_204 = reinterpret_cast<s32 *>(create_needle_pos_effect);
+    return a0;
+}
 
 }
 
@@ -133,19 +141,25 @@ f32 atan2_float(f32 y, f32 x);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 void spawn_hit_particles__10TObjPlayerFiPv(s32 arg0, const P_802D5478 *arg1);
 void* init_needle_effect__10TObjPlayerFPv(void* a0);
-void set_radar_marker_flag__10TObjPlayerFPvPv(void *arg0, void *arg1);
 int init_state_445__10TObjPlayerFPv(void);
-s32 set_radar_marker_params__10TObjPlayerFPvPv();
 
-void set_radar_marker_flag__10TObjPlayerFPvPv(void *arg0, void *arg1) {
-    set_radar_marker_params__10TObjPlayerFPvPv();
-    *(s32 *)((s8 *)arg1 + 0x50) = 0x8000;
+void TUnk_804E20FC::init_weapon_effect_descriptor(Desc_8011E5C4 *desc) {
+    TUnk_804E23F0::init_weapon_effect_descriptor(desc);
+    desc->m_50 = 0x8000;
 }
 
     extern unsigned char create_needle_pos_effect[];
     extern unsigned char create_needle_effect[];
-    extern unsigned char lbl_804E20FC[];
-void* init_needle_effect__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E20FC; *(float*)((char*)a0 + 0x200) = 1.0f; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; ((TUnk_804E20FC *)a0)->m_208 = (int)create_needle_effect; return a0; }
+    extern unsigned char __vt__13TUnk_804E20FC[];
+void *init_needle_effect__10TObjPlayerFPv(void *a0) {
+    TUnk_804E20FC *weapon = static_cast<TUnk_804E20FC *>(a0);
+    init_state_445__10TObjPlayerFPv();
+    *(int *)((char *)a0 + 0x18) = (int)__vt__13TUnk_804E20FC;
+    weapon->effect_scale = 1.0f;
+    weapon->m_204 = reinterpret_cast<s32 *>(create_needle_pos_effect);
+    weapon->m_208 = reinterpret_cast<s32 *>(create_needle_effect);
+    return a0;
+}
 
 void spawn_hit_particles__10TObjPlayerFiPv(s32 pos, const P_802D5478 *arg1) {
     s32 v[3];
@@ -284,26 +298,28 @@ void set_matrix_identity(u8 *arg0);
 s32 transform_point_by_current_matrix(void *, void *);
 extern V_802D577C lbl_8047259C;
 extern V_802D577C player_pb_zero_vec_block;
-int set_radar_marker_params__10TObjPlayerFPvPv(void);
 void init_state_445__10TObjPlayerFPv(void *);
 
-extern s32 lbl_804E2000[];
+extern s32 __vt__13TUnk_804E2000[];
 extern s32 spawn_hit_particles_at__10TObjPlayerFiii[];
 extern s32 spawn_hit_particles_at_vec__10TObjPlayerFiii[];
 
 void *TUnk_804E2000::enter_state_341() {
     init_state_445__10TObjPlayerFPv(this);
-    *(s32 **)((s8 *)this + 0x18) = lbl_804E2000;
+    *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_804E2000;
     this->m_1fc = 341;
     this->m_208 = spawn_hit_particles_at__10TObjPlayerFiii;
     *(s32 **)((s8 *)this + 0x204) = spawn_hit_particles_at_vec__10TObjPlayerFiii;
     return this;
 }
 
-void TObjPlayer::set_radar_marker_pos(int a0, void* a1) { set_radar_marker_params__10TObjPlayerFPvPv(); *(float*)((char*)a1 + 0x38) = 5.0f; }
+void TUnk_804E21F8::init_weapon_effect_descriptor(Desc_8011E5C4 *desc) {
+    TUnk_804E23F0::init_weapon_effect_descriptor(desc);
+    desc->m_38 = 5.0f;
+}
 
-void TObjPlayer::spawn_item_from_arg(s32 arg0, s32 arg1) {
-    spawn_item__10TObjPlayerFi((arg1));
+void TUnk_804E21F8::vfunc_62(Vec *pos) {
+    spawn_item__10TObjPlayerFi(reinterpret_cast<s32>(pos));
 }
 
 void TUnk_804E21F8::emit_marker_effects() {
@@ -345,7 +361,7 @@ void TUnk_804E21F8::reserved_53() {
     }
 }
 
-void TUnk_804E21F8::vfunc_17(s32 x) {
+void TUnk_804E21F8::activate_effect(s32 x) {
     O_802D576C *self = (O_802D576C *)this;
     if (x < 5) self->v = x;
 }
@@ -430,20 +446,19 @@ struct S_802D595C {
 
 extern "C" {
 void spawn_item__10TObjPlayerFi(s32 arg0);
-void spawn_item_thunk__10TObjPlayerFii(s32 arg0, s32 arg1);
-extern u8 lbl_804E21F8[];
+extern u8 __vt__13TUnk_804E21F8[];
 void init_state_445__10TObjPlayerFPv(void *);
 void alloc_and_init__10TObjPlayerFlll(s32, s32, s32);
 void create_and_init_effect__10TObjPlayerFlPUll(s32, void *, s32);
 S_802D595C *init_mag_effect_state__10TObjPlayerFPv(S_802D595C *arg0);
-void reset_animation_state__10TObjPlayerFPv(void *arg0);
 f32 TObjPlayer__sub_8017A1A4(s32, s32);
 
 
-void reset_animation_state__10TObjPlayerFPv(void *arg0) {
+void TUnk_804E21F8::vfunc_57() {
+    void *arg0 = this;
     ((TUnk_804E21F8 *)arg0)->m_248 = 0;
     *(s16 *)((s8 *)arg0 + 0x24A) = 0;
-    ((TUnk_804E21F8 *)arg0)->m_24c = (f32) (5.0f + TObjPlayer__sub_8017A1A4(*(s32 *)((s8 *)arg0 + 0xF0), 0));
+    ((TUnk_804E21F8 *)arg0)->m_24c = (f32) (5.0f + P802D5900::TObjPlayer__sub_8017A1A4(*(s32 *)((s8 *)arg0 + 0xF0), 0));
     *(s32 *)((s8 *)arg0 + 0x250) = 0;
     ((TUnk_804E21F8 *)arg0)->sub_802D577C();
 }
@@ -452,7 +467,7 @@ S_802D595C *init_mag_effect_state__10TObjPlayerFPv(S_802D595C *arg0) {
     s32 i;
     V3_802D595C *p;
     init_state_445__10TObjPlayerFPv(arg0);
-    arg0->vt = lbl_804E21F8;
+    arg0->vt = __vt__13TUnk_804E21F8;
     arg0->f248 = 0;
     arg0->f24A = 0;
     p = arg0->v;
@@ -467,34 +482,34 @@ S_802D595C *init_mag_effect_state__10TObjPlayerFPv(S_802D595C *arg0) {
     return arg0;
 }
 
-void spawn_item_thunk__10TObjPlayerFii(s32 arg0, s32 arg1) {
-    spawn_item__10TObjPlayerFi((arg1));
+void TUnk_804E22F4::vfunc_62(Vec *pos) {
+    spawn_item__10TObjPlayerFi(reinterpret_cast<s32>(pos));
 }
 
 }
 
 }
 
-extern s32 lbl_804E22F4[];
+extern s32 __vt__13TUnk_804E22F4[];
 extern s32 alloc_and_init__10TObjPlayerFlll[];
 extern s32 create_and_init_effect__10TObjPlayerFlPUll[];
 
 void *TUnk_804E22F4::init_type_447() {
     init_state_445__10TObjPlayerFPv(this);
-    *(s32 **)((s8 *)this + 0x18) = lbl_804E22F4;
+    *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_804E22F4;
     this->m_1fc = 447;
     *(s32 **)((s8 *)this + 0x204) = alloc_and_init__10TObjPlayerFlll;
     this->m_208 = create_and_init_effect__10TObjPlayerFlPUll;
     return this;
 }
 
-extern s32 lbl_804E1F04[];
+extern s32 __vt__13TUnk_804E1F04[];
 extern s32 TItemWpnCardEffect__sub_8032E588[];
 extern s32 create_aux_object__10TObjPlayerFlPUll[];
 
 void *TUnk_804E1F04::init_vtable_and_handlers_341() {
     init_state_445__10TObjPlayerFPv(this);
-    *(s32 **)((s8 *)this + 0x18) = lbl_804E1F04;
+    *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_804E1F04;
     this->m_1fc = 341;
     *(s32 **)((s8 *)this + 0x204) = TItemWpnCardEffect__sub_8032E588;
     this->m_208 = create_aux_object__10TObjPlayerFlPUll;
@@ -511,8 +526,8 @@ void spawn_item__10TObjPlayerFi(s32 arg0);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 int init_state_445__10TObjPlayerFPv(void);
 
-    extern unsigned char lbl_804E1E08[];
-void* init_vtable_and_field200__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1E08; *(float*)((char*)a0 + 0x200) = 5.0f; return a0; }
+    extern unsigned char __vt__13TUnk_804E1E08[];
+void* init_vtable_and_field200__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)__vt__13TUnk_804E1E08; *(float*)((char*)a0 + 0x200) = 5.0f; return a0; }
 
 
 void spawn_item__10TObjPlayerFi(s32 arg0) {

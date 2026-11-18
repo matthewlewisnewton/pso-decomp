@@ -298,8 +298,6 @@ struct Tcb_8041D584 {
     Seg_8041D460 items[32];
 };
 
-#pragma push
-#pragma opt_common_subs on
 inline void remove_8041D584(Tcb_8041D584 *tcb, s16 idx) {
     s16 n = tcb->n;
     s16 i;
@@ -310,7 +308,6 @@ inline void remove_8041D584(Tcb_8041D584 *tcb, s16 idx) {
         tcb->n--;
     }
 }
-#pragma pop
 
 void TLobby__sub_8041D584(Tcb_8041D584 *tcb, Th_8041D584 *th, Sack_8041D584 *blocks, s16 n);
 
@@ -433,8 +430,6 @@ s16 TLobby__sub_8041E780(void);
 
 void TLobby__sub_8041E8A8(s16 idx);
 
-#pragma push
-#pragma pool_data off
 inline s16 port_in_use_8041EA14(u16 port) {
     G_8041E780 *g = (G_8041E780 *)&tcp_protocol_state;
     s16 n;
@@ -450,7 +445,6 @@ inline s16 port_in_use_8041EA14(u16 port) {
     }
     return 0;
 }
-#pragma pop
 
 u16 TLobby__sub_8041EA14(void);
 
@@ -488,22 +482,11 @@ s32 get_field_d8__6TLobbyFv(void *);
 void reset_slot_index__6TLobbyFv(void *);
 s32 close_if_open__6TLobbyFv(void *);
 void clear_position__6TLobbyFv(void *);
-s32 is_multicast_address__6TLobbyFs(void *, s16);
-s16 compare_sockaddr__6TLobbyFPUc(void *, u8 *);
 u8 *alloc_free_entry__6TLobbyFv(void);
-void release_entry__10TUdpSocketFv(void *);
-void set_value_and_enable__6TLobbyFl(NetBufferRef *, s32);
-
-s16 dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(NetPacket *, u8 *, u8 *, u8 *, u8 *, s32);
 
 s16 TLobby__sub_8041A9AC(void *connection);
 
-#pragma push
-#pragma opt_common_subs on
-#pragma opt_propagation off
-#pragma pool_data off
 static inline s32 imax(s32 a, s32 b) { return a > b ? a : b; }
-#pragma pop
 
 extern s32 TLobby__sub_8041B974(u8 *pkt, u8 *a, u8 *b);
 
@@ -771,13 +754,10 @@ void TLobby::clear_position() {
 #pragma opt_common_subs on
 #pragma opt_propagation off
 
-#pragma optimize_for_size off
 static inline s32 tcp_connection_index(TcpTcb *entry, TcpTcb *first) {
     return entry - first;
 }
 #pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
-#pragma opt_unroll_loops off
 s16 TLobby__sub_8041A9AC(void *connection) {
     TcpTcb *tp = (TcpTcb *)connection;
     TcpTcb *q;
@@ -1081,7 +1061,7 @@ send:
             fragment_length_offset = m->fragment_count * (s32)sizeof(NetPacketFragment)
                 + offsetof(NetPacket, fragments) + offsetof(NetPacketFragment, length);
             *(s16 *)((u8 *)m + fragment_length_offset) = optlen;
-            set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)optp);
+            NetBufferRefInitKind1(&m->fragments[m->fragment_count].buffer, (s32)optp);
             m->fragment_count++;
         }
         header_bytes = sizeof(TcpHdr);
@@ -1089,7 +1069,7 @@ send:
         fragment_length_offset = m->fragment_count * (s32)sizeof(NetPacketFragment)
             + offsetof(NetPacket, fragments) + offsetof(NetPacketFragment, length);
         *(s16 *)((u8 *)m + fragment_length_offset) = header_bytes;
-        set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)th);
+        NetBufferRefInitKind1(&m->fragments[m->fragment_count].buffer, (s32)th);
         m->fragment_count++;
         th->sum = TLobby__sub_8040D8F0(tp->local, tp->remote, 6, (u8 *)m, 1);
         if (tp->force == 0 || tp->timers[1] == 0) {
@@ -1131,8 +1111,9 @@ send:
             tp->snd_max = tp->snd_nxt + len;
         }
         {
-            s16 rc = dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(m, tp->remote, tp->local, tp->f2D6, tp->f2DC, 6);
-            release_entry__10TUdpSocketFv(m);
+            s16 rc = TLobby::dispatch_by_addr_family(m, (NetworkAddress *)tp->remote, (NetworkAddress *)tp->local,
+                                                   tp->f2D6, tp->f2DC, 6);
+            NetReleasePacket((NetPacket *)m);
             if (rc < 0) {
                 return rc;
             }
@@ -1160,7 +1141,6 @@ send:
 
 s16 TLobby__sub_8041B3D4(u8 *dst, u8 *src, u16 src_port, u16 dst_port, s32 seq, s32 ack, u8 flags) {
     s16 TLobby__sub_8040DA54(u8 *arg0, u8 *arg1);
-    s16 dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(NetPacket *, u8 *, u8 *, u8 *, u8 *, s32);
     TcpHeader_8041B3D4 hdr;
     u8 wire[20];
     u8 opts[16];
@@ -1195,14 +1175,14 @@ s16 TLobby__sub_8041B3D4(u8 *dst, u8 *src, u16 src_port, u16 dst_port, s32 seq, 
     NetMemcpy(wire + 14, &hdr.window, 2);
     NetMemcpy(wire + 16, &hdr.checksum, 2);
     NetMemcpy(wire + 18, &hdr.urgent, 2);
-    ((TLobby *)&pkt->fragments[0].buffer)->set_value_and_enable((s32)wire);
+    NetBufferRefInitKind1(&pkt->fragments[0].buffer, (s32)wire);
     hdr.checksum = TLobby__sub_8040D8F0(src, dst, 6, (u8 *)pkt, 1);
     NetMemcpy(wire + 16, &hdr.checksum, 2);
-    if (dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(pkt, dst, src, opts + 4, opts + 4, 6) < 0) {
-        ((TUdpSocket *)pkt)->release_entry();
+    if (TLobby::dispatch_by_addr_family(pkt, (NetworkAddress *)dst, (NetworkAddress *)src, opts + 4, opts + 4, 6) < 0) {
+        NetReleasePacket(pkt);
         return -1;
     }
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket(pkt);
     return 0;
 }
 
@@ -1256,9 +1236,6 @@ s16 TLobby__sub_8041B724(u8 *tcb) {
 }
 
 #pragma pop
-
-#pragma push
-#pragma pool_data off
 
 Tcb_8041B774 *TLobby__sub_8041B774(Tcb_8041B774 *lst, u16 *port, u8 *local, u8 *remote) {
     s16 TLobby__sub_8041E780(void);
@@ -1320,8 +1297,6 @@ Tcb_8041B774 *TLobby__sub_8041B774(Tcb_8041B774 *lst, u16 *port, u8 *local, u8 *
     tcb->maxseg = lst->maxseg;
     return tcb;
 }
-
-#pragma pop
 
 #pragma push
 #pragma opt_common_subs on
@@ -1409,7 +1384,7 @@ retry:
             if (*(s16 *)(ent + offsetof(TcpTcb, t_state)) == -1) {
                 continue;
             }
-            if (compare_sockaddr__6TLobbyFPUc(ent + offsetof(TcpTcb, remote), a)) {
+            if (NetCompareAddresses((NetworkAddress *)(ent + offsetof(TcpTcb, remote)), (NetworkAddress *)(a))) {
                 continue;
             }
             if (*(u16 *)(ent + offsetof(TcpTcb, hdr.dport)) != hdr.sport) {
@@ -1435,7 +1410,7 @@ retry:
             if (*(u16 *)(ent + offsetof(TcpTcb, hdr.sport)) != hdr.dport) {
                 continue;
             }
-            if (compare_sockaddr__6TLobbyFPUc(ent + offsetof(TcpTcb, remote), a)) {
+            if (NetCompareAddresses((NetworkAddress *)(ent + offsetof(TcpTcb, remote)), (NetworkAddress *)(a))) {
                 if (!is_addr_unspecified__6TLobbyFPv(ent + offsetof(TcpTcb, remote))) {
                     continue;
                 }
@@ -1478,7 +1453,7 @@ retry:
         if (!(kind & 2)) {
             goto drop;
         }
-        if ((s16)is_multicast_address__6TLobbyFs(b, 0) == 1) {
+        if ((s16)NetIsMulticastAddress((NetworkAddress *)b, 0) == 1) {
             goto drop;
         }
         ent_new = (u8 *)TLobby__sub_8041B774((Tcb_8041B774 *)found, (u16 *)ti, a, b);
@@ -2018,7 +1993,7 @@ dropwithreset:
     if (kind & 4) {
         goto drop;
     }
-    if ((s16)is_multicast_address__6TLobbyFs(b, 0) == 1) {
+    if ((s16)NetIsMulticastAddress((NetworkAddress *)b, 0) == 1) {
         goto drop;
     }
     if (kind & 0x10) {
@@ -2046,7 +2021,6 @@ drop:
 
 #pragma push
 #pragma opt_common_subs on
-#pragma opt_propagation on
 s32 TLobby__sub_8041D0C8(u8 *self, u8 *data, s16 total, u8 *p6) {
   s32 n;
   s16 done = 0;
@@ -2435,7 +2409,6 @@ s16 TLobby::tcp_get_socket_handle(s16 i) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s32 TLobby__sub_8041DBD4(s16 arg0, s32 arg1, s32 len, s32 arg3) {
@@ -2593,7 +2566,6 @@ s32 TLobby__sub_8041DE1C(s16 i, s16 opt, u32 *val) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s32 TLobby::get_tcp_stat(s16 arg0, s16 *arg1, s16 *arg2, s32 *arg3, s32 *arg4) {
@@ -2672,7 +2644,6 @@ s32 TLobby::mark_connection_closed(s16 arg0) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s32 TLobby::abort_tcp_connection(s16 arg0) {
@@ -2717,7 +2688,6 @@ void TLobby__sub_8041E2EC(s16 idx, u8 *a, u8 *b) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s16 TLobby::tcp_connect_start(s16 arg0, s32 arg1, s16 arg2) {
@@ -2850,7 +2820,7 @@ s16 TLobby__sub_8041E5E4(s16 h, u8 *addr, u16 port) {
                 continue;
             }
             if (is_addr_unspecified__6TLobbyFPv(addr) != 0 || is_addr_unspecified__6TLobbyFPv(e->laddr) != 0 ||
-                ((TLobby *)e->laddr)->compare_sockaddr(addr) == 0) {
+                NetCompareAddresses((NetworkAddress *)(e->laddr), (NetworkAddress *)(addr)) == 0) {
                 if (e->f6 == 10 && (e->flags & 0x80)) {
                     TLobby__sub_8041B5C0(e);
                 } else {
@@ -3027,8 +2997,8 @@ s32 TLobby__sub_8041EC14(u8 *arg0) {
         if (TLobby__sub_80415954((NetBufferRef *) (&spC[0]), (int) (*(s32 *)((s8 *)arg0 + 0x534)), 1) < 0) {
             return -0x102;
         }
-        ((TLobby *)(arg0 + 0xD0))->init_msg(spC[0]);
-        ((TLobby *)(arg0 + 0xC8))->set_value_and_enable(spC[0]);
+        NetBufferRefInitKind4((NetBufferRef *)(arg0 + 0xD0), spC[0]);
+        NetBufferRefInitKind1((NetBufferRef *)(arg0 + 0xC8), spC[0]);
         goto block_4;
     }
 block_4:
@@ -3050,8 +3020,8 @@ s32 TLobby__sub_8041ECA4(u8 *arg0) {
     {
       return -0x102;
     }
-    ((TLobby *)(((u8 *) arg0) + 0x18))->init_msg((s32)((int) spC));
-    ((TLobby *)(((u8 *) arg0) + 0x10))->set_value_and_enable((s32)((int) spC));
+    NetBufferRefInitKind4((NetBufferRef *)(((u8 *) arg0) + 0x18), (s32)((int) spC));
+    NetBufferRefInitKind1((NetBufferRef *)(((u8 *) arg0) + 0x10), (s32)((int) spC));
     goto block_4;
   }
   block_4:

@@ -1,3 +1,4 @@
+#include "pso/network/NetworkRecordConfig.h"
 #include "pso/protocol/PacketBuffer.h"
 #include "types.h"
 #include "pso/network/BufferPool.h"
@@ -198,6 +199,30 @@ struct RecoveredGlobal_803F8930_lbl_805B4F84 {
     s32 value;
     u8 remaining[0x34C];
 };
+
+struct NetConfig_803F8930 {
+    s16 field_0;
+    u8 padding_2[2];
+    s32 *field_4;
+    u8 padding_8[2];
+    u8 field_A;
+    u8 field_B;
+};
+typedef char NetConfig_803F8930_size[sizeof(NetConfig_803F8930) == 0xC ? 1 : -1];
+
+struct PlayerConfig_803F87C8 {
+    s16 player_count;
+    u8 padding_2[6];
+    s32 transport_buffer;
+};
+typedef char PlayerConfig_803F87C8_size[sizeof(PlayerConfig_803F87C8) == 0xC ? 1 : -1];
+
+struct NetConfig_803F8A0C {
+    s16 count;
+    u8 padding_2[2];
+    s32 *table;
+};
+typedef char NetConfig_803F8A0C_size[sizeof(NetConfig_803F8A0C) == 8 ? 1 : -1];
 
 struct RecoveredGlobal_803F8B7C_lbl_805BD66C {
     s32 value;
@@ -443,7 +468,7 @@ void TLobby__sub_803FD85C(void *);
 s32 TLobby__sub_804062A0(s16);
 extern s32 lobby_timer_list_head;
 void TLobby__sub_803F8A08(void *);
-s32 TLobby__sub_8040799C(s16, void *, void *);
+s32 arp_resolve_and_send(s16, void *, void *);
 void TLobby__sub_803F8A9C(void *);
 extern s16 lobby_handler_table_desc;
 s32 NetMemcmp(void * _w0, void * _w1, int _w2);
@@ -526,11 +551,15 @@ extern s32 lbl_805D4800;
 extern s32 net_transport_buffer_ptr_b;
 
 void TLobby::init_params() {
-    u8 *arg0 = (u8 *)this;
+    struct RoomRuntimeParams {
+        u8 padding_0[0xA0];
+        s16 timeout;
+    };
+    RoomRuntimeParams *params = (RoomRuntimeParams *)this;
     *(s16 *)&this->m_flags = (s16) net_param_room_count;
     *(s32 *)&this->m_prev = (s32) lbl_805D4800;
     *(s32 *)&this->m_next = (s32) lbl_805D4800;
-    *(s16 *)((s8 *)arg0 + 0xA0) = 0x64;
+    params->timeout = 0x64;
     *(s32 *)&this->m_name = (s32) net_transport_buffer_ptr_b;
 }
 
@@ -542,16 +571,17 @@ extern s16 net_param_player_count;
 extern s32 net_transport_buffer_ptr_a;
 
 void TLobby__sub_803F87C8(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = (s16) net_param_player_count;
-    *(s32 *)((s8 *)arg0 + 8) = (s32) net_transport_buffer_ptr_a;
+    PlayerConfig_803F87C8 *config = (PlayerConfig_803F87C8 *)arg0;
+    config->player_count = net_param_player_count;
+    config->transport_buffer = net_transport_buffer_ptr_a;
 }
 
 void TLobby__sub_803F87DC(void * _w0) {
 
 }
 
-void TLobby::init_ipv6_interface_config() {
-    Obj_803F87E0 *arg0 = (Obj_803F87E0 *)this;
+void NetInitIpv6InterfaceConfig(Obj_803F87E0 *self) {
+    Obj_803F87E0 *arg0 = (Obj_803F87E0 *)self;
     arg0->x0 = 1;
     arg0->xc = 0;
     arg0->x10 = 0;
@@ -564,8 +594,8 @@ void TLobby__sub_803F8864(void *) {
 
 }
 
-void TLobby::init_udp_socket_config() {
-    Cfg_803F8868 *o = (Cfg_803F8868 *)this;
+void NetInitUdpSocketConfig(Cfg_803F8868 *self) {
+    Cfg_803F8868 *o = (Cfg_803F8868 *)self;
     o->a0 = 0x1A;
     o->a2 = 3;
     o->a4 = 9;
@@ -591,8 +621,8 @@ void TLobby__sub_803F88E0(void *) {
 typedef struct RecoveredFields_803F88E4_arg0 RecoveredFields_803F88E4_arg0;
 typedef struct RecoveredGlobal_803F88E4_lbl_805AEEB0 RecoveredGlobal_803F88E4_lbl_805AEEB0;
 typedef char RecoveredGlobal_803F88E4_lbl_805AEEB0_size[((sizeof(RecoveredGlobal_803F88E4_lbl_805AEEB0)) == 0x49C8) ? (1) : (-1)];
-void TLobby::init_buffer_descriptor_b() {
-    RecoveredFields_803F88E4_arg0 *arg0 = (RecoveredFields_803F88E4_arg0 *)this;
+void NetInitBufferDescriptorB(RecoveredFields_803F88E4_arg0 *self) {
+    RecoveredFields_803F88E4_arg0 *arg0 = (RecoveredFields_803F88E4_arg0 *)self;
   u8 *new_var;
   arg0->field_0 = 2;
   new_var = (u8 *) (&(*(RecoveredGlobal_803F88E4_lbl_805AEEB0 *)&lobby_net_config_block).value);
@@ -613,10 +643,11 @@ void TLobby__sub_803F892C(void * _w0) {
 #pragma opt_common_subs on
 typedef char RecoveredGlobal_803F8930_lbl_805B4F84_size[sizeof(RecoveredGlobal_803F8930_lbl_805B4F84) == 0x350 ? 1 : -1];
 void TLobby__sub_803F8930(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = 1;
-    *(s8 *)((s8 *)arg0 + 0xA) = 0;
-    *(s8 *)((s8 *)arg0 + 0xB) = 0x78;
-    *(s32 **)((s8 *)arg0 + 4) = &lbl_805B4F84.value;
+    NetConfig_803F8930 *config = (NetConfig_803F8930 *)arg0;
+    config->field_0 = 1;
+    config->field_A = 0;
+    config->field_B = 0x78;
+    config->field_4 = &lbl_805B4F84.value;
 }
 #pragma pop
 
@@ -625,8 +656,8 @@ void TLobby__sub_803F8958(void * _w0) {
 }
 
 typedef char RecoveredGlobal_803F895C_lbl_805AEEB0_size[sizeof(RecoveredGlobal_803F895C_lbl_805AEEB0) == 0x49C8 ? 1 : -1];
-void TLobby::init_buffer_descriptor_a() {
-    u8 *arg0 = (u8 *)this;
+void NetInitBufferDescriptorA(NetConfig_803F895C *self) {
+    u8 *arg0 = (u8 *)self;
     struct Fields_arg0 { s16 field_0; s16 field_2; s16 field_4; s16 field_6; u8 * field_8; u8 * field_C; u8 * field_10; };
     ((Fields_arg0*)arg0)->field_0 = 0x1A;
     ((Fields_arg0*)arg0)->field_2 = 3;
@@ -671,8 +702,9 @@ void TLobby__sub_803F8A08(void * _w0) {
 
 typedef char RecoveredGlobal_803F8A0C_lbl_805B9534_size[sizeof(RecoveredGlobal_803F8A0C_lbl_805B9534) == 0x108C ? 1 : -1];
 void TLobby__sub_803F8A0C(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = 5;
-    *(s32 **)((s8 *)arg0 + 4) = &lbl_805B9534.value;
+    NetConfig_803F8A0C *config = (NetConfig_803F8A0C *)arg0;
+    config->count = 5;
+    config->table = &lbl_805B9534.value;
 }
 
 void TLobby__sub_803F8A24(void *) {
@@ -680,8 +712,8 @@ void TLobby__sub_803F8A24(void *) {
 }
 
 typedef char RecoveredGlobal_803F8A28_lbl_805AEEB0_size[sizeof(RecoveredGlobal_803F8A28_lbl_805AEEB0) == 0x49C8 ? 1 : -1];
-void TLobby::init_net_buffer_config() {
-    u8 *arg0 = (u8 *)this;
+void NetInitNetworkBufferConfig(NetConfig_803F8A28 *self) {
+    u8 *arg0 = (u8 *)self;
     struct Fields_arg0 { s16 field_0; s16 field_2; s16 field_4; s16 field_6; s16 field_8; s16 field_A; s16 field_C; u8 pad_E[2]; u8 * field_10; u8 * field_14; u8 * field_18; u8 * field_1C; u8 * field_20; u8 * field_24; };
     ((Fields_arg0*)arg0)->field_0 = 8;
     ((Fields_arg0*)arg0)->field_2 = 3;
@@ -704,16 +736,17 @@ void TLobby__sub_803F8A9C(void * _w0) {
 
 typedef char RecoveredGlobal_803F8AA0_lbl_805BA5C0_size[sizeof(RecoveredGlobal_803F8AA0_lbl_805BA5C0) == 0x30AC ? 1 : -1];
 void TLobby__sub_803F8AA0(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = 3;
-    *(s32 **)((s8 *)arg0 + 4) = &lbl_805BA5C0.value;
+    NetConfig_803F8A0C *config = (NetConfig_803F8A0C *)arg0;
+    config->count = 3;
+    config->table = &lbl_805BA5C0.value;
 }
 
 void TLobby__sub_803F8AB8(void) {
     TLobby::reset_message_thread();
 }
 
-void TLobby::init_net_func_table() {
-    Desc_803F8AD8 *arg0 = (Desc_803F8AD8 *)this;
+void NetInitFunctionTable(Desc_803F8AD8 *self) {
+    Desc_803F8AD8 *arg0 = (Desc_803F8AD8 *)self;
     Big_803F8AD8 *g = (Big_803F8AD8 *)&lobby_net_config_block;
     g->funcs[0] = (void *)TLobby__sub_80426B88;
     g->funcs[1] = (void *)TLobby::open_channel_checked;
@@ -737,12 +770,21 @@ void TLobby__sub_803F8B78(void) {
 }
 
 typedef char RecoveredGlobal_803F8B7C_lbl_805BD66C_size[sizeof(RecoveredGlobal_803F8B7C_lbl_805BD66C) == 0xA04 ? 1 : -1];
-void TLobby::init_net_recv_desc() {
-    u8 *arg0 = (u8 *)this;
-    *(s16 *)((s8 *)arg0 + 0xA) = 0x500;
-    *(s16 *)&this->m_next = 2;
-    *(s32 * *)&this->m_up = &lbl_805D7A58;
-    *(s32 * *)&this->m_down = &lobby_net_recv_desc.value;
+struct NetConfig_803F8B7C {
+    u8 padding_0[0xA];
+    s16 capacity;
+    s16 count;
+    u8 padding_E[2];
+    s32 *timer_table;
+    s32 *receive_descriptor;
+};
+typedef char NetConfig_803F8B7C_size[sizeof(NetConfig_803F8B7C) == 0x18 ? 1 : -1];
+
+void NetInitReceiveDescriptor(NetConfig_803F8B7C *self) {
+    self->capacity = 0x500;
+    self->count = 2;
+    self->timer_table = &lbl_805D7A58;
+    self->receive_descriptor = &lobby_net_recv_desc.value;
 }
 
 u8 *TLobby::layout_buffers(u8 *p, u8 *end) {
@@ -926,9 +968,6 @@ typedef char RecoveredGlobal_80401A68_lbl_805C04A8_size[sizeof(RecoveredGlobal_8
 
 typedef char RecoveredGlobal_80401A90_lbl_805C04A8_size[sizeof(RecoveredGlobal_80401A90_lbl_805C04A8) == 0x30 ? 1 : -1];
 
-#pragma opt_propagation off
-#pragma opt_propagation reset
-
 typedef char RecoveredGlobal_80402B60_lbl_805C0620_size[sizeof(RecoveredGlobal_80402B60_lbl_805C0620) == 0x18 ? 1 : -1];
 
 #define S11_80401FE8 7
@@ -1102,7 +1141,7 @@ struct Peer_8040799C { s16 st; s16 f2; u8 pad4; u8 f5; u8 pad6[2]; Conn_8040799C
 struct Ent_8040799C { s16 f0; s16 f2; s16 f4; s16 f6; u8 pad8[6]; u8 fE; u8 fF; u8 pad10[2]; u8 a12[6]; u8 a18[8]; };
 struct Tbl_8040799C { s16 count; s16 h2; s16 h4; s16 h6; s16 h8; s16 hA; s16 hC; u8 padE[2]; Peer_8040799C *list; Ent_8040799C *ents; };
 struct Ent_80408428;
-struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, void *, u8, void *, s16);
+struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16, s16, u8, void *, u8, void *, s16);
 
 #define TBL ((Tbl_8040799C *)&lbl_805C1AB0)
 
@@ -1110,7 +1149,7 @@ struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, v
 #pragma dont_inline off
 #pragma inline_depth(4)
 
-s32 TLobby__sub_8040799C(s16 arg0, void *arg1, void *arg2);
+s32 arp_resolve_and_send(s16 arg0, void *arg1, void *arg2);
 #pragma pop
 #undef TBL
 
@@ -1180,7 +1219,7 @@ struct Ent_804086B4;
 #pragma inline_depth(4)
 #pragma dont_inline off
 
-Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16 arg0, s32 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
+Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
 #pragma pop
 struct Ent_804086B4 { s16 f0; s16 f2; u8 pad[0x14]; };
@@ -1336,14 +1375,6 @@ typedef struct Mgr_8040AF48 {
     Conn_8040AF48 *conns;
 } Mgr_8040AF48;
 
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
 #pragma dont_inline off
 #pragma inline_depth(4)
 
@@ -1498,22 +1529,6 @@ typedef char RecoveredGlobal_80419A34_lbl_805C1C50_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_80419A7C_lbl_805C1C50_size[sizeof(RecoveredGlobal_80419A7C_lbl_805C1C50) == 0xF8 ? 1 : -1];
 #pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
 typedef char RecoveredGlobal_8041E178_lbl_805C1D48_size[sizeof(RecoveredGlobal_8041E178_lbl_805C1D48) == 0xA8 ? 1 : -1];
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
 
 }

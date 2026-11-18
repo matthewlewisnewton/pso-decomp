@@ -568,9 +568,7 @@ void set_clamped_field27c__6TLobbyFPvf(void *arg0, f32 farg0) {
     }
     *(f32 *)((s8 *)arg0 + 0x27C) = var_f1;
 }
-#pragma opt_common_subs off
 #pragma opt_propagation off
-#pragma opt_dead_assignments off
 s32 TLobby__sub_8023F880(s32 arg0) {
   u8 *new_var;
   s8 *new_var2;
@@ -592,10 +590,6 @@ void set_sound_slot_pitch(s32 slot, s32 pitch, s32 duration) {
     }
     set_voice_pitch_slide((u8 *)&lbl_805162EC[slot], (s32)((u32)pitch << 13) / 3072, duration);
 }
-#pragma push
-#pragma opt_common_subs on
-#pragma opt_propagation on
-#pragma opt_dead_assignments on
 s32 alloc_looping_sound_slot(u32 id, s32 actor, const void *position, s32 base, s32 flags) {
     s32 i;
     for (i = 0; i < 32; i++) {
@@ -653,12 +647,9 @@ found:
     lbl_805162EC[i].actor = 0;
     return i;
 }
-#pragma pop
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma opt_dead_assignments off
 s32 resolve_sound_effect_bank(Owner_8023FBBC *owner, s32 kind, s32 bank, s32 index) {
     u8 *t = (u8 *)&sound_bank_file_sizes;
     s32 result = -1;
@@ -1100,9 +1091,6 @@ s32 pop_sound_groups__6TLobbyFPvi(void *p, s32 arg1) {
 }
 #undef M
 
-#pragma push
-
-#pragma fp_contract on
 s32 sndVolume(s32, s32, s32);
 
 s32 validate_and_set_selection__6TLobbyFPvi(void *arg0, s32 arg1) {
@@ -1124,9 +1112,6 @@ s32 validate_and_set_selection__6TLobbyFPvi(void *arg0, s32 arg1) {
     *(s32 *)((s8 *)arg0 + 0x29C) = arg1;
     return 0;
 }
-
-#pragma pop
-
 
 void *TLobby__sub_80240808(void *arg0, s16 arg1) {
     if (arg0 != NULL) {

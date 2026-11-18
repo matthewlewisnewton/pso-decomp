@@ -9,7 +9,6 @@ public:
     s32 sub_802C1E34();
     s32 sub_802C1BFC();
     virtual void vfunc_13(s32);
-    void *deleting_dtor_pathobj(s16);
     virtual void vfunc_14();
     u8 unk_98[0x4];
     s32 m_9c;

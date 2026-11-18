@@ -1,3 +1,5 @@
+#include "pso/network/BufferRef.h"
+#include "pso/network/IPv6Send.h"
 #include "pso/network/DhcpClient.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
@@ -139,7 +141,7 @@ struct T_8042276C
 extern "C" {
 s32 TLobby__sub_80409AA8(void);
 s32 TLobby__sub_8040DD68(void);
-s32 TLobby__sub_8040ED28(void);
+s32 shutdown_ipv4_routing(void);
 s32 NetIPv6Shutdown(void);
 s32 TLobby__sub_8041112C(void);
 void NetIPv6ShutdownNeighborDiscovery(void);
@@ -180,7 +182,7 @@ void OSReport(const char *, ...);
 s16 reset_socket_table__6TLobbyFv();
 s16 TLobby__sub_80409AD8();
 s16 init_ipv4_interfaces__6TLobbyFv();
-s16 TLobby__sub_8040ED70();
+s16 init_ipv4_routing();
 s16 NetIPv6Init();
 s16 TUdpSocket__sub_8041118C();
 s16 TLobby__sub_80415690();
@@ -205,15 +207,15 @@ s32 tcp_connect_start__6TLobbyFsls(int, void *, u16);
 s32 tcp_connect__FsP10at_ip_addrUsP12at_ip_option(s32 a, IpAddr_80422B8C *addr, u16 port, IpAddr_80422B8C *opt);
 s32 TLobby__sub_8041E5E4(int, void *, u16);
 s32 tcp_bind__FsP10at_ip_addrUs(s32 a, void *addr, u16 port);
-s16 TLobby__sub_8040F00C(s16, void *, int, void *);
+s16 copy_ipv4_interface_addresses(s16, void *, int, void *);
 s16 TLobby__sub_80412058(s16, void *, int, void *);
 s16 TLobby__sub_80422F70(s16 arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 OSDisableInterrupts();
 s32 OSRestoreInterrupts(int);
-s16 TLobby__sub_8040F1A0(s16);
+s16 bring_down_ipv4_interface(s16);
 s16 TLobby__sub_80412210(s16);
 s16 TLobby__sub_80423064(s16 arg0, s32 arg1);
-s16 TLobby__sub_8040F454(s32, s32, s32, s16);
+s16 bring_up_ipv4_interface(s32, s32, s32, s16);
 s16 TLobby__sub_80412CA4(void *, s16, s16, s16, s32);
 s16 TLobby__sub_8042315C(s16 arg0, P_8042315C *p);
 DhcpClientBuffers lbl_805C1E00;
@@ -231,7 +233,7 @@ s32 TLobby::cleanup_subsystems() {
     TLobby__sub_80409AA8();
     NetIPv6ShutdownNeighborDiscovery();
     TLobby__sub_8041112C();
-    TLobby__sub_8040ED28();
+    shutdown_ipv4_routing();
     NetIPv6Shutdown();
     TLobby__sub_8040DD68();
     TLobby__sub_80418A7C();
@@ -271,7 +273,7 @@ s16 TLobby::init_network_stack() {
                             if (var_r31 >= 0) {
                                 var_r31 = NetIPv6Init();
                                 if (var_r31 >= 0) {
-                                    var_r31 = TLobby__sub_8040ED70();
+                                    var_r31 = init_ipv4_routing();
                                     if (var_r31 >= 0) {
                                         var_r31 = TUdpSocket__sub_8041118C();
                                         if (var_r31 >= 0) {
@@ -295,7 +297,7 @@ block_20:
                                             goto block_21;
                                         }
 block_21:
-                                        TLobby__sub_8040ED28();
+                                        shutdown_ipv4_routing();
                                         goto block_22;
                                     }
 block_22:
@@ -370,8 +372,6 @@ s32 TLobby__sub_804218AC(s32 arg0, s32 arg1) {
     return temp_r31;
 }
 
-#pragma push
-#pragma opt_common_subs off
 typedef char RecoveredGlobal_804219D0_lbl_805C1C50_size[sizeof(RecoveredGlobal_804219D0_lbl_805C1C50) == 0xF8 ? 1 : -1];
 
 s32 TLobby__sub_80421938(O_80421938 *o, void *src, void *dst, void *cb, s32 flags) {
@@ -394,7 +394,6 @@ s32 TLobby__sub_804219D0(s32 arg0, s32 arg1, s32 arg2) {
     TUdpSocket::unlock_mutex((int)((void *) ((*(RecoveredGlobal_804219D0_lbl_805C1C50 *)&network_dispatch_state).value)));
     return temp_r31;
 }
-#pragma pop
 
 typedef char RecoveredGlobal_80421A50_lbl_805C1C50_size[sizeof(RecoveredGlobal_80421A50_lbl_805C1C50) == 0xF8 ? 1 : -1];
 s32 TLobby__sub_80421A50(s32 arg0, s32 arg1, s32 arg2) {
@@ -481,27 +480,27 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     pkt->len = 0;
     for (i = n; i != 0; i--) {
         if (bufs[i - 1].len < 0) {
-            ((TUdpSocket *)pkt)->release_entry();
+            NetReleasePacket((NetPacket *)pkt);
             TUdpSocket::unlock_mutex(network_dispatch_state.value);
             return -2;
         }
         pkt->len += bufs[i - 1].len;
         pkt->items[pkt->count].len = bufs[i - 1].len;
-        ((TLobby *)pkt->items[pkt->count].data)->init_packet_header(bufs[i - 1].data);
+        NetBufferRefInitKind3((NetBufferRef *)pkt->items[pkt->count].data, bufs[i - 1].data);
         pkt->count++;
     }
     if (pkt->len > 0x7FE3) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return -2;
     }
     if (pkt->len == 0) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return 0;
     }
     r = udp_sendto__6TLobbyFsPvPvPvUsi(h, pkt, src, dst, port, (s32)opt);
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket((NetPacket *)pkt);
     TUdpSocket::unlock_mutex(network_dispatch_state.value);
     return r;
 }
@@ -583,7 +582,7 @@ void TLobby__sub_80421FB8(void *cb, void *hdr_, void *o_) {
             return;
         }
         buf = hdr->buffer;
-        ((TLobby *)pkt)->init_packet_header((s32)buf);
+        NetBufferRefInitKind3((NetBufferRef *)pkt, (s32)buf);
         for (i = 1; len > 0; i++) {
             if (len > o->seg[i].len) {
                 chunk = o->seg[i].len;
@@ -638,7 +637,7 @@ s16 tcp_receive__FsPFss_vsPUc(s32 a, void *cb, s32 len, void *buf) {
         TUdpSocket::unlock_mutex((int)((void *)g->f0));
         return -9;
     }
-    ((TLobby *)hdr)->init_packet_header((s32)buf);
+    NetBufferRefInitKind3((NetBufferRef *)hdr, (s32)buf);
     NetMemset(&s->f2A4, 0, 8);
     s->f2A4 |= 1;
     if (s->fB & 0x40) {
@@ -767,16 +766,16 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     for (; i != 0; j++) {
         i--;
         if (sb[i].len < 0) {
-            ((TUdpSocket *)pkt)->release_entry();
+            NetReleasePacket((NetPacket *)pkt);
             TUdpSocket::unlock_mutex(network_dispatch_state.value);
             return -2;
         }
-        ((TLobby *)pkt->items[j].data)->init_packet_header((s32)sb[i].buff);
+        NetBufferRefInitKind3((NetBufferRef *)pkt->items[j].data, (s32)sb[i].buff);
         pkt->items[j].len = sb[i].len;
         pkt->len += pkt->items[j].len;
     }
     if (pkt->len == 0) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return -2;
     }
@@ -789,7 +788,7 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     } else {
         r = tcp_start_send(nh, pkt, notify, 0);
     }
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket((NetPacket *)pkt);
     if (r < 0) {
         s->f2B4 &= ~1;
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
@@ -1080,8 +1079,8 @@ s16 TLobby__sub_80422F70(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     var_r29 = 0;
     TLobby::lock_mutex(network_dispatch_state.value);
-    ((TLobby *)(&sp18))->init_packet_header(arg1);
-    temp_r3_2 = TLobby__sub_8040F00C(arg0, &sp18, (int)arg2, (void *)arg3);
+    NetBufferRefInitKind3((NetBufferRef *)&sp18, arg1);
+    temp_r3_2 = copy_ipv4_interface_addresses(arg0, &sp18, (int)arg2, (void *)arg3);
     if (temp_r3_2 > 0) {
         var_r29 = temp_r3_2;
         arg2 -= temp_r3_2 * 0x1C;
@@ -1113,7 +1112,7 @@ s16 TLobby__sub_80423064(s16 idx, s32 arg1) {
     switch (arg1) {
     case 0:
         var_r31 = 0;
-        temp_r3 = TLobby__sub_8040F1A0(idx);
+        temp_r3 = bring_down_ipv4_interface(idx);
         if (temp_r3 < 0) {
             var_r31 = temp_r3;
         }
@@ -1123,7 +1122,7 @@ s16 TLobby__sub_80423064(s16 idx, s32 arg1) {
         }
         break;
     case 4:
-        var_r31 = TLobby__sub_8040F1A0(idx);
+        var_r31 = bring_down_ipv4_interface(idx);
         break;
     case 6:
         var_r31 = TLobby__sub_80412210(idx);
@@ -1147,7 +1146,7 @@ s16 TLobby__sub_8042315C(s16 arg0, P_8042315C *p) {
     intr = OSDisableInterrupts();
     switch (p->type) {
     case 4:
-        r = TLobby__sub_8040F454(p->a, p->b, p->c, arg0);
+        r = bring_up_ipv4_interface(p->a, p->b, p->c, arg0);
         break;
     case 6:
         if (p->n < 0 || p->n > 0x80) {

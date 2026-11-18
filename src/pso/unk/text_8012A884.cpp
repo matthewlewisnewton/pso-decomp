@@ -89,7 +89,7 @@ void *s_rank_weapon_vtable[63] = {
     (void *)&on_equip__11TItemWeaponFv, (void *)&on_unequip__11TItemWeaponFv, (void *)&request_equipped_model__11TItemWeaponFv, (void *)&release_model__11TItemWeaponFv,
     (void *)&apply_owner_bonuses__11TItemWeaponFv, (void *)&remove_owner_bonuses__11TItemWeaponFv, (void *)&on_model_loaded__11TItemWeaponFv, (void *)&launch_shot__11TItemWeaponFPUclll,
     (void *)&emit_marker_effects__13TUnk_804A4948Fv, (void *)&update_attack__11TItemWeaponFv, (void *)&update_idle__11TItemWeaponFv, (void *)&reserved_53__11TItemWeaponFv,
-    (void *)&update_weapon__11TItemWeaponFv, (void *)&start_srank_regen_timer__10TObjPlayerFv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&vfunc_59__11TItemWeaponFv,
+    (void *)&update_weapon__11TItemWeaponFv, (void *)&start_srank_regen_timer__10TObjPlayerFv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4,
     (void *)&vfunc_60__11TItemWeaponFv, (void *)&receive_srank_hit, (void *)&srank_marker_noop,
 };
 #define s_rank_weapon_vtable ((u8 *)s_rank_weapon_vtable)

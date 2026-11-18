@@ -15,7 +15,7 @@ extern u8 lbl_8058DC48[0x50];
 extern u8 lbl_8058DC98[0x50];
 extern u8 lbl_8058DCE8[0x50];
 extern u8 lbl_8058DD38[0x50];
-s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *, s32, u16 *, s32 *);
+s32 convert_romaji_to_kana(const u16 *, s32, u16 *, s32 *);
 }
 struct QuestDownloadScratchWords { s16 values[0x202]; };
 struct QuestDownloadScratchIds { s32 values[0x101]; };

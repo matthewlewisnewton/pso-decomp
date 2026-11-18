@@ -169,8 +169,6 @@ void euler_zyx_to_quaternion(u8 *arg0, u8 *arg1);
 void euler_yxz_to_quaternion(u8 *arg0, u8 *arg1);
 extern const f32 lbl_805E0E88;
 
-#pragma use_lmw_stmw off
-
 void set_perspective_projection_from_fov(s32 arg0, f32 farg0, f32 farg1, f32 farg2) {
     s32 h;
     f32 c;

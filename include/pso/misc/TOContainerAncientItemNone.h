@@ -12,8 +12,4 @@ struct TOContainerAncientItemNone : public TOContainerAncientItemRare {
 
 typedef char TOContainerAncientItemNone_size[sizeof(TOContainerAncientItemNone) == 0x368 ? 1 : -1];
 
-extern "C" {
-void *__dt__26TOContainerAncientItemNoneFv(void *arg0, s16 arg1);
-}
-
 #endif

@@ -4,7 +4,6 @@
 #include "pso/object/TObjMapWarp.h"
 struct ForestWarpMotion { u32 data,frameCount; };
 struct TObjMapWarpForest : public TObjMapWarp {
-    virtual ~TObjMapWarpForest();
     f32 frame;
     void* baseModel;
     void* beamModel;
@@ -12,6 +11,8 @@ struct TObjMapWarpForest : public TObjMapWarp {
     void* textures;
     virtual void run_task();
     virtual void render();
+    // run_task is the first virtual definition in the unit that owns the table.
+    virtual ~TObjMapWarpForest();
 };
 typedef char ForestWarpSize[sizeof(TObjMapWarpForest)==0x110?1:-1];
 #endif

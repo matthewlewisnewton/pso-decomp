@@ -374,7 +374,7 @@ void TLobby__sub_803FD85C(void *);
 s32 TLobby__sub_804062A0(s16);
 extern s32 lobby_timer_list_head;
 void TLobby__sub_803F8A08(void *);
-s32 TLobby__sub_8040799C(s16, void *, void *);
+s32 arp_resolve_and_send(s16, void *, void *);
 void TLobby__sub_803F8A9C(void *);
 extern s16 lobby_handler_table_desc;
 s32 NetMemcmp(void * _w0, void * _w1, int _w2);
@@ -940,7 +940,7 @@ struct Peer_8040799C { s16 st; s16 f2; u8 pad4; u8 f5; u8 pad6[2]; Conn_8040799C
 struct Ent_8040799C { s16 f0; s16 f2; s16 f4; s16 f6; u8 pad8[6]; u8 fE; u8 fF; u8 pad10[2]; u8 a12[6]; u8 a18[8]; };
 struct Tbl_8040799C { s16 count; s16 h2; s16 h4; s16 h6; s16 h8; s16 hA; s16 hC; u8 padE[2]; Peer_8040799C *list; Ent_8040799C *ents; };
 struct Ent_80408428;
-struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, void *, u8, void *, s16);
+struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16, s16, u8, void *, u8, void *, s16);
 
 #define TBL ((Tbl_8040799C *)&lbl_805C1AB0)
 
@@ -948,7 +948,7 @@ struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, v
 #pragma dont_inline off
 #pragma inline_depth(4)
 
-s32 TLobby__sub_8040799C(s16 arg0, void *arg1, void *arg2);
+s32 arp_resolve_and_send(s16 arg0, void *arg1, void *arg2);
 #pragma pop
 #undef TBL
 
@@ -1018,7 +1018,7 @@ struct Ent_804086B4;
 #pragma inline_depth(4)
 #pragma dont_inline off
 
-Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16 arg0, s32 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
+Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
 #pragma pop
 struct Ent_804086B4 { s16 f0; s16 f2; u8 pad[0x14]; };

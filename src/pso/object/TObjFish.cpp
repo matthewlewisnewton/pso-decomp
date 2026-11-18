@@ -117,8 +117,6 @@ extern TCameraCtrl *camera_ctrl_instance;
 
 #pragma push
 #pragma fp_contract on
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline void wrap_8029D5C8(s16 *p) {
     if (*p > 0) {
         *p -= 0x4000;

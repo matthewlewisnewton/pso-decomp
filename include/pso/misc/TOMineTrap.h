@@ -15,6 +15,9 @@ s32 fn_80171314(TObjPlayer *player);
 struct TOMineTrap : public TOMine {
     TOMineTrap(TObjPlayer *owner, s16 trap_index, s16 trap_id);
     virtual ~TOMineTrap();
+    virtual s32 select_melee_contact_body(void *, f32);
+    virtual int calc_distance_accuracy_penalty(void *, void *, void *, f32);
+    virtual f32 receive_physical_attack(void *, f32);
     virtual void spawn_disp_objects();
     virtual void vfunc_86();
     virtual void vfunc_82();
@@ -38,11 +41,6 @@ struct TOMineTrap : public TOMine {
     void set_triggered();
     static void destroy_matching_traps();
     void*get_mine_data_ptr();
-    s32 check_trigger(u32 arg1);
-    s32 can_trigger(u32 arg1);
-    void spawn_effect();
-    void attach_to_keymachine();
-    void detonate_if_triggered();
     void sync_position();
     void send_state_packet(u16 idx);
     int update_trap_sub();

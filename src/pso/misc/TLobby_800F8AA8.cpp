@@ -976,9 +976,6 @@ s32 DVDCheckDisk(void);
 
 #define show_msg_800F8FB8(arr, i) draw_menu_text(arr[i].x, arr[i].y, (const char *)arr[i].str, 0x8FFFFFFF)
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::run_disk_error_check() {
     f32 pos[8];
     Desc_800F8FB8 d;
@@ -1095,7 +1092,6 @@ s32 TLobby::run_disk_error_check() {
     }
     return 1;
 }
-#pragma pop
 
 }
 

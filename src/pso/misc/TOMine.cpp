@@ -56,10 +56,8 @@ extern s32 model_render_flags;
 extern const f32 lbl_805DB854;
 extern const f32 lbl_805DB858;
 void obj_setFlags30(void *, u32);
-extern s32 __vt__6TOMine[];
 extern s32 TOMine__name;
 extern const f32 lbl_805DB85C;
-void *__dt__6TOMineFv(void *arg0, s16 arg1);
 s32 submit_cursor_candidate(void *, int);
 int submit_target_to_player_cursor(void*);
 void __dl__7TObjectFPv(void *);
@@ -162,17 +160,9 @@ void TOMine::load_static_resource() {
     (*(s32 *)&lbl_805D5A50) = var_r0;
 }
 
-void *__dt__6TOMineFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__6TOMine;
-        __dt__9TObjCharaFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
 }
-}
+
+TOMine::~TOMine() {}
 
 TOMine::TOMine(TObject *parent) : TObjChara(parent) {
     m_name = (const char *)TOMine__name;

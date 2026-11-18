@@ -427,11 +427,21 @@ GAME_COMPILER = "GC/2.0"
 # Per-unit settings that preserve matching code and data for the current source.
 # A successful profile is not proof of the original compiler or build history.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # The title assets and bilingual prompts reference read-only string pools.
+    "pso/unk/text_803367F4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    # Preserve Shift-JIS trail bytes when compiling the Japanese prompts.
+    "pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp": {
+        "cflags": _switch(cflags_pso, "-str reuse,readonly", "-multibyte"),
+        "shift_jis": True,
+    },
     # GC/1.3.2 preserves these aggregate-copy matches under the GC/2.0 default.
     # TProtocol's other weak helpers are validated through the complete link;
     # see docs/evidence/compiler-default-gc20-adoption.md.
     "pso/network/TProtocol.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjResultWin.cpp": {"mw_version": "GC/1.3.2"},
+    # Keep the challenge window strings read-only and independently addressed,
+    # and the two-float extent in normal data.
+    "pso/misc/TWindowSubComCard_8007341C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-pooldata=off")},
     "pso/misc/TPlyMeetUserExtension_801DAC6C.cpp": {"mw_version": "GC/1.3.2"},
     # Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order.
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
@@ -443,6 +453,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/DarkFalzEffectConstants.cpp": {"cw_align": ".sdata2=4"},
     # The camera constant pool starts at 0x805D8F7C, a four-byte boundary.
     "pso/misc/CameraControllerConstants.cpp": {"cw_align": ".sdata2=4"},
+    # The shadow projection float pool begins at 0x805D9414.
+    "pso/render/ShadowProjectionConstants.cpp": {"cw_align": ".sdata2=4"},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
     "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions reproduce both native rope vtables and function order.
@@ -505,6 +517,23 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
+    # The mine display table immediately follows its trap display counterpart.
+    "pso/misc/TOMineDisp.cpp": {"cw_align": ".data=4"},
+    "pso/misc/TOMine.cpp": {"cw_align": ".data=4"},
+    # The seven wreck virtual tables start immediately after the wall's
+    # 316-byte table. Keep their original four-byte alignment in MWLD.
+    **{
+        f"pso/misc/TOVS2Wreck{index:02d}.cpp": {"cw_align": ".data=4"}
+        for index in range(1, 7)
+    },
+    "pso/misc/TOVS2Wall01_8017C7A4.cpp": {"cw_align": ".data=4"},
+    # The Ancient wreck tables follow an unpadded collision template bank.
+    **{
+        f"pso/misc/TOWreckAncient{suffix}.cpp": {"cw_align": ".data=4"}
+        for suffix in ("Brakable05", "Brakable", "07", "06", "05", "04", "01", "")
+    },
+    # The warp tables begin immediately after the resource data at 0x804B918C.
+    "pso/object/TObjAreaWarpEndingJung.cpp": {"cw_align": ".data=4"},
     # The base collider's vtable follows the derived vtable at 0x804E355C.
     "pso/item/TItemAttackCol_802E4798.cpp": {"cw_align": ".data=4"},
     # The radar-hide vtable and name pointer both start four bytes past an
@@ -558,8 +587,6 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Native private header sections preserve initializer and helper emission order.
     "pso/enemy/TObjEnePanarms.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sdata 4", "-sym on")},
     "pso/enemy/TObjEneDelDepth.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
-    # Deferred emission puts the Moja vtable before the run_task switch table.
-    "pso/enemy/TObjEneMoja.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # TObjChip: render's colour template sits after draw_chips' in .rodata
     # while render comes first in .text, so the source runs backwards.
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
@@ -635,6 +662,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjCamera.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjComputer.cpp": {"mw_version": "GC/1.3.2"},
     "pso/item/TObjContainerJung.cpp": {"mw_version": "GC/1.3.2"},
+    # The const debris overrides require the original GC/1.3 instruction schedule.
+    "pso/misc/TOContainerAncientEnemy.cpp": {"mw_version": "GC/1.3"},
     # The two below also schedule the by-value DirectAttackPayload read of
     # their receive_direct_attack overrides only the way 1.3.2 does.
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},
@@ -1012,7 +1041,11 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/misc/TLobby_803FAEA0.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_803FC178.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_804048E8.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
-        "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
+        # Inline the explicitly marked network helpers, with a four-level limit.
+        # This unit default replaces repeated dont_inline/inline_depth pragmas.
+        "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
+        "pso/misc/TLobby_8040FF0C.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
+        "pso/misc/TLobby_8041112C.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
         # Extracted from TLobby_804050DC; preserve its compiler/CSE settings.
         "pso/network/NetworkDispatcher.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/network/TcpProtocol.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},

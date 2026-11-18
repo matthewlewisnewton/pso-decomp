@@ -4,10 +4,6 @@
 #include "pso/system/date.h"
 #include "dolphin/os/OSTime.h"
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-
 struct CalendarMonthStarts {
     s32 days[12];
 };
@@ -107,8 +103,6 @@ u8 fn_801E2AC8(u16 year, u8 month, u8 day) {
     return (year + (year >> 2) - 15 + (13 * month + 8) / 5 + day) % 7;
 }
 
-#pragma push
-#pragma opt_propagation off
 void DateToSeconds(DateStamp *ds, int *out) {
     CalendarMonthStarts months = date_month_start_days;
     s32 y = ds->year - 0x7D0;
@@ -121,7 +115,6 @@ void DateToSeconds(DateStamp *ds, int *out) {
     d += ds->day - 1;
     *out = ds->second + ((ds->minute + ((ds->hour + d * 0x18) * 0x3C))) * 0x3C;
 }
-#pragma pop
 
 int getDateStamp(DateStamp* out) {
     OSCalendarTime cal;
