@@ -29,7 +29,6 @@ s32 TObjPlayer::test_aabb_overlap(u8 *arg1, u8 *arg2, u8 *arg3) {
 
 
 #pragma push
-#pragma fp_contract off
 
 
 #pragma use_lmw_stmw off

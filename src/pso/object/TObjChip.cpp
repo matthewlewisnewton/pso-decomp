@@ -52,8 +52,6 @@ struct VObj_18 : VBase_18 {
     virtual s32 m11();
 };
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct ByteBlock_C { u8 bytes[0xc]; };
 
 struct VBase_18_6eb662 { char pad[0x18]; };

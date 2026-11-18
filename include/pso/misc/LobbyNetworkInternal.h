@@ -579,12 +579,12 @@ extern s32 lobby_timer_list_head;
 s16 reset_network_timer_list(void);
 void TLobby__sub_803F8A08(void *);
 extern s16 lobby_udp_socket_table;
-s32 TUdpSocket__sub_80407508(void);
+s32 arp_init(void);
 void TLobby__sub_804073B8(void);
-s32 TLobby__sub_80407C60(s16, s32);
-s32 TLobby__sub_80407D98(s16, s32);
-s32 TLobby__sub_8040799C(s16, void *, void *);
-s16 TLobby__sub_80407F20(s16, s16, s16, s16, s16, s32, s16, s32);
+s32 arp_remove_alias(s16, s32);
+s32 arp_add_alias(s16, s32);
+s32 arp_resolve_and_send(s16, void *, void *);
+s16 register_arp_interface(s16, s16, s16, s16, s16, s32, s16, s32);
 s32 TLobby__sub_8040878C(void);
 void TLobby__sub_803F8A9C(void *);
 extern s16 lobby_handler_table_desc;
@@ -619,7 +619,7 @@ u8 * TLobby__sub_8041B5C0(void *);
 extern RecoveredGlobal_8041E178_lbl_805C1D48 tcp_protocol_state;
 s32 TLobby__sub_804112B8(s32 arg0, s32 arg1, s16 arg2);
 s32 TLobby__sub_8041123C(s32 arg0, s32 arg1, s16 arg2);
-s16 TLobby__sub_8040EF00(s16 arg0);
+s16 get_ipv4_interface_mtu(s16 arg0);
 s32 TLobby__sub_8040FE40(s16 arg0);
 void TLobby__sub_803F8930(u8 *arg0);
 void TLobby__sub_80405328(u8 *arg0);
@@ -629,8 +629,8 @@ void TLobby__sub_803F892C(void *);
 extern Ipv4ProtocolState ipv4_protocol_state;
 s32 TLobby__sub_8040DD68(void);
 void TLobby__sub_803F8958(void *);
-s32 TLobby__sub_8040ED28(void);
-s32 TLobby__sub_8040ED70(void);
+s32 shutdown_ipv4_routing(void);
+s32 init_ipv4_routing(void);
 void TLobby__sub_803F87DC(void *);
 extern RecoveredGlobal_8040FF0C_lbl_805C1B78 ipv6_protocol_state;
 s32 NetIPv6Shutdown(void);
@@ -1119,7 +1119,7 @@ struct O_80406B6C { u32 w0; u8 b4; };
 
 struct Tbl_80407310 { s16 count; NetPacket *list; };
 
-void TLobby__sub_804078B4(void);
+void age_arp_cache(void);
 
 typedef struct Ent_80407418 {
     s16 active;
@@ -1145,7 +1145,7 @@ struct Peer_8040799C { s16 st; s16 f2; u8 pad4; u8 f5; u8 pad6[2]; Conn_8040799C
 struct Ent_8040799C { s16 f0; s16 f2; s16 f4; s16 f6; s16 index; u16 hardware_type; u16 protocol_type; u8 fE; u8 fF; s16 status; u8 a12[6]; u8 a18[4]; Node_80407C60 *head; };
 struct Tbl_8040799C { s16 count; s16 h2; s16 h4; s16 h6; s16 h8; s16 hA; s16 hC; u8 padE[2]; Peer_8040799C *list; Ent_8040799C *ents; Node_80407C60 *nodes; Conn_8040799C *bufs; u8 *pool; };
 struct Out_8040799C { Conn_8040799C *a; void *b; void *c; void *d; void *e; };
-void TLobby__sub_80408060(Peer_8040799C *peer, NetPacket *pkt);
+void arp_hold_packet(Peer_8040799C *peer, NetPacket *pkt);
 struct Ent_80408428;
 struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16, s16, u8, void *, u8, void *, s16);
 
@@ -1153,7 +1153,7 @@ struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16, s16, u8, v
 
 typedef void (*Handler_8041A130)(s32, s16, s16, s16);
 s32 register_protocol_handler__6TLobbyFUsi(u16 type, Handler_8041A130 fn);
-s32 TLobby__sub_80407640(void *, s16, s16, s16);
+s32 arp_handle_packet(void *, s16, s16, s16);
 
 inline void clear_peer_conn_804078B4(Peer_8040799C *p) {
     if (p->conn != NULL) {
@@ -2048,7 +2048,7 @@ struct UdpHeader {
 struct Ent_8040D95C { u8 pad0[2]; s16 f2; u8 pad4[2]; s16 f6; u8 pad8[4]; s32 fC; };
 struct In_8040D95C { s32 type; s32 f4; };
 struct Out_8040D95C { s32 type; u32 f4; };
-s32 TLobby__sub_8040EF50(u32 *out, u32 dst, s16 idx);
+s32 ipv4_source_for_subnet(u32 *out, u32 dst, s16 idx);
 s32 TLobby__sub_80411F1C(u8 *, u8 *, s16);
 
 typedef char RecoveredGlobal_8040EF00_lbl_805C1B60_size[sizeof(RecoveredGlobal_8040EF00_lbl_805C1B60) == 0x18 ? 1 : -1];
@@ -2126,9 +2126,9 @@ inline s16 is_iface_destination_8040EDE4(s16 idx, u32 dst) {
     return 0;
 }
 
-s32 TLobby__sub_8040EDE4(s32, u32, s16);
+s32 ipv4_send_to_interface(s32, u32, s16);
 
-s32 TLobby__sub_8040EDE4(s32, u32, s16);
+s32 ipv4_send_to_interface(s32, u32, s16);
 
 struct A_80418BD8;
 struct O_80420DE4;

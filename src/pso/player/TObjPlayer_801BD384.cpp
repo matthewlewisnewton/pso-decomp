@@ -1,17 +1,13 @@
 #include "types.h"
 #include "pso/system/FlagWord.h"
 #include "pso/misc/TPlyDispConfig.h"
-#include "pso/player/TObjPlayer_801BF978.h"
+#include "pso/player/PlayerState.h"
 #include "pso/player/TObjPlayer_801D6C4C.h"
 #include "pso/player/TObjPlayer_80309D80.h"
 #include "pso/misc/TFontSmallLobby_801C013C.h"
 #include "pso/misc/TPlyDispConfig_80071F1C.h"
 #include "pso/misc/TWindowActionPalette_801C1890.h"
 #include "pso/player/TObjPlayer_801BD384.h"
-#include "pso/player/TObjPlayer_801BF548.h"
-#include "pso/player/TObjPlayer_801BFAD4.h"
-#include "pso/player/TObjPlayer_801BFB1C.h"
-#include "pso/player/TObjPlayer_801BFE50.h"
 #include "pso/misc/TFontSmallLobby.h"
 #include "pso/player/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
@@ -111,7 +107,7 @@ void *TObjPlayer__ct(TObjPlayer *player, void *arg1, void *arg2) {
     ((TFontSmallLobby *)((char *)player + 1196))->construct_pb_controller();
     __ct__14TPlyDispConfigFv(((char *)player + 1280));
     TObjPlayer__sub_80351974((void *)((char *)player + 1360));
-    ((TObjPlayer *)((char *)player + 1456))->init_subobjects();
+    player->scale_state.initialize();
     ((TObjPlayer *)((char *)player + 1504))->init_sub();
     ((TObjPlayer *)((char *)player + 1520))->init_wrapper();
     ((TObjPlayer *)((char *)player + 1532))->init_members();
@@ -159,7 +155,7 @@ void *__ct__10TObjPlayerFPvPvPv(TObjPlayer *arg0, void *arg1, void *arg2) {
     ((TFontSmallLobby *)((char *)arg0 + 1196))->construct_pb_controller();
     __ct__14TPlyDispConfigFv(((char *)arg0 + 1280));
     TObjPlayer__sub_80351974((void *)((char *)arg0 + 1360));
-    ((TObjPlayer *)((char *)arg0 + 1456))->init_subobjects();
+    arg0->scale_state.initialize();
     ((TObjPlayer *)((char *)arg0 + 1504))->init_sub();
     ((TObjPlayer *)((char *)arg0 + 1520))->init_wrapper();
     ((TObjPlayer *)((char *)arg0 + 1532))->init_members();

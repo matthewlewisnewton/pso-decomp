@@ -730,7 +730,6 @@ void TObjCMMainMenu::sub_8029862C() {  }
 #pragma pop
 
 #pragma push
-#pragma opt_common_subs off
 #pragma fp_contract on
 void TObjCMMainMenu::sub_80298534() {
     f32 temp_f2;
@@ -844,8 +843,6 @@ void TObjCMMainMenu::update_submenu_fade() {
 }
 #pragma pop
 
-#pragma push
-#pragma opt_common_subs off
 void TObjCMMainMenu::update_slide_offset() {
     M_802983A0 *arg0 = (M_802983A0 *)this;
     f32 v;
@@ -864,7 +861,6 @@ void TObjCMMainMenu::update_slide_offset() {
         break;
     }
 }
-#pragma pop
 
 #pragma push
 void TObjCMMainMenu::update_random_proportion_action(void * _w0) {
@@ -1075,7 +1071,6 @@ void TObjCMMainMenu::sub_80297B18() {
 #pragma pop
 
 #pragma push
-#pragma fp_contract on
 #pragma opt_lifetimes off
 void TObjCMMainMenu__sub_802979BC(void *object) {
     TObjCMMainMenu *menu = (TObjCMMainMenu *)object;
@@ -1702,8 +1697,6 @@ void TObjCMAssignMenu::render_assign_slots() {
 }
 #pragma pop
 
-#pragma push
-#pragma fp_contract on
 void TObjCMAssignMenu::sub_80296648() {
     Menu_80296648 *self = (Menu_80296648 *)this;
     s32 off;
@@ -1732,10 +1725,7 @@ void TObjCMAssignMenu::sub_80296648() {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 void TObjCMAssignMenu::draw_assign_icons() {
     Menu_80296560 *self = (Menu_80296560 *)this;
     s32 idx;
@@ -1763,7 +1753,6 @@ void TObjCMAssignMenu::draw_assign_icons() {
         }
     }
 }
-#pragma pop
 
 #pragma push
 Hair_802964B0 *__ct__14TObjCMHairMenuFv(Hair_802964B0 *arg0, void *arg1) {
@@ -2229,8 +2218,6 @@ void *create__16TObjCMProportionFPv(void *arg0) {
 }
 #pragma pop
 
-#pragma push
-#pragma fp_contract on
 void TObjCMProportion::run_task() {
     TObjCMProportion* arg0=this;
     s32 spC;
@@ -2317,7 +2304,6 @@ void TObjCMProportion::run_task() {
         }
     }
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on

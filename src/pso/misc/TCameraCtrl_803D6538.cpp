@@ -184,27 +184,18 @@ void TCameraCtrl::look_at_position(f32 farg0, f32 farg1, f32 farg2) {
     set_camera_look_at(eye, (u8*)((u8 *)&v), camera_look_at_up_vector);
 }
 
-#pragma push
-#pragma scheduling off
 s32 TCameraCtrl::translate_view_negated(f32 x, f32 y, f32 z) {
     return translate_matrix(0, -x, -y, -z);
 }
-#pragma pop
 
 void TCameraCtrl__sub_803D65F8(u8 * _w0) {
 
 }
 
-#pragma push
-#pragma scheduling off
 void set_camera_look_at(u8* eye, u8* target, u8* up) {
     C_MTXLookAt(current_matrix, eye, up, target);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_common_subs off
-#pragma scheduling off
 typedef char RecoveredGlobal_803D662C_lbl_8058D4D0_size[sizeof(RecoveredGlobal_803D662C_lbl_8058D4D0) == 0x28 ? 1 : -1];
 
 void TCameraCtrl::set_clamped_offsets(f32 farg0, f32 farg1) {
@@ -227,7 +218,6 @@ void TCameraCtrl::set_clamped_offsets(f32 farg0, f32 farg1) {
     *(f32 *)((s8 *)&camera_clip_parameters.value + 4) = (f32) -var_f1;
     *(f32 *)((s8 *)&camera_clip_parameters.value + 0) = (f32) -var_f2;
 }
-#pragma pop
 
 void set_screen_size(f32 farg0, f32 farg1) {
     f32 a, b;

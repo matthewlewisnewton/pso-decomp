@@ -1,7 +1,7 @@
 #include "pso/player/PlayerLevelTable.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801BE778.h"
-#include "pso/player/TObjPlayer_801BFED4.h"
+#include "pso/player/PlayerState.h"
 #include "pso/player/TObjPlayer_802C3B14.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/Language.h"

@@ -14,7 +14,9 @@ public:
     virtual void vfunc_62(Vec *);
     u8 unk_1F8[0x4];
     u32 m_1fc;
-    u8 unk_200[0x4];
+    f32 effect_scale;
+    s32 *m_204;
+    s32 *m_208;
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
-#include "pso/misc/TQuestListChallenge.h"
+#include "pso/quest/TQuestListChallenge.h"
 #include "pso/misc/TKeyBoardControl_8000F764.h"
 #include "pso/misc/TLobby_8030A6A8.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"

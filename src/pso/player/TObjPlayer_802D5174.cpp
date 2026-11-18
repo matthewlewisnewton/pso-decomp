@@ -15,6 +15,7 @@
 #include "pso/player/TUnk_804E21F8.h"
 #include "pso/player/TUnk_804E22F4.h"
 #include "pso/item/TItem.h"
+#include "pso/item/WeaponEffectDescriptor.h"
 #include "pso/player/TObjPlayer_802D5B78.h"
 
 
@@ -92,26 +93,32 @@ namespace P802D5318 {
 
 extern "C" {
 
-void setup_radar_marker__10TObjPlayerFPvPv(TObjPlayer *arg0, void *arg1);
 void* setup_state__10TObjPlayerFPv(void* a0);
 int init_state_445__10TObjPlayerFPv(void);
-void init_weapon_effect_descriptor__13TUnk_804E23F0FP13Desc_8011E5C4(u8 *, u8 *);
 
-
-void setup_radar_marker__10TObjPlayerFPvPv(TObjPlayer *player, void *arg1) {
-    init_weapon_effect_descriptor__13TUnk_804E23F0FP13Desc_8011E5C4(reinterpret_cast<u8 *>(player), reinterpret_cast<u8 *>(arg1));
-    if (((TItemWeapon *)player)->is_mode_two_and_ready() != 0) {
-        player->drain_owner_hp_fraction(0.07f);
-        *(s32 *)((s8 *)arg1 + 0x10) = 0xA;
-        *(s32 *)((s8 *)arg1 + 0x44) = (s32) ((TUnk_804E1CA8 *)player)->second_model;
-        *(f32 *)((s8 *)arg1 + 0x4C) = 1.0f;
+void setup_radar_marker__10TObjPlayerFPvPv(TUnk_804E1CA8 *weapon, Desc_8011E5C4 *desc) {
+    weapon->TUnk_804E23F0::init_weapon_effect_descriptor(desc);
+    if (weapon->is_mode_two_and_ready() != 0) {
+        reinterpret_cast<TObjPlayer *>(weapon)->drain_owner_hp_fraction(0.07f);
+        desc->mode = 0xA;
+        desc->model = weapon->second_model;
+        desc->scale = 1.0f;
     }
 }
 
     extern unsigned char create_needle_pos_effect[];
     extern unsigned char do_action_447_from_packet__10TObjPlayerFPvPv[];
     extern unsigned char lbl_804E1CA8[];
-void* setup_state__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)lbl_804E1CA8; *(float*)((char*)a0 + 0x200) = 5.0f; ((TItemWeapon *)a0)->set_weapon_flags(32); ((TUnk_804E1CA8 *)a0)->m_208 = (int)do_action_447_from_packet__10TObjPlayerFPvPv; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; return a0; }
+void *setup_state__10TObjPlayerFPv(void *a0) {
+    TUnk_804E1CA8 *weapon = static_cast<TUnk_804E1CA8 *>(a0);
+    init_state_445__10TObjPlayerFPv();
+    *(int *)((char *)a0 + 0x18) = (int)lbl_804E1CA8;
+    weapon->effect_scale = 5.0f;
+    weapon->set_weapon_flags(32);
+    weapon->m_208 = reinterpret_cast<s32 *>(do_action_447_from_packet__10TObjPlayerFPvPv);
+    weapon->m_204 = reinterpret_cast<s32 *>(create_needle_pos_effect);
+    return a0;
+}
 
 }
 
@@ -135,17 +142,24 @@ void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 void spawn_hit_particles__10TObjPlayerFiPv(s32 arg0, const P_802D5478 *arg1);
 void* init_needle_effect__10TObjPlayerFPv(void* a0);
 int init_state_445__10TObjPlayerFPv(void);
-void init_weapon_effect_descriptor__13TUnk_804E23F0FP13Desc_8011E5C4(u8 *, u8 *);
 
 void TUnk_804E20FC::init_weapon_effect_descriptor(Desc_8011E5C4 *desc) {
     TUnk_804E23F0::init_weapon_effect_descriptor(desc);
-    *reinterpret_cast<s32 *>(reinterpret_cast<u8 *>(desc) + 0x50) = 0x8000;
+    desc->m_50 = 0x8000;
 }
 
     extern unsigned char create_needle_pos_effect[];
     extern unsigned char create_needle_effect[];
     extern unsigned char __vt__13TUnk_804E20FC[];
-void* init_needle_effect__10TObjPlayerFPv(void* a0) { init_state_445__10TObjPlayerFPv(); *(int*)((char*)a0 + 0x18) = (int)__vt__13TUnk_804E20FC; *(float*)((char*)a0 + 0x200) = 1.0f; *(int*)((char*)a0 + 0x204) = (int)create_needle_pos_effect; ((TUnk_804E20FC *)a0)->m_208 = (int)create_needle_effect; return a0; }
+void *init_needle_effect__10TObjPlayerFPv(void *a0) {
+    TUnk_804E20FC *weapon = static_cast<TUnk_804E20FC *>(a0);
+    init_state_445__10TObjPlayerFPv();
+    *(int *)((char *)a0 + 0x18) = (int)__vt__13TUnk_804E20FC;
+    weapon->effect_scale = 1.0f;
+    weapon->m_204 = reinterpret_cast<s32 *>(create_needle_pos_effect);
+    weapon->m_208 = reinterpret_cast<s32 *>(create_needle_effect);
+    return a0;
+}
 
 void spawn_hit_particles__10TObjPlayerFiPv(s32 pos, const P_802D5478 *arg1) {
     s32 v[3];
@@ -284,7 +298,6 @@ void set_matrix_identity(u8 *arg0);
 s32 transform_point_by_current_matrix(void *, void *);
 extern V_802D577C lbl_8047259C;
 extern V_802D577C player_pb_zero_vec_block;
-void init_weapon_effect_descriptor__13TUnk_804E23F0FP13Desc_8011E5C4(u8 *, u8 *);
 void init_state_445__10TObjPlayerFPv(void *);
 
 extern s32 __vt__13TUnk_804E2000[];
@@ -302,7 +315,7 @@ void *TUnk_804E2000::enter_state_341() {
 
 void TUnk_804E21F8::init_weapon_effect_descriptor(Desc_8011E5C4 *desc) {
     TUnk_804E23F0::init_weapon_effect_descriptor(desc);
-    *reinterpret_cast<f32 *>(reinterpret_cast<u8 *>(desc) + 0x38) = 5.0f;
+    desc->m_38 = 5.0f;
 }
 
 void TUnk_804E21F8::vfunc_62(Vec *pos) {
