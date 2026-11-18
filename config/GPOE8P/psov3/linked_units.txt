@@ -2651,6 +2651,7 @@ pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
 pso/system/LscServer.cpp
 pso/system/LscStream.cpp
+pso/system/MainPhaseTable.cpp
 pso/system/MaterialAlphaCompare.cpp
 pso/system/Mfci.cpp
 pso/system/MiddlewareInterruptLock.cpp

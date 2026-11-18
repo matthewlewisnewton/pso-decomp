@@ -1,3 +1,4 @@
+#include "pso/system/MainPhaseTable.h"
 #include "pso/system/RandomRatio.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/TObjPlayer_800F0810.h"
@@ -382,14 +383,6 @@ extern s32 game_difficulty_selection;
 void display_exp_gain(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
 void show_tp_font(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
 s16 obj_getS16_118(u8* p);
-typedef void (*SceneFn_8000FD54)(void);
-
-typedef struct SceneEntry_8000FD54 {
-    SceneFn_8000FD54 init;
-    SceneFn_8000FD54 update;
-    SceneFn_8000FD54 exit;
-} SceneEntry_8000FD54;
-
 typedef struct SceneState_8000FD54 {
     s32 cur;
     s32 next;
@@ -943,7 +936,6 @@ extern const f32 TObjPlayer__data_80434060[3] = {0.0f, 1.0f, 0.0f};
 extern const s16 lbl_8043406C[4] = {0, 2, 5, 10};
 extern const Vec_800115C4 lbl_80434074 = {0.0f, 0.0f, 0.0f};
 extern int TObjPlayer__data_8050D460[];
-extern SceneEntry_8000FD54 main_phase_table[];
 extern SceneState_8000FD54 main_phase_state;
 extern RecoveredGlobal_80010E44_lbl_8050EA40 lobby_rule_settings;
 extern RecoveredGlobal_8001806C_lbl_8058D490 identity_matrix;
@@ -958,8 +950,8 @@ void obj_setField96_1(ObjFlags* p);
 }
 
 void main(void) {
-    SceneFn_8000FD54 fn;
-    SceneFn_8000FD54 update;
+    MainPhaseCallback fn;
+    MainPhaseCallback update;
 
     init_game_systems();
     while (main_phase_state.cur != 0) {
