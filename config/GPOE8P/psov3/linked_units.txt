@@ -1610,6 +1610,8 @@ pso/misc/TSwitch.cpp
 pso/misc/TTecAnti.cpp
 pso/misc/TTecBarta.cpp
 pso/misc/TTecCtrl.cpp
+pso/misc/TTecCtrlResources.cpp
+pso/misc/TTecCtrlTextureNames.cpp
 pso/misc/TTecDeband.cpp
 pso/misc/TTecFoie.cpp
 pso/misc/TTecFoie_802301EC.cpp

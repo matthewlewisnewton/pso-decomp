@@ -5079,6 +5079,8 @@ force_active:
   - bm_ply_photon_chair_motion_names
   - bm_tec_regurar_model_names
   - bm_tec_regurar_motion_names
+  - bm_technic_model_names
+  - bm_technic_motion_names
   - bml_header_record_ptr
   - bml_load_buffer
   - bml_load_entry_index
