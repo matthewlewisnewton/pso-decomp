@@ -1,6 +1,7 @@
 """Pure static checks only; does not authorize configuration execution."""
 import ast
 import copy
+import gzip
 import hashlib
 import json
 import shlex
@@ -53,7 +54,9 @@ class StaticConfigDelta(unittest.TestCase):
                 c.check(self.base,altered,c.PLAYER_UNIT)
 
     def test_darkfalz_exact_reviewed_blobs_and_adversarial_profiles(self):
-        base=subprocess.check_output(['git','show','1f86b6699d129d93d5c2b81c16883600b42ef803:configure.py'])
+        # configure.py from the reviewed fork commit 1f86b6699d129d93d5c2b81c16883600b42ef803.
+        fixture = Path(__file__).parent / 'fixtures/darkfalz-config-1f86b669.py.gz'
+        base = gzip.decompress(fixture.read_bytes())
         self.assertEqual(hashlib.sha256(base).hexdigest(),'3db524955b1840a4f896168a0df5d3df6ed839211f7145b155fa2e143eb64eaf')
         entry=(b'    # Source-file sections put the native initializer before its shared helpers.\n'
                b'    "pso/boss/TBoss4DarkFalz_8004C93C.cpp": {"cflags": _switch(cflags_pso, "-inline deferred", "-sym on")},\n')
