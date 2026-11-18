@@ -90,6 +90,14 @@ changing the load and the object layout. The late definition keeps it after
 the digit-transform and opacity literals. Ports can drop the annotation and
 keep the ordinary array and C++ expressions.
 
+### Grass placement angle constant
+
+The two-float `lbl_805D9E78` object in `src/pso/unk/data_805D9E78.cpp` holds
+the 360-degree angle and its original zero word. The guarded CodeWarrior
+section annotation keeps the array in `.sdata2`. The matching declaration
+in `TObjCGrass.cpp` preserves the single small-data float load. Ports use
+the same array and first-element access without the section annotations.
+
 ### Scalar collision-area helper
 
 `TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
@@ -153,7 +161,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
 | MWCC intrinsics | 91 | 57 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,880 | 889 |
+| CodeWarrior pragmas (excluding push/pop) | 5,884 | 890 |
 | Per-unit compiler overrides in `configure.py` | 215 | 215 |
 | Approved regressions | 0 | 0 |
 
@@ -887,6 +895,14 @@ at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
 but requests eight-byte alignment for the pool. Ports can use the
 ordinary C++ coordinates directly and omit the object alignment override.
 
+### Dark Falz effect constant alignment
+
+`pso/boss/DarkFalzEffectConstants.cpp` uses `cw_align: .sdata2=4`. Its
+44-byte float pool starts at `0x805D8AB4`. GC/2.0 requests eight-byte section
+alignment, which would move the pool four bytes forward. The existing alignment
+tool records four-byte alignment in ELF and the CodeWarrior comment section.
+Ports can use the C++ definitions with their compiler's normal alignment.
+
 ### Time setting and calendar startup
 
 | File | Scope | Setting | Original layout | Port behavior |
@@ -938,7 +954,7 @@ A port can use its regular compiler and call the renderer through a
 `ColorLineList` interface. Preserve the fused depth calculation if the port
 requires identical rounding.
 
-### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
+### Vol Opt pillar debris and collision handling
 
 GC/2.0 interleaves the BML resource and model-table loads with the final
 load and store of the initializer copy. It loads all three
@@ -948,8 +964,13 @@ is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
 
 The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
-maps it to the compiler's local `@13` symbol. Ports can use the default
-compiler.
+maps it to the compiler's local `@15` symbol in `TObjVoloptPillar.cpp`.
+
+GC/2.0 pools the collision handler's read-only operands through a shared
+base and changes register allocation when their definitions are in the
+same translation unit. Scoped `pool_data off` in `TObjVoloptPillar::run_task`
+at `0x8004A1CC` restores the separate address loads and all 784 bytes.
+Ports can omit the pragma and use their default compiler.
 
 ### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
 
@@ -1988,6 +2009,18 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
 | Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
 | Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
+### Ceiling-debris renderer data addresses
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss2CeilJunk.cpp`, `TObjBoss2CeilJunk::render` at `0x8003A1B4` | Scoped `pool_data off` | With the tables and color defined in the same file, GC/2.0 forms a shared read-only data base and saves an extra register. The scope restores the three separate addresses and all 352 original instruction bytes. | Omit the pragma and keep the typed table and material initializers. |
+
+### Loading-screen data ownership
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TLoadCtrl.cpp`, `TLoadCtrl::run_task` at `0x8001C620` | Scoped `pool_data off` | GC/2.0 otherwise uses a shared read-only data base and saves an extra register. The scope restores the independent addresses and the exact 384-byte function. See [loading-screen data ownership](evidence/loading-screen-data-ownership.md). | Omit the pragma and keep the three vector initializers. |
+
 ### AIFF parsing and ADX block transfer
 
 | Scope | Construct | Evidence and reason | Port action |

@@ -26,6 +26,9 @@ pso/player/TObjPlayer_80011014.cpp:
 	.data       start:0x804806E8 end:0x804808EC
 	.sdata2     start:0x805D7D18 end:0x805D7DCC
 
+pso/player/PlayerCombatConstants.cpp:
+	.rodata     start:0x80434090 end:0x804340C0
+
 pso/ui/TAdADXlogo.cpp:
 	.text       start:0x80019848 end:0x80019A60
 	.rodata     start:0x804340C0 end:0x804340D8
@@ -123,10 +126,11 @@ pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.cpp:
 
 pso/misc/TLoadCtrl.cpp:
 	.text       start:0x8001C60C end:0x8001CAD4
+	.rodata     start:0x804349C0 end:0x804349F0
 
 pso/misc/TLoadingCur.cpp:
 	.text       start:0x8001CAD4 end:0x8001D198
-	.rodata     start:0x80434A08 end:0x80434A10
+	.rodata     start:0x804349F0 end:0x80434A10
 	.data       start:0x80480C80 end:0x80480C98
 	.sdata2     start:0x805D7E90 end:0x805D7EC0
 
@@ -198,6 +202,9 @@ pso/boss/TBoss1DragonEffBullet.cpp:
 pso/boss/TBoss1DragonEffTail.cpp:
 	.text       start:0x8002BD34 end:0x8002C140
 	.sdata2     start:0x805D8148 end:0x805D8158
+
+pso/boss/DragonTailCraterConstants.cpp:
+	.sdata2     start:0x805D8158 end:0x805D8168
 
 pso/misc/TLobby_8002C140.cpp:
 	.text       start:0x8002C140 end:0x8002C190
@@ -297,8 +304,9 @@ pso/boss/TBoss2Tentacle.cpp:
 
 pso/boss/TObjBoss2CeilJunk.cpp:
 	.text       start:0x8003A1B4 end:0x8003A81C
-	.rodata     start:0x80435C30 end:0x80435C38
+	.rodata     start:0x80435BC0 end:0x80435C38
 	.data       start:0x804832C8 end:0x804832FC
+	.sdata      start:0x805D26E8 end:0x805D26EC
 	.sdata2     start:0x805D8568 end:0x805D85AC
 
 pso/boss/TObjBoss2CeilJunk_8003A81C.cpp:
@@ -445,14 +453,11 @@ pso/boss/TUnk_80484AFC.cpp:
 	.sbss       start:0x805D4D30 end:0x805D4D34
 	.sdata2     start:0x805D8898 end:0x805D88B4
 
-pso/unk/text_80049FD8.cpp:
-	.text       start:0x80049FD8 end:0x8004A0AC
-	.rodata     start:0x80436748 end:0x80436794
-
 pso/object/TObjVoloptPillar.cpp:
-	.text       start:0x8004A0AC end:0x8004A634
-	.rodata     start:0x804367A0 end:0x804367A8
+	.text       start:0x80049FD8 end:0x8004A634
+	.rodata     start:0x80436720 end:0x804367A8
 	.data       start:0x80484B38 end:0x80484BA0
+	.sdata      start:0x805D2760 end:0x805D2764
 	.sbss       start:0x805D4D38 end:0x805D4D48
 	.sdata2     start:0x805D88B8 end:0x805D88EC
 
@@ -566,6 +571,9 @@ pso/ui/TObjDFJisin.cpp:
 	.bss        start:0x804FF228 end:0x804FF2A0
 	.sdata      start:0x805D27B8 end:0x805D27CC
 	.sdata2     start:0x805D8AB0 end:0x805D8AB4
+
+pso/boss/DarkFalzEffectConstants.cpp:
+	.sdata2     start:0x805D8AB4 end:0x805D8AE0
 
 pso/ui/TObjDFTenchuFuru_80051B98.cpp:
 	.text       start:0x80051B98 end:0x80051D5C
@@ -1673,6 +1681,9 @@ pso/object/TObjCGrass.cpp:
 	.rodata     start:0x8043B650 end:0x8043B658
 	.data       start:0x80492520 end:0x80492558
 	.sdata2     start:0x805D9E60 end:0x805D9E78
+
+pso/unk/data_805D9E78.cpp:
+	.sdata2     start:0x805D9E78 end:0x805D9E98
 
 pso/unk/text_800B9194.cpp:
 	.text       start:0x800B9194 end:0x800B9254

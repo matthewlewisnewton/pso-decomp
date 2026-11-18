@@ -437,6 +437,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
     # GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order.
     "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary.
+    "pso/boss/DarkFalzEffectConstants.cpp": {"cw_align": ".sdata2=4"},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
     "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions reproduce both native rope vtables and function order.
@@ -559,7 +561,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/2.0 interleaves the BML model-table load with the debris initializer's
     # copy tail. Map the original template to CodeWarrior's local aggregate.
-    "pso/unk/text_80049FD8.cpp": {"symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
+    "pso/object/TObjVoloptPillar.cpp": {"symbol_mappings": {"volopt_pillar_chip_params": "@15"}},
     # GC/2.0 schedules the model and position loads across the aggregate copy
     # tails. Disabling pooling keeps the three original debris templates.
     "pso/unk/text_8031EF14.cpp": {
