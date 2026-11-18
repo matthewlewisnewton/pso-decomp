@@ -1,3 +1,4 @@
+#include "pso/enemy/MericarolResources.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
@@ -19,17 +20,6 @@
 #include "pso/enemy/TObjEneRe7Berura.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-struct Stack_802CE68C {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
-
-struct RecoveredGlobal_802CE68C_lbl_804724A8 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
 struct RecoveredGlobal_802CE68C_lbl_8058D490 {
     s32 value;
     u8 remaining[0x2C];
@@ -100,14 +90,12 @@ extern "C" {
 s32 matrix_mult_vec(int, void *, void *);
 s32 rotate_matrix_y(int, int);
 f32 post_translate_matrix(void *);
-extern RecoveredGlobal_802CE68C_lbl_804724A8 player_sub_802ce68c_zero_vec;
 extern RecoveredGlobal_802CE68C_lbl_8058D490 identity_matrix;
 }
 void restore_alpha_ref(void);
 void set_alpha_ref_override(u8 scene);
 extern "C" {
 s32 push_matrix();
-extern Vec lbl_8047249C;
 extern const f32 lbl_805DE700;
 extern const f32 lbl_805DE704;
 s32 is_split_screen();
@@ -116,20 +104,14 @@ s32 is_main_phase_15__9TObjEneDDFv();
 s32 update__15RenderFadeStateFv(void *);
 s32 defer_render__7TObjectFv(void *);
 s32 translate_matrix(int, f32, f32, f32);
-extern Vec lbl_80472490;
 extern s32 saved_model_render_flags;
 extern s32 lbl_805D686C;
 extern s32 model_render_flags;
 extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
 extern const f32 lbl_805DE70C;
-typedef char RecoveredGlobal_802CE68C_lbl_804724A8_size[sizeof(RecoveredGlobal_802CE68C_lbl_804724A8) == 0x10 ? 1 : -1];
 typedef char RecoveredGlobal_802CE68C_lbl_8058D490_size[sizeof(RecoveredGlobal_802CE68C_lbl_8058D490) == 0x30 ? 1 : -1];
 void TObjPlayer__sub_802CE68C(u8 *enemy, s32 arg1, s32 arg2) {
-    typedef char sp8_offset[(offsetof(Stack_802CE68C, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_802CE68C, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_802CE68C, sp10) == 0x8) ? 1 : -1];
-    Stack_802CE68C stack;
     set_motion_packed_rotation();
     push_matrix_from((void *)&identity_matrix.value);
     post_translate_matrix(enemy + 0x38);
@@ -139,10 +121,8 @@ void TObjPlayer__sub_802CE68C(u8 *enemy, s32 arg1, s32 arg2) {
     clear_motion_packed_rotation();
     pop_matrix();
     push_matrix_from(anim_model_matrix_array[arg2]);
-    stack.sp8 = *(s32 *)((s8 *)&player_sub_802ce68c_zero_vec.value + 0);
-    stack.spC = *(s32 *)((s8 *)&player_sub_802ce68c_zero_vec.value + 4);
-    stack.sp10 = *(s32 *)((s8 *)&player_sub_802ce68c_zero_vec.value + 8);
-    matrix_mult_vec(0, (void *)&stack.sp8, (void *)arg1);
+    Vec origin = player_sub_802ce68c_zero_vec;
+    matrix_mult_vec(0, &origin, (void *)arg1);
     pop_matrix();
     clear_motion_packed_rotation();
 }
