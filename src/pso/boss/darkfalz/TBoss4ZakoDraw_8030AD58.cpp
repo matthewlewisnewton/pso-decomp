@@ -1,28 +1,19 @@
 #include "types.h"
+#include "pso/boss/darkfalz/TBoss4ZakoTexture.h"
+#include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/boss/darkfalz/TBoss4DarkFalz.h"
 #include "pso/boss/darkfalz/TBoss4Uro.h"
 
-extern "C" {
-
-
-extern s32 falz_zako_texture_list;
-extern u32 falz_zako_chunk_model;
 extern s32 TBoss4ZakoDraw__rotation_phase;
 
 void TBoss4DarkFalz::init_uro_link() {
-    u32 temp_r3_2;
-    void *temp_r3;
-
-    falz_zako_texture_list = (s32)get_bml_texlist((BmlResource *)TBoss4Uro::get_instance_count(), 8);
-    temp_r3 = *(void **)((s8 *)(get_bml_model((BmlResource *)TBoss4Uro::get_instance_count(), 8)) + 0x2C);
-    *(s32 *)((s8 *)temp_r3 + 0) = (s32) (*(s32 *)((s8 *)temp_r3 + 0) & 0xFFFFFFFD);
-    temp_r3_2 = *(u32 *)((s8 *)temp_r3 + 4);
-    if (temp_r3_2 != 0U) {
-        falz_zako_chunk_model = temp_r3_2;
+    falz_zako_texture_list = get_bml_texlist(TBoss4Uro::get_instance_count(), 8);
+    NJS_OBJECT *child = get_bml_model(TBoss4Uro::get_instance_count(), 8)->child;
+    child->evalflags &= ~NJD_EVAL_UNIT_ANG;
+    if (child->model != NULL) {
+        falz_zako_chunk_model = child->model;
         TBoss4ZakoDraw__rotation_phase = 0;
         TBoss4DarkFalz::clear_uro_link_state();
     }
-}
-
 }

@@ -77,7 +77,7 @@ TObjDFDemo1::TObjDFDemo1(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
     m_name = TObjDFDemo1__name;
     VecCopy(&this->pos, pos);
     this->angle = angle;
-    res = (BmlResource *)TBoss4Uro::get_instance_count();
+    res = TBoss4Uro::get_instance_count();
     for (i = 0; i < 6; i++) {
         int id = lbl_80485EB0[i];
         body_parts[i].model = (s32)get_bml_model(res, id);

@@ -837,7 +837,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     ((TObjChara *)self)->add_flags_2e4(8);
     self->f38C = arg2[0];
     ((TBoss4Type3 *)self)->apply_set_data(arg2 + 1);
-    self->f390 = TBoss4Uro::get_instance_count();
+    self->f390 = (s32)TBoss4Uro::get_instance_count();
     self->f24 = 0;
     self->f34 = 0;
     VecCopy__FP3VecPC3Vec(self->v38, boss4_type3_start_position);

@@ -61,7 +61,7 @@ TObjDFDemo4::TObjDFDemo4(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
     m_name = TObjDFDemo4__name;
     VecCopy(&this->pos, pos);
     this->angle = angle;
-    res = (BmlResource *)TBoss4Uro::get_instance_count();
+    res = TBoss4Uro::get_instance_count();
     for (i = 0; i < 2; i++) {
         int id = boss4_zanzo_bml_index_table[i];
         zanzo_parts[i].model = (s32)get_bml_model(res, id);

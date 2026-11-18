@@ -188,7 +188,7 @@ S_EF94 *__dt__11TObjDFDemo3Fv(S_EF94 *o, s16 flag) {
 
 #define lbl_804856C0 ((u8 *)lbl_804856C0)
 u8 *TObjDFDemo3__ct(u8 *base, s32 parent, s32 arg2, s32 arg3) {
-    s32 cnt;
+    BmlResource *cnt;
     __ct__8TObjBaseFP7TObject(base, (void *)parent);
     *(void **)((s8 *)base + 0x18) = (void *)__vt__11TObjDFDemo3;
     *(s32 *)((s8 *)base + 0) = (s32) TObjDFDemo3__name;
@@ -206,9 +206,9 @@ u8 *TObjDFDemo3__ct(u8 *base, s32 parent, s32 arg2, s32 arg3) {
     }
     *(s32 *)((s8 *)base + 0xAC) = arg3;
     cnt = TBoss4Uro::get_instance_count();
-    *(s32 *)((s8 *)base + 0x94) = (s32)get_bml_model((BmlResource *)cnt, 0x12);
-    *(s32 *)((s8 *)base + 0x98) = (s32)get_bml_texlist((BmlResource *)cnt, 0x12);
-    *(s32 *)((s8 *)base + 0x9C) = get_bml_motion(cnt, 0x45);
+    *(s32 *)((s8 *)base + 0x94) = (s32)get_bml_model(cnt, 0x12);
+    *(s32 *)((s8 *)base + 0x98) = (s32)get_bml_texlist(cnt, 0x12);
+    *(s32 *)((s8 *)base + 0x9C) = get_bml_motion((s32)cnt, 0x45);
     *(f32 *)((s8 *)base + 0xB4) = -1.0f;
     *(s32 *)((s8 *)base + 0x90) = 0;
     activate_camera_mode(5);

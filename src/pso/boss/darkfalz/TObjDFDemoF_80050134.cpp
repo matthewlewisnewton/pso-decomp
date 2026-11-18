@@ -87,7 +87,7 @@ Obj_80050194 *TObjDFDemoF__ct(Obj_80050194 *arg0, void *parent) {
   new_var = arg0;
   new_var->vt = (void *) __vt__11TObjDFDemoF;
   new_var->f0 = TObjDFDemoF__name;
-  h = TBoss4Uro::get_instance_count();
+  h = (s32)TBoss4Uro::get_instance_count();
   for (i = 0; i < 3; i++)
   {
     s32 t = TObjDFDemoF__bml_model_id_table[i];

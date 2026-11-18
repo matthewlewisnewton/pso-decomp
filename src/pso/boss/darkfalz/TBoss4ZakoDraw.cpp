@@ -2,6 +2,7 @@
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
+#include "pso/boss/darkfalz/TBoss4ZakoTexture.h"
 #include "types.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/render/MaterialColorFade.h"
@@ -45,7 +46,6 @@ void TObjPlayer__sub_80052390(f32);
 void push_matrix(void);
 void post_translate_matrix(void *);
 void draw_chunk_object(int);
-extern s32 falz_zako_texture_list;
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
 extern const f32 lbl_805DF148;
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
@@ -62,8 +62,8 @@ extern u8 *camera_ctrl_instance;
 extern u32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
-s32 falz_zako_texture_list;
-s32 falz_zako_chunk_model;
+GinjaTextureList *falz_zako_texture_list;
+void *falz_zako_chunk_model;
 s32 TBoss4ZakoDraw__draw_buffer_index;
 s32 TBoss4ZakoDraw__rotation_phase;
 extern s32 chunk_polygon_flags_or_mask;
@@ -163,7 +163,7 @@ void TObjPlayer__sub_8030A9B0() {
         col.r = lbl_805DF13C * k + lbl_805DF14C;
         col.g = lbl_805DF14C;
         set_constant_material((const NJS_ARGB *)(((f32 *)&col)));
-        draw_chunk_model((void *)falz_zako_chunk_model);
+        draw_chunk_model(falz_zako_chunk_model);
         pop_matrix();
     }
     chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask;
@@ -178,9 +178,9 @@ void TObjPlayer::draw_area_chunk_objects() {
     Ent_8030AB48 *p = t->ents;
     s32 r31;
     s32 i;
-    r31 = ((s32)get_bml_model((BmlResource *)(TBoss4Uro::get_instance_count()), 8));
+    r31 = (s32)get_bml_model(TBoss4Uro::get_instance_count(), 8);
     TObjPlayer__sub_80052390(lbl_805DF148);
-    set_current_texture_list((GinjaTextureList *)falz_zako_texture_list);
+    set_current_texture_list(falz_zako_texture_list);
     for (i = 0; i < t->count; i++, p++) {
         push_matrix();
         post_translate_matrix(p);
@@ -208,8 +208,8 @@ void TCameraCtrl__sub_8030ABF4(void) {
             TCameraCtrl::set_viewport_scissor(2, var_r4);
         }
         var_r4 = (u8 *)((void *)8);
-        var_r3 = (s32 *)(*(s32 **)((s8 *)(get_bml_model((BmlResource *)TBoss4Uro::get_instance_count(), 8)) + 0x2C));
-        *(s32 *)((s8 *)var_r3 + 0x18) = (s32) (TBoss4ZakoDraw__rotation_phase << 0xC);
+        NJS_OBJECT *child = get_bml_model(TBoss4Uro::get_instance_count(), 8)->child;
+        child->ang[1] = TBoss4ZakoDraw__rotation_phase << 0xC;
         TObjPlayer::draw_area_chunk_objects();
         TObjPlayer__sub_8030A9B0();
     }
@@ -243,8 +243,8 @@ Boss4ZakoDrawBuffers boss4_zako_draw_buffers;
 
 extern "C" {
 
-int clear_uro_link_state__14TBoss4DarkFalzFv(void*);
-
-int TBoss4DarkFalz__sub_8030AD38(void* p) { return clear_uro_link_state__14TBoss4DarkFalzFv(p); }
+void TBoss4DarkFalz__sub_8030AD38(void) {
+    TBoss4DarkFalz::clear_uro_link_state();
+}
 
 }

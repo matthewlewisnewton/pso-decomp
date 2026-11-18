@@ -189,7 +189,7 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
     VecCopy((Vec *)self->pos, (const Vec *)arg2);
     self->b8 = arg3;
     self->a8 = arg4;
-    cnt = TBoss4Uro::get_instance_count();
+    cnt = (s32)TBoss4Uro::get_instance_count();
     for (i = 0; i < 2; i++) {
         s32 t = boss4_zanzo_bml_index_table[i];
         k = t;

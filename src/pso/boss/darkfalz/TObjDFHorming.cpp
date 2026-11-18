@@ -4,7 +4,8 @@
 #include "pso/object/ending/TObjOnlineEnding_802E4B80.h"
 #include "pso/boss/darkfalz/TBoss4DarkFalz.h"
 #include "pso/system/vector.h"
-#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResourceLoad.h"
+#include "pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/darkfalz/TBoss4Type3.h"
@@ -838,7 +839,6 @@ typedef struct Msg_8004BFA4 {
 
 extern "C" {
 s32 query_teammate_state__9TObjEneDDFv();
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void TBoss4Type2__sub_80056EA8(void *, s32);
 void TBoss4Type3__sub_80059DCC(TBoss4Type3 *self, u32 packed);
 u8 *get_enemy_entity(u16 arg0);
@@ -849,8 +849,6 @@ void TBoss4DarkFalz__sub_8004B4F0(void *arg0p, void *arg1p);
 s32 __ct__9TObjEnemyFP7TObject();
 void *fn_8030A83C(void *arg0);
 s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2);
-int TBoss4DarkFalz__sub_8030AD38(void);
-int free_bin_model_request(void*, void*);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 s32 __nw__7TObjectFUl(s32);
 
@@ -875,7 +873,7 @@ void TBoss4DarkFalz::vfunc_63() {  }
 }
 void init_music_sequencer(s32 program);
 s32 create_boss4_fade();
-int darkfalz_dat_resource;
+BmlResource *darkfalz_dat_resource;
 void *TBoss4DarkFalz__type1_instance;
 void *TBoss4DarkFalz__type2_instance;
 void *TBoss4DarkFalz__type3_instance;
@@ -1022,20 +1020,22 @@ void handle_6x19_dark_falz_actions(Msg_8004BFA4 *arg0) {
     }
 }
 
-void TBoss4DarkFalz::cleanup_global() { TBoss4DarkFalz::free_global_instance(); TBoss4DarkFalz__sub_8030AD38(); free_bin_model_request((void*)darkfalz_dat_resource, (void*)1); darkfalz_dat_resource = 0; }
+void TBoss4DarkFalz::cleanup_global() {
+    TBoss4DarkFalz::free_global_instance();
+    TBoss4DarkFalz__sub_8030AD38();
+    free_bin_model_request(darkfalz_dat_resource, 1);
+    darkfalz_dat_resource = NULL;
+}
 
 extern s32 tl_04;
 
 void TBoss4DarkFalz::load_resources() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &darkfalz_dat_resource_descriptor, 0, 0, 0));
+    BmlResource *resource = (BmlResource *)::operator new(0x440);
+    if (resource != NULL) {
+        resource = load_resource_from_descriptor(resource, 5, &darkfalz_dat_resource_descriptor, 0, 0, 0);
     }
-    (*(u8 * *)&darkfalz_dat_resource) = (unsigned char *) ((void *) var_r0);
-    if ((u32) var_r0 != 0U) {
+    darkfalz_dat_resource = resource;
+    if (resource != NULL) {
         TBoss4DarkFalz::init_uro_link();
         fn_802E52AC();
     }
@@ -1058,4 +1058,4 @@ s32 TBoss4DarkFalz::create(s32 arg0) {
 
 s32 TBoss4Uro::get_phase() { return *(s32 *)&this->_pad37c; }
 
-int TBoss4Uro::get_instance_count() {  return darkfalz_dat_resource; }
+BmlResource *TBoss4Uro::get_instance_count() { return darkfalz_dat_resource; }

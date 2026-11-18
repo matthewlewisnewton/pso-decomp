@@ -574,7 +574,7 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     owner = (TBoss4DarkFalz *)params[0];
     apply_set_data(params + 1);
     clear_lobby_object_state();
-    unk_390 = TBoss4Uro::get_instance_count();
+    unk_390 = (s32)TBoss4Uro::get_instance_count();
     texlist = 0;
     model = 0;
     VecCopy(&position, &lbl_80486150);
