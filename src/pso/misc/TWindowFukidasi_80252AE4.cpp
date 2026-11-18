@@ -1,34 +1,14 @@
-#include "pso/system/ArrayAllocation.h"
-#include "types.h"
-#include "pso/misc/TWindowFukidasi_80252AE4.h"
-#include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TUnk_804CF0B8.h"
 #include "pso/misc/TWindowCtrl.h"
-#include "pso/misc/TWindowFukidasi.h"
+#include "pso/system/ArrayAllocation.h"
 
-extern "C" {
-
-s32 __dl__7TObjectFPv(void *);
-
-extern s32 lbl_804CF0B8[];
-
-u8 *__dt__13TUnk_804CF0B8Fv(u8 *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = lbl_804CF0B8;
-        if (((TUnk_804CF0B8 *)arg0)->is_flag_set() != 0) {
-            ((TUnk_804CF0B8 *)arg0)->clear_visible_flag();
-            TWindowCtrl::release_slot((s8 *)(arg0 + 0x73));
-        }
-        if (((TUnk_804CF0B8 *)arg0)->name != NULL) {
-            ::operator delete[](((TUnk_804CF0B8 *)arg0)->name);
-            ((TUnk_804CF0B8 *)arg0)->name = NULL;
-        }
-        ((TWindowAddition *)arg0)->destroy_window(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
+TUnk_804CF0B8::~TUnk_804CF0B8() {
+    if (is_flag_set() != 0) {
+        clear_visible_flag();
+        TWindowCtrl::release_slot(&m_73);
     }
-    return arg0;
-}
-
+    if (name != NULL) {
+        ::operator delete[](name);
+        name = NULL;
+    }
 }

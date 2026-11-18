@@ -9,12 +9,14 @@
 // floats it passes to open_singleton. The class ends at 0x60.
 class TWindowBase : public TObject {
 public:
+    TWindowBase(u8 *descriptor, s16 client, u8 *position);
     virtual ~TWindowBase();
     void draw_window_frame(void *);
     void draw_window_frame_strips(void *, void *);
     void draw_message_frame_row(void *, void *);
     void resort_window_order();
     void close();
+    void request_close();
     void set_depth(f32 depth);
     void calc_inner_rect(u8 *);
     void sub_8026CC28();

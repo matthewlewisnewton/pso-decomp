@@ -192,10 +192,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
-| MWCC intrinsics | 95 | 59 |
+| MWCC intrinsics | 92 | 60 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,892 | 892 |
-| Per-unit compiler overrides in `configure.py` | 218 | 218 |
+| Per-unit compiler overrides in `configure.py` | 224 | 224 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -505,8 +505,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,880 pragmas in 890 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1159, `inline_depth` 1067, `fp_contract` 885, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 263, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_lifetimes` 42, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `pool_data` 38, `use_lmw_stmw` 28, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,892 pragmas in 892 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -920,15 +920,27 @@ Port should: build everything with one modern compiler. Only `-fp_contract on`
 (float results) and deferred emission order (no semantic effect) need thought;
 nothing else changes behaviour.
 
-### Speech-balloon constant alignment
+### Window native lifetime emission (deferred codegen)
 
-`pso/misc/TWindowFukidasi.cpp` uses `cw_align: .sdata2=4`. Its float pool
-starts at `0x805DCD0C`; GC/2.6 otherwise requests eight-byte alignment in
-both ELF and its CodeWarrior comment record. The existing alignment tool
-changes those records without changing code, constants or relocations.
-Ports can drop this object-layout override and use normal float alignment.
-The compatible pointer reads of four materialized constants avoid duplicate
-MWCC literal-pool entries; a port can read those constants directly.
+Approved by Matt (Nov 14 2026, 1:35 PM PT: "#562: approve deferred codegen on
+the window units, with a register row, to replace WindowConstructorAbi.h").
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TWindowDD.cpp` | `TUnk_804EFBAC` ctor/dtor/`render`/`run_task`; `TWindowDD_WS_ScrollBar::render`/`run_task` | unit `configure.py` override `-inline off,deferred`; definitions written in reverse order | The original constructors reach the compiler-generated vtable from the same data base register as the layout/descriptor arrays. MWCC pools only data already defined when a function is generated; without deferral the generated vtable is created at the end of the unit and loaded separately (54.9% best). Deferred emission makes the vtable available during pooling and reverses definition order, so the definitions are written bottom to top. | Drop the flag; keep the ordinary constructor, destructor and `new`. |
+| `src/pso/misc/TWindowDD_80340EA8.cpp` | `TWindowDD_WS_ScrollBar` ctor/dtor | same | Same pooling timing (61.5% without deferral); reversed definitions also restore the `.sdata2` order. | Same. |
+| `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Source is identical to the Word recovery stacked in #566. | Same. |
+| `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
+| `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowChallengeResult` ctor/dtor/`run_task` | same | Same pooling timing; with the class native, its sole producer `TObjOnlineEnding::create_result_window` uses ordinary `new` at 100%. | Same. |
+| `src/pso/misc/TWindowFukidasi.cpp` | Balloon virtual table and scalar pools | `-inline off,deferred` with scoped `defer_codegen off` on the first three functions | Immediate emission puts the unsigned conversion bias before the named angle scale. The deferred functions then emit the signed bias and place the native vtable before the jump tables. The shared inline text-measurement body supplies each unit’s float literal; the linker selects the ChallengeResult definition. See [balloon lifetime evidence](evidence/balloon-native-lifetime.md). | Drop the flag and pragma. Keep the ordinary destructor and scalar definitions. Define `measure_text_entry` once out of line. |
+
+These entries replace the [former raw lifetime calls](evidence/window-lifetime-recovery-history.md)
+with ordinary C++ lifetime and compiler-generated vtables. The DD, ComCard
+and ChallengeResult records are covered in
+[the deferred lifetime evidence](evidence/window-native-lifetime-deferred.md).
+Vtable symbols are 0x18 bytes. The earlier 0x1C entries included four bytes of
+alignment padding. The balloon now owns its float pool from the eight-byte
+aligned address `0x805DCD08`, which retires its alignment override.
 
 ### Download status coordinate alignment
 

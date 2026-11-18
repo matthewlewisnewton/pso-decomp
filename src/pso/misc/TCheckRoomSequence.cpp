@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowMeseta.h"
+#include "pso/misc/TWindowDeposit.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
@@ -247,8 +249,6 @@ void open_deposit_item_window__18TCheckRoomSequenceFv(u8 *arg0);
 void handle_withdraw_choice__18TCheckRoomSequenceFv(u8 *arg0);
 void handle_deposit_choice__18TCheckRoomSequenceFv(u8 *arg0);
 s32 set_service_counter_camera(void *, int);
-void *TWindowDeposit__ct(void *, s32);
-s32 create_meseta_window(u16);
 void open_bank__18TCheckRoomSequenceFv(u8 *arg0);
 u8 *TShopSequence__ct(u8 *arg0);
 extern u8 __vt__18TCheckRoomSequence[];
@@ -743,18 +743,13 @@ void TCheckRoomSequence__vt11(u8 *arg0) {
 #pragma push
 #pragma optimization_level 1
 void open_bank__18TCheckRoomSequenceFv(u8 *arg0) {
-    void *w;
     Vec2_80210198 v;
     v.x = 332.0f;
     v.y = 80.0f;
     ((TShopSequence *)arg0)->create_message_window((s32)(get_window_layout_position(0x2C)), (s32)&v);
     ((VObj_18_a93f07 *)(arg0))->m4(0x31, 1);
-    *(s32 *)((s8 *)arg0 + 0x38) = create_meseta_window(get_child_field1c__13TShopSequenceFv(arg0));
-    w = __nw__7TObjectFUl(0x6C);
-    if (w != NULL) {
-        w = TWindowDeposit__ct(w, get_child_field1c__13TShopSequenceFv(arg0));
-    }
-    *(void **)((s8 *)arg0 + 0x40) = w;
+    *(s32 *)((s8 *)arg0 + 0x38) = (s32)create_meseta_window((u16)(get_child_field1c__13TShopSequenceFv(arg0)));
+    *(TWindowDeposit **)((s8 *)arg0 + 0x40) = new TWindowDeposit((s16)get_child_field1c__13TShopSequenceFv(arg0));
     TWindowMainMenu::set_entry_field_20(*(s32 *)((s8 *)arg0 + 0x40), get_room_data__18TCheckRoomSequenceFi(sub_8022397C__15TShopWindowBaseFv(arg0)));
     *(s32 *)((s8 *)arg0 + 0x2C) = 0;
     *(s32 *)((s8 *)arg0 + 0x48) = set_service_counter_camera(arg0, 6);

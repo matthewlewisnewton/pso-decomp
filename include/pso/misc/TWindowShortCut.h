@@ -7,31 +7,22 @@
 struct TWindowChatSymbol;
 
 struct TWindowShortCut : public TWindowBase {
+    TWindowShortCut(void *position, s32 index, void *shortcut);
     virtual ~TWindowShortCut();
     virtual void render();
-    u32 m_60;
-    TWindowBase *text_preview;
-    TWindowChatSymbol *symbol_preview;
-    u32 m_6c;
-    u32 m_70;
     virtual void run_task();
     void initialize_preview(s32 index, s32 *shortcut);
+    void *m_60; // Owned opaque heading; legacy initializer/release protocol.
+    TWindowBase *m_64; // Optional message window, released through close().
+    TWindowChatSymbol *m_68; // Optional symbol window, released through close().
+    s32 m_6c;
+    void *m_70; // Borrowed shortcut record.
 };
 
 typedef char TWindowShortCut_size[sizeof(TWindowShortCut) == 0x74 ? 1 : -1];
-
-extern "C" {
-u8 *TWindowShortCut__ct(TWindowShortCut *arg0, s32 arg1, s32 arg2, s32 arg3);
-void *__dt__15TWindowShortCutFv(void *arg0, s16 arg1);
-void render__15TWindowShortCutFv(u8 *arg0);
-}
-
-// --- C functions defined in TWindowShortCut.cpp ---
-extern "C" {
-u8 *TWindowShortCut__ct(TWindowShortCut *window_short_cut, s32 arg1, s32 arg2, s32 arg3);
-void *__dt__15TWindowShortCutFv(void *arg0, s16 arg1);
-void render__15TWindowShortCutFv(u8 *arg0);
-}
-// --- end of C functions
+typedef char ShortCut_heading[offsetof(TWindowShortCut, m_60) == 0x60 ? 1 : -1];
+typedef char ShortCut_message[offsetof(TWindowShortCut, m_64) == 0x64 ? 1 : -1];
+typedef char ShortCut_symbol[offsetof(TWindowShortCut, m_68) == 0x68 ? 1 : -1];
+typedef char ShortCut_record[offsetof(TWindowShortCut, m_70) == 0x70 ? 1 : -1];
 
 #endif

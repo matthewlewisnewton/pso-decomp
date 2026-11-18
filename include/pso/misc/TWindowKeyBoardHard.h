@@ -4,7 +4,10 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 
+struct TWindowKeyBoardBase;
+
 struct TWindowKeyBoardHard : public TWindowBase {
+    TWindowKeyBoardHard(TWindowKeyBoardBase *composer);
     virtual ~TWindowKeyBoardHard();
     void draw_status_text(void *);
     void update_modifier_flags();
@@ -23,14 +26,20 @@ struct TWindowKeyBoardHard : public TWindowBase {
     u32 m_6c;
     u32 m_70;
     void release_keyboard();
+    void reset_input_state();
+    void reset_composer_input_flags();
+    s32 translate_key_char(u8 key, u16 *output);
+    s32 get_input_mode();
+    void enable_keyboard_led();
+    void enable_kana_led();
+    void enable_caps_led();
+    void set_flag60_bit200();
+    void clear_flag60_bit200();
+    int is_key_held();
     virtual void render();
     static s32 test_card_flag(s32 arg1, s32 arg2);
     static void set_card_window_flags(void *arg0, s32 arg1, s32 arg2);
     int is_card_flag_set();
-    int test_card_flag_0x80();
-    int test_card_flag_64();
-    int call_1A529C_with_32();
-    int test_card_flag_16();
     static s32 test_card_flag_8(s32 client_id);
     virtual void run_task();
     static void set_bits_shift7(s32 arg0, s32 arg1);

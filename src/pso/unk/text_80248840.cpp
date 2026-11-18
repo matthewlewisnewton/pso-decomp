@@ -1,5 +1,5 @@
 #include "types.h"
-#include "pso/misc/TWindowChatSymbol_802486A8.h"
+#include "pso/misc/TWindowChatSymbol.h"
 #include "pso/misc/TWindowSubSymbolChat_80076F88.h"
 #include "pso/unk/text_80248840.h"
 #include "pso/misc/TWindowSubComCardList.h"
@@ -23,8 +23,6 @@ u8 *construct_symbol_chat_selection(u8 *arg0) {
     s32 i;
     u8 *temp_r30;
     u8 *symbol_chat_preset;
-    u8 *window_chat_symbol;
-    u8 *var_r0;
     __ct__7TObjectFP7TObject();
     *(s32 **)((s8 *)arg0 + 0x18) = lbl_804CE7D0;
     *(u8 **)((s8 *)arg0 + 0x1C) = check_room_seq_4__16TAdChrSelASlotGCFl(lbl_8044EAC0, 0xC);
@@ -42,12 +40,7 @@ u8 *construct_symbol_chat_selection(u8 *arg0) {
     ((TWindowSubComCardList *)(*(u8 **)((s8 *)arg0 + 0x1C)))->set_flag70_bit10();
     ((TWindowSubComCardList *)(*(u8 **)((s8 *)arg0 + 0x1C)))->set_scroll_target(lbl_805DCBA0, lbl_805DCBA4);
     align_menu_entry_positions((void *) (*(u8 **)((s8 *)arg0 + 0x1C)));
-    window_chat_symbol = (u8 *)(__nw__7TObjectFUl(0x68));
-    var_r0 = window_chat_symbol;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TWindowChatSymbol__ct((TWindowChatSymbol *)window_chat_symbol, (s32)lbl_8044EAC8, (s32)lbl_8044EAD0));
-    }
-    *(u8 **)((s8 *)arg0 + 0x20) = var_r0;
+    *(TWindowChatSymbol **)(arg0 + 0x20) = new TWindowChatSymbol(lbl_8044EAC8, lbl_8044EAD0);
     return arg0;
 }
 

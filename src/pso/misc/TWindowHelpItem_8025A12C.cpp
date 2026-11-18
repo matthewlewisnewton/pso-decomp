@@ -16,13 +16,14 @@ struct RecoveredGlobal_8025A594_lbl_804CF9F8 {
     u8 remaining[0x14];
 };
 
+// Qualified entry receiver view; these are not HelpItem/TObject prefix fields.
 typedef struct Item_8025A354 {
     u16 flags;
     u8 pad2[6];
     f32 x;
     f32 y;
     s32 value10;
-    u8 pad14[4];
+    s32 animation;
     char *label;
     s32 cur;
     s32 next;
@@ -94,40 +95,40 @@ void TWindowHelpItem::set_flag_0x10(u16 *arg0, s32 arg1) {
 
 void TWindowHelpItem::set_flag8_and_field20(s32 arg1) {
     *(u16 *)((s8 *)this + 0) = (u16) (*(u16 *)((s8 *)this + 0) | 8);
-    *(s32 *)&this->m_20 = arg1;
+    ((Item_8025A354 *)this)->next = arg1;
 }
 
 void TWindowHelpItem::set_compare_color(s32 arg1) {
     s32 temp_r0;
 
-    temp_r0 = *(s32 *)&this->_pad1C;
+    temp_r0 = ((Item_8025A354 *)this)->cur;
     if (temp_r0 == arg1) {
-        this->m_10 = -1;
+        ((Item_8025A354 *)this)->value10 = -1;
         return;
     }
     if (temp_r0 > arg1) {
-        this->m_10 = 0xFF77E8FF;
+        ((Item_8025A354 *)this)->value10 = 0xFF77E8FF;
     } else {
-        this->m_10 = 0xFFDD8C41;
+        ((Item_8025A354 *)this)->value10 = 0xFFDD8C41;
     }
-    *(s32 *)&this->unk_14 = 0x1E;
+    ((Item_8025A354 *)this)->animation = 0x1E;
     set_flag4_and_field1c(arg1);
 }
 
 void TWindowHelpItem::set_flag4_and_field1c(s32 arg1) {
     *(u16 *)((s8 *)this + 0) = (u16) (*(u16 *)((s8 *)this + 0) | 4);
-    *(s32 *)&this->_pad1C = arg1;
+    ((Item_8025A354 *)this)->cur = arg1;
 }
 
 void TWindowHelpItem::set_help_text(u32 arg1) {
     s32 temp_r3;
 
-    ::operator delete[](this->m_vtable18);
-    this->m_vtable18 = 0;
+    ::operator delete[](((Item_8025A354 *)this)->label);
+    ((Item_8025A354 *)this)->label = 0;
     if (arg1 != 0U) {
         temp_r3 = measure_string_len__20TWindowSubStatusDispFv(arg1);
-        *(s32 *)&this->m_vtable18 = (s32)::operator new[](temp_r3 + 1);
-        strncpy(*(s32 *)&this->m_vtable18, arg1, temp_r3 + 1);
+        ((Item_8025A354 *)this)->label = (char *)::operator new[](temp_r3 + 1);
+        strncpy((s32)((Item_8025A354 *)this)->label, arg1, temp_r3 + 1);
     }
 }
 

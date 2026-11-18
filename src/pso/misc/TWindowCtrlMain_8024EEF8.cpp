@@ -1,12 +1,12 @@
 #include "types.h"
 #include "pso/misc/TWindowCtrlMain_8024EEF8.h"
 #include "pso/misc/TWindowCtrlMain.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 extern u32 soft_keyboard_instance;
 void TWindowCtrlMain::free_keyboard_soft() {
     if ((u32) soft_keyboard_instance != 0U) {
-        TWindowKeyBoardSoft::free_singleton((u32)((void*)soft_keyboard_instance), (s16)1);
+        TWindowDrawContext::free_singleton((u32)((void*)soft_keyboard_instance), (s16)1);
         soft_keyboard_instance = 0U;
     }
 }

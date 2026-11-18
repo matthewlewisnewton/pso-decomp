@@ -1,3 +1,5 @@
+#include "pso/misc/TWindowQuantity.h"
+#include "pso/misc/TWindowCost.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/item/TItemData.h"
 #include "pso/misc/TWindowMenuIconLine.h"
@@ -161,9 +163,6 @@ s32 get_window_layout_position(s32);
 void *__ct__15TWindowHelpItemFPvUs(void *, s32, u16);
 void TWindowHelpItem__set_displayed_item_by_id(void *arg0, s32 arg1);
 s32 get_cursor_value__19TWindowMenuIconLineFv(void *);
-void *create_window_quantity(u16 arg0);
-void *create_cost_window(u16);
-void get_item_count__24TShopEquipmentSellWindowFv(void *, s32);
 extern const f32 lbl_805DC6D8;
 f32 get_scale__15TShopWindowBaseFv(void *);
 int sub_802239EC__13TShopSequenceFv(void *);
@@ -287,7 +286,7 @@ void TShopEquipmentSellWindow::handle_selection() {
             }
         }
         if (w->cost_win != NULL && i != w->sel && w->entries[i].price > 0) {
-            get_item_count__24TShopEquipmentSellWindowFv(w->cost_win, w->entries[i].price);
+            fn_803094E8((TWindowCost *)(w->cost_win), w->entries[i].price);
         }
         w->sel = i;
     }
@@ -390,7 +389,7 @@ void TShopEquipmentSellWindow::build_sell_list() {
         TWindowHelpItem__set_displayed_item_by_id(self->help_win, self->entries[v].item.id);
     }
     if (self->qty_win == NULL) {
-        self->qty_win = create_window_quantity(((TShopSequence *)self)->get_child_field1c());
+        self->qty_win = create_window_quantity((u16)(((TShopSequence *)self)->get_child_field1c()));
         r = self->owner->inventory->set_mode_and_refresh_object(&self->entries[0].item);
         if (r != 0) {
             TShopEquipmentSellWindow::set_entry_count(self->qty_win, r->get_owner_if_alive());
@@ -407,12 +406,12 @@ void TShopEquipmentSellWindow::build_sell_list() {
         }
     }
     if (self->cost_win == NULL) {
-        self->cost_win = create_cost_window(get_entity_id((s32)self->owner));
+        self->cost_win = create_cost_window((u16)(get_entity_id((s32)self->owner)));
         if (self->cost_win != NULL && self->entries[0].price > 0) {
-            get_item_count__24TShopEquipmentSellWindowFv(self->cost_win, self->entries[0].price);
+            fn_803094E8((TWindowCost *)(self->cost_win), self->entries[0].price);
         }
     } else if (self->entries[self->cursor].price > 0) {
-        get_item_count__24TShopEquipmentSellWindowFv(self->cost_win, self->entries[self->cursor].price);
+        fn_803094E8((TWindowCost *)(self->cost_win), self->entries[self->cursor].price);
     }
 }
 

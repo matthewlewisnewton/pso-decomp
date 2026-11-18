@@ -1658,6 +1658,7 @@ pso/misc/TWindowChoiceSetting_801A6F38.cpp
 pso/misc/TWindowChoiceSetting_80249240.cpp
 pso/misc/TWindowChoiceSetting_80249610.cpp
 pso/misc/TWindowComCard.cpp
+pso/misc/TWindowComCard_80249CBC.cpp
 pso/misc/TWindowCost.cpp
 pso/misc/TWindowCtrl.cpp
 pso/misc/TWindowCtrlMain.cpp
@@ -1709,7 +1710,6 @@ pso/misc/TWindowCtrl_80271DFC.cpp
 pso/misc/TWindowDD.cpp
 pso/misc/TWindowDD_8020C2DC.cpp
 pso/misc/TWindowDD_8024662C.cpp
-pso/misc/TWindowDD_80246F8C.cpp
 pso/misc/TWindowDD_80340EA8.cpp
 pso/misc/TWindowDD_803411E8.cpp
 pso/misc/TWindowDD_80341334.cpp
@@ -1761,12 +1761,9 @@ pso/misc/TWindowInputNumber_80211608.cpp
 pso/misc/TWindowInputNumber_80256170.cpp
 pso/misc/TWindowKeyBoardBase.cpp
 pso/misc/TWindowKeyBoardBase_8008102C.cpp
-pso/misc/TWindowKeyBoardHard.cpp
 pso/misc/TWindowKeyBoardHard_801A529C.cpp
 pso/misc/TWindowKeyBoardHard_801FBA48.cpp
 pso/misc/TWindowKeyBoardHard_8025EB68.cpp
-pso/misc/TWindowKeyBoardHard_802601D4.cpp
-pso/misc/TWindowKeyBoardHard_8026038C.cpp
 pso/misc/TWindowKeyBoardSoft.cpp
 pso/misc/TWindowKeyBoardSoft_80080798.cpp
 pso/misc/TWindowKeyBoardSoft_80228BEC.cpp
@@ -3368,7 +3365,6 @@ pso/unk/text_8025373C.cpp
 pso/unk/text_80253974.cpp
 pso/unk/text_80255A38.cpp
 pso/unk/text_8025CD10.cpp
-pso/unk/text_8025FF8C.cpp
 pso/unk/text_80262C3C.cpp
 pso/unk/text_80263A20.cpp
 pso/unk/text_80266BD0.cpp

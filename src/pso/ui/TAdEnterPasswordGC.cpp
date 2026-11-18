@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -130,7 +131,7 @@ typedef struct Pw_8032B6A0 Pw_8032B6A0;
 typedef struct RecoveredGlobal_8032B904_lbl_80477278 RecoveredGlobal_8032B904_lbl_80477278;
 typedef struct RecoveredGlobal_8032BA8C_TAdEnterPasswordGC__data_804EDA20 RecoveredGlobal_8032BA8C_TAdEnterPasswordGC__data_804EDA20;
 void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
-  s32 buf = ((TWindowSubComCard *)password_entry_keyboard_control)->realloc_buffer();
+  s32 buf = (s32)((TKeyBoardControl *)password_entry_keyboard_control)->allocate_text_copy();
   s32 prev;
   int cur;
   if (((self->len == 0) && (TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0)) || ((self->len == 0) && (test_flag_4c__23TAdSinglePlyChrSelectGCFv(controller_input_state + 0x160, 2) != 0)))
@@ -144,11 +145,11 @@ void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
   self->f3C = self->f38;
   if (password_entry_keyboard_control != 0)
   {
-    if (((TWindowSubComCard *)password_entry_keyboard_control)->update_keyboard() != 0)
+    if (((TKeyBoardControl *)password_entry_keyboard_control)->is_key_active() != 0)
     {
       if ((TWindowShortListCtrl__check_controller_button(controller_physical_port_bank + 0x20, 2) != 0) || (test_flag_4c__23TAdSinglePlyChrSelectGCFv(controller_input_state + 0x160, 2) != 0))
       {
-        free_menu_object(password_entry_keyboard_control);
+        ((TKeyBoardControl *)(password_entry_keyboard_control))->clear_keyboard_flag60_bit1();
         self->f38 = 0;
         if (self->serial != 0)
         {
@@ -158,7 +159,7 @@ void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
       else
         if (forward_input__22TAdEnterSerialAccessGCFPv(self, 2, buf) == 0)
       {
-        free_menu_object(password_entry_keyboard_control);
+        ((TKeyBoardControl *)(password_entry_keyboard_control))->clear_keyboard_flag60_bit1();
         play_sound_effect(0x53F06, 0, 0, 0);
       }
       else
@@ -198,7 +199,7 @@ void update_password_input__18TAdEnterPasswordGCFPv(Pw_8032B6A0 *self) {
       ((TLevelSelect *)(self->serial))->add_item_rect(&enter_password_item_rect_table.value);
     }
   }
-  if ((((TAdSinglePlyChrSelectGC *)(self->serial))->get_selected_slot() == 1) && (((TWindowSubComCard *)password_entry_keyboard_control)->update_keyboard() != 0))
+  if ((((TAdSinglePlyChrSelectGC *)(self->serial))->get_selected_slot() == 1) && (((TKeyBoardControl *)password_entry_keyboard_control)->is_key_active() != 0))
   {
     strncpy((s32)&TAdEnterPasswordGC__input_buffer.value, buf, 9);
     TAdEnterSerialAccessGC__sub_80322418(get_field_118__22TAdEnterSerialAccessGCFv(), 2);

@@ -5,7 +5,10 @@
 
 class TUnk_804EFBAC : public TWindowBase {
 public:
+    TUnk_804EFBAC();
     virtual ~TUnk_804EFBAC();
+    virtual void run_task();
+    virtual void render();
     // Selection state read by the three-row renderer at 0x8034055C.
     s32 selection_disabled;
     s32 first_enabled_row;

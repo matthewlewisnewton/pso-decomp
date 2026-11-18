@@ -1,3 +1,4 @@
+#include "pso/unk/TUnk_804C3E60.h"
 #include "types.h"
 #include "pso/unk/text_801C51D4.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_801C50A8.h"
@@ -6,7 +7,6 @@
 
 extern "C" {
 extern int active_character_save_record;
-    extern int duel_result_window;
 void queue_destruction__7TObjectFv(void *arg0);
 extern u32 ad_single_ply_chr_select_instance;
 u32 __nw__7TObjectFUl(s32);
@@ -31,7 +31,7 @@ void TAdSinglePlyChrSelectGC__sub_801C5108(int a0) { *(short*)((char*)active_cha
 u16 TAdSinglePlyChrSelectGC__sub_801C5114(void) {
     return *(u16 *)((s8 *)(*(u8 * *)&active_character_save_record) + 0x21A8);
 }
-void TAdSinglePlyChrSelectGC__sub_801C5120(void) { duel_result_window = 0; }
+void TAdSinglePlyChrSelectGC__sub_801C5120(void) { lbl_805D5D90 = NULL; }
 void TAdSinglePlyChrSelectGC::destroy() {
     if ((u32) ad_single_ply_chr_select_instance != 0U) {
         queue_destruction__7TObjectFv((void *)ad_single_ply_chr_select_instance);

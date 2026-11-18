@@ -5,8 +5,8 @@
 #include "pso/misc/TWindowBase.h"
 
 struct TWindowLockOn : public TWindowBase {
+    TWindowLockOn(s32 arg1, u16 arg2);
     virtual ~TWindowLockOn();
-    void request_close();
     virtual void render();
     u16 m_60;
     u8 _pad62[0x2];
@@ -28,4 +28,7 @@ struct TWindowLockOn : public TWindowBase {
 };
 
 typedef char TWindowLockOn_size[sizeof(TWindowLockOn) == 0x7C ? 1 : -1];
+// Legacy ordinary binder; its project-assigned C symbol is retained.
+struct Win_8026366C;
+extern "C" void bind_target__13TWindowLockOnFv(Win_8026366C *window, u16 id);
 #endif

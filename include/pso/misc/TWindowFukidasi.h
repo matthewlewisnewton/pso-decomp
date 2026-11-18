@@ -2,12 +2,22 @@
 #define PSO_MISC_TWINDOWFUKIDASI_H
 
 #include "types.h"
+#include <stddef.h>
 
 struct TWindowFukidasi
 {
-    u8 _pad1C[0x4];
+    // Borrowed placement view of the window constructed as TUnk_804CF0B8.
+    u8 pad00[0x0C];
+    TWindowFukidasi *next;
+    u8 pad10[0x10];
     u16 m_20;
-    u8 _pad22[0x4E];
+    u8 pad22[0x0E];
+    f32 position[2];
+    f32 size[2];
+    f32 m_40; // Left edge tested at 0x80244D98.
+    u8 pad44[0x14];
+    f32 rise;
+    u8 pad5C[0x14];
     u8 m_70;
     u8 m_71;
     u8 m_72;
@@ -15,7 +25,8 @@ struct TWindowFukidasi
     u8 _pad74[0x2];
     u16 m_76;
     u32 m_78;
-    static void draw_resolved_window(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+    TWindowFukidasi *find_viewport_overlap(const f32 *position, const f32 *size, s32 viewport);
+    TWindowFukidasi *find_overlapping_balloon(const f32 *position, const f32 *size, TWindowFukidasi *first);
     void hide();
     int get_visible_flag();
     int is_bit10_set();
@@ -23,13 +34,16 @@ struct TWindowFukidasi
     void sync_display_pos();
     s32 approach(f32 farg0);
     void get_boundary_offset(s32 angle, f32 *out);
-    void run_task();
-    void find_balloon_overlap_for(s32 arg1);
+    TWindowFukidasi *find_balloon_overlap_for(TWindowFukidasi *first);
     void rearm_balloon(s32 arg1);
 };
 
+typedef char BalloonOverlapNextOffset[offsetof(TWindowFukidasi, next) == 0x0C ? 1 : -1];
+typedef char BalloonOverlapPositionOffset[offsetof(TWindowFukidasi, position) == 0x30 ? 1 : -1];
+typedef char BalloonOverlapSizeOffset[offsetof(TWindowFukidasi, size) == 0x38 ? 1 : -1];
+typedef char BalloonOverlapRiseOffset[offsetof(TWindowFukidasi, rise) == 0x58 ? 1 : -1];
+
 extern "C" {
-void sub_80251DF0__13TUnk_804CF0B8Fslsf(void *arg0, s16 arg1, s32 str, s16 arg3, f32 farg0);
 void sub_802504A8__13TUnk_804CF0B8Fv(void *arg0);
 s32 clamp_position__13TUnk_804CF0B8FPvf(void *arg0, void *arg1, f32 farg0);
 void complete_speech_balloon(u8 *arg0);

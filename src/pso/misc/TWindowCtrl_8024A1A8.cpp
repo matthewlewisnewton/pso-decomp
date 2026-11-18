@@ -1,4 +1,5 @@
 #include "pso/ui/PlayerWindowDispatch.h"
+#include "pso/misc/TUnk_804CF0B8.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/player/TObjChara.h"
@@ -28,13 +29,6 @@ struct RecoveredFields_8024A688_temp_r3
   f32 field_40;
 };
 
-struct Ctrl_8024A928 { u8 pad[0x84]; void *slots[4]; };
-
-struct Ctrl_8024A714 { u8 pad[0x84]; void *arr[4]; };
-
-struct Obj_8024A7CC { u8 pad[0x84]; void *arr[4]; };
-
-struct Ctrl_8024A928;
 
 struct Obj_8024AA08 { u8 pad[4]; u32 f4; };
 
@@ -57,16 +51,12 @@ f32 get_entity_distance_or_default__11TWindowCtrlFiPvUs(s32 arg0, RecoveredField
 s32 check_card_match_enabled__15TWindowFukidasiFl(void *, void *);
 void *get_player_by_client_id(s32);
 extern s32 local_client_id;
-s32 find_farthest_balloon_slot__11TWindowCtrlFPvUs(Ctrl_8024A714 *ctrl, u16 speaker);
 void *__nw__7TObjectFUl(u32);
-u8 *TWindowFukidasi__sub_80252B74(u8 *arg0, s32 arg1, s32 str, s32 arg3, f32 farg0);
-void *acquire_balloon_slot__11TWindowCtrlFPviiPv(Ctrl_8024A928 *self, s32 player, s32 flags, void *local);
 s32 is_locally_controlled__10TObjPlayerFPv(u8 *);
 s32 obj_isState2_324__9TObjCharaFv(u8 *);
 s32 obj_is_hit_receivable();
 static const f32 lbl_805DCBD8 = 0.0f;
 static const f32 lbl_805DCBDC = 0.92f;
-void get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv(Ctrl_8024A928 *arg0, s32 arg1, f32 *arg2, s32 *arg3);
 s32 TWindowCtrl__sub_8024C5C4(u32);
 u32 create_area_window();
 }
@@ -203,14 +193,14 @@ char *TWindowCtrl::skip_name_prefix(void *self, char *s) {
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
-inline u8 *get_obj_8024A5AC(s32 id) {
-    u8 *o = ((u8 *(*)(s32))find_entity_by_id)(id);
+inline u8 *get_obj_8024A5AC(u16 id) {
+    u8 *o = find_entity_by_id(id);
     if (o != NULL && obj_is_hit_receivable() == 1) {
         return o;
     }
     return NULL;
 }
-void get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv(Ctrl_8024A928 *arg0, s32 id, f32 *arg2, s32 *arg3) {
+void TWindowCtrl::get_speaker_balloon_anchor(u16 id, f32 *arg2, s32 *arg3) {
     u8 *obj;
     void *q;
     obj = get_obj_8024A5AC(id);
@@ -258,13 +248,13 @@ f32 get_entity_distance_or_default__11TWindowCtrlFiPvUs(s32 arg0, RecoveredField
   return (temp_f2 * temp_f2) + ((temp_f4 * temp_f4) + (temp_f3 * temp_f3));
 }
 
-s32 find_farthest_balloon_slot__11TWindowCtrlFPvUs(Ctrl_8024A714 *ctrl, u16 speaker) {
+s32 TWindowCtrl::find_farthest_balloon_slot(u16 speaker) {
     s32 i;
     s32 result;
     RecoveredFields_8024A688_arg1 *local;
     f32 farthest;
     f32 d;
-    void *b;
+    TUnk_804CF0B8 *b;
     u16 id;
 
     local = (RecoveredFields_8024A688_arg1 *)get_player_by_client_id(local_client_id);
@@ -272,12 +262,12 @@ s32 find_farthest_balloon_slot__11TWindowCtrlFPvUs(Ctrl_8024A714 *ctrl, u16 spea
         return 4;
     }
     result = 4;
-    farthest = ((f32 (*)(void *, RecoveredFields_8024A688_arg1 *, u16))get_entity_distance_or_default__11TWindowCtrlFiPvUs)(ctrl, local, speaker);
+    farthest = ((f32 (*)(void *, RecoveredFields_8024A688_arg1 *, u16))get_entity_distance_or_default__11TWindowCtrlFiPvUs)(this, local, speaker);
     for (i = 0; i < 4; i++) {
-        b = ctrl->arr[i];
+        b = balloons[i];
         if (b != NULL) {
-            id = ((TWindowCtrl *)b)->get_flags();
-            d = ((f32 (*)(void *, RecoveredFields_8024A688_arg1 *, u16))get_entity_distance_or_default__11TWindowCtrlFiPvUs)(ctrl, local, id);
+            id = b->get_speaker_id();
+            d = ((f32 (*)(void *, RecoveredFields_8024A688_arg1 *, u16))get_entity_distance_or_default__11TWindowCtrlFiPvUs)(this, local, id);
             if (!(farthest > d)) {
                 farthest = d;
                 result = i;
@@ -288,70 +278,65 @@ s32 find_farthest_balloon_slot__11TWindowCtrlFPvUs(Ctrl_8024A714 *ctrl, u16 spea
 }
 
 s32 TWindowCtrl::count_balloon_slots() {
-    Obj_8024A7CC *self = (Obj_8024A7CC *)this;
     s32 n = 0;
     s32 i;
     for (i = 0; i < 4; i++) {
-        if (self->arr[i] == 0) break;
+        if (balloons[i] == 0) break;
         n++;
     }
     return n;
 }
 
-void *acquire_balloon_slot__11TWindowCtrlFPviiPv(Ctrl_8024A928 *self, s32 player, s32 flags, void *local) {
+TUnk_804CF0B8 *TWindowCtrl::acquire_balloon_slot(u16 player, s32 flags, s32 client) {
     f32 f;
     s32 n;
     u32 i;
-    void *b;
-    get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv((Ctrl_8024A928 *)(self), player, &f, &n);
+    TUnk_804CF0B8 *b;
+    get_speaker_balloon_anchor(player, &f, &n);
     i = 4;
     if (!(flags & 0x10)) {
         for (i = 0; i < 4; i++) {
-            b = self->slots[i];
-            if (b != 0 && ((TObject *)b)->all_parents_unqueued_for_destruction() != 0 &&
-                (u16)player == ((TWindowCtrl *)b)->get_flags()) {
+            b = balloons[i];
+            if (b != 0 && b->all_parents_unqueued_for_destruction() != 0 &&
+                player == b->get_speaker_id()) {
                 break;
             }
         }
     }
     if (i >= 4) {
-        i = ((TWindowCtrl *)self)->count_balloon_slots();
+        i = count_balloon_slots();
         if (i >= 4) {
-            i = ((s32 (*)(Ctrl_8024A714 *, s32))find_farthest_balloon_slot__11TWindowCtrlFPvUs)((Ctrl_8024A714 *)self, player);
+            i = find_farthest_balloon_slot(player);
         }
         if (i >= 4) {
             return 0;
         }
-        if (self->slots[i] != 0) {
-            ((TWindowBase *)(self->slots[i]))->close();
+        if (balloons[i] != 0) {
+            balloons[i]->close();
         }
-        b = __nw__7TObjectFUl(0x98);
-        if (b != 0) {
-            b = TWindowFukidasi__sub_80252B74((u8 *)b, (s32)player, (s32)n, (s32)local, (f32)f);
-        }
-        self->slots[i] = b;
+        b = new TUnk_804CF0B8(player, n, client, f);
+        balloons[i] = b;
     }
-    return self->slots[i];
+    return balloons[i];
 }
 
-void *TWindowCtrl::show_chat_balloon(s32 player, s32 flags, void *text, void *local) {
-    Ctrl_8024A928 *self = (Ctrl_8024A928 *)this;
+TUnk_804CF0B8 *TWindowCtrl::show_chat_balloon(u16 player, s32 flags, void *text, s32 client) {
     u32 i;
-    if ((*(Ctrl_8024A928 * *)&TWindowCtrl__active_window) == 0) {
+    if (TWindowCtrl__active_window == NULL) {
         return 0;
     }
     if (flags & 8) {
         for (i = 0; i < 4; i++) {
-            void *b = self->slots[i];
-            if (b != 0 && ((TObject *)b)->all_parents_unqueued_for_destruction() != 0 &&
-                (u16)player == ((TWindowCtrl *)b)->get_flags() &&
+            TUnk_804CF0B8 *b = balloons[i];
+            if (b != 0 && b->all_parents_unqueued_for_destruction() != 0 &&
+                player == b->get_speaker_id() &&
                 check_card_match_enabled__15TWindowFukidasiFl(b, text) != 0) {
                 ((TWindowFukidasi *)b)->rearm_balloon(flags);
                 return 0;
             }
         }
     }
-    return acquire_balloon_slot__11TWindowCtrlFPviiPv((Ctrl_8024A928 *)((*(Ctrl_8024A928 * *)&TWindowCtrl__active_window)), player, flags, local);
+    return ((TWindowCtrl *)TWindowCtrl__active_window)->acquire_balloon_slot(player, flags, client);
 }
 
 void TWindowCtrl::handle_chat_message(char *arg1) {

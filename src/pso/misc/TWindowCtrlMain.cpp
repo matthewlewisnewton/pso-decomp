@@ -5,7 +5,7 @@
 
 #include "pso/TParticleCtrl.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/render/render_util.h"
 
 struct Ent_8024D520 { void *obj; u8 pad[0x18]; };
@@ -172,7 +172,7 @@ void TWindowCtrlMain::reset_all(void* _w0) {
     s32 i;
     load_hud_palette_textures();
     TWindowCtrlMain__sub_8024EF30();
-    TWindowKeyBoardSoft::get_or_create_instance();
+    TWindowDrawContext::get_or_create_instance();
     TWindowCtrlMain__display_flags = 0;
     TWindowCtrlMain__window_task_root = 0;
     TWindowCtrlMain__screen_controller = 0;

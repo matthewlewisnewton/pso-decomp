@@ -30,10 +30,8 @@ struct TWindowSubItem : public TObject {
     virtual void run_task();
     void set_flag60_bit10();
     void clear_flag_and_release();
-    void reset_selected();
     void set_field_74(s16 v);
     s32 get_selected_entry();
-    void refresh();
     s32 get_cursor_pos();
     s32 open_purpose_window(s32 arg1);
     void gray_out_unusable_entries();

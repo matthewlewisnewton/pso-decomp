@@ -4,6 +4,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/TWindowEffectLight.h"
+#include "pso/misc/WindowViewport.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/render/render_util.h"
 
@@ -54,7 +55,6 @@ void set_draw_texture_and_color(s32 idx, s32 arg1);
 extern "C" {
 
 void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(f32 *destination, const void *source);
-void adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(f32 *position, s32 view_index);
 
 #pragma fp_contract on
 
@@ -68,7 +68,7 @@ void *TWindowEffectLight::create(void *arg0, s16 arg1, u32 arg2) {
 TWindowEffectLight::TWindowEffectLight(void *arg1, s16 arg2, u32 id) : TObject(tl_window) {
     m_name = lbl_805D3E60;
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv(&x, arg1);
-    adjust_pos_for_split_screen__19TWindowKeyBoardSoftFl(&x, TCameraCtrl::get_split_screen_view_index(id));
+    adjust_window_position_for_split_screen(&x, TCameraCtrl::get_split_screen_view_index(id));
     effect_kind = arg2;
     age = -1;
     player_id = id;

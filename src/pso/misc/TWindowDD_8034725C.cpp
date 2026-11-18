@@ -1,3 +1,4 @@
+#include "pso/misc/WindowWordSelectionAbi.h"
 #include "pso/misc/WordSelectMessage.h"
 #include "pso/misc/TextEntryMeasurement.h"
 #include "pso/misc/TWindowDD.h"
@@ -71,7 +72,6 @@ s32 TWindowDD__sub_80348B70(s32);
 void TWindowDD__sub_80347474(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 extern const f32 lbl_805DFB54;
 s32 TWindowDD__sub_80342384(s32 arg0, s32 arg1);
-s32 TWindowDD__sub_80342158(void *);
 void TWindowDD__sub_80347FA0(s32 arg0, s32 arg1);
 s32 TWindowDD__sub_80348DD8(void *, int);
 void TWindowDD__sub_80347A4C(u8 *arg0, s32 arg1);
@@ -130,7 +130,7 @@ s32 TWindowDD::classify_id(s16 arg0) {
     return var_r3;
 }
 
-s32 word_select_player_gender(s32 arg0) {
+s32 word_select_player_gender(u16 arg0) {
     s32 temp_r3_2;
     void *player;
 
@@ -399,7 +399,7 @@ u8 *TWindowDD::init_last_child() {
 
 void TWindowDD__sub_80347A4C(u8 *arg0, s32 arg1) {
     s32 temp_r3;
-    temp_r3 = TWindowDD__sub_80342158((void *)arg1);
+    temp_r3 = TWindowDD__sub_80342158((u8 *)arg1);
     if (TWindowDD::is_state_zero_unless_0x2C8(temp_r3) != 0) {
         TWindowDD__sub_80348DD8(arg0 + 0xC4, temp_r3);
         TWindowDD__sub_80347CC8((W_80347CC8 *)(arg0), arg0 + 0xC4);
@@ -435,7 +435,7 @@ struct W_80347CC8;
 void TWindowDD::update_selection_state() {
     s32 v;
     W_80347B70 *arg0 = (W_80347B70 *)this;
-    v = TWindowDD__sub_80342158(arg0->tbl[arg0->idx]);
+    v = TWindowDD__sub_80342158((u8 *)arg0->tbl[arg0->idx]);
     if ((s16)v != arg0->cur) {
         switch (arg0->state) {
         case 0:
@@ -478,7 +478,7 @@ void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *window_dd) {
     f32 c;
     f32 max;
     f32 f10;
-    format_word_select_message((WordSelectMessage *)window_dd, (char *)TWindowDD__work_buffer, local_client_id & 0xFFFF);
+    format_word_select_message((WordSelectMessage *)window_dd, (char *)TWindowDD__work_buffer, (u16)local_client_id);
     s = arg0->f70;
     if (s != NULL) {
         e = get_array_entry__11TWindowBaseFi(s, 0);
