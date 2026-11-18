@@ -2905,6 +2905,7 @@ force_active:
   - __dt__11TObjDFYutaiFv
   - __dt__11TObjEneMojaFv
   - __dt__11TObjInfoColFv
+  - __dt__11TObjPathObjFv
   - __dt__11TPhotonLineFv
   - __dt__11TPlayerSoulFv
   - __dt__11TSetManagerFv
@@ -3071,6 +3072,11 @@ force_active:
   - __dt__13TUnk_804CE7E8Fv
   - __dt__13TUnk_804CE964Fv
   - __dt__13TUnk_804DDF04Fv
+  - __dt__13TUnk_804E0898Fv
+  - __dt__13TUnk_804E08D4Fv
+  - __dt__13TUnk_804E0910Fv
+  - __dt__13TUnk_804E094CFv
+  - __dt__13TUnk_804E0988Fv
   - __dt__13TUnk_804E14E8Fv
   - __dt__13TUnk_804E1E08Fv
   - __dt__13TUnk_804E1F04Fv
@@ -3627,6 +3633,7 @@ force_active:
   - __vt__11TObjInfoCol
   - __vt__11TObjMesBase
   - __vt__11TObjNpcMoja
+  - __vt__11TObjPathObj
   - __vt__11TPhotonLine
   - __vt__11TPlayerSoul
   - __vt__11TTecRaZonde
@@ -3787,6 +3794,11 @@ force_active:
   - __vt__13TUnk_804CF930
   - __vt__13TUnk_804D0948
   - __vt__13TUnk_804DDF04
+  - __vt__13TUnk_804E0898
+  - __vt__13TUnk_804E08D4
+  - __vt__13TUnk_804E0910
+  - __vt__13TUnk_804E094C
+  - __vt__13TUnk_804E0988
   - __vt__13TUnk_804E14E8
   - __vt__13TUnk_804E3BD8
   - __vt__13TUnk_804E4788
@@ -5151,9 +5163,15 @@ force_active:
   - bm_obj_geenest_motion_names
   - bm_obj_hako01_model_names
   - bm_obj_hako01_motion_names
+  - bm_obj_jungle_bird_model_names
+  - bm_obj_jungle_bird_motion_names
   - bm_obj_jungle_biwamushi_model_names
   - bm_obj_jungle_biwamushi_motion_names
   - bm_obj_jungle_biwamushi_resource_descriptor
+  - bm_obj_jungle_ebi_model_names
+  - bm_obj_jungle_ebi_motion_names
+  - bm_obj_jungle_kamome_model_names
+  - bm_obj_jungle_kamome_motion_names
   - bm_obj_jungle_nokogiri_motion_names
   - bm_obj_jungle_nokogiri_resource_descriptor
   - bm_obj_labo_infocapsule_model_names
@@ -5195,6 +5213,8 @@ force_active:
   - bm_obj_meka_fish_1_resource_descriptor
   - bm_obj_seabed_con_motion_names
   - bm_obj_seabed_con_rare_motion_names
+  - bm_obj_seabed_dolphin_model_names
+  - bm_obj_seabed_dolphin_motion_names
   - bm_obj_seabed_suiso_2_model_names
   - bm_obj_seabed_suiso_2_motion_names
   - bm_obj_seabed_suiso_model_names
@@ -5206,6 +5226,8 @@ force_active:
   - bm_ply_photon_chair_motion_names
   - bm_tec_regurar_model_names
   - bm_tec_regurar_motion_names
+  - bm_technic_model_names
+  - bm_technic_motion_names
   - bml_header_record_ptr
   - bml_load_buffer
   - bml_load_entry_index
@@ -16653,6 +16675,7 @@ force_active:
   - render__11TObjDFDemo4Fv
   - render__11TObjDFDemo5Fv
   - render__11TObjEneMojaFv
+  - render__11TObjPathObjFv
   - render__11TPhotonLineFv
   - render__11TTecRaZondeFv
   - render__11TWindowChatFv
@@ -17402,6 +17425,7 @@ force_active:
   - run_task__11TObjDFJisinFv
   - run_task__11TObjEneMojaFv
   - run_task__11TObjInfoColFv
+  - run_task__11TObjPathObjFv
   - run_task__11TPhotonLineFv
   - run_task__11TPlayerSoulFv
   - run_task__11TSetManagerFv
@@ -17919,6 +17943,7 @@ force_active:
   - screen_meshes__19TOComputerMachine01
   - scroll_kind2_uvs__18TObjSeabedSuiso_CHFv
   - scroll_up_line__14TWindowMessageFPUc
+  - seabed_dolphin_actions
   - seabed_rare_console_texture_filename
   - seabed_suiso_brakable_collision_bodies
   - seabed_suiso_break_sets
@@ -20706,10 +20731,22 @@ force_active:
   - vfunc_11__12TQuestListVMFv
   - vfunc_11__17TQuestListOfflineFv
   - vfunc_12__8TObjChipFv
+  - vfunc_13__11TObjPathObjFl
   - vfunc_13__13TUnk_804B5C08Fl
+  - vfunc_13__13TUnk_804E0898Fl
+  - vfunc_13__13TUnk_804E08D4Fl
+  - vfunc_13__13TUnk_804E0910Fl
+  - vfunc_13__13TUnk_804E094CFl
+  - vfunc_13__13TUnk_804E0988Fl
   - vfunc_13__22TObjFogCollisionPoisonFl
   - vfunc_13__22TObjFogCollisionSwitchFl
+  - vfunc_14__11TObjPathObjFv
   - vfunc_14__12TObjComputerFv
+  - vfunc_14__13TUnk_804E0898Fv
+  - vfunc_14__13TUnk_804E08D4Fv
+  - vfunc_14__13TUnk_804E0910Fv
+  - vfunc_14__13TUnk_804E094CFv
+  - vfunc_14__13TUnk_804E0988Fv
   - vfunc_14__14TOTrapChainSawFv
   - vfunc_14__15TORockJungleL01Fv
   - vfunc_14__17TOTrapChainSawKeyFv
