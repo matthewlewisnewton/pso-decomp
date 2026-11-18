@@ -6,6 +6,7 @@
 #include "dolphin/mtx.h"
 
 struct TObjEneSlime;
+struct SlimeAnimationState;
 
 struct TObjEneSlimeOne : public TObjEnemy {
     virtual ~TObjEneSlimeOne();
@@ -20,7 +21,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     Vec trail_position;
     u8 * model_archive;  // get_instance(); its texlist and bml models
     u32 state;  // index into the {enter, update} state table; set_state
-    u32 m_388;
+    SlimeAnimationState *animation;
     void *collision_body_parts;  // init_collision_body_parts / free_collision_body_parts
     s32 state_timer;  // set_random_timer, counted down by the states
     u8 unk_394[0x4];
@@ -47,10 +48,6 @@ struct TObjEneSlimeOne : public TObjEnemy {
     int is_timer_active();
     int find_nearest_enemy_with_flag(s32 arg1, f32 farg0);
     int check_player_field_7cc();
-    void draw_part(s32 arg1);
-    void advance_animation_state();
-    s32 is_reached_target_depth();
-    void set_motion_state(s32 arg1);
     void copy_position();
     void set_random_timer_15();
     void clear_child_flag();
