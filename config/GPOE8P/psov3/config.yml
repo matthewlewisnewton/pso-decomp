@@ -2769,6 +2769,7 @@ force_active:
   - __dt__11TOBoss4BirdFv
   - __dt__11TOBoss4RockFv
   - __dt__11TOKeyCave01Fv
+  - __dt__11TOVS2Wall01Fv
   - __dt__11TObjControlFv
   - __dt__11TObjDFDemo0Fv
   - __dt__11TObjDFDemo1Fv
@@ -2820,6 +2821,12 @@ force_active:
   - __dt__12TOSignCave02Fv
   - __dt__12TOSignCave03Fv
   - __dt__12TOSwitchItemFv
+  - __dt__12TOVS2Wreck01Fv
+  - __dt__12TOVS2Wreck02Fv
+  - __dt__12TOVS2Wreck03Fv
+  - __dt__12TOVS2Wreck04Fv
+  - __dt__12TOVS2Wreck05Fv
+  - __dt__12TOVS2Wreck06Fv
   - __dt__12TObjComputerFv
   - __dt__12TObjEneLappyFv
   - __dt__12TObjEneReconFv
@@ -3480,6 +3487,7 @@ force_active:
   - __vt__11TODragonfly
   - __vt__11TOFenceBase
   - __vt__11TOKeyCave01
+  - __vt__11TOVS2Wall01
   - __vt__11TObjControl
   - __vt__11TObjDFDemo0
   - __vt__11TObjDFDemo1
@@ -3536,6 +3544,12 @@ force_active:
   - __vt__12TOSignCave02
   - __vt__12TOSignCave03
   - __vt__12TOSwitchItem
+  - __vt__12TOVS2Wreck01
+  - __vt__12TOVS2Wreck02
+  - __vt__12TOVS2Wreck03
+  - __vt__12TOVS2Wreck04
+  - __vt__12TOVS2Wreck05
+  - __vt__12TOVS2Wreck06
   - __vt__12TObjComputer
   - __vt__12TObjEneBeast
   - __vt__12TObjEneDD_ST
@@ -4079,6 +4093,7 @@ force_active:
   - __vt__5TItem
   - __vt__5TLogo
   - __vt__5TOKey
+  - __vt__5TOVS2
   - __vt__6TLobby
   - __vt__6TOTrap
   - __vt__6TScene
@@ -16450,6 +16465,7 @@ force_active:
   - render__11TOBoss4BirdFv
   - render__11TOBoss4RockFv
   - render__11TOKeyCave01Fv
+  - render__11TOVS2Wall01Fv
   - render__11TObjDFDemo1Fv
   - render__11TObjDFDemo2Fv
   - render__11TObjDFDemo3Fv
@@ -17190,6 +17206,7 @@ force_active:
   - run_task__11TOBoss4BirdFv
   - run_task__11TOBoss4RockFv
   - run_task__11TOKeyCave01Fv
+  - run_task__11TOVS2Wall01Fv
   - run_task__11TObjControlFv
   - run_task__11TObjDFDemo1Fv
   - run_task__11TObjDFDemo2Fv

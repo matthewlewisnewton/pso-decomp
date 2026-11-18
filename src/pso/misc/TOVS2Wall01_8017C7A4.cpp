@@ -18,7 +18,7 @@ struct TObjGoalWarpAncient;
 #include "pso/misc/TOVS2.h"
 
 extern "C" {
-int take_hit__11TOVS2Wall01FPvUi(void*);
+f32 take_hit__11TOVS2Wall01FPvUi(u8 *, u32);
 s32 init_collision_body_parts(void *, void *, int);
 extern void *tl_05;
 extern const f32 lbl_805DBAB0;
@@ -47,29 +47,13 @@ void TOVS2Wall01::load_resources() {
 
 }
 
-// The destructor is still written out by hand: compiled, its vtable would
-// open the unit's .data, which the original fills first with the object's
-// resource and collision tables (not owned by this unit yet).
-extern "C" {
-extern void *__vt__5TOVS2[];
-void __dl__7TObjectFPv(void *);
-
-void *__dt__5TOVS2Fv(void *self, s16 del) {
-    if (self != NULL) {
-        *(void **)((u8 *)self + 0x18) = __vt__5TOVS2;
-        if ((void *)((TOVS2 *)self)->m_c8 != NULL) {
-            queue_destruction__7TObjectFv((void *)((TOVS2 *)self)->m_c8);
-            ((TOVS2 *)self)->m_c8 = 0;
-        }
-        ((TOVS2 *)self)->unregister_object_by_id();
-        free_collision_body_parts((TOVS2 *)self);
-        __dt__13TObjMapObjectFv(self, 0);
-        if (del > 0) {
-            __dl__7TObjectFPv(self);
-        }
+TOVS2::~TOVS2() {
+    if (m_c8 != NULL) {
+        queue_destruction__7TObjectFv(m_c8);
+        m_c8 = NULL;
     }
-    return self;
-}
+    unregister_object_by_id();
+    free_collision_body_parts(this);
 }
 
 TOVS2::TOVS2(void *set_data, s32 index) : TObjMapObject((TObject *)tl_05) {
@@ -84,23 +68,29 @@ TOVS2::TOVS2(void *set_data, s32 index) : TObjMapObject((TObject *)tl_05) {
     m_cc = 1;
 }
 
+s32 TOVS2Wall01::try_start_action(s32, s32) { return 1; }
+
+s32 TOVS2Wall01::roll_physical_accuracy(void *, s32, f32) { return 1; }
+
+s32 TOVS2Wall01::select_melee_contact_body(void *, f32) { return 1; }
+
+int TOVS2Wall01::calc_distance_accuracy_penalty(void *, void *, void *, f32) { return 1; }
+
+f32 TOVS2Wall01::receive_physical_attack(void *attacker, f32) {
+    return take_hit__11TOVS2Wall01FPvUi((u8 *)this, (u32)attacker);
+}
+
+f32 TOVS2Wall01::receive_direct_attack(void *attacker, DirectAttackPayload, void *, s32, s32) {
+    return take_hit__11TOVS2Wall01FPvUi((u8 *)this, (u32)attacker);
+}
+
+f32 TOVS2Wall01::receive_weapon_special_attack(void *attacker, void *) {
+    return take_hit__11TOVS2Wall01FPvUi((u8 *)this, (u32)attacker);
+}
+
+void TOVS2Wall01::apply_knockback_from_attacker(u8 *, f32) {}
+
 extern "C" {
-
-int TOVS2Wall01__vt24(void) { return 1; }
-
-int TOVS2Wall01__vt25(void) { return 1; }
-
-int TOVS2Wall01__vt18(void) { return 1; }
-
-int TOVS2Wall01__vt19(void) { return 1; }
-
-int TOVS2Wall01__vt20(void* p) { return take_hit__11TOVS2Wall01FPvUi(p); }
-
-int TOVS2Wall01__vt21(void* p) { return take_hit__11TOVS2Wall01FPvUi(p); }
-
-int TOVS2Wall01__vt22(void* p) { return take_hit__11TOVS2Wall01FPvUi(p); }
-
-void TOVS2Wall01__vt23(void) {  }
 
 void TOVS2Wall01__sub_8017CA48(void* p, s32 v) { *(s32*)((char*)p + 0x33c) = v; }
 s32 TOVS2Wall01__sub_8017CA50(void* p) { return *(s32*)((char*)p + 0x33c); }

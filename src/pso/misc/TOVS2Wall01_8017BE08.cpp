@@ -63,9 +63,7 @@ extern void *tl_05;
 extern const f32 lbl_805DBAAC;
 extern const f32 lbl_805DBAB0;
 void *TOVS2Wall01__ct(TOVS2Wall01 *arg0, void *arg1);
-void *__dt__11TOVS2Wall01Fv(void *arg0, s16 arg1);
 void free_collision_body_parts(void *);
-void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 int submit_cursor_candidate(void*, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
@@ -95,7 +93,7 @@ void TOVS2Wall01::run_task() {
 void TOVS2Wall01::render() {
     u8 *arg0 = (u8 *)this;
     s32 var_r31;
-    update__15RenderFadeStateFv((u8 *)&this->m_340);
+    update__15RenderFadeStateFv((u8 *)&this->fade);
     *(s32 *)&this->m_35c = ((VObj_18_26a62c *)(arg0))->m8(*(f32 *)&this->unk_334, this->m_338);
     if ((s32) this->m_35c == 1) {
         if (TRaderMapCore::is_not_split_screen() == 1) {
@@ -132,19 +130,14 @@ void *TOVS2Wall01::create() {
     return o;
 }
 
-void *__dt__11TOVS2Wall01Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TOVS2Wall01;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__15RenderFadeStateFv((s8 *)arg0 + 0x340, -1);
-        __dt__9TObjCharaFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
 }
+
+TOVS2Wall01::~TOVS2Wall01() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
+}
+
+extern "C" {
 #pragma push
 #pragma opt_common_subs off
 void *TOVS2Wall01__ct(TOVS2Wall01 *arg0, void *arg1) {
