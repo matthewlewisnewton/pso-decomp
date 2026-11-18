@@ -1248,14 +1248,13 @@ void TLobby__sub_80406FD8(void *a, void *b, s32 v) {
 }
 
 #pragma opt_propagation reset
-void TUdpSocket::release_entry() {
-    Ent_804072C4 *e = (Ent_804072C4 *)this;
+void NetReleasePacket(NetPacket *packet) {
     s16 i;
-    s16 n = ((Tbl_804072C4 *)&lobby_udp_socket_table)->count;
-    Ent_804072C4 *p = ((Tbl_804072C4 *)&lobby_udp_socket_table)->list;
+    s16 n = ((Tbl_80407310 *)&lobby_udp_socket_table)->count;
+    NetPacket *p = ((Tbl_80407310 *)&lobby_udp_socket_table)->list;
     for (i = 0; i < n; i++, p++) {
-        if (p->st == 1 && p == e) {
-            p->st = 0;
+        if (p->in_use == 1 && p == packet) {
+            p->in_use = 0;
             return;
         }
     }
@@ -1422,7 +1421,7 @@ extern s32 TLobby__sub_80407640(void *pkt, s16 a, s16 b, s16 c)
         NetMemcpy(out.f10, in.f8, hit->fF);
         TLobby::call_handler_by_index(hit->f2, c, 0, (s32)in.f4, (s32)r);
         if (r != NULL) {
-          ((TUdpSocket *)r)->release_entry();
+          NetReleasePacket((NetPacket *)r);
         }
       }
     }
@@ -1752,11 +1751,26 @@ s32 TLobby__sub_80408388(s16 id) {
     return -1;
 }
 
+static inline Ent_80408428 *notify_and_detach_peer(Ent_80408428 *e, s16 arg0, s16 arg1) {
+    NetPacket *packet;
+    if (e->sub != NULL) {
+        packet = TLobby::alloc_free_entry();
+        if (packet != NULL) {
+            packet->fragment_count = 1;
+            packet->total_bytes = e->sub->f6;
+            packet->fragments[0].length = e->sub->f6;
+            NetBufferRefInitKind1(&packet->fragments[0].buffer, e->sub->fC);
+            TLobby::call_handler_by_index(arg0, arg1, 0, (s32)e->addrC, (s32)packet);
+            NetReleasePacket(packet);
+        }
+    }
+    detach_80408428(e);
+    return e;
+}
+
 Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state) {
-    s32 native_frame_padding[2];
     Tbl_80408428 *t = (Tbl_80408428 *)&lbl_805C1AB0;
     Ent_80408428 *e;
-    Pkt_80408428 *p;
 
     e = find_80408428(t, type, addr);
     if (e != NULL) {
@@ -1774,19 +1788,8 @@ Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8
         }
         NetMemcpy(e->addrC, addr2, type2);
         e->state = state;
-        if (e->sub != NULL) {
-            p = (Pkt_80408428 *)TLobby::alloc_free_entry();
-            if (p != NULL) {
-                p->f4 = 1;
-                p->f8 = e->sub->f6;
-                p->fC = e->sub->f6;
-                NetBufferRefInitKind1((NetBufferRef *)p->f10, e->sub->fC);
-                TLobby::call_handler_by_index(arg0, arg1, 0, (s32)e->addrC, (s32)p);
-                ((TUdpSocket *)p)->release_entry();
-            }
-        }
-        detach_80408428(e);
-        return e;
+        Ent_80408428 *result = notify_and_detach_peer(e, arg0, arg1);
+        return result;
     }
     if (addr2 == NULL) {
         return NULL;
@@ -4372,10 +4375,10 @@ s16 TLobby__sub_8040CB44(u8 *self, u32 d, u32 c)
       r = TLobby__sub_8040CFE8(0, 0, c, d, out);
       if (r < 0)
     {
-      ((TUdpSocket *)out)->release_entry();
+      NetReleasePacket(out);
       return r;
     }
-      ((TUdpSocket *)out)->release_entry();
+      NetReleasePacket(out);
       return 0;
 
     case 3:
@@ -4467,7 +4470,7 @@ s32 TUdpSocket__sub_8040CE58(Icmp4Header *icmp, Ipv4Header *ip, s16 len, s16 idx
     icmp->checksum = 0;
     icmp->checksum = NetPacketChecksum((NetPacket *)pkt, 1);
     ret = TLobby__sub_8040E780(pkt, ip->src, ip->dst, 0, 0, 0, 1);
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket(pkt);
     return ret;
 }
 
@@ -4542,7 +4545,7 @@ s16 NetIPv6HandleIcmpMessage(NetPacket *pkt, u8 *src, u8 *dst, u8 hop_limit, s16
             NetMemcpy(&reply->fragments[i].buffer, buf, 8);
         }
         r = TLobby__sub_8040D718(0x81, 0, dst, src, reply, iface);
-        ((TUdpSocket *)reply)->release_entry();
+        NetReleasePacket(reply);
         return r;
     case 1:
         TLobby__sub_80406EB8(&body->buffer, 8);
@@ -4700,7 +4703,7 @@ s16 TLobby__sub_8040D510(Icmp6ErrorInfo *err, u8 *hdr, s16 len, s16 idx) {
     err->checksum = 0;
     err->checksum = TLobby__sub_80411040((const IPv6Address *)source, (const IPv6Address *)src, 0x3A, pkt, 1);
     r = TLobby__sub_80410A98(pkt, src, source, NULL, 0x3A);
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket(pkt);
     return r;
 }
 
@@ -4970,7 +4973,7 @@ static inline void release_ipv4_input_record(NetPacket *record, s16 reassembled)
     if (reassembled == 1) {
         TUdpSocket__sub_80418BD8((A_80418BD8 *)record);
     }
-    ((TUdpSocket *)record)->release_entry();
+    NetReleasePacket(record);
 }
 
 s32 TUdpSocket__sub_8040DE4C(u8 *ip, s16 x, s16 id) {
@@ -5278,7 +5281,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
       result = TLobby__sub_8040EDE4((s32)fragment_record, (u32) target, ifidx);
       if (result < 0)
       {
-        ((TUdpSocket *)fragment_record)->release_entry();
+        NetReleasePacket(fragment_record);
         break;
       }
       off += fragment_units;
@@ -5294,7 +5297,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
       }
     }
     while (rem > 0);
-    ((TUdpSocket *)fragment_record)->release_entry();
+    NetReleasePacket(fragment_record);
   }
   else
   {
@@ -5321,7 +5324,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
     NetBufferRefInitKind1(&plain_record->fragments[plain_record->fragment_count].buffer, (s32)plain_header);
     plain_record->fragment_count += 1;
     result = TLobby__sub_8040EDE4((s32)plain_record, (u32) target, ifidx);
-    ((TUdpSocket *)plain_record)->release_entry();
+    NetReleasePacket(plain_record);
   }
   return result;
 }

@@ -1,4 +1,5 @@
 #include "pso/network/BufferRef.h"
+#include "pso/network/IPv6Send.h"
 #include "pso/network/DhcpClient.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
@@ -475,7 +476,7 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     pkt->len = 0;
     for (i = n; i != 0; i--) {
         if (bufs[i - 1].len < 0) {
-            ((TUdpSocket *)pkt)->release_entry();
+            NetReleasePacket((NetPacket *)pkt);
             TUdpSocket::unlock_mutex(network_dispatch_state.value);
             return -2;
         }
@@ -485,17 +486,17 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
         pkt->count++;
     }
     if (pkt->len > 0x7FE3) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return -2;
     }
     if (pkt->len == 0) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return 0;
     }
     r = udp_sendto__6TLobbyFsPvPvPvUsi(h, pkt, src, dst, port, (s32)opt);
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket((NetPacket *)pkt);
     TUdpSocket::unlock_mutex(network_dispatch_state.value);
     return r;
 }
@@ -761,7 +762,7 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     for (; i != 0; j++) {
         i--;
         if (sb[i].len < 0) {
-            ((TUdpSocket *)pkt)->release_entry();
+            NetReleasePacket((NetPacket *)pkt);
             TUdpSocket::unlock_mutex(network_dispatch_state.value);
             return -2;
         }
@@ -770,7 +771,7 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
         pkt->len += pkt->items[j].len;
     }
     if (pkt->len == 0) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return -2;
     }
@@ -783,7 +784,7 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     } else {
         r = tcp_start_send(nh, pkt, notify, 0);
     }
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket((NetPacket *)pkt);
     if (r < 0) {
         s->f2B4 &= ~1;
         TUdpSocket::unlock_mutex(network_dispatch_state.value);

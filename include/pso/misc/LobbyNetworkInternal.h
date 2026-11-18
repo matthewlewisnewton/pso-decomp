@@ -1137,8 +1137,6 @@ struct O_80406B6C { u32 w0; u8 b4; };
 
 
 
-struct Ent_804072C4 { s16 st; u8 pad[0x9c - 2]; };
-struct Tbl_804072C4 { s16 count; Ent_804072C4 *list; };
 
 
 struct Tbl_80407310 { s16 count; NetPacket *list; };
@@ -1249,7 +1247,7 @@ inline void Send_8040799C(Ent_8040799C *e, void *name) {
         NetMemcpy(o.e, name, e->fF);
         TLobby::call_handler_by_index(e->f2, e->f6, 1, 0, (s32)r);
         if (r != NULL) {
-            ((TUdpSocket *)r)->release_entry();
+            NetReleasePacket((NetPacket *)r);
         }
     }
 }
@@ -1385,14 +1383,6 @@ typedef struct Tbl_80408428 {
     Ent_80408428 *list;
 } Tbl_80408428;
 
-typedef struct Pkt_80408428 {
-    u8 pad0[4];
-    s32 f4;
-    s32 f8;
-    s16 fC;
-    u8 padE[2];
-    u8 f10[4];
-} Pkt_80408428;
 
 struct Ent_804086B4;
 Ent_804086B4 *find_oldest_peer_entry__6TLobbyFs(s16 key);
@@ -3743,7 +3733,7 @@ inline s32 notify_804182DC(E_804184DC *e) {
     NetBufferRefInitKind1(&nw->fragments[nw->fragment_count].buffer,  (s32)e->pending->f34);
     nw->fragment_count++;
     TLobby__sub_80410BA8(nw, (NetIPv6SendParameters *)e->pending->f8, e->iface, e->key);
-    ((TUdpSocket *)nw)->release_entry();
+    NetReleasePacket(nw);
     return 1;
 }
 

@@ -1827,13 +1827,17 @@ s32 NetCompareBitPrefix(u8 *a, u8 *b, s16 bits) {
     }
 }
 
-s32 TLobby__sub_8041509C(void) {
-    u8 unused[8];
-    TLobby::clear_table_entry_locked(G_.a);
+static inline s32 reset_loopback_entry(s16 id) {
+    TLobby::clear_table_entry_locked(id);
     G_.a = -1;
     TLobby__sub_803F8B78(&G_);
     G_.c = 0;
     return 0;
+}
+
+s32 TLobby__sub_8041509C(void) {
+    s32 status = reset_loopback_entry(G_.a);
+    return status;
 }
 
 void TLobby__sub_804150EC(void) {
@@ -2420,7 +2424,7 @@ s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(s32 arg0, s32 arg1) {
     NetMemset((void *) (&stack.sp10), 0, 0x10);
     NetIPv6MakeSolicitedNodeMulticastAddress((u8 *)((void *) (&stack.sp20)), (u8 *)(arg0));
     temp_r31 = NetIPv6EmitNeighborSolicitation((NetPacket *)free_entry, (u8 *)arg0, (NetIPv6SendParameters *)(&stack.sp10), arg1, NULL);
-    ((TUdpSocket *)free_entry)->release_entry();
+    NetReleasePacket((NetPacket *)free_entry);
     return temp_r31;
 }
 
@@ -2442,7 +2446,7 @@ s32 NetIPv6SendRouterSolicitation(s32 arg0) {
         NetMemset(addr, 0, 0x10);
     }
     temp_r31 = NetIPv6EmitRouterSolicitation((NetPacket *)(free_entry), (NetIPv6SendParameters *)(addr), (s32)(arg0));
-    ((TUdpSocket *)free_entry)->release_entry();
+    NetReleasePacket((NetPacket *)free_entry);
     return temp_r31;
 }
 
@@ -2816,7 +2820,7 @@ s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 
                     NetBufferRefInitKind1((NetBufferRef *)pkt->items[pkt->n].val, e->sub->val);
                     pkt->n++;
                     ret = TLobby__sub_80410BA8(pkt, e->sub->addr, e->f8, e->data);
-                    ((TUdpSocket *)pkt)->release_entry();
+                    NetReleasePacket((NetPacket *)pkt);
                 }
                 e->sub->state = 0;
                 e->sub = 0;
@@ -2985,7 +2989,7 @@ s16 TLobby__sub_80417028(IPv6NeighborSolicitation *ns, u8 *src, u8 *dst, s16 ifa
         }
     }
     r = NetIPv6SendNeighborAdvertisement((Pkt_804179A4 *)pkt, ns->target.bytes, flags, (Sock_804179A4 *)&params, iface);
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket(pkt);
     return r;
 }
 
@@ -3427,7 +3431,7 @@ s32 NetIPv6SendMulticastNeighborProbe(u8 *arg0) {
     }
     NetIPv6MakeSolicitedNodeMulticastAddress(sp2C, (u8 *)(arg0 + 0x16));
     temp_r31 = NetIPv6EmitNeighborSolicitation(free_entry, arg0 + 0x16, (NetIPv6SendParameters *)sp1C, *(s16 *)((s8 *)arg0 + 8), NULL);
-    ((TUdpSocket *)free_entry)->release_entry();
+    NetReleasePacket(free_entry);
     return temp_r31;
 }
 
@@ -3476,7 +3480,7 @@ s32 NetIPv6SendUnicastNeighborProbe(u8 *arg0) {
     }
     NetMemcpy(sp2C, arg0 + 0x16, 0x10);
     temp_r31 = NetIPv6EmitNeighborSolicitation(free_entry, arg0 + 0x16, (NetIPv6SendParameters *)sp1C, *(s16 *)((s8 *)arg0 + 8), arg0 + 0x28);
-    ((TUdpSocket *)free_entry)->release_entry();
+    NetReleasePacket(free_entry);
     return temp_r31;
 }
 

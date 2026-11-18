@@ -38,7 +38,7 @@ static inline s16 *ipv6_input_interface(s16 id)
 
 static inline void release_ipv6_input_record(NetPacket *record)
 {
-  ((TUdpSocket *)record)->release_entry();
+  NetReleasePacket(record);
 }
 
 static inline NetPacket *reassemble_ipv6_input(u8 *ip, Ipv6FragmentHeader *frag, s32 remaining, s16 total_len, s16 iface, NetworkAddress *src, Icmp6ErrorInfo *error) {
@@ -412,7 +412,7 @@ extern s32 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
   {
     r21 = TLobby__sub_80410BA8(e, &params, hit->iface, 0);
   }
-  ((TUdpSocket *)e)->release_entry();
+  NetReleasePacket(e);
   return r21;
 }
 
