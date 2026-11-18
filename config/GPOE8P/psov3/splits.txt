@@ -6146,6 +6146,12 @@ pso/object/TObjSinBoard.cpp:
 	.data       start:0x804B8A10 end:0x804B8DAC
 	.sdata2     start:0x805DBF40 end:0x805DBFA0
 
+pso/object/TObjWarpResources.cpp:
+	.rodata     start:0x80446208 end:0x804463C8
+	.data       start:0x804B90D0 end:0x804B918C
+	.sdata      start:0x805D3458 end:0x805D3484
+	.sbss       start:0x805D5C78 end:0x805D5C84
+
 pso/object/TObjTank.cpp:
 	.text       start:0x8019A790 end:0x8019AA18
 	.sdata2     start:0x805DBFA0 end:0x805DBFA8
@@ -6161,8 +6167,10 @@ pso/object/TObjAreaWarpEndingJung.cpp:
 	.text       start:0x8019B124 end:0x8019DBB4
 	.rodata     start:0x804463C8 end:0x804463D0
 	.data       start:0x804B91E0 end:0x804B91F8
-	.sdata      start:0x805D3460 end:0x805D3464
 	.sdata2     start:0x805DBFC8 end:0x805DC000
+
+pso/object/TObjWarpDebugLabels.cpp:
+	.rodata     start:0x804463D0 end:0x80446470
 
 pso/unk/text_8019DBB4.cpp:
 	.text       start:0x8019DBB4 end:0x8019DC14

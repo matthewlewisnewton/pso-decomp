@@ -1694,7 +1694,6 @@ force_active:
   - TObjLuker__ct
   - TObjMapCsn__ct
   - TObjMapWarpAncient__ct
-  - TObjMapWarp__name
   - TObjMotion__class_name
   - TObjNpcAHM01__name
   - TObjNpcAHM01__shared_object

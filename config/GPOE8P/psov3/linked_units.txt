@@ -2258,10 +2258,12 @@ pso/object/TObjWarnChime.cpp
 pso/object/TObjWarpBoss03.cpp
 pso/object/TObjWarpBoss03_801A2AEC.cpp
 pso/object/TObjWarpBossMulti.cpp
+pso/object/TObjWarpDebugLabels.cpp
 pso/object/TObjWarpJungMain.cpp
 pso/object/TObjWarpJung_801A03D8.cpp
 pso/object/TObjWarpLobby.cpp
 pso/object/TObjWarpLobby_801A0760.cpp
+pso/object/TObjWarpResources.cpp
 pso/object/TObjWeddingLobby.cpp
 pso/object/TObject.cpp
 pso/object/TObject_80019A50.cpp

@@ -1,3 +1,5 @@
+#include "pso/object/TObjWarpResources.h"
+#include <string.h>
 #include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -412,9 +414,8 @@ s32 get_game_play_mode(int);
 void send_inter_level_warp_all__10TNpcPlayerFl();
 s32 PPCSync();
 int sprintf(char *, const char *, ...);
-void strncpy(s32, s32, s32);
 void debug_printf_at(s32 id, const char *fmt, ...);
-s32 matrix_mult_vec(int, void *, void *);
+s32 matrix_mult_vec(int, const void *, void *);
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z);
 s32 rotate_matrix_y(s32, s32);
 void rotate_matrix_x(int, s32);
@@ -434,32 +435,28 @@ extern RecoveredGlobal_8019D030___vt__17TObjMapWarpForest __vt__17TObjMapWarpFor
 extern s32 __vt__18TObjAreaWarpEnding[];
 extern s32 __vt__18TObjAreaWarpForest[];
 extern s32 __vt__22TObjAreaWarpEndingJung[];
-extern Vec_8019D0A8 lbl_804462FC;
-extern char lbl_804463A4[];
-extern char lbl_804463B4[];
-extern char lbl_804463D0[];
-extern char lbl_804463E0[];
-extern char lbl_804463F0[];
-extern char lbl_80446404[];
-extern char lbl_8044641C[];
-extern char lbl_80446430[];
-extern char lbl_80446440[];
-extern char lbl_80446450[];
-extern char lbl_80446460[];
-extern Vec_8019D0A8 map_warp_destination_offsets[];
-extern s64 warp_string_screen_position_table[];
+extern const char lbl_804463A4[];
+extern const char lbl_804463B4[];
+extern const char lbl_804463D0[];
+extern const char lbl_804463E0[];
+extern const char lbl_804463F0[];
+extern const char lbl_80446404[];
+extern const char lbl_8044641C[];
+extern const char lbl_80446430[];
+extern const char lbl_80446440[];
+extern const char lbl_80446450[];
+extern const char lbl_80446460[];
 extern RecoveredGlobal_8019CA24_lbl_80515BA0 lbl_80515BA0;
 extern u8 identity_matrix[];
-extern s32 TObjMapWarpForest__name;
-extern s32 TObjAreaWarp__name;
-extern s32 TObjAreaWarpForest__name;
-extern s32 TObjAreaWarpQuest__name;
-extern s32 TObjAreaWarpEnding__name;
-extern s32 TObjMapForceWarp__name;
-extern s32 TObjWarpString__name;
-extern s32 TObjAreaWarpEndingJung__name;
+extern const char *TObjMapWarpForest__name;
+extern const char *TObjAreaWarp__name;
+extern const char *TObjAreaWarpForest__name;
+extern const char *TObjAreaWarpQuest__name;
+extern const char *TObjAreaWarpEnding__name;
+extern const char *TObjMapForceWarp__name;
+extern const char *TObjWarpString__name;
+extern const char *TObjAreaWarpEndingJung__name;
 extern s32 local_client_id;
-extern s32 lobby_quest_progress_flag;
 extern s32 tl_00;
 extern void *tl_05;
 extern void *tl_clipout;
@@ -531,7 +528,7 @@ u8 TWindowShortListCtrl__check_controller_button(void *, int);
 extern RecoveredGlobal_8019D850_lbl_8050E208 controller_input_state;
 void fn_8019DD24(void *p, u32 v);
 extern s32 __vt__11TObjMapWarp[];
-extern s32 TObjMapWarp__name;
+extern const char *TObjMapWarp__name;
 struct Base_8019D6F8_8019D4E4 { char pad[0x18]; };
 struct VObj_8019D6F8_8019D4E4 : Base_8019D6F8_8019D4E4 {
     virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
@@ -542,15 +539,12 @@ struct VObj_8019D6F8_8019D4E4 : Base_8019D6F8_8019D4E4 {
 
 int is_flag_400_set__10TObjPlayerFPv(void *p);
 
-extern s32 quest_warp_enabled;
 extern s32 lbl_805D55C0;
 
 typedef char RecoveredGlobal_8019D850_lbl_8050E208_size[sizeof(RecoveredGlobal_8019D850_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
 typedef char RecoveredGlobal_8019D818_lbl_8050E208_size[sizeof(RecoveredGlobal_8019D818_lbl_8050E208) == 0x1B0 ? 1 : -1];
 
-extern char lbl_804462F0[];
-s32 TObjMapWarp__name = (s32)lbl_804462F0;
 }
 
 struct Base_8019DAC0 { s32 f0; u8 pad4[0x14]; };
@@ -573,7 +567,7 @@ extern "C" {
 f32 xz_distance_squared(void *, void *);
 void __ct__14TObjCollidableFP7TObject(Warp_8019DAC0 *, void *, void *);
 extern s32 __vt__12TObjWarpBase[];
-extern s32 TObjWarpBase__name;
+extern const char *TObjWarpBase__name;
 struct Base_8019DA54_8019D964 { char pad[0x18]; };
 struct VObj_8019DA54_8019D964 : Base_8019DA54_8019D964 {
     virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
@@ -584,8 +578,6 @@ struct VObj_8019DA54_8019D964 : Base_8019DA54_8019D964 {
 
 s32 release_texture_list(void*);
 
-extern s32 forest_warp_bml_resource;
-extern u32 forest_warp_texture_list;
 }
 
 // Function definitions in reverse address order (defer_codegen emits them reversed).
@@ -593,12 +585,12 @@ extern u32 forest_warp_texture_list;
 extern "C" {
 
 void TObjWarpBase::free_globals() {
-    if ((u32) forest_warp_texture_list != 0U) {
-        release_texture_list((void*)forest_warp_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((void *)forest_warp_texture_list);
-        forest_warp_texture_list = 0U;
+    if (forest_warp_texture_list != NULL) {
+        release_texture_list(forest_warp_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
+        forest_warp_texture_list = NULL;
     }
-    delete (BmlResource *)(forest_warp_bml_resource);
+    delete forest_warp_bml_resource;
     forest_warp_bml_resource = 0;
 }
 
@@ -606,7 +598,7 @@ Warp_8019DAC0 *TObjWarpBase__ct(Warp_8019DAC0 *self, void *parent, void *set) {
     void *o;
     __ct__14TObjCollidableFP7TObject(self, parent, set);
     *(void **)((u8 *)self + 0x18) = ((u8 *)&__vt__12TObjWarpBase);
-    self->f0 = TObjWarpBase__name;
+    self->f0 = (s32)TObjWarpBase__name;
     self->m5(set);
     self->fac = 10.0f;
     self->fb0 = 0;
@@ -700,7 +692,7 @@ void *TObjMapWarp__ct(void *map_warp, void *parent, void *set) {
     W_8019D764 *self = (W_8019D764 *)map_warp;
     TObjWarpBase__ct((Warp_8019DAC0 *)self, parent, set);
     self->vt = __vt__11TObjMapWarp;
-    self->type = TObjMapWarp__name;
+    self->type = (s32)TObjMapWarp__name;
     for (i = 0; i < 4; i++) {
         push_matrix_from(identity_matrix);
         post_translate_matrix(self->destination);
@@ -867,7 +859,12 @@ void TObjMapWarp::draw_debug_destinations() {
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
     for (i = 0; i < 4; i++) {
         Vec_8019D0A8 b;
-        Vec_8019D0A8 a = lbl_804462FC;
+        WarpDebugOffset a;
+        // Keep the three original word loads inside the loop.
+        const volatile u32 *words = lbl_804462FC.words;
+        a.words[0] = words[0];
+        a.words[1] = words[1];
+        a.words[2] = words[2];
         push_matrix_from(identity_matrix);
         post_translate_matrix(&self->pos);
         rotate_matrix_y(0, self->yaw);
@@ -877,12 +874,12 @@ void TObjMapWarp::draw_debug_destinations() {
         push_matrix_from(identity_matrix);
         post_translate_matrix(end);
         rotate_matrix_y(0, self->yaw2);
-        matrix_mult_vec(0, &a, &a);
+        matrix_mult_vec(0, &a.position, &a.position);
         pop_matrix();
         VecCopy((Vec *)&b, (const Vec *)end);
         b.y += 5.0f;
-        a.y += 5.0f;
-        debug_draw_line(&b, &a, 0xFFFF0000, 0xFFFF0000);
+        a.position.y += 5.0f;
+        debug_draw_line(&b, &a.position, 0xFFFF0000, 0xFFFF0000);
         fn_80141CB4(end, 15.0f);
     }
 }
@@ -1556,7 +1553,7 @@ u8 *__ct__14TObjWarpStringFv(u8 *object, u8 *arg1, s32 arg2, s16 arg3) {
     __ct__7TObjectFP7TObject(object, arg1);
     *(s32 **)((s8 *)object + 0x18) = &__vt__14TObjWarpString.value;
     *(s32 *)((s8 *)object + 0) = (s32) TObjWarpString__name;
-    strncpy((s32)(object + 0x1C), arg2, 0x20);
+    strncpy((char *)object + 0x1C, (const char *)arg2, 0x20);
     *(s8 *)((s8 *)object + 0x3B) = 0;
     *(s16 *)((s8 *)object + 0x48) = arg3;
     *(s32 *)((s8 *)object + 0x3C) = -1;
@@ -1660,7 +1657,7 @@ void TObjWarpString::render() {
 #pragma pop
 
 s64 fn_8019B480(void *arg0, void *camera_ctrl) {
-    s64 *p = warp_string_screen_position_table;
+    const WarpStringScreenPosition *p = warp_string_screen_position_table;
     if (TRaderMapCore::is_not_split_screen() == 1) {
         switch (TCameraCtrl::get_camera_id()) {
         case 2:
@@ -1675,7 +1672,7 @@ s64 fn_8019B480(void *arg0, void *camera_ctrl) {
         }
         p += get_split_screen_view_index__11TCameraCtrlFUs(camera_ctrl);
     }
-    return *p;
+    return (s64)(((u64)p->x.bits << 32) | p->y.bits);
 }
 
 void * create_TObjWarpString(void *arg0, void *arg1) {
