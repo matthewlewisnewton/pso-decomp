@@ -116,6 +116,14 @@ loads. The pool starts at `0x805D8444`, so `cw_align: .sdata2=4` records its
 original alignment in ELF and the CodeWarrior comment section. Ports can use
 the C++ arrays and first-element reads with their compiler's default layout.
 
+### Dark Falz demo constant pool
+
+The guarded CodeWarrior section annotations on `lbl_805D8A28` place the
+initial animation frame and its trailing zero word in `.sdata2`. The matching
+declaration in `src/pso/unk/text_80050134.cpp` lets the constructor keep its
+single small-data float load. Ports can compile the array and first-element
+read with their compiler's normal placement.
+
 ### Scalar collision-area helper
 
 `TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
