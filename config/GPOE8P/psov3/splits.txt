@@ -10942,6 +10942,11 @@ pso/boss/TBoss8DragonColli.cpp:
 	.data       start:0x804E4B70 end:0x804E4BF0
 	.sdata2     start:0x805DED20 end:0x805DED38
 
+pso/boss/GolDragonResources.cpp:
+	.rodata     start:0x804744A8 end:0x80474B04
+	.sdata      start:0x805D4008 end:0x805D400C
+	.sbss       start:0x805D6980 end:0x805D6988
+
 pso/boss/TBoss8Dragon_802F3348.cpp:
 	.text       start:0x802F3348 end:0x802F3504
 	.sdata2     start:0x805DED40 end:0x805DED48
@@ -10995,6 +11000,8 @@ pso/boss/TBoss8Dragon.cpp:
 pso/boss/TBoss8Dragon_802FDDD4.cpp:
 	.text       start:0x802FDDD4 end:0x802FDF34
 	.ctors      start:0x80433FE0 end:0x80433FE4
+	.rodata     start:0x80474B18 end:0x80474B4C
+	.sdata2     start:0x805DEEB0 end:0x805DEEEC
 
 pso/boss/TBoss8DragonEffBreath.cpp:
 	.text       start:0x802FDF34 end:0x802FE0E0

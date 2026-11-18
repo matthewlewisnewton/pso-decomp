@@ -20,8 +20,8 @@ extern "C" {
 void TBoss1Dragon__sub_80027A80(EffectGeometryParameters *destination, const EffectGeometryParameters *source);
 extern const EffectGeometryParameters TBoss1Dragon__head_fall_effect_params;
 extern const EffectGeometryParameters boss1_dragon_attack_sphere_params;
-extern EffectGeometryParameters TBoss8Dragon__body_effect_parameters;
-extern EffectGeometryParameters lbl_804744B4;
+extern const EffectGeometryParameters TBoss8Dragon__body_effect_parameters;
+extern const EffectGeometryParameters lbl_804744B4;
 extern EffectGeometryParameters boss8_dragon_attack_params;
 extern EffectGeometryParameters gryphon_effect_param_block;
 extern EffectGeometryParameters boss5_gryphon_params_b;
