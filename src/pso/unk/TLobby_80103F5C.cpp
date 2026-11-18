@@ -25,7 +25,6 @@
 #include "pso/item/TUnk_8049FBC0.h"
 #include "pso/item/TUnk_8049F828.h"
 #include "pso/item/TUnk_804E6FA8.h"
-#include "pso/item/TUnk_804F112C.h"
 #include "pso/item/TUnk_804F0C48.h"
 #include "pso/item/TUnk_804F0D34.h"
 #include "pso/item/TUnk_804F0FF0.h"

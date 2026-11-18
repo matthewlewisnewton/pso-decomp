@@ -3674,7 +3674,7 @@ force_active:
   - __ct__13TUnk_804F0D1CFP7TObjectUl
   - __ct__13TUnk_804F0D34FP7TObjectPUc
   - __ct__13TUnk_804F0FF0FP7TObjectPUc
-  - __ct__13TUnk_804F112CFP7TObjectPUc
+  - __ct__17TItemSpecialEventFP7TObjectPUc
   - __ct__13TUnk_804F1280FP7TObject
   - __ct__13TUnk_804F14A8FP7TObjectPUc
   - __ct__13TUnk_804F166CFP7TObjectP3Vecl
@@ -4498,7 +4498,7 @@ force_active:
   - __dt__13TUnk_804F0D1CFv
   - __dt__13TUnk_804F0D34Fv
   - __dt__13TUnk_804F0FF0Fv
-  - __dt__13TUnk_804F112CFv
+  - __dt__17TItemSpecialEventFv
   - __dt__13TUnk_804F1280Fv
   - __dt__13TUnk_804F1320Fv
   - __dt__13TUnk_804F14A8Fv
@@ -5722,7 +5722,7 @@ force_active:
   - __vt__13TUnk_804F0D1C
   - __vt__13TUnk_804F0D34
   - __vt__13TUnk_804F0FF0
-  - __vt__13TUnk_804F112C
+  - __vt__17TItemSpecialEvent
   - __vt__13TUnk_804F1280
   - __vt__13TUnk_804F1320
   - __vt__13TUnk_804F14A8
@@ -6851,7 +6851,7 @@ force_active:
   - apply_use_effect__13TUnk_804F0C48Fv
   - apply_use_effect__13TUnk_804F0D34Fv
   - apply_use_effect__13TUnk_804F0FF0Fv
-  - apply_use_effect__13TUnk_804F112CFv
+  - apply_use_effect__17TItemSpecialEventFv
   - apply_uv_offset__6TSceneFss
   - apply_variant_speeds__12TObjEneLappyFv
   - apply_velocity__13TBoss5GryphonFv
@@ -10714,12 +10714,12 @@ force_active:
   - fn_8034009C
   - fn_803519FC
   - fn_80351A14
-  - fn_803530A0__13TUnk_804F112CFv
-  - fn_80353110__13TUnk_804F112CFv
-  - fn_80353134__13TUnk_804F112CFv
-  - fn_80353194__13TUnk_804F112CFv
-  - fn_803531D0__13TUnk_804F112CFv
-  - fn_803531F8__13TUnk_804F112CFv
+  - sub_803530A0__17TItemSpecialEventFv
+  - sub_80353110__17TItemSpecialEventFv
+  - sub_80353134__17TItemSpecialEventFv
+  - sub_80353194__17TItemSpecialEventFv
+  - sub_803531D0__17TItemSpecialEventFv
+  - sub_803531F8__17TItemSpecialEventFv
   - fn_8035BFF8__19TObjBoss8PillerCtrlFPC3Vec
   - fn_8035C2B4
   - fn_8035CAE0
@@ -21963,7 +21963,7 @@ force_active:
   - send_modify_trade_proposal__6TLobbyFScll
   - send_name__10TObjPlayerFv
   - send_name_and_state__10TObjPlayerFv
-  - send_obj_position_event__13TUnk_804F112CFl
+  - send_obj_position_event__17TItemSpecialEventFl
   - send_object_id_packet__10TObjPlayerFi
   - send_packed_action__11TBoss4Type3Flll
   - send_packet_60__6TLobbyFi
@@ -22276,7 +22276,7 @@ force_active:
   - set_password__18TAdEnterPasswordGCFi
   - set_path_points__11TBoss6Type2FPvPvi
   - set_percentage_rows__15TWindowHelpItemFPvPvi
-  - set_phase_18__13TUnk_804F112CFv
+  - sub_8035307C__17TItemSpecialEventFv
   - set_phase_555__11TBoss6Type1Fv
   - set_phase_90__11TBoss6Type1Fv
   - set_phase_timer_3E__11TBoss6Type1Fv
@@ -24711,7 +24711,7 @@ force_active:
   - update_player_alive_flags__19TPlayerBattleCtrl4PFv
   - update_player_battle_ctrl_state
   - update_player_hp_ratios__13TObjWarnChimeFv
-  - update_player_object__13TUnk_804F112CFv
+  - sub_803530C4__17TItemSpecialEventFv
   - update_player_state_default__17TObjEneMe3ShinowaFv
   - update_player_state_default__23TObjEneMe3ShinowaMirageFv
   - update_player_window__6TLobbyFv
@@ -24814,7 +24814,7 @@ force_active:
   - update_shadow_attack__14TObjEneIllGillFv
   - update_shadow_height__14TObjEneGibblesFv
   - update_shake__11TCameraCtrlFv
-  - update_shield__13TUnk_804F112CFv
+  - sub_80353158__17TItemSpecialEventFv
   - update_shifta_deband_action__8TItemMagFv
   - update_ship_select_window__6TLobbyFv
   - update_shock_clock__14TObjEneDubchikFv

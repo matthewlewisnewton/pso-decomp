@@ -23,7 +23,7 @@
 #include "pso/item/TUnk_8049FBC0.h"
 #include "pso/item/TUnk_8049F828.h"
 #include "pso/item/TUnk_804E6FA8.h"
-#include "pso/item/TUnk_804F112C.h"
+#include "pso/item/TItemSpecialEvent.h"
 #include "pso/item/TUnk_804F0C48.h"
 #include "pso/item/TUnk_804F0D34.h"
 #include "pso/item/TUnk_804F0FF0.h"
@@ -362,7 +362,7 @@ void *item_tool_factory_table[24] = {
     (void *)TItemObject::create,
     (void *)TItemObject::create,
     (void *)TItemObject::create,
-    (void *)TUnk_804F112C::create,
+    (void *)TItemSpecialEvent::create,
     (void *)TUnk_804F0C48::create,
     (void *)TUnk_804F0D34::create,
     (void *)TUnk_804F0FF0::create,
