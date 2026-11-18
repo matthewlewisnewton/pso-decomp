@@ -27,7 +27,6 @@
 #include "pso/enemy/morfos/TWindowSubTradeMain.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80257BC0.h"
 #include "pso/ui/city/TShopArmorListWindow.h"
-#include "pso/unk/text_80268384.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801A6D60.h"
 #include "pso/system/task/TObject.h"
 
@@ -156,7 +155,6 @@ s32 lbl_804D05F8[3] = {1, 0, 8};
 WindowDescriptor lbl_804D0604 = {
     {0.0f, 0.0f}, 50050.0f, lbl_804D05F8, 3,
 };
-extern s32 __vt__19TWindowMenuIconLine[];
 
 s32 clamp_list_scroll_offset(int, void *, void *);
 s32 get_cursor_pos__14TWindowSubItemFv();
@@ -696,16 +694,9 @@ void TWindowMenuIconLine::vfunc_6(u32 arg1, s32 arg2) {
 }
 #undef self
 
-u8 *fn_80267F38(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    u8 *temp_r3;
-    u8 *var_r0;
+u8 *fn_80267F38(s32 arg0, s32 arg1, s32 arg2, s16 arg3) {
     ((s32 (*)(void *, void *))TShopJudgmentItemWindow__sub_80267F9C)((void *)arg1, (void *)arg2);
-    temp_r3 = (u8 *)(TObject::operator new(0x88));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(fn_802683F4(temp_r3, arg0, arg2, arg3));
-    }
-    return var_r0;
+    return (u8 *)new TWindowMenuIconLine((u8 *)arg0, arg2, arg3);
 }
 
 void TShopJudgmentItemWindow__sub_80267F9C(NJS_POINT2 v, s32 x) {
@@ -785,32 +776,4 @@ TWindowMenuIconLine::~TWindowMenuIconLine() {
     TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)this + 0x84)), (s16)1);
     TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)this + 0x80)), (s16)1);
 }
-}
-
-struct VBase_18_2ead46 { char pad[0x18]; };
-
-struct VObj_18_2ead46 : VBase_18_2ead46 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual s32 m4(s32, s16);
-};
-
-extern "C" {
-u8 *fn_80268384(u8 *window_addition, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    void *__ct__15TWindowAdditionFPUcsPUc(void *, u8 *, s32, u8 *);
-    __ct__15TWindowAdditionFPUcsPUc((void *)window_addition, (u8 *)arg4, arg3, (u8 *)arg1);
-    *(s32 **)((s8 *)window_addition + 0x18) = __vt__19TWindowMenuIconLine;
-    ((VObj_18_2ead46 *)(window_addition))->m4(arg2, (s16) arg3);
-    return window_addition;
-}
-u8 *fn_802683F4(u8 *window_addition, s32 arg1, s32 arg2, s32 arg3) {
-    void *__ct__15TWindowAdditionFPUcsPUc(void *, u8 *, s32, u8 *);
-    __ct__15TWindowAdditionFPUcsPUc((void *)window_addition, (u8 *)&lbl_804D0604, arg3, (u8 *)arg1);
-    *(s32 **)((s8 *)window_addition + 0x18) = __vt__19TWindowMenuIconLine;
-    ((VObj_18_2ead46 *)(window_addition))->m4(arg2, (s16) arg3);
-    return window_addition;
-}
-
 }

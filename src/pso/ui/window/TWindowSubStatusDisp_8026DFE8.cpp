@@ -1,3 +1,4 @@
+#include "pso/unk/text_80268384.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowSubStatusDisp_802671F0.h"
@@ -11,12 +12,10 @@ s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_item_list_capacity(void *, int, int, int);
 s32 draw_window_scrollbar(void *, int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(void *, int);
-u8 * fn_80268384(void *, s32, s32, s16, s32);
 s32 sub_8026DE94__13TUnk_804D0948Fv(void *, void *);
 extern s32 item_list_window_vtable[];
 extern s32 local_client_id;
 u8 * get_window_layout_position(s32);
-u8 *fn_802683F4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 void __dl__7TObjectFPv(void *);
 
 #pragma push
@@ -60,13 +59,13 @@ void *TWindowSubStatusDisp::deleting_dtor(s16 arg1) {
     return this;
 }
 u8 *TWindowSubStatusDisp::ct_helper(s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    fn_80268384(this, arg1, arg3, (s16) local_client_id, arg4);
+    __ct__19TWindowMenuIconLineFPUcUlsPUc(this, (u8 *)arg1, arg3, (s16)local_client_id, (u8 *)arg4);
     *(s32 **)((s8 *)((u8 *)this) + 0x18) = item_list_window_vtable;
     sub_8026DE94__13TUnk_804D0948Fv(this, (void *)arg2);
     return ((u8 *)this);
 }
-u8 *TWindowSubStatusDisp::construct_item_list(s32 arg1, s32 arg2, s16 arg3) {
-    fn_802683F4((((u8 *)this)), (s32)(get_window_layout_position(0x26)), (arg2), (arg3));
+u8 *TWindowSubStatusDisp::construct_item_list(s32 arg1, s32 arg2, s32 arg3) {
+    __ct__19TWindowMenuIconLineFPUcUls(this, get_window_layout_position(0x26), arg2, arg3);
     *(s32 **)((s8 *)((u8 *)this) + 0x18) = item_list_window_vtable;
     sub_8026DE94__13TUnk_804D0948Fv(this, (void *)arg1);
     return ((u8 *)this);

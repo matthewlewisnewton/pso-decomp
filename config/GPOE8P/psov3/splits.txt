@@ -7297,11 +7297,14 @@ pso/ui/window/TWindowSubComCard_80266BC4.cpp:
 	.text       start:0x80266BC4 end:0x80266BD0
 
 pso/ui/window/TWindowSubStatusDisp_802671F0.cpp:
-	.text       start:0x80266BD0 end:0x80268468
+	.text       start:0x80266BD0 end:0x80268384
 	.rodata     start:0x8044F338 end:0x8044F388
 	.data       start:0x804D05F8 end:0x804D0634
 	.sdata      start:0x805D3968 end:0x805D3970
 	.sdata2     start:0x805DD180 end:0x805DD1D8
+
+pso/ui/window/TWindowMenuIconLine.cpp:
+	.text       start:0x80268384 end:0x80268468
 
 pso/ui/window/TWindowSubTradeMain_80268468.cpp:
 	.text       start:0x80268468 end:0x80268488
@@ -7642,6 +7645,7 @@ pso/unk/text_80278E48.cpp:
 
 pso/ui/window/TWindowSubEquipKind.cpp:
 	.text       start:0x80278EA8 end:0x80279044
+	.data       start:0x804D15B8 end:0x804D15D4
 
 pso/ui/window/TWindowSubEquip_80279044.cpp:
 	.text       start:0x80279044 end:0x802790CC
@@ -7653,6 +7657,7 @@ pso/player/TObjPlayer_802790CC.cpp:
 pso/ui/window/TWindowSubEquipList.cpp:
 	.text       start:0x8027929C end:0x80279444
 	.rodata     start:0x8044F958 end:0x8044F970
+	.data       start:0x804D15D8 end:0x804D15F4
 	.sdata      start:0x805D3A40 end:0x805D3A48
 
 pso/ui/window/TWindowSubGameEnd.cpp:
@@ -7673,6 +7678,7 @@ pso/ui/window/TWindowSubItem.cpp:
 pso/ui/window/TWindowSubItemList.cpp:
 	.text       start:0x8027ACF8 end:0x8027AF54
 	.rodata     start:0x8044F9A0 end:0x8044F9B8
+	.data       start:0x804D1688 end:0x804D16A4
 	.sdata      start:0x805D3A58 end:0x805D3A60
 
 pso/ui/window/TWindowSubLog.cpp:

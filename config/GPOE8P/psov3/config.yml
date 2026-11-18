@@ -3243,11 +3243,9 @@ force_active:
   - TWindowSubCustomSelect__class_name
   - TWindowSubCustomSelect__window_settings
   - TWindowSubEquipList__class_name
-  - TWindowSubEquipList__ct
   - TWindowSubEquip__class_name
   - TWindowSubGameEnd__class_name
   - TWindowSubItemList__class_name
-  - TWindowSubItemList__ct
   - TWindowSubItem__class_name
   - TWindowSubItem__sub_8027AA30
   - TWindowSubItem__sub_8027AB10
@@ -3874,6 +3872,7 @@ force_active:
   - __ct__18TWindowCtrlClipOutFP7TObject
   - __ct__18TWindowEffectLightFPvsUl
   - __ct__18TWindowEffectPartyFP7TObjectScScPv
+  - __ct__18TWindowSubItemListFPvl
   - __ct__18T_ATS_DrawCalendarFP7TObject
   - __ct__19TAdChrSelPlyPlateGCFP7TObjectP5vec2f
   - __ct__19TBoss3VoloptMonitorFP7TObjectPv
@@ -3894,6 +3893,7 @@ force_active:
   - __ct__19TObjLazerFenceExtraFP7TObjectPv
   - __ct__19TObjStendGlassLobbyFP7TObjectPv
   - __ct__19TWindowMessageYesNoFP7TObjectPvPvPv
+  - __ct__19TWindowSubEquipListFPvl
   - __ct__20TAdLoadQuestPrtTxtGCFP7TObjectl
   - __ct__20TBoss3VoloptHiraisinFP7TObjectPv
   - __ct__20TBoss5GryphonColli_CFP7TObjectlPC3Vecf
@@ -4882,6 +4882,7 @@ force_active:
   - __dt__18TWindowInputNumberFv
   - __dt__18TWindowMessagePageFv
   - __dt__18TWindowPartyStatusFv
+  - __dt__18TWindowSubItemListFv
   - __dt__18TWindowSubShortCutFv
   - __dt__18T_ATS_DrawCalendarFv
   - __dt__19TAdChrSelPlyPlateGCFv
@@ -4931,6 +4932,8 @@ force_active:
   - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
   - __dt__19TWindowSoundBalanceFv
+  - __dt__19TWindowSubEquipKindFv
+  - __dt__19TWindowSubEquipListFv
   - __dt__19TWindowSubMagPhotonFv
   - __dt__19TWindowSubTechniqueFv
   - __dt__19TWindowSubTradeMainFv
@@ -6120,6 +6123,7 @@ force_active:
   - __vt__18TWindowInputNumber
   - __vt__18TWindowMessagePage
   - __vt__18TWindowPartyStatus
+  - __vt__18TWindowSubItemList
   - __vt__18TWindowSubShortCut
   - __vt__18T_ATS_DrawCalendar
   - __vt__19TAdChrSelPlyPlateGC
@@ -6169,12 +6173,13 @@ force_active:
   - __vt__19TWindowDD_WS_String
   - __vt__19TWindowKeyBoardBase
   - __vt__19TWindowKeyBoardHard
-  - __vt__19TWindowMenuIconLine
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageQuest
   - __vt__19TWindowMessageYesNo
   - __vt__19TWindowSimpleStatus
   - __vt__19TWindowSoundBalance
+  - __vt__19TWindowSubEquipKind
+  - __vt__19TWindowSubEquipList
   - __vt__19TWindowSubMagPhoton
   - __vt__19TWindowSubTechnique
   - __vt__19TWindowSubTradeMain
@@ -12901,7 +12906,6 @@ force_active:
   - lbl_804D05A8
   - lbl_804D05CC
   - lbl_804D05F8
-  - lbl_804D0604
   - lbl_804D0D98
   - lbl_804D1198
   - lbl_804D1488
@@ -20381,6 +20385,7 @@ force_active:
   - render__18TWindowInputNumberFv
   - render__18TWindowMessagePageFv
   - render__18TWindowPartyStatusFv
+  - render__18TWindowSubItemListFv
   - render__18TWindowSubShortCutFv
   - render__18T_ATS_DrawCalendarFv
   - render__19TAdChrSelPlyPlateGCFv
@@ -20421,6 +20426,8 @@ force_active:
   - render__19TWindowMessageYesNoFv
   - render__19TWindowSimpleStatusFv
   - render__19TWindowSoundBalanceFv
+  - render__19TWindowSubEquipKindFv
+  - render__19TWindowSubEquipListFv
   - render__19TWindowSubMagPhotonFv
   - render__19TWindowSubTechniqueFv
   - render__19TWindowSubTradeMainFv
@@ -21513,6 +21520,7 @@ force_active:
   - run_task__18TWindowInputNumberFv
   - run_task__18TWindowMessagePageFv
   - run_task__18TWindowPartyStatusFv
+  - run_task__18TWindowSubItemListFv
   - run_task__18TWindowSubShortCutFv
   - run_task__19TAdChrSelPlyPlateGCFv
   - run_task__19TAdGameStartShineGCFv
@@ -21553,6 +21561,8 @@ force_active:
   - run_task__19TWindowMessageYesNoFv
   - run_task__19TWindowSimpleStatusFv
   - run_task__19TWindowSoundBalanceFv
+  - run_task__19TWindowSubEquipKindFv
+  - run_task__19TWindowSubEquipListFv
   - run_task__19TWindowSubMagPhotonFv
   - run_task__19TWindowSubTechniqueFv
   - run_task__19TWindowSubTradeMainFv

@@ -7,6 +7,8 @@ struct Scroll_8026D790;
 
 class TWindowMenuIconLine : public TWindowAddition {
 public:
+    TWindowMenuIconLine(u8 *position, u32 count, s16 client, u8 *descriptor);
+    TWindowMenuIconLine(u8 *position, u32 count, s16 client);
     virtual ~TWindowMenuIconLine();
     virtual void run_task();
     virtual void render();

@@ -183,7 +183,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
     u8 *init_part_direct(u8 *arg1, s32 arg2);
     void append_entry(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
     u8 *ct_helper(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-    u8 *construct_item_list(s32 arg1, s32 arg2, s16 arg3);
+    u8 *construct_item_list(s32 arg1, s32 arg2, s32 arg3);
     s32 update_hp_entry();
     static s32 destroy_status_display(s32 arg0, s16 arg1);
     u8 *construct_type1_heading(s32 arg1, s32 arg2);

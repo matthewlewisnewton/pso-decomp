@@ -9,7 +9,7 @@ public:
     virtual void run_task();
     virtual void render();
     void advance_all_entries(s32);
-    void sub_80248B7C(s16);
+    void sub_80248B7C(s32);
     void sync_level_field();
     u8 unk_88[0x4];
 };

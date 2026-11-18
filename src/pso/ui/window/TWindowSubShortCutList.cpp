@@ -1,3 +1,4 @@
+#include "pso/unk/text_80268384.h"
 #include "types.h"
 #include "pso/ui/window/TWindowDD.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -19,7 +20,6 @@ static const f32 lbl_8044FAA8[2] = {405.0f, 188.0f};
 
 extern "C" {
 void TShopJudgmentItemWindow__sub_80267F9C(void *, int);
-void fn_802683F4(void *, void *, s32, s16);
 void *init__21TWindowSubComCardListFiii(void *, s8, s32, s32);
 extern s32 __vt__22TWindowSubShortCutList[];
 extern s32 local_client_id;
@@ -115,7 +115,7 @@ void *TWindowSubShortCutList__ct(void *window_sub_short_cut_list, void *arg1, vo
     s32 row;
     s32 col;
     void *p;
-    fn_802683F4(window_sub_short_cut_list, arg1, 4, local_client_id);
+    __ct__19TWindowMenuIconLineFPUcUls(window_sub_short_cut_list, (u8 *)arg1, 4, local_client_id);
     ((Obj_8027E558 *)window_sub_short_cut_list)->vt = ((s32 *)&__vt__22TWindowSubShortCutList);
     ((Obj_8027E558 *)window_sub_short_cut_list)->f0 = TWindowSubShortCutList__class_name;
     row = (s32)arg2 / 4;

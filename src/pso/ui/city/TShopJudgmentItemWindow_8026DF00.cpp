@@ -6,7 +6,7 @@
 extern "C" {
 u8 *__nw__7TObjectFUl(int);
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
-u8 *construct_item_list__20TWindowSubStatusDispFlls(u8 *, s32, s32, s32);
+u8 *construct_item_list__20TWindowSubStatusDispFlll(u8 *, s32, s32, s32);
 extern s32 TShopJudgmentItemWindow__item_list_rect_table[];
 extern s32 local_client_id;
 
@@ -28,7 +28,7 @@ u8 *create_item_list_window(s32 arg0, s32 arg1, s32 arg2) {
     }
     var_r0 = __nw__7TObjectFUl(0x8C);
     if (var_r0 != NULL) {
-        var_r0 = construct_item_list__20TWindowSubStatusDispFlls(var_r0, arg0, arg1, arg2);
+        var_r0 = construct_item_list__20TWindowSubStatusDispFlll(var_r0, arg0, arg1, arg2);
     }
     return var_r0;
 }

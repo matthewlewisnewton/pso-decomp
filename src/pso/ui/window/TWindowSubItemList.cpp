@@ -3,7 +3,6 @@
 #include "pso/ui/window/TWindowSubItemList.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/ui/window/TWindowSubStatusDisp_802671F0.h"
-#include "pso/unk/text_80268384.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
 #include "pso/ui/window/TWindowSubItem.h"
 #pragma readonly_strings on
@@ -28,27 +27,17 @@ const char *TWindowSubItemList__class_name = "TWindowSubItemList";
 
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
+void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_item_list_capacity(void *, int, int, int);
 s32 draw_window_scrollbar(void *, int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(void *, int);
-u8 *__nw__7TObjectFUl(s32);
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
-extern s32 __vt__18TWindowSubItemList[];
 extern const char *TWindowSubItemList__class_name;
-void __dl__7TObjectFPv(void *);
 
-u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2) {
-    u8 *temp_r3;
-    u8 *var_r0;
+u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s32 arg2) {
     TShopJudgmentItemWindow__sub_80267F9C((void *)arg1, 0x24);
-    temp_r3 = (u8 *)(__nw__7TObjectFUl(0x90));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(TWindowSubItemList__ct(temp_r3, arg0, arg2));
-    }
-    return var_r0;
+    return (u8 *)new TWindowSubItemList((void *)arg0, arg2);
 }
 
 #pragma push
@@ -56,7 +45,7 @@ u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2) {
 void TWindowSubItemList::render() {
     u8 *arg0 = (u8 *)this;
     s32 window_key_board_soft;
-    window_key_board_soft = get_draw_context__11TWindowBaseFPv();
+    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, arg0 + 0x24, window_key_board_soft);
     ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(window_key_board_soft);
@@ -71,27 +60,19 @@ void TWindowSubItemList::render() {
 }
 #pragma pop
 
-void TWindowSubItemList::run_task() { { (void)(this->TWindowMenuIconLine::run_task()); return; } }
-
-void *__dt__18TWindowSubItemListFv(void *window_sub_status_disp, s16 arg1) {
-    if (window_sub_status_disp != NULL) {
-        *(s32 **)((s8 *)window_sub_status_disp + 0x18) = __vt__18TWindowSubItemList;
-        __dt__19TWindowMenuIconLineFv(window_sub_status_disp, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(window_sub_status_disp);
-        }
-    }
-    return window_sub_status_disp;
+void TWindowSubItemList::run_task() {
+    TWindowMenuIconLine::run_task();
 }
-u8 *TWindowSubItemList__ct(u8 *arg0, s32 arg1, s16 arg2) {
-    fn_802683F4((arg0), (arg1), 0x24, (arg2));
-    *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TWindowSubItemList;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TWindowSubItemList__class_name;
-    ((TWindowMenuIconLine *)arg0)->ensure_status_display((int) (TWindowSubStatusDisp::get_message_10(0x24)));
-    ((TWindowMenuIconLine *)arg0)->create_menu_scroll_bar();
-    ((TWindowSubItem *)arg0)->reset_selected();
-    ((TWindowSubItemList *)arg0)->m_8c = 0;
-    return arg0;
+
+TWindowSubItemList::~TWindowSubItemList() {}
+
+TWindowSubItemList::TWindowSubItemList(void *position, s32 client)
+    : TWindowMenuIconLine((u8 *)position, 0x24, (s16)client) {
+    m_name = TWindowSubItemList__class_name;
+    ensure_status_display((s32)TWindowSubStatusDisp::get_message_10(0x24));
+    create_menu_scroll_bar();
+    ((TWindowSubItem *)this)->reset_selected();
+    m_8c = 0;
 }
 
 }

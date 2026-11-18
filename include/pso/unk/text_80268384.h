@@ -3,11 +3,10 @@
 
 #include "types.h"
 
-// --- C functions defined in TWindowSubStatusDisp_802671F0.cpp ---
+// Entry points used by the remaining handwritten derived constructors.
 extern "C" {
-u8 *fn_80268384(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-u8 *fn_802683F4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
+void *__ct__19TWindowMenuIconLineFPUcUlsPUc(void *self, u8 *position, u32 count, s16 client, u8 *descriptor);
+void *__ct__19TWindowMenuIconLineFPUcUls(void *self, u8 *position, u32 count, s16 client);
 }
-// --- end of C functions
 
 #endif
