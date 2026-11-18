@@ -172,7 +172,7 @@ void TQuestVmDownLoadServer__sub_803E6ACC(s32 arg0) {
     lbl_805D78BC = lbl_805A0470.bytes;
     lbl_805D78C0 = 0;
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
-    TQuestVmDownLoadServer__sub_803EE2E4();
+    reset_entry_text_accumulator();
     if (arg0 == 1) {
         quest_download_match_length_limit = 0x23;
         lbl_805D7848 = 1;
@@ -292,7 +292,7 @@ void TQuestVmDownLoadServer::init_buffer_pointers() {
     lbl_805D78BC = lbl_805A0470.bytes;
     lbl_805D78C0 = 0;
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
-    TQuestVmDownLoadServer__sub_803EE2E4();
+    reset_entry_text_accumulator();
 }
 
 s32 TQuestVmDownLoadServer::get_buffer_size() {
