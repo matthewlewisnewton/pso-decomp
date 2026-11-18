@@ -2005,6 +2005,7 @@ pso/misc/pso_const_ids4.cpp
 pso/misc/pso_const_ids5.cpp
 pso/misc/pso_date.cpp
 pso/network/ModemRuntime.cpp
+pso/network/NetUdp.cpp
 pso/network/NetworkConfigLifecycle.cpp
 pso/network/NetworkDispatcher.cpp
 pso/network/NetworkInfoCodec.cpp
