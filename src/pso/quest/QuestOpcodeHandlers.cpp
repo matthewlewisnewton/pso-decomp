@@ -795,11 +795,6 @@ struct ItemData_801E7810 {
     u8 data2[4];
 };
 
-struct RecoveredGlobal_801F196C_lbl_804499A8 {
-    s32 value;
-    u8 remaining[0x70];
-};
-
 struct ItemData_801E8000 {
     u8 b0, b1, b2, b3, b4, b5, b6;
     s8 b7;
@@ -812,8 +807,6 @@ struct ItemData_801E8000 {
 };
 
 typedef char RecoveredGlobal_8000F7FC_lbl_80515F48_size[sizeof(RecoveredGlobal_8000F7FC_lbl_80515F48) == 0x28 ? 1 : -1];
-
-typedef char RecoveredGlobal_801F196C_lbl_804499A8_size[sizeof(RecoveredGlobal_801F196C_lbl_804499A8) == 0x74 ? 1 : -1];
 
 union U_801E8784 { s32 i; f32 f; };
 
@@ -1991,7 +1984,6 @@ extern s32 gba_download_data_buffer;
 extern s32 gba_download_data_size;
 extern int evt2_random_enemies_mode;
 extern RecoveredGlobal_8000F7FC_lbl_80515F48 fn_801F3480;
-extern RecoveredGlobal_801F196C_lbl_804499A8 quest_sound_effect_ids;
 extern Pair_801F1838 lbl_80449A38[];
 extern Tbl_801EDC98 lobby_sub_801edc98_id_table;
 extern RecoveredGlobal_801EDC24_lbl_80449A88 lbl_80449A88;
@@ -6083,7 +6075,7 @@ void qst_op_bgm(void) {
 }
 
 void qst_op_se(void) {
-    play_sound_effect((s32)((int) (*(s32 *)((s8 *)((u8 *)(&quest_sound_effect_ids.value) + (qst_args[0] * 4)) + 0))), 0, 0, 0);
+    play_sound_effect(quest_sound_effect_ids[qst_args[0]], 0, 0, 0);
 }
 
 void qst_op_fadeout(void) { TLobby::init_fadeout_state((s32)((void*)0)); qst_suspend_reason = QST_WAIT_FADE; }
