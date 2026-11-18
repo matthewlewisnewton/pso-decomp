@@ -37,7 +37,28 @@ struct RlcFile {
     s32 status;
     char filename[32];
     s32 *dispatch;
+
+    s32 get_chunk_count();
+    void locate_directory();
+    void locate_header();
+    void set_filename(const char *name);
+    void free_buffer();
+    s32 allocate_buffer();
+    s32 read_file(const char *name);
+    s32 measure_file(const char *name);
+    void reset();
+    RlcFile *initialize();
+    void clear();
+    s32 load(const char *name);
+    void set_status(s32 value);
+    s32 get_buffer_size();
+    s32 has_data();
+    RlcHeader *get_header();
+    u8 *get_buffer();
+
 };
+
+extern RlcFile *shared_snapshot_capture;
 
 typedef char RlcFileSize[sizeof(RlcFile) == 0x40 ? 1 : -1];
 

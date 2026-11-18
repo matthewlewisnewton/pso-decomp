@@ -3211,7 +3211,6 @@ force_active:
   - TWindowShortListCtrl__name
   - TWindowSimpleStatus__name
   - TWindowSnapShot__name
-  - TWindowSnapShot__sub_802A605C
   - TWindowSnapShot__sub_802A7EAC
   - TWindowSoundBalance__name
   - TWindowStatus__ct
@@ -6604,7 +6603,6 @@ force_active:
   - alloc_boss_target_slot__16TBoss3VoloptCoreFv
   - alloc_breakup_model__13TUnk_804E3BD8Fl
   - alloc_breakup_piece_records
-  - alloc_buffer__15TWindowSnapShotFPv
   - alloc_char_records__23TAdSinglePlyChrSelectGCFi
   - alloc_child_id__12TObjEneReconFv
   - alloc_conn_slot
@@ -6614,6 +6612,7 @@ force_active:
   - alloc_load_data__6TLobbyFPviii
   - alloc_packet_with_header
   - alloc_work_buffer__6TLobbyFv
+  - allocate_buffer__7RlcFileFv
   - allocate_network_info_cipher_key__Fl
   - allocate_trail_buffer__17TItemEffectWeaponFv
   - allow_rendering_shadows__7TObjectFv
@@ -10660,9 +10659,6 @@ force_active:
   - fn_802972BC
   - fn_802972C0
   - fn_802A2A00
-  - fn_802A5C7C
-  - fn_802A5CB8
-  - fn_802A5CC4
   - fn_802A9DF4
   - fn_802A9F48
   - fn_802C9924
@@ -10776,9 +10772,9 @@ force_active:
   - free__23TAdSinglePlyChrSelectGCFv
   - free_boss4rock__6TLobbyFs
   - free_buffer__13TUnk_804EF8C0Fv
-  - free_buffer__15TWindowSnapShotFv
   - free_buffer__23TAdSinglePlyChrSelectGCFv
   - free_buffer__6TMovieFv
+  - free_buffer__7RlcFileFv
   - free_buffers__16TEffIndirectCtrlFv
   - free_buffers__22TQuestVmDownLoadServerFv
   - free_char_data_slots__23TAdSinglePlyChrSelectGCFPv
@@ -10948,7 +10944,8 @@ force_active:
   - get_boss_warp_model_handle__Fv
   - get_boss_warp_motion__Fv
   - get_boundary_offset__15TWindowFukidasiFlPf
-  - get_buffer_size__15TWindowSnapShotFv
+  - get_buffer__7RlcFileFv
+  - get_buffer_size__7RlcFileFv
   - get_camera_capture_flags
   - get_camera_flag__10TObjPlayerFv
   - get_cell_address__13TUnk_804DDBF0Fll
@@ -11016,7 +11013,6 @@ force_active:
   - get_field_62__17TWindowOptionCtrlFv
   - get_field_64__17TWindowOptionCtrlFv
   - get_field_67c__10TNpcPlayerFv
-  - get_field_8__15TWindowSnapShotFv
   - get_field_cc__19TWindowSubShortMailFPv
   - get_first_target_position__10TObjPlayerFPvPv
   - get_flag_1__10TObjPlayerFv
@@ -11594,6 +11590,7 @@ force_active:
   - has_armor_with_unit_slot__FP14TWindowSubItemi
   - has_at_most_one_player__15TObjSoloPlayWinFv
   - has_child_in_anim_5__12TObjEneReconFv
+  - has_data__7RlcFileFv
   - has_inactive_card__17TWindowSubComCardFPvi
   - has_no_active_slot
   - has_non_modifier_key__16TKeyBoardControlFv
@@ -11686,7 +11683,6 @@ force_active:
   - init__15TObjEneDelDepthFv
   - init__15TObjEneMe1GiGueFPv
   - init__15TObjEneSlimeOneFPviii
-  - init__15TWindowSnapShotFPvi
   - init__16TAdChrSelASlotGCFl
   - init__16TAdChrSelBSlotGCFv
   - init__17TObjEneBm3FlyNestFv
@@ -14288,6 +14284,8 @@ force_active:
   - lobby_window_title_ship_select
   - lobby_window_title_taisen_team
   - lobby_worker_thread_run_flag
+  - locate_directory__7RlcFileFv
+  - locate_header__7RlcFileFv
   - lock_on_cursor_bml_resource
   - lock_on_cursor_model
   - lock_on_window_params
@@ -14378,6 +14376,7 @@ force_active:
   - me1_gi_gue_motion_filename_table
   - me1gee_cached_model_handle
   - me3_stelth_bml_resource_desc
+  - measure_file__7RlcFileFPCc
   - member_check_name_ptr
   - member_name_window_pos
   - memcard_check_snapshot
@@ -14900,7 +14899,6 @@ force_active:
   - open_session__6TLobbyFi
   - open_ship_block_select_menu__6TLobbyFiPvPv
   - open_status_window__19TWindowSubTradeMainFi
-  - open_stream__15TWindowSnapShotFl
   - open_trade_confirm_prompt__15TWindowSubTradeFl
   - open_trade_equip_window__19TWindowSubTradeMainFv
   - open_warp_menu__6TLobbyFv
@@ -19720,6 +19718,7 @@ force_active:
   - read_byte__24TMessageWindowControllerFv
   - read_byte_advance__6TLobbyFv
   - read_data_sync__6TLobbyFlll
+  - read_file__7RlcFileFPCc
   - read_file_header__9TLanguageFiPv
   - read_gvrt_file_header
   - read_input__16TKeyBoardControlFl
@@ -20737,11 +20736,11 @@ force_active:
   - reset__14TBoss2TentacleFv
   - reset__14TItemEquipBaseFv
   - reset__14TObjEneBm5WolfFv
-  - reset__15TWindowSnapShotFv
   - reset__16TCheckMemoryCardFv
   - reset__16TObjEneBm5GibonUFv
   - reset__21TObjEneRe7BeruraPunchFv
   - reset__6TLobbyFi
+  - reset__7RlcFileFv
   - reset__8TGStreamFv
   - reset_action__12TBoss8DragonFv
   - reset_action_state__10TObjPlayerFv
@@ -22128,6 +22127,7 @@ force_active:
   - set_field_value__17TWindowOptionCtrlFls
   - set_fields_24_34_from_global__17TObjEneDarkGunnerFPv
   - set_fields_554__11TBoss6Type2Fv
+  - set_filename__7RlcFileFPCc
   - set_fish_global_param__9TEndingABFv
   - set_flag0_bits01__10TObjPlayerFv
   - set_flag1__10TObjPlayerFv
@@ -22225,7 +22225,6 @@ force_active:
   - set_message_index__26TWindowSubInformationBoardFl
   - set_min_clamped_entry_value__14TObjEneGibblesFllf
   - set_min_clamped_entry_value__16TObjEneDellBiterFlf
-  - set_mode__15TWindowSnapShotFl
   - set_mode_index_from_state__13TObjLobbyMainFv
   - set_mode_params__12TBoss8DragonFSc
   - set_model__11TItemMagSubFPvUlPv
@@ -22349,6 +22348,7 @@ force_active:
   - set_state_flags_6__14TObjEnePanarmsFv
   - set_state_flags__13TObjEneRe4BitFv
   - set_state_ready__15TPlyPhotonChairFv
+  - set_status__7RlcFileFl
   - set_stealth_suit_flags__10TObjPlayerFv
   - set_strip_lighting_chan_ctrl__FUl
   - set_subs_visible__8TItemMagFl

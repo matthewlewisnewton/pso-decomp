@@ -22,7 +22,6 @@
 extern "C" {
 extern s32 lbl_805D669C;
 }
-extern void *shared_snapshot_capture;
 
 extern "C" {
 
@@ -30,7 +29,7 @@ int get_resource_file_size__6TLobbyFv(void);
 int Dolphin_ARAlloc(void);
 
     extern int snapshot_aligned_buffer_size;
-void TWindowSnapShot::init_default() { TLobby::aram_transfer_sync((s32)((void*)1), (u32)((void*)((TWindowSnapShot *)shared_snapshot_capture)->get_field_8()), lbl_805D669C, snapshot_aligned_buffer_size); }
+void TWindowSnapShot::init_default() { TLobby::aram_transfer_sync((s32)((void*)1), (u32)shared_snapshot_capture->get_buffer(), lbl_805D669C, snapshot_aligned_buffer_size); }
 
 void TWindowSnapShot__sub_802A7DA0(void) {  }
 
@@ -83,7 +82,7 @@ s32 play_sound_effect(s32, s32, s32, s32);
 
 void TWindowSnapShot::free_shared_instance() {
     struct VObj_802A7DDC *o;
-    ((TWindowSnapShot *)shared_snapshot_capture)->update_both();
+    shared_snapshot_capture->clear();
     o = (struct VObj_802A7DDC *)shared_snapshot_capture;
     if (o != NULL) {
         o->m0(1);
@@ -93,26 +92,23 @@ void TWindowSnapShot::free_shared_instance() {
 }
 
 s32 load_player_motion_data(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    if ((void *) (*(u8 * *)&shared_snapshot_capture) != NULL) {
+    if (shared_snapshot_capture != NULL) {
         return 0;
     }
-    temp_r3 = (int)::operator new(0x40);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TWindowSnapShot *)temp_r3)->init_and_reset());
+    RlcFile *file = (RlcFile *)::operator new(sizeof(RlcFile));
+    if (file != NULL) {
+        file = file->initialize();
     }
-    (*(u8 * *)&shared_snapshot_capture) = (unsigned char *) ((void *) var_r0);
-    if ((u32) var_r0 == 0U) {
+    shared_snapshot_capture = file;
+    if (file == NULL) {
         return 0;
     }
-    ((TWindowSnapShot *)var_r0)->start_capture((s32)player_motion_data_filename_ptr);
+    file->load(player_motion_data_filename_ptr);
     return 1;
 }
 
-s32 TWindowSnapShot::get_size() { return *(s32 *)&this->m_name; }
-s32 TWindowSnapShot::get_field_8() { return *(s32 *)&this->m_prev; }
+RlcHeader *RlcFile::get_header() { return header; }
+u8 *RlcFile::get_buffer() { return buffer; }
 int TWindowSnapShot::get_height() { return 600; }
 
 int TWindowSnapShot__sub_802A7EAC(void) {  return (int)player_motion_data_filename_ptr; }
@@ -163,7 +159,7 @@ TWindowSnapShot::TWindowSnapShot(void *position)
     TWindowDuelResult::set_default_status((void *)entry, get_localized_text_entry(0xF, 0x13));
 }
 
-void *shared_snapshot_capture;
+RlcFile *shared_snapshot_capture;
 u32 snapshot_image_buffer;
 s32 snapshot_buffer_size;
 s32 lbl_805D669C;

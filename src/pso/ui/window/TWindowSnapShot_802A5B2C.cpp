@@ -7,127 +7,103 @@
 #include "pso/system/TGStream.h"
 #include "pso/unk/TLobby.h"
 
-extern "C" {
-s32 strncpy(void *, void *, int);
-s32 strcpy(void *, void *);
-s32 strlen(void *);
-extern s32 lbl_804DD098[];
-s32 memset(void *, int, int);
+#include <string.h>
 
-}
+extern "C" s32 lbl_804DD098[];
 
 u32 RlcDirectoryEntry::get_size() { return read_be32(size_be); }
 u32 RlcDirectoryEntry::get_offset() { return read_be32(offset_be); }
 u32 RlcDirectoryEntry::read_be32(const s8 *bytes) {
-    u32 value;
-    u32 hi;
-    s8 b3;
-    s8 b2;
-    s8 b1;
-    s8 b0;
-
-    b0 = bytes[0];
-    b1 = bytes[1];
-    if (bytes && bytes) {}
-    hi = (b1 << 16) & 0xFF0000;
-    value = (b0 << 24) | hi;
-    b2 = bytes[2];
-    b3 = bytes[3];
-    if (bytes && bytes) {}
-    value |= (b2 << 8) & 0xFF00;
-    value |= b3 & 0xFF;
-    return value;
+    // Keep the u64 byte conversions and direct lane masks: GC 2.6 needs
+    // these lifetimes to retain the byte extensions and accumulator copy.
+    s64 result = (u32)bytes[0] << 24;
+    result |= (((u32)(u64)bytes[1] << 16) & 0x00FF0000);
+    result |= (((u32)(u64)bytes[2] << 8) & 0x0000FF00);
+    result |= (u32)(u64)bytes[3] & 0xFF;
+    return (u32)result;
 }
 
 u32 RlcHeader::get_directory_offset() { return read_be32(directory_offset_be); }
 u32 RlcHeader::get_chunk_count() { return read_be32(chunk_count_be); }
 u32 RlcHeader::read_be32(const s8 *bytes) {
-    u32 value;
-    u32 hi;
-    s8 b3;
-    s8 b2;
-    s8 b1;
-    s8 b0;
-
-    b0 = bytes[0];
-    b1 = bytes[1];
-    if (bytes && bytes) {}
-    hi = (b1 << 16) & 0xFF0000;
-    value = (b0 << 24) | hi;
-    b2 = bytes[2];
-    b3 = bytes[3];
-    if (bytes && bytes) {}
-    value |= (b2 << 8) & 0xFF00;
-    value |= b3 & 0xFF;
-    return value;
+    // Use the same unsigned byte lanes and widening as the directory reader.
+    s64 result = (u32)bytes[0] << 24;
+    result |= (((u32)(u64)bytes[1] << 16) & 0x00FF0000);
+    result |= (((u32)(u64)bytes[2] << 8) & 0x0000FF00);
+    result |= (u32)(u64)bytes[3] & 0xFF;
+    return (u32)result;
 }
 
-s32 fn_802A5C3C(u32 *arg0) {
-    u32 temp_r0;
-    temp_r0 = *arg0;
-    if (temp_r0 == 0U) {
-        ((TWindowSnapShot *)arg0)->set_mode(7);
+s32 RlcFile::get_chunk_count() {
+    if (header == NULL) {
+        set_status(7);
         return -1;
     }
-    return ((RlcHeader *)temp_r0)->get_chunk_count();
+    return header->get_chunk_count();
 }
 
-void fn_802A5C7C(void *arg0) {
-    *(s32 *)((s8 *)arg0 + 4) = (s32) (*(s32 *)((s8 *)arg0 + 8) + ((RlcHeader *)(*(s32 *)((s8 *)arg0 + 0)))->get_directory_offset());
+void RlcFile::locate_directory() {
+    directory = (RlcDirectoryEntry *)(buffer + header->get_directory_offset());
 }
-void fn_802A5CB8(void* p) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)p + 0x8); }
 
-void fn_802A5CC4(u8 *arg0, s32 arg1) {
-    if (strlen((void *)arg1) > 0x1F) {
-        strncpy(arg0 + 0x1C, (void *)arg1, 0x1F);
-        *(s8 *)((s8 *)arg0 + 0x3B) = 0;
+void RlcFile::locate_header() {
+    header = (RlcHeader *)buffer;
+}
+
+void RlcFile::set_filename(const char *name) {
+    if ((s32)strlen(name) > 31) {
+        strncpy(filename, name, 31);
+        filename[31] = 0;
         return;
     }
-    strcpy(arg0 + 0x1C, (void *)arg1);
+    strcpy(filename, name);
 }
 
-void TWindowSnapShot::free_buffer() {
-    if (this->m_prev != NULL) {
-        ::operator delete[](this->m_prev);
-        this->m_prev = 0;
+void RlcFile::free_buffer() {
+    if (buffer != NULL) {
+        ::operator delete[](buffer);
+        buffer = NULL;
     }
 }
 
-s32 alloc_buffer__15TWindowSnapShotFPv(TWindowSnapShot *window_snap_shot) {
-    *(u32 *)((s8 *)window_snap_shot + 8) = (u32)::operator new[](window_snap_shot->get_buffer_size());
-    if ((u32) *(u32 *)((s8 *)window_snap_shot + 8) == 0U) {
-        window_snap_shot->set_mode(4);
+s32 RlcFile::allocate_buffer() {
+    buffer = (u8 *)::operator new[](get_buffer_size());
+    if (buffer == NULL) {
+        set_status(4);
         return 0;
     }
     return 1;
 }
-s32 TWindowSnapShot::open_stream(s32 name) {
-    *(s32 *)&this->m_next = TGStream::read_whole_file((s32)name, (u8 *)(*(s32 *)&this->m_prev));
-    if (TWindowSnapShot__sub_802A605C((u8 *)this) == 0) {
-        set_mode(2);
+
+s32 RlcFile::read_file(const char *name) {
+    buffer_size = TGStream::read_whole_file((s32)name, buffer);
+    if (!has_data()) {
+        set_status(2);
         free_buffer();
         return 0;
     }
     return 1;
 }
-s32 init__15TWindowSnapShotFPvi(TWindowSnapShot *window_snap_shot, s32 arg1) {
-    *(s32 *)((s8 *)window_snap_shot + 0xC) = ((TLobby *)arg1)->get_resource_file_size();
-    if (TWindowSnapShot__sub_802A605C((u8 *)window_snap_shot) == 0) {
-        window_snap_shot->set_mode(1);
+
+s32 RlcFile::measure_file(const char *name) {
+    buffer_size = ((TLobby *)name)->get_resource_file_size();
+    if (!has_data()) {
+        set_status(1);
         return 0;
     }
     return 1;
 }
-void TWindowSnapShot::reset() {
-    u8 *arg0 = (u8 *)this;
-    *(s32 *)&this->m_name = 0;
-    *(s32 *)&this->m_flags = 0;
-    memset(arg0 + 0x1C, 0, 0x20);
-    *(s32 *)&this->m_prev = 0;
-    *(s32 *)&this->m_next = 0;
-    *(s32 *)&this->m_down = 0;
-    *(s32 *)((s8 *)arg0 + 0x18) = 0;
+
+void RlcFile::reset() {
+    header = NULL;
+    directory = NULL;
+    memset(filename, 0, sizeof(filename));
+    buffer = NULL;
+    buffer_size = 0;
+    loaded = 0;
+    status = 0;
 }
+
 void *TWindowSnapShot__sub_802A5EDC(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         ((RlcFile *)arg0)->dispatch = lbl_804DD098;
@@ -138,39 +114,41 @@ void *TWindowSnapShot__sub_802A5EDC(void *arg0, s16 arg1) {
     return arg0;
 }
 
-u8 *TWindowSnapShot::init_and_reset() {
-    u8 *arg0 = (u8 *)this;
-    ((RlcFile *)this)->dispatch = lbl_804DD098;
+RlcFile *RlcFile::initialize() {
+    dispatch = lbl_804DD098;
     reset();
-    return arg0;
+    return this;
 }
 
-void TWindowSnapShot::update_both() { free_buffer(); reset(); }
-s32 TWindowSnapShot::start_capture(s32 arg1) {
-    if (arg1 == 0) {
-        set_mode(3);
+void RlcFile::clear() {
+    free_buffer();
+    reset();
+}
+
+s32 RlcFile::load(const char *name) {
+    if (name == NULL) {
+        set_status(3);
         return 0;
     }
-    if (init__15TWindowSnapShotFPvi(this, arg1) == 0) {
+    if (!measure_file(name)) {
         return 0;
     }
-    if (alloc_buffer__15TWindowSnapShotFPv(this) == 0) {
+    if (!allocate_buffer()) {
         return 0;
     }
-    if (open_stream(arg1) == 0) {
+    if (!read_file(name)) {
         return 0;
     }
-    fn_802A5CB8(this);
-    fn_802A5C7C(this);
-    fn_802A5CC4((u8 *)this, (s32)arg1);
-    *(s32 *)&this->m_down = 1;
+    locate_header();
+    locate_directory();
+    set_filename(name);
+    loaded = 1;
     return 1;
 }
+
 int TWindowSnapShot::get_width() { return 32; }
-void TWindowSnapShot::set_mode(s32 v) { *(s32*)((char*)this + 0x18) = v; }
-s32 TWindowSnapShot::get_buffer_size() { return *(s32 *)&this->m_next; }
-s32 TWindowSnapShot__sub_802A605C(u8 *arg0) {
-    return (u8) (*(s32 *)((s8 *)arg0 + 0xC) != 0);
-}
+void RlcFile::set_status(s32 value) { status = value; }
+s32 RlcFile::get_buffer_size() { return buffer_size; }
+s32 RlcFile::has_data() { return (u8)(buffer_size != 0); }
 void fn_802A6070(void* p, s32 v) { *(s32*)((char*)p + 0x4) = v; }
 void fn_802A6078(void* p, s32 v) { *(s32*)((char*)p + 0x0) = v; }
