@@ -1,22 +1,17 @@
-#include "pso/unk/text_80268384.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
-#include "pso/ui/window/TWindowSubStatusDisp_802671F0.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
 #include "pso/ui/window/TUnk_804D0948.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
+void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_item_list_capacity(void *, int, int, int);
 s32 draw_window_scrollbar(void *, int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(void *, int);
-s32 sub_8026DE94__13TUnk_804D0948Fv(void *, void *);
-extern s32 item_list_window_vtable[];
 extern s32 local_client_id;
 u8 * get_window_layout_position(s32);
-void __dl__7TObjectFPv(void *);
 
 #pragma push
 #pragma fp_contract on
@@ -25,13 +20,13 @@ void TUnk_804D0948::render() {
     s32 temp_r3;
     s32 n;
     void *p;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     if (!(this->state_flags & 0x80)) {
         ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(temp_r3);
     }
-    n = *(s32 *)&this->unk_88;
+    n = capacity;
     if (n > 0) {
         draw_item_list_capacity(arg0, temp_r3, this->entry_count, n);
     }
@@ -46,29 +41,19 @@ void TUnk_804D0948::render() {
 }
 #pragma pop
 
-void TUnk_804D0948::run_task() { run_task__19TWindowMenuIconLineFv((u8 *)this); }
-
-void *TWindowSubStatusDisp::deleting_dtor(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = item_list_window_vtable;
-        __dt__19TWindowMenuIconLineFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
-    }
-    return this;
-}
-u8 *TWindowSubStatusDisp::ct_helper(s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    __ct__19TWindowMenuIconLineFPUcUlsPUc(this, (u8 *)arg1, arg3, (s16)local_client_id, (u8 *)arg4);
-    *(s32 **)((s8 *)((u8 *)this) + 0x18) = item_list_window_vtable;
-    sub_8026DE94__13TUnk_804D0948Fv(this, (void *)arg2);
-    return ((u8 *)this);
-}
-u8 *TWindowSubStatusDisp::construct_item_list(s32 arg1, s32 arg2, s32 arg3) {
-    __ct__19TWindowMenuIconLineFPUcUls(this, get_window_layout_position(0x26), arg2, arg3);
-    *(s32 **)((s8 *)((u8 *)this) + 0x18) = item_list_window_vtable;
-    sub_8026DE94__13TUnk_804D0948Fv(this, (void *)arg1);
-    return ((u8 *)this);
+void TUnk_804D0948::run_task() {
+    TWindowMenuIconLine::run_task();
 }
 
+TUnk_804D0948::~TUnk_804D0948() {}
+
+TUnk_804D0948::TUnk_804D0948(void *position, s32 heading, u32 count, u8 *descriptor)
+    : TWindowMenuIconLine((u8 *)position, count, (s16)local_client_id, descriptor) {
+    sub_8026DE94(heading);
+}
+
+TUnk_804D0948::TUnk_804D0948(s32 heading, u32 count, s32 client)
+    : TWindowMenuIconLine(get_window_layout_position(0x26), count, (s16)client) {
+    sub_8026DE94(heading);
+}
 }

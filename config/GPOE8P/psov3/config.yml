@@ -3665,6 +3665,7 @@ force_active:
   - __ct__13TUnk_804EDC28FP7TObjectPUc
   - __ct__13TUnk_804EDD20FP7TObjectP12ActorBodyHitPfll
   - __ct__13TUnk_804EDD20FP7TObjectPfPfll
+  - __ct__13TUnk_804EF4E0Fl
   - __ct__13TUnk_804F0810FP7TObjectPUc
   - __ct__13TUnk_804F0908FP7TObjectPUc
   - __ct__13TUnk_804F0A00FP7TObjectPUc
@@ -4484,6 +4485,7 @@ force_active:
   - __dt__13TUnk_804EE470Fv
   - __dt__13TUnk_804EEF80Fv
   - __dt__13TUnk_804EF130Fv
+  - __dt__13TUnk_804EF4E0Fv
   - __dt__13TUnk_804EFA88Fv
   - __dt__13TUnk_804EFBACFv
   - __dt__13TUnk_804F07C8Fv
@@ -5651,6 +5653,7 @@ force_active:
   - __vt__13TUnk_804CE7E8
   - __vt__13TUnk_804CF918
   - __vt__13TUnk_804CF930
+  - __vt__13TUnk_804D0948
   - __vt__13TUnk_804D1160
   - __vt__13TUnk_804DCB64
   - __vt__13TUnk_804DDBF0
@@ -5702,6 +5705,7 @@ force_active:
   - __vt__13TUnk_804EE470
   - __vt__13TUnk_804EEF80
   - __vt__13TUnk_804EF130
+  - __vt__13TUnk_804EF4E0
   - __vt__13TUnk_804EFA88
   - __vt__13TUnk_804F07C8
   - __vt__13TUnk_804F0810
@@ -10686,7 +10690,6 @@ force_active:
   - fn_8032AC9C
   - fn_80330240
   - fn_8033068C
-  - fn_80338F3C
   - fn_80339D78__9TSaveChCrFv
   - fn_80340040
   - fn_8034009C
@@ -25675,6 +25678,7 @@ force_active:
   - vfunc_6__13TUnk_804A0688Fv
   - vfunc_6__13TUnk_804DDBF0Flll
   - vfunc_6__13TUnk_804ED7D0Flll
+  - vfunc_6__13TUnk_804EF4E0FUll
   - vfunc_6__14TItemAttackColFPl
   - vfunc_6__14TOTrapSeabed01FPsl
   - vfunc_6__15TOAttackableColFPsl
