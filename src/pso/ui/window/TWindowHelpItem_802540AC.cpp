@@ -995,7 +995,7 @@ void TWindowHelpItem::dispatch_item_help() {
         lbl_804CF7F0.e[2] = lbl_804CF7E4;
         lbl_805D644B = 1;
     }
-    ((TWindowSubStatusDisp *)(self->disp))->destroy_all_items();
+    ((WindowLayoutEntries *)(self->disp))->clear();
     if (self->id == -1) {
         self->flags &= 0xF8;
         self->pmf = 0;

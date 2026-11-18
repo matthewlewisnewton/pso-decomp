@@ -75,7 +75,7 @@ extern "C" void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(f32 *destination, c
 
 void TWindowArea::run_task() {
     ((TWindowDD *)this)->initialize_subwindow();
-    update_window_entry_list(entryList);
+    update_window_entry_list(&entry_list);
 }
 
 TWindowArea::~TWindowArea() {}

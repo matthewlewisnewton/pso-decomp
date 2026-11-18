@@ -320,7 +320,7 @@ void TWindowMessageLog::render() {
     draw_window_scrollbar((int) (*(s32 *)((s8 *)((u8 *)this) + 0x90)), temp_r3, (void *) (((u8 *)this) + 0x68));
 }
 void TWindowMessageLog::run_task() {
-    if (!(*(s32 *)&this->m_2c & 2)) {
+    if (!(*(s32 *)&this->window_flags & 2)) {
         *(s32 *)&this->m_5c = 0x01000000;
     }
     if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
@@ -359,7 +359,7 @@ u8 *TWindowMessageLog__ct(TWindowMessageLog *window_message_log, s32 arg1, s32 a
         var_r0 = reset_selection__20TWindowSubStatusDispFv(temp_r3, &stack.sp8);
     }
     *(s32 *)((s8 *)window_message_log + 0x90) = var_r0;
-    window_message_log->m_2c = (s32) (window_message_log->m_2c | 0x80);
+    window_message_log->window_flags = (s32) (window_message_log->window_flags | 0x80);
     window_message_log->m_94 = (f32) 0.0f;
     window_message_log->load_chat_history();
     return (u8 *)window_message_log;

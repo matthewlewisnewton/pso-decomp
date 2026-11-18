@@ -23,10 +23,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void calc_row_width();
     virtual void run_task();
     virtual void render();
-    void* m_24;
-    u8 unk_28[0x2];
-    s16 m_2a;
-    s32 m_2c;
     u8 unk_30[0x4];
     s32 m_34;
     u8 unk_38[0x4];
@@ -99,7 +95,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     s16 get_value();
     void update_disp_value();
     void *dispose(s16 arg1);
-    void destroy_all_items();
     void *deleting_destructor(s16 arg1);
     void*reset_entry(int a1, int a2);
     void set_all_values(s32 arg1);

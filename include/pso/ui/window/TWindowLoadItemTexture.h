@@ -7,8 +7,7 @@
 struct TWindowLoadItemTexture : public TWindowBase {
     virtual ~TWindowLoadItemTexture();
     virtual void render();
-    void* m_24;
-    u8 unk_28[0x10];
+    u8 unknown_30[0x8];
     f32 m_38;
     u8 unk_3C[0x24];
     u8 m_60;

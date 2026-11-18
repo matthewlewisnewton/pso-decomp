@@ -16,9 +16,6 @@ struct TWindowHelpItem : public TWindowBase
     void init_text(void *);
     void sub_80255E24();
     void set_flag60_bit4();
-    void* m_24;
-    u8 unk_28[0x4];
-    s32 m_2c;
     void* m_30;
     u8 unk_34[0x28];
     s32 m_5c;

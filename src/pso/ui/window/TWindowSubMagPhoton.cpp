@@ -189,7 +189,7 @@ void TWindowSubMagPhoton::run_task() {
         }
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
     this->m_62 = (this->m_62 + 1);
 }
 

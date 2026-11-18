@@ -8,8 +8,7 @@ struct TWindowComCard : public TWindowBase {
     virtual ~TWindowComCard();
     virtual void render();
     virtual void run_task();
-    void* m_24;
-    u8 unk_28[0xC];
+    u8 unknown_30[0x4];
     s32 m_34;
     u8 unk_38[0x28];
     void set_display_value(s32 arg1, s32 arg2);

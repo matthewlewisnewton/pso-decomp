@@ -202,7 +202,7 @@ void TAdChrMoveEffectGC::copy4(void* q) { *(u8 *)&this->m_name = *(u8*)((char*)q
 
 void TWindowSubStatusDisp::update_disp_value() {
     calc_bar_width__13TUnk_804CF930Fv();
-    *(s16 *)((s8 *)this + 0x28) = (s16) *(f32 *)&this->m_24;
+    *(s16 *)((s8 *)this + 0x28) = (s16) ((Gauge_80257784 *)this)->f24;
 }
 
 #pragma push
@@ -313,11 +313,11 @@ void *TWindowSubStatusDisp__sub_80257AF4(void *arg0, s16 arg1) {
 u8 *TWindowSubStatusDisp::init_layout_entry_copy(u8 *arg1) {
     ((s32 (*)(void))init_from__13TUnk_804CF930FPvi)();
     *(s32 * *)&this->m_flags = lbl_804CF948;
-    *(s16 *)((s8 *)((u8 *)this) + 0x28) = (s16) *(f32 *)&this->m_24;
+    *(s16 *)((s8 *)((u8 *)this) + 0x28) = (s16) ((Gauge_80257784 *)this)->f24;
     *(s32 *)((s8 *)((u8 *)this) + 0x60) = (s32) *(s32 *)((s8 *)arg1 + 0x24);
     *(s32 *)((s8 *)((u8 *)this) + 0x64) = (s32) *(s32 *)((s8 *)arg1 + 0x28);
-    this->m_2c = (s32) *(s32 *)((s8 *)((u8 *)this) + 0x18);
-    this->m_2a = 0;
+    this->window_flags = (s32) *(s32 *)((s8 *)((u8 *)this) + 0x18);
+    *(s16 *)((u8 *)this + 0x2A) = 0;
     return ((u8 *)this);
 }
 }

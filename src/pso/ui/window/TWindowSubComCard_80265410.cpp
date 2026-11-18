@@ -193,7 +193,7 @@ void TWindowSubComCardList::sub_8026556C() {
             var_r0 = reset_selection__20TWindowSubStatusDispFv(temp_r3, &stack.sp8);
         }
         this->m_84 = var_r0;
-        this->m_2c = (s32) (this->m_2c | 0x80);
+        this->window_flags = (s32) (this->window_flags | 0x80);
     }
 }
 
@@ -756,7 +756,7 @@ void TWindowMenu::run_task() {
     u8 *context;
 
     ((s32 (*)(void))layout_entries__11TWindowMenuFv)();
-    if (!(*(s32 *)&this->m_2c & 2)) {
+    if (!(*(s32 *)&this->window_flags & 2)) {
         *(s32 *)&this->m_5c = 0x01000000;
     }
     if ((((TWindowMenu *)arg0)->sub_80266BB8() == 0) && (((TWindowMenu *)arg0)->is_decided() == 0) && ((s32) *(s32 *)&this->m_5c > 2) && (is_window_display_enabled() != 0) && (((TWindowBase *)arg0)->sub_80244994() != 0)) {
@@ -800,7 +800,7 @@ void TWindowMenu::run_task() {
     ((TWindowMenu *)arg0)->update_target_y();
     ((TWindowMenu *)arg0)->clamp_menu_choice_scroll();
     ((TWindowMenu *)arg0)->advance_past_disabled_menu_rows();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
 }
 
 TWindowMenu::~TWindowMenu() {

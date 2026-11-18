@@ -10,8 +10,7 @@ struct TWindowSubCustomEquip : public TWindowBase {
     void update_palette_slot(s32, s32, s32);
     void sub_80275F08(void *);
     virtual void render();
-    void* m_24;
-    u8 _pad28[0x34];
+    u8 unknown_30[0x2C];
     u32 m_5c;
     u8 m_60;
     u8 m_61;

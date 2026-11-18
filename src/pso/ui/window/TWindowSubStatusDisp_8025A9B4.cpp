@@ -47,7 +47,7 @@ void *lbl_804CFA28[6] = {
 };
 
 void TWindowHelpItem::reset_float_field() {
-    sort_depth.value = 900000.0f;
+    sort_depth = 900000.0f;
 }
 
 extern const u32 lbl_805DCFAC = 0x00000000;

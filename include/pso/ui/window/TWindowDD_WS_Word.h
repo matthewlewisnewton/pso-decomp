@@ -5,11 +5,6 @@
 
 class TUnk_804CFA28;
 
-struct TWindowDDWordEntryList {
-    u32 count;
-    TUnk_804CFA28 **items;
-};
-
 class TWindowDD_WS_Word : public TWindowBase {
 public:
     virtual ~TWindowDD_WS_Word();
@@ -19,8 +14,7 @@ public:
     void *destroy(s16);
     s32 sub_80342268();
     s32 sub_80342254();
-    TWindowDDWordEntryList entries;
-    u8 unk_2C[0x14];
+    u8 unknown_30[0x10];
     f32 pad_40; // window rectangle x, y, w, h (read by the strip draw 0x80341674)
     f32 pad_44;
     f32 pad_48;

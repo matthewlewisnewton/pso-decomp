@@ -4,10 +4,15 @@
 #include <stddef.h>
 #include "pso/system/task/TObject.h"
 
-union WindowSortDepth {
-    f32 value;
-    s8 bytes[4];
+struct WindowLayoutEntries {
+    u32 count;
+    void **items;
+
+    void clear();
 };
+
+typedef char WindowEntriesSize[sizeof(WindowLayoutEntries) == 8 ? 1 : -1];
+typedef char WindowEntriesItemsOffset[offsetof(WindowLayoutEntries, items) == 4 ? 1 : -1];
 
 class TWindowBase : public TObject {
 public:
@@ -35,13 +40,18 @@ public:
     virtual void render();
     virtual void run_task();
 
-    WindowSortDepth sort_depth;
+    f32 sort_depth;
     s16 client_index;
     s16 closing_tick;
+    WindowLayoutEntries entry_list;
+    s32 window_flags;
 };
 
 typedef char WindowSortDepthOffset[offsetof(TWindowBase, sort_depth) == 0x1C ? 1 : -1];
 typedef char WindowClientOffset[offsetof(TWindowBase, client_index) == 0x20 ? 1 : -1];
 typedef char WindowClosingTickOffset[offsetof(TWindowBase, closing_tick) == 0x22 ? 1 : -1];
+
+typedef char WindowEntriesOffset[offsetof(TWindowBase, entry_list) == 0x24 ? 1 : -1];
+typedef char WindowFlagsOffset[offsetof(TWindowBase, window_flags) == 0x2C ? 1 : -1];
 
 #endif

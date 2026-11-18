@@ -32,8 +32,6 @@ public:
     s32 get_cursor_value();
     void calc_content_extent();
     void disable_cancel();
-    u8 unknown_24[0x8];
-    s32 m_2c;
     u8 unk_30[0x8];
     f32 m_38;
     u8 unk_3C[0x10];

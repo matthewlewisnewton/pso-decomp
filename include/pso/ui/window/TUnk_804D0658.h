@@ -19,8 +19,6 @@ public:
     void initialize_entries(u32 count);
     int is_selected();
     int is_open();
-    u8 unknown_24[0x8];
-    s32 m_2c;
     u8 unk_30[0xC];
     f32 m_3c;
     u8 unk_40[0xC];

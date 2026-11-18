@@ -6,7 +6,7 @@
 class TUnk_804EFBAC : public TWindowBase {
 public:
     virtual ~TUnk_804EFBAC();
-    u8 unknown_24[0x30];
+    u8 unknown_30[0x24];
     f32 pad_54; // depth: fed to the 0.299 depth helper TWindowDD__sub_80348AD4 by its render (0x8034055C)
     u8 pad_58[4];
     s32 pad_5C;

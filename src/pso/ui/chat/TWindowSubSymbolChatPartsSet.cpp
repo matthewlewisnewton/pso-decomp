@@ -402,7 +402,7 @@ void render__28TWindowSubSymbolChatPartsSetFv(TWindowSubSymbolChatPartsSet *wind
 typedef char RecoveredGlobal_80286824_lbl_8050E208_size[sizeof(RecoveredGlobal_80286824_lbl_8050E208) == 0x1B0 ? 1 : -1];
 void TWindowSubSymbolChatPartsSet::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (!(this->m_2c & 2)) {
+    if (!(this->window_flags & 2)) {
         *(s32 *)&this->m_5c = 0x01000000;
     }
     if (((TWindowSubSymbolChatPartsSet *)arg0)->is_active() == 0) {
@@ -420,7 +420,7 @@ void TWindowSubSymbolChatPartsSet::run_task() {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_88))->update_subwindow();
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list.count);
 }
 
 }

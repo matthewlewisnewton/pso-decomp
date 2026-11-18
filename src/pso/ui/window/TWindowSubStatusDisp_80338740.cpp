@@ -35,7 +35,7 @@ typedef struct
   s8 c20;
   s8 c21;
   u8 pad22[2];
-  s32 x24;
+  char *text;
 } Item_80338890;
 typedef struct
 {
@@ -117,7 +117,7 @@ void draw_item_row__20TWindowSubStatusDispFPvPv(Item_80338890 *arg0, Win_8033889
   draw_item_list_icon(win, &pos, arg0->c1c, -1, scale);
   pos.x += 18.0f;
   set_text_draw_params((s32)win, 1, 1, (f32)scale, 100000.0f);
-  draw_window_text((f32 *)&pos, (const char *)arg0->x24, -1, 1, 100000.0f);
+  draw_window_text((f32 *)&pos, arg0->text, -1, 1, 100000.0f);
   pos.x += 210.0f;
   draw_window_text((f32 *)&pos, (const char *)(TWindowSubStatusDisp::get_flag_or_zero(arg0, arg0->c1d)), -1, 0, 100000.0f);
   pos.x += 108.0f;
@@ -137,9 +137,9 @@ void TWindowSubStatusDisp__sub_80338A9C(void) {  }
 void *TWindowSubStatusDisp::destroy_with_free(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 4) = (s32*)lbl_804EF440;
-        if ((u32) *(u32 *)((s8 *)this + 0x24) != 0U) {
-            ::operator delete[](this->m_24);
-            *(u32 *)((s8 *)this + 0x24) = 0U;
+        if (((Item_80338890 *)this)->text != NULL) {
+            ::operator delete[](((Item_80338890 *)this)->text);
+            ((Item_80338890 *)this)->text = NULL;
         }
         deleting_destructor__20TWindowSubStatusDispFs(this, 0);
         if (arg1 > 0) {
@@ -149,7 +149,21 @@ void *TWindowSubStatusDisp::destroy_with_free(s16 arg1) {
     return this;
 }
 
-void*TWindowSubStatusDisp::init_state(int a1, int a2) { reset_entry__20TWindowSubStatusDispFPv(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804EF440; *(float*)((char*)this + 0x14) = 18.0f; *(unsigned char *)&this->sort_depth.bytes[0] = 51; *(signed char *)&this->sort_depth.bytes[1] = -1; *(signed char *)&this->sort_depth.bytes[2] = -1; this->sort_depth.bytes[3] = -1; *(signed char*)((char*)this + 0x20) = -1; *(signed char*)((char*)this + 0x21) = -1; *(int*)((char*)this + 0x24) = 0; *(int*)((char*)this + 0x18) = 0; return this; }
+void *TWindowSubStatusDisp::init_state(int a1, int a2) {
+    Item_80338890 *item = (Item_80338890 *)this;
+    reset_entry__20TWindowSubStatusDispFPv(this, a2);
+    *(int *)((char *)this + 4) = (int)lbl_804EF440;
+    item->x14 = 18.0f;
+    item->c1c = 51;
+    item->c1d = -1;
+    item->c1e = -1;
+    item->c1f = -1;
+    item->c20 = -1;
+    item->c21 = -1;
+    item->text = NULL;
+    *(int *)((char *)this + 0x18) = 0;
+    return this;
+}
 
 int TWindowSubStatusDisp__sub_80338B88(void* p) { return (*(u16*)((char*)p + 0x0) >> 2) & 0x1; }
 

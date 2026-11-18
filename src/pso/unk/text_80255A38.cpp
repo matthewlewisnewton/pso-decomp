@@ -12,7 +12,7 @@ void fn_80255A38(TWindowHelpItem *item);
 }
 
 void fn_80255A38(TWindowHelpItem *item) {
-    ((TWindowSubStatusDisp *)((u8 *)item + 0x24))->destroy_all_items();
+    ((WindowLayoutEntries *)((u8 *)item + 0x24))->clear();
     item->m_60 &= ~1;
     item->m_68 = 0;
     item->m_6c = 0;

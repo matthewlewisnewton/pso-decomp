@@ -19,8 +19,6 @@ struct TWindowKeyBoardBase : public TWindowBase {
     void set_input_flags_92();
     void set_input_flags_12();
     void reset_input_flags_for_language();
-    u8 unknown_24[0x8];
-    s32 m_2c;
     f32 position_x;
     f32 position_y;
     f32 m_38;

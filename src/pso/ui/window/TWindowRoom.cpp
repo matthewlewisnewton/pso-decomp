@@ -62,7 +62,7 @@ void TWindowRoom::render() {
     ((TWindowRoom *)arg0)->draw_tab((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
 }
-void TWindowRoom::run_task() { ((TWindowDD *)this)->initialize_subwindow(); ((TWindowBase *)this)->update_window_entry_list((char*)this + 0x24); }
+void TWindowRoom::run_task() { ((TWindowDD *)this)->initialize_subwindow(); update_window_entry_list(&entry_list); }
 
 TWindowRoom::~TWindowRoom() {}
 

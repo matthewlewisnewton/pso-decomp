@@ -28,7 +28,7 @@ void TWindowDD_WS_String::render() {
     draw_entry_if_visible(entry);
     y = *(f32 *)((s8 *)entry + 0x14);
     *(f32 *)((s8 *)entry + 0x14) += 1.0f;
-    draw_visible_window_entries(this, pad_24, entry, y);
+    draw_visible_window_entries(this, &entry_list, entry, y);
 }
 
 void TWindowDD_WS_String::draw_entry_if_visible(void *entry) {
@@ -40,7 +40,7 @@ void TWindowDD_WS_String::draw_entry_if_visible(void *entry) {
 void TWindowDD_WS_String::run_task() {
     ((TWindowDD *)this)->initialize_subwindow();
     update_fade();
-    update_window_entry_list(pad_24);
+    update_window_entry_list(&entry_list);
 }
 
 }

@@ -21,9 +21,6 @@ struct TWindowMenu : public TWindowAddition {
     int is_cancelled();
     s32 get_selected_value();
     virtual void render();
-    void* m_24;
-    u8 _pad28[0x4];
-    u32 m_2c;
     u8 unk_30[0x8];
     f32 m_38;
     f32 pad_3c;  // compared and clamped by TWindowSubComCardList::set_scroll_target

@@ -22,10 +22,6 @@ struct Icon_80243630 {
 };
 
 struct TWindowActionPalette : public TWindowBase {
-    struct ChildList {
-        u32 count;
-        void **entries;
-    };
     struct Scale {
         f32 x;
         f32 y;
@@ -37,8 +33,7 @@ struct TWindowActionPalette : public TWindowBase {
     virtual void render();
     virtual ~TWindowActionPalette();
 
-    ChildList children;
-    u8 unk_2C[0x14];
+    u8 unknown_30[0x10];
     f32 x;
     f32 y;
     f32 w;

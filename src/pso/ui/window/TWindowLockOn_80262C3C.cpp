@@ -187,7 +187,7 @@ void TWindowLockOn::run_task() {
     validate_target();
     ((TWindowDD *)this)->initialize_subwindow();
     update_fade();
-    update_window_entry_list(&m_24);
+    update_window_entry_list(&entry_list);
     old = m_64;
     m_64 = old - 1;
     if (old < 0) {
@@ -201,7 +201,7 @@ void TWindowLockOn::render() {
     context = setup_window_draw_context((s32)&m_68);
     draw_window_frame((void *)context);
     if (m_30 == m_40 && m_34 == m_44 && m_38 == m_48 && m_3c == m_4c) {
-        draw_visible_window_entries(this, &m_24, context);
+        draw_visible_window_entries(this, &entry_list, context);
     }
 }
 
@@ -247,7 +247,7 @@ void TWindowLockOn::bind_target(u16 id) {
 }
 
 void TWindowLockOn::update_for_target(TObjCollidable *actor) {
-    ((TWindowSubStatusDisp *)&m_24)->destroy_all_items();
+    entry_list.clear();
     if (actor->obj_testFlags30(0x10000000) != 0) {
         update_for_other_player(actor);
         return;
@@ -266,7 +266,7 @@ void TWindowLockOn::update_for_target(TObjCollidable *actor) {
 void TWindowLockOn::update_for_other_player(TObjCollidable *player) {
     LockOnEntry *w;
     u16 id;
-    init_window_layout_entries(&m_24, &lock_on_window_params, client_index);
+    init_window_layout_entries(&entry_list, &lock_on_window_params, client_index);
     m_70 = &TWindowLockOn::update_photon_blast_marker;
     w = (LockOnEntry *)get_array_entry(1);
     id = get_entity_id(player);
@@ -287,7 +287,7 @@ void TWindowLockOn::update_for_item(TItem *item) {
     LockOnEntry *e;
     LockOnEntry *e2;
     f32 r;
-    init_window_layout_entries(&m_24, &lockon_window_layout_entries, client_index);
+    init_window_layout_entries(&entry_list, &lockon_window_layout_entries, client_index);
     m_70 = &TWindowLockOn::refresh_ground_item;
     e = (LockOnEntry *)get_array_entry(0);
     ((TWindowSubStatusDisp *)e)->init_item_row(item, 0);
@@ -328,7 +328,7 @@ void TWindowLockOn::update_for_enemy(TObjChara *enemy) {
     LockOnEntryText *p;
     u32 w2;
 
-    init_window_layout_entries(&m_24, &lbl_804D00F4, client_index);
+    init_window_layout_entries(&entry_list, &lbl_804D00F4, client_index);
     m_70 = &TWindowLockOn::refresh_enemy_statuses;
     e = get_array_entry(1);
     TWindowDuelResult::set_default_status((void *)e, get_message_10__20TWindowSubStatusDispFl(0xA5));

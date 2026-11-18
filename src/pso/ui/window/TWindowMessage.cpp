@@ -290,7 +290,7 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
         e->flags |= 0x200;
     }
     y = self->m_48 - 8.0f;
-    if (self->m_2c & 0x80) {
+    if (self->window_flags & 0x80) {
         y -= 5.0f;
     }
     measure_message_text_width(e, y);
@@ -396,7 +396,7 @@ void TWindowMessage::render() {
 
 void TWindowMessage::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (!(this->m_2c & 2)) {
+    if (!(this->window_flags & 2)) {
         this->m_5c = 0x01000000;
     }
     ((TWindowMessage *)arg0)->update_scroll();
@@ -405,7 +405,7 @@ void TWindowMessage::run_task() {
     ((TWindowMessage *)arg0)->advance_reveal_cursor();
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
 }
 
 TWindowMessage::~TWindowMessage() {

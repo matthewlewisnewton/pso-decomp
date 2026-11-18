@@ -417,7 +417,7 @@ void TWindowSubStatusDisp::vt4() {
     if ((f32)(s32)m_5c > TWindowSubStatusDisp__data_805DD708) {
         m_5c = 7;
     }
-    init_window_layout_entries(&m_24, TWindowSubStatusDisp__rank_time_records_layout, client_index);
+    init_window_layout_entries(&entry_list, TWindowSubStatusDisp__rank_time_records_layout, client_index);
     m_68->get_type();
     s32 slot = page == 2 ? RECORD_SET_EP1_SPLIT : RECORD_SET_EP1;
     u16 *entry = (u16 *)get_array_entry(0);
@@ -830,7 +830,7 @@ void TWindowSubStatusDisp::render() {
 
 void TWindowSubStatusDisp::run_task() {
     TWindowSubStatusDisp *arg0 = (TWindowSubStatusDisp *)this;
-  if (!((arg0->m_2c) & 2))
+  if (!((arg0->window_flags) & 2))
   {
     *(s32 *)&arg0->m_5c = 0x01000000;
   }
@@ -841,7 +841,7 @@ void TWindowSubStatusDisp::run_task() {
       arg0->page = *(s16 *)&arg0->m_62;
       fn_8026C7AC((void *)(*(s32 *)&arg0->m_68), ((s8) (*((u8 *) (((s8 *) (((u8 *)&lbl_805DD6F4) + (arg0->page))) + 0)))));
     }
-    ((TWindowSubStatusDisp *)(((u8 *) arg0) + 0x24))->destroy_all_items();
+    ((WindowLayoutEntries *)(((u8 *) arg0) + 0x24))->clear();
     arg0->dispatch_page_init();
   }
   arg0->dispatch_page_update();

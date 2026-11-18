@@ -1,3 +1,4 @@
+#include "pso/ui/ItemListRow.h"
 #include "types.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/unk/TLobby_80132ED0.h"
@@ -335,7 +336,7 @@ void TWindowSubStatusDisp::add_status_entry(s8 arg1, s32 src, s32 arg3) {
         init_status_entry__20TWindowSubStatusDispFPvcUii((u8 *)window_sub_status_disp, var_r29, src, arg3);
         *(f32 *)((s8 *)window_sub_status_disp + 8) = (f32) -18.0f;
         if (arg1 & 2) {
-            *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->sort_depth.bytes[0] = 0xE;
+            ((ItemListRow *)window_sub_status_disp)->status_icon = 0xE;
             *(u16 *)((s8 *)window_sub_status_disp + 0) = (u16) (*(u16 *)((s8 *)window_sub_status_disp + 0) | 0x100);
         }
         *(s16 *)((s8 *)this + 0x72) = (s16) (*(s16 *)((s8 *)this + 0x72) + 1);
@@ -564,7 +565,7 @@ void TWindowMenuIconLine::create_menu_scroll_bar() {
             var_r0 = reset_selection__20TWindowSubStatusDispFv(temp_r3, &stack.sp8);
         }
         *(u32 *)&this->unk_84 = var_r0;
-        this->m_2c = (s32) (this->m_2c | 0x80);
+        this->window_flags = (s32) (this->window_flags | 0x80);
     }
 }
 
@@ -577,7 +578,7 @@ void TWindowMenuIconLine::ensure_status_display(s32 arg1) {
             var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(var_r0, arg1, this->client_index);
         }
         *(u32 *)&this->status_display = var_r0;
-        (this->m_2c) = (s32) ((this->m_2c) | 0x40);
+        (this->window_flags) = (s32) ((this->window_flags) | 0x40);
     }
 }
 
@@ -601,7 +602,7 @@ void TWindowSubStatusDisp::init_scroll_pos() {
         *(u16 *)((s8 *)this + 0x70) = (u16) (temp_r4 | 0x20);
         temp = ((u16 *(*)(void *, s16))get_array_entry__11TWindowBaseFi)(this, (s16)(*(s16 *)((s8 *)this + 0x74)));
         this->m_3c = (f32) (20.0f + *(f32 *)((s8 *)temp + 0x14));
-        if (this->m_2c & 0x40) {
+        if (this->window_flags & 0x40) {
             this->m_3c += 6.0f;
         }
         *(s32 *)((s8 *)this + 0x50) = 3;

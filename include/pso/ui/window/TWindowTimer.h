@@ -9,8 +9,7 @@ struct TWindowTimer : public TWindowBase {
     void ease_window_timer_position();
     virtual void render();
     virtual void run_task();
-    void* m_24;
-    u8 unk_28[0x1C];
+    u8 unknown_30[0x14];
     f32 m_44;
     u8 unk_48[0x4];
     f32 m_4c;

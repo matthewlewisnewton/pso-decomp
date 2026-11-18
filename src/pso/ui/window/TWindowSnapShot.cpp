@@ -142,7 +142,7 @@ void render__15TWindowSnapShotFv(u8 *arg0) {
 
 void TWindowSnapShot::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (!(this->m_2c & 2)) {
+    if (!(this->window_flags & 2)) {
         this->m_5c = 0x01000000;
     }
     if ((TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state + 0x20), 2) != 0) || (test_flag_4c__23TAdSinglePlyChrSelectGCFv((void *) ((u8 *)&controller_input_state + 0x160), 2) != 0)) {
@@ -150,7 +150,7 @@ void TWindowSnapShot::run_task() {
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
 }
 
 TWindowSnapShot::~TWindowSnapShot() {}

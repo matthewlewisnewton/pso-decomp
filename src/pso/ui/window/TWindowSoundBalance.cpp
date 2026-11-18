@@ -166,7 +166,7 @@ void TWindowSoundBalance::render() {
     TWindowSoundBalance *self = this;
     TWindowDrawContext *entry = (TWindowDrawContext *)TWindowDD::draw_default_entry((s32)self);
     self->draw_window_frame(entry);
-    draw_visible_window_entries((s32)self, (s32)&self->m_24, entry);
+    draw_visible_window_entries((s32)self, (s32)&self->entry_list, entry);
     entry->inner_x += 174.0f;
     entry->inner_w -= 348.0f;
     self->apply_balance(entry);
@@ -188,7 +188,7 @@ void TWindowSoundBalance::run_task() {
     }
     ((TWindowDD *)this)->initialize_subwindow();
     update_fade();
-    update_window_entry_list(&m_24);
+    update_window_entry_list(&entry_list);
 }
 
 TWindowSoundBalance::~TWindowSoundBalance() {}

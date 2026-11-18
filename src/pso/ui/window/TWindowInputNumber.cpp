@@ -176,7 +176,7 @@ void TWindowInputNumber::create(s32 arg1) {
             var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(saved, arg1, this->client_index);
         }
         this->unknown70 = var_r0;
-        this->m_2c = (s32) (this->m_2c | 0x40);
+        this->window_flags = (s32) (this->window_flags | 0x40);
         *(f32 *)((s8 *)this + 0x3C) += 6.0f;
     }
 }

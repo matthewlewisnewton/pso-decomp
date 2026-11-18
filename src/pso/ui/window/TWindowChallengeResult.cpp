@@ -110,13 +110,13 @@ TWindowChallengeResult::~TWindowChallengeResult() {}
 
 void TWindowChallengeResult::run_task() {
     ((TWindowDD *)this)->initialize_subwindow();
-    update_window_entry_list(entry_list);
+    update_window_entry_list(&entry_list);
 }
 
 void TWindowChallengeResult::render() {
     s32 context = setup_window_draw_context((s32)&scale_x);
     draw_window_frame((void *)context);
-    draw_visible_window_entries(this, entry_list, context);
+    draw_visible_window_entries(this, &entry_list, context);
 }
 
 // The capped clear time, defined after its use so the constructor addresses it on its own.

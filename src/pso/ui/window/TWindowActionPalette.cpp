@@ -28,7 +28,7 @@
 // in reverse source order (so they are written last to first).
 #pragma defer_codegen on
 
-typedef char palette_children_offset[offsetof(TWindowActionPalette, children) == 0x24 ? 1 : -1];
+typedef char palette_children_offset[offsetof(TWindowActionPalette, entry_list) == 0x24 ? 1 : -1];
 typedef char palette_x_offset[offsetof(TWindowActionPalette, x) == 0x40 ? 1 : -1];
 typedef char palette_resources_offset[offsetof(TWindowActionPalette, resources) == 0x60 ? 1 : -1];
 typedef char palette_state_offset[offsetof(TWindowActionPalette, state) == 0x6C ? 1 : -1];
@@ -197,9 +197,9 @@ void TWindowActionPalette::run_task() {
     cnt = state;
     if ((s8)cnt > 0) {
         state = cnt - 1;
-        ((TWindowHelpItem *)help)->m_2c = -1;
+        ((TWindowHelpItem *)help)->window_flags = -1;
     } else {
-        ((TWindowHelpItem *)help)->m_2c = 0xFF666666;
+        ((TWindowHelpItem *)help)->window_flags = 0xFF666666;
     }
     v = select_action_palette_and_apply__10TObjPlayerFlll(player, 0, 0, 0);
     if (v == 0) {
@@ -232,12 +232,12 @@ void TWindowActionPalette::run_task() {
     }
     ((TWindowDD *)this)->initialize_subwindow();
     update_fade();
-    update_window_entry_list(&children);
+    update_window_entry_list(&entry_list);
 }
 
 void TWindowActionPalette::render() {
     s32 context = setup_window_draw_context((s32)&scale);
-    draw_visible_window_entries(this, &children, context);
+    draw_visible_window_entries(this, &entry_list, context);
     draw_frame(context);
 }
 

@@ -210,7 +210,7 @@ void TWindowStatus::render() {
   *((f32 *) (((s8 *) temp_r31) + 8)) = (f32) ((lbl_805DD474 * temp_f1) + lbl_805DD470);
   ctx = draw_default_entry__9TWindowDDFl((void *) arg0, (f32) temp_f1, new_var2);
   ((TWindowStatus *)arg0)->draw_background((u8 *)ctx);
-  draw_visible_window_entries((void *) new_var, (u8 *)&this->m_24, (int) ctx);
+  draw_visible_window_entries((void *) new_var, (u8 *)&this->entry_list, (int) ctx);
 }
 
 void TWindowStatus::run_task() {

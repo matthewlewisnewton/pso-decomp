@@ -47,7 +47,7 @@ void TWindowHelpItem::update_cursor_selection() {
 void TWindowHelpItem::render() {
     s32 context = setup_window_draw_context((s32)&m_a8);
     draw_window_frame((void *)context);
-    draw_visible_window_entries(this, &m_24, context);
+    draw_visible_window_entries(this, &entry_list, context);
     if ((m_60 & 1) && (m_60 & 2)) {
         draw_list_page_indicator(m_64, (TWindowDrawContext *)context);
     }
@@ -55,10 +55,10 @@ void TWindowHelpItem::render() {
 
 void TWindowHelpItem::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (!(this->m_2c & 2)) {
+    if (!(this->window_flags & 2)) {
         this->m_5c = 0x01000000;
     }
-    if ((this->m_60 & 1) && (((TWindowBase *)arg0)->sub_80244994() != 0) && !(this->m_2c & 4)) {
+    if ((this->m_60 & 1) && (((TWindowBase *)arg0)->sub_80244994() != 0) && !(this->window_flags & 4)) {
         if (!(this->m_60 & 4)) {
             if (handle_list_page_flip_input(this->m_64) != 0) {
                 ((TWindowHelpItem *)arg0)->dispatch_item_help();
@@ -70,7 +70,7 @@ void TWindowHelpItem::run_task() {
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
     if (!(this->m_60 & 8)) {
         toggle_help_window_on_button((u32)arg0, this->client_index);
     }

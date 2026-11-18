@@ -6,7 +6,8 @@
 struct ItemListRow
 {
   u16 flags;
-  u8 pad2[6];
+  s16 client;
+  void *vtable;
   f32 x;
   f32 y;
   u8 pad10[4];
@@ -15,8 +16,8 @@ struct ItemListRow
   u8 status_icon;
   u8 category_icon;
   u8 pad1e[2];
-  s32 label;
-  s32 suffix;
+  char *label;
+  char *suffix;
   s32 status_style;
   s32 category_style;
   s32 style;

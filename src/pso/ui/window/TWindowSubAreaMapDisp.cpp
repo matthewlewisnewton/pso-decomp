@@ -32,7 +32,7 @@ void TWindowSubAreaMapDisp::update_visibility() {
             TWindowCtrl::clear_active_flag();
             TRaderMapCore::clear();
         }
-    } else if (!(this->m_2c & 2) && (sub_80246948__11TWindowBaseFv() == 0)) {
+    } else if (!(this->window_flags & 2) && (sub_80246948__11TWindowBaseFv() == 0)) {
         this->m_6c = 1;
         TRaderMapCore::open_free_map_view();
         TRaderMapCore::show_radar();

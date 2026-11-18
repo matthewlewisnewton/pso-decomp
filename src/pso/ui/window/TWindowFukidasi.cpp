@@ -896,7 +896,7 @@ void open__15TWindowFukidasiFPvPvi(u8 *arg0, u32 *arg1, s32 arg2) {
     ((s32 (*)(void *, s32))init_flags__15TWindowFukidasiFPvi)(arg0, arg2);
     if ((u8) *(u8 *)((s8 *)arg0 + 0x72) != 1) {
         *(u8 *)((s8 *)arg0 + 0x72) = 1U;
-        ((TWindowSubStatusDisp *)(arg0 + 0x24))->destroy_all_items();
+        ((WindowLayoutEntries *)(arg0 + 0x24))->clear();
         ((TWindowSubSymbolChat *)(arg0 + 0x24))->init_layout_entries(*(s16 *)((s8 *)arg0 + 0x20));
         if ((u8) *(u8 *)((s8 *)arg0 + 0x70) != 0) {
             var_r31 = 1;
@@ -929,7 +929,7 @@ void set_text__15TWindowFukidasiFPvii(u8 *arg0, s32 str, s32 arg2) {
   if (((u8) (*((u8 *) (((s8 *) arg0) + 0x72)))) != 0)
   {
     *((u8 *) (((s8 *) arg0) + 0x72)) = 0U;
-    ((TWindowSubStatusDisp *)(arg0 + 0x24))->destroy_all_items();
+    ((WindowLayoutEntries *)(arg0 + 0x24))->clear();
     init_window_layout_entries(arg0 + 0x24, &window_fukidasi_layout_entries.value, (int) (*((s16 *) (((s8 *) arg0) + 0x20))));
   }
   entry = (u8 *) ((u8 * (*)(void *, s32))get_array_entry__11TWindowBaseFi)(arg0, 0);
@@ -985,7 +985,7 @@ void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1) {
     ((TUnk_804CF0B8 *)arg0)->m_58 = 0.0f;
     set_depth__11TWindowBaseFf(60000.0f);
     if (sub_80246948__11TWindowBaseFv(arg0) != 0) {
-        ((TUnk_804CF0B8 *)arg0)->m_2c = (s32) (((TUnk_804CF0B8 *)arg0)->m_2c | 1);
+        ((TUnk_804CF0B8 *)arg0)->window_flags = (s32) (((TUnk_804CF0B8 *)arg0)->window_flags | 1);
     }
     ((TUnk_804CF0B8 *)arg0)->m_71 = (u8) (((TUnk_804CF0B8 *)arg0)->m_71 & ~0x50);
     if (arg1 & 2) {

@@ -418,10 +418,10 @@ void TWindowLockOn::update_for_player_index(s32 arg1) {
         set_text_entry_string(((u8 *)this), temp_r31, 0x20);
     }
     if (temp_r30->m31() != 0) {
-        *(s32 *)&this->m_24 = 0xFFFF0000;
+        *(s32 *)((u8 *)this + 0x24) = 0xFFFF0000;
         return;
     }
-    *(s32 *)&this->m_24 = (s32) *(s32 *)((s8 *)temp_r29 + 0x18);
+    *(s32 *)((u8 *)this + 0x24) = (s32) *(s32 *)((s8 *)temp_r29 + 0x18);
 }
 
 void update_lockon_window(u8 *arg0) {

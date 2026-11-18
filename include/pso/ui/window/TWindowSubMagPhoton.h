@@ -9,9 +9,6 @@ struct TWindowSubMagPhoton : public TWindowBase {
     void init_photon_blast_entries();
     int get_active_flag();
     virtual void render();
-    void* m_24;
-    u8 unk_28[0x4];
-    s32 m_2c;
     void* m_30;
     u8 _pad34[0x2C];
     u8 m_60;

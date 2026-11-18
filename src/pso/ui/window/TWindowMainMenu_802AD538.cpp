@@ -607,7 +607,7 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *frame) {
 TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
     TWindowDrawContext *r;
-    r = TWindowDrawContext::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), fn_8026CB68(), depth, m_2c);
+    r = TWindowDrawContext::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), fn_8026CB68(), depth, window_flags);
     if (((TWindowMainMenu *)this)->is_not_split_screen() != 0) {
         v = 51.0f;
     } else {

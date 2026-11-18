@@ -11,9 +11,6 @@ struct TWindowSubSymbolChatFaceType : public TWindowBase {
     s32 is_open();
     virtual void render();
     virtual void run_task();
-    void* m_24;
-    u8 _pad28[0x4];
-    u32 m_2c;
     u8 _pad30[0x2C];
     u32 m_5c;
     u8 m_60;

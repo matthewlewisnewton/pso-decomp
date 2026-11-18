@@ -6,10 +6,9 @@
 
 struct TWindowBreakIn : public TWindowBase {
     virtual ~TWindowBreakIn();
-    void* m_24;
     virtual void render();
     virtual void run_task();
-    u8 unk_28[0x38];
+    u8 unknown_30[0x30];
 };
 
 typedef char TWindowBreakIn_size[sizeof(TWindowBreakIn) == 0x60 ? 1 : -1];

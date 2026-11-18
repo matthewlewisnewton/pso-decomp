@@ -18,7 +18,7 @@
 const char *lbl_805D42E0 = "TWindowDD_WS_Word";
 
 extern "C" {
-void draw_visible_window_entries(TWindowDD_WS_Word *, TWindowDDWordEntryList *, TWindowDrawContext *);
+void draw_visible_window_entries(TWindowDD_WS_Word *, WindowLayoutEntries *, TWindowDrawContext *);
 extern const s32 TWindowDD__data_805DFC14;
 extern const s32 lbl_805DFC18;
 }
@@ -54,7 +54,7 @@ void TWindowDD_WS_Word::render() {
         }
     }
     entry->inner_y += 1.0f;
-    draw_visible_window_entries(self, &self->entries, entry);
+    draw_visible_window_entries(self, &self->entry_list, entry);
 }
 
 struct E_803403F8 { f32 a; f32 b; f32 c; f32 d; f32 e; s32 f; };
@@ -376,7 +376,7 @@ void TWindowDD::free_child() {
         ::operator delete[](*(void **)((s8 *)this + 0x80));
         this->m_9c = 0;
     }
-    ((TWindowSubStatusDisp *)((char *)this + 36))->destroy_all_items();
+    ((WindowLayoutEntries *)((char *)this + 36))->clear();
     this->m_90 = 0;
     this->m_98 = 0;
 }

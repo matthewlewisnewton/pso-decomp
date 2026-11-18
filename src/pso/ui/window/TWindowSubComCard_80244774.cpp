@@ -245,25 +245,25 @@ void fn_802449E0(u8 *object) {
 
 void TWindowBase::close() {
     ((TWindowLockOn *)this)->request_close();
-    ((TWindowLockOn *)this)->m_2c = (s32) (((TWindowLockOn *)this)->m_2c | 0x10);
+    ((TWindowLockOn *)this)->window_flags = (s32) (((TWindowLockOn *)this)->window_flags | 0x10);
 }
 
 void TWindowLockOn::request_close() {
     s32 temp_r3;
-    temp_r3 = *(s32 *)&(this->m_2c);
+    temp_r3 = *(s32 *)&(this->window_flags);
     if (!(temp_r3 & 1)) {
-        *(s32 *)&(this->m_2c) = (s32) (temp_r3 & 0xFFFFFFFB);
+        *(s32 *)&(this->window_flags) = (s32) (temp_r3 & 0xFFFFFFFB);
         return;
     }
     if (temp_r3 & 2) {
-        *(s32 *)&(this->m_2c) = (s32) (temp_r3 | 4);
+        *(s32 *)&(this->window_flags) = (s32) (temp_r3 | 4);
         return;
     }
     if (!(temp_r3 & 0x20)) {
         ((s32)play_sound_effect(0x53704, 0, 0, 0));
     }
-    *(s32 *)&(this->m_2c) = (s32) (*(s32 *)&(this->m_2c) & 0xFFFFFFFE);
-    *(s32 *)&(this->m_2c) = (s32) (*(s32 *)&(this->m_2c) | 2);
+    *(s32 *)&(this->window_flags) = (s32) (*(s32 *)&(this->window_flags) & 0xFFFFFFFE);
+    *(s32 *)&(this->window_flags) = (s32) (*(s32 *)&(this->window_flags) | 2);
 }
 
 s32 TWindowBase::is_window_reveal_complete() {
@@ -309,18 +309,18 @@ s32 TWindowBase::setup_window_draw_context(s32 arg1) {
     u8 *frame = (u8 *)this;
     TWindowDrawContext *context = TWindowDrawContext::open_singleton(
         (f32 *)(frame + 0x40), (f32 *)(frame + 0x48), (f32 *)arg1,
-        *(f32 *)(frame + 0x54), *(s32 *)(frame + 0x2C));
-    if (*(s32 *)(frame + 0x2C) & 0x40) {
+        *(f32 *)(frame + 0x54), window_flags);
+    if (window_flags & 0x40) {
         context->animate_scale();
     }
-    if (*(s32 *)(frame + 0x2C) & 0x80) {
+    if (window_flags & 0x80) {
         context->shrink_clip_right();
     }
-    if (*(s32 *)(frame + 0x2C) & 8) {
+    if (window_flags & 8) {
         context->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
     }
     s32 tick = *(s32 *)(frame + 0x5C);
-    if (!(*(s32 *)(frame + 0x2C) & 0x2000)) {
+    if (!(window_flags & 0x2000)) {
         tick = (s32)((f32)tick - 7.5f);
     }
     context->set_open_tick(tick);
@@ -334,7 +334,7 @@ s32 TWindowDD::draw_default_entry(s32 arg0) {
 
 void TWindowBase::set_depth(f32 farg0) {
     sub_8026CC28__11TWindowBaseFv();
-    sort_depth.value = farg0;
+    sort_depth = farg0;
     resort_window_order();
 }
 
@@ -392,20 +392,20 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     ((s32 (*)(void *, void *))copy_vec2__28TWindowSubSymbolChatPartsSetFPv)((void *) (((u8 *)this) + 0x38), arg1);
     ((s32 (*)(void *))save_position__11TWindowBaseFv)(this);
     temp_f1 = *(f32 *)((s8 *)arg1 + 8);
-    sort_depth.value = temp_f1;
+    sort_depth = temp_f1;
     *(f32 *)((s8 *)((u8 *)this) + 0x54) = -10000.0f;
-    *(s32 *)((s8 *)((u8 *)this) + 0x2C) = (s32) *(s32 *)((s8 *)arg1 + 0x10);
+    window_flags = (s32) *(s32 *)((s8 *)arg1 + 0x10);
     ((s32 (*)(void *, f32))resort_window_order__11TWindowBaseFv)(this, temp_f1);
     *(s32 *)((s8 *)((u8 *)this) + 0x50) = 0;
     client_index = arg3;
-    init_window_layout_entries((void *) (((u8 *)this) + 0x24), (int) (*(s32 *)((s8 *)arg1 + 0xC)), (int) (client_index));
+    init_window_layout_entries(&entry_list, (int) (*(s32 *)((s8 *)arg1 + 0xC)), (int) (client_index));
     *(s32 *)((s8 *)((u8 *)this) + 0x5C) = 0;
     closing_tick = 0;
-    temp_r3 = *(s32 *)((s8 *)((u8 *)this) + 0x2C);
+    temp_r3 = window_flags;
     if (!(temp_r3 & 1) && !(temp_r3 & 2)) {
         ((s32 (*)(void *))disallow_rendering__7TObjectFv)(this);
     }
-    temp_r3_2 = *(s32 *)((s8 *)((u8 *)this) + 0x2C);
+    temp_r3_2 = window_flags;
     if ((temp_r3_2 & 1) && (temp_r3_2 & 2) && !(temp_r3_2 & 0x20)) {
         ((s32 (*)(int, int, int, int))play_sound_effect)(0x53703, 0, 0, 0);
     }
@@ -986,7 +986,7 @@ void TWindowBase::render() {  }
 void TWindowBase::run_task() {  }
 
 TWindowBase::~TWindowBase() {
-    ((TWindowSubStatusDisp *)((s8 *)this + 0x24))->destroy_all_items();
+    entry_list.clear();
     sub_8026CC28();
 }
 TWindowBase::TWindowBase(u8 *descriptor, s16 client, u8 *parent)

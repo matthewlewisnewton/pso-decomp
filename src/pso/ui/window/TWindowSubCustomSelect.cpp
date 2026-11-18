@@ -221,7 +221,7 @@ void TWindowSubCustomSelect::run_task() {
     s32 temp_r30;
     u8 *context;
     temp_r30 = is_player_input_active(((s32) this->client_index));
-    if (!(*(s32 *)&this->m_2c & 2)) {
+    if (!(*(s32 *)&this->window_flags & 2)) {
         *(s32 *)&this->m_5c = 0x01000000;
     }
     if (((TWindowSubCustomSelect *)arg0)->is_active() == 0) {
@@ -240,7 +240,7 @@ void TWindowSubCustomSelect::run_task() {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_80))->increment_counter();
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
     *(s32 *)&this->m_74 = (s32) (*(s32 *)&this->m_74 + 1);
 }
 

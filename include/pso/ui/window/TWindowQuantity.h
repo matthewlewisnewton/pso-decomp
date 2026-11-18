@@ -7,8 +7,7 @@
 struct TWindowQuantity : public TWindowBase {
     virtual ~TWindowQuantity();
     virtual void render();
-    void* m_24;
-    u8 unk_28[0x38];
+    u8 unknown_30[0x30];
     f32 m_60;
     void* m_64;
     void set_position(s32 arg1);

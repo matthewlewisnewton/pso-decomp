@@ -124,7 +124,7 @@ void TWindowDuelResult::build_statistics_page() {
     u8 *a;
     u8 *b;
     u8 *c;
-    init_window_layout_entries(entry_list, duel_result_window_layout_table, client_index);
+    init_window_layout_entries(&entry_list, duel_result_window_layout_table, client_index);
     a = (u8 *)get_array_entry(0);
     set_default_status(a, get_localized_text_entry(0x10, 0));
     c = (u8 *)get_array_entry(0xF);
@@ -156,7 +156,7 @@ void TWindowDuelResult::build_ranking_page() {
     u8 *b;
     u8 *c;
     u8 *d;
-    init_window_layout_entries(entry_list, TWindowDuelResult__layout_entries, client_index);
+    init_window_layout_entries(&entry_list, TWindowDuelResult__layout_entries, client_index);
     a = (u8 *)get_array_entry(0);
     set_default_status(a, get_localized_text_entry(0x10, 0));
     b = (u8 *)get_array_entry(0x12);
@@ -207,7 +207,7 @@ void TWindowDuelResult::build_ranking_page() {
 void TWindowDuelResult::rebuild_page() {
     typedef void (TWindowDuelResult::*PageMethod)();
     static PageMethod build[] = { &TWindowDuelResult::build_ranking_page, &TWindowDuelResult::build_statistics_page };
-    ((TWindowSubStatusDisp *)entry_list)->destroy_all_items();
+    entry_list.clear();
     s8 page = page_indicator->get_type();
     (this->*build[page])();
     update_page();
@@ -224,7 +224,7 @@ void TWindowDuelResult::update_page() {
 void TWindowDuelResult::render() {
     s32 context = setup_window_draw_context((s32)&scale_x);
     draw_window_frame((void *)context);
-    draw_visible_window_entries(this, entry_list, context);
+    draw_visible_window_entries(this, &entry_list, context);
     draw_list_page_indicator(page_indicator, (TWindowDrawContext *)context);
 }
 
@@ -237,7 +237,7 @@ void TWindowDuelResult::run_task() {
     }
     update_page();
     ((TWindowDD *)this)->initialize_subwindow();
-    update_window_entry_list(entry_list);
+    update_window_entry_list(&entry_list);
 }
 
 TWindowDuelResult::~TWindowDuelResult() {

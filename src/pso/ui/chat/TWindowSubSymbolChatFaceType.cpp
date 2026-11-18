@@ -201,7 +201,7 @@ void render__28TWindowSubSymbolChatFaceTypeFv(u8 *arg0) {
 }
 void run_task__28TWindowSubSymbolChatFaceTypeFv(TWindowSubSymbolChatFaceType *window_sub_symbol_chat_face_type) {
     u8 *context;
-    if (!(*(s32 *)&window_sub_symbol_chat_face_type->m_2c & 2)) {
+    if (!(*(s32 *)&window_sub_symbol_chat_face_type->window_flags & 2)) {
         *(s32 *)&window_sub_symbol_chat_face_type->m_5c = 0x01000000;
     }
     if (window_sub_symbol_chat_face_type->is_open() == 0) {

@@ -7,9 +7,6 @@
 struct TWindowSnapShot : public TWindowBase {
     virtual ~TWindowSnapShot();
     virtual void render();
-    void* m_24;
-    u8 _pad28[0x4];
-    u32 m_2c;
     u8 unk_30[0xC];
     s32 * m_3c;
     u8 unk_40[0x1C];

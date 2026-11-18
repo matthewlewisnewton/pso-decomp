@@ -283,7 +283,7 @@ void TWindowSubQuestBoardSelect::run_task() {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_64))->update_subwindow();
     }
     ((TWindowBase *)arg0)->update_fade();
-    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
+    ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
 }
 
 extern s32 __vt__26TWindowSubQuestBoardSelect[];
