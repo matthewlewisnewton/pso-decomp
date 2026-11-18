@@ -1,3 +1,4 @@
+#include "pso/system/Adxf.h"
 #include "pso/system/ResourceFile.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -56,7 +57,6 @@ void draw_ginja_model_with_motion(void *model, void *motion, f32 frame);
 s32 rotate_matrix_y(int, int);
 void *get_current_floor();
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
-void *adxf_open__6TLobbyFUii(char *, int);
 extern char sky_model_ext_s_njm[];
 extern char sky_model_ext_sm_gj[];
 extern char sky_model_ext_s_gj[];
@@ -147,7 +147,7 @@ void TSceneSora::load_sky_resources() {
     void *motions[2];
     Ent_80207478 *tbl;
     s32 ok;
-    void *p;
+    AdxfHandle *p;
     BmlResource *loaded;
     TSceneSora__instance = 0;
     TSceneSora__sky_bml_resource = NULL;
@@ -163,18 +163,18 @@ void TSceneSora::load_sky_resources() {
         if (ok <= 0) {
             replace_file_extension__6TLobbyFPvPvPv(name2, tbl[ref.idx].name, sky_model_ext_s_gj);
         }
-        p = adxf_open__6TLobbyFUii(name2, 0);
+        p = ADXF_Open(name2, 0);
         if (p != NULL) {
             models[0] = name2;
-            ((TLobby *)p)->close_adxf_handle();
+            ADXF_Close(p);
         } else {
             return;
         }
-        p = adxf_open__6TLobbyFUii(name1, 0);
+        p = ADXF_Open(name1, 0);
         if (p != NULL) {
             motions[0] = name1;
             TSceneSora__has_sky_motion = 1;
-            ((TLobby *)p)->close_adxf_handle();
+            ADXF_Close(p);
         } else {
             motions[0] = NULL;
         }

@@ -35,6 +35,8 @@ typedef struct Ent_803C9608 {
 
 extern "C" {
 AdxStreamFile *TLobby__sub_803C8BAC(const char *name, s32 arg);
+AdxStreamFile *TLobby__sub_803C8CDC(const char *name, s32 mode, s32 arg);
+AdxStreamFile *adxstm_open_fname_range__6TLobbyFPviiii(const char *name, s32 mode, s32 off, s32 nsect, s32 arg);
 void TLobby__sub_803C5D00(u8 *arg0);
 void TLobby__sub_803C5D24(u8 *arg0);
 void TLobby__sub_803C5E58(void);

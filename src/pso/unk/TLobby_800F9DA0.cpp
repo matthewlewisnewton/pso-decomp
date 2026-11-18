@@ -1,3 +1,4 @@
+#include "pso/system/Adxf.h"
 #include "pso/system/ResourceFile.h"
 #include "pso/system/TGStream.h"
 #include "types.h"
@@ -16,7 +17,6 @@ extern "C" {
 void TLobby__sub_800F8AD0(void);
 void TLobby__sub_800F8F34(void);
 void TLobby__sub_803382E4(void);
-TLobby *adxf_open__6TLobbyFUii(const char *, s32);
 s32 all_parents_unqueued_for_destruction__7TObjectFv();
 void restore_saved_depth_alpha_state(void);
 void fn_801E2C50(void);
@@ -25,12 +25,12 @@ void func_803DCDFC__Fv(void);
 void system_reset(void);
 
 s32 get_disc_file_size(const char *filename) {
-    TLobby *handle = adxf_open__6TLobbyFUii(filename, 0);
+    AdxfHandle *handle = ADXF_Open(filename, 0);
     if (handle == NULL) {
         return -1;
     }
-    s32 size = handle->adxf_get_fsize_byte();
-    handle->close_adxf_handle();
+    s32 size = ADXF_GetFsizeByte(handle);
+    ADXF_Close(handle);
     return size;
 }
 

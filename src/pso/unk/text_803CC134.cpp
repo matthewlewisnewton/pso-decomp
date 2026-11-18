@@ -1,4 +1,4 @@
-#include "types.h"
+#include "pso/audio/AdxfInternal.h"
 #include "pso/unk/TLobby.h"
 extern "C" { extern const char lbl_8047C7E8[46] = "\nADXF/GC Ver.6.24 Build:Jun 13 2002 19:00:56\n"; }
 
@@ -7,7 +7,7 @@ extern "C" {
 s32 memset(void *, int, int);
 s32 lbl_805D75D0;
 s32 lobby_adxf_current_file_id;
-s32 lobby_adxf_open_file_handle;
+AdxfHandle *lobby_adxf_open_file_handle;
 s32 lobby_afs_toc_entry_index;
 s32 adxf_log_write_index;
 s32 lbl_805D75E4;
@@ -16,7 +16,7 @@ extern const char *const volatile lbl_805E0D80;
 u8 lbl_8057B7B0[0x20];
 u8 lbl_8057B7D0[0x1000];
 u8 afs_archive_toc_table[0x400];
-u8 adxf_file_handle_pool[0x1380];
+AdxfHandle adxf_file_handle_pool[16];
 
 void TLobby::dec_ref_and_reset_tables() {
     if (--lbl_805D75D0 == 0) {
@@ -29,14 +29,14 @@ void TLobby::dec_ref_and_reset_tables() {
         memset(lbl_8057B7B0, 0, 0x20);
         memset(lbl_8057B7D0, 0xFF, 0x1000);
         memset(afs_archive_toc_table, 0, 0x400);
-        memset(adxf_file_handle_pool, 0, 0x1380);
+        memset(adxf_file_handle_pool, 0, sizeof(adxf_file_handle_pool));
     }
 }
 
 void TLobby::init_afs_adxf_state() {
     lbl_805E0D80;
     if (lbl_805D75D0 == 0) {
-        memset(adxf_file_handle_pool, 0, 0x1380);
+        memset(adxf_file_handle_pool, 0, sizeof(adxf_file_handle_pool));
         memset(afs_archive_toc_table, 0, 0x400);
         memset(lbl_8057B7D0, 0xFF, 0x1000);
         memset(lbl_8057B7B0, 0, 0x20);

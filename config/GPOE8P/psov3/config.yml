@@ -20,6 +20,7 @@ force_active:
   - "@4"
   - "@891"
   - "@990"
+  - ADXF_ReadNw32
   - AIGetDSPSampleRate
   - AIGetStreamPlayState
   - AIGetStreamSampleRate
@@ -6577,7 +6578,6 @@ force_active:
   - adx_worker_thread_pending_callback
   - adx_write_encoded_blocks
   - adxf_open_file_buffer
-  - adxf_read_nw32__6TLobbyFPviPv
   - adxm_busy_wait_stack
   - adxm_busy_wait_thread
   - adxm_goto_mwidle_border__6TLobbyFv

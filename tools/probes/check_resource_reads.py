@@ -24,16 +24,16 @@ CONTENTS = bytes(i % 251 for i in range(6 * SECTOR))
 GUARD = b"\xAA" * (len(CONTENTS) + 32)
 FAILED = 0xFFFFFFFF
 
-OPEN = "adxf_open__6TLobbyFUii"
-CLOSE = "close_adxf_handle__6TLobbyFv"
-SEEK = "adxf_seek__6TLobbyFPvii"
+OPEN = "ADXF_Open"
+CLOSE = "ADXF_Close"
+SEEK = "ADXF_Seek"
 READ = "read_checked_align__6TLobbyFlll"
 ALLOC = "alloc__22TQuestVmDownLoadServerFUl"
 FREE = "safe_free__23TAdSinglePlyChrSelectGCFUl"
 DECODE = "prs_decompress_buffer"
 
 
-class ResourceReads:
+class GameImage:
     def __init__(self, dol):
         if hashlib.sha1(dol).hexdigest() != RETAIL_SHA1:
             raise ValueError("Expected the matching GPOE8P DOL")
@@ -50,18 +50,7 @@ class ResourceReads:
                 self.cpu.mem_write(address, dol[offset:offset + size])
         self.cpu.reg_write(ppc.UC_PPC_REG_2, 0x805DFD00)
         self.cpu.reg_write(ppc.UC_PPC_REG_13, 0x805DA600)
-        self.cpu.mem_write(FILENAME, b"fixture.bin\0")
-        self.fail_allocation = False
         self.calls = {}
-        self.hook(OPEN, self.open_file)
-        self.hook(CLOSE, lambda *_: 0)
-        self.hook(SEEK, lambda *_: 0)
-        self.hook(READ, self.read_sectors)
-        self.hook("adxf_get_stat", lambda *_: 3)
-        self.hook("adxf_get_fsize_byte__6TLobbyFv", self.disc_size)
-        self.hook(ALLOC, lambda *_: 0 if self.fail_allocation else ALLOCATION)
-        self.hook(FREE, lambda *_: None)
-        self.hook(DECODE, lambda source, target, unused: self.cpu.mem_write(target, b"decoded"))
 
     def hook(self, symbol, operation):
         def intercept(cpu, address, instruction_size, user_data):
@@ -75,6 +64,32 @@ class ResourceReads:
 
         address = self.symbols[symbol]
         self.cpu.hook_add(UC_HOOK_CODE, intercept, begin=address, end=address)
+
+    def call(self, name, *args):
+        self.calls.clear()
+        self.cpu.reg_write(ppc.UC_PPC_REG_1, STACK)
+        for reg, arg in zip((ppc.UC_PPC_REG_3, ppc.UC_PPC_REG_4, ppc.UC_PPC_REG_5), args):
+            self.cpu.reg_write(reg, arg & FAILED)
+        self.cpu.reg_write(ppc.UC_PPC_REG_LR, RETURN)
+        self.cpu.emu_start(self.symbols[name], RETURN, count=20_000)
+        assert self.cpu.reg_read(ppc.UC_PPC_REG_PC) == RETURN, name
+        return self.cpu.reg_read(ppc.UC_PPC_REG_3)
+
+
+class ResourceReads(GameImage):
+    def __init__(self, dol):
+        super().__init__(dol)
+        self.cpu.mem_write(FILENAME, b"fixture.bin\0")
+        self.fail_allocation = False
+        self.hook(OPEN, self.open_file)
+        self.hook(CLOSE, lambda *_: 0)
+        self.hook(SEEK, lambda *_: 0)
+        self.hook(READ, self.read_sectors)
+        self.hook("ADXF_GetStat", lambda *_: 3)
+        self.hook("ADXF_GetFsizeByte", self.disc_size)
+        self.hook(ALLOC, lambda *_: 0 if self.fail_allocation else ALLOCATION)
+        self.hook(FREE, lambda *_: None)
+        self.hook(DECODE, lambda source, target, unused: self.cpu.mem_write(target, b"decoded"))
 
     def open_file(self, name, partition, unused):
         assert (name, partition) == (FILENAME, 0)
@@ -105,15 +120,8 @@ class ResourceReads:
                            name.ljust(32, b"\0") + struct.pack(">iii", 5, size, decoded_size))
 
     def call(self, name):
-        self.calls.clear()
         self.offset = 0
-        self.cpu.reg_write(ppc.UC_PPC_REG_1, STACK)
-        self.cpu.reg_write(ppc.UC_PPC_REG_3, FILENAME)
-        self.cpu.reg_write(ppc.UC_PPC_REG_4, DESTINATION)
-        self.cpu.reg_write(ppc.UC_PPC_REG_LR, RETURN)
-        self.cpu.emu_start(self.symbols[name], RETURN, count=20_000)
-        assert self.cpu.reg_read(ppc.UC_PPC_REG_PC) == RETURN, name
-        return self.cpu.reg_read(ppc.UC_PPC_REG_3)
+        return super().call(name, FILENAME, DESTINATION)
 
     def check_size(self):
         assert self.call("get_resource_file_size") == (self.size & FAILED)
