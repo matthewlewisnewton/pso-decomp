@@ -11910,6 +11910,9 @@ pso/misc/TLobby_803360CC.cpp:
 	.sbss       start:0x805D6D40 end:0x805D6D4C
 	.sdata2     start:0x805DF8E8 end:0x805DF90C
 
+original_padding_805DF90C:
+	.sdata2     start:0x805DF90C end:0x805DF910 align:4
+
 pso/unk/text_803367F4.cpp:
 	.text       start:0x803367F4 end:0x80336874
 	.ctors      start:0x80433FEC end:0x80433FF0
