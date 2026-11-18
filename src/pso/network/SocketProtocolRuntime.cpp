@@ -210,50 +210,38 @@ s32 TLobby__sub_8041F11C(Obj_8041F11C *self) {
 }
 
 s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
-    TcpTcb *read_control;
-    s16 fragment_length;
+    s16 handle;
+    s16 index;
+    unsigned int amount;
+    unsigned int offset;
     NetBufferRef destination;
     NetBufferRef source;
-    s16 socket;
-    s16 index;
-    s32 completed;
-    u32 available;
-    u32 offset;
-    u32 amount;
-    u32 free_space;
-    unsigned int read_limit;
 
-    socket = control - tcp_protocol_state.tcbs;
-    if (!(control->f204_b6 & 1)) {
+    handle = control - tcp_protocol_state.tcbs;
+    if (!control->f204_b6) {
         offset = 0;
-        for (index = 1; ((u32) index) < ((u32) packet->fragment_count); index++) {
-            if (((u16) packet->fragments[index].length) > skip) {
+        index = 1;
+        while (index < (u32)packet->fragment_count) {
+            if ((u16)packet->fragments[index].length > skip) {
                 offset = skip;
                 break;
             }
             skip -= packet->fragments[index].length;
+            index++;
         }
-
-        if (((u32) index) == ((u32) packet->fragment_count)) {
+        if (index == (u32)packet->fragment_count) {
             return 0;
         }
         if (control->rcv_user.kind) {
-            NetMemcpy(&destination, &control->rcv_user, 8);
-            while (((u32) index) < ((u32) packet->fragment_count)) {
-                NetMemcpy(&source, &packet->fragments[index].buffer, 8);
+            NetMemcpy(&destination, &control->rcv_user, sizeof(NetBufferRef));
+            while (index < (u32)packet->fragment_count) {
+                NetMemcpy(&source, &packet->fragments[index].buffer, sizeof(NetBufferRef));
                 if (offset != 0) {
                     TLobby__sub_80406EB8(&source, offset);
                 }
-
-                completed = (read_control = control)->fF0;
-                amount = (fragment_length = packet->fragments[index].length);
-                amount -= offset;
-                available = (read_limit = control->fEC);
-                available -= completed;
-
-                if (available >= amount) {
-                    available = amount;
-                    TLobby__sub_80406FD8(&destination, &source, available);
+                if (control->fEC - control->fF0 >= packet->fragments[index].length - offset) {
+                    amount = packet->fragments[index].length - offset;
+                    TLobby__sub_80406FD8(&destination, &source, amount);
                     control->fF0 += amount;
                     control->fDC += amount;
                     if (control->fDC >= control->f534) {
@@ -263,111 +251,93 @@ s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
                     if (control->fE0 >= control->f534) {
                         control->fE0 -= control->f534;
                     }
-                    TLobby__sub_80406EB8(&destination, available);
+                    TLobby__sub_80406EB8(&destination, amount);
                     offset = 0;
                     index++;
                 } else {
-                    TLobby__sub_80406FD8(&destination, &source, available);
-                    control->fF0 += available;
-                    control->fDC += available;
+                    amount = control->fEC - control->fF0;
+                    TLobby__sub_80406FD8(&destination, &source, amount);
+                    control->fF0 += amount;
+                    control->fDC += amount;
                     if (control->fDC >= control->f534) {
                         control->fDC -= control->f534;
                     }
-                    control->fE0 += available;
+                    control->fE0 += amount;
                     if (control->fE0 >= control->f534) {
                         control->fE0 -= control->f534;
                     }
-                    offset += available;
+                    offset += amount;
                 }
                 if (control->fEC == control->fF0) {
                     control->rcv_user.kind = 0;
-                    set_slot_state_and_resume__6TLobbyFv(socket, control->recv_done, control->fF0);
+                    set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, (s16)control->fF0);
                     if (!control->rcv_user.kind) {
                         goto store_received;
                     }
-                    NetMemcpy(&destination, &control->rcv_user, 8);
-                    if (((u32) index) >= ((u32) packet->fragment_count)) {
-                        switch (control->t_state) {
-                            case 0:
-
-                            case 5:
-
-                            case 7:
-
-                            case 8:
-
-                            case 10:
-                                control->rcv_user.kind = 0;
-                                set_slot_state_and_resume__6TLobbyFv(socket, control->recv_done, -7);
-                                break;
-
-                        }
-
-                        goto complete;
+                    NetMemcpy(&destination, &control->rcv_user, sizeof(NetBufferRef));
+                    if (index < (u32)packet->fragment_count) {
+                        continue;
                     }
+                    switch (control->t_state) {
+                    case 0:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                        control->rcv_user.kind = 0;
+                        set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, -7);
+                        break;
+                    }
+                    goto complete;
                 }
             }
- {
-                control->rcv_user.kind = 0;
-                set_slot_state_and_resume__6TLobbyFv(socket, control->recv_done, control->fF0);
-                while (control->rcv_user.kind) {
-                    switch (control->t_state) {
-                        case 0:
-
-                        case 5:
-
-                        case 7:
-
-                        case 8:
-
-                        case 10:
-                            control->rcv_user.kind = 0;
-                            set_slot_state_and_resume__6TLobbyFv(socket, control->recv_done, -7);
-                            goto complete;
-
-                        default:
-                            goto complete;
-
-                    }
-
+            control->rcv_user.kind = 0;
+            set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, (s16)control->fF0);
+            while (control->rcv_user.kind != 0) {
+                switch (control->t_state) {
+                case 0:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                    control->rcv_user.kind = 0;
+                    set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, -7);
+                    break;
                 }
-
                 goto complete;
             }
+            goto complete;
         }
-        store_received:
-        NetMemcpy(&destination, &control->rcv_buf, 8);
-
+store_received:
+        NetMemcpy(&destination, &control->rcv_buf, sizeof(NetBufferRef));
         TLobby__sub_80406EB8(&destination, control->fE0);
-        for (; ((u32) index) < ((u32) packet->fragment_count); index++) {
-            NetMemcpy(&source, &packet->fragments[index].buffer, 8);
-            if (offset) {
+        while (index < (u32)packet->fragment_count) {
+            NetMemcpy(&source, &packet->fragments[index].buffer, sizeof(NetBufferRef));
+            if (offset != 0) {
                 TLobby__sub_80406EB8(&source, offset);
             }
-            available = packet->fragments[index].length - offset;
-            free_space = control->f534 - control->fD8;
-            if (available > free_space) {
-                available = free_space;
+            amount = packet->fragments[index].length - offset;
+            if (amount > control->f534 - control->fD8) {
+                amount = control->f534 - control->fD8;
             }
-            control->fD8 += available;
-            if ((control->fE0 + available) >= control->f534) {
+            control->fD8 += amount;
+            if (control->fE0 + amount >= control->f534) {
                 TLobby__sub_80406FD8(&destination, &source, control->f534 - control->fE0);
-                NetMemcpy(&destination, &control->rcv_buf, 8);
+                NetMemcpy(&destination, &control->rcv_buf, sizeof(NetBufferRef));
                 TLobby__sub_80406EB8(&source, control->f534 - control->fE0);
-                available -= control->f534 - control->fE0;
+                amount -= control->f534 - control->fE0;
                 control->fE0 = 0;
             }
-            if (available) {
-                TLobby__sub_80406FD8(&destination, &source, available);
-                control->fE0 += available;
-                TLobby__sub_80406EB8(&destination, available);
+            if (amount != 0) {
+                TLobby__sub_80406FD8(&destination, &source, amount);
+                control->fE0 += amount;
+                TLobby__sub_80406EB8(&destination, amount);
             }
             offset = 0;
+            index++;
         }
-
-        complete:
+complete:
         TLobby__sub_8041F66C(control);
-
         return 0;
     }
     return -1;

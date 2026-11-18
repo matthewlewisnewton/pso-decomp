@@ -107,6 +107,20 @@ different code and function order. The five-entry table, the 65-position
 request ring, the 12-byte fragment stride and the ordering of callbacks and
 buffer operations identify the three debug routines.
 
+**Receive.** The release browser's 1,128-byte receive routine at
+`0x80151CC4` matches the game routine at `0x8041F204` after normalizing
+direct calls and the address loads for protocol state and the two switch
+tables. The debug routine at `0x8016C080` takes a packet, a 16-bit unsigned
+skip and a control block. At `0x8016C1AC..0x8016C1D0` it compares the
+pending read capacity with the remaining fragment length as unsigned
+counts. The taken paths recalculate the selected count into the same
+register, at `0x8016C1E4` and `0x8016C27C`. The C++ uses that one transfer
+count for the copy and for the cursor updates. It reproduces all 1,128
+retail bytes in the full translation unit. The linked DOL has the same
+SHA-1 as the 17-word candidate above. Host fixtures exercised header skip,
+FIFO wrap, completion, callback reentry and a closed receive under address,
+bounds and undefined-behavior sanitizers.
+
 **SACK bounds.** The debug routine calculates the source at index `k+1`
 and the destination at index `k`, both from `TCB+0x2F8` with stride 8.
 It compares the signed loop index with 5 at `0x8016B658`, then clears slot
