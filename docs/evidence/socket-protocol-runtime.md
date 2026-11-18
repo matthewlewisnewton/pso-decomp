@@ -38,6 +38,17 @@ The partial-fragment tail at `0x80420B6C` is unreachable in the retail GPOE8P ro
 
 A scratch build removed that tail, started the queued-prefix scan at index zero and reversed the prefix through slot zero. It passed all 2,528 gather comparisons against the diagnostic C++ build. An instruction hook recorded zero entries to the tail in those runs. The scratch routine shrank from 1,984 to 1,888 bytes, shifting later symbols in the full link.
 
+## Matching build and port behavior
+
+The matching GameCube build must preserve the original executable bytes,
+including the SACK loop. The socket unit stays out of the source-link list,
+so that build links the original object split from the user's disc. The
+bounded C++ routine is for source builds. It shifts entries within the five-slot
+SACK table and clears the final slot.
+
+The diagnostic build below links the full C++ unit for behavioral testing.
+The match report compares that compiled source with the original object.
+
 ## Reproducing the comparisons
 
 The standard build keeps main's link set. It reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,630 source-linked units pass and the retention list has zero additions or removals. Against the stated baseline, `tools/check_pr.py` reports 27,526 → 27,525 exact functions and 4,322,652 → 4,322,360 matched code bytes. The 292-byte SACK routine is the only exact-function regression. Matched data and linked code and data are unchanged.
