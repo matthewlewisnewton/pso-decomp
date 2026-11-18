@@ -218,12 +218,6 @@ void TButterfly::run_task() {
 TButterfly::~TButterfly() {
 
 }
-extern "C" {
-
-void free_bin_model_request(void*, int);
-
-
-}
 TButterfly::TButterfly(TObject *arg1, void *arg2) : TObjBase(arg1) {
     this->m_name = TButterfly__name;
     VecCopy((Vec *)((char *)this + 56), (const Vec *)((char *)arg2 + 12));
@@ -243,18 +237,14 @@ void *TButterfly__create(void *arg0) {
 
 void TButterfly::destroy_instance() {
     if (butterfly_bml_resource != NULL) {
-        free_bin_model_request(butterfly_bml_resource, 1);
+        delete butterfly_bml_resource;
         butterfly_bml_resource = NULL;
     }
 }
 
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 
 void TButterfly::load_resources() {
-    BmlResource *loaded = (BmlResource *)::operator new(0x440);
-    if (loaded != NULL) {
-        loaded = (BmlResource *)load_resource_from_descriptor(loaded, 1, &bm_o_abe_butterfly_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *loaded = (BmlResource *)new BmlResource(1, &bm_o_abe_butterfly_resource_descriptor, 0, 0, NULL);
     butterfly_bml_resource = loaded;
 }
 

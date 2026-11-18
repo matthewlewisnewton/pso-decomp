@@ -247,12 +247,10 @@ struct VObj_801710E4 : VBase_801710E4 {
     virtual s32 m8(f32, f32);
 };
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u16 find_nearest_visible_player(void *, int, f32);
 void push_matrix();
 void post_translate_matrix(void *);
 void obj_setFlags30(void *, u32);
-void free_bin_model_request(void*, int);
 int submit_target_to_player_cursor(void*);
 typedef struct RecoveredFields_80170F0C_arg0 RecoveredFields_80170F0C_arg0;
 // ---- declarations carried over from the fragment TOMineTrap.cpp
@@ -317,18 +315,13 @@ TOMine::~TOMine() {}
 
 
 void TOMine::load_static_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &mine_resource_desc, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &mine_resource_desc, 0, 0, NULL);
     (*(s32 *)&lbl_805D5A50) = var_r0;
 }
 void TOMine::free_instance() {
     if (lbl_805D5A50 != NULL) {
-        free_bin_model_request(lbl_805D5A50, 1);
+        delete lbl_805D5A50;
         lbl_805D5A50 = NULL;
     }
 }

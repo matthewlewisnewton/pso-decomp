@@ -25,7 +25,6 @@
 #include "pso/render/NinjaUtil.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/TLanguage_801E4874.h"
@@ -114,10 +113,7 @@ void load_turiten_singo_resources(void) {
     switch (get_current_floor_area()) {
     case AREA_VR_TEMPLE_ALPHA:
     case AREA_VR_TEMPLE_BETA:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &turiten_singo_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &turiten_singo_resource_descriptor, 0, 0, NULL);
         TOHangceilingCave01__model_archive = (BmlResource *)p;
         turiten_singo_texture_lists = (s32 *)::operator new[](0xC);
         turiten_singo_texture_lists[1] = 0;
@@ -129,10 +125,7 @@ void load_turiten_singo_resources(void) {
         hanging_ceiling_motion_index = 0;
         break;
     default:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &fe_obj_turiten_moto_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &fe_obj_turiten_moto_resource_descriptor, 0, 0, NULL);
         TOHangceilingCave01__model_archive = (BmlResource *)p;
         turiten_singo_texture_lists = (s32 *)::operator new[](0xC);
         turiten_singo_texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_turiten_singo.gvm");
@@ -155,7 +148,7 @@ void TOHangceilingCave01::destroy_instance() {
         }
     }
     if (TOHangceilingCave01__model_archive != NULL) {
-        free_bin_model_request(TOHangceilingCave01__model_archive, 1);
+        delete TOHangceilingCave01__model_archive;
         TOHangceilingCave01__model_archive = NULL;
     }
 }

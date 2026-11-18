@@ -114,7 +114,6 @@ s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 is_valid_target__9TObjEneDDFv(TObjBase *target);
 s32 free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
-void free_bin_model_request(void *, int);
 void TObjPlayer__sub_800F0928(void);
 }
 
@@ -237,7 +236,7 @@ void TObjEneBm9Mericarol::free_shared_instances() {
     }
     fn_802D1C84();
     if (mericarol_resource != NULL) {
-        free_bin_model_request(mericarol_resource, 1);
+        delete mericarol_resource;
         mericarol_resource = NULL;
     }
 }

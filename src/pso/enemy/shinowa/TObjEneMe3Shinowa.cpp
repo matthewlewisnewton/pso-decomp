@@ -171,7 +171,6 @@ const DelDepthAnimationBinding shinowa_mirage_spawn_binding = { NULL, shinowa_mi
 // inferred: shadow scale handed to draw_ground_shadow by update_player_state_default
 const Vec shinowa_shadow_scale = { 2.5f, 1.0f, 1.5f };
 
-s32 free_bin_model_request(void *, s32);
 int create__21TObjEneMe3ShinowaRealFv(void*);
 
 // Floor resource callback (inferred: load_shared_resources, the TObjEneMe3SinowZoa::load_resources twin):
@@ -317,7 +316,7 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
         lbl_80500FEC.textures = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D5298 != 0) {
-        free_bin_model_request(TObjEneMe3ShinowaMirage__data_805D5298, 1);
+        delete TObjEneMe3ShinowaMirage__data_805D5298;
         TObjEneMe3ShinowaMirage__data_805D5298 = 0;
     }
 }

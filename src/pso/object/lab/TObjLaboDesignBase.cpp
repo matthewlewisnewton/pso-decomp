@@ -9,7 +9,7 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
+#include "pso/system/BmlResource.h"
 #include "pso/unk/text_80365348.h"
 #include "pso/system/task/TObject.h"
 
@@ -344,7 +344,7 @@ void free_object_table(void) {
     s32 i;
     for (i = 5; i >= 0; i--) {
         if (labo_design_object_table[i] != 0) {
-            free_bin_model_request((void *)labo_design_object_table[i], 1);
+            delete (BmlResource *)labo_design_object_table[i];
             labo_design_object_table[i] = 0;
         }
     }
@@ -360,10 +360,7 @@ void load_labo_design_object_table(void) {
     e = lbl_804F2C08;
     if (e != NULL) {
         while (e->id != -1) {
-            p = ::operator new(0x440);
-            if (p != NULL) {
-                p = load_resource_from_descriptor(p, 5, e->descriptor, 0, 0, 0);
-            }
+            p = new BmlResource(5, (BmlResourceDescriptor *)e->descriptor, 0, 0, NULL);
             labo_design_object_table[e->id] = (u32)p;
             e++;
         }

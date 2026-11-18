@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -163,7 +164,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 extern s32 gibbles_boss_stat_handle;
 extern s32 gibbles_combat_stats_handle;
 extern u32 TObjEneGibbles__resource_bundle;
@@ -286,7 +286,6 @@ struct VObj_18_22e4b0 : VBase_18_22e4b0 {
 
 f32 calc_distance_to_client__10TObjPlayerFlUsUl(void *, u16, Vec *);
 s32 obj_setFlags30(void *, int);
-void free_bin_model_request(void*, int);
 void start_camera_shake(s32, f32);
 s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 rotate_xz_pair_by_angle(f32 *, f32 *, s32, f32);
@@ -2467,7 +2466,7 @@ void TObjEneGibbles::free_static() {
         gibbles_combat_stat_entries = 0U;
     }
     if ((u32) TObjEneGibbles__resource_bundle != 0U) {
-        free_bin_model_request((void*)TObjEneGibbles__resource_bundle, 1);
+        delete (BmlResource *)TObjEneGibbles__resource_bundle;
         TObjEneGibbles__resource_bundle = 0U;
     }
 }
@@ -2475,16 +2474,10 @@ void TObjEneGibbles::free_static() {
 void TObjEneGibbles::load_resources() {
     u8 *p;
     if (is_split_screen() != 0) {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E28A0, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)lbl_804E28A0, 0, 0, NULL);
         TObjEneGibbles__resource_bundle = (u32) p;
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, lbl_804E285C, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, (BmlResourceDescriptor *)lbl_804E285C, 0, 0, NULL);
         TObjEneGibbles__resource_bundle = (u32) p;
     }
     TObjEneGibbles__render_node_index = 0;

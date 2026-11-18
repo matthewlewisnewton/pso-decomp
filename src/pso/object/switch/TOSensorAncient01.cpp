@@ -10,7 +10,7 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaModel.h"
 #include "pso/system/MatrixStack.h"
@@ -149,16 +149,13 @@ void TOSensorAncient01::destroy() {
         }
     }
     if (sensor_ancient01_model_resource != NULL) {
-        free_bin_model_request(sensor_ancient01_model_resource, 1);
+        delete sensor_ancient01_model_resource;
         sensor_ancient01_model_resource = NULL;
     }
 }
 
 void TOSensorAncient01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &TOSensorAncient01__resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &TOSensorAncient01__resource_descriptor, 0, 0, NULL);
     sensor_ancient01_model_resource = resource;
     ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)::operator new[](0x10);
     ancient_sensor_resource_pair_table[0].plain = (s32)sensor_ancient01_model_resource->models[0].m_c;

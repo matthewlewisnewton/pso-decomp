@@ -15,7 +15,6 @@
 #include "pso/render/render_util.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
@@ -75,10 +74,7 @@ const char *TORockJungleS01__name = "TORockJungleS01";
 void TORockJungleS01::load_resources() {
     BmlResource *resource;
 
-    resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &TORockJungleS01_resource_descriptor, 0, 0, 0);
-    }
+    resource = new BmlResource(1, &TORockJungleS01_resource_descriptor, 0, 0, NULL);
     TORockJungleS01__bml_resource = resource;
     switch (get_current_floor_area()) {
     case AREA_SEASIDE:
@@ -102,7 +98,7 @@ void TORockJungleS01::free_globals() {
         TORockJungleS01__texture_resource = NULL;
     }
     if (TORockJungleS01__bml_resource != NULL) {
-        free_bin_model_request(TORockJungleS01__bml_resource, 1);
+        delete TORockJungleS01__bml_resource;
         TORockJungleS01__bml_resource = NULL;
     }
 }

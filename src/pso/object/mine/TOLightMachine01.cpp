@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -22,7 +23,6 @@ const char *bm_o_light_machine01_model_names[3] = { "fs_obj_light.gj", "fs_obj_t
 BmlResourceDescriptor light_machine01_resource_desc = { "bm_o_light_machine01.bml", bm_o_light_machine01_model_names, bm_o_light_machine01_motion_names, 2, 0 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u32 TOLightMachine01__shared_bml_archive;
 s32 light_machine_ginja_model_handle;
 s32 light_machine_ginja_param;
@@ -30,7 +30,6 @@ s32 __ct__8TObjBaseFP7TObject(void *, int);
 extern s32 __vt__16TOLightMachine01[];
 const char *TOLightMachine01__name = "TOLightMachine01";
 extern s32 tl_05;
-void free_bin_model_request(void*, int);
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
@@ -72,19 +71,14 @@ void *TOLightMachine01::create(void *arg0) {
 
 void TOLightMachine01::destroy_instance() {
     if ((u32) TOLightMachine01__shared_bml_archive != 0U) {
-        free_bin_model_request((void*)TOLightMachine01__shared_bml_archive, 1);
+        delete (BmlResource *)TOLightMachine01__shared_bml_archive;
         TOLightMachine01__shared_bml_archive = 0U;
     }
 }
 
 void TOLightMachine01::load_assets() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &light_machine01_resource_desc, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &light_machine01_resource_desc, 0, 0, NULL);
     (*(u8 * *)&TOLightMachine01__shared_bml_archive) = (unsigned char *) ((void *) var_r0);
     light_machine_ginja_model_handle = (s32)get_bml_model((BmlResource *)var_r0, 0);
     light_machine_ginja_param = (s32)get_bml_texlist((BmlResource *)(*(u8 * *)&TOLightMachine01__shared_bml_archive), 0);

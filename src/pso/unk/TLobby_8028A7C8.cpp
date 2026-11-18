@@ -1,10 +1,10 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/unk/TLobby.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 extern "C" {
 
-void free_bin_model_request(void*, int);
 s32 release_texture_list(void*);
 
 void *green_door_bml_resource;
@@ -17,7 +17,7 @@ void TLobby::free_shared_objects() {
         green_door_texture_handle = NULL;
     }
     if (green_door_bml_resource != NULL) {
-        free_bin_model_request(green_door_bml_resource, 1);
+        delete (BmlResource *)green_door_bml_resource;
         green_door_bml_resource = NULL;
     }
 }

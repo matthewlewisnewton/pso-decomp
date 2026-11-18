@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include <dolphin/mtx.h>
 #include "pso/system/BmlAccessors.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -415,14 +416,12 @@ void TBoss7Crawfish::change_state(s32 state) {
     }
 }
 
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u32 TBoss7Crawfish__shared_resource;
 s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 set_field_b8__10TObjMotionFs(void *, int);
 s32 __ct__9TObjEnemyFP7TObject();
 extern s32 __vt__14TBoss7Crawfish[];
 int TBoss7Crawfish__sub_80308BEC(void *p);
-void free_bin_model_request(void*, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 
 void TBoss7Crawfish::run_task() {
@@ -516,19 +515,14 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
 
 void TBoss7Crawfish::destroy_instance() {
     if ((u32) TBoss7Crawfish__shared_resource != 0U) {
-        free_bin_model_request((void*)TBoss7Crawfish__shared_resource, 1);
+        delete (BmlResource *)TBoss7Crawfish__shared_resource;
         TBoss7Crawfish__shared_resource = 0U;
     }
 }
 
 void TBoss7Crawfish::load_static_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_boss7_crawfish_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(5, &bm_boss7_crawfish_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TBoss7Crawfish__shared_resource) = var_r0;
 }
 

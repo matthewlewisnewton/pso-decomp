@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -76,8 +77,6 @@ TOJungleDesign::~TOJungleDesign() {
     this->unregister_object_by_id();
     free_collision_body_parts(this);
 }
-extern "C" {
-}
 TOJungleDesign::TOJungleDesign(s32 arg1, s32 arg2) : TObjCollidable((TObject *)arg1) {
     this->m_name = TOJungleDesign__name;
     ((TOJungleDesign *)(((u8 *)this)))->apply_object_set_data((void *)arg2);
@@ -100,24 +99,17 @@ u8 *fn_802FF064(s32 arg0) {
     return NULL;
 }
 
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void free_bin_model_request(void*, int);
 
 void TOJungleDesign::free_shared_resource() {
     if ((u32) TOJungleDesign__shared_model_resource != 0U) {
-        free_bin_model_request((void*)TOJungleDesign__shared_model_resource, 1);
+        delete (BmlResource *)TOJungleDesign__shared_model_resource;
         TOJungleDesign__shared_model_resource = 0U;
     }
 }
 
 void TOJungleDesign::load_shared_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_obj_jungle_tree_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_obj_jungle_tree_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TOJungleDesign__shared_model_resource) = var_r0;
 }
 

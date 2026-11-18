@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -60,7 +61,6 @@ s32 push_matrix();
 s32 post_translate_matrix(void *);
 extern s32 actor_frame_tick;
 
-s32 free_bin_model_request(void *, s16);
 s32 free_collision_body_parts(void *);
 s32 minimap_render_gate(void *, s32, u16, s32, s32);
 
@@ -70,12 +70,11 @@ void TObjDoorJung::free_buffers() {
         TObjDoorJung__door_scene_buffer = NULL;
     }
     if (TObjDoorJung__resource_handle != NULL) {
-        free_bin_model_request(TObjDoorJung__resource_handle, 1);
+        delete (BmlResource *)TObjDoorJung__resource_handle;
         TObjDoorJung__resource_handle = NULL;
     }
 }
 
-s32 load_resource_from_descriptor(s32 buffer, s32 kind, void *descriptor, s32 a3, s32 a4, s32 a5);
 
 void load_door_jung_resources(void) {
     s32 handle;
@@ -83,10 +82,7 @@ void load_door_jung_resources(void) {
     Node_8018F4AC *node;
     void *scene;
 
-    handle = (int)::operator new(0x440);
-    if (handle != 0) {
-        handle = load_resource_from_descriptor(handle, 5, &bm_obj_beamdoa_resource_descriptor, 0, 0, 0);
-    }
+    handle = (int)new BmlResource(5, &bm_obj_beamdoa_resource_descriptor, 0, 0, NULL);
     TObjDoorJung__resource_handle = (void *)handle;
     lbl_805D5BD4 = (s32)get_bml_texlist((BmlResource *)TObjDoorJung__resource_handle, 0);
     model = (Node_8018F4AC *)get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 1);

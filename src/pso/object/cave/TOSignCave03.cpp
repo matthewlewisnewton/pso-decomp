@@ -6,7 +6,8 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/object/cave/TOSignCave03.h"
 #include "pso/object/ambient/TObjFish.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
@@ -103,16 +104,13 @@ void *TOSignCave03::create(void *set_data) {
 
 void TOSignCave03::release_static_resource() {
     if (TOSignCave03__bml_resource != NULL) {
-        free_bin_model_request(TOSignCave03__bml_resource, 1);
+        delete TOSignCave03__bml_resource;
         TOSignCave03__bml_resource = NULL;
     }
 }
 
 void TOSignCave03::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_dokanban03_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_dokanban03_resource_descriptor, 0, 0, NULL);
     TOSignCave03__bml_resource = resource;
 }
 

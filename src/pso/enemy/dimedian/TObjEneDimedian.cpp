@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -479,7 +480,6 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern const u8 lbl_8043AAA4[26];
 
 void __ct__13TUnk_80493450FP7TObject(void *);
@@ -499,7 +499,6 @@ void __destroy_arr(void *, void *, int, int);
 void __dt__13TUnk_80490470Fv(void *, int);
 extern u8 __dt__15RenderFadeStateFv[];
 O_800A846C *TObjPlayer__sub_800A846C(O_800A846C *arg0, s16 arg1);
-void free_bin_model_request(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 
 extern void *tl_04;
@@ -725,7 +724,7 @@ void TObjEneDimedian::free_boss_objects() {
         dimedian_type3_object = 0U;
     }
     if ((u32) dimedian_resource_ptr != 0U) {
-        free_bin_model_request((void*)dimedian_resource_ptr, 1);
+        delete (BmlResource *)dimedian_resource_ptr;
         dimedian_resource_ptr = 0U;
     }
 }
@@ -742,10 +741,7 @@ void TLobby::load_dimedian_resources() {
     if (TObjEneDD::check_v2_mode() != 0) {
         (*(u8 **)&dimedian_resource_ptr) = (u8 *)load_enemy_bml_resource_named((s32)dimedian_resource_descriptor, (s32)lbl_8043AAA4);
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, dimedian_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)dimedian_resource_descriptor, 0, 0, NULL);
         (*(u8 **)&dimedian_resource_ptr) = (u8 *)p;
     }
     r = *(u8 **)((s8 *)(*(u8 **)&dimedian_resource_ptr) + 0x42C);

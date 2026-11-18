@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -208,12 +209,8 @@ u8 *TBoss6Tube__ct(TBoss6Tube *boss6_tube, u8 *arg1) {
     return (u8 *)boss6_tube;
 }
 
-extern "C" {
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
-}
 u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
-void free_bin_model_request(void*, int);
 s32 release_texture_list(void*);
 }
 
@@ -227,7 +224,7 @@ void *TBoss6Tube::create(void *arg0) {
 
 void TBoss6Tube::free_resources() {
     if ((u32) boss6_tube_bml_resource != 0U) {
-        free_bin_model_request((void*)boss6_tube_bml_resource, 1);
+        delete (BmlResource *)boss6_tube_bml_resource;
         boss6_tube_bml_resource = 0U;
     }
     if ((u32) boss6_tube_texture_list != 0U) {
@@ -240,10 +237,7 @@ void TBoss6Tube::free_resources() {
 void TBoss6Tube::load_resources() {
     s32 r;
     TBoss6Tube::reset_state();
-    r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &boss06_tube_dat_resource_descriptor, 0, 0, 0);
-    }
+    r = (int)new BmlResource(5, &boss06_tube_dat_resource_descriptor, 0, 0, NULL);
     boss6_tube_bml_resource = r;
     boss6_tube_texture_list = (u32)load_gvm_texture_file((s32)"boss06_tube_dat.gvm");
     if (boss6_tube_bml_resource != 0 && boss6_tube_texture_list != 0) {

@@ -26,7 +26,8 @@
 #include "pso/object/base/TObjChara.h"
 #include "pso/map/FloorArea.h"
 #include "pso/player/TUnk_804928CC.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
@@ -342,7 +343,7 @@ void *TObjEneRe2Flower::create(void *arg0) {
 void TObjEneRe2Flower::destroy_instance() {
     TObjPlayer__sub_800C4D44();
     if (re2_flower_bml_resource != NULL) {
-        free_bin_model_request(re2_flower_bml_resource, 1);
+        delete re2_flower_bml_resource;
         re2_flower_bml_resource = NULL;
     }
 }

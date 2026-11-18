@@ -14,7 +14,8 @@
 #include "pso/player/TObjPlayer_803E1A58.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/render/model_render_state.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/render/ChunkMaterialColor.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/system/MatrixOps.h"
@@ -314,16 +315,13 @@ void *TOKurage::create(void *set_data) {
 
 void TOKurage::destroy_static_instance() {
     if (TOKurage__bml_resource != NULL) {
-        free_bin_model_request(TOKurage__bml_resource, 1);
+        delete TOKurage__bml_resource;
         TOKurage__bml_resource = NULL;
     }
 }
 
 void TOKurage::load_static_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_kurage_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_kurage_resource_descriptor, 0, 0, NULL);
     TOKurage__bml_resource = resource;
 }
 

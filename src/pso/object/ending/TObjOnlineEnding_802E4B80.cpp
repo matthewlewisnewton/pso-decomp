@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -456,7 +457,6 @@ void *TObjOnlineEnding__ct(void *arg0, void *parent) {
 #pragma pop
 #undef SELF
 
-void free_bin_model_request(void*, int);
 void *TObjOnlineEnding__ct(void *, void *);
 
 void *TObjOnlineEnding::create(void *arg0) {
@@ -469,21 +469,17 @@ void *TObjOnlineEnding::create(void *arg0) {
 
 void TBoss4DarkFalz::free_global_instance() {
     if ((u32) lbl_805D68F4 != 0U) {
-        free_bin_model_request((void*)lbl_805D68F4, 1);
+        delete (BmlResource *)lbl_805D68F4;
         lbl_805D68F4 = 0U;
     }
 }
 
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 extern u32 lbl_805D68F4;
 
 void fn_802E52AC() {
     s32 r;
     if (lbl_805D68F4 == 0) {
-        r = (int)::operator new(0x440);
-        if (r != 0) {
-            r = load_resource_from_descriptor(r, 5, &onlineending_dat_resource_descriptor, 0, 0, 0);
-        }
+        r = (int)new BmlResource(5, &onlineending_dat_resource_descriptor, 0, 0, NULL);
         lbl_805D68F4 = r;
         if (lbl_805D68F4 == 0) {
             return;

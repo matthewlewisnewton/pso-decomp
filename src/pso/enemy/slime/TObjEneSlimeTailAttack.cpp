@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -605,10 +606,8 @@ void TObjEneSlime__sub_800EB9F0(void* p, void* q);
 
 extern "C" {
 extern s32 __vt__12TObjEneSlime[];
-void free_bin_model_request(void*, int);
 
 // ---- folded from src/pso/enemy/TObjEneSlime_800EBD38.cpp ----
-void *load_resource_from_descriptor(void *, s32, s32 *, s32, s32, s32);
 
 
 }
@@ -674,10 +673,7 @@ void TObjEneSlime::spawn_pair() {
     void *temp_r5;
     void *temp_r5_2;
 
-    temp_r4 = ::operator new(0x440);
-    if (temp_r4 != NULL) {
-        temp_r4 = load_resource_from_descriptor(temp_r4, 1, (s32 *)slime_pair_resource_descriptor, 0, 0, 0);
-    }
+    temp_r4 = new BmlResource(1, (BmlResourceDescriptor *)slime_pair_resource_descriptor, 0, 0, NULL);
     slime_bml_resource = temp_r4;
     temp_r5 = *(void **)((s8 *)temp_r4 + 0x42C);
     TObjEneSlime::spawn_child(0x28, *(s32 *)((s8 *)temp_r5 + 0x48), *(s32 *)((s8 *)temp_r5 + 0x4C), 10.0f, 0.0f);
@@ -687,7 +683,7 @@ void TObjEneSlime::spawn_pair() {
 
 void TObjEneSlime::free_instance() {
     if ((u32) slime_bml_resource != 0U) {
-        free_bin_model_request((void*)slime_bml_resource, 1);
+        delete (BmlResource *)slime_bml_resource;
         slime_bml_resource = 0U;
     }
 }

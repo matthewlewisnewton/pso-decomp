@@ -2,7 +2,8 @@
 #include "pso/unk/text_8035B6B0.h"
 
 #include <stddef.h>
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/unk/TLobby.h"
 
@@ -32,10 +33,7 @@ static const ChaoNpcAnimationBinding chao_npc_spawn_descriptor = { NULL, chao_np
 BmlResource *chao_npc_instance_handle;
 
 void load_and_spawn_chao_npc(void) {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_ene_npc_chao_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_ene_npc_chao_resource_descriptor, 0, 0, NULL);
     chao_npc_instance_handle = resource;
     ChaoNpcAnimationBinding binding = chao_npc_spawn_descriptor;
     binding.motions = resource->motions;

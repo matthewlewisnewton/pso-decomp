@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/render/RenderFadeState.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -96,12 +97,10 @@ u32 init_collision_body_parts(void *, s32, s32);
 s32 free_collision_body_parts(void *);
 s32 post_translate_matrix(void *);
 s32 push_matrix();
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern s32 local_client_id;
 u8 *__ct__8TObjChipFP7TObjectPC14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 s32 get_model__19TObjContainerJungExFl(s32);
 s32 get_model_by_index__17TObjContainerJungFl(s32);
-s32 free_bin_model_request(s32, s32);
 }
 void play_container_break_sound(s32 arg0);
 
@@ -132,17 +131,13 @@ struct Obj_8018D4DC {
 // address order.
 
 void TObjContainerJungEx::load_resource_instance() {
-    void *memory = ::operator new(0x440);
-    void *bundle = memory;
-    if (bundle != NULL) {
-        bundle = load_resource_from_descriptor(memory, 5, &fe_obj_hako02_resource_descriptor, 0, 0, 0);
-    }
+    void *bundle = new BmlResource(5, &fe_obj_hako02_resource_descriptor, 0, 0, NULL);
     TObjContainerJungEx__resource_bundle = bundle;
 }
 
 void TObjContainerJungEx::free_data() {
     if (TObjContainerJungEx__resource_bundle != NULL) {
-        free_bin_model_request((s32)TObjContainerJungEx__resource_bundle, 1);
+        delete (BmlResource *)TObjContainerJungEx__resource_bundle;
         TObjContainerJungEx__resource_bundle = NULL;
     }
 }
@@ -277,19 +272,14 @@ void TObjContainerJung::vfunc_79() const {
 #pragma pop
 
 void TObjContainerJung::load_resources() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &TObjContainerJung__resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(5, &TObjContainerJung__resource_descriptor, 0, 0, NULL);
     (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
     TObjContainerJung__bml_aux_handle = (s32)get_bml_texlist((BmlResource *) var_r0, 0);
 }
 
 void TObjContainerJung::release() {
-    free_bin_model_request(TObjContainerJung__bml_model_resource, 1);
+    delete (BmlResource *)TObjContainerJung__bml_model_resource;
     TObjContainerJung__bml_model_resource = 0;
     TObjContainerJung__bml_aux_handle = 0;
 }

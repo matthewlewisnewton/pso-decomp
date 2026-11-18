@@ -15,7 +15,6 @@
 #include "pso/animation/ActorAnimationState.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/ModelDrawContext.h"
@@ -64,10 +63,7 @@ s32 TObjGoalWarpAncient::register_warp_object(s32 index) {
 }
 
 void TObjGoalWarpAncient::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_o_warp_ancient_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_o_warp_ancient_resource_descriptor, 0, 0, NULL);
     ancient_warp_shared_resource = resource;
     goal_warp_ancient_gvm_texture = (s32)load_gvm_texture_file((s32)"de_obj2_swarp_beam_r.gvm");
 }
@@ -76,7 +72,7 @@ void TObjMapWarpAncient::free_globals() {
     TObjPlayer::free_if_valid(goal_warp_ancient_gvm_texture);
     goal_warp_ancient_gvm_texture = 0;
     if (ancient_warp_shared_resource != NULL) {
-        free_bin_model_request(ancient_warp_shared_resource, 1);
+        delete ancient_warp_shared_resource;
         ancient_warp_shared_resource = NULL;
     }
 }

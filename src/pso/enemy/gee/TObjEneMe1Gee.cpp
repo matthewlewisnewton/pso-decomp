@@ -162,7 +162,6 @@ extern const f32 lbl_805DA0C4;
 extern const f32 lbl_805DA0CC;
 extern const f32 lbl_805DA0D0;
 void TObjEneEpsilon__sub_800B92AC(u8 *arg0, s32 arg1, f32 farg0);
-void free_bin_model_request(void *, s32);
 extern void *tl_04;
 s32 is_split_screen();
 s32 register_object__6TLobbyFl(s32);
@@ -237,7 +236,7 @@ void TObjEneMe1Gee::free_globals() {
         TObjEneMe1Gee__data_805D51C0 = NULL;
     }
     if (TObjEneMe1Gee__resource_bundle != NULL) {
-        free_bin_model_request(TObjEneMe1Gee__resource_bundle, 1);
+        delete TObjEneMe1Gee__resource_bundle;
         TObjEneMe1Gee__resource_bundle = NULL;
     }
     TObjEneMe1Gee__sub_802A4D4C();

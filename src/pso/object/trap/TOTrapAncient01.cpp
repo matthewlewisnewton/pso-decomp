@@ -26,7 +26,8 @@
 #include "pso/render/model_render_state.h"
 #include "pso/math/ScratchVectors.h"
 #include "pso/system/MatrixStack.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 #include "pso/object/trap/TOTrapAncient01_80226534.h"
@@ -175,17 +176,14 @@ TOTrapAncient01::~TOTrapAncient01() {
 }
 
 void TOTrapAncient01::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_o_trap_ancient01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_o_trap_ancient01_resource_descriptor, 0, 0, NULL);
     TOTrapAncient01__bml_resource = resource;
     TMotorcycle::add_entry(0x39, (s32)get_bml_model(TOTrapAncient01__bml_resource, 3), (s32)get_bml_texlist(resource, 3), 20.0f, 0.0f);
 }
 
 void TOTrapAncient01::release_static_resource() {
     if (TOTrapAncient01__bml_resource != NULL) {
-        free_bin_model_request(TOTrapAncient01__bml_resource, 1);
+        delete TOTrapAncient01__bml_resource;
         TOTrapAncient01__bml_resource = NULL;
     }
 }

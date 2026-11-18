@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -49,7 +50,6 @@ s32 TSceneSora__instance;
 u32 TSceneSora__sky_bml_resource;
 s32 TSceneSora__has_sky_motion;
 
-u8 * free_bin_model_request(void *, s16);
 void TSceneSora__sub_80207430(void);
 s32 get_bml_motion(int, int);
 u8 *__ct__10TSceneSoraFl(TSceneSora *arg0, s32 _w1);
@@ -135,7 +135,7 @@ void TSceneSora::create_instance() {
 void TSceneSora__sub_80207430(void) {
     TSceneSora__sky_active_flag = 1;
     if ((void *) (*(u8 * *)&TSceneSora__sky_bml_resource) != NULL) {
-        free_bin_model_request((*(u8 * *)&TSceneSora__sky_bml_resource), 1);
+        delete (BmlResource *)(*(u8 * *)&TSceneSora__sky_bml_resource);
         (*(u8 * *)&TSceneSora__sky_bml_resource) = NULL;
     }
     TSceneSora__instance = 0;

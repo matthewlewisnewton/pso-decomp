@@ -190,8 +190,6 @@ TObjMotionAction TObjEneMe3Stelth__animation_descriptors[13] = {
 };
 
 
-s32 free_bin_model_request(BmlResource *, s32);
-
 int create__20TObjEneMe3StelthRealFPv(void*);
 
 
@@ -330,7 +328,7 @@ void TObjEneMe3Stelth::free_shared_resources() {
         TObjEneMe3Stelth__alternate_texture_list.textures = NULL;
     }
     if (TObjEneMe3Stelth__bml_resource != NULL) {
-        free_bin_model_request(TObjEneMe3Stelth__bml_resource, 1);
+        delete TObjEneMe3Stelth__bml_resource;
         TObjEneMe3Stelth__bml_resource = NULL;
     }
 }

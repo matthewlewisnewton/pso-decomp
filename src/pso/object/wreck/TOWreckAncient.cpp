@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -129,8 +130,6 @@ u32 wreck_ancient_bml_resource;
 u32 wreck_ancient_brakable_bml_resource;
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void free_bin_model_request(void*, int);
 s32 post_translate_matrix(void *);
 s32 push_matrix();
 void vec3_add_to(Vec *, Vec *);
@@ -155,31 +154,21 @@ TOWreckAncient::~TOWreckAncient() {
 }
 
 void TOWreckAncient::load_resources() {
-    s32 temp_r3;
-    s32 temp_r3_2;
     s32 var_r0;
     s32 var_r0_2;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_o_wreck_ancient_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_o_wreck_ancient_resource_descriptor, 0, 0, NULL);
     wreck_ancient_bml_resource = var_r0;
-    temp_r3_2 = (int)::operator new(0x440);
-    var_r0_2 = temp_r3_2;
-    if (var_r0_2 != 0) {
-        var_r0_2 = (long) (load_resource_from_descriptor((void *) temp_r3_2, 1, &TOWreckAncient__resource_descriptor, 0, 0, 0));
-    }
+    var_r0_2 = (long)new BmlResource(1, &TOWreckAncient__resource_descriptor, 0, 0, NULL);
     wreck_ancient_brakable_bml_resource = var_r0_2;
 }
 
 void TOWreckAncient::free_statics() {
     if (wreck_ancient_bml_resource != 0U) {
-        free_bin_model_request((void*)wreck_ancient_bml_resource, 1);
+        delete (BmlResource *)wreck_ancient_bml_resource;
         wreck_ancient_bml_resource = 0U;
     }
     if (wreck_ancient_brakable_bml_resource != 0U) {
-        free_bin_model_request((void*)wreck_ancient_brakable_bml_resource, 1);
+        delete (BmlResource *)wreck_ancient_brakable_bml_resource;
         wreck_ancient_brakable_bml_resource = 0U;
     }
 }

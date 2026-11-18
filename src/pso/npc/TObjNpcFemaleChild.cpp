@@ -4,7 +4,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/system/task/TMainTask.h"
 
 const char *bm_n_ecw_i_body_motion_names[1] = { NULL };
@@ -26,17 +25,13 @@ void *TObjNpcFemaleChild__create(void *set_data) {
 
 void TObjNpcFemaleChild::release_static_instance() {
     if (TObjNpcFemaleChild__static_instance != NULL) {
-        free_bin_model_request(TObjNpcFemaleChild__static_instance, 1);
+        delete TObjNpcFemaleChild__static_instance;
         TObjNpcFemaleChild__static_instance = NULL;
     }
 }
 
 void TObjNpcFemaleChild::load_shared_resource() {
-    void *memory = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)memory;
-    if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_ecw_i_body_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_n_ecw_i_body_resource_descriptor, 0, 0, NULL);
     TObjNpcFemaleChild__static_instance = resource;
 }
 

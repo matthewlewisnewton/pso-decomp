@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -127,10 +128,6 @@ struct Door_8029B428 : VObj_8029B428 {
 u32 TODoorJungleMain__bml_resource;
 
 u32 door_jungle_main_gvm_texture;
-extern "C" {
-
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-}
 
 u8 * load_gvm_texture_file(s32);
 extern "C" {
@@ -173,8 +170,6 @@ s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 
 s32 matrix_mult_vec(void *, void *, void *);
 
-
-void free_bin_model_request(void*, int);
 
 s32 release_texture_list(void*);
 
@@ -318,13 +313,8 @@ void TODoorJungleMain::render() {
 }
 
 void TODoorJungleMain::load_resources() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 0x1, &bm_o_jungle_doormain_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(0x1, &bm_o_jungle_doormain_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TODoorJungleMain__bml_resource) = var_r0;
     (*(u8 * *)&door_jungle_main_gvm_texture) = load_gvm_texture_file((s32) "o_jungle_doormain.gvm");
 }
@@ -336,7 +326,7 @@ void TODoorJungleMain::free_static_resources() {
         door_jungle_main_gvm_texture = 0U;
     }
     if ((u32) TODoorJungleMain__bml_resource != 0U) {
-        free_bin_model_request((void*)TODoorJungleMain__bml_resource, 1);
+        delete (BmlResource *)TODoorJungleMain__bml_resource;
         TODoorJungleMain__bml_resource = 0U;
     }
 }

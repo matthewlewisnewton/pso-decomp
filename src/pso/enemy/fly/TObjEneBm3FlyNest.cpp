@@ -46,7 +46,6 @@ struct Ent_800B23A0 { s32 a; u32 count; };
 
 struct Pair_800B23A0 { s32 k; Ent_800B23A0 *e; };
 
-void free_bin_model_request(void*, int);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void get_camera_ctrl__9TObjEneDDFv(const Vec *origin, Vec *out);
 s32 get_random_scaled__9TObjEneDDFv(void *);
@@ -282,7 +281,7 @@ void *TObjEneBm3FlyNest::create(void *set_data) {
 void TObjEneBm3FlyNest::free_fly() {
     TObjEneBm3Fly::release_shared_data();
     if (nest_resources != NULL) {
-        free_bin_model_request(nest_resources, 1);
+        delete nest_resources;
         nest_resources = NULL;
     }
 }

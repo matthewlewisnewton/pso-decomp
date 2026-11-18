@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -287,7 +288,6 @@ void TObjButterflyLobby::run_task() {
 
 s32 __ct__8TObjBaseFP7TObject();
 extern s32 __vt__18TObjButterflyLobby[];
-void free_bin_model_request(void*, int);
 
 }
 TObjButterflyLobby::~TObjButterflyLobby() {
@@ -331,20 +331,14 @@ void *TObjButterflyLobby__create(void *arg0) {
 
 void TObjButterflyLobby::destroy_instance() {
     if ((u32) lobby_butterfly_bml_resource != 0U) {
-        free_bin_model_request((void*)lobby_butterfly_bml_resource, 1);
+        delete (BmlResource *)lobby_butterfly_bml_resource;
         lobby_butterfly_bml_resource = 0U;
     }
 }
 
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void load_lobby_butterfly_bml_resource(void) {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_butterfly_lobby_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_butterfly_lobby_resource_descriptor, 0, 0, NULL);
     lobby_butterfly_bml_resource = var_r0;
 }
 

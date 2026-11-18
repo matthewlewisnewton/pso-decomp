@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/object/base/TObjMotion.h"
@@ -69,7 +70,6 @@ struct Obj_802A3FDC {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern s32 __vt__14TObjNpcKenkyuW[];
 s32 obj_is_hit_receivable(u8 *arg0);
 Vec *get_shoot_data__12TNeedleShootFv(void *);
@@ -78,24 +78,18 @@ s32 get_entity_id(void *);
 TechniqueContactList *TObjPlayer__sub_802A3DE8(Obj_802A3DE8 *self, void *src);
 void *find_entity_by_id(u16 id);
 TechniqueContactList *TObjPlayer__sub_802A3FDC(Obj_802A3FDC *self, void *src);
-void free_bin_model_request(void*, int);
 void TObjPlayer__sub_802A445C(TNeedleShoot *self, int arg1);
 
 void TObjNpcKenkyuW::destroy_instance() {
     if ((u32) TObjNpcKenkyuW__model_resource != 0U) {
-        free_bin_model_request((void*)TObjNpcKenkyuW__model_resource, 1);
+        delete (BmlResource *)TObjNpcKenkyuW__model_resource;
         TObjNpcKenkyuW__model_resource = 0U;
     }
 }
 
 void TObjNpcKenkyuW::load_resource_instance() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_npc_kenkyu_w_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_npc_kenkyu_w_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TObjNpcKenkyuW__model_resource) = var_r0;
 }
 

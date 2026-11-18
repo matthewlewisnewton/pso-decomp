@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -86,9 +87,7 @@ extern u8 identity_matrix[];
 u32 TObjCGrass_bml_resource;
 extern s32 tl_06;
 u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3);
-void free_bin_model_request(void*, int);
 
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1);
 
 // The motion-binding block TLobby::spawn_npc_enemy takes (same layout as DelDepthAnimationBinding).
@@ -175,25 +174,20 @@ void TObjCGrass::run_task() {
 
 void TObjCGrass::release_global_805D5130() {
     if ((u32) TObjCGrass_bml_resource != 0U) {
-        free_bin_model_request((void*)TObjCGrass_bml_resource, 1);
+        delete (BmlResource *)TObjCGrass_bml_resource;
         TObjCGrass_bml_resource = 0U;
     }
 }
 
 void TObjCGrass::load_resources() {
 
-    u8 *temp_r3;
     u8 *temp_r5;
     u8 *var_r0;
 
     if (TObjEneDD::check_v2_mode() != 0) {
         TObjCGrass_bml_resource = (u32) load_enemy_bml_resource_named((s32)&bm_ene_cgrass_resource_descriptor, (s32)("bm_ene_cgrass_a.bml"));
     } else {
-        temp_r3 = (u8 *)((int)::operator new(0x440));
-        var_r0 = temp_r3;
-        if (var_r0 != NULL) {
-            var_r0 = (u8 *)(load_resource_from_descriptor(temp_r3, 1, &bm_ene_cgrass_resource_descriptor, 0, 0, 0));
-        }
+        var_r0 = (u8 *)new BmlResource(1, &bm_ene_cgrass_resource_descriptor, 0, 0, NULL);
         TObjCGrass_bml_resource = (u32) var_r0;
     }
     CGrassAnimBinding binding = cgrass_anim_binding;

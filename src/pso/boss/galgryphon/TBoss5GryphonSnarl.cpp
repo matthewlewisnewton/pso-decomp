@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/boss/galgryphon/TBoss5GryphonSnarl.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -28,7 +29,6 @@ extern s32 boss5_gryphon_texture_list;
 void TBoss8Dragon__sub_8006402C(s32 arg0, s32 arg1, f32 farg0, f32 farg1);
 void attach_particle_model(void *, s32, s32, s32, s32, f32);
 
-s32 free_bin_model_request(s32, s32);
 s32 release_texture_list(void*);
 
 void TBoss5GryphonSnarl::render() {  }
@@ -153,6 +153,6 @@ void TLobby__sub_80066EC0(void) {
         TAdSinglePlyChrSelectGC::safe_free(boss5_common_texture_list);
         boss5_common_texture_list = 0U;
     }
-    free_bin_model_request(lbl_805D4DD8, 1);
+    delete (BmlResource *)lbl_805D4DD8;
     lbl_805D4DD8 = 0;
 }

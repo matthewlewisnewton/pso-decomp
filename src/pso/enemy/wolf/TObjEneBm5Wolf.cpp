@@ -140,7 +140,6 @@ s32 free_collision_body_parts(void *);
 s32 reset_hp__9TObjEneDDFPUcPUcPUc(void *, int, int, int, int);
 s32 init_collision_body_parts(void *, void *, int);
 void *__ct__14TObjCollidableFP7TObject(void *, int);
-void free_bin_model_request(void*, int);
 }
 
 struct Globals_800B8A40 {
@@ -292,7 +291,7 @@ void *TObjEneBm5Wolf::create(void *arg0) {
 
 void TObjEneBm5Wolf::release_global_805D5120() {
     if (TObjEneBm5Wolf__bml_resource != 0) {
-        free_bin_model_request(TObjEneBm5Wolf__bml_resource, 1);
+        delete TObjEneBm5Wolf__bml_resource;
         TObjEneBm5Wolf__bml_resource = 0;
     }
 }

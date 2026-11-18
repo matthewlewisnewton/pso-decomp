@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -379,9 +380,7 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1);
-void free_bin_model_request(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 
 extern void *tl_04;
@@ -604,7 +603,7 @@ void free_boss4_rock_pool(void) {
         beast_claw_trail_instance = 0U;
     }
     if ((u32) ene_beast_bml_resource != 0U) {
-        free_bin_model_request((void*)ene_beast_bml_resource, 1);
+        delete (BmlResource *)ene_beast_bml_resource;
         ene_beast_bml_resource = 0U;
     }
 }
@@ -621,10 +620,7 @@ void TObjEneBeast::load_resources() {
         ((Ent_8009241C *)beast_collision_body_table)[1].radius = 1e+01f;
         ((Ent_8009241C *)beast_collision_body_table)[2].radius = 9.0f;
     } else {
-        p = (u8 *)::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, &beast_resource_descriptor, 0, 0, 0);
-        }
+        p = (u8 *)new BmlResource(1, &beast_resource_descriptor, 0, 0, NULL);
         ene_beast_bml_resource = (u32)p;
         ((Ent_8009241C *)beast_collision_body_table)[0].radius = 7.0f;
         ((Ent_8009241C *)beast_collision_body_table)[1].radius = 7.0f;

@@ -18,7 +18,6 @@
 #include "pso/effect/TBreakUpMdl.h"
 #include "pso/unk/TLobby.h"
 #include "pso/system/BmlResource.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
@@ -367,7 +366,7 @@ void TObjEneMe1Canadin::free_resources() {
         canadin_leader_breakup_model = NULL;
     }
     if (bm_ene_me1_mb_resource != NULL) {
-        free_bin_model_request(bm_ene_me1_mb_resource, 1);
+        delete bm_ene_me1_mb_resource;
         bm_ene_me1_mb_resource = NULL;
     }
 }

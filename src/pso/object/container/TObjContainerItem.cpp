@@ -51,7 +51,6 @@
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/player/TObjPlayer_80011014.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/system/task/TMainTask.h"
 
@@ -360,10 +359,7 @@ void load_forest_box_resources(void) {
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
     case AREA_OLGA_FLOW:
-        bundle = (void *)::operator new(0x440);
-        if (bundle != NULL) {
-            bundle = load_resource_from_descriptor(bundle, 5, &bm_obj_seabed_con_resource_descriptor, 0, 0, 0);
-        }
+        bundle = new BmlResource(5, &bm_obj_seabed_con_resource_descriptor, 0, 0, NULL);
         lbl_805D5B78 = (BmlResource *)bundle;
         lbl_805D5B7C = (s32)load_gvm_texture_file((s32)seabed_container_texture_filename);
         lbl_805D5B80 = &forest_box_break_params[2];
@@ -374,10 +370,7 @@ void load_forest_box_resources(void) {
         }
         break;
     default:
-        bundle = (void *)::operator new(0x440);
-        if (bundle != NULL) {
-            bundle = load_resource_from_descriptor(bundle, 5, &fe_obj_hako01_hahen02_resource_descriptor, 0, 0, 0);
-        }
+        bundle = new BmlResource(5, &fe_obj_hako01_hahen02_resource_descriptor, 0, 0, NULL);
         lbl_805D5B78 = (BmlResource *)bundle;
         lbl_805D5B7C = TLobby::is_online_ready() != 0 ? (s32)load_gvm_texture_file((s32)forest_box_texture_filename_a) : (s32)load_gvm_texture_file((s32)((s32)forest_box_texture_filename_n));
         lbl_805D5B80 = &forest_box_break_params[0];
@@ -394,7 +387,7 @@ void TLobby::free_char_select_resources() {
         lbl_805D5B7C = 0U;
     }
     if ((u32) lbl_805D5B78 != 0U) {
-        free_bin_model_request(lbl_805D5B78, 1);
+        delete lbl_805D5B78;
         lbl_805D5B78 = NULL;
     }
 }
@@ -408,19 +401,13 @@ void TLobby::load_console_resources() {
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
     case AREA_OLGA_FLOW:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &bm_obj_seabed_con_rare_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &bm_obj_seabed_con_rare_resource_descriptor, 0, 0, NULL);
         container_breakup_model_archive = (BmlResource *)p;
         lbl_805D5B8C = (u32)load_gvm_texture_file((s32)"obj_seabed_con_rare.gvm");
         break;
     case AREA_GAL_GRYPHON:
     default:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &fe_obj_con_hahen1_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &fe_obj_con_hahen1_resource_descriptor, 0, 0, NULL);
         container_breakup_model_archive = (BmlResource *)p;
         lbl_805D5B8C = (u32)load_gvm_texture_file((s32)"obj_abecon.gvm");
         break;
@@ -434,7 +421,7 @@ void TLobby::free_chr_select_slot() {
         lbl_805D5B8C = 0U;
     }
     if ((u32) container_breakup_model_archive != 0U) {
-        free_bin_model_request(container_breakup_model_archive, 1);
+        delete container_breakup_model_archive;
         container_breakup_model_archive = NULL;
     }
 }

@@ -26,7 +26,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaTexture.h"
 #include "pso/render/GinjaUvScroll.h"

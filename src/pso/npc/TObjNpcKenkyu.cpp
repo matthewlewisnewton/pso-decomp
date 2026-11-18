@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/npc/TObjNpcKenkyu.h"
@@ -24,26 +25,19 @@ u32 TObjNpcKenkyu__static_model;
 }
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern s32 __vt__13TObjNpcKenkyu[];
-void free_bin_model_request(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 
 void TObjNpcKenkyu::free_static_model() {
     if ((u32) TObjNpcKenkyu__static_model != 0U) {
-        free_bin_model_request((void*)TObjNpcKenkyu__static_model, 1);
+        delete (BmlResource *)TObjNpcKenkyu__static_model;
         TObjNpcKenkyu__static_model = 0U;
     }
 }
 
 void TObjNpcKenkyu::load_shared_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_npc_kenkyu_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_npc_kenkyu_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TObjNpcKenkyu__static_model) = var_r0;
 }
 

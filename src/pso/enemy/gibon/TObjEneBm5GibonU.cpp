@@ -2581,7 +2581,6 @@ void __construct_array(void *, void *, void *, int, int);
 void __ct__15RenderFadeStateFv();
 void vfunc_61__16TObjEneBm5GibonUFv(void);
 void vfunc_28__16TObjEneBm5GibonUFv(void);
-void free_bin_model_request(BmlResource *, int);
 void __dl__FPv(void);
 
 void TObjEneBm5GibonU::vfunc_88() {
@@ -2791,7 +2790,7 @@ void TObjEneBm5GibonU::init_child_node() {
 
 void TObjEneBm5GibonU::release_static_resource() {
     if (TObjEneBm5GibonU__model_archive != NULL) {
-        free_bin_model_request(TObjEneBm5GibonU__model_archive, 1);
+        delete TObjEneBm5GibonU__model_archive;
         TObjEneBm5GibonU__model_archive = NULL;
     }
 }

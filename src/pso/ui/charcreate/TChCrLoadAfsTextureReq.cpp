@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
@@ -20,7 +21,6 @@ struct TChCrLoadAfsTextureReqArgs {
 typedef void (TChCrLoadAfsTextureReq::*TChCrLoadAfsTextureReqHandler)();
 
 extern "C" {
-s32 free_bin_model_request(void *, int);
 void *init_bin_model_request(void *, int, char **, u32 *, int, int, int);
 extern "C" { extern char TChCrLoadAfsTextureReq__class_name_string[]; }
 const char *lbl_805D3B50 = TChCrLoadAfsTextureReq__class_name_string;
@@ -160,7 +160,7 @@ void TLobby::update_model_load() {
     req->m_74 = timer;
     if (timer < 0) {
         if (req->m_68 != NULL) {
-            free_bin_model_request(req->m_68, 1);
+            delete (BmlResource *)req->m_68;
         } else {
             return;
         }
@@ -177,7 +177,7 @@ void TLobby::update_model_load() {
         *req->m_1c = bml_model;
         if (bml_model != 0U) {
             req->m_24->alloc_load_buffer(TLobby__sub_8001ED88(req->m_68));
-            free_bin_model_request(req->m_68, 1);
+            delete (BmlResource *)req->m_68;
             req->m_68 = NULL;
             req->sub_8028C8A8();
             *req->m_28 &= ~req->m_20;

@@ -16,7 +16,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/ModelDrawContext.h"
@@ -76,10 +75,7 @@ TOBarrierEnergy01::~TOBarrierEnergy01() {
 }
 
 void TOBarrierEnergy01::load_resources() {
-    BmlResource *archive = (BmlResource *)::operator new(0x440);
-    if (archive != NULL) {
-        archive = load_resource_from_descriptor(archive, 1, &bm_fs_obj_lazerguard_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *archive = new BmlResource(1, &bm_fs_obj_lazerguard_resource_descriptor, 0, 0, NULL);
     barrier_energy_shared_bml_archive = archive;
     barrier_energy_model = (void *)get_bml_model(archive, 0);
     barrier_energy_texlists = (s32 *)::operator new[](3 * sizeof(s32));
@@ -97,7 +93,7 @@ void TOBarrierEnergy01::free_resources() {
         }
     }
     if (barrier_energy_shared_bml_archive != NULL) {
-        free_bin_model_request(barrier_energy_shared_bml_archive, 1);
+        delete barrier_energy_shared_bml_archive;
         barrier_energy_shared_bml_archive = NULL;
     }
 }

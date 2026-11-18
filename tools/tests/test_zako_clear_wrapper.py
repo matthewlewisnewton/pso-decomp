@@ -38,10 +38,6 @@ static void record(unsigned event) {
 void TBoss4DarkFalz::free_global_instance() { record(1); }
 void TBoss4DarkFalz::clear_uro_link_state() { ++clear_calls; record(2); }
 struct BmlResource { ~BmlResource() { record(3); } };
-void free_bin_model_request(BmlResource *resource, short release) {
-    assert(release == 1);
-    delete resource;
-}
 static BmlResource *darkfalz_dat_resource;
 void call_from_other_unit();
 '''

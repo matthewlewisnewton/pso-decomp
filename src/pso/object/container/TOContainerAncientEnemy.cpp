@@ -45,7 +45,6 @@
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/BmlResource.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
@@ -157,10 +156,7 @@ void TLanguage::load_container_fragment_textures() {
     void *p;
     if (enable_v2_features == 1 &&
         (area == AREA_BATTLE1 || area == AREA_VR_SPACESHIP_ALPHA || area == AREA_VR_SPACESHIP_BETA || area == AREA_GOL_DRAGON)) {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, (BmlResourceDescriptor *)(tbl + 0x50), 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(tbl + 0x50), 0, 0, NULL);
         ancient_container_resource_bundle = (BmlResource *)p;
         ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)"fs_obj_ex_box2.gvm");
@@ -168,20 +164,14 @@ void TLanguage::load_container_fragment_textures() {
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)"fe_obj_ex_box2_hahen02.gvm");
     } else if (enable_v2_features == 1 &&
                (area == AREA_BATTLE2 || area == AREA_VR_TEMPLE_ALPHA || area == AREA_VR_TEMPLE_BETA || area == AREA_BARBA_RAY)) {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, (BmlResourceDescriptor *)(tbl + 0x30), 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(tbl + 0x30), 0, 0, NULL);
         ancient_container_resource_bundle = (BmlResource *)p;
         ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)"fs_obj_o_vs2container_r.gvm");
         ancient_container_fragment_texture_lists[1] = (u32)load_gvm_texture_file((s32)"fe_obj_o_vs2cont_hahen1_r.gvm");
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)"fe_obj_o_vs2cont_hahen2_r.gvm");
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, (BmlResourceDescriptor *)(tbl + 0x10), 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)(tbl + 0x10), 0, 0, NULL);
         ancient_container_resource_bundle = (BmlResource *)p;
         ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)"fe_obj_o_container_r.gvm");
@@ -213,7 +203,7 @@ void free_ancient_container_resources(void) {
     }
     p = ancient_container_resource_bundle;
     if (p != NULL) {
-        free_bin_model_request((BmlResource *)p, 1);
+        delete (BmlResource *)p;
         ancient_container_resource_bundle = NULL;
     }
 }

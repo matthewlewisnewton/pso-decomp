@@ -288,8 +288,6 @@ extern s32 __vt__12TOVS2Wreck02[];
 // ---- TOVS2Wreck01
 extern s32 __vt__12TOVS2Wreck01[];
 // ---- TOVS2Wall01_8017C7A4
-s32 load_resource_from_descriptor(int, int, void *, int, int, int);
-void free_bin_model_request(void*, int);
 #pragma defer_codegen on
 void*TOVS2Wall01::init() { ((TOBarrierEnergy01 *)this)->TOBarrierEnergy01::init(); *(short *)&this->m_next = 0; *(short*)((char*)this + 0xe) = 0; *(unsigned char*)(this) = 134; *(unsigned char*)((char*)this + 0x1) = 4; return this; }
 void TOVS2Wall01::update_and_send() { byteswap_hit_packet(); send_subcommand((u8 *)this); }
@@ -328,18 +326,13 @@ TOVS2::~TOVS2() {
 void TOVS2Wall01::load_resources() {
   s32 temp_r3;
   s32 var_r0;
-  temp_r3 = (int)::operator new(0x440);
-  var_r0 = temp_r3;
-  if (var_r0 != 0)
-  {
-    var_r0 = load_resource_from_descriptor((int) temp_r3, 1, &bm_o_vs2_resource_descriptor, 0, 0, 0);
-  }
+  var_r0 = (int)new BmlResource(1, &bm_o_vs2_resource_descriptor, 0, 0, NULL);
   (*(s32 *)&TOVS2Wall01__bml_resource) = var_r0;
   TMotorcycle::add_entry(0x3A, (int) get_bml_model(TOVS2Wall01__bml_resource, 5), (int) get_bml_texlist((BmlResource *)var_r0, 5), 10.0f, 0.0f);
 }
 void TOVS2Wall01::release_model() {
     if ((u32) TOVS2Wall01__bml_resource != 0U) {
-        free_bin_model_request((void*)TOVS2Wall01__bml_resource, 1);
+        delete TOVS2Wall01__bml_resource;
         TOVS2Wall01__bml_resource = 0U;
     }
 }

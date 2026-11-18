@@ -13,7 +13,8 @@
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/render/model_render_state.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/render/GinjaModel.h"
@@ -173,17 +174,14 @@ void TOKeyAncient03::cleanup_refs() {
         }
     }
     if (TOKeyAncient03__model_archive != NULL) {
-        free_bin_model_request(TOKeyAncient03__model_archive, 1);
+        delete TOKeyAncient03__model_archive;
         TOKeyAncient03__model_archive = NULL;
     }
 }
 
 void TOKeyAncient03::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_o_doorpanel_resource_descriptor, 0, 0, NULL);
     s32 *textures;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_o_doorpanel_resource_descriptor, 0, 0, 0);
-    }
     TOKeyAncient03__model_archive = resource;
     textures = (s32 *)::operator new[](8);
     TOKeyAncient03__texture_variants = textures;

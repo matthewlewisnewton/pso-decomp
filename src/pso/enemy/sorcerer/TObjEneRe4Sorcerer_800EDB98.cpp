@@ -126,7 +126,6 @@ struct Params_800F0464 { s32 a; void *actions; s32 c, d; };
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-void free_bin_model_request(void*, int);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_800A04F0(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
@@ -1674,7 +1673,7 @@ void TObjEneRe4Sorcerer::free_bits() {
     }
     TObjEneRe4Bit__sub_800EDAB0();
     if ((u32) sorcerer_bml_resource != 0U) {
-        free_bin_model_request((void*)sorcerer_bml_resource, 1);
+        delete sorcerer_bml_resource;
         sorcerer_bml_resource = 0U;
     }
 }

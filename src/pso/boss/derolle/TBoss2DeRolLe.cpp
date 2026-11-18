@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -2346,7 +2347,6 @@ void TBoss2Mine__sub_80038D84(void);
 
 void TBoss2Tentacle__sub_8003A0A8(void);
 
-void free_bin_model_request(void*, int);
 
 void TObjPlayer__sub_8002EB88(void);
 
@@ -3052,7 +3052,7 @@ void reset_parts__13TBoss2DeRolLeFv(void) {
     TBoss2Mine__sub_80038D84();
     TBoss2Tentacle__sub_8003A0A8();
     if ((u32) lbl_805D4BA4 != 0U) {
-        free_bin_model_request((void*)lbl_805D4BA4, 1);
+        delete (BmlResource *)lbl_805D4BA4;
         lbl_805D4BA4 = 0U;
     }
 }

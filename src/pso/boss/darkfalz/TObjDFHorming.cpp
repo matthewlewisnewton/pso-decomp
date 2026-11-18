@@ -4,7 +4,8 @@
 #include "pso/object/ending/TObjOnlineEnding_802E4B80.h"
 #include "pso/boss/darkfalz/TBoss4DarkFalz.h"
 #include "pso/system/vector.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
@@ -1023,17 +1024,14 @@ void handle_6x19_dark_falz_actions(Msg_8004BFA4 *arg0) {
 void TBoss4DarkFalz::cleanup_global() {
     TBoss4DarkFalz::free_global_instance();
     TBoss4DarkFalz__sub_8030AD38();
-    free_bin_model_request(darkfalz_dat_resource, 1);
+    delete darkfalz_dat_resource;
     darkfalz_dat_resource = NULL;
 }
 
 extern s32 tl_04;
 
 void TBoss4DarkFalz::load_resources() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &darkfalz_dat_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(5, &darkfalz_dat_resource_descriptor, 0, 0, NULL);
     darkfalz_dat_resource = resource;
     if (resource != NULL) {
         TBoss4DarkFalz::init_uro_link();

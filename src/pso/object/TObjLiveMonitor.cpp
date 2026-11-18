@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/object/TObjLiveMonitorSmall.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/unk/text_8020BFE4.h"
@@ -58,8 +59,6 @@ s32 __ct__7TObjectFP7TObject();
 extern s32 __vt__15TObjLiveMonitor[];
 }
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-int free_bin_model_request(void*, void*);
 extern void *tl_05;
 int update_single_screen__11TCameraCtrlFv(void*);
 int get_global_part_count__12TBoss8DragonFl(void*);
@@ -357,17 +356,12 @@ void TObjLiveCamera::run_task() {  }
 void TObjLiveCamera::render() {  }
 
 void TObjLiveCamera::load_static_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_boss8_monitor_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(5, &bm_obj_boss8_monitor_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&live_monitor_shared_resource) = var_r0;
 }
 
-void TObjLiveCamera::free_static_resource() { free_bin_model_request((void*)live_monitor_shared_resource, (void*)1); }
+void TObjLiveCamera::free_static_resource() { delete (BmlResource *)live_monitor_shared_resource; }
 
 void *TObjLiveMonitor::create(void *arg0) {
     void *o = TObject::operator new(0x2C);

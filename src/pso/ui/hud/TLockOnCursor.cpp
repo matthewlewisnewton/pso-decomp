@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/system/data/FlagWord.h"
@@ -59,11 +60,9 @@ struct Cur_8013DAB0 { u8 pad[0x5C]; Elem_8013DAB0 arr[4]; };
 struct Ent_8013D91C { u16 id; s16 idx; u8 pad[8]; };
 
 extern "C" {
-u8 * free_bin_model_request(void *, s16);
 u8 * lock_on_cursor_bml_resource;
 s32 lock_on_cursor_model;
 s32 TLockOnCursor__target_cursor_model;
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 }
 struct TargetCursorResourceDescriptor { s32 value; u8 remaining[0xC]; };
 extern TargetCursorResourceDescriptor target_cursor_resource_descriptor;
@@ -197,7 +196,7 @@ void TLockOnCursor::reset_and_spawn_cursors() {
 
 void TLockOnCursor::free_cursor_resources() {
     if ((void *) lock_on_cursor_bml_resource != NULL) {
-        free_bin_model_request(lock_on_cursor_bml_resource, 1);
+        delete (BmlResource *)lock_on_cursor_bml_resource;
         lock_on_cursor_bml_resource = NULL;
     }
     lock_on_cursor_model = 0;
@@ -205,14 +204,9 @@ void TLockOnCursor::free_cursor_resources() {
 }
 
 void load_target_cursor_models(void) {
-    s32 temp_r3;
     s32 var_r0;
     if ((void *) lock_on_cursor_bml_resource == NULL) {
-        temp_r3 = (int)::operator new(0x440);
-        var_r0 = temp_r3;
-        if (var_r0 != 0) {
-            var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &target_cursor_resource_descriptor.value, 0, 0, 0));
-        }
+        var_r0 = (long)new BmlResource(5, (BmlResourceDescriptor *)&target_cursor_resource_descriptor.value, 0, 0, NULL);
         lock_on_cursor_bml_resource = (unsigned char *) ((void *) var_r0);
         if ((u32) var_r0 != 0U) {
             lock_on_cursor_model = (s32)get_bml_model((BmlResource *)var_r0, 0);

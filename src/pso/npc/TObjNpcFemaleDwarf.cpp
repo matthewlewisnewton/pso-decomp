@@ -4,7 +4,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/system/task/TMainTask.h"
 
 const char *bm_n_efsw_i_body_motion_names[1] = { NULL };
@@ -26,17 +25,13 @@ void *TObjNpcFemaleDwarf__create(void *set_data) {
 
 void TObjNpcFemaleDwarf::unload_static_data() {
     if (TObjNpcFemaleDwarf__static_data != NULL) {
-        free_bin_model_request(TObjNpcFemaleDwarf__static_data, 1);
+        delete TObjNpcFemaleDwarf__static_data;
         TObjNpcFemaleDwarf__static_data = NULL;
     }
 }
 
 void TObjNpcFemaleDwarf::load_static_resource() {
-    void *memory = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)memory;
-    if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_efsw_i_body_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_n_efsw_i_body_resource_descriptor, 0, 0, NULL);
     TObjNpcFemaleDwarf__static_data = resource;
 }
 

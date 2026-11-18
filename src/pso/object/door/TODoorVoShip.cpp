@@ -13,7 +13,6 @@
 #include "pso/render/model_render_state.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/render/ChunkMaterialColor.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/system/MatrixStack.h"
@@ -119,16 +118,13 @@ void *TODoorVoShip::create(void *set_data) {
 
 void TODoorVoShip::free_static_data() {
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        delete (BmlResource *)bml_resource;
         bml_resource = NULL;
     }
 }
 
 void TODoorVoShip::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &door_vo_ship_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &door_vo_ship_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 

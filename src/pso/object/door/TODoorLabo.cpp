@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -180,12 +181,10 @@ void init_collision_body_parts(void *, void *, s32);
 extern s32 __vt__16TODoorLaboNormal[];
 extern s32 __vt__10TODoorLabo[];
 Self_8029F7E0 *TODoorLaboNormal__ct(Self_8029F7E0 *self, void *parent, s32 arg);
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 }
 u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0, void *parent, s32 arg);
-void free_bin_model_request(void*, int);
 s32 release_texture_list(void*);
 void free_collision_body_parts(void *);
 }
@@ -462,19 +461,13 @@ void TLanguage__sub_802A0204(void) {
     area = get_current_floor_area();
     switch (area) {
     case AREA_SEABED_UPPER:
-        var_r0 = (int)::operator new(0x440);
-        if (var_r0 != 0) {
-            var_r0 = load_resource_from_descriptor(var_r0, 5, &bm_o_door_seabed01_resource_descriptor, 0, 0, 0);
-        }
+        var_r0 = (int)new BmlResource(5, &bm_o_door_seabed01_resource_descriptor, 0, 0, NULL);
         door_labo_bml_resource = var_r0;
         lbl_805D6604 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui_green.GVM"));
         lbl_805D6608 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui.GVM"));
         return;
     case AREA_SEABED_LOWER:
-        var_r0_2 = (int)::operator new(0x440);
-        if (var_r0_2 != 0) {
-            var_r0_2 = load_resource_from_descriptor(var_r0_2, 5, &bm_o_door_seabed01_resource_descriptor, 0, 0, 0);
-        }
+        var_r0_2 = (int)new BmlResource(5, &bm_o_door_seabed01_resource_descriptor, 0, 0, NULL);
         door_labo_bml_resource = var_r0_2;
         lbl_805D6604 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui_green_02.GVM"));
         lbl_805D6608 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui_02.GVM"));
@@ -494,7 +487,7 @@ void TLobby::free_chr_select_slots() {
         lbl_805D6604 = 0U;
     }
     if ((u32) door_labo_bml_resource != 0U) {
-        free_bin_model_request((void*)door_labo_bml_resource, 1);
+        delete (BmlResource *)door_labo_bml_resource;
         door_labo_bml_resource = 0U;
     }
 }
@@ -546,19 +539,13 @@ void TLanguage__sub_8029FF0C(void) {
     area = get_current_floor_area();
     switch (area) {
     case AREA_SEABED_UPPER:
-        var_r0 = (int)::operator new(0x440);
-        if (var_r0 != 0) {
-            var_r0 = load_resource_from_descriptor(var_r0, 5, &bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
-        }
+        var_r0 = (int)new BmlResource(5, &bm_o_door_seabed01_u_resource_descriptor, 0, 0, NULL);
         seabed_four_light_door_bml_resource = var_r0;
         seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_u_green.GVM"));
         TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_u.GVM"));
         return;
     case AREA_SEABED_LOWER:
-        var_r0_2 = (int)::operator new(0x440);
-        if (var_r0_2 != 0) {
-            var_r0_2 = load_resource_from_descriptor(var_r0_2, 5, &bm_o_door_seabed01_u_resource_descriptor, 0, 0, 0);
-        }
+        var_r0_2 = (int)new BmlResource(5, &bm_o_door_seabed01_u_resource_descriptor, 0, 0, NULL);
         seabed_four_light_door_bml_resource = var_r0_2;
         seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_usui_green_02.GVM"));
         TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_usui_02.GVM"));
@@ -578,7 +565,7 @@ void TLobby::free_global_buffers() {
         seabed_four_light_door_textures = 0U;
     }
     if ((u32) seabed_four_light_door_bml_resource != 0U) {
-        free_bin_model_request((void*)seabed_four_light_door_bml_resource, 1);
+        delete (BmlResource *)seabed_four_light_door_bml_resource;
         seabed_four_light_door_bml_resource = 0U;
     }
 }
@@ -623,10 +610,7 @@ s32 TODoorFourLightSeabedU::vfunc_22() {
 }
 
 void load_labo_door_resources(void) {
-    s32 r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &labo_door_resource_descriptor, 0, 0, 0);
-    }
+    s32 r = (int)new BmlResource(5, &labo_door_resource_descriptor, 0, 0, NULL);
     TODoorLabo__bml_resource = r;
     TODoorLabo__green_texture_list = (s32)load_gvm_texture_file((s32)("obj_o_labodoor_l_grn.GVM"));
     labo_door_red_textures = (s32)load_gvm_texture_file((s32)("obj_o_labodoor_l_red.GVM"));
@@ -648,7 +632,7 @@ void TAdSinglePlyChrSelectGC::free_all_resources() {
         TODoorLabo__green_texture_list = 0U;
     }
     if ((u32) TODoorLabo__bml_resource != 0U) {
-        free_bin_model_request((void*)TODoorLabo__bml_resource, 1);
+        delete (BmlResource *)TODoorLabo__bml_resource;
         TODoorLabo__bml_resource = 0U;
     }
 }
@@ -703,10 +687,7 @@ void TODoorLabo::init_model_by_type() {
 }
 
 void TODoorLabo::load_resources() {
-    s32 r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &labo_door_resource_descriptor_2, 0, 0, 0);
-    }
+    s32 r = (int)new BmlResource(5, &labo_door_resource_descriptor_2, 0, 0, NULL);
     (*(s32 *)&TODoorLabo__model_archive) = r;
     (*(s32 *)&TODoorLaboNormal__green_texture_list) = (s32)load_gvm_texture_file((s32)("o_labodoor_nrm_green.GVM"));
     (*(s32 *)&TODoorLaboNormal__red_texture_list) = (s32)load_gvm_texture_file((s32)("o_labodoor_nrm_red.GVM"));
@@ -724,7 +705,7 @@ void TODoorLabo::free_resources() {
         TODoorLaboNormal__green_texture_list = 0U;
     }
     if ((u32) TODoorLabo__model_archive != 0U) {
-        free_bin_model_request((void*)TODoorLabo__model_archive, 1);
+        delete (BmlResource *)TODoorLabo__model_archive;
         TODoorLabo__model_archive = 0U;
     }
 }

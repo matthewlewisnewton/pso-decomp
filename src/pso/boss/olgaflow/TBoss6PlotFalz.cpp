@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
@@ -1175,7 +1176,6 @@ struct Boss_802AC7E4 { u8 pad[0x37C]; u8 mode; };
 
 extern "C" {
 s32 query_teammate_state__9TObjEneDDFv();
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void fn_802E52AC(void);
 void TItemEffOrgaFlowShot__sub_80357210(void);
 }
@@ -1193,7 +1193,6 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 void TItemEffOrgaFlowShot__sub_80357204(void);
-int free_bin_model_request(void*, void*);
 
 void TBoss6PlotFalz::render() {  }
 
@@ -1324,18 +1323,13 @@ TBoss6PlotFalz::TBoss6PlotFalz(TObject *parent, void *set_data) : TObjEnemy(pare
 }
 #pragma pop
 
-void TBoss6PlotFalz::free_all() { TBoss4DarkFalz::free_global_instance(); TBoss6Tube::free_resources(); TBoss6Rock::free_data(); TItemEffOrgaFlowShot__sub_80357204(); free_bin_model_request((void*)obj_fish_count, (void*)1); obj_fish_count = 0; }
+void TBoss6PlotFalz::free_all() { TBoss4DarkFalz::free_global_instance(); TBoss6Tube::free_resources(); TBoss6Rock::free_data(); TItemEffOrgaFlowShot__sub_80357204(); delete (BmlResource *)obj_fish_count; obj_fish_count = 0; }
 
 extern s32 tl_04;
 
 void TBoss6PlotFalz::load_resources() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (s32)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &boss6_plot_falz_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(5, &boss6_plot_falz_resource_descriptor, 0, 0, NULL);
     (*(u8 * *)&obj_fish_count) = (unsigned char *) ((void *) var_r0);
     if ((u32) var_r0 != 0U) {
         clear_boss6_player_snapshots();

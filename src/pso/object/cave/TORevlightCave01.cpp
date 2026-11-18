@@ -7,7 +7,8 @@
 #include "pso/object/cave/TORevlightCave01.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/MatrixStack.h"
@@ -55,16 +56,13 @@ void *TORevlightCave01::create(void *set_data) {
 
 void TORevlightCave01::release_static_instance() {
     if (TORevlightCave01__bml_resource != NULL) {
-        free_bin_model_request(TORevlightCave01__bml_resource, 1);
+        delete TORevlightCave01__bml_resource;
         TORevlightCave01__bml_resource = NULL;
     }
 }
 
 void TORevlightCave01::load_shared_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &bm_fs_obj_yukakaiten01_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_fs_obj_yukakaiten01_resource_descriptor, 0, 0, NULL);
     TORevlightCave01__bml_resource = resource;
 }
 

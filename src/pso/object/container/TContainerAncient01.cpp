@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -978,11 +979,9 @@ struct Res_8018BB64 { u8 pad[0x430]; s32 x430; };
 
 extern "C" {
 
-void *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 
 
 u8 *TContainerAncient01__ct(u8 *arg0, s32 arg1, s32 arg2);
-void free_bin_model_request(void*, int);
 
 
 void *TContainerAncient01::create(void *arg0) {
@@ -995,7 +994,7 @@ void *TContainerAncient01::create(void *arg0) {
 
 void TContainerAncient01::release_static_resource() {
     if ((u32) TContainerAncient01__bml_resource != 0U) {
-        free_bin_model_request((void*)TContainerAncient01__bml_resource, 1);
+        delete (BmlResource *)TContainerAncient01__bml_resource;
         TContainerAncient01__bml_resource = 0U;
     }
 }
@@ -1003,18 +1002,12 @@ void TContainerAncient01::load_resources() {
     void *p;
     TContainerAncient01__bml_resource = 0;
     if (TContainerAncient01::is_global_state_in_table() != 0) {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &TContainerAncient01__resource_descriptor_2, 0, 0, 0);
-        }
+        p = new BmlResource(5, &TContainerAncient01__resource_descriptor_2, 0, 0, NULL);
         TContainerAncient01__effect_id_table[0] = 0x230;
         TContainerAncient01__bml_resource = (u32)p;
         TContainerAncient01__effect_id_table[1] = 0x231;
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &TContainerAncient01__resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &TContainerAncient01__resource_descriptor, 0, 0, NULL);
         TContainerAncient01__effect_id_table[0] = 0x45;
         TContainerAncient01__bml_resource = (u32)p;
         TContainerAncient01__effect_id_table[1] = 0x46;

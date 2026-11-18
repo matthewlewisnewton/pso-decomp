@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
@@ -618,7 +619,6 @@ u8 *get_enemy_entity(u16 arg0);
 s32 angle_diff_s16(s32, s32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void *init_base__13TUnk_80481B34Fv(void *arg0);
-void free_bin_model_request(void*, int);
 void __ct__13TUnk_804928CCFP7TObjectP8TObjBase(void *);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 void subtractive_rng_seed(void *, u32);
@@ -689,7 +689,6 @@ int TBoss1Dragon::vfunc_105() { return this->get_target_info(); }
 void TBoss1Dragon::render_shadows() {
     s32 temp_r31;
     s32 var_r31;
-    u8 *temp_r3;
     u8 *temp_r4;
 
     var_r31 = 0;
@@ -5494,7 +5493,7 @@ void TBoss1Dragon::free_resources() {
         TBoss1Dragon__data_805D4B28 = 0U;
     }
     if ((u32) TBoss1Dragon__data_805D4B08 != 0U) {
-        free_bin_model_request((void*)TBoss1Dragon__data_805D4B08, 1);
+        delete (BmlResource *)TBoss1Dragon__data_805D4B08;
         TBoss1Dragon__data_805D4B08 = 0U;
     }
 }

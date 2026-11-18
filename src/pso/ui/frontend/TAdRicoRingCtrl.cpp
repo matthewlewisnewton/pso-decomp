@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -62,8 +63,6 @@ typedef char RecoveredGlobal_8001BD0C___vt__11TAdRicoRing_size[sizeof(RecoveredG
 extern RecoveredGlobal_8001BD0C___vt__11TAdRicoRing __vt__11TAdRicoRing;
 int post_translate_matrix(void*);
 int push_matrix(void*);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void free_bin_model_request(void*, int);
 }
 
 // inferred: the vertex list draw_tri_fan_2d reads (cf. VtxList_80077BC0)
@@ -91,19 +90,14 @@ const char *TAdRicoRingCtrl__class_name = "TAdRicoRingCtrl";
 void TAdRicoRingCtrl__sub_8001BED0(void* p, f32 v) { *(f32*)((char*)p + 0x34) = v; }
 
 void TAdRicoRingCtrl::load_static_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TAdRicoRingCtrl__resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &TAdRicoRingCtrl__resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TAdRicoRing__resource_bundle) = var_r0;
 }
 
 void TAdRicoRingCtrl::release_global_805D4A00() {
     if ((u32) TAdRicoRing__resource_bundle != 0U) {
-        free_bin_model_request((void*)TAdRicoRing__resource_bundle, 1);
+        delete (BmlResource *)TAdRicoRing__resource_bundle;
         TAdRicoRing__resource_bundle = 0U;
     }
 }

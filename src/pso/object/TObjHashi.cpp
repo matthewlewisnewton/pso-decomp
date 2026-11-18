@@ -24,7 +24,6 @@
 #include "pso/render/NinjaUtil.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
-#include "pso/system/BmlResourceLoad.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 
 // The BML resource loader and its deleting destructor (TLobby_8001EF5C) and
@@ -244,17 +243,13 @@ TObjHashi::~TObjHashi() {
 }
 
 void TObjHashi::load_shared_resource() {
-    void *p = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)p;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj_hashi_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &fe_obj_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashi::unload_static_data() {
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        delete (BmlResource *)bml_resource;
         bml_resource = NULL;
     }
 }
@@ -282,17 +277,13 @@ TObjHashiVersus1::~TObjHashiVersus1() {
 }
 
 void TObjHashiVersus1::load_shared_resource() {
-    void *p = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)p;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj306_hashi_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &fe_obj306_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashiVersus1::unload_static_data() {
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        delete (BmlResource *)bml_resource;
         bml_resource = NULL;
     }
 }
@@ -321,17 +312,13 @@ TObjHashiVersus2::~TObjHashiVersus2() {
 }
 
 void TObjHashiVersus2::load_shared_resource() {
-    void *p = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)p;
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(p, 1, &fe_obj321_hashi_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &fe_obj321_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashiVersus2::unload_static_data() {
     if (bml_resource != NULL) {
-        free_bin_model_request(bml_resource, 1);
+        delete (BmlResource *)bml_resource;
         bml_resource = NULL;
     }
 }

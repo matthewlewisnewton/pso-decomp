@@ -648,7 +648,6 @@ struct VObj_14_c1c33b : VBase_14_c1c33b {
 
 f32 receive_physical_attack__9TObjCharaFPvf(void *, void *, f32);
 u16 get_entity_id(void *);
-void free_bin_model_request(void*, int);
 s32 get_mode__11TCameraCtrlFPv(void *);
 s32 is_patrol_active__21TObjEneRe7BeruraPunchFv(void *);
 s32 TObjPlayer__sub_800A04F0(void *);
@@ -1062,7 +1061,7 @@ void *TObjEneMorfos::create() {
 void TObjEneMorfos::unload_static_data() {
     TObjEneMorfosArm__sub_8033542C();
     if ((u32) (*(u32 *)&TObjEneMorfos__instance) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&TObjEneMorfos__instance), 1);
+        delete (BmlResource *)(*(u32 *)&TObjEneMorfos__instance);
         (*(u32 *)&TObjEneMorfos__instance) = 0U;
     }
 }

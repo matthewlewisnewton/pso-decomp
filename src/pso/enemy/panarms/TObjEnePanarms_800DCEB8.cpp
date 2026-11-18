@@ -198,7 +198,6 @@ u16 find_nearest_visible_player(void *, f32 *, f32);
 f32 atan2_float(f32 y, f32 x);
 s32 approach_angle_limited(s32, s32, s32);
 f32 vector_length(void *);
-Obj_800DF634 *load_resource_from_descriptor(Obj_800DF634 *, s32, void *, s32, s32, s32);
 s32 spawn_npc_enemy__6TLobbyFslP11NJS_TEXLISTPvff(s32, s32, s32, void *, s32, const void *, f32, f32);
 void TObjEnePanarms__sub_800E1D38(void *arg0);
 s32 refresh_lobby_state__10TObjPlayerFv();
@@ -210,7 +209,6 @@ u32 csnLookAt(void *, void *);
 f32 horizontal_distance_squared(void *, void *);
 s32 try_warp_to_position__14TObjEnePanarmsFPvPv(u8 *arg0, Vec *arg1);
 int TObjEnePanarms__sub_800DFBC4(void *p);
-void free_bin_model_request(void*, int);
 int post_translate_matrix(void*);
 int rotate_matrix_y(void*, void*);
 int push_matrix(void*);
@@ -268,10 +266,7 @@ s32 TObjEnePanarms::create(s32 setData) {
 }
 
 void TObjEnePanarms::load_and_spawn_npc() {
-    Obj_800DF634 *o = (Obj_800DF634 *) ::operator new(0x440);
-    if (o != NULL) {
-        o = load_resource_from_descriptor(o, 1, lbl_80494F10, 0, 0, 0);
-    }
+    Obj_800DF634 *o = (Obj_800DF634 *)new BmlResource(1, (BmlResourceDescriptor *)lbl_80494F10, 0, 0, NULL);
     TObjEnePanarms__entry_params_resource = (BmlResource *)o;
     if (o != NULL) {
         S_800DF634 sp = panarms_npc_spawn_descriptor[0];
@@ -283,7 +278,7 @@ void TObjEnePanarms::load_and_spawn_npc() {
 
 void TObjEnePanarms::free_data() {
     if (TObjEnePanarms__entry_params_resource != NULL) {
-        free_bin_model_request((void*)TObjEnePanarms__entry_params_resource, 1);
+        delete TObjEnePanarms__entry_params_resource;
         TObjEnePanarms__entry_params_resource = NULL;
     }
 }

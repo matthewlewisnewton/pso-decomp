@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -1048,12 +1049,11 @@ u8 *TOTrapChainSawKey::get_model(s32 arg0) {
     return NULL;
 }
 
-void free_bin_model_request(void *, int);
 
 void TOTrapChainSaw::unload_static_data() {
     s32 i;
     if (lbl_805D6808 != NULL) {
-        free_bin_model_request(lbl_805D6808, 1);
+        delete (BmlResource *)lbl_805D6808;
         lbl_805D6808 = NULL;
     }
     for (i = 0; i < 5; i++) {
@@ -1073,15 +1073,11 @@ void TOTrapChainSaw::unload_static_data() {
 
 
 extern "C" {
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void TOTrapChainSaw::load_shared_resource() {
-    void *p;
+    BmlResource *p;
     s32 i;
     s32 h;
-    p = ::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 5, bm_obj_jungle_nokogiri_resource_descriptor, 0, 0, 0);
-    }
+    p = new BmlResource(5, (BmlResourceDescriptor *)bm_obj_jungle_nokogiri_resource_descriptor, 0, 0, NULL);
     lbl_805D6808 = (u8 *)p;
     for (i = 0; i < 5; i++) {
         seabed_suiso_linked_switch_counts[i] = 0;
@@ -1090,7 +1086,7 @@ void TOTrapChainSaw::load_shared_resource() {
         seabed_suiso_switch_counts[i] = 0;
     }
     if (p != NULL) {
-        h = (s32)get_bml_model((BmlResource *)p, 3);
+        h = (s32)get_bml_model(p, 3);
         if (h != 0) {
             seabed_suiso_linked_switch_counts[1] = (s32)find_object_node((NJS_OBJECT *)h, 3);
             seabed_suiso_linked_switch_counts[2] = (s32)find_object_node((NJS_OBJECT *)h, 4);

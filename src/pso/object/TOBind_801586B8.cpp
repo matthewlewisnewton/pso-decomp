@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -27,14 +28,12 @@ CollisionBody bind_collision_body_parts[2] = {
 };
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u32 TOBind__static_model_resource;
 u8 *get_bml_motion(s32, s32);
 s32 __ct__14TObjCollidableFP7TObject(void *, int);
 extern s32 __vt__6TOBind[];
 const char *lbl_805D2EA8 = "TOBind";
 extern s32 tl_05;
-void free_bin_model_request(void*, int);
 s32 post_translate_matrix(void *);
 void draw_ginja_model_with_motion(void *model, void *motion, f32 frame);
 s32 rotate_matrix_y(s32, s32);
@@ -68,19 +67,14 @@ void *TOBind::create(void *arg0) {
 
 void TOBind::free_static_model() {
     if ((u32) TOBind__static_model_resource != 0U) {
-        free_bin_model_request((void*)TOBind__static_model_resource, 1);
+        delete (BmlResource *)TOBind__static_model_resource;
         TOBind__static_model_resource = 0U;
     }
 }
 
 void TOBind::load_static_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_o_bind_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_o_bind_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TOBind__static_model_resource) = var_r0;
 }
 

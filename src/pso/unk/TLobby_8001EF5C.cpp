@@ -2,6 +2,7 @@
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 #include "pso/unk/TLobby_8001EF5C.h"
 #include "pso/system/memory.h"
@@ -32,23 +33,6 @@ struct Lobby_8001FA1C {
 
 struct Params_8001FA1C { Ctx_8001FA1C *a; s32 b; };
 
-struct Ent16_8001FE7C { u32 flags; u8 pad4[4]; void *a; void *b; };
-
-struct Ent8_8001FE7C { s32 x; void *data; };
-
-struct Lobby_8001FE7C {
-    u32 flags;
-    u8 pad4[0x18 - 4];
-    s32 handles[(0x418 - 0x18) / 4];
-    s32 nHandles;
-    u8 pad41c[0x42C - 0x41C];
-    Ent16_8001FE7C *ents16;
-    Ent8_8001FE7C *ents8;
-    s32 nEnts16;
-    s32 nEnts8;
-};
-
-struct Lobby_8001FB6C;
 // One model of a TBinModel (inferred name; counted from the constructor's model list).
 struct BinModelSlot { u32 flags; u8 pad4[4]; void *a; void *b; };
 
@@ -56,7 +40,7 @@ struct BinModelSlot { u32 flags; u8 pad4[4]; void *a; void *b; };
 struct BinMotionSlot { s32 x; void *data; };
 
 // Named after the "TBinModel: ..." / "TBinModel_NORMAL" debug strings its constructor (0x8002058C) and
-// load_resource_from_descriptor print. Field names below are inferred.
+// the descriptor-based BmlResource constructor print. Field names below are inferred.
 struct TBinModel {
     u32 flags;
     s32 f4;
@@ -79,8 +63,6 @@ struct TBinModel {
     void load_motions(u32 *list);
     void request_motions(u32 *list);
 };
-
-struct Desc_80020004 { s32 name; u8 pad4[8]; s16 n16; s16 n8; };
 
 struct Rec_80020004 { char name[0x20]; s32 size; u8 pad24[8]; s32 texSize; u8 pad30[0x10]; };
 
@@ -145,13 +127,11 @@ s32 set_stream_state__6TLobbyFi(s32, s32);
 s32 create_file_load_entry__6TLobbyFllUllPPv(void *, s32, void *, void *, void *);
 s32 TLobby__sub_800F9FF4(s32);
 s32 release_texture_list(void *);
-Lobby_8001FE7C *free_bin_model_request(Lobby_8001FE7C *self, s16 del);
 u32 prs_decompress_buffer(s32 arg0, s32 arg1);
 char *strncpy(char *dest, const char *src, unsigned long num);
 extern u8 *resource_decompress_buffer;
 extern s32 disc_read_filename;
 extern const char *lbl_805D2B10;
-TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_80020004 *desc, s32 on_loaded, s32 on_loaded_arg, s32 load_buffer);
 s32 bind_bml_model(Lobby_8001FBEC *arg0, u32 arg1, s32 arg2, s32 arg3);
 s32 adxf_get_stat(u32);
 s32 adxf_get_fsize_sct(void);
@@ -658,40 +638,34 @@ s32 BmlResource::load_bin_model(void *name, s32 index) {
     return 1;
 }
 
-Lobby_8001FE7C *free_bin_model_request(Lobby_8001FE7C *self, s16 del) {
+BmlResource::~BmlResource() {
     s32 i;
-    if (self != NULL) {
-        if (self->flags & 2) {
-            if (self->flags & 0x100) {
-                self->flags |= 0x200;
-            } else {
-                for (i = 0; i < self->nHandles; i++) {
-                    TLobby__sub_800F9FF4(self->handles[i]);
-                }
-                TLobby::tmp_buf_release_if_owner("TBinModel_REQ");
+    if (flags & 2) {
+        if (flags & 0x100) {
+            flags |= 0x200;
+        } else {
+            for (i = 0; i < handle_count; i++) {
+                TLobby__sub_800F9FF4((s32)handles[i]);
             }
-        }
-        for (i = 0; i < self->nEnts16; i++) {
-            if (self->ents16[i].a != NULL) {
-                ((BmlResource *)self)->free_if_not_in_arena(self->ents16[i].a);
-            }
-            if (self->ents16[i].b != NULL) {
-                if (self->ents16[i].flags & 1) {
-                    release_texture_list(self->ents16[i].b);
-                }
-                ((BmlResource *)self)->free_if_not_in_arena(self->ents16[i].b);
-            }
-        }
-        ::operator delete[](self->ents16);
-        for (i = 0; i < self->nEnts8; i++) {
-            ((BmlResource *)self)->free_if_not_in_arena(self->ents8[i].data);
-        }
-        ::operator delete[](self->ents8);
-        if (del > 0) {
-            ::operator delete(self);
+            TLobby::tmp_buf_release_if_owner("TBinModel_REQ");
         }
     }
-    return self;
+    for (i = 0; i < model_count; i++) {
+        if (models[i].model != NULL) {
+            free_if_not_in_arena(models[i].model);
+        }
+        if (models[i].m_c != NULL) {
+            if (models[i].m_0 & 1) {
+                release_texture_list(models[i].m_c);
+            }
+            free_if_not_in_arena(models[i].m_c);
+        }
+    }
+    ::operator delete[](models);
+    for (i = 0; i < motion_count; i++) {
+        free_if_not_in_arena(motions[i].motion);
+    }
+    ::operator delete[](motions);
 }
 
 void BmlResource::reset() {
@@ -707,7 +681,7 @@ void BmlResource::reset() {
     arena_offset = 0;
     lbl_805D4AD0 = 0;
 }
-TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_80020004 *desc, s32 on_loaded, s32 on_loaded_arg, s32 load_buffer) {
+BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loaded, s32 on_loaded_arg, void *load_buffer) {
     char name[0x20];
     Hdr_80020004 *hdr;
     s32 blk;
@@ -719,39 +693,39 @@ TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_8002000
     s32 size;
     s32 buf;
     u32 flags;
-    ((BmlResource *)self)->reset();
-    self->flags = kind | 0x100;
-    self->on_loaded = on_loaded;
-    self->on_loaded_arg = on_loaded_arg;
-    self->load_buffer = load_buffer;
-    self->nEnts16 = desc->n16;
-    self->nEnts8 = desc->n8;
-    if (self->nEnts16 > 0) {
-        self->ents16 = (BinModelSlot *)::operator new[](self->nEnts16 * 16);
-        for (s32 i = 0; i < self->nEnts16; i++) {
-            self->ents16[i].flags = 0;
-            self->ents16[i].a = NULL;
-            self->ents16[i].b = NULL;
+    reset();
+    this->flags = kind | 0x100;
+    callback = on_loaded;
+    callback_context = on_loaded_arg;
+    arena = load_buffer;
+    model_count = descriptor->model_count;
+    motion_count = descriptor->motion_count;
+    if (model_count > 0) {
+        models = (BmlModelEntry *)::operator new[](model_count * sizeof(BmlModelEntry));
+        for (s32 i = 0; i < model_count; i++) {
+            models[i].m_0 = 0;
+            models[i].model = NULL;
+            models[i].m_c = NULL;
         }
     }
-    if (self->nEnts8 > 0) {
-        self->ents8 = (BinMotionSlot *)::operator new[](self->nEnts8 * 8);
-        for (s32 i = 0; i < self->nEnts8; i++) {
-            self->ents8[i].data = NULL;
+    if (motion_count > 0) {
+        motions = (BmlMotionEntry *)::operator new[](motion_count * sizeof(BmlMotionEntry));
+        for (s32 i = 0; i < motion_count; i++) {
+            motions[i].motion = NULL;
         }
     }
-    flags = self->flags;
+    flags = this->flags;
     if (flags & 1) {
         TLobby::pump_frames();
         lbl_805D4AD0 = 1;
         {
-            TGStream st((void *)desc->name, 0);
+            TGStream st((void *)descriptor->archive_filename, 0);
             if (st.get_file_size() <= 0) {
-                TLobby::debug_print("TBinModel: %s not found.", desc->name);
-                self->nEnts16 = self->nEnts8 = 0;
-                return self;
+                TLobby::debug_print("TBinModel: %s not found.", descriptor->archive_filename);
+                model_count = motion_count = 0;
+                return;
             }
-            sectors = (((self->nEnts16 + self->nEnts8 + 1) << 6) + 0x7FF) / 2048;
+            sectors = (((model_count + motion_count + 1) << 6) + 0x7FF) / 2048;
             if (sectors > 0x4000) {
                 debug_printf_nop("TOO LARGE BMLHEAD SIZE(%08x)", sectors);
             }
@@ -769,10 +743,10 @@ TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_8002000
             blk = 0x800;
             if (hdr->small != 0) {
                 blk = 0x20;
-                self->flags |= 0x800;
+                this->flags |= 0x800;
             }
             rec = first;
-            for (i = 0; i < self->nEnts16; i++, rec++) {
+            for (i = 0; i < model_count; i++, rec++) {
                 size = rec->size;
                 if (size > 0x40000) {
                     TLobby::debug_print("TBinModel: tmpbuf overflow(%x)", size - 0x40000);
@@ -781,27 +755,27 @@ TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_8002000
                 case 1:
                     buf = (s32)TQuestVmDownLoadServer::alloc(size + 0x800);
                     if (buf != 0) {
-                        disc_read_filename = desc->name;
+                        disc_read_filename = (s32)descriptor->archive_filename;
                         st.read_data((s32)((void *)buf), (s32)size);
                         st.align_read_offset(blk);
                         disc_read_filename = (s32)lbl_805D2B10;
                         prs_decompress_buffer(buf, (s32)resource_decompress_buffer);
                         TAdSinglePlyChrSelectGC::safe_free(buf);
-                        bind_bml_model((Lobby_8001FBEC *)(self), size, i, (s32)((s32)resource_decompress_buffer));
+                        bind_bml_model((Lobby_8001FBEC *)(this), size, i, (s32)((s32)resource_decompress_buffer));
                     } else {
-                        TLobby::debug_print("TBinModel:%s Malloc failed.", desc->name);
+                        TLobby::debug_print("TBinModel:%s Malloc failed.", descriptor->archive_filename);
                     }
                     break;
                 default:
                     st.read_data((s32)resource_decompress_buffer, (s32)size);
                     st.align_read_offset(blk);
                     disc_read_filename = (s32)lbl_805D2B10;
-                    bind_bml_model((Lobby_8001FBEC *)(self), size, i, (s32)((s32)resource_decompress_buffer));
+                    bind_bml_model((Lobby_8001FBEC *)(this), size, i, (s32)((s32)resource_decompress_buffer));
                     break;
                 }
-                if (self->flags & 0x800) {
-                    BinModelSlot *e = &self->ents16[i];
-                    if (e->b != NULL) {
+                if (this->flags & 0x800) {
+                    BmlModelEntry *e = &models[i];
+                    if (e->m_c != NULL) {
                         s32 tsize = rec->texSize;
                         if (tsize != 0) {
                             s32 tbuf = (s32)TQuestVmDownLoadServer::alloc(tsize + 0x800);
@@ -809,22 +783,22 @@ TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_8002000
                             st.align_read_offset(blk);
                             prs_decompress_buffer(tbuf, (s32)resource_decompress_buffer);
                             TAdSinglePlyChrSelectGC::safe_free(tbuf);
-                            if (load_gvm_texture_archive((s32)resource_decompress_buffer, (s32)self->ents16[i].b) > 0) {
-                                self->ents16[i].flags |= 1;
+                            if (load_gvm_texture_archive((s32)resource_decompress_buffer, (s32)models[i].m_c) > 0) {
+                                models[i].m_0 |= 1;
                             } else {
-                                self->ents16[i].flags |= 2;
+                                models[i].m_0 |= 2;
                                 TLobby::debug_print("TBinModel: Illegal Texture.");
                             }
                         } else {
-                            e->flags |= 2;
-                            if (!(self->flags & 4)) {
+                            e->m_0 |= 2;
+                            if (!(this->flags & 4)) {
                                 TLobby::debug_print("TBinModel: Texture not exist.");
                             }
                         }
                     }
                 }
             }
-            for (j = 0; j < self->nEnts8; j++, rec++) {
+            for (j = 0; j < motion_count; j++, rec++) {
                 s32 sz = rec->size;
                 if (sz > 0x40000) {
                     TLobby::debug_print("TBinModel: tmpbuf overflow(%x)", sz - 0x40000);
@@ -836,36 +810,35 @@ TBinModel *load_resource_from_descriptor(TBinModel *self, s32 kind, Desc_8002000
                     st.align_read_offset(blk);
                     prs_decompress_buffer(mb, (s32)resource_decompress_buffer);
                     TAdSinglePlyChrSelectGC::safe_free(mb);
-                    bind_bml_motion((struct Lobby_8001FB6C *)self, j, resource_decompress_buffer);
+                    bind_bml_motion((struct Lobby_8001FB6C *)this, j, resource_decompress_buffer);
                     break;
                 }
                 default:
                     st.read_data((s32)resource_decompress_buffer, (s32)sz);
                     st.align_read_offset(blk);
-                    bind_bml_motion((struct Lobby_8001FB6C *)self, j, resource_decompress_buffer);
+                    bind_bml_motion((struct Lobby_8001FB6C *)this, j, resource_decompress_buffer);
                     break;
                 }
             }
         }
-        if (!(self->flags & 0x800)) {
+        if (!(this->flags & 0x800)) {
             rec = hdr->recs;
-            for (s32 i = 0; i < self->nEnts16; i++, rec++) {
-                if (self->ents16[i].b != NULL) {
+            for (s32 i = 0; i < model_count; i++, rec++) {
+                if (models[i].m_c != NULL) {
                     strncpy(name, rec->name, 0x20);
-                    ((BmlResource *)self)->load_texture_sub(name, i);
+                    load_texture_sub(name, i);
                 }
             }
         }
-        ((BmlResource *)self)->set_flag_and_notify();
+        set_flag_and_notify();
     } else if (flags & 2) {
-        self->fC = 0;
-        self->f8 = 0;
-        self->f4 = 0;
-        self->f10 = 0;
-        self->f14 = 0;
-        TLobby::add_named_entry((s32)self, desc->name);
+        loaded_textures = 0;
+        loaded_motions = 0;
+        loaded_models = 0;
+        load_state = 0;
+        unknown_14 = 0;
+        TLobby::add_named_entry((s32)this, (s32)descriptor->archive_filename);
     }
-    return self;
 }
 
 // TBinModel helpers (inferred names): the original inlines one loop per list here; the inline copies of the

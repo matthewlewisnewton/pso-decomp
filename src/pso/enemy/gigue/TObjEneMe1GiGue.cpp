@@ -35,7 +35,8 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/map/CsnQuery.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/effect/TBreakUpMdl.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -394,16 +395,10 @@ void TObjEneMe1GiGue::load_resources() {
     void *o;
 
     if (is_split_screen() != 0) {
-        o = ::operator new(0x440);
-        if (o != NULL) {
-            o = load_resource_from_descriptor(o, 1, &lbl_804E1248, 0, 0, 0);
-        }
+        o = new BmlResource(1, &lbl_804E1248, 0, 0, NULL);
         TObjEneMe1GiGue__data_805D6838 = (BmlResource *)o;
     } else {
-        o = ::operator new(0x440);
-        if (o != NULL) {
-            o = load_resource_from_descriptor(o, 1, &lbl_804E1200, 0, 0, 0);
-        }
+        o = new BmlResource(1, &lbl_804E1200, 0, 0, NULL);
         TObjEneMe1GiGue__data_805D6838 = (BmlResource *)o;
     }
     ene_me1_gigue_boss_id = register_boss__6TLobbyFl(0x1A);
@@ -431,7 +426,7 @@ void TObjEneMe1GiGue::delete_barrier() {
         TObjEneMe1GiGue__barrier_obj = NULL;
     }
     if (TObjEneMe1GiGue__data_805D6838 != NULL) {
-        free_bin_model_request(TObjEneMe1GiGue__data_805D6838, 1);
+        delete TObjEneMe1GiGue__data_805D6838;
         TObjEneMe1GiGue__data_805D6838 = NULL;
     }
 }

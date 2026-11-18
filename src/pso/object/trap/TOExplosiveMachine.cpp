@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/object/trap/TOExplosiveMachine.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -20,8 +21,6 @@
 #include "pso/render/render_util.h"
 
 extern "C" {
-void *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
-void free_bin_model_request(void *, s32);
 s32 post_translate_matrix(const Vec *);
 s32 push_matrix();
 
@@ -81,16 +80,13 @@ TOExplosiveMachine::~TOExplosiveMachine() {
 }
 
 void TOExplosiveMachine::load_shared_resource() {
-    void *resource = ::operator new(0x440);
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 1, &explosive_machine_resource_desc, 0, 0, 0);
-    }
+    void *resource = new BmlResource(1, &explosive_machine_resource_desc, 0, 0, NULL);
     explosive_machine_model_archive = resource;
 }
 
 void TOExplosiveMachine::destroy_static_lobby() {
     if (explosive_machine_model_archive != NULL) {
-        free_bin_model_request(explosive_machine_model_archive, 1);
+        delete (BmlResource *)explosive_machine_model_archive;
         explosive_machine_model_archive = NULL;
     }
 }

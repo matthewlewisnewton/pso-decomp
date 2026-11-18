@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/render/TUnk_80494938.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -133,7 +134,6 @@ s32 __ct__13TUnk_80491460FPvlll(void *, void *, s32, void *, s32);
 s32 render_anim_model_at_pos__15TObjEnemyCustomFv();
 void TObjPlayer__sub_800A8FB4(void *arg0_);
 
-void free_bin_model_request(void *, s32);
 extern s32 lbl_80500AF0[];
 extern s32 lbl_80500AF8[];
 Res_800AA82C *dubchik_resource;
@@ -145,7 +145,6 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 void TObjPlayer__sub_800A4294(void);
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1);
 }
@@ -506,10 +505,7 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
     if (TObjEneDD::check_v2_mode() != 0) {
         dubchik_resource = (Res_800AA82C *)load_enemy_bml_resource_named((s32)&bm_ene_dubchik_resource_descriptor, (s32)bm_ene_dubchik_a_bml_filename);
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &bm_ene_dubchik_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &bm_ene_dubchik_resource_descriptor, 0, 0, NULL);
         dubchik_resource = (Res_800AA82C *)p;
     }
     dubchik_texlist = *(NJS_TEXLIST **)((u8 *)dubchik_resource->mdl + 0x1C);
@@ -575,7 +571,7 @@ void TObjPlayer::free_effect_resources() {
         breakup_model_ptr = NULL;
     }
     if (dubchik_resource != NULL) {
-        free_bin_model_request(dubchik_resource, 1);
+        delete (BmlResource *)dubchik_resource;
         dubchik_resource = NULL;
     }
     dubchik_texlist = NULL;

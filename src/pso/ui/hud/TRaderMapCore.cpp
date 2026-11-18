@@ -37,7 +37,7 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
+#include "pso/system/BmlResource.h"
 
 typedef struct RadarInitPiece_801F9474 {
     s16 id, flags;
@@ -442,13 +442,8 @@ NJS_OBJECT *TRaderMapCore::init_map_ptr(const s32 *, s32 index) {
 void TRaderMapCore::reset() { *(float *)&this->m_prev = 0.0f; *(float *)&this->m_flags = 0.0f; *(float *)&this->m_name = 0.0f; *(int *)&this->m_next = 0; *(float *)&this->m_up = 1.0f; *(short *)&this->m_down = 0; *(short*)((char*)this + 0x16) = -1; *(float *)&this->texlist = 1.0f; *(float *)&this->m_20 = 1.0f; *(float *)&this->entity_id = 1.0f; *(float*)((char*)this + 0x18) = 1.0f; }
 
 void TRaderMapCore::load_frame_texture() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &obj_f_enemy_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(5, &obj_f_enemy_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TRaderMapCore__frame_model_resource) = var_r0;
     (*(u8 * *)&TRaderMapCore__data_805D5F4C) = load_gvm_texture_file((s32)"RaderMapFrame.gvm");
 }
@@ -460,7 +455,7 @@ void TRaderMapCore::free_statics() {
         TRaderMapCore__data_805D5F4C = 0U;
     }
     if ((u32) TRaderMapCore__frame_model_resource != 0U) {
-        free_bin_model_request((void*)TRaderMapCore__frame_model_resource, 1);
+        delete (BmlResource *)TRaderMapCore__frame_model_resource;
         TRaderMapCore__frame_model_resource = 0U;
     }
 }

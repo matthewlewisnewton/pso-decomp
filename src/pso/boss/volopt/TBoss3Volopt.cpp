@@ -41,7 +41,6 @@
 #include "pso/system/task/TMainTask.h"
 #include "pso/object/ruins/TOCapsuleAncient01.h"
 #include "pso/player/TObjPlayer_801542CC.h"
-#include "pso/system/BmlResourceLoad.h"
 #include <stdlib.h>
 #pragma readonly_strings on
 
@@ -420,16 +419,10 @@ void TBoss3Volopt::load_resources() {
     void *resource;
     v2 = TObjEneDD::check_v2_mode();
     if (v2 != 0) {
-        resource = ::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_ap_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, &bm_boss3_volopt_ap_resource_descriptor, 0, 0, NULL);
         boss3_volopt_resources = (BmlResource *)resource;
     } else {
-        resource = ::operator new(0x440);
-        if (resource != NULL) {
-            resource = load_resource_from_descriptor(resource, 5, &bm_boss3_volopt_resource_descriptor, 0, 0, 0);
-        }
+        resource = new BmlResource(5, &bm_boss3_volopt_resource_descriptor, 0, 0, NULL);
         boss3_volopt_resources = (BmlResource *)resource;
     }
     volopt_v2_mode = v2;
@@ -453,7 +446,7 @@ void TBoss3Volopt::load_resources() {
 void TBoss3Volopt::free_parts() {
     TObjVoloptCage::destroy();
     if (boss3_volopt_resources != NULL) {
-        free_bin_model_request(boss3_volopt_resources, 1);
+        delete boss3_volopt_resources;
         boss3_volopt_resources = NULL;
     }
     TBoss3VoloptP01::destroy();

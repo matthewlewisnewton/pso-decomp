@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -86,12 +87,9 @@ const char *TObjTuitate__class_name = "TObjTuitate";
 const char *TObjBigTuitate__name = "TObjBigTuitate";
 extern s32 __vt__14TObjBigTuitate[];
 
-void free_bin_model_request(void*, int);
 void free_collision_body_parts(void *);
 void __dl__7TObjectFPv(void *);
 
-
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 }
 extern void *tl_05;
 struct FadeBase_8019ADA0 { char pad[0x14]; };
@@ -130,19 +128,14 @@ extern s32 __vt__11TObjTuitate[];
 
 
 void load_tuitate_bml_resource(void) {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &fe_obj_tutate_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &fe_obj_tutate_resource_descriptor, 0, 0, NULL);
     TObjTuitate__bml_resource = var_r0;
 }
 
 void free_tuitate_bml_resource(void) {
     if ((u32) TObjTuitate__bml_resource != 0U) {
-        free_bin_model_request((void*)TObjTuitate__bml_resource, 1);
+        delete (BmlResource *)TObjTuitate__bml_resource;
         TObjTuitate__bml_resource = 0U;
     }
 }
@@ -224,19 +217,14 @@ void TObjTuitate::render() {
 }
 
 void load_bigtuitate_bml_resource(void) {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &fe_obj_bigtutate_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &fe_obj_bigtutate_resource_descriptor, 0, 0, NULL);
     TObjBigTuitate__bml_resource = var_r0;
 }
 
 void TObjBigTuitate::free_instance() {
     if ((u32) TObjBigTuitate__bml_resource != 0U) {
-        free_bin_model_request((void*)TObjBigTuitate__bml_resource, 1);
+        delete (BmlResource *)TObjBigTuitate__bml_resource;
         TObjBigTuitate__bml_resource = 0U;
     }
 }

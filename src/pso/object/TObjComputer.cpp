@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/render/render_util.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -72,7 +73,6 @@ u32 init_collision_body_parts(void *, void *, s32);
 void *TObjMesBase__ct(TObjMesBase *arg0, s32 arg1, s32 arg2);
 extern s32 __vt__12TObjComputer[];
 void *TObjComputer__ct(void *arg0, void *parent, void *row);
-void *load_resource_from_descriptor(void *, int, void *, int, int, int);
 }
 u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
@@ -81,7 +81,6 @@ s32 PPCSync();
 s32 rotate_matrix_by_node_angles(void *, u32);
 extern u32 actor_frame_tick;
 extern void *tl_05;
-void free_bin_model_request(void*, int);
 s32 release_texture_list(void*);
 s32 free_collision_body_parts(void *);
 s32 vfunc_14__11TObjMesBaseFv();
@@ -158,19 +157,13 @@ void load_computer_resources(void) {
     switch (get_current_floor_area()) {
     case AREA_CENTRAL_CONTROL_AREA: case AREA_JUNGLE_NORTH: case AREA_JUNGLE_EAST: case AREA_MOUNTAIN: case AREA_SEASIDE: case AREA_SEABED_UPPER: case AREA_SEABED_LOWER:
     case AREA_SEASIDE_NIGHT: case AREA_TOWER:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &fs_obj_tanmatu02_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &fs_obj_tanmatu02_resource_descriptor, 0, 0, NULL);
         TObjComputer__model_archive = (u32) p;
         TObjComputer__texture_gvm_handle = (u32)load_gvm_texture_file((s32)"fs_obj_tanmatu02.gvm");
         computer_uv_scroll_phase = 0;
         break;
     default:
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 5, &fe_obj_tanmatu02_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &fe_obj_tanmatu02_resource_descriptor, 0, 0, NULL);
         TObjComputer__model_archive = (u32) p;
         TObjComputer__texture_gvm_handle = (u32)load_gvm_texture_file((s32)"fe_obj_computer.gvm");
         computer_uv_scroll_phase = 1;
@@ -185,7 +178,7 @@ void TObjComputer::free_resources() {
         TObjComputer__texture_gvm_handle = 0U;
     }
     if ((u32) TObjComputer__model_archive != 0U) {
-        free_bin_model_request((void*)TObjComputer__model_archive, 1);
+        delete (BmlResource *)TObjComputer__model_archive;
         TObjComputer__model_archive = 0U;
     }
 }
@@ -296,19 +289,14 @@ void TObjGbAdvance::render() {
 }
 
 void TObjGbAdvance::load_resource_instance() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &bm_obj_gba_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(5, &bm_obj_gba_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TObjGbAdvance__data_805D5B74) = var_r0;
 }
 
 void TObjGbAdvance::free_shared_data() {
     if ((u32) TObjGbAdvance__data_805D5B74 != 0U) {
-        free_bin_model_request((void*)TObjGbAdvance__data_805D5B74, 1);
+        delete (BmlResource *)TObjGbAdvance__data_805D5B74;
         TObjGbAdvance__data_805D5B74 = 0U;
     }
 }

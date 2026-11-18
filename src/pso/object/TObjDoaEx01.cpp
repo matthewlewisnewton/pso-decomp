@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -261,10 +262,8 @@ void TObjDoaEx01::render() {
 
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 init_collision_body_parts(void *, void *, int);
 
-void free_bin_model_request(void*, int);
 s32 free_collision_body_parts(void *);
 
 }
@@ -300,19 +299,14 @@ void *TObjDoaEx01__create(void *arg0) {
 
 void TObjDoaEx01::free_resource() {
     if ((u32) TObjDoaEx01__resource_bundle != 0U) {
-        free_bin_model_request((void*)TObjDoaEx01__resource_bundle, 1);
+        delete (BmlResource *)TObjDoaEx01__resource_bundle;
         TObjDoaEx01__resource_bundle = 0U;
     }
 }
 void TObjDoaEx01::load_resources() {
-    s32 temp_r3;
     s32 var_r0;
     u8 *temp_r3_2;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &TObjDoaEx01__resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &TObjDoaEx01__resource_descriptor, 0, 0, NULL);
     (*(u8 * *)&TObjDoaEx01__resource_bundle) = (unsigned char *) ((void *) var_r0);
     temp_r3_2 = (u8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(get_bml_model((BmlResource *)var_r0, 0)) + 0x2C)) + 0x30)) + 0x2C)) + 0x2C));
     TObjDoaEx01__alpha_model_node = temp_r3_2;

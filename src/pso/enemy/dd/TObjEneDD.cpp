@@ -1,4 +1,5 @@
 #pragma fp_contract on
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
@@ -498,7 +499,6 @@ struct Obj_800BB88C {
     f32 f354[5]; s32 f368; s32 f36c;
 };
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 s32 subtractive_rng_seed(void *, int);
 int fn_800FD8A0(void*);
 extern s32 area_random_seed;
@@ -620,13 +620,8 @@ void TObjEneDD::sub_800BBA0C() {
 void TObjEneDD::set_field_378(s32 v) { *(s32*)((char*)this + 0x378) = v; }
 
 s32 load_enemy_bml_resource(u8 *arg0) {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, arg0, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, (BmlResourceDescriptor *)arg0, 0, 0, NULL);
     return var_r0;
 }
 

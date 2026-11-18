@@ -64,7 +64,8 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/render/GinjaTexture.h"
-#include "pso/system/BmlResourceLoader.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/byteswap.h"
 #include "pso/network/protocol/protocol_types.h"
 
@@ -4946,11 +4947,11 @@ void TBoss5Gryphon::cleanup() {
         boss5_gryphon_texture_list = 0U;
     }
     if ((u32) boss5_gryphon_bml_resource != 0U) {
-        free_bin_model_request((void *)boss5_gryphon_bml_resource, 1);
+        delete (BmlResource *)boss5_gryphon_bml_resource;
         boss5_gryphon_bml_resource = 0U;
     }
     if ((u32) boss5_gryphon_body_bml_resource != 0U) {
-        free_bin_model_request((void *)boss5_gryphon_body_bml_resource, 1);
+        delete (BmlResource *)boss5_gryphon_body_bml_resource;
         boss5_gryphon_body_bml_resource = 0U;
     }
 }

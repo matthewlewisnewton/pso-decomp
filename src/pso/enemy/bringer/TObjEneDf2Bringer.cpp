@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -1028,7 +1029,6 @@ struct VObj_14_fa0828 : VBase_14_fa0828 {
 };
 extern "C" {
 void *__ct__17TObjEneDf2BringerFP7TObjectPv(void *arg0, void *arg1, void *arg2);
-void free_bin_model_request(void*, int);
 void __construct_array(void *, void *, void *, int, int);
 }
 void *destroy_buffer_pair(void *arg0, s16 arg1);
@@ -1195,7 +1195,7 @@ void TObjEneDf2Bringer::free_resources() {
         TObjEneDf2Bringer__trail_buffer = 0U;
     }
     if ((u32) TObjEneDf2Bringer__resource_bundle != 0U) {
-        free_bin_model_request((void*)TObjEneDf2Bringer__resource_bundle, 1);
+        delete (BmlResource *)TObjEneDf2Bringer__resource_bundle;
         TObjEneDf2Bringer__resource_bundle = 0U;
     }
 }

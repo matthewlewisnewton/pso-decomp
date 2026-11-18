@@ -14,7 +14,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/render/ModelDrawContext.h"
@@ -62,17 +61,14 @@ void *TOKeyJungleMain::create(void *set_data) {
 
 void TOKeyJungleMain::release_static_resource() {
     if (TOKeyJungleMain__static_model_resource != NULL) {
-        free_bin_model_request(TOKeyJungleMain__static_model_resource, 1);
+        delete TOKeyJungleMain__static_model_resource;
         TOKeyJungleMain__static_model_resource = NULL;
     }
 }
 
 void TOKeyJungleMain::load_static_resource() {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
+    BmlResource *resource = new BmlResource(5, &bm_obj_jungle_mkey_resource_descriptor, 0, 0, NULL);
 
-    if (resource != NULL) {
-        resource = load_resource_from_descriptor(resource, 5, &bm_obj_jungle_mkey_resource_descriptor, 0, 0, 0);
-    }
     TOKeyJungleMain__static_model_resource = resource;
 }
 

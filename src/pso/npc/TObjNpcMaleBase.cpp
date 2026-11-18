@@ -4,7 +4,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceLoader.h"
 #include "pso/system/task/TMainTask.h"
 
 #pragma readonly_strings on
@@ -28,17 +27,13 @@ void *TObjNpcMaleBase__create(void *set_data) {
 
 void TObjNpcMaleBase::free_static_data() {
     if (TObjNpcMaleBase__shared_bml_archive != NULL) {
-        free_bin_model_request(TObjNpcMaleBase__shared_bml_archive, 1);
+        delete TObjNpcMaleBase__shared_bml_archive;
         TObjNpcMaleBase__shared_bml_archive = NULL;
     }
 }
 
 void TObjNpcMaleBase::load_shared_resource() {
-    void *memory = ::operator new(0x440);
-    BmlResource *resource = (BmlResource *)memory;
-    if (memory != NULL) {
-        resource = load_resource_from_descriptor(memory, 1, &bm_n_ebm_i_body_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(1, &bm_n_ebm_i_body_resource_descriptor, 0, 0, NULL);
     TObjNpcMaleBase__shared_bml_archive = resource;
 }
 

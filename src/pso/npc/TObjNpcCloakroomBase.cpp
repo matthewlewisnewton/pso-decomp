@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/npc/TObjNpcCloakroomBase.h"
 #include "pso/npc/TObjNpcConnoisseur.h"
@@ -25,10 +26,8 @@ u32 TObjNpcCloakroomBase__static_instance;
 
 
 extern "C" {
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern s32 __vt__20TObjNpcCloakroomBase[];
 s32 play_sound_effect(s32, s32, s32, s32);
-void free_bin_model_request(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 
 void TObjNpcCloakroomBase::play_voice() {
@@ -58,19 +57,14 @@ void *TObjNpcCloakroomBase::create(void *arg0) {
 
 void TObjNpcCloakroomBase::destroy_static_instance() {
     if ((u32) TObjNpcCloakroomBase__static_instance != 0U) {
-        free_bin_model_request((void*)TObjNpcCloakroomBase__static_instance, 1);
+        delete (BmlResource *)TObjNpcCloakroomBase__static_instance;
         TObjNpcCloakroomBase__static_instance = 0U;
     }
 }
 
 void TObjNpcCloakroomBase::load_shared_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_n_trunk_i_body_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_n_trunk_i_body_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TObjNpcCloakroomBase__static_instance) = var_r0;
 }
 

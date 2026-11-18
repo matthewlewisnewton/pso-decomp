@@ -1295,10 +1295,7 @@ extern const Vec lbl_80473F6C;
 
 void TObjPlayer__sub_802E7EA0(void *arg0);
 
-u8 * free_bin_model_request(void *, s16);
 
-
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 
 void run_load_callback_table(void *, int);
 
@@ -1338,10 +1335,7 @@ int TBoss7Joint::get_state() {  return boss7_joint_state; }
 void TObjPlayer__sub_802EE574(void) {
     s32 i;
     u8 *p;
-    p = (u8 *)::operator new(0x440);
-    if (p != NULL) {
-        p = load_resource_from_descriptor(p, 1, &bm_boss7_de_rol_le_c_resource_descriptor, 0, 0, 0);
-    }
+    p = (u8 *)new BmlResource(1, &bm_boss7_de_rol_le_c_resource_descriptor, 0, 0, NULL);
     lbl_805D6918 = p;
     boss7_derolle_c_motion_id = 0;
     lbl_805D6920 = 0;
@@ -1388,7 +1382,7 @@ void *TBoss7DeRolLeC::create(void *arg0) {
 void TBoss7DeRolLeC::run_exit_callbacks() {
     TLobby::call_funcs_reverse((void*)lbl_804E3C5C, (unsigned int)0x30U);
     if ((void *) lbl_805D6918 != NULL) {
-        free_bin_model_request(lbl_805D6918, 1);
+        delete (BmlResource *)lbl_805D6918;
         lbl_805D6918 = NULL;
     }
 }

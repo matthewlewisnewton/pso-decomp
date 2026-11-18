@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -24,8 +25,6 @@
 #pragma readonly_strings on
 
 extern "C" {
-u8 *load_resource_from_descriptor(void *, s32, BmlResourceDescriptor *, s32, s32, s32);
-void free_bin_model_request(void *, int);
 AnimationMotion *get_bml_motion(u32, int);
 void get_camera_ctrl__9TObjEneDDFv(const Vec *, Vec *);
 }
@@ -217,19 +216,14 @@ void *TObjCamera::create(void *set_data) {
 
 void TObjCamera::free_resources() {
     if (model_resource != 0) {
-        free_bin_model_request((void *)model_resource, 1);
+        delete (BmlResource *)model_resource;
         model_resource = 0;
     }
 }
 
 void TObjCamera::load_resources() {
-    void *resource;
     u32 loaded;
     camera_slot_scan_index = 0;
-    resource = ::operator new(0x440);
-    loaded = (u32)resource;
-    if (loaded != 0) {
-        loaded = (u32)load_resource_from_descriptor(resource, 1, &fe_obj_cam_resource_descriptor, 0, 0, 0);
-    }
+    loaded = (u32)new BmlResource(1, &fe_obj_cam_resource_descriptor, 0, 0, NULL);
     model_resource = loaded;
 }

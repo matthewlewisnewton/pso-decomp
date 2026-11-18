@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -42,8 +43,6 @@ struct Off_800753DC { s16 x, y; };
 extern "C" {
 f32 xyz_distance(void *, void *);
 extern s32 TLobby__designated_client_id;
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-void free_bin_model_request(void *, int);
 // TCameraCtrl.h declares these short; the callers here take an int (no extsh).
 s32 get_screen_width__11TCameraCtrlFv();
 s32 get_screen_height__11TCameraCtrlFv();
@@ -105,14 +104,9 @@ void *TLobby::create_tombstone(void *arg0, void *arg1, void *arg2) {
 }
 
 void TObjTombstone::load_resources() {
-    s32 mem;
     s32 res;
     if (TObjTombstone__shared_resource_object == 0) {
-        mem = (int)::operator new(0x440);
-        res = mem;
-        if (res != 0) {
-            res = (long)load_resource_from_descriptor((void *)mem, 1, &tombstone_resource_descriptor, 0, 0, 0);
-        }
+        res = (long)new BmlResource(1, &tombstone_resource_descriptor, 0, 0, NULL);
         TObjTombstone__shared_resource_object = res;
         TObjTombstone::reset_matrix();
     }
@@ -120,7 +114,7 @@ void TObjTombstone::load_resources() {
 
 void TObjTombstone::destroy() {
     if (TObjTombstone__shared_resource_object != 0U) {
-        free_bin_model_request((void *)TObjTombstone__shared_resource_object, 1);
+        delete (BmlResource *)TObjTombstone__shared_resource_object;
         TObjTombstone__shared_resource_object = 0U;
         TObjTombstone::reset_matrix();
     }

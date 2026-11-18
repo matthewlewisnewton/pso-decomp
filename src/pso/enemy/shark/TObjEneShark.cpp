@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -556,14 +557,12 @@ s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1);
-u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u8 bm_ene_bm1_shark_a_bml_filename[];
 extern u32 TObjEneShark__resource_node;
 extern u32 TObjEneShark__resource_buf;
 extern u32 shark_resource_data;
 extern u32 shark_resource_buffer;
 void vfunc_99__13TUnk_80493450Fv(void);
-void free_bin_model_request(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 
 extern void *tl_04;
@@ -786,7 +785,7 @@ void TObjEneShark::free_resources() {
         TObjEneShark__attack_motion_3_trail = 0U;
     }
     if ((u32) shark_bml_resource != 0U) {
-        free_bin_model_request((void*)shark_bml_resource, 1);
+        delete (BmlResource *)shark_bml_resource;
         shark_bml_resource = 0U;
     }
 }
@@ -805,10 +804,7 @@ void TLobby::load_shark_resources() {
     if (TObjEneDD::check_v2_mode() != 0) {
         G_B8 = (u8 *)load_enemy_bml_resource_named((s32)bm_ene_bm1_shark_resource_descriptor, (s32)bm_ene_bm1_shark_a_bml_filename);
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = load_resource_from_descriptor(p, 1, bm_ene_bm1_shark_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(1, (BmlResourceDescriptor *)bm_ene_bm1_shark_resource_descriptor, 0, 0, NULL);
         G_B8 = (u8 *)p;
     }
     p = new SampledMotionPoints(2, 7.0f, 12.0f, 1.0f);

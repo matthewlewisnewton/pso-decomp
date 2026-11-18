@@ -405,9 +405,7 @@ s32 register_boss__6TLobbyFl(int);
 
 s32 get_bml_motion(u32, int);
 
-s32 free_bin_model_request(u32, s32);
 
-u32 load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 
 
 s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
@@ -819,6 +817,8 @@ Obj_800D3E54 *fn_800D3E54(Obj_800D3E54 *arg0, s16 arg1) {
 }
 
 #define AREA ((Area_800D3C04 *)gyaranzo_bml_resource)
+#pragma push
+#pragma opt_propagation off
 void TLobby::load_gyaranzo_resources() {
     s32 i;
     void *p;
@@ -826,10 +826,7 @@ void TLobby::load_gyaranzo_resources() {
     if (TObjEneDD::check_v2_mode() != 0) {
         gyaranzo_bml_resource = load_enemy_bml_resource_named(&bm_ene_gyaranzo_resource_descriptor, "bm_ene_gyaranzo_a.bml");
     } else {
-        p = ::operator new(0x440);
-        if (p != NULL) {
-            p = (void *)load_resource_from_descriptor(p, 5, &bm_ene_gyaranzo_resource_descriptor, 0, 0, 0);
-        }
+        p = new BmlResource(5, &bm_ene_gyaranzo_resource_descriptor, 0, 0, NULL);
         gyaranzo_bml_resource = (u32)p;
     }
     for (i = 0; i < 0x16; i++) {
@@ -859,11 +856,12 @@ void TLobby::load_gyaranzo_resources() {
         TLobby::spawn_npc_enemy(0x21, AREA->res->r48, AREA->res->texlist, &pos, 18.0f, 0.0f);
     }
 }
+#pragma pop
 
 #undef AREA
 void TObjEneGyaranzo::free_static_instances() {
     if (gyaranzo_bml_resource != 0U) {
-        free_bin_model_request(gyaranzo_bml_resource, 1);
+        delete (BmlResource *)gyaranzo_bml_resource;
         gyaranzo_bml_resource = 0U;
     }
     if ((*(struct VObj_800D3BA0_800D3B38 * *)&gyaranzo_breakup_model_obj) != 0) {

@@ -726,7 +726,6 @@ int TObjEneRecobox__sub_803201D0(void);
 
 void *TObjEneRecobox__create(void *arg0);
 
-void free_bin_model_request(void*, int);
 
 
 // inferred: field names follow MojaAnimationBinding (TObjEneMoja.h), the same 0x10 animation binding layout.
@@ -801,7 +800,7 @@ void *TObjEneRecobox__create(void *arg0) {
 void TObjEneRecobox::release_static_instance() {
     TObjEneRecon::release_static_instance();
     if ((u32) (*(u32 *)&TObjEneRecobox__static_instance) != 0U) {
-        free_bin_model_request((void*)(*(u32 *)&TObjEneRecobox__static_instance), 1);
+        delete (BmlResource *)(*(u32 *)&TObjEneRecobox__static_instance);
         (*(u32 *)&TObjEneRecobox__static_instance) = 0U;
     }
 }

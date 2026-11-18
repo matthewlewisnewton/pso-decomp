@@ -98,7 +98,6 @@ struct Mtx_8009503C { f32 m[3][4]; };
 extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
 u16 get_entity_id(TObjBase *);
-void free_bin_model_request(void*, int);
 u32 csnLookAt(Vec *, Vec *);
 void TObjEneRe7Berura__sub_80093888(TObjEneRe7Berura *actor, s32 arg1);
 
@@ -324,7 +323,7 @@ void TObjEneRe7Berura::destroy_children() {
         re7_berura_static_buffer = NULL;
     }
     if (TObjEneRe7Berura__shared_resource != NULL) {
-        free_bin_model_request(TObjEneRe7Berura__shared_resource, 1);
+        delete TObjEneRe7Berura__shared_resource;
         TObjEneRe7Berura__shared_resource = NULL;
     }
 }

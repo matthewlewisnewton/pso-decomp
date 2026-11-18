@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -126,7 +127,6 @@ void compose_motion_node_matrix(void *arg0);
 extern "C" {
 f64 atan2_float(f32, f32);
 s32 enemy_validate_retained_target(u8 *arg0);
-s32 free_bin_model_request(u32, s32);
 BOOL is_split_screen(void);
 }
 
@@ -306,7 +306,7 @@ void TObjEneMe3SinowZoa::free_resources() {
         TObjEneMe3SinowZoa__alternate_texture_list.textures = NULL;
     }
     if (TObjEneMe3SinowZoa__bml_resource != 0) {
-        free_bin_model_request((u32)TObjEneMe3SinowZoa__bml_resource, 1);
+        delete TObjEneMe3SinowZoa__bml_resource;
         TObjEneMe3SinowZoa__bml_resource = NULL;
     }
 }

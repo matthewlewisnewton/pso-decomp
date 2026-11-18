@@ -55,7 +55,8 @@
 #include "pso/render/GinjaMaterial.h"
 
 #include "pso/object/base/TObjChara.h"
-#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/object/warp/ForestWarpResources.h"
 #include "pso/system/ControllerInputState.h"
@@ -440,10 +441,7 @@ u32 get_forest_warp_textures() { return forest_warp_texture_list; }
 int TAdStorySelectGC::get_story_select() { return story_select_cursor; }
 
 void load_forest_warp_resources(void) {
-    BmlResource *resource = (BmlResource *)::operator new(0x440);
-    if (resource != 0) {
-        resource = load_resource_from_descriptor(resource, 5, &forest_warp_resource_descriptor, 0, 0, 0);
-    }
+    BmlResource *resource = new BmlResource(5, &forest_warp_resource_descriptor, 0, 0, NULL);
     forest_warp_bml_resource = resource;
     forest_warp_texture_list = (u32)load_gvm_texture_file((s32)"fs_obj_warp.gvm");
 }
@@ -455,7 +453,7 @@ void TObjWarpBase::free_globals() {
         TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
-    free_bin_model_request(forest_warp_bml_resource, 1);
+    delete forest_warp_bml_resource;
     forest_warp_bml_resource = 0;
 }
 

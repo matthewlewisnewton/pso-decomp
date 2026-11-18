@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/boss/dragon/ObjBoss1CommonJResource.h"
 #include "pso/boss/dragon/TBoss1DragonColli.h"
@@ -110,7 +111,6 @@ extern s32 __vt__19TBoss8DragonEffTail[];
 extern "C" {
 EffTail_8002C06C *TBoss8DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 arg2);
 void matrix_mult_vec(s32, void *, void *);
-s32 free_bin_model_request(s32, s32);
 s32 release_texture_list(void*);
 int fill_value_array(void*);
 
@@ -208,7 +208,7 @@ void TBoss8DragonEffTail::free_statics() {
         TAdSinglePlyChrSelectGC::safe_free(dragon_tail_gvm_texture_handle);
         dragon_tail_gvm_texture_handle = 0U;
     }
-    free_bin_model_request(boss8_eff_tail_bml_resource, 1);
+    delete (BmlResource *)boss8_eff_tail_bml_resource;
     boss8_eff_tail_bml_resource = 0;
 }
 

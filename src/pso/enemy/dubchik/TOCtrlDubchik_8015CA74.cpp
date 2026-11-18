@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/dubchik/TOCtrlDubchik_8015CA74.h"
@@ -48,14 +49,12 @@ static const char *TOCtrlDubchik__name = "TOCtrlDubchik";
 
 extern "C" {
 s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
-u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TOCtrlDubchik__shared_resource;
 s32 try_start_action__9TObjCharaFll(void *, void *, void *);
 s32 roll_physical_accuracy__9TObjCharaFPvlf(void *, void *, void *, f32);
 extern s32 registered_player_count;
 extern s32 lbl_805D5870;
 void dubchik_start_dying(u8 *arg0);
-void free_bin_model_request(void*, int);
 s32 select_melee_contact_body__9TObjCharaFPvf();
 
 void TOCtrlDubchik::apply_knockback_from_attacker(u8 *, f32) {  }
@@ -120,19 +119,14 @@ TOCtrlDubchik::~TOCtrlDubchik() {
 }
 
 void TOCtrlDubchik::load_shared_resource() {
-    s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)::operator new(0x440);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &bm_fs_obj_zombie_con_resource_descriptor, 0, 0, 0));
-    }
+    var_r0 = (long)new BmlResource(1, &bm_fs_obj_zombie_con_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TOCtrlDubchik__shared_resource) = var_r0;
 }
 
 void TOCtrlDubchik::destroy_instance() {
     if ((u32) TOCtrlDubchik__shared_resource != 0U) {
-        free_bin_model_request((void*)TOCtrlDubchik__shared_resource, 1);
+        delete (BmlResource *)TOCtrlDubchik__shared_resource;
         TOCtrlDubchik__shared_resource = 0U;
     }
 }

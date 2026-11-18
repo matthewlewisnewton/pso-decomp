@@ -23,6 +23,8 @@ struct BmlMotionEntry {
 
 struct BmlResourceDescriptor;
 struct BmlResource {
+    BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 callback, s32 context, void *arena);
+    ~BmlResource();
     void free_if_not_in_arena(void *ptr);
     void reset();
     void load_texture_sub(void *filename, s32 index);

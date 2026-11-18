@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -117,7 +118,6 @@ struct Key_8018FCD8 { u8 pad0[0x38]; u8 f38[0x28]; s32 f60; u8 pad64[0x28]; s32 
 
 extern "C" {
 void debug_draw_key_id__5TOKeyFv();
-s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 }
 u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
@@ -129,7 +129,6 @@ extern u8 chunk_material_color_half_alpha_f32[];
 extern s32 actor_frame_tick;
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
-void free_bin_model_request(void*, int);
 int is_not_split_screen__13TRaderMapCoreFv(void *);
 
 void TObjDoorKey__sub_8018FAEC(u16 id, u16) {
@@ -304,7 +303,7 @@ void *TObjDoorKey__create(void *arg0) {
 
 void TObjDoorKey::free_key() {
     if ((u32) door_key_resource_handle != 0U) {
-        free_bin_model_request((void*)door_key_resource_handle, 1);
+        delete (BmlResource *)door_key_resource_handle;
         door_key_resource_handle = 0U;
     }
     TObjPlayer::free_if_valid(TObjDoorKey__texture_handle);
@@ -313,10 +312,7 @@ void TObjDoorKey::free_key() {
 }
 
 void TObjDoorKey::load_resources() {
-    s32 r = (int)::operator new(0x440);
-    if (r != 0) {
-        r = load_resource_from_descriptor(r, 5, &TObjDoorKey__resource_descriptor, 0, 0, 0);
-    }
+    s32 r = (int)new BmlResource(5, &TObjDoorKey__resource_descriptor, 0, 0, NULL);
     (*(s32 *)&door_key_resource_handle) = r;
     TObjDoorKey__texture_handle = (s32)load_gvm_texture_file((s32)"fe_obj_switch.gvm");
     TObjDoorKey__ginja_model_table[0] = (s32)get_bml_model((BmlResource *)(*(s32 *)&door_key_resource_handle), 1);
