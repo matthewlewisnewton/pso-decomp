@@ -2098,7 +2098,10 @@ pso/npc/TObjNpcSoutokufu.cpp
 pso/object/CityDoors.cpp
 pso/object/CitySeason.cpp
 pso/object/CityVerticalModel.cpp
+pso/object/LobbyAnimalResources.cpp
+pso/object/LobbyAnimalTextureNames.cpp
 pso/object/LobbyPigeonPath.cpp
+pso/object/LobbyPigeonProfiles.cpp
 pso/object/LobbyPigeonTheme.cpp
 pso/object/ObjectFactoryTables.cpp
 pso/object/TLazerFenceSw.cpp

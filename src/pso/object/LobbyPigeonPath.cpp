@@ -1,3 +1,5 @@
+#include "pso/object/LobbyPigeonProfiles.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/BmlResource.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/map/CsnGroundQuery.h"
@@ -25,7 +27,6 @@
 #include "pso/object/TUnk_804E0898.h"
 struct Vec_802C0CAC { f32 x, y, z; };
 
-struct Entry_802C0CAC { s32 a; union { s32 b; f32 pa; }; union { s32 c; f32 pb; }; f32 d; s32 e; };
 
 struct Obj_802C0CAC {
     u8 pad0[0xA8];
@@ -63,7 +64,7 @@ void direction_to_rotation_xz(u8 *arg0, s32 *arg1, s32 *arg2);
 s32 sample_clamped_path_position(void *arg0, s32 arg1, void *arg2, s32 arg3, f32 farg0);
 extern "C" {
 f32 subtract_vector(Vec_802C0CAC *, Vec_802C0CAC *);
-extern Entry_802C0CAC lobby_pigeon_path_profiles[];
+extern const Entry_802C0CAC lobby_pigeon_path_profiles[];
 extern const f64 lbl_80471960[];
 
 s32 approach_angle_limited(s32, s32, s32);
@@ -241,7 +242,6 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 
 struct Vec_802C1660 { f32 x, y, z; };
 
-struct Entry_802C1660 { s32 a; f32 b; f32 c; f32 d; s32 e; };
 
 struct Obj_802C1660 {
     u8 pad0[0x98];
@@ -292,7 +292,6 @@ struct RecoveredGlobal_802C1B9C_lbl_804E081C {
 
 struct Vec_802C1E34 { f32 x, y, z; };
 
-struct Entry_802C1E34 { s32 a; f32 b; f32 c; f32 d; s32 e; };
 
 struct Obj_802C1E34 {
     u8 pad0[0x98];
@@ -345,7 +344,6 @@ typedef struct RecoveredGlobal_802C20E8_lbl_804E0910 RecoveredGlobal_802C20E8_lb
 
 struct Vec_802C2548 { f32 x, y, z; };
 
-struct Entry_802C2548 { s32 a; f32 b; f32 c; f32 d; s32 e; s32 f; };
 
 struct Ent_802C1FD0 { s32 a; f32 b; f32 c; s32 d; s32 e; };
 struct Sub_802C1FD0 { s32 a; u32 n; };
@@ -405,7 +403,6 @@ typedef struct RecoveredGlobal_802C27FC_lbl_804E094C RecoveredGlobal_802C27FC_lb
 
 struct Vec_802C2C48 { f32 x, y, z; };
 
-struct Entry_802C2C48 { s32 a; f32 b; f32 c; f32 d; s32 e; };
 
 struct Sub_802C2DEC { s32 a; u32 n; };
 struct Pl_802C2DEC {
@@ -463,7 +460,6 @@ typedef struct RecoveredGlobal_802C2F04_lbl_804717D4 RecoveredGlobal_802C2F04_lb
 
 typedef struct RecoveredGlobal_802C2F04_lbl_804E0988 RecoveredGlobal_802C2F04_lbl_804E0988;
 
-struct Vec_802C0F3C { f32 x, y, z; };
 
 struct Mtx_802C0F3C { f32 m[3][4]; };
 
@@ -487,7 +483,6 @@ struct Obj_802C0F3C {
     s32 dc;
 };
 
-typedef struct { f32 x, y, z; } Vec_802C17FC;
 
 typedef struct { f32 m[3][4]; } Mtx_802C17FC;
 
@@ -520,22 +515,22 @@ void set_matrix_identity(u8 *arg0);
 
 s32 release_texture_list(void*);
 
-extern Entry_802C2C48 seabed_dolphin_path_profiles[];
-extern NpcAnimationBinding seabed_dolphin_anim_binding;
-extern Entry_802C2548 jungle_ebi_path_profiles[];
-extern Entry_802C1E34 lobby_pigeon_path_parameters[];
-extern Entry_802C1660 jungle_seagull_path_profiles[];
+extern const Entry_802C2C48 seabed_dolphin_path_profiles[];
+extern const NpcAnimationBinding seabed_dolphin_anim_binding;
+extern const Entry_802C2548 jungle_ebi_path_profiles[];
+extern const Entry_802C1E34 lobby_pigeon_path_parameters[];
+extern const Entry_802C1660 jungle_seagull_path_profiles[];
 extern Vec_802C17FC lbl_80471908;
-extern Ent_802C0F3C lobby_pigeon_path_profiles[];
-extern Vec_802C0F3C lobby_pigeon_zero_vec;
-extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_80471978;
-extern RecoveredGlobal_802C1B9C_lbl_80471990 lbl_80471990;
-extern RecoveredGlobal_8019A9B8_lbl_80446184 lbl_804719A4;
-extern u8 lbl_804719B8[];
-extern u8 bm_obj_seabed_dolphin_resource_descriptor[];
-extern RecoveredGlobal_8019A9B8_lbl_804B8F60 bm_obj_jungle_ebi_resource_descriptor;
-extern RecoveredGlobal_802C1B9C_lbl_804E081C bm_obj_jungle_bird_resource_descriptor;
-extern RecoveredGlobal_8019A9B8_lbl_804B8F60 bm_obj_jungle_kamome_resource_descriptor;
+extern const Ent_802C0F3C lobby_pigeon_path_profiles[];
+extern const Vec_802C0F3C lobby_pigeon_zero_vec;
+extern const char lbl_80471978[];
+extern const char lbl_80471990[];
+extern const char lbl_804719A4[];
+extern const char lbl_804719B8[];
+extern BmlResourceDescriptor bm_obj_seabed_dolphin_resource_descriptor;
+extern BmlResourceDescriptor bm_obj_jungle_ebi_resource_descriptor;
+extern BmlResourceDescriptor bm_obj_jungle_bird_resource_descriptor;
+extern BmlResourceDescriptor bm_obj_jungle_kamome_resource_descriptor;
 extern s32 jungle_seagull_vtable[];
 extern s32 lbl_804E0910[];
 extern s32 lbl_804E094C[];
@@ -692,10 +687,10 @@ void TObjPlayer::destroy_instance() {
 void TObjPlayer::load_kamome_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_jungle_kamome_resource_descriptor.value), 0, 0, (void *)(0));
+    temp_r3 = (int)new BmlResource(5, &bm_obj_jungle_kamome_resource_descriptor, 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(s32 *)&lobby_kamome_model_resource) = var_r0;
-    (*(u8 * *)&lobby_kamome_texture_gvm_handle) = load_gvm_texture_file((s32) &lbl_80471978.value);
+    (*(u8 * *)&lobby_kamome_texture_gvm_handle) = load_gvm_texture_file((s32) lbl_80471978);
 }
 
 s32 TUnk_804E08D4::update_path_steering() {
@@ -887,10 +882,10 @@ void TObjPlayer::free_statics() {
 void TObjPlayer::load_jungle_bird_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_jungle_bird_resource_descriptor.value), 0, 0, (void *)(0));
+    temp_r3 = (int)new BmlResource(5, &bm_obj_jungle_bird_resource_descriptor, 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(s32 *)&jungle_bird_bml_resource) = var_r0;
-    (*(u8 * *)&lobby_pigeon_texture_gvm) = load_gvm_texture_file((s32) &lbl_80471990.value);
+    (*(u8 * *)&lobby_pigeon_texture_gvm) = load_gvm_texture_file((s32) lbl_80471990);
 }
 
 s32 TUnk_804E0910::sub_802C1BFC() {
@@ -1073,10 +1068,10 @@ void TObjPlayer::free_chr_select() {
 void TObjPlayer::load_jungle_ebi_resources() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&bm_obj_jungle_ebi_resource_descriptor.value), 0, 0, (void *)(0));
+    temp_r3 = (int)new BmlResource(5, &bm_obj_jungle_ebi_resource_descriptor, 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(s32 *)&jungle_ebi_model_resource) = var_r0;
-    (*(u8 * *)&jungle_ebi_texture_gvm_handle) = load_gvm_texture_file((s32) &lbl_804719A4.value);
+    (*(u8 * *)&jungle_ebi_texture_gvm_handle) = load_gvm_texture_file((s32) lbl_804719A4);
 }
 
 struct Pl_802C26E4;
@@ -1085,7 +1080,7 @@ struct Vec_802C1660;
 s32 TUnk_804E094C::update_path_follow_rotation(void *, f32) {
     s32 r;
     Obj_802C22A4 *self = (Obj_802C22A4 *)this;
-    Entry_802C2548 *e;
+    const Entry_802C2548 *e;
     s32 old;
     s32 diff;
     Vec_802C22A4 a;
@@ -1281,9 +1276,9 @@ void TObjPlayer__sub_802C2900(void) {
 }
 
 void TObjPlayer::load_seabed_dolphin() {
-    BmlResource *resource = new BmlResource(5, (BmlResourceDescriptor *)bm_obj_seabed_dolphin_resource_descriptor, 0, 0, NULL);
+    BmlResource *resource = new BmlResource(5, &bm_obj_seabed_dolphin_resource_descriptor, 0, 0, NULL);
     seabed_dolphin_bml_archive = (u32)resource;
-    seabed_dolphin_texture_handle = ((s32 (*)(void *))load_gvm_texture_file)(lbl_804719B8);
+    seabed_dolphin_texture_handle = (s32)load_gvm_texture_file((s32)lbl_804719B8);
     NpcAnimationBinding animation = seabed_dolphin_anim_binding;
     animation.motions = ((BmlResource *)seabed_dolphin_bml_archive)->motions;
     NpcModelRegistry::register_animated_chunk(0x40,
@@ -1397,7 +1392,7 @@ void TUnk_804E0988::vfunc_14() {
 
 void TUnk_804E0988::vfunc_13(s32) {
     Pl_802C2DEC *arg0 = (Pl_802C2DEC *)this;
-    Entry_802C2C48 *e = seabed_dolphin_path_profiles;
+    const Entry_802C2C48 *e = seabed_dolphin_path_profiles;
     f32 ox;
     e += arg0->idx;
     ox = arg0->x;
@@ -1541,7 +1536,7 @@ struct RecoveredGlobal_802C320C___vt__11TObjPathObj {
 extern "C" {
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 __vt__11TObjPathObj[];
-extern s32 lbl_805D3EC0;
+extern const char *lbl_805D3EC0;
 void TObjPathObj::render() {
     u8 *arg0 = (u8 *)this;
     if ((TMainTask::get_render_pass() != 1) && (((VObj_18 *)(arg0))->m8(*(f32 *)&this->unk_90, this->m_94) != 0)) {
@@ -1569,7 +1564,7 @@ typedef char RecoveredGlobal_802C320C___vt__11TObjPathObj_size[sizeof(RecoveredG
 u8 *TObjPathObj__ct(u8 *path_obj, s32 parent, s32 arg2) {
     __ct__8TObjBaseFP7TObject((void *) (path_obj), (void *) (parent));
     *(s32 **)((s8 *)path_obj + 0x18) = &(*(RecoveredGlobal_802C320C___vt__11TObjPathObj *)&__vt__11TObjPathObj).value;
-    *(s32 *)((s8 *)path_obj + 0) = (s32) lbl_805D3EC0;
+    ((TObjPathObj *)path_obj)->m_name = lbl_805D3EC0;
     ((TObjPathObj *)(path_obj))->apply_object_set_data((void *)arg2);
     *(f32 *)((s8 *)path_obj + 0x90) = (f32) (5e+02f);
     ((TObjPathObj *)path_obj)->m_94 = (f32) (1.5e+02f);

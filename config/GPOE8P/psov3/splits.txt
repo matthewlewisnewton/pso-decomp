@@ -10453,6 +10453,11 @@ pso/unk/text_802BFBF4.cpp:
 	.ctors      start:0x80433FCC end:0x80433FD0
 	.data       start:0x804DFC50 end:0x804E07A0
 
+pso/object/LobbyAnimalResources.cpp:
+	.rodata     start:0x80471540 end:0x80471738
+	.data       start:0x804E07A0 end:0x804E0858
+	.sbss       start:0x805D6798 end:0x805D67C0
+
 pso/unk/text_802C095C.cpp:
 	.text       start:0x802C095C end:0x802C09A8
 
@@ -10464,6 +10469,11 @@ pso/unk/text_802C09E0.cpp:
 	.rodata     start:0x80471738 end:0x804717C8
 	.data       start:0x804E0858 end:0x804E0888
 
+pso/object/LobbyPigeonProfiles.cpp:
+	.rodata     start:0x804717C8 end:0x80471968
+	.data       start:0x804E0888 end:0x804E0898
+	.sdata      start:0x805D3EC0 end:0x805D3EC4
+
 pso/object/LobbyPigeonTheme.cpp:
 	.text       start:0x802C0A38 end:0x802C0A74
 
@@ -10471,6 +10481,9 @@ pso/object/LobbyPigeonPath.cpp:
 	.text       start:0x802C0A74 end:0x802C3284
 	.rodata     start:0x80471968 end:0x80471978
 	.sdata2     start:0x805DE4F8 end:0x805DE528
+
+pso/object/LobbyAnimalTextureNames.cpp:
+	.rodata     start:0x80471978 end:0x804719D0
 
 pso/ui/TAdStorySelectGC_802C3284.cpp:
 	.text       start:0x802C3284 end:0x802C367C

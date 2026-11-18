@@ -5024,9 +5024,15 @@ force_active:
   - bm_obj_geenest_motion_names
   - bm_obj_hako01_model_names
   - bm_obj_hako01_motion_names
+  - bm_obj_jungle_bird_model_names
+  - bm_obj_jungle_bird_motion_names
   - bm_obj_jungle_biwamushi_model_names
   - bm_obj_jungle_biwamushi_motion_names
   - bm_obj_jungle_biwamushi_resource_descriptor
+  - bm_obj_jungle_ebi_model_names
+  - bm_obj_jungle_ebi_motion_names
+  - bm_obj_jungle_kamome_model_names
+  - bm_obj_jungle_kamome_motion_names
   - bm_obj_jungle_nokogiri_motion_names
   - bm_obj_jungle_nokogiri_resource_descriptor
   - bm_obj_labo_infocapsule_model_names
@@ -5068,6 +5074,8 @@ force_active:
   - bm_obj_meka_fish_1_resource_descriptor
   - bm_obj_seabed_con_motion_names
   - bm_obj_seabed_con_rare_motion_names
+  - bm_obj_seabed_dolphin_model_names
+  - bm_obj_seabed_dolphin_motion_names
   - bm_obj_seabed_suiso_2_model_names
   - bm_obj_seabed_suiso_2_motion_names
   - bm_obj_seabed_suiso_model_names
@@ -17740,6 +17748,7 @@ force_active:
   - screen_meshes__19TOComputerMachine01
   - scroll_kind2_uvs__18TObjSeabedSuiso_CHFv
   - scroll_up_line__14TWindowMessageFPUc
+  - seabed_dolphin_actions
   - seabed_rare_console_texture_filename
   - seabed_suiso_brakable_collision_bodies
   - seabed_suiso_break_sets
