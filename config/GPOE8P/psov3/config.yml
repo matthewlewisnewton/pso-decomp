@@ -4951,9 +4951,36 @@ force_active:
   - bm_obj_boss8_piller_model_names
   - bm_obj_boss8_piller_motion_names
   - bm_obj_boss8_piller_resource_descriptor
+  - bm_obj_city_21_model_names
+  - bm_obj_city_21_motion_names
+  - bm_obj_city_21_resource_descriptor
+  - bm_obj_city_board_2001_model_names
+  - bm_obj_city_board_2001_motion_names
+  - bm_obj_city_board_2001_resource_descriptor
+  - bm_obj_city_board_normal_model_names
+  - bm_obj_city_board_normal_motion_names
+  - bm_obj_city_board_normal_resource_descriptor
+  - bm_obj_city_board_xmas_model_names
+  - bm_obj_city_board_xmas_motion_names
+  - bm_obj_city_board_xmas_resource_descriptor
   - bm_obj_city_common_model_names
   - bm_obj_city_common_motion_names
   - bm_obj_city_common_resource_descriptor
+  - bm_obj_city_easter_model_names
+  - bm_obj_city_easter_motion_names
+  - bm_obj_city_easter_resource_descriptor
+  - bm_obj_city_pump_model_names
+  - bm_obj_city_pump_motion_names
+  - bm_obj_city_pump_resource_descriptor
+  - bm_obj_city_sonic_model_names
+  - bm_obj_city_sonic_motion_names
+  - bm_obj_city_sonic_resource_descriptor
+  - bm_obj_city_valen_model_names
+  - bm_obj_city_valen_motion_names
+  - bm_obj_city_valen_resource_descriptor
+  - bm_obj_city_xmas_model_names
+  - bm_obj_city_xmas_motion_names
+  - bm_obj_city_xmas_resource_descriptor
   - bm_obj_door_labo_model_names
   - bm_obj_door_labo_motion_names
   - bm_obj_geenest_model_names
@@ -5722,6 +5749,7 @@ force_active:
   - city_door_tick_opening__13TUnk_804B5BA8Fv
   - city_door_tick_opening__17TObjCityDoor_WarpFv
   - city_door_warp_params
+  - city_season_resource_descriptors
   - city_vertical_model_max_y_offset
   - city_vertical_model_min_y_offset
   - city_vertical_model_vtable
