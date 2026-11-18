@@ -77,3 +77,39 @@ and a complete host SDK remain port work. Fault delivery, cache behavior and
 concurrent execution belong to that backend; these handlers specify completed
 instruction behavior. See [contract and original-code differential tests](
 ../docs/evidence/loader-restore-retention.md#portable-integration-contract).
+
+## Socket send queue and selective acknowledgments
+
+The port build compiles the three bounded SACK, ACK and send-gather routines directly
+from `src/pso/network/SocketProtocolRuntime.cpp`. To use them in another target,
+compile that file with `-DPSO_SOCKET_QUEUE_PORT -Iports/include -iquote include`.
+The backend supplies the operations declared in `pso/port/SocketQueue.h`, the TCP
+state and the completion dispatcher. The socket records use host byte order.
+Buffers and callbacks in stored game records use four-byte identifiers.
+The host backend resolves them and copies each 16-byte ring entry into a typed
+local request. It can keep native pointers for that request and the TCB array.
+This interface covers the three routines. The rest of the socket stack still
+needs platform implementations.
+
+To build and run the Linux ARM64 fixture from the repo root with GCC and QEMU:
+
+```sh
+aarch64-linux-gnu-g++ -std=c++98 -O2 -static -DPSO_SOCKET_QUEUE_PORT \
+    -Iports/include -iquote include ports/tests/socket_queue.cpp \
+    src/pso/network/SocketProtocolRuntime.cpp -o /tmp/pso-socket-queue-arm64
+qemu-aarch64 /tmp/pso-socket-queue-arm64
+```
+
+The standalone run checks the entire connection record in 200,000 SACK cases
+and exercises a completion callback that moves the queue head. To compare
+the same executable with the original game, install Unicorn 2.1.4 for Python
+and provide a local dump of the US Rev 2 executable:
+
+```sh
+python3 tools/probe_socket_queue_port.py --dol orig/GPOE8P/files/PsoV3.dol \
+    -- qemu-aarch64 /tmp/pso-socket-queue-arm64
+```
+
+The differential runner exercises the queued-request and FIFO modes. It compares
+return values, packets, connection records, request rings, data buffers and
+completion events across architectures.

@@ -9,6 +9,17 @@
 
 typedef struct TcpTcb TcpTcb;
 
+/* The port's socket backend resolves the four-byte callback identifiers in game records. */
+#ifdef PSO_SOCKET_QUEUE_PORT
+typedef u32 TcpOperationCallback;
+typedef u32 TcpAcceptCallback;
+typedef u32 TcpSendCallback;
+#else
+typedef void (*TcpOperationCallback)(s16, s16);
+typedef void (*TcpAcceptCallback)(s16, s16, s32, s32);
+typedef void (*TcpSendCallback)(s16, s16, s32);
+#endif
+
 typedef struct TcpSackSeg {
     s32 start;
     s32 end;
@@ -87,8 +98,8 @@ struct TcpTcb {
     s16 reasm_n; /* index of the last range, -1 when none */
     s16 last_reasm;
     TcpReasmRange reasm[32];
-    void (*send_done)(s16, s16);
-    void (*recv_done)(s16, s16);
+    TcpOperationCallback send_done;
+    TcpOperationCallback recv_done;
     u8 f204_b7 : 1;
     u8 f204_b6 : 1;
     u8 f204_rest : 6;
@@ -128,7 +139,7 @@ struct TcpTcb {
     TcpWait waits[4];
     s16 f2C4;
     s16 pending;
-    void (*accept_cb)(s16, s16, s32, s32); /* callback of the waits[3] operation */
+    TcpAcceptCallback accept_cb; /* callback of the waits[3] operation */
     s32 accept_ctx; /* handed to the accepted TCB's event_ctx */
     s32 event_ctx; /* passed to NetDispatchSocketEvent */
     s16 keepidle; /* keepalive time set by option 8; 0 uses tcp_protocol_state.keepidle */
@@ -189,6 +200,11 @@ typedef struct TcpState {
     u8 fA2;
     u8 padA3[5];
 } TcpState;
+// The host's TCB table pointer is native. Every field after it has the GameCube layout.
+typedef char TcpState_count_check[offsetof(TcpState, count) == sizeof(TcpTcb *) ? 1 : -1];
+typedef char TcpState_tail_check[offsetof(TcpState, padA3) - offsetof(TcpState, count) == 0x9F ? 1 : -1];
+#ifndef PSO_SOCKET_QUEUE_PORT
 typedef char TcpState_size_check[sizeof(TcpState) == 0xA8 ? 1 : -1];
+#endif
 
 #endif

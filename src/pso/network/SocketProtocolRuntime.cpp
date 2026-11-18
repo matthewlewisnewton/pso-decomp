@@ -1,4 +1,7 @@
 // TCP queue recovery adapted from zeroz41/pso-decomp (MIT); see third_party/README.md.
+#ifdef PSO_SOCKET_QUEUE_PORT
+#include "pso/port/SocketQueue.h"
+#else
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
 #include "pso/network/TcpReceiveQueue.h"
@@ -571,6 +574,8 @@ void expire_timeout_entries__6TLobbyFv(TcpTcb *o) {
     }
 }
 
+#endif
+
 void TLobby__sub_8041FED4(TcpTcb *tcb) {
     u32 start;
     u32 end;
@@ -603,6 +608,18 @@ void TLobby__sub_8041FED4(TcpTcb *tcb) {
         }
     }
 }
+
+#ifndef PSO_SOCKET_QUEUE_PORT
+class TcpRequestBuffer {
+public:
+    void initialize() { ref.kind = 1; }
+    void bind(TcpSendRequest &request) { set_value_and_enable__6TLobbyFl(&ref, (s32)&request); }
+    void read(NetBufferRef &source) { TLobby__sub_80406FD8(&ref, &source, sizeof(TcpSendRequest)); }
+    void write(NetBufferRef &dest) { TLobby__sub_80406FD8(&dest, &ref, sizeof(TcpSendRequest)); }
+private:
+    NetBufferRef ref;
+};
+#endif
 
 #pragma push
 #pragma opt_lifetimes off
@@ -640,17 +657,17 @@ s32 TLobby__sub_8041FFF8(u32 acknowledged, TcpTcb *control) {
 
     handle = control - tcp_protocol_state.tcbs;
     if ((u32)control->f204_b7 == 1) {
-        NetBufferRef request_ref;
+        TcpRequestBuffer request_ref;
         cursor.kind = 1;
         remaining = acknowledged;
-        request_ref.kind = 1;
+        request_ref.initialize();
         if (acknowledged != 0 && control->f20 != 0) {
-            set_value_and_enable__6TLobbyFl(&request_ref, (s32)&request);
+            request_ref.bind(request);
             NetMemcpy(&cursor, &control->snd_buf, sizeof(cursor));
             if (request_head_index(control) != 0) {
                 advance_to_request(&cursor, request_head_index(control));
             }
-            TLobby__sub_80406FD8(&request_ref, &cursor, sizeof(request));
+            request_ref.read(cursor);
             while (request.length <= remaining && control->f20 != 0) {
                 control->f20--;
                 remaining -= request.length;
@@ -666,14 +683,14 @@ s32 TLobby__sub_8041FFF8(u32 acknowledged, TcpTcb *control) {
                     control->f204_b7 = 0;
                 }
                 complete_and_seek_next_request(&cursor, control, handle, &request);
-                TLobby__sub_80406FD8(&request_ref, &cursor, sizeof(request));
+                request_ref.read(cursor);
             }
             if (remaining != 0 && control->f20 != 0) {
                 control->req.total_bytes -= remaining;
                 length = remaining;
                 request.length -= length;
                 request.offset += length;
-                TLobby__sub_80406FD8(&cursor, &request_ref, sizeof(request));
+                request_ref.write(cursor);
             }
         }
         return 0;
@@ -760,7 +777,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
     s32 right_index;
     s32 partial_fragment;
     NetPacketFragment *output_fragment;
-    NetBufferRef request_ref;
+    TcpRequestBuffer request_ref;
     s32 output_count;
     s32 fragment_length;
     s32 request_index;
@@ -773,16 +790,16 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
     if (control->f204_b7 == 1) {
         ring_cursor.kind = 1;
         buffer_cursor.kind = 1;
-        request_ref.kind = 1;
+        request_ref.initialize();
         remaining = length;
         if (length != 0 && control->f20 != 0) {
-            set_value_and_enable__6TLobbyFl(&request_ref, (s32)&request);
+            request_ref.bind(request);
             ring_index = control->f24;
             NetMemcpy(&ring_cursor, &control->snd_buf, sizeof(NetBufferRef));
             if (ring_index != 0) {
                 TLobby__sub_80406EB8(&ring_cursor, ring_index * sizeof(TcpSendRequest));
             }
-            TLobby__sub_80406FD8(&request_ref, &ring_cursor, sizeof(request));
+            request_ref.read(ring_cursor);
             if (offset != 0) {
                 while ((u32)request.length <= offset) {
                     offset -= request.length;
@@ -795,7 +812,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
                     if (ring_index != 0) {
                         TLobby__sub_80406EB8(&ring_cursor, ring_index * sizeof(TcpSendRequest));
                     }
-                    TLobby__sub_80406FD8(&request_ref, &ring_cursor, sizeof(request));
+                    request_ref.read(ring_cursor);
                 }
                 NetMemcpy(&buffer_cursor, &request.buffer, sizeof(NetBufferRef));
                 request.length -= (s16)offset;
@@ -828,7 +845,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
                     if (ring_index != 0) {
                         TLobby__sub_80406EB8(&ring_cursor, ring_index * sizeof(TcpSendRequest));
                     }
-                    TLobby__sub_80406FD8(&request_ref, &ring_cursor, sizeof(request));
+                    request_ref.read(ring_cursor);
                     NetMemcpy(&buffer_cursor, &request.buffer, sizeof(NetBufferRef));
                 }
             }
@@ -998,6 +1015,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
 #pragma pop
 
 
+#ifndef PSO_SOCKET_QUEUE_PORT
 s32 TLobby__sub_80420BD0(void *arg0, S_80420BD0 *s, s32 arg2) {
     u32 v;
     if (s->flag == 1) {
@@ -1295,3 +1313,4 @@ u16 NetUdpAllocateEphemeralPort() {
 #pragma pop
 
 }
+#endif

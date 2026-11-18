@@ -3,9 +3,6 @@
 
 #include "pso/network/TcpProtocolState.h"
 
-typedef void (*TcpOperationCallback)(s16 status, s16 handle);
-typedef void (*TcpSendCallback)(s16 status, s16 handle, s32 value);
-
 struct TcpSendRequest {
     NetBufferRef buffer;
     s16 length;
