@@ -111,9 +111,9 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 // Per-variant parameter tables fetched from TLobby (TObjEneMe3Stelth names the same four
 // base/attack/resistance/behavior_params_by_variant).
 Vec TObjEneMe3ShinowaMirage__data_80500FC0;
-__declspec(section ".data") s32 lbl_80500FCC[2];
-__declspec(section ".data") s32 lbl_80500FD4[2];
-__declspec(section ".data") s32 lbl_80500FDC[2];
+__declspec(section ".data") s32 shinowa_base_stats[2];
+__declspec(section ".data") s32 shinowa_attack_stats[2];
+__declspec(section ".data") s32 shinowa_resistance_stats[2];
 __declspec(section ".data") TObjEneMe3ShinowaParams *TObjEneMe3ShinowaMirage__mirage_info_table[2];
 
 // Copy of the model's texture list (the mirage swaps the first three texture addresses).
@@ -206,13 +206,13 @@ void load_shinowa_mirage_resources() {
         lbl_80500FEC.textures[i + 3].texaddr = lbl_80500FEC.textures[i].texaddr;
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FCC[j] = (s32)TLobby::register_boss(shinowa_mirage_base_param_ids[j]);
+        shinowa_base_stats[j] = (s32)TLobby::register_boss(shinowa_mirage_base_param_ids[j]);
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FD4[j] = (s32)TLobby::dispatch_shared_handler_b(shinowa_mirage_attack_param_ids[j]);
+        shinowa_attack_stats[j] = (s32)TLobby::dispatch_shared_handler_b(shinowa_mirage_attack_param_ids[j]);
     }
     for (s32 j = 0; j < 2; j++) {
-        lbl_80500FDC[j] = (s32)TLobby::register_object(shinowa_mirage_resistance_param_ids[j]);
+        shinowa_resistance_stats[j] = (s32)TLobby::register_object(shinowa_mirage_resistance_param_ids[j]);
     }
     for (s32 j = 0; j < 2; j++) {
         TObjEneMe3ShinowaMirage__mirage_info_table[j] = (TObjEneMe3ShinowaParams *)TLobby::dispatch_shared_handler_a(shinowa_mirage_behavior_param_ids[j]);

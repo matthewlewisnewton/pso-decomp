@@ -490,7 +490,7 @@ s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
 void beast_update_approach__16TObjEneMerillLiaFv(u8 *arg0);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
-void fn_800D88E4(void *pos);
+void play_floor_area_sound_effect(void *pos);
 extern s32 actor_frame_tick;
 void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *arg0);
 f32 enemy_backstep_from_point(void *, void *, f32);
@@ -602,29 +602,29 @@ extern "C" s32 update_defense_stat_status__9TObjCharaFv(u8 *player);
 extern "C" void update_flag30_timer__9TObjCharaFv();
 extern "C" void update_object_view_visibility__8TObjBaseFff();
 extern "C" void update_poison_status__9TObjCharaFv();
-const char *lbl_804944D0[3] = {
+const char *merill_lia_model_names[3] = {
     "re8_b_beast_wola_body.nj", "re8_b_srbeast_wola_body.nj", 0,
 };
-const char *lbl_804944DC[13] = {
+const char *merill_lia_motion_names[13] = {
     "appear_re8_b_beast_wola_body.njm", "atk_a_re8_b_beast_wola_body.njm", "atk_b_re8_b_beast_wola_body.njm", "damage_re8_b_beast_wola_body.njm",
     "dead_re8_b_beast_wola_body.njm", "stand_re8_b_beast_wola_body.njm", "wait_re8_b_beast_wola_body.njm", "wakeup_re8_b_beast_wola_body.njm",
     "walk_re8_b_beast_wola_body.njm", "run_bm1_s_wala_body.njm", "kahun_re8_b_beast_wola_body.njm", "umari_re8_b_beast_wola_body.njm",
     0,
 };
 BmlResourceDescriptor bm_ene_re8_merill_lia_resource_descriptor = {
-    "bm_ene_re8_merill_lia.bml", lbl_804944D0, lbl_804944DC, 2, 12,
+    "bm_ene_re8_merill_lia.bml", merill_lia_model_names, merill_lia_motion_names, 2, 12,
 };
-const char *lbl_80494520[3] = {
+const char *merill_lia_low_model_names[3] = {
     "lo_re8_b_beast_wola_body.nj", "lo_re8_b_srbeast_wola_body.nj", 0,
 };
-const char *lbl_8049452C[13] = {
+const char *merill_lia_low_motion_names[13] = {
     "appear_re8_b_beast_wola_body.njm", "atk_a_re8_b_beast_wola_body.njm", "atk_b_re8_b_beast_wola_body.njm", "damage_re8_b_beast_wola_body.njm",
     "dead_re8_b_beast_wola_body.njm", "stand_re8_b_beast_wola_body.njm", "wait_re8_b_beast_wola_body.njm", "wakeup_re8_b_beast_wola_body.njm",
     "walk_re8_b_beast_wola_body.njm", "run_bm1_s_wala_body.njm", "kahun_re8_b_beast_wola_body.njm", "umari_re8_b_beast_wola_body.njm",
     0,
 };
 BmlResourceDescriptor bm_ene_re8_merill_lia_low_resource_descriptor = {
-    "bm_ene_re8_merill_lia_low.bml", lbl_80494520, lbl_8049452C, 2, 12,
+    "bm_ene_re8_merill_lia_low.bml", merill_lia_low_model_names, merill_lia_low_motion_names, 2, 12,
 };
 const char *TObjEneMerillLia__class_name = "TObjEneMerillLia";
 void *lbl_80494570[56] = {
@@ -1752,7 +1752,7 @@ void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *motion) {
             spawn_particle_effect((void *)(*(s32 *)((s8 *)temp_r3 + 4) + 0x38), 0xA4);
         }
         if ((((TObjMotion *)motion)->is_passing_frame(7.0f) != 0) || (((TObjMotion *)motion)->is_passing_frame(22.0f) != 0)) {
-            fn_800D88E4((motion + 0x38));
+            play_floor_area_sound_effect((motion + 0x38));
         }
     }
 }

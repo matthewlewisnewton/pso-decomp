@@ -324,13 +324,13 @@ extern void *tl_04;
 
 // The Moja's models and motions, and the archive that holds them; the second
 // set is the one Ultimate loads.
-const char *lbl_80491828[] = {
+const char *moja_enemy_standard_model_names[] = {
     "bm2c_s_moj_body.nj",
     "bm2f_s_moj_body.nj",
     "bm2w_s_moj_body.nj",
     NULL
 };
-const char *lbl_80491838[] = {
+const char *moja_enemy_standard_motion_names[] = {
     "cstand_bm2c_s_moj_body.njm",
     "cwalk_bm2c_s_moj_body.njm",
     "damage_bm2f_s_moj_body.njm",
@@ -344,14 +344,14 @@ const char *lbl_80491838[] = {
     "walk_bm2f_s_moj_body.njm",
     NULL
 };
-BmlResourceDescriptor lbl_80491868 = { "bm_ene_bm2_moja.bml", lbl_80491828, lbl_80491838, 3, 11 };
-const char *lbl_80491878[] = {
+BmlResourceDescriptor lbl_80491868 = { "bm_ene_bm2_moja.bml", moja_enemy_standard_model_names, moja_enemy_standard_motion_names, 3, 11 };
+const char *moja_enemy_ultimate_model_names[] = {
     "bm2c_s_moj_body.nj",
     "bm2f_s_moj_body.nj",
     "bm2w_s_moj_body.nj",
     NULL
 };
-const char *lbl_80491888[] = {
+const char *moja_enemy_ultimate_motion_names[] = {
     "cstand_bm2c_s_moj_body.njm",
     "cwalk_bm2c_s_moj_body.njm",
     "damage_bm2f_s_moj_body.njm",
@@ -365,10 +365,10 @@ const char *lbl_80491888[] = {
     "walk_bm2f_s_moj_body.njm",
     NULL
 };
-BmlResourceDescriptor lbl_804918B8 = { "bm_ene_bm2_moja_a.bml", lbl_80491878, lbl_80491888, 3, 11 };
+BmlResourceDescriptor lbl_804918B8 = { "bm_ene_bm2_moja_a.bml", moja_enemy_ultimate_model_names, moja_enemy_ultimate_motion_names, 3, 11 };
 
 // The Moja's actions (TObjMotion::action_table).
-TObjMotionAction lbl_804918C8[9] = {
+TObjMotionAction moja_enemy_actions[9] = {
     { 1, 0, 9, 0.5f, 0x1 },
     { 2, 2, 6, 0.7f, 0x20 },
     { 1, 0, 10, 0.6f, 0x1 },
@@ -397,7 +397,7 @@ BmlResource *lbl_805D50D8;
 SampledMotionPoints *lbl_805D50DC;
 
 // The collision flags the Moja gets back when it can be hit again.
-static const s32 lbl_805D9BFC = 0x8001;
+static const s32 moja_collision_flags = 0x8001;
 
 // The file is compiled -inline off,deferred, which emits the functions in the
 // reverse of the order they are written in.
@@ -422,7 +422,7 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     ((TObjEneMoja *)this)->clamp_stat_354();
     select_rare_variant();
     subtype = 1;
-    action_table = lbl_804918C8;
+    action_table = moja_enemy_actions;
     set_field_d8((s32)action_table);
     motion_list = lbl_805D50D8->motions;
     requested_action = 0;
@@ -488,7 +488,7 @@ void TObjEneMoja::load_resources() {
     second.y = 0.0f;
     second.z = 0.0f;
     points->sample_node_offsets((NJS_OBJECT *)lbl_805D50D8->models[1].model,
-        (NJS_MOTION *)lbl_805D50D8->motions[lbl_804918C8[3].motion].motion, 38, &first, &second);
+        (NJS_MOTION *)lbl_805D50D8->motions[moja_enemy_actions[3].motion].motion, 38, &first, &second);
     lbl_805D50C8 = (void **)mem_alloc(8);
     lbl_805D50CC = (void **)mem_alloc(0x18);
     lbl_805D50D0 = (void **)mem_alloc(8);
@@ -506,7 +506,7 @@ void TObjEneMoja::load_resources() {
     lbl_805D50D4[0] = TLobby::dispatch_shared_handler_a(0x48);
     lbl_805D50D4[1] = TLobby::dispatch_shared_handler_a(0x49);
     s16 ids[3] = { 0x32, 0x33, 0x34 };
-    MojaAnimationBinding binding = { lbl_805D50D8->motions, lbl_804918C8, 2, 9, 0 };
+    MojaAnimationBinding binding = { lbl_805D50D8->motions, moja_enemy_actions, 2, 9, 0 };
     for (s32 i = 0; i < 3; i++) {
         TLobby::spawn_npc_enemy(ids[i], lbl_805D50D8->models[i].model, (NJS_TEXLIST *)lbl_805D50D8->models[i].m_c,
             &binding, lbl_80491990.radius, 0.0f);
@@ -1539,7 +1539,7 @@ void TObjEneMoja::vfunc_61() {
     switch (mode) {
     case 4:
         (this->actorFlags) &= 0xFFFFFEFF;
-        ((this->bodies))->flags |= lbl_805D9BFC;
+        ((this->bodies))->flags |= moja_collision_flags;
         referenceHp = (s16) hp;
         roar = 0;
         break;
@@ -1566,7 +1566,7 @@ void TObjPlayer::update_invincibility() {
     *(s16 *)&this->unk_33C = (temp_r4 - 1);
     if (temp_r4 < 0) {
         this->actorFlags &= 0xFFFFFEFF;
-        *(s32 *)((s8 *)this->bodies + 0x18) |= lbl_805D9BFC;
+        *(s32 *)((s8 *)this->bodies + 0x18) |= moja_collision_flags;
         *(s16 *)&this->unk_33C = (s16) *(s16 *)((s8 *)this + 0x33A);
         this->m_33e = (s16) this->hp;
     }

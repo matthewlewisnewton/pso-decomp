@@ -5,8 +5,8 @@
 
 // --- C functions defined in text_800D8830.cpp ---
 extern "C" {
-void fn_800D8830(void *owner, void *pos);
-void fn_800D88E4(void *pos);
+void play_floor_area_persistent_sound(void *owner, void *pos);
+void play_floor_area_sound_effect(void *pos);
 }
 // --- end of C functions
 

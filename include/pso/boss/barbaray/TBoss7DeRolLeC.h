@@ -75,7 +75,7 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     TObject unk_690;              // embedded task group: the ctor builds it with TObject(TObject *), run_task/render walk it
     s32 unk_6AC;
     s32 unk_6B0;
-    s32 action_index;             // step in lbl_804E3C2C[difficulty][], advanced by advance_action_sequence
+    s32 action_index;             // step in boss7_pattern_actions[difficulty][], advanced by advance_action_sequence
     s32 unk_6B8;
     s32 unk_6BC;
     s32 unk_6C0;                  // index into lbl_80472D04 (sub_802EB270: from)

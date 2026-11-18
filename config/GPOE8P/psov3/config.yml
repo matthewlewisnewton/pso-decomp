@@ -7461,7 +7461,7 @@ force_active:
   - lbl_804394BC
   - lbl_804394D4
   - lbl_8043AAA4
-  - lbl_8043AD10
+  - shark_model_filename_0
   - shark_model_name_bm1tl_s_wala_body_nj
   - shark_model_name_bm1_s_wala_body_nj
   - shark_motion_name_appear_bm1_s_wala_body_njm
@@ -7776,7 +7776,7 @@ force_active:
   - lbl_80490668
   - lbl_804907AC
   - lbl_804907BC
-  - lbl_80490998
+  - projectile_collision_body
   - lbl_8049168C
   - __vt__14TObjEneBm5Wolf
   - lbl_80492BE4
@@ -7799,10 +7799,10 @@ force_active:
   - lbl_80493DB0
   - lbl_80493DE4
   - lbl_80493F04
-  - lbl_804944D0
-  - lbl_804944DC
-  - lbl_80494520
-  - lbl_8049452C
+  - merill_lia_model_names
+  - merill_lia_motion_names
+  - merill_lia_low_model_names
+  - merill_lia_low_motion_names
   - lbl_80494570
   - lbl_80494728
   - lbl_80496368
@@ -8082,17 +8082,17 @@ force_active:
   - lbl_804E0B4C
   - lbl_804E0B54
   - lbl_804E0B60
-  - lbl_804E1210
+  - gigue_split_screen_model_filenames
   - lbl_804E135C
   - lbl_804E1548
-  - lbl_804E15BC
-  - lbl_804E15C4
-  - lbl_804E15F8
-  - lbl_804E1600
+  - mericarol_model_names
+  - mericarol_motion_names
+  - mericarol_low_detail_model_names
+  - mericarol_low_detail_motion_names
   - lbl_804E2B90
   - lbl_804E3A38
   - lbl_804E3B60
-  - lbl_804E4AA4
+  - boss2_tunnel_effect_tail
   - lbl_804E4BB4
   - lbl_804E6740
   - lbl_804E674C
@@ -8136,10 +8136,10 @@ force_active:
   - lbl_804EFC74
   - lbl_804EFC7C
   - lbl_804EFC90
-  - lbl_804F2230
-  - lbl_804F2250
-  - lbl_804F226C
-  - lbl_804F22C4
+  - epsilon_body_actions
+  - epsilon_body_movement
+  - epsilon_body_collision
+  - epsilon_body_line_colors
   - lbl_804F2B78
   - lbl_804F2B80
   - lbl_804F2B90
@@ -8168,9 +8168,9 @@ force_active:
   - lbl_804FF67C
   - lbl_804FF82C
   - lbl_805007C8
-  - lbl_8050093C
-  - lbl_80500948
-  - lbl_80500954
+  - canadin_attack_params
+  - canadin_resistance_params
+  - canadin_movement_params
   - lbl_80500978
   - lbl_80500B24
   - lbl_80500B2C
@@ -8223,7 +8223,7 @@ force_active:
   - lbl_805430E8
   - lbl_805432A8
   - lbl_805434D0
-  - lbl_805434DC
+  - morfos_attack_stats
   - lbl_80543978
   - lbl_805439E0
   - lbl_80543A18
@@ -8359,13 +8359,13 @@ force_active:
   - lbl_805D5068
   - lbl_805D506C
   - lbl_805D5074
-  - lbl_805D50F8
-  - lbl_805D50FC
-  - lbl_805D5100
-  - lbl_805D5104
-  - lbl_805D5108
-  - lbl_805D510C
-  - lbl_805D5114
+  - bm3_flynest_base_stats
+  - bm3_flynest_attack_params
+  - bm3_flynest_resistance_params
+  - bm3_flynest_movement_params
+  - nest_resources
+  - attachment_node_index
+  - carrier_point_cursor
   - lbl_805D5140
   - lbl_805D514C
   - lbl_805D5158
@@ -8389,8 +8389,8 @@ force_active:
   - lbl_805D622C
   - lbl_805D6230
   - lbl_805D6270
-  - lbl_805D62D8
-  - lbl_805D62DC
+  - sound_effect_stream_buffer
+  - cue_stream_work_buffer
   - lbl_805D63C0
   - lbl_805D63C4
   - lbl_805D6440
@@ -8404,7 +8404,7 @@ force_active:
   - lbl_805D6804
   - lbl_805D6808
   - lbl_805D681C
-  - lbl_805D6868
+  - mericarol_resource
   - lbl_805D6880
   - lbl_805D6910
   - lbl_805D6948

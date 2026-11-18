@@ -226,11 +226,11 @@ s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 matrix_mult_vec(int, Vec *, Vec *);
 s32 rotate_vector_by_matrix(int, Vec *, Vec *);
 
-TUnk_8048FA00 *lbl_805D4FDC;
-TUnk_8048FA00 *lbl_805D4FE0;
-s32 *lbl_805D4FE4;
-s32 *lbl_805D4FE8;
-s32 *lbl_805D4FEC;
+TUnk_8048FA00 *canadin_leader_breakup_model;
+TUnk_8048FA00 *canadin_follower_breakup_model;
+s32 *canadin_leader_node3_color;
+s32 *canadin_leader_node2_color;
+s32 *canadin_follower_node3_color;
 s32 *lbl_805D4FF0;
 int is_target_android(void *p);
 
@@ -279,18 +279,18 @@ const CanadinBehaviorParams canadin_behavior_params = { 3, 5.0f, 3.0f, 3.0f, 1 }
 const CanadinBehaviorParams canadin_projectile_param_block = { 3, 10.0f, 20.0f, 3.0f, 1 };
 const char *TObjEneMe1Canadin__class_name = "TObjEneMe1Canadin";
 const char *TObjEneMe1CanadinLeader__class_name = "TObjEneMe1CanadinLeader";
-s32 lbl_80500930[3];
-s32 lbl_8050093C[3];
-s32 lbl_80500948[3];
-TObjEneMe1CanadinParams *lbl_80500954[3];
-Vec lbl_80500960;
+s32 canadin_base_stats[3];
+s32 canadin_attack_params[3];
+s32 canadin_resistance_params[3];
+TObjEneMe1CanadinParams *canadin_movement_params[3];
+Vec canadin_render_point;
 
 }
 
-extern const s32 lbl_8043A180[3];
-extern const s32 lbl_8043A18C[3];
-extern const s32 lbl_8043A198[3];
-extern const s32 lbl_8043A1A4[3];
+extern const s32 canadin_base_stat_indices[3];
+extern const s32 canadin_attack_param_indices[3];
+extern const s32 canadin_resistance_param_indices[3];
+extern const s32 canadin_movement_param_indices[3];
 
 // Motion setup passed to TLobby::spawn_npc_enemy: (motions, animation table, 0, 0x70000).
 struct CanadinSpawnParams {
@@ -308,36 +308,36 @@ void TObjEneMe1Canadin::load_resources() {
     s32 model2;
     void *p;
 
-    lbl_80500960.x = 0.0f;
-    lbl_80500960.y = 0.0f;
-    lbl_80500960.z = 0.0f;
+    canadin_render_point.x = 0.0f;
+    canadin_render_point.y = 0.0f;
+    canadin_render_point.z = 0.0f;
     if (TObjEneDD::check_v2_mode() != 0) {
         bm_ene_me1_mb_resource = (BmlResource *)load_enemy_bml_resource_named((s32)&bm_ene_me1_mb_resource_descriptor, (s32)"bm_ene_me1_mb_a.bml");
     } else {
         bm_ene_me1_mb_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&bm_ene_me1_mb_resource_descriptor);
     }
     for (i = 0; i < 3; i++) {
-        lbl_80500930[i] = (s32)TLobby::register_boss(lbl_8043A180[i]);
-        lbl_8050093C[i] = (s32)TLobby::dispatch_shared_handler_b(lbl_8043A18C[i]);
-        lbl_80500948[i] = (s32)TLobby::register_object(lbl_8043A198[i]);
-        lbl_80500954[i] = (TObjEneMe1CanadinParams *)TLobby::dispatch_shared_handler_a(lbl_8043A1A4[i]);
+        canadin_base_stats[i] = (s32)TLobby::register_boss(canadin_base_stat_indices[i]);
+        canadin_attack_params[i] = (s32)TLobby::dispatch_shared_handler_b(canadin_attack_param_indices[i]);
+        canadin_resistance_params[i] = (s32)TLobby::register_object(canadin_resistance_param_indices[i]);
+        canadin_movement_params[i] = (TObjEneMe1CanadinParams *)TLobby::dispatch_shared_handler_a(canadin_movement_param_indices[i]);
     }
     TObjEneMe1Canadin__render_node_index = 0;
     p = ::operator new(0x10);
     if (p != NULL) {
         p = ((TBreakUpMdl *)p)->init_from_model(bm_ene_me1_mb_resource->models[1].model);
     }
-    lbl_805D4FDC = (TUnk_8048FA00 *)p;
+    canadin_leader_breakup_model = (TUnk_8048FA00 *)p;
     p = ::operator new(0x10);
     if (p != NULL) {
         p = ((TBreakUpMdl *)p)->init_from_model(bm_ene_me1_mb_resource->models[0].model);
     }
-    lbl_805D4FE0 = (TUnk_8048FA00 *)p;
+    canadin_follower_breakup_model = (TUnk_8048FA00 *)p;
     model = bm_ene_me1_mb_resource->models[1].model;
-    lbl_805D4FE4 = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 3))->model)[1] + 4);
-    lbl_805D4FE8 = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 2))->model)[1] + 4);
+    canadin_leader_node3_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 3))->model)[1] + 4);
+    canadin_leader_node2_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 2))->model)[1] + 4);
     model2 = bm_ene_me1_mb_resource->models[0].model;
-    lbl_805D4FEC = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model2, 3))->model)[1] + 4);
+    canadin_follower_node3_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model2, 3))->model)[1] + 4);
     lbl_805D4FF0 = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model2, 2))->model)[1] + 4);
     TObjPlayer__sub_800F0928();
     s16 ids[2] = { 0x17, 0x18 };
@@ -357,13 +357,13 @@ void *TObjEneMe1CanadinLeader::create_canadin(void *arg0, void *arg1, void *arg2
 
 // Floor teardown: frees the two breakup models and the Canadin archive.
 void TObjEneMe1Canadin::free_resources() {
-    if (lbl_805D4FE0 != NULL) {
-        delete lbl_805D4FE0;
-        lbl_805D4FE0 = NULL;
+    if (canadin_follower_breakup_model != NULL) {
+        delete canadin_follower_breakup_model;
+        canadin_follower_breakup_model = NULL;
     }
-    if (lbl_805D4FDC != NULL) {
-        delete lbl_805D4FDC;
-        lbl_805D4FDC = NULL;
+    if (canadin_leader_breakup_model != NULL) {
+        delete canadin_leader_breakup_model;
+        canadin_leader_breakup_model = NULL;
     }
     if (bm_ene_me1_mb_resource != NULL) {
         free_bin_model_request(bm_ene_me1_mb_resource, 1);
@@ -408,7 +408,7 @@ void TObjEneMe1Canadin::setup_enemy() {
     requested_action = 0;
     set_animation(requested_action);
     set_field_b8(requested_action);
-    reset_hp((u8 *)lbl_80500930[m_3C4], (u8 *)lbl_8050093C[m_3C4], (u8 *)lbl_80500948[m_3C4]);
+    reset_hp((u8 *)canadin_base_stats[m_3C4], (u8 *)canadin_attack_params[m_3C4], (u8 *)canadin_resistance_params[m_3C4]);
     check_state_flag_4();
     movementParameters = &canadin_setup_param_block;
     initialize_enemy_state(0x1C);
@@ -417,7 +417,7 @@ void TObjEneMe1Canadin::setup_enemy() {
     enemy_init_validate_period(0x2D);
     set_active();
     actorFlags |= 0x01000000;
-    m_468 = lbl_80500954[m_3C4];
+    m_468 = canadin_movement_params[m_3C4];
     fade.reset_color();
     m_3E8 = 45.0f;
     m_3EC = 15.0f;
@@ -797,7 +797,7 @@ void TObjEneMe1Canadin::pack_color_rgba() {
 }
 
 void TObjEneMe1Canadin::vfunc_113() {
-    *lbl_805D4FEC = m_4B4;
+    *canadin_follower_node3_color = m_4B4;
     *lbl_805D4FF0 = m_4B4;
 }
 
@@ -1852,7 +1852,7 @@ void TObjEneMe1Canadin::vfunc_112(s32 arg1) {
             m_3C0 = (TObjEneMe1Canadin *)find_entity_by_id(m_4C8);
             m_3C0->vfunc_117((u32)this);
         }
-        TBoss3Volopt::create_breakup_mdl((s32)lbl_805D4FE0, 0, (s32)(texlist), (s32)&m_2fc, (s32)(rotation_y));
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_follower_breakup_model, 0, (s32)(texlist), (s32)&m_2fc, (s32)(rotation_y));
         m_3C8 |= 0x400000;
         VecCopy(&pos, (const Vec *)&m_2fc);
         temp_f1 = pos.y;
@@ -1926,7 +1926,7 @@ void fn_8009BD00(void) {
         update_camera_sequence__9TObjEneDDFv();
         temp_r5 = TObjEneMe1Canadin__render_point_cursor;
         TObjEneMe1Canadin__render_point_cursor = temp_r5 + 1;
-        matrix_mult_vec(0, &lbl_80500960, temp_r5);
+        matrix_mult_vec(0, &canadin_render_point, temp_r5);
         temp_r4 = TObjEneMe1Canadin__render_point_cursor;
         temp_r5_2 = temp_r4;
         TObjEneMe1Canadin__render_point_cursor = temp_r4 + 1;
@@ -1938,7 +1938,7 @@ void fn_8009BD00(void) {
     case 14:
         pos = TObjEneMe1Canadin__render_point_cursor;
         TObjEneMe1Canadin__render_point_cursor = pos + 1;
-        get_camera_ctrl__9TObjEneDDFv(&lbl_80500960, pos);
+        get_camera_ctrl__9TObjEneDDFv(&canadin_render_point, pos);
         break;
     }
     TObjEneMe1Canadin__render_node_index += 1;
@@ -2205,8 +2205,8 @@ int TObjEneMe1CanadinLeader::vfunc_116() {
 }
 
 void TObjEneMe1CanadinLeader::vfunc_113() {
-    *lbl_805D4FE4 = m_4B4;
-    *lbl_805D4FE8 = m_4B4;
+    *canadin_leader_node3_color = m_4B4;
+    *canadin_leader_node2_color = m_4B4;
 }
 
 int TObjEneMe1CanadinLeader::vfunc_109() {
@@ -2378,7 +2378,7 @@ void TObjEneMe1CanadinLeader::vfunc_112(s32 mode) {
     s32 i;
     switch (mode) {
     case 4:
-        TBoss3Volopt::create_breakup_mdl((s32)lbl_805D4FDC, 0, (s32)texlist, (s32)&m_2fc, (s32)rotation_y);
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_leader_breakup_model, 0, (s32)texlist, (s32)&m_2fc, (s32)rotation_y);
         for (i = 0; i < m_4D0; i++) {
             ((TObjEneMe1CanadinLeader *)m_4D4[i])->set_flag3c8_bit20();
         }

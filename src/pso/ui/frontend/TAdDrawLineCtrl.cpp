@@ -16,7 +16,7 @@
 
 extern "C" {
 void *__ct__15TAdDrawLineCtrlFP7TObjectPvf(void *arg0, void *arg1, void *arg2, f32 farg0);
-u32 lbl_805D49D8;
+u32 draw_line_task_data;
 void __ct__7TObjectFP7TObject(void *);
 s32 defer_render__7TObjectFv();
 
@@ -74,18 +74,18 @@ TAdDrawLineCtrl::TAdDrawLineCtrl(TObject *object, void *arg2, f32 farg0) : TObje
 u8 *create_draw_line_ctrl__13TAdMcSelectGCFiif(s32 arg0, s32 arg1, f32 farg0) {
     u8 *ad_draw_line_ctrl;
     u8 *var_r0;
-    if ((u32) lbl_805D49D8 != 0U) {
+    if ((u32) draw_line_task_data != 0U) {
         ad_draw_line_ctrl = (u8 *)(((u8 *)TObject::operator new(0x2C)));
         var_r0 = ad_draw_line_ctrl;
         if (var_r0 != NULL) {
-            var_r0 = (u8 *)(((u8 *)__ct__15TAdDrawLineCtrlFP7TObjectPvf((void *)ad_draw_line_ctrl, (void *)arg0, (void *)(lbl_805D49D8 + (arg1 * 0xC)), farg0)));
+            var_r0 = (u8 *)(((u8 *)__ct__15TAdDrawLineCtrlFP7TObjectPvf((void *)ad_draw_line_ctrl, (void *)arg0, (void *)(draw_line_task_data + (arg1 * 0xC)), farg0)));
         }
         return var_r0;
     }
     return NULL;
 }
 
-extern "C" { extern const char lbl_804340D8[19] = "AdDrawLineTask.prs"; }
+extern "C" { extern const char draw_line_task_resource_path[19] = "AdDrawLineTask.prs"; }
 extern "C" { extern const char TAdDrawLineTask__class_name_string[16] = "TAdDrawLineTask"; }
 extern "C" { extern const char TAdDrawLineCtrl__class_name_string[16] = "TAdDrawLineCtrl"; }
 u32 item_loader_instance;
@@ -94,13 +94,13 @@ void TLobby::free_item_loader() {
     if ((u32) item_loader_instance != 0U) {
         delete (RelocatedFile *)item_loader_instance;
         item_loader_instance = 0U;
-        lbl_805D49D8 = 0;
+        draw_line_task_data = 0;
     }
 }
 void TLobby::load_draw_line_task() {
-    RelocatedFile *file = new RelocatedFile(lbl_804340D8, 0x4800);
+    RelocatedFile *file = new RelocatedFile(draw_line_task_resource_path, 0x4800);
     item_loader_instance = (u32)file;
     if (file != NULL) {
-        lbl_805D49D8 = (s32)file->get_root();
+        draw_line_task_data = (s32)file->get_root();
     }
 }

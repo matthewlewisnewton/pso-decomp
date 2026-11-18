@@ -17,8 +17,8 @@ void start_audio_stream_file(s32, char *);
 void play_cue_stream_file(s32 arg0);
 void TLobby__sub_803C94DC(u8 *arg0, s32 arg1);
 s32 TLobby__sub_803C9CB0(s32);
-void *lbl_805D62D8;
-u32 lbl_805D62DC;
+void *sound_effect_stream_buffer;
+u32 cue_stream_work_buffer;
 s32 lbl_805D62E0;
 s32 lbl_805D62E4;
 s32 music_fade_slot_index;
@@ -596,9 +596,9 @@ void TLobby::shutdown_buffers() {
     for (i = 0; i < 3; i++) {
         TLobby__sub_803CA194(lbl_804CB850[i]);
     }
-    if (lbl_805D62DC != 0U) {
-        xfree((void *)lbl_805D62DC);
-        lbl_805D62DC = 0U;
+    if (cue_stream_work_buffer != 0U) {
+        xfree((void *)cue_stream_work_buffer);
+        cue_stream_work_buffer = 0U;
     }
     TLobby::dec_ref_and_shutdown();
     if (lbl_805D62EC != 0U) {
@@ -611,9 +611,9 @@ void init_adx_audio_system(void) {
 
     lbl_80514C60[0] = xmalloc(0x2D1E4);
     lbl_80514C60[1] = xmalloc(0x2D1E4);
-    lbl_805D62D8 = xmalloc(0xA924);
-    lbl_805D62DC = (u32)xmalloc(0xA000);
-    TLobby__sub_803CBE20((void *)lbl_805D62DC, 0xA000, 5);
+    sound_effect_stream_buffer = xmalloc(0xA924);
+    cue_stream_work_buffer = (u32)xmalloc(0xA000);
+    TLobby__sub_803CBE20((void *)cue_stream_work_buffer, 0xA000, 5);
     TLobby::init_and_add_ref();
     setup_adx_file_systems(NULL);
     TLobby__sub_803CB858(NULL);
@@ -637,7 +637,7 @@ void init_adx_audio_system(void) {
         }
     }
     for (i = 0; i < 1; i++) {
-        lbl_804CB850[2 + i] = adx_create_stream_player(1, (&lbl_805D62D8)[i], 0xA924);
+        lbl_804CB850[2 + i] = adx_create_stream_player(1, (&sound_effect_stream_buffer)[i], 0xA924);
         if ((u32)lbl_804CB850[2 + i] == 0U) {
             TLobby::debug_print("can't create ADXT-SE #%d", i);
         }

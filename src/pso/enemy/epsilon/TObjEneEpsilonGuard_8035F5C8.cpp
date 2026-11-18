@@ -89,19 +89,19 @@ Vec lbl_805439FC[2];
 
 
 // The body's action table, movement parameters and collision bodies.
-TObjMotionAction lbl_804F2230[2] = {
+TObjMotionAction epsilon_body_actions[2] = {
     {1, 0, 0, 0.3f, 0},
     {1, 1, 1, 0.6f, 0},
 };
-TObjEneEpsilonMovement lbl_804F2250 = {
+TObjEneEpsilonMovement epsilon_body_movement = {
     150.0f, 0.5555555f, 0x400, { 0x1E0000, 0, 1, 0 },
 };
-CollisionBody lbl_804F226C[2] = {
+CollisionBody epsilon_body_collision[2] = {
     {{0.0f, 12.0f, 0.0f}, 12.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
     {{0.0f, 12.0f, 0.0f}, 20.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
 };
-VoloptLineColor lbl_804F22C4[2] = {{0x80, 0xFF, 0x40, 0x40}, {0x80, 0xFF, 0x40, 0x40}};
-VoloptLineList TObjEneEpsilonGuard__debug_line_list = {lbl_805439FC, lbl_804F22C4, 0, 4};
+VoloptLineColor epsilon_body_line_colors[2] = {{0x80, 0xFF, 0x40, 0x40}, {0x80, 0xFF, 0x40, 0x40}};
+VoloptLineList TObjEneEpsilonGuard__debug_line_list = {lbl_805439FC, epsilon_body_line_colors, 0, 4};
 
 const TBoss3VoloptBreakupParams epsilon_guard_destroy_breakup_params = { 0x14, { 0.05f, 1.2f, 0.9f, 0.12f, 0.55f, 0.5f } };
 // Body colour per color_index, copied into the guard parts.
@@ -133,18 +133,18 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEn
     init_params();
     set_param(0x54);
     init_position_vectors();
-    init_model(lbl_804F226C, 2);
+    init_model(epsilon_body_collision, 2);
     flags = 0;
     flags |= 2;
     set_guard_state();
     texlist = get_bml_texlist(lbl_805D6FA0, 0);
-    set_field_d8((s32)lbl_804F2230);
+    set_field_d8((s32)epsilon_body_actions);
     set_field_dc((s32)lbl_805D6FA0->motions);
     set_animation(requested_action);
     set_field_b8(requested_action);
     reset_hp(lbl_805D6F80, lbl_805D6F84, lbl_805D6F88);
     check_state_flag_4();
-    movementParameters = &lbl_804F2250;
+    movementParameters = &epsilon_body_movement;
     m_37c = 10.0f;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);

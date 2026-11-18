@@ -30,7 +30,7 @@ extern s32 boss4_zanzo_bml_index_table[2];
 
 const char *TObjDFDemo4__name = "TObjDFDemo4";
 // The motions of the afterimage and body models.
-s32 lbl_80485720[2] = {0x12, 0x11};
+s32 afterimage_motion_indices[2] = {0x12, 0x11};
 s32 lbl_80485728[3] = {0x20, 0x21, 0x22};
 TObjFishNodeEntry lbl_80485734[3] = {{0x34}, {0x35}, {-1}};
 
@@ -40,8 +40,8 @@ void *TObjDFDemo4::create(void *arg0, void *arg1, void *arg2) {
 
 // The nodes ModelNodeTables::init builds the strips on.
 inline const ModelNodeSpec *strip_nodes() {
-    static const ModelNodeSpec lbl_804373C4[2] = {{0xC, 0x4A, 1}, {0xE, 0x4A, 1}};
-    return lbl_804373C4;
+    static const ModelNodeSpec dfdemo4_strip_nodes[2] = {{0xC, 0x4A, 1}, {0xE, 0x4A, 1}};
+    return dfdemo4_strip_nodes;
 }
 // The intro camera: its playback and angles (the yaw is the object's).
 inline const CameraPlayback *intro_camera_playback() {
@@ -64,7 +64,7 @@ TObjDFDemo4::TObjDFDemo4(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
         int id = boss4_zanzo_bml_index_table[i];
         zanzo_parts[i].model = get_bml_model(res, id);
         zanzo_parts[i].texlist = get_bml_texlist(res, id);
-        zanzo_parts[i].motion = get_bml_motion(res, lbl_80485720[i]);
+        zanzo_parts[i].motion = get_bml_motion(res, afterimage_motion_indices[i]);
     }
     for (i = 0; i < 3; i++) {
         int id = lbl_80486FB0[i];

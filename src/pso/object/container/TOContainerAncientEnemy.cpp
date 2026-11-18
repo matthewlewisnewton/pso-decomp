@@ -98,7 +98,7 @@ extern u32 *ancient_container_fragment_texture_lists;
 static const TObjChipParams fish_break_debris_desc = {
     { 0.5f, 0.07f, 0.26f }, { 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f, 5.0f }, { 0x400, 0x100, 0x400 }, { 5, 0x32 }, { 0.0f, 0.6f }, 0, 0, 0x16,
 };
-static const TObjChipParams lbl_8044074C = {
+static const TObjChipParams fish_break_debris_desc_b = {
     { 0.5f, 0.07f, 0.26f }, { 0.0f, 0.0f, 0.0f }, { 4.0f, 4.5f, 4.0f }, { 0x200, 0x100, 0x200 }, { 6, 0x32 }, { 0.0f, 0.5f }, 0, 0, 0x16,
 };
 static const TObjChipParams ancient_enemy_break_debris_desc = {
@@ -292,7 +292,7 @@ void TUnk_804B08BC::vfunc_79() const {
     a.pad_38[0] = a.pos[1];
     a.model = get_bml_model((BmlResource *)ancient_container_resource_bundle, 1);
     a.textures = get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 1);
-    TObjChipParams b = lbl_8044074C;
+    TObjChipParams b = fish_break_debris_desc_b;
     b.pos[0] = this->position.x;
     b.pos[1] = this->position.y;
     b.pos[2] = this->position.z;

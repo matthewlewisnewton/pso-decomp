@@ -884,10 +884,10 @@ void post_translate_matrix(void *);
 
 extern const f64 TObjPlayer__data_804340B8;
 extern int TObjPlayer__data_8050D460[];
-extern const f64 lbl_80434098;
-extern const f64 lbl_804340A0;
-extern u8 lbl_804340A8[];
-extern s32 lbl_804340B0[];
+extern const f64 player_rsqrt_half;
+extern const f64 player_rsqrt_three;
+extern u8 player_meseta_popup_label[];
+extern s32 player_miss_popup_label[];
 SceneEntry_8000FD54 main_phase_table[] = {
     { NULL, NULL, NULL },
     { TLogo::init_logo_scene, TLogo::run_frame, TLogo__sub_8013F5AC },
@@ -3451,7 +3451,7 @@ s16 *TObjPlayer::get_attribute_entry(s32 i) {
 
 #pragma push
 #pragma fp_contract on
-extern const double lbl_80434090;
+extern const double player_distance_accuracy_scale;
 #define get_ata__10TObjPlayerFv(a) ((short (*)(const void *))get_ata__10TObjPlayerFv)(a)
 #define obj_testFlag_2E4__9TObjCharaFUl(a, b) ((int (*)(const void *, RangedU))obj_testFlag_2E4__9TObjCharaFUl)(a, b)
 #define VecCopy__FP3VecPC3Vec(a, b) ((void (*)(RangedVec *, const RangedVec *))VecCopy__FP3VecPC3Vec)(a, b)
@@ -3470,7 +3470,7 @@ int TObjChara::calc_distance_accuracy_penalty(void *attacker, void *body_arg, vo
             else subtract_vector(&delta,&((RangedActor*)attacker)->position);
             const float squared=delta.x*delta.x+delta.z*delta.z;
             const float dist=newton_sqrtf(squared);
-            float pen=(float)(dist*lbl_80434090);
+            float pen=(float)(dist*player_distance_accuracy_scale);
             pen*=(0.33333334f);
             chance-=pen;
         }
@@ -3506,7 +3506,7 @@ void show_meseta_label(s32 arg0, u32 arg1, s32 arg2, s32 arg3) {
         if (((s32 (*)(s32))is_locally_controlled__10TObjPlayerFPv)(arg0) != 0) {
             size <<= 1;
         }
-        ((void (*)(u32, s32, s32, s32, void *, s16, s32))create_font_small_task)(arg1, -0x100, size, arg2, lbl_804340A8, arg3, ((s32 (*)(s32))get_entity_id)(arg0));
+        ((void (*)(u32, s32, s32, s32, void *, s16, s32))create_font_small_task)(arg1, -0x100, size, arg2, player_meseta_popup_label, arg3, ((s32 (*)(s32))get_entity_id)(arg0));
     }
 }
 
@@ -3535,7 +3535,7 @@ void TObjChara::try_apply_damage(u32 arg1, s32 arg2) {
 void TObjChara::show_miss_popup(const float *pos) {
     if (((s32 (*)(void *, u32))obj_testFlags30__14TObjCollidableFUl)(this, 0x02000000) == 0 && ((s32 (*)(void *))is_locally_controlled__10TObjPlayerFPv)(this) == 0 && pos != NULL) {
         if (TObjPlayer::get_player_count() == 0 || this->entity_id >= 0x1000) {
-            TOCtrlDubchik::create_font((s32)pos, 0xFFFF0000, 0x14, (s32)lbl_804340B0);
+            TOCtrlDubchik::create_font((s32)pos, 0xFFFF0000, 0x14, (s32)player_miss_popup_label);
         }
     }
 }
@@ -4874,9 +4874,9 @@ f32 newton_sqrtf(f32 x) {
     volatile f32 y;
     if (x > (0.0f)) {
         f64 guess = __frsqrte(x);
-        guess = lbl_80434098 * guess * (lbl_804340A0 - (f64) x * (guess * guess));
-        guess = lbl_80434098 * guess * (lbl_804340A0 - (f64) x * (guess * guess));
-        guess = lbl_80434098 * guess * (lbl_804340A0 - (f64) x * (guess * guess));
+        guess = player_rsqrt_half * guess * (player_rsqrt_three - (f64) x * (guess * guess));
+        guess = player_rsqrt_half * guess * (player_rsqrt_three - (f64) x * (guess * guess));
+        guess = player_rsqrt_half * guess * (player_rsqrt_three - (f64) x * (guess * guess));
         y = (f32) ((f64) x * guess);
         return y;
     }

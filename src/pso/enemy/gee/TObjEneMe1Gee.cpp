@@ -48,7 +48,7 @@ void queue_destruction__7TObjectFv(void *arg0);
 
 
 BmlResource * TObjEneMe1Gee__resource_bundle;
-u8 * lbl_805D51B4;
+u8 * gee_cached_model_node;
 s32 TObjEneMe1Gee__render_node_index;
 s32 gee_camera_ctrl_step_ptr;
 TUnk_8048FA00 * TObjEneMe1Gee__data_805D51C0;
@@ -190,7 +190,7 @@ void TObjEneMe1Gee::load_resources() {
         TObjEneMe1Gee__resource_bundle = (BmlResource *)load_enemy_bml_resource((u8 *)&bm_ene_me1_gee_resource_descriptor);
     }
     TObjEneMe1Gee::cache_result_805D6660();
-    lbl_805D51B4 = (u8 *)find_model_node(TObjEneMe1Gee__resource_bundle->models->model, 7);
+    gee_cached_model_node = (u8 *)find_model_node(TObjEneMe1Gee__resource_bundle->models->model, 7);
     for (i = 0; i < 3; i++) {
         gee_boss_stat_handle_table[i] = register_boss__6TLobbyFl(lbl_8043BCD8[i]);
         gee_shared_handler_b_table[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043BCE4[i]);

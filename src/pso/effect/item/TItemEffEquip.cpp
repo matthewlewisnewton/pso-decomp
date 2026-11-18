@@ -14,7 +14,7 @@
 
 
 // The collision sphere TUnk_8049F038 copies into its own body (radius 3).
-extern const CollisionBody lbl_8043E1A0 = {
+extern const CollisionBody equipment_effect_body = {
     { 0.0f, 0.0f, 0.0f }, 3.0f, 0.0f, 0, 0x31F0B, { 0.0f, 0.0f, 0.0f }, 0.0f
 };
 const char *TItemEffEquip__class_name = "TItemEffEquip";
@@ -198,7 +198,7 @@ void *TItemEffEquip__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *ar
 TUnk_8049F038::TUnk_8049F038(TObject *parent, s16 a, s32 b) : TObjCollidable(parent) {
     ((Obj_80108C90 *)this)->f_AC = a;
     ((Obj_80108C90 *)this)->f_B0 = b;
-    copy_collision_body((CollisionBody *)(((Obj_80108C90 *)this)->sub), &lbl_8043E1A0);
+    copy_collision_body((CollisionBody *)(((Obj_80108C90 *)this)->sub), &equipment_effect_body);
     if (get_entity_id(this) == 0xFFFF) {
         set_entity_id(pop_free_entity_id());
     }

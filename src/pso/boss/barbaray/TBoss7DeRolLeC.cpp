@@ -79,7 +79,7 @@ struct TBoss7DeRolLeCMovement {
 // The BML resource descriptor, followed by the action table that
 // TBoss7DeRolLeC's constructor hands to set_field_d8.
 extern Boss7LoadCallback lbl_804E3C5C[6];
-extern TBoss7DeRolLeCMovement lbl_804E3C8C;
+extern TBoss7DeRolLeCMovement boss7_movement_parameters;
 extern BmlResourceDescriptor bm_boss7_de_rol_le_c_resource_descriptor;
 extern TObjMotionAction de_rol_le_c_action_table[17];
 
@@ -368,11 +368,11 @@ Vec lbl_804E3BFC[4] = {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 4.0f
 
 // Action sequences per difficulty, then the crawfish spawn positions and
 // y angles per spawn pattern variant.
-const Ent_802E88F8 *lbl_804E3C2C[4] = {lbl_80472DA4, lbl_80472FC4, lbl_8047327C, lbl_8047353C};
+const Ent_802E88F8 *boss7_pattern_actions[4] = {lbl_80472DA4, lbl_80472FC4, lbl_8047327C, lbl_8047353C};
 
-const Vec *lbl_804E3C3C[4] = {lbl_804739FC, lbl_80473A68, lbl_80473AD4, lbl_80473B40};
+const Vec *boss7_pattern_positions[4] = {lbl_804739FC, lbl_80473A68, lbl_80473AD4, lbl_80473B40};
 
-const s32 *lbl_804E3C4C[4] = {lbl_80473BAC, lbl_80473BD0, lbl_80473BF4, lbl_80473C18};
+const s32 *boss7_pattern_yaws[4] = {lbl_80473BAC, lbl_80473BD0, lbl_80473BF4, lbl_80473C18};
 extern "C" {
 void TObjPlayer__sub_802F0D30(void);
 
@@ -404,7 +404,7 @@ Boss7LoadCallback lbl_804E3C5C[6] = {
     {TBoss7LaserPtcl__sub_8035AF10, TBoss7LaserPtcl__sub_8035AF0C},
 };
 
-TBoss7DeRolLeCMovement lbl_804E3C8C = {{225.0f, 0.0f, 0x600}, {0, 0, 0, 0}};
+TBoss7DeRolLeCMovement boss7_movement_parameters = {{225.0f, 0.0f, 0x600}, {0, 0, 0, 0}};
 
 const char *bm_boss7_de_rol_le_c_model_names[7] = {
     boss7_de_rol_le_c_model_name_boss2_b_derorure_body_nj,
@@ -1419,7 +1419,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     set_animation(requested_action);
     set_field_b8(requested_action);
     check_state_flag_2();
-    movementParameters = &lbl_804E3C8C;
+    movementParameters = &boss7_movement_parameters;
     initialize_enemy_state(0x49);
     unk_37C = 20.0f;
     enemy_init_acquire_period(30);
@@ -2178,7 +2178,7 @@ void TBoss7DeRolLeC::advance_action_sequence() {
     do {
         var_r30 = 0;
         this->action_index = (this->action_index + 1);
-        var_r4 = lbl_804E3C2C[game_difficulty_selection][this->action_index].a;
+        var_r4 = boss7_pattern_actions[game_difficulty_selection][this->action_index].a;
         switch (var_r4) {
         case 0x1E:
             if (calc_elapsed_scaled__9TObjEneDDFv(this) > 0.0f) {
@@ -4247,7 +4247,7 @@ void TObjFish__sub_802E88F8(u8 *boss7_de_rol_le_c, u32 arg1) {
     s32 temp_r3;
     switch (arg1) {
     case 4:
-        *(s32 *)((s8 *)boss7_de_rol_le_c + 0x728) = lbl_804E3C2C[game_difficulty_selection][((TBoss7DeRolLeC *)boss7_de_rol_le_c)->action_index].b * 0x1E;
+        *(s32 *)((s8 *)boss7_de_rol_le_c + 0x728) = boss7_pattern_actions[game_difficulty_selection][((TBoss7DeRolLeC *)boss7_de_rol_le_c)->action_index].b * 0x1E;
         return;
     case 0:
         ((TObjMotion *)boss7_de_rol_le_c)->advance_animation();
@@ -4313,7 +4313,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
         switch (self->state) {
         case 0:
             self->timer++;
-            if (self->timer > lbl_804E3C2C[game_difficulty_selection][self->f6B4].b * 0x1E) {
+            if (self->timer > boss7_pattern_actions[game_difficulty_selection][self->f6B4].b * 0x1E) {
                 self->state = 1;
                 self->timer = 0;
                 self->fired = 0;
@@ -4704,10 +4704,10 @@ s16 TObjFish__sub_802E7CC4(TBoss7DeRolLeC *self) {
 // Spawns the crawfish of step `index` of the boss's current spawn pattern when
 // the difficulty's table asks for one (2 = the other kind, flag bit 0 clear).
 void TBoss7DeRolLeC__try_spawn_pattern_crawfish(TBoss7DeRolLeC *self, s32 variant, s32 index) {
-    s32 kind = lbl_80473844[lbl_804E3C2C[game_difficulty_selection][self->action_index].b][index];
+    s32 kind = lbl_80473844[boss7_pattern_actions[game_difficulty_selection][self->action_index].b][index];
     if (kind != 0) {
-        const Vec *positions = lbl_804E3C3C[variant];
-        const s32 *angles = lbl_804E3C4C[variant];
+        const Vec *positions = boss7_pattern_positions[variant];
+        const s32 *angles = boss7_pattern_yaws[variant];
         s32 flag;
         if (kind == 1) {
             flag = 1;

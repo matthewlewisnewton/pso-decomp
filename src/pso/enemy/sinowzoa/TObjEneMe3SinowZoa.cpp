@@ -59,14 +59,14 @@
 // TLobby::dispatch_shared_handler_b, TLobby::register_object and
 // TLobby::dispatch_shared_handler_a.
 Vec lbl_80542FB0;
-u8 *lbl_80542FBC[2];
-u8 *lbl_80542FC4[2];
-u8 *lbl_80542FCC[2];
+u8 *sinow_zoa_base_parameters[2];
+u8 *sinow_zoa_attack_parameters[2];
+u8 *sinow_zoa_resistance_parameters[2];
 TObjEneMe3SinowZoaParams *TObjEneMe3SinowZoa__kind_param_tbls[2];
 // The model texture list with textures 0-2 swapped for 3-5 (load_resources); sub_8031A3D8
 // installs it for the alternate form (named after the Stelth twin, load_shared_resources).
 NJS_TEXLIST TObjEneMe3SinowZoa__alternate_texture_list;
-Vec lbl_80542FE4;
+Vec sinow_zoa_alternate_position;
 u32 *TObjEneMe3SinowZoa__material_color_pointers[4];
 
 BmlResource * TObjEneMe3SinowZoa__bml_resource;
@@ -235,13 +235,13 @@ void TObjEneMe3SinowZoa::load_resources() {
         TObjEneMe3SinowZoa__alternate_texture_list.textures[i].texaddr = TObjEneMe3SinowZoa__alternate_texture_list.textures[i + 3].texaddr;
     }
     for (i = 0; i < 2; i++) {
-        lbl_80542FBC[i] = (u8 *)TLobby::register_boss(lbl_80475E0C[i]);
+        sinow_zoa_base_parameters[i] = (u8 *)TLobby::register_boss(lbl_80475E0C[i]);
     }
     for (i = 0; i < 2; i++) {
-        lbl_80542FC4[i] = (u8 *)TLobby::dispatch_shared_handler_b(lbl_80475E14[i]);
+        sinow_zoa_attack_parameters[i] = (u8 *)TLobby::dispatch_shared_handler_b(lbl_80475E14[i]);
     }
     for (i = 0; i < 2; i++) {
-        lbl_80542FCC[i] = (u8 *)TLobby::register_object(lbl_80475E1C[i]);
+        sinow_zoa_resistance_parameters[i] = (u8 *)TLobby::register_object(lbl_80475E1C[i]);
     }
     for (i = 0; i < 2; i++) {
         TObjEneMe3SinowZoa__kind_param_tbls[i] = (TObjEneMe3SinowZoaParams *)TLobby::dispatch_shared_handler_a(lbl_80475E24[i]);
@@ -250,9 +250,9 @@ void TObjEneMe3SinowZoa::load_resources() {
     set_entry_value_clamped(7, params->m_c);
     set_entry_value_clamped(4, params->m_10);
     TObjEneMe3SinowZoa__render_node_index = 0;
-    lbl_80542FE4.x = TObjEneMe3SinowZoa__data_805DF31C;
-    lbl_80542FE4.y = TObjEneMe3SinowZoa__data_805DF31C;
-    lbl_80542FE4.z = TObjEneMe3SinowZoa__data_805DF31C;
+    sinow_zoa_alternate_position.x = TObjEneMe3SinowZoa__data_805DF31C;
+    sinow_zoa_alternate_position.y = TObjEneMe3SinowZoa__data_805DF31C;
+    sinow_zoa_alternate_position.z = TObjEneMe3SinowZoa__data_805DF31C;
     model = TObjEneMe3SinowZoa__bml_resource->models->model;
     node = (ModelNode *)find_model_node(model, 9);
     if (node->model != NULL) {
@@ -336,7 +336,7 @@ void TObjEneMe3SinowZoaReal::init_enemy() {
     this->set_field_dc((s32)TObjEneMe3SinowZoa__bml_resource->motions);
     set_animation((this->requested_action));
     kind = this->m_3c8;
-    reset_hp(lbl_80542FBC[kind], lbl_80542FC4[kind], lbl_80542FCC[kind]);
+    reset_hp(sinow_zoa_base_parameters[kind], sinow_zoa_attack_parameters[kind], sinow_zoa_resistance_parameters[kind]);
     this->check_state_flag_4();
     movementParameters = &TObjEneMe3SinowZoa_init_params;
     this->m_37c = TObjEneMe3SinowZoa__data_805DF314;

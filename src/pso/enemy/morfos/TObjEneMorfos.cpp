@@ -783,10 +783,10 @@ extern s32 TObjEneMorfos__phase;
 extern s32 TObjEneMorfos__camera_path_cursor;
 extern s32 __dt__15RenderFadeStateFv[];
 extern s32 __ct__15RenderFadeStateFv[];
-extern u8 *lbl_805D6D20;
-extern u8 *lbl_805D6D24;
-extern s32 lbl_805D6D28;
-extern s32 lbl_805D6D2C;
+extern u8 *morfos_body_polygons;
+extern u8 *morfos_projectile_polygons;
+extern s32 morfos_body_texture_tick;
+extern s32 morfos_projectile_texture_tick;
 extern float morfos_projectile_speed;
 extern float morfos_param_table_speed_copy;
 extern void *tl_04;
@@ -973,13 +973,13 @@ struct Arr_80334D74 { u8 pad[0x424]; Elem_80334D74 e[4]; };
 struct Hdr_80334D74 { u8 b[0x1C]; };
 struct Res_80334D74 { u8 pad[0x18]; s32 f18; s32 f1C; };
 struct Mgr_80334D74 { u8 pad[0x42C]; Res_80334D74 *res; s32 f430; };
-extern s32 lbl_804774A8[];
-extern s32 lbl_804774B0[];
-extern s32 lbl_804774B8[];
+extern s32 morfos_base_stat_indices[];
+extern s32 morfos_attack_stat_indices[];
+extern s32 morfos_resistance_stat_indices[];
 f32 lbl_805434D0[3];
-s32 lbl_805434DC[3];
-extern s32 lbl_805D6D08[1];
-extern s32 lbl_805D6D0C[1];
+s32 morfos_attack_stats[3];
+extern s32 morfos_base_stats[1];
+extern s32 morfos_resistance_stats[1];
 
 struct ModelRes_803350AC {
     u8 pad[0x18];
@@ -1007,7 +1007,7 @@ struct MorfosAnimationBinding {
 
 s32 load_enemy_bml_resource(u8 *desc);
 extern f32 lbl_805434D0[3];
-extern const s32 lbl_804774A0[2];
+extern const s32 morfos_attack_stat_ids[2];
 void TObjEneMorfos__sub_803350AC(void);
 
 void TObjEneMorfos__sub_803350AC(void) {
@@ -1025,18 +1025,18 @@ void TObjEneMorfos__sub_803350AC(void) {
     lbl_805434D0[2] = 0.0f;
     TObjEneMorfos__phase = 0;
     TObjEneMorfos__camera_path_cursor = 0;
-    lbl_805D6D20 = *(u8 **)(*(u8 **)(*(u8 **)(mgr->res->f18 + 0x2C) + 4) + 4);
-    lbl_805D6D24 = *(u8 **)(*(u8 **)(mgr->res->f28 + 4) + 4);
-    lbl_805D6D28 = 0;
-    lbl_805D6D2C = 0;
+    morfos_body_polygons = *(u8 **)(*(u8 **)(*(u8 **)(mgr->res->f18 + 0x2C) + 4) + 4);
+    morfos_projectile_polygons = *(u8 **)(*(u8 **)(mgr->res->f28 + 4) + 4);
+    morfos_body_texture_tick = 0;
+    morfos_projectile_texture_tick = 0;
     for (i = 0; i < 1; i++) {
-        lbl_805D6D08[i] = (s32)TLobby::register_boss(morfos_boss_ids[i]);
+        morfos_base_stats[i] = (s32)TLobby::register_boss(morfos_boss_ids[i]);
     }
     for (i = 0; i < 2; i++) {
-        lbl_805434DC[i] = (s32)TLobby::dispatch_shared_handler_b(lbl_804774A0[i]);
+        morfos_attack_stats[i] = (s32)TLobby::dispatch_shared_handler_b(morfos_attack_stat_ids[i]);
     }
     for (i = 0; i < 1; i++) {
-        lbl_805D6D0C[i] = (s32)TLobby::register_object(morfos_object_ids[i]);
+        morfos_resistance_stats[i] = (s32)TLobby::register_object(morfos_object_ids[i]);
     }
     for (i = 0; i < 1; i++) {
         (&TObjEneMorfos__param_table)[i] = (int)TLobby::dispatch_shared_handler_a(morfos_handler_a_ids[i]);
@@ -1090,7 +1090,7 @@ void TObjEneMorfos::init_instance() {
     this->requested_action = 0;
     set_animation(this->requested_action);
     set_field_b8(this->requested_action);
-    reset_hp((u8 *)(lbl_805D6D08[lbl_804774A8[0]]), (u8 *)(lbl_805434DC[lbl_804774B0[0]]), (u8 *)(lbl_805D6D0C[lbl_804774B8[0]]));
+    reset_hp((u8 *)(morfos_base_stats[morfos_base_stat_indices[0]]), (u8 *)(morfos_attack_stats[morfos_attack_stat_indices[0]]), (u8 *)(morfos_resistance_stats[morfos_resistance_stat_indices[0]]));
     ((void (*)(void *))TObjEneMorfos__sub_80334704)(this);
     set_state_8();
     this->movementParameters = (Hdr_80334D74 *)lbl_804EE0C0;
@@ -1153,13 +1153,13 @@ void run_task__13TObjEneMorfosFv(u8 *ene_morfos) {
     }
     if (((TObjEneMorfos *)(ene_morfos))->vfunc_83() != 4) {
         ((TObjEneMorfos *)(ene_morfos))->vfunc_85();
-        if ((s32) lbl_805D6D28 != (s32) actor_frame_tick) {
-            lbl_805D6D28 = actor_frame_tick;
-            TObjPlayer__sub_8023DEE0((s16 *)lbl_805D6D20, (s16)((s16) *(s32 *)((s8 *)ene_morfos + 0x3D4)), (s16)(0), (u16)(2U));
+        if ((s32) morfos_body_texture_tick != (s32) actor_frame_tick) {
+            morfos_body_texture_tick = actor_frame_tick;
+            TObjPlayer__sub_8023DEE0((s16 *)morfos_body_polygons, (s16)((s16) *(s32 *)((s8 *)ene_morfos + 0x3D4)), (s16)(0), (u16)(2U));
         }
-        if ((s32) lbl_805D6D2C != (s32) actor_frame_tick) {
-            lbl_805D6D2C = actor_frame_tick;
-            TObjPlayer__sub_8023DEE0((s16 *)lbl_805D6D24, (s16)(0), (s16) ((f32) *(s32 *)((s8 *)ene_morfos + 0x3D4) / 2.0f), (u16)(0U));
+        if ((s32) morfos_projectile_texture_tick != (s32) actor_frame_tick) {
+            morfos_projectile_texture_tick = actor_frame_tick;
+            TObjPlayer__sub_8023DEE0((s16 *)morfos_projectile_polygons, (s16)(0), (s16) ((f32) *(s32 *)((s8 *)ene_morfos + 0x3D4) / 2.0f), (u16)(0U));
         }
     }
     ((TObjEneMorfos *)ene_morfos)->set_hover_target_position();
@@ -2284,15 +2284,15 @@ void TObjEneMorfos::vfunc_106() {
 
 }
 
-s32 lbl_805D6D08[1];
-s32 lbl_805D6D0C[1];
+s32 morfos_base_stats[1];
+s32 morfos_resistance_stats[1];
 int TObjEneMorfos__param_table;
 int TObjEneMorfos__instance;
 s32 TObjEneMorfos__phase;
 s32 TObjEneMorfos__camera_path_cursor;
-u8 *lbl_805D6D20;
-u8 *lbl_805D6D24;
-s32 lbl_805D6D28;
-s32 lbl_805D6D2C;
+u8 *morfos_body_polygons;
+u8 *morfos_projectile_polygons;
+s32 morfos_body_texture_tick;
+s32 morfos_projectile_texture_tick;
 float morfos_projectile_speed;
 float morfos_param_table_speed_copy;

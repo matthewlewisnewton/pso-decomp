@@ -199,7 +199,7 @@ s32 TBoss8Dragon__data_80541DC8[5];
 u8 *TBoss8Dragon__data_80541DDC[3];
 RecoveredGlobal_lbl_80541DE8 lbl_80541DE8;
 RecoveredGlobal_lbl_80541DF4 lbl_80541DF4;
-Boss8DragonNodeState lbl_80541E18;
+Boss8DragonNodeState dragon_node_override;
 Boss8DragonReferencePosVec boss8_dragon_reference_pos_vec;
 DragonForwardReferenceVec dragon_forward_reference_vec;
 
@@ -1578,14 +1578,14 @@ void TBoss8Dragon__sub_802FDA78(void) {
     TBoss8Dragon__data_805D6988 = (Boss8DragonBmlRes *)load_enemy_bml_resource((u8 *)&lbl_804E4E08);
     lbl_805D69A4 = ((TObjBoss2Tunnel *)TBoss8Dragon__data_805D6988->models->node_tree)->count_tree_nodes();
     TBoss8Dragon__data_805D69A8 = (s32)TQuestVmDownLoadServer::alloc(lbl_805D69A4 * 0x50);
-    lbl_80541E18.unk0 = 0;
-    lbl_80541E18.unk4 = 0;
-    lbl_80541E18.unk8 = 0.0f;
-    lbl_80541E18.unkC = 0.0f;
-    lbl_80541E18.unk10 = 0.0f;
-    lbl_80541E18.unk14 = 0.0f;
+    dragon_node_override.unk0 = 0;
+    dragon_node_override.unk4 = 0;
+    dragon_node_override.unk8 = 0.0f;
+    dragon_node_override.unkC = 0.0f;
+    dragon_node_override.unk10 = 0.0f;
+    dragon_node_override.unk14 = 0.0f;
     TBoss8Dragon::clone_node_tree(TBoss8Dragon__data_805D6988->models->node_tree, (void *)TBoss8Dragon__data_805D69A8,
-                                  (int)&lbl_80541E18);
+                                  (int)&dragon_node_override);
     TBoss8Dragon__data_805D698C = 0;
     lbl_805D6990 = 60;
     lbl_80541DE8.value.x = 0.0f;

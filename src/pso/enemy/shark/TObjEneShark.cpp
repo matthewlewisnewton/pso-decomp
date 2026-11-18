@@ -628,7 +628,7 @@ extern "C" void get_name__9TObjEnemyFv();
 extern "C" void get_pos__9TObjCharaFl();
 extern "C" void is_actor_cadence_frame__9TObjCharaFl();
 extern "C" void is_target_in_attack_range__9TObjCharaFv();
-extern "C" __declspec(section ".rodata") u8 lbl_8043AD10[] = "bm1f_s_wala_body.nj";
+extern "C" __declspec(section ".rodata") u8 shark_model_filename_0[] = "bm1f_s_wala_body.nj";
 extern "C" __declspec(section ".rodata") u8 shark_model_name_bm1tl_s_wala_body_nj[] = "bm1tl_s_wala_body.nj";
 extern "C" __declspec(section ".rodata") u8 shark_model_name_bm1_s_wala_body_nj[] = "bm1_s_wala_body.nj";
 extern "C" __declspec(section ".rodata") u8 shark_motion_name_appear_bm1_s_wala_body_njm[] = "appear_bm1_s_wala_body.njm";
@@ -671,7 +671,7 @@ extern "C" void update_turn_toward_target__13TUnk_80493450Fv();
 extern void *bm_ene_bm1_shark_model_names[4];
 extern void *bm_ene_bm1_shark_motion_names[13];
 void *bm_ene_bm1_shark_model_names[4] = {
-    (void *)&lbl_8043AD10, (void *)&shark_model_name_bm1tl_s_wala_body_nj, (void *)&shark_model_name_bm1_s_wala_body_nj, (void *)0x0,
+    (void *)&shark_model_filename_0, (void *)&shark_model_name_bm1tl_s_wala_body_nj, (void *)&shark_model_name_bm1_s_wala_body_nj, (void *)0x0,
 };
 void *bm_ene_bm1_shark_motion_names[13] = {
     (void *)&shark_motion_name_appear_bm1_s_wala_body_njm, (void *)&shark_motion_name_atackl_bm1_s_wala_body_njm, (void *)&shark_motion_name_atackr_bm1_s_wala_body_njm, (void *)&shark_motion_name_damage_bm1_s_wala_body_njm,

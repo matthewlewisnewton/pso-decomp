@@ -224,7 +224,7 @@ BmlResourceDescriptor lbl_804E1200 = {
     "bm_ene_gi_gue.bml", TObjEneMe1GiGue__model_filename_table, me1_gi_gue_motion_filename_table, 3, 9,
 };
 
-const char *lbl_804E1210[4] = {
+const char *gigue_split_screen_model_filenames[4] = {
     "lo_gi_gue_all.nj", "gi_gue_missile.nj", "gi_gue_barrier.nj", NULL,
 };
 
@@ -235,7 +235,7 @@ const char *gi_gue_njm_name_table[10] = {
 };
 
 BmlResourceDescriptor lbl_804E1248 = {
-    "bm_ene_gi_gue_low.bml", lbl_804E1210, gi_gue_njm_name_table, 3, 9,
+    "bm_ene_gi_gue_low.bml", gigue_split_screen_model_filenames, gi_gue_njm_name_table, 3, 9,
 };
 
 TObjMotionAction gigue_enemy_param_table[9] = {

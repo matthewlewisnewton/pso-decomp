@@ -129,35 +129,35 @@ CollisionBody lbl_804E1564[2] = {
     { { 0.0f, 0.0f, 0.0f }, 50.0f, 0.0f, 0, 0x9D03, { 0.0f, 0.0f, 0.0f }, 0.0f },
 };
 
-__declspec(section ".data") const char *lbl_804E15BC[2] = {
+__declspec(section ".data") const char *mericarol_model_names[2] = {
     "bm9_s_meri_body.nj", NULL,
 };
 
-const char *lbl_804E15C4[9] = {
+const char *mericarol_motion_names[9] = {
     "atack_bm9_s_meri_body.njm", "damage_bm9_s_meri_body.njm", "dead_bm9_s_meri_body.njm", "fire_bm9_s_meri_body.njm",
     "laugh_bm9_s_meri_body.njm", "wait_bm9_s_meri_body.njm", "wait2_bm9_s_meri_body.njm", "wake_bm9_s_meri_body.njm",
     NULL,
 };
 
 BmlResourceDescriptor lbl_804E15E8 = {
-    "bm_ene_bm9_s_mericarol.bml", lbl_804E15BC, lbl_804E15C4, 1, 8,
+    "bm_ene_bm9_s_mericarol.bml", mericarol_model_names, mericarol_motion_names, 1, 8,
 };
 
-__declspec(section ".data") const char *lbl_804E15F8[2] = {
+__declspec(section ".data") const char *mericarol_low_detail_model_names[2] = {
     "lo_bm9_s_meri_body.nj", NULL,
 };
 
-const char *lbl_804E1600[9] = {
+const char *mericarol_low_detail_motion_names[9] = {
     "atack_bm9_s_meri_body.njm", "damage_bm9_s_meri_body.njm", "dead_bm9_s_meri_body.njm", "fire_bm9_s_meri_body.njm",
     "laugh_bm9_s_meri_body.njm", "wait_bm9_s_meri_body.njm", "wait2_bm9_s_meri_body.njm", "wake_bm9_s_meri_body.njm",
     NULL,
 };
 
 BmlResourceDescriptor lbl_804E1624 = {
-    "bm_ene_bm9_s_mericarol_low.bml", lbl_804E15F8, lbl_804E1600, 1, 8,
+    "bm_ene_bm9_s_mericarol_low.bml", mericarol_low_detail_model_names, mericarol_low_detail_motion_names, 1, 8,
 };
 
-TObjMotionAction lbl_804E1634[9] = {
+TObjMotionAction mericarol_motion_actions[9] = {
     { 3, 0, 3, 0.6f, 0 },
     { 1, 0, 5, 1.0f, 0 },
     { 1, 0, 6, 0.5f, 0 },
@@ -176,8 +176,8 @@ TObjEneBm9MericarolParams *mericarol_phase_param_table[3];
 f32 lbl_80540B88[4];
 const char *TObjEneBm9Mericarol__class_name = "TObjEneBm9Mericarol";
 SampledMotionPoints *TBoss4Type3_shared_instance;
-SampledMotionPoints *lbl_805D6864;
-BmlResource *lbl_805D6868;
+SampledMotionPoints *mericarol_sampled_motion_points;
+BmlResource *mericarol_resource;
 s32 lbl_805D686C;
 u32 lbl_805D6870;
 u32 lbl_805D6874;
@@ -189,9 +189,9 @@ extern "C" void TBoss4Type3__sub_802D1130(void) {
     s32 i;
 
     if (is_split_screen() != 0) {
-        lbl_805D6868 = (BmlResource *)load_enemy_bml_resource((u8 *)&lbl_804E1624);
+        mericarol_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&lbl_804E1624);
     } else {
-        lbl_805D6868 = (BmlResource *)load_enemy_bml_resource((u8 *)&lbl_804E15E8);
+        mericarol_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&lbl_804E15E8);
     }
     lbl_805D686C = 0;
     lbl_805D6870 = 0;
@@ -209,14 +209,14 @@ extern "C" void TBoss4Type3__sub_802D1130(void) {
         mericarol_phase_param_table[i] = (TObjEneBm9MericarolParams *)TLobby::dispatch_shared_handler_a(lbl_8047230C[i]);
     }
     TBoss4Type3_shared_instance = new SampledMotionPoints(2, 0.0f, 20.0f, 0.7f);
-    lbl_805D6864 = new SampledMotionPoints(2, 0.0f, 20.0f, 0.7f);
+    mericarol_sampled_motion_points = new SampledMotionPoints(2, 0.0f, 20.0f, 0.7f);
     set_motion_packed_rotation();
-    TBoss4Type3_shared_instance->sample_two_nodes((NJS_OBJECT *)lbl_805D6868->models[0].model, (NJS_MOTION *)lbl_805D6868->motions[lbl_804E1634[8].motion].motion, 0x20, 0x21);
-    lbl_805D6864->sample_two_nodes((NJS_OBJECT *)lbl_805D6868->models[0].model, (NJS_MOTION *)lbl_805D6868->motions[lbl_804E1634[8].motion].motion, 0x2A, 0x2B);
+    TBoss4Type3_shared_instance->sample_two_nodes((NJS_OBJECT *)mericarol_resource->models[0].model, (NJS_MOTION *)mericarol_resource->motions[mericarol_motion_actions[8].motion].motion, 0x20, 0x21);
+    mericarol_sampled_motion_points->sample_two_nodes((NJS_OBJECT *)mericarol_resource->models[0].model, (NJS_MOTION *)mericarol_resource->motions[mericarol_motion_actions[8].motion].motion, 0x2A, 0x2B);
     clear_motion_packed_rotation();
     {
-        Bm9MericarolAnimationBinding params = { lbl_805D6868->motions, lbl_804E1634, 0x30001, 9, 0 };
-        TLobby::spawn_npc_enemy(0x42, lbl_805D6868->models[0].model, (NJS_TEXLIST *)lbl_805D6868->models[0].m_c, &params,
+        Bm9MericarolAnimationBinding params = { mericarol_resource->motions, mericarol_motion_actions, 0x30001, 9, 0 };
+        TLobby::spawn_npc_enemy(0x42, mericarol_resource->models[0].model, (NJS_TEXLIST *)mericarol_resource->models[0].m_c, &params,
             lbl_804E1564[0].radius, 0.0f);
     }
 }
@@ -226,18 +226,18 @@ void *TObjEneBm9Mericarol::create(void *arg0) {
 }
 
 void TObjEneBm9Mericarol::free_shared_instances() {
-    if (lbl_805D6864 != NULL) {
-        delete lbl_805D6864;
-        lbl_805D6864 = NULL;
+    if (mericarol_sampled_motion_points != NULL) {
+        delete mericarol_sampled_motion_points;
+        mericarol_sampled_motion_points = NULL;
     }
     if (TBoss4Type3_shared_instance != NULL) {
         delete TBoss4Type3_shared_instance;
         TBoss4Type3_shared_instance = NULL;
     }
     fn_802D1C84();
-    if (lbl_805D6868 != NULL) {
-        free_bin_model_request(lbl_805D6868, 1);
-        lbl_805D6868 = NULL;
+    if (mericarol_resource != NULL) {
+        free_bin_model_request(mericarol_resource, 1);
+        mericarol_resource = NULL;
     }
 }
 
@@ -253,11 +253,11 @@ TObjEneBm9Mericarol::TObjEneBm9Mericarol(TObject *parent, void *set_data) : TObj
         m_438 |= 0x400;
     }
     init_position_vectors();
-    model = (void *)lbl_805D6868->models[0].model;
-    texlist = lbl_805D6868->models[0].m_c;
+    model = (void *)mericarol_resource->models[0].model;
+    texlist = mericarol_resource->models[0].m_c;
     init_model(lbl_804E1564, 1);
-    set_field_d8((s32)lbl_804E1634);
-    set_field_dc((s32)lbl_805D6868->motions);
+    set_field_d8((s32)mericarol_motion_actions);
+    set_field_dc((s32)mericarol_resource->motions);
     requested_action = 2;
     set_animation(requested_action);
     set_field_b8(requested_action);
@@ -742,7 +742,7 @@ void TObjEneBm9Mericarol::sub_802CFB64(s32 arg1) {
                     play_sound_effect(remap_sound_for_area(0x3A40D), &position, 0, 0);
                 }
                 points0 = TBoss4Type3_shared_instance->lookup(frame);
-                points1 = lbl_805D6864->lookup(frame);
+                points1 = mericarol_sampled_motion_points->lookup(frame);
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix(&position.x);
@@ -1381,7 +1381,7 @@ void fn_802CE510(int owner) {
     temp_r31 = ((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_0 & 4;
     if (temp_r31 != 0)
     {
-      fn_800D8830((void *)owner, (void *)(owner + 0x38));
+      play_floor_area_persistent_sound((void *)owner, (void *)(owner + 0x38));
     }
     else
     {

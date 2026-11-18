@@ -468,7 +468,7 @@ s32 transform_relative_position__9TObjEneDDFPv(void *, int);
 extern s32 game_difficulty_selection;
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 Hit_800CCC6C *csnVectorUnder(Vec *, void *, s32);
-s32 fn_800D88E4(void *);
+s32 play_floor_area_sound_effect(void *);
 void TObjEneBm5GibonU__sub_800D02F8(TObjEneBm5GibonU *self, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFE30(TObjEneBm5GibonU *self, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFA48(TObjEneBm5GibonU *self, s32 arg1);
@@ -572,7 +572,7 @@ int TObjEneBm5GibonU::spawn_landing_effect(Vec *pos) {
         if (p != NULL && m_464 == 1) {
             ((TParticleCtrl *)p)->set_scale(1.5f, 1.0f);
         }
-        return fn_800D88E4(&position);
+        return play_floor_area_sound_effect(&position);
     }
     return ((s32)play_sound_effect((void *)((void *)((s32)remap_sound_for_area(0x3BC21))), &position, 0, 0));
 }

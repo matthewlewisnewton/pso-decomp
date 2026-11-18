@@ -35,8 +35,8 @@ struct EffectNodeDesc {
 extern s32 lbl_804DF614[]; // model ids, defined in TBoss6Type1.cpp
 
 const char TBoss6Demo11_TYPE1_DEAD__class_name_string[] = "TBoss6Demo11_TYPE1_DEAD";
-static s32 lbl_804EF9D8[2] = {4, 5};          // motion ids
-static Vec lbl_804EF9E0 = {0.0f, 0.0f, 70.0f}; // start position
+static s32 death_motion_indices[2] = {4, 5};          // motion ids
+static Vec death_origin = {0.0f, 0.0f, 70.0f}; // start position
 const char *TBoss6Demo11_TYPE1_DEAD__name = TBoss6Demo11_TYPE1_DEAD__class_name_string;
 
 void *TBoss6PlotFalz::create(void *parent, void *arg) {
@@ -69,13 +69,13 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg) : T
     s32 i;
     m_name = TBoss6Demo11_TYPE1_DEAD__name;
     owner = (TObjFish *)parent;
-    VecCopy(&position, &lbl_804EF9E0);
+    VecCopy(&position, &death_origin);
     resource = (BmlResource *)TObjFish::get_fish_count();
     for (i = 0; i < 2; i++) {
         model_id = lbl_804DF614[i];
         parts[i].model = get_bml_model(resource, model_id);
         parts[i].texture = get_bml_texlist(resource, model_id);
-        parts[i].motion = get_bml_motion(resource, lbl_804EF9D8[i]);
+        parts[i].motion = get_bml_motion(resource, death_motion_indices[i]);
     }
     node_effect = (TObjFish *)TObjFish__sub_800E3124((u8 *)dead_effect_nodes(), (s32)effect_points);
     emitter = NULL;
