@@ -2,11 +2,17 @@
 
 Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. The initial eight-byte checkpoint is `ef2ca77a86` on `great-merge/fork-data-ranges`. Its changes now open the front-end scenes matchpass.
 
-## Current integration status
+## After upstream PR 320 landed
+
+Upstream master `77a34b3d72` contains all 176 inventory bytes previously credited to PR 320. Comparing the original inventory with a fresh build of master leaves 808 bytes across its 90 rows. The four submitted matchpasses recover 132 inventory bytes. The two local UI matchpasses recover 328 more. The combined six-group build leaves 348 inventory bytes, including the four verified padding bytes at 0x805D8A2C. Its exact and linked data totals increase by 464 bytes, including the four-byte keyboard polling mask outside the inventory.
+
+The three rightmost columns of the [range ledger](2026-11-18-fork-data-ranges.tsv) record the remaining byte count on this master, the contributing PR or local branch, and the deficit after applying all six groups. The original baseline and integration columns retain the earlier comparison.
+
+## Integration against the original baseline
 
 **All 1,147 bytes are accounted for** at `66eec9e27e`. The integration build links 980 previously missing inventory bytes from source. Four bytes at 0x805D8A2C are verified original linker padding. The other 163 bytes were already outside the checker's original 984-byte deficit. The ledger records the original and current missing-byte counts and the commit that closed each row.
 
-Of the 980 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 804 bytes come from the fork integration work. The front-end scenes matchpass builds directly on upstream master and is independent of PR 320.
+Of the 980 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. At that baseline PR 320 was open at `f72cca569d`. It subsequently landed in `77a34b3d72`. The other 804 bytes come from the fork integration work. The front-end scenes matchpass builds directly on upstream master and is independent of PR 320.
 
 | Integration commit | Inventory gap closed (includes identified padding) | Additional matched bytes outside the inventory | Missing inventory bytes after commit |
 |---|---:|---:|---:|

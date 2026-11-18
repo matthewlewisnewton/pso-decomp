@@ -1,6 +1,41 @@
 # Upstream matchpasses
 
-## Front-end scenes
+## Submissions against upstream master `77a34b3d72`
+
+| Review | Head | Files | Additional linked bytes |
+| --- | --- | ---: | ---: |
+| [Front-end scenes, PR 321](https://github.com/zeroz41/pso-decomp/pull/321) | `56f32a94b8` | 43 | 64 |
+| [Network runtime, PR 322](https://github.com/zeroz41/pso-decomp/pull/322) | `717c8c2b1e` | 22 | 8 |
+| [Chunk rendering, PR 323](https://github.com/zeroz41/pso-decomp/pull/323) | `35d9fbae56` | 19 | 32 |
+| [Scene resources, PR 324](https://github.com/zeroz41/pso-decomp/pull/324) | `ad4b9e3229` | 56 | 32 |
+
+Each PR independently reproduces retail and passes the upstream checks after compiling all source objects. All four merge cleanly together and the combined build gains 136 exact and linked data bytes. Two resource-loading call sites preserve the destructor from [PR 320](https://github.com/zeroz41/pso-decomp/pull/320) alongside the typed filename and read interfaces.
+
+## Local review queue on that master
+
+| Branch | Review sequence | Validation |
+| --- | --- | --- |
+| `great-merge/window-lists` at `b02df10df1` | Six commits across 50 files. Follow equipment and item icon lists into the status list, then shop and team lists, settings choices, item help and the status popup. | 280 exact and linked inventory bytes, 2,541 exact linked units. |
+| `great-merge/chat-windows` at `45c56c5f18` | Five commits across 76 files. Follow the speaker to a balloon, the composer through its hardware and software keyboards, and the shared draw context into the current upstream status gauge. | 48 exact and linked inventory bytes, 2,541 exact linked units. |
+| `great-merge/link-verification` at `760ce5a864` | Check data extents, weak symbols and linker retention against the active objects. Review nine tooling and test files in `718d8ee549`, then the generated configuration. | The standalone branch passed 54 tests and the full game check. The generated list has 26,096 names, with zero stale or missing entries on regeneration. |
+
+The four open reviews and the two local UI branches also passed a combined clean GPOE8P build and upstream checks, recovering 464 exact and linked bytes. The list windows apply cleanly to the four submitted reviews. The chat branch needs two small adjustments if those branches land first. Combine the adjacent linker entries, and remove the obsolete keyboard constructor and file-loader declarations in `TWindowKeyBoardBase.cpp`. The tested combined tree includes those adjustments. Regenerate the linker-verification branch’s generated list when its landing base changes.
+
+## Fork-wide review index
+
+The [fork change index](2026-11-18-fork-review-index.tsv) assigns all 7,495 changed entries between common ancestor `fba9382235` and fork main `3342e42983` to review families. Git pairs 2,912 renames at its 50% similarity threshold. There are also 2,630 additions, 978 modifications and 975 deletions. Each row records the original and fork paths, a comparison path, file-level evidence and reviews touching any of those paths. A path shared with a review may still contain unrelated changes. The index uses source ownership and filenames to route further review. It leaves 805 entries with an unresolved owner.
+
+All 374 changed documentation and evidence paths have a local destination under `fork/`. Three executable evidence models are preserved there as Markdown examples. The repository license and third-party license text have separate provenance entries. Shared source and build changes still require semantic comparison before deciding which fork implementation to retain.
+
+At the symbol level, 6,309 postimage address, section and kind combinations have fork names that changed since the common ancestor. On integration `3cb6af949d`, 4,884 still carry their ancestor names, 961 carry the fork names, 299 carry another name and 165 object starts have no symbol of that kind at that precise address. Differences in aliases and object boundaries need source review.
+
+## Disc streaming and battle parameters on integration
+
+Commit `1ca2b401ad` unifies nine CRI file operations through a 16-entry handle pool used by archive, sound-bank, character and texture callers. The executable checks cover pool exhaustion and reuse, AFS directory access, 75 seeks, reads, cancellation and errors. The resource reader also passed 70 cases. Commit `8619e5caf3` recovers the shared byte and word copy interfaces. Both binaries passed 90 copy and cache-flush cases covering overlapping buffers.
+
+Commits `aa2b4b3bd2` and `510782e359` recover the four enemy battle tables, their 96 records, the four difficulty banks and their enemy and boss callers. The probe at `3cb6af949d` exercised 384 lookups and compared the entire 0x3D80-byte active bank and its guards across 32 mode and difficulty combinations on both executables. All 294 repository tests passed on the integration source export.
+
+## Front-end scenes at the original baseline
 
 `great-merge/frontend-scenes` starts at upstream master `92a266f5eb`. Head `6a32eddbc2` contains five commits across 43 files (+449/−482). Most callers change only how they create the menu line controller. The eight-byte ending checkpoint is included in this branch.
 

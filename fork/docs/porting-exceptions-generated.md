@@ -66,20 +66,20 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/unk/text_803D853C.cpp:287` | `#include "orig_asm/pso/unk/text_803D853C/vec3_cross.inc"` |
 | `src/pso/unk/text_803D9650.cpp:6` | `asm void matrix_apply_translation(MtxP m, f32 x, f32 y, f32 z) {` |
 | `src/pso/unk/text_803D9650.cpp:7` | `#include "orig_asm/pso/unk/text_803D9650/matrix_apply_translation.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:92` | `asm f32 normalize_vector(Vec *v) {` |
-| `src/pso/unk/text_803D96A8.cpp:93` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:129` | `asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {` |
-| `src/pso/unk/text_803D96A8.cpp:130` | `#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:160` | `asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {` |
-| `src/pso/unk/text_803D96A8.cpp:161` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:164` | `asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {` |
-| `src/pso/unk/text_803D96A8.cpp:165` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:168` | `asm s32 push_matrix(void) {` |
-| `src/pso/unk/text_803D96A8.cpp:169` | `#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:185` | `asm void scale_current_matrix(const f32 *v) {` |
-| `src/pso/unk/text_803D96A8.cpp:186` | `#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:189` | `asm void post_translate_matrix(const f32 *v) {` |
-| `src/pso/unk/text_803D96A8.cpp:190` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:93` | `asm f32 normalize_vector(Vec *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:94` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:130` | `asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:131` | `#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:161` | `asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:162` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:165` | `asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {` |
+| `src/pso/unk/text_803D96A8.cpp:166` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:169` | `asm s32 push_matrix(void) {` |
+| `src/pso/unk/text_803D96A8.cpp:170` | `#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:186` | `asm void scale_current_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:187` | `#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:190` | `asm void post_translate_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:191` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
 | `src/pso/unk/text_803E2F28.cpp:223` | `asm void GXSetVtxAttrFmtv(ChunkVertexJob *job, ReorderedMatrix_803E3390 *matrix, u32 accumulate) {` |
 | `src/pso/unk/text_803E2F28.cpp:224` | `#include "orig_asm/pso/unk/text_803E2F28/GXSetVtxAttrFmtv.inc"` |
 | `src/pso/unk/text_803E2F28.cpp:277` | `asm void transform_chunk_vertices_pos_normal(register ChunkVertexJob *job, register ReorderedMatrix_803E3390 *matrix) {` |
@@ -103,11 +103,11 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/audio/AdxEncoder.cpp:774` | `__abs` |
 | `src/pso/audio/AdxHeader.cpp:177` | `__frsqrte` |
 | `src/pso/audio/SjMemoryBuffer.cpp:26` | `__cntlzw` |
-| `src/pso/boss/barbaray/TBoss7Crawfish.cpp:120` | `__cntlzw` |
-| `src/pso/boss/volopt/TBoss3VoloptCore.cpp:512` | `__abs` |
+| `src/pso/boss/barbaray/TBoss7Crawfish.cpp:121` | `__cntlzw` |
+| `src/pso/boss/volopt/TBoss3VoloptCore.cpp:513` | `__abs` |
 | `src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp:617` | `__cntlzw` |
-| `src/pso/enemy/gigue/TObjEneMe1GiGue.cpp:1466` | `__cntlzw` |
-| `src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp:480` | `__cntlzw` |
+| `src/pso/enemy/gigue/TObjEneMe1GiGue.cpp:1464` | `__cntlzw` |
+| `src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp:481` | `__cntlzw` |
 | `src/pso/item/mag/TItemMag.cpp:1350` | `__cntlzw` |
 | `src/pso/network/ModemRuntime.cpp:339` | `__cntlzw` |
 | `src/pso/network/NetTcp.c:353` | `__cntlzw` |
@@ -143,10 +143,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/player/TObjPlayer_803E112C.cpp:147` | `__fabs` |
 | `src/pso/player/TObjPlayer_803E18C0.cpp:28` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803E1A58.cpp:60` | `__frsqrte` |
-| `src/pso/quest/TQuestVmDownLoadServer.cpp:525` | `__cntlzw` |
+| `src/pso/quest/TQuestVmDownLoadServer.cpp:526` | `__cntlzw` |
 | `src/pso/render/render_util.cpp:494` | `__frsqrte` |
 | `src/pso/ui/charcreate/TObjCMMainMenu_8028D9A8.cpp:87` | `__cntlzw` |
-| `src/pso/ui/city/TCheckRoomSequence.cpp:281` | `__cntlzw` |
+| `src/pso/ui/city/TCheckRoomSequence.cpp:282` | `__cntlzw` |
 | `src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp:69` | `__cntlzw` |
 | `src/pso/ui/frontend/TAdExNetConfirmGC.cpp:9` | `__cntlzw` |
 | `src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp:291` | `__cntlzw` |
@@ -206,10 +206,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/player/TObjPlayer_803E2810.cpp:29` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
 | `src/pso/player/TObjPlayer_803E2810.cpp:30` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
 | `src/pso/player/TObjPlayer_803E5470.cpp:312` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
-| `src/pso/render/ChunkMaterialState.cpp:188` | `matrix_stack_base = 0xE0000000;` |
-| `src/pso/render/ChunkMaterialState.cpp:189` | `current_matrix = 0xE0000000;` |
-| `src/pso/render/ChunkMaterialState.cpp:190` | `matrix_stack_limit = (arg1 - 1) * 0x30 + 0xE0000000;` |
-| `src/pso/render/ChunkMaterialState.cpp:191` | `PSMTXIdentity(identity_matrix == 0 ? (u8 *)0xE0000000 : identity_matrix);` |
+| `src/pso/render/ChunkMaterialState.cpp:189` | `matrix_stack_base = 0xE0000000;` |
+| `src/pso/render/ChunkMaterialState.cpp:190` | `current_matrix = 0xE0000000;` |
+| `src/pso/render/ChunkMaterialState.cpp:191` | `matrix_stack_limit = (arg1 - 1) * 0x30 + 0xE0000000;` |
+| `src/pso/render/ChunkMaterialState.cpp:192` | `PSMTXIdentity(identity_matrix == 0 ? (u8 *)0xE0000000 : identity_matrix);` |
 | `src/pso/render/ModelDrawContext.cpp:213` | `int src = cached_blend_factor_table[(v & 0xE0000000) >> 29];` |
 | `src/pso/ui/hud/TMainCursor.cpp:1172` | `((TMainCursor *)arg2)->set_flags(0xE0000800);` |
 | `src/pso/ui/hud/TMainCursor.cpp:1188` | `((TMainCursor *)arg2)->set_flags(0xE0000000);` |
