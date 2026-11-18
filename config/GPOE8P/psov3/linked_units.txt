@@ -1520,7 +1520,6 @@ pso/misc/TQuadSpriteSclCol.cpp
 pso/misc/TQuadSpriteSclColRot.cpp
 pso/misc/TQuestColCtrl.cpp
 pso/misc/TQuestColCtrl_80195CF0.cpp
-pso/misc/TQuestListChallenge.cpp
 pso/misc/TQuestListOnline.cpp
 pso/misc/TQuestListOnline_802150E8.cpp
 pso/misc/TQuestListOnline_80217464.cpp
@@ -1999,7 +1998,6 @@ pso/misc/TWindowTimer.cpp
 pso/misc/TWindowTradeRequest.cpp
 pso/misc/TWindowTradeRequest_802E0170.cpp
 pso/misc/TWindowUserSort.cpp
-pso/misc/TWindow_80217288.cpp
 pso/misc/TeneFakeTecThunderEff.cpp
 pso/misc/item_param.cpp
 pso/misc/item_pmt.cpp
@@ -2620,6 +2618,8 @@ pso/quest/AreaDialogueScripts.cpp
 pso/quest/QuestOpcodeHandlers.cpp
 pso/quest/QuestOpcodeTables.cpp
 pso/quest/StoryQuestProgress.cpp
+pso/quest/TQuestListChallenge.cpp
+pso/quest/TQuestListOffline_802171BC.cpp
 pso/quest/TQuestListVM.cpp
 pso/quest/TQuestListVM_80073DC4.cpp
 pso/quest/TQuestListVM_8007EAF8.cpp
