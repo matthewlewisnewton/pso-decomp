@@ -7894,6 +7894,9 @@ pso/misc/ShopToolStock.cpp:
 	.bss        start:0x80513EF0 end:0x80513F30
 	.sbss       start:0x805D6260 end:0x805D6268
 
+pso/misc/ShopWeaponTables.cpp:
+	.rodata     start:0x8044C488 end:0x8044C7B8
+
 pso/misc/ShopWeaponStock.cpp:
 	.text       start:0x80224660 end:0x802257EC
 	.rodata     start:0x8044C7B8 end:0x8044C7C0
