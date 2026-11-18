@@ -2,6 +2,8 @@
 #define PSO_ENEMY_BERURA_TOBJENERE7BERURA_H
 
 #include "types.h"
+#include <stddef.h>
+#include <dolphin/mtx/GeoTypes.h>
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/render/RenderFadeState.h"
 #include "pso/render/TUnk_80490470.h"
@@ -20,20 +22,25 @@ struct TObjEneRe7BeruraMovementParameters {
 };
 
 // One element of TObjEneRe7Berura__detached_part_states.
-struct TObjEneRe7BeruraPart {
-    u8 *node_matrices;
-    s32 first_node;
-    s32 last_node;
+struct BeruraDetachedPart {
+    Mtx34 *matrices;
+    s32 first_node_index;
+    s32 last_node_index;
     s32 action;
     f32 m_10;
-    f32 m_14;
-    NJS_OBJECT *first_object;
-    NJS_OBJECT *last_object;
-    NJS_OBJECT object;
-    Vec m_58;
+    f32 frame;
+    NJS_OBJECT *first_node;
+    NJS_OBJECT *last_node;
+    NJS_OBJECT model;
+    Vec origin;
+
+    void show_end_nodes();
+    void hide_end_nodes();
 };
 
-typedef char TObjEneRe7BeruraPart_size[sizeof(TObjEneRe7BeruraPart) == 0x64 ? 1 : -1];
+typedef char BeruraDetachedPartSize[sizeof(BeruraDetachedPart) == 0x64 ? 1 : -1];
+typedef char BeruraDetachedPartModelOffset[offsetof(BeruraDetachedPart, model) == 0x20 ? 1 : -1];
+typedef char BeruraDetachedPartOriginOffset[offsetof(BeruraDetachedPart, origin) == 0x58 ? 1 : -1];
 
 struct TObjEneRe7Berura : public TObjEneDD_ST {
     TObjEneRe7Berura(TObject *parent, void *set_data);
@@ -59,8 +66,8 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {
     s32 step_toward_target(s32 arg1, s32 arg2);
     void init_fields4B8();
     static void init_part(s32 arg0);
-    static void apply_attack_params(int child, void *part);
-    static s32 collect_node_matrices(void *obj, int idx);
+    static void capture_part_matrices(NJS_OBJECT *root, BeruraDetachedPart *part);
+    static s32 collect_node_matrices(NJS_OBJECT *obj, s32 idx);
     void update_collision_center();
     void init_enemy();
     static void destroy_children();
@@ -112,7 +119,8 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {
     f32 m_4d8;
     f32 m_4dc;
     f32 m_4e0;
-    void set_data_and_draw_node_tree(u8 *matrices);
+    static void draw_node_tree(NJS_OBJECT *root);
+    static void draw_node_tree(NJS_OBJECT *root, Mtx34 *matrices);
     s32 get_field_3D4_shifted();
 };
 

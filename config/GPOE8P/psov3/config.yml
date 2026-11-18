@@ -6668,7 +6668,7 @@ force_active:
   - apply_and_close__17TWindowOptionCtrlFl
   - apply_anim_action__10TObjPlayerFPvi
   - apply_armor_effect_flags__13TItemProArmorFv
-  - apply_attack_params__16TObjEneRe7BeruraFiPv
+  - capture_part_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTP18BeruraDetachedPart
   - apply_attack_stat_status__10TBoss2MineFPv
   - apply_attack_stat_status__13TObjEneRe4BitFPv
   - apply_balance__19TWindowSoundBalanceFPv
@@ -8887,7 +8887,7 @@ force_active:
   - collect_candidate_players__12TBoss3VoloptFv
   - collect_hit_targets__12TPhotonGollaFPv
   - collect_item_owners_recursive__10TObjPlayerFv
-  - collect_node_matrices__16TObjEneRe7BeruraFPvi
+  - collect_node_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTl
   - collect_node_positions__11TBreakUpMdlFPUcl
   - collect_owner_events__8TItemMagFv
   - collect_owner_fields_recursive__10TObjPlayerFv
@@ -9878,7 +9878,7 @@ force_active:
   - draw_name_labels__13TObjTombstoneFv
   - draw_name_plate__15TWindowFukidasiFv
   - draw_node_tree__16TObjDFTenchuFuruFv
-  - draw_node_tree__16TObjEneRe7BeruraFPv
+  - draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECT
   - draw_node_tree__18TObjLaboDesignBaseFiPv
   - draw_node_tree__19TODoorFourLightBaseFPUc
   - draw_number_value__15TWindowHelpItemFPvPflll
@@ -10587,8 +10587,8 @@ force_active:
   - fn_80077B34
   - fn_8007A7A0
   - fn_8007FE78
-  - fn_80095DD0
-  - fn_80095DF4
+  - show_end_nodes__18BeruraDetachedPartFv
+  - hide_end_nodes__18BeruraDetachedPartFv
   - fn_8009BD00
   - fn_8009E2DC
   - fn_8009E300
@@ -19716,7 +19716,7 @@ force_active:
   - re7_berura_demo_camera_ptr
   - re7_berura_demo_flag
   - re7_berura_demo_state
-  - re7_berura_static_buffer
+  - berura_detached_matrices
   - re_b_mark_base_model_names
   - re_b_mark_base_motion_names
   - react_to_events__8TItemMagFSc
@@ -22083,7 +22083,7 @@ force_active:
   - set_cursor_row_for_mode__14TWindowSubItemFl
   - set_damage__20TOTrapChainSawDamageFl
   - set_damage_phase_value__12TBoss8DragonFl
-  - set_data_and_draw_node_tree__16TObjEneRe7BeruraFPUc
+  - draw_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f
   - set_dead_state__10TObjPlayerFv
   - set_death_marker_pos__10TObjPlayerFv
   - set_default_depth_offset__15TObjEneDelDepthFv

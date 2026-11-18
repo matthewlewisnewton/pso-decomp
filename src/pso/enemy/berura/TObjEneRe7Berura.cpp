@@ -44,11 +44,9 @@ void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 void TObjEneRe7Berura__sub_80093470(TObjEneRe7Berura *self, s32 mode);
 void TObjEneRe7BeruraPunch__sub_800962F4(TObjEneRe7BeruraPunch *p);
 void TObjPlayer__sub_800A04F0(void *);
-void fn_80095DD0(TObjEneRe7BeruraPart *);
-void fn_80095DF4(TObjEneRe7BeruraPart *);
 s32 scroll_strip_uvs(s32, int, int);
 extern const Vec lbl_80439EC4;
-extern TObjEneRe7BeruraPart TObjEneRe7Berura__detached_part_states[];
+extern BeruraDetachedPart TObjEneRe7Berura__detached_part_states[];
 u8 * TObjEneRe7Berura__stat_handle_table[1];
 u8 * TObjEneRe7Berura__shared_object_handles[1];
 void * TObjEneRe7Berura__handler_table_a[1];
@@ -59,13 +57,13 @@ Vec * re7_berura_demo_camera_ptr;
 s32 berura_demo_flag;
 s32 re7_berura_demo_flag;
 TUnk_80490470 * TObjEneRe7Berura__demo_target;
-u8 * re7_berura_static_buffer;
+Mtx34 *berura_detached_matrices;
 s32 * berura_node_matrix_ptr_a;
 s16 * berura_node_matrix_ptr_b;
 u32 belra_uv_animation_buffer;
 s32 berura_attack_node_range_start;
 s32 berura_attack_node_range_end;
-u8 * TObjEneRe7Berura__node_matrix_cursor;
+Mtx34 *TObjEneRe7Berura__node_matrix_cursor;
 Vec * berura_attack_node_vec_ptr;
 SampledMotionPoints * belra_trail_buffer;
 extern s32 saved_model_render_flags;
@@ -94,7 +92,6 @@ void update_technique_slot__10TTecRaFoieFl(s32);
 }
 
 
-struct Mtx_8009503C { f32 m[3][4]; };
 extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
 u16 get_entity_id(TObjBase *);
@@ -104,7 +101,6 @@ void TObjEneRe7Berura__sub_80093888(TObjEneRe7Berura *actor, s32 arg1);
 
 void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self);
 void TObjEneRe7Berura__sub_80094D98(TObjEneRe7Berura *self);
-void draw_node_tree__16TObjEneRe7BeruraFPv(NJS_OBJECT *obj);
 
 
 s32 TObjPlayer__sub_800A0554(void *);
@@ -192,16 +188,16 @@ const Vec lbl_80439EC4 = {2.0f, 1.0f, 2.0f};
 
 f32 lbl_805007C8[3];
 u8 *TObjEneRe7Berura__data_805007D4[2];
-TObjEneRe7BeruraPart TObjEneRe7Berura__detached_part_states[2];
+BeruraDetachedPart TObjEneRe7Berura__detached_part_states[2];
 
-void fn_80095DF4(TObjEneRe7BeruraPart *part) {
-    part->first_object->evalflags |= NJD_EVAL_HIDE;
-    part->last_object->evalflags |= NJD_EVAL_HIDE;
+void BeruraDetachedPart::hide_end_nodes() {
+    first_node->evalflags |= NJD_EVAL_HIDE;
+    last_node->evalflags |= NJD_EVAL_HIDE;
 }
 
-void fn_80095DD0(TObjEneRe7BeruraPart *part) {
-    part->first_object->evalflags &= ~NJD_EVAL_HIDE;
-    part->last_object->evalflags &= ~NJD_EVAL_HIDE;
+void BeruraDetachedPart::show_end_nodes() {
+    first_node->evalflags &= ~NJD_EVAL_HIDE;
+    last_node->evalflags &= ~NJD_EVAL_HIDE;
 }
 
 void TObjEneRe7Berura::load_static_resources() {
@@ -209,7 +205,7 @@ void TObjEneRe7Berura::load_static_resources() {
     Vec vecs[4];
     BmlResource *r;
     u32 m;
-    u8 *buf;
+    Mtx34 *buf;
     s32 i;
     void *p;
     if (TObjEneDD::check_v2_mode() != 0) {
@@ -228,42 +224,42 @@ void TObjEneRe7Berura::load_static_resources() {
     re7_berura_demo_flag = 0;
     TObjEneRe7Berura__demo_target = 0;
     m = (u32)r->models->model;
-    buf = (u8 *)::operator new[](0x660);
-    re7_berura_static_buffer = buf;
-    TObjEneRe7Berura__detached_part_states[0].node_matrices = buf;
-    TObjEneRe7Berura__detached_part_states[1].node_matrices = buf + 0x330;
-    TObjEneRe7Berura__detached_part_states[0].first_node = 0x21;
-    TObjEneRe7Berura__detached_part_states[0].last_node = 0x31;
-    TObjEneRe7Berura__detached_part_states[1].first_node = 0x38;
-    TObjEneRe7Berura__detached_part_states[1].last_node = 0x48;
+    buf = new Mtx34[2 * 17];
+    berura_detached_matrices = buf;
+    TObjEneRe7Berura__detached_part_states[0].matrices = buf;
+    TObjEneRe7Berura__detached_part_states[1].matrices = buf + 17;
+    TObjEneRe7Berura__detached_part_states[0].first_node_index = 0x21;
+    TObjEneRe7Berura__detached_part_states[0].last_node_index = 0x31;
+    TObjEneRe7Berura__detached_part_states[1].first_node_index = 0x38;
+    TObjEneRe7Berura__detached_part_states[1].last_node_index = 0x48;
     TObjEneRe7Berura__detached_part_states[0].action = 3;
     TObjEneRe7Berura__detached_part_states[0].m_10 = 20.0f;
-    TObjEneRe7Berura__detached_part_states[0].m_14 = 30.0f;
+    TObjEneRe7Berura__detached_part_states[0].frame = 30.0f;
     TObjEneRe7Berura__detached_part_states[1].action = 4;
     TObjEneRe7Berura__detached_part_states[1].m_10 = 19.0f;
-    TObjEneRe7Berura__detached_part_states[1].m_14 = 29.0f;
+    TObjEneRe7Berura__detached_part_states[1].frame = 29.0f;
     for (i = 0; i < 2; i++) {
-        TObjEneRe7BeruraPart *e = &TObjEneRe7Berura__detached_part_states[i];
+        BeruraDetachedPart *e = &TObjEneRe7Berura__detached_part_states[i];
         AnimationMotion *ent = TObjEneRe7Berura__shared_resource->motions[TObjEneRe7Berura__animation_definitions[e->action].motion].motion;
         set_motion_packed_rotation();
-        bind_motion_context((NJS_MOTION *)ent, e->m_14);
-        TObjEneRe7Berura::apply_attack_params(m, e);
+        bind_motion_context((NJS_MOTION *)ent, e->frame);
+        capture_part_matrices((NJS_OBJECT *)m, e);
         clear_motion_packed_rotation();
-        e->first_object = (NJS_OBJECT *)find_model_node(m, e->first_node);
-        e->last_object = (NJS_OBJECT *)find_model_node(m, e->last_node);
-        e->object.evalflags = NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL;
-        e->object.model = e->first_object->model;
-        e->object.pos[0] = 0.0f;
-        e->object.pos[1] = 0.0f;
-        e->object.pos[2] = 0.0f;
-        e->object.ang[0] = 0;
-        e->object.ang[1] = 0;
-        e->object.ang[2] = 0;
-        e->object.scl[0] = 1.0f;
-        e->object.scl[1] = 1.0f;
-        e->object.scl[2] = 1.0f;
-        e->object.child = e->first_object->child;
-        e->object.sibling = 0;
+        e->first_node = (NJS_OBJECT *)find_model_node(m, e->first_node_index);
+        e->last_node = (NJS_OBJECT *)find_model_node(m, e->last_node_index);
+        e->model.evalflags = NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL;
+        e->model.model = e->first_node->model;
+        e->model.pos[0] = 0.0f;
+        e->model.pos[1] = 0.0f;
+        e->model.pos[2] = 0.0f;
+        e->model.ang[0] = 0;
+        e->model.ang[1] = 0;
+        e->model.ang[2] = 0;
+        e->model.scl[0] = 1.0f;
+        e->model.scl[1] = 1.0f;
+        e->model.scl[2] = 1.0f;
+        e->model.child = e->first_node->child;
+        e->model.sibling = 0;
     }
     berura_node_matrix_ptr_a = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(m, 2))->model)[1] + 8);
     berura_node_matrix_ptr_b = (s16 *)(((s32 *)((NJS_OBJECT *)find_model_node(m, 1))->model)[1] + 8);
@@ -318,9 +314,9 @@ void TObjEneRe7Berura::destroy_children() {
         destroy_buffer_pair((void *)belra_uv_animation_buffer, 1);
         belra_uv_animation_buffer = 0U;
     }
-    if (re7_berura_static_buffer != NULL) {
-        ::operator delete[](re7_berura_static_buffer);
-        re7_berura_static_buffer = NULL;
+    if (berura_detached_matrices != NULL) {
+        ::operator delete[](berura_detached_matrices);
+        berura_detached_matrices = NULL;
     }
     if (TObjEneRe7Berura__shared_resource != NULL) {
         delete TObjEneRe7Berura__shared_resource;
@@ -503,13 +499,13 @@ s32 TObjEneRe7Berura__sub_8009518C(TObjEneRe7Berura *self) {
     return !(self->m_418[self->m_3f4] & 2);
 }
 
-s32 TObjEneRe7Berura::collect_node_matrices(void *obj, int idx) {
-    Mtx_8009503C m;
+s32 TObjEneRe7Berura::collect_node_matrices(NJS_OBJECT *obj, s32 idx) {
+    Mtx34 m;
     u32 flags;
     do {
         push_matrix();
         compose_motion_node_matrix(obj);
-        flags = ((NJS_OBJECT *)obj)->evalflags;
+        flags = obj->evalflags;
         if (idx == berura_attack_node_range_start) {
             berura_attack_node_vec_ptr->x = 0.0f;
             berura_attack_node_vec_ptr->y = 0.0f;
@@ -526,63 +522,57 @@ s32 TObjEneRe7Berura::collect_node_matrices(void *obj, int idx) {
             copy_matrix__10TObjPlayerFUlUl(0, &m);
         }
         if (idx >= berura_attack_node_range_start && idx <= berura_attack_node_range_end) {
-            u8 *p = TObjEneRe7Berura__node_matrix_cursor;
-            TObjEneRe7Berura__node_matrix_cursor = p + sizeof(Mtx_8009503C);
+            Mtx34 *p = TObjEneRe7Berura__node_matrix_cursor;
+            TObjEneRe7Berura__node_matrix_cursor = p + 1;
             get_current_matrix(p);
         }
         idx++;
         if (!(flags & NJD_EVAL_BREAK)) {
-            idx = TObjEneRe7Berura::collect_node_matrices(((NJS_OBJECT *)obj)->child, idx);
+            idx = TObjEneRe7Berura::collect_node_matrices(obj->child, idx);
         }
         pop_matrix();
-        obj = ((NJS_OBJECT *)obj)->sibling;
+        obj = obj->sibling;
     } while (obj != NULL);
     return idx;
 }
 
-void TObjEneRe7Berura::apply_attack_params(int child, void *part) {
-    TObjEneRe7BeruraPart *e = (TObjEneRe7BeruraPart *)part;
-    TObjEneRe7Berura__node_matrix_cursor = e->node_matrices;
-    berura_attack_node_range_start = e->first_node;
-    berura_attack_node_range_end = e->last_node;
-    berura_attack_node_vec_ptr = &e->m_58;
+void TObjEneRe7Berura::capture_part_matrices(NJS_OBJECT *root, BeruraDetachedPart *part) {
+    TObjEneRe7Berura__node_matrix_cursor = part->matrices;
+    berura_attack_node_range_start = part->first_node_index;
+    berura_attack_node_range_end = part->last_node_index;
+    berura_attack_node_vec_ptr = &part->origin;
     push_matrix_from(identity_matrix);
-    collect_node_matrices((void *)child, 0);
+    collect_node_matrices(root, 0);
     pop_matrix();
 }
 
-void draw_node_tree__16TObjEneRe7BeruraFPv(NJS_OBJECT *obj) {
-    u32 flags;
-    u8 *matrix;
-
+void TObjEneRe7Berura::draw_node_tree(NJS_OBJECT *root) {
     do {
         push_matrix();
-        matrix = TObjEneRe7Berura__node_matrix_cursor;
-        TObjEneRe7Berura__node_matrix_cursor = matrix + sizeof(Mtx_8009503C);
-        concat_matrix__10TObjPlayerFUlUl(0, matrix);
-        flags = obj->evalflags;
+        Mtx34 *matrix = TObjEneRe7Berura__node_matrix_cursor;
+        TObjEneRe7Berura__node_matrix_cursor = matrix + 1;
+        concat_matrix__10TObjPlayerFUlUl(0, *matrix);
+        u32 flags = root->evalflags;
         if (!(flags & NJD_EVAL_HIDE)) {
-            draw_chunk_model(obj->model);
+            draw_chunk_model(root->model);
         }
         pop_matrix();
         if (!(flags & NJD_EVAL_BREAK)) {
-            draw_node_tree__16TObjEneRe7BeruraFPv(obj->child);
+            draw_node_tree(root->child);
         }
-        obj = obj->sibling;
-    } while (obj != NULL);
+        root = root->sibling;
+    } while (root != NULL);
 }
 
-void TObjEneRe7Berura::set_data_and_draw_node_tree(u8 *matrices) {
+void TObjEneRe7Berura::draw_node_tree(NJS_OBJECT *root, Mtx34 *matrices) {
     TObjEneRe7Berura__node_matrix_cursor = matrices;
-    draw_node_tree__16TObjEneRe7BeruraFPv(((NJS_OBJECT *)this));
+    draw_node_tree(root);
 }
 
-void TObjEneRe7Berura::init_part(s32 arg0) {
-    TObjEneRe7BeruraPart *part;
-
-    set_current_texture_list((GinjaTextureList *)TObjEneRe7Berura__shared_resource->models->m_c);
-    part = &TObjEneRe7Berura__detached_part_states[arg0];
-    ((TObjEneRe7Berura *)(&part->object))->set_data_and_draw_node_tree(part->node_matrices);
+void TObjEneRe7Berura::init_part(s32 index) {
+    set_current_texture_list((GinjaTextureList *)TObjEneRe7Berura__shared_resource->models[0].m_c);
+    BeruraDetachedPart *part = &TObjEneRe7Berura__detached_part_states[index];
+    draw_node_tree(&part->model, part->matrices);
 }
 
 s32 TObjEneRe7Berura::get_field_3D4_shifted() {
@@ -1013,7 +1003,7 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *self, s32 arg1) {
 
 void TObjEneRe7Berura__sub_80093C80(TObjEneRe7Berura *self, s32 arg1) {
     Vec v;
-    TObjEneRe7BeruraPart *t;
+    BeruraDetachedPart *t;
     s32 ok;
     switch (arg1) {
     case 4:
@@ -1023,7 +1013,7 @@ void TObjEneRe7Berura__sub_80093C80(TObjEneRe7Berura *self, s32 arg1) {
         self->set_field_378(5);
         t = &TObjEneRe7Berura__detached_part_states[self->m_3f4];
         self->requested_action = t->action;
-        self->m_4d0 = t->m_14;
+        self->m_4d0 = t->frame;
         self->m_4d4 = t->m_10;
         self->m_4c0 = 0;
         for (s32 i = 0; i < 2; i++) {
@@ -1077,7 +1067,7 @@ void TObjEneRe7Berura__sub_80093C80(TObjEneRe7Berura *self, s32 arg1) {
             if (self->is_passing_frame(self->m_4d0) != 0) {
                 self->m_418[self->m_3f4] |= 3;
                 self->m_3fc.reset_obstruction_fade();
-                VecCopy(&v, &TObjEneRe7Berura__detached_part_states[self->m_3f4].m_58);
+                VecCopy(&v, &TObjEneRe7Berura__detached_part_states[self->m_3f4].origin);
                 rotate_xz_pair_by_angle(&v.x, &v.z, self->rotation_y);
                 vec3_add_to(&v, &self->position);
                 launch__21TObjEneRe7BeruraPunchFll(self->m_3f8, self->m_3f4, &v, &self->m_394);
@@ -1467,7 +1457,7 @@ void TObjEneRe7Berura::render() {
         TObjPlayer::toggle_particle_effect();
         for (i = 0; i < 2; i++) {
             if (m_418[i] & 1) {
-                fn_80095DF4(&TObjEneRe7Berura__detached_part_states[i]);
+                TObjEneRe7Berura__detached_part_states[i].hide_end_nodes();
             }
         }
         *berura_node_matrix_ptr_a = m_3c4;
@@ -1550,7 +1540,7 @@ void TObjEneRe7Berura::render() {
         update_primary_light();
         for (l3 = 0; l3 < 2; l3++) {
             if (m_418[l3] & 1) {
-                fn_80095DD0(&TObjEneRe7Berura__detached_part_states[l3]);
+                TObjEneRe7Berura__detached_part_states[l3].show_end_nodes();
             }
         }
         TParticleCtrl::end_effect_render();
