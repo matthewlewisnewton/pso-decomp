@@ -49,7 +49,7 @@ TObjNpcFemaleBase *TObjNpcFemaleBase__ct(TObjNpcFemaleBase *npc, TObjControl *co
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcFemaleBase__shared_resource_obj->models->model;
-    npc->texlist = TObjNpcFemaleBase__shared_resource_obj->models->m_c;
+    npc->texlist = (s32)TObjNpcFemaleBase__shared_resource_obj->models->m_c;
     npc->setup_common();
     return npc;
 }

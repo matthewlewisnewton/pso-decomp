@@ -1339,17 +1339,17 @@ void TObjEneGyaranzo::sub_800D2A68() {
     const TObjChipParams first = {
         {0.5f, 0.04f, 0.28f}, {pos.x, pos.y, pos.z}, {6.0f, 7.0f, 6.0f},
         {0x400, 0x100, 0x400}, {5, 50}, {position.y, 1.0f},
-        ((BmlResource *)gyaranzo_bml_resource)->models[0].model, ((BmlResource *)gyaranzo_bml_resource)->models[0].m_c, 2,
+        (s32)((BmlResource *)gyaranzo_bml_resource)->models[0].model, (s32)((BmlResource *)gyaranzo_bml_resource)->models[0].m_c, 2,
     };
     const TObjChipParams second = {
         {0.5f, 0.04f, 0.2f}, {pos.x, pos.y, pos.z}, {5.5f, 6.5f, 5.5f},
         {0x400, 0x100, 0x400}, {4, 50}, {position.y, 1.0f},
-        ((BmlResource *)gyaranzo_bml_resource)->models[1].model, ((BmlResource *)gyaranzo_bml_resource)->models[1].m_c, 2,
+        (s32)((BmlResource *)gyaranzo_bml_resource)->models[1].model, (s32)((BmlResource *)gyaranzo_bml_resource)->models[1].m_c, 2,
     };
     const TObjChipParams third = {
         {0.5f, 0.04f, 0.22f}, {pos.x, pos.y, pos.z}, {5.5f, 7.0f, 5.5f},
         {0x400, 0x100, 0x400}, {5, 50}, {position.y, 1.0f},
-        ((BmlResource *)gyaranzo_bml_resource)->models[2].model, ((BmlResource *)gyaranzo_bml_resource)->models[2].m_c, 2,
+        (s32)((BmlResource *)gyaranzo_bml_resource)->models[2].model, (s32)((BmlResource *)gyaranzo_bml_resource)->models[2].m_c, 2,
     };
 
     new TObjChip((TObject *)tl_05, &first);

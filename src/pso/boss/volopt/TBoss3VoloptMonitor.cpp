@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/boss/volopt/TBoss3VoloptCore.h"

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/PadRumble.h"
@@ -203,8 +204,6 @@ void VecCopy__FP3VecPC3Vec(void *, void *);
 u16 get_entity_id(void *);
 f32 atan2_float(f32 y, f32 x);
 s32 get_bml_motion(s32, s32);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 s32 TBoss4DarkFalz__sub_8004AF5C(s32, s16 *, s16 *);
 void TBoss4DarkFalz__sub_8004B4F0(void *, void *);
 void *create__16TObjDFBeamCursorFPvPv(void *arg0, void *arg1);
@@ -757,7 +756,7 @@ void TBoss4Type1::draw_parts() {
     s32 a;
     set_motion_packed_rotation();
     for (i = 0; i < 6; i++) {
-        set_current_texture_list((GinjaTextureList *)get_bml_texlist((BmlResource *)(*(s32 *)((s8 *)arg0 + 0x390)), lbl_80485EB0[i]));
+        set_current_texture_list(get_bml_texlist((BmlResource *)(*(s32 *)((s8 *)arg0 + 0x390)), lbl_80485EB0[i]));
         switch (i) {
         case 2:
         case 3:
@@ -765,7 +764,7 @@ void TBoss4Type1::draw_parts() {
             TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)arg0 + 0x3DC), this->hp_ratio);
             off = (i - 2) * 4 + 0x42C;
             ((TObjFish *)(*(s32 *)(arg0 + off)))->set_draw_callback_list();
-            a = get_bml_model((BmlResource *)(*(s32 *)((s8 *)arg0 + 0x390)), lbl_80485EB0[i]);
+            a = (s32)get_bml_model((BmlResource *)(*(s32 *)((s8 *)arg0 + 0x390)), lbl_80485EB0[i]);
             draw_model_motion((void *)a, (void *)(get_bml_motion(*(s32 *)((s8 *)arg0 + 0x390), *(s32 *)((s8 *)((u8 *)&boss4_type1_motion_states + (*(s32 *)((s8 *)arg0 + 0x3E4) << 5) + i * 4) + 8))), *(f32 *)((s8 *)arg0 + 0x3E8));
             ((TObjFish *)(*(s32 *)(arg0 + off)))->clear_render_callback();
             TBoss6PlotFalz::update_camera_target();

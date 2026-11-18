@@ -105,7 +105,7 @@ struct TRaderMapCore : public TObjBase {
     static void free_statics();
     static void load_frame_texture();
     void reset();
-    static void init_map_ptr();
+    static NJS_OBJECT *init_map_ptr(const s32 *, s32 index);
     static s32 is_not_split_screen();
     static void clear();
     static void apply_packed_flags(s32 arg0, s32 arg1, s32 arg2, s32 arg3);

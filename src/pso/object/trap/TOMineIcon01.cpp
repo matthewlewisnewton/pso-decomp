@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/object/base/TObjMotion.h"
@@ -34,9 +35,9 @@ TOMineIcon01::TOMineIcon01(TObject *parent, void *set_data) : TOMine(parent) {
     ((TObjPlayer *)this)->init_position_vectors();
     calc_attach_pos();
     model = (void *)get_bml_model(lbl_805D5A50, 4);
-    texlist = get_bml_texlist(lbl_805D5A50, 4);
-    m_374 = get_bml_model(lbl_805D5A50, 1);
-    m_378 = get_bml_texlist(lbl_805D5A50, 1);
+    texlist = (s32)get_bml_texlist(lbl_805D5A50, 4);
+    m_374 = (u32)get_bml_model(lbl_805D5A50, 1);
+    m_378 = (u32)get_bml_texlist(lbl_805D5A50, 1);
     mode = 0;
     if (set_params[0] < 0) {
         set_params[0] = 0;

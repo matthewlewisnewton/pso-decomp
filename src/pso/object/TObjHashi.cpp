@@ -4,6 +4,7 @@
 // Built -inline off,deferred: the functions come out last to first, so the
 // file is written from the end of the unit's .text back.
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/TObjHashi.h"
 #include "pso/object/TObjHashiVersus1.h"
@@ -231,7 +232,7 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
 TObjHashi::TObjHashi(TObject *parent, void *set_data) : TObjHashiBase(parent, set_data) {
     m_name = class_name;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = get_bml_texlist(bml_resource, 0);
+    texlist = (s32)get_bml_texlist(bml_resource, 0);
     init_collision_body_parts(this, hashi_collision_bodies, 1);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -269,7 +270,7 @@ TObjHashiVersus1::TObjHashiVersus1(TObject *parent, void *set_data) : TObjHashiB
     }
     riseSpeed = scale.y;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = get_bml_texlist(bml_resource, 0);
+    texlist = (s32)get_bml_texlist(bml_resource, 0);
     init_collision_body_parts(this, hashi_versus1_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -308,7 +309,7 @@ TObjHashiVersus2::TObjHashiVersus2(TObject *parent, void *set_data) : TObjHashiB
     riseSpeed = scale.y;
     model_radius = lbl_805DBE20;
     model = (void *)get_bml_model(bml_resource, 0);
-    texlist = get_bml_texlist(bml_resource, 0);
+    texlist = (s32)get_bml_texlist(bml_resource, 0);
     init_collision_body_parts(this, hashi_versus2_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();

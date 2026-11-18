@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/task/TObject.h"
@@ -138,7 +139,7 @@ TOTrapAncient02::TOTrapAncient02(TObject *parent, void *set_data) : TOTrap(paren
     ((TObjPlayer *)this)->init_position_vectors();
     calc_attach_pos();
     model = (void *)TOTrapAncient02__shared_resource->models->model;
-    texlist = TOTrapAncient02__shared_resource->models->m_c;
+    texlist = (s32)TOTrapAncient02__shared_resource->models->m_c;
     mode = 0;
     phase = 0;
     range = 0.5f * scale.x + 30.0f;
@@ -178,7 +179,7 @@ void TOTrapAncient02::load_resources() {
             resource = load_resource_from_descriptor(resource, 1, &bm_obj_ruins_pillar_resource_descriptor, 0, 0, 0);
         }
         TOTrapAncient02__shared_resource = resource;
-        lbl_805D5AE0 = find_object_node((NJS_OBJECT *)get_bml_model(resource, 0), 2)->model;
+        lbl_805D5AE0 = find_object_node(get_bml_model(resource, 0), 2)->model;
         lbl_805D5AE4 = 2;
         lbl_805D5ADC = 0;
         break;
@@ -196,7 +197,7 @@ void TOTrapAncient02::load_resources() {
             resource = load_resource_from_descriptor(resource, 1, &bm_obj_seabed_pillar_resource_descriptor, 0, 0, 0);
         }
         TOTrapAncient02__shared_resource = resource;
-        lbl_805D5AE0 = find_object_node((NJS_OBJECT *)get_bml_model(resource, 0), 2)->model;
+        lbl_805D5AE0 = find_object_node(get_bml_model(resource, 0), 2)->model;
         lbl_805D5AE4 = 1;
         lbl_805D5ADC = 0;
         break;
@@ -501,7 +502,7 @@ TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *set_data) : TOTrapAnci
     ((TObjPlayer *)this)->init_position_vectors();
     calc_attach_pos();
     model = (void *)TOTrapAncient02__shared_resource->models->model;
-    texlist = TOTrapAncient02__shared_resource->models->m_c;
+    texlist = (s32)TOTrapAncient02__shared_resource->models->m_c;
     mode = 0;
     phase = 0;
     range = 0.5f * scale.x + 30.0f;

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/CameraPlayback.h"
 #include "pso/system/PadRumble.h"
@@ -268,8 +269,6 @@ typedef struct Data_8004DEE0 {
 } Data_8004DEE0;
 
 s32 get_bml_motion(s32, s32);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 void set_scripted_camera_pose(void *, void *, void *);
 void __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 lbl_80485EB0[];
@@ -307,9 +306,9 @@ Obj_8004DEE0 *TObjDFDemo0__ct(void *arg0, void *parent) {
         {
             s32 t = lbl_80485EB0[i];
             k = t;
-            self->fbc[0][i] = get_bml_model((BmlResource *)h, t);
+            self->fbc[0][i] = (s32)get_bml_model((BmlResource *)h, t);
         }
-        self->fbc[1][i] = get_bml_texlist((BmlResource *)h, k);
+        self->fbc[1][i] = (s32)get_bml_texlist((BmlResource *)h, k);
         self->fbc[2][i] = get_bml_motion(h, ((s32 *)lbl_804854D8)[i]);
     }
     self->f104 = (-0.5f);

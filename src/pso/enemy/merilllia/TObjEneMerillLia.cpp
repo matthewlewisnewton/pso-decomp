@@ -830,7 +830,7 @@ void TObjEneMerillLia__sub_800D6D64(void) {
         NpcSpawnMotions motions = {0, lbl_80494570, 2, 0xC0000};
         motions.motions = ((BmlResource *)TObjEneMerillLia__entry_params_resource)->motions;
         for (i = 0; i < 2; i++) {
-            TLobby::spawn_npc_enemy(ids[i], ((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].model,
+            TLobby::spawn_npc_enemy(ids[i], (s32)((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].model,
                 (NJS_TEXLIST *)((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].m_c, &motions,
                 ((CollisionPartRecord *)lbl_804946A4)[i].radius, 0.0f);
         }

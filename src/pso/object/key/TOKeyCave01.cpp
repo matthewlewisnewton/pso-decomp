@@ -239,7 +239,7 @@ void TOKeyCave01::load_resources() {
         TOKeyCave01__resource_bundle = resource;
         TOKeyCave01__texture_lists = (s32 *)mem_alloc(8);
         TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_key_jungle_red.gvm");
-        TOKeyCave01__texture_lists[1] = TOKeyCave01__resource_bundle->models[0].m_c;
+        TOKeyCave01__texture_lists[1] = (s32)TOKeyCave01__resource_bundle->models[0].m_c;
         key_cave_render_state = 1;
         return;
     }
@@ -250,7 +250,7 @@ void TOKeyCave01::load_resources() {
     TOKeyCave01__resource_bundle = resource;
     TOKeyCave01__texture_lists = (s32 *)mem_alloc(8);
     TOKeyCave01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_do_doa_panelr.gvm");
-    TOKeyCave01__texture_lists[1] = TOKeyCave01__resource_bundle->models[0].m_c;
+    TOKeyCave01__texture_lists[1] = (s32)TOKeyCave01__resource_bundle->models[0].m_c;
     key_cave_render_state = 0;
 }
 

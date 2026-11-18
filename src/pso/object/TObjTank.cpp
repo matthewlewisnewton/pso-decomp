@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/TObjTank.h"
 #include "pso/system/TLanguage_801E4874.h"
@@ -24,7 +25,6 @@ const char *TObjTank__class_name = "TObjTank";
 CollisionBody tobjtank_collision_body_parts = {{0.0f, 0.0f, 0.0f}, 20.0f, 10.0f, 0, 0x10003, {0.0f, 0.0f, 0.0f}, 0.0f};
 
 extern "C" {
-s32 get_bml_model(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
@@ -44,7 +44,7 @@ void TObjTank::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        get_bml_model((*(s32 *)&tank_bml_resource), 0);
+        get_bml_model((BmlResource *)(*(s32 *)&tank_bml_resource), 0);
         draw_ginja_object();
         pop_matrix();
     }

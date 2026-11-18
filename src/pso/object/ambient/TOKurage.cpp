@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include <stdlib.h>
 #include "pso/system/task/TMainTask.h"
@@ -332,7 +333,7 @@ TOKurage::TOKurage(TObject *parent, void *set_data) : TObjMapObject(parent) {
     m_name = TOKurage__class_name;
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(TOKurage__bml_resource, 0);
-    texlist = get_bml_texlist(TOKurage__bml_resource, 0);
+    texlist = (s32)get_bml_texlist(TOKurage__bml_resource, 0);
     motion = get_bml_motion(TOKurage__bml_resource, 0);
     motion2 = get_bml_motion(TOKurage__bml_resource, 1);
     animation_step = 0.5f;

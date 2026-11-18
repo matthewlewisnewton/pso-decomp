@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/task/TMainTask.h"
@@ -43,8 +44,6 @@ s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 s32 get_bml_motion(s32, s32);
-s32 get_bml_texlist(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 push_matrix();
 void __dl__7TObjectFPv(void *);
 s32 TObjFish__area_event_stage;
@@ -208,18 +207,18 @@ void render__8TObjFishFv(u8 *arg0) {
             if (get_current_floor_area() == AREA_SEABED_UPPER) {
                 switch (f->kind) {
                 case 1:
-                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 1));
-                    get_bml_model(TObjFish__area_bml_resource, 1);
+                    set_current_texture_list(get_bml_texlist((BmlResource *)TObjFish__area_bml_resource, 1));
+                    get_bml_model((BmlResource *)TObjFish__area_bml_resource, 1);
                     draw_ginja_object();
                     break;
                 case 2:
-                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 2));
-                    get_bml_model(TObjFish__area_bml_resource, 2);
+                    set_current_texture_list(get_bml_texlist((BmlResource *)TObjFish__area_bml_resource, 2));
+                    get_bml_model((BmlResource *)TObjFish__area_bml_resource, 2);
                     draw_ginja_object();
                     break;
                 default:
-                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 0));
-                    get_bml_model(TObjFish__area_bml_resource, 0);
+                    set_current_texture_list(get_bml_texlist((BmlResource *)TObjFish__area_bml_resource, 0));
+                    get_bml_model((BmlResource *)TObjFish__area_bml_resource, 0);
                     draw_ginja_object();
                     break;
                 }
@@ -227,16 +226,16 @@ void render__8TObjFishFv(u8 *arg0) {
                 set_motion_packed_rotation();
                 switch (f->kind) {
                 case 1:
-                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 1));
-                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
+                    set_current_texture_list(get_bml_texlist((BmlResource *)TObjFish__area_bml_resource, 1));
+                    draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
                     break;
                 case 2:
-                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 2));
-                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
+                    set_current_texture_list(get_bml_texlist((BmlResource *)TObjFish__area_bml_resource, 2));
+                    draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
                     break;
                 default:
-                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 0));
-                    draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
+                    set_current_texture_list(get_bml_texlist((BmlResource *)TObjFish__area_bml_resource, 0));
+                    draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
                     break;
                 }
                 clear_motion_packed_rotation();

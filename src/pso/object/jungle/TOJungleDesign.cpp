@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/jungle/TOJungleDesign.h"
 #include "pso/object/jungle/TOJungleDesign_802FEEB4.h"
@@ -86,17 +87,15 @@ TOJungleDesign::TOJungleDesign(s32 arg1, s32 arg2) : TObjCollidable((TObject *)a
 }
 extern "C" {
 
-u8 * get_bml_texlist(void *, int);
-u8 * get_bml_model(void *, int);
 u8 *fn_802FF028(s32 arg0) {
     if ((void *) TOJungleDesign__shared_model_resource != NULL) {
-        return get_bml_texlist(TOJungleDesign__shared_model_resource, arg0);
+        return (u8 *)get_bml_texlist((BmlResource *)TOJungleDesign__shared_model_resource, arg0);
     }
     return NULL;
 }
 u8 *fn_802FF064(s32 arg0) {
     if ((void *) TOJungleDesign__shared_model_resource != NULL) {
-        return get_bml_model(TOJungleDesign__shared_model_resource, arg0);
+        return (u8 *)get_bml_model((BmlResource *)TOJungleDesign__shared_model_resource, arg0);
     }
     return NULL;
 }

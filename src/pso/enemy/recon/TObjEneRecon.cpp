@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/unk/text_803D8F74.h"
@@ -68,15 +69,14 @@ struct VObj_8031E650 *boss3_volopt_instance;
 s32 recon_intro_stage;
 u8 *recon_model_matrix_ptr;
 
-s32 get_bml_texlist(BmlResource *resource, s32 index);
 s32 push_matrix();
 void TObjEneRecon::render_shadows() {
   s32 bml_model;
   if (TObjEneRecon__recobox_static_instance != NULL)
   {
     s32 temp_r30;
-    bml_model = get_bml_model(TObjEneRecon__recobox_static_instance, 2);
-    temp_r30 = get_bml_texlist(TObjEneRecon__recobox_static_instance, 2);
+    bml_model = (s32)get_bml_model(TObjEneRecon__recobox_static_instance, 2);
+    temp_r30 = (s32)get_bml_texlist(TObjEneRecon__recobox_static_instance, 2);
     push_matrix();
     translate_matrix(0, *((f32 *) (((s8 *) this) + 0x38)), *((f32 *) (((s8 *) this) + 0x3C)), *((f32 *) (((s8 *) this) + 0x40)));
     rotate_matrix_zyx(0, this->rotation_x, this->rotation_y, this->rotation_z);

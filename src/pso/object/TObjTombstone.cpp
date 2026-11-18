@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 // TObject's helpers are out-of-line functions for this TU (run_task calls
 // TObject::queue_destruction, defined elsewhere).
@@ -41,8 +42,6 @@ struct Off_800753DC { s16 x, y; };
 extern "C" {
 f32 xyz_distance(void *, void *);
 extern s32 TLobby__designated_client_id;
-s32 get_bml_texlist(s32, s32);
-s32 get_bml_model(s32, s32);
 u8 *load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 void free_bin_model_request(void *, int);
 // TCameraCtrl.h declares these short; the callers here take an int (no extsh).
@@ -158,8 +157,8 @@ TObjTombstone::TObjTombstone(TObject *parent, s32 client, TObjTombstoneSpot *spo
 }
 
 void TObjTombstone::setup(s32 client, TObjTombstoneRecord *src) {
-    this->texlist = get_bml_texlist(TObjTombstone__shared_resource_object, 0);
-    *(s32 *)&this->model = get_bml_model(TObjTombstone__shared_resource_object, 0);
+    this->texlist = (s32)get_bml_texlist((BmlResource *)TObjTombstone__shared_resource_object, 0);
+    *(s32 *)&this->model = (s32)get_bml_model((BmlResource *)TObjTombstone__shared_resource_object, 0);
     this->client_id = client;
     this->record = *src;
     VecCopy(&this->position, &this->record.position);

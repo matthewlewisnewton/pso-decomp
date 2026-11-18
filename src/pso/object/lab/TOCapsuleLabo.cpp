@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/lab/TOCapsuleLabo.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -45,7 +46,7 @@ void TOCapsuleLabo::load_resources() {
         resource = load_resource_from_descriptor(resource, 1, &bm_obj_labo_infocapsule_resource_descriptor, 0, 0, 0);
     }
     model_resource = resource;
-    root = (NJS_OBJECT *)get_bml_model(resource, 0);
+    root = get_bml_model(resource, 0);
     if (root != NULL) {
         light_node = find_object_node(root, 3);
     }
@@ -102,7 +103,7 @@ TOCapsuleLabo::TOCapsuleLabo(TObject *parent, void *set_data) : TOQuestTalkBase(
     m_name = class_name;
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(model_resource, 0);
-    texlist = get_bml_texlist(model_resource, 0);
+    texlist = (s32)get_bml_texlist(model_resource, 0);
     init_collision_body_parts(this, &capsule_labo_collision_body, 1);
     set_indexed_flags(0, 0x1288);
     refresh_collision_body_centers();

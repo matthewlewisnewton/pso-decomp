@@ -227,7 +227,7 @@ void TObjEneRe7Berura::load_static_resources() {
     berura_demo_flag = 0;
     re7_berura_demo_flag = 0;
     TObjEneRe7Berura__demo_target = 0;
-    m = r->models->model;
+    m = (u32)r->models->model;
     buf = (u8 *)mem_alloc(0x660);
     re7_berura_static_buffer = buf;
     TObjEneRe7Berura__detached_part_states[0].node_matrices = buf;
@@ -269,7 +269,7 @@ void TObjEneRe7Berura::load_static_resources() {
     berura_node_matrix_ptr_b = (s16 *)(((s32 *)((NJS_OBJECT *)find_model_node(m, 1))->model)[1] + 8);
     p = ::operator new(0x14);
     if (p != NULL) {
-        p = ((TLobby *)p)->alloc_tables(TObjEneRe7Berura__shared_resource->models->model, 2);
+        p = ((TLobby *)p)->alloc_tables((s32)TObjEneRe7Berura__shared_resource->models->model, 2);
     }
     belra_uv_animation_buffer = (u32)p;
     SampledMotionPoints *sampled = new SampledMotionPoints(4, 14.0f, 17.0f, 0.8f);
@@ -301,7 +301,7 @@ void TObjEneRe7Berura::load_static_resources() {
     {
         DelDepthAnimationBinding atk = ene_re7_berura_attack_def;
         atk.motions = TObjEneRe7Berura__shared_resource->motions;
-        TLobby::spawn_npc_enemy(0x15, TObjEneRe7Berura__shared_resource->models->model, (NJS_TEXLIST *)TObjEneRe7Berura__shared_resource->models->m_c, &atk, 8.0f, 0.0f);
+        TLobby::spawn_npc_enemy(0x15, (s32)TObjEneRe7Berura__shared_resource->models->model, (NJS_TEXLIST *)TObjEneRe7Berura__shared_resource->models->m_c, &atk, 8.0f, 0.0f);
     }
 }
 
@@ -340,7 +340,7 @@ void TObjEneRe7Berura::init_enemy() {
     s32 j;
     init_position_vectors();
     model = (void *)TObjEneRe7Berura__shared_resource->models->model;
-    texlist = TObjEneRe7Berura__shared_resource->models->m_c;
+    texlist = (s32)TObjEneRe7Berura__shared_resource->models->m_c;
     init_model(&lbl_8048F66C, 1);
     set_field_d8((s32)TObjEneRe7Berura__animation_definitions);
     set_field_dc((s32)TObjEneRe7Berura__shared_resource->motions);

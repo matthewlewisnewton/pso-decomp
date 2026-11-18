@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/door/TObjDoorKey.h"
 #include "pso/render/MaterialColorFade.h"
@@ -116,7 +117,6 @@ struct Key_8018FCD8 { u8 pad0[0x38]; u8 f38[0x28]; s32 f60; u8 pad64[0x28]; s32 
 
 extern "C" {
 void debug_draw_key_id__5TOKeyFv();
-s32 get_bml_model(s32, int);
 s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 }
 u8 *load_gvm_texture_file(s32 arg0);
@@ -319,9 +319,9 @@ void TObjDoorKey::load_resources() {
     }
     (*(s32 *)&door_key_resource_handle) = r;
     TObjDoorKey__texture_handle = (s32)load_gvm_texture_file((s32)"fe_obj_switch.gvm");
-    TObjDoorKey__ginja_model_table[0] = get_bml_model((*(s32 *)&door_key_resource_handle), 1);
-    TObjDoorKey__ginja_model_table[1] = get_bml_model((*(s32 *)&door_key_resource_handle), 2);
-    s32 t = get_bml_model((*(s32 *)&door_key_resource_handle), 0);
+    TObjDoorKey__ginja_model_table[0] = (s32)get_bml_model((BmlResource *)(*(s32 *)&door_key_resource_handle), 1);
+    TObjDoorKey__ginja_model_table[1] = (s32)get_bml_model((BmlResource *)(*(s32 *)&door_key_resource_handle), 2);
+    s32 t = (s32)get_bml_model((BmlResource *)(*(s32 *)&door_key_resource_handle), 0);
     door_key_id_counter = 0;
     TObjDoorKey__ginja_model_table[2] = t;
     TObjDoorKey__data_805D5C04 = 0;

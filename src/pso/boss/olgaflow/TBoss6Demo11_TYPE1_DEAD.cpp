@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/SoundEffect.h"
@@ -74,8 +75,8 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg) : T
     resource = (BmlResource *)TObjFish::get_fish_count();
     for (i = 0; i < 2; i++) {
         model_id = lbl_804DF614[i];
-        parts[i].model = get_bml_model(resource, model_id);
-        parts[i].texture = get_bml_texlist(resource, model_id);
+        parts[i].model = (s32)get_bml_model(resource, model_id);
+        parts[i].texture = (s32)get_bml_texlist(resource, model_id);
         parts[i].motion = get_bml_motion(resource, death_motion_indices[i]);
     }
     node_effect = (TObjFish *)TObjFish__sub_800E3124((u8 *)dead_effect_nodes(), (s32)effect_points);

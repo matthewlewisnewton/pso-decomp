@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/system/task/TMainTask.h"
@@ -134,7 +135,7 @@ void TOTrapSeabed01::load_resources() {
     }
     TOTrapSeabed01__bml_resource = resource;
     TOTrapSeabed01__texture_file = (u32)load_gvm_texture_file((s32)"obj_seabed_turigane.gvm");
-    TOTrapSeabed01__ginja_model = find_object_node((NJS_OBJECT *)get_bml_model(TOTrapSeabed01__bml_resource, 0), 5);
+    TOTrapSeabed01__ginja_model = find_object_node(get_bml_model(TOTrapSeabed01__bml_resource, 0), 5);
     lbl_805D681C = 0;
     seabed01_ginja_mesh_index = -1;
     if (TOTrapSeabed01__texture_file != 0) {
@@ -390,7 +391,7 @@ void TOTrapSeabed01::play_sounds() {
     for (i = 0; i < 6; i++) {
         fragment = &seabed_trap_fragment_spawns[i];
         VecCopy((Vec *)params.chip.pos, &fragment->pos);
-        params.chip.model = get_bml_model(TOTrapSeabed01__bml_resource, fragment->model);
+        params.chip.model = (s32)get_bml_model(TOTrapSeabed01__bml_resource, fragment->model);
         params.angle_y = fragment->angle_y;
         new TObjSuisoChip(this, &params);
         Vec v = *(Vec *)params.chip.pos;

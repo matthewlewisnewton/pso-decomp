@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/RenderFadeState.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/ui/hud/TRaderMapCore.h"
@@ -100,7 +101,6 @@ extern s32 local_client_id;
 u8 *__ct__8TObjChipFP7TObjectPC14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 s32 get_model__19TObjContainerJungExFl(s32);
 s32 get_model_by_index__17TObjContainerJungFl(s32);
-u8 *get_bml_model(void *, int);
 s32 free_bin_model_request(s32, s32);
 }
 void play_container_break_sound(s32 arg0);
@@ -149,14 +149,14 @@ void TObjContainerJungEx::free_data() {
 
 u8 *TObjContainerJungEx::get_model(s32 index) {
     if (TObjContainerJungEx__resource_bundle != NULL) {
-        return get_bml_model(TObjContainerJungEx__resource_bundle, index);
+        return (u8 *)get_bml_model((BmlResource *)TObjContainerJungEx__resource_bundle, index);
     }
     return NULL;
 }
 
 s32 TObjContainerJungEx__sub_8018D900(s32 index) {
     if (TObjContainerJungEx__resource_bundle != NULL) {
-        return get_bml_texlist((BmlResource *)TObjContainerJungEx__resource_bundle, index);
+        return (s32)get_bml_texlist((BmlResource *)TObjContainerJungEx__resource_bundle, index);
     }
     return 0;
 }
@@ -198,9 +198,9 @@ void TObjContainerJung::vfunc_81() {
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
             scale_matrix(0, 0.85f, 0.85f, 0.85f);
-            draw_ginja_object((void *)get_bml_model(*(u8 **)&TObjContainerJung__bml_model_resource, 0));
+            draw_ginja_object((void *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 0));
             TParticleCtrl::begin_effect_render();
-            draw_ginja_object((void *)get_bml_model(*(u8 **)&TObjContainerJung__bml_model_resource, 3));
+            draw_ginja_object((void *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 3));
             TParticleCtrl::end_effect_render();
             pop_matrix();
             break;
@@ -246,7 +246,7 @@ void TObjContainerJung::vfunc_79() const {
         a.pos[1] = py;
         a.pos[2] = pz;
         a.pad_38[0] = py;
-        a.model = (s32) get_bml_model((void *) TObjContainerJung__bml_model_resource, 1);
+        a.model = (s32) get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 1);
         a.textures = TObjContainerJung__bml_aux_handle;
         TObjChipParams b = container_jung_spawn_params;
         f32 qz;
@@ -259,7 +259,7 @@ void TObjContainerJung::vfunc_79() const {
         b.pos[1] = qy;
         b.pos[2] = qz;
         b.pad_38[0] = qy;
-        b.model = (s32) get_bml_model((void *) TObjContainerJung__bml_model_resource, 2);
+        b.model = (s32) get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 2);
         b.textures = TObjContainerJung__bml_aux_handle;
         spawn_particle_effect_with_flags(&self->pos, 0x45, 0x40);
         spawn_particle_effect_with_flags(&self->pos, 0x46, 0x40);
@@ -285,7 +285,7 @@ void TObjContainerJung::load_resources() {
         var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 5, &TObjContainerJung__resource_descriptor, 0, 0, 0));
     }
     (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
-    TObjContainerJung__bml_aux_handle = get_bml_texlist((BmlResource *) var_r0, 0);
+    TObjContainerJung__bml_aux_handle = (s32)get_bml_texlist((BmlResource *) var_r0, 0);
 }
 
 void TObjContainerJung::release() {
@@ -300,7 +300,7 @@ void *TObjContainerJung::create(void *set_data) {
 
 u8 *TObjContainerJung::get_model_by_index(s32 arg0) {
     if ((void *) (*(u8 * *)&TObjContainerJung__bml_model_resource) != NULL) {
-        return get_bml_model((*(u8 * *)&TObjContainerJung__bml_model_resource), arg0);
+        return (u8 *)get_bml_model((BmlResource *)(*(u8 * *)&TObjContainerJung__bml_model_resource), arg0);
     }
     return NULL;
 }

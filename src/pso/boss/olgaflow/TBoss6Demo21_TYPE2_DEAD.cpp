@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/CameraPlayback.h"
 #include "pso/system/PadRumble.h"
@@ -72,8 +73,6 @@ extern void *__vt__23TBoss6Demo21_TYPE2_DEAD[];
 void push_matrix();
 void post_translate_matrix(void *);
 s32 get_bml_motion(void *, int);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 void set_scripted_camera_pose(void *, void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *get_fish_count__8TObjFishFv(void);
@@ -397,17 +396,17 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     }
     vec3_add_to(arg0 + 0x58, &v);
     void *count = get_fish_count__8TObjFishFv();
-    *(s32 *)((s8 *)arg0 + 0x1C) = get_bml_model((BmlResource *)count, 4);
-    *(s32 *)((s8 *)arg0 + 0x20) = get_bml_texlist((BmlResource *)count, 4);
+    *(s32 *)((s8 *)arg0 + 0x1C) = (s32)get_bml_model((BmlResource *)count, 4);
+    *(s32 *)((s8 *)arg0 + 0x20) = (s32)get_bml_texlist((BmlResource *)count, 4);
     ((TBoss6Type1 *)arg0)->texlist = get_bml_motion(count, 7);
-    *(s32 *)((s8 *)arg0 + 0x28) = get_bml_model((BmlResource *)count, 5);
-    *(s32 *)((s8 *)arg0 + 0x2C) = get_bml_texlist((BmlResource *)count, 5);
+    *(s32 *)((s8 *)arg0 + 0x28) = (s32)get_bml_model((BmlResource *)count, 5);
+    *(s32 *)((s8 *)arg0 + 0x2C) = (s32)get_bml_texlist((BmlResource *)count, 5);
     ((TBoss6Type1 *)arg0)->actorFlags = get_bml_motion(count, 7);
-    *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model((BmlResource *)count, 8);
-    *(s32 *)((s8 *)arg0 + 0x38) = get_bml_texlist((BmlResource *)count, 8);
+    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)count, 8);
+    *(s32 *)((s8 *)arg0 + 0x38) = (s32)get_bml_texlist((BmlResource *)count, 8);
     *(s32 *)((s8 *)arg0 + 0x3C) = get_bml_motion(count, 8);
-    *(s32 *)((s8 *)arg0 + 0x40) = get_bml_model((BmlResource *)count, 0xD);
-    *(s32 *)&((TBoss6Type1 *)arg0)->prev_position.x = get_bml_texlist((BmlResource *)count, 0xD);
+    *(s32 *)((s8 *)arg0 + 0x40) = (s32)get_bml_model((BmlResource *)count, 0xD);
+    *(s32 *)&((TBoss6Type1 *)arg0)->prev_position.x = (s32)get_bml_texlist((BmlResource *)count, 0xD);
     *(s32 *)&((TBoss6Type1 *)arg0)->prev_position.y = get_bml_motion(count, 0x3D);
     *(s32 *)&((TBoss6Type1 *)arg0)->scale.z = TObjFish__sub_800E3124(boss6_type2_death_effect_desc_a, (s32)(arg0 + 0x64));
     *(s32 *)((s8 *)arg0 + 0x80) = TObjFish__sub_800E3124(boss6_type2_death_effect_desc_b, (s32)(arg0 + 0x74));

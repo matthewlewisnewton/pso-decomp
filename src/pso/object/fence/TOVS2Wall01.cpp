@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -199,8 +200,8 @@ void TOVS2Wall01::spawn_debris(s32 index) {
     params.pos[1] = m_300;
     params.pos[2] = m_304;
     params.pad_38[0] = position.y;
-    params.model = get_bml_model(TOVS2Wall01__bml_resource, index);
-    params.textures = get_bml_texlist(TOVS2Wall01__bml_resource, index);
+    params.model = (s32)get_bml_model(TOVS2Wall01__bml_resource, index);
+    params.textures = (s32)get_bml_texlist(TOVS2Wall01__bml_resource, index);
     new TObjChip(tl_05, &params);
 }
 
@@ -309,7 +310,7 @@ TOVS2::TOVS2(void *set_data, s32 index) : TObjMapObject((TObject *)tl_05) {
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(TOVS2Wall01__bml_resource, index);
     model_radius = 50.0f + *(f32 *)((s8 *)(*(void **)((s8 *)model + 4)) + 0x14);
-    texlist = get_bml_texlist(TOVS2Wall01__bml_resource, index);
+    texlist = (s32)get_bml_texlist(TOVS2Wall01__bml_resource, index);
     init_collision_body_parts(this, &ovs2wall01_collision_parts[index], 1);
     register_object_by_id();
     m_c8 = TObjMapCsn::create((s32)set_data);
@@ -466,8 +467,8 @@ void *TOVS2Wall01__ct(TOVS2Wall01 *arg0, void *arg1) {
     arg0->apply_object_set_data(arg1);
     ((TObjChara *)arg0)->calc_attach_pos();
     obj_setFlags30(arg0, 0x60000000);
-    *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TOVS2Wall01__bml_resource, 6);
-    arg0->texlist = get_bml_texlist(TOVS2Wall01__bml_resource, 6);
+    *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model(TOVS2Wall01__bml_resource, 6);
+    arg0->texlist = (s32)get_bml_texlist(TOVS2Wall01__bml_resource, 6);
     init_collision_body_parts(arg0, &ovs2wall01_collision_parts[6], 1);
     ((TObjCollidable *)arg0)->set_indexed_flags(0, 0x08000000);
     ((TObjPlayer *)arg0)->register_object_by_id();

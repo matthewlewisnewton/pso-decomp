@@ -1,4 +1,5 @@
 #include "pso/enemy/deldepth/DelDepthData.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TLobby_8001EF5C.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -270,12 +271,12 @@ void TObjEneDelDepth::load_assets() {
     {
         DelDepthAnimationBinding info = deldepth_anim_binding;
         info.motions = TObjEneDelDepth__shared_resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x47, TObjEneDelDepth__shared_resource->models[0].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[0].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
+        TLobby::spawn_npc_enemy((s16)0x47, (s32)TObjEneDelDepth__shared_resource->models[0].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[0].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
     {
         DelDepthAnimationBinding info = deldepth_anim_binding_b;
         info.motions = TObjEneDelDepth__shared_resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x48, TObjEneDelDepth__shared_resource->models[1].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[1].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
+        TLobby::spawn_npc_enemy((s16)0x48, (s32)TObjEneDelDepth__shared_resource->models[1].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[1].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
     TObjEneDelDepth__tune_params = (DelDepthParameters *)TLobby::dispatch_shared_handler_a(0x30);
 }
@@ -299,7 +300,7 @@ TObjEneDelDepth::TObjEneDelDepth(TObject *parent, void *setData) : TObjEnemy(par
 
 void TObjEneDelDepth::init() {
     u8 *arg0 = (u8 *)this;
-    this->texlist = get_bml_texlist((TObjEneDelDepth__shared_resource = TObjEneDelDepth::get_data()), 0);
+    this->texlist = (s32)get_bml_texlist((TObjEneDelDepth__shared_resource = TObjEneDelDepth::get_data()), 0);
     this->model = (void *)get_bml_model(TObjEneDelDepth__shared_resource, 0);
     VecCopy(&this->prev_position, (const Vec *)(VecCopy(&this->home_position, (const Vec *)(VecCopy(&this->center, &this->position)))));
     this->collisionBody = (CollisionBody *)init_collision_body_parts(arg0, TObjEneDelDepth_collision_body_parts, 1);
@@ -1275,8 +1276,8 @@ void TObjEneDelDepthBomb::render() {
         this->queue_destruction();
         return;
     }
-    s32 model = get_bml_model(data, 2);
-    s32 texture = get_bml_texlist(data, 2);
+    s32 model = (s32)get_bml_model(data, 2);
+    s32 texture = (s32)get_bml_texlist(data, 2);
     push_matrix();
     post_translate_matrix(&position);
     rotate_matrix_zyx(0, rotation_x, rotation_y, rotation_z);

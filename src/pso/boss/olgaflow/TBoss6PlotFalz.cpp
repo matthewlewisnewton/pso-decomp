@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
@@ -973,7 +974,6 @@ void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
 void refresh_players_equipment__14TBoss6PlotFalzFPv(void *self);
 void scroll_strip_uvs(u32, s16, s16);
-s32 get_bml_model(BmlResource *resource, s32 index);
 s32 alloc_tables__6TLobbyFll(s32, s32, s32);
 void build_tables__14TBoss6PlotFalzFPvPvi(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1, s32 arg2);
 extern s32 lbl_805D5868;
@@ -1039,7 +1039,7 @@ void build_tables__14TBoss6PlotFalzFPvPvi(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1
     }
     for (i = 0; i < arg0->count; i++) {
         r = &arg1[i];
-        t = (s32)find_model_node(get_bml_model((BmlResource *)h, r->a), r->b);
+        t = (s32)find_model_node((u32)get_bml_model((BmlResource *)h, r->a), r->b);
         p = (s32)::operator new(0x14);
         if (p != 0) {
             p = alloc_tables__6TLobbyFll(p, t, r->c);

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/darkfalz/TObjDFDemo4.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -63,14 +64,14 @@ TObjDFDemo4::TObjDFDemo4(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
     res = (BmlResource *)TBoss4Uro::get_instance_count();
     for (i = 0; i < 2; i++) {
         int id = boss4_zanzo_bml_index_table[i];
-        zanzo_parts[i].model = get_bml_model(res, id);
-        zanzo_parts[i].texlist = get_bml_texlist(res, id);
+        zanzo_parts[i].model = (s32)get_bml_model(res, id);
+        zanzo_parts[i].texlist = (s32)get_bml_texlist(res, id);
         zanzo_parts[i].motion = get_bml_motion(res, afterimage_motion_indices[i]);
     }
     for (i = 0; i < 3; i++) {
         int id = lbl_80486FB0[i];
-        body_parts[i].model = get_bml_model(res, id);
-        body_parts[i].texlist = get_bml_texlist(res, id);
+        body_parts[i].model = (s32)get_bml_model(res, id);
+        body_parts[i].texlist = (s32)get_bml_texlist(res, id);
         body_parts[i].motion = get_bml_motion(res, lbl_80485728[i]);
     }
     frame = -0.5f;

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -58,8 +59,6 @@ typedef char RecoveredGlobal_8001B8AC___vt__15TAdRicoRingCtrl_size[sizeof(Recove
 struct RecoveredGlobal_8001BD0C___vt__11TAdRicoRing { s32 value; u8 remaining[0x14]; };
 typedef char RecoveredGlobal_8001BD0C___vt__11TAdRicoRing_size[sizeof(RecoveredGlobal_8001BD0C___vt__11TAdRicoRing) == 0x18 ? 1 : -1];
 
-s32 get_bml_texlist(void *, int);
-s32 get_bml_model(void *, int);
 extern RecoveredGlobal_8001BD0C___vt__11TAdRicoRing __vt__11TAdRicoRing;
 int post_translate_matrix(void*);
 int push_matrix(void*);
@@ -122,8 +121,8 @@ u8 *__ct__11TAdRicoRingFv(u8 *object, void *parent) {
     *(s32 **)((s8 *)object + 0x18) = &__vt__11TAdRicoRing.value;
     __ct__8FlagWordFv((object + 0x2C));
     *(s32 *)((s8 *)object + 0) = (s32) TAdRicoRing__class_name;
-    *(s32 *)((s8 *)object + 0x4C) = get_bml_model((void *)TAdRicoRing__resource_bundle, 0);
-    *(s32 *)((s8 *)object + 0x50) = get_bml_texlist((void *)TAdRicoRing__resource_bundle, 0);
+    *(s32 *)((s8 *)object + 0x4C) = (s32)get_bml_model((BmlResource *)TAdRicoRing__resource_bundle, 0);
+    *(s32 *)((s8 *)object + 0x50) = (s32)get_bml_texlist((BmlResource *)TAdRicoRing__resource_bundle, 0);
     *(f32 *)((s8 *)object + 0x28) = 0.0f;
     *(f32 *)((s8 *)object + 0x24) = 0.0f;
     *(f32 *)((s8 *)object + 0x20) = 0.0f;

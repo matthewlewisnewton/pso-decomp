@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/unk/TLobby_8030A6A8.h"
@@ -228,7 +229,7 @@ TUnk_804B08BC::TUnk_804B08BC(void *set_data) : TUnk_804B6C24(tl_05, set_data) {
     VecCopy((Vec *)&m_2fc, &position);
     center.y += TOContainerAncientEnemy__collision_body_params.offset.y;
     model = (void *)get_bml_model(ancient_container_resource_bundle, 0);
-    texlist = get_bml_texlist(ancient_container_resource_bundle, 0);
+    texlist = (s32)get_bml_texlist(ancient_container_resource_bundle, 0);
 }
 
 TUnk_804B08BC::~TUnk_804B08BC() {
@@ -291,15 +292,15 @@ void TUnk_804B08BC::vfunc_79() const {
     a.pos[1] = this->position.y;
     a.pos[2] = this->position.z;
     a.pad_38[0] = a.pos[1];
-    a.model = get_bml_model((BmlResource *)ancient_container_resource_bundle, 1);
-    a.textures = get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 1);
+    a.model = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 1);
+    a.textures = (s32)get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 1);
     TObjChipParams b = fish_break_debris_desc_b;
     b.pos[0] = this->position.x;
     b.pos[1] = this->position.y;
     b.pos[2] = this->position.z;
     b.pad_38[0] = b.pos[1];
-    b.model = get_bml_model((BmlResource *)ancient_container_resource_bundle, 2);
-    b.textures = get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 2);
+    b.model = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 2);
+    b.textures = (s32)get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 2);
     if (check_value_equals((s32)TOContainerAncientItemRare__name) != 0) {
         a.textures = ancient_container_fragment_texture_lists[1];
         b.textures = ancient_container_fragment_texture_lists[2];
@@ -390,7 +391,7 @@ TOContainerAncientEnemy::TOContainerAncientEnemy(void *set_data) : TUnk_804B6C24
     VecCopy((Vec *)&m_2fc, &position);
     center.y += TOContainerAncientEnemy__collision_body_params.offset.y;
     model = (void *)get_bml_model(ancient_container_resource_bundle, 0);
-    texlist = get_bml_texlist(ancient_container_resource_bundle, 0);
+    texlist = (s32)get_bml_texlist(ancient_container_resource_bundle, 0);
 }
 
 TOContainerAncientEnemy::~TOContainerAncientEnemy() {
@@ -475,15 +476,15 @@ void TOContainerAncientEnemy::vfunc_79() const {
         a.pos[1] = this->position.y;
         a.pos[2] = this->position.z;
         a.pad_38[0] = this->position.y;
-        a.model = get_bml_model((BmlResource *)ancient_container_resource_bundle, 1);
-        a.textures = get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 1);
+        a.model = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 1);
+        a.textures = (s32)get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 1);
         TObjChipParams b = ancient_enemy_break_debris_desc_b;
         b.pos[0] = this->position.x;
         b.pos[1] = this->position.y;
         b.pos[2] = this->position.z;
         b.pad_38[0] = this->position.y;
-        b.model = get_bml_model((BmlResource *)ancient_container_resource_bundle, 2);
-        b.textures = get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 2);
+        b.model = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 2);
+        b.textures = (s32)get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 2);
         if (check_value_equals((s32)lbl_805D2F10) != 0) {
             a.textures = ancient_container_fragment_texture_lists[1];
             b.textures = ancient_container_fragment_texture_lists[2];

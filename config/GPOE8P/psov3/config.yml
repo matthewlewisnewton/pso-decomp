@@ -11820,7 +11820,7 @@ force_active:
   - init_light_tables__9TObjLightFv
   - init_link_points__9TBoss2FinFv
   - init_lookup_tables__6TLobbyFv
-  - init_map_ptr__13TRaderMapCoreFv
+  - init_map_ptr__13TRaderMapCoreFPCll
   - init_material_nodes__6TSceneFv
   - init_menu_window__12TAdTimeSetGCFv
   - init_mirage__23TObjEneMe3ShinowaMirageFv

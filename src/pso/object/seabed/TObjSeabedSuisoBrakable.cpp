@@ -3,6 +3,7 @@
 // TObjSeabedSuisoBrakable read.
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/object/seabed/TObjSuisoChip.h"
 #include "pso/object/seabed/TObjSeabedSuisoBrakable.h"
 #include "pso/object/seabed/TObjSeabedSuiso_CH.h"
@@ -85,7 +86,7 @@ void TObjSeabedSuisoBrakable::load_resources() {
         break;
     }
     }
-    if ((model = (NJS_OBJECT *)get_bml_model(bml_resource, 12)) != NULL) {
+    if ((model = get_bml_model(bml_resource, 12)) != NULL) {
         model12_nodes[0] = find_object_node(model, 1);
         model12_nodes[1] = find_object_node(model, 2);
         model12_nodes[2] = find_object_node(model, 4);

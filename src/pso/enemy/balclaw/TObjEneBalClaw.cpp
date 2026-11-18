@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/enemy/balclaw/TObjEneBalClaw.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/object/mine/TOComputerMachine01_8023DD0C.h"
@@ -167,7 +168,7 @@ void TObjEneBalClaw__sub_8008D924(void) {
         p = load_resource_from_descriptor(p, 1, &balclaw_resource_descriptor, 0, 0, 0);
     }
     lbl_805D4F20 = p;
-    model = p->models[1].model;
+    model = (u32)p->models[1].model;
     for (k = 0; k < 4; k++) {
         base = balclaw_part_base[k];
         count = 0;
@@ -182,7 +183,7 @@ void TObjEneBalClaw__sub_8008D924(void) {
     }
     for (m = 0; m < 7; m++) {
         e = &balclaw_parts[m];
-        e->plist = ((NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(get_bml_model(lbl_805D4F20, e->model_index), e->part_index))->model)->polygon_list;
+        e->plist = ((NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node((u32)get_bml_model(lbl_805D4F20, e->model_index), e->part_index))->model)->polygon_list;
     }
     for (n = 0; n < 2; n++) {
         lbl_805007A8[n] = (u8 *)TLobby::register_boss(31);

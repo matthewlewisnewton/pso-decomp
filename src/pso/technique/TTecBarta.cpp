@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/BmlAccessors.h"
 #include "types.h"
 #include "pso/technique/TTecBarta.h"
 #include "pso/effect/TUnk_804CC148.h"
@@ -119,7 +120,6 @@ u16 get_entity_id(void *);
 void __ct__13TUnk_804CCC68FlPUcPUcl();
 TTecBarta_8022BC10 *TTecBarta__ct(TTecBarta_8022BC10 *self, void * _w1, void * _w2, void * _w3, void * _w4);
 void construct_facing_technique__10TObjPlayerFPviPvii();
-s32 get_bml_model(s32, s32);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 void *find_entity_by_id(u16 id);
@@ -233,7 +233,7 @@ void TTecBarta::create_particle_emitters() {
         if (self->emitters[i] != NULL) {
             row = &TTecBarta__emitter_bands[self->band].rows[i];
             if (row->flags & 0x20) {
-                attach_particle_model((u8 *)self->emitters[i], (s32)(get_bml_model(technique_effect_bml, 0)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 0)), 0, 1.0f);
+                attach_particle_model((u8 *)self->emitters[i], (s32)(get_bml_model((BmlResource *)technique_effect_bml, 0)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 0)), 0, 1.0f);
             } else {
                 ((TParticleCtrl *)(self->emitters[i]))->set_scale(row->scale, row->scale);
             }
@@ -340,7 +340,7 @@ void TTecBarta::run_task() {
     if (this->band == 5) {
         TechniqueParticleEmitter *e = (TechniqueParticleEmitter *)create_timed_particle_emitter(&this->position.x, 0x18A, 0x14, 1);
         if (e != NULL) {
-            attach_particle_model((u8 *)e, (s32)(get_bml_model(technique_effect_bml, 5)), (s32)lbl_805D63B0, 0, 0, 1.0f);
+            attach_particle_model((u8 *)e, (s32)(get_bml_model((BmlResource *)technique_effect_bml, 5)), (s32)lbl_805D63B0, 0, 0, 1.0f);
         }
     }
     move_ground_technique_projectile(this);

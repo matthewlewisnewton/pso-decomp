@@ -6,6 +6,7 @@
 // file is written from the end of the unit's .text back.
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/seabed/TObjSuisoChip.h"
 #include "pso/object/seabed/TObjSeabedSuisoBrakable.h"

@@ -201,7 +201,7 @@ void TObjEneDellBiter::load_resources() {
         TObjEneDellBiter__scrolling_uv_polygon_list = (s32)((NJS_CNK_MODEL *)object->child->model)->polygon_list;
         TObjEneDellBiter__last_uv_scroll_tick = 0;
         DelbiterAttackDefinition attack = { resource->motions, dell_biter_param_table, 1, 10, 0 };
-        TLobby::spawn_npc_enemy((s16)0x46, resource->models->model, (NJS_TEXLIST *)resource->models->m_c,
+        TLobby::spawn_npc_enemy((s16)0x46, (s32)resource->models->model, (NJS_TEXLIST *)resource->models->m_c,
             &attack, lbl_804E6B8C[0].radius, 0.0f);
     }
 }
@@ -235,7 +235,7 @@ void TObjEneDellBiter::init_params() {
     s32 i;
     init_position_vectors();
     model = (void *)((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->model;
-    texlist = ((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
+    texlist = (s32)((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
     init_model((CollisionBody *)lbl_804E6B8C, 1);
     bodies->flags |= 0x400000;
     set_field_d8((s32)&dell_biter_param_table);

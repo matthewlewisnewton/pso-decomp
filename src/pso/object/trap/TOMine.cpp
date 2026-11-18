@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/trap/TOMineTrap.h"
 #include "pso/system/vector.h"
@@ -796,18 +797,18 @@ TOMineTrap::TOMineTrap(TObjBase *owner, s16 kind, s16 slot) : TOMine(tl_05) {
         case 5:
         case 19:
             model = (void *)get_bml_model(lbl_805D5A50, 4);
-            texlist = get_bml_texlist(lbl_805D5A50, 4);
-            m_374 = get_bml_model(lbl_805D5A50, 1);
-            m_378 = get_bml_texlist(lbl_805D5A50, 1);
+            texlist = (s32)get_bml_texlist(lbl_805D5A50, 4);
+            m_374 = (u32)get_bml_model(lbl_805D5A50, 1);
+            m_378 = (u32)get_bml_texlist(lbl_805D5A50, 1);
             break;
         case 15:
         case 16:
         case 17:
         case 18:
             model = (void *)get_bml_model(lbl_805D5A50, 5);
-            texlist = get_bml_texlist(lbl_805D5A50, 5);
-            m_374 = get_bml_model(lbl_805D5A50, 0);
-            m_378 = get_bml_texlist(lbl_805D5A50, 0);
+            texlist = (s32)get_bml_texlist(lbl_805D5A50, 5);
+            m_374 = (u32)get_bml_model(lbl_805D5A50, 0);
+            m_378 = (u32)get_bml_texlist(lbl_805D5A50, 0);
             break;
         }
         mode = 0;

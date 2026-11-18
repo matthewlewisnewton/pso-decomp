@@ -271,7 +271,7 @@ void TObjEneBm3FlyNest::load_resources() {
         Bm3FlyAnimationBinding anim = {NULL, bm3_flynest_hit_action_table, 8, 10, 0};
         anim.motions = nest_resources->motions;
         models = nest_resources->models;
-        TLobby::spawn_npc_enemy(8, models[1].model, (NJS_TEXLIST *)models[0].m_c, &anim, bm3_flynest_collider_params[0].radius, 0.0f);
+        TLobby::spawn_npc_enemy(8, (s32)models[1].model, (NJS_TEXLIST *)models[0].m_c, &anim, bm3_flynest_collider_params[0].radius, 0.0f);
     }
 }
 
@@ -298,7 +298,7 @@ TObjEneBm3FlyNest::TObjEneBm3FlyNest(TObject *parent, Bm3FlyNestSetData *set_dat
     invoke_initialization_hook(set_data);
     init_position_vectors();
     model = (void *)nest_resources->models[1].model;
-    texlist = nest_resources->models[0].m_c;
+    texlist = (s32)nest_resources->models[0].m_c;
     init_model(bm3_flynest_collider_params, 1);
     m_300 = 20.0f + position.y;
     vfunc_88();

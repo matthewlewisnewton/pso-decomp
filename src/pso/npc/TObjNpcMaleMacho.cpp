@@ -51,7 +51,7 @@ TObjNpcMaleMacho *TObjNpcMaleMacho__ct(TObjNpcMaleMacho *npc, TObjControl *contr
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcMaleMacho__static_model_resource->models->model;
-    npc->texlist = TObjNpcMaleMacho__static_model_resource->models->m_c;
+    npc->texlist = (s32)TObjNpcMaleMacho__static_model_resource->models->m_c;
     npc->setup_common();
     return npc;
 }

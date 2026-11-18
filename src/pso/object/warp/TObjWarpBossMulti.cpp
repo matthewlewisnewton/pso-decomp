@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -149,13 +150,13 @@ void TObjFish::load_models() {
             resource = load_resource_from_descriptor(resource, 5, &lbl_804B94D8, 0, 0, 0);
         }
         boss_warp_resource_bundle = resource;
-        boss_warp_base_model = get_bml_model(resource, 0);
-        boss_warp_confirmation_model = get_bml_model(boss_warp_resource_bundle, 2);
-        warp_boss_model = get_bml_model(boss_warp_resource_bundle, 1);
+        boss_warp_base_model = (s32)get_bml_model(resource, 0);
+        boss_warp_confirmation_model = (s32)get_bml_model(boss_warp_resource_bundle, 2);
+        warp_boss_model = (s32)get_bml_model(boss_warp_resource_bundle, 1);
         warp_boss_motion = get_bml_motion(boss_warp_resource_bundle, 1);
         warp_boss_bml_motion = get_bml_motion(boss_warp_resource_bundle, 0);
-        warp_boss_model_handle = get_bml_texlist(boss_warp_resource_bundle, 2);
-        lbl_805D5CA4 = get_bml_texlist(boss_warp_resource_bundle, 2);
+        warp_boss_model_handle = (s32)get_bml_texlist(boss_warp_resource_bundle, 2);
+        lbl_805D5CA4 = (s32)get_bml_texlist(boss_warp_resource_bundle, 2);
         return;
     }
     if (TContainerAncient01::is_global_state_in_table() != 0 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
@@ -164,13 +165,13 @@ void TObjFish::load_models() {
             resource = load_resource_from_descriptor(resource, 5, &lbl_804B94FC, 0, 0, 0);
         }
         boss_warp_resource_bundle = resource;
-        boss_warp_base_model = get_bml_model(resource, 0);
-        boss_warp_confirmation_model = get_bml_model(boss_warp_resource_bundle, 1);
-        warp_boss_model = get_bml_model(boss_warp_resource_bundle, 1);
+        boss_warp_base_model = (s32)get_bml_model(resource, 0);
+        boss_warp_confirmation_model = (s32)get_bml_model(boss_warp_resource_bundle, 1);
+        warp_boss_model = (s32)get_bml_model(boss_warp_resource_bundle, 1);
         warp_boss_motion = get_bml_motion(boss_warp_resource_bundle, 0);
         warp_boss_bml_motion = get_bml_motion(boss_warp_resource_bundle, 0);
-        warp_boss_model_handle = get_bml_texlist(boss_warp_resource_bundle, 0);
-        lbl_805D5CA4 = get_bml_texlist(boss_warp_resource_bundle, 0);
+        warp_boss_model_handle = (s32)get_bml_texlist(boss_warp_resource_bundle, 0);
+        lbl_805D5CA4 = (s32)get_bml_texlist(boss_warp_resource_bundle, 0);
         return;
     }
     resource = (BmlResource *)::operator new(0x440);
@@ -178,13 +179,13 @@ void TObjFish::load_models() {
         resource = load_resource_from_descriptor(resource, 5, &lbl_804B94AC, 0, 0, 0);
     }
     boss_warp_resource_bundle = resource;
-    boss_warp_base_model = get_bml_model(resource, 0);
-    boss_warp_confirmation_model = get_bml_model(boss_warp_resource_bundle, 2);
-    warp_boss_model = get_bml_model(boss_warp_resource_bundle, 1);
+    boss_warp_base_model = (s32)get_bml_model(resource, 0);
+    boss_warp_confirmation_model = (s32)get_bml_model(boss_warp_resource_bundle, 2);
+    warp_boss_model = (s32)get_bml_model(boss_warp_resource_bundle, 1);
     warp_boss_motion = get_bml_motion(boss_warp_resource_bundle, 1);
     warp_boss_bml_motion = get_bml_motion(boss_warp_resource_bundle, 0);
-    warp_boss_model_handle = get_bml_texlist(boss_warp_resource_bundle, 2);
-    lbl_805D5CA4 = get_bml_texlist(boss_warp_resource_bundle, 2);
+    warp_boss_model_handle = (s32)get_bml_texlist(boss_warp_resource_bundle, 2);
+    lbl_805D5CA4 = (s32)get_bml_texlist(boss_warp_resource_bundle, 2);
 }
 
 void release_boss_warp_resources(void) {

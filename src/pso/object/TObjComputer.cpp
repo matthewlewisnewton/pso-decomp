@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/render_util.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -67,7 +68,6 @@ extern "C" {
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 s32 rotate_matrix_y(s32, s32);
-s32 get_bml_model(void *, s32);
 u32 init_collision_body_parts(void *, void *, s32);
 void *TObjMesBase__ct(TObjMesBase *arg0, s32 arg1, s32 arg2);
 extern s32 __vt__12TObjComputer[];
@@ -89,7 +89,6 @@ s32 clear_ref_if_destroyed__11TObjMesBaseFv();
 
 extern s32 __vt__13TObjGbAdvance[];
 
-s32 get_bml_texlist(void *, s32);
 u8 *TObjGbAdvance__ct(u8 *arg0, s32 arg1, s32 arg2);
 }
 void load_computer_resources(void);
@@ -135,7 +134,7 @@ void *TObjComputer__ct(void *arg0, void *parent, void *row) {
         self->selector = 1;
     }
     if (TObjComputer__model_archive != 0U) {
-        self->model = (void *)get_bml_model((void *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[self->selector]);
+        self->model = (void *)get_bml_model((BmlResource *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[self->selector]);
     } else {
         ((TObject *)self)->queue_destruction();
         return self;
@@ -253,7 +252,7 @@ s32 TObjComputer::draw_model() {
 void TObjComputer::debug_draw_label() {
     this->TObjMesBase::debug_draw_label();
     this->set_params[1] = this->set_params[1] % 2;
-    this->m_bc = get_bml_model((void *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[this->set_params[1]]);
+    this->m_bc = (u32)get_bml_model((BmlResource *)TObjComputer__model_archive, TObjComputer__data_805DBCD8[this->set_params[1]]);
     TObjNpcEnemy::set_global_count(0xFF00FF);
     debug_printf_at(0x130021, "<- MODEL SELECT");
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
@@ -284,14 +283,14 @@ void TObjGbAdvance::vfunc_14() {
 
 void TObjGbAdvance::render() {
     if (this->update_object_view_visibility(400.0f, 20.0f) != 0) {
-        set_current_texture_list((GinjaTextureList *)get_bml_texlist((void *)TObjGbAdvance__data_805D5B74, 0));
+        set_current_texture_list(get_bml_texlist((BmlResource *)TObjGbAdvance__data_805D5B74, 0));
         push_matrix();
         post_translate_matrix(&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        draw_ginja_object((void *)get_bml_model((void *)TObjGbAdvance__data_805D5B74, 0));
-        draw_ginja_object((void *)get_bml_model((void *)TObjGbAdvance__data_805D5B74, 1));
-        draw_ginja_object((void *)get_bml_model((void *)TObjGbAdvance__data_805D5B74, 2));
-        draw_ginja_object((void *)get_bml_model((void *)TObjGbAdvance__data_805D5B74, 3));
+        draw_ginja_object((void *)get_bml_model((BmlResource *)TObjGbAdvance__data_805D5B74, 0));
+        draw_ginja_object((void *)get_bml_model((BmlResource *)TObjGbAdvance__data_805D5B74, 1));
+        draw_ginja_object((void *)get_bml_model((BmlResource *)TObjGbAdvance__data_805D5B74, 2));
+        draw_ginja_object((void *)get_bml_model((BmlResource *)TObjGbAdvance__data_805D5B74, 3));
         pop_matrix();
     }
 }

@@ -1,4 +1,5 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/system/MatrixOps.h"
 #include "types.h"
 #include "pso/system/task/TMainTask.h"
@@ -28,13 +29,6 @@ struct Stack_803626A8 {
 
 struct Leaf_803627DC { u8 pad[4]; s32 v; };
 
-struct Node_803627DC {
-    u8 pad0[4];
-    Leaf_803627DC *leaf;
-    u8 pad8[0x2C - 8];
-    Node_803627DC *child;
-    Node_803627DC *next;
-};
 
 struct Model_803627DC { u8 pad[8]; s32 f8; NJS_TEXLIST *texlist; };
 
@@ -63,7 +57,6 @@ s32 dispatch_shared_handler_a__6TLobbyFl(int);
 s32 register_object__6TLobbyFl(int);
 s32 dispatch_shared_handler_b__6TLobbyFl(int);
 s32 register_boss__6TLobbyFl(int);
-Node_803627DC *get_bml_model(void *, int);
 u8 *load_resource_from_descriptor(void *, int, void *, int, int, int);
 s32 TObjPlayer__sub_800F0928(void *);
 f32 lbl_80543A18[3];
@@ -151,12 +144,12 @@ void TObjEneEpsilonGuard::load_assets() {
     lbl_805D6FA0 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 5)));
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model((BmlResource *)lbl_805D6FA0, 5)));
     }
     lbl_805D6FA4 = p;
     p = (u8 *)::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model(lbl_805D6FA0, 6)));
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)(get_bml_model((BmlResource *)lbl_805D6FA0, 6)));
     }
     lbl_805D6FA8 = p;
     lbl_805D6F80 = register_boss__6TLobbyFl(0x23);
@@ -167,15 +160,15 @@ void TObjEneEpsilonGuard::load_assets() {
     epsilon_guard_shared_handler_b = dispatch_shared_handler_b__6TLobbyFl(0x24);
     epsilon_guard_registered_object_handle = register_object__6TLobbyFl(0x24);
     TObjEneEpsilonGuard__movement_params = dispatch_shared_handler_a__6TLobbyFl(0x24);
-    epsilon_guard_part_color_table[0] = get_bml_model(lbl_805D6FA0, 0)->child->leaf->v;
-    epsilon_guard_part_color_table[1] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[2] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[3] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[4] = get_bml_model(lbl_805D6FA0, 0)->child->next->child->child->next->child->child->next->next->next->next->next->child->leaf->v;
-    epsilon_guard_part_color_table[5] = get_bml_model(lbl_805D6FA0, 1)->child->leaf->v;
-    epsilon_guard_part_color_table[6] = get_bml_model(lbl_805D6FA0, 2)->child->leaf->v;
-    epsilon_guard_part_color_table[8] = get_bml_model(lbl_805D6FA0, 3)->leaf->v;
-    epsilon_guard_part_color_table[7] = get_bml_model(lbl_805D6FA0, 4)->leaf->v;
+    epsilon_guard_part_color_table[0] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0)->child->model)->v;
+    epsilon_guard_part_color_table[1] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0)->child->sibling->child->child->sibling->child->child->sibling->sibling->child->model)->v;
+    epsilon_guard_part_color_table[2] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0)->child->sibling->child->child->sibling->child->child->sibling->sibling->sibling->child->model)->v;
+    epsilon_guard_part_color_table[3] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0)->child->sibling->child->child->sibling->child->child->sibling->sibling->sibling->sibling->child->model)->v;
+    epsilon_guard_part_color_table[4] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 0)->child->sibling->child->child->sibling->child->child->sibling->sibling->sibling->sibling->sibling->child->model)->v;
+    epsilon_guard_part_color_table[5] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 1)->child->model)->v;
+    epsilon_guard_part_color_table[6] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 2)->child->model)->v;
+    epsilon_guard_part_color_table[8] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 3)->model)->v;
+    epsilon_guard_part_color_table[7] = ((Leaf_803627DC *)get_bml_model((BmlResource *)lbl_805D6FA0, 4)->model)->v;
     TObjPlayer__sub_800F0928(epsilon_guard_part_color_table);
     {
         Quad_803627DC q = { 0, &lbl_804F252C, 0, 0x10000 };

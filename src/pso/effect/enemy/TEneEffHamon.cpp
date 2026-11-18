@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/ui/hud/TRaderMapCore.h"
@@ -57,8 +58,6 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void render__12TEneEffHamonFv(Hamon_800A36A8 *o);
-int get_bml_texlist(void*, void*);
-int get_bml_model(void*, void*);
 
 void render__12TEneEffHamonFv(Hamon_800A36A8 *o) {
     f32 s;
@@ -103,7 +102,7 @@ void run_task__12TEneEffHamonFv(u8 *arg0) {
 void TEneEffHamon__sub_800A380C(void) {  }
 
     extern int player_effect_bml_resource;
-void TEneEffHamon::init_fish_effects() { TEneEffHamon__fish_model = get_bml_model((void*)player_effect_bml_resource, (void*)3); TEneEffHamon__fish_effect_param = get_bml_texlist((void*)player_effect_bml_resource, (void*)3); }
+void TEneEffHamon::init_fish_effects() { TEneEffHamon__fish_model = (int)get_bml_model((BmlResource *)player_effect_bml_resource, (s32)(void*)3); TEneEffHamon__fish_effect_param = (int)get_bml_texlist((BmlResource *)player_effect_bml_resource, (s32)(void*)3); }
 
 }
 

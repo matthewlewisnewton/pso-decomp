@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/render/GinjaMaterial.h"
@@ -90,7 +91,6 @@ struct Node_80192A3C { u32 flags; void *model; u8 pad8[0x24]; Node_80192A3C *chi
 struct Fish_80192A3C { u8 pad0[0x8C]; s32 f8C; u8 pad90[0x2C]; Node_80192A3C *fBC; Node_80192A3C *fC0; s32 fC4; void *fC8[4]; };
 
 s32 get_bml_motion(s32, s32);
-Node_80192A3C *get_bml_model(s32, s32);
 struct Obj_80192B5C { u8 pad0[0x38]; u8 f38[0x24]; s32 f5C; s32 f60; u8 pad64[0x48]; s32 fAC; u8 padB0[8]; f32 fB8; s32 fBC; s32 fC0; s32 fC4; s32 fC8[4]; };
 
 
@@ -261,12 +261,12 @@ void TObjLazerFenceNorm::select_models() {
     Node_80192A3C *node;
     s32 j;
     if (this->set_params[2] % 2 == 0) {
-        this->m_bc = get_bml_model(lazer_fence_norm_bml_resource, 1);
-        arg0->fC0 = get_bml_model(lazer_fence_norm_bml_resource, 0);
+        this->m_bc = get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 1);
+        arg0->fC0 = (Node_80192A3C *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 0);
         this->m_c4 = get_bml_motion(lazer_fence_norm_bml_resource, 0);
     } else {
-        this->m_bc = get_bml_model(lazer_fence_norm_bml_resource, 3);
-        arg0->fC0 = get_bml_model(lazer_fence_norm_bml_resource, 2);
+        this->m_bc = get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 3);
+        arg0->fC0 = (Node_80192A3C *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 2);
         this->m_c4 = get_bml_motion(lazer_fence_norm_bml_resource, 1);
     }
     for (j = 0; j < 4; j++) {

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include <stdlib.h>
 #include "pso/system/task/TMainTask.h"
@@ -162,7 +163,7 @@ TOMonitorMachine01::TOMonitorMachine01(void *set_data) : TObjMapObject(tl_05) {
     m_name = TOMonitorMachine01__class_name;
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(TOMonitorMachine01__bml_resource, 0);
-    texlist = get_bml_texlist(TOMonitorMachine01__bml_resource, 0);
+    texlist = (s32)get_bml_texlist(TOMonitorMachine01__bml_resource, 0);
     view_range = 500.0f;
     model_radius = 15.0f;
     actorFlags |= 0x40000000;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/render/render_util.h"
 #include "pso/boss/olgaflow/TBoss6Tube.h"
@@ -36,7 +37,6 @@ extern "C" {
 void TBoss6Tube__sub_802B129C(u8 *arg0);
 s32 TBoss6Tube__previous_scroll_phase;
 f32 TBoss6Tube__scroll_delta;
-void get_bml_model(s32, s32);
 s32 query_teammate_state__9TObjEneDDFv(void);
 void draw_ginja_object(void);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
@@ -91,7 +91,7 @@ void TBoss6Tube::render() {
         for (y = start; y < hi; y += (8e+02f)) {
             push_matrix();
             translate_matrix(0, 0.0f, y, 0.0f);
-            get_bml_model(boss6_tube_bml_resource, boss6_tube_model_order[i]);
+            get_bml_model((BmlResource *)boss6_tube_bml_resource, boss6_tube_model_order[i]);
             draw_ginja_object();
             pop_matrix();
         }

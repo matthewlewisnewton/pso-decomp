@@ -281,8 +281,8 @@ void TObjEneBm5Wolf::load_resources() {
     {
     DelDepthAnimationBinding sp = bm5_wolf_spawn_descriptor;
     sp.motions = TObjEneBm5Wolf__bml_resource->motions;
-    TLobby::spawn_npc_enemy(9, TObjEneBm5Wolf__bml_resource->models[1].model, (NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->models[0].m_c, &sp, TObjEneBm5Wolf__collider_params[0].radius, 0.0f);
-    TLobby::spawn_npc_enemy(10, TObjEneBm5Wolf__bml_resource->models[0].model, (NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->models[0].m_c, &sp, TObjEneBm5Wolf__collider_params[0].radius, 0.0f);
+    TLobby::spawn_npc_enemy(9, (s32)TObjEneBm5Wolf__bml_resource->models[1].model, (NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->models[0].m_c, &sp, TObjEneBm5Wolf__collider_params[0].radius, 0.0f);
+    TLobby::spawn_npc_enemy(10, (s32)TObjEneBm5Wolf__bml_resource->models[0].model, (NJS_TEXLIST *)TObjEneBm5Wolf__bml_resource->models[0].m_c, &sp, TObjEneBm5Wolf__collider_params[0].radius, 0.0f);
     }
 }
 
@@ -483,12 +483,12 @@ void TObjEneBm5Wolf::select_subtype() {
     if (this->parameters[1] >= 1.0f) {
         this->m_3d8 = 1;
         this->model = (void *)TObjEneBm5Wolf__bml_resource->models[1].model;
-        this->texlist = TObjEneBm5Wolf__bml_resource->models[0].m_c;
+        this->texlist = (s32)TObjEneBm5Wolf__bml_resource->models[0].m_c;
         return;
     }
     this->m_3d8 = 0;
     this->model = (void *)TObjEneBm5Wolf__bml_resource->models[0].model;
-    this->texlist = TObjEneBm5Wolf__bml_resource->models[0].m_c;
+    this->texlist = (s32)TObjEneBm5Wolf__bml_resource->models[0].m_c;
 }
 
 void TObjEneBm5Wolf::advance_pose_turn(s32 target) {

@@ -3,6 +3,7 @@
 // emits them in address order and the TUnk_804F1280 vtable before TBoss6Rock's.
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include <stdlib.h>
 #include "pso/system/task/TMainTask.h"
@@ -175,7 +176,7 @@ void TBoss6Rock::run_task() {
         break;
     }
     if (m_e4 != NULL) {
-        s32 model = get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id);
+        s32 model = (s32)get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id);
         u64 pos = (s32)&position;
         m_e4->set_target(m_c4 != 0, (Vec *)pos, &rotation_x, (s32)TBoss6Rock__data_805D6EF4, model,
                          TBoss6Rock__data_80479258[m_b4].radius);

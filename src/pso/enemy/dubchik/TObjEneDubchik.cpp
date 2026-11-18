@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/TUnk_80494938.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
@@ -530,18 +531,18 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
     breakup_model_ptr = p;
     p = new SampledMotionPoints(2, 28.0f, 35.0f, 1.0f);
     lbl_80500AF0[0] = (s32)p;
-    ((SampledMotionPoints *)lbl_80500AF0[0])->sample_two_nodes((NJS_OBJECT *)get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 6), 0x1C, 0x24);
+    ((SampledMotionPoints *)lbl_80500AF0[0])->sample_two_nodes(get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 6), 0x1C, 0x24);
     p = new SampledMotionPoints(2, 36.0f, 40.0f, 1.0f);
     lbl_80500AF8[0] = (s32)p;
-    ((SampledMotionPoints *)lbl_80500AF8[0])->sample_two_nodes((NJS_OBJECT *)get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 6), 0x2E, 0x32);
+    ((SampledMotionPoints *)lbl_80500AF8[0])->sample_two_nodes(get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 6), 0x2E, 0x32);
     p = new SampledMotionPoints(2, 30.0f, 38.0f, 1.0f);
     t = lbl_80500AF0;
     t[1] = (s32)p;
-    ((SampledMotionPoints *)t[1])->sample_two_nodes((NJS_OBJECT *)get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 7), 0x1C, 0x24);
+    ((SampledMotionPoints *)t[1])->sample_two_nodes(get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 7), 0x1C, 0x24);
     p = new SampledMotionPoints(2, 50.0f, 58.0f, 1.0f);
     t = lbl_80500AF8;
     t[1] = (s32)p;
-    ((SampledMotionPoints *)t[1])->sample_two_nodes((NJS_OBJECT *)get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 7), 0x2E, 0x32);
+    ((SampledMotionPoints *)t[1])->sample_two_nodes(get_bml_model((BmlResource *)dubchik_resource, 0), (NJS_MOTION *)get_bml_motion((BmlResource *)dubchik_resource, 7), 0x2E, 0x32);
     for (i = 0; i < 2; i++) {
         ((s32 *)lbl_805009A0)[i] = register_boss__6TLobbyFl(i + 0x1B);
         lbl_805009A8[i] = dispatch_shared_handler_b__6TLobbyFl(i + 0x1B);

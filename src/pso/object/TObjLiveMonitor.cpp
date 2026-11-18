@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/object/TObjLiveMonitorSmall.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/unk/text_8020BFE4.h"
 #include "pso/object/TObjLiveMonitor.h"
 #include "types.h"
@@ -27,7 +28,6 @@ s32 TObjPlayer__sub_80084500();
 s32 free_children__12TObjDoorJungFPv(void *, u16);
 s32 TObjLiveMonitor__sub_8030C050(void* p);
 s32 draw_ginja_model(void *);
-s32 get_bml_model(s32, s32);
 s32 is_split_screen();
 extern s32 __vt__20TObjLiveMonitorSmall[];
 s32 live_monitor_shared_resource;
@@ -54,7 +54,6 @@ const char *TObjLiveMonitorSmall__name = "TObjLiveMonitorSmall";
 const s32 lbl_804757E0[2] = { 0xF44E8, 0xF44E9 };
 extern "C" {
 s32 draw_ginja_object(int);
-s32 get_bml_texlist(s32, s32);
 s32 __ct__7TObjectFP7TObject();
 extern s32 __vt__15TObjLiveMonitor[];
 }
@@ -382,8 +381,8 @@ void *__ct__15TObjLiveMonitorFv(void *arg0) {
     __ct__7TObjectFP7TObject();
     *(s32 **)((s8 *)arg0 + 0x18) = (s32 *)__vt__15TObjLiveMonitor;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjLiveMonitor__name;
-    *(s32 *)((s8 *)arg0 + 0x1C) = get_bml_model(live_monitor_shared_resource, 1);
-    *(s32 *)((s8 *)arg0 + 0x20) = get_bml_texlist(live_monitor_shared_resource, 0);
+    *(s32 *)((s8 *)arg0 + 0x1C) = (s32)get_bml_model((BmlResource *)live_monitor_shared_resource, 1);
+    *(s32 *)((s8 *)arg0 + 0x20) = (s32)get_bml_texlist((BmlResource *)live_monitor_shared_resource, 0);
     *(s32 *)((s8 *)arg0 + 0x24) = 5;
     ((TObjLiveMonitor *)arg0)->camera_timer = 0;
     return arg0;
@@ -481,7 +480,7 @@ s32 TObjLiveMonitorSmall::spawn_for_each_fish() {
         live_monitor_small_spawned_flag = 1;
         TObjLiveMonitorSmall__fish_spawned_flag = 1;
     }
-    var_r31 = *(void **)((s8 *)(get_bml_model(live_monitor_shared_resource, 0)) + 0x2C);
+    var_r31 = *(void **)((s8 *)(get_bml_model((BmlResource *)live_monitor_shared_resource, 0)) + 0x2C);
     while (var_r31 != NULL) {
         if (live_monitor_small_spawned_flag != 0) {
             obj = TObject::operator new(0x2C);

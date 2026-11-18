@@ -39,5 +39,5 @@ void load_and_spawn_chao_npc(void) {
     chao_npc_instance_handle = resource;
     ChaoNpcAnimationBinding binding = chao_npc_spawn_descriptor;
     binding.motions = resource->motions;
-    TLobby::spawn_npc_enemy(11, resource->models->model, (NJS_TEXLIST *)resource->models->m_c, &binding, 5.0f, 0.0f);
+    TLobby::spawn_npc_enemy(11, (s32)resource->models->model, (NJS_TEXLIST *)resource->models->m_c, &binding, 5.0f, 0.0f);
 }

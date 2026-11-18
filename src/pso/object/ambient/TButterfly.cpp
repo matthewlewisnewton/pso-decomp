@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/ambient/TButterfly.h"
 #include "pso/unk/text_803D96A8.h"
@@ -69,7 +70,7 @@ void TButterfly::init_motion() {
 
 void TButterfly::render() {
     if (this->update_object_view_visibility((4e+02f), (2e+01f)) != 0) {
-        set_current_texture_list((GinjaTextureList *)get_bml_texlist(butterfly_bml_resource, 0));
+        set_current_texture_list(get_bml_texlist(butterfly_bml_resource, 0));
         draw_model();
     }
 }

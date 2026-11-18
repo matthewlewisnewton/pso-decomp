@@ -326,25 +326,25 @@ void TObjEneMe1Canadin::load_resources() {
     TObjEneMe1Canadin__render_node_index = 0;
     p = ::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model(bm_ene_me1_mb_resource->models[1].model);
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)bm_ene_me1_mb_resource->models[1].model);
     }
     canadin_leader_breakup_model = (TUnk_8048FA00 *)p;
     p = ::operator new(0x10);
     if (p != NULL) {
-        p = ((TBreakUpMdl *)p)->init_from_model(bm_ene_me1_mb_resource->models[0].model);
+        p = ((TBreakUpMdl *)p)->init_from_model((s32)bm_ene_me1_mb_resource->models[0].model);
     }
     canadin_follower_breakup_model = (TUnk_8048FA00 *)p;
-    model = bm_ene_me1_mb_resource->models[1].model;
+    model = (s32)bm_ene_me1_mb_resource->models[1].model;
     canadin_leader_node3_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 3))->model)[1] + 4);
     canadin_leader_node2_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 2))->model)[1] + 4);
-    model2 = bm_ene_me1_mb_resource->models[0].model;
+    model2 = (s32)bm_ene_me1_mb_resource->models[0].model;
     canadin_follower_node3_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model2, 3))->model)[1] + 4);
     lbl_805D4FF0 = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model2, 2))->model)[1] + 4);
     TObjPlayer__sub_800F0928();
     s16 ids[2] = { 0x17, 0x18 };
     CanadinSpawnParams params = { (s32)bm_ene_me1_mb_resource->motions, lbl_8048FF30, 0, 0x70000 };
     for (i = 0; i < 2; i++) {
-        TLobby::spawn_npc_enemy(ids[i], bm_ene_me1_mb_resource->models[i].model, (NJS_TEXLIST *)bm_ene_me1_mb_resource->models[1].m_c, &params, 8.0f, 15.0f);
+        TLobby::spawn_npc_enemy(ids[i], (s32)bm_ene_me1_mb_resource->models[i].model, (NJS_TEXLIST *)bm_ene_me1_mb_resource->models[1].m_c, &params, 8.0f, 15.0f);
     }
 }
 
@@ -540,7 +540,7 @@ void TObjEneMe1Canadin::update_by_field_0x354() {
 
 void TObjEneMe1Canadin::vfunc_106() {
     model = (void *)bm_ene_me1_mb_resource->models[0].model;
-    texlist = bm_ene_me1_mb_resource->models[1].m_c;
+    texlist = (s32)bm_ene_me1_mb_resource->models[1].m_c;
 }
 
 #pragma push
@@ -2097,7 +2097,7 @@ void TObjEneMe1CanadinLeader::run_task() {
 
 void TObjEneMe1CanadinLeader::vfunc_106() {
     model = (void *)bm_ene_me1_mb_resource->models[1].model;
-    texlist = bm_ene_me1_mb_resource->models[1].m_c;
+    texlist = (s32)bm_ene_me1_mb_resource->models[1].m_c;
 }
 
 void TObjEneMe1CanadinLeader::vfunc_105() {

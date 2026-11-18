@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/lobby/TObjWeddingLobby.h"
 #include "pso/system/task/TMainTask.h"

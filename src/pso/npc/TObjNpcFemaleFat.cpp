@@ -49,7 +49,7 @@ TObjNpcFemaleFat *TObjNpcFemaleFat__ct(TObjNpcFemaleFat *npc, TObjControl *contr
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcFemaleFat__static_model->models->model;
-    npc->texlist = TObjNpcFemaleFat__static_model->models->m_c;
+    npc->texlist = (s32)TObjNpcFemaleFat__static_model->models->m_c;
     npc->setup_common();
     return npc;
 }

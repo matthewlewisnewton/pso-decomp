@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/lobby/LobbyPigeonPath.h"
 
@@ -162,7 +163,6 @@ extern "C" {
 s32 *csnVecterUnder(s32 origin, s32 mask);
 void vec3_add_to(void *, void *);
 
-s32 get_bml_model(void *, s32);
 s32 get_bml_motion(void *, s32);
 
 s32 push_matrix();
@@ -436,7 +436,7 @@ void draw_line_strip__10TObjPlayerFPviif(u8 *path_obj, s32 arg1, s32 arg2, f32 f
 TUnk_804E0988::TUnk_804E0988(TObject *parent, void *set_data) : TObjPathObj(parent, set_data) {
   s32 var_r0;
   s32 temp_r3;
-  *((s32 *) (((s8 *) this) + 0x98)) = get_bml_model((*(u8 * *)&seabed_dolphin_bml_archive), 0);
+  *((s32 *) (((s8 *) this) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&seabed_dolphin_bml_archive), 0);
   m_9c = get_bml_motion((*(u8 * *)&seabed_dolphin_bml_archive), 5);
   temp_r3 = set_params[0];
   if (temp_r3 < 0)
@@ -589,7 +589,7 @@ void TObjPlayer::load_seabed_dolphin() {
     seabed_dolphin_texture_handle = (s32)load_gvm_texture_file((s32)("obj_seabed_dolphin.gvm"));
     Q_802C2958 q = *(Q_802C2958 *)seabed_dolphin_anim_binding;
     q.a = (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive)->f430;
-    TLobby::spawn_npc_enemy((s16)0x40, (s32)(((s32 (*)(void *, s32, s32, s32, s32, const void *))get_bml_model)((*(Obj_802C2958 * *)&seabed_dolphin_bml_archive), 0, ((Q_802C2958 *)seabed_dolphin_anim_binding)->c, ((Q_802C2958 *)seabed_dolphin_anim_binding)->b, ((Q_802C2958 *)seabed_dolphin_anim_binding)->a, seabed_dolphin_anim_binding)), (NJS_TEXLIST *)seabed_dolphin_texture_handle, &q, (f32)((16.0f)), (f32)((1e+01f)));
+    TLobby::spawn_npc_enemy((s16)0x40, (s32)get_bml_model((BmlResource *)seabed_dolphin_bml_archive, 0), (NJS_TEXLIST *)seabed_dolphin_texture_handle, &q, (f32)((16.0f)), (f32)((1e+01f)));
 }
 #pragma pop
 
@@ -618,7 +618,7 @@ void *TObjPlayer__sub_802C28B4(void *set_data) {
 TUnk_804E094C::TUnk_804E094C(TObject *parent, void *set_data) : TObjPathObj(parent, set_data) {
   s32 var_r0;
   s32 temp_r3;
-  *((s32 *) (((s8 *) this) + 0x98)) = get_bml_model((*(u8 * *)&jungle_ebi_model_resource), 0);
+  *((s32 *) (((s8 *) this) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&jungle_ebi_model_resource), 0);
   m_9c = get_bml_motion((*(u8 * *)&jungle_ebi_model_resource), 0);
   temp_r3 = set_params[0];
   if (temp_r3 < 0)
@@ -812,7 +812,7 @@ void *TObjPlayer::create_path_obj(void *set_data) {
 TUnk_804E0910::TUnk_804E0910(TObject *parent, void *set_data) : TObjPathObj(parent, set_data) {
   s32 var_r0;
   s32 temp_r3;
-  *((s32 *) (((s8 *) this) + 0x98)) = get_bml_model((*(u8 * *)&jungle_bird_bml_resource), 0);
+  *((s32 *) (((s8 *) this) + 0x98)) = (s32)get_bml_model((BmlResource *)(*(u8 * *)&jungle_bird_bml_resource), 0);
   m_9c = get_bml_motion((*(u8 * *)&jungle_bird_bml_resource), 0);
   temp_r3 = set_params[0];
   if (temp_r3 < 0)
@@ -993,7 +993,7 @@ TUnk_804E08D4::TUnk_804E08D4(TObject *parent, void *set_data) : TObjPathObj(pare
     s32 temp_r3;
     s32 var_r0;
 
-    *(s32 *)((s8 *)this + 0x98) = ((s32 (*)(s32, s32))get_bml_model)((*(s32 *)&lobby_kamome_model_resource), 0);
+    *(s32 *)((s8 *)this + 0x98) = (s32)get_bml_model((BmlResource *)(*(s32 *)&lobby_kamome_model_resource), 0);
     m_9c = ((s32 (*)(s32, s32))get_bml_motion)((*(s32 *)&lobby_kamome_model_resource), 0);
     temp_r3 = set_params[0];
     var_r0 = (temp_r3 < 0) ? 0 : (temp_r3 > 2) ? 2 : temp_r3;
@@ -1171,7 +1171,7 @@ TUnk_804E0898::TUnk_804E0898(TObject *parent, void *set_data) : TObjPathObj(pare
     s32 selector;
     select_lobby_pigeon_model();
     self->scale = (1.0f);
-    self->model = ((void*)get_bml_model((void *)(lobby_pigeon_bml_archive), (s32)(self->modelIndex)));
+    self->model = ((void*)get_bml_model((BmlResource *)(lobby_pigeon_bml_archive), (s32)(self->modelIndex)));
     self->animation = ((void*)get_bml_motion((void *)(lobby_pigeon_bml_archive), 0));
     selector = self->movementSelector;
     if (selector < 0) movement = 0;

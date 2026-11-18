@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/effect/particle/TParticleCtrl_800867E4.h"
 
 #include <stddef.h>
@@ -13,7 +14,6 @@ struct Stack_8008683C {
 struct Ent_800868C4 { u8 data[0x98]; };
 
 extern "C" {
-s32 get_bml_model(void *, s32);
 extern u8 *TParticleCtrl__regular_bml_resource;
 struct RecoveredGlobal_lbl_804393F0 { s32 value; u8 remaining[0x8]; };
 extern RecoveredGlobal_lbl_804393F0 lbl_804393F0;
@@ -54,7 +54,7 @@ void TParticleCtrl::generate_child_default(s32 arg1, s32 arg2) {
 
 s32 TParticleCtrl::get_particle_model(s32 arg0) {
     if (arg0 < 3) {
-        return get_bml_model(TParticleCtrl__regular_bml_resource, arg0);
+        return (s32)get_bml_model((BmlResource *)TParticleCtrl__regular_bml_resource, arg0);
     }
     return 0;
 }

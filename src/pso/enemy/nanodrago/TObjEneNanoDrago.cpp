@@ -277,7 +277,7 @@ void TObjEneNanoDrago::load_resources() {
     lbl_805D5254 = dispatch_shared_handler_a__6TLobbyFl(0x1A);
     NanoDragoAnimationBinding binding = { nano_drago_entry_params_resource->motions, nanodrago_action_table, 1, 0xC0000 };
     modelEntries = nano_drago_entry_params_resource->models;
-    TLobby::spawn_npc_enemy((s16)(0x22), modelEntries[0].model, (NJS_TEXLIST *)modelEntries[0].m_c, &binding, (f32)(15.0f), (f32)(0.0f));
+    TLobby::spawn_npc_enemy((s16)(0x22), (s32)modelEntries[0].model, (NJS_TEXLIST *)modelEntries[0].m_c, &binding, (f32)(15.0f), (f32)(0.0f));
 }
 void TObjEneNanoDrago::free_resources() {
     if ((u32) nano_drago_entry_params_resource != 0U) {

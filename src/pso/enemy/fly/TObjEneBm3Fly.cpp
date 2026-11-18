@@ -95,7 +95,7 @@ void TObjEneBm3Fly::load_resources() {
     bm3_fly_nest_resources = TObjEneBm3FlyNest::sub_800B4158();
     model = (TUnk_8048FA00 *)::operator new(0x10);
     if (model != NULL) {
-        model = (TUnk_8048FA00 *)((TBreakUpMdl *)model)->init_from_model(bm3_fly_nest_resources->models[0].model);
+        model = (TUnk_8048FA00 *)((TBreakUpMdl *)model)->init_from_model((s32)bm3_fly_nest_resources->models[0].model);
     }
     TObjEneBm3Fly__breakup_model = model;
     bm3_fly_boss_stat_handle = (u8 *)TLobby::register_boss(0);
@@ -105,7 +105,7 @@ void TObjEneBm3Fly::load_resources() {
     {
         Bm3FlyAnimationBinding binding = bm3_fly_resource_binding_desc;
         binding.motions = bm3_fly_nest_resources->motions;
-        TLobby::spawn_npc_enemy(7, bm3_fly_nest_resources->models[0].model, (NJS_TEXLIST *)bm3_fly_nest_resources->models[0].m_c, &binding, bm3_fly_collider_params[0].radius, 15.0f);
+        TLobby::spawn_npc_enemy(7, (s32)bm3_fly_nest_resources->models[0].model, (NJS_TEXLIST *)bm3_fly_nest_resources->models[0].m_c, &binding, bm3_fly_collider_params[0].radius, 15.0f);
     }
 }
 
@@ -137,7 +137,7 @@ TObjEneBm3Fly::TObjEneBm3Fly(TObject *parent, TObjEneBm3FlyNest *nest, s32 entit
 void TObjEneBm3Fly::init_child_params() {
     init_position_vectors();
     this->model = (void *)bm3_fly_nest_resources->models[0].model;
-    this->texlist = bm3_fly_nest_resources->models[0].m_c;
+    this->texlist = (s32)bm3_fly_nest_resources->models[0].m_c;
     this->init_model(bm3_fly_collider_params, 1);
     set_field_d8((s32)bm3_fly_action_table);
     set_field_dc((s32)bm3_fly_nest_resources->motions);
@@ -1162,7 +1162,7 @@ void TObjEneBm3Fly::vfunc_106() {
 
 void TObjEneMoja::bindModel(int index) {
     model = (void *)lbl_805D50D8->models[index].model;
-    texlist = lbl_805D50D8->models[index].m_c;
+    texlist = (s32)lbl_805D50D8->models[index].m_c;
 }
 
 f32 AttackParams::get_damage_radius() { return damage_radius; }

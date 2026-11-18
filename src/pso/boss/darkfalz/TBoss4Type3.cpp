@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/darkfalz/TObjBs4CutAtk.h"
 #include "pso/effect/TUnk_80494968.h"
@@ -357,8 +358,6 @@ u16 get_entity_id(void *);
 s32 is_split_screen();
 s16 * register_boss__6TLobbyFl(s32);
 s32 get_bml_motion(s32, s32);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 void clear_target_cursor_list(void *p);
 void TObjPlayer__sub_80052390(f32 x);
 f32 TBoss4Type3__sub_800524E8(f32);
@@ -862,7 +861,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
         self->a438[i] = TObjFish__sub_800E3124((u8 *)(((void **)boss4_type3_effect_desc_ptr_table)[i]), (s32)&self->a444[i]);
     }
     set_motion_packed_rotation();
-    model = get_bml_model((BmlResource *)self->f390, ((s32 *)lbl_80486FB0)[0]);
+    model = (s32)get_bml_model((BmlResource *)self->f390, ((s32 *)lbl_80486FB0)[0]);
     p = (s32)new SampledMotionPoints(2, 3.0f, 9.0f, 0.6f);
     *(s32 *)((u8 *)self + 0x51C) = p;
     ((SampledMotionPoints *)(*(s32 *)((u8 *)self + 0x51C)))->sample_two_nodes((NJS_OBJECT *)model, (NJS_MOTION *)get_bml_motion(self->f390, ((s32 *)&TBoss4Type3__anim_state_table)[0x44 / 4]), 0x16, 0x17);
@@ -1137,7 +1136,7 @@ void TBoss4Type3::draw_model_set(const s32 *tbl, f32 t) {
     TObjEneRe4Sorcerer__sub_801E3F1C(0.0f, this->m_3dc);
     set_motion_packed_rotation();
     for (i = 0; i < 3; i++) {
-        set_current_texture_list((GinjaTextureList *)get_bml_texlist((BmlResource *)this->m_390, tbl[i]));
+        set_current_texture_list(get_bml_texlist((BmlResource *)this->m_390, tbl[i]));
         off = i;
         ((TObjFish *)((s32)this->render_lists[off]))->set_draw_callback_list();
         draw_model_motion((void *)(get_bml_model((BmlResource *)this->m_390, tbl[i])), (void *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[i])), this->m_3f4);

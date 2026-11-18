@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/boss/olgaflow/TBoss6CrushRock.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/olgaflow/TBoss6CrushPtcl.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
@@ -34,7 +35,6 @@ void *__ct__7TObjectFP7TObject(void *, void *);
 extern s32 __vt__15TBoss6CrushPtcl[];
 u8 *TBoss6CrushPtcl__ct(u8 *arg0, void *arg1, Vec_80359EF0 *arg2);
 extern s32 TBoss6PlotFalz__instance;
-s32 get_bml_model(int, void *);
 int TBoss6Rock__sub_80353A04(void);
 int TBoss6Rock__sub_80353A0C(void);
 f32 vec3_add_to(void *, void *);
@@ -93,7 +93,7 @@ void TBoss6Rock::spawn_crush_rocks(s32 kind) {
 
 TBoss6CrushRock::TBoss6CrushRock(s32 arg1, s32 arg2, s32 arg3) : TObject((TObject *)((void *)arg1)) {
     ((TObject *)this)->m_name = TBoss6CrushRock__name;
-    *(s32 *)((s8 *)this + 0x1C) = get_bml_model((int) (TBoss6Rock__sub_80353A0C()), (void *)arg3);
+    *(s32 *)((s8 *)this + 0x1C) = (s32)get_bml_model((BmlResource *)(TBoss6Rock__sub_80353A0C()), (s32)(void *)arg3);
     *(s32 *)((s8 *)this + 0x20) = TBoss6Rock__sub_80353A04();
     VecCopy((Vec *)(((u8 *)this) + 0x24), (const Vec *)(arg2));
     *(f32 *)((s8 *)this + 0x30) = (f32) (0.5f * ((0.000030517578f * (f32) rand()) - 0.5f));

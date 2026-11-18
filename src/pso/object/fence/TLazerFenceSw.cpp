@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/fence/TLazerFenceSw.h"
 
@@ -28,7 +29,7 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 
 
-extern "C" { void rotate_matrix_y(int, void *); s32 pop_matrix(void); void draw_ginja_object(void *); AnimationMotion *get_bml_motion(BmlResource *resource, s32 index); s32 get_bml_model(BmlResource *resource, s32 index); }
+extern "C" { void rotate_matrix_y(int, void *); s32 pop_matrix(void); void draw_ginja_object(void *); AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);  }
 extern s32 model_render_flags;
 
 extern const char *fe_obj_switch_laz_model_names[4];

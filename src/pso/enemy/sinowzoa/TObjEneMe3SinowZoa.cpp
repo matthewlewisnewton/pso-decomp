@@ -254,7 +254,7 @@ void TObjEneMe3SinowZoa::load_resources() {
     sinow_zoa_alternate_position.x = TObjEneMe3SinowZoa__data_805DF31C;
     sinow_zoa_alternate_position.y = TObjEneMe3SinowZoa__data_805DF31C;
     sinow_zoa_alternate_position.z = TObjEneMe3SinowZoa__data_805DF31C;
-    model = TObjEneMe3SinowZoa__bml_resource->models->model;
+    model = (u32)TObjEneMe3SinowZoa__bml_resource->models->model;
     node = (ModelNode *)find_model_node(model, 9);
     if (node->model != NULL) {
         TObjEneMe3SinowZoa__material_color_pointers[0] = node->model->plist + 1;
@@ -276,7 +276,7 @@ void TObjEneMe3SinowZoa::load_resources() {
     motion = TObjEneMe3SinowZoa__bml_resource->motions[lbl_804E8880[5].motion].motion;
     breakup = (TUnk_8048FA00 *)::operator new(0x10);
     if (breakup != NULL) {
-        breakup = TBreakUpMdl::init(breakup, TObjEneMe3SinowZoa__bml_resource->models->model, (s32)motion, motion->frameCount - 1);
+        breakup = TBreakUpMdl::init(breakup, (int)TObjEneMe3SinowZoa__bml_resource->models->model, (s32)motion, motion->frameCount - 1);
     }
     TObjEneMe3SinowZoa__breakup_model = breakup;
     {
@@ -284,10 +284,10 @@ void TObjEneMe3SinowZoa::load_resources() {
         info.motions = TObjEneMe3SinowZoa__bml_resource->motions;
         DelDepthAnimationBinding info_b = lbl_80475FB8;
         info_b.motions = TObjEneMe3SinowZoa__bml_resource->motions;
-        TLobby::spawn_npc_enemy(0x49, TObjEneMe3SinowZoa__bml_resource->models->model, (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c, &info, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
-        TLobby::spawn_npc_enemy(0x4A, TObjEneMe3SinowZoa__bml_resource->models->model, &TObjEneMe3SinowZoa__alternate_texture_list, &info, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
-        TLobby::spawn_npc_enemy(0x4B, TObjEneMe3SinowZoa__bml_resource->models->model, (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c, &info_b, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
-        TLobby::spawn_npc_enemy(0x4C, TObjEneMe3SinowZoa__bml_resource->models->model, &TObjEneMe3SinowZoa__alternate_texture_list, &info_b, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        TLobby::spawn_npc_enemy(0x49, (s32)TObjEneMe3SinowZoa__bml_resource->models->model, (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c, &info, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        TLobby::spawn_npc_enemy(0x4A, (s32)TObjEneMe3SinowZoa__bml_resource->models->model, &TObjEneMe3SinowZoa__alternate_texture_list, &info, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        TLobby::spawn_npc_enemy(0x4B, (s32)TObjEneMe3SinowZoa__bml_resource->models->model, (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c, &info_b, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
+        TLobby::spawn_npc_enemy(0x4C, (s32)TObjEneMe3SinowZoa__bml_resource->models->model, &TObjEneMe3SinowZoa__alternate_texture_list, &info_b, TObjEneMe3SinowZoa__data_805DF2FC, TObjEneMe3SinowZoa__data_805DF31C);
     }
 }
 
@@ -655,7 +655,7 @@ void TObjEneMe3SinowZoa::sub_8031A3D8() {
         this->m_3c8 = 1;
         return;
     }
-    texlist = TObjEneMe3SinowZoa__bml_resource->models->m_c;
+    texlist = (s32)TObjEneMe3SinowZoa__bml_resource->models->m_c;
     initialize_enemy_state(0x45);
     this->m_3c8 = 0;
 }

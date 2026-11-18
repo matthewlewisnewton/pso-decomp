@@ -191,7 +191,7 @@ void TObjEneMe1Gee::load_resources() {
         TObjEneMe1Gee__resource_bundle = (BmlResource *)load_enemy_bml_resource((u8 *)&bm_ene_me1_gee_resource_descriptor);
     }
     TObjEneMe1Gee::cache_result_805D6660();
-    gee_cached_model_node = (u8 *)find_model_node(TObjEneMe1Gee__resource_bundle->models->model, 7);
+    gee_cached_model_node = (u8 *)find_model_node((s32)TObjEneMe1Gee__resource_bundle->models->model, 7);
     for (i = 0; i < 3; i++) {
         gee_boss_stat_handle_table[i] = register_boss__6TLobbyFl(lbl_8043BCD8[i]);
         gee_shared_handler_b_table[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043BCE4[i]);
@@ -201,21 +201,21 @@ void TObjEneMe1Gee::load_resources() {
     TObjEneMe1Gee__render_node_index = 0;
     p = (TUnk_8048FA00 *)::operator new(0x10);
     if (p != NULL) {
-        p = init_from_model__11TBreakUpMdlFl(p, TObjEneMe1Gee__resource_bundle->models->model);
+        p = init_from_model__11TBreakUpMdlFl(p, (s32)TObjEneMe1Gee__resource_bundle->models->model);
     }
     TObjEneMe1Gee__data_805D51C0 = p;
     p = (TUnk_8048FA00 *)::operator new(0x10);
     if (p != NULL) {
-        p = init_from_model__11TBreakUpMdlFl(p, TObjEneMe1Gee__resource_bundle->models->model);
+        p = init_from_model__11TBreakUpMdlFl(p, (s32)TObjEneMe1Gee__resource_bundle->models->model);
     }
     TObjEneMe1Gee__data_805D51C4 = p;
-    t = ((s32 *)((NJS_OBJECT *)find_model_node(TObjEneMe1Gee__resource_bundle->models->model, 4))->model)[1];
+    t = ((s32 *)((NJS_OBJECT *)find_model_node((s32)TObjEneMe1Gee__resource_bundle->models->model, 4))->model)[1];
     gee_resource_bundle_ptr = t + 4;
     TObjPlayer__sub_800F0928(t);
     {
         GeeAnimationBinding sp8 = {NULL, TObjEneMe1Gee__motion_parameters, 0, 4, 0};
         sp8.motions = TObjEneMe1Gee__resource_bundle->motions;
-        TLobby::spawn_npc_enemy((s16)0x10, TObjEneMe1Gee__resource_bundle->models->model, (NJS_TEXLIST *)TObjEneMe1Gee__resource_bundle->models->m_c, &sp8, 8.0f, (f32)TObjEneMe1Gee__data_805DA0C0);
+        TLobby::spawn_npc_enemy((s16)0x10, (s32)TObjEneMe1Gee__resource_bundle->models->model, (NJS_TEXLIST *)TObjEneMe1Gee__resource_bundle->models->m_c, &sp8, 8.0f, (f32)TObjEneMe1Gee__data_805DA0C0);
     }
 }
 
@@ -422,7 +422,7 @@ void TObjEneMe1Gee::sub_800CC0C4() {
 #pragma pop
 void TObjEneMe1Gee::vfunc_106() {
     this->model = (void *)TObjEneMe1Gee__resource_bundle->models->model;
-    this->texlist = TObjEneMe1Gee__resource_bundle->models->m_c;
+    this->texlist = (s32)TObjEneMe1Gee__resource_bundle->models->m_c;
 }
 #pragma push
 #pragma fp_contract on
@@ -1947,7 +1947,7 @@ void TUnk_8049387C::run_task() {
 
 void TUnk_8049387C::vfunc_106() {
     this->model = (void *)TObjEneMe1Gee__resource_bundle->models->model;
-    this->texlist = TObjEneMe1Gee__resource_bundle->models->m_c;
+    this->texlist = (s32)TObjEneMe1Gee__resource_bundle->models->m_c;
 }
 
 void TUnk_8049387C::vfunc_105() {

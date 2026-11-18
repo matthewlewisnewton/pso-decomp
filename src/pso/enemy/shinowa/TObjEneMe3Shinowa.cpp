@@ -225,7 +225,7 @@ void load_shinowa_mirage_resources() {
     lbl_80500FF4.x = 0.0f;
     lbl_80500FF4.y = 0.0f;
     lbl_80500FF4.z = 0.0f;
-    root = TObjEneMe3ShinowaMirage__data_805D5298->models->model;
+    root = (u32)TObjEneMe3ShinowaMirage__data_805D5298->models->model;
     cnk = (NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node(root, 9))->model;
     if (cnk != NULL) {
         lbl_80501000[0] = (s32 *)(cnk->polygon_list + 2);
@@ -247,7 +247,7 @@ void load_shinowa_mirage_resources() {
     motion = TObjEneMe3ShinowaMirage__data_805D5298->motions[shinowa_mirage_motion_param_table[4].motion].motion;
     TUnk_8048FA00 *breakup = (TUnk_8048FA00 *)::operator new(0x10);
     if (breakup != NULL) {
-        breakup = TBreakUpMdl::init(breakup, TObjEneMe3ShinowaMirage__data_805D5298->models->model, (s32)motion, motion->frameCount - 1);
+        breakup = TBreakUpMdl::init(breakup, (int)TObjEneMe3ShinowaMirage__data_805D5298->models->model, (s32)motion, motion->frameCount - 1);
     }
     TObjEneMe3ShinowaMirage__data_805D52A0 = breakup;
     {
@@ -287,8 +287,8 @@ void load_shinowa_mirage_resources() {
     {
         DelDepthAnimationBinding binding = shinowa_mirage_spawn_binding;
         binding.motions = TObjEneMe3ShinowaMirage__data_805D5298->motions;
-        TLobby::spawn_npc_enemy(0x26, TObjEneMe3ShinowaMirage__data_805D5298->models->model, (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models->m_c, &binding, 8.0f, 0.0f);
-        TLobby::spawn_npc_enemy(0x27, TObjEneMe3ShinowaMirage__data_805D5298->models->model, &lbl_80500FEC, &binding, 8.0f, 0.0f);
+        TLobby::spawn_npc_enemy(0x26, (s32)TObjEneMe3ShinowaMirage__data_805D5298->models->model, (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models->m_c, &binding, 8.0f, 0.0f);
+        TLobby::spawn_npc_enemy(0x27, (s32)TObjEneMe3ShinowaMirage__data_805D5298->models->model, &lbl_80500FEC, &binding, 8.0f, 0.0f);
     }
 }
 

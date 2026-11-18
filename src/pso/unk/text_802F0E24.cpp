@@ -1,22 +1,11 @@
 #include "types.h"
+#include "pso/system/BmlResource.h"
 #include "pso/unk/text_802F0E24.h"
 #include "pso/unk/TLobby.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/BmlResourceDescriptor.h"
 
 #define ARRAY_COUNT(arr) (sizeof(arr) / sizeof((arr)[0]))
-
-struct BmlModelEntry {
-    u32 flags;
-    s32 unk4;
-    void *model;
-    void *texture_list;
-};
-
-struct BmlResource {
-    u8 pad0[0x42C];
-    BmlModelEntry *models;
-};
 
 extern "C" {
 void release_texture_list(void *);
@@ -91,7 +80,7 @@ void load_boss7_common_resources(void) {
     }
 
     boss7_common_bml_resource = p;
-    boss7_common_texture_list = ((BmlResource *)p)->models[0].texture_list;
+    boss7_common_texture_list = ((BmlResource *)p)->models[0].m_c;
 
     TLobby::load_texture_pvm_file("obj_boss7_common.gvm", (s32)boss7_common_texture_list);
     TParticleCtrl::init_heap((void *)0x50000);

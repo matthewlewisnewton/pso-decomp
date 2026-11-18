@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/olgaflow/TBoss6Mine.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -98,8 +99,6 @@ int rotate_matrix_x(void*, void*);
 s32 __ct__11TObjControlFP7TObject(s32, s32);
 void free_collision_body_parts(void *);
 s32 get_bml_motion(s32, s32);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 int rotate_matrix_y(void*, void*);
 int push_matrix(void*);
 s32 __nw__7TObjectFUl(s32);
@@ -130,8 +129,8 @@ void TBoss6Mine::draw() {
     s32 bml_model;
 
     set_motion_packed_rotation();
-    temp_r31 = get_bml_texlist((BmlResource *)this->m_374, 2);
-    bml_model = get_bml_model((BmlResource *)this->m_374, 2);
+    temp_r31 = (s32)get_bml_texlist((BmlResource *)this->m_374, 2);
+    bml_model = (s32)get_bml_model((BmlResource *)this->m_374, 2);
     bml_motion = get_bml_motion(this->m_374, 0);
     set_current_texture_list((GinjaTextureList *)temp_r31);
     TBoss6PlotFalz__sub_802AC008(this->fade_amount, 0.0f);

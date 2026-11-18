@@ -1610,7 +1610,7 @@ void TObjEneRe4Sorcerer::init_enemy() {
     init_position_vectors();
     model = (void *)sorcerer_bml_resource->models->model;
     models = sorcerer_bml_resource->models;
-    texlist = models->m_c;
+    texlist = (s32)models->m_c;
     init_model__9TObjEneDDFP13CollisionBodyl(this, re4_sorcerer_collision_body_part_table, 1, (int)models);
     set_field_d8((s32)re4_sorcerer_action_params);
     set_field_dc((s32)sorcerer_bml_resource->motions);
@@ -1708,12 +1708,12 @@ void TObjEneRe4Sorcerer::load_resources() {
     TObjEneRe4Bit__sub_800EDAB4();
     r = (u32) (int)::operator new(0x14);
     if (r != 0) {
-        r = (u32) ((TLobby *)r)->alloc_tables(sorcerer_bml_resource->models->model, 2);
+        r = (u32) ((TLobby *)r)->alloc_tables((s32)sorcerer_bml_resource->models->model, 2);
     }
     TObjEneRe4Sorcerer__uv_scroll_buffer = r;
     Params_800F0464 p = re4_sorcerer_spawn_descriptor;
     p.a = (s32)sorcerer_bml_resource->motions;
-    TLobby::spawn_npc_enemy((s16)0x2A, sorcerer_bml_resource->models->model, (NJS_TEXLIST *)sorcerer_bml_resource->models->m_c, &p, re4_sorcerer_collision_body_part_table[3], 15.0f);
+    TLobby::spawn_npc_enemy((s16)0x2A, (s32)sorcerer_bml_resource->models->model, (NJS_TEXLIST *)sorcerer_bml_resource->models->m_c, &p, re4_sorcerer_collision_body_part_table[3], 15.0f);
 }
 
 void TBoss3Volopt__sub_800F059C(void) {  }

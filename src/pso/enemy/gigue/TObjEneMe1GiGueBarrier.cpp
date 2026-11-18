@@ -108,7 +108,7 @@ TObjEneMe1GiGueBarrier::TObjEneMe1GiGueBarrier(TObject *parent, void *owner) : T
     m_104 = 0;
     model = (void *)TObjEneMe1GiGueBarrier__barrier_resource_object->models[2].model;
     models = TObjEneMe1GiGueBarrier__barrier_resource_object->models;
-    texlist = models[2].m_c;
+    texlist = (s32)models[2].m_c;
     set_field_d8((s32)TObjEneMe1GiGueBarrier__animation_definitions);
     set_field_dc((s32)TObjEneMe1GiGueBarrier__barrier_resource_object->motions);
     requested_action = 0;

@@ -2,6 +2,7 @@
 #define PSO_OBJECT_AMBIENT_TOBJFISH_8001ED90_H
 
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 
 struct BmlResource;
 struct AnimationMotion;
@@ -11,7 +12,6 @@ extern "C" {
 int fn_8001ED90(void *p);
 // The index-th motion and texture list of a loaded BML archive.
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
 }
 // --- end of C functions
 

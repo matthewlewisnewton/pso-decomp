@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/olgaflow/TBoss6RockChase.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -83,7 +84,6 @@ struct Param_8036D1B4 { u8 pad[0xC]; f32 v; };
 
 extern "C" {
 s32 __nw__7TObjectFUl(int);
-s32 get_bml_model(int, int);
 int TBoss6Rock__sub_80353A04(void);
 int TBoss6Rock__sub_80353A0C(void);
 __declspec(section ".rodata") char TBoss6RockChase__class_name_string[] = "TBoss6RockChase";
@@ -199,7 +199,7 @@ u8 *TBoss6RockChase__ct(TBoss6RockChase *boss6_rock_chase, s32 arg1, s32 arg2, s
     boss6_rock_chase->m_bc = (s32) (8192.0f * ((3.0517578e-05f * (f32) rand()) - 0.5f));
     *(f32 *)((s8 *)boss6_rock_chase + 0xB8) = 0.0f;
     VecCopy((Vec *)((u8 *)boss6_rock_chase + 0x38), (const Vec *)(arg2));
-    boss6_rock_chase->m_c0 = get_bml_model((int) (TBoss6Rock__sub_80353A0C()), (int) (*(s32 *)((s8 *)&boss6_rock_chase_model_radius_table.value + (arg3 * 8))));
+    boss6_rock_chase->m_c0 = (u32)get_bml_model((BmlResource *)(TBoss6Rock__sub_80353A0C()), (int) (*(s32 *)((s8 *)&boss6_rock_chase_model_radius_table.value + (arg3 * 8))));
     boss6_rock_chase->m_c4 = TBoss6Rock__sub_80353A04();
     return (u8 *)boss6_rock_chase;
 }

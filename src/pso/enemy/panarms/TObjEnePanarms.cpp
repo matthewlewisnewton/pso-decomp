@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800F0810.h"
@@ -463,7 +464,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
         exchange_object_state__9TObjEnemyFls(this, &objectState, 0);
     }
     m_380 = index;
-    texlist = get_bml_texlist(TObjEnePanarms__entry_params_resource, lbl_8043CD38[m_380]);
+    texlist = (s32)get_bml_texlist(TObjEnePanarms__entry_params_resource, lbl_8043CD38[m_380]);
     model = (void *)get_bml_model(TObjEnePanarms__entry_params_resource, lbl_8043CD38[m_380]);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body_parts = init_collision_body_parts(this, lbl_80495458, 1);
@@ -1659,9 +1660,9 @@ void TObjEnePanarms::spawn_npc_pair() {
     PanarmsNpcBinding binding_b = {0, lbl_80495524, 1, 0xA0000};
     binding_b.motions = motions;
     BmlModelEntry *models = TObjEnePanarms__entry_params_resource->models;
-    TLobby::spawn_npc_enemy(0x24, models[1].model, (NJS_TEXLIST *)models[1].m_c, &binding_a, 7.5f, 0.0f);
+    TLobby::spawn_npc_enemy(0x24, (s32)models[1].model, (NJS_TEXLIST *)models[1].m_c, &binding_a, 7.5f, 0.0f);
     models = TObjEnePanarms__entry_params_resource->models;
-    TLobby::spawn_npc_enemy(0x25, models[2].model, (NJS_TEXLIST *)models[2].m_c, &binding_b, 7.5f, 0.0f);
+    TLobby::spawn_npc_enemy(0x25, (s32)models[2].model, (NJS_TEXLIST *)models[2].m_c, &binding_b, 7.5f, 0.0f);
 }
 
 int TObjEnePanarms::find_nearest_enemy_with_flag(s32 arg1, f32 farg0) {

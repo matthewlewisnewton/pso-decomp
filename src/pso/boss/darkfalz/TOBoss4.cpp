@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include <stdlib.h>
 #include "pso/system/task/TMainTask.h"
@@ -81,7 +82,7 @@ TOBoss4Bird::TOBoss4Bird(void *set_data) {
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(model_resource, 0);
     model_radius = ((GinjaModelBounds *)((NJS_OBJECT *)model)->model)->radius;
-    texlist = get_bml_texlist(model_resource, 0);
+    texlist = (s32)get_bml_texlist(model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 1.0f;
@@ -191,7 +192,7 @@ TOBoss4Tower::TOBoss4Tower(void *set_data) {
     apply_object_set_data(set_data);
     model = (void *)get_bml_model(model_resource, 5);
     model_radius = 60.0f;
-    texlist = get_bml_texlist(model_resource, 5);
+    texlist = (s32)get_bml_texlist(model_resource, 5);
 }
 
 TOBoss4Tower::~TOBoss4Tower() {
@@ -221,7 +222,7 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
     apply_object_set_data(set_data);
     this->model = (void *)get_bml_model(model_resource, 1);
     model_radius = ((GinjaModelBounds *)((NJS_OBJECT *)this->model)->model)->radius;
-    texlist = get_bml_texlist(model_resource, 1);
+    texlist = (s32)get_bml_texlist(model_resource, 1);
     spread = 50.0f + scale.x;
     if (scale.y < 0.0f) {
         scale.y *= -1.0f;
@@ -240,8 +241,8 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
     rotation_speeds = (TOBoss4RockAngles *)mem_alloc(count * 0xC);
     for (i = 0; i < count; i++) {
         model = 4.0f * ((1.0f / 32768.0f) * (f32)rand());
-        models[i] = get_bml_model(model_resource, model);
-        texlists[i] = get_bml_texlist(model_resource, model);
+        models[i] = (s32)get_bml_model(model_resource, model);
+        texlists[i] = (s32)get_bml_texlist(model_resource, model);
         positions[i].x = spread * ((1.0f / 32768.0f) * (f32)rand());
         positions[i].y = 0.0f;
         positions[i].z = spread * ((1.0f / 32768.0f) * (f32)rand());
@@ -312,8 +313,8 @@ void TOBoss4Rock::run_task() {
         positions[i].y += speeds[i];
         if (2000.0f < positions[i].y) {
             model = 4.0f * ((1.0f / 32768.0f) * (f32)rand());
-            models[i] = get_bml_model(model_resource, model);
-            texlists[i] = get_bml_texlist(model_resource, model);
+            models[i] = (s32)get_bml_model(model_resource, model);
+            texlists[i] = (s32)get_bml_texlist(model_resource, model);
             positions[i].x = spread * ((1.0f / 32768.0f) * (f32)rand());
             positions[i].y = 0.0f;
             positions[i].z = spread * ((1.0f / 32768.0f) * (f32)rand());

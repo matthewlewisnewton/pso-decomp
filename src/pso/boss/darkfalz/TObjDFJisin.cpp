@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.h"
 #include "pso/system/vector.h"
@@ -240,10 +241,6 @@ extern s32 game_difficulty_selection;
 }
 
 
-extern "C" {
-
-}
-
 
 
 
@@ -331,8 +328,8 @@ void *TObjDFUsoTower::create(void *arg0) {
 
 TObjDFUsoTower::TObjDFUsoTower(s32 _w1) : TObjBase((TObject *)_w1) {
     m_name = TObjDFUsoTower__name;
-    *(s32 *)((s8 *)this + 0x34) = get_bml_model(TOBoss4::model_resource, 5);
-    this->texlist = get_bml_texlist(TOBoss4::model_resource, 5);
+    *(s32 *)((s8 *)this + 0x34) = (s32)get_bml_model(TOBoss4::model_resource, 5);
+    this->texlist = (s32)get_bml_texlist(TOBoss4::model_resource, 5);
     VecCopy((Vec *)(((u8 *)this) + 0x38), (const Vec *)&lbl_804858A8.value);
     *(f32 *)((s8 *)this + 0x94) = lbl_805D8A30;
     this->m_90 = 0;

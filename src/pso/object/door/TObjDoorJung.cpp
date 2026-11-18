@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/object/door/TObjDoorJung.h"
@@ -52,7 +53,6 @@ struct Node_8018F4AC {
     Node_8018F4AC *child;
     Node_8018F4AC *sibling;
 };
-Node_8018F4AC *get_bml_model(void *, int);
 void free_children__12TObjDoorJungFPv(s32, u16);
 void PPCSync();
 s32 rotate_matrix_y(int, int);
@@ -76,7 +76,6 @@ void TObjDoorJung::free_buffers() {
 }
 
 s32 load_resource_from_descriptor(s32 buffer, s32 kind, void *descriptor, s32 a3, s32 a4, s32 a5);
-s32 get_bml_texlist(void *bml, s32 index);
 
 void load_door_jung_resources(void) {
     s32 handle;
@@ -89,8 +88,8 @@ void load_door_jung_resources(void) {
         handle = load_resource_from_descriptor(handle, 5, &bm_obj_beamdoa_resource_descriptor, 0, 0, 0);
     }
     TObjDoorJung__resource_handle = (void *)handle;
-    lbl_805D5BD4 = get_bml_texlist(TObjDoorJung__resource_handle, 0);
-    model = get_bml_model(TObjDoorJung__resource_handle, 1);
+    lbl_805D5BD4 = (s32)get_bml_texlist((BmlResource *)TObjDoorJung__resource_handle, 0);
+    model = (Node_8018F4AC *)get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 1);
     node = model->child;
     TObjDoorJung__child_table[0] = node->model;
     TObjDoorJung__child_table[1] = node->child->model;
@@ -161,9 +160,9 @@ void TObjDoorJung::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        draw_ginja_object(get_bml_model(TObjDoorJung__resource_handle, 0));
+        draw_ginja_object(get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 0));
         TParticleCtrl::begin_effect_render();
-        draw_ginja_object(get_bml_model(TObjDoorJung__resource_handle, 1));
+        draw_ginja_object(get_bml_model((BmlResource *)TObjDoorJung__resource_handle, 1));
         TParticleCtrl::end_effect_render();
         pop_matrix();
     }

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -138,7 +139,7 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEn
     flags = 0;
     flags |= 2;
     set_guard_state();
-    texlist = get_bml_texlist(lbl_805D6FA0, 0);
+    texlist = (s32)get_bml_texlist(lbl_805D6FA0, 0);
     set_field_d8((s32)epsilon_body_actions);
     set_field_dc((s32)lbl_805D6FA0->motions);
     set_animation(requested_action);

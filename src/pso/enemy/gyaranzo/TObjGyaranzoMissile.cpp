@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/gyaranzo/TObjGyaranzoMissile.h"
 #include "pso/render/NinjaUtil.h"
@@ -74,8 +75,6 @@ extern const f32 TObjGyaranzoMissile__max_range;
 extern s32 gyaranzo_missile_volley_end_time;
 s32 post_translate_matrix(void *);
 void free_collision_body_parts(void *);
-s32 get_bml_texlist(void *, int);
-s32 get_bml_model(void *, int);
 s32 draw_chunk_object();
 s32 push_matrix();
 
@@ -110,14 +109,14 @@ void TObjGyaranzoMissile::sub_800D47B4() {
 }
 
 void TObjGyaranzoMissile::render() {
-    set_current_texture_list((GinjaTextureList *)get_bml_texlist((void *)gyaranzo_bml_resource, 6));
+    set_current_texture_list(get_bml_texlist((BmlResource *)gyaranzo_bml_resource, 6));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_x(0, (int)this->rotation_x);
     rotate_matrix_y(0, this->rotation_y);
     translate_matrix(0, 0.0f, (f32) (this->wobble_height * sin_table_lookup((int) this->wobble_phase)), 0.0f);
     model_render_flags &= 0xFFFFFBFF;
-    get_bml_model((void *)gyaranzo_bml_resource, 6);
+    get_bml_model((BmlResource *)gyaranzo_bml_resource, 6);
     draw_chunk_object();
     pop_matrix();
 }

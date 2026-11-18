@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TLobby_8006F278.h"
 #include "pso/enemy/dd/TObjEneDD.h"
@@ -87,9 +88,7 @@ extern "C" {
 
 s32 get_bml_motion(s32, s32);
 
-s32 get_bml_texlist(s32, s32);
 
-s32 get_bml_model(s32, s32);
 
 void free_bin_model_request(void*, int);
 
@@ -840,19 +839,19 @@ void TObjLaboMapWarp::render() {
     s32 temp_r31;
 
     if (this->update_object_view_visibility(400.0f, 32.0f) != 0) {
-        set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjLaboMapWarp__resource_bundle, 1));
+        set_current_texture_list(get_bml_texlist((BmlResource *)TObjLaboMapWarp__resource_bundle, 1));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
         if (is_field88_zero() != 0) {
-            get_bml_model(TObjLaboMapWarp__resource_bundle, 1);
+            get_bml_model((BmlResource *)TObjLaboMapWarp__resource_bundle, 1);
             ((s32 (*)(void))draw_ginja_object)();
             TParticleCtrl::begin_effect_render();
-            draw_ginja_model_with_motion(get_bml_model(TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
             TParticleCtrl::end_effect_render();
         } else {
             TParticleCtrl::begin_effect_render();
-            draw_ginja_model_with_motion(get_bml_model(TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)TObjLaboMapWarp__resource_bundle, 0), get_bml_motion(TObjLaboMapWarp__resource_bundle, 0), *(f32 *)&this->unk_FC);
             TParticleCtrl::end_effect_render();
         }
         pop_matrix();

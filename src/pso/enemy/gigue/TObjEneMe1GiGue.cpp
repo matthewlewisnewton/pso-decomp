@@ -287,7 +287,7 @@ void *lbl_804E135C[83] = {
 
 void TObjEneMe1GiGue::load_params_from_table(s32 i) {
     model = (void *)TObjEneMe1GiGue__data_805D6838->models[i].model;
-    texlist = TObjEneMe1GiGue__data_805D6838->models[i].m_c;
+    texlist = (s32)TObjEneMe1GiGue__data_805D6838->models[i].m_c;
 }
 
 void TObjEneMe1GiGue__sub_802CDAE8(void) {  }
@@ -412,14 +412,14 @@ void TObjEneMe1GiGue::load_resources() {
     TObjEneMe1GiGue__param_table = (GiGueParameters *)TLobby::dispatch_shared_handler_a(0x1A);
     o = ::operator new(0x10);
     if (o != NULL) {
-        o = (void *)((TBreakUpMdl *)o)->init_from_model(TObjEneMe1GiGue__data_805D6838->models->model);
+        o = (void *)((TBreakUpMdl *)o)->init_from_model((s32)TObjEneMe1GiGue__data_805D6838->models->model);
     }
     TObjEneMe1GiGue__barrier_obj = (TUnk_8048FA00 *)o;
     TObjEneMe1GiGue__sub_802CE4EC();
     TObjEneMe1GiGueBarrier::init_global();
     {
     DelDepthAnimationBinding binding = {TObjEneMe1GiGue__data_805D6838->motions, gigue_enemy_param_table, 1, 9, 0};
-    TLobby::spawn_npc_enemy(0x41, TObjEneMe1GiGue__data_805D6838->models->model, (NJS_TEXLIST *)TObjEneMe1GiGue__data_805D6838->models->m_c, &binding, lbl_804E1304[0].radius, 15.0f);
+    TLobby::spawn_npc_enemy(0x41, (s32)TObjEneMe1GiGue__data_805D6838->models->model, (NJS_TEXLIST *)TObjEneMe1GiGue__data_805D6838->models->m_c, &binding, lbl_804E1304[0].radius, 15.0f);
     }
 }
 

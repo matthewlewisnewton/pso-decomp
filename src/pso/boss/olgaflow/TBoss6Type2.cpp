@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/render/NinjaUtil.h"
@@ -145,7 +146,6 @@ union TypedVector_802BAA74 {
 };
 
 extern "C" {
-s32 get_bml_model(BmlResource *resource, s32 index);
 s32 submit_cursor_candidate(void *, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
@@ -164,7 +164,6 @@ u8 * get_player_data__10TObjPlayerFi(s32);
 void spawn__15TBoss6RockChaseFll(void *, void *);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
 s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 s32 init_collision_body_parts(void *, void *, int);
 void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
@@ -629,8 +628,8 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     for (k = 0; k < 2; k++) {
         Ent_802BE0D4 *e = &((Ents_802BE0D4 *)this)->ents[k];
         id = lbl_8047128C[k];
-        e->a = get_bml_texlist((BmlResource *)m_3fc, id);
-        e->b = get_bml_model((BmlResource *)m_3fc, id);
+        e->a = (s32)get_bml_texlist((BmlResource *)m_3fc, id);
+        e->b = (s32)get_bml_model((BmlResource *)m_3fc, id);
     }
     }
     init_motion_entries();
@@ -1136,7 +1135,7 @@ void TBoss6Type2::run_task() {
     ((TBoss6Type2 *)arg0)->sub_802BB498();
     ((TBoss6Type2 *)arg0)->sub_802BC124();
     ((TBoss6PlotFalz *)(arg0 + 0x768))->scroll_strips_uv(8, 0);
-    TObjPlayer__sub_8023DEE0((s16 *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node(get_bml_model((BmlResource *)this->m_3fc, 1), 1)) + 4)) + 4)), 8, 0, 0);
+    TObjPlayer__sub_8023DEE0((s16 *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node((u32)get_bml_model((BmlResource *)this->m_3fc, 1), 1)) + 4)) + 4)), 8, 0, 0);
     ((TBoss6Type2 *)arg0)->sub_802BB554();
     copy_vec_array();
     if ((s32) this->m_418 != 0) {
@@ -2408,10 +2407,10 @@ void TBoss6Type2__sub_802BA598(TBoss6Type2 *self, s32 elapsed, s32 duration) {
 
 void TBoss6Type2::cache_fish_params() {
     ((s32 (*)(void))reset_fish_fields__11TBoss6Type2Fv)();
-    *(s32 *)((s8 *)this + 0x560) = get_bml_texlist((BmlResource *)this->m_3fc, 0xB);
-    *(s32 *)((s8 *)this + 0x564) = get_bml_texlist((BmlResource *)this->m_3fc, 0xA);
-    *(s32 *)((s8 *)this + 0x568) = get_bml_model((BmlResource *)this->m_3fc, 0xB);
-    *(s32 *)((s8 *)this + 0x56C) = get_bml_model((BmlResource *)this->m_3fc, 0xA);
+    *(s32 *)((s8 *)this + 0x560) = (s32)get_bml_texlist((BmlResource *)this->m_3fc, 0xB);
+    *(s32 *)((s8 *)this + 0x564) = (s32)get_bml_texlist((BmlResource *)this->m_3fc, 0xA);
+    *(s32 *)((s8 *)this + 0x568) = (s32)get_bml_model((BmlResource *)this->m_3fc, 0xB);
+    *(s32 *)((s8 *)this + 0x56C) = (s32)get_bml_model((BmlResource *)this->m_3fc, 0xA);
 }
 
 void TBoss6Type2::reset_counters() {

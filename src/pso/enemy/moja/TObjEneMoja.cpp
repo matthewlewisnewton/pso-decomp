@@ -509,7 +509,7 @@ void TObjEneMoja::load_resources() {
     s16 ids[3] = { 0x32, 0x33, 0x34 };
     MojaAnimationBinding binding = { lbl_805D50D8->motions, moja_enemy_actions, 2, 9, 0 };
     for (s32 i = 0; i < 3; i++) {
-        TLobby::spawn_npc_enemy(ids[i], lbl_805D50D8->models[i].model, (NJS_TEXLIST *)lbl_805D50D8->models[i].m_c,
+        TLobby::spawn_npc_enemy(ids[i], (s32)lbl_805D50D8->models[i].model, (NJS_TEXLIST *)lbl_805D50D8->models[i].m_c,
             &binding, lbl_80491990.radius, 0.0f);
     }
 }

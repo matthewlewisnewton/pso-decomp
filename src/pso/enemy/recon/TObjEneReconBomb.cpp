@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/recon/TObjEneReconBomb.h"
 #include "pso/math/MatrixTransforms.h"
@@ -101,8 +102,6 @@ s32 project_actor_to_ground(void *, void *, void *);
 s32 TObjEneRecon__sub_8031C250(u32);
 s32 vec3_add_to(void *, void *);
 extern s32 lbl_805D5868;
-s32 get_bml_texlist(void *, int);
-s32 get_bml_model(void *, int);
 s32 rotate_matrix_z(int, int);
 s32 rotate_matrix_x(int, void *);
 s32 push_matrix();
@@ -149,8 +148,8 @@ void TObjEneReconBomb::render() {
         ((TObject *)arg0)->queue_destruction();
         return;
     }
-    bml_model = get_bml_model((void *)recon_bomb_bml_resource, 2);
-    temp_r30 = get_bml_texlist((void *)recon_bomb_bml_resource, 2);
+    bml_model = (s32)get_bml_model((BmlResource *)recon_bomb_bml_resource, 2);
+    temp_r30 = (s32)get_bml_texlist((BmlResource *)recon_bomb_bml_resource, 2);
     push_matrix();
     translate_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) ((2.0f) + *(f32 *)((s8 *)arg0 + 0x3C)), (f32) (*(f32 *)((s8 *)arg0 + 0x40)));
     rotate_matrix_zyx(0, (this->rotation_x), (this->rotation_y), (this->rotation_z));

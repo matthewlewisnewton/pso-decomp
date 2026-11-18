@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/network/protocol/protocol_types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/unk/TLobby_801E43E4.h"
@@ -48,7 +49,6 @@ s32 gogo_ball_bml_resource;
 #pragma auto_inline off
 #pragma dont_inline off
 extern "C" {
-s32 get_bml_model(void *, s32);
 s32 draw_chunk_object(s32);
 s32 rotate_matrix_z(int, int);
 s32 push_matrix();
@@ -593,41 +593,41 @@ void TUnk_804B8E18::render() {
         case 0:
             set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[0]);
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 3));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 3));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 3));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 3));
             set_cull_none();
             break;
         case 1:
             set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[1]);
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_none();
             break;
         case 2:
             set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[2]);
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_none();
             break;
         case 3:
             set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[3]);
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 0));
             set_cull_none();
             break;
         case 6:
             set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[6]);
             set_cull_back();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 2));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 2));
             set_cull_front();
-            draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 2));
+            draw_chunk_object((s32)get_bml_model((BmlResource *)(*(void**)&gogo_ball_bml_resource), 2));
             set_cull_none();
             break;
         }
@@ -1055,7 +1055,7 @@ void TUnk_804B8DE8::render() {
         post_translate_matrix(&this->pos);
         rotate_matrix_y(0, this->rot);
         scale_matrix(0, 1.5f, 1.5f, 1.5f);
-        draw_chunk_object(get_bml_model((void *)gogo_ball_bml_resource, 4));
+        draw_chunk_object((s32)get_bml_model((BmlResource *)gogo_ball_bml_resource, 4));
         pop_matrix();
     }
 }
@@ -1190,7 +1190,7 @@ void TUnk_804B8DD0::render() {
             this->m_38 = 0;
         }
     }
-    bml_model = (u8 *)(get_bml_model((void *)gogo_ball_bml_resource, 1));
+    bml_model = (u8 *)(get_bml_model((BmlResource *)gogo_ball_bml_resource, 1));
     if (bml_model != NULL) {
         if ((s32) this->m_28 != 0) {
             set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[7]);

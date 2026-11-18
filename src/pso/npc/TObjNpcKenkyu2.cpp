@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/npc/TObjNpcKenkyu2.h"
 #include "pso/npc/TObjNpcKenkyu2_802FEA38.h"
 #include "pso/npc/TObjNpcHosa2.h"
@@ -40,8 +41,6 @@ extern const char *bm_npc_kenkyu2_motion_names[1];
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 extern u32 TObjNpcKenkyu2__shared_model_resource;
-s32 get_bml_texlist(int, int);
-s32 get_bml_model(int, int);
 extern s32 __vt__14TObjNpcKenkyu2[];
 extern const char *TObjNpcKenkyu2__name;
 void free_bin_model_request(void*, int);
@@ -75,8 +74,8 @@ u8 *TObjNpcKenkyu2__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcKenkyu2__name;
     ((TObjNpcKenkyu2 *)(player))->apply_set_data((void *)arg2);
     ((TObjPlayer *)player)->init_position_vectors();
-    *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcKenkyu2__shared_model_resource)), 0);
-    ((TObjNpcKenkyu2 *)player)->texlist = get_bml_texlist((int) ((*(s32 *)&TObjNpcKenkyu2__shared_model_resource)), 0);
+    *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcKenkyu2__shared_model_resource)), 0);
+    ((TObjNpcKenkyu2 *)player)->texlist = (s32)get_bml_texlist((BmlResource *)((*(s32 *)&TObjNpcKenkyu2__shared_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;
 }

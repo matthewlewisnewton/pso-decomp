@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/TObjBigTuitate.h"
 #include "pso/object/TObjTuitate.h"
@@ -56,8 +57,6 @@ struct ByteBlock_3C { u8 bytes[0x3c]; };
 
 extern "C" {
 void __ct__15RenderFadeStateFv(void *);
-s32 get_bml_texlist(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 matrix_mult_vec(int, void *, void *);
 void push_matrix(void);
 void post_translate_matrix(void *);
@@ -211,11 +210,11 @@ void TObjTuitate::render() {
     if (fading != 0) {
         ((Fade_8019ADA0 *)(arg0 + 0xAC))->begin();
     }
-    set_current_texture_list((GinjaTextureList *)get_bml_texlist((*(s32 *)&TObjTuitate__bml_resource), 0));
+    set_current_texture_list(get_bml_texlist((BmlResource *)(*(s32 *)&TObjTuitate__bml_resource), 0));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
-    get_bml_model((*(s32 *)&TObjTuitate__bml_resource), 0);
+    get_bml_model((BmlResource *)(*(s32 *)&TObjTuitate__bml_resource), 0);
     draw_ginja_object();
     pop_matrix();
     if (fading != 0) {
@@ -305,11 +304,11 @@ void TObjBigTuitate::render() {
     if (fading != 0) {
         ((Fade_8019AA18 *)(arg0 + 0xAC))->begin();
     }
-    set_current_texture_list((GinjaTextureList *)get_bml_texlist((*(s32 *)&TObjBigTuitate__bml_resource), 0));
+    set_current_texture_list(get_bml_texlist((BmlResource *)(*(s32 *)&TObjBigTuitate__bml_resource), 0));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
-    get_bml_model((*(s32 *)&TObjBigTuitate__bml_resource), 0);
+    get_bml_model((BmlResource *)(*(s32 *)&TObjBigTuitate__bml_resource), 0);
     draw_ginja_object();
     pop_matrix();
     if (fading != 0) {

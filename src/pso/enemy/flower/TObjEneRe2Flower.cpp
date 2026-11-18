@@ -332,7 +332,7 @@ void load_re2_flower_resources(void) {
     stack.sp14 = *(s32 *)((s8 *)&lbl_8043BB90.value + 0xC);
     stack.sp8 = (s32)re2_flower_bml_resource->motions;
     models = re2_flower_bml_resource->models;
-    TLobby::spawn_npc_enemy(0x37, models->model, (NJS_TEXLIST *)models->m_c, &stack.sp8, lbl_805D9FBC, lbl_805D9FAC);
+    TLobby::spawn_npc_enemy(0x37, (s32)models->model, (NJS_TEXLIST *)models->m_c, &stack.sp8, lbl_805D9FBC, lbl_805D9FAC);
 }
 
 void *TObjEneRe2Flower::create(void *arg0) {
@@ -361,7 +361,7 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     }
     init_position_vectors();
     model = (void *)re2_flower_bml_resource->models->model;
-    texlist = re2_flower_bml_resource->models->m_c;
+    texlist = (s32)re2_flower_bml_resource->models->m_c;
     if (get_flag_11()) {
         init_model(lbl_804930EC, 2);
     } else {

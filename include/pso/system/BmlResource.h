@@ -1,14 +1,19 @@
 #ifndef PSO_SYSTEM_BML_RESOURCE_H
 #define PSO_SYSTEM_BML_RESOURCE_H
 
-#include "types.h"
+#include "pso/system/BmlAccessors.h"
+#include <stddef.h>
 
 struct BmlModelEntry {
     s32 m_0;
     s32 m_4;
-    s32 model;
-    s32 m_c;
+    NJS_OBJECT *model;
+    GinjaTextureList *m_c;
 };
+
+typedef char BmlModelEntry_size[sizeof(BmlModelEntry) == 0x10 ? 1 : -1];
+typedef char BmlModelEntry_model_offset[offsetof(BmlModelEntry, model) == 0x8 ? 1 : -1];
+typedef char BmlModelEntry_texture_offset[offsetof(BmlModelEntry, m_c) == 0xC ? 1 : -1];
 
 struct AnimationMotion;
 struct BmlMotionEntry {
@@ -21,7 +26,5 @@ struct BmlResource {
     BmlModelEntry *models;
     BmlMotionEntry *motions;
 };
-
-extern "C" s32 get_bml_model(BmlResource *resource, s32 index);
 
 #endif

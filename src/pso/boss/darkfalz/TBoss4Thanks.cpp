@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -55,8 +56,6 @@ struct Thanks_8035C6FC
 
 extern "C" {
 s32 get_bml_motion(void *, s32);
-s32 get_bml_texlist(void *, s32);
-s32 get_bml_model(void *, s32);
 void TBoss4Thanks__sub_8035C480(s32 arg0);
 const char *TBoss4Thanks__class_name = "TBoss4Thanks";
 // Position of the emitters and of the proximity check (x, y, z).
@@ -229,8 +228,8 @@ TBoss4Thanks::TBoss4Thanks(TObject *arg1) : TObject(arg1) {
     u8 *instance_count;
     *(s32 *)((s8 *)this + 0) = (s32) TBoss4Thanks__class_name;
     instance_count = (u8 *)(TBoss4Uro::get_instance_count());
-    this->model = get_bml_model(instance_count, 1);
-    this->texture_list = get_bml_texlist(instance_count, 1);
+    this->model = (s32)get_bml_model((BmlResource *)instance_count, 1);
+    this->texture_list = (s32)get_bml_texlist((BmlResource *)instance_count, 1);
     *(s32 *)((s8 *)this + 0x3C) = get_bml_motion(instance_count, 0x46);
     *(s32 *)((s8 *)this + 0x40) = get_bml_motion(instance_count, 0x47);
     TBoss4Thanks__sub_8035C480((s32)((s32) ((u8 *)this)));

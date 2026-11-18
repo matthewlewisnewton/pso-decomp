@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TLobby_80207DA8.h"
 #include "pso/unk/TLobby_80131794.h"
@@ -51,8 +52,6 @@ s32 TSceneSora__has_sky_motion;
 u8 * free_bin_model_request(void *, s16);
 void TSceneSora__sub_80207430(void);
 s32 get_bml_motion(int, int);
-s32 get_bml_texlist(int, int);
-s32 get_bml_model(int, int);
 u8 *__ct__10TSceneSoraFl(TSceneSora *arg0, s32 _w1);
 void draw_ginja_model_with_motion(void *model, void *motion, f32 frame);
 s32 rotate_matrix_y(int, int);
@@ -71,7 +70,7 @@ extern s32 tl_05;
 void TSceneSora::render() {
     if ((s32) TSceneSora__sky_active_flag != 0) {
         TParticleCtrl::begin_effect_render();
-        set_current_texture_list((GinjaTextureList *)get_bml_texlist((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0));
+        set_current_texture_list(get_bml_texlist((BmlResource *)((*(s32 *)&TSceneSora__sky_bml_resource)), 0));
         push_matrix();
         rotate_matrix_y(0, this->rotation_y);
         if ((u32) this->m_94 != 0U) {
@@ -107,13 +106,13 @@ TSceneSora::~TSceneSora() {
 }
 TSceneSora::TSceneSora(s32 _w1) : TObjBase((TObject *)_w1) {
     this->m_name = TSceneSora__name;
-    this->m_90 = get_bml_model((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+    this->m_90 = (u32)get_bml_model((BmlResource *)((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
     if (TSceneSora__has_sky_motion != 0) {
         this->m_94 = get_bml_motion((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
     } else {
         this->m_94 = 0;
     }
-    this->m_98 = get_bml_texlist((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+    this->m_98 = (u32)get_bml_texlist((BmlResource *)((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
     *(f32 *)((s8 *)this + 0x9C) = 0.1f;
     this->m_a0 = 0.0f;
 }

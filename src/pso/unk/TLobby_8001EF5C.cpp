@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/system/BmlResource.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 #include "pso/unk/TLobby_8001EF5C.h"
@@ -194,11 +195,11 @@ AnimationMotion *get_bml_motion(BmlResource *resource, s32 index) {
     return resource->motions[index].motion;
 }
 
-s32 get_bml_texlist(BmlResource *resource, s32 index) {
+GinjaTextureList *get_bml_texlist(BmlResource *resource, s32 index) {
     return resource->models[index].m_c;
 }
 
-s32 get_bml_model(BmlResource *resource, s32 index) {
+NJS_OBJECT *get_bml_model(BmlResource *resource, s32 index) {
     return resource->models[index].model;
 }
 

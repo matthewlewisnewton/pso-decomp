@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl_803D676C.h"
 #include "pso/render/ChunkMaterialState.h"
@@ -411,7 +412,6 @@ struct MRec_801FB490 { f32 v[3]; s32 a0; f32 a4; s16 h[2]; u8 padac[0x28 - 0x18]
 extern "C" {
 
 
-void *init_map_ptr__13TRaderMapCoreFv(void *, int);
 s32 fn_803D64F8(void *);
 }
 
@@ -427,11 +427,6 @@ extern "C" {
 void bind_gvm_texture_list(char *, u8 *);
 }
 extern s32 lbl_805D49B4;
-extern "C" {
-
-s32 get_bml_model(s32);
-}
-
 
 // The unit was built -inline off,deferred, which emits functions in reverse source order: they are
 // written here last to first.
@@ -440,8 +435,8 @@ extern "C" {
 
 TUnk_804C88A8::~TUnk_804C88A8() {}
 
-void TRaderMapCore::init_map_ptr() {
-    get_bml_model(TRaderMapCore__frame_model_resource);
+NJS_OBJECT *TRaderMapCore::init_map_ptr(const s32 *, s32 index) {
+    return get_bml_model((BmlResource *)TRaderMapCore__frame_model_resource, index);
 }
 
 void TRaderMapCore::reset() { *(float *)&this->m_prev = 0.0f; *(float *)&this->m_flags = 0.0f; *(float *)&this->m_name = 0.0f; *(int *)&this->m_next = 0; *(float *)&this->m_up = 1.0f; *(short *)&this->m_down = 0; *(short*)((char*)this + 0x16) = -1; *(float *)&this->texlist = 1.0f; *(float *)&this->m_20 = 1.0f; *(float *)&this->entity_id = 1.0f; *(float*)((char*)this + 0x18) = 1.0f; }
@@ -545,9 +540,9 @@ TRaderMapCore::TRaderMapCore(TObject *parent) : TObjBase(parent) {
     s32 i;
     u32 j;
     m_name = rader_map_core_name_ptr;
-    m_178 = init_map_ptr__13TRaderMapCoreFv(&m_90, 2);
-    m_17c = init_map_ptr__13TRaderMapCoreFv(&m_90, 0);
-    m_180 = init_map_ptr__13TRaderMapCoreFv(&m_90, 1);
+    m_178 = init_map_ptr(&m_90, 2);
+    m_17c = init_map_ptr(&m_90, 0);
+    m_180 = init_map_ptr(&m_90, 1);
     for (i = 0; i < 3; i++) {
         g = (GRec_801FB490 *)&TRaderMapCore__map_view_state + i;
         fn_803D64F8(g);

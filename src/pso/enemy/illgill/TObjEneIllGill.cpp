@@ -1387,7 +1387,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     ((TObjPlayer *)self)->init_position_vectors();
     apply_actor_gravity((TObjEnemy *)self, (s32 *)(0), 0.0f);
     model = (void *)illGillResource->models->model;
-    texlist = illGillResource->models->m_c;
+    texlist = (s32)illGillResource->models->m_c;
     motion_list = illGillResource->motions;
     action_table = illGillActions;
     this->set_field_d8((s32)action_table);
@@ -1480,7 +1480,7 @@ void TObjEneIllGill::load_shared_resources() {
         IllGillSharedMotionSetup pos = lbl_8047A318;
         resource = illGillResource;
         pos.motions = resource->motions;
-        TLobby::spawn_npc_enemy((s16)0x43, resource->models->model, (NJS_TEXLIST *)(resource->models->m_c), &pos, illGillCollisionBody.radius, 0.0f);
+        TLobby::spawn_npc_enemy((s16)0x43, (s32)resource->models->model, (NJS_TEXLIST *)(resource->models->m_c), &pos, illGillCollisionBody.radius, 0.0f);
     }
 }
 

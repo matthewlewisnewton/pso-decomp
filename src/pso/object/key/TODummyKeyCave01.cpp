@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/object/key/TODummyKeyCave01Sound.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/system/task/TObject.h"

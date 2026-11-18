@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/darkfalz/TObjDFDemo5.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -50,12 +51,12 @@ TObjDFDemo5::TObjDFDemo5(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
     res = (BmlResource *)TBoss4Uro::get_instance_count();
     for (i = 0; i < 3; i++) {
         id = lbl_80486FB0[i];
-        parts[i].model = get_bml_model(res, id);
-        parts[i].texlist = get_bml_texlist(res, id);
+        parts[i].model = (s32)get_bml_model(res, id);
+        parts[i].texlist = (s32)get_bml_texlist(res, id);
         parts[i].motion = get_bml_motion(res, lbl_804857E8[i]);
     }
-    parts[3].model = get_bml_model(res, 1);
-    parts[3].texlist = get_bml_texlist(res, 1);
+    parts[3].model = (s32)get_bml_model(res, 1);
+    parts[3].texlist = (s32)get_bml_texlist(res, 1);
     parts[3].motion = get_bml_motion(res, 0x23);
     frame = -0.5f;
     for (s32 j = 0; j < 5; j++) {

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TLobby_80070A00.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -430,7 +431,7 @@ TObjMapWarpForest::~TObjMapWarpForest() {}
 
 void TObjMapForceWarp::open_confirm_window(s32) {}
 
-s32 get_forest_warp_model(s32 index) { return get_bml_model(forest_warp_bml_resource, index); }
+s32 get_forest_warp_model(s32 index) { return (s32)get_bml_model(forest_warp_bml_resource, index); }
 
 AnimationMotion *get_forest_warp_motion(s32 index) { return get_bml_motion(forest_warp_bml_resource, index); }
 

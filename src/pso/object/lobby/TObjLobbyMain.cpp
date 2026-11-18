@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/lobby/TObjLobbyMain.h"
 #include "pso/system/task/TMainTask.h"
@@ -123,9 +124,9 @@ void TObjLobbyMain::load_resources() {
     }
     model_resource = (BmlResource *)resource;
     lobby_texlist = TLobby::get_lobby_texlist();
-    computer_screen_model = (NJS_CNK_MODEL *)((NJS_OBJECT *)get_bml_model(model_resource, 6))
+    computer_screen_model = (NJS_CNK_MODEL *)(get_bml_model(model_resource, 6))
         ->child->sibling->sibling->sibling->sibling->sibling->sibling->model;
-    computer_screen_model_b = (NJS_CNK_MODEL *)((NJS_OBJECT *)get_bml_model(model_resource, 2))
+    computer_screen_model_b = (NJS_CNK_MODEL *)(get_bml_model(model_resource, 2))
         ->child->sibling->sibling->sibling->model;
     computer_last_frame_tick = 0;
 }

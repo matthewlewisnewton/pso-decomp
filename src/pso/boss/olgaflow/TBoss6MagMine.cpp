@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/enemy/TUnk_804F322C.h"
@@ -137,8 +138,6 @@ s32 __ct__11TObjControlFP7TObject(s32, s32);
 void free_collision_body_parts(void *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 s32 get_bml_motion(s32, s32);
-s32 get_bml_texlist(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 int rotate_matrix_y(void*, void*);
 int push_matrix(void*);
 s32 __nw__7TObjectFUl(s32);
@@ -165,8 +164,8 @@ void TUnk_804F322C::update_linked_state() {
     s32 bml_model;
 
     set_motion_packed_rotation();
-    temp_r31 = get_bml_texlist((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 2);
-    bml_model = get_bml_model((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 2);
+    temp_r31 = (s32)get_bml_texlist((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 2);
+    bml_model = (s32)get_bml_model((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 2);
     bml_motion = get_bml_motion(*(s32 *)((s8 *)this + 0x374), 0);
     set_current_texture_list((GinjaTextureList *)temp_r31);
     TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)this + 0x3A8), 0.0f);

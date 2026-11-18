@@ -749,6 +749,6 @@ void spawn_lobby_npc_enemy(void) {
     BalClawSpawnParams binding = {lbl_805D4F20->motions, balclaw_claw_model_node_desc, 1, 7, 0};
     BmlModelEntry *models;
     models = lbl_805D4F20->models;
-    TLobby::spawn_npc_enemy(0x14, models[2].model, (NJS_TEXLIST *)models[2].m_c, &binding,
+    TLobby::spawn_npc_enemy(0x14, (s32)models[2].model, (NJS_TEXLIST *)models[2].m_c, &binding,
                             TObjEneBalClawClaw__collision_body_template.radius, 15.0f);
 }

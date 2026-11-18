@@ -51,7 +51,7 @@ TObjNpcSecretaryBase *TObjNpcSecretaryBase__ct(TObjNpcSecretaryBase *npc, TObjCo
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcSecretaryBase__static_model_resource->models->model;
-    npc->texlist = TObjNpcSecretaryBase__static_model_resource->models->m_c;
+    npc->texlist = (s32)TObjNpcSecretaryBase__static_model_resource->models->m_c;
     npc->setup_common();
     return npc;
 }

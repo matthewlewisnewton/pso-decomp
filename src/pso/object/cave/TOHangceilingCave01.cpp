@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include <string.h>
 #include "pso/object/cave/TOHangceilingCave01.h"
@@ -120,7 +121,7 @@ void load_turiten_singo_resources(void) {
         turiten_singo_texture_lists = (s32 *)mem_alloc(0xC);
         turiten_singo_texture_lists[1] = 0;
         turiten_singo_texture_lists[0] = 0;
-        turiten_singo_texture_lists[2] = get_bml_texlist(TOHangceilingCave01__model_archive, 0);
+        turiten_singo_texture_lists[2] = (s32)get_bml_texlist(TOHangceilingCave01__model_archive, 0);
         lbl_805D59D8 = 0;
         TOHangceilingCave01__model_root = NULL;
         turiten_singo_key_model_index = 0;
@@ -135,8 +136,8 @@ void load_turiten_singo_resources(void) {
         turiten_singo_texture_lists = (s32 *)mem_alloc(0xC);
         turiten_singo_texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_turiten_singo.gvm");
         turiten_singo_texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_turiten_singo_r.gvm");
-        turiten_singo_texture_lists[2] = get_bml_texlist(TOHangceilingCave01__model_archive, 1);
-        TOHangceilingCave01__model_root = (NJS_OBJECT *)get_bml_model(TOHangceilingCave01__model_archive, 2);
+        turiten_singo_texture_lists[2] = (s32)get_bml_texlist(TOHangceilingCave01__model_archive, 1);
+        TOHangceilingCave01__model_root = get_bml_model(TOHangceilingCave01__model_archive, 2);
         turiten_singo_key_model_index = 1;
         hanging_ceiling_motion_index = 0;
         break;

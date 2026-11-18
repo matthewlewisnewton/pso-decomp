@@ -2534,12 +2534,12 @@ void TObjEneBm5GibonU::sub_800D10A0() {
         m_464 = 1;
         m_468 = 1;
         model = (void *)TObjEneBm5GibonU__model_archive->models[1].model;
-        texlist = TObjEneBm5GibonU__model_archive->models[1].m_c;
+        texlist = (s32)TObjEneBm5GibonU__model_archive->models[1].m_c;
     } else {
         m_464 = 0;
         m_468 = 0;
         model = (void *)TObjEneBm5GibonU__model_archive->models[0].model;
-        texlist = TObjEneBm5GibonU__model_archive->models[0].m_c;
+        texlist = (s32)TObjEneBm5GibonU__model_archive->models[0].m_c;
     }
     m_4a0 = 0.4f + parameters[2];
     m_4a4 = 0.3f + parameters[3];
@@ -2833,8 +2833,8 @@ void TObjEneBm5GibonU::load_resources() {
     GibonUAnimationBinding sp = TObjEneBm5GibonU__spawn_params;
     m = TObjEneBm5GibonU__model_archive;
     sp.motions = m->motions;
-    TLobby::spawn_npc_enemy(0xE, m->models[0].model, (NJS_TEXLIST *)m->models[0].m_c, &sp, gibon_collision_body_templates[0].radius, 0.0f);
-    TLobby::spawn_npc_enemy(0xF, TObjEneBm5GibonU__model_archive->models[1].model, (NJS_TEXLIST *)TObjEneBm5GibonU__model_archive->models[1].m_c, &sp, gibon_collision_body_templates[1].radius, 0.0f);
+    TLobby::spawn_npc_enemy(0xE, (s32)m->models[0].model, (NJS_TEXLIST *)m->models[0].m_c, &sp, gibon_collision_body_templates[0].radius, 0.0f);
+    TLobby::spawn_npc_enemy(0xF, (s32)TObjEneBm5GibonU__model_archive->models[1].model, (NJS_TEXLIST *)TObjEneBm5GibonU__model_archive->models[1].m_c, &sp, gibon_collision_body_templates[1].radius, 0.0f);
 }
 
 void TObjEneBm5GibonU::forward_hit(void* a1) {

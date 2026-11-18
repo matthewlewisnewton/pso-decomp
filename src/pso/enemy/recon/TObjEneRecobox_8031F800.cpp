@@ -1240,17 +1240,17 @@ void TObjEneRecobox__sub_8031F1A8(TObjEneRecon *recon) {
     const TObjChipParams chip0 = {
         {0.5f, 0.07f, 0.26f}, {recon->position.x, recon->position.y, recon->position.z},
         {5.0f, 5.0f, 5.0f}, {0x400, 0x100, 0x400}, {5, 50}, {recon->position.y, 0.6f},
-        TObjEneRecobox__static_instance->models[3].model, TObjEneRecobox__static_instance->models[3].m_c, 20,
+        (s32)TObjEneRecobox__static_instance->models[3].model, (s32)TObjEneRecobox__static_instance->models[3].m_c, 20,
     };
     const TObjChipParams chip1 = {
         {0.5f, 0.07f, 0.26f}, {recon->position.x, recon->position.y, recon->position.z},
         {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50}, {recon->position.y, 0.5f},
-        TObjEneRecobox__static_instance->models[4].model, TObjEneRecobox__static_instance->models[3].m_c, 20,
+        (s32)TObjEneRecobox__static_instance->models[4].model, (s32)TObjEneRecobox__static_instance->models[3].m_c, 20,
     };
     const TObjChipParams chip2 = {
         {0.5f, 0.07f, 0.26f}, {recon->position.x, recon->position.y, recon->position.z},
         {4.0f, 4.5f, 4.0f}, {0x200, 0x100, 0x200}, {6, 50}, {recon->position.y, 0.5f},
-        TObjEneRecobox__static_instance->models[5].model, TObjEneRecobox__static_instance->models[3].m_c, 20,
+        (s32)TObjEneRecobox__static_instance->models[5].model, (s32)TObjEneRecobox__static_instance->models[3].m_c, 20,
     };
     spawn_particle_effect_with_flags(&recon->position, 0x45, 0x40);
     spawn_particle_effect_with_flags(&recon->position, 0x46, 0x40);

@@ -1,6 +1,7 @@
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/animation/MotionContext.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 
 #include "pso/math/FloatRounding.h"
@@ -1407,7 +1408,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     }
     init_position_vectors();
     model = (void *)get_bml_model((BmlResource *)lbl_805D6918, 0);
-    texlist = get_bml_texlist((BmlResource *)lbl_805D6918, 0);
+    texlist = (s32)get_bml_texlist((BmlResource *)lbl_805D6918, 0);
     TObjPlayer__sub_802E7EA0(this);
     copy_collision_body(&unk_3C0, &lbl_80473C3C);
     set_collision_body(&unk_3C0);
@@ -4570,7 +4571,7 @@ void TBoss7DeRolLeC::render() {
     }
 }
 
-void TObjPlayer::draw_effect() { set_current_texture_list((GinjaTextureList *)get_bml_texlist((BmlResource *)lbl_805D6918, 0)); }
+void TObjPlayer::draw_effect() { set_current_texture_list(get_bml_texlist((BmlResource *)lbl_805D6918, 0)); }
 
 void TObjPlayer__sub_802E80A0(void) { get_bml_texlist((BmlResource *)lbl_805D6918, 0); }
 

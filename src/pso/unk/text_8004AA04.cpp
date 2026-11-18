@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/unk/text_800F5BC0.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -8,7 +9,6 @@
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 
 extern "C" {
-s32 get_bml_model(BmlResource *resource, s32 index);
 s32 alloc_tables__6TLobbyFll(s32, s32, s32);
 }
 
@@ -45,7 +45,7 @@ void ModelNodeTables::init(const ModelNodeSpec *specs, s32 spec_count) {
     }
     for (i = 0; i < count; i++) {
         r = &specs[i];
-        t = (s32)find_model_node(get_bml_model((BmlResource *)h, r->model), r->node);
+        t = (s32)find_model_node((u32)get_bml_model((BmlResource *)h, r->model), r->node);
         p = (int)::operator new(0x14);
         if (p != 0) {
             p = alloc_tables__6TLobbyFll(p, t, r->count);

@@ -254,7 +254,7 @@ void TObjEneMe3Stelth::load_shared_resources() {
     lbl_80501114[0] = 0.0f;
     lbl_80501114[1] = 0.0f;
     lbl_80501114[2] = 0.0f;
-    m = TObjEneMe3Stelth__bml_resource->models->model;
+    m = (u32)TObjEneMe3Stelth__bml_resource->models->model;
     q = (s32 *)((NJS_OBJECT *)find_model_node(m, 9))->model;
     if (q != NULL) {
         TObjEneMe3Stelth__material_color_pointers[0] = (u32 *)(q[1] + 4);
@@ -277,13 +277,13 @@ void TObjEneMe3Stelth::load_shared_resources() {
     if (is_split_screen() != 0) {
         p = ::operator new(0x10);
         if (p != NULL) {
-            p = TBreakUpMdl::init(p, TObjEneMe3Stelth__bml_resource->models->model, (s32)motion, (f32)(((NJS_MOTION *)motion)->nbFrame - 1));
+            p = TBreakUpMdl::init(p, (int)TObjEneMe3Stelth__bml_resource->models->model, (s32)motion, (f32)(((NJS_MOTION *)motion)->nbFrame - 1));
         }
         TObjEneMe3Stelth__breakup_model = (TUnk_8048FA00 *)p;
     } else {
         p = ::operator new(0x10);
         if (p != NULL) {
-            p = ((TBreakUpMdl *)p)->setup_pieces(TObjEneMe3Stelth__bml_resource->models->model, (s32)motion, (f32)(((NJS_MOTION *)motion)->nbFrame - 1));
+            p = ((TBreakUpMdl *)p)->setup_pieces((s32)TObjEneMe3Stelth__bml_resource->models->model, (s32)motion, (f32)(((NJS_MOTION *)motion)->nbFrame - 1));
         }
         TObjEneMe3Stelth__breakup_model = (TUnk_8048FA00 *)p;
     }
@@ -294,7 +294,7 @@ void TObjEneMe3Stelth::load_shared_resources() {
         AnimationMotion *trail_motion;
         BmlResource *r = TObjEneMe3Stelth__bml_resource;
         s32 idx = TObjEneMe3Stelth__animation_descriptors[6].motion;
-        mdl = r->models->model;
+        mdl = (s32)r->models->model;
         va.x = 0.0f;
         va.y = 0.0f;
         va.z = 0.0f;
@@ -310,8 +310,8 @@ void TObjEneMe3Stelth::load_shared_resources() {
         a.motions = TObjEneMe3Stelth__bml_resource->motions;
         DelDepthAnimationBinding b = stelth_attack_binding_desc_b;
         b.motions = TObjEneMe3Stelth__bml_resource->motions;
-        TObjEneMe3Stelth::spawn_attack(0x2B, TObjEneMe3Stelth__bml_resource->models->model, TObjEneMe3Stelth__bml_resource->models->m_c, (s32)&a, 8.0f, 0.0f);
-        TObjEneMe3Stelth::spawn_attack(0x2D, TObjEneMe3Stelth__bml_resource->models->model, TObjEneMe3Stelth__bml_resource->models->m_c, (s32)&b, 8.0f, 0.0f);
+        TObjEneMe3Stelth::spawn_attack(0x2B, (s32)TObjEneMe3Stelth__bml_resource->models->model, (s32)TObjEneMe3Stelth__bml_resource->models->m_c, (s32)&a, 8.0f, 0.0f);
+        TObjEneMe3Stelth::spawn_attack(0x2D, (s32)TObjEneMe3Stelth__bml_resource->models->model, (s32)TObjEneMe3Stelth__bml_resource->models->m_c, (s32)&b, 8.0f, 0.0f);
     }
 }
 int TObjEneMe3Stelth::create_real() { return create__20TObjEneMe3StelthRealFPv(this); }
@@ -602,7 +602,7 @@ void TObjEneMe3Stelth::sub_800F4758() {
         m_3c8 = 1;
         return;
     }
-    texlist = TObjEneMe3Stelth__bml_resource->models->m_c;
+    texlist = (s32)TObjEneMe3Stelth__bml_resource->models->m_c;
     initialize_enemy_state(0x3E);
     m_3c8 = 0;
 }

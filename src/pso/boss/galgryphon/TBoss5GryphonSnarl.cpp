@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/boss/galgryphon/TBoss5GryphonSnarl.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"
 #include "pso/system/vector.h"
@@ -25,7 +26,6 @@ extern const char *TBoss5GryphonSnarl__name;
 extern s32 boss5_gryphon_bml_resource;
 extern s32 boss5_gryphon_texture_list;
 void TBoss8Dragon__sub_8006402C(s32 arg0, s32 arg1, f32 farg0, f32 farg1);
-s32 get_bml_model(s32, s32);
 void attach_particle_model(void *, s32, s32, s32, s32, f32);
 
 s32 free_bin_model_request(s32, s32);
@@ -69,7 +69,7 @@ void TBoss5GryphonSnarl::run_task() {
             if (children_a0[i] == NULL) {
                 children_a0[i] = (TObject *)spawn_continuous_particle_effect_with_flags(&position, TBoss5GryphonSnarl__effect_table[1], 0x40);
                 if (children_a0[i] != NULL) {
-                    attach_particle_model(children_a0[i], get_bml_model(boss5_gryphon_bml_resource, 1), boss5_gryphon_texture_list, 0, 0, 1.0f);
+                    attach_particle_model(children_a0[i], (s32)get_bml_model((BmlResource *)boss5_gryphon_bml_resource, 1), boss5_gryphon_texture_list, 0, 0, 1.0f);
                 }
             }
             if (children_a0[i] != NULL) {

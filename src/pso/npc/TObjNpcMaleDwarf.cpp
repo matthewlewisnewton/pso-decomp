@@ -51,7 +51,7 @@ TObjNpcMaleDwarf *TObjNpcMaleDwarf__ct(TObjNpcMaleDwarf *npc, TObjControl *contr
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcMaleDwarf__shared_model_resource->models->model;
-    npc->texlist = TObjNpcMaleDwarf__shared_model_resource->models->m_c;
+    npc->texlist = (s32)TObjNpcMaleDwarf__shared_model_resource->models->m_c;
     npc->setup_common();
     return npc;
 }

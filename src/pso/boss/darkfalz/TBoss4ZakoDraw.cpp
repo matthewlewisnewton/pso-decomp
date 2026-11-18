@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "types.h"
 #include "pso/camera/TCameraCtrl.h"
@@ -33,7 +34,6 @@ struct Ent_8030AC7C { u8 pad[0xc]; s32 f0c; s32 f10; };
 struct Tbl_8030AC7C { s32 count; Ent_8030AC7C ents[96]; u8 pad[0x784 - 4 - 96 * 0x14]; };
 
 extern "C" {
-u8 *get_bml_model(s32, s32);
 void TObjPlayer__sub_8030A9B0();
 struct RecoveredGlobal_TCameraCtrl__data_804FF634 { s32 value; u8 remaining[0x44]; };
 extern RecoveredGlobal_TCameraCtrl__data_804FF634 TCameraCtrl__data_804FF634;
@@ -41,7 +41,6 @@ extern s32 TBoss4ZakoDraw__draw_buffer_index;
 extern s32 TBoss4ZakoDraw__rotation_phase;
 void TCameraCtrl__sub_8030ABF4(void);
 extern s32 TBoss4ZakoDraw__draw_buffer_index;
-u8 *get_bml_model(s32, s32);
 void TObjPlayer__sub_80052390(f32);
 void push_matrix(void);
 void post_translate_matrix(void *);
@@ -179,7 +178,7 @@ void TObjPlayer::draw_area_chunk_objects() {
     Ent_8030AB48 *p = t->ents;
     s32 r31;
     s32 i;
-    r31 = ((s32)get_bml_model((s32)(TBoss4Uro::get_instance_count()), 8));
+    r31 = ((s32)get_bml_model((BmlResource *)(TBoss4Uro::get_instance_count()), 8));
     TObjPlayer__sub_80052390(lbl_805DF148);
     set_current_texture_list((GinjaTextureList *)falz_zako_texture_list);
     for (i = 0; i < t->count; i++, p++) {
@@ -209,7 +208,7 @@ void TCameraCtrl__sub_8030ABF4(void) {
             TCameraCtrl::set_viewport_scissor(2, var_r4);
         }
         var_r4 = (u8 *)((void *)8);
-        var_r3 = (s32 *)(*(s32 **)((s8 *)(get_bml_model(TBoss4Uro::get_instance_count(), 8)) + 0x2C));
+        var_r3 = (s32 *)(*(s32 **)((s8 *)(get_bml_model((BmlResource *)TBoss4Uro::get_instance_count(), 8)) + 0x2C));
         *(s32 *)((s8 *)var_r3 + 0x18) = (s32) (TBoss4ZakoDraw__rotation_phase << 0xC);
         TObjPlayer::draw_area_chunk_objects();
         TObjPlayer__sub_8030A9B0();

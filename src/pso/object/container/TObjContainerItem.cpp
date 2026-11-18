@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/render_util.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
@@ -398,7 +399,7 @@ void TLobby::free_char_select_resources() {
     }
 }
 
-s32 get_container_param(s32 index) { return get_bml_model(lbl_805D5B78, index); }
+s32 get_container_param(s32 index) { return (s32)get_bml_model(lbl_805D5B78, index); }
 
 void TLobby::load_console_resources() {
     void *p;

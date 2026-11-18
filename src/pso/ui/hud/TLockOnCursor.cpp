@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/ui/hud/TLockOnCursor.h"
 #include "pso/system/memory.h"
@@ -62,7 +63,6 @@ u8 * free_bin_model_request(void *, s16);
 u8 * lock_on_cursor_bml_resource;
 s32 lock_on_cursor_model;
 s32 TLockOnCursor__target_cursor_model;
-s32 get_bml_model(void *, s32);
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 }
 struct TargetCursorResourceDescriptor { s32 value; u8 remaining[0xC]; };
@@ -215,9 +215,9 @@ void load_target_cursor_models(void) {
         }
         lock_on_cursor_bml_resource = (unsigned char *) ((void *) var_r0);
         if ((u32) var_r0 != 0U) {
-            lock_on_cursor_model = get_bml_model((void *) var_r0, 0);
-            TLockOnCursor__target_cursor_model = get_bml_model(lock_on_cursor_bml_resource, 0);
-            main_cursor_model = get_bml_model(lock_on_cursor_bml_resource, 2);
+            lock_on_cursor_model = (s32)get_bml_model((BmlResource *)var_r0, 0);
+            TLockOnCursor__target_cursor_model = (s32)get_bml_model((BmlResource *)lock_on_cursor_bml_resource, 0);
+            main_cursor_model = (s32)get_bml_model((BmlResource *)lock_on_cursor_bml_resource, 2);
         }
     }
 }

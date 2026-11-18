@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <dolphin/mtx.h>
+#include "pso/system/BmlAccessors.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/unk/text_803D853C.h"
@@ -417,8 +418,6 @@ void TBoss7Crawfish::change_state(s32 state) {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u32 TBoss7Crawfish__shared_resource;
 s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 get_bml_texlist(int, int);
-s32 get_bml_model(int, int);
 s32 set_field_b8__10TObjMotionFs(void *, int);
 s32 __ct__9TObjEnemyFP7TObject();
 extern s32 __vt__14TBoss7Crawfish[];
@@ -473,7 +472,7 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
     __ct__9TObjEnemyFP7TObject();
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TBoss7Crawfish;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TBoss7Crawfish__class_name;
-    ((TBoss7Crawfish *)arg0)->texlist = get_bml_texlist(TBoss7Crawfish__shared_resource, 0);
+    ((TBoss7Crawfish *)arg0)->texlist = (s32)get_bml_texlist((BmlResource *)TBoss7Crawfish__shared_resource, 0);
     copy_collision_body((CollisionBody *)(arg0 + 0x374), &crawfish_collision_body_desc);
     ((TObjCollidable *)arg0)->set_collision_body(arg0 + 0x374);
     ((TObjMotion *)arg0)->set_field_d8((s32)crawfish_action_table);
@@ -487,12 +486,12 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
         ((TObjEnemy *)arg0)->set_param(0x4A);
         ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(8)), (u8 *)(TLobby::dispatch_shared_handler_b(8)), (u8 *)(TLobby::register_object(8)));
         ((TBoss7Crawfish *)arg0)->m_3a0 = dispatch_shared_handler_a__6TLobbyFl(8);
-        *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TBoss7Crawfish__shared_resource, 0);
+        *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)TBoss7Crawfish__shared_resource, 0);
     } else {
         ((TObjEnemy *)arg0)->set_param(0x4B);
         ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(9)), (u8 *)(TLobby::dispatch_shared_handler_b(9)), (u8 *)(TLobby::register_object(9)));
         ((TBoss7Crawfish *)arg0)->m_3a0 = dispatch_shared_handler_a__6TLobbyFl(9);
-        *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TBoss7Crawfish__shared_resource, 1);
+        *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)TBoss7Crawfish__shared_resource, 1);
     }
     ((TObjChara *)arg0)->get_or_assign_entity_id(0);
     ((TObjPlayer *)arg0)->register_object_by_id();

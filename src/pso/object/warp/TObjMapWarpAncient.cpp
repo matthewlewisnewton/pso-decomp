@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/task/TObject.h"
@@ -47,7 +48,7 @@ s32 goal_warp_ancient_gvm_texture;
 extern "C" void *init__13TAdVIConfigGCFf(void *, void *, f32);
 
 extern "C" s32 TObjGoalWarpAncient__sub_8017D2D4(s32 index) {
-    return get_bml_model(ancient_warp_shared_resource, index);
+    return (s32)get_bml_model(ancient_warp_shared_resource, index);
 }
 
 AnimationMotion *TObjGoalWarpAncient::register_warp(s32 index) {
@@ -59,7 +60,7 @@ s32 TObjGoalWarpAncient::get_instance() {
 }
 
 s32 TObjGoalWarpAncient::register_warp_object(s32 index) {
-    return get_bml_texlist(ancient_warp_shared_resource, index);
+    return (s32)get_bml_texlist(ancient_warp_shared_resource, index);
 }
 
 void TObjGoalWarpAncient::load_resources() {

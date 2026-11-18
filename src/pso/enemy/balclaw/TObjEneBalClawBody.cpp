@@ -109,7 +109,7 @@ void vec3_add_to(Vec *, Vec *);
 // Picks this part's model and texture list (index into the Bal Claw BML models).
 void TObjEneBalClawClaw::sub_80090418(s32 i) {
     model = (void *)lbl_805D4F20->models[i].model;
-    texlist = lbl_805D4F20->models[i].m_c;
+    texlist = (s32)lbl_805D4F20->models[i].m_c;
 }
 
 TObjEneBalClawBody::TObjEneBalClawBody(TObject *parent, void *set_data) : TObjEneBalClaw(parent) {
@@ -1178,6 +1178,6 @@ void TObjEneBalClawBody::sub_8008DC90() {
 
 void TObjEneBalClawClaw::spawn_child_enemy() {
     BalClawSpawnParams params = {lbl_805D4F20->motions, balclaw_body_actions, 1, 12, 0};
-    TLobby::spawn_npc_enemy(0x13, lbl_805D4F20->models[1].model, (NJS_TEXLIST *)lbl_805D4F20->models[1].m_c, &params,
+    TLobby::spawn_npc_enemy(0x13, (s32)lbl_805D4F20->models[1].model, (NJS_TEXLIST *)lbl_805D4F20->models[1].m_c, &params,
                             balclaw_body_collision.radius, 15.0f);
 }

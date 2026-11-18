@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/gigue/TObjEneMe1GiGueMissile.h"

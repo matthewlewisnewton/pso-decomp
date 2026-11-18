@@ -217,7 +217,7 @@ extern "C" void TBoss4Type3__sub_802D1130(void) {
     clear_motion_packed_rotation();
     {
         Bm9MericarolAnimationBinding params = { mericarol_resource->motions, mericarol_motion_actions, 0x30001, 9, 0 };
-        TLobby::spawn_npc_enemy(0x42, mericarol_resource->models[0].model, (NJS_TEXLIST *)mericarol_resource->models[0].m_c, &params,
+        TLobby::spawn_npc_enemy(0x42, (s32)mericarol_resource->models[0].model, (NJS_TEXLIST *)mericarol_resource->models[0].m_c, &params,
             lbl_804E1564[0].radius, 0.0f);
     }
 }
@@ -255,7 +255,7 @@ TObjEneBm9Mericarol::TObjEneBm9Mericarol(TObject *parent, void *set_data) : TObj
     }
     init_position_vectors();
     model = (void *)mericarol_resource->models[0].model;
-    texlist = mericarol_resource->models[0].m_c;
+    texlist = (s32)mericarol_resource->models[0].m_c;
     init_model(lbl_804E1564, 1);
     set_field_d8((s32)mericarol_motion_actions);
     set_field_dc((s32)mericarol_resource->motions);

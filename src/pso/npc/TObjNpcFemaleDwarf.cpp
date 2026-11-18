@@ -49,7 +49,7 @@ TObjNpcFemaleDwarf *TObjNpcFemaleDwarf__ct(TObjNpcFemaleDwarf *npc, TObjControl 
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcFemaleDwarf__static_data->models->model;
-    npc->texlist = TObjNpcFemaleDwarf__static_data->models->m_c;
+    npc->texlist = (s32)TObjNpcFemaleDwarf__static_data->models->m_c;
     npc->setup_common();
     return npc;
 }

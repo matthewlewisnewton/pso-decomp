@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/mine/TOLightMachine01.h"
 #include "pso/math/MatrixTransforms.h"
@@ -21,8 +22,6 @@ const char *bm_o_light_machine01_model_names[3] = { "fs_obj_light.gj", "fs_obj_t
 BmlResourceDescriptor light_machine01_resource_desc = { "bm_o_light_machine01.bml", bm_o_light_machine01_model_names, bm_o_light_machine01_motion_names, 2, 0 };
 
 extern "C" {
-s32 get_bml_texlist(void *, s32);
-s32 get_bml_model(void *, s32);
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
 u32 TOLightMachine01__shared_bml_archive;
 s32 light_machine_ginja_model_handle;
@@ -87,8 +86,8 @@ void TOLightMachine01::load_assets() {
         var_r0 = (long) (load_resource_from_descriptor((void *) temp_r3, 1, &light_machine01_resource_desc, 0, 0, 0));
     }
     (*(u8 * *)&TOLightMachine01__shared_bml_archive) = (unsigned char *) ((void *) var_r0);
-    light_machine_ginja_model_handle = get_bml_model((void *) var_r0, 0);
-    light_machine_ginja_param = get_bml_texlist((*(u8 * *)&TOLightMachine01__shared_bml_archive), 0);
+    light_machine_ginja_model_handle = (s32)get_bml_model((BmlResource *)var_r0, 0);
+    light_machine_ginja_param = (s32)get_bml_texlist((BmlResource *)(*(u8 * *)&TOLightMachine01__shared_bml_archive), 0);
 }
 
 }
@@ -103,8 +102,8 @@ u8 *TOLightMachine01__ct(TOLightMachine01 *light_machine01, s32 arg1) {
     *(s32 **)((s8 *)light_machine01 + 0x18) = __vt__16TOLightMachine01;
     ((TOLightMachine01 *)light_machine01)->m_name = TOLightMachine01__name;
     ((TOLightMachine01 *)(light_machine01))->apply_object_set_data((void *)arg1);
-    light_machine01->model = ((u8 *)get_bml_model((void *)((*(s32 *)&TOLightMachine01__shared_bml_archive)), 1));
-    light_machine01->texlist = get_bml_texlist((void *)((int) ((*(s32 *)&TOLightMachine01__shared_bml_archive))), 1);
+    light_machine01->model = ((u8 *)get_bml_model((BmlResource *)((*(s32 *)&TOLightMachine01__shared_bml_archive)), 1));
+    light_machine01->texlist = (s32)get_bml_texlist((BmlResource *)((int) ((*(s32 *)&TOLightMachine01__shared_bml_archive))), 1);
     *(f32 *)((s8 *)light_machine01 + 0x90) = 500.0f;
     light_machine01->m_94 = (f32) *(f32 *)((s8 *)(*(void **)((s8 *)light_machine01->model + 4)) + 0x14);
     light_machine01->actorFlags = (s32) (light_machine01->actorFlags | 0x40000000);

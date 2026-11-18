@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/render/render_util.h"
@@ -23,7 +24,6 @@ extern const char *fe_obj_baiku_motion_names[1];
 struct Moto_801951C8 { const char *x0; u8 pad4[0x30 - 4]; u32 flags; u8 pad34[0x68 - 0x34]; f32 x68; u8 pad6C[0xBC - 0x6C]; s32 xBC; };
 
 extern "C" {
-s32 get_bml_model(void *, int);
 }
 void rotate_matrix_yxz(s32 matrix, s32 arg1, s32 arg2, s32 arg3);
 extern "C" {
@@ -85,7 +85,7 @@ void TMotorcycle::render() {
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_yxz(0, (this->rotation_x), (this->rotation_y), (this->rotation_z));
-            get_bml_model((void *) ((*(s32 *)&TMotorcycle__bml_resource)), this->m_bc);
+            get_bml_model((BmlResource *)((*(s32 *)&TMotorcycle__bml_resource)), this->m_bc);
             draw_ginja_object();
             pop_matrix();
         }
@@ -126,8 +126,8 @@ void TMotorcycle::load_resources() {
     }
     (*(u8 * *)&TMotorcycle__bml_resource) = (unsigned char *) ((void *) var_r0);
     (*(u8 * *)&TMotorcycle__texture_list) = load_gvm_texture_file((s32) "obj_motorcycle.GVM");
-    TMotorcycle::add_entry((s16)(0x3C), (s32)((void *) (((s32)get_bml_model((void *)((*(u8 * *)&TMotorcycle__bml_resource)), 0)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), 16.0f, 0.0f);
-    TMotorcycle::add_entry((s16)(0x3D), (s32)((void *) (((s32)get_bml_model((void *)((*(u8 * *)&TMotorcycle__bml_resource)), 1)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), 16.0f, 0.0f);
+    TMotorcycle::add_entry((s16)(0x3C), (s32)((void *) (((s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 0)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), 16.0f, 0.0f);
+    TMotorcycle::add_entry((s16)(0x3D), (s32)((void *) (((s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 1)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), 16.0f, 0.0f);
 }
 
 TMotorcycle::~TMotorcycle() {

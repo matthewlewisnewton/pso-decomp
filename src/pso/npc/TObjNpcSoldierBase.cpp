@@ -51,7 +51,7 @@ TObjNpcSoldierBase *TObjNpcSoldierBase__ct(TObjNpcSoldierBase *npc, TObjControl 
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcSoldierBase__shared_model_resource->models->model;
-    npc->texlist = TObjNpcSoldierBase__shared_model_resource->models->m_c;
+    npc->texlist = (s32)TObjNpcSoldierBase__shared_model_resource->models->m_c;
     npc->setup_common();
     return npc;
 }

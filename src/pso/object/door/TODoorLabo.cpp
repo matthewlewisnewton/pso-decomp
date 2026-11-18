@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/unk/TLobby.h"
@@ -183,7 +184,6 @@ s32 load_resource_from_descriptor(s32, int, void *, int, int, int);
 }
 u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
-s32 get_bml_model(BmlResource *resource, s32 index);
 Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0, void *parent, s32 arg);
 void free_bin_model_request(void*, int);
 s32 release_texture_list(void*);
@@ -511,7 +511,7 @@ u8 *TODoorFourLightSeabed__ct(u8 *arg0, void *parent, s32 arg) {
     init_collision_body_parts(arg0, labo_door_collision_body_parts, 1);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     ((TObjPlayer *)arg0)->register_object_by_id();
-    ((Door_802A0068 *)arg0)->fD4 = get_bml_model((BmlResource *)door_labo_bml_resource, 0);
+    ((Door_802A0068 *)arg0)->fD4 = (s32)get_bml_model((BmlResource *)door_labo_bml_resource, 0);
     ((Door_802A0068 *)arg0)->infoBC = (Info_802A0068 *)get_bml_motion((BmlResource *)door_labo_bml_resource, 0);
     ((Door_802A0068 *)arg0)->fB4 = (f32)((Door_802A0068 *)arg0)->infoBC->v4 - 1.0f;
     ((Door_802A0068 *)arg0)->fB8 = 0.5f;
@@ -594,7 +594,7 @@ u8 *TODoorFourLightSeabedU__ct(u8 *arg0, void *parent, s32 arg) {
     init_collision_body_parts(arg0, labo_door_collision_body_parts, 1);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     ((TObjPlayer *)arg0)->register_object_by_id();
-    ((Door_8029FD70 *)arg0)->fD4 = get_bml_model((BmlResource *)seabed_four_light_door_bml_resource, 0);
+    ((Door_8029FD70 *)arg0)->fD4 = (s32)get_bml_model((BmlResource *)seabed_four_light_door_bml_resource, 0);
     ((Door_8029FD70 *)arg0)->infoBC = (Info_8029FD70 *)get_bml_motion((BmlResource *)seabed_four_light_door_bml_resource, 0);
     ((Door_8029FD70 *)arg0)->fB4 = (f32)((Door_8029FD70 *)arg0)->infoBC->v4 - 1.0f;
     ((Door_8029FD70 *)arg0)->fB8 = 0.5f;
@@ -699,7 +699,7 @@ void TODoorLabo::init_model_by_type() {
     if (this->set_params[1] > 1) {
         this->set_params[1] = 1;
     }
-    this->m_d4 = get_bml_model((BmlResource *)TODoorLabo__bml_resource, tbl[this->set_params[1]]);
+    this->m_d4 = (u32)get_bml_model((BmlResource *)TODoorLabo__bml_resource, tbl[this->set_params[1]]);
 }
 
 void TODoorLabo::load_resources() {
@@ -769,5 +769,5 @@ s32 TODoorLaboNormal::vfunc_22() {
     return TODoorLaboNormal__green_texture_list;
 }
 
-void TODoorLaboNormal::init_field_d4() { this->m_d4 = get_bml_model((BmlResource *)TODoorLabo__model_archive, 0); }
+void TODoorLaboNormal::init_field_d4() { this->m_d4 = (u32)get_bml_model((BmlResource *)TODoorLabo__model_archive, 0); }
 

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/npc/TUnk_804A9F50.h"
 #include "pso/npc/TObjNpcKenkyuW.h"
@@ -69,8 +70,6 @@ struct Obj_802A3FDC {
 
 extern "C" {
 u8 * load_resource_from_descriptor(void *, s32, void *, s32, s32, s32);
-s32 get_bml_texlist(int, int);
-s32 get_bml_model(int, int);
 extern s32 __vt__14TObjNpcKenkyuW[];
 s32 obj_is_hit_receivable(u8 *arg0);
 Vec *get_shoot_data__12TNeedleShootFv(void *);
@@ -110,8 +109,8 @@ u8 *TObjNpcKenkyuW__ct(u8 *player, s32 arg1, s32 arg2) {
     ((TObject *)player)->m_name = TObjNpcKenkyuW__name;
     ((TObjNpcKenkyuW *)(player))->apply_set_data((void *)arg2);
     ((TObjPlayer *)player)->init_position_vectors();
-    *(s32 *)((s8 *)player + 0x34) = get_bml_model((int) ((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
-    ((TObjNpcKenkyuW *)player)->texlist = get_bml_texlist((int) ((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
+    *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
+    ((TObjNpcKenkyuW *)player)->texlist = (s32)get_bml_texlist((BmlResource *)((*(s32 *)&TObjNpcKenkyuW__model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();
     return player;
 }

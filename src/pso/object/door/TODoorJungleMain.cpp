@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 
 #include "pso/object/door/TODoorJungleMain.h"
@@ -142,7 +143,6 @@ void *__ct__10TODoorBaseFP7TObject(void *a0);
 
 extern s32 __vt__16TODoorJungleMain[];
 
-void *get_bml_model(u32, int);
 
 s32 rotate_matrix_y(int, int);
 
@@ -306,11 +306,11 @@ void TODoorJungleMain::render() {
         post_translate_matrix(self->xf);
         rotate_matrix_y(0, self->f60);
         if (self->flags & 1) {
-            draw_ginja_model_with_motion(get_bml_model(TODoorJungleMain__bml_resource, 3), self->fbc, self->fb4);
+            draw_ginja_model_with_motion(get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, 3), self->fbc, self->fb4);
         } else {
-            draw_ginja_object(get_bml_model(TODoorJungleMain__bml_resource, 3));
+            draw_ginja_object(get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, 3));
             for (i = 0; i < 3 - self->count; i++) {
-                draw_ginja_object(get_bml_model(TODoorJungleMain__bml_resource, ids.v[i]));
+                draw_ginja_object(get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, ids.v[i]));
             }
         }
         pop_matrix();

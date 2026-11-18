@@ -49,7 +49,7 @@ TObjNpcFemaleTall *TObjNpcFemaleTall__ct(TObjNpcFemaleTall *npc, TObjControl *co
     npc->apply_set_data(set_data);
     ((TObjPlayer *)npc)->init_position_vectors();
     npc->model = (void *)TObjNpcFemaleTall__instance->models->model;
-    npc->texlist = TObjNpcFemaleTall__instance->models->m_c;
+    npc->texlist = (s32)TObjNpcFemaleTall__instance->models->m_c;
     npc->setup_common();
     return npc;
 }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/object/jungle/TOGrassJungle_8029CD90.h"

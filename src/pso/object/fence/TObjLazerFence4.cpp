@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/fence/TObjLazerFence4.h"
 #include "pso/object/base/TObjMotion.h"
@@ -65,7 +66,6 @@ extern void *lazer_fence_norm_texture_list;
 u8 is_current_floor_switch_set(s32 id);
 
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
-s32 get_bml_model(BmlResource *resource, s32 index);
 extern s32 lazer_fence_norm_bml_resource;
 f32 xz_distance_squared(void *, s32);
 
