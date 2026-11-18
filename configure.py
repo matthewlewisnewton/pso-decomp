@@ -474,8 +474,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
-    # The balloon float pool begins at 0x805DCD0C, which is four-byte aligned.
-    "pso/misc/TWindowFukidasi.cpp": {"cw_align": ".sdata2=4"},
+    # Native balloon virtual-table emission uses deferred code generation.
+    "pso/misc/TWindowFukidasi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # The class string and name pointer start on four-byte boundaries.
     "pso/effect/TDPBShower.cpp": {"cw_align": ".rodata=4 .sdata=4"},
     "pso/object/TObjCMName.cpp": {"cflags": _switch(cflags_pso, "-sym on"), "cw_align": ".sdata2=4"},

@@ -924,27 +924,15 @@ the window units, with a register row, to replace WindowConstructorAbi.h").
 | `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Source is identical to the Word recovery stacked in #566. | Same. |
 | `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
 | `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowChallengeResult` ctor/dtor/`run_task` | same | Same pooling timing; with the class native, its sole producer `TObjOnlineEnding::create_result_window` uses ordinary `new` at 100%. | Same. |
+| `src/pso/misc/TWindowFukidasi.cpp` | Balloon virtual table and scalar pools | `-inline off,deferred` with scoped `defer_codegen off` on the first three functions | Immediate emission puts the unsigned conversion bias before the named angle scale. The deferred functions then emit the signed bias and place the native vtable before the jump tables. See [balloon lifetime evidence](evidence/balloon-native-lifetime.md). | Drop the flag and pragma. Keep the ordinary destructor and scalar definitions. |
 
-These entries replace raw constructor/destructor transport through
-`WindowConstructorAbi.h` (see §9) for these units with real constructors
-(base initializers), compiler-generated vtables, automatic base destruction and
-ordinary `new`. Vtable symbols are 0x18 bytes; the former 0x1C entries included
-four bytes of alignment padding. No other pragma, flag or hand-written table is
-used. Evidence: [window-native-lifetime-deferred.md](evidence/window-native-lifetime-deferred.md).
-
-### Speech-balloon constant alignment
-
-`pso/misc/TWindowFukidasi.cpp` uses `cw_align: .sdata2=4`. Its float pool
-starts at `0x805DCD0C`; GC/2.6 otherwise requests eight-byte alignment in
-both ELF and its CodeWarrior comment record. The existing alignment tool
-changes those records without changing code, constants or relocations.
-Ports can drop this object-layout override and use normal float alignment.
-The compatible pointer reads of three materialized constants avoid duplicate
-MWCC literal-pool entries; a port can read those constants directly. The zero
-now comes from the [shared live square-root helper](evidence/balloon-newton-zero.md).
-The existing reciprocal-square-root intrinsic moves with the single body into
-`NewtonSqrtInline.h`. TObjPlayer retains its original FP-contract scope around
-the implementation include; the shared header adds no pragma.
+These entries replace the raw calls in [§9](#9-window-lifetime-entry-points-for-legacy-raw-storage-functions)
+with ordinary C++ lifetime and compiler-generated vtables. The DD, ComCard
+and ChallengeResult records are covered in
+[the deferred lifetime evidence](evidence/window-native-lifetime-deferred.md).
+Vtable symbols are 0x18 bytes. The earlier 0x1C entries included four bytes of
+alignment padding. The balloon now owns its float pool from the eight-byte
+aligned address `0x805DCD08`, which retires its alignment override.
 
 ### Download status coordinate alignment
 
@@ -2175,43 +2163,23 @@ boundaries. See [the complete-unit evidence](evidence/quest-download-unit-comple
 
 ## 9. Window lifetime entry points for legacy raw-storage functions
 
-`include/pso/misc/WindowConstructorAbi.h` is a bounded MWCC ABI interface for
-the remaining C-named initializers and destroyers that receive allocated object
-storage. Its declarations name the actual compiler-emitted constructors and
-destructors with their complete native arguments. The remaining raw destroyers
-pass the native hidden deleting flag `0` for base cleanup; an explicit C++
-destructor expression would emit `-1`. Evidence and full qualification:
-[window-native-lifetime.md](evidence/window-native-lifetime.md).
+The [balloon lifetime recovery](evidence/balloon-native-lifetime.md) retired
+the final raw call and removed `WindowConstructorAbi.h`. Its native destructor
+automatically destroys the Addition base. For the original hidden deleting
+flags and storage ownership, see
+[the window lifetime evidence](evidence/window-native-lifetime.md).
 
-It now covers only these leftover raw call sites:
-
-| File | Raw entry points used | Native form still blocked by |
-|---|---|---|
-| `src/pso/misc/TWindowFukidasi_80252AE4.cpp` | `TWindowAddition` dtor | Native emission order of the balloon vtable and constant pools in `TWindowFukidasi.cpp`. |
-
-The soft keyboard window in `TKeyBoardControl.cpp` uses native construction
-after the draw-context split and [native lifetime recovery](evidence/window-soft-native-destruction.md). The Hard keyboard window is
-also native: `TKeyBoardControl_8025EC04.cpp` merges the original keyboard unit
-through `0x80260450`, so the generated vtable lands at `0x804CFDC4` with no
-per-unit alignment override. The ChallengeResult window is native under the §5
-deferred-codegen entry above; `TObjOnlineEnding::create_result_window`
-constructs it with ordinary `new`. The DD selection, ScrollBar, Word and
-ComCard follower windows moved to native construction under the §5 entry
-[Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen).
-The header now declares only the `TWindowAddition` destructor used by the balloon window.
-
-A port must replace this symbol-name transport with real constructor/destructor
-calls, or placement construction where an external owner supplies storage.
-Preserve the ownership distinction: positive deleting flags also release storage
-through `TObject::operator delete`; base cleanup does not. This interface does
-not claim that the remaining C-named functions have portable C++ lifetime semantics.
+The Soft keyboard moved to native lifetime after the
+[draw-context split](evidence/window-soft-native-destruction.md).
+The Hard keyboard merged the original keyboard unit through `0x80260450`.
+The ChallengeResult, DD selection, ScrollBar, Word and ComCard follower
+recoveries are recorded in [§5](#window-native-lifetime-emission-deferred-codegen).
+Earlier recoveries follow.
 
 The [task ownership follow-up](evidence/window-task-owner.md) replaces four
 more raw factory calls with ordinary construction and removes their bindings
-plus an unused information-window declaration. This interface now contains
-four constructor and three destructor declarations after the follow-ups below.
-It no longer transports Deposit, DuelResult, SubMagPhoton, or
-MessageInfomation construction.
+plus an unused information-window declaration. It removed the raw
+constructors for Deposit, DuelResult, SubMagPhoton and MessageInfomation.
 
 [Message descendant recovery](evidence/window-message-descendants.md) moves
 Page, Quest, and Scroll to native construction. The subsequent
@@ -2246,8 +2214,7 @@ their holds.
 
 [Remaining MenuIconLine descendant recovery](evidence/window-item-list-lifetime.md)
 removes all remaining raw MenuIconLine construction/cleanup calls and its
-three bindings. WindowConstructorAbi.h now contains only Base/Addition: two
-constructor and two destructor entries. Native word carriers, explicit heading
+three bindings. At that checkpoint four Base and Addition entries remained. Native word carriers, explicit heading
 forwarding, source-claim refinement and original remainder provenance are
 qualified in the note; broader unresolved interfaces retain their holds.
 

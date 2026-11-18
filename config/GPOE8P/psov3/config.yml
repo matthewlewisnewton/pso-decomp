@@ -2254,7 +2254,6 @@ force_active:
   - TWindowEffectLight__data_805DE0E4
   - TWindowEffectLight__sub_802AD040
   - TWindowEffectParty__name
-  - TWindowFukidasi__data_8044ED70
   - TWindowFukidasi__sub_80249788
   - TWindowFukidasi__sub_802505C0
   - TWindowFukidasi__sub_80251790
@@ -4569,6 +4568,10 @@ force_active:
   - b256_menutext01_e_gvp
   - b256_menutext01_j_gvp
   - backup_pos__13TBoss2DeRolLeFi
+  - balloon_angle_units_per_radian
+  - balloon_distance_scale
+  - balloon_half_extent
+  - balloon_name_plate_height
   - bank_credit_meseta__Fll
   - bank_debit_meseta__Fll
   - bank_item_records_by_slot
@@ -10538,8 +10541,6 @@ force_active:
   - lbl_805DC328
   - lbl_805DC8C4
   - lbl_805DCCA8
-  - lbl_805DCD10
-  - lbl_805DCD54
   - lbl_805DCEF0
   - lbl_805DCFAC
   - lbl_805DCFB0
@@ -16346,6 +16347,7 @@ force_active:
   - render__13TUnk_804CC870Fv
   - render__13TUnk_804CE7E8Fv
   - render__13TUnk_804CE964Fv
+  - render__13TUnk_804CF0B8Fv
   - render__13TUnk_804CF918FP18TWindowDrawContext
   - render__13TUnk_804CF930FP18TWindowDrawContext
   - render__13TUnk_804D0658Fv
@@ -17129,6 +17131,7 @@ force_active:
   - run_task__13TUnk_804CCD78Fv
   - run_task__13TUnk_804CE7E8Fv
   - run_task__13TUnk_804CE964Fv
+  - run_task__13TUnk_804CF0B8Fv
   - run_task__13TUnk_804D0658Fv
   - run_task__13TUnk_804E14E8Fv
   - run_task__13TUnk_804E4788Fv

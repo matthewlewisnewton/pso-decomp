@@ -96,11 +96,12 @@ No additional virtual slot is invented to consume it. Constructors in
 
 The DD selection, ScrollBar, Word and ComCard follower windows later moved to
 native construction; see [window-native-lifetime-deferred.md](window-native-lifetime-deferred.md).
-The interface below now covers only the leftover raw sites listed in
-[porting-exceptions §9](../porting-exceptions.md#9-window-lifetime-entry-points-for-legacy-raw-storage-functions).
+The [balloon follow-up](balloon-native-lifetime.md) removed the final raw site
+and retired the interface described below. The earlier recoveries are listed
+in [§9](../porting-exceptions.md#9-window-lifetime-entry-points-for-legacy-raw-storage-functions).
 
-`WindowConstructorAbi.h` centralizes declarations of the actual MWCC-emitted
-constructor/destructor entry points for remaining C-named raw-storage
+`WindowConstructorAbi.h` centralized declarations of the actual MWCC-emitted
+constructor/destructor entry points for the C-named raw-storage
 initializers and destroyers. Arguments match the recovered native declarations;
 there are no substitute wrapper definitions or alternate-width function-pointer
 views of these constructors. LockOn's target is unsigned short throughout its

@@ -47,9 +47,7 @@ gates qualify the change. Matched code remains 4,302,440 bytes and matched
 data 1,506,380 bytes; the DOL SHA-1 remains
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
-This is a constant-source recovery, not native balloon destruction.
-`WindowConstructorAbi.h` and its remaining §9 call site are still required.
-The deferred native-destructor experiment improves to `.sdata2` 97.82609%
-with this header, but its 19.0f and angle-conversion double still occupy the
-wrong pool positions, and 1000.0f remains outside its owned pool. That
-experiment is not part of the qualified change.
+This checkpoint recovered the zero while retaining the raw destructor. The
+next [native lifetime recovery](balloon-native-lifetime.md) retained the shared
+square-root helper, resolved the remaining pools and replaced the final raw
+call.
