@@ -1309,8 +1309,6 @@ force_active:
   - TOVS2Wreck04__ct
   - TOVS2Wreck05__ct
   - TOVS2Wreck06__ct
-  - TOWreckAncientBrakable__name
-  - TOWreckAncient__resource_descriptor
   - TObjAreaWarpEndingJung__ct
   - TObjBgmCol__name
   - TObjBigTuitate__ct
@@ -3245,8 +3243,13 @@ force_active:
   - __dt__16TORevlightCave01Fv
   - __dt__16TOSparkMachine01Fv
   - __dt__16TOTrapAncient02RFv
+  - __dt__16TOWreckAncient01Fv
   - __dt__16TOWreckAncient02Fv
   - __dt__16TOWreckAncient03Fv
+  - __dt__16TOWreckAncient04Fv
+  - __dt__16TOWreckAncient05Fv
+  - __dt__16TOWreckAncient06Fv
+  - __dt__16TOWreckAncient07Fv
   - __dt__16TObjBagWarnWin4PFv
   - __dt__16TObjCMAssignMenuFv
   - __dt__16TObjCMAutoMkDataFv
@@ -3492,6 +3495,7 @@ force_active:
   - __dt__23TObjOnlineEndingHexMoveFv
   - __dt__23TObjSeabedSuisoBrakableFv
   - __dt__24ModelNodePositionCaptureFv
+  - __dt__24TOWreckAncientBrakable05Fv
   - __dt__24TObjCity_Season_FireWorkFv
   - __dt__24TObjWaitEntryHairMoveSimFv
   - __dt__24TWindowMessageInfomationFv
@@ -3859,6 +3863,7 @@ force_active:
   - __vt__14TOSwitchAttack
   - __vt__14TOTrapChainSaw
   - __vt__14TOTrapSeabed01
+  - __vt__14TOWreckAncient
   - __vt__14TObjBoss1Floor
   - __vt__14TObjCMHairMenu
   - __vt__14TObjCMMainMenu
@@ -4187,6 +4192,7 @@ force_active:
   - __vt__22TBoss5GryphonShockWave
   - __vt__22TChCrTagInformationStr
   - __vt__22TChallenge4PItemSelect
+  - __vt__22TOWreckAncientBrakable
   - __vt__22TObjAreaWarpEndingJung
   - __vt__22TObjBoss1MokoHill_Solo
   - __vt__22TObjContainerJungEnemy
@@ -4991,7 +4997,6 @@ force_active:
   - bm_fe_obj_o_door04l_model_names
   - bm_fe_obj_o_door04l_motion_names
   - bm_fe_obj_o_door04l_resource_descriptor
-  - bm_fe_obj_o_hahen_model_names
   - bm_fe_obj_rb2_liwa_motion_names
   - bm_fe_obj_rb2_liwa_resource_bundle
   - bm_fe_obj_rb3_liwa_motion_names

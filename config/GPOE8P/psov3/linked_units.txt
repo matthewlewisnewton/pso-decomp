@@ -1445,6 +1445,7 @@ pso/misc/TOWreckAncientBrakable.cpp
 pso/misc/TOWreckAncientBrakable05.cpp
 pso/misc/TOWreckAncientBrakable_8017D444.cpp
 pso/misc/TOWreckAncientBrakable_8017D5A4.cpp
+pso/misc/TOWreckAncientResources.cpp
 pso/misc/TPacket.cpp
 pso/misc/TParticleCtrl.cpp
 pso/misc/TParticleCtrl_80083550.cpp
