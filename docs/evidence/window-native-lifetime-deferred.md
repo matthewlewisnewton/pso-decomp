@@ -1,7 +1,7 @@
 # Window native lifetime with deferred emission
 
 Register entry: [§5 Window native lifetime emission (deferred codegen)](../porting-exceptions.md#window-native-lifetime-emission-deferred-codegen),
-approved by Matt on Nov 14 2026, 1:35 PM PT. The [balloon follow-up](balloon-native-lifetime.md) retired the last raw site recorded in [§9](../porting-exceptions.md#9-window-lifetime-entry-points-for-legacy-raw-storage-functions).
+approved by Matt on Nov 14 2026, 1:35 PM PT. The [balloon follow-up](balloon-native-lifetime.md) retired the last raw site. See the [lifetime recovery history](window-lifetime-recovery-history.md).
 
 ## Change
 

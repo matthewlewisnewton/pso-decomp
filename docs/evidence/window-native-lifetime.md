@@ -1,6 +1,6 @@
 # Native window construction and table ownership
 
-The later [current-main CMName integration](window-main1e8-cmname-integration.md)
+The later [current-main CMName integration](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-main1e8-cmname-integration.md)
 qualifies the complete accepted provider while preserving this continuation's
 keyboard contracts. References below to incomplete CMName source/provider
 remain historical; original-profile, borrowed callback, record-capacity and
@@ -12,7 +12,7 @@ This continues PR #268 from the validated shared-prefix checkpoint
 merges current main `9924ce113b5e6dff309a5ae94065265d3066fb24` in source
 checkpoint `5982db6bdf235927cf18431ae75da4d9a873d6f0`.
 It supersedes the integration
-blockers in the [historical constructor probe](window-constructor-chain-probe.md).
+blockers in the [historical constructor probe](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-constructor-chain-probe.md).
 The original draft hold remains pending disposition of the bounded legacy
 interfaces below; exact matching alone does not establish complete portability.
 
@@ -59,7 +59,7 @@ Remaining raw-storage initializers use the shared ABI interface described below.
 
 ## Fields and virtual table provenance
 
-The [Addition prefix repair](window-addition-prefix.md) owns floats at offsets
+The [Addition prefix repair](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-addition-prefix.md) owns floats at offsets
 `0x60` through `0x6C`; all eight direct descendant layouts remain unchanged.
 InputNumber instead derives directly from Base: its input flags begin at
 `0x60`, and its size remains `0x7C`. Compile-time size and offset assertions
@@ -98,7 +98,7 @@ The DD selection, ScrollBar, Word and ComCard follower windows later moved to
 native construction; see [window-native-lifetime-deferred.md](window-native-lifetime-deferred.md).
 The [balloon follow-up](balloon-native-lifetime.md) removed the final raw site
 and retired the interface described below. The earlier recoveries are listed
-in [§9](../porting-exceptions.md#9-window-lifetime-entry-points-for-legacy-raw-storage-functions).
+in the [lifetime recovery history](window-lifetime-recovery-history.md).
 
 `WindowConstructorAbi.h` centralized declarations of the actual MWCC-emitted
 constructor/destructor entry points for the C-named raw-storage
@@ -190,7 +190,7 @@ contributions remain unchanged; retention is clean at 17,607 entries.
 The subsequent typed file-API main `6e880491f` is also normally merged and
 qualified against a fresh baseline, preserving these results and main's types.
 
-The [main-menu window recovery](window-main-menu-lifetime.md) subsequently
+The [main-menu window recovery](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-main-menu-lifetime.md) subsequently
 removes another raw Base construction/cleanup pair, with a consistent word
 client contract and compiler-owned descriptor/table. It adds 44 matched and
 linked data bytes while preserving code and exact linked units. The specific
@@ -366,7 +366,7 @@ constructor, client-width, default-construction, and emitted-table integration
 problems; it does not claim that every historical hold in the PR body is closed.
 
 
-The [keyboard text-forwarding follow-up](window-keyboard-text-forwarding.md)
+The [keyboard text-forwarding follow-up](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-keyboard-text-forwarding.md)
 recovers the observed nine-call Control/composer text protocol. Both native
 36-byte wrappers take their text argument explicitly; the lower 224-byte setter
 retains its historical C export with a raw embedded-record receiver. Complete
@@ -378,7 +378,7 @@ constant, callback/renderer, producer/global ownership and original-remainder
 holds persist. Latest main25b400 is separately built and integrated; PR stays draft.
 
 
-The [keyboard copy/query follow-up](window-keyboard-copy-query-contracts.md)
+The [keyboard copy/query follow-up](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-keyboard-copy-query-contracts.md)
 recovers three actual Control members and composer sizing/export, including all
 44 outer calls and Chat's separate export. Fresh allocation, integer query widths,
 retained versus temporary result ownership and original failure/truncation behavior
@@ -388,7 +388,7 @@ or capacity/record-identity claim is added, and all remaining lifetime and owner
 holds persist.
 
 
-The [composer flag-forwarding follow-up](window-keyboard-composer-flag-forwarding.md)
+The [composer flag-forwarding follow-up](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-keyboard-composer-flag-forwarding.md)
 recovers two halfword flag leaves, their actual Control wrappers and a separate
 Chat wrapper previously named as a SubShortCut icon operation. All fifteen outer
 calls retain their composer-null guards and flag behavior; no object or buffer
@@ -399,7 +399,7 @@ remaining lifetime/ownership interfaces retain their holds; no metric or source
 activation gain is claimed.
 
 
-The [Chat close/reopen follow-up](window-chat-reopen-contract.md) recovers the
+The [Chat close/reopen follow-up](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-chat-reopen-contract.md) recovers the
 two remaining helper receivers passed immediately after new TWindowChat, uses
 the existing native void close/open members and retains both halfword masks.
 The 64/16-byte bodies and all three complete selected source objects remain
@@ -408,7 +408,7 @@ preserving the Soft construction path and all remaining lifetime, constant,
 record and ownership holds. No match metric or source activation gain is claimed.
 
 
-The [balloon name-plate reconstruction](window-balloon-nameplate-reconstruction.md)
+The [balloon name-plate reconstruction](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-balloon-nameplate-reconstruction.md)
 adds the previously absent renderer from GC evidence, with the actual balloon and
 context inputs. The new800-byte body remains non-exact; all31 prior functions,
 resolved targets and data are preserved, and original executable selection remains.
@@ -416,7 +416,7 @@ No compiler control, table/provider claim, metric gain or history split is added
 Exactness, constants, renderer ABI and prior lifetime/ownership holds stay explicit.
 
 
-The [Base close/Control flag follow-up](window-base-close-control-flags.md)
+The [Base close/Control flag follow-up](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-base-close-control-flags.md)
 recovers Base's generic close-request helper and Control's two halfword-mask-4
 methods, replacing false LockOn/ShortMail receiver claims at all twenty and six
 observed calls. Base close delegates without a downcast; Hard-before-Soft order,
@@ -426,7 +426,7 @@ No lifetime, complete Soft identity, source activation or metric gain is claimed
 the renderer and remaining technical holds persist.
 
 
-The [composer flag-value follow-up](window-composer-input-flag-values.md)
+The [composer flag-value follow-up](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-composer-input-flag-values.md)
 recovers four actual composer methods operating on word 0xB4 and all fourteen
 observed calls, including two internal calls. The compound methods retain their
 base call and subsequent word reload/update. All five complete selected source
@@ -435,7 +435,7 @@ adjacent record/language helpers and all lifetime/constant/provider holds remain
 qualified; no source activation or metric gain is claimed.
 
 
-The [Hard state-forwarding follow-up](window-hard-state-forwarding.md) recovers
+The [Hard state-forwarding follow-up](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-hard-state-forwarding.md) recovers
 two actual Hard members and all ten observed calls from Control/Chat producers
 and Hard's own methods. Word widths, child guards, composer forwarding and
 language-specific state updates remain exact across all four complete selected
@@ -443,7 +443,7 @@ source objects. The adjacent language helper, no-argument query and all lifetime
 record, Soft and table/provider holds remain qualified; no metric gain is claimed.
 
 
-The [Word renderer/vertex-storage audit](window-word-render-audit.md) fixes a
+The [Word renderer/vertex-storage audit](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-word-render-audit.md) fixes a
 source-selected String draw buffer that declared 188 bytes while its reset helper
 writes 192. The enlarged raw extent produces an identical object file. One
 ordinary missing-Word-renderer reconstruction remains nonexact and was restored;
@@ -451,7 +451,7 @@ its arithmetic and helper evidence are recorded as a concrete stop condition.
 The full original Word provider and all existing holds remain selected/qualified.
 
 
-The [CallBack lifetime recovery](window-callback-native-lifetime.md) replaces
+The [CallBack lifetime recovery](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-callback-native-lifetime.md) replaces
 the conflicting flat class and raw constructor/destructor with the actual
 Base-derived lifetime and ordinary-new factory. Both complete texts remain
 exact; the adjacent descriptor and compiler table add 44 linked data bytes.
@@ -461,7 +461,7 @@ stay qualified. Raw Base/Addition calls fall to 20 across eleven units; all
 other technical holds persist.
 
 
-The [CustomSelect native-code recovery](window-custom-select-native-code.md)
+The [CustomSelect native-code recovery](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-custom-select-native-code.md)
 adds the exact native Addition chain, ordinary-new producer and 24-byte compiler
 table while preserving both early returns and the uninitialized child slots.
 The partial-initialization safety hold remains explicit. Complete owner/producer
@@ -470,7 +470,7 @@ Raw calls fall to 18 across ten units, and the unused Addition constructor alias
 leaves the ABI header, which now contains three bindings. Other holds persist.
 
 
-The [shared render-state/reset recovery](window-render-state-reset-contracts.md)
+The [shared render-state/reset recovery](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-render-state-reset-contracts.md)
 establishes consistent no-argument state helpers and an explicit raw reset ABI
 with an unexplained unused word and required float depth. All thirteen affected
 compiled objects, relocations, data and selected providers remain unchanged.
@@ -479,7 +479,7 @@ or published. No coverage gain is claimed; the independent renderer, arithmetic,
 ownership, initialization and original-provider holds remain.
 
 
-The [0x74-byte status-display recovery](window-status-display-native-lifetime.md)
+The [0x74-byte status-display recovery](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-status-display-native-lifetime.md)
 recovers its genuine Base lifetime and two ordinary-new producers. The complete
 1660/164/2332-byte objects and targets remain original-exact. A newly evidenced
 borrowed four-pointer array and natural compiler table add 40 linked data bytes;

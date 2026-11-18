@@ -8,8 +8,8 @@ scoped propagation/literal change is ported into this source owner. Its native
 
 The scoped control is inherited accepted matching context. Main's evidence
 explicitly does not prove an original pragma; neither does this integration.
-The earlier [four-case control](window-symbol-parts-propagation-control.md) and
-[provenance audit](window-parts-control-provenance-audit.md) stay as historical
+The earlier [four-case control](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-symbol-parts-propagation-control.md) and
+[provenance audit](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-parts-control-provenance-audit.md) stay as historical
 evidence, without another profile probe or a new source-provenance inference.
 Opaque heading, callback, Scroll and other portable ownership/interface
 qualifications remain. No original-provider/ABI hold outside this unit is lifted.
