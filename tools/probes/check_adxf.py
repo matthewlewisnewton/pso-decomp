@@ -4,7 +4,10 @@ import argparse
 from pathlib import Path
 import struct
 
-from check_resource_reads import GameImage, FILENAME, DESTINATION
+from gpoe8p_image import GameImage
+
+FILENAME = 0x81111000
+DESTINATION = 0x81112020
 
 STREAM = 0x8112A000
 DIRECTORY = 0x8112B000
