@@ -722,6 +722,7 @@ pso/boss/galgryphon/TObjBoss5Ctrl.cpp:
 	.rodata     start:0x80438128 end:0x80438140
 	.data       start:0x80488778 end:0x80488790
 	.sdata      start:0x805D2828 end:0x805D2830
+	.sbss       start:0x805D4DE0 end:0x805D4DE4
 	.sdata2     start:0x805D8F10 end:0x805D8F1C
 
 pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp:
