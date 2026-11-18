@@ -1,3 +1,5 @@
+#include "pso/network/BufferRef.h"
+#include "pso/network/IPv6Send.h"
 #include "pso/network/DhcpClient.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
@@ -482,27 +484,27 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     pkt->len = 0;
     for (i = n; i != 0; i--) {
         if (bufs[i - 1].len < 0) {
-            ((TUdpSocket *)pkt)->release_entry();
+            NetReleasePacket((NetPacket *)pkt);
             TUdpSocket::unlock_mutex(network_dispatch_state.value);
             return -2;
         }
         pkt->len += bufs[i - 1].len;
         pkt->items[pkt->count].len = bufs[i - 1].len;
-        ((TLobby *)pkt->items[pkt->count].data)->init_packet_header(bufs[i - 1].data);
+        NetBufferRefInitKind3((NetBufferRef *)pkt->items[pkt->count].data, bufs[i - 1].data);
         pkt->count++;
     }
     if (pkt->len > 0x7FE3) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return -2;
     }
     if (pkt->len == 0) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return 0;
     }
     r = udp_sendto__6TLobbyFsPvPvPvUsi(h, pkt, src, dst, port, (s32)opt);
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket((NetPacket *)pkt);
     TUdpSocket::unlock_mutex(network_dispatch_state.value);
     return r;
 }
@@ -584,7 +586,7 @@ void TLobby__sub_80421FB8(void *cb, void *hdr_, void *o_) {
             return;
         }
         buf = hdr->buffer;
-        ((TLobby *)pkt)->init_packet_header((s32)buf);
+        NetBufferRefInitKind3((NetBufferRef *)pkt, (s32)buf);
         for (i = 1; len > 0; i++) {
             if (len > o->seg[i].len) {
                 chunk = o->seg[i].len;
@@ -639,7 +641,7 @@ s16 tcp_receive__FsPFss_vsPUc(s32 a, void *cb, s32 len, void *buf) {
         TUdpSocket::unlock_mutex((int)((void *)g->f0));
         return -9;
     }
-    ((TLobby *)hdr)->init_packet_header((s32)buf);
+    NetBufferRefInitKind3((NetBufferRef *)hdr, (s32)buf);
     NetMemset(&s->f2A4, 0, 8);
     s->f2A4 |= 1;
     if (s->fB & 0x40) {
@@ -768,16 +770,16 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     for (; i != 0; j++) {
         i--;
         if (sb[i].len < 0) {
-            ((TUdpSocket *)pkt)->release_entry();
+            NetReleasePacket((NetPacket *)pkt);
             TUdpSocket::unlock_mutex(network_dispatch_state.value);
             return -2;
         }
-        ((TLobby *)pkt->items[j].data)->init_packet_header((s32)sb[i].buff);
+        NetBufferRefInitKind3((NetBufferRef *)pkt->items[j].data, (s32)sb[i].buff);
         pkt->items[j].len = sb[i].len;
         pkt->len += pkt->items[j].len;
     }
     if (pkt->len == 0) {
-        ((TUdpSocket *)pkt)->release_entry();
+        NetReleasePacket((NetPacket *)pkt);
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return -2;
     }
@@ -790,7 +792,7 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
     } else {
         r = tcp_start_send(nh, pkt, notify, 0);
     }
-    ((TUdpSocket *)pkt)->release_entry();
+    NetReleasePacket((NetPacket *)pkt);
     if (r < 0) {
         s->f2B4 &= ~1;
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
@@ -1081,7 +1083,7 @@ s16 TLobby__sub_80422F70(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     var_r29 = 0;
     TLobby::lock_mutex(network_dispatch_state.value);
-    ((TLobby *)(&sp18))->init_packet_header(arg1);
+    NetBufferRefInitKind3((NetBufferRef *)&sp18, arg1);
     temp_r3_2 = TLobby__sub_8040F00C(arg0, &sp18, (int)arg2, (void *)arg3);
     if (temp_r3_2 > 0) {
         var_r29 = temp_r3_2;

@@ -1209,6 +1209,9 @@ pso/misc/TLobby_803F8794.cpp
 pso/misc/TLobby_803FAEA0.cpp
 pso/misc/TLobby_803FC178.cpp
 pso/misc/TLobby_804048E8.cpp
+pso/misc/TLobby_804050DC.cpp
+pso/misc/TLobby_8040FF0C.cpp
+pso/misc/TLobby_8041112C.cpp
 pso/misc/TLobby_80426CAC.cpp
 pso/misc/TLobby_80428374.cpp
 pso/misc/TLobby_80429598.cpp
