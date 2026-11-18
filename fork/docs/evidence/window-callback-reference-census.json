@@ -1,0 +1,73 @@
+{
+  "objects": 5061,
+  "references": {
+    "create_callback__22TAdEnterSerialAccessGCFPvPvPv": [
+      {
+        "object": "build/GPOE8P/obj/pso/misc/TWindowSubSymbolChat_802ACF5C.o",
+        "reloc": "00000028  0000050a R_PPC_REL24            00000000   create_callback__22TAdEnterSerialAccessGCFPvPvPv + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdAgreementBaseGC.o",
+        "reloc": "00000158  00001e0a R_PPC_REL24            00000000   create_callback__22TAdEnterSerialAccessGCFPvPvPv + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdEp3Exist.o",
+        "reloc": "00000024  0000200a R_PPC_REL24            00000000   create_callback__22TAdEnterSerialAccessGCFPvPvPv + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdEnterSerialAccessGC.o",
+        "reloc": "000007e0  0000600a R_PPC_REL24            00000000   create_callback__22TAdEnterSerialAccessGCFPvPvPv + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdEnterSerialAccessGC_8032AD30.o",
+        "reloc": "00000110  00001a0a R_PPC_REL24            00000000   create_callback__22TAdEnterSerialAccessGCFPvPvPv + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdPlyStatusGC.o",
+        "reloc": "00000558  00003b0a R_PPC_REL24            00000000   create_callback__22TAdEnterSerialAccessGCFPvPvPv + 0"
+      }
+    ],
+    "update_display__20TWindowSubSymbolChatFl": [
+      {
+        "object": "build/GPOE8P/obj/pso/misc/TWindowSubSymbolChat_80281814.o",
+        "reloc": "00001f60  0000b50a R_PPC_REL24            00000000   update_display__20TWindowSubSymbolChatFl + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdChrSelSlotGC.o",
+        "reloc": "00000248  00002e0a R_PPC_REL24            00000000   update_display__20TWindowSubSymbolChatFl + 0"
+      }
+    ],
+    "set_field_60__15TWindowCallBackFPvi": [
+      {
+        "object": "build/GPOE8P/obj/pso/misc/TWindowCallBack.o",
+        "reloc": "00000220  00000c0a R_PPC_REL24            000000e0   set_field_60__15TWindowCallBackFPvi + 0"
+      }
+    ],
+    "__ct__15TWindowCallBackFPUcPUcl": [
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdEnterSerialAccessGC_802ACF04.o",
+        "reloc": "00000038  0000050a R_PPC_REL24            00000000   __ct__15TWindowCallBackFPUcPUcl + 0"
+      }
+    ],
+    "close_child__20TWindowSubSymbolChatFv": [
+      {
+        "object": "build/GPOE8P/obj/pso/misc/TWindowSubSymbolChat_80281814.o",
+        "reloc": "00001efa  00001806 R_PPC_ADDR16_HA        00000000   close_child__20TWindowSubSymbolChatFv + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/misc/TWindowSubSymbolChat_80281814.o",
+        "reloc": "00001f0a  00001804 R_PPC_ADDR16_LO        00000000   close_child__20TWindowSubSymbolChatFv + 0"
+      }
+    ],
+    "update_transition_anim_if_active__22TAdMultiPlyChrSelectGCFv": [
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdChrSelSlotGC.o",
+        "reloc": "0000023e  00002d06 R_PPC_ADDR16_HA        00000000   update_transition_anim_if_active__22TAdMultiPlyChrSelectGCFv + 0"
+      },
+      {
+        "object": "build/GPOE8P/obj/pso/ui/TAdChrSelSlotGC.o",
+        "reloc": "00000246  00002d04 R_PPC_ADDR16_LO        00000000   update_transition_anim_if_active__22TAdMultiPlyChrSelectGCFv + 0"
+      }
+    ]
+  }
+}
