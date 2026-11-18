@@ -1276,6 +1276,15 @@ GC/2.6 records eight-byte alignment for the emitted sections. The existing
 metadata; instructions, data and relocations remain compiler-generated.
 A port can use its compiler's default vtable and pointer alignment.
 
+### `TWindowGetComCard.cpp` confirmation window position
+
+The two floats at `0x804CF120` precede the compiler-emitted
+`TWindowGetComCard` vtable in `.data`. Under the default small-data settings,
+CodeWarrior puts the eight-byte position in `.sdata` and emits one SDA-relative
+instruction at the factory call. The guarded `.data` placement keeps the
+original `lis` and `addi` relocation pair and the vtable layout. A port can use
+the ordinary `WindowLayoutPosition` definition and its default data placement.
+
 ### `TCheckMemoryCard.cpp` section placement
 
 The native static initializer at `0x8033C69C` computes the card-menu position and layout
