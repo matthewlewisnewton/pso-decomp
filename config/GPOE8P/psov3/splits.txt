@@ -185,11 +185,12 @@ pso/boss/TBoss1DragonColli.cpp:
 	.text       start:0x8002B1C0 end:0x8002B68C
 	.rodata     start:0x804353D8 end:0x804353E0
 	.data       start:0x80481B90 end:0x80481C10
-	.sdata2     start:0x805D8108 end:0x805D8120
+	.sdata2     start:0x805D8108 end:0x805D8124
 
 pso/boss/TBoss1DragonDemo.cpp:
 	.text       start:0x8002B68C end:0x8002B840
 	.data       start:0x80481C10 end:0x80481C28
+	.sdata2     start:0x805D8128 end:0x805D812C
 
 pso/boss/TBoss1DragonEffBreath.cpp:
 	.text       start:0x8002B840 end:0x8002B9CC
