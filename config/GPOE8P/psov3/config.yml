@@ -2137,6 +2137,9 @@ force_active:
   - TObjPlayer__sub_803DAA70
   - TObjPlayer__sub_803DAD84
   - TObjPlayer__sub_803DD6DC
+  - TObjPlayer__sub_803DF840
+  - TObjPlayer__sub_803DF9D0
+  - TObjPlayer__sub_803DFB1C
   - TObjPlayer__sub_803E24E0
   - TObjPlayer__sub_803E500C
   - TObjPlayer__sub_803E5378
@@ -2521,6 +2524,7 @@ force_active:
   - __OSArenaLo
   - __OSCallResetFunctions
   - __OSDispatchInterrupt
+  - __SITransfer
   - __VIInit
   - __aborting
   - __as__12Ent_801D4744FR12Ent_801D4744

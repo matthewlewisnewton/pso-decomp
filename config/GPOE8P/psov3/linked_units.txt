@@ -831,6 +831,7 @@ pso/menu/TChCrEffWall.cpp
 pso/menu/TChCrLoadGmNjReq.cpp
 pso/menu/TObjTagChallenge.cpp
 pso/menu/TQuestBgmCtrl.cpp
+pso/misc/CameraControllerConstants.cpp
 pso/misc/CameraDistanceFade.cpp
 pso/misc/ChallengeMode.cpp
 pso/misc/CharacterAppearanceTables.cpp
@@ -2606,6 +2607,8 @@ pso/player/TObjPlayer_80362E60.cpp
 pso/player/TObjPlayer_80363BE0.cpp
 pso/player/TObjPlayer_803DA204.cpp
 pso/player/TObjPlayer_803DC834.cpp
+pso/player/TObjPlayer_803DF7A8.cpp
+pso/player/TObjPlayer_803E112C.cpp
 pso/player/TObjPlayer_803E21B8.cpp
 pso/player/TObjPlayer_803E4954.cpp
 pso/player/TObjPlayer_803E5470.cpp
