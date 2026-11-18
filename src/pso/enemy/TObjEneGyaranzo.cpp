@@ -237,8 +237,6 @@ typedef char GyaranzoSetGroupOffset[offsetof(GyaranzoSetData, group) == 0xA ? 1 
 
 // Deferred code generation emits these definitions in reverse source order.
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 #pragma push
 TObjEneGyaranzo::TObjEneGyaranzo(TObject *parent, void *set_data)
@@ -456,8 +454,6 @@ void TObjEneGyaranzo::select_next_action() {
 }
 #pragma pop
 
-#pragma push
-#pragma opt_common_subs off
 void TObjEneGyaranzo::render() {
     s32 temp_r3;
     s32 camera_index;
@@ -518,7 +514,6 @@ void TObjEneGyaranzo::render() {
         }
     }
 }
-#pragma pop
 
 #pragma push
 void TObjEneGyaranzo::update_demo() {}
@@ -829,12 +824,9 @@ void TObjEneGyaranzo::spawn_hit_debris() {
     obj = __nw__7TObjectFUl(0x234);
     if (obj != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)obj, tl_05, (u8 *)&third);
 }
-#pragma pool_data reset
 
 #pragma pop
 
-#pragma push
-#pragma pool_data off
 void TObjEneGyaranzo::shed_armor() {
     s32 start;
     s32 end;
@@ -876,7 +868,6 @@ void TObjEneGyaranzo::shed_armor() {
         }
     }
 }
-#pragma pop
 
 #pragma push
 #pragma pool_data off

@@ -696,8 +696,6 @@ void capture_technique_targets__10TObjPlayerFv(int kind, Owner_8022CDE8 *owner) 
     }
 }
 
-#pragma push
-#pragma opt_propagation off
 #define CHARGE_LIGHT_8022C738(COL, VEC, INIT)                                                    \
     {                                                                                            \
         NJS_ARGB c = COL;                                                                    \
@@ -758,7 +756,6 @@ void create_technique_charge_light(u32 kind, void *owner) {
         break;
     }
 }
-#pragma pop
 
 s32 TObjPlayer::get_level_tier(s32 arg0) {
 

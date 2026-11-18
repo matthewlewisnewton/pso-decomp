@@ -679,9 +679,7 @@ void TProtocol::recv_room_info(packet &pkt) {
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
-#pragma scheduling off
 u8 *__as__14LobbyListEntryFRC14LobbyListEntry(void *arg0, const void *arg1) {
     *(ByteBlock_C *)(arg0) = *(const ByteBlock_C *)(arg1);
     return (u8 *)arg0;
@@ -924,9 +922,7 @@ void TProtocol::recv_text_list(packet &pkt) {
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
-#pragma scheduling off
 #define arg0 ((Game_801DDB44 *)arg0_)
 #define arg1 ((const Game_801DDB44 *)arg1_)
 Game_801DDB44 *__as__13GameListEntryFRC13GameListEntry(void *arg0_, const void *arg1_) {

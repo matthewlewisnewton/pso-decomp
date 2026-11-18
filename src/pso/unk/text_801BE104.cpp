@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/player/TObjPlayer_801BE1C0.h"
-#include "pso/player/TObjPlayer_801BFED4.h"
+#include "pso/player/PlayerState.h"
 #include "pso/unk/text_801BE104.h"
 #include "pso/player/TObjPlayer.h"
 

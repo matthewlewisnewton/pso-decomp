@@ -86,9 +86,6 @@ struct Obj_80021260;
 #include "types.h"
 #include "pso/system/PadRumble.h"
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct ByteBlock_8 { u8 bytes[0x8]; };
 
 #include <dolphin/mtx.h>
@@ -125,10 +122,6 @@ struct RecoveredFields_8002826C_arg0 {
     u8 unknown_680[0xE0];
     s32 field_760;
 };
-
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 struct ByteBlock_10 { u8 bytes[0x10]; };
 
@@ -207,18 +200,10 @@ struct RecoveredGlobal_80027650_TBoss1Dragon__data_804FE17C
   u8 remaining[0x8];
 };
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-
 struct RecoveredGlobal_80027710_TBoss1Dragon__data_804FE17C {
     f32 * value;
     u8 remaining[0x8];
 };
-
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 struct RecoveredGlobal_800277D8_TBoss1Dragon__data_804FE17C {
     u8 * value;
@@ -348,7 +333,6 @@ struct Dragon_80021490 {
 };
 
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 
@@ -4449,8 +4433,6 @@ void TBoss1Dragon::release_held_player() {
     }
 }
 
-#pragma push
-#pragma fp_contract on
 void TBoss1Dragon::hold_captured_player() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r31;
@@ -4472,7 +4454,6 @@ void TBoss1Dragon::hold_captured_player() {
     }
     TBoss1Dragon::clearControlOverride();
 }
-#pragma pop
 
 void TBoss1Dragon::init_control_mode() {
     u16 id;
@@ -4504,8 +4485,6 @@ void TBoss1Dragon::init_control_mode() {
     ((Obj_80027320 *)this)->f764 = id;
 }
 
-#pragma push
-#pragma fp_contract on
 u16 TBoss1Dragon::find_player_on_floor(void *arg0) {
     u8 *p;
     u16 idx;
@@ -4527,7 +4506,6 @@ u16 TBoss1Dragon::find_player_on_floor(void *arg0) {
     }
     return idx;
 }
-#pragma pop
 
 void TBoss1Dragon__sub_800274A4(s32 arg0) {
     if (((TObjMotion *)arg0)->is_passing_frame(TBoss1Dragon__data_805D8018) != 0) {
@@ -4566,9 +4544,6 @@ typedef struct CopyStack_80027650 CopyStack_80027650;
 typedef struct ByteBlock_10 ByteBlock_10;
 typedef struct ByteBlock_14 ByteBlock_14;
 typedef struct RecoveredGlobal_80027650_TBoss1Dragon__data_804FE17C RecoveredGlobal_80027650_TBoss1Dragon__data_804FE17C;
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 typedef char RecoveredGlobal_80027650_TBoss1Dragon__data_804FE17C_size[((sizeof(RecoveredGlobal_80027650_TBoss1Dragon__data_804FE17C)) == 0xC) ? (1) : (-1)];
 void TBoss1Dragon::apply_fireball_impact_damage(s32 arg1) {
   struct CopyStack_80027650
@@ -5572,16 +5547,11 @@ block_12:
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 s32 obj_isState2_324__9TObjCharaFv();
 void TBoss1Dragon__sub_8002AB6C(u8 *arg0);
 void copy_model_node(u8 *arg0, u8 *arg1);
 
-#pragma push
-#pragma fp_contract on
 void TBoss1Dragon::run_task() {
     s16 temp_r0;
     s16 temp_r3;
@@ -5694,7 +5664,6 @@ void TBoss1Dragon::run_task() {
     }
     project_sound_origin_from_camera((s32)(arg0 + 0x38), (u8 *)(arg0 + 0x63C), lbl_805D80C0);
 }
-#pragma pop
 
 Obj_80029C78 *destroy__12TBoss1DragonFPvs(Obj_80029C78 *o, s16 flag) {
     if (o != 0) {

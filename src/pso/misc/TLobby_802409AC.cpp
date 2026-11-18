@@ -890,8 +890,6 @@ s32 start_voice_fade(struct Voice_80241FD8 *v, s32 step) {
     return 0;
 }
 
-#pragma push
-#pragma fp_contract on
 s32 init_sound_voice__6TLobbyFPviiii(void *lobby, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     *(s32 *)((s8 *)lobby + 4) = 0;
     *(s32 *)((s8 *)lobby + 8) = arg4;
@@ -939,7 +937,6 @@ s32 init_sound_voice__6TLobbyFPviiii(void *lobby, s32 arg1, s32 arg2, s32 arg3, 
     }
     return 0;
 }
-#pragma pop
 
 #pragma pop
 
@@ -953,7 +950,6 @@ struct RecoveredGlobal_8024259C_TLobby__data_8050AAAC {
 typedef struct Tag_802421C4 { s32 a; s32 b; } Tag_802421C4;
 
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 extern "C" {
 s32 seq_jump__9TProtocolFPUcR21TPlyMeetUserExtension(int, void *, void *);

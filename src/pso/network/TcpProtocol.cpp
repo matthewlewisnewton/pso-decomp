@@ -300,8 +300,6 @@ struct Tcb_8041D584 {
     Seg_8041D460 items[32];
 };
 
-#pragma push
-#pragma opt_common_subs on
 inline void remove_8041D584(Tcb_8041D584 *tcb, s16 idx) {
     s16 n = tcb->n;
     s16 i;
@@ -312,7 +310,6 @@ inline void remove_8041D584(Tcb_8041D584 *tcb, s16 idx) {
         tcb->n--;
     }
 }
-#pragma pop
 
 void TLobby__sub_8041D584(Tcb_8041D584 *tcb, Th_8041D584 *th, Sack_8041D584 *blocks, s16 n);
 
@@ -435,8 +432,6 @@ s16 TLobby__sub_8041E780(void);
 
 void TLobby__sub_8041E8A8(s16 idx);
 
-#pragma push
-#pragma pool_data off
 inline s16 port_in_use_8041EA14(u16 port) {
     G_8041E780 *g = (G_8041E780 *)&tcp_protocol_state;
     s16 n;
@@ -452,7 +447,6 @@ inline s16 port_in_use_8041EA14(u16 port) {
     }
     return 0;
 }
-#pragma pop
 
 u16 TLobby__sub_8041EA14(void);
 
@@ -495,12 +489,7 @@ u8 *alloc_free_entry__6TLobbyFv(void);
 
 s16 TLobby__sub_8041A9AC(void *connection);
 
-#pragma push
-#pragma opt_common_subs on
-#pragma opt_propagation off
-#pragma pool_data off
 static inline s32 imax(s32 a, s32 b) { return a > b ? a : b; }
-#pragma pop
 
 extern s32 TLobby__sub_8041B974(u8 *pkt, u8 *a, u8 *b);
 
@@ -768,13 +757,10 @@ void TLobby::clear_position() {
 #pragma opt_common_subs on
 #pragma opt_propagation off
 
-#pragma optimize_for_size off
 static inline s32 tcp_connection_index(TcpTcb *entry, TcpTcb *first) {
     return entry - first;
 }
 #pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
-#pragma opt_unroll_loops off
 s16 TLobby__sub_8041A9AC(void *connection) {
     TcpTcb *tp = (TcpTcb *)connection;
     TcpTcb *q;
@@ -1254,9 +1240,6 @@ s16 TLobby__sub_8041B724(u8 *tcb) {
 
 #pragma pop
 
-#pragma push
-#pragma pool_data off
-
 Tcb_8041B774 *TLobby__sub_8041B774(Tcb_8041B774 *lst, u16 *port, u8 *local, u8 *remote) {
     s16 TLobby__sub_8041E780(void);
     s16 TLobby__sub_8041ECA4(u8 *);
@@ -1317,8 +1300,6 @@ Tcb_8041B774 *TLobby__sub_8041B774(Tcb_8041B774 *lst, u16 *port, u8 *local, u8 *
     tcb->maxseg = lst->maxseg;
     return tcb;
 }
-
-#pragma pop
 
 #pragma push
 #pragma opt_common_subs on
@@ -2043,7 +2024,6 @@ drop:
 
 #pragma push
 #pragma opt_common_subs on
-#pragma opt_propagation on
 s32 TLobby__sub_8041D0C8(u8 *self, u8 *data, s16 total, u8 *p6) {
   s32 n;
   s16 done = 0;
@@ -2432,7 +2412,6 @@ s16 TLobby::tcp_get_socket_handle(s16 i) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s32 TLobby__sub_8041DBD4(s16 arg0, s32 arg1, s32 len, s32 arg3) {
@@ -2590,7 +2569,6 @@ s32 TLobby__sub_8041DE1C(s16 i, s16 opt, u32 *val) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s32 TLobby::get_tcp_stat(s16 arg0, s16 *arg1, s16 *arg2, s32 *arg3, s32 *arg4) {
@@ -2669,7 +2647,6 @@ s32 TLobby::mark_connection_closed(s16 arg0) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s32 TLobby::abort_tcp_connection(s16 arg0) {
@@ -2714,7 +2691,6 @@ void TLobby__sub_8041E2EC(s16 idx, u8 *a, u8 *b) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma pool_data off
 
 s16 TLobby::tcp_connect_start(s16 arg0, s32 arg1, s16 arg2) {

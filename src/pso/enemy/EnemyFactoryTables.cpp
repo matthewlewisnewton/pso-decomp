@@ -22,7 +22,7 @@
 #include "pso/enemy/TObjEneDolmOlm.h"
 #include "pso/enemy/TObjEneMerillLia.h"
 #include "pso/enemy/TObjEneRecon_8031FCB0.h"
-#include "pso/misc/TQuestListChallenge.h"
+#include "pso/quest/TQuestListChallenge.h"
 #include "pso/npc/TObjNpcAHM01.h"
 #include "pso/npc/TObjNpcARM00.h"
 #include "pso/npc/TObjNpcConnoisseur.h"
