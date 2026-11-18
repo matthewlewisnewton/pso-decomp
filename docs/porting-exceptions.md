@@ -673,6 +673,13 @@ same helpers with ordinary inlining and native pointer-sized handles.
 | `configure.py` | `pso/misc/TWindowActionPalette.cpp` | `-inline off,deferred` with reversed definitions | Places the compiler-generated vtable at `.data+0x308` before the icon switch table at `+0x320`, while retaining the original function order. See [unit evidence](evidence/action-palette-unit.md). | Use ordinary function ordering and compiler-generated virtual dispatch. |
 | `src/pso/misc/TWindowActionPalette.cpp` | Frame, slot-light position, and count-label position | Scoped `fp_contract on` | Preserves the existing fused coordinate arithmetic when the three fragments are consolidated. | Preserve fused float rounding when exact original positioning is required. |
 
+### Ending scene startup
+
+`TEnding::start_ending_scene` uses scoped `pool_data off` because CodeWarrior
+otherwise shares a `.rodata` base across both camera initializers and the
+music filename. The original loads their addresses independently. Ports can
+use the same vectors and filename without the pragma.
+
 ### Dark Falz demo 4
 
 | File | Scope | What | Why | Port should |
