@@ -2,6 +2,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/cave/TORockCave.h"
 #include "pso/object/cave/TORockCaveSimple.h"
 #include "pso/object/cave/TORockCaveBrakable.h"
@@ -180,7 +181,7 @@ void TORockCave::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
         vfunc_15();
@@ -198,7 +199,7 @@ void TORockCaveSimple::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
     }

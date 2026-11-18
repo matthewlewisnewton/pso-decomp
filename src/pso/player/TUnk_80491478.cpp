@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TUnk_80491478.h"
 #include "pso/enemy/dubchik/TObjEneDubchik.h"
 #include "pso/effect/enemy/TeneFakeTecThunderEff.h"
@@ -136,8 +137,8 @@ void TUnk_80491478::run_task() {
 #pragma pop
 
 void TUnk_80491478::render() {
-    TObjFish::set_global_param((s32)dubchik_texlist);
-    TObjFish::set_global_param((s32)m_d8);
+    set_current_texture_list((GinjaTextureList *)dubchik_texlist);
+    set_current_texture_list((GinjaTextureList *)m_d8);
     push_matrix();
     post_translate_matrix(&pos.x);
     rotate_matrix_y(0, rot_y);

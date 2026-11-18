@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/network/protocol/protocol_types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/unk/TLobby_801E43E4.h"
 #include "pso/system/NinjaTypes.h"
@@ -590,7 +591,7 @@ void TUnk_804B8E18::render() {
     if (lobby_gvm_texture_handles != 0 && (*(void**)&gogo_ball_bml_resource) != 0) {
         switch ((*(Glob_80199A44 *)&gogo_ball_configuration).kind) {
         case 0:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[0]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[0]);
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 3));
             set_cull_front();
@@ -598,7 +599,7 @@ void TUnk_804B8E18::render() {
             set_cull_none();
             break;
         case 1:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[1]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[1]);
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -606,7 +607,7 @@ void TUnk_804B8E18::render() {
             set_cull_none();
             break;
         case 2:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[2]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[2]);
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -614,7 +615,7 @@ void TUnk_804B8E18::render() {
             set_cull_none();
             break;
         case 3:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[3]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[3]);
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 0));
             set_cull_front();
@@ -622,7 +623,7 @@ void TUnk_804B8E18::render() {
             set_cull_none();
             break;
         case 6:
-            TObjFish::set_global_param(lobby_gvm_texture_handles[6]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[6]);
             set_cull_back();
             draw_chunk_object(get_bml_model((*(void**)&gogo_ball_bml_resource), 2));
             set_cull_front();
@@ -1046,9 +1047,9 @@ void TUnk_804B8DE8::run_task() {
 void TUnk_804B8DE8::render() {
     if ((((u32) gogo_ball_bml_resource != 0U) || ((u32) lobby_gvm_texture_handles[4] != 0U)) && ((u16) *(u16 *)((s8 *)&gogo_ball_configuration + 0x48) != 6)) {
         if (this->unk_50 == 1) {
-            TObjFish::set_global_param(lobby_gvm_texture_handles[4]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[4]);
         } else {
-            TObjFish::set_global_param(lobby_gvm_texture_handles[5]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[5]);
         }
         push_matrix();
         post_translate_matrix(&this->pos);
@@ -1192,9 +1193,9 @@ void TUnk_804B8DD0::render() {
     bml_model = (u8 *)(get_bml_model((void *)gogo_ball_bml_resource, 1));
     if (bml_model != NULL) {
         if ((s32) this->m_28 != 0) {
-            TObjFish::set_global_param(lobby_gvm_texture_handles[7]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[7]);
         } else {
-            TObjFish::set_global_param(lobby_gvm_texture_handles[8]);
+            set_current_texture_list((GinjaTextureList *)lobby_gvm_texture_handles[8]);
         }
         push_matrix();
         post_translate_matrix((u8 *)&this->pos);

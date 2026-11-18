@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/animation/MotionContext.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/vector.h"
 #include "types.h"
@@ -118,7 +119,7 @@ void TBreakUpMdl::render() {
     Part_8009680C *part;
     s32 i;
     if (self->texlist != 0) {
-        TObjFish::set_global_param((s32)self->texlist);
+        set_current_texture_list((GinjaTextureList *)self->texlist);
     }
     saved_model_render_flags = model_render_flags;
     if (self->alpha < 1.0f) {

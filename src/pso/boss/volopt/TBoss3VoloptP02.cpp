@@ -1,4 +1,5 @@
 #include "pso/network/protocol/protocol_types.h"
+#include "pso/render/CurrentTextureList.h"
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
@@ -441,7 +442,7 @@ void TBoss3VoloptP02::render() {
         if (fade.updateFromCamera((const f32 *)&m_2fc) != 0) {
             fade.set_flags_and_apply_damage_color();
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         select_actor_lighting((s32)this);
         TObjPlayer::toggle_particle_effect();
         push_matrix();

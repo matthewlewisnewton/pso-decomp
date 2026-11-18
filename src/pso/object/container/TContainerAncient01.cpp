@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/container/TContainerAncient01.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/object/base/TObjMotion.h"
@@ -560,7 +561,7 @@ s32 is_within_range__19TContainerAncient01Fii(s32 arg0, s32 arg1) {
 
 void TContainerAncient01R::render() {
     if (this->update_object_view_visibility(3e+02f, 2e+01f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
@@ -906,7 +907,7 @@ s32 TContainerAncient01::select_melee_contact_body(void *target, f32) {
 
 void TContainerAncient01::render() {
     if (this->update_object_view_visibility(3e+02f, 2e+01f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

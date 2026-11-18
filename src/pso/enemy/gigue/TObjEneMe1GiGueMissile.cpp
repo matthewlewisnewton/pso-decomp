@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/gigue/TObjEneMe1GiGueMissile.h"
 #include "pso/enemy/gigue/TObjEneMe1GiGue.h"
@@ -89,7 +90,7 @@ void TObjEneMe1GiGueMissile::render() {
     post_translate_matrix(&pos.x);
     rotate_matrix_y(NULL, m_a4);
     rotate_matrix_x(NULL, m_a0);
-    TObjFish::set_global_param(lbl_805D6858->models[1].m_c);
+    set_current_texture_list((GinjaTextureList *)lbl_805D6858->models[1].m_c);
     set_motion_packed_rotation();
     draw_model_motion((void *)get_bml_model(lbl_805D6858, 1), get_bml_motion(lbl_805D6858, 5), m_bc);
     clear_motion_packed_rotation();

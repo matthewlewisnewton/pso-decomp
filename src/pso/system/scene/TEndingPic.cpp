@@ -1,4 +1,5 @@
 #include "pso/system/scene/TEndingPic.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/scene/TEndingAB.h"
 #include "pso/system/scene/TEndingPicStage.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
@@ -104,7 +105,7 @@ void TEndingPic::init_positions() { *(float*)((char*)this + 0x2c) = 228.0f; *(fl
 void TEndingPic::render() {
     s32 arg0 = (s32)this;
     if ((s32) TEndingPic__animation_state != 0) {
-        TObjFish::set_global_param(ending_pic_wall_texture_list);
+        set_current_texture_list((GinjaTextureList *)ending_pic_wall_texture_list);
         draw_current_pic();
     }
 }

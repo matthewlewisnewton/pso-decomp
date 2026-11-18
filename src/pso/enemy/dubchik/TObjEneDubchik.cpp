@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/TUnk_80494938.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/effect/TUnk_80494968.h"
@@ -663,9 +664,9 @@ void TObjEneDubchik::render() {
             select_actor_lighting((s32)arg0);
             TObjPlayer::toggle_particle_effect();
             if (collapsed != 0) {
-                TObjFish::set_global_param((s32)dubchik_texlist);
+                set_current_texture_list((GinjaTextureList *)dubchik_texlist);
             } else {
-                TObjFish::set_global_param((s32)((void *) (((TObjEneDubchik *)arg0)->texlist)));
+                set_current_texture_list((GinjaTextureList *)(((void *) (((TObjEneDubchik *)arg0)->texlist))));
             }
             var_r30 = 1;
             push_matrix();

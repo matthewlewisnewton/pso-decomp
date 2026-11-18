@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -64,7 +65,7 @@ void draw_window_scrollbar(Scroll_8026D790 *scroll, Ctx_8026D790 *c, f32 *offset
     x = c->x + c->width - 7.0f;
     y = 17.0f + c->y;
     begin_screen_draw(0);
-    TObjFish::set_global_param((s32)lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_draw_texture_and_color(0, 0xFF646464);
     depth = -1.0f / (0.1196f + c->x38);
     q.x = x;

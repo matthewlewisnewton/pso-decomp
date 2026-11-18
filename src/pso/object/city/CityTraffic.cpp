@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/object/city/CityTraffic.h"
@@ -505,7 +506,7 @@ void TObjCityAirCar_Car::render() {
         if ((s32) this->m_9c != 0) {
             rotate_matrix_z(0, this->rotation_z);
         }
-        TObjFish::set_global_param((int)city_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)city_common_texture_list);
         get_city_common_model((*(s32 *)((s8 *)((u8 *)city_aircar_model_indices + (this->m_9c * 4)) + 0)));
         ((void (*)()) draw_chunk_object)();
         TParticleCtrl::begin_effect_render();
@@ -517,7 +518,7 @@ void TObjCityAirCar_Car::render() {
             if ((s32) this->m_a4 >= 0x14) {
                 *(s32 *)((s8 *)temp_r3 + 0x20) = (s32) *(s32 *)((s8 *)temp_r3 + 8);
             }
-            TObjFish::set_global_param((int)city_air_car_model_handle);
+            set_current_texture_list((GinjaTextureList *)city_air_car_model_handle);
             scroll_strip_uvs(air_car_buffer_pair_table[this->m_9c], *(s32 *)((s8 *)this + 0xA0), 0);
             draw_chunk_object((*(Rec16_80180D18 **)((s8 *)city_air_car_model_resource + 0x42C))[((s32 *)city_traffic_car_chunk_index_table)[this->m_9c]].f8, (void *)city_air_car_model_resource);
             *(s32 *)((s8 *)(*(u8 **)((s8 *)city_air_car_model_handle + 0)) + 0x20) = temp_r31;

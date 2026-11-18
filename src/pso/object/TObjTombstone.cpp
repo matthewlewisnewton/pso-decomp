@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 // TObject's helpers are out-of-line functions for this TU (run_task calls
 // TObject::queue_destruction, defined elsewhere).
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -483,7 +484,7 @@ void TObjTombstone::update_render_flags() {
         push_matrix();
         post_translate_matrix(&this->position.x);
         rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         draw_ginja_object(this->model);
         pop_matrix();
     }

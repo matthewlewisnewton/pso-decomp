@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/map/CsnQuery.h"
@@ -2069,7 +2070,7 @@ void TObjEneMorfos::render_part(s32 idx, s32 mode) {
     part = &self->parts[idx];
     ((RenderFadeState *)part)->update();
     vis = ((RenderFadeState *)part)->updateFromCamera((const f32*)(self->cam));
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)this->texlist);
     TObjPlayer::toggle_particle_effect();
     push_matrix();
     post_translate_matrix(self->pos);
@@ -2146,7 +2147,7 @@ void render__13TObjEneMorfosFv(u8 *ene_morfos) {
 s32 TObjEneMorfos::render_model_if_visible() {
     if (get_mode__11TCameraCtrlFPv((void *) (((s32 *)&main_task))) & 0x20) {
         if (push_reflection_matrix((Vec *)(((u8 *)this) + 0x3C8)) != 0) {
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
             rotate_matrix_y(0, this->rotation_y);
@@ -2167,7 +2168,7 @@ s32 TObjEneMorfos::render_model_if_visible() {
 void TObjEneMorfos::draw_body() {
     u8 *arg0 = (u8 *)this;
     if (get_mode__11TCameraCtrlFPv((void *)&main_task) & 0x200) {
-        TObjFish::set_global_param((int)((void *) (*(s32 *)((s8 *)(((RecoveredFields_803326CC_TObjEneMorfos__data_805D6D14 *)(*(u8 * *)&TObjEneMorfos__instance))->field_42C) + 0x2C))));
+        set_current_texture_list((GinjaTextureList *)(((void *) (*(s32 *)((s8 *)(((RecoveredFields_803326CC_TObjEneMorfos__data_805D6D14 *)(*(u8 * *)&TObjEneMorfos__instance))->field_42C) + 0x2C)))));
         push_matrix();
         post_translate_matrix(arg0 + 0x498);
         rotate_matrix_y(0, (int) (((RecoveredFields_803326CC_arg0 *)arg0)->field_60));
@@ -2257,7 +2258,7 @@ void TObjEneMorfos::vfunc_106() {
             ((TObjEneDD *)(arg0))->draw_ground_shadow(&v, 0);
         }
         TObjPlayer::toggle_particle_effect();
-        TObjFish::set_global_param(arg0->f24);
+        set_current_texture_list((GinjaTextureList *)arg0->f24);
         push_matrix();
         post_translate_matrix((u8 *)arg0 + 0x38);
         rotate_matrix_y(0, arg0->f60);

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/saver/SaverLifecycle.h"
 #include "pso/effect/enemy/TEneParticleCtrl.h"
 #include "pso/system/task/TObject.h"
@@ -1791,7 +1792,7 @@ void TObjEneSaver::render() {
     v = this->classify_actor_view_detail(300.0f, 600.0f, 30.0f);
     if (v != 0) {
         select_actor_lighting((s32)arg0);
-        TObjFish::set_global_param(((TObjEneSaver *)arg0)->texlist);
+        set_current_texture_list((GinjaTextureList *)(((TObjEneSaver *)arg0)->texlist));
         push_matrix_from(NULL);
         translate_matrix_vec3(0, (u8 *)&this->position);
         rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);

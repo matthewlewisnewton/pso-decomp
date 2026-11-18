@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/boss/goldragon/TObjBoss8Piller.h"
@@ -43,7 +44,7 @@ void TObjBoss8Piller::render() {
         } else {
             var_r31 = *(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 8);
         }
-        TObjFish::set_global_param((s32)((void *) (*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 0xC))));
+        set_current_texture_list((GinjaTextureList *)(((void *) (*(s32 *)((s8 *)(*(void **)((s8 *)TObjBoss8Piller__shared_resource + 0x42C)) + 0xC)))));
         push_matrix();
         post_translate_matrix(arg0 + 0x1C);
         scale_matrix(0, 1.0f, 1.0f, 1.0f);

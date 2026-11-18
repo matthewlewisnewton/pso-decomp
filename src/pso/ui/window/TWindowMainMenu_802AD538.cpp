@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/ui/window/TWindowCtrl_8024A054.h"
 #include "pso/ui/window/TWindowMainMenu_802AD538.h"
@@ -533,7 +534,7 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *frame) {
     y = 0.0f;
     h = frame->inner_h;
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_draw_texture_and_color(11, frame->color);
     if (((TWindowMainMenu *)this)->is_not_split_screen() != 0) {
         q.x0 = frame->x;

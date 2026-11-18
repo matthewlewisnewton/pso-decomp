@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TUnk_804ED598.h"
 #include "pso/unk/TUnk_804ED5B0.h"
 
@@ -161,7 +162,7 @@ void TUnk_804ED598::render() {
         rotate_matrix_y(0, *(s32 *)(camera_ctrl_instance + 0x194));
         rotate_matrix_x(0, *(s32 *)(camera_ctrl_instance + 0x190));
         load_projected_texture_matrix(1.1333334f);
-        TObjFish::set_global_param(*(s32 *)(lbl_804C5820 + 0x16C));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(lbl_804C5820 + 0x16C)));
         set_texture_num(o->f31);
         TParticleCtrl::setup_particle_draw(1);
         GXSetNumTevStages(2);

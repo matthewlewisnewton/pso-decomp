@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/CameraPlayback.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
@@ -55,7 +56,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_model_12() {
     push_matrix();
     set_motion_packed_rotation();
     post_translate_matrix((void *)&boss6_type2_appear_origin);
-    TObjFish::set_global_param(*(s32 *)((s8 *)this + 0xD8));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0xD8)));
     draw_model_motion((void *)this->m_d4, (void *)this->m_dc, *(f32 *)((s8 *)this + 0xE0));
     clear_motion_packed_rotation();
     pop_matrix();
@@ -77,7 +78,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_1_pair() {
         if (var_f31 < 1.0f) {
             TBoss6PlotFalz::set_fade_material_color(var_f31);
         }
-        TObjFish::set_global_param(this->m_cc);
+        set_current_texture_list((GinjaTextureList *)this->m_cc);
         set_motion_packed_rotation();
         push_matrix();
         post_translate_matrix((s32 *)((u8 *)this + 0x4C));
@@ -114,7 +115,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_4() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix((void *)&boss6_type2_appear_origin);
-        TObjFish::set_global_param(*(s32 *)((s8 *)this + 0xC0));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0xC0)));
         ((TObjFish *)(this->m_7c))->set_draw_callback_list();
         draw_model_motion((void *)this->m_bc, (void *)this->m_c4, *(f32 *)((s8 *)this + 0xE0));
         ((TObjFish *)this->m_7c)->clear_render_callback();
@@ -151,7 +152,7 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_pair() {
         var_r31 = 0;
         do {
             temp_r30 = (u8 *)this + var_r31;
-            TObjFish::set_global_param(*(s32 *)((s8 *)temp_r30 + 0xA8));
+            set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)temp_r30 + 0xA8)));
             draw_model_motion((void *)(*(s32 *)((s8 *)temp_r30 + 0xA4)), (void *)(*(s32 *)((s8 *)temp_r30 + 0xAC)), *(f32 *)((s8 *)this + 0xE0));
             var_r29 += 1;
             var_r31 += 0xC;

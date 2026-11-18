@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/warp/TObjWarpLobby.h"
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -108,7 +109,7 @@ void TObjWarpLobby::open_lobby_menu() {
 void TObjWarpLobby::render() {
     u8 *arg0 = (u8 *)this;
     if (((s32) *(s32 *)((s8 *)arg0 + 0xCC) != 0) && (this->update_object_view_visibility(4e+02f, 2e+01f) != 0)) {
-        TObjFish::set_global_param(lbl_805D5CCC);
+        set_current_texture_list((GinjaTextureList *)lbl_805D5CCC);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/lobby/TObjButterflyLobby.h"
 #include "pso/object/lobby/TObjButterflyLobby_80350958.h"
 #include "pso/unk/text_803D96A8.h"
@@ -89,7 +90,7 @@ void TObjButterflyLobby::init_params() {
 
 void TObjButterflyLobby::render() {
     if ((this->update_object_view_visibility(400.0f, 20.0f) != 0) && ((s32) this->m_90 != 0)) {
-        TObjFish::set_global_param(this->m_c8);
+        set_current_texture_list((GinjaTextureList *)this->m_c8);
         render__18TObjButterflyLobbyFPv((TObjButterflyLobby *)((u8 *)this));
     }
 }

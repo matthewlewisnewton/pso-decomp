@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/task/TObject.h"
 #include "pso/effect/TBGLightningCtrl.h"
@@ -68,7 +69,7 @@ __declspec(section ".rodata") s32 lbl_8046FC8C[3] = { 1, 5, 0 };
 extern void *camera_ctrl_instance;
 int bg_lightning_texture_handle;
 
-void TBGLightningCtrl__sub_802A9A08(void) { TObjFish::set_global_param(bg_lightning_texture_handle); }
+void TBGLightningCtrl__sub_802A9A08(void) { set_current_texture_list((GinjaTextureList *)bg_lightning_texture_handle); }
 
 #pragma push
 #pragma fp_contract on

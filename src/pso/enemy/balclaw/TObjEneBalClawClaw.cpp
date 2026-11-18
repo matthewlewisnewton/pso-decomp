@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -524,7 +525,7 @@ void TObjEneBalClawClaw::render() {
         detail = classify_actor_view_detail(120.0f, 400.0f, 10.0f);
         if (detail != 0) {
             shadow = 1;
-            TObjFish::set_global_param(texlist);
+            set_current_texture_list((GinjaTextureList *)texlist);
             select_actor_lighting((s32)this);
             TObjPlayer::toggle_particle_effect();
             push_matrix();

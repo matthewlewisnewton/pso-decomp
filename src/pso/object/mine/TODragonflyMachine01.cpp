@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/object/mine/TODragonflyMachine01.h"
 #include "pso/system/BmlResource.h"
@@ -120,7 +121,7 @@ void TODragonflyMachine01::render() {
             rotate_matrix_y(NULL, rotation_y);
             break;
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         node_index = 0;
         node_yaw = animation_yaw;
         set_chunk_model_node_callback((s32)&rotate_animated_node);

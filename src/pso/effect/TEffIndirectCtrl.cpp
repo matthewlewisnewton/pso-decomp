@@ -2,6 +2,7 @@
 #pragma readonly_strings on
 
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include <string.h>
 #include <stdlib.h>
 #include "pso/system/task/TObject.h"
@@ -519,7 +520,7 @@ s32 setup_indirect_tev_alternate(s32 arg0, s32 unused, s32 sampler, s32 arg3) {
         mtx[1][1] = 0.5f;
         mtx[1][2] = 0.0f;
         GXSetIndTexMtx(1, mtx, 1);
-        TObjFish::set_global_param(((TEffIndirectCtrl *)arg0)->m_2c);
+        set_current_texture_list((GinjaTextureList *)(((TEffIndirectCtrl *)arg0)->m_2c));
         load_list_texture(0, sampler, sampler, 5);
     }
 }
@@ -554,7 +555,7 @@ s32 setup_indirect_tev_ordinary(s32 arg0, s32 sampler, s32 scale, s32 second) {
         m1[1][2] = 0.0f;
         GXSetIndTexMtx(1, m1, 1);
     }
-    TObjFish::set_global_param(((TEffIndirectCtrl *)arg0)->m_2c);
+    set_current_texture_list((GinjaTextureList *)(((TEffIndirectCtrl *)arg0)->m_2c));
     load_list_texture(0, sampler, sampler, 5);
 }
 

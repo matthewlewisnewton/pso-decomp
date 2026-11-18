@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/TObjTank.h"
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/unk/text_803D96A8.h"
@@ -39,7 +40,7 @@ s32 free_collision_body_parts(void *);
 void TObjTank::render() {
     void *p;
     if ((this->update_object_view_visibility(400.0f, 20.0f) != 0) && (p = (*(void * *)&TObjTank__texture_list))) {
-        TObjFish::set_global_param((u32)p);
+        set_current_texture_list((GinjaTextureList *)p);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/TLanguage_801E4874.h"
 #include "pso/object/jungle/TOGrassJungle_8029CD90.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -65,7 +66,7 @@ s32 push_matrix();
 
 void TOGrassJungle::render() {
     if (this->update_object_view_visibility(400.0f, 20.0f) == 1) {
-        TObjFish::set_global_param(TOGrassJungle__grass_gvm_texture);
+        set_current_texture_list((GinjaTextureList *)TOGrassJungle__grass_gvm_texture);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

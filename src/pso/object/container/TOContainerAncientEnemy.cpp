@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/unk/TLobby_8030A6A8.h"
 #include "pso/render/render_util.h"
@@ -256,7 +257,7 @@ void TUnk_804B08BC::vfunc_81() {
             push_matrix();
             post_translate_matrix(&this->position.x);
             rotate_matrix_y(0, this->rotation_y);
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             obj = (NJS_OBJECT *)this->model;
             push_matrix();
             post_translate_matrix(obj->pos);
@@ -418,7 +419,7 @@ void TOContainerAncientEnemy::vfunc_81() {
             push_matrix();
             post_translate_matrix(&this->position.x);
             rotate_matrix_y(0, this->rotation_y);
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             obj = (NJS_OBJECT *)this->model;
             push_matrix();
             post_translate_matrix(obj->pos);

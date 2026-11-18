@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/text_800DC420.h"
 #include "pso/object/TObjControl.h"
 #include "pso/system/BmlResource.h"
@@ -407,7 +408,7 @@ void TObjEneNanoDrago::render() {
                 return;
             }
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         select_actor_lighting(this);
         TObjPlayer::toggle_particle_effect();
         rendered = 1;

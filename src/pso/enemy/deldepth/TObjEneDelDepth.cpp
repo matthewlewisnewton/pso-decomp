@@ -1,4 +1,5 @@
 #include "pso/enemy/deldepth/DelDepthData.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TLobby_8001EF5C.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/animation/ActorAnimationState.h"
@@ -1279,7 +1280,7 @@ void TObjEneDelDepthBomb::render() {
     push_matrix();
     post_translate_matrix(&position);
     rotate_matrix_zyx(0, rotation_x, rotation_y, rotation_z);
-    TObjFish::set_global_param(texture);
+    set_current_texture_list((GinjaTextureList *)texture);
     draw_chunk_object((void *)model);
     pop_matrix();
     push_matrix();

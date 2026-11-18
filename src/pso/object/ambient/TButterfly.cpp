@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/ambient/TButterfly.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
@@ -41,7 +42,6 @@ struct Butterfly_8017EA74 {
 
 extern "C" {
 void rotate_vector_by_matrix(void *, Vec *, Vec *);
-s32 set_global_param__8TObjFishFl();
 
 BmlResource *butterfly_bml_resource;
 
@@ -69,8 +69,7 @@ void TButterfly::init_motion() {
 
 void TButterfly::render() {
     if (this->update_object_view_visibility((4e+02f), (2e+01f)) != 0) {
-        get_bml_texlist(butterfly_bml_resource, 0);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)get_bml_texlist(butterfly_bml_resource, 0));
         draw_model();
     }
 }

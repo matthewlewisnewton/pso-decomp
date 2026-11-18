@@ -1,4 +1,5 @@
 #include "pso/ui/frontend/TAdChrSelSlotGC.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/player/TObjPlayer_8023E480.h"
@@ -110,7 +111,7 @@ void TAdChrSelSlotGC::draw_slot_icons() {
     for (i = 0; i < 5; i++) {
         if (self->visible[i] != 0) {
             begin_screen_draw(1);
-            TObjFish::set_global_param((s32)((void *)lbl_805D67F0));
+            set_current_texture_list((GinjaTextureList *)(((void *)lbl_805D67F0)));
             set_draw_texture_and_color(0, self->tex[i]);
             draw_textured_quad_at_depth((f32 *)&self->quad[i], 0.1f);
             TWindowSubStatusDisp::get_player();

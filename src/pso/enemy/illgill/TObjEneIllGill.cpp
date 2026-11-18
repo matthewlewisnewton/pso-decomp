@@ -1,4 +1,5 @@
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
 #include "types.h"
@@ -1291,7 +1292,7 @@ void TObjEneIllGill::render() {
     this->viewDetail = classify_actor_view_detail(250.0f, 500.0f, 40.0f);
     if (this->viewDetail != 0) {
         select_actor_lighting((s32)arg0);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix(&position);
         rotate_matrix_y(0, this->rotation_y);

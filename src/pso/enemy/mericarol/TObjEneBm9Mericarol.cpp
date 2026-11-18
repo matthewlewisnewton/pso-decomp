@@ -1,4 +1,5 @@
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "types.h"
 #include "pso/unk/text_800D8830.h"
@@ -1251,7 +1252,7 @@ void TObjEneBm9Mericarol::render() {
         break;
     }
     saved_model_render_flags = model_render_flags;
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)texlist);
     push_matrix();
     post_translate_matrix(&position.x);
     rotate_matrix_y(0, rotation_y);
@@ -1330,7 +1331,7 @@ void TObjEneBm9Mericarol::draw_color_variant() {
             ((NJS_TEXLIST *)texlist)->textures[2].texaddr = ((NJS_TEXLIST *)texlist)->textures[8].texaddr;
             break;
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(0, rotation_y);

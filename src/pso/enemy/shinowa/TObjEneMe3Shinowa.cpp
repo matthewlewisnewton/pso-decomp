@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/animation/MotionContext.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl_803D749C.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
 #include "pso/enemy/shinowa/ShinowaData.h"
@@ -1558,7 +1559,7 @@ void TObjEneMe3Shinowa::render() {
     }
     if (detail != 0) {
         update_player_state_default();
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         update_secondary_light();
         saved_model_render_flags = model_render_flags;
         TObjEneDD::clear_global_flag_400();
@@ -1621,7 +1622,7 @@ void TObjEneMe3Shinowa::vfunc_118() {
     }
     gold = sub_800E6FE0();
     if (update_object_view_visibility(400.0f, 15.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         TObjPlayer::toggle_particle_effect();
         if (gold != 0) {
             textures = ((NJS_TEXLIST *)texlist)->textures;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/ui/window/TWindowCtrl.h"
@@ -389,7 +390,7 @@ u8 TWindowSubStatusDisp::calc_gauge_scale(u16 glyph, void *arg1, s32 arg2) {
 }
 
 void TWindowSubStatusDisp::set_gauge_param(s32 _w0) {
-    TObjFish::set_global_param((s32)&menu_font_texture_list.value);
+    set_current_texture_list((GinjaTextureList *)(&menu_font_texture_list.value));
 }
 
 void TWindowSubStatusDisp::end_render_forward() { get_player(); }

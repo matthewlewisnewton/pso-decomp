@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/EnemyTargetCandidate.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/effect/TBreakUpMdl.h"
 #include "pso/render/RenderFadeState.h"
@@ -1033,7 +1034,7 @@ void TObjEneGyaranzo::render() {
                 }
             }
             TObjPlayer__sub_800D2E8C((Ene_800D2E8C *) (this));
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             select_actor_lighting(this);
             TObjPlayer::toggle_particle_effect();
             push_matrix();

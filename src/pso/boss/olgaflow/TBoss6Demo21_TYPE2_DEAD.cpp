@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/CameraPlayback.h"
 #include "pso/system/PadRumble.h"
 #include "pso/object/ambient/TObjFish_800E2FFC.h"
@@ -114,7 +115,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_model_13() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix((void *) (((u8 *)this) + 0x58));
-        TObjFish::set_global_param((int) (*(s32 *)((s8 *)((u8 *)this) + 0x44)));
+        set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)((u8 *)this) + 0x44))));
         ((TObjFish *)(this->m_9c))->set_draw_callback_list();
         draw_model_motion((void *)this->m_40, (void *)this->m_48, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x4C)));
         ((TObjFish *)this->m_9c)->clear_render_callback();
@@ -142,7 +143,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_8(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x38));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x38)));
         ((TObjFish *)(*(s32 *)(arg0 + 0x80)))->set_draw_callback_list();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x34)), (void *)(*(s32 *)(arg0 + 0x3C)), *(f32 *)(arg0 + 0x4C));
         ((TObjFish *)(*(s32 *)(arg0 + 0x80)))->clear_render_callback();
@@ -177,7 +178,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_5(void *p) {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(arg0 + 0x58);
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x2C));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x2C)));
         ((TObjFish *)(*(s32 *)(arg0 + 0x70)))->set_draw_callback_list();
         draw_model_motion((void *)(*(s32 *)(arg0 + 0x28)), (void *)(*(s32 *)(arg0 + 0x30)), *(f32 *)(arg0 + 0x4C));
         ((TObjFish *)(*(s32 *)(arg0 + 0x70)))->clear_render_callback();
@@ -208,7 +209,7 @@ void TBoss6Demo21_TYPE2_DEAD::draw_fading_model_4() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(((u8 *)this) + 0x58);
-        TObjFish::set_global_param(this->m_20);
+        set_current_texture_list((GinjaTextureList *)this->m_20);
         ((TObjFish *)(this->m_70))->set_draw_callback_list();
         draw_model_motion((void *)(*(s32 *)((s8 *)((u8 *)this) + 0x1C)), (void *)(*(s32 *)((s8 *)((u8 *)this) + 0x24)), *(f32 *)((s8 *)((u8 *)this) + 0x4C));
         ((TObjFish *)this->m_70)->clear_render_callback();

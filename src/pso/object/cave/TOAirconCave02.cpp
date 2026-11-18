@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/object/cave/TOAirconCave02.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -21,7 +22,7 @@ void TOAirconCave02::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(object);
         pop_matrix();
     }

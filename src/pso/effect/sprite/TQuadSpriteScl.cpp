@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/effect/sprite/TQuadSpriteScl.h"
 
 #include "pso/system/vector.h"
@@ -99,7 +100,7 @@ void render__14TQuadSpriteSclFv(Self_801E58D8 *self) {
     cy = lbl_8058D4F8.cy;
     sh = sw * (480.0f / (480.0f * lbl_8058D4F8.aspect));
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)((void *)self->desc->param4));
+    set_current_texture_list((GinjaTextureList *)(((void *)self->desc->param4)));
     set_draw_texture_and_color(self->desc->param8, self->desc->param1C);
     TParticleCtrl::begin_effect_render();
     one = -1.0f;

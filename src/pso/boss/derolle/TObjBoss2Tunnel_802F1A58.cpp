@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/boss/dragon/TBoss1DragonColli.h"
 #include "pso/math/MatrixVector.h"
@@ -500,7 +501,7 @@ extern "C" {
 void fn_802F1E54(u8 *arg0) {
     if (((s32 (*)(void))is_in_camera_range__18TObjBoss7TunnelColFv)() != 0) {
         set_draw_list_mask(1);
-        TObjFish::set_global_param((int)boss7_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)boss7_common_texture_list);
         push_matrix();
         TObjPlayer::concat_matrix(0, (int)(arg0 + 0x48));
         ((s32 (*)(int, void *))draw_ginja_object)((*(GE_802F1E54 **)((s8 *)boss7_common_bml_resource + 0x42C))[(*(s32 **)((s8 *)arg0 + 0x3C))[0]].obj, boss7_common_bml_resource);
@@ -514,7 +515,7 @@ extern "C" {
 void fn_802F1DAC(u8 *arg0) {
     if (((s32 (*)(void))is_in_camera_range__18TObjBoss7TunnelColFv)() != 0) {
         set_draw_list_mask(2);
-        TObjFish::set_global_param((int)boss7_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)boss7_common_texture_list);
         push_matrix();
         TObjPlayer::concat_matrix(0, (int)(arg0 + 0x48));
         ((s32 (*)(int, void *))draw_ginja_object)((*(GE_802F1DAC **)((s8 *)boss7_common_bml_resource + 0x42C))[(*(s32 **)((s8 *)arg0 + 0x3C))[1]].obj, boss7_common_bml_resource);
@@ -540,7 +541,7 @@ void draw_tunnel_segment(u8 *boss7_tunnel_col) {
         var_r31 = *(s32 *)((s8 *)var_r4 + (-4));
         set_draw_list_mask(2);
         var_r3 = boss7_common_texture_list;
-        TObjFish::set_global_param((int)var_r3);
+        set_current_texture_list((GinjaTextureList *)var_r3);
         TParticleCtrl::begin_effect_render();
         push_matrix();
         var_r4 = (var_r30 + 0x48);

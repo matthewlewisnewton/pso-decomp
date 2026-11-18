@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/boss/darkfalz/TObjDFDemo5.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
@@ -132,14 +133,14 @@ void TObjDFDemo5::draw_fading_motion() {
     set_motion_packed_rotation();
     post_translate_matrix(&pos.x);
     rotate_matrix_y(NULL, angle);
-    TObjFish::set_global_param(parts[0].texlist);
+    set_current_texture_list((GinjaTextureList *)parts[0].texlist);
     node_list0->set_draw_callback_list();
     draw_model_motion((void *)parts[0].model, parts[0].motion, frame);
     node_list0->clear_render_callback();
     part_frame = (s32)frame % 30;
-    TObjFish::set_global_param(parts[1].texlist);
+    set_current_texture_list((GinjaTextureList *)parts[1].texlist);
     draw_model_motion((void *)parts[1].model, parts[1].motion, part_frame);
-    TObjFish::set_global_param(parts[2].texlist);
+    set_current_texture_list((GinjaTextureList *)parts[2].texlist);
     draw_model_motion((void *)parts[2].model, parts[2].motion, part_frame);
     clear_motion_packed_rotation();
     pop_matrix();
@@ -155,7 +156,7 @@ void TObjDFDemo5::release_subobjects() {
         set_motion_packed_rotation();
         post_translate_matrix(&pos.x);
         rotate_matrix_y(NULL, angle);
-        TObjFish::set_global_param(parts[3].texlist);
+        set_current_texture_list((GinjaTextureList *)parts[3].texlist);
         node_list1->set_draw_callback_list();
         draw_model_motion((void *)parts[3].model, parts[3].motion, frame);
         node_list1->clear_render_callback();

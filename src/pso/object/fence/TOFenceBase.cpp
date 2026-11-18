@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/fence/TOFenceBase.h"
 #include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/object/switch/TSwitch.h"
@@ -85,7 +86,7 @@ void TOFenceBase::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         if (is_open == 0) {
             draw_ginja_model_with_motion(model, motion, animation_frame);
         } else {

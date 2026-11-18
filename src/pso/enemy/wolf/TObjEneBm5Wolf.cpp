@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/math/FloatRounding.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -1918,7 +1919,7 @@ void TObjEneBm5Wolf::render() {
                 pop_matrix();
             }
             this->update_secondary_light();
-            TObjFish::set_global_param(this->texlist);
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             push_matrix();
             post_translate_matrix(&this->position);
             rotate_matrix_y(0, this->rotation_y);
@@ -1980,7 +1981,7 @@ void TObjEneBm5Wolf::render_debug() {
     }
     if (this->update_object_view_visibility(400.0f, 20.0f) != 0) {
         this->draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix(&this->position);
         rotate_matrix_y(0, this->rotation_y);

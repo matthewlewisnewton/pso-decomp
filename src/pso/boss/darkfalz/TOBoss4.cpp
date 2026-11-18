@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include <stdlib.h>
 #include "pso/system/task/TMainTask.h"
 #include "pso/animation/ActorAnimationState.h"
@@ -131,7 +132,7 @@ void TOBoss4Bird::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         for (i = 0; i < count; i++) {
             push_matrix();
             translate_matrix(0, 0.0f, bob_offset, 0.0f);
@@ -201,7 +202,7 @@ void TOBoss4Tower::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
     }
@@ -286,7 +287,7 @@ void TOBoss4Rock::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         for (i = 0; i < count; i++) {
-            TObjFish::set_global_param(texlists[i]);
+            set_current_texture_list((GinjaTextureList *)texlists[i]);
             push_matrix();
             post_translate_matrix(&positions[i].x);
             rotate_matrix_z(NULL, rotations[i].z);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/fence/TOBarrierEnergy01.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -108,11 +109,11 @@ void TOBarrierEnergy01::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion(model, motion, animation_frame);
         TParticleCtrl::end_effect_render();
-        TObjFish::set_global_param(barrier_energy_texlists[2]);
+        set_current_texture_list((GinjaTextureList *)barrier_energy_texlists[2]);
         draw_ginja_object(barrier_energy_model);
         pop_matrix();
     }

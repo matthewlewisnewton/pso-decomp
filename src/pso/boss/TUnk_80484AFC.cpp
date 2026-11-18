@@ -1,6 +1,7 @@
 #pragma fp_contract on
 
 #include "pso/boss/TUnk_80484AFC.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/boss/volopt/TBoss3VoloptP02.h"
@@ -73,7 +74,7 @@ void TUnk_80484AFC::explode_and_destroy() {
 }
 
 void TUnk_80484AFC::render() {
-    TObjFish::set_global_param(textures);
+    set_current_texture_list((GinjaTextureList *)textures);
     push_matrix();
     post_translate_matrix(&position);
     rotate_matrix_x(0, rotation_x);

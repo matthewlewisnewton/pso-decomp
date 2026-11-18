@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #pragma readonly_strings on
 #include "pso/npc/TObjNpcBase_80149128.h"
+#include "pso/render/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -581,7 +582,7 @@ void TObjNpcBase::render() {
     if ((this->update_object_view_visibility(this->m_398, this->m_39c) != 0) && ((s32) this->m_390 == 1)) {
         select_actor_lighting((s32) this);
         model_render_flags |= 1;
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix_from(0);
         translate_matrix_vec3(0, (u8 *) &this->position);
         rotate_matrix_y(0, this->rotation_y);

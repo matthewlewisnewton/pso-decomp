@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/door/TObjDoorKey.h"
 #include "pso/render/MaterialColorFade.h"
 #include "pso/object/ambient/TObjEnvSoundGlobal.h"
@@ -170,7 +171,7 @@ s32 TObjDoorKey::draw_active_beam() {
         PPCSync();
         TObjDoorKey__data_805D5C04 = actor_frame_tick;
     }
-    TObjFish::set_global_param(TObjDoorKey__texture_handle);
+    set_current_texture_list((GinjaTextureList *)TObjDoorKey__texture_handle);
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -192,7 +193,7 @@ s32 TObjDoorKey::draw_active_beam() {
 
 s32 TObjDoorKey::draw_inactive_badge() {
     Key_8018FCD8 *arg0 = (Key_8018FCD8 *)this;
-    TObjFish::set_global_param(TObjDoorKey__texture_handle);
+    set_current_texture_list((GinjaTextureList *)TObjDoorKey__texture_handle);
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);

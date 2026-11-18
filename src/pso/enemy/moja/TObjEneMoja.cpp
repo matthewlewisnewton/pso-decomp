@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -638,7 +639,7 @@ void TObjEneMoja::render() {
         return;
     }
     select_actor_lighting(this);
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)texlist);
     id = model_render_flags;
     fade = &((Body_800AF080 *)this)->fades[cam];
     saved_model_render_flags = id;

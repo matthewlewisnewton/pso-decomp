@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/object/warp/TObjWarpBase.h"
@@ -279,11 +280,11 @@ block_4:
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(warp_boss_model_handle);
+        set_current_texture_list((GinjaTextureList *)warp_boss_model_handle);
         draw_ginja_object((void *)boss_warp_base_model);
         if (model != 0) {
             TParticleCtrl::begin_effect_render();
-            TObjFish::set_global_param(lbl_805D5CA4);
+            set_current_texture_list((GinjaTextureList *)lbl_805D5CA4);
             draw_ginja_model_with_motion((void *)model, motion, frame);
             TParticleCtrl::end_effect_render();
         }
@@ -892,10 +893,10 @@ block_4:
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(model_handle);
+        set_current_texture_list((GinjaTextureList *)model_handle);
         draw_ginja_object((void *)base_model);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(effect_textures);
+        set_current_texture_list((GinjaTextureList *)effect_textures);
         switch (state) {
         case 0:
             draw_ginja_model_with_motion((void *)confirmation_model, motion, frame);

@@ -1,4 +1,5 @@
 #include "pso/ui/MenuText.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80144B14.h"
 #include "types.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
@@ -110,7 +111,7 @@ void load_menu_font(void) {
     menu_font_palette[1] = 0x3FFF;
     menu_font_palette[2] = 0x5FFF;
     menu_font_palette[3] = 0x7FFF;
-    TObjFish::set_global_param((s32)menu_font_texture_list);
+    set_current_texture_list((GinjaTextureList *)menu_font_texture_list);
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
     }

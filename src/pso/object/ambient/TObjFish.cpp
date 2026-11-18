@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/task/TObject.h"
@@ -45,7 +46,6 @@ s32 get_bml_motion(s32, s32);
 s32 get_bml_texlist(s32, s32);
 s32 get_bml_model(s32, s32);
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl();
 void __dl__7TObjectFPv(void *);
 s32 TObjFish__area_event_stage;
 u8 update_state__8TObjFishFv(void *arg0);
@@ -208,20 +208,17 @@ void render__8TObjFishFv(u8 *arg0) {
             if (get_current_floor_area() == AREA_SEABED_UPPER) {
                 switch (f->kind) {
                 case 1:
-                    get_bml_texlist(TObjFish__area_bml_resource, 1);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 1));
                     get_bml_model(TObjFish__area_bml_resource, 1);
                     draw_ginja_object();
                     break;
                 case 2:
-                    get_bml_texlist(TObjFish__area_bml_resource, 2);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 2));
                     get_bml_model(TObjFish__area_bml_resource, 2);
                     draw_ginja_object();
                     break;
                 default:
-                    get_bml_texlist(TObjFish__area_bml_resource, 0);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 0));
                     get_bml_model(TObjFish__area_bml_resource, 0);
                     draw_ginja_object();
                     break;
@@ -230,18 +227,15 @@ void render__8TObjFishFv(u8 *arg0) {
                 set_motion_packed_rotation();
                 switch (f->kind) {
                 case 1:
-                    get_bml_texlist(TObjFish__area_bml_resource, 1);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 1));
                     draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 1), get_bml_motion(TObjFish__area_bml_resource, 1), f->frame);
                     break;
                 case 2:
-                    get_bml_texlist(TObjFish__area_bml_resource, 2);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 2));
                     draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 2), get_bml_motion(TObjFish__area_bml_resource, 2), f->frame);
                     break;
                 default:
-                    get_bml_texlist(TObjFish__area_bml_resource, 0);
-                    set_global_param__8TObjFishFl();
+                    set_current_texture_list((GinjaTextureList *)get_bml_texlist(TObjFish__area_bml_resource, 0));
                     draw_ginja_model_with_motion(get_bml_model(TObjFish__area_bml_resource, 0), get_bml_motion(TObjFish__area_bml_resource, 0), f->frame);
                     break;
                 }

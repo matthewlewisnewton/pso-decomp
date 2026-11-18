@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/render/MaterialColorFade.h"
@@ -70,7 +71,7 @@ void render__12TEneEffHamonFv(Hamon_800A36A8 *o) {
     saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
     model_render_flags |= 0x810;
     set_chunk_material_override_pair(0xFFFF00FF, 0x800);
-    TObjFish::set_global_param(TEneEffHamon__fish_effect_param);
+    set_current_texture_list((GinjaTextureList *)TEneEffHamon__fish_effect_param);
     set_constant_material((const NJS_ARGB *)(((f32 *)o->color50)));
     push_matrix();
     post_translate_matrix(o->mtx1C);

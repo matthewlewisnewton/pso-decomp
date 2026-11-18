@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/gyaranzo/TObjGyaranzoMissile.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/system/vector.h"
@@ -77,7 +78,6 @@ s32 get_bml_texlist(void *, int);
 s32 get_bml_model(void *, int);
 s32 draw_chunk_object();
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl();
 
 extern s32 model_render_flags;
 
@@ -110,8 +110,7 @@ void TObjGyaranzoMissile::sub_800D47B4() {
 }
 
 void TObjGyaranzoMissile::render() {
-    get_bml_texlist((void *)gyaranzo_bml_resource, 6);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)get_bml_texlist((void *)gyaranzo_bml_resource, 6));
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
     rotate_matrix_x(0, (int)this->rotation_x);

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/render/NinjaUtil.h"
@@ -396,7 +397,6 @@ s32 end_effect_render__13TParticleCtrlFv();
 s32 scale_matrix(int, f32, f32, f32);
 s32 push_matrix();
 f32 post_translate_matrix(void *);
-s32 set_global_param__8TObjFishFl(int);
 s32 draw_chunk_object(int);
 s32 lappy_variant_id;
 void *rappy_bml_resource;
@@ -567,7 +567,7 @@ void TObjEneLappy::render() {
         temp_r3 = this->classify_actor_view_detail(150.0f, 400.0f, 10.0f);
         if (temp_r3 != 0) {
             set_speed_params__12TObjEneLappyFl(this, this->variant);
-            set_global_param__8TObjFishFl(this->texlist);
+            set_current_texture_list((GinjaTextureList *)this->texlist);
             select_actor_lighting(this);
             toggle_particle_effect__10TObjPlayerFv();
             push_matrix();
@@ -1229,7 +1229,6 @@ void *TObjEneLappy::create(void *arg0) {
 #define draw__10TObjMotionFv (*(void (*)(void *))&draw__10TObjMotionFv)
 #define scale_matrix (*(void (*)(int, f32, f32, f32))&scale_matrix)
 #define draw_chunk_object (*(s32 (*)(int))&draw_chunk_object)
-#define set_global_param__8TObjFishFl (*(s32 (*)(void *))&set_global_param__8TObjFishFl)
 #define post_translate_matrix (*(s32 (*)(void *))&post_translate_matrix)
 #define pop_matrix (*(s32 (*)())&pop_matrix)
 #define push_matrix (*(s32 (*)())&push_matrix)
@@ -1677,7 +1676,6 @@ __declspec(section ".sdata2") extern const f32 lbl_805D9F9C = 0.0f;
 #undef push_matrix
 #undef pop_matrix
 #undef post_translate_matrix
-#undef set_global_param__8TObjFishFl
 #undef draw_chunk_object
 #undef scale_matrix
 #undef draw__10TObjMotionFv

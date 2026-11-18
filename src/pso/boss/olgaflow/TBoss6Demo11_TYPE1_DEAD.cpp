@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/MatrixStack.h"
@@ -207,9 +208,9 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         push_matrix();
         set_motion_packed_rotation();
         post_translate_matrix(&position.x);
-        TObjFish::set_global_param(parts[0].texture);
+        set_current_texture_list((GinjaTextureList *)parts[0].texture);
         draw_model_motion((void *)parts[0].model, parts[0].motion, frame);
-        TObjFish::set_global_param(parts[1].texture);
+        set_current_texture_list((GinjaTextureList *)parts[1].texture);
         node_effect->set_draw_callback_list();
         draw_model_motion((void *)parts[1].model, parts[1].motion, frame);
         node_effect->clear_render_callback();

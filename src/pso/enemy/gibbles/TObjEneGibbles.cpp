@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/render/RenderFadeState.h"
 #include "pso/system/task/TObject.h"
@@ -2290,7 +2291,7 @@ void TObjEneGibbles::render() {
         ((RenderFadeState *)(&self->fades[cam]))->update();
         fade = ((RenderFadeState *)(&self->fades[cam]))->updateFromCamera((const f32*)((u8 *)this + 0x2FC));
         select_actor_lighting((s32)this);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix_from(0);
         VecCopy((Vec *)&v, (const Vec *)((Vec *)((u8 *)this + 0x38)));
         switch (this->mode) {

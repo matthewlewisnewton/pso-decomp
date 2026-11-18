@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/system/task/TMainTask.h"
@@ -142,7 +143,7 @@ void draw_status_window__14TAdPlyStatusGCFPvPv(void *window_base, void *arg1) {
         box.v[2] = TAdPlyStatusGC__status_window_box.v[2] + OFF_8033F3D8.x;
         box.v[1] = TAdPlyStatusGC__status_window_box.v[1] + OFF_8033F3D8.y;
         box.v[3] = TAdPlyStatusGC__status_window_box.v[3] + OFF_8033F3D8.y;
-        TObjFish::set_global_param((s32)(get_status_sub__14TAdPlyStatusGCFv(ply_status_chcr_load_afs)));
+        set_current_texture_list((GinjaTextureList *)((get_status_sub__14TAdPlyStatusGCFv(ply_status_chcr_load_afs))));
         begin_screen_draw(1);
         set_draw_texture_and_color(0, -1);
         draw_textured_quad_at_depth((f32 *)&box, 0.8f);

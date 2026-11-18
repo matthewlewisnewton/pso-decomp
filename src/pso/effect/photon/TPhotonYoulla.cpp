@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/effect/photon/TPhotonYoulla.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "types.h"
@@ -70,7 +71,7 @@ void TPhotonYoulla::render() {
     Self_801AE744 *self = (Self_801AE744 *)this;
     if (*(s32 *)&this->m_1a0 != 0) {
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix(&self->pos);
         rotate_matrix_y(0, this->rotation_y);

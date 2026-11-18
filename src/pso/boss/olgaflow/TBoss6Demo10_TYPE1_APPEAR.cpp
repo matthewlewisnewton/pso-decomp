@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/CameraPlayback.h"
 #include "pso/system/PadRumble.h"
 #include "pso/object/ambient/TObjFish_800E2FFC.h"
@@ -71,9 +72,9 @@ void TBoss6Demo10_TYPE1_APPEAR::sub_8033C7C8() {
     push_matrix();
     set_motion_packed_rotation();
     post_translate_matrix(lbl_80477DEC);
-    TObjFish::set_global_param(this->m_20);
+    set_current_texture_list((GinjaTextureList *)this->m_20);
     draw_model_motion((void *)(*(s32 *)((s8 *)this + 0x1C)), (void *)(*(s32 *)((s8 *)this + 0x24)), *(f32 *)((s8 *)this + 0x34));
-    TObjFish::set_global_param(*(s32 *)((s8 *)this + 0x2C));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0x2C)));
     ((TObjFish *)(this->m_60))->set_draw_callback_list();
     draw_model_motion((void *)this->m_28, (void *)this->m_30, *(f32 *)((s8 *)this + 0x34));
     ((TObjFish *)this->m_60)->clear_render_callback();

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -154,7 +155,7 @@ void TBoss4Thanks::render() {
     push_matrix();
     set_motion_packed_rotation();
     post_translate_matrix(boss4_thanks_position);
-    TObjFish::set_global_param(texture_list);
+    set_current_texture_list((GinjaTextureList *)texture_list);
     draw_model_motion((void *)model, (void *)motions[current_motion], motion_frame);
     clear_motion_packed_rotation();
     pop_matrix();

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/render/RenderFadeState_800D7BFC.h"
@@ -223,7 +224,7 @@ void TOTrapAncient01::render() {
             v.z = 0.1f * (3.0517578125e-05f * (f32)rand()) - 0.05f;
             post_translate_matrix(&v.x);
         }
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         n = (NJS_OBJECT *)model;
         push_matrix();
         translate_matrix(0, 0.0f, scale.y, 0.0f);

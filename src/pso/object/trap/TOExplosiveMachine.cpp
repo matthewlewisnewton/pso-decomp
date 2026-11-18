@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/object/trap/TOExplosiveMachine.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/trap/TOExplosiveMachine01.h"
 #include "pso/object/trap/TOExplosiveMachine02.h"
 #include "pso/object/trap/TOExplosiveMachine03.h"
@@ -100,7 +101,7 @@ void TOExplosiveMachine::render() {
         push_matrix();
         post_translate_matrix(&position);
         rotate_matrix_y(0, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
     }

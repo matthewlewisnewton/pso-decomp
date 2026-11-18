@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include <stddef.h>
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/render/MaterialColorFade.h"
@@ -79,7 +80,6 @@ extern s32 lbl_805D63B0;
 s32 push_matrix();
 s32 scale_current_matrix(void *);
 s32 post_translate_matrix(void *);
-s32 set_global_param__8TObjFishFl();
 extern u8 chunk_material_color_half_alpha_f32[];
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
@@ -178,8 +178,7 @@ void TUnk_8048E1A4::render() {
         ok = p->m8(400.0f, 20.0f);
     }
     if (ok != 0) {
-        get_bml_texlist((s32)((void *)freeze_shell_bml_resource), 1);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)get_bml_texlist((s32)((void *)freeze_shell_bml_resource), 1));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

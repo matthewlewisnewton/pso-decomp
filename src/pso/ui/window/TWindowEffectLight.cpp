@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/window/TWindowEffectLight.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/render/render_util.h"
 
@@ -76,7 +77,7 @@ void render__18TWindowEffectLightFv(u8 *window_effect_light) {
     TCameraCtrl::restore_full_screen_view();
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     temp_r0 = *((s16 *) (((s8 *) window_effect_light) + 0x24));
     {
       switch (temp_r0)

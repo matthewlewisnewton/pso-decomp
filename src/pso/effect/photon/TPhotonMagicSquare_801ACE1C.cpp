@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/render/CurrentTextureList.h"
 #include "types.h"
 #include "pso/effect/photon/TPhotonMagicSquare.h"
 #include "pso/ui/hud/TRaderMapCore.h"
@@ -58,7 +59,7 @@ void TPhotonMagicSquare::render() {
     push_matrix();
     post_translate_matrix(&self->vB8);
     rotate_matrix_y(0, this->rotation_y);
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)this->texlist);
     scale_current_matrix(&self->v68);
     NJS_ARGB saved = self->color;
     if ((this->m_b0 % this->m_cc) == 0) {

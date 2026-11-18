@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <stddef.h>
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
@@ -1672,7 +1673,7 @@ void TObjEneMe3Stelth::render() {
                 set_chunk_material_override_pair(0xFF00, 0x800);
             }
             if (draw != 0) {
-                TObjFish::set_global_param(texlist);
+                set_current_texture_list((GinjaTextureList *)texlist);
                 push_matrix();
                 post_translate_matrix(&position.x);
                 translate_matrix(0, 0.0f, m_3d4, 0.0f);
@@ -1711,7 +1712,7 @@ void TObjEneMe3Stelth::render() {
                 set_constant_material(&c);
                 set_color_blend_mode(1, 4, 5, 0);
             }
-            TObjFish::set_global_param(texlist);
+            set_current_texture_list((GinjaTextureList *)texlist);
             for (i = 0; i < 3; i++) {
                 if (TObjEneMe3Stelth__material_color_pointers[i] != 0) {
                     *TObjEneMe3Stelth__material_color_pointers[i] = m_3e8;
@@ -1787,7 +1788,7 @@ void TObjEneMe3Stelth::draw_with_debug_info() {
     }
     flag = sub_800F47D4();
     if (update_object_view_visibility(400.0f, 15.0f) != 0) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         TObjPlayer::toggle_particle_effect();
         if (flag != 0) {
             NJS_TEXNAME *textures = ((NJS_TEXLIST *)texlist)->textures;

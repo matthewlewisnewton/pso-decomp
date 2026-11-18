@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/enemy/epsilon/TObjEneEpsilon.h"
@@ -150,7 +151,7 @@ void TObjEneEpsilonGuard::render_guard_effect() {
     f32 scale;
 
     if ((flags & 0x20) && (get_mode__11TCameraCtrlFPv((void *) (((s32 *)&main_task))) & 0x200)) {
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position.x);
         translate_matrix(0, 0.0f, 24.0f, 0.0f);
@@ -198,7 +199,7 @@ void TObjEneEpsilonGuard::render_with_fade(s32 detail) {
         return;
     }
     this->update_secondary_light();
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)this->texlist);
     push_matrix();
     post_translate_matrix(&this->position.x);
     translate_matrix(0, 0.0f, 24.0f, 0.0f);

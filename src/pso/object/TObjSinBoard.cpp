@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/map/FloorArea.h"
@@ -145,7 +146,7 @@ void TObjSinBoard::render() {
         d.col = col;
         d.count = 4;
         set_default_alpha_blend();
-        TObjFish::set_global_param((s32)&signboard_texture_list);
+        set_current_texture_list((GinjaTextureList *)(&signboard_texture_list));
         set_texture_num(0);
         TParticleCtrl::begin_effect_render();
         push_matrix();

@@ -1,4 +1,5 @@
 #include "pso/ui/frontend/TAdChrSelMovePlateGC.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.h"
 
 #include "types.h"
@@ -37,7 +38,7 @@ void TAdChrSelMovePlateGC::draw_move_plate_quads() {
     u32 i;
     for (i = 0; i < arg0->count; i++) {
         begin_screen_draw(1);
-        TObjFish::set_global_param(chr_sel_move_plate_texture);
+        set_current_texture_list((GinjaTextureList *)chr_sel_move_plate_texture);
         set_draw_texture_and_color(0, (arg0->col[i] << 24) | 0xFFFFFF);
         draw_textured_quad_at_depth((f32 *)&arg0->ents[i], 0.52f);
         TWindowSubStatusDisp::get_player();

@@ -2,6 +2,7 @@
 #pragma fp_contract on
 
 #include "pso/boss/volopt/TObjVoloptPillar.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -74,12 +75,12 @@ void TObjVoloptPillar::render() {
         TObjPlayer::toggle_particle_effect();
         push_matrix();
         post_translate_matrix(&position);
-        TObjFish::set_global_param(volopt_pillar_textures);
+        set_current_texture_list((GinjaTextureList *)volopt_pillar_textures);
         draw_chunk_object((void *)volopt_pillar_model);
         pop_matrix();
         push_matrix();
         translate_matrix(0, position.x, start_y, position.z);
-        TObjFish::set_global_param(volopt_pillar_base_textures);
+        set_current_texture_list((GinjaTextureList *)volopt_pillar_base_textures);
         draw_chunk_object((void *)volopt_pillar_base_model);
         pop_matrix();
         restore_scene_lighting();

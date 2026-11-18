@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/trap/TOMineTrap.h"
 #include "pso/system/vector.h"
 #include "pso/render/ChunkMaterialState.h"
@@ -350,8 +351,8 @@ void TOMine::render() {
         pop_matrix();
     }
 }
-void TOMine::free_parts() { TObjFish::set_global_param(this->texlist); draw_ginja_object(this->model); }
-void TOMine::free_sub_objects() { TObjFish::set_global_param((s32)(*(void**)((char*)this + 0x378))); draw_ginja_object(*(void**)((char*)this + 0x374)); }
+void TOMine::free_parts() { set_current_texture_list((GinjaTextureList *)this->texlist); draw_ginja_object(this->model); }
+void TOMine::free_sub_objects() { set_current_texture_list((GinjaTextureList *)((*(void**)((char*)this + 0x378)))); draw_ginja_object(*(void**)((char*)this + 0x374)); }
 void TOMine::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3;

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TObjEnemy.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/TLobby_801E2F94.h"
@@ -1043,7 +1044,7 @@ int TBoss5Gryphon::vfunc_105() {
     f32 f;
     s32 idx;
     if (this->update_object_view_visibility(400.0f, 20.0f) != 0) {
-        TObjFish::set_global_param(o->f24);
+        set_current_texture_list((GinjaTextureList *)o->f24);
         push_matrix();
         post_translate_matrix((u8 *)this + 0x38);
         rotate_matrix_y(0, o->f60);
@@ -1210,7 +1211,7 @@ s32 TBoss8Dragon__sub_8005DC0C(Obj_8005DC0C *arg0) {
 
 void TBoss5Gryphon::render_with_fade(s32 arg1) {
     RenderFadeState *fade;
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)this->texlist);
     TObjEneDD::clear_global_flag_400();
     saved_model_render_flags = model_render_flags;
     set_material_alpha_compare_reference(0);

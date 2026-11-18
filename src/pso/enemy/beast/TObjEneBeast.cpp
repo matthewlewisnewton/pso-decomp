@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnemyCustom.h"
 #include "pso/enemy/TUnk_80493450.h"
@@ -48,7 +49,6 @@ void draw_chunk_object(void *child);
 void restore_scene_lighting(void);
 void select_actor_lighting(s32 obj);
 s32 push_matrix();
-s32 set_global_param__8TObjFishFl(s32);
 extern s32 model_render_flags;
 }
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -282,7 +282,7 @@ void TObjEneBeast::render() {
     }
     saved_model_render_flags = model_render_flags;
     select_actor_lighting((s32)((Obj_8009211C *)this));
-    TObjFish::set_global_param(((Obj_8009211C *)this)->f24);
+    set_current_texture_list((GinjaTextureList *)(((Obj_8009211C *)this)->f24));
     push_matrix();
     translate_matrix(0, 0.0f, ((Obj_8009211C *)this)->f380, 0.0f);
     post_translate_matrix(((Obj_8009211C *)this)->f38);
@@ -342,7 +342,6 @@ void TObjEneBeast::render() {
 #undef obj_setFlags30
 #undef play_sound_effect
 #undef translate_matrix
-#undef set_global_param__8TObjFishFl
 #undef update_if_active__15TObjEnemyCustomFl
 #undef TObjEneBalClawClaw__sub_800914A4
 #undef find_active_entity_by_id

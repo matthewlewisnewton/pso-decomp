@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/ui/window/TWindowLockOn.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -437,7 +438,7 @@ void draw_selection_bar(u8 *window_key_board_soft, u8 *arg1, s32 arg2) {
     z = -1.0f / (0.22424999f + ((TWindowDrawContext *)window_key_board_soft)->depth);
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_draw_texture_and_color(2, -1);
     q.x0 = x - 2.0f;
     q.y0 = y;
@@ -568,7 +569,7 @@ void TWindowSubComCard__sub_802454E4(s32 texture) {
     }
     set_additive_blend();
     set_tev_swap_channels(3, 3, 3, 3);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_texture_num(texture);
     TLobby__sub_803E2EE4(1);
 }
@@ -645,7 +646,7 @@ void TWindowBase::draw_quest_message_frame(void *c_arg) {
   f32 rem;
   f32 half;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((*(void * *)&lbl_805D63F0)));
+  set_current_texture_list((GinjaTextureList *)(((*(void * *)&lbl_805D63F0))));
   set_draw_texture_and_color(1, -1);
   if (((struct QFrameWindow_80245808 *)this)->height < 64.0f)
   {
@@ -838,7 +839,7 @@ void TWindowBase::draw_window_frame(void *r) {
   f32 dy;
   f32 rem;
   begin_screen_draw(1);
-  TObjFish::set_global_param((s32)((*(void * *)&lbl_805D63F0)));
+  set_current_texture_list((GinjaTextureList *)(((*(void * *)&lbl_805D63F0))));
   set_draw_texture_and_color(1, ((Rect_80245F98 *)r)->f34);
   n = (s32) ((Card_80245F98 *)this)->f4C;
   n += (4 - (n & 3)) & 3;
@@ -1038,7 +1039,7 @@ void load_hud_palette_textures(void) {
     TLobby::tmp_buf_release("TWindowBase");
     load_disc_prs_texture((s32)lbl_8044E758, (s32)f256_hyouji_texlist);
     lbl_805D63F0 = (u32)f256_hyouji_texlist;
-    TObjFish::set_global_param((s32)((void *)f256_hyouji_texlist));
+    set_current_texture_list((GinjaTextureList *)(((void *)f256_hyouji_texlist)));
     TLanguage::set_entry_index(0, 0x40);
     TLanguage::set_entry_index(1, 0x41);
     TLanguage::set_entry_index(2, 0x42);

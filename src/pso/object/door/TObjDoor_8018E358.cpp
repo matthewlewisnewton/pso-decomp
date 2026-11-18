@@ -1,4 +1,5 @@
 #include "pso/render/ChunkMaterialState.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/door/TObjDoor.h"
 #include "types.h"
 #include "pso/render/MaterialColorFade.h"
@@ -187,7 +188,7 @@ void *lbl_804B77F0[18] = {
 };
 
 void draw_model__8TObjDoorFPv(Door_8018E358 *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)TObjDoor__resource_param);
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -204,7 +205,7 @@ void draw_model__8TObjDoorFPv(Door_8018E358 *arg0) {
 }
 
 void render__8TObjDoorFPv(Door_8018E40C *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)TObjDoor__resource_param);
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -230,7 +231,7 @@ void render__8TObjDoorFPv(Door_8018E40C *arg0) {
 }
 
 void draw_closing__8TObjDoorFPv(Door_8018E358 *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)TObjDoor__resource_param);
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -247,7 +248,7 @@ void draw_closing__8TObjDoorFPv(Door_8018E358 *arg0) {
 }
 
 s32 draw_closed__8TObjDoorFPv(Door_8018E5F4 *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)TObjDoor__resource_param);
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);
@@ -281,7 +282,7 @@ void update_timer__8TObjDoorFPv(void *arg0) {
 }
 
 s32 draw_locked__8TObjDoorFPv(Door_8018E74C *arg0) {
-    TObjFish::set_global_param(TObjDoor__resource_param);
+    set_current_texture_list((GinjaTextureList *)TObjDoor__resource_param);
     push_matrix();
     post_translate_matrix(arg0->f38);
     rotate_matrix_y(0, arg0->f60);

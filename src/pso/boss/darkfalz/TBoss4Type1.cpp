@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/PadRumble.h"
 #include "pso/player/TObjPlayer.h"
@@ -231,7 +232,6 @@ void vec3_add_to(Vec *, Vec *);
 void subtract_vector(Vec *, Vec *);
 void normalize_vector(void *);
 int post_translate_matrix(void*);
-s32 set_global_param__8TObjFishFl();
 f32 xyz_distance(Vec *, Vec *);
 void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 
@@ -757,8 +757,7 @@ void TBoss4Type1::draw_parts() {
     s32 a;
     set_motion_packed_rotation();
     for (i = 0; i < 6; i++) {
-        get_bml_texlist((BmlResource *)(*(s32 *)((s8 *)arg0 + 0x390)), lbl_80485EB0[i]);
-        set_global_param__8TObjFishFl();
+        set_current_texture_list((GinjaTextureList *)get_bml_texlist((BmlResource *)(*(s32 *)((s8 *)arg0 + 0x390)), lbl_80485EB0[i]));
         switch (i) {
         case 2:
         case 3:

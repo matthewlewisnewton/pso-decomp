@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/frontend/TAdMultiPlayerNoGC.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -93,7 +94,7 @@ void TAdMultiPlayerNoGC::render() {
 
 void TAdMultiPlayerNoGC::render_status() {
     begin_screen_draw(1);
-    TObjFish::set_global_param((s32)player_ad_texture_list_ptr);
+    set_current_texture_list((GinjaTextureList *)player_ad_texture_list_ptr);
     set_draw_texture_and_color(0, -1);
     draw_textured_quad_at_depth(quad, 0.25f);
     TWindowSubStatusDisp::get_player();

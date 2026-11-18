@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Bit.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Sorcerer.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -546,7 +547,7 @@ void TObjEneRe4Bit::render() {
     textures = ((NJS_TEXLIST *)texlist)->textures;
     saved = textures[3].texaddr;
     textures[3].texaddr = textures[m_3d0].texaddr;
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)texlist);
     saved_model_render_flags = model_render_flags;
     TObjEneDD::clear_global_flag_400();
     TObjPlayer::toggle_particle_effect();

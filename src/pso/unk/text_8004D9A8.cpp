@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/CameraPlayback.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/task/TObject.h"
@@ -53,7 +54,7 @@ void fn_8004D9A8(u8 *arg0) {
             if (i == 0 || i == 1) {
                 s = o->f104;
             }
-            TObjFish::set_global_param(o->d4[i]);
+            set_current_texture_list((GinjaTextureList *)o->d4[i]);
             draw_model_motion((void *)o->bc[i], (void *)o->ec[i], s);
         }
         clear_motion_packed_rotation();

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/effect/particle/ParticleRadial.h"
 #include "pso/effect/particle/TParticleCtrl_80085EE4.h"
 #include "pso/render/render_util.h"
@@ -365,7 +366,7 @@ void TUnk_8048E7A8::render() {
                     ((TUnk_8048E728 *)arg0)->apply_particle_model_fade_color(0);
                 }
             }
-            TObjFish::set_global_param(*(u32 *)&this->unk_B4);
+            set_current_texture_list((GinjaTextureList *)(*(u32 *)&this->unk_B4));
             set_draw_list_mask(3);
             if (this->motion != 0U) {
                 draw_ginja_model_with_motion(this->m_b0, this->motion, this->motion_frame);

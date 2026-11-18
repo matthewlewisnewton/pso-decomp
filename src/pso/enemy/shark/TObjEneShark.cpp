@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/render/RenderFadeState.h"
 #include "pso/system/task/TObject.h"
@@ -376,7 +377,7 @@ void TObjEneShark::render() {
   }
   select_actor_lighting((s32)arg0);
   model_render_flags |= 1;
-  TObjFish::set_global_param(*((s32 *) (((s8 *) arg0) + 0x24)));
+  set_current_texture_list((GinjaTextureList *)(*((s32 *) (((s8 *) arg0) + 0x24))));
   push_matrix();
   translate_matrix(0, 0.0f, this->render_y_offset, 0.0f);
   post_translate_matrix((u8 *)&this->position);

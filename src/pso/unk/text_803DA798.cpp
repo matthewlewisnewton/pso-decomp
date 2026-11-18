@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 
 #include <stddef.h>
 #include "pso/object/ambient/TObjFish.h"
@@ -72,8 +73,8 @@ extern s32 player_ref_entry_active_count;
 s32 TObjPlayer__sub_803DAA70(u32 arg0, u32 arg1, s32 *arg2);
 s32 TObjPlayer__sub_803DAC48(Obj_803DAB7C *arg0, s32 arg1, u32 arg2, u32 arg3, s32 *arg4, s32 *arg5);
 s32 TObjPlayer__sub_803DAE1C(s32 arg0, s32 arg1, u32 arg2);
-s32 TObjFish::set_global_param(s32 arg0) {
-    *(s32 *)((s8 *)current_render_context + 0x20) = arg0;
+s32 set_current_texture_list(GinjaTextureList *list) {
+    ((GinjaSceneState *)current_render_context)->textures = list;
     return 1;
 }
 }

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/TObjBigTuitate.h"
 #include "pso/object/TObjTuitate.h"
 #include "pso/render/render_util.h"
@@ -60,7 +61,6 @@ s32 get_bml_model(s32, s32);
 s32 matrix_mult_vec(int, void *, void *);
 void push_matrix(void);
 void post_translate_matrix(void *);
-void set_global_param__8TObjFishFl(void);
 void draw_ginja_object(void);
 u32 TObjTuitate__bml_resource;
 u32 TObjBigTuitate__bml_resource;
@@ -211,8 +211,7 @@ void TObjTuitate::render() {
     if (fading != 0) {
         ((Fade_8019ADA0 *)(arg0 + 0xAC))->begin();
     }
-    get_bml_texlist((*(s32 *)&TObjTuitate__bml_resource), 0);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)get_bml_texlist((*(s32 *)&TObjTuitate__bml_resource), 0));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));
@@ -306,8 +305,7 @@ void TObjBigTuitate::render() {
     if (fading != 0) {
         ((Fade_8019AA18 *)(arg0 + 0xAC))->begin();
     }
-    get_bml_texlist((*(s32 *)&TObjBigTuitate__bml_resource), 0);
-    set_global_param__8TObjFishFl();
+    set_current_texture_list((GinjaTextureList *)get_bml_texlist((*(s32 *)&TObjBigTuitate__bml_resource), 0));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));

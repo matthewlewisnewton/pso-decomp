@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/system/task/TObject.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -327,7 +328,7 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
         fading = ((RenderFadeState *)(&self->fades[mode]))->updateFromCamera((const f32*)(self->cam));
     }
     select_actor_lighting((s32)self);
-    TObjFish::set_global_param(self->f24);
+    set_current_texture_list((GinjaTextureList *)self->f24);
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);

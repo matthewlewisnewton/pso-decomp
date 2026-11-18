@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TPlayerFootStamp.h"
+#include "pso/render/CurrentTextureList.h"
 #include "types.h"
 #include <stdlib.h>
 #include "pso/boss/darkfalz/TBoss4DarkFalz.h"
@@ -307,7 +308,7 @@ void TPlayerFootStamp::render() {
     if (horizontal_distance_squared(&position, (const Vec *)&camera_ctrl_instance->pos_x) < 22500.0f) {
         saved_model_render_flags = model_render_flags;
         set_default_alpha_blend();
-        TObjFish::set_global_param(player_footstamp_texture_gvm_handle);
+        set_current_texture_list((GinjaTextureList *)player_footstamp_texture_gvm_handle);
         set_texture_num(texture);
         set_depth_buffer_settings_1();
         draw_particle_strip(verts, (void *)4, (void *)1);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TUnk_804CF918.h"
 #include "pso/ui/window/TWindowHelpItem_8025A60C.h"
 #include "pso/system/memory.h"
@@ -63,7 +64,7 @@ void render_item_rarity_stars(Item_8025A650 *item, Ctx_8025A650 *ctx) {
     }
     set_additive_blend();
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_draw_texture_and_color(1, -1);
     x = ctx->x + item->x;
     y = ctx->y + item->y;

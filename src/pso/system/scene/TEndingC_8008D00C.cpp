@@ -1,4 +1,5 @@
 #include "pso/system/scene/TEndingAB.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/enemy/balclaw/TObjEneBalClaw.h"
 #include "types.h"
@@ -55,7 +56,7 @@ extern s32 TEndingC__wall_texture_list_entry[];
 }
 
 void TEndingC::render() {
-    TObjFish::set_global_param((s32)TEndingC__wall_texture_list_entry);
+    set_current_texture_list((GinjaTextureList *)TEndingC__wall_texture_list_entry);
     begin_screen_draw(1);
     set_draw_texture_and_color(1, ((s32) (255.0f * primary_opacity) << 0x18) | 0xFF0000 | 0xFFFF, 255.0f);
     draw_textured_quad_at_depth((f32 *)(render_geometry + 0x0), 0.98f);

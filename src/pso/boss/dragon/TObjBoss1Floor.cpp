@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/boss/dragon/TObjBoss1Floor.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/boss/dragon/TObjBoss1Crater_8002C6B4.h"
@@ -75,7 +76,7 @@ void render__14TObjBoss1FloorFv(void) {
         model_render_flags = 1;
         set_draw_list_mask(3);
         TObjPlayer::draw_if_all_ready();
-        TObjFish::set_global_param(dragon_common_texture_list);
+        set_current_texture_list((GinjaTextureList *)dragon_common_texture_list);
         temp_r31 = (unsigned char *) (*(void **)((s8 *)(*(void **)((s8 *)lbl_805D4B50 + 0x42C)) + 0x58));
         render_projected_shadow_receiver((u8 *)(temp_r31 + 8), (s32)(temp_r31 + 0x14));
         draw_ginja_model((*(s32 *)((s8 *)temp_r31 + 4)));
@@ -150,7 +151,7 @@ extern s32 chunk_polygon_flags_and_mask;
 
 void TObjBoss1MokoHill_Solo::render() {
     u8 *arg0 = (u8 *)this;
-    TObjFish::set_global_param(dragon_common_texture_list);
+    set_current_texture_list((GinjaTextureList *)dragon_common_texture_list);
     update_dragon_trail_uvs((u8 *)&this->m_28);
     push_matrix();
     translate_matrix(0, this->m_28, (f32) (*(f32 *)((s8 *)arg0 + 0x34)), this->m_30);

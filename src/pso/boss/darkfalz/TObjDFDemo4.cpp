@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/boss/darkfalz/TObjDFDemo4.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
@@ -183,7 +184,7 @@ void TObjDFDemo4::sub_8004F2A8() {
     post_translate_matrix(&pos.x);
     rotate_matrix_y(NULL, angle);
     for (i = 0; i < 2; i++) {
-        TObjFish::set_global_param(zanzo_parts[i].texlist);
+        set_current_texture_list((GinjaTextureList *)zanzo_parts[i].texlist);
         draw_model_motion((void *)zanzo_parts[i].model, zanzo_parts[i].motion, 120.0f);
     }
     clear_motion_packed_rotation();
@@ -201,7 +202,7 @@ void TObjDFDemo4::sub_8004F1FC() {
         post_translate_matrix(&pos.x);
         rotate_matrix_y(NULL, angle);
         for (i = 0; i < 3; i++) {
-            TObjFish::set_global_param(body_parts[i].texlist);
+            set_current_texture_list((GinjaTextureList *)body_parts[i].texlist);
             if (i == 0) {
                 node_list->set_draw_callback_list();
             }

@@ -6,6 +6,7 @@
 // file is written from the end of the unit's .text back.
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/seabed/TObjSuisoChip.h"
 #include "pso/object/seabed/TObjSeabedSuisoBrakable.h"
 #include "pso/object/seabed/TObjSeabedSuiso_CH.h"
@@ -334,7 +335,7 @@ void TObjSeabedSuiso_CH::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         TParticleCtrl::end_effect_render();
         update_state();
-        TObjFish::set_global_param(TObjSeabedSuisoBrakable::get_texlist(0));
+        set_current_texture_list((GinjaTextureList *)(TObjSeabedSuisoBrakable::get_texlist(0)));
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

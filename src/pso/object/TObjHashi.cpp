@@ -4,6 +4,7 @@
 // Built -inline off,deferred: the functions come out last to first, so the
 // file is written from the end of the unit's .text back.
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/TObjHashi.h"
 #include "pso/object/TObjHashiVersus1.h"
 #include "pso/object/TObjHashiVersus2.h"
@@ -168,7 +169,7 @@ void TObjHashiBase::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         if (motion != NULL) {
             draw_model_motion(model, motion, animation_frame);
         } else {

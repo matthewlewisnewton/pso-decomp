@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/ambient/TObjCGrass.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -113,7 +114,7 @@ void* fn_800B8B00(void* p) { return (char*)p + 0x3e8; }
 void TObjCGrass::render() {
     Obj_800B8B08 *arg0 = (Obj_800B8B08 *)this;
     s32 i;
-    TObjFish::set_global_param(this->texlist);
+    set_current_texture_list((GinjaTextureList *)this->texlist);
     for (i = 0; i < *(s32 *)&this->m_104; i++) {
         if (!(arg0->recs[i].flags & 1)) {
             push_matrix_from(0);

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/gee/TObjEneMe1Gee_NEEDLE_802A4A44.h"
 #include "pso/enemy/gee/TObjEneMe1Gee_NEEDLE.h"
 #include "pso/enemy/gee/TObjEneMe1Gee.h"
@@ -83,7 +84,7 @@ void TObjEneMe1Gee_NEEDLE::render() {
     post_translate_matrix(&pos.x);
     rotate_matrix_y(NULL, m_a4);
     rotate_matrix_x(NULL, m_a0);
-    TObjFish::set_global_param(get_bml_texlist(me1gee_cached_model_handle, 1));
+    set_current_texture_list((GinjaTextureList *)get_bml_texlist(me1gee_cached_model_handle, 1));
     draw_ginja_object((void *)get_bml_model(me1gee_cached_model_handle, 1));
     TParticleCtrl::end_effect_render();
     pop_matrix();

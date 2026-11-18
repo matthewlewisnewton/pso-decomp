@@ -1,4 +1,5 @@
 #include "pso/system/NinjaTypes.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TUnk_804C3248.h"
 #include "pso/system/MatrixStack.h"
 
@@ -82,7 +83,7 @@ void TPhotonLeilla::render() {
     if (*(s32 *)&this->m_19c != 0) {
         scroll_strip_uvs(leilla_photon_buffer_pair, self->f14C, 0);
         TParticleCtrl::begin_effect_render();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         translate_matrix(0, self->pos.x, self->pos.y, self->pos.z);
         rotate_matrix_y(0, this->rotation_y);

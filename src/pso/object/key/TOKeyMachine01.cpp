@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/network/TProtocol.h"
@@ -163,7 +164,7 @@ void TOKeyMachine01::render() {
     u32 flags;
 
     if (update_object_view_visibility(view_range, model_radius) != 0) {
-        TObjFish::set_global_param(TOKeyMachine01__texture_lists[is_on]);
+        set_current_texture_list((GinjaTextureList *)TOKeyMachine01__texture_lists[is_on]);
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

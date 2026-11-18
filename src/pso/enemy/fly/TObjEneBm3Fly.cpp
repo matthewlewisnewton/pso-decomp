@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -1125,7 +1126,7 @@ void TObjEneBm3Fly::render() {
             this->draw_ground_shadow(&v, 0);
         }
         this->update_secondary_light();
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         translate_matrix(0, this->position.x, this->m_42c, this->position.z);
         rotate_matrix_y(0, this->rotation_y);
@@ -1147,7 +1148,7 @@ void TObjEneBm3Fly::render() {
 void TObjEneBm3Fly::vfunc_106() {
     if (update_object_view_visibility((4e+02f), (15.0f)) != 0) {
         draw_ground_shadow(0, 0);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position);
         rotate_matrix_y(0, rotation_y);

@@ -1,4 +1,5 @@
 #include "pso/boss/derolle/TBoss2Fin.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/vector.h"
 #include "pso/object/TObjEZRopeBase.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -37,7 +38,7 @@ void TBoss2Fin::render() {
     s32 j;
     s32 yaw;
     Vec v;
-    TObjFish::set_global_param(*(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D4BA4 + 0x42C)) + 0x2C));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)lbl_805D4BA4 + 0x42C)) + 0x2C)));
     seg = *(Seg_800363B4 * *)&this->m_20;
     ang = *(Ang_800363B4 **)((s8 *)arg0 + 0x24);
     pt = *(Vec * *)&this->m_2c;

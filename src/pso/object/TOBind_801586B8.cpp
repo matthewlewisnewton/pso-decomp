@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/object/TOBind.h"
 #include "pso/object/TOBind_801586B8.h"
 #include "pso/render/GinjaMaterial.h"
@@ -46,10 +47,10 @@ void TOBind::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         draw_ginja_object(this->model);
         if ((s32) this->m_b0 != 1) {
-            TObjFish::set_global_param(this->m_c8);
+            set_current_texture_list((GinjaTextureList *)this->m_c8);
             TParticleCtrl::begin_effect_render();
             draw_ginja_model_with_motion((void *)this->m_c4, (void *)this->m_cc, (f32)(*(f32 *)((s8 *)arg0 + 0xB8)));
             TParticleCtrl::end_effect_render();

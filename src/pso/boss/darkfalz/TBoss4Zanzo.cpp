@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/math/FloatRounding.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/base/TObjChara.h"
@@ -492,7 +493,7 @@ void TUnk_80486924::draw_hanger() {
     s32 i;
     set_motion_packed_rotation();
     for (i = 0; i < 2; i++) {
-        TObjFish::set_global_param(get_bml_texlist((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]));
+        set_current_texture_list((GinjaTextureList *)get_bml_texlist((BmlResource *)arg0->f390, boss4_zanzo_bml_index_table[i]));
         switch (i) {
         case 1:
             model_render_flags |= 0x20000;
@@ -1366,7 +1367,7 @@ void TBoss4Zanzo::render() {
         set_motion_packed_rotation();
         post_translate_matrix(&params.pos);
         rotate_matrix_y(0, params.rotation_y);
-        TObjFish::set_global_param(params.unk_10);
+        set_current_texture_list((GinjaTextureList *)params.unk_10);
         TObjPlayer__sub_80052390(value);
         draw_model_motion(params.model, params.motion, params.unk_1c);
         TObjPlayer::sync_player_globals();

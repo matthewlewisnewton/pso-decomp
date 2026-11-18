@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_8033E910.h"
 #include "pso/ui/frontend/TAdMcCheckGC.h"
 #include "pso/unk/TUnk_804EFA88.h"
@@ -41,7 +42,6 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 rotate_matrix_by_node_angles(void *, int);
 s32 post_translate_matrix(void *);
-int set_global_param__8TObjFishFl(void);
 void draw_ginja_object(void *child);
 void set_material_alpha_compare_reference(s32 reference);
 }
@@ -58,7 +58,7 @@ void play_indirect_effect_recipe(u8 arg0, u16 sampler, s32 second);
 char *get_shared_capture_texture_list(void);
 void load_list_texture(s32 idx, s32 wrapS, s32 wrapT, s32 map);
 
-void init_particle_effect__10TObjPlayerFv(void) { get_shared_capture_texture_list(); set_global_param__8TObjFishFl(); load_list_texture(0, 0, 0, 2); }
+void init_particle_effect__10TObjPlayerFv(void) { set_current_texture_list((GinjaTextureList *)get_shared_capture_texture_list()); load_list_texture(0, 0, 0, 2); }
 
     extern int model_render_flags;
 void reset_effects__10TObjPlayerFv(void) { set_ginja_post_tev_stage_count((s32)((void*)0)); set_ginja_post_texgen_count((s32)((void*)0)); TObjPlayer::set_global_effect_state((s32)((void*)0)); model_render_flags = (model_render_flags & 0xfff7ffff); }
@@ -123,7 +123,7 @@ void TUnk_804EFA88::render() {
         play_indirect_effect_recipe(((O_8033EB4C *)this)->items[i].effect_kind, 1, 1);
         ((void (*)(void *))init_particle_effect__10TObjPlayerFv)(this);
         ((void (*)(void *))setup_projection_tex_matrix__10TObjPlayerFv)(this);
-        ((void (*)(s32))set_global_param__8TObjFishFl)(((O_8033EB4C *)this)->items[i].p18);
+        set_current_texture_list((GinjaTextureList *)(((O_8033EB4C *)this)->items[i].p18));
         draw_ginja_object((void *)(((O_8033EB4C *)this)->items[i].p1C));
         pop_matrix();
         reset_indirect_tev(1);

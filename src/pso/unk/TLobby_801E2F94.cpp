@@ -1,4 +1,5 @@
 #include "pso/animation/MotionContext.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/keyboard/TKeyBoardControl_80131C58.h"
 #include "pso/camera/TCameraCtrl_803D749C.h"
 #include "pso/unk/TLobby_80227AA0.h"
@@ -53,7 +54,7 @@ void TObjPlayer::draw_shadow_quad(s32 arg1, s32 flags) {
     f32 ey, ex, cx, cy, z;
     f32 u0, v0, u1, v1;
 
-    TObjFish::set_global_param(self->param);
+    set_current_texture_list((GinjaTextureList *)self->param);
     set_texture_num(self->rect->tex);
     u0 = 0.01f;
     u1 = 0.99f;

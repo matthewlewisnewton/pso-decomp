@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/boss/olgaflow/TBoss6CrushRock.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/boss/olgaflow/TBoss6CrushPtcl.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
 #include "pso/boss/olgaflow/TBoss6Rock.h"
@@ -133,7 +134,7 @@ void TBoss6CrushRock::run_task() {
 }
 #pragma pop
 
-void TBoss6CrushRock::render() { if (is_falz_alive() != 0) { push_matrix(); post_translate_matrix((char*)this + 0x24); rotate_matrix_y((void*)0, *(void**)((char*)this + 0x40)); rotate_matrix_x((void*)0, *(void**)((char*)this + 0x3c)); rotate_matrix_z((void*)0, *(void**)((char*)this + 0x44)); TObjFish::set_global_param((s32)(*(void**)((char*)this + 0x20))); draw_ginja_object(*(void**)((char*)this + 0x1c)); pop_matrix(); } }
+void TBoss6CrushRock::render() { if (is_falz_alive() != 0) { push_matrix(); post_translate_matrix((char*)this + 0x24); rotate_matrix_y((void*)0, *(void**)((char*)this + 0x40)); rotate_matrix_x((void*)0, *(void**)((char*)this + 0x3c)); rotate_matrix_z((void*)0, *(void**)((char*)this + 0x44)); set_current_texture_list((GinjaTextureList *)((*(void**)((char*)this + 0x20)))); draw_ginja_object(*(void**)((char*)this + 0x1c)); pop_matrix(); } }
 
 s32 TBoss6CrushRock::is_falz_alive() {
     return TBoss6PlotFalz::get_hp() ? 1 : 0;

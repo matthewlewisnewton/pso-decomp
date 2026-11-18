@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include <dolphin/base/PPCArch.h>
 #include "pso/system/task/TMainTask.h"
 #include "pso/object/mine/TOCapsuleMachine01.h"
@@ -43,7 +44,7 @@ void TOCapsuleMachine01::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);
-        TObjFish::set_global_param(texlist);
+        set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
     }

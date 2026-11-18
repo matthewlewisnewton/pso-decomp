@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TLobby_80228154.h"
 #include "pso/unk/TLobby_80299C4C.h"
 #include "pso/unk/TLobby.h"
@@ -80,7 +81,7 @@ void TLobby__sub_80228154(Sprite_80228154 *sprite, s32 frame_index, s32 flags, f
     if (sprite->texture_list == 0) {
         return;
     }
-    TObjFish::set_global_param(sprite->texture_list);
+    set_current_texture_list((GinjaTextureList *)sprite->texture_list);
     SpriteFrame_80228154 *frame = &sprite->frames[frame_index];
     f32 left = -frame->origin_x;
     f32 top = -frame->origin_y;

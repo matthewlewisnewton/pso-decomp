@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/unk/TLobby.h"
 #include "pso/boss/olgaflow/TBoss6Mag.h"
@@ -986,7 +987,7 @@ void TBoss6Mag::draw_model_motion_blend() {
     set_motion_packed_rotation();
     temp_r31 = get_bml_texlist((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 1);
     bml_model = get_bml_model((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 1);
-    TObjFish::set_global_param(temp_r31);
+    set_current_texture_list((GinjaTextureList *)temp_r31);
     if ((0.0f) == *(f32 *)((s8 *)this + 0x3E8)) {
         ((TObjFish *)(*(s32 *)((s8 *)this + 0x458)))->set_draw_callback_list();
         draw_model_motion((void *)bml_model, (void *)(*(s32 *)((s8 *)this + 0x3DC)), *(f32 *)((s8 *)this + 0x3E0));

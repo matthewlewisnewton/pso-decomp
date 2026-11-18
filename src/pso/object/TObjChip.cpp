@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/ChunkMaterialState.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TObject.h"
 #include "pso/render/MaterialColorFade.h"
 #include "pso/system/vector.h"
@@ -427,7 +428,7 @@ void tick_chips__8TObjChipFv(u8 *arg0) {
 }
 #pragma pop
 void render_chips__8TObjChipFv(u8 *arg0) {
-    TObjFish::set_global_param((int) (*(s32 *)((s8 *)arg0 + 0x68)));
+    set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)arg0 + 0x68))));
     if (*(s32 *)((s8 *)arg0 + 0x6C) & 0x10) {
         ((VObj_18 *)(arg0))->m10();
         return;

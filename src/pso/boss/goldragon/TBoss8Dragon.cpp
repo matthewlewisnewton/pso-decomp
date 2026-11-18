@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/math/FloatRounding.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -5945,7 +5946,7 @@ void TBoss8Dragon::draw() {
 void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
     u8 *temp_r31;
     if (!(this->position.y <= -400.0f)) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         TObjEneDD::clear_global_flag_400();
         saved_model_render_flags = model_render_flags;
         set_material_alpha_compare_reference(0);
@@ -6056,7 +6057,7 @@ void TBoss8Dragon::draw_motion_model() {
     s32 idx;
     Anim_802F3D6C *anim;
     if (this->update_object_view_visibility(400.0f, 20.0f) != 0) {
-        TObjFish::set_global_param(*(s32 *)(arg0 + 0x24));
+        set_current_texture_list((GinjaTextureList *)(*(s32 *)(arg0 + 0x24)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, *(s32 *)(arg0 + 0x60));

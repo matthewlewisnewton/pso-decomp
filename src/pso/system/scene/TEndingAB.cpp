@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/system/scene/TEndingAB.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/render/render_util.h"
@@ -264,13 +265,13 @@ void TEndingAB::set_fish_global_param() {
     switch (game_difficulty_selection) {
     case 0:
     case 1:
-        TObjFish::set_global_param((s32)ending_ab_wall_texture_list);
+        set_current_texture_list((GinjaTextureList *)ending_ab_wall_texture_list);
         break;
     case 2:
-        TObjFish::set_global_param((s32)ending_ab_wall_texture_list);
+        set_current_texture_list((GinjaTextureList *)ending_ab_wall_texture_list);
         break;
     case 3:
-        TObjFish::set_global_param((s32)ending_ab_wall_texture_list);
+        set_current_texture_list((GinjaTextureList *)ending_ab_wall_texture_list);
         break;
     }
 }

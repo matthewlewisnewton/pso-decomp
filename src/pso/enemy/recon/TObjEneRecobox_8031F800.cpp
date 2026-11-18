@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 
 #include "pso/object/base/TObjMotion.h"
@@ -1440,7 +1441,7 @@ block_18:
                 }
 block_23:
                 ((TObjEneDD *)arg0)->update_secondary_light();
-                TObjFish::set_global_param((int) (((TObjEneRecobox *)arg0)->texlist));
+                set_current_texture_list((GinjaTextureList *)((((TObjEneRecobox *)arg0)->texlist)));
                 push_matrix();
                 post_translate_matrix((u8 *)&this->position);
                 rotate_matrix_y(0, (int) (((TObjEneRecobox *)arg0)->rotation_y));
@@ -1503,7 +1504,7 @@ void TObjEneRecobox::draw_with_debug_info() {
         debug_printf_at(pack_debug_text_position(0, 5), "RECON MAX(Min:0 Max:6)");
     }
     if (this->update_object_view_visibility(500.0f, 120.0f) != 0) {
-        TObjFish::set_global_param(this->texlist);
+        set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation_y);

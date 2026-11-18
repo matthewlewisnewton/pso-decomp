@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/recon/TObjEneReconBomb.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -153,7 +154,7 @@ void TObjEneReconBomb::render() {
     push_matrix();
     translate_matrix(0, (f32) (*(f32 *)((s8 *)arg0 + 0x38)), (f32) ((2.0f) + *(f32 *)((s8 *)arg0 + 0x3C)), (f32) (*(f32 *)((s8 *)arg0 + 0x40)));
     rotate_matrix_zyx(0, (this->rotation_x), (this->rotation_y), (this->rotation_z));
-    TObjFish::set_global_param(temp_r30);
+    set_current_texture_list((GinjaTextureList *)temp_r30);
     draw_chunk_object((void *)bml_model);
     pop_matrix();
     push_matrix();

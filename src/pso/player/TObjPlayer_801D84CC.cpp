@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_801D84CC.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/item/TItem.h"
@@ -113,7 +114,7 @@ void TUnk_804C4540::render() {
         rotate_matrix_y(0, rotation_y);
         save_render_material_state((u8 *)&render_material_state);
         apply_material_color_override();
-        TObjFish::set_global_param((s32)((u8 *)this + 0xCF4));
+        set_current_texture_list((GinjaTextureList *)(((u8 *)this + 0xCF4)));
         set_motion_packed_rotation();
         draw_saving_joints_checked();
         clear_motion_packed_rotation();

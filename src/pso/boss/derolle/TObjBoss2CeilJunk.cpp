@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/vector.h"
+#include "pso/render/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/derolle/TObjBoss2CeilJunk.h"
 #include "pso/render/MaterialColorFade.h"
@@ -154,7 +155,7 @@ void TObjBoss2CeilJunk::render() {
     set_chunk_blend(0x2500);
   }
   push_matrix();
-  TObjFish::set_global_param(lbl_805D4BEC);
+  set_current_texture_list((GinjaTextureList *)lbl_805D4BEC);
   post_translate_matrix(self->pos);
   rotate_matrix_y(0, this->rotation_y);
   rotate_matrix_x(0, this->rotation_x);

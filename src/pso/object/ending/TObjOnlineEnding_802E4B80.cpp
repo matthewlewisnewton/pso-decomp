@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/system/task/TObject.h"
 #include "pso/object/base/TObjMotion.h"
@@ -273,7 +274,7 @@ void TObjOnlineEnding::render() {
     push_matrix();
     post_translate_matrix(lbl_804E3A38);
     scale_matrix(0, online_ending_scene_scale, 1.0f, 1.0f);
-    TObjFish::set_global_param(*(s32 *)&this->m_94);
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)&this->m_94));
     draw_model_motion((void *)*(s32 *)&this->m_90, (void *)*(s32 *)&this->m_98, arg0->f150);
     pop_matrix();
     for (i = 0; i < *(s32 *)&this->m_148; i++) {

@@ -1,4 +1,5 @@
 #include "pso/ui/frontend/TAdTitleGC.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/render/ModelDrawContext.h"
 #include "pso/ui/frontend/TAdDrawLineCtrl.h"
@@ -178,7 +179,7 @@ block_5:
 s32 TAdTitleGC::draw_title_layer(s32 arg1, s32 arg2) {
     s32 i;
     begin_screen_draw(1);
-    TObjFish::set_global_param(lbl_805D6630);
+    set_current_texture_list((GinjaTextureList *)lbl_805D6630);
     set_draw_texture_and_color(arg1 > 0xB, arg2);
     for (i = 0; i < 8; i++) {
         draw_textured_quad_at_depth((f32 *)(&((Title_802A0A60 *)this)->recs[i]), (-1.0f) / -((113.0f) - (f32)i));

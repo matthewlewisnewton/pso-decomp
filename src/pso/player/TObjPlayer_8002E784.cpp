@@ -4,6 +4,7 @@
 // and TUnk_804820A8::render's .rodata templates before TUnk_80482090::render's only come out in that order).
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TUnk_804820A8.h"
 #include "pso/boss/goldragon/TBoss8Dragon_8002CC48.h"
 #include "pso/system/vector.h"
@@ -235,7 +236,7 @@ void TUnk_804820A8::render() {
     scale.x = lbl_805D8260;
     scale.y = lbl_805D8260;
     scale.z = lbl_805D8260;
-    TObjFish::set_global_param(*(s32 *)(res + 0x2C));
+    set_current_texture_list((GinjaTextureList *)(*(s32 *)(res + 0x2C)));
     for (i = 0; i < 19; i++) {
         push_matrix();
         post_translate_matrix(&p->pos);
@@ -345,7 +346,7 @@ void TUnk_80482090::render() {
     {
         NJS_ARGB c = {1.0f, 1.0f, 1.0f, 1.0f};
         n = mesh->nodes;
-        TObjFish::set_global_param(model->f2C);
+        set_current_texture_list((GinjaTextureList *)model->f2C);
         push_matrix();
         for (i = 0; i < 0x1C; i++, n = n->next, p++) {
             push_matrix();

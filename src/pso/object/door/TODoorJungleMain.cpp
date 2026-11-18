@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 
 #include "pso/object/door/TODoorJungleMain.h"
 
@@ -145,11 +146,10 @@ void *get_bml_model(u32, int);
 
 s32 rotate_matrix_y(int, int);
 
-int push_matrix(void *);
+s32 push_matrix(void);
 
 int post_translate_matrix(void *);
 
-void *set_global_param__8TObjFishFl(void *);
 
 s32 draw_ginja_model_with_motion(void *, int, f32);
 }
@@ -301,7 +301,8 @@ void TODoorJungleMain::render() {
     Ids_8029B428 ids = {{2, 1, 0}};
     s32 i;
     if (self->m8(self->fc0, self->fc4) == 1) {
-        push_matrix(set_global_param__8TObjFishFl((void *)door_jungle_main_gvm_texture));
+        set_current_texture_list((GinjaTextureList *)door_jungle_main_gvm_texture);
+        push_matrix();
         post_translate_matrix(self->xf);
         rotate_matrix_y(0, self->f60);
         if (self->flags & 1) {

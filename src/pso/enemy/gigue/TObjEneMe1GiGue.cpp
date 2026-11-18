@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/unk/text_800DC420.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -566,7 +567,7 @@ void TObjEneMe1GiGue::render() {
             return;
         }
     }
-    TObjFish::set_global_param(texlist);
+    set_current_texture_list((GinjaTextureList *)texlist);
     select_actor_lighting((s32)this);
     TObjPlayer::toggle_particle_effect();
     ok = 1;

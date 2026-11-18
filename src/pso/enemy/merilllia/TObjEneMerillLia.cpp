@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/enemy/TUnk_80493450.h"
 #include "pso/player/TObjPlayer.h"
@@ -977,7 +978,7 @@ void TObjEneMerillLia::render() {
   {
     saved_model_render_flags = model_render_flags;
     select_actor_lighting((s32)this);
-    TObjFish::set_global_param((int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_24);
+    set_current_texture_list((GinjaTextureList *)(((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_24));
     push_matrix();
     translate_matrix(0, 0.0f, (f32) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_380, 0.0f);
     post_translate_matrix(((u8 *)this) + 0x38);

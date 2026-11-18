@@ -1,4 +1,5 @@
 #include "pso/ui/window/TWindowDD.h"
+#include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/system/task/TObject.h"
 #include "pso/ui/window/TWindowDD_WS_ScrollBar.h"
@@ -128,7 +129,7 @@ void TWindowDD__sub_80340A78(TWindowDD_WS_ScrollBar *self) {
     ((TWindowDD *)verts)->draw_transformed_primitive(8, tex, 1);
 
     z = TWindowDD__sub_80348AD4(self->pad_54, 0.1f);
-    TObjFish::set_global_param(lbl_805D63F0);
+    set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     begin_screen_draw(1);
     set_draw_texture_and_color(0, -1);
 

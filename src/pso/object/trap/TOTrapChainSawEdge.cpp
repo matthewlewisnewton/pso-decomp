@@ -1,4 +1,5 @@
 #include "pso/network/protocol/protocol_types.h"
+#include "pso/render/CurrentTextureList.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801E2D1C.h"
 #include "pso/system/task/TObject.h"
@@ -282,7 +283,7 @@ void TOTrapChainSawEdge::vfunc_16() {
 }
 
 void TOTrapChainSawEdge::vfunc_25() {
-    TObjFish::set_global_param((s32)(*(void **)((s8 *)this + 0x24)));
+    set_current_texture_list((GinjaTextureList *)((*(void **)((s8 *)this + 0x24))));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     push_matrix();
@@ -384,7 +385,7 @@ void TOTrapChainSawKey::vfunc_27() {  }
 int TOTrapChainSawKey::check_player_contact() { if (*(int*)((char*)this + 0xf0) != 1) { TOTrapChainSaw::check_player_contact(); } }
 
 void TOTrapChainSawKey::vfunc_25() {
-    TObjFish::set_global_param((s32)(*(void **)((s8 *)this + 0x24)));
+    set_current_texture_list((GinjaTextureList *)((*(void **)((s8 *)this + 0x24))));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     push_matrix();
@@ -522,7 +523,7 @@ void TOTrapChainSawDamage::vfunc_14() {
 }
 
 void TOTrapChainSawDamage::vfunc_25() {
-    TObjFish::set_global_param((s32)(*(void **)((s8 *)this + 0x24)));
+    set_current_texture_list((GinjaTextureList *)((*(void **)((s8 *)this + 0x24))));
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
     push_matrix();
