@@ -467,6 +467,16 @@ The draw-buffer helpers retain their existing native link names at a bounded
 ABI interface rather than casting vertex buffers to window objects; ports
 should map those legacy names to the corresponding shared draw operations.
 
+### Lobby animal virtual tables
+
+`src/pso/object/LobbyPigeonPath.cpp` defines the five animal destructors and
+`TObjPathObj` destructor in C++. Immediate emission places their six virtual
+tables in reverse address order. A scoped `#pragma defer_codegen on` and
+reverse definition order restore both the original function order and all
+six table addresses at `0x804E0898` through `0x804E09C4`. The existing
+GC/2.0 compiler profile is sufficient. A port can use ordinary definition
+order and its compiler's virtual dispatch.
+
 ### `pso/boss/TBoss4Type1.cpp`
 
 The six trailing functions use `#pragma defer_codegen on` and reverse source
