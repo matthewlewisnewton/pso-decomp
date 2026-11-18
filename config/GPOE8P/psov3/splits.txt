@@ -4921,41 +4921,11 @@ pso/misc/TOComputerMachine01.cpp:
 	.sbss       start:0x805D58E0 end:0x805D58E8
 	.sdata2     start:0x805DB390 end:0x805DB398
 
-pso/misc/TOContainerAncientEnemyRare.cpp:
-	.text       start:0x8015B714 end:0x8015B84C
-
-pso/misc/TOContainerAncientEnemyCommon.cpp:
-	.text       start:0x8015B84C end:0x8015B8E8
-
 pso/misc/TOContainerAncientEnemy.cpp:
-	.text       start:0x8015B8E8 end:0x8015BE34
-
-pso/misc/TOContainerAncientItemNone.cpp:
-	.text       start:0x8015BE34 end:0x8015BF38
-
-pso/misc/TOContainerAncientItemNone_8015BF38.cpp:
-	.text       start:0x8015BF38 end:0x8015BFF0
-
-pso/misc/TOContainerAncientItemRare.cpp:
-	.text       start:0x8015BFF0 end:0x8015C048
-
-pso/unk/text_8015C048.cpp:
-	.text       start:0x8015C048 end:0x8015C098
-
-pso/misc/TOContainerAncientItemCommon.cpp:
-	.text       start:0x8015C098 end:0x8015C4CC
-
-pso/player/TObjPlayer_8015C4CC.cpp:
-	.text       start:0x8015C4CC end:0x8015C534
-
-pso/unk/text_8015C534.cpp:
-	.text       start:0x8015C534 end:0x8015C680
-
-pso/unk/text_8015C680.cpp:
-	.text       start:0x8015C680 end:0x8015C8D8
-	.rodata     start:0x80440508 end:0x80440654
-	.data       start:0x804B0068 end:0x804B00C8
-	.sdata      start:0x805D2EF0 end:0x805D2EFC
+	.text       start:0x8015B714 end:0x8015C8D8
+	.rodata     start:0x80440508 end:0x80440940
+	.data       start:0x804B0068 end:0x804B0A08
+	.sdata      start:0x805D2EF0 end:0x805D2F14
 	.sdata2     start:0x805DB398 end:0x805DB39C
 
 pso/player/TObjPlayer_8015C8D8.cpp:

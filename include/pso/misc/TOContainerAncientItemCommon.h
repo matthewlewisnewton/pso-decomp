@@ -14,7 +14,6 @@ typedef char TOContainerAncientItemCommon_size[sizeof(TOContainerAncientItemComm
 
 extern "C" {
 void *TOContainerAncientItemCommon__ct(void *arg0, void *_w1);
-void *__dt__28TOContainerAncientItemCommonFv(void *arg0, s16 arg1);
 }
 
 #endif

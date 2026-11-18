@@ -11,8 +11,5 @@ struct TOContainerAncientItemRare : public TUnk_804B08BC {
 
 typedef char TOContainerAncientItemRare_size[sizeof(TOContainerAncientItemRare) == 0x368 ? 1 : -1];
 
-extern "C" {
-void *__dt__26TOContainerAncientItemRareFv(void *arg0, s16 arg1);
-}
 
 #endif

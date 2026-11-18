@@ -1309,12 +1309,6 @@ pso/misc/TOChatSensor_8015B214.cpp
 pso/misc/TOComputerMachine01.cpp
 pso/misc/TOComputerMachine01_8023DD0C.cpp
 pso/misc/TOContainerAncientEnemy.cpp
-pso/misc/TOContainerAncientEnemyCommon.cpp
-pso/misc/TOContainerAncientEnemyRare.cpp
-pso/misc/TOContainerAncientItemCommon.cpp
-pso/misc/TOContainerAncientItemNone.cpp
-pso/misc/TOContainerAncientItemNone_8015BF38.cpp
-pso/misc/TOContainerAncientItemRare.cpp
 pso/misc/TOCtrlDubchik_8015CA74.cpp
 pso/misc/TODoorAncient01.cpp
 pso/misc/TODoorAncient03.cpp
@@ -2483,7 +2477,6 @@ pso/player/TObjPlayer_80130BF0.cpp
 pso/player/TObjPlayer_80148DCC.cpp
 pso/player/TObjPlayer_8014C610.cpp
 pso/player/TObjPlayer_801542CC.cpp
-pso/player/TObjPlayer_8015C4CC.cpp
 pso/player/TObjPlayer_8015C8D8.cpp
 pso/player/TObjPlayer_80178150.cpp
 pso/player/TObjPlayer_8017E4EC.cpp
@@ -3144,9 +3137,6 @@ pso/unk/text_8014AAC4.cpp
 pso/unk/text_8014AB24.cpp
 pso/unk/text_8014B8A4.cpp
 pso/unk/text_8014B904.cpp
-pso/unk/text_8015C048.cpp
-pso/unk/text_8015C534.cpp
-pso/unk/text_8015C680.cpp
 pso/unk/text_80165940.cpp
 pso/unk/text_8016F1C0.cpp
 pso/unk/text_80171A98.cpp

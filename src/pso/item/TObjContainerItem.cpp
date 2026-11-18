@@ -455,7 +455,7 @@ void get_actor_level_index__9TObjCharaFv();
 void update_actor_ground_y__9TObjCharaFv();
 void vfunc_18__9TObjCharaFPUc();
 void is_actor_cadence_frame__9TObjCharaFl();
-void is_within_range__10TObjPlayerFl();
+void select_melee_contact_body__13TUnk_804B6C24FPvf();
 void calc_distance_accuracy_penalty__13TUnk_804B6C24FPvPvPvf();
 void receive_physical_attack__21TObjContainerAbeEnemyFPvf();
 void receive_direct_attack__13TUnk_804B6C24FPv19DirectAttackPayloadPvll();
@@ -675,7 +675,7 @@ void *__dt__21TObjContainerAbeEnemyFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = (s32 *)__vt__21TObjContainerAbeEnemy;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TUnk_804B6C24 *)arg0)->destroy_container_object(0);
+        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -813,7 +813,7 @@ void *__dt__17TObjContainerBaseFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__17TObjContainerBase;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TUnk_804B6C24 *)arg0)->destroy_container_object(0);
+        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -954,7 +954,7 @@ void *__dt__19TObjContainerNoItemFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TObjContainerNoItem;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TUnk_804B6C24 *)arg0)->destroy_container_object(0);
+        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -1107,7 +1107,7 @@ void *__dt__18TObjContainerEnemyFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TObjContainerEnemy;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TUnk_804B6C24 *)arg0)->destroy_container_object(0);
+        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -1237,7 +1237,7 @@ void *__vt__21TObjContainerAbeEnemy[83] = {
     (void *)update_actor_ground_y__9TObjCharaFv,
     (void *)vfunc_18__9TObjCharaFPUc,
     (void *)is_actor_cadence_frame__9TObjCharaFl,
-    (void *)is_within_range__10TObjPlayerFl,
+    (void *)select_melee_contact_body__13TUnk_804B6C24FPvf,
     (void *)calc_distance_accuracy_penalty__13TUnk_804B6C24FPvPvPvf,
     (void *)receive_physical_attack__21TObjContainerAbeEnemyFPvf,
     (void *)receive_direct_attack__13TUnk_804B6C24FPv19DirectAttackPayloadPvll,
@@ -1328,7 +1328,7 @@ void *__dt__17TObjContainerItemFv(void *arg0, s16 arg1) {
         *(s32 **)((s8 *)arg0 + 0x18) = __vt__17TObjContainerItem;
         ((TObjCollidable *)arg0)->unregister_object_by_id();
         free_collision_body_parts(arg0);
-        ((TUnk_804B6C24 *)arg0)->destroy_container_object(0);
+        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
         }
@@ -1493,9 +1493,8 @@ f32 TUnk_804B6C24::receive_direct_attack(void *arg1, DirectAttackPayload payload
     }
     return lbl_805DBCF4;
 }
-s32 TObjPlayer::is_within_range(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
-    return xyz_distance_squared((Vec *)(arg1 + 0x38), (Vec *)&this->position) < *(f32 *)((s8 *)arg0 + 0x33C);
+s32 TUnk_804B6C24::select_melee_contact_body(void *target, f32) {
+    return xyz_distance_squared(&static_cast<TObjBase *>(target)->position, &position) < melee_range_sq;
 }
 
 }

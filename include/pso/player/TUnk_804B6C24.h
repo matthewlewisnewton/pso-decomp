@@ -10,7 +10,6 @@ public:
     virtual void vfunc_80();
     virtual void vfunc_81();
     virtual void debug_print_item_box_info();
-    void *destroy_container_object(s16);
     virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
     virtual f32 receive_physical_attack(void *, f32);
     void spawn_item(s32);
@@ -22,11 +21,15 @@ public:
     virtual int calc_distance_accuracy_penalty(void *, void *, void *, float);
     virtual void render();
     virtual void run_task();
+    virtual s32 select_melee_contact_body(void *target, f32 range);
     u8 unk_334[0x4];
     f32 m_338;
-    u8 unk_33C[0x24];
+    f32 melee_range_sq;
+    u8 unk_340[0x20];
     s32 m_360;
     s32 m_364;
 };
+
+extern "C" void *__dt__13TUnk_804B6C24Fv(TUnk_804B6C24 *container, s16 deleting);
 
 #endif
