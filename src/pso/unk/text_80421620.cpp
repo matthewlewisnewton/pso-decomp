@@ -8,6 +8,14 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 
+enum SocketHandleTag {
+    TcpSocketTag = 0,
+    UdpSocketTag = 0x400,
+    SocketTagMask = 0xC00
+};
+
+#define SOCKET_HANDLE(index, tag) ((s16)((index) | (tag)))
+
 struct RecoveredGlobal_804217E4_lbl_805C1C50 {
     s32 value;
     u8 remaining[0xF4];
@@ -417,7 +425,7 @@ s32 TLobby__sub_80421B3C(s32 a) {
     s32 r;
     G_80421B3C *g;
     s16 m;
-    if ((a & 0xC00) != 0x400) { return -4; }
+    if ((a & SocketTagMask) != UdpSocketTag) { return -4; }
     g = ((G_80421B3C *)&network_dispatch_state);
     m = a & 0xFFFFF3FF;
     TLobby::lock_mutex((int)((void *)g->f0));
@@ -437,7 +445,7 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     u16 i;
     UdpPkt_80421BAC *pkt;
     s16 r;
-    if ((h & 0xC00) != 0x400) {
+    if ((h & SocketTagMask) != UdpSocketTag) {
         return -4;
     }
     h = h & 0xFFFFF3FF;
@@ -531,14 +539,14 @@ s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return r;
     }
-    h |= 0x400;
+    h |= UdpSocketTag;
     TUdpSocket::unlock_mutex(network_dispatch_state.value);
     return h;
 }
 
 s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 flags) {
     Stack_80421F10 s;
-    s.receive.flags = flags | 0x400;
+    s.receive.flags = SOCKET_HANDLE(flags, UdpSocketTag);
     s.receive.length = o->f8 - o->fC;
     s.receive.buffer = NULL;
     NetMemcpy(s.src, src, 0x14);
@@ -611,7 +619,7 @@ s16 tcp_receive__FsPFss_vsPUc(s32 a, void *cb, s32 len, void *buf) {
     s16 r;
     G_8042213C *g;
     T_8042213C *s;
-    if (a & 0xC00) {
+    if ((a & SocketTagMask) != TcpSocketTag) {
         return -4;
     }
     g = (G_8042213C *)&network_dispatch_state;
@@ -669,17 +677,14 @@ s16 tcp_receive__FsPFss_vsPUc(s32 a, void *cb, s32 len, void *buf) {
 
 typedef struct S_804220A0 S_804220A0;
 typedef struct T_80422368 T_80422368;
-#pragma push
-// Retain the native word promotion at both the table index and callback.
-#pragma opt_common_subs off
-s32 set_slot_state_and_resume__6TLobbyFv(s16 idx, void (*cb)(s16, s16), s16 arg2) {
-  T_80422368 *s = (T_80422368 *) tcp_protocol_state[0];
-  s16 new_var;
-  s += (s32)idx;
+s32 set_slot_state_and_resume__6TLobbyFv(s16 idx, TcpOperationCallback cb, s16 arg2) {
+  T_80422368 *s = (T_80422368 *)tcp_protocol_state[0];
+  s16 socket;
+  s += idx;
   if ((cb != 0) && (!(s->fl & 8)))
   {
-    new_var = (s32)idx;
-    cb(arg2, new_var);
+    socket = SOCKET_HANDLE(idx, TcpSocketTag);
+    cb(arg2, socket);
     s->st = arg2;
     s->fl &= ~1;
     s->fl |= 4;
@@ -699,8 +704,6 @@ s32 set_slot_state_and_resume__6TLobbyFv(s16 idx, void (*cb)(s16, s16), s16 arg2
   }
   return 0;
 }
-
-#pragma pop
 
 typedef struct T_8042276C T_8042276C;
 

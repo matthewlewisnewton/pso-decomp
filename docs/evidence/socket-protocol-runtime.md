@@ -121,6 +121,20 @@ SHA-1 as the 17-word candidate above. Host fixtures exercised header skip,
 FIFO wrap, completion, callback reentry and a closed receive under address,
 bounds and undefined-behavior sanitizers.
 
+The receive completion provider at `0x80422368` takes a signed halfword
+slot index and passes a public socket handle to its callback. The two use
+different representations for UDP and the same value for TCP. In the
+debug build, the UDP callback record receives tag `0x400` at `0x8016F038`.
+The UDP socket constructor returns a handle with that tag at `0x8016F208`.
+The shared event dispatcher applies the other socket tags and validates the
+unchanged TCP index at `0x8016DDE4..0x8016DE08`. The TCP completion path
+sign-extends the index for the table at `0x8016EA4C` and prepares a separate
+signed callback handle at `0x8016EA70..0x8016EA84`. Using the same tag
+encoder for TCP and UDP gives all 56 release instructions with the unit's
+standard settings. The whole callback-provider object, including its
+relocations, remains byte-identical at SHA-1
+`e0f85ba99db49669350a054ee8db7da8ee27053c`.
+
 **SACK bounds.** The debug routine calculates the source at index `k+1`
 and the destination at index `k`, both from `TCB+0x2F8` with stride 8.
 It compares the signed loop index with 5 at `0x8016B658`, then clears slot

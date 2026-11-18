@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 69 | 13 |
-| pragma | 5901 | 890 |
+| pragma | 5900 | 890 |
 | configure.py per-unit override | 216 | 216 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 638, `opt_propagation` 269, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `opt_loop_invariants` 41, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 269, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `opt_loop_invariants` 41, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -236,7 +236,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/unk/text_803E2D70.cpp:1107` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
 | `src/pso/unk/text_803E2D70.cpp:1108` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
 | `src/pso/unk/text_803E2D70.cpp:1109` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1263` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_80421620.cpp:1266` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
@@ -1350,6 +1350,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1162, `inline_depth` 1068,
 | `src/pso/unk/text_803E4D8C.cpp` | scheduling×3, opt_common_subs×2, peephole×1, optimize_for_size×1, use_lmw_stmw×1 |
 | `src/pso/unk/text_803F4D10.cpp` | scheduling×2, peephole×2, optimization_level×2 |
 | `src/pso/unk/text_803F4D84.cpp` | peephole×20, scheduling×19, optimize_for_size×1 |
-| `src/pso/unk/text_80421620.cpp` | opt_common_subs×2 |
+| `src/pso/unk/text_80421620.cpp` | opt_common_subs×1 |
 | `src/pso/unk/text_8042E9FC.cpp` | force_active×1 |
 | `src/pso/unk/text_8042EAD4.cpp` | optimize_for_size×4 |
