@@ -612,7 +612,7 @@ void TLobby__sub_804150EC(void);
 void TLobby__sub_8041615C(void);
 void NetIPv6TickNeighborCache(void);
 void NetIPv6TickNeighborDiscovery(void);
-s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(s32 arg0, s32 arg1);
+s16 NetIPv6SendUnspecifiedSourceNeighborSolicitation(u8 *target, s16 iface);
 extern NetworkDispatchState network_dispatch_state;
 s32 TLobby__sub_8041D368(u8 *arg0);
 u8 * TLobby__sub_8041B5C0(void *);
@@ -2917,8 +2917,10 @@ typedef struct Glob_804162A4 {
     s16 delay;
 } Glob_804162A4;
 typedef struct Arg_804162A4 { u8 *p; s32 v; } Arg_804162A4;
-s32 NetIPv6SendMulticastNeighborProbe(u8 *arg0);
-s32 NetIPv6SendUnicastNeighborProbe(u8 *arg0);
+s16 NetIPv6EmitNeighborSolicitation(NetPacket *packet, u8 *target, NetIPv6SendParameters *params,
+                                 s16 iface, u8 *link_address);
+s16 NetIPv6SendMulticastNeighborProbe(u8 *arg0);
+s16 NetIPv6SendUnicastNeighborProbe(u8 *arg0);
 
 struct Redirect_80416508 {
     NetIcmpv6Header header;
