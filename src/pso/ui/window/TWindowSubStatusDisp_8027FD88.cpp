@@ -1,3 +1,4 @@
+#include "pso/ui/window/PageIndicator.h"
 #include "types.h"
 #include "pso/unk/TLobby_80132ED0.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80071774.h"
@@ -347,12 +348,12 @@ void fn_8027FD94(void* p, s16 v) { *(s16*)((char*)p + 0x62) = v; }
 s32 TWindowSubStatusDisp::get_display_mode() {
     s32 r;
     if (page == 2) {
-        s8 t = ((TWindowSubStatusDisp *)m_68)->get_type();
+        s8 t = m_68->get_type();
         r = RECORD_SET_EP2_SPLIT;
         if (t == 2) r = RECORD_SET_EP1_SPLIT;
         return r;
     }
-    return ((TWindowSubStatusDisp *)m_68)->get_type() != 2 ? RECORD_SET_EP2 : RECORD_SET_EP1;
+    return m_68->get_type() != 2 ? RECORD_SET_EP2 : RECORD_SET_EP1;
 }
 
 void TWindowSubStatusDisp::vt16() {  }
@@ -417,7 +418,7 @@ void TWindowSubStatusDisp::vt4() {
         m_5c = 7;
     }
     init_window_layout_entries(&m_24, TWindowSubStatusDisp__rank_time_records_layout, m_20);
-    ((TWindowSubStatusDisp *)m_68)->get_type();
+    m_68->get_type();
     s32 slot = page == 2 ? RECORD_SET_EP1_SPLIT : RECORD_SET_EP1;
     u16 *entry = (u16 *)get_array_entry(0);
     if (slot == RECORD_SET_EP1) {
@@ -754,17 +755,13 @@ void vt0__20TWindowSubStatusDispFv(u8 *window_base) {
 
 extern "C" {
 s32 fn_8026C7AC(void *arg0, s8 arg1);
-s32 handle_list_page_flip_input(int);
 extern s32 lbl_805DD6F4;
-void *init__21TWindowSubComCardListFiii(void *, int, int, s32);
 s32 get_window_layout_position(int);
 
 extern const f32 lbl_805DD70C;
 void *get_player_by_client_id(s32 i);
 s32 draw_visible_window_entries(void *, void *, s32);
-s32 draw_list_page_indicator(s32, s32);
 }
-s32 delete_if_allocated(s32 arg0, s16 arg1);
 #pragma defer_codegen on
 void TWindowSubStatusDisp::dispatch_page_init() {
     static void (TWindowSubStatusDisp::*page0[3])() = {
@@ -781,13 +778,13 @@ void TWindowSubStatusDisp::dispatch_page_init() {
 
     switch (page) {
     case 0:
-        (this->*page0[((TWindowSubStatusDisp *)m_68)->get_type()])();
+        (this->*page0[m_68->get_type()])();
         break;
     case 1:
-        (this->*page1[((TWindowSubStatusDisp *)m_68)->get_type()])();
+        (this->*page1[m_68->get_type()])();
         break;
     case 2:
-        (this->*page2[((TWindowSubStatusDisp *)m_68)->get_type()])();
+        (this->*page2[m_68->get_type()])();
         break;
     }
 }
@@ -807,13 +804,13 @@ void TWindowSubStatusDisp::dispatch_page_update() {
 
     switch (page) {
     case 0:
-        (this->*page0[((TWindowSubStatusDisp *)m_68)->get_type()])();
+        (this->*page0[m_68->get_type()])();
         break;
     case 1:
-        (this->*page1[((TWindowSubStatusDisp *)m_68)->get_type()])();
+        (this->*page1[m_68->get_type()])();
         break;
     case 2:
-        (this->*page2[((TWindowSubStatusDisp *)m_68)->get_type()])();
+        (this->*page2[m_68->get_type()])();
         break;
     }
 }
@@ -827,7 +824,7 @@ void TWindowSubStatusDisp::render() {
         temp_r3 = this->setup_window_draw_context((s32)(((u8 *)this) + 0x6C));
         draw_window_frame((void *)temp_r3);
         draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
-        draw_list_page_indicator(this->m_68, temp_r3);
+        draw_list_page_indicator(this->m_68, (TWindowDrawContext *)temp_r3);
     }
 }
 
@@ -837,7 +834,7 @@ void TWindowSubStatusDisp::run_task() {
   {
     *(s32 *)&arg0->m_5c = 0x01000000;
   }
-  if ((handle_list_page_flip_input((int) (*(s32 *)&arg0->m_68)) != 0) || ((arg0->page) != ((s16) (*(s16 *)&arg0->m_62))))
+  if ((handle_list_page_flip_input(arg0->m_68) != 0) || ((arg0->page) != ((s16) (*(s16 *)&arg0->m_62))))
   {
     if ((arg0->page) != (*(s16 *)&arg0->m_62))
     {
@@ -873,10 +870,6 @@ TWindowSubStatusDisp::TWindowSubStatusDisp(s32 client)
     m_62 = page;
     scale_x = lbl_805DD70C;
     scale_y = lbl_805DD70C;
-    void *indicator = ::operator new(0xC);
-    if (indicator != NULL) {
-        indicator = init__21TWindowSubComCardListFiii(indicator, 0, 3, client);
-    }
-    m_68 = (u32)indicator;
+    m_68 = new PageIndicator(0, 3, client);
     dispatch_page_init();
 }

@@ -2,6 +2,8 @@
 #define PSO_UI_WINDOW_TWINDOWSUBSHORTCUTLIST_H
 
 #include "types.h"
+
+struct PageIndicator;
 #include "pso/ui/window/TWindowMenuIconLine.h"
 
 struct TWindowSubShortCutList : public TWindowMenuIconLine {
@@ -9,7 +11,7 @@ struct TWindowSubShortCutList : public TWindowMenuIconLine {
     void set_cursor_index(s16);
     void set_flag70_bit10();
     virtual void render();
-    u32 m_88;
+    PageIndicator *m_88;
     void refresh_entries();
     void *create(void *arg1);
     virtual void run_task();

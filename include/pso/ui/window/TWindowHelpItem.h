@@ -2,6 +2,8 @@
 #define PSO_UI_WINDOW_TWINDOWHELPITEM_H
 
 #include "types.h"
+
+struct PageIndicator;
 #include "pso/ui/window/TWindowBase.h"
 
 struct TWindowHelpItem : public TWindowBase
@@ -25,7 +27,7 @@ struct TWindowHelpItem : public TWindowBase
     s32 m_5c;
     u8 m_60;
     u8 _pad61[0x3];
-    u32 m_64;
+    PageIndicator *m_64;
     u32 m_68;
     u32 m_6c;
     u32 m_70;

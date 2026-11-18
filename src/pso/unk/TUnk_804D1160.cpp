@@ -10,7 +10,6 @@
 
 #include "pso/ui/window/TWindowHelpItem_80255AB4.h"
 
-#include "pso/ui/window/TWindowSubComCardList_8026CB08.h"
 
 #include "pso/ui/window/TWindowSubComCard_8007A810.h"
 

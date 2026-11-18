@@ -1,9 +1,9 @@
+#include "pso/ui/window/PageIndicator.h"
 #include "types.h"
 #include "pso/unk/WindowLayoutRecord.h"
 #include "pso/ui/window/TWindowMainMenu_80263AB0.h"
 #include "pso/unk/text_80263A20.h"
 #include "pso/ui/window/TWindowHelpItem_80255AB4.h"
-#include "pso/ui/window/TWindowSubComCardList_8026CB08.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowHelpItem.h"
 #include "pso/ui/window/TWindowDD.h"
@@ -24,12 +24,8 @@ extern WindowDescriptor window_help_item_parameters;
 extern "C" { extern char TWindowHelpItem__class_name_string[]; }
 const char *window_help_item_class_name = TWindowHelpItem__class_name_string;
 extern TWindowHelpItem::CallbackWords __ptmf_null;
-void *init__21TWindowSubComCardListFiii(void *p, s32 a, s32 b, s32 c);
 
-s32 handle_list_page_flip_input(s32);
 s32 draw_visible_window_entries(void *, void *, int);
-s32 draw_list_page_indicator(int, int);
-s32 decay_page_arrow_offset(s32);
 
 void TWindowHelpItem::update_cursor_selection() {
     this->m_60 = (u8) (this->m_60 | 1);
@@ -53,7 +49,7 @@ void TWindowHelpItem::render() {
     draw_window_frame((void *)context);
     draw_visible_window_entries(this, &m_24, context);
     if ((m_60 & 1) && (m_60 & 2)) {
-        draw_list_page_indicator(m_64, context);
+        draw_list_page_indicator(m_64, (TWindowDrawContext *)context);
     }
 }
 
@@ -88,16 +84,11 @@ TWindowHelpItem::~TWindowHelpItem() {
 
 TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx)
     : TWindowBase((u8 *)&window_help_item_parameters, (s16)idx, (u8 *)pos) {
-    void *p;
     m_name = window_help_item_class_name;
     ((TWindowSubSymbolChatPartsSet *)&m_30)->copy_vec2(pos);
     save_position();
     m_60 = 0;
-    p = ::operator new(0xc);
-    if (p != 0) {
-        p = init__21TWindowSubComCardListFiii(p, 0, 3, m_20);
-    }
-    m_64 = (u32)p;
+    m_64 = new PageIndicator(0, 3, m_20);
     m_68 = 0;
     m_6c = 0;
     m_70 = 0;
