@@ -13,6 +13,13 @@ functions match. The data and BSS match. The linked DOL differs from the
 original at 17 instruction words, all in the three functions below. Objdiff
 scores the text at 99.8325%. The project checksum gate therefore fails.
 
+The integration with fork main `f8b7b04cc6` gives the same candidate
+DOL. Against a fresh main report, `0x8041F204` gains an exact match and
+`0x8041FED4` loses one. All other exact functions and linked data ranges
+are retained. The linked-unit check identifies only SocketProtocolRuntime,
+whose socket object is still in the candidate linkset. The force-active
+check reconciles all 20,495 entries without additions or stale entries.
+
 | Function | Size | Differing linked words | Source change |
 | --- | ---: | ---: | --- |
 | SACK update, `0x8041FED4` | 292 | 1 | Shift from the next valid range and clear the last slot. |

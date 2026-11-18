@@ -203,6 +203,9 @@ pso/boss/TBoss1DragonEffTail.cpp:
 	.text       start:0x8002BD34 end:0x8002C140
 	.sdata2     start:0x805D8148 end:0x805D8158
 
+pso/boss/DragonTailCraterConstants.cpp:
+	.sdata2     start:0x805D8158 end:0x805D8168
+
 pso/misc/TLobby_8002C140.cpp:
 	.text       start:0x8002C140 end:0x8002C190
 
@@ -568,6 +571,9 @@ pso/ui/TObjDFJisin.cpp:
 	.bss        start:0x804FF228 end:0x804FF2A0
 	.sdata      start:0x805D27B8 end:0x805D27CC
 	.sdata2     start:0x805D8AB0 end:0x805D8AB4
+
+pso/boss/DarkFalzEffectConstants.cpp:
+	.sdata2     start:0x805D8AB4 end:0x805D8AE0
 
 pso/ui/TObjDFTenchuFuru_80051B98.cpp:
 	.text       start:0x80051B98 end:0x80051D5C
@@ -979,6 +985,9 @@ pso/object/TObjWarnChime.cpp:
 	.data       start:0x8048D348 end:0x8048D360
 	.sdata      start:0x805D28A0 end:0x805D28A8
 	.sdata2     start:0x805D91C0 end:0x805D91D0
+
+pso/unk/data_805D91D0.cpp:
+	.sdata2     start:0x805D91D0 end:0x805D9208
 
 pso/item/TItemProShield_80076B5C.cpp:
 	.text       start:0x80076B5C end:0x80076BBC
@@ -1675,6 +1684,9 @@ pso/object/TObjCGrass.cpp:
 	.rodata     start:0x8043B650 end:0x8043B658
 	.data       start:0x80492520 end:0x80492558
 	.sdata2     start:0x805D9E60 end:0x805D9E78
+
+pso/unk/data_805D9E78.cpp:
+	.sdata2     start:0x805D9E78 end:0x805D9E98
 
 pso/unk/text_800B9194.cpp:
 	.text       start:0x800B9194 end:0x800B9254
@@ -14071,7 +14083,7 @@ pso/unk/text_803D8F74.cpp:
 
 pso/math/MatrixTransforms.cpp:
 	.text       start:0x803D929C end:0x803D9650
-	.sdata2     start:0x805E0F40 end:0x805E0F48
+	.sdata2     start:0x805E0F38 end:0x805E0F48
 
 pso/unk/text_803D9650.cpp:
 	.text       start:0x803D9650 end:0x803D96A8
@@ -14342,7 +14354,7 @@ pso/misc/TLobby_803FAEA0.cpp:
 
 pso/misc/TLobby_803FC178.cpp:
 	.text       start:0x803FC178 end:0x804048E8
-	.data       start:0x804FD628 end:0x804FD650
+	.data       start:0x804FD5A8 end:0x804FD650
 	.bss        start:0x805C0180 end:0x805C06D8
 	.sdata2     start:0x805E1158 end:0x805E1160
 
