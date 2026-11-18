@@ -236,17 +236,22 @@ s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
             }
             control->rcv_user.kind = 0;
             set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, (s16)control->fF0);
+            goto check_pending_receive;
+closed_state_receive:
+            switch (control->t_state) {
+            case 0:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+                control->rcv_user.kind = 0;
+                set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, -7);
+                break;
+            }
+            goto complete;
+check_pending_receive:
             if (control->rcv_user.kind != 0) {
-                switch (control->t_state) {
-                case 0:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                    control->rcv_user.kind = 0;
-                    set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, -7);
-                    break;
-                }
+                goto closed_state_receive;
             }
             goto complete;
         }
