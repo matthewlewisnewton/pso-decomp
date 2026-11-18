@@ -130,7 +130,7 @@ void *get_title_texture_list(void) {
     return ((char *)&title_texture_list);
 }
 
-void *TLobby::get_record(int index) {
+SpriteDescriptor *TLobby::get_record(int index) {
     return &lobby_record_table[index];
 }
 
