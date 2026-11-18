@@ -1,0 +1,18 @@
+# TCP acknowledgement and SACK compaction
+
+This candidate sits on PR #606 at `e081855e7d`. ACK at `0x8041FFF8` and SACK at `0x8041FED4` compile in the same socket object. The unchanged TCP caller and completion-provider objects have SHA-1s `f7ea446e252f035f7e6c008eadd93c3e9873b78d` and `e0f85ba99db49669350a054ee8db7da8ee27053c`. The source uses typed callbacks for both send-completion paths.
+
+| Routine | Candidate compared with retail | Behavioral check |
+| --- | --- | --- |
+| ACK | Six of 262 instruction words differ. Each addresses the live FIFO destination at stack offset 36. Retail uses offset 20. | 800 queued-send cases and 800 FIFO cases agreed with retail, including all 1,717 completion events. |
+| SACK | One of 73 words differs. The candidate shifts only the remaining valid entries and clears the fifth slot. | The retail game and both browser executables on the same disc each read the two fields immediately after the array during compaction. The candidate makes zero such reads. All four outputs agree across the entire control block for the traced input. |
+
+Both compiled routines reproduce every instruction and relocation in the separately linked candidate at `e3880f3401`. The runtime comparisons used that executable. The `check_pr.py` gate against #606 fails because the bounded SACK costs one previously exact function and 292 matched code bytes. The normal build still links the original socket object, reproduces retail DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and passes all 3,628 linked-unit checks.
+
+## Source and compiler comparisons
+
+The debug browser stores three buffer-kind bytes during ACK queue setup. It never passes or reads the middle descriptor. On the paired branch, permutations of the four live locals, alternate request views, a FIFO cursor retaining its real backing buffer through wraparound, and separate helpers for queue acknowledgement, byte consumption and FIFO refill all left at least six retail words different. The six-word result uses the fork’s local inline settings and disables lifetime optimization over ACK. Removing each setting independently increased the difference. Expanding the helpers into ordinary statements gave at best 25 differing words across 72 combinations of head type, declaration scope and compiler settings. Across the tested compiler options, `-O0,p` provided a closer calibration on the exact receive control from `f1e0b6e358` than `-O0,s`. After normalizing direct calls, 310 of 319 debug instruction words aligned in the speed profile and 303 in the size profile.
+
+Five more bounded SACK shifts were compiled with three counter or capacity types. These included forward copies with source and destination indices, an end iterator, a remaining-count walk and a backwards rotation through an empty range. None improved on the one-word loop-bound difference. The fork's floor-resource cleanup also supplied a bounded reverse walk for the separate gather candidate. The closest of twelve versions differed by 16 words, compared with ten at the existing gather checkpoint. [Floor-resource cleanup](https://github.com/matthewlewisnewton/pso-decomp/blob/a7e1ed966fafddaf4f9008f3e988bb3713d454f7/src/pso/misc/TLobby_800F795C.cpp)
+
+ACCESS confirms that Episode III also shipped its GameCube AVE-TCP stack. The public newserv Episode III directory covers server, card, map and battle logic. I found no client ACK or SACK implementation there. The binary comparisons used only the supplied Episode I & II Plus disc. [ACCESS announcement](https://www.access-company.com/news_event/archives/20030613-2/) · [newserv Episode III source](https://github.com/fuzziqersoftware/newserv/tree/master/src/Episode3)
