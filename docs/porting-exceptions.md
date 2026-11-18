@@ -197,6 +197,15 @@ If assembly is approved, a scalar C/C++ equivalent ships next to it (Matt,
 and the scalar version is the compiled fallback, so a port builds the C. Approved
 asm always has an entry in this register.
 
+### MusyX DSP firmware
+
+`src/musyx/runtime/dsp_import.c` defines the 32-byte-aligned firmware buffer
+and its 16-bit byte count. The firmware runs on the GameCube DSP.
+`tools/musyx_dsp.py` generates the initializer under the build directory
+from the user's verified DOL. Ports that emulate the GameCube DSP can
+supply the same firmware input. Ports with native audio can replace the
+DSP upload in `salInitDsp` with their audio backend.
+
 ### TCP protocol recovery
 
 `src/pso/network/TcpProtocol.cpp` is source-linked with all 45 functions and its
