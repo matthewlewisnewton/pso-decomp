@@ -7,6 +7,7 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Quadrilateral and sphere collision units](collision-contact-units.md)
 - [Screen and projection constants](screen-projection-constants.md)
 - [Photon Mylla scalar pool](photon-mylla-constant-pool.md)
 - [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
@@ -90,6 +91,7 @@ guides.
 - [MusyX assembly and scalar fallbacks](musyx-asm-fallbacks.md)
 - [Complete object-particle unit](object-particle-complete-unit.md)
 - [Negative fade phase](negative-fade-phase-evidence.md)
+- [TCP send queues and SACK compaction](socket-protocol-runtime.md)
 - [Network-info request frame and switch](network-info-request-frame.md)
 - [Native Nest continuation](nest-native-recovery-evidence.md)
 - [Orbit particle unit recovery](orbit-particle-recovery.md)

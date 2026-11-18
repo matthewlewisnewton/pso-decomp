@@ -437,6 +437,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
     # GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order.
     "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # The De Rol Le constant pool starts at 0x805D8444, a four-byte boundary.
+    "pso/unk/data_805D8444.cpp": {"cw_align": ".sdata2=4"},
+    # The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary.
+    "pso/boss/DarkFalzEffectConstants.cpp": {"cw_align": ".sdata2=4"},
+    # The camera constant pool starts at 0x805D8F7C, a four-byte boundary.
+    "pso/misc/CameraControllerConstants.cpp": {"cw_align": ".sdata2=4"},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
     "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions reproduce both native rope vtables and function order.
@@ -992,8 +998,6 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         # Extracted from TLobby_804050DC; preserve its compiler/CSE settings.
         "pso/network/NetworkDispatcher.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/network/TcpProtocol.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
-        # The reassembly range-removal helper must inline; other recovered bodies opt out.
-        "pso/network/SocketProtocolRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline on")},
     }),
     # The modem driver (AT command strings).
     ("modem", 0x8042BF48, "GC/1.2.5", cflags_middleware, {}),
@@ -1178,6 +1182,8 @@ if args.target == "psov3":
                             mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_fp.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered_auto),
+                Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ctype.c"),
+                Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c"),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/printf.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/rand.c",

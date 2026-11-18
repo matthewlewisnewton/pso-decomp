@@ -14,7 +14,7 @@ NJS_OBJECT *clone_node_tree__12TBoss8DragonFPvPvi(NJS_OBJECT *src, NJS_OBJECT *d
 extern f32 lbl_805D6980;
 extern f32 lbl_805D6984;
 extern f32 lbl_805D69C0;
-extern f32 lbl_805D9E80;
+extern const f32 lbl_805D9E80;
 extern f32 TBoss8Dragon__data_805DEDC8;
 extern f32 lbl_805DEE40;
 

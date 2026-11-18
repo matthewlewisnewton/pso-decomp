@@ -96,7 +96,10 @@ extern s32 tl_06;
 static const f32 lbl_805D9E6C = 1.0f;
 static const f32 lbl_805D9E70 = 3.0517578e-05f;
 static const f32 lbl_805D9E74 = 182.04445f;
-extern const f32 lbl_805D9E78;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805D9E78[2];
 u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3);
 
 struct Stack_800B8DC4 {
@@ -259,7 +262,7 @@ u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3) {
         v.x = TObjCGrass__data_805D9E64;
         v.y = lbl_805D9E70 * (f32)rand();
         v.z = lbl_805D9E70 * (f32)rand() + lbl_805D9E6C;
-        a = (s32)(lbl_805D9E74 * (lbl_805D9E78 * (lbl_805D9E70 * (f32)rand())));
+        a = (s32)(lbl_805D9E74 * (lbl_805D9E78[0] * (lbl_805D9E70 * (f32)rand())));
         self->recs[i].f18 = a;
         push_matrix_from(identity_matrix);
         rotate_matrix_y(0, a);

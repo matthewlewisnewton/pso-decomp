@@ -5,10 +5,10 @@
 #include "pso/misc/TLobby.h"
 #include "pso/network/BufferRef.h"
 #include "pso/network/IPv6.h"
+#include "pso/network/TcpSendQueue.h"
 #include "types.h"
 #include "pso/network/TcpProtocolState.h"
 #include "pso/network/TcpReceiveQueue.h"
-#include "pso/network/TcpControlBlock.h"
 #include "pso/network/BufferPool.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/EthernetReceiveFilter.h"
@@ -99,8 +99,6 @@ s16 TLobby__sub_8041A9AC(void *);
 s32 TLobby__sub_80420BD0(void *, void *, s32);
 s32 NetRegisterTimer(s32 period, s16 locked, NetTimerCallback fn);
 void TLobby__sub_803F8794(void *);
-void set_thread_state_and_resume__6TLobbyFv(s16, s32, s16);
-s32 TLobby__sub_8041ED8C(int, void *, void *, void *);
 void TLobby__sub_8041A5B4(void);
 void TLobby__sub_8041A3CC(void);
 TcpState tcp_protocol_state;
@@ -175,8 +173,7 @@ s32 TLobby__sub_8041A6A4(Tcb_8041A3CC *tcb, s16 timer);
 
 void TLobby__sub_8041A5B4(void);
 
-struct E_8041A498 { u8 pad0[6]; s16 f6; u8 pad8[6]; u8 fE; u8 padF[0x1ED]; s32 f1FC; s32 f200; u8 pad204[0xCC]; s32 f2D0; u8 pad2D4[0x270]; };
-void set_thread_state_and_resume__6TLobbyFv(s16, s32, s16);
+struct E_8041A498 { u8 pad0[6]; s16 f6; u8 pad8[6]; u8 fE; u8 padF[0x1ED]; TcpSendCompletion f1FC; TcpReceiveCallback f200; u8 pad204[0xCC]; s32 f2D0; u8 pad2D4[0x270]; };
 void TLobby__sub_8041A498(E_8041A498 *arg0, s16 arg1);
 
 struct TcpHeader_8041B3D4 {
@@ -316,8 +313,6 @@ inline void remove_8041D584(Tcb_8041D584 *tcb, s16 idx) {
 #pragma pop
 
 void TLobby__sub_8041D584(Tcb_8041D584 *tcb, Th_8041D584 *th, Sack_8041D584 *blocks, s16 n);
-
-s32 TLobby__sub_8041ED8C(int, void *, void *, void *);
 
 s32 TLobby__sub_8041DBD4(s16 arg0, s32 arg1, s32 len, s32 arg3);
 
@@ -483,7 +478,6 @@ void TLobby__sub_8041D398(u8 *, s32, s32);
 s16 TLobby__sub_8040DA54(u8 *, u8 *);
 u8 *TLobby__sub_80406F0C(void *);
 s16 is_addr_unspecified__6TLobbyFPv(void *);
-s32 TLobby__sub_8041F11C(TcpTcb *);
 void NetYieldOutsideDispatcherThread(void);
 
 // Native ABI exports: the legacy linker names do not establish C++ ownership.
@@ -623,12 +617,12 @@ void TLobby__sub_8041A498(E_8041A498 *arg0, s16 arg1) {
     switch (arg1) {
     case 4:
         set_thread_state_and_resume__6TLobbyFv(idx, arg0->f1FC, -8);
-        set_slot_state_and_resume__6TLobbyFv(idx, (TcpOperationCallback)arg0->f200, -8);
+        set_slot_state_and_resume__6TLobbyFv(idx, arg0->f200, -8);
         NetDispatchSocketEvent(idx, arg0->f2D0, 3, 0xB);
         break;
     default:
         set_thread_state_and_resume__6TLobbyFv(idx, arg0->f1FC, -5);
-        set_slot_state_and_resume__6TLobbyFv(idx, (TcpOperationCallback)arg0->f200, -5);
+        set_slot_state_and_resume__6TLobbyFv(idx, arg0->f200, -5);
         NetDispatchSocketEvent(idx, arg0->f2D0, 3, 0xA);
         break;
     }
@@ -1670,8 +1664,8 @@ retry:
         case 9:
             *(s16 *)(found + offsetof(TcpTcb, t_state)) = 0;
             NetDispatchSocketEvent(TCP_IDX(found), *(s32 *)(found + offsetof(TcpTcb, event_ctx)), 3, 4);
-            set_thread_state_and_resume__6TLobbyFv(TCP_IDX(found), *(s32 *)(found + offsetof(TcpTcb, send_done)), -5);
-            set_slot_state_and_resume__6TLobbyFv(TCP_IDX(found), *(TcpOperationCallback *)(found + offsetof(TcpTcb, recv_done)), -5);
+            set_thread_state_and_resume__6TLobbyFv(TCP_IDX(found), ((TcpTcb *)found)->send_done, -5);
+            set_slot_state_and_resume__6TLobbyFv(TCP_IDX(found), ((TcpTcb *)found)->recv_done, -5);
             if (TLobby__sub_8041B5C0(found) != 0) {
                 *(s16 *)(found + offsetof(TcpTcb, t_state)) = -1;
             }
@@ -2468,7 +2462,7 @@ s32 TLobby__sub_8041DBD4(s16 arg0, s32 arg1, s32 len, s32 arg3) {
         }
         break;
     }
-    return TLobby__sub_8041ED8C((int)e, (void *)arg1, (void *)len, (void *)arg3);
+    return TLobby__sub_8041ED8C((TcpTcb *)e, (NetBufferRef *)arg1, len, (TcpReceiveCallback)arg3);
 }
 
 s16 tcp_start_send(s16 arg0, u8 *arg1, void (*completion)(s16, s16), u8 arg3) {
