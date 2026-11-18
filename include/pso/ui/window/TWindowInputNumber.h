@@ -11,9 +11,6 @@ struct TWindowInputNumber : public TWindowBase {
     void refresh_digit_entries();
     void align_digits();
     virtual void render();
-    u8 unk_30[0x8];
-    f32 m_38;
-    u8 unk_3C[0x24];
     u16 inputFlags;
     s8 digitCount;
     s8 selectedDigit;

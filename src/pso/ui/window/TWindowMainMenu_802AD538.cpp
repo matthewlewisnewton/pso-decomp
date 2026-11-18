@@ -527,7 +527,7 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *frame) {
     f32 h;
     f32 step;
 
-    quad_depth = -1.0f / (0.299f + this->depth);
+    quad_depth = -1.0f / (0.299f + this->draw_depth);
     y = 0.0f;
     h = frame->inner_h;
     begin_screen_draw(1);
@@ -607,7 +607,7 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *frame) {
 TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
     TWindowDrawContext *r;
-    r = TWindowDrawContext::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), fn_8026CB68(), depth, window_flags);
+    r = TWindowDrawContext::open_singleton(frame_position, frame_size, fn_8026CB68(), draw_depth, window_flags);
     if (((TWindowMainMenu *)this)->is_not_split_screen() != 0) {
         v = 51.0f;
     } else {

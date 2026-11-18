@@ -73,8 +73,8 @@ TWindowRoom::TWindowRoom(char *title)
     entry = (RoomTitleEntry *)((TWindowBase *)this)->get_array_entry(0);
     set_text_entry_string((u8 *)entry, (u32)title, 0x60);
     measure_text_entry(entry);
-    width = 10.0f + (entry->positionX + entry->width);
-    positionX -= width;
+    target_size[0] = 10.0f + (entry->positionX + entry->width);
+    target_position[0] -= target_size[0];
     ((TWindowBase *)this)->save_position();
-    tabParameter = TWindowSubStatusDisp__sub_802877A4(unknown48 - 16.0f);
+    tabParameter = TWindowSubStatusDisp__sub_802877A4(frame_size[0] - 16.0f);
 }

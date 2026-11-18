@@ -49,18 +49,18 @@ extern const f32 TWindowDD__data_805DFB58;
 extern const u32 lbl_805DFC18;
 
 void TWindowDD_WS_String::init_and_set_field50(void *arg1) {
-    ((TWindowSubSymbolChatPartsSet *)pad_30)->copy_vec2(pad_64);
-    pad_50 = (s32)arg1;
+    ((TWindowSubSymbolChatPartsSet *)target_position)->copy_vec2(pad_64);
+    tween_ticks = (s32)arg1;
 }
 
 void TWindowDD_WS_String::update_position(s32 arg1) {
-    ((TWindowSubSymbolChatPartsSet *)pad_30)->copy_vec2(pad_6C);
-    pad_50 = arg1;
+    ((TWindowSubSymbolChatPartsSet *)target_position)->copy_vec2(pad_6C);
+    tween_ticks = arg1;
     if (pad_6C[0] < 0.0f) {
-        pad_30[0] -= pad_38[0];
+        target_position[0] -= target_size[0];
     }
     if (pad_6C[1] < 0.0f) {
-        pad_30[1] -= pad_38[1];
+        target_position[1] -= target_size[1];
     }
 }
 
@@ -69,7 +69,7 @@ void TWindowDD__sub_803412A0(TWindowDD_WS_String *self) {
     entry = (u8 *)self->get_array_entry(0);
     if (entry != NULL) {
         measure_text_entry(entry);
-        self->pad_38[0] = (2.0f * TWindowDD__data_805DFB58) + *(f32 *)((s8 *)entry + 0x10);
+        self->target_size[0] = (2.0f * TWindowDD__data_805DFB58) + *(f32 *)((s8 *)entry + 0x10);
     }
 }
 
@@ -129,7 +129,7 @@ TWindowDD_WS_String *TWindowDD__sub_8034138C(TWindowDD_WS_String *self, f32 *pos
     if ((self->pad_60 == 1) || (self->pad_60 == 3)) {
         *(s32 *)((s8 *)entry + 0x24) = lbl_805DFC18;
     }
-    self->m_5c = 0x01000000;
+    self->open_tick = 0x01000000;
     return self;
 }
 

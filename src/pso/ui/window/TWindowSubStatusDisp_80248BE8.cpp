@@ -84,7 +84,7 @@ void TUnk_804CE7E8::run_task() {
         }
     }
     ((TWindowMenuIconLine *)arg0)->center_list_selection();
-    if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
+    if ((f32) this->open_tick >= 7.5f) {
         temp_r3 = *(u32 *)((s8 *)arg0 + 0x80);
         if (temp_r3 != 0U) {
             ((TWindowSubStatusDisp *)temp_r3)->update_subwindow();

@@ -154,7 +154,7 @@ void TWindowSubComCardList::update_scroll_target_position() {
     u8 *window_menu;
     window_menu = (u8 *)(*(u8 * *)&this->m_84);
     if (window_menu != NULL) {
-        stack.sp8 = ((this->m_48) - 4.0f) - 9.0f;
+        stack.sp8 = ((this->frame_size[0]) - 4.0f) - 9.0f;
         stack.spC = (f32) ((*(s16 *)&this->m_72 * 0x14) - 2);
         ((TWindowMenu *)window_menu)->copy_position(&stack.sp8);
     }
@@ -183,7 +183,7 @@ void TWindowSubComCardList::sub_8026556C() {
     u32 temp_r3;
     u32 var_r0;
     if ((u32) this->m_84 == 0U) {
-        temp_f2 = this->m_38;
+        temp_f2 = this->target_size[0];
         temp_f1 = temp_f2 - 8.0f;
         stack.spC = 0.0f;
         stack.sp8 = temp_f1;
@@ -757,9 +757,9 @@ void TWindowMenu::run_task() {
 
     ((s32 (*)(void))layout_entries__11TWindowMenuFv)();
     if (!(*(s32 *)&this->window_flags & 2)) {
-        *(s32 *)&this->m_5c = 0x01000000;
+        this->open_tick = 0x01000000;
     }
-    if ((((TWindowMenu *)arg0)->sub_80266BB8() == 0) && (((TWindowMenu *)arg0)->is_decided() == 0) && ((s32) *(s32 *)&this->m_5c > 2) && (is_window_display_enabled() != 0) && (((TWindowBase *)arg0)->sub_80244994() != 0)) {
+    if ((((TWindowMenu *)arg0)->sub_80266BB8() == 0) && (((TWindowMenu *)arg0)->is_decided() == 0) && ((s32) this->open_tick > 2) && (is_window_display_enabled() != 0) && (((TWindowBase *)arg0)->sub_80244994() != 0)) {
         temp_r30 = is_player_input_active((this->client_index));
         if (this->m_70 & 0x10) {
             input = (u8 *)controller_input_state + (temp_r30 * 0x50) + 0x20;
@@ -786,7 +786,7 @@ void TWindowMenu::run_task() {
             set_active_flag();
         }
     }
-    if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
+    if ((f32) this->open_tick >= 7.5f) {
         if ((u32) this->m_88 != 0U) {
             ((TWindowSubStatusDisp *)(*(void * *)&this->m_88))->update_subwindow();
         }

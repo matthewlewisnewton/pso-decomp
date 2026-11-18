@@ -100,7 +100,7 @@ s32 TWindowSubCustomSelect::update_list_scroll() {
   new_var3 = (f32 *) (((s8 *) arg0) + 0x6C);
   *new_var3 = (*new_var3) + (tgt - (*((f32 *) (((s8 *) arg0) + 0x6C))));
   stack.sp8 = 0.0f;
-  stack.spC = ((this->m_4c) - 10.0f) - 16.0f;
+  stack.spC = ((this->frame_size[1]) - 10.0f) - 16.0f;
   clamp_list_scroll_offset(*((u8 **) (((s8 *) arg0) + 0x80)), (new_var = arg0) + 0x68, &stack.sp8);
 }
 
@@ -222,7 +222,7 @@ void TWindowSubCustomSelect::run_task() {
     u8 *context;
     temp_r30 = is_player_input_active(((s32) this->client_index));
     if (!(*(s32 *)&this->window_flags & 2)) {
-        *(s32 *)&this->m_5c = 0x01000000;
+        this->open_tick = 0x01000000;
     }
     if (((TWindowSubCustomSelect *)arg0)->is_active() == 0) {
         handle_grid_navigation();
@@ -235,7 +235,7 @@ void TWindowSubCustomSelect::run_task() {
         }
     }
     update_list_scroll();
-    if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
+    if ((f32) this->open_tick >= 7.5f) {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_7c))->update_subwindow();
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_80))->increment_counter();
     }

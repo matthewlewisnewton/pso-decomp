@@ -5,26 +5,26 @@
 #include "pso/ui/window/TWindowMakeTeam.h"
 
 void TKeyBoardControl::set_position(void *position) {
-    ((TWindowKeyBoardBase *)m_20)->position_x = ((f32 *)position)[0] - 4.0f;
-    ((TWindowKeyBoardBase *)m_20)->position_y = ((f32 *)position)[1] - 10.0f;
-    ((TWindowKeyBoardBase *)m_20)->position_state = 3;
+    ((TWindowKeyBoardBase *)m_20)->target_position[0] = ((f32 *)position)[0] - 4.0f;
+    ((TWindowKeyBoardBase *)m_20)->target_position[1] = ((f32 *)position)[1] - 10.0f;
+    ((TWindowKeyBoardBase *)m_20)->tween_ticks = 3;
 }
 
 void TKeyBoardControl::set_soft_keyboard_position(u8 *position) {
-    ((TWindowKeyBoardSoft *)m_28)->position_x = ((f32 *)position)[0];
-    ((TWindowKeyBoardSoft *)m_28)->position_y = ((f32 *)position)[1];
+    ((TWindowKeyBoardSoft *)m_28)->target_position[0] = ((f32 *)position)[0];
+    ((TWindowKeyBoardSoft *)m_28)->target_position[1] = ((f32 *)position)[1];
     ((TWindowKeyBoardSoft *)m_28)->save_position();
 }
 
 void TKeyBoardControl::set_hard_keyboard_position(u8 *position) {
-    ((TWindowKeyBoardHard *)m_24)->position_x = ((f32 *)position)[0];
-    ((TWindowKeyBoardHard *)m_24)->position_y = ((f32 *)position)[1];
+    ((TWindowKeyBoardHard *)m_24)->target_position[0] = ((f32 *)position)[0];
+    ((TWindowKeyBoardHard *)m_24)->target_position[1] = ((f32 *)position)[1];
     ((TWindowKeyBoardHard *)m_24)->save_position();
 }
 
 void TKeyBoardControl::set_composer_position(u8 *position) {
-    ((TWindowKeyBoardBase *)m_20)->position_x = ((f32 *)position)[0] - 4.0f;
-    ((TWindowKeyBoardBase *)m_20)->position_y = ((f32 *)position)[1] - 10.0f;
+    ((TWindowKeyBoardBase *)m_20)->target_position[0] = ((f32 *)position)[0] - 4.0f;
+    ((TWindowKeyBoardBase *)m_20)->target_position[1] = ((f32 *)position)[1] - 10.0f;
     ((TWindowKeyBoardBase *)m_20)->save_position();
 }
 

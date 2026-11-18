@@ -336,7 +336,7 @@ void draw_photon_blast_fan(s32 arg0, NJS_POINT2 *arg1, Params_80270244 *arg2, u3
     f32 amp_y;
     f32 depth;
 
-    depth = ((TWindowSimpleStatus *)arg0)->m_54 + 0.299f * arg6;
+    depth = ((TWindowSimpleStatus *)arg0)->draw_depth + 0.299f * arg6;
     amp_x = arg7 * arg2->f28;
     amp_y = arg7 * arg2->f2c;
     prim.verts = verts;
@@ -372,7 +372,7 @@ void TWindowSimpleStatus::apply_random_shake() {
         (this->m_60)--;
         ang = (s32)(65536.0f * (3.0517578e-05f * (f32)rand()));
         dist = 5.0f * (3.0517578e-05f * (f32)rand());
-        this->m_40 += dist * cos_table_lookup(ang);
+        this->frame_position[0] += dist * cos_table_lookup(ang);
         *(f32 *)(((u8 *)this) + 0x44) += dist * sin_table_lookup(ang);
     }
 }
@@ -530,7 +530,7 @@ void TWindowSimpleStatus::draw_background(u8 *arg1) {
     pos.y = 2.0f + *(f32 *)((s8 *)arg1 + 0x14);
     size.x = 36.0f;
     size.y = 35.0f;
-    scale = -1.0f / this->m_54;
+    scale = -1.0f / this->draw_depth;
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_draw_texture_and_color(0xB, *(s32 *)((s8 *)arg1 + 0x34));

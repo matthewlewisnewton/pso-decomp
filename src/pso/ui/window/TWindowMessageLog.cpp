@@ -56,7 +56,7 @@ void TWindowMessageLog::clamp_scroll_offset() {
     Stack_8026A434 stack;
     f32 temp_f1;
     stack.sp8 = 0.0f;
-    temp_f1 = this->m_4c;
+    temp_f1 = this->frame_size[1];
     stack.spC = temp_f1 - 20.0f;
     if (clamp_list_scroll_offset((int) (*(s32 *)((s8 *)((u8 *)this) + 0x90)), (void *) (((u8 *)this) + 0x68), &stack.sp8, temp_f1) != 0) {
         this->m_84 = (f32) this->m_6c;
@@ -75,7 +75,7 @@ void TWindowMessageLog::update_scroll_position() {
     }
     temp_r31 = this->get_array_entry(temp_r4);
     array_entry = this->get_array_entry(var_r30);
-    stack.sp8 = (this->m_48 - 4.0f) - 9.0f;
+    stack.sp8 = (this->frame_size[0] - 4.0f) - 9.0f;
     stack.spC = (*(f32 *)((s8 *)array_entry + 0xC) + *(f32 *)((s8 *)array_entry + 0x14)) - *(f32 *)((s8 *)temp_r31 + 0xC);
     ((TWindowMenu *)(*(u8 **)((s8 *)((u8 *)this) + 0x90)))->copy_position(&stack.sp8);
     this->clamp_scroll_offset();
@@ -87,9 +87,9 @@ void TWindowMessageLog::update_fade_offset() {
     f32 temp_f1;
     f32 temp_f31;
 
-    temp_f31 = this->m_4c;
+    temp_f31 = this->frame_size[1];
     update_fade__11TWindowBaseFv();
-    temp_f1 = this->m_4c - temp_f31;
+    temp_f1 = this->frame_size[1] - temp_f31;
     if (0.0f != temp_f1) {
         this->m_84 = (f32) (this->m_84 - temp_f1);
         this->m_6c = (f32) (this->m_6c - temp_f1);
@@ -321,9 +321,9 @@ void TWindowMessageLog::render() {
 }
 void TWindowMessageLog::run_task() {
     if (!(*(s32 *)&this->window_flags & 2)) {
-        *(s32 *)&this->m_5c = 0x01000000;
+        this->open_tick = 0x01000000;
     }
-    if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
+    if ((f32) this->open_tick >= 7.5f) {
         ((TWindowSubStatusDisp *)(*(u8 **)((s8 *)((u8 *)this) + 0x90)))->increment_counter();
     }
     update_scroll_animation();
@@ -349,7 +349,7 @@ u8 *TWindowMessageLog__ct(TWindowMessageLog *window_message_log, s32 arg1, s32 a
     *(s32 **)((s8 *)window_message_log + 0x18) = &(*(RecoveredGlobal_8026ABA8___vt__17TWindowMessageLog *)&__vt__17TWindowMessageLog).value;
     *(s32 *)((s8 *)window_message_log + 0) = (s32) ((s32)TWindowMessageLog__name);
     TWindowCtrl__sub_8026AD78((s32)window_message_log);
-    temp_f2 = window_message_log->m_38;
+    temp_f2 = window_message_log->target_size[0];
     temp_f1 = temp_f2 - 8.0f;
     stack.spC = 0.0f;
     stack.sp8 = temp_f1;

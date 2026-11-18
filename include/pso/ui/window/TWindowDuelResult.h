@@ -18,8 +18,6 @@ struct TWindowDuelResult : public TWindowBase {
     void rebuild_page();
     void update_page();
 
-    u8 unknown_30[0x2C];
-    s32 open_tick;
     f32 scale_x;
     f32 scale_y;
     PageIndicator *page_indicator;

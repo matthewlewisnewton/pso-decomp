@@ -8,7 +8,6 @@ struct TWindowSubSymbolChatHelp : public TWindowBase {
     virtual ~TWindowSubSymbolChatHelp();
     void draw_help_entry(void *, s32, s32);
     void draw_color_palette(void *);
-    u8 unknown_30[0x30];
     u8 m_60;
     u8 _pad61[0x3];
     u32 m_64;

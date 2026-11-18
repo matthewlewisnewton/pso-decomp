@@ -130,7 +130,7 @@ void TWindowSnapShot::reset() {
 }
 void *TWindowSnapShot__sub_802A5EDC(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x3C) = lbl_804DD098;
+        ((RlcFile *)arg0)->dispatch = lbl_804DD098;
         if (arg1 > 0) {
             ::operator delete(arg0);
         }
@@ -140,7 +140,7 @@ void *TWindowSnapShot__sub_802A5EDC(void *arg0, s16 arg1) {
 
 u8 *TWindowSnapShot::init_and_reset() {
     u8 *arg0 = (u8 *)this;
-    this->m_3c = lbl_804DD098;
+    ((RlcFile *)this)->dispatch = lbl_804DD098;
     reset();
     return arg0;
 }

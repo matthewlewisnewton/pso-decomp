@@ -335,11 +335,11 @@ void render__17TWindowChatSymbolFv(u8 *window_chat_symbol) {
 
     c_arg = draw_default_entry__9TWindowDDFl();
     if ((s32) *(s32 *)((s8 *)c_arg + 0x30) < 0) {
-        *(f32 *)((s8 *)c_arg + 0x28) = (f32) ((f32) *(s32 *)&((TWindowChatSymbol *)window_chat_symbol)->m_5c / 7.5f);
+        *(f32 *)((s8 *)c_arg + 0x28) = (f32) ((f32) *(s32 *)&((TWindowChatSymbol *)window_chat_symbol)->open_tick / 7.5f);
         *(f32 *)((s8 *)c_arg + 0x2C) = (f32) *(f32 *)((s8 *)c_arg + 0x28);
     }
     ((TWindowBase *)window_chat_symbol)->draw_quest_message_frame(c_arg);
-    *(f32 *)((s8 *)c_arg + 0x10) = (f32) ((0.5f * (((TWindowChatSymbol *)window_chat_symbol)->m_48 - 136.0f)) + *(f32 *)((s8 *)c_arg + 0x10));
+    *(f32 *)((s8 *)c_arg + 0x10) = (f32) ((0.5f * (((TWindowChatSymbol *)window_chat_symbol)->frame_size[0] - 136.0f)) + *(f32 *)((s8 *)c_arg + 0x10));
     temp_f2 = *(f32 *)((s8 *)window_chat_symbol + 0x4C);
     temp_f1 = temp_f2 - 90.0f;
     *(f32 *)((s8 *)c_arg + 0x14) = (f32) ((0.5f * temp_f1) + *(f32 *)((s8 *)c_arg + 0x14));

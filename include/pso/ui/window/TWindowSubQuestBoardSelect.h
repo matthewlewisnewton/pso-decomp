@@ -11,8 +11,6 @@ struct TWindowSubQuestBoardSelect : public TWindowBase {
     void sub_8027D230();
     int is_open();
     virtual void render();
-    u8 unknown_30[0x2C];
-    u32 m_5c;
     u8 m_60;
     u8 m_61;
     u8 _pad62[0x2];

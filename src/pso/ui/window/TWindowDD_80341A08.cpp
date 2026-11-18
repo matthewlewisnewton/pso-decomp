@@ -88,14 +88,14 @@ void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *rect) 
     if (rect->open_tick < 0) {
         return;
     }
-    c = 0.5f * self->pad_4C + self->pad_44;
-    f32 depth = TWindowDD__sub_80348AD4(self->pad_54, 0.0f);
+    c = 0.5f * self->frame_size[1] + self->frame_position[1];
+    f32 depth = TWindowDD__sub_80348AD4(self->draw_depth, 0.0f);
     ((TWindowDD *)verts)->reset_entries(depth, -1);
     ((TWindowDD *)verts)->copy_point_table(self->pad_64);
     TWindowDD__sub_80348A2C(rect, verts);
     s = rect->scale[1];
     count = self->pad_78;
-    top = -(0.5f * self->pad_4C);
+    top = -(0.5f * self->frame_size[1]);
     y0 = top * s + c;
     bottom = top + TWindowDD__data_805DFB20;
     y1 = bottom * s + c;
@@ -150,7 +150,7 @@ void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *rect) 
         }
     }
     if (0.0f != frac) {
-        yb = 0.5f * self->pad_4C * s + c;
+        yb = 0.5f * self->frame_size[1] * s + c;
         v = verts;
         for (s32 i = 0; i < 4; i++) {
             v[0].b = y1;
@@ -162,12 +162,12 @@ void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *rect) 
         ((TWindowDD *)verts)->draw_transformed_primitive(8, tex, 1);
     }
     if (self->m_74 > 0 && self->sub_80342254() != 0) {
-        depth = TWindowDD__sub_80348AD4(self->pad_54, 0.1f);
+        depth = TWindowDD__sub_80348AD4(self->draw_depth, 0.1f);
         ((TWindowDD *)verts)->reset_entries(depth, -1);
         ((TWindowDD *)verts)->copy_point_table(1);
         TWindowDD__sub_80348A2C(rect, verts);
         f32 row = (f32)self->m_6c;
-        f32 first_y = -(0.5f * self->pad_4C);
+        f32 first_y = -(0.5f * self->frame_size[1]);
         y0 = row * TWindowDD__data_805DFB20 + first_y;
         s = rect->scale[1];
         bottom = y0 + TWindowDD__data_805DFB20;
@@ -513,7 +513,7 @@ TWindowDD_WS_Word *TWindowDD__sub_803422F0(TWindowDD_WS_Word *self, s32 element_
     self->pad_70 = element_list;
     ((TWindowDD *)self)->reset_fields();
     ((TWindowDD *)self)->load_element_list();
-    self->pad_5C = 0x01000000;
+    self->open_tick = 0x01000000;
     return self;
 }
 

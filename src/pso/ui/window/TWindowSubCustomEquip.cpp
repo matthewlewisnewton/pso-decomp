@@ -521,7 +521,7 @@ void TWindowSubCustomEquip::run_task() {
     update_rotate_anim();
     reset_selection();
     refresh_palette_slots();
-    if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
+    if ((f32) this->open_tick >= 7.5f) {
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_6c))->update_subwindow();
     }
     ((TWindowDD *)arg0)->initialize_subwindow();

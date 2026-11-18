@@ -30,8 +30,8 @@ TWindowLoadItemTexture *fn_802628C0(void *layout, void *table, void *id) {
     }
     fn_80262C2C(window);
     sprite = window->get_array_entry(0);
-    *(f32 *)(sprite + 0x8) = 0.5f * window->m_38 - 32.0f - 4.0f;
-    *(f32 *)(sprite + 0xC) = 0.5f * *(f32 *)window->unk_3C - 32.0f - 1e+01f;
+    *(f32 *)(sprite + 0x8) = 0.5f * window->target_size[0] - 32.0f - 4.0f;
+    *(f32 *)(sprite + 0xC) = 0.5f * window->target_size[1] - 32.0f - 1e+01f;
     *(f32 *)(sprite + 0x10) = 64.0f;
     *(f32 *)(sprite + 0x14) = 64.0f;
     set_sprite_uv_bounds((void *)sprite, 0.0f, 0.0f, 1.0f, 1.0f);
@@ -123,7 +123,7 @@ void *TWindowLoadItemTexture__ct(TWindowLoadItemTexture *window_load_item_textur
         *(f32 *)((s8 *)window_load_item_texture + 0x68) = *(f32 *)((s8 *)window_load_item_texture + 0x64) = 0.37f;
         break;
     }
-    window_load_item_texture->m_38 = *(f32 *)((s8 *)arg2 + 0);
+    window_load_item_texture->target_size[0] = *(f32 *)((s8 *)arg2 + 0);
     *(f32 *)((s8 *)window_load_item_texture + 0x3C) = *(f32 *)((s8 *)arg2 + 4);
     ((TWindowBase *)window_load_item_texture)->save_position();
     e = ((void *(*)(void *, int))get_array_entry__11TWindowBaseFi)(window_load_item_texture, 0);

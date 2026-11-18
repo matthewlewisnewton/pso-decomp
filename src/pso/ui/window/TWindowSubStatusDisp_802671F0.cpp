@@ -211,7 +211,7 @@ void TWindowSubStatusDisp::clamp_scroll_offset() {
     f32 temp_f1;
     if ((u32) *(u32 *)((s8 *)arg0 + 0x84) != 0U) {
         stack.sp8 = 0.0f;
-        temp_f1 = this->m_4c - 20.0f;
+        temp_f1 = this->frame_size[1] - 20.0f;
         stack.spC = temp_f1;
         if ((u32) *(u32 *)((s8 *)arg0 + 0x80) != 0U) {
             stack.spC = temp_f1 - 6.0f;
@@ -556,7 +556,7 @@ void TWindowMenuIconLine::create_menu_scroll_bar() {
     u32 temp_r3;
     u32 var_r0;
     if ((u32) this->unk_84 == 0U) {
-        temp_f1 = this->m_38 - 8.0f;
+        temp_f1 = this->target_size[0] - 8.0f;
         stack.spC = 0.0f;
         stack.sp8 = temp_f1;
         temp_r3 = (int)::operator new(0xC);
@@ -601,9 +601,9 @@ void TWindowSubStatusDisp::init_scroll_pos() {
     if (!(temp_r4 & 0x20)) {
         *(u16 *)((s8 *)this + 0x70) = (u16) (temp_r4 | 0x20);
         temp = ((u16 *(*)(void *, s16))get_array_entry__11TWindowBaseFi)(this, (s16)(*(s16 *)((s8 *)this + 0x74)));
-        this->m_3c = (f32) (20.0f + *(f32 *)((s8 *)temp + 0x14));
+        this->target_size[1] = (f32) (20.0f + *(f32 *)((s8 *)temp + 0x14));
         if (this->window_flags & 0x40) {
-            this->m_3c += 6.0f;
+            this->target_size[1] += 6.0f;
         }
         *(s32 *)((s8 *)this + 0x50) = 3;
     }
@@ -615,7 +615,7 @@ void TWindowMenuIconLine::center_list_selection() {
     f32 target;
 
     if ((this->unk_84 != 0U) && (*(u32 *)((s8 *)((u8 *)this) + 0x50) == 0U)) {
-        f32 t = (*(f32 *)&this->m_4c - 16.0f) - 10.0f;
+        f32 t = (this->frame_size[1] - 16.0f) - 10.0f;
         target = 9.0f + (f32) (this->cursor * 0x14);
         target -= 0.5f * t;
         *(f32 *)&this->unk_6C += target - *(f32 *)&this->unk_6C;
@@ -628,7 +628,7 @@ void TWindowMenuIconLine::clamp_item_list_scroll() {
     f32 temp_f1;
     if ((u32) this->unk_84 != 0U) {
         stack.sp8 = 0.0f;
-        temp_f1 = *(f32 *)&this->m_4c - 20.0f;
+        temp_f1 = this->frame_size[1] - 20.0f;
         stack.spC = temp_f1;
         if ((u32) this->status_display != 0U) {
             stack.spC = temp_f1 - 6.0f;
@@ -755,7 +755,7 @@ void TWindowMenuIconLine::run_task() {
             this->set_flag4();
         }
     }
-    if ((f32) this->m_5c >= 7.5f) {
+    if ((f32) this->open_tick >= 7.5f) {
         temp_r3 = *(u32 *)((s8 *)((u8 *)this) + 0x80);
         if (temp_r3 != 0U) {
             ((TWindowSubStatusDisp *)temp_r3)->update_subwindow();

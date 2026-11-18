@@ -11,7 +11,6 @@ struct TWindowChallengeResult : public TWindowBase {
     virtual void run_task();
     virtual void render();
 
-    u8 unknown_30[0x30];
     f32 scale_x;
     f32 scale_y;
 };

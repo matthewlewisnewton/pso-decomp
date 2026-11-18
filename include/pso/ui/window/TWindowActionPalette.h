@@ -33,15 +33,6 @@ struct TWindowActionPalette : public TWindowBase {
     virtual void render();
     virtual ~TWindowActionPalette();
 
-    u8 unknown_30[0x10];
-    f32 x;
-    f32 y;
-    f32 w;
-    f32 h;
-    u8 unk_50[0x4];
-    f32 m_54;
-    f32 m_58;
-    s32 m_5c;
     u8 resources[3][4];
     u8 state;
     u8 unknown_6d[3];

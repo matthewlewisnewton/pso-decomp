@@ -23,14 +23,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void calc_row_width();
     virtual void run_task();
     virtual void render();
-    u8 unk_30[0x4];
-    s32 m_34;
-    u8 unk_38[0x4];
-    f32 m_3c;
-    u8 unk_40[0xC];
-    f32 m_4c;
-    u8 unk_50[0xC];
-    u32 m_5c;
     s16 page; // inferred: index into the dispatch_page_init/update page tables
     u16 m_62;
     u32 m_64;

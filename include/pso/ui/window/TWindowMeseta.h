@@ -7,7 +7,6 @@
 struct TWindowMeseta : public TWindowBase {
     virtual ~TWindowMeseta();
     virtual void render();
-    u8 unknown_30[0x30];
     f32 m_60;
     u32 m_64;
     u32 m_68;

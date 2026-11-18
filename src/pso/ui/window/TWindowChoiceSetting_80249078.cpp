@@ -14,12 +14,12 @@ void TWindowChoiceSetting::sub_80249078() {
     } else {
         target = 0.0f;
     }
-    steps = *(u32 *)&this->unk_50;
+    steps = tween_ticks;
     if (steps == 0) {
         *(f32 *)&this->unk_60[0xC] = target;
         return;
     }
-    target += 0.5f * (this->m_3c - this->m_4c);
+    target += 0.5f * (this->target_size[1] - this->frame_size[1]);
     *(f32 *)&this->unk_60[0xC] += (target - *(f32 *)&this->unk_60[0xC]) / (f32)steps;
 }
 #pragma pop

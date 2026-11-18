@@ -79,7 +79,7 @@ u8 *TWindowDeposit__ct(u8 *arg0, s32 arg1) {
   temp_r31 = (u8 *) ((u8 *)((TWindowBase *)arg0)->get_array_entry(1));
   set_text_entry_string(temp_r30, str, 0);
   *((f32 *) (((s8 *) temp_r31) + 8)) = (f32) (96.0f + (12.0f + (8.0f + temp_f31)));
-  ((TWindowDeposit *)arg0)->m_38 = TWindowSubStatusDisp::get_base_y(((TWindowDeposit *)arg0)->m_60);
+  ((TWindowDeposit *)arg0)->target_size[0] = TWindowSubStatusDisp::get_base_y(((TWindowDeposit *)arg0)->m_60);
   ((TWindowBase *)arg0)->save_position();
   if (TCameraCtrl::get_camera_id() > 2)
   {

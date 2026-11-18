@@ -148,9 +148,9 @@ u8 *TWindowSubStatusDisp::init_part_direct(u8 *arg1, s32 arg2) {
     *(f32 *)((s8 *)((u8 *)this) + 0x24) = (f32) *(f32 *)((s8 *)arg1 + 0x1C);
     *(f32 *)((s8 *)((u8 *)this) + 0x28) = (f32) *(f32 *)((s8 *)arg1 + 0x20);
     *(f32 *)((s8 *)((u8 *)this) + 0x18) = (f32) *(f32 *)((s8 *)arg1 + 0x24);
-    this->window_flags = (s32) *(s32 *)((s8 *)arg1 + 0x28);
+    ((Win_8025B0D0 *)this)->i2C = *(s32 *)(arg1 + 0x28);
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = (s32) *(s32 *)((s8 *)arg1 + 0x2C);
-    this->m_34 = (s32) *(s32 *)((s8 *)arg1 + 0x30);
+    ((Win_8025B0D0 *)this)->i34 = *(s32 *)(arg1 + 0x30);
     *(s16 *)((s8 *)((u8 *)this) + 0) = (s16) *(s32 *)((s8 *)arg1 + 0x34);
     return ((u8 *)this);
 }

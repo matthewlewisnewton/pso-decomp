@@ -172,7 +172,7 @@ u8 *TWindowLockOn__ct(TWindowLockOn *self, s32 player, u16 id) {
     self->m_64 = 0;
     self->m_70 = NULL;
     self->bind_target(id);
-    self->m_50 = 0;
+    self->tween_ticks = 0;
     return (u8 *)self;
 }
 
@@ -180,7 +180,7 @@ TWindowLockOn::~TWindowLockOn() {}
 
 void TWindowLockOn::run_task() {
     s32 old;
-    m_5c = 0x01000000;
+    open_tick = 0x01000000;
     if (m_70) {
         (this->*m_70)();
     }
@@ -200,7 +200,7 @@ void TWindowLockOn::render() {
 
     context = setup_window_draw_context((s32)&m_68);
     draw_window_frame((void *)context);
-    if (m_30 == m_40 && m_34 == m_44 && m_38 == m_48 && m_3c == m_4c) {
+    if (target_position[0] == frame_position[0] && target_position[1] == frame_position[1] && target_size[0] == frame_size[0] && target_size[1] == frame_size[1]) {
         draw_visible_window_entries(this, &entry_list, context);
     }
 }
@@ -273,11 +273,11 @@ void TWindowLockOn::update_for_other_player(TObjCollidable *player) {
     ((TWindowLockOn *)w)->update_for_player_index(id);
     ((TWindowHelpItem *)w)->reset_float_field();
     measure_text_entry(w);
-    m_38 = 34.0f + w->w;
-    m_3c = 49.0f;
-    m_38 += 28.0f;
-    m_34 = get_target_distance__13TWindowLockOnFv(0x1E) - m_3c * m_6c;
-    m_50 = 0;
+    target_size[0] = 34.0f + w->w;
+    target_size[1] = 49.0f;
+    target_size[0] += 28.0f;
+    target_position[1] = get_target_distance__13TWindowLockOnFv(0x1E) - target_size[1] * m_6c;
+    tween_ticks = 0;
 }
 #pragma pop
 
@@ -296,23 +296,23 @@ void TWindowLockOn::update_for_item(TItem *item) {
     if (e->kind != 0x33) {
         e->y += 18.0f;
     }
-    m_38 = e->w;
-    m_3c = 38.0f;
+    target_size[0] = e->w;
+    target_size[1] = 38.0f;
     e2 = (LockOnEntry *)get_array_entry(1);
     if (item->get_item_type() == 0 || item->get_item_type() == 1) {
         ((LockOnEntryGrade *)e2)->grade = (u8)item->calc_display_grade();
-        m_3c += 20.0f;
+        target_size[1] += 20.0f;
         e2->flags &= ~2;
         r = get_item_star_row_width((u8 *)e2);
-        if (m_38 < r) {
-            m_38 = r;
+        if (target_size[0] < r) {
+            target_size[0] = r;
         }
     } else {
         e2->flags |= 2;
     }
-    m_38 += 28.0f;
-    m_34 = get_target_distance__13TWindowLockOnFv(0x1E) - m_3c * m_6c;
-    m_50 = 0;
+    target_size[0] += 28.0f;
+    target_position[1] = get_target_distance__13TWindowLockOnFv(0x1E) - target_size[1] * m_6c;
+    tween_ticks = 0;
 }
 #pragma pop
 
@@ -337,10 +337,10 @@ void TWindowLockOn::update_for_enemy(TObjChara *enemy) {
     e = get_array_entry(0);
     TWindowDuelResult::set_default_status((void *)e, enemy_name_for_rt_index(((TWindowLockOn *)enemy)->get_target_id()));
     ((TWindowHelpItem *)e)->reset_float_field();
-    m_38 = (f32)calc_text_width(((TWindowSubComCard *)e)->get_field_20());
-    m_3c = 64.0f;
+    target_size[0] = (f32)calc_text_width(((TWindowSubComCard *)e)->get_field_20());
+    target_size[1] = 64.0f;
     if (is_split_screen() == 0) {
-        m_3c += 29.0f;
+        target_size[1] += 29.0f;
     }
     if (obj_testFlag_2E4__9TObjCharaFUl(enemy, 0x40) != 0) {
         kind = 4;
@@ -362,18 +362,18 @@ void TWindowLockOn::update_for_enemy(TObjChara *enemy) {
     ((LockOnEntryColor *)e)->color = type_colors[kind];
     w2 = calc_text_width(((TWindowSubComCard *)e)->get_field_20());
     w2 += width;
-    if ((f32)w2 > m_38) {
-        m_38 = (f32)w2;
+    if ((f32)w2 > target_size[0]) {
+        target_size[0] = (f32)w2;
     }
-    m_38 += 28.0f;
-    m_34 = get_target_distance__13TWindowLockOnFv(0x1E) - m_3c * m_6c;
-    m_50 = 0;
+    target_size[0] += 28.0f;
+    target_position[1] = get_target_distance__13TWindowLockOnFv(0x1E) - target_size[1] * m_6c;
+    tween_ticks = 0;
     p = (LockOnEntryText *)get_array_entry(7);
-    p->w = m_38 - 28.0f;
+    p->w = target_size[0] - 28.0f;
     p->cur = (f32)((TItemProShield *)enemy)->get_field_2b8();
     p->max = (f32)((LockOnEnemyView *)enemy)->hp_max;
     p = (LockOnEntryText *)get_array_entry(8);
-    p->w = m_38 - 28.0f;
+    p->w = target_size[0] - 28.0f;
     p->cur = (f32)obj_getS16_2BA((LockOnEnemyView *)enemy);
     p->max = (f32)((LockOnEnemyView *)enemy)->tp_max;
 }

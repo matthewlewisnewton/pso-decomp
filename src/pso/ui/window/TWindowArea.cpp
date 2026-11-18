@@ -83,6 +83,6 @@ TWindowArea::~TWindowArea() {}
 TWindowArea::TWindowArea() : TWindowRoom(NULL) {
     m_name = TWindowArea__name;
     const void *position = get_window_layout_position(0x25);
-    copy_vec2__28TWindowSubSymbolChatPartsSetFPv(layoutPosition, position);
+    copy_vec2__28TWindowSubSymbolChatPartsSetFPv(frame_position, position);
     tabParameter = 0.0f;
 }

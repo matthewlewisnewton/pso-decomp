@@ -27,4 +27,18 @@ struct RlcHeader {
 typedef char RlcDirectoryEntry_size[sizeof(RlcDirectoryEntry) == 8 ? 1 : -1];
 typedef char RlcHeader_size[sizeof(RlcHeader) == 0x20 ? 1 : -1];
 
+struct RlcFile {
+    RlcHeader *header;
+    RlcDirectoryEntry *directory;
+    u8 *buffer;
+    s32 buffer_size;
+    u32 unknown_10;
+    s32 loaded;
+    s32 status;
+    char filename[32];
+    s32 *dispatch;
+};
+
+typedef char RlcFileSize[sizeof(RlcFile) == 0x40 ? 1 : -1];
+
 #endif

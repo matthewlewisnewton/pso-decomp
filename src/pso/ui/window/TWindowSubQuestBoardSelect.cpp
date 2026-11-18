@@ -278,8 +278,8 @@ void TWindowSubQuestBoardSelect::run_task() {
         }
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
-    if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
-        *(s32 *)&this->m_5c = 0x186A0;
+    if ((f32) this->open_tick >= 7.5f) {
+        this->open_tick = 0x186A0;
         ((TWindowSubStatusDisp *)(*(s32 *)&this->m_64))->update_subwindow();
     }
     ((TWindowBase *)arg0)->update_fade();

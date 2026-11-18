@@ -91,7 +91,7 @@ void TWindowPartyStatus::draw_background(u8 *arg1) {
     f32 temp_f2;
     f32 temp_f31;
     f32 temp_f6;
-    temp_f31 = -1.0f / this->m_54;
+    temp_f31 = -1.0f / this->draw_depth;
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)lbl_805D63F0);
     set_draw_texture_and_color(0xB, (*(s32 *)((s8 *)arg1 + 0x34)));

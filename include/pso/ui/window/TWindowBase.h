@@ -45,6 +45,14 @@ public:
     s16 closing_tick;
     WindowLayoutEntries entry_list;
     s32 window_flags;
+    f32 target_position[2];
+    f32 target_size[2];
+    f32 frame_position[2];
+    f32 frame_size[2];
+    u32 tween_ticks;
+    f32 draw_depth;
+    f32 m_58;
+    s32 open_tick;
 };
 
 typedef char WindowSortDepthOffset[offsetof(TWindowBase, sort_depth) == 0x1C ? 1 : -1];
@@ -53,5 +61,12 @@ typedef char WindowClosingTickOffset[offsetof(TWindowBase, closing_tick) == 0x22
 
 typedef char WindowEntriesOffset[offsetof(TWindowBase, entry_list) == 0x24 ? 1 : -1];
 typedef char WindowFlagsOffset[offsetof(TWindowBase, window_flags) == 0x2C ? 1 : -1];
+
+typedef char WindowBaseSize[sizeof(TWindowBase) == 0x60 ? 1 : -1];
+typedef char WindowTargetPositionOffset[offsetof(TWindowBase, target_position) == 0x30 ? 1 : -1];
+typedef char WindowFramePositionOffset[offsetof(TWindowBase, frame_position) == 0x40 ? 1 : -1];
+typedef char WindowTweenOffset[offsetof(TWindowBase, tween_ticks) == 0x50 ? 1 : -1];
+typedef char WindowDrawDepthOffset[offsetof(TWindowBase, draw_depth) == 0x54 ? 1 : -1];
+typedef char WindowOpenTickOffset[offsetof(TWindowBase, open_tick) == 0x5C ? 1 : -1];
 
 #endif

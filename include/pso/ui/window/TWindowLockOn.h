@@ -12,17 +12,6 @@ struct TWindowLockOn : public TWindowBase {
     virtual ~TWindowLockOn();
     void request_close();
     virtual void render();
-    f32 m_30;
-    f32 m_34;
-    f32 m_38;
-    f32 m_3c;
-    f32 m_40;
-    f32 m_44;
-    f32 m_48;
-    f32 m_4c;
-    u32 m_50;
-    u8 _pad54[0x8];
-    u32 m_5c;
     u16 m_60;
     u8 _pad62[0x2];
     s32 m_64;

@@ -414,8 +414,8 @@ void TWindowSubStatusDisp::vt15() {  }
 
 // Best-time records page: page == 2 shows the split-screen record sets.
 void TWindowSubStatusDisp::vt4() {
-    if ((f32)(s32)m_5c > TWindowSubStatusDisp__data_805DD708) {
-        m_5c = 7;
+    if ((f32)(s32)open_tick > TWindowSubStatusDisp__data_805DD708) {
+        open_tick = 7;
     }
     init_window_layout_entries(&entry_list, TWindowSubStatusDisp__rank_time_records_layout, client_index);
     m_68->get_type();
@@ -832,7 +832,7 @@ void TWindowSubStatusDisp::run_task() {
     TWindowSubStatusDisp *arg0 = (TWindowSubStatusDisp *)this;
   if (!((arg0->window_flags) & 2))
   {
-    *(s32 *)&arg0->m_5c = 0x01000000;
+    arg0->open_tick = 0x01000000;
   }
   if ((handle_list_page_flip_input(arg0->m_68) != 0) || ((arg0->page) != ((s16) (*(s16 *)&arg0->m_62))))
   {

@@ -207,7 +207,12 @@ void TWindowSubComCard::reparent_to_main_ctrl() {
     ((TObject *)arg0)->set_parent((TObject *)(TWindowCtrlMain__sub_8024CE24()));
 }
 
-void TWindowBase::save_position() { *(f32*)((char*)this + 0x40) = *(f32*)((char*)this + 0x30); *(f32*)((char*)this + 0x44) = *(f32*)((char*)this + 0x34); *(f32*)((char*)this + 0x48) = *(f32*)((char*)this + 0x38); *(f32*)((char*)this + 0x4c) = *(f32*)((char*)this + 0x3c); }
+void TWindowBase::save_position() {
+    frame_position[0] = target_position[0];
+    frame_position[1] = target_position[1];
+    frame_size[0] = target_size[0];
+    frame_size[1] = target_size[1];
+}
 
 void TWindowSubTradeMain__sub_802448E4(void *arg0) {
     copy_vec2__28TWindowSubSymbolChatPartsSetFPv((void*)((void *)((char *)arg0 + 48)));
@@ -306,10 +311,8 @@ void window_request_show(void *object) {
 }
 
 s32 TWindowBase::setup_window_draw_context(s32 arg1) {
-    u8 *frame = (u8 *)this;
     TWindowDrawContext *context = TWindowDrawContext::open_singleton(
-        (f32 *)(frame + 0x40), (f32 *)(frame + 0x48), (f32 *)arg1,
-        *(f32 *)(frame + 0x54), window_flags);
+        frame_position, frame_size, (f32 *)arg1, draw_depth, window_flags);
     if (window_flags & 0x40) {
         context->animate_scale();
     }
@@ -319,7 +322,7 @@ s32 TWindowBase::setup_window_draw_context(s32 arg1) {
     if (window_flags & 8) {
         context->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
     }
-    s32 tick = *(s32 *)(frame + 0x5C);
+    s32 tick = open_tick;
     if (!(window_flags & 0x2000)) {
         tick = (s32)((f32)tick - 7.5f);
     }
@@ -388,18 +391,18 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     s32 temp_r3;
     s32 temp_r3_2;
     *(s32 *)((s8 *)((u8 *)this) + 0) = (s32) TWindowBase__name;
-    ((s32 (*)(void *, void *))copy_vec2__28TWindowSubSymbolChatPartsSetFPv)((void *) (((u8 *)this) + 0x30), arg2);
-    ((s32 (*)(void *, void *))copy_vec2__28TWindowSubSymbolChatPartsSetFPv)((void *) (((u8 *)this) + 0x38), arg1);
+    ((s32 (*)(void *, void *))copy_vec2__28TWindowSubSymbolChatPartsSetFPv)(target_position, arg2);
+    ((s32 (*)(void *, void *))copy_vec2__28TWindowSubSymbolChatPartsSetFPv)(target_size, arg1);
     ((s32 (*)(void *))save_position__11TWindowBaseFv)(this);
     temp_f1 = *(f32 *)((s8 *)arg1 + 8);
     sort_depth = temp_f1;
-    *(f32 *)((s8 *)((u8 *)this) + 0x54) = -10000.0f;
+    draw_depth = -10000.0f;
     window_flags = (s32) *(s32 *)((s8 *)arg1 + 0x10);
     ((s32 (*)(void *, f32))resort_window_order__11TWindowBaseFv)(this, temp_f1);
-    *(s32 *)((s8 *)((u8 *)this) + 0x50) = 0;
+    tween_ticks = 0;
     client_index = arg3;
     init_window_layout_entries(&entry_list, (int) (*(s32 *)((s8 *)arg1 + 0xC)), (int) (client_index));
-    *(s32 *)((s8 *)((u8 *)this) + 0x5C) = 0;
+    open_tick = 0;
     closing_tick = 0;
     temp_r3 = window_flags;
     if (!(temp_r3 & 1) && !(temp_r3 & 2)) {
@@ -410,7 +413,7 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
         ((s32 (*)(int, int, int, int))play_sound_effect)(0x53703, 0, 0, 0);
     }
     if (TWindowSubStatusDisp::get_card_window_scale((int) (client_index)) <= 0.0f) {
-        *(s32 *)((s8 *)((u8 *)this) + 0x5C) = 0x01000000;
+        open_tick = 0x01000000;
     }
 }
 

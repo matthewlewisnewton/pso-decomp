@@ -7,7 +7,6 @@
 struct TWindowUserSort : public TWindowBase {
     virtual void render();
     virtual ~TWindowUserSort();
-    u8 unknown_30[0x30];
     u32 m_60;
     virtual void run_task();
 };

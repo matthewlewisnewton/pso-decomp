@@ -29,7 +29,7 @@
 #pragma defer_codegen on
 
 typedef char palette_children_offset[offsetof(TWindowActionPalette, entry_list) == 0x24 ? 1 : -1];
-typedef char palette_x_offset[offsetof(TWindowActionPalette, x) == 0x40 ? 1 : -1];
+typedef char palette_x_offset[offsetof(TWindowActionPalette, frame_position) == 0x40 ? 1 : -1];
 typedef char palette_resources_offset[offsetof(TWindowActionPalette, resources) == 0x60 ? 1 : -1];
 typedef char palette_state_offset[offsetof(TWindowActionPalette, state) == 0x6C ? 1 : -1];
 typedef char palette_scale_offset[offsetof(TWindowActionPalette, scale) == 0x70 ? 1 : -1];
@@ -186,7 +186,7 @@ void TWindowActionPalette::run_task() {
         return;
     }
     if (!(*(s32 *)((s8 *)this + 0x2C) & 2)) {
-        m_5c = 0x01000000;
+        open_tick = 0x01000000;
     }
     slot = is_player_input_active(client_index);
     if (is_on_current_screen__11TCameraCtrlFv(controller_input_state + slot * 0x50 + 0x20, fn_8002AE08((void *)client_index)) != 0) {
@@ -252,7 +252,7 @@ void TWindowActionPalette::draw_frame(int arg1) {
     f32 scale;
     f32 depth;
     scale = TWindowSubComCard__sub_80244784((TWindowSubComCard *)this);
-    depth = (-1.0f) / this->m_54;
+    depth = (-1.0f) / this->draw_depth;
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(((void *)lbl_805D63F0)));
     set_draw_texture_and_color(2, ctx->tex);
@@ -382,15 +382,15 @@ void spawn_action_palette_slot_light(TWindowActionPalette *palette, s32 slot) {
         return;
     }
     if (is_split_screen() != 0) {
-        hw = 0.5f * palette->w;
+        hw = 0.5f * palette->frame_size[0];
         s = palette->scale.x;
-        pt.x = s * ((0.5f * e->w + e->x) - hw) + (hw * s + palette->x);
-        hw2 = 0.5f * palette->h;
+        pt.x = s * ((0.5f * e->w + e->x) - hw) + (hw * s + palette->frame_position[0]);
+        hw2 = 0.5f * palette->frame_size[1];
         s2 = palette->scale.y;
-        pt.y = s2 * ((0.5f * e->h + e->y) - hw2) + (hw2 * s2 + palette->y);
+        pt.y = s2 * ((0.5f * e->h + e->y) - hw2) + (hw2 * s2 + palette->frame_position[1]);
     } else {
-        pt.x = 0.5f * e->w + (palette->x + e->x);
-        pt.y = 0.5f * e->h + (palette->y + e->y);
+        pt.x = 0.5f * e->w + (palette->frame_position[0] + e->x);
+        pt.y = 0.5f * e->h + (palette->frame_position[1] + e->y);
     }
     TWindowEffectLight::create(&pt, (void *)kind, (void *)palette->client_index);
 }

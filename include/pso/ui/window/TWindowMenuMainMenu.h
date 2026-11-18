@@ -17,9 +17,6 @@ struct TWindowMenuMainMenu : public TWindowBase {
     void draw_frame(TWindowDrawContext *frame);
     virtual void render();
     virtual void run_task();
-    u8 unk_30[0x24];
-    f32 depth; // (inferred) open_singleton depth argument and draw_frame quad depth
-    u8 unk_58[0x8];
     u8 m_60;
     u8 m_61;
     u16 m_62;

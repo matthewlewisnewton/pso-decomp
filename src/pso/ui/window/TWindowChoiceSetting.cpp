@@ -135,7 +135,7 @@ void TUnk_804D0658::clamp_scroll() {
     f32 temp_f1;
     if ((u32) scrollbar != 0U) {
         stack.sp8 = lbl_805DD1D8;
-        temp_f1 = this->m_4c - lbl_805DD1DC;
+        temp_f1 = this->frame_size[1] - lbl_805DD1DC;
         stack.spC = temp_f1;
         if ((u32) this->m_78 != 0U) {
             stack.spC = temp_f1 - lbl_805DD1E0;
@@ -264,7 +264,7 @@ void TUnk_804D0658::run_task() {
             ((TUnk_804D0658 *)arg0)->request_close();
         }
     }
-    if ((f32) *(s32 *)&this->m_5c >= lbl_805DD1F8) {
+    if ((f32) this->open_tick >= lbl_805DD1F8) {
         temp_r3 = *(u32 *)((s8 *)arg0 + 0x78);
         if (temp_r3 != 0U) {
             ((TWindowSubStatusDisp *)temp_r3)->update_subwindow();

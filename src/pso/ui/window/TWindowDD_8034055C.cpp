@@ -43,7 +43,7 @@ void TWindowDD__sub_8034055C(TUnk_804EFBAC *self) {
         return;
     }
     self->calc_inner_rect((u8 *)ctx);
-    ((TWindowDD *)points)->reset_entries(TWindowDD__sub_80348AD4(self->pad_54, 0.0f), -1);
+    ((TWindowDD *)points)->reset_entries(TWindowDD__sub_80348AD4(self->draw_depth, 0.0f), -1);
     ((TWindowDD *)points)->copy_point_table(0);
     TWindowDD__sub_80348A2C(ctx, points);
     TWindowDD__sub_803489B8(ctx, points, 0);
@@ -63,7 +63,7 @@ void TWindowDD__sub_8034055C(TUnk_804EFBAC *self) {
             ((TWindowDD *)points)->draw_transformed_primitive(8, count, 1);
         }
     }
-    depth = TWindowDD__sub_80348AD4(self->pad_54, 0.2f);
+    depth = TWindowDD__sub_80348AD4(self->draw_depth, 0.2f);
     TWindowDD__sub_803489B8(ctx, points, 0);
     h = ctx->scale[1];
     step = TWindowDD__data_805DFB20 * h;

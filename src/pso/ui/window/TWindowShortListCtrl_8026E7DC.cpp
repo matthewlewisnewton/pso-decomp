@@ -152,7 +152,7 @@ void TWindowShortListCtrl::run_task() {
             list_window = create_equip_kind_window(get_window_layout_position(1), &short_list_window_pos, client_id);
             ((TWindowSubShortCutList *)list_window)->set_flag70_bit10();
             ((TWindowShortListCtrl *)list_window)->update_variant_c();
-            ((TWindowSubComCardList *)list_window)->m_5c = 0x01000000;
+            ((TWindowSubComCardList *)list_window)->open_tick = 0x01000000;
         }
         state = 1;
     case 1:
@@ -198,7 +198,7 @@ void TWindowShortListCtrl::run_task() {
             list_window = create_equip_kind_window(get_window_layout_position(1), &short_list_window_pos, client_id);
             ((TWindowSubShortCutList *)list_window)->set_flag70_bit10();
             ((TWindowShortListCtrl *)list_window)->update_variant_b();
-            ((TWindowSubComCardList *)list_window)->m_5c = 0x01000000;
+            ((TWindowSubComCardList *)list_window)->open_tick = 0x01000000;
         }
         state = 4;
     case 4:
@@ -234,7 +234,7 @@ void TWindowShortListCtrl::run_task() {
             list_window = create_equip_kind_window(get_window_layout_position(1), &short_list_window_pos, client_id);
             ((TWindowSubShortCutList *)list_window)->set_flag70_bit10();
             ((TWindowShortListCtrl *)list_window)->update_variant_a();
-            ((TWindowSubComCardList *)list_window)->m_5c = 0x01000000;
+            ((TWindowSubComCardList *)list_window)->open_tick = 0x01000000;
         }
         state = 7;
     case 7:
@@ -333,7 +333,7 @@ void *TWindowShortListCtrl::create_window(s32 arg1, s32 arg2_arg) {
 
     window_menu = (void *)create_window_menu(arg1, 0x13, client_id);
     set_flag70_bit10__21TWindowSubComCardListFv();
-    ((TWindowSubComCardList *)window_menu)->m_5c = 0x01000000;
+    ((TWindowSubComCardList *)window_menu)->open_tick = 0x01000000;
     ((TWindowSubComCardList *)window_menu)->set_flag70_bit100();
     refresh_technique_rows((s32)window_menu, (void *)arg2_arg);
     return window_menu;

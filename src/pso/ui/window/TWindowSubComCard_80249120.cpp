@@ -26,9 +26,9 @@ void TWindowSubComCard__sub_80249144(void *window_choice_setting) {
     if (!(temp_r4 & 1)) {
         ((TWindowChoiceSetting *)window_choice_setting)->m_80 = (u16) (temp_r4 | 1);
         e = get_array_entry__11TWindowBaseFi(window_choice_setting, get_field_74__20TWindowChoiceSettingFv(window_choice_setting));
-        ((TWindowChoiceSetting *)window_choice_setting)->m_3c = 20.0f + *(f32 *)((s8 *)e + 0x14);
+        ((TWindowChoiceSetting *)window_choice_setting)->target_size[1] = 20.0f + *(f32 *)((s8 *)e + 0x14);
         if (((TWindowChoiceSetting *)window_choice_setting)->window_flags & 0x40) {
-            ((TWindowChoiceSetting *)window_choice_setting)->m_3c += 6.0f;
+            ((TWindowChoiceSetting *)window_choice_setting)->target_size[1] += 6.0f;
         }
         *(s32 *)((s8 *)window_choice_setting + 0x50) = 3;
     }

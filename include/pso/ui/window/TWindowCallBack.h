@@ -8,9 +8,6 @@ struct TWindowCallBack : public TWindowBase {
     virtual ~TWindowCallBack();
     void render();
     void run_task();
-    u8 unknown_30[0x8];
-    void* m_38;
-    u8 _pad3C[0x24];
     void (*callback)(TWindowCallBack *, s32);
 };
 

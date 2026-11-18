@@ -541,7 +541,7 @@ void TObjCityMainWarp::open_confirm_window(s32 client_id) {
             ((TWindowSubComCardList *)menu_window)->set_flag70_bit10();
             ((TLobby *)menu_window)->set_loss_flag();
             ((TWindowSubComCardList *)menu_window)->update_layout_height(288.0f);
-            if (((TWindowSubComCardList *)menu_window)->pad_3c > 160.0f) {
+            if (((TWindowSubComCardList *)menu_window)->target_size[1] > 160.0f) {
                 ((TWindowSubComCardList *)menu_window)->set_scroll_target(288.0f, 160.0f);
             }
             align_menu_entry_positions(menu_window);

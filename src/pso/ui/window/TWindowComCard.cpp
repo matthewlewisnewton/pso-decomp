@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/ui/window/TWindowActionPalette.h"
 #include "pso/system/task/TObject.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/unk/text_8026CB5C.h"
@@ -210,9 +211,9 @@ void TWindowComCard::set_help_mode(s32 arg1) {
     }
     *(u16 *)&this->m_name = (u16) (*(u16 *)&this->m_name & 0xFFFFFFFD);
     if (arg1 < 0xA) {
-        this->m_34 = 1;
+        ((Icon_80243630 *)this)->kind = 1;
     } else {
-        this->m_34 = 2;
+        ((Icon_80243630 *)this)->kind = 2;
     }
     temp_r4 = &com_card_help_panel_rect_table[arg1];
     set_sprite_uv_from_pixels((u8 *)this, temp_r4->x, temp_r4->y);
@@ -314,8 +315,8 @@ void TUnk_804CE964::run_task() {
     u8 *temp_r4;
     temp_r4 = (unsigned char *) (this->m_60);
     temp_f1 = *(f32 *)((s8 *)temp_r4 + 0x44);
-    this->m_34 = (f32) (temp_f1 + this->m_68);
-    this->m_44 = (f32) this->m_34;
+    this->target_position[1] = (f32) (temp_f1 + this->m_68);
+    frame_position[1] = target_position[1];
     ((s32 (*)(void *, int, f32))initialize_subwindow__9TWindowDDFv)((void *)arg0, (int)temp_r4, (f32)temp_f1);
     ((TWindowBase *)arg0)->update_fade();
     ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);

@@ -172,7 +172,7 @@ void TWindowSubAreaMapDisp::run_task() {
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowSubAreaMapDisp *)arg0)->update_visibility();
     ((TWindowSubAreaMapDisp *)arg0)->update_manual_scroll();
-    if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
+    if ((f32) this->open_tick >= 7.5f) {
         ((TWindowSubStatusDisp *)(*(u8 * *)&this->m_70))->update_subwindow();
     }
 }

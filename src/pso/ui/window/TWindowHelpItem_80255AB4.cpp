@@ -56,7 +56,7 @@ void TWindowHelpItem::render() {
 void TWindowHelpItem::run_task() {
     u8 *arg0 = (u8 *)this;
     if (!(this->window_flags & 2)) {
-        this->m_5c = 0x01000000;
+        this->open_tick = 0x01000000;
     }
     if ((this->m_60 & 1) && (((TWindowBase *)arg0)->sub_80244994() != 0) && !(this->window_flags & 4)) {
         if (!(this->m_60 & 4)) {
@@ -85,7 +85,7 @@ TWindowHelpItem::~TWindowHelpItem() {
 TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx)
     : TWindowBase((u8 *)&window_help_item_parameters, (s16)idx, (u8 *)pos) {
     m_name = window_help_item_class_name;
-    ((TWindowSubSymbolChatPartsSet *)&m_30)->copy_vec2(pos);
+    ((TWindowSubSymbolChatPartsSet *)&target_position[0])->copy_vec2(pos);
     save_position();
     m_60 = 0;
     m_64 = new PageIndicator(0, 3, client_index);

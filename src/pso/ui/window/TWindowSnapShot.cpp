@@ -143,7 +143,7 @@ void render__15TWindowSnapShotFv(u8 *arg0) {
 void TWindowSnapShot::run_task() {
     u8 *arg0 = (u8 *)this;
     if (!(this->window_flags & 2)) {
-        this->m_5c = 0x01000000;
+        this->open_tick = 0x01000000;
     }
     if ((TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state + 0x20), 2) != 0) || (test_flag_4c__23TAdSinglePlyChrSelectGCFv((void *) ((u8 *)&controller_input_state + 0x160), 2) != 0)) {
         play_open_sound();

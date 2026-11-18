@@ -112,7 +112,7 @@ void TWindowInputNumber::move_cursor_next() {
 }
 
 void TWindowInputNumber::set_value(f32 farg0) {
-    this->m_38 = farg0;
+    this->target_size[0] = farg0;
     save_position__11TWindowBaseFv();
     align_digits();
 }

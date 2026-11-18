@@ -641,7 +641,7 @@ void refresh_rect_placement__15TWindowFukidasiFPv(Fuki_80251028 *b) {
 // clears the width sub_80251DF0 zeroes when it sets the balloon up. Name inferred
 // from that role.
 void TUnk_804CF0B8::clear_width() {
-    m_48 = 0.0f;
+    frame_size[0] = 0.0f;
 }
 
 s32 TUnk_804CF0B8::project_anchor(f32 *pos, f32 *out) {
@@ -869,7 +869,7 @@ s32 TUnk_804CF0B8::clamp_position(void *arg1, f32 farg0) {
         *(f32 *)((s8 *)arg1 + 0) = temp_f1;
         var_r31 = 1;
     }
-    temp_f1_2 = (((TWindowCtrlMain *)(*(s16 *)&this->client_index))->get_ctrl_field14() - 20.0f) - (this->m_48 * farg0);
+    temp_f1_2 = (((TWindowCtrlMain *)(*(s16 *)&this->client_index))->get_ctrl_field14() - 20.0f) - (this->frame_size[0] * farg0);
     if (*(f32 *)((s8 *)arg1 + 0) > temp_f1_2) {
         *(f32 *)((s8 *)arg1 + 0) = temp_f1_2;
         var_r31 = 1;
@@ -1023,7 +1023,7 @@ void TUnk_804CF0B8::sub_80251DF0(u16 arg1, s32 str, s32 arg3, f32 farg0) {
     set_color(arg1);
     display_scale = 0.0f;
     this->m_7c = farg0;
-    this->m_48 = 0.0f;
+    this->frame_size[0] = 0.0f;
     *(f32 *)((s8 *)this + 0x4C) = 0.0f;
     this->clear_flag();
     this->clear_flag2c_bit100();

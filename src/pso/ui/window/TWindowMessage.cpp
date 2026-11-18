@@ -258,7 +258,7 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
         self->unk_80 = self->m_6c;
     }
     if (flags & 0x10) {
-        lim = (self->m_6c + self->m_4c) - 2e+01f;
+        lim = (self->m_6c + self->frame_size[1]) - 2e+01f;
         if (self->unk_80 < lim) {
             self->unk_80 = lim;
         }
@@ -289,7 +289,7 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
     if (flags & 0x400) {
         e->flags |= 0x200;
     }
-    y = self->m_48 - 8.0f;
+    y = self->frame_size[0] - 8.0f;
     if (self->window_flags & 0x80) {
         y -= 5.0f;
     }
@@ -307,8 +307,8 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
     self->unk_80 += 2.0f + e->f14;
     if (flags & 1) {
         self->m_84 = (self->unk_80 - e->f14) - 2.0f;
-    } else if (self->unk_80 > (self->m_6c + self->m_4c) - 2e+01f) {
-        lim = self->unk_80 - (self->m_4c - 2e+01f);
+    } else if (self->unk_80 > (self->m_6c + self->frame_size[1]) - 2e+01f) {
+        lim = self->unk_80 - (self->frame_size[1] - 2e+01f);
         if (self->m_84 < lim) {
             self->m_84 = lim;
         }
@@ -397,7 +397,7 @@ void TWindowMessage::render() {
 void TWindowMessage::run_task() {
     u8 *arg0 = (u8 *)this;
     if (!(this->window_flags & 2)) {
-        this->m_5c = 0x01000000;
+        this->open_tick = 0x01000000;
     }
     ((TWindowMessage *)arg0)->update_scroll();
     ((TWindowMessage *)arg0)->retire_scrolled_lines();

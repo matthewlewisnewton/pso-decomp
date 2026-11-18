@@ -202,7 +202,7 @@ void render__28TWindowSubSymbolChatFaceTypeFv(u8 *arg0) {
 void run_task__28TWindowSubSymbolChatFaceTypeFv(TWindowSubSymbolChatFaceType *window_sub_symbol_chat_face_type) {
     u8 *context;
     if (!(*(s32 *)&window_sub_symbol_chat_face_type->window_flags & 2)) {
-        *(s32 *)&window_sub_symbol_chat_face_type->m_5c = 0x01000000;
+        window_sub_symbol_chat_face_type->open_tick = 0x01000000;
     }
     if (window_sub_symbol_chat_face_type->is_open() == 0) {
         window_sub_symbol_chat_face_type->handle_input();
@@ -214,7 +214,7 @@ void run_task__28TWindowSubSymbolChatFaceTypeFv(TWindowSubSymbolChatFaceType *wi
             window_sub_symbol_chat_face_type->close_when_chat_closed();
         }
     }
-    if ((f32) *(s32 *)&window_sub_symbol_chat_face_type->m_5c >= 7.5f) {
+    if ((f32) window_sub_symbol_chat_face_type->open_tick >= 7.5f) {
         ((TWindowSubStatusDisp *)(*(s32 *)&window_sub_symbol_chat_face_type->m_68))->update_subwindow();
     }
     ((TWindowDD *)window_sub_symbol_chat_face_type)->initialize_subwindow();
