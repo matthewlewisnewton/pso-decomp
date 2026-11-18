@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Browse standard objdiff reports offline, without inferring original source layout.
 
-Usage: python tools/progress_map.py build/<version>/report.json [...] -o build/progress [--badges DIR]
+Usage: python tools/progress_map.py build/<version>/report.json [...] -o build/progress [--badges DIR] [--readme README.md]
 
 Writes index.html (the table by unit and function) and treemap.html (one tile per
 function or data section, sized by bytes, grouped by the unit's current folder).
@@ -21,6 +21,8 @@ COUNTERS = (
     "total_code", "matched_code", "complete_code", "total_data", "matched_data",
     "complete_data", "total_functions", "matched_functions", "total_units", "complete_units",
 )
+README_BEGIN = "<!-- progress-table -->"
+README_END = "<!-- /progress-table -->"
 CODE_SECTIONS = {".text", ".init", ".fini"}
 BSS_SECTIONS = {".bss", ".sbss", ".sbss2", ".common"}
 
@@ -467,6 +469,39 @@ def generate(report_paths, output, width=1280, height=720) -> Path:
     return index
 
 
+def readme_table(report: Dict) -> str:
+    """The README's progress table, from a report's top-level counters."""
+    m = measures(report.get("measures", {}))
+
+    def pct(part, whole):
+        return f"{100 * part / whole:.2f}%" if whole else "0.00%"
+
+    return "\n".join([
+        "| | Matched | Linked |",
+        "|:--|--:|--:|",
+        f"| Code | {pct(m['matched_code'], m['total_code'])} | {pct(m['complete_code'], m['total_code'])} |",
+        f"| Data | {pct(m['matched_data'], m['total_data'])} | {pct(m['complete_data'], m['total_data'])} |",
+        f"| Functions | {pct(m['matched_functions'], m['total_functions'])} "
+        f"({m['matched_functions']:,} of {m['total_functions']:,}) | |",
+        f"| Units | | {pct(m['complete_units'], m['total_units'])} "
+        f"({m['complete_units']:,} of {m['total_units']:,}) |",
+    ]) + "\n"
+
+
+def update_readme(readme: Path, report_path: Path) -> bool:
+    """Rewrite the table between the README's progress markers; True if it changed."""
+    text = readme.read_text(encoding="utf-8")
+    if text.count(README_BEGIN) != 1 or text.count(README_END) != 1:
+        raise ValueError(f"{readme} needs one {README_BEGIN} ... {README_END} block")
+    head, rest = text.split(README_BEGIN)
+    _, tail = rest.split(README_END)
+    table = readme_table(json.loads(Path(report_path).read_text(encoding="utf-8")))
+    new = f"{head}{README_BEGIN}\n{table}{README_END}{tail}"
+    if new != text:
+        readme.write_text(new, encoding="utf-8")
+    return new != text
+
+
 def badge_color(percent):
     for floor, color in ((100, "brightgreen"), (90, "green"), (75, "yellowgreen"), (50, "yellow"), (25, "orange")):
         if percent >= floor:
@@ -511,11 +546,15 @@ def main() -> None:
     parser.add_argument("-o", "--output", type=Path, default=Path("build/progress"))
     parser.add_argument("--width", type=int, default=1280, help=argparse.SUPPRESS)
     parser.add_argument("--height", type=int, default=720, help=argparse.SUPPRESS)
+    parser.add_argument("--readme", type=Path, help="also update this README\'s progress table from the first report")
     parser.add_argument("--badges", type=Path, help="also write the README's badge data from the first report here")
     args = parser.parse_args()
     try:
         index = generate(args.reports, args.output, args.width, args.height)
         print(f"wrote {index}")
+        if args.readme:
+            changed = update_readme(args.readme, args.reports[0])
+            print(f"{'updated' if changed else 'unchanged'}: progress table in {args.readme}")
         if args.badges:
             write_badges(args.badges, args.reports[0])
             print(f"wrote badges to {args.badges}")
