@@ -85,6 +85,8 @@ from `src/pso/network/SocketProtocolRuntime.cpp`. To use them in another target,
 compile that file with `-DPSO_SOCKET_QUEUE_PORT -Iports/include -iquote include`.
 The backend supplies the operations declared in `pso/port/SocketQueue.h`, the TCP
 state and the completion dispatcher. The socket records use host byte order.
+A backend importing GameCube state must also decode the queue-mode bit into
+`f204_b7` because bit-field ordering depends on the target ABI.
 Buffers and callbacks in stored game records use four-byte identifiers.
 The host backend resolves them and copies each 16-byte ring entry into a typed
 local request. It can keep native pointers for that request and the TCB array.
@@ -115,6 +117,18 @@ return values, packets, connection records, request rings, data buffers and
 completion events across architectures.
 
 With GCC 13.3 on x86-64 and AArch64 Linux under QEMU 8.2.2, each binary
-agreed with the retail DOL in 2,400 gather and 1,600 ACK cases, including
-1,717 completion events. The GameCube socket object from this port branch
+agreed with the retail DOL in 2,400 gather, 1,600 ACK and 1,024 SACK cases,
+including 1,717 completion events. The ARM64 run also passed with undefined-
+behavior and bounds instrumentation enabled. The GameCube socket object from this port branch
 was byte-identical to bounded native checkpoint `7ae77309ec`.
+
+GCC 13.3 also compiles the complete 21-function GameCube source as a
+freestanding AArch64 ILP32 object. This build uses four-byte native pointers.
+It still requires the game's buffer, socket, callback and thread providers
+to link. The Linux executable tested above uses the usual eight-byte pointers.
+
+```sh
+aarch64-linux-gnu-g++ -mabi=ilp32 -std=gnu++98 -ffreestanding -fno-exceptions \
+    -fno-rtti -O2 -Iinclude -Ilibs/dolphin/include -Ilibs/dolphin/include/dolphin \
+    -c src/pso/network/SocketProtocolRuntime.cpp -o /tmp/pso-socket-ilp32.o
+```

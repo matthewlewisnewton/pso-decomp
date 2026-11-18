@@ -15,7 +15,8 @@ from audit_loader_payload_provenance import ORIGINAL_SHA1, parse_dol
 
 
 TCB, PACKET, STACK, DATA, RING = 0x81100000, 0x81101000, 0x81110000, 0x81120000, 0x81130000
-GATHER, ACK = 0x80420410, 0x8041FFF8
+GATHER, ACK, SACK = 0x80420410, 0x8041FFF8, 0x8041FED4
+STREAM_OP = {GATHER: 0, ACK: 1, SACK: 2}
 COMPLETE_REQUEST, WAKE = 0x804220A0, 0x8042276C
 STOP = 0x80001000
 FLAG = 0x204
@@ -26,7 +27,12 @@ SLOTS = 65
 FRAGMENT_FORMAT = "H2sI4s"
 PACKET_FORMAT = "H2sII" + FRAGMENT_FORMAT * 12
 REQUEST_FORMAT = "I4sHHI"
-TCB_FORMAT = "16sI4sI4sIII" + PACKET_FORMAT + "308sII812sI16s"
+TCB_FORMAT = (
+    "16sI4sI4sIII" + PACKET_FORMAT
+    + "50sh64I"  # last_reasm and 32 reassembly ranges
+    + "II244s10I"  # completion callbacks and five SACK ranges
+    + "528sI16s"  # independent scoreboard state and FIFO capacity
+)
 RECORD_FORMATS = {
     "control": TCB_FORMAT,
     "packet": PACKET_FORMAT,
@@ -107,6 +113,28 @@ def ack_case(rng, queued, index):
     return case
 
 
+def sack_case(rng, index):
+    case = Case(SACK)
+    latest = index % 33 - 1
+    struct.pack_into(">h", case.control, 0xFA, latest)
+    base = 0xFFFFFFF0 if index % 2 else rng.getrandbits(32)
+
+    def put_range(offset):
+        start = (base + rng.randrange(128)) & 0xFFFFFFFF
+        end = (start + rng.randrange(32)) & 0xFFFFFFFF
+        struct.pack_into(">II", case.control, offset, start, end)
+
+    for i in range(32):
+        put_range(0xFC + 8 * i)
+    for i in range(5):
+        put_range(0x2F8 + 8 * i)
+    case.control[0x320:0x328] = rng.randbytes(8)
+    if index == 1:
+        struct.pack_into(">II", case.control, 0xFC, 100, 160)
+        struct.pack_into(">II", case.control, 0x2F8, 110, 120)
+    return case
+
+
 class Retail:
     def __init__(self, path):
         dol = path.read_bytes()
@@ -147,13 +175,18 @@ class Retail:
             cpu.mem_write(address, bytes(region))
         self.events.clear()
         self.reenter = case.reenter
-        args = (case.offset, case.length, PACKET, TCB) if case.operation == GATHER else (case.length, TCB)
+        if case.operation == GATHER:
+            args = (case.offset, case.length, PACKET, TCB)
+        elif case.operation == ACK:
+            args = (case.length, TCB)
+        else:
+            args = (TCB,)
         for reg, value in zip((ppc.UC_PPC_REG_3, ppc.UC_PPC_REG_4, ppc.UC_PPC_REG_5, ppc.UC_PPC_REG_6), args):
             cpu.reg_write(reg, value)
         cpu.reg_write(ppc.UC_PPC_REG_1, STACK)
         cpu.reg_write(ppc.UC_PPC_REG_LR, STOP)
         cpu.emu_start(case.operation, STOP, count=50_000)
-        if cpu.reg_read(ppc.UC_PPC_REG_PC) != STOP or cpu.reg_read(ppc.UC_PPC_REG_3) != 0:
+        if cpu.reg_read(ppc.UC_PPC_REG_PC) != STOP or (case.operation != SACK and cpu.reg_read(ppc.UC_PPC_REG_3) != 0):
             raise AssertionError("Retail routine did not return success on a valid fixture")
         packet = cpu.mem_read(PACKET, len(case.packet))
         if case.operation == GATHER:
@@ -189,7 +222,7 @@ class Port:
         input_control = case.control.copy()
         flags = input_control[FLAG] >> 7 | (2 if case.reenter else 0)
         input_control[FLAG] &= 0x7F
-        args = struct.pack(self.endian + "4I", flags, case.operation == ACK, case.offset, case.length)
+        args = struct.pack(self.endian + "4I", flags, STREAM_OP[case.operation], case.offset, case.length)
         self.process.stdin.write(b"".join((args, self.encode("control", input_control),
                                           self.encode("packet", case.packet), self.encode("ring", case.ring), case.data)))
         self.process.stdin.flush()
@@ -238,6 +271,10 @@ def main():
                         port.check(case, retail, f"{name} case {i}")
                         event_count += len(retail.events)
                     print(f"{name}: {count} comparisons passed, {event_count} completion events", flush=True)
+            rng = random.Random(2457)
+            for i in range(1024):
+                port.check(sack_case(rng, i), retail, f"SACK case {i}")
+            print("SACK: 1024 complete connection-record comparisons passed", flush=True)
             process.stdin.close()
             if process.stdout.read(1):
                 raise ValueError("Unexpected output after the last case")

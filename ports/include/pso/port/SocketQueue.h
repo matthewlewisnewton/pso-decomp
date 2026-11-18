@@ -8,7 +8,7 @@
 extern "C" {
 extern TcpState tcp_protocol_state;
 void TLobby__sub_80406EB8(NetBufferRef *buffer, u32 bytes);
-void TLobby__sub_80406FD8(void *dest, void *source, u32 bytes);
+void TLobby__sub_80406FD8(NetBufferRef *dest, NetBufferRef *source, u32 bytes);
 s32 set_thread_state_and_resume__6TLobbyFv(s32 handle, TcpOperationCallback callback, s16 status);
 }
 

@@ -10,7 +10,8 @@
 #include <cstring>
 
 TcpState tcp_protocol_state;
-static TcpTcb control;
+static TcpTcb connections[2];
+static TcpTcb &control = connections[1];
 static const u32 queue_base = 0x81130000u;
 static const u32 data_base = 0x81120000u;
 static TcpSendRequest ring[65];
@@ -63,9 +64,8 @@ void TLobby__sub_80406EB8(NetBufferRef *buffer, u32 bytes) {
     buffer->value += bytes;
 }
 
-void TLobby__sub_80406FD8(void *dest, void *source, u32 bytes) {
-    std::memmove(buffer_bytes(*static_cast<NetBufferRef *>(dest), bytes),
-                 buffer_bytes(*static_cast<NetBufferRef *>(source), bytes), bytes);
+void TLobby__sub_80406FD8(NetBufferRef *dest, NetBufferRef *source, u32 bytes) {
+    std::memmove(buffer_bytes(*dest, bytes), buffer_bytes(*source, bytes), bytes);
 }
 
 s32 complete_request_callback__6TLobbyFv(s16 handle, TcpSendCallback callback, s16 status,
@@ -169,7 +169,7 @@ static void check_ring() {
     move_head = true;
     assert(TLobby__sub_8041FFF8(12, &control) == 0);
     assert(control.f20 == 1 && control.f24 == 17 && control.req.total_bytes == 10);
-    assert(event_count == 1 && events[0].callback == 11);
+    assert(event_count == 1 && events[0].handle == 1 && events[0].callback == 11);
     assert(ring[17].length == 10 && ring[17].offset == 5 && ring[0].length == 14);
     assert(TLobby__sub_8041FFF8(10, &control) == 0);
     assert(control.f20 == 0 && !control.f204_b7 && events[1].callback == 12);
@@ -202,7 +202,10 @@ static int compare_stream() {
         s32 status;
         if (args[1] == 0) status = TLobby__sub_80420410(args[2], args[3], &packet, &control);
         else if (args[1] == 1) status = TLobby__sub_8041FFF8(args[3], &control);
-        else return 1;
+        else if (args[1] == 2) {
+            TLobby__sub_8041FED4(&control);
+            status = 0;
+        } else return 1;
         const u32 queued = control.f204_b7;
         control.f204_b7 = 0;
         if (!write_bytes(&status, sizeof(status)) || !write_bytes(&queued, sizeof(queued)) ||
@@ -217,6 +220,7 @@ int main(int argc, char **argv) {
     tcp_protocol_state.tcbs = &control;
     if (argc == 2 && std::strcmp(argv[1], "--stream") == 0) return compare_stream();
     if (argc != 1) return 1;
+    tcp_protocol_state.tcbs = connections;
     check_sack();
     check_ring();
     std::puts("200000 SACK cases and queued send, ring wrap and reentrant ACK checks passed");
