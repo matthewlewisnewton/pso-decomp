@@ -230,7 +230,7 @@ extern s32 lbl_804EFB78[];
 void TBoss6Demo15_TYPE2_WAIT::run_task() {
     u8 *arg0 = (u8 *)this;
     u8 *temp_r3;
-    if (((TObjEneDD *)arg0)->query_teammate_state() == 0) {
+    if (TObjEneDD::query_teammate_state() == 0) {
         ((TBoss6Demo15_TYPE2_WAIT *)arg0)->advance_offset();
         VecCopy((Vec *)(arg0 + 0x4C), (const Vec *)(arg0 + 0x40));
         ((TBoss6Demo15_TYPE2_WAIT *)arg0)->sub_8033FE30();

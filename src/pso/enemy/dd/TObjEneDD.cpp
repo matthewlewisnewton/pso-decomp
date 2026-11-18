@@ -74,7 +74,6 @@ extern s32 camera_ctrl_instance;
 int is_local_client_floor_leader(void*);
 int TObjPlayer__sub_801BA42C(void*);
 int freeze_all_players__10TObjPlayerFv(void*);
-int is_any_teammate_in_state__10TObjPlayerFv(void*);
 extern s32 enable_v2_features;
 extern s32 game_difficulty_selection;
 }
@@ -1411,7 +1410,7 @@ u8 TObjEneDD::is_phase_e() {
 
 int TObjEneDD::update_lobby_state() { return is_local_client_floor_leader(this); }
 
-int TObjEneDD::query_teammate_state() { return is_any_teammate_in_state__10TObjPlayerFv(this); }
+int TObjEneDD::query_teammate_state() { return TObjPlayer::is_any_teammate_in_state(); }
 
 void project_sound_origin_from_camera(s32 arg0, u8 *boss2_tunnel, f32 farg0) {
     f32 temp_f1;

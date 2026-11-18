@@ -1,33 +1,20 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/photon/TDPBShower.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
-#include "pso/system/task/TObject_80019A50.h"
-#include "pso/system/vector.h"
-
-#include "types.h"
-#include "pso/boss/darkfalz/TBoss4Type2.h"
-#include "pso/ui/hud/TNowLoading.h"
-#include "pso/effect/particle/TParticleCtrl.h"
-#include "pso/system/task/TObject.h"
 #include "pso/enemy/dd/TObjEneDD.h"
-
-struct RecoveredGlobal_8035D7D0___vt__10TDPBShower {
-    s32 value;
-    u8 remaining[0x14];
-};
+#include "pso/system/vector.h"
+#include "pso/effect/particle/TParticleCtrl.h"
 
 extern "C" {
-void __ct__7TObjectFP7TObject(void *, void *);
-extern RecoveredGlobal_8035D7D0___vt__10TDPBShower __vt__10TDPBShower;
-extern s32 TDPBShower__class_name;
-u8 *TDPBShower__ct(u8 *arg0, u8 *arg1, u8 *arg2);
+extern const char TDPBShower__class_name_string[] = "TDPBShower";
+const char *TDPBShower__class_name = TDPBShower__class_name_string;
 }
 
 void TDPBShower::run_task() {
-    if (((TObjEneDD *)this)->query_teammate_state() == 0) {
-        m_position[1] += -60.0f;
-        if (m_2c != NULL) {
-            ((TParticleCtrl *)m_2c)->set_position(m_position);
+    if (TObjEneDD::query_teammate_state() == 0) {
+        m_position.y += -60.0f;
+        if (m_emitter != NULL) {
+            m_emitter->set_position(&m_position);
         }
         if (--m_countdown < 0) {
             queue_destruction();
@@ -36,30 +23,23 @@ void TDPBShower::run_task() {
 }
 
 TDPBShower::~TDPBShower() {
-    if (m_2c != nullptr) TParticleCtrl::release(m_2c);
+    if (m_emitter != NULL) {
+        TParticleCtrl::release(m_emitter);
+    }
 }
 
-typedef char RecoveredGlobal_8035D7D0___vt__10TDPBShower_size[sizeof(RecoveredGlobal_8035D7D0___vt__10TDPBShower) == 0x18 ? 1 : -1];
-u8 *TDPBShower__ct(u8 *dpb_shower, u8 *arg1, u8 *arg2) {
-    u8 *particle_emitter;
-    __ct__7TObjectFP7TObject(dpb_shower, arg1);
-    *(s32 **)((s8 *)dpb_shower + 0x18) = &__vt__10TDPBShower.value;
-    *(s32 *)((s8 *)dpb_shower + 0) = (s32) TDPBShower__class_name;
-    ((TDPBShower *)dpb_shower)->m_countdown = 5;
-    VecCopy((Vec *)(dpb_shower + 0x1C), (const Vec *)arg2);
-    *(f32 *)((s8 *)dpb_shower + 0x20) += 300.0f;
-    particle_emitter = (u8 *)(create_particle_emitter((dpb_shower + 0x1C), 0x134));
-    ((TDPBShower *)dpb_shower)->m_2c = particle_emitter;
-    if (particle_emitter != NULL) {
-        ((TParticleCtrl *)(((TDPBShower *)dpb_shower)->m_2c))->set_flags(0x40);
+TDPBShower::TDPBShower(TObject *parent, const Vec *position) : TObject(parent) {
+    m_name = TDPBShower__class_name;
+    m_countdown = 5;
+    VecCopy(&m_position, position);
+    m_position.y += 300.0f;
+    TParticleCtrl *emitter = create_particle_emitter(&m_position, 0x134);
+    m_emitter = emitter;
+    if (emitter != NULL) {
+        m_emitter->set_flags(0x40);
     }
-    return dpb_shower;
 }
 
-void* create_TDPBShower(void* arg0, void* arg1) {
-    void* o = TObject::operator new(0x30);
-    if (o != NULL) {
-        o = TDPBShower__ct((u8 *)o, (u8 *)arg0, (u8 *)arg1);
-    }
-    return o;
+void *create_TDPBShower(void *parent, void *position) {
+    return new TDPBShower(static_cast<TObject *>(parent), static_cast<const Vec *>(position));
 }

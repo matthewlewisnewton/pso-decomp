@@ -123,7 +123,7 @@ void TBoss6DPB::apply_shower_damage_to_players() {
 void TBoss6DPB::render() {  }
 void TBoss6DPB::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (((TObjEneDD *)arg0)->query_teammate_state() == 0) {
+    if (TObjEneDD::query_teammate_state() == 0) {
         *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) + 1);
         if ((f32) *(s32 *)((s8 *)arg0 + 0x30) > 5.0f) {
             ((TBoss6DPB *)arg0)->apply_shower_damage_to_players();

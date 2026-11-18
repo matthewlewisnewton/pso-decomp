@@ -778,7 +778,8 @@ force_active:
   - TContainerAncient01__sub_8018A584
   - TContainerAncient01__sub_8018B180
   - TContainerAncient01__sub_8018BE90
-  - TDPBShower__ct
+  - TDPBShower__class_name
+  - TDPBShower__class_name_string
   - TDuelEffectCtrl__class_name
   - TDuelEffectNumber__class_name
   - TDuelEffectNumber__sub_800802F8
@@ -3364,6 +3365,7 @@ force_active:
   - __ct__10TBoss2MineFP7TObjectUsll
   - __ct__10TBoss6RockFP7TObjectl
   - __ct__10TButterflyFP7TObjectPv
+  - __ct__10TDPBShowerFP7TObjectPC3Vec
   - __ct__10TItemEffPGFP7TObjectP10S_8035016C
   - __ct__10TItemMoneyFP7TObjectP9TItemData
   - __ct__10TOMineDispFP7TObjectUs
