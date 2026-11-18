@@ -15,7 +15,7 @@
 #include "pso/enemy/morfos/TWindowSubTradeMain.h"
 #include "pso/ui/window/TWindowKeyBoardBase.h"
 #include "pso/ui/window/TWindowKeyBoardHard_802601D4.h"
-#include "pso/ui/window/TWindowKeyBoardSoft_80261440.h"
+#include "pso/ui/window/TWindowKeyBoardSoft.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8025CB70.h"
 #include "pso/unk/text_8025FF8C.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801A6D60.h"
@@ -95,7 +95,7 @@ void TKeyBoardControl__sub_802613A4(TKeyBoardControl *arg0);
 extern s32 __vt__16TKeyBoardControl[];
 const char *TKeyBoardControl__class_name = "TKeyBoardControl";
 
-TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, u32 arg2, u32 arg3, u8 mode, s16 client) {
+TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, u32 arg2, u32 arg3, u8 mode, s32 client) {
     TKeyBoardControl *kb;
     void *o;
 
@@ -118,11 +118,7 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
     }
     self->m_24 = (u32)o;
     TKeyBoardControl__sub_8025EC04((u8 *)self->m_24);
-    o = TObject::operator new(0x70);
-    if (o != NULL) {
-        o = TWindowKeyBoardSoft__ct((u8 *)o, self->m_20, client);
-    }
-    self->m_28 = (u32)o;
+    self->m_28 = (u32)new TWindowKeyBoardSoft((TWindowKeyBoardBase *)self->m_20, client);
     switch (mode) {
     case 0:
         self->m_1c |= 2;

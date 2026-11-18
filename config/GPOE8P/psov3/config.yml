@@ -4933,6 +4933,7 @@ force_active:
   - __dt__19TWindowDD_WS_StringFv
   - __dt__19TWindowKeyBoardBaseFv
   - __dt__19TWindowKeyBoardHardFv
+  - __dt__19TWindowKeyBoardSoftFv
   - __dt__19TWindowMenuMainMenuFv
   - __dt__19TWindowMessageYesNoFv
   - __dt__19TWindowSoundBalanceFv
@@ -6184,6 +6185,7 @@ force_active:
   - __vt__19TWindowDD_WS_String
   - __vt__19TWindowKeyBoardBase
   - __vt__19TWindowKeyBoardHard
+  - __vt__19TWindowKeyBoardSoft
   - __vt__19TWindowMenuMainMenu
   - __vt__19TWindowMessageQuest
   - __vt__19TWindowMessageYesNo
@@ -10789,7 +10791,7 @@ force_active:
   - free_parts__6TOMineFv
   - free_resources__14TObjEneIllGillFv
   - free_singleton_805D6C80__6TLobbyFv
-  - free_singleton__19TWindowKeyBoardSoftFUls
+  - free_singleton__18TWindowDrawContextFUls
   - free_statics__13TRaderMapCoreFv
   - free_sub_objects__6TOMineFv
   - free_team_buffers__6TLobbyFv
@@ -11809,7 +11811,7 @@ force_active:
   - init_kind_params__18TObjSeabedSuiso_CHFv
   - init_launch_angles__10TTecSlicerFPlPll
   - init_layout__17TWindowSubComCardFv
-  - init_layout__19TWindowKeyBoardSoftFv
+  - init_layout__18TWindowDrawContextFv
   - init_layout_entries__9TWindowDDFv
   - init_layout_entry_rect__20TWindowSubStatusDispFPUcl
   - init_level_stats__14TObjEneDubchikFl
@@ -20119,8 +20121,8 @@ force_active:
   - render__13TUnk_804CE7E8Fv
   - render__13TUnk_804CE964Fv
   - render__13TUnk_804CF0B8Fv
-  - render__13TUnk_804CF918FP19TWindowKeyBoardSoft
-  - render__13TUnk_804CF930FP19TWindowKeyBoardSoft
+  - render__13TUnk_804CF918FP18TWindowDrawContext
+  - render__13TUnk_804CF930FP18TWindowDrawContext
   - render__13TUnk_804D0658Fv
   - render__13TUnk_804D1160Fv
   - render__13TUnk_804DCB64Fv
@@ -20439,6 +20441,7 @@ force_active:
   - render__19TWindowDD_WS_StringFv
   - render__19TWindowKeyBoardBaseFv
   - render__19TWindowKeyBoardHardFv
+  - render__19TWindowKeyBoardSoftFv
   - render__19TWindowMenuIconLineFv
   - render__19TWindowMenuMainMenuFv
   - render__19TWindowMessageYesNoFv
@@ -21581,6 +21584,7 @@ force_active:
   - run_task__19TWindowDD_WS_StringFv
   - run_task__19TWindowKeyBoardBaseFv
   - run_task__19TWindowKeyBoardHardFv
+  - run_task__19TWindowKeyBoardSoftFv
   - run_task__19TWindowMenuMainMenuFv
   - run_task__19TWindowMessageYesNoFv
   - run_task__19TWindowSimpleStatusFv
@@ -22593,7 +22597,6 @@ force_active:
   - snd_used_studios
   - sock_status_names
   - soft_keyboard_conversion_exclusions
-  - soft_keyboard_instance
   - soft_keyboard_window_and_action_data
   - solo_play_result_window_extent
   - some_stub__9TProtocolFv
@@ -23350,8 +23353,8 @@ force_active:
   - sub_802605DC__19TWindowKeyBoardSoftFv
   - sub_80260808__19TWindowKeyBoardSoftFl
   - sub_80260E30__19TWindowKeyBoardSoftFl
-  - sub_802616BC__19TWindowKeyBoardSoftFP19TWindowKeyBoardSoft
-  - sub_8026227C__19TWindowKeyBoardSoftFP19TWindowKeyBoardSoft
+  - sub_802616BC__19TWindowKeyBoardSoftFP18TWindowDrawContext
+  - sub_8026227C__19TWindowKeyBoardSoftFP18TWindowDrawContext
   - sub_8026556C__21TWindowSubComCardListFv
   - sub_80266BB8__11TWindowMenuFv
   - sub_8026EA48__20TWindowShortListCtrlFv
@@ -26063,6 +26066,7 @@ force_active:
   - window_dd_element_count
   - window_deposit_layout
   - window_deposit_layout_entries
+  - window_draw_context_instance
   - window_duel_result_class_name
   - window_fukidasi_class_name
   - window_help_item_class_name

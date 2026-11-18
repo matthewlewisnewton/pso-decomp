@@ -4,7 +4,7 @@
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 
-struct TWindowKeyBoardSoft;
+struct TWindowDrawContext;
 
 struct TWindowMenuMainMenu : public TWindowBase {
     virtual ~TWindowMenuMainMenu();
@@ -13,7 +13,7 @@ struct TWindowMenuMainMenu : public TWindowBase {
     void handle_cancel();
     int get_menu_flag();
     int is_flag_set();
-    void draw_frame(TWindowKeyBoardSoft *frame);
+    void draw_frame(TWindowDrawContext *frame);
     virtual void render();
     virtual void run_task();
     u8 _pad1C[0x4];

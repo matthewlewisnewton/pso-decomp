@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/chat/TWindowChat.h"
 #include "pso/ui/window/TWindowBase.h"
+#include "pso/ui/window/TWindowKeyBoardSoft.h"
 #include "pso/ui/window/TWindowKeyBoardBase.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8025EC04.h"
 #include "pso/ui/window/TWindowKeyBoardHard_802601D4.h"
@@ -73,7 +74,6 @@ s32 check_flag_100__10TObjPlayerFPv();
 extern u8 controller_input_state[];
 s32 __nw__7TObjectFUl(int);
 s32 construct_symbol_chat_selection(int, void *);
-s32 TWindowKeyBoardSoft__ct(int, void *, void *);
 s32 get_window_layout_position(int);
 s32 TWindowDD__ct(int, void *, void *);
 void *__dt__11TWindowChatFv(void *, s16);
@@ -376,10 +376,8 @@ void TWindowChat::handle_chat_input() {
 
 void TWindowChat::open_next_input_window() {
     u8 *arg0 = (u8*)this;
-    s32 temp_r3;
     s32 temp_r3_2;
     s32 temp_r3_3;
-    s32 var_r0;
     s32 var_r0_2;
     s32 var_r0_3;
     if (((RecoveredFields_8024792C_arg0 *)arg0)->field_1E & 2) {
@@ -391,12 +389,8 @@ void TWindowChat::open_next_input_window() {
     switch ((s8) (((RecoveredFields_8024792C_arg0 *)arg0)->field_1C)) {
     case 0:
         *((RecoveredFields_8024792C_arg0 *)arg0)->field_38 = 1;
-        temp_r3 = __nw__7TObjectFUl(0x70);
-        var_r0 = temp_r3;
-        if (var_r0 != 0) {
-            var_r0 = TWindowKeyBoardSoft__ct((int)temp_r3, (void *) (((RecoveredFields_8024792C_arg0 *)arg0)->field_20), (void *)local_client_id);
-        }
-        ((RecoveredFields_8024792C_arg0 *)arg0)->field_24 = var_r0;
+        ((RecoveredFields_8024792C_arg0 *)arg0)->field_24 = (s32)new TWindowKeyBoardSoft(
+            (TWindowKeyBoardBase *)((RecoveredFields_8024792C_arg0 *)arg0)->field_20, local_client_id);
         fn_80247ED8((void*)((int) (((RecoveredFields_8024792C_arg0 *)arg0)->field_24)));
         ((TWindowSubSymbolChatPartsSet *)(((RecoveredFields_8024792C_arg0 *)arg0)->field_20 + 0x30))->copy_vec2((void*)(get_window_layout_position(0xB8)));
         *(s32 *)((s8 *)(((RecoveredFields_8024792C_arg0 *)arg0)->field_20) + 0x50) = 3;

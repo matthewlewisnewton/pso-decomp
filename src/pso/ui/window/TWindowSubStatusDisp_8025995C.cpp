@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8025995C.h"
 #include "pso/ui/window/TWindowSubStatusDisp_802598E4.h"
-#include "pso/ui/window/TWindowKeyBoardSoft.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/system/memory.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 
@@ -73,18 +73,18 @@ void render_numeric_digit_entries(u8 *arg0, u8 *window_key_board_soft) {
   f32 h;
   h = *((f32 *) (((s8 *) arg0) + 0xC));
   w = *((f32 *) (((s8 *) arg0) + 8));
-  t = (h / 21.0f) + (w / (((TWindowKeyBoardSoft *)window_key_board_soft)->inner_w));
+  t = (h / 21.0f) + (w / (((TWindowDrawContext *)window_key_board_soft)->inner_w));
   t *= 7.5f;
-  t = 17.0f * (((f32) (((TWindowKeyBoardSoft *)window_key_board_soft)->open_tick)) - t);
+  t = 17.0f * (((f32) (((TWindowDrawContext *)window_key_board_soft)->open_tick)) - t);
   if (t <= 0.0f)
   {
     return;
   }
   mode = ((*((u16 *) (((s8 *) arg0) + 0))) >> 2) & 1;
   n = *((s32 *) (((s8 *) arg0) + 0x20));
-  x = (((TWindowKeyBoardSoft *)window_key_board_soft)->inner_x) + w;
-  y = (((TWindowKeyBoardSoft *)window_key_board_soft)->inner_y) + h;
-  scale = (-1.0f) / ((0.299f * (*((f32 *) (((s8 *) arg0) + 0x18)))) + (((TWindowKeyBoardSoft *)window_key_board_soft)->depth));
+  x = (((TWindowDrawContext *)window_key_board_soft)->inner_x) + w;
+  y = (((TWindowDrawContext *)window_key_board_soft)->inner_y) + h;
+  scale = (-1.0f) / ((0.299f * (*((f32 *) (((s8 *) arg0) + 0x18)))) + (((TWindowDrawContext *)window_key_board_soft)->depth));
   switch (mode)
   {
     case 0:

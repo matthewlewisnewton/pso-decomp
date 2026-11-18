@@ -9,7 +9,7 @@ struct TWindowSubComCard;
 #include "pso/ui/window/TWindowMenuMainMenu.h"
 #include "pso/ui/window/TWindowMainMenu.h"
 #include "pso/system/TLanguage.h"
-#include "pso/ui/window/TWindowKeyBoardSoft.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/object/ambient/TObjFish.h"
 
@@ -522,7 +522,7 @@ void TWindowMainMenu::draw_entries_reversed(u8 *arg1) {
 extern s32 lbl_805D63F0;
 void apply_context_transform_to_rect(void *, void *);
 
-void TWindowMenuMainMenu::draw_frame(TWindowKeyBoardSoft *frame) {
+void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *frame) {
     Rect_802AD538 q;
     f32 quad_depth;
     f32 y;
@@ -615,7 +615,7 @@ Rect_802AE2B0 *setup_content_frame__15TWindowMainMenuFPv(u8 *window_menu_main_me
     } else {
         v = 39.0f;
     }
-    ((TWindowKeyBoardSoft *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
+    ((TWindowDrawContext *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
     r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
     return r;
 }

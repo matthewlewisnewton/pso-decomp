@@ -1,5 +1,5 @@
 #include "pso/system/ControllerInputState.h"
-#include "pso/ui/window/TWindowKeyBoardSoft.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/ui/window/TWindowSubComCard_80244774.h"
 #include "pso/unk/TLobby_80226070.h"
 #include "pso/unk/TUnk_804CF930.h"
@@ -164,7 +164,7 @@ void TWindowSoundBalance::handle_lr_input() {
 #pragma opt_common_subs off
 void TWindowSoundBalance::render() {
     TWindowSoundBalance *self = this;
-    TWindowKeyBoardSoft *entry = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
+    TWindowDrawContext *entry = (TWindowDrawContext *)TWindowDD::draw_default_entry((s32)self);
     self->draw_window_frame(entry);
     draw_visible_window_entries((s32)self, (s32)&self->m_24, entry);
     entry->inner_x += 174.0f;

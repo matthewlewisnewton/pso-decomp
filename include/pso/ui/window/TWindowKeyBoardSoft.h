@@ -4,10 +4,17 @@
 #include "types.h"
 #include <stddef.h>
 
-struct TWindowKeyBoardSoft
+#include "pso/ui/window/TWindowBase.h"
+#include "pso/ui/window/TWindowDrawContext.h"
+
+struct TWindowKeyBoardBase;
+
+struct TWindowKeyBoardSoft : public TWindowBase
 {
-    void sub_8026227C(TWindowKeyBoardSoft *);
-    void sub_802616BC(TWindowKeyBoardSoft *);
+    TWindowKeyBoardSoft(TWindowKeyBoardBase *composer, s32 client);
+    virtual ~TWindowKeyBoardSoft();
+    void sub_8026227C(TWindowDrawContext *);
+    void sub_802616BC(TWindowDrawContext *);
     void sub_80260E30(s32);
     void spawn_key_effect(s32, s32);
     void handle_page_cycle_input(s32);
@@ -18,35 +25,15 @@ struct TWindowKeyBoardSoft
     int get_flag_bit6();
     int is_cursor_locked();
     static int is_alnum(u16 code);
-    void render();
-    f32 x;
-    f32 y;
-    f32 w;
-    f32 h;
-    f32 inner_x;
-    f32 inner_y;
-    f32 inner_w;
-    f32 inner_h;
-    f32 pivot[2];
-    f32 scale[2];
-    s32 open_tick;
-    u32 color;
-    f32 depth;
-    u8 _pad3C[0x8];
-    u16 m_60;
-    u16 m_62;
+    virtual void render();
+    u8 unk_1C[0x60 - 0x1C];
+    u32 m_60;
     u8 m_64;
     u8 m_65;
     u8 m_66;
-    u8 _pad67[0x1];
-    u32 m_68;
-    u32 m_6c;
-    u8 _pad70[0xC];
-    u32 m_7c;
-    u8 _pad80[0x2C];
-    u32 m_ac;
-    u8 _padB0[0x4];
-    u32 m_b4;
+    u8 _pad67;
+    f32 m_68;
+    TWindowKeyBoardBase *composer;
     static f32 calc_key_coord(s32 arg0, s32 arg1);
     void update_focus_flags();
     void close();
@@ -74,16 +61,7 @@ struct TWindowKeyBoardSoft
     s32 check_text_overflow(u16 *arg1);
     void reset_state();
     static s32 strnlen(s8 *str, u32 max);
-    void scale_point_about_pivot(f32 *q);
-    void set_open_tick(s32 arg1);
-    void set_bounds(f32 a, f32 b, f32 c, f32 d);
-    void shrink_clip_right();
-    void animate_scale();
-    s32 is_point_in_bounds(void *arg1);
     void adjust_pos_for_split_screen(s32 arg1);
-    static u32 get_or_create_instance();
-    static u32 free_singleton(u32 arg0, s16 arg1);
-    u32 init_layout();
     s32 get_state();
     void update_input_state();
     void sub_8025B928();
@@ -119,7 +97,7 @@ struct TWindowKeyBoardSoft
     s32 commit_composition_text();
     s32 measure_text_overflow();
     int is_key_state_2();
-    void run_task();
+    virtual void run_task();
     s32 dispatch_by_index();
     static void dispatch_request_0x28(s32 a, s32 b);
     static void dispatch_request_0x27(s32 a, s32 b);
@@ -139,8 +117,9 @@ struct TWindowKeyBoardSoft
     static s32 calc_key_index(TWindowKeyBoardSoft *arg1, s32 arg2, s32 arg3);
 };
 
-typedef char TWindowKeyBoardSoft_depth_offset[offsetof(TWindowKeyBoardSoft, depth) == 0x38 ? 1 : -1];
-typedef char TWindowKeyBoardSoft_m_60_offset[offsetof(TWindowKeyBoardSoft, m_60) == 0x44 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_size[sizeof(TWindowKeyBoardSoft) == 0x70 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_state_offset[offsetof(TWindowKeyBoardSoft, m_60) == 0x60 ? 1 : -1];
+typedef char TWindowKeyBoardSoft_composer_offset[offsetof(TWindowKeyBoardSoft, composer) == 0x6C ? 1 : -1];
 
 // TWindowKeyBoardSoft__data_804CB7C8: layout known from its uses only.
 struct RecoveredGlobal_TWindowKeyBoardSoft__data_804CB7C8 { s32 value; u8 remaining[0x6C]; };

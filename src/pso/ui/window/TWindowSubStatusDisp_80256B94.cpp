@@ -16,7 +16,7 @@
 
 #include "pso/ui/window/TWindowSubComCard.h"
 
-#include "pso/ui/window/TWindowKeyBoardSoft.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 
 #include "pso/object/ambient/TObjFish.h"
 
@@ -57,7 +57,7 @@ s32 try_open__19TWindowKeyBoardSoftFii(void *, void *);
 
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 
-void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowKeyBoardSoft *ctx, NJS_POINT2 *pos, f32 depth);
+void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowDrawContext *ctx, NJS_POINT2 *pos, f32 depth);
 
 extern s32 __vt__13TUnk_804CF930[];
 
@@ -88,7 +88,7 @@ void TUnk_804CF930::update() {
     }
 }
 
-void TUnk_804CF930::render(TWindowKeyBoardSoft *ctx) {
+void TUnk_804CF930::render(TWindowDrawContext *ctx) {
     NJS_POINT2 pos;
     f32 depth;
     f32 len;
@@ -181,7 +181,7 @@ void TUnk_804CF930::draw_status_gauge_bar(void *ctx, void *pos_arg, f32 depth, f
     }
 }
 
-void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowKeyBoardSoft *ctx, NJS_POINT2 *pos, f32 depth) {
+void TWindowSubStatusDisp__sub_80256C40(TUnk_804CF930 *self, TWindowDrawContext *ctx, NJS_POINT2 *pos, f32 depth) {
     Quad_80256E0C q;
     f32 w;
     w = self->scale - -2.0f;
@@ -232,7 +232,7 @@ void TUnk_804CF930::calc_bar_width() {
     this->width = v;
 }
 
-void TUnk_804CF918::render(TWindowKeyBoardSoft *) {  }
+void TUnk_804CF918::render(TWindowDrawContext *) {  }
 
 void TUnk_804CF918::update() {}
 
