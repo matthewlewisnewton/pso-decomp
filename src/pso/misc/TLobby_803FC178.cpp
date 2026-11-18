@@ -451,7 +451,7 @@ s16 ppp_begin_connect(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5
 extern s32 lobby_timer_list_head;
 s16 reset_network_timer_list(void);
 void TLobby__sub_803F8A08(void *);
-s32 TLobby__sub_8040799C(s16, void *, void *);
+s32 arp_resolve_and_send(s16, void *, void *);
 void TLobby__sub_803F8A9C(void *);
 extern s16 lobby_handler_table_desc;
 s32 NetMemcmp(void * _w0, void * _w1, int _w2);
@@ -5027,7 +5027,7 @@ struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16, s16, u8, v
 #define TBL ((Tbl_8040799C *)&lbl_805C1AB0)
 
 
-s32 TLobby__sub_8040799C(s16 arg0, void *arg1, void *arg2);
+s32 arp_resolve_and_send(s16 arg0, void *arg1, void *arg2);
 #undef TBL
 
 typedef struct Node_804082AC { struct Node_804082AC *next; u8 pad4[2]; u8 f6[0x10]; } Node_804082AC;

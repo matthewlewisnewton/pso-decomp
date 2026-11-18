@@ -1008,13 +1008,13 @@ force_active:
   - TLobby__sub_804060B8
   - TLobby__sub_804066D8
   - TLobby__sub_80407418
-  - TLobby__sub_80407640
-  - TLobby__sub_804078B4
-  - TLobby__sub_8040799C
-  - TLobby__sub_80407C60
-  - TLobby__sub_80407D98
-  - TLobby__sub_80407F20
-  - TLobby__sub_80408060
+  - arp_handle_packet
+  - age_arp_cache
+  - arp_resolve_and_send
+  - arp_remove_alias
+  - arp_add_alias
+  - register_arp_interface
+  - arp_hold_packet
   - TLobby__sub_804082AC
   - TLobby__sub_80408388
   - TLobby__sub_8040878C
@@ -1049,9 +1049,9 @@ force_active:
   - TLobby__sub_8040CFE8
   - TLobby__sub_8040D718
   - TLobby__sub_8040E780
-  - TLobby__sub_8040EDE4
-  - TLobby__sub_8040EF00
-  - TLobby__sub_8040EF50
+  - ipv4_send_to_interface
+  - get_ipv4_interface_mtu
+  - ipv4_source_for_subnet
   - TLobby__sub_8040F76C
   - TLobby__sub_8040F8A4
   - TLobby__sub_8040FCEC
@@ -2365,7 +2365,7 @@ force_active:
   - TTecSifta__sub_8023B17C
   - TTecSlicer__ct
   - TTecZonde__ct
-  - TUdpSocket__sub_80407508
+  - arp_init
   - TUdpSocket__sub_8040DE4C
   - TUdpSocket__sub_8040E354
   - TWindowActionPalette__sub_801C1C20
