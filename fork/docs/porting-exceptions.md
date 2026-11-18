@@ -195,18 +195,10 @@ and need no section placement or definition-order constraint.
 
 ## Summary
 
-Counts below match [porting-exceptions-generated.md](porting-exceptions-generated.md)
-for this source tree. Assembly is counted as source lines;
-the generated file counts each `asm` line and its `orig_asm` include separately.
-
-| Category | Hits | Files / units |
-|---|---:|---:|
-| Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
-| MWCC intrinsics | 92 | 60 |
-| Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 4,120 | 880 |
-| Per-unit compiler overrides in `configure.py` | 223 | 223 |
-| Approved regressions | 0 | 0 |
+See the [generated inventory counts](porting-exceptions-generated.md#counts) for
+totals by category and the number of affected files. The inventory counts an
+`asm` line and its `orig_asm` include separately. This register also tracks
+[approved regressions](#6-approved-regressions).
 
 ## Rule for assembly
 
@@ -281,10 +273,9 @@ for the earlier `vector_length` precedent.
 
 ## 2. MWCC intrinsics
 
-`__cntlzw` (55), `__frsqrte` (11), `__fabsf` (6), `__fabs` (4), `__rlwinm` (4),
-`__abs` (1), `__builtin_va_info` (1); full list in the generated file. Reason: they
-reproduce single PowerPC instructions the original compiled code used; no
-per-site reason is recorded.
+The [generated list of MWCC intrinsics](porting-exceptions-generated.md#mwcc-intrinsics)
+identifies each use. These intrinsics reproduce individual PowerPC instructions
+in the original compiled code.
 
 Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
 a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);
@@ -304,9 +295,10 @@ same helpers. See [recovery and validation](evidence/exi-ethernet-unit.md).
 
 ## 3. Direct hardware access
 
-13 files write the GX write-gather pipe at `0xCC008000` directly (inlined
+Several files write the GX write-gather pipe at `0xCC008000` directly (inlined
 `GXPosition*`/`GXColor*` style emission), e.g. `TObjPlayer_803E21B8.cpp`,
-`TObjLight_803DF220.cpp`, `text_803E2D70.cpp` (32 hits), `ChunkMaterialState.cpp`.
+`TObjLight_803DF220.cpp`, `text_803E2D70.cpp`, `ChunkMaterialState.cpp`. See the
+[generated hardware-access list](porting-exceptions-generated.md#direct-hardware-access).
 Reason not recorded per site; it mirrors the SDK's inline GX macros. Port should:
 route through the GX abstraction of the target renderer (call `GXPosition3f32`
 etc. or their port equivalents) instead of the fixed address.
