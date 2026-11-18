@@ -1,6 +1,5 @@
 #include "types.h"
 #include "pso/system/ControllerInputState.h"
-#include "pso/ui/window/TWindowChoiceSetting_80249240.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC.h"
 #include "pso/ui/window/TWindowAddition.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -12,27 +11,23 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801A6D60.h"
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
+void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-void __dl__7TObjectFPv(void *);
-void fn_80269004(void *);
 
-extern s32 __vt__20TWindowChoiceSetting[];
 
-void render__20TWindowChoiceSettingFv(u8 *arg0) {
-    s32 temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
-    ((TUnk_804D0658 *)arg0)->draw_setting(temp_r3);
-    if ((u32) ((TWindowChoiceSetting *)arg0)->m_78 != 0U) {
-        forward_render__20TWindowSubStatusDispFv(((TWindowChoiceSetting *)arg0)->m_78, temp_r3);
+void TWindowChoiceSetting::render() {
+    s32 context = (s32)get_draw_context__11TWindowBaseFPv(this);
+    draw_window_frame((void *)context);
+    draw_visible_window_entries(this, (u8 *)this + 0x24, context);
+    draw_setting(context);
+    if (m_78 != 0) {
+        forward_render__20TWindowSubStatusDispFv(m_78, context);
     }
-    if ((u32) *(u32 *)((s8 *)arg0 + 0x7C) != 0U) {
-        draw_window_scrollbar(*(u32 *)((s8 *)arg0 + 0x7C), temp_r3, arg0 + 0x68);
+    if (scrollbar != 0) {
+        draw_window_scrollbar(scrollbar, context, (u8 *)this + 0x68);
     }
 }
 
@@ -74,7 +69,7 @@ void TWindowChoiceSetting::run_task() {
         if (temp_r3 != 0U) {
             ((TWindowSubStatusDisp *)temp_r3)->update_subwindow();
         }
-        temp_r3_2 = *(u32 *)&this->unk_7C;
+        temp_r3_2 = scrollbar;
         if (temp_r3_2 != 0U) {
             ((TWindowSubStatusDisp *)temp_r3_2)->increment_counter();
         }
@@ -87,26 +82,15 @@ void TWindowChoiceSetting::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list(arg0 + 0x24);
 }
 
-void *__dt__20TWindowChoiceSettingFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TWindowChoiceSetting;
-        ((TUnk_804D0658 *)arg0)->destroy_children(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TWindowChoiceSetting::~TWindowChoiceSetting() {}
 
 extern "C" { extern char TWindowChoiceSetting__class_name_string[]; }
 const char *lbl_805D38B8 = TWindowChoiceSetting__class_name_string;
 
-void *TWindowChoiceSetting__ct(void *window_choice_setting) {
-    fn_80269004(window_choice_setting);
-    *(s32 **)((s8 *)window_choice_setting + 0x18) = __vt__20TWindowChoiceSetting;
-    ((TWindowChoiceSetting *)window_choice_setting)->m_name = lbl_805D38B8;
-    ((TWindowChoiceSetting *)window_choice_setting)->m_80 = 0;
-    return window_choice_setting;
+TWindowChoiceSetting::TWindowChoiceSetting(void *position, u32 count)
+    : TUnk_804D0658(position, count) {
+    m_name = lbl_805D38B8;
+    m_80 = 0;
 }
 
 }

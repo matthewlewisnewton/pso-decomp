@@ -5,6 +5,7 @@
 
 class TUnk_804D0658 : public TWindowAddition {
 public:
+    TUnk_804D0658(void *position, u32 count);
     virtual ~TUnk_804D0658();
     virtual void run_task();
     virtual void render();
@@ -15,7 +16,7 @@ public:
     void move_cursor_prev();
     void move_next_choice();
     void request_close();
-    void *destroy_children(s16);
+    void initialize_entries(u32 count);
     int is_selected();
     int is_open();
     u8 unk_1C[0x10];
@@ -28,11 +29,11 @@ public:
     s32 m_5c;
     u8 unk_60[0x10];
     u16 m_70;
-    u8 unk_72[0x2];
+    s16 entry_offset;
     s16 m_74;
-    u8 unk_76[0x2];
+    s16 entry_count;
     u32 m_78;
-    u8 unk_7C[0x4];
+    u32 scrollbar;
 };
 typedef char TUnk_804D0658_size[sizeof(TUnk_804D0658) == 0x80 ? 1 : -1];
 
