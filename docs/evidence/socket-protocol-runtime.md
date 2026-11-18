@@ -1,6 +1,6 @@
 # Socket protocol runtime
 
-The comparison uses GPOE8P and fork main `8937534387`. The standard build compiles and links `pso/network/SocketProtocolRuntime.cpp`; it does not use the original socket object as a fallback. Main's separate `NetUdp.cpp` owns and links the UDP routines and their BSS. All 11 functions in the socket unit, all 7,888 text bytes and all 184 initialized data bytes match the original object. The linked `PsoV3.dol` has the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+The comparison uses GPOE8P and fork main `23aa26cec0`. The standard build compiles and links `pso/network/SocketProtocolRuntime.cpp`; it does not use the original socket object as a fallback. Main's separate `NetUdp.cpp` owns and links the UDP routines and their BSS. All 11 functions in the socket unit, all 7,888 text bytes and all 184 initialized data bytes match the original object. The linked `PsoV3.dol` has the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
 Against that main baseline, `tools/check_pr.py` reports 27,563 → 27,565 exact functions and 4,349,644 → 4,352,676 matched code bytes, with no regressions. Linking the unit adds 7,888 complete code bytes, 184 complete data bytes and one linked unit. All 3,637 linked units pass, and the retention list has zero additions or removals on the retention check.
 
