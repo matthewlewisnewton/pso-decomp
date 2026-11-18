@@ -62,15 +62,13 @@ using the platform compiler's equivalent support. See the
 
 ### TCP out-of-order receive queue
 
-`TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
-retains the scoped `dont_inline off` / `inline_depth(4)` controls from
-[upstream #285](https://github.com/zeroz41/pso-decomp/pull/285), commit
-`be4a012306441b91fe0e30083800a8589bccf518`. They inline the reassembly-range
-removal helper, including its ordinary aggregate assignment. The receive-room
-clamp uses ordinary assignment in its condition and direct `TcpTcb` member
-access; it needs no additional matching constraint. Ports can drop the inline
-pragmas and keep the receive-ring copy and range-merging operations. See the
-[recovery and ABI evidence](evidence/tcp-out-of-order-queue.md).
+The receive-range routines at `0x8041F66C` and `0x8041F914` in
+`src/pso/network/SocketProtocolRuntime.cpp` share the existing
+`dont_inline off` and `inline_depth(4)` scope. CodeWarrior inlines the
+range length and removal helpers. Ports can use ordinary inline functions
+and preserve the unsigned endpoint subtraction. The receive-room clamp
+and the range array copies use the existing shared control-block layout.
+[Receive queue recovery](evidence/tcp-out-of-order-queue.md)
 
 ### TCP send acknowledgement
 

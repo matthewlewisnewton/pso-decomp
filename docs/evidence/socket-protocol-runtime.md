@@ -16,6 +16,8 @@ The control block holds five SACK ranges at offsets `0x2F8..0x31F`. When inserti
 
 A PowerPC read trace observes both adjacent words in the game, the release browser and the debug browser shipped on the same disc. The bounded game produces the same final control block with zero reads from those words. A byte-identical routine given that same state would perform the original reads. Main currently counts the original five-iteration bound as an exact match.
 
+The receive-range routines at `0x8041F66C` and `0x8041F914` use the same unsigned endpoint subtraction to count the bytes removed from the reassembly queue. This calculation works across both signed and unsigned sequence-number wrap. Eliminating the former routine's unused eight-byte array leaves all 680 bytes of that routine and all 1,164 bytes of the latter routine exact.
+
 ## Send acknowledgement
 
 The send ring holds 65 records. Each 16-byte record contains a buffer reference, a signed halfword length, a signed halfword offset and a completion callback. A callback can reenter and move the queue head. The routine takes its next index after the callback and before copying the ring descriptor. The debug browser also takes the index in this order. The last six differing instructions all address the same FIFO destination descriptor at stack offset 36. Retail places it at 20. The frame size, call targets and other instructions match.
