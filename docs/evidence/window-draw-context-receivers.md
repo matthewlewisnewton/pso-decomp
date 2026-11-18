@@ -17,7 +17,7 @@ window-PR search showed no competing update before investigation.
 The shared 56-byte helper at 80244CF4 already takes a window word, calls Base's
 `setup_window_draw_context` with the depth-helper result and returns the context
 word. Its declared contract is already used by the basic ComCard renderer and
-other recovered renderers. The [basic ComCard note](window-com-card-render-member.md)
+other recovered renderers. The [basic ComCard note](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-com-card-render-member.md)
 qualifies that existing receiver boundary separately from its lifetime/table hold.
 
 A census of 4,966 active original objects and 249,768 relocations finds 28 references

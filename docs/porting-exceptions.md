@@ -15,6 +15,14 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### LSC initialization
+
+`pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with
+`-str reuse,readonly`, following the split recovered in upstream
+matchpass 18 (`b0b44cbda2`). Read-only string pooling keeps the build banner in
+`.rodata` and its volatile pointer in `.sdata2`. Ports can use ordinary C++
+string storage and retain the volatile read in `lsc_init`.
+
 ### Shared warning-window lifecycle
 
 The `TObjBagWarnWin` and `TObjBagWarnWin4P` units use guarded
@@ -90,6 +98,24 @@ changing the load and the object layout. The late definition keeps it after
 the digit-transform and opacity literals. Ports can drop the annotation and
 keep the ordinary array and C++ expressions.
 
+### Grass placement angle constant
+
+The two-float `lbl_805D9E78` object in `src/pso/unk/data_805D9E78.cpp` holds
+the 360-degree angle and its original zero word. The guarded CodeWarrior
+section annotation keeps the array in `.sdata2`. The matching declaration
+in `TObjCGrass.cpp` preserves the single small-data float load. Ports use
+the same array and first-element access without the section annotations.
+
+### De Rol Le constant pool
+
+The eight-byte slots at `0x805D8460` and `0x805D8490` each contain a float
+and a trailing zero word. The guarded CodeWarrior section annotations in
+`src/pso/unk/data_805D8444.cpp`, `TBoss2Fin.cpp`, and `TBoss2Joint.cpp`
+keep the definitions in `.sdata2` and preserve the consumers' single float
+loads. The pool starts at `0x805D8444`, so `cw_align: .sdata2=4` records its
+original alignment in ELF and the CodeWarrior comment section. Ports can use
+the C++ arrays and first-element reads with their compiler's default layout.
+
 ### Scalar collision-area helper
 
 `TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
@@ -100,6 +126,13 @@ register allocation; the arithmetic consumes the rounded float values. The
 function inherits the existing `fp_contract off` region. A port can use ordinary
 `fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
 behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
+
+### Quadrilateral and sphere contact units
+
+`TObjPlayer__sub_803DFB1C` and `test_box_sphere_contact` use scoped
+`opt_loop_invariants off` and inline controls to reproduce the native register
+allocation and square-root refinement. A port can use its own inline settings
+and square root while validating floating-point behavior. See [the evidence](evidence/collision-contact-units.md).
 
 ### Dark Gunner center native emission
 
@@ -151,10 +184,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
-| MWCC intrinsics | 91 | 58 |
+| MWCC intrinsics | 92 | 60 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,895 | 889 |
-| Per-unit compiler overrides in `configure.py` | 218 | 218 |
+| CodeWarrior pragmas (excluding push/pop) | 5,892 | 892 |
+| Per-unit compiler overrides in `configure.py` | 224 | 224 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -163,6 +196,15 @@ If assembly is approved, a scalar C/C++ equivalent ships next to it (Matt,
 2026-11-04). The asm is guarded for the GameCube/MWCC build (`#ifdef __MWERKS__`)
 and the scalar version is the compiled fallback, so a port builds the C. Approved
 asm always has an entry in this register.
+
+### MusyX DSP firmware
+
+`src/musyx/runtime/dsp_import.c` defines the 32-byte-aligned firmware buffer
+and its 16-bit byte count. The firmware runs on the GameCube DSP.
+`tools/musyx_dsp.py` generates the initializer under the build directory
+from the user's verified DOL. Ports that emulate the GameCube DSP can
+supply the same firmware input. Ports with native audio can replace the
+DSP upload in `salInitDsp` with their audio backend.
 
 ### TCP protocol recovery
 
@@ -261,6 +303,103 @@ EXI/OS backend; the scalar bit helpers alone do not implement the driver.
 
 ## 4. CodeWarrior pragmas
 
+
+### PPP control unit: measured scopes and unresolved source blockers
+
+`pso/misc/TLobby_803FC178.cpp` remains 129/129 exact and source-linked.
+The rework removes both frame-padding arrays. Ordinary inline checksum
+acquisition and folding helpers reproduce the IPv4 native 0x78 frame and
+64-byte header at stack offset 0x20. Consumed inline MRU and signed magic-value readers give LCP its exact
+0x30 frame; the round-two staging aggregate is removed.
+Typed buffer allocation and length functions replace the false `TLobby` interfaces throughout their callers.
+`optimization_level 0`, redundant settings and empty/nested push stacks
+are removed. No compiler flags or unit overrides change.
+
+**This is a partial rework, not approval of the remaining source patterns.**
+The sender at 0x803FE6CC now uses a typed buffer, a separate wire length,
+a counted cursor-range initializer and a direct length-member clear, at
+100%/0x40. Its payload/length reuse and containing-prefix recovery are removed,
+along with its unnecessary lifetime setting and reset. The inherited PAP
+alias-return local, VJ length normalization and bounded opaque/offset callback
+interfaces remain unresolved; the EXI receiver precedent below does not
+authorize them.
+See [PPP rework evidence](evidence/ppp-control-rework.md) for alternatives
+and native storage evidence. Ports can inline the two configuration readers and must
+keep frame pointers and lengths separate, clear the real length member
+directly, and preserve explicit wire-byte order and existing error behavior.
+
+Each row below records one remaining directive in source order, including
+inherited controls. Scores are independent ablations against the final source
+using the existing GC/1.2.5n configuration, remeasured after round three
+with the sender measurements updated in round five;
+every listed function is 100% with the directive present. Push/pop restores belong to the corresponding
+scope. The `reset` row measures omitting that restoration. These are measured
+compiler constraints, not claims about original source pragmas. A port drops
+each listed control and keeps the ordinary C++ operation (including explicit
+Boolean comparisons, configuration readers and checksum helpers). Shared
+inline scopes retain separate lifetime/propagation resets: each reset has its
+own independently measured row below.
+
+| Register ID | Function / address | Directive | Function score without directive | Port action |
+|---|---|---|---|---|
+| PPP-01 | TLobby__sub_803FC820 (`0x803FC820`) | `opt_common_subs on` | 97.853170% | Drop control; retain C++ semantics. |
+| PPP-02 | TLobby__sub_803FC820 (`0x803FC820`) | `dont_inline off` | 66.071430% | Drop control; retain C++ semantics. |
+| PPP-03 | TLobby__sub_803FC820 (`0x803FC820`) | `inline_depth(4)` | 66.071430% | Drop control; retain C++ semantics. |
+| PPP-04 | TLobby__sub_803FCC10 (`0x803FCC10`) | `dont_inline off` | 56.970730% | Drop control; retain C++ semantics. |
+| PPP-05 | TLobby__sub_803FCC10 (`0x803FCC10`) | `inline_depth(4)` | 56.970730% | Drop control; retain C++ semantics. |
+| PPP-06 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_common_subs on` | 95.839030% | Drop control; retain C++ semantics. |
+| PPP-07 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_propagation off` | 99.658540% | Drop control; retain C++ semantics. |
+| PPP-08 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_lifetimes off` | 99.853660% | Drop control; retain C++ semantics. |
+| PPP-09 | TLobby__sub_803FCF44 (`0x803FCF44`) | `opt_common_subs on` | 82.646340% | Drop control; retain C++ semantics. |
+| PPP-10 | TLobby__sub_803FD21C (`0x803FD21C`) | `optimization_level 3` | 97.770490% | Drop control; retain C++ semantics. |
+| PPP-11 | TLobby__sub_803FD310 (`0x803FD310`) | `optimization_level 3` | 97.770490% | Drop control; retain C++ semantics. |
+| PPP-12 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `opt_common_subs on` | 99.267914% | Drop control; retain C++ semantics. |
+| PPP-13 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `dont_inline off` | 96.595020% | Drop control; retain C++ semantics. |
+| PPP-14 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `inline_depth(4)` | 96.595020% | Drop control; retain C++ semantics. |
+| PPP-16 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `dont_inline off` | 89.352940%<br>92.231580% | Drop control; retain C++ semantics. |
+| PPP-17 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `inline_depth(4)` | 89.352940%<br>92.231580% | Drop control; retain C++ semantics. |
+| PPP-19 | TLobby__sub_803FEF4C (`0x803FEF4C`) | `opt_propagation off` | 62.609756% | Drop control; retain C++ semantics. |
+| PPP-20 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `opt_common_subs on` | 96.717170%<br>90.687500% | Drop control; retain C++ semantics. |
+| PPP-21 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `dont_inline off` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-22 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `inline_depth(4)` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-23 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_lifetimes off` | 99.578316% | Drop control; retain C++ semantics. |
+| PPP-24 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_dead_assignments off` | 99.963850% | Drop control; retain C++ semantics. |
+| PPP-25 | TLobby__sub_803FF858 (`0x803FF858`) | `dont_inline off` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-26 | TLobby__sub_803FF858 (`0x803FF858`) | `inline_depth(4)` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-27 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `opt_common_subs on` | 99.125000% | Drop control; retain C++ semantics. |
+| PPP-28 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `bool off` | 99.000000% | Drop control; retain C++ semantics. |
+| PPP-29 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `dont_inline off` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-30 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `inline_depth(4)` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-31 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `dont_inline off` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-32 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `inline_depth(4)` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-33 | TLobby__sub_803FFB84 (`0x803FFB84`) | `opt_common_subs on` | 98.513160% | Drop control; retain C++ semantics. |
+| PPP-34 | TLobby__sub_8040059C (`0x8040059C`) | `opt_propagation off` | 92.679245% | Drop control; retain C++ semantics. |
+| PPP-35 | TLobby__sub_80400744 (`0x80400744`) | `opt_propagation reset` | 99.351720% | Drop control; retain C++ semantics. |
+| PPP-36 | TLobby__sub_80400744 (`0x80400744`) | `dont_inline off` | 90.558624% | Drop control; retain C++ semantics. |
+| PPP-37 | TLobby__sub_80400744 (`0x80400744`) | `inline_depth(4)` | 90.558624% | Drop control; retain C++ semantics. |
+| PPP-38 | TLobby__sub_80400DA8 (`0x80400DA8`) | `opt_common_subs on` | 92.043015% | Drop control; retain C++ semantics. |
+| PPP-39 | TLobby__sub_80400F1C (`0x80400F1C`)<br>TLobby__sub_804010A0 (`0x804010A0`) | `dont_inline off` | 40.278350%<br>85.944440% | Drop control; retain C++ semantics. |
+| PPP-40 | TLobby__sub_80400F1C (`0x80400F1C`)<br>TLobby__sub_804010A0 (`0x804010A0`) | `inline_depth(4)` | 40.278350%<br>85.944440% | Drop control; retain C++ semantics. |
+| PPP-41 | TLobby__sub_804010A0 (`0x804010A0`) | `bool off` | 99.166664% | Drop control; retain C++ semantics. |
+| PPP-42 | TLobby__sub_8040172C (`0x8040172C`) | `dont_inline off` | 49.604652% | Drop control; retain C++ semantics. |
+| PPP-43 | TLobby__sub_8040172C (`0x8040172C`) | `inline_depth(4)` | 49.604652% | Drop control; retain C++ semantics. |
+| PPP-44 | TLobby__sub_80401B20 (`0x80401B20`) | `opt_propagation off` | 86.111115% | Drop control; retain C++ semantics. |
+| PPP-45 | TLobby__sub_80401D2C (`0x80401D2C`)<br>TLobby__sub_80401EB8 (`0x80401EB8`)<br>MD5Transform__FPUlPUc (`0x80401FE8`)<br>TLobby__sub_80402CE0 (`0x80402CE0`)<br>TLobby__sub_80403D28 (`0x80403D28`) | `opt_propagation reset` | 89.797980%<br>85.083336%<br>99.620544%<br>99.597404%<br>57.281250% | Drop control; retain C++ semantics. |
+| PPP-46 | init_net_buffer_entry__6TLobbyFUs (`0x80401CE8`) | `opt_propagation off` | 62.647060% | Drop control; retain C++ semantics. |
+| PPP-47 | TLobby__sub_80401D2C (`0x80401D2C`) | `dont_inline off` | 26.151516% | Drop control; retain C++ semantics. |
+| PPP-48 | TLobby__sub_80401D2C (`0x80401D2C`) | `inline_depth(4)` | 26.151516% | Drop control; retain C++ semantics. |
+| PPP-49 | MD5Transform__FPUlPUc (`0x80401FE8`) | `dont_inline off` | 89.661910% | Drop control; retain C++ semantics. |
+| PPP-50 | MD5Transform__FPUlPUc (`0x80401FE8`) | `inline_depth(4)` | 89.661910% | Drop control; retain C++ semantics. |
+| PPP-51 | MD5Transform__FPUlPUc (`0x80401FE8`) | `opt_common_subs on` | 91.425110% | Drop control; retain C++ semantics. |
+| PPP-52 | NetPapDispatch (`0x80402E68`) | `opt_propagation off` | 98.432290% | Drop control; retain C++ semantics. |
+| PPP-53 | NetPapDispatch (`0x80402E68`) | `dont_inline off` | 29.286459% | Drop control; retain C++ semantics. |
+| PPP-54 | NetPapDispatch (`0x80402E68`) | `inline_depth(4)` | 29.286459% | Drop control; retain C++ semantics. |
+| PPP-55 | TLobby__sub_80403308 (`0x80403308`) | `dont_inline off` | 53.817734% | Drop control; retain C++ semantics. |
+| PPP-56 | TLobby__sub_80403308 (`0x80403308`) | `inline_depth(8)` | 53.817734% | Drop control; retain C++ semantics. |
+| PPP-57 | TLobby__sub_80403308 (`0x80403308`) | `bool off` | 99.704440% | Drop control; retain C++ semantics. |
+| PPP-58 | TLobby__sub_804040E0 (`0x804040E0`) | `dont_inline off` | 37.112840% | Drop control; retain C++ semantics. |
+| PPP-59 | TLobby__sub_804040E0 (`0x804040E0`) | `inline_depth(4)` | 37.112840% | Drop control; retain C++ semantics. |
+
 `src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
 its three fragments are consolidated. Both countdown calculations use the
 original fused `60 * normalized_random + 90`. Ports should preserve fused
@@ -358,8 +497,8 @@ the clipped texture coordinates. With contraction disabled, GC/2.6 emits
 separate multiply and add/subtract instructions in those expressions. Ports
 that need the original rounding should fuse those operations.
 
-5,895 pragmas in 889 files; per-file table in the generated file. Main kinds:
-`dont_inline` 1162, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_dead_assignments` 42, `opt_loop_invariants` 41, `opt_lifetimes` 40, `pool_data` 38, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
+5,892 pragmas in 892 files; per-file table in the generated file. Main kinds:
+`dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1. Reason: reproduce the original code generation
 and emission order; individual pragmas generally carry no recorded reason.
 
 Port should: drop optimization/scheduling/inlining pragmas (they only steer
@@ -690,7 +829,7 @@ branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
 keep ordinary typed traversal of the actual index and cache byte array. See
 [the unit investigation](evidence/quest-download-unit-completion.md).
 
-The cache mover (`803E8924`) uses a non-owning record view with a borrowed
+The cache mover (`803E8904`) uses a non-owning record view with a borrowed
 pointer constructor and depth-two byte/length accessors. The inline boundaries
 recover its native 0x90-byte frame and name buffer at offset 0x20. Chained
 source-pointer initialization preserves the native copy instruction; the
@@ -785,27 +924,39 @@ the window units, with a register row, to replace WindowConstructorAbi.h").
 | `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Word detail: [Word native lifetime emission](#word-native-lifetime-emission). | Same. |
 | `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
 | `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowChallengeResult` ctor/dtor/`run_task` | same | Same pooling timing; with the class native, its sole producer `TObjOnlineEnding::create_result_window` uses ordinary `new` at 100%. | Same. |
+| `src/pso/misc/TWindowFukidasi.cpp` | Balloon virtual table and scalar pools | `-inline off,deferred` with scoped `defer_codegen off` on the first three functions | Immediate emission puts the unsigned conversion bias before the named angle scale. The deferred functions then emit the signed bias and place the native vtable before the jump tables. See [balloon lifetime evidence](evidence/balloon-native-lifetime.md). | Drop the flag and pragma. Keep the ordinary destructor and scalar definitions. |
 
-These entries replace raw constructor/destructor transport through
-`WindowConstructorAbi.h` (see §9) for these units with real constructors
-(base initializers), compiler-generated vtables, automatic base destruction and
-ordinary `new`. Vtable symbols are 0x18 bytes; the former 0x1C entries included
-four bytes of alignment padding. No other pragma, flag or hand-written table is
-used. Evidence: [window-native-lifetime-deferred.md](evidence/window-native-lifetime-deferred.md).
+These entries replace the [former raw lifetime calls](evidence/window-lifetime-recovery-history.md)
+with ordinary C++ lifetime and compiler-generated vtables. The DD, ComCard
+and ChallengeResult records are covered in
+[the deferred lifetime evidence](evidence/window-native-lifetime-deferred.md).
+Vtable symbols are 0x18 bytes. The earlier 0x1C entries included four bytes of
+alignment padding. The balloon now owns its float pool from the eight-byte
+aligned address `0x805DCD08`, which retires its alignment override.
 
-### Speech-balloon constant alignment
+### Download status coordinate alignment
 
-`pso/misc/TWindowFukidasi.cpp` uses `cw_align: .sdata2=4`. Its float pool
-starts at `0x805DCD0C`; GC/2.6 otherwise requests eight-byte alignment in
-both ELF and its CodeWarrior comment record. The existing alignment tool
-changes those records without changing code, constants or relocations.
-Ports can drop this object-layout override and use normal float alignment.
-The compatible pointer reads of three materialized constants avoid duplicate
-MWCC literal-pool entries; a port can read those constants directly. The zero
-now comes from the [shared live square-root helper](evidence/balloon-newton-zero.md).
-The existing reciprocal-square-root intrinsic moves with the single body into
-`NewtonSqrtInline.h`. TObjPlayer retains its original FP-contract scope around
-the implementation include; the shared header adds no pragma.
+`pso/misc/TDLGraph.cpp` uses `cw_align: .sdata2=4` for the three floats
+at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
+but requests eight-byte alignment for the pool. Ports can use the
+ordinary C++ coordinates directly and omit the object alignment override.
+
+### Dark Falz effect constant alignment
+
+`pso/boss/DarkFalzEffectConstants.cpp` uses `cw_align: .sdata2=4`. Its
+44-byte float pool starts at `0x805D8AB4`. GC/2.0 requests eight-byte section
+alignment, which would move the pool four bytes forward. The existing alignment
+tool records four-byte alignment in ELF and the CodeWarrior comment section.
+Ports can use the C++ definitions with their compiler's normal alignment.
+
+### Camera controller constant alignment
+
+`pso/misc/CameraControllerConstants.cpp` uses `cw_align: .sdata2=4` to
+place its floats at `0x805D8F7C`, where GC/2.0's default eight-byte
+section alignment would shift the pool. The following camera pool starts
+on an eight-byte boundary and the linker supplies the four-byte zero tail
+after `lbl_805D8FA0`. Ports can compile the ordinary float definitions
+with their compiler's default alignment.
 
 ### Time setting and calendar startup
 
@@ -858,7 +1009,7 @@ A port can use its regular compiler and call the renderer through a
 `ColorLineList` interface. Preserve the fused depth calculation if the port
 requires identical rounding.
 
-### `pso/unk/text_80049FD8.cpp` and the Vol Opt debris initializer
+### Vol Opt pillar debris and collision handling
 
 GC/2.0 interleaves the BML resource and model-table loads with the final
 load and store of the initializer copy. It loads all three
@@ -868,8 +1019,13 @@ is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
 
 The local initializer emits the 76-byte template at `0x80436748`. The
 original relocations to this template come from `fn_80049FD8`, and the split
-maps it to the compiler's local `@13` symbol. Ports can use the default
-compiler.
+maps it to the compiler's local `@15` symbol in `TObjVoloptPillar.cpp`.
+
+GC/2.0 pools the collision handler's read-only operands through a shared
+base and changes register allocation when their definitions are in the
+same translation unit. Scoped `pool_data off` in `TObjVoloptPillar::run_task`
+at `0x8004A1CC` restores the separate address loads and all 784 bytes.
+Ports can omit the pragma and use their default compiler.
 
 ### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
 
@@ -1092,7 +1248,7 @@ cast stays a cast.
 
 | File | Functions | What | Why | Port should |
 |---|---|---|---|---|
-| `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 892 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 892 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
+| `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 890 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 890 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
 
 ### `TItemAttackCol_802E4798.cpp` vtable alignment
 
@@ -1189,6 +1345,20 @@ Ports can drop the compiler switch. The render and target-acquisition bodies in 
 | Unit | Functions | What | Why | Port should |
 |---|---|---|---|---|
 | `pso/boss/TBoss8Dragon.cpp` | `TBoss8Dragon::TBoss8Dragon` (`__ct__12TBoss8DragonFP7TObjectPv`, `0x802FD47C`, 0x554) and the compiler vtable `__vt__12TBoss8Dragon` (`0x804E5534`) | unit switch `-inline off,deferred` | The constructor stores the vptr with `addi r0, r31, 2348` off the `.data` anchor (`TBoss8Dragon__camera_offset_index_table` at `0x804E4C08`). Under plain `-inline off` that store is `lis`/`addi` of `__vt__12TBoss8Dragon` and the function is 0x558. Deferred code generation restores the anchor form and places the 107-slot compiler vtable at `.data+0x92C`. The destructor, `create`, and the other functions keep the same instructions; only their order in the object follows deferred emission. Precedent: [dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was not needed; this is the `-inline off,deferred` form already used for `TObjEneGyaranzo.cpp` and [the per-group inline settings in brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). `-inline auto,deferred` was tried in an earlier pass and rewrote 56 functions. | Drop the switch. Emission order has no semantic effect. |
+
+### `TeneFakeTecThunderEff.cpp` deferred emission
+
+`-inline off,deferred` lets CodeWarrior place the seven late-defined beam
+constants in `.sdata2` while keeping the original loads. With immediate
+generation, those definitions land in `.sdata`. Using literals instead
+reorders the increments in the beam builder loop and folds away the final
+vertex calculations' multiplies by one. Reverse definition order preserves
+the five original function offsets under deferred generation. The bridge and item-light
+recovery uses the same late-definition arrangement.
+[Bridge constant ownership](evidence/bridge-item-light-constant-pool.md)
+
+A port can drop the switch and order the definitions for readability. Keep the
+C++ expressions and constants.
 
 ### `TAdChrSelPlyPlateGC.cpp`: `-fp_contract on` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214), folded by [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
 
@@ -1781,10 +1951,6 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `__ct__20TAdLoadQuestPrtTxtGCFP7TObjectl` | `pso/unk/text_8034A090.cpp` | `src/pso/unk/text_8034A090.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | extern "C" mangled name | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
 
 
-| `RecoveredGlobal_8001B3BC_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
-| `RecoveredGlobal_8001B3EC_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
-| `RecoveredGlobal_8001B3D4_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
-| `RecoveredGlobal_8001B404_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
 | `Pos_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
 | `Box_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
 | `Self_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
@@ -1894,6 +2060,18 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
 | Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
 | Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
+### Ceiling-debris renderer data addresses
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss2CeilJunk.cpp`, `TObjBoss2CeilJunk::render` at `0x8003A1B4` | Scoped `pool_data off` | With the tables and color defined in the same file, GC/2.0 forms a shared read-only data base and saves an extra register. The scope restores the three separate addresses and all 352 original instruction bytes. | Omit the pragma and keep the typed table and material initializers. |
+
+### Loading-screen data ownership
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TLoadCtrl.cpp`, `TLoadCtrl::run_task` at `0x8001C620` | Scoped `pool_data off` | GC/2.0 otherwise uses a shared read-only data base and saves an extra register. The scope restores the independent addresses and the exact 384-byte function. See [loading-screen data ownership](evidence/loading-screen-data-ownership.md). | Omit the pragma and keep the three vector initializers. |
+
 ### AIFF parsing and ADX block transfer
 
 | Scope | Construct | Evidence and reason | Port action |
@@ -1983,205 +2161,6 @@ allocated sections match and link. Ports can organize these declarations and
 functions normally; preserve the real storage ownership and documented ABI
 boundaries. See [the complete-unit evidence](evidence/quest-download-unit-completion.md).
 
-## 9. Window lifetime entry points for legacy raw-storage functions
-
-`include/pso/misc/WindowConstructorAbi.h` is a bounded MWCC ABI interface for
-the remaining C-named initializers and destroyers that receive allocated object
-storage. Its declarations name the actual compiler-emitted constructors and
-destructors with their complete native arguments. The remaining raw destroyers
-pass the native hidden deleting flag `0` for base cleanup; an explicit C++
-destructor expression would emit `-1`. Evidence and full qualification:
-[window-native-lifetime.md](evidence/window-native-lifetime.md).
-
-It now covers only these leftover raw call sites:
-
-| File | Raw entry points used | Native form still blocked by |
-|---|---|---|
-| `src/pso/misc/TWindowFukidasi_80252AE4.cpp` | `TWindowAddition` dtor | Native emission order of the balloon vtable and constant pools in `TWindowFukidasi.cpp`. |
-
-The soft keyboard window in `TKeyBoardControl.cpp` uses native construction
-after the keyboard/composer contract recovery. The Hard keyboard window is
-also native: `TKeyBoardControl_8025EC04.cpp` merges the original keyboard unit
-through `0x80260450`, so the generated vtable lands at `0x804CFDC4` with no
-per-unit alignment override. The ChallengeResult window is native under the §5
-deferred-codegen entry above; `TObjOnlineEnding::create_result_window`
-constructs it with ordinary `new`. The DD selection, ScrollBar, Word and
-ComCard follower windows moved to native construction under the §5 entry
-[Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen).
-The header now declares only the `TWindowAddition` destructor used by the balloon window.
-
-A port must replace this symbol-name transport with real constructor/destructor
-calls, or placement construction where an external owner supplies storage.
-Preserve the ownership distinction: positive deleting flags also release storage
-through `TObject::operator delete`; base cleanup does not. This interface does
-not claim that the remaining C-named functions have portable C++ lifetime semantics.
-
-The [task ownership follow-up](evidence/window-task-owner.md) replaces four
-more raw factory calls with ordinary construction and removes their bindings
-plus an unused information-window declaration. This interface now contains
-four constructor and three destructor declarations after the follow-ups below.
-It no longer transports Deposit, DuelResult, SubMagPhoton, or
-MessageInfomation construction.
-
-[Message descendant recovery](evidence/window-message-descendants.md) moves
-Page, Quest, and Scroll to native construction. The subsequent
-[Log follow-up](evidence/window-log-scroll-lifetime.md) resolves its native
-constructor difference and removes the final Message constructor binding.
-Its auxiliary plain-storage constructor is also native; the counter/release
-protocol remains type-erased where a positive producer is still unknown.
-
-[Native Base cleanup](evidence/window-base-cleanup.md) removes Deposit,
-LockOn, and Photon from the raw destructor interface. Their constructor,
-destructor, and render chains are native, with compiler-generated tables and
-evidence-backed descriptor ownership. Other raw-storage callers remain.
-
-[ChoiceSetting lifetime recovery](evidence/window-choice-lifetime.md) removes
-one more raw Addition construction/cleanup pair. Both factories construct the
-actual owners, with explicit position/count forwarding and compiler-owned
-tables. The existing auxiliary release protocol remains type-erased because
-no positive producer for field `0x7C` has been established.
-
-[Equipment-window lifetime recovery](evidence/window-equipment-lifetime.md)
-removes two MenuIconLine construction/cleanup pairs. Native word-client
-constructors narrow at the base initializer; Kind's factory forwards the same
-word contract. Two compiler-owned five-function tables replace original inputs.
-The remaining lifetime interface and unrelated unknown ownership holds persist.
-
-[ShortCut/page-indicator lifetime recovery](evidence/window-shortcut-page-lifetime.md)
-removes another MenuIconLine construction/cleanup pair and six auxiliary raw
-initializers. The shared plain indicator and typed release interface replace
-false window ownership; its byte parameters reflect all observed caller
-contracts. Remaining prefix interfaces and unrelated unknown ownership retain
-their holds.
-
-[Remaining MenuIconLine descendant recovery](evidence/window-item-list-lifetime.md)
-removes all remaining raw MenuIconLine construction/cleanup calls and its
-three bindings. WindowConstructorAbi.h now contains only Base/Addition: two
-constructor and two destructor entries. Native word carriers, explicit heading
-forwarding, source-claim refinement and original remainder provenance are
-qualified in the note; broader unresolved interfaces retain their holds.
-
-[Numeric-readout lifetime recovery](evidence/window-numeric-readout-lifetime.md)
-removes two more Base construction/cleanup pairs. Meseta/Cost/Quantity use
-real construction, actual float scale fields and shared typed factory/update
-interfaces. Existing word handles/text transport remain qualified; the
-pre-existing Meseta factory scheduling control is unchanged. No new compiler
-control or alignment override is introduced.
-
-[Timer/UserSort lifetime recovery](evidence/window-timer-user-sort-lifetime.md)
-removes two more Base construction/cleanup pairs. Native constructors,
-automatic cleanup, virtual methods and actual allocation producers own two
-naturally aligned compiler tables. The tab helper's sole receiver/context
-contract supports the reconstructed member; broader Timer and entry-prefix
-attributions remain qualified. No new compiler control is introduced.
-
-[BreakIn lifetime recovery](evidence/window-break-in-lifetime.md) removes
-another raw Base construction/cleanup pair. The Base-only window uses
-native construction, automatic cleanup and its actual allocation producer;
-its descriptor and compiler table emit with natural alignment. The zero
-tail remains linker padding. No new compiler control is introduced, and
-broader entry/position ownership remains qualified.
-
-[SymbolChatHelp lifetime recovery](evidence/window-symbol-help-lifetime.md)
-removes another raw Base construction/cleanup pair. Native lifetime and four
-allocation producers use borrowed byte/word pointers; six helpers receive
-the actual Help owner. Signed flag storage preserves the observed low-bit
-contract with existing explicit byte conversions; original signedness is
-qualified. Descriptor/table emission is natural, and the trailing original
-word is retained. No new compiler control is introduced.
-
-[Room/Area lifetime recovery](evidence/window-room-area-lifetime.md) removes
-another raw Base construction/cleanup pair. True inheritance replaces flat
-images and an allocator adapter; actual producers use ordinary new. The
-existing two-float copy export retains its qualified legacy ABI and historical
-name, with no wrapper or invented object owner. The existing queue-destruction
-entry avoids duplicate inline emission. No new compiler control is introduced.
-
-[SoundBalance lifetime recovery](evidence/window-sound-balance-lifetime.md)
-removes another raw Base construction/cleanup pair. Actual draw-context and
-borrowed settings views accompany explicit entry-word/text argument forwarding.
-The historical entry getter ownership stays qualified. Existing scoped render
-CSE and constructor FP controls remain; no new compiler control is introduced.
-The original data suffix is retained rather than assigned as padding.
-
-[FaceType lifetime recovery](evidence/window-face-type-lifetime.md) removes
-another raw Base construction/cleanup pair. Actual window construction and
-borrowed selection coexist with an explicitly opaque heading lifecycle; its
-legacy child protocol is preserved rather than assigned a speculative class.
-Descriptor/key-function organization is qualified without an original TU
-claim. Native table emission and the existing Help alignment reproduce the
-tail, with no new compiler control or manual padding.
-
-[ChallengeResult interface follow-up](evidence/window-challenge-result-interface.md)
-recovers float fields and explicit numeric-entry forwarding. The native lifetime
-probe is not activated: constructor pooling and producer register differences
-remain measured blockers, alongside upstream return-contract holds. Existing
-string/section controls and manual-table/raw-lifetime debt remain; no new
-compiler control or matching exception is introduced.
-
-[CustomEquip lifetime recovery](evidence/window-custom-equip-lifetime.md)
-removes another raw Base construction/cleanup pair. Its opaque heading protocol
-remains qualified. The out-of-extent selection helper moves to the evidenced
-CustomSelect receiver with pointer transport; that class's lifetime/early-return
-hold remains. Descriptor/table emission is natural and the opaque original
-suffix is retained. No compiler control or manual padding is introduced.
-
-[LoadItemTexture lifetime recovery](evidence/window-load-item-texture-lifetime.md)
-removes another raw Base construction/cleanup pair and recovers the actual
-request/bind receivers. Loader destruction remains deferred; the texture list
-is borrowed. The factory's existing CSE/FP scopes and upstream word interfaces
-remain qualified. Descriptor and compiler table are native, with the opaque
-original suffix retained and no new compiler control or manual padding.
-
-[AreaMapDisp lifetime recovery](evidence/window-area-map-lifetime.md) removes
-another raw Base pair, retaining the owned character-storage allocation/release
-protocol and opaque heading ownership. Existing word/string-copy, draw-context
-and boolean-result ABI views remain held after measured canonical probes.
-CallBack is deferred pending its full callback contract. Native descriptor/table
-emission preserves the original suffix without new controls or manual padding;
-this does not claim portable interface completion.
-
-[QuestBoardSelect lifetime recovery](evidence/window-quest-board-select-lifetime.md)
-removes another raw Base pair and closes constructor text-width, slot-update
-and render receiver forwarding. Its opaque heading and wider entry/controller
-qualifications remain. The constructor's existing FP-contract scope stays;
-no new control, manual table or padding is introduced. Native data emission
-retains the original entry prefix and following table/tail suffix.
-
-[ShortCut window lifetime recovery](evidence/window-shortcut-window-lifetime.md)
-removes another raw Base pair, retaining deferred child close and opaque
-heading release. The 1,044-byte setup helper remains original input under its
-qualified machine ABI, with broader record/child interfaces held. Native
-descriptor/table emission preserves original entry and following table/tail
-inputs without new controls or manual padding.
-
-[Status-family lifetime recovery](evidence/window-status-family-lifetime.md)
-removes SimpleStatus's raw Base pair and the derived raw SimpleStatus chains.
-Word contracts and genuine factories are shared; existing FP/string/propagation
-controls remain. The original five-slot refresh versus four-slot destructor
-asymmetry stays explicit and unresolved. Three native descriptor/table claims
-refine original data with two qualified natural alignment gaps; no compiler
-control, padding definition or manual table is added.
-
-The later [accepted-main Parts integration](evidence/window-parts-accepted-main-integration.md)
-supersedes the historical export/provider blocker in the following checkpoint;
-original compiler-control provenance and portable interfaces remain qualified.
-
-[SymbolChatParts compiled lifetime checkpoint](evidence/window-symbol-parts-lifetime.md)
-removes a raw Addition pair from the matching source, retaining the generic
-Scroll/opaque heading protocols. Actual executable input remains original:
-the own 32.0f external reference blocks constant localization, and literal,
-normal definition and actual-member probes did not establish a matching source
-link. No section control, padding or alternate binding is introduced. This is
-compiled-source progress without a claimed executable source-link gain.
-
-[HelpItem layout prerequisites](evidence/window-help-item-layout.md) remove
-misleading entry-field aliases from the legacy window image and qualify their
-separate prefix views. Descriptor identity, page ownership and opaque callback
-storage are explicit. Native inheritance/table activation remains held on the
-measured constructor scheduling difference. No new compiler control, manual
-vptr assignment, callback signature or lifetime exception is introduced.
-
 ### TDPBShower name-data alignment
 
 `pso/effect/TDPBShower.cpp` uses the existing `cw_align` adapter with
@@ -2211,10 +2190,8 @@ rounding can use `fmaf` for those expressions. See the
 
 ### Word native lifetime emission
 
-This override is the Word row of the §5 entry
-[Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen);
-it is not a separate exception. Word-specific detail:
-`src/pso/misc/TWindowDD_80342254.cpp` uses the supported GC/2.6
+The Word row in [Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen)
+covers `src/pso/misc/TWindowDD_80342254.cpp`. The unit uses the CodeWarrior
 `-inline off,deferred` option and reverse function definitions. The native
 constructor needs its compiler-generated table available during data pooling;
 deferred emission supplies that timing and reverses definition order. The

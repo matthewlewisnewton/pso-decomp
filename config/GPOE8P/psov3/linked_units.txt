@@ -5,9 +5,11 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/alloc.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_files.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_fp.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/buffer_io.c
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ctype.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/direct_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/file_io.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mbstring.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem.c
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem_funcs.c
@@ -142,6 +144,7 @@ mtx/vec.c
 musyx/runtime/Chorus/chorus_fx.c
 musyx/runtime/StdReverb/reverb.c
 musyx/runtime/StdReverb/reverb_fx.c
+musyx/runtime/dsp_import.c
 musyx/runtime/hardware.c
 musyx/runtime/hw_aramdma.c
 musyx/runtime/hw_dolphin.c
@@ -196,10 +199,13 @@ pso/audio/GcrnaError.cpp
 pso/audio/GcrnaStream.cpp
 pso/boss/Boss5GryphonActionScripts.cpp
 pso/boss/Boss5GryphonBehavior.cpp
+pso/boss/Boss5GryphonConstants.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
 pso/boss/Boss6Type2Death.cpp
 pso/boss/Boss7DeRolLeCBehavior.cpp
+pso/boss/DarkFalzEffectConstants.cpp
+pso/boss/DragonTailCraterConstants.cpp
 pso/boss/TBoss1Dragon.cpp
 pso/boss/TBoss1DragonColli.cpp
 pso/boss/TBoss1DragonDemo.cpp
@@ -414,8 +420,10 @@ pso/enemy/DarkGunner.cpp
 pso/enemy/DelDepthConstants.cpp
 pso/enemy/DelDepthData.cpp
 pso/enemy/DelDepthMotion.cpp
+pso/enemy/Df2BringerConstants.cpp
 pso/enemy/EnemyFactoryTables.cpp
 pso/enemy/SaverLifecycle.cpp
+pso/enemy/SinowZoaConstants.cpp
 pso/enemy/TEnemyTaskList.cpp
 pso/enemy/TObjEneBalClaw.cpp
 pso/enemy/TObjEneBalClawBody_80090178.cpp
@@ -813,7 +821,6 @@ pso/math/MatrixTransforms.cpp
 pso/math/MatrixVector.cpp
 pso/menu/TAdEndText.cpp
 pso/menu/TAdEndText_80307A34.cpp
-pso/menu/TAdEndText_80399904.cpp
 pso/menu/TAdGuideTxtGC.cpp
 pso/menu/TAdGuideTxtGC_802B17D4.cpp
 pso/menu/TAdMultiOkGC.cpp
@@ -826,6 +833,7 @@ pso/menu/TChCrEffWall.cpp
 pso/menu/TChCrLoadGmNjReq.cpp
 pso/menu/TObjTagChallenge.cpp
 pso/menu/TQuestBgmCtrl.cpp
+pso/misc/CameraControllerConstants.cpp
 pso/misc/CameraDistanceFade.cpp
 pso/misc/ChallengeMode.cpp
 pso/misc/CharacterAppearanceTables.cpp
@@ -1197,6 +1205,7 @@ pso/misc/TLobby_803DF1FC.cpp
 pso/misc/TLobby_803E2D50.cpp
 pso/misc/TLobby_803F8794.cpp
 pso/misc/TLobby_803FAEA0.cpp
+pso/misc/TLobby_803FC178.cpp
 pso/misc/TLobby_804048E8.cpp
 pso/misc/TLobby_80426CAC.cpp
 pso/misc/TLobby_80428374.cpp
@@ -1700,7 +1709,6 @@ pso/misc/TWindowCtrl_80271DFC.cpp
 pso/misc/TWindowDD.cpp
 pso/misc/TWindowDD_8020C2DC.cpp
 pso/misc/TWindowDD_8024662C.cpp
-pso/misc/TWindowDD_80246F8C.cpp
 pso/misc/TWindowDD_80340EA8.cpp
 pso/misc/TWindowDD_803411E8.cpp
 pso/misc/TWindowDD_80341334.cpp
@@ -2252,6 +2260,7 @@ pso/object/TObject_800F794C.cpp
 pso/object/TUnk_804A6DC0.cpp
 pso/player/PhotonBlastResults.cpp
 pso/player/PlayerClassStats.cpp
+pso/player/PlayerCombatConstants.cpp
 pso/player/PlayerTaskEffects.cpp
 pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
@@ -2594,6 +2603,8 @@ pso/player/TObjPlayer_80362E60.cpp
 pso/player/TObjPlayer_80363BE0.cpp
 pso/player/TObjPlayer_803DA204.cpp
 pso/player/TObjPlayer_803DC834.cpp
+pso/player/TObjPlayer_803DF7A8.cpp
+pso/player/TObjPlayer_803E112C.cpp
 pso/player/TObjPlayer_803E21B8.cpp
 pso/player/TObjPlayer_803E4954.cpp
 pso/player/TObjPlayer_803E5470.cpp
@@ -2617,6 +2628,7 @@ pso/quest/TQuestListVM_8007EAF8.cpp
 pso/quest/TQuestListVM_800F95F4.cpp
 pso/quest/TQuestListVM_801F4398.cpp
 pso/quest/TQuestThread.cpp
+pso/render/ScreenProjectionConstants.cpp
 pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp
@@ -2637,8 +2649,10 @@ pso/system/FlagWord.cpp
 pso/system/GinjaMaterial.cpp
 pso/system/GinjaModelQueue.cpp
 pso/system/ItemEffects.cpp
+pso/system/LscInit.cpp
 pso/system/LscServer.cpp
 pso/system/LscStream.cpp
+pso/system/MainPhaseTable.cpp
 pso/system/MaterialAlphaCompare.cpp
 pso/system/Mfci.cpp
 pso/system/MiddlewareInterruptLock.cpp
@@ -2855,6 +2869,10 @@ pso/unk/TUnk_804A5C18.cpp
 pso/unk/TUnk_804A6CC8.cpp
 pso/unk/TUnk_804CC870.cpp
 pso/unk/data_805D8200.cpp
+pso/unk/data_805D8444.cpp
+pso/unk/data_805D8D28.cpp
+pso/unk/data_805D91D0.cpp
+pso/unk/data_805D9E78.cpp
 pso/unk/text_8000F740.cpp
 pso/unk/text_8001C388.cpp
 pso/unk/text_8002B164.cpp
@@ -2862,7 +2880,6 @@ pso/unk/text_8002C190.cpp
 pso/unk/text_8002E090.cpp
 pso/unk/text_8002E174.cpp
 pso/unk/text_8003AFBC.cpp
-pso/unk/text_80049FD8.cpp
 pso/unk/text_8004AA04.cpp
 pso/unk/text_8004D9A8.cpp
 pso/unk/text_80050050.cpp

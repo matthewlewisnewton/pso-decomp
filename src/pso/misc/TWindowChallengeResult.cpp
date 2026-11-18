@@ -1,4 +1,4 @@
-#include "pso/misc/TextEntryMeasurement.h"
+#include "pso/misc/TextEntryMeasurementInline.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_802598E4.h"
 #include "pso/TObject.h"
