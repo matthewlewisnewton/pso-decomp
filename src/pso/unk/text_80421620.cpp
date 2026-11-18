@@ -138,7 +138,7 @@ struct T_8042276C
 extern "C" {
 s32 TLobby__sub_80409AA8(void);
 s32 TLobby__sub_8040DD68(void);
-s32 TLobby__sub_8040ED28(void);
+s32 shutdown_ipv4_routing(void);
 s32 NetIPv6Shutdown(void);
 s32 TLobby__sub_8041112C(void);
 void NetIPv6ShutdownNeighborDiscovery(void);
@@ -180,7 +180,7 @@ void OSReport(const char *, ...);
 s16 reset_socket_table__6TLobbyFv();
 s16 TLobby__sub_80409AD8();
 s16 init_ipv4_interfaces__6TLobbyFv();
-s16 TLobby__sub_8040ED70();
+s16 init_ipv4_routing();
 s16 NetIPv6Init();
 s16 TUdpSocket__sub_8041118C();
 s16 TLobby__sub_80415690();
@@ -205,15 +205,15 @@ s32 tcp_connect_start__6TLobbyFsls(int, void *, u16);
 s32 tcp_connect__FsP10at_ip_addrUsP12at_ip_option(s32 a, IpAddr_80422B8C *addr, u16 port, IpAddr_80422B8C *opt);
 s32 TLobby__sub_8041E5E4(int, void *, u16);
 s32 tcp_bind__FsP10at_ip_addrUs(s32 a, void *addr, u16 port);
-s16 TLobby__sub_8040F00C(s16, void *, int, void *);
+s16 copy_ipv4_interface_addresses(s16, void *, int, void *);
 s16 TLobby__sub_80412058(s16, void *, int, void *);
 s16 TLobby__sub_80422F70(s16 arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 OSDisableInterrupts();
 s32 OSRestoreInterrupts(int);
-s16 TLobby__sub_8040F1A0(s16);
+s16 bring_down_ipv4_interface(s16);
 s16 TLobby__sub_80412210(s16);
 s16 TLobby__sub_80423064(s16 arg0, s32 arg1);
-s16 TLobby__sub_8040F454(s32, s32, s32, s16);
+s16 bring_up_ipv4_interface(s32, s32, s32, s16);
 s16 TLobby__sub_80412CA4(void *, s16, s16, s16, s32);
 s16 TLobby__sub_8042315C(s16 arg0, P_8042315C *p);
 DhcpClientBuffers lbl_805C1E00;
@@ -232,7 +232,7 @@ s32 TLobby::cleanup_subsystems() {
     TLobby__sub_80409AA8();
     NetIPv6ShutdownNeighborDiscovery();
     TLobby__sub_8041112C();
-    TLobby__sub_8040ED28();
+    shutdown_ipv4_routing();
     NetIPv6Shutdown();
     TLobby__sub_8040DD68();
     TLobby__sub_80418A7C();
@@ -272,7 +272,7 @@ s16 TLobby::init_network_stack() {
                             if (var_r31 >= 0) {
                                 var_r31 = NetIPv6Init();
                                 if (var_r31 >= 0) {
-                                    var_r31 = TLobby__sub_8040ED70();
+                                    var_r31 = init_ipv4_routing();
                                     if (var_r31 >= 0) {
                                         var_r31 = TUdpSocket__sub_8041118C();
                                         if (var_r31 >= 0) {
@@ -296,7 +296,7 @@ block_20:
                                             goto block_21;
                                         }
 block_21:
-                                        TLobby__sub_8040ED28();
+                                        shutdown_ipv4_routing();
                                         goto block_22;
                                     }
 block_22:
@@ -1082,7 +1082,7 @@ s16 TLobby__sub_80422F70(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     var_r29 = 0;
     TLobby::lock_mutex(network_dispatch_state.value);
     ((TLobby *)(&sp18))->init_packet_header(arg1);
-    temp_r3_2 = TLobby__sub_8040F00C(arg0, &sp18, (int)arg2, (void *)arg3);
+    temp_r3_2 = copy_ipv4_interface_addresses(arg0, &sp18, (int)arg2, (void *)arg3);
     if (temp_r3_2 > 0) {
         var_r29 = temp_r3_2;
         arg2 -= temp_r3_2 * 0x1C;
@@ -1114,7 +1114,7 @@ s16 TLobby__sub_80423064(s16 idx, s32 arg1) {
     switch (arg1) {
     case 0:
         var_r31 = 0;
-        temp_r3 = TLobby__sub_8040F1A0(idx);
+        temp_r3 = bring_down_ipv4_interface(idx);
         if (temp_r3 < 0) {
             var_r31 = temp_r3;
         }
@@ -1124,7 +1124,7 @@ s16 TLobby__sub_80423064(s16 idx, s32 arg1) {
         }
         break;
     case 4:
-        var_r31 = TLobby__sub_8040F1A0(idx);
+        var_r31 = bring_down_ipv4_interface(idx);
         break;
     case 6:
         var_r31 = TLobby__sub_80412210(idx);
@@ -1148,7 +1148,7 @@ s16 TLobby__sub_8042315C(s16 arg0, P_8042315C *p) {
     intr = OSDisableInterrupts();
     switch (p->type) {
     case 4:
-        r = TLobby__sub_8040F454(p->a, p->b, p->c, arg0);
+        r = bring_up_ipv4_interface(p->a, p->b, p->c, arg0);
         break;
     case 6:
         if (p->n < 0 || p->n > 0x80) {

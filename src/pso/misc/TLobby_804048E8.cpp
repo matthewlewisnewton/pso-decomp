@@ -374,7 +374,7 @@ void TLobby__sub_803FD85C(void *);
 s32 TLobby__sub_804062A0(s16);
 extern s32 lobby_timer_list_head;
 void TLobby__sub_803F8A08(void *);
-s32 TLobby__sub_8040799C(s16, void *, void *);
+s32 arp_resolve_and_send(s16, void *, void *);
 void TLobby__sub_803F8A9C(void *);
 extern s16 lobby_handler_table_desc;
 s32 NetMemcmp(void * _w0, void * _w1, int _w2);
@@ -948,7 +948,7 @@ struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, v
 #pragma dont_inline off
 #pragma inline_depth(4)
 
-s32 TLobby__sub_8040799C(s16 arg0, void *arg1, void *arg2);
+s32 arp_resolve_and_send(s16 arg0, void *arg1, void *arg2);
 #pragma pop
 #undef TBL
 
