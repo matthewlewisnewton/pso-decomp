@@ -1,16 +1,18 @@
 #ifndef PSO_PLAYER_TUNK_804B6C24_H
 #define PSO_PLAYER_TUNK_804B6C24_H
+#include <stddef.h>
 #include "types.h"
+#include "pso/misc/CameraDistanceFade.h"
 #include "pso/player/TObjChara.h"
 
 class TUnk_804B6C24 : public TObjChara {
 public:
+    virtual void render();
     virtual ~TUnk_804B6C24();
-    virtual void vfunc_79();
+    virtual void vfunc_79() const;
     virtual void vfunc_80();
     virtual void vfunc_81();
     virtual void debug_print_item_box_info();
-    void *destroy_container_object(s16);
     virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
     virtual f32 receive_physical_attack(void *, f32);
     void spawn_item(s32);
@@ -20,13 +22,16 @@ public:
     virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual f32 receive_weapon_special_attack(void *, void *);
     virtual int calc_distance_accuracy_penalty(void *, void *, void *, float);
-    virtual void render();
     virtual void run_task();
+    virtual s32 select_melee_contact_body(void *target, f32 range);
     u8 unk_334[0x4];
     f32 m_338;
-    u8 unk_33C[0x24];
+    f32 melee_range_sq;
+    CameraDistanceFade camera_fade;
     s32 m_360;
     s32 m_364;
 };
+
+typedef char ContainerCameraFadeOffset[offsetof(TUnk_804B6C24, camera_fade) == 0x340 ? 1 : -1];
 
 #endif

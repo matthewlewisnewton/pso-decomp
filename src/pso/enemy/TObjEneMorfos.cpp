@@ -72,7 +72,7 @@ CsnHit *csnLookAt(const Vec *, const Vec *);
 CsnGroundHit *csnVectorUnder(Vec *, u32 *, s32);
 s32 angle_difference_abs(s32, s32);
 s32 angle_diff_s16(s32, s32);
-extern const f64 morfos_angle_units_per_radian;
+const f64 morfos_angle_units_per_radian = 32768.0 / 3.141592f;
 extern const f32 TObjEneMorfos__data_805DF86C;
 extern const f32 TObjEneMorfos__data_805DF874;
 extern const f32 lbl_805DF87C;

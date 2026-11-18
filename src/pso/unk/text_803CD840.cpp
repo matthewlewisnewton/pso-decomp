@@ -92,7 +92,7 @@ struct Obj_803CDB0C {
 extern "C" {
 char *strncpy(char *, const char *, u32);
 void *memset(void *, s32, u32);
-extern char lbl_8047C818[];
+extern const char lbl_8047C818[];
 extern Ent_803CD840 *afs_archive_toc_table[256];
 u8 adxf_open_file_buffer[0x2080];
 extern s32 lobby_adxf_current_file_id;
@@ -109,19 +109,19 @@ void *memcpy(void *, const void *, u32);
 
 #pragma dont_inline off
 #pragma inline_depth(4)
-inline s32 check_803CD840(char *msg, s32 id, Ent_803CD840 *e) {
+inline s32 check_803CD840(u32 msg, s32 id, Ent_803CD840 *e) {
     if (id < 0 || id >= 0x100) {
-        TLobby::notify_error(msg + 0x3E8);
+        TLobby::notify_error(reinterpret_cast<const char *>(msg + 0x3E8));
         return -3;
     }
     if (e == NULL) {
-        TLobby::notify_error(msg + 0x420);
+        TLobby::notify_error(reinterpret_cast<const char *>(msg + 0x420));
         return -3;
     }
     return 0;
 }
 s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD840 *e) {
-    char *msg = lbl_8047C818;
+    const u32 msg = reinterpret_cast<u32>(lbl_8047C818);
     s32 r;
     u8 *aligned;
     r = check_803CD840(msg, id, e);
@@ -129,12 +129,12 @@ s32 adxf_open_file__6TLobbyFiPviPv(s32 id, const char *name, s32 arg2, Ent_803CD
         return r;
     }
     if (lobby_adxf_current_file_id >= 0) {
-        TLobby::notify_error(msg + 0x56C);
+        TLobby::notify_error(reinterpret_cast<const char *>(msg + 0x56C));
         return -1;
     }
     lobby_adxf_open_file_handle = ADXF_Open(name, arg2);
     if (lobby_adxf_open_file_handle == NULL) {
-        TLobby::notify_error(msg + 0x5A4);
+        TLobby::notify_error(reinterpret_cast<const char *>(msg + 0x5A4));
         return -1;
     }
     lobby_adxf_current_file_id = id;

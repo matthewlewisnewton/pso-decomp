@@ -45,8 +45,6 @@ f32 vector_length(const Vec *v) {
 }
 #endif
 
-#pragma push
-#pragma scheduling off
 void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 angle) {
     u8 sp8[0x30];
     u8 *m;
@@ -61,7 +59,6 @@ void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 angle) {
         PSMTXConcat((MtxP)m, (MtxP)sp8, (MtxP)m);
     }
 }
-#pragma pop
 
 void translate_matrix_vec3(u8 *arg0, u8 *arg1) {
     translate_matrix((f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 4)), (f32) (*(f32 *)((s8 *)arg1 + 8)));
@@ -86,8 +83,6 @@ void matrix_identity(u8 *arg0) {
 }
 #endif
 
-#pragma push
-#pragma scheduling off
 void set_matrix_identity(u8 *arg0) {
     u8 *var_r3;
     var_r3 = arg0;
@@ -96,7 +91,6 @@ void set_matrix_identity(u8 *arg0) {
     }
     matrix_identity(var_r3);
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on
@@ -110,8 +104,6 @@ f32 vec_squared_length(const Vec *v) {
 }
 #pragma pop
 
-#pragma push
-#pragma scheduling off
 void project_world_to_screen(u8 *mtx, Vec_803D8D1C *pos, f32 *out) {
     f32 proj[7];
     f32 vp[6];
@@ -130,10 +122,7 @@ void project_world_to_screen(u8 *mtx, Vec_803D8D1C *pos, f32 *out) {
     out[0] = sx;
     out[1] = sy;
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 void rotate_vector_by_matrix(u32 arg0, const Vec *src, Vec *dst) {
     u32 var_r3;
     var_r3 = arg0;
@@ -142,6 +131,5 @@ void rotate_vector_by_matrix(u32 arg0, const Vec *src, Vec *dst) {
     }
     PSMTXMultVecSR((MtxP)var_r3, src, dst);
 }
-#pragma pop
 
 }

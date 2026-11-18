@@ -4,12 +4,12 @@
 #include "types.h"
 
 extern "C" {
-void *TOContainerAncientItemNone__ct(void *container_ancient_item_none);
+void *TOContainerAncientItemNone__ct(void *container_ancient_item_none, void *set_data);
 }
 
 // --- C functions defined in TOContainerAncientItemNone_8015BF38.cpp ---
 extern "C" {
-void *TOContainerAncientItemNone__ct(void *container_ancient_item_none);
+void *TOContainerAncientItemNone__ct(void *container_ancient_item_none, void *set_data);
 }
 // --- end of C functions
 

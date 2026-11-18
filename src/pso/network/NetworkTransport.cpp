@@ -1,3 +1,4 @@
+#include "pso/network/NetworkRecordConfig.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/NetworkTransport.h"
 #include "pso/network/ModemRuntime.h"
@@ -867,8 +868,8 @@ void TLobby__sub_803F86BC(void) {
 }
 #pragma push
 #pragma optimization_level 2
-void TLobby::init_net_config() {
-    Cfg_803F86C0 *c = (Cfg_803F86C0 *)this;
+void NetInitNetworkConfig(Cfg_803F86C0 *self) {
+    Cfg_803F86C0 *c = (Cfg_803F86C0 *)self;
     u8 *buf = lobby_net_config_block;
     c->f0 = 0;
     c->f2 = 0x3F;

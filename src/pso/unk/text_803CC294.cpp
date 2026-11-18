@@ -5,21 +5,6 @@
 #include "pso/unk/text_803CC294.h"
 #include "pso/misc/TLobby.h"
 
-struct RecoveredGlobal_803CC500_lbl_8047C910 {
-    s32 value;
-    u8 remaining[0x28];
-};
-
-struct RecoveredGlobal_803CC53C_lbl_8047C93C {
-    s32 value;
-    u8 remaining[0x70];
-};
-
-struct RecoveredGlobal_803CCB5C_lbl_8047CA28 {
-    s32 value;
-    u8 remaining[0x150];
-};
-
 struct Obj_803CC4C0 { u8 a; s8 b; };
 
 struct Chunk_803CC294 { u16 id; u16 len; s32 off; };
@@ -91,49 +76,83 @@ typedef AdxfHandle Snd_803CC980;
 struct Hdr_803CCE9C { u8 used; u8 f1; };
 
 extern "C" {
-extern RecoveredGlobal_803CC500_lbl_8047C910 lbl_8047C910;
-extern RecoveredGlobal_803CC53C_lbl_8047C93C lbl_8047C93C;
-extern RecoveredGlobal_803CCB5C_lbl_8047CA28 lbl_8047CA28;
-extern char lbl_8047C88C[];
+// Direct references and offsets from the first diagnostic share this ordered string pool.
+extern __declspec(section ".rodata") const char lbl_8047C818[] ATTRIBUTE_ALIGN(4) = "E0041201:state is reading(ADXF_SetReqRdSct)";
+extern __declspec(section ".rodata") const char adx_afs_partition_id_range_error[] ATTRIBUTE_ALIGN(4) = "E9040828:'ptid' is range outside.";
+extern __declspec(section ".rodata") const char afs_file_id_out_of_range_error[] ATTRIBUTE_ALIGN(4) = "E9040828:'flid' is range outside.";
+extern __declspec(section ".rodata") const char lbl_8047C88C[] ATTRIBUTE_ALIGN(4) = "E9040832:'adxf' is NULL.(ADXF_GetStat)";
+extern __declspec(section ".rodata") const char lbl_8047C8B4[] ATTRIBUTE_ALIGN(4) = "E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)";
+extern __declspec(section ".rodata") const char lbl_8047C8E4[] ATTRIBUTE_ALIGN(4) = "E9040830:'adxf' is NULL.(ADXF_GetNumReqSct)";
+extern __declspec(section ".rodata") const char lbl_8047C910[] ATTRIBUTE_ALIGN(4) = "E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)";
+extern __declspec(section ".rodata") const char lbl_8047C93C[] ATTRIBUTE_ALIGN(4) = "E9040828:'adxf' is NULL.(ADXF_GetFsizeSct)";
+extern __declspec(section ".rodata") const char lbl_8047C968[] ATTRIBUTE_ALIGN(4) = "E9040827:'adxf' is NULL.(ADXF_Tell)";
+extern __declspec(section ".rodata") const char lbl_8047C98C[] ATTRIBUTE_ALIGN(4) = "E9040825:'adxf' is NULL.(ADXF_Seek)";
+extern __declspec(section ".rodata") const char lbl_8047C9B0[] ATTRIBUTE_ALIGN(4) = "E9040822:'adxf' is NULL.(ADXF_Stop)";
+extern __declspec(section ".rodata") const char lbl_8047C9D4[] ATTRIBUTE_ALIGN(4) = "E9040823:'adxf->stm' is NULL.(ADXF_Stop)";
+extern __declspec(section ".rodata") const char lbl_8047CA00[] ATTRIBUTE_ALIGN(4) = "E9040826:'type' is illigal.(ADXF_Seek)";
+extern __declspec(section ".rodata") const char lbl_8047CA28[] ATTRIBUTE_ALIGN(4) = "E0120401:'buf' isn't 32byte alignment.(ADXF_ReadNw)";
+extern __declspec(section ".rodata") const char lbl_8047CA5C[] ATTRIBUTE_ALIGN(4) = "E9040816:'adxf' is NULL.(ADXF_ReadNw32)";
+extern __declspec(section ".rodata") const char lbl_8047CA84[] ATTRIBUTE_ALIGN(4) = "E9040817:'nsct' is negative.(ADXF_ReadNw32)";
+extern __declspec(section ".rodata") const char lbl_8047CAB0[] ATTRIBUTE_ALIGN(4) = "E9040818:'buf' is NULL.(ADXF_ReadNw32)";
+extern __declspec(section ".rodata") const char lbl_8047CAD8[] ATTRIBUTE_ALIGN(4) = "E9040821:'sj' is NULL.(ADXF_ReadNw32)";
+extern __declspec(section ".rodata") const char lbl_8047CB00[] ATTRIBUTE_ALIGN(4) = "E9040811:'adxf' is NULL.(ADXF_ReadSj32)";
+extern __declspec(section ".rodata") const char lbl_8047CB28[] ATTRIBUTE_ALIGN(4) = "E9040812:'nsct'is negative.(ADXF_ReadSj32)";
+extern __declspec(section ".rodata") const char lbl_8047CB54[] ATTRIBUTE_ALIGN(4) = "E9040813:'sj'is NULL.(ADXF_ReadSj32)";
+extern __declspec(section ".rodata") const char lbl_8047CB7C[] ATTRIBUTE_ALIGN(4) = "E0110902:can't open file.(ADXF_OpenAfs)";
+extern __declspec(section ".rodata") const char lbl_8047CBA4[] ATTRIBUTE_ALIGN(4) = "E9081901:illigal parameter fname=null.(ADXF_Open)";
+extern __declspec(section ".rodata") const char lbl_8047CBD8[] ATTRIBUTE_ALIGN(4) = "E0110901:can't open file.(ADXF_Open)";
+extern __declspec(section ".rodata") const char lbl_8047CC00[] ATTRIBUTE_ALIGN(4) = "E9040801:partition ID is range outside.(adxf_ChkPrmPt)";
+extern __declspec(section ".rodata") const char lbl_8047CC38[] ATTRIBUTE_ALIGN(4) = "E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)";
+extern __declspec(section ".rodata") const char lbl_8047CC64[] ATTRIBUTE_ALIGN(4) = "E9040808:can't open.(ADXF_AddPartition)";
+extern __declspec(section ".rodata") const char lbl_8047CC8C[] ATTRIBUTE_ALIGN(4) = "E9040810:file is broken.(ADXF_LoadPartition)";
+extern __declspec(section ".rodata") const char lbl_8047CCBC[] ATTRIBUTE_ALIGN(4) = "E9040809:read error.(ADXF_LoadPartition)";
+extern __declspec(section ".rodata") const char lbl_8047CCE8[] ATTRIBUTE_ALIGN(4) = "E0041303:illigal parameter 'ptid'.(ADXF_GetPtStat)";
+extern __declspec(section ".rodata") const char lbl_8047CD1C[] ATTRIBUTE_ALIGN(4) = "E0040701:Illigal format(not AFS).(ADXF_GetPtStat)";
+extern __declspec(section ".rodata") const char lbl_8047CD50[] ATTRIBUTE_ALIGN(4) = "E0040702:Illigal number of file.(ADXF_GetPtStat)";
+extern __declspec(section ".rodata") const char lbl_8047CD84[] ATTRIBUTE_ALIGN(4) = "E0042401:multi-load partition.(ADXF_LoadPartitionNw)";
+extern __declspec(section ".rodata") const char lbl_8047CDBC[] ATTRIBUTE_ALIGN(4) = "E9040804:can't open file.(ADXF_LoaddPartitionNw)";
+extern __declspec(section ".rodata") const char lbl_8047CDF0[] ATTRIBUTE_ALIGN(4) = "E1110701:'tmpbuf' is null.(ADXF_LoadPtNwEx)";
+extern __declspec(section ".rodata") const char lbl_8047CE1C[] ATTRIBUTE_ALIGN(4) = "E1110702:'tbsize' <= 0.(ADXF_LoadPtNwEx)";
+extern __declspec(section ".rodata") const char lbl_8047CE48[] ATTRIBUTE_ALIGN(4) = "E0042401:multi-load partition.(ADXF_LoadPtNwEx)";
+extern __declspec(section ".rodata") const char lbl_8047CE78[] ATTRIBUTE_ALIGN(4) = "E9040804:can't open file.(ADXF_LoadPtNwEx)";
+extern __declspec(section ".rodata") const char lbl_8047CEA4[] ATTRIBUTE_ALIGN(4) = "E9040804:can't open file.(ADXF_LoadPartition)";
+extern __declspec(section ".rodata") const char lbl_8047CED4[] ATTRIBUTE_ALIGN(4) = "E9040806:file is broken.(ADXF_LoadPartition)";
+extern __declspec(section ".rodata") const char lbl_8047CF04[0x2C] ATTRIBUTE_ALIGN(4) = "E9040805:read error.(ADXF_LoadPartition)";
+
+s32 lbl_805D75E8;
+u8 *lbl_805D75EC;
+
+static __declspec(section ".sdata2") const char afs_archive_magic[] = "AFS";
+
+
 s32 strncpy(void *, void *, int);
-extern s32 adx_afs_partition_id_range_error[];
-extern s32 afs_file_id_out_of_range_error[];
 extern Ent_803CC294 *afs_archive_toc_table[];
-s32 memcmp(void *, void *, int);
-extern char lbl_8047C818[];
+s32 memcmp(const void *, const void *, int);
 extern s32 lobby_adxf_current_file_id;
 extern AdxfHandle *lobby_adxf_open_file_handle;
 extern s32 lobby_afs_toc_entry_index;
-extern u8 *lbl_805D75EC;
-extern s32 lbl_805E0D88;
-extern s32 lbl_8047CB7C[];
 extern LogHdr_803CD16C lbl_8057B7B0;
 extern LogEnt_803CD16C lbl_8057B7D0[];
 extern Slot_803CD16C adxf_file_handle_pool[];
 extern s32 adxf_log_write_index;
-extern s32 lbl_8047CBA4[];
-extern s32 lbl_8047CBD8[];
 void invalidate_cache__6TLobbyFv(void *address, u32 length);
-extern s32 lbl_8047C9B0[];
-extern s32 lbl_8047C9D4[];
 extern s32 lbl_805D75E4;
 void *memset(void *, int, unsigned long);
-typedef char RecoveredGlobal_803CC500_lbl_8047C910_size[sizeof(RecoveredGlobal_803CC500_lbl_8047C910) == 0x2C ? 1 : -1];
 
 #pragma push
 #pragma inline_depth(4)
 #pragma dont_inline off
 inline s32 check_803CC294(s32 arg0, s32 arg1) {
     if (arg0 < 0 || arg0 >= 0x100) {
-        TLobby::notify_error((const char *)adx_afs_partition_id_range_error);
+        TLobby::notify_error(adx_afs_partition_id_range_error);
         return -3;
     }
     if (afs_archive_toc_table[arg0] == NULL) {
-        TLobby::notify_error((const char *)adx_afs_partition_id_range_error);
+        TLobby::notify_error(adx_afs_partition_id_range_error);
         return -3;
     }
     if (arg1 < 0 || arg1 >= afs_archive_toc_table[arg0]->f8) {
-        TLobby::notify_error((const char *)afs_file_id_out_of_range_error);
+        TLobby::notify_error(afs_file_id_out_of_range_error);
         return -3;
     }
     return 0;
@@ -181,7 +200,7 @@ s32 TLobby::get_afs_file_info(s32 arg0, s32 arg1, char *arg2, s32 *arg3, s32 *ar
 
 s32 ADXF_GetStat(AdxfHandle *p) {
     if (p == 0) {
-        TLobby::notify_error((const char *)lbl_8047C88C);
+        TLobby::notify_error(lbl_8047C88C);
         return -3;
     }
     return p->state;
@@ -189,20 +208,18 @@ s32 ADXF_GetStat(AdxfHandle *p) {
 
 s32 ADXF_GetFsizeByte(AdxfHandle *arg0) {
     if (arg0 == NULL) {
-        TLobby::notify_error((const char *)(&lbl_8047C910.value));
+        TLobby::notify_error(lbl_8047C910);
         return -3;
     }
     return arg0->byte_size;
 }
-typedef char RecoveredGlobal_803CC53C_lbl_8047C93C_size[sizeof(RecoveredGlobal_803CC53C_lbl_8047C93C) == 0x74 ? 1 : -1];
 s32 ADXF_GetFsizeSct(AdxfHandle *arg0) {
     if (arg0 == NULL) {
-        TLobby::notify_error((const char *)(&lbl_8047C93C.value));
+        TLobby::notify_error(lbl_8047C93C);
         return -3;
     }
     return arg0->sector_count;
 }
-typedef char RecoveredGlobal_803CCB5C_lbl_8047CA28_size[sizeof(RecoveredGlobal_803CCB5C_lbl_8047CA28) == 0x154 ? 1 : -1];
 
 #pragma push
 #pragma inline_depth(4)
@@ -253,7 +270,7 @@ static inline s32 finish_stop_adxf_file(AdxfHandle *arg0, const char *null_messa
 }
 
 // The inlined stop path publishes its sequence between the last two payload stores.
-static inline s32 stop_adxf_file_for_seek(AdxfHandle *arg0, const char *messages) {
+static inline s32 stop_adxf_file_for_seek(AdxfHandle *arg0, u32 messages) {
     {
         LogEnt_803CD16C *e;
         s32 i = (adxf_log_write_index %= 256);
@@ -269,12 +286,12 @@ static inline s32 stop_adxf_file_for_seek(AdxfHandle *arg0, const char *messages
         e->c = -1;
         adxf_log_write_index = i + 1;
     }
-    return finish_stop_adxf_file(arg0, messages + 0x198, messages + 0x1BC);
+    return finish_stop_adxf_file(arg0, reinterpret_cast<const char *>(messages + 0x198), reinterpret_cast<const char *>(messages + 0x1BC));
 }
 
 s32 ADXF_Seek(AdxfHandle *file, s32 offset, s32 origin) {
     // The seek and read diagnostics share the original ADXF string block.
-    const char *messages = lbl_8047C818;
+    const u32 messages = reinterpret_cast<u32>(lbl_8047C818);
     {
         s32 i = (adxf_log_write_index %= 256);
         LogEnt_803CD16C *entry = &lbl_8057B7D0[i];
@@ -289,7 +306,7 @@ s32 ADXF_Seek(AdxfHandle *file, s32 offset, s32 origin) {
         adxf_log_write_index = i + 1;
     }
     if (file == NULL) {
-        TLobby::notify_error(messages + 0x174);
+        TLobby::notify_error(reinterpret_cast<const char *>(messages + 0x174));
         return -3;
     }
 
@@ -304,7 +321,7 @@ s32 ADXF_Seek(AdxfHandle *file, s32 offset, s32 origin) {
     } else if (origin == 2) {
         file->sector_position = file->sector_count + offset;
     } else {
-        TLobby::notify_error(messages + 0x1E8);
+        TLobby::notify_error(reinterpret_cast<const char *>(messages + 0x1E8));
         return -3;
     }
     if (file->sector_position < 0) {
@@ -369,20 +386,20 @@ s32 ADXF_Stop(AdxfHandle *arg0) {
         e->c = -1;
         adxf_log_write_index = i + 1;
     }
-    return finish_stop_adxf_file(arg0, (const char *)lbl_8047C9B0, (const char *)lbl_8047C9D4);
+    return finish_stop_adxf_file(arg0, lbl_8047C9B0, lbl_8047C9D4);
 }
 #pragma pop
 
 s32 TLobby::read_checked_align(void *file, s32 count, void *dest) {
     if (((u32)dest & 0x1F) != 0) {
-        TLobby::notify_error((const char *)(&lbl_8047CA28.value));
+        TLobby::notify_error(lbl_8047CA28);
         return -3;
     }
     return ADXF_ReadNw32((AdxfHandle *)file, count, dest);
 }
 
 s32 ADXF_ReadNw32(AdxfHandle *file, s32 sectors, void *destination) {
-    const char *messages = lbl_8047C818;
+    const u32 messages = reinterpret_cast<u32>(lbl_8047C818);
     {
         s32 i = (adxf_log_write_index %= 256);
         LogEnt_803CD16C *entry = &lbl_8057B7D0[i];
@@ -396,22 +413,22 @@ s32 ADXF_ReadNw32(AdxfHandle *file, s32 sectors, void *destination) {
         adxf_log_write_index = i + 1;
     }
     if (file == NULL) {
-        TLobby::notify_error(messages + 0x244);
+        TLobby::notify_error(reinterpret_cast<const char *>(messages + 0x244));
         return -3;
     }
     if (sectors < 0) {
-        TLobby::notify_error(messages + 0x26C);
+        TLobby::notify_error(reinterpret_cast<const char *>(messages + 0x26C));
         return -3;
     }
     if (destination == NULL) {
-        TLobby::notify_error(messages + 0x298);
+        TLobby::notify_error(reinterpret_cast<const char *>(messages + 0x298));
         return -3;
     }
     if (file->state == 2) {
         return 0;
     }
     if (file->buffer != NULL) {
-        TLobby::notify_error(messages + 0x2C0);
+        TLobby::notify_error(reinterpret_cast<const char *>(messages + 0x2C0));
         return -1;
     }
 
@@ -532,7 +549,7 @@ inline s32 open_803CD16C(Slot_803CD16C *s, s32 arg0, s32 arg1) {
     h = adxstm_open_fname_range__6TLobbyFPviiii((const char *)&buf, a, b, c, 0);
     s->stream = h;
     if (h == 0) {
-        TLobby::notify_error((const char *)lbl_8047CB7C);
+        TLobby::notify_error(lbl_8047CB7C);
         return -1;
     }
     s->sector_count = c;
@@ -573,7 +590,7 @@ inline s32 close_803CCE9C(Snd_803CC980 *arg0) {
         adxf_log_write_index = i + 1;
     }
     if (arg0 == NULL) {
-        TLobby::notify_error((const char *)lbl_8047C9B0);
+        TLobby::notify_error(lbl_8047C9B0);
         return -3;
     }
     if (arg0->state == 1) {
@@ -584,7 +601,7 @@ inline s32 close_803CCE9C(Snd_803CC980 *arg0) {
         return arg0->sector_position;
     }
     if (arg0->stream == 0) {
-        TLobby::notify_error((const char *)lbl_8047C9D4);
+        TLobby::notify_error(lbl_8047C9D4);
         return -1;
     }
     TLobby::init_once();
@@ -730,12 +747,12 @@ inline s32 open_803CD3A8(Slot_803CD16C *s, const void *name, s32 mode) {
     AdxStreamFile *h;
     s32 sz;
     if (name == NULL) {
-        TLobby::notify_error((const char *)lbl_8047CBA4);
+        TLobby::notify_error(lbl_8047CBA4);
         return -1;
     }
     h = TLobby__sub_803C8CDC((const char *)name, mode, 0);
     if (h == 0) {
-        TLobby::notify_error((const char *)lbl_8047CBD8);
+        TLobby::notify_error(lbl_8047CBD8);
         return -1;
     }
     s->stream = h;
@@ -804,7 +821,7 @@ s32 TLobby::read_afs_toc(s32 arg0) {
     arr = e->arr;
     if (e->f8 == 0) {
         s32 n;
-        if (memcmp(lbl_805D75EC, &lbl_805E0D88, 3) != 0) {
+        if (memcmp(lbl_805D75EC, afs_archive_magic, 3) != 0) {
             TLobby::notify_error((const char *)(base + 0x504));
             TLobby__sub_803CD804();
             return 4;

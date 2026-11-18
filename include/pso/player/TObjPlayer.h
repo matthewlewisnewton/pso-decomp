@@ -456,7 +456,6 @@ struct TObjPlayer : public TObjChara {
     static void free_effect_resources();
     void clear_flag_04000000();
     void set_invuln_flags();
-    void *dt(s16 arg1);
     void cancel_action();
     s32 get_action_priority();
     void draw_model_no_fog();
@@ -716,9 +715,6 @@ struct TObjPlayer : public TObjChara {
     void*init_members();
     void*init_wrapper();
     void*init_sub();
-    void*init_subobjects();
-    void set_speed(f32 farg0);
-    void set_scale_xyz(f32 farg0);
     s32 setup_state();
     void setup_state_helper();
     u8 *init_subobject();
@@ -1245,7 +1241,6 @@ struct TObjPlayer : public TObjChara {
     static u8 *create_state_0(u8 *arg0);
     static u8 *create_vtable_804A63F0(u8 *arg0);
     static u8 *create_position_state(u8 *arg0);
-    s32 is_within_range(s32 arg1);
     static void clear_photon_blast_slots();
     void place_on_area_entry();
     void release_child_object();
@@ -1464,7 +1459,6 @@ struct TObjPlayer : public TObjChara {
     void init_battle();
     void reset_area_entry_state();
     u8 *construct_player_instance(s32 arg1, s16 arg2, s32 arg3, u8 *arg4);
-    void*init_pair();
     u8 *copy_hold_params(u8 *arg1);
     void init_cmd_6x24();
     void send_lobby_update();
@@ -1547,8 +1541,6 @@ struct TObjPlayer : public TObjChara {
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();
-    static void set_radar_marker_pos(int a0, void* a1);
-    static void spawn_item_from_arg(s32 arg0, s32 arg1);
     u8 *init_breakup_pieces(void *arg1, s32 arg2);
     static s32 dt_follow_particle_ctrl(s32 arg0, s16 arg1);
     u8 *create_vtable_variant();
