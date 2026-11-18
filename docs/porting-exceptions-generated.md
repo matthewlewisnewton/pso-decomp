@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 95 | 59 |
 | hardware | 69 | 13 |
-| pragma | 5906 | 892 |
+| pragma | 5892 | 892 |
 | configure.py per-unit override | 216 | 216 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1164, `inline_depth` 1070, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 637, `opt_propagation` 268, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 58, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 40, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -27,8 +27,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1164, `inline_depth` 1070,
 | `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
-| `src/pso/math/MatrixTransforms.cpp:56` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
-| `src/pso/math/MatrixTransforms.cpp:57` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
+| `src/pso/math/MatrixTransforms.cpp:57` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
+| `src/pso/math/MatrixTransforms.cpp:58` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
 | `src/pso/math/MatrixVector.cpp:35` | `asm f32 vector_length(const Vec *v) {` |
 | `src/pso/math/MatrixVector.cpp:36` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
 | `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
@@ -795,7 +795,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1164, `inline_depth` 1070,
 | `src/pso/misc/TLobby_803DE778.cpp` | scheduling×2, peephole×2 |
 | `src/pso/misc/TLobby_803F8794.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
 | `src/pso/misc/TLobby_803FAEA0.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
-| `src/pso/misc/TLobby_803FC178.cpp` | dont_inline×20, inline_depth×18, opt_common_subs×17, opt_propagation×9, optimization_level×2, bool×2, opt_lifetimes×1, opt_dead_assignments×1, scheduling×1 |
+| `src/pso/misc/TLobby_803FC178.cpp` | dont_inline×16, inline_depth×16, opt_common_subs×9, opt_propagation×8, bool×3, opt_lifetimes×2, optimization_level×2, opt_dead_assignments×1 |
 | `src/pso/misc/TLobby_804048E8.cpp` | opt_common_subs×12, dont_inline×9, inline_depth×9, opt_propagation×8, scheduling×1 |
 | `src/pso/misc/TLobby_804050DC.cpp` | dont_inline×34, inline_depth×25, opt_common_subs×22, opt_propagation×12, optimization_level×9, pool_data×2, opt_unroll_loops×1, scheduling×1, opt_lifetimes×1 |
 | `src/pso/misc/TLobby_80426CAC.cpp` | dont_inline×4, inline_depth×3, opt_propagation×2, opt_common_subs×2, auto_inline×1 |
