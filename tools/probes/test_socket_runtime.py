@@ -101,7 +101,7 @@ def check_sack(game, entry, newest, queued, expected, expected_reads=()):
         )
 
 
-def check_sack_boundaries(candidate):
+def check_sack_boundaries(candidate, retail_reads=()):
     newest = (100, 160)
     outside = [(200, 210), (220, 230), (240, 250), (260, 270), (280, 290)]
     fixtures = [
@@ -121,7 +121,10 @@ def check_sack_boundaries(candidate):
     for shift in shifts:
         shifted_newest = shift_ranges([newest], shift)[0]
         for queued, expected in fixtures:
-            check_sack(candidate, GAME_SACK, shifted_newest, shift_ranges(queued, shift), shift_ranges(expected, shift))
+            compactions = 5 - len(expected) if queued else 0
+            expected_reads = retail_reads * compactions
+            check_sack(candidate, GAME_SACK, shifted_newest, shift_ranges(queued, shift),
+                       shift_ranges(expected, shift), expected_reads=expected_reads)
     return len(shifts) * len(fixtures)
 
 
@@ -312,18 +315,20 @@ def main():
     parser.add_argument("original", type=Path, help="original GPOE8P PsoV3.dol")
     parser.add_argument("candidate", type=Path, help="GPOE8P DOL linked with the socket C++ unit")
     parser.add_argument("--browser-dir", type=Path, help="directory containing both extracted browser DOLs")
+    parser.add_argument("--bounded-sack", action="store_true", help="expect the port's bounded SACK loop")
     args = parser.parse_args()
     original = Game(args.original, ORIGINAL_SHA1)
     candidate = Game(args.candidate)
     retail_reads = ((0x320, 4), (0x324, 4))
+    candidate_reads = () if args.bounded_sack else retail_reads
     newest = (100, 160)
     trace_case = newest, [(110, 120)], [newest]
     check_sack(original, GAME_SACK, *trace_case, expected_reads=retail_reads)
-    check_sack(candidate, GAME_SACK, *trace_case)
+    check_sack(candidate, GAME_SACK, *trace_case, expected_reads=candidate_reads)
     if args.browser_dir:
         for name, expected_sha1, entry in BROWSERS:
             check_sack(Game(args.browser_dir / name, expected_sha1), entry, *trace_case, expected_reads=retail_reads)
-    sack_cases = check_sack_boundaries(candidate)
+    sack_cases = check_sack_boundaries(candidate, candidate_reads)
     reassembly_cases = check_reassembly(original, candidate)
     receive_cases = check_wrapped_receive(candidate)
     print(

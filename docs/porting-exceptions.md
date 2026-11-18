@@ -78,13 +78,32 @@ and preserve the unsigned endpoint subtraction. The receive-room clamp
 and the range array copies use the existing shared control-block layout.
 [Receive queue recovery](evidence/tcp-out-of-order-queue.md)
 
+### Retail SACK compaction lookahead
+
+The CodeWarrior path in `TLobby__sub_8041FED4` deliberately retains the retail
+bounds bug: compaction reads the eight bytes immediately after the five-entry
+SACK array before clearing its last slot. Non-CodeWarrior builds stop at source
+slot four. `PSO_SOCKET_BOUNDED_SACK` selects that bounded implementation for a
+diagnostic CodeWarrior build. Ports must retain the bounded form unless they
+are reproducing the retail memory access with an equivalent valid storage
+boundary. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
+
 ### TCP send acknowledgement
 
-The same unit enables inlining to depth four and disables lifetime
-optimization around `0x8041FFF8`. These CodeWarrior settings affect
-register and stack allocation. Ports can omit the settings and keep
-the post-callback queue-head reload. The FIFO descriptor still has a
-different stack offset from retail. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
+The same unit disables inlining and lifetime optimization around `0x8041FFF8`.
+Its native local declaration order and unreferenced eight-byte area reproduce
+the 96-byte stack frame and FIFO descriptor offset. Ports can omit the settings
+and dead storage while keeping the post-callback queue-head reload.
+[Socket runtime evidence](evidence/socket-protocol-runtime.md)
+
+### TCP send gathering
+
+`0x80420410` uses scoped `dont_inline on` and `opt_propagation off` controls and
+integer address cursors to reproduce the native reverse and shift walks. The
+unused final decrement can precede the array; only guarded accesses convert the
+addresses back to pointers. Ports should use bounded typed indices and can omit
+the optimizer settings. The unreachable retail partial-fragment tail remains
+for exact matching. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
 
 ### Logo texture descriptor declaration
 
@@ -200,7 +219,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
 | MWCC intrinsics | 92 | 60 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,892 | 892 |
+| CodeWarrior pragmas (excluding push/pop) | 5,897 | 892 |
 | Per-unit compiler overrides in `configure.py` | 224 | 224 |
 | Approved regressions | 0 | 0 |
 

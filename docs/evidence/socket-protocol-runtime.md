@@ -1,65 +1,59 @@
-# TCP send queues and SACK compaction
+# Socket protocol runtime
 
-The comparison uses GPOE8P and fork main `4959835fff`, which includes the exact receive delivery from [#606](https://github.com/matthewlewisnewton/pso-decomp/pull/606). Of the unit's 21 functions, 18 match exactly. All 184 initialized data bytes and all 16 BSS bytes match. Each function retains its original size and address in a diagnostic link of the complete C++ unit.
+The comparison uses GPOE8P and fork main `83aec32b62`. The standard build compiles and links `pso/network/SocketProtocolRuntime.cpp`; it does not use the original socket object as a fallback. All 21 functions, all 10,388 text bytes, all 184 initialized data bytes and all 16 BSS bytes match the original object. The linked `PsoV3.dol` has the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
-| Routine | Native size | Differing instruction words in the linked game |
-| --- | ---: | ---: |
-| SACK compaction, `0x8041FED4` | 292 | 1 |
-| Send acknowledgement, `0x8041FFF8` | 1,048 | 6 |
-| Send gathering, `0x80420410` | 1,984 | 43 |
+Against that main baseline, `tools/check_pr.py` reports 27,526 → 27,528 exact functions and 4,322,652 → 4,325,684 matched code bytes, with no regressions. Linking the unit adds 10,388 complete code bytes, 200 complete data bytes and one linked unit. All 3,631 linked units pass, and the retention list has zero additions or removals on the retention check.
 
-Across the complete DOL, only these 50 words change. The diagnostic game has SHA-1 `ce9186a07392d2841bc927e715f65e7e769fbaa3`. Its code and data include the shared callback provider and the callers of ACK and send gathering.
+## Retail SACK compaction bounds bug
 
-## SACK and receive reassembly
+The control block declares five SACK ranges at offsets `0x2F8..0x31F`. When a new range contains an existing range, retail `0x8041FED4` shifts the successors down one slot with `k < 5`. The last iteration reads `sack[5]`, one eight-byte range beyond the array:
 
-The control block holds five SACK ranges at offsets `0x2F8..0x31F`. When inserting a new range that contains an existing range, the game copies that existing range's successors down one slot. Its loop goes one copy beyond the table, reads the words at `0x320` and `0x324`, and clears the destination. Those words hold the scoreboard's top index with its alignment bytes, and its unacknowledged sequence number. The bounded loop copies through source slot four and clears slot four. Compaction and expiration derive their limits from the array declaration. The compaction bound changes the compare immediate at `0x8041FFBC` from five to four.
+- `0x320..0x323` contains `seg_top` and its two padding bytes;
+- `0x324..0x327` contains `una`.
 
-A PowerPC read trace observes both adjacent words in the game, the release browser and the debug browser shipped on the same disc. The bounded game produces the same final control block with zero reads from those words. A byte-identical routine given that same state would perform the original reads. Main currently counts the original five-iteration bound as an exact match.
+The loop copies those words into `sack[4]` and then clears `sack[4]`. It does not write either adjacent field. This is retail behavior, not a sixth active SACK range. The matching C++ deliberately retains the out-of-bounds read. A PowerPC read trace observes both adjacent words in the game and in the release and debug browsers on the disc.
 
-The receive-range routines at `0x8041F66C` and `0x8041F914` use the same unsigned endpoint subtraction to count the bytes removed from the reassembly queue. This calculation works across both signed and unsigned sequence-number wrap. Eliminating the former routine's unused eight-byte array leaves all 680 bytes of that routine and all 1,164 bytes of the latter routine exact. Insertion at
-`0x8041FDA0` and overlap handling at `0x8041F914` now subtract in the
-unsigned sequence space before interpreting a difference as signed.
-This removes signed overflow from receive-range insertion and merging
-while preserving the compiled socket object.
+Build selection is explicit in `TLobby__sub_8041FED4`:
+
+- the normal CodeWarrior build (`__MWERKS__`) uses the retail `k < 5` loop;
+- non-CodeWarrior port builds use `k < last`, which stops at source slot four and never reads beyond the array;
+- defining `PSO_SOCKET_BOUNDED_SACK` selects the bounded loop for a diagnostic CodeWarrior build.
+
+The retail and bounded forms produce the same final control block in the tested cases, but their adjacent-field read traces intentionally differ. `tools/probes/test_socket_runtime.py` expects retail reads by default and bounded behavior with `--bounded-sack`.
+
+The receive-range routines at `0x8041F66C` and `0x8041F914` use unsigned endpoint subtraction before signed sequence comparisons. This preserves ordering across signed and unsigned sequence-number wrap. Their shared inline scope and range copies remain exact.
 
 ## Send acknowledgement
 
-The send ring holds 65 records. Each 16-byte record contains a buffer reference, a signed halfword length, a signed halfword offset and a completion callback. A callback can reenter and move the queue head. The routine takes its next index after the callback and before copying the ring descriptor. The debug browser also takes the index in this order. The last six differing instructions all address the same FIFO destination descriptor at stack offset 36. Retail places it at 20. The frame size, call targets and other instructions match.
+The send ring holds 65 16-byte `TcpSendRequest` records. A completion callback can reenter the socket and move the queue head, so `0x8041FFF8` reloads the head and ring descriptor after the callback and before reading the next request.
 
-The debug build initializes an additional descriptor kind byte at `0x8016B0E8`. It never subsequently addresses that slot. This gives evidence for a fourth initialization in that build, but does not establish a purpose for a fourth C++ object. Passing the live request and packet by reference, changing the completion snapshot's lifetime, sharing buffer cursors, and grouping the actual queue operations into inline helpers did not recover the retail FIFO stack slot.
+The scoped `opt_lifetimes off` setting, direct queue statements and native local declaration order reproduce the 1,048-byte routine exactly. The unreferenced eight-byte local area preserves the retail 96-byte frame and the FIFO destination descriptor at stack offset 20. Ports can remove that area and the optimizer settings while retaining the post-callback reload.
 
 ## Send gathering
 
-The gatherer works with the packet's 12 fragment descriptors directly. It reverses the consumed prefix using an index relative to its end. The partial-fragment branch uses the selected fragment's buffer and length, as in the debug browser at `0x8016B03C..0x8016B044`. Both four-byte descriptor copies explicitly copy the value word. Indexing and byte counts stay at their native widths. Gathering uses the translation unit's ordinary compiler options.
+`0x80420410` matches at 1,984 bytes. Its scoped `dont_inline on` and `opt_propagation off` settings, local declaration order and statement order reproduce the native register allocation. The integer address cursors preserve the original reverse and shift walks, including an unused final decrement before the array; conversions back to pointers occur only for guarded accesses. Ports should use bounded typed indices instead.
 
-All 43 differing words lie between `0x8042098C` and `0x80420A4C`, in the forward scan of the fragment prefix and the reverse copy. The instructions for the subsequent partial-fragment tail match. A direct backward cursor under scoped propagation settings produced a candidate four bytes longer than retail. Comparing pointer walks, counted loops, end-relative indexing and increment order yielded the equal-size build above. A subsequent trial of 144 loops using source and destination bounds gave a best equal-size result of 44 differing words. The public upstream C recovery and the compiler's loop and stack implementations informed the trials. [Upstream recovery](https://github.com/zeroz41/pso-decomp/pull/305) · [MWCC loop strength reduction](https://github.com/rayanht/mwcc/blob/main/src/optimizer/StrengthReduction.c) · [MWCC EABI frame allocation](https://github.com/rayanht/mwcc/blob/main/src/backend/StackFrameEABI.c)
+The partial-fragment tail at `0x80420B6C` is unreachable in retail. The FIFO path initializes the partial index to `-1`, and every path reaching the tail retains that value. The tail is nevertheless required for the original bytes and remains in the C++. Its 16-bit length temporaries reproduce the native stores without the former `s64` widening.
 
-The partial-fragment tail at `0x80420B6C` is unreachable in the retail GPOE8P routine. The retail FIFO path initializes the callee-saved register `r29` to `-1` at `0x804206F0`. Its direct branch at `0x80420804` enters the queued-prefix scan, which preserves `r29`. The later branch into the tail at `0x80420A60` requires `r29 >= 0`. The other path, which finds a partial first fragment, returns before the scan. In the C++ candidate, the same paths leave `partial_fragment == -1` whenever the final tail test runs. The emitted debug-browser instructions identify the descriptor that this tail would use.
+## Validation and reproduction
 
-A scratch build removed that tail, started the queued-prefix scan at index zero and reversed the prefix through slot zero. It passed all 2,528 gather comparisons against the diagnostic C++ build. An instruction hook recorded zero entries to the tail in those runs. The scratch routine shrank from 1,984 to 1,888 bytes, shifting later symbols in the full link.
-
-## Matching build and port behavior
-
-The matching GameCube build must preserve the original executable bytes,
-including the SACK loop. The socket unit stays out of the source-link list,
-so that build links the original object split from the user's disc. The
-bounded C++ routine is for source builds. It shifts entries within the five-slot
-SACK table and clears the final slot.
-
-The diagnostic build below links the full C++ unit for behavioral testing.
-The match report compares that compiled source with the original object.
-
-## Reproducing the comparisons
-
-The standard build keeps main's link set. It reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,630 source-linked units pass and the retention list has zero additions or removals. Against the stated baseline, `tools/check_pr.py` reports 27,526 → 27,525 exact functions and 4,322,652 → 4,322,360 matched code bytes. The 292-byte SACK routine is the only exact-function regression. Matched data and linked code and data are unchanged.
-
-For the diagnostic build, use a separate checkout with the normal project tools, original input files and a completed standard build. Add `pso/network/SocketProtocolRuntime.cpp` to the sorted list in `config/GPOE8P/psov3/linked_units.txt`. Then run the following with the same configure options as the standard build and Unicorn 2.1.4 available to Python.
+Run the normal build and repository gate:
 
 ```sh
-python3 tools/link_units.py force-active --write
 python3 configure.py
-ninja build/GPOE8P/psov3.dol
-python3 tools/probes/test_socket_runtime.py orig/GPOE8P/files/PsoV3.dol build/GPOE8P/psov3.dol
+ninja
+python3 tools/check_pr.py
 ```
 
-Pass `--browser-dir` with a directory containing the disc's `iwanaga.dol` and `iwanagaD.dol` to reproduce the independent SACK traces. The probe verifies the SHA-1 of each reference executable. It checks the SACK state and adjacent-field accesses in the original trace, and exercises 21 more SACK cases on the bounded routines, including every possible compaction position in a full table. It also checks 786 reassembly cases, 12 out-of-order receive scenarios with overlapping data, 2,528 gathers, and 1,600 ACKs with 1,766 completion events. Cases include both sequence wraps, all 32 reassembly slots, all 12 packet fragments, queue wrap and partial consumption. The ACK checks intercept completions, record their arguments and exercise queue-head changes during a callback.
+The socket unit is present in `config/GPOE8P/psov3/linked_units.txt`. `tools/link_units.py check` verifies that the linker uses the compiled unit, and `tools/link_units.py force-active --check` verifies its generated retention entries.
+
+With Unicorn 2.1.4 available, compare behavior against the original DOL:
+
+```sh
+python3 tools/probes/test_socket_runtime.py \
+    orig/GPOE8P/files/PsoV3.dol build/GPOE8P/psov3.dol
+```
+
+The retail probe checks the adjacent SACK reads, 21 SACK boundary cases, 786 reassembly comparisons, 12 out-of-order receive scenarios, 2,528 gathers and 1,600 ACKs with 1,766 completion events. ACK cases include callback reentry and queue-head movement.
+
+For the bounded diagnostic, temporarily add `-DPSO_SOCKET_BOUNDED_SACK` to this unit's compiler flags, regenerate and link the DOL, then pass `--bounded-sack` to the same probe. Restore the normal flags and rebuild afterward. Both retail and bounded probes pass the same state and behavioral comparisons; only the expected SACK read trace differs. Pass `--browser-dir` with `iwanaga.dol` and `iwanagaD.dol` to reproduce the independent browser SACK traces.
