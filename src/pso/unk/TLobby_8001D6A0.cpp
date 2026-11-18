@@ -1,4 +1,5 @@
 #include "pso/enemy/BattleParameters.h"
+#include "pso/player/PlayerAttackParams.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
@@ -264,134 +265,116 @@ s32 *get_shared_text_buffer(void) {
     return &text_builder_buffer.value;
 }
 
-typedef struct File_8001DC30 File_8001DC30;
-typedef struct Pair_8001DC30 Pair_8001DC30;
-typedef struct Params_8001DC30 Params_8001DC30;
-typedef struct Pkt_8001DC30 Pkt_8001DC30;
-typedef struct Stats_8001DC30 Stats_8001DC30;
-typedef struct Sw_8001DC30 Sw_8001DC30;
-struct Stats_8001DC30
-{
-  u8 b[0x24];
+struct BattleBaseStats {
+    u8 data[0x24];
 };
-struct Pkt_8001DC30
-{
-  u8 b[0x30];
+
+union BattleMovementRecord {
+    BattleMovementParams params;
+    struct {
+        u32 floats[6];
+        u32 integers[6];
+    } words;
 };
-struct Sw_8001DC30
-{
-  u8 b[0x20];
+
+struct BattleParameterBank {
+    BattleBaseStats stats[96];
+    AttackParams attacks[96];
+    ActorParamBlock resistances[96];
+    BattleMovementRecord movement[96];
 };
-struct Pair_8001DC30
-{
-  u32 a[6];
-  u32 b[6];
+
+struct BattleParameterFile {
+    BattleBaseStats stats[4][96];
+    AttackParams attacks[4][96];
+    ActorParamBlock resistances[4][96];
+    BattleMovementRecord movement[4][96];
 };
-struct Params_8001DC30
-{
-  Stats_8001DC30 stats[0x60];
-  Pkt_8001DC30 pkts[0x60];
-  Sw_8001DC30 sw[0x60];
-  Pair_8001DC30 pairs[0x60];
-};
-struct File_8001DC30
-{
-  Stats_8001DC30 stats[4][0x60];
-  Pkt_8001DC30 pkts[4][0x60];
-  Sw_8001DC30 sw[4][0x60];
-  Pair_8001DC30 pairs[4][0x60];
-};
-}
+
+typedef char BattleParameterBankSize[sizeof(BattleParameterBank) == 0x3D80 ? 1 : -1];
+typedef char BattleParameterFileSize[sizeof(BattleParameterFile) == 0xF600 ? 1 : -1];
+
+extern BattleParameterBank *TLobby__battle_parameter_buffer;
+extern BattleBaseStats *battle_param_stats;
+extern AttackParams *TLobby__battle_param_attacks;
+extern ActorParamBlock *TLobby__battle_param_resistances;
+extern BattleMovementRecord *battle_param_movement;
+extern s32 battle_parameter_difficulty;
 extern s32 battle_param_lab_variant;
+}
+
 void load_battle_param_entry(void) {
-  extern Params_8001DC30 *TLobby__battle_parameter_buffer;
-  extern s32 battle_parameter_difficulty;
-  s32 idx;
-  const char *name;
-  File_8001DC30 *file;
-  Params_8001DC30 *dst;
-  Params_8001DC30 *new_var;
-  s32 off;
-  name = "BattleParamEntry.dat";
-  if (TObjEneDD::is_main_phase_15() != 0)
-  {
-    name = "BattleParamEntry_on.dat";
-  }
-  if (TRaderMapCore::is_not_split_screen() == 1)
-  {
-    name = "BattleParamEntry_on.dat";
-  }
-  if (battle_param_lab_variant == 1)
-  {
-    name = "BattleParamEntry_lab.dat";
-    if (TObjEneDD::is_main_phase_15() != 0)
-    {
-      name = "BattleParamEntry_lab_on.dat";
+    s32 difficulty;
+    const char *name;
+    BattleParameterFile *file;
+    BattleParameterBank *active;
+    BattleParameterBank *bank;
+    name = "BattleParamEntry.dat";
+    if (TObjEneDD::is_main_phase_15() != 0) {
+        name = "BattleParamEntry_on.dat";
     }
-    if (TRaderMapCore::is_not_split_screen() == 1)
-    {
-      name = "BattleParamEntry_lab_on.dat";
+    if (TRaderMapCore::is_not_split_screen() == 1) {
+        name = "BattleParamEntry_on.dat";
     }
-  }
-  file = (File_8001DC30 *) ::operator new[](0xF600);
-  if (file != 0)
-  {
-    read_disc_file(name, file);
-    idx = battle_parameter_difficulty;
-    new_var = (dst = TLobby__battle_parameter_buffer);
-    ((TLobby *)(dst->stats))->move_data(file->stats[idx], sizeof(dst->stats));
-    {
-      Stats_8001DC30 *p = ((0, dst))->stats;
-      s32 i;
-      for (i = 0; i < 0x60; i++)
-      {
-        bswap__12player_statsFv(p);
-        p++;
-      }
-
-    }
-    ((TLobby *)(new_var->pkts))->move_data((void *) ((((s32) file) + 0x3600) + (idx * 0x1200)), sizeof(dst->pkts));
-    {
-      Pkt_8001DC30 *p = new_var->pkts;
-      s32 i;
-      for (i = 0; i < 0x60; i++)
-      {
-        ((TLobby *)p)->byteswap_packet();
-        p++;
-      }
-
-    }
-    ((TLobby *)(new_var->sw))->move_data((void *) ((((s32) file) + 0x7E00) + (idx * 0xC00)), sizeof(dst->sw));
-    {
-      s32 i;
-      Sw_8001DC30 *p = new_var->sw;
-      for (i = 0; i < 0x60; i++)
-      {
-        ((TLobby *)p)->swap_endian();
-        p++;
-      }
-
-    }
-    ((TLobby *)(new_var->pairs))->move_data((void *) ((((s32) file) + 0xAE00) + (1152 * (4 * idx))), sizeof(dst->pairs));
-    {
-      s32 i;
-      Pair_8001DC30 *p = new_var->pairs;
-      for (i = 0; i < 0x60; i++)
-      {
-        s32 j;
-        for (j = 0; j < 6; j++)
-        {
-          bswap_32(&p->a[j]);
-          bswap_32(&p->b[j]);
+    if (battle_param_lab_variant == 1) {
+        name = "BattleParamEntry_lab.dat";
+        if (TObjEneDD::is_main_phase_15() != 0) {
+            name = "BattleParamEntry_lab_on.dat";
         }
-
-        p++;
-      }
-
+        if (TRaderMapCore::is_not_split_screen() == 1) {
+            name = "BattleParamEntry_lab_on.dat";
+        }
     }
-    ::operator delete[](file);
- ;
-  }
+    file = (BattleParameterFile *)::operator new[](sizeof(BattleParameterFile));
+    if (file != NULL) {
+        read_disc_file(name, file);
+        difficulty = battle_parameter_difficulty;
+        bank = active = TLobby__battle_parameter_buffer;
+        ((TLobby *)active->stats)->move_data(file->stats[difficulty], sizeof(active->stats));
+        {
+            BattleBaseStats *p = active->stats;
+            s32 i;
+            for (i = 0; i < 0x60; i++) {
+                bswap__12player_statsFv(p);
+                p++;
+            }
+        }
+        ((TLobby *)bank->attacks)->move_data(
+            (void *)((s32)file->attacks + difficulty * (s32)sizeof(bank->attacks)), sizeof(bank->attacks));
+        {
+            AttackParams *p = bank->attacks;
+            s32 i;
+            for (i = 0; i < 0x60; i++) {
+                ((TLobby *)p)->byteswap_packet();
+                p++;
+            }
+        }
+        ((TLobby *)bank->resistances)->move_data(
+            (void *)((s32)file->resistances + difficulty * (s32)sizeof(bank->resistances)), sizeof(bank->resistances));
+        {
+            s32 i;
+            ActorParamBlock *p = bank->resistances;
+            for (i = 0; i < 0x60; i++) {
+                ((TLobby *)p)->swap_endian();
+                p++;
+            }
+        }
+        ((TLobby *)bank->movement)->move_data(
+            (void *)((s32)file->movement + difficulty * (s32)sizeof(bank->movement)), sizeof(bank->movement));
+        {
+            s32 i;
+            BattleMovementRecord *p = bank->movement;
+            for (i = 0; i < 0x60; i++) {
+                s32 j;
+                for (j = 0; j < 6; j++) {
+                    bswap_32(&p->words.floats[j]);
+                    bswap_32(&p->words.integers[j]);
+                }
+                p++;
+            }
+        }
+        ::operator delete[](file);
+    }
 }
 
 void TLobby::broadcast(void* a0) { ((int (*)(void*, void*))broadcast_to_players__6TLobbyFii)((void*)TLobby__lobby_instance, a0); }
@@ -528,40 +511,41 @@ u8 is_valid_player_index__6TLobbyFi(s32 arg0) {
     return (u8)var_r0;
 }
 
-    extern int battle_parameter_difficulty;
 BattleMovementParams *get_battle_movement_params(s32 index) {
     return (BattleMovementParams *)get_player_entry__6TLobbyFii(battle_parameter_difficulty, index);
 }
 
-    extern int battle_param_movement;
-void* get_player_entry__6TLobbyFii(int a0, int a1) {  return (char*)(battle_param_movement) + a1 * 48; }
+void *get_player_entry__6TLobbyFii(int, int index) {
+    return &battle_param_movement[index].params;
+}
 
 ActorParamBlock *get_battle_resistance_params(s32 index) {
     return (ActorParamBlock *)get_entry__6TLobbyFii(battle_parameter_difficulty, index);
 }
 
-    extern int TLobby__battle_param_resistances;
-void* get_entry__6TLobbyFii(int a0, int a1) {  return (char*)(TLobby__battle_param_resistances) + a1 * 32; }
+void *get_entry__6TLobbyFii(int, int index) {
+    return &TLobby__battle_param_resistances[index];
+}
 
 AttackParams *get_battle_attack_params(s32 index) {
     return (AttackParams *)TLobby__sub_8001E270(battle_parameter_difficulty, index);
 }
 
-    extern int TLobby__battle_param_attacks;
-void* TLobby__sub_8001E270(int a0, int a1) {  return (char*)(TLobby__battle_param_attacks) + a1 * 48; }
+void *TLobby__sub_8001E270(int, int index) {
+    return &TLobby__battle_param_attacks[index];
+}
 
 BattleBaseStats *get_battle_base_stats(s32 index) {
     return (BattleBaseStats *)TLobby__sub_8001E2A8(battle_parameter_difficulty, index);
 }
 
-    extern int battle_param_stats;
-void* TLobby__sub_8001E2A8(int a0, int a1) {  return (char*)(battle_param_stats) + a1 * 36; }
+void *TLobby__sub_8001E2A8(int, int index) {
+    return &battle_param_stats[index];
+}
 
 void set_difficulty__6TLobbyFi(s32 arg0) {
     battle_param_lab_variant = arg0;
 }
-
-extern u32 TLobby__battle_parameter_buffer;
 
 extern s32 game_difficulty_selection;
 
@@ -598,9 +582,9 @@ void TLobby::update_difficulty() {
 }
 
 void TLobby::free_boss4_rock() {
-    if ((u32) TLobby__battle_parameter_buffer != 0U) {
-        ::operator delete[]((void*)TLobby__battle_parameter_buffer);
-        TLobby__battle_parameter_buffer = 0U;
+    if (TLobby__battle_parameter_buffer != NULL) {
+        ::operator delete[](TLobby__battle_parameter_buffer);
+        TLobby__battle_parameter_buffer = NULL;
     }
     battle_param_stats = 0;
     TLobby__battle_param_attacks = 0;
@@ -610,16 +594,16 @@ void TLobby::free_boss4_rock() {
 }
 
 void alloc_battle_param_tables(void) {
-    u8 *buf = (u8 *)::operator new[](0x3d80);
+    BattleParameterBank *bank = (BattleParameterBank *)::operator new[](sizeof(BattleParameterBank));
     s32 i;
-    for (i = 0; i < 0x3d80; i++) {
-        buf[i] = 0;
+    for (i = 0; i < (s32)sizeof(*bank); i++) {
+        ((u8 *)bank)[i] = 0;
     }
-    TLobby__battle_parameter_buffer = (u32)buf;
-    battle_param_stats = (s32)buf;
-    TLobby__battle_param_attacks = (s32)(buf + 0xd80);
-    TLobby__battle_param_resistances = (s32)(buf + 0x1f80);
-    battle_param_movement = (s32)(buf + 0x2b80);
+    TLobby__battle_parameter_buffer = bank;
+    battle_param_stats = bank->stats;
+    TLobby__battle_param_attacks = bank->attacks;
+    TLobby__battle_param_resistances = bank->resistances;
+    battle_param_movement = bank->movement;
     TLobby::clamp_difficulty(game_difficulty_selection);
     TLobby::get_instance();
     ((s32 (*)(void))set_difficulty__6TLobbyFi)();
