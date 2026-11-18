@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 48 | 12 |
-| intrinsic | 91 | 57 |
+| intrinsic | 95 | 59 |
 | hardware | 69 | 13 |
-| pragma | 5884 | 890 |
+| pragma | 5892 | 892 |
 | configure.py per-unit override | 216 | 216 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `opt_loop_invariants` 41, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -130,17 +130,21 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066,
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:5874` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:8738` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:149` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:159` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:164` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:176` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:376` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:399` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:27` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:44` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:54` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:59` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:71` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:118` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:38` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:136` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:137` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:138` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:163` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E18C0.cpp:101` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E18C0.cpp:124` | `__frsqrte` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:94` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:106` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_movement.cpp:99` | `__cntlzw` |
@@ -1145,7 +1149,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066,
 | `src/pso/player/TObjPlayer_80357734.cpp` | fp_contract×3 |
 | `src/pso/player/TObjPlayer_803DA204.cpp` | optimize_for_size×3, scheduling×1, peephole×1 |
 | `src/pso/player/TObjPlayer_803DC834.cpp` | scheduling×2, peephole×2 |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp` | scheduling×4, fp_contract×1, use_lmw_stmw×1 |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
+| `src/pso/player/TObjPlayer_803E112C.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
+| `src/pso/player/TObjPlayer_803E18C0.cpp` | scheduling×4 |
 | `src/pso/player/TObjPlayer_803E21B8.cpp` | scheduling×6, dont_inline×2, inline_depth×2, peephole×1 |
 | `src/pso/player/TObjPlayer_803E5470.cpp` | use_lmw_stmw×1 |
 | `src/pso/player/TUnk_80490470.cpp` | fp_contract×1 |

@@ -109,6 +109,13 @@ function inherits the existing `fp_contract off` region. A port can use ordinary
 `fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
 behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
 
+### Quadrilateral and sphere contact units
+
+`TObjPlayer__sub_803DFB1C` and `test_box_sphere_contact` use scoped
+`opt_loop_invariants off` and inline controls to reproduce the native register
+allocation and square-root refinement. A port can use its own inline settings
+and square root while validating floating-point behavior. See [the evidence](evidence/collision-contact-units.md).
+
 ### Dark Gunner center native emission
 
 `src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
