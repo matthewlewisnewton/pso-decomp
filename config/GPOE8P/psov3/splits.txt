@@ -1303,6 +1303,9 @@ pso/misc/TCameraCtrl_80082FCC.cpp:
 	.text       start:0x80082FCC end:0x800832EC
 	.sdata2     start:0x805D9410 end:0x805D9414
 
+pso/render/ShadowProjectionConstants.cpp:
+	.sdata2     start:0x805D9414 end:0x805D9428
+
 pso/unk/text_800832EC.cpp:
 	.text       start:0x800832EC end:0x80083360
 
