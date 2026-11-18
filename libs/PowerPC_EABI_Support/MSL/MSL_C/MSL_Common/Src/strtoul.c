@@ -338,15 +338,12 @@ int atoi(const char* str) {
 }
 
 #include "MSL_C/ansi_fp.h"
+#include "MSL_C/MSL_Common_Embedded/Math/fdlibm.h"
 #include "MSL_C/locale.h"
 extern double __dec2num(const decimal* d);
-extern float __float_huge[];
-extern float __float_nan[];
 extern unsigned long __double_huge[];
 extern unsigned long __extended_min[];
 extern unsigned long __extended_max[];
-#define HUGE_VALF (*__float_huge)
-#define NAN (*__float_nan)
 #define HUGE_VAL (*(double*)__double_huge)
 #define LDBL_MIN (*(double*)__extended_min)
 #define LDBL_MAX (*(double*)__extended_max)
