@@ -855,7 +855,6 @@ struct TLobby : public TObject {
     static void seek_gvrt_chunk();
     static void bswap_u32(u32 *p);
     static u32 bswap32_value(u32 v);
-    void expire_timeout_entries();
     static s32 reset_stack_module();
     static s32 init_ucb_entries();
     static s32 cleanup_subsystems();

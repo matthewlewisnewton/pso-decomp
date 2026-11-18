@@ -4,10 +4,19 @@
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
 #include "pso/network/SocketEvents.h"
+#include "pso/network/TcpReceiveQueue.h"
 #include "pso/network/NetworkReceiveCallback.h"
 #include "pso/network/NetworkTimer.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
+
+enum SocketHandleTag {
+    TcpSocketTag = 0,
+    UdpSocketTag = 0x400,
+    SocketTagMask = 0xC00
+};
+
+#define SOCKET_HANDLE(index, tag) ((s16)((index) | (tag)))
 
 struct RecoveredGlobal_804217E4_lbl_805C1C50 {
     s32 value;
@@ -166,7 +175,7 @@ s32 abort_tcp_connection__6TLobbyFs(int);
 s32 tcp_abort__Fs(s32 a);
 void NetMemcpy(void *_w0, void *_w1, int _w2);
 s32 TLobby__sub_80421938(O_80421938 *o, void *src, void *dst, void *cb, s32 flags);
-s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 flags);
+s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 socket_index);
 extern S_804220A0 *tcp_protocol_state[];
 s32 complete_request_callback__6TLobbyFv(s32 idx_, void (*cb)(s16, s16, s32), s16 arg2, s32 *arg3);
 void OSReport(const char *, ...);
@@ -219,7 +228,6 @@ extern u32 lbl_805D7B58;
 extern s32 dhcp_last_tick_ms;
 extern s32 dhcp_server_id;
 extern s32 lbl_805D7B28;
-s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
 s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
 s32 TLobby::cleanup_subsystems() {
     TLobby__sub_80419A7C();
@@ -419,7 +427,7 @@ s32 TLobby__sub_80421B3C(s32 a) {
     s32 r;
     G_80421B3C *g;
     s16 m;
-    if ((a & 0xC00) != 0x400) { return -4; }
+    if ((a & SocketTagMask) != UdpSocketTag) { return -4; }
     g = ((G_80421B3C *)&network_dispatch_state);
     m = a & 0xFFFFF3FF;
     TLobby::lock_mutex((int)((void *)g->f0));
@@ -439,7 +447,7 @@ s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n
     u16 i;
     UdpPkt_80421BAC *pkt;
     s16 r;
-    if ((h & 0xC00) != 0x400) {
+    if ((h & SocketTagMask) != UdpSocketTag) {
         return -4;
     }
     h = h & 0xFFFFF3FF;
@@ -533,14 +541,14 @@ s16 TUdpSocket__sub_80421DEC(void *src, s32 sport, void *dst, s32 dport, s32 arg
         TUdpSocket::unlock_mutex(network_dispatch_state.value);
         return r;
     }
-    h |= 0x400;
+    h |= UdpSocketTag;
     TUdpSocket::unlock_mutex(network_dispatch_state.value);
     return h;
 }
 
-s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 flags) {
+s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 socket_index) {
     Stack_80421F10 s;
-    s.receive.flags = flags | 0x400;
+    s.receive.flags = SOCKET_HANDLE(socket_index, UdpSocketTag);
     s.receive.length = o->f8 - o->fC;
     s.receive.buffer = NULL;
     NetMemcpy(s.src, src, 0x14);
@@ -613,7 +621,7 @@ s16 tcp_receive__FsPFss_vsPUc(s32 a, void *cb, s32 len, void *buf) {
     s16 r;
     G_8042213C *g;
     T_8042213C *s;
-    if (a & 0xC00) {
+    if ((a & SocketTagMask) != TcpSocketTag) {
         return -4;
     }
     g = (G_8042213C *)&network_dispatch_state;
@@ -671,14 +679,14 @@ s16 tcp_receive__FsPFss_vsPUc(s32 a, void *cb, s32 len, void *buf) {
 
 typedef struct S_804220A0 S_804220A0;
 typedef struct T_80422368 T_80422368;
-s32 set_slot_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2) {
-  T_80422368 *s = (T_80422368 *) tcp_protocol_state[0];
-  s16 new_var;
-  s += (s16) idx;
+s32 set_slot_state_and_resume__6TLobbyFv(s16 idx, TcpReceiveCallback cb, s16 arg2) {
+  T_80422368 *s = (T_80422368 *)tcp_protocol_state[0];
+  s16 socket;
+  s += idx;
   if ((cb != 0) && (!(s->fl & 8)))
   {
-    new_var = (s16) idx;
-    cb(arg2, new_var);
+    socket = SOCKET_HANDLE(idx, TcpSocketTag);
+    cb(arg2, socket);
     s->st = arg2;
     s->fl &= ~1;
     s->fl |= 4;
