@@ -20,10 +20,11 @@ pso/ui/keyboard/TKeyBoardControl_8000F764.cpp:
 	.text       start:0x8000F764 end:0x8000FD54
 	.bss        start:0x804FE020 end:0x804FE138
 	.sbss       start:0x805D49A0 end:0x805D49C4
+	.sdata2     start:0x805D7D00 end:0x805D7D18
 
 pso/player/TObjPlayer_80011014.cpp:
 	.text       start:0x8000FD54 end:0x80019848
-	.rodata     start:0x80434040 end:0x80434090
+	.rodata     start:0x80434040 end:0x804340C0
 	.data       start:0x804805E0 end:0x804808EC
 	.sdata2     start:0x805D7D18 end:0x805D7DCC
 
@@ -362,6 +363,7 @@ pso/boss/derolle/TObjBoss2DustCtrl.cpp:
 	.data       start:0x80483388 end:0x804833A0
 	.bss        start:0x804FE9E8 end:0x804FEE68
 	.sbss       start:0x805D4BF0 end:0x805D4BF4
+	.sdata2     start:0x805D85B8 end:0x805D85CC
 
 pso/boss/derolle/TObjBoss2RaftSplash.cpp:
 	.text       start:0x8003AED4 end:0x8003B07C
@@ -9127,6 +9129,7 @@ pso/boss/barbaray/TObjBoss7Dust.cpp:
 	.bss        start:0x80541948 end:0x80541DC8
 	.sdata      start:0x805D3FE0 end:0x805D3FE8
 	.sbss       start:0x805D6958 end:0x805D695C
+	.sdata2     start:0x805DEC70 end:0x805DEC84
 
 pso/boss/barbaray/TObjBoss7RaftSplash.cpp:
 	.text       start:0x802F15D4 end:0x802F17B0

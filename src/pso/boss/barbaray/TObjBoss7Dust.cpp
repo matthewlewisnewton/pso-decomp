@@ -50,12 +50,12 @@ Vec TObjBoss7DustCtrl__helix_points[6];
 Rot_802F127C TObjBoss7DustCtrl__rotation_pairs[10];
 Out_802F127C TObjBoss7DustCtrl__transformed_vertices[60];
 s32 TObjBoss7DustCtrl__vertical_phase_angles[10];
-extern const f32 lbl_805DEC70;
-extern const f32 lbl_805DEC74;
+extern const f32 boss7_dust_origin;
+extern const f32 boss7_dust_vertical_travel;
 typedef struct Out_802F1454 { f32 x, y, z; u32 c; } Out_802F1454;
-extern const f32 lbl_805DEC78;
-extern const f32 lbl_805DEC7C;
-extern const f32 lbl_805DEC80;
+extern const f32 boss7_dust_angle_step;
+extern const f32 boss7_dust_helix_radius;
+extern const f32 boss7_dust_helix_rise;
 s32 post_translate_matrix(int);
 extern s32 __vt__17TObjBoss7DustCtrl[];
 extern RecoveredGlobal_802F119C___vt__13TObjBoss7Dust __vt__13TObjBoss7Dust;
@@ -74,11 +74,11 @@ void fn_802F1454(void) {
     s32 j;
 
     for (i = 0; i < 6; i++) {
-        s32 a = (s32)(lbl_805DEC78 * (f32)i);
-        f32 s = lbl_805DEC7C * sin_table_lookup(a);
+        s32 a = (s32)(boss7_dust_angle_step * (f32)i);
+        f32 s = boss7_dust_helix_radius * sin_table_lookup(a);
         TObjBoss7DustCtrl__helix_points[i].x = s;
-        TObjBoss7DustCtrl__helix_points[i].y = lbl_805DEC80 * (f32)i;
-        TObjBoss7DustCtrl__helix_points[i].z = lbl_805DEC7C * cos_table_lookup(a, s);
+        TObjBoss7DustCtrl__helix_points[i].y = boss7_dust_helix_rise * (f32)i;
+        TObjBoss7DustCtrl__helix_points[i].z = boss7_dust_helix_radius * cos_table_lookup(a, s);
     }
     {
         s32 *p = &TObjBoss7DustCtrl__rotation_pairs[0].a;
@@ -89,9 +89,9 @@ void fn_802F1454(void) {
     {
         Out_802F1454 *o = (Out_802F1454 *)TObjBoss7DustCtrl__transformed_vertices;
         for (i = 0; i < 60; i++) {
-            o->x = lbl_805DEC70;
-            o->y = lbl_805DEC70;
-            o->z = lbl_805DEC70;
+            o->x = boss7_dust_origin;
+            o->y = boss7_dust_origin;
+            o->z = boss7_dust_origin;
             o->c = 0xFF709070;
             o++;
         }
@@ -141,11 +141,11 @@ void TObjBoss7DustCtrl::run_task() {
     rot = &TObjBoss7DustCtrl__rotation_pairs[0].a;
     out = TObjBoss7DustCtrl__transformed_vertices;
     push_matrix();
-    scale = lbl_805DEC74;
+    scale = boss7_dust_vertical_travel;
     ang = TObjBoss7DustCtrl__vertical_phase_angles;
     for (i = 0; i < 10; i++) {
         set_matrix_identity(0);
-        translate_matrix(0, lbl_805DEC70, scale * sin_table_lookup(ang[i]), lbl_805DEC70);
+        translate_matrix(0, boss7_dust_origin, scale * sin_table_lookup(ang[i]), boss7_dust_origin);
         {
             s32 a = ang[i];
             s32 r;
@@ -229,3 +229,9 @@ extern "C" {
 void fn_802F1084(void) { TObjBoss2Tunnel__sub_802F2C50(); fn_802F19C0(); TObjBoss7DustCtrl::create(); }
 void fn_802F105C(void) { TObjBoss7DustCtrl__sub_802F1450(); TObjBoss2Tunnel__sub_802F2C4C(); free_boss7_common_resources(); }
 }
+
+__declspec(section ".sdata2") const f32 boss7_dust_origin = 0.0f;
+__declspec(section ".sdata2") const f32 boss7_dust_vertical_travel = 6.0f;
+__declspec(section ".sdata2") const f32 boss7_dust_angle_step = 65536.0f / 6.0f;
+__declspec(section ".sdata2") const f32 boss7_dust_helix_radius = 0.7f;
+__declspec(section ".sdata2") const f32 boss7_dust_helix_rise = 1.0f / 12.0f;

@@ -7688,10 +7688,15 @@ force_active:
   - boss2_derolle_particle_node_indices
   - boss2_derolle_primary_color_targets
   - boss2_derolle_segment_color_targets
+  - boss2_dust_angle_step
+  - boss2_dust_helix_radius
+  - boss2_dust_helix_rise
+  - boss2_dust_origin
   - boss2_dust_output_table
   - boss2_dust_points
   - boss2_dust_random_angles
   - boss2_dust_rotation_table
+  - boss2_dust_vertical_travel
   - boss2_mine_params
   - boss2_tunnel_color
   - boss2_tunnel_color_table
@@ -7835,7 +7840,12 @@ force_active:
   - boss7_dermt_slot_table
   - boss7_derolle_c_motion_id
   - boss7_derolle_light_pool
+  - boss7_dust_angle_step
   - boss7_dust_draw_at__FPll
+  - boss7_dust_helix_radius
+  - boss7_dust_helix_rise
+  - boss7_dust_origin
+  - boss7_dust_vertical_travel
   - boss7_joint_params
   - boss7_joint_state
   - boss7_laser_particle_params
@@ -19045,6 +19055,7 @@ force_active:
   - player_collider_radius_table
   - player_corpse_mark_resource
   - player_data_load_buffer
+  - player_distance_accuracy_scale
   - player_ending_motion_object
   - player_footstamp_texture_gvm_handle
   - player_footstep_floor_table
@@ -19056,6 +19067,8 @@ force_active:
   - player_load_channel_flags
   - player_lobby_marker_color_table
   - player_matrix_stack_buffer
+  - player_meseta_popup_label
+  - player_miss_popup_label
   - player_model_node_index_pair
   - player_motion_category_table
   - player_motion_clip_roots_b
@@ -19422,9 +19435,12 @@ force_active:
   - player_ply_head_texture_lists
   - player_prate_texture_list
   - player_prate_texture_list_ptr
+  - player_radians_to_game_angle
   - player_render_target
   - player_render_texture_buffer
   - player_render_texture_name
+  - player_rsqrt_half
+  - player_rsqrt_three
   - plot_falz_phase
   - ply_level_table
   - ply_status_window_points_first

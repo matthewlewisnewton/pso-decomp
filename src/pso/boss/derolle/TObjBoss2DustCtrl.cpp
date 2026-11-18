@@ -36,11 +36,11 @@ Vec boss2_dust_points[6];
 s32 boss2_dust_rotation_table[20];
 Out_8003AD54 boss2_dust_output_table[60];
 s32 boss2_dust_random_angles[10];
-extern const f32 lbl_805D85B8;
-extern const f32 lbl_805D85BC;
-extern const f32 lbl_805D85C0;
-extern const f32 lbl_805D85C4;
-extern const f32 lbl_805D85C8;
+extern const f32 boss2_dust_origin;
+extern const f32 boss2_dust_vertical_travel;
+extern const f32 boss2_dust_angle_step;
+extern const f32 boss2_dust_helix_radius;
+extern const f32 boss2_dust_helix_rise;
 s32 TObjBoss2DustCtrl_dust_counter;
 
 void __ct__7TObjectFP7TObject(void *);
@@ -101,11 +101,11 @@ void TObjBoss2DustCtrl::run_task() {
     rot = boss2_dust_rotation_table;
     out = (Out_8003AB7C *)boss2_dust_output_table;
     push_matrix();
-    scale = lbl_805D85BC;
+    scale = boss2_dust_vertical_travel;
     ang = boss2_dust_random_angles;
     for (i = 0; i < 10; i++) {
         set_matrix_identity(0);
-        translate_matrix(0, lbl_805D85B8, scale * sin_table_lookup(ang[i]), lbl_805D85B8);
+        translate_matrix(0, boss2_dust_origin, scale * sin_table_lookup(ang[i]), boss2_dust_origin);
         {
             s32 a = ang[i];
             s32 r;
@@ -149,11 +149,11 @@ void fn_8003AD54(void) {
     s32 j;
 
     for (i = 0; i < 6; i++) {
-        s32 a = (s32)(lbl_805D85C0 * (f32)i);
-        f32 s = lbl_805D85C4 * sin_table_lookup(a);
+        s32 a = (s32)(boss2_dust_angle_step * (f32)i);
+        f32 s = boss2_dust_helix_radius * sin_table_lookup(a);
         boss2_dust_points[i].x = s;
-        boss2_dust_points[i].y = lbl_805D85C8 * (f32)i;
-        boss2_dust_points[i].z = lbl_805D85C4 * cos_table_lookup(a, s);
+        boss2_dust_points[i].y = boss2_dust_helix_rise * (f32)i;
+        boss2_dust_points[i].z = boss2_dust_helix_radius * cos_table_lookup(a, s);
     }
     {
         s32 *p = boss2_dust_rotation_table;
@@ -164,9 +164,9 @@ void fn_8003AD54(void) {
     {
         Out_8003AD54 *o = boss2_dust_output_table;
         for (i = 0; i < 60; i++) {
-            o->x = lbl_805D85B8;
-            o->y = lbl_805D85B8;
-            o->z = lbl_805D85B8;
+            o->x = boss2_dust_origin;
+            o->y = boss2_dust_origin;
+            o->z = boss2_dust_origin;
             o->c = 0xFF709070;
             o++;
         }
@@ -176,3 +176,9 @@ void fn_8003AD54(void) {
     }
     TObjBoss2DustCtrl_dust_counter = 0;
 }
+
+__declspec(section ".sdata2") const f32 boss2_dust_origin = 0.0f;
+__declspec(section ".sdata2") const f32 boss2_dust_vertical_travel = 6.0f;
+__declspec(section ".sdata2") const f32 boss2_dust_angle_step = 65536.0f / 6.0f;
+__declspec(section ".sdata2") const f32 boss2_dust_helix_radius = 0.7f;
+__declspec(section ".sdata2") const f32 boss2_dust_helix_rise = 1.0f / 12.0f;
