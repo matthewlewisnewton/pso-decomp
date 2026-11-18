@@ -2258,6 +2258,7 @@ force_active:
   - TWindowFukidasi__sub_802505C0
   - TWindowFukidasi__sub_80251790
   - TWindowGetComCard__sub_8007B60C
+  - TWindowGetComCard__window_rect
   - TWindowHelpItem__item_layout_entries
   - TWindowHelpItem__requirements_update_callback
   - TWindowHelpItem__resistance_layout_entries
