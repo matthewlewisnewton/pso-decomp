@@ -2329,6 +2329,110 @@ object metadata adjustment.
 | Same unit, `TAdRicoRingCtrl::render`, `run_task`, and `sub_8001B424` | Existing scoped `opt_common_subs off` (two), `opt_dead_assignments off` (one), and `fp_contract on` (one), moved with their functions | These controls were already in the retired fragments. Removing render CSE control gives 94.86%; removing its dead-assignment control gives 99.46%; removing both gives 95.29%. Removing the update CSE control gives 97%. Contraction retains the original fused reflected-position calculation. Six formerly manual scalar guards are now native local statics. | Drop the optimization pragmas; retain the scalar calculations and local statics. Preserve fused arithmetic if identical floating-point rounding is required. |
 
 
+### Lobby network recovery
+
+The `TLobby_804050DC`, `TLobby_8040FF0C`, and `TLobby_8041112C` object groups
+retain GC/1.2.5n and the existing `-opt nocse` configuration. Their per-object
+`-inline noauto,level=4` default in `configure.py` inlines explicitly marked
+helpers without automatically inlining other functions. This replaces the
+repeated source inline controls. The shared `LobbyNetworkInternal.h` needs
+no pragmas. `-inline auto,level=4` changes native instructions in the first
+and third groups, while `noauto,level=4` preserves all three complete objects.
+
+The remaining optimizer pragmas are accepted as scoped matching exceptions for
+this recovery. Each region is listed below and was tested against its complete
+object. Removing a setting or its restoration changes native instruction
+selection or register lifetimes. Adjacent functions share a setting only where
+the region table identifies the full range. The four `optimization_level`
+regions retain push/pop to restore every optimizer option affected by the level
+change.
+
+| Region begins | Level | Restored before |
+|---|---|---|
+| `TLobby::reset_socket_table` | 3 | `TLobby__sub_80406B6C` |
+| `TLobby::is_slot_flag_0x40_set` | 2 | `TLobby__sub_8040A2BC` |
+| `TLobby__sub_8040C8A8` | 2, with CSE disabled | `TLobby__sub_8040C978` |
+| `NetIPv6EmitRouterSolicitation` | 3 | `TLobby__sub_804182DC` |
+
+The sole remaining inline-depth exception is depth one for
+`TLobby__sub_8040B4BC`, restored explicitly to four afterward. An
+`inline_depth reset` would restore the compiler's initial depth instead of the
+unit's chosen depth and changes later native instructions. Propagation, CSE,
+lifetime, and loop controls preserve the following native instruction choices.
+
+| Control | Functions or neighborhoods | Reason |
+|---|---|---|
+| Lifetime analysis | `80406BD8–80406F0C`, `8040BD40`, `8040DE4C` | Keeps checksum and packet cursors, compressed-name offsets, and the release path in their original registers. |
+| Propagation | PPP send, buffer copy, Ethernet socket lookup, DNS send and decode, IPv4 input and send, IPv6 redirect and neighbor options | Preserves distinct length, status and callback values across calls. |
+| Common subexpressions | PPP receive, Ethernet receive and socket lookup, IPv4 route processing, IPv6 interface, prefix, send and neighbor routines | Preserves field-address reuse and the order of table and cursor loads. |
+| Loop invariants and strength reduction | PPP receive at `80405700` and IPv6 input at `8040FFF8` | Reproduces cursor increments and the native placement of loop-invariant loads. Strength reduction resumes before `804105E0`. |
+
+`TLobby__sub_80411604` uses an ordinary ANSI C++ definition with an `s16`
+interface ID. Its shared declaration and callers use that same type; the
+old-style C definition and block-local event-dispatch declarations are removed.
+Neighbor/router advertisement and router solicitation now receive signed short
+interface IDs, matching their ICMP callers. The router-solicitation send chain
+also consumes and returns short status values. Its link-address and IPv6 send
+declarations agree with those providers, so obsolete word-ID casts and local
+send declarations are unnecessary. Ports can keep these typed interfaces.
+The scoped legacy network declarations must be reconciled with their providers
+and every caller before replacing them with a common portable interface.
+In particular, `8040CE58` consumes `8040E780` through a scoped word-return
+declaration and returns that word to `8040DE4C`; the provider definition remains
+short-returning. Both sides' native conversion instructions support retaining
+this bounded legacy interface until the portable ABI is reconciled.
+
+All three lobby groups link from source. Their layout preserves the alignment
+of compiler-generated switch tables. IPv4 forwarding and sending use scoped
+`opt_propagation off` so the compiler keeps distinct packet and fragment
+cursors and reproduces their register lifetimes. A port can drop these
+settings and retain the fragment traversal and accounting described in the
+[recovery evidence](evidence/lobby-network-recovery.md).
+
+The lobby receive entry at `80405700` delegates to an inline implementation
+with a referenced entry-local byte and a first-declared receive count. This
+source organization reproduces native register lifetimes and stack placement;
+no separate helper is emitted. Ports may combine the bodies and use ordinary
+locals. See [recovery evidence](evidence/lobby-network-recovery.md).
+
+The PPP output routine at `804066D8` uses C linkage and a whole-function
+`opt_propagation off` scope. Its definition remains ordinary C++, and a small
+inline adapter performs the existing time query. The separate
+`ppp_is_lcp_protocol` predicate uses a small `cplusplus off/on` scope. The
+pinned compiler emits `srwi` for its inlined integer result in C mode and
+`extrwi` in C++ mode. The optimizer scope restores after the complete
+writer definition. Ports can use an ordinary comparison and keep the
+unsigned 32-bit escape mask.
+
+The Ethernet socket opener at `804094B8` enables `opt_common_subs` for its
+matching-socket lookup and caller. A port may drop it. The IPv4 receiver at
+`8040DE4C` disables propagation within its function scope to preserve the
+lifetimes of the packet, length, and interface arguments.
+
+The IPv6 address update at `80412CA4` enables `opt_common_subs` within its
+existing pragma scope. The corresponding linked upstream unit enables this
+optimization throughout. A port may omit the pragma and keep the typed
+interface lookup and short prefix length.
+
+Only the PPP output routine at `804066D8` needs C linkage. The IPv6 input and
+event dispatcher use ordinary C++. All language and optimizer controls in the
+three units fall between function definitions; the C-mode predicate is a
+separate helper between function definitions.
+
+The packet checksum at `80406BD8` uses scoped `opt_lifetimes off` as in
+upstream PR #304. A port can remove it while preserving the segment traversal
+and the order of the checksum additions.
+
+The DNS reader at `8040BD40` uses scoped `opt_lifetimes off`, following the
+upstream `NetDns.c` implementation at `9925c2c503`. Together with its separate
+decoded-source cursor and short-limit phase reuse, this produces its exact
+native body. Ports may drop the pragma while preserving cumulative label
+counts and compressed-name decoding.
+
+IPv4 input at `8040DE4C` uses scoped `opt_lifetimes off` to keep the packet
+length and the later subscription index in one register. A port can use
+separate locals and keep the signed 16-bit loop comparison.
+
 ### Seabed wall, wreck, and mine display virtual tables
 
 | Scope | Construct | Evidence and reason | Port action |
