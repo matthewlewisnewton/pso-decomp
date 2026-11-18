@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/ui/MenuText.h"
 #include "types.h"
@@ -1004,7 +1005,7 @@ s32 TLobby::run_disk_error_check() {
     pd->pos[7] = (4.8e+02f);
     pd->ids[3] = -1;
     set_depth_buffer_settings_1();
-    ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 0x12, (-0.9f));
+    ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 0x12, (-0.9f));
     status = DVDGetDriveStatus();
     TCameraCtrl::restore_full_screen_view();
     if (DVDCheckDisk() == 0 && (TKeyBoardControl::check_reset_button() != 0 || func_801A5E54__Fv() != 0)) {

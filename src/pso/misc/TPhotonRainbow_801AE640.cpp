@@ -2,7 +2,6 @@
 #include "pso/misc/TPhotonRainbow_801AE640.h"
 #include "pso/misc/TPhotonRainbow.h"
 #include "pso/system/vector.h"
-#include "pso/misc/TPhotonYoulla.h"
 
 #pragma readonly_strings on
 
@@ -40,8 +39,5 @@ u8 *TPhotonRainbow__ct(u8 *photon_rainbow, s32 arg1_unused, s32 arg2) {
 
 void TObjPlayer__sub_801AE724(void) {  }
 void TObjPlayer__sub_801AE728(void) {  }
-
-    extern const float lbl_805DC260;
-void TPhotonYoulla::sub_801AE72C() { *(float *)&this->m_184 = lbl_805DC260; *(float*)((char*)this + 0x188) = lbl_805DC260; this->m_18c = lbl_805DC260; *(float *)&this->unk_190 = lbl_805DC260; }
 
 }

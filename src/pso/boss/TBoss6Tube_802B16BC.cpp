@@ -6,7 +6,7 @@
 
 extern "C" {
 u8 *load_gvm_texture_file(s32 arg0);
-extern u8 lbl_80470A68[];
+extern const u8 lbl_80470A68[] = "boss06_tube_dat.gvm";
 extern u8 boss06_tube_dat_resource_descriptor[];
 extern u32 boss6_tube_bml_resource;
 extern u32 boss6_tube_texture_list;
@@ -28,7 +28,7 @@ void TBoss6Tube::free_resources() {
     }
     if ((u32) boss6_tube_texture_list != 0U) {
         release_texture_list((void*)boss6_tube_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(boss6_tube_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)boss6_tube_texture_list);
         boss6_tube_texture_list = 0U;
     }
     TBoss6Tube::reset_state();

@@ -1,10 +1,10 @@
 #include "types.h"
+#include "pso/system/BmlResource.h"
 #include "pso/misc/TRaderMapCore_801FB964.h"
 #include "pso/misc/TRaderMapCore.h"
 
 extern "C" {
 
-s32 get_bml_model(s32);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 
@@ -14,8 +14,8 @@ void TRaderMapCore::reset() { *(float *)&this->m_prev = TRaderMapCore__data_805D
 
 extern s32 TRaderMapCore__frame_model_resource;
 
-void TRaderMapCore::init_map_ptr() {
-    get_bml_model(TRaderMapCore__frame_model_resource);
+NJS_OBJECT *TRaderMapCore::init_map_ptr(const s32 *, s32 index) {
+    return get_bml_model((BmlResource *)TRaderMapCore__frame_model_resource, index);
 }
 
 extern s32 lbl_804C88A8[];

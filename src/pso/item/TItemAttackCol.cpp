@@ -1,3 +1,4 @@
+#include "pso/item/TItemMenuCtrl_80115AF0.h"
 #include "pso/effect/TEffStarLight2D.h"
 #include "types.h"
 #include "pso/system/FlagWord.h"
@@ -353,7 +354,6 @@ extern const char *lbl_805D3F88;
 extern const f32 lbl_805DE91C;
 extern const f64 lbl_804729C0;
 extern const StarLightParameters lbl_804729A8;
-TEffStarLight2D *spawn_star_light_2d__Flll(Vec *position, const StarLightParameters *params, TObject *parent);
 f32 normalize_vector(Vec *vector);
 }
 
@@ -435,7 +435,7 @@ TItemAttackCol::TItemAttackCol(TObject *parent, ItemAttackColliderParams *params
         block.color.channels.r = static_cast<u8>(static_cast<s32>(red));
         block.color.channels.g = static_cast<u8>(static_cast<s32>(green));
         block.color.channels.b = static_cast<u8>(static_cast<s32>(blue));
-        star_light = spawn_star_light_2d__Flll(&position, &block, this);
+        star_light = spawn_star_light_2d(&position, &block, this);
     } else {
         star_light = NULL;
     }

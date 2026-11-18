@@ -1,3 +1,4 @@
+#include "pso/boss/DragonTailCraterConstants.h"
 #include "types.h"
 #include "pso/boss/TBoss1DragonColli.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
@@ -57,11 +58,10 @@ struct Vec_8002BD38 { f32 x, y, z; };
 
 extern "C" {
 void TBoss1Dragon__sub_8002AB6C(u8 *arg0);
-extern const f32 lbl_805D8158;
 extern u8 TBoss1DragonEffTail__collision_body_templates[];
 extern s32 __vt__19TBoss1DragonEffTail[];
 extern s32 TBoss1DragonEffTail__name;
-extern const f32 lbl_805D8154;
+static const f32 lbl_805D8154 = 0.0f;
 EffTail_8002C06C *TBoss1DragonEffTail__ct(EffTail_8002C06C *arg0, s32 arg1, s32 arg2);
 f32 sin_table_lookup(s32);
 f32 cos_table_lookup(s32);
@@ -73,9 +73,9 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 s32 push_matrix(void);
 s32 pop_matrix(void);
 extern u8 lbl_80435454[];
-extern const f32 lbl_805D8148;
-extern const f32 lbl_805D814C;
-extern const f32 lbl_805D8150;
+static const f32 lbl_805D8148 = 0.5f;
+static const f32 lbl_805D814C = 30.0f;
+static const f32 lbl_805D8150 = 5.0f;
 void __dl__7TObjectFPv(void *);
 int fill_value_array(void*);
 
@@ -126,7 +126,7 @@ void TBoss1DragonEffTail__vt18(s32 arg0, s32 arg1) {
 }
 
 void TBoss1DragonEffTail::apply_hit_if_active(void *arg1, f32 *) {
-    ((VObj_18 *)(((u8 *)arg1)))->m20(this->m_ac, lbl_805D8158);
+    ((VObj_18 *)(((u8 *)arg1)))->m20(this->m_ac, dragon_tail_hit_scale);
     if (TObjEneDD::check_v2_mode() != 0) {
         TBoss1Dragon__sub_8002AB6C((((u8 *)arg1)));
     }

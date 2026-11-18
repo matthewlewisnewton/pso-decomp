@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLanguage_801E4874.h"
@@ -22,13 +24,10 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 extern "C" {
 extern int ancient_warp_shared_resource;
 extern s32 goal_warp_ancient_gvm_texture;
-extern char lbl_80443308[];
+extern const char lbl_80443308[] = "de_obj2_swarp_beam_r.gvm";
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 bm_o_warp_ancient_resource_descriptor;
 void TObjGoalWarpAncient__sub_8017D2D4(void* a0);
 int get_bml_motion(void*, void*);
-int TObjFish__sub_8001EDB0(void*, void*);
-int get_bml_model(void*, void*);
-
 typedef char RecoveredGlobal_8019A880_lbl_804B8F70_size[sizeof(RecoveredGlobal_8019A880_lbl_804B8F70) == 0x2C ? 1 : -1];
 typedef char RecoveredGlobal_8019A880___vt__8TObjTank_size[sizeof(RecoveredGlobal_8019A880___vt__8TObjTank) == 0x3C ? 1 : -1];
 typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8019A9B8_lbl_804B8F60) == 0x10 ? 1 : -1];
@@ -41,7 +40,7 @@ void TObjGoalWarpAncient::load_resources() {
     goal_warp_ancient_gvm_texture = (s32)load_gvm_texture_file(lbl_80443308);
 }
 
-void TObjGoalWarpAncient::register_warp_object(void* a0) { TObjFish__sub_8001EDB0((void*)ancient_warp_shared_resource, a0); }
+void TObjGoalWarpAncient::register_warp_object(void* a0) { (s32)TObjFish__sub_8001EDB0((BmlResource *)ancient_warp_shared_resource, (s32)a0); }
 
 s32 TObjGoalWarpAncient::get_instance() {
     return goal_warp_ancient_gvm_texture;
@@ -49,6 +48,6 @@ s32 TObjGoalWarpAncient::get_instance() {
 
 void TObjGoalWarpAncient::register_warp(void* a0) { get_bml_motion((void*)ancient_warp_shared_resource, a0); }
 
-void TObjGoalWarpAncient__sub_8017D2D4(void* a0) { get_bml_model((void*)ancient_warp_shared_resource, a0); }
+void TObjGoalWarpAncient__sub_8017D2D4(void* a0) { (int)get_bml_model((BmlResource *)ancient_warp_shared_resource, (s32)a0); }
 
 }

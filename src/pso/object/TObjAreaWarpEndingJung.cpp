@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -594,7 +595,7 @@ extern "C" {
 void TObjWarpBase::free_globals() {
     if ((u32) forest_warp_texture_list != 0U) {
         release_texture_list((void*)forest_warp_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
     delete (BmlResource *)(forest_warp_bml_resource);
@@ -1063,7 +1064,7 @@ void handle_6x94_inter_level_warp(Pkt_8019C988 *arg0) {
     if (arg0->f4 != get_current_floor()) {
         set_area__6TLobbyFl(((u8 *)&lbl_80515BA0), arg0->f4, get_floor_map_terrain(arg0->f4));
         mark_area_change_pending();
-        ((TWindowCtrl *)local_client_id)->suppress_slot();
+        suppress_player_window(local_client_id);
         ((TObjAreaWarpQuest *)((u8 *)&lbl_80515BA0))->get_dest_area();
         send_inter_level_warp_all__10TNpcPlayerFl();
         void *p = get_player_by_client_id(local_client_id);

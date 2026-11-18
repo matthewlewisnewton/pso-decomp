@@ -115,8 +115,8 @@ extern "C" {
 u8 * TObjPlayer__sub_8012A3B4(void *, s32, s32);
 u8 *__nw__5TItemFUl(s32);
 extern s32 tl_05;
-extern const f32 lbl_805DAE60;
-extern const f32 lbl_805DAE64;
+static const f32 lbl_805DAE60 = 16.0f;
+static const f32 lbl_805DAE64 = 32.0f;
 s32 get_extended_state__10TObjPlayerFv(void *);
 s32 get_captured_target_collider_index(s32);
 s32 get_captured_target_entry(s32, s32);

@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/system/vector.h"
 #include "pso/TFontSmallTask.h"
@@ -88,7 +89,6 @@ s32 get_screen_height__11TCameraCtrlFv(void);
 s32 get_screen_width__11TCameraCtrlFv(void);
 f32 get_scale__15TWindowCtrlMainFv(s32);
 void begin_screen_draw(int);
-void render_forward__20TWindowSubStatusDispFPv(void);
 void set_draw_texture_and_color(int, u32);
 void build_small_font_glyph_quad(u8, Quad_800FCD40 *);
 void draw_textured_quad_at_depth(Quad_800FCD40 *, f32);
@@ -175,7 +175,7 @@ void TFontSmallTask::render() {
     }
     scale = ((f32 (*)(void *))calc_small_font_scale)(this);
     begin_screen_draw(1);
-    render_forward__20TWindowSubStatusDispFPv();
+    begin_small_font_draw();
     while (*cursor != 0) {
         u8 c = *cursor++;
         u32 alpha;

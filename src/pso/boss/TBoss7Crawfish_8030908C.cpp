@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -24,8 +26,6 @@ extern "C" {
 extern RecoveredGlobal_8030946C_lbl_804E7370 bm_boss7_crawfish_resource_descriptor;
 extern u32 TBoss7Crawfish__shared_resource;
 
-s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 s32 set_field_b8__10TObjMotionFs(void *, int);
 s32 __ct__9TObjEnemyFP7TObject();
 s32 TBoss7Crawfish__sub_80308ED8(void *, void *);
@@ -98,7 +98,7 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
     __ct__9TObjEnemyFP7TObject();
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TBoss7Crawfish;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TBoss7Crawfish__class_name;
-    ((TBoss7Crawfish *)arg0)->texlist = TObjFish__sub_8001EDB0(TBoss7Crawfish__shared_resource, 0);
+    ((TBoss7Crawfish *)arg0)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)TBoss7Crawfish__shared_resource, 0);
     copy_collision_body((CollisionBody *)(arg0 + 0x374), (const CollisionBody *)crawfish_collision_body_desc);
     ((TObjCollidable *)arg0)->set_collision_body(arg0 + 0x374);
     ((TObjMotion *)arg0)->set_action_table((TObjMotionAction *)((s32)lbl_804E7380));
@@ -112,12 +112,12 @@ u8 *TBoss7Crawfish__ct(u8 *arg0, s32 arg1, s32 arg2) {
         ((TObjEnemy *)arg0)->set_param(0x4A);
         ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(8)), (u8 *)(get_battle_attack_params(8)), (u8 *)(get_battle_resistance_params(8)));
         ((TBoss7Crawfish *)arg0)->m_3a0 = ((s32)get_battle_movement_params(8));
-        *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TBoss7Crawfish__shared_resource, 0);
+        *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)TBoss7Crawfish__shared_resource, 0);
     } else {
         ((TObjEnemy *)arg0)->set_param(0x4B);
         ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(9)), (u8 *)(get_battle_attack_params(9)), (u8 *)(get_battle_resistance_params(9)));
         ((TBoss7Crawfish *)arg0)->m_3a0 = ((s32)get_battle_movement_params(9));
-        *(s32 *)((s8 *)arg0 + 0x34) = get_bml_model(TBoss7Crawfish__shared_resource, 1);
+        *(s32 *)((s8 *)arg0 + 0x34) = (s32)get_bml_model((BmlResource *)TBoss7Crawfish__shared_resource, 1);
     }
     ((TObjChara *)arg0)->get_or_assign_entity_id(0);
     ((TObjPlayer *)arg0)->register_object_by_id();

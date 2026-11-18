@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/TObjLiveMonitorSmall.h"
 #include "pso/object/TObjLiveMonitorSmall.h"
 #include "pso/ui/TObjLiveMonitor.h"
@@ -16,7 +17,6 @@ s32 TObjLiveMonitor__sub_8030C050(s32);
 s32 push_matrix();
 s32 pop_matrix();
 s32 draw_ginja_model(void *);
-void *get_bml_model(s32, s32);
 void *__nw__7TObjectFUl(s32);
 int fn_8030B370(void*);
 
@@ -48,7 +48,7 @@ s32 TObjLiveMonitorSmall::spawn_for_each_fish() {
         live_monitor_small_spawned_flag = 1;
         TObjLiveMonitorSmall__fish_spawned_flag = 1;
     }
-    var_r31 = *(void **)((s8 *)(get_bml_model(live_monitor_shared_resource, 0)) + 0x2C);
+    var_r31 = *(void **)((s8 *)((void *)get_bml_model((BmlResource *)live_monitor_shared_resource, 0)) + 0x2C);
     while (var_r31 != NULL) {
         if (live_monitor_small_spawned_flag != 0) {
             obj = __nw__7TObjectFUl(0x2C);

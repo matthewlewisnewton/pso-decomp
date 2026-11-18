@@ -8,8 +8,8 @@
 #include "pso/system/ModelDrawContext.h"
 
 extern "C" {
-extern const f32 __float_nan[];
-extern const f32 __float_huge[];
+extern unsigned long __float_nan[];
+extern unsigned long __float_huge[];
 extern const f64 lbl_8043F298[]; // 0.0
 extern const f64 lbl_8043F2A0[]; // 0.5
 extern const f64 lbl_8043F2A8[]; // 3.0
@@ -29,9 +29,9 @@ f64 sqrt_double(f64 x) {
         return lbl_8043F298[0];
     }
     if (x != lbl_8043F298[0]) {
-        return __float_nan[0];
+        return *(const f32 *)__float_nan;
     }
-    return __float_huge[0];
+    return *(const f32 *)__float_huge;
 }
 
 extern "C" void set_global_draw_flag_bits(void *owner, u32 bits) {

@@ -352,11 +352,11 @@ void depart_floor_population(int unused) {
         }
     }
     if (TLobby__data_805D6114 != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__data_805D6114);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TLobby__data_805D6114);
         TLobby__data_805D6114 = 0;
     }
     if (TLobby__data_805D610C != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__data_805D610C);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TLobby__data_805D610C);
         TLobby__data_805D610C = 0;
     }
 }

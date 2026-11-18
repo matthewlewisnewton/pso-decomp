@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/unk/text_8034960C.h"
 #include "pso/TObjCMHairMenu.h"
@@ -35,14 +36,14 @@ struct Vec2_8034960C {
 extern "C" {
 void draw_color_lines(Desc_80349844 *, s32, s32, f32);
 }
-extern const f32 lbl_805DFD04;
-extern const f32 lbl_805DFD08;
-extern const f32 lbl_805DFD0C;
-extern const f32 lbl_805DFD10;
-extern const f32 lbl_805DFD14;
+static const f32 lbl_805DFD04 = 0.0f;
+static const f32 lbl_805DFD08 = 8.0f;
+static const f32 lbl_805DFD0C = 640.0f;
+static const f32 lbl_805DFD10 = 4.0f;
+static const f32 lbl_805DFD14 = -500.0f;
 extern const Vec2_80349728 lbl_80478718[2];
 extern const Vec2_80349728 lbl_80478728[2];
-extern const f32 lbl_805DFD00;
+static const f32 lbl_805DFD00 = -490.0f;
 extern const Vec2_8034960C lbl_80478738[2];
 extern const Vec2_8034960C quest_load_panel_overlay_offsets[2];
 
@@ -69,7 +70,7 @@ void draw_quest_load_panel_overlays(void) {
         d.pos[6] = d.pos[0] + quest_load_panel_overlay_offsets[i].x;
         d.pos[7] = d.pos[1];
         d.col[3] = 0x77;
-        ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 7, lbl_805DFD00);
+        ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 7, lbl_805DFD00);
         i++;
     } while (i < 2);
 }
@@ -97,7 +98,7 @@ void draw_quest_load_letterbox_bars(void) {
         d.pos[6] = d.pos[0] + lbl_80478728[i].x;
         d.pos[7] = d.pos[1];
         d.col[3] = 0xFF;
-        ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD00);
+        ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD00);
         i++;
     } while (i < 2);
 }

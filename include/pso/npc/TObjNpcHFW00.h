@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/npc/TUnk_804A92A8.h"
 
+struct GinjaTextureList;
+
 struct TObjNpcHFW00 : public TUnk_804A92A8 {
     virtual ~TObjNpcHFW00();
     static void free_resources();
@@ -25,5 +27,10 @@ void *TObjNpcHFW01__create(void *arg0);
 void *__dt__12TObjNpcHFW00Fv(void *arg0, s16 arg1);
 }
 // --- end of C functions
+
+extern "C" {
+extern s32 *TObjNpcHFW00__shared_resource_obj;
+extern GinjaTextureList *TObjNpcHFW00__texture_handle;
+}
 
 #endif

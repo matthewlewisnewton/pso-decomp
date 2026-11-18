@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -78,8 +79,6 @@ extern "C" {
 void debug_draw_key_id__5TOKeyFv();
 void debug_printf_at(int, void *, ...);
 extern u8 lbl_804456C8[];
-extern const f32 lbl_805DBE08;
-s32 get_bml_model(s32, int);
 u8 *load_gvm_texture_file(s32 arg0);
 extern u8 lbl_804456D8[];
 extern s32 TObjDoorKey__ginja_model_table[];
@@ -105,7 +104,6 @@ void *__ct__5TOKeyFP7TObject(TOKey *arg0);
 extern u8 TObjDoorKey__collision_body_parts[];
 extern s32 __vt__11TObjDoorKey[];
 extern s32 TObjDoorKey__class_name;
-extern const f32 lbl_805DBE0C;
 int update_armed_switch__5TOKeyFv(void*);
 s32 free_collision_body_parts(void *);
 int submit_cursor_candidate(void*, int);
@@ -124,12 +122,9 @@ void TObjDoorKey__sub_8018FAEC(void) {
     }
 }
 
-extern const f32 lbl_805DBE00;
-extern const f32 lbl_805DBE04;
-
 void TObjDoorKey::render() {
 
-    if (((TObjDoorKeyVObj_8018FAEC*)this)->m8(lbl_805DBE00, lbl_805DBE04) == 0) {
+    if (((TObjDoorKeyVObj_8018FAEC*)this)->m8(400.0f, 20.0f) == 0) {
         if ((u32) this->m_f8 != 0U) {
             ((TParticleCtrl *)(this->m_f8))->enable();
         }
@@ -199,7 +194,7 @@ void TObjDoorKey::debug_draw_key_id() {
     Key_8018FD9C *arg0 = (Key_8018FD9C *)this;
     debug_draw_key_id__5TOKeyFv();
     VecCopy((Vec *)&arg0->f74, (const Vec *)arg0->f38);
-    arg0->f78 = arg0->f78 + lbl_805DBE08;
+    arg0->f78 += 8.0f;
     TObjNpcEnemy::set_global_count(0xFF00FF);
     debug_printf_at(0x130022, lbl_804456C8, arg0->f8C);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
@@ -289,7 +284,7 @@ void *TObjDoorKey__ct(TObjDoorKey *door_key, void *arg1, void *arg2) {
     *(s32 *)&door_key->actorFlags |= 0x40000000;
     ((TObjPlayer *)door_key)->register_object_by_id();
     Vec_80190020 pos = *(Vec_80190020 *)((s8 *)door_key + 0x38);
-    pos.y += lbl_805DBE0C;
+    pos.y += 10.0f;
     *(s32 *)&door_key->m_f8 = (s32)spawn_continuous_particle_effect_with_flags(&pos, 0x60, 0x40);
     door_key->cursor_action.set_use();
     return door_key;
@@ -317,9 +312,9 @@ void TObjDoorKey::load_resources() {
     s32 r = (int)new BmlResource(5, (BmlResourceDescriptor *)(&TObjDoorKey__resource_descriptor), 0, 0, (void *)(0));
     (*(s32 *)&door_key_resource_handle) = r;
     TObjDoorKey__texture_handle = (s32)load_gvm_texture_file((s32)lbl_804456D8);
-    TObjDoorKey__ginja_model_table[0] = get_bml_model((*(s32 *)&door_key_resource_handle), 1);
-    TObjDoorKey__ginja_model_table[1] = get_bml_model((*(s32 *)&door_key_resource_handle), 2);
-    s32 t = get_bml_model((*(s32 *)&door_key_resource_handle), 0);
+    TObjDoorKey__ginja_model_table[0] = (s32)get_bml_model((BmlResource *)(*(s32 *)&door_key_resource_handle), 1);
+    TObjDoorKey__ginja_model_table[1] = (s32)get_bml_model((BmlResource *)(*(s32 *)&door_key_resource_handle), 2);
+    s32 t = (s32)get_bml_model((BmlResource *)(*(s32 *)&door_key_resource_handle), 0);
     door_key_id_counter = 0;
     TObjDoorKey__ginja_model_table[2] = t;
     TObjDoorKey__data_805D5C04 = 0;
@@ -340,4 +335,9 @@ void * TObjEnvSoundGlobal__create(void *rader_map_core) {
 __declspec(section ".data") const char *abeno_fs_obj001_fosuno_model_names[4] = { lbl_80445650, lbl_8044566C, lbl_80445684, NULL };
 BmlResourceDescriptor TObjDoorKey__resource_descriptor = { lbl_804456A0, abeno_fs_obj001_fosuno_model_names, abeno_fs_obj001_fosuno_motion_names, 3, 0 };
 __declspec(section ".sdata") const char *abeno_fs_obj001_fosuno_motion_names[1] = { NULL };
+}
+
+extern "C" {
+s16 door_key_id_counter;
+s32 TObjDoorKey__data_805D5C04;
 }

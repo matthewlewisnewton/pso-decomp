@@ -114,12 +114,7 @@ typedef char PppoeSlot_rx_frame_offset[offsetof(Ent_80427D40, rx_frame) == 0x826
 typedef char PppoeSlot_rx_frame_len_offset[offsetof(Ent_80427D40, rx_frame_len) == 0xE10 ? 1 : -1];
 
 extern "C" {
-extern u8 lbl_805CF240[0xA0];
-extern u8 TLobby__pppoe_message_queue[0xA0];
-extern u8 lbl_805CF380[0x48];
 RecoveredGlobal_80427D0C_lbl_805CFC20 lobby_pppoe_slot_table;
-extern u8 lbl_805CF380[];
-extern u8 TLobby__pppoe_message_queue[];
 typedef struct Ent_804267F0 {
     s16 count;
     u8 id[6];
@@ -130,7 +125,6 @@ typedef struct Tbl_804267F0 {
     Ent_804267F0 ent[6];
 } Tbl_804267F0;
 
-extern u8 lbl_805CF240[];
 
 Ent_80427D40 *TLobby__sub_80427C6C(s32 arg0, u16 arg1);
 s16 TLobby__sub_8042787C(Ent_80427D40 *e, u8 *p, u16 len);
@@ -466,17 +460,17 @@ void TLobby__sub_80427378(Ent_80427D40 *e) {
                     len = 4;
                     NetMemcpy(p + 4, &len, 2);
                     e->frame_len = ((TLobby *)e->frame)->build_ethernet_frame_header(e->m_20, e->m_10, 0x8864, 0, e->id, 6);
-                    ((TLobby *)e->frame)->post_send_message(e->frame_len);
+                    post_send_message(e->frame, e->frame_len);
                     n = build_padt(e);
                     if (n >= 0) {
                         e->frame_len = ((TLobby *)e->frame)->build_ethernet_frame_header(e->m_20, e->m_10, 0x8863, 0xA7, e->id, n);
-                        ((TLobby *)e->frame)->post_send_message(e->frame_len);
+                        post_send_message(e->frame, e->frame_len);
                     }
                 }
                 e->id = 0;
                 if (TLobby__sub_80426D80(e) >= 0) {
                     u16 frame_len = e->frame_len;
-                    ((TLobby *)e->frame)->post_send_message(frame_len);
+                    post_send_message(e->frame, frame_len);
                     e->state = 1;
                     restart_timer(e, 2, 3000);
                 }
@@ -493,7 +487,7 @@ void TLobby__sub_80427378(Ent_80427D40 *e) {
         if (e->m_6 > 0) {
             if (TLobby__sub_80426D80(e) >= 0) {
                 u16 frame_len = e->frame_len;
-                ((TLobby *)e->frame)->post_send_message(frame_len);
+                post_send_message(e->frame, frame_len);
             }
             restart_timer(e, e->m_6 - 1, e->timeout * 2);
         } else {
@@ -551,7 +545,7 @@ s16 TLobby__sub_804275B0(s32 frame, u16 frame_len) {
         }
         {
             u16 sz = p->frame_len;
-            t = ((TLobby *)p->frame)->post_send_message(sz);
+            t = post_send_message(p->frame, sz);
         }
         ret = t;
         if (ret != 0) {
@@ -594,7 +588,7 @@ s16 TLobby__sub_804275B0(s32 frame, u16 frame_len) {
             ret = TLobby__sub_80426D80(p);
             if (ret >= 0) {
                 u16 sz = p->frame_len;
-                ret = ((TLobby *)p->frame)->post_send_message(sz);
+                ret = post_send_message(p->frame, sz);
             }
             break;
         }
@@ -911,7 +905,7 @@ s16 TLobby__sub_80427F48(s16 slot, u8 *frame, u16 len) {
         e->frame_len = 0x3C;
     }
     frame_len = e->frame_len;
-    return ((TLobby *)frame)->post_send_message(frame_len);
+    return post_send_message(frame, frame_len);
 }
 
 s32 TLobby__sub_80428094(s16 slot) {
@@ -946,7 +940,7 @@ s32 TLobby__sub_80428094(s16 slot) {
         e->state = 5;
         if (TLobby__sub_80426D80(e) >= 0) {
             u16 frame_len = e->frame_len;
-            ((TLobby *)e->frame)->post_send_message(frame_len);
+            post_send_message(e->frame, frame_len);
         }
         break;
     case 5:

@@ -13,6 +13,7 @@ struct NJS_OBJECT;
 struct TItemData;
 
 struct player_stats;
+struct CsnHit;
 
 struct TItem;
 struct TItemList;
@@ -34,6 +35,14 @@ struct ProtectionTimer {
 };
 
 struct TObjPlayer : public TObjChara {
+    virtual f32 receive_physical_attack(void *attacker, f32 scale);
+    virtual s32 update_poison_status();
+    virtual s32 update_action_hold_status();
+    virtual s32 update_flag30_timer();
+    virtual s32 update_movement_status();
+    virtual s32 update_shock_clock();
+    virtual void vfunc_78(s32);
+    virtual int vfunc_79();
     virtual ~TObjPlayer();
     virtual void reset_motion_fields();
     virtual const char *get_name();
@@ -45,7 +54,8 @@ struct TObjPlayer : public TObjChara {
     s32 destroy_char_data(int, s16);
     s32 create_shoot_model(int, int, int, f32);
     void create_cane_effect_from_state(void *);
-    u32 apply_wall_response();
+    CsnHit *apply_wall_response();
+    void apply_battle_level_reset(s32 level);
     void set_action_provider_variant(s16);
     void update_position_from_target();
     s16 get_idle_animation();
@@ -62,7 +72,7 @@ struct TObjPlayer : public TObjChara {
     virtual s32 is_actor_cadence_frame(s32);
     virtual s32 add_actor_exp(s32);
     virtual void reset_pose();
-    s8 get_class_index();
+    char get_class_index();
     virtual void get_pos(s32);
     virtual void apply_switch_attack();
     virtual void enemy_spawn_jellen_effect();
@@ -173,9 +183,7 @@ struct TObjPlayer : public TObjChara {
     s32 m_3ec;
     u8 unk_3F0[0x4];
     s32 m_3f4;
-    u8 unk_3F8[0x4];
-    f32 m_3fc;
-    u8 unk_400[0x4];
+    Vec movement_destination;
     f32 m_404;
     u8 unk_408[0x4];
     f32 m_40c;
@@ -291,7 +299,6 @@ struct TObjPlayer : public TObjChara {
     int is_frozen();
     static void send_6x26_unequip_item(void *player, void *item);
     player_class_type get_class_type();
-    static void add_angle_clamped(s32 *arg0, s32 arg1, s32 arg2);
     static void step_angle_clamped(void *actor, int arg1);
     void drain_owner_hp_fraction(f32 farg0);
     void call_callback_1ec(s32 arg1, s32 arg2);
@@ -327,9 +334,7 @@ struct TObjPlayer : public TObjChara {
     static void*get_item_pmt_record(int type, int id);
     static void*get_pmt_record_by_type_id(int type, int id);
     static void*get_pmt_record_by_index(int i);
-    static bool is_hit_receivable_target(s32 arg0, u32 arg1);
     static s32 is_player_in_range(s32 arg0, s32 arg1, f32 farg0);
-    void draw_trail_strip(void *arg1, s32 arg2);
     static s32 is_any_teammate_in_state();
     static void set_shared_flag(int a0);
     static void set_shared_count(int a0);
@@ -386,11 +391,6 @@ struct TObjPlayer : public TObjChara {
     void clear_ground_candidates();
     void reset_lobby_model();
     void reset_type();
-    void send_6x12_packet();
-    void bswap_6x12_packet();
-    void set_type_dragon();
-    void bswap_dragon_boss_fields();
-    void bswap_stats();
     static void clear_target_ref();
     static void create_breakup_model();
     void *deleting_dtor(s16 arg1);
@@ -620,7 +620,7 @@ struct TObjPlayer : public TObjChara {
     static u8 is_final_phase();
     static u8 is_camera_ready();
     static u8 is_camera_mode_active();
-    static u8 is_single_screen();
+    static s32 is_single_screen();
     static s32 is_player_valid_target(s32 arg0);
     void update_movement_effects();
     static int get_max_level();
@@ -738,10 +738,6 @@ struct TObjPlayer : public TObjChara {
     static void insert_item_node(int pool, int floor, int owner, int data, int id);
     void set_field4(s32 v);
     void*init_c2098_return_self();
-    u8 get_field_5();
-    u8 get_byte_4();
-    u8 get_team_id();
-    u8 get_char_class();
     u32 unpack_u32_hi();
     u32 unpack_u32_lo();
     u8 get_slot_value_checked(s32 i);
@@ -1032,7 +1028,7 @@ struct TObjPlayer : public TObjChara {
     f32 get_photon_blast_upper_bound();
     f32 get_photon_blast_hold_frame();
     f32 get_attack_recovery_count();
-    static s32 get_current_state_field(s8 _w0, s32 _w1);
+    static s32 get_current_state_field(char _w0, s32 _w1);
     s32 get_class_state_field(s32 arg1);
     static player_stats *get_class_stat_entry(u8 *arg0);
     f32 get_tp_class_factor();
@@ -1300,7 +1296,6 @@ struct TObjPlayer : public TObjChara {
     static void clear_render_context();
     u8 *construct_freeze_shell(u8 *arg1, u8 *arg2);
     static void create_tec_zonde(void *arg0, void *arg1, void *arg2, void *arg3);
-    TechniqueContactList *collect_technique_contacts(void *src);
     static void *create_child_object(void *arg0);
     static void destroy_instance();
     static void load_kamome_resources();
@@ -1378,7 +1373,7 @@ struct TObjPlayer : public TObjChara {
     s32 execute_palette_action(s32 arg1, void *arg2);
     int attach_battle_ctrl_sub();
     void forward_1BF500_at_63c();
-    static s32 classify_action_state();
+    s32 classify_action_state();
     int update_foot_stamp(int arg1);
     void play_footstep_sound();
     void revive();
@@ -1427,7 +1422,6 @@ struct TObjPlayer : public TObjChara {
     s16 add_dfp(s32 amount);
     s16 add_stat(s32 amount);
     void update_aim_angle(s32 arg1);
-    void copy_stats(void *arg1);
     static void notify_volopt_if_ready(void* p);
     void *copy_fields(void *arg1);
     s32 apply_exp_level_growth();
@@ -1436,8 +1430,6 @@ struct TObjPlayer : public TObjChara {
     static void clear_lobby_flag(void *arg0);
     void init_effect_5f0();
     void get_hand_joint_position(s32 arg1);
-    void calc_move(void* a1, void* a2);
-    void calc_wall_slide_point(void *arg1, void *arg2);
     void close_sub_window();
     s32 find_inventory_item_id(s8 arg1, s8 arg2);
     s32 try_add_sale_meseta(s32 arg1, s32 arg2, s32 arg3);
@@ -1657,6 +1649,7 @@ typedef char PlayerHairSelectorOffset[(offsetof(TObjPlayer, m_878) == 0x878) ? 1
 typedef char PlayerHairFlagsOffset[(offsetof(TObjPlayer, m_88e) == 0x88E) ? 1 : -1];
 typedef char PlayerHairTargetOffset[(offsetof(TObjPlayer, m_8ac) == 0x8AC) ? 1 : -1];
 typedef char PlayerHairWaitOffset[(offsetof(TObjPlayer, m_cfc) == 0xCFC) ? 1 : -1];
+typedef char PlayerMovementDestinationOffset[offsetof(TObjPlayer, movement_destination) == 0x3F8 ? 1 : -1];
 typedef char PlayerInventoryObjectOffset[(offsetof(TObjPlayer, inventory_objects) == 0xD00) ? 1 : -1];
 
 typedef char TObjPlayer_size[sizeof(TObjPlayer) == 0xDB8 ? 1 : -1];

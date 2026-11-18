@@ -238,11 +238,11 @@ void set_flag4_and_field1c__15TWindowHelpItemFl(s32, s32);
 extern Vec3_802541E0 item_help_resistance_stat_callback;
 void set_sprite_uv_from_pixels(u8 *arg0, f32 farg0, f32 farg1);
 extern const f32 TWindowHelpItem__data_805DCDE4;
-extern const f32 lbl_805DCE00;
-extern const f32 lbl_805DCE04;
-extern const f32 lbl_805DCE08;
+static const f32 lbl_805DCE00 = 132.0f;
+static const f32 lbl_805DCE04 = 232.0f;
+static const f32 lbl_805DCE08 = 172.0f;
 extern const f32 lbl_805DCDEC;
-extern const f32 lbl_805DCE0C;
+static const f32 lbl_805DCE0C = 212.0f;
 extern "C" {
 s32 build_player_equipment_requirement_stats(s32, Stats_80254CE4 *);
 void update_requirements__15TWindowHelpItemFv(Help_80254CE4 *self);

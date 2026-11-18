@@ -1,3 +1,5 @@
+#include "pso/technique/TechniqueBandSound.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundSlotPitch.h"
 #include "pso/system/SoundEffect.h"
@@ -124,7 +126,6 @@ void __ct__13TUnk_804CCC68FlPUcPUcl();
 extern s32 tec_barta_class_name_ptr;
 TTecBarta_8022BC10 *TTecBarta__ct(TTecBarta_8022BC10 *self, void * _w1, void * _w2, void * _w3, void * _w4);
 void construct_facing_technique__10TObjPlayerFPviPvii();
-s32 get_bml_model(s32, s32);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
 void *find_entity_by_id(u16 id);
@@ -134,8 +135,8 @@ u8 *construct_tec_barta_facing(TTecBarta *arg0, void *_w1, void *_w2, void *_w3,
 void move_ground_technique_projectile(void *p);
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
-extern const f32 lbl_805DC7A0;
-extern const f32 lbl_805DC7A4;
+static const f32 lbl_805DC7A0 = 1.0f;
+static const f32 lbl_805DC7A4 = 10.0f;
 extern "C" {
 s32 get_bml_motion(s32, s32);
 void *spawn_continuous_particle_with_direction(void *pos, void *dir, s32 id);
@@ -146,41 +147,18 @@ List_8022BD74 *collect_body_contacts_for_target__10TObjPlayerFl(Tec_8022BD74 *, 
 
 void *__nw__7TObjectFUl(int);
 
+#ifdef __MWERKS__
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(1)
+#endif
 void TTecBarta::update_technique_by_state() {
-    u8 *arg0 = (u8 *)this;
-    s32 handle;
-
-    switch (this->band) {
-    case 0:
-        handle = play_sound_effect(0x4002A604, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
-        }
-        return;
-    case 1:
-        play_sound_effect(0x4002A604, (const Vec *)((arg0 + 0x20)), 0, 0);
-        return;
-    case 2:
-    case 3:
-        handle = play_sound_effect(0x4002A604, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
-        }
-        break;
-    case 4:
-        handle = play_sound_effect(0x4002A604, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
-        }
-        break;
-    case 5:
-        handle = play_sound_effect(0x4002A604, (const Vec *)((arg0 + 0x20)), 0, 0);
-        if (handle >= 0) {
-            update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);
-        }
-        break;
-    }
+    play_technique_band_sound(this, 0x4002A604);
 }
+#ifdef __MWERKS__
+#pragma pop
+#endif
+
 
 typedef struct RecoveredGlobal_8022B6FC_lbl_804CC510 RecoveredGlobal_8022B6FC_lbl_804CC510;
 typedef struct RecoveredGlobal_8022B6FC_lbl_804CC55C RecoveredGlobal_8022B6FC_lbl_804CC55C;
@@ -215,7 +193,7 @@ void TTecBarta::create_particle_emitters() {
         if (self->emitters[i] != NULL) {
             row = &TTecBarta__emitter_bands[self->band].rows[i];
             if (row->flags & 0x20) {
-                attach_particle_model((u8 *)self->emitters[i], (s32)(get_bml_model(technique_effect_bml, 0)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 0)), 0, (f32)lbl_805DC7A0);
+                attach_particle_model((u8 *)self->emitters[i], (s32)((s32)get_bml_model((BmlResource *)technique_effect_bml, 0)), (s32)lbl_805D63B0, (s32)(get_bml_motion(technique_effect_bml, 0)), 0, (f32)lbl_805DC7A0);
             } else {
                 ((TParticleCtrl *)(self->emitters[i]))->set_scale(row->scale, row->scale);
             }
@@ -322,7 +300,7 @@ void TTecBarta::run_task() {
     if (this->band == 5) {
         TechniqueParticleEmitter *e = (TechniqueParticleEmitter *)create_timed_particle_emitter(&this->position.x, 0x18A, 0x14, 1);
         if (e != NULL) {
-            attach_particle_model((u8 *)e, (s32)(get_bml_model(technique_effect_bml, 5)), (s32)lbl_805D63B0, 0, 0, (f32)lbl_805DC7A0);
+            attach_particle_model((u8 *)e, (s32)((s32)get_bml_model((BmlResource *)technique_effect_bml, 5)), (s32)lbl_805D63B0, 0, 0, (f32)lbl_805DC7A0);
         }
     }
     move_ground_technique_projectile(this);

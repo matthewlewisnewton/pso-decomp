@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -20,7 +21,6 @@ struct RecoveredGlobal_802CE428___vt__22TObjEneMe1GiGueMissile {
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
 s32 get_bml_motion(void *, int);
-s32 get_bml_model(void *, int);
 s32 rotate_matrix_y(int, int);
 s32 rotate_matrix_x(int, int);
 s32 push_matrix();
@@ -36,7 +36,6 @@ extern s32 lbl_805D3F20;
 extern const f32 lbl_805DE6DC;
 u8 *TObjEneMe1GiGueMissile__ct(u8 *arg0, s32 arg1, u8 *arg2, u8 *arg3, f32 farg0, f32 farg1);
 void *find_entity_by_id(u16 id);
-s32 TObjPlayer__sub_802A445C(void *, int);
 extern const f32 lbl_805DE6E0;
 void TObjEneMe1GiGue__sub_802CE4E8(void);
 void TObjEneMe1GiGue__sub_802CE4EC(void);
@@ -129,7 +128,7 @@ void TObjEneMe1GiGueMissile::render() {
   set_current_texture_list((GinjaTextureList *)(((void *) (*((s32 *) (((s8 *) (*((u8 **) (((s8 *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count)) + 0x42C)))) + 0x1C))))));
   set_motion_packed_rotation();
   bml_motion = get_bml_motion((void *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count), 5);
-  draw_model_motion((void *) get_bml_model((void *) (*(u8 * *)&TObjEneMe1GiGue_barrier_count), 1), (void *)bml_motion, (f32) (*((f32 *) (((s8 *) arg0) + 0xBC))));
+  draw_model_motion((void *) get_bml_model((BmlResource *)(*(u8 * *)&TObjEneMe1GiGue_barrier_count), 1), (void *)bml_motion, (f32) (*((f32 *) (((s8 *) arg0) + 0xBC))));
   clear_motion_packed_rotation();
   TParticleCtrl::end_effect_render();
   pop_matrix();
@@ -154,7 +153,7 @@ void TObjEneMe1GiGueMissile::run_task() {
     }
     ((TNeedleShoot *)arg0)->update_position();
     ((TObjEneMe1GiGueMissile *)arg0)->update_lifetime();
-    TObjPlayer__sub_802A445C(arg0, 1);
+    check_actor_contacts(1);
 }
 #pragma pop
 

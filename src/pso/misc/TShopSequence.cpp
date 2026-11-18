@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/misc/TShopSequence.h"
@@ -27,8 +28,6 @@ s32 load_character_from_card__23TAdSinglePlyChrSelectGCFi(s32);
 s32 activate_body_collision__10TObjPlayerFv();
 s32 deactivate_body_collision__10TObjPlayerFv();
 void *get_player_by_client_id(s32 i);
-s32 suppress_slot__11TWindowCtrlFv(u16);
-s32 unsuppress_slot__11TWindowCtrlFv(u16);
 s32 is_split_screen();
 int TShopSequence::vfunc_10() {
     if (this->message != NULL) {
@@ -84,7 +83,7 @@ void TShopSequence::close_window() {
     s32 var_r31;
 
     if (this->player != NULL) {
-        unsuppress_slot__11TWindowCtrlFv(get_entity_id((u32)this->player));
+        unsuppress_player_window((u16)get_entity_id((u32)this->player));
         if (TRaderMapCore::is_not_split_screen() != 1) {
             var_r31 = 0;
             do {
@@ -111,7 +110,7 @@ void TShopSequence::restore_player_state() {
                 var_r31 += 1;
             } while (var_r31 < 4);
         }
-        suppress_slot__11TWindowCtrlFv(get_entity_id((u32)this->player));
+        suppress_player_window((u16)get_entity_id((u32)this->player));
     }
 }
 void *__dt__13TShopSequenceFv(void *arg0, s16 arg1) {

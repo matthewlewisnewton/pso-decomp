@@ -81,13 +81,6 @@ struct TBoss4Type2
     u32 m_460;
     u32 m_464;
     void* m_468;
-    void check_state_transition();
-    void calc_target_position();
-    void apply_packed_state(u32 arg1);
-    void send_darkfalz_code(s32 arg1, s32 arg2, s32 arg3);
-    void send_state_to_target(s32 arg1);
-    void calc_scaled_field(s32 arg1, s32 arg2);
-    void set_motion_index(s32 arg1);
     static u8 is_active();
     void scroll_strips();
     static void *create_zanzo(void *arg0, void *arg1);
@@ -102,8 +95,6 @@ struct TBoss4Type2
     void update_main();
     static s32 create(s32 arg0);
     static s32 pick_weighted_random(s32 n, f32 *w, s32 *t);
-    void calc_scale_slot_indices(s32 *a, s32 *b);
-    void set_state(s32 arg1);
     void spawn_afterimages();
     void choose_next_action();
     static void *create_jisin(void *arg0, void *arg1);

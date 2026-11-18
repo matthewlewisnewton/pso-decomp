@@ -2,16 +2,32 @@
 #define PSO_TOBJRAIN_H
 #include "pso/TObject.h"
 #include "types.h"
+#include "pso/system/vector.h"
+#include <stddef.h>
 
 class TObjRain : public TObject {
 public:
+    TObjRain(TObject *parent, u32 count);
     virtual ~TObjRain();
     void update_drops();
     virtual void run_task();
     virtual void render();
-public:
     void draw_streaks();
     void init_drops();
+
+    struct Drop {
+        s32 active;
+        Vec position;
+        Vec velocity;
+        f32 floor_y;
+    };
+    Drop drops[16];
+    u32 count;
 };
+
+typedef char TObjRainDropSize[(sizeof(TObjRain::Drop) == 0x20) ? 1 : -1];
+typedef char TObjRainDropsOffset[(offsetof(TObjRain, drops) == 0x1C) ? 1 : -1];
+typedef char TObjRainCountOffset[(offsetof(TObjRain, count) == 0x21C) ? 1 : -1];
+typedef char TObjRainSize[(sizeof(TObjRain) == 0x220) ? 1 : -1];
 
 #endif

@@ -35,7 +35,7 @@ s32 release_texture_list(void*);
 void TObjEneMe3Stelth::destroy_resources() {
     if ((u32) blob_shadow_texture_list != 0U) {
         release_texture_list((void*)blob_shadow_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(blob_shadow_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)blob_shadow_texture_list);
         blob_shadow_texture_list = 0U;
     }
 }

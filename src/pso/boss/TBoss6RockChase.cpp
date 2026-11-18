@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -91,7 +92,6 @@ s32 rand();
 extern const f32 lbl_805E03D0;
 extern const f32 lbl_805E03D8;
 extern const f32 lbl_805E03E4;
-s32 get_bml_model(int, int);
 int TBoss6Rock__sub_80353A04(void);
 int TBoss6Rock__sub_80353A0C(void);
 __declspec(section ".rodata") char lbl_8047ACD8[] = "TBoss6RockChase";
@@ -220,7 +220,7 @@ u8 *TBoss6RockChase__ct(TBoss6RockChase *boss6_rock_chase, s32 arg1, s32 arg2, s
     boss6_rock_chase->m_bc = (s32) (lbl_805E03E0 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));
     *(f32 *)((s8 *)boss6_rock_chase + 0xB8) = (f32) TBoss6RockChase__data_805E03B8;
     VecCopy((Vec *)((u8 *)boss6_rock_chase + 0x38), (const Vec *)(arg2));
-    boss6_rock_chase->m_c0 = get_bml_model((int) (TBoss6Rock__sub_80353A0C()), (int) (*(s32 *)((s8 *)&boss6_rock_chase_model_radius_table.value + (arg3 * 8))));
+    boss6_rock_chase->m_c0 = (s32)get_bml_model((BmlResource *)(TBoss6Rock__sub_80353A0C()), (int) (*(s32 *)((s8 *)&boss6_rock_chase_model_radius_table.value + (arg3 * 8))));
     boss6_rock_chase->m_c4 = TBoss6Rock__sub_80353A04();
     return (u8 *)boss6_rock_chase;
 }

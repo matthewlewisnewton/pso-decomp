@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/misc/TLobby_800F9690.h"
 #include "pso/misc/TLanguage.h"
@@ -52,7 +53,7 @@ void TLanguage::free_alphabet_textures() {
         if (inner->f8 != 0U) {
             release_texture_list(localized_alphabet_list);
         }
-        TAdSinglePlyChrSelectGC::safe_free((u32)localized_alphabet_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)localized_alphabet_list);
         localized_alphabet_list = NULL;
     }
 }
@@ -118,7 +119,7 @@ void TLanguage::load_fonts(s32 language) {
             break;
     }
 
-    TWindowSubStatusDisp::begin_render((s32)alphabet);
+    bind_small_font_texture_list();
 
     TLanguage::set_entry_index(LANGUAGE_JAPANESE, 0x48);
     TLanguage::set_entry_index(LANGUAGE_GERMAN, 0x4B);

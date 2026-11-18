@@ -1,16 +1,11 @@
 #include "types.h"
+#include "pso/misc/CameraViewVectors.h"
 #include "pso/misc/TUnk_80488AD8.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TUnk_80488B08.h"
 #include "pso/misc/TUnk_80488AF0.h"
 
 #include "pso/misc/TCameraCtrl.h"
-
-struct RecoveredGlobal_8006BA08_lbl_80488B08 {
-    s32 value;
-    u8 remaining[0x2C];
-};
-
 
 struct RecoveredGlobal_8006B588_lbl_80488AD8
 {
@@ -99,14 +94,12 @@ const NpcCameraDestination fixed_npc_camera_destination_table[20] = {
 extern "C" {
 void *__dt__13TUnk_80488A28Fv(void *arg0, s16 arg1);
 void __dl__7TObjectFPv(void *);
-extern RecoveredGlobal_8006BA08_lbl_80488B08 lbl_80488B08;
+extern s32 __vt__13TUnk_80488B08[];
 extern s32 TCameraCtrl__fixed_npc_camera_active;
 u8 *__dt__13TUnk_80488B08Fv(u8 *arg0, s16 arg1);
 void set_active_camera_pose(void *, void *);
 s32 approach_camera_vector(void *, void *, f32);
 s32 activate_camera_mode(int);
-s32 TCameraCtrl__sub_8006BAB4(void *, void *);
-s32 TCameraCtrl__sub_8006BAC8(void *, void *);
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern const s32 __vt__13TUnk_80488AD8[];
 extern u32 camera_ctrl_instance;
@@ -120,7 +113,6 @@ s32 TCameraCtrl__sub_8006BADC(void);
 void approach_vector_fixed_distance(Vec_8006B6A8 *, Vec_8006B6A8 *, Vec_8006B6A8 *, f32);
 void *TCameraCtrl__vt9(void);
 s32 restore_player_cameras();
-void *TCameraCtrl__sub_8006BA68(void *);
 s32 activate_body_collision__10TObjPlayerFv();
 s32 deactivate_body_collision__10TObjPlayerFv();
 void *get_player_by_client_id(s32 i);
@@ -179,9 +171,9 @@ u8 *TCameraCtrl::init_conversation_camera(s32 i, s32 arg2, s32 arg3) {
   activate_camera_mode(9);
   if (is_split_screen() != 0)
   {
-    new_var = (void *) TCameraCtrl__sub_8006BAC8((void *) (*(s32 *)&camera_ctrl_instance), (void *) i);
+    new_var = (void *) TCameraCtrl__sub_8006BAC8((CameraViewVectors *)camera_ctrl_instance, i);
     VecCopy((Vec *)(((u8 *)this) + 0x1C), (const Vec *)new_var);
-    VecCopy((Vec *)(((u8 *)this) + 0x28), (const Vec *)((void *) TCameraCtrl__sub_8006BAB4((void *) (*(s32 *)&camera_ctrl_instance), (void *) i)));
+    VecCopy((Vec *)(((u8 *)this) + 0x28), TCameraCtrl__sub_8006BAB4((CameraViewVectors *)camera_ctrl_instance, i));
   }
   else
   {
@@ -260,11 +252,7 @@ s32 TCameraCtrl__sub_8006B798(void *p, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 #pragma pop
 
 void *TCameraCtrl__vt9(void) {
-    void *o = __nw__7TObjectFUl(0x6C);
-    if (o != NULL) {
-        o = TCameraCtrl__sub_8006BA68(o);
-    }
-    return o;
+    return new TUnk_80488B08();
 }
 
 
@@ -285,10 +273,9 @@ void TUnk_80488B08::vfunc_6() {
 }
 
 void TUnk_80488B08::run_task() {  }
-typedef char RecoveredGlobal_8006BA08_lbl_80488B08_size[sizeof(RecoveredGlobal_8006BA08_lbl_80488B08) == 0x30 ? 1 : -1];
 u8 *__dt__13TUnk_80488B08Fv(u8 *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = &lbl_80488B08.value;
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TUnk_80488B08;
         TCameraCtrl__fixed_npc_camera_active = 0;
         __dt__13TUnk_80488A28Fv(arg0, 0);
         if (arg1 > 0) {

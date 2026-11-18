@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/TFontSmallHelp.h"
 #include "pso/misc/TWindowSubStatusDisp_800FBD74.h"
@@ -38,11 +39,11 @@ s32 get_screen_height__11TCameraCtrlFv(void);
 s32 get_screen_width__11TCameraCtrlFv(void);
 }
 
-void TWindowSubStatusDisp::render_forward(void *context) {
-    begin_render((s32)context);
+extern "C" void begin_small_font_draw() {
+    bind_small_font_texture_list();
 }
 
-void TWindowSubStatusDisp::begin_render(s32) {
+extern "C" void bind_small_font_texture_list() {
     set_current_texture_list((GinjaTextureList *)(localized_alphabet_list));
 }
 

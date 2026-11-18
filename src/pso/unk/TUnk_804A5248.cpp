@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 // ---- pso/player/TObjPlayer_8012C180
 #include "types.h"
 #include "pso/unk/TUnk_804A5248.h"
@@ -23,7 +24,7 @@ void TObjPlayer::check_shield_combo() {
 void TUnk_804A5248::update_idle() {
     s32 arg0 = (s32)this;
     if (get_item_index__5TItemFv() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)0.1f, (f32)0.6f);
+        add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)0.1f, (f32)0.6f);
     }
 }
 
@@ -32,7 +33,7 @@ void TUnk_804A5248::update_idle() {
 void TUnk_804A5248::update_attack() {
     s32 arg0 = (s32)this;
     if (get_item_index__5TItemFv() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), (f32)0.2f, (f32)1.0f);
+        add_float_clamped((f32 *)(arg0 + 0x1F8), (f32)0.2f, (f32)1.0f);
     }
 }
 

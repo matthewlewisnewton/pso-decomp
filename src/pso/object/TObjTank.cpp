@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -27,15 +28,14 @@ struct RecoveredGlobal_8019A880___vt__8TObjTank {
 };
 
 extern "C" {
-s32 get_bml_model(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 extern u32 tank_bml_resource;
 extern GinjaTextureList *TObjTank__texture_list;
-extern const f32 lbl_805DBFA0;
-extern const f32 lbl_805DBFA4;
+static const f32 lbl_805DBFA0 = 400.0f;
+static const f32 lbl_805DBFA4 = 20.0f;
 extern char lbl_80446184[];
 extern RecoveredGlobal_8019A9B8_lbl_804B8F60 fs_obj_tank_resource_descriptor;
 s32 init_collision_body_parts(void *, void *, int);
@@ -67,7 +67,7 @@ void TObjTank::render() {
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);
-        get_bml_model((*(s32 *)&tank_bml_resource), 0);
+        (s32)get_bml_model((BmlResource *)(*(s32 *)&tank_bml_resource), 0);
         draw_ginja_object();
         pop_matrix();
     }
@@ -116,7 +116,7 @@ void *TObjTank__create(void *arg0) {
 void TObjTank::free_globals() {
     if (TObjTank__texture_list != NULL) {
         release_texture_list(TObjTank__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TObjTank__texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TObjTank__texture_list);
         TObjTank__texture_list = NULL;
     }
     if ((u32) tank_bml_resource != 0U) {

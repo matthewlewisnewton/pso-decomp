@@ -44,7 +44,8 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static u8 get_chr_select_state();
     static u8 *get_global_state();
     static int get_state();
-    static void safe_free(u32 arg0);
+    // Generic null-checked heap release; the inherited class attribution is provisional.
+    static void safe_free(void *allocation);
     s32 get_selected_slot();
     void set_position(void* q);
     void noop_laser();
@@ -103,7 +104,6 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     static void draw_window_bg(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     static s32 load_player(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     static s32 load_player_slot(s32 chan, const char *file_name, void *buffer);
-    s32 try_acquire_slot();
     s32 are_all_selections_done();
     s32 load_preview_models();
     void request_texture_loads();
@@ -168,7 +168,6 @@ struct TAdSinglePlyChrSelectGC : public TObject {
     u8 *copy_character_data(u8 *arg1);
     u8 *construct_chardata_array();
     void swap_item_data(s32 *arg1);
-    void start_character_load_task();
     void request_model_loads();
     void draw_creation_figure();
     static s32 is_card_file_missing_a();

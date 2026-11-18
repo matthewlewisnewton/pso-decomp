@@ -1,3 +1,5 @@
+#include "pso/system/NinjaTypes.h"
+#include "pso/system/NinjaHierarchy.h"
 #include "types.h"
 #include "pso/system/MatrixStack.h"
 #include <string.h>
@@ -288,14 +290,14 @@ f32 TObjBoss2Tunnel::calc_scaled_value(s32 arg0, f32 farg0) {
     return (0.5f * farg0) / sin_table_lookup(arg0 / 2);
 }
 
-s32 TObjBoss2Tunnel::count_tree_nodes() {
+s32 count_model_tree_nodes(NJS_OBJECT *node) {
     s32 var_r31;
     var_r31 = 1;
-    if (m_2c != NULL) {
-        var_r31 = m_2c->count_tree_nodes() + 1;
+    if (node->child != NULL) {
+        var_r31 = count_model_tree_nodes(node->child) + 1;
     }
-    if (m_30 != NULL) {
-        var_r31 += m_30->count_tree_nodes();
+    if (node->sibling != NULL) {
+        var_r31 += count_model_tree_nodes(node->sibling);
     }
     return var_r31;
 }
@@ -1061,7 +1063,7 @@ void load_data_buffers(void) {
             if (boss2_tunnel_snapshot_buffer != NULL) {
                 memmove(boss2_tunnel_snapshot_buffer, (void *)temp_r30, temp_r31);
             }
-            TAdSinglePlyChrSelectGC::safe_free(temp_r30);
+            TAdSinglePlyChrSelectGC::safe_free((void *)temp_r30);
         }
     }
 }
@@ -1213,7 +1215,7 @@ void TObjBoss2Tunnel::show_message_and_wait(s32 arg0) {
         lbl_805D4E9C = window_size[0] - 40.0f;
         boss2_tunnel_message_shown_flag = 1;
     }
-    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
+    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, window_size, (u32)1, 4);
     if (win != NULL) {
         switch (arg0) {
         case -2:
@@ -1280,7 +1282,7 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         lbl_805D4EA4 = window_size[0] - 40.0f;
         lbl_805D4EA8 = 1;
     }
-    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, (s32)window_size, (u32)1, 4);
+    win = (TWindowMessage *)TWindowMessage::create((s32)window_pos, window_size, (u32)1, 4);
     if (win != NULL) {
         win->append_line(get_localized_text_entry(0x24, 0xB), 3);
         win->set_depth(36900.0f);
@@ -1338,4 +1340,12 @@ s32 TObjBoss2Tunnel::run_confirm_message_loop() {
         delete win;
     }
     return result;
+}
+
+extern "C" {
+s8 lbl_805D4E98;
+f32 lbl_805D4E9C;
+s8 boss2_tunnel_message_shown_flag;
+s8 boss2_tunnel_confirm_loop_flag;
+f32 lbl_805D4EA4;
 }

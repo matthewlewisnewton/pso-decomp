@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TMainTask.h"
@@ -64,25 +66,23 @@ void *create_instance__18TObjLaboDesignBaseFPv(void *arg0);
 void render__18TObjLaboDesignBaseFPv(u8 *arg0);
 void run_task__18TObjLaboDesignBaseFv(void);
 void free_collision_body_parts(void *);
-s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 s32 rotate_matrix_y(int, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 void queue_destruction__7TObjectFv(void *);
 
-extern "C" u8 lbl_8047A0A8[];
-extern "C" u8 lbl_8047A0C4[];
-extern "C" u8 lbl_8047A0DC[];
-extern "C" u8 lbl_8047A0F8[];
-extern "C" u8 lbl_8047A110[];
-extern "C" u8 lbl_8047A124[];
-extern "C" u8 lbl_8047A134[];
-extern "C" u8 lbl_8047A150[];
-extern "C" u8 lbl_8047A16C[];
-extern "C" u8 lbl_8047A188[];
-extern "C" u8 lbl_8047A1A4[];
-extern "C" u8 lbl_8047A1B8[];
+extern "C" const u8 lbl_8047A0A8[] = "labocity_computer_army.gj";
+extern "C" const u8 lbl_8047A0C4[] = "bm_obj_comp_army.bml";
+extern "C" const u8 lbl_8047A0DC[] = "labocity_computer_norm.gj";
+extern "C" const u8 lbl_8047A0F8[] = "bm_obj_comp_norm.bml";
+extern "C" const u8 lbl_8047A110[] = "labocity_desk.gj";
+extern "C" const u8 lbl_8047A124[] = "bm_obj_desk.bml";
+extern "C" const u8 lbl_8047A134[] = "labocity_partition_army.gj";
+extern "C" const u8 lbl_8047A150[] = "bm_obj_partition_army.bml";
+extern "C" const u8 lbl_8047A16C[] = "labocity_partition_norm.gj";
+extern "C" const u8 lbl_8047A188[] = "bm_obj_partition_norm.bml";
+extern "C" const u8 lbl_8047A1A4[] = "labocity_table.gj";
+extern "C" const u8 lbl_8047A1B8[] = "bm_obj_table_labo.bml";
 extern "C" u8 lbl_805D4488[];
 extern "C" u8 lbl_805D448C[];
 extern "C" u8 lbl_805D4490[];
@@ -176,10 +176,10 @@ void* get_labo_design_entry(int a0);
 int get_labo_design_object(int a0);
 extern s32 __vt__18TObjLaboDesignBase[];
 extern s32 TObjLaboDesignBase_class_name;
-extern const f32 lbl_805E02A0;
-extern const f32 lbl_805E02A4;
-extern const f32 lbl_805E02A8;
-extern const f32 lbl_805E02AC;
+static const f32 lbl_805E02A0 = 400.0f;
+static const f32 lbl_805E02A4 = 50.0f;
+static const f32 lbl_805E02A8 = 40.0f;
+static const f32 lbl_805E02AC = 20.0f;
 extern const f32 lbl_805E02B0;
 void *create_labo_design_base(void *arg0);
 void *create_obj_labo_design_base(void *arg0);
@@ -271,11 +271,11 @@ void draw_node_tree__18TObjLaboDesignBaseFiPv(s32 arg0, u8 *arg1) {
 }
 
 void render__18TObjLaboDesignBaseFPv(u8 *arg0) {
-    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((int) (*(s32 *)((s8 *)arg0 + 0xAC)), 0)));
+    set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)((s8 *)arg0 + 0xAC)), 0)));
     push_matrix();
     post_translate_matrix(arg0 + 0x38);
     rotate_matrix_y(0, (int) (*(s32 *)((s8 *)arg0 + 0x60)));
-    draw_node_tree__18TObjLaboDesignBaseFiPv((s32)arg0, (u8 *)((int) (get_bml_model((int) (*(s32 *)((s8 *)arg0 + 0xAC)), 0))));
+    draw_node_tree__18TObjLaboDesignBaseFiPv((s32)arg0, (u8 *)((int) ((s32)get_bml_model((BmlResource *)(*(s32 *)((s8 *)arg0 + 0xAC)), 0))));
     pop_matrix();
     TParticleCtrl::end_effect_render();
 }

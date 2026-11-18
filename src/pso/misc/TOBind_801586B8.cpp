@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -28,18 +30,16 @@ extern "C" {
 extern RecoveredGlobal_801587D8_lbl_804AFC44 bm_o_bind_resource_descriptor;
 extern u32 TOBind__static_model_resource;
 u8 *get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(int, int);
-s32 get_bml_model(int, int);
 s32 init_collision_body_parts(void *, void *, int);
 s32 __ct__14TObjCollidableFP7TObject(void *, int);
 extern RecoveredGlobal_80158890_lbl_804AFC54 bind_collision_body_parts;
 extern s32 __vt__6TOBind[];
 extern s32 lbl_805D2EA8;
 extern s32 tl_05;
-extern const f32 lbl_805DB300;
-extern const f32 lbl_805DB304;
-extern const f32 lbl_805DB308;
-extern const f32 lbl_805DB30C;
+static const f32 lbl_805DB300 = 0.0f;
+static const f32 lbl_805DB304 = 1.0f;
+static const f32 lbl_805DB308 = 400.0f;
+static const f32 lbl_805DB30C = 40.0f;
 struct BindBase_801586B8 { char pad[0x18]; };
 struct BindObj_801586B8 : BindBase_801586B8 {
     virtual void m0();
@@ -122,10 +122,10 @@ u8 *TOBind__ct(TOBind *bind, s32 arg1) {
     *(s32 *)((s8 *)bind + 0) = (s32) lbl_805D2EA8;
     ((TOBind *)(bind))->apply_object_set_data((void *)arg1);
     bind->m_b0 = 0;
-    *(s32 *)((s8 *)bind + 0x34) = get_bml_model((int) ((*(s32 *)&TOBind__static_model_resource)), 0);
-    bind->texlist = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TOBind__static_model_resource)), 0);
-    bind->m_c4 = get_bml_model((int) ((*(s32 *)&TOBind__static_model_resource)), 1);
-    bind->m_c8 = TObjFish__sub_8001EDB0((int) ((*(s32 *)&TOBind__static_model_resource)), 1);
+    *(s32 *)((s8 *)bind + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TOBind__static_model_resource)), 0);
+    bind->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TOBind__static_model_resource), 0);
+    bind->m_c4 = (s32)get_bml_model((BmlResource *)((*(s32 *)&TOBind__static_model_resource)), 1);
+    bind->m_c8 = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TOBind__static_model_resource), 1);
     *(u8 **)((s8 *)bind + 0xCC) = get_bml_motion((*(s32 *)&TOBind__static_model_resource), 0);
     *(f32 *)((s8 *)bind + 0xB8) = (f32) lbl_805DB300;
     bind->m_bc = (f32) ((f32) *(u32 *)((s8 *)(*(u8 **)((s8 *)bind + 0xCC)) + 4) - lbl_805DB304);

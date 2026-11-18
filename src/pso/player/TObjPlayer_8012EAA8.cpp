@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_8012EAA8.h"
 #include "pso/player/TUnk_804A5F18.h"
@@ -28,8 +29,8 @@ void TObjPlayer::cast_shifta_deband() {
     }
     update_active_game_effect();
 }
-void TUnk_804A5F18::update_idle() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), 1820, 10922); }
-void TUnk_804A5F18::update_attack() { TObjPlayer::add_angle_clamped((s32 *)((char*)this + 0x1f8), -1820, 0); }
+void TUnk_804A5F18::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), 1820, 10922); }
+void TUnk_804A5F18::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), -1820, 0); }
 }
 void s_red_blade_equip_rolls(void* p) { ((TItemWeapon *)p)->roll_technique(); ((TItemWeapon *)p)->roll_technique(); }
 void s_red_blade_turn_node(void* p) { if (get_player_list__10TObjPlayerFv(p) == 1) { rotate_matrix_x((void*)0, *(void**)((char*)p + 0x1f8)); } }

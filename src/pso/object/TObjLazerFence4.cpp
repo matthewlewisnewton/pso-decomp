@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/object/TObjMotion.h"
@@ -48,7 +49,6 @@ extern void *lazer_fence_norm_texture_list;
 u8 is_current_floor_switch_set(int);
 
 s32 get_bml_motion(s32, s32);
-Node_80193188 *get_bml_model(s32, s32);
 extern s32 lazer_fence_norm_bml_resource;
 f32 xz_distance_squared(void *, s32);
 s32 update_object_view_visibility__8TObjBaseFff(void *, f32, f32);
@@ -73,12 +73,12 @@ void TObjLazerFence4::init_models() {
     s32 i;
     s32 j;
     if (arg0->f8C % 2 == 0) {
-        arg0->fBC = get_bml_model(lazer_fence_norm_bml_resource, 4);
-        arg0->fC0 = get_bml_model(lazer_fence_norm_bml_resource, 5);
+        arg0->fBC = ((Node_80193188 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 4));
+        arg0->fC0 = ((Node_80193188 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 5));
         arg0->fC4 = get_bml_motion(lazer_fence_norm_bml_resource, 2);
     } else {
-        arg0->fBC = get_bml_model(lazer_fence_norm_bml_resource, 6);
-        arg0->fC0 = get_bml_model(lazer_fence_norm_bml_resource, 7);
+        arg0->fBC = ((Node_80193188 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 6));
+        arg0->fC0 = ((Node_80193188 *)get_bml_model((BmlResource *)lazer_fence_norm_bml_resource, 7));
         arg0->fC4 = get_bml_motion(lazer_fence_norm_bml_resource, 3);
     }
     for (j = 0; j < 12; j++) {

@@ -1,3 +1,4 @@
+#include "pso/misc/TNpcPlayer.h"
 #include "pso/item/ChallengeStageLoadouts.h"
 #include "pso/unk/text_80071B30.h"
 #include "pso/system/vector.h"
@@ -13,7 +14,7 @@ struct Hdr_80071BC0 { u32 a, b; };
 
 struct Chr_80071BC0 {
     u8 pad0[0x31];
-    u8 f31;
+    char f31;
     u8 pad32[0x34 - 0x32];
     u32 f34;
     u8 pad38[0x50 - 0x38];
@@ -53,7 +54,6 @@ Plr_80071BC0 *get_player_by_client_id(s32);
 Plr_80071BC0 *create_player_object(s32, s32, TPlyCharData *);
 void clamp_and_set_unit_value__10TObjPlayerFiUci(Plr_80071BC0 *, u8, s16);
 void begin_action_state__10TObjPlayerFPv(TPlyCharData *);
-void send_command__10TNpcPlayerFlScllPSc(u8, s32, s32, s32, TPlyCharData *);
 extern s32 local_client_id;
 s32 TLobby__sub_80071B30(s32 arg0, s32 arg1) {
     s32 *list;
@@ -114,7 +114,7 @@ void TObjPlayer::rebuild_players_for_stage(s32 arg0) {
                 TPlyCharData cd;
                 copy_player_visual_record(&cd.chr, &chr);
                 begin_action_state__10TObjPlayerFPv(&cd);
-                send_command__10TNpcPlayerFlScllPSc(chr.f31, t->item_count, (s32)t->items, t->level, &cd);
+                TNpcPlayer::send_command(chr.f31, t->item_count, (s32)t->items, t->level, &cd);
                 if (i == local_client_id) {
                     p = create_player_object(i, 0, &cd);
                 } else {
@@ -126,7 +126,7 @@ void TObjPlayer::rebuild_players_for_stage(s32 arg0) {
             }
             ((TLobby *)((u8 *)p + 0xdac))->copy_header_struct(&hdr);
             ((TObjBase *)p)->set_position_from(&pos);
-            ((TBoss4DarkFalz *)p)->save_position();
+            ((TObjBase *)p)->save_previous_position();
             p->m6();
             ((TObjPlayer *)((u8 *)p + 0x428))->set_all_technique_levels((void *)0xff);
             if (t->techniques != NULL) {

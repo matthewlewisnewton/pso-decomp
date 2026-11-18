@@ -148,10 +148,10 @@ extern s32 lbl_805D6AF0;
 extern s32 TObjEneRecon__resistance_params;
 extern const f32 lbl_805DF400;
 extern const f32 lbl_805DF424;
-extern const f32 lbl_805DF428;
-extern const f32 lbl_805DF42C;
-extern const f32 lbl_805DF430;
-extern const f32 lbl_805DF434;
+static const f32 lbl_805DF428 = -3.0f;
+static const f32 lbl_805DF42C = 45.0f;
+static const f32 lbl_805DF430 = 2.0f;
+static const f32 lbl_805DF434 = 50.0f;
 
 extern "C" void vfunc_6__8TObjBaseFPsl();
 extern "C" void vfunc_103__9TObjEneDDFPUc();

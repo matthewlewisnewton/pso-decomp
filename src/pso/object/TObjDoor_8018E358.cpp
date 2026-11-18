@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/system/ChunkMaterialState.h"
@@ -99,7 +100,6 @@ extern s32 model_render_flags;
 void render__8TObjDoorFPv(Door_8018E40C *arg0);
 s32 draw_closed__8TObjDoorFPv(Door_8018E5F4 *arg0);
 u8 *load_gvm_texture_file(s32 arg0);
-s32 get_bml_model(s32, s32);
 s32 get_bml_motion(s32, s32);
 s32 draw_locked__8TObjDoorFPv(Door_8018E74C *arg0);
 void set_active_camera_pose(u8 *arg0, u8 *arg1);
@@ -586,11 +586,11 @@ void TObjDoor::load_resources() {
     s32 p = (int)new BmlResource(5, (BmlResourceDescriptor *)(door_resource_descriptor), 0, 0, (void *)(0));
     door_resource_handle = p;
     TObjDoor__resource_param = (s32)load_gvm_texture_file((s32)lbl_80445588);
-    ((s32 *)&TObjDoor__model_resource_ptrs)[0] = get_bml_model(door_resource_handle, 4);
-    ((s32 *)&TObjDoor__model_resource_ptrs)[1] = get_bml_model(door_resource_handle, 3);
-    ((s32 *)&TObjDoor__model_resource_ptrs)[2] = get_bml_model(door_resource_handle, 0);
-    ((s32 *)&TObjDoor__model_resource_ptrs)[3] = get_bml_model(door_resource_handle, 1);
-    ((s32 *)&TObjDoor__model_resource_ptrs)[4] = get_bml_model(door_resource_handle, 2);
+    ((s32 *)&TObjDoor__model_resource_ptrs)[0] = (s32)get_bml_model((BmlResource *)door_resource_handle, 4);
+    ((s32 *)&TObjDoor__model_resource_ptrs)[1] = (s32)get_bml_model((BmlResource *)door_resource_handle, 3);
+    ((s32 *)&TObjDoor__model_resource_ptrs)[2] = (s32)get_bml_model((BmlResource *)door_resource_handle, 0);
+    ((s32 *)&TObjDoor__model_resource_ptrs)[3] = (s32)get_bml_model((BmlResource *)door_resource_handle, 1);
+    ((s32 *)&TObjDoor__model_resource_ptrs)[4] = (s32)get_bml_model((BmlResource *)door_resource_handle, 2);
     ((s32 *)&TObjDoor__motion_table)[0] = get_bml_motion(door_resource_handle, 0);
     ((s32 *)&TObjDoor__motion_table)[1] = get_bml_motion(door_resource_handle, 1);
 }

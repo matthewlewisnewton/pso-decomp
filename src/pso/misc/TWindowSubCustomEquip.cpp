@@ -36,36 +36,36 @@ extern f32 TWindowSubCustomEquip__ring_scale;
 extern u8 TWindowSubCustomEquip__bank_ring_init_done;
 extern f32 lbl_805D6478;
 extern u8 lbl_805D647C;
-extern const f32 lbl_805DD578;
-extern const f32 lbl_805DD584;
-extern const f32 lbl_805DD588;
-extern const f32 lbl_805DD58C;
-extern const f32 lbl_805DD590;
-extern const f32 lbl_805DD594;
-extern const f32 lbl_805DD598;
-extern const f32 lbl_805DD59C;
-extern const f32 lbl_805DD5A0;
+static const f32 lbl_805DD578 = 0.1f;
+static const f32 lbl_805DD584 = 75.0f;
+static const f32 lbl_805DD588 = 25.0f;
+static const f32 lbl_805DD58C = 27.0f;
+static const f32 lbl_805DD590 = 34.0f;
+static const f32 lbl_805DD594 = 1.0f;
+static const f32 lbl_805DD598 = 0.5f;
+static const f32 lbl_805DD59C = 255.0f;
+static const f32 lbl_805DD5A0 = 0.6f;
 s32 fn_8002AE08(int);
 s32 TWindowShortListCtrl__check_controller_button(int, int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 
 extern RecoveredGlobal_80276D14_lbl_8050E208 controller_input_state;
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-extern const f32 lbl_805DD5A4;
+static const f32 lbl_805DD5A4 = 7.5f;
 s32 set_help_text__15TWindowHelpItemFll(u8 *, s32);
-extern const f32 lbl_805DD570;
-extern const f32 lbl_805DD574;
+static const f32 lbl_805DD570 = 45.0f;
+static const f32 lbl_805DD574 = 53.0f;
 s32 select_action_palette__10TObjPlayerFi(u8 *, s32);
 void *get_player_by_client_id(s32 i);
 u8 *TWindowActionPalette__sub_801C1D7C(s32 arg0, s32 i, s32 arg2);
 s32 get_slot_type__20TWindowActionPaletteFlll(s32, s32, s32);
 extern const Vec2_802766C8 custom_equip_entry_offset_table[];
-extern const f32 lbl_805DD57C;
-extern const f32 lbl_805DD580;
+static const f32 lbl_805DD57C = 0.2f;
+static const f32 lbl_805DD580 = 0.003921569f;
 void __dl__7TObjectFPv(void *);
 
-extern const f32 lbl_805DD568;
-extern const f32 lbl_805DD56C;
+static const f32 lbl_805DD568 = 11.0f;
+static const f32 lbl_805DD56C = 15.0f;
 
 void TWindowSubCustomEquip::set_relative_pos(void *arg1) {
     *(f32 *)&this->m_name = (f32) (*(f32 *)((s8 *)arg1 + 8) - lbl_805DD568);
@@ -354,4 +354,11 @@ s32 TWindowSubCustomEquip::calc_equip_index() {
     return *(s32 *)((s8 *)this + 0x78) + (((s8) *(u8 *)((s8 *)this + 0x70) + ((s8) *(u8 *)((s8 *)this + 0x71) * 3)) * 4);
 }
 
+}
+
+extern "C" {
+f32 TWindowSubCustomEquip__ring_scale;
+u8 TWindowSubCustomEquip__bank_ring_init_done;
+f32 lbl_805D6478;
+u8 lbl_805D647C;
 }

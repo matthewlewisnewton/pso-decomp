@@ -24,6 +24,7 @@ struct RopeCollisionSphere {
 
 class TObjEZRopeBase : public TObject {
 public:
+    TObjEZRopeBase(TObject *parent);
     virtual ~TObjEZRopeBase();
     void sub_800FF8CC(RopeSegment *segments, RopeAnchor *anchors, RopeCollisionSphere *spheres);
     void sub_800FF788(const Vec *offset);

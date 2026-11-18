@@ -87,7 +87,6 @@ s32 get_gyaranzo_missile_int_parameter(s32 i);
 extern "C" {
 s32 TObjGyaranzoMissile__ct(void *, void *, void *, u16);
 void *__nw__7TObjectFUl(int);
-extern s32 gyaranzo_missile_volley_end_time;
 
 }
 
@@ -138,9 +137,10 @@ extern s32 gyaranzo_boss_stats_handle;
 extern s32 gyaranzo_boss_stats_ptr_b;
 extern s32 gyaranzo_object_handle;
 extern s32 gyaranzo_missile_param_table;
-extern NJS_OBJECT *lbl_805D5200;
-extern NJS_OBJECT *lbl_805D5204;
-extern TUnk_8048FA00 *gyaranzo_breakup_model_obj;
+NJS_OBJECT *lbl_805D5200;
+NJS_OBJECT *lbl_805D5204;
+TUnk_8048FA00 *gyaranzo_breakup_model_obj;
+s32 gyaranzo_missile_volley_end_time;
 extern s32 saved_model_render_flags;
 
 extern const f32 lbl_805DA284;
@@ -273,7 +273,7 @@ TObjEneGyaranzo::TObjEneGyaranzo(TObject *parent, void *set_data)
     initialize_enemy_photon_effect(this);
     actorFlags |= 0x40000;
     model = (void *)gyaranzo_bml_resource->models[3].model;
-    texlist = gyaranzo_bml_resource->models[3].m_c;
+    texlist = (s32)gyaranzo_bml_resource->models[3].m_c;
     if (((GyaranzoSetData *)set_data)->group != 0) {
         sub_800C7860();
     }
@@ -303,19 +303,19 @@ void TLobby::load_gyaranzo_resources() {
         gyaranzo_bml_resource = (BmlResource *)p;
     }
     for (i = 0; i < 0x16; i++) {
-        gyaranzo_model_resources[i] = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[3].model, gyaranzo_resource_index_table[i]);
+        gyaranzo_model_resources[i] = (NJS_OBJECT *)find_model_node((s32)gyaranzo_bml_resource->models[3].model, gyaranzo_resource_index_table[i]);
     }
     for (i = 0; i < 0xD; i++) {
-        gyaranzo_resource_ptrs[i] = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[4].model, gyaranzo_resource_index_table[i]);
+        gyaranzo_resource_ptrs[i] = (NJS_OBJECT *)find_model_node((s32)gyaranzo_bml_resource->models[4].model, gyaranzo_resource_index_table[i]);
     }
     for (i = 0; i < 0xD; i++) {
         gyaranzo_resource_ptrs[i]->sibling = NULL;
     }
-    lbl_805D5200 = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[3].model, 0x19);
-    lbl_805D5204 = (NJS_OBJECT *)find_model_node(gyaranzo_bml_resource->models[3].model, 0xD);
+    lbl_805D5200 = (NJS_OBJECT *)find_model_node((s32)gyaranzo_bml_resource->models[3].model, 0x19);
+    lbl_805D5204 = (NJS_OBJECT *)find_model_node((s32)gyaranzo_bml_resource->models[3].model, 0xD);
     p = ::operator new(0x10);
     if (p != NULL) {
-        p = init__11TBreakUpMdlFPviif(p, gyaranzo_bml_resource->models[3].model, get_bml_motion((u32)gyaranzo_bml_resource, 3), lbl_805DA294);
+        p = init__11TBreakUpMdlFPviif(p, (s32)gyaranzo_bml_resource->models[3].model, get_bml_motion((u32)gyaranzo_bml_resource, 3), lbl_805DA294);
     }
     gyaranzo_breakup_model_obj = (TUnk_8048FA00 *)p;
     gyaranzo_boss_stats_handle = ((s32)get_battle_base_stats(0x1D));
@@ -805,22 +805,22 @@ void TObjEneGyaranzo::spawn_hit_debris() {
         { 0.5f, 0.04f, 0.28f }, { pos.x, pos.y, pos.z },
         { 6.0f, 7.0f, 6.0f }, { 0x400, 0x100, 0x400 },
         { 5, 50 }, { position.y, 1.0f },
-        gyaranzo_bml_resource->models[0].model,
-        gyaranzo_bml_resource->models[0].m_c, 2,
+        (s32)gyaranzo_bml_resource->models[0].model,
+        (s32)gyaranzo_bml_resource->models[0].m_c, 2,
     };
     const TObjChipParams second = {
         { 0.5f, 0.04f, 0.2f }, { pos.x, pos.y, pos.z },
         { 5.5f, 6.5f, 5.5f }, { 0x400, 0x100, 0x400 },
         { 4, 50 }, { position.y, 1.0f },
-        gyaranzo_bml_resource->models[1].model,
-        gyaranzo_bml_resource->models[1].m_c, 2,
+        (s32)gyaranzo_bml_resource->models[1].model,
+        (s32)gyaranzo_bml_resource->models[1].m_c, 2,
     };
     const TObjChipParams third = {
         { 0.5f, 0.04f, 0.22f }, { pos.x, pos.y, pos.z },
         { 5.5f, 7.0f, 5.5f }, { 0x400, 0x100, 0x400 },
         { 5, 50 }, { position.y, 1.0f },
-        gyaranzo_bml_resource->models[2].model,
-        gyaranzo_bml_resource->models[2].m_c, 2,
+        (s32)gyaranzo_bml_resource->models[2].model,
+        (s32)gyaranzo_bml_resource->models[2].m_c, 2,
     };
     void *obj = __nw__7TObjectFUl(0x234);
     if (obj != NULL) __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)obj, tl_05, (u8 *)&first);
@@ -866,7 +866,7 @@ void TObjEneGyaranzo::shed_armor() {
                     { 3.5f, 5.0f, 3.5f }, { 0x400, 0x100, 0x400 },
                     { 3, 50 }, { position.y, 1.0f },
                     (s32)gyaranzo_resource_ptrs[idx],
-                    gyaranzo_bml_resource->models[3].m_c, 2,
+                    (s32)gyaranzo_bml_resource->models[3].m_c, 2,
                 };
                 obj = __nw__7TObjectFUl(0x234);
                 if (obj != NULL) {

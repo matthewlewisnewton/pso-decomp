@@ -1,3 +1,4 @@
+#include "pso/object/TObjCMMainMenu.h"
 #include "pso/TChCrEffTag.h"
 #include "pso/misc/TChCrEffTagStr.h"
 #include "types.h"
@@ -17,7 +18,6 @@ struct RecoveredGlobal_8029AA74_lbl_804652A4 {
 extern "C" {
 u32 create_str__11TChCrEffTagFPvPvPv(void *, int, void *);
 extern RecoveredGlobal_8029AA74_lbl_804652A4 lbl_804652A4;
-extern s32 TChCrEffTag__selected_heading;
 
 int restore_saved_depth_alpha_state(void);
 int draw_chcr_tag_heading_frame(void*);
@@ -46,7 +46,6 @@ void TChCrEffTag::refresh_label() {
     }
 }
 
-s32 get_creation_sprite_id__14TObjCMMainMenuFl(int);
 
 }
 #pragma push
@@ -63,7 +62,7 @@ void TChCrEffTag::run_task()
   temp_r0 = heading;
   if (temp_r0 >= 0)
   {
-    targetWidth = (f32) (15.0f + ((f32) get_creation_sprite_id__14TObjCMMainMenuFl((int) ((s32*)&lbl_804652A4)[temp_r0])));
+    targetWidth = (f32) (15.0f + ((f32) TObjCMMainMenu::get_creation_sprite_id((int) ((s32*)&lbl_804652A4)[temp_r0])));
   }
   width = width;
   temp_f3 = targetWidth;
@@ -119,4 +118,5 @@ void *__ct__11TChCrEffTagFv(void *ch_cr_eff_tag) {
 
 extern char lbl_80465298[];
 void *TChCrEffTag__name = lbl_80465298;
+s32 TChCrEffTag__selected_heading = -1;
 }

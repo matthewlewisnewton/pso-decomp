@@ -169,8 +169,8 @@ void TLobby::load_now_loading_texture() {
         set_stream_state__6TLobbyFPCv(lbl_80477BC4, temp_r3);
         prs_decompress_buffer((temp_r3), (temp_r31));
         load_gvm_texture_archive(temp_r31, lbl_804EF1DC);
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
-        TAdSinglePlyChrSelectGC::safe_free(temp_r31);
+        TAdSinglePlyChrSelectGC::safe_free((void *)temp_r3);
+        TAdSinglePlyChrSelectGC::safe_free((void *)temp_r31);
         lobby_request_flags |= 2;
     }
 }
@@ -268,3 +268,7 @@ void TWindowSubStatusDisp__sub_803386F0(void) { free_if_valid__10TObjPlayerFl((v
 
     extern unsigned char lbl_80477BD4[];
 void load_info_icon(void) { info_icon_texture = (int)load_gvm_texture_file((s32)lbl_80477BD4); }
+
+extern "C" {
+s32 lobby_request_flags;
+}

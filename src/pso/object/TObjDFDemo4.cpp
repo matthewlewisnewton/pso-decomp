@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/object/TObjDFDemo4.h"
 #include "pso/TParticleCtrl.h"
@@ -74,13 +75,13 @@ TObjDFDemo4::TObjDFDemo4(TObject *parent, const Vec *position, s32 angle) : TObj
     for (s32 i = 0; i < 2; i++) {
         const s32 model = boss4_zanzo_bml_index_table[i];
         afterimages[i].model = get_bml_model(resource, model);
-        afterimages[i].texlist = TObjFish__sub_8001EDB0(resource, model);
+        afterimages[i].texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)model);
         afterimages[i].motion = get_bml_motion(resource, afterimage_motion_indices[i]);
     }
     for (s32 i = 0; i < 3; i++) {
         const s32 model = lbl_80486FB0[i];
         body_parts[i].model = get_bml_model(resource, model);
-        body_parts[i].texlist = TObjFish__sub_8001EDB0(resource, model);
+        body_parts[i].texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)model);
         body_parts[i].motion = get_bml_motion(resource, body_motion_indices[i]);
     }
     frame = body_first_frame;
@@ -195,7 +196,7 @@ void TObjDFDemo4::draw_afterimages() {
     rotate_matrix_y(0, angle);
     for (s32 i = 0; i < 2; i++) {
         set_current_texture_list((GinjaTextureList *)afterimages[i].texlist);
-        draw_model_motion((void *)afterimages[i].model, afterimages[i].motion, afterimage_frame);
+        draw_model_motion(afterimages[i].model, afterimages[i].motion, afterimage_frame);
     }
     clear_motion_packed_rotation();
     pop_matrix();
@@ -216,7 +217,7 @@ void TObjDFDemo4::draw_body() {
             if (i == 0) {
                 node_capture->install();
             }
-            draw_model_motion((void *)body_parts[i].model, body_parts[i].motion, frame);
+            draw_model_motion(body_parts[i].model, body_parts[i].motion, frame);
             if (i == 0) {
                 node_capture->clear();
             }

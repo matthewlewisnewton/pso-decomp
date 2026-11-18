@@ -1,3 +1,4 @@
+#include "pso/boss/DarkFalzEffectConstants.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
@@ -215,7 +216,7 @@ extern void *__vt__11TObjDFJisin[];
 extern void *__vt__13TObjDFHorming[];
 extern void *__vt__13TObjDFRecBall[];
 extern void *__vt__16TObjDFBeamCursor[];
-extern const f64 lbl_804374F0;
+static const f64 lbl_804374F0 = 10430.38043493439;
 extern s32 TObjDFJisin__particle_emitter_id_table[];
 extern s32 TObjDFRecBall__name;
 extern void *TObjDFBeamCursor__name;
@@ -244,9 +245,6 @@ extern const f32 lbl_805D8AA0;
 extern const f32 lbl_805D8AA4;
 extern const f32 lbl_805D8AA8;
 extern const f32 lbl_805D8AAC;
-extern const f32 lbl_805D8AB4;
-extern const f32 lbl_805D8AB8;
-extern const f32 lbl_805D8ABC;
 
 int queue_destruction__13TObjDFHormingFPv(void* p) { return ((int (*)(void*))queue_destruction__7TObjectFv)(p); }
 
@@ -531,9 +529,9 @@ void TObjDFRecBall::run_task() {
         o->vel.y = lbl_805D8A30;
         o->vel.z = lbl_805D8A30;
     }
-    o->vel.x = o->speed * (lbl_805D8AB4 * o->vel.x + lbl_805D8AB8 * d.x);
-    o->vel.y = o->speed * (lbl_805D8AB4 * o->vel.y + lbl_805D8AB8 * d.y);
-    o->vel.z = o->speed * (lbl_805D8AB4 * o->vel.z + lbl_805D8AB8 * d.z);
+    o->vel.x = o->speed * (df_rec_ball_velocity_weight * o->vel.x + df_rec_ball_target_weight * d.x);
+    o->vel.y = o->speed * (df_rec_ball_velocity_weight * o->vel.y + df_rec_ball_target_weight * d.y);
+    o->vel.z = o->speed * (df_rec_ball_velocity_weight * o->vel.z + df_rec_ball_target_weight * d.z);
     vec3_add_to(&o->pos, &o->vel);
     ((TParticleCtrl *)o->model)->set_position(&o->pos);
     if (((f32 (*)(void *, void *))xyz_distance)(&o->pos, &o->target) <= o->speed) {
@@ -556,7 +554,7 @@ u8 *TObjDFRecBall__ct(u8 *object, u8 *arg1, u8 *arg2, u8 *arg3) {
     *(s32 *)((s8 *)object + 0) = (s32) TObjDFRecBall__name;
     VecCopy((Vec *)(object + 0x1C), (const Vec *)arg2);
     VecCopy((Vec *)(object + 0x28), (const Vec *)arg3);
-    temp_r31 = (s32) (lbl_805D8ABC * (lbl_805D8A6C * (f32) rand()));
+    temp_r31 = (s32) (df_rec_ball_angle_range * (lbl_805D8A6C * (f32) rand()));
     *(f32 *)((s8 *)object + 0x34) = sin_table_lookup(temp_r31);
     *(f32 *)((s8 *)object + 0x38) = (f32) lbl_805D8A30;
     *(f32 *)((s8 *)object + 0x3C) = cos_table_lookup(temp_r31);
@@ -912,7 +910,6 @@ RecoveredGlobal_80051AD0_lbl_804FF228 lbl_804FF228;
 RecoveredGlobal_80051AD0_lbl_804FF234 lbl_804FF234;
 RecoveredGlobal_80051A18_lbl_804FF240 df_captured_matrix_pair;
 s32 is_active__14TBoss4DarkFalzFv();
-extern const f32 lbl_805D8AC0;
 void TObjDFTenchuFuru__sub_80051A7C(void);
 void *__nw__7TObjectFUl(int);
 
@@ -921,7 +918,7 @@ void *__nw__7TObjectFUl(int);
 void TObjDFTenchuFuru::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r0;
-    this->m_20 = (f32) (this->m_20 + lbl_805D8AC0);
+    this->m_20 = (f32) (this->m_20 + df_tenchu_furu_fall_step);
     if ((u32) this->m_2c != 0U) {
         ((TParticleCtrl *)this->m_2c)->set_position((u8 *)&this->unk_1C);
     }
@@ -953,11 +950,11 @@ u8 *TObjDFTenchuFuru__ct(u8 *object, u8 *arg1, u8 *arg2) {
     return object;
 }
 
-void *TObjDFTenchuFuru::create(void *arg1) {
+void *TObjDFTenchuFuru::create(TObject *parent, void *arg1) {
     void *o;
     o = __nw__7TObjectFUl(0x30);
     if (o != NULL) {
-        o = TObjDFTenchuFuru__ct((u8 *)o, (u8 *)this, (u8 *)arg1);
+        o = TObjDFTenchuFuru__ct((u8 *)o, (u8 *)parent, (u8 *)arg1);
     }
     return o;
 }

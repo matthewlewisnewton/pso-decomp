@@ -158,7 +158,7 @@ void TOSensorAncient01::load_resources() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&TOSensorAncient01__resource_descriptor), 0, 0, (void *)(0));
     sensor_ancient01_model_resource = resource;
     ancient_sensor_resource_pair_table = (TOSensorAncient01Textures *)::operator new[](0x10);
-    ancient_sensor_resource_pair_table[0].plain = sensor_ancient01_model_resource->models[0].m_c;
+    ancient_sensor_resource_pair_table[0].plain = (s32)sensor_ancient01_model_resource->models[0].m_c;
     ancient_sensor_resource_pair_table[0].red = (s32)load_gvm_texture_file("fs_obj_o_sensor01r.gvm");
     ancient_sensor_resource_pair_table[1].plain = (s32)load_gvm_texture_file("fs_obj_o_sensor02.gvm");
     ancient_sensor_resource_pair_table[1].red = (s32)load_gvm_texture_file("fs_obj_o_sensor02r.gvm");

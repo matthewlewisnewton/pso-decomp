@@ -3,10 +3,13 @@
 
 #include "pso/TObject.h"
 #include "types.h"
+#include <stddef.h>
+
+class TWindowMessage;
 
 class THunterGuildWarning : public TObject {
 public:
-    THunterGuildWarning(TObject *arg1, void *arg2);
+    THunterGuildWarning(TObject *arg1, s32 mode);
     virtual ~THunterGuildWarning();
     virtual void run_task();
 public:
@@ -14,6 +17,17 @@ public:
     static void create_instance(s32 arg0);
     static u8 is_active();
     void close_windows();
+    void sub_80211774(s32 mode);
+    void sub_802119CC();
+
+    s32 m_warning_type;
+    s32 m_timer;
+    TWindowMessage *m_windows[4];
 };
+
+typedef char THunterGuildWarning_size[sizeof(THunterGuildWarning) == 0x34 ? 1 : -1];
+typedef char THunterGuildWarning_mode_offset[offsetof(THunterGuildWarning, m_warning_type) == 0x1C ? 1 : -1];
+typedef char THunterGuildWarning_timer_offset[offsetof(THunterGuildWarning, m_timer) == 0x20 ? 1 : -1];
+typedef char THunterGuildWarning_windows_offset[offsetof(THunterGuildWarning, m_windows) == 0x24 ? 1 : -1];
 
 #endif

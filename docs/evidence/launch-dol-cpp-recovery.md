@@ -1,10 +1,11 @@
 # LaunchDol recovery follow-up
 
-The latest handoff experiment reproduces the complete 332-byte loader/restore
-span with typed C++, three scoped pragmas, `__isync`, and two assembly
-instructions. See [the current experiment](../../experiments/launch_dol/README.md)
-and the continuation below. Earlier restrictions and mismatch descriptions in
-this document describe their historical scopes.
+The [handoff experiment](../../experiments/launch_dol/README.md) reproduces
+the complete 332-byte loader/restore span with the current ntUtl compiler
+and flags. Production retains the 312-byte loader and separately tracked
+20-byte restore. The final section records the compiler comparison, the
+boundary decision and the validation on current main. Earlier sections
+describe prior experiments and baselines.
 
 PR #284 now carries only the validated DOL header view, launch-context field
 and caller conversion described in [DOL image header view](dol-header-view.md).
@@ -187,3 +188,30 @@ checks pass. The target handoff probe remains exact across all 332 bytes and
 ten relocations under the integrated headers. Portable behavior and ASan/UBSan
 checks pass; the sanitizer run uses the normal host environment because
 LeakSanitizer cannot operate inside the ptrace-based execution sandbox.
+
+## Review scope on current main
+
+The PR is scoped to the shared typed native interface and the exact offline
+experiment. The 312-byte production provider and the separately linked restore
+at `0x8042E9FC` continue to own their existing ranges. The discarded widening
+trial removed that function address from coverage. Keeping it tracked preserves
+the #285 port contract for dispatch at every instruction of the restore as well
+as the native accounting. The source ownership question remains open.
+
+The stock GC/2.0 toolchain now used for ntUtl produces the same complete object
+as GC/2.6 at `-O4,p -inline off` with the scoped pragmas. The independent
+comparison against the pinned DOL agrees across all 332 bytes and ten call
+relocations. The verifier checks that each relocation names an undefined
+global, so resolution against the game's manifest matches the linker's external
+symbol lookup. Bounded probes on both compiler versions found that an infinite
+loop or backward goto appended a four-byte branch. A computed goto emitted
+312 bytes with a transfer through CTR, leaving a different guest state.
+
+Native builds at the refreshed base `e1c1113f3f` and PR tree both reproduce the
+original DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The 3,632
+compiled source objects and parsed progress reports agree. `check_pr.py`
+passes with zero progress deltas, 3,628 exact linked units and no retention
+drift. The historical direct call differs at the three documented addresses.
+The verifier also rejects changes to a loader word, the handoff, the restore
+and a relocation addend, as well as a defined or weak call target, a truncated
+ELF and a wrong DOL hash. The portable tests and ASan/UBSan checks pass.

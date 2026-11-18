@@ -64,7 +64,7 @@ f64 atan2_float(f32, f32);
 s32 approach_angle_limited(int, int, int);
 
 void * __nw__7TObjectFUl(int);
-extern const f64 TObjEneDellBiter__data_80475328;
+static const f64 TObjEneDellBiter__data_80475328 = 10430.38043493439;
 extern DelbiterMovementParameters *TObjEneDellBiter__movement_params;
 extern const f32 lbl_805DEFCC;
 extern const f32 lbl_805DEFD0;
@@ -319,7 +319,7 @@ void TObjEneDellBiter::init_params() {
     s32 i;
     init_position_vectors();
     model = (void *)((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->model;
-    texlist = ((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
+    texlist = (s32)((BmlResource *)TObjEneDellBiter__shared_model_resource)->models->m_c;
     init_model((CollisionBody *)lbl_804E6B8C, 1);
     bodies->flags |= 0x400000;
     set_action_table((TObjMotionAction *)((s32)&dell_biter_param_table));
@@ -1693,3 +1693,7 @@ s32 TObjEneDellBiter::render_model_if_visible() {
 }
 
 Vec dellbiter_demo_camera_vec;
+
+extern "C" {
+s32 TObjEneDellBiter__demo_rotate_x_angle;
+}

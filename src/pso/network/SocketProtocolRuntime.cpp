@@ -1,11 +1,9 @@
+// TCP queue recovery adapted from zeroz41/pso-decomp (MIT); see third_party/README.md.
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
+#include "pso/network/TcpReceiveQueue.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
-
-struct P_8041FDA0 { s32 a; s32 b; };
-
-struct O_8041FDA0 { u8 pad0[0xF4]; s32 total; s16 n; u8 padFA[2]; P_8041FDA0 items[32]; };
 
 struct P_8041FE44 { u32 a; u32 b; };
 
@@ -83,15 +81,9 @@ struct Hdr_80420DE4 { u16 src; u16 dst; u16 len; u16 sum; };
 
 struct O_80420DE4 { u8 pad0[8]; s32 f8; u8 padC[0xC]; s16 f18; u8 pad1A[2]; u8 f1C[4]; };
 
-struct TcpSeqRange { u32 start; u32 end; };
-
-struct TcpSackView { u8 pad0[0xFA]; s16 last_reasm; TcpSeqRange reasm[32]; u8 pad1FC[0x2F8 - 0x1FC]; TcpSeqRange sack[5]; };
-
 extern "C" {
 void TLobby__sub_803F87C8(u8 *arg0);
 s32 TLobby__sub_803F87C4(void *);
-void TLobby__sub_8041FDA0(O_8041FDA0 *o, s16 idx, s32 a, s32 b);
-void TLobby__sub_8041FED4(TcpSackView *tcb);
 void NetMemcpy(void *_w0, void *_w1, int _w2);
 s32 TLobby__sub_80420BD0(void *arg0, S_80420BD0 *s, s32 arg2);
 s32 TLobby__sub_80420D38(u16 arg0, u8 arg1);
@@ -270,27 +262,167 @@ void TLobby__sub_8041F66C(O_8041F66C *o) {
     }
 }
 
-void TLobby__sub_8041FDA0(O_8041FDA0 *o, s16 idx, s32 a, s32 b) {
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(4)
+inline void sack_remove_8041F914(TcpTcb *o, s16 idx) {
+    s16 j;
+    s32 len;
+    if (idx < 0 || o->reasm_n < 0 || idx > o->reasm_n) {
+        return;
+    }
+    len = o->reasm[idx].end - o->reasm[idx].start;
+    o->reasm_total -= len;
+    for (j = idx; j < o->reasm_n; j++) {
+        o->reasm[j] = o->reasm[j + 1];
+    }
+    o->reasm_n--;
+}
+
+/* Queues an out-of-order segment: copies it into the receive ring at its sequence offset and merges its range into
+   the SACK/reassembly list.  Returns -1 when the connection no longer receives (f204_b6). */
+s32 TLobby__sub_8041F914(NetPacket *pkt, u16 x, TcpTcb *o, TcpHdr *th) {
+    if (!o->f204_b6) {
+        u32 i;
+        u32 skip;
+        u32 n;
+        u32 pos;
+        s32 total;
+        s32 d;
+        s32 seq;
+        s32 end;
+        s16 j;
+        s32 grow;
+        NetBufferRef dst;
+        NetBufferRef src;
+        u32 len;
+        skip = 0;
+        total = 0;
+        d = th->seq - o->rcv_nxt;
+        if (d <= 0) {
+            return 0;
+        }
+        len = pkt->total_bytes - x;
+        if (d + len > o->f534 - o->fD8) {
+            return 0;
+        }
+        for (i = 0; i < pkt->fragment_count; i++) {
+            if ((u16)pkt->fragments[i].length > x) {
+                skip = x;
+                break;
+            }
+            x -= pkt->fragments[i].length;
+        }
+        if (i == pkt->fragment_count) {
+            return 0;
+        }
+        pos = o->fE0 + d;
+        if (pos > o->f534) {
+            pos -= o->f534;
+        }
+        NetMemcpy(&dst, &o->rcv_buf, 8);
+        TLobby__sub_80406EB8(&dst, pos);
+        for (; i < pkt->fragment_count; i++) {
+            NetMemcpy(&src, &pkt->fragments[i].buffer, 8);
+            if (skip != 0) {
+                TLobby__sub_80406EB8(&src, skip);
+            }
+            if ((n = pkt->fragments[i].length - skip) > o->f534 - o->fD8) {
+                n = o->f534 - o->fD8;
+            }
+            total += n;
+            if (pos + n >= o->f534) {
+                TLobby__sub_80406FD8(&dst, &src, o->f534 - pos);
+                NetMemcpy(&dst, &o->rcv_buf, 8);
+                TLobby__sub_80406EB8(&src, o->f534 - pos);
+                n -= o->f534 - pos;
+            }
+            if (n != 0) {
+                TLobby__sub_80406FD8(&dst, &src, n);
+                TLobby__sub_80406EB8(&dst, (s16)n);
+            }
+            skip = 0;
+        }
+        seq = th->seq;
+        end = seq + total;
+        if (o->reasm_n == -1) {
+            TLobby__sub_8041FDA0(o, 0, seq, end);
+            o->last_reasm = 0;
+        } else {
+            if (seq - o->reasm[0].start <= 0) {
+                TLobby__sub_8041FDA0(o, 0, seq, end);
+                j = 0;
+            } else {
+                for (j = 1; j <= o->reasm_n; j++) {
+                    if (seq - o->reasm[j].start <= 0) {
+                        if (seq - o->reasm[j - 1].end <= 0) {
+                            grow = end - o->reasm[j - 1].end;
+                            if (grow < 0) {
+                                goto done;
+                            }
+                            o->reasm_total += grow;
+                            o->reasm[j - 1].end = end;
+                            j--;
+                        } else {
+                            TLobby__sub_8041FDA0(o, j, seq, end);
+                        }
+                        break;
+                    }
+                }
+                if (j == o->reasm_n + 1) {
+                    if (seq - o->reasm[j - 1].end <= 0) {
+                        grow = end - o->reasm[j - 1].end;
+                        if (grow < 0) {
+                            goto done;
+                        }
+                        o->reasm_total += grow;
+                        o->reasm[j - 1].end = end;
+                        j--;
+                    } else {
+                        TLobby__sub_8041FDA0(o, j, seq, end);
+                    }
+                }
+            }
+            o->last_reasm = j;
+            while (j + 1 <= o->reasm_n && o->reasm[j].end - o->reasm[j + 1].start >= 0) {
+                if (o->reasm[j].end - o->reasm[j + 1].end >= 0) {
+                    sack_remove_8041F914(o, j + 1);
+                } else {
+                    o->reasm_total += o->reasm[j + 1].end - o->reasm[j].end;
+                    o->reasm[j].end = o->reasm[j + 1].end;
+                    sack_remove_8041F914(o, j + 1);
+                }
+            }
+        }
+    done:
+        TLobby__sub_8041FED4(o);
+        return 0;
+    }
+    return -1;
+}
+#pragma pop
+
+void TLobby__sub_8041FDA0(TcpTcb *o, s16 idx, s32 a, s32 b) {
     s16 i;
     if (idx < 0) {
         return;
     }
-    if (idx > o->n + 1) {
+    if (idx > o->reasm_n + 1) {
         return;
     }
     if (idx > 0x1F) {
         return;
     }
-    if (o->n >= 0x1F) {
-        o->n = 0x1E;
+    if (o->reasm_n >= 0x1F) {
+        o->reasm_n = 0x1E;
     }
-    for (i = o->n; i >= idx; i--) {
-        o->items[i + 1] = o->items[i];
+    for (i = o->reasm_n; i >= idx; i--) {
+        o->reasm[i + 1] = o->reasm[i];
     }
-    o->items[idx].a = a;
-    o->items[idx].b = b;
-    o->n++;
-    o->total += b - a;
+    o->reasm[idx].start = a;
+    o->reasm[idx].end = b;
+    o->reasm_n++;
+    o->reasm_total += b - a;
 }
 
 void TLobby::expire_timeout_entries() {
@@ -314,7 +446,7 @@ void TLobby::expire_timeout_entries() {
     }
 }
 
-void TLobby__sub_8041FED4(TcpSackView *tcb) {
+void TLobby__sub_8041FED4(TcpTcb *tcb) {
     u32 start;
     u32 end;
     s16 i;

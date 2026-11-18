@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLobby_80082048.h"
@@ -9,10 +10,10 @@
 #include "pso/misc/TUnk_8048E1A4.h"
 #include "pso/system/BmlResourceDescriptor.h"
 
-extern char lbl_80438E60[];
-extern char lbl_80438E74[];
-extern char lbl_80438E80[];
-extern char lbl_80438E94[];
+extern const char lbl_80438E60[] = "ice_break_root.gj";
+extern const char lbl_80438E74[] = "ice_root.gj";
+extern const char lbl_80438E80[] = "ice_break_root.njm";
+extern const char lbl_80438E94[] = "bm_eff_ice.bml";
 extern const char *bm_eff_ice_model_names[3];
 extern const char *bm_eff_ice_motion_names[2];
 extern BmlResourceDescriptor enemy_freeze_ice_resource_descriptor;
@@ -70,13 +71,12 @@ extern "C" {
 extern u32 freeze_shell_bml_resource;
 s32 __ct__9TObjCharaFP7TObject(void *, void *);
 s16 get_entity_id(void *);
-s32 get_bml_model(void *, int);
 void *create_particle_emitter(void *pos, s32 id);
 extern s32 lbl_8048E1A4[];
 extern s32 tl_05;
 extern const f32 lbl_805D9378;
-extern const f32 lbl_805D9398;
-extern const f32 lbl_805D939C;
+static const f32 lbl_805D9398 = 0.15f;
+static const f32 lbl_805D939C = 0.075f;
 extern const f32 lbl_805D93A0;
 void __dl__7TObjectFPv(void *);
 
@@ -133,7 +133,7 @@ u8 *TObjPlayer::construct_freeze_shell(u8 *arg1, u8 *arg2) {
     u8 *temp_r3;
     __ct__9TObjCharaFP7TObject(this, (void *)tl_05);
     ((RecoveredFields_8008213C_arg0 *)((u8 *)this))->field_18 = lbl_8048E1A4;
-    ((RecoveredFields_8008213C_arg0 *)((u8 *)this))->field_34 = get_bml_model((void *) ((*(s32 *)&freeze_shell_bml_resource)), 1);
+    ((RecoveredFields_8008213C_arg0 *)((u8 *)this))->field_34 = (s32)get_bml_model((BmlResource *)((*(s32 *)&freeze_shell_bml_resource)), 1);
     if (arg1 != NULL) {
         ((RecoveredFields_8008213C_arg0 *)((u8 *)this))->field_358 = get_entity_id(arg1);
         VecCopy((Vec *)(((u8 *)this) + 0x35C), (const Vec *)(arg1 + 0x38));

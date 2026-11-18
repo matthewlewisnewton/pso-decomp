@@ -17,7 +17,7 @@ s32 release_texture_list(void*);
 void TLobby::free_singleton_805D7018() {
     if ((u32) TBGMulti__textures != 0U) {
         release_texture_list((void*)TBGMulti__textures);
-        TAdSinglePlyChrSelectGC::safe_free(TBGMulti__textures);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TBGMulti__textures);
         TBGMulti__textures = 0U;
     }
 }

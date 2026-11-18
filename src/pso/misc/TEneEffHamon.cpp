@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/TObject.h"
@@ -42,13 +44,13 @@ typedef struct Cam_800A3D1C { u8 pad0[8]; f32 cx; f32 cy; u8 pad10[8]; f32 sw; f
 
 extern "C" {
 s32 queue_destruction__7TObjectFv();
-extern const f32 lbl_805D99E0;
+static const f32 lbl_805D99E0 = 0.0f;
 void __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_800A38A4___vt__12TEneEffHamon __vt__12TEneEffHamon;
 extern s32 TEneEffHamon__name;
-extern const f32 lbl_805D99E4;
-extern const f32 lbl_805D99E8;
-extern const f32 lbl_805D99EC;
+static const f32 lbl_805D99E4 = 1.0f;
+static const f32 lbl_805D99E8 = 0.9f;
+static const f32 lbl_805D99EC = -0.9f;
 extern s32 tl_06;
 s32 scale_matrix(int, f32, f32, f32);
 s32 push_matrix();
@@ -65,9 +67,6 @@ extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
 void render__12TEneEffHamonFv(Hamon_800A36A8 *o);
-int TObjFish__sub_8001EDB0(void*, void*);
-int get_bml_model(void*, void*);
-
 void render__12TEneEffHamonFv(Hamon_800A36A8 *o) {
     f32 s;
     if (o->delay > 0) {
@@ -111,7 +110,7 @@ void run_task__12TEneEffHamonFv(u8 *arg0) {
 void TEneEffHamon__sub_800A380C(void) {  }
 
     extern int player_effect_bml_resource;
-void init_fish_effects__12TEneEffHamonFv(void) { TEneEffHamon__fish_model = get_bml_model((void*)player_effect_bml_resource, (void*)3); TEneEffHamon__fish_effect_param = TObjFish__sub_8001EDB0((void*)player_effect_bml_resource, (void*)3); }
+void init_fish_effects__12TEneEffHamonFv(void) { TEneEffHamon__fish_model = (int)get_bml_model((BmlResource *)player_effect_bml_resource, (s32)3); TEneEffHamon__fish_effect_param = (s32)TObjFish__sub_8001EDB0((BmlResource *)player_effect_bml_resource, 3); }
 
 }
 

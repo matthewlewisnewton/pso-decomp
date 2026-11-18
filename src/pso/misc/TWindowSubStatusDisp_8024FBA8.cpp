@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
@@ -39,7 +40,6 @@ u8 get_small_font_glyph_width(s32);
 s32 TWindowSubStatusDisp__sub_800FC248(s32);
 void calc_plain_glyph_quad(s32, void *);
 void build_small_font_glyph_quad(s32, void *);
-void render_forward__20TWindowSubStatusDispFPv();
 void apply_context_transform_to_rect(TWindowDrawContext *, f32 *);
 s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *, f32 *);
 void begin_screen_draw(s32);
@@ -73,7 +73,7 @@ s32 draw_small_font_string_clipped(f32 *pos, const char *s, u32 color, f32 width
     x = pos[0];
     y = pos[1];
     begin_screen_draw(1);
-    render_forward__20TWindowSubStatusDispFPv();
+    begin_small_font_draw();
     set_draw_texture_and_color(0, color);
     while (*s != 0) {
         c = (u8)*s++;

@@ -109,7 +109,7 @@ void emit_effect_and_step__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1);
 void fn_8002F5AC(u8 *arg0);
 void forward_switch_phase_stats__13TBoss2DeRolLeFi(s32 arg0);
 s32 free_if_positive__13TBoss2DeRolLeFis(s32 arg0, s16 arg1);
-void free_laser__13TBoss2DeRolLeFPv(void *arg0, s32 _w1);
+void free_laser__13TBoss2DeRolLeFPv(void *arg0);
 s32 get_instance__13TBoss2DeRolLeFv(void);
 void get_node_world_pos__13TBoss2DeRolLeFPvPv(u8 *arg0, u8 *arg1);
 void handle_6x13_de_rol_le_boss_actions(void *arg0);

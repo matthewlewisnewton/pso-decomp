@@ -1,30 +1,17 @@
-#include "types.h"
-struct Obj_803D64F8 {
-    f32 a, b, c, d, e, f;
-    s32 g;
-    s32 h;
-    f32 i, j;
-};
+#include "pso/misc/RadarMapData.h"
 
-extern "C" {
-extern const f32 lbl_805E0DF0;
-extern const f32 lbl_805E0DF4;
-extern const f32 lbl_805E0DF8;
-void fn_803D64F8(Obj_803D64F8 *p);
 #pragma push
 #pragma scheduling off
-void fn_803D64F8(Obj_803D64F8 *p) {
-    p->a = lbl_805E0DF0;
-    p->b = lbl_805E0DF0;
-    p->c = lbl_805E0DF0;
-    p->d = lbl_805E0DF0;
-    p->e = lbl_805E0DF0;
-    p->f = lbl_805E0DF4;
-    p->g = 0;
-    p->h = 0x2aaa;
-    p->i = lbl_805E0DF4;
-    p->j = lbl_805E0DF8;
+void fn_803D64F8(RadarMapViewState *view) {
+    view->position.x = 0.0f;
+    view->position.y = 0.0f;
+    view->position.z = 0.0f;
+    view->field0c = 0.0f;
+    view->field10 = 0.0f;
+    view->field14 = -1.0f;
+    view->field18 = 0;
+    view->field1c = 0x2aaa;
+    view->field20 = -1.0f;
+    view->field24 = -60000.0f;
 }
 #pragma pop
-
-}

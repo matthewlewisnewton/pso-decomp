@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/misc/ParticleFactory.h"
@@ -5,7 +6,7 @@
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
 #include "pso/player/TObjPlayer_800D8FDC.h"
-#include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/ChunkMaterialState.h"
 #include "types.h"
 #include "pso/enemy/TUnk_804909C4.h"
@@ -228,12 +229,10 @@ s32 update_action_hold_status__9TObjCharaFv();
 void calc_velocity_toward_destination(void *, Vec_800A12C0, Vec_800A12C0, f32);
 s32 check_path_obstructed(void *, Vec_800A1D70 *);
 f32 atan2_float(f32, f32);
-int TObjFish__sub_8001EDB0(void*, void*);
-int get_bml_model(void*);
 u8 * csnVector(void *, Vec_800A34E8 *, s32);
 void * __dt__13TUnk_80490470Fv(void *, s16);
 s32 trigger_targets_action__10TObjPlayerFv();
-u8 * TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2);
+u8 * TObjEneDarkGunCenter__ct(u8 *arg0, TObject *arg1, void *arg2);
 void clear_lappy_flag_set_param(TObjEneLappy *arg0);
 void fn_800A0FDC(TObjEneLappy *arg0);
 void TObjPlayer__sub_800A100C(s32 _w0);
@@ -636,7 +635,7 @@ extern s32 lbl_805D5018;
 extern s32 TObjPlayer__shadow_chunk_object;
 extern void *tl_04;
 
-u8 *TObjEneDarkGunCenter__ct(u8 *arg0, s32 arg1, s32 arg2) {
+u8 *TObjEneDarkGunCenter__ct(u8 *arg0, TObject *arg1, void *arg2) {
     Obj_800A0EDC *o;
     s32 i;
     __ct__9TObjEnemyFP7TObject(arg0);
@@ -1618,17 +1617,16 @@ extern s32 lbl_805D5028;
 void TObjPlayer__sub_800A2DCC();
 }
 
-struct Node_800A2DCC { u32 flags; s32 *model; u8 pad[0x24]; Node_800A2DCC *child; };
 
 void TObjPlayer__sub_800A2DCC() {
     s32 i;
     void *res = (void *)new BmlResource(1, (BmlResourceDescriptor *)(bm_ene_darkgunner_resource_descriptor), 0, 0, (void *)(0));
     player_effect_bml_resource = (u32)res;
-    TObjPlayer__shadow_chunk_object = ((s32 (*)(void *, s32))get_bml_model)((void *)player_effect_bml_resource, 0);
-    lbl_805D5014 = ((s32 (*)(void *, s32))TObjFish__sub_8001EDB0)((void *)player_effect_bml_resource, 0);
-    lbl_805D5018 = ((s32 (*)(void *, s32))TObjFish__sub_8001EDB0)((void *)player_effect_bml_resource, 2);
-    lbl_805D5024 = ((Node_800A2DCC *(*)(void *, s32))get_bml_model)((void *)player_effect_bml_resource, 1)->child->model[1];
-    lbl_805D5028 = ((Node_800A2DCC *(*)(void *, s32))get_bml_model)((void *)player_effect_bml_resource, 0)->model[1];
+    TObjPlayer__shadow_chunk_object = (s32)get_bml_model((BmlResource *)player_effect_bml_resource, 0);
+    lbl_805D5014 = (s32)TObjFish__sub_8001EDB0((BmlResource *)player_effect_bml_resource, 0);
+    lbl_805D5018 = (s32)TObjFish__sub_8001EDB0((BmlResource *)player_effect_bml_resource, 2);
+    lbl_805D5024 = ((s32 *)get_bml_model((BmlResource *)player_effect_bml_resource, 1)->child->model)[1];
+    lbl_805D5028 = ((s32 *)get_bml_model((BmlResource *)player_effect_bml_resource, 0)->model)[1];
     TObjPlayer__sub_800A4294();
     init_fish_effects__12TEneEffHamonFv();
     TObjPlayer__effect_resource = (u32)load_gvm_texture_file("re5_b_gunner_body_pika.gvm");
@@ -1742,9 +1740,17 @@ s32 TObjPlayer__sub_800A3210(s32 i) {
 
 int TObjPlayer::is_flag_set_388_bit26() { return (*(u32 *)&this->unk_388 >> 26) & 0x1; }
 
-void TObjEneDarkGunner::set_fields_24_34_from_global(void*a1) { *(int *)&this->model = get_bml_model((void*)((*(int *)&player_effect_bml_resource))); *(int *)&this->texlist = TObjFish__sub_8001EDB0((void*)((*(int *)&player_effect_bml_resource)), a1); }
+void TObjEneDarkGunner::set_fields_24_34_from_global(void *a1) {
+    // The caller passes the model index in r4; the legacy outer ABI is void *.
+    this->model = get_bml_model((BmlResource *)player_effect_bml_resource, (s32)a1);
+    *(int *)&this->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)player_effect_bml_resource, (s32)a1);
+}
 
 void TObjPlayer::clear_counter() { this->m_340 = 0; }
 
 void TObjPlayer::set_cancel_flag() { *(s32 *)&this->m_340 = 1; }
+}
+
+extern "C" {
+s32 lbl_805D5020;
 }

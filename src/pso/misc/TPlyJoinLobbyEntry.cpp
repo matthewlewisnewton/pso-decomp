@@ -1,3 +1,4 @@
+#include "pso/ui/PlayerWindowDispatch.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/misc/TLobby_801E43E4.h"
 #include "pso/misc/TWindowBase.h"
@@ -449,8 +450,8 @@ extern u8 lbl_80515BA0[];
 extern s32 game_difficulty_selection;
 extern Mgr_801361E8 *game_protocol_instance;
 extern s32 quest_download_active;
-extern const f32 lbl_805DB0A8;
-extern const f32 lbl_805DB0AC;
+static const f32 lbl_805DB0A8 = 30000.0f;
+static const f32 lbl_805DB0AC = 37000.0f;
 struct VBase_18_9029aa { char pad[0x18]; };
 struct VObj_18_9029aa : VBase_18_9029aa {
     virtual void m0();
@@ -2570,14 +2571,14 @@ void init_player_window_effect__6TLobbyFv(void) {
     if (((u32 (*)(s32))get_player_by_client_id)(local_client_id) != 0U) {
         init_effect_5f0__10TObjPlayerFv();
     }
-    ((TWindowCtrl *)local_client_id)->suppress_slot();
+    suppress_player_window(local_client_id);
 }
 
 void update_player_window__6TLobbyFv(void) {
     if (((u32 (*)(s32))get_player_by_client_id)(local_client_id) != 0U) {
         clear_lobby_flag__10TObjPlayerFPv();
     }
-    ((TWindowCtrl *)local_client_id)->unsuppress_slot();
+    unsuppress_player_window(local_client_id);
 }
 
 void TLobby__sub_80137C10(s32 arg0) {
@@ -3429,7 +3430,6 @@ void open_download_list_window__6TLobbyFiPv(s32 arg0, Ent_80135E7C *arg1) {
 }
 }
 #pragma defer_codegen off
-
 
 #pragma push
 namespace P4_80137188 {

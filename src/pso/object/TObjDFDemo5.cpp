@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/object/TObjDFDemo5.h"
@@ -58,11 +59,11 @@ TObjDFDemo5::TObjDFDemo5(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
     for (i = 0; i < 3; i++) {
         id = lbl_80486FB0[i];
         parts[i].model = get_bml_model(res, id);
-        parts[i].texlist = TObjFish__sub_8001EDB0(res, id);
+        parts[i].texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)res, (s32)id);
         parts[i].motion = get_bml_motion(res, lbl_804857E8[i]);
     }
     parts[3].model = get_bml_model(res, 1);
-    parts[3].texlist = TObjFish__sub_8001EDB0(res, 1);
+    parts[3].texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)res, 1);
     parts[3].motion = get_bml_motion(res, 0x23);
     frame = -0.5f;
     for (s32 j = 0; j < 5; j++) {
@@ -142,13 +143,13 @@ void TObjDFDemo5::draw_fading_motion() {
     rotate_matrix_y(0, angle);
     set_current_texture_list((GinjaTextureList *)parts[0].texlist);
     node_list0->install();
-    draw_model_motion((void *)parts[0].model, (void *)parts[0].motion, frame);
+    draw_model_motion(parts[0].model, (void *)parts[0].motion, frame);
     node_list0->clear();
     part_frame = (s32)frame % 30;
     set_current_texture_list((GinjaTextureList *)parts[1].texlist);
-    draw_model_motion((void *)parts[1].model, (void *)parts[1].motion, part_frame);
+    draw_model_motion(parts[1].model, (void *)parts[1].motion, part_frame);
     set_current_texture_list((GinjaTextureList *)parts[2].texlist);
-    draw_model_motion((void *)parts[2].model, (void *)parts[2].motion, part_frame);
+    draw_model_motion(parts[2].model, (void *)parts[2].motion, part_frame);
     clear_motion_packed_rotation();
     pop_matrix();
     if (alpha < 1.0f) {
@@ -165,7 +166,7 @@ void TObjDFDemo5::release_subobjects() {
         rotate_matrix_y(0, angle);
         set_current_texture_list((GinjaTextureList *)parts[3].texlist);
         node_list1->install();
-        draw_model_motion((void *)parts[3].model, (void *)parts[3].motion, frame);
+        draw_model_motion(parts[3].model, (void *)parts[3].motion, frame);
         node_list1->clear();
         clear_motion_packed_rotation();
         pop_matrix();

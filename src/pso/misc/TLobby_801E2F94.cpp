@@ -104,12 +104,12 @@ extern f32 viewport_scissor_origin_x;
 extern f32 camera_viewport_center_y;
 void TCameraCtrl__sub_801E32D8(f32 farg0, f32 farg1);
 void GXSetScissor(u32, u32, u32, u32);
-void set_viewport_scissor__11TCameraCtrlFiPv(s32 mode, Rect_801E317C *r);
 void camera_renderer_setup_nop(void);
 s32 TObjPlayer__sub_803DAD28(u32 arg0);
 int draw_textured_vertices__10TObjPlayerFPvii(void*, void*, void*);
 
-void set_viewport_scissor__11TCameraCtrlFiPv(s32 mode, Rect_801E317C *r) {
+void TCameraCtrl::set_viewport_scissor(int mode, void *rect) {
+    Rect_801E317C *r = (Rect_801E317C *)rect;
     f32 adj;
     f32 x;
     f32 y;
@@ -241,7 +241,7 @@ void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     u32 x;
     u32 *p;
     if (!(flags & 2)) {
-        ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
+        draw_tri_fan_2d(n, flags, scale);
         return;
     }
     p = colors;
@@ -250,7 +250,7 @@ void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
         *p = (x << 8) | (x >> 24);
         p++;
     }
-    ((TObjCMHairMenu *)this)->draw_tri_fan_2d(n, flags, scale);
+    draw_tri_fan_2d(n, flags, scale);
     {
     u32 *q = colors;
     u32 y;
@@ -261,8 +261,8 @@ void ColorLineList::draw_strip_swap_color(s32 n, s32 flags, f32 scale) {
     }
     }
 }
-void TObjCMHairMenu::draw_tri_fan_2d(s32 count, s32 flags, f32 scale) {
-    ColorLineList *self = (ColorLineList *)this;
+void ColorLineList::draw_tri_fan_2d(s32 count, s32 flags, f32 scale) {
+    ColorLineList *self = this;
     ColorLineList tmp;
     ColorLineVertex v[2];
     u32 c[2];
@@ -592,4 +592,11 @@ void bswap_16(u16 *p) {
 void bswap_32(u32 *p) {
     u32 v = *p;
     *p = (v >> 24) | ((v >> 8) & 0xFF00) | ((v << 8) & 0xFF0000) | (v << 24);
+}
+
+extern "C" {
+int current_line_width = 12;
+s32 lbl_805D3584 = 1;
+f32 viewport_scissor_origin_x = 320.0f;
+f32 camera_viewport_center_y = 240.0f;
 }

@@ -329,7 +329,7 @@ extern const f32 lbl_805DA344;
 #pragma defer_codegen on
 void TObjEneMerillLia::load_entry_params(s32 i) {
     model = (void *)TObjEneMerillLia__entry_params_resource->models[i].model;
-    texlist = TObjEneMerillLia__entry_params_resource->models[i].m_c;
+    texlist = (s32)TObjEneMerillLia__entry_params_resource->models[i].m_c;
 }
 
 TObjEneMerillLia::TObjEneMerillLia(TObject *parent, void *arg2) : TUnk_80493450(parent) {
@@ -1162,4 +1162,11 @@ void TObjEneMerillLia::vfunc_60() {
     }
 }
 
+}
+
+extern "C" {
+u8 **TObjEneMerillLia__rock_stats_table;
+u8 **merill_lia_rock_buffer;
+u8 **merill_lia_rock_aux_buffer;
+MerillLiaCombatParameters **TObjEneMerillLia__rock_param_table;
 }

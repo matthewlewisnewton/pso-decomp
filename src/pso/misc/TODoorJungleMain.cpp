@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/misc/PersistentSound.h"
@@ -48,7 +49,7 @@ void TODoorJungleMain::vfunc_6(s16 *arg1, s32 arg2) {
 s32 get_current_floor(void);
 void *get_player_by_client_id(s32 i);
 }
-extern const f32 lbl_805DDCD0;
+static const f32 lbl_805DDCD0 = 2500.0f;
 s32 is_any_player_near(s32 arg0);
 s32 is_any_player_near(s32 arg0) {
   f32 temp_f31;
@@ -187,14 +188,13 @@ void *__ct__10TODoorBaseFP7TObject(void *a0);
 extern RecoveredGlobal_8029B924_lbl_804DC014 TODoorJungleMain_collision_body_parts;
 extern s32 __vt__16TODoorJungleMain[];
 extern s32 TODoorJungleMain__name;
-extern const f32 lbl_805DDCD8;
-extern const f32 lbl_805DDCDC;
-extern const f32 lbl_805DDCE0;
-extern const f32 lbl_805DDCE4;
-extern const f32 lbl_805DDCE8;
-extern const f32 lbl_805DDCEC;
+static const f32 lbl_805DDCD8 = 1.0f;
+static const f32 lbl_805DDCDC = 0.0f;
+static const f32 lbl_805DDCE0 = 800.0f;
+static const f32 lbl_805DDCE4 = 120.0f;
+static const f32 lbl_805DDCE8 = 160.0f;
+static const f32 lbl_805DDCEC = 100.0f;
 extern const f32 lbl_805DDCF0;
-void *get_bml_model(u32, int);
 s32 rotate_matrix_y(int, int);
 s32 push_matrix(void);
 s32 pop_matrix(void);
@@ -230,7 +230,7 @@ void translate_matrix_vec3(u8 *arg0, u8 *arg1);
 void set_matrix_identity(u8 *arg0);
 extern Vec_8029B640 lbl_804653E8;
 extern Vec_8029B640 lbl_804653F4;
-extern const f32 lbl_805DDCD4;
+static const f32 lbl_805DDCD4 = 70.0f;
 
 #pragma pop
 
@@ -242,7 +242,7 @@ void __dl__7TObjectFPv(void *);
 void TODoorJungleMain::free_static_resources() {
     if ((u32) door_jungle_main_gvm_texture != 0U) {
         release_texture_list((void*)door_jungle_main_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free(door_jungle_main_gvm_texture);
+        TAdSinglePlyChrSelectGC::safe_free((void *)door_jungle_main_gvm_texture);
         door_jungle_main_gvm_texture = 0U;
     }
     if ((u32) TODoorJungleMain__bml_resource != 0U) {
@@ -274,11 +274,11 @@ void TODoorJungleMain::render() {
         post_translate_matrix(self->xf);
         rotate_matrix_y(0, self->f60);
         if (self->flags & 1) {
-            draw_ginja_model_with_motion(get_bml_model(TODoorJungleMain__bml_resource, 3), self->fbc, self->fb4);
+            draw_ginja_model_with_motion((void *)get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, 3), self->fbc, self->fb4);
         } else {
-            draw_ginja_object(get_bml_model(TODoorJungleMain__bml_resource, 3));
+            draw_ginja_object((void *)get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, 3));
             for (i = 0; i < 3 - self->count; i++) {
-                draw_ginja_object(get_bml_model(TODoorJungleMain__bml_resource, ids.v[i]));
+                draw_ginja_object((void *)get_bml_model((BmlResource *)TODoorJungleMain__bml_resource, ids.v[i]));
             }
         }
         pop_matrix();

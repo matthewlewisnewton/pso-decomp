@@ -203,7 +203,7 @@ extern RecoveredGlobal_800FB8A0___vt__8TFogCtrl __vt__8TFogCtrl;
 extern u8 lbl_8043DA20[];
 extern u8 lbl_8043DA30[];
 extern RecoveredGlobal_800FBB68_lbl_8049C670 area_fog_row_table;
-extern u8 fog_default_entry[];
+extern u8 fog_default_entry[sizeof(FogParam_800FBC5C)];
 extern u8 scene_projection_state[];
 extern s32 lbl_805D2B18;
 extern u32 fog_entry_array;
@@ -837,4 +837,8 @@ void init_scene_fog_system(void) {
     TParticleCtrl::end_effect_render();
     TFogCtrl::create_instance();
     TObjFogCollisionPoison::clear_state_array();
+}
+
+extern "C" {
+u8 fog_default_entry[sizeof(FogParam_800FBC5C)];
 }

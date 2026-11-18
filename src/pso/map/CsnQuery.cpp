@@ -1,3 +1,4 @@
+#include "pso/map/WallQuery.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
 #include "pso/system/vector.h"
@@ -16,7 +17,7 @@ struct RecoveredGlobal_800790F0_lbl_804F5800 {
     u8 remaining[0xFC];
 };
 
-struct Obj_8007A32C { s32 f0; f32 f4; s32 f8; u8 fc[4]; };
+
 
 struct E_80079580 { u8 pad[0x24]; u32 f24; };
 
@@ -138,6 +139,11 @@ struct Wall_8007A138 {
 
 extern RecoveredGlobal_800790F0_lbl_804F5800 lbl_804F5800;
 extern "C" {
+s32 csn_query_hit_count;
+f32 csn_query_nearest_hit_t;
+CsnHit *csn_query_hit_buffer;
+s32 wall_query_hit_result;
+
 s32 get_csn_group_flags(u8 arg0);
 void TObjPlayer__sub_80079108(void);
 s32 TObjPlayer__sub_80079118(s32 *);
@@ -150,7 +156,7 @@ s32 TObjPlayer__sub_80079118(s32 * _w0);
 void TObjPlayer__sub_80079120(s32 _w0);
 extern u32 lbl_804FFD40[];
 extern s32 lbl_804389E8[];
-void *query_wall_radial(Obj_8007A32C *self);
+CsnQueryResult *query_wall_radial(WallQuery *self);
 void TObjPlayer__sub_80079124(void *, void *);
 u32 TObjPlayer__sub_80079DE0(void *, void *);
 f32 vec_squared_length(Vec *);
@@ -161,7 +167,6 @@ f32 fabs_float(f32);
 extern const f32 lbl_805D9204;
 s32 select_deepest_wall_ray(Query_80079608 *q, Result_80079608 *r);
 void TObjPlayer__sub_80079124(void * _w0, void * _w1);
-extern CsnHit *csn_query_hit_buffer;
 s32 query_segment_wall_meshes(void *arg0, void *arg1, u32 arg2, Node_8007970C **list);
 s32 check_line_hits_walls__10TObjPlayerFPvPviPv(void *arg0, void *arg1, int arg2, Node_800797DC **list);
 f32 vec3_dot(void *, void *);
@@ -169,14 +174,13 @@ void vec3_cross(void *, void *, void *);
 extern Vec_800798A0 lbl_8050BF20;
 extern Vec_800798A0 lbl_8050BF40;
 extern Vec_800798A0 lbl_8050BF60;
-extern s32 csn_query_hit_count;
 extern const f32 lbl_805D91F0;
 extern const f32 lbl_805D91F4;
 extern const f32 lbl_805D91F8;
 extern const f32 lbl_805D91FC;
 extern const f32 lbl_805D9200;
-extern const f32 lbl_805D9208;
-extern const f32 lbl_805D920C;
+static const f32 lbl_805D9208 = -1e-05f;
+static const f32 lbl_805D920C = 1.0f;
 CsnGroup **get_data_ptr__10TObjMapCsnFv();
 M_80079C64 *refill_csn_candidate_cache(P_80079C64 *arg0, M_80079C64 **arg1, u32 arg2);
 f32 newton_sqrtf(f32);
@@ -237,11 +241,9 @@ s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *
 }
 }
 extern s32 lbl_80438988[];
-void *query_prepared_wall_polygons(void *self);
+CsnQueryResult *query_prepared_wall_polygons(void *self);
 extern s32 lbl_804389A8[];
 extern E_80079580 *wall_query_scene_buffer;
-extern f32 csn_query_nearest_hit_t;
-extern s32 wall_query_hit_result;
 s32 query_wall_segment(void *arg0, void *arg1, void *arg2, s32 arg3);
 CsnGroup *select_ground_query_groups(CsnVector *arg0, u32 arg1);
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);
@@ -824,8 +826,8 @@ Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b, 
     return (Wall_8007A138 *)lbl_804FFD40[0];
 }
 
-void *query_prepared_wall_polygons(void *self) {
-    void *r;
+CsnQueryResult *query_prepared_wall_polygons(void *self) {
+    CsnQueryResult *r;
     TObjPlayer__sub_8007911C();
     r = &csn_query_map_object;
     if (select_deepest_wall_ray((Query_80079608 *)(self), (Result_80079608 *)(r)) == 0) {
@@ -835,11 +837,11 @@ void *query_prepared_wall_polygons(void *self) {
     return r;
 }
 
-void *query_wall_radial(Obj_8007A32C *self) {
-    void *r;
+CsnQueryResult *query_wall_radial(WallQuery *self) {
+    CsnQueryResult *r;
     TObjPlayer__sub_8007911C();
     r = &csn_query_map_object;
-    if (prepare_wall_query_polygons(self->fc, self->f4, self->f8) == 0) {
+    if (prepare_wall_query_polygons(self->origin, self->radius, self->mask) == 0) {
         r = 0;
     } else if (select_deepest_wall_ray((Query_80079608 *)(self), (Result_80079608 *)(r)) == 0) {
         r = 0;

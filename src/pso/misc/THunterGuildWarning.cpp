@@ -3,18 +3,15 @@
 
 extern "C" {
 
-void THunterGuildWarning__sub_80211774(void *, void *);
-void THunterGuildWarning__sub_802119CC(void *);
-
-extern void *lbl_805D3648;
-extern void * THunterGuildWarning__instance;
+extern const char *lbl_805D3648;
+extern THunterGuildWarning *THunterGuildWarning__instance;
 
 }
-THunterGuildWarning::THunterGuildWarning(TObject *object, void *arg2) : TObject(object) {
-    *(void * *)&this->m_name = lbl_805D3648;
-    *(void **)((s8 *)this + 0x1C) = arg2;
-    *(u32 *)((s8 *)this + 0x20) = 90;
-    THunterGuildWarning__sub_802119CC(this);
-    THunterGuildWarning__sub_80211774(this, *(void **)((s8 *)this + 0x1C));
+THunterGuildWarning::THunterGuildWarning(TObject *object, s32 mode) : TObject(object) {
+    m_name = lbl_805D3648;
+    m_warning_type = mode;
+    m_timer = 90;
+    sub_802119CC();
+    sub_80211774(m_warning_type);
     THunterGuildWarning__instance = this;
 }

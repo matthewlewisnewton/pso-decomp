@@ -1,3 +1,4 @@
+#include "pso/ui/TAdDrawLineCtrl.h"
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -24,7 +25,6 @@ s32 TAdChrSelASlotGC__sub_8030C4F8(TAdChrSelASlotGC *self, s32 kind);
 s32 TAdChrSelASlotGC__sub_8030C5C0(TAdChrSelASlotGC *self, s32 kind);
 s32 TAdChrSelASlotGC__sub_8030C688(TAdChrSelASlotGC *self, s32 kind);
 s32 TAdChrSelSlotGC__sub_802C7498(s32, s32);
-u32 create_draw_line_ctrl__13TAdMcSelectGCFiif(void *, s32, f32);
 s32 TAdPlayerLoadGC__sub_801E1B50(s32);
 s32 TAdPlayerLoadGC__sub_801E24F8(s32, s32, s32, s32, s32);
 s32 TAdSubPlyItemGC__sub_802D6D88(s32);
@@ -393,8 +393,8 @@ void reset_windows__16TAdChrSelBSlotGCFPv(void *ad_mc_select_gc) {
     ((TAdPlyChrSelPlateGC *)(((TAdMcSelectGC *)ad_mc_select_gc)->m_2c))->reset_selection_slots();
     TAdSubPlyItemGC__sub_802D6D88(((TAdMcSelectGC *)ad_mc_select_gc)->m_30);
     ((TAdMcSelectGC *)(((TAdMcSelectGC *)ad_mc_select_gc)->m_28))->init_slot(1, (void *)lbl_80475910);
-    *(u32 *)((s8 *)ad_mc_select_gc + 0x38) = create_draw_line_ctrl__13TAdMcSelectGCFiif(ad_mc_select_gc, 0xE, lbl_805DF220);
-    *(u32 *)((s8 *)ad_mc_select_gc + 0x3C) = create_draw_line_ctrl__13TAdMcSelectGCFiif(ad_mc_select_gc, 0x15, lbl_805DF220);
+    *(u32 *)((s8 *)ad_mc_select_gc + 0x38) = (u32)create_draw_line_ctrl(reinterpret_cast<TObject *>(ad_mc_select_gc), 0xE, lbl_805DF220);
+    *(u32 *)((s8 *)ad_mc_select_gc + 0x3C) = (u32)create_draw_line_ctrl(reinterpret_cast<TObject *>(ad_mc_select_gc), 0x15, lbl_805DF220);
     ((TAdMcSelectGC *)ad_mc_select_gc)->m_24 = -1;
     ((TAdMcSelectGC *)ad_mc_select_gc)->m_1c = 1;
 }

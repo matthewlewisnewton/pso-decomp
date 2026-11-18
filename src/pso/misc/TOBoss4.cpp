@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 // One TU (birds, tower, rocks and the shared base). Compiled -inline deferred
 // -fp_contract on -str reuse,readonly -sdata 4: definitions run from the base
 // constructor back to TOBoss4Rock::run_task so CodeWarrior emits address order.
@@ -79,9 +80,9 @@ TOBoss4Bird::TOBoss4Bird(void *set_data) {
     s32 i;
     m_name = class_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(model_resource, 0);
+    model = get_bml_model(model_resource, 0);
     model_radius = ((GinjaModelBounds *)((NJS_OBJECT *)model)->model)->radius;
-    texlist = TObjFish__sub_8001EDB0(model_resource, 0);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, 0);
     motion = get_bml_motion(model_resource, 0);
     animation_end_frame = (f32)motion->frameCount - 1.0f;
     animation_step = 1.0f;
@@ -189,9 +190,9 @@ void TOBoss4Bird::run_task() {
 TOBoss4Tower::TOBoss4Tower(void *set_data) {
     m_name = class_name;
     apply_object_set_data(set_data);
-    model = (void *)get_bml_model(model_resource, 5);
+    model = get_bml_model(model_resource, 5);
     model_radius = 60.0f;
-    texlist = TObjFish__sub_8001EDB0(model_resource, 5);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, 5);
 }
 
 TOBoss4Tower::~TOBoss4Tower() {
@@ -219,9 +220,9 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
 
     m_name = class_name;
     apply_object_set_data(set_data);
-    this->model = (void *)get_bml_model(model_resource, 1);
+    this->model = get_bml_model(model_resource, 1);
     model_radius = ((GinjaModelBounds *)((NJS_OBJECT *)this->model)->model)->radius;
-    texlist = TObjFish__sub_8001EDB0(model_resource, 1);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, 1);
     spread = 50.0f + scale.x;
     if (scale.y < 0.0f) {
         scale.y *= -1.0f;
@@ -232,7 +233,7 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
     } else if (count > 8) {
         count = 8;
     }
-    models = (s32 *)::operator new[](count * 4);
+    models = (NJS_OBJECT **)::operator new[](count * sizeof(NJS_OBJECT *));
     texlists = (s32 *)::operator new[](count * 4);
     positions = (Vec *)::operator new[](count * 0xC);
     speeds = (f32 *)::operator new[](count * 4);
@@ -241,7 +242,7 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
     for (i = 0; i < count; i++) {
         model = 4.0f * ((1.0f / 32768.0f) * (f32)rand());
         models[i] = get_bml_model(model_resource, model);
-        texlists[i] = TObjFish__sub_8001EDB0(model_resource, model);
+        texlists[i] = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, (s32)model);
         positions[i].x = spread * ((1.0f / 32768.0f) * (f32)rand());
         positions[i].y = 0.0f;
         positions[i].z = spread * ((1.0f / 32768.0f) * (f32)rand());
@@ -293,7 +294,7 @@ void TOBoss4Rock::render() {
             rotate_matrix_z(NULL, rotations[i].z);
             rotate_matrix_x(NULL, rotations[i].x);
             rotate_matrix_y(NULL, rotations[i].y);
-            draw_ginja_object((void *)models[i]);
+            draw_ginja_object(models[i]);
             pop_matrix();
         }
         pop_matrix();
@@ -313,7 +314,7 @@ void TOBoss4Rock::run_task() {
         if (2000.0f < positions[i].y) {
             model = 4.0f * ((1.0f / 32768.0f) * (f32)rand());
             models[i] = get_bml_model(model_resource, model);
-            texlists[i] = TObjFish__sub_8001EDB0(model_resource, model);
+            texlists[i] = (s32)TObjFish__sub_8001EDB0((BmlResource *)model_resource, (s32)model);
             positions[i].x = spread * ((1.0f / 32768.0f) * (f32)rand());
             positions[i].y = 0.0f;
             positions[i].z = spread * ((1.0f / 32768.0f) * (f32)rand());

@@ -1,28 +1,19 @@
 # LaunchDol recovery experiments
 
-`LaunchDolHandoff.cpp` reproduces **all 332 bytes and ten call relocations**
-at `[0x8042E8C4, 0x8042EA10)` with stock GC/2.6 and the normal game compiler
-flags. The body is typed C++ with `__isync()` and a two-instruction assembly
-handoff: `mtlr entry; blr`. This is an exact target-specific candidate, not
-100% portable C++ recovery.
+`LaunchDolHandoff.cpp` reproduces all 332 bytes and ten call relocations at
+`[0x8042E8C4, 0x8042EA10)`. The source uses typed C++, the CodeWarrior
+`__isync()` intrinsic, and a two-instruction nonlinking transfer through LR.
+The stock GC/2.0 compiler with the current ntUtl middleware flags and stock
+GC/2.6 with the same flags emit identical objects.
 
-The current `LaunchDol` symbol and unit end after 312 bytes at `0x8042E9FC`.
-The remaining 20 bytes belong to the next split. Merged #285 now links that
-restore through approved generated assembly and supplies portable boundary
-handlers; its original ownership remains provisional.
-Consequently, the new candidate is **not a drop-in object for the current
-link graph**. It remains outside the production inventory, guarded by
-`PSO_LAUNCH_DOL_EXPERIMENT` and `__MWERKS__`. Production still uses its exact
-generated-assembly provider. No host fallback or runtime execution is claimed.
-
-`LaunchDol.cpp` preserves the earlier C++-only comparison control. It emits
-the same size, but its entry load and linking CTR call differ from the
-original nonlinking LR transfer. It is not a behavior-equivalent fallback.
-The two files define the same symbol and must be compiled separately.
+`LaunchDol.cpp` preserves the direct C++ call as a comparison control. It
+uses a linking CTR call, which changes control flow and the guest LR. Both
+files require explicit opt-in through `PSO_LAUNCH_DOL_EXPERIMENT` and define
+the same symbol, so compile them separately.
 
 ## What made the handoff match
 
-The new candidate uses the production `-O4,s -inline off -sdata2 4` profile.
+The candidate uses the current ntUtl `-O4,p -inline off` profile.
 Three pragmas are scoped with `push`/`pop` around the helper and wrapper:
 
 | Pragma | Observed requirement |
@@ -47,62 +38,46 @@ matter to allocation. Moving those declarations into the loops, folding the
 size expression, or replacing `zero` with a literal loses the exact match.
 These are reproduction constraints, not recovered original source spelling.
 
-## Comparison and isolated linkage
+## Production boundary
 
-| Candidate | Emitted bytes | Comparison with current 312-byte symbol | Complete 332-byte native span |
+Retain the existing native split. The compiler appends a 20-byte restore to
+the 312-byte function body and handoff. The production build tracks the restore
+separately at `0x8042E9FC` and links it through the #285 retention fix. The
+byte match supports interpreting the suffix as part of the loader's frame.
+Possible indirect entries and original symbol ownership remain open.
+The [ownership investigation](../../docs/evidence/launch-dol-stranded-epilogue.md)
+describes the limits of the original-input evidence.
+
+| Candidate | Emitted bytes | Objdiff against the 312-byte symbol | Complete native span |
 |---|---:|---:|---|
-| `LaunchDol.cpp`, historical probe flags | 332 | 93.39744% | Three different words |
-| `LaunchDolHandoff.cpp`, normal game flags | 332 | 93.589745% | Exact, including all ten relocations |
+| Direct C++ call, historical GC/2.6 probe flags | 332 | 93.39744% | Three different words |
+| LR handoff, current ntUtl flags | 332 | 93.589745% | Exact after resolving ten relocations |
 
-The 93.589745% score includes the extent discrepancy. It must not be relabeled
-100% against the current 312-byte symbol. `verify.py` independently resolves
-the candidate's ten relative calls using the symbol manifest and compares the
-entire span directly with the SHA-1-pinned original DOL. The C++-only control
-fails at `0x8042E9EC`, `0x8042E9F4`, and `0x8042E9F8`, as expected.
-
-A fresh isolated checkout of `94f7968bbe11c159e63806cece73b13c9bdac488`
-tested replacing the production provider with this body, changing the
-`LaunchDol` extent from `0x138` to `0x14C`, and moving the next split's start
-to the existing initializer entry at `0x8042EA10`. No code bytes were patched
-after compilation. The build linked the candidate and reproduced original DOL
-SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Linked-unit and retention
-checks passed without overrides.
-
-**That isolated trial fails the full PR check:** the old generated
-`pad_03_8042E9FC_text` function address disappears from function coverage and
-the total function count falls by one. Matched and source-linked code each
-increase by 20 bytes; total code/data and matched-function count are unchanged.
-The existing checker was not weakened. The trial's split/symbol changes are
-not part of this PR. This is evidence for a concrete boundary proposal, not
-an accepted ownership change. The newly separable initializer was not added
-to that trial's linkset; merged #285 provides its linkage separately. The trial
-predates that merge and its +20-byte gains must not be applied to current main,
-where the restore is already matched and linked.
-
-The continuation integrates main `0a85a72c1c` and keeps #285's portable
-handoff/restore branches intact. The native provider retains the shared typed
-interface and SDK headers. The portable adapter supplies guest-state behavior
-for the nine handoff/restore instructions; it does not yet implement the entire
-relocation/reset body. See
-[the portable contract](../../docs/evidence/loader-restore-retention.md).
+An [isolated linkage trial](../../docs/evidence/launch-dol-cpp-recovery.md#authorized-handoff-and-pragma-continuation)
+reproduced the original DOL by widening the symbol to 332 bytes. The report
+dropped the function start at `0x8042E9FC`, which the strict coverage check
+rejected. The native provider retains that address and uses the shared typed
+`LaunchDol` declaration. Ports can execute the existing guest-state handoff
+and restore handlers. The [portable contract](../../docs/evidence/loader-restore-retention.md)
+covers those nine instructions. The port backend also needs to supply the
+earlier relocation, reset and cache operations.
 
 ## Reproduce locally
 
-First build normally with the pinned tools and original inputs. Use the shared
-native-build capacity protocol in
-[`tools/local_build_capacity/PROTOCOL.md`](../../tools/local_build_capacity/PROTOCOL.md)
-for compiler probes. The following compile belongs inside that gate. Set the
-`PSO_` variables to your existing tools; GC/2.6 compiler SHA-1 must be
-`1110a7a9924a09a608967efdf79ecf09900344e7`.
+Build with the pinned tools and original inputs. Run the compiler probe under
+the [native build capacity protocol](../../tools/local_build_capacity/PROTOCOL.md).
+Set the `PSO_` paths to your installed tools. The GC/2.0 compiler SHA-1 is
+`ef148743ee72be15f64926ac18c3aadc9cca2b47`. For the GC/2.6 comparison, use
+`1110a7a9924a09a608967efdf79ecf09900344e7` with the same flags.
 
 ```sh
 mkdir -p build/launch-dol-experiment
-"$PSO_WIBO" "$PSO_COMPILERS/GC/2.6/mwcceppc.exe" \
+"$PSO_WIBO" "$PSO_COMPILERS/GC/2.0/mwcceppc.exe" \
   -nodefaults -proc gekko -align powerpc -enum int -fp hardware \
   -Cpp_exceptions off -RTTI off -str reuse -maxerrors 1 -nosyspath \
   -i build/GPOE8P/include -i include -i src -i libs/dolphin/include \
   -i libs/dolphin/include/dolphin -char signed -use_lmw_stmw on \
-  -O4,s -inline off -sdata2 4 -lang=c++ \
+  -O4,p -inline off -lang=c++ \
   -DPSO_LAUNCH_DOL_EXPERIMENT=1 \
   -c experiments/launch_dol/LaunchDolHandoff.cpp \
   -o build/launch-dol-experiment/LaunchDolHandoff.o
@@ -114,25 +89,19 @@ python3 experiments/launch_dol/verify.py \
   -o build/launch-dol-experiment/handoff-diff.json
 ```
 
-For the historical control, compile `LaunchDol.cpp` separately, replacing
-`-O4,s -inline off -sdata2 4` with
-`-O4,p -inline auto -opt nocse,nostrength,noprop`. Its verifier exit status is
-1 because three words differ. Invalid inputs produce status 2. The verifier
-prints only metadata, never original instructions or assets. Keep objects,
-disassemblies, split originals and private inputs local.
+For the direct-call control, compile `LaunchDol.cpp` with GC/2.6 and replace
+`-O4,p -inline off` with `-O4,p -inline auto -opt nocse,nostrength,noprop`.
+The verifier reports three different words at `0x8042E9EC`, `0x8042E9F4` and
+`0x8042E9F8` and exits with status 1. Invalid inputs exit with status 2.
+The verifier reports addresses and metadata. Keep original inputs and
+generated artifacts local.
 
-## Scope and provenance
+## Provenance
 
-The user authorized the Melee-style handoff experiment and subsequent pragma,
-compiler-option and C++ iteration. The earlier no-new-assembly research scope
-is superseded for this opt-in experiment. That authorization is not recorded
-as approval of a portable fallback, the #285 ownership change or an accounting
-exception. See the [exception register](../../docs/porting-exceptions.md).
-
-The inline assembly uses a transfer mechanism analogous to
+The opt-in assembly transfer follows the approach used by
 [Melee's OSReboot](https://github.com/doldecomp/melee/blob/2f8eab8ebd7a2d25541e125abfa246defe1bacec/libs/dolphin/src/dolphin/os/OSReboot.c#L30-L43).
-That is not authenticated PSO source. The original compiler remains unknown;
-exact output from the pinned stock compiler establishes reproducibility, not
-historical authorship or original translation-unit boundaries. See the
-[follow-up evidence](../../docs/evidence/launch-dol-cpp-recovery.md) and
-[header/provenance record](../../docs/evidence/dol-header-view.md).
+Matt authorized the handoff experiment and compiler iteration. The
+[exception register](../../docs/porting-exceptions.md) records the scope.
+Stock compiler reproduction establishes the native byte match. The
+[header evidence](../../docs/evidence/dol-header-view.md) covers the limits of
+historical compiler and source provenance.

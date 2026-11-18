@@ -465,3 +465,10 @@ void TLobby__sub_8022733C(void) {
     TLobby__sub_803C94DC((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8022733C_lbl_804CB850 *)&lbl_804CB850).value) + 8)), 1);
     lbl_805D62E4 = 2;
 }
+
+extern "C" {
+s32 music_active_mode_index;
+s32 music_target_id;
+s32 music_sequencer_fade_state;
+s32 music_sequencer_timer;
+}

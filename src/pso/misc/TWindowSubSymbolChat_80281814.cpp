@@ -1138,3 +1138,7 @@ s32 *TWindowSubSymbolChat__sub_8028379C(void) {
 }
 
 }
+
+extern "C" {
+void *TWindowSubSymbolChat__instance;
+}

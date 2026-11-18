@@ -27,14 +27,14 @@ extern "C" {
 s32 __dt__7TObjectFv(void *, int);
 s32 free_if_positive__13TBoss2DeRolLeFis(s32 arg0, s16 arg1);
 s32 __dl__7TObjectFPv(void *);
-extern s32 TBoss7DeRolLeC__vtable[];
+extern s32 __vt__14TBoss7DeRolLeC[];
 struct TBoss7DeRolLeC;
 extern TBoss7DeRolLeC *boss7_joint_state;
 u8 *__dt__14TBoss7DeRolLeCFv(u8 *arg0, s16 arg1) {
     Obj_802EDCF0 *o = (Obj_802EDCF0 *) arg0;
     s32 i;
     if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = TBoss7DeRolLeC__vtable;
+        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TBoss7DeRolLeC;
         if (o->f784 != 0) {
             queue_destruction__7TObjectFv(o->f784);
             o->f784 = 0;

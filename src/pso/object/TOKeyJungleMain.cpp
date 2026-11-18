@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -40,9 +42,6 @@ extern "C" {
 void * __nw__7TObjectFUl(int);
 void render__8TObjFishFv(u8 *arg0);
 s32 init_fish_school__8TObjFishFPvll(u8 *arg0, Vec_8029E170 *arg1, s32 arg2, s32 arg3);
-extern s32 TObjFish__area_bml_resource;
-extern void* __vt__8TObjFish[];
-extern void* fish_resource_name_table[];
 }
 
 struct Base_8029D3A4_8029CF68 { char pad[0x18]; };
@@ -113,8 +112,6 @@ s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 s32 draw_ginja_model_with_motion(s32, s32, f32);
 s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 
@@ -125,7 +122,6 @@ void __dl__7TObjectFPv(void *);
 void *__dt__5TOKeyFv(void *arg0, s16 arg1);
 extern s32 __vt__15TOKeyJungleMain[];
 void *__dt__15TOKeyJungleMainFv(void *arg0, s16 arg1);
-extern s32 TObjFish__area_event_stage;
 u8 update_state__8TObjFishFv(void *arg0);
 extern const f32 lbl_805DDD38;
 extern const f32 lbl_805DDD3C;
@@ -180,22 +176,22 @@ void render__15TOKeyJungleMainFv(TOKeyJungleMain *key_jungle_main) {
     if (((VObj_8029CF68 *)key_jungle_main)->m8(key_jungle_main->view_range, *(f32 *)((s8 *)key_jungle_main + 0xC4)) == 1) {
         switch (key_jungle_main->is_on) {
         case 0:
-            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
+            set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation.yaw);
-            get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
+            (s32)get_bml_model((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1);
             draw_ginja_object();
             pop_matrix();
             return;
         case 1:
-            set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
+            set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1)));
             push_matrix();
             post_translate_matrix((u8 *)key_jungle_main + 0x38);
             rotate_matrix_y(0, key_jungle_main->rotation.yaw);
-            draw_ginja_model_with_motion(get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), key_jungle_main->m_e8);
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 1), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 1), key_jungle_main->m_e8);
             TParticleCtrl::begin_effect_render();
-            draw_ginja_model_with_motion(get_bml_model((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), *(f32 *)((s8 *)key_jungle_main + 0xEC));
+            draw_ginja_model_with_motion((s32)get_bml_model((BmlResource *)(*(s32 *)&TOKeyJungleMain__static_model_resource), 0), get_bml_motion((*(s32 *)&TOKeyJungleMain__static_model_resource), 0), *(f32 *)((s8 *)key_jungle_main + 0xEC));
             TParticleCtrl::end_effect_render();
             pop_matrix();
             break;
@@ -286,4 +282,15 @@ u8 *TOKeyJungleMain__ct(TOKeyJungleMain *key_jungle_main, s32 arg1, s32 arg2) {
     *(f32 *)((s8 *)key_jungle_main + 0xEC) = (f32) lbl_805DDD3C;
     return (u8 *)key_jungle_main;
 }
+}
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD38 = 1.0f;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD3C = 0.0f;
 }

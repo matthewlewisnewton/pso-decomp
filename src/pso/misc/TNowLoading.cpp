@@ -39,7 +39,6 @@ typedef struct TNowLoading_8001D3A8 {
 extern "C" {
 extern RecoveredGlobal_8001D19C_lbl_804FF5E8 lbl_804FF5E8;
 extern u32 camera_ctrl_instance;
-extern const f32 lbl_805D7EC0;
 void DCInvalidateRange(void *, u32);
 void ARQPostRequest(void *, u32, u32, u32, u32, u32, u32, void *);
 extern s32 aram_dma_pending;
@@ -49,7 +48,6 @@ s32 __ct__7TObjectFP7TObject(void *, void *);
 s32 TAdLoadNetworkGC__ct(void *, void *, void *);
 extern s32 __vt__11TNowLoading[];
 extern s32 TNowLoading__class_name;
-TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *arg0, void *arg1, Vec_8001D3A8 *arg2);
 void DCFlushRange(void *, u32);
 void TNowLoading__sub_8001D4D0(void);
 void TNowLoading__sub_8001D4D4(void);
@@ -73,9 +71,9 @@ void TNowLoading::run_task() {
     u32 temp_r3_7;
     u32 temp_r3_8;
     if ((u32) camera_ctrl_instance == 0U) {
-        *(f32 *)&this->m_2c = (f32) ((lbl_805D7EC0 * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0xC)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 0));
-        *(f32 *)&this->unk_30 = (f32) ((lbl_805D7EC0 * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x10)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 4));
-        this->m_34 = (f32) ((lbl_805D7EC0 * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x14)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 8));
+        *(f32 *)&this->m_2c = (f32) ((65.0f * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0xC)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 0));
+        *(f32 *)&this->unk_30 = (f32) ((65.0f * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x10)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 4));
+        this->m_34 = (f32) ((65.0f * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x14)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 8));
         temp_r3 = this->m_1c;
         if (temp_r3 != 0U) {
             ((TParticleCtrl *)temp_r3)->set_position((u8 *)&this->m_2c);
@@ -93,9 +91,9 @@ void TNowLoading::run_task() {
             ((TParticleCtrl *)temp_r3_4)->set_position((u8 *)&this->m_2c);
         }
     } else {
-        stack.sp8 = (lbl_805D7EC0 * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0xC)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 0);
-        stack.spC = (lbl_805D7EC0 * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x10)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 4);
-        stack.sp10 = (lbl_805D7EC0 * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x14)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 8);
+        stack.sp8 = (65.0f * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0xC)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 0);
+        stack.spC = (65.0f * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x10)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 4);
+        stack.sp10 = (65.0f * *(f32 *)((s8 *)&lbl_804FF5E8.value + 0x14)) + *(f32 *)((s8 *)&lbl_804FF5E8.value + 8);
         temp_r3_5 = this->m_1c;
         if (temp_r3_5 != 0U) {
             ((TParticleCtrl *)temp_r3_5)->set_position((void *)&stack.sp8);
@@ -127,7 +125,7 @@ TNowLoading::~TNowLoading() {
 
 #pragma push
 #pragma fp_contract on
-TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *parent, void *arg1, Vec_8001D3A8 *arg2) {
+TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *parent, void *arg1, const Vec *position) {
     Vec_8001D3A8 dir;
     s32 out[3];
     Cam_8001D3A8 *cam;
@@ -135,7 +133,7 @@ TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *parent, void *arg1, 
     __ct__7TObjectFP7TObject(parent, arg1);
     parent->vtable = __vt__11TNowLoading;
     parent->unk0 = TNowLoading__class_name;
-    VecCopy((Vec *)&parent->pos, (const Vec *)arg2);
+    VecCopy((Vec *)&parent->pos, position);
     cam = (Cam_8001D3A8 *) &lbl_804FF5E8;
     out[0] = 0;
     out[1] = 0;
@@ -144,9 +142,9 @@ TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *parent, void *arg1, 
     dir.y = -cam->dir.y;
     dir.z = -cam->dir.z;
     direction_to_rotation_xz((u8 *)&dir, &out[0], &out[2]);
-    parent->pos.x = lbl_805D7EC0 * cam->dir.x + *(f32 *)((s8 *)&lbl_804FF5E8.value + 0);
-    parent->pos.y = lbl_805D7EC0 * cam->dir.y + *(f32 *)((s8 *)&lbl_804FF5E8.value + 4);
-    parent->pos.z = lbl_805D7EC0 * cam->dir.z + *(f32 *)((s8 *)&lbl_804FF5E8.value + 8);
+    parent->pos.x = 65.0f * cam->dir.x + *(f32 *)((s8 *)&lbl_804FF5E8.value + 0);
+    parent->pos.y = 65.0f * cam->dir.y + *(f32 *)((s8 *)&lbl_804FF5E8.value + 4);
+    parent->pos.z = 65.0f * cam->dir.z + *(f32 *)((s8 *)&lbl_804FF5E8.value + 8);
     parent->children[0] = NULL;
     parent->children[1] = NULL;
     parent->children[2] = NULL;

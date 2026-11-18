@@ -1,3 +1,4 @@
+#include "pso/misc/SmallFontDrawing.h"
 #include "types.h"
 #include "pso/misc/TWindowSubStatusDisp_802598E4.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
@@ -23,7 +24,6 @@ s32 map_char_to_font_code(s32);
 u8 get_small_font_glyph_width();
 s32 TWindowSubStatusDisp__sub_800FC248(s32);
 s32 build_small_font_glyph_quad(s32, Pos_80259A84 *);
-s32 render_forward__20TWindowSubStatusDispFPv();
 void set_glyph_quad_extents(u8, u8 *);
 u8 calc_gauge_scale__20TWindowSubStatusDispFPvPvi(u16 glyph, void *quad, s32 color);
 s32 end_render_forward__20TWindowSubStatusDispFPv();
@@ -98,7 +98,7 @@ void render_numeric_digit_entries(u8 *arg0, TWindowDrawContext *window_key_board
       break;
     case 1:
       begin_screen_draw(1);
-      render_forward__20TWindowSubStatusDispFPv();
+      begin_small_font_draw();
       set_draw_texture_and_color(0, *((s32 *) (((s8 *) arg0) + 0x1C)));
       break;
   }

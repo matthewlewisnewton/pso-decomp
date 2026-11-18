@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/TBoss6CrushRock.h"
 #include "pso/boss/TBoss6CrushRock.h"
 #include "pso/system/vector.h"
@@ -17,7 +18,6 @@ struct RecoveredGlobal_8035A1A4___vt__15TBoss6CrushRock {
 #include "pso/system/vector.h"
 
 extern "C" {
-s32 get_bml_model(int, void *);
 s32 __ct__7TObjectFP7TObject(void *, void *);
 int TBoss6Rock__sub_80353A04(void);
 int TBoss6Rock__sub_80353A0C(void);
@@ -38,7 +38,7 @@ u8 *__ct__15TBoss6CrushRockFv(u8 *object, s32 arg1, s32 arg2, s32 arg3) {
     __ct__7TObjectFP7TObject((void *)object, (void *)arg1);
     *(s32 **)((s8 *)object + 0x18) = &__vt__15TBoss6CrushRock.value;
     *(s32 *)((s8 *)object + 0) = (s32) TBoss6CrushRock__name;
-    *(s32 *)((s8 *)object + 0x1C) = get_bml_model((int) (TBoss6Rock__sub_80353A0C()), (void *)arg3);
+    *(s32 *)((s8 *)object + 0x1C) = (s32)get_bml_model((BmlResource *)(TBoss6Rock__sub_80353A0C()), (s32)arg3);
     *(s32 *)((s8 *)object + 0x20) = TBoss6Rock__sub_80353A04();
     VecCopy((Vec *)(object + 0x24), (const Vec *)(arg2));
     *(f32 *)((s8 *)object + 0x30) = (f32) (0.5f * ((0.000030517578f * (f32) rand()) - 0.5f));

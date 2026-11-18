@@ -115,7 +115,7 @@ void TOSensorGeneral01::load_assets() {
     BmlResource *resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&TOSensorGeneral01__resource_descriptor), 0, 0, (void *)(0));
     sensor_general_shared_bml_archive = resource;
     TOSensorGeneral01__texture_lists = (s32 *)::operator new[](8);
-    TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].m_c;
+    TOSensorGeneral01__texture_lists[1] = (s32)sensor_general_shared_bml_archive->models[0].m_c;
     TOSensorGeneral01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_sensor_r.gvm");
 }
 

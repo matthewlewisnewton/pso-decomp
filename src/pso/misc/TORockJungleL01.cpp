@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -513,7 +514,6 @@ struct Rock_8029C7DC {
 };
 
 extern "C" {
-u8 * get_bml_model(void *, int);
 extern u32 TORockJungleS01__bml_resource;
 s32 init_collision_body_parts(void *, void *, int);
 void *__ct__18TORockCaveBrakableFv(void *arg0);
@@ -626,7 +626,7 @@ s32 get_jungle_rock_texture_resource(s32 a) {
 
 u8 *TORockJungleS01::get_model(s32 arg0) {
     if ((void *) (*(u8 * *)&TORockJungleS01__bml_resource) != NULL) {
-        return get_bml_model((*(u8 * *)&TORockJungleS01__bml_resource), arg0);
+        return (u8 *)get_bml_model((BmlResource *)(*(u8 * *)&TORockJungleS01__bml_resource), arg0);
     }
     return NULL;
 }
@@ -634,7 +634,7 @@ u8 *TORockJungleS01::get_model(s32 arg0) {
 void TORockJungleS01::free_globals() {
     if ((u32) TORockJungleS01__texture_resource != 0U) {
         release_texture_list((void*)TORockJungleS01__texture_resource);
-        TAdSinglePlyChrSelectGC::safe_free(TORockJungleS01__texture_resource);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TORockJungleS01__texture_resource);
         TORockJungleS01__texture_resource = 0U;
     }
     if ((u32) TORockJungleS01__bml_resource != 0U) {

@@ -30,7 +30,7 @@ void align_menu_entry_positions(s32);
 void update_layout_height__21TWindowSubComCardListFf(f32);
 u8 *init_shop_judgment_window(void *p);
 extern T_8032C118 lbl_804772E8[];
-extern const f32 lbl_805DF788;
+static const f32 lbl_805DF788 = 470.0f;
 struct VtBase8032C1C8_8032C188 { char pad[0x18]; };
 struct VtObj8032C1C8_8032C188 : VtBase8032C1C8_8032C188 {
     virtual void m0();
@@ -77,7 +77,7 @@ void TAdYesNoBaseGC::init_parts(void *arg1, void *arg2) {
 
 extern s8 controller_input_state[];
 extern s8 controller_physical_port_bank[];
-extern const f32 lbl_805DF78C;
+static const f32 lbl_805DF78C = 4.5f;
 
 void TAdYesNoBaseGC::vfunc_11() {
     s32 selected_menu_value;
@@ -146,11 +146,11 @@ TAdYesNoBaseGC::~TAdYesNoBaseGC() {
 }
 
 
-extern const f32 lbl_805DF790;
-extern const f32 lbl_805DF794;
+static const f32 lbl_805DF790 = 46.0f;
+static const f32 lbl_805DF794 = 131.0f;
 extern void *lbl_805D41F8;
-extern const f32 lbl_805DF798;
-extern const f32 lbl_805DF79C;
+static const f32 lbl_805DF798 = 548.0f;
+static const f32 lbl_805DF79C = 220.0f;
 
 void *TAdYesNoBaseGC__ct(TAdYesNoBaseGC *ad_yes_no_base_gc) {
     void *o;

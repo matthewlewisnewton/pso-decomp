@@ -21,6 +21,9 @@ GameCube-only layout asserts.
 | `tests/item_factory_callbacks.cpp` | Tests the typed item-factory callback path, including restoring the money factory's function type. |
 | `include/pso/port/LoaderTransfer.h` | Guest-state/backend interface for scalar loader handoff and restore handlers in the actual game units. |
 | `tests/loader_transfer.cpp` | Complete transfer, wraparound, preservation and fault propagation checks; stream interface for original-code differential validation. |
+| `tests/ginja_parameter_callbacks.cpp` | Tests the one- and two-argument material parameter callbacks through their actual function types. |
+| `include/pso/port/ExiEthernetFallbacks.h` | Scalar byte-swap, register-command and leading-zero operations used by the EXI Ethernet driver. |
+| `tests/exi_ethernet_fallbacks.cpp` | Exhaustive 16-bit command/byte-swap checks and interrupt-priority boundary checks. |
 | `tests/Makefile` | Builds and runs the tests. |
 
 ## Running

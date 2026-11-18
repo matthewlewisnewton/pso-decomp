@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/PersistentSound.h"
@@ -1065,10 +1067,9 @@ s32 __vt__20TOTrapChainSawDamage[31] = {
 #include "types.h"
 
 extern "C" {
-u8 * TObjFish__sub_8001EDB0(void *, int);
 u8 *fn_802C9924(s32 arg0) {
     if ((void *) lbl_805D6808 != NULL) {
-        return TObjFish__sub_8001EDB0(lbl_805D6808, arg0);
+        return (u8 *)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D6808, (s32)arg0);
     }
     return NULL;
 }
@@ -1079,7 +1080,6 @@ u8 *fn_802C9924(s32 arg0) {
 
 extern "C" {
 u8 * get_bml_motion(void *, int);
-u8 * get_bml_model(void *, int);
 u8 *TOTrapChainSawKey::get_motion(s32 arg0) {
     if ((void *) lbl_805D6808 != NULL) {
         return get_bml_motion(lbl_805D6808, arg0);
@@ -1088,7 +1088,7 @@ u8 *TOTrapChainSawKey::get_motion(s32 arg0) {
 }
 u8 *TOTrapChainSawKey::get_model(s32 arg0) {
     if ((void *) lbl_805D6808 != NULL) {
-        return get_bml_model(lbl_805D6808, arg0);
+        return (u8 *)get_bml_model((BmlResource *)lbl_805D6808, arg0);
     }
     return NULL;
 }
@@ -1133,14 +1133,14 @@ void TOTrapChainSaw::load_shared_resource() {
         seabed_suiso_switch_counts[i] = 0;
     }
     if (p != NULL) {
-        h = (s32)get_bml_model(p, 3);
+        h = (s32)(u8 *)get_bml_model((BmlResource *)p, 3);
         if (h != 0) {
             seabed_suiso_linked_switch_counts[1] = (s32)find_object_node((NJS_OBJECT *)h, 3);
             seabed_suiso_linked_switch_counts[2] = (s32)find_object_node((NJS_OBJECT *)h, 4);
             seabed_suiso_linked_switch_counts[3] = (s32)find_object_node((NJS_OBJECT *)h, 5);
             seabed_suiso_linked_switch_counts[4] = (s32)find_object_node((NJS_OBJECT *)h, 6);
         }
-        h = (s32)get_bml_model(lbl_805D6808, 4);
+        h = (s32)(u8 *)get_bml_model((BmlResource *)lbl_805D6808, 4);
         if (h != 0) {
             seabed_suiso_switch_counts[1] = (s32)find_object_node((NJS_OBJECT *)h, 3);
             seabed_suiso_switch_counts[2] = (s32)find_object_node((NJS_OBJECT *)h, 4);
@@ -1176,3 +1176,8 @@ void TOTrapChainSawDamage__sub_802C9C00(u8 *arg0, s32 arg1) {
 
 void TOTrapChainSaw::vfunc_25() {  }
 void TOTrapChainSaw::vfunc_16() {  }
+
+extern "C" {
+u32 seabed_suiso_linked_switch_counts[5];
+u32 seabed_suiso_switch_counts[5];
+}

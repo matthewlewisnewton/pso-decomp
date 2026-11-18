@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/system/SoundEffect.h"
@@ -290,8 +291,6 @@ s32 post_translate_matrix(void *);
 extern const f32 lbl_805DA67C;
 extern const f32 lbl_805DA6E4;
 extern const f32 lbl_805DA728;
-s32 TObjFish__sub_8001EDB0(s32, s32);
-
 u8 *get_instance__15TObjEneSlimeOneFv();
 s32 init_collision_body_parts(void *, void *, int);
 extern const f32 lbl_805DA754;
@@ -747,7 +746,7 @@ void TObjEneSlime::render() {
         push_matrix();
         temp_r30_2 = *(s32 *)((s8 *)((u8 *)lbl_80496368 + temp_r30) + 0);
         ((s32 (*)(void *, void *))post_translate_matrix)((void *) ((u8 *)arg0 + 0x38), (void *)lbl_80496368);
-        set_current_texture_list((GinjaTextureList *)TObjFish__sub_8001EDB0((s32)slime_bml_resource, temp_r30_2));
+        set_current_texture_list(TObjFish__sub_8001EDB0((BmlResource *)slime_bml_resource, (s32)temp_r30_2));
         if (temp_r31 != 0) {
             model_render_flags |= 0x400000;
             set_chunk_render_flags(1);
@@ -984,7 +983,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   }
   new_var2 = &(actor->variant);
   id = ((s32 *) lbl_804966DC)[*new_var2];
-  actor->texlist = TObjFish__sub_8001EDB0((s32)(actor->m_380), id);
+  actor->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(actor->m_380), (s32)id);
   actor->model = (void *)get_bml_model((BmlResource *)actor->m_380, id);
   VecCopy(&actor->prev_position, VecCopy(&actor->home_position, VecCopy(&actor->center, &actor->position)));
   actor->collision_body = (CollisionBody *)init_collision_body_parts(actor, lbl_80496370, 1);
@@ -1973,7 +1972,7 @@ void TObjEneSlimeOne::sub_800E9090() {
     rotate_matrix_y(0, ang);
     scale_matrix_vec3((u8 *)(0), (u8 *)&b);
     t = slime_tail_attack_id_pair[self->variant];
-    set_current_texture_list((GinjaTextureList *)(TObjFish__sub_8001EDB0((s32)self->m_380, t)));
+    set_current_texture_list((TObjFish__sub_8001EDB0((BmlResource *)(self->m_380), (s32)t)));
     draw_chunk_object((void *)(get_bml_model((BmlResource *)self->m_380, t)));
     ((int (*)(void))pop_matrix)();
     TObjPlayer::init_render_globals();
@@ -2141,7 +2140,7 @@ TObjEneSlimeTailAttack::TObjEneSlimeTailAttack(TObject *parent, const Vec *posit
     this->owner = owner;
     BmlResource *resource = (BmlResource *)get_instance__15TObjEneSlimeOneFv();
     u32 id = ((s32 *)lbl_804966F4)[this->owner->get_attack_target()];
-    texlist = TObjFish__sub_8001EDB0((s32)resource, id);
+    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)id);
     model = (void *)get_bml_model(resource, id);
     action_table = lbl_8049639C;
     set_action_table((TObjMotionAction *)lbl_8049639C);

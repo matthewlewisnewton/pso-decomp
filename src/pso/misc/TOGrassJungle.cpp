@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
 #include "pso/misc/TLanguage_801E4874.h"
@@ -21,7 +22,6 @@ struct RecoveredGlobal_8029CD0C_lbl_804DC534 { s32 value; u8 remaining[0xC]; };
 typedef char RecoveredGlobal_8029CD0C_lbl_804DC534_size[sizeof(RecoveredGlobal_8029CD0C_lbl_804DC534) == 0x10 ? 1 : -1];
 
 extern "C" {
-s32 get_bml_model(void *, s32);
 extern RecoveredGlobal_8029CD0C_lbl_8046598C lbl_8046598C;
 extern u32 TOGrassJungle__bml_resource;
 extern GinjaTextureList *TOGrassJungle__grass_gvm_texture;
@@ -43,7 +43,7 @@ void *TOGrassJungle__create(void *arg0) {
 void TOGrassJungle::release_static_instance() {
     if (TOGrassJungle__grass_gvm_texture != NULL) {
         release_texture_list(TOGrassJungle__grass_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TOGrassJungle__grass_gvm_texture);
+        TAdSinglePlyChrSelectGC::safe_free((void *)TOGrassJungle__grass_gvm_texture);
         TOGrassJungle__grass_gvm_texture = NULL;
     }
     if ((u32) TOGrassJungle__bml_resource != 0U) {
@@ -58,10 +58,21 @@ void TOGrassJungle::load_resources() {
     var_r0 = temp_r3;
     (*(u8 * *)&TOGrassJungle__bml_resource) = (unsigned char *) ((void *) var_r0);
     TOGrassJungle__grass_gvm_texture = load_gvm_texture_file(lbl_8046598C.value);
-    TMotorcycle::add_entry(0x3F, (int) (get_bml_model((*(u8 * *)&TOGrassJungle__bml_resource), 0)), (int) TOGrassJungle__grass_gvm_texture, lbl_805DDD28, lbl_805DDD2C);
+    TMotorcycle::add_entry(0x3F, (int) ((s32)get_bml_model((BmlResource *)(*(u8 * *)&TOGrassJungle__bml_resource), 0)), (int) TOGrassJungle__grass_gvm_texture, lbl_805DDD28, lbl_805DDD2C);
 }
 
 __declspec(section ".data") const char *bm_o_grass_jungle_model_names[3] = { lbl_80465938, lbl_80465950, NULL };
 BmlResourceDescriptor ograss_jungle_resource_descriptor = { lbl_80465964, bm_o_grass_jungle_model_names, bm_o_grass_jungle_motion_names, 2, 0 };
 __declspec(section ".sdata") const char *bm_o_grass_jungle_motion_names[1] = { NULL };
+}
+
+extern "C" {
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD28 = 12.0f;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805DDD2C = -10.0f;
 }

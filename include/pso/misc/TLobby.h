@@ -6,6 +6,7 @@
 #include "pso/item/TItemData.h"
 #include "pso/system/Adxf.h"
 #include "pso/system/CvFsDeviceCallbacks.h"
+#include "pso/network/ExiSendCompletion.h"
 
 struct TItemList;
 
@@ -74,8 +75,6 @@ struct TLobby : public TObject {
     void apply_lobby_markers();
     static s32 get_option_state();
     static void install_game_join_handlers();
-    static void free_item_loader();
-    static void load_draw_line_task();
     static void send_or_handle_packet(void *arg0, void *arg1, void *arg2, void *arg3, u32 arg4);
     void merge_adjacent_free_blocks();
     static void sync_auto_reply_state();
@@ -379,7 +378,6 @@ struct TLobby : public TObject {
     void set_field_90(s32 v);
     static void send_packet(s32 arg0, s32 arg1);
     static void free_shared_objects();
-    void *start_load_default();
     static void free_single_player_chr_select();
     static void alloc_download_server();
     static void free_chr_select_singleton();
@@ -576,21 +574,12 @@ struct TLobby : public TObject {
     s32 set_active_flag();
     s32 mark_sub_ready();
     void dispatch_received_packet(s32 arg1);
-    s32 set_flags_and_state();
     static s16 get_checked_status_value(s16 arg0);
     static s32 clear_socket_slot(s16 i);
     static void update_connection_state(Self_803FD74C *self);
     s32 read_2_bytes(void *src);
-    void free_field_98();
-    void free_field_98_and_clear();
-    void reset_connection_slot();
-    static void queue_command_81();
-    s32 configure_mode_by_type(s16 type);
     static void init_net_state_c();
     static s32 init_net_subsystem_block();
-    u8 *alloc_from_buffer(s16 arg1);
-    u16 get_field_4();
-    void init_md5_state();
     static void init_net_block_620();
     static s32 init_net_block_620_secondary();
     s32 mark_ready();
@@ -682,8 +671,8 @@ struct TLobby : public TObject {
     static void exi_write(s32 arg0, s32 arg1, s32 arg2);
     static void start_exi_dma_read(u16 arg0);
     static void start_exi_dma_write(s32 chan, void *ctx);
-    static void start_exi_send(s32 arg0, s32 arg1, s32 arg2);
-    static s32 exi_start_send_dma(int, int);
+    static void start_exi_send(s32 arg0, s32 arg1, ExiSendCompletionCallback arg2);
+    static void exi_start_send_dma(int, int);
     void copy_6_byte_config();
     void copy_mac_address();
     s32 poll_exi_status();
@@ -713,7 +702,6 @@ struct TLobby : public TObject {
     void add_status_disp_entry(s32 arg1, s32 arg2);
     static void reset_message_thread();
     static void update_exi_status();
-    s32 post_message(s32 arg1, s32 arg2, s32 arg3);
     static void message_thread_loop();
     static void clear_message_entry_wrapper(s32 arg0);
     static u16 recv_pppoe_message(s32 *arg0, u16 *arg1);
@@ -723,12 +711,9 @@ struct TLobby : public TObject {
     static s32 add_multicast_address(s16 arg0, void *arg1);
     static s32 remove_rec_by_handle(s16 arg0, u16 arg1);
     static s32 open_channel_checked(s16 arg0, u16 arg1);
-    void forward_to_channel(void *b);
     static s16 query_link_status();
     static s32 set_connect_mode(s32 arg0);
     static s32 get_task_count();
-    void parse_dhcp_lease_times();
-    static s32 validate_slot_buffers(s32 arg0, void *arg1, void *arg2, void *arg3);
     static void release_entry_by_id(u32 arg0);
     static u8 *find_entry_by_address(s32 arg0);
     static void cancel_alarm_a();
@@ -761,7 +746,7 @@ struct TLobby : public TObject {
     static void resume_thread(s32 thread);
     void cancel_thread_if_running();
     static void deactivate_entry_by_key(u32 key);
-    static s32 run_current_thread_callback();
+    static void *run_current_thread_callback(void *);
     s16 check_connection_status();
     static s32 clear_flag_bit4(s32 arg0, u8 *arg1);
     void init_net_state_entry();
@@ -788,7 +773,6 @@ struct TLobby : public TObject {
     s32 get_battle_ctrl_default();
     static s32 find_free_chat_log_slot();
     static void apply_menu_cursor_selection();
-    u32 alloc_load_buffer(s32 arg1);
     static void reset_leader_selection_static();
     static u8 *get_stage_table_entry(s32 arg0, s32 arg1);
     static s32 get_online_result_value();
@@ -1052,7 +1036,6 @@ struct TLobby : public TObject {
     static void init_player_forward();
     static void release_indexed_entry(s32 arg0);
     static s32 destroy_ep3_exist(s32 arg0, s16 arg1);
-    void save_timer_state();
     static s16 parse_lcp_option(s32 arg0, u8 *arg1, u8 *arg2, u8 *arg3, s16 arg4);
     s16 build_ethernet_frame_header(void *src, void *mac, u16 type, u8 flag, u16 a, u16 len);
     s16 pppoe_recv_packet(u16 bufLen, u16 *outLen);
@@ -1110,9 +1093,6 @@ struct TLobby : public TObject {
     void move_trade_item_amount(u32 arg1, s32 arg2);
     void set_stream_frequency(s32 rate);
     s32 copy_current_entry_name(s32 len);
-    s32 build_dhcp_release();
-    s32 dhcp_build_packet();
-    s32 build_dhcp_discover_packet();
     void capture_chat_sensor();
     static void parse_message_tag();
     static void append_unit_list_name();
@@ -1132,7 +1112,6 @@ struct TLobby : public TObject {
     static void destroy_download_server(void* _w0);
     void send_compressed_packet_6c();
     void send_cmd_6B();
-    s16 post_send_message(u16 arg1);
     u8 *create_new_floor_windows();
 };
 

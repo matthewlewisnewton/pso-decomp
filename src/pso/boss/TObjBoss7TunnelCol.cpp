@@ -36,7 +36,7 @@ void *__dt__18TObjBoss7TunnelColFv(void *arg0, s16 arg1) {
 
 extern s32 TObjBoss7TunnelCol__col_desc[];
 extern void *lbl_805D3FF0;
-extern const f32 lbl_805DECA0;
+static const f32 lbl_805DECA0 = 85.0f;
 extern const f32 lbl_805DEC9C;
 
 void *TObjBoss7TunnelCol__ct(void *arg0, TObject *parent) {

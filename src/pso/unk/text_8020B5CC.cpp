@@ -171,7 +171,7 @@ s32 init_quest_floor_enemies(s32 idx, Src_8020B7C4 *src, u32 size) {
         if (TLobby__data_80513A40[idx].entry2 != NULL) {
             TLobby::send_or_handle_packet((void *)TLobby__data_805D6104, (void *)buf, TLobby__data_80513A40[idx].entry2, (void *)sz, (u32)0);
         }
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
     } else if (TLobby__data_80513A40[idx].entry2 != NULL) {
         TLobby::send_or_handle_packet((void *)TLobby__data_805D6104, (void *)src, TLobby__data_80513A40[idx].entry2, (void *)sz, (u32)0);
     }
@@ -223,7 +223,7 @@ s32 load_floor_enemy_group_entries__6TLobbyFiPvUi(s32 idx, Src_8020B970 *src, u3
         if (TLobby__data_80513A40[idx].entry != NULL) {
             TLobby::send_or_handle_packet((void *)TLobby__data_805D6104, (void *)buf, TLobby__data_80513A40[idx].entry, (void *)sz, (u32)0);
         }
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        TAdSinglePlyChrSelectGC::safe_free((void *)buf);
     } else if (TLobby__data_80513A40[idx].entry != NULL) {
         TLobby::send_or_handle_packet((void *)TLobby__data_805D6104, (void *)src, TLobby__data_80513A40[idx].entry, (void *)sz, (u32)0);
     }

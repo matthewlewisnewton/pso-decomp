@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/CurrentTextureList.h"
@@ -72,10 +74,7 @@ struct Obj_8004EB78 {
     f32 c0;
 };
 typedef CameraAngles Pose_8004EB78;
-s32 get_bml_motion(s32, s32);
-s32 TObjFish__sub_8001EDB0(s32, s32);
-s32 get_bml_model(s32, s32);
-
+s32 get_bml_motion(BmlResource *, s32);
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 boss4_zanzo_bml_index_table[];
 void *__dt__11TObjDFDemo2Fv(void *arg0, s16 arg1);
@@ -183,7 +182,7 @@ void *__dt__11TObjDFDemo2Fv(void *arg0, s16 arg1) {
 #define self ((Obj_8004EB78 *)arg0)
 void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *arg4) {
     s32 k;
-    s32 cnt;
+    BmlResource *cnt;
     s32 i;
 
     __ct__8TObjBaseFP7TObject(self, parent);
@@ -196,8 +195,8 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
     for (i = 0; i < 2; i++) {
         s32 t = boss4_zanzo_bml_index_table[i];
         k = t;
-        ((s32 *)self)[i * 3 + 0x24] = get_bml_model(cnt, t);
-        ((s32 *)self)[i * 3 + 0x25] = TObjFish__sub_8001EDB0(cnt, k);
+        ((s32 *)self)[i * 3 + 0x24] = (s32)get_bml_model(cnt, t);
+        ((s32 *)self)[i * 3 + 0x25] = (s32)TObjFish__sub_8001EDB0((BmlResource *)cnt, (s32)k);
         ((s32 *)self)[i * 3 + 0x26] = get_bml_motion(cnt, ((s32 *)TObjDFDemo2__motion_index_table)[i]);
     }
     self->c0 = -0.5f;

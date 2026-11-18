@@ -158,7 +158,7 @@ void *TBGLightningCtrl__create(void *arg0) {
 void TBGLightningCtrl::destroy_instance() {
     if ((u32) (*(u32 *)&bg_lightning_texture_handle) != 0U) {
         release_texture_list((void*)(*(u32 *)&bg_lightning_texture_handle));
-        TAdSinglePlyChrSelectGC::safe_free((*(u32 *)&bg_lightning_texture_handle));
+        TAdSinglePlyChrSelectGC::safe_free((void *)(*(u32 *)&bg_lightning_texture_handle));
         (*(u32 *)&bg_lightning_texture_handle) = 0U;
     }
 }

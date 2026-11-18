@@ -104,7 +104,7 @@ struct P_800BC250 : VB_800BC250 {
 };
 
 extern "C" {
-extern const f32 lbl_805D9EB4;
+static const f32 lbl_805D9EB4 = 100.0f;
 void subtract_vector(Vec_800BBFD0 *a, Vec_800BBFD0 *b);
 s32 obj_isState2_324__9TObjCharaFv(void *);
 s32 obj_is_hit_receivable();
@@ -135,7 +135,7 @@ struct VObj_800bbe90 : Base_800bbe90 {
     virtual void m20(s32, f32);
 };
 
-extern const f32 lbl_805D9EB0;
+static const f32 lbl_805D9EB0 = 1.0f;
 
 void TUnk_804928CC::apply_hit_if_active(void *arg1, f32 *arg2) {
     ((VObj_800bbe90*)arg1)->m20(this->m_ac, lbl_805D9EB0);

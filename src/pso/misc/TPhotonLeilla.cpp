@@ -21,6 +21,9 @@
 #include "pso/map/FloorArea.h"
 
 extern "C" {
+const char lbl_80446DD8[] = "TPhotonLeilla";
+const char *lbl_805D34F8 = lbl_80446DD8;
+
 void TObjPlayer__sub_801AC43C(void) {  }
 void TObjPlayer__sub_801AC440(void) {  }
 }
@@ -60,7 +63,6 @@ u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3,
 extern "C" {
 
 u8 *__nw__7TObjectFUl(s32, f32);
-extern const f64 lbl_80446DE8;
 
 s32 scroll_strip_uvs(void *, s16, int);
 s32 clear_render_context__10TObjPlayerFv(void *);
@@ -155,7 +157,7 @@ void TPhotonLeilla::run_task() {
     if ((f32) *(s32 *)&this->m_1ac > 109.0f) {
         temp_f1_2 = *(f32 *)&this->m_180;
         if (temp_f1_2 > (-1.0f)) {
-            *(f32 *)&this->m_180 = (f32) ((f64) temp_f1_2 - lbl_80446DE8);
+            *(f32 *)&this->m_180 = (f32) ((f64) temp_f1_2 - 0.15);
         }
     }
     if ((s32) *(s32 *)&this->m_19c != 0) {
@@ -165,33 +167,17 @@ void TPhotonLeilla::run_task() {
 }
 
 extern "C" {
-
-s32 __dl__7TObjectFPv(void *);
-
-extern s32 __vt__13TPhotonLeilla[];
-
-struct Base_801AC794 { char pad[0x18]; };
-struct VObj_801AC794 : Base_801AC794 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11();
-    virtual void m12(); virtual void m13();
+const char lbl_80446DF8[] = "reila2.adx";
+const char lbl_80446E04[] = "reila.adx";
+TObjMotionAction photon_blast_leilla_params[] = {
+    {MOTION_MODE_ONCE, 0, 1, 1.0f, 0},
+    {MOTION_MODE_LOOP, 0, 9, 1.0f, 0},
 };
-
-void *__dt__13TPhotonLeillaFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        struct VObj_801AC794 *o = (struct VObj_801AC794 *)arg0;
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TPhotonLeilla;
-        o->m13();
-        ((TUnk_804C3248 *)arg0)->free_photon();
-        destroy_photon_motion_object(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
 }
 
+TPhotonLeilla::~TPhotonLeilla() {
+    update_if_active();
+    free_photon();
 }
 
 #define NEW_801AC808(n) (((u8 *(*)(int))__nw__7TObjectFUl)(n))
@@ -206,15 +192,6 @@ struct Pkt_801AC808 {
     u8 count;
     f32 f20;
 };
-struct VBase_801AC808 { u8 pad[0x18]; };
-struct Leilla_801AC808 : VBase_801AC808 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11();
-    virtual void m12();
-    u8 pad1C[0x38 - 0x1C];
-    Vec_801AC808 pos;
-};
 struct Res_801AC808 { u8 pad[0x18]; s32 f18; s32 f1C; };
 struct Game_801AC808 { u8 pad[0x42C]; Res_801AC808 *res; s32 f430; };
 
@@ -226,22 +203,20 @@ u8 *construct_photon_magic_square_normal(u8 *arg0, s32 arg1, s32 arg2, s32 arg3,
 extern "C" {
 void TPhotonRainbow__ct(void *, void *, void *, s32);
 u8 *__nw__7TObjectFUl(s32, f32);
-extern u8 lbl_80446DF8[];
-extern u8 lbl_80446E04[];
-extern u8 photon_blast_leilla_params[];
+
+extern TObjMotionAction photon_blast_leilla_params[];
 extern s32 __vt__13TPhotonLeilla[];
-extern s32 lbl_805D34F8;
 extern Game_801AC808 *photon_blast_shared_resource;
 
-void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
+void *TPhotonLeilla__ct(TPhotonLeilla *self, Pkt_801AC808 *pkt) {
     Vec_801AC808 v;
     u8 *o;
     u8 *owner;
     photon_base_ct(self);
     *(void **)((u8 *)self + 0x18) = __vt__13TPhotonLeilla;
-    F_801AC808(self, s32, 0) = lbl_805D34F8;
+    F_801AC808(self, const char *, 0) = lbl_805D34F8;
     F_801AC808(self, s32, 0x138) = 4;
-    VecCopy((Vec *)&self->pos, (const Vec *)pkt);
+    VecCopy((Vec *)&self->position, (const Vec *)pkt);
     F_801AC808(self, u16, 0x17C) = pkt->owner;
     owner = (u8 *)find_entity_by_id(F_801AC808(self, u16, 0x17C));
     if (owner != NULL) {
@@ -249,7 +224,7 @@ void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
     }
     F_801AC808(self, s32, 0x34) = photon_blast_shared_resource->res->f18;
     F_801AC808(self, s32, 0x24) = photon_blast_shared_resource->res->f1C;
-    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)photon_blast_leilla_params));
+    ((TObjMotion *)self)->set_action_table(photon_blast_leilla_params);
     ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(photon_blast_shared_resource->f430));
     F_801AC808(self, s16, 0xB8) = 1;
     ((TObjMotion *)self)->set_animation(F_801AC808(self, s16, 0xB8));
@@ -259,7 +234,7 @@ void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
     F_801AC808(self, s32, 0x198) = pkt->more;
     F_801AC808(self, s32, 0x19C) = 0;
     F_801AC808(self, s32, 0x134) = 2;
-    self->m12();
+    self->enter_scene();
     F_801AC808(self, s32, 0x1AC) = 0;
     switch (get_current_floor_area()) {
     case AREA_DRAGON:
@@ -268,13 +243,13 @@ void *TPhotonLeilla__ct(Leilla_801AC808 *self, Pkt_801AC808 *pkt) {
     case AREA_DARK_FALZ:
         o = NEW_801AC808(0xAC);
         if (o != NULL) {
-            TPhotonRainbow__ct(o, self, &self->pos, 1);
+            TPhotonRainbow__ct(o, self, &self->position, 1);
         }
         break;
     default:
         o = NEW_801AC808(0xAC);
         if (o != NULL) {
-            TPhotonRainbow__ct(o, self, &self->pos, 0);
+            TPhotonRainbow__ct(o, self, &self->position, 0);
         }
         break;
     }

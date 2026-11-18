@@ -58,7 +58,7 @@ extern "C" {
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 __vt__10TObjRoomId[];
 extern s32 lbl_805D34B0;
-extern const f32 lbl_805DC094;
+static const f32 lbl_805DC094 = 0.0f;
 u8 *TObjRoomId__ct(u8 *arg0, s32 arg1, s32 arg2);
 u16 TObjRoomId__sub_801A1DB8(u16 x);
 void *get_player_by_client_id(s32 i);
@@ -72,8 +72,8 @@ extern u8 lbl_804468B8[];
 extern u8 lbl_804468C4[];
 extern u8 lbl_804468D0[];
 extern u8 lbl_804468DC[];
-extern const f32 lbl_805DC088;
-extern const f32 lbl_805DC08C;
+static const f32 lbl_805DC088 = 2.0f;
+static const f32 lbl_805DC08C = 10.0f;
 void render__10TObjRoomIdFv(RoomId_801A18EC *self);
 s32 push_matrix_from(void *);
 void rotate_matrix_y(int, s32);
@@ -117,7 +117,7 @@ void render__10TObjRoomIdFv(RoomId_801A18EC *self) {
 }
 extern Vec_801A1A60 lbl_8044688C[];
 extern u8 identity_matrix[];
-extern const f32 lbl_805DC090;
+static const f32 lbl_805DC090 = 30.0f;
 void set_player_room_control_flag(TObjPlayer *arg0);
 #pragma pop
 

@@ -62,7 +62,7 @@ void text_builder_reset();
 extern u8 help_item_tech_disk_window_layout_table[];
 extern V3_802532E8 item_help_tech_disk_stats_callback;
 extern const f32 TWindowHelpItem__data_805DCDE4;
-extern const f32 lbl_805DCDE8;
+static const f32 lbl_805DCDE8 = 152.0f;
 extern const f32 lbl_805DCDEC;
 
 void TWindowHelpItem__sub_802531A0(void) {  }

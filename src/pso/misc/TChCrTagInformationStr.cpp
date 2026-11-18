@@ -11,7 +11,7 @@ extern s32 char_creation_tag_info_selected_index;
 void TCameraCtrl__sub_80068EF0();
 }
 extern const char *TChCrTagInformationStr__class_name;
-extern const f32 TChCrTagInformationStr__data_805DF108;
+static const f32 TChCrTagInformationStr__data_805DF108 = 0.0f;
 extern const f32 lbl_805DF10C, lbl_805DF110, lbl_805DF114, lbl_805DF118;
 extern const f32 lbl_805DF11C, lbl_805DF120, lbl_805DF124, lbl_805DF128, lbl_805DF12C;
 

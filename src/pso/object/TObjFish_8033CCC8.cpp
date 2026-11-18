@@ -1,3 +1,4 @@
+#include "pso/system/BmlTextureList.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/system/BmlResource.h"
 #include "pso/misc/CameraHelpers.h"
@@ -86,7 +87,7 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TBoss6PlotFalz *parent, const V
     for (s32 i = 0; i < 2; i++) {
         const s32 index = lbl_804DF614[i];
         models[i].object = get_bml_model(resource, index);
-        models[i].textures = TObjFish__sub_8001EDB0(resource, index);
+        models[i].textures = (s32)TObjFish__sub_8001EDB0((BmlResource *)resource, (s32)index);
         models[i].motion = get_bml_motion(resource, death_motion_indices[i]);
     }
     capture = ModelNodePositionCapture::create(lbl_80477E60, captured_positions);
@@ -217,10 +218,10 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         set_motion_packed_rotation();
         post_translate_matrix(&origin.x);
         set_current_texture_list(reinterpret_cast<GinjaTextureList *>(models[0].textures));
-        draw_model_motion(reinterpret_cast<void *>(models[0].object), models[0].motion, frame);
+        draw_model_motion(models[0].object, models[0].motion, frame);
         set_current_texture_list(reinterpret_cast<GinjaTextureList *>(models[1].textures));
         capture->install();
-        draw_model_motion(reinterpret_cast<void *>(models[1].object), models[1].motion, frame);
+        draw_model_motion(models[1].object, models[1].motion, frame);
         capture->clear();
         clear_motion_packed_rotation();
         pop_matrix();

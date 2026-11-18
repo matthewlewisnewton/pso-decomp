@@ -6,6 +6,7 @@
 #include "pso/object/TObjMotion.h"
 
 struct Rect_801F9228;
+struct NJS_OBJECT;
 struct RadarMapViewState;
 
 struct RadarViewportParameters
@@ -52,7 +53,6 @@ struct TRaderMapCore : public TObjBase {
     f32 m_1a0;
 
     void configure_viewport(const RadarViewportParameters* view);
-    void set_map_position(void *arg1);
     s32 is_render_admitted_default();
     static s32 is_active();
     void reset_counter();
@@ -97,7 +97,8 @@ struct TRaderMapCore : public TObjBase {
     static void free_statics();
     static void load_frame_texture();
     void reset();
-    static void init_map_ptr();
+    // The constructor supplies &m_90 as context and a model index; context is unread.
+    static NJS_OBJECT *init_map_ptr(const s32 *delay, s32 index);
     static s32 is_not_split_screen();
     static void clear();
     static void apply_packed_flags(s32 arg0, s32 arg1, s32 arg2, s32 arg3);

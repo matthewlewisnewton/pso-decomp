@@ -14,6 +14,7 @@ import struct
 ROOT = Path(__file__).resolve().parents[2]
 START, SIZE = 0x8042E8C4, 332
 ORIGINAL_SHA1 = "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+SHN_UNDEF, STB_GLOBAL = 0, 1
 
 
 def require(condition, message):
@@ -74,7 +75,11 @@ def read_candidate(path):
             offset, info, addend = struct.unpack_from(">IIi", section(i), pos)
             require(info & 255 == 10 and offset % 4 == 0 and offset <= SIZE - 4,
                     "expected aligned R_PPC_REL24 call")
-            relocations.append((offset, cstring(strings, symbols[info >> 8][0]), addend))
+            name_offset, _, _, symbol_info, _, symbol_section = symbols[info >> 8]
+            name = cstring(strings, name_offset)
+            require(symbol_section == SHN_UNDEF and symbol_info >> 4 == STB_GLOBAL,
+                    "expected undefined global call target: " + name)
+            relocations.append((offset, name, addend))
     require(len(relocations) == 10 and len({r[0] for r in relocations}) == 10,
             "expected ten distinct call relocations")
     return data, bytearray(section(text_index)), relocations

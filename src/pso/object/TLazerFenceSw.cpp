@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
@@ -25,7 +26,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 
-extern "C" { void rotate_matrix_y(int, void *); s32 pop_matrix(void); void draw_ginja_object(void *); s32 get_bml_motion(s32, s32); s32 get_bml_model(s32, s32); }
+extern "C" { void rotate_matrix_y(int, void *); s32 pop_matrix(void); void draw_ginja_object(void *); s32 get_bml_motion(s32, s32); }
 extern s32 model_render_flags;
 
 extern char lbl_80445C00[];
@@ -302,8 +303,8 @@ void TLazerFenceSw::load_resources() {
             TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445D20);
         }
     }
-    lazer_fence_sw_ginja_model_table[0] = (s32)get_bml_model((s32)lazer_fence_switch_bml_resource, 0);
-    lazer_fence_sw_ginja_model_table[1] = (s32)get_bml_model((s32)lazer_fence_switch_bml_resource, 1);
+    lazer_fence_sw_ginja_model_table[0] = (s32)get_bml_model((BmlResource *)lazer_fence_switch_bml_resource, 0);
+    lazer_fence_sw_ginja_model_table[1] = (s32)get_bml_model((BmlResource *)lazer_fence_switch_bml_resource, 1);
     ((u32 *)&lazer_fence_beam_motions)[0] = get_bml_motion((s32)lazer_fence_switch_bml_resource, 0);
     ((u32 *)&lazer_fence_beam_motions)[1] = get_bml_motion((s32)lazer_fence_switch_bml_resource, 1);
     for (j = 0; j < 3; j++) {
@@ -366,4 +367,8 @@ void *TLazerFenceSw__ct(void *arg0, void *arg1, void *arg2) {
 __declspec(section ".data") const char *fe_obj_switch_laz_model_names[4] = { lbl_80445C00, lbl_80445C18, lbl_80445C34, NULL };
 __declspec(section ".data") const char *fe_obj_switch_laz_motion_names[3] = { lbl_80445C54, lbl_80445C6C, NULL };
 BmlResourceDescriptor laser_fence_switch_resource_descriptor = { lbl_80445C88, fe_obj_switch_laz_model_names, fe_obj_switch_laz_motion_names, 3, 2 };
+}
+
+extern "C" {
+void *lazer_fence_switch_bml_resource;
 }

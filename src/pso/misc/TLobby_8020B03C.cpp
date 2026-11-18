@@ -15,7 +15,7 @@ extern s32 TLobby__map_set_file_buffer_size;
 
 void TLobby::free_data_60F0() {
     if ((u32) TLobby__map_set_file_buffer != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)TLobby__map_set_file_buffer));
+        TAdSinglePlyChrSelectGC::safe_free((void *)((void*)TLobby__map_set_file_buffer));
         TLobby__map_set_file_buffer = 0U;
         TLobby__map_set_file_buffer_size = 0;
     }

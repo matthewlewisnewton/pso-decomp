@@ -190,7 +190,7 @@ void TObjVoloptCage::destroy() {
 
 void TObjVoloptCage::init_break_model() {
     TBreakUpMdl *model;
-    volopt_cage_model = boss3_volopt_resources->models[0x12].model;
+    volopt_cage_model = (s32)boss3_volopt_resources->models[0x12].model;
     model = (TBreakUpMdl *)::operator new(0x10);
     if (model != NULL) {
         model = (TBreakUpMdl *)model->init_from_model(volopt_cage_model);
@@ -292,7 +292,7 @@ TObjVoloptCage::TObjVoloptCage(TObjEnemy *boss, u16 target, u16 id, s32 group) :
     actorFlags &= ~0xA00;
     next_action = 7;
     mode = 7;
-    volopt_cage_textures = lbl_805D4CE4->models[0x12].m_c;
+    volopt_cage_textures = (s32)lbl_805D4CE4->models[0x12].m_c;
     status = 0;
 }
 

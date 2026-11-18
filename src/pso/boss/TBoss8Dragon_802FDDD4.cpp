@@ -1,3 +1,5 @@
+#include "pso/protocol/BossActionPacket.h"
+#include "pso/system/NinjaTypes.h"
 #include "pso/protocol/protocol_types.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_802FDDD4.h"
@@ -5,38 +7,29 @@
 #include "pso/system/byteswap.h"
 #include "pso/boss/TBoss8Dragon.h"
 
-struct Node_802FDDD4 {
-    u8 pad0[4];
-    s32 v;
-    u8 pad1[0x24];
-    Node_802FDDD4 *c0;
-    Node_802FDDD4 *c1;
-    u8 pad2[4];
-};
-
 extern "C" {
 
 void copy_model_node(u8 *, u8 *);
-Node_802FDDD4 *clone_node_tree__12TBoss8DragonFPvPvi(Node_802FDDD4 *src, Node_802FDDD4 *dst, s32 v);
+NJS_OBJECT *clone_node_tree__12TBoss8DragonFPvPvi(NJS_OBJECT *src, NJS_OBJECT *dst, void *model);
 extern f32 lbl_805D6980;
 extern f32 lbl_805D6984;
 extern f32 lbl_805D69C0;
-extern f32 lbl_805D9E80;
+extern const f32 lbl_805D9E80;
 extern f32 TBoss8Dragon__data_805DEDC8;
 extern f32 lbl_805DEE40;
 
-Node_802FDDD4 *clone_node_tree__12TBoss8DragonFPvPvi(Node_802FDDD4 *src, Node_802FDDD4 *dst, s32 v) {
-    Node_802FDDD4 *cur = dst;
+NJS_OBJECT *clone_node_tree__12TBoss8DragonFPvPvi(NJS_OBJECT *src, NJS_OBJECT *dst, void *model) {
+    NJS_OBJECT *cur = dst;
     dst = dst + 1;
     copy_model_node((u8 *)cur, (u8 *)src);
-    cur->v = v;
-    if (src->c0 != NULL) {
-        cur->c0 = dst;
-        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->c0, dst, v);
+    cur->model = model;
+    if (src->child != NULL) {
+        cur->child = dst;
+        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->child, dst, model);
     }
-    if (src->c1 != NULL) {
-        cur->c1 = dst;
-        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->c1, dst, v);
+    if (src->sibling != NULL) {
+        cur->sibling = dst;
+        dst = clone_node_tree__12TBoss8DragonFPvPvi(src->sibling, dst, model);
     }
     return dst;
 }
@@ -48,8 +41,8 @@ void TBoss8Dragon::apply_confusion_status() {  }
 void TBoss8Dragon::apply_movement_ailment(s32) {  }
 void TBoss8Dragon::apply_shock_status() {  }
 void TBoss8Dragon::clear_harmful_statuses() {  }
-void TBoss8Dragon::send_swapped_packet() { bswap_packet(); send_subcommand((u8 *)this); }
-void TBoss8Dragon::bswap_packet() { ((G_ClientIDHeader *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_32((u32 *)((char*)this + 0x8)); }
+void send_boss_action_6xA8(void *packet) { bswap_boss_action_6xA8(packet); send_subcommand((u8 *)packet); }
+void bswap_boss_action_6xA8(void *packet) { ((G_ClientIDHeader *)packet)->bswap(); bswap_16((u16 *)((char*)packet + 0x4)); bswap_16((u16 *)((char*)packet + 0x6)); bswap_32((u32 *)((char*)packet + 0x8)); }
 }
 
 void build_6xA8_gol_dragon_boss_actions(void* p) { *(u8*)((char*)p + 0x0) = 168; *(u8*)((char*)p + 0x1) = 6; }

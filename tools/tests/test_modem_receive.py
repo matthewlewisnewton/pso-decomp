@@ -28,7 +28,7 @@ class ModemReceiveTests(unittest.TestCase):
         source = (ROOT / "src/pso/network/ModemRuntime.cpp").read_text()
         records = "\n".join(
             extract_block(source, rf"^struct {name} \{{") + ";"
-            for name in ("ModemSendState", "ModemReceiveState", "ModemExiState")
+            for name in ("ModemSendState", "ModemReceiveState")
         )
         functions = "\n".join(
             extract_block(source, rf"^(?:static inline s32|s32|void) {name}\([^;]*?\)\s*\{{")
@@ -61,15 +61,18 @@ class ModemReceiveTests(unittest.TestCase):
         records = "\n".join(
             extract_block(source, rf"^struct {name} \{{") + ";"
             for name in (
-                "ModemSendState", "ModemReceiveState", "ModemExiState",
+                "ModemSendState", "ModemReceiveState",
                 "ModemResponseState", "RecoveredGlobal_8042E768_lbl_805D1D20",
             )
         )
+        records += "\n" + extract_block(source, r"^static char modem_setup_commands\[\]\[12\] = \{") + ";"
         functions = "\n".join(
-            extract_block(source, rf"^(?:static inline (?:s32|u8)|s32|void) {name}\([^;]*?\)\s*\{{")
+            extract_block(source, rf"^(?:(?:static inline (?:s32|u8|u32|BOOL)|s32|void) |static inline char \*){name}\([^;]*?\)\s*\{{")
             for name in (
-                "ModemMin", "ModemHighestStatusBit",
+                "ModemMin", "ModemLeadingZeroCount",
                 "TAdSinglePlyChrSelectGC__sub_8042C2E4",
+                "ModemRunCommand", "ModemWriteCommand",
+                "ModemBuildCountryCommand", "ModemSetupCommands",
                 "TAdSinglePlyChrSelectGC__sub_8042CEF8",
             )
         )

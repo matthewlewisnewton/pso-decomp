@@ -1,3 +1,5 @@
+#include "pso/system/BmlTextureList.h"
+#include "pso/system/BmlResource.h"
 #include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -58,8 +60,6 @@ struct Icon_80171E7C {
 extern "C" {
 
 void vfunc_80__12TOMineIcon04Fv(s32 arg0);
-s32 TObjFish__sub_8001EDB0(void *, s32);
-s32 get_bml_model(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 extern u8 mine_collision_body_parts[];
 extern void *__vt__12TOMineIcon04[];
@@ -314,10 +314,10 @@ TOMineIcon04::TOMineIcon04(TObject *parent, void *set) : TOMine(parent) {
     ((VIcon_80171E7C *)self)->m5(set);
     ((TObjChara *)self)->initialize_position_copies();
     ((TObjChara *)self)->calc_attach_pos();
-    self->f34 = get_bml_model(lbl_805D5A50, 7);
-    self->f24 = TObjFish__sub_8001EDB0(lbl_805D5A50, 7);
-    self->f374 = get_bml_model(lbl_805D5A50, 3);
-    self->f378 = TObjFish__sub_8001EDB0(lbl_805D5A50, 3);
+    self->f34 = (s32)get_bml_model((BmlResource *)lbl_805D5A50, 7);
+    self->f24 = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D5A50, 7);
+    self->f374 = (s32)get_bml_model((BmlResource *)lbl_805D5A50, 3);
+    self->f378 = (s32)TObjFish__sub_8001EDB0((BmlResource *)lbl_805D5A50, 3);
     self->f326 = 0;
     if (self->f84 < 0) {
         self->f84 = 0;

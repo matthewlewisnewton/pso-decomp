@@ -1,3 +1,4 @@
+#include "pso/render/ColorLineList.h"
 #include "types.h"
 #include "pso/TAdBackGC.h"
 #include "pso/TObjCMHairMenu.h"
@@ -5,10 +6,10 @@
 struct Fan_8029A6EC { f32 *pos; u32 *col; s32 first; s32 count; };
 
 
-extern const f32 lbl_805DDC58;
-extern const f32 lbl_805DDC5C;
-extern const f32 lbl_805DDC60;
-extern const f32 lbl_805DDC64;
+static const f32 lbl_805DDC58 = 0.0f;
+static const f32 lbl_805DDC5C = 479.0f;
+static const f32 lbl_805DDC60 = 639.0f;
+static const f32 lbl_805DDC64 = 0.01f;
 void TAdBackGC::sub_8029A6EC() {
     f32 pos[8];
     Fan_8029A6EC fan;
@@ -30,5 +31,5 @@ void TAdBackGC::sub_8029A6EC() {
     fan.pos[6] = lbl_805DDC60;
     fan.pos[7] = lbl_805DDC58;
     fan.col[3] = 0xFF;
-    ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 3, *(f32 *)((u8 *)this + 0x1C) - lbl_805DDC64);
+    ((ColorLineList *)&fan)->draw_tri_fan_2d(4, 3, *(f32 *)((u8 *)this + 0x1C) - lbl_805DDC64);
 }

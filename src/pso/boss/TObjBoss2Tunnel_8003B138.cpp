@@ -958,3 +958,8 @@ void *TUnk_804835D8::init() {
 #undef __ct__7TObjectFP7TObject
 
 #undef boss2_tunnel_instance
+
+extern "C" {
+u32 TObjBoss2Tunnel__global_flags;
+s32 *lbl_805D4C04;
+}

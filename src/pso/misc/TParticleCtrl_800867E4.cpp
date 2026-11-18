@@ -1,3 +1,4 @@
+#include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/misc/TParticleCtrl_800867E4.h"
 
@@ -17,7 +18,6 @@ struct RecoveredGlobal_8008683C_lbl_804393F0 {
 struct Ent_800868C4 { u8 data[0x98]; };
 
 extern "C" {
-s32 get_bml_model(void *, s32);
 extern u8 *TParticleCtrl__regular_bml_resource;
 extern RecoveredGlobal_8008683C_lbl_804393F0 lbl_804393F0;
 extern s32 particle_pool_limit;
@@ -59,7 +59,7 @@ void TParticleCtrl::generate_child_default(s32 arg1, s32 arg2) {
 
 s32 TParticleCtrl::get_particle_model(s32 arg0) {
     if (arg0 < 3) {
-        return get_bml_model(TParticleCtrl__regular_bml_resource, arg0);
+        return (s32)get_bml_model((BmlResource *)TParticleCtrl__regular_bml_resource, arg0);
     }
     return 0;
 }

@@ -169,10 +169,12 @@ unsigned bias is the pool named by the post-process above, and
 `TTecCtrl_8022C444` is linked. `TLobby_801E2F94`'s signed bias was
 unreferenced; it is `scope:local` and that unit is linked too.
 
-`TWindowSubSymbolChatParts` matches and its `.rodata` is the signed bias
-`lbl_8044FC08`. Nothing else loads that symbol, so it is `scope:local`. The
-unit still does not link: its compiled object references `lbl_805DD7F8`, and
-the other missing symbols stay exported until each one has a definition.
+`TWindowSubSymbolChatParts`'s `.rodata` is the signed bias `lbl_8044FC08`.
+Nothing else loads that symbol, so it is `scope:local`. The remaining
+`lbl_805DD7F8` reference is now expressed as the unit's existing `32.0f`
+literal, with scoped propagation steering to preserve its register allocation.
+After a fresh consumer census, all 18 float-pool symbols are local and the
+complete unit links. See [the unit evidence](symbol-chat-parts-recovery-evidence.md).
 
 `TObjPlayer_801C7430` now links with its compiler-generated signed bias
 `TObjPlayer__data_80447130`. Using the five unit-owned floats as C++ literals

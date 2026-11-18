@@ -71,7 +71,7 @@ void TBoss5GryphonSnarl::run_task() {
             if (children_a0[i] == NULL) {
                 children_a0[i] = (TObject *)spawn_continuous_particle_effect_with_flags(&position, TBoss5GryphonSnarl__effect_table[1], 0x40);
                 if (children_a0[i] != NULL) {
-                    attach_particle_model(children_a0[i], get_bml_model(boss5_gryphon_bml_resource, 1), (s32)boss5_gryphon_texture_list, 0, 0, 1.0f);
+                    attach_particle_model(children_a0[i], (s32)get_bml_model(boss5_gryphon_bml_resource, 1), (s32)boss5_gryphon_texture_list, 0, 0, 1.0f);
                 }
             }
             if (children_a0[i] != NULL) {
@@ -152,7 +152,7 @@ void TBoss5GryphonSnarl__sub_80066E88() {
 void TLobby__sub_80066EC0(void) {
     if ((u32) boss5_common_texture_list != 0U) {
         release_texture_list((void*)boss5_common_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(boss5_common_texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((void *)boss5_common_texture_list);
         boss5_common_texture_list = 0U;
     }
     delete (BmlResource *)(lbl_805D4DD8);
