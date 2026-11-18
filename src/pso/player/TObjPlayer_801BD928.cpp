@@ -52,7 +52,7 @@ u8 *TObjPlayer::construct_player_instance(s32 arg1, s16 arg2, s32 role, u8 *arg4
     ((TFontSmallLobby *)(((u8 *)this) + 0x4AC))->construct_pb_controller();
     __ct__14TPlyDispConfigFv((void *) (((u8 *)this) + 0x500));
     TObjPlayer__sub_80351974((void *) (((u8 *)this) + 0x550));
-    ((TObjPlayer *)(((u8 *)this) + 0x5B0))->init_subobjects();
+    scale_state.initialize();
     ((TObjPlayer *)(((u8 *)this) + 0x5E0))->init_sub();
     ((TObjPlayer *)(((u8 *)this) + 0x5F0))->init_wrapper();
     ((TObjPlayer *)(((u8 *)this) + 0x5FC))->init_members();

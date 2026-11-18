@@ -19,8 +19,6 @@ typedef struct _GXVtxDescList GXVtxDescList;
 #include "pso/system/ChunkPolygonList.h"
 #include "pso/player/TObjPlayer.h"
 
-#pragma scheduling off
-
 struct FloatColor { f32 a, r, g, b; };
 
 struct ByteColor { u8 r, g, b, a; };
@@ -213,9 +211,6 @@ void TLobby__sub_803E2EE4(s32 arg0) {
     load_context_texture_obj();
 }
 
-#pragma push
-#pragma peephole off
-#pragma scheduling off
 typedef char RecoveredGlobal_803DCBD8_lbl_8058D380_size[sizeof(RecoveredGlobal_803DCBD8_lbl_8058D380) == 0xF0 ? 1 : -1];
 void TObjPlayer::copy_matrix3x3_for_chunk_tree() {
     struct Mtx_803DC994 *src = (struct Mtx_803DC994 *)this;
@@ -230,7 +225,6 @@ void TObjPlayer::copy_matrix3x3_for_chunk_tree() {
     dst->m[2][1] = src->m[2][1];
     dst->m[2][2] = src->m[2][2];
 }
-#pragma pop
 
 #define node ((ChunkNode_803E2F78 *)arg0)
 void transform_chunk_object_tree(void *arg0, ModelDrawCallback cb) {
@@ -497,10 +491,6 @@ static inline void GXNormal3f32_803E36C4(f32 x, f32 y, f32 z) {
     (*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;
 }
 
-#pragma push
-#pragma use_lmw_stmw off
-#pragma dont_inline off
-#pragma inline_depth(4)
 static inline void GXPosition3f32_803E352C(f32 x, f32 y, f32 z) {
     (*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;
     (*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;
@@ -566,7 +556,6 @@ void draw_chunk_textured_strips(s16 *list, Vtx_803E352C *verts, u32 info, s32 la
         } while (--n != 0);
     } while (--count != 0);
 }
-#pragma pop
 
 void draw_strip_list_pos_nrm__10TObjPlayerFPvPvUi(s16 *list, Vtx_803E36C4 *verts, u32 info) {
     s32 skip;
@@ -596,9 +585,6 @@ void draw_strip_list_pos_nrm__10TObjPlayerFPvPvUi(s16 *list, Vtx_803E36C4 *verts
 s32 dispatch_chunk_vertex_list(u32*, s32);
 #pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void submit_chunk_material_color(s32 type, s16* data) {
     FloatColor add;
     ByteColor color;
@@ -626,21 +612,12 @@ void submit_chunk_material_color(s32 type, s16* data) {
     }
     if ((u32)(ginja_draw_flags&2)!=0U) GXSetChanMatColor(4,fallback);
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void set_chunk_blend(u32 x) {
     chunk_blend_header_bits = x & 0x3F00;
     chunk_strip_dirty_flags |= 8;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_common_subs off
-#pragma scheduling off
-#pragma peephole off
 void apply_chunk_texture_command(s32 arg0, s32 arg1) {
     s32 var_r31;
     s32 idx;
@@ -666,7 +643,6 @@ void apply_chunk_texture_command(s32 arg0, s32 arg1) {
     load_list_texture((idx), (var_r4), (var_r5), 0);
     chunk_texture_record_index = var_r31;
 }
-#pragma pop
 
 void TObjPlayer::setup_tev_passclr() {
     GXSetNumTevStages(1);
@@ -675,8 +651,6 @@ void TObjPlayer::setup_tev_passclr() {
     GXSetTevOrder(0, 0xFF, 0xFF, 4);
 }
 
-#pragma push
-#pragma peephole off
 void setup_chunk_tev_stages(void) {
     if ((u32) (model_render_flags & 0x80000) != 0) {
         GXSetNumTevStages((int)((void *) ((u8)(lbl_805D77D8 + 1))));
@@ -688,7 +662,6 @@ void setup_chunk_tev_stages(void) {
     GXSetTevOp(0, 0);
     GXSetTevOrder(0, 0, 0, 4);
 }
-#pragma pop
 
 void set_strip_lighting_chan_ctrl(u32 flags) {
     u8 enable;
@@ -708,12 +681,9 @@ void set_strip_lighting_chan_ctrl(u32 flags) {
     }
 }
 
-#pragma push
-#pragma scheduling off
 s32 set_chunk_alpha_compare_ref(int ref) {
     GXSetAlphaCompare(4, ref, 0, 7, 0);
 }
-#pragma pop
 
 void set_chunk_blend_depth_mode(s32 arg0, s32 arg1) {
     s32 var_r31;
@@ -983,8 +953,6 @@ void TObjPlayer::setup_model_draw_state(void *) {
     GXSetZCompLoc(0);
 }
 
-#pragma push
-#pragma peephole off
 void TObjPlayer::end_chunk_draw() {
     if ((u32) (ginja_draw_flags & 2) != 0) {
         TObjPlayer::set_effect_active();
@@ -998,7 +966,6 @@ void TObjPlayer::end_chunk_draw() {
         player_chunk_draw_end_callback();
     }
 }
-#pragma pop
 
 s32 draw_chunk_vertices_cached(void* arg) {
     ChunkModel_803E44D4* model = (ChunkModel_803E44D4*)arg;
@@ -1043,15 +1010,12 @@ void draw_chunk_model(void *arg0) {
     TObjPlayer::end_chunk_draw();
 }
 
-#pragma push
-#pragma scheduling off
 extern "C" {
 void draw_chunk_object(void *child) {
     TObjPlayer::setup_model_draw_state(child);
     transform_chunk_object_tree(child, draw_chunk_vertices_cached);
     TObjPlayer::end_chunk_draw();
 }
-#pragma pop
 
 #pragma push
 #pragma use_lmw_stmw off
@@ -1154,14 +1118,11 @@ void draw_triangle_strips__10TObjPlayerFPvPvUi(s16 *list, Vtx_803E47E0 *verts, u
 }
 #pragma pop
 
-#pragma push
-#pragma scheduling off
 void TObjPlayer__sub_803E492C(s32 a, s32 b) {
     chunk_vertex_cache_buffer = a;
     lbl_805D77FC = b;
     chunk_render_flags = 0;
 }
-#pragma pop
 
 }
 

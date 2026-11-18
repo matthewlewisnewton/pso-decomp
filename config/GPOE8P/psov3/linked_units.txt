@@ -1523,7 +1523,6 @@ pso/misc/TQuadSpriteSclCol.cpp
 pso/misc/TQuadSpriteSclColRot.cpp
 pso/misc/TQuestColCtrl.cpp
 pso/misc/TQuestColCtrl_80195CF0.cpp
-pso/misc/TQuestListChallenge.cpp
 pso/misc/TQuestListOnline.cpp
 pso/misc/TQuestListOnline_802150E8.cpp
 pso/misc/TQuestListOnline_80217464.cpp
@@ -2002,7 +2001,6 @@ pso/misc/TWindowTimer.cpp
 pso/misc/TWindowTradeRequest.cpp
 pso/misc/TWindowTradeRequest_802E0170.cpp
 pso/misc/TWindowUserSort.cpp
-pso/misc/TWindow_80217288.cpp
 pso/misc/TeneFakeTecThunderEff.cpp
 pso/misc/item_param.cpp
 pso/misc/item_pmt.cpp
@@ -2012,6 +2010,7 @@ pso/misc/pso_const_ids4.cpp
 pso/misc/pso_const_ids5.cpp
 pso/misc/pso_date.cpp
 pso/network/ModemRuntime.cpp
+pso/network/NetUdp.cpp
 pso/network/NetworkConfigLifecycle.cpp
 pso/network/NetworkDispatcher.cpp
 pso/network/NetworkInfoCodec.cpp
@@ -2275,6 +2274,9 @@ pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
 pso/player/TItemWeaponFist.cpp
 pso/player/TObjPlayer.cpp
+pso/player/TObjPlayerEffectState.cpp
+pso/player/TObjPlayerReloadTexture.cpp
+pso/player/TObjPlayerRenderBindings.cpp
 pso/player/TObjPlayerSet.cpp
 pso/player/TObjPlayer_80011014.cpp
 pso/player/TObjPlayer_80020898.cpp
@@ -2301,7 +2303,6 @@ pso/player/TObjPlayer_80090448.cpp
 pso/player/TObjPlayer_80092A7C.cpp
 pso/player/TObjPlayer_80099EF8.cpp
 pso/player/TObjPlayer_800AAFBC.cpp
-pso/player/TObjPlayer_800ACA60.cpp
 pso/player/TObjPlayer_800BBE90.cpp
 pso/player/TObjPlayer_800BC40C.cpp
 pso/player/TObjPlayer_800C25A0.cpp
@@ -2529,19 +2530,6 @@ pso/player/TObjPlayer_801BE3B4.cpp
 pso/player/TObjPlayer_801BE66C.cpp
 pso/player/TObjPlayer_801BE778.cpp
 pso/player/TObjPlayer_801BEB0C.cpp
-pso/player/TObjPlayer_801BF548.cpp
-pso/player/TObjPlayer_801BF6B0.cpp
-pso/player/TObjPlayer_801BF8EC.cpp
-pso/player/TObjPlayer_801BF918.cpp
-pso/player/TObjPlayer_801BF978.cpp
-pso/player/TObjPlayer_801BFA98.cpp
-pso/player/TObjPlayer_801BFAD4.cpp
-pso/player/TObjPlayer_801BFB1C.cpp
-pso/player/TObjPlayer_801BFBCC.cpp
-pso/player/TObjPlayer_801BFE1C.cpp
-pso/player/TObjPlayer_801BFE40.cpp
-pso/player/TObjPlayer_801BFE50.cpp
-pso/player/TObjPlayer_801BFED4.cpp
 pso/player/TObjPlayer_801C00C4.cpp
 pso/player/TObjPlayer_801C0808.cpp
 pso/player/TObjPlayer_801C1FF8.cpp
@@ -2614,11 +2602,13 @@ pso/player/TObjPlayer_803DC834.cpp
 pso/player/TObjPlayer_803DF7A8.cpp
 pso/player/TObjPlayer_803E112C.cpp
 pso/player/TObjPlayer_803E18C0.cpp
+pso/player/TObjPlayer_803E1A58.cpp
 pso/player/TObjPlayer_803E21B8.cpp
 pso/player/TObjPlayer_803E4954.cpp
 pso/player/TObjPlayer_803E5470.cpp
 pso/player/TPlyItem.cpp
 pso/player/TUnk_80490470.cpp
+pso/player/TUnk_80491460.cpp
 pso/player/TUnk_804A5D28.cpp
 pso/protocol/NetworkRuntime.cpp
 pso/protocol/TradeSession.cpp
@@ -2631,6 +2621,8 @@ pso/quest/AreaDialogueScripts.cpp
 pso/quest/QuestOpcodeHandlers.cpp
 pso/quest/QuestOpcodeTables.cpp
 pso/quest/StoryQuestProgress.cpp
+pso/quest/TQuestListChallenge.cpp
+pso/quest/TQuestListOffline_802171BC.cpp
 pso/quest/TQuestListVM.cpp
 pso/quest/TQuestListVM_80073DC4.cpp
 pso/quest/TQuestListVM_8007EAF8.cpp
@@ -2638,6 +2630,7 @@ pso/quest/TQuestListVM_800F95F4.cpp
 pso/quest/TQuestListVM_801F4398.cpp
 pso/quest/TQuestThread.cpp
 pso/render/ScreenProjectionConstants.cpp
+pso/render/ShadowProjectionConstants.cpp
 pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp

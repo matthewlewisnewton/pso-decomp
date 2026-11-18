@@ -6,9 +6,7 @@
 #include "pso/ui/TAdChrSelASlotGC.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
-#pragma defer_codegen off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 struct ControllerInputStateResultWin { s32 value; u8 remaining[0x1AC]; };

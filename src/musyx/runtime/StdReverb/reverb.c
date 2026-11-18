@@ -230,8 +230,6 @@ void HandleReverb(void *sptr_in, void *rv_in, int k) {
 }
 #endif
 
-#pragma push
-#pragma peephole off
 void ReverbHICallback(void *arg0, void *arg1, void *arg2, S_803BF408 *arg3) {
     u8 i;
     for (i = 0; i < 3; i++) {
@@ -252,6 +250,5 @@ void ReverbHICallback(void *arg0, void *arg1, void *arg2, S_803BF408 *arg3) {
         }
     }
 }
-#pragma pop
 
 }

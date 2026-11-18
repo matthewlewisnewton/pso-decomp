@@ -5,6 +5,7 @@
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/unk/TUnk_804E1BB0.h"
+#include "pso/unk/TUnk_804E1CA8.h"
 #include "pso/player/TUnk_804E1F04.h"
 #include "pso/player/TUnk_804E2000.h"
 #include "pso/player/TUnk_804E20FC.h"
@@ -85,7 +86,7 @@ extern "C" int remove_amount__5TItemFl(void);
 extern "C" int get_amount__5TItemFv(void);
 extern "C" void run_task__5TItemFv();
 extern "C" void set_attach_slot__14TItemEquipBaseFSc();
-extern "C" void setup_radar_marker__10TObjPlayerFPvPv(TObjPlayer *arg0, void *arg1);
+extern "C" void setup_radar_marker__10TObjPlayerFPvPv(TUnk_804E1CA8 *weapon, Desc_8011E5C4 *desc);
 extern "C" void subtract_equip_stats__14TItemEquipBaseFPvPsPs();
 extern "C" void subtract_item_stat_bonus__14TItemEquipBaseFllPs();
 extern "C" void interact__5TItemFl();
