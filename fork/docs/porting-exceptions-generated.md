@@ -109,7 +109,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/enemy/gigue/TObjEneMe1GiGue.cpp:1466` | `__cntlzw` |
 | `src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp:480` | `__cntlzw` |
 | `src/pso/item/mag/TItemMag.cpp:1350` | `__cntlzw` |
-| `src/pso/network/ModemRuntime.cpp:342` | `__cntlzw` |
+| `src/pso/network/ModemRuntime.cpp:339` | `__cntlzw` |
 | `src/pso/network/NetTcp.c:353` | `__cntlzw` |
 | `src/pso/network/TLobby_80429598.c:13` | `__cntlzw` |
 | `src/pso/network/TLobby_80429598.c:195` | `__lhbrx` |
