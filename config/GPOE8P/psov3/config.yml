@@ -1191,8 +1191,6 @@ force_active:
   - TOVS2Wreck04__ct
   - TOVS2Wreck05__ct
   - TOVS2Wreck06__ct
-  - TOWreckAncientBrakable__name
-  - TOWreckAncient__resource_descriptor
   - TObjAreaWarpEndingJung__ct
   - TObjBgmCol__name
   - TObjBigTuitate__ct
@@ -4864,7 +4862,6 @@ force_active:
   - bm_fe_obj_o_door04l_model_names
   - bm_fe_obj_o_door04l_motion_names
   - bm_fe_obj_o_door04l_resource_descriptor
-  - bm_fe_obj_o_hahen_model_names
   - bm_fe_obj_rb2_liwa_motion_names
   - bm_fe_obj_rb2_liwa_resource_bundle
   - bm_fe_obj_rb3_liwa_motion_names

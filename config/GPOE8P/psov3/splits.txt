@@ -5638,6 +5638,12 @@ pso/object/TObjGoalWarpAncient.cpp:
 	.text       start:0x8017D21C end:0x8017D2FC
 	.rodata     start:0x80443308 end:0x80443328
 
+pso/misc/TOWreckAncientResources.cpp:
+	.rodata     start:0x80443328 end:0x80443614
+	.data       start:0x804B53B0 end:0x804B554C
+	.sdata      start:0x805D31F0 end:0x805D3218
+	.sbss       start:0x805D5AF8 end:0x805D5B00
+
 pso/misc/TOWreckAncientBrakable05.cpp:
 	.text       start:0x8017D2FC end:0x8017D39C
 
@@ -5652,8 +5658,6 @@ pso/misc/TOWreckAncientBrakable_8017D5A4.cpp:
 
 pso/misc/TOWreckAncientBrakable.cpp:
 	.text       start:0x8017D680 end:0x8017D72C
-	.rodata     start:0x80443528 end:0x80443540
-	.sdata      start:0x805D3210 end:0x805D3214
 
 pso/misc/TOWreckAncient07.cpp:
 	.text       start:0x8017D72C end:0x8017D7CC
@@ -5687,7 +5691,6 @@ pso/unk/text_8017DC5C.cpp:
 
 pso/misc/TOWreckAncient.cpp:
 	.text       start:0x8017DCE0 end:0x8017DF10
-	.data       start:0x804B53E0 end:0x804B5418
 	.sdata2     start:0x805DBAD0 end:0x805DBAD8
 
 pso/misc/TOWreckAncient02.cpp:
