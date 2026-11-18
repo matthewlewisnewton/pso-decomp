@@ -2612,6 +2612,7 @@ pso/player/TObjPlayer_803E4954.cpp
 pso/player/TObjPlayer_803E5470.cpp
 pso/player/TPlyItem.cpp
 pso/player/TUnk_80490470.cpp
+pso/player/TUnk_80491460.cpp
 pso/player/TUnk_804A5D28.cpp
 pso/protocol/NetworkRuntime.cpp
 pso/protocol/TradeSession.cpp
