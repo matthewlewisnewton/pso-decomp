@@ -13,7 +13,6 @@ public:
     void update_position(s32 arg1);
     void set_first_entry_text(u32 str);
     void draw_entry_if_visible(void *);
-    u8 pad_1C[0x8];
     u8 pad_24[0xC];  // entry list (update_window_entry_list, draw_visible_window_entries)
     f32 pad_30[2];   // position
     f32 pad_38[2];   // size, from the window descriptor

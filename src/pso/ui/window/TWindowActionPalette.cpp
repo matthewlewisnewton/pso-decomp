@@ -161,7 +161,7 @@ TWindowActionPalette *TWindowActionPalette__ct(TWindowActionPalette *self, s16 s
     }
     self->m_58 = -1.0f;
     self->state = 0;
-    self->m_20 = slot;
+    self->client_index = slot;
     for (i = 0; i < 3; i++) {
         ((TWindowActionPalette *)self->resources)->set_mode(0);
         ((TWindowActionPalette *)self->resources)->set_slot(0);
@@ -181,19 +181,19 @@ void TWindowActionPalette::run_task() {
     u16 target;
     u8 cnt;
     u8 *help;
-    player = get_player_by_client_id(m_20);
+    player = get_player_by_client_id(client_index);
     if (player == NULL || (effect = player->refresh_effect()) == 0) {
         return;
     }
     if (!(*(s32 *)((s8 *)this + 0x2C) & 2)) {
         m_5c = 0x01000000;
     }
-    slot = is_player_input_active(m_20);
-    if (is_on_current_screen__11TCameraCtrlFv(controller_input_state + slot * 0x50 + 0x20, fn_8002AE08((void *)m_20)) != 0) {
+    slot = is_player_input_active(client_index);
+    if (is_on_current_screen__11TCameraCtrlFv(controller_input_state + slot * 0x50 + 0x20, fn_8002AE08((void *)client_index)) != 0) {
         state = 3;
     }
     help = (u8 *)get_array_entry(0);
-    TWindowHelpItem::set_help_text((s32)help, m_20);
+    TWindowHelpItem::set_help_text((s32)help, client_index);
     cnt = state;
     if ((s8)cnt > 0) {
         state = cnt - 1;
@@ -208,7 +208,7 @@ void TWindowActionPalette::run_task() {
     } else {
         update_slot_sprites(0, 7, v);
     }
-    if (TObjPlayer__sub_80354D5C((u16)m_20) != 0 && ((TWindowActionPalette *)((u8 *)player + 0x500))->handle_input_forward() != 0) {
+    if (TObjPlayer__sub_80354D5C((u16)client_index) != 0 && ((TWindowActionPalette *)((u8 *)player + 0x500))->handle_input_forward() != 0) {
         update_slot_icon(1, 7, 7);
     } else {
         v = get_entry_by_index__20TWindowActionPaletteFPll(effect, 2);
@@ -217,7 +217,7 @@ void TWindowActionPalette::run_task() {
     v = get_entry_by_index__20TWindowActionPaletteFPll(effect, 3);
     update_slot_sprites(2, get_slot_type_for_index__20TWindowActionPaletteFPll(effect, 3), v);
     target = TObjPlayer::get_current_target_id();
-    if (target == 0xFFFF || target == m_20 || player->get_photon_blast_charge() <= 0) {
+    if (target == 0xFFFF || target == client_index || player->get_photon_blast_charge() <= 0) {
         if (((TWindowActionPalette *)((u8 *)player + 0x500))->handle_input_forward() != 0) {
             if (is_split_screen() != 0) {
                 set_bank_panel_art(3);
@@ -310,7 +310,7 @@ void TWindowActionPalette::update_slot_sprites(int idx, u16 mode, u16 slot) {
     Icon_80243630 *help;
     u8 *cursor;
 
-    player = get_player_by_client_id(m_20);
+    player = get_player_by_client_id(client_index);
     if (player != NULL) {
         help = (Icon_80243630 *)get_array_entry(lbl_805DCA10[idx]);
         if (is_action_channel_available__10TObjPlayerFii((s32)player, (s32)lbl_805DCA14[idx]) != 0) {
@@ -318,7 +318,7 @@ void TWindowActionPalette::update_slot_sprites(int idx, u16 mode, u16 slot) {
         } else {
             help->color = 0xFF404040;
         }
-        update_palette_item_count_label((TWindowHelpItem *)get_array_entry(lbl_805DCA18[idx]), help, mode, slot, m_20);
+        update_palette_item_count_label((TWindowHelpItem *)get_array_entry(lbl_805DCA18[idx]), help, mode, slot, client_index);
         cursor = resources[idx];
         if (mode != ((TMainCursor *)cursor)->get_type() || ((TMainCursor *)cursor)->get_enabled() != slot) {
             ((TWindowActionPalette *)cursor)->set_mode(mode);
@@ -329,9 +329,9 @@ void TWindowActionPalette::update_slot_sprites(int idx, u16 mode, u16 slot) {
 }
 
 void TWindowActionPalette::update_slot_icon(int idx, u16 mode, u16 slot) {
-    if (get_player_by_client_id(m_20) != NULL) {
+    if (get_player_by_client_id(client_index) != NULL) {
         Icon_80243630 *icon = (Icon_80243630 *)get_array_entry(4);
-        if (TObjPlayer__sub_80354C7C((u16)m_20) != 0) {
+        if (TObjPlayer__sub_80354C7C((u16)client_index) != 0) {
             icon->color = -1;
         } else {
             icon->color = 0xFF404040;
@@ -392,7 +392,7 @@ void spawn_action_palette_slot_light(TWindowActionPalette *palette, s32 slot) {
         pt.x = 0.5f * e->w + (palette->x + e->x);
         pt.y = 0.5f * e->h + (palette->y + e->y);
     }
-    TWindowEffectLight::create(&pt, (void *)kind, (void *)palette->m_20);
+    TWindowEffectLight::create(&pt, (void *)kind, (void *)palette->client_index);
 }
 #pragma pop
 

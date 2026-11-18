@@ -8,7 +8,7 @@ public:
     virtual ~TUnk_804CE964();
     virtual void render();
     virtual void run_task();
-    u8 unk_1C[0x18];
+    u8 unknown_24[0x10];
     f32 m_34;
     u8 unk_38[0xC];
     f32 m_44;

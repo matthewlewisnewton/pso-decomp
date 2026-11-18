@@ -122,7 +122,7 @@ void TWindowSnapShot::reset() {
     u8 *arg0 = (u8 *)this;
     *(s32 *)&this->m_name = 0;
     *(s32 *)&this->m_flags = 0;
-    memset((u8 *)&this->_pad1C, 0, 0x20);
+    memset(arg0 + 0x1C, 0, 0x20);
     *(s32 *)&this->m_prev = 0;
     *(s32 *)&this->m_next = 0;
     *(s32 *)&this->m_down = 0;

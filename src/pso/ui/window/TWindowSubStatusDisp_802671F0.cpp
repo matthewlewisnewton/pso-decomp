@@ -251,7 +251,7 @@ void TWindowSubShortCutList::draw_entry(s32 index, u8 arg2, s32 arg3, s32 arg4) 
     u8 sp8;
 
     if ((s16) this->entry_count < (s16) this->entry_capacity) {
-        fn_80266BD0(index, &sp9, &sp8, this->m_20);
+        fn_80266BD0(index, &sp9, &sp8, this->client_index);
         init_entry__20TWindowSubStatusDispFScScUcUll(get_array_entry__11TWindowBaseFi(this, this->entry_count), sp9, sp8, arg2, arg3, arg4);
         this->entry_count = (this->entry_count + 1);
     }
@@ -335,7 +335,7 @@ void TWindowSubStatusDisp::add_status_entry(s8 arg1, s32 src, s32 arg3) {
         init_status_entry__20TWindowSubStatusDispFPvcUii((u8 *)window_sub_status_disp, var_r29, src, arg3);
         *(f32 *)((s8 *)window_sub_status_disp + 8) = (f32) -18.0f;
         if (arg1 & 2) {
-            *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->unk_1C = 0xE;
+            *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->sort_depth.bytes[0] = 0xE;
             *(u16 *)((s8 *)window_sub_status_disp + 0) = (u16) (*(u16 *)((s8 *)window_sub_status_disp + 0) | 0x100);
         }
         *(s16 *)((s8 *)this + 0x72) = (s16) (*(s16 *)((s8 *)this + 0x72) + 1);
@@ -574,7 +574,7 @@ void TWindowMenuIconLine::ensure_status_display(s32 arg1) {
     if ((u32) this->status_display == 0U) {
         var_r0 = (int)::operator new(0x24);
         if (var_r0 != 0U) {
-            var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(var_r0, arg1, this->m_20);
+            var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(var_r0, arg1, this->client_index);
         }
         *(u32 *)&this->status_display = var_r0;
         (this->m_2c) = (s32) ((this->m_2c) | 0x40);
@@ -727,7 +727,7 @@ void TWindowMenuIconLine::run_task() {
     u8 *input;
     u8 *temp_r29_2;
     u8 *context;
-    temp_r31 = is_player_input_active(((s32) this->m_20));
+    temp_r31 = is_player_input_active(((s32) this->client_index));
     if ((this->get_flag() == 0) && (is_decided__19TWindowMenuIconLineFv(this) == 0) && (this->sub_80244994() != 0)) {
         if (this->state_flags & 0x10) {
             input = (u8 *)&controller_input_state + (temp_r31 * 0x50) + 0x20;

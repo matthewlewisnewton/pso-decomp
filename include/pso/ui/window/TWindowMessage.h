@@ -20,9 +20,6 @@ struct TWindowMessage : public TWindowAddition {
     int append_line(int text, int mode);
     static u8 *create(s32 arg0, const f32 *size, u32 arg2, s32 arg3);
     static u8 *create(void *arg0, s32 arg1, s32 arg2);
-    u8 unk_1C[0x4];
-    s16 m_20;
-    u8 unk_22[0x2];
     void* m_24;
     u8 _pad28[0x4];
     u32 m_2c;

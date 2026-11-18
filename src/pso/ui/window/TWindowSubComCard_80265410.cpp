@@ -760,7 +760,7 @@ void TWindowMenu::run_task() {
         *(s32 *)&this->m_5c = 0x01000000;
     }
     if ((((TWindowMenu *)arg0)->sub_80266BB8() == 0) && (((TWindowMenu *)arg0)->is_decided() == 0) && ((s32) *(s32 *)&this->m_5c > 2) && (is_window_display_enabled() != 0) && (((TWindowBase *)arg0)->sub_80244994() != 0)) {
-        temp_r30 = is_player_input_active((this->m_20));
+        temp_r30 = is_player_input_active((this->client_index));
         if (this->m_70 & 0x10) {
             input = (u8 *)controller_input_state + (temp_r30 * 0x50) + 0x20;
             if ((TWindowChoiceSetting::apply_choice((s32)input, 0x10, 6, 1) != 0) || (is_locked(0x10) != 0)) {

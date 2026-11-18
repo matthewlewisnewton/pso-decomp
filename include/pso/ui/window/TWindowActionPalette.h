@@ -37,9 +37,6 @@ struct TWindowActionPalette : public TWindowBase {
     virtual void render();
     virtual ~TWindowActionPalette();
 
-    u8 pad_1C[0x4];
-    s16 m_20;
-    u8 pad_22[0x2];
     ChildList children;
     u8 unk_2C[0x14];
     f32 x;

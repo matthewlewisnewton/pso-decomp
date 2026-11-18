@@ -356,14 +356,14 @@ u8 *TWindowSubStatusDisp::init_layout_entry_rect(u8 *arg1, s32 arg2) {
 }
 
 void TWindowSubStatusDisp::advance_state() {
-    if ((u8) this->m_1d == 0x14) {
-        this->m_1d = 0x15U;
+    if ((u8) this->sort_depth.bytes[1] == 0x14) {
+        this->sort_depth.bytes[1] = 0x15U;
     }
 }
 
 void TWindowSubStatusDisp::finalize_state() {
-    if ((u8) this->m_1d == 0x15) {
-        this->m_1d = 0x14U;
+    if ((u8) this->sort_depth.bytes[1] == 0x15) {
+        this->sort_depth.bytes[1] = 0x14U;
     }
 }
 
@@ -639,8 +639,8 @@ void select_item_icon__20TWindowSubStatusDispFPviUcUci(void *arg0, s32 arg1, u8 
 
 void TWindowSubStatusDisp::setup_entry_msg_d1(s32 arg1) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF04;
-    *(s8 *)&this->unk_1C = 0x33;
-    this->m_1d = 0x33;
+    *(s8 *)&this->sort_depth.bytes[0] = 0x33;
+    this->sort_depth.bytes[1] = 0x33;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, (s32)((int) (TWindowSubStatusDisp::get_message_10(0xD1))), (s32)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x20))), 8, 1);
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = 0xFF909090;
     *(s32 *)((s8 *)((u8 *)this) + 0x18) = arg1;
@@ -649,8 +649,8 @@ void TWindowSubStatusDisp::setup_entry_msg_d1(s32 arg1) {
 
 void TWindowSubStatusDisp::setup_entry_msg_d0(s32 arg1) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
-    this->m_1d = 0x33;
+    *(s8 *)&this->sort_depth.bytes[0] = 0x33;
+    this->sort_depth.bytes[1] = 0x33;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, (s32)((int) (TWindowSubStatusDisp::get_message_10(0xD0))), (s32)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x20))), 8, 1);
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = 0xFF909090;
     *(s32 *)((s8 *)((u8 *)this) + 0x18) = arg1;
@@ -659,8 +659,8 @@ void TWindowSubStatusDisp::setup_entry_msg_d0(s32 arg1) {
 
 void TWindowSubStatusDisp::init_no_item_entry(s32 arg1) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
-    this->m_1d = 0x33;
+    *(s8 *)&this->sort_depth.bytes[0] = 0x33;
+    this->sort_depth.bytes[1] = 0x33;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, (s32)((int) (TWindowSubStatusDisp::get_message_10(0xCF))), (s32)((int) (*(s32 *)((s8 *)((u8 *)this) + 0x20))), 8, 1);
     *(s32 *)((s8 *)((u8 *)this) + 0x30) = 0xFF909090;
     *(s32 *)((s8 *)((u8 *)this) + 0x18) = arg1;
@@ -669,8 +669,8 @@ void TWindowSubStatusDisp::init_no_item_entry(s32 arg1) {
 
 void TWindowSubStatusDisp::init_entry(s8 arg1, s8 arg2, u8 arg3, u32 src, s32 arg5) {
     *(f32 *)((s8 *)((u8 *)this) + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = arg1;
-    this->m_1d = arg2;
+    *(s8 *)&this->sort_depth.bytes[0] = arg1;
+    this->sort_depth.bytes[1] = arg2;
     *(s32 *)((s8 *)((u8 *)this) + 0x28) = (s32) arg3;
     this->m_2c = -1;
     *(s32 *)((s8 *)((u8 *)this) + 0x20) = ((u32)replace_owned_string__20TWindowSubStatusDispFPviiii(this, src, (s32)(*(s32 *)((s8 *)((u8 *)this) + 0x20)), 8, 1));
@@ -681,8 +681,8 @@ void TWindowSubStatusDisp::init_entry(s8 arg1, s8 arg2, u8 arg3, u32 src, s32 ar
 
 void TWindowSubStatusDisp__sub_80258A28(u8 *window_sub_status_disp, s32 arg1, s32 arg2) {
     *(f32 *)((s8 *)window_sub_status_disp + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->unk_1C = 0x33;
-    ((TWindowSubStatusDisp *)window_sub_status_disp)->m_1d = 9;
+    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->sort_depth.bytes[0] = 0x33;
+    ((TWindowSubStatusDisp *)window_sub_status_disp)->sort_depth.bytes[1] = 9;
     text_builder_reset();
     text_builder_append_int(arg1);
     text_builder_append((u8 *)((s32 *) (TWindowSubStatusDisp::get_download_server())));
@@ -694,8 +694,8 @@ void TWindowSubStatusDisp__sub_80258A28(u8 *window_sub_status_disp, s32 arg1, s3
 
 void TWindowSubStatusDisp::setup_stat_line(s32 src, s32 arg2, s32 arg3) {
     *(f32 *)((s8 *)this + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
-    this->m_1d = 0x2D;
+    *(s8 *)&this->sort_depth.bytes[0] = 0x33;
+    this->sort_depth.bytes[1] = 0x2D;
     *(s32 *)((s8 *)this + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, src, *(s32 *)((s8 *)this + 0x20), 8, 1);
     update_stat_line__20TWindowSubStatusDispFPvi(this, arg2);
     *(s32 *)((s8 *)this + 0x18) = arg3;
@@ -728,7 +728,7 @@ void TWindowSubStatusDisp::init_list_entry(u8 arg1, s32 src, s32 arg3) {
         var_r0 = 0x16;
     }
     *(u8 *)((s8 *)this + 0x1C) = var_r0;
-    this->m_1d = 0x33;
+    this->sort_depth.bytes[1] = 0x33;
     *(s32 *)((s8 *)this + 0x28) = -1;
     this->m_2c = -1;
     *(s32 *)((s8 *)this + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, src, *(s32 *)((s8 *)this + 0x20), 8, 1);
@@ -743,8 +743,8 @@ void TWindowSubStatusDisp::init_list_entry(u8 arg1, s32 src, s32 arg3) {
 }
 void init_status_entry__20TWindowSubStatusDispFPvcUii(u8 *window_sub_status_disp, s8 arg1, u32 src, s32 arg3) {
     *(f32 *)((s8 *)window_sub_status_disp + 8) = (f32) lbl_805DCF04;
-    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->unk_1C = 0x33;
-    ((TWindowSubStatusDisp *)window_sub_status_disp)->m_1d = arg1;
+    *(s8 *)&((TWindowSubStatusDisp *)window_sub_status_disp)->sort_depth.bytes[0] = 0x33;
+    ((TWindowSubStatusDisp *)window_sub_status_disp)->sort_depth.bytes[1] = arg1;
     *(s32 *)((s8 *)window_sub_status_disp + 0x28) = -1;
     ((TWindowSubStatusDisp *)window_sub_status_disp)->m_2c = -1;
     *(s32 *)((s8 *)window_sub_status_disp + 0x20) = ((u32)replace_owned_string__20TWindowSubStatusDispFPviiii(window_sub_status_disp, src, (s32)(*(s32 *)((s8 *)window_sub_status_disp + 0x20)), 8, 1));
@@ -869,7 +869,7 @@ void TWindowSubStatusDisp::set_item_info(void* a1, int a2, void* a3) {
     int temp_r3;
 
     *(float*)((char*)this + 0x8) = lbl_805DCF08;
-    *(unsigned char *)&this->unk_1C = 51;
+    *(unsigned char *)&this->sort_depth.bytes[0] = 51;
     item_data = TLobby::get_item_data((u32)a1);
     temp_r3 = is_wrapped__9TItemDataFPv(a1);
     select_item_icon__20TWindowSubStatusDispFPviUcUci(this, (void*)item_data, (void*)(*(unsigned char*)((char*)a1 + 0x0)), (void*)(*(unsigned char*)((char*)a1 + 0x1)), (void*)temp_r3);
@@ -927,7 +927,7 @@ void TWindowSubStatusDisp::set_ground_item(void *it, s32 arg2) {
     s32 item_data;
 
     *(f32 *)((s8 *)this + 8) = (f32) lbl_805DCF08;
-    *(s8 *)&this->unk_1C = 0x33;
+    *(s8 *)&this->sort_depth.bytes[0] = 0x33;
     item_data = TLobby::get_item_data((u32)it);
     select_item_icon__20TWindowSubStatusDispFPviUcUci(this, item_data, *(u8 *)((s8 *)it + 0), *(u8 *)((s8 *)it + 1), is_wrapped__9TItemDataFPv(it));
     forward_message__6TLobbyFlUl(get_shared_text_buffer(), it);
@@ -946,8 +946,8 @@ extern const f32 lbl_805DCF0C;
 
 void TWindowSubStatusDisp::init_display(s32 src, s32 arg2) {
     *(f32 *)((s8 *)this + 8) = (f32) lbl_805DCF0C;
-    *(s8 *)&this->unk_1C = 0x33;
-    this->m_1d = 0x33;
+    *(s8 *)&this->sort_depth.bytes[0] = 0x33;
+    this->sort_depth.bytes[1] = 0x33;
     *(s32 *)((s8 *)this + 0x20) = replace_owned_string__20TWindowSubStatusDispFPviiii(this, src, (s32)(*(s32 *)((s8 *)this + 0x20)), 8, 1);
     *(s32 *)((s8 *)this + 0x30) = -1;
     *(s32 *)((s8 *)this + 0x18) = arg2;
@@ -1138,11 +1138,11 @@ void *TWindowSubStatusDisp::dispose(s16 arg1) {
                 ::operator delete[]((void *)(*(u32 *)&this->m_24));
             }
         }
-        if ((u32) *(u32 *)&this->m_20 != 0U) {
+        if ((u32) *(u32 *)&this->client_index != 0U) {
             temp_r3_2 = *(u16 *)&this->m_name;
             if (temp_r3_2 & 8) {
                 *(u16 *)&this->m_name = (u16) (temp_r3_2 & 0xFFFFFFF7);
-                ::operator delete[]((void *)(*(u32 *)&this->m_20));
+                ::operator delete[]((void *)(*(u32 *)&this->client_index));
             }
         }
         deleting_destructor__20TWindowSubStatusDispFs(this, 0);
@@ -1155,7 +1155,7 @@ void *TWindowSubStatusDisp::dispose(s16 arg1) {
 }
 
 extern const float lbl_805DCF14;
-void*TWindowSubStatusDisp::reset_entry(int a1, int a2) { reset_entry__20TWindowSubStatusDispFPv(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804CF9B0; *(float*)((char*)this + 0x14) = lbl_805DCF14; *(unsigned char *)&this->unk_1C = 51; *(unsigned char *)&this->m_1d = 51; *(int*)((char*)this + 0x20) = 0; *(int*)((char*)this + 0x24) = 0; *(int*)((char*)this + 0x28) = -1; *(int *)&this->m_2c = -1; *(int*)((char*)this + 0x30) = -1; *(int *)&this->m_34 = -1; *(int*)((char*)this + 0x18) = 0; return this; }
+void*TWindowSubStatusDisp::reset_entry(int a1, int a2) { reset_entry__20TWindowSubStatusDispFPv(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804CF9B0; *(float*)((char*)this + 0x14) = lbl_805DCF14; *(unsigned char *)&this->sort_depth.bytes[0] = 51; *(unsigned char *)&this->sort_depth.bytes[1] = 51; *(int*)((char*)this + 0x20) = 0; *(int*)((char*)this + 0x24) = 0; *(int*)((char*)this + 0x28) = -1; *(int *)&this->m_2c = -1; *(int*)((char*)this + 0x30) = -1; *(int *)&this->m_34 = -1; *(int*)((char*)this + 0x18) = 0; return this; }
 
 __declspec(section ".sdata2") extern const f32 lbl_805DCEF8 ATTRIBUTE_ALIGN(8) = 0.0f;
 __declspec(section ".sdata2") extern const u8 status_line_prefix[] ATTRIBUTE_ALIGN(8) = "\xD7";

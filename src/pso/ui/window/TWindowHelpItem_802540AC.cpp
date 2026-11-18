@@ -448,7 +448,7 @@ void TWindowHelpItem::update_stat_disp() {
     s32 e;
     s32 player;
 
-    player = (s32)get_player_by_client_id(this->m_20);
+    player = (s32)get_player_by_client_id(this->client_index);
     if (player != 0) {
         a = ((TWindowBase *)this)->get_array_entry(0);
         b = ((TWindowBase *)this)->get_array_entry(1);
@@ -792,7 +792,7 @@ void TWindowHelpItem::init_help_texts() {
     s32 temp_r27;
     s32 temp_r26;
 
-    init_window_layout_entries((void *) ((u8 *) this + 0x24), TWindowHelpItem__item_layout_entries, this->m_20);
+    init_window_layout_entries((void *) ((u8 *) this + 0x24), TWindowHelpItem__item_layout_entries, this->client_index);
     temp_r31 = ((TWindowBase *)this)->get_array_entry(0);
     temp_r30 = ((TWindowBase *)this)->get_array_entry(1);
     temp_r29 = ((TWindowBase *)this)->get_array_entry(2);

@@ -111,7 +111,7 @@ void TWindowSubCustomSelect::handle_grid_navigation() {
     u8 temp_r4;
     u8 temp_r5;
     u8 *window_choice_setting;
-    window_choice_setting = (u8 *)&controller_input_state + (is_player_input_active(((s32) this->m_20)) * 0x50) + 0x20;
+    window_choice_setting = (u8 *)&controller_input_state + (is_player_input_active(((s32) this->client_index)) * 0x50) + 0x20;
     if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0xF0, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0xF0, 6, 1) != 0)) {
         play_sound_effect(0x54100, (s32)(0U), 0, 0);
         if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0x10, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0x10, 6, 1) != 0)) {
@@ -170,7 +170,7 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
     f32 y;
     f32 fx;
     f32 fy;
-    p = ((s32)get_player_by_client_id((this->m_20)));
+    p = ((s32)get_player_by_client_id((this->client_index)));
     if (p == 0) {
         return;
     }
@@ -200,7 +200,7 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
             *(s32 *)((s8 *)w1 + 0x2C) = 0xFF404040;
         }
         draw_action_palette_icon((Icon_80243630 *)w1, id, sub);
-        update_palette_item_count_label((TWindowHelpItem *)w2, (Icon_80243630 *)w1, (u16)id, (u16)sub, (s32)this->m_20);
+        update_palette_item_count_label((TWindowHelpItem *)w2, (Icon_80243630 *)w1, (u16)id, (u16)sub, (s32)this->client_index);
         draw_visible_window_entries(this, &*(u8 *)((s8 *)this + 0x24), (void *)ctx);
     }
 }
@@ -220,7 +220,7 @@ void TWindowSubCustomSelect::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r30;
     u8 *context;
-    temp_r30 = is_player_input_active(((s32) this->m_20));
+    temp_r30 = is_player_input_active(((s32) this->client_index));
     if (!(*(s32 *)&this->m_2c & 2)) {
         *(s32 *)&this->m_5c = 0x01000000;
     }
@@ -273,8 +273,8 @@ u8 *TWindowSubCustomSelect__ct(TWindowSubCustomSelect *window_sub_custom_select,
     __ct__15TWindowAdditionFPUcsPUc(window_sub_custom_select, (u8 *)&TWindowSubCustomSelect__window_settings, (s16)arg1, (u8 *)get_window_layout_position(0x10));
     *(s32 **)((s8 *)window_sub_custom_select + 0x18) = __vt__22TWindowSubCustomSelect;
     ((TWindowSubCustomSelect *)window_sub_custom_select)->m_name = TWindowSubCustomSelect__class_name;
-    window_sub_custom_select->m_20 = arg1;
-    p = (Big_80277AEC *)get_player_by_client_id(window_sub_custom_select->m_20);
+    window_sub_custom_select->client_index = arg1;
+    p = (Big_80277AEC *)get_player_by_client_id(window_sub_custom_select->client_index);
     if (p == NULL) {
         return (u8 *)window_sub_custom_select;
     }
@@ -299,7 +299,7 @@ u8 *TWindowSubCustomSelect__ct(TWindowSubCustomSelect *window_sub_custom_select,
     }
     o = ::operator new(0x24);
     if (o != NULL) {
-        o = ((TWindowSubStatusDisp *)o)->construct_type1_heading(get_message_10__20TWindowSubStatusDispFl(0x22), window_sub_custom_select->m_20);
+        o = ((TWindowSubStatusDisp *)o)->construct_type1_heading(get_message_10__20TWindowSubStatusDispFl(0x22), window_sub_custom_select->client_index);
     }
     *(void **)((s8 *)window_sub_custom_select + 0x7C) = o;
     pos.x = 196.0f;

@@ -133,7 +133,7 @@ void TWindowSubMagPhoton::update_selection_input() {
     u8 temp_r3;
     u8 temp_r3_2;
     u8 *window_choice_setting;
-    window_choice_setting = (u8 *)&controller_input_state + (is_player_input_active(((s32) this->m_20)) * 0x50) + 0x20;
+    window_choice_setting = (u8 *)&controller_input_state + (is_player_input_active(((s32) this->client_index)) * 0x50) + 0x20;
     if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0xF0, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0xF0, 6, 1) != 0)) {
         play_sound_effect(0x54100, (s32)(0U), 0, 0);
         if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0x10, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0x10, 6, 1) != 0)) {
@@ -177,7 +177,7 @@ void TWindowSubMagPhoton::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r31;
     u8 *context;
-    temp_r31 = is_player_input_active(((s32) this->m_20));
+    temp_r31 = is_player_input_active(((s32) this->client_index));
     if (((TWindowSubMagPhoton *)arg0)->get_active_flag() == 0) {
         update_selection_input();
         context = (u8 *)&controller_input_state + (temp_r31 * 0x50) + 0x20;
@@ -203,7 +203,7 @@ u8 *TWindowSubMagPhoton__ct(TWindowSubMagPhoton *window_sub_mag_photon, s32 arg1
     *(s32 *)((s8 *)window_sub_mag_photon + 0) = (s32) TWindowSubMagPhoton__class_name;
     ((TWindowSubSymbolChatPartsSet *)((u8 *)window_sub_mag_photon + 0x30))->copy_vec2((void *)arg1);
     ((TWindowBase *)window_sub_mag_photon)->save_position();
-    window_sub_mag_photon->m_20 = arg3;
+    window_sub_mag_photon->client_index = arg3;
     window_sub_mag_photon->m_70 = arg2;
     window_sub_mag_photon->m_60 = 0;
     window_sub_mag_photon->m_61 = 1;

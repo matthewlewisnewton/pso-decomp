@@ -269,7 +269,7 @@ u8 *TWindowSubSymbolChatFaceType__ct(TWindowSubSymbolChatFaceType *window_sub_sy
     window_sub_symbol_chat_face_type->m_64 = arg2;
     var_r31 = (int)::operator new(0x24);
     if (var_r31 != 0) {
-        var_r31 = construct_type1_heading__20TWindowSubStatusDispFll(var_r31, get_message_10__20TWindowSubStatusDispFl(0x33), (s32) window_sub_symbol_chat_face_type->m_20);
+        var_r31 = construct_type1_heading__20TWindowSubStatusDispFll(var_r31, get_message_10__20TWindowSubStatusDispFl(0x33), (s32) window_sub_symbol_chat_face_type->client_index);
     }
     window_sub_symbol_chat_face_type->m_68 = var_r31;
     return (u8 *)window_sub_symbol_chat_face_type;

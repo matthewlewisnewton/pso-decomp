@@ -18,9 +18,6 @@ struct TWindowDuelResult : public TWindowBase {
     void rebuild_page();
     void update_page();
 
-    u8 unknown_1c[4];
-    s16 client_index;
-    u8 unknown_22[2];
     u8 entry_list[8];
     u32 window_flags;
     u8 unknown_30[0x2C];

@@ -72,7 +72,7 @@ void TWindowHelpItem::run_task() {
     ((TWindowBase *)arg0)->update_fade();
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
     if (!(this->m_60 & 8)) {
-        toggle_help_window_on_button((u32)arg0, this->m_20);
+        toggle_help_window_on_button((u32)arg0, this->client_index);
     }
 }
 
@@ -88,7 +88,7 @@ TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx)
     ((TWindowSubSymbolChatPartsSet *)&m_30)->copy_vec2(pos);
     save_position();
     m_60 = 0;
-    m_64 = new PageIndicator(0, 3, m_20);
+    m_64 = new PageIndicator(0, 3, client_index);
     m_68 = 0;
     m_6c = 0;
     m_70 = 0;
@@ -99,7 +99,7 @@ TWindowHelpItem::TWindowHelpItem(void *pos, u16 idx)
     m_a8 = 1.0f;
     m_ac = 1.0f;
     dispatch_item_help();
-    call_if_split_screen((u32)this, m_20);
+    call_if_split_screen((u32)this, client_index);
 }
 
 s32 get_help_text_string(s32 arg0) {

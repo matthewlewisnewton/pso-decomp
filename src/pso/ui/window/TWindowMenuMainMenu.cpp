@@ -61,7 +61,7 @@ u8 *TWindowMenuMainMenu__ct(TWindowMenuMainMenu *window_menu_main_menu, s32 arg1
     window_menu_main_menu->m_60 = 4;
     window_menu_main_menu->m_61 = 0;
     window_menu_main_menu->m_62 = 0;
-    window_menu_main_menu->m_20 = arg2;
+    window_menu_main_menu->client_index = arg2;
     do {
         ((TWindowMainMenu *)p)->init_color();
         i++;

@@ -111,7 +111,7 @@ void TWindowShortCut::show_shortcut(s32 index, s32 *shortcut) {
 
     kind = shortcut[0];
     set_text_entry_string(shortcut_label, (u32)TWindowSubStatusDisp::get_message_10(0xC4), 0);
-    fn_80266BD0(index, &icon, &icon_detail, m_20);
+    fn_80266BD0(index, &icon, &icon_detail, client_index);
     if (icon != 0x33) {
         SpriteOrigin *origin = (SpriteOrigin *)TWindowSubStatusDisp::get_entry_ptr(icon);
         shortcut_icon->flags &= ~2;
@@ -218,7 +218,7 @@ u8 *TWindowShortCut__ct(TWindowShortCut *window_short_cut, s32 arg1, s32 index, 
     *(s32 *)((s8 *)window_short_cut + 0) = (s32) TWindowShortCut__name;
     var_r31 = (int)::operator new(0x24);
     if (var_r31 != 0) {
-        var_r31 = (s32)((TWindowSubStatusDisp *)var_r31)->construct_type1_heading((s32)TWindowSubStatusDisp::get_message_10(0x35), window_short_cut->m_20);
+        var_r31 = (s32)((TWindowSubStatusDisp *)var_r31)->construct_type1_heading((s32)TWindowSubStatusDisp::get_message_10(0x35), window_short_cut->client_index);
     }
     window_short_cut->heading = var_r31;
     window_short_cut->preview_window = NULL;

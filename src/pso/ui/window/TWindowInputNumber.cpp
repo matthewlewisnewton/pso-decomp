@@ -173,7 +173,7 @@ void TWindowInputNumber::create(s32 arg1) {
         var_r0 = (int)::operator new(0x24);
         if (var_r0 != 0U) {
             u32 saved = var_r0;
-            var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(saved, arg1, this->clientIndex);
+            var_r0 = construct_type1_heading__20TWindowSubStatusDispFll(saved, arg1, this->client_index);
         }
         this->unknown70 = var_r0;
         this->m_2c = (s32) (this->m_2c | 0x40);
@@ -377,7 +377,7 @@ TWindowInputNumber::~TWindowInputNumber() {
 TWindowInputNumber::TWindowInputNumber(void *position, s32 low, s32 high, s32 initial, s16 client)
     : TWindowBase((u8 *)&window_input_number_layout, client, (u8 *)position) {
     m_name = TWindowInputNumber__name;
-    clientIndex = client;
+    client_index = client;
     inputFlags = 0;
     selectedDigit = 0;
     minimum = low;

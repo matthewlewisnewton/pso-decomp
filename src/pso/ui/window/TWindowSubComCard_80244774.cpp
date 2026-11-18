@@ -324,7 +324,7 @@ s32 TWindowBase::setup_window_draw_context(s32 arg1) {
         tick = (s32)((f32)tick - 7.5f);
     }
     context->set_open_tick(tick);
-    apply_window_closing_stretch(context, *(s16 *)(frame + 0x22));
+    apply_window_closing_stretch(context, closing_tick);
     return (s32)context;
 }
 
@@ -334,7 +334,7 @@ s32 TWindowDD::draw_default_entry(s32 arg0) {
 
 void TWindowBase::set_depth(f32 farg0) {
     sub_8026CC28__11TWindowBaseFv();
-    *(f32 *)((s8 *)this + 0x1C) = farg0;
+    sort_depth.value = farg0;
     resort_window_order();
 }
 
@@ -392,15 +392,15 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     ((s32 (*)(void *, void *))copy_vec2__28TWindowSubSymbolChatPartsSetFPv)((void *) (((u8 *)this) + 0x38), arg1);
     ((s32 (*)(void *))save_position__11TWindowBaseFv)(this);
     temp_f1 = *(f32 *)((s8 *)arg1 + 8);
-    *(f32 *)((s8 *)((u8 *)this) + 0x1C) = temp_f1;
+    sort_depth.value = temp_f1;
     *(f32 *)((s8 *)((u8 *)this) + 0x54) = -10000.0f;
     *(s32 *)((s8 *)((u8 *)this) + 0x2C) = (s32) *(s32 *)((s8 *)arg1 + 0x10);
     ((s32 (*)(void *, f32))resort_window_order__11TWindowBaseFv)(this, temp_f1);
     *(s32 *)((s8 *)((u8 *)this) + 0x50) = 0;
-    *(s16 *)((s8 *)((u8 *)this) + 0x20) = arg3;
-    init_window_layout_entries((void *) (((u8 *)this) + 0x24), (int) (*(s32 *)((s8 *)arg1 + 0xC)), (int) (*(s16 *)((s8 *)((u8 *)this) + 0x20)));
+    client_index = arg3;
+    init_window_layout_entries((void *) (((u8 *)this) + 0x24), (int) (*(s32 *)((s8 *)arg1 + 0xC)), (int) (client_index));
     *(s32 *)((s8 *)((u8 *)this) + 0x5C) = 0;
-    *(s16 *)((s8 *)((u8 *)this) + 0x22) = 0;
+    closing_tick = 0;
     temp_r3 = *(s32 *)((s8 *)((u8 *)this) + 0x2C);
     if (!(temp_r3 & 1) && !(temp_r3 & 2)) {
         ((s32 (*)(void *))disallow_rendering__7TObjectFv)(this);
@@ -409,7 +409,7 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     if ((temp_r3_2 & 1) && (temp_r3_2 & 2) && !(temp_r3_2 & 0x20)) {
         ((s32 (*)(int, int, int, int))play_sound_effect)(0x53703, 0, 0, 0);
     }
-    if (TWindowSubStatusDisp::get_card_window_scale((int) (*(s16 *)((s8 *)((u8 *)this) + 0x20))) <= 0.0f) {
+    if (TWindowSubStatusDisp::get_card_window_scale((int) (client_index)) <= 0.0f) {
         *(s32 *)((s8 *)((u8 *)this) + 0x5C) = 0x01000000;
     }
 }

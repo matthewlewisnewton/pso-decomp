@@ -11,9 +11,6 @@ struct TWindowSimpleStatus : public TWindowBase {
     void update_status_icons(void *);
     s16 get_width();
     virtual void render();
-    u8 _pad1C[0x4];
-    u16 m_20;
-    u8 _pad22[0x2];
     void* m_24;
     u8 unk_28[0x18];
     f32 m_40;

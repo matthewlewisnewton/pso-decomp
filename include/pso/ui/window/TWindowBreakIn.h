@@ -6,7 +6,6 @@
 
 struct TWindowBreakIn : public TWindowBase {
     virtual ~TWindowBreakIn();
-    u8 _pad1C[0x8];
     void* m_24;
     virtual void render();
     virtual void run_task();

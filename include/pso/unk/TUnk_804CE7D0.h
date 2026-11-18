@@ -3,13 +3,16 @@
 #include "types.h"
 #include "pso/system/task/TObject.h"
 
+struct TWindowChatSymbol;
+struct TWindowMenu;
+
 class TUnk_804CE7D0 : public TObject {
 public:
     virtual ~TUnk_804CE7D0();
     virtual void render();
     virtual void run_task();
-    u8 unk_1C[0x4];
-    s32 m_20;
+    TWindowMenu *preset_list;
+    TWindowChatSymbol *preview;
 };
 typedef char TUnk_804CE7D0_size[sizeof(TUnk_804CE7D0) == 0x24 ? 1 : -1];
 

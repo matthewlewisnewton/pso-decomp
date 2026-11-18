@@ -19,7 +19,6 @@ public:
     void *destroy(s16);
     s32 sub_80342268();
     s32 sub_80342254();
-    u8 unk_1C[0x8];
     TWindowDDWordEntryList entries;
     u8 unk_2C[0x14];
     f32 pad_40; // window rectangle x, y, w, h (read by the strip draw 0x80341674)

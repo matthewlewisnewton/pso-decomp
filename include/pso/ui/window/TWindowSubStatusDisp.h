@@ -23,12 +23,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void calc_row_width();
     virtual void run_task();
     virtual void render();
-    u8 unk_1C[0x1];
-    s8 m_1d;
-    u8 unk_1E[0x1];
-    signed char m_1f;
-    s16 m_20;
-    u8 _pad22[0x2];
     void* m_24;
     u8 unk_28[0x2];
     s16 m_2a;

@@ -9,9 +9,6 @@ struct TWindowChatSymbol;
 struct TWindowShortCut : public TWindowBase {
     virtual ~TWindowShortCut();
     virtual void render();
-    u8 _pad1C[0x4];
-    s16 m_20;
-    u8 _pad22[0x2];
     void* m_24;
     u8 _pad28[0x38];
     u32 heading;                       // type-1 status heading titled with message 0x35

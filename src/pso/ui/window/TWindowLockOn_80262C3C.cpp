@@ -168,7 +168,7 @@ u8 *TWindowLockOn__ct(TWindowLockOn *self, s32 player, u16 id) {
         self->m_6c = 1.0f;
     }
     self->m_60 = 0xFFFF;
-    self->m_20 = player;
+    self->client_index = player;
     self->m_64 = 0;
     self->m_70 = NULL;
     self->bind_target(id);
@@ -266,7 +266,7 @@ void TWindowLockOn::update_for_target(TObjCollidable *actor) {
 void TWindowLockOn::update_for_other_player(TObjCollidable *player) {
     LockOnEntry *w;
     u16 id;
-    init_window_layout_entries(&m_24, &lock_on_window_params, m_20);
+    init_window_layout_entries(&m_24, &lock_on_window_params, client_index);
     m_70 = &TWindowLockOn::update_photon_blast_marker;
     w = (LockOnEntry *)get_array_entry(1);
     id = get_entity_id(player);
@@ -287,7 +287,7 @@ void TWindowLockOn::update_for_item(TItem *item) {
     LockOnEntry *e;
     LockOnEntry *e2;
     f32 r;
-    init_window_layout_entries(&m_24, &lockon_window_layout_entries, m_20);
+    init_window_layout_entries(&m_24, &lockon_window_layout_entries, client_index);
     m_70 = &TWindowLockOn::refresh_ground_item;
     e = (LockOnEntry *)get_array_entry(0);
     ((TWindowSubStatusDisp *)e)->init_item_row(item, 0);
@@ -328,7 +328,7 @@ void TWindowLockOn::update_for_enemy(TObjChara *enemy) {
     LockOnEntryText *p;
     u32 w2;
 
-    init_window_layout_entries(&m_24, &lbl_804D00F4, m_20);
+    init_window_layout_entries(&m_24, &lbl_804D00F4, client_index);
     m_70 = &TWindowLockOn::refresh_enemy_statuses;
     e = get_array_entry(1);
     TWindowDuelResult::set_default_status((void *)e, get_message_10__20TWindowSubStatusDispFl(0xA5));

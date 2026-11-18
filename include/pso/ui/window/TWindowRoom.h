@@ -7,7 +7,6 @@
 #include <stddef.h>
 
 struct TWindowRoom : public TWindowBase {
-    u8 unknown1C[0x8];
     u8 entryList[0xC];
     f32 positionX;
     u8 unknown34[4];

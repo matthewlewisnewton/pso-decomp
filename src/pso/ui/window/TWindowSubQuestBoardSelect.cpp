@@ -308,7 +308,7 @@ u8 *TWindowSubQuestBoardSelect__ct(TWindowSubQuestBoardSelect *window_sub_quest_
     *(s32 *)((s8 *)window_sub_quest_board_select + 0) = (s32) TWindowSubQuestBoardSelect__class_name;
     var_r30 = (int)::operator new(0x24);
     if (var_r30 != 0) {
-        var_r30 = construct_type1_heading__20TWindowSubStatusDispFll(var_r30, get_message_10__20TWindowSubStatusDispFl(0x2B), (s32) window_sub_quest_board_select->m_20);
+        var_r30 = construct_type1_heading__20TWindowSubStatusDispFll(var_r30, get_message_10__20TWindowSubStatusDispFl(0x2B), (s32) window_sub_quest_board_select->client_index);
     }
     *(s32 *)&window_sub_quest_board_select->m_64 = var_r30;
     *(s8 *)&window_sub_quest_board_select->m_60 = 0;

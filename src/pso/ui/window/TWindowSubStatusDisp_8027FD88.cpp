@@ -417,7 +417,7 @@ void TWindowSubStatusDisp::vt4() {
     if ((f32)(s32)m_5c > TWindowSubStatusDisp__data_805DD708) {
         m_5c = 7;
     }
-    init_window_layout_entries(&m_24, TWindowSubStatusDisp__rank_time_records_layout, m_20);
+    init_window_layout_entries(&m_24, TWindowSubStatusDisp__rank_time_records_layout, client_index);
     m_68->get_type();
     s32 slot = page == 2 ? RECORD_SET_EP1_SPLIT : RECORD_SET_EP1;
     u16 *entry = (u16 *)get_array_entry(0);
@@ -430,7 +430,7 @@ void TWindowSubStatusDisp::vt4() {
     entry = (u16 *)get_array_entry(1);
     u16 *value = (u16 *)get_array_entry(2);
     u16 *label = (u16 *)get_array_entry(3);
-    s8 *player_name = (s8 *)TWindowSubStatusDisp::get_status_window(m_20);
+    s8 *player_name = (s8 *)TWindowSubStatusDisp::get_status_window(client_index);
     if (slot != RECORD_SET_EP1 || player_name == NULL || *player_name == 0) {
         *entry |= 2;
         *value |= 2;
@@ -441,13 +441,13 @@ void TWindowSubStatusDisp::vt4() {
         *label &= ~2;
         set_text_entry_string((u8 *)entry, (u32)TWindowSubStatusDisp::get_message_10(0x9B), 0);
         set_text_entry_string((u8 *)label, (u32)player_name, 0x20);
-        *(s32 *)((u8 *)label + 0x24) = TWindowSubStatusDisp::get_status_index(m_20);
+        *(s32 *)((u8 *)label + 0x24) = TWindowSubStatusDisp::get_status_index(client_index);
     }
 
     entry = (u16 *)get_array_entry(4);
     value = (u16 *)get_array_entry(5);
     label = (u16 *)get_array_entry(6);
-    s32 rank = TWindowSubStatusDisp__sub_80071868(m_20, slot);
+    s32 rank = TWindowSubStatusDisp__sub_80071868(client_index, slot);
     if (rank == 0) {
         *entry |= 2;
         *value |= 2;
@@ -467,7 +467,7 @@ void TWindowSubStatusDisp::vt4() {
     entry = (u16 *)get_array_entry(7);
     value = (u16 *)get_array_entry(8);
     label = (u16 *)get_array_entry(9);
-    s32 time = TWindowSubStatusDisp__sub_80071988(m_20, slot);
+    s32 time = TWindowSubStatusDisp__sub_80071988(client_index, slot);
     if (time == 0) {
         *entry |= 2;
         *value |= 2;
@@ -493,7 +493,7 @@ void TWindowSubStatusDisp::vt4() {
     entry = (u16 *)get_array_entry(0xA);
     value = (u16 *)get_array_entry(0xB);
     label = (u16 *)get_array_entry(0xC);
-    rank = TWindowSubStatusDisp__sub_80071868(m_20, slot);
+    rank = TWindowSubStatusDisp__sub_80071868(client_index, slot);
     if (rank == 0) {
         *entry |= 2;
         *value |= 2;
@@ -509,7 +509,7 @@ void TWindowSubStatusDisp::vt4() {
     entry = (u16 *)get_array_entry(0xD);
     value = (u16 *)get_array_entry(0xE);
     label = (u16 *)get_array_entry(0xF);
-    time = TWindowSubStatusDisp__sub_80071988(m_20, slot);
+    time = TWindowSubStatusDisp__sub_80071988(client_index, slot);
     if (time == 0) {
         *entry |= 2;
         *value |= 2;
@@ -600,7 +600,7 @@ void TWindowSubStatusDisp::vt13() {
     void *temp_r31_4;
     void *temp_r31_5;
 
-    player = (s32)get_player_by_client_id(this->m_20);
+    player = (s32)get_player_by_client_id(this->client_index);
     if (player != 0) {
         temp_r31 = get_array_entry__11TWindowBaseFi(this, 2);
         *(s32 *)((s8 *)temp_r31 + 0x20) = (s32) ((TWindowSubStatusDisp *)player)->get_stat();
@@ -820,7 +820,7 @@ void TWindowSubStatusDisp::dispatch_page_update() {
 void TWindowSubStatusDisp::render() {
     s32 temp_r3;
 
-    if (get_player_by_client_id(this->m_20) != 0U) {
+    if (get_player_by_client_id(this->client_index) != 0U) {
         temp_r3 = this->setup_window_draw_context((s32)(((u8 *)this) + 0x6C));
         draw_window_frame((void *)temp_r3);
         draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
@@ -865,7 +865,7 @@ TWindowSubStatusDisp::TWindowSubStatusDisp(s32 client)
     : TWindowBase((u8 *)TWindowSubStatusDisp__window_layout, (s16)client,
                   (u8 *)get_window_layout_position(0x19)) {
     m_name = TWindowSubStatusDisp__class_name;
-    m_20 = client;
+    client_index = client;
     page = 0;
     m_62 = page;
     scale_x = lbl_805DD70C;

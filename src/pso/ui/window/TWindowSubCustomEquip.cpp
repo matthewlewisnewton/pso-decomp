@@ -169,7 +169,7 @@ void TWindowSubCustomEquip::update_palette_slot(s32 arg1, s32 kind, s32 arg3) {
     void *pl;
     u8 *a;
     u8 *b;
-    pl = get_player_by_client_id(this->m_20);
+    pl = get_player_by_client_id(this->client_index);
     if (pl != NULL) {
         a = get_array_entry__11TWindowBaseFi(this, lbl_8044F738[arg1]);
         b = get_array_entry__11TWindowBaseFi(this, lbl_8044F740[arg1]);
@@ -179,7 +179,7 @@ void TWindowSubCustomEquip::update_palette_slot(s32 arg1, s32 kind, s32 arg3) {
             *(s32 *)(a + 0x2C) = 0xFF404040;
         }
         draw_action_palette_icon(a, kind, arg3);
-        update_palette_item_count_label(b, a, kind, arg3, this->m_20);
+        update_palette_item_count_label(b, a, kind, arg3, this->client_index);
     }
 }
 
@@ -221,7 +221,7 @@ void TWindowSubCustomEquip::get_cursor_pos(void *arg1) {
     s32 saved_slot;
     s32 temp_r29;
 
-    if ((player = (u8 *)get_player_by_client_id(this->m_20), (player == 0U)) || (temp_r29 = select_action_palette__10TObjPlayerFi(player, 0), ((temp_r29 == 0) != 0))) {
+    if ((player = (u8 *)get_player_by_client_id(this->client_index), (player == 0U)) || (temp_r29 = select_action_palette__10TObjPlayerFi(player, 0), ((temp_r29 == 0) != 0))) {
         *(s16 *)((s8 *)arg1 + 0) = 0;
         *(s16 *)((s8 *)arg1 + 2) = 0;
         return;
@@ -234,7 +234,7 @@ void TWindowSubCustomEquip::get_cursor_pos(void *arg1) {
 void TWindowSubCustomEquip::remove_duplicate_bindings(void *arg1) {
     u8 *player;
     s32 temp_r29;
-    if ((player = (u8 *)get_player_by_client_id(this->m_20), (player == 0U)) || (temp_r29 = select_action_palette__10TObjPlayerFi(player, 0), ((temp_r29 == 0) != 0))) {
+    if ((player = (u8 *)get_player_by_client_id(this->client_index), (player == 0U)) || (temp_r29 = select_action_palette__10TObjPlayerFi(player, 0), ((temp_r29 == 0) != 0))) {
         return;
     }
     if (*(u16 *)((s8 *)arg1 + 0) == (u16)get_slot_type__20TWindowActionPaletteFlll(temp_r29, 0, 1) && *(u16 *)((s8 *)arg1 + 2) == (u16)TWindowActionPalette__sub_801C1D7C(temp_r29, 0, 1)) {
@@ -261,7 +261,7 @@ void TWindowSubCustomEquip::toggle_action_binding(void *arg1) {
     s32 temp_r29;
     s32 valid;
     s32 idx;
-    if ((player = (u8 *)get_player_by_client_id(this->m_20), (player == 0U)) || (temp_r29 = select_action_palette__10TObjPlayerFi(player, 0), ((temp_r29 == 0) != 0))) {
+    if ((player = (u8 *)get_player_by_client_id(this->client_index), (player == 0U)) || (temp_r29 = select_action_palette__10TObjPlayerFi(player, 0), ((temp_r29 == 0) != 0))) {
         return;
     }
     valid = is_type_valid__21TWindowSubCustomEquipFv(this, this->m_62);
@@ -315,7 +315,7 @@ int TWindowSubCustomEquip::layout_selection_parts(void *arg1) {
     }
     pos.x = 45.0f + *(f32 *)((s8 *)p + 8);
     pos.y = 53.0f + *(f32 *)((s8 *)p + 0xC);
-    set_help_text__15TWindowHelpItemFll(b, this->m_20);
+    set_help_text__15TWindowHelpItemFll(b, this->client_index);
     ((TWindowSubSymbolChatPartsSet *)(a + 8))->copy_vec2(&pos);
     ((TWindowSubSymbolChatPartsSet *)(b + 8))->copy_vec2(&pos);
     *(f32 *)((s8 *)a + 0x18) = *(f32 *)((s8 *)p + 0x18);
@@ -355,7 +355,7 @@ void TWindowSubCustomEquip::reset_selection() { layout_entry_group((void *)((voi
 s32 TWindowSubCustomEquip::refresh_palette_slots() {
     u8 *player;
     s32 pal;
-    player = (u8 *)get_player_by_client_id(this->m_20);
+    player = (u8 *)get_player_by_client_id(this->client_index);
     if (player == NULL || (pal = select_action_palette__10TObjPlayerFi(player, 0)) == 0) {
         return;
     }
@@ -452,7 +452,7 @@ void TWindowSubCustomEquip::handle_cursor_input() {
     u8 *temp_r31;
     u8 *window_choice_setting;
     u8 *array_entry;
-    temp_r29 = is_player_input_active((this->m_20));
+    temp_r29 = is_player_input_active((this->client_index));
     temp_r31 = (u8 *)(((u8 *)get_array_entry(0x10)));
     array_entry = (u8 *)(((u8 *)get_array_entry(7)));
     temp_r4 = this->m_63;
@@ -465,9 +465,9 @@ void TWindowSubCustomEquip::handle_cursor_input() {
         *(s32 *)((s8 *)array_entry + 0x2C) = 0xFF666666;
     }
     window_choice_setting = (u8 *)&controller_input_state + (temp_r29 * 0x50) + 0x20;
-    if ((apply_choice__20TWindowChoiceSettingFllll((void *)window_choice_setting, 0xF0, 6, 1) != 0) || (TWindowShortListCtrl__check_controller_button(window_choice_setting, (int) (fn_8002AE08((int)this->m_20))) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0xF0, 6, 1) != 0)) {
+    if ((apply_choice__20TWindowChoiceSettingFllll((void *)window_choice_setting, 0xF0, 6, 1) != 0) || (TWindowShortListCtrl__check_controller_button(window_choice_setting, (int) (fn_8002AE08((int)this->client_index))) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0xF0, 6, 1) != 0)) {
         play_sound_effect(0x54100, 0, 0, 0);
-        if (TWindowShortListCtrl__check_controller_button(window_choice_setting, (int) (fn_8002AE08((int)this->m_20))) != 0) {
+        if (TWindowShortListCtrl__check_controller_button(window_choice_setting, (int) (fn_8002AE08((int)this->client_index))) != 0) {
             this->m_62 = (u8) (1 - this->m_62);
             this->m_63 = 3U;
         }
@@ -507,7 +507,7 @@ void TWindowSubCustomEquip::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r30;
     u8 *context;
-    temp_r30 = is_player_input_active(((s32) this->m_20));
+    temp_r30 = is_player_input_active(((s32) this->client_index));
     if (((TWindowSubCustomEquip *)arg0)->is_selected() == 0) {
         ((TWindowSubCustomEquip *)arg0)->handle_cursor_input();
         context = (u8 *)&controller_input_state + (temp_r30 * 0x50) + 0x20;
@@ -540,7 +540,7 @@ TWindowSubCustomEquip *TWindowSubCustomEquip__ct(TWindowSubCustomEquip *self, s3
     __ct__11TWindowBaseFPUcsPUc(self, (u8 *)&lbl_804D1488, slot, get_window_layout_position(0xF));
     *(s32 **)((s8 *)self + 0x18) = __vt__21TWindowSubCustomEquip;
     self->m_name = TWindowSubCustomEquip__name;
-    self->m_20 = slot;
+    self->client_index = slot;
     self->m_60 = 0;
     self->m_61 = 1;
     self->m_62 = 0;
@@ -551,7 +551,7 @@ TWindowSubCustomEquip *TWindowSubCustomEquip__ct(TWindowSubCustomEquip *self, s3
     self->m_68 = 0xB200;
     heading = (void *)::operator new(0x24);
     if (heading != NULL) {
-        heading = ((TWindowSubStatusDisp *)heading)->construct_type1_heading((s32)TWindowSubStatusDisp::get_message_10(0x23), self->m_20);
+        heading = ((TWindowSubStatusDisp *)heading)->construct_type1_heading((s32)TWindowSubStatusDisp::get_message_10(0x23), self->client_index);
     }
     self->m_6c = (u32)heading;
     self->refresh_palette_slots();

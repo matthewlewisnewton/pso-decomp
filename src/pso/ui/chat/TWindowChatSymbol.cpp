@@ -376,22 +376,28 @@ u8 *TWindowChatSymbol__ct(TWindowChatSymbol *window_chat_symbol, s32 arg1, s32 a
 }
 void TUnk_804CE7D0::render() {  }
 void TUnk_804CE7D0::run_task() {
-    ((TWindowSubSymbolChat *)(this->m_20))->set_from_key(((TWindowMenu *)(*(s32 *)&this->unk_1C))->get_selected_value());
+    ((TWindowSubSymbolChat *)preview)->set_from_key(preset_list->get_selected_value());
 }
 
 extern s32 lbl_804CE7D0[];
 
-void *TWindowChatSymbol::destroy(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = lbl_804CE7D0;
-        if (this->m_20 != NULL) { ((TWindowBase *)this->m_20)->close(); this->m_20 = 0; }
-        if (*(void * *)&this->unk_1C != NULL) { ((TWindowBase *)(*(void * *)&this->unk_1C))->close(); *(s32 *)&this->unk_1C = 0; }
-        __dt__7TObjectFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
+void *destroy__17TWindowChatSymbolFs(TUnk_804CE7D0 *controller, s16 delete_flag) {
+    if (controller != NULL) {
+        *(s32 **)((u8 *)controller + 0x18) = lbl_804CE7D0;
+        if (controller->preview != NULL) {
+            controller->preview->close();
+            controller->preview = NULL;
+        }
+        if (controller->preset_list != NULL) {
+            controller->preset_list->close();
+            controller->preset_list = NULL;
+        }
+        __dt__7TObjectFv(controller, 0);
+        if (delete_flag > 0) {
+            __dl__7TObjectFPv(controller);
         }
     }
-    return this;
+    return controller;
 }
 
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *, int, int, int);

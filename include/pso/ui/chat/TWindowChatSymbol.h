@@ -7,8 +7,6 @@
 struct TWindowChatSymbol : public TWindowBase {
     virtual ~TWindowChatSymbol();
     virtual void render();
-    u8 unk_1C[0x4];
-    void * m_20;
     void* m_24;
     u8 unk_28[0x4];
     s32 m_2c;
@@ -19,7 +17,6 @@ struct TWindowChatSymbol : public TWindowBase {
     u32 m_60;
     u32 m_64;
     virtual void run_task();
-    void *destroy(s16 arg1);
 };
 
 typedef char TWindowChatSymbol_size[sizeof(TWindowChatSymbol) == 0x68 ? 1 : -1];

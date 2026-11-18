@@ -75,7 +75,7 @@ void TWindowMessagePage::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r5;
     run_task__14TWindowMessageFv();
-    temp_r5 = is_player_input_active((this->m_20)) * 0x50;
+    temp_r5 = is_player_input_active((this->client_index)) * 0x50;
     if ((TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state + temp_r5 + 0x20), 4) != 0) || (test_flag_4c__23TAdSinglePlyChrSelectGCFv((void *) ((u8 *)&controller_input_state + 0x160), 4) != 0)) {
         if (((TWindowMessagePage *)arg0)->is_message_window_ready() != 0) {
             update_message();
@@ -95,7 +95,7 @@ u8 *TWindowMessagePage__ct(u8 *window_message_page, s32 arg1, s32 arg2, s32 arg3
     *(s32 **)((s8 *)window_message_page + 0x18) = __vt__18TWindowMessagePage;
     *(s32 *)((s8 *)window_message_page + 0) = (s32) ((s32)TWindowMessagePage__name);
     *(s32 *)((s8 *)window_message_page + 0x90) = 0;
-    ((TWindowMessagePage *)window_message_page)->m_20 = (s16) arg3;
+    ((TWindowMessagePage *)window_message_page)->client_index = (s16) arg3;
     ((TWindowMessagePage *)window_message_page)->m_94 = 0;
     return window_message_page;
 }

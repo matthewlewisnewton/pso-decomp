@@ -1,7 +1,13 @@
 #ifndef PSO_UI_WINDOW_TWINDOWBASE_H
 #define PSO_UI_WINDOW_TWINDOWBASE_H
 #include "types.h"
+#include <stddef.h>
 #include "pso/system/task/TObject.h"
+
+union WindowSortDepth {
+    f32 value;
+    s8 bytes[4];
+};
 
 class TWindowBase : public TObject {
 public:
@@ -28,6 +34,14 @@ public:
     s32 get_array_entry(int);
     virtual void render();
     virtual void run_task();
+
+    WindowSortDepth sort_depth;
+    s16 client_index;
+    s16 closing_tick;
 };
+
+typedef char WindowSortDepthOffset[offsetof(TWindowBase, sort_depth) == 0x1C ? 1 : -1];
+typedef char WindowClientOffset[offsetof(TWindowBase, client_index) == 0x20 ? 1 : -1];
+typedef char WindowClosingTickOffset[offsetof(TWindowBase, closing_tick) == 0x22 ? 1 : -1];
 
 #endif

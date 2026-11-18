@@ -24,7 +24,7 @@ struct TWindowKeyBoardHard : public TWindowBase {
     void enable_kana_led();
     void enable_caps_led();
     void reset_composer_input_flags();
-    u8 _pad1C[0x14];
+    u8 unknown_24[0xC];
     f32 position_x;
     f32 position_y;
     u8 _pad38[0x28];

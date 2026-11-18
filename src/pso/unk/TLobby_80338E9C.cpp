@@ -29,7 +29,7 @@ void TUnk_804EF4E0::vfunc_6(u32 count, s32 id) {
     TUnk_804EF4E0::Entry *entry;
 
     m_name = TWindowMenuTeamStatus__name;
-    m_20 = id;
+    client_index = id;
     entry_count = 0;
     cursor = 0;
     entry_capacity = count;

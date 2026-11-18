@@ -864,22 +864,22 @@ s32 TUnk_804CF0B8::clamp_position(void *arg1, f32 farg0) {
     s32 var_r31;
 
     var_r31 = 0;
-    temp_f1 = 20.0f + ((TWindowCtrlMain *)(*(s16 *)&this->m_20))->get_position_z();
+    temp_f1 = 20.0f + ((TWindowCtrlMain *)(*(s16 *)&this->client_index))->get_position_z();
     if (*(f32 *)((s8 *)arg1 + 0) < temp_f1) {
         *(f32 *)((s8 *)arg1 + 0) = temp_f1;
         var_r31 = 1;
     }
-    temp_f1_2 = (((TWindowCtrlMain *)(*(s16 *)&this->m_20))->get_ctrl_field14() - 20.0f) - (this->m_48 * farg0);
+    temp_f1_2 = (((TWindowCtrlMain *)(*(s16 *)&this->client_index))->get_ctrl_field14() - 20.0f) - (this->m_48 * farg0);
     if (*(f32 *)((s8 *)arg1 + 0) > temp_f1_2) {
         *(f32 *)((s8 *)arg1 + 0) = temp_f1_2;
         var_r31 = 1;
     }
-    temp_f1_3 = 40.0f + ((TWindowCtrlMain *)(*(s16 *)&this->m_20))->get_field10();
+    temp_f1_3 = 40.0f + ((TWindowCtrlMain *)(*(s16 *)&this->client_index))->get_field10();
     if (*(f32 *)((s8 *)arg1 + 4) < temp_f1_3) {
         *(f32 *)((s8 *)arg1 + 4) = temp_f1_3;
         var_r31 = 1;
     }
-    temp_f1_4 = (((TWindowCtrlMain *)(*(s16 *)&this->m_20))->get_field_18() - 40.0f) - (*(f32 *)((s8 *)this + 0x4C) * farg0);
+    temp_f1_4 = (((TWindowCtrlMain *)(*(s16 *)&this->client_index))->get_field_18() - 40.0f) - (*(f32 *)((s8 *)this + 0x4C) * farg0);
     if (*(f32 *)((s8 *)arg1 + 4) > temp_f1_4) {
         *(f32 *)((s8 *)arg1 + 4) = temp_f1_4;
         var_r31 = 1;
@@ -1012,7 +1012,7 @@ void TUnk_804CF0B8::sub_80251DF0(u16 arg1, s32 str, s32 arg3, f32 farg0) {
     *(s8 *)&this->unk_72 = 2;
     this->m_73 = -1;
     this->m_76 = arg1;
-    this->m_20 = arg3;
+    this->client_index = arg3;
     if (str != 0) {
         temp_r3 = TWindowKeyBoardSoft::strnlen((s8 *)str, (u32)0x18);
         name = (char *)::operator new[](temp_r3 + 1);
