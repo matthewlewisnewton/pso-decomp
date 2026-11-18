@@ -60,8 +60,6 @@ struct TBoss6PlotFalz : public TObjEnemy {
     static void update_camera_target();
     static void apply_fade_material_color(f32 farg0, f32 farg1, f32 farg2, f32 farg3);
     static int get_phase();
-    void scroll_strips_uv(s32 dx, s32 dy);
-    void free_buffer_pairs();
     static void freeze_all_players();
     void render();
     void run_task();

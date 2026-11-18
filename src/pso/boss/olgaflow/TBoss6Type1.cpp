@@ -553,7 +553,6 @@ struct VObj_18_f05d67 : VBase_18_f05d67 {
 struct Arr_802B93C4 { u8 pad[0x378]; s32 arr[32]; };
 struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 
-void build_tables__14TBoss6PlotFalzFPvPvi(void *, const void *, int);
 void TBoss6Type1__sub_802B854C(void *);
 s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 extern u8 __vt__11TBoss6Type1[];
@@ -594,8 +593,8 @@ const ModelNodePositionEntry boss6_type1_model_node_desc_b[8] = {
     {0x53, {0.0f, 0.0f, 0.0f}},
     {-1, {0.0f, 0.0f, 0.0f}},
 };
-const s32 boss6_type1_build_table[6] = {3, 1, 0, 6, 1, 0};
-const s32 lbl_80470EA0[3] = {0, 0, 0};
+const Boss6StripDesc boss6_type1_build_table[2] = {{3, 1, 0}, {6, 1, 0}};
+const Boss6StripDesc lbl_80470EA0[1] = {{0, 0, 0}};
 const Vec lbl_80470EAC = {0.0f, 0.0f, 0.0f};
 const s32 boss6_type1_random_action_table[5] = {4, 0x16, 5, 8, 2};
 const Blk_802B8624 lbl_80470ECC = {2, 0};
@@ -699,8 +698,8 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     TBoss6Type1__sub_802B854C(arg0);
     *(ModelNodePositionCapture **)((s8 *)arg0 + 0x654) = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type1_model_node_desc, (Vec *)(arg0 + 0x578));
     *(ModelNodePositionCapture **)((s8 *)arg0 + 0x650) = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type1_model_node_desc_b, (Vec *)(arg0 + 0x5FC));
-    build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x658, boss6_type1_build_table, 2);
-    build_tables__14TBoss6PlotFalzFPvPvi(arg0 + 0x66C, lbl_80470EA0, 1);
+    ((TBoss6Type1 *)arg0)->scroll_strips_u.build_tables(boss6_type1_build_table, 2);
+    ((TBoss6Type1 *)arg0)->scroll_strips_v.build_tables(lbl_80470EA0, 1);
     *(s32 *)((s8 *)arg0 + 0x400) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
     *(s32 *)((s8 *)arg0 + 0x404) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 2, 0xF);
     *(s32 *)((s8 *)arg0 + 0x414) = 0;
@@ -743,8 +742,8 @@ TBoss6Type1::~TBoss6Type1() {
     TBoss6Type1__sub_802B4A70(this);
     TBoss6Type1__sub_802B4B14(this);
     TBoss6Type1__sub_802B4CF4((s32)this);
-    ((TBoss6PlotFalz *)scroll_strips_v)->free_buffer_pairs();
-    ((TBoss6PlotFalz *)scroll_strips_u)->free_buffer_pairs();
+    scroll_strips_v.free_buffer_pairs();
+    scroll_strips_u.free_buffer_pairs();
     for (i = 0; i < 2; i++) {
         if (draw_callback_lists[i] != NULL) {
             ModelNodePositionCapture::destroy(draw_callback_lists[i]);
@@ -1024,8 +1023,8 @@ void TBoss6Type1::run_task() {
         this->m_4d4 = 0.0f;
     }
     this->m_4d8 = (f32)this->hp / (f32)this->referenceHp;
-    ((TBoss6PlotFalz *)((u8 *)this + 0x658))->scroll_strips_uv(8, 0);
-    ((TBoss6PlotFalz *)((u8 *)this + 0x66C))->scroll_strips_uv(0, 0x22);
+    scroll_strips_u.scroll_strips_uv(8, 0);
+    scroll_strips_v.scroll_strips_uv(0, 0x22);
     update_sway();
     sub_802B4C28();
     *(s32 *)((u8 *)this + 0x408) += 1;

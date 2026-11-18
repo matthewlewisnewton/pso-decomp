@@ -49,10 +49,9 @@ struct Fish_8033CB4C
 extern "C" {
 s32 get_bml_motion(s32, s32);
 int set_scripted_camera_pose(void *, void *, void *);
-int build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 extern s32 lbl_80477DEC[];
 extern s32 boss6_type1_appear_node_desc[];
-extern s32 boss6_type1_appear_model_node_descriptors[];
+extern Boss6StripDesc boss6_type1_appear_model_node_descriptors[];
 extern s32 lbl_80477E30[];
 extern CameraPlayback lbl_80477E3C;
 extern s32 lbl_804DF614[];
@@ -91,7 +90,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
     if ((*(f32 *)((s8 *)boss6_demo10_type1_appear + 0x34) += 0.7f) > 349.0f) {
         *(f32 *)((s8 *)boss6_demo10_type1_appear + 0x34) = 349.0f;
     }
-    ((TBoss6PlotFalz *)((u8 *)boss6_demo10_type1_appear + 0x40))->scroll_strips_uv(8, 0);
+    ((TBoss6Demo10_TYPE1_APPEAR *)boss6_demo10_type1_appear)->scroll_strips.scroll_strips_uv(8, 0);
     if ((s32) boss6_demo10_type1_appear->m_38 == 0x78) {
         play_sound_effect(0x4003A105, 0, 0, 0);
     }
@@ -158,7 +157,7 @@ void run_task__25TBoss6Demo10_TYPE1_APPEARFv(TBoss6Demo10_TYPE1_APPEAR *boss6_de
 TBoss6Demo10_TYPE1_APPEAR::~TBoss6Demo10_TYPE1_APPEAR() {
     restore_player_cameras();
     refresh_players_equipment__14TBoss6PlotFalzFPv();
-    ((TBoss6PlotFalz *)(((u8 *)this) + 0x40))->free_buffer_pairs();
+    scroll_strips.free_buffer_pairs();
     if ((u32) this->m_60 != 0U) {
         ModelNodePositionCapture::destroy((ModelNodePositionCapture *)*(void **)((s8 *)this + 0x60));
         this->m_60 = 0U;
@@ -188,7 +187,7 @@ TBoss6Demo10_TYPE1_APPEAR::TBoss6Demo10_TYPE1_APPEAR(TObject *parent) : TObject(
     }
     ((Fish_8033CB4C *)this)->x60 = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type1_appear_node_desc, (Vec *)(((Fish_8033CB4C *)this)->x54));
     ((Fish_8033CB4C *)this)->x64 = 0;
-    build_tables__14TBoss6PlotFalzFPvPvi(((Fish_8033CB4C *)this)->x40, boss6_type1_appear_model_node_descriptors, 2);
+    scroll_strips.build_tables(boss6_type1_appear_model_node_descriptors, 2);
     activate_camera_mode(5);
     set_scripted_camera_pose(lbl_80477DEC, lbl_80477DEC, lbl_80477E30);
     lbl_80477E3C.cache_target_and_forward(0x416C);
@@ -208,7 +207,7 @@ extern const char TBoss6Demo10_TYPE1_APPEAR__class_name[];
 __declspec(section ".rodata") const char TBoss6Demo10_TYPE1_APPEAR__class_name[] ATTRIBUTE_ALIGN(4) = "TBoss6Demo10_TYPE1_APPEAR";
 __declspec(section ".rodata") s32 lbl_80477DEC[] = {0x00000000, 0x41C80000, 0x42960000};
 __declspec(section ".rodata") s32 boss6_type1_appear_node_desc[] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000};
-__declspec(section ".rodata") s32 boss6_type1_appear_model_node_descriptors[] = {0x00000003, 0x00000001, 0x00000000, 0x00000006, 0x00000001, 0x00000000};
+__declspec(section ".rodata") Boss6StripDesc boss6_type1_appear_model_node_descriptors[] = {{3, 1, 0}, {6, 1, 0}};
 __declspec(section ".rodata") s32 lbl_80477E30[] = {0x00000000, 0x00000000, 0x00000000};
 __declspec(section ".rodata") CameraPlayback lbl_80477E3C = {1, 2, 0, 0.0f, 0.7f};
 s32 boss6_type1_appear_motion_indices[] = {35, 36};

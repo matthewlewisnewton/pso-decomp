@@ -1,5 +1,6 @@
 #ifndef PSO_BOSS_OLGAFLOW_TBOSS6DEMO10_TYPE1_APPEAR_H
 #define PSO_BOSS_OLGAFLOW_TBOSS6DEMO10_TYPE1_APPEAR_H
+#include "pso/boss/Boss6ScrollStrips.h"
 #include "types.h"
 #include "pso/system/task/TObject.h"
 
@@ -18,7 +19,9 @@ public:
     s32 m_30;
     u8 unk_34[0x4];
     s32 m_38;
-    u8 unk_3C[0x24];
+    u8 unk_3C[0x4];
+    Boss6ScrollStrips scroll_strips;
+    u8 unk_54[0xC];
     s32 m_60;
     u8 unk_64[0x4];
 };

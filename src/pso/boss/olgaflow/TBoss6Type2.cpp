@@ -168,7 +168,6 @@ void spawn__15TBoss6RockChaseFll(void *, void *);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 s32 init_collision_body_parts(void *, void *, int);
-void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type2__sub_802BA7B0(void* p);
 s32 TBoss6Type2__sub_802BB694(TBoss6Type2 *self);
 void TBoss6Type2__sub_802BB818(TBoss6Type2 *self, f32);
@@ -208,7 +207,7 @@ struct Boss_802B9F3C {
     u8 pad44[0x60 - 0x44];
     s32 f60;
     u8 pad64[0x544 - 0x64];
-    Ent_802B9F3C e[2];
+    struct { s32 angle; s32 remaining[2]; } aim[2];
 };
 
 struct V3_802BA078 { s32 x; f32 y; s32 z; };
@@ -636,7 +635,7 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     }
     init_motion_entries();
     m_764 = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type2_effect_desc_table, (Vec *)&m_59c);
-    build_tables__14TBoss6PlotFalzFPvPvi(&m_768, (void *)boss6_type2_plot_falz_entry_table, 2);
+    scroll_strips.build_tables(boss6_type2_plot_falz_entry_table, 2);
     m_458 = create_zanzo__11TBoss6Type1FPvPvPv(this, 7, 0xF);
     m_478 = 0;
     m_47c = 0x11;
@@ -694,7 +693,7 @@ TBoss6Type2::~TBoss6Type2() {
         e->a = 0;
         e->b = 0;
     }
-    ((TBoss6PlotFalz *)&m_768)->free_buffer_pairs();
+    scroll_strips.free_buffer_pairs();
     for (i = 0; i < 1; i++) {
         if (((Fish_802BE014 *)this)->fish[i] != 0) {
             ModelNodePositionCapture::destroy((ModelNodePositionCapture *)((Fish_802BE014 *)this)->fish[i]);
@@ -1136,7 +1135,7 @@ void TBoss6Type2::run_task() {
     ((TBoss6Type2 *)arg0)->apply_rock_hits_to_players();
     ((TBoss6Type2 *)arg0)->sub_802BB498();
     ((TBoss6Type2 *)arg0)->sub_802BC124();
-    ((TBoss6PlotFalz *)(arg0 + 0x768))->scroll_strips_uv(8, 0);
+    ((TBoss6Type2 *)arg0)->scroll_strips.scroll_strips_uv(8, 0);
     TObjPlayer__sub_8023DEE0((s16 *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)(find_model_node((u32)get_bml_model((BmlResource *)this->m_3fc, 1), 1)) + 4)) + 4)), 8, 0, 0);
     ((TBoss6Type2 *)arg0)->sub_802BB554();
     copy_vec_array();
@@ -2590,7 +2589,7 @@ void TBoss6Type2::aim_toward_point(void *arg1_arg) {
         ang = 0;
     }
     for (i = 0; i < 2; i++) {
-        arg0->e[i].a = approach_angle_limited(arg0->e[i].a, ang, 0x2AA);
+        arg0->aim[i].angle = approach_angle_limited(arg0->aim[i].angle, ang, 0x2AA);
     }
 }
 

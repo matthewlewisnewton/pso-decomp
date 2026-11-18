@@ -1,6 +1,7 @@
 #ifndef PSO_BOSS_OLGAFLOW_TBOSS6TYPE2_H
 #define PSO_BOSS_OLGAFLOW_TBOSS6TYPE2_H
 
+#include "pso/boss/Boss6ScrollStrips.h"
 #include "types.h"
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
@@ -102,8 +103,8 @@ struct TBoss6Type2 : public TObjEnemy
     TBoss6Type2Point contact_point_5fc;
     u8 _pad608[0x764 - 0x608];
     ModelNodePositionCapture *m_764;
-    void* m_768;
-    u8 pad_76C[0x7B4 - 0x76C];
+    Boss6ScrollStrips scroll_strips;
+    u8 pad_77C[0x7B4 - 0x77C];
 
     void update_lower_contact_delta();
     s32 turn_toward_target_position();
@@ -283,7 +284,7 @@ typedef char TBoss6Type2_offset_previous_lower_contact[(offsetof(TBoss6Type2, pr
 typedef char TBoss6Type2_offset_contact_point_5c0[(offsetof(TBoss6Type2, contact_point_5c0) == 0x5c0) ? 1 : -1];
 typedef char TBoss6Type2_offset_contact_point_5fc[(offsetof(TBoss6Type2, contact_point_5fc) == 0x5fc) ? 1 : -1];
 typedef char TBoss6Type2_offset_m_764[(offsetof(TBoss6Type2, m_764) == 0x764) ? 1 : -1];
-typedef char TBoss6Type2_offset_m_768[(offsetof(TBoss6Type2, m_768) == 0x768) ? 1 : -1];
+typedef char TBoss6Type2_offset_scroll_strips[(offsetof(TBoss6Type2, scroll_strips) == 0x768) ? 1 : -1];
 
 typedef char TBoss6Type2_size[(sizeof(TBoss6Type2) == 0x7B4) ? 1 : -1];
 

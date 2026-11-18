@@ -24,7 +24,7 @@ const ModelNodePositionEntry boss6_type2_effect_desc_table[20] = {
 };
 const s32 boss6_type2_variant_id_table[4] = { 1, 2, 3, 4 };
 const s32 lbl_8047128C[2] = { 4, 5 };
-const Ent_802B9F3C boss6_type2_plot_falz_entry_table[2] = { { 4, 0x69, 0 }, { 5, 0x69, 0 } };
+const Boss6StripDesc boss6_type2_plot_falz_entry_table[2] = { { 4, 0x69, 0 }, { 5, 0x69, 0 } };
 const s32 boss6_type2_zero_vec[4] = { 0, 0, 0, 0 };
 const Blk_802BCFD4 boss6_type2_zero_motion_block = { 0 };
 const f32 boss6_type2_motion_entry_transform[7] = { 0.0f, 0.0f, 0.0f, 0.0f, 1.0f / 15.0f, 0.0f, 0.0f };
