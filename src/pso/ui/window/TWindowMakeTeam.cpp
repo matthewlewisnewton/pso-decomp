@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/task/TObject.h"
@@ -142,7 +143,7 @@ void TWindowMakeTeam::run_task() {
             kb = TKeyBoardControl__ct(kb, self, 0xE, 0, 4, local_client_id);
         }
         self->keyboard = kb;
-        ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCB)));
+        ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCB)));
         get_lobby_field_20__15TWindowMakeTeamFv(self->keyboard, 38500.0f);
         update_chat_window(self->keyboard);
         get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->name);
@@ -171,7 +172,7 @@ void TWindowMakeTeam::run_task() {
             kb = TKeyBoardControl__ct(kb, self, 0x10, 0, 0, local_client_id);
         }
         self->keyboard = kb;
-        ((TWindowMakeTeam *)(self->keyboard))->set_sub_position((u8 *)(get_window_layout_position(0xCC)));
+        ((TKeyBoardControl *)(self->keyboard))->set_composer_position((u8 *)(get_window_layout_position(0xCC)));
         get_lobby_field_20__15TWindowMakeTeamFv(self->keyboard, 38500.0f);
         get_keyboard_field_6c__15TWindowMakeTeamFv(self->keyboard, self->comment);
         ((TWindowMakeTeam *)(self->menu))->set_entry_string_by_id(NULL, 1);

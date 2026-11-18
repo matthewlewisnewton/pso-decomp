@@ -34,9 +34,11 @@ struct TKeyBoardControl : public TObject {
     static s32 has_non_modifier_key();
     static s32 translate_key_char(void *arg0_, u8 arg1, u16 *arg2);
     s32 get_input_mode();
-    void enable_keyboard_led();
-    void enable_kana_led();
-    void enable_caps_led();
+    void set_position(void *position);
+    void set_soft_keyboard_position(u8 *position);
+    void set_hard_keyboard_position(u8 *position);
+    void set_composer_position(u8 *position);
+    void clear_keyboard_flag60_bit1();
     static void update_main_menu_scene();
     static void update_menu_scene();
     static void flush_input();

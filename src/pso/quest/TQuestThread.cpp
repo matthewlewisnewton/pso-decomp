@@ -1,4 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/ui/keyboard/TKeyBoardControl.h"
+#include "pso/ui/window/TWindowKeyBoardBase.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowMessage.h"
@@ -40,7 +42,6 @@
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/unk/text_8024AB98.h"
 #include "pso/ui/window/TWindowSubComCard_80265410.h"
-#include "pso/unk/text_80131ADC.h"
 #include "pso/unk/text_8026CB5C.h"
 #include "pso/map/FloorArea.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801A6D60.h"
@@ -66,7 +67,6 @@ s32 align_menu_entry_positions(u32);
 void TWindowHelpItem__set_displayed_item_by_id(u8 *window_help_item, s32 arg1);
 u32 TKeyBoardControl__ct(void *, void *, s32, s32, s32, s32);
 void TQuestThread__sub_801F5D88(void);
-void fn_801F6520(void *p);
 void __dt__16TObjItemOKWindowFv();
 void __dt__18TObjItemNameSelectFv();
 void __dt__17TObjItemNameEntryFv();
@@ -247,11 +247,11 @@ s32 TObjItemNameEntry::process_keyboard_input() {
         text = ((TWindowSubComCard *)m_1c)->realloc_buffer();
         if (strcmp((const char *)text, "") == 0) {
             ::operator delete[]((void *)text);
-            free_menu_object(m_1c);
+            ((TKeyBoardControl *)m_1c)->clear_keyboard_flag60_bit1();
             return 0;
         }
         if (TWindowSubComCard::contains_profanity((char *)text) != 0) {
-            free_menu_object(m_1c);
+            ((TKeyBoardControl *)m_1c)->clear_keyboard_flag60_bit1();
             ::operator delete[]((void *)text);
             return 0;
         }
@@ -280,9 +280,9 @@ TObjItemNameEntry::TObjItemNameEntry(TObject *parent) : TObject(parent) {
     }
     m_1c = (void *)keyboard;
     if (m_1c != NULL) {
-        ((TWindowMakeTeam *)m_1c)->set_sub_position((u8 *)get_window_layout_position(0xBF));
-        fn_80131ADC((u8 *)m_1c, (u8 *)get_window_layout_position(0xC0));
-        fn_80131B18((u8 *)m_1c, (u8 *)fn_8026CB5C());
+        ((TKeyBoardControl *)m_1c)->set_composer_position((u8 *)get_window_layout_position(0xBF));
+        ((TKeyBoardControl *)m_1c)->set_soft_keyboard_position((u8 *)get_window_layout_position(0xC0));
+        ((TKeyBoardControl *)m_1c)->set_hard_keyboard_position((u8 *)fn_8026CB5C());
     }
     m_20 = check_room_seq_4__16TAdChrSelASlotGCFl(get_window_layout_position(0x56), 1);
     if (m_20 != NULL) {
@@ -848,14 +848,14 @@ void TObjItemNameSelect::set_selection_index(int index) { item_name_selection_in
 
 void TQuestThread::queue_destruction(void *obj) { ((TObject *)obj)->queue_destruction(); }
 
-void free_menu_object(void *window) {
-    void *menu = *(void **)((u8 *)window + 0x20);
-    if (menu != NULL) {
-        fn_801F6520(menu);
+void TKeyBoardControl::clear_keyboard_flag60_bit1() {
+    TWindowKeyBoardBase *composer = (TWindowKeyBoardBase *)m_20;
+    if (composer != NULL) {
+        composer->clear_flag60_bit1();
     }
 }
 
-void fn_801F6520(void *p) { *(u16 *)((u8 *)p + 0x60) &= 0xfffe; }
+void TWindowKeyBoardBase::clear_flag60_bit1() { m_60 &= 0xfffe; }
 
 u32 TQuestListVM::get_quest_size() { return decompression_capacity; }
 

@@ -31,7 +31,6 @@
 #include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "pso/ui/window/TWindowMakeTeam.h"
 #include "pso/ui/window/TWindowSubComCard.h"
-#include "pso/unk/text_80131ADC.h"
 #include "pso/object/TObjLuker.h"
 #include "pso/unk/TLobby_801E2F94.h"
 #include "pso/unk/text_801E3F24.h"
@@ -2177,10 +2176,10 @@ void TObjCMName::run_task() {
             scale = TObjCMMainMenu::get_scale();
             pos[0] = 148.0f;
             pos[1] = 137.0f * scale;
-            ((TWindowMakeTeam *)keyboard)->set_sub_position((u8 *)pos);
+            ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)pos);
             pos[0] = 53.0f;
             pos[1] = 178.0f * scale;
-            fn_80131ADC((u8 *)keyboard, (u8 *)pos);
+            ((TKeyBoardControl *)keyboard)->set_soft_keyboard_position((u8 *)pos);
             initialized = 1;
         }
     } else if (active == 0) {

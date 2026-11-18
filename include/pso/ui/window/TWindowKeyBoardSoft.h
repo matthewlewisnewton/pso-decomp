@@ -26,7 +26,10 @@ struct TWindowKeyBoardSoft : public TWindowBase
     int is_cursor_locked();
     static int is_alnum(u16 code);
     virtual void render();
-    u8 unk_1C[0x60 - 0x1C];
+    u8 unk_1C[0x30 - 0x1C];
+    f32 position_x;
+    f32 position_y;
+    u8 unk_38[0x60 - 0x38];
     u32 m_60;
     u8 m_64;
     u8 m_65;

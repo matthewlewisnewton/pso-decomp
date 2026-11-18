@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
@@ -250,7 +251,7 @@ s32 TWindowSubSymbolChat::create_keyboard_control() {
     }
     update_chat_window((void *)keyboard);
     get_keyboard_field_6c__15TWindowMakeTeamFv(keyboard, get_keyboard_ptr__20TWindowSubSymbolChatFv(this->m_28));
-    ((TWindowMakeTeam *)keyboard)->set_sub_position((u8 *)(get_window_layout_position(0xBB)));
+    ((TKeyBoardControl *)keyboard)->set_composer_position((u8 *)(get_window_layout_position(0xBB)));
     ((TWindowMakeTeam *)keyboard)->set_keyboard_flag62_bit2();
     ((TWindowSubComCard *)keyboard)->destroy_keyboard();
     return keyboard;

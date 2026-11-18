@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/ControllerInputState.h"
@@ -505,7 +506,7 @@ void TAdEnterSerialAccessGC__sub_80321B28(u8 *ad_enter_serial_access_gc, int arg
     }
     if ((((TWindowSubComCard *)TAdEnterSerialAccessGC__keyboard_control)->update_keyboard() != 0) && (forward_input__22TAdEnterSerialAccessGCFPv((void *) ad_enter_serial_access_gc, (void *) arg1, (int) temp_r30) == 0))
     {
-      free_menu_object((void *)TAdEnterSerialAccessGC__keyboard_control);
+      ((TKeyBoardControl *)TAdEnterSerialAccessGC__keyboard_control)->clear_keyboard_flag60_bit1();
       play_sound_effect(0x53F06, 0, 0, 0);
     }
   }

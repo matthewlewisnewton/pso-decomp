@@ -1249,7 +1249,6 @@ s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);
 s32 get_window_layout_position(s32);
 s32 __nw__7TObjectFUl(s32);
 void close_all_windows__6TLobbyFv(void);
-s32 fn_80131B18(s32, s32);
 s32 send_room_change__9TProtocolFi(s32, s32);
 
 extern s32 TLobby__data_805D5588;
@@ -2489,8 +2488,8 @@ void open_keyboard_window__6TLobbyFv(void) {
         var_r0 = TKeyBoardControl__ct(var_r0, TLobby__join_lobby_controller, 0x10, 0, 0, local_client_id);
     }
     (*(s32 *)&lobby_keyboard_controller) = var_r0;
-    ((TWindowMakeTeam *)(*(s32 *)&lobby_keyboard_controller))->set_sub_position((u8 *)(get_window_layout_position(0xC4)));
-    fn_80131B18((*(s32 *)&lobby_keyboard_controller), get_window_layout_position(0xC5));
+    ((TKeyBoardControl *)(*(s32 *)&lobby_keyboard_controller))->set_composer_position((u8 *)(get_window_layout_position(0xC4)));
+    ((TKeyBoardControl *)lobby_keyboard_controller)->set_hard_keyboard_position((u8 *)get_window_layout_position(0xC5));
     TLobby__data_805D5594 = 9;
 }
 

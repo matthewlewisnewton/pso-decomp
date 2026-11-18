@@ -1,7 +1,6 @@
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/ControllerInputState.h"
-#include "pso/ui/keyboard/TKeyBoardControl_8025CB70.h"
 #include "pso/ui/window/TWindowSubMag_802627D8.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/ui/window/TWindowKeyBoardSoft.h"
@@ -505,7 +504,7 @@ void TKeyBoardControl::close() {
     *(s32 *)((s8 *)this + 0x60) = (s32) (*(s32 *)((s8 *)this + 0x60) | 0x80);
     temp_r3 = *(void **)((s8 *)this + 0x6C);
     if (temp_r3 != NULL) {
-        TKeyBoardControl__sub_8025CBC0(temp_r3);
+        ((TWindowKeyBoardBase *)temp_r3)->set_input_flags_212();
         release();
     }
 }
@@ -515,7 +514,7 @@ void TKeyBoardControl::release_input() {
     *(s32 *)((s8 *)this + 0x60) = (s32) (*(s32 *)((s8 *)this + 0x60) | 0x40);
     temp_r3 = *(void **)((s8 *)this + 0x6C);
     if (temp_r3 != NULL) {
-        TKeyBoardControl__sub_8025CBCC((u8 *)temp_r3);
+        ((TWindowKeyBoardBase *)temp_r3)->set_input_flags_112();
         release();
     }
 }
@@ -523,7 +522,7 @@ void TKeyBoardControl::release_input() {
 void TKeyBoardControl__sub_802613A4(TKeyBoardControl *key_board_control) {
     *(s32 *)((s8 *)key_board_control + 0x60) = (s32) (*(s32 *)((s8 *)key_board_control + 0x60) | 0x20);
     if (*(void **)((s8 *)key_board_control + 0x6C) != NULL) {
-        TKeyBoardControl__sub_8025CC04((u8 *)(*(void **)((s8 *)key_board_control + 0x6C)));
+        ((TWindowKeyBoardBase *)(*(void **)((s8 *)key_board_control + 0x6C)))->set_input_flags_92();
         key_board_control->release();
     }
 }
@@ -531,7 +530,7 @@ void TKeyBoardControl__sub_802613A4(TKeyBoardControl *key_board_control) {
 void TKeyBoardControl::release() {
     if ((u32) *(u32 *)((s8 *)this + 0x6C) != 0U) {
         *(s32 *)((s8 *)this + 0x60) = (s32) (*(s32 *)((s8 *)this + 0x60) | 1);
-        TKeyBoardControl__sub_8025CC3C((void *)(*(u32 *)((s8 *)this + 0x6C)));
+        ((TWindowKeyBoardBase *)(*(u32 *)((s8 *)this + 0x6C)))->set_input_flags_12();
         TWindowKeyBoardSoft__sub_80261134(this);
     }
 }

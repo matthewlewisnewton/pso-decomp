@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
+#include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 
@@ -378,7 +379,7 @@ u32 TAdEnterSerialAccessGC::create_keyboard_control(s32 arg0, s32 arg1) {
     if (kb == NULL) {
         return 0;
     }
-    ((TWindowMakeTeam *)kb)->set_sub_position((u8 *)serial_keyboard_position_table[arg1]);
+    ((TKeyBoardControl *)kb)->set_composer_position((u8 *)serial_keyboard_position_table[arg1]);
     if (((s32 (*)(s32, s32))has_serial_input__22TAdEnterSerialAccessGCFv)(arg0, arg1) != 0) {
         ((int (*)(void *, u8 *))get_keyboard_field_6c__15TWindowMakeTeamFv)(kb, get_serial_text__22TAdEnterSerialAccessGCFii(arg0, arg1));
     }

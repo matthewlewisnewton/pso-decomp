@@ -10631,7 +10631,7 @@ force_active:
   - fn_801C6F2C
   - fn_801D371C
   - fn_801D6AB4
-  - fn_801F6520
+  - clear_flag60_bit1__19TWindowKeyBoardBaseFv
   - fn_80211B10__19TPlayerBattleCtrl4PFl
   - fn_80214058
   - fn_80214254

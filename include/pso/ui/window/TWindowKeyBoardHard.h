@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 
+struct TWindowKeyBoardBase;
+
 struct TWindowKeyBoardHard : public TWindowBase {
     virtual ~TWindowKeyBoardHard();
     void draw_status_text(void *);
@@ -17,12 +19,19 @@ struct TWindowKeyBoardHard : public TWindowBase {
     u16 lookup_key_char(u8);
     int sub_80260438();
     int sub_8026042C();
-    u8 _pad1C[0x44];
+    void enable_keyboard_led();
+    void enable_kana_led();
+    void enable_caps_led();
+    void reset_composer_input_flags();
+    u8 _pad1C[0x14];
+    f32 position_x;
+    f32 position_y;
+    u8 _pad38[0x28];
     u32 m_60;
     u32 m_64;
     u32 m_68;
     u32 m_6c;
-    u32 m_70;
+    TWindowKeyBoardBase *composer;
     void release_keyboard();
     virtual void render();
     static s32 test_card_flag(s32 arg1, s32 arg2);
