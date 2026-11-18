@@ -5,43 +5,24 @@ extern "C" {
 u32 lbl_805C1AD8[6];
 #define lbl_805C1AD8 (*(Tbl_80408F2C *)lbl_805C1AD8)
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 void TLobby__sub_804050DC(s16 arg0) {
     *(s16 *)((s8 *)(&lbl_805C18A0.value) + 8) = arg0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 void TLobby::init_net_block_18A0() {
     TLobby__sub_803F79AC((void *) (&(*(RecoveredGlobal_804050EC_lbl_805C18A0 *)&lbl_805C18A0).value));
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 s32 TLobby::run_net_init_step() {
     TLobby__sub_803F79B0((u8 *)(&(*(RecoveredGlobal_80405114_lbl_805C18A0 *)&lbl_805C18A0).value));
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 s16 reset_network_timer_list(void) {
     lobby_timer_list_head = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 void TLobby::run_net_thread_loop() {
     G_80405150 *g = (G_80405150 *)&lbl_805C18A0;
     for (;;) {
@@ -63,11 +44,7 @@ void TLobby::run_net_thread_loop() {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 void TLobby::process_expired_timers() {
     s32 now;
     Timer_804051CC *t;
@@ -91,11 +68,7 @@ void TLobby::process_expired_timers() {
     }
     TUdpSocket::unlock_mutex(lbl_805C18A0.value);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 void TLobby__sub_80405298(N_80405298 *o, s32 v) {
     N_80405298 *p, *n;
     if (o == 0) {
@@ -119,11 +92,7 @@ void TLobby__sub_80405298(N_80405298 *o, s32 v) {
     }
     o->b18 = 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 s32 TLobby__sub_80405304(void *arg0) {
     Obj_80405304 *o = (Obj_80405304 *)arg0;
     if (o == NULL || o->f18 != 1) {
@@ -131,11 +100,7 @@ s32 TLobby__sub_80405304(void *arg0) {
     }
     o->f18 = 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 void TLobby__sub_80405328(u8 *arg0) {
     struct Fields_arg0 { u8 pad_0[4]; u32 field_4; u32 field_8; u8 pad_C[4]; u32 field_10; u8 pad_14[4]; u8 field_18; };
     u32 temp_r0_2;
@@ -158,11 +123,7 @@ void TLobby__sub_80405328(u8 *arg0) {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 extern s32 TLobby__sub_804053B8(void *self, u8 **pp)
 {
   struct Hdr_804053B8
@@ -257,11 +218,7 @@ extern s32 TLobby__sub_804053B8(void *self, u8 **pp)
 
   return cb;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 extern u8 *TLobby__sub_8040555C(u8 *self, void *lobby, u8 *obj) {
     u8 hdr[0x3c];
     u32 n = 0;
@@ -326,15 +283,9 @@ extern u8 *TLobby__sub_8040555C(u8 *self, void *lobby, u8 *obj) {
     NetMemcpy(dst, hp, len);
     return buf;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
 #pragma opt_common_subs on
 #pragma opt_loop_invariants off
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline s32 TLobby__sub_80405700_impl(u8 &c)
 {
   u16 st;
@@ -463,13 +414,9 @@ inline s32 TLobby__sub_80405700_impl(u8 &c)
   return 0;
 }
 s32 TLobby__sub_80405700() { u8 c; return TLobby__sub_80405700_impl(c); }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
+#pragma opt_loop_invariants reset
 void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
     u16 code;
     u8 *G;
@@ -583,13 +530,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
         FWD_80405A74()
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 s32 TLobby__sub_804060B8(u8 *data, s32 len, int type) {
     s16 slot;
@@ -622,13 +563,8 @@ s32 TLobby__sub_804060B8(u8 *data, s32 len, int type) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 s32 TLobby__sub_804061FC(s32 arg0) {
     Lobby_804062A0 *conn;
     (void)arg0;
@@ -645,13 +581,7 @@ s32 TLobby__sub_804061FC(s32 arg0) {
     open_conn_804062A0();
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_804062A0(s16 arg0) {
     Lobby_804062A0 *l = (Lobby_804062A0 *)lbl_805C0038;
 
@@ -670,13 +600,7 @@ s32 TLobby__sub_804062A0(s16 arg0) {
         return -1;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80406328(s32 self, s16 type) {
     Strm_80405A74 *sv = (Strm_80405A74 *)self;
     void *me = (void *)self;
@@ -779,13 +703,7 @@ skip:
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80406624(s32 a, s32 b, u16 code, void *self) {
     s32 pad[4];
     u16 r30;
@@ -811,14 +729,7 @@ s16 TLobby__sub_80406624(s32 a, s32 b, u16 code, void *self) {
     }
     return TLobby__sub_804066D8((Strm_80405A74 *)ret);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 inline s32 ppp_keep_field(s32 is_lcp, LcpOpts *opts, s32 opt) {
     s32 r = 1;
     if (!is_lcp && (opts->remote.got.mask & opt)) {
@@ -835,7 +746,6 @@ inline s32 ppp_protocol_field_is_two_bytes(s32 is_lcp, LcpOpts *opts, u16 proto)
     return r;
 }
 
-#pragma cplusplus off
 s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     Strm_80405A74 *frame;
     u8 *out;
@@ -862,7 +772,6 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
 
     ppp = (PppLinkState *)lbl_805C0038;
     opts = (LcpOpts *)ppp->lcp.opts;
-#pragma cplusplus on
     ppp->transmit_bytes += ((u16)buffer_length((B_803FADA0 *)p)) + 2;
 #pragma cplusplus off
     if (p == NULL || p->len < 4) {
@@ -947,31 +856,19 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     }
 #pragma cplusplus on
     TLobby::get_time_ms(&lbl_805D7A94);
-#pragma cplusplus off
+#pragma opt_propagation off
     return (s16)send_network_frame(frame->len, frame->buf);
 }
-#pragma cplusplus on
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::shutdown_network_handle() {
     TLobby__sub_803F8A08((void *)((void *) (&lobby_udp_socket_table)));
     lobby_udp_socket_table = 0;
     return 0;
 }
-#pragma pop
 
 #pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma optimization_level 3
-#pragma opt_unroll_loops off
 s32 TLobby::reset_socket_table() {
     s16 n;
     s16 i;
@@ -984,13 +881,8 @@ s32 TLobby::reset_socket_table() {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma pop
 s32 TLobby__sub_80406B6C(O_80406B6C *o) {
     if (o != 0) {
         switch (o->b4) {
@@ -1007,13 +899,7 @@ s32 TLobby__sub_80406B6C(O_80406B6C *o) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_lifetimes off
 u16 TLobby__sub_80406BD8(void *arg, s16 flag)
 {
@@ -1148,13 +1034,7 @@ u16 TLobby__sub_80406BD8(void *arg, s16 flag)
     }
     return (u16)sum;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_80406EB8(NetBufferRef *ref, s32 n) {
     switch (ref->kind) {
     case 4:
@@ -1170,17 +1050,8 @@ void TLobby__sub_80406EB8(NetBufferRef *ref, s32 n) {
         break;
     }
 }
-#pragma pop
 
-#pragma push
 #pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
-#pragma opt_lifetimes off
 u8 *TLobby__sub_80406F0C(void *arg) {
     NetBufferRef *ref = (NetBufferRef *)arg;
     switch (ref->kind) {
@@ -1209,48 +1080,23 @@ u8 *TLobby__sub_80406F0C(void *arg) {
         return NULL;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_lifetimes reset
 void TLobby::init_msg(s32 arg1) {
     *(s32 *)&this->m_name = arg1;
     *(s8 *)&this->m_flags = 4;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::init_packet_header(s32 arg1) {
     *(s32 *)&this->m_name = arg1;
     *(s8 *)&this->m_flags = 3;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::set_value_and_enable(s32 arg1) {
     *(s32 *)&this->m_name = arg1;
     *(s8 *)&this->m_flags = 1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
-#pragma opt_propagation off
 void TLobby__sub_80406FD8(void *a, void *b, s32 v) {
     switch (((NetBufferRef *)b)->kind) {
     case 1:
@@ -1394,13 +1240,8 @@ void TLobby__sub_80406FD8(void *a, void *b, s32 v) {
         break;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TUdpSocket::release_entry() {
     Ent_804072C4 *e = (Ent_804072C4 *)this;
     s16 i;
@@ -1413,13 +1254,7 @@ void TUdpSocket::release_entry() {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 NetPacket *TLobby::alloc_free_entry() {
     s16 n = ((Tbl_80407310 *)&lobby_udp_socket_table)->count;
     NetPacket *p = ((Tbl_80407310 *)&lobby_udp_socket_table)->list;
@@ -1432,13 +1267,7 @@ NetPacket *TLobby::alloc_free_entry() {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80407358(void) {
     Tbl_80408718 *g = &lbl_805C1AB0;
     s32 tmp[2];
@@ -1451,43 +1280,19 @@ s32 TLobby__sub_80407358(void) {
     g->h8 = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_804073B8(void) {
     TUdpSocket__sub_80407508();
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::dispatch_slot_a(s16 arg0, s32 arg1) {
     return TLobby__sub_80407C60(arg0, arg1);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::dispatch_slot_b(s16 arg0, s32 arg1) {
     return TLobby__sub_80407D98(arg0, arg1);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80407418(s16 id) {
     Tbl_80407418 *t = (Tbl_80407418 *)&lbl_805C1AB0;
     Ent_80407418 *e;
@@ -1515,33 +1320,15 @@ s32 TLobby__sub_80407418(s16 id) {
     TLobby__sub_80408388(id);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::forward_net_op(s16 arg0, u8 *arg1, u8 *arg2) {
     return TLobby__sub_8040799C(arg0, arg1, arg2);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby::forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s16 arg6, s32 arg7) {
     return TLobby__sub_80407F20(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TUdpSocket__sub_80407508(void) {
     s16 n4;
     Ent_8040799C *e;
@@ -1578,13 +1365,7 @@ s32 TUdpSocket__sub_80407508(void) {
     NetRegisterTimer(60000, 1, (NetTimerCallback)TLobby__sub_804078B4);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 extern s32 TLobby__sub_80407640(void *pkt, s16 a, s16 b, s16 c)
 {
@@ -1642,14 +1423,8 @@ extern s32 TLobby__sub_80407640(void *pkt, s16 a, s16 b, s16 c)
   }
   return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
+#pragma opt_common_subs reset
 void TLobby__sub_804078B4(void) {
     Peer_8040799C *p;
     s16 n;
@@ -1677,15 +1452,7 @@ void TLobby__sub_804078B4(void) {
         NetMemset(p->name, 0, 4);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040799C(s16 idx, void *name, void *arg2) {
     Tbl_8040799C *t = ((Tbl_8040799C *)&lbl_805C1AB0);
     Ent_8040799C *e;
@@ -1722,15 +1489,7 @@ s32 TLobby__sub_8040799C(s16 idx, void *name, void *arg2) {
     }
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80407C60(s16 idx, s32 addr) {
     Tbl_8040799C *t = ((Tbl_8040799C *)&lbl_805C1AB0);
     Ent_8040799C *e;
@@ -1770,15 +1529,7 @@ s32 TLobby__sub_80407C60(s16 idx, s32 addr) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80407D98(s16 idx, s32 addr) {
     s16 lim;
     Node_80407C60 *next;
@@ -1820,15 +1571,7 @@ s32 TLobby__sub_80407D98(s16 idx, s32 addr) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80407F20(s16 a, s16 b, s16 c, s16 d, s16 e, s32 f, s16 g, s32 h)
 {
     Ent_8040799C *base;
@@ -1865,15 +1608,7 @@ s16 TLobby__sub_80407F20(s16 a, s16 b, s16 c, s16 d, s16 e, s32 f, s16 g, s32 h)
     slot->head = NULL;
     return idx;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_80408060(Peer_8040799C *peer, NetPacket *pkt) {
     Conn_8040799C *slot;
     s16 total;
@@ -1922,13 +1657,7 @@ void TLobby__sub_80408060(Peer_8040799C *peer, NetPacket *pkt) {
     slot->a = peer;
     peer->conn = slot;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 Pkt_804081C0 *alloc_packet_with_header__6TLobbyFPvPv(Out_804081C0 *arg0, u8 *arg1) {
     s16 len;
     Pkt_804081C0 *pkt;
@@ -1964,13 +1693,7 @@ Pkt_804081C0 *alloc_packet_with_header__6TLobbyFPvPv(Out_804081C0 *arg0, u8 *arg
     arg0->f10 = q;
     return pkt;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_804082AC(Ent_804082AC *arg0, Key_804082AC *arg1, void *arg2) {
     s16 i;
     Node_804082AC *p;
@@ -1996,13 +1719,7 @@ s16 TLobby__sub_804082AC(Ent_804082AC *arg0, Key_804082AC *arg1, void *arg2) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80408388(s16 id) {
     Tbl_80408388 *t = (Tbl_80408388 *)&lbl_805C1AB0;
     Ent_80408388 *e;
@@ -2028,15 +1745,7 @@ s32 TLobby__sub_80408388(s16 id) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma inline_depth(4)
-#pragma dont_inline off
 Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state) {
     s32 native_frame_padding[2];
     Tbl_80408428 *t = (Tbl_80408428 *)&lbl_805C1AB0;
@@ -2101,13 +1810,7 @@ Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8
     e->sub = NULL;
     return e;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 Ent_804086B4 *find_oldest_peer_entry__6TLobbyFs(s16 key) {
     Ent_804086B4 *best = 0;
     Ent_804086B4 *p;
@@ -2126,13 +1829,7 @@ Ent_804086B4 *find_oldest_peer_entry__6TLobbyFs(s16 key) {
     }
     return best;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 Ent_80408718 *find_free_peer_entry__6TLobbyFv(void) {
     s16 n = lbl_805C1AB0.count;
     Ent_80408718 *e = lbl_805C1AB0.list;
@@ -2145,33 +1842,15 @@ Ent_80408718 *find_free_peer_entry__6TLobbyFv(void) {
     }
     return NULL;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::flush_flags_step() {
     TLobby__sub_8040878C();
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::run_connect_step() {
     TLobby::init_net_sockets();
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040878C(void) {
     s16 n = LG_8040881C.count;
     s16 i = 0;
@@ -2191,13 +1870,7 @@ s32 TLobby__sub_8040878C(void) {
     TLobby__sub_803F8AB8(&LG_8040881C);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby::init_net_sockets() {
     Fn_8040881C fns[11];
     s16 r;
@@ -2254,15 +1927,7 @@ s16 TLobby::init_net_sockets() {
     }
     return first;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 u8 *TLobby__sub_804089A8(s16 iface, s16 op, s16 len, u8 *pkt) {
     EtherRxTable *t = (EtherRxTable *)&lbl_805C1AD8;
     EtherProtocolBinding *ents;
@@ -2319,15 +1984,7 @@ u8 *TLobby__sub_804089A8(s16 iface, s16 op, s16 len, u8 *pkt) {
     }
     return NULL;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::send_ethernet_frame(s16 idx, s16 mode, u8 *addr, void *pkt) {
     void NetMemset(void *, int, int);
     void NetMemcpy(void *, void *, int);
@@ -2404,13 +2061,7 @@ s32 TLobby::send_ethernet_frame(s16 idx, s16 mode, u8 *addr, void *pkt) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::forward_socket_op_by_handle(s16 id, u8 *a, u8 *b) {
     Ent_80408E98 *e;
     s32 sock;
@@ -2434,13 +2085,7 @@ s32 TLobby::forward_socket_op_by_handle(s16 id, u8 *a, u8 *b) {
         return -2;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80408F2C(s16 id, u8 *pkt) {
     Tbl_80408F2C *t = &lbl_805C1AD8;
     Buf_80408F2C *b;
@@ -2471,13 +2116,7 @@ s32 TLobby__sub_80408F2C(s16 id, u8 *pkt) {
     }
     return -2;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80408FD8(s16 idx, s16 op, u8 *addr) {
     Glob_80408C24 *g = (Glob_80408C24 *)&lbl_805C1AD8;
     Ent_80408C24 *e;
@@ -2525,13 +2164,7 @@ s32 TLobby__sub_80408FD8(s16 idx, s16 op, u8 *addr) {
     }
     return -2;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80409130(s16 arg0, s16 arg1, s32 arg2) {
     s32 h;
     Sock_80409130 *e;
@@ -2563,15 +2196,7 @@ s32 TLobby__sub_80409130(s16 arg0, s16 arg1, s32 arg2) {
         return 0;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040920C(s16 idx, u8 *mac) {
     Glob_80408C24 *g = (Glob_80408C24 *)&lbl_805C1AD8;
     Ent_80408C24 *e;
@@ -2596,16 +2221,7 @@ s32 TLobby__sub_8040920C(s16 idx, u8 *mac) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 // Keep the id inside the lookup to preserve its iterator/id lifetimes and early return when inlined.
 static inline Conn_80408C24 *find_conn_for_socket_804092FC(Glob_80408C24 *g, Ent_80408C24 *socket) {
     s16 id;
@@ -2638,13 +2254,7 @@ s32 TLobby__sub_804092FC(s16 idx) {
     }
     return 6;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040939C(s16 idx) {
     Ent_80408C24 *e;
 
@@ -2658,13 +2268,7 @@ s32 TLobby__sub_8040939C(s16 idx) {
     }
     return 1500;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_804093EC(s16 idx) {
     Glob_80408C24 *g = (Glob_80408C24 *)&lbl_805C1AD8;
     Ent_80408C24 *e;
@@ -2695,16 +2299,7 @@ s32 TLobby__sub_804093EC(s16 idx) {
     e->fC = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
-#pragma dont_inline off
-#pragma inline_depth(4)
 // Both searches own their iterators; CSE shares the pool start between them.
 static inline Ent_80408C24 *find_free_from_pool_804094B8(Ent_80408C24 **pool, s16 &count) {
     Ent_80408C24 *cursor = *pool;
@@ -2713,6 +2308,7 @@ static inline Ent_80408C24 *find_free_from_pool_804094B8(Ent_80408C24 **pool, s1
     }
     return NULL;
 }
+#pragma opt_propagation off
 #pragma opt_common_subs on
 static inline Ent_80408C24 *find_matching_socket_804094B8(Ent_80408C24 **pool, s16 n, s16 dev, u16 type) {
     Ent_80408C24 *ent = *pool;
@@ -2797,15 +2393,9 @@ fail:
     p3->type = 0;
     return err;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 s32 TLobby__sub_8040970C(s16 id, u8 *out) {
     Glob_80408C24 *g = (Glob_80408C24 *)&lbl_805C1AD8;
     Conn_80408C24 *c;
@@ -2835,13 +2425,7 @@ s32 TLobby__sub_8040970C(s16 id, u8 *out) {
     out[7] = mac[5];
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_80409818(s32 msg, s16 len, s16 idx, s16 arg3, u16 type) {
     if (idx < 0 || idx >= TBL_80409818.count) {
         return;
@@ -2857,38 +2441,16 @@ void TLobby__sub_80409818(s32 msg, s16 len, s16 idx, s16 arg3, u16 type) {
         break;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_804098B4(NetPacket *pkt) {
     return packet_length_804098B4(pkt);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80409908(u8 *dst, NetPacket *pkt) {
     s16 len = copy_packet_80409908(dst, pkt);
     return len;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::clear_table_entry_locked(s16 arg0) {
     s32 ret;
     TLobby::lock_mutex(network_dispatch_state.lock_handle);
@@ -2903,13 +2465,7 @@ s32 TLobby::clear_table_entry_locked(s16 arg0) {
     TUdpSocket::unlock_mutex(network_dispatch_state.lock_handle);
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80409A3C(u8 *arg0, s16 arg1) {
     s16 temp_r31;
     TLobby::lock_mutex((*(RecoveredGlobal_80409A3C_lbl_805C1C50 *)&network_dispatch_state).value);
@@ -2917,25 +2473,13 @@ s16 TLobby__sub_80409A3C(u8 *arg0, s16 arg1) {
     TUdpSocket::unlock_mutex((*(RecoveredGlobal_80409A3C_lbl_805C1C50 *)&network_dispatch_state).value);
     return temp_r31;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80409AA8(void) {
     TLobby__sub_803F8A9C((void *)((void *) (&lobby_handler_table_desc)));
     lobby_handler_table_desc = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80409AD8(void) {
     s16 i;
     u8 *p;
@@ -2949,13 +2493,7 @@ s32 TLobby__sub_80409AD8(void) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::call_handler_by_index(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 (*fn)(s16, s32, s32, s32);
     if (arg0 < 0 || arg0 > TBL_80409B48.count) {
@@ -2972,13 +2510,7 @@ s32 TLobby::call_handler_by_index(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 ar
     }
     return fn(arg1, arg2, arg3, arg4);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::dispatch_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 (*fn)(s32, s32, s32);
     if (arg0 < 0 || arg0 > TBL_80409BD4.count) {
@@ -2995,13 +2527,7 @@ s32 TLobby::dispatch_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     return fn(arg1, arg2, arg3);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::dispatch_handler_by_id(s16 arg0, s32 arg1, s32 arg2) {
     s32 (*fn)(s32, s32);
 
@@ -3019,13 +2545,7 @@ s32 TLobby::dispatch_handler_by_id(s16 arg0, s32 arg1, s32 arg2) {
     }
     return fn(arg1, arg2);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80409CE0(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 (*fn)(s32, s32, s32);
 
@@ -3046,13 +2566,7 @@ s32 TLobby__sub_80409CE0(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     return fn(arg1, arg2, arg3);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80409D7C(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 (*fn)(s32, s32, s32);
 
@@ -3073,13 +2587,7 @@ s32 TLobby__sub_80409D7C(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     return fn(arg1, arg2, arg3);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80409E18(s16 arg0, s32 arg1, s32 arg2) {
     s32 (*fn)(s32, s32);
 
@@ -3100,13 +2608,7 @@ s32 TLobby__sub_80409E18(s16 arg0, s32 arg1, s32 arg2) {
     }
     return fn(arg1, arg2);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80409EB0(s16 arg0, s32 arg1) {
     s32 (*fn)(s32);
 
@@ -3127,13 +2629,7 @@ s32 TLobby__sub_80409EB0(s16 arg0, s32 arg1) {
     }
     return fn(arg1);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_propagation off
 s16 TLobby::invoke_socket_callback(s16 i, s32 arg) {
     Ent_80409F44 *e;
@@ -3149,14 +2645,7 @@ s16 TLobby::invoke_socket_callback(s16 i, s32 arg) {
     }
     return e->f10(arg);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 s32 TLobby::call_entry_callback(s16 i, s16 arg) {
     Ent_80409FC4 *e;
     if (i < 0 || i > (*(Tbl_80409FC4 *)&lobby_handler_table_desc).count) {
@@ -3171,14 +2660,7 @@ s32 TLobby::call_entry_callback(s16 i, s16 arg) {
     }
     return e->fC(arg);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 s16 TLobby__sub_8040A044(s16 i, s32 type, s16 len, u8 *addr) {
     Ent_8040A044 *e;
     s16 (*fn)(s16, s32, s16, u8 *);
@@ -3195,14 +2677,7 @@ s16 TLobby__sub_8040A044(s16 i, s32 type, s16 len, u8 *addr) {
     }
     return fn(i, type, len, addr);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 s32 TLobby__sub_8040A0C0(s16 i, u8 *buf) {
     Ent_8040A044 *e;
     s32 (*fn)(s16, u8 *);
@@ -3219,13 +2694,9 @@ s32 TLobby__sub_8040A0C0(s16 i, u8 *buf) {
     }
     return fn(i, buf);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma push
 #pragma optimization_level 2
 s16 TLobby::is_slot_flag_0x40_set(s16 i) {
     if (i < 0 || i > (*(G_8040A13C *)&lobby_handler_table_desc).n) { return 0; }
@@ -3234,14 +2705,7 @@ s16 TLobby::is_slot_flag_0x40_set(s16 i) {
     if (e[i].f2 & 0x40) { return 1; }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma optimization_level 2
 s32 TLobby::is_slot_flag_0x20_set(s16 i) {
     Ent_8040A19C *e;
     if (i < 0 || i > (*(G_8040A19C *)&lobby_handler_table_desc).n) { return 0; }
@@ -3251,15 +2715,7 @@ s32 TLobby::is_slot_flag_0x20_set(s16 i) {
     if (e->f2 & 0x20) { return 1; }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma optimization_level 2
-#pragma dont_inline on
 s16 TLobby::is_entry_flag10_set(s16 i) {
     if (i < 0 || i > (*(G_8040A1FC *)&lobby_handler_table_desc).n) { return 0; }
     Ent_8040A1FC *e = (*(G_8040A1FC *)&lobby_handler_table_desc).p;
@@ -3267,15 +2723,7 @@ s16 TLobby::is_entry_flag10_set(s16 i) {
     if (e[i].f2 & 0x10) { return 1; }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma optimization_level 2
-#pragma dont_inline on
 s32 is_socket_flag_set__6TLobbyFs(s16 i) {
     if (i < 0 || i > (*(G_8040A25C *)&lobby_handler_table_desc).n) { return 0; }
     Ent_8040A25C *e = (*(G_8040A25C *)&lobby_handler_table_desc).p;
@@ -3283,13 +2731,8 @@ s32 is_socket_flag_set__6TLobbyFs(s16 i) {
     if (e[i].f2 & 1) { return 1; }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma pop
 s16 TLobby__sub_8040A2BC(Fn_8040881C *fns, s16 kind) {
     Ent_8040A044 *e;
     s16 i;
@@ -3319,13 +2762,7 @@ s16 TLobby__sub_8040A2BC(Fn_8040881C *fns, s16 kind) {
         return -0x10F;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040A3C0(void) {
     s32 ret;
     s16 i;
@@ -3345,13 +2782,7 @@ s32 TLobby__sub_8040A3C0(void) {
     TLobby__sub_803F86BC(m);
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::init_net_tables() {
     G_8040A45C *g = &dns_resolver_state;
     s16 i;
@@ -3431,13 +2862,7 @@ void TLobby::init_net_tables() {
     }
     TLobby__sub_804218AC(TLobby::tick_connection_timeouts, 1000);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_propagation off
 s32 TLobby::close_connection_by_index(s16 i) {
     G_8040A630 *g = (G_8040A630 *)&dns_resolver_state;
@@ -3446,14 +2871,7 @@ s32 TLobby::close_connection_by_index(s16 i) {
     if (e->f0 == 0) { return -2; }
     return ((TLobby *)e)->close_and_reset_connection();
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 s16 TLobby__sub_8040A698(s16 idx, void *buf, s16 *len, void *buf2, s16 *len2, u32 mode) {
     G_8040A45C *g = &dns_resolver_state;
     F_8040A45C *f;
@@ -3529,17 +2947,7 @@ s16 TLobby__sub_8040A698(s16 idx, void *buf, s16 *len, void *buf2, s16 *len2, u3
     *len = req->f8;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
-#pragma opt_common_subs off
 static inline void claim_dns_query(G_8040A45C *state, F_8040A45C *&query) {
     s16 i;
     TLobby__sub_80421814();
@@ -3727,13 +3135,8 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
   }
   return e->f2;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::clear_all_used_records() {
     Mgr_8040AD64 *g = (Mgr_8040AD64 *)&dns_resolver_state;
     s32 cnt;
@@ -3756,14 +3159,7 @@ s32 TLobby::clear_all_used_records() {
     TLobby__sub_804217E4();
     return cnt;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
 s16 TLobby__sub_8040ADE8(Rec_8040B33C *addr) {
     G_8040A45C *g;
     s16 ret;
@@ -3810,13 +3206,7 @@ s16 TLobby__sub_8040ADE8(Rec_8040B33C *addr) {
     TLobby__sub_804217E4();
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::tick_connection_timeouts() {
     Mgr_8040AF48 *g;
     Conn_8040AF48 *c;
@@ -3837,14 +3227,7 @@ void TLobby::tick_connection_timeouts() {
     }
     TLobby__sub_8040AFE0();
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
 void TLobby__sub_8040AFE0(void) {
     G_8040A45C *g;
     Rec_8040B33C *rec;
@@ -3889,15 +3272,7 @@ void TLobby__sub_8040AFE0(void) {
         req++;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 static inline s16 dns_send_message(F_8040A45C *query, Rec_8040B33C *server) {
     UdpBuf_8040AFE0 tmp;
     tmp.len = query->f18->len;
@@ -3934,13 +3309,7 @@ extern void TLobby__sub_8040B1C4(F_8040A45C *e)
     }
     e->f10 = e->f10 + 1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 Rec_8040B33C *find_next_active_record__6TLobbyFPv(A_8040B33C *a) {
     G_8040A45C *g = &dns_resolver_state;
     s16 n, t, i;
@@ -3956,13 +3325,7 @@ Rec_8040B33C *find_next_active_record__6TLobbyFPv(A_8040B33C *a) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_8040B3B4(void) {
     s16 n;
     s16 j;
@@ -4005,14 +3368,7 @@ void TLobby__sub_8040B3B4(void) {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
 #pragma inline_depth(1)
 s32 TLobby__sub_8040B4BC(s16 phase, u8 *record) {
     UdpRx_8040B4BC *rx = (UdpRx_8040B4BC *)record;
@@ -4060,15 +3416,8 @@ s32 TLobby__sub_8040B4BC(s16 phase, u8 *record) {
         return 0;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
 #pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(1)
 void TLobby::complete_pending_request(s16 id) {
     Ent_8040B654 *e;
 
@@ -4079,13 +3428,7 @@ void TLobby::complete_pending_request(s16 id) {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_propagation off
 s32 TLobby::build_dns_query_aaaa(u8 *name, s16 len) {
     s32 TLobby__sub_8040B838(u8 *, u8 *, s16);
@@ -4113,14 +3456,7 @@ s32 TLobby::build_dns_query_aaaa(u8 *name, s16 len) {
     q->pkt->len = total + 4;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 s32 TLobby::build_dns_query_a(u8 *name, s16 len) {
     s32 TLobby__sub_8040B838(u8 *, u8 *, s16);
     Q_8040B790 *q = (Q_8040B790 *)this;
@@ -4147,9 +3483,7 @@ s32 TLobby::build_dns_query_a(u8 *name, s16 len) {
     q->pkt->len = total + 4;
     return 0;
 }
-#pragma pop
 
-#pragma push
 
 s32 TLobby__sub_8040B838(u8 *dst, u8 *src, s32 max)
 {
@@ -4186,14 +3520,7 @@ s32 TLobby__sub_8040B838(u8 *dst, u8 *src, s32 max)
     }
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 s16 TLobby__sub_8040B8BC(F_8040A45C *self)
 {
   volatile u32 pad[2];
@@ -4281,18 +3608,7 @@ s16 TLobby__sub_8040B8BC(F_8040A45C *self)
   }
   return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 extern s32 TLobby__sub_8040BA38(F_8040A45C *self, u8 *rr, s32 avail) {
     DnsRrHeader hdr;
     C_8040A45C rec;
@@ -4387,13 +3703,8 @@ extern s32 TLobby__sub_8040BA38(F_8040A45C *self, u8 *rr, s32 avail) {
     }
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_lifetimes off
 extern s32 TLobby__sub_8040BD40(F_8040A45C *self, u8 *p, s32 n, u8 *dst)
 {
@@ -4449,14 +3760,8 @@ extern s32 TLobby__sub_8040BD40(F_8040A45C *self, u8 *p, s32 n, u8 *dst)
   }
   return count;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
+#pragma opt_lifetimes reset
 void TLobby__sub_8040BE40(F_8040A45C *req, s16 err, s16 arg) {
     E_8040A45C *c;
     Query_8040C09C *q;
@@ -4481,15 +3786,7 @@ void TLobby__sub_8040BE40(F_8040A45C *req, s16 err, s16 arg) {
     req->f12 = 0;
     ((TLobby *)req)->dispatch_request_callback(arg);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::close_and_reset_connection() {
     u8 *arg0 = (u8 *)this;
     s16 *temp_r3_2;
@@ -4523,15 +3820,7 @@ s32 TLobby::close_and_reset_connection() {
     TLobby__sub_804217E4();
     return var_r31;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void reset_connection_requests__6TLobbyFPvs(Conn_8040AF48 *o_, s16 arg1) {
     s16 i;
     E_8040C00C *e;
@@ -4552,15 +3841,7 @@ void reset_connection_requests__6TLobbyFPvs(Conn_8040AF48 *o_, s16 arg1) {
         e++;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 Query_8040C09C *TLobby__sub_8040C09C(void) {
     s16 i = 0;
     Query_8040C09C *best = NULL;
@@ -4587,15 +3868,7 @@ Query_8040C09C *TLobby__sub_8040C09C(void) {
     best->f0 = 1;
     return best;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_8040C178(Query_8040C09C *q, s16 arg1) {
     G_8040C09C *state = (G_8040C09C *)&dns_resolver_state;
     s16 i;
@@ -4629,15 +3902,7 @@ void TLobby__sub_8040C178(Query_8040C09C *q, s16 arg1) {
         e++;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 C_8040A45C *TLobby__sub_8040C248(D_8040A45C *q) {
     G_8040A45C *g;
     C_8040A45C *best;
@@ -4675,15 +3940,7 @@ C_8040A45C *TLobby__sub_8040C248(D_8040A45C *q) {
     best->f20 = NULL;
     return best;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040C340(D_8040A45C *self_m, C_8040A45C *arg) {
 G_8040A45C *tbl;
 C_8040A45C *node;
@@ -4758,15 +4015,7 @@ return 0;
 }
 return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 append_to_list__6TLobbyFPvPv(O_8040C4B0 *o, N_8040C4B0 *n) {
     s16 i;
     N_8040C4B0 *p;
@@ -4789,15 +4038,7 @@ s32 append_to_list__6TLobbyFPvPv(O_8040C4B0 *o, N_8040C4B0 *n) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::dispatch_request_callback(s16 status) {
     Conn_8040C540 *connection = (Conn_8040C540 *)this;
     SubA_8040C540 *a;
@@ -4873,17 +4114,7 @@ void TLobby::dispatch_request_callback(s16 status) {
         break;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma optimization_level 2
-#pragma opt_common_subs off
 void TLobby__sub_8040C74C(SubA_8040C540 *a) {
     s16 n;
     s8 *s;
@@ -4943,15 +4174,8 @@ void TLobby__sub_8040C74C(SubA_8040C540 *a) {
     }
     a->f8 = cnt;
 }
-#pragma pop
 
 #pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma optimization_level 2
 #pragma opt_common_subs off
 s16 TLobby__sub_8040C8A8(u8 *dst, u8 *src, s16 max) {
@@ -4980,17 +4204,8 @@ s16 TLobby__sub_8040C8A8(u8 *dst, u8 *src, s16 max) {
     }
     return len;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma optimization_level 2
-#pragma opt_common_subs off
+#pragma pop
 s16 TLobby__sub_8040C978(u8 *name) {
     s32 n;
     s16 len = 0;
@@ -5010,15 +4225,7 @@ s16 TLobby__sub_8040C978(u8 *name) {
     }
     return len;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040C9E0(u8 *arg0, u8 *arg1) {
     struct Fields_arg0 { u8 pad_0[4]; s32 field_4; u8 pad_8[16]; u16 field_18; };
     struct Fields_arg1 { u8 pad_0[4]; u32 field_4; u8 pad_8[16]; u16 field_18; };
@@ -5091,15 +4298,7 @@ s32 TLobby__sub_8040C9E0(u8 *arg0, u8 *arg1) {
         return -1;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040CB44(u8 *self, u32 d, u32 c)
 {
   s16 TLobby__sub_8040CFE8(u8 type, u8 code, u32 src, u32 dst, NetPacket *pkt);
@@ -5228,15 +4427,7 @@ s16 TLobby__sub_8040CB44(u8 *self, u32 d, u32 c)
 
   return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TUdpSocket__sub_8040CE58(Icmp4Header *icmp, Ipv4Header *ip, s16 len, s16 idx) {
     s16 NetIPv4IsUnspecified(u32 arg0);
     s16 NetIPv4IsLoopback(u32 arg0);
@@ -5273,15 +4464,7 @@ s32 TUdpSocket__sub_8040CE58(Icmp4Header *icmp, Ipv4Header *ip, s16 len, s16 idx
     ((TUdpSocket *)pkt)->release_entry();
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040CFE8(u8 type, u8 code, u32 src, u32 dst, NetPacket *pkt) {
     s16 TLobby__sub_8040E780(NetPacket *, u32, u32, s32, s32, s32, s32);
     NetBufferRef ref;
@@ -5309,15 +4492,7 @@ s16 TLobby__sub_8040CFE8(u8 type, u8 code, u32 src, u32 dst, NetPacket *pkt) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6HandleIcmpMessage(NetPacket *pkt, u8 *src, u8 *dst, u8 hop_limit, s16 iface) {
     s16 NetIPv6HandleRouterSolicitation(NetPacket *pkt, u8 *src, u8 *dst, s16 iface);
     s16 NetIPv6HandleRouterAdvertisement(NetPacket *pkt, u8 *src, u8 *dst, s16 iface);
@@ -5461,15 +4636,7 @@ s16 NetIPv6HandleIcmpMessage(NetPacket *pkt, u8 *src, u8 *dst, u8 hop_limit, s16
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040D510(Icmp6ErrorInfo *err, u8 *hdr, s16 len, s16 idx) {
     s16 NetIPv6IsMulticast(u8 *addr);
     s16 NetIPv6IsUnspecified(u8 *addr);
@@ -5530,15 +4697,7 @@ s16 TLobby__sub_8040D510(Icmp6ErrorInfo *err, u8 *hdr, s16 len, s16 idx) {
     ((TUdpSocket *)pkt)->release_entry();
     return r;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040D718(u8 type, u8 code, u8 *src, u8 *dst, NetPacket *pkt, s16 idx) {
     s16 NetIPv6IsMulticast(u8 *arg0);
     s16 NetIPv6IsUnspecified(u8 *arg0);
@@ -5573,15 +4732,7 @@ s16 TLobby__sub_8040D718(u8 type, u8 code, u8 *src, u8 *dst, NetPacket *pkt, s16
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::dispatch_by_addr_family(s32 arg0, u8 *arg1, u8 *arg2, u8 *arg3, void *arg4, void *arg5) {
     s32 TLobby__sub_8040E780(s32, s32, s32, s32, s32, s32, void *);
     s32 TLobby__sub_80410A98(NetPacket *, u8 *, u8 *, Ipv6SendOptions *, s32);
@@ -5595,15 +4746,7 @@ s32 TLobby::dispatch_by_addr_family(s32 arg0, u8 *arg1, u8 *arg2, u8 *arg3, void
         return -2;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 u16 TLobby__sub_8040D8F0(u8 *arg0, u8 *arg1, s8 arg2, u8 *pkt, s16 flag) {
     struct Fields_arg0 { s32 field_0; s32 field_4; };
     struct Fields_arg1 { u8 pad_0[4]; s32 field_4; };
@@ -5617,15 +4760,7 @@ u16 TLobby__sub_8040D8F0(u8 *arg0, u8 *arg1, s8 arg2, u8 *pkt, s16 flag) {
         return 0xFFFEU;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 select_source_address__6TLobbyFPvPv(Out_8040D95C *arg0, In_8040D95C *arg1) {
     Ent_8040D95C *e;
     s16 ok;
@@ -5661,15 +4796,7 @@ s32 select_source_address__6TLobbyFPvPv(Out_8040D95C *arg0, In_8040D95C *arg1) {
         return -2;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040DA54(u8 *arg0, u8 *arg1) {
     struct Fields_arg0 { s32 field_0; u8 * field_4; };
     struct Fields_arg1 { u8 pad_0[4]; s32 field_4; };
@@ -5690,15 +4817,7 @@ s32 TLobby__sub_8040DA54(u8 *arg0, u8 *arg1) {
         return -2;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetValidateLocalAddress(NetworkAddress* address) {
     u32 ip;
     switch ((s32)address->family) {
@@ -5716,15 +4835,7 @@ s16 NetValidateLocalAddress(NetworkAddress* address) {
         return -2;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::is_multicast_address(s16 arg1) {
     u8 *arg0 = (u8 *)this;
     struct Fields_arg0 { s32 field_0; u32 field_4; };
@@ -5738,15 +4849,7 @@ s32 TLobby::is_multicast_address(s16 arg1) {
         return 0;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 is_addr_unspecified__6TLobbyFPv(u8 *arg0) {
     struct Fields_arg0 { s32 field_0; u32 field_4; };
     switch (((Fields_arg0*)arg0)->field_0) {
@@ -5760,15 +4863,7 @@ s32 is_addr_unspecified__6TLobbyFPv(u8 *arg0) {
         return 0;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby::compare_sockaddr(u8 *arg1) {
     u8 *arg0 = (u8 *)this;
     struct Fields_arg0 { s32 field_0; u8 * field_4; };
@@ -5798,15 +4893,7 @@ s16 TLobby::compare_sockaddr(u8 *arg1) {
         return -1;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040DC8C(u8 *arg0, u8 *arg1) {
     s16 temp_r3;
     s16 entry_field_26;
@@ -5843,30 +4930,14 @@ s16 TLobby__sub_8040DC8C(u8 *arg0, u8 *arg1) {
         return -2;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040DD68(void) {
     TLobby::release_slot_by_id(0x800);
     TLobby__sub_803F892C((void *)((void *) (&ipv4_protocol_state.value)));
     ipv4_protocol_state.value = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::init_ipv4_interfaces() {
     s16 i;
     E_8040DDB0 *e;
@@ -5886,17 +4957,7 @@ s32 TLobby::init_ipv4_interfaces() {
     register_protocol_handler__6TLobbyFUsi(0x800, (Handler_8041A130)TUdpSocket__sub_8040DE4C);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 static inline void release_ipv4_input_record(NetPacket *record, s16 reassembled) {
@@ -6072,12 +5133,8 @@ s32 TUdpSocket__sub_8040DE4C(u8 *ip, s16 x, s16 id) {
     release_ipv4_input_record(record, reassembled);
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_lifetimes reset
 s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
 {
   s32 header_length;
@@ -6263,13 +5320,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
   }
   return result;
 }
-#pragma pop
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
-#pragma opt_propagation off
 s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void *proto)
 {
   u8 *output_fragment;
@@ -6501,15 +5552,8 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
   while (last != 1);
   return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 u16 TLobby::calc_pseudo_header_checksum(s32 src, s32 dst, s8 proto, void *pkt, s16 flag) {
     PH_8040EC38 ph;
     u32 sum;
@@ -6529,30 +5573,14 @@ u16 TLobby::calc_pseudo_header_checksum(s32 src, s32 dst, s8 proto, void *pkt, s
     sum += sum >> 16;
     return ~sum;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 u16 TLobby::calc_ip_checksum(s16 b) {
     u32 s = TLobby__sub_80406BD8(this, b);
     s = (s >> 16) + (s & 0xFFFF);
     s += (s >> 16);
     return ~s;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040ED28(void) {
     TLobby__sub_803F8958((void *)((void *) (&(*(RecoveredGlobal_8040ED28_lbl_805C1B60 *)&ipv4_address_routing_state).value)));
     *(s16 *)((s8 *)(&(*(RecoveredGlobal_8040ED28_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 0) = 0;
@@ -6560,15 +5588,7 @@ s32 TLobby__sub_8040ED28(void) {
     *(s16 *)((s8 *)(&(*(RecoveredGlobal_8040ED28_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 4) = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040ED70(void) {
     ((TLobby *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value))->init_buffer_descriptor_a();
     NetMemset((void *)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 8))), 0, (int)((int) (*(s16 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 0) * 0x14)));
@@ -6576,17 +5596,7 @@ s32 TLobby__sub_8040ED70(void) {
     NetMemset((void *)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 0x10))), 0, (int)((int) (*(s16 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 4) * 0x18)));
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040EDE4(s32 arg0, u32 dst, s16 idx) {
     Ipv4RoutingState *g;
     Ipv4Iface *ifc;
@@ -6604,15 +5614,7 @@ s32 TLobby__sub_8040EDE4(s32 arg0, u32 dst, s16 idx) {
     }
     return TLobby::dispatch_handler_by_index(idx, ifc->handle, (s32)&dst, arg0);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 s16 TLobby__sub_8040EF00(s16 arg0) {
     struct Fields_temp_r3 { s16 field_0; u8 pad_2[2]; s16 field_4; };
@@ -6626,15 +5628,7 @@ s16 TLobby__sub_8040EF00(s16 arg0) {
     }
     return ((Fields_temp_r3*)temp_r3)->field_4;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040EF50(u32 *out, u32 dst, s16 idx) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     Ipv4Iface *ifc;
@@ -6666,15 +5660,7 @@ s32 TLobby__sub_8040EF50(u32 *out, u32 dst, s16 idx) {
     }
     return -6;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
     s16 TLobby__sub_80409EB0(s16 arg0, s32 arg1);
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
@@ -6725,17 +5711,7 @@ s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
     }
     return count;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040F1A0(s16 idx) {
     s16 is_socket_flag_set__6TLobbyFs(s16);
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
@@ -6797,16 +5773,7 @@ s16 TLobby__sub_8040F1A0(s16 idx) {
     ifc->aliases = NULL;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 extern s16 TLobby__sub_8040F454(u32 addr, u32 mask, u32 broadcast, s16 idx) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     s16 *pn;
@@ -6889,30 +5856,15 @@ extern s16 TLobby__sub_8040F454(u32 addr, u32 mask, u32 broadcast, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 s32 TLobby::is_lookup_found(u32 arg0, u32 arg1) {
     if (TLobby__sub_8040F76C(arg0, arg1) != NULL) {
         return 1;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 Ipv4Route *TLobby__sub_8040F76C(u32 dst, u32 gateway) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     s16 n;
@@ -6970,15 +5922,7 @@ Ipv4Route *TLobby__sub_8040F76C(u32 dst, u32 gateway) {
     }
     return NULL;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 s32 TLobby__sub_8040F8A4(u32 dst, u32 gateway, u32 mask, u16 flags, u32 old_gateway) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
@@ -7023,15 +5967,7 @@ s32 TLobby__sub_8040F8A4(u32 dst, u32 gateway, u32 mask, u16 flags, u32 old_gate
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040F9CC(u32 dst, u32 mask, u32 gateway, s16 flags) {
     G_8040F9CC *g = (G_8040F9CC *)&ipv4_address_routing_state;
     s32 type_bit;
@@ -7050,18 +5986,7 @@ s32 TLobby__sub_8040F9CC(u32 dst, u32 mask, u32 gateway, s16 flags) {
     }
     return -2;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s16 TRKValidMemory32(u32 dst, u32 mask, u32 gateway, s16 f10, u8 type, u16 flags) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     Ipv4Iface *ifaces;
@@ -7134,15 +6059,7 @@ s16 TRKValidMemory32(u32 dst, u32 mask, u32 gateway, s16 f10, u8 type, u16 flags
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040FCEC(u32 ip) {
     G_RT *g;
     s16 m;
@@ -7173,30 +6090,14 @@ s16 TLobby__sub_8040FCEC(u32 ip) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv4IsLoopback(s32 arg0) {
     if ((u32) ((arg0 & 0xFF000000) + 0x81000000) == 0U) {
         return 1;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8040FDA0(u32 arg0, s16 arg1) {
     Ent_8040FDA0 *e;
     if (arg1 < 0 || arg1 >= ((G_8040FDA0 *)&ipv4_address_routing_state)->count) {
@@ -7216,31 +6117,14 @@ s32 TLobby__sub_8040FDA0(u32 arg0, s16 arg1) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv4IsUnspecified(u32 arg0) {
     if (arg0 == 0U) {
         return 1;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_8040FE40(s16 arg0) {
     struct Fields_var_r3 { s16 field_0; };
     s16 *var_r3;
@@ -7257,16 +6141,7 @@ s32 TLobby__sub_8040FE40(s16 arg0) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s16 *TLobby::get_active_entry_by_index(s16 arg0) {
     s16 *temp_r3;
     if ((arg0 < 0) || (arg0 >= (s16) *(s16 *)((s8 *)(&(*(RecoveredGlobal_8040FE9C_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 2))) {
@@ -7278,15 +6153,7 @@ s16 *TLobby::get_active_entry_by_index(s16 arg0) {
     }
     return temp_r3;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8040FEE4(s32 arg0, s32 arg1) {
     s32 temp_r0;
     temp_r0 = arg0 - arg1;
@@ -7298,12 +6165,8 @@ s16 TLobby__sub_8040FEE4(s32 arg0, s32 arg1) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma pool_data off
 G_8040A45C dns_resolver_state;
 Ipv4ProtocolState ipv4_protocol_state;
 RecoveredGlobal_8040EF00_lbl_805C1B60 ipv4_address_routing_state;
-#pragma pop
 }

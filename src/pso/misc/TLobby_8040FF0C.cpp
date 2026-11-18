@@ -2,28 +2,13 @@
 
 extern "C" {
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6Shutdown(void) {
     TLobby::release_slot_by_id(0x86DD);
     TLobby__sub_803F87DC((void *)((void *) (&ipv6_protocol_state.value)));
     ipv6_protocol_state.value = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6Init(void) {
     s16 i;
     E_8040FF58 *e;
@@ -43,19 +28,7 @@ s32 NetIPv6Init(void) {
     register_protocol_handler__6TLobbyFUsi(0x86DD, (Handler_8041A130)TLobby__sub_8040FFF8);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
 static inline s16 *ipv6_input_interface(s16 id)
 {
   return TLobby::get_valid_entry(id);
@@ -84,6 +57,8 @@ static inline NetPacket *reassemble_ipv6_input(u8 *ip, Ipv6FragmentHeader *frag,
     }
     return (NetPacket *) TLobby__sub_80418C40(ip, total_len - (remaining - sizeof(Ipv6FragmentHeader)), remaining - sizeof(Ipv6FragmentHeader), IPV6_REASSEMBLY_TIMEOUT, frag->ident, (u8 *)src, offset, more, iface);
 }
+#pragma opt_loop_invariants off
+#pragma opt_strength_reduction off
 #pragma cplusplus off
 s32 TLobby__sub_8040FFF8(u8 *ip, int len, s16 id) {
     s16 TLobby__sub_8040D510(struct Icmp6ErrorInfo *msg, u8 *ip, s32 len, s16 iface); /* the definition takes an s16 len */
@@ -299,19 +274,9 @@ fail:
 ret:
     return -1;
 }
-#pragma cplusplus on
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
+#pragma opt_strength_reduction reset
+#pragma cplusplus on
 #pragma opt_propagation off
 extern s32 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
 {
@@ -449,15 +414,8 @@ extern s32 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
   ((TUdpSocket *)e)->release_entry();
   return r21;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80410958(u8 *opt, s16 len, u8 *hdr, s16 pktlen, s16 idx) {
     s16 NetIPv6IsMulticast(u8 *arg0);
     Icmp6ErrorInfo err;
@@ -500,15 +458,7 @@ s16 TLobby__sub_80410958(u8 *opt, s16 len, u8 *hdr, s16 pktlen, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80410A98(NetPacket *pkt, u8 *dst, u8 *src, Ipv6SendOptions *opts, s32 next_header) {
     s32 TLobby__sub_80410BA8(void *, void *, s32, void *);
     s32 TLobby__sub_80415D0C(NetPacket *, u8 *, NetIPv6SendParameters *, s32);
@@ -545,18 +495,8 @@ s32 TLobby__sub_80410A98(NetPacket *pkt, u8 *dst, u8 *src, Ipv6SendOptions *opts
     }
     return TLobby__sub_80410BA8(pkt, &params, rt->iface, NULL);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80410BA8(NetPacket *pkt, NetIPv6SendParameters *params, s16 iface, void *opts) {
     s16 NetIPv6IsMulticast(u8 *arg0);
     s16 TLobby__sub_804112B8(s32 packet, s32 dst, s16 iface);
@@ -612,16 +552,7 @@ s16 TLobby__sub_80410BA8(NetPacket *pkt, NetIPv6SendParameters *params, s16 ifac
     }
     return TLobby__sub_8041123C((s32)pkt, (s32)opts, iface);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s16 TLobby__sub_80410D6C(NetPacket *pkt, Ipv6Header *hdr, s16 iface, void *opts, u32 room) {
     s16 NetIPv6IsMulticast(u8 *addr);
     s16 TLobby__sub_804112B8(s32 packet, s32 dst, s16 iface);
@@ -710,15 +641,7 @@ s16 TLobby__sub_80410D6C(NetPacket *pkt, Ipv6Header *hdr, s16 iface, void *opts,
     }
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 u16 TLobby__sub_80411040(const IPv6Address *src, const IPv6Address *dst, u8 next_header, const NetPacket *pkt, s16 flag) {
     PH_80411040 ph;
     u32 sum;
@@ -740,10 +663,6 @@ u16 TLobby__sub_80411040(const IPv6Address *src, const IPv6Address *dst, u8 next
     sum += sum >> 16;
     return ~sum;
 }
-#pragma pop
 
-#pragma push
-#pragma pool_data off
 RecoveredGlobal_8040FF0C_lbl_805C1B78 ipv6_protocol_state;
-#pragma pop
 }

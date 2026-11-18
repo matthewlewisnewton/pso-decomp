@@ -1,15 +1,8 @@
+#pragma opt_common_subs on
 #include "pso/misc/LobbyNetworkInternal.h"
 
 extern "C" {
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_8041112C(void) {
     RecoveredGlobal_8041123C_lbl_805C1BB8 *g = &ipv6_address_routing_state;
     NetUnregisterTimer(TLobby__sub_80411334);
@@ -20,16 +13,7 @@ s32 TLobby__sub_8041112C(void) {
     g->c = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TUdpSocket__sub_8041118C(void) {
     ((TLobby *)((G_8041118C *)&ipv6_address_routing_state))->init_udp_socket_config();
     NetMemset(((G_8041118C *)&ipv6_address_routing_state)->p18, 0, ((G_8041118C *)&ipv6_address_routing_state)->n0 * 0x2A);
@@ -40,16 +24,7 @@ s32 TUdpSocket__sub_8041118C(void) {
     NetRegisterTimer(0x3E8, (s16)(1), (NetTimerCallback)(TLobby::tick_entry_timers));
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_8041123C(s32 arg0, s32 arg1, s16 arg2) {
     struct Fields_temp_r3 { s16 field_0; s16 field_2; };
     u8 *temp_r3;
@@ -62,16 +37,7 @@ s32 TLobby__sub_8041123C(s32 arg0, s32 arg1, s16 arg2) {
     }
     return TLobby::call_handler_by_index(arg2, ((Fields_temp_r3*)temp_r3)->field_2, 0, arg1, arg0);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_804112B8(s32 arg0, s32 arg1, s16 arg2) {
     struct Fields_temp_r3 { s16 field_0; s16 field_2; };
     u8 *temp_r3;
@@ -84,15 +50,8 @@ s32 TLobby__sub_804112B8(s32 arg0, s32 arg1, s16 arg2) {
     }
     return TLobby::call_handler_by_index(arg2, ((Fields_temp_r3*)temp_r3)->field_2, 2, arg1, arg0);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 void TLobby__sub_80411334(void) {
     s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(u8 *, s16);
     s32 NetIPv6SendRouterSolicitation(s16);
@@ -194,17 +153,7 @@ void TLobby__sub_80411334(void) {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 // The original C definition promotes the short parameter at the call boundary.
 #pragma cplusplus off
 s32 TLobby__sub_80411604(id, n, pp)
@@ -343,16 +292,7 @@ void *pp;
 
   return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 void TLobby::tick_entry_timers() {
     G_80411BE8 *G = (G_80411BE8 *)&ipv6_address_routing_state;
     s16 i;
@@ -367,17 +307,8 @@ void TLobby::tick_entry_timers() {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
-#pragma dont_inline off
 s16 TLobby__sub_80411C44(IPv6Address *addr, s16 idx) {
     G_80411DEC *g = (G_80411DEC *)&ipv6_address_routing_state;
     Iface_80411C44 *ifc = iface_80411C44(g, idx);
@@ -425,16 +356,7 @@ s16 TLobby__sub_80411C44(IPv6Address *addr, s16 idx) {
     slot->mtu = ifc->mtu;
     return slot->mtu;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_80411DEC(IPv6Address *addr, s16 mtu) {
     G_80411DEC *g = (G_80411DEC *)&ipv6_address_routing_state;
     s16 i;
@@ -466,16 +388,7 @@ s32 TLobby__sub_80411DEC(IPv6Address *addr, s16 mtu) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s16 TLobby::get_entry_field_26(s16 arg0) {
     struct Fields_temp_r3 { s16 field_0; u8 pad_2[36]; s16 field_26; };
     u8 *temp_r3;
@@ -488,15 +401,7 @@ s16 TLobby::get_entry_field_26(s16 arg0) {
     }
     return ((Fields_temp_r3*)temp_r3)->field_26;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80411F1C(u8 *out, u8 *dst, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     u8 *sel = NULL;
@@ -542,18 +447,7 @@ s32 TLobby__sub_80411F1C(u8 *out, u8 *dst, s16 idx) {
     NetMemcpy(out, sel, 16);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 extern s32 TLobby__sub_80412058(s16 id, u8 *self, s32 len, u8 *out) {
     struct AddrRec_80412058 {
         u32 kind;
@@ -613,17 +507,7 @@ extern s32 TLobby__sub_80412058(s16 id, u8 *self, s32 len, u8 *out) {
     }
     return i;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80412210(s16 idx) {
     s16 is_socket_flag_set__6TLobbyFs(s16);
     G_80412210 *g = ((G_80412210 *)&ipv6_address_routing_state);
@@ -695,20 +579,7 @@ s16 TLobby__sub_80412210(s16 idx) {
     ifc->f28 = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s16 TLobby__sub_80412618(void *pi_arg, s16 idx)
 {
   s16 TLobby__sub_8040A0C0(s16, u8 *);
@@ -888,20 +759,7 @@ release:
     }
     return r;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s16 TLobby__sub_80412CA4(u8 *addr, s16 plen, s16 x, s16 idx, s32 y)
 {
   s16 TLobby__sub_8040A0C0(s16, u8 *);
@@ -1041,31 +899,15 @@ release:
     e->prefix_len = 0;
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 s32 TLobby__sub_80413230(u8 *arg0, s32 arg1) {
     if (TLobby__sub_80413264(arg0, arg1) != NULL) {
         return 1;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
 u8 *TLobby__sub_80413264(void *dst, s32 src) {
     s16 NetCompareBitPrefix(u8 *a, u8 *b, s16 bits);
     s16 NetIPv6IsUnspecified(u8 *arg0);
@@ -1131,17 +973,7 @@ u8 *TLobby__sub_80413264(void *dst, s32 src) {
     }
     return NULL;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8041347C(u8 *prefix, s16 bits, u8 *addr, s16 idx, s16 kind, s16 mode) {
     s16 len;
     G_80412210 *g = (G_80412210 *)&ipv6_address_routing_state;
@@ -1190,41 +1022,15 @@ s32 TLobby__sub_8041347C(u8 *prefix, s16 bits, u8 *addr, s16 idx, s16 kind, s16 
     sel->f6 = idx;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_804136AC(s16 i) {
     TLobby::is_slot_flag_0x20_set(i);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_804136CC(s16 i) {
     return is_socket_flag_set__6TLobbyFs(i);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_804136EC(u8 *addr) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     s16 i;
@@ -1250,17 +1056,7 @@ s16 TLobby__sub_804136EC(u8 *addr) {
     }
     return -6;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_804137FC(u8 *addr, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1287,17 +1083,7 @@ s16 TLobby__sub_804137FC(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80413934(u8 *addr, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1326,17 +1112,7 @@ s16 TLobby__sub_80413934(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80413AA0(u8 *addr, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1365,17 +1141,7 @@ s16 TLobby__sub_80413AA0(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80413C0C(u8 *addr, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1404,17 +1170,7 @@ s16 TLobby__sub_80413C0C(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80413D78(u8 *addr, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1446,17 +1202,7 @@ s16 TLobby__sub_80413D78(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80413F0C(u8 *addr, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1485,17 +1231,7 @@ s16 TLobby__sub_80413F0C(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80414090(u8 *addr, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1521,15 +1257,7 @@ s16 TLobby__sub_80414090(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80414218(u8 *a, u8 *b) {
     s16 i;
     s16 bit;
@@ -1591,16 +1319,7 @@ s16 TLobby__sub_80414218(u8 *a, u8 *b) {
     }
     return count;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma scheduling off
 s32 NetIPv6GetAddressScopeClass(u8 *arg0) {
     s16 var_r0;
     s16 var_r0_2;
@@ -1677,17 +1396,7 @@ s32 NetIPv6GetAddressScopeClass(u8 *arg0) {
         return 0;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(1)
 s16 NetIPv6GetInterfaceLinkLayerAddress(s32 arg0, s16 arg1, s16 id) {
     Ent_80414504 *e;
     s16 r;
@@ -1707,17 +1416,7 @@ s16 NetIPv6GetInterfaceLinkLayerAddress(s32 arg0, s16 arg1, s16 id) {
     TLobby__sub_80409E18(id, e->f2, arg0);
     return r;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_804145D4(u8 *out, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -1748,15 +1447,7 @@ s16 TLobby__sub_804145D4(u8 *out, s16 idx) {
     }
     return -0x10A;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 s16 *TLobby::get_valid_entry(s16 arg0) {
     s16 *temp_r3;
@@ -1769,15 +1460,7 @@ s16 *TLobby::get_valid_entry(s16 arg0) {
     }
     return temp_r3;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6MakeSolicitedNodeMulticastAddress(u8 *arg0, u8 *arg1) {
     *(u8 *)((s8 *)arg0 + 0) = 0xFF;
     *(s8 *)((s8 *)arg0 + 1) = 2;
@@ -1797,15 +1480,7 @@ s32 NetIPv6MakeSolicitedNodeMulticastAddress(u8 *arg0, u8 *arg1) {
     *(u8 *)((s8 *)arg0 + 0xF) = (u8) *(u8 *)((s8 *)arg1 + 0xF);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 init_ipv6_all_routers_multicast_address(u8 *address, s8 scope) {
     address[0] = 0xFF;
     address[1] = scope;
@@ -1825,15 +1500,7 @@ s32 init_ipv6_all_routers_multicast_address(u8 *address, s8 scope) {
     address[0xF] = 2;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 bool init_ipv6_all_nodes_multicast_address(u8 *address, s8 scope) {
     address[0] = 0xFF;
     address[1] = scope;
@@ -1853,15 +1520,7 @@ bool init_ipv6_all_nodes_multicast_address(u8 *address, s8 scope) {
     address[0xF] = 1;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6IsLinkLocal(u8 *arg0) {
     u8 temp_r3;
 
@@ -1874,15 +1533,7 @@ s32 NetIPv6IsLinkLocal(u8 *arg0) {
     }
     return 1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6IsLoopback(u8 *arg0) {
     struct Fields_arg0 { u8 field_0; u8 field_1; u8 field_2; u8 field_3; u8 field_4; u8 field_5; u8 field_6; u8 field_7; u8 field_8; u8 field_9; u8 field_A; u8 field_B; u8 field_C; u8 field_D; u8 field_E; u8 field_F; };
     if ((u8) ((Fields_arg0*)arg0)->field_0 != 0) {
@@ -1935,30 +1586,14 @@ s16 NetIPv6IsLoopback(u8 *arg0) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6IsMulticast(u8 *arg0) {
     if ((u8) *arg0 == 0xFF) {
         return 1;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6IsUnspecified(u8 *arg0) {
     struct Fields_arg0 { u8 field_0; u8 field_1; u8 field_2; u8 field_3; u8 field_4; u8 field_5; u8 field_6; u8 field_7; u8 field_8; u8 field_9; u8 field_A; u8 field_B; u8 field_C; u8 field_D; u8 field_E; u8 field_F; };
     if ((u8) ((Fields_arg0*)arg0)->field_0 != 0) {
@@ -2011,15 +1646,7 @@ s32 NetIPv6IsUnspecified(u8 *arg0) {
     }
     return 1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6CompareAddresses(s32 arg0, s32 arg1) {
     s32 temp_r3;
     temp_r3 = NetMemcmp((void *)arg0, (void *)arg1, 0x10);
@@ -2031,15 +1658,7 @@ s16 NetIPv6CompareAddresses(s32 arg0, s32 arg1) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_80414B98(u8 *dst, s16 bits, u8 *src) {
     s16 len;
     s16 i;
@@ -2088,15 +1707,7 @@ void TLobby__sub_80414B98(u8 *dst, s16 bits, u8 *src) {
         *dst++ = 0;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetCompareBitsBackward(u8 *arg0, u8 *arg1, s16 arg2) {
     s16 n;
     s16 rem;
@@ -2168,15 +1779,7 @@ s32 NetCompareBitsBackward(u8 *arg0, u8 *arg1, s16 arg2) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetCompareBitPrefix(u8 *a, u8 *b, s16 bits) {
     s16 n;
     s16 rem;
@@ -2219,15 +1822,7 @@ s32 NetCompareBitPrefix(u8 *a, u8 *b, s16 bits) {
         return 0;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8041509C(void) {
     u8 unused[8];
     TLobby::clear_table_entry_locked(G_.a);
@@ -2236,27 +1831,11 @@ s32 TLobby__sub_8041509C(void) {
     G_.c = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_804150EC(void) {
     TLobby__sub_8041510C();
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_8041510C(void) {
     G_80415230 *g = (G_80415230 *)&network_loopback_state;
     Fn_8040881C fns[11];
@@ -2291,16 +1870,7 @@ s16 TLobby__sub_8041510C(void) {
     }
     return r;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_80415230(s16 idx, s16 mode, u8 *addr, NetPacket *pkt) {
     G_80415230 *g = (G_80415230 *)&network_loopback_state;
     u8 *slot;
@@ -2328,16 +1898,7 @@ s32 TLobby__sub_80415230(s16 idx, s16 mode, u8 *addr, NetPacket *pkt) {
     }
     return -0x110;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_80415320(s16 idx, u8 *addr, NetPacket *pkt) {
     G_80415230 *g = (G_80415230 *)&network_loopback_state;
     u8 *slot;
@@ -2365,16 +1926,7 @@ s32 TLobby__sub_80415320(s16 idx, u8 *addr, NetPacket *pkt) {
     }
     return -0x110;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
 s32 TLobby__sub_80415410(s16 idx, u8 *pkt) {
     G_80415230 *g = (G_80415230 *)&network_loopback_state;
     s16 i;
@@ -2397,90 +1949,42 @@ s32 TLobby__sub_80415410(s16 idx, u8 *pkt) {
     }
     return -0x110;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8041549C(s16 arg0) {
     if ((arg0 != 0) && (arg0 != 1)) {
         return -0x110;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_804154C0(s16 arg0) {
     if ((arg0 != 0) && (arg0 != 1)) {
         return -0x110;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_804154E4(s16 arg0) {
     if ((arg0 != 0) && (arg0 != 1)) {
         return -0x110;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80415508(s16 arg0) {
     if ((arg0 != 0) && (arg0 != 1)) {
         return -0x110;
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby::get_slot_offset_or_default(s16 arg0) {
     if ((arg0 != 0) && (arg0 != 1)) {
         return -0x110;
     }
     return *(s16 *)((s8 *)(&network_loopback_state.value) + 0xA);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::clear_conn_slot(s16 i) {
     if (i != 0 && i != 1) { return -0x110; }
     G_80415558 *g = (G_80415558 *)&network_loopback_state;
@@ -2488,15 +1992,7 @@ s32 TLobby::clear_conn_slot(s16 i) {
     g->e[i].b = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby::alloc_conn_slot(s16 h, s16 v) {
     s16 r;
     G_8041559C *g = (G_8041559C *)&network_loopback_state;
@@ -2512,15 +2008,7 @@ s16 TLobby::alloc_conn_slot(s16 h, s16 v) {
     g->e[r].b = v;
     return r;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::fill_reply_buffer(s16 h, u8 *p) {
     if (h != *(s16 *)&network_loopback_state) { return -0x110; }
     p[0] = 0;
@@ -2533,31 +2021,13 @@ s32 TLobby::fill_reply_buffer(s16 h, u8 *p) {
     p[6] = 1;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::reset_net_value() {
     TLobby__sub_803F89D8(&network_buffer_pool_state.count);
     network_buffer_pool_state.count = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
-#pragma pool_data off
 s16 TLobby__sub_80415690(void) {
     u8 *buf;
     s16 i;
@@ -2583,15 +2053,8 @@ s16 TLobby__sub_80415690(void) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 s16 TLobby__sub_8041579C(void *self)
 {
   s16 *cursor;
@@ -2679,15 +2142,7 @@ s16 TLobby__sub_8041579C(void *self)
 
   return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 s16 TLobby__sub_80415954(NetBufferRef *ref, s32 size, s16 owner) {
     Pool_80415690 *pool;
@@ -2733,15 +2188,8 @@ s16 TLobby__sub_80415954(NetBufferRef *ref, s32 size, s16 owner) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 void NetIPv6ShutdownNeighborDiscovery(void) {
     G_80415B38 *g = &ipv6_neighbor_discovery_state;
     NetUnregisterTimer(NetIPv6TickNeighborDiscovery);
@@ -2749,15 +2197,7 @@ void NetIPv6ShutdownNeighborDiscovery(void) {
     g->nb = 0;
     g->nc = 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6InitNeighborDiscovery(void) {
     s16 n;
     s32 off;
@@ -2827,28 +2267,12 @@ s32 NetIPv6InitNeighborDiscovery(void) {
     NetRegisterTimer(1000, (s16)(1), (NetTimerCallback)(NetIPv6TickNeighborDiscovery));
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void NetIPv6TickNeighborDiscovery(void) {
     NetIPv6TickNeighborCache();
     TLobby__sub_8041615C();
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80415D0C(NetPacket *pkt, u8 *nexthop, NetIPv6SendParameters *params, s16 idx) {
     s16 NetIPv6IsMulticast(u8 *addr);
     E_804179A4 *NetIPv6FindOrSelectNeighborCacheEntry(void *, int, int);
@@ -2970,15 +2394,7 @@ done:
         return NetIPv6SendMulticastNeighborProbe((u8 *)e);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(s32 arg0, s32 arg1) {
     s32 NetIPv6EmitNeighborSolicitation(NetPacket *, u8 *, NetIPv6SendParameters *, s32, u8 *);
     s16 TLobby__sub_80413D78();
@@ -3003,15 +2419,7 @@ s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(s32 arg0, s32 arg1) {
     ((TUdpSocket *)free_entry)->release_entry();
     return temp_r31;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6SendRouterSolicitation(s32 arg0) {
     s16 TLobby__sub_804145D4(void *, void *);
     u8 address[0x1C];
@@ -3033,17 +2441,7 @@ s32 NetIPv6SendRouterSolicitation(s32 arg0) {
     ((TUdpSocket *)free_entry)->release_entry();
     return temp_r31;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby__sub_8041615C(void) {
     G_8041615C *g = (G_8041615C *)&ipv6_neighbor_discovery_state;
     Nbr_8041615C *nb;
@@ -3084,15 +2482,7 @@ void TLobby__sub_8041615C(void) {
         TLobby__sub_80411604(expired->id, 6, &a6);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void NetIPv6TickNeighborCache(void) {
     Arg_804162A4 a7;
     Arg_804162A4 a6;
@@ -3182,15 +2572,7 @@ void NetIPv6TickNeighborCache(void) {
         e++;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_propagation off
 s16 NetIPv6HandleRedirect(NetPacket *pkt, u8 *src, void *arg2, s16 iface) {
     NetBufferRef ref;
@@ -3247,15 +2629,8 @@ s16 NetIPv6HandleRedirect(NetPacket *pkt, u8 *src, void *arg2, s16 iface) {
     TLobby__sub_80411604(iface, 10, &arg);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6ParseRedirectOptions(u8 *arg0, s32 n, u8 *arg2, s32 arg3, s16 *arg4, s16 arg5) {
     u8 sp20[8];
     u8 *h;
@@ -3303,15 +2678,7 @@ s32 NetIPv6ParseRedirectOptions(u8 *arg0, s32 n, u8 *arg2, s32 arg3, s16 *arg4, 
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6HandleNeighborAdvertisement(NetPacket *arg0, u8 *arg1, u8 *arg2, s16 arg3) {
     // These scoped short-result declarations preserve the native C caller ABI.
     s16 NetIPv6FindTargetLinkLayerAddressOption(u8 *, s32, u8 **, s16 *);
@@ -3352,15 +2719,7 @@ s16 NetIPv6HandleNeighborAdvertisement(NetPacket *arg0, u8 *arg1, u8 *arg2, s16 
     }
     return NetIPv6ApplyNeighborAdvertisement(&sp18, lladdr, lladlen, (s32)arg1, (s32)arg2, arg3);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6FindTargetLinkLayerAddressOption(u8 *o, s32 len, u8 **out, s16 *outlen) {
     u8 *p;
     s16 sz;
@@ -3385,17 +2744,7 @@ s32 NetIPv6FindTargetLinkLayerAddressOption(u8 *o, s32 len, u8 **out, s16 *outle
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 arg3, s32 arg4, s32 id) {
     s32 TLobby__sub_80410BA8(void *, void *, s32, void *);
     s16 TLobby__sub_80413C0C(void *, s32);
@@ -3512,15 +2861,7 @@ s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6HandleNeighborSolicitation(u8 *arg0, void *arg1, void *arg2, void *arg3) {
     s16 TLobby__sub_80413F0C(void *, void *);
     void TLobby__sub_80406EB8(void *, int);
@@ -3555,15 +2896,7 @@ s16 NetIPv6HandleNeighborSolicitation(u8 *arg0, void *arg1, void *arg2, void *ar
     }
     return TLobby__sub_80417028(&sp18, arg1, arg2, arg3);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80416F58(u8 *msg, s32 len, void *addr, void *ifindex) {
     void TLobby__sub_80406EB8(void *, int);
     u8 *TLobby__sub_80406F0C(void *);
@@ -3598,15 +2931,7 @@ s16 TLobby__sub_80416F58(u8 *msg, s32 len, void *addr, void *ifindex) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80417028(IPv6NeighborSolicitation *ns, u8 *src, u8 *dst, s16 iface) {
     NetSourceLinkLayerOption opt;
     NetIPv6SendParameters params;
@@ -3659,15 +2984,7 @@ s16 TLobby__sub_80417028(IPv6NeighborSolicitation *ns, u8 *src, u8 *dst, s16 ifa
     ((TUdpSocket *)pkt)->release_entry();
     return r;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6HandleRouterAdvertisement(u8 *arg0, u8 *arg1, s32 arg2, void *arg3) {
     s16 TLobby__sub_80417494(void *, u8 *, void *);
     u8 sp28[8];
@@ -3699,17 +3016,7 @@ s16 NetIPv6HandleRouterAdvertisement(u8 *arg0, u8 *arg1, s32 arg2, void *arg3) {
     }
     return TLobby__sub_80417494(sp18, arg1, arg3);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_propagation off
 extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *id)
 {
@@ -3796,18 +3103,7 @@ extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *i
   }
   return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
 s16 TLobby__sub_80417494(void *buf, u8 *a, s16 c) {
     s32 TLobby__sub_80411604(s16, int, void *);
     G_80415B38 *g = &ipv6_neighbor_discovery_state;
@@ -3879,15 +3175,8 @@ s16 TLobby__sub_80417494(void *buf, u8 *a, s16 c) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6HandleRouterSolicitation(u8 *o, s32 arg1, s32 arg2, s32 arg3) {
     s16 TLobby__sub_80417868(void *, u32, s32, s32);
     u8 b[8];
@@ -3916,19 +3205,9 @@ s16 NetIPv6HandleRouterSolicitation(u8 *o, s32 arg1, s32 arg2, s32 arg3) {
     TLobby__sub_80411604(arg3, 0xC, &v);
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_propagation off
 #pragma opt_common_subs on
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80417868(NetPacketFragment *frag, s32 len, u8 *src, s16 iface) {
     u8 *lladdr;
     u8 *h;
@@ -3968,17 +3247,7 @@ s16 TLobby__sub_80417868(NetPacketFragment *frag, s32 len, u8 *src, s16 iface) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_propagation off
-#pragma opt_common_subs on
 s16 NetIPv6SendNeighborAdvertisement(Pkt_804179A4 *arg0, u8 *address, u8 arg2, Sock_804179A4 *arg3, s16 arg4) {
     Na_804179A4 na;
     Cur_804179A4 cur;
@@ -4106,15 +3375,9 @@ done:
 tail:
     return TLobby__sub_80410BA8(arg0, arg3, arg4, p6);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
 #pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma opt_common_subs reset
 s32 NetIPv6SendMulticastNeighborProbe(u8 *arg0) {
     s32 NetIPv6EmitNeighborSolicitation(NetPacket *, u8 *, NetIPv6SendParameters *, s32, u8 *);
     s32 TLobby__sub_804145D4(void *, int);
@@ -4163,15 +3426,7 @@ s32 NetIPv6SendMulticastNeighborProbe(u8 *arg0) {
     ((TUdpSocket *)free_entry)->release_entry();
     return temp_r31;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 NetIPv6SendUnicastNeighborProbe(u8 *arg0) {
     s32 NetIPv6EmitNeighborSolicitation(NetPacket *, u8 *, NetIPv6SendParameters *, s32, u8 *);
     s32 TLobby__sub_804145D4(void *, int);
@@ -4220,15 +3475,7 @@ s32 NetIPv6SendUnicastNeighborProbe(u8 *arg0) {
     ((TUdpSocket *)free_entry)->release_entry();
     return temp_r31;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 NetIPv6EmitNeighborSolicitation(NetPacket *net_packet, u8 *target, NetIPv6SendParameters *addr, s16 iface, u8 *link_address) {
     s16 NetIPv6IsMulticast(u8 *);
     s16 NetIPv6IsUnspecified(u8 *);
@@ -4275,17 +3522,9 @@ s16 NetIPv6EmitNeighborSolicitation(NetPacket *net_packet, u8 *target, NetIPv6Se
     message.header.checksum = TLobby__sub_80411040(&addr->source, &addr->destination, addr->next_header, net_packet, 1);
     return TLobby__sub_80410BA8(net_packet, addr, iface, link_address);
 }
-#pragma pop
 
 #pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma optimization_level 3
-#pragma dont_inline on
 s32 NetIPv6EmitRouterSolicitation(NetPacket *net_packet, NetIPv6SendParameters *addr, s32 arg2) {
     s32 TLobby__sub_80410BA8(NetPacket *, NetIPv6SendParameters *, s32, void *);
     s16 NetIPv6GetInterfaceLinkLayerAddress(s32, s16, s32);
@@ -4325,17 +3564,8 @@ s32 NetIPv6EmitRouterSolicitation(NetPacket *net_packet, NetIPv6SendParameters *
     message.header.checksum = TLobby__sub_80411040((const IPv6Address *)(&addr->source), (const IPv6Address *)(&addr->destination), addr->next_header, (const NetPacket *)(net_packet), (s16)(1));
     return TLobby__sub_80410BA8(net_packet, addr, arg2, NULL);
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
+#pragma pop
 extern E_804184DC *TLobby__sub_804182DC(void *a, void *b, s16 len, s16 val) {
     s32 n;
     E_804184DC *e;
@@ -4390,15 +3620,7 @@ extern E_804184DC *TLobby__sub_804182DC(void *a, void *b, s16 len, s16 val) {
     }
     return e;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 E_804184DC *NetIPv6FindOrSelectNeighborCacheEntry(u8 *addr, u8 *key, s16 klen) {
     E_804184DC *e;
     s16 n;
@@ -4468,15 +3690,7 @@ E_804184DC *NetIPv6FindOrSelectNeighborCacheEntry(u8 *addr, u8 *key, s16 klen) {
     oldest_b->state = 1;
     return oldest_b;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 Ent_80418670 *NetIPv6SelectDefaultRouter(void *arg0) {
     s16 n;
     Ent_80418670 *e;
@@ -4506,15 +3720,7 @@ Ent_80418670 *NetIPv6SelectDefaultRouter(void *arg0) {
     }
     return best;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80418734(u8 *addr, Ra_80418734 *ra, s16 id) {
     G_80418734 *g = (G_80418734 *)&ipv6_neighbor_discovery_state;
     s16 n;
@@ -4572,17 +3778,7 @@ s32 TLobby__sub_80418734(u8 *addr, Ra_80418734 *ra, s16 id) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 Ent_804188E4 *NetIPv6SelectPendingPacketSlot(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, Ent_804188E4 *best) {
     Ent_804188E4 *free_;
     G_804188E4 *g = (G_804188E4 *)&ipv6_neighbor_discovery_state;
@@ -4621,15 +3817,7 @@ Ent_804188E4 *NetIPv6SelectPendingPacketSlot(s32 a0, s32 a1, s32 a2, s32 a3, s32
     }
     return best;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void NetIPv6ApplyNeighborDiscoveryDefaults(u8 *arg0) {
     if (*(s16 *)((s8 *)arg0 + 0x14) == 0) {
         *(s16 *)((s8 *)arg0 + 0x14) = 0x5DC;
@@ -4662,15 +3850,7 @@ void NetIPv6ApplyNeighborDiscoveryDefaults(u8 *arg0) {
         *(s16 *)((s8 *)arg0 + 0x2C) = 6;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80418A7C(void) {
     G_80418ACC *g = &packet_fragment_pool_state;
     NetUnregisterTimer(TLobby::update_timeout_entries);
@@ -4679,15 +3859,7 @@ s32 TLobby__sub_80418A7C(void) {
     g->nb = 0;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::init_packet_fragment_pools() {
     s16 i;
     A_80418ACC *a;
@@ -4720,15 +3892,7 @@ s32 TLobby::init_packet_fragment_pools() {
     NetRegisterTimer(1000, (s16)(1), (NetTimerCallback)(TLobby::update_timeout_entries));
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TUdpSocket__sub_80418BD8(A_80418BD8 *a) {
     u32 i;
     A_80418BD8 *b = a;
@@ -4737,15 +3901,7 @@ s32 TUdpSocket__sub_80418BD8(A_80418BD8 *a) {
     }
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80418C40(u8* self, u16 hdr_len, s16 frag_len, u8 ttl, u32 ident, u8 *src, u16 frag_off, u8 more, s16 iface)
 {
     G_80419258* base = (G_80419258 *)&packet_fragment_pool_state;
@@ -4778,17 +3934,7 @@ s32 TLobby__sub_80418C40(u8* self, u16 hdr_len, s16 frag_len, u8 ttl, u32 ident,
     TLobby__sub_80419470(src, ident);
     return ret;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80418D7C(E_80419258 *node, u8 *self, u16 hdr_len, u16 frag_off, u16 frag_len, u8 more, s16 iface) {
     NetBufferRef src;
     s16 i;
@@ -4944,15 +4090,7 @@ s32 TLobby__sub_80418D7C(E_80419258 *node, u8 *self, u16 hdr_len, u16 frag_off, 
     }
     return (s32)pkt;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 void TLobby::update_timeout_entries() {
     G_80419258 *g;
     E_80419258 **head;
@@ -5008,15 +4146,7 @@ void TLobby::update_timeout_entries() {
         n++;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80419374(E_80419258 *e) {
     IcmpError_80419374 v4;
     IcmpError_80419374 v6;
@@ -5050,15 +4180,7 @@ s16 TLobby__sub_80419374(E_80419258 *e) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_80419470(u8 *addr, u32 id) {
     G_80419258 *g = (G_80419258 *)&packet_fragment_pool_state;
     E_80419258 **head;
@@ -5094,17 +4216,7 @@ s32 TLobby__sub_80419470(u8 *addr, u32 id) {
     }
     return -1;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 E_80419258 *TLobby__sub_8041955C(u8 *addr, s32 port, u8 ttl) {
     G_80419258 *g = (G_80419258 *)&packet_fragment_pool_state;
@@ -5135,15 +4247,7 @@ E_80419258 *TLobby__sub_8041955C(u8 *addr, s32 port, u8 ttl) {
     e->list = NULL;
     return e;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby::reset_other_connection_lists() {
     E_804196EC *self = (E_804196EC *)this;
     G_804196EC *g = (G_804196EC *)&packet_fragment_pool_state;
@@ -5174,15 +4278,7 @@ s32 TLobby::reset_other_connection_lists() {
     g->p14 = self;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 s32 TLobby__sub_8041979C(void) {
     G_8041979C *g = (G_8041979C *)&packet_fragment_pool_state;
     E_80419258 *e;
@@ -5212,15 +4308,7 @@ s32 TLobby__sub_8041979C(void) {
     g->tail = NULL;
     return 0;
 }
-#pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma opt_propagation reset
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma dont_inline off
-#pragma inline_depth(4)
 u16 TUdpSocket__sub_80419864(void *buf, s16 len) {
     union {
         u16 s;
@@ -5288,14 +4376,10 @@ u16 TUdpSocket__sub_80419864(void *buf, s16 len) {
     sum += sum >> 16;
     return sum;
 }
-#pragma pop
 
-#pragma push
-#pragma pool_data off
 RecoveredGlobal_8041123C_lbl_805C1BB8 ipv6_address_routing_state;
 RecoveredGlobal_8041552C_lbl_805C1BE0 network_loopback_state;
 Pool_80415690 network_buffer_pool_state;
 G_80415B38 ipv6_neighbor_discovery_state;
 G_80418ACC packet_fragment_pool_state;
-#pragma pop
 }

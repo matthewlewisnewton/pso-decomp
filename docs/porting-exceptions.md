@@ -2191,13 +2191,35 @@ object metadata adjustment.
 ### Lobby network recovery
 
 The `TLobby_804050DC`, `TLobby_8040FF0C`, and `TLobby_8041112C` object groups
-retain GC/1.2.5n and the existing `-opt nocse` configuration. The latter two
-inherit that setting when separated from the former unit. Their shared
-`LobbyNetworkInternal.h` retains scoped inline and optimization controls with
-the helpers they govern. Scoped propagation/common-subexpression and loop
-controls preserve the native temporary lifetimes; they are matching controls,
-not required network behavior. The existing frame-padding locals remain
-provisional native-layout constraints and should be removed in a port.
+retain GC/1.2.5n and the existing `-opt nocse` configuration. Their per-object
+`-inline noauto,level=4` default in `configure.py` inlines explicitly marked
+helpers without automatically inlining other functions. This replaces the
+repeated source inline controls; the shared `LobbyNetworkInternal.h` needs
+no pragmas. `-inline auto,level=4` changes native instructions in the first
+and third groups, while `noauto,level=4` preserves all three complete objects.
+
+The remaining 77 source pragma lines describe optimizer and language regions.
+Adjacent compatible functions share a setting until its explicit restoration;
+these boundaries need not coincide with individual function boundaries.
+Removing each remaining setting or restoration was tested against the complete
+object. The four `optimization_level` regions retain push/pop because that
+umbrella setting changes several optimizer options at once:
+
+| Region begins | Level | Restored before |
+|---|---|---|
+| `TLobby::reset_socket_table` | 3 | `TLobby__sub_80406B6C` |
+| `TLobby::is_slot_flag_0x40_set` | 2 | `TLobby__sub_8040A2BC` |
+| `TLobby__sub_8040C8A8` | 2, with CSE disabled | `TLobby__sub_8040C978` |
+| `NetIPv6EmitRouterSolicitation` | 3 | `TLobby__sub_804182DC` |
+
+The sole remaining inline-depth exception is depth one for
+`TLobby__sub_8040B4BC`, restored explicitly to four afterward. An
+`inline_depth reset` would restore the compiler's initial depth instead of the
+unit's chosen depth and changes later native instructions. Propagation, CSE,
+lifetime, and loop controls preserve native temporary lifetimes and scheduling;
+they are matching controls, not required network behavior. The existing
+frame-padding locals remain provisional native-layout constraints and should
+be removed in a port.
 
 `TLobby__sub_80411604` uses scoped `cplusplus off`/`on` around its old-style C
 parameter declaration to retain the promoted-short call convention. Ports
@@ -2222,10 +2244,10 @@ source organization reproduces native register lifetimes and stack placement;
 no separate helper is emitted. Ports may combine the bodies and use ordinary
 locals. See [recovery evidence](evidence/lobby-network-recovery.md).
 
-The PPP output routine at `804066D8` uses scoped C compilation around the
-frame writer, with C++ enabled at the two existing member calls. This matches
-the register allocation of the upstream C implementation. Ports can compile
-the routine in one language and keep the unsigned 32-bit escape mask.
+The PPP output routine at `804066D8` retains a C region within its frame
+writer, restoring C++ before the time query. This matches the register
+allocation of the upstream C implementation. Ports can compile the routine
+in one language and keep the unsigned 32-bit escape mask.
 
 The Ethernet socket opener at `804094B8` enables `opt_common_subs` for its
 matching-socket lookup and caller. A port may drop it. The IPv4 receiver at
