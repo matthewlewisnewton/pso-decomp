@@ -1143,6 +1143,8 @@ typedef struct Ent_80408428 {
 
 Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
+#pragma pop
+
 typedef s32 (*SendFn_80408C24)(s16, u8 *, s16);
 
 typedef void (*CbA_8040C540)(s16, s32, s16, s32, s16);

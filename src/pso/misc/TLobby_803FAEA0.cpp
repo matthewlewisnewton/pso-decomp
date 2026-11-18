@@ -1402,6 +1402,7 @@ struct Ent_804086B4;
 
 Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
+#pragma pop
 struct Ent_804086B4 { s16 f0; s16 f2; u8 pad[0x14]; };
 
 typedef s32 (*SendFn_80408C24)(s16, u8 *, s16);
