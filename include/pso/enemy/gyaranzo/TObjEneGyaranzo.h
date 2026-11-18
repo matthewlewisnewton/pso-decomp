@@ -4,9 +4,15 @@
 #include "types.h"
 #include "dolphin/mtx.h"
 #include "pso/enemy/TObjEnemyCustom.h"
+#include "pso/render/RenderFadeState.h"
+#include "pso/render/TUnk_80494938.h"
 
 struct TObjEneGyaranzo : public TObjEnemyCustom {
+    TObjEneGyaranzo(TObject *parent, void *set_data);
     virtual ~TObjEneGyaranzo();
+    void cancel_fade_state();
+    virtual s32 update_movement_status();
+    virtual s32 update_shock_clock();
     void sub_800D2A68();
     void select_targets();
     virtual void run_task();
@@ -21,25 +27,25 @@ struct TObjEneGyaranzo : public TObjEnemyCustom {
     virtual void vfunc_59();
     virtual void vfunc_61();
     void spawn_missile();
-    u32 m_38c;
-    u8 _pad390[0x18];
-    u32 m_3a8;
-    u32 m_3ac;
-    u32 m_3b0;
-    u32 m_3b4;
-    u32 m_3b8;
-    u8 unk_3BC[0x4];
-    s32 m_3c0;
-    u8 unk_3C4[0x4];
-    s32 m_3c8;
-    u8 unk_3CC[0x4];
-    void* m_3d0;
-    u8 _pad3D4[0x18];
-    void* m_3ec;
-    u8 unk_3F0[0x6C];
+    s32 hidden_part_count;
+    Vec chase_destination;
+    f32 distance_travelled;
+    f32 chase_limit;
+    f32 missile_distance;
+    s32 armor_stage;
+    s32 unknown_3ac;
+    s32 charge_hp_threshold;
+    s32 charge_count;
+    s32 hit_debris_cooldown;
+    u32 target_ids[4];
+    s32 target_count;
+    TUnk_80494938 fade;
+    RenderFadeState camera_fades[4];
     static void *create(void *arg0);
     static void free_static_instances();
 };
 
+typedef char GyaranzoFadeOffset[offsetof(TObjEneGyaranzo, fade) == 0x3D0 ? 1 : -1];
+typedef char GyaranzoCameraFadesOffset[offsetof(TObjEneGyaranzo, camera_fades) == 0x3EC ? 1 : -1];
 typedef char TObjEneGyaranzo_size[sizeof(TObjEneGyaranzo) == 0x45C ? 1 : -1];
 #endif

@@ -1927,7 +1927,7 @@ force_active:
   - TObjEneGibbles__sub_802D9A04
   - TObjEneGibbles__sub_802DB920
   - TObjEneGyaranzo__class_name
-  - TObjEneGyaranzo__ct
+  - __ct__15TObjEneGyaranzoFP7TObjectPv
   - TObjEneIllGill__boss_registration_id
   - TObjEneIllGill_class_name
   - TObjEneIllGill_model_file_list
@@ -8727,7 +8727,7 @@ force_active:
   - clear_flag__10TObjPlayerFv
   - clear_flag_and_notify__18CameraDistanceFadeFv
   - clear_flag_and_release__14TWindowSubItemFv
-  - clear_flag_and_update__16TObjEneBm5GibonUFv
+  - cancel_fade_state__15TObjEneGyaranzoFv
   - clear_flag_bit5__17TWindowReturnCityFv
   - clear_flag_in_state7__14TObjEneBalClawFv
   - clear_flags_60__12TObjEneLappyFv
@@ -10598,7 +10598,7 @@ force_active:
   - fn_800BC758
   - fn_800C3088
   - fn_800C32DC
-  - fn_800D3E54
+  - __dt__15TObjEneGyaranzoFv
   - fn_800E322C
   - fn_800E3374
   - fn_800E762C
@@ -11274,7 +11274,7 @@ force_active:
   - gx_pos_mtx_index_table
   - gx_tlut_region_table
   - gyaranzo_action_table
-  - gyaranzo_actor_vtable_ops
+  - __vt__15TObjEneGyaranzo
   - gyaranzo_boss_stats_handle
   - gyaranzo_boss_stats_ptr_b
   - gyaranzo_breakup_model_obj
@@ -24607,6 +24607,7 @@ force_active:
   - update_movement_status__14TObjEneDubchikFv
   - update_movement_status__14TObjEneGibblesFv
   - update_movement_status__14TObjEneIllGillFv
+  - update_movement_status__15TObjEneGyaranzoFv
   - update_movement_status__17TObjEneDarkGunnerFv
   - update_movement_status__9TObjGrassFv
   - update_moving__12TObjEneLappyFv
@@ -24818,6 +24819,7 @@ force_active:
   - update_shifta_deband_action__8TItemMagFv
   - update_ship_select_window__6TLobbyFv
   - update_shock_clock__14TObjEneDubchikFv
+  - update_shock_clock__15TObjEneGyaranzoFv
   - update_shockwave_attack__13TBoss5GryphonFUl
   - update_shop_close__22THunterGuildSeqOfflineFv
   - update_short_action__8TItemMagFv
