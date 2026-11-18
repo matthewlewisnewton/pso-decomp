@@ -2,7 +2,7 @@
 
 Keep LLM notes, historical handoffs and recovery evidence in this directory. The [project README](../README.md) describes the upstream checkout. The fork README below records the state of the older fork.
 
-Use `great-merge/integration` to find pending contributions. Collect work on the same subsystem into one upstream matchpass, with commits a reviewer can read in order. Start each review branch from current upstream master. The first two candidates are `great-merge/frontend-scenes` and `great-merge/network-runtime`. The [matchpass queue](notes/evidence/2026-11-18-upstream-matchpasses.md) records their validation and the remaining groups. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) accounts for all 1,147 data bytes.
+Use `great-merge/integration` to find pending contributions. Collect work on the same subsystem into one upstream matchpass, with commits a reviewer can read in order. Start each review branch from current upstream master. The first three candidates are `great-merge/frontend-scenes`, `great-merge/network-runtime` and `great-merge/chunk-rendering`. The [matchpass queue](notes/evidence/2026-11-18-upstream-matchpasses.md) records their validation and the remaining groups. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) accounts for all 1,147 data bytes.
 
 The [library and portability audit](notes/evidence/2026-11-18-libraries-and-ports.md) traces every fork change under `libs/` and `ports/` to its current implementation or documentation.
 
