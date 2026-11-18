@@ -243,9 +243,6 @@ extern QuestDownloadCachePage *file_page_cache_head;
 s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg2);
 void TQuestVmDownLoadServer__sub_803EFF20(u8 *data, s32 a1, s32 a2, s32 *best, u8 *dst, s32 flags);
 extern const char ask_header_signature[];
-extern const s16 quest_download_lz_match_index_table[];
-extern const QuestDownloadMatchToken quest_download_lz_match_entry_table[];
-extern u8 lbl_8047F0F8[];
 const QuestDownloadMatchToken *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2);
 void build_message_packet__22TQuestVmDownLoadServerFPviPvUc(u8 *arg0, s32 arg1, Msg_803E9190 *arg2, u8 arg3);
 s32 lookup_name_entry__22TQuestVmDownLoadServerFPvsPv(char *arg0, s16 arg1, Out_803E8B1C *arg2);
@@ -1034,14 +1031,13 @@ s32 TQuestVmDownLoadServer__sub_803E9F54(s32 arg0);
 // switch behind an explicit range guard at the head of the slot search.
 
 // Scan one slot's match-token chain for segments covering [beg, end). A
-// token names an item pair (a, b); lbl_8047F0F8 maps its displacement byte
-// to an offset into the download buffer, and the first-fill path above
+// token names an item pair (a, b). The dictionary supplies the match length
+// used to step through the download buffer, and the first-fill path
 // covers the empty-slot single-byte case. The walk runs backwards by the
 // token's signed link count.
 QuestDownloadEntryNode *insert_sorted_node__22TQuestVmDownLoadServerFPvPv(QuestDownloadEntryNode *arg0, QuestDownloadEntryNode *arg1);
 void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, QuestDownloadItemNode *t);
 
-extern "C" QuestDownloadItemNode lbl_8047F8A8;
 // Local pass settings preserve the separate generator result and traversal
 // cursor, the cached position and the original write boundary. pragma pop
 // restores the surrounding profile; option recognition is tested separately.

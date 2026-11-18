@@ -11504,6 +11504,7 @@ force_active:
   - play_proximity_effect__14TObjEneBm5WolfFv
   - play_se__13TBoss5GryphonFl
   - play_se_at_pos__12TBoss1DragonFii
+  - play_shock_feedback__10TObjPlayerFii
   - play_sifta_cast_sound__9TTecSiftaFv
   - play_sound
   - play_sound__14TObjEneBm5WolfFPv
@@ -16028,6 +16029,10 @@ force_active:
   - quest_download_file_info
   - quest_download_file_slot
   - quest_download_header_name_index_hi_count
+  - quest_download_lz_default_tokens
+  - quest_download_lz_match_entry_table
+  - quest_download_lz_match_index_table
+  - quest_download_lz_match_strings
   - quest_download_name_search_lo
   - quest_floor_designations
   - quest_list_battle_stage_table
@@ -17343,6 +17348,7 @@ force_active:
   - run_task__18TObjChallengeRetryFv
   - run_task__18TObjCityDoor_GuildFv
   - run_task__18TObjCityDoor_LobbyFv
+  - run_task__18TObjEneBalClawBodyFv
   - run_task__18TObjEneBalClawClawFv
   - run_task__18TObjEneEpsilonBodyFv
   - run_task__18TObjEneMe3SinowZoaFv
@@ -19671,6 +19677,7 @@ force_active:
   - update_go_down__11TBoss4Type3Fv
   - update_go_up__11TBoss4Type3Fv
   - update_goal_checks__13TUnk_804B8E18FUs
+  - update_grabbed_state__16TBoss3VoloptCoreFv
   - update_ground_check__15TObjEneDelDepthFv
   - update_ground_contact__10TObjPlayerFv
   - update_ground_effects__13TBoss5GryphonFv
@@ -19917,6 +19924,7 @@ force_active:
   - update_pulse_state__10TBoss2MineFv
   - update_pulse_value__17TOSensorAncient01Fv
   - update_pulsing_colors__13TBoss2DeRolLeFPv
+  - update_quest_challenge_state__6TLobbyFPv
   - update_radar_markers__11TBoss4Type3Fv
   - update_ramp_timer__11TBoss6Type2Fv
   - update_random_flip_flag__6TLobbyFPv
@@ -20718,6 +20726,13 @@ block_relocations:
   # These words happen to equal code addresses; they are not pointers.
   - source: 0x8047EB44
   - source: 0x8047EC64
+  # Quest download dictionary entries contain four token bytes, never a pointer.
+  - source: 0x8047F20C
+  - source: 0x8047F298
+  - source: 0x8047F2D8
+  - source: 0x8047F2E8
+  - source: 0x8047F30C
+  - source: 0x8047F330
 
 # MetroTRK code templates are copied as data, so CFA does not discover their references.
 add_relocations:
