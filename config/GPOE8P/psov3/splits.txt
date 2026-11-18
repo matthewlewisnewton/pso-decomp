@@ -14285,6 +14285,9 @@ pso/player/TObjPlayer_803E112C.cpp:
 	.rodata     start:0x8047E498 end:0x8047E56C
 	.sdata2     start:0x805E1000 end:0x805E1020
 
+pso/misc/QuestDownloadCharTables.c:
+	.rodata     start:0x8047E698 end:0x8047EA28
+
 pso/player/TObjPlayer_803E18C0.cpp:
 	.text       start:0x803E18C0 end:0x803E1A58
 	.sdata2     start:0x805E1020 end:0x805E1038

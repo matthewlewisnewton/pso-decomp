@@ -1,0 +1,26 @@
+#ifndef PSO_QUEST_QUESTDOWNLOADCHARTABLES_H
+#define PSO_QUEST_QUESTDOWNLOADCHARTABLES_H
+
+#include "types.h"
+
+// JIS symbol code and the single-byte code it maps to.
+typedef struct JisSymbolEntry {
+    u16 key;
+    u8 val;
+} JisSymbolEntry;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+extern const u16 single_byte_to_jis_table[0x100];
+extern const u8 key_symbol_chars[9];
+extern const u16 key_symbol_jis[8];
+extern const u16 quest_download_char_code_table[0x5F];
+extern const JisSymbolEntry jis_to_single_byte_symbol_table[45];
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

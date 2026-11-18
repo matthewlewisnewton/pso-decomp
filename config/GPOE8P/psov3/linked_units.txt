@@ -848,6 +848,7 @@ pso/misc/ParticleOrbit.cpp
 pso/misc/ParticleRadial.cpp
 pso/misc/PhotonBlastSummon.cpp
 pso/misc/QuestDownloadBuffers.cpp
+pso/misc/QuestDownloadCharTables.c
 pso/misc/RenderFadeState.cpp
 pso/misc/ShopToolStock.cpp
 pso/misc/ShopWeaponStock.cpp

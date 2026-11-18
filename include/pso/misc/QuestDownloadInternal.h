@@ -5,6 +5,7 @@
 // quest-download objects. See docs/evidence/quest-download-unit-completion.md.
 #include "types.h"
 #include "pso/misc/QuestDownloadScratch.h"
+#include "pso/misc/QuestDownloadCharTables.h"
 #include "pso/misc/QuestDownloadRecords.h"
 #include "pso/misc/QuestDownloadQueryTypes.h"
 #include "pso/misc/QuestDownloadCacheTypes.h"
@@ -65,13 +66,6 @@ struct RecoveredGlobal_803E6ED0_lbl_805A05D0 {
     s32 value;
     u8 remaining[0xC4];
 };
-
-struct RecoveredGlobal_803E721C_lbl_8047E698 {
-    s32 value;
-    u8 remaining[0x1FC];
-};
-
-struct E_803E6F48 { u16 key; u8 val; u8 pad; };
 
 typedef Req_803EEF2C Msg_803E92C0;
 
@@ -147,7 +141,6 @@ extern QuestDownloadCachedNameIndex lbl_80593EC8;
 extern s8 lbl_805D7868;
 
 extern const u8 lbl_8047F8B8[0x100];
-extern RecoveredGlobal_803E721C_lbl_8047E698 single_byte_to_jis_table;
 s32 strcpy(void *, void *);
 s32 dispatch_request_0x20__19TWindowKeyBoardSoftFll(void *, void *);
 s32 dispatch_request_0x1c__19TWindowKeyBoardSoftFv();
@@ -158,7 +151,6 @@ extern s32 lbl_805D790C;
 extern s32 lbl_805E10D8;
 extern s32 lbl_805E10E0;
 extern s32 lbl_805D7888;
-extern u16 quest_download_char_code_table[];
 
 extern u8 quest_name_index_table[1024][4];
 void __VIRetraceHandler(void);
@@ -173,7 +165,6 @@ QuestDownloadTextNode *TQuestVmDownLoadServer__sub_803EB878(QuestDownloadTextNod
 void TQuestVmDownLoadServer__sub_803ECD1C(QuestDownloadQueueNode *p);
 void TQuestVmDownLoadServer__sub_803ECD8C(QuestDownloadEntryNode *p);
 void TQuestVmDownLoadServer__sub_803ECE5C(QuestDownloadSegment *p);
-extern E_803E6F48 jis_to_single_byte_symbol_table[];
 extern QuestDownloadFileCache quest_download_slot_table;
 QuestDownloadEntryNode *insert_sorted_node__22TQuestVmDownLoadServerFPvPv(QuestDownloadEntryNode *arg0, QuestDownloadEntryNode *arg1);
 int strncmp(const char *, const char *, u32);
@@ -258,8 +249,6 @@ extern u8 lbl_8047F0F8[];
 const QuestDownloadMatchToken *find_longest_match_entry__22TQuestVmDownLoadServerFPviPv(u8 *arg0, s32 arg1, s32 *arg2);
 void build_message_packet__22TQuestVmDownLoadServerFPviPvUc(u8 *arg0, s32 arg1, Msg_803E9190 *arg2, u8 arg3);
 s32 lookup_name_entry__22TQuestVmDownLoadServerFPvsPv(char *arg0, s16 arg1, Out_803E8B1C *arg2);
-extern u8 lbl_8047E898[];
-extern u16 lbl_8047E8A4[];
 void TQuestVmDownLoadServer__sub_803EFCB4(u8 *data, s32 a1, s32 a2, s32 *cnt, s32 *total, u8 *buf, s32 flags);
 extern u8 *lbl_805D7824;
 
@@ -549,8 +538,6 @@ s32 TQuestVmDownLoadServer__sub_803E7018(u16 arg0);
 s32 TQuestVmDownLoadServer__sub_803E7098(u8 *p, u16 code);
 
 s32 TQuestVmDownLoadServer__sub_803E719C(u8 arg0, s32 arg1);
-
-typedef char RecoveredGlobal_803E721C_lbl_8047E698_size[sizeof(RecoveredGlobal_803E721C_lbl_8047E698) == 0x200 ? 1 : -1];
 
 u16 TQuestVmDownLoadServer__sub_803E721C(u16 arg0);
 
