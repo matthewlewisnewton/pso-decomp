@@ -1,3 +1,4 @@
+#include "libc/ctype.h"
 #include "pso/object/TObjDeadListWin.h"
 #include "pso/misc/TLobby.h"
 #include "pso/object/TObjTombstone.h"
@@ -73,27 +74,11 @@ struct RecoveredGlobal_80070ACC_lbl_8048D208 {
     u8 remaining[0x14];
 };
 
-struct RecoveredGlobal_8039994C_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
-struct RecoveredGlobal_80399904_lbl_804F5A00 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
-struct RecoveredGlobal_80399928_lbl_804F5900 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
 struct G_80070B34 { u8 pad[0x10]; s32 x10; u8 pad2[0x34 - 0x14]; s32 x34; };
 
 extern "C" {
 extern RecoveredGlobal_80070ACC_lbl_8048D208 lbl_8048D208;
 s32 *TLobby__sub_80070ACC(void);
-extern RecoveredGlobal_80399904_lbl_804F5A00 lbl_804F5A00;
 u32 TLobby__sub_80070AD8(s32 arg0);
 #define challenge_mode_state (*(G_80070B34 *)challenge_mode_state)
 u8 is_flag_set__6TLobbyFv(void);
@@ -111,13 +96,11 @@ typedef char RecoveredGlobal_80070ACC_lbl_8048D208_size[sizeof(RecoveredGlobal_8
 s32 *TLobby__sub_80070ACC(void) {
     return &lbl_8048D208.value;
 }
-typedef char RecoveredGlobal_8039994C_lbl_804F5800_size[sizeof(RecoveredGlobal_8039994C_lbl_804F5800) == 0x100 ? 1 : -1];
-typedef char RecoveredGlobal_80399904_lbl_804F5A00_size[sizeof(RecoveredGlobal_80399904_lbl_804F5A00) == 0x100 ? 1 : -1];
 u32 TLobby__sub_80070AD8(s32 arg0) {
     if (arg0 == -1) {
         return -1U;
     }
-    return *(u8 *)((s8 *)((u8 *)&lbl_804F5A00.value + (u8) arg0) + 0);
+    return __upper_map[(u8)arg0];
 }
 void set_split_screen_flag__6TLobbyFv(void) {
     if (((s32 (*)(void))is_flag_set__6TLobbyFv)() != 0) {
@@ -133,7 +116,6 @@ void TLobby__sub_80070B34(s32 v) {
     }
 }
 
-typedef char RecoveredGlobal_80399928_lbl_804F5900_size[sizeof(RecoveredGlobal_80399928_lbl_804F5900) == 0x100 ? 1 : -1];
 
 }
 

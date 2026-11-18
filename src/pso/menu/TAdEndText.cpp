@@ -1,3 +1,4 @@
+#include "libc/ctype.h"
 #include "pso/system/CurrentTextureList.h"
 #include "pso/TAdEndText.h"
 #include "pso/menu/TAdEndText.h"
@@ -10,26 +11,6 @@ s32 set_texlist(u32 texlist);
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjFish.h"
-
-struct RecoveredGlobal_8001B3BC_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
-struct RecoveredGlobal_8001B3EC_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
-struct RecoveredGlobal_8001B3D4_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
-struct RecoveredGlobal_8001B404_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
 
 struct Pos_8001AD8C { f32 x, y; };
 
@@ -94,7 +75,6 @@ struct Self_8001B190
 };
 
 extern "C" {
-extern RecoveredGlobal_8001B3BC_lbl_804F5800 lbl_804F5800;
 struct EndTextTexName { const char *filename; u32 attr; u32 texaddr; };
 struct EndTextTexList { EndTextTexName *textures; u32 nbTexture; };
 extern EndTextTexList TAdEndText__ending_font_texture_list;
@@ -423,7 +403,6 @@ void TAdEndText::free_resources() {
 
 extern s32 ending_sequence_active;
 
-typedef char RecoveredGlobal_8001B3BC_lbl_804F5800_size[sizeof(RecoveredGlobal_8001B3BC_lbl_804F5800) == 0x100 ? 1 : -1];
 
 void TAdEndText::load_ending_font() {
     TAdEndText__loaded_font_texture_list = (u32)&TAdEndText__ending_font_texture_list;
@@ -433,23 +412,20 @@ void TAdEndText::load_ending_font() {
 }
 
 s32 TAdEndText__sub_8001B3BC(u8 arg0) {
-    return *(u8 *)((s8 *)((u8 *)&lbl_804F5800.value + arg0) + 0) & 0x10;
+    return __ctype_map[arg0] & __digit;
 }
 
-typedef char RecoveredGlobal_8001B3EC_lbl_804F5800_size[sizeof(RecoveredGlobal_8001B3EC_lbl_804F5800) == 0x100 ? 1 : -1];
 
-typedef char RecoveredGlobal_8001B3D4_lbl_804F5800_size[sizeof(RecoveredGlobal_8001B3D4_lbl_804F5800) == 0x100 ? 1 : -1];
 s32 TAdEndText__sub_8001B3D4(u8 arg0) {
-    return *(u8 *)((s8 *)((u8 *)(&(*(RecoveredGlobal_8001B3D4_lbl_804F5800 *)&lbl_804F5800).value) + arg0) + 0) & 0x80;
+    return __ctype_map[arg0] & __upper_case;
 }
 
 s32 TAdEndText__sub_8001B3EC(u8 arg0) {
-    return *(u8 *)((s8 *)((u8 *)(&(*(RecoveredGlobal_8001B3EC_lbl_804F5800 *)&lbl_804F5800).value) + arg0) + 0) & 0xD0;
+    return __ctype_map[arg0] & __alphanumeric;
 }
 
-typedef char RecoveredGlobal_8001B404_lbl_804F5800_size[sizeof(RecoveredGlobal_8001B404_lbl_804F5800) == 0x100 ? 1 : -1];
 s32 TAdEndText__sub_8001B404(u8 arg0) {
-    return *(u8 *)((s8 *)((u8 *)(&(*(RecoveredGlobal_8001B404_lbl_804F5800 *)&lbl_804F5800).value) + arg0) + 0) & 0x40;
+    return __ctype_map[arg0] & __lower_case;
 }
 
 s32 TAdEndText__sub_8001B41C(void) {

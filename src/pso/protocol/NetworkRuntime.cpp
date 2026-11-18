@@ -2,6 +2,7 @@
 #include "pso/protocol/PppControlRuntime.h"
 #include "types.h"
 #include "string.h"
+#include "libc/ctype.h"
 #include "pso/misc/TLobby.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/protocol/NetworkRuntimeSlots.h"
@@ -80,8 +81,6 @@ extern u32 lbl_804FD380[6];
 
 s32 TLobby__sub_803F9B94(void (*func)(Ent_803F9B48 *), u32 *out);
 s32 NetCompareStringsCaseInsensitiveN(u8 *a, u8 *b, u32 n);
-s32 TAdEndText__sub_8039994C(s32 c);
-u32 TAdEndText__sub_80399904(s32 c);
 
 NetworkAlarmSlot lobby_alarm_slot_table[0x40];
 NetworkMutexSlot network_mutex_slot_table[8];
@@ -477,11 +476,11 @@ s32 NetCompareStringsCaseInsensitiveN(u8 *a, u8 *b, u32 n) {
     for (i = 0; i < n && *a != 0 && *b != 0; i++, a++, b++) {
         ca = *a;
         cb = *b;
-        if (TAdEndText__sub_8039994C(ca) != 0) {
-            ca = TAdEndText__sub_80399904(ca);
+        if (islower(ca) != 0) {
+            ca = toupper(ca);
         }
-        if (TAdEndText__sub_8039994C(cb) != 0) {
-            cb = TAdEndText__sub_80399904(cb);
+        if (islower(cb) != 0) {
+            cb = toupper(cb);
         }
         if (ca != cb) {
             return ca - cb;
