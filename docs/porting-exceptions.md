@@ -15,6 +15,14 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### LSC initialization
+
+`pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with
+`-str reuse,readonly`, following the split recovered in upstream
+matchpass 18 (`b0b44cbda2`). Read-only string pooling keeps the build banner in
+`.rodata` and its volatile pointer in `.sdata2`. Ports can use ordinary C++
+string storage and retain the volatile read in `lsc_init`.
+
 ### Shared warning-window lifecycle
 
 The `TObjBagWarnWin` and `TObjBagWarnWin4P` units use guarded

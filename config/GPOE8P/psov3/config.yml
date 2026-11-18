@@ -10845,8 +10845,8 @@ force_active:
   - lsc_get_stream_filename
   - lsc_get_stream_progress
   - lsc_get_stream_status
+  - lsc_init_count
   - lsc_set_repeat
-  - lsc_slot_table
   - lzss_input_exhausted__FPUc
   - lzss_insert_ring_node
   - lzss_read_byte__FPUc

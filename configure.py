@@ -963,6 +963,8 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/system/AdxExpand.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
         "pso/system/AdxManager.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
         "pso/system/AdxStreamRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        # Keep the build banner in .rodata and its volatile pointer in .sdata2.
+        "pso/system/LscInit.cpp": {"cflags": _switch(cflags_middleware, "-str reuse,readonly")},
     }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.0", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
