@@ -261,7 +261,7 @@ CollisionBody lbl_80495458[1] = {
     { { 0.0f, 16.5f, 0.0f }, 7.5f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f },
 };
 
-/* The two halves' motions, picked by the half's index through lbl_80495914. */
+/* The two halves' motions, picked by the half's index through panbara_action_tables. */
 PanarmsMotionParam lbl_80495484[10] = {
     { 0x10000, 0x18, 0.8f, 0 }, { 0x10000, 0x1b, 0.7f, 0 }, { 0x10000, 0x15, 1.0f, 0 }, { 0x30000, 0, 0.8f, 0 },
     { 0x30000, 0x14, 0.8f, 0 }, { 0x30000, 0xa, 1.3f, 0 },  { 0x30000, 0xd, 0.7f, 0 },  { 0x30000, 0x10, 0.7f, 0 },
@@ -423,12 +423,12 @@ void __sinit_TObjEnePanarms_cpp() {
 
 PanBARAState TObjEnePanarms__state_fn_table[17] = {};
 
-TObjFishNodeEntry lbl_804958F4[2] = {
+TObjFishNodeEntry panbara_draw_callback_entries[2] = {
     { 3 },
     { -1 },
 };
 
-PanarmsMotionParam *lbl_80495914[2] = { lbl_80495484, lbl_80495524 };
+PanarmsMotionParam *panbara_action_tables[2] = { lbl_80495484, lbl_80495524 };
 
 s32 panarms_turn_delta_table[2] = { 0x4000, -0x4000 };
 
@@ -468,7 +468,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
     model = (void *)get_bml_model(TObjEnePanarms__entry_params_resource, lbl_8043CD38[m_380]);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body_parts = init_collision_body_parts(this, lbl_80495458, 1);
-    set_field_d8((s32)lbl_80495914[m_380]);
+    set_field_d8((s32)panbara_action_tables[m_380]);
     set_field_dc((s32)TObjEnePanarms__entry_params_resource->motions);
     set_animation(0);
     set_field_b8(0);
@@ -495,7 +495,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
     } else {
         set_param(22);
     }
-    m_3dc = (void *)TObjFish__sub_800E3124((u8 *)lbl_804958F4, (s32)unk_3E0);
+    m_3dc = (void *)TObjFish__sub_800E3124((u8 *)panbara_draw_callback_entries, (s32)unk_3E0);
     if (m_3dc == NULL) {
         return;
     }

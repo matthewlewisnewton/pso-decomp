@@ -347,7 +347,7 @@ const char *moja_enemy_standard_motion_names[] = {
     "walk_bm2f_s_moj_body.njm",
     NULL
 };
-BmlResourceDescriptor lbl_80491868 = { "bm_ene_bm2_moja.bml", moja_enemy_standard_model_names, moja_enemy_standard_motion_names, 3, 11 };
+BmlResourceDescriptor moja_enemy_standard_descriptor = { "bm_ene_bm2_moja.bml", moja_enemy_standard_model_names, moja_enemy_standard_motion_names, 3, 11 };
 const char *moja_enemy_ultimate_model_names[] = {
     "bm2c_s_moj_body.nj",
     "bm2f_s_moj_body.nj",
@@ -368,7 +368,7 @@ const char *moja_enemy_ultimate_motion_names[] = {
     "walk_bm2f_s_moj_body.njm",
     NULL
 };
-BmlResourceDescriptor lbl_804918B8 = { "bm_ene_bm2_moja_a.bml", moja_enemy_ultimate_model_names, moja_enemy_ultimate_motion_names, 3, 11 };
+BmlResourceDescriptor moja_enemy_ultimate_descriptor = { "bm_ene_bm2_moja_a.bml", moja_enemy_ultimate_model_names, moja_enemy_ultimate_motion_names, 3, 11 };
 
 // The Moja's actions (TObjMotion::action_table).
 TObjMotionAction moja_enemy_actions[9] = {
@@ -382,11 +382,11 @@ TObjMotionAction moja_enemy_actions[9] = {
     { 3, 7, 4, 0.7f, 0x10 },
     { 3, 7, 3, 0.7f, 0x10 }
 };
-MojaMovementParameters lbl_80491958[2] = {
+MojaMovementParameters moja_enemy_movement_parameters[2] = {
     { 250.0f, 0.75f, 0x400, { 0x1E0000, 0, 0, 0 } },
     { 250.0f, 0.75f, 0x400, { 0, 0x1E0000, 0, 0 } }
 };
-CollisionBody lbl_80491990 = { { 0.0f, 20.0f, 0.0f }, 12.5f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f };
+CollisionBody moja_enemy_collision_body = { { 0.0f, 20.0f, 0.0f }, 12.5f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f };
 
 const char *TObjEneMoja__name = "TObjEneMoja";
 
@@ -431,11 +431,11 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     requested_action = 0;
     set_animation(requested_action);
     set_field_b8(requested_action);
-    init_collision_body_parts(this, &lbl_80491990, 1);
+    init_collision_body_parts(this, &moja_enemy_collision_body, 1);
     attack = 0;
     bind_enemy_combat_stats((u8 *)lbl_805D50C8[variant], (u8 *)lbl_805D50CC[attack + variant * 3],
         (u8 *)lbl_805D50D0[variant]);
-    movementParameters = &lbl_80491958[variant];
+    movementParameters = &moja_enemy_movement_parameters[variant];
     referenceHp = hp;
     update_prev_position();
     ((TBoss3VoloptHiraisin *)this)->copy_position();
@@ -466,12 +466,12 @@ TObjEneMoja::~TObjEneMoja() {
 void TObjEneMoja::load_resources() {
     switch (game_difficulty_selection) {
     case 3: {
-        void *memory = new BmlResource(1, &lbl_804918B8, 0, 0, NULL);
+        void *memory = new BmlResource(1, &moja_enemy_ultimate_descriptor, 0, 0, NULL);
         lbl_805D50D8 = (BmlResource *)memory;
         break;
     }
     default: {
-        void *memory = new BmlResource(1, &lbl_80491868, 0, 0, NULL);
+        void *memory = new BmlResource(1, &moja_enemy_standard_descriptor, 0, 0, NULL);
         lbl_805D50D8 = (BmlResource *)memory;
         break;
     }
@@ -506,7 +506,7 @@ void TObjEneMoja::load_resources() {
     MojaAnimationBinding binding = { lbl_805D50D8->motions, moja_enemy_actions, 2, 9, 0 };
     for (s32 i = 0; i < 3; i++) {
         TLobby::spawn_npc_enemy(ids[i], (s32)lbl_805D50D8->models[i].model, (NJS_TEXLIST *)lbl_805D50D8->models[i].m_c,
-            &binding, lbl_80491990.radius, 0.0f);
+            &binding, moja_enemy_collision_body.radius, 0.0f);
     }
 }
 

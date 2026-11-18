@@ -124,7 +124,7 @@ TObjEneBm9MericarolMovementParameters lbl_804E1548 = {
     { 225.0f, 0.0f, 0x200 }, { 0, 0, 0, 0 },
 };
 
-CollisionBody lbl_804E1564[2] = {
+CollisionBody mericarol_collision_bodies[2] = {
     { { 0.0f, 0.0f, 0.0f }, 25.0f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f },
     { { 0.0f, 0.0f, 0.0f }, 50.0f, 0.0f, 0, 0x9D03, { 0.0f, 0.0f, 0.0f }, 0.0f },
 };
@@ -139,7 +139,7 @@ const char *mericarol_motion_names[9] = {
     NULL,
 };
 
-BmlResourceDescriptor lbl_804E15E8 = {
+BmlResourceDescriptor mericarol_resource_descriptor = {
     "bm_ene_bm9_s_mericarol.bml", mericarol_model_names, mericarol_motion_names, 1, 8,
 };
 
@@ -153,7 +153,7 @@ const char *mericarol_low_detail_motion_names[9] = {
     NULL,
 };
 
-BmlResourceDescriptor lbl_804E1624 = {
+BmlResourceDescriptor mericarol_low_detail_resource_descriptor = {
     "bm_ene_bm9_s_mericarol_low.bml", mericarol_low_detail_model_names, mericarol_low_detail_motion_names, 1, 8,
 };
 
@@ -189,9 +189,9 @@ extern "C" void TBoss4Type3__sub_802D1130(void) {
     s32 i;
 
     if (is_split_screen() != 0) {
-        mericarol_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&lbl_804E1624);
+        mericarol_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&mericarol_low_detail_resource_descriptor);
     } else {
-        mericarol_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&lbl_804E15E8);
+        mericarol_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&mericarol_resource_descriptor);
     }
     lbl_805D686C = 0;
     lbl_805D6870 = 0;
@@ -217,7 +217,7 @@ extern "C" void TBoss4Type3__sub_802D1130(void) {
     {
         Bm9MericarolAnimationBinding params = { mericarol_resource->motions, mericarol_motion_actions, 0x30001, 9, 0 };
         TLobby::spawn_npc_enemy(0x42, (s32)mericarol_resource->models[0].model, (NJS_TEXLIST *)mericarol_resource->models[0].m_c, &params,
-            lbl_804E1564[0].radius, 0.0f);
+            mericarol_collision_bodies[0].radius, 0.0f);
     }
 }
 
@@ -255,7 +255,7 @@ TObjEneBm9Mericarol::TObjEneBm9Mericarol(TObject *parent, void *set_data) : TObj
     init_position_vectors();
     model = (void *)mericarol_resource->models[0].model;
     texlist = (s32)mericarol_resource->models[0].m_c;
-    init_model(lbl_804E1564, 1);
+    init_model(mericarol_collision_bodies, 1);
     set_field_d8((s32)mericarol_motion_actions);
     set_field_dc((s32)mericarol_resource->motions);
     requested_action = 2;
@@ -288,7 +288,7 @@ TObjEneBm9Mericarol::TObjEneBm9Mericarol(TObject *parent, void *set_data) : TObj
     m_458 = 0;
     m_46c.reset_obstruction_fade();
     m_48c = new TObjCollidable(0);
-    init_collision_body_parts(m_48c, &lbl_804E1564[1], 1);
+    init_collision_body_parts(m_48c, &mericarol_collision_bodies[1], 1);
     m_488 = new AreaAttackHistory(8);
     m_490 = 0;
     m_494 = 0;

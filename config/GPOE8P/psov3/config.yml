@@ -12640,8 +12640,8 @@ force_active:
   - lbl_80485610
   - lbl_8048561C
   - lbl_804856C0
-  - lbl_80485728
-  - lbl_80485734
+  - body_motion_indices
+  - emitter_nodes
   - lbl_80485798
   - lbl_80485AE0
   - lbl_80485B08
@@ -12688,10 +12688,10 @@ force_active:
   - lbl_804912A0
   - lbl_804912AC
   - lbl_8049168C
-  - lbl_80491868
-  - lbl_804918B8
-  - lbl_80491958
-  - lbl_80491990
+  - moja_enemy_standard_descriptor
+  - moja_enemy_ultimate_descriptor
+  - moja_enemy_movement_parameters
+  - moja_enemy_collision_body
   - lbl_80492BE4
   - lbl_80492C20
   - lbl_80492C2C
@@ -12706,8 +12706,8 @@ force_active:
   - lbl_80492DD0
   - lbl_80492DDC
   - lbl_80492F28
-  - lbl_80493094
-  - lbl_804930EC
+  - flower_normal_collision_parts
+  - flower_tower_collision_parts
   - lbl_804933D8
   - lbl_80493D6C
   - lbl_80493DA0
@@ -12720,8 +12720,8 @@ force_active:
   - lbl_80495458
   - lbl_80495484
   - lbl_80495524
-  - lbl_804958F4
-  - lbl_80495914
+  - panbara_draw_callback_entries
+  - panbara_action_tables
   - lbl_80496368
   - lbl_804966FC
   - lbl_80496C68
@@ -13011,9 +13011,9 @@ force_active:
   - lbl_804E0B60
   - lbl_804E135C
   - lbl_804E1548
-  - lbl_804E1564
-  - lbl_804E15E8
-  - lbl_804E1624
+  - mericarol_collision_bodies
+  - mericarol_resource_descriptor
+  - mericarol_low_detail_resource_descriptor
   - lbl_804E1BB0
   - lbl_804E286C
   - lbl_804E29F0

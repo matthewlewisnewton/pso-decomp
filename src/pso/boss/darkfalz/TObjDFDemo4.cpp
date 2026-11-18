@@ -33,8 +33,8 @@ extern s32 boss4_zanzo_bml_index_table[2];
 const char *TObjDFDemo4__name = "TObjDFDemo4";
 // The motions of the afterimage and body models.
 s32 afterimage_motion_indices[2] = {0x12, 0x11};
-s32 lbl_80485728[3] = {0x20, 0x21, 0x22};
-TObjFishNodeEntry lbl_80485734[3] = {{0x34}, {0x35}, {-1}};
+s32 body_motion_indices[3] = {0x20, 0x21, 0x22};
+TObjFishNodeEntry emitter_nodes[3] = {{0x34}, {0x35}, {-1}};
 
 void *TObjDFDemo4::create(void *arg0, void *arg1, void *arg2) {
     return new TObjDFDemo4((TObject *)arg0, (const Vec *)arg1, (s32)arg2);
@@ -72,7 +72,7 @@ TObjDFDemo4::TObjDFDemo4(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
         int id = lbl_80486FB0[i];
         body_parts[i].model = (s32)get_bml_model(res, id);
         body_parts[i].texlist = (s32)get_bml_texlist(res, id);
-        body_parts[i].motion = get_bml_motion(res, lbl_80485728[i]);
+        body_parts[i].motion = get_bml_motion(res, body_motion_indices[i]);
     }
     frame = -0.5f;
     node_tables.init(strip_nodes(), 2);
@@ -87,7 +87,7 @@ TObjDFDemo4::TObjDFDemo4(TObject *parent, const Vec *pos, s32 angle) : TObjBase(
         set_scripted_camera_pose(&this->pos, &this->pos, &angles);
         playback.cache_target_and_forward(0x416C);
     }
-    node_list = (TObjFish *)TObjFish__sub_800E3124((u8 *)lbl_80485734, (s32)node_positions);
+    node_list = (TObjFish *)TObjFish__sub_800E3124((u8 *)emitter_nodes, (s32)node_positions);
     timer = 0;
 }
 

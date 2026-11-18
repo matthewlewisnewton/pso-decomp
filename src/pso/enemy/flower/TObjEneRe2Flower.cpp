@@ -278,12 +278,12 @@ typedef char FlowerSetupData_size[sizeof(FlowerSetupData) == 0x1C ? 1 : -1];
 FlowerSetupData TObjEneRe2Flower__setup_data = { 225.0f, 0, 0x200, { 0, 0, 0, 0 } };
 // The two collision part lists the constructor chooses between: the common
 // kinds, then the one get_flag_11() selects.
-CollisionBody lbl_80493094[2] = {
+CollisionBody flower_normal_collision_parts[2] = {
     { { 0.0f, 0.0f, 0.0f }, 5.0f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f },
     { { 0.0f, 0.0f, 0.0f }, 5.0f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f }
 };
 
-CollisionBody lbl_804930EC[2] = {
+CollisionBody flower_tower_collision_parts[2] = {
     { { 0.0f, 0.0f, 0.0f }, 10.0f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f },
     { { 0.0f, 0.0f, 0.0f }, 20.0f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f }
 };
@@ -364,9 +364,9 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     model = (void *)re2_flower_bml_resource->models->model;
     texlist = (s32)re2_flower_bml_resource->models->m_c;
     if (get_flag_11()) {
-        init_model(lbl_804930EC, 2);
+        init_model(flower_tower_collision_parts, 2);
     } else {
-        init_model(lbl_80493094, 2);
+        init_model(flower_normal_collision_parts, 2);
     }
     set_field_d8((s32)TObjEneRe2Flower__animation_descriptors);
     set_field_dc((s32)re2_flower_bml_resource->motions);
