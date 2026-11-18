@@ -10918,6 +10918,7 @@ force_active:
   - lobby_texlist__16TObjKabochaLobby
   - lobby_texlist__16TObjWeddingLobby
   - lobby_texlist__19TObjStendGlassLobby
+  - lobby_title_texture_list
   - lobby_weapon_random_tables_ptr
   - lobby_worker_thread_run_flag
   - lock_on_cursor_bml_resource
@@ -11004,6 +11005,8 @@ force_active:
   - mfci_file_pool
   - middleware_interrupt_lock_depth
   - middleware_saved_interrupt_state
+  - mode_change_messages_en
+  - mode_change_messages_ja
   - model12_nodes__23TObjSeabedSuisoBrakable
   - model13_nodes__23TObjSeabedSuisoBrakable
   - model_draw_queue_models
@@ -11111,8 +11114,6 @@ force_active:
   - move_update__11TBoss4Type2Fv
   - move_with_collision__14TItemAttackColFPv
   - multi_chg_game_mode_entry_table
-  - multi_chg_game_mode_text_table_a
-  - multi_chg_game_mode_text_table_b
   - multi_chg_game_mode_window_extent
   - multi_chr_select_cursor_jump_table
   - multi_confirm_texture_descriptor
@@ -19182,6 +19183,7 @@ force_active:
   - time_set_summary_format
   - time_set_time_format
   - title_pulse_color_table
+  - title_scene_instance
   - title_texture_entries
   - tl_00_name
   - tl_01_name
