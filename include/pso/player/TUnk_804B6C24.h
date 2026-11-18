@@ -1,6 +1,8 @@
 #ifndef PSO_PLAYER_TUNK_804B6C24_H
 #define PSO_PLAYER_TUNK_804B6C24_H
+#include <stddef.h>
 #include "types.h"
+#include "pso/misc/CameraDistanceFade.h"
 #include "pso/player/TObjChara.h"
 
 class TUnk_804B6C24 : public TObjChara {
@@ -25,11 +27,11 @@ public:
     u8 unk_334[0x4];
     f32 m_338;
     f32 melee_range_sq;
-    u8 unk_340[0x20];
+    CameraDistanceFade camera_fade;
     s32 m_360;
     s32 m_364;
 };
 
-extern "C" void *__dt__13TUnk_804B6C24Fv(TUnk_804B6C24 *container, s16 deleting);
+typedef char ContainerCameraFadeOffset[offsetof(TUnk_804B6C24, camera_fade) == 0x340 ? 1 : -1];
 
 #endif

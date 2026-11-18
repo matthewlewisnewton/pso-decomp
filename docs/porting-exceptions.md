@@ -2128,7 +2128,6 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/unk/text_802D5F44.cpp` | Deferred generation for seven destructors | Immediate generation in the factory emits its switch table first. Reverse destructor definitions under deferred generation emit the seven compiler-generated virtual tables in the original order after that switch table. | Use ordinary destructor definitions and omit the emission pragma. |
-| `src/pso/player/TObjPlayer_802D5C0C.cpp` at `0x802D5C0C` | Explicit ABI entry for the weapon effect descriptor override | The method uses the weapon and descriptor in the two original pointer argument registers. A member definition under GC/2.0 changes the register allocation and instruction schedule. The existing byte views and a correctly sized color object preserve the original instructions. | Implement the override as an ordinary member with a typed descriptor and color. |
 
 ### Ceiling-debris renderer data addresses
 
