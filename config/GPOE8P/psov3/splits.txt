@@ -14146,7 +14146,7 @@ pso/unk/text_803D8910.cpp:
 
 pso/math/MatrixVector.cpp:
 	.text       start:0x803D8BAC end:0x803D8DE0
-	.sdata2     start:0x805E0EE0 end:0x805E0EE8
+	.sdata2     start:0x805E0ED8 end:0x805E0EE8
 
 pso/unk/text_803D8DE0.cpp:
 	.text       start:0x803D8DE0 end:0x803D8F74
