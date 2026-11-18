@@ -593,7 +593,6 @@ s32 TQuestVmDownLoadServer::count_leading_entries(s32 i, s32 end) {
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(3)
-#pragma opt_common_subs off
 #pragma opt_lifetimes off
 #pragma opt_propagation off
 
@@ -1027,7 +1026,6 @@ void TQuestVmDownLoadServer__sub_803EBA98(s32 start, QuestDownloadTextNode *arg1
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma opt_dead_assignments off
 
 QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQueueNode *p) {
     QuestDownloadQueueNode *best = NULL;

@@ -24,7 +24,6 @@ struct RecoveredGlobal_8042839C_lbl_805D0A40 {
 };
 
 #pragma inline_depth(3)
-#pragma auto_inline off
 #pragma dont_inline off
 struct ByteBlock_1C { u8 bytes[0x1c]; };
 
@@ -858,8 +857,6 @@ s32 TAdSinglePlyChrSelectGC__sub_8042D7E0(u8 *buf) {
     return len;
 }
 
-#pragma push
-#pragma opt_common_subs off
 s32 TAdSinglePlyChrSelectGC__sub_8042DD70(u8 *data, s32 length, void (*callback)(s32)) {
     if (modem_send_state.busy != 0) {
         return -4;
@@ -875,7 +872,6 @@ s32 TAdSinglePlyChrSelectGC__sub_8042DD70(u8 *data, s32 length, void (*callback)
     TAdSinglePlyChrSelectGC__sub_8042DDE4(0, NULL);
     return 1;
 }
-#pragma pop
 
 void TAdSinglePlyChrSelectGC__sub_8042DDE4(s32, OSContext *) {
     if (EXILock(0, 2U, TAdSinglePlyChrSelectGC__sub_8042DDE4) != 0) {

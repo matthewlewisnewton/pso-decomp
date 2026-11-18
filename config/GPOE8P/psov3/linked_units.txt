@@ -2298,7 +2298,6 @@ pso/player/TObjPlayer_80090448.cpp
 pso/player/TObjPlayer_80092A7C.cpp
 pso/player/TObjPlayer_80099EF8.cpp
 pso/player/TObjPlayer_800AAFBC.cpp
-pso/player/TObjPlayer_800ACA60.cpp
 pso/player/TObjPlayer_800BBE90.cpp
 pso/player/TObjPlayer_800BC40C.cpp
 pso/player/TObjPlayer_800C25A0.cpp
@@ -2526,19 +2525,6 @@ pso/player/TObjPlayer_801BE3B4.cpp
 pso/player/TObjPlayer_801BE66C.cpp
 pso/player/TObjPlayer_801BE778.cpp
 pso/player/TObjPlayer_801BEB0C.cpp
-pso/player/TObjPlayer_801BF548.cpp
-pso/player/TObjPlayer_801BF6B0.cpp
-pso/player/TObjPlayer_801BF8EC.cpp
-pso/player/TObjPlayer_801BF918.cpp
-pso/player/TObjPlayer_801BF978.cpp
-pso/player/TObjPlayer_801BFA98.cpp
-pso/player/TObjPlayer_801BFAD4.cpp
-pso/player/TObjPlayer_801BFB1C.cpp
-pso/player/TObjPlayer_801BFBCC.cpp
-pso/player/TObjPlayer_801BFE1C.cpp
-pso/player/TObjPlayer_801BFE40.cpp
-pso/player/TObjPlayer_801BFE50.cpp
-pso/player/TObjPlayer_801BFED4.cpp
 pso/player/TObjPlayer_801C00C4.cpp
 pso/player/TObjPlayer_801C0808.cpp
 pso/player/TObjPlayer_801C1FF8.cpp
@@ -2616,6 +2602,7 @@ pso/player/TObjPlayer_803E4954.cpp
 pso/player/TObjPlayer_803E5470.cpp
 pso/player/TPlyItem.cpp
 pso/player/TUnk_80490470.cpp
+pso/player/TUnk_80491460.cpp
 pso/player/TUnk_804A5D28.cpp
 pso/protocol/NetworkRuntime.cpp
 pso/protocol/TradeSession.cpp
@@ -2635,6 +2622,7 @@ pso/quest/TQuestListVM_800F95F4.cpp
 pso/quest/TQuestListVM_801F4398.cpp
 pso/quest/TQuestThread.cpp
 pso/render/ScreenProjectionConstants.cpp
+pso/render/ShadowProjectionConstants.cpp
 pso/render/render_util.cpp
 pso/render/render_util_head.cpp
 pso/render/render_util_tail.cpp

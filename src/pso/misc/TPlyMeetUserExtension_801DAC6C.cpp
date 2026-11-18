@@ -70,7 +70,6 @@ struct VObjDA : BaseDA {
 };
 
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 Ext_801DAC6C *__as__21TPlyMeetUserExtensionFRC21TPlyMeetUserExtension(Ext_801DAC6C *arg0, const Ext_801DAC6C *arg1) {
     arg0->tags = arg1->tags;
