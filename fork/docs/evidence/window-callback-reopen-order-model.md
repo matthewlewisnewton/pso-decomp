@@ -1,3 +1,6 @@
+# Window close and reopen order
+
+```python
 """Conditional close/reopen ordering, not a full scheduler or game simulation."""
 
 def cycle(descend_between=True, destruction_enabled=True):
@@ -24,3 +27,4 @@ assert remains
 blocked, remains = cycle(destruction_enabled=False)
 assert 'delete-old-transition' not in blocked and remains
 print('PASS: ordinary reopen order and two assumption-sensitivity cases')
+```

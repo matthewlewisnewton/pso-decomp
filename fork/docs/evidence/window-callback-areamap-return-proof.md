@@ -66,7 +66,7 @@ fix is justified by this bounded exclusion; preserve original behavior.
 Original and retained compiled complete .text sections are equal for AreaMap
 (828 bytes), MainMenu (1468), and TObject (6096). This checks those retained text
 artifacts, not fresh compilation, relocations or a current-main integrated build.
-`window-callback-areamap-order-model.py` passes the supported-order case plus two
+[The ordering model](window-callback-areamap-order-model.md) passes the supported-order case plus two
 assumption-sensitivity cases (head insertion and disabled retirement). It models
 only the described traversal fragment, not game execution or complete TObject
 semantics. No proprietary artifacts are included. Production source is untouched.

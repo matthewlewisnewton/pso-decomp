@@ -1,3 +1,6 @@
+# Deferred window roots
+
+```python
 """Static ancestry model only; not a game render/interleaving simulation."""
 parents = {'tl03': 'main', 'tl04': 'main', 'screen': 'tlwindow',
            'subcontroller': 'tl01', 'tlwindow': 'main', 'tl01': 'main',
@@ -22,3 +25,4 @@ assert not any(descendant('callback', r) for r in ('tl03', 'tl04'))
 parents['window-root'] = 'tl03'
 assert descendant('callback', 'tl03')
 print('PASS: two static root paths and reparenting sensitivity')
+```

@@ -1,3 +1,6 @@
+# Area map update order
+
+```python
 """Bounded ordering model, NOT game execution or a complete TObject model.
 
 Encode only the normal update branch, tail attachment and destruction-enabled
@@ -48,3 +51,4 @@ disabled = trace(retire_old=False)
 assert 'delete-old-transition' not in disabled[0]
 assert 'old-transition' in disabled[2]
 print('PASS: supported ordering and two assumption-sensitivity cases')
+```
