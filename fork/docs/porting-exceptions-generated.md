@@ -11,10 +11,10 @@ The curated register with reasons is [porting-exceptions.md](<porting-exceptions
 | asm | 65 | 13 |
 | intrinsic | 85 | 55 |
 | hardware | 49 | 16 |
-| pragma | 5077 | 934 |
+| pragma | 5088 | 938 |
 | configure.py per-unit override | 606 | 606 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `fp_contract` 811, `auto_inline` 650, `opt_common_subs` 478, `readonly_strings` 357, `scheduling` 260, `opt_propagation` 178, `peephole` 104, `optimization_level` 86, `defer_codegen` 81, `pool_data` 70, `bool` 49, `pack` 44, `opt_loop_invariants` 40, `opt_lifetimes` 33, `opt_dead_assignments` 33, `optimize_for_size` 29, `use_lmw_stmw` 29, `cplusplus` 8, `suppress_init_code` 4, `common` 4, `opt_pointer_analysis` 3, `force_active` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_strength_reduction` 1, `global_optimizer` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `fp_contract` 810, `auto_inline` 650, `opt_common_subs` 478, `readonly_strings` 357, `scheduling` 260, `opt_propagation` 178, `peephole` 104, `defer_codegen` 93, `optimization_level` 86, `pool_data` 70, `bool` 49, `pack` 44, `opt_loop_invariants` 40, `opt_lifetimes` 33, `opt_dead_assignments` 33, `optimize_for_size` 29, `use_lmw_stmw` 29, `cplusplus` 8, `suppress_init_code` 4, `common` 4, `opt_pointer_analysis` 3, `force_active` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_strength_reduction` 1, `global_optimizer` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1
 
 ## Assembly
 
@@ -167,7 +167,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/ui/window/TWindowKeyBoardBase_8008102C.cpp:74` | `__cntlzw` |
 | `src/pso/ui/window/TWindowMainMenu_802AD538.cpp:451` | `__cntlzw` |
 | `src/pso/ui/window/TWindowSubComCard_80244774.cpp:240` | `__cntlzw` |
-| `src/pso/ui/window/TWindowSubItem.cpp:354` | `__cntlzw` |
+| `src/pso/ui/window/TWindowSubItem.cpp:616` | `__cntlzw` |
 | `src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp:93` | `__cntlzw` |
 | `src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/unk/text_80145A94.cpp:219` | `__cntlzw` |
@@ -189,12 +189,12 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/object/ambient/TObjLight_803DF220.cpp:129` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = y;` |
 | `src/pso/object/ambient/TObjLight_803DF220.cpp:130` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = z;` |
 | `src/pso/object/ambient/TObjLight_803DF220.cpp:133` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).u32 = c;` |
-| `src/pso/player/TObjPlayer_80083594.cpp:1021` | `*(f32 *)0xCC008000 = farg0;` |
-| `src/pso/player/TObjPlayer_80083594.cpp:1022` | `*(f32 *)0xCC008000 = farg1;` |
-| `src/pso/player/TObjPlayer_80083594.cpp:1026` | `*(s32 *)0xCC008000 = arg0;` |
-| `src/pso/player/TObjPlayer_80083594.cpp:1030` | `*(f32 *)0xCC008000 = farg0;` |
-| `src/pso/player/TObjPlayer_80083594.cpp:1031` | `*(f32 *)0xCC008000 = farg1;` |
-| `src/pso/player/TObjPlayer_80083594.cpp:1032` | `*(f32 *)0xCC008000 = farg2;` |
+| `src/pso/player/TObjPlayer_80083594.cpp:293` | `*(f32 *)0xCC008000 = farg0;` |
+| `src/pso/player/TObjPlayer_80083594.cpp:294` | `*(f32 *)0xCC008000 = farg1;` |
+| `src/pso/player/TObjPlayer_80083594.cpp:295` | `*(f32 *)0xCC008000 = farg2;` |
+| `src/pso/player/TObjPlayer_80083594.cpp:299` | `*(s32 *)0xCC008000 = arg0;` |
+| `src/pso/player/TObjPlayer_80083594.cpp:303` | `*(f32 *)0xCC008000 = farg0;` |
+| `src/pso/player/TObjPlayer_80083594.cpp:304` | `*(f32 *)0xCC008000 = farg1;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:206` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = x;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:207` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = y;` |
 | `src/pso/player/TObjPlayer_803E21B8.cpp:208` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = z;` |
@@ -1267,6 +1267,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/object/ambient/TObjRain.cpp` | fp_contract×1 |
 | `src/pso/object/ambient/TObjRainCtrl.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/object/base/TObjBase.cpp` | opt_common_subs×2, opt_propagation×2, fp_contract×2 |
+| `src/pso/object/base/TObjMotion.cpp` | defer_codegen×1 |
 | `src/pso/object/cave/TORockCave.cpp` | readonly_strings×1 |
 | `src/pso/object/city/CityDoors.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/object/city/CitySeason.cpp` | opt_common_subs×5, opt_propagation×3, opt_dead_assignments×3, fp_contract×3, inline_depth×2, auto_inline×2, dont_inline×2 |
@@ -1339,7 +1340,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/player/TObjPlayerSet.cpp` | readonly_strings×1, opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_80011014.cpp` | scheduling×42, fp_contract×11, opt_common_subs×3, opt_pointer_analysis×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_8002E784.cpp` | opt_common_subs×1, fp_contract×1 |
-| `src/pso/player/TObjPlayer_80083594.cpp` | opt_common_subs×3, fp_contract×2, readonly_strings×1, opt_propagation×1 |
+| `src/pso/player/TObjPlayer_80083594.cpp` | opt_common_subs×3, defer_codegen×1, readonly_strings×1, fp_contract×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_800BBE90.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_80109344.cpp` | opt_propagation×1 |
 | `src/pso/player/TObjPlayer_801542CC.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, fp_contract×2 |
@@ -1451,7 +1452,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/ui/chat/ShortMail.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/chat/TWindowChat.cpp` | readonly_strings×1 |
 | `src/pso/ui/chat/TWindowChatSymbol.cpp` | fp_contract×2, readonly_strings×1 |
-| `src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp` | fp_contract×1 |
+| `src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/ui/chat/TWindowSubSymbolChat.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp` | fp_contract×3 |
 | `src/pso/ui/chat/TWindowSubSymbolChatParts.cpp` | fp_contract×7, opt_propagation×2, readonly_strings×1 |
@@ -1462,15 +1463,15 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/ui/city/THunterGuildWarning.cpp` | readonly_strings×1, optimization_level×1 |
 | `src/pso/ui/city/TJudgmentSequence.cpp` | readonly_strings×1 |
 | `src/pso/ui/city/TShopArmorListWindow.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
-| `src/pso/ui/city/TShopDeleteItemWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1, opt_loop_invariants×1 |
+| `src/pso/ui/city/TShopDeleteItemWindow.cpp` | defer_codegen×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_loop_invariants×1, opt_common_subs×1 |
 | `src/pso/ui/city/TShopEquipmentGearSequence.cpp` | readonly_strings×1 |
-| `src/pso/ui/city/TShopEquipmentListWindow.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
-| `src/pso/ui/city/TShopEquipmentSellWindow.cpp` | readonly_strings×1 |
+| `src/pso/ui/city/TShopEquipmentListWindow.cpp` | defer_codegen×1, readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
+| `src/pso/ui/city/TShopEquipmentSellWindow.cpp` | defer_codegen×1, readonly_strings×1 |
 | `src/pso/ui/city/TShopEquipmentSequence.cpp` | readonly_strings×1 |
 | `src/pso/ui/city/TShopGetItemWindow_8021EEE4.cpp` | opt_dead_code×1 |
 | `src/pso/ui/city/TShopItemListWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, readonly_strings×1, opt_common_subs×1 |
 | `src/pso/ui/city/TShopItemTecSequence.cpp` | readonly_strings×1 |
-| `src/pso/ui/city/TShopJudgmentItemWindow.cpp` | fp_contract×1 |
+| `src/pso/ui/city/TShopJudgmentItemWindow.cpp` | defer_codegen×1, fp_contract×1 |
 | `src/pso/ui/city/TShopKeepItemWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/city/TShopSequence.cpp` | readonly_strings×1 |
 | `src/pso/ui/city/TShopWindowBase.cpp` | readonly_strings×1 |
@@ -1520,6 +1521,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp` | opt_propagation×4, dont_inline×1, inline_depth×1, opt_lifetimes×1 |
 | `src/pso/ui/frontend/TAdPlayerLoadGC_803F339C.cpp` | opt_dead_assignments×1, optimize_for_size×1 |
 | `src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp` | fp_contract×2, opt_propagation×1 |
+| `src/pso/ui/frontend/TAdPlyPltAnimCtrlGC.cpp` | defer_codegen×1 |
 | `src/pso/ui/frontend/TAdPlyPltAnimGC.cpp` | fp_contract×4 |
 | `src/pso/ui/frontend/TAdPlyStatusGC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/frontend/TAdPlyStatusGC_802E1128.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1609,6 +1611,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/ui/window/TWindowMessageQuest.cpp` | readonly_strings×1 |
 | `src/pso/ui/window/TWindowMessageScroll.cpp` | readonly_strings×1 |
 | `src/pso/ui/window/TWindowMessageYesNo.cpp` | readonly_strings×1 |
+| `src/pso/ui/window/TWindowOptionCtrl.cpp` | defer_codegen×1 |
+| `src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp` | defer_codegen×1 |
 | `src/pso/ui/window/TWindowPartyStatus.cpp` | readonly_strings×1, opt_propagation×1 |
 | `src/pso/ui/window/TWindowReturnCity.cpp` | readonly_strings×1 |
 | `src/pso/ui/window/TWindowSetLevelUp.cpp` | inline_depth×6, auto_inline×6, dont_inline×6 |
@@ -1633,13 +1637,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/ui/window/TWindowSubEquipList.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/ui/window/TWindowSubEquip_80277DF8.cpp` | readonly_strings×1 |
 | `src/pso/ui/window/TWindowSubGameEnd.cpp` | readonly_strings×1 |
-| `src/pso/ui/window/TWindowSubItem.cpp` | readonly_strings×1, scheduling×1 |
+| `src/pso/ui/window/TWindowSubItem.cpp` | defer_codegen×1, readonly_strings×1, scheduling×1 |
 | `src/pso/ui/window/TWindowSubItemList.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/ui/window/TWindowSubLog.cpp` | readonly_strings×1 |
 | `src/pso/ui/window/TWindowSubMag.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/ui/window/TWindowSubMagPhoton.cpp` | readonly_strings×1 |
 | `src/pso/ui/window/TWindowSubMag_80253698.cpp` | opt_propagation×1 |
-| `src/pso/ui/window/TWindowSubQuestBoard.cpp` | readonly_strings×1 |
+| `src/pso/ui/window/TWindowSubQuestBoard.cpp` | defer_codegen×1, readonly_strings×1 |
 | `src/pso/ui/window/TWindowSubQuestBoardSelect.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/ui/window/TWindowSubShortCut.cpp` | readonly_strings×1 |
 | `src/pso/ui/window/TWindowSubStatusDisp_8006F044.cpp` | fp_contract×1, optimize_for_size×1 |
