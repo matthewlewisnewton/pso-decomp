@@ -283,6 +283,7 @@ pso/boss/derolle/TBoss2DeRolLe.cpp:
 	.data       start:0x804820D8 end:0x80482A38
 	.bss        start:0x804FE268 end:0x804FE590
 	.sdata      start:0x805D26A8 end:0x805D26B8
+	.sbss       start:0x805D4BA8 end:0x805D4BB4
 	.sdata2     start:0x805D8278 end:0x805D8450
 
 pso/boss/derolle/TBoss2Fin.cpp:
@@ -381,6 +382,7 @@ pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp:
 	.rodata     start:0x80435E90 end:0x80435ED0
 	.data       start:0x804833B8 end:0x804835F0
 	.sdata      start:0x805D2708 end:0x805D270C
+	.sbss       start:0x805D4C00 end:0x805D4C08
 	.sdata2     start:0x805D85E0 end:0x805D8658
 
 pso/boss/volopt/TBoss3Volopt.cpp:
@@ -5895,6 +5897,7 @@ pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp:
 	.ctors      start:0x80433F9C end:0x80433FA0
 	.data       start:0x804C88C0 end:0x804C8B08
 	.bss        start:0x805137C8 end:0x80513920
+	.sbss       start:0x805D5FA8 end:0x805D5FAC
 	.sdata2     start:0x805DC5C0 end:0x805DC5CC
 
 pso/ui/frontend/TAdSinglePlyChrSelectGC_80202A68.cpp:
@@ -5932,7 +5935,7 @@ pso/ui/frontend/TAdStorySelectGC.cpp:
 
 pso/unk/TLobby_80207DA8.cpp:
 	.text       start:0x80207DA8 end:0x8020910C
-	.rodata     start:0x8044BA50 end:0x8044BAC8
+	.rodata     start:0x8044BA50 end:0x8044BAE8
 	.data       start:0x804C8C60 end:0x804C93A8
 	.bss        start:0x805139F8 end:0x80513A40
 	.sbss       start:0x805D6068 end:0x805D6090
@@ -12438,7 +12441,7 @@ pso/ui/keyboard/TKeyBoardControl_803F0C50.cpp:
 
 pso/unk/text_803F1804.cpp:
 	.text       start:0x803F1804 end:0x803F18B8
-	.sbss       start:0x805D7938 end:0x805D793C
+	.sbss       start:0x805D7938 end:0x805D7940
 
 pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp:
 	.text       start:0x803F18B8 end:0x803F339C
@@ -12446,6 +12449,7 @@ pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp:
 	.data       start:0x804FCD48 end:0x804FCE38
 	.bss        start:0x805A28C0 end:0x805A5F00
 	.sdata      start:0x805D4700 end:0x805D4708
+	.sbss       start:0x805D7940 end:0x805D7954
 	.sdata2     start:0x805E10E8 end:0x805E10F8
 
 pso/ui/frontend/TAdPlayerLoadGC_803F339C.cpp:
@@ -12504,6 +12508,7 @@ pso/network/NetworkThreadRuntime.c:
 	.data       start:0x804FD380 end:0x804FD3A8
 	.bss        start:0x805BFEC0 end:0x805BFF68
 	.sdata      start:0x805D4818 end:0x805D4820
+	.sbss       start:0x805D7A70 end:0x805D7A78
 	.sdata2     start:0x805E1150 end:0x805E1158
 
 pso/network/TLobby_803FAEA0.c:

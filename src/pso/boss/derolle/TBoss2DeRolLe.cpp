@@ -805,11 +805,11 @@ extern s32 chunk_polygon_flags_and_mask;
 
 }
 
-extern s32 TBoss2DeRolLe__current_attack_id;
+s32 TBoss2DeRolLe__current_attack_id;
 
-extern s32 TBoss2DeRolLe__sequence_match_index;
+s32 TBoss2DeRolLe__sequence_match_index;
 
-extern s32 lbl_805D4BB0;
+s32 lbl_805D4BB0;
 
 extern u8 *lbl_805D4BB4;
 

@@ -403,7 +403,9 @@ force_active:
   - TBoss1Dragon__sub_80028BE0
   - TBoss2DeRolLe__attack_params_table
   - TBoss2DeRolLe__ct
+  - TBoss2DeRolLe__current_attack_id
   - TBoss2DeRolLe__mine_ground_targets
+  - TBoss2DeRolLe__sequence_match_index
   - TBoss2DeRolLe__shared_handler_id_table
   - TBoss2DeRolLe__sub_8002F73C
   - TBoss2DeRolLe__sub_8002FCE4
@@ -1591,6 +1593,7 @@ force_active:
   - TObjBoss2DustCtrl_dust_counter
   - TObjBoss2Tunnel__ct
   - TObjBoss2Tunnel__data_8048DF2C
+  - TObjBoss2Tunnel__global_flags
   - TObjBoss2Tunnel__snapshot_buffer
   - TObjBoss2Tunnel__snapshot_saved_flag
   - TObjBoss2Tunnel__snapshot_state
@@ -8196,7 +8199,12 @@ force_active:
   - capture_lockon_targets
   - capture_matrix_by_frame__16TObjDFTenchuFuruFv
   - capture_viewport_texture__Fv
+  - card_attach_callback
+  - card_detach_callback
   - card_disk_id
+  - card_lib_state
+  - card_load_followup_pending
+  - card_poll_depth
   - card_slot_info
   - carrier_point_cursor
   - cast_resta__18TObjEneRe4SorcererFv
@@ -10161,6 +10169,8 @@ force_active:
   - estlla_photon_blast_model
   - eval_piecewise_curve__15TObjBoss2TunnelFf
   - evaluate_ground_triangles__FP3VecUlPP8CsnGroup
+  - event_file_extension
+  - event_set_archive_name
   - evict_lowest_key_floor_item__Fl
   - evolve_by_level__8TItemMagFv
   - evolve_first_form__8TItemMagFv
@@ -13381,8 +13391,10 @@ force_active:
   - lbl_805D4B78
   - lbl_805D4B8C
   - lbl_805D4B90
+  - lbl_805D4BB0
   - lbl_805D4BD0
   - lbl_805D4BD8
+  - lbl_805D4C04
   - lbl_805D4D6C
   - lbl_805D4D70
   - lbl_805D4D90
@@ -13749,6 +13761,8 @@ force_active:
   - lbl_805D7908
   - lbl_805D790C
   - lbl_805D7A58
+  - lbl_805D7A70
+  - lbl_805D7A74
   - lbl_805D7AA8
   - lbl_805D7B14
   - lbl_805D7B1C
@@ -21659,6 +21673,7 @@ force_active:
   - save_position__10TBoss2MineFv
   - save_position__10TObjPlayerFv
   - save_position__12TBoss8DragonFv
+  - saved_card_disk_id
   - saved_depth_alpha_scene_state
   - saver_action_table
   - saver_bml_resource

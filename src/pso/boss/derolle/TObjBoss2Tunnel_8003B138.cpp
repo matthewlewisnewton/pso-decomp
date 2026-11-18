@@ -154,7 +154,7 @@ void play_persistent_sound(int, void *, int, int, int);
 void enable_fog__15TObjBoss2TunnelFv(void);
 void enable_fog__15TObjBoss2TunnelFPv(TObjBoss2Tunnel *arg0);
 void TObjBoss2Tunnel__sub_801339EC(f32, f32, f32);
-extern u32 TObjBoss2Tunnel__global_flags;
+u32 TObjBoss2Tunnel__global_flags;
 void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o);
 void TObjBoss2Tunnel__sub_8003B2B0(void);
 void *__ct__7TObjectFP7TObject(void *, void *);
@@ -275,7 +275,7 @@ struct Tunnel_8003C45C {
 };
 
 extern "C" {
-extern s32 *lbl_805D4C04;
+s32 *lbl_805D4C04;
 extern s32 *lbl_805D4C08;
 void TObjBoss2Tunnel__sub_8003C5F8(void);
 void TObjBoss2Tunnel__sub_8003C610(void);
@@ -330,7 +330,7 @@ void TObjBoss2Tunnel::clear_target_flags() {
     s32 *temp_r3;
     s32 *temp_r3_2;
 
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) = 0;
+    TObjBoss2Tunnel__global_flags = 0;
     temp_r3 = *(s32 **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)((s8 *)(*(void **)&boss2_tunnel_instance) + 0x42C)) + 0xA8)) + 0x2C)) + 0x30);
     lbl_805D4C08 = temp_r3;
     temp_r3_2 = *(s32 **)((s8 *)temp_r3 + 0x30);
@@ -350,37 +350,37 @@ void *TObjBoss2Tunnel::create() {
 void TObjBoss2Tunnel__sub_8003C648(void) {  }
 
 void TObjBoss2Tunnel::set_global_flag_400() {
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) |= 0x400;
+    TObjBoss2Tunnel__global_flags |= 0x400;
 }
 
 void TObjBoss2Tunnel::set_global_flag_800() {
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) |= 0x800;
+    TObjBoss2Tunnel__global_flags |= 0x800;
 }
 
 void TObjBoss2Tunnel__sub_8003C610(void) {
-    (*(u32 *)&(*(s32 *)&TObjBoss2Tunnel__global_flags)) |= 0x1000;
-    (*(u32 *)&(*(s32 *)&TObjBoss2Tunnel__global_flags)) &= ~0x2000;
+    TObjBoss2Tunnel__global_flags |= 0x1000;
+    TObjBoss2Tunnel__global_flags &= ~0x2000;
 }
 
 void TObjBoss2Tunnel__sub_8003C5F8(void) {
-    (*(u32 *)&(*(s32 *)&TObjBoss2Tunnel__global_flags)) |= 0x2000;
-    (*(u32 *)&(*(s32 *)&TObjBoss2Tunnel__global_flags)) &= ~0x1000;
+    TObjBoss2Tunnel__global_flags |= 0x2000;
+    TObjBoss2Tunnel__global_flags &= ~0x1000;
 }
 
 void TObjBoss2Tunnel::clear_global_flag_3000() {
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) &= 0xFFFFCFFF;
+    TObjBoss2Tunnel__global_flags &= 0xFFFFCFFF;
 }
 
 s32 TObjBoss2Tunnel::is_active() {
-    return (*(s32 *)&TObjBoss2Tunnel__global_flags) & 1;
+    return TObjBoss2Tunnel__global_flags & 1;
 }
 
 void TObjBoss2Tunnel::set_global_flag_100() {
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) |= 0x100;
+    TObjBoss2Tunnel__global_flags |= 0x100;
 }
 
 void TObjBoss2Tunnel::set_global_flag_200() {
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) |= 0x200;
+    TObjBoss2Tunnel__global_flags |= 0x200;
 }
 
 void *TObjBoss2Tunnel__ct(void *object, void *arg1) {
@@ -392,7 +392,7 @@ void *TObjBoss2Tunnel__ct(void *object, void *arg1) {
     __ct__14PiecewiseCurveFv(&self->curve);
     self->name = lbl_805D2708;
     self->i24 = 0;
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) = 0;
+    TObjBoss2Tunnel__global_flags = 0;
     self->f1C = (0.0f);
     self->f20 = (0.0f);
     self->i28 = 0;
@@ -477,12 +477,12 @@ void shift_queue_push_next__15TObjBoss2TunnelFPv(Obj_8003C2A0 *self) {
 
 void enable_fog__15TObjBoss2TunnelFv(void) {
     TFogCtrl::update_all(0xB, 1);
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) |= 2;
+    TObjBoss2Tunnel__global_flags |= 2;
 }
 
 void enable_fog__15TObjBoss2TunnelFPv(TObjBoss2Tunnel *boss2_tunnel) {
     TFogCtrl::update_all(boss2_tunnel->m_b0, 1);
-    (*(s32 *)&TObjBoss2Tunnel__global_flags) |= 4;
+    TObjBoss2Tunnel__global_flags |= 4;
 }
 
 
