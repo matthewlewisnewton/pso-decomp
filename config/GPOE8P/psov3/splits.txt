@@ -983,6 +983,9 @@ pso/object/TObjWarnChime.cpp:
 	.sdata      start:0x805D28A0 end:0x805D28A8
 	.sdata2     start:0x805D91C0 end:0x805D91D0
 
+pso/unk/data_805D91D0.cpp:
+	.sdata2     start:0x805D91D0 end:0x805D9208
+
 pso/item/TItemProShield_80076B5C.cpp:
 	.text       start:0x80076B5C end:0x80076BBC
 
