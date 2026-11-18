@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowCost.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/item/TItemData.h"
 #include "pso/misc/TWindowMenuIconLine.h"
@@ -213,8 +214,6 @@ void *__nw__7TObjectFUl(u32);
 void *__ct__15TWindowHelpItemFPvUs(void *, s32, u16);
 s32 get_window_layout_position(s32);
 void *create_item_list_window(s32, s32, u16);
-s32 get_item_count__24TShopEquipmentSellWindowFv(void *a, s32 b);
-void *create_cost_window(u16);
 extern const f32 lbl_805DC6D0;
 s32 advance_item_id_counter(u16);
 void try_buy_item(void *, void *);
@@ -255,7 +254,7 @@ void TShopEquipmentListWindow::update_list(void *arg1) {
     if (v != 0) {
         s32 n = *(s32 *)((s8 *)arg1 + 0x10);
         if (n > 0) {
-            get_item_count__24TShopEquipmentSellWindowFv(v, n);
+            fn_803094E8((TWindowCost *)(v), n);
         }
     }
 }
@@ -530,9 +529,9 @@ void TShopEquipmentListWindow::create_buy_list_windows(void *p) {
         ((TWindowHelpItem *)(W->help))->set_displayed_item_colored((u32)W->recs);
     }
     if (W->cost == NULL) {
-        W->cost = create_cost_window(get_entity_id(W->player));
+        W->cost = create_cost_window((u16)(get_entity_id(W->player)));
         if ((c = W->cost) != NULL && W->recs[0].price > 0) {
-            get_item_count__24TShopEquipmentSellWindowFv(c, W->recs[0].price);
+            fn_803094E8((TWindowCost *)(c), W->recs[0].price);
         }
     }
     W->base.m4(0xB, 1);

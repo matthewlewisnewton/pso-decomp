@@ -1,5 +1,14 @@
 # Action-palette source linkage
 
+Continuation #403 qualification: the [combined-stack integration](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-palette-main-stack-integration.md)
+retains this consolidated owner and compiler context while preserving its already
+recovered Base-derived class, native constructor/task, free tag ABI and typed
+texture-list storage pointers. The raw-construction/intermediate-Base statements
+below describe the incoming main snapshot, not combined B. The raw destructor
+and remaining callback/entry/helper qualifications stay explicit in that note.
+The later [native destructor qualification](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-palette-native-destruction.md)
+also resolves that raw deleting boundary on B while retaining the other holds.
+
 Base: fork main `e65f11ce6ec99c006909422f81da1c0a46ac062e`.
 
 The former `TWindowHelpItem_80243408`, `text_802437C4`, and

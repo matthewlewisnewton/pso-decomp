@@ -1,3 +1,4 @@
+#include "pso/misc/TWindowBase.h"
 #include "types.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/unk/text_80263A20.h"
@@ -23,6 +24,6 @@ void toggle_help_window_on_button(u32 arg0, s32 arg1) {
             window_request_show((void *)arg0);
             return;
         }
-        ((TWindowLockOn *)arg0)->request_close();
+        ((TWindowBase *)arg0)->request_close();
     }
 }

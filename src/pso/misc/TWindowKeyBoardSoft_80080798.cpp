@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/KeyboardTextAbi.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"
@@ -61,8 +62,8 @@ void append_text__19TWindowKeyBoardSoftFPvPv(F_80080798 *arg0, u8 *arg1) {
     }
 }
 
-void TWindowKeyBoardSoft::set_text_from_string(char *s) {
-    Kb_8008081C *kb = (Kb_8008081C *)this;
+void set_text_from_string__19TWindowKeyBoardSoftFPc(void *storage, char *s) {
+    Kb_8008081C *kb = (Kb_8008081C *)storage;
     u16 *dst;
     s32 jp;
     s32 c;

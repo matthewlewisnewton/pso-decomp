@@ -11,6 +11,7 @@
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/TObject.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
 #include "pso/misc/TWindowSubStatusDisp.h"
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -117,7 +118,7 @@ void reset_line_width(void);
 void set_line_width(int a0);
 struct Vec2_80245A10 { f32 x, y; };
 struct Lines_80245A10 { Vec2_80245A10 *verts; u32 *colors; s32 f8; s32 count; };
-void TWindowSubComCard__sub_80245A10(u8 *arg0, s32 arg1, TWindowKeyBoardSoft *r, f32 len);
+void TWindowSubComCard__sub_80245A10(u8 *arg0, s32 arg1, TWindowDrawContext *r, f32 len);
 void draw_color_lines(Lines_80245A10 *l, s32 n, s32 flags, f32 scale);
 void begin_screen_draw(s32);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
@@ -125,8 +126,6 @@ void set_draw_texture_and_color(s32, s32);
 struct VOff_8024491C_arg0_card_1 { char pad_0[0x38]; char f_38[1]; };
 
 struct VOff_80244958_arg0_card_1 { char pad_0[0x30]; char f_30[1]; };
-
-struct Win_80244DFC { u8 pad[0xC]; Win_80244DFC *next; };
 
 struct Quad_802455CC { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
@@ -144,11 +143,9 @@ void TWindowSubTradeMain__sub_802448E4(void *arg0);
 void fn_8024491C(void *arg0);
 void fn_80244958(void *arg0);
 void fn_802449E0(u8 *arg0);
-Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC *self, void *a, void *b, Win_80244DFC *p);
 s32 sub_80246948__11TWindowBaseFv();
 int TWindowFukidasi__sub_8024695C(void *p);
 s32 TWindowCtrlMain__sub_8024CE24();
-s32 animate_scale__19TWindowKeyBoardSoftFv();
 s32 init_window_layout_entries(void *, int, int);
 s32 sub_8026CC28__11TWindowBaseFv();
 s32 resort_window_order__11TWindowBaseFv(void *);
@@ -237,11 +234,11 @@ void fn_802449E0(u8 *object) {
 }
 
 void TWindowBase::close() {
-    ((TWindowLockOn *)this)->request_close();
-    ((TWindowLockOn *)this)->m_2c = (s32) (((TWindowLockOn *)this)->m_2c | 0x10);
+    request_close();
+    m_2c |= 0x10;
 }
 
-void TWindowLockOn::request_close() {
+void TWindowBase::request_close() {
     s32 temp_r3;
     temp_r3 = *(s32 *)&(this->m_2c);
     if (!(temp_r3 & 1)) {
@@ -271,8 +268,6 @@ extern s32 lbl_805D63F0;
 void draw_selection_bar(TWindowDrawContext *arg0, u8 *arg1, s32 arg2);
 void window_request_refresh(u8 *arg0);
 void window_request_show(void *arg0);
-bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2);
-void apply_window_closing_stretch(u8 *arg0, int arg1);
 void window_request_refresh(u8 *arg0) {
     if (!((f32) *(s32 *)((s8 *)arg0 + 0x5C) >= 7.5f)) {
         *(s32 *)((s8 *)arg0 + 0x5C) = 7;
@@ -302,11 +297,11 @@ void window_request_show(void *object) {
 }
 
 s32 TWindowBase::setup_window_draw_context(s32 arg1) {
-    TWindowKeyBoardSoft *window;
+    TWindowDrawContext *window;
     s32 var_r4;
-    window = TWindowKeyBoardSoft::open_singleton(&m_40, &m_48, (f32 *)arg1, m_54, m_2c);
+    window = TWindowDrawContext::open_singleton(&m_40, &m_48, (f32 *)arg1, m_54, m_2c);
     if (m_2c & 0x40) {
-        animate_scale__19TWindowKeyBoardSoftFv();
+        window->animate_scale();
     }
     if (m_2c & 0x80) {
         window->shrink_clip_right();
@@ -319,7 +314,7 @@ s32 TWindowBase::setup_window_draw_context(s32 arg1) {
         var_r4 = (s32) ((f32) var_r4 - 7.5f);
     }
     window->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)window, unk_22);
+    apply_window_closing_stretch(window, unk_22);
     return (s32)window;
 }
 
@@ -333,49 +328,50 @@ void TWindowBase::set_depth(f32 farg0) {
     resort_window_order__11TWindowBaseFv(this);
 }
 
-bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2) {
-    f32 temp_f1;
-    f32 temp_f2;
-    f32 temp_f2_2;
-    temp_f2_2 = *(f32 *)((s8 *)arg1 + 0);
-    if (temp_f2_2 >= (*(f32 *)((s8 *)arg0 + 0x30) + *(f32 *)((s8 *)arg0 + 0x38))) {
+s32 is_balloon_overlapping(const TWindowFukidasi *balloon, const f32 *position, const f32 *size) {
+    f32 y;
+    f32 top;
+    f32 x = position[0];
+    if (x >= balloon->position[0] + balloon->size[0]) {
         return 0;
     }
-    if ((temp_f2_2 + *(f32 *)((s8 *)arg2 + 0)) <= *(f32 *)((s8 *)arg0 + 0x40)) {
+    if (x + size[0] <= balloon->m_40) {
         return 0;
     }
-    temp_f2 = *(f32 *)((s8 *)arg0 + 0x34);
-    temp_f1 = *(f32 *)((s8 *)arg1 + 4);
-    if (temp_f1 >= (temp_f2 + *(f32 *)((s8 *)arg0 + 0x3C))) {
+    top = balloon->position[1];
+    y = position[1];
+    if (y >= top + balloon->size[1]) {
         return 0;
     }
-    return ((temp_f1 + *(f32 *)((s8 *)arg2 + 4)) <= temp_f2) == 0;
+    if (y + size[1] <= top) {
+        return 0;
+    }
+    return 1;
 }
 
-Win_80244DFC *find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC *self, void *a, void *b, Win_80244DFC *p) {
-    if (TWindowFukidasi__sub_8024695C(self) == 0) {
-        return 0;
+TWindowFukidasi *TWindowFukidasi::find_overlapping_balloon(const f32 *position, const f32 *size, TWindowFukidasi *first) {
+    if (TWindowFukidasi__sub_8024695C(this) == 0) {
+        return NULL;
     }
-    if (((TWindowFukidasi *)self)->is_bit10_set() != 0) {
-        return 0;
+    if (is_bit10_set() != 0) {
+        return NULL;
     }
-    if (((TWindowBase *)self)->sub_80244994() == 0) {
-        return 0;
+    if (((TWindowBase *)this)->sub_80244994() == 0) {
+        return NULL;
     }
-    for (; p != 0; p = p->next) {
-        if (TWindowFukidasi__sub_8024695C(p) != 0 && ((TWindowFukidasi *)p)->is_bit10_set() == 0 &&
-            ((TWindowBase *)p)->sub_80244994() != 0 && p != self &&
-            (((TWindowFukidasi *)self)->get_visible_flag() == 0 || ((TWindowFukidasi *)p)->get_visible_flag() == 0) &&
-            ((s32 (*)(void *, void *, void *))is_balloon_overlapping)(p, a, b) != 0) {
+    for (TWindowFukidasi *p = first; p != NULL; p = p->next) {
+        if (TWindowFukidasi__sub_8024695C(p) != 0 && p->is_bit10_set() == 0 &&
+            ((TWindowBase *)p)->sub_80244994() != 0 && p != this &&
+            (get_visible_flag() == 0 || p->get_visible_flag() == 0) &&
+            is_balloon_overlapping(p, position, size)) {
             return p;
         }
     }
-    return 0;
+    return NULL;
 }
 
-void TWindowFukidasi::find_balloon_overlap_for(s32 arg1) {
-    s32 arg0 = (s32)this;
-    find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv((Win_80244DFC *)(arg0), (void *)(arg0 + 0x30), (void *)(arg0 + 0x38), (Win_80244DFC *)(arg1));
+TWindowFukidasi *TWindowFukidasi::find_balloon_overlap_for(TWindowFukidasi *first) {
+    return find_overlapping_balloon(position, size, first);
 }
 
 void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
@@ -691,7 +687,7 @@ void TWindowBase::draw_quest_message_frame(void *c_arg) {
 
 #pragma push
 #pragma fp_contract on
-void TWindowSubComCard__sub_80245A10(u8 *card, s32 row, TWindowKeyBoardSoft *r, f32 len) {
+void TWindowSubComCard__sub_80245A10(u8 *card, s32 row, TWindowDrawContext *r, f32 len) {
     Lines_80245A10 lines;
     u32 colors[3];
     Vec2_80245A10 pts[3];
@@ -761,7 +757,7 @@ void draw_window_scanlines(u8 *arg0, u8 *arg1) {
     set_additive_blend();
     step = 1.0f;
     for (i = 0; i < n2; i++) {
-        TWindowSubComCard__sub_80245A10(arg0, i, (TWindowKeyBoardSoft *)arg1, y);
+        TWindowSubComCard__sub_80245A10(arg0, i, (TWindowDrawContext *)arg1, y);
         y -= step;
     }
     set_default_alpha_blend();

@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/misc/TWindowSimpleStatus.h"
 #include "pso/misc/TWindowBase.h"
@@ -27,15 +28,8 @@ struct Stack_8030C0C4 {
     f32 sp24;
 };
 
-struct RecoveredGlobal_8030C2D8___vt__18TWindowPartyStatus {
-    s32 value;
-    u8 remaining[0x18];
-};
-
 extern "C" {
-s32 draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, int);
-void render__18TWindowPartyStatusFv(s32 arg0);
 s32 TWindowSubComCard__sub_802452DC(int);
 s32 TWindowSubComCard__sub_80245320(void *, void *);
 s32 TWindowSubComCard__sub_802454E4(int);
@@ -53,14 +47,8 @@ extern const f32 lbl_805DF1FC;
 extern const f32 lbl_805DF200;
 extern const f32 lbl_805DF204;
 s32 get_window_layout_position(int);
-s32 TWindowSimpleStatus__ct(void *, int, void *, void *);
-extern s32 __vt__18TWindowPartyStatus[];
 extern const char *TWindowPartyStatus__name;
 extern s32 local_client_id;
-u8 *TWindowPartyStatus__ct(u8 *arg0, s16 arg1, s32 arg2);
-void *__dt__18TWindowPartyStatusFv(void *arg0, s16 arg1);
-void __dl__7TObjectFPv(void *);
-void __dt__19TWindowSimpleStatusFv(void *, int);
 int update_hp_entry__20TWindowSubStatusDispFv(void*);
 s32 update_lockon_window();
 int update_status_entry__20TWindowSubStatusDispFv(void*);
@@ -105,11 +93,10 @@ void TWindowPartyStatus::draw_background(u8 *arg1) {
     }
 }
 
-void render__18TWindowPartyStatusFv(s32 arg0) {
-    s32 ctx;
-    ctx = draw_default_entry__9TWindowDDFl();
-    ((TWindowPartyStatus *)arg0)->draw_background((u8 *)ctx);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)ctx);
+void TWindowPartyStatus::render() {
+    s32 context = TWindowDD::draw_default_entry((s32)this);
+    draw_background((u8 *)context);
+    draw_visible_window_entries(this, (u8 *)this + 0x24, context);
 }
 
 void TWindowPartyStatus::run_task() {
@@ -124,23 +111,17 @@ void TWindowPartyStatus::run_task() {
     ((TWindowSimpleStatus *)arg0)->apply_random_shake();
 }
 
-void *__dt__18TWindowPartyStatusFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TWindowPartyStatus;
-        __dt__19TWindowSimpleStatusFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
-typedef char RecoveredGlobal_8030C2D8___vt__18TWindowPartyStatus_size[sizeof(RecoveredGlobal_8030C2D8___vt__18TWindowPartyStatus) == 0x1C ? 1 : -1];
-u8 *TWindowPartyStatus__ct(u8 *window_party_status, s16 arg1, s32 arg2) {
-    TWindowSimpleStatus__ct((void *)window_party_status, (int) (get_window_layout_position(0xAB)), (void *)local_client_id, (void *)arg2);
-    *(s32 **)((s8 *)window_party_status + 0x18) = &(*(RecoveredGlobal_8030C2D8___vt__18TWindowPartyStatus *)&__vt__18TWindowPartyStatus).value;
-    *(s32 *)((s8 *)window_party_status + 0) = (s32) ((s32)TWindowPartyStatus__name);
-    ((TWindowPartyStatus *)window_party_status)->m_20 = arg1;
-    return window_party_status;
+extern u8 lbl_804E7750[];
+WindowLayoutDescriptor party_status_window_params = {
+    {114.0f, 46.0f}, 70100.0f, lbl_804E7750, 0xB28
+};
+
+TWindowPartyStatus::~TWindowPartyStatus() {}
+
+TWindowPartyStatus::TWindowPartyStatus(s32 slot, u8 *descriptor)
+    : TWindowSimpleStatus((void *)get_window_layout_position(0xAB), local_client_id, descriptor) {
+    m_name = TWindowPartyStatus__name;
+    m_20 = slot;
 }
 
 }

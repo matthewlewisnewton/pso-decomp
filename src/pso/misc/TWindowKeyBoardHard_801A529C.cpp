@@ -1,4 +1,5 @@
 #include "pso/system/ArrayAllocation.h"
+#include "pso/system/CharacterSaveRecordLookup.h"
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardHard_801A529C.h"
 #include "pso/network/packet_copy.h"
@@ -13,14 +14,13 @@ extern void *TLobby__protocol_instance;
 extern s32 deferred_packet_buffer;
 extern s32 deferred_packet_buffer_used;
 extern s32 lbl_805D5D04;
-void *get_character_save_record();
 s32 memcpy(s32, void *, u16);
 s32 memset(s32, s32, s32);
 
 s32 TWindowKeyBoardHard::test_card_flag(s32 arg1, s32 arg2) {
     void *character_save_record;
 
-    character_save_record = get_character_save_record();
+    character_save_record = (void *)get_character_save_record((u32)arg1);
     if (character_save_record == NULL) {
         return 0;
     }
@@ -30,7 +30,7 @@ s32 TWindowKeyBoardHard::test_card_flag(s32 arg1, s32 arg2) {
 void TWindowKeyBoardHard::set_card_window_flags(void *arg0, s32 arg1, s32 arg2) {
     void *character_save_record;
 
-    character_save_record = get_character_save_record();
+    character_save_record = (void *)get_character_save_record((u32)arg0);
     if (character_save_record != NULL) {
         *(s32 *)((s8 *)character_save_record + 0x10) = (s32) (*(s32 *)((s8 *)character_save_record + 0x10) & arg2);
         *(s32 *)((s8 *)character_save_record + 0x10) = (s32) (*(s32 *)((s8 *)character_save_record + 0x10) | arg1);

@@ -4,13 +4,17 @@
 #include <stddef.h>
 #include "pso/misc/TWindowAddition.h"
 
+struct TWindowDrawContext;
+
 class TUnk_804CF0B8 : public TWindowAddition {
 public:
+    TUnk_804CF0B8(u16 speaker, s32 text, s32 client, f32 scale);
+    virtual void run_task();
     virtual ~TUnk_804CF0B8();
     void draw_body(void *, u32, f32 *, f32);
     void draw_body_row(void *, void *, f32, f32, f32, f32);
     void draw_tail(void *, u32, f32 *, f32);
-    void sub_80251DF0(s16, s32, s16, f32);
+    void sub_80251DF0(u16, s32, s32, f32);
     s32 clamp_position(void *, f32);
     void set_color(u16);
     void follow_anchor();
@@ -21,6 +25,7 @@ public:
     void calc_text_size(f32 *);
     virtual void render();
     void clear_flag();
+    u16 get_speaker_id();
     s16 get_field_20();
     int get_flag_bit1();
     s8 alloc_nearest_free_slot();
@@ -35,13 +40,12 @@ public:
     void set_flag2c_bit200();
     void clear_flag2c_bit200();
     void set_flag2c_bit100();
-    u8 unk_5C[0x10];
     s8 m_70;
     u8 m_71;
     u8 unk_72[0x1];
     s8 m_73;
     u8 unk_74[0x2];
-    s16 m_76;
+    u16 m_76; // Speaker entity ID; 0xFFFF denotes no entity.
     char *name;
     f32 m_7c;
     u8 unk_80[0x4];
@@ -52,5 +56,7 @@ typedef char TUnk_804CF0B8_name_offset[offsetof(TUnk_804CF0B8, name) == 0x78 ? 1
 typedef char TUnk_804CF0B8_next_offset[offsetof(TUnk_804CF0B8, m_7c) == 0x7c ? 1 : -1];
 typedef char TUnk_804CF0B8_pointer_size[sizeof(char *) == 4 ? 1 : -1];
 typedef char TUnk_804CF0B8_size[sizeof(TUnk_804CF0B8) == 0x98 ? 1 : -1];
+
+typedef char TUnk_804CF0B8_fields_begin[offsetof(TUnk_804CF0B8, m_70) == 0x70 ? 1 : -1];
 
 #endif

@@ -98,7 +98,7 @@ s32 TWindowSubShortCut::open_menu() {
 
 void TWindowSubShortCut::open_com_card_list() {
     s32 tmp = get_window_layout_position(0x72);
-    ((TWindowSubShortCutList *)tmp)->create((void *)this->m_24);
+    TWindowSubShortCutList::create((void *)tmp, this->m_24);
 }
 void TWindowSubShortCut::render() {  }
 
@@ -177,9 +177,9 @@ void TWindowSubShortCut::run_task() {
         if ((u32) this->m_38 == 0U) {
             void *chat = new TWindowChat((TObject *)arg0, (u8 *)&this->m_40);
             *(void * *)&this->m_38 = chat;
-            ((TWindowSubShortCut *)(this->m_38))->free_icon();
-            ((TWindowSubShortCut *)(this->m_38))->close_and_clear_flag();
-            ((TWindowSubShortCut *)(this->m_38))->set_flag1e_bit80();
+            ((TWindowChat *)(this->m_38))->set_keyboard_flag62_bit4();
+            ((TWindowChat *)(this->m_38))->close_and_clear_flag();
+            ((TWindowChat *)(this->m_38))->set_flag1e_bit80();
         }
         this->m_1c = 6U;
     case 6:
@@ -198,10 +198,8 @@ void TWindowSubShortCut::run_task() {
             this->m_38 = 0U;
         }
         if ((u32) this->m_3c == 0U) {
-            var_r30 = __nw__7TObjectFUl(0x74);
-            if (var_r30 != 0) {
-                var_r30 = (void *)TWindowShortCut__ct((TWindowShortCut *)((u8 *)var_r30), (s32)(get_window_layout_position(0x73)), this->m_24, (s32)((u8 *)arg0 + 0x40));
-            }
+            var_r30 = new TWindowShortCut((void *)get_window_layout_position(0x73),
+                                         this->m_24, (u8 *)arg0 + 0x40);
             *(void * *)&this->m_3c = var_r30;
         }
         if ((u32) this->m_34 == 0U) {
@@ -280,4 +278,4 @@ TWindowSubShortCut::TWindowSubShortCut(TObject *object, void *arg2) : TObject(ob
     this->m_1c = 0;
 }
 
-void TWindowSubShortCut::set_flag1e_bit80() { this->m_1e |= 0x80; }
+void TWindowChat::set_flag1e_bit80() { flags |= 0x80; }

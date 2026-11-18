@@ -10,6 +10,7 @@ struct TWindowMessageLine {
 };
 
 struct TWindowMessage : public TWindowAddition {
+    TWindowMessage(s32 layout, u32 count, s32 client);
     virtual ~TWindowMessage();
     virtual void run_task();
     virtual void render();
@@ -20,8 +21,6 @@ struct TWindowMessage : public TWindowAddition {
     int append_line(int text, int mode);
     static u8 *create(s32 arg0, const void *arg1, u32 arg2, s32 arg3);
     static u8 *create(void *arg0, s32 arg1, s32 arg2);
-    u8 unk_60[0xC];
-    f32 m_6c;
     u32 m_70;
     s32 m_74;
     u32 m_78;
@@ -35,4 +34,6 @@ struct TWindowMessage : public TWindowAddition {
 };
 
 typedef char TWindowMessage_size[sizeof(TWindowMessage) == 0x90 ? 1 : -1];
+typedef char TWindowMessage_fields_begin[offsetof(TWindowMessage, m_70) == 0x70 ? 1 : -1];
+
 #endif

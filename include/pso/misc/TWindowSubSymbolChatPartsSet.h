@@ -5,6 +5,7 @@
 #include "pso/misc/TWindowChatSymbol.h"
 
 struct TWindowSubSymbolChatPartsSet : public TWindowChatSymbol {
+    TWindowSubSymbolChatPartsSet(void *position, s16 index, s32 *first, s32 *second);
     virtual ~TWindowSubSymbolChatPartsSet();
     void sub_8028625C();
     s32 is_active();
@@ -16,10 +17,10 @@ struct TWindowSubSymbolChatPartsSet : public TWindowChatSymbol {
     u16 m_6e;
     u32 m_70;
     u8 _pad74[0x8];
-    u32 m_7c;
-    u32 m_80;
+    s32 *m_7c;
+    s32 *m_80;
     u8 _pad84[0x4];
-    u32 m_88;
+    void *m_88;
     void copy_vec2(void* q);
     s32 draw_selected_part_cursor(int arg1);
     void handle_cancel();
@@ -27,9 +28,9 @@ struct TWindowSubSymbolChatPartsSet : public TWindowChatSymbol {
     void toggle_selected_part();
     void handle_cursor_input();
     virtual void run_task();
-    u8 unk_8C[0x4];
+    f32 m_8c;
     f32 m_90;
-    u8 unk_94[0x4];
+    f32 m_94;
     static int get_parts_entry(int a0);
     void set_pos(s16 arg1, s16 arg2);
     static void set_part_sprite(void *arg0, s16 id, s32 a, s32 b);

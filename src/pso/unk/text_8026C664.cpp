@@ -10,8 +10,8 @@
 #include "pso/object/TObjFish.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/quest/TQuestListVM_8007EAF8.h"
-#include "pso/misc/TWindowSubComCardList_8026CB08.h"
-#include "pso/misc/TWindowSubComCardList.h"
+#include "pso/misc/PageIndicator.h"
+#include "pso/misc/TWindowDrawContext.h"
 
 struct Stack_8026C708
 {
@@ -69,7 +69,7 @@ void fn_8026C708(u8 *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3) {
 
 typedef struct Vec2_8026C800 { f32 x, y; } Vec2_8026C800;
 
-typedef struct Rect_8026C800 { f32 x, y, w, h; u8 pad10[0x20]; s32 f30; u8 pad34[4]; f32 f38; } Rect_8026C800;
+
 
 extern "C" {
 u32 calc_text_width(void);
@@ -82,7 +82,6 @@ void text_builder_reset(void);
 extern s32 lbl_805D63F0;
 
 extern "C" {
-void draw_list_page_indicator(PageIndicator *self, Rect_8026C800 *r);
 s32 fn_8026C7AC(void *arg0, s8 arg1) {
     *(s8 *)((s8 *)arg0 + 0) = 0;
     *(s8 *)((s8 *)arg0 + 1) = arg1;
@@ -107,15 +106,15 @@ s32 fn_8026C7C0(void *arg0, s8 arg1) {
 #pragma push
 #pragma fp_contract on
 #pragma readonly_strings on
-void draw_list_page_indicator(PageIndicator *self, Rect_8026C800 *r) {
+void draw_list_page_indicator(PageIndicator *self, TWindowDrawContext *r) {
     Vec2_8026C800 pos;
     f32 scale;
-    if (r->f30 < 0) {
+    if (r->open_tick < 0) {
         return;
     }
     pos.x = (r->x + r->w) - 79.0f;
     pos.y = (r->y + r->h) - 22.0f;
-    scale = (-1.0f) / (0.1495f + r->f38);
+    scale = (-1.0f) / (0.1495f + r->depth);
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(lbl_805D63F0));
     set_draw_texture_and_color(0, -1);
@@ -135,6 +134,8 @@ void draw_list_page_indicator(PageIndicator *self, Rect_8026C800 *r) {
 }
 }
 #pragma pop
+
+
 
 extern "C" {
 
@@ -193,11 +194,16 @@ s32 handle_list_page_flip_input(PageIndicator *arg0) {
 
 }
 
-s32 delete_if_allocated(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        __dl__FPv();
+void *delete_if_allocated(void *storage, s16 release) {
+    if (storage != NULL && release > 0) {
+        ::operator delete(storage);
     }
-    return arg0;
+    return storage;
 }
 
-void TWindowSubComCardList::init(int a1, int a2, int a3) { *(unsigned char *)&this->m_name = a1; *(unsigned char*)((char*)this + 0x1) = a2; *(int *)&this->m_flags = a3; *(float *)&this->m_prev = 0.0f; }
+PageIndicator::PageIndicator(s8 current, s8 pages, s32 client) {
+    page = current;
+    count = pages;
+    input_port = client;
+    arrow_offset = 0.0f;
+}

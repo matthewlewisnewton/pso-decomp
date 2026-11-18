@@ -1,4 +1,5 @@
 #include "pso/misc/TextEntryMeasurement.h"
+#include "pso/misc/ComCardEntryAbi.h"
 #include "types.h"
 #include "pso/item/TItem.h"
 #include "pso/misc/TWindowHelpItem_8025A60C.h"
@@ -152,7 +153,6 @@ static const f32 lbl_805DD12C = 90.0f;
 
 extern u8 lockon_window_layout_entries[];
 extern Cb_80263370 lbl_804D0288;
-extern s32 __vt__13TWindowLockOn[];
 static const f32 lbl_805DD100 = 15.0f;
 static const f32 lbl_805DD114 = -8.0f;
 static const f32 lbl_805DD118 = 18.0f;
@@ -165,14 +165,12 @@ s32 is_script_controlled__10TObjPlayerFv(void *);
 s32 draw_visible_window_entries(void *, void *, int);
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(u32);
-s32 construct_base__9TWindowDDFPUcsPUc(void *, void *, void *, int);
 s32 get_window_layout_position(int);
 extern u8 lbl_804D0268[];
 extern s32 lbl_805D3948;
 static const f32 lbl_805DD130 = 0.7f;
 static const f32 lbl_805DD134 = 1.0f;
 
-void bind_target__13TWindowLockOnFv(Win_8026366C *w, u16 id);
 
 #define PSO_VCALL_VObj_18_7b8813_m31(_self) (((VObj_18_7b8813 *)(_self))->m31())
 void TWindowLockOn::validate_target() {
@@ -252,7 +250,7 @@ void TWindowLockOn::refresh_enemy_statuses() {
     i = 0;
     do {
         mode = get_status_effect_icon_index(obj_getArrWord_254(ent, i));
-        ((TWindowComCard *)(this->get_array_entry(i + 3)))->set_help_mode(mode);
+        set_help_mode__14TWindowComCardFl(this->get_array_entry(i + 3), mode);
         i++;
     } while (i < 4);
     {
@@ -487,27 +485,20 @@ void bind_target__13TWindowLockOnFv(Win_8026366C *w, u16 id) {
 }
 
 void *TWindowLockOn::create_for_target(s32 arg0, u16 arg1) {
-    void *p;
     if (arg1 == 0xFFFF) {
         return NULL;
     }
     if (((s32 (*)(s32))is_lockable_target__13TWindowLockOnFi)((s32)find_entity_by_id(arg1)) == 0) {
         return NULL;
     }
-    p = __nw__7TObjectFUl(0x7C);
-    if (p != NULL) {
-        p = ((void *(*)(void *, s32, u16))TWindowLockOn__ct)(p, arg0, arg1);
-    }
-    return p;
+    return new TWindowLockOn(arg0, arg1);
 }
 
-void render__13TWindowLockOnFv(TWindowLockOn *arg0) {
-    s32 temp_r3;
-
-    temp_r3 = ((TWindowBase *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x68));
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    if ((arg0->m_30 == arg0->m_40) && (*(f32 *)((s8 *)arg0 + 0x34) == *(f32 *)((s8 *)arg0 + 0x44)) && (arg0->m_38 == arg0->m_48) && (*(f32 *)((s8 *)arg0 + 0x3C) == *(f32 *)((s8 *)arg0 + 0x4C))) {
-        draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, temp_r3);
+void TWindowLockOn::render() {
+    s32 context = setup_window_draw_context((s32)&m_68);
+    draw_window_frame((void *)context);
+    if (m_30 == m_40 && m_34f == m_44 && m_38 == m_48 && m_3c == m_4c) {
+        draw_visible_window_entries(this, &m_24, context);
     }
 }
 
@@ -529,34 +520,24 @@ void TWindowLockOn::run_task() {
     }
 }
 
-void *__dt__13TWindowLockOnFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TWindowLockOn;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TWindowLockOn::~TWindowLockOn() {}
 
-u8 *TWindowLockOn__ct(TWindowLockOn *window_lock_on, s16 arg1, s32 arg2) {
-    construct_base__9TWindowDDFPUcsPUc((void *)window_lock_on, (void *)lbl_804D0268, (void *)arg1, (int) (get_window_layout_position(0x1E)));
-    *(s32 **)((s8 *)window_lock_on + 0x18) = __vt__13TWindowLockOn;
-    *(s32 *)((s8 *)window_lock_on + 0) = (s32) lbl_805D3948;
+TWindowLockOn::TWindowLockOn(s32 arg1, u16 arg2)
+    : TWindowBase((u8 *)lbl_804D0268, (s16)arg1, (u8 *)get_window_layout_position(0x1E)) {
+    *(s32 *)((s8 *)this + 0) = (s32) lbl_805D3948;
     if (TCameraCtrl::get_camera_id() > 2) {
-        *(f32 *)((s8 *)window_lock_on + 0x68) = (f32) lbl_805DD130;
-        *(f32 *)((s8 *)window_lock_on + 0x6C) = (f32) lbl_805DD130;
+        *(f32 *)((s8 *)this + 0x68) = (f32) lbl_805DD130;
+        *(f32 *)((s8 *)this + 0x6C) = (f32) lbl_805DD130;
     } else {
-        *(f32 *)((s8 *)window_lock_on + 0x68) = (f32) lbl_805DD134;
-        *(f32 *)((s8 *)window_lock_on + 0x6C) = (f32) lbl_805DD134;
+        *(f32 *)((s8 *)this + 0x68) = (f32) lbl_805DD134;
+        *(f32 *)((s8 *)this + 0x6C) = (f32) lbl_805DD134;
     }
-    window_lock_on->m_60 = 0xFFFF;
-    window_lock_on->m_20 = arg1;
-    window_lock_on->m_64 = 0;
-    *(PMF_80263944 *)((s8 *)window_lock_on + 0x70) = 0;
-    ((void (*)(void *, s32))bind_target__13TWindowLockOnFv)(window_lock_on, arg2);
-    window_lock_on->m_50 = 0;
-    return (u8 *)window_lock_on;
+    this->m_60 = 0xFFFF;
+    this->m_20 = arg1;
+    this->m_64 = 0;
+    *(PMF_80263944 *)((s8 *)this + 0x70) = 0;
+    bind_target__13TWindowLockOnFv((Win_8026366C *)this, arg2);
+    this->m_50 = 0;
+
 }
 }

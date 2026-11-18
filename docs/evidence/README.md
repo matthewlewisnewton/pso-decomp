@@ -66,6 +66,7 @@ guides.
 - [Equipment requirement match and link limit](equip-requirements-match.md)
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
+- [Speech-balloon native lifetime and constant pools](balloon-native-lifetime.md)
 - [Speech-balloon name plate and complete unit](fukidasi-name-plate-recovery.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
 - [Gryphon shockwave constant ownership](gryphon-shockwave-constants.md)

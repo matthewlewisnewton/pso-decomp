@@ -20,26 +20,15 @@ struct RecoveredGlobal_80287FBC_lbl_804D2E74 {
     u8 remaining[0x10];
 };
 
-struct RecoveredGlobal_80287FBC___vt__12TWindowTimer {
-    s32 value;
-    u8 remaining[0x14];
-};
-
 extern "C" {
-s32 draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_window_tab(void *, void *, int, f32);
 extern const f32 lbl_805DD890;
 extern RecoveredGlobal_80287FBC_lbl_804D2E74 window_timer_layout;
-extern s32 __vt__12TWindowTimer[];
-extern s32 TWindowTimer__name;
+extern const char *TWindowTimer__name;
 extern s32 lbl_805DD888;
 extern s32 lbl_805DD88C;
 s32 get_window_layout_position(s32);
-void __dl__7TObjectFPv(void *);
-s32 __nw__7TObjectFUl(s32);
-s32 init_timer_window_layout(s32);
-s32 init_timer_window_layout_alt(s32);
 
 void TWindowTimer::update_chat_parts() {
     u8 *arg0 = (u8 *)this;
@@ -93,67 +82,48 @@ void TWindowTimer::set_time(u32 secs) {
     ((TWindowHelpItem *)entry)->reset_float_field();
 }
 
-void TWindowTimer::draw_tab(s32 arg0, s32 arg1) {
-    draw_window_tab((void *)arg1, (void *)(arg1 + 0x10), 3, (f32)lbl_805DD890);
+void TWindowTimer::draw_tab(s32 context) {
+    draw_window_tab((void *)context, (void *)(context + 0x10), 3, (f32)lbl_805DD890);
 }
 
 s32 TWindowTimer::create() {
-    s32 window_timer;
-
-    window_timer = __nw__7TObjectFUl(0x64);
-    if (window_timer != 0) {
-        window_timer = ((s32)TWindowTimer__ct((TWindowTimer *)((u8 *)((void *)window_timer))));
-    }
+    TWindowTimer *window_timer = new TWindowTimer;
     init_timer_window_layout(window_timer);
-    return window_timer;
+    return (s32)window_timer;
 }
 
 s32 TWindowTimer::create_alt() {
-    s32 var_r31;
+    TWindowTimer *window_timer = new TWindowTimer;
+    init_timer_window_layout_alt(window_timer);
+    return (s32)window_timer;
+}
 
-    var_r31 = __nw__7TObjectFUl(0x64);
-    if (var_r31 != 0) {
-        var_r31 = ((s32)TWindowTimer__ct((TWindowTimer *)((u8 *)((void *)var_r31))));
+void TWindowTimer::render() {
+    s32 context = TWindowDD::draw_default_entry((s32)this);
+    draw_tab(context);
+    draw_visible_window_entries(this, &m_24, context);
+}
+
+void TWindowTimer::run_task() {
+    if (m_60 & 1) {
+        draw(get_timer_value(0), get_timer_value(1));
     }
-    init_timer_window_layout_alt(var_r31);
-    return var_r31;
+    ((TWindowDD *)this)->initialize_subwindow();
+    update_chat_parts();
+    ease_window_timer_position();
+    update_window_entry_list(&m_24);
 }
 
-void render__12TWindowTimerFv(s32 arg0) {
-    s32 temp_r3;
-    temp_r3 = draw_default_entry__9TWindowDDFl();
-    TWindowTimer::draw_tab(arg0, temp_r3);
-    draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)temp_r3);
-}
+TWindowTimer::~TWindowTimer() {}
 
-void run_task__12TWindowTimerFv(TWindowTimer *window_timer) {
-  if ((window_timer->m_60) & 1)
-  {
-    window_timer->draw((s32)((int) TWindowTimer::get_timer_value(0)), (s32)((int) TWindowTimer::get_timer_value(1)));
-  }
- do { ((TWindowDD *)window_timer)->initialize_subwindow(); window_timer->update_chat_parts(); window_timer->ease_window_timer_position(); ((TWindowBase *)window_timer)->update_window_entry_list((u8 *)window_timer + 0x24); } while (0);
-}
-
-void *__dt__12TWindowTimerFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TWindowTimer;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
 typedef char RecoveredGlobal_80287FBC_lbl_804D2E74_size[sizeof(RecoveredGlobal_80287FBC_lbl_804D2E74) == 0x14 ? 1 : -1];
-typedef char RecoveredGlobal_80287FBC___vt__12TWindowTimer_size[sizeof(RecoveredGlobal_80287FBC___vt__12TWindowTimer) == 0x18 ? 1 : -1];
-u8 *TWindowTimer__ct(TWindowTimer *window_timer) {
-    ((TWindowDD *)window_timer)->construct_base((u8 *)&window_timer_layout.value, (s16)4, (u8 *)(get_zero_vec2()));
-    *(s32 **)((s8 *)window_timer + 0x18) = &(*(RecoveredGlobal_80287FBC___vt__12TWindowTimer *)&__vt__12TWindowTimer).value;
-    *(s32 *)((s8 *)window_timer + 0) = (s32) TWindowTimer__name;
-    window_timer->m_60 = 0;
-    window_timer->update_chat_parts();
-    ((TWindowBase *)window_timer)->save_position();
-    return (u8 *)window_timer;
+
+TWindowTimer::TWindowTimer()
+    : TWindowBase((u8 *)&window_timer_layout, 4, (u8 *)get_zero_vec2()) {
+    m_name = TWindowTimer__name;
+    m_60 = 0;
+    update_chat_parts();
+    save_position();
 }
 
 }

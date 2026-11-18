@@ -5,13 +5,14 @@
 #include "pso/misc/TWindowBase.h"
 
 struct TWindowSubAreaMapDisp : public TWindowBase {
+    TWindowSubAreaMapDisp();
     virtual ~TWindowSubAreaMapDisp();
-    u8 unk_60[0x4];
+    f32 m_60;
     f32 m_64;
-    u8 unk_68[0x4];
+    f32 m_68;
     u32 m_6c;
-    u32 m_70;
-    u32 m_74;
+    void *m_70; // Owned opaque heading under the legacy release protocol.
+    char *m_74; // Owned terminator-inclusive text array.
     void update_manual_scroll();
     virtual void render();
     virtual void run_task();
@@ -20,10 +21,12 @@ struct TWindowSubAreaMapDisp : public TWindowBase {
 
 typedef char TWindowSubAreaMapDisp_size[sizeof(TWindowSubAreaMapDisp) == 0x78 ? 1 : -1];
 
+typedef char AreaMapDisp_scroll[offsetof(TWindowSubAreaMapDisp, m_60) == 0x60 ? 1 : -1];
+typedef char AreaMapDisp_heading[offsetof(TWindowSubAreaMapDisp, m_70) == 0x70 ? 1 : -1];
+typedef char AreaMapDisp_text[offsetof(TWindowSubAreaMapDisp, m_74) == 0x74 ? 1 : -1];
+
 extern "C" {
-u8 *TWindowSubAreaMapDisp__ct(TWindowSubAreaMapDisp *arg0);
 void TWindowSubStatusDisp__sub_80271A6C(s32 arg0, u8 *arg1);
-u8 *__dt__21TWindowSubAreaMapDispFv(TWindowSubAreaMapDisp *arg0, s16 arg1);
 void fn_80271848(s32 arg0, u8 *arg1);
 }
 

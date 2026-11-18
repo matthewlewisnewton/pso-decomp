@@ -3,7 +3,7 @@
 #include "types.h"
 #include "pso/misc/TUnk_804DDD28.h"
 #include "pso/misc/TLobby.h"
-#include "pso/misc/TWindowSnapShot.h"
+#include "pso/misc/SnapshotCaptureAbi.h"
 #include "pso/player/TObjPlayer.h"
 
 struct RecoveredGlobal_802A7AF8_lbl_804DDD28 { s32 value; u8 remaining[0x134]; };
@@ -179,7 +179,7 @@ s32 copy_if_space(void) {
     if (fn_802A5C3C((u32 *)shared_snapshot_capture) >= 0x258) {
         return 0;
     }
-    memcpy((*(s32 *)&snapshot_image_buffer), ((TWindowSnapShot *)shared_snapshot_capture)->get_size(), snapshot_buffer_size);
+    memcpy((*(s32 *)&snapshot_image_buffer), get_size__15TWindowSnapShotFv((SnapshotCaptureStorage *)shared_snapshot_capture), snapshot_buffer_size);
     return 1;
 }
 
@@ -190,10 +190,10 @@ void TLobby::alloc_snapshot_buffer() {
   u8 *temp_r31_3;
   if (((u32) snapshot_image_buffer) == 0U)
   {
-    temp_r31 = TWindowSnapShot::get_height();
+    temp_r31 = get_height__15TWindowSnapShotFv();
     max_players = TLobby::get_max_players();
     max_players = max_players * temp_r31;
-    temp_r31 = TWindowSnapShot::get_width();
+    temp_r31 = get_width__15TWindowSnapShotFv();
     temp_r31_3 = (u8 *) (temp_r31 + max_players);
     temp_r3 = ((int)::operator new[]((u32)temp_r31_3));
     snapshot_image_buffer = temp_r3;

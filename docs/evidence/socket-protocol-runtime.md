@@ -1,6 +1,6 @@
 # TCP send queues and SACK compaction
 
-The comparison uses GPOE8P and fork main `506d5b807f`, which includes the exact receive delivery from [#606](https://github.com/matthewlewisnewton/pso-decomp/pull/606). Of the unit's 21 functions, 18 match exactly. All 184 initialized data bytes and all 16 BSS bytes match. Each function retains its original size and address in a diagnostic link of the complete C++ unit.
+The comparison uses GPOE8P and fork main `4959835fff`, which includes the exact receive delivery from [#606](https://github.com/matthewlewisnewton/pso-decomp/pull/606). Of the unit's 21 functions, 18 match exactly. All 184 initialized data bytes and all 16 BSS bytes match. Each function retains its original size and address in a diagnostic link of the complete C++ unit.
 
 | Routine | Native size | Differing instruction words in the linked game |
 | --- | ---: | ---: |
@@ -36,7 +36,7 @@ All 43 differing words lie between `0x8042098C` and `0x80420A4C`, in the forward
 
 ## Reproducing the comparisons
 
-The standard build keeps main's link set. It reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,633 source-linked units pass and the retention list has zero additions or removals. Against the stated baseline, `tools/check_pr.py` fails the exact-function check for the 292-byte SACK routine.
+The standard build keeps main's link set. It reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,630 source-linked units pass and the retention list has zero additions or removals. Against the stated baseline, `tools/check_pr.py` reports 27,526 → 27,525 exact functions and 4,322,652 → 4,322,360 matched code bytes. The 292-byte SACK routine is the only exact-function regression. Matched data and linked code and data are unchanged.
 
 For the diagnostic build, use a separate checkout with the normal project tools, original input files and a completed standard build. Add `pso/network/SocketProtocolRuntime.cpp` to the sorted list in `config/GPOE8P/psov3/linked_units.txt`. Then run the following with the same configure options as the standard build and Unicorn 2.1.4 available to Python.
 

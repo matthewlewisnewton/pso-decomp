@@ -4,6 +4,8 @@
 #include "types.h"
 
 extern "C" {
+// Historical export; receives a 24-byte text-holder prefix, not a window.
+s32 *init_text_buffer_holder__19TWindowKeyBoardBaseFv(void *storage);
 u8 *TEF_LensFlare__create(s32 arg0);
 u32 *destroy__19TWindowKeyBoardBaseFPvs(u32 *arg0, s16 arg1);
 }

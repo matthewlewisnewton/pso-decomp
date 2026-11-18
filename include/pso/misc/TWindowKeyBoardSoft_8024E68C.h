@@ -3,6 +3,7 @@
 
 #include "types.h"
 
-void apply_window_closing_stretch(u8 *arg0, int arg1);
+struct TWindowDrawContext;
+void apply_window_closing_stretch(TWindowDrawContext *context, int amount);
 
 #endif

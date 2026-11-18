@@ -4942,6 +4942,7 @@ int get_serial_access_field_118__23TAdSinglePlyChrSelectGCFPv(void* p) { return 
 }
 
 namespace P80202978 {
+#include "pso/system/CharacterSaveRecordLookup.h"
 extern "C" {
 extern u8 *secondary_card_system_save_payload;
 extern void *system_save_payload;

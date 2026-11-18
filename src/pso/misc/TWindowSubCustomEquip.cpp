@@ -1,3 +1,5 @@
+#include "pso/misc/WindowLayoutDescriptor.h"
+#include "pso/misc/TWindowSubCustomSelect.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
@@ -27,7 +29,6 @@ struct Vec2_802766C8
 };
 
 extern "C" {
-s32 draw_default_entry__9TWindowDDFl();
 s32 draw_visible_window_entries(void *, void *, int);
 s32 forward_render__20TWindowSubStatusDispFv(int, int);
 f32 sin_table_lookup(s32);
@@ -62,7 +63,6 @@ s32 get_slot_type__20TWindowActionPaletteFlll(s32, s32, s32);
 extern const Vec2_802766C8 custom_equip_entry_offset_table[];
 static const f32 lbl_805DD57C = 0.2f;
 static const f32 lbl_805DD580 = 0.003921569f;
-void __dl__7TObjectFPv(void *);
 
 static const f32 lbl_805DD568 = 11.0f;
 static const f32 lbl_805DD56C = 15.0f;
@@ -222,7 +222,6 @@ void TWindowSubCustomEquip::handle_decide() {
     ((TWindowSubStatusDisp *)(this->m_6c))->set_entry_state(2);
 }
 
-extern s32 __vt__21TWindowSubCustomEquip[];
 
 typedef char RecoveredGlobal_80276D14_lbl_8050E208_size[sizeof(RecoveredGlobal_80276D14_lbl_8050E208) == 0x1B0 ? 1 : -1];
 void TWindowSubCustomEquip::handle_cursor_input() {
@@ -275,13 +274,12 @@ void TWindowSubCustomEquip::handle_cursor_input() {
     }
 }
 
-void render__21TWindowSubCustomEquipFv(u8 *arg0) {
-    s32 temp_r3;
-    temp_r3 = draw_default_entry__9TWindowDDFl();
-    ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
-    draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
-    ((TWindowSubCustomEquip *)arg0)->draw_cursor((u8 *)temp_r3);
-    forward_render__20TWindowSubStatusDispFv((int) (((TWindowSubCustomEquip *)arg0)->m_6c), temp_r3);
+void TWindowSubCustomEquip::render() {
+    s32 context = TWindowDD::draw_default_entry((s32)this);
+    draw_window_frame((void *)context);
+    draw_visible_window_entries(this, &m_24, context);
+    draw_cursor((u8 *)context);
+    forward_render__20TWindowSubStatusDispFv((s32)m_6c, context);
 }
 
 typedef char RecoveredGlobal_80277014_lbl_8050E208_size[sizeof(RecoveredGlobal_80277014_lbl_8050E208) == 0x1B0 ? 1 : -1];
@@ -304,54 +302,50 @@ void TWindowSubCustomEquip::run_task() {
     reset_selection();
     refresh_palette_slots();
     if ((f32) *(s32 *)&this->m_5c >= lbl_805DD5A4) {
-        ((TWindowSubStatusDisp *)(*(s32 *)&this->m_6c))->update_subwindow();
+        ((TWindowSubStatusDisp *)m_6c)->update_subwindow();
     }
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->m_24);
     this->m_66 = (this->m_66 + 1);
 }
 
-void *__dt__21TWindowSubCustomEquipFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__21TWindowSubCustomEquip;
-        TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)arg0 + 0x6C)), (s16)1);
-        ((TWindowDD *)arg0)->destroy_window_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+extern u8 lbl_804D1198[];
+WindowLayoutDescriptor lbl_804D1488 = {
+    {212.0f, 188.0f}, 50050.0f, lbl_804D1198, 3
+};
+
+TWindowSubCustomEquip::~TWindowSubCustomEquip() {
+    TWindowSubStatusDisp::destroy_status_display((s32)m_6c, 1);
 }
 
 u8 *get_window_layout_position(s32 index);
-extern u8 lbl_804D1488[];
 extern const char *lbl_805D3A20;
+// Existing initializer for opaque 0x24-byte heading storage; complete child type unresolved.
+u8 *construct_type1_heading__20TWindowSubStatusDispFll(void *storage, s32 text, s32 client);
 
-TWindowSubCustomEquip *TWindowSubCustomEquip__ct(TWindowSubCustomEquip *self, s32 slot) {
+TWindowSubCustomEquip::TWindowSubCustomEquip(s32 client)
+    : TWindowBase((u8 *)&lbl_804D1488, (s16)client, get_window_layout_position(0xF)) {
     void *heading;
-    ((TWindowDD *)self)->construct_base(lbl_804D1488, slot, get_window_layout_position(0xF));
-    *(s32 **)((s8 *)self + 0x18) = __vt__21TWindowSubCustomEquip;
-    self->m_name = lbl_805D3A20;
-    self->m_20 = slot;
-    self->m_60 = 0;
-    self->m_61 = 1;
-    self->m_62 = 0;
-    self->m_63 = 0;
-    self->m_64 = 0;
-    self->m_65 = 1;
-    self->m_66 = 0;
-    self->m_68 = 0xB200;
-    heading = (void *)::operator new(0x24);
+    m_name = lbl_805D3A20;
+    m_20 = client;
+    m_60 = 0;
+    m_61 = 1;
+    m_62 = 0;
+    m_63 = 0;
+    m_64 = 0;
+    m_65 = 1;
+    m_66 = 0;
+    m_68 = 0xB200;
+    heading = ::operator new(0x24);
     if (heading != NULL) {
-        heading = ((TWindowSubStatusDisp *)heading)->construct_type1_heading((s32)TWindowSubStatusDisp::get_message_10(0x23), self->m_20);
+        heading = construct_type1_heading__20TWindowSubStatusDispFll(heading, (s32)TWindowSubStatusDisp::get_message_10(0x23), m_20);
     }
-    self->m_6c = (u32)heading;
-    self->refresh_palette_slots();
-    return self;
+    m_6c = heading;
+    refresh_palette_slots();
 }
 
-s32 TWindowSubCustomEquip::calc_equip_index() {
-    return *(s32 *)((s8 *)this + 0x78) + (((s8) *(u8 *)((s8 *)this + 0x70) + ((s8) *(u8 *)((s8 *)this + 0x71) * 3)) * 4);
+void *TWindowSubCustomSelect::sub_80277290() {
+    return (void *)(m_78 + (((s8)m_70 + (s8)m_71 * 3) * 4));
 }
 
 }

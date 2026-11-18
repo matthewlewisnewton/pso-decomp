@@ -1,3 +1,4 @@
+#include "pso/misc/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -119,12 +120,12 @@ void TWindowSubInformationBoard::run_task() {
         }
         this->m_1c = 0xAU;
     case 10:
-        if (((TWindowSubComCard *)(this->m_3c))->is_keyboard_active() != 0) {
+        if (((TKeyBoardControl *)(this->m_3c))->is_keyboard_active() != 0) {
             this->m_1c = 0xBU;
             break;
         }
-        if (((TWindowSubComCard *)(this->m_3c))->update_keyboard() != 0) {
-            temp_r30 = ((TWindowSubComCard *)(this->m_3c))->realloc_buffer();
+        if (((TKeyBoardControl *)(this->m_3c))->is_key_active() != 0) {
+            temp_r30 = (s32)((TKeyBoardControl *)(this->m_3c))->allocate_text_copy();
             set_info_board_text__6TLobbyFv();
             TLobby::flush_pending_send();
             ::operator delete[]((void *)temp_r30);

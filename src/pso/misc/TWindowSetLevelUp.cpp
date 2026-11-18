@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/TObject.h"
@@ -7,7 +8,6 @@
 #include "pso/object/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 
-struct Scroll_8026D790 { u8 pad0[4]; f32 height; s32 frame; };
 
 struct Ctx_8026D790 {
     f32 x, y, width, height;
@@ -69,7 +69,6 @@ void TWindowSubStatusDisp__sub_80228F5C(s32);
 void text_builder_append(u8 *str);
 void __ct__7TObjectFP7TObject(void *);
 void apply_context_transform_to_rect(void *, Quad_8026D790 *);
-s32 copy_position__11TWindowMenuFPv();
 void draw_window_scrollbar(Scroll_8026D790 *scroll, Ctx_8026D790 *c, f32 *offset);
 void update_stat_messages__17TWindowSetLevelUpFv(LvUp_8026DA44 *self);
 void render__17TWindowSetLevelUpFv(void);
@@ -172,21 +171,20 @@ void draw_window_scrollbar(Scroll_8026D790 *scroll, Ctx_8026D790 *c, f32 *offset
     TWindowSubStatusDisp::get_player();
 }
 
-void TWindowSubStatusDisp::increment_counter() {
-    *(s32 *)&this->m_prev = (s32) (*(s32 *)&this->m_prev + 1);
+void fn_8026D9C0(void *storage) {
+    (*(s32 *)((u8 *)storage + 8))++;
 }
 
-s32 TWindowSubStatusDisp::destroy_allocation(s32 arg0, s16 arg1) {
-    if ((arg0 != 0) && (arg1 > 0)) {
-        __dl__FPv();
+void *fn_8026D9D0(void *storage, s16 release) {
+    if (storage != NULL && release > 0) {
+        ::operator delete(storage);
     }
-    return arg0;
+    return storage;
 }
 
-void *TWindowSubStatusDisp::reset_selection() {
-    copy_position__11TWindowMenuFPv();
-    this->m_prev = 0;
-    return this;
+Scroll_8026D790::Scroll_8026D790(void *pair) {
+    copy_position(pair);
+    frame = 0;
 }
 
 void TWindowSetLevelUp::update_stat_messages() {

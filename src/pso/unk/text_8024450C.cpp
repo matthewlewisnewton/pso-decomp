@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/misc/TWindowArea.h"
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
 #include "pso/misc/TWindowSubStatusDisp_80144B14.h"
@@ -7,9 +8,6 @@
 #include "pso/misc/TWindowSubStatusDisp.h"
 
 extern "C" {
-s32 __nw__7TObjectFUl(int);
-s32 TWindowArea__ct();
-u8 *get_title_entry__11TWindowRoomFv(s32);
 extern const f32 lbl_805DCABC;
 extern const f32 lbl_805DCAC0;
 void fn_8024450C(s32 arg0) {
@@ -26,17 +24,14 @@ void fn_8024450C(s32 arg0) {
 #pragma push
 #pragma fp_contract on
 s32 create_area_window(s32 arg0) {
-    s32 object;
+    TWindowArea *object;
     u8 *temp_r31;
-    object = __nw__7TObjectFUl(0x64);
-    if (object != 0) {
-        object = TWindowArea__ct();
-    }
+    object = new TWindowArea;
     ((TWindowSubStatusDisp *)object)->set_entry_display_value(arg0);
     fn_802449E0((u8 *)object);
-    temp_r31 = (u8 *)(get_title_entry__11TWindowRoomFv(object));
+    temp_r31 = (u8 *)(object->get_title_entry());
     *(f32 *)((s8 *)temp_r31 + 8) = (f32) -((lbl_805DCAC0 * (f32) calc_text_width((char *)(arg0))) - lbl_805DCABC);
-    return object;
+    return (s32)object;
 }
 }
 #pragma pop
@@ -44,16 +39,13 @@ s32 create_area_window(s32 arg0) {
 #pragma push
 #pragma fp_contract on
 s32 create_window_area(void) {
-    s32 object;
+    TWindowArea *object;
     u8 *temp_r31;
-    object = __nw__7TObjectFUl(0x64);
-    if (object != 0) {
-        object = TWindowArea__ct();
-    }
+    object = new TWindowArea;
     fn_802449E0((u8 *)object);
-    fn_8024450C(object);
-    temp_r31 = get_title_entry__11TWindowRoomFv(object);
+    fn_8024450C((s32)object);
+    temp_r31 = (u8 *)object->get_title_entry();
     *(f32 *)((s8 *)temp_r31 + 8) = (f32) -((lbl_805DCAC0 * (f32) calc_text_width((char *)(((TWindowSubComCard *)temp_r31)->get_field_20()))) - lbl_805DCABC);
-    return object;
+    return (s32)object;
 }
 #pragma pop

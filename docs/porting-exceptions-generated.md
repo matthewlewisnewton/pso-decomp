@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 48 | 12 |
-| intrinsic | 95 | 59 |
+| intrinsic | 92 | 60 |
 | hardware | 69 | 13 |
-| pragma | 5895 | 892 |
-| configure.py per-unit override | 219 | 219 |
+| pragma | 5896 | 892 |
+| configure.py per-unit override | 224 | 224 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_lifetimes` 42, `opt_dead_assignments` 42, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 61, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_lifetimes` 42, `opt_dead_assignments` 42, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -104,19 +104,16 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
 | `src/pso/misc/TRaderMapCore_8030A808.cpp:9` | `__cntlzw` |
 | `src/pso/misc/TWindowDD_8034725C.cpp:338` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:332` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:433` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:490` | `__cntlzw` |
-| `src/pso/misc/TWindowFukidasi.cpp:566` | `__cntlzw` |
+| `src/pso/misc/TWindowFukidasi.cpp:1338` | `__cntlzw` |
 | `src/pso/misc/TWindowKeyBoardBase_8008102C.cpp:71` | `__cntlzw` |
 | `src/pso/misc/TWindowMainMenu_802AD538.cpp:282` | `__cntlzw` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:32` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:33` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:43` | `__rlwinm` |
 | `src/pso/misc/TWindowSnapShot_802A5B2C.cpp:44` | `__rlwinm` |
-| `src/pso/misc/TWindowSubComCard_80244774.cpp:229` | `__cntlzw` |
+| `src/pso/misc/TWindowSubComCard_80244774.cpp:226` | `__cntlzw` |
 | `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
-| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
+| `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:96` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/network/ModemRuntime.cpp:363` | `__cntlzw` |
 | `src/pso/network/TcpProtocol.cpp:836` | `__cntlzw` |
@@ -125,7 +122,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4878` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4886` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:5874` | `__cntlzw` |
@@ -167,6 +163,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `src/pso/unk/text_803D8DE0.cpp:31` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:75` | `__frsqrte` |
 | `src/pso/unk/text_803D8F74.cpp:24` | `__frsqrte` |
+| `include/pso/math/NewtonSqrtInline.h:10` | `__frsqrte` |
 
 ## Direct hardware access
 
@@ -265,7 +262,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `pso/boss/TBoss6PlotFalz_802B0228.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #183: the Falz plot table TU is built with deferred inlining (its state actions come out in reverse table order). |
 | `pso/boss/TBoss6EmptyWarp_802B0E2C.cpp` | `-str reuse,readonly` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/pso_date.cpp` | `GC/1.3.2` | Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md. |
-| `pso/misc/TWindowFukidasi.cpp` | `(multi-line entry; see configure.py)` | The balloon float pool begins at 0x805DCD0C, which is four-byte aligned. |
+| `pso/misc/TWindowFukidasi.cpp` | `-inline off,deferred` | Native balloon virtual-table emission uses deferred code generation. |
 | `pso/effect/TDPBShower.cpp` | `(multi-line entry; see configure.py)` | The class string and name pointer start on four-byte boundaries. |
 | `pso/object/TObjCMName.cpp` | `-sym on` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdDialingGC_80328B20.cpp` | `GC/1.3.2` | GC/1.3.2 preserves the per-vertex coordinate loads and store order. |
@@ -327,6 +324,11 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `pso/misc/TWindowShortListCtrl_8026E7DC.cpp` | `GC/1.3` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TMedicalCenterSequence.cpp` | `-inline deferred` | Deferred inlining: functions come out in reverse source order and the vtables before the switch tables in .data. |
 | `pso/misc/TWindowMainMenu_802AD538.cpp` | `-inline noauto,level=1` | Row-header copy is a 16-byte struct assignment. -inline off outlines it; noauto,level=1 inlines that helper only. The rest of the unit stays out of line. |
+| `pso/misc/TWindowDD_80342254.cpp` | `-inline off,deferred` | Window native lifetime (Matt's approval, Nov 14 2026, 1:35 PM PT): deferred emission makes the compiler-generated Word vtable exist while metadata is pooled; reverse definitions keep the original addresses and pool order. See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowComCard_80249CBC.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the ComCard follower window vtable (TUnk_804CE964). See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowDD.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TUnk_804EFBAC selection window vtable. See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowDD_80340EA8.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TWindowDD_WS_ScrollBar vtable. See docs/evidence/window-native-lifetime-deferred.md. |
+| `pso/misc/TWindowChallengeResult.cpp` | `-inline off,deferred` | Window native lifetime: same deferred emission for the TWindowChallengeResult vtable; definitions are written in reverse order. See docs/evidence/window-native-lifetime-deferred.md. |
 | `pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `-fp_contract on` | Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs (scale_point_about_pivot, apply_context_transform_to_rect, apply_window_closing_stretch, clip_textured_quad, init_text_window_layout). Unit -fp_contract on replaces the per-function pragmas. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/unk/text_8034A090.cpp` | `-fp_contract on` | Loading-text particle positions contract `scale * i + base` into fmadds (TAdLoadQuestPrtTxtGC ctor, cases 0/1/2). The other three functions have no contracted multiply. Precedent: https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209 |
 | `pso/misc/TNpcPlayer.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190: this file is written in reverse so deferred codegen emits address order, and the readonly string pool places the constants. |
@@ -761,6 +763,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `src/pso/misc/THunterGuildSeqOffline_80213788.cpp` | opt_propagation×2 |
 | `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×15, pool_data×1 |
 | `src/pso/misc/TKeyBoardControl_80131C58.cpp` | opt_loop_invariants×1 |
+| `src/pso/misc/TKeyBoardControl_8025EC04.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/misc/TKomorebi.cpp` | readonly_strings×1 |
 | `src/pso/misc/TLanguage_803DAF68.cpp` | scheduling×1, peephole×1 |
@@ -922,13 +925,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `src/pso/misc/TWindowChat.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowCheckBox.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowChoiceSetting.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/misc/TWindowComCard.cpp` | fp_contract×2 |
+| `src/pso/misc/TWindowComCard_80249CBC.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowCtrlMain_8024C820.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024A1A8.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/misc/TWindowCtrl_8024B1A0.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024B7D4.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024D960.cpp` | fp_contract×1, scheduling×1 |
-| `src/pso/misc/TWindowDD.cpp` | opt_propagation×2, opt_common_subs×2, opt_dead_assignments×1, fp_contract×1 |
+| `src/pso/misc/TWindowDD.cpp` | opt_propagation×2, opt_common_subs×2, fp_contract×1, opt_dead_assignments×1 |
 | `src/pso/misc/TWindowDD_803411E8.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowDD_80341334.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowDD_80341A08.cpp` | fp_contract×3 |
@@ -941,14 +944,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1161, `inline_depth` 1069,
 | `src/pso/misc/TWindowEffectLight.cpp` | defer_codegen×1, readonly_strings×1, fp_contract×1 |
 | `src/pso/misc/TWindowEffectParty.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowEffectParty_8024F690.cpp` | fp_contract×1 |
-| `src/pso/misc/TWindowFukidasi.cpp` | fp_contract×16, opt_propagation×1, opt_common_subs×1, opt_lifetimes×1 |
+| `src/pso/misc/TWindowFukidasi.cpp` | fp_contract×16, defer_codegen×1, opt_propagation×1, opt_common_subs×1, opt_lifetimes×1 |
 | `src/pso/misc/TWindowHelpItem_802531A0.cpp` | inline_depth×4, auto_inline×4, dont_inline×4 |
 | `src/pso/misc/TWindowHelpItem_802540AC.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/TWindowHelpItem_80255AB4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TWindowHelpItem_8025A12C.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowHelpItem_8025A60C.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowInputNumber_80256170.cpp` | fp_contract×2 |
-| `src/pso/misc/TWindowKeyBoardHard.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TWindowKeyBoardSoft.cpp` | optimization_level×2, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp` | opt_propagation×1 |

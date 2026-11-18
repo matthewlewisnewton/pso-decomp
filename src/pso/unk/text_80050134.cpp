@@ -45,7 +45,10 @@ s32 get_bml_motion(BmlResource *, s32);
 void __ct__8TObjBaseFP7TObject(void *, void *);
 
 extern s32 TObjDFDemoF__name;
-extern const f32 lbl_805D8A28;
+#ifdef __MWERKS__
+__declspec(section ".sdata2")
+#endif
+extern const f32 lbl_805D8A28[2];
 void vfunc_6__8TObjBaseFPsl();
 void get_name__8TObjBaseFv();
 void get_center__8TObjBaseFv();
@@ -109,7 +112,7 @@ Obj_80050194 *TObjDFDemoF__ct(Obj_80050194 *arg0, void *parent) {
     }
   }
 
-  new_var->fb8 = lbl_805D8A28;
+  new_var->fb8 = lbl_805D8A28[0];
   activate_camera_mode(5);
   set_scripted_camera_pose(&lbl_80485840, &lbl_80485840, &lbl_8048584C);
   cache_target_and_forward__11TCameraCtrlFl(&lbl_80485858, 0x392D);

@@ -1,30 +1,13 @@
 #include "types.h"
 #include "pso/misc/TWindowKeyBoardSoft_8024E68C.h"
+#include "pso/misc/WindowViewport.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/system/memory.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-struct RecoveredFields_8024E754_arg0
-{
-  u8 unknown_0[0x28];
-  f32 field_28;
-  f32 field_2C;
-};
-
 struct Vec2_8024EC34 { f32 x; f32 y; };
-
-struct Win_8024EA50 {
-    f32 x, y;
-    f32 w, h;
-    f32 x10, y14, x18, y1c;
-    Vec2_8024EC34 c;
-    f32 sx, sy;
-    s32 f30;
-    s32 f34;
-    f32 depth;
-    f32 x3c, y40, x44, y48;
-};
 
 extern u32 soft_keyboard_instance;
 extern "C" {
@@ -47,10 +30,9 @@ static const f32 lbl_805DCC98 = 4.0f;
 static const f32 lbl_805DCC9C = 10.0f;
 static const f32 lbl_805DCCA0 = 0.5f;
 static const f32 lbl_805DCCA4 = 2.0f;
-u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
+u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
-typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
-void TWindowKeyBoardSoft::scale_point_about_pivot(f32 *q) {
+void TWindowDrawContext::scale_point_about_pivot(f32 *q) {
     if (lbl_805DCC78 != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
     }
@@ -71,23 +53,20 @@ void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
 }
 }
 
-void apply_window_closing_stretch(u8 *arg0, int arg1) {
+void apply_window_closing_stretch(TWindowDrawContext *context, int arg1) {
   f32 temp_f2;
-  RecoveredFields_8024E754_arg0 *new_var;
-  new_var = (RecoveredFields_8024E754_arg0 *) arg0;
   if (arg1 != 0)
   {
     temp_f2 = lbl_805DCC80;
-    ;
-    new_var->field_28 = (f32) (new_var->field_28 * ((lbl_805DCC7C * (temp_f2 * ((f32) arg1))) + (*(const f32 *)&lbl_805DCC78)));
-    new_var->field_2C = (f32) (new_var->field_2C * ((*(const f32 *)&lbl_805DCC78) - (temp_f2 * ((f32) arg1))));
+    context->scale[0] = (f32) (context->scale[0] * ((lbl_805DCC7C * (temp_f2 * ((f32) arg1))) + (*(const f32 *)&lbl_805DCC78)));
+    context->scale[1] = (f32) (context->scale[1] * ((*(const f32 *)&lbl_805DCC78) - (temp_f2 * ((f32) arg1))));
   }
 }
 
 #pragma push
 #pragma opt_common_subs off
 
-void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
+void TWindowDrawContext::set_open_tick(s32 arg1) {
     s32 temp_r0;
     open_tick = arg1;
     temp_r0 = open_tick;
@@ -97,7 +76,7 @@ void TWindowKeyBoardSoft::set_open_tick(s32 arg1) {
 }
 #pragma pop
 
-void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
+void TWindowDrawContext::set_bounds(f32 a, f32 b, f32 c, f32 d) {
     clip_left = a;
     clip_top = b;
     clip_right = c;
@@ -106,14 +85,14 @@ void TWindowKeyBoardSoft::set_bounds(f32 a, f32 b, f32 c, f32 d) {
 
 extern const f32 lbl_805DCC8C;
 
-void TWindowKeyBoardSoft::shrink_clip_right() {
+void TWindowDrawContext::shrink_clip_right() {
     inner_w = inner_w - lbl_805DCC8C;
     clip_right = clip_right - lbl_805DCC8C;
 }
 
 extern const f32 lbl_805DCC90;
 
-void TWindowKeyBoardSoft::animate_scale() {
+void TWindowDrawContext::animate_scale() {
     inner_y = inner_y + lbl_805DCC90;
     inner_h = inner_h - lbl_805DCC90;
     clip_top = clip_top + lbl_805DCC90;
@@ -166,7 +145,7 @@ s32 TWindowKeyBoardSoft::try_open(TWindowDrawContext *context, f32 *quad) {
     return 1;
 }
 
-u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
+u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
     f32 mx;
     f32 my;
     s32 cam;
@@ -180,52 +159,51 @@ u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, 
     }
     win->w = size[0];
     win->h = size[1];
-    win->sx = scale[0];
-    win->sy = scale[1];
+    win->scale[0] = scale[0];
+    win->scale[1] = scale[1];
     if (flags & 0x4000) {
-        win->c.x = lbl_805DCCA0 * win->w + pos[0];
-        win->c.y = lbl_805DCCA0 * win->h + pos[1];
+        win->pivot[0] = lbl_805DCCA0 * win->w + pos[0];
+        win->pivot[1] = lbl_805DCCA0 * win->h + pos[1];
     } else {
         t = lbl_805DCCA0 * win->w;
-        win->c.x = t * win->sx + pos[0];
+        win->pivot[0] = t * win->scale[0] + pos[0];
         t = lbl_805DCCA0 * win->h;
-        win->c.y = t * win->sy + pos[1];
+        win->pivot[1] = t * win->scale[1] + pos[1];
     }
-    win->f30 = 0;
-    win->f34 = -1;
+    win->open_tick = 0;
+    win->color = (u32)-1;
     win->depth = depth;
     if (!(flags & 0x1000) && is_split_screen() != 0) {
         cam = TCameraCtrl::get_camera_no();
         if (cam != 100) {
-            ((TWindowKeyBoardSoft *)(&win->c))->adjust_pos_for_split_screen(cam);
-            win->sx = win->sx / TCameraCtrl::get_view_scale();
-            win->sy = win->sy / TCameraCtrl::get_fov();
+            adjust_window_position_for_split_screen(win->pivot, cam);
+            win->scale[0] = win->scale[0] / TCameraCtrl::get_view_scale();
+            win->scale[1] = win->scale[1] / TCameraCtrl::get_fov();
         }
     }
-    win->x = win->c.x - lbl_805DCCA0 * win->w;
-    win->y = win->c.y - lbl_805DCCA0 * win->h;
-    win->x10 = win->x + mx;
-    win->y14 = win->y + my;
-    win->x18 = win->w - lbl_805DCCA4 * mx;
-    win->y1c = win->h - lbl_805DCCA4 * my;
-    win->x3c = win->x + mx;
-    win->y40 = win->y + my;
-    win->x44 = (win->x + win->w) - mx;
-    win->y48 = (win->y + win->h) - my;
+    win->x = win->pivot[0] - lbl_805DCCA0 * win->w;
+    win->y = win->pivot[1] - lbl_805DCCA0 * win->h;
+    win->inner_x = win->x + mx;
+    win->inner_y = win->y + my;
+    win->inner_w = win->w - lbl_805DCCA4 * mx;
+    win->inner_h = win->h - lbl_805DCCA4 * my;
+    win->clip_left = win->x + mx;
+    win->clip_top = win->y + my;
+    win->clip_right = (win->x + win->w) - mx;
+    win->clip_bottom = (win->y + win->h) - my;
     return soft_keyboard_instance;
 }
 
-void TWindowKeyBoardSoft::adjust_pos_for_split_screen(s32 i) {
-    Vec2_8024EC34 *arg0 = (Vec2_8024EC34 *)this;
+void adjust_window_position_for_split_screen(f32 *position, s32 i) {
     Vec2_8024EC34 *p;
     if (is_split_screen() == 0 || i == 0x64) {
         return;
     }
     p = TWindowKeyBoardSoft::get_viewport_offset(i);
-    arg0->x = arg0->x + (p->x + TCameraCtrl__sub_80068A04(i));
-    arg0->y = arg0->y + (p->y + TCameraCtrl::get_split_offset(i));
-    arg0->x = arg0->x / TCameraCtrl::get_view_scale();
-    arg0->y = arg0->y / TCameraCtrl::get_fov();
+    position[0] = position[0] + (p->x + TCameraCtrl__sub_80068A04(i));
+    position[1] = position[1] + (p->y + TCameraCtrl::get_split_offset(i));
+    position[0] = position[0] / TCameraCtrl::get_view_scale();
+    position[1] = position[1] / TCameraCtrl::get_fov();
 }
 
 Vec2_8024EC34 *TWindowKeyBoardSoft::get_viewport_offset(int i) {
@@ -251,15 +229,15 @@ Vec2_8024EC34 *TWindowKeyBoardSoft::get_viewport_offset(int i) {
     return get_zero_vec2();
 }
 
-TWindowKeyBoardSoft *TWindowKeyBoardSoft::open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags) {
+TWindowDrawContext *TWindowDrawContext::open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags) {
     if ((u32) soft_keyboard_instance == 0U) {
         return 0;
     }
-    init_text_window_layout((Win_8024EA50 *)(soft_keyboard_instance), pos, size, scale, (u32)flags, depth);
-    return (TWindowKeyBoardSoft *)soft_keyboard_instance;
+    init_text_window_layout((TWindowDrawContext *)(soft_keyboard_instance), pos, size, scale, (u32)flags, depth);
+    return (TWindowDrawContext *)soft_keyboard_instance;
 }
 
-u32 TWindowKeyBoardSoft::get_or_create_instance() {
+u32 TWindowDrawContext::get_or_create_instance() {
     u32 temp_r3;
     u32 var_r0;
     if ((u32) soft_keyboard_instance != 0U) {
@@ -268,13 +246,13 @@ u32 TWindowKeyBoardSoft::get_or_create_instance() {
     temp_r3 = (int)::operator new(0x4C);
     var_r0 = temp_r3;
     if (var_r0 != 0U) {
-        var_r0 = ((TWindowKeyBoardSoft *)temp_r3)->init_layout();
+        var_r0 = ((TWindowDrawContext *)temp_r3)->init_layout();
     }
     soft_keyboard_instance = var_r0;
     return var_r0;
 }
 
-u32 TWindowKeyBoardSoft::free_singleton(u32 arg0, s16 arg1) {
+u32 TWindowDrawContext::free_singleton(u32 arg0, s16 arg1) {
     if (arg0 != 0U) {
         if ((u32) soft_keyboard_instance == arg0) {
             soft_keyboard_instance = 0U;
@@ -286,7 +264,7 @@ u32 TWindowKeyBoardSoft::free_singleton(u32 arg0, s16 arg1) {
     return arg0;
 }
 
-u32 TWindowKeyBoardSoft::init_layout() {
+u32 TWindowDrawContext::init_layout() {
     x = lbl_805DCC94;
     y = lbl_805DCC94;
     w = lbl_805DCC94;
