@@ -3,6 +3,7 @@
 #include "pso/item/TUnk_8049C658.h"
 #include "pso/TAdPlayerLoadGC.h"
 #include "pso/item/TItemDrop.h"
+#include "pso/misc/TLoadCtrl.h"
 
 extern "C" {
 void *destroy__13TUnk_8049C658Fs(void *p, s16 flag);
@@ -15,9 +16,7 @@ extern const void *disc_read_filename;
     extern int TAdPlayerLoadGC__load_state;
 void TAdPlayerLoadGC::set_state(int a0) { TAdPlayerLoadGC__load_state = a0; }
 
-extern s32 TLoadCtrl__fade_task;
-
-s32 TLoadCtrl__sub_800F9F00(void) {
+TObject *TLoadCtrl__sub_800F9F00(void) {
     return TLoadCtrl__fade_task;
 }
 void TLobby__sub_800F9F08(void) {

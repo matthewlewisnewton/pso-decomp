@@ -29,6 +29,8 @@ struct B_803FADA0;
 struct Self_803FD74C;
 struct Self_80402CE0;
 
+struct SpriteDescriptor;
+
 struct TLobby : public TObject {
     // Whether a challenge-mode task is running.
     static s32 is_flag_set();
@@ -445,7 +447,7 @@ struct TLobby : public TObject {
     static void init_object_flag();
     static void set_flag_1_at_6c84();
     static void clear_flag_at_6c84();
-    static void*get_record(int a0);
+    static SpriteDescriptor *get_record(int index);
     void queue_destruction_and_cleanup();
     void set_flag_and_clear_download();
     static void destroy_global_object();
