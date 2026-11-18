@@ -16,10 +16,10 @@ s32 __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_8003AA9C___vt__13TObjBoss2Dust __vt__13TObjBoss2Dust;
 extern s32 TObjBoss2Dust__name;
 
-extern const f32 lbl_805D85B0;
+extern const f32 boss2_raft_step;
 
 void TObjBoss2Dust::run_task() {
-    *(f32 *)((s8 *)this + 0x2C) = (f32) (*(f32 *)((s8 *)this + 0x2C) - lbl_805D85B0);
+    *(f32 *)((s8 *)this + 0x2C) = (f32) (*(f32 *)((s8 *)this + 0x2C) - boss2_raft_step);
     *(s32 *)((s8 *)this + 0x1C) = (s32) (*(s32 *)((s8 *)this + 0x1C) + 1);
     if ((s32) *(s32 *)((s8 *)this + 0x1C) >= 0x5A) {
         queue_destruction();
@@ -38,3 +38,5 @@ u8 *__ct__13TObjBoss2DustFv(u8 *object, s32 arg1, s32 arg2) {
 }
 
 }
+
+__declspec(section ".sdata2") const f32 boss2_raft_step = 9.259259f;

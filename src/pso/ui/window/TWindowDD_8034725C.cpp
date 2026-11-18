@@ -91,7 +91,6 @@ s32 refresh_status_display__9TWindowDDFv(void *);
 extern s32 local_client_id;
 extern u32 TWindowDD__work_buffer;
 extern const f32 TWindowDD__data_805DFB58;
-extern const f32 lbl_805DFCD0;
 extern const f32 lbl_805DFCD4;
 void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *arg1);
 void TWindowDD__sub_80348D90(void *, int);
@@ -486,10 +485,10 @@ void TWindowDD__sub_80347CC8(W_80347CC8 *arg0, void *window_dd) {
                 e->f8 = 580.0f - e->f10;
                 x = 580.0f;
             } else {
-                e->f8 = lbl_805DFCD0;
+                e->f8 = 0.0f;
             }
             s->f38 = lbl_805DFCD4 * TWindowDD__data_805DFB58 + x;
-            if (x <= lbl_805DFCD0) {
+            if (x <= 0.0f) {
                 ((TWindowDD_WS_String *)s)->update_position(TWindowDD__data_805DFB50);
             } else {
                 ((TWindowDD_WS_String *)s)->init_and_set_field50((void *)TWindowDD__data_805DFB50);
@@ -556,3 +555,5 @@ s32 TWindowDD::get_current_child_index() {
 }
 
 }
+
+__declspec(section ".sdata2") const f32 lbl_805DFCD4 = 2.0f;

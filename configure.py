@@ -438,6 +438,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # functions after it (flush_cache..flush_framebuffer, same TU) match under these too.
     "pso/system/movie/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
     "pso/effect/photon/TDPBShower.cpp": {"cw_align": ".rodata=4 .sdata=4"},
+    "pso/player/TObjPlayer_80052374.cpp": {"cw_align": ".sdata2=4"},
     "pso/effect/TDuelEffectCtrl.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     "pso/effect/TDuelEffectNumber.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     "pso/effect/TDuelEffectString.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-fp_contract on")},
