@@ -1195,8 +1195,8 @@ B_803FADA0 *TLobby__sub_803FCF44(Self_803FD74C *fsm) {
 }
 #pragma pop
 
-s32 TLobby::set_flags_and_state() {
-    u8 *arg0 = (u8 *)this;
+s32 set_flags_and_state(Conn_804004DC *conn) {
+    u8 *arg0 = (u8 *)conn;
     *(u8 *)((s8 *)arg0 + 2) = (u8) (*(u8 *)((s8 *)arg0 + 2) & 0xFFFFFFBF);
     *(u8 *)((s8 *)arg0 + 2) = (u8) (*(u8 *)((s8 *)arg0 + 2) | 0x80);
     if ((u8) *(u8 *)((s8 *)arg0 + 0) < 1U) {
@@ -2478,7 +2478,7 @@ s32 TLobby__sub_803FF2CC(u8 *arg0, s32 arg1) {
 
 s16 TLobby__sub_803FF304(u8 *lobby) {
     struct Fields_arg0 { u8 pad_0[12]; u8 * field_C; };
-    ((TLobby *)lobby)->set_flags_and_state();
+    set_flags_and_state((Conn_804004DC *)lobby);
     if ((u8) *((Fields_arg0*)lobby)->field_C == 3) {
         TLobby__sub_803FD958((u8 *)(lobby));
     }
@@ -3168,6 +3168,7 @@ struct LcpSide_80400744 {
     u8 unknown2[2];
     LcpValues_80400744 wanted;
     LcpValues_80400744 agreed;
+    s32 configure_mode_by_type(s16 type);
 };
 struct LcpOptions_80400744 { LcpSide_80400744 sides[2]; };
 struct LcpConfig_80400744 { u32 accm; s16 protocol_compression; u16 authentication; s32 magic; u16 mru; s16 address_compression; };
@@ -3195,7 +3196,7 @@ s16 TLobby__sub_80400744(int a0, void *a1) {
     u32 w;
 
     TLobby__sub_803FE600((O_803FE600 *)self);
-    ((TLobby *)self)->set_flags_and_state();
+    set_flags_and_state((Conn_804004DC *)self);
     *s->sub = 1;
     if (*s->sub >= 1) {
         id = lcp_proposed_mru(msg);
@@ -3215,13 +3216,13 @@ s16 TLobby__sub_80400744(int a0, void *a1) {
         }
         m6 = msg->authentication;
         if ((m6 & 0x80) || m6 == 4) {
-            ((TLobby *)(p + 1))->configure_mode_by_type(m6 & 0x7f);
+            (p + 1)->configure_mode_by_type(m6 & 0x7f);
             if (lbl_805D7A90 & 2) {
-                ((TLobby *)p)->configure_mode_by_type(msg->authentication & 0x7f);
+                p->configure_mode_by_type(msg->authentication & 0x7f);
             }
         } else {
-            ((TLobby *)(p + 1))->configure_mode_by_type(m6);
-            ((TLobby *)p)->configure_mode_by_type((s16)msg->authentication);
+            (p + 1)->configure_mode_by_type(m6);
+            p->configure_mode_by_type((s16)msg->authentication);
         }
         v = lcp_proposed_magic(msg);
         if (v != 0) {
@@ -3751,24 +3752,23 @@ void TLobby__sub_804017D8(B_803FADA0 **pbuf, LcpVals_8040172C *vals, u8 type, u8
     buf->len += len;
 }
 
-s32 TLobby::configure_mode_by_type(s16 type) {
-    Cfg_804019A8 *c = (Cfg_804019A8 *)this;
+s32 LcpSide_80400744::configure_mode_by_type(s16 type) {
     if (type == 0) {
-        c->flags |= 8;
-        c->mode = 0xC023;
+        wanted.mask |= 8;
+        wanted.authentication = 0xC023;
     } else if (type == 1) {
-        c->flags &= ~8;
-        c->b19 = 0;
+        wanted.mask &= ~8;
+        wanted.unknown15[0] = 0;
     } else if (type == 2) {
-        c->flags |= 8;
-        c->mode = 0xC223;
-        c->b18 = 5;
-        c->b19 = 0;
+        wanted.mask |= 8;
+        wanted.authentication = 0xC223;
+        wanted.algorithm = 5;
+        wanted.unknown15[0] = 0;
     } else if (type == 4) {
-        c->flags |= 8;
-        c->mode = 0xC223;
-        c->b18 = 5;
-        c->b19 = 1;
+        wanted.mask |= 8;
+        wanted.authentication = 0xC223;
+        wanted.algorithm = 5;
+        wanted.unknown15[0] = 1;
     } else {
         return 1;
     }
@@ -4556,7 +4556,7 @@ s32 TLobby__sub_804038F4(s32 arg0, s32 arg1, s32 arg2) {
 
     temp_r6 = lbl_805C0038 + 0xD4;
     temp_r31 = *(u8 **)((s8 *)temp_r6 + 0x30);
-    ((TLobby *)temp_r6)->set_flags_and_state();
+    set_flags_and_state((Conn_804004DC *)temp_r6);
     if (clear_flag_bit4__6TLobbyFlPUc(arg0, temp_r31) != 0) {
         return -0x11;
     }
@@ -4584,7 +4584,7 @@ s32 TLobby__sub_804039C8(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
     u8 *temp_r10;
     temp_r10 = lbl_805C0038 + 0x6C;
     temp_r31 = *(u8 **)((s8 *)temp_r10 + 0x30);
-    ((TLobby *)temp_r10)->set_flags_and_state();
+    set_flags_and_state((Conn_804004DC *)temp_r10);
     if (set_socket_flags_by_mode__6TLobbyFsPv(arg0, temp_r31) != 0) {
         return -0x11;
     }
@@ -4625,10 +4625,10 @@ s16 TLobby__sub_80403B04(u8 *arg0, u8 *arg1, s32 arg2) {
         }
         return -0x11;
     }
-    ((TLobby *)(g + 0x6C))->set_flags_and_state();
+    set_flags_and_state((Conn_804004DC *)(g + 0x6C));
     st = lbl_805D7A7C;
     if (st == 6 || st == 0) {
-        ((TLobby *)(g + 0xD4))->set_flags_and_state();
+        set_flags_and_state((Conn_804004DC *)(g + 0xD4));
     }
     return 0;
 }
@@ -4649,10 +4649,10 @@ s16 TLobby__sub_80403BA8(u8 *arg0, u8 *arg1, s32 arg2) {
         }
         return -0x11;
     }
-    ((TLobby *)(g + 0x6C))->set_flags_and_state();
+    set_flags_and_state((Conn_804004DC *)(g + 0x6C));
     st = lbl_805D7A7C;
     if (st == 6 || st == 0) {
-        ((TLobby *)(g + 0xD4))->set_flags_and_state();
+        set_flags_and_state((Conn_804004DC *)(g + 0xD4));
     }
     return 0;
 }

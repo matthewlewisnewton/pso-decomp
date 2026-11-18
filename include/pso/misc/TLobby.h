@@ -574,12 +574,10 @@ struct TLobby : public TObject {
     s32 set_active_flag();
     s32 mark_sub_ready();
     void dispatch_received_packet(s32 arg1);
-    s32 set_flags_and_state();
     static s16 get_checked_status_value(s16 arg0);
     static s32 clear_socket_slot(s16 i);
     static void update_connection_state(Self_803FD74C *self);
     s32 read_2_bytes(void *src);
-    s32 configure_mode_by_type(s16 type);
     static void init_net_state_c();
     static s32 init_net_subsystem_block();
     static void init_net_block_620();

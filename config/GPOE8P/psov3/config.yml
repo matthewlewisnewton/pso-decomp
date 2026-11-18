@@ -5800,7 +5800,7 @@ force_active:
   - computer_machine01_collision_body
   - computer_screen_model__13TObjLobbyMain
   - computer_screen_model_b__13TObjLobbyMain
-  - configure_mode_by_type__6TLobbyFs
+  - configure_mode_by_type__16LcpSide_80400744Fs
   - configure_scripted_camera_playback__FP14CameraPlaybackl
   - configure_subtype__12TObjEneSharkFv
   - configure_viewport__13TRaderMapCoreFPC23RadarViewportParameters
@@ -17650,7 +17650,7 @@ force_active:
   - set_flags_and_apply_damage_color__18CameraDistanceFadeFv
   - set_flags_and_apply_damage_color__19MaterialOpacityFadeFv
   - set_flags_and_field_b8__14TObjEnePanarmsFv
-  - set_flags_and_state__6TLobbyFv
+  - set_flags_and_state
   - set_flags_play_sound__13TBoss2DeRolLeFPv
   - set_flight_height__13TBoss5GryphonFv
   - set_float_param__10TObjPlayerFs
