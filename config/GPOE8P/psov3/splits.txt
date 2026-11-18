@@ -6822,7 +6822,7 @@ pso/ui/window/TWindowChallengeResult.cpp:
 	.sdata      start:0x805D3898 end:0x805D38A0
 	.sdata2     start:0x805DCB60 end:0x805DCB70
 
-pso/ui/window/TWindowDD_80246F8C.cpp:
+pso/ui/window/TextEntryMeasurement.cpp:
 	.text       start:0x80246F8C end:0x80246FB0
 	.sdata2     start:0x805DCB70 end:0x805DCB74
 

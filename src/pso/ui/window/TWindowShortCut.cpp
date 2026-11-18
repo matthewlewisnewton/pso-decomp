@@ -1,3 +1,4 @@
+#include "pso/ui/window/TextEntryMeasurement.h"
 #include "types.h"
 #include "pso/ui/window/TWindowSubComCard_80244774.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -65,7 +66,6 @@ s32 draw_visible_window_entries(void *, void *, int);
 s32 forward_render__20TWindowSubStatusDispFv(int, int);
 extern s32 __vt__15TWindowShortCut[];
 void measure_message_text_width(void *entry, f32 max_width);
-void refresh_status_display__9TWindowDDFv(void *entry);
 }
 
 // A shortcut's preview text entry: its flags word and the measured size of its text.
@@ -154,7 +154,7 @@ void TWindowShortCut::show_shortcut(s32 index, s32 *shortcut) {
         u16 player = (u16)local_client_id;
         TWindowDD::format_message(shortcut + 1, buffer, player);
         set_text_entry_string((u8 *)preview, (u32)get_shared_text_buffer(), 0);
-        refresh_status_display__9TWindowDDFv(preview);
+        measure_text_entry(preview);
         preview->flags |= 2;
         size.x = 0.1f + (8.0f + preview->width);
         size.y = 3.0f + (20.0f + preview->height);

@@ -1,3 +1,4 @@
+#include "pso/ui/window/TextEntryMeasurement.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/item/TItem.h"
@@ -140,7 +141,6 @@ extern "C" {
 u32 obj_getArrWord_254(LockOnEnemyView *, s32);
 s16 obj_getS16_2BA(LockOnEnemyView *);
 u16 get_entity_id(void *);
-void refresh_status_display__9TWindowDDFv(void *);
 void init_window_layout_entries(void *, void *, int);
 f32 get_target_distance__13TWindowLockOnFv(s32);
 extern s32 __vt__13TWindowLockOn[];
@@ -272,7 +272,7 @@ void TWindowLockOn::update_for_other_player(TObjCollidable *player) {
     id = get_entity_id(player);
     ((TWindowLockOn *)w)->update_for_player_index(id);
     ((TWindowHelpItem *)w)->reset_float_field();
-    refresh_status_display__9TWindowDDFv(w);
+    measure_text_entry(w);
     m_38 = 34.0f + w->w;
     m_3c = 49.0f;
     m_38 += 28.0f;

@@ -1323,7 +1323,7 @@ pso/ui/window/TWindowCtrl_8026F6A4.cpp
 pso/ui/window/TWindowCtrl_80271DFC.cpp
 pso/ui/window/TWindowDD.cpp
 pso/ui/window/TWindowDD_8020C2DC.cpp
-pso/ui/window/TWindowDD_80246F8C.cpp
+pso/ui/window/TextEntryMeasurement.cpp
 pso/ui/window/TWindowDD_8034055C.cpp
 pso/ui/window/TWindowDD_80340A78.cpp
 pso/ui/window/TWindowDD_80341334.cpp

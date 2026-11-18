@@ -1,3 +1,4 @@
+#include "pso/ui/window/TextEntryMeasurement.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/ui/window/TWindowSubComCard_80244774.h"
@@ -60,7 +61,6 @@ SoundBalanceSettings *get_global_state__23TAdSinglePlyChrSelectGCFv();
 u32 calc_text_width();
 u8 *get_array_entry__11TWindowBaseFi(void *, s32);
 s32 get_field_20__17TWindowSubComCardFv();
-s32 refresh_status_display__9TWindowDDFv(u8 *);
 extern s32 __vt__19TWindowSoundBalance[];
 const char *TWindowSoundBalance__name = "TWindowSoundBalance";
 s32 draw_visible_window_entries(s32, s32, void *);
@@ -207,11 +207,11 @@ u8 *TWindowSoundBalance__ct(TWindowSoundBalance *window_sound_balance, s32 arg1)
     e = get_array_entry__11TWindowBaseFi(window_sound_balance, 0);
     get_field_20__17TWindowSubComCardFv();
     *(f32 *)((s8 *)e + 8) = 231.0f - 0.5f * calc_text_width();
-    refresh_status_display__9TWindowDDFv(e);
+    measure_text_entry(e);
     e = get_array_entry__11TWindowBaseFi(window_sound_balance, 1);
     get_field_20__17TWindowSubComCardFv();
     *(f32 *)((s8 *)e + 8) = 231.0f - 0.5f * calc_text_width();
-    refresh_status_display__9TWindowDDFv(e);
+    measure_text_entry(e);
     st = get_global_state__23TAdSinglePlyChrSelectGCFv();
     if (st == 0) {
         window_sound_balance->set_music_gain(0);

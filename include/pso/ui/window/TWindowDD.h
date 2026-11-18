@@ -75,7 +75,6 @@ struct TWindowDD
     static s32 check_all_ready(s32 arg0);
     void update_com_card();
     int initialize_subwindow();
-    static void refresh_status_display();
     void set_mode_2();
     void reset_cursor();
     void handle_scroll_input();

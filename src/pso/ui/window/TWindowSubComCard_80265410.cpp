@@ -1,3 +1,4 @@
+#include "pso/ui/window/TextEntryMeasurement.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowCtrl_8024A054.h"
@@ -95,7 +96,6 @@ s32 play_sound_effect(s32, s32, s32, s32);
 s32 __nw__7TObjectFUl(int);
 s32 get_draw_context__11TWindowBaseFPv();
 void * get_field_20__17TWindowSubComCardFv(void *e);
-void refresh_status_display__9TWindowDDFv(void *);
 void TWindowChat__sub_80247D2C(void *p);
 s32 is_window_display_enabled();
 s32 draw_visible_window_entries(void *, void *, s32);
@@ -207,7 +207,7 @@ void TWindowSubComCardList::reset_entries() {
     for (i = 0; i < ((Win_802655E4 *)this)->f76; i++, r++) {
         e = ((void *)((s32 (*)(void *, s32))get_array_entry__11TWindowBaseFi)(this, i));
         TWindowDuelResult::set_default_status(e, 0);
-        refresh_status_display__9TWindowDDFv(e);
+        measure_text_entry(e);
         r->a = 0;
         r->b = 0;
     }
@@ -623,7 +623,7 @@ s32 TWindowSubTradeMain::add_text_entry(s32 arg1, s32 arg2, s32 arg3, s32 arg4) 
     if (this->m_70 & 0x100) {
         ((TWindowHelpItem *)window_help_item)->reset_float_field();
     }
-    ((s32 (*)(int))refresh_status_display__9TWindowDDFv)((int)window_help_item);
+    measure_text_entry(window_help_item);
     *(s32 *)((s8 *)temp_r30 + 0) = arg2;
     *(s32 *)((s8 *)temp_r30 + 4) = arg3;
     *(s16 *)&this->unk_72 = (s16) (*(s16 *)&this->unk_72 + 1);
