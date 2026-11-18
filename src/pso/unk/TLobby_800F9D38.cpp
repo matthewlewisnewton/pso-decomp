@@ -1,14 +1,12 @@
 #include "pso/system/ResourceFile.h"
-#include "types.h"
-#include "pso/unk/TLobby.h"
+#include "pso/system/TGStream.h"
 
-extern "C" {
+u8 *load_disc_file(const char *filename) {
+    disc_read_filename = filename;
+    return TGStream::load_file(filename);
+}
 
-int load_sct_file__8TGStreamFll(void);
-int load_file__8TGStreamFl(void);
-
-void TLobby::set_stream_and_load_file(int a0) { disc_read_filename = (const char *)a0; load_file__8TGStreamFl(); }
-
-void TLobby::set_stream_state(int a0) { disc_read_filename = (const char *)a0; load_sct_file__8TGStreamFll(); }
-
+s32 read_disc_file_sectors(const char *filename, void *destination) {
+    disc_read_filename = filename;
+    return TGStream::load_sct_file(filename, (u8 *)destination);
 }

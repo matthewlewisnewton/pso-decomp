@@ -99,7 +99,6 @@ void check_bin_model_loaded__6TLobbyFPvPv(Obj_8001F8D8 *self, void * _w1);
 s32 bind_bml_motion(struct Lobby_8001FB6C *self, s32 idx, void *bytes);
 s32 change_file_extension__6TLobbyFPvPvPv(char *arg0, char *arg1, char *arg2);
 s32 load_gvm_texture_archive(s32, s32);
-s32 set_stream_state__6TLobbyFi(s32, s32);
 s32 create_file_load_entry__6TLobbyFllUllPPv(void *, s32, void *, void *, void *);
 s32 TLobby__sub_800F9FF4(s32);
 s32 release_texture_list(void *);
@@ -204,7 +203,7 @@ void BmlResource::load_texture_sub(void *arg1, s32 arg2) {
     char buf[0x20];
     s32 size;
     change_file_extension__6TLobbyFPvPvPv((char *)buf, (char *)arg1, "gvm");
-    size = TGStream::load_sct_file((s32)buf, (s32)lobby_download_buffer);
+    size = TGStream::load_sct_file(buf, (u8 *)lobby_download_buffer);
     if (size > 0x40000) {
         TLobby::debug_print("LoadTextureSub: %s too large.", buf);
     } else if (size > 0) {
@@ -577,7 +576,7 @@ s32 BmlResource::load_bin_motion(void *name, s32 index) {
     s32 size;
     s32 data;
     motions[index].motion = NULL;
-    size = set_stream_state__6TLobbyFi((s32)name, lobby_download_buffer);
+    size = read_disc_file_sectors((const char *)name, (void *)lobby_download_buffer);
     if (size == 0) {
         TLobby::debug_print("LoadBinMotion: %s load failed.", name);
         return 0;
@@ -606,7 +605,7 @@ s32 BmlResource::load_bin_model(void *name, s32 index) {
     if (size > 0x40000) {
         TLobby::debug_print("LoadBinModel: tmpbuf overflow(%x)", size - 0x40000);
     }
-    set_stream_state__6TLobbyFi((s32)name, lobby_download_buffer);
+    read_disc_file_sectors((const char *)name, (void *)lobby_download_buffer);
     bind_bml_model((Lobby_8001FBEC *)(this), size, index, lobby_download_buffer);
     if (models[index].m_c != NULL) {
         load_texture_sub(name, index);

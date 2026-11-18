@@ -53,7 +53,6 @@ s32 TLobby::alloc_download_quest(s32 arg1, s32 *arg2) {
     }
     return ret;
 }
-u8 *set_stream_and_load_file__6TLobbyFi(s32);
 extern s32 load_file_prc_buffer_tag[];
 
 struct Sel_800F979C { u8 data[240]; };
@@ -78,12 +77,12 @@ s32 load_encrypted_text_archive(char *name, s32 *arg1) {
     } else {
         TGStream st(name, 1);
         buf = (u8 *)TQuestVmDownLoadServer::alloc(0x800);
-        st.read_sectors_sync(1, (s32)buf);
+        st.read_sectors_sync(1, buf);
         sp8 = *(s32 *)((s8 *)buf + 0);
         h = *(s32 *)((s8 *)buf + 4);
         TAdSinglePlyChrSelectGC::safe_free((u32)buf);
         ret = (s32)TQuestVmDownLoadServer::alloc(sp8);
-        buf = set_stream_and_load_file__6TLobbyFi((s32)name);
+        buf = load_disc_file(name);
         __ct__14SubtractiveRngFv((s32 *)&sel);
         subtractive_rng_seed((s32 *)&sel, h);
         subtractive_rng_xor_buffer((s32 *)&sel, (u32 *)(buf + 8), size - 8);
