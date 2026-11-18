@@ -5,6 +5,8 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "dolphin/mtx.h"
 
+struct TObjEneSlime;
+
 struct TObjEneSlimeOne : public TObjEnemy {
     virtual ~TObjEneSlimeOne();
     void initialize_slime_instance_state();
@@ -15,7 +17,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     virtual f32 receive_direct_attack(void *, DirectAttackPayload, void *, s32, s32);
     virtual void render();
     virtual void run_task();
-    u8 unk_374[0xC];
+    Vec trail_position;
     u8 * model_archive;  // get_instance(); its texlist and bml models
     u32 state;  // index into the {enter, update} state table; set_state
     u32 m_388;
@@ -38,7 +40,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     Vec launch_velocity;  // the ctor's start vector; falls by 0.075 per frame, added to position
     void * particle;  // TParticleCtrl, released in the dtor
     u32 m_3ec;
-    u32 parent_slime;  // the ctor's spawner; try_spawn_child is called on it when this one is hit
+    TObjEneSlime *parent_slime;  // the ctor's spawner; try_spawn_child is called on it when this one is hit
     s32 get_attack_target();
     s32 is_in_water_bomb_states();
     static int get_instance();
@@ -56,7 +58,7 @@ struct TObjEneSlimeOne : public TObjEnemy {
     static s32 create(s32 arg0, s32 arg1, s32 arg2);
     static s32 create(s32 arg0, s32 arg1);
     void set_state(s32 arg1);
-    s32 try_spawn_child(void *arg1);
+    void update_trail_position();
     void sub_800E92D8();
     void sub_800E9538();
     void update_effect_fade_lifetime();

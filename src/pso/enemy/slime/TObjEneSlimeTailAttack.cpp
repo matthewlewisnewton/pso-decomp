@@ -202,7 +202,6 @@ void * dt__22TObjEneSlimeTailAttackFPvs(void *arg0, s16 arg1);
 void *TObjEneSlimeTailAttack__ct(TObjEneSlimeTailAttack *, void *, s32, s32, s32);
 void run_task__21TObjEneSlimeWaterBombFv(Bomb_800E8D4C *arg0);
 void *TObjEneSlimeWaterBomb__ct(TObjEneSlimeWaterBomb *arg0, void *arg1, void *arg2);
-void fn_800E9238(s32 arg0);
 void set_display_mode__15TObjEneSlimeOneFPvi(void *arg0, s32 arg1);
 void set_random_timer__15TObjEneSlimeOneFPvii(void *arg0, s32 arg1, s32 arg2);
 u8 * TObjEneSlimeOne__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
@@ -532,41 +531,9 @@ s32 water_bomb_hit_nearby(u8 *arg0);
 // ---- folded from src/pso/unk/text_800EB778.cpp ----
 
 
-struct E_800EB8DC { s32 f0; s32 f4; };
-
-struct O_800EB8DC { u8 pad[0x3b8]; E_800EB8DC arr[4]; };
-
-struct Slot_800EB778 { s32 state; void *obj; };
-
-struct Obj_800EB778 { u8 pad[0x1c]; u16 id; u8 pad2[0x3b8 - 0x1e]; Slot_800EB778 slots[4]; };
-
-struct Tmpl_800EB7BC {
-    s16 a;
-    s16 b;
-    s16 c;
-    u16 d;
-    u8 pad8[8];
-    Vec pos;
-    u8 rest[0x40 - 0x1C];
-};
-
-struct Blob_800EB7BC { u8 bytes[0x40]; };
-
-struct Slot_800EB7BC { s32 active; u32 obj; };
-
-struct Obj_800EB7BC {
-    u8 pad0[0x38];
-    Vec pos;
-    u8 pad44[0x374 - 0x44];
-    Tmpl_800EB7BC tmpl;
-    s32 count;
-    Slot_800EB7BC slots[8];
-};
-
 extern "C" {
-s32 has_no_active_slot(O_800EB8DC *self);
-void fn_800EB778(Obj_800EB778 *self, s32 id);
-s32 spawn_slime_in_slot(Obj_800EB7BC *origin, s32 arg1, Vec *arg2, Vec *arg3);
+s32 has_no_active_slot(TObjEneSlime *self);
+s32 spawn_slime_in_slot(TObjEneSlime *origin, s32 arg1, Vec *arg2, Vec *arg3);
 
 }
 
@@ -577,16 +544,7 @@ s32 spawn_slime_in_slot(Obj_800EB7BC *origin, s32 arg1, Vec *arg2, Vec *arg3);
 #include "pso/enemy/slime/TObjEneSlimeOne_800EC394.h"
 
 
-#include "pso/enemy/slime/TObjEneSlime.h"
 
-
-struct Slot_800EB910 { s32 state; void *obj; };
-
-struct Obj_800EB910 { u8 pad[0x3b8]; Slot_800EB910 slots[4]; };
-
-struct Slot_800EB984 { s32 state; void *obj; };
-
-struct Obj_800EB984 { u8 pad[0x3b8]; Slot_800EB984 slots[4]; };
 
 extern "C" {
 extern u32 model_render_flags;
@@ -696,15 +654,15 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
     ((TObjEneSlime *)(ene_slime))->apply_set_data(arg2);
     ((TObjEneSlime *)(ene_slime))->clear_lobby_object_state();
     ((TBoss3Volopt *)ene_slime)->reset_photon_effect();
-    TBoss4DarkFalz__sub_8004B4F0(((u8 *)ene_slime + 0x374), (arg2));
-    ene_slime->m_3b4 = (s32) *(s16 *)((s8 *)arg2 + 2);
-    temp_r0 = ene_slime->m_3b4;
+    TBoss4DarkFalz__sub_8004B4F0(&ene_slime->spawn_template, (arg2));
+    ene_slime->child_limit = (s32) *(s16 *)((s8 *)arg2 + 2);
+    temp_r0 = ene_slime->child_limit;
     if (temp_r0 < 1) {
         if (TObjPlayer::check_demo_mode() != 0) {
-            ene_slime->m_3b4 = 3;
+            ene_slime->child_limit = 3;
         }
     } else if (temp_r0 > 4) {
-        ene_slime->m_3b4 = 4;
+        ene_slime->child_limit = 4;
     }
     ene_slime->actorFlags = (s32) (ene_slime->actorFlags | 0x02000000);
     ene_slime->init_slots();
@@ -720,7 +678,7 @@ void TObjEneSlime::vfunc_63() { this->release_split_slimes(); }
 void TObjEneSlime::run_task() {
     s32 sp8;
 
-    if ((TObjPlayer::check_demo_mode() == 0) && (has_no_active_slot((O_800EB8DC *)this) != 0)) {
+    if ((TObjPlayer::check_demo_mode() == 0) && (has_no_active_slot(this) != 0)) {
         sp8 = 0x800;
         send_6x0A_enemy_state(&sp8);
         exchange_object_state((s32)&sp8, (s16)0);
@@ -769,93 +727,91 @@ void TObjEneSlime__sub_800EB9F0(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(
 void TObjEneSlime::init_slots() {
     s32 i;
     for (i = 0; i < 4; i++) {
-        TObjEneSlime__sub_800EB9F0(&((Obj_800EB984 *)this)->slots[i], (void *)&lbl_8043D218);
+        TObjEneSlime__sub_800EB9F0(&child_slots[i], (void *)&lbl_8043D218);
     }
-    spawn_slime_in_slot((Obj_800EB7BC *)this, 0, NULL, NULL);
+    spawn_slime_in_slot(this, 0, NULL, NULL);
 }
 
 void TObjEneSlime::release_split_slimes() {
-    Obj_800EB910 *self = (Obj_800EB910 *)this;
     s32 i;
     for (i = 0; i < 4; i++) {
-        Slot_800EB910 *s = &self->slots[i];
+        SlimeChildSlot *s = &child_slots[i];
         if (s->state == 1) {
-            if (s->obj != 0) {
-                TObjEneSlimeOne__sub_800EC470(s->obj);
-                s->obj = 0;
+            if (s->slime != 0) {
+                TObjEneSlimeOne__sub_800EC470(s->slime);
+                s->slime = 0;
             }
             s->state = 2;
         }
     }
 }
 
-s32 has_no_active_slot(O_800EB8DC *self) {
+s32 has_no_active_slot(TObjEneSlime *self) {
     s32 i;
     for (i = 0; i < 4; i++) {
-        if (self->arr[i].f0 == 1) {
+        if (self->child_slots[i].state == 1) {
             return 0;
         }
     }
     return 1;
 }
 
-s32 spawn_slime_in_slot(Obj_800EB7BC *origin, s32 arg1, Vec *arg2, Vec *arg3) {
-    Tmpl_800EB7BC t;
-    Slot_800EB7BC *slot;
+s32 spawn_slime_in_slot(TObjEneSlime *origin, s32 arg1, Vec *arg2, Vec *arg3) {
+    SlimeSpawnTemplate t;
+    SlimeChildSlot *slot;
     s32 n;
-    if (arg1 < 0 || arg1 >= origin->count || origin->slots[arg1].active != 0) {
+    if (arg1 < 0 || arg1 >= origin->child_limit || origin->child_slots[arg1].state != 0) {
         return 0;
     }
-    *(Blob_800EB7BC *) &t = *(Blob_800EB7BC *) &origin->tmpl;
+    t = origin->spawn_template;
     n = arg1 + 1;
-    t.a = origin->tmpl.a + n;
-    t.b = 0;
-    t.d = origin->tmpl.d + n;
+    t.entry.field_00 = origin->spawn_template.entry.field_00 + n;
+    t.entry.field_02 = 0;
+    t.entry.field_06 = origin->spawn_template.entry.field_06 + n;
     if (arg2 == NULL) {
-        VecCopy((Vec *)&t.pos, (const Vec *)&origin->pos);
+        VecCopy(&t.entry.position, &origin->position);
     } else {
-        VecCopy((Vec *)&t.pos, (const Vec *)arg2);
+        VecCopy(&t.entry.position, (const Vec *)arg2);
     }
-    slot = &origin->slots[arg1];
+    slot = &origin->child_slots[arg1];
     if (arg3 == 0) {
-        slot->obj = TObjEneSlimeOne::create((s32) origin, (s32) &t);
+        slot->slime = (TObjEneSlimeOne *)TObjEneSlimeOne::create((s32) origin, (s32) &t);
     } else {
-        slot->obj = TObjEneSlimeOne::create((s32) origin, (s32) &t, (s32) arg3);
+        slot->slime = (TObjEneSlimeOne *)TObjEneSlimeOne::create((s32) origin, (s32) &t, (s32) arg3);
     }
-    if (slot->obj == 0) {
+    if (slot->slime == NULL) {
         return 0;
     }
-    slot->active = 1;
+    slot->state = 1;
     return 1;
 }
 
-void fn_800EB778(Obj_800EB778 *self, s32 id) {
-    s32 i = id - self->id - 1;
-    if (i < 0 || i >= 4 || self->slots[i].state != 1) {
+void TObjEneSlime::release_child_slot(s32 id) {
+    s32 i = id - entity_id - 1;
+    if (i < 0 || i >= 4 || child_slots[i].state != 1) {
         return;
     }
-    self->slots[i].obj = 0;
-    self->slots[i].state = 2;
+    child_slots[i].slime = 0;
+    child_slots[i].state = 2;
 }
 
 struct Bomb_800E9090;
 
-s32 TObjEneSlimeOne::try_spawn_child(void *arg1) {
+s32 TObjEneSlime::try_spawn_child(void *arg1) {
     s32 i;
     Vec pos;
     Vec dir;
     s32 ang;
     s32 n;
-    int origin = (int)this;
-    n = *(s32 *)((s8 *)origin + 0x3B4);
-    for (i = 0; i < n && *(s32 *)((s8 *)((u8 *) origin + i * 8) + 0x3B8) != 0; i++) {
+    n = child_limit;
+    for (i = 0; i < n && child_slots[i].state != 0; i++) {
     }
     if (i == n) {
         return 0;
     }
     VecCopy((Vec *)&pos, (const Vec *)arg1);
     pos.y += 10.0f;
-    ang = (s16) (65535.0f * ((f32 (*)(int)) random_ratio__9TObjCharaFv)(origin));
+    ang = (s16) (65535.0f * ((f32 (*)(int)) random_ratio__9TObjCharaFv)((int)this));
     dir.x = sin_table_lookup(ang);
     dir.y = 0.0f;
     dir.z = cos_table_lookup(ang);
@@ -867,7 +823,7 @@ s32 TObjEneSlimeOne::try_spawn_child(void *arg1) {
         normalize_vector(&dir);
     }
     play_sound_effect(0x4003A619, &pos, 0, 0);
-    return spawn_slime_in_slot((Obj_800EB7BC *) origin, i, &pos, &dir);
+    return spawn_slime_in_slot(this, i, &pos, &dir);
 }
 
 s32 TObjEneSlimeOne::create(s32 arg0, s32 arg1) {
@@ -914,7 +870,7 @@ u8 *init__15TObjEneSlimeOneFPviii(u8 *ene_slime_one, s32 arg1, s32 arg2, s32 arg
         stack.spE = 0;
         exchange_object_state__9TObjEnemyFls(ene_slime_one, &stack.sp8, 0);
     }
-    ((TObjEneSlimeOne *)ene_slime_one)->parent_slime = arg2;
+    ((TObjEneSlimeOne *)ene_slime_one)->parent_slime = (TObjEneSlime *)arg2;
     ((TObjEneSlimeOne *)ene_slime_one)->initialize_slime_instance_state();
     project_actor_to_ground(ene_slime_one, ene_slime_one + 0x38, 0);
     ((TObjEneSlimeOne *)ene_slime_one)->set_state((s32)((void*)(0)));
@@ -935,7 +891,7 @@ u8 *TObjEneSlimeOne__ct(u8 *actor, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         stack.spE = 0;
         exchange_object_state__9TObjEnemyFls(actor, &stack.sp8, 0);
     }
-    ((TObjEneSlimeOne *)actor)->parent_slime = arg2;
+    ((TObjEneSlimeOne *)actor)->parent_slime = (TObjEneSlime *)arg2;
     VecCopy((Vec *)(actor + 0x3DC), (const Vec *)(arg4));
     ((TObjEneSlimeOne *)actor)->initialize_slime_instance_state();
     ((TObjEneSlimeOne *)actor)->set_state((s32)((void*)(0xE)));
@@ -1015,7 +971,7 @@ TObjEneSlimeOne::~TObjEneSlimeOne() {
 
 void TObjEneSlimeOne::run_task() {
     if (TObjPlayer::check_demo_mode() == 0) {
-        if ((s32)this->state != 13 && (this->parent_slime == 0 || ((TObject *)this->parent_slime)->all_parents_unqueued_for_destruction() == 0)) {
+        if ((s32)this->state != 13 && (this->parent_slime == 0 || parent_slime->all_parents_unqueued_for_destruction() == 0)) {
             set_state(13);
         }
         set_target_flag_bit0();
@@ -1032,7 +988,7 @@ void TObjEneSlimeOne::run_task() {
         }
         ((TObjEneSlimeOne *)this->m_388)->advance_animation_state();
         play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);
-        fn_800E9238((s32)this);
+        update_trail_position();
         clear_child_flag();
         if ((s32)this->state != 13) {
             minimap_render_dot((u8 *)this + 0x2FC, -0x5DB4, 1, 0);
@@ -1128,8 +1084,8 @@ void TObjEneSlimeOne::clear_child_flag() {
 f32 TObjEneSlimeOne::receive_direct_attack(void *attacker, DirectAttackPayload payload,
                                          void *source, s32, s32) {
     if (payload.kind == 2 && parent_slime != 0 &&
-        ((TObjEneSlimeOne *)parent_slime)->all_parents_unqueued_for_destruction()) {
-        ((TObjEneSlimeOne *)parent_slime)->try_spawn_child(&position);
+        parent_slime->all_parents_unqueued_for_destruction()) {
+        parent_slime->try_spawn_child(&position);
     }
     TObjChara::receive_direct_attack(attacker, payload, source, -1, -1);
     return 0.0f;
@@ -1140,8 +1096,8 @@ void TObjEneSlimeOne::vfunc_63() { if (*(int *)&this->state != 13) { set_state((
 void TObjEneSlimeOne::vfunc_62() {
     u8 *arg0 = (u8 *)this;
     if ((s32) this->state != 0xC) {
-        if (((s32) this->m_2d4 < (s32) registered_player_count) && (((u32 (*)(void))get_player_by_client_id)() != 0U) && (check_player_field_7cc__15TObjEneSlimeOneFv() == 2) && ((u32) this->parent_slime != 0U) && (((TObject *)((void *) this->parent_slime))->all_parents_unqueued_for_destruction() != 0)) {
-            ((TObjEneSlimeOne *)(this->parent_slime))->try_spawn_child((u8 *)&this->position);
+        if (((s32) this->m_2d4 < (s32) registered_player_count) && (((u32 (*)(void))get_player_by_client_id)() != 0U) && (check_player_field_7cc__15TObjEneSlimeOneFv() == 2) && ((u32) this->parent_slime != 0U) && (parent_slime->all_parents_unqueued_for_destruction() != 0)) {
+            parent_slime->try_spawn_child((u8 *)&this->position);
         }
         this->actorFlags = (s32) (this->actorFlags & 0xFFFFFDFF);
         ((TObjEneSlimeOne *)arg0)->set_state((s32)((void*)(0xC)));
@@ -1607,10 +1563,8 @@ void TObjEneSlimeOne::sub_800E969C() {
 }
 
 void TObjEneSlimeOne::sub_800E95F4() {
-    u8 *object;
-    object = (u8 *)(*(u8 **)((s8 *)((u8 *)this) + 0x3F0));
-    if ((object != NULL) && (((TObject *)object)->all_parents_unqueued_for_destruction() != 0)) {
-        fn_800EB778(*(Obj_800EB778 **)((s8 *)((u8 *)this) + 0x3F0), (s32) this->entity_id);
+    if (parent_slime != NULL && parent_slime->all_parents_unqueued_for_destruction() != 0) {
+        parent_slime->release_child_slot(entity_id);
     }
     *(f32 *)((s8 *)((u8 *)this) + 0x3B0) = 1.0f;
     this->draw_scale.y = 1.0f;
@@ -1707,18 +1661,17 @@ void TObjEneSlimeOne::sub_800E92D8() {
 }
 
 void TObjEneSlimeOne::copy_position() {
-    s32 arg0 = (s32)this;
-    VecCopy((Vec *)(arg0 + 0x374), (const Vec *)(arg0 + 0x38));
+    VecCopy(&trail_position, &position);
 }
 
-void fn_800E9238(s32 arg0) {
-    Vec stack;
-    VecCopy((Vec *)(&stack.x), (const Vec *)(arg0 + 0x38));
-    ((f32 (*)(void *, void *))subtract_vector)((void *)&stack.x, (void *)(arg0 + 0x374));
-    stack.x *= 0.025f;
-    stack.y *= 0.025f;
-    stack.z *= 0.025f;
-    ((f32 (*)(void *, void *))vec3_add_to)((void *)(arg0 + 0x374), (void *)&stack.x);
+void TObjEneSlimeOne::update_trail_position() {
+    Vec delta;
+    VecCopy(&delta, &position);
+    subtract_vector(&delta, &trail_position);
+    delta.x *= 0.025f;
+    delta.y *= 0.025f;
+    delta.z *= 0.025f;
+    vec3_add_to(&trail_position, &delta);
 }
 
 void TObjEneSlimeOne::sub_800E9090() {

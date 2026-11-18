@@ -10602,8 +10602,8 @@ force_active:
   - fn_800E322C
   - fn_800E3374
   - fn_800E762C
-  - fn_800E9238
-  - fn_800EB778
+  - update_trail_position__15TObjEneSlimeOneFv
+  - release_child_slot__12TObjEneSlimeFl
   - fn_800FCC78
   - fn_801058E8
   - fn_8010EF14
@@ -23920,7 +23920,7 @@ force_active:
   - try_run_effect_m7__18TObjEneMe3SinowZoaFv
   - try_set_mode8_if_flag2__19TObjEneBm9MericarolFv
   - try_setup__12TAdTimeSetGCFv
-  - try_spawn_child__15TObjEneSlimeOneFPv
+  - try_spawn_child__12TObjEneSlimeFPv
   - try_spawn_ground_effect__16TObjEneMe3StelthFl
   - try_spawn_mirages__21TObjEneMe3ShinowaRealFv
   - try_spawn_trap__12TBoss8DragonFv
