@@ -138,19 +138,16 @@ void TItemReverseTech::run_frame() {
 }
 
 void TItemReverseTech::run_cleanup_callbacks() {
+    ReverseTechSceneHook *hook;
+    void (*release)();
+    s32 i;
+
     main_task.delete_layer_children();
-#ifdef __MWERKS__
-    // The final decrement advances the integer cursor without forming an out-of-bounds pointer.
-    u32 cursor = reinterpret_cast<u32>(&TItemReverseTech__cleanup_callback_table[ReverseTechSceneHookCount - 1]);
-#endif
-    s32 i = ReverseTechSceneHookCount - 1;
+    hook = &TItemReverseTech__cleanup_callback_table[ReverseTechSceneHookCount - 1];
+    i = ReverseTechSceneHookCount - 1;
     do {
-#ifdef __MWERKS__
-        void (*release)() = reinterpret_cast<ReverseTechSceneHook *>(cursor)->release;
-        cursor -= sizeof(ReverseTechSceneHook);
-#else
-        void (*release)() = TItemReverseTech__cleanup_callback_table[i].release;
-#endif
+        release = hook->release;
+        hook--;
         if (release != NULL) {
             release();
         }
