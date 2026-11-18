@@ -7723,7 +7723,7 @@ pso/misc/TMedicalCenterSequence.cpp:
 pso/misc/TWindow.cpp:
 	.text       start:0x80216B44 end:0x802171BC
 
-pso/misc/TWindow_80217288.cpp:
+pso/quest/TQuestListOffline_802171BC.cpp:
 	.text       start:0x802171BC end:0x802173F0
 	.rodata     start:0x8044BDA0 end:0x8044BE88
 	.data       start:0x804C9900 end:0x804C9CE8
@@ -9498,7 +9498,7 @@ pso/misc/TWindowMainMenu4P.cpp:
 	.text       start:0x80288940 end:0x80288B04
 	.data       start:0x804D30A0 end:0x804D30C8
 
-pso/misc/TQuestListChallenge.cpp:
+pso/quest/TQuestListChallenge.cpp:
 	.text       start:0x80288B04 end:0x802893C8
 	.rodata     start:0x804507A8 end:0x80450AC0
 	.data       start:0x804D30C8 end:0x804D3188

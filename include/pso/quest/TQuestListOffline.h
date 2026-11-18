@@ -1,5 +1,5 @@
-#ifndef PSO_MISC_TQUESTLISTOFFLINE_H
-#define PSO_MISC_TQUESTLISTOFFLINE_H
+#ifndef PSO_QUEST_TQUESTLISTOFFLINE_H
+#define PSO_QUEST_TQUESTLISTOFFLINE_H
 #include "types.h"
 #include "pso/TShopWindowBase.h"
 

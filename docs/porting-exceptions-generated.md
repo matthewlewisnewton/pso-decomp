@@ -873,7 +873,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TQuadSpriteScl.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuadSpriteSclCol.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuadSpriteSclColRot.cpp` | fp_contract×1 |
-| `src/pso/misc/TQuestListChallenge.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TQuestListOnline.cpp` | optimization_level×1, dont_inline×1 |
 | `src/pso/misc/TQuestListOnline_80217464.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp` | opt_propagation×1 |
@@ -1163,6 +1162,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/player/TUnk_804A5D28.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/protocol/NetworkRuntime.cpp` | dont_inline×8, inline_depth×8, opt_common_subs×6, pool_data×5, opt_propagation×3, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
 | `src/pso/quest/QuestOpcodeHandlers.cpp` | opt_common_subs×2, opt_propagation×2, fp_contract×2, opt_dead_assignments×1, scheduling×1 |
+| `src/pso/quest/TQuestListChallenge.cpp` | opt_common_subs×1 |
 | `src/pso/quest/TQuestThread.cpp` | readonly_strings×1 |
 | `src/pso/system/AdxEncoder.cpp` | opt_propagation×2 |
 | `src/pso/system/AdxExpand.cpp` | fp_contract×1 |

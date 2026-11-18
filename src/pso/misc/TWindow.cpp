@@ -9,7 +9,7 @@
 #include "pso/TShopWindowBase.h"
 #include "pso/misc/TWindowMenu.h"
 #include "pso/misc/TWindowMenuIconLine.h"
-#include "pso/misc/TQuestListOffline.h"
+#include "pso/quest/TQuestListOffline.h"
 #include "pso/misc/TWindow.h"
 #include "pso/misc/TLobby.h"
 #include "pso/quest/TQuestListVM.h"
