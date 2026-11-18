@@ -14283,7 +14283,11 @@ pso/player/TObjPlayer_803E112C.cpp:
 	.sdata2     start:0x805E1000 end:0x805E1020
 
 pso/player/TObjPlayer_803E18C0.cpp:
-	.text       start:0x803E18C0 end:0x803E1FC8
+	.text       start:0x803E18C0 end:0x803E1A58
+	.sdata2     start:0x805E1020 end:0x805E1038
+
+pso/player/TObjPlayer_803E1A58.cpp:
+	.text       start:0x803E1A58 end:0x803E1FC8
 	.bss        start:0x8058DB90 end:0x8058DBB0
 
 pso/unk/text_803E1FC8.cpp:

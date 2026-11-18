@@ -8,9 +8,9 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 48 | 12 |
-| intrinsic | 92 | 60 |
+| intrinsic | 92 | 61 |
 | hardware | 69 | 13 |
-| pragma | 5893 | 892 |
+| pragma | 5893 | 893 |
 | configure.py per-unit override | 224 | 224 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 61, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
@@ -139,8 +139,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
 | `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
 | `src/pso/player/TObjPlayer_803E112C.cpp:163` | `__fabs` |
-| `src/pso/player/TObjPlayer_803E18C0.cpp:101` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803E18C0.cpp:124` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E18C0.cpp:33` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E1A58.cpp:82` | `__frsqrte` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:94` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:106` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_movement.cpp:99` | `__cntlzw` |
@@ -1156,7 +1156,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/player/TObjPlayer_803DC834.cpp` | scheduling×2, peephole×2 |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_803E112C.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
-| `src/pso/player/TObjPlayer_803E18C0.cpp` | scheduling×4 |
+| `src/pso/player/TObjPlayer_803E18C0.cpp` | scheduling×1 |
+| `src/pso/player/TObjPlayer_803E1A58.cpp` | scheduling×3 |
 | `src/pso/player/TObjPlayer_803E21B8.cpp` | scheduling×6, dont_inline×2, inline_depth×2, peephole×1 |
 | `src/pso/player/TObjPlayer_803E5470.cpp` | use_lmw_stmw×1 |
 | `src/pso/player/TUnk_80490470.cpp` | fp_contract×1 |
