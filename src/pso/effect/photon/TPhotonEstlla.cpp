@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/effect/photon/TPhotonEstlla.h"
@@ -96,7 +97,6 @@ extern const Packet_801AA710 photon_estlla_line_packet_init = {
 extern u8 identity_matrix[];
 extern "C" {
 
-s32 scroll_strip_uvs(void *, s16, int);
 s32 clear_render_context__10TObjPlayerFv(void *);
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);
 void set_chunk_material_override_pair(s32 arg0, s32 arg1);
@@ -106,7 +106,7 @@ extern NJS_ARGB model_material_color;
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
-void *estlla_photon_blast_model;
+StripBufferPair *estlla_photon_blast_model;
 extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
@@ -309,12 +309,5 @@ void TObjPlayer::destroy_global_buffer() {
 }
 
 void create_estlla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98)) + 0x2C), 0));
-    }
-    estlla_photon_blast_model = (void *)var_r0;
+    estlla_photon_blast_model = new StripBufferPair(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 0x98)) + 0x2C), 0);
 }

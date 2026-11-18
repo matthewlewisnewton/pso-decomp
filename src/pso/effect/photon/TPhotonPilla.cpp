@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -55,7 +56,6 @@ typedef struct Packet_801ADD10 {
 } Packet_801ADD10;
 
 extern "C" {
-s32 scroll_strip_uvs(void *, s16, int);
 s32 clear_render_context__10TObjPlayerFv(void *);
 s32 rotate_matrix_y(int, int);
 extern NJS_ARGB saved_model_draw_color;
@@ -69,7 +69,7 @@ extern s32 model_render_flags;
 void TPhotonLaser__ct(void *, void *, void *, u16);
 void vec3_add_to(void *, void *);
 const char *TPhotonPilla__class_name = "TPhotonPilla";
-void *pilla_photon_buffer_pair;
+StripBufferPair *pilla_photon_buffer_pair;
 extern const Packet_801ADD10 photon_pilla_laser_packet = {
     { 0.0f, 0.0f, 0.0f }, { 0 }, { 0.0f, -1.0f, 0.0f }, 300.0f, 30.0f, 30.0f
 };
@@ -341,12 +341,5 @@ void TObjPlayer::free_buffer_pair() {
     pilla_photon_buffer_pair = NULL;
 }
 void create_pilla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8)) + 0x2C), 0));
-    }
-    pilla_photon_buffer_pair = (void *)var_r0;
+    pilla_photon_buffer_pair = new StripBufferPair(*(s32 *)((s8 *)(*(void **)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8)) + 0x2C), 0);
 }

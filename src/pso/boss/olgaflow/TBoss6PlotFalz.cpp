@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/boss/Boss6ScrollStrips.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -960,8 +961,6 @@ struct Obj_802AC3E8 { u8 pad[0x38]; Vec pos; u8 pad2[0xA4 - 0x44]; Sub_802AC3E8 
 void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
 void refresh_players_equipment__14TBoss6PlotFalzFPv(void *self);
-void scroll_strip_uvs(StripBufferPair *, s16, s16);
-s32 alloc_tables__6TLobbyFll(s32, s32, s32);
 extern s32 lbl_805D5868;
 extern s32 lbl_805D5870;
 s32 get_main_phase();
@@ -1019,11 +1018,7 @@ void Boss6ScrollStrips::build_tables(const Boss6StripDesc *descs, s32 n) {
     for (i = 0; i < count; i++) {
         r = &descs[i];
         t = (s32)find_model_node((u32)get_bml_model((BmlResource *)h, r->model), r->node);
-        s32 pair = (s32)::operator new(0x14);
-        if (pair != 0) {
-            pair = alloc_tables__6TLobbyFll(pair, t, r->texture_filter);
-        }
-        items[i] = (StripBufferPair *)pair;
+        items[i] = new StripBufferPair(t, r->texture_filter);
     }
 }
 

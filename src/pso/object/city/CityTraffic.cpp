@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -34,7 +35,6 @@
 struct Rec16_80180D18 { s32 f0; s32 f4; s32 f8; s32 fc; };
 
 extern "C" {
-s32 scroll_strip_uvs(void *, s16, int);
 s32 rotate_matrix_z(int, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -143,7 +143,6 @@ void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
 void __ct__7TObjectFP7TObject(void *);
 extern u8 __vt__19TObjCityAirCar_Ctrl[];
-s32 alloc_tables__6TLobbyFll(s32, s32, s32, Ent_801817AC *);
 void subtract_vector(Vec *, Vec *);
 Lob_801817AC * city_air_car_model_resource;
 void ** city_air_car_model_handle;
@@ -167,7 +166,7 @@ const char *TObjCityAirCar_Car__name = "TObjCityAirCar_Car";
 
 f32 air_car_lane_spacing_table[5];
 f32 air_car_lane_speed_scale_table[5];
-void *air_car_buffer_pair_table[6];
+StripBufferPair *air_car_buffer_pair_table[6];
 
 s32 get_city_common_model(s32 i) {
     return (*(O_801819E4 * *)&city_common_model_archive)->entries[i].c;
@@ -188,8 +187,6 @@ void measure_traffic_path_lengths(void) {
   Motion_801817AC *m;
   s32 i;
   s32 j;
-  const s32 *new_var;
-  s32 p;
   for (i = 0; i < 5; i++)
   {
     m = (Motion_801817AC *) get_city_common_motion(city_traffic_path_motion_index_table[i]);
@@ -222,13 +219,7 @@ void measure_traffic_path_lengths(void) {
     city_air_car_model_handle = (void **)TLobby__sub_80184C2C(2);
     for (j = 0; j < 5; j++)
     {
-      p = (int)::operator new(0x14);
-      new_var = city_traffic_car_chunk_index_table;
-      if (p != 0)
-      {
-        p = alloc_tables__6TLobbyFll(p, city_air_car_model_resource->entries[new_var[j]].f8, 1, city_air_car_model_resource->entries);
-      }
-      air_car_buffer_pair_table[j] = (void *)p;
+      air_car_buffer_pair_table[j] = new StripBufferPair(city_air_car_model_resource->entries[city_traffic_car_chunk_index_table[j]].f8, 1);
     }
   }
 }

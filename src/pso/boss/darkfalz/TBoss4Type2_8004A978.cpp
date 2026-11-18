@@ -1,9 +1,9 @@
+#include "pso/system/StripBufferPair.h"
 #include "types.h"
 #include "pso/boss/darkfalz/TBoss4Type2.h"
 #include "pso/unk/ModelNodeTables.h"
 
 extern "C" {
-void scroll_strip_uvs(void *, s16, s16);
 extern s32 dark_falz_controller_instance;
 
 u8 TBoss4Type2::is_active() {

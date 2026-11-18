@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
@@ -10,7 +11,6 @@
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 
 extern "C" {
-s32 alloc_tables__6TLobbyFll(s32, s32, s32);
 }
 
 void ModelNodeTables::destroy() {
@@ -30,7 +30,6 @@ void ModelNodeTables::init(const ModelNodeSpec *specs, s32 spec_count) {
     s32 i;
     const ModelNodeSpec *r;
     s32 t;
-    s32 p;
     s32 j;
     h = TBoss4Uro::get_instance_count();
     if (h == 0 || specs == NULL || spec_count < 1) {
@@ -38,7 +37,7 @@ void ModelNodeTables::init(const ModelNodeSpec *specs, s32 spec_count) {
     }
     count = spec_count;
     items = NULL;
-    items = (void **)::operator new[](count * 4);
+    items = (StripBufferPair **)::operator new[](count * sizeof(*items));
     scroll_u = 0;
     scroll_v = 0;
     for (j = 0; j < count; j++) {
@@ -47,10 +46,6 @@ void ModelNodeTables::init(const ModelNodeSpec *specs, s32 spec_count) {
     for (i = 0; i < count; i++) {
         r = &specs[i];
         t = (s32)find_model_node((u32)get_bml_model(h, r->model), r->node);
-        p = (int)::operator new(0x14);
-        if (p != 0) {
-            p = alloc_tables__6TLobbyFll(p, t, r->count);
-        }
-        items[i] = (void *)p;
+        items[i] = new StripBufferPair(t, r->texture_filter);
     }
 }

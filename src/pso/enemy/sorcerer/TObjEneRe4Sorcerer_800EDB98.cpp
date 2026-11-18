@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TObjEnemy.h"
@@ -45,11 +46,10 @@ void vfunc_106__18TObjEneRe4SorcererFv(u8 *arg0);
 void vfunc_105__18TObjEneRe4SorcererFv(u8 *arg0);
 s32 post_translate_matrix(void *);
 s32 TObjEneRe4Sorcerer__sub_801E3F1C(f32, f32);
-s32 scroll_strip_uvs(int, int, int);
 s32 translate_matrix(int, f32, f32, f32);
 s32 push_matrix();
 
-extern u32 TObjEneRe4Sorcerer__uv_scroll_buffer;
+extern StripBufferPair *TObjEneRe4Sorcerer__uv_scroll_buffer;
 extern s32 model_render_flags;
 
 void TObjEneRe4Sorcerer::vfunc_106() {
@@ -1665,9 +1665,9 @@ TObjEneRe4Sorcerer *TObjEneRe4Sorcerer__ct(TObjEneRe4Sorcerer *self, void *arg1,
 }
 
 void TObjEneRe4Sorcerer::free_bits() {
-    if ((u32) TObjEneRe4Sorcerer__uv_scroll_buffer != 0U) {
-        destroy_buffer_pair((void *)TObjEneRe4Sorcerer__uv_scroll_buffer, 1);
-        TObjEneRe4Sorcerer__uv_scroll_buffer = 0U;
+    if (TObjEneRe4Sorcerer__uv_scroll_buffer != NULL) {
+        destroy_buffer_pair(TObjEneRe4Sorcerer__uv_scroll_buffer, 1);
+        TObjEneRe4Sorcerer__uv_scroll_buffer = NULL;
     }
     TObjEneRe4Bit__sub_800EDAB0();
     if ((u32) sorcerer_bml_resource != 0U) {
@@ -1685,7 +1685,6 @@ TObjEneRe4Sorcerer *TObjEneRe4Sorcerer::create() {
 }
 
 void TObjEneRe4Sorcerer::load_resources() {
-    u32 r;
     lbl_80501070.x = 0.0f;
     lbl_80501070.y = 0.0f;
     lbl_80501070.z = 0.0f;
@@ -1703,11 +1702,7 @@ void TObjEneRe4Sorcerer::load_resources() {
     TObjEneRe4Sorcerer__effect_render_scale = 0.0f;
     re4_sorcerer_render_node_ptr = 0;
     TObjEneRe4Bit__sub_800EDAB4();
-    r = (u32) (int)::operator new(0x14);
-    if (r != 0) {
-        r = (u32) ((TLobby *)r)->alloc_tables((s32)sorcerer_bml_resource->models->model, 2);
-    }
-    TObjEneRe4Sorcerer__uv_scroll_buffer = r;
+    TObjEneRe4Sorcerer__uv_scroll_buffer = new StripBufferPair((s32)sorcerer_bml_resource->models->model, 2);
     Params_800F0464 p = re4_sorcerer_spawn_descriptor;
     p.a = (s32)sorcerer_bml_resource->motions;
     TLobby::spawn_npc_enemy((s16)0x2A, (s32)sorcerer_bml_resource->models->model, (NJS_TEXLIST *)sorcerer_bml_resource->models->m_c, &p, re4_sorcerer_collision_body_part_table[3], 15.0f);
@@ -1723,5 +1718,5 @@ s32 TObjEneRe4Sorcerer__render_node_index;
 s32 TObjEneRe4Sorcerer__saved_render_flags;
 f32 TObjEneRe4Sorcerer__effect_render_scale;
 s32 re4_sorcerer_render_node_ptr;
-u32 TObjEneRe4Sorcerer__uv_scroll_buffer;
+StripBufferPair *TObjEneRe4Sorcerer__uv_scroll_buffer;
 }

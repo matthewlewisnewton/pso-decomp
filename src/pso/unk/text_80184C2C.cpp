@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/unk/text_800F5BC0.h"
@@ -92,7 +93,7 @@ void *lbl_805D5B38;
 s32 lbl_805D5B3C;
 s32 lbl_805D5B40;
 s32 lbl_805D5B44;
-void *lbl_805D5B48;
+StripBufferPair *lbl_805D5B48;
 
 int TLobby__sub_80184C2C(int a0) {  return city_season_xmas_model_table[a0]; }
 }
@@ -197,8 +198,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         if (lbl_805D5B30 == 0) {
             base = *(u8 **)(tmp + 0x42c);
             ent = *(u8 **)(base + 0x18);
-            tmp = (u8 *)::operator new(0x14);
-            if (tmp != NULL) tmp = (u8 *)((TLobby *)tmp)->alloc_tables((s32)ent, 3);
+            tmp = (u8 *)new StripBufferPair((s32)ent, 3);
             lbl_805D5B34 = tmp;
             base = *(u8 **)(*(u8 **)(ent + 0x2c) + 4);
             base = *(u8 **)(base + 4);
@@ -206,8 +206,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         } else if (lbl_805D5B30 == 4) {
             base = *(u8 **)(tmp + 0x42c);
             ent = *(u8 **)(base + 0x18);
-            tmp = (u8 *)::operator new(0x14);
-            if (tmp != NULL) tmp = (u8 *)((TLobby *)tmp)->alloc_tables((s32)ent, 0);
+            tmp = (u8 *)new StripBufferPair((s32)ent, 0);
             lbl_805D5B34 = tmp;
             base = *(u8 **)(*(u8 **)(ent + 0x2c) + 4);
             base = *(u8 **)(base + 4);
@@ -234,9 +233,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         lbl_805D5B40 = *(s32 *)(*(u8 **)(r + 0x42c) + 0x18);
     }
 
-    tmp = (u8 *)::operator new(0x14);
-    if (tmp != NULL) tmp = (u8 *)((TLobby *)tmp)->alloc_tables((s32)(void *)lbl_805D5B3C, 2);
-    lbl_805D5B48 = tmp;
+    lbl_805D5B48 = new StripBufferPair(lbl_805D5B3C, 2);
     base = (u8 *)lbl_805D5B3C;
     base = *(u8 **)(base + 4);
     base = *(u8 **)(base + 4);

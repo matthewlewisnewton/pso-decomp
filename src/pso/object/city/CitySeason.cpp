@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -216,14 +217,13 @@ extern "C" {
 extern "C" {
 
 s32 post_translate_matrix(void *);
-s32 scroll_strip_uvs(s32, s16, s32);
 s32 push_matrix();
 
 extern u32 lbl_805D5B38;
 extern s32 lbl_805D5B3C;
 extern s32 lbl_805D5B40;
 extern s32 lbl_805D5B44;
-extern s32 lbl_805D5B48;
+extern StripBufferPair *lbl_805D5B48;
 
 }
 

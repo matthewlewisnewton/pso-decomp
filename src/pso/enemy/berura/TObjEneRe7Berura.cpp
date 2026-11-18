@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -45,7 +46,6 @@ void draw_model_motion(void *arg0, void *arg1, f32 farg0);
 void TObjEneRe7Berura__sub_80093470(TObjEneRe7Berura *self, s32 mode);
 void TObjEneRe7BeruraPunch__sub_800962F4(TObjEneRe7BeruraPunch *p);
 void TObjPlayer__sub_800A04F0(void *);
-s32 scroll_strip_uvs(s32, int, int);
 extern const Vec lbl_80439EC4;
 extern BeruraDetachedPart TObjEneRe7Berura__detached_part_states[];
 u8 * TObjEneRe7Berura__stat_handle_table[1];
@@ -61,7 +61,7 @@ TUnk_80490470 * TObjEneRe7Berura__demo_target;
 Mtx34 *berura_detached_matrices;
 s32 * berura_node_matrix_ptr_a;
 s16 * berura_node_matrix_ptr_b;
-u32 belra_uv_animation_buffer;
+StripBufferPair *belra_uv_animation_buffer;
 s32 berura_attack_node_range_start;
 s32 berura_attack_node_range_end;
 Mtx34 *TObjEneRe7Berura__node_matrix_cursor;
@@ -208,7 +208,6 @@ void TObjEneRe7Berura::load_static_resources() {
     u32 m;
     Mtx34 *buf;
     s32 i;
-    void *p;
     if (TObjEneDD::check_v2_mode() != 0) {
         r = (BmlResource *)load_enemy_bml_resource_named((s32)&ene_berura_bml_descriptor, (s32)("bm_ene_re7_berura_a.bml"));
     } else {
@@ -264,11 +263,7 @@ void TObjEneRe7Berura::load_static_resources() {
     }
     berura_node_matrix_ptr_a = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(m, 2))->model)[1] + 8);
     berura_node_matrix_ptr_b = (s16 *)(((s32 *)((NJS_OBJECT *)find_model_node(m, 1))->model)[1] + 8);
-    p = ::operator new(0x14);
-    if (p != NULL) {
-        p = ((TLobby *)p)->alloc_tables((s32)TObjEneRe7Berura__shared_resource->models->model, 2);
-    }
-    belra_uv_animation_buffer = (u32)p;
+    belra_uv_animation_buffer = new StripBufferPair((s32)TObjEneRe7Berura__shared_resource->models->model, 2);
     SampledMotionPoints *sampled = new SampledMotionPoints(4, 14.0f, 17.0f, 0.8f);
     belra_trail_buffer = sampled;
     pair[0] = 0x2E;
@@ -311,9 +306,9 @@ void TObjEneRe7Berura::destroy_children() {
         delete belra_trail_buffer;
         belra_trail_buffer = NULL;
     }
-    if ((u32) belra_uv_animation_buffer != 0U) {
-        destroy_buffer_pair((void *)belra_uv_animation_buffer, 1);
-        belra_uv_animation_buffer = 0U;
+    if (belra_uv_animation_buffer != NULL) {
+        destroy_buffer_pair(belra_uv_animation_buffer, 1);
+        belra_uv_animation_buffer = NULL;
     }
     if (berura_detached_matrices != NULL) {
         ::operator delete[](berura_detached_matrices);

@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/effect/photon/TPhotonFarlla.h"
@@ -54,7 +55,6 @@ struct Self_801AAF00 {
 
 extern u8 *photon_blast_shared_resource;
 extern "C" {
-s32 scroll_strip_uvs(void *, s16, int);
 s32 clear_render_context__10TObjPlayerFv(void *);
 s32 rotate_matrix_y(int, int);
 extern NJS_ARGB saved_model_draw_color;
@@ -62,7 +62,7 @@ extern NJS_ARGB model_material_color;
 extern s32 saved_model_render_flags;
 extern s32 saved_chunk_polygon_flags_and_mask;
 extern s32 saved_chunk_polygon_flags_or_mask;
-void *farlla_photon_blast_model_buffers;
+StripBufferPair *farlla_photon_blast_model_buffers;
 extern s32 chunk_polygon_flags_or_mask;
 extern s32 chunk_polygon_flags_and_mask;
 extern s32 model_render_flags;
@@ -356,12 +356,5 @@ void TObjPlayer::destroy_buffers() {
 }
 
 void create_farlla_photon_blast_model(void) {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)::operator new(0x14);
-    var_r0 = temp_r3;
-    if (var_r0 != 0) {
-        var_r0 = (long) (((TLobby *)temp_r3)->alloc_tables(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8), 0));
-    }
-    farlla_photon_blast_model_buffers = (void *)var_r0;
+    farlla_photon_blast_model_buffers = new StripBufferPair(*(s32 *)((s8 *)(*(u8 **)((s8 *)photon_blast_shared_resource + 0x42C)) + 8), 0);
 }

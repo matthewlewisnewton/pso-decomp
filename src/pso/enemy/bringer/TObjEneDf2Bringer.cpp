@@ -1,3 +1,4 @@
+#include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -673,7 +674,6 @@ s32 transition_enemy_state__9TObjEneDDFl(void *, s32);
 s32 update_linked_position__12TObjEneDD_STFf(void *, f32);
 s32 set_field_378__9TObjEneDDFl(void *, s32);
 s32 is_split_screen();
-s32 scroll_strip_uvs(int, int, int);
 extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 extern const f32 lbl_805D9E84;
@@ -702,7 +702,7 @@ s32 TObjEneDf2Bringer__render_node_index;
 s32 TObjEneDf2Bringer__render_rotation_x;
 s32 TObjEneDf2Bringer__render_point_cursor;
 s32 TObjEneDf2Bringer__trail_buffer;
-s32 TObjEneDf2Bringer__uv_scroll_buffer;
+StripBufferPair *TObjEneDf2Bringer__uv_scroll_buffer;
 
 Vec bringer_camera_ctrl_target_vec;
 
@@ -1093,7 +1093,6 @@ void TObjEneDf2Bringer::load_resources() {
   s32 ids[4];
   Vec a;
   Vec d;
-  void *o;
   Vec *p3;
   s32 n;
   Seg_80099BD4 *seg;
@@ -1161,12 +1160,7 @@ void TObjEneDf2Bringer::load_resources() {
     p3->z = (d.z * s2) + p3->z;
   }
 
-  o = ::operator new(0x14);
-  if (o != 0)
-  {
-    o = ((TLobby *)o)->alloc_tables(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8)), 1);
-  }
-  TObjEneDf2Bringer__uv_scroll_buffer = (u32) o;
+  TObjEneDf2Bringer__uv_scroll_buffer = new StripBufferPair(*((s32 *) ((*((u8 **) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x42C))) + 8)), 1);
   init_bringer_effect_tables();
   {
     Sp_80099BD4 sp = { *((s32 *) (((u8 *) TObjEneDf2Bringer__resource_bundle) + 0x430)), &lbl_8048FAF8, 1, 0xB0000 };
@@ -1183,9 +1177,9 @@ void *TObjEneDf2Bringer::create() {
 
 void TObjEneDf2Bringer::free_resources() {
     bringer_effect_cleanup_noop();
-    if ((u32) TObjEneDf2Bringer__uv_scroll_buffer != 0U) {
-        destroy_buffer_pair((void *)TObjEneDf2Bringer__uv_scroll_buffer, 1);
-        TObjEneDf2Bringer__uv_scroll_buffer = 0U;
+    if (TObjEneDf2Bringer__uv_scroll_buffer != NULL) {
+        destroy_buffer_pair(TObjEneDf2Bringer__uv_scroll_buffer, 1);
+        TObjEneDf2Bringer__uv_scroll_buffer = NULL;
     }
     if ((u32) TObjEneDf2Bringer__trail_buffer != 0U) {
         delete (SampledMotionPoints *)TObjEneDf2Bringer__trail_buffer;
