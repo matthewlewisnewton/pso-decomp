@@ -11879,7 +11879,7 @@ pso/misc/TWindowSubTradeMain.cpp:
 
 pso/enemy/TObjEneMorfos.cpp:
 	.text       start:0x803323D8 end:0x80335218
-	.rodata     start:0x804774C0 end:0x80477610
+	.rodata     start:0x804774C0 end:0x80477618
 	.data       start:0x804EE0C0 end:0x804EE3AC
 	.bss        start:0x805434D0 end:0x805434E8
 	.sdata      start:0x805D4230 end:0x805D4234
