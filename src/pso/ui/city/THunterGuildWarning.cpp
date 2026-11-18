@@ -74,7 +74,7 @@ void THunterGuildWarning::sub_80211774(void *) {
         }
         if (windows[id] != NULL) {
             windows[id]->append_line(get_message_text(99), 0x81);
-            windows[id]->set_position_xy(scale[0], scale[1]);
+            windows[id]->set_content_scale(scale[0], scale[1]);
         }
         break;
     case 1:
@@ -84,7 +84,7 @@ void THunterGuildWarning::sub_80211774(void *) {
         }
         if (windows[id] != NULL) {
             windows[id]->append_line(get_message_text(104), 0x81);
-            windows[id]->set_position_xy(scale[0], scale[1]);
+            windows[id]->set_content_scale(scale[0], scale[1]);
         }
         break;
     case 2:
@@ -100,7 +100,7 @@ void THunterGuildWarning::sub_80211774(void *) {
                 }
                 if (windows[i] != NULL) {
                     windows[i]->append_line(get_message_text(text), 0x81);
-                    windows[i]->set_position_xy(scale[0], scale[1]);
+                    windows[i]->set_content_scale(scale[0], scale[1]);
                 }
             }
         }

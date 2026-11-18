@@ -14,7 +14,6 @@ const char *TWindowSubEquipList__class_name = "TWindowSubEquipList";
 
 
 extern "C" {
-void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, int);
 s32 forward_render__20TWindowSubStatusDispFv(void *, int);
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
@@ -29,7 +28,7 @@ u8 *create_equip_list_window(s32 arg0, s32 arg1, s32 arg2) {
 #pragma fp_contract on
 void TWindowSubEquipList::render() {
     s32 temp_r3;
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    temp_r3 = (s32)setup_content_draw_context();
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, (void *) (((u8 *)this) + 0x24), temp_r3);
     draw_selected_list_entry(temp_r3);

@@ -242,7 +242,7 @@ void TShopEquipmentSellWindow::handle_input_window_result() {
             ((TWindowSubComCard *)(this->m_390))->calc_window_size();
             align_menu_entry_positions(this->m_390);
             ((TCheckRoomSequence *)(this->m_390))->set_ready_flag();
-            ((TWindowAddition *)(this->m_390))->set_position_xy(get_scale(), get_scale());
+            ((TWindowAddition *)(this->m_390))->set_content_scale(get_scale(), get_scale());
         }
         this->m_37c = ((TShopEquipmentSellWindow *)(this->m_394))->get_result();
         ((TWindowBase *)this->m_394)->close();
@@ -318,7 +318,7 @@ void TShopEquipmentSellWindow::handle_selection() {
             ((TWindowSubComCard *)(w->menu_win))->calc_window_size();
             align_menu_entry_positions(w->menu_win);
             ((TCheckRoomSequence *)(w->menu_win))->set_ready_flag();
-            ((TWindowAddition *)(w->menu_win))->set_position_xy(((TShopWindowBase *)w)->get_scale(), ((TShopWindowBase *)w)->get_scale());
+            ((TWindowAddition *)(w->menu_win))->set_content_scale(((TShopWindowBase *)w)->get_scale(), ((TShopWindowBase *)w)->get_scale());
             ((TShopWindowBase *)w)->set_field_20(2);
         }
     }

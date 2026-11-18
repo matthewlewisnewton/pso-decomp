@@ -17,13 +17,13 @@ const char *TWindowMessageScroll__class_name = "TWindowMessageScroll";
 void TWindowMessageScroll::run_task() {
     u8 *arg0 = (u8 *)this;
     f32 temp_f1;
-    temp_f1 = this->m_6c;
-    this->m_6c = (f32) (temp_f1 + *(f32 *)((s8 *)arg0 + 0x94));
+    temp_f1 = this->scroll_offset[1];
+    this->scroll_offset[1] = (f32) (temp_f1 + *(f32 *)((s8 *)arg0 + 0x94));
     retire_scrolled_lines__14TWindowMessageFv(temp_f1);
     ((TWindowDD *)arg0)->initialize_subwindow();
     ((TWindowBase *)arg0)->update_fade();
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&this->entry_list);
-    if ((((TWindowBase *)arg0)->sub_80244994() != 0) && (this->unk_80 <= this->m_6c)) {
+    if ((((TWindowBase *)arg0)->sub_80244994() != 0) && (this->unk_80 <= this->scroll_offset[1])) {
         *this->m_98 = 1;
     }
 }

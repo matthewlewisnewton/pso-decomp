@@ -7,7 +7,7 @@
 struct TWindowMessageQuest : public TWindowMessage {
     virtual ~TWindowMessageQuest();
     virtual void render();
-    u8 unk_90[0x4];
+    s32 frame_mode;
 };
 
 typedef char TWindowMessageQuest_size[sizeof(TWindowMessageQuest) == 0x94 ? 1 : -1];

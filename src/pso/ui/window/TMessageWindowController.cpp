@@ -195,7 +195,7 @@ TWindowMessagePage *TMessageWindowController::create_message_window(s32 x, s32 y
     else scale = 1.0f;
     if (window == NULL) {
         window = create__18TWindowMessagePageFllll(x, y, 1, flags);
-        ((TWindowAddition *)window)->set_position_xy(scale, scale);
+        ((TWindowAddition *)window)->set_content_scale(scale, scale);
         return window;
     }
     return NULL;
@@ -206,7 +206,7 @@ TWindowMessagePage *TMessageWindowController::create_window(s32 x, s32 y) {
     else scale = 1.0f;
     if (window == NULL) {
         window = set_text__18TWindowMessagePageFlll(x, y, 1);
-        ((TWindowAddition *)window)->set_position_xy(scale, scale);
+        ((TWindowAddition *)window)->set_content_scale(scale, scale);
         return window;
     }
     return NULL;

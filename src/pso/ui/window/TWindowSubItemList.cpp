@@ -27,7 +27,6 @@ const char *TWindowSubItemList__class_name = "TWindowSubItemList";
 
 
 extern "C" {
-void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_item_list_capacity(void *, int, int, int);
 s32 draw_window_scrollbar(void *, int, void *);
@@ -45,7 +44,7 @@ u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s32 arg2) {
 void TWindowSubItemList::render() {
     u8 *arg0 = (u8 *)this;
     s32 window_key_board_soft;
-    window_key_board_soft = (s32)get_draw_context__11TWindowBaseFPv(this);
+    window_key_board_soft = (s32)setup_content_draw_context();
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, arg0 + 0x24, window_key_board_soft);
     ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(window_key_board_soft);
@@ -55,7 +54,7 @@ void TWindowSubItemList::render() {
         forward_render__20TWindowSubStatusDispFv(this->status_display, window_key_board_soft);
     }
     if ((u32) this->unk_84 != 0U) {
-        draw_window_scrollbar(this->unk_84, window_key_board_soft, (u8 *)&this->m_68);
+        draw_window_scrollbar(this->unk_84, window_key_board_soft, (u8 *)&this->scroll_offset[0]);
     }
 }
 #pragma pop

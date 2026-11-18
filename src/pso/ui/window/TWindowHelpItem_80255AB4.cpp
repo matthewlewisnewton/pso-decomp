@@ -25,7 +25,7 @@ extern "C" { extern char TWindowHelpItem__class_name_string[]; }
 const char *window_help_item_class_name = TWindowHelpItem__class_name_string;
 extern TWindowHelpItem::CallbackWords __ptmf_null;
 
-s32 draw_visible_window_entries(void *, void *, int);
+void draw_visible_window_entries(void *, WindowLayoutEntries *, TWindowDrawContext *);
 
 void TWindowHelpItem::update_cursor_selection() {
     this->m_60 = (u8) (this->m_60 | 1);
@@ -45,11 +45,11 @@ void TWindowHelpItem::update_cursor_selection() {
 }
 
 void TWindowHelpItem::render() {
-    s32 context = setup_window_draw_context((s32)&m_a8);
-    draw_window_frame((void *)context);
+    TWindowDrawContext *context = setup_window_draw_context(&m_a8);
+    draw_window_frame(context);
     draw_visible_window_entries(this, &entry_list, context);
     if ((m_60 & 1) && (m_60 & 2)) {
-        draw_list_page_indicator(m_64, (TWindowDrawContext *)context);
+        draw_list_page_indicator(m_64, context);
     }
 }
 

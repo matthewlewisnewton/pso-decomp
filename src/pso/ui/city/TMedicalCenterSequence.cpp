@@ -314,7 +314,7 @@ void TMedicalCenterSequence::show_fee_prompt() {
     ((VObj_802164A4 *)this)->m4(0x20, 1);
     v = get_entity_id(((VObj_802164A4 *)this)->f24);
     ((VObj_802164A4 *)this)->f30 = (s32)create_yes_no_window(((s32 (*)(int))get_window_layout_position)(0x2B), v, 0, 0);
-    ((TWindowAddition *)(((VObj_802164A4 *)this)->f30))->set_position_xy(get_scale(), get_scale());
+    ((TWindowAddition *)(((VObj_802164A4 *)this)->f30))->set_content_scale(get_scale(), get_scale());
     this->set_field_20((s32)((void *)3));
 }
 

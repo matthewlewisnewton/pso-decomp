@@ -16,10 +16,10 @@ void TWindowChoiceSetting::sub_80249078() {
     }
     steps = tween_ticks;
     if (steps == 0) {
-        *(f32 *)&this->unk_60[0xC] = target;
+        scroll_offset[1] = target;
         return;
     }
     target += 0.5f * (this->target_size[1] - this->frame_size[1]);
-    *(f32 *)&this->unk_60[0xC] += (target - *(f32 *)&this->unk_60[0xC]) / (f32)steps;
+    scroll_offset[1] += (target - scroll_offset[1]) / (f32)steps;
 }
 #pragma pop

@@ -21,7 +21,7 @@ typedef struct Entry_8024F094 {
 
 extern "C" {
 const char *window_duel_result_class_name = "TWindowDuelResult";
-s32 draw_visible_window_entries(void *, void *, int);
+void draw_visible_window_entries(void *, WindowLayoutEntries *, TWindowDrawContext *);
 s32 get_window_layout_position(int);
 
 extern const char *window_duel_result_class_name;
@@ -222,10 +222,10 @@ void TWindowDuelResult::update_page() {
 #pragma defer_codegen off
 
 void TWindowDuelResult::render() {
-    s32 context = setup_window_draw_context((s32)&scale_x);
-    draw_window_frame((void *)context);
+    TWindowDrawContext *context = setup_window_draw_context(&scale_x);
+    draw_window_frame(context);
     draw_visible_window_entries(this, &entry_list, context);
-    draw_list_page_indicator(page_indicator, (TWindowDrawContext *)context);
+    draw_list_page_indicator(page_indicator, context);
 }
 
 void TWindowDuelResult::run_task() {

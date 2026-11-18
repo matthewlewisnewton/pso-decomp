@@ -59,7 +59,7 @@ void TWindowMessageLog::clamp_scroll_offset() {
     temp_f1 = this->frame_size[1];
     stack.spC = temp_f1 - 20.0f;
     if (clamp_list_scroll_offset((int) (*(s32 *)((s8 *)((u8 *)this) + 0x90)), (void *) (((u8 *)this) + 0x68), &stack.sp8, temp_f1) != 0) {
-        this->m_84 = (f32) this->m_6c;
+        this->m_84 = (f32) this->scroll_offset[1];
     }
 }
 void TWindowMessageLog::update_scroll_position() {
@@ -92,7 +92,7 @@ void TWindowMessageLog::update_fade_offset() {
     temp_f1 = this->frame_size[1] - temp_f31;
     if (0.0f != temp_f1) {
         this->m_84 = (f32) (this->m_84 - temp_f1);
-        this->m_6c = (f32) (this->m_6c - temp_f1);
+        this->scroll_offset[1] = (f32) (this->scroll_offset[1] - temp_f1);
         clamp_scroll_offset();
     }
 }
@@ -106,8 +106,8 @@ void TWindowMessageLog::update_scroll_animation() {
     temp_f1 = this->m_94;
     if (0.0f != temp_f1) {
         this->m_84 = (f32) (this->m_84 + temp_f1);
-        temp_f1_2 = this->m_6c;
-        this->m_6c = (f32) (temp_f1_2 + this->m_94);
+        temp_f1_2 = this->scroll_offset[1];
+        this->scroll_offset[1] = (f32) (temp_f1_2 + this->m_94);
         this->m_94 *= 0.0f;
         clamp_scroll_offset__17TWindowMessageLogFv(temp_f1_2);
     }
@@ -305,7 +305,6 @@ struct RecoveredGlobal_8026ABA8___vt__17TWindowMessageLog {
 };
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, int);
 s32 draw_window_scrollbar(int, int, void *);
 extern RecoveredGlobal_8026AB3C___vt__17TWindowMessageLog __vt__17TWindowMessageLog;
@@ -314,7 +313,7 @@ s32 reset_selection__20TWindowSubStatusDispFv(int, void *);
 extern const char *TWindowMessageLog__name;
 void TWindowMessageLog::render() {
     s32 temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)setup_content_draw_context();
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, (void *) (((u8 *)this) + 0x24), temp_r3);
     draw_window_scrollbar((int) (*(s32 *)((s8 *)((u8 *)this) + 0x90)), temp_r3, (void *) (((u8 *)this) + 0x68));

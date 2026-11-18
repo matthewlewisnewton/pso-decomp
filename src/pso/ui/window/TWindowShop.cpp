@@ -18,7 +18,7 @@ void TUnk_804D0948::sub_8026DE94(s32 heading) {
     create_menu_scroll_bar();
     this->set_depth(39000.0f);
     if (TCameraCtrl::get_camera_id() > 2) {
-        set_position_xy(0.75f, 0.75f);
+        set_content_scale(0.75f, 0.75f);
     }
     capacity = 0;
 }

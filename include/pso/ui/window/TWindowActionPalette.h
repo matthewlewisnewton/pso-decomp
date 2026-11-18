@@ -41,7 +41,7 @@ struct TWindowActionPalette : public TWindowBase {
     void set_bank_panel_art(unsigned short state);
     void update_slot_icon(int idx, u16 mode, u16 slot);
     void update_slot_sprites(int idx, u16 mode, u16 slot);
-    void draw_frame(int arg1);
+    void draw_frame(TWindowDrawContext *context);
     void set_slot(u8 v);
     void set_mode(u8 v);
     int handle_input_forward();

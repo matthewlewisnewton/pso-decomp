@@ -588,7 +588,7 @@ void TShopWindowBase::create_judgment_item_window() {
     if ((vobj->m8r() != 0) && ((((TShopWindowBase *)this)->sub_80223A48() != 0) || (sub_802239EC__13TShopSequenceFv(this) != 0))) {
         *(s32 *)((s8 *)this + 0x38) = (s32)create_yes_no_window(get_window_layout_position(0x2B), (u16)get_entity_id((void *)(*(s32 *)((s8 *)this + 0x24))), 0, 0);
         ((TWindowSubComCardList *)(*(s32 *)((s8 *)this + 0x38)))->set_selected_index(1);
-        ((TWindowAddition *)(*(s32 *)((s8 *)this + 0x38)))->set_position_xy(((TShopWindowBase *)this)->get_scale(), ((TShopWindowBase *)this)->get_scale());
+        ((TWindowAddition *)(*(s32 *)((s8 *)this + 0x38)))->set_content_scale(((TShopWindowBase *)this)->get_scale(), ((TShopWindowBase *)this)->get_scale());
         vobj->m7(8, 1);
         ((TShopWindowBase *)this)->set_field_20(7);
     }

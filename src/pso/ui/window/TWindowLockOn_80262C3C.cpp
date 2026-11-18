@@ -144,7 +144,7 @@ u16 get_entity_id(void *);
 void init_window_layout_entries(void *, void *, int);
 f32 get_target_distance__13TWindowLockOnFv(s32);
 extern s32 __vt__13TWindowLockOn[];
-s32 draw_visible_window_entries(void *, void *, int);
+void draw_visible_window_entries(void *, WindowLayoutEntries *, TWindowDrawContext *);
 s32 get_window_layout_position(int);
 s32 obj_testFlag_2E4__9TObjCharaFUl(TObjChara *, int);
 s32 is_split_screen(void);
@@ -196,10 +196,8 @@ void TWindowLockOn::run_task() {
 }
 
 void TWindowLockOn::render() {
-    s32 context;
-
-    context = setup_window_draw_context((s32)&m_68);
-    draw_window_frame((void *)context);
+    TWindowDrawContext *context = setup_window_draw_context(&m_68);
+    draw_window_frame(context);
     if (target_position[0] == frame_position[0] && target_position[1] == frame_position[1] && target_size[0] == frame_size[0] && target_size[1] == frame_size[1]) {
         draw_visible_window_entries(this, &entry_list, context);
     }

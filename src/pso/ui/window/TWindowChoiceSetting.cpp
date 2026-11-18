@@ -210,7 +210,6 @@ void fn_80268C5C(NJS_POINT2 v, s32 x) {
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 extern const f32 lbl_805DD1F8;
-void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
@@ -218,7 +217,7 @@ s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 void TUnk_804D0658::render() {
     s32 temp_r3;
 
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    temp_r3 = (s32)setup_content_draw_context();
     ((TWindowBase *)((u8 *)this))->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(((u8 *)this), ((u8 *)this) + 0x24, temp_r3);
     ((TUnk_804D0658 *)((u8 *)this))->draw_setting(temp_r3);

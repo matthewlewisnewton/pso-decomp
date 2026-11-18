@@ -95,7 +95,7 @@ void TObjBagWarnWin::open_message_window() {
     if (message_window != NULL) {
         message_window->set_depth(70200.0f);
         if (TCameraCtrl::get_camera_id() == 4) {
-            message_window->set_position_xy(0.8f, 0.8f);
+            message_window->set_content_scale(0.8f, 0.8f);
         }
         strncpy(message_text, get_message_text(0x59), 0x7F);
         message_text[0x7F] = 0;

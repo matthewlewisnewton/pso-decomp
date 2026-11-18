@@ -31,7 +31,7 @@ void TWindowDD_WS_Word::render() {
     s32 i;
     s32 j;
     entry = (TWindowDrawContext *)TWindowDD::draw_default_entry((s32)self);
-    self->calc_inner_rect((u8 *)entry);
+    self->calc_inner_rect(entry);
     TWindowDD__sub_80341674(self, entry);
     if (self->m_8c != 0) {
         self->m_8c = 0;

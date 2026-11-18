@@ -247,7 +247,7 @@ void TQuestListOnline::show_info_window() {
         info_window = create__14TWindowMessageFlPCfUll((int) (get_window_layout_position(0x2E)), &size, 1, (int) ((s32) temp_r31));
         ((TWindowBase *)info_window)->set_depth(37000.0f);
         if (TCameraCtrl::get_camera_id() >= 2) {
-            ((TWindowAddition *)info_window)->set_position_xy(0.75f, 0.75f);
+            ((TWindowAddition *)info_window)->set_content_scale(0.75f, 0.75f);
         }
     }
     if (TQuestListOnline__selected_quest_info != NULL) {
@@ -307,7 +307,7 @@ void TQuestListOnline::handle_list_selection() {
             if (confirm_window == 0) {
                 u16 id = get_entity_id(window_owner);
                 confirm_window = (u32)create_yes_no_window(get_window_layout_position(0x2B), id, 0, 0);
-                ((TWindowAddition *)confirm_window)->set_position_xy(get_scale(), get_scale());
+                ((TWindowAddition *)confirm_window)->set_content_scale(get_scale(), get_scale());
                 if (sequence != NULL) {
                     ((VObj_18_80217C1C*)sequence)->m7(5, 1);
                 }

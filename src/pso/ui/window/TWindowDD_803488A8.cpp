@@ -2,6 +2,7 @@
 #include "pso/ui/window/TWindowDD_803488A8.h"
 #include "pso/ui/window/TWindowDD_WS_String.h"
 #include "pso/ui/window/TWindowBase.h"
+#include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/ui/window/TWindowDD.h"
 #include "pso/system/NinjaTypes.h"
 
@@ -144,8 +145,7 @@ extern s32 twindowdd_entry_count;
 
 #pragma push
 #pragma fp_contract on
-void TWindowBase::calc_inner_rect(u8 *arg1) {
-    u8 *arg0 = (u8 *)this;
+void TWindowBase::calc_inner_rect(TWindowDrawContext *context) {
     f32 y0;
     f32 ky;
     f32 x0;
@@ -153,23 +153,23 @@ void TWindowBase::calc_inner_rect(u8 *arg1) {
     f32 y;
     f32 w;
     f32 h;
-    x = *(f32 *)((s8 *)arg0 + 0x40);
-    y = *(f32 *)((s8 *)arg0 + 0x44);
+    x = frame_position[0];
+    y = frame_position[1];
     ky = lbl_805DFB5C;
     x0 = x + TWindowDD__data_805DFB58;
-    w = *(f32 *)((s8 *)arg0 + 0x48);
-    h = *(f32 *)((s8 *)arg0 + 0x4C);
+    w = frame_size[0];
+    h = frame_size[1];
     y0 = y + ky;
-    *(f32 *)((s8 *)arg1 + 0x10) = x0;
-    *(f32 *)((s8 *)arg1 + 0x14) = y0;
-    *(f32 *)((s8 *)arg1 + 0x18) = w - lbl_805DFCD4 * TWindowDD__data_805DFB58;
-    *(f32 *)((s8 *)arg1 + 0x1C) = h - lbl_805DFCD4 * ky;
-    *(f32 *)((s8 *)arg1 + 0x3C) = x0;
-    *(f32 *)((s8 *)arg1 + 0x40) = y0;
-    *(f32 *)((s8 *)arg1 + 0x44) = (x + w) - TWindowDD__data_805DFB58;
-    *(f32 *)((s8 *)arg1 + 0x48) = (y + h) - ky;
-    *(f32 *)((s8 *)arg1 + 0x20) = 0.5f * w + x;
-    *(f32 *)((s8 *)arg1 + 0x24) = 0.5f * h + y;
+    context->inner_x = x0;
+    context->inner_y = y0;
+    context->inner_w = w - lbl_805DFCD4 * TWindowDD__data_805DFB58;
+    context->inner_h = h - lbl_805DFCD4 * ky;
+    context->clip_left = x0;
+    context->clip_top = y0;
+    context->clip_right = (x + w) - TWindowDD__data_805DFB58;
+    context->clip_bottom = (y + h) - ky;
+    context->pivot[0] = 0.5f * w + x;
+    context->pivot[1] = 0.5f * h + y;
 }
 #pragma pop
 

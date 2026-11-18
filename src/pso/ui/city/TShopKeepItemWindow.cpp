@@ -258,7 +258,7 @@ void TShopKeepItemWindow::handle_deposit_list_select() {
         this->confirm_window = (u32)create_yes_no_window(get_window_layout_position(0x2B), get_entity_id(this->m_24), 0, 0);
         ((TCheckRoomSequence *)this->confirm_window)->set_ready_flag();
         f32 scale = get_scale();
-        ((TWindowAddition *)this->confirm_window)->set_position_xy(get_scale(), scale);
+        ((TWindowAddition *)this->confirm_window)->set_content_scale(get_scale(), scale);
         set_field_20(2);
     }
 }
@@ -270,7 +270,7 @@ void TShopKeepItemWindow::update_number_input() {
         if ((u32) this->confirm_window == 0U) {
             this->confirm_window = (u32)create_yes_no_window(get_window_layout_position(0x2B), get_entity_id(this->m_24), 0, 0);
             ((TCheckRoomSequence *)(this->confirm_window))->set_ready_flag();
-            ((TWindowAddition *)(this->confirm_window))->set_position_xy(get_scale(), get_scale());
+            ((TWindowAddition *)(this->confirm_window))->set_content_scale(get_scale(), get_scale());
         }
         this->deposit_count = ((TShopEquipmentSellWindow *)(this->number_window))->get_result();
         ((TWindowBase *)this->number_window)->close();

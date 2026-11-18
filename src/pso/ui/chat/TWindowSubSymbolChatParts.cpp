@@ -155,7 +155,6 @@ s32 refresh_parts__20TWindowSubSymbolChatFv();
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 s32 play_sound_effect(s32, s32, s32, s32);
-s32 get_draw_context__11TWindowBaseFPv();
 void clamp_list_scroll_offset(s32, NJS_POINT2 *, NJS_POINT2 *);
 s32 draw_window_scrollbar(s32, s32, void *);
 void * reset_selection__20TWindowSubStatusDispFv(void *, NJS_POINT2 *);
@@ -519,7 +518,7 @@ extern "C" void fn_80285A28(Win_80285A28 *self, s32 *help) {
 void render__25TWindowSubSymbolChatPartsFv(u8 *window_sub_symbol_chat_parts) {
     s32 ctx;
 
-    ctx = get_draw_context__11TWindowBaseFPv();
+    ctx = (s32)((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->setup_content_draw_context();
     ((TWindowBase *)window_sub_symbol_chat_parts)->draw_window_frame((void *)ctx);
     switch ((s8) (((TWindowSubSymbolChatParts *)window_sub_symbol_chat_parts)->m_71)) {
     case 0:

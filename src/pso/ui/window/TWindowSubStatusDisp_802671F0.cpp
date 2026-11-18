@@ -178,7 +178,6 @@ void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 is_player_input_active(s32 param_1);
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 void __dl__7TObjectFPv(void *);
@@ -618,7 +617,7 @@ void TWindowMenuIconLine::center_list_selection() {
         f32 t = (this->frame_size[1] - 16.0f) - 10.0f;
         target = 9.0f + (f32) (this->cursor * 0x14);
         target -= 0.5f * t;
-        *(f32 *)&this->unk_6C += target - *(f32 *)&this->unk_6C;
+        scroll_offset[1] += target - scroll_offset[1];
     }
 }
 #pragma pop
@@ -709,7 +708,7 @@ void TShopJudgmentItemWindow__sub_80267F9C(NJS_POINT2 v, s32 x) {
 void TWindowMenuIconLine::render() {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)setup_content_draw_context();
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     this->draw_selected_list_entry(temp_r3);

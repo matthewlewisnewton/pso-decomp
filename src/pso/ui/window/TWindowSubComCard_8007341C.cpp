@@ -132,7 +132,7 @@ void TLobby::open_challenge_window(s32 arg0, s32 arg1) {
     }
     ((TWindowBase *)win)->set_depth(37000.0f);
     if (TCameraCtrl::get_camera_id() >= 2) {
-        ((TWindowAddition *)((*(Chal_8007369C *)&challenge_mode_state).window))->set_position_xy(0.75f, 0.75f);
+        ((TWindowAddition *)((*(Chal_8007369C *)&challenge_mode_state).window))->set_content_scale(0.75f, 0.75f);
     }
     TAdSinglePlyChrSelectGC::format_challenge_stage_times(arg0, arg1);
     ((TWindowMessage *)((*(Chal_8007369C *)&challenge_mode_state).window))->append_line((int)challenge_progress_text_buffer, (int)0);
@@ -151,7 +151,7 @@ void TLobby::open_challenge_progress_window(void *arg1) {
     }
     ((TWindowBase *)win)->set_depth(37000.0f);
     if (TCameraCtrl::get_camera_id() >= 2) {
-        ((TWindowAddition *)(CHAL->window))->set_position_xy(0.75f, 0.75f);
+        ((TWindowAddition *)(CHAL->window))->set_content_scale(0.75f, 0.75f);
     }
     sprintf(challenge_progress_text_buffer, "< %s >\n", get_message_text(0x4F));
     rec = CHAL->recs;

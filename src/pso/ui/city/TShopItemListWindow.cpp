@@ -398,7 +398,7 @@ void TShopItemListWindow::prepare_tool_purchase() {
         align_menu_entry_positions(confirm_menu);
         ((TCheckRoomSequence *)confirm_menu)->set_ready_flag();
         f32 scale = get_scale();
-        ((TWindowAddition *)confirm_menu)->set_position_xy(get_scale(), scale);
+        ((TWindowAddition *)confirm_menu)->set_content_scale(get_scale(), scale);
         m_50 = 1;
         m_4c = 1;
         set_field_20(2);
@@ -422,7 +422,7 @@ void TShopItemListWindow::handle_amount_confirm() {
                 align_menu_entry_positions(confirm_menu);
                 ((TCheckRoomSequence *)confirm_menu)->set_ready_flag();
                 f32 scale = get_scale();
-                ((TWindowAddition *)confirm_menu)->set_position_xy(get_scale(), scale);
+                ((TWindowAddition *)confirm_menu)->set_content_scale(get_scale(), scale);
             }
             m_50 = ((TShopEquipmentSellWindow *)quantity_input)->get_result();
             ((TWindowBase *)quantity_input)->close();

@@ -17,7 +17,6 @@
 extern "C" {
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
@@ -36,7 +35,7 @@ void *TWindowSubStatusDisp::refresh_with_default_list(s32 a, s32 b) {
 void TUnk_804CE7E8::render() {
     s32 temp_r3;
 
-    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
+    temp_r3 = (s32)setup_content_draw_context();
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     ((TWindowMenuIconLine *)((u8 *)this))->draw_selected_list_entry(temp_r3);

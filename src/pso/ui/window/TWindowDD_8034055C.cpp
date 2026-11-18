@@ -42,7 +42,7 @@ void TWindowDD__sub_8034055C(TUnk_804EFBAC *self) {
     if (ctx->open_tick < 0) {
         return;
     }
-    self->calc_inner_rect((u8 *)ctx);
+    self->calc_inner_rect(ctx);
     ((TWindowDD *)points)->reset_entries(TWindowDD__sub_80348AD4(self->draw_depth, 0.0f), -1);
     ((TWindowDD *)points)->copy_point_table(0);
     TWindowDD__sub_80348A2C(ctx, points);

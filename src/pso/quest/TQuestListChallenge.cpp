@@ -296,13 +296,13 @@ void update_selection__19TQuestListChallengeFv(QLC_80288DA4 *self) {
         ((TWindowMessage *)(self->f40))->append_line(text2, 0x80);
         ((TWindowBase *)(self->f40))->set_depth(37000.0f);
         if (TCameraCtrl::get_camera_id() >= 2) {
-            ((TWindowAddition *)(self->f40))->set_position_xy(0.75f, 0.75f);
+            ((TWindowAddition *)(self->f40))->set_content_scale(0.75f, 0.75f);
         }
     }
     if (self->f34 == NULL) {
         id = (u16)get_entity_id(self->f24);
         self->f34 = create_yes_no_window(get_window_layout_position(0x2B), id, 0, 0);
-        ((TWindowAddition *)(self->f34))->set_position_xy(((TShopWindowBase *)self)->get_scale(), ((TShopWindowBase *)self)->get_scale());
+        ((TWindowAddition *)(self->f34))->set_content_scale(((TShopWindowBase *)self)->get_scale(), ((TShopWindowBase *)self)->get_scale());
         if (self->obj != NULL) {
             self->obj->m7(5, 0x80);
         }

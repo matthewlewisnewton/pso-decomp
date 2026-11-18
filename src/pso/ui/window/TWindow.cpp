@@ -225,12 +225,12 @@ void TQuestListOffline::update_list_navigation() {
             ((TWindowMessage *)(((Win_80216CF8 *)this)->f44))->append_line(msg2, 0x80);
             ((TWindowBase *)(((Win_80216CF8 *)this)->f44))->set_depth(lbl_805DC694);
             if (TCameraCtrl::get_camera_id() >= 2) {
-                ((TWindowAddition *)(((Win_80216CF8 *)this)->f44))->set_position_xy(lbl_805DC698, lbl_805DC698);
+                ((TWindowAddition *)(((Win_80216CF8 *)this)->f44))->set_content_scale(lbl_805DC698, lbl_805DC698);
             }
         }
         if (((Win_80216CF8 *)this)->f38 == NULL) {
             ((Win_80216CF8 *)this)->f38 = create_yes_no_window((s32)(get_window_layout_position(0x2B)), get_entity_id(((Win_80216CF8 *)this)->f24), 0, 0);
-            ((TWindowAddition *)(((Win_80216CF8 *)this)->f38))->set_position_xy(((TShopWindowBase *)((Win_80216CF8 *)this))->get_scale(), ((TShopWindowBase *)((Win_80216CF8 *)this))->get_scale());
+            ((TWindowAddition *)(((Win_80216CF8 *)this)->f38))->set_content_scale(((TShopWindowBase *)((Win_80216CF8 *)this))->get_scale(), ((TShopWindowBase *)((Win_80216CF8 *)this))->get_scale());
             if (((Win_80216CF8 *)this)->f34 != NULL) {
                 ((Win_80216CF8 *)this)->f34->m7(5, 1);
             }

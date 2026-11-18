@@ -227,7 +227,7 @@ void *TWindowSubMag::create_learned_blast_toast() {
     TWindowSubEquip__sub_80263AF8(*(s32 *)&this->m_30, 6);
     set_depth__11TWindowBaseFf(win);
     ((TWindowMessage *)win)->append_line((int)((s32 *)get_shared_text_buffer()), (int)2);
-    ((TWindowAddition *)win)->set_position_xy(scale, scale);
+    ((TWindowAddition *)win)->set_content_scale(scale, scale);
     return win;
 }
 #pragma pop

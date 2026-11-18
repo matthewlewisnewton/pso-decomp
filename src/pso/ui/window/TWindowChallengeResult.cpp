@@ -14,7 +14,7 @@
 #pragma push
 #pragma readonly_strings on
 
-extern "C" s32 draw_visible_window_entries(void *, void *, int);
+extern "C" void draw_visible_window_entries(void *, WindowLayoutEntries *, TWindowDrawContext *);
 
 const char *window_challenge_result_class_name = "TWindowChallengeResult";
 #pragma pop
@@ -114,8 +114,8 @@ void TWindowChallengeResult::run_task() {
 }
 
 void TWindowChallengeResult::render() {
-    s32 context = setup_window_draw_context((s32)&scale_x);
-    draw_window_frame((void *)context);
+    TWindowDrawContext *context = setup_window_draw_context(&scale_x);
+    draw_window_frame(context);
     draw_visible_window_entries(this, &entry_list, context);
 }
 

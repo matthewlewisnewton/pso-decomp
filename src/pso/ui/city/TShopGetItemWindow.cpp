@@ -308,7 +308,7 @@ s32 TShopGetItemWindow::handle_withdraw_list_input() {
             arg0->f2C = (u32)create_yes_no_window(get_window_layout_position(0x2B), sel, 0, 0);
             ((TCheckRoomSequence *)(arg0->f2C))->set_ready_flag();
             scale = ((TShopWindowBase *)arg0)->get_scale();
-            ((TWindowAddition *)(arg0->f2C))->set_position_xy(((TShopWindowBase *)arg0)->get_scale(), scale);
+            ((TWindowAddition *)(arg0->f2C))->set_content_scale(((TShopWindowBase *)arg0)->get_scale(), scale);
             ((TShopWindowBase *)arg0)->set_field_20(3);
         }
     }
@@ -321,7 +321,7 @@ void TShopGetItemWindow::update_input_number() {
         if ((u32) this->m_2c == 0U) {
             this->m_2c = (u32)create_yes_no_window(get_window_layout_position(0x2B), (u16) get_entity_id(this->m_24), 0, 0);
             ((TCheckRoomSequence *)(this->m_2c))->set_ready_flag();
-            ((TWindowAddition *)(this->m_2c))->set_position_xy(get_scale(), get_scale());
+            ((TWindowAddition *)(this->m_2c))->set_content_scale(get_scale(), get_scale());
         }
         this->m_54 = ((TShopEquipmentSellWindow *)(this->m_30))->get_result();
         ((TWindowBase *)this->m_30)->close();

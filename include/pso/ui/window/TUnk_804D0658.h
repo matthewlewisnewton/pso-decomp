@@ -19,7 +19,6 @@ public:
     void initialize_entries(u32 count);
     int is_selected();
     int is_open();
-    u8 unk_60[0x10];
     u16 m_70;
     s16 entry_offset;
     s16 m_74;

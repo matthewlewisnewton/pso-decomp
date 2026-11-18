@@ -21,9 +21,6 @@ struct TWindowMenu : public TWindowAddition {
     int is_cancelled();
     s32 get_selected_value();
     virtual void render();
-    u8 _pad60[0x8];
-    void* m_68;
-    u8 _pad6C[0x4];
     u16 m_70;
     u16 m_72;
     u16 m_74;

@@ -310,9 +310,9 @@ void window_request_show(void *object) {
     ((TObject *)object)->allow_rendering();
 }
 
-s32 TWindowBase::setup_window_draw_context(s32 arg1) {
+TWindowDrawContext *TWindowBase::setup_window_draw_context(f32 *scale) {
     TWindowDrawContext *context = TWindowDrawContext::open_singleton(
-        frame_position, frame_size, (f32 *)arg1, draw_depth, window_flags);
+        frame_position, frame_size, scale, draw_depth, window_flags);
     if (window_flags & 0x40) {
         context->animate_scale();
     }
@@ -328,11 +328,11 @@ s32 TWindowBase::setup_window_draw_context(s32 arg1) {
     }
     context->set_open_tick(tick);
     apply_window_closing_stretch(context, closing_tick);
-    return (s32)context;
+    return context;
 }
 
 s32 TWindowDD::draw_default_entry(s32 arg0) {
-    return ((TWindowBase *)arg0)->setup_window_draw_context((s32)fn_8026CB68());
+    return (s32)((TWindowBase *)arg0)->setup_window_draw_context(fn_8026CB68());
 }
 
 void TWindowBase::set_depth(f32 farg0) {

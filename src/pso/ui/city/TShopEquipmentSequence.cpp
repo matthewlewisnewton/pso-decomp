@@ -185,7 +185,7 @@ void TShopEquipmentSequence::update_buy_sell_choice() {
         ((TWindowSubComCard *)(self->win))->calc_window_size();
         align_menu_entry_positions(self->win);
         ((TCheckRoomSequence *)(self->win))->set_ready_flag();
-        ((TWindowAddition *)(self->win))->set_position_xy(((TShopWindowBase *)self)->get_scale(), ((TShopWindowBase *)self)->get_scale());
+        ((TWindowAddition *)(self->win))->set_content_scale(((TShopWindowBase *)self)->get_scale(), ((TShopWindowBase *)self)->get_scale());
     }
     if (self->win != NULL && ((TWindowMenu *)(self->win))->is_decided() != 0) {
         r = ((TWindowMenu *)self->win)->get_selected_value();

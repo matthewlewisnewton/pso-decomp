@@ -11,7 +11,6 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801A6D60.h"
 
 extern "C" {
-void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
@@ -19,7 +18,7 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 
 
 void TWindowChoiceSetting::render() {
-    s32 context = (s32)get_draw_context__11TWindowBaseFPv(this);
+    s32 context = (s32)setup_content_draw_context();
     draw_window_frame((void *)context);
     draw_visible_window_entries(this, (u8 *)this + 0x24, context);
     draw_setting(context);

@@ -29,7 +29,6 @@ int get_chat_shortcut(s32 arg0);
 s32 get_symbol_chat_data__20TWindowSubSymbolChatFv();
 s32 save_cursor_selection__20TShopArmorListWindowFv();
 void render__22TWindowSubShortCutListFv(u8 *arg0);
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 run_task__19TWindowMenuIconLineFv();
 void __dl__7TObjectFPv(void *);
@@ -86,7 +85,7 @@ void *TWindowSubShortCutList::create(void *arg1) {
 void render__22TWindowSubShortCutListFv(u8 *arg0) {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)((TWindowSubShortCutList *)arg0)->setup_content_draw_context();
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(arg0, arg0 + 0x24, temp_r3);
     ((TWindowMenuIconLine *)arg0)->draw_selected_list_entry(temp_r3);

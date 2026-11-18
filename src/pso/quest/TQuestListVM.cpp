@@ -524,7 +524,7 @@ void TQuestListVM::open_confirm_window() {
         detail_window->append_line((int)((QuestBinHeader *)decrypted_quest_buffer)->long_description, 1);
         detail_window->set_depth(-13000.0f);
         if (TCameraCtrl::get_camera_id() >= 2) {
-            detail_window->set_position_xy(0.75f, 0.75f);
+            detail_window->set_content_scale(0.75f, 0.75f);
         }
     }
     if (detail_window != NULL) {
@@ -533,7 +533,7 @@ void TQuestListVM::open_confirm_window() {
             return;
         }
         confirm_window = (TWindowMenu *)create_yes_no_window((s32)get_window_layout_position(0x2B), get_entity_id(player), 0, 0);
-        confirm_window->set_position_xy(get_scale(), get_scale());
+        confirm_window->set_content_scale(get_scale(), get_scale());
         display_guild_message(5, 1);
         set_field_20(resume_state);
     }

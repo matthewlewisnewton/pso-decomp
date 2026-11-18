@@ -24,7 +24,7 @@ void TWindowDD_WS_String::render() {
     u8 *entry;
 
     entry = (u8 *)draw_default_entry__9TWindowDDFl();
-    calc_inner_rect(entry);
+    calc_inner_rect((TWindowDrawContext *)entry);
     draw_entry_if_visible(entry);
     y = *(f32 *)((s8 *)entry + 0x14);
     *(f32 *)((s8 *)entry + 0x14) += 1.0f;

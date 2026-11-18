@@ -262,7 +262,7 @@ void TShopArmorListWindow::handle_equip_offer() {
                 ((TWindowBase *)w->win)->close();
                 w->win = (void *)create_yes_no_window(get_window_layout_position(0x2B), get_entity_id(w->player), 0, 0);
                 sc = ((TShopWindowBase *)w)->get_scale();
-                ((TWindowAddition *)((u32)w->win))->set_position_xy(((TShopWindowBase *)w)->get_scale(), sc);
+                ((TWindowAddition *)((u32)w->win))->set_content_scale(((TShopWindowBase *)w)->get_scale(), sc);
                 set_field_20__15TShopWindowBaseFl(w, 9);
             } else {
                 Rec_8021A43C c;
@@ -369,7 +369,7 @@ s32 TShopArmorListWindow::open_menu_window() {
         align_menu_entry_positions(this->m_30);
         ((TCheckRoomSequence *)(this->m_30))->set_ready_flag();
         scale = get_scale();
-        ((TWindowAddition *)(this->m_30))->set_position_xy(get_scale(), scale);
+        ((TWindowAddition *)(this->m_30))->set_content_scale(get_scale(), scale);
     }
     set_field_20__15TShopWindowBaseFl(this, 2);
 }

@@ -259,7 +259,7 @@ void TChallenge4PResult::show_message(s32 text_handle) {
     if (message_window != NULL) {
         ((TWindowMessagePage *)message_window)->set_message((void *)text_handle, 0x81);
         if (TCameraCtrl::get_instance() > 2) {
-            ((TWindowAddition *)message_window)->set_position_xy(0.9f, 0.9f);
+            ((TWindowAddition *)message_window)->set_content_scale(0.9f, 0.9f);
         }
     }
 }
@@ -399,7 +399,7 @@ void TChallenge4PItemSelect::open_menu() {
             TWindowSubComCard__sub_80265500((u32 &)menu_window);
             ((TWindowBase *)((u32 &)menu_window))->set_depth(3.9e+04f);
             if (TCameraCtrl::get_instance() > 2) {
-                ((TWindowAddition *)((u32 &)menu_window))->set_position_xy(0.9f, 0.9f);
+                ((TWindowAddition *)((u32 &)menu_window))->set_content_scale(0.9f, 0.9f);
             }
             state = 1;
         }

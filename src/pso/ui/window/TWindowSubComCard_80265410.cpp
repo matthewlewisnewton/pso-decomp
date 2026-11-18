@@ -94,7 +94,6 @@ struct Ent_80265C30;
 Ent_80265C30 * get_array_entry__11TWindowBaseFi(void *w, s32 i);
 s32 play_sound_effect(s32, s32, s32, s32);
 s32 __nw__7TObjectFUl(int);
-s32 get_draw_context__11TWindowBaseFPv();
 void * get_field_20__17TWindowSubComCardFv(void *e);
 void TWindowChat__sub_80247D2C(void *p);
 s32 is_window_display_enabled();
@@ -416,7 +415,7 @@ void TWindowMenu::update_scroll_value() {
     return;
   }
   v += 0.5f * ((*((f32 *)(arg0 + 0x3C))) - (*((f32 *)(arg0 + 0x4C))));
-  new_var2 = (u8 *)&this->_pad6C;
+  new_var2 = (u8 *)&this->scroll_offset[1];
   *((f32 *) new_var2) += (v - (*((f32 *)(arg0 + 0x6C)))) / ((f32) n);
 }
 
@@ -733,7 +732,7 @@ void TWindowMenu::render_selected_entry(s32 window_key_board_soft) {
 void render__11TWindowMenuFv(TWindowMenu *arg0) {
     s32 window_key_board_soft;
 
-    window_key_board_soft = get_draw_context__11TWindowBaseFPv();
+    window_key_board_soft = (s32)arg0->setup_content_draw_context();
     ((TWindowBase *)arg0)->draw_window_frame((void *)window_key_board_soft);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, window_key_board_soft);
     if (!(arg0->m_70 & 0x80)) {

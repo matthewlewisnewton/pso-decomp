@@ -84,7 +84,7 @@ void TWindowDD__sub_80340A78(TWindowDD_WS_ScrollBar *self) {
     f32 range;
     f32 len;
 
-    self->calc_inner_rect((u8 *)rect);
+    self->calc_inner_rect(rect);
     tex = TWindowDD::get_draw_count((void **)lbl_805D63F0);
     ((TWindowDD *)verts)->reset_entries(TWindowDD__sub_80348AD4(self->draw_depth, 0.0f), -1);
     uv = TWindowDD__data_805434E8[6];

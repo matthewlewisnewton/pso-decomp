@@ -142,7 +142,7 @@ void TObjResultWin::create_window() {
     m_window = create__14TWindowMessageFPvll(get_window_layout_position(0x41), challenge_result_window_extent, 1);
     if ((u32) m_window != 0U) {
         if (TCameraCtrl::get_camera_id() == 4) {
-            ((TWindowAddition *)m_window)->set_position_xy(0.75f, 0.75f);
+            ((TWindowAddition *)m_window)->set_content_scale(0.75f, 0.75f);
         }
         ((TWindowMessage *)m_window)->append_line((int)m_text, (int)0);
         ((TWindowBase *)m_window)->set_depth(36999.0f);

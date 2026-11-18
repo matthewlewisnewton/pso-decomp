@@ -189,7 +189,7 @@ void TShopItemTecSequence::update_buy_sell_choice() {
         ((TWindowSubComCard *)(((Seq_80220110 *)this)->win))->calc_window_size();
         align_menu_entry_positions(((Seq_80220110 *)this)->win);
         ((TCheckRoomSequence *)(((Seq_80220110 *)this)->win))->set_ready_flag();
-        ((TWindowAddition *)(((Seq_80220110 *)this)->win))->set_position_xy(get_scale(), get_scale());
+        ((TWindowAddition *)(((Seq_80220110 *)this)->win))->set_content_scale(get_scale(), get_scale());
     }
     if (((Seq_80220110 *)this)->win != NULL && ((TWindowMenu *)(((Seq_80220110 *)this)->win))->is_decided() != 0) {
         r = ((TWindowMenu *)(((Seq_80220110 *)this)->win))->get_selected_value();

@@ -297,7 +297,7 @@ void TWindowInputNumber::render() {
     TWindowInputNumber *arg0 = this;
     s32 ctx;
 
-    ctx = ((TWindowBase *)arg0)->setup_window_draw_context((s32)((u8 *)arg0 + 0x74));
+    ctx = (s32)((TWindowBase *)arg0)->setup_window_draw_context((f32 *)((u8 *)arg0 + 0x74));
     ((TWindowBase *)arg0)->draw_window_frame((void *)ctx);
     draw_visible_window_entries(arg0, (u8 *)arg0 + 0x24, ctx);
     draw_arrows__18TWindowInputNumberFv(arg0, (Ctx_802563A0 *)ctx, (Digit_802561E8 *)((TWindowBase *)arg0)->get_array_entry(arg0->selectedDigit), arg0->is_confirmed());

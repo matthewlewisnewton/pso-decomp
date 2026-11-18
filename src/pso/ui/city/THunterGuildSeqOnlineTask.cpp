@@ -346,7 +346,7 @@ void TQuestListOnline::receive_quest_info(void *arg0) {
             ((TWindowBase *)TQuestListOnline__quest_info_window)->set_depth(37000.0f);
             ((TWindowMessage *)TQuestListOnline__quest_info_window)->append_line(TQuestListOnline__selected_quest_info + 4, 0x80);
             if (TCameraCtrl::get_camera_id() >= 2) {
-                ((TWindowAddition *)TQuestListOnline__quest_info_window)->set_position_xy(0.75f, 0.75f);
+                ((TWindowAddition *)TQuestListOnline__quest_info_window)->set_content_scale(0.75f, 0.75f);
             }
         }
     }

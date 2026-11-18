@@ -82,7 +82,7 @@ void TWindowMessage::scroll_up_line(u8 *arg1) {
     i = 0;
     d = 2.0f + *(f32 *)(arg1 + 0x14);
     this->m_84 -= d;
-    this->m_6c -= d;
+    this->scroll_offset[1] -= d;
     *(f32 *)(((u8 *)this) + 0x80) -= d;
     for (; i < this->line_count; i++) {
         e = get_array_entry__11TWindowBaseFi(this, i);
@@ -255,10 +255,10 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
         self->scroll_up_line((u8 *)e);
     }
     if (flags & 0x80) {
-        self->unk_80 = self->m_6c;
+        self->unk_80 = self->scroll_offset[1];
     }
     if (flags & 0x10) {
-        lim = (self->m_6c + self->frame_size[1]) - 2e+01f;
+        lim = (self->scroll_offset[1] + self->frame_size[1]) - 2e+01f;
         if (self->unk_80 < lim) {
             self->unk_80 = lim;
         }
@@ -307,7 +307,7 @@ s32 append_message_window_line(TWindowMessage *self, s32 text, s32 flags, s32 ar
     self->unk_80 += 2.0f + e->f14;
     if (flags & 1) {
         self->m_84 = (self->unk_80 - e->f14) - 2.0f;
-    } else if (self->unk_80 > (self->m_6c + self->frame_size[1]) - 2e+01f) {
+    } else if (self->unk_80 > (self->scroll_offset[1] + self->frame_size[1]) - 2e+01f) {
         lim = self->unk_80 - (self->frame_size[1] - 2e+01f);
         if (self->m_84 < lim) {
             self->m_84 = lim;
@@ -381,7 +381,6 @@ s32 TLobby__sub_80269DA4(NJS_POINT2 size, void *arg1) {
     message_window_layout_entries.rows = (u32)arg1;
 }
 
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_visible_window_entries(void *, void *, int);
 extern s32 __vt__14TWindowMessage[];
 
@@ -389,7 +388,7 @@ extern s32 __vt__14TWindowMessage[];
 void TWindowMessage::render() {
     s32 temp_r3;
     s32 arg0 = (s32)this;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)setup_content_draw_context();
     ((TWindowBase *)arg0)->draw_window_frame((void *)temp_r3);
     draw_visible_window_entries((void *)arg0, (void *)(arg0 + 0x24), (int)temp_r3);
 }

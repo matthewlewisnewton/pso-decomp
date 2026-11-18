@@ -6,13 +6,12 @@
 
 extern "C" {
 extern const char *TWindowSubEquipKind__class_name;
-void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 
 void TWindowSubEquipKind::render() {
-    s32 context = (s32)get_draw_context__11TWindowBaseFPv(this);
+    s32 context = (s32)setup_content_draw_context();
     draw_window_frame((void *)context);
     draw_visible_window_entries(this, (u8 *)this + 0x24, context);
     draw_selected_list_entry(context);
@@ -23,7 +22,7 @@ void TWindowSubEquipKind::render() {
         forward_render__20TWindowSubStatusDispFv((s32)status_display, context);
     }
     if (unk_84 != NULL) {
-        draw_window_scrollbar((s32)unk_84, context, &m_68);
+        draw_window_scrollbar((s32)unk_84, context, &scroll_offset[0]);
     }
 }
 

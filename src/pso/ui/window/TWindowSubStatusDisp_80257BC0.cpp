@@ -34,8 +34,6 @@ struct Item_80257BC0 : Base_80257BC0 {
     virtual void draw(void *ctx);
 };
 
-struct List_80257BC0 { u32 count; Item_80257BC0 **items; };
-
 struct Base_80257C28 { u32 x0; };
 
 struct Ent_80257C28 : Base_80257C28 { virtual void m0(); virtual void m1(); };
@@ -62,7 +60,7 @@ typedef void *(*Ctor_80257D44)(void *, void *, s32);
 #define __dt__13TUnk_804CF918Fv ((s32 (*)(s32, s32 *))__dt__13TUnk_804CF918Fv)
 void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
 u8 * init_layout_entry_copy__20TWindowSubStatusDispFPUc(u8 *arg0, u8 *arg1);
-void draw_visible_window_entries(void *self, List_80257BC0 *list, void *ctx);
+void draw_visible_window_entries(void *self, WindowLayoutEntries *list, TWindowDrawContext *ctx);
 void init_window_layout_entries(WindowLayoutEntries *self, Desc_80257D44 *desc, s32 arg2);
 void * TWindowSubStatusDisp__sub_80259D3C(void *, void *, s32);
 void * init_layout_entry_scaled__20TWindowSubStatusDispFPUcl(void *, void *, s32);
@@ -78,10 +76,10 @@ extern s32 lbl_804CF998[];
 extern const float lbl_805DCE58;
 __declspec(section ".sdata2") f32 lbl_805DCEF0 = 7.5f;
 
-void draw_visible_window_entries(void *self, List_80257BC0 *list, void *ctx) {
+void draw_visible_window_entries(void *self, WindowLayoutEntries *list, TWindowDrawContext *ctx) {
     Item_80257BC0 **p;
     u32 n;
-    for (n = list->count, p = list->items; n != 0; n--, p++) {
+    for (n = list->count, p = (Item_80257BC0 **)list->items; n != 0; n--, p++) {
         if (!((*p)->flags & 2)) {
             (*p)->draw(ctx);
         }

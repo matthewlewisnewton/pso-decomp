@@ -176,7 +176,7 @@ void TShopDeleteItemWindow::handle_number_input() {
             *(void **)(((u8 *)this) + 0x34) = create_yes_no_window((s32)(get_window_layout_position(0x2B)), id, 0, 0);
             ((TCheckRoomSequence *)(*(void **)(((u8 *)this) + 0x34)))->set_ready_flag();
             ((TWindowSubComCardList *)(*(void **)(((u8 *)this) + 0x34)))->set_selected_index(1);
-            ((TWindowAddition *)(*(void **)(((u8 *)this) + 0x34)))->set_position_xy(get_scale(), get_scale());
+            ((TWindowAddition *)(*(void **)(((u8 *)this) + 0x34)))->set_content_scale(get_scale(), get_scale());
         }
         this->m_5c = ((TShopEquipmentSellWindow *)(*(void **)(((u8 *)this) + 0x38)))->get_result();
         ((TWindowBase *)(*(void **)(((u8 *)this) + 0x38)))->close();
@@ -232,7 +232,7 @@ s32 TShopDeleteItemWindow::update_item_select(void *arg0) {
                 self->f34 = create_yes_no_window((s32)(get_window_layout_position(0x2B)), id, 0, 0);
                 ((TCheckRoomSequence *)(self->f34))->set_ready_flag();
                 ((TWindowSubComCardList *)(self->f34))->set_selected_index(1);
-                ((TWindowAddition *)(self->f34))->set_position_xy(((TShopWindowBase *)self)->get_scale(), ((TShopWindowBase *)self)->get_scale());
+                ((TWindowAddition *)(self->f34))->set_content_scale(((TShopWindowBase *)self)->get_scale(), ((TShopWindowBase *)self)->get_scale());
                 ((TShopWindowBase *)self)->set_field_20(3);
                 ((VObj_80337B00 *)self)->m4(0x4D, 1);
             }

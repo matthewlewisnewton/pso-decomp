@@ -54,7 +54,6 @@ WindowDescriptor TWindowSubCustomSelect__window_settings = {
 };
 
 extern "C" {
-s32 get_draw_context__11TWindowBaseFPv();
 s32 draw_window_scrollbar(int, int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(int, int);
 void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(void *, void *, s32, f32);
@@ -208,7 +207,7 @@ void TWindowSubCustomSelect::draw_palette_cells(int ctx) {
 
 void render__22TWindowSubCustomSelectFv(TWindowSubCustomSelect *window_sub_custom_select) {
     s32 temp_r3;
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)window_sub_custom_select->setup_content_draw_context();
     ((TWindowBase *)window_sub_custom_select)->draw_window_frame((void *)temp_r3);
     window_sub_custom_select->draw_palette_cells(temp_r3);
     window_sub_custom_select->draw_cursor((u8 *)temp_r3);

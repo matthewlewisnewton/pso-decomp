@@ -43,7 +43,6 @@ public:
     void set_flag2c_bit200();
     void clear_flag2c_bit200();
     void set_flag2c_bit100();
-    u8 unknown_60[0x10];
     s8 m_70;
     u8 m_71;
     u8 unk_72[0x1];

@@ -1,3 +1,4 @@
+#include "pso/ui/window/TWindowDrawContext.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowActionPalette.h"
@@ -45,7 +46,6 @@ struct PaletteItemKind { u8 group; u8 index; };
 
 struct Rect_80243B6C { f32 x0, y0, x1, y1, u0, v0, u1, v1; };
 
-struct Ctx_80243B6C { f32 x; f32 y; u8 pad8[0x34 - 0x8]; s32 tex; };
 
 extern "C" {
 s8 clamp_char_at__10TObjPlayerFl(u32, s32);
@@ -69,7 +69,7 @@ s32 TWindowSubComCard__sub_802454E4(int);
 s32 TWindowSubComCard__sub_80245558(void *, void *, void *);
 s32 apply_context_transform_to_rect(void *, void *);
 extern s32 lbl_805D63F0;
-void draw_visible_window_entries(void *, void *, int);
+void draw_visible_window_entries(void *, WindowLayoutEntries *, TWindowDrawContext *);
 void __destroy_arr(void *, void *, int, int);
 }
 
@@ -236,26 +236,25 @@ void TWindowActionPalette::run_task() {
 }
 
 void TWindowActionPalette::render() {
-    s32 context = setup_window_draw_context((s32)&scale);
+    TWindowDrawContext *context = setup_window_draw_context(&scale.x);
     draw_visible_window_entries(this, &entry_list, context);
     draw_frame(context);
 }
 
 #pragma push
 #pragma fp_contract on
-void TWindowActionPalette::draw_frame(int arg1) {
+void TWindowActionPalette::draw_frame(TWindowDrawContext *ctx) {
     Rect_80243B6C r1;
     Rect_80243B6C r2;
     Rect_80243B6C r4;
     Rect_80243B6C r3;
-    Ctx_80243B6C *ctx = (Ctx_80243B6C *)arg1;
     f32 scale;
     f32 depth;
     scale = TWindowSubComCard__sub_80244784((TWindowSubComCard *)this);
     depth = (-1.0f) / this->draw_depth;
     begin_screen_draw(1);
     set_current_texture_list((GinjaTextureList *)(((void *)lbl_805D63F0)));
-    set_draw_texture_and_color(2, ctx->tex);
+    set_draw_texture_and_color(2, ctx->color);
     if (is_split_screen() == 0) {
         r1.x0 = 640.0f - 71.0f * scale;
         r1.y0 = 480.0f - 76.0f * scale;

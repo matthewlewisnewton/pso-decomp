@@ -759,7 +759,7 @@ u8 *construct_status_category_window(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 *)((s8 *)arg0 + 0x24) = ((TUnk_804D1AD0 *)arg0)->create_status_category_menu();
     ((TUnk_804D1AD0 *)arg0)->m_28 = (s32)new TWindowSubStatusDisp(((TUnk_804D1AD0 *)arg0)->client);
     if (TCameraCtrl::get_camera_id() > 2) {
-        ((TWindowAddition *)(*(s32 *)((s8 *)arg0 + 0x24)))->set_position_xy(0.84f, 0.84f);
+        ((TWindowAddition *)(*(s32 *)((s8 *)arg0 + 0x24)))->set_content_scale(0.84f, 0.84f);
         fn_8027FD88((void *)(((TUnk_804D1AD0 *)arg0)->m_28), 0.84f, 0.84f);
     }
     return arg0;

@@ -1,3 +1,4 @@
+#include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/ui/window/TextEntryMeasurement.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -110,17 +111,6 @@ struct Fuki_80252764 {
     f32 head[2];
 };
 
-struct View_80252764 {
-    f32 x;
-    f32 y;
-    u8 pad8[0x28 - 0x8];
-    f32 sx;
-    f32 sy;
-    s32 fade_in;  // frame counter of the name plate fade (inferred)
-    u8 pad34[0x38 - 0x34];
-    f32 depth;
-};
-
 struct Fuki_802521E8 {
     u8 pad0[0x54];
     f32 f54;
@@ -191,7 +181,6 @@ u32 get_battle_ctrl_flag__10TObjPlayerFUs(u16);
 u32 get_player_by_client_id(u32);
 s32 get_array_entry__11TWindowBaseFi(void *, s32);
 s32 play_sound_effect(int, int, int, int);
-View_80252764 * get_draw_context__11TWindowBaseFPv(void *);
 s32 get_field_20__17TWindowSubComCardFv();
 s32 set_depth__11TWindowBaseFf(f32);
 s32 sub_80246948__11TWindowBaseFv(void *);
@@ -211,12 +200,12 @@ void set_color__13TUnk_804CF0B8FUs(void *arg0, u16 arg1);
 void open__15TWindowFukidasiFPvPvi(u8 *arg0, u32 *arg1, s32 arg2);
 void set_text__15TWindowFukidasiFPvii(u8 *arg0, s32 arg1, s32 arg2);
 void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1);
-void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *, View_80252764 *, u32);
-void apply_context_transform_to_rect(View_80252764 *ctx, f32 *rect);
+void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *, TWindowDrawContext *, u32);
+void apply_context_transform_to_rect(TWindowDrawContext *ctx, f32 *rect);
 void TWindowFukidasi__sub_80252C38(void *p);
 void clear_flag_20__13TUnk_804CF0B8Fv();
 s32 fn_80252CBC(void);
-void draw_visible_window_entries(void *, void *, View_80252764 *);
+void draw_visible_window_entries(void *, void *, TWindowDrawContext *);
 s32 init_window_layout_entries(void *, void *, int);
 s32 reset_float_field__15TWindowHelpItemFv();
 s32 measure_message_text_width(int, f32);
@@ -1033,7 +1022,7 @@ extern "C" s32 draw_small_font_string_clipped__FPfPCcUlf(f32 *pos, const char *s
 #pragma push
 #pragma fp_contract on
 #pragma opt_common_subs off
-void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *self, View_80252764 *arg1, u32 arg2) {
+void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *self, TWindowDrawContext *arg1, u32 arg2) {
   f32 pos[2];
   f32 q[8];
   f32 scale;
@@ -1044,12 +1033,12 @@ void draw_name_plate__15TWindowFukidasiFv(TUnk_804CF0B8 *self, View_80252764 *ar
   f32 new_var;
   void *name;
   name = self->name;
-  if ((name != 0) && (arg1->fade_in >= 0))
+  if ((name != 0) && (arg1->open_tick >= 0))
   {
     textW = (f32) ((u32) get_name_text_width(name));
-    if (arg1->fade_in < 6)
+    if (arg1->open_tick < 6)
     {
-      alpha = (s32) (0.16666667f * ((f32) ((s32) (arg1->fade_in * 0xFF))));
+      alpha = (s32) (0.16666667f * ((f32) ((s32) (arg1->open_tick * 0xFF))));
     }
     else
     {
@@ -1322,7 +1311,7 @@ void TUnk_804CF0B8::run_task() {
 #pragma fp_contract on
 void TUnk_804CF0B8::render() {
     f32 off[2];
-    View_80252764 *v;
+    TWindowDrawContext *v;
     switch (((Fuki_80252764 *)this)->phase) {
     case 0:
         ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->project_anchor(NULL, ((Fuki_80252764 *)this)->head);
@@ -1347,9 +1336,9 @@ void TUnk_804CF0B8::render() {
         break;
     }
     ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->follow_anchor();
-    v = get_draw_context__11TWindowBaseFPv(((Fuki_80252764 *)this));
-    v->sx /= TCameraCtrl::get_view_scale();
-    v->sy /= TCameraCtrl::get_fov();
+    v = setup_content_draw_context();
+    v->scale[0] /= TCameraCtrl::get_view_scale();
+    v->scale[1] /= TCameraCtrl::get_fov();
     off[0] = 3.0f * ((Fuki_80252764 *)this)->tail;
     off[1] = 2.5f * ((Fuki_80252764 *)this)->tail;
     draw_body((struct DrawCtx_80252558 *)(v), (u32)(0xFF000000), off, 0.0299f + ((Fuki_80252764 *)this)->f54);

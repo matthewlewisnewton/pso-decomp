@@ -552,7 +552,7 @@ void handle_withdraw_choice__18TCheckRoomSequenceFv(u8 *arg0) {
             ((TWindowSubComCard *)(*(u32 *)((s8 *)arg0 + 0x3C)))->calc_window_size();
             align_menu_entry_positions((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
             set_ready_flag__18TCheckRoomSequenceFv((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
-            ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_position_xy(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
+            ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_content_scale(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
         }
         ((VObj_18_a93f07 *)(arg0))->m4(0x32, 1);
         *(s32 *)((s8 *)arg0 + 0x2C) = 1;
@@ -597,7 +597,7 @@ void handle_deposit_choice__18TCheckRoomSequenceFv(u8 *arg0) {
             ((TWindowSubComCard *)(*(u32 *)((s8 *)arg0 + 0x3C)))->calc_window_size();
             align_menu_entry_positions((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
             set_ready_flag__18TCheckRoomSequenceFv((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
-            ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_position_xy(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
+            ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_content_scale(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
         }
         ((VObj_18_a93f07 *)(arg0))->m4(0x33, 1);
         *(s32 *)((s8 *)arg0 + 0x2C) = 1;
@@ -646,7 +646,7 @@ void handle_root_choice__18TCheckRoomSequenceFv(u8 *arg0) {
                 ((TWindowSubComCard *)(*(u32 *)((s8 *)arg0 + 0x3C)))->calc_window_size();
                 align_menu_entry_positions((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
                 set_ready_flag__18TCheckRoomSequenceFv((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
-                ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_position_xy(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
+                ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_content_scale(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
             }
             *(s32 *)((s8 *)arg0 + 0x2C) = 1;
             return;
@@ -684,7 +684,7 @@ void handle_root_choice__18TCheckRoomSequenceFv(u8 *arg0) {
                 ((TWindowSubComCard *)(*(u32 *)((s8 *)arg0 + 0x3C)))->calc_window_size();
                 align_menu_entry_positions((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
                 set_ready_flag__18TCheckRoomSequenceFv((int) (*(u32 *)((s8 *)arg0 + 0x3C)));
-                ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_position_xy(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
+                ((TWindowAddition *)(*(u32 *)((s8 *)arg0 + 0x3C)))->set_content_scale(((TShopWindowBase *)arg0)->get_scale(), ((TShopWindowBase *)arg0)->get_scale());
             }
             *(s32 *)((s8 *)arg0 + 0x2C) = 1;
             return;
