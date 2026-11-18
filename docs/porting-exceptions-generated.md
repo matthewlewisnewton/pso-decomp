@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 92 | 60 |
 | hardware | 71 | 14 |
-| pragma | 4118 | 884 |
+| pragma | 4117 | 883 |
 | configure.py per-unit override | 228 | 228 |
 
-Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `inline_depth` 639, `opt_common_subs` 591, `auto_inline` 264, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `bool` 59, `defer_codegen` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `inline_depth` 639, `opt_common_subs` 590, `auto_inline` 264, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `bool` 59, `defer_codegen` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -954,7 +954,6 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `i
 | `src/pso/misc/TWindowHelpItem_8025A60C.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowInputNumber_80256170.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowKeyBoardSoft.cpp` | optimization_level×2, opt_propagation×1, opt_common_subs×1 |
-| `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp` | opt_propagation×1 |
 | `src/pso/misc/TWindowLoadItemTexture.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/misc/TWindowMainMenu1P.cpp` | fp_contract×1 |

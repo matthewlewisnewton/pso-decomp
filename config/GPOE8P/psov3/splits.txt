@@ -8652,7 +8652,7 @@ pso/misc/TWindowDeposit.cpp:
 pso/misc/TWindowKeyBoardSoft_8024E68C.cpp:
 	.text       start:0x8024E68C end:0x8024EEF8
 	.rodata     start:0x8044ECB8 end:0x8044ECC0
-	.sdata2     start:0x805DCC98 end:0x805DCCA8
+	.sdata2     start:0x805DCC78 end:0x805DCCA8
 
 pso/misc/TWindowCtrlMain_8024EEF8.cpp:
 	.text       start:0x8024EEF8 end:0x8024EF3C
