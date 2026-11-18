@@ -6,7 +6,76 @@ The data boundary includes the four compiler-generated switch tables in emitted
 order; the last 88 bytes previously belonged to the following automatic split.
 No table is written by hand.
 
-## Integration with current fork main
+## Bounded C++ candidate for PR 457
+
+The candidate based on `b85d436d3e` builds and links. Eighteen of the 21
+functions match. The data and BSS match. The linked DOL differs from the
+original at 23 instruction words, all in the three functions below. The
+project checksum gate therefore fails.
+
+| Function | Size | Differing linked words | Source change |
+| --- | ---: | ---: | --- |
+| SACK update, `0x8041FED4` | 292 | 1 | Shift from the next valid range and clear the last slot. |
+| ACK, `0x8041FFF8` | 1,048 | 12 | Complete the request, reload the head after the callback, and seek the cursor using the entry size. |
+| Send gatherer, `0x80420410` | 1,984 | 10 | Index the two fragments in each swap and shift. Prepend from the end of the consumed prefix. |
+
+**SACK bounds.** With `last_reasm = 0`, a new range of `[100,160)` and an
+existing range of `[110,120)`, the original PowerPC instructions at
+`0x8041FF9C` and `0x8041FFA4` load TCB offsets `0x320` and `0x324`.
+A memory-access trace in Unicorn 2.1.4 observed both loads, a copy to
+the fifth slot, and the subsequent clear. The candidate skips that copy
+and produces identical final contents for all `0x544` bytes of the TCB.
+Only the immediate at `0x8041FFBC` changes, from 5 to 4. Upstream's TCP
+initializer clears five ranges, then writes `seg_top = -1` separately.
+Its send scoreboard also uses `una` independently. The initialization
+and the send-side operations support the five-entry layout.
+[Upstream TCP source](https://github.com/zeroz41/pso-decomp/blob/c09673abce55daff9907737bf705005921db0ec1/src/pso/network/NetTcp.c)
+
+Bounded source-index and destination-index loops, a one-past pointer, a
+counted move, a guarded final assignment, and clearing through the final
+iterator all produced different code. lwIP's SACK code also compacts valid
+entries and clears the trailing entries. I compiled two earlier versions of the full unit with 20 installed GC compiler
+releases. GC/1.2.5n preserved 18 exact functions in each, the most of any
+release tested. With that compiler the bounded loop compares the index to 4.
+[lwIP SACK implementation](https://github.com/lwip-tcpip/lwip/blob/master/src/core/tcp_in.c)
+
+**ACK frame.** The two operations at a completion boundary must stay ordered.
+The callback can change the ring head. The candidate snapshots the new head
+before copying the ring descriptor and uses that index to find the entry.
+The compiler allocates the original 96-byte frame with ordinary live buffers.
+Six instruction words use stack offset `0x24` for the FIFO destination where
+the original uses `0x14`. Two comparisons with zero use the unsigned head
+type, and two pairs of instructions set up the same call arguments in a
+different order. A diagnostic grouping the socket handle and a snapshot of
+the ring index in a local record matched all 1,048 bytes. I found no
+independent consumer or shared type for that pair. The candidate retains
+separate operations. The fork's PPP implementation provided the precedent
+for testing consumed inline results and buffer lifetimes.
+[PPP frame recovery](https://github.com/matthewlewisnewton/pso-decomp/commit/f777b125078ab4f027eedb8936f12d2693384108)
+
+**Gatherer.** Upstream's gatherer reproduced the original 1,984 bytes using
+both C and C++ with GC/1.2.5n. Its prepend loop decrements its pointer before
+testing whether the prefix is empty, and again after consuming element zero.
+The candidate reads `source_end[-1]` only while an element remains. It then
+decrements `source_end` to that valid element. All ten differences are in
+that loop at `0x804209FC..0x80420A4C`. The other fragment walks and the final
+signed halfword addition match. Offset and length are unsigned byte counts
+as in upstream. The fork's sole caller in `TcpProtocol.cpp` rebuilt to the
+same object bytes as the clean main baseline.
+[Upstream gatherer](https://github.com/zeroz41/pso-decomp/pull/305)
+
+**Checks.** The original and rebuilt PowerPC DOLs produced the same results in
+2,400 gather cases and 1,600 ACK cases. The gather comparison covered return
+values, all output packet and TCB bytes, and the request ring. The ACK comparison
+also covered data buffers and completion events, including callbacks changing
+the head. The emulator used the game buffer routines and intercepted the two
+completion notifications for the ACK comparison. Focused host cases passed
+with address, undefined-behavior and bounds sanitizers, including 200,000
+full-TCB SACK comparisons. The candidate DOL SHA-1 is
+`4fe6f3a8b8f49ed9b7d82d7e915f8316f66cc9ba`. The original is
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`.
+
+## Published integration at b85d436d3e
 
 The local integration on fork main `9ab744a4ec` keeps main's upstream-derived
 out-of-order receive queue and uses its shared `TcpTcb` layout for the three
