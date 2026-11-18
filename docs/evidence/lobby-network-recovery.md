@@ -1,7 +1,7 @@
 # Lobby network recovery at 0x804050DC
 
 Recovery started at `84420bea523b79b3e2daf384b26fb1211560e0be`. The pull request
-uses `a6284306fa676770c5b2e6c1d2e53e94915b5d54` as its verification baseline.
+uses `ea44fd833e2819205d166f6ea6c23a8f346a905d` as its verification baseline.
 The original address range contains 281 functions and 84,260 code bytes.
 All 281 functions and all 888 allocated data/BSS bytes now match in the
 three source-linked objects. The starting build had 244 exact functions
@@ -197,7 +197,7 @@ inputs. The three objects contribute the following matched ranges.
 
 The rebuilt DOL is byte-identical to the original. Its SHA-1 is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The baseline comparison
-records 37 newly exact functions and zero regressions. All 3,631 linked
+records 37 newly exact functions and zero regressions. All 3,634 linked
 units pass the linkage and retention checks. An independent ELF comparison
 verified function order, allocated section bytes including linker padding,
 and all 1,810 relocation sites and targets across the three objects.

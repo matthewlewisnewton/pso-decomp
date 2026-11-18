@@ -13,6 +13,9 @@ Sections:
 	.sdata2     type:rodata align:8
 	.sbss2      type:bss align:16
 
+pso/system/MainPhaseTable.cpp:
+	.data       start:0x804805E0 end:0x804806E8
+
 pso/unk/text_8000F740.cpp:
 	.text       start:0x8000F740 end:0x8000F764
 
@@ -262,6 +265,9 @@ pso/boss/TBoss2DeRolLe.cpp:
 	.sbss       start:0x805D4BA8 end:0x805D4BB4
 	.sdata2     start:0x805D8278 end:0x805D8444
 
+pso/unk/data_805D8444.cpp:
+	.sdata2     start:0x805D8444 end:0x805D8498
+
 pso/boss/TBoss2Fin.cpp:
 	.text       start:0x800363B4 end:0x80036824
 	.data       start:0x80482A38 end:0x80482A50
@@ -494,7 +500,7 @@ pso/boss/TBoss4DarkFalz_8004C93C.cpp:
 	.ctors      start:0x80433F34 end:0x80433F38
 	.rodata     start:0x804371E0 end:0x80437298
 	.data       start:0x80484F40 end:0x80485448
-	.sdata2     start:0x805D8938 end:0x805D8940
+	.sdata2     start:0x805D8938 end:0x805D8968
 
 pso/unk/text_8004D9A8.cpp:
 	.text       start:0x8004D9A8 end:0x8004E020
@@ -732,6 +738,7 @@ pso/misc/TCameraCtrl_8006782C.cpp:
 
 pso/misc/TCameraCtrl_80067C88.cpp:
 	.text       start:0x80067C88 end:0x80067CE8
+	.sdata2     start:0x805D8F60 end:0x805D8F68
 
 pso/misc/TCameraCtrl_80067CE8.cpp:
 	.text       start:0x80067CE8 end:0x80067F44
@@ -13373,8 +13380,13 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_fp.c:
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/buffer_io.c:
 	.text       start:0x8039980C end:0x80399904
 
-pso/menu/TAdEndText_80399904.cpp:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ctype.c:
 	.text       start:0x80399904 end:0x80399964
+	.data       start:0x804F5800 end:0x804F5B00
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c:
+	.rodata     start:0x8047BB90 end:0x8047BB98
+	.data       start:0x804F5B00 end:0x804F5B38
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/direct_io.c:
 	.text       start:0x80399964 end:0x80399C90

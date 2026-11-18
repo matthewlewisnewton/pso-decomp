@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 95 | 59 |
 | hardware | 71 | 14 |
 | pragma | 5848 | 894 |
-| configure.py per-unit override | 219 | 219 |
+| configure.py per-unit override | 220 | 220 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1126, `inline_depth` 1045, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 631, `opt_propagation` 276, `scheduling` 260, `readonly_strings` 206, `peephole` 104, `optimization_level` 83, `defer_codegen` 60, `bool` 59, `pack` 46, `opt_lifetimes` 46, `opt_loop_invariants` 46, `opt_dead_assignments` 42, `pool_data` 40, `use_lmw_stmw` 30, `optimize_for_size` 28, `opt_strength_reduction` 5, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `cplusplus` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `opt_unroll_loops` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
@@ -124,8 +124,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1126, `inline_depth` 1045,
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4886` | `__fabs` |
-| `src/pso/player/TObjPlayer_80011014.cpp:4894` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4878` | `__fabs` |
+| `src/pso/player/TObjPlayer_80011014.cpp:4886` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:5874` | `__cntlzw` |
@@ -253,6 +253,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1126, `inline_depth` 1045,
 | `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/menu/TAdRicoRing.cpp` | `-str reuse,readonly, -sdata 4, -inline off,deferred` | Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order. |
 | `pso/boss/TBoss2DeRolLe.cpp` | `-inline on` | GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order. |
+| `pso/unk/data_805D8444.cpp` | `(multi-line entry; see configure.py)` | The De Rol Le constant pool starts at 0x805D8444, a four-byte boundary. |
 | `pso/boss/DarkFalzEffectConstants.cpp` | `(multi-line entry; see configure.py)` | The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary. |
 | `pso/misc/CameraControllerConstants.cpp` | `(multi-line entry; see configure.py)` | The camera constant pool starts at 0x805D8F7C, a four-byte boundary. |
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |

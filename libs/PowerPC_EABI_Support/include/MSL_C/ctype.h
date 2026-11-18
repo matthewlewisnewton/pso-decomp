@@ -10,6 +10,7 @@ extern "C" {
 
 __declspec(weak) int isalpha(int __c);
 __declspec(weak) int isdigit(int __c);
+int islower(int __c);
 __declspec(weak) int isspace(int __c);
 __declspec(weak) int isupper(int __c);
 __declspec(weak) int isxdigit(int __c);

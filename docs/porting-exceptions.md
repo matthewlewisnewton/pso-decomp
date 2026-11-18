@@ -98,6 +98,16 @@ section annotation keeps the array in `.sdata2`. The matching declaration
 in `TObjCGrass.cpp` preserves the single small-data float load. Ports use
 the same array and first-element access without the section annotations.
 
+### De Rol Le constant pool
+
+The eight-byte slots at `0x805D8460` and `0x805D8490` each contain a float
+and a trailing zero word. The guarded CodeWarrior section annotations in
+`src/pso/unk/data_805D8444.cpp`, `TBoss2Fin.cpp`, and `TBoss2Joint.cpp`
+keep the definitions in `.sdata2` and preserve the consumers' single float
+loads. The pool starts at `0x805D8444`, so `cw_align: .sdata2=4` records its
+original alignment in ELF and the CodeWarrior comment section. Ports can use
+the C++ arrays and first-element reads with their compiler's default layout.
+
 ### Scalar collision-area helper
 
 `TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
@@ -169,7 +179,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 95 | 59 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 5,892 | 892 |
-| Per-unit compiler overrides in `configure.py` | 217 | 217 |
+| Per-unit compiler overrides in `configure.py` | 218 | 218 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -1912,10 +1922,6 @@ or `other: <what>`); the fork PR that brought it in; and the tag
 | `__ct__20TAdLoadQuestPrtTxtGCFP7TObjectl` | `pso/unk/text_8034A090.cpp` | `src/pso/unk/text_8034A090.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | extern "C" mangled name | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
 
 
-| `RecoveredGlobal_8001B3BC_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
-| `RecoveredGlobal_8001B3EC_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
-| `RecoveredGlobal_8001B3D4_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
-| `RecoveredGlobal_8001B404_lbl_804F5800` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
 | `Pos_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
 | `Box_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
 | `Self_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
