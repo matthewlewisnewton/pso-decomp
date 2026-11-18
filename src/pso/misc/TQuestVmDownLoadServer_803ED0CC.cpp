@@ -475,10 +475,6 @@ u8 *TQuestVmDownLoadServer::find_keyword_entry(u16 *start, u16 *end) {
     return NULL;
 }
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(1)
-
 s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
                                       u16 *output, s32 *outputCount) {
     u8 byte;
@@ -579,15 +575,9 @@ emit_mapping:
     return 0;
 }
 
-#pragma pop
-
 void TQuestVmDownLoadServer__sub_803EE2E4(void) {
     lbl_8058DC98[0] = 0;
 }
-
-#pragma push
-#pragma opt_lifetimes off
-#pragma opt_propagation off
 
 void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end) {
     s32 emittedLength;
@@ -655,8 +645,6 @@ void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end) {
         start += length;
     }
 }
-
-#pragma pop
 
 #pragma push
 #pragma dont_inline off
@@ -909,7 +897,6 @@ void *format_number_text__22TQuestVmDownLoadServerFiiPvi(s32 arg0, s32 arg1, voi
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
-#pragma opt_common_subs off
 
 s32 TQuestVmDownLoadServer__sub_803EED0C(s32 arg0, s32 arg1, s32 arg2) {
     if (lbl_805D7904 == -1) {

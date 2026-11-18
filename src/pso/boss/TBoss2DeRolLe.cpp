@@ -415,12 +415,6 @@ struct VObj8002EB88_8002eb88_8002E784;
 
 #pragma push
 #pragma opt_common_subs off
-#pragma fp_contract on
-
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs off
 void TBoss2DeRolLe::render_body() {
     Self_8002EFE8 *self = (Self_8002EFE8 *)this;
     s32 i;
@@ -2502,8 +2496,6 @@ f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void spawn_ceil_junk__13TBoss2DeRolLeFii(s32 arg1, s32 arg2);
 int play_sound(void* p, int a1);
 
-#pragma push
-#pragma fp_contract on
 void TBoss2DeRolLe__sub_800313F8(DR_800313F8 *o, u32 arg1, s32 arg2) {
     switch (arg1) {
     case 4:
@@ -2712,7 +2704,6 @@ void TBoss2DeRolLe__sub_800313F8(DR_800313F8 *o, u32 arg1, s32 arg2) {
         break;
     }
 }
-#pragma pop
 
 #define o ((Rol_80031AD4 *)arg0)
 
@@ -2886,8 +2877,6 @@ void TBoss2DeRolLe__sub_80031AD4(void *arg0, void *arg1) {
 #pragma fp_contract on
 #define o ((DR_800327C8 *)arg0)
 
-#pragma push
-#pragma fp_contract on
 #define self ((D_800320B4 *) arg0)
 void TBoss2DeRolLe__sub_800320B4(void *arg0, void *arg1, int arg2, int arg3) {
     switch ((u32) arg1) {
@@ -3071,7 +3060,6 @@ void TBoss2DeRolLe__sub_800320B4(void *arg0, void *arg1, int arg2, int arg3) {
     }
 }
 #undef self
-#pragma pop
 
 void TBoss2DeRolLe__sub_800327C8(void *arg0, void *arg1, int arg2, int arg3) {
     s32 r;
@@ -3592,8 +3580,6 @@ void dispatch_action__13TBoss2DeRolLeFiUii(s32 arg0, u32 arg1, s32 arg2) {
 
 #pragma push
 #pragma fp_contract on
-#pragma dont_inline off
-#pragma inline_depth(4)
 static inline u32 pack_argb(u32 a, u32 r, u32 g, u32 b) {
     u32 color = a << 24;
     color |= r << 16;
@@ -4602,8 +4588,6 @@ void set_state_and_send__13TBoss2DeRolLeFPvi(Obj_80034E90 *self, s32 kind) {
     send_6x13__13TBoss2DeRolLeFPv(&p8);
 }
 
-#pragma push
-#pragma fp_contract on
 void update_colliders_from_offsets__13TBoss2DeRolLeFi(s32 arg0) {
     Vec sp20;
     Vec sp14;
@@ -4613,7 +4597,6 @@ void update_colliders_from_offsets__13TBoss2DeRolLeFi(s32 arg0) {
     VecCopy__FP3VecPC3Vec((s32)&sp20, arg0 + 0x50C);
     update_local_colliders_from_world(arg0, &sp8);
 }
-#pragma pop
 
 void backup_pos__13TBoss2DeRolLeFi(s32 arg0) {
     VecCopy__FP3VecPC3Vec(arg0 + 0x2FC, arg0 + 0x38);
@@ -5233,9 +5216,6 @@ u8 *__dt__13TBoss2DeRolLeFv(u8 *arg0, s16 arg1) {
 #pragma push
 namespace constructor_view {
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 
 struct Vec_8003563C { f32 x, y, z; };
@@ -5555,9 +5535,6 @@ struct Self_8003563C {
 #pragma push
 #pragma opt_common_subs off
 #pragma opt_loop_invariants off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct W3_8003563C { u32 a, b, c; };
 #define self ((Self_8003563C *)arg0)
 void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {

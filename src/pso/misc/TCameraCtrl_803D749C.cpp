@@ -169,8 +169,6 @@ void euler_zyx_to_quaternion(u8 *arg0, u8 *arg1);
 void euler_yxz_to_quaternion(u8 *arg0, u8 *arg1);
 extern const f32 lbl_805E0E88;
 
-#pragma push
-#pragma scheduling off
 void bind_motion_blend_channels(NJS_MOTION_LINK *motion, f32 blend_factor) {
     select_motion_context(1);
     bind_motion_channel_samplers((s32)motion->motion[1], motion->frame[1]);
@@ -178,7 +176,6 @@ void bind_motion_blend_channels(NJS_MOTION_LINK *motion, f32 blend_factor) {
     bind_motion_channel_samplers((s32)motion->motion[0], motion->frame[0]);
     motion_blend_factor = blend_factor;
 }
-#pragma pop
 
 #pragma push
 #pragma use_lmw_stmw off
@@ -233,17 +230,10 @@ s32 blend_motion_poses(void *node, void *arg1, void *unused, void *arg3, void *r
 
 #pragma push
 #pragma opt_common_subs off
-#pragma scheduling off
-#pragma peephole off
 typedef char RecoveredGlobal_803D77C0_lbl_8047E3C8_size[sizeof(RecoveredGlobal_803D77C0_lbl_8047E3C8) == 0x10 ? 1 : -1];
 typedef char RecoveredGlobal_803D77C0_lbl_804FA500_size[sizeof(RecoveredGlobal_803D77C0_lbl_804FA500) == 0xC ? 1 : -1];
 typedef char RecoveredGlobal_803D77C0_lbl_804FA50C_size[sizeof(RecoveredGlobal_803D77C0_lbl_804FA50C) == 0x10 ? 1 : -1];
 typedef char RecoveredGlobal_803D77C0_lbl_804FA51C_size[sizeof(RecoveredGlobal_803D77C0_lbl_804FA51C) == 0x24 ? 1 : -1];
-
-#pragma push
-#pragma scheduling off
-#pragma opt_common_subs off
-#pragma peephole off
 
 void TObjPlayer::apply_motion_node_transform() {
     struct Vec_803D7CA4 trans;
@@ -266,7 +256,6 @@ void TObjPlayer::apply_motion_node_transform() {
     }
     scale_current_matrix(&scale);
 }
-#pragma pop
 
 void set_motion_row_stride(s32 n) {
     s32 w = n * 4;
@@ -279,8 +268,6 @@ void set_motion_row_stride(s32 n) {
     *(s32 *)(current_motion_context + 0x1c) = 0;
 }
 
-#pragma push
-#pragma scheduling off
 void advance_motion_row(void) {
     s32 v = ((St_803D7784 *)current_motion_context)->a0;
     v += ((St_803D7784 *)current_motion_context)->a8;
@@ -289,7 +276,6 @@ void advance_motion_row(void) {
     ((St_803D7784 *)current_motion_context)->b0 = v + ((St_803D7784 *)current_motion_context)->a4;
     ((St_803D7784 *)current_motion_context)->x1c = 0;
 }
-#pragma pop
 
 void select_motion_sampler(s32 *arg0, f32 farg0) {
     s32 *var_r3;
@@ -317,13 +303,10 @@ void select_motion_sampler(s32 *arg0, f32 farg0) {
 }
 #pragma pop
 
-#pragma push
-#pragma scheduling off
 typedef char RecoveredGlobal_803D78A8_lbl_8058CAB8_size[sizeof(RecoveredGlobal_803D78A8_lbl_8058CAB8) == 0x80 ? 1 : -1];
 void select_motion_context(s32 arg0) {
     current_motion_context = (u8 *)&camera_motion_context_table.value + (arg0 << 6);
 }
-#pragma pop
 
 u32 find_motion_key_partition_u32(u8 *base, u32 stride, u32 hi, u32 key) {
     u32 lo = 0;
@@ -352,7 +335,6 @@ u32 find_motion_key_partition_u16(u8 *base, u32 stride, u32 hi, u32 key) {
 }
 
 #pragma push
-#pragma optimize_for_size on
 #pragma use_lmw_stmw off
 void find_motion_key_interval_u16(u8 *keys, u32 stride, u32 count, f32 t, u16 **k0, u16 **k1, f32 *frac) {
     u32 i;
@@ -378,7 +360,6 @@ void find_motion_key_interval_u16(u8 *keys, u32 stride, u32 count, f32 t, u16 **
 #pragma pop
 
 #pragma push
-#pragma optimize_for_size on
 #pragma use_lmw_stmw off
 void find_motion_key_interval(void *keys, s32 stride, s32 count, f32 t, void *k0, void *k1, void *frac) {
     u32 i;
@@ -404,14 +385,10 @@ void find_motion_key_interval(void *keys, s32 stride, s32 count, f32 t, void *k0
 }
 #pragma pop
 
-#pragma push
-#pragma scheduling off
-
 void bind_motion_context(NJS_MOTION *motion, f32 farg0) {
     select_motion_context(0);
     bind_motion_channel_samplers((s32)motion, farg0);
 }
-#pragma pop
 
 void bind_motion_channel_samplers(int arg0, f32 farg0) {
     s32 temp_r5;
@@ -463,10 +440,6 @@ void compose_motion_node_matrix(void *arg0) {
 
 #define G_803D7D30 ((Smp_803D7D30 *)current_motion_context)
 #pragma push
-#pragma optimize_for_size off
-#pragma optimization_level 3
-#pragma peephole off
-#pragma scheduling off
 #pragma use_lmw_stmw off
 s32 sample_motion_node_transform(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
 #define kK ((Key_803D7D30 *)arg0)

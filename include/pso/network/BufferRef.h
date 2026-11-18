@@ -13,4 +13,12 @@ struct NetBufferRef {
 typedef char NetBufferRef_size_check[(sizeof(NetBufferRef) == 8) ? 1 : -1];
 typedef char NetBufferRef_kind_check[(offsetof(NetBufferRef, kind) == 4) ? 1 : -1];
 
+/* Native descriptor discriminants. The distinction between kinds 1 and 3 is
+ * not inferred from the old TLobby placeholder names. */
+extern "C" {
+void NetBufferRefInitKind1(NetBufferRef *ref, s32 value);
+void NetBufferRefInitKind3(NetBufferRef *ref, s32 value);
+void NetBufferRefInitKind4(NetBufferRef *ref, s32 value);
+}
+
 #endif

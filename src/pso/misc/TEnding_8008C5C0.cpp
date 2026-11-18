@@ -8,10 +8,10 @@
 #include "pso/unk/text_800F9B84.h"
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/system/main_loop.h"
+#include "pso/system/vector.h"
 
 #include "types.h"
 #include "pso/TParticleCtrl.h"
-struct Vec_8008C5E8 { s32 x, y, z; };
 
 extern "C" {
 void set_active_camera_pose(u8 *arg0, u8 *arg1);
@@ -20,9 +20,7 @@ void __ct__7TEndingFv(void *);
 void run_load_callback_table(void *, int);
 void set_copy_clear_color_argb(int, int, int);
 void *__nw__7TObjectFUl(int);
-extern Vec_8008C5E8 lbl_80439570;
-extern Vec_8008C5E8 lbl_8043957C;
-extern const u8 lbl_80439588[] = "ending.adx";
+extern const char TEnding__class_name_string[] = "TEnding";
 extern u8 ending_scene_callbacks[];
 extern u8 default_scene_light_config[];
 extern void *tl_camera;
@@ -35,6 +33,10 @@ void TEnding::set_flag_and_advance() {
     TEnding::start_ending_scene();
 }
 
+#ifdef __MWERKS__
+#pragma push
+#pragma pool_data off
+#endif
 void TEnding::start_ending_scene() {
     void *p;
     set_screen_size(lbl_805D9570, lbl_805D9574);
@@ -45,15 +47,16 @@ void TEnding::start_ending_scene() {
     if (p != 0) {
         TCameraCtrl__ct((u8 *)p, tl_camera);
     }
-    Vec_8008C5E8 a = lbl_80439570;
-    Vec_8008C5E8 b = lbl_8043957C;
+    Vec position = {0.0f, 0.0f, 0.0f};
+    Vec target = {0.0f, 0.0f, -100.0f};
     TCameraCtrl::select_active_controller(9);
-    set_active_camera_pose((u8 *)&a, (u8 *)&b);
+    set_active_camera_pose((u8 *)&position, (u8 *)&target);
     clear_resource_load_tasks();
     run_load_callback_table(ending_scene_callbacks, 0x68);
     TKeyBoardControl__sub_8000F90C(2);
     TKeyBoardControl__sub_8000F91C(2);
-    play_area_music((char *)lbl_80439588);
+    static const char music_filename[] = "ending.adx";
+    play_area_music((char *)music_filename);
     TParticleCtrl::create_quad_sprites();
     p = __nw__7TObjectFUl(0x710);
     if (p != 0) {
@@ -61,6 +64,10 @@ void TEnding::start_ending_scene() {
     }
     render_tick();
 }
+
+#ifdef __MWERKS__
+#pragma pop
+#endif
 
 void TEnding__sub_8008C6E8() {}
 void TEnding__sub_8008C6EC() {}

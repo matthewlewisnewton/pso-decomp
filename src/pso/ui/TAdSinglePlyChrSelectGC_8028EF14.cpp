@@ -46,7 +46,6 @@ void reset_creation_shape_set(s32 arg0);
 extern void ***char_creation_data_block;
 void reset_creation_body_shapes();
 void reset_creation_head_shapes();
-#pragma common off
 CreationHeadModelStates creation_head_shape_destination;
 CreationHeadModelStates creation_head_shape_samples[7];
 CreationBodyModelStates creation_body_shape_destination;
@@ -58,7 +57,6 @@ CreationModelPart creation_cap_model_parts[10];
 CreationModelPart creation_head_model_parts[5];
 __declspec(section ".data") u32 creation_models_ready;
 extern "C" { s32 creation_resource_ready_state; }
-#pragma common reset
 extern "C" {
 s32 is_entry_equal__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
 s32 creation_motion_group(CharacterAppearanceFields *);
@@ -464,10 +462,6 @@ void TAdSinglePlyChrSelectGC__sub_802905A4(void* p, void* q) { *(u32*)((char*)p 
 void reset_creation_shape_set(s32 arg0) {
     TAdSinglePlyChrSelectGC__sub_802905A4((void*)arg0, (void*)((void *)&creation_empty_model_node));
 }
-#pragma push
-#pragma fp_contract on
-#pragma opt_common_subs on
-#pragma scheduling on
 void reset_creation_head_shapes() {
   CreationModelNodeState *p = creation_head_shape_destination.nodes;
   s32 i = 0;
@@ -494,12 +488,7 @@ void reset_creation_head_shapes() {
   }
   while (group < 7);
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
-#pragma opt_common_subs on
-#pragma scheduling on
 void reset_creation_body_shapes() {
   CreationModelNodeState *p = creation_body_shape_destination.nodes;
   s32 i = 0;
@@ -526,7 +515,6 @@ void reset_creation_body_shapes() {
   }
   while (group < 7);
 }
-#pragma pop
 
 void TCharaMaking__bind_body_shape_nodes(CharacterAppearanceFields *appearance, void *model) {
     reset_creation_body_shapes();
@@ -1096,5 +1084,3 @@ void TAdSinglePlyChrSelectGC::update_char_panels() {
         release_texture_list(arg0 + 0x460);
     }
 }
-
-#pragma defer_codegen off
