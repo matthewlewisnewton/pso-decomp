@@ -607,15 +607,24 @@ s32 TLobby__sub_804062A0(s16 arg0) {
     }
 }
 
+struct PppFrameWriter {
+    B_803FADA0 *frame;
+    u8 *cursor;
+    u16 protocol;
+};
+
+inline void begin_ppp_frame(PppFrameWriter &writer, B_803FADA0 *source) {
+    writer.frame = alloc_from_buffer(source, 4);
+    writer.cursor = writer.frame->buf;
+}
+
 s16 TLobby__sub_80406328(s32 self, s16 type) {
     Strm_80405A74 *sv = (Strm_80405A74 *)self;
     void *me = (void *)self;
     s32 ty = type;
     PppLinkState *G;
-    B_803FADA0 *t;
     u8 *p;
     s16 tag = 0x21;
-    u8 pad[0x30];
     if (ty == -0x7923) {
         G = (PppLinkState *)lbl_805C0038;
         if (G->ipv6cp.state != 5) {
@@ -626,16 +635,18 @@ s16 TLobby__sub_80406328(s32 self, s16 type) {
             G->transmit_errors++;
             return -1;
         }
-        t = alloc_from_buffer((B_803FADA0 *)me, 4);
-        p = t->buf;
-        *p++ = 0xFF;
+        PppFrameWriter writer;
+        writer.protocol = 0x57;
+        begin_ppp_frame(writer, (B_803FADA0 *)me);
+        p = writer.cursor;
+        *p++ = 0xff;
         *p++ = 3;
-        write_network_u16_be(p, 0x57);
-        if (t == NULL) {
+        write_network_u16_be(p, writer.protocol);
+        if (writer.frame == NULL) {
             G->allocation_errors++;
             return -1;
         }
-        return TLobby__sub_804066D8((Strm_80405A74 *)t);
+        return TLobby__sub_804066D8((Strm_80405A74 *)writer.frame);
     }
     G = (PppLinkState *)lbl_805C0038;
     if (G->ipcp.state != 5) {
@@ -647,16 +658,18 @@ s16 TLobby__sub_80406328(s32 self, s16 type) {
             G->transmit_errors++;
             return -1;
         }
-        t = alloc_from_buffer((B_803FADA0 *)me, 4);
-        p = t->buf;
-        *p++ = 0xFF;
+        PppFrameWriter writer;
+        writer.protocol = 0x57;
+        begin_ppp_frame(writer, (B_803FADA0 *)me);
+        p = writer.cursor;
+        *p++ = 0xff;
         *p++ = 3;
-        write_network_u16_be(p, 0x57);
-        if (t == NULL) {
+        write_network_u16_be(p, writer.protocol);
+        if (writer.frame == NULL) {
             G->allocation_errors++;
             return -1;
         }
-        return TLobby__sub_804066D8((Strm_80405A74 *)t);
+        return TLobby__sub_804066D8((Strm_80405A74 *)writer.frame);
     }
     {
         IpcpConfigureOptions *e = (IpcpConfigureOptions *)G->ipcp.opts;
@@ -695,45 +708,42 @@ skip:
             return -1;
         }
         {
-            s16 tg = tag;
-            B_803FADA0 *t2 = alloc_from_buffer((B_803FADA0 *)a, 4);
-            p = t2->buf;
-            *p++ = 0xFF;
+            PppFrameWriter writer;
+            writer.protocol = tag;
+            begin_ppp_frame(writer, (B_803FADA0 *)a);
+            p = writer.cursor;
+            *p++ = 0xff;
             *p++ = 3;
-            write_network_u16_be(p, tg);
-            if (t2 == NULL) {
+            write_network_u16_be(p, writer.protocol);
+            if (writer.frame == NULL) {
                 G->allocation_errors++;
                 return -1;
             }
-            return TLobby__sub_804066D8((Strm_80405A74 *)t2);
+            return TLobby__sub_804066D8((Strm_80405A74 *)writer.frame);
         }
     }
 }
 
 s16 TLobby__sub_80406624(s32 a, s32 b, u16 code, void *self) {
-    s32 pad[4];
-    u16 r30;
-    B_803FADA0 *r29;
-    u8 *p;
-    B_803FADA0 *ret;
+    B_803FADA0 *prepared;
 
     PppLinkState *link = (PppLinkState *)lbl_805C0038;
     if (link->active == 0) {
         link->transmit_errors++;
         return -1;
     }
-    r30 = code;
-    r29 = alloc_from_buffer((B_803FADA0 *)self, 4);
-    p = r29->buf;
-    *p++ = 0xff;
-    *p++ = 3;
-    write_network_u16_be(p, r30);
-    ret = r29;
-    if (r29 == 0) {
+    PppFrameWriter writer;
+    writer.protocol = code;
+    begin_ppp_frame(writer, (B_803FADA0 *)self);
+    *writer.cursor++ = 0xff;
+    *writer.cursor++ = 3;
+    write_network_u16_be(writer.cursor, writer.protocol);
+    prepared = writer.frame;
+    if (writer.frame == 0) {
         link->allocation_errors++;
         return -1;
     }
-    return TLobby__sub_804066D8((Strm_80405A74 *)ret);
+    return TLobby__sub_804066D8((Strm_80405A74 *)prepared);
 }
 
 inline s32 ppp_keep_field(s32 is_lcp, LcpOpts *opts, s32 opt) {
