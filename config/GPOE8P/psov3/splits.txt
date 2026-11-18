@@ -2781,6 +2781,9 @@ pso/item/TItemProUnit.cpp:
 	.sdata      start:0x805D2C40 end:0x805D2C44
 	.sdata2     start:0x805DABF8 end:0x805DAC08
 
+pso/item/ReverseTechSceneHooks.cpp:
+	.data       start:0x804A03A8 end:0x804A03E0
+
 pso/item/TItemLockCountCtrl_80119238.cpp:
 	.text       start:0x80119060 end:0x80119600
 
@@ -14471,9 +14474,19 @@ pso/misc/TLobby_804048E8.cpp:
 	.bss        start:0x805C06D8 end:0x805C1AD8
 
 pso/misc/TLobby_804050DC.cpp:
-	.text       start:0x804050DC end:0x80419A00
-	.data       start:0x804FD80C end:0x804FD890
-	.bss        start:0x805C1AD8 end:0x805C1C50
+	.text       start:0x804050DC end:0x8040FF0C
+	.data       start:0x804FD690 end:0x804FD6E0
+	.bss        start:0x805C1AD8 end:0x805C1B78
+
+pso/misc/TLobby_8040FF0C.cpp:
+	.text       start:0x8040FF0C end:0x8041112C
+	.data       start:0x804FD6E0 end:0x804FD7D8
+	.bss        start:0x805C1B78 end:0x805C1BB8
+
+pso/misc/TLobby_8041112C.cpp:
+	.text       start:0x8041112C end:0x80419A00
+	.data       start:0x804FD7D8 end:0x804FD890
+	.bss        start:0x805C1BB8 end:0x805C1C50
 
 pso/network/NetworkDispatcher.cpp:
 	.text       start:0x80419A00 end:0x8041A1D8
