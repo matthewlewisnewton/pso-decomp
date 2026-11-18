@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 92 | 60 |
 | hardware | 71 | 14 |
 | pragma | 5842 | 894 |
-| configure.py per-unit override | 226 | 226 |
+| configure.py per-unit override | 228 | 228 |
 
 Pragma kinds (excluding push/pop/once): `dont_inline` 1126, `inline_depth` 1045, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 631, `opt_propagation` 268, `scheduling` 260, `readonly_strings` 206, `peephole` 104, `optimization_level` 83, `defer_codegen` 61, `bool` 59, `pack` 46, `opt_lifetimes` 46, `opt_loop_invariants` 46, `opt_dead_assignments` 42, `pool_data` 40, `use_lmw_stmw` 30, `optimize_for_size` 28, `opt_strength_reduction` 5, `common` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `opt_unroll_loops` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
@@ -245,6 +245,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1126, `inline_depth` 1045,
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/unk/text_803367F4.cpp` | `-str reuse,readonly` | The title assets and bilingual prompts reference read-only string pools. |
+| `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `(multi-line entry; see configure.py)` | Preserve Shift-JIS trail bytes when compiling the Japanese prompts. |
 | `pso/network/TProtocol.cpp` | `GC/1.3.2` | GC/1.3.2 preserves these aggregate-copy matches under the GC/2.0 default. TProtocol's other weak helpers are validated through the complete link; see docs/evidence/compiler-default-gc20-adoption.md. |
 | `pso/object/TObjResultWin.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
