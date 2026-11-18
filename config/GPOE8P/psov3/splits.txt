@@ -7211,6 +7211,7 @@ pso/menu/TQuestBgmCtrl.cpp:
 	.sbss       start:0x805D5E60 end:0x805D5E70
 
 pso/quest/QuestOpcodeTables.cpp:
+	.rodata     start:0x804499A8 end:0x80449A38
 	.data       start:0x804C69D0 end:0x804C81D8
 
 pso/quest/QuestOpcodeHandlers.cpp:
@@ -9483,7 +9484,8 @@ pso/misc/TWindowUserSort.cpp:
 
 pso/misc/TWindowMainMenu1P.cpp:
 	.text       start:0x80288520 end:0x80288940
-	.rodata     start:0x80450788 end:0x80450790
+	.rodata     start:0x8044FE00 end:0x80450790
+	.sdata      start:0x805D3AE8 end:0x805D3AEC
 
 pso/misc/TWindowMainMenu4P.cpp:
 	.text       start:0x80288940 end:0x80288B04
@@ -10547,7 +10549,7 @@ pso/unk/text_802CE68C.cpp:
 
 pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp:
 	.text       start:0x802CECE0 end:0x802D04C0
-	.rodata     start:0x804724B8 end:0x804724C8
+	.rodata     start:0x80472318 end:0x804724C8
 
 pso/enemy/TObjEneBm9Mericarol_802D04C0.cpp:
 	.text       start:0x802D04C0 end:0x802D05BC
@@ -10559,6 +10561,8 @@ pso/enemy/TObjEneBm9Mericarol.cpp:
 	.text       start:0x802D073C end:0x802D134C
 	.data       start:0x804E1548 end:0x804E18A4
 	.bss        start:0x80540B58 end:0x80540B98
+	.sdata      start:0x805D3F28 end:0x805D3F30
+	.sbss       start:0x805D6860 end:0x805D6880
 	.sdata2     start:0x805DE740 end:0x805DE758
 
 pso/enemy/TObjEneBm9Mericarol_Bomb.cpp:
