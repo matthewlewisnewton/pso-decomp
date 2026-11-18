@@ -11,7 +11,8 @@ It runs, in order:
   2. report_delta.py --check against build/GPOE8P/baseline.json: no match, linked
      function or data range may be lost, compared by original address.
   3. link_units.py check: every unit in linked_units.txt still links from source.
-  4. link_units.py scan: lists units that now match completely but are not linked
+  4. link_units.py force-active --check: fails if generated retention metadata drifts.
+  5. link_units.py scan: lists units that now match completely but are not linked
      yet. That is not a failure; link them with `link_units.py scan --write`.
 
 With --json PATH it also writes the result of each check and the report delta to PATH,
@@ -93,6 +94,14 @@ def main() -> int:
     if not ok:
         failed.append(f"link_units.py check: {reason}")
     checks.append(check("link_units", ok, out, "" if ok else reason))
+
+    ok, out = run("link_units.py force-active --check",
+                  [python, "tools/link_units.py", "force-active", "--check"])
+    print(out.rstrip())
+    reason = "generated force_active metadata is out of date or its split inputs are unavailable"
+    if not ok:
+        failed.append(f"link_units.py force-active --check: {reason}")
+    checks.append(check("force_active", ok, out, "" if ok else reason))
 
     _, out = run("link_units.py scan", [python, "tools/link_units.py", "scan"])
     print(out.rstrip())
