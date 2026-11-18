@@ -4685,6 +4685,8 @@ force_active:
   - berura_init_params
   - berura_resistance_stats
   - bgm_adx_filename_table
+  - bgm_player_create_error
+  - bgm_stream_files
   - bind_bml_model
   - bind_bml_motion
   - bind_controller_devices
@@ -9591,7 +9593,6 @@ force_active:
   - lbl_804C8934
   - lbl_804C8A44
   - lbl_804C9C9C
-  - lbl_804CB838
   - lbl_804CDD40
   - lbl_804CDDC8
   - lbl_804CDDF8
@@ -11272,6 +11273,7 @@ force_active:
   - music_fade_frames_remaining
   - music_fade_full_scale
   - music_fade_step
+  - music_programs
   - music_sequencer_fade_state
   - music_sequencer_timer
   - music_stream_afs_filename_buffer
@@ -18573,6 +18575,7 @@ force_active:
   - sound_bank_load_routes
   - sound_control_state
   - sound_effect_bank_range_routes
+  - sound_effect_player_create_error
   - sound_effect_range_a_enemy
   - sound_effect_range_a_env
   - sound_effect_range_b1_enemy

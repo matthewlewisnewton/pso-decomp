@@ -844,6 +844,7 @@ pso/misc/CreationMotion.cpp
 pso/misc/EndingSceneTables.cpp
 pso/misc/GbaDownloadRuntime.cpp
 pso/misc/KeyboardCharacterMaps.cpp
+pso/misc/LobbyAudioStreamBuffers.cpp
 pso/misc/MaterialOpacityFade.cpp
 pso/misc/ParticleBallistic.cpp
 pso/misc/ParticleOrbit.cpp

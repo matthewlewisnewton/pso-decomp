@@ -7906,6 +7906,9 @@ pso/misc/TLobby_80226070.cpp:
 	.sbss       start:0x805D6298 end:0x805D62A8
 	.sdata2     start:0x805DC740 end:0x805DC748
 
+pso/misc/LobbyAudioStreamBuffers.cpp:
+	.sbss       start:0x805D62D8 end:0x805D62E0
+
 pso/unk/text_802264B8.cpp:
 	.text       start:0x802264B8 end:0x80226534
 
@@ -7915,14 +7918,15 @@ pso/misc/TOTrapAncient01_80226534.cpp:
 
 pso/misc/TLobby_802268F4.cpp:
 	.text       start:0x802268F4 end:0x80227390
+	.rodata     start:0x8044C860 end:0x8044C890
+	.data       start:0x804CB838 end:0x804CBE98
 	.bss        start:0x80514C60 end:0x80514F58
 	.sbss       start:0x805D6318 end:0x805D6328
 	.sdata2     start:0x805DC748 end:0x805DC760
 
 pso/misc/TLoadCtrl_80227390.cpp:
 	.text       start:0x80227390 end:0x80227A2C
-	.rodata     start:0x8044C890 end:0x8044C898
-	.data       start:0x804CB838 end:0x804CB850
+	.rodata     start:0x8044C890 end:0x8044C8D0
 	.sdata      start:0x805D3718 end:0x805D371C
 	.sbss       start:0x805D6328 end:0x805D6330
 

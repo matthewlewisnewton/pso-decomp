@@ -4,11 +4,6 @@
 #include "pso/misc/TLobby.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-extern "C" {
-u32 lbl_804CB838[6] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
-}
-
-
 struct RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270 {
     s32 value;
     u8 remaining[0xAC];
@@ -87,11 +82,12 @@ void TLobby__sub_80227A90(void);
 void TLobby__sub_8022780C(void);
 void TLobby::debug_print(const char *fmt, ...);
 extern const SndHooks lbl_8044C858;
-extern const char lbl_8044C898[];
-extern const char lbl_8044C8B4[];
+extern const char bgm_player_create_error[];
+extern const char sound_effect_player_create_error[];
 extern u32 lbl_804CB838[6];
 extern void *lbl_80514C60[];
-extern void *lbl_805D62D8;
+extern void *sound_effect_stream_buffer;
+extern void *cue_stream_work_buffer;
 extern s32 lbl_805D62F8;
 extern s32 lbl_805D62FC;
 }
@@ -108,7 +104,6 @@ extern s32 music_fade_slot_index;
 extern f32 music_fade_step;
 extern s32 lbl_805D6330;
 void update_music_fade(void);
-extern u32 lbl_805D62DC;
 extern u32 lbl_805D62EC;
 void stop_cue_stream(void);
 
@@ -209,9 +204,9 @@ void TLobby::shutdown_buffers() {
     for (i = 0; i < 3; i++) {
         TLobby__sub_803CA194(lbl_804CB850[i]);
     }
-    if (lbl_805D62DC != 0U) {
-        xfree((void *)lbl_805D62DC);
-        lbl_805D62DC = 0U;
+    if (cue_stream_work_buffer != NULL) {
+        xfree(cue_stream_work_buffer);
+        cue_stream_work_buffer = NULL;
     }
     TLobby::dec_ref_and_shutdown();
     if (lbl_805D62EC != 0U) {
@@ -224,9 +219,9 @@ void TLobby__sub_8022780C(void) {
 
     lbl_80514C60[0] = xmalloc(0x2D1E4);
     lbl_80514C60[1] = xmalloc(0x2D1E4);
-    lbl_805D62D8 = xmalloc(0xA924);
-    lbl_805D62DC = (u32)xmalloc(0xA000);
-    TLobby__sub_803CBE20((void *)lbl_805D62DC, 0xA000, 5);
+    sound_effect_stream_buffer = xmalloc(0xA924);
+    cue_stream_work_buffer = xmalloc(0xA000);
+    TLobby__sub_803CBE20(cue_stream_work_buffer, 0xA000, 5);
     TLobby::init_and_add_ref();
     TLobby__sub_803CB74C(NULL);
     TLobby__sub_803CB858(NULL);
@@ -244,15 +239,15 @@ void TLobby__sub_8022780C(void) {
     for (i = 0; i < 2; i++) {
         lbl_804CB850[i] = adx_create_stream_player(2, lbl_80514C60[i], 0x2D1E4);
         if ((u32)lbl_804CB850[i] == 0U) {
-            TLobby::debug_print(lbl_8044C898, i);
+            TLobby::debug_print(bgm_player_create_error, i);
         } else {
             ((TLobby *)lbl_804CB850[i])->set_field_6d(2);
         }
     }
     for (i = 0; i < 1; i++) {
-        lbl_804CB850[2 + i] = adx_create_stream_player(1, (&lbl_805D62D8)[i], 0xA924);
+        lbl_804CB850[2 + i] = adx_create_stream_player(1, (&sound_effect_stream_buffer)[i], 0xA924);
         if ((u32)lbl_804CB850[2 + i] == 0U) {
-            TLobby::debug_print(lbl_8044C8B4, i);
+            TLobby::debug_print(sound_effect_player_create_error, i);
         }
     }
     lbl_805D62F8 = 0x5A3C8;
@@ -278,3 +273,6 @@ f32 music_fade_full_scale = 200.0f;
 f32 music_fade_step;
 s32 music_fade_frames_remaining;
 }
+
+extern __declspec(section ".rodata") const char bgm_player_create_error[] ATTRIBUTE_ALIGN(4) = "can't create ADXT-BGM #%d";
+extern __declspec(section ".rodata") const char sound_effect_player_create_error[] ATTRIBUTE_ALIGN(4) = "can't create ADXT-SE #%d";
