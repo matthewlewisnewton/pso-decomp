@@ -16,6 +16,7 @@
 #include "pso/object/base/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/olgaflow/TBoss6Type1.h"
+#include "pso/boss/olgaflow/TBoss6SwordShot.h"
 #include "pso/boss/olgaflow/TBoss6Mine.h"
 #include "pso/boss/darkfalz/TObjDFHorming.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
@@ -363,7 +364,6 @@ void scale_matrix(int matrix, f32 x, f32 y, f32 z);
 void rotate_vector_by_matrix(int matrix, const Vec *in, Vec *out);
 extern Entry_802B865C boss6_type1_action_table[];
 
-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0);
 extern s32 game_difficulty_selection;
 void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self);
 f32 atan2_float(f64, f64);
@@ -1565,7 +1565,7 @@ void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self) {
         if ((self->f408 & 3) == 0) {
             flag = 1;
         }
-        fn_8035648C((s32)self, (s32)&p, flag, sc);
+        TBoss6SwordShot::create((TObject *)self, &p, flag, sc);
         if (flag != 0) {
             play_sound_effect(0x4003B210, &p, 0, 0);
             TBoss6PlotFalz::apply_radial_effect_to_players(&p, 0xC0, 0xF, 100.0f);
