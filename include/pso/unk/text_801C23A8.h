@@ -4,7 +4,7 @@
 #include "types.h"
 
 extern "C" {
-void show_duel_result_window(s32 arg0, s32 arg1);
+void set_timed_music_gain_offset(s32 gain, s32 duration);
 }
 
 #endif

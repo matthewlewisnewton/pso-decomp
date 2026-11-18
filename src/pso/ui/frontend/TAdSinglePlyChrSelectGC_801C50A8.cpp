@@ -5,12 +5,12 @@
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 #include "pso/unk/TUnk_804C3F48.h"
+#include "pso/unk/TUnk_804C3E60.h"
 #include "pso/system/task/TObject.h"
 #include "pso/player/TObjPlayer_80011014.h"
 
 extern "C" {
 extern int active_character_save_record;
-    extern int duel_result_window;
 u32 ad_single_ply_chr_select_instance;
 u32 __nw__7TObjectFUl(s32);
 extern s32 tl_00;
@@ -34,7 +34,7 @@ void TAdSinglePlyChrSelectGC__sub_801C5108(int a0) { *(short*)((char*)active_cha
 u16 TAdSinglePlyChrSelectGC__sub_801C5114(void) {
     return *(u16 *)((s8 *)(*(u8 * *)&active_character_save_record) + 0x21A8);
 }
-void TAdSinglePlyChrSelectGC__sub_801C5120(void) { duel_result_window = 0; }
+void TAdSinglePlyChrSelectGC__sub_801C5120(void) { battle_music_gain_task = NULL; }
 void TAdSinglePlyChrSelectGC::destroy() {
     if ((u32) ad_single_ply_chr_select_instance != 0U) {
         ((TObject *)ad_single_ply_chr_select_instance)->queue_destruction();

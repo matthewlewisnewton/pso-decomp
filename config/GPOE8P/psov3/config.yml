@@ -11691,7 +11691,7 @@ force_active:
   - init__16TAdChrSelASlotGCFl
   - init__16TAdChrSelBSlotGCFv
   - init__17TObjEneBm3FlyNestFv
-  - init__17TWindowDuelResultFPvPvPv
+  - __ct__13TUnk_804C3E60FP7TObjectll
   - init__17TWindowSubComCardFi
   - init__18TChallenge4PResultFv
   - init__18VoloptPartsMessageFv

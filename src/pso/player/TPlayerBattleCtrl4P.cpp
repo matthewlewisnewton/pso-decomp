@@ -1,3 +1,4 @@
+#include "pso/unk/text_801C23A8.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/map/TSetEvtDestroy.h"
 #include "pso/unk/TLobby_801C25B4.h"
@@ -150,7 +151,6 @@ extern const f32 lbl_805D5DC8;
 u16 get_entity_id(void *);
 void TLobby__sub_801B09A4(void);
 void play_cue_stream_file(s32 name);
-void show_duel_result_window(s32 arg0, s32 arg1);
 void TLobby__sub_8020BB18(void);
 void TLobby__sub_8020BCE4(void);
 void end_player_keyboard_hold(s32 arg0);
@@ -1308,7 +1308,7 @@ void record_split_screen_battle_results(void *) {
 
 void TPlayerBattleCtrl4P::reset_score_counters() { this->timed_event_state = 0; *(s32 *)&this->unknown_290 = 0; }
 
-void TPlayerBattleCtrl4P::notify_lobby(void* p, void* a1, void* a2) { play_cue_stream_file((s32)a1); show_duel_result_window((s32)((void*)-50), (s32)a2); }
+void TPlayerBattleCtrl4P::notify_lobby(void* p, void* a1, void* a2) { play_cue_stream_file((s32)a1); set_timed_music_gain_offset(-50, (s32)a2); }
 
 int TPlayerBattleCtrl4P::init_ctrl_default(void* p) { return ((int (*)(void*, int))set_split_screen_battle_phase__19TPlayerBattleCtrl4PFl)(p, 0); }
 

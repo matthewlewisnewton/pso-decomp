@@ -1,3 +1,4 @@
+#include "pso/unk/text_801C23A8.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/map/TSetEvtDestroy.h"
 #include "pso/system/ArrayAllocation.h"
@@ -882,7 +883,6 @@ void __ct__7TObjectFP7TObject(void *);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 s32 bswap_packet_header__6TLobbyFv();
-int show_duel_result_window(void*, void*);
 s32 update_battle_controller__10TObjPlayerFv();
 
 void release_ref__6TLobbyFPv(u8 *object) {
@@ -932,7 +932,7 @@ s32 TLobby::assign_player_id(void *) {
     return temp_r3;
 }
 
-void TLobby::send_neg50(void* a1) { play_cue_stream_file(this); show_duel_result_window((void*)-50, a1); }
+void TLobby::send_neg50(void* a1) { play_cue_stream_file(this); set_timed_music_gain_offset(-50, (s32)a1); }
 
 #define TBL_801C32B4 ((Ent_801C32B4 *)TLobby__duel_result_table)
 s32 record_local_battle_placement(void *arg0) {
