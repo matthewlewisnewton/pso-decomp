@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/system/BmlResource.h"
 #include "pso/enemy/deldepth/DelDepthData.h"
 #include "pso/system/BmlAccessors.h"
@@ -271,7 +272,7 @@ void TObjEneDelDepth::load_assets() {
         info.motions = TObjEneDelDepth__shared_resource->motions;
         TLobby::spawn_npc_enemy((s16)0x48, (s32)TObjEneDelDepth__shared_resource->models[1].model, (NJS_TEXLIST *)TObjEneDelDepth__shared_resource->models[1].m_c, &info, TObjEneDelDepth_collision_body_parts[0].radius, (f32)TObjEneDelDepth__data_805DF258);
     }
-    TObjEneDelDepth__tune_params = (DelDepthParameters *)TLobby::dispatch_shared_handler_a(0x30);
+    TObjEneDelDepth__tune_params = (DelDepthParameters *)get_battle_movement_params(0x30);
 }
 
 void TObjEneDelDepth::free_shared_data() {
@@ -306,7 +307,7 @@ void TObjEneDelDepth::init() {
     this->y_speed = (f32) TObjEneDelDepth__data_805DF258;
     x_speed = (f32) TObjEneDelDepth__data_805DF258;
     this->target = 0;
-    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x30)), (u8 *)(TLobby::dispatch_shared_handler_b(0x30)), (u8 *)(TLobby::register_object(0x30)));
+    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
     this->referenceHp = (s16) this->hp;
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
     this->movementParameters = 0;

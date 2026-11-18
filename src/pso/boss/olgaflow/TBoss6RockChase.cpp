@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -80,7 +81,6 @@ struct Chase_8036D1B4 {
     s32 xB0;
 };
 
-struct Param_8036D1B4 { u8 pad[0xC]; f32 v; };
 
 extern "C" {
 s32 __nw__7TObjectFUl(int);
@@ -93,7 +93,6 @@ __declspec(section ".rodata") RecoveredGlobal_8036D4E0_lbl_8047ACE8 boss6_rock_c
 extern s32 __vt__15TBoss6RockChase[];
 const char *TBoss6RockChase__name = TBoss6RockChase__class_name_string;
 s32 query_teammate_state__9TObjEneDDFv(void);
-Param_8036D1B4 *dispatch_shared_handler_a__6TLobbyFl(s32);
 f32 vector_length(void *);
 int subtract_vector(void *, void *);
 extern RecoveredGlobal_8036D4E0_lbl_8047ACE8 boss6_rock_chase_model_radius_table;
@@ -118,7 +117,7 @@ s32 TBoss6RockChase::damage_players_in_range() {
         Ent_8036D1B4 *tbl = (Ent_8036D1B4 *)&boss6_rock_chase_model_radius_table;
         range = tbl[self->xB0].range;
     }
-    dmg = dispatch_shared_handler_a__6TLobbyFl(0x2C)->v;
+    dmg = get_battle_movement_params(0x2C)->m_0c;
     if (dmg < 1) {
         dmg = 20;
     }

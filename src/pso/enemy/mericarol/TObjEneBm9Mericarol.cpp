@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -203,10 +204,10 @@ extern "C" void TBoss4Type3__sub_802D1130(void) {
     fn_802D1CC8();
     TObjPlayer__sub_800F0928();
     for (i = 0; i < 3; i++) {
-        bm9_mericarol_phase_hp_table[i] = (u8 *)TLobby::register_boss(lbl_804722E8[i]);
-        lbl_80540B64[i] = (u8 *)TLobby::dispatch_shared_handler_b(lbl_804722F4[i]);
-        lbl_80540B70[i] = (u8 *)TLobby::register_object(lbl_80472300[i]);
-        mericarol_phase_param_table[i] = (TObjEneBm9MericarolParams *)TLobby::dispatch_shared_handler_a(lbl_8047230C[i]);
+        bm9_mericarol_phase_hp_table[i] = (u8 *)get_battle_base_stats(lbl_804722E8[i]);
+        lbl_80540B64[i] = (u8 *)get_battle_attack_params(lbl_804722F4[i]);
+        lbl_80540B70[i] = (u8 *)get_battle_resistance_params(lbl_80472300[i]);
+        mericarol_phase_param_table[i] = (TObjEneBm9MericarolParams *)get_battle_movement_params(lbl_8047230C[i]);
     }
     TBoss4Type3_shared_instance = new SampledMotionPoints(2, 0.0f, 20.0f, 0.7f);
     mericarol_sampled_motion_points = new SampledMotionPoints(2, 0.0f, 20.0f, 0.7f);

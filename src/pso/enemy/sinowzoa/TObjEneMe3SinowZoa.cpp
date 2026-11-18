@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -237,16 +238,16 @@ void TObjEneMe3SinowZoa::load_resources() {
         TObjEneMe3SinowZoa__alternate_texture_list.textures[i].texaddr = TObjEneMe3SinowZoa__alternate_texture_list.textures[i + 3].texaddr;
     }
     for (i = 0; i < 2; i++) {
-        sinow_zoa_base_parameters[i] = (u8 *)TLobby::register_boss(lbl_80475E0C[i]);
+        sinow_zoa_base_parameters[i] = (u8 *)get_battle_base_stats(lbl_80475E0C[i]);
     }
     for (i = 0; i < 2; i++) {
-        sinow_zoa_attack_parameters[i] = (u8 *)TLobby::dispatch_shared_handler_b(lbl_80475E14[i]);
+        sinow_zoa_attack_parameters[i] = (u8 *)get_battle_attack_params(lbl_80475E14[i]);
     }
     for (i = 0; i < 2; i++) {
-        sinow_zoa_resistance_parameters[i] = (u8 *)TLobby::register_object(lbl_80475E1C[i]);
+        sinow_zoa_resistance_parameters[i] = (u8 *)get_battle_resistance_params(lbl_80475E1C[i]);
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3SinowZoa__kind_param_tbls[i] = (TObjEneMe3SinowZoaParams *)TLobby::dispatch_shared_handler_a(lbl_80475E24[i]);
+        TObjEneMe3SinowZoa__kind_param_tbls[i] = (TObjEneMe3SinowZoaParams *)get_battle_movement_params(lbl_80475E24[i]);
     }
     params = TObjEneMe3SinowZoa__kind_param_tbls[0];
     set_entry_value_clamped(7, params->m_c);

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -429,10 +430,6 @@ extern "C" {
 s32 select_enemy_destination(void *, void *, int);
 s32 copy_position_if_valid__10TObjPlayerFii(void *, void *);
 s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 extern u32 dolm_olm_combat_stat_id_pair;
 extern u32 TObjEneDolmOlm__shared_handler_ids;
 extern u32 TObjEneDolmOlm__registered_object_ids;
@@ -684,14 +681,14 @@ void TObjEneDolmOlm::load_shared_resources() {
     TObjEneDolmOlm__shared_handler_ids = (u32) ::operator new[](8);
     TObjEneDolmOlm__registered_object_ids = (u32) ::operator new[](8);
     TObjEneDolmOlm__behavior_params_by_variant = (u32) ::operator new[](8);
-    ((s32 *) dolm_olm_combat_stat_id_pair)[0] = register_boss__6TLobbyFl(0x4F);
-    ((s32 *) dolm_olm_combat_stat_id_pair)[1] = register_boss__6TLobbyFl(0x50);
-    ((s32 *) TObjEneDolmOlm__shared_handler_ids)[0] = dispatch_shared_handler_b__6TLobbyFl(0x54);
-    ((s32 *) TObjEneDolmOlm__shared_handler_ids)[1] = dispatch_shared_handler_b__6TLobbyFl(0x55);
-    ((s32 *) TObjEneDolmOlm__registered_object_ids)[0] = register_object__6TLobbyFl(0x4E);
-    ((s32 *) TObjEneDolmOlm__registered_object_ids)[1] = register_object__6TLobbyFl(0x4F);
-    ((s32 *) TObjEneDolmOlm__behavior_params_by_variant)[0] = dispatch_shared_handler_a__6TLobbyFl(0x4E);
-    ((s32 *) TObjEneDolmOlm__behavior_params_by_variant)[1] = dispatch_shared_handler_a__6TLobbyFl(0x4F);
+    ((s32 *) dolm_olm_combat_stat_id_pair)[0] = (s32)get_battle_base_stats(0x4F);
+    ((s32 *) dolm_olm_combat_stat_id_pair)[1] = (s32)get_battle_base_stats(0x50);
+    ((s32 *) TObjEneDolmOlm__shared_handler_ids)[0] = (s32)get_battle_attack_params(0x54);
+    ((s32 *) TObjEneDolmOlm__shared_handler_ids)[1] = (s32)get_battle_attack_params(0x55);
+    ((s32 *) TObjEneDolmOlm__registered_object_ids)[0] = (s32)get_battle_resistance_params(0x4E);
+    ((s32 *) TObjEneDolmOlm__registered_object_ids)[1] = (s32)get_battle_resistance_params(0x4F);
+    ((s32 *) TObjEneDolmOlm__behavior_params_by_variant)[0] = (s32)get_battle_movement_params(0x4E);
+    ((s32 *) TObjEneDolmOlm__behavior_params_by_variant)[1] = (s32)get_battle_movement_params(0x4F);
     TObjEneDolmOlm__effect_render_state = 0;
     {
         s16 ids[2] = { 69, 79 };

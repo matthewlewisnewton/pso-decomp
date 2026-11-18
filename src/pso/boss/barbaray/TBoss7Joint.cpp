@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/boss/barbaray/TBoss7Joint.h"
 #include "pso/enemy/dd/TObjEneDD.h"
@@ -15,9 +16,6 @@
 
 extern "C" {
 extern const f32 lbl_805DE9F0;
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, int, int, int);
 u32 __nw__7TObjectFUl(int);
 s32 TObjPlayer__sub_802E72DC(void *, void *, void *, int);
@@ -26,7 +24,7 @@ int TBoss7Joint::is_part_active() { return *(u32*)((char*)this + 0x3bc) & 0x1; }
 
 void TBoss7Joint::init_boss_stats() {
     *(s32 *)((s8 *)((u8 *)this) + 0x3BC) = *(s32 *)((s8 *)((u8 *)this) + 0x3BC) | 1;
-    reload_stats_keep_hp_tp__9TObjEneDDFv(this, register_boss__6TLobbyFl(0x10), dispatch_shared_handler_b__6TLobbyFl(0xF), register_object__6TLobbyFl(0x10));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(this, (s32)get_battle_base_stats(0x10), (s32)get_battle_attack_params(0xF), (s32)get_battle_resistance_params(0x10));
     this->hp = 0x4E20;
     this->hpmax = 0x4E20;
     u32 p = __nw__7TObjectFUl(0x2C);
@@ -145,7 +143,7 @@ s32 TBoss7Joint::init_params() {
     copy_collision_body((CollisionBody *)(&((J_802EEB88 *)this)->sub), &lbl_80473FB8);
     set_collision_body(&((J_802EEB88 *)this)->sub);
     transform_part_positions();
-    reset_hp((u8 *)(TLobby::register_boss(0x10)), (u8 *)(TLobby::dispatch_shared_handler_b(0xF)), (u8 *)(TLobby::register_object(0x10)));
+    reset_hp((u8 *)(get_battle_base_stats(0x10)), (u8 *)(get_battle_attack_params(0xF)), (u8 *)(get_battle_resistance_params(0x10)));
     this->hp = 0x4E20;
     this->hpmax = 0x4E20;
     check_state_flag_2();

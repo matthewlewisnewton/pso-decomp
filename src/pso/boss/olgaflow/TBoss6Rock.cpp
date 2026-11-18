@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 // Compiled -inline off,deferred: the functions are written from the last
 // (0x80354B18 load_resources) back to the first (0x803537D4), so CodeWarrior
 // emits them in address order and the TUnk_804F1280 vtable before TBoss6Rock's.
@@ -88,7 +89,7 @@ void TBoss6Rock::load_resources() {
     for (i = 0; i < 32; i++) {
         TBoss6Rock__instance_table[i] = NULL;
     }
-    lbl_805D6EFC = *(f32 *)((u8 *)TLobby::dispatch_shared_handler_a(0x2C) + 0xC);
+    lbl_805D6EFC = *(f32 *)((u8 *)get_battle_movement_params(0x2C) + 0xC);
     if (lbl_805D6EFC < 1) {
         lbl_805D6EFC = 20;
     }

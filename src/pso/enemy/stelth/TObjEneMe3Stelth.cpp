@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <stddef.h>
 #include "pso/system/ArrayAllocation.h"
@@ -193,9 +194,6 @@ TObjMotionAction TObjEneMe3Stelth__animation_descriptors[13] = {
 int create__20TObjEneMe3StelthRealFPv(void*);
 
 
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
 
 void draw_model__16TObjEneMe3StelthFPv(TObjEneMe3Stelth *stelth) {
     stelth->draw_ginja_motion_model();
@@ -235,16 +233,16 @@ void TObjEneMe3Stelth::load_shared_resources() {
         TObjEneMe3Stelth__alternate_texture_list.textures[i].texaddr = TObjEneMe3Stelth__alternate_texture_list.textures[i + 3].texaddr;
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__base_params_by_variant[i] = register_boss__6TLobbyFl(lbl_8043D47C[i]);
+        TObjEneMe3Stelth__base_params_by_variant[i] = (s32)get_battle_base_stats(lbl_8043D47C[i]);
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__attack_params_by_variant[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043D484[i]);
+        TObjEneMe3Stelth__attack_params_by_variant[i] = (s32)get_battle_attack_params(lbl_8043D484[i]);
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__resistance_params_by_variant[i] = register_object__6TLobbyFl(lbl_8043D48C[i]);
+        TObjEneMe3Stelth__resistance_params_by_variant[i] = (s32)get_battle_resistance_params(lbl_8043D48C[i]);
     }
     for (i = 0; i < 2; i++) {
-        TObjEneMe3Stelth__behavior_params_by_variant[i] = (StelthBehaviorParams *)TLobby::dispatch_shared_handler_a(lbl_8043D494[i]);
+        TObjEneMe3Stelth__behavior_params_by_variant[i] = (StelthBehaviorParams *)get_battle_movement_params(lbl_8043D494[i]);
     }
     d = TObjEneMe3Stelth__behavior_params_by_variant[0];
     TObjEneMe3Stelth::set_slot_min_clamped_value(7, d->m_0c);

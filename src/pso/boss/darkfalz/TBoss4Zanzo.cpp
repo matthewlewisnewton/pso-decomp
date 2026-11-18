@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
@@ -68,7 +69,6 @@ s32 normalize_vector(void *);
 void *spawn_particle_effect(const void *pos, s32 id);
 TParticleCtrl *create_particle_emitter(const void *pos, s32 id);
 f32 atan2_float(f32 y, f32 x);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
 
 void TBoss4Type2__sub_80057128(void *arg0);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
@@ -299,7 +299,7 @@ TUnk_80486924::TUnk_80486924(TObject *parent, s32 *params) : TObjEnemy(parent) {
     VecCopy((Vec *)&m_2fc, &position);
     x_speed = y_speed = m_310 = 0.0f;
     target = 0;
-    bind_enemy_combat_stats((u8 *)TLobby::register_boss(0x37), (u8 *)TLobby::dispatch_shared_handler_b(0x37), (u8 *)TLobby::register_object(0x37));
+    bind_enemy_combat_stats((u8 *)get_battle_base_stats(0x37), (u8 *)get_battle_attack_params(0x37), (u8 *)get_battle_resistance_params(0x37));
     referenceHp = hp;
     ((TBoss3Volopt *)this)->reset_photon_effect();
     set_param(0x2F);
@@ -319,18 +319,18 @@ TUnk_80486924::TUnk_80486924(TObject *parent, s32 *params) : TObjEnemy(parent) {
     unk_3a0 = 0;
     unk_3e0 = 0;
     unk_3c4 = 0xFFFF;
-    unk_41c = floor_to_float(*(f32 *)TLobby::dispatch_shared_handler_a(0x37));
+    unk_41c = floor_to_float(*(f32 *)get_battle_movement_params(0x37));
     if (unk_41c < 1 || unk_41c > 25) {
         unk_41c = 4;
     }
     unk_41c *= 75;
     unk_420 = unk_41c - 7;
-    v = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x37)) + 0x18);
+    v = *(s32 *)((s8 *)(get_battle_movement_params(0x37)) + 0x18);
     if (v < 1 || v > 4) {
         v = 1;
     }
     unk_424 = v + 8;
-    unk_428 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x37)) + 0x1C);
+    unk_428 = *(s32 *)((s8 *)(get_battle_movement_params(0x37)) + 0x1C);
     if (unk_428 < 0 || unk_428 > 14) {
         unk_428 = 0;
     }
@@ -760,7 +760,7 @@ void TBoss4Type2::apply_resta_heal() {
 
     temp_r4 = *(void **)((s8 *)this + 0x2B0);
     temp_r31 = *(s16 *)((s8 *)temp_r4 + 2);
-    drain_player_hp(*(u16 *)((s8 *)this + 0x3C4), (temp_r31 / 5) + (s32) TTecResta::calc_heal_amount(*(s32 *)((s8 *)(((void * (*)(s32, void *))dispatch_shared_handler_a__6TLobbyFl)(0x37, temp_r4)) + 0x1C)));
+    drain_player_hp(*(u16 *)((s8 *)this + 0x3C4), (temp_r31 / 5) + (s32) TTecResta::calc_heal_amount(get_battle_movement_params(0x37)->m_1c));
 }
 
 void TBoss4Type2::spawn_bishi_around_players() {
@@ -1004,9 +1004,9 @@ void TBoss4Type2::beam_update() {
         p.x += 20.0f * *(f32 *)((s8 *)arg0 + 0x404);
         p.z += 20.0f * *(f32 *)((s8 *)arg0 + 0x40C);
         if (idx == 0) {
-            create__11TTecRaBartaFPvPvPvPv((void *)arg0, (void *)&p, (void *)&p, (void *)(*(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x36)) + 0x1C)));
+            create__11TTecRaBartaFPvPvPvPv((void *)arg0, (void *)&p, (void *)&p, (void *)(*(s32 *)((s8 *)(get_battle_movement_params(0x36)) + 0x1C)));
         } else {
-            ((TTecRaFoie *)arg0)->create(&p, &p, (void *)(*(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x36)) + 0x18)));
+            ((TTecRaFoie *)arg0)->create(&p, &p, (void *)(*(s32 *)((s8 *)(get_battle_movement_params(0x36)) + 0x18)));
         }
         add_radar_scaled_marker(&p, -0x5DB4, 1, 1, 2.5f);
         *(f32 *)((s8 *)arg0 + 0x404) *= -1.0f;

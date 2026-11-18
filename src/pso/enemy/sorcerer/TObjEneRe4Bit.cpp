@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/sorcerer/TObjEneRe4Bit.h"
@@ -75,10 +76,10 @@ void TObjEneRe4Bit__sub_800EDAB4(void) {
     TObjEneRe4Bit__model = (s32)sorcerer_bml_resource->models[1].model;
     re4_bit_texture_list = (s32)sorcerer_bml_resource->models[0].m_c;
     for (i = 0; i < 2; i++) {
-        TObjEneRe4Bit_boss_handles[i] = (u8 *)TLobby::register_boss(lbl_8043D2B0[i]);
-        lbl_80501058[i] = (u8 *)TLobby::dispatch_shared_handler_b(lbl_8043D2B8[i]);
-        lbl_80501060[i] = (u8 *)TLobby::register_object(lbl_8043D2C0[i]);
-        lbl_80501068[i] = TLobby::dispatch_shared_handler_a(lbl_8043D2C8[i]);
+        TObjEneRe4Bit_boss_handles[i] = (u8 *)get_battle_base_stats(lbl_8043D2B0[i]);
+        lbl_80501058[i] = (u8 *)get_battle_attack_params(lbl_8043D2B8[i]);
+        lbl_80501060[i] = (u8 *)get_battle_resistance_params(lbl_8043D2C0[i]);
+        lbl_80501068[i] = get_battle_movement_params(lbl_8043D2C8[i]);
     }
 }
 

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/render/CurrentTextureList.h"
@@ -123,9 +124,6 @@ void scale_matrix(s32, s32, f32, f32, f32);
 
 struct Params_800F0464 { s32 a; void *actions; s32 c, d; };
 
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
 s32 TObjPlayer__sub_800A04F0(void *);
 void *__dt__13TUnk_80490470Fv(void *arg0, s16 arg1);
@@ -1696,10 +1694,10 @@ void TObjEneRe4Sorcerer::load_resources() {
     } else {
         sorcerer_bml_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&bm_ene_re4_sorcerer_resource_descriptor);
     }
-    lbl_805D52D0 = register_boss__6TLobbyFl(0xA);
-    TObjEneRe4Sorcerer__attack_params = dispatch_shared_handler_b__6TLobbyFl(0xA);
-    TObjEneRe4Sorcerer__resistance_params = register_object__6TLobbyFl(0xA);
-    sorcerer_behavior_params = (s32 *)TLobby::dispatch_shared_handler_a(0xA);
+    lbl_805D52D0 = (s32)get_battle_base_stats(0xA);
+    TObjEneRe4Sorcerer__attack_params = (s32)get_battle_attack_params(0xA);
+    TObjEneRe4Sorcerer__resistance_params = (s32)get_battle_resistance_params(0xA);
+    sorcerer_behavior_params = (s32 *)get_battle_movement_params(0xA);
     TObjEneRe4Sorcerer__render_node_index = 0;
     TObjEneRe4Sorcerer__saved_render_flags = 0;
     TObjEneRe4Sorcerer__effect_render_scale = 0.0f;

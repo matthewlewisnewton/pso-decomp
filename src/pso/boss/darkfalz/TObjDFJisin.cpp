@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -911,8 +912,8 @@ TObjDFHorming::TObjDFHorming(TObject *parent, const Vec *position, u16 target_id
     velocity.z = 1.2f * cos_table_lookup(ang) / scale;
     velocity.y = -6.0f / scale;
     speed = 6.0f;
-    m_360 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x38)) + 0x28);
-    homing_rate = *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x38)) + 0);
+    m_360 = *(s32 *)((s8 *)(get_battle_movement_params(0x38)) + 0x28);
+    homing_rate = *(f32 *)((s8 *)(get_battle_movement_params(0x38)) + 0);
     if (homing_rate < lbl_805D8A30 || homing_rate > lbl_805D8A34) {
         homing_rate = 0.5f;
     }

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -1081,10 +1082,6 @@ struct Path_80099BD4
   s32 pad;
   s32 n;
 };
-u8 *dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1);
 s32 load_enemy_bml_resource(u8 *arg0);
 #pragma push
@@ -1117,10 +1114,10 @@ void TObjEneDf2Bringer::load_resources() {
   {
     TObjEneDf2Bringer__resource_bundle = load_enemy_bml_resource((u8 *)&bm_ene_df2_bringer_resource_descriptor);
   }
-  bringer_boss_stats_handle = register_boss__6TLobbyFl(0xD);
-  bringer_boss_stats_ptr_b = dispatch_shared_handler_b__6TLobbyFl(0xD);
-  bringer_object_handle = register_object__6TLobbyFl(0xD);
-  TObjEneDf2Bringer__data_805D4FB4 = dispatch_shared_handler_a__6TLobbyFl(0xD);
+  bringer_boss_stats_handle = (s32)get_battle_base_stats(0xD);
+  bringer_boss_stats_ptr_b = (s32)get_battle_attack_params(0xD);
+  bringer_object_handle = (s32)get_battle_resistance_params(0xD);
+  TObjEneDf2Bringer__data_805D4FB4 = (u8 *)get_battle_movement_params(0xD);
   TObjEneDf2Bringer__render_node_index = 0;
   TObjEneDf2Bringer__render_rotation_x = 0;
   TObjEneDf2Bringer__render_point_cursor = 0;

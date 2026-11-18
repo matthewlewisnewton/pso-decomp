@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -1033,16 +1034,16 @@ void TObjEneMorfos__sub_803350AC(void) {
     morfos_body_texture_tick = 0;
     morfos_projectile_texture_tick = 0;
     for (i = 0; i < 1; i++) {
-        morfos_base_stats[i] = (s32)TLobby::register_boss(morfos_boss_ids[i]);
+        morfos_base_stats[i] = (s32)get_battle_base_stats(morfos_boss_ids[i]);
     }
     for (i = 0; i < 2; i++) {
-        morfos_attack_stats[i] = (s32)TLobby::dispatch_shared_handler_b(morfos_attack_stat_ids[i]);
+        morfos_attack_stats[i] = (s32)get_battle_attack_params(morfos_attack_stat_ids[i]);
     }
     for (i = 0; i < 1; i++) {
-        morfos_resistance_stats[i] = (s32)TLobby::register_object(morfos_object_ids[i]);
+        morfos_resistance_stats[i] = (s32)get_battle_resistance_params(morfos_object_ids[i]);
     }
     for (i = 0; i < 1; i++) {
-        (&TObjEneMorfos__param_table)[i] = (int)TLobby::dispatch_shared_handler_a(morfos_handler_a_ids[i]);
+        (&TObjEneMorfos__param_table)[i] = (int)get_battle_movement_params(morfos_handler_a_ids[i]);
     }
     TObjEneMorfosArm::init_global();
     {

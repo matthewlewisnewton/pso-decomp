@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TLobby.h"
@@ -655,7 +656,7 @@ void init__10TBoss2MineFPvi(u8 *boss2_mine, s32 arg1) {
     temp_r6 = *(u8 **)((s8 *)lbl_805D4BA4 + 0x42C);
     ((TBoss2Mine *)boss2_mine)->texlist = *(s32 *)((s8 *)temp_r6 + 0x2C);
     init_model__9TObjEneDDFP13CollisionBodyl(boss2_mine, (u8 *)lbl_80482CD8, 1, (int)temp_r6);
-    ((TObjEneDD *)boss2_mine)->reset_hp((u8 *)(TLobby::register_boss(((s32 *)boss2_mine_params)[arg1])), (u8 *)(TLobby::dispatch_shared_handler_b(((s32 *)lbl_80482C90)[arg1])), (u8 *)(TLobby::register_object(((s32 *)lbl_80482C98)[arg1])));
+    ((TObjEneDD *)boss2_mine)->reset_hp((u8 *)(get_battle_base_stats(((s32 *)boss2_mine_params)[arg1])), (u8 *)(get_battle_attack_params(((s32 *)lbl_80482C90)[arg1])), (u8 *)(get_battle_resistance_params(((s32 *)lbl_80482C98)[arg1])));
     ((TObjEneDD *)boss2_mine)->check_state_flag_2();
     *(Rec_80038BA0 **)((s8 *)boss2_mine + 0x350) = &((Rec_80038BA0 *)lbl_80482CA0)[arg1];
     *(f32 *)((s8 *)boss2_mine + 0x37C) = (3.0f);

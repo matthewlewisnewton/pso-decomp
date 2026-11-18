@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/boss/darkfalz/TBoss4Zako.h"
 #include "pso/object/base/TObjMotion.h"
@@ -277,7 +278,6 @@ static const f32 one_third = 0.33333334f;
 
 struct O_8005D6B0 { u8 pad[0x374]; s32 f374; };
 
-f32 *dispatch_shared_handler_a__6TLobbyFl(s32);
 s32 get_instance_count__9TBoss4UroFv();
 
 s32 init_collision_body_parts(void *, void *, int);
@@ -362,7 +362,7 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     *(f32 *)((s8 *)THIS + 0x30C) = 0.0f;
     *(f32 *)((s8 *)THIS + 0x308) = 0.0f;
     *(s32 *)((s8 *)THIS + 0x2A8) = 0;
-    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x35)), (u8 *)(TLobby::dispatch_shared_handler_b(0x35)), (u8 *)(TLobby::register_object(0x35)));
+    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x35)), (u8 *)(get_battle_attack_params(0x35)), (u8 *)(get_battle_resistance_params(0x35)));
     *(s16 *)((s8 *)THIS + 0x33E) = *(s16 *)((s8 *)THIS + 0x32C);
     ((TBoss3Volopt *)THIS)->reset_photon_effect();
     ((TObjEnemy *)THIS)->set_param(0);
@@ -383,11 +383,11 @@ s32 TBoss4Zako__ct(s32 arg0, s32 parent, s32 arg2) {
     *(f32 *)((s8 *)THIS + 0x3B0) = 0.0f;
     *(s32 *)((s8 *)THIS + 0x3BC) = 65536.0f * ((TObjChara *)THIS)->random_ratio();
     *(s32 *)((s8 *)THIS + 0x3C0) = 2184.0f * ((TObjChara *)THIS)->random_ratio() + 1092.0f;
-    *(f32 *)((s8 *)THIS + 0x39C) = *dispatch_shared_handler_a__6TLobbyFl(0x35);
+    *(f32 *)((s8 *)THIS + 0x39C) = *(f32 *)get_battle_movement_params(0x35);
     if (*(f32 *)((s8 *)THIS + 0x39C) <= one_third || *(f32 *)((s8 *)THIS + 0x39C) > 5.833333f) {
         *(f32 *)((s8 *)THIS + 0x39C) = 0.5833333f;
     }
-    *(f32 *)((s8 *)THIS + 0x3A0) = *dispatch_shared_handler_a__6TLobbyFl(0x39);
+    *(f32 *)((s8 *)THIS + 0x3A0) = *(f32 *)get_battle_movement_params(0x39);
     if (*(f32 *)((s8 *)THIS + 0x3A0) <= one_third || *(f32 *)((s8 *)THIS + 0x3A0) > 10.208332f) {
         *(f32 *)((s8 *)THIS + 0x3A0) = 1.0208333f;
     }

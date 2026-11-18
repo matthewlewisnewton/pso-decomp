@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
@@ -283,16 +284,16 @@ void TObjEneRe7Berura::load_static_resources() {
     vecs[2].x = 10.0f;
     sampled->sample((NJS_OBJECT *)TObjEneRe7Berura__shared_resource->models->model, (NJS_MOTION *)TObjEneRe7Berura__shared_resource->motions[TObjEneRe7Berura__animation_definitions[2].motion].motion, pair, vecs);
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__stat_handle_table[i] = (u8 *)TLobby::register_boss(lbl_805D9718[i]);
+        TObjEneRe7Berura__stat_handle_table[i] = (u8 *)get_battle_base_stats(lbl_805D9718[i]);
     }
     for (s32 j = 0; j < 2; j++) {
-        TObjEneRe7Berura__data_805007D4[j] = (u8 *)TLobby::dispatch_shared_handler_b(lbl_80439DA0[j]);
+        TObjEneRe7Berura__data_805007D4[j] = (u8 *)get_battle_attack_params(lbl_80439DA0[j]);
     }
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__shared_object_handles[i] = (u8 *)TLobby::register_object(lbl_805D971C[i]);
+        TObjEneRe7Berura__shared_object_handles[i] = (u8 *)get_battle_resistance_params(lbl_805D971C[i]);
     }
     for (i = 0; i < 1; i++) {
-        TObjEneRe7Berura__handler_table_a[i] = TLobby::dispatch_shared_handler_a(lbl_805D9720[i]);
+        TObjEneRe7Berura__handler_table_a[i] = get_battle_movement_params(lbl_805D9720[i]);
     }
     {
         DelDepthAnimationBinding atk = ene_re7_berura_attack_def;

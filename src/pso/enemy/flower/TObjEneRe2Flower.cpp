@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
@@ -381,10 +382,10 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     } else {
         variant = 0;
     }
-    reset_hp((u8 *)TLobby::register_boss(lbl_8043BA7C[variant]),
-             (u8 *)TLobby::dispatch_shared_handler_b(lbl_8043BA88[variant]),
-             (u8 *)TLobby::register_object(lbl_8043BA94[variant]));
-    re2_flower_movement_params = TLobby::dispatch_shared_handler_a(lbl_8043BAA0[variant]);
+    reset_hp((u8 *)get_battle_base_stats(lbl_8043BA7C[variant]),
+             (u8 *)get_battle_attack_params(lbl_8043BA88[variant]),
+             (u8 *)get_battle_resistance_params(lbl_8043BA94[variant]));
+    re2_flower_movement_params = get_battle_movement_params(lbl_8043BAA0[variant]);
     if (get_flag_11()) {
         set_state_8();
     } else {

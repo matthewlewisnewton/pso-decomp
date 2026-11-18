@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 
 #include <stddef.h>
 #include "pso/render/CurrentTextureList.h"
@@ -164,9 +165,6 @@ extern const f32 lbl_805DA0D0;
 void TObjEneEpsilon__sub_800B92AC(u8 *arg0, s32 arg1, f32 farg0);
 extern void *tl_04;
 s32 is_split_screen();
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
 TUnk_8048FA00 *init_from_model__11TBreakUpMdlFl(TUnk_8048FA00 *, s32);
 s32 load_enemy_bml_resource(u8 *arg0);
 s32 TObjPlayer__sub_800F0928(s32);
@@ -192,10 +190,10 @@ void TObjEneMe1Gee::load_resources() {
     TObjEneMe1Gee::cache_result_805D6660();
     gee_cached_model_node = (u8 *)find_model_node((s32)TObjEneMe1Gee__resource_bundle->models->model, 7);
     for (i = 0; i < 3; i++) {
-        gee_boss_stat_handle_table[i] = register_boss__6TLobbyFl(lbl_8043BCD8[i]);
-        gee_shared_handler_b_table[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043BCE4[i]);
-        gee_object_handle_table[i] = register_object__6TLobbyFl(lbl_8043BCF0[i]);
-        gee_shared_handler_a_table[i] = (TObjEneMe1GeeParams *)TLobby::dispatch_shared_handler_a(lbl_8043BCFC[i]);
+        gee_boss_stat_handle_table[i] = (s32)get_battle_base_stats(lbl_8043BCD8[i]);
+        gee_shared_handler_b_table[i] = (s32)get_battle_attack_params(lbl_8043BCE4[i]);
+        gee_object_handle_table[i] = (s32)get_battle_resistance_params(lbl_8043BCF0[i]);
+        gee_shared_handler_a_table[i] = (TObjEneMe1GeeParams *)get_battle_movement_params(lbl_8043BCFC[i]);
     }
     TObjEneMe1Gee__render_node_index = 0;
     p = (TUnk_8048FA00 *)::operator new(0x10);

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/EnemyTargetCandidate.h"
 #include "pso/render/CurrentTextureList.h"
@@ -349,13 +350,9 @@ struct Area_800D3C04 { u8 pad0[0x42C]; Res_800D3C04 *res; BmlMotionEntry *motion
 s32 is_split_screen();
 
 
-s32 dispatch_shared_handler_a__6TLobbyFl(int);
 
-s32 register_object__6TLobbyFl(int);
 
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
 
-s32 register_boss__6TLobbyFl(int);
 
 s32 get_bml_motion(u32, int);
 
@@ -587,10 +584,10 @@ void TLobby::load_gyaranzo_resources() {
         p = TBreakUpMdl::init(p, AREA->res->r38, get_bml_motion(gyaranzo_bml_resource, 3), 54.0f);
     }
     (*(struct VObj_800D3BA0_800D3B38 * *)&gyaranzo_breakup_model_obj) = (VObj_800D3BA0_800D3B38 *)p;
-    gyaranzo_boss_stats_handle = register_boss__6TLobbyFl(0x1D);
-    gyaranzo_boss_stats_ptr_b = dispatch_shared_handler_b__6TLobbyFl(0x1D);
-    gyaranzo_object_handle = register_object__6TLobbyFl(0x1D);
-    gyaranzo_missile_param_table = dispatch_shared_handler_a__6TLobbyFl(0x1D);
+    gyaranzo_boss_stats_handle = (s32)get_battle_base_stats(0x1D);
+    gyaranzo_boss_stats_ptr_b = (s32)get_battle_attack_params(0x1D);
+    gyaranzo_object_handle = (s32)get_battle_resistance_params(0x1D);
+    gyaranzo_missile_param_table = (s32)get_battle_movement_params(0x1D);
     {
         GyaranzoAnimationBinding pos = {NULL, gyaranzo_action_table, 1, 8, 0};
         pos.motions = AREA->motions;

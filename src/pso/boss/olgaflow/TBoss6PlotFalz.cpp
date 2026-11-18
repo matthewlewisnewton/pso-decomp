@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "pso/system/NinjaTypes.h"
@@ -1189,9 +1190,6 @@ extern s32 TBoss6PlotFalz__instance;
 u8 *get_enemy_entity(u16 arg0);
 void fn_802ACD40();
 void handle_6xA3_olga_flow_boss_actions(Msg_802AC7E4 *m);
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 void TItemEffOrgaFlowShot__sub_80357204(void);
 
 void TBoss6PlotFalz::render() {  }
@@ -1298,9 +1296,9 @@ TBoss6PlotFalz::TBoss6PlotFalz(TObject *parent, void *set_data) : TObjEnemy(pare
     *(f32 *)((s8 *)this + 0x30C) = 0.0f;
     *(f32 *)((s8 *)this + 0x308) = 0.0f;
     *(s32 *)((s8 *)this + 0x2A8) = 0;
-    temp_r30 = register_boss__6TLobbyFl(0x2C);
-    temp_r29 = dispatch_shared_handler_b__6TLobbyFl(0x2C);
-    temp_r6 = register_object__6TLobbyFl(0x2C);
+    temp_r30 = (s32)get_battle_base_stats(0x2C);
+    temp_r29 = (s32)get_battle_attack_params(0x2C);
+    temp_r6 = (s32)get_battle_resistance_params(0x2C);
     bind_enemy_combat_stats((u8 *)temp_r30, (u8 *)temp_r29, (u8 *)temp_r6);
     register_entity_by_id((u8 *)this);
     actorFlags = (s32) (actorFlags | 0x02000000);

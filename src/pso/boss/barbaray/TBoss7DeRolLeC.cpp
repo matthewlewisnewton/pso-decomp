@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/animation/MotionContext.h"
@@ -1261,11 +1262,8 @@ struct PktA_802ED62C { u8 hdr[2]; u16 a; s16 b; s16 c; s32 d; };
 struct PktB_802ED62C { u8 hdr[2]; u16 a; s16 b; s16 c; };
 
 extern "C" {
-s32 register_object__6TLobbyFl(s32);
 
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
 
-s32 register_boss__6TLobbyFl(s32);
 
 s32 reload_stats_keep_hp_tp__9TObjEneDDFv(void *, s32, s32, s32);
 
@@ -1394,8 +1392,8 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     if (boss7_joint_state == 0) {
         boss7_joint_state = (u32)this;
     }
-    reset_hp((u8 *)TLobby::register_boss(15), (u8 *)TLobby::dispatch_shared_handler_b(15), (u8 *)TLobby::register_object(15));
-    unk_620 = (TBoss7DeRolLeCParams *)TLobby::dispatch_shared_handler_a(15);
+    reset_hp((u8 *)get_battle_base_stats(15), (u8 *)get_battle_attack_params(15), (u8 *)get_battle_resistance_params(15));
+    unk_620 = (TBoss7DeRolLeCParams *)get_battle_movement_params(15);
     invoke_initialization_hook(set_data);
     unk_628 = 0;
     if (exchange_object_state((s32)state, 1) && (state[0] & 0x12008) == 0x12008) {
@@ -1800,7 +1798,7 @@ void TBoss7PhotonBullet__sub_802ED5A0(void *arg0, int arg1) {
         v = 0x11;
         break;
     }
-    reload_stats_keep_hp_tp__9TObjEneDDFv(arg0, register_boss__6TLobbyFl(0xF), dispatch_shared_handler_b__6TLobbyFl(v), register_object__6TLobbyFl(0xF));
+    reload_stats_keep_hp_tp__9TObjEneDDFv(arg0, (s32)get_battle_base_stats(0xF), (s32)get_battle_attack_params(v), (s32)get_battle_resistance_params(0xF));
 }
 
 void TBoss7PhotonBullet::emit_hit_effect(void *arg1) {
@@ -1810,7 +1808,7 @@ void TBoss7PhotonBullet::emit_hit_effect(void *arg1) {
 }
 
 f32 TBoss7PhotonBullet::get_target_pos_y() {
-    return *(f32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0xF)) + 4);
+    return *(f32 *)((s8 *)(get_battle_movement_params(0xF)) + 4);
 }
 #undef VecCopy__FP3VecPC3Vec
 #define set_state_and_send__14TBoss7DeRolLeCFl ((s32 (*)(void *, int))set_state_and_send__14TBoss7DeRolLeCFl)
@@ -1818,7 +1816,7 @@ f32 TBoss7PhotonBullet::get_target_pos_y() {
 #define TObjFish__sub_802E7B94 ((s32 (*)(void *))TObjFish__sub_802E7B94)
 #define VecCopy__FP3VecPC3Vec ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)
 s32 TBoss7Joint_get_shell_max_hp(void) {
-    return *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0xF)) + 0x1C);
+    return *(s32 *)((s8 *)(get_battle_movement_params(0xF)) + 0x1C);
 }
 
 void TObjFish__sub_802ED4AC(u8 *arg0, s32 arg1) {

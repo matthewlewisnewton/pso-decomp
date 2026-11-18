@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/math/FloatRounding.h"
 #include "pso/render/CurrentTextureList.h"
@@ -317,10 +318,10 @@ void TObjEneMe1Canadin::load_resources() {
         bm_ene_me1_mb_resource = (BmlResource *)load_enemy_bml_resource((u8 *)&bm_ene_me1_mb_resource_descriptor);
     }
     for (i = 0; i < 3; i++) {
-        canadin_base_stats[i] = (s32)TLobby::register_boss(canadin_base_stat_indices[i]);
-        canadin_attack_params[i] = (s32)TLobby::dispatch_shared_handler_b(canadin_attack_param_indices[i]);
-        canadin_resistance_params[i] = (s32)TLobby::register_object(canadin_resistance_param_indices[i]);
-        canadin_movement_params[i] = (TObjEneMe1CanadinParams *)TLobby::dispatch_shared_handler_a(canadin_movement_param_indices[i]);
+        canadin_base_stats[i] = (s32)get_battle_base_stats(canadin_base_stat_indices[i]);
+        canadin_attack_params[i] = (s32)get_battle_attack_params(canadin_attack_param_indices[i]);
+        canadin_resistance_params[i] = (s32)get_battle_resistance_params(canadin_resistance_param_indices[i]);
+        canadin_movement_params[i] = (TObjEneMe1CanadinParams *)get_battle_movement_params(canadin_movement_param_indices[i]);
     }
     TObjEneMe1Canadin__render_node_index = 0;
     p = ::operator new(0x10);

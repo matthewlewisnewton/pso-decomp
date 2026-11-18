@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -253,7 +254,7 @@ struct PanarmsSetEntry {
     u8 unk_8[0x38];
 };
 
-/* What TLobby::dispatch_shared_handler_a(49) returns for Pan Arms. */
+/* What get_battle_movement_params(49) returns for Pan Arms. */
 struct PanarmsParams {
     f32 unk_0;
     u8 unk_4[0x14];
@@ -302,8 +303,8 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *setData) : TObjEnemy(paren
     x_speed = y_speed = m_310 = 0.0f;
     move_velocity.x = move_velocity.y = move_velocity.z = 0.0f;
     target = NULL;
-    bind_enemy_combat_stats((u8 *)TLobby::register_boss(49), (u8 *)TLobby::dispatch_shared_handler_b(49),
-                            (u8 *)TLobby::register_object(49));
+    bind_enemy_combat_stats((u8 *)get_battle_base_stats(49), (u8 *)get_battle_attack_params(49),
+                            (u8 *)get_battle_resistance_params(49));
     referenceHp = hp;
     register_entity_by_id(this);
     set_param(21);
@@ -317,12 +318,12 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *setData) : TObjEnemy(paren
     max_hp = hp;
     has_split = 0;
     move_count = 0;
-    pad_470 = ((PanarmsParams *)TLobby::dispatch_shared_handler_a(49))->unk_0;
-    search_range = ((PanarmsParams *)TLobby::dispatch_shared_handler_a(49))->search_range;
+    pad_470 = ((PanarmsParams *)get_battle_movement_params(49))->unk_0;
+    search_range = ((PanarmsParams *)get_battle_movement_params(49))->search_range;
     if (search_range < 5) {
         search_range = 5;
     }
-    wait_frames = ((PanarmsParams *)TLobby::dispatch_shared_handler_a(49))->wait_frames;
+    wait_frames = ((PanarmsParams *)get_battle_movement_params(49))->wait_frames;
     if (wait_frames < 0) {
         wait_frames = 0;
     }

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "pso/render/CurrentTextureList.h"
@@ -71,10 +72,6 @@ void TObjEneDD__sub_800BA378(s32 arg0, u8 *arg1);
 s32 TObjEneBm5GibonU__sub_800D0968(TObjEneBm5GibonU *self, int);
 s32 approach_angle_limited(s32, s32, s32);
 s32 play_sound_effect(void *, void *, s32, s32);
-s32 dispatch_shared_handler_a__6TLobbyFl(s32);
-s32 register_object__6TLobbyFl(s32);
-s32 dispatch_shared_handler_b__6TLobbyFl(s32);
-s32 register_boss__6TLobbyFl(s32);
 BmlResource *load_enemy_bml_resource(BmlResourceDescriptor *);
 extern const s32 lbl_8043BF30[];
 extern const s32 lbl_8043BF38[];
@@ -2824,10 +2821,10 @@ void TObjEneBm5GibonU::load_resources() {
     v[1] = 0.0f;
     v[2] = 0.0f;
     for (i = 0; i < 2; i++) {
-        TObjEneBm5GibonU__data_80500E78[i] = register_boss__6TLobbyFl(lbl_8043BF30[i]);
-        lbl_80500E80[i] = dispatch_shared_handler_b__6TLobbyFl(lbl_8043BF38[i]);
-        lbl_80500E88[i] = register_object__6TLobbyFl(lbl_8043BF40[i]);
-        lbl_80500E90[i] = dispatch_shared_handler_a__6TLobbyFl(lbl_8043BF48[i]);
+        TObjEneBm5GibonU__data_80500E78[i] = (s32)get_battle_base_stats(lbl_8043BF30[i]);
+        lbl_80500E80[i] = (s32)get_battle_attack_params(lbl_8043BF38[i]);
+        lbl_80500E88[i] = (s32)get_battle_resistance_params(lbl_8043BF40[i]);
+        lbl_80500E90[i] = (s32)get_battle_movement_params(lbl_8043BF48[i]);
     }
     GibonUAnimationBinding sp = TObjEneBm5GibonU__spawn_params;
     m = TObjEneBm5GibonU__model_archive;

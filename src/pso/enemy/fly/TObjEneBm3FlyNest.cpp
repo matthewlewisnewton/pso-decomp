@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/render/CurrentTextureList.h"
@@ -260,10 +261,10 @@ void TObjEneBm3FlyNest::load_resources() {
     } else {
         nest_resources = (BmlResource *)load_enemy_bml_resource((u8 *)&bm3_fly_nest_resource_desc);
     }
-    bm3_flynest_base_stats = (u8 *)TLobby::register_boss(1);
-    bm3_flynest_attack_params = (u8 *)TLobby::dispatch_shared_handler_b(1);
-    bm3_flynest_resistance_params = (u8 *)TLobby::register_object(1);
-    bm3_flynest_movement_params = TLobby::dispatch_shared_handler_a(1);
+    bm3_flynest_base_stats = (u8 *)get_battle_base_stats(1);
+    bm3_flynest_attack_params = (u8 *)get_battle_attack_params(1);
+    bm3_flynest_resistance_params = (u8 *)get_battle_resistance_params(1);
+    bm3_flynest_movement_params = get_battle_movement_params(1);
     TObjEneBm3Fly::load_resources();
     TObjEneBm3FlyNest::init_vertex_table();
     {

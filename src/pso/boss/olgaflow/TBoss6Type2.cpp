@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
@@ -615,7 +616,7 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     y_speed = 0.0f;
     x_speed = 0.0f;
     target = 0;
-    bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x2C)), (u8 *)(TLobby::dispatch_shared_handler_b(0x2C)), (u8 *)(TLobby::register_object(0x2C)));
+    bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2C)), (u8 *)(get_battle_attack_params(0x2C)), (u8 *)(get_battle_resistance_params(0x2C)));
     referenceHp = m_4f8 = hp;
     ((TBoss3Volopt *)this)->reset_photon_effect();
     set_param(0x4E);
@@ -1334,7 +1335,7 @@ void TBoss6Type2::load_battle_params() {
     u8 *temp_r3;
     u8 *temp_r3_3;
     u8 *temp_r3_4;
-    temp_r3 = (u8 *)(TLobby::dispatch_shared_handler_a(0x2C));
+    temp_r3 = (u8 *)(get_battle_movement_params(0x2C));
     ((RecoveredFields_802BC754_arg0 *)arg0)->field_4B4 = (s32) ((RecoveredFields_802BC754_temp_r3 *)temp_r3)->field_4;
     if ((f32) ((RecoveredFields_802BC754_arg0 *)arg0)->field_4B4 <= 0.0f) {
         ((RecoveredFields_802BC754_arg0 *)arg0)->field_4B4 = TBoss6Type2__default_battle_parameters.int_params[0];
@@ -1370,7 +1371,7 @@ void TBoss6Type2::load_battle_params() {
         ((RecoveredFields_802BC754_arg0 *)arg0)->field_4CC = TBoss6Type2__default_battle_parameters.int_params[6];
         ((RecoveredFields_802BC754_arg0 *)arg0)->field_4D0 = TBoss6Type2__default_battle_parameters.int_params[7];
     }
-    temp_r3_3 = (u8 *)(TLobby::dispatch_shared_handler_a(0x2F));
+    temp_r3_3 = (u8 *)(get_battle_movement_params(0x2F));
     ((RecoveredFields_802BC754_arg0 *)arg0)->field_4D8 = (f32) ((RecoveredFields_802BC754_temp_r3_3 *)temp_r3_3)->field_0;
     if (((RecoveredFields_802BC754_arg0 *)arg0)->field_4D8 <= 0.0f) {
         ((RecoveredFields_802BC754_arg0 *)arg0)->field_4D8 = TBoss6Type2__default_battle_parameters.float_params[0];
@@ -1387,7 +1388,7 @@ void TBoss6Type2::load_battle_params() {
     if ((f32) ((RecoveredFields_802BC754_arg0 *)arg0)->field_4EC <= 0.0f) {
         ((RecoveredFields_802BC754_arg0 *)arg0)->field_4EC = TBoss6Type2__default_battle_parameters.last_param;
     }
-    temp_r3_4 = (u8 *)(TLobby::dispatch_shared_handler_a(0x2E));
+    temp_r3_4 = (u8 *)(get_battle_movement_params(0x2E));
     ((RecoveredFields_802BC754_arg0 *)arg0)->field_4E0 = (f32) ((RecoveredFields_802BC754_temp_r3_4 *)temp_r3_4)->field_8;
     if (((RecoveredFields_802BC754_arg0 *)arg0)->field_4E0 <= 0.0f) {
         ((RecoveredFields_802BC754_arg0 *)arg0)->field_4E0 = TBoss6Type2__default_battle_parameters.float_params[2];

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -98,10 +99,10 @@ void TObjEneBm3Fly::load_resources() {
         model = (TUnk_8048FA00 *)((TBreakUpMdl *)model)->init_from_model((s32)bm3_fly_nest_resources->models[0].model);
     }
     TObjEneBm3Fly__breakup_model = model;
-    bm3_fly_boss_stat_handle = (u8 *)TLobby::register_boss(0);
-    TObjEneBm3Fly__attack_params = (AttackParams *)TLobby::dispatch_shared_handler_b(0);
-    lbl_805D50E8 = (u8 *)TLobby::register_object(0);
-    lbl_805D50EC = (Bm3FlyParameters *)TLobby::dispatch_shared_handler_a(0);
+    bm3_fly_boss_stat_handle = (u8 *)get_battle_base_stats(0);
+    TObjEneBm3Fly__attack_params = (AttackParams *)get_battle_attack_params(0);
+    lbl_805D50E8 = (u8 *)get_battle_resistance_params(0);
+    lbl_805D50EC = (Bm3FlyParameters *)get_battle_movement_params(0);
     {
         Bm3FlyAnimationBinding binding = bm3_fly_resource_binding_desc;
         binding.motions = bm3_fly_nest_resources->motions;

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/system/ArrayAllocation.h"
@@ -490,18 +491,18 @@ void TObjEneMoja::load_resources() {
     lbl_805D50CC = (void **)::operator new[](0x18);
     lbl_805D50D0 = (void **)::operator new[](8);
     lbl_805D50D4 = (void **)::operator new[](8);
-    lbl_805D50C8[0] = TLobby::register_boss(0x49);
-    lbl_805D50C8[1] = TLobby::register_boss(0x4A);
-    lbl_805D50CC[0] = TLobby::dispatch_shared_handler_b(0x48);
-    lbl_805D50CC[1] = TLobby::dispatch_shared_handler_b(0x49);
-    lbl_805D50CC[2] = TLobby::dispatch_shared_handler_b(0x4A);
-    lbl_805D50CC[3] = TLobby::dispatch_shared_handler_b(0x4B);
-    lbl_805D50CC[4] = TLobby::dispatch_shared_handler_b(0x4C);
-    lbl_805D50CC[5] = TLobby::dispatch_shared_handler_b(0x4D);
-    lbl_805D50D0[0] = TLobby::register_object(0x48);
-    lbl_805D50D0[1] = TLobby::register_object(0x49);
-    lbl_805D50D4[0] = TLobby::dispatch_shared_handler_a(0x48);
-    lbl_805D50D4[1] = TLobby::dispatch_shared_handler_a(0x49);
+    lbl_805D50C8[0] = get_battle_base_stats(0x49);
+    lbl_805D50C8[1] = get_battle_base_stats(0x4A);
+    lbl_805D50CC[0] = get_battle_attack_params(0x48);
+    lbl_805D50CC[1] = get_battle_attack_params(0x49);
+    lbl_805D50CC[2] = get_battle_attack_params(0x4A);
+    lbl_805D50CC[3] = get_battle_attack_params(0x4B);
+    lbl_805D50CC[4] = get_battle_attack_params(0x4C);
+    lbl_805D50CC[5] = get_battle_attack_params(0x4D);
+    lbl_805D50D0[0] = get_battle_resistance_params(0x48);
+    lbl_805D50D0[1] = get_battle_resistance_params(0x49);
+    lbl_805D50D4[0] = get_battle_movement_params(0x48);
+    lbl_805D50D4[1] = get_battle_movement_params(0x49);
     s16 ids[3] = { 0x32, 0x33, 0x34 };
     MojaAnimationBinding binding = { lbl_805D50D8->motions, moja_enemy_actions, 2, 9, 0 };
     for (s32 i = 0; i < 3; i++) {

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/enemy/balclaw/TObjEneBalClaw.h"
@@ -182,16 +183,16 @@ void TObjEneBalClaw__sub_8008D924(void) {
         e->plist = ((NJS_CNK_MODEL *)((NJS_OBJECT *)find_model_node((u32)get_bml_model(lbl_805D4F20, e->model_index), e->part_index))->model)->polygon_list;
     }
     for (n = 0; n < 2; n++) {
-        lbl_805007A8[n] = (u8 *)TLobby::register_boss(31);
-        lbl_805007B0[n] = (u8 *)TLobby::dispatch_shared_handler_b(31);
-        lbl_805007B8[n] = (u8 *)TLobby::register_object(31);
-        lbl_805007C0[n] = (u8 *)TLobby::dispatch_shared_handler_a(31);
+        lbl_805007A8[n] = (u8 *)get_battle_base_stats(31);
+        lbl_805007B0[n] = (u8 *)get_battle_attack_params(31);
+        lbl_805007B8[n] = (u8 *)get_battle_resistance_params(31);
+        lbl_805007C0[n] = (u8 *)get_battle_movement_params(31);
     }
     for (n = 0; n < 1; n++) {
-        lbl_805D4F28[n] = (u8 *)TLobby::register_boss(32);
-        lbl_805D4F2C[n] = (u8 *)TLobby::dispatch_shared_handler_b(32);
-        lbl_805D4F30[n] = (u8 *)TLobby::register_object(32);
-        lbl_805D4F34[n] = (u8 *)TLobby::dispatch_shared_handler_a(32);
+        lbl_805D4F28[n] = (u8 *)get_battle_base_stats(32);
+        lbl_805D4F2C[n] = (u8 *)get_battle_attack_params(32);
+        lbl_805D4F30[n] = (u8 *)get_battle_resistance_params(32);
+        lbl_805D4F34[n] = (u8 *)get_battle_movement_params(32);
     }
 }
 

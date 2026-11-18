@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -156,7 +157,6 @@ struct VObj_18_b27ba1 : VBase_18_b27ba1 {
     virtual s32 m21(void *, Hit_800E1608 *, s32, s32, s32);
 };
 
-struct Prm_800E1608 { u8 pad[0x1c]; s32 x1c; s32 x20; };
 
 typedef struct { f32 x, y, z; } Vec_800E18B0;
 
@@ -217,7 +217,6 @@ s32 find_nearest_hittable_enemy__10TObjPlayerFiPvf(void *, void *, f32);
 u16 find_nearest_visible_player(void *, Vec_800E0A44 *, f32);
 s32 is_split_screen();
 f64 atan2_float(f32, f32, f32);
-u8 * dispatch_shared_handler_a__6TLobbyFl(s32);
 u32 csnLookAt(void *, void *);
 s32 spawn_particle_effect(void *, int, f32);
 s32 update__15RenderFadeStateFv(int, int);
@@ -476,12 +475,12 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
     target = NULL;
     switch (m_380) {
     case 0:
-        bind_enemy_combat_stats((u8 *)TLobby::register_boss(50), (u8 *)TLobby::dispatch_shared_handler_b(50),
-                                (u8 *)TLobby::register_object(50));
+        bind_enemy_combat_stats((u8 *)get_battle_base_stats(50), (u8 *)get_battle_attack_params(50),
+                                (u8 *)get_battle_resistance_params(50));
         break;
     case 1:
-        bind_enemy_combat_stats((u8 *)TLobby::register_boss(51), (u8 *)TLobby::dispatch_shared_handler_b(51),
-                                (u8 *)TLobby::register_object(51));
+        bind_enemy_combat_stats((u8 *)get_battle_base_stats(51), (u8 *)get_battle_attack_params(51),
+                                (u8 *)get_battle_resistance_params(51));
         break;
     default:
         return;
@@ -501,17 +500,17 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
     m_3b0 = 0.0f;
     m_3c4 = 0;
     if (m_380 == 0) {
-        pad_460 = ((PanBARAParams *)TLobby::dispatch_shared_handler_a(50))->unk_0;
-        m_464 = ((PanBARAParams *)TLobby::dispatch_shared_handler_a(50))->unk_4;
+        pad_460 = ((PanBARAParams *)get_battle_movement_params(50))->unk_0;
+        m_464 = ((PanBARAParams *)get_battle_movement_params(50))->unk_4;
     } else {
-        pad_460 = ((PanBARAParams *)TLobby::dispatch_shared_handler_a(51))->unk_0;
-        pad_468 = ((PanBARAParams *)TLobby::dispatch_shared_handler_a(51))->unk_4;
+        pad_460 = ((PanBARAParams *)get_battle_movement_params(51))->unk_0;
+        pad_468 = ((PanBARAParams *)get_battle_movement_params(51))->unk_4;
         if (pad_468 < 0.0f) {
             pad_468 = 0.0f;
         } else if (pad_468 > 1.0f) {
             pad_468 = 1.0f;
         }
-        m_46c = ((PanBARAParams *)TLobby::dispatch_shared_handler_a(51))->unk_8;
+        m_46c = ((PanBARAParams *)get_battle_movement_params(51))->unk_8;
         if (m_46c < 0.0f) {
             m_46c = 0.0f;
         } else if (m_46c > 1.0f) {
@@ -939,7 +938,7 @@ void TObjEnePanBARA::attack_target_player(s32 arg1) {
         }
         sc = random_ratio();
         if (sc <= *(f32 *)((s8 *)((u8 *)this) + 0x468)) {
-            lv = ((Prm_800E1608 * (*)(s32))dispatch_shared_handler_a__6TLobbyFl)(0x33)->x1c;
+            lv = get_battle_movement_params(0x33)->m_1c;
             if (lv < 0 || lv > 0xE) {
                 lv = 0;
             }
@@ -947,7 +946,7 @@ void TObjEnePanBARA::attack_target_player(s32 arg1) {
             return;
         }
         if (sc <= *(f32 *)((s8 *)((u8 *)this) + 0x468) + this->m_46c) {
-            lv = ((Prm_800E1608 * (*)(s32))dispatch_shared_handler_a__6TLobbyFl)(0x33)->x20;
+            lv = get_battle_movement_params(0x33)->m_20;
             if (lv < 0 || lv > 0xE) {
                 lv = 0;
             }
@@ -1602,7 +1601,7 @@ void TObjEnePanBARA::sub_800DFE08() {
         ((s32 (*)(void *, s32))set_field_b8__10TObjMotionFs)((u8 *)this, 4);
     }
     if (-15.0f == (f32) this->action_timer) {
-        var_r5 = *(s32 *)((s8 *)(TLobby::dispatch_shared_handler_a(0x33)) + 0x18);
+        var_r5 = get_battle_movement_params(0x33)->m_18;
         if ((var_r5 < 0) || (var_r5 > 0xE)) {
             var_r5 = 0;
         }

@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
@@ -1446,8 +1447,6 @@ void TObjEneIllGill::free_effect() {
     illGillResource = NULL;
 }
 
-s32 register_object__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 void TObjEneIllGill::load_shared_resources() {
     void *p;
     BmlResource *resource;
@@ -1455,13 +1454,13 @@ void TObjEneIllGill::load_shared_resources() {
 
     p = new BmlResource(1, &illGillResourceDescriptor, 0, 0, NULL);
     illGillResource = (BmlResource *)p;
-    TObjEneIllGill__boss_registration_id = register_boss__6TLobbyFl(0x26);
-    ill_gill_combat_parameter_variants[0] = (AttackParams *)TLobby::dispatch_shared_handler_b(0x26);
-    ill_gill_combat_parameter_variants[1] = (AttackParams *)TLobby::dispatch_shared_handler_b(0x27);
-    ill_gill_combat_parameter_variants[2] = (AttackParams *)TLobby::dispatch_shared_handler_b(0x28);
-    ill_gill_combat_parameter_variants[3] = (AttackParams *)TLobby::dispatch_shared_handler_b(0x29);
-    lbl_805D6FD8 = register_object__6TLobbyFl(0x26);
-    illGillAttackBehavior = (IllGillAttackBehavior *)TLobby::dispatch_shared_handler_a(0x26);
+    TObjEneIllGill__boss_registration_id = (s32)get_battle_base_stats(0x26);
+    ill_gill_combat_parameter_variants[0] = (AttackParams *)get_battle_attack_params(0x26);
+    ill_gill_combat_parameter_variants[1] = (AttackParams *)get_battle_attack_params(0x27);
+    ill_gill_combat_parameter_variants[2] = (AttackParams *)get_battle_attack_params(0x28);
+    ill_gill_combat_parameter_variants[3] = (AttackParams *)get_battle_attack_params(0x29);
+    lbl_805D6FD8 = (s32)get_battle_resistance_params(0x26);
+    illGillAttackBehavior = (IllGillAttackBehavior *)get_battle_movement_params(0x26);
     illGillModelNodeIndex = 0;
     q = &illGillWeaponEffectPosition;
     q->x = q->y = q->z = 0.0f;

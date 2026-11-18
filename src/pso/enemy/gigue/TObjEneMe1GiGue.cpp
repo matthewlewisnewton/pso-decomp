@@ -1,3 +1,4 @@
+#include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/render/CurrentTextureList.h"
@@ -95,9 +96,6 @@ s32 check_path_obstructed(void *, Vec *);
 void *find_entity_by_id(u16 id);
 s32 enemy_turn_half_toward_dest(void *);
 s32 is_split_screen();
-s32 register_object__6TLobbyFl(int);
-s32 dispatch_shared_handler_b__6TLobbyFl(int);
-s32 register_boss__6TLobbyFl(int);
 s32 find_active_entity_by_id(int);
 void * __ct__11TObjControlFP7TObject(void *, void *);
 s32 minimap_render_dot(void *, int, int, int);
@@ -401,10 +399,10 @@ void TObjEneMe1GiGue::load_resources() {
         o = new BmlResource(1, &lbl_804E1200, 0, 0, NULL);
         TObjEneMe1GiGue__data_805D6838 = (BmlResource *)o;
     }
-    ene_me1_gigue_boss_id = register_boss__6TLobbyFl(0x1A);
-    lbl_805D682C = dispatch_shared_handler_b__6TLobbyFl(0x1A);
-    lbl_805D6830 = register_object__6TLobbyFl(0x1A);
-    TObjEneMe1GiGue__param_table = (GiGueParameters *)TLobby::dispatch_shared_handler_a(0x1A);
+    ene_me1_gigue_boss_id = (s32)get_battle_base_stats(0x1A);
+    lbl_805D682C = (s32)get_battle_attack_params(0x1A);
+    lbl_805D6830 = (s32)get_battle_resistance_params(0x1A);
+    TObjEneMe1GiGue__param_table = (GiGueParameters *)get_battle_movement_params(0x1A);
     o = ::operator new(0x10);
     if (o != NULL) {
         o = (void *)((TBreakUpMdl *)o)->init_from_model((s32)TObjEneMe1GiGue__data_805D6838->models->model);
