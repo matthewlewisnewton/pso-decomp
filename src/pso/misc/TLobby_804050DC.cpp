@@ -3539,13 +3539,25 @@ s32 TLobby__sub_8040B838(u8 *dst, u8 *src, s32 max)
     return ret;
 }
 
+struct DnsWireHeader {
+    u16 id;
+    u8 flags;
+    u8 response_flags;
+    u16 question_count;
+    u16 answer_count;
+    u16 authority_count;
+    u16 additional_count;
+};
+
 s16 TLobby__sub_8040B8BC(DnsQuery *self)
 {
-  volatile u32 pad[2];
+  struct DnsReplyInput {
+      DnsQuery *query;
+      DnsBuffer *buffer;
+  } input;
   s32 len;
   DnsQuery *s;
-  DnsBuffer *p;
-  u8 *hdr;
+  DnsWireHeader *hdr;
   u8 *new_var;
   u16 cnt;
   s16 n;
@@ -3553,19 +3565,20 @@ s16 TLobby__sub_8040B8BC(DnsQuery *self)
   u8 *cur;
   s32 op;
   s32 r;
-  s = self;
-  p = s->reply;
-  hdr = p->data;
-  len = p->len;
-  if ((*((u16 *) hdr)) != (u16) s->id)
+  input.query = self;
+  s = input.query;
+  input.buffer = s->reply;
+  hdr = (DnsWireHeader *)input.buffer->data;
+  len = input.buffer->len;
+  if (hdr->id != (u16) s->id)
   {
     return -1;
   }
-  if (!(hdr[2] & 0x80))
+  if (!(hdr->flags & 0x80))
   {
     return -1;
   }
-  op = hdr[3] & 0xF;
+  op = hdr->response_flags & 0xF;
   switch (op)
   {
     case 1:
@@ -3587,7 +3600,7 @@ s16 TLobby__sub_8040B8BC(DnsQuery *self)
       return -1;
 
     case 0:
-      if ((*((u16 *) (hdr + 6))) == 0)
+      if ((hdr->answer_count) == 0)
     {
       s->timer = 1;
       return -1;
@@ -3596,9 +3609,9 @@ s16 TLobby__sub_8040B8BC(DnsQuery *self)
 
   }
 
-  cur = hdr + 0xc;
-  len -= 0xc;
-  t = *((u16 *) (hdr + 4));
+  cur = (u8 *)(hdr + 1);
+  len -= sizeof(DnsWireHeader);
+  t = hdr->question_count;
   if (t != 0)
   {
     n = t;
@@ -3612,7 +3625,7 @@ s16 TLobby__sub_8040B8BC(DnsQuery *self)
     }
 
   }
-  cnt = *((u16 *) (hdr + 6));
+  cnt = hdr->answer_count;
   if (cnt != 0)
   {
     while (((s16) cnt) > 0)
@@ -4985,6 +4998,12 @@ static inline void release_ipv4_input_record(NetPacket *record, s16 reassembled)
     NetReleasePacket(record);
 }
 
+struct Ipv4AddressCopy {
+    u32 *destination;
+    u32 *source;
+    s32 bytes;
+};
+
 s32 TUdpSocket__sub_8040DE4C(u8 *ip, s16 x, s16 id) {
     s16 iface;
     s16 length;
@@ -5011,7 +5030,7 @@ s32 TUdpSocket__sub_8040DE4C(u8 *ip, s16 x, s16 id) {
     NetworkAddress src;
     NetworkAddress dst;
     Icmp4Header ic;
-    u8 padx[12];
+    Ipv4AddressCopy copy;
     if (length < 5) {
         return -1;
     }
@@ -5020,9 +5039,14 @@ s32 TUdpSocket__sub_8040DE4C(u8 *ip, s16 x, s16 id) {
     }
     u32 family = 4;
     src.family = family;
-    NetMemcpy(&src.ipv4, &header->src, 4);
+    copy.destination = &src.ipv4;
+    copy.source = &header->src;
+    copy.bytes = sizeof(u32);
+    NetMemcpy(copy.destination, copy.source, copy.bytes);
     dst.family = family;
-    NetMemcpy(&dst.ipv4, &header->dst, 4);
+    copy.destination = &dst.ipv4;
+    copy.source = &header->dst;
+    NetMemcpy(copy.destination, copy.source, copy.bytes);
     header_length = (header->version_ihl << 2) & 0x3C;
     cursor = (u8 *)&header->length;
     length_or_index = *(u16 *)cursor;
