@@ -7,7 +7,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 
 | Category | Hits | Files |
 |---|---:|---:|
-| asm | 48 | 12 |
+| asm | 49 | 13 |
 | intrinsic | 92 | 60 |
 | hardware | 69 | 13 |
 | pragma | 5893 | 892 |
@@ -35,6 +35,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
 | `src/pso/misc/TCameraCtrl_803D749C.cpp:557` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_f32_to_u8.inc"` |
 | `src/pso/misc/TCameraCtrl_803D749C.cpp:561` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_u8_to_f32.inc"` |
+| `src/pso/player/TObjPlayer_803E18C0.cpp:210` | `#include "orig_asm/pso/player/TObjPlayer_803E18C0/reorder_matrix_ps_entry.inc"` |
 | `src/pso/unk/text_803D647C.cpp:28` | `asm f32 sin_table_lookup(s32 angle) {` |
 | `src/pso/unk/text_803D647C.cpp:29` | `#include "orig_asm/pso/unk/text_803D647C/sin_table_lookup.inc"` |
 | `src/pso/unk/text_803D647C.cpp:32` | `asm f32 cos_table_lookup(s32 angle) {` |

@@ -7,6 +7,7 @@ This tool writes each of those files from decomp-toolkit's disassembly of the or
 (build/<version>/asm/<unit>.s). Instructions become raw words; only an instruction that
 needs a relocation is written out, so the compiler can emit the relocation. Labels the
 original placed at a function's start or end become entry points of that function.
+A named interior entry can also supply a straight-line suffix ending in blr.
 
 A unit that is assembly from start to finish (MetroTRK's vector table and file stubs)
 is written whole, as .../orig_asm/<unit>.s.
@@ -52,7 +53,7 @@ def parse(asm: str) -> list:
         m = FN.match(s)
         if m:
             fn = {"kind": "fn", "name": m.group(1), "start": where[0], "end": where[0] + where[1],
-                  "body": [], "error": None}
+                  "body": [], "entries": {}, "error": None}
             items.append(fn)
             continue
         if fn is None:
@@ -64,8 +65,9 @@ def parse(asm: str) -> list:
             fn = None
         elif fn["error"] or not s or s.startswith("#") or LABEL.match(s) or s.startswith(".hidden "):
             continue
-        elif SYM.match(s):
-            fn["body"].append(f"entry {SYM.match(s).group(1)}")
+        elif m := SYM.match(s):
+            fn["entries"][m.group(1)] = len(fn["body"])
+            fn["body"].append(f"entry {m.group(1)}")
         elif s.startswith("."):
             fn["error"] = f"unexpected directive {s!r}"
         else:
@@ -94,7 +96,27 @@ def bodies(asm: str, wanted: set) -> dict:
         if item["kind"] == "fn" and item["name"] in wanted:
             out[item["name"]] = item["error"] or (
                 ["nofralloc", *lead.get(item["name"], []), *item["body"], *trail.get(item["name"], [])])
+    for item in items:
+        if item["kind"] != "fn":
+            continue
+        for name in (wanted - out.keys()) & item["entries"].keys():
+            block = item["body"][item["entries"][name] + 1:]
+            out[name] = item["error"] or straight_line_suffix(block)
     return out
+
+
+def straight_line_suffix(block: list[str]) -> list[str] | str:
+    """Extract only a relocation-free suffix with no transfers before its return."""
+    if not block or block[-1] != "opword 0x4E800020":
+        return "entry suffix must end in blr"
+    for line in block[:-1]:
+        if not line.startswith("opword "):
+            return "entry suffix has a relocation or additional entry"
+        word = int(line.split()[1], 16)
+        opcode = word >> 26
+        if opcode in (2, 3, 16, 17, 18, 19) or (opcode == 31 and (word >> 1) & 0x3FF in (4, 68)):
+            return "entry suffix has a branch, trap, or system call"
+    return ["nofralloc", *block]
 
 
 def write(out: Path, text: str) -> None:

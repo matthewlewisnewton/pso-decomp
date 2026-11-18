@@ -15,6 +15,19 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Nintendo matrix reorder kernel
+
+`pso/player/TObjPlayer_803E18C0.cpp` recovers the 76-byte Nintendo
+`PSMTXReorder` kernel at the original interior entry `0x803E1E84`. The
+[SDK implementation](https://github.com/doldecomp/dolsdk2001/blob/eb1234c45e6df75757c652c835507ca89674f9a8/src/mtx/psmtx.c#L9-L28)
+has the same 18 matrix operations in the same order, with its source and
+destination arguments in the standard registers. The PSO entry expects
+them in `r5` and `r6`. The matching build generates only the kernel from
+the disc under the existing Nintendo assembly rule. The two surrounding
+PSO wrappers remain unmatched, and the unit still links from the original.
+A port can express the reorder as a scalar permutation through a temporary
+matrix to preserve in-place use. The native entry has no portable caller.
+
 ### LSC initialization
 
 `pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with

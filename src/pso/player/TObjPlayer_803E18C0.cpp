@@ -203,6 +203,14 @@ void load_list_texture(s32 idx, s32 wrapS, s32 wrapT, s32 map) {
     GXLoadTexObj(&list_texture_tex_obj, list_texture_map_table[map]);
 }
 
+#ifdef __MWERKS__
+// Interior entry to Nintendo's PSMTXReorder kernel. The original wrappers
+// provide the matrix pointers in r5 and r6, so this is an assembly-only entry.
+extern "C" asm void reorder_matrix_ps_entry(void) {
+#include "orig_asm/pso/player/TObjPlayer_803E18C0/reorder_matrix_ps_entry.inc"
+}
+#endif
+
 
 void TObjPlayer::reload_texture(s32 arg1, u32 arg2, void *arg3) {
     s32 size;

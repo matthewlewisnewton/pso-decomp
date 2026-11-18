@@ -26817,6 +26817,7 @@ load_current_pos_matrix__Fl = .text:0x803E1D1C; // type:function size:0x38
 load_current_tex_matrix__Fl = .text:0x803E1D54; // type:function size:0x3C
 load_list_texture__Fllll = .text:0x803E1D90; // type:function size:0xE4
 reorder_current_matrix_ps = .text:0x803E1E74; // type:function size:0x5C
+reorder_matrix_ps_entry = .text:0x803E1E84; // type:label scope:global
 push_reordered_matrix_ps = .text:0x803E1ED0; // type:function size:0x18
 reload_texture__10TObjPlayerFlUlPv = .text:0x803E1EE8; // type:function size:0x78
 TObjPlayer__sub_803E1F60 = .text:0x803E1F60; // type:function size:0x38
