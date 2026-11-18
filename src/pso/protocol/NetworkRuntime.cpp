@@ -1116,7 +1116,7 @@ typedef struct Obj_80403F4C {
 #undef o
 
 struct Ent_80408428;
-struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, void *, u8, void *, s16);
+struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16, s16, u8, void *, u8, void *, s16);
 
 typedef struct Sub_80408428 {
     s32 f0;
@@ -1137,7 +1137,11 @@ typedef struct Ent_80408428 {
     u8 addr12[6];
 } Ent_80408428;
 
-Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16 arg0, s32 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
+#pragma push
+#pragma inline_depth(4)
+#pragma dont_inline off
+
+Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
 typedef s32 (*SendFn_80408C24)(s16, u8 *, s16);
 
