@@ -1,3 +1,4 @@
+#include "pso/enemy/StelthData.h"
 #include "pso/enemy/TObjEneMe3Stelth.h"
 #include "pso/misc/MaterialOpacityFade.h"
 #include "pso/misc/RenderFadeState.h"
@@ -123,7 +124,6 @@ struct VObj_18 : VBase_18 {
 
 struct Vec_800F1098 { f32 x, y, z; };
 
-struct IVec_800F1098 { s32 a, b, c; };
 
 struct Spd_800F1098 { s32 a; f32 speed; s32 turn; };
 
@@ -232,7 +232,6 @@ struct Ent_800F0F84 { u8 pad0[0x18]; u32 f18; };
 
 extern "C" {
 s32 is_split_screen();
-extern const NJS_ARGB stelth_fade_color;
 extern const f32 lbl_805DA828;
 extern const f32 lbl_805DA82C;
 void TObjEneMe3Stelth__sub_800F1440(u8 *arg0, s32 arg1);
@@ -249,7 +248,6 @@ void subtract_vector(void *, void *);
 s32 push_matrix_from(void *);
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
-extern IVec_800F1098 lbl_8043D680;
 extern Tbl_800F1098 *TObjEneMe3Stelth__behavior_params_by_variant[];
 extern u8 identity_matrix[];
 extern s32 game_difficulty_selection;

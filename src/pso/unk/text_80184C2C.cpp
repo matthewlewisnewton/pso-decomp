@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/unk/text_800F5BC0.h"
 #include "pso/unk/text_80184C2C.h"
@@ -7,10 +8,146 @@
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/object/TObjLaboMapWarp.h"
 
+static __declspec(section ".rodata") const s32 lobby_event_theme_id_table[6] = {4, 3, 1, 5, 2, 6};
+
+static __declspec(section ".rodata") const char ds_obj_21_nj[] ATTRIBUTE_ALIGN(4) = "ds_obj_21.nj";
+static __declspec(section ".rodata") const char ds_obj_21_dai_1_nj[] ATTRIBUTE_ALIGN(4) = "ds_obj_21_dai_1.nj";
+static __declspec(section ".rodata") const char ds_obj_21_njm[] ATTRIBUTE_ALIGN(4) = "ds_obj_21.njm";
+static __declspec(section ".rodata") const char bm_obj_city_21_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_21.bml";
+static __declspec(section ".rodata") const char fs_obj_daiue_nj[] ATTRIBUTE_ALIGN(4) = "fs_obj_daiue.nj";
+static __declspec(section ".rodata") const char fs_obj_egg_nj[] ATTRIBUTE_ALIGN(4) = "fs_obj_egg.nj";
+static __declspec(section ".rodata") const char bm_obj_city_easter_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_easter.bml";
+static __declspec(section ".rodata") const char fd_obj_n_pump_obj6_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_pump_obj6.nj";
+static __declspec(section ".rodata") const char bm_obj_city_pump_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_pump.bml";
+static __declspec(section ".rodata") const char re_b_eggman_body_nj[] ATTRIBUTE_ALIGN(4) = "re_b_eggman_body.nj";
+static __declspec(section ".rodata") const char re_b_knuckles_body_nj[] ATTRIBUTE_ALIGN(4) = "re_b_knuckles_body.nj";
+static __declspec(section ".rodata") const char re_b_sonic_body_nj[] ATTRIBUTE_ALIGN(4) = "re_b_sonic_body.nj";
+static __declspec(section ".rodata") const char re_b_tails_body_nj[] ATTRIBUTE_ALIGN(4) = "re_b_tails_body.nj";
+static __declspec(section ".rodata") const char wait_eggman_body_njm[] ATTRIBUTE_ALIGN(4) = "wait_eggman_body.njm";
+static __declspec(section ".rodata") const char wait_knuckles_body_njm[] ATTRIBUTE_ALIGN(4) = "wait_knuckles_body.njm";
+static __declspec(section ".rodata") const char wait_sonic_body_njm[] ATTRIBUTE_ALIGN(4) = "wait_sonic_body.njm";
+static __declspec(section ".rodata") const char wait_tails_body_njm[] ATTRIBUTE_ALIGN(4) = "wait_tails_body.njm";
+static __declspec(section ".rodata") const char bm_obj_city_sonic_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_sonic.bml";
+static __declspec(section ".rodata") const char de_obj_heartstar_01_1_nj[] ATTRIBUTE_ALIGN(4) = "de_obj_heartstar_01_1.nj";
+static __declspec(section ".rodata") const char de_obj_heartstar_02_1_nj[] ATTRIBUTE_ALIGN(4) = "de_obj_heartstar_02_1.nj";
+static __declspec(section ".rodata") const char ds_obj_heart_dai_1_nj[] ATTRIBUTE_ALIGN(4) = "ds_obj_heart_dai_1.nj";
+static __declspec(section ".rodata") const char de_obj_heartstar_01_1_njm[] ATTRIBUTE_ALIGN(4) = "de_obj_heartstar_01_1.njm";
+static __declspec(section ".rodata") const char de_obj_heartstar_02_1_njm[] ATTRIBUTE_ALIGN(4) = "de_obj_heartstar_02_1.njm";
+static __declspec(section ".rodata") const char ds_obj_heart_dai_1_njm[] ATTRIBUTE_ALIGN(4) = "ds_obj_heart_dai_1.njm";
+static __declspec(section ".rodata") const char bm_obj_city_valen_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_valen.bml";
+static __declspec(section ".rodata") const char de_obj_o_aircar01_xmas_nj[] ATTRIBUTE_ALIGN(4) = "de_obj_o_aircar01_xmas.nj";
+static __declspec(section ".rodata") const char de_obj_o_aircar02_xmas_nj[] ATTRIBUTE_ALIGN(4) = "de_obj_o_aircar02_xmas.nj";
+static __declspec(section ".rodata") const char de_obj_o_aircar03_xmas_nj[] ATTRIBUTE_ALIGN(4) = "de_obj_o_aircar03_xmas.nj";
+static __declspec(section ".rodata") const char de_obj_o_aircar04_xmas_nj[] ATTRIBUTE_ALIGN(4) = "de_obj_o_aircar04_xmas.nj";
+static __declspec(section ".rodata") const char de_obj_o_aircar05_xmas_nj[] ATTRIBUTE_ALIGN(4) = "de_obj_o_aircar05_xmas.nj";
+static __declspec(section ".rodata") const char fd_obj_n_leas_bmerge1_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_leas_bmerge1.nj";
+static __declspec(section ".rodata") const char fd_obj_n_tree_cyl199_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_tree_cyl199.nj";
+static __declspec(section ".rodata") const char fd_obj_n_tree_cyl200_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_tree_cyl200.nj";
+static __declspec(section ".rodata") const char fd_obj_n_tree_cyl201_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_tree_cyl201.nj";
+static __declspec(section ".rodata") const char fd_obj_n_tree_obj2_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_tree_obj2.nj";
+static __declspec(section ".rodata") const char fd_obj_n_tree_cyl199_njm[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_tree_cyl199.njm";
+static __declspec(section ".rodata") const char fd_obj_n_tree_cyl200_njm[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_tree_cyl200.njm";
+static __declspec(section ".rodata") const char bm_obj_city_xmas_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_xmas.bml";
+static __declspec(section ".rodata") const char fd_obj_n_keijiban_board_n_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_keijiban_board_n.nj";
+static __declspec(section ".rodata") const char fd_obj_n_keijiban_hasira_n_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_keijiban_hasira_n.nj";
+static __declspec(section ".rodata") const char bm_obj_city_board_normal_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_board_normal.bml";
+static __declspec(section ".rodata") const char fd_obj_n_keijiban_board_x_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_keijiban_board_x.nj";
+static __declspec(section ".rodata") const char fd_obj_n_keijiban_hasira_x_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_keijiban_hasira_x.nj";
+static __declspec(section ".rodata") const char bm_obj_city_board_xmas_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_city_board_xmas.bml";
+static __declspec(section ".rodata") const char fd_obj_n_keijiban_board_y_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_keijiban_board_y.nj";
+static __declspec(section ".rodata") const char fd_obj_n_keijiban_hasira_y_nj[] ATTRIBUTE_ALIGN(4) = "fd_obj_n_keijiban_hasira_y.nj";
+static __declspec(section ".rodata") const char bm_obj_city_board_2001_bml[0x20] ATTRIBUTE_ALIGN(4) = "bm_obj_city_board_2001.bml";
+
+const char *bm_obj_city_21_model_names[3] = {ds_obj_21_nj, ds_obj_21_dai_1_nj, NULL};
+__declspec(section ".data") const char *bm_obj_city_21_motion_names[2] = {ds_obj_21_njm, NULL};
+BmlResourceDescriptor bm_obj_city_21_resource_descriptor = {
+    bm_obj_city_21_bml, bm_obj_city_21_model_names, bm_obj_city_21_motion_names, 2, 1,
+};
+
+const char *bm_obj_city_easter_model_names[3] = {fs_obj_daiue_nj, fs_obj_egg_nj, NULL};
+__declspec(section ".sdata") const char *bm_obj_city_easter_motion_names[1] = {NULL};
+BmlResourceDescriptor bm_obj_city_easter_resource_descriptor = {
+    bm_obj_city_easter_bml, bm_obj_city_easter_model_names, bm_obj_city_easter_motion_names, 2, 0,
+};
+
+__declspec(section ".data") const char *bm_obj_city_pump_model_names[2] = {fd_obj_n_pump_obj6_nj, NULL};
+__declspec(section ".sdata") const char *bm_obj_city_pump_motion_names[1] = {NULL};
+BmlResourceDescriptor bm_obj_city_pump_resource_descriptor = {
+    bm_obj_city_pump_bml, bm_obj_city_pump_model_names, bm_obj_city_pump_motion_names, 1, 0,
+};
+
+const char *bm_obj_city_sonic_model_names[5] = {
+    re_b_eggman_body_nj, re_b_knuckles_body_nj, re_b_sonic_body_nj, re_b_tails_body_nj, NULL,
+};
+const char *bm_obj_city_sonic_motion_names[5] = {
+    wait_eggman_body_njm, wait_knuckles_body_njm, wait_sonic_body_njm, wait_tails_body_njm, NULL,
+};
+BmlResourceDescriptor bm_obj_city_sonic_resource_descriptor = {
+    bm_obj_city_sonic_bml, bm_obj_city_sonic_model_names, bm_obj_city_sonic_motion_names, 4, 4,
+};
+
+const char *bm_obj_city_valen_model_names[4] = {
+    de_obj_heartstar_01_1_nj, de_obj_heartstar_02_1_nj, ds_obj_heart_dai_1_nj, NULL,
+};
+const char *bm_obj_city_valen_motion_names[4] = {
+    de_obj_heartstar_01_1_njm, de_obj_heartstar_02_1_njm, ds_obj_heart_dai_1_njm, NULL,
+};
+BmlResourceDescriptor bm_obj_city_valen_resource_descriptor = {
+    bm_obj_city_valen_bml, bm_obj_city_valen_model_names, bm_obj_city_valen_motion_names, 3, 3,
+};
+
+const char *bm_obj_city_xmas_model_names[11] = {
+    de_obj_o_aircar01_xmas_nj, de_obj_o_aircar02_xmas_nj, de_obj_o_aircar03_xmas_nj,
+    de_obj_o_aircar04_xmas_nj, de_obj_o_aircar05_xmas_nj, fd_obj_n_leas_bmerge1_nj,
+    fd_obj_n_tree_cyl199_nj,   fd_obj_n_tree_cyl200_nj,   fd_obj_n_tree_cyl201_nj,
+    fd_obj_n_tree_obj2_nj,     NULL,
+};
+const char *bm_obj_city_xmas_motion_names[3] = {fd_obj_n_tree_cyl199_njm, fd_obj_n_tree_cyl200_njm, NULL};
+BmlResourceDescriptor bm_obj_city_xmas_resource_descriptor = {
+    bm_obj_city_xmas_bml, bm_obj_city_xmas_model_names, bm_obj_city_xmas_motion_names, 10, 2,
+};
+
+const char *bm_obj_city_board_normal_model_names[3] = {fd_obj_n_keijiban_board_n_nj, fd_obj_n_keijiban_hasira_n_nj, NULL};
+__declspec(section ".sdata") const char *bm_obj_city_board_normal_motion_names[1] = {NULL};
+BmlResourceDescriptor bm_obj_city_board_normal_resource_descriptor = {
+    bm_obj_city_board_normal_bml, bm_obj_city_board_normal_model_names, bm_obj_city_board_normal_motion_names, 2, 0,
+};
+
+const char *bm_obj_city_board_xmas_model_names[3] = {fd_obj_n_keijiban_board_x_nj, fd_obj_n_keijiban_hasira_x_nj, NULL};
+__declspec(section ".sdata") const char *bm_obj_city_board_xmas_motion_names[1] = {NULL};
+BmlResourceDescriptor bm_obj_city_board_xmas_resource_descriptor = {
+    bm_obj_city_board_xmas_bml, bm_obj_city_board_xmas_model_names, bm_obj_city_board_xmas_motion_names, 2, 0,
+};
+
+const char *bm_obj_city_board_2001_model_names[3] = {fd_obj_n_keijiban_board_y_nj, fd_obj_n_keijiban_hasira_y_nj, NULL};
+__declspec(section ".sdata") const char *bm_obj_city_board_2001_motion_names[1] = {NULL};
+BmlResourceDescriptor bm_obj_city_board_2001_resource_descriptor = {
+    bm_obj_city_board_2001_bml, bm_obj_city_board_2001_model_names, bm_obj_city_board_2001_motion_names, 2, 0,
+};
+
+// inferred: indexed by the active season slot (lobby_event_theme_id_table order)
+BmlResourceDescriptor *city_season_resource_descriptors[6] = {
+    &bm_obj_city_easter_resource_descriptor, &bm_obj_city_valen_resource_descriptor,
+    &bm_obj_city_xmas_resource_descriptor,   &bm_obj_city_pump_resource_descriptor,
+    &bm_obj_city_21_resource_descriptor,     &bm_obj_city_sonic_resource_descriptor,
+};
+
+int lbl_8050DC20[6];
+
+extern "C" {
+int city_season_easter_egg_model_table[6];
+int city_season_xmas_model_table[6];
+s32 lbl_805D5B30;
+void *lbl_805D5B34;
+void *lbl_805D5B38;
+s32 lbl_805D5B3C;
+s32 lbl_805D5B40;
+s32 lbl_805D5B44;
+void *lbl_805D5B48;
+}
+
 struct Obj_80185160 { u8 pad[0x8C]; s32 dest; };
 
-extern int lbl_8050DC20[6];
-extern s32 lobby_event_theme_id_table[];
 extern s32 TLobby__event_theme_id;
 extern "C" {
 void debug_printf_at(s32 id, const char *fmt, ...);
@@ -21,21 +158,12 @@ extern const char lbl_804449F0[];
 extern const char lbl_80444A00[];
 extern const char lbl_80444A10[];
 extern const char *labo_map_warp_dest_name_table_b[];
-extern int city_season_easter_egg_model_table[];
-extern int city_season_xmas_model_table[];
-extern void *lbl_805D5B34;
-extern void *lbl_805D5B38;
-extern s32 lbl_805D5B3C;
-extern s32 lbl_805D5B40;
-extern s32 lbl_805D5B44;
-extern void *lbl_805D5B48;
 
 int TLobby__sub_80184C2C(int a0) {  return city_season_xmas_model_table[a0]; }
 }
 
 int get_season_model_resource(int a0) {  return city_season_easter_egg_model_table[a0]; }
 
-extern s32 lbl_805D5B30;
 
 u8 TLobby__sub_80184C54(void) {
     return (u8) (lbl_805D5B30 != -1);
@@ -89,7 +217,6 @@ void TLobby::free_buffers() {
 }
 
 extern "C" s32 get_main_phase(void);
-extern "C" extern u8 lbl_804B5E80[];
 // Upstream #207 calls the constructor explicitly. Ordinary new BmlResource
 // changes register allocation; see docs/evidence/upstream-catchup-207.md.
 extern "C" void *__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(void *, s32, void *, s32, s32, s32);
@@ -106,7 +233,6 @@ extern "C" void TLobby__sub_80184DF4(void) {
     void *p;
     s32 off;
 
-    obj = lbl_804B5E80;
     clear_global_array__6TLobbyFPv();
     ph = get_main_phase();
     if (ph == 0xf) {
@@ -131,9 +257,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
         }
         tmp = (u8 *)::operator new(0x440);
         if (tmp != NULL) {
-            void **d = (void **)(obj + 0x15c);
-            d += lbl_805D5B30;
-            tmp = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(tmp, 1, *d, 0, 0, 0);
+            tmp = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(tmp, 1, city_season_resource_descriptors[lbl_805D5B30], 0, 0, 0);
         }
         off = lbl_805D5B30 * 4;
         *(s32 *)((u8 *)city_season_easter_egg_model_table + off) = (int)tmp;
@@ -167,7 +291,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
     if (lbl_805D5B30 == 2) {
         u8 *r = (u8 *)::operator new(0x440);
         if (r != NULL) {
-            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, obj + 0x130, 0, 0, 0);
+            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, &bm_obj_city_board_xmas_resource_descriptor, 0, 0, 0);
         }
         obj = r;
         lbl_805D5B3C = *(s32 *)(*(u8 **)(r + 0x42c) + 8);
@@ -175,7 +299,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
     } else if (lbl_805D5B30 == 4) {
         u8 *r = (u8 *)::operator new(0x440);
         if (r != NULL) {
-            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, obj + 0x14c, 0, 0, 0);
+            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, &bm_obj_city_board_2001_resource_descriptor, 0, 0, 0);
         }
         obj = r;
         lbl_805D5B3C = *(s32 *)(*(u8 **)(r + 0x42c) + 8);
@@ -183,7 +307,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
     } else {
         u8 *r = (u8 *)::operator new(0x440);
         if (r != NULL) {
-            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, obj + 0x114, 0, 0, 0);
+            r = (u8 *)__ct__11BmlResourceFlP21BmlResourceDescriptorllPv(r, 1, &bm_obj_city_board_normal_resource_descriptor, 0, 0, 0);
         }
         obj = r;
         lbl_805D5B3C = *(s32 *)(*(u8 **)(r + 0x42c) + 8);
@@ -218,9 +342,3 @@ void TObjLaboMapWarp::slot4C() {
     debug_printf_at(0x130022, lbl_80444A10, labo_map_warp_dest_name_table_b[this->set_params[2]]);
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
 }
-
-extern "C" {
-s32 lbl_805D5B30;
-}
-
-int lbl_8050DC20[6];

@@ -410,27 +410,6 @@ typedef B_803FADA0 Strm_80405A74;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
-struct IpcpConfigureValues {
-    s16 mask;
-    u8 unknown2[2];
-    s32 address0, address1;
-    s16 compression, slots;
-    u8 slot_id;
-    u8 unknown11[3];
-    s32 word14, word18, word1C, word20;
-};
-struct IpcpConfigureSide {
-    s16 mask;
-    u8 unknown2[2];
-    IpcpConfigureValues wanted, agreed;
-};
-struct IpcpConfigureOptions { IpcpConfigureSide sides[2]; u32 buffer; };
-typedef char IpcpValues_size_803FFB84[sizeof(IpcpConfigureValues) == 0x24 ? 1 : -1];
-typedef char IpcpSide_size_803FFB84[sizeof(IpcpConfigureSide) == 0x4C ? 1 : -1];
-typedef char IpcpOptions_size_803FFB84[sizeof(IpcpConfigureOptions) == 0x9C ? 1 : -1];
-typedef char IpcpRequestMaskOffset[offsetof(IpcpConfigureOptions, sides) + offsetof(IpcpConfigureSide, agreed) == 0x28 ? 1 : -1];
-typedef char IpcpReplyMaskOffset[sizeof(IpcpConfigureSide) + offsetof(IpcpConfigureSide, agreed) == 0x74 ? 1 : -1];
-
 typedef struct B_803FADA0 Ent_80401CE8;
 
 struct RecoveredGlobal_803FD21C_lobby_net_buffer_desc_b {
@@ -529,7 +508,7 @@ void TLobby__sub_80400270(B_803FADA0 **pbuf, Opt_80400338 *opt, s16 mask);
 extern u8 lcp_read_byte_buffer;
 s16 TLobby__sub_803FF858(PppConfigureContext *arg0, PppConfigureMessage *arg1, u32 arg2);
 s16 TLobby__sub_803FD5A4(s16 h, s16 v);
-s32 TLobby__sub_80406328(s32, s16);
+s16 TLobby__sub_80406328(s32, s16);
 s16 TLobby__sub_804098B4(void *);
 s32 TLobby__sub_80409908(void *, void *);
 extern s16 lbl_805D7A8A;
@@ -808,8 +787,8 @@ struct Outer_80401CAC;
 void TLobby__sub_80401CAC(Outer_80401CAC *, u16);
 s32 TLobby__sub_80405304(void *);
 
-void TLobby::dispatch_received_packet(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
+void NetChapDispatch(Conn_804004DC *self, B_803FADA0 *arg1) {
+    u8 *arg0 = (u8 *)self;
     PppConfigureMessage hdr;
     u8 temp_r0;
     u8 temp_r0_2;
@@ -5043,7 +5022,7 @@ struct Peer_8040799C { s16 st; s16 f2; u8 pad4; u8 f5; u8 pad6[2]; Conn_8040799C
 struct Ent_8040799C { s16 f0; s16 f2; s16 f4; s16 f6; u8 pad8[6]; u8 fE; u8 fF; u8 pad10[2]; u8 a12[6]; u8 a18[8]; };
 struct Tbl_8040799C { s16 count; s16 h2; s16 h4; s16 h6; s16 h8; s16 hA; s16 hC; u8 padE[2]; Peer_8040799C *list; Ent_8040799C *ents; };
 struct Ent_80408428;
-struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, void *, u8, void *, s16);
+struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16, s16, u8, void *, u8, void *, s16);
 
 #define TBL ((Tbl_8040799C *)&lbl_805C1AB0)
 
@@ -5114,7 +5093,7 @@ typedef struct Pkt_80408428 {
 struct Ent_804086B4;
 
 
-Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16 arg0, s32 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
+Ent_80408428 *find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(s16 arg0, s16 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
 struct Ent_804086B4 { s16 f0; s16 f2; u8 pad[0x14]; };
 

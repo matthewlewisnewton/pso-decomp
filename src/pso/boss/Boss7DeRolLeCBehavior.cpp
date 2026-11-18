@@ -555,14 +555,10 @@ typedef char Boss7CrawfishSetData_size[sizeof(Boss7CrawfishSetData) == 0x40 ? 1 
 // The short-valued reference update retains the in-place signed narrowing.
 // A port can replace it with a scalar (s16)(slot + 11).
 struct CrawfishSlotOffset { s16 value; };
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 static inline void add_crawfish_slot_base(CrawfishSlotOffset &offset) {
     offset.value += 11;
     offset.value = (s16)offset.value;
 }
-#pragma pop
 
 extern "C" {
 
@@ -1868,7 +1864,6 @@ __declspec(section ".sdata2") const f32 lbl_805DEBA0[1] = { -180.0f };
 // docs/evidence/barba-ray-table-pool-recovery.md.
 #pragma defer_codegen on
 #pragma dont_inline off
-#pragma auto_inline off
 #pragma inline_depth(1)
 #define VecCopy__FP3VecPC3Vec ((s32 (*)(s32, s32))VecCopy__FP3VecPC3Vec)
 
@@ -2113,7 +2108,6 @@ u32 TObjFish::update_anim_state() {
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
 extern "C" {
 u32 TObjFish::update_phase_settling() {
     u8 var_r3;
@@ -2152,8 +2146,6 @@ u32 TObjFish::update_phase_settling() {
 }
 #pragma pop
 
-#pragma push
-#pragma fp_contract on
 extern "C" {
 s32 TObjFish::update_tail_anim_state() {
     s32 var_r3;
@@ -2184,7 +2176,6 @@ s32 TObjFish::update_tail_anim_state() {
     return (u8) var_r3;
 }
 }
-#pragma pop
 
 #pragma push
 #pragma opt_common_subs off
@@ -3775,8 +3766,6 @@ void TObjFish__sub_802E9DBC(u8 *arg0, u32 arg1, s32 arg2) {
 #pragma pop
 #undef self
 
-#pragma push
-#pragma fp_contract on
 extern "C" {
 void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s32 arg2) {
     s32 ang;
@@ -3875,7 +3864,6 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
     }
 }
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on
@@ -4907,7 +4895,6 @@ void TObjPlayer__sub_802E7EA0(void *arg0) {
 }
 
 #pragma push
-#pragma inline_depth(4)
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 extern "C" {
