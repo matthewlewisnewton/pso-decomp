@@ -2868,6 +2868,7 @@ pso/unk/TUnk_804A5C18.cpp
 pso/unk/TUnk_804A6CC8.cpp
 pso/unk/TUnk_804CC870.cpp
 pso/unk/data_805D8200.cpp
+pso/unk/data_805D8444.cpp
 pso/unk/data_805D8D28.cpp
 pso/unk/data_805D91D0.cpp
 pso/unk/data_805D9E78.cpp
