@@ -7,6 +7,7 @@
 struct TWindowKeyBoardBase;
 
 struct TWindowKeyBoardHard : public TWindowBase {
+    explicit TWindowKeyBoardHard(TWindowKeyBoardBase *composer);
     virtual ~TWindowKeyBoardHard();
     void draw_status_text(void *);
     void update_modifier_flags();

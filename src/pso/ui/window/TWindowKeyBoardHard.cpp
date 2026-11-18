@@ -671,14 +671,12 @@ void TWindowKeyBoardHard::render() {
 }
 
 
-#include "pso/ui/window/TWindowKeyBoardHard_802601D4.h"
 
 #include "pso/ui/window/TWindowBase.h"
 
 
 extern "C" {
 s32 get_window_layout_position(int);
-extern s32 __vt__19TWindowKeyBoardHard[];
 s32 has_non_modifier_key__16TKeyBoardControlFv(void *);
 
 
@@ -712,17 +710,16 @@ void TWindowKeyBoardHard::run_task() {
 }
 
 TWindowKeyBoardHard::~TWindowKeyBoardHard() {}
-u8 *TWindowKeyBoardHard__ct(TWindowKeyBoardHard *window_key_board_hard, s32 arg1) {
-    __ct__11TWindowBaseFPUcsPUc(window_key_board_hard, (u8 *)&lbl_804CFAD0, (s16)(4), (u8 *)(get_window_layout_position(0xB9)));
-    *(s32 **)((s8 *)window_key_board_hard + 0x18) = __vt__19TWindowKeyBoardHard;
-    window_key_board_hard->m_name = TWindowKeyBoardHard__name;
-    window_key_board_hard->m_60 = 0;
-    window_key_board_hard->composer = (TWindowKeyBoardBase *)arg1;
-    window_key_board_hard->m_64 = 0;
-    window_key_board_hard->m_68 = 0;
-    window_key_board_hard->m_6c = 7;
-    window_key_board_hard->release_keyboard();
-    return (u8 *)window_key_board_hard;
+TWindowKeyBoardHard::TWindowKeyBoardHard(TWindowKeyBoardBase *composer)
+    : TWindowBase((u8 *)&lbl_804CFAD0, 4,
+                  (u8 *)get_window_layout_position(0xB9)) {
+    m_name = TWindowKeyBoardHard__name;
+    m_60 = 0;
+    this->composer = composer;
+    m_64 = 0;
+    m_68 = 0;
+    m_6c = 7;
+    release_keyboard();
 }
 
 }
