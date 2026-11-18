@@ -1,5 +1,6 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TitleSceneTables.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC_80336054.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 #include "pso/misc/THunterGuildSeqOffline.h"
@@ -8,7 +9,6 @@ extern "C" {
 
 u32 __nw__7TObjectFUl(s32);
 
-    extern int lobby_game_mode_state;
 int TAdSinglePlyChrSelectGC::get_data() {  return lobby_game_mode_state; }
 
 int TAdSinglePlyChrSelectGC__sub_8033605C(void) { return 0; }

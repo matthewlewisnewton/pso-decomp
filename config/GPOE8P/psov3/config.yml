@@ -10956,6 +10956,7 @@ force_active:
   - lobby_texlist__16TObjKabochaLobby
   - lobby_texlist__16TObjWeddingLobby
   - lobby_texlist__19TObjStendGlassLobby
+  - lobby_title_texture_list
   - lobby_weapon_random_tables_ptr
   - lobby_worker_thread_run_flag
   - lock_on_cursor_bml_resource
@@ -19229,6 +19230,7 @@ force_active:
   - time_set_summary_format
   - time_set_time_format
   - title_pulse_color_table
+  - title_scene_instance
   - title_texture_entries
   - tl_00_name
   - tl_01_name
