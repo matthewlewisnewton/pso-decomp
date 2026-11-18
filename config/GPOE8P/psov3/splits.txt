@@ -5646,6 +5646,7 @@ pso/misc/TOWreckAncientResources.cpp:
 
 pso/misc/TOWreckAncientBrakable05.cpp:
 	.text       start:0x8017D2FC end:0x8017D39C
+	.data       start:0x804B554C end:0x804B5584 align:4
 
 pso/unk/text_8017D39C.cpp:
 	.text       start:0x8017D39C end:0x8017D444
@@ -5658,39 +5659,46 @@ pso/misc/TOWreckAncientBrakable_8017D5A4.cpp:
 
 pso/misc/TOWreckAncientBrakable.cpp:
 	.text       start:0x8017D680 end:0x8017D72C
+	.data       start:0x804B5584 end:0x804B55BC align:4
 
 pso/misc/TOWreckAncient07.cpp:
 	.text       start:0x8017D72C end:0x8017D7CC
+	.data       start:0x804B55BC end:0x804B55F4 align:4
 
 pso/unk/text_8017D7CC.cpp:
 	.text       start:0x8017D7CC end:0x8017D850
 
 pso/misc/TOWreckAncient06.cpp:
 	.text       start:0x8017D850 end:0x8017D8F0
+	.data       start:0x804B55F4 end:0x804B562C align:4
 
 pso/unk/text_8017D8F0.cpp:
 	.text       start:0x8017D8F0 end:0x8017D974
 
 pso/misc/TOWreckAncient05.cpp:
 	.text       start:0x8017D974 end:0x8017DA14
+	.data       start:0x804B562C end:0x804B5664 align:4
 
 pso/unk/text_8017DA14.cpp:
 	.text       start:0x8017DA14 end:0x8017DA98
 
 pso/misc/TOWreckAncient04.cpp:
 	.text       start:0x8017DA98 end:0x8017DB38
+	.data       start:0x804B5664 end:0x804B569C align:4
 
 pso/unk/text_8017DB38.cpp:
 	.text       start:0x8017DB38 end:0x8017DBBC
 
 pso/misc/TOWreckAncient01.cpp:
 	.text       start:0x8017DBBC end:0x8017DC5C
+	.data       start:0x804B569C end:0x804B56D4 align:4
 
 pso/unk/text_8017DC5C.cpp:
 	.text       start:0x8017DC5C end:0x8017DCE0
 
 pso/misc/TOWreckAncient.cpp:
 	.text       start:0x8017DCE0 end:0x8017DF10
+	.data       start:0x804B56D4 end:0x804B570C align:4
 	.sdata2     start:0x805DBAD0 end:0x805DBAD8
 
 pso/misc/TOWreckAncient02.cpp:

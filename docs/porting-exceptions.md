@@ -467,6 +467,14 @@ The draw-buffer helpers retain their existing native link names at a bounded
 ABI interface rather than casting vertex buffers to window objects; ports
 should map those legacy names to the corresponding shared draw operations.
 
+### Ancient wreck virtual tables
+
+The eight compiler-generated `TOWreckAncient` family tables use `.data=4`
+linker metadata so the first table starts immediately after the collision
+records at `0x804B554C`. The last virtual table ends at `0x804B570C` and
+the linker supplies four zero alignment bytes before the next unit. A port
+can use ordinary virtual dispatch and section alignment.
+
 ### Forest warp virtual tables
 
 `src/pso/object/TObjAreaWarpEndingJung.cpp` uses its existing deferred

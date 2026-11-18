@@ -38,12 +38,10 @@ extern s32 tl_05;
 static const f32 lbl_805DBAD0 = 400.0f;
 static const f32 lbl_805DBAD4 = 40.0f;
 u8 *TOWreckAncient__ct(u8 *arg0, s32 arg1);
-void *__dt__14TOWreckAncientFv(void *arg0, s16 arg1);
 s32 post_translate_matrix(void *);
 s32 free_collision_body_parts(void *);
 s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
-s32 __dl__7TObjectFPv(void *);
 
 void TOWreckAncient::render() {
     u8 *arg0 = (u8 *)this;
@@ -74,17 +72,9 @@ void TOWreckAncient::load_resources() {
     wreck_ancient_brakable_bml_resource = new BmlResource(1, &TOWreckAncient__resource_descriptor, 0, 0, NULL);
 }
 
-void *__dt__14TOWreckAncientFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TOWreckAncient;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__14TObjCollidableFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TOWreckAncient::~TOWreckAncient() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
 }
 typedef char RecoveredGlobal_8017DE94___vt__14TOWreckAncient_size[sizeof(RecoveredGlobal_8017DE94___vt__14TOWreckAncient) == 0x3C ? 1 : -1];
 u8 *TOWreckAncient__ct(u8 *wreck_ancient, s32 arg1) {
