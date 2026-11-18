@@ -92,6 +92,7 @@ guides.
 - [MusyX assembly and scalar fallbacks](musyx-asm-fallbacks.md)
 - [Complete object-particle unit](object-particle-complete-unit.md)
 - [Negative fade phase](negative-fade-phase-evidence.md)
+- [TCP queues and network integration](socket-protocol-runtime.md)
 - [Network-info request frame and switch](network-info-request-frame.md)
 - [Native Nest continuation](nest-native-recovery-evidence.md)
 - [Orbit particle unit recovery](orbit-particle-recovery.md)

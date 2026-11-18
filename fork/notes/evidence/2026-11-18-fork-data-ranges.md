@@ -28,13 +28,15 @@ Of the 980 bytes now linked, 176 come from six recoveries already proposed in up
 | `8804f7af44` — status rank prefixes and display dispatch table | 40 | 0 | 24 |
 | `66eec9e27e` — soft keyboard dispatch table | 24 | 0 | 0 |
 
-This comparison covers fork main through `23aa26cec0`. The newer Gyaranzo change extends the fork's constant pool to 0x805DA258–0x805DA2A0. Upstream already links that entire range from `pso/enemy/gyaranzo/TObjEneGyaranzo.cpp`. The other two changes since the inventory update the fork's documentation.
+The starting comparison covers fork main through `23aa26cec0`. The newer Gyaranzo change extends the fork's constant pool to 0x805DA258–0x805DA2A0. Upstream already links that entire range from `pso/enemy/gyaranzo/TObjEneGyaranzo.cpp`. The other two changes since the inventory update the fork's documentation.
 
 The integration build matches the original DOL. All 27,572 functions are exact and all 2,539 source-linked units pass. Compared with pinned upstream master, the integration branch gains 1,064 matched and source-linked data bytes, including 84 outside the original inventory. The 64-byte decrease in total reported data coverage comes from alignment gaps. Each of the six latest recovery commits passed the full check against its parent. All 266 tooling tests passed.
 
-The final address comparison against fork main `23aa26cec0` finds zero missing exact or source-linked functions and zero missing exact or source-linked data ranges. The aggregate comparison still flags a 2,025-byte difference in total reported coverage. All 2,176 bytes leaving coverage satisfy the per-address original alignment-padding check. The other direction adds 151 zero bytes, including 147 meeting that same check and four bytes of .bss at 0x8050104C. The two directions reconcile exactly. These are differences in section coverage, separate from the 1,147-byte inventory.
+The address comparison against fork main `23aa26cec0` finds zero missing exact or source-linked functions and zero missing exact or source-linked data ranges. The aggregate comparison still flags a 2,025-byte difference in total reported coverage. All 2,176 bytes leaving coverage satisfy the per-address original alignment-padding check. The other direction adds 151 zero bytes, including 147 meeting that same check and four bytes of .bss at 0x8050104C. The two directions reconcile exactly. These are differences in section coverage, separate from the 1,147-byte inventory.
 
 The [matchpass queue](2026-11-18-upstream-matchpasses.md) groups the recovered bytes with their subsystem changes. The first upstream candidate, `great-merge/frontend-scenes`, includes the ending globals, line drawing, title and menu assets, and character-select input state. Its standalone build recovers 60 inventory bytes and four adjacent bytes.
+
+Fork main subsequently advanced to `3342e42983` with the TCP runtime recovery. Its executable build inputs match the checked fork checkout. Comparing that build to integration still gives zero missing exact or source-linked functions and zero missing exact or source-linked data ranges. The 2,025-byte aggregate coverage difference has the same address-level reconciliation. The network matchpass includes eight bytes of the existing inventory. Together the first two review branches cover 68 inventory bytes.
 
 ## Starting inventory
 

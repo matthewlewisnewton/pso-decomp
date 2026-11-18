@@ -2,7 +2,7 @@
 
 Keep LLM notes, historical handoffs and recovery evidence in this directory. The [project README](../README.md) describes the upstream checkout. The fork README below records the state of the older fork.
 
-Use `great-merge/integration` to find pending contributions. Collect work on the same subsystem into one upstream matchpass, with commits a reviewer can read in order. Start each review branch from current upstream master. The first candidate is `great-merge/frontend-scenes`. The [matchpass queue](notes/evidence/2026-11-18-upstream-matchpasses.md) records its validation and the remaining groups. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) accounts for all 1,147 data bytes.
+Use `great-merge/integration` to find pending contributions. Collect work on the same subsystem into one upstream matchpass, with commits a reviewer can read in order. Start each review branch from current upstream master. The first two candidates are `great-merge/frontend-scenes` and `great-merge/network-runtime`. The [matchpass queue](notes/evidence/2026-11-18-upstream-matchpasses.md) records their validation and the remaining groups. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) accounts for all 1,147 data bytes.
 
 The [library and portability audit](notes/evidence/2026-11-18-libraries-and-ports.md) traces every fork change under `libs/` and `ports/` to its current implementation or documentation.
 
@@ -27,14 +27,14 @@ Nothing from the game is included here. You need your own copy of the game to bu
 <!-- progress-table -->
 | | Matched | Linked |
 |:--|--:|--:|
-| Code | 99.92% (4,349,644 of 4,353,092) | 99.81% (4,344,788 of 4,353,092) |
-| Data | 88.53% (1,558,896 of 1,760,896) | 88.53% (1,558,932 of 1,760,896) |
-| Functions | 99.97% (27,563 of 27,572) | |
-| Units | | 72.21% (3,636 of 5,035) |
+| Code | 99.99% (4,352,676 of 4,353,092) | 99.99% (4,352,676 of 4,353,092) |
+| Data | 88.53% (1,558,896 of 1,760,896) | 88.54% (1,559,116 of 1,760,896) |
+| Functions | 99.97% (27,565 of 27,572) | |
+| Units | | 72.23% (3,637 of 5,035) |
 <!-- /progress-table -->
 
 Measured on `PsoV3.dol` on 2026-11-18 at validated source commit
-[`bfb4374597`](https://github.com/matthewlewisnewton/pso-decomp/commit/bfb43745975ab5bbdc6caa4e54b9a6f08f120730).
+[`34120b34d9`](https://github.com/matthewlewisnewton/pso-decomp/commit/34120b34d9fae0160ad2ae5aef325ac20e2255b4).
 The README-only publication commit records the measurements of its parent source tree.
 A function is matched when it compiles to the original's exact bytes. Code, data and
 units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.

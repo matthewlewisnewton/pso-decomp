@@ -14,6 +14,12 @@
 
 Against a fresh upstream build, the full GPOE8P check passed. The original DOL SHA-1 is `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 27,572 functions and 2,538 source-linked units are exact. Matched and linked data both increase by 64 bytes with zero address regressions. Six original inventory ranges contribute 60 bytes. The keyboard mask at 0x805D793C contributes the other four. Applying the exported patch to the pinned upstream tree reproduces the branch tree exactly.
 
+## Network runtime
+
+`great-merge/network-runtime` starts independently at `92a266f5eb`. The six commits through `7dfa6e1757` cover 18 files (+901/−577). Read the TCP queue and callback commits first, then the modem initializer, PPP buffers and broadband adapter helpers. Fork PR 457 is included. Upstream's matching check passes with the original DOL, all 27,572 functions exact, all 2,541 linked units exact and eight newly linked inventory bytes. The exported patch reproduces the review branch exactly. Git merged this branch and the front-end scenes branch cleanly in a tree-only check.
+
+The [socket integration evidence](../../docs/evidence/socket-protocol-runtime.md) records both the exact and bounded builds. The adapter helpers passed the full 16-bit input sweep normally and under address and undefined-behavior sanitizers.
+
 ## Review queue
 
 Use the subsystem and the question a reviewer can answer to set the boundary. Include the owning types, their callers, linker changes and relevant checks in the same PR. Keep independent steps visible as commits. Recent upstream examples covered 33 files and 57 files respectively. [Matchpass 22](https://github.com/zeroz41/pso-decomp/pull/301) and [Matchpass 21](https://github.com/zeroz41/pso-decomp/pull/300).
@@ -25,7 +31,8 @@ Use the subsystem and the question a reviewer can answer to set the boundary. In
 | Already proposed in PR 320 | 176 | Six window recoveries have an existing upstream review. The constructor prerequisite also belongs there. Check the landed tree before cutting the windows branch. [Upstream PR 320](https://github.com/zeroz41/pso-decomp/pull/320) |
 | Player, enemy and effect behavior | 272 | Group player combat pools and enemy or boss lifecycle and effect changes by shared behavior. The Gifoie and Photon Blast recoveries include their task lifetimes. The Photon Blast class-name recovery depends on a compiler alignment change. |
 | Scene resources and rendering | 64 | Group the event archive names with scene resource loading. Group default lighting and rotation constants with the renderer, geometry and BML changes that use them. |
-| Audio and network follow-ups | 12 | Four bytes belong with the area-music fade work. Eight belong with the PPP read buffers. Carry each with work on its own subsystem. |
+| Network runtime | 8 | Prepared and validated above. The PPP scratch buffers occupy 0x805D7A70–0x805D7A78. |
+| Audio | 4 | Carry the area-music fade settings with the music sequencer work. |
 | Original alignment padding | 4 | The Dark Falz range includes four verified padding bytes at 0x805D8A2C. |
 | Already covered at the upstream baseline or outside its measured deficit | 163 | The ledger records the disposition by address. |
 | **Total** | **1,147** | |

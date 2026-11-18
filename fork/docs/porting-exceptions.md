@@ -78,17 +78,11 @@ should preserve the floating-point contraction/rounding behavior where required,
 using the platform compiler's equivalent support. See the
 [renderer consolidation evidence](evidence/zako-renderer-consolidation.md).
 
-### TCP out-of-order receive queue
+### TCP send and receive queues
 
-`TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
-retains the scoped `dont_inline off` / `inline_depth(4)` controls from
-[upstream #285](https://github.com/zeroz41/pso-decomp/pull/285), commit
-`be4a012306441b91fe0e30083800a8589bccf518`. They inline the reassembly-range
-removal helper, including its ordinary aggregate assignment. The receive-room
-clamp uses ordinary assignment in its condition and direct `TcpTcb` member
-access; it needs no additional matching constraint. Ports can drop the inline
-pragmas and keep the receive-ring copy and range-merging operations. See the
-[recovery and ABI evidence](evidence/tcp-out-of-order-queue.md).
+The integration source is `src/pso/network/SocketProtocolRuntime.c`. Native CodeWarrior inlines the reassembly byte-count and removal helpers. The receive code computes differences between unsigned 32-bit sequence numbers before signed ordering comparisons. Ports use the bounded selective acknowledgement and fragment walks. The two CodeWarrior overrides to exercise the portable paths are `PSO_SOCKET_BOUNDED_SACK` and `PSO_SOCKET_BOUNDED_GATHER`.
+
+The acknowledgement routine uses scoped `dont_inline on` and `opt_lifetimes off`. Its saved handle, remaining length and post-callback queue head represent live state. The gathering routine uses scoped `opt_propagation off`. The portable reverse traversal indexes the fragment array. See the [socket integration evidence](evidence/socket-protocol-runtime.md) and [earlier receive-queue evidence](evidence/tcp-out-of-order-queue.md).
 
 ### Logo texture descriptor declaration
 

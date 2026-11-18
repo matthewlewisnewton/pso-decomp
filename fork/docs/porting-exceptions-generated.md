@@ -11,10 +11,10 @@ The curated register with reasons is [porting-exceptions.md](<porting-exceptions
 | asm | 65 | 13 |
 | intrinsic | 85 | 55 |
 | hardware | 49 | 16 |
-| pragma | 5075 | 934 |
+| pragma | 5077 | 934 |
 | configure.py per-unit override | 606 | 606 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 860, `inline_depth` 847, `fp_contract` 811, `auto_inline` 650, `opt_common_subs` 478, `readonly_strings` 357, `scheduling` 260, `opt_propagation` 178, `peephole` 104, `optimization_level` 86, `defer_codegen` 81, `pool_data` 70, `bool` 49, `pack` 44, `opt_loop_invariants` 41, `opt_dead_assignments` 33, `opt_lifetimes` 32, `optimize_for_size` 29, `use_lmw_stmw` 29, `cplusplus` 8, `suppress_init_code` 4, `common` 4, `opt_pointer_analysis` 3, `force_active` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_strength_reduction` 1, `global_optimizer` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `fp_contract` 811, `auto_inline` 650, `opt_common_subs` 478, `readonly_strings` 357, `scheduling` 260, `opt_propagation` 178, `peephole` 104, `optimization_level` 86, `defer_codegen` 81, `pool_data` 70, `bool` 49, `pack` 44, `opt_loop_invariants` 40, `opt_lifetimes` 33, `opt_dead_assignments` 33, `optimize_for_size` 29, `use_lmw_stmw` 29, `cplusplus` 8, `suppress_init_code` 4, `common` 4, `opt_pointer_analysis` 3, `force_active` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_strength_reduction` 1, `global_optimizer` 1, `explicit_unused_unused_members` 1, `opt_dead_code` 1
 
 ## Assembly
 
@@ -109,7 +109,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 860, `inline_depth` 847, `
 | `src/pso/enemy/gigue/TObjEneMe1GiGue.cpp:1466` | `__cntlzw` |
 | `src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp:480` | `__cntlzw` |
 | `src/pso/item/mag/TItemMag.cpp:1350` | `__cntlzw` |
-| `src/pso/network/ModemRuntime.cpp:335` | `__cntlzw` |
+| `src/pso/network/ModemRuntime.cpp:342` | `__cntlzw` |
 | `src/pso/network/NetTcp.c:353` | `__cntlzw` |
 | `src/pso/network/TLobby_80429598.c:13` | `__cntlzw` |
 | `src/pso/network/TLobby_80429598.c:195` | `__lhbrx` |
@@ -1144,7 +1144,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 860, `inline_depth` 847, `
 | `src/pso/map/TSetManager.cpp` | readonly_strings×1, scheduling×1 |
 | `src/pso/math/MatrixTransforms.cpp` | peephole×1, scheduling×1 |
 | `src/pso/math/MatrixVector.cpp` | scheduling×4, fp_contract×1 |
-| `src/pso/network/ModemRuntime.cpp` | dont_inline×3, inline_depth×2, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
+| `src/pso/network/ModemRuntime.cpp` | inline_depth×3, dont_inline×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetAddrFamily.c` | dont_inline×1, inline_depth×1 |
 | `src/pso/network/NetArp.c` | dont_inline×1, inline_depth×1 |
 | `src/pso/network/NetBufferPool.c` | dont_inline×1, inline_depth×1 |
@@ -1177,7 +1177,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 860, `inline_depth` 847, `
 | `src/pso/network/PppMd5.c` | dont_inline×1, inline_depth×1 |
 | `src/pso/network/PppPap.c` | opt_common_subs×2, dont_inline×2, inline_depth×2, opt_propagation×1, opt_lifetimes×1 |
 | `src/pso/network/PppVj.c` | dont_inline×1, inline_depth×1 |
-| `src/pso/network/SocketProtocolRuntime.c` | dont_inline×1, inline_depth×1, opt_loop_invariants×1, opt_propagation×1 |
+| `src/pso/network/SocketProtocolRuntime.c` | dont_inline×2, inline_depth×1, opt_lifetimes×1, opt_propagation×1 |
 | `src/pso/network/TLobby_803F86BC.c` | opt_common_subs×1 |
 | `src/pso/network/TLobby_803FAEA0.c` | dont_inline×2, cplusplus×1 |
 | `src/pso/network/TLobby_803FC178.c` | opt_common_subs×2, dont_inline×2, inline_depth×2, opt_propagation×1, opt_lifetimes×1 |
