@@ -548,8 +548,6 @@ s16 TLobby::check_connection_status() {
     return 0;
 }
 
-#pragma push
-#pragma opt_propagation off
 struct Proto_803F9FAC {
     const char *name;
     u16 proto;
@@ -635,7 +633,6 @@ void TLobby__sub_803F9FAC(u8 *conn) {
     area->h34 = lbl_805D4818[0];
     TLobby__sub_803FD694((u8 *)e);
 }
-#pragma pop
 
 s32 TLobby::clear_flag_bit4(s32 arg0, u8 *arg1) {
     *(s16 *)((s8 *)arg1 + 4) = (s16) (*(s16 *)((s8 *)arg1 + 4) & 0xFFFFFFFB);
@@ -1090,9 +1087,6 @@ s32 TLobby__sub_80405304(void *);
 
 typedef void (*Fn_803FD10C)(void);
 
-#pragma opt_propagation off
-#pragma opt_propagation reset
-
 typedef struct B_80403F4C {
     u8 bytes[0x44];
 } B_80403F4C;
@@ -1121,9 +1115,6 @@ typedef struct Obj_80403F4C {
 
 #undef o
 
-#pragma dont_inline off
-#pragma inline_depth(4)
-
 struct Ent_80408428;
 struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, void *, u8, void *, s16);
 
@@ -1146,18 +1137,9 @@ typedef struct Ent_80408428 {
     u8 addr12[6];
 } Ent_80408428;
 
-#pragma push
-#pragma inline_depth(4)
-#pragma dont_inline off
-
 Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16 arg0, s32 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
-#pragma pop
-
 typedef s32 (*SendFn_80408C24)(s16, u8 *, s16);
-
-#pragma dont_inline off
-#pragma inline_depth(4)
 
 typedef void (*CbA_8040C540)(s16, s32, s16, s32, s16);
 typedef void (*CbB_8040C540)(s16, u32, s16);

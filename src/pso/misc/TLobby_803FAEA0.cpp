@@ -450,10 +450,7 @@ typedef char RecoveredGlobal_803F88E4_lbl_805AEEB0_size[((sizeof(RecoveredGlobal
 
 void TLobby__sub_803F892C(void * _w0);
 
-#pragma push
-#pragma opt_common_subs on
 typedef char RecoveredGlobal_803F8930_lbl_805B4F84_size[sizeof(RecoveredGlobal_803F8930_lbl_805B4F84) == 0x350 ? 1 : -1];
-#pragma pop
 
 void TLobby__sub_803F8958(void * _w0);
 
@@ -1166,9 +1163,6 @@ typedef char RecoveredGlobal_80401A68_lbl_805C04A8_size[sizeof(RecoveredGlobal_8
 
 typedef char RecoveredGlobal_80401A90_lbl_805C04A8_size[sizeof(RecoveredGlobal_80401A90_lbl_805C04A8) == 0x30 ? 1 : -1];
 
-#pragma opt_propagation off
-#pragma opt_propagation reset
-
 typedef char RecoveredGlobal_80402B60_lbl_805C0620_size[sizeof(RecoveredGlobal_80402B60_lbl_805C0620) == 0x18 ? 1 : -1];
 
 #define S11_80401FE8 7
@@ -1196,11 +1190,6 @@ typedef char RecoveredGlobal_80402B60_lbl_805C0620_size[sizeof(RecoveredGlobal_8
 #define GG_80401FE8(a, b, c, d, x, s, ac) { (a) += G_80401FE8((b), (c), (d)) + (x) + ac; (a) = ROTATE_LEFT_80401FE8((a), (s)); (a) += (b); }
 #define HH_80401FE8(a, b, c, d, x, s, ac) { (a) += H_80401FE8((b), (c), (d)) + (x) + ac; (a) = ROTATE_LEFT_80401FE8((a), (s)); (a) += (b); }
 #define II_80401FE8(a, b, c, d, x, s, ac) { (a) += I_80401FE8((b), (c), (d)) + (x) + ac; (a) = ROTATE_LEFT_80401FE8((a), (s)); (a) += (b); }
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma opt_common_subs on
-#pragma pop
 #undef S11_80401FE8
 #undef S12_80401FE8
 #undef S13_80401FE8
@@ -1232,10 +1221,6 @@ typedef char RecoveredGlobal_80402B88_lbl_805C0620_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_804050DC_lbl_805C18A0_size[sizeof(RecoveredGlobal_804050DC_lbl_805C18A0) == 0x10 ? 1 : -1];
 
 typedef char RecoveredGlobal_80403D28_lbl_805C0638_size[sizeof(RecoveredGlobal_80403D28_lbl_805C0638) == 0xA0 ? 1 : -1];
-
-#pragma push
-#pragma opt_common_subs on
-#pragma pop
 
 typedef struct A_80403F4C {
     u8 pad0[0x16];
@@ -1300,8 +1285,6 @@ typedef struct Lobby_804062A0 {
 
 struct RecoveredFields_80401B8C_arg0;
 struct Self_8040098C;
-#pragma dont_inline off
-#pragma inline_depth(4)
 #define FWD_80405A74()                                                       \
     (*(G + 0x13A))++;                                            \
     t = alloc_from_buffer(arg0, 4); \
@@ -1348,12 +1331,7 @@ struct Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16, s32, u8, v
 
 #define TBL ((Tbl_8040799C *)&lbl_805C1AB0)
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-
 s32 TLobby__sub_8040799C(s16 arg0, void *arg1, void *arg2);
-#pragma pop
 #undef TBL
 
 typedef struct Node_804082AC { struct Node_804082AC *next; u8 pad4[2]; u8 f6[0x10]; } Node_804082AC;
@@ -1418,24 +1396,13 @@ typedef struct Pkt_80408428 {
 
 struct Ent_804086B4;
 
-#pragma push
-#pragma inline_depth(4)
-#pragma dont_inline off
-
 Ent_80408428 *find_or_add_peer_entry__6TLobbyFsiUcPvUcPvs(s16 arg0, s32 arg1, u8 type, void *addr, u8 type2, void *addr2, s16 state);
 
-#pragma pop
 struct Ent_804086B4 { s16 f0; s16 f2; u8 pad[0x14]; };
 
 typedef s32 (*SendFn_80408C24)(s16, u8 *, s16);
 
 struct Tbl_80408F2C;
-
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-
-#pragma pop
 
 typedef char RecoveredGlobal_80409A3C_lbl_805C1C50_size[sizeof(RecoveredGlobal_80409A3C_lbl_805C1C50) == 0xF8 ? 1 : -1];
 
@@ -1578,17 +1545,6 @@ typedef struct Mgr_8040AF48 {
     Conn_8040AF48 *conns;
 } Mgr_8040AF48;
 
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma dont_inline off
-#pragma inline_depth(4)
-
 typedef void (*CbA_8040C540)(s16, s32, s16, s32, s16);
 typedef void (*CbB_8040C540)(s16, u32, s16);
 
@@ -1602,10 +1558,6 @@ typedef char RecoveredGlobal_8040ED28_lbl_805C1B60_size[sizeof(RecoveredGlobal_8
 
 typedef char RecoveredGlobal_8040ED70_lbl_805C1B60_size[sizeof(RecoveredGlobal_8040ED70_lbl_805C1B60) == 0x18 ? 1 : -1];
 
-#pragma push
-#pragma opt_common_subs on
-#pragma pop
-
 s16 TLobby__sub_8040FCEC(u32 ip);
 
 s32 TLobby__sub_8040FDA0(u32 arg0, s16 arg1);
@@ -1615,14 +1567,6 @@ typedef char RecoveredGlobal_8040FE40_lbl_805C1B60_size[sizeof(RecoveredGlobal_8
 
 typedef char RecoveredGlobal_8040FE9C_lbl_805C1B60_size[sizeof(RecoveredGlobal_8040FE9C_lbl_805C1B60) == 0x18 ? 1 : -1];
 
-#pragma push
-#pragma opt_common_subs on
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-#pragma pop
-
 typedef char RecoveredGlobal_8041123C_lbl_805C1BB8_size[sizeof(RecoveredGlobal_8041123C_lbl_805C1BB8) == 0x28 ? 1 : -1];
 
 typedef char RecoveredGlobal_804112B8_lbl_805C1BB8_size[sizeof(RecoveredGlobal_804112B8_lbl_805C1BB8) == 0x28 ? 1 : -1];
@@ -1630,9 +1574,6 @@ typedef char RecoveredGlobal_804112B8_lbl_805C1BB8_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_80411ECC_lbl_805C1BB8_size[sizeof(RecoveredGlobal_80411ECC_lbl_805C1BB8) == 0x28 ? 1 : -1];
 
 typedef char RecoveredGlobal_8040FF0C_lbl_805C1B78_size[sizeof(RecoveredGlobal_8040FF0C_lbl_805C1B78) == 0x40 ? 1 : -1];
-
-#pragma push
-#pragma opt_common_subs on
 
 struct G_8041118C {
     s16 n0; s16 n1; s16 n2; u8 pad6[0xE]; s16 n14; u8 pad16[2];
@@ -1642,17 +1583,6 @@ struct G_8041118C {
 #define g ((G_8041118C *)&ipv6_address_routing_state)
 #undef g
 
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-
-#pragma pop
-
 typedef char RecoveredGlobal_8041471C_lbl_805C1BB8_size[sizeof(RecoveredGlobal_8041471C_lbl_805C1BB8) == 0x28 ? 1 : -1];
 
 struct RecoveredFields_804143BC_arg0 {
@@ -1661,13 +1591,6 @@ struct RecoveredFields_804143BC_arg0 {
 };
 typedef char RecoveredFields_804143BC_arg0_0_offset[offsetof(RecoveredFields_804143BC_arg0, field_0) == 0x0 ? 1 : -1];
 typedef char RecoveredFields_804143BC_arg0_1_offset[offsetof(RecoveredFields_804143BC_arg0, field_1) == 0x1 ? 1 : -1];
-#pragma push
-#pragma scheduling off
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-#pragma pop
 
 typedef char RecoveredGlobal_8041552C_lbl_805C1BE0_size[sizeof(RecoveredGlobal_8041552C_lbl_805C1BE0) == 0x18 ? 1 : -1];
 
@@ -1708,12 +1631,6 @@ typedef struct Arg_804162A4 { u8 *p; s32 v; } Arg_804162A4;
 
 typedef struct Ent_80416678 { u8 pad0[0xC]; u8 fC; } Ent_80416678;
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-
-#pragma pop
-
 typedef struct Hdr_804177A0 {
     s16 len;
     u8 pad[2];
@@ -1726,35 +1643,10 @@ typedef struct Arg_80417E60 { u8 *p; s32 v; } Arg_80417E60;
 
 typedef struct G_80418670 { u8 pad0[4]; s16 f4; u8 pad6[0xA]; Ent_80418670 *f10; } G_80418670;
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-
-#pragma pop
-
 typedef char RecoveredGlobal_80419A00_lbl_805C1C50_size[sizeof(RecoveredGlobal_80419A00_lbl_805C1C50) == 0xF8 ? 1 : -1];
 
 typedef char RecoveredGlobal_80419A34_lbl_805C1C50_size[sizeof(RecoveredGlobal_80419A34_lbl_805C1C50) == 0xF8 ? 1 : -1];
 
-#pragma push
-#pragma opt_common_subs on
 typedef char RecoveredGlobal_80419A7C_lbl_805C1C50_size[sizeof(RecoveredGlobal_80419A7C_lbl_805C1C50) == 0xF8 ? 1 : -1];
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
 
 typedef char RecoveredGlobal_8041E178_lbl_805C1D48_size[sizeof(RecoveredGlobal_8041E178_lbl_805C1D48) == 0xA8 ? 1 : -1];
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop

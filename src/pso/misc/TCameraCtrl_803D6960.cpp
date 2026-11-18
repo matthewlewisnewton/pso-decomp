@@ -301,8 +301,6 @@ void interpolate_motion_quaternion_keys(u32 keys, u32 count, s32 output,
       first->rotation, second->rotation, fraction, (void *)output);
 }
 
-#pragma push
-#pragma scheduling off
 void interpolate_motion_vector_keys(u8 *keys, s32 count, u8 *arg2, f32 farg0) {
     typedef char sp8_offset[(offsetof(Stack_803D6DDC, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_803D6DDC, spC) == 0x4) ? 1 : -1];
@@ -319,10 +317,7 @@ void interpolate_motion_vector_keys(u8 *keys, s32 count, u8 *arg2, f32 farg0) {
     temp_f2_3 = *(f32 *)((s8 *)stack.spC + 0xC);
     *(f32 *)((s8 *)arg2 + 8) = (f32) (temp_f2_3 + (stack.sp10 * (*(f32 *)((s8 *)stack.sp8 + 0xC) - temp_f2_3)));
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 void interpolate_motion_vector_keys_xy(u8 *keys, s32 count, u8 *arg2, f32 farg0) {
     typedef char sp8_offset[(offsetof(Stack_803D6E8C, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_803D6E8C, spC) == 0x4) ? 1 : -1];
@@ -337,10 +332,6 @@ void interpolate_motion_vector_keys_xy(u8 *keys, s32 count, u8 *arg2, f32 farg0)
     *(f32 *)((s8 *)arg2 + 4) = (f32) (temp_f2_2 + (stack.sp10 * (*(f32 *)((s8 *)stack.sp8 + 8) - temp_f2_2)));
     *(f32 *)((s8 *)arg2 + 8) = (f32) lbl_805E0E50;
 }
-#pragma pop
-
-#pragma push
-#pragma scheduling off
 
 void TObjPlayer::interpolate_motion_key(s32 count, s32 *arg2, f32 farg0) {
     u8 *arg0 = (u8 *)this;
@@ -355,10 +346,7 @@ void TObjPlayer::interpolate_motion_key(s32 count, s32 *arg2, f32 farg0) {
     temp_r5 = *(s32 *)((s8 *)stack.spC + 4);
     *arg2 = (s32) ((f32) temp_r5 + (stack.sp10 * (f32) (s16) (*(s32 *)((s8 *)stack.sp8 + 4) - temp_r5)));
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 void sample_motion_angle_keys(u8 *keys, s32 count, u8 *arg2, f32 farg0) {
     typedef char sp8_offset[(offsetof(Stack_803D6FC8, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_803D6FC8, spC) == 0x4) ? 1 : -1];
@@ -377,10 +365,7 @@ void sample_motion_angle_keys(u8 *keys, s32 count, u8 *arg2, f32 farg0) {
     temp_r5_3 = *(s32 *)((s8 *)stack.spC + 0xC);
     *(s32 *)((s8 *)arg2 + 8) = (s32) ((f32) temp_r5_3 + (stack.sp10 * (f32) (s16) (*(s32 *)((s8 *)stack.sp8 + 0xC) - temp_r5_3)));
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 void sample_motion_angle_keys_s16(u8 *keys, s32 count, u8 *arg2, f32 farg0) {
     typedef char sp8_offset[(offsetof(Stack_803D7128, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_803D7128, spC) == 0x4) ? 1 : -1];
@@ -399,7 +384,6 @@ void sample_motion_angle_keys_s16(u8 *keys, s32 count, u8 *arg2, f32 farg0) {
     temp_r5_3 = *(s16 *)((s8 *)stack.spC + 6);
     *(s32 *)((s8 *)arg2 + 8) = (s32) ((f32) temp_r5_3 + (stack.sp10 * (f32) (s16) (*(s16 *)((s8 *)stack.sp8 + 6) - temp_r5_3)));
 }
-#pragma pop
 
 void interpolate_spline_cyclic_cubic(struct SplineKey_803D7288 *keys, u32 count, f32 frame, f32 *output) {
     f32 tbl[2] = { 1.0f, 1.0f };

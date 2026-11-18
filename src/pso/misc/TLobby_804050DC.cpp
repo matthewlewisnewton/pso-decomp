@@ -1309,7 +1309,6 @@ struct Ent_80406B14 { s16 st; u8 pad[0x9c - 2]; };
 struct Tbl_80406B14 { s16 count; Ent_80406B14 *list; };
 #pragma push
 #pragma optimization_level 3
-#pragma opt_unroll_loops off
 s32 TLobby::reset_socket_table() {
     s16 n;
     s16 i;
@@ -2592,7 +2591,6 @@ s32 TLobby__sub_80409130(s16 arg0, s16 arg1, s32 arg2) {
 }
 
 #pragma push
-#pragma dont_inline off
 #pragma inline_depth(4)
 s32 TLobby__sub_8040920C(s16 idx, u8 *mac) {
     Glob_80408C24 *g = (Glob_80408C24 *)&lbl_805C1AD8;
@@ -2666,7 +2664,6 @@ s32 TLobby__sub_804093EC(s16 idx) {
 }
 
 #pragma push
-#pragma dont_inline off
 #pragma inline_depth(4)
 s32 TLobby__sub_8040970C(s16 id, u8 *out) {
     Glob_80408C24 *g = (Glob_80408C24 *)&lbl_805C1AD8;
@@ -2729,7 +2726,6 @@ void TLobby__sub_80409818(s32 msg, s16 len, s16 idx, s16 arg3, u16 type) {
 }
 
 #pragma push
-#pragma dont_inline off
 #pragma inline_depth(4)
 inline s16 packet_length_804098B4(NetPacket *pkt) {
     NetPacketFragment *f;
@@ -3234,7 +3230,6 @@ struct Ent_8040A1FC { s16 f0; s16 f2; u8 pad[0x2C]; };
 struct G_8040A1FC { s16 n; Ent_8040A1FC *p; };
 #pragma push
 #pragma optimization_level 2
-#pragma dont_inline on
 s16 TLobby::is_entry_flag10_set(s16 i) {
     if (i < 0 || i > (*(G_8040A1FC *)&lobby_handler_table_desc).n) { return 0; }
     Ent_8040A1FC *e = (*(G_8040A1FC *)&lobby_handler_table_desc).p;
@@ -3248,7 +3243,6 @@ struct Ent_8040A25C { s16 f0; s16 f2; u8 pad[0x2C]; };
 struct G_8040A25C { s16 n; Ent_8040A25C *p; };
 #pragma push
 #pragma optimization_level 2
-#pragma dont_inline on
 s32 is_socket_flag_set__6TLobbyFs(s16 i) {
     if (i < 0 || i > (*(G_8040A25C *)&lobby_handler_table_desc).n) { return 0; }
     Ent_8040A25C *e = (*(G_8040A25C *)&lobby_handler_table_desc).p;
@@ -3542,8 +3536,6 @@ s32 TLobby::clear_all_used_records() {
     return cnt;
 }
 
-#pragma push
-#pragma dont_inline off
 inline s32 compare_family_addr(u32 family, Rec_8040B33C *a, Rec_8040B33C *b) {
     switch (family) {
     case 4:
@@ -3608,7 +3600,6 @@ s16 TLobby__sub_8040ADE8(Rec_8040B33C *addr) {
     TLobby__sub_804217E4();
     return ret;
 }
-#pragma pop
 
 typedef struct Conn_8040AF48 {
     s16 state;
@@ -3660,8 +3651,6 @@ void TLobby__sub_8040BE40(F_8040A45C *req, s16 err, s16 arg);
 void TLobby__sub_8040B1C4(F_8040A45C *req);
 s16 TUdpSocket__sub_80421BAC(s32 h, u32 *src, u32 *dst, u16 port, u32 *opt, s8 n, UdpBuf_8040AFE0 *bufs);
 
-#pragma push
-#pragma dont_inline off
 inline void put_tag_8040AFE0(F_8040A45C *req, s16 tag) {
     NetMemcpy(req->f18->data + req->f18->len - 4, &tag, 2);
 }
@@ -3722,7 +3711,6 @@ void TLobby__sub_8040AFE0(void) {
         req++;
     }
 }
-#pragma pop
 
 Rec_8040B33C *find_next_active_record__6TLobbyFPv(A_8040B33C *a) {
     G_8040A45C *g = &dns_resolver_state;
@@ -3809,7 +3797,6 @@ typedef struct Mgr_8040B654 {
 struct Conn_8040C540;
 
 #pragma push
-#pragma dont_inline off
 #pragma inline_depth(1)
 inline Ent_8040B654 *find_8040B654(s16 id) {
     Mgr_8040B654 *g = (Mgr_8040B654 *)&dns_resolver_state;
@@ -3974,8 +3961,6 @@ s32 TLobby::build_dns_query_a(u8 *name, s16 len) {
 
 void TLobby__sub_8040BE40(F_8040A45C *req, s16 err, s16 arg);
 
-#pragma push
-#pragma dont_inline off
 inline void reset_requests_8040BE40(E_8040A45C *o, s16 arg) {
     G_8040A45C *g = &dns_resolver_state;
     s16 i;
@@ -4022,13 +4007,11 @@ void TLobby__sub_8040BE40(F_8040A45C *req, s16 err, s16 arg) {
     req->f12 = 0;
     ((TLobby *)req)->dispatch_request_callback(arg);
 }
-#pragma pop
 
 struct N_8040C4B0 { u8 pad0[0x20]; N_8040C4B0 *next; };
 struct O_8040C4B0 { u8 pad0[0x204]; s16 count; u8 pad206[2]; N_8040C4B0 *head; };
 struct G_8040C4B0 { u8 pad0[0x2C]; s16 lim; };
 
-#pragma dont_inline off
 #pragma inline_depth(4)
 inline s32 close_8040BF38(u8 *p, s32 id) {
     s32 r;
@@ -5240,7 +5223,6 @@ struct Ipv4IfaceAddrRecord {
 };
 
 #pragma push
-#pragma dont_inline off
 #pragma inline_depth(4)
 inline s16 is_iface_destination_8040EDE4(s16 idx, u32 dst) {
     Ipv4Iface *ifc = (Ipv4Iface *)TLobby::get_active_entry_by_index(idx);
@@ -5375,9 +5357,6 @@ s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
     return count;
 }
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline s16 get_iface_addr_8040F1A0(s16 *n, Ipv4Iface **ifaces, u32 *addr) {
     if (*n <= 0) {
         return 0;
@@ -5466,7 +5445,6 @@ s16 TLobby__sub_8040F1A0(s16 idx) {
     ifc->aliases = NULL;
     return 0;
 }
-#pragma pop
 
 s32 TLobby::is_lookup_found(u32 arg0, u32 arg1) {
     if (TLobby__sub_8040F76C(arg0, arg1) != NULL) {
@@ -5605,8 +5583,6 @@ s32 TLobby__sub_8040F9CC(u32 dst, u32 mask, u32 gateway, s16 flags) {
 }
 
 #pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 inline s16 find_iface_by_addr_8040FA48(Ipv4Iface *ifaces, s16 n, s16 m, u32 addr) {
     s16 i;
@@ -6003,9 +5979,6 @@ struct Ipv6FragmentHeader {
 s16 TLobby__sub_80411C44(IPv6Address *addr, s16 idx);
 s16 TLobby__sub_80410D6C(NetPacket *pkt, Ipv6Header *hdr, s16 iface, void *opts, u32 room);
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline s16 get_mtu_80410BA8(IPv6Address *dst, s16 iface) {
     return TLobby__sub_80411C44(dst, iface);
 }
@@ -6065,7 +6038,6 @@ s16 TLobby__sub_80410BA8(NetPacket *pkt, NetIPv6SendParameters *params, s16 ifac
     }
     return TLobby__sub_8041123C((s32)pkt, (s32)opts, iface);
 }
-#pragma pop
 
 s16 TLobby__sub_80410D6C(NetPacket *pkt, Ipv6Header *hdr, s16 iface, void *opts, u32 room) {
     s16 NetIPv6IsMulticast(u8 *addr);
@@ -6425,8 +6397,6 @@ struct Ent_80411DEC { s16 state; IPv6Address addr; s16 mtu; s16 timer; };
 struct Iface_80411C44 { u8 pad0[0x26]; s16 mtu; u8 pad28[8]; };
 struct G_80411DEC { u8 pad0[0x14]; s16 count; s16 lifetime; u8 pad18[4]; Iface_80411C44 *ifaces; u8 pad20[4]; Ent_80411DEC *ents; };
 
-#pragma push
-#pragma dont_inline off
 inline s16 is_link_local_80411C44(const IPv6Address *a) {
     u8 b;
 
@@ -6502,7 +6472,6 @@ s16 TLobby__sub_80411C44(IPv6Address *addr, s16 idx) {
     slot->mtu = ifc->mtu;
     return slot->mtu;
 }
-#pragma pop
 
 s32 TLobby__sub_80411DEC(IPv6Address *addr, s16 mtu) {
     G_80411DEC *g = (G_80411DEC *)&ipv6_address_routing_state;
@@ -6668,9 +6637,6 @@ void TLobby__sub_80414B98(u8 *, s16, u8 *);
 
 #define G ((G_80412210 *)&ipv6_address_routing_state)
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline s16 cmp_80412210(void *a, void *b) {
     s32 r = NetMemcmp(a, b, 16);
     if (r < 0) {
@@ -6775,7 +6741,6 @@ s16 TLobby__sub_80412210(s16 idx) {
     ifc->f28 = 0;
     return 0;
 }
-#pragma pop
 #undef G
 
 s32 TLobby__sub_80413230(u8 *arg0, s32 arg1) {
@@ -6800,8 +6765,6 @@ struct Ipv6RouteTable {
     Ipv6PrefixRoute *routes;
 };
 
-#pragma push
-#pragma dont_inline off
 inline s16 is_multicast_80413264(const IPv6Address *a) {
     if (a->bytes[0] == 0xFF) {
         return 1;
@@ -6878,11 +6841,7 @@ u8 *TLobby__sub_80413264(void *dst, s32 src) {
     }
     return NULL;
 }
-#pragma pop
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline s16 is_link_local_8041347C(u8 *a) {
     if (a[0] != 0xFE) {
         return 0;
@@ -6941,7 +6900,6 @@ s32 TLobby__sub_8041347C(u8 *prefix, s16 bits, u8 *addr, s16 idx, s16 kind, s16 
     sel->f6 = idx;
     return 0;
 }
-#pragma pop
 
 void TLobby__sub_804136AC(s16 i) {
     TLobby::is_slot_flag_0x20_set(i);
@@ -6951,9 +6909,6 @@ void TLobby__sub_804136CC(s16 i) {
     is_socket_flag_set__6TLobbyFs(i);
 }
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline s16 addr_cmp_804136EC(void *a, void *b) {
     s32 r = NetMemcmp(a, b, 16);
     if (r < 0) {
@@ -7228,7 +7183,6 @@ s16 TLobby__sub_80414090(u8 *addr, s16 idx) {
     }
     return 0;
 }
-#pragma pop
 
 s16 TLobby__sub_80414218(u8 *a, u8 *b) {
     s16 i;
@@ -7300,8 +7254,6 @@ struct RecoveredFields_804143BC_arg0 {
 };
 typedef char RecoveredFields_804143BC_arg0_0_offset[offsetof(RecoveredFields_804143BC_arg0, field_0) == 0x0 ? 1 : -1];
 typedef char RecoveredFields_804143BC_arg0_1_offset[offsetof(RecoveredFields_804143BC_arg0, field_1) == 0x1 ? 1 : -1];
-#pragma push
-#pragma scheduling off
 s32 NetIPv6GetAddressScopeClass(u8 *arg0) {
     s16 var_r0;
     s16 var_r0_2;
@@ -7378,7 +7330,6 @@ s32 NetIPv6GetAddressScopeClass(u8 *arg0) {
         return 0;
     }
 }
-#pragma pop
 
 typedef struct Ent_80414504 { s16 state; s16 f2; u8 pad[0x2C]; } Ent_80414504;
 typedef struct Mgr_80414504 {
@@ -7389,7 +7340,6 @@ typedef struct Mgr_80414504 {
 } Mgr_80414504;
 
 #pragma push
-#pragma dont_inline off
 #pragma inline_depth(1)
 inline Ent_80414504 *find_80414504(s16 id) {
     Mgr_80414504 *g;
@@ -7427,9 +7377,6 @@ s16 NetIPv6GetInterfaceLinkLayerAddress(s32 arg0, s16 arg1, s16 id) {
 }
 #pragma pop
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_804145D4(u8 *out, s16 idx) {
     Ipv6AddressState *g = (Ipv6AddressState *)&ipv6_address_routing_state;
     Ipv6Iface *ifc;
@@ -7460,7 +7407,6 @@ s16 TLobby__sub_804145D4(u8 *out, s16 idx) {
     }
     return -0x10A;
 }
-#pragma pop
 
 #pragma push
 #pragma opt_common_subs on
@@ -8073,7 +8019,6 @@ s32 TLobby::reset_net_value() {
 
 #pragma push
 #pragma opt_common_subs on
-#pragma pool_data off
 s16 TLobby__sub_80415690(void) {
     u8 *buf;
     s16 i;
@@ -8470,9 +8415,6 @@ typedef struct G_8041615C {
     Rtr_8041615C *rtrs;
 } G_8041615C;
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline u8 *find_nbr_8041615C(G_8041615C *g, u8 *addr) {
     s16 n = g->nnbr;
     Nbr_8041615C *nb = g->nbrs;
@@ -8524,7 +8466,6 @@ void TLobby__sub_8041615C(void) {
         TLobby__sub_80411604(expired->id, 6, &a6);
     }
 }
-#pragma pop
 
 typedef struct Sub_804162A4 { u8 pad0[3]; u8 state; s16 count; } Sub_804162A4;
 typedef struct Ent_804162A4 {
@@ -8828,9 +8769,6 @@ struct Item_80416994 { s16 port; u8 pad2[2]; u8 val[8]; };
 struct Pkt_80416994 { u8 pad0[4]; s32 n; s32 port; Item_80416994 items[1]; };
 struct Arg_80416994 { u8 *p; s32 v; };
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline Ent_80416994 *FindEnt_80416994(Glob_80416994 *g, void *name) {
     s16 n = g->count;
     Ent_80416994 *e = g->ents;
@@ -8982,7 +8920,6 @@ s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 
     }
     return 0;
 }
-#pragma pop
 
 s16 TLobby__sub_80417294(void *, u32, u8 *, void *);
 s16 TLobby__sub_80417494(void *, u8 *, void *);
@@ -9182,9 +9119,6 @@ s16 TLobby__sub_804137FC(u8 *, s16);
 #pragma opt_propagation off
 #pragma opt_common_subs on
 struct G_80415B38;
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 s16 TLobby__sub_80417868(NetPacketFragment *frag, s32 len, u8 *src, s16 iface) {
     u8 *lladdr;
     u8 *h;
@@ -9224,7 +9158,6 @@ s16 TLobby__sub_80417868(NetPacketFragment *frag, s32 len, u8 *src, s16 iface) {
     }
     return 0;
 }
-#pragma pop
 
 s16 NetIPv6SendNeighborAdvertisement(Pkt_804179A4 *arg0, u8 *address, u8 arg2, Sock_804179A4 *arg3, s16 arg4) {
     Na_804179A4 na;
@@ -9517,7 +9450,6 @@ struct E_804184DC {
 
 #pragma push
 #pragma optimization_level 3
-#pragma dont_inline on
 typedef char Layout_pointer_size[sizeof(void *) == 4 ? 1 : -1];
 typedef char Layout_word_size[sizeof(u32) == 4 ? 1 : -1];
 typedef char Layout_NetBufferRef_size[sizeof(NetBufferRef) == 8 ? 1 : -1];
@@ -9767,9 +9699,6 @@ s32 TLobby__sub_80418734(u8 *addr, Ra_80418734 *ra, s16 id) {
 struct Ent_804188E4 { u8 pad0[3]; u8 f3; s16 f4; u8 pad6[0x32]; };
 struct Rec_804188E4 { u8 pad0[3]; u8 f3; u8 pad4[0xC]; Ent_804188E4 *f10; u8 pad14[0x34]; };
 struct G_804188E4 { s16 n0; s16 n2; u8 pad4[4]; Ent_804188E4 *e8; Rec_804188E4 *rC; u8 pad10[0x14]; s16 f24; };
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline Rec_804188E4 *find_804188E4(G_804188E4 *g, Ent_804188E4 *e) {
     s16 n = g->n2;
     Rec_804188E4 *r = g->rC;
@@ -9821,8 +9750,6 @@ Ent_804188E4 *NetIPv6SelectPendingPacketSlot(s32 a0, s32 a1, s32 a2, s32 a3, s32
     }
     return best;
 }
-
-#pragma pop
 
 void NetIPv6ApplyNeighborDiscoveryDefaults(u8 *arg0) {
     if (*(s16 *)((s8 *)arg0 + 0x14) == 0) {
@@ -10064,8 +9991,6 @@ s32 TLobby__sub_80419470(u8 *addr, u32 id) {
 s32 TLobby__sub_8041979C(void);
 
 #pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs on
 inline E_80419258 *alloc_entry_8041955C(G_80419258 *g) {
     E_80419258 *e = ((G_80419258 *)&packet_fragment_pool_state)->ents;
@@ -10257,8 +10182,6 @@ u16 TUdpSocket__sub_80419864(void *buf, s16 len) {
     return sum;
 }
 
-#pragma push
-#pragma pool_data off
 typedef char OriginalBss_805C1AF0_size[(sizeof(G_8040A45C) == 0x48) ? 1 : -1];
 typedef char OriginalBss_805C1B38_size[(sizeof(RecoveredGlobal_8040DD68_lbl_805C1B38) == 0x28) ? 1 : -1];
 typedef char OriginalBss_805C1B60_size[(sizeof(RecoveredGlobal_8040EF00_lbl_805C1B60) == 0x18) ? 1 : -1];
@@ -10280,8 +10203,6 @@ typedef char OriginalBss_805C1C38_size[(sizeof(G_80418ACC) == 0x18) ? 1 : -1];
 typedef char OriginalBss_805C1C50_size[(sizeof(NetworkDispatchState) == 0xF8) ? 1 : -1];
 typedef char OriginalBss_805C1D48_size[(sizeof(RecoveredGlobal_8041E178_lbl_805C1D48) == 0xA8) ? 1 : -1];
 G_80418ACC packet_fragment_pool_state;
-
-#pragma pop
 
 // Kind 2 packs entry/segment indices above an unsigned byte offset.
 // Keep both offsets live through the native 32-bit address additions.

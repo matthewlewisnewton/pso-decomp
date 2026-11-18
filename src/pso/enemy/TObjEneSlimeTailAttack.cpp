@@ -298,13 +298,6 @@ extern SlimeState lbl_80496574[15];
 extern s32 lbl_80496368[2];
 extern TObjMotionAction lbl_8049639C[7];
 
-#pragma push
-#pragma auto_inline on
-#pragma dont_inline off
-#pragma inline_depth(2)
-
-#pragma pop
-
 // Twelve-byte per-enemy saved-state record exchanged by TObjEnemy.
 struct SlimeSavedState {
     s32 flags;
@@ -405,8 +398,6 @@ extern s32 tl_04;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 extern "C" {
 extern u8 lbl_8043D008[];
@@ -561,14 +552,10 @@ extern const f32 lbl_805DA704;
 
 }
 
-#pragma auto_inline off
-#pragma dont_inline off
 #pragma inline_depth(1)
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::push_material_color_override(f32 farg0, f32 farg1, f32 farg2, f32 farg3) {
     Stack_800EBE74 stack;
     (*(s32 *)&saved_model_render_flags) = (*(s32 *)&model_render_flags);
@@ -586,8 +573,6 @@ void TObjPlayer::push_material_color_override(f32 farg0, f32 farg1, f32 farg2, f
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 void TObjPlayer__sub_800EBE48(f32 farg0) {
     TObjPlayer::push_material_color_override(farg0, lbl_805DA6B4, lbl_805DA6B4, lbl_805DA6B4);
@@ -597,15 +582,11 @@ void TObjPlayer__sub_800EBE48(f32 farg0) {
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::init_render_globals() { chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask; chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask; model_render_flags = saved_model_render_flags; }
 #pragma pop
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjEneSlime::create(s32 arg0) {
     s32 ene_slime;
     s32 var_r4;
@@ -622,10 +603,6 @@ s32 TObjEneSlime::create(s32 arg0) {
 }
 #pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::spawn_pair() {
     void *temp_r4;
     void *temp_r5;
@@ -641,24 +618,14 @@ void TObjEneSlime::spawn_pair() {
     temp_r5_2 = *(void **)((s8 *)slime_bml_resource + 0x42C);
     TObjEneSlime::spawn_child(0x29, *(s32 *)((s8 *)temp_r5_2 + 0x58), *(s32 *)((s8 *)temp_r5_2 + 0x5C), lbl_805DA66C, lbl_805DA6B4);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::free_instance() {
     if ((u32) slime_bml_resource != 0U) {
         __dt__11BmlResourceFv((void*)slime_bml_resource, 1);
         slime_bml_resource = 0U;
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
     s32 temp_r0;
@@ -683,12 +650,7 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
     return (u8 *)ene_slime;
 }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 void *__dt__12TObjEneSlimeFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -702,19 +664,9 @@ void *__dt__12TObjEneSlimeFv(void *arg0, s16 arg1) {
     return arg0;
 }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::vfunc_63() { this->release_split_slimes(); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::run_task() {
     s32 sp8;
 
@@ -727,12 +679,7 @@ void TObjEneSlime::run_task() {
         queue_destruction__7TObjectFv(this);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::render() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r30;
@@ -766,21 +713,11 @@ void TObjEneSlime::render() {
         TParticleCtrl::end_effect_render();
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 void TObjEneSlime__sub_800EB9F0(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); *(u32*)((char*)p + 0x4) = *(u32*)((char*)q + 0x4); }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::init_slots() {
     s32 i;
     for (i = 0; i < 4; i++) {
@@ -788,12 +725,7 @@ void TObjEneSlime::init_slots() {
     }
     spawn_slime_in_slot((Obj_800EB7BC *)this, 0, 0, 0);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::release_split_slimes() {
     Obj_800EB910 *self = (Obj_800EB910 *)this;
     s32 i;
@@ -808,12 +740,7 @@ void TObjEneSlime::release_split_slimes() {
         }
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 s32 has_no_active_slot(O_800EB8DC *self) {
     s32 i;
@@ -825,12 +752,7 @@ s32 has_no_active_slot(O_800EB8DC *self) {
     return 1;
 }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 s32 spawn_slime_in_slot(Obj_800EB7BC *origin, s32 arg1, Vec_800EB7BC *arg2, u32 arg3) {
     Tmpl_800EB7BC t;
@@ -862,12 +784,7 @@ s32 spawn_slime_in_slot(Obj_800EB7BC *origin, s32 arg1, Vec_800EB7BC *arg2, u32 
     return 1;
 }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjEneSlime::release_child_slot(s32 id) {
     s32 i = id - entity_id - 1;
     if (i < 0 || i >= 4 || child_slots[i].state != 1) {
@@ -876,7 +793,6 @@ void TObjEneSlime::release_child_slot(s32 id) {
     child_slots[i].slime = 0;
     child_slots[i].state = 2;
 }
-#pragma pop
 #pragma push
 s32 TObjEneSlime::try_spawn_child(void *arg1) {
     s32 i;
@@ -1819,7 +1735,6 @@ void TObjEneSlimeOne::fn_800E95F4() {
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
 void TObjEneSlimeOne::update_effect_fade_lifetime() {
     f32 temp_f1;
     s32 temp_r0;
@@ -2171,9 +2086,6 @@ TObjEneSlimeTailAttack *TObjEneSlimeTailAttack::create(s32, const Vec *position,
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 #pragma fp_contract on
 void TObjEneSlimeTailAttack::run_task() {
     if (active != 0) {
@@ -2254,8 +2166,6 @@ s32 TObjEneSlimeTailAttack::check_hits() {
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void TObjEneSlimeTailAttack::render() {
   f32 temp_f1;
@@ -2284,8 +2194,6 @@ void TObjEneSlimeTailAttack::render() {
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void TObjEneSlimeTailAttack::sub_800E841C() {
     u8 *arg0 = (u8 *)this;
@@ -2316,8 +2224,6 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma fp_contract on
 void TObjEneSlimeTailAttack::draw_stretched_segment(void *arg1, void *arg2, f32 t) {
@@ -2354,8 +2260,6 @@ void TObjEneSlimeTailAttack::draw_stretched_segment(void *arg1, void *arg2, f32 
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void TObjEneSlimeTailAttack::draw_blob_shadows() {
     s32 i;
@@ -2382,15 +2286,11 @@ void TObjEneSlimeTailAttack::draw_blob_shadows() {
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void reset_slime_tail_node_index(void) { lbl_805D52B4 = 0; }
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void capture_slime_tail_node(NJS_OBJECT *) {
     if ((s32) (*(s32 *)&lbl_805D52B4) == 7) {
@@ -2403,28 +2303,19 @@ void capture_slime_tail_node(NJS_OBJECT *) {
 }
 #pragma pop
 
-#pragma push
-#pragma inline_depth(2)
-#pragma auto_inline on
-#pragma dont_inline on
 SlimeTailPose *copy_slime_tail_pose(SlimeTailPose *dst, SlimeTailPose *src) {
     *dst = *src;
     return dst;
 }
-#pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void get_slime_tail_pose(SlimeTailPose *dst) {
     copy_slime_tail_pose(dst, &lbl_80501010);
 }
 #pragma pop
 
-#pragma auto_inline on
 #pragma dont_inline off
-#pragma inline_depth(2)
 
 extern "C" {
 __declspec(section ".sdata2") extern const char lbl_805DA668[4] = "RED";

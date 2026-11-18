@@ -21,10 +21,6 @@ struct Elt_801542CC { char pad[0x18]; s32 f18; char pad2[0x2C - 0x1C]; };
 struct ByteBlock_C { u8 bytes[0xc]; };
 
 #pragma inline_depth(1)
-#pragma auto_inline on
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 struct ByteBlock_60 { u8 bytes[0x60]; };
 
@@ -728,8 +724,6 @@ block_7:
     return 0;
 }
 
-#pragma push
-#pragma fp_contract on
 struct Obj_80156844;
 struct Vec_80156844;
 #define PATG_80155294 ((s32 (*)(void *, void *, int))project_actor_to_ground)
@@ -822,7 +816,6 @@ s32 resolve_player_box_contact(u8 *arg0, u8 *arg1, u8 *arg2) {
     }
     return 1;
 }
-#pragma pop
 
 s32 respond_to_body_contact(u8 *actor, u32 arg1, u8 *arg2) {
     if (arg1 != 0 && arg2 != NULL) {
