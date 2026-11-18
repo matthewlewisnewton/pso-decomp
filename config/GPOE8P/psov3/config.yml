@@ -4239,6 +4239,7 @@ force_active:
   - advance_when_load_done__12TAdTimeSetGCFv
   - advance_wrap_offset__13TUnk_804B2578Fv
   - adventure_map_variation_count_table
+  - adx_afs_partition_id_range_error
   - adx_channel_record_pool
   - adx_decoder_channel_pool
   - adx_encode_available_blocks
@@ -4264,6 +4265,7 @@ force_active:
   - adxm_worker_thread
   - adxt_set_out_pan__6TLobbyFls
   - adxt_trap_entry_update__6TLobbyFPv
+  - afs_file_id_out_of_range_error
   - aim_toward_point__11TBoss6Type2FPv
   - alerted_state__14TObjEneBm5WolfFl
   - all_children_gone__18TObjEneEpsilonBodyFv
@@ -9210,6 +9212,44 @@ force_active:
   - lbl_8047A1B8
   - lbl_8047B928
   - lbl_8047C5D8
+  - lbl_8047C88C
+  - lbl_8047C8B4
+  - lbl_8047C8E4
+  - lbl_8047C910
+  - lbl_8047C93C
+  - lbl_8047C968
+  - lbl_8047C98C
+  - lbl_8047C9B0
+  - lbl_8047C9D4
+  - lbl_8047CA00
+  - lbl_8047CA28
+  - lbl_8047CA5C
+  - lbl_8047CA84
+  - lbl_8047CAB0
+  - lbl_8047CAD8
+  - lbl_8047CB00
+  - lbl_8047CB28
+  - lbl_8047CB54
+  - lbl_8047CB7C
+  - lbl_8047CBA4
+  - lbl_8047CBD8
+  - lbl_8047CC00
+  - lbl_8047CC38
+  - lbl_8047CC64
+  - lbl_8047CC8C
+  - lbl_8047CCBC
+  - lbl_8047CCE8
+  - lbl_8047CD1C
+  - lbl_8047CD50
+  - lbl_8047CD84
+  - lbl_8047CDBC
+  - lbl_8047CDF0
+  - lbl_8047CE1C
+  - lbl_8047CE48
+  - lbl_8047CE78
+  - lbl_8047CEA4
+  - lbl_8047CED4
+  - lbl_8047CF04
   - lbl_80480950
   - lbl_804809D0
   - lbl_804809E0

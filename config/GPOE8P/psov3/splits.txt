@@ -13907,6 +13907,9 @@ pso/misc/TLobby_803CC274.cpp:
 
 pso/unk/text_803CC294.cpp:
 	.text       start:0x803CC294 end:0x803CD804
+	.rodata     start:0x8047C818 end:0x8047CF30
+	.sbss       start:0x805D75E8 end:0x805D75F0
+	.sdata2     start:0x805E0D88 end:0x805E0D8C
 
 pso/misc/TLobby_803CD804.cpp:
 	.text       start:0x803CD804 end:0x803CD840
