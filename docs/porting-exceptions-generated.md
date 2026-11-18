@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 92 | 60 |
 | hardware | 71 | 14 |
-| pragma | 4118 | 885 |
-| configure.py per-unit override | 229 | 229 |
+| pragma | 4118 | 884 |
+| configure.py per-unit override | 228 | 228 |
 
-Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `inline_depth` 639, `opt_common_subs` 592, `auto_inline` 264, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `bool` 59, `defer_codegen` 58, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `inline_depth` 639, `opt_common_subs` 591, `auto_inline` 264, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `bool` 59, `defer_codegen` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -295,7 +295,6 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `i
 | `pso/enemy/TObjEneDubchik.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last function back. -inline off,deferred emits that order (the vtable lands before the switch tables). -str reuse,readonly keeps the motion-name pool in .rodata. These are upstream's own flags for this unit. |
 | `pso/enemy/TObjEnePanarms.cpp` | `-inline deferred, -sdata 4, -sym on` | Native private header sections preserve initializer and helper emission order. |
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/enemy/TObjEneMoja.cpp` | `-inline off,deferred` | Deferred emission puts the Moja vtable before the run_task switch table. |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjVoloptPillar.cpp` | `(multi-line entry; see configure.py)` | GC/2.0 interleaves the BML model-table load with the debris initializer's copy tail. Map the original template to CodeWarrior's local aggregate. |
 | `pso/unk/text_8031EF14.cpp` | `(multi-line entry; see configure.py)` | GC/2.0 schedules the model and position loads across the aggregate copy tails. Disabling pooling keeps the three original debris templates. |
@@ -637,7 +636,7 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `i
 | `src/pso/enemy/TObjEneMe3Stelth.cpp` | fp_contract×6, opt_propagation×1 |
 | `src/pso/enemy/TObjEneMe3Stelth_800F0AE4.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMerillLia.cpp` | opt_common_subs×2, defer_codegen×1, opt_loop_invariants×1, fp_contract×1 |
-| `src/pso/enemy/TObjEneMoja.cpp` | opt_common_subs×1 |
+| `src/pso/enemy/TObjEneMoja.cpp` | fp_contract×1, opt_common_subs×1, dont_inline×1, inline_depth×1, defer_codegen×1 |
 | `src/pso/enemy/TObjEneMorfos.cpp` | opt_common_subs×3, defer_codegen×1, opt_propagation×1, fp_contract×1 |
 | `src/pso/enemy/TObjEneMorfosArm_80335218.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMorfos_80337500.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1135,7 +1134,6 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 651, `i
 | `src/pso/player/TObjPlayer_8008DCF0.cpp` | opt_common_subs×3 |
 | `src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp` | fp_contract×1 |
-| `src/pso/player/TObjPlayer_800ACA60.cpp` | fp_contract×1, opt_common_subs×1, dont_inline×1, inline_depth×1 |
 | `src/pso/player/TObjPlayer_800BBE90.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_800F0810.cpp` | opt_common_subs×3, opt_propagation×3 |
 | `src/pso/player/TObjPlayer_80109344.cpp` | opt_propagation×1 |

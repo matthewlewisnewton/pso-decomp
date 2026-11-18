@@ -204,8 +204,8 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
 | MWCC intrinsics | 92 | 60 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 4,121 | 881 |
-| Per-unit compiler overrides in `configure.py` | 224 | 224 |
+| CodeWarrior pragmas (excluding push/pop) | 4,121 | 880 |
+| Per-unit compiler overrides in `configure.py` | 223 | 223 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -753,11 +753,13 @@ recovered the unit’s constants at `0x805DE4E0` and `0x805DE4E4`. With those
 definitions in the unit, the literal bounds `0.0f` and `1.0f` reproduce the
 original object under the normal optimizer settings.
 
-### Approved: `TObjEneMoja` constructor scaled-offset lookup ([#394](https://github.com/matthewlewisnewton/pso-decomp/pull/394))
+### Retired Moja constructor exception
 
-| File | Function | What | Why | Port should |
-|---|---|---|---|---|
-| `src/pso/enemy/TObjEneMoja.cpp` | `__ct__11TObjEneMojaFP7TObjectPv` (`0x800AF8B0`) | Scoped `#pragma opt_common_subs off` and the scaled-offset spelling `variant_offset = kind * sizeof(*lbl_805D50C8)` / `table[variant_offset / sizeof(*lbl_805D50C8)]` (and the same for `lbl_805D50D0`) | Approved by Matt on 2026-11-10 ~8:27 AM PT: "Yes, approve #394's scaled-offset lookup with a porting-exceptions register row." With CSE enabled, the two probability clamps use different floating-point registers. Literal bounds reproduce the instructions but create a second pair of constants at different addresses from the shared bounds at `0x805D9BD8` and `0x805D9BDC`. The scaled-offset form is required for the table loads: `table[kind]`, `table[variant]`, typed temps, a C-style cast and local table pointers all reach 99.84% (same 632-byte size) because of an r7/r8 swap around `lwz r7, lbl_805D50C8` / `slwi r8,r5,2` / `lwzx`. `*(table + kind)` reaches 98.28%. A true struct array does not fit: `load_resources` allocates two separate pointer tables. The constructor's two exclusive offsets at `0x805D9C60` and `0x805D9C64` are defined after use to retain their named relocations. | Drop the pragma, clamp to `[0.0f, 1.0f]`, and index the two tables directly with the variant. |
+Fork [#394](https://github.com/matthewlewisnewton/pso-decomp/pull/394) approved
+disabling common-subexpression elimination and scaling a variant index to a byte
+offset and back. The constructor and the preceding Moja behavior functions now
+share the original constant pool. The constructor clamps both probability fields
+with literal bounds and indexes the base and resistance tables directly.
 
 ### Approved: `TEF_LensFlare::render` ([#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272))
 
@@ -1377,13 +1379,16 @@ Linking `TObjBoss2Tunnel_802F2070.cpp` also needs `cw_align` (`.sbss=4 .sdata2=4
 |---|---|---|---|---|
 | `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
 
-### `TObjEneMoja.cpp`: `-inline off,deferred`
+### Moja resource and vtable emission
 
 The loader at `0x800AF56C` uses a shared `.data` base for the two BML descriptors, action table and collision body. With a single external struct view, CodeWarrior folds two subobject offsets into their loads and emits a 680-byte function. Defining the individual tables in the same translation unit restores the two address instructions and the original 688 bytes.
 
-The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions with `-inline off,deferred` preserve both the function order and the original data order. The adjacent constructor uses the same `.data` base at `0x80491828` for the vtable, action table, collision body and movement table, so it joins this unit.
+The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions under `defer_codegen on` in the final six-function group preserve both the function order and the original data order. The adjacent constructor uses the same `.data` base at `0x80491828` for the vtable, action table, collision body and movement table, so it joins this unit.
 
-Ports can drop the compiler switch. The render and target-acquisition bodies in `TObjPlayer_800ACA60.cpp` are ordinary `TObjEneMoja` members (`render`, and `vfunc_28` — the `TObjChara` override name for acquire_target).
+The earlier behavior functions use immediate emission. The collision flag word
+`0x8001` sits between two groups of compiler-generated float constants at
+`0x805D9BFC` and uses the native small read-only section. Ports can use the
+ordinary integer definition and omit the deferred-emission setting.
 
 ### `TBoss8Dragon.cpp`: `-inline off,deferred` ([#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302))
 
