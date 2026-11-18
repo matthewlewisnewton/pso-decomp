@@ -527,6 +527,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
         for index in range(1, 7)
     },
     "pso/misc/TOVS2Wall01_8017C7A4.cpp": {"cw_align": ".data=4"},
+    # The warp tables begin immediately after the resource data at 0x804B918C.
+    "pso/object/TObjAreaWarpEndingJung.cpp": {"cw_align": ".data=4"},
     # The base collider's vtable follows the derived vtable at 0x804E355C.
     "pso/item/TItemAttackCol_802E4798.cpp": {"cw_align": ".data=4"},
     # The radar-hide vtable and name pointer both start four bytes past an

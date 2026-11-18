@@ -114,7 +114,7 @@ struct VObj_80186030_80185EC8 : Base_80186030_80185EC8 {
     virtual void m12();
     virtual void m13();
     virtual void m14();
-    virtual void m15();
+    virtual s32 m15();
 };
 
 struct RecoveredGlobal_8018605C_lbl_804447F4 { s32 value; u8 remaining[0x3C]; };
@@ -355,7 +355,7 @@ void *TObjLaboMapWarp__ct(void *labo_map_warp) {
     return labo_map_warp;
 }
 
-void TObjCityMapWarp::slot4C() {
+void TObjCityMapWarp::draw_debug_destinations() {
     Obj_80185664 *self = (Obj_80185664 *)this;
     ((TObjCityMapWarp *)self)->clamp_destination_index();
     TObjNpcEnemy::set_global_count(0xFF00FF);
@@ -583,12 +583,12 @@ s32 TObjCityMainWarp__vt14(s32 arg0) {
     if ((get_game_play_mode() == 1) && (is_quest_active() == 0)) {
         return 0;
     }
-    return TObjAreaWarp::is_warp_enabled(arg0);
+    return ((TObjAreaWarp *)arg0)->TObjAreaWarp::is_warp_enabled();
 }
 
-void TObjCityMainWarp::vfunc_18(s32) {
+s32 TObjCityMainWarp::vfunc_18(s32) {
     struct VObj_80186030_80185EC8 *o = (struct VObj_80186030_80185EC8 *)this;
-    o->m15();
+    return o->m15();
 }
 
 s32 TObjCityMainWarp__vt15(u8 *arg0) {

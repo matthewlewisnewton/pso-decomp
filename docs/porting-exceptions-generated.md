@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 92 | 61 |
 | hardware | 71 | 14 |
 | pragma | 4103 | 886 |
-| configure.py per-unit override | 233 | 233 |
+| configure.py per-unit override | 234 | 234 |
 
 Pragma kinds (excluding push/pop/once): `fp_contract` 821, `dont_inline` 646, `inline_depth` 634, `opt_common_subs` 589, `auto_inline` 259, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `defer_codegen` 64, `bool` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 38, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
@@ -281,6 +281,7 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 821, `dont_inline` 646, `i
 | `pso/misc/TOMineDisp.cpp` | `(multi-line entry; see configure.py)` | The mine display table immediately follows its trap display counterpart. |
 | `pso/misc/TOMine.cpp` | `(multi-line entry; see configure.py)` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TOVS2Wall01_8017C7A4.cpp` | `(multi-line entry; see configure.py)` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/object/TObjAreaWarpEndingJung.cpp` | `(multi-line entry; see configure.py)` | The warp tables begin immediately after the resource data at 0x804B918C. |
 | `pso/item/TItemAttackCol_802E4798.cpp` | `(multi-line entry; see configure.py)` | The base collider's vtable follows the derived vtable at 0x804E355C. |
 | `pso/object/TObjRaderHideCol.cpp` | `(multi-line entry; see configure.py)` | The radar-hide vtable and name pointer both start four bytes past an eight-byte boundary; preserve their native placement in MWLD metadata. |
 | `pso/misc/TCheckMemoryCard.cpp` | `(multi-line entry; see configure.py)` | The memory-card menu position precedes the callback templates in .data. Its two read-only layout inputs begin at a four-byte-aligned address. |

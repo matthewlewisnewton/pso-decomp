@@ -7,7 +7,7 @@
 struct TObjCityMainWarp : public TObjAreaWarp {
     virtual ~TObjCityMainWarp();
     virtual void vfunc_14();
-    virtual void vfunc_18(s32);
+    virtual s32 vfunc_18(s32);
     virtual void debug_print_area_num();
     void run_task();
     u8 unk_AC[0x4];

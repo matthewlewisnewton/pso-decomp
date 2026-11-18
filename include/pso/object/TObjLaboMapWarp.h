@@ -6,7 +6,7 @@
 
 struct TObjLaboMapWarp : public TObjMapWarp {
     virtual ~TObjLaboMapWarp();
-    virtual void slot4C();
+    virtual void draw_debug_destinations();
     virtual void run_task();
     virtual void render();
     int is_field88_zero();

@@ -330,7 +330,7 @@ extern "C" void TLobby__sub_80184DF4(void) {
 }
 
 
-void TObjLaboMapWarp::slot4C() {
+void TObjLaboMapWarp::draw_debug_destinations() {
     Obj_80185160 *self = (Obj_80185160 *)this;
     ((TObjLaboMapWarp *)self)->clamp_index();
     TObjNpcEnemy::set_global_count(0xFF00FF);
