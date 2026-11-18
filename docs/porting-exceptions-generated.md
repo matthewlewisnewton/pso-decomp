@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 92 | 60 |
 | hardware | 69 | 13 |
-| pragma | 5893 | 892 |
+| pragma | 5894 | 893 |
 | configure.py per-unit override | 224 | 224 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 61, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 61, `bool` 59, `pack` 46, `pool_data` 43, `opt_loop_invariants` 43, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -757,6 +757,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TDuelEffectNumber.cpp` | fp_contract×2, opt_common_subs×2 |
 | `src/pso/misc/TDuelEffectNumber_80080290.cpp` | fp_contract×1 |
 | `src/pso/misc/TDuelEffectNumber_80080460.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
+| `src/pso/misc/TEnding_8008C5C0.cpp` | pool_data×1 |
 | `src/pso/misc/TFogCtrl.cpp` | inline_depth×13, auto_inline×13, dont_inline×13, fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TFontSmallLobby_801C013C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TForceOperate.cpp` | opt_common_subs×2 |
