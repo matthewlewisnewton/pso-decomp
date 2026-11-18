@@ -3232,7 +3232,7 @@ void qst_op_set_shrink_size(s32 player_variable, s32 size_variable) {
         s32 whole = qst_registers[(u8)size_variable++];
         s32 numerator = qst_registers[(u8)size_variable++];
         s32 denominator = qst_registers[(u8)size_variable];
-        ((TObjPlayer *)(&player->scale_state))->set_speed(denominator > 0 ? (f32)whole + (f32)numerator / (f32)denominator : (f32)whole);
+        player->scale_state.set_scalar(denominator > 0 ? (f32)whole + (f32)numerator / (f32)denominator : (f32)whole);
     }
 }
 

@@ -715,9 +715,6 @@ struct TObjPlayer : public TObjChara {
     void*init_members();
     void*init_wrapper();
     void*init_sub();
-    void*init_subobjects();
-    void set_speed(f32 farg0);
-    void set_scale_xyz(f32 farg0);
     s32 setup_state();
     void setup_state_helper();
     u8 *init_subobject();
@@ -1463,7 +1460,6 @@ struct TObjPlayer : public TObjChara {
     void init_battle();
     void reset_area_entry_state();
     u8 *construct_player_instance(s32 arg1, s16 arg2, s32 arg3, u8 *arg4);
-    void*init_pair();
     u8 *copy_hold_params(u8 *arg1);
     void init_cmd_6x24();
     void send_lobby_update();
