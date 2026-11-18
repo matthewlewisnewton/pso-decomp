@@ -28,6 +28,12 @@ The scalar transforms passed 800 comparisons against the original instructions. 
 
 The exported patch reproduces the standalone branch tree. The front-end, network and renderer branches also merged cleanly together. A full build and upstream check of the combined tree `dc40c3fc84` passed with all 27,572 functions and 2,538 linked units exact. Matched and linked data each increased by 104 bytes, comprising 100 inventory bytes and the four-byte keyboard polling mask.
 
+## Shared window frame and item rows
+
+Three local commits belong with the window lifecycle review. Start with the window and menu opening the same draw context at `7f2104b445`. Then review sorting depth, client index and the closing tick on the window base at `9693628876`. Commit `42687a6baf` gives that base the list of layout entries and the window flags. Its status-row callers use the existing item-row type for icons, colors and the two owned strings. Most of the header changes remove copies of fields inherited from the base.
+
+The shared layout now extends through offset 0x2F. The remaining geometry extends through 0x5F in the fork. These commits do not change the range ledger. The original GPOE8P executable, all 27,572 functions and all 2,539 linked units matched after each commit. A host check of the production method bodies exercised 321 fade ticks, 21 closing-stretch values, and reverse-order entry destruction with empty slots and a repeated clear. Address, leak and undefined-behavior checks passed. Upstream PR 320 was still open at `f72cca569d` when these changes were checked.
+
 ## Enemy motion, collision and rendering
 
 Two local integration commits recover additional source detail for the player, enemy and effect review family. They preserve the byte inventory.

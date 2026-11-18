@@ -165,8 +165,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/ui/window/TWindowFukidasi.cpp:566` | `__cntlzw` |
 | `src/pso/ui/window/TWindowHelpItem_802530D0.cpp:24` | `__cntlzw` |
 | `src/pso/ui/window/TWindowKeyBoardBase_8008102C.cpp:74` | `__cntlzw` |
-| `src/pso/ui/window/TWindowMainMenu_802AD538.cpp:454` | `__cntlzw` |
-| `src/pso/ui/window/TWindowSubComCard_80244774.cpp:237` | `__cntlzw` |
+| `src/pso/ui/window/TWindowMainMenu_802AD538.cpp:451` | `__cntlzw` |
+| `src/pso/ui/window/TWindowSubComCard_80244774.cpp:235` | `__cntlzw` |
 | `src/pso/ui/window/TWindowSubItem.cpp:354` | `__cntlzw` |
 | `src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp:93` | `__cntlzw` |
 | `src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
