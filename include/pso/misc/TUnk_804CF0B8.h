@@ -9,8 +9,8 @@ struct TWindowDrawContext;
 class TUnk_804CF0B8 : public TWindowAddition {
 public:
     TUnk_804CF0B8(u16 speaker, s32 text, s32 client, f32 scale);
-    virtual ~TUnk_804CF0B8();
     virtual void run_task();
+    virtual ~TUnk_804CF0B8();
     void draw_body(void *, u32, f32 *, f32);
     void draw_body_row(void *, void *, f32, f32, f32, f32);
     void draw_tail(void *, u32, f32 *, f32);

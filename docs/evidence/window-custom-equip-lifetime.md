@@ -64,7 +64,7 @@ current evidence does not establish a complete lifetime for those paths.
 No extra stores or assumption of per-allocation heap zeroing is added. The
 existing CustomSelect constructor/destructor and all its text remain unchanged.
 
-The later [CustomSelect native-code recovery](window-custom-select-native-code.md)
+The later [CustomSelect native-code recovery](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-custom-select-native-code.md)
 reproduces the native constructor/destructor, ordinary-new producer and compiler
 table. It preserves these early returns and uninitialized slots exactly. The
 partial-initialization safety hold above remains unresolved; native code and

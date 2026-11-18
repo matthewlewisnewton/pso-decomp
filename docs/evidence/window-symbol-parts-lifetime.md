@@ -1,6 +1,6 @@
 # SymbolChatParts compiled native lifetime; source-link hold retained
 
-Later follow-up: the [#243 provenance and propagation control](window-symbol-parts-propagation-control.md)
+Later follow-up: the [#243 provenance and propagation control](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-symbol-parts-propagation-control.md)
 qualifies a newer upstream source separately from the historical checks below.
 One fixed typed/native literal-plus-control scratch case matches all 20 bodies and
 198 resolved relocations, without upstream's explicit 8.0f placement. The control's
