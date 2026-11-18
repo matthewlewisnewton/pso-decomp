@@ -543,8 +543,6 @@ extern "C"{
 extern TObject *tl_04;
 struct EpsilonParameters { u8 reserved[0x20]; s32 field_20; };
 
-#pragma defer_codegen on
-
 TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, s32 *set_data): TObjEneEpsilon(parent) {
     m_name = lbl_805D4460;
     invoke_initialization_hook(set_data);
@@ -1203,8 +1201,6 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
     }
 }
 
-#pragma push
-#pragma fp_contract on
 extern "C" void TObjEneEpsilonGuard__sub_80360BF8(u8 *arg0, s32 arg1) {
     s32 temp_r4;
     switch (arg1) {
@@ -1254,7 +1250,6 @@ extern "C" void TObjEneEpsilonGuard__sub_80360BF8(u8 *arg0, s32 arg1) {
         break;
     }
 }
-#pragma pop
 
 void TObjEneEpsilonGuard::update_fade(s32 arg1) {
     s32 temp_r4;
@@ -1343,9 +1338,6 @@ void TObjEneEpsilonBody::action_destroy(s32 arg1) {
     }
 }
 
-#pragma push
-#pragma opt_common_subs off
-#pragma opt_propagation off
 void TObjEneEpsilonBody::render() {
     s32 var_r31;
     s32 i;
@@ -1389,7 +1381,6 @@ void TObjEneEpsilonBody::render() {
         }
     }
 }
-#pragma pop
 
 void TObjEneEpsilonBody::sub_803606A0(s32 i) {
     Obj_803606A0 *g6 = (Obj_803606A0 *)this;
@@ -1603,8 +1594,6 @@ void TObjEneEpsilonGuard::update_attack_pattern(void *arg0) {
     }
 }
 
-#pragma push
-#pragma fp_contract off
 u32 TObjEneEpsilonBody::select_attack_target(s32 sequence) {
     EnemyTargetCandidate candidates[4];
     candidates[0].id = 0xFFFF;
@@ -1650,7 +1639,6 @@ u32 TObjEneEpsilonBody::select_attack_target(s32 sequence) {
     }
     return candidates[order.indices[sequence % 4]].id;
 }
-#pragma pop
 
 extern "C" s32 TObjEneEpsilonGuard__sub_8035FCEC(W_8035FCEC *arg0) {
     s32 i;

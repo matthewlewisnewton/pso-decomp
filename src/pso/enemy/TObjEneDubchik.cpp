@@ -165,8 +165,6 @@ struct Obj_800AA528 { u8 pad0[0x326]; s16 state; };
 struct Obj_800A8A7C { u8 pad[0x388]; u32 flags; };
 
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct Vec_800A8C4C { s32 x, y, z; };
 
 struct Obj_800A8A7C;

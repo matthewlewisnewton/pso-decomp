@@ -21,7 +21,6 @@
 #include <stddef.h>
 
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 

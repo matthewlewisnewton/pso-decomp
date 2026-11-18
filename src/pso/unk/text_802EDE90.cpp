@@ -42,7 +42,6 @@ void fill_value_array(PointerBuffer *);
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 extern "C" TBoss7DeRolLeC *TBoss7DeRolLeC__ct(TBoss7DeRolLeC *boss, TObject *parent, void *set_data) {
     Boss7ConstructorTables *tables = reinterpret_cast<Boss7ConstructorTables *>(&lbl_804E3BF0);

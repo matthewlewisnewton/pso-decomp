@@ -448,8 +448,6 @@ void *__dt__11TBoss2JointFv(void *arg0, s16 arg1) {
 
 typedef char RecoveredGlobal_80036FC8___vt__11TBoss2Joint_size[sizeof(RecoveredGlobal_80036FC8___vt__11TBoss2Joint) == 0x1A8 ? 1 : -1];
 
-#pragma push
-#pragma opt_propagation off
 struct RecoveredGlobal_80036A90_lbl_80435A68;
 
 s32 TBoss2Joint::init_params() {
@@ -477,7 +475,6 @@ s32 TBoss2Joint::init_params() {
     self->unk3A8 = lbl_805D846C;
     copy_argb((NJS_ARGB *)self->unk3AC, (NJS_ARGB *)&TBoss2Joint__joint_offset_vec4_table);
 }
-#pragma pop
 
 u8 *TBoss2Joint__ct(u8 *boss2_joint, u8 *arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5, s32 arg6) {
     __ct__9TObjEneDDFP7TObject(boss2_joint);

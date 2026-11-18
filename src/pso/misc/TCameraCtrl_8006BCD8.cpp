@@ -18,23 +18,6 @@
 #pragma fp_contract on
 #pragma pop
 
-struct Stack_8006C03C {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-    f32 sp14;
-    f32 sp18;
-    f32 sp1C;
-    f32 sp20;
-    f32 sp24;
-    f32 sp28;
-};
-
-struct RecoveredGlobal_8006C03C_lbl_804383E0 {
-    s32 value;
-    u8 remaining[0xC];
-};
-
 struct RecoveredGlobal_8006C03C_lbl_804FF5E8 {
     s32 value;
     u8 remaining[0x24];
@@ -64,7 +47,6 @@ extern "C" {
 void direction_to_pitch_yaw(u8 *arg0, s32 *arg1, s32 *arg2);
 }
 void set_camera_look_at(u8 *eye, u8 *target, u8 *up);
-extern RecoveredGlobal_8006C03C_lbl_804383E0 camera_look_at_up_vec;
 extern RecoveredGlobal_8006C03C_lbl_804FF5E8 lbl_804FF5E8;
 extern void *camera_ctrl_instance;
 extern void* camera_controller_registry[];
@@ -169,7 +151,6 @@ extern s32 scripted_camera_projection_angle;
 
 #pragma push
 #pragma opt_common_subs off
-typedef char RecoveredGlobal_8006C03C_lbl_804383E0_size[sizeof(RecoveredGlobal_8006C03C_lbl_804383E0) == 0x10 ? 1 : -1];
 typedef char RecoveredGlobal_8006C03C_lbl_804FF5E8_size[sizeof(RecoveredGlobal_8006C03C_lbl_804FF5E8) == 0x28 ? 1 : -1];
 typedef char RecoveredFields_8006C03C_arg0_3C_offset[offsetof(RecoveredFields_8006C03C_arg0, field_3C) == 0x3C ? 1 : -1];
 typedef char RecoveredFields_8006C03C_arg0_40_offset[offsetof(RecoveredFields_8006C03C_arg0, field_40) == 0x40 ? 1 : -1];
@@ -185,27 +166,17 @@ typedef char RecoveredFields_8006C03C_lbl_805D4DF0_188_offset[offsetof(Recovered
 typedef char RecoveredFields_8006C03C_lbl_805D4DF0_18C_offset[offsetof(RecoveredFields_8006C03C_lbl_805D4DF0, field_18C) == 0x18C ? 1 : -1];
 void TCameraCtrl::apply_look_at_from_target() {
     u8 *arg0 = (u8 *)this;
-    typedef char sp8_offset[(offsetof(Stack_8006C03C, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_8006C03C, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_8006C03C, sp10) == 0x8) ? 1 : -1];
-    typedef char sp14_offset[(offsetof(Stack_8006C03C, sp14) == 0xC) ? 1 : -1];
-    typedef char sp18_offset[(offsetof(Stack_8006C03C, sp18) == 0x10) ? 1 : -1];
-    typedef char sp1C_offset[(offsetof(Stack_8006C03C, sp1C) == 0x14) ? 1 : -1];
-    typedef char sp20_offset[(offsetof(Stack_8006C03C, sp20) == 0x18) ? 1 : -1];
-    typedef char sp24_offset[(offsetof(Stack_8006C03C, sp24) == 0x1C) ? 1 : -1];
-    typedef char sp28_offset[(offsetof(Stack_8006C03C, sp28) == 0x20) ? 1 : -1];
-    Stack_8006C03C stack;
-    stack.sp14 = ((RecoveredFields_8006C03C_arg0 *)arg0)->field_48 - ((RecoveredFields_8006C03C_arg0 *)arg0)->field_3C;
-    stack.sp18 = ((RecoveredFields_8006C03C_arg0 *)arg0)->field_4C - ((RecoveredFields_8006C03C_arg0 *)arg0)->field_40;
-    stack.sp1C = ((RecoveredFields_8006C03C_arg0 *)arg0)->field_50 - ((RecoveredFields_8006C03C_arg0 *)arg0)->field_44;
-    direction_to_pitch_yaw((u8 *)((void *)&stack.sp14), (s32 *)((void *) ((*(u8 * *)&camera_ctrl_instance) + 0x190)), (s32 *)((void *) ((*(u8 * *)&camera_ctrl_instance) + 0x194)));
-    stack.sp20 = ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_184;
-    stack.sp24 = ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_188;
-    stack.sp28 = ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_18C;
-    stack.sp8 = *(s32 *)((s8 *)&camera_look_at_up_vec.value + 0);
-    stack.spC = *(s32 *)((s8 *)&camera_look_at_up_vec.value + 4);
-    stack.sp10 = *(s32 *)((s8 *)&camera_look_at_up_vec.value + 8);
-    set_camera_look_at(((*(u8 * *)&camera_ctrl_instance) + 0x178), (u8 *)&stack.sp20, (u8 *)&stack.sp8);
+    Vec target;
+    Vec direction;
+    direction.x = ((RecoveredFields_8006C03C_arg0 *)arg0)->field_48 - ((RecoveredFields_8006C03C_arg0 *)arg0)->field_3C;
+    direction.y = ((RecoveredFields_8006C03C_arg0 *)arg0)->field_4C - ((RecoveredFields_8006C03C_arg0 *)arg0)->field_40;
+    direction.z = ((RecoveredFields_8006C03C_arg0 *)arg0)->field_50 - ((RecoveredFields_8006C03C_arg0 *)arg0)->field_44;
+    direction_to_pitch_yaw((u8 *)&direction, (s32 *)((void *) ((*(u8 * *)&camera_ctrl_instance) + 0x190)), (s32 *)((void *) ((*(u8 * *)&camera_ctrl_instance) + 0x194)));
+    target.x = ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_184;
+    target.y = ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_188;
+    target.z = ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_18C;
+    Vec up = {0.0f, 1.0f, 0.0f};
+    set_camera_look_at(((*(u8 * *)&camera_ctrl_instance) + 0x178), (u8 *)&target, (u8 *)&up);
     *(f32 *)((s8 *)&lbl_804FF5E8.value + 0) = (f32) ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_178;
     *(f32 *)((s8 *)&lbl_804FF5E8.value + 4) = (f32) ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_17C;
     *(f32 *)((s8 *)&lbl_804FF5E8.value + 8) = (f32) ((RecoveredFields_8006C03C_lbl_805D4DF0 *)(*(u8 * *)&camera_ctrl_instance))->field_180;

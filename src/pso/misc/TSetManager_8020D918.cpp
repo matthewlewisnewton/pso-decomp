@@ -174,9 +174,6 @@ s32 load_map_decoration_rows(s32 map, s32 grp, s32 room) {
     return 1;
 }
 
-#pragma push
-#pragma scheduling off
-
 void TLobby::clear_floor_flags_and_depart() {
     s32 unused;
     TLobby__sub_8020D94C();
@@ -185,7 +182,6 @@ void TLobby::clear_floor_flags_and_depart() {
     TLobby__data_805D6134 &= ~16;
     depart_floor_population(unused);
 }
-#pragma pop
 
 void TLobby::setup_floor_decorations() {
     Vec3_8020DB44 v;

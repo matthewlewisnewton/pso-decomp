@@ -9,8 +9,6 @@
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 
-#pragma scheduling off
-#pragma scheduling off
 typedef s32 (*RecoveredCallback_d26337a2813d)();
 
 typedef GinjaMaterialCache S_803DB560;
@@ -130,13 +128,10 @@ void draw_ginja_object(void *child) {
 }
 }
 GinjaMaterialCache *invalidate_ginja_inherited_state();
-#pragma push
-#pragma scheduling off
 s32 queue_model_draw_current_matrix(s32 model) {
     queue_model_draw_matrix(model, current_matrix);
     return 1;
 }
-#pragma pop
 
 void draw_ginja_model(void *model) {
     load_ginja_model_matrices(0);
@@ -149,9 +144,6 @@ s32 get_ginja_vertex_descriptor_type(u32 arg0, s32 arg1) {
     return (arg0 >> (arg1 * 2)) & 3;
 }
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 u32 update_ginja_cached_parameter(s32 i, u32 v) {
   u32 r = v ^ ginja_material_cache.parameters[i];
   r |= ginja_material_cache.dirty[i];
@@ -159,7 +151,6 @@ u32 update_ginja_cached_parameter(s32 i, u32 v) {
   ginja_material_cache.dirty[i] = 0;
   return r;
 }
-#pragma pop
 
 void set_ginja_indexed_vtx_desc(s32 arg0) {
     GXClearVtxDesc();
@@ -257,9 +248,6 @@ void set_ginja_channel_counts(s32 flags, s32 arg1) {
 }
 #pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void set_ginja_material_color(u32 v) {
     C_803DB9A0 fallback = lbl_805E0F68;
     C_803DB9A0 *mat;
@@ -287,11 +275,6 @@ void set_ginja_material_color(u32 v) {
         GXSetChanMatColor(4, *mat);
     }
 }
-#pragma pop
-
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 
 void TObjPlayer::set_global_color_rgba(u32 v) {
     (*(S_803DBAF8 *)&ginja_material_cache).c.r = (v & 0xFF000000) >> 24;
@@ -299,22 +282,14 @@ void TObjPlayer::set_global_color_rgba(u32 v) {
     (*(S_803DBAF8 *)&ginja_material_cache).c.b = (v & 0xFF00) >> 8;
     (*(S_803DBAF8 *)&ginja_material_cache).c.a = v & 0xFF;
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void TObjPlayer::set_global_color_rgba_alt_b(u32 v) {
     (*(S_803DBB38 *)&ginja_material_cache).c.r = (v & 0xFF000000) >> 24;
     (*(S_803DBB38 *)&ginja_material_cache).c.g = (v & 0xFF0000) >> 16;
     (*(S_803DBB38 *)&ginja_material_cache).c.b = (v & 0xFF00) >> 8;
     (*(S_803DBB38 *)&ginja_material_cache).c.a = v & 0xFF;
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void set_ginja_blend_param(u32 x) {
     if ((u32)model_render_flags & 0x8000) {
         x = ginja_blend_override;
@@ -322,7 +297,6 @@ void set_ginja_blend_param(u32 x) {
     (*(S_803DBB78 *)&ginja_material_cache).f80 = x;
     (*(S_803DBB78 *)&ginja_material_cache).f7c |= 1;
 }
-#pragma pop
 
 void ginja_set_vertex_format(u32 arg0) {
     GXSetVtxAttrFmt(0, ginja_vertex_attributes[(arg0 & 0xFF0000) >> 16], ginja_vertex_component_counts[(arg0 & 0xF000) >> 12], ginja_vertex_component_types[(arg0 & 0xF00) >> 8], arg0);
@@ -369,13 +343,9 @@ void set_ginja_texcoord_gen(u32 arg0) {
     GXSetTexCoordGen2(coord, func, src, mtx, 0, 0x7D);
 }
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void ginja_set_alpha_compare(s32 ref) {
     GXSetAlphaCompare(4, ref, 0, 7, 0);
 }
-#pragma pop
 
 // Late definition keeps the named load in set_ginja_material_color.
 #ifdef __MWERKS__
@@ -534,9 +504,6 @@ void set_ginja_vertex_arrays(Arr_803DC3BC *arg0) {
     }
 }
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 GinjaMaterialCache *invalidate_ginja_inherited_state() {
   GinjaMaterialCache *state = &ginja_material_cache;
   if ((state->inherited_flags ^ model_render_flags) & 0x80000) {
@@ -547,11 +514,6 @@ GinjaMaterialCache *invalidate_ginja_inherited_state() {
   }
   return state;
 }
-#pragma pop
-
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 
 s32 draw_ginja_model_lists(void *model_data) {
   GinjaModel *model = (GinjaModel *)model_data;
@@ -607,11 +569,7 @@ s32 draw_ginja_model_lists(void *model_data) {
   return 0;
 #endif
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void prepare_ginja_model(void) {
     if ((*(u32 *)&ginja_draw_flags) & 2) {
         TObjPlayer::reset_particle_counter();
@@ -626,10 +584,7 @@ void prepare_ginja_model(void) {
     (*(GinjaMaterialCache *)&ginja_material_cache).inherited_flags = (*(u32 *)&model_render_flags);
     (*(GinjaMaterialCache *)&ginja_material_cache).blend_valid = 0;
 }
-#pragma pop
 
-#pragma push
-#pragma peephole off
 void end_ginja_model_draw(void) {
     if ((u32) (ginja_draw_flags & 2) != 0) {
         TObjPlayer::set_effect_active();
@@ -644,7 +599,6 @@ void end_ginja_model_draw(void) {
         }
     }
 }
-#pragma pop
 
 s32 load_ginja_model_matrices(int arg0) {
     f32 s[3][4];

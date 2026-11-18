@@ -52,6 +52,28 @@ typedef char PppConnection_options_offset[offsetof(Conn_804004DC, opts) == 0x30 
 typedef char PppBuffer_length_offset[offsetof(B_803FADA0, len) == 4 ? 1 : -1];
 typedef char PppIPv4_protocol_offset[offsetof(A_80403F4C, count) == 0x16 ? 1 : -1];
 
+struct IpcpConfigureValues {
+    s16 mask;
+    u8 unknown2[2];
+    s32 address0, address1;
+    s16 compression, slots;
+    u8 slot_id;
+    u8 unknown11[3];
+    s32 word14, word18, word1C, word20;
+};
+struct IpcpConfigureSide {
+    s16 mask;
+    u8 unknown2[2];
+    IpcpConfigureValues wanted, agreed;
+};
+struct Obj_80403F4C;
+struct IpcpConfigureOptions { IpcpConfigureSide sides[2]; Obj_80403F4C *compression_state; };
+typedef char IpcpValues_size_803FFB84[sizeof(IpcpConfigureValues) == 0x24 ? 1 : -1];
+typedef char IpcpSide_size_803FFB84[sizeof(IpcpConfigureSide) == 0x4C ? 1 : -1];
+typedef char IpcpOptions_size_803FFB84[sizeof(IpcpConfigureOptions) == 0x9C ? 1 : -1];
+typedef char IpcpRequestMaskOffset[offsetof(IpcpConfigureOptions, sides) + offsetof(IpcpConfigureSide, agreed) == 0x28 ? 1 : -1];
+typedef char IpcpReplyMaskOffset[sizeof(IpcpConfigureSide) + offsetof(IpcpConfigureSide, agreed) == 0x74 ? 1 : -1];
+
 struct Fsm_803FDBF8;
 struct Md5Ctx_80401EB8;
 struct Self_80402CE0;
@@ -80,6 +102,7 @@ void reset_connection_slot(void *context);
 void queue_command_81(void *context);
 void save_timer_state(void *context);
 void init_md5_state(struct Md5Ctx_80401EB8 *context);
+void NetChapDispatch(Conn_804004DC *state, B_803FADA0 *frame);
 void NetPapDispatch(Conn_804004DC *state, B_803FADA0 *frame);
 B_803FADA0 *NetIPv4WriteHeader(A_80403F4C *config, B_803FADA0 *frame, s32 preserve_checksum);
 #ifdef __cplusplus

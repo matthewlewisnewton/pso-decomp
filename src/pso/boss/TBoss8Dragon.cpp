@@ -4046,8 +4046,6 @@ void TBoss8Dragon::select_freeze_target() {
     this->m_750 = var_r31;
 }
 
-#pragma push
-#pragma fp_contract on
 void TBoss8Dragon::freeze_player_at_self() {
     s32 temp_r31;
     u8 *player;
@@ -4065,7 +4063,6 @@ void TBoss8Dragon::freeze_player_at_self() {
     }
     ((s32 (*)(void))TBoss8Dragon__sub_802FD9D0)();
 }
-#pragma pop
 
 void release_grabbed_player__12TBoss8DragonFPv(TBoss8Dragon *boss8_dragon) {
     s32 var_r31;
