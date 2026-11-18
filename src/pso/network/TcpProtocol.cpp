@@ -498,11 +498,8 @@ s32 get_field_d8__6TLobbyFv(void *);
 void reset_slot_index__6TLobbyFv(void *);
 s32 close_if_open__6TLobbyFv(void *);
 void clear_position__6TLobbyFv(void *);
-s32 is_multicast_address__6TLobbyFs(void *, s16);
-s16 compare_sockaddr__6TLobbyFPUc(void *, u8 *);
 u8 *alloc_free_entry__6TLobbyFv(void);
 void release_entry__10TUdpSocketFv(void *);
-void set_value_and_enable__6TLobbyFl(NetBufferRef *, s32);
 
 s16 dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(NetPacket *, u8 *, u8 *, u8 *, u8 *, s32);
 
@@ -1091,7 +1088,7 @@ send:
             fragment_length_offset = m->fragment_count * (s32)sizeof(NetPacketFragment)
                 + offsetof(NetPacket, fragments) + offsetof(NetPacketFragment, length);
             *(s16 *)((u8 *)m + fragment_length_offset) = optlen;
-            set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)optp);
+            NetBufferRefInitKind1(&m->fragments[m->fragment_count].buffer, (s32)optp);
             m->fragment_count++;
         }
         header_bytes = sizeof(TcpHdr);
@@ -1099,7 +1096,7 @@ send:
         fragment_length_offset = m->fragment_count * (s32)sizeof(NetPacketFragment)
             + offsetof(NetPacket, fragments) + offsetof(NetPacketFragment, length);
         *(s16 *)((u8 *)m + fragment_length_offset) = header_bytes;
-        set_value_and_enable__6TLobbyFl(&m->fragments[m->fragment_count].buffer, (s32)th);
+        NetBufferRefInitKind1(&m->fragments[m->fragment_count].buffer, (s32)th);
         m->fragment_count++;
         th->sum = TLobby__sub_8040D8F0(tp->local, tp->remote, 6, (u8 *)m, 1);
         if (tp->force == 0 || tp->timers[1] == 0) {
@@ -1205,7 +1202,7 @@ s16 TLobby__sub_8041B3D4(u8 *dst, u8 *src, u16 src_port, u16 dst_port, s32 seq, 
     NetMemcpy(wire + 14, &hdr.window, 2);
     NetMemcpy(wire + 16, &hdr.checksum, 2);
     NetMemcpy(wire + 18, &hdr.urgent, 2);
-    ((TLobby *)&pkt->fragments[0].buffer)->set_value_and_enable((s32)wire);
+    NetBufferRefInitKind1(&pkt->fragments[0].buffer, (s32)wire);
     hdr.checksum = TLobby__sub_8040D8F0(src, dst, 6, (u8 *)pkt, 1);
     NetMemcpy(wire + 16, &hdr.checksum, 2);
     if (dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(pkt, dst, src, opts + 4, opts + 4, 6) < 0) {
@@ -1419,7 +1416,7 @@ retry:
             if (*(s16 *)(ent + offsetof(TcpTcb, t_state)) == -1) {
                 continue;
             }
-            if (compare_sockaddr__6TLobbyFPUc(ent + offsetof(TcpTcb, remote), a)) {
+            if (NetCompareAddresses((NetworkAddress *)(ent + offsetof(TcpTcb, remote)), (NetworkAddress *)(a))) {
                 continue;
             }
             if (*(u16 *)(ent + offsetof(TcpTcb, hdr.dport)) != hdr.sport) {
@@ -1445,7 +1442,7 @@ retry:
             if (*(u16 *)(ent + offsetof(TcpTcb, hdr.sport)) != hdr.dport) {
                 continue;
             }
-            if (compare_sockaddr__6TLobbyFPUc(ent + offsetof(TcpTcb, remote), a)) {
+            if (NetCompareAddresses((NetworkAddress *)(ent + offsetof(TcpTcb, remote)), (NetworkAddress *)(a))) {
                 if (!is_addr_unspecified__6TLobbyFPv(ent + offsetof(TcpTcb, remote))) {
                     continue;
                 }
@@ -1488,7 +1485,7 @@ retry:
         if (!(kind & 2)) {
             goto drop;
         }
-        if ((s16)is_multicast_address__6TLobbyFs(b, 0) == 1) {
+        if ((s16)NetIsMulticastAddress((NetworkAddress *)b, 0) == 1) {
             goto drop;
         }
         ent_new = (u8 *)TLobby__sub_8041B774((Tcb_8041B774 *)found, (u16 *)ti, a, b);
@@ -2028,7 +2025,7 @@ dropwithreset:
     if (kind & 4) {
         goto drop;
     }
-    if ((s16)is_multicast_address__6TLobbyFs(b, 0) == 1) {
+    if ((s16)NetIsMulticastAddress((NetworkAddress *)b, 0) == 1) {
         goto drop;
     }
     if (kind & 0x10) {
@@ -2860,7 +2857,7 @@ s16 TLobby__sub_8041E5E4(s16 h, u8 *addr, u16 port) {
                 continue;
             }
             if (is_addr_unspecified__6TLobbyFPv(addr) != 0 || is_addr_unspecified__6TLobbyFPv(e->laddr) != 0 ||
-                ((TLobby *)e->laddr)->compare_sockaddr(addr) == 0) {
+                NetCompareAddresses((NetworkAddress *)(e->laddr), (NetworkAddress *)(addr)) == 0) {
                 if (e->f6 == 10 && (e->flags & 0x80)) {
                     TLobby__sub_8041B5C0(e);
                 } else {
@@ -3037,8 +3034,8 @@ s32 TLobby__sub_8041EC14(u8 *arg0) {
         if (TLobby__sub_80415954((NetBufferRef *) (&spC[0]), (int) (*(s32 *)((s8 *)arg0 + 0x534)), 1) < 0) {
             return -0x102;
         }
-        ((TLobby *)(arg0 + 0xD0))->init_msg(spC[0]);
-        ((TLobby *)(arg0 + 0xC8))->set_value_and_enable(spC[0]);
+        NetBufferRefInitKind4((NetBufferRef *)(arg0 + 0xD0), spC[0]);
+        NetBufferRefInitKind1((NetBufferRef *)(arg0 + 0xC8), spC[0]);
         goto block_4;
     }
 block_4:
@@ -3060,8 +3057,8 @@ s32 TLobby__sub_8041ECA4(u8 *arg0) {
     {
       return -0x102;
     }
-    ((TLobby *)(((u8 *) arg0) + 0x18))->init_msg((s32)((int) spC));
-    ((TLobby *)(((u8 *) arg0) + 0x10))->set_value_and_enable((s32)((int) spC));
+    NetBufferRefInitKind4((NetBufferRef *)(((u8 *) arg0) + 0x18), (s32)((int) spC));
+    NetBufferRefInitKind1((NetBufferRef *)(((u8 *) arg0) + 0x10), (s32)((int) spC));
     goto block_4;
   }
   block_4:

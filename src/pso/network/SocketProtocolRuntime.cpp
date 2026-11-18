@@ -1,3 +1,4 @@
+#include "pso/network/BufferRef.h"
 // TCP queue recovery adapted from zeroz41/pso-decomp (MIT); see third_party/README.md.
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/UdpRuntime.h"
@@ -101,10 +102,7 @@ void TLobby__sub_8041A9AC(Obj_8041ED8C *);
 extern G_8041ED8C tcp_protocol_state;
 s32 TLobby__sub_8041ED8C(Obj_8041ED8C *self, void *data, u32 len, s32 arg3);
 s32 TLobby__sub_8041F11C(Obj_8041F11C *self);
-s16 compare_sockaddr__6TLobbyFPUc(void *, void *);
-s16 is_multicast_address__6TLobbyFs(void *, s32);
 s16 TLobby__sub_80421F10(void *, void *, void *, u16, s32, s16);
-s32 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *arg0, NetworkAddress *src, NetworkAddress *dst, s32 arg3);
 UdpRuntimeState udp_runtime_state;
 
 struct O_8041FE44;
@@ -551,11 +549,11 @@ inline void add_item_80420FC8(Pkt_80420FC8 *pkt, void *data, s32 len) {
     s32 off = pkt->len;
     pkt->items[n].len = len;
     pkt->len = off + len;
-    ((TLobby *)(pkt->items[n].data))->set_value_and_enable((s32)data);
+    NetBufferRefInitKind1((NetBufferRef *)pkt->items[n].data, (s32)data);
     pkt->count++;
 }
 
-s32 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *arg0, NetworkAddress *src, NetworkAddress *dst, s32 arg3) {
+s16 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *arg0, NetworkAddress *src, NetworkAddress *dst, s16 arg3) {
     u8 sp20[8];
     Hdr_80420DE4 hdr;
     UdpRuntimeState *g;
@@ -563,7 +561,7 @@ s32 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *arg0, NetworkAddress *src, NetworkAdd
     s16 *plen;
     UdpControlBlock *e;
     plen = &arg0->f18;
-    ((TLobby *)sp20)->set_value_and_enable((s32)&hdr);
+    NetBufferRefInitKind1((NetBufferRef *)sp20, (s32)&hdr);
     TLobby__sub_80406FD8(sp20, plen + 2, 8);
     if (hdr.sum != 0 && (u16)TLobby__sub_8040D8F0(src, dst, 0x11, arg0, 0) != 0) {
         return -1;
@@ -579,14 +577,14 @@ s32 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *arg0, NetworkAddress *src, NetworkAdd
             if (e->remoteAddress.family != 0 && e->remoteAddress.family != src->family) {
                 goto next;
             }
-        } else if (compare_sockaddr__6TLobbyFPUc(&e->remoteAddress, src) != 0) {
+        } else if (NetCompareAddresses(&e->remoteAddress, src) != 0) {
             goto next;
         }
         if (is_addr_unspecified__6TLobbyFPv(&e->localAddress) != 0) {
             if (e->localAddress.family != 0 && e->localAddress.family != dst->family) {
                 goto next;
             }
-        } else if (compare_sockaddr__6TLobbyFPUc(&e->localAddress, dst) != 0) {
+        } else if (NetCompareAddresses(&e->localAddress, dst) != 0) {
             goto next;
         }
         if (e->remotePort != 0 && e->remotePort != hdr.src) {
@@ -606,7 +604,7 @@ s32 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *arg0, NetworkAddress *src, NetworkAdd
         i++;
         e++;
     }
-    if (is_multicast_address__6TLobbyFs(dst, arg3) == 1) {
+    if ((s16)NetIsMulticastAddress(dst, arg3) == 1) {
         return 0;
     }
     return -2;

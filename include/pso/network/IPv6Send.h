@@ -54,4 +54,6 @@ struct NetIcmpv6RouterSolicitation {
     NetIcmpv6Header header;
 };
 
+extern "C" u16 NetPacketChecksum(NetPacket *packet, s16 flag);
+
 #endif

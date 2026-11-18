@@ -6,6 +6,8 @@
 #include "pso/network/SocketEvents.h"
 #include "pso/network/NetworkDispatch.h"
 #include "pso/misc/TLobby.h"
+#include "pso/network/NetworkRequestRuntime.h"
+#include "pso/network/NetworkRecordConfig.h"
 #include "pso/network/BufferRef.h"
 #include "pso/network/IPv6.h"
 
@@ -1660,7 +1662,7 @@ inline s16 copy_packet_80409908(u8 *dst, NetPacket *pkt) {
     p = dst;
     f = &pkt->fragments[n] - 1;
     for (; n > 0; n--) {
-        ((TLobby *)&ref)->set_value_and_enable((s32)p);
+        NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)p);
         TLobby__sub_80406FD8(&ref, &pkt->fragments[n - 1].buffer, f->length);
         p += f->length;
         total += f->length;
@@ -2186,7 +2188,7 @@ inline void reset_requests_8040BE40(E_8040A45C *o, s16 arg) {
             e->f10 = -0x42;
             e->f12 = 0;
             e->f2C = NULL;
-            ((TLobby *)e)->dispatch_request_callback(arg);
+            NetDispatchRequestCallback((Conn_8040C540 *)e, arg);
         }
         i++;
         e++;
@@ -2302,6 +2304,17 @@ struct Conn_8040C540 {
     u8 pad12[0xE];
     u8 sub[0x20];
 };
+
+/* DNS requests use the same native connection prefix and callback slot. */
+typedef char NetRequestIdLayout[offsetof(F_8040A45C, f2) == offsetof(Conn_8040C540, id) ? 1 : -1];
+typedef char NetRequestStateLayout[offsetof(F_8040A45C, f8) == offsetof(Conn_8040C540, state) ? 1 : -1];
+typedef char NetRequestThreadLayout[offsetof(F_8040A45C, fC) == offsetof(Conn_8040C540, thread) ? 1 : -1];
+typedef char NetRequestErrorLayout[offsetof(F_8040A45C, f10) == offsetof(Conn_8040C540, err) ? 1 : -1];
+typedef char NetRequestCallbackLayout[offsetof(F_8040A45C, f34) == offsetof(Conn_8040C540, sub) + offsetof(SubA_8040C540, cb) ? 1 : -1];
+typedef char NetDnsQueryIdLayout[offsetof(F_8040A45C, f6) == offsetof(Q_8040B6E4, id) ? 1 : -1];
+typedef char NetDnsQueryPacketLayout[offsetof(F_8040A45C, f18) == offsetof(Q_8040B6E4, pkt) ? 1 : -1];
+typedef char NetDnsQueryAIdLayout[offsetof(F_8040A45C, f6) == offsetof(Q_8040B790, id) ? 1 : -1];
+typedef char NetDnsQueryAPacketLayout[offsetof(F_8040A45C, f18) == offsetof(Q_8040B790, pkt) ? 1 : -1];
 
 void TLobby__sub_8040C74C(SubA_8040C540 *a);
 s16 TLobby__sub_8040C8A8(u8 *dst, u8 *src, s16 max);
@@ -2484,7 +2497,6 @@ struct O_80420DE4;
 s32 TUdpSocket__sub_80418BD8(A_80418BD8 *);
 s32 TLobby__sub_80418C40(u8 *, u16, s16, u8, u32, u8 *, u16, u8, s16);
 s32 TLobby__sub_8041B974(u8 *, u8 *, u8 *);
-s32 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *, NetworkAddress *, NetworkAddress *, s32);
 s32 TLobby__sub_80421AD8(u8 *, s32, s32, u32, s32);
 
 
@@ -2670,10 +2682,10 @@ inline NetPacket *buildrec_8040FFF8(u8 *ip, s16 m, u8 *p, s32 rem) {
     rec->fragment_count = 0;
     rec->total_bytes = m;
     rec->fragments[rec->fragment_count].length = m - rem;
-    ((TLobby *)&rec->fragments[rec->fragment_count].buffer)->set_value_and_enable( (s32)ip);
+    NetBufferRefInitKind1(&rec->fragments[rec->fragment_count].buffer,  (s32)ip);
     rec->fragment_count += 1;
     rec->fragments[rec->fragment_count].length = (u16)rem;
-    ((TLobby *)&rec->fragments[rec->fragment_count].buffer)->set_value_and_enable( (s32)p);
+    NetBufferRefInitKind1(&rec->fragments[rec->fragment_count].buffer,  (s32)p);
     rec->fragment_count += 1;
     return rec;
 }
@@ -3728,7 +3740,7 @@ inline s32 notify_804182DC(E_804184DC *e) {
     nw->fragment_count = 0;
     nw->total_bytes = e->pending->f30;
     nw->fragments[nw->fragment_count].length = e->pending->f30;
-    ((TLobby *)&nw->fragments[nw->fragment_count].buffer)->set_value_and_enable( (s32)e->pending->f34);
+    NetBufferRefInitKind1(&nw->fragments[nw->fragment_count].buffer,  (s32)e->pending->f34);
     nw->fragment_count++;
     TLobby__sub_80410BA8(nw, (NetIPv6SendParameters *)e->pending->f8, e->iface, e->key);
     ((TUdpSocket *)nw)->release_entry();

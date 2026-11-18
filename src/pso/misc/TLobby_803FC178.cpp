@@ -787,8 +787,8 @@ struct Outer_80401CAC;
 void TLobby__sub_80401CAC(Outer_80401CAC *, u16);
 s32 TLobby__sub_80405304(void *);
 
-void TLobby::dispatch_received_packet(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
+void NetChapDispatch(Conn_804004DC *self, B_803FADA0 *arg1) {
+    u8 *arg0 = (u8 *)self;
     PppConfigureMessage hdr;
     u8 temp_r0;
     u8 temp_r0_2;

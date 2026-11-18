@@ -1,3 +1,4 @@
+#include "pso/network/NetworkRecordConfig.h"
 #include "pso/protocol/PacketBuffer.h"
 #include "types.h"
 #include "pso/network/BufferPool.h"
@@ -550,8 +551,8 @@ void TLobby__sub_803F87DC(void * _w0) {
 
 }
 
-void TLobby::init_ipv6_interface_config() {
-    Obj_803F87E0 *arg0 = (Obj_803F87E0 *)this;
+void NetInitIpv6InterfaceConfig(Obj_803F87E0 *self) {
+    Obj_803F87E0 *arg0 = (Obj_803F87E0 *)self;
     arg0->x0 = 1;
     arg0->xc = 0;
     arg0->x10 = 0;
@@ -564,8 +565,8 @@ void TLobby__sub_803F8864(void *) {
 
 }
 
-void TLobby::init_udp_socket_config() {
-    Cfg_803F8868 *o = (Cfg_803F8868 *)this;
+void NetInitUdpSocketConfig(Cfg_803F8868 *self) {
+    Cfg_803F8868 *o = (Cfg_803F8868 *)self;
     o->a0 = 0x1A;
     o->a2 = 3;
     o->a4 = 9;
@@ -591,8 +592,8 @@ void TLobby__sub_803F88E0(void *) {
 typedef struct RecoveredFields_803F88E4_arg0 RecoveredFields_803F88E4_arg0;
 typedef struct RecoveredGlobal_803F88E4_lbl_805AEEB0 RecoveredGlobal_803F88E4_lbl_805AEEB0;
 typedef char RecoveredGlobal_803F88E4_lbl_805AEEB0_size[((sizeof(RecoveredGlobal_803F88E4_lbl_805AEEB0)) == 0x49C8) ? (1) : (-1)];
-void TLobby::init_buffer_descriptor_b() {
-    RecoveredFields_803F88E4_arg0 *arg0 = (RecoveredFields_803F88E4_arg0 *)this;
+void NetInitBufferDescriptorB(RecoveredFields_803F88E4_arg0 *self) {
+    RecoveredFields_803F88E4_arg0 *arg0 = (RecoveredFields_803F88E4_arg0 *)self;
   u8 *new_var;
   arg0->field_0 = 2;
   new_var = (u8 *) (&(*(RecoveredGlobal_803F88E4_lbl_805AEEB0 *)&lobby_net_config_block).value);
@@ -625,8 +626,8 @@ void TLobby__sub_803F8958(void * _w0) {
 }
 
 typedef char RecoveredGlobal_803F895C_lbl_805AEEB0_size[sizeof(RecoveredGlobal_803F895C_lbl_805AEEB0) == 0x49C8 ? 1 : -1];
-void TLobby::init_buffer_descriptor_a() {
-    u8 *arg0 = (u8 *)this;
+void NetInitBufferDescriptorA(NetConfig_803F895C *self) {
+    u8 *arg0 = (u8 *)self;
     struct Fields_arg0 { s16 field_0; s16 field_2; s16 field_4; s16 field_6; u8 * field_8; u8 * field_C; u8 * field_10; };
     ((Fields_arg0*)arg0)->field_0 = 0x1A;
     ((Fields_arg0*)arg0)->field_2 = 3;
@@ -680,8 +681,8 @@ void TLobby__sub_803F8A24(void *) {
 }
 
 typedef char RecoveredGlobal_803F8A28_lbl_805AEEB0_size[sizeof(RecoveredGlobal_803F8A28_lbl_805AEEB0) == 0x49C8 ? 1 : -1];
-void TLobby::init_net_buffer_config() {
-    u8 *arg0 = (u8 *)this;
+void NetInitNetworkBufferConfig(NetConfig_803F8A28 *self) {
+    u8 *arg0 = (u8 *)self;
     struct Fields_arg0 { s16 field_0; s16 field_2; s16 field_4; s16 field_6; s16 field_8; s16 field_A; s16 field_C; u8 pad_E[2]; u8 * field_10; u8 * field_14; u8 * field_18; u8 * field_1C; u8 * field_20; u8 * field_24; };
     ((Fields_arg0*)arg0)->field_0 = 8;
     ((Fields_arg0*)arg0)->field_2 = 3;
@@ -712,8 +713,8 @@ void TLobby__sub_803F8AB8(void) {
     TLobby::reset_message_thread();
 }
 
-void TLobby::init_net_func_table() {
-    Desc_803F8AD8 *arg0 = (Desc_803F8AD8 *)this;
+void NetInitFunctionTable(Desc_803F8AD8 *self) {
+    Desc_803F8AD8 *arg0 = (Desc_803F8AD8 *)self;
     Big_803F8AD8 *g = (Big_803F8AD8 *)&lobby_net_config_block;
     g->funcs[0] = (void *)TLobby__sub_80426B88;
     g->funcs[1] = (void *)TLobby::open_channel_checked;
@@ -737,12 +738,12 @@ void TLobby__sub_803F8B78(void) {
 }
 
 typedef char RecoveredGlobal_803F8B7C_lbl_805BD66C_size[sizeof(RecoveredGlobal_803F8B7C_lbl_805BD66C) == 0xA04 ? 1 : -1];
-void TLobby::init_net_recv_desc() {
-    u8 *arg0 = (u8 *)this;
+void NetInitReceiveDescriptor(NetConfig_803F8B7C *self) {
+    u8 *arg0 = (u8 *)self;
     *(s16 *)((s8 *)arg0 + 0xA) = 0x500;
-    *(s16 *)&this->m_next = 2;
-    *(s32 * *)&this->m_up = &lbl_805D7A58;
-    *(s32 * *)&this->m_down = &lobby_net_recv_desc.value;
+    *(s16 *)(arg0 + 0xC) = 2;
+    *(s32 * *)(arg0 + 0x10) = &lbl_805D7A58;
+    *(s32 * *)(arg0 + 0x14) = &lobby_net_recv_desc.value;
 }
 
 u8 *TLobby::layout_buffers(u8 *p, u8 *end) {

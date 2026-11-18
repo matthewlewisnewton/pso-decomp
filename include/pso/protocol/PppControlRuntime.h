@@ -102,6 +102,7 @@ void reset_connection_slot(void *context);
 void queue_command_81(void *context);
 void save_timer_state(void *context);
 void init_md5_state(struct Md5Ctx_80401EB8 *context);
+void NetChapDispatch(Conn_804004DC *state, B_803FADA0 *frame);
 void NetPapDispatch(Conn_804004DC *state, B_803FADA0 *frame);
 B_803FADA0 *NetIPv4WriteHeader(A_80403F4C *config, B_803FADA0 *frame, s32 preserve_checksum);
 #ifdef __cplusplus

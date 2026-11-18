@@ -5222,8 +5222,8 @@ force_active:
   - build_dead_list_window__15TObjDeadListWinFv
   - build_default_save_file__23TAdSinglePlyChrSelectGCFv
   - build_discover__11DhcpMessageFv
-  - build_dns_query_a__6TLobbyFPUcs
-  - build_dns_query_aaaa__6TLobbyFPUcs
+  - NetDnsBuildQueryA
+  - NetDnsBuildQueryAAAA
   - build_door_collision_triangles__18TObjCityDoor_LobbyFv
   - build_download_list__12TQuestListVMFv
   - build_ethernet_frame_header__6TLobbyFPvPvUsUcUsUs
@@ -5302,7 +5302,7 @@ force_active:
   - calc_highlight_scale__12TChCrTagNameFPv
   - calc_hit_zone_index__16TBoss3VoloptCoreFv
   - calc_i8_tiled_texel_offset
-  - calc_ip_checksum__6TLobbyFs
+  - NetPacketChecksum
   - calc_item_cost_bonus__22TQuestVmDownLoadServerFUcUcUcll
   - calc_item_entry_cost__22TQuestVmDownLoadServerFUcUcl
   - calc_item_entry_cost_extra__22TQuestVmDownLoadServerFUcUcUcl
@@ -5858,7 +5858,7 @@ force_active:
   - close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv
   - close_and_next_cancel__12TAdTimeSetGCFv
   - close_and_play_effect__6TLobbyFii
-  - close_and_reset_connection__6TLobbyFv
+  - NetConnectionCloseAndReset
   - close_and_send_text_list__6TLobbyFv
   - close_and_set_state_12__6TLobbyFv
   - close_and_set_state_13__6TLobbyFv
@@ -6473,7 +6473,7 @@ force_active:
   - dispatch_quest_opcode__Fv
   - dispatch_reaction_state__16TBoss3VoloptCoreFv
   - dispatch_received_ethernet_frame__FPvPvPv
-  - dispatch_request_callback__6TLobbyFs
+  - NetDispatchRequestCallback
   - dispatch_run_state__10TObjPlayerFis
   - dispatch_select_phase__16TKeyBoardControlFv
   - dispatch_slot_a__6TLobbyFsl
@@ -16863,7 +16863,7 @@ force_active:
   - reset_on_death__10TObjPlayerFv
   - reset_on_load_complete__12TAdTimeSetGCFv
   - reset_oscillation__11TItemMagSubFll
-  - reset_other_connection_lists__6TLobbyFv
+  - NetResetOtherFragmentLists
   - reset_pad_rumble_effects_and_channels__Fs
   - reset_placement_search_ring__13TUnk_804C4498Fv
   - reset_position__9TItemListFPv
