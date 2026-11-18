@@ -1,7 +1,7 @@
 # Lobby network recovery at 0x804050DC
 
 Recovery started at `84420bea523b79b3e2daf384b26fb1211560e0be`. The pull request
-uses `9a8d9fdd91f55173526f947ca140ce65e4626dc5` as its verification baseline.
+uses `f8b7b04cc635ff3b95385b716ba41c88811ad49d` as its verification baseline.
 The original address range contains 281 functions and 84,260 code bytes.
 All 281 functions and all 888 allocated data/BSS bytes now match in the
 three source-linked objects. The starting build had 244 exact functions
@@ -27,6 +27,31 @@ Keeping all tables in the former single object loses the intervening alignment.
 This organization reproduces the data contributions and their alignment; it is
 not, by itself, proof of the historical translation-unit boundaries. The original
 DOL hash verifies all three groups’ linked contributions.
+
+## Review revisions
+
+The three objects use the same explicit-inline default. The shared header has
+zero pragma lines. The source groups have 47, 8 and 22 respectively. A stock
+compiler comparison tested each retained change of setting and its restoration.
+The [exception register](../porting-exceptions.md#lobby-network-recovery)
+identifies the affected regions.
+
+The receiver audit covered all three units, the shared header, and callers of
+the renamed exports. The 88 casts that passed unrelated records as `TLobby`
+are gone. Buffer initialization takes `NetBufferRef *`, DNS builders take
+`DnsQuery *`, and packet release takes `NetPacket *`. DNS query kind and
+lookup family come from the shared request layout. The PPP transmitter uses
+the link's protocol states and error counters. IPv4 packet length, fragment
+count and fragment descriptors use the packet layout.
+
+The peer notification at `80408428` allocates a packet when a queued payload
+exists, dispatches it, releases it and detaches the peer. The loopback reset
+at `8041509C` clears the entry and cancels the loopback state. Binding the
+returned peer or status locally reproduces the original 88-byte and 24-byte
+frames respectively. Both previously unused arrays are gone. The DNS sender
+at `8040B1C4` also loses two unused arrays when its send descriptor is local
+to the send helper. The two PPP senders at `80406328` and `80406624` use
+their frame, cursor and protocol fields in place of stack-padding arrays.
 
 ## Recovered behavior and interfaces
 
@@ -164,7 +189,7 @@ inputs. The three objects contribute the following matched ranges.
 
 The rebuilt DOL is byte-identical to the original. Its SHA-1 is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The baseline comparison
-records 37 newly exact functions and zero regressions. All 3,625 linked
+records 37 newly exact functions and zero regressions. All 3,628 linked
 units pass the linkage and retention checks. An independent ELF comparison
 verified function order, allocated section bytes including linker padding,
 and all 1,810 relocation sites and targets across the three objects.

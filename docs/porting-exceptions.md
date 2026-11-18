@@ -2194,16 +2194,15 @@ The `TLobby_804050DC`, `TLobby_8040FF0C`, and `TLobby_8041112C` object groups
 retain GC/1.2.5n and the existing `-opt nocse` configuration. Their per-object
 `-inline noauto,level=4` default in `configure.py` inlines explicitly marked
 helpers without automatically inlining other functions. This replaces the
-repeated source inline controls; the shared `LobbyNetworkInternal.h` needs
+repeated source inline controls. The shared `LobbyNetworkInternal.h` needs
 no pragmas. `-inline auto,level=4` changes native instructions in the first
 and third groups, while `noauto,level=4` preserves all three complete objects.
 
 The remaining 77 source pragma lines describe optimizer and language regions.
-Adjacent compatible functions share a setting until its explicit restoration;
-these boundaries need not coincide with individual function boundaries.
+Adjacent functions share a setting until its explicit restoration.
 Removing each remaining setting or restoration was tested against the complete
-object. The four `optimization_level` regions retain push/pop because that
-umbrella setting changes several optimizer options at once:
+object. The four `optimization_level` regions retain push/pop to restore every
+optimizer option affected by the level change.
 
 | Region begins | Level | Restored before |
 |---|---|---|
@@ -2216,10 +2215,14 @@ The sole remaining inline-depth exception is depth one for
 `TLobby__sub_8040B4BC`, restored explicitly to four afterward. An
 `inline_depth reset` would restore the compiler's initial depth instead of the
 unit's chosen depth and changes later native instructions. Propagation, CSE,
-lifetime, and loop controls preserve native temporary lifetimes and scheduling;
-they are matching controls, not required network behavior. The existing
-frame-padding locals remain provisional native-layout constraints and should
-be removed in a port.
+lifetime, and loop controls preserve the following native instruction choices.
+
+| Control | Functions or neighborhoods | Reason |
+|---|---|---|
+| Lifetime analysis | `80406BD8–80406F0C`, `8040BD40`, `8040DE4C` | Keeps checksum and packet cursors, compressed-name offsets, and the release path in their original registers. |
+| Propagation | PPP send, buffer copy, Ethernet socket lookup, DNS send and decode, IPv4 input and send, IPv6 redirect and neighbor options | Preserves distinct length, status and callback values across calls. |
+| Common subexpressions | PPP receive, Ethernet receive and socket lookup, IPv4 route processing, IPv6 interface, prefix, send and neighbor routines | Preserves field-address reuse and the order of table and cursor loads. |
+| Loop invariants and strength reduction | PPP receive at `80405700` and IPv6 input at `8040FFF8` | Reproduces cursor increments and the native placement of loop-invariant loads. Strength reduction resumes before `804105E0`. |
 
 `TLobby__sub_80411604` uses scoped `cplusplus off`/`on` around its old-style C
 parameter declaration to retain the promoted-short call convention. Ports
@@ -2260,8 +2263,8 @@ optimization throughout. A port may omit the pragma and keep the typed
 interface lookup and short prefix length.
 
 The body of IPv6 input at `8040FFF8` uses the upstream C language mode.
-Two inline C++ adapters call the interface lookup and packet release methods.
-A port can use its normal language mode and call those methods directly.
+The inline adapters call the interface lookup and the typed packet release
+operation. A port can call both directly in its usual language mode.
 
 The packet checksum at `80406BD8` uses scoped `opt_lifetimes off` as in
 upstream PR #304. A port can remove it while preserving the segment traversal
