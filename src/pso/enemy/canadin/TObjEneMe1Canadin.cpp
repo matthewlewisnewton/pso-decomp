@@ -231,7 +231,7 @@ TUnk_8048FA00 *canadin_follower_breakup_model;
 s32 *canadin_leader_node3_color;
 s32 *canadin_leader_node2_color;
 s32 *canadin_follower_node3_color;
-s32 *lbl_805D4FF0;
+s32 *canadin_follower_node2_color;
 int is_target_android(void *p);
 
 TObjEneMe1CanadinMovement canadin_setup_param_block = { 225.0f, 0.0f, 0x600, 0, 0, 0, 0 };
@@ -334,11 +334,15 @@ void TObjEneMe1Canadin::load_resources() {
     }
     canadin_follower_breakup_model = (TUnk_8048FA00 *)p;
     model = (s32)bm_ene_me1_mb_resource->models[1].model;
-    canadin_leader_node3_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 3))->model)[1] + 4);
-    canadin_leader_node2_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model, 2))->model)[1] + 4);
+    NJS_OBJECT *node = (NJS_OBJECT *)find_model_node(model, 3);
+    canadin_leader_node3_color = (s32 *)(((NJS_CNK_MODEL *)node->model)->polygon_list + 2);
+    node = (NJS_OBJECT *)find_model_node(model, 2);
+    canadin_leader_node2_color = (s32 *)(((NJS_CNK_MODEL *)node->model)->polygon_list + 2);
     model2 = (s32)bm_ene_me1_mb_resource->models[0].model;
-    canadin_follower_node3_color = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model2, 3))->model)[1] + 4);
-    lbl_805D4FF0 = (s32 *)(((s32 *)((NJS_OBJECT *)find_model_node(model2, 2))->model)[1] + 4);
+    node = (NJS_OBJECT *)find_model_node(model2, 3);
+    canadin_follower_node3_color = (s32 *)(((NJS_CNK_MODEL *)node->model)->polygon_list + 2);
+    node = (NJS_OBJECT *)find_model_node(model2, 2);
+    canadin_follower_node2_color = (s32 *)(((NJS_CNK_MODEL *)node->model)->polygon_list + 2);
     TObjPlayer__sub_800F0928();
     s16 ids[2] = { 0x17, 0x18 };
     CanadinSpawnParams params = { (s32)bm_ene_me1_mb_resource->motions, lbl_8048FF30, 0, 0x70000 };
@@ -798,7 +802,7 @@ void TObjEneMe1Canadin::pack_color_rgba() {
 
 void TObjEneMe1Canadin::vfunc_113() {
     *canadin_follower_node3_color = m_4B4;
-    *lbl_805D4FF0 = m_4B4;
+    *canadin_follower_node2_color = m_4B4;
 }
 
 int TObjEneMe1Canadin::vfunc_109() { return 1; }

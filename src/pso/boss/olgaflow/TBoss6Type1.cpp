@@ -368,8 +368,8 @@ extern s32 game_difficulty_selection;
 void TBoss6Type1__sub_802B73AC(Boss_802B73AC *self);
 f32 atan2_float(f64, f64);
 void request_follow_camera_offsets(void *, void *, int);
-const s8 lbl_805DE2C8[2] = { 0x12, 0x0A };
-const s8 lbl_805DE2CC[2] = { 0x12, -2 };
+const s8 boss6_type1_pitch_pair_a[2] = { 0x12, 0x0A };
+const s8 boss6_type1_pitch_pair_b[2] = { 0x12, -2 };
 extern const s32 boss6_type1_sway_speed_range;
 extern const s32 boss6_type1_sway_hold_range;
 int TBoss6Type1__sub_802B4A70(void* p);
@@ -833,7 +833,7 @@ void randomize_attack__11TBoss6Type1FPvPv(Boss_802B8EE0 *self, Atk_802B8EE0 *atk
         atk->b2 = w;
         return;
     }
-    tab = TBoss6Type1__sub_802B5FDC((u8 *)self) != 0 ? lbl_805DE2C8 : lbl_805DE2CC;
+    tab = TBoss6Type1__sub_802B5FDC((u8 *)self) != 0 ? boss6_type1_pitch_pair_a : boss6_type1_pitch_pair_b;
     u = tab[0];
     if (0.000030517578f * (f32)rand() < 0.5f) {
         u = tab[1];

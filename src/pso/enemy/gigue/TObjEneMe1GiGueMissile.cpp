@@ -26,7 +26,7 @@
 #pragma readonly_strings on
 
 extern "C" {
-BmlResource *lbl_805D6858;
+BmlResource *gigue_missile_resource;
 u16 get_entity_id(void *);
 void *TNeedleShoot__ct(void *, s32, Vec *, Vec *);
 extern void *__vt__22TObjEneMe1GiGueMissile[];
@@ -82,7 +82,7 @@ TObjEneMe1GiGueMissile::~TObjEneMe1GiGueMissile() {
 }
 
 void TObjEneMe1GiGueMissile::render() {
-    if (lbl_805D6858 == NULL) {
+    if (gigue_missile_resource == NULL) {
         TObject::queue_destruction();
         return;
     }
@@ -91,9 +91,9 @@ void TObjEneMe1GiGueMissile::render() {
     post_translate_matrix(&pos.x);
     rotate_matrix_y(NULL, m_a4);
     rotate_matrix_x(NULL, m_a0);
-    set_current_texture_list((GinjaTextureList *)lbl_805D6858->models[1].m_c);
+    set_current_texture_list((GinjaTextureList *)gigue_missile_resource->models[1].m_c);
     set_motion_packed_rotation();
-    draw_model_motion((void *)get_bml_model(lbl_805D6858, 1), get_bml_motion(lbl_805D6858, 5), m_bc);
+    draw_model_motion((void *)get_bml_model(gigue_missile_resource, 1), get_bml_motion(gigue_missile_resource, 5), m_bc);
     clear_motion_packed_rotation();
     TParticleCtrl::end_effect_render();
     pop_matrix();
@@ -140,4 +140,4 @@ TObjEneMe1GiGueMissile *TObjEneMe1GiGueMissile__ct(TObjEneMe1GiGueMissile *self,
 
 void TObjEneMe1GiGue__sub_802CE4E8(void) {  }
 
-void TObjEneMe1GiGue__sub_802CE4EC(void) { lbl_805D6858 = TObjEneMe1GiGue::sub_802CAC80(); }
+void TObjEneMe1GiGue__sub_802CE4EC(void) { gigue_missile_resource = TObjEneMe1GiGue::sub_802CAC80(); }
