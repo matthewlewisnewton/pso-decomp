@@ -427,6 +427,13 @@ GAME_COMPILER = "GC/2.0"
 # Per-unit settings that preserve matching code and data for the current source.
 # A successful profile is not proof of the original compiler or build history.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # The title assets and bilingual prompts reference read-only string pools.
+    "pso/unk/text_803367F4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    # Preserve Shift-JIS trail bytes when compiling the Japanese prompts.
+    "pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp": {
+        "cflags": _switch(cflags_pso, "-str reuse,readonly", "-multibyte"),
+        "shift_jis": True,
+    },
     # GC/1.3.2 preserves these aggregate-copy matches under the GC/2.0 default.
     # TProtocol's other weak helpers are validated through the complete link;
     # see docs/evidence/compiler-default-gc20-adoption.md.

@@ -25,7 +25,6 @@ struct TCameraCtrl;
 #include "pso/ui/TAdMultiPlyChrSelectGC.h"
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
-
 typedef struct {
     s32 pad0[2];
     f32 f8, fC;
@@ -42,17 +41,15 @@ struct RecoveredGlobal_80336340_TKeyBoardControl__data_80506270 {
 
 struct Obj_80336340 { u8 pad[0x40]; void *objs[3]; };
 
-
-
 extern "C" {
 void TKeyBoardControl__sub_8000F9CC(s32 arg0);
+TUnk_804EEF64 *title_scene_instance;
+s32 lobby_game_mode_state;
+NJS_TEXLIST *lobby_title_texture_list;
 void queue_destruction__7TObjectFv(void *arg0);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 extern s32 lbl_804EEF64[];
-u32 title_scene_instance;
-int lobby_game_mode_state;
-NJS_TEXLIST *lobby_title_texture_list;
     extern int lbl_805D68C8;
 s32 release_texture_list(void *, s32);
 u64 call_funcs_reverse__6TLobbyFPvUi(void *, int);
@@ -73,7 +70,6 @@ static const f32 lbl_805DF8F8 = 0.0f;
 static const f32 lbl_805DF8FC = 20.0f;
 static const f32 lbl_805DF900 = 15.0f;
 static const f32 lbl_805DF904 = 1.0f;
-static const f32 lbl_805DF908 = 0.85f;
 
 void TWindowOptionCtrl__sub_802273B4(s32 arg0);
 extern RecoveredGlobal_80336340_TKeyBoardControl__data_80506270 TKeyBoardControl__global_key_state;
@@ -84,14 +80,14 @@ s32 TLobby__sub_80336030(void *);
 
 void TLobby::queue_destruction_and_cleanup() {
     queue_destruction__7TObjectFv((this));
-    if ((u32) title_scene_instance != 0U) {
-        hide_title_layers_and_release((O_8033612C *)((void*)((void*)title_scene_instance)));
+    if (title_scene_instance != NULL) {
+        hide_title_layers_and_release((O_8033612C *)title_scene_instance);
     }
 }
 
 void TLobby::destroy_download_server(void* _w0) {
     queue_destruction__7TObjectFv((_w0));
-    if ((u32) title_scene_instance != 0U) {
+    if (title_scene_instance != NULL) {
         ((TLobby *)title_scene_instance)->set_flag_and_clear_download();
     }
 }
@@ -177,7 +173,7 @@ void TUnk_804EEF64::sub_8033645C() { if (*(unsigned int*)((char*)this + 0x2c) !=
 void *TUnk_804EEF64::destroy(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 0x18) = lbl_804EEF64;
-        (*(s32 *)&title_scene_instance) = 0;
+        title_scene_instance = NULL;
         if ((u32) this->m_20 != 0U) {
             queue_destruction__7TObjectFv((this->m_20));
         }
@@ -197,7 +193,7 @@ u8 *TUnk_804EEF64::construct_title_scene() {
 
     __ct__7TObjectFP7TObject(arg0);
     *(s32 **)((s8 *)arg0 + 0x18) = lbl_804EEF64;
-    title_scene_instance = (u32)arg0;
+    title_scene_instance = this;
     this->m_30 = 0;
     *(s32 *)((s8 *)arg0 + 0x34) = 0;
     *(s32 *)((s8 *)arg0 + 0x2C) = 0;
@@ -225,7 +221,7 @@ u8 *TUnk_804EEF64::construct_title_scene() {
     if (*(void **)((s8 *)arg0 + 0x24) != 0) {
         ((TObject *)(*(void **)((s8 *)arg0 + 0x24)))->suspend_update();
     }
-    TAdMultiChgGameModeGC::apply_bgm_col_ctrl((s32)lobby_title_music);
+    TAdMultiChgGameModeGC::apply_bgm_col_ctrl((s32)title_music_filename);
     {
         Cam_80336520 cam;
         cam.f8 = lbl_805DF8E8;
@@ -236,11 +232,11 @@ u8 *TUnk_804EEF64::construct_title_scene() {
         cam.f38 = lbl_805DF8FC;
         cam.f3C = lbl_805DF900;
         cam.f40 = lbl_805DF904;
-        cam.f44 = lbl_805DF908;
+        cam.f44 = 0.85f;
         ((CameraViewParams *)&cam)->begin_override();
     }
     {
-        NJS_POINT3 v = lobby_title_particle_position;
+        NJS_POINT3 v = title_particle_position;
         this->m_40 = create_particle__20TAdLoadQuestPrtTxtGCFPvll(&v, 0x1E3, 1);
         *(s32 *)((s8 *)arg0 + 0x44) = create_particle__20TAdLoadQuestPrtTxtGCFPvll(&v, 0x1E4, 1);
         this->m_48 = create_particle__20TAdLoadQuestPrtTxtGCFPvll(&v, 0x1E5, 1);
@@ -256,7 +252,7 @@ u8 *TUnk_804EEF64::construct_title_scene() {
 void TLobby::destroy_global_object() {
     u32 temp_r4;
     temp_r4 = (u32) call_funcs_reverse__6TLobbyFPvUi(lobby_load_callback_table, 0x20);
-    if ((void *) lobby_title_texture_list != NULL) {
+    if (lobby_title_texture_list != NULL) {
         release_texture_list(lobby_title_texture_list, (s32) temp_r4);
         lobby_title_texture_list = NULL;
     }
