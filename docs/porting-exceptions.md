@@ -2220,11 +2220,13 @@ repeated source inline controls. The shared `LobbyNetworkInternal.h` needs
 no pragmas. `-inline auto,level=4` changes native instructions in the first
 and third groups, while `noauto,level=4` preserves all three complete objects.
 
-The remaining source pragmas describe optimizer and language regions.
-Adjacent functions share a setting until its explicit restoration.
-Removing each remaining setting or restoration was tested against the complete
-object. The four `optimization_level` regions retain push/pop to restore every
-optimizer option affected by the level change.
+The remaining optimizer pragmas are accepted as scoped matching exceptions for
+this recovery. Each region is listed below and was tested against its complete
+object. Removing a setting or its restoration changes native instruction
+selection or register lifetimes. Adjacent functions share a setting only where
+the region table identifies the full range. The four `optimization_level`
+regions retain push/pop to restore every optimizer option affected by the level
+change.
 
 | Region begins | Level | Restored before |
 |---|---|---|
@@ -2274,11 +2276,14 @@ source organization reproduces native register lifetimes and stack placement;
 no separate helper is emitted. Ports may combine the bodies and use ordinary
 locals. See [recovery evidence](evidence/lobby-network-recovery.md).
 
-The PPP output routine at `804066D8` uses one whole-function C scope with
-propagation disabled. A small inline C++ adapter performs the existing time
-query; the scope restores both settings after the complete definition. This
-matches the register allocation of the upstream C implementation. Ports can
-compile the routine in one language and keep the unsigned 32-bit escape mask.
+The PPP output routine at `804066D8` uses C linkage and a whole-function
+`opt_propagation off` scope. Its definition remains ordinary C++, and a small
+inline adapter performs the existing time query. The separate
+`ppp_is_lcp_protocol` predicate alone uses a small `cplusplus off/on` scope;
+removing that scope changes four bytes in the writer. It does not change the
+language mode of the writer itself. The optimizer scope restores after the
+complete definition. Ports can use ordinary language linkage and keep the
+unsigned 32-bit escape mask.
 
 The Ethernet socket opener at `804094B8` enables `opt_common_subs` for its
 matching-socket lookup and caller. A port may drop it. The IPv4 receiver at
@@ -2290,9 +2295,10 @@ existing pragma scope. The corresponding linked upstream unit enables this
 optimization throughout. A port may omit the pragma and keep the typed
 interface lookup and short prefix length.
 
-Only the PPP output routine at `804066D8` has a whole-function C language
-scope. The IPv6 input and event dispatcher use ordinary C++. All language
-and optimizer controls in the three units fall between function definitions.
+Only the PPP output routine at `804066D8` needs C linkage. The IPv6 input and
+event dispatcher use ordinary C++. All language and optimizer controls in the
+three units fall between function definitions; the C-mode predicate is a
+separate helper between function definitions.
 
 The packet checksum at `80406BD8` uses scoped `opt_lifetimes off` as in
 upstream PR #304. A port can remove it while preserving the segment traversal

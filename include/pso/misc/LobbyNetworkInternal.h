@@ -276,8 +276,15 @@ struct Ipv4ProtocolState {
 };
 
 struct RecoveredGlobal_8040ED28_lbl_805C1B60 {
-    s32 value;
-    u8 remaining[0x14];
+    union {
+        s32 value;
+        struct {
+            s16 route_count;
+            s16 interface_count;
+        } counts;
+    };
+    s16 max_aliases;
+    u8 remaining[0x12];
 };
 
 struct RecoveredGlobal_8040ED70_lbl_805C1B60 {
@@ -561,7 +568,8 @@ extern RecoveredGlobal_8041552C_lbl_805C1BE0 network_loopback_state;
 extern RecoveredGlobal_804050DC_lbl_805C18A0 lbl_805C18A0;
 void TLobby__sub_804050DC(s16 arg0);
 extern s16 lbl_805D7A7A;
-void NetIPv6ApplyNeighborDiscoveryDefaults(u8 *arg0);
+struct G_80415B38;
+void NetIPv6ApplyNeighborDiscoveryDefaults(G_80415B38 *arg0);
 void TLobby__sub_803F89A4(u8 *arg0);
 void TLobby__sub_803FD85C(void *);
 s32 TLobby__sub_804062A0(s16);
@@ -868,8 +876,25 @@ typedef char RecoveredGlobal_804050DC_lbl_805C18A0_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_80403D28_lbl_805C0638_size[sizeof(RecoveredGlobal_80403D28_lbl_805C0638) == 0xA0 ? 1 : -1];
 
 typedef struct B_80403F4C {
-    u8 bytes[0x44];
+    u16 field_0;
+    u16 field_2;
+    u32 field_4;
+    u32 field_8;
+    u16 field_C;
+    u16 field_E;
+    u16 field_10;
+    u16 field_12;
+    u8 pad_14;
+    u8 flag_15;
+    u8 flag_16;
+    u8 flag_17;
+    u8 flag_18;
+    u8 flag_19;
+    u8 flag_1A;
+    u8 options_len;
+    u8 options[0x28];
 } B_80403F4C;
+typedef char B_80403F4C_size[sizeof(B_80403F4C) == 0x44 ? 1 : -1];
 
 typedef struct Ent_80403F4C {
     u8 pad0[8];
@@ -950,9 +975,9 @@ typedef struct PppLinkState {
     u8 active;
     u8 pad01[3];
     Conn_804004DC lcp;
-    u8 pad38[0x6c - 0x38];
+    Conn_804004DC pap;
     Conn_804004DC ipcp;
-    u8 padA0[0xd4 - 0xa0];
+    Conn_804004DC chap;
     Conn_804004DC ipv6cp;
     u8 pad108[8];
     s32 transmit_bytes;
@@ -960,10 +985,30 @@ typedef struct PppLinkState {
     u8 pad118[0x122 - 0x118];
     s16 transmit_errors;
     s16 allocation_errors;
+    u8 pad126[0x130 - 0x126];
+    s16 lcp_input_count;
+    s16 pap_input_count;
+    s16 ipcp_input_count;
+    s16 chap_input_count;
+    s16 ipv6cp_input_count;
+    s16 protocol_reject_count;
+    u8 pad13C[0x140 - 0x13C];
+    s16 receive_errors;
+    s16 control_frame_allocation_errors;
 } PppLinkState;
 typedef char PppLinkIpcpOffset[offsetof(PppLinkState, ipcp) == 0x6c ? 1 : -1];
 typedef char PppLinkIpv6cpOffset[offsetof(PppLinkState, ipv6cp) == 0xd4 ? 1 : -1];
 typedef char PppLinkErrorsOffset[offsetof(PppLinkState, transmit_errors) == 0x122 ? 1 : -1];
+typedef char PppLinkPapOffset[offsetof(PppLinkState, pap) == 0x38 ? 1 : -1];
+typedef char PppLinkChapOffset[offsetof(PppLinkState, chap) == 0xA0 ? 1 : -1];
+typedef char PppLinkLcpCountOffset[offsetof(PppLinkState, lcp_input_count) == 0x130 ? 1 : -1];
+typedef char PppLinkPapCountOffset[offsetof(PppLinkState, pap_input_count) == 0x132 ? 1 : -1];
+typedef char PppLinkIpcpCountOffset[offsetof(PppLinkState, ipcp_input_count) == 0x134 ? 1 : -1];
+typedef char PppLinkChapCountOffset[offsetof(PppLinkState, chap_input_count) == 0x136 ? 1 : -1];
+typedef char PppLinkIpv6cpCountOffset[offsetof(PppLinkState, ipv6cp_input_count) == 0x138 ? 1 : -1];
+typedef char PppLinkProtocolRejectCountOffset[offsetof(PppLinkState, protocol_reject_count) == 0x13A ? 1 : -1];
+typedef char PppLinkReceiveErrorsOffset[offsetof(PppLinkState, receive_errors) == 0x140 ? 1 : -1];
+typedef char PppLinkControlFrameAllocationErrorsOffset[offsetof(PppLinkState, control_frame_allocation_errors) == 0x142 ? 1 : -1];
 
 typedef struct Lobby_804062A0 {
     u8 state;
@@ -998,7 +1043,7 @@ inline s32 get_80405A74(Strm_80405A74 **s) {
     return (s16)ppp_input_byte;
 }
 #define FWD_80405A74()                                                       \
-    (*(s16 *)(G + 0x13A))++;                                            \
+    link->protocol_reject_count++;                                            \
     t = alloc_from_buffer(arg0, 4); \
     p = t->buf;                                                                \
     *p++ = 0xFF;                                                             \
@@ -1006,7 +1051,7 @@ inline s32 get_80405A74(Strm_80405A74 **s) {
     write_network_u16_be(p, code);                                           \
     u = t;                                                                   \
     if (u == NULL) {                                                         \
-        (*(s16 *)(G + 0x142))++;                                        \
+        link->control_frame_allocation_errors++;                              \
         return;                                                              \
     }                                                                        \
     if (TLobby__sub_80401BCC(&u, &lobby_ppp_read_buf, 2) == 2) {                   \
@@ -1902,13 +1947,13 @@ struct N_8040C4B0 { u8 pad0[0x20]; N_8040C4B0 *next; };
 struct O_8040C4B0 { u8 pad0[0x204]; s16 count; u8 pad206[2]; N_8040C4B0 *head; };
 struct G_8040C4B0 { u8 pad0[0x2C]; s16 lim; };
 
-inline s32 close_8040BF38(u8 *p, s32 id) {
+inline s32 close_8040BF38(DnsQuery *p, s32 id) {
     s32 r;
     if ((s16)id < 0) {
         return 0;
     }
     r = TLobby__sub_80421B3C(id);
-    *(s16 *)((s8 *)p + 4) = -1;
+    p->socket = -1;
     return r;
 }
 
@@ -2258,12 +2303,12 @@ struct Ipv6Route {
     u8 gateway[16];
 };
 static inline s16 chk_804105E0(u8 *p, s16 lim, s16 ctx, s16 l, s16 rem, u8 *q, u8 *prev) {
-    u8 err4[8];
+    Icmp6ErrorInfo err4;
     if (l != rem + 0x28) {
-        err4[0] = 4;
-        err4[1] = 1;
-        *(s32 *)(err4 + 4) = prev - p;
-        TLobby__sub_8040D510((Icmp6ErrorInfo *)err4, p, lim, ctx);
+        err4.type = 4;
+        err4.code = 1;
+        err4.pointer = prev - p;
+        TLobby__sub_8040D510(&err4, p, lim, ctx);
         return -1;
     }
     return process_options_header(q, rem, p, lim, ctx);
@@ -2311,7 +2356,7 @@ struct Ipv6NdAddr {
     s16 state;
     s16 f16;
     s16 f18;
-    s16 scope;
+    u16 scope;
     s16 dad_count;
     s16 dad_timer;
     u32 f20;
@@ -2356,6 +2401,9 @@ struct Ipv6NdState {
 struct Ipv6NdEvent {
     u8 *addr;
     s16 prefix_len;
+};
+struct Ipv6NdAddressRefEvent {
+    u8 *addr;
 };
 
 struct Ipv6NdRoute {
@@ -2783,7 +2831,10 @@ struct G_80415B38 {
     s16 stride;
     u8 pad16[2];
     s32 base;
-    u8 pad1C[8];
+    s16 f1C;
+    s16 f1E;
+    s16 f20;
+    s16 f22;
     s16 maxage;
     s16 reachable_time;
     s16 retrans_timer;

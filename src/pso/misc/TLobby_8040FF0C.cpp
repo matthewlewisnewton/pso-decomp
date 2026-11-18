@@ -282,7 +282,7 @@ extern s16 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
 
   s16 NetIPv6IsMulticast(u8 *);
   NetIPv6SendParameters params;
-  u8 err[8];
+  Icmp6ErrorInfo err;
   s32 tot;
   NetPacket *e;
   s16 rem;
@@ -344,10 +344,10 @@ extern s16 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
   {
     if ((flag == 0) || (flags == 0))
     {
-      err[0] = 3;
-      err[1] = 0;
-      *((s32 *) (err + 4)) = 0;
-      TLobby__sub_8040D510((Icmp6ErrorInfo *)err, p, lim, ctx);
+      err.type = 3;
+      err.code = 0;
+      err.pointer = 0;
+      TLobby__sub_8040D510(&err, p, lim, ctx);
     }
     return -1;
   }
@@ -356,10 +356,10 @@ extern s16 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
   {
     if ((flag == 0) || (flags == 0))
     {
-      err[0] = 1;
-      err[1] = 0;
-      *((s32 *) (err + 4)) = 0;
-      TLobby__sub_8040D510((Icmp6ErrorInfo *)err, p, lim, ctx);
+      err.type = 1;
+      err.code = 0;
+      err.pointer = 0;
+      TLobby__sub_8040D510(&err, p, lim, ctx);
     }
     return -1;
   }
@@ -381,10 +381,10 @@ extern s16 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
   {
     if ((flag == 0) || (flags == 0))
     {
-      err[0] = 2;
-      err[1] = 0;
-      *((s32 *) (err + 4)) = h6;
-      TLobby__sub_8040D510((Icmp6ErrorInfo *)err, p, lim, ctx);
+      err.type = 2;
+      err.code = 0;
+      err.pointer = h6;
+      TLobby__sub_8040D510(&err, p, lim, ctx);
     }
     return -1;
   }

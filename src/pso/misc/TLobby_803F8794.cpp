@@ -200,6 +200,30 @@ struct RecoveredGlobal_803F8930_lbl_805B4F84 {
     u8 remaining[0x34C];
 };
 
+struct NetConfig_803F8930 {
+    s16 field_0;
+    u8 padding_2[2];
+    s32 *field_4;
+    u8 padding_8[2];
+    u8 field_A;
+    u8 field_B;
+};
+typedef char NetConfig_803F8930_size[sizeof(NetConfig_803F8930) == 0xC ? 1 : -1];
+
+struct PlayerConfig_803F87C8 {
+    s16 player_count;
+    u8 padding_2[6];
+    s32 transport_buffer;
+};
+typedef char PlayerConfig_803F87C8_size[sizeof(PlayerConfig_803F87C8) == 0xC ? 1 : -1];
+
+struct NetConfig_803F8A0C {
+    s16 count;
+    u8 padding_2[2];
+    s32 *table;
+};
+typedef char NetConfig_803F8A0C_size[sizeof(NetConfig_803F8A0C) == 8 ? 1 : -1];
+
 struct RecoveredGlobal_803F8B7C_lbl_805BD66C {
     s32 value;
     u8 remaining[0xA00];
@@ -527,11 +551,15 @@ extern s32 lbl_805D4800;
 extern s32 net_transport_buffer_ptr_b;
 
 void TLobby::init_params() {
-    u8 *arg0 = (u8 *)this;
+    struct RoomRuntimeParams {
+        u8 padding_0[0xA0];
+        s16 timeout;
+    };
+    RoomRuntimeParams *params = (RoomRuntimeParams *)this;
     *(s16 *)&this->m_flags = (s16) net_param_room_count;
     *(s32 *)&this->m_prev = (s32) lbl_805D4800;
     *(s32 *)&this->m_next = (s32) lbl_805D4800;
-    *(s16 *)((s8 *)arg0 + 0xA0) = 0x64;
+    params->timeout = 0x64;
     *(s32 *)&this->m_name = (s32) net_transport_buffer_ptr_b;
 }
 
@@ -543,8 +571,9 @@ extern s16 net_param_player_count;
 extern s32 net_transport_buffer_ptr_a;
 
 void TLobby__sub_803F87C8(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = (s16) net_param_player_count;
-    *(s32 *)((s8 *)arg0 + 8) = (s32) net_transport_buffer_ptr_a;
+    PlayerConfig_803F87C8 *config = (PlayerConfig_803F87C8 *)arg0;
+    config->player_count = net_param_player_count;
+    config->transport_buffer = net_transport_buffer_ptr_a;
 }
 
 void TLobby__sub_803F87DC(void * _w0) {
@@ -614,10 +643,11 @@ void TLobby__sub_803F892C(void * _w0) {
 #pragma opt_common_subs on
 typedef char RecoveredGlobal_803F8930_lbl_805B4F84_size[sizeof(RecoveredGlobal_803F8930_lbl_805B4F84) == 0x350 ? 1 : -1];
 void TLobby__sub_803F8930(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = 1;
-    *(s8 *)((s8 *)arg0 + 0xA) = 0;
-    *(s8 *)((s8 *)arg0 + 0xB) = 0x78;
-    *(s32 **)((s8 *)arg0 + 4) = &lbl_805B4F84.value;
+    NetConfig_803F8930 *config = (NetConfig_803F8930 *)arg0;
+    config->field_0 = 1;
+    config->field_A = 0;
+    config->field_B = 0x78;
+    config->field_4 = &lbl_805B4F84.value;
 }
 #pragma pop
 
@@ -672,8 +702,9 @@ void TLobby__sub_803F8A08(void * _w0) {
 
 typedef char RecoveredGlobal_803F8A0C_lbl_805B9534_size[sizeof(RecoveredGlobal_803F8A0C_lbl_805B9534) == 0x108C ? 1 : -1];
 void TLobby__sub_803F8A0C(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = 5;
-    *(s32 **)((s8 *)arg0 + 4) = &lbl_805B9534.value;
+    NetConfig_803F8A0C *config = (NetConfig_803F8A0C *)arg0;
+    config->count = 5;
+    config->table = &lbl_805B9534.value;
 }
 
 void TLobby__sub_803F8A24(void *) {
@@ -705,8 +736,9 @@ void TLobby__sub_803F8A9C(void * _w0) {
 
 typedef char RecoveredGlobal_803F8AA0_lbl_805BA5C0_size[sizeof(RecoveredGlobal_803F8AA0_lbl_805BA5C0) == 0x30AC ? 1 : -1];
 void TLobby__sub_803F8AA0(u8 *arg0) {
-    *(s16 *)((s8 *)arg0 + 0) = 3;
-    *(s32 **)((s8 *)arg0 + 4) = &lbl_805BA5C0.value;
+    NetConfig_803F8A0C *config = (NetConfig_803F8A0C *)arg0;
+    config->count = 3;
+    config->table = &lbl_805BA5C0.value;
 }
 
 void TLobby__sub_803F8AB8(void) {
@@ -738,12 +770,21 @@ void TLobby__sub_803F8B78(void) {
 }
 
 typedef char RecoveredGlobal_803F8B7C_lbl_805BD66C_size[sizeof(RecoveredGlobal_803F8B7C_lbl_805BD66C) == 0xA04 ? 1 : -1];
+struct NetConfig_803F8B7C {
+    u8 padding_0[0xA];
+    s16 capacity;
+    s16 count;
+    u8 padding_E[2];
+    s32 *timer_table;
+    s32 *receive_descriptor;
+};
+typedef char NetConfig_803F8B7C_size[sizeof(NetConfig_803F8B7C) == 0x18 ? 1 : -1];
+
 void NetInitReceiveDescriptor(NetConfig_803F8B7C *self) {
-    u8 *arg0 = (u8 *)self;
-    *(s16 *)((s8 *)arg0 + 0xA) = 0x500;
-    *(s16 *)(arg0 + 0xC) = 2;
-    *(s32 * *)(arg0 + 0x10) = &lbl_805D7A58;
-    *(s32 * *)(arg0 + 0x14) = &lobby_net_recv_desc.value;
+    self->capacity = 0x500;
+    self->count = 2;
+    self->timer_table = &lbl_805D7A58;
+    self->receive_descriptor = &lobby_net_recv_desc.value;
 }
 
 u8 *TLobby::layout_buffers(u8 *p, u8 *end) {
@@ -926,9 +967,6 @@ typedef char RecoveredGlobal_80401A68_lbl_805C04A8_size[sizeof(RecoveredGlobal_8
 #define F(t, o) (*(t *)(arg2 + (o)))
 
 typedef char RecoveredGlobal_80401A90_lbl_805C04A8_size[sizeof(RecoveredGlobal_80401A90_lbl_805C04A8) == 0x30 ? 1 : -1];
-
-#pragma opt_propagation off
-#pragma opt_propagation reset
 
 typedef char RecoveredGlobal_80402B60_lbl_805C0620_size[sizeof(RecoveredGlobal_80402B60_lbl_805C0620) == 0x18 ? 1 : -1];
 
@@ -1337,14 +1375,6 @@ typedef struct Mgr_8040AF48 {
     Conn_8040AF48 *conns;
 } Mgr_8040AF48;
 
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
 #pragma dont_inline off
 #pragma inline_depth(4)
 
@@ -1499,22 +1529,6 @@ typedef char RecoveredGlobal_80419A34_lbl_805C1C50_size[sizeof(RecoveredGlobal_8
 typedef char RecoveredGlobal_80419A7C_lbl_805C1C50_size[sizeof(RecoveredGlobal_80419A7C_lbl_805C1C50) == 0xF8 ? 1 : -1];
 #pragma pop
 
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
 typedef char RecoveredGlobal_8041E178_lbl_805C1D48_size[sizeof(RecoveredGlobal_8041E178_lbl_805C1D48) == 0xA8 ? 1 : -1];
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma opt_propagation off
-#pragma pop
 
 }
