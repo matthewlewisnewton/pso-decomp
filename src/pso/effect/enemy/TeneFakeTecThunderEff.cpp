@@ -70,14 +70,14 @@ extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 __declspec(section ".data") Entry_800A4064 *player_effect_task_list[2];
 s32 TObjPlayer__effect_count;
-extern const f32 lbl_805D99F8;
-extern const f32 lbl_805D9A04;
-extern const f32 lbl_805D9A08;
+__declspec(section ".sdata2") extern const f32 lbl_805D99F8;
+__declspec(section ".sdata2") extern const f32 lbl_805D9A04;
+__declspec(section ".sdata2") extern const f32 lbl_805D9A08;
 s32 matrix_mult_vec(int, void *, void *);
 extern Cam_800A3D1C lbl_8058D4F8;
-extern const f32 lbl_805D99F0;
-extern const f32 lbl_805D99FC;
-extern const f32 lbl_805D9A00;
+__declspec(section ".sdata2") extern const f32 lbl_805D99F0;
+__declspec(section ".sdata2") extern const f32 lbl_805D99FC;
+__declspec(section ".sdata2") extern const f32 lbl_805D9A00;
 
 struct Obj_800A39A8 {
     u8 pad0[0x1C];
@@ -99,7 +99,7 @@ f32 rand_signed_unit();
 s32 update_scale__15TObjBoss2TunnelFv(void *);
 f32 vector_length(void *);
 s32 subtract_vector(void *, void *);
-extern const f32 lbl_805D99F4;
+__declspec(section ".sdata2") extern const f32 lbl_805D99F4;
 #pragma push
 #pragma fp_contract on
 void build_beam_points__12TTecZondeEffFPv(Obj_800A39A8 *o) {
@@ -390,3 +390,10 @@ u8 *TObjPlayer__sub_800A4204(u8 *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4) {
     return arg0;
 }
 
+__declspec(section ".sdata2") const f32 lbl_805D99F0 = 1.0f;
+__declspec(section ".sdata2") const f32 lbl_805D99F4 = 5.0f;
+__declspec(section ".sdata2") const f32 lbl_805D99F8 = 4.0f;
+__declspec(section ".sdata2") const f32 lbl_805D99FC = 0.0f;
+__declspec(section ".sdata2") const f32 lbl_805D9A00 = 480.0f;
+__declspec(section ".sdata2") const f32 lbl_805D9A04 = 0.2f;
+__declspec(section ".sdata2") const f32 lbl_805D9A08 = 0.1f;

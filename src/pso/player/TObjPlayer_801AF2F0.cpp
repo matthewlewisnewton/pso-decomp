@@ -2236,8 +2236,8 @@ void draw_chunk_object(void *child);
 extern s32 TOMineTrap__data_805D3080;
 extern const char *TObjPlayer__player_set_class_name;
 extern const f32 TObjPlayer__data_805DC278;
-extern f32 TObjPlayer__data_805DC28C;
-extern f32 TObjPlayer__data_805DC294;
+extern const f32 TObjPlayer__data_805DC28C;
+extern const f32 TObjPlayer__data_805DC294;
 extern const f32 TObjPlayer__data_805DC2BC;
 extern RecoveredGlobal_802A1154_main_task TObjPlayer__sub_801BEABC;
 extern const Vec lbl_80446F2C;
@@ -2259,10 +2259,10 @@ extern s32 lbl_805D55C0;
 extern s32 lobby_player_count;
 extern s32 shared_state_flags;
 extern Rec_801B09A4 *lobby_char_slot_array;
-extern s32 lbl_805DC27C;
-extern f32 lbl_805DC280;
-extern f32 lbl_805DC284;
-extern f32 lbl_805DC288;
+extern const char lbl_805DC27C[2];
+extern const f32 lbl_805DC280;
+extern const f32 lbl_805DC284;
+extern const f32 lbl_805DC288;
 extern const f32 lbl_805DC290;
 extern const f32 lbl_805DC298;
 extern const f32 lbl_805DC29C;
@@ -7420,9 +7420,9 @@ void draw_status_line(void *arg0, s32 *str, s32 *arg2, s32 arg3) {
     text_builder_reset();
     text_builder_append((u8 *)str);
     text_builder_append((u8 *)arg2);
-    text_builder_append((u8 *)&lbl_805DC27C);
+    text_builder_append((u8 *)lbl_805DC27C);
     text_builder_append_int(arg3);
-    text_builder_append((u8 *)&lbl_805DC27C);
+    text_builder_append((u8 *)lbl_805DC27C);
     TWindowCtrl::init_all((void*)(get_shared_text_buffer()), (void*)0x200);
 }
 
@@ -7430,7 +7430,7 @@ void show_sub_status_window(void *arg0, s32 *str, s32 *arg2) {
     text_builder_reset();
     text_builder_append((u8 *)str);
     text_builder_append((u8 *)arg2);
-    text_builder_append((u8 *)&lbl_805DC27C);
+    text_builder_append((u8 *)lbl_805DC27C);
     TWindowCtrl::init_all((void*)(get_shared_text_buffer()), (void*)0x200);
 }
 
@@ -7983,4 +7983,21 @@ s32 TObjPlayer__sub_801AF290(void *p) {
     TObjPlayer__sub_801BE2C0(player, v);
     return r;
 }
+}
+
+extern "C" {
+const f32 TObjPlayer__data_805DC278 = 0.0f;
+const char lbl_805DC27C[2] = "\n";
+const f32 lbl_805DC280 = 182.04445f;
+const f32 lbl_805DC284 = 360.0f;
+const f32 lbl_805DC288 = 0.000030517578125f;
+const f32 TObjPlayer__data_805DC28C = 0.5f;
+const f32 lbl_805DC290 = 0.1f;
+const f32 TObjPlayer__data_805DC294 = 1.0f;
+const f32 lbl_805DC298 = 0.00001f;
+const f32 lbl_805DC29C = -0.00001f;
+const f32 lbl_805DC2A0 = -1.0f;
+const f32 lbl_805DC2A4 = 0.8f;
+const f32 lbl_805DC2A8 = 0.63f;
+const f32 lbl_805DC2AC = 0.2f;
 }
