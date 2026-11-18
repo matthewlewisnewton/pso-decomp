@@ -1,10 +1,9 @@
 # Quadrilateral and sphere collision units
 
-Validated against fork main `9a8d9fdd91f55173526f947ca140ce65e4626dc5`.
+Validated against fork main `f8b7b04cc635ff3b95385b716ba41c88811ad49d`.
 The quadrilateral overlap body is adapted from [upstream PR #309](https://github.com/zeroz41/pso-decomp/pull/309)
 and sphere contact from [upstream PR #311](https://github.com/zeroz41/pso-decomp/pull/311)
-at head `946bd833cf495a566c59094606c29ccd379d3bfa`. The latter was open at
-this checkpoint. The native names of the quadrilateral and several helper
+at head `946bd833cf495a566c59094606c29ccd379d3bfa`. The native names of the quadrilateral and several helper
 interfaces remain provisional.
 
 ## Ranges and ownership

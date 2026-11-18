@@ -16,7 +16,6 @@ HEADER = r'''
 #include <cmath>
 #include <cstdio>
 typedef std::int32_t s32;
-typedef unsigned char u8;
 typedef float f32;
 typedef double f64;
 struct CollisionSphere_80155C54 { struct { f32 x, y, z; } center; f32 radius; };
