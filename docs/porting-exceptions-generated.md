@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 92 | 60 |
 | hardware | 69 | 13 |
-| pragma | 5893 | 892 |
+| pragma | 5873 | 891 |
 | configure.py per-unit override | 226 | 226 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 61, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1155, `inline_depth` 1063, `fp_contract` 880, `auto_inline` 799, `opt_common_subs` 628, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 61, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -1127,7 +1127,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/object/TUnk_804A6DC0.cpp` | opt_common_subs×1 |
 | `src/pso/player/PhotonBlastResults.cpp` | fp_contract×1 |
 | `src/pso/player/PlayerTaskEffects.cpp` | defer_codegen×4 |
-| `src/pso/player/TObjPlayer.cpp` | inline_depth×5, auto_inline×5, dont_inline×5, fp_contract×4, opt_common_subs×1 |
+| `src/pso/player/TObjPlayer.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/player/TObjPlayerSet.cpp` | opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_80011014.cpp` | scheduling×42, fp_contract×11, opt_common_subs×3, opt_pointer_analysis×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_8002E784.cpp` | opt_common_subs×2, fp_contract×1 |
@@ -1143,7 +1143,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/player/TObjPlayer_80178150.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_801A5AEC.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp` | scheduling×13, fp_contract×10, opt_propagation×3 |
-| `src/pso/player/TObjPlayer_801BFED4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/player/TObjPlayer_801C0808.cpp` | inline_depth×23, auto_inline×23, dont_inline×23, opt_common_subs×1, fp_contract×1 |
 | `src/pso/player/TObjPlayer_801C5AB8.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_801C7430.cpp` | inline_depth×262, dont_inline×262, auto_inline×260, opt_common_subs×3, fp_contract×3, opt_propagation×2, opt_dead_assignments×2, opt_lifetimes×2 |

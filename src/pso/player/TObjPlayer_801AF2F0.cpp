@@ -2120,7 +2120,7 @@ void TObjPlayer__sub_801BF6DC(void *p, s16 v);
 s32 set_anim_state__10TObjPlayerFs(void *, s16);
 s32 set_action_id__10TObjPlayerFs(void *, s32);
 int TObjPlayer__sub_801BF840(void *p);
-int TObjPlayer__sub_801BF8AC(void *p);
+void TObjPlayer__sub_801BF8AC(void *p);
 void set_equip_slot_entry(s32, s32, s32);
 void TObjPlayer__sub_801BF8F8(s32 *p);
 s32 TObjPlayer__sub_801BF914(void *);

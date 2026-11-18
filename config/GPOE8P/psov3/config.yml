@@ -1845,11 +1845,12 @@ force_active:
   - TObjPlayer__sub_801BF5F0
   - TObjPlayer__sub_801BF5F8
   - TObjPlayer__sub_801BF60C
+  - TObjPlayer__sub_801BF640
   - TObjPlayer__sub_801BF7B8
   - TObjPlayer__sub_801BF8CC
   - TObjPlayer__sub_801BFC90
   - TObjPlayer__sub_801BFD3C
-  - TObjPlayer__sub_801BFE88
+  - TObjPlayer__sub_801BFED4
   - TObjPlayer__sub_801C0F10
   - TObjPlayer__sub_801C1A30
   - TObjPlayer__sub_801C6FCC
@@ -5746,6 +5747,7 @@ force_active:
   - clear_30_slots__10TObjPlayerFv
   - clear__14PadRumbleLevelFv
   - clear__15PadRumbleEffectFv
+  - clear__24PlayerScaleCameraOffsetsFv
   - clear_action_flag__10TObjPlayerFv
   - clear_active_flag__8TFogCtrlFv
   - clear_all_entries__6TLobbyFPv
@@ -5802,6 +5804,7 @@ force_active:
   - clear_pipe_interaction_latch__FPv
   - clear_play_flags__13TBoss2DeRolLeFv
   - clear_player_grav_flags__14TBoss6GravBallFv
+  - clear_player_scale_camera_vector__FPf
   - clear_position__6TLobbyFv
   - clear_ref_if_destroyed__12TObjComputerFv
   - clear_render_deferred__7TObjectFv
@@ -7441,6 +7444,7 @@ force_active:
   - free_field_98_and_clear
   - free_field_FC__23TAdSinglePlyChrSelectGCFv
   - free_if_not_in_arena__11BmlResourceFPv
+  - free_if_valid__10TObjPlayerFls
   - free_item_pmt__Fv
   - free_laser__13TBoss2DeRolLeFPv
   - free_laser_light__15TBoss7LaserPtclFv
@@ -8287,7 +8291,6 @@ force_active:
   - init_player__13TUnk_804E3008FPvPvPvPv
   - init_player_entry__6TLobbyFPvPv
   - init_player_forward__6TLobbyFv
-  - init_player_scale_state__FP10TObjPlayer
   - init_player_window_effect__6TLobbyFv
   - init_position_packet__10TObjPlayerFv
   - init_positions__10TEndingPicFv
@@ -16800,6 +16803,7 @@ force_active:
   - reset__14TItemEquipBaseFv
   - reset__14TObjEneBm5WolfFv
   - reset__15TWindowSnapShotFv
+  - reset__16PlayerScaleStateFv
   - reset__16TObjEneBm5GibonUFv
   - reset__21TObjEneRe7BeruraPunchFv
   - reset__6TLobbyFi
@@ -17918,6 +17922,7 @@ force_active:
   - set_mode_index_from_state__13TObjLobbyMainFv
   - set_model__11TItemMagSubFPvUlPv
   - set_model__19TBoss3VoloptMonitorFl
+  - set_model_scale__16PlayerScaleStateFf
   - set_motion__10TObjPlayerFl
   - set_motion_by_state__18TObjEneRe4SorcererFPv
   - set_motion_for_state__11TBoss4Type1Fv
@@ -18071,6 +18076,7 @@ force_active:
   - setup_projection_tex_matrix__10TObjPlayerFv
   - setup_projection_texture__10TObjPlayerFlll
   - setup_sound__18TObjEnvSoundGlobalFv
+  - setup_state__10TObjPlayerFv
   - setup_state__14TBoss7TentacleFv
   - setup_state_helper__10TObjPlayerFv
   - setup_telepipe_field__9TTecLukerFv

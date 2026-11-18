@@ -6596,47 +6596,8 @@ pso/misc/TPlyPhotonChair_801BEC44.cpp:
 	.text       start:0x801BEC44 end:0x801BEC98
 
 pso/player/TObjPlayer.cpp:
-	.text       start:0x801BEC98 end:0x801BF548
+	.text       start:0x801BEC98 end:0x801C0064
 	.sbss       start:0x805D5D70 end:0x805D5D78
-
-pso/player/TObjPlayer_801BF548.cpp:
-	.text       start:0x801BF548 end:0x801BF6B0
-
-pso/player/TObjPlayer_801BF6B0.cpp:
-	.text       start:0x801BF6B0 end:0x801BF8EC
-
-pso/player/TObjPlayer_801BF8EC.cpp:
-	.text       start:0x801BF8EC end:0x801BF918
-
-pso/player/TObjPlayer_801BF918.cpp:
-	.text       start:0x801BF918 end:0x801BF978
-
-pso/player/TObjPlayer_801BF978.cpp:
-	.text       start:0x801BF978 end:0x801BFA98
-
-pso/player/TObjPlayer_801BFA98.cpp:
-	.text       start:0x801BFA98 end:0x801BFAD4
-
-pso/player/TObjPlayer_801BFAD4.cpp:
-	.text       start:0x801BFAD4 end:0x801BFB1C
-
-pso/player/TObjPlayer_801BFB1C.cpp:
-	.text       start:0x801BFB1C end:0x801BFBCC
-
-pso/player/TObjPlayer_801BFBCC.cpp:
-	.text       start:0x801BFBCC end:0x801BFE1C
-
-pso/player/TObjPlayer_801BFE1C.cpp:
-	.text       start:0x801BFE1C end:0x801BFE40
-
-pso/player/TObjPlayer_801BFE40.cpp:
-	.text       start:0x801BFE40 end:0x801BFE50
-
-pso/player/TObjPlayer_801BFE50.cpp:
-	.text       start:0x801BFE50 end:0x801BFED4
-
-pso/player/TObjPlayer_801BFED4.cpp:
-	.text       start:0x801BFED4 end:0x801C0064
 
 pso/misc/pso_const_ids5.cpp:
 	.text       start:0x801C0064 end:0x801C00C4
