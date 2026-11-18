@@ -453,11 +453,11 @@ extern "C" void classify_actor_view_detail__8TObjBaseFfff();
 extern "C" void get_name__8TObjBaseFv();
 extern "C" void interact__14TObjCollidableFl();
 extern "C" void vfunc_14__12TObjWarpBaseFv();
-extern "C" void open_confirm_window__12TObjAreaWarpFUs();
-extern "C" void is_warp_enabled__12TObjAreaWarpFl();
+extern "C" void open_confirm_window__12TObjAreaWarpFl();
+extern "C" void is_warp_enabled__12TObjAreaWarpFv();
 extern "C" void vfunc_17__12TObjWarpBaseFv();
 extern "C" void vfunc_18__12TObjWarpBaseFl();
-extern "C" void confirm_area_transfer__12TObjAreaWarpFPvi();
+extern "C" void confirm_area_transfer__12TObjAreaWarpFl();
 extern "C" void run_task__25TObjCityMainWarpChallengeFv();
 extern "C" void render__25TObjCityMainWarpChallengeFv();
 extern "C" void debug_print_area_num__25TObjCityMainWarpChallengeFv();
@@ -477,11 +477,11 @@ extern "C" s32 __vt__25TObjCityMainWarpChallenge[] = {
     (s32)get_name__8TObjBaseFv,
     (s32)interact__14TObjCollidableFl,
     (s32)vfunc_14__12TObjWarpBaseFv,
-    (s32)open_confirm_window__12TObjAreaWarpFUs,
-    (s32)is_warp_enabled__12TObjAreaWarpFl,
+    (s32)open_confirm_window__12TObjAreaWarpFl,
+    (s32)is_warp_enabled__12TObjAreaWarpFv,
     (s32)vfunc_17__12TObjWarpBaseFv,
     (s32)vfunc_18__12TObjWarpBaseFl,
-    (s32)confirm_area_transfer__12TObjAreaWarpFPvi,
+    (s32)confirm_area_transfer__12TObjAreaWarpFl,
     (s32)debug_print_area_num__25TObjCityMainWarpChallengeFv,
 };
 

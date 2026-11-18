@@ -5,7 +5,7 @@
 struct TObjMapWarp : public TObjWarpBase {
     virtual ~TObjMapWarp();
     virtual void vfunc_14();
-    virtual void slot4C();
+    virtual void draw_debug_destinations();
     virtual void closePlayerWindow(u16);
     u8 unk_AC[0x4];
     void * m_b0;
@@ -13,9 +13,8 @@ struct TObjMapWarp : public TObjWarpBase {
     u8 unk_B8[0x4];
     f32 destinations[4][3];
     void* playerPopups[4];
-    void draw_debug_destinations();
     static u8 can_warp(s32 arg0, u16 arg1);
-    void open_player_warp_window(s32 arg1);
+    virtual void open_confirm_window(s32 client_id);
     void process_player_warps();
 };
 #endif

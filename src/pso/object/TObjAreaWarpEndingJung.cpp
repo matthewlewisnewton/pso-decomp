@@ -246,10 +246,6 @@ struct RecoveredGlobal_8019CA24_lbl_80515BA0 {
     u8 remaining[0x24];
 };
 
-struct RecoveredGlobal_8019CE40___vt__12TObjAreaWarp {
-    s32 value;
-    u8 remaining[0x50];
-};
 
 struct Vec_8019D0A8 { f32 x, y, z; };
 
@@ -334,7 +330,6 @@ struct Data_8019CAB0 {
 
 typedef char RecoveredGlobal_8019CA24_lbl_80515BA0_size[sizeof(RecoveredGlobal_8019CA24_lbl_80515BA0) == 0x28 ? 1 : -1];
 
-typedef char RecoveredGlobal_8019CE40___vt__12TObjAreaWarp_size[sizeof(RecoveredGlobal_8019CE40___vt__12TObjAreaWarp) == 0x54 ? 1 : -1];
 
 struct VObj_8019D250;
 extern "C" {
@@ -358,7 +353,6 @@ s32 fn_80141CB4(void *, f32);
 s32 test_player_body_overlap_at(void *, void *, Vec_8019D250 *);
 s32 TObjCityMainWarp__sub_80186AF4();
 void * TObjAreaWarpEndingJung__create(void *arg0);
-void * __dt__22TObjAreaWarpEndingJungFv(void *arg0, s16 arg1);
 void * TObjAreaWarpEndingJung__ct(void *arg0, void *parent, void *set);
 s64 fn_8019B480(void *arg0, void *arg1);
 void fade_and_destroy__14TObjWarpStringFPv(u8 *arg0);
@@ -366,27 +360,15 @@ void TObjWarpString__sub_8019B728(void *arg0);
 void update_fade_in__14TObjWarpStringFPv(u8 *arg0);
 void sub_8019B77C__14TObjWarpStringFv(void *arg0);
 u8 * __ct__14TObjWarpStringFv(u8 *arg0, u8 *arg1, s32 arg2, s16 arg3);
-s32 TObjMapForceWarp__vt16(TObjMapForceWarp *arg0, u16 arg1);
-void TObjMapForceWarp__vt17(Obj_8019B978 *arg0);
-void * __dt__16TObjMapForceWarpFv(void *arg0, s16 arg1);
 void * TObjMapForceWarp__ct(void *arg0, void *parent, void *set);
-void * __dt__18TObjAreaWarpEndingFv(void *arg0, s16 arg1);
 u8 * TObjAreaWarpEnding__ct(u8 *arg0, s32 arg1, s32 arg2);
-void TObjAreaWarpQuest__vt17(Warp_8019C05C *arg0, void *arg1);
-void * __dt__17TObjAreaWarpQuestFv(void *arg0, s16 arg1);
 u8 * TObjAreaWarpQuest__ct(u8 *arg0, s32 arg1, s32 arg2);
-void * __dt__18TObjAreaWarpForestFv(void *arg0, s16 arg1);
 u8 * TObjAreaWarpForest__ct(u8 *arg0, s32 arg1, s32 arg2);
 void handle_6x94_inter_level_warp(Pkt_8019C988 *arg0);
-void confirm_area_transfer__12TObjAreaWarpFPvi(u8 *arg0, s32 arg1);
-u8 * __dt__12TObjAreaWarpFv(u8 *arg0, s16 arg1);
 void * TObjAreaWarp__ct(void *arg0, void *parent, void *set);
 u8 * TObjMapWarpForest__ct(u8 *arg0, void *parent, void *set);
 s32 can_warp__11TObjMapWarpFlUs(void *, u16);
-void *__dt__11TObjMapWarpFv(void *arg0, s16 arg1);
-s32 vfunc_16__12TObjWarpBaseFv(s32);
 void *find_warp_player_in_range(void *self, u16 client_id, f32 range);
-void *__dt__12TObjWarpBaseFv(void *arg0, s16 arg1);
 int TAdStorySelectGC__sub_8019DC14(void);
 s32 register_area_warp_object__16TAdStorySelectGCFPv(int);
 s32 register_warp__16TObjMapForceWarpFPv(int);
@@ -405,7 +387,7 @@ void __dl__7TObjectFPv(void *);
 void * __nw__7TObjectFUl(int);
 void __ct__7TObjectFP7TObject(void *, void *);
 s32 align_menu_entry_positions(u32);
-u32 create_window_menu(s32, s32, s16);
+s32 create_window_menu(s32, s32, s32);
 s32 get_window_layout_position(s32);
 s32 find_active_player__12TObjAreaWarpFv(void *);
 void *destroy__13TAdVIConfigGCFPvs(void *arg0, s16 arg1);
@@ -524,18 +506,11 @@ struct W_8019D764 {
 };
 extern "C" {
 
-u8 TWindowShortListCtrl__check_controller_button(void *, int);
+s32 TWindowShortListCtrl__check_controller_button(void *, int);
 extern RecoveredGlobal_8019D850_lbl_8050E208 controller_input_state;
 void fn_8019DD24(void *p, u32 v);
 extern s32 __vt__11TObjMapWarp[];
 extern const char *TObjMapWarp__name;
-struct Base_8019D6F8_8019D4E4 { char pad[0x18]; };
-struct VObj_8019D6F8_8019D4E4 : Base_8019D6F8_8019D4E4 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11();
-    virtual void m12(); virtual void m13();
-};
 
 int is_flag_400_set__10TObjPlayerFPv(void *p);
 
@@ -568,13 +543,6 @@ f32 xz_distance_squared(void *, void *);
 void __ct__14TObjCollidableFP7TObject(Warp_8019DAC0 *, void *, void *);
 extern s32 __vt__12TObjWarpBase[];
 extern const char *TObjWarpBase__name;
-struct Base_8019DA54_8019D964 { char pad[0x18]; };
-struct VObj_8019DA54_8019D964 : Base_8019DA54_8019D964 {
-    virtual void m0(); virtual void m1(); virtual void m2(); virtual void m3();
-    virtual void m4(); virtual void m5(); virtual void m6(); virtual void m7();
-    virtual void m8(); virtual void m9(); virtual void m10(); virtual void m11();
-    virtual void m12(); virtual void m13();
-};
 
 s32 release_texture_list(void*);
 
@@ -611,17 +579,8 @@ Warp_8019DAC0 *TObjWarpBase__ct(Warp_8019DAC0 *self, void *parent, void *set) {
     return self;
 }
 
-void *__dt__12TObjWarpBaseFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        struct VObj_8019DA54_8019D964 *o = (struct VObj_8019DA54_8019D964 *)arg0;
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TObjWarpBase;
-        o->m12();
-        __dt__14TObjCollidableFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TObjWarpBase::~TObjWarpBase() {
+    vfunc_14();
 }
 
 void *find_warp_player_in_range(void *self, u16 client_id, f32 range) {
@@ -653,7 +612,7 @@ void TObjWarpBase::vfunc_14() {
     }
 }
 
-u8 TObjWarpBase::vfunc_16() {
+s32 TObjWarpBase::is_warp_enabled() {
     void *player;
     u32 id = *(u16 *)((s8 *)this + 0xB8);
 
@@ -679,12 +638,12 @@ u8 TObjWarpBase::vfunc_16() {
     return 1U;
 }
 
-void TObjWarpBase::vfunc_17() {
-    TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state.value + 0x20), 4);
+s32 TObjWarpBase::vfunc_17() {
+    return TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state.value + 0x20), 4);
 }
 
-void TObjWarpBase::vfunc_18(s32 arg1) {
-    TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&(*(RecoveredGlobal_8019D818_lbl_8050E208 *)&controller_input_state).value + (arg1 * 0x50) + 0x20), 4);
+s32 TObjWarpBase::vfunc_18(s32 arg1) {
+    return TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&(*(RecoveredGlobal_8019D818_lbl_8050E208 *)&controller_input_state).value + (arg1 * 0x50) + 0x20), 4);
 }
 
 void *TObjMapWarp__ct(void *map_warp, void *parent, void *set) {
@@ -704,17 +663,8 @@ void *TObjMapWarp__ct(void *map_warp, void *parent, void *set) {
     return self;
 }
 
-void *__dt__11TObjMapWarpFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        struct VObj_8019D6F8_8019D4E4 *o = (struct VObj_8019D6F8_8019D4E4 *)arg0;
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TObjMapWarp;
-        o->m12();
-        __dt__12TObjWarpBaseFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TObjMapWarp::~TObjMapWarp() {
+    vfunc_14();
 }
 
 void TObjMapWarp::vfunc_14() {
@@ -743,7 +693,7 @@ void TObjMapWarp::closePlayerWindow(u16 arg1) {
 
 #pragma push
 #pragma opt_common_subs off
-void TObjMapWarp::open_player_warp_window(s32 arg1) {
+void TObjMapWarp::open_confirm_window(s32 arg1) {
     s32 arg0 = (s32)this;
     u8 *temp_r31;
     temp_r31 = (u8 *)(arg0 + (arg1 * 4));
@@ -929,29 +879,20 @@ void *TObjAreaWarp__ct(void *area_warp, void *parent, void *set) {
     return area_warp;
 }
 
-u8 *__dt__12TObjAreaWarpFv(u8 *area_warp, s16 arg1) {
-    u8 *ad_vi_config_gc;
-    if (area_warp != NULL) {
-        *(s32 **)((s8 *)area_warp + 0x18) = &(*(RecoveredGlobal_8019CE40___vt__12TObjAreaWarp *)&__vt__12TObjAreaWarp).value;
-        ad_vi_config_gc = (u8 *)(*(u8 **)((s8 *)area_warp + 0xC0));
-        if (ad_vi_config_gc != NULL) {
-            destroy__13TAdVIConfigGCFPvs(ad_vi_config_gc, 1);
-            *(u8 **)((s8 *)area_warp + 0xC0) = NULL;
-        }
-        ((TObjAreaWarp *)(area_warp))->vfunc_14();
-        __dt__12TObjWarpBaseFv(area_warp, 0);
-        if (arg1 > 0) {
-            ((s32 (*)(void *))__dl__7TObjectFPv)(area_warp);
-        }
+TObjAreaWarp::~TObjAreaWarp() {
+    u8 **vi_config = (u8 **)((u8 *)this + 0xC0);
+    if (*vi_config != NULL) {
+        destroy__13TAdVIConfigGCFPvs(*vi_config, 1);
+        *vi_config = NULL;
     }
-    return area_warp;
+    vfunc_14();
 }
 
-void TObjAreaWarp::open_confirm_window(u16 arg1) {
+void TObjAreaWarp::open_confirm_window(s32 arg1) {
     u32 temp_r3;
 
     if ((u32) *(u32 *)((s8 *)this + 0xB0) == 0U) {
-        *(u32 *)((s8 *)this + 0xB0) = ((u32 (*)(s32, s32, u16))create_window_menu)(get_window_layout_position(0x33), 1, arg1);
+        *(u32 *)((s8 *)this + 0xB0) = create_window_menu(get_window_layout_position(0x33), 1, arg1);
         if (((s32 (*)(void))get_game_play_mode)() == 1) {
             ((TWindowSubTradeMain *)(*(u32 *)((s8 *)this + 0xB0)))->add_text_entry(TObjCityMainWarp__sub_80186AF4(), 2, 0, -1);
         } else {
@@ -970,7 +911,7 @@ void TObjAreaWarp::open_confirm_window(u16 arg1) {
     }
 }
 
-s32 TObjAreaWarp::is_warp_enabled(s32 arg0) {
+s32 TObjAreaWarp::is_warp_enabled() {
     s32 var_r31;
     void *player;
 
@@ -987,7 +928,7 @@ loop_2:
         goto loop_2;
     }
 block_6:
-    return vfunc_16__12TObjWarpBaseFv(arg0);
+    return TObjWarpBase::is_warp_enabled();
 }
 
 void TObjAreaWarp::handle_area_selection() {
@@ -1047,7 +988,8 @@ void TObjAreaWarp::handle_area_selection() {
     }
 }
 
-void confirm_area_transfer__12TObjAreaWarpFPvi(u8 *arg0, s32 arg1) {
+void TObjAreaWarp::confirm_area_transfer(s32 arg1) {
+    u8 *arg0 = (u8 *)this;
     ((s32 (*)(void *, int, int))set_area__6TLobbyFl)(&lbl_80515BA0.value, (int) (*(s32 *)((s8 *)arg0 + 0xBC)), (int) (get_floor_map_terrain(*(s32 *)((s8 *)arg0 + 0xBC))));
     ((s32 (*)(void))mark_area_change_pending)();
     ((TObjAreaWarpQuest *)(&lbl_80515BA0.value))->get_dest_area();
@@ -1113,16 +1055,7 @@ u8 *TObjAreaWarpForest__ct(u8 *area_warp_forest, s32 arg1, s32 arg2) {
     return area_warp_forest;
 }
 
-void *__dt__18TObjAreaWarpForestFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TObjAreaWarpForest;
-        ((void (*)(void *, int))__dt__12TObjAreaWarpFv)(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjAreaWarpForest::~TObjAreaWarpForest() {}
 
 void TObjAreaWarpForest::run_task() {
     u8 *arg0 = (u8 *)this;
@@ -1135,7 +1068,7 @@ void TObjAreaWarpForest::run_task() {
   ((TObjAreaWarp *)arg0)->handle_area_selection();
 }
 
-void TObjAreaWarpForest::confirm_area_transfer(s32) { ((int (*)(void*))confirm_area_transfer__12TObjAreaWarpFPvi)(this); }
+void TObjAreaWarpForest::confirm_area_transfer(s32 player) { TObjAreaWarp::confirm_area_transfer(player); }
 
 void TObjAreaWarpForest::render() {
     Obj_8019C604 *self = (Obj_8019C604 *)this;
@@ -1226,16 +1159,7 @@ u8 *TObjAreaWarpQuest__ct(u8 *arg0, s32 arg1, s32 arg2) {
     return arg0;
 }
 
-void *__dt__17TObjAreaWarpQuestFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__17TObjAreaWarpQuest;
-        ((void (*)(void *, int))__dt__12TObjAreaWarpFv)(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjAreaWarpQuest::~TObjAreaWarpQuest() {}
 
 void TObjAreaWarpQuest::run_task() {
     u8 *arg0 = (u8 *)this;
@@ -1311,9 +1235,11 @@ void TObjAreaWarpQuest::debug_print_area_num() {
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
 }
 
-void TObjAreaWarpQuest__vt17(Warp_8019C05C *arg0, void *arg1) {
+void TObjAreaWarpQuest::confirm_area_transfer(s32 player) {
     s32 i;
     void *p;
+    Warp_8019C05C *arg0 = (Warp_8019C05C *)this;
+    void *arg1 = (void *)player;
     set_area__6TLobbyFl(((u8 *)&lbl_80515BA0), arg0->fBC, get_floor_map_terrain(arg0->fBC));
     mark_area_change_pending();
     if (arg1 != 0 && arg0->fC4 > 1) {
@@ -1362,16 +1288,7 @@ u8 *TObjAreaWarpEnding__ct(u8 *area_warp_ending, s32 arg1, s32 arg2) {
     return area_warp_ending;
 }
 
-void *__dt__18TObjAreaWarpEndingFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TObjAreaWarpEnding;
-        ((void (*)(void *, int))__dt__12TObjAreaWarpFv)(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjAreaWarpEnding::~TObjAreaWarpEnding() {}
 
 void TObjAreaWarpEnding::run_task() {
     u8 *arg0 = (u8 *)this;
@@ -1442,7 +1359,7 @@ void TObjAreaWarpEnding::debug_print_area_num() {
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
 }
 
-void TObjAreaWarpEnding::open_confirm_window(s16 arg1) {
+void TObjAreaWarpEnding::open_confirm_window(s32 arg1) {
     if ((u32) this->m_cc == 0U) {
         this->m_cc = create_window_menu(get_window_layout_position(0x33), 1, arg1);
         if (get_main_phase() == 0xE) {
@@ -1500,23 +1417,15 @@ void *TObjMapForceWarp__ct(void *map_force_warp, void *parent, void *set) {
     return map_force_warp;
 }
 
-void *__dt__16TObjMapForceWarpFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__16TObjMapForceWarp;
-        __dt__11TObjMapWarpFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjMapForceWarp::~TObjMapForceWarp() {}
 
 void TObjMapForceWarp::run_task() { process_player_warps(); }
 
 void TObjMapForceWarp::render() {  }
 
-void TObjMapForceWarp__vt17(Obj_8019B978 *arg0) {
-    ((TObjMapWarp *)arg0)->draw_debug_destinations();
+void TObjMapForceWarp::draw_debug_destinations() {
+    Obj_8019B978 *arg0 = (Obj_8019B978 *)this;
+    TObjMapWarp::draw_debug_destinations();
     if (arg0->f8c > 0) {
         arg0->ffc = 0;
     } else {
@@ -1532,9 +1441,9 @@ void TObjMapForceWarp__vt17(Obj_8019B978 *arg0) {
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
 }
 
-s32 TObjMapForceWarp__vt16(TObjMapForceWarp *map_force_warp, u16 arg1) {
-    if ((s32) ((TObjMapForceWarp *)map_force_warp)->m_fc != 0) {
-        map_force_warp->create_warp_id_string((void *)arg1);
+s32 TObjMapForceWarp::vfunc_18(s32 client_id) {
+    if ((s32)m_fc != 0) {
+        create_warp_id_string((void *)(u16)client_id);
     }
     return 1;
 }
@@ -1702,16 +1611,7 @@ void *TObjAreaWarpEndingJung__ct(void *area_warp_ending_jung, void *parent, void
     return area_warp_ending_jung;
 }
 
-void *__dt__22TObjAreaWarpEndingJungFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TObjAreaWarpEndingJung;
-        ((void (*)(void *, int))__dt__18TObjAreaWarpEndingFv)(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjAreaWarpEndingJung::~TObjAreaWarpEndingJung() {}
 
 void TObjAreaWarpEndingJung::run_task() {
     f32 temp_f1;

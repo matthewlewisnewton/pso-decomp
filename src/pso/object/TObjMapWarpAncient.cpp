@@ -224,7 +224,7 @@ void TObjMapWarpAncient::render() {
     }
 }
 
-void TObjMapWarpAncient::slot4C() {
+void TObjMapWarpAncient::draw_debug_destinations() {
     if ((s32) *(s32 *)((s8 *)this + 0x88) < 0) {
         TObjNpcEnemy::set_global_count(0xFF00FF);
         debug_printf_at(0x130021, lbl_804432C8);

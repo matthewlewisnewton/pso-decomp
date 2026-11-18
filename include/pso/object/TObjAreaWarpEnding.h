@@ -13,7 +13,7 @@ struct TObjAreaWarpEnding : public TObjAreaWarp {
     u32 m_d0;
     u32 m_d4;
     u32 m_d8;
-    void open_confirm_window(s16 arg1);
+    virtual void open_confirm_window(s32 client_id);
     void render();
     void run_task();
     u8 unk_C0[0x4];

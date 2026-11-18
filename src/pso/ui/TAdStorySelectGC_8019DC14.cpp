@@ -18,6 +18,6 @@ void TAdStorySelectGC::register_area_warp_object(void* a0) { get_bml_motion(fore
 
 void TObjMapForceWarp::register_warp(void* a0) { (int)get_bml_model(forest_warp_bml_resource, (s32)a0); }
 
-void TObjMapForceWarp::slot3C() {  }
+void TObjMapForceWarp::open_confirm_window(s32) {}
 
 }

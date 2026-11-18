@@ -6166,7 +6166,7 @@ pso/unk/text_8019B0D4.cpp:
 pso/object/TObjAreaWarpEndingJung.cpp:
 	.text       start:0x8019B124 end:0x8019DBB4
 	.rodata     start:0x804463C8 end:0x804463D0
-	.data       start:0x804B91E0 end:0x804B91F8
+	.data       start:0x804B918C end:0x804B9490
 	.sdata2     start:0x805DBFC8 end:0x805DC000
 
 pso/object/TObjWarpDebugLabels.cpp:

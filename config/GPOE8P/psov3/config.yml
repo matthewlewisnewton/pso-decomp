@@ -2838,6 +2838,7 @@ force_active:
   - __dt__12TObjQuestColFv
   - __dt__12TObjRaderColFv
   - __dt__12TObjRainCtrlFv
+  - __dt__12TObjWarpBaseFv
   - __dt__12TQuestListVMFv
   - __dt__12TQuestThreadFv
   - __dt__12TWindowTimerFv
@@ -3142,6 +3143,7 @@ force_active:
   - __dt__16TObjHashiVersus2Fv
   - __dt__16TObjItemOKWindowFv
   - __dt__16TObjKabochaLobbyFv
+  - __dt__16TObjMapForceWarpFv
   - __dt__16TObjRaderHideColFv
   - __dt__16TObjRainbowLobbyFv
   - __dt__16TObjTagChallengeFv
@@ -3175,6 +3177,7 @@ force_active:
   - __dt__17TOSensorGeneral01Fv
   - __dt__17TOSwitchAttackSubFv
   - __dt__17TOTrapChainSawKeyFv
+  - __dt__17TObjAreaWarpQuestFv
   - __dt__17TObjBoss2CeilJunkFv
   - __dt__17TObjBoss2DustCtrlFv
   - __dt__17TObjBoss7DustCtrlFv
@@ -3230,6 +3233,7 @@ force_active:
   - __dt__18TOExplosiveMachineFv
   - __dt__18TOMonitorMachine01Fv
   - __dt__18TOTrapChainSawEdgeFv
+  - __dt__18TObjAreaWarpEndingFv
   - __dt__18TObjChallengeRetryFv
   - __dt__18TObjCityDoor_LobbyFPvs
   - __dt__18TObjContainerEnemyFv
@@ -3338,6 +3342,7 @@ force_active:
   - __dt__22TBoss5GryphonShockWaveFv
   - __dt__22TChCrTagInformationStrFv
   - __dt__22TChallenge4PItemSelectFv
+  - __dt__22TObjAreaWarpEndingJungFv
   - __dt__22TObjBoss1MokoHill_SoloFv
   - __dt__22TObjContainerJungEnemyFv
   - __dt__22TObjEneMe1GiGueBarrierFv
@@ -3507,6 +3512,7 @@ force_active:
   - __vt__11TObjDFYutai
   - __vt__11TObjEneMoja
   - __vt__11TObjInfoCol
+  - __vt__11TObjMapWarp
   - __vt__11TObjMesBase
   - __vt__11TObjNpcMoja
   - __vt__11TObjPathObj
@@ -3558,6 +3564,7 @@ force_active:
   - __vt__12TOVS2Wreck04
   - __vt__12TOVS2Wreck05
   - __vt__12TOVS2Wreck06
+  - __vt__12TObjAreaWarp
   - __vt__12TObjComputer
   - __vt__12TObjEneBeast
   - __vt__12TObjEneDD_ST
@@ -3567,6 +3574,7 @@ force_active:
   - __vt__12TObjParticle
   - __vt__12TObjRaderCol
   - __vt__12TObjRainCtrl
+  - __vt__12TObjWarpBase
   - __vt__12TQuestListVM
   - __vt__12TQuestThread
   - __vt__12TTecZondeEff
@@ -3856,6 +3864,7 @@ force_active:
   - __vt__16TObjHashiVersus2
   - __vt__16TObjItemOKWindow
   - __vt__16TObjKabochaLobby
+  - __vt__16TObjMapForceWarp
   - __vt__16TObjOnlineEnding
   - __vt__16TObjRaderHideCol
   - __vt__16TObjRainbowLobby
@@ -3889,6 +3898,7 @@ force_active:
   - __vt__17TOSensorGeneral01
   - __vt__17TOSwitchAttackSub
   - __vt__17TOTrapChainSawKey
+  - __vt__17TObjAreaWarpQuest
   - __vt__17TObjBoss2CeilJunk
   - __vt__17TObjBoss2DustCtrl
   - __vt__17TObjBoss7DustCtrl
@@ -3947,6 +3957,8 @@ force_active:
   - __vt__18TOExplosiveMachine
   - __vt__18TOMonitorMachine01
   - __vt__18TOTrapChainSawEdge
+  - __vt__18TObjAreaWarpEnding
+  - __vt__18TObjAreaWarpForest
   - __vt__18TObjChallengeRetry
   - __vt__18TObjCityDoor_Guild
   - __vt__18TObjCityDoor_Lobby
@@ -4051,6 +4063,7 @@ force_active:
   - __vt__22TBoss5GryphonShockWave
   - __vt__22TChCrTagInformationStr
   - __vt__22TChallenge4PItemSelect
+  - __vt__22TObjAreaWarpEndingJung
   - __vt__22TObjBoss1MokoHill_Solo
   - __vt__22TObjContainerJungEnemy
   - __vt__22TObjEneMe1GiGueBarrier
@@ -6050,6 +6063,8 @@ force_active:
   - configure_viewport__13TRaderMapCoreFPC23RadarViewportParameters
   - confirm_and_close_if_valid__15TShopWindowBaseFv
   - confirm_and_free__17TWindowSubComCardFv
+  - confirm_area_transfer__17TObjAreaWarpQuestFl
+  - confirm_area_transfer__18TObjAreaWarpEndingFl
   - confirm_mode_selection__21TAdMultiChgGameModeGCFv
   - confirm_selection__14TObjCMMainMenuFv
   - construct__12T_OWEHMS_ExpFP10TObjPlayer
@@ -6421,7 +6436,10 @@ force_active:
   - debug_draw_key_id__12TOSwitchItemFv
   - debug_font_texture_i4
   - debug_font_texture_object
+  - debug_print_area_num__17TObjAreaWarpQuestFv
   - debug_print_area_num__17TObjWarpBossMultiFv
+  - debug_print_area_num__18TObjAreaWarpEndingFv
+  - debug_print_area_num__22TObjAreaWarpEndingJungFv
   - debug_print_area_num__25TObjCityMainWarpChallengeFv
   - debug_print_item_box_info__18TObjContainerEnemyFv
   - debug_print_item_box_info__21TObjContainerAbeEnemyFv
@@ -6702,6 +6720,7 @@ force_active:
   - draw_current_pic__10TEndingPicFv
   - draw_cursor__19TWindowSubMagPhotonFi
   - draw_cursor__22TWindowSubCustomSelectFPUc
+  - draw_debug_destinations__16TObjMapForceWarpFv
   - draw_debug_line__19TObjEneEpsilonGuardFv
   - draw_dialing_status__12TAdDialingGCFv
   - draw_effect_chain__15TOTrapAncient02Fv
@@ -11543,6 +11562,7 @@ force_active:
   - open_confirm_prompt__19TWindowSubTradeMainFv
   - open_confirm_prompt__20TWindowSubSymbolChatFv
   - open_confirm_window__12TQuestListVMFv
+  - open_confirm_window__18TObjAreaWarpEndingFl
   - open_confirm_yes_no__19TWindowSubTradeMainFv
   - open_container__20TContainerAncient01RFv
   - open_delete_confirm_dialog__19TWindowSubShortMailFv
@@ -16698,6 +16718,7 @@ force_active:
   - render__16TObjEneNanoDragoFv
   - render__16TObjEvtCollisionFv
   - render__16TObjKabochaLobbyFv
+  - render__16TObjMapForceWarpFv
   - render__16TObjOnlineEndingFv
   - render__16TObjRaderHideColFv
   - render__16TObjRainbowLobbyFv
@@ -16719,6 +16740,7 @@ force_active:
   - render__17TOHangerMachine01Fv
   - render__17TOSensorAncient01Fv
   - render__17TOSensorGeneral01Fv
+  - render__17TObjAreaWarpQuestFv
   - render__17TObjBoss2CeilJunkFv
   - render__17TObjBoss8DemoRoomFv
   - render__17TObjCityDoor_ShopFv
@@ -16727,6 +16749,7 @@ force_active:
   - render__17TObjEneDf2BringerFv
   - render__17TObjEneMe1CanadinFv
   - render__17TObjEneMe3ShinowaFv
+  - render__17TObjMapWarpForestFv
   - render__17TObjParticleLobbyFv
   - render__17TObjVoloptShutterFv
   - render__17TObjWarpBossMultiFv
@@ -16760,6 +16783,7 @@ force_active:
   - render__18TOCapsuleMachine01Fv
   - render__18TOExplosiveMachineFv
   - render__18TOMonitorMachine01Fv
+  - render__18TObjAreaWarpEndingFv
   - render__18TObjButterflyLobbyFPv
   - render__18TObjCityDoor_GuildFv
   - render__18TObjCityDoor_LobbyFv
@@ -16836,6 +16860,7 @@ force_active:
   - render__22TAdEnterSerialAccessGCFPv
   - render__22TBoss5GryphonShockWaveFv
   - render__22TChCrTagInformationStrFv
+  - render__22TObjAreaWarpEndingJungFv
   - render__22TObjEneMe1GiGueBarrierFv
   - render__22TObjEneMe1GiGueMissileFv
   - render__22TObjEneSlimeTailAttackFv
@@ -17495,6 +17520,7 @@ force_active:
   - run_task__16TObjEneRe7BeruraFv
   - run_task__16TObjEvtCollisionFv
   - run_task__16TObjKabochaLobbyFv
+  - run_task__16TObjMapForceWarpFv
   - run_task__16TObjOnlineEndingFv
   - run_task__16TObjRaderHideColFv
   - run_task__16TObjRainbowLobbyFv
@@ -17520,6 +17546,7 @@ force_active:
   - run_task__17TMedicalCenterMesFv
   - run_task__17TOHangerMachine01Fv
   - run_task__17TOSwitchAttackSubFv
+  - run_task__17TObjAreaWarpQuestFv
   - run_task__17TObjBoss2CeilJunkFv
   - run_task__17TObjBoss2DustCtrlFv
   - run_task__17TObjBoss7DustCtrlFv
@@ -17531,6 +17558,7 @@ force_active:
   - run_task__17TObjEneMe1CanadinFl
   - run_task__17TObjEneMe1CanadinFv
   - run_task__17TObjEneMe3ShinowaFv
+  - run_task__17TObjMapWarpForestFv
   - run_task__17TObjParticleLobbyFv
   - run_task__17TObjVoloptShutterFv
   - run_task__17TObjWarpBossMultiFv
@@ -17563,6 +17591,7 @@ force_active:
   - run_task__18TOCapsuleMachine01Fv
   - run_task__18TOExplosiveMachineFv
   - run_task__18TOMonitorMachine01Fv
+  - run_task__18TObjAreaWarpEndingFv
   - run_task__18TObjChallengeRetryFv
   - run_task__18TObjCityDoor_GuildFv
   - run_task__18TObjCityDoor_LobbyFv
@@ -17651,6 +17680,7 @@ force_active:
   - run_task__22TBoss5GryphonShockWaveFv
   - run_task__22TChCrTagInformationStrFv
   - run_task__22TChallenge4PItemSelectFv
+  - run_task__22TObjAreaWarpEndingJungFv
   - run_task__22TObjBoss1MokoHill_SoloFv
   - run_task__22TObjEneMe1GiGueBarrierFv
   - run_task__22TObjEneMe1GiGueMissileFv
@@ -20555,6 +20585,7 @@ force_active:
   - vfunc_16__18TOTrapChainSawEdgeFv
   - vfunc_16__23TObjSeabedSuisoBrakableFv
   - vfunc_18__14TOTrapChainSawFv
+  - vfunc_18__16TObjMapForceWarpFl
   - vfunc_18__17TOTrapChainSawKeyFv
   - vfunc_22__13TUnk_804B5BA8Fv
   - vfunc_25__11TOKeyCave01Fv

@@ -467,6 +467,16 @@ The draw-buffer helpers retain their existing native link names at a bounded
 ABI interface rather than casting vertex buffers to window objects; ports
 should map those legacy names to the corresponding shared draw operations.
 
+### Forest warp virtual tables
+
+`src/pso/object/TObjAreaWarpEndingJung.cpp` uses its existing deferred
+CodeWarrior code generation for the contiguous warp tables. The class
+`TObjMapWarpForest` declares `run_task` before its destructor so the
+compiler emits its table alongside the other warp tables. The `.data=4`
+linker metadata places the first table at `0x804B918C`, immediately after
+the typed resource tables. A port can use its ordinary class declarations
+and section alignment.
+
 ### Lobby animal virtual tables
 
 `src/pso/object/LobbyPigeonPath.cpp` defines the five animal destructors and
