@@ -3,6 +3,14 @@
 
 #include "types.h"
 
+struct ReverseTechSceneHook {
+    void (*load)();
+    void (*release)();
+};
+
+enum { ReverseTechSceneHookCount = 7 };
+extern ReverseTechSceneHook TItemReverseTech__cleanup_callback_table[ReverseTechSceneHookCount];
+
 extern "C" {
 void TItemReverseTech__sub_8011A54C(void *a0);
 int TItemReverseTech__sub_8011A55C(void);

@@ -1,3 +1,4 @@
+#include "pso/network/BufferRef.h"
 // TCP queue recovery adapted from zeroz41/pso-decomp (MIT); see third_party/README.md.
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/TcpReceiveQueue.h"

@@ -1021,7 +1021,11 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/misc/TLobby_803FAEA0.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_803FC178.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_804048E8.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
-        "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
+        # Inline the explicitly marked network helpers, with a four-level limit.
+        # This unit default replaces repeated dont_inline/inline_depth pragmas.
+        "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
+        "pso/misc/TLobby_8040FF0C.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
+        "pso/misc/TLobby_8041112C.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
         # Extracted from TLobby_804050DC; preserve its compiler/CSE settings.
         "pso/network/NetworkDispatcher.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/network/TcpProtocol.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
