@@ -1115,6 +1115,9 @@ force_active:
   - TLobby__sub_8041EB74
   - TLobby__sub_8041EC14
   - TLobby__sub_8041ECA4
+  - TLobby__sub_8041F66C
+  - TLobby__sub_8041FDA0
+  - TLobby__sub_8041FED4
   - TLobby__sub_80421FB8
   - TLobby__sub_80423440
   - TLobby__sub_80423C04
@@ -7202,6 +7205,7 @@ force_active:
   - exit_photon_blast_action__10TObjPlayerFv
   - exit_technique_cast__10TObjPlayerFv
   - expand_message_substitutions
+  - expire_timeout_entries__6TLobbyFv
   - explode__13TBoss6MagMineFPv
   - explode__22TObjEneMe1GiGueMissileFPv
   - explode_and_destroy__13TUnk_80484AFCFv

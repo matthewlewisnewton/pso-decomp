@@ -80,15 +80,43 @@ using the platform compiler's equivalent support. See the
 
 ### TCP out-of-order receive queue
 
-`TLobby__sub_8041F914` in `src/pso/network/SocketProtocolRuntime.cpp`
-retains the scoped `dont_inline off` / `inline_depth(4)` controls from
-[upstream #285](https://github.com/zeroz41/pso-decomp/pull/285), commit
-`be4a012306441b91fe0e30083800a8589bccf518`. They inline the reassembly-range
-removal helper, including its ordinary aggregate assignment. The receive-room
-clamp uses ordinary assignment in its condition and direct `TcpTcb` member
-access; it needs no additional matching constraint. Ports can drop the inline
-pragmas and keep the receive-ring copy and range-merging operations. See the
-[recovery and ABI evidence](evidence/tcp-out-of-order-queue.md).
+The receive-range routines at `0x8041F66C` and `0x8041F914` in
+`src/pso/network/SocketProtocolRuntime.cpp` share the existing
+`dont_inline off` and `inline_depth(4)` scope. CodeWarrior inlines the
+range length and removal helpers. Ports can use ordinary inline functions
+and preserve the unsigned endpoint subtraction. The receive-room clamp
+and the range array copies use the existing shared control-block layout.
+[Receive queue recovery](evidence/tcp-out-of-order-queue.md)
+
+### Retail SACK compaction lookahead
+
+The CodeWarrior path in `TLobby__sub_8041FED4` deliberately retains the retail
+bounds bug: compaction reads the eight bytes immediately after the five-entry
+SACK array before clearing its last slot. Non-CodeWarrior builds stop at source
+slot four. `PSO_SOCKET_BOUNDED_SACK` selects that bounded implementation for a
+diagnostic CodeWarrior build. Ports must retain the bounded form unless they
+are reproducing the retail memory access with an equivalent valid storage
+boundary. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
+
+### TCP send acknowledgement
+
+The same unit disables inlining and lifetime optimization around `0x8041FFF8`.
+Its native local declaration order and the `Acknowledgement` aggregate reproduce
+the 96-byte stack frame and FIFO descriptor offset. The aggregate groups the
+existing handle and remaining count, including alignment; it is not unused frame
+storage. Ports can use separate variables and omit the optimizer settings while
+keeping the post-callback queue-head reload.
+[Socket runtime evidence](evidence/socket-protocol-runtime.md)
+
+### TCP send gathering
+
+`0x80420410` uses a scoped `opt_propagation off` control to reproduce the
+native reverse and shift walks. The walks use typed indices and a
+`NetPacketFragment *` cursor rather than integer native addresses. The original
+unused final decrement can precede the array. Ports should keep the cursor
+within the array or use bounded typed indices and can omit the optimizer
+setting. The unreachable retail partial-fragment tail remains for exact
+matching. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
 
 ### Logo texture descriptor declaration
 
