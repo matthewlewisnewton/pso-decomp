@@ -2268,6 +2268,9 @@ pso/player/THunterGuildSeqOnlineTask.cpp
 pso/player/THunterGuildWarning.cpp
 pso/player/TItemWeaponFist.cpp
 pso/player/TObjPlayer.cpp
+pso/player/TObjPlayerEffectState.cpp
+pso/player/TObjPlayerReloadTexture.cpp
+pso/player/TObjPlayerRenderBindings.cpp
 pso/player/TObjPlayerSet.cpp
 pso/player/TObjPlayer_80011014.cpp
 pso/player/TObjPlayer_80020898.cpp
@@ -2607,6 +2610,7 @@ pso/player/TObjPlayer_803DC834.cpp
 pso/player/TObjPlayer_803DF7A8.cpp
 pso/player/TObjPlayer_803E112C.cpp
 pso/player/TObjPlayer_803E18C0.cpp
+pso/player/TObjPlayer_803E1A58.cpp
 pso/player/TObjPlayer_803E21B8.cpp
 pso/player/TObjPlayer_803E4954.cpp
 pso/player/TObjPlayer_803E5470.cpp

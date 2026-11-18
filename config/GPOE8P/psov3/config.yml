@@ -7929,6 +7929,7 @@ force_active:
   - gvrt_header_read_buffer
   - gx_blend_mode_table
   - gx_default_light_obj
+  - gx_pos_mtx_index_table
   - gx_tlut_region_table
   - gyaranzo_breakup_model_obj
   - gyaranzo_collision_body
@@ -9777,6 +9778,7 @@ force_active:
   - lbl_804F9E60
   - lbl_804FC668
   - lbl_804FC674
+  - lbl_804FC7F8
   - lbl_804FD9F8
   - lbl_804FDA04
   - lbl_804FE138
@@ -10966,11 +10968,17 @@ force_active:
   - lbl_805E0D60
   - lbl_805E0D64
   - lbl_805E0F68
+  - lbl_805E1038
+  - lbl_805E103C
+  - lbl_805E1040
+  - lbl_805E1048
   - lens_flare_reflected_element_descriptors
   - lerp_follow_anchor__FP3VecP3VecPf
   - level_text_buffer
   - level_to_reward__6TLobbyFl
   - light_node__13TOCapsuleLabo
+  - list_texture_map_table
+  - list_texture_tex_obj
   - load_all_floor_event_sets__6TLobbyFv
   - load_and_verify_data
   - load_battle_params__11TBoss6Type2Fv
@@ -19288,6 +19296,7 @@ force_active:
   - test_menu_flag__11TWindowMenuFv
   - test_ordered_anim_markers__10TObjPlayerFPvff
   - test_rock_bit__15TBoss6SwordWaveFiUc
+  - tex_matrix_id_table
   - texlists__16TOFenceAncient01
   - texlists__16TOFenceAncient02
   - texlists__16TOFenceAncient03
