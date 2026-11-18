@@ -163,7 +163,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/unk/text_803D8DE0.cpp:31` | `__frsqrte` |
 | `src/pso/unk/text_803D8DE0.cpp:75` | `__frsqrte` |
 | `src/pso/unk/text_803D8F74.cpp:24` | `__frsqrte` |
-| `include/pso/math/NewtonSqrtInline.h:14` | `__frsqrte` |
+| `include/pso/math/NewtonSqrtInline.h:10` | `__frsqrte` |
 
 ## Direct hardware access
 
