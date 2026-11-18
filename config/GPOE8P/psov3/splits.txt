@@ -5252,6 +5252,13 @@ pso/misc/TOLightMachine01.cpp:
 	.rodata     start:0x80441F38 end:0x80441F40
 	.sdata2     start:0x805DB828 end:0x805DB848
 
+pso/misc/TOMineResources.cpp:
+	.rodata     start:0x80441F40 end:0x804421E0
+	.data       start:0x804B2F08 end:0x804B2F68
+	.sdata      start:0x805D3070 end:0x805D3088
+	.sbss       start:0x805D5A50 end:0x805D5A58
+	.sdata2     start:0x805DB850 end:0x805DB85C
+
 pso/misc/TOMineTrap_8016ED9C.cpp:
 	.text       start:0x8016ED9C end:0x8016EDC8
 
@@ -5269,6 +5276,7 @@ pso/misc/TOMineDisp_8016EF68.cpp:
 
 pso/misc/TOMineDisp.cpp:
 	.text       start:0x8016F168 end:0x8016F1C0
+	.data       start:0x804B2F9C end:0x804B2FD0 align:4
 
 pso/unk/text_8016F1C0.cpp:
 	.text       start:0x8016F1C0 end:0x8016F6F8
@@ -5278,6 +5286,10 @@ pso/misc/TOMineTrap_8016F6F8.cpp:
 	.text       start:0x8016F6F8 end:0x80170EEC
 	.rodata     start:0x804421F8 end:0x80442200
 	.sdata2     start:0x805DB85C end:0x805DB860 align:4
+
+pso/misc/TOMineConstants.cpp:
+	.rodata     start:0x80442200 end:0x80442208
+	.sdata2     start:0x805DB860 end:0x805DB88C
 
 pso/misc/TOMine.cpp:
 	.text       start:0x80170EEC end:0x80171314

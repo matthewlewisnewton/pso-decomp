@@ -104,8 +104,8 @@ s32 is_locally_controlled__10TObjPlayerFPv(u32 a0);
 s32 get_localized_text_entry(s32 arg0, s32 arg1);
 s32 get_main_phase();
 
-extern s8 mine_trap_effect_table[];
-extern s8 mine_trap_keymachine_table[];
+extern const s32 mine_trap_effect_table[36];
+extern const s32 mine_trap_keymachine_table[36];
 
 extern f32 lbl_805DB864;
 extern const f32 lbl_805DB85C;
@@ -368,7 +368,7 @@ extern void *tl_05;
 extern s32 game_difficulty_selection;
 extern void *lbl_805D5A50;
 extern const f32 lbl_80442138[];
-extern const f32 lbl_805D307C;
+extern f32 lbl_805D307C;
 extern const f32 lbl_805DB86C;
 extern const f32 lbl_805DB878;
 extern const f32 lbl_805DB87C;
@@ -589,7 +589,7 @@ void TOMine::update_state() {
 void TOMineTrap::spawn_effect() {
     s32 arg0 = (s32)this;
     s32 area = get_current_floor_area();
-    s32 elem = *(s32 *)(mine_trap_effect_table + area * 4);
+    s32 elem = mine_trap_effect_table[area];
     if (elem != -1) {
         play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }
@@ -597,7 +597,7 @@ void TOMineTrap::spawn_effect() {
 void TOMineTrap::attach_to_keymachine() {
     s32 arg0 = (s32)this;
     s32 area = get_current_floor_area();
-    s32 elem = *(s32 *)(mine_trap_keymachine_table + area * 4);
+    s32 elem = mine_trap_keymachine_table[area];
     if (elem != -1) {
         play_sound_effect((s32)(elem), (const Vec *)(arg0 + 0x38), 0, 0);
     }

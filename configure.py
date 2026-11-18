@@ -505,6 +505,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Upstream #185's -inline off,deferred, -pool off and -sdata 4; each is
     # needed (docs/porting-exceptions.md section 5).
     "pso/boss/TObjBoss2Tunnel.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-pool off", "-sdata 4", "-fp_contract on")},
+    # The mine display table immediately follows its trap display counterpart.
+    "pso/misc/TOMineDisp.cpp": {"cw_align": ".data=4"},
     # The seven wreck virtual tables start immediately after the wall's
     # 316-byte table. Keep their original four-byte alignment in MWLD.
     **{

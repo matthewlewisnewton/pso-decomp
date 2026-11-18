@@ -1362,12 +1362,14 @@ pso/misc/TOKeyMachine01.cpp
 pso/misc/TOKurage.cpp
 pso/misc/TOLightMachine01.cpp
 pso/misc/TOMine.cpp
+pso/misc/TOMineConstants.cpp
 pso/misc/TOMineDisp.cpp
 pso/misc/TOMineDisp_8016EF68.cpp
 pso/misc/TOMineIcon01.cpp
 pso/misc/TOMineIcon02.cpp
 pso/misc/TOMineIcon03.cpp
 pso/misc/TOMineIcon04.cpp
+pso/misc/TOMineResources.cpp
 pso/misc/TOMineTrap.cpp
 pso/misc/TOMineTrapDisp.cpp
 pso/misc/TOMineTrapDisp_8016EDC8.cpp

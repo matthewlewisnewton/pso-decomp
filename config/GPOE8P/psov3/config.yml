@@ -4967,6 +4967,8 @@ force_active:
   - bm_o_explosive_machine_motion_names
   - bm_o_grass_jungle_model_names
   - bm_o_grass_jungle_motion_names
+  - bm_o_mine_model_names
+  - bm_o_mine_motion_names
   - bm_o_rock_cave01_motion_names
   - bm_o_rock_cave02_motion_names
   - bm_o_rock_cave02_resource_bundle

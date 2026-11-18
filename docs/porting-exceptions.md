@@ -2299,8 +2299,9 @@ object metadata adjustment.
 | Same unit, `TAdRicoRingCtrl::render`, `run_task`, and `sub_8001B424` | Existing scoped `opt_common_subs off` (two), `opt_dead_assignments off` (one), and `fp_contract on` (one), moved with their functions | These controls were already in the retired fragments. Removing render CSE control gives 94.86%; removing its dead-assignment control gives 99.46%; removing both gives 95.29%. Removing the update CSE control gives 97%. Contraction retains the original fused reflected-position calculation. Six formerly manual scalar guards are now native local statics. | Drop the optimization pragmas; retain the scalar calculations and local statics. Preserve fused arithmetic if identical floating-point rounding is required. |
 
 
-### Seabed wall and wreck virtual tables
+### Seabed wall, wreck, and mine display virtual tables
 
 | Scope | Construct | Evidence and reason | Port action |
 |---|---|---|---|
 | `src/pso/misc/TOVS2Wreck01.cpp` through `TOVS2Wreck06.cpp`, and `TOVS2Wall01_8017C7A4.cpp` | `cw_align .data=4` in MWLD metadata | The seven compiler-generated wreck virtual tables follow the wall's 316-byte table at `0x804B513C`. They start four bytes past an eight-byte boundary. CodeWarrior reports eight-byte section alignment by default. The four-byte alignment keeps their original addresses with the existing compiler profile. | Use native destructors and virtual dispatch with the port's normal object alignment. |
+| `src/pso/misc/TOMineDisp.cpp` | `cw_align .data=4` in MWLD metadata | The compiler-generated mine display vtable follows the trap display vtable at `0x804B2F9C`, four bytes past an eight-byte boundary. This preserves the original vtable address with the existing compiler profile. | Use the port’s normal object alignment. |
