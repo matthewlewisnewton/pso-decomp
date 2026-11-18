@@ -21,15 +21,13 @@ s32 set_stream_and_load_file__6TLobbyFPCv(const char *);
 s32 Dolphin_ARAlloc(s32);
 s32 TQuestVmDownLoadServer__sub_803F0C04(s32, s32, s32, s32, s32);
 extern const char lbl_8044F098[] = "Ask_n.dic";
-s32 sub_8025CB10__19TWindowKeyBoardBaseFv(void *);
-s32 sub_8025EB68__19TWindowKeyBoardBaseFv();
 u32 *destroy__19TWindowKeyBoardBaseFPvs(u32 *arg0, s16 arg1);
 int initialize_subwindow__9TWindowDDFv(void*);
 
 void TWindowKeyBoardBase::render() {
     s32 temp_r31;
 
-    if ((sub_8025EB68__19TWindowKeyBoardBaseFv() == 0) && ((sub_8025CB10__19TWindowKeyBoardBaseFv(this) != 0) || (this->m_62 & 2))) {
+    if ((sub_8025EB68() == 0) && ((sub_8025CB10() != 0) || (this->m_62 & 2))) {
         temp_r31 = TWindowDD::draw_default_entry((s32)this);
         if (this->m_62 & 2) {
             draw_window_frame((void *)temp_r31);

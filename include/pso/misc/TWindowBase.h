@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include "pso/TObject.h"
 
+struct TWindowDrawContext;
+
 // Shared window image from 0x1C through 0x5F. Descendants used to declare this
 // prefix themselves; it lives here so setup_window_draw_context can name the
 // floats it passes to open_singleton. The class ends at 0x60.
@@ -18,7 +20,7 @@ public:
     void close();
     void request_close();
     void set_depth(f32 depth);
-    void calc_inner_rect(u8 *);
+    void calc_inner_rect(TWindowDrawContext *);
     void sub_8026CC28();
     void update_window_entry_list(void *);
     void update_fade();

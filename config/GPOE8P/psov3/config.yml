@@ -6563,7 +6563,7 @@ force_active:
   - draw_empty_warp_overlay__Fv
   - draw_enemy_gate_markers__13TRaderMapCoreFv
   - draw_entry__12TAdMultiOkGCFi
-  - draw_entry_if_visible__19TWindowDD_WS_StringFPv
+  - draw_entry_if_visible__19TWindowDD_WS_StringFP18TWindowDrawContext
   - draw_entry_tab__20TWindowSubStatusDispFPv
   - draw_fade__9TAdFadeGCFv
   - draw_fading_model_1_pair__25TBoss6Demo20_TYPE2_APPEARFv
@@ -6668,7 +6668,7 @@ force_active:
   - draw_snapshot_capture_overlay
   - draw_split_screen_dividers__20TWindowSubStatusDispFv
   - draw_status_line
-  - draw_status_text__19TWindowKeyBoardHardFPv
+  - draw_status_text__19TWindowKeyBoardHardFP18TWindowDrawContext
   - draw_status_window__14TAdPlyStatusGCFPvPv
   - draw_status_window__15TAdMcSelectMcGCFv
   - draw_streaks__8TObjRainFv

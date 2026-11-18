@@ -2,12 +2,12 @@
 #define PSO_MISC_TKEYBOARDCONTROL_80131C58_H
 
 #include "types.h"
+#include "pso/misc/KeyboardInputQueries.h"
 
 struct TKeyBoardControl;
 extern "C" {
 void TKeyBoardControl__sub_80131F5C(void);
 void TKeyBoardControl__sub_80131F60(void);
-bool TKeyBoardControl__sub_801321B4(s32 arg0);
 bool TKeyBoardControl__sub_80132274(s32 arg0);
 s32 TKeyBoardControl__sub_80132310(s32 arg0);
 void TKeyBoardControl__sub_801327DC(s32 arg0, u8 chan);

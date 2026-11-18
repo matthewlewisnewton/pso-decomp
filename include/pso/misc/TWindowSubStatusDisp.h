@@ -63,7 +63,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     static void dispatch_without_flags(s32 arg1, s32 arg2, s32 arg3);
     static void *refresh_with_default_list(s32 a, s32 b);
     int is_flag_4_set();
-    void set_input_mode(u8 v);
     s16 get_item_type();
     s16 get_field_2F8();
     s16 get_stat();

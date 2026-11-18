@@ -31,28 +31,28 @@ void TWindowKeyBoardBase::set_input_flags_92() {
 }
 
 void TWindowKeyBoardBase::set_input_flags_12() { m_b4 = 0x12; }
-void TWindowKeyBoardHard__sub_8025CC48(void *arg0) {
+void TWindowKeyBoardBase::reset_input_flags_for_language() {
     switch (current_language) {
     case LANGUAGE_JAPANESE:
-        *(s32 *)((s8 *)arg0 + 0xB4) = 0;
-        if (test_saved_character_flag_16(*(s16 *)((s8 *)arg0 + 0x20)) != 0) {
-            *(s32 *)((s8 *)arg0 + 0xB4) = (s32) (*(s32 *)((s8 *)arg0 + 0xB4) | 1);
+        m_b4 = 0;
+        if (test_saved_character_flag_16(m_20) != 0) {
+            m_b4 = (s32) (m_b4 | 1);
         }
-        if (test_saved_character_flag_32(*(s16 *)((s8 *)arg0 + 0x20)) != 0) {
-            *(s32 *)((s8 *)arg0 + 0xB4) = (s32) (*(s32 *)((s8 *)arg0 + 0xB4) | 2);
+        if (test_saved_character_flag_32(m_20) != 0) {
+            m_b4 = (s32) (m_b4 | 2);
         }
-        if (test_saved_character_flag_64(*(s16 *)((s8 *)arg0 + 0x20)) != 0) {
-            *(s32 *)((s8 *)arg0 + 0xB4) = (s32) (*(s32 *)((s8 *)arg0 + 0xB4) | 4);
+        if (test_saved_character_flag_64(m_20) != 0) {
+            m_b4 = (s32) (m_b4 | 4);
         }
-        if (test_saved_character_flag_128(*(s16 *)((s8 *)arg0 + 0x20)) != 0) {
-            *(s32 *)((s8 *)arg0 + 0xB4) = (s32) (*(s32 *)((s8 *)arg0 + 0xB4) | 8);
+        if (test_saved_character_flag_128(m_20) != 0) {
+            m_b4 = (s32) (m_b4 | 8);
         }
         break;
     case LANGUAGE_ENGLISH:
     case LANGUAGE_GERMAN:
     case LANGUAGE_FRENCH:
     case LANGUAGE_SPANISH:
-        *(s32 *)((s8 *)arg0 + 0xB4) = 6;
+        m_b4 = 6;
         break;
     }
 }
