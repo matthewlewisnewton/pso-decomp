@@ -1,3 +1,4 @@
+#include "pso/boss/DarkFalzEffectConstants.h"
 #include "types.h"
 #include "pso/misc/MaterialColorFade.h"
 #include "pso/player/TObjPlayer_80052374.h"
@@ -12,7 +13,6 @@ extern int saved_chunk_polygon_flags_or_mask;
 extern int chunk_polygon_flags_or_mask;
 extern int chunk_polygon_flags_and_mask;
 extern int model_render_flags;
-extern const f32 lbl_805D8ADC;
 extern s32 lbl_805D8AE8;
 extern const f32 lbl_805D8AEC;
 void TObjPlayer::sync_player_globals() { chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask; chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask; model_render_flags = saved_model_render_flags; }
@@ -26,6 +26,6 @@ void TObjPlayer__sub_80052390(f32 x) {
     (*(s32 *)&model_render_flags) |= lbl_805D8AE8;
     set_chunk_material_override_pair(0xFF00, 0x800);
     c.a = lbl_805D8AEC + x;
-    c.b = c.c = c.d = lbl_805D8ADC;
+    c.b = c.c = c.d = df_material_rgb;
     set_constant_material((const NJS_ARGB *)(((f32 *)&c)));
 }

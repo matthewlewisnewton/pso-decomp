@@ -16,14 +16,15 @@ __declspec(section ".sdata2") extern const f64 lbl_805E0F08;
 __declspec(section ".sdata2") extern const f64 lbl_805E0F10;
 __declspec(section ".sdata2") extern const f64 lbl_805E0F18;
 
-__declspec(section ".sdata2") extern const f64 lbl_805E0F38;
 void rotate_matrix_z(Matrix34* matrix, s32 angle) {
+    // One turn is 65536 units. The conversion uses the legacy single-precision pi value.
+    const f64 radiansPerAngleUnit = 2.0 * 3.141592f / 65536.0;
     Matrix34 rotation;
     Matrix34* selected;
     if (angle != 0) {
         if (matrix == NULL) selected = (Matrix34*)current_matrix;
         else selected = matrix;
-        PSMTXRotRad(rotation.elements, 'z', (f32)(lbl_805E0F38 * (f64)angle));
+        PSMTXRotRad(rotation.elements, 'z', (f32)(radiansPerAngleUnit * (f64)angle));
         PSMTXConcat(selected->elements, rotation.elements, selected->elements);
     }
 }

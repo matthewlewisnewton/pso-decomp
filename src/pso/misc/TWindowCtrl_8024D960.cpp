@@ -3,6 +3,7 @@
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TWindowLockOn.h"
 #include "pso/misc/TWindowCtrl.h"
+#include "pso/misc/TWindowCtrl_8024C6CC.h"
 #include "pso/misc/TWindowShortListCtrl.h"
 #include "pso/TObject.h"
 #include "pso/misc/TKeyBoardControl.h"
@@ -35,10 +36,7 @@ u32 get_player_by_client_id(int);
 void window_request_show(void *arg0);
 extern "C" {
 s32 is_split_screen();
-s32 TWindowCtrl__sub_8024C7F8(void *);
 s32 TWindowCtrl__sub_8024A314();
-s32 TWindowCtrl__sub_8024C7C4(void *);
-s32 TWindowCtrl__sub_8024C7E0(void *);
 s32 TKeyBoardControl__sub_801A58B0();
 s32 TKeyBoardControl__sub_801A58D8();
 s32 get_function_key_menu__16TKeyBoardControlFPv(void *arg0);
@@ -48,7 +46,6 @@ s32 TWindowShortListCtrl__check_controller_button(void *, int);
 s32 is_on_current_screen__11TCameraCtrlFv(void *, int);
 u16 get_current_target_id__10TObjPlayerFv();
 s32 is_player_input_active(s32);
-int TWindowCtrl__sub_8024C7D4(void *p);
 extern Pad_8024DCE8 controller_input_state[];
 int TWindowMainMenu__sub_8024E3F4(void *p);
 void TWindowCtrl__sub_8024DAAC(void *arg0);
@@ -210,7 +207,7 @@ void TWindowCtrl::update_target_info_window() {
     if ((*(void **)((s8 *)arg0 + 0x38) != NULL) && ((((TObject *)(*(void **)((s8 *)arg0 + 0x38)))->all_parents_unqueued_for_destruction() == 0) || (((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x38)))->sub_80244994() == 0))) {
         *(u32 *)((s8 *)arg0 + 0x38) = 0U;
     }
-    if ((TWindowCtrl__sub_8024C7E0(arg0) != 0) || (get_active_menu() != 0) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7C4(arg0) != 0) || (TWindowCtrl__sub_8024A314() != 0)) {
+    if ((TWindowCtrl__sub_8024C7E0(this) != 0) || (get_active_menu() != 0) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7C4(this) != 0) || (TWindowCtrl__sub_8024A314() != 0)) {
         if ((u32) *(u32 *)((s8 *)arg0 + 0x38) != 0U) {
             ((TWindowBase *)(*(void **)((s8 *)arg0 + 0x38)))->close();
             *(u32 *)((s8 *)arg0 + 0x38) = 0U;
@@ -245,7 +242,7 @@ void TWindowCtrl::update_child_window_visibility() {
 void TWindowCtrl::update_trade_window_visibility() {
     u8 *arg0 = (u8 *)this;
     if (((u32) this->m_30 != 0U) && (((TWindowCtrl *)((void *) this->m_30))->is_flag_2_set() == 0)) {
-        if ((get_player_by_client_id(this->m_24) == 0U) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7F8(arg0) != 0) || ((is_split_screen() != 0) && (get_active_menu() != 0))) {
+        if ((get_player_by_client_id(this->m_24) == 0U) || (((TWindowCtrl *)arg0)->is_visible() != 0) || (TWindowCtrl__sub_8024C7F8(this) != 0) || ((is_split_screen() != 0) && (get_active_menu() != 0))) {
             ((TWindowBase *)(this->m_30))->request_close();
             return;
         }

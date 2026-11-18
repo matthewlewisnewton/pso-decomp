@@ -437,6 +437,12 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
     # GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order.
     "pso/boss/TBoss2DeRolLe.cpp": {"cflags": _switch(cflags_pso, "-inline on")},
+    # The De Rol Le constant pool starts at 0x805D8444, a four-byte boundary.
+    "pso/unk/data_805D8444.cpp": {"cw_align": ".sdata2=4"},
+    # The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary.
+    "pso/boss/DarkFalzEffectConstants.cpp": {"cw_align": ".sdata2=4"},
+    # The camera constant pool starts at 0x805D8F7C, a four-byte boundary.
+    "pso/misc/CameraControllerConstants.cpp": {"cw_align": ".sdata2=4"},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
     "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions reproduce both native rope vtables and function order.
@@ -477,6 +483,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/ui/TAdDialingGC_80328B20.cpp": {"mw_version": "GC/1.3.2"},
     # The download graph's border pass keeps GC/1.3.2 load scheduling.
     "pso/unk/text_8007ECF0.cpp": {"mw_version": "GC/1.3.2"},
+    # The download status coordinates start at 0x805D92CC, a four-byte boundary.
+    "pso/misc/TDLGraph.cpp": {"cw_align": ".sdata2=4"},
     # The selection plate has the same GC/1.3.2 vertex schedule and fuses its depth offset.
     "pso/ui/TAdSelectGameModeGC_802C4748.cpp": {"mw_version": "GC/1.3.2", "cflags": _switch(cflags_pso, "-fp_contract on")},
     # Curve and xz helpers fuse multiply-adds. The whole TU stays byte-exact
@@ -557,7 +565,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjChip.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # GC/2.0 interleaves the BML model-table load with the debris initializer's
     # copy tail. Map the original template to CodeWarrior's local aggregate.
-    "pso/unk/text_80049FD8.cpp": {"symbol_mappings": {"volopt_pillar_chip_params": "@13"}},
+    "pso/object/TObjVoloptPillar.cpp": {"symbol_mappings": {"volopt_pillar_chip_params": "@15"}},
     # GC/2.0 schedules the model and position loads across the aggregate copy
     # tails. Disabling pooling keeps the three original debris templates.
     "pso/unk/text_8031EF14.cpp": {
@@ -611,6 +619,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # sharing them, and leaves invariant hoisting to the backend. See
     # docs/porting-exceptions.md section 5.
     "pso/misc/TMovie_80143988.cpp": {"cflags": _switch(cflags_pso, "-opt nolifetimes,nocse,noprop,noloop")},
+    # Keep the late-defined thunder constants in .sdata2 while preserving their loads.
+    "pso/misc/TeneFakeTecThunderEff.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/enemy/TObjEneGyaranzo.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # -inline off,deferred: the real TBoss8Dragon constructor addresses
     # __vt__12TBoss8Dragon as addi r0, r31, 2348 from the .data anchor.
@@ -969,6 +979,8 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/system/AdxExpand.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
         "pso/system/AdxManager.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
         "pso/system/AdxStreamRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        # Keep the build banner in .rodata and its volatile pointer in .sdata2.
+        "pso/system/LscInit.cpp": {"cflags": _switch(cflags_middleware, "-str reuse,readonly")},
     }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.0", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
@@ -1188,6 +1200,8 @@ if args.target == "psov3":
                             mw_version="GC/2.0", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_fp.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered_auto),
+                Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ctype.c"),
+                Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c"),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/printf.c",
                             mw_version="GC/1.3", cflags=cflags_native_recovered),
                 Unit("PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/rand.c",
@@ -1451,11 +1465,32 @@ def add_orig_asm_steps(config: ProjectConfig) -> None:
     config.reconfig_deps = [*(config.reconfig_deps or []), Path("tools/orig_asm.py")]
 
 
+def add_musyx_dsp_step(config: ProjectConfig) -> None:
+    out = config.out_path()
+    script = Path("tools/musyx_dsp.py")
+    config.custom_build_rules = [*(config.custom_build_rules or []), {
+        "name": "musyx_dsp",
+        "command": "$python tools/musyx_dsp.py $image_object $out",
+        "description": "MUSYX DSP $out",
+        "restat": True,
+    }]
+    steps = config.custom_build_steps = dict(config.custom_build_steps or {})
+    steps["pre-compile"] = [*steps.get("pre-compile", []), {
+        "outputs": [out / "include" / "musyx" / "dsp_image.inc"],
+        "rule": "musyx_dsp",
+        # DTK writes the original object as a side effect of the DOL split.
+        "inputs": [out / "config.json"],
+        "implicit": [script, Path("tools/link_units.py")],
+        "variables": {"image_object": str(out / "obj" / "musyx" / "runtime" / "dsp_import.o")},
+    }]
+
+
 # ===================================================================
 # Main Dispatch
 # ===================================================================
 if args.target == "psov3":
     add_orig_asm_steps(config)
+    add_musyx_dsp_step(config)
     # A disc image in orig/GPOE8P/, or the disc extracted there by wit.
     _disc_root = Path("orig/GPOE8P/P-GPOE")
     if not _disc_root.is_dir():

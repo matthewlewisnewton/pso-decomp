@@ -1,3 +1,4 @@
+#include "pso/boss/DarkFalzEffectConstants.h"
 #include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -24,7 +25,6 @@ extern s32 __vt__14TObjDFUsoTower[];
 extern s32 TObjDFUsoTower__name;
 extern const f32 lbl_805D8A30;
 s32 rand();
-extern const f32 lbl_805D8AD8;
 void __dl__7TObjectFPv(void *);
 void *__nw__7TObjectFUl(int);
 
@@ -64,7 +64,7 @@ s32 TBoss4Type2::pick_weighted_random(s32 n, f32 *w, s32 *t) {
     s32 i;
     f32 acc;
     f32 r;
-    r = lbl_805D8AD8 * (f32)rand();
+    r = df_weighted_random_scale * (f32)rand();
     acc = w[0];
     for (i = 0; i < n - 1; i++) {
         if (r < acc) {

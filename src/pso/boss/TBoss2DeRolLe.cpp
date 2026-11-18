@@ -4432,7 +4432,7 @@ void init_head_params__13TBoss2DeRolLeFPv(u8 *arg0) {
     init_params__13TBoss2DeRolLeFPvfff(arg0 + 0x684, 5.0f, fabs_float(500.0f - *(f32 *)((s8 *)arg0 + 0x40)), 0.08f);
 }
 
-extern f32 lbl_805D8444;
+extern const f32 lbl_805D8444;
 
 void update_angle__13TBoss2DeRolLeFPv(void *arg0) {
     f32 temp_f2;

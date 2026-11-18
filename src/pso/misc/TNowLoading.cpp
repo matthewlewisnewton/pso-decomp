@@ -48,7 +48,6 @@ s32 __ct__7TObjectFP7TObject(void *, void *);
 s32 TAdLoadNetworkGC__ct(void *, void *, void *);
 extern s32 __vt__11TNowLoading[];
 extern s32 TNowLoading__class_name;
-TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *arg0, void *arg1, Vec_8001D3A8 *arg2);
 void DCFlushRange(void *, u32);
 void TNowLoading__sub_8001D4D0(void);
 void TNowLoading__sub_8001D4D4(void);
@@ -126,7 +125,7 @@ TNowLoading::~TNowLoading() {
 
 #pragma push
 #pragma fp_contract on
-TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *parent, void *arg1, Vec_8001D3A8 *arg2) {
+TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *parent, void *arg1, const Vec *position) {
     Vec_8001D3A8 dir;
     s32 out[3];
     Cam_8001D3A8 *cam;
@@ -134,7 +133,7 @@ TNowLoading_8001D3A8 *TNowLoading__ct(TNowLoading_8001D3A8 *parent, void *arg1, 
     __ct__7TObjectFP7TObject(parent, arg1);
     parent->vtable = __vt__11TNowLoading;
     parent->unk0 = TNowLoading__class_name;
-    VecCopy((Vec *)&parent->pos, (const Vec *)arg2);
+    VecCopy((Vec *)&parent->pos, position);
     cam = (Cam_8001D3A8 *) &lbl_804FF5E8;
     out[0] = 0;
     out[1] = 0;
