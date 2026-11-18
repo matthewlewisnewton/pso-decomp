@@ -9984,7 +9984,7 @@ force_active:
   - dt__18TObjCityDoor_GuildFPvs
   - dt__20TContainerAncient01RFPvs
   - dt__22TObjEneSlimeTailAttackFPvs
-  - dt__22TWindowChallengeResultFPvs
+  - __dt__22TWindowChallengeResultFv
   - dt__22TWindowDD_WS_ScrollBarFs
   - dt_follow_particle_ctrl__10TObjPlayerFls
   - dubchik_collision_body
@@ -11961,7 +11961,7 @@ force_active:
   - init_sub_object_vectors__10TObjPlayerFl
   - init_subobject__10TObjPlayerFi
   - init_subobject__13TUnk_80488D70Fv
-  - init_subwindow__22TWindowChallengeResultFPv
+  - run_task__22TWindowChallengeResultFv
   - init_target_offsets__13TObjEneMorfosFv
   - init_target_offsets__16TObjEneDellBiterFv
   - init_target_vector__11TMainCursorFiii
@@ -12481,7 +12481,7 @@ force_active:
   - lbl_8044E734
   - lbl_8044E748
   - lbl_8044E758
-  - lbl_8044E7BC
+  - challenge_result_max_time
   - lbl_8044ECF0
   - lbl_8044F280
   - lbl_8044F2E0
@@ -12904,7 +12904,7 @@ force_active:
   - lbl_804CDDF8
   - lbl_804CDE10
   - lbl_804CDE50
-  - lbl_804CE2B8
+  - __vt__22TWindowChallengeResult
   - lbl_804CE820
   - lbl_804CE918
   - lbl_804CE964
@@ -13321,7 +13321,7 @@ force_active:
   - lbl_805D3818
   - lbl_805D3838
   - lbl_805D3878
-  - lbl_805D3898
+  - window_challenge_result_class_name
   - lbl_805D38B0
   - lbl_805D38B8
   - lbl_805D395C

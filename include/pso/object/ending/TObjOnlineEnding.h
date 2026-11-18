@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/object/base/TObjMotion.h"
 
+struct TWindowChallengeResult;
+
 struct TObjOnlineEnding : public TObjBase {
     virtual ~TObjOnlineEnding();
     virtual void render();
@@ -24,7 +26,7 @@ struct TObjOnlineEnding : public TObjBase {
     void create_result_window();
     static void *create(void *arg0);
     u8 unk_150[0x4];
-    s32 m_154;
+    TWindowChallengeResult *result_window;
 };
 
 typedef char TObjOnlineEnding_size[sizeof(TObjOnlineEnding) == 0x158 ? 1 : -1];

@@ -3,7 +3,8 @@
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
-#include "pso/ui/window/TWindowBase.h"
+#include "pso/ui/window/TWindowChallengeResult.h"
+#include "pso/unk/TLobby_80070A00.h"
 #include "pso/system/task/TObject.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -176,7 +177,12 @@ int TObjOnlineEnding::get_instance() {  return player_unique_pair_entry_count; }
     extern unsigned char lbl_8050DAD0[];
 void*TObjOnlineEnding::get_attack_entry(int a0) {  return (char*)lbl_8050DAD0 + a0 * 8; }
 
-void TObjOnlineEnding::close_window() { if (*(unsigned int *)&this->m_154 != 0) { ((TWindowBase *)(*(void* *)&this->m_154))->close(); *(int *)&this->m_154 = 0; } }
+void TObjOnlineEnding::close_window() {
+    if (result_window != NULL) {
+        result_window->close();
+        result_window = NULL;
+    }
+}
 
 }
 
@@ -233,33 +239,17 @@ u32 lbl_805D68F4;
 s8 online_ending_scene_translation_initialized;
 s8 online_ending_quad_vertices_initialized;
 s32 restore_player_cameras();
-s32 TLobby__sub_80070ACC();
-s32 TWindowChallengeResult__ct(s32, s32, s32, s32);
 s32 TWindowSubStatusDisp__sub_800718D0();
 s32 __dl__7TObjectFPv(void *);
 s32 get_card_window_value__16TObjOnlineEndingFv();
 s32 get_layout_id__20TWindowSubStatusDispFv(s32);
 
 void TObjOnlineEnding::create_result_window() {
-    s32 temp_r31;
-    s32 temp_r30_2;
-    s32 temp_r30;
-    s32 var_r29;
-
-    this->m_154 = 0;
+    result_window = NULL;
     if (TLobby::is_flag_set() != 0) {
-        temp_r30 = get_layout_id__20TWindowSubStatusDispFv(-1) - 1;
-        {
-        s32 t = TLobby::get_online_result_value();
-        if (t == temp_r30) {
-            var_r29 = (s32)TObject::operator new(0x68);
-            if (var_r29 != 0) {
-                temp_r30_2 = get_card_window_value__16TObjOnlineEndingFv();
-                temp_r31 = TWindowSubStatusDisp__sub_800718D0();
-                var_r29 = TWindowChallengeResult__ct(var_r29, TLobby__sub_80070ACC(), temp_r31, temp_r30_2);
-            }
-            this->m_154 = var_r29;
-        }
+        if (TLobby::get_online_result_value() == get_layout_id__20TWindowSubStatusDispFv(-1) - 1) {
+            result_window = new TWindowChallengeResult((const char *)TLobby__sub_80070ACC(),
+                TWindowSubStatusDisp__sub_800718D0(), get_card_window_value__16TObjOnlineEndingFv());
         }
     }
 }

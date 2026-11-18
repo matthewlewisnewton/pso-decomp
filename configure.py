@@ -738,7 +738,7 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # "LEVEL " 0x8044F534, "HP +" 0x8044F53C, "TP +" 0x8044F544. update_stat_messages reaches those
     # three strings with a lis/addi each (no shared .rodata base): -pool off.
     "pso/ui/window/TWindowSetLevelUp.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-pool off")},
-    "pso/ui/window/TWindowChallengeResult.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    "pso/ui/window/TWindowChallengeResult.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred", "-str reuse,readonly")},
     "pso/unk/text_8013F810.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     "pso/network/TProtocol_801DA240.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     "pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
