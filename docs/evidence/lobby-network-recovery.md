@@ -1,7 +1,7 @@
 # Lobby network recovery at 0x804050DC
 
 Recovery started at `84420bea523b79b3e2daf384b26fb1211560e0be`. The pull request
-uses `a7e1ed966fafddaf4f9008f3e988bb3713d454f7` as its verification baseline.
+uses `a6284306fa676770c5b2e6c1d2e53e94915b5d54` as its verification baseline.
 The original address range contains 281 functions and 84,260 code bytes.
 All 281 functions and all 888 allocated data/BSS bytes now match in the
 three source-linked objects. The starting build had 244 exact functions
