@@ -11,6 +11,7 @@ struct TWindowSubComCard;
 #include "pso/ui/window/TWindowMainMenu.h"
 #include "pso/system/TLanguage.h"
 #include "pso/ui/window/TWindowDrawContext.h"
+#include "pso/unk/text_8026CB5C.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/object/ambient/TObjFish.h"
 
@@ -67,7 +68,6 @@ struct Menu_802ADD38 {
     s32 slots[8];
 };
 
-struct Rect_802AE2B0 { f32 x, y, w, h; u8 pad[0x34 - 0x10]; u32 color; };
 
 struct Item_802AD538 {
     f32 x0;
@@ -113,15 +113,12 @@ f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *);
 s32 is_window_reveal_complete__11TWindowBaseFv();
 s32 sub_80246948__11TWindowBaseFv();
 s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1);
-Rect_802AE2B0 * open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, s32, f32, s32);
-s32 fn_8026CB68();
 void draw_item_labels__15TWindowMainMenuFv(Item_802AD538 *p, Win_802AD538 *w);
 void park_selection__15TWindowMainMenuFPv(Menu_802AD980 *arg0);
 void copy_color_entry__15TWindowMainMenuFPvPv(Col_802ADA48 *arg0, Col_802ADA48 *arg1);
 void TWindowMainMenu__sub_802ADADC(Obj_802ADADC *self, s8 i);
 int find_free_item_slot__15TWindowMainMenuFPv(Obj_802ADC04 *self);
 s32 append_child_rows__15TWindowMainMenuFPvi(Menu_802ADD38 *arg0, s32 arg1);
-Rect_802AE2B0 * setup_content_frame__15TWindowMainMenuFPv(u8 *arg0);
 void begin_screen_draw(s32 arg0);
 void draw_textured_quad_at_depth(f32 *q, f32 depth);
 void set_draw_texture_and_color(s32 idx, s32 arg1);
@@ -607,17 +604,17 @@ void TWindowMenuMainMenu::draw_frame(TWindowDrawContext *frame) {
     draw_textured_quad_at_depth((f32 *)&q, quad_depth);
     TWindowSubStatusDisp::get_player();
 }
-Rect_802AE2B0 *setup_content_frame__15TWindowMainMenuFPv(u8 *window_menu_main_menu) {
+TWindowDrawContext *TWindowMenuMainMenu::setup_content_frame() {
     f32 v;
-    Rect_802AE2B0 *r;
-    r = open_singleton__19TWindowKeyBoardSoftFiiii(window_menu_main_menu + 0x40, window_menu_main_menu + 0x48, fn_8026CB68(), ((TWindowMenuMainMenu *)window_menu_main_menu)->depth, ((TWindowMenuMainMenu *)window_menu_main_menu)->m_2c);
-    if (((TWindowMainMenu *)window_menu_main_menu)->is_not_split_screen() != 0) {
+    TWindowDrawContext *r;
+    r = TWindowDrawContext::open_singleton((f32 *)((u8 *)this + 0x40), (f32 *)((u8 *)this + 0x48), fn_8026CB68(), depth, m_2c);
+    if (((TWindowMainMenu *)this)->is_not_split_screen() != 0) {
         v = 51.0f;
     } else {
         v = 39.0f;
     }
-    ((TWindowDrawContext *)r)->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
-    r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)window_menu_main_menu)) << 24) | 0xFF0000 | 0xFFFF;
+    r->set_bounds(10.0f + r->x, r->y + v, (r->x + r->w) - 10.0f, (r->y + r->h) - 39.0f);
+    r->color = ((s32)(255.0f * TWindowSubComCard__sub_80244784((TWindowSubComCard *)this)) << 24) | 0xFF0000 | 0xFFFF;
     return r;
 }
 

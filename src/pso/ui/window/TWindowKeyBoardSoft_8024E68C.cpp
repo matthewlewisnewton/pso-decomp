@@ -9,30 +9,11 @@
 #include "pso/system/NinjaTypes.h"
 #include "pso/player/TObjPlayer_80011014.h"
 
-struct RecoveredFields_8024E754_arg0
-{
-  u8 unknown_0[0x28];
-  f32 field_28;
-  f32 field_2C;
-};
-
 struct Ctx_8024E6D8 { u8 pad[0x20]; f32 pivot[2]; f32 scale[2]; };
 
 struct Box_8024E8E8 { f32 x0, y0, x1, y1; f32 u0, v0, u1, v1; };
 
 struct Win_8024E8E8 { u8 pad[0x3C]; f32 x0, y0, x1, y1; };
-
-struct Win_8024EA50 {
-    f32 x, y;
-    f32 w, h;
-    f32 x10, y14, x18, y1c;
-    NJS_POINT2 c;
-    f32 sx, sy;
-    s32 f30;
-    s32 f34;
-    f32 depth;
-    f32 x3c, y40, x44, y48;
-};
 
 u32 window_draw_context_instance;
 // Keyboard offsets per player viewport for two, three and four split-screen views (camera ids 2-4).
@@ -48,15 +29,13 @@ extern const NJS_POINT2 keyboard_soft_viewport_offset_table_4p[4] = {
 };
 
 extern "C" {
-s32 __cvt_fp2unsigned(f32);
 void apply_context_transform_to_rect(Ctx_8024E6D8 *c, f32 *q);
 f32 TCameraCtrl__sub_80068A04(s32);
 const NJS_POINT2 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32);
 NJS_POINT2 *get_zero_vec2();
 s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(Win_8024E8E8 *w, Box_8024E8E8 *b);
-u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
+u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
-typedef struct RecoveredFields_8024E754_arg0 RecoveredFields_8024E754_arg0;
 #pragma fp_contract on
 
 #pragma push
@@ -86,29 +65,28 @@ void apply_context_transform_to_rect(Ctx_8024E6D8 *c, f32 *q) {
 }
 #pragma pop
 
-void apply_window_closing_stretch(u8 *arg0, int arg1) {
-  f32 temp_f2;
-  RecoveredFields_8024E754_arg0 *new_var;
-  new_var = (RecoveredFields_8024E754_arg0 *) arg0;
-  if (arg1 != 0)
-  {
-    temp_f2 = 0.22222222f;
-    ;
-    new_var->field_28 = (f32) (new_var->field_28 * ((2.3f * (temp_f2 * ((f32) arg1))) + 1.0f));
-    new_var->field_2C = (f32) (new_var->field_2C * (1.0f - (temp_f2 * ((f32) arg1))));
-  }
+void apply_window_closing_stretch(TWindowDrawContext *context, int tick) {
+    if (tick != 0) {
+        const f32 stretch_per_tick = 2.0f / 9.0f;
+        context->scale[0] *= 2.3f * (stretch_per_tick * tick) + 1.0f;
+        context->scale[1] *= 1.0f - stretch_per_tick * tick;
+    }
 }
 
 #pragma push
 #pragma opt_common_subs off
 
-void TWindowDrawContext::set_open_tick(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
-    s32 temp_r0;
-    this->open_tick = arg1;
-    temp_r0 = this->open_tick;
-    if (temp_r0 < 0) {
-        *(s32 *)((s8 *)arg0 + 0x34) = (s32) ((__cvt_fp2unsigned(255.0f * ((7.5f + (f32) temp_r0) / 7.5f)) << 0x18) | 0xFF0000 | 0xFFFF);
+void TWindowDrawContext::set_open_tick(s32 tick) {
+    open_tick = tick;
+    if (open_tick < 0) {
+        f32 fade = (7.5f + open_tick) / 7.5f;
+#ifndef __MWERKS__
+        // The GameCube unsigned conversion returns zero for negative alpha.
+        if (fade < 0.0f) {
+            fade = 0.0f;
+        }
+#endif
+        color = (static_cast<u32>(255.0f * fade) << 24) | 0x00ffffff;
     }
 }
 #pragma pop
@@ -185,7 +163,7 @@ s32 try_open__19TWindowKeyBoardSoftFii(s32 arg0, s32 arg1) {
 
 #pragma push
 #pragma fp_contract on
-u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
+u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth) {
     f32 mx;
     f32 my;
     s32 cam;
@@ -199,53 +177,52 @@ u32 init_text_window_layout(Win_8024EA50 *win, f32 *pos, f32 *size, f32 *scale, 
     }
     win->w = size[0];
     win->h = size[1];
-    win->sx = scale[0];
-    win->sy = scale[1];
+    win->scale[0] = scale[0];
+    win->scale[1] = scale[1];
     if (flags & 0x4000) {
-        win->c.x = 0.5f * win->w + pos[0];
-        win->c.y = 0.5f * win->h + pos[1];
+        win->pivot[0] = 0.5f * win->w + pos[0];
+        win->pivot[1] = 0.5f * win->h + pos[1];
     } else {
         t = 0.5f * win->w;
-        win->c.x = t * win->sx + pos[0];
+        win->pivot[0] = t * win->scale[0] + pos[0];
         t = 0.5f * win->h;
-        win->c.y = t * win->sy + pos[1];
+        win->pivot[1] = t * win->scale[1] + pos[1];
     }
-    win->f30 = 0;
-    win->f34 = -1;
+    win->open_tick = 0;
+    win->color = -1;
     win->depth = depth;
     if (!(flags & 0x1000) && is_split_screen() != 0) {
         cam = TCameraCtrl::get_camera_no();
         if (cam != 100) {
-            ((TWindowKeyBoardSoft *)(&win->c))->adjust_pos_for_split_screen(cam);
-            win->sx = win->sx / TCameraCtrl::get_view_scale();
-            win->sy = win->sy / TCameraCtrl::get_fov();
+            adjust_window_position_for_split_screen(win->pivot, cam);
+            win->scale[0] = win->scale[0] / TCameraCtrl::get_view_scale();
+            win->scale[1] = win->scale[1] / TCameraCtrl::get_fov();
         }
     }
-    win->x = win->c.x - 0.5f * win->w;
-    win->y = win->c.y - 0.5f * win->h;
-    win->x10 = win->x + mx;
-    win->y14 = win->y + my;
-    win->x18 = win->w - 2.0f * mx;
-    win->y1c = win->h - 2.0f * my;
-    win->x3c = win->x + mx;
-    win->y40 = win->y + my;
-    win->x44 = (win->x + win->w) - mx;
-    win->y48 = (win->y + win->h) - my;
+    win->x = win->pivot[0] - 0.5f * win->w;
+    win->y = win->pivot[1] - 0.5f * win->h;
+    win->inner_x = win->x + mx;
+    win->inner_y = win->y + my;
+    win->inner_w = win->w - 2.0f * mx;
+    win->inner_h = win->h - 2.0f * my;
+    win->clip_left = win->x + mx;
+    win->clip_top = win->y + my;
+    win->clip_right = (win->x + win->w) - mx;
+    win->clip_bottom = (win->y + win->h) - my;
     return window_draw_context_instance;
 }
 #pragma pop
 
-void TWindowKeyBoardSoft::adjust_pos_for_split_screen(s32 i) {
-    NJS_POINT2 *arg0 = (NJS_POINT2 *)this;
+void adjust_window_position_for_split_screen(f32 *position, s32 i) {
     const NJS_POINT2 *p;
     if (is_split_screen() == 0 || i == 0x64) {
         return;
     }
     p = get_viewport_offset__19TWindowKeyBoardSoftFi(i);
-    arg0->x = arg0->x + (p->x + TCameraCtrl__sub_80068A04(i));
-    arg0->y = arg0->y + (p->y + TCameraCtrl::get_split_offset(i));
-    arg0->x = arg0->x / TCameraCtrl::get_view_scale();
-    arg0->y = arg0->y / TCameraCtrl::get_fov();
+    position[0] = position[0] + (p->x + TCameraCtrl__sub_80068A04(i));
+    position[1] = position[1] + (p->y + TCameraCtrl::get_split_offset(i));
+    position[0] = position[0] / TCameraCtrl::get_view_scale();
+    position[1] = position[1] / TCameraCtrl::get_fov();
 }
 
 const NJS_POINT2 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
@@ -271,12 +248,12 @@ const NJS_POINT2 *get_viewport_offset__19TWindowKeyBoardSoftFi(s32 i) {
     return get_zero_vec2();
 }
 
-u32 open_singleton__19TWindowKeyBoardSoftFiiii(s32 pos, s32 size, s32 scale, s32 flags, u32 _w4, f32 depth) {
-    if ((u32) window_draw_context_instance == 0U) {
-        return 0U;
+TWindowDrawContext *TWindowDrawContext::open_singleton(f32 *pos, f32 *size, f32 *scale, f32 depth, int flags) {
+    if (window_draw_context_instance == 0) {
+        return NULL;
     }
-    init_text_window_layout((Win_8024EA50 *)(window_draw_context_instance), (f32 *)pos, (f32 *)size, (f32 *)scale, (u32)flags, depth);
-    return window_draw_context_instance;
+    init_text_window_layout((TWindowDrawContext *)window_draw_context_instance, pos, size, scale, flags, depth);
+    return (TWindowDrawContext *)window_draw_context_instance;
 }
 
 u32 TWindowDrawContext::get_or_create_instance() {

@@ -155,8 +155,6 @@ Win_80244DFC * find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv(Win_80244DFC
 s32 sub_80246948__11TWindowBaseFv();
 int TWindowFukidasi__sub_8024695C(void *p);
 TObject *TWindowCtrlMain__sub_8024CE24(void);
-s32 animate_scale__18TWindowDrawContextFv();
-s32 open_singleton__19TWindowKeyBoardSoftFiiii(void *, void *, void *, int, f32);
 s32 init_window_layout_entries(void *, int, int);
 s32 sub_8026CC28__11TWindowBaseFv();
 s32 resort_window_order__11TWindowBaseFv(void *);
@@ -279,7 +277,6 @@ void draw_selection_bar(u8 *arg0, u8 *arg1, s32 arg2);
 void window_request_refresh(u8 *arg0);
 void window_request_show(void *arg0);
 bool is_balloon_overlapping(u8 *arg0, u8 *arg1, u8 *arg2);
-void apply_window_closing_stretch(u8 *arg0, int arg1);
 void window_request_refresh(u8 *arg0) {
     if (!((f32) *(s32 *)((s8 *)arg0 + 0x5C) >= 7.5f)) {
         *(s32 *)((s8 *)arg0 + 0x5C) = 7;
@@ -309,25 +306,26 @@ void window_request_show(void *object) {
 }
 
 s32 TWindowBase::setup_window_draw_context(s32 arg1) {
-    s32 temp_r31;
-    s32 var_r4;
-    temp_r31 = ((s32 (*)(void *, void *, void *, f32, int))open_singleton__19TWindowKeyBoardSoftFiiii)((void *) (((u8 *)this) + 0x40), (void *) (((u8 *)this) + 0x48), (void *)arg1, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x54)), (int) (*(s32 *)((s8 *)((u8 *)this) + 0x2C)));
-    if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x40) {
-        animate_scale__18TWindowDrawContextFv();
+    u8 *frame = (u8 *)this;
+    TWindowDrawContext *context = TWindowDrawContext::open_singleton(
+        (f32 *)(frame + 0x40), (f32 *)(frame + 0x48), (f32 *)arg1,
+        *(f32 *)(frame + 0x54), *(s32 *)(frame + 0x2C));
+    if (*(s32 *)(frame + 0x2C) & 0x40) {
+        context->animate_scale();
     }
-    if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x80) {
-        ((TWindowDrawContext *)temp_r31)->shrink_clip_right();
+    if (*(s32 *)(frame + 0x2C) & 0x80) {
+        context->shrink_clip_right();
     }
-    if (*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 8) {
-        ((TWindowDrawContext *)temp_r31)->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
+    if (*(s32 *)(frame + 0x2C) & 8) {
+        context->set_bounds(0.0f, 0.0f, 640.0f, 480.0f);
     }
-    var_r4 = *(s32 *)((s8 *)((u8 *)this) + 0x5C);
-    if (!(*(s32 *)((s8 *)((u8 *)this) + 0x2C) & 0x2000)) {
-        var_r4 = (s32) ((f32) var_r4 - 7.5f);
+    s32 tick = *(s32 *)(frame + 0x5C);
+    if (!(*(s32 *)(frame + 0x2C) & 0x2000)) {
+        tick = (s32)((f32)tick - 7.5f);
     }
-    ((TWindowDrawContext *)temp_r31)->set_open_tick(var_r4);
-    apply_window_closing_stretch((u8 *)temp_r31, (*(s16 *)((s8 *)((u8 *)this) + 0x22)));
-    return temp_r31;
+    context->set_open_tick(tick);
+    apply_window_closing_stretch(context, *(s16 *)(frame + 0x22));
+    return (s32)context;
 }
 
 s32 TWindowDD::draw_default_entry(s32 arg0) {

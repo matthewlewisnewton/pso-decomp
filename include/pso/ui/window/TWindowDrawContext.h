@@ -31,6 +31,7 @@ struct TWindowDrawContext {
     void set_bounds(f32 a, f32 b, f32 c, f32 d);
     void shrink_clip_right();
     void animate_scale();
+    static TWindowDrawContext *open_singleton(f32 *position, f32 *size, f32 *scale, f32 depth, int flags);
     s32 is_point_in_bounds(void *arg1);
     static u32 get_or_create_instance();
     static u32 free_singleton(u32 arg0, s16 arg1);
@@ -45,5 +46,8 @@ typedef char TWindowDrawContext_clip_left[offsetof(TWindowDrawContext, clip_left
 typedef char TWindowDrawContext_clip_top[offsetof(TWindowDrawContext, clip_top) == 0x40 ? 1 : -1];
 typedef char TWindowDrawContext_clip_right[offsetof(TWindowDrawContext, clip_right) == 0x44 ? 1 : -1];
 typedef char TWindowDrawContext_clip_bottom[offsetof(TWindowDrawContext, clip_bottom) == 0x48 ? 1 : -1];
+
+void apply_window_closing_stretch(TWindowDrawContext *context, int tick);
+void adjust_window_position_for_split_screen(f32 *position, s32 camera);
 
 #endif

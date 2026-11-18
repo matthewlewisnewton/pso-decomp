@@ -13,15 +13,13 @@ WindowDescriptor window_menu_main_menu_params = {
 };
 
 extern "C" {
-s32 setup_content_frame__15TWindowMainMenuFPv();
 extern s32 __vt__19TWindowMenuMainMenu[];
 extern const char *TWindowMenuMainMenu__class_name;
 
-void render__19TWindowMenuMainMenuFv(s32 arg0) {
-    s32 frame;
-    frame = setup_content_frame__15TWindowMainMenuFPv();
-    ((TWindowMenuMainMenu *)arg0)->draw_frame((TWindowDrawContext *)frame);
-    ((TWindowMainMenu *)arg0)->draw_entries_reversed((u8 *)frame);
+void TWindowMenuMainMenu::render() {
+    TWindowDrawContext *frame = setup_content_frame();
+    draw_frame(frame);
+    ((TWindowMainMenu *)this)->draw_entries_reversed((u8 *)frame);
 }
 
 void run_task__19TWindowMenuMainMenuFv(TWindowMenuMainMenu *window_menu_main_menu) {

@@ -64,7 +64,6 @@ struct TWindowKeyBoardSoft : public TWindowBase
     s32 check_text_overflow(u16 *arg1);
     void reset_state();
     static s32 strnlen(s8 *str, u32 max);
-    void adjust_pos_for_split_screen(s32 arg1);
     s32 get_state();
     void update_input_state();
     void sub_8025B928();
