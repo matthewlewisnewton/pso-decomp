@@ -4668,6 +4668,7 @@ force_active:
   - __dt__15TPlyPhotonChairFv
   - __dt__15TWindowCallBackFv
   - __dt__15TWindowCtrlMainFv
+  - __dt__15TWindowHelpItemFv
   - __dt__15TWindowMakeTeamFv
   - __dt__15TWindowQuantityFv
   - __dt__15TWindowShortCutFv
@@ -5903,6 +5904,7 @@ force_active:
   - __vt__15TWindowAddition
   - __vt__15TWindowCallBack
   - __vt__15TWindowCtrlMain
+  - __vt__15TWindowHelpItem
   - __vt__15TWindowMakeTeam
   - __vt__15TWindowQuantity
   - __vt__15TWindowShortCut
@@ -12905,6 +12907,7 @@ force_active:
   - lbl_804CE918
   - lbl_804CE964
   - lbl_804CF020
+  - lbl_804CF6F4
   - lbl_804CF9F8
   - lbl_804CFA10
   - lbl_804CFA28
@@ -20249,6 +20252,7 @@ force_active:
   - render__15TPlyPhotonChairFv
   - render__15TWindowCallBackFv
   - render__15TWindowCtrlMainFv
+  - render__15TWindowHelpItemFv
   - render__15TWindowMakeTeamFv
   - render__15TWindowQuantityFv
   - render__15TWindowShortCutFv
@@ -21377,6 +21381,7 @@ force_active:
   - run_task__15TPlyPhotonChairFv
   - run_task__15TWindowCallBackFv
   - run_task__15TWindowCtrlMainFv
+  - run_task__15TWindowHelpItemFv
   - run_task__15TWindowMakeTeamFv
   - run_task__15TWindowQuantityFv
   - run_task__15TWindowShortCutFv
