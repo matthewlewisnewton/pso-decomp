@@ -26,6 +26,7 @@ struct TCameraCtrl;
 #include "pso/ui/TAdSinglePlyChrSelectGC.h"
 
 
+typedef struct { s32 a, b, c; } V3_80336520;
 typedef struct {
     s32 pad0[2];
     f32 f8, fC;
@@ -42,20 +43,21 @@ struct RecoveredGlobal_80336340_TKeyBoardControl__data_80506270 {
 
 struct Obj_80336340 { u8 pad[0x40]; void *objs[3]; };
 
+struct Tbl_80336750 { const char *s[5]; };
 
 
 extern "C" {
 void TKeyBoardControl__sub_8000F9CC(s32 arg0);
+    extern int lobby_game_mode_state;
 void queue_destruction__7TObjectFv(void *arg0);
 s32 __dl__7TObjectFPv(void *);
 s32 __dt__7TObjectFv(void *, s32);
 extern s32 lbl_804EEF64[];
-u32 title_scene_instance;
-int lobby_game_mode_state;
-NJS_TEXLIST *lobby_title_texture_list;
+extern u32 title_scene_instance;
     extern int lbl_805D68C8;
 s32 release_texture_list(void *, s32);
 u64 call_funcs_reverse__6TLobbyFPvUi(void *, int);
+extern u8 *lobby_title_texture_list;
 void disallow_rendering__7TObjectFv(TObject *arg0);
 void hide_title_layers_and_release(O_8033612C *arg0);
 int TKeyBoardControl__sub_8000F828(void);
@@ -63,6 +65,8 @@ void TKeyBoardControl__sub_8000F90C(int);
 s32 create_particle__20TAdLoadQuestPrtTxtGCFPvll(void *, int, int);
 void *__nw__7TObjectFUl(u32);
 void __ct__7TObjectFP7TObject(void *);
+extern V3_80336520 lbl_80477818;
+extern u8 lbl_80477824[];
 extern s32 tl_clipout;
 extern s32 tl_fade;
 static const f32 lbl_805DF8E8 = 320.0f;
@@ -73,11 +77,12 @@ static const f32 lbl_805DF8F8 = 0.0f;
 static const f32 lbl_805DF8FC = 20.0f;
 static const f32 lbl_805DF900 = 15.0f;
 static const f32 lbl_805DF904 = 1.0f;
-static const f32 lbl_805DF908 = 0.85f;
+extern const f32 lbl_805DF908;
 
 void TWindowOptionCtrl__sub_802273B4(s32 arg0);
 extern RecoveredGlobal_80336340_TKeyBoardControl__data_80506270 TKeyBoardControl__global_key_state;
 s32 run_load_callback_table(void *, int);
+extern const Tbl_80336750 title_texture_filename_table;
 extern const s32 current_language;
 s32 TAdTrialAgreementGC__sub_80335958(int);
 s32 TLobby__sub_80336030(void *);
@@ -225,7 +230,7 @@ u8 *TUnk_804EEF64::construct_title_scene() {
     if (*(void **)((s8 *)arg0 + 0x24) != 0) {
         ((TObject *)(*(void **)((s8 *)arg0 + 0x24)))->suspend_update();
     }
-    TAdMultiChgGameModeGC::apply_bgm_col_ctrl((s32)lobby_title_music);
+    TAdMultiChgGameModeGC::apply_bgm_col_ctrl((s32)lbl_80477824);
     {
         Cam_80336520 cam;
         cam.f8 = lbl_805DF8E8;
@@ -240,7 +245,7 @@ u8 *TUnk_804EEF64::construct_title_scene() {
         ((CameraViewParams *)&cam)->begin_override();
     }
     {
-        NJS_POINT3 v = lobby_title_particle_position;
+        V3_80336520 v = lbl_80477818;
         this->m_40 = create_particle__20TAdLoadQuestPrtTxtGCFPvll(&v, 0x1E3, 1);
         *(s32 *)((s8 *)arg0 + 0x44) = create_particle__20TAdLoadQuestPrtTxtGCFPvll(&v, 0x1E4, 1);
         this->m_48 = create_particle__20TAdLoadQuestPrtTxtGCFPvll(&v, 0x1E5, 1);
@@ -266,9 +271,9 @@ void TLobby::destroy_global_object() {
 void initialize_lobby_title_scene(void) {
     title_scene_instance = 0;
     TLobby::update_menu_cursor();
-    TitleTextureFilenameTable names = title_texture_filename_table;
-    lobby_title_texture_list = &title_texture_list;
-    TLobby__sub_8023E4B4((s32)names.archive[current_language], (s32)&title_texture_list);
+    Tbl_80336750 t = title_texture_filename_table;
+    lobby_title_texture_list = (u8 *)&title_texture_list;
+    TLobby__sub_8023E4B4((s32)t.s[current_language], (s32)&title_texture_list);
     run_load_callback_table(&lobby_load_callback_table, 0x20);
     TLobby::reset_counter();
     set_current_floor_area(0);

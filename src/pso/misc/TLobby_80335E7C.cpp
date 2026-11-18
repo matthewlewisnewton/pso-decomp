@@ -67,6 +67,7 @@ extern "C" {
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 extern s32 __vt__13TUnk_804EE470[];
+    extern unsigned char lobby_record_table[];
 s32 TCameraCtrl__sub_80068EF0();
 
 
@@ -130,9 +131,7 @@ void *get_title_texture_list(void) {
     return ((char *)&title_texture_list);
 }
 
-void *TLobby::get_record(int index) {
-    return &lobby_record_table[index];
-}
+void*TLobby::get_record(int a0) {  return (char*)lobby_record_table + a0 * 32; }
 
 typedef char RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_8000F764_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
 void bind_title_texture_list(void) {
