@@ -6,7 +6,9 @@ Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream 
 
 Upstream master `77a34b3d72` contains all 176 inventory bytes previously credited to PR 320. Comparing the original inventory with a fresh build of master leaves 808 bytes across its 90 rows. The four submitted matchpasses recover 132 inventory bytes. The two local UI matchpasses recover 372 more. The combined six-group build leaves 304 inventory bytes in 18 ranges, including the four verified padding bytes at 0x805D8A2C. Its exact and linked data totals increase by 548 bytes, including 44 outside the initial inventory. Of the 304 still outside these six reviews, 272 belong to player, enemy and effect work, 24 to the area window, four to music and four to padding.
 
-The three rightmost columns of the [range ledger](2026-11-18-fork-data-ranges.tsv) record the remaining byte count on this master, the contributing PR or local branch, and the deficit after applying all six groups. The original baseline and integration columns retain the earlier comparison.
+The added columns of the [range ledger](2026-11-18-fork-data-ranges.tsv) record the remaining byte count on this master, the contributing PR or local branch, and the deficit after applying all six groups. The original baseline and integration columns retain the earlier comparison.
+
+Upstream merged PR 321 as `b2cac76477`. Its complete Git tree equals the tested front-end branch. The current upstream deficit fell from 808 to 748 original inventory bytes. The remaining three submitted PRs cover 72 of those and the two queued UI branches cover 372. The last ledger column reports the deficit on the landed tree by address.
 
 ## Integration against the original baseline
 
