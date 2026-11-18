@@ -627,40 +627,32 @@ BmlResourceDescriptor bm_ene_re8_merill_lia_low_resource_descriptor = {
     "bm_ene_re8_merill_lia_low.bml", merill_lia_low_model_names, merill_lia_low_motion_names, 2, 12,
 };
 const char *TObjEneMerillLia__class_name = "TObjEneMerillLia";
-void *lbl_80494570[56] = {
-    (void *)0x10000, (void *)0x5, (void *)0x3f19999a, (void *)0x1,
-    (void *)0x10001, (void *)0x6, (void *)0x3f4ccccd, (void *)0x1,
-    (void *)0x10002, (void *)0x8, (void *)0x3f19999a, (void *)0x1,
-    (void *)0x20000, (void *)0x1, (void *)0x3f4ccccd, (void *)0x4,
-    (void *)0x20000, (void *)0x2, (void *)0x3f800000, (void *)0x4,
-    (void *)0x10000, (void *)0x9, (void *)0x3f800000, (void *)0x1,
-    (void *)0x20000, (void *)0x3, (void *)0x3f4ccccd, (void *)0x8,
-    (void *)0x20000, (void *)0x7, (void *)0x3f4ccccd, (void *)0x20,
-    (void *)0x30000, (void *)0x4, (void *)0x3f19999a, (void *)0x10,
-    (void *)0x30000, (void *)0x4, (void *)0x3f19999a, (void *)0x10,
-    (void *)0x20000, (void *)0x5, (void *)0x3f19999a, (void *)0x20,
-    (void *)0x20000, (void *)0x0, (void *)0x3f000000, (void *)0x20,
-    (void *)0x20000, (void *)0xa, (void *)0x3f333333, (void *)0x4,
-    (void *)0x20001, (void *)0xb, (void *)0x3f19999a, (void *)0x20,
+struct MerillLiaMovementParameters {
+    f32 range;
+    f32 speed;
+    s32 turn_speed;
+    s32 unknown_0c;
+    s32 unknown_10;
+    s32 unknown_14;
+    s32 unknown_18;
 };
-void *lbl_80494650[21] = {
-    (void *)0x43610000, (void *)0x3ecccccd, (void *)0x400, (void *)0x0,
-    (void *)0x1e0000, (void *)0x1, (void *)0x0, (void *)0x437a0000,
-    (void *)0x3f0ccccd, (void *)0x400, (void *)0x0, (void *)0x1e0000,
-    (void *)0x1, (void *)0x0, (void *)0x43960000, (void *)0x3f333333,
-    (void *)0x400, (void *)0x0, (void *)0x1e0000, (void *)0x1,
-    (void *)0x0,
+TObjMotionAction merill_lia_motion_actions[14] = {
+    {1, 0, 5, 0.6f, 1}, {1, 1, 6, 0.8f, 1}, {1, 2, 8, 0.6f, 1},
+    {2, 0, 1, 0.8f, 4}, {2, 0, 2, 1.0f, 4}, {1, 0, 9, 1.0f, 1},
+    {2, 0, 3, 0.8f, 8}, {2, 0, 7, 0.8f, 0x20},
+    {3, 0, 4, 0.6f, 0x10}, {3, 0, 4, 0.6f, 0x10},
+    {2, 0, 5, 0.6f, 0x20}, {2, 0, 0, 0.5f, 0x20},
+    {2, 0, 10, 0.7f, 4}, {2, 1, 11, 0.6f, 0x20},
 };
-void *lbl_804946A4[33] = {
-    (void *)0x0, (void *)0x40f00000, (void *)0x0, (void *)0x41000000,
-    (void *)0x0, (void *)0x0, (void *)0x8003, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x40f00000, (void *)0x0, (void *)0x41000000, (void *)0x0,
-    (void *)0x0, (void *)0x8003, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x41200000,
-    (void *)0x0, (void *)0x41000000, (void *)0x0, (void *)0x0,
-    (void *)0x8003, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0,
+MerillLiaMovementParameters merill_lia_movement_parameters[3] = {
+    {225.0f, 0.4f, 0x400, 0, 0x1e0000, 1, 0},
+    {250.0f, 0.55f, 0x400, 0, 0x1e0000, 1, 0},
+    {300.0f, 0.7f, 0x400, 0, 0x1e0000, 1, 0},
+};
+CollisionBody merill_lia_collision_bodies[3] = {
+    {{0.0f, 7.5f, 0.0f}, 8.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
+    {{0.0f, 7.5f, 0.0f}, 8.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
+    {{0.0f, 10.0f, 0.0f}, 8.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f},
 };
 void *lbl_80494728[103] = {
     (void *)0x0, (void *)0x0, (void *)&__dt__16TObjEneMerillLiaFPvs, (void *)&run_task__16TObjEneMerillLiaFv,
@@ -694,9 +686,6 @@ void *lbl_80494728[103] = {
 
 // The motion set TLobby::spawn_npc_enemy copies for each spawned part.
 struct NpcSpawnMotions { void *motions; void *actions; s32 initial_action; s32 counts; };
-
-// One 0x2C-byte record of the collision body table init_collision_body_parts reads.
-struct CollisionPartRecord { u8 pad_0[0xC]; f32 radius; u8 pad_10[0x1C]; };
 
 extern void *tl_04;
 typedef struct RecoveredFields_800D6810_arg0 RecoveredFields_800D6810_arg0;
@@ -738,15 +727,15 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     *(s32 *)((s8 *)arg0 + 0x334) = *(s32 *)((s8 *)arg0 + 0x368);
     ((TObjEneMerillLia *)arg0)->clamp_and_apply_mode_param();
     ((TObjEneMerillLia *)arg0)->load_entry_params(*(s32 *)((s8 *)arg0 + 0x368));
-    *(void **)((s8 *)arg0 + 0xD8) = lbl_80494570;
-    ((TObjMotion *)arg0)->set_field_d8((s32)(*(void **)((s8 *)arg0 + 0xD8)));
+    ((TObjMotion *)arg0)->action_table = merill_lia_motion_actions;
+    ((TObjMotion *)arg0)->set_field_d8((s32)((TObjMotion *)arg0)->action_table);
     *(s32 *)((s8 *)arg0 + 0xDC) = *(s32 *)((s8 *)TObjEneMerillLia__entry_params_resource + 0x430);
     *(s16 *)((s8 *)arg0 + 0xB8) = 0;
     ((TObjMotion *)arg0)->set_animation(*(s16 *)((s8 *)arg0 + 0xB8));
     ((TObjMotion *)arg0)->set_field_b8(*(s16 *)((s8 *)arg0 + 0xB8));
-    init_collision_body_parts(arg0, (u8 *) lbl_804946A4 + *(s32 *)((s8 *)arg0 + 0x334) * 0x2C, 1);
+    init_collision_body_parts(arg0, &merill_lia_collision_bodies[((TObjEnemy *)arg0)->subtype], 1);
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(((s32 *) TObjEneMerillLia__rock_stats_table)[*(s32 *)((s8 *)arg0 + 0x334)]), (u8 *)(((s32 *) merill_lia_rock_buffer)[*(s32 *)((s8 *)arg0 + 0x334)]), (u8 *)(((s32 *) merill_lia_rock_aux_buffer)[*(s32 *)((s8 *)arg0 + 0x334)]));
-    *(u8 **)((s8 *)arg0 + 0x350) = (u8 *) lbl_80494650 + *(s32 *)((s8 *)arg0 + 0x334) * 0x1C;
+    ((TObjEnemy *)arg0)->movementParameters = &merill_lia_movement_parameters[((TObjEnemy *)arg0)->subtype];
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
     ((TBoss3VoloptHiraisin *)arg0)->copy_position();
@@ -803,9 +792,9 @@ void TObjEneMerillLia__sub_800D6D64(void) {
         res = (u8 *)new BmlResource(1, &bm_ene_re8_merill_lia_resource_descriptor, 0, 0, NULL);
         TObjEneMerillLia__entry_params_resource = (u32)res;
     }
-    ((CollisionPartRecord *)lbl_804946A4)[0].radius = 7.0f;
-    ((CollisionPartRecord *)lbl_804946A4)[1].radius = 7.0f;
-    ((CollisionPartRecord *)lbl_804946A4)[2].radius = 8.0f;
+    merill_lia_collision_bodies[0].radius = 7.0f;
+    merill_lia_collision_bodies[1].radius = 7.0f;
+    merill_lia_collision_bodies[2].radius = 8.0f;
     TObjEneMerillLia__rock_stats_table = (u32)::operator new[](8);
     merill_lia_rock_buffer = (u32)::operator new[](8);
     merill_lia_rock_aux_buffer = (u32)::operator new[](8);
@@ -820,12 +809,12 @@ void TObjEneMerillLia__sub_800D6D64(void) {
     ((void **)TObjEneMerillLia__rock_param_table)[1] = TLobby::dispatch_shared_handler_a(75);
     {
         s16 ids[2] = {44, 46};
-        NpcSpawnMotions motions = {0, lbl_80494570, 2, 0xC0000};
+        NpcSpawnMotions motions = {0, merill_lia_motion_actions, 2, 0xC0000};
         motions.motions = ((BmlResource *)TObjEneMerillLia__entry_params_resource)->motions;
         for (i = 0; i < 2; i++) {
             TLobby::spawn_npc_enemy(ids[i], (s32)((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].model,
                 (NJS_TEXLIST *)((BmlResource *)TObjEneMerillLia__entry_params_resource)->models[i].m_c, &motions,
-                ((CollisionPartRecord *)lbl_804946A4)[i].radius, 0.0f);
+                merill_lia_collision_bodies[i].radius, 0.0f);
         }
     }
 }
@@ -1063,7 +1052,7 @@ void TObjEneMerillLia::beast_update_approach() {
             ((TObjMotion *)arg0)->advance_animation();
             {
                 Vec sp8 = sp14;
-                enemy_move_toward(arg0, *(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8), &sp8, 0, *(f32 *)&this->unk_394);
+                enemy_move_toward(arg0, ((MerillLiaMovementParameters *)this->movementParameters)->turn_speed, &sp8, 0, *(f32 *)&this->unk_394);
             }
             if (this->targetId == 0xFFFF) {
                 if (horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->position) < (r = *(f32 *)&this->unk_394 + *(f32 *)((s8 *)(*(u8 * *)&this->bodies) + 0xC)) * r ||

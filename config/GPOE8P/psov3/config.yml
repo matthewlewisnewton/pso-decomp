@@ -12714,7 +12714,9 @@ force_active:
   - lbl_80493DB0
   - lbl_80493DE4
   - lbl_80493F04
-  - lbl_80494570
+  - merill_lia_motion_actions
+  - merill_lia_movement_parameters
+  - merill_lia_collision_bodies
   - lbl_80494728
   - lbl_80494F10
   - lbl_80495458
@@ -13062,7 +13064,8 @@ force_active:
   - lbl_804ED990
   - lbl_804ED9C0
   - lbl_804EDDEC
-  - lbl_804EE0C0
+  - morfos_initial_parameters
+  - morfos_collision_body
   - lbl_804EF1B8
   - lbl_804EF1DC
   - lbl_804EF3A4

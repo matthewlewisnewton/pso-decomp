@@ -792,14 +792,18 @@ extern float morfos_param_table_speed_copy;
 extern void *tl_04;
 
 
-void *lbl_804EE0C0[7] = {
-    (void *)0x43610000, (void *)0x0, (void *)0x600, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0,
+struct MorfosInitialParameters {
+    f32 range;
+    f32 speed;
+    s32 turn_step;
+    u32 unknown_0c[4];
 };
-void *lbl_804EE0DC[11] = {
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x41000000,
-    (void *)0x0, (void *)0x0, (void *)0x8003, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0,
+MorfosInitialParameters morfos_initial_parameters = {
+    225.0f, 0.0f, 0x600, {0, 0, 0, 0}
+};
+CollisionBody morfos_collision_body = {
+    {0.0f, 0.0f, 0.0f}, 8.0f, 0.0f, 0, 0x8003,
+    {0.0f, 0.0f, 0.0f}, 0.0f
 };
 const char *bm_ene_morfos_model_names[4] = {
     "kabe_arm.nj", "kabe_body.nj", "kabe_wall.nj", NULL,
@@ -970,7 +974,6 @@ struct VObj_80334D74 : VBase_18_80334D74 {
 };
 struct Elem_80334D74 { u8 pad[0x1C]; };
 struct Arr_80334D74 { u8 pad[0x424]; Elem_80334D74 e[4]; };
-struct Hdr_80334D74 { u8 b[0x1C]; };
 struct Res_80334D74 { u8 pad[0x18]; s32 f18; s32 f1C; };
 struct Mgr_80334D74 { u8 pad[0x42C]; Res_80334D74 *res; s32 f430; };
 extern s32 morfos_base_stat_indices[];
@@ -1084,7 +1087,7 @@ void TObjEneMorfos::init_instance() {
     init_position_vectors();
     *(s32 *)((s8 *)this + 0x34) = ((Mgr_80334D74 *)TObjEneMorfos__instance)->res->f18;
     this->texlist = ((Mgr_80334D74 *)TObjEneMorfos__instance)->res->f1C;
-    init_model((CollisionBody *)lbl_804EE0DC, (s32)1);
+    init_model(&morfos_collision_body, 1);
     set_field_d8((s32)morfos_motion_param_table);
     set_field_dc(((Mgr_80334D74 *)TObjEneMorfos__instance)->f430);
     this->requested_action = 0;
@@ -1093,7 +1096,7 @@ void TObjEneMorfos::init_instance() {
     reset_hp((u8 *)(morfos_base_stats[morfos_base_stat_indices[0]]), (u8 *)(morfos_attack_stats[morfos_attack_stat_indices[0]]), (u8 *)(morfos_resistance_stats[morfos_resistance_stat_indices[0]]));
     ((void (*)(void *))TObjEneMorfos__sub_80334704)(this);
     set_state_8();
-    this->movementParameters = (Hdr_80334D74 *)lbl_804EE0C0;
+    this->movementParameters = &morfos_initial_parameters;
     initialize_enemy_state(0x42);
     *(f32 *)((s8 *)this + 0x37C) = 10.0f;
     enemy_init_acquire_period(0x3C);
