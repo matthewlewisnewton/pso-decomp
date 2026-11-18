@@ -485,7 +485,7 @@ extern s32 TLobby__sub_80412058(s16 id, u8 *self, s32 len, u8 *out) {
     rec.a = *(s16 *)(ent + offsetof(Ipv6NdIface, prefix_len));
     rec.b = *(s16 *)(ent + offsetof(Ipv6NdIface, f1A));
     rec.c = *(u32 *)(ent + offsetof(Ipv6NdIface, f28));
-    NetBufferRefInitKind1((NetBufferRef *)ref,  (s32)&rec);
+    NetBufferRefInitKind1((NetBufferRef *)ref, (s32)&rec);
     TLobby__sub_80406FD8(self, ref, 0x1C);
     TLobby__sub_80406EB8((NetBufferRef *)self, 0x1C);
     cur = *(u8 **)(ent + offsetof(Ipv6NdIface, addrs));
@@ -498,7 +498,7 @@ extern s32 TLobby__sub_80412058(s16 id, u8 *self, s32 len, u8 *out) {
         rec.a = *(s16 *)(cur + offsetof(Ipv6NdAddr, prefix_len));
         rec.b = *(s16 *)(cur + offsetof(Ipv6NdAddr, f18));
         rec.c = 0;
-        NetBufferRefInitKind1((NetBufferRef *)ref,  (s32)&rec);
+        NetBufferRefInitKind1((NetBufferRef *)ref, (s32)&rec);
         TLobby__sub_80406FD8(self, ref, 0x1C);
         TLobby__sub_80406EB8((NetBufferRef *)self, 0x1C);
         cur = *(u8 **)(cur + offsetof(Ipv6NdAddr, next));
@@ -2367,7 +2367,7 @@ s16 TLobby__sub_80415D0C(NetPacket *pkt, u8 *nexthop, NetIPv6SendParameters *par
                 ret = -0x10E;
                 goto done;
             }
-            NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)src);
+            NetBufferRefInitKind1(&ref, (s32)src);
             TLobby__sub_80406FD8(&ref, &pkt->fragments[n - 1].buffer, l);
             src += l;
             frag--;
@@ -2608,7 +2608,7 @@ s16 NetIPv6HandleRedirect(NetPacket *pkt, u8 *src, void *arg2, s16 iface) {
     if (NetIPv6IsLinkLocal(src) == 0) {
         return -1;
     }
-    NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&msg);
+    NetBufferRefInitKind1(&ref, (s32)&msg);
     TLobby__sub_80406FD8(&ref, &frag->buffer, sizeof(Redirect_80416508));
     dest = msg.dest.bytes;
     if (NetIPv6IsMulticast(dest) != 0) {
@@ -3073,7 +3073,7 @@ extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *i
       case 3:
         if (len == 0x20U)
       {
-        NetBufferRefInitKind1((NetBufferRef *)buf58,  (s32) &prefix_opt);
+        NetBufferRefInitKind1((NetBufferRef *)buf58, (s32) &prefix_opt);
         new_var3 = prefix_opt.prefix.bytes;
         TLobby__sub_80406FD8(buf58, &self->buffer, 0x20);
         prefix_event.prefix = (new_var2 = new_var3);
@@ -3088,7 +3088,7 @@ extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *i
       case 5:
         if (len == 8U)
       {
-        NetBufferRefInitKind1((NetBufferRef *)buf58,  (s32) &mtu_opt);
+        NetBufferRefInitKind1((NetBufferRef *)buf58, (s32) &mtu_opt);
         TLobby__sub_80406FD8(buf58, &self->buffer, 8);
         mtu_event.router = dst;
         mtu_event.mtu = mtu_opt.mtu;
@@ -3577,7 +3577,6 @@ s32 NetIPv6EmitRouterSolicitation(NetPacket *net_packet, NetIPv6SendParameters *
 extern E_804184DC *TLobby__sub_804182DC(void *a, void *b, s16 len, s16 val) {
     s32 n;
     E_804184DC *e;
-
 
     if (a == 0) {
         return 0;

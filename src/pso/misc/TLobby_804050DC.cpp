@@ -1663,7 +1663,7 @@ void TLobby__sub_80408060(Peer_8040799C *peer, NetPacket *pkt) {
     slot->f4 = 1;
     data = slot->fC;
     for (i = pkt->fragment_count; i > 0; i--) {
-        NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)data);
+        NetBufferRefInitKind1(&ref, (s32)data);
         TLobby__sub_80406FD8(&ref, &pkt->fragments[i - 1].buffer, pkt->fragments[i - 1].length);
         data += pkt->fragments[i - 1].length;
         total += pkt->fragments[i - 1].length;
@@ -2786,14 +2786,14 @@ s32 TLobby__sub_8040A3C0(void) {
     s32 ret;
     s16 i;
     Mgr_8040A3C0 *m = (Mgr_8040A3C0 *)&dns_resolver_state;
-    Ent_8040A3C0 *e;
+    DnsQuery *e;
 
     ret = TLobby__sub_80421844((s32)((void *)TLobby::tick_connection_timeouts));
     e = m->ents;
     i = 0;
     while (i < m->count) {
         if (e->active != 0) {
-            NetConnectionCloseAndReset((Conn_8040C540 *)e);
+            NetConnectionCloseAndReset((DnsQuery *)e);
         }
         i++;
         e++;
@@ -2809,11 +2809,11 @@ void TLobby::init_net_tables() {
     NetMemset(&g->h0, 0, sizeof(G_8040A45C));
     NetInitNetworkConfig((Cfg_803F86C0 *)&g->h0);
     {
-        A_8040A45C *p = g->a;
+        DnsBuffer *p = g->a;
         i = 0;
         while (i < g->na) {
-            p->f0 = 0;
-            p->f4 = g->base + g->step * i;
+            p->used = 0;
+            p->data = (u8 *)(g->base + g->step * i);
             i++;
             p++;
         }
@@ -2861,21 +2861,21 @@ void TLobby::init_net_tables() {
         }
     }
     {
-        F_8040A45C *p = g->f;
+        DnsQuery *p = g->f;
         i = 0;
         while (i < g->nf) {
-            p->f2 = i;
+            p->index = i;
             i++;
-            p->f0 = 0;
-            p->f4 = -1;
-            p->f6 = 0;
-            p->fC = -1;
-            p->f10 = -65;
-            p->f12 = 0;
-            p->f18 = 0;
-            p->f1C = 0;
-            p->f34 = 0;
-            p->f28 = 0;
+            p->active = 0;
+            p->socket = -1;
+            p->id = 0;
+            p->waiter = -1;
+            p->status = -65;
+            p->outstanding = 0;
+            p->message = 0;
+            p->reply = 0;
+            p->req.lookup.cb = 0;
+            p->req.ptr.cb = 0;
             p++;
         }
     }
@@ -2886,27 +2886,27 @@ void TLobby::init_net_tables() {
 s32 TLobby::close_connection_by_index(s16 i) {
     G_8040A630 *g = (G_8040A630 *)&dns_resolver_state;
     if (i < 0 || i > g->n) { return -2; }
-    Ent_8040A630 *e = (Ent_8040A630 *)((u8 *)g->p + i * 0x3C);
-    if (e->f0 == 0) { return -2; }
-    return NetConnectionCloseAndReset((Conn_8040C540 *)e);
+    DnsQuery *e = (DnsQuery *)((u8 *)g->p + i * 0x3C);
+    if (e->active == 0) { return -2; }
+    return NetConnectionCloseAndReset((DnsQuery *)e);
 }
 
 s16 TLobby__sub_8040A698(s16 idx, void *buf, s16 *len, void *buf2, s16 *len2, u32 mode) {
     G_8040A45C *g = &dns_resolver_state;
-    F_8040A45C *f;
-    Ent_8040A698 *e;
-    Req_8040A698 *req;
+    DnsQuery *f;
+    DnsQuery *e;
+    DnsLookupRequest *req;
     s16 st;
 
     if (idx < 0 || idx >= g->nf) {
         return -2;
     }
     f = &g->f[idx];
-    e = (Ent_8040A698 *)f;
-    if (f->f0 == 0) {
+    e = (DnsQuery *)f;
+    if (f->active == 0) {
         return -2;
     }
-    if (e->f8 != 1) {
+    if (e->kind != 1) {
         return -2;
     }
     if (len == NULL) {
@@ -2918,62 +2918,62 @@ s16 TLobby__sub_8040A698(s16 idx, void *buf, s16 *len, void *buf2, s16 *len2, u3
     if (buf2 != NULL && (len2 == NULL || *len2 < 0)) {
         return -2;
     }
-    req = &e->req;
-    req->f4 = buf;
-    req->f8 = *len;
-    req->fC = buf2;
+    req = &e->req.lookup;
+    req->addrs = (NetworkAddress *)buf;
+    req->naddrs = *len;
+    req->cname = (u8 *)buf2;
     if (len2 != NULL) {
-        req->f10 = *len2;
+        req->cname_len = *len2;
     } else {
-        req->f10 = 0;
+        req->cname_len = 0;
     }
-    req->f14 = mode;
+    req->cb = (DnsLookupCallback)mode;
     if (mode == 0) {
         TLobby__sub_80421814();
-        if (e->f10 > 0 || e->f12 > 0) {
-            if (e->fC != 0xFFFFFFFF) {
+        if (e->status > 0 || e->outstanding > 0) {
+            if (e->waiter != 0xFFFFFFFF) {
                 TLobby__sub_804217E4();
                 return -2;
             }
-            NetStoreCurrentThread((s32 *)&e->fC);
+            NetStoreCurrentThread((s32 *)&e->waiter);
             TLobby__sub_804217E4();
             NetSuspendCurrentThread();
         } else {
             TLobby__sub_804217E4();
         }
-        st = e->f10;
+        st = e->status;
         if (st < 0) {
             return st;
         }
     } else if (mode == 0xFFFFFFFF) {
-        st = e->f10;
-        if (st > 0 || e->f12 > 0) {
+        st = e->status;
+        if (st > 0 || e->outstanding > 0) {
             return -1;
         }
         if (st < 0) {
             return st;
         }
     } else {
-        if (e->f10 <= 0 && e->f12 <= 0) {
-            NetDispatchRequestCallback((Conn_8040C540 *)e, 1);
+        if (e->status <= 0 && e->outstanding <= 0) {
+            NetDispatchRequestCallback((DnsQuery *)e, 1);
         }
         return -1;
     }
-    TLobby__sub_8040C74C((SubA_8040C540 *)req);
+    TLobby__sub_8040C74C((DnsLookupRequest *)req);
     if (len2 != NULL) {
-        *len2 = req->f10;
+        *len2 = req->cname_len;
     }
-    *len = req->f8;
+    *len = req->naddrs;
     return 0;
 }
 
-static inline void claim_dns_query(G_8040A45C *state, F_8040A45C *&query) {
+static inline void claim_dns_query(G_8040A45C *state, DnsQuery *&query) {
     s16 i;
     TLobby__sub_80421814();
     query = state->f;
     for (i = 0; i < state->nf; i++, query++) {
-        if (query->f0 == 0) {
-            query->f0 = 1;
+        if (query->active == 0) {
+            query->active = 1;
             break;
         }
     }
@@ -2990,11 +2990,11 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
     Rec_8040B33C *server;
   } cursor;
   D_8040A45C *p;
-  A_8040A45C *m;
+  DnsBuffer *m;
   u8 *query_name;
-  F_8040A45C *e;
+  DnsQuery *e;
   s32 len;
-  DnsLookupView_8040A8B0 *t;
+  DnsLookupRequest *t;
   u32 ty;
   Rec_8040B33C *selected_server;
   s16 i;
@@ -3030,23 +3030,23 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
   {
     return -0x40;
   }
-  e->f8 = 1;
+  e->kind = 1;
   {
     len = idx;
-    e->f20 = type;
+    e->req.lookup.family = type;
     query_name = self;
-    t = (DnsLookupView_8040A8B0 *)&e->f20;
+    t = &e->req.lookup;
     p = find_host_8040A8B0(cursor.state, query_name, len);
     if (p != (NULL))
     {
-      e->f10 = 0;
+      e->status = 0;
       t->host = p;
       ty = t->family;
       if (ty == 0)
       {
         if (p->f204 > 0)
         {
-          return e->f2;
+          return e->index;
         }
       }
       else
@@ -3056,35 +3056,35 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
         {
           if (node->f4.f0 == ty)
           {
-            return e->f2;
+            return e->index;
           }
         }
 
       }
     }
     m = grab_slot_8040A8B0(cursor.state);
-    e->f18 = (Buf_8040AFE0 *)m;
+    e->message = (DnsBuffer *)m;
     if (m == (NULL))
     {
-      NetConnectionCloseAndReset((Conn_8040C540 *)e);
+      NetConnectionCloseAndReset((DnsQuery *)e);
       return -0x43;
     }
-    e->f6 = cursor.state->h0++;
-    e->fA = cursor.state->fC[0];
-    e->f14 = cursor.state->f18;
-    e->f10 = 0;
+    e->id = cursor.state->h0++;
+    e->timer = cursor.state->fC[0];
+    e->server = cursor.state->f18;
+    e->status = 0;
     cursor.server = select_dns_lookup_server(cursor.state, e);
     selected_server = cursor.server;
     if (selected_server == NULL)
     {
-      NetConnectionCloseAndReset((Conn_8040C540 *)e);
+      NetConnectionCloseAndReset((DnsQuery *)e);
       return -0x44;
     }
-    e->f4 = TUdpSocket__sub_80421DEC(0, 0, 0, 0x35, (s32)TLobby::complete_pending_request, TLobby__sub_8040B4BC);
-    i = e->f4;
+    e->socket = TUdpSocket__sub_80421DEC(0, 0, 0, 0x35, (s32)TLobby::complete_pending_request, TLobby__sub_8040B4BC);
+    i = e->socket;
     if (i < 0)
     {
-      NetConnectionCloseAndReset((Conn_8040C540 *)e);
+      NetConnectionCloseAndReset((DnsQuery *)e);
       return i;
     }
     if (t->host == (NULL))
@@ -3100,18 +3100,18 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
       {
         UdpBuf_8040AFE0 buf;
         NetDnsBuildQueryAAAA(e, query_name, idx);
-        buf.len = e->f18->len;
-        buf.data = e->f18->data;
-        i = TUdpSocket__sub_80421BAC(e->f4, NULL, &selected_server->f0, 0, NULL, 1, &buf);
+        buf.len = e->message->len;
+        buf.data = e->message->data;
+        i = TUdpSocket__sub_80421BAC(e->socket, NULL, &selected_server->f0, 0, NULL, 1, &buf);
         if (i < 0)
         {
-          e->fA = 1;
-          e->f10 = e->f10 + 1;
+          e->timer = 1;
+          e->status = e->status + 1;
         }
         else
         {
-          e->fA = 2;
-          e->f12 = 1;
+          e->timer = 2;
+          e->outstanding = 1;
         }
         break;
       }
@@ -3120,14 +3120,14 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
       {
         UdpBuf_8040AFE0 buf;
         NetDnsBuildQueryA(e, query_name, idx);
-        buf.len = e->f18->len;
-        buf.data = e->f18->data;
-        i = TUdpSocket__sub_80421BAC(e->f4, NULL, &selected_server->f0, 0, NULL, 1, &buf);
+        buf.len = e->message->len;
+        buf.data = e->message->data;
+        i = TUdpSocket__sub_80421BAC(e->socket, NULL, &selected_server->f0, 0, NULL, 1, &buf);
         if (i < 0)
         {
-          e->fA = 1;
+          e->timer = 1;
         }
-        e->f10 = e->f10 + 1;
+        e->status = e->status + 1;
         break;
       }
 
@@ -3135,14 +3135,14 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
       {
         UdpBuf_8040AFE0 buf;
         NetDnsBuildQueryAAAA(e, query_name, idx);
-        buf.len = e->f18->len;
-        buf.data = e->f18->data;
-        i = TUdpSocket__sub_80421BAC(e->f4, NULL, &selected_server->f0, 0, NULL, 1, &buf);
+        buf.len = e->message->len;
+        buf.data = e->message->data;
+        i = TUdpSocket__sub_80421BAC(e->socket, NULL, &selected_server->f0, 0, NULL, 1, &buf);
         if (i < 0)
         {
-          e->fA = 1;
+          e->timer = 1;
         }
-        e->f10 = e->f10 + 1;
+        e->status = e->status + 1;
         break;
       }
 
@@ -3152,7 +3152,7 @@ s16 TLobby__sub_8040A8B0(u8 *self, s16 idx, s32 type)
       u32 pad[4];
     }
   }
-  return e->f2;
+  return e->index;
 }
 
 #pragma opt_propagation reset
@@ -3252,7 +3252,7 @@ void TLobby__sub_8040AFE0(void) {
     Rec_8040B33C *rec;
     s16 *nb;
     s16 i;
-    F_8040A45C *req;
+    DnsQuery *req;
     s16 r;
     s16 *fc;
 
@@ -3261,26 +3261,26 @@ void TLobby__sub_8040AFE0(void) {
     i = 0;
     req = g->f;
     while (i < g->nf) {
-        if (req->f0 == 1 && req->f4 >= 0 && (req->f10 > 0 || req->f12 > 0)) {
-            if (--req->fA <= 0) {
-                if (req->f10 >= g->lim) {
+        if (req->active == 1 && req->socket >= 0 && (req->status > 0 || req->outstanding > 0)) {
+            if (--req->timer <= 0) {
+                if (req->status >= g->lim) {
                     g->f18 = 0;
                     TLobby__sub_8040BE40(req, -0x45, 0);
-                } else if (req->f12 != 0) {
+                } else if (req->outstanding != 0) {
                     rec = find_next_active_record__6TLobbyFPv((A_8040B33C *)req);
                     if (rec == NULL) {
                         TLobby__sub_8040BE40(req, -0x44, 0);
                     } else {
-                        g->f18 = req->f10 % *nb;
+                        g->f18 = req->status % *nb;
                         fc = g->fC;
-                        req->fA = fc[req->f10 / *nb];
+                        req->timer = fc[req->status / *nb];
                         put_tag_8040AFE0(req, 1);
                         r = send_8040AFE0(req, rec);
                         if (r < 0) {
-                            req->fA = 1;
+                            req->timer = 1;
                         }
-                        req->f12 = 0;
-                        req->f10++;
+                        req->outstanding = 0;
+                        req->status++;
                     }
                 } else {
                     TLobby__sub_8040B1C4(req);
@@ -3292,14 +3292,14 @@ void TLobby__sub_8040AFE0(void) {
     }
 }
 
-static inline s16 dns_send_message(F_8040A45C *query, Rec_8040B33C *server) {
+static inline s16 dns_send_message(DnsQuery *query, Rec_8040B33C *server) {
     UdpBuf_8040AFE0 tmp;
-    tmp.len = query->f18->len;
-    tmp.data = query->f18->data;
-    return TUdpSocket__sub_80421BAC(query->f4, NULL, &server->f0, 0, NULL, 1, &tmp);
+    tmp.len = query->message->len;
+    tmp.data = query->message->data;
+    return TUdpSocket__sub_80421BAC(query->socket, NULL, &server->f0, 0, NULL, 1, &tmp);
 }
 
-extern void TLobby__sub_8040B1C4(F_8040A45C *e)
+extern void TLobby__sub_8040B1C4(DnsQuery *e)
 {
     G_8040A45C *base;
     Rec_8040B33C *found;
@@ -3312,21 +3312,21 @@ extern void TLobby__sub_8040B1C4(F_8040A45C *e)
         return;
     }
     dp = &base->nb;
-    base->f18 = e->f10 % *dp;
-    e->fA = base->fC[e->f10 / *dp];
+    base->f18 = e->status % *dp;
+    e->timer = base->fC[e->status / *dp];
 
     ret = dns_send_message(e, found);
     if (ret < 0) {
-        e->fA = 1;
-        e->f10 = e->f10 + 1;
+        e->timer = 1;
+        e->status = e->status + 1;
         return;
     }
-    if (e->f8 == 1 && e->f20 == 0) {
-        e->fA = 2;
-        e->f12 = 1;
+    if (e->kind == 1 && e->req.lookup.family == 0) {
+        e->timer = 2;
+        e->outstanding = 1;
         return;
     }
-    e->f10 = e->f10 + 1;
+    e->status = e->status + 1;
 }
 
 Rec_8040B33C *find_next_active_record__6TLobbyFPv(A_8040B33C *a) {
@@ -3392,9 +3392,9 @@ void TLobby__sub_8040B3B4(void) {
 s32 TLobby__sub_8040B4BC(s16 phase, u8 *record) {
     UdpRx_8040B4BC *rx = (UdpRx_8040B4BC *)record;
     G_8040A45C *g = &dns_resolver_state;
-    Ent_8040B654 *e;
+    DnsQuery *e;
     s16 len;
-    A_8040A45C *b;
+    DnsBuffer *b;
 
     if (rx->port != 53) {
         return 1;
@@ -3403,7 +3403,7 @@ s32 TLobby__sub_8040B4BC(s16 phase, u8 *record) {
     if (e == NULL) {
         return 1;
     }
-    if (e->f10 < 0) {
+    if (e->status < 0) {
         return 1;
     }
     len = rx->len;
@@ -3413,24 +3413,24 @@ s32 TLobby__sub_8040B4BC(s16 phase, u8 *record) {
     switch (phase) {
     case 0:
         b = alloc_rx_8040B4BC(g);
-        e->f1C = b;
+        e->reply = b;
         if (b == NULL) {
             return 1;
         }
-        rx->buf = e->f1C->f4;
+        rx->buf = (s32)e->reply->data;
         return 0;
     default:
-        e->f1C->f2 = len;
-        if (TLobby__sub_8040B8BC((F_8040A45C *)e) < 0) {
-            e->f1C->f0 = 0;
-            e->f1C = NULL;
+        e->reply->len = len;
+        if (TLobby__sub_8040B8BC((DnsQuery *)e) < 0) {
+            e->reply->used = 0;
+            e->reply = NULL;
             return 1;
         }
-        e->f1C->f0 = 0;
-        e->f1C = NULL;
-        if (e->f12 == 0) {
-            e->f10 = 0;
-            NetDispatchRequestCallback((Conn_8040C540 *)e, 0);
+        e->reply->used = 0;
+        e->reply = NULL;
+        if (e->outstanding == 0) {
+            e->status = 0;
+            NetDispatchRequestCallback((DnsQuery *)e, 0);
         }
         return 0;
     }
@@ -3438,26 +3438,26 @@ s32 TLobby__sub_8040B4BC(s16 phase, u8 *record) {
 
 #pragma inline_depth(4)
 void TLobby::complete_pending_request(s16 id) {
-    Ent_8040B654 *e;
+    DnsQuery *e;
 
     if ((e = find_8040B654(id)) != NULL) {
-        e->fA = 1;
-        if (e->f10 < 0) {
-            NetDispatchRequestCallback((Conn_8040C540 *)e, 0);
+        e->timer = 1;
+        if (e->status < 0) {
+            NetDispatchRequestCallback((DnsQuery *)e, 0);
         }
     }
 }
 
 #pragma opt_propagation off
-s32 NetDnsBuildQueryAAAA(F_8040A45C *self, u8 *name, s16 len) {
+s32 NetDnsBuildQueryAAAA(DnsQuery *self, u8 *name, s16 len) {
     s32 TLobby__sub_8040B838(u8 *, u8 *, s16);
-    Q_8040B6E4 *q = (Q_8040B6E4 *)self;
+    DnsQuery *q = self;
     Hdr_8040B6E4 *h;
     u8 *body;
     s32 n;
     s16 total;
     QT_8040B6E4 qt;
-    h = q->pkt->hdr;
+    h = (Hdr_8040B6E4 *)q->message->data;
     h->id = q->id;
     body = h->body;
     h->f2 = 1;
@@ -3472,19 +3472,19 @@ s32 NetDnsBuildQueryAAAA(F_8040A45C *self, u8 *name, s16 len) {
     qt.cls = 1;
     total = n + 0xC;
     NetMemcpy(body, &qt, 4);
-    q->pkt->len = total + 4;
+    q->message->len = total + 4;
     return 0;
 }
 
-s32 NetDnsBuildQueryA(F_8040A45C *self, u8 *name, s16 len) {
+s32 NetDnsBuildQueryA(DnsQuery *self, u8 *name, s16 len) {
     s32 TLobby__sub_8040B838(u8 *, u8 *, s16);
-    Q_8040B790 *q = (Q_8040B790 *)self;
+    DnsQuery *q = self;
     Hdr_8040B790 *h;
     u8 *body;
     s32 n;
     s16 total;
     QT_8040B790 qt;
-    h = q->pkt->hdr;
+    h = (Hdr_8040B790 *)q->message->data;
     h->id = q->id;
     body = h->body;
     h->f2 = 1;
@@ -3499,10 +3499,9 @@ s32 NetDnsBuildQueryA(F_8040A45C *self, u8 *name, s16 len) {
     qt.cls = 1;
     total = n + 0xC;
     NetMemcpy(body, &qt, 4);
-    q->pkt->len = total + 4;
+    q->message->len = total + 4;
     return 0;
 }
-
 
 s32 TLobby__sub_8040B838(u8 *dst, u8 *src, s32 max)
 {
@@ -3540,12 +3539,12 @@ s32 TLobby__sub_8040B838(u8 *dst, u8 *src, s32 max)
     return ret;
 }
 
-s16 TLobby__sub_8040B8BC(F_8040A45C *self)
+s16 TLobby__sub_8040B8BC(DnsQuery *self)
 {
   volatile u32 pad[2];
   s32 len;
-  F_8040A45C *s;
-  A_8040A45C *p;
+  DnsQuery *s;
+  DnsBuffer *p;
   u8 *hdr;
   u8 *new_var;
   u16 cnt;
@@ -3555,10 +3554,10 @@ s16 TLobby__sub_8040B8BC(F_8040A45C *self)
   s32 op;
   s32 r;
   s = self;
-  p = s->f1C;
-  hdr = (u8 *)p->f4;
-  len = p->f2;
-  if ((*((u16 *) hdr)) != (u16) s->f6)
+  p = s->reply;
+  hdr = p->data;
+  len = p->len;
+  if ((*((u16 *) hdr)) != (u16) s->id)
   {
     return -1;
   }
@@ -3584,13 +3583,13 @@ s16 TLobby__sub_8040B8BC(F_8040A45C *self)
     case 5:
 
     default:
-      s->fA = 1;
+      s->timer = 1;
       return -1;
 
     case 0:
       if ((*((u16 *) (hdr + 6))) == 0)
     {
-      s->fA = 1;
+      s->timer = 1;
       return -1;
     }
       break;
@@ -3628,7 +3627,7 @@ s16 TLobby__sub_8040B8BC(F_8040A45C *self)
   return 0;
 }
 
-extern s32 TLobby__sub_8040BA38(F_8040A45C *self, u8 *rr, s32 avail) {
+extern s32 TLobby__sub_8040BA38(DnsQuery *self, u8 *rr, s32 avail) {
     DnsRrHeader hdr;
     C_8040A45C rec;
     C_8040A45C *found;
@@ -3655,7 +3654,7 @@ extern s32 TLobby__sub_8040BA38(F_8040A45C *self, u8 *rr, s32 avail) {
     case 1:
         switch (hdr.type) {
         case 1: {
-            host = (D_8040A45C *)self->f38;
+            host = (D_8040A45C *)self->req.lookup.host;
             if (host == 0) {
                 break;
             }
@@ -3679,14 +3678,14 @@ extern s32 TLobby__sub_8040BA38(F_8040A45C *self, u8 *rr, s32 avail) {
             break;
         }
         case 5: {
-            host = (D_8040A45C *)self->f38;
+            host = (D_8040A45C *)self->req.lookup.host;
             if (host != 0 && (s8) host->canonical_name[0] == 0) {
                 TLobby__sub_8040BD40(self, rr + 10, rdlength, host->canonical_name);
             }
             break;
         }
         case 0x1c: {
-            host = (D_8040A45C *)self->f38;
+            host = (D_8040A45C *)self->req.lookup.host;
             if (host == 0) {
                 break;
             }
@@ -3710,7 +3709,7 @@ extern s32 TLobby__sub_8040BA38(F_8040A45C *self, u8 *rr, s32 avail) {
             break;
         }
         case 12: {
-            E_8040A45C *ptr = self->f2C;
+            E_8040A45C *ptr = self->req.ptr.entry;
             if (ptr != 0) {
                 ptr->f18 = hdr.ttl;
                 TLobby__sub_8040BD40(self, rr + 10, rdlength, ptr->wire_name);
@@ -3725,7 +3724,7 @@ extern s32 TLobby__sub_8040BA38(F_8040A45C *self, u8 *rr, s32 avail) {
 
 #pragma opt_propagation reset
 #pragma opt_lifetimes off
-extern s32 TLobby__sub_8040BD40(F_8040A45C *self, u8 *p, s32 n, u8 *dst)
+extern s32 TLobby__sub_8040BD40(DnsQuery *self, u8 *p, s32 n, u8 *dst)
 {
   s32 offset;
   s32 count;
@@ -3749,7 +3748,7 @@ extern s32 TLobby__sub_8040BD40(F_8040A45C *self, u8 *p, s32 n, u8 *dst)
     if (c & 0xC0)
     {
       limit = offset = ((c & ~0xC0) << 8) | p[1];
-      s = data = (u8 *)self->f1C->f4;
+      s = data = self->reply->data;
       s += (u16) limit;
       c2 = *s;
       d = dst;
@@ -3781,32 +3780,32 @@ extern s32 TLobby__sub_8040BD40(F_8040A45C *self, u8 *p, s32 n, u8 *dst)
 }
 
 #pragma opt_lifetimes reset
-void TLobby__sub_8040BE40(F_8040A45C *req, s16 err, s16 arg) {
+void TLobby__sub_8040BE40(DnsQuery *req, s16 err, s16 arg) {
     E_8040A45C *c;
-    Query_8040C09C *q;
+    D_8040A45C *q;
 
-    switch (req->f8) {
+    switch (req->kind) {
     case 1:
-        q = req->f38;
+        q = req->req.lookup.host;
         if (q != NULL) {
-            req->f38 = NULL;
-            TLobby__sub_8040C178(q, arg);
+            req->req.lookup.host = NULL;
+            TLobby__sub_8040C178((Query_8040C09C *)q, arg);
         }
         break;
     case 12:
-        c = req->f2C;
+        c = req->req.ptr.entry;
         if (c != NULL) {
-            req->f2C = NULL;
+            req->req.ptr.entry = NULL;
             reset_requests_8040BE40(c, arg);
         }
         break;
     }
-    req->f10 = err;
-    req->f12 = 0;
-    NetDispatchRequestCallback((Conn_8040C540 *)req, arg);
+    req->status = err;
+    req->outstanding = 0;
+    NetDispatchRequestCallback((DnsQuery *)req, arg);
 }
 
-s32 NetConnectionCloseAndReset(Conn_8040C540 *self) {
+s32 NetConnectionCloseAndReset(DnsQuery *self) {
     u8 *arg0 = (u8 *)self;
     s16 *temp_r3_2;
     s16 *temp_r3_3;
@@ -3842,7 +3841,7 @@ s32 NetConnectionCloseAndReset(Conn_8040C540 *self) {
 
 void reset_connection_requests__6TLobbyFPvs(Conn_8040AF48 *o_, s16 arg1) {
     s16 i;
-    E_8040C00C *e;
+    DnsQuery *e;
 
     ((O_8040C00C *)o_)->f0 = 0;
     ((O_8040C00C *)o_)->f18 = 0;
@@ -3850,11 +3849,11 @@ void reset_connection_requests__6TLobbyFPvs(Conn_8040AF48 *o_, s16 arg1) {
     i = 0;
     e = ((G_8040C00C *)&dns_resolver_state)->ents;
     while (i < ((G_8040C00C *)&dns_resolver_state)->count) {
-        if (e->owner == ((O_8040C00C *)o_)) {
-            e->f10 = -0x42;
-            e->f12 = 0;
-            e->owner = 0;
-            NetDispatchRequestCallback((Conn_8040C540 *)e, arg1);
+        if (e->req.ptr.entry == (E_8040A45C *)o_) {
+            e->status = -0x42;
+            e->outstanding = 0;
+            e->req.ptr.entry = 0;
+            NetDispatchRequestCallback((DnsQuery *)e, arg1);
         }
         i++;
         e++;
@@ -3891,7 +3890,7 @@ Query_8040C09C *TLobby__sub_8040C09C(void) {
 void TLobby__sub_8040C178(Query_8040C09C *q, s16 arg1) {
     G_8040C09C *state = (G_8040C09C *)&dns_resolver_state;
     s16 i;
-    Ent_8040C09C *e;
+    DnsQuery *e;
     Node_8040C09C *n;
     Node_8040C09C *cur;
 
@@ -3911,11 +3910,11 @@ void TLobby__sub_8040C178(Query_8040C09C *q, s16 arg1) {
     i = 0;
     e = state->ents;
     while (i < state->nents) {
-        if (e->owner == q) {
-            e->f10 = -0x42;
-            e->f12 = 0;
-            e->owner = NULL;
-            NetDispatchRequestCallback((Conn_8040C540 *)e, arg1);
+        if (e->req.lookup.host == (D_8040A45C *)q) {
+            e->status = -0x42;
+            e->outstanding = 0;
+            e->req.lookup.host = NULL;
+            NetDispatchRequestCallback((DnsQuery *)e, arg1);
         }
         i++;
         e++;
@@ -4058,83 +4057,83 @@ s32 append_to_list__6TLobbyFPvPv(O_8040C4B0 *o, N_8040C4B0 *n) {
     return -1;
 }
 
-void NetDispatchRequestCallback(Conn_8040C540 *self, s16 status) {
-    Conn_8040C540 *connection = (Conn_8040C540 *)self;
-    SubA_8040C540 *a;
-    SubB_8040C540 *b;
+void NetDispatchRequestCallback(DnsQuery *self, s16 status) {
+    DnsQuery *connection = (DnsQuery *)self;
+    DnsLookupRequest *a;
+    DnsPtrRequest *b;
     s32 err;
 
-    switch (connection->state) {
+    switch (connection->kind) {
     case 1:
-        a = (SubA_8040C540 *)connection->sub;
+        a = &connection->req.lookup;
         if ((u32)a->cb == 0xFFFFFFFFU) {
             return;
         }
         if (a->cb == NULL) {
             if (status != 0) {
                 TLobby__sub_80421814();
-                if (connection->thread != 0xFFFFFFFFU) {
-                    TLobby::resume_thread(connection->thread);
-                    connection->thread = -1;
+                if (connection->waiter != 0xFFFFFFFFU) {
+                    TLobby::resume_thread(connection->waiter);
+                    connection->waiter = -1;
                 }
                 TLobby__sub_804217E4();
                 return;
             }
-            if (connection->thread != 0xFFFFFFFFU) {
-                TLobby::resume_thread(connection->thread);
-                connection->thread = -1;
+            if (connection->waiter != 0xFFFFFFFFU) {
+                TLobby::resume_thread(connection->waiter);
+                connection->waiter = -1;
             }
             return;
         }
-        err = connection->err;
+        err = connection->status;
         if ((s16)err < 0) {
-            a->cb(connection->id, a->f4, err, a->fC, 0);
+            a->cb(connection->index, a->addrs, err, a->cname, 0);
         } else {
             TLobby__sub_8040C74C(a);
-            a->cb(connection->id, a->f4, a->f8, a->fC, a->f10);
+            a->cb(connection->index, a->addrs, a->naddrs, a->cname, a->cname_len);
         }
         a->cb = NULL;
         break;
     case 12:
-        b = (SubB_8040C540 *)connection->sub;
+        b = &connection->req.ptr;
         if ((u32)b->cb == 0xFFFFFFFFU) {
             return;
         }
         if (b->cb == NULL) {
             if (status != 0) {
                 TLobby__sub_80421814();
-                if (connection->thread != 0xFFFFFFFFU) {
-                    TLobby::resume_thread(connection->thread);
-                    connection->thread = -1;
+                if (connection->waiter != 0xFFFFFFFFU) {
+                    TLobby::resume_thread(connection->waiter);
+                    connection->waiter = -1;
                 }
                 TLobby__sub_804217E4();
                 return;
             }
-            if (connection->thread != 0xFFFFFFFFU) {
-                TLobby::resume_thread(connection->thread);
-                connection->thread = -1;
+            if (connection->waiter != 0xFFFFFFFFU) {
+                TLobby::resume_thread(connection->waiter);
+                connection->waiter = -1;
             }
             return;
         }
-        err = connection->err;
+        err = connection->status;
         if ((s16)err < 0) {
-            b->cb(connection->id, b->f0, err);
+            b->cb(connection->index, b->name, err);
         } else {
-            if (b->fC == NULL) {
-                b->f4 = -0x42;
-            } else if (b->f0 == 0) {
-                b->f4 = TLobby__sub_8040C978(b->fC + 0x1C);
+            if (b->entry == NULL) {
+                b->len = -0x42;
+            } else if (b->name == 0) {
+                b->len = TLobby__sub_8040C978(b->entry->wire_name);
             } else {
-                b->f4 = TLobby__sub_8040C8A8((u8 *)b->f0, b->fC + 0x1C, b->f4);
+                b->len = TLobby__sub_8040C8A8((u8 *)b->name, b->entry->wire_name, b->len);
             }
-            b->cb(connection->id, b->f0, b->f4);
+            b->cb(connection->index, b->name, b->len);
         }
         b->cb = NULL;
         break;
     }
 }
 
-void TLobby__sub_8040C74C(SubA_8040C540 *a) {
+void TLobby__sub_8040C74C(DnsLookupRequest *a) {
     s16 n;
     s8 *s;
     s32 len;
@@ -4144,14 +4143,14 @@ void TLobby__sub_8040C74C(SubA_8040C540 *a) {
     u8 *out;
     C_8040A45C *node;
 
-    q = a->f18;
+    q = a->host;
     if (q == NULL) {
-        a->f8 = -0x42;
+        a->naddrs = -0x42;
         return;
     }
     s16 max;
-    if (q->f104 != 0 && (max = a->f10) != 0) {
-        if (a->fC == 0) {
+    if (q->f104 != 0 && (max = a->cname_len) != 0) {
+        if (a->cname == 0) {
             s = &q->f104;
             n = 0;
             while (n < 0xFF) {
@@ -4169,29 +4168,29 @@ void TLobby__sub_8040C74C(SubA_8040C540 *a) {
                 }
                 n += len + 1;
             }
-            a->f10 = n;
+            a->cname_len = n;
         } else {
-            a->f10 = TLobby__sub_8040C8A8((u8 *)a->fC, (u8 *)&q->f104, max);
+            a->cname_len = TLobby__sub_8040C8A8((u8 *)a->cname, (u8 *)&q->f104, max);
         }
     } else {
-        a->f10 = 0;
+        a->cname_len = 0;
     }
-    out = (u8 *)a->f4;
+    out = (u8 *)a->addrs;
     cnt = 0;
     node = q->f208;
     for (i = 0; i < q->f204; i++, node = node->f20) {
-        if (a->f0 == 0 || a->f0 == node->f4.f0) {
+        if (a->family == 0 || a->family == node->f4.f0) {
             cnt++;
             if (out != NULL) {
                 NetMemcpy(out, &node->f4, sizeof(Rec_8040B33C));
                 out += sizeof(Rec_8040B33C);
-                if (cnt >= a->f8) {
+                if (cnt >= a->naddrs) {
                     break;
                 }
             }
         }
     }
-    a->f8 = cnt;
+    a->naddrs = cnt;
 }
 
 #pragma push
@@ -4341,7 +4340,7 @@ s16 TLobby__sub_8040CB44(u8 *self, u32 d, u32 c)
   u32 mask;
   NetPacket *pkt = (NetPacket *)self;
   rec = &pkt->fragments[1];
-  NetBufferRefInitKind1((NetBufferRef *)stream,  (s32) hdr);
+  NetBufferRefInitKind1((NetBufferRef *)stream, (s32) hdr);
   TLobby__sub_80406FD8(stream, &rec->buffer, 8);
   if (NetPacketChecksum((NetPacket *)self, 0) != 0)
   {
@@ -4393,7 +4392,7 @@ s16 TLobby__sub_8040CB44(u8 *self, u32 d, u32 c)
 
     case 3:
       TLobby__sub_80406EB8(&rec->buffer, 8);
-      NetBufferRefInitKind1((NetBufferRef *)stream,  (s32) ip);
+      NetBufferRefInitKind1((NetBufferRef *)stream, (s32) ip);
       TLobby__sub_80406FD8(stream, &rec->buffer, 20);
       TLobby__sub_80406EB8(&rec->buffer, (ip[0] & 0xf) << 2);
       switch (ip[9])
@@ -4402,7 +4401,7 @@ s16 TLobby__sub_8040CB44(u8 *self, u32 d, u32 c)
         break;
 
       case 17:
-        NetBufferRefInitKind1((NetBufferRef *)stream,  (s32) udp);
+        NetBufferRefInitKind1((NetBufferRef *)stream, (s32) udp);
         TLobby__sub_80406FD8(stream, &rec->buffer, 8);
         TLobby__sub_80420D38(*((u16 *) udp), hdr[1]);
         break;
@@ -4413,7 +4412,7 @@ s16 TLobby__sub_8040CB44(u8 *self, u32 d, u32 c)
 
     case 5:
       TLobby__sub_80406EB8(&rec->buffer, 8);
-      NetBufferRefInitKind1((NetBufferRef *)stream,  (s32) ip);
+      NetBufferRefInitKind1((NetBufferRef *)stream, (s32) ip);
       TLobby__sub_80406FD8(stream, &rec->buffer, 20);
       switch (hdr[1])
     {
@@ -4491,7 +4490,7 @@ s16 TLobby__sub_8040CFE8(u8 type, u8 code, u32 src, u32 dst, NetPacket *pkt) {
 
     switch (type) {
     case 0:
-        NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&hdr);
+        NetBufferRefInitKind1(&ref, (s32)&hdr);
         TLobby__sub_80406FD8(&ref, &pkt->fragments[pkt->fragment_count - 1].buffer, sizeof(hdr));
         TLobby__sub_80406EB8(&pkt->fragments[pkt->fragment_count - 1].buffer, sizeof(hdr));
         pkt->fragments[pkt->fragment_count - 1].length -= sizeof(hdr);
@@ -4537,7 +4536,7 @@ s16 NetIPv6HandleIcmpMessage(NetPacket *pkt, u8 *src, u8 *dst, u8 hop_limit, s16
         return -1;
     }
     body = &pkt->fragments[1];
-    NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&icmp);
+    NetBufferRefInitKind1(&ref, (s32)&icmp);
     TLobby__sub_80406FD8(&ref, &body->buffer, 8);
     switch (icmp.type) {
     case 128:
@@ -4559,12 +4558,12 @@ s16 NetIPv6HandleIcmpMessage(NetPacket *pkt, u8 *src, u8 *dst, u8 hop_limit, s16
         return r;
     case 1:
         TLobby__sub_80406EB8(&body->buffer, 8);
-        NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&ip);
+        NetBufferRefInitKind1(&ref, (s32)&ip);
         TLobby__sub_80406FD8(&ref, &body->buffer, sizeof(ip));
         TLobby__sub_80406EB8(&body->buffer, sizeof(ip));
         switch (ip.next_header) {
         case 17:
-            NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&udp);
+            NetBufferRefInitKind1(&ref, (s32)&udp);
             TLobby__sub_80406FD8(&ref, &body->buffer, sizeof(udp));
             TLobby__sub_80420D38(udp.src_port, icmp.code);
             break;
@@ -4576,7 +4575,7 @@ s16 NetIPv6HandleIcmpMessage(NetPacket *pkt, u8 *src, u8 *dst, u8 hop_limit, s16
         mtu = icmp.pointer;
         if (mtu > 0 && mtu < 0x8000) {
             TLobby__sub_80406EB8(&body->buffer, 8);
-            NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&ip);
+            NetBufferRefInitKind1(&ref, (s32)&ip);
             TLobby__sub_80406FD8(&ref, &body->buffer, sizeof(ip));
             TLobby__sub_80411DEC(&ip.dst, mtu);
         }
@@ -5704,7 +5703,7 @@ s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
     rec.addr = ifc->addr;
     rec.mask = ifc->mask;
     rec.broadcast = ifc->broadcast;
-    NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&rec);
+    NetBufferRefInitKind1(&ref, (s32)&rec);
     TLobby__sub_80406FD8(out, &ref, sizeof(rec));
     TLobby__sub_80406EB8(out, sizeof(rec));
     alias = ifc->aliases;
@@ -5716,7 +5715,7 @@ s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
         rec.addr = alias->addr;
         rec.mask = alias->mask;
         rec.broadcast = alias->broadcast;
-        NetBufferRefInitKind1((NetBufferRef *)&ref, (s32)&rec);
+        NetBufferRefInitKind1(&ref, (s32)&rec);
         TLobby__sub_80406FD8(out, &ref, sizeof(rec));
         TLobby__sub_80406EB8(out, sizeof(rec));
         alias = alias->next;

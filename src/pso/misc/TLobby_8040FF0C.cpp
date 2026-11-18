@@ -400,7 +400,7 @@ extern s32 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
   e->fragment_count = 0;
   e->total_bytes = tot;
   e->fragments[e->fragment_count].length = (s16) tot;
-  NetBufferRefInitKind1(&e->fragments[e->fragment_count].buffer,  (s32) (p + 0x28));
+  NetBufferRefInitKind1(&e->fragments[e->fragment_count].buffer, (s32) (p + 0x28));
   e->fragment_count = e->fragment_count + 1;
   NetMemcpy(params.source.bytes, self + 8, 0x10);
   NetMemcpy(params.destination.bytes, self + 0x18, 0x10);
