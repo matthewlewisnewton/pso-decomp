@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/network/client_id.h"
@@ -294,7 +295,7 @@ int TLanguage::read_file_header(int cursor, void *header) {
 }
 
 void TLanguage::read_into_buffer(s32 arg0, s32 arg1) {
-    ((TLobby *)arg0)->move_data((const void *)TLanguage__read_cursor, (u32)arg1);
+    move_data((void *)arg0, (const void *)TLanguage__read_cursor, (u32)arg1);
     TLanguage__read_cursor += arg1;
 }
 

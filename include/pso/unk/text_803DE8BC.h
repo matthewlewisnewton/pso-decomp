@@ -4,16 +4,10 @@
 #include "types.h"
 
 extern "C" {
-void *fn_803DE960(void *arg0, void *size);
+void *fn_803DE960(void *arg0, u32 size);
 }
 void free_to_sys_heap(void *ptr);
 void *sys_alloc(u32 size);
 void *sys_calloc(s32 arg0, s32 arg1);
-
-// --- C functions defined in text_803DE8BC.cpp ---
-extern "C" {
-void *fn_803DE960(void *arg0, void *size);
-}
-// --- end of C functions
 
 #endif

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/ui/keyboard/TKeyBoardControl_803DE9C4.h"
 #include "pso/unk/text_803E2070.h"
@@ -189,7 +190,7 @@ void TObjPlayer::init_matrix_stack(s32 arg0, s32 arg1) {
     current_matrix = 0xE0000000;
     matrix_stack_limit = (arg1 - 1) * 0x30 + 0xE0000000;
     PSMTXIdentity(identity_matrix == 0 ? (u8 *)0xE0000000 : identity_matrix);
-    ((TLobby *)matrix_stack_base)->move_data(identity_matrix, 0x30);
+    move_data((void *)matrix_stack_base, identity_matrix, 0x30);
 }
 
 void init_light_globals(s32, s32) {

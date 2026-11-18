@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/audio/SoundRequestVoice.h"
 #include "pso/unk/GuildCardRecord.h"
@@ -1129,7 +1130,7 @@ void TLobby::remove_com_card_entry(s32 arg0) {
     u8 *lobby;
     if (arg0 < 7) {
         lobby = (u8 *)&com_card_entries[arg0];
-        ((TLobby *)lobby)->move_words((u32 *)(lobby + 0xBC), (s32)((void *) ((u32) ((7 - arg0) * 0xBC) >> 2U)));
+        move_words(lobby, (u32 *)(lobby + 0xBC), (s32)((void *) ((u32) ((7 - arg0) * 0xBC) >> 2U)));
     }
     (*(s32 *)&com_card_entry_count) -= 1;
 }

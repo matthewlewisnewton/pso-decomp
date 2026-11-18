@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 #include <stddef.h>
@@ -164,7 +165,7 @@ void chat_log_remove_line(s32 arg0) {
         ((THeap *)TAdScrollWinGC__chat_log_heap)->heap_free((void *)temp_r4);
         *temp_r31 = 0U;
         if (arg0 < 0x1D) {
-            ((TLobby *)temp_r31)->move_words((u32 *)((u8 *)&chat_log_lines.value + ((arg0 + 1) * 4)), (s32)((void *) ((0x1D - arg0) & 0x3FFFFFFF)));
+            move_words(temp_r31, (u32 *)((u8 *)&chat_log_lines.value + ((arg0 + 1) * 4)), (s32)((void *) ((0x1D - arg0) & 0x3FFFFFFF)));
         }
         *(s32 *)((s8 *)&chat_log_lines.value + 0x74) = 0;
     }

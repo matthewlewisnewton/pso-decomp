@@ -2778,7 +2778,6 @@ force_active:
   - TObjPlayer__sub_803D7FD0
   - TObjPlayer__sub_803D7FD8
   - TObjPlayer__sub_803D9C60
-  - TObjPlayer__sub_803DA808
   - TObjPlayer__sub_803DA84C
   - TObjPlayer__sub_803DA8B4
   - TObjPlayer__sub_803DAA70
@@ -9016,6 +9015,7 @@ force_active:
   - copy_action_state__12TBoss8DragonFPUc
   - copy_all_data__6TLobbyFii
   - copy_all_entries__6TLobbyFii
+  - copy_and_flush__FPvPCvUl
   - copy_and_flush_texture__16TEffIndirectCtrlFl
   - copy_angle_state__12TBoss8DragonFPvPvPv
   - copy_bank_from_card_window__Fl

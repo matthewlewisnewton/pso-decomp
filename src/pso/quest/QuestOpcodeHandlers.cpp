@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/ui/window/TWindowMessage.h"
@@ -2632,7 +2633,7 @@ void qst_op_write_flag_buf_to_event_flags(u8 arg0) {
     s32 idx = qst_registers[arg0];
     Ctx_801EA5FC *w = get_global_state__23TAdSinglePlyChrSelectGCFv();
     if (w != NULL && idx >= 0 && idx < 0xFD) {
-        ((TLobby *)(&w->buf[idx]))->move_data(&qst_flag_buf, 4);
+        move_data(&w->buf[idx], &qst_flag_buf, 4);
     }
 }
 
@@ -3035,7 +3036,7 @@ void qst_op_set_eventflag32() {
     s32 v = qst_args[1];
     Ctx_801EB508 *w = ((Ctx_801EB508 *)((s32 (*)(void))get_global_state__23TAdSinglePlyChrSelectGCFv)());
     if (w != NULL && i < 0xFD) {
-        ((TLobby *)(&w->buf[i]))->move_data(&v, 4);
+        move_data(&w->buf[i], &v, 4);
     }
 }
 
@@ -3069,7 +3070,7 @@ void qst_op_set_eventflag16() {
     s16 v = qst_args[1];
     Ctx_801EB658 *w = ((Ctx_801EB658 *)((s32 (*)(void))get_global_state__23TAdSinglePlyChrSelectGCFv)());
     if (w != NULL && i < 0xFF) {
-        ((TLobby *)(&w->buf[i]))->move_data(&v, 2);
+        move_data(&w->buf[i], &v, 2);
     }
 }
 

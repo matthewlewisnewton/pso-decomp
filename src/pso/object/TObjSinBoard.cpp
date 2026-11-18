@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
@@ -113,10 +114,10 @@ void TLobby::free_global_buffer() {
 void clear_signboard_texture_buffer_pointer(void) { TObjSinBoard__texture_buffer = 0; }
 
 void fn_80197FD0(const void *image, u32 size) {
-    u32 t = (u32)TQuestVmDownLoadServer::alloc(size);
-    TObjSinBoard__texture_buffer = t;
+    void *t = TQuestVmDownLoadServer::alloc(size);
+    TObjSinBoard__texture_buffer = (u32)t;
     if (t != 0) {
-        ((TLobby *)t)->move_data(image, size);
+        move_data(t, image, size);
         signboard_texture_list.entries = &TObjSinBoard__texture_name;
         signboard_texture_list.count = 1;
         ((TObjPlayer *)TObjSinBoard__texture_surface)->set_render_rect(TObjSinBoard__texture_buffer, 0, 0, 0);

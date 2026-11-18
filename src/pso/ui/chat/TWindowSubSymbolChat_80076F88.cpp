@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/unk/text_80076E84.h"
@@ -129,7 +130,7 @@ void TWindowSubSymbolChat::remove_slot_shift_down(s32 i) {
     Obj_8007714C *self = (Obj_8007714C *)this;
     if (i < 11) {
         Ent_8007714C *p = &self->e[i];
-        ((TLobby *)p)->move_words((u32 *)(p + 1), (s32)(((11 - i) * sizeof(Ent_8007714C)) / 4));
+        move_words(p, (u32 *)(p + 1), (s32)(((11 - i) * sizeof(Ent_8007714C)) / 4));
     }
     self->e[11].id = -1;
     self->e[11].a = 0;
@@ -267,7 +268,7 @@ void TWindowSubSymbolChat::load_symbol_chat_data() {
     struct Ent_80077544 *e;
     e = w->e;
     data = (s32)load_disc_file("symbolchat.dat");
-    ((TLobby *)e)->move_data((const void *)data, (u32)0x420);
+    move_data(e, (const void *)data, (u32)0x420);
     TAdSinglePlyChrSelectGC::safe_free(data);
     for (i = 0; i < 6; i++) {
         ((TWindowSubSymbolChat *)(&e[i]))->bswap_entry();

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/Adxf.h"
 #include "types.h"
 #include "pso/system/TGStream.h"
@@ -83,13 +84,13 @@ void process_async_file_reads(void) {
             }
             switch (n & 3) {
             case 0:
-                ((TLobby *)dst)->move_words((u32 *)async_file_read_sector_buffer, (s32)(n / 4));
+                move_words(dst, (u32 *)async_file_read_sector_buffer, (s32)(n / 4));
                 break;
             case 2:
                 ((TLobby *)dst)->copy_u16_array((u16 *)async_file_read_sector_buffer, (s32)(n / 2));
                 break;
             default:
-                ((TLobby *)dst)->move_data((const void *)async_file_read_sector_buffer, (u32)n);
+                move_data(dst, (const void *)async_file_read_sector_buffer, (u32)n);
                 break;
             }
             TLobby::destroy_instance();

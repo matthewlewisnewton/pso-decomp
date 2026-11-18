@@ -330,7 +330,7 @@ void load_battle_param_entry(void) {
         read_disc_file(name, file);
         difficulty = battle_parameter_difficulty;
         bank = active = TLobby__battle_parameter_buffer;
-        ((TLobby *)active->stats)->move_data(file->stats[difficulty], sizeof(active->stats));
+        move_data(active->stats, file->stats[difficulty], sizeof(active->stats));
         {
             BattleBaseStats *p = active->stats;
             s32 i;
@@ -339,8 +339,8 @@ void load_battle_param_entry(void) {
                 p++;
             }
         }
-        ((TLobby *)bank->attacks)->move_data(
-            (void *)((s32)file->attacks + difficulty * (s32)sizeof(bank->attacks)), sizeof(bank->attacks));
+        move_data(bank->attacks, (const void *)((s32)file->attacks + difficulty * (s32)sizeof(bank->attacks)),
+                  sizeof(bank->attacks));
         {
             AttackParams *p = bank->attacks;
             s32 i;
@@ -349,8 +349,8 @@ void load_battle_param_entry(void) {
                 p++;
             }
         }
-        ((TLobby *)bank->resistances)->move_data(
-            (void *)((s32)file->resistances + difficulty * (s32)sizeof(bank->resistances)), sizeof(bank->resistances));
+        move_data(bank->resistances, (const void *)((s32)file->resistances + difficulty * (s32)sizeof(bank->resistances)),
+                  sizeof(bank->resistances));
         {
             s32 i;
             ActorParamBlock *p = bank->resistances;
@@ -359,8 +359,8 @@ void load_battle_param_entry(void) {
                 p++;
             }
         }
-        ((TLobby *)bank->movement)->move_data(
-            (void *)((s32)file->movement + difficulty * (s32)sizeof(bank->movement)), sizeof(bank->movement));
+        move_data(bank->movement, (const void *)((s32)file->movement + difficulty * (s32)sizeof(bank->movement)),
+                  sizeof(bank->movement));
         {
             s32 i;
             BattleMovementRecord *p = bank->movement;

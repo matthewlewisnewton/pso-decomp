@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/keyboard/TKeyBoardControl_80131C58.h"
@@ -373,9 +374,9 @@ s32 *TLobby__sub_801E38A0(s32 file, s32 *offset, s32 *type, s32 *dst, s32 *size_
 
     pos = 0;
     p = (u8 *)(file + *offset);
-    ((TLobby *)(&tag))->move_data(p, 4);
+    move_data(&tag, p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
-    ((TLobby *)(&size))->move_data(p + 4, 4);
+    move_data(&size, p + 4, 4);
     TLobby__sub_801E3CF0(&size);
     p += 8;
     *offset += 8;
@@ -429,7 +430,7 @@ s32 *TLobby__sub_801E38A0(s32 file, s32 *offset, s32 *type, s32 *dst, s32 *size_
     if (size_out != 0) {
         *size_out = size;
     }
-    ((TLobby *)buf)->move_data(p, size);
+    move_data(buf, p, size);
     DCFlushRange(buf, size);
     p += size;
     *offset += size;
@@ -438,17 +439,17 @@ bad:
     *type = 0x2A2A2A2A;
     return 0;
 next:
-    ((TLobby *)(&tag))->move_data(p, 4);
+    move_data(&tag, p, 4);
     TLobby__sub_801E3CF0((u32 *)&tag);
     *offset += 4;
     tag = TLobby::bswap32_value(tag);
     if (tag == 0x504F4630) {
-        ((TLobby *)(&size))->move_data(p + 4, 4);
+        move_data(&size, p + 4, 4);
         TLobby__sub_801E3CF0(&size);
         p += 8;
         *offset += 4;
         while (size != 0) {
-            ((TLobby *)(&b0))->move_data(p, 1);
+            move_data(&b0, p, 1);
             p++;
             *offset += 1;
             size--;
@@ -459,18 +460,18 @@ next:
                 off = b0 & 0x3F;
                 break;
             case 0x80:
-                ((TLobby *)(&b1))->move_data(p, 1);
+                move_data(&b1, p, 1);
                 p++;
                 size--;
                 *offset += 1;
                 off = ((b0 << 8) & 0x3F00) | b1;
                 break;
             case 0xC0:
-                ((TLobby *)(&b1))->move_data(p, 1);
+                move_data(&b1, p, 1);
                 size--;
-                ((TLobby *)(&b2))->move_data(p + 1, 1);
+                move_data(&b2, p + 1, 1);
                 size--;
-                ((TLobby *)(&b3))->move_data(p + 2, 1);
+                move_data(&b3, p + 2, 1);
                 p += 3;
                 size--;
                 *offset += 3;

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/Adxf.h"
 #include "types.h"
 #include "pso/unk/text_803CC294.h"
@@ -38,7 +39,7 @@ s32 TLobby::create_file_load_entry(s32 arg0, s32 arg1, u32 arg2, s32 arg3, void 
     *(s32 *)((s8 *)var_r31 + 0x34) = 0;
     *(u32 *)((s8 *)var_r31 + 0x40) = arg2;
     if (arg2 != 0U) {
-        ((TLobby *)((u8 *)var_r31 + 0x44))->move_words((u32 *)arg3, 8);
+        move_words(((u8 *)var_r31 + 0x44), (u32 *)arg3, 8);
     }
     if (arg4 != NULL) {
         *arg4 = var_r31;

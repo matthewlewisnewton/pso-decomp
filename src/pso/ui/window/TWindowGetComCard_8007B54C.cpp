@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/ui/window/TWindowCtrl_8024A054.h"
 #include "pso/ui/window/TWindowGetComCard_8007B54C.h"
@@ -27,7 +28,7 @@ void TWindowGetComCard::remove_entry(s32 arg0, s32 arg1, s32 arg2) {
 
     if (arg0 < (arg2 - 1)) {
         temp_r3 = arg1 + (arg0 * 0x90);
-        ((TLobby *)temp_r3)->move_words((u32 *)(temp_r3 + 0x90), (s32)((u32) (((arg2 - arg0) - 1) * 0x90) >> 2U));
+        move_words((void *)temp_r3, (u32 *)(temp_r3 + 0x90), (s32)((u32) (((arg2 - arg0) - 1) * 0x90) >> 2U));
     }
     arg1 += (arg2 - 1) * 0x90;
     TWindowSubComCard__sub_8007B26C(arg1);

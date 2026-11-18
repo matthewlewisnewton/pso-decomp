@@ -565,9 +565,7 @@ struct TLobby : public TObject {
     void release_handle();
     u32 get_packet_size();
     u32 get_available_size();
-    void move_data(const void * _w1, u32 _w2);
     void copy_u16_array(u16 *src, s32 n);
-    void move_words(u32 *src, s32 n);
     static s32 calc_delta(s32 arg0, s32 arg1);
     static void reset_player_state();
     static s32 aram_dma_blocking(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
