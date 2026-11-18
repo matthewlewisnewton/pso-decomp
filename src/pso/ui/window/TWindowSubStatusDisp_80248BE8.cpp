@@ -15,27 +15,18 @@
 #include "pso/system/task/TObject.h"
 
 extern "C" {
-u8 * fn_80249004(void *, s32, s32);
 s32 TShopJudgmentItemWindow__sub_80267F9C(void *, int);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 get_draw_context__11TWindowBaseFPv();
+void *get_draw_context__11TWindowBaseFPv(void *window);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_window_scrollbar(s32, s32, void *);
-void __dl__7TObjectFPv(void *);
 s32 forward_render__20TWindowSubStatusDispFv(s32, s32);
 
 extern s32 local_client_id;
 
 u8 *TWindowSubStatusDisp__sub_80248BE8(s32 arg0, s32 arg1, s32 arg2) {
-    u8 *temp_r3;
-    u8 *var_r0;
-    TShopJudgmentItemWindow__sub_80267F9C((void *)arg1, 0x5);
-    temp_r3 = (u8 *)(TObject::operator new(0x8C));
-    var_r0 = temp_r3;
-    if (var_r0 != NULL) {
-        var_r0 = (u8 *)(fn_80249004(temp_r3, arg0, arg2));
-    }
-    return var_r0;
+    TShopJudgmentItemWindow__sub_80267F9C((void *)arg1, 5);
+    return (u8 *)new TUnk_804CE7E8((void *)arg0, arg2);
 }
 
 void *TWindowSubStatusDisp::refresh_with_default_list(s32 a, s32 b) {
@@ -45,7 +36,7 @@ void *TWindowSubStatusDisp::refresh_with_default_list(s32 a, s32 b) {
 void TUnk_804CE7E8::render() {
     s32 temp_r3;
 
-    temp_r3 = get_draw_context__11TWindowBaseFPv();
+    temp_r3 = (s32)get_draw_context__11TWindowBaseFPv(this);
     draw_window_frame((void *)temp_r3);
     draw_visible_window_entries(this, ((u8 *)this) + 0x24, temp_r3);
     ((TWindowMenuIconLine *)((u8 *)this))->draw_selected_list_entry(temp_r3);
@@ -56,8 +47,6 @@ void TUnk_804CE7E8::render() {
         draw_window_scrollbar(*(u32 *)((s8 *)((u8 *)this) + 0x84), temp_r3, ((u8 *)this) + 0x68);
     }
 }
-
-extern s32 status_disp_window_dispatch_table[];
 
 void TUnk_804CE7E8::run_task() {
     u8 *arg0 = (u8 *)this;
@@ -110,15 +99,11 @@ void TUnk_804CE7E8::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list((u8 *)&(*(void * *)((u8 *)this + 0x24)));
 }
 
-void *__dt__13TUnk_804CE7E8Fv(void *window_sub_status_disp, s16 arg1) {
-    if (window_sub_status_disp != NULL) {
-        *(s32 **)((s8 *)window_sub_status_disp + 0x18) = status_disp_window_dispatch_table;
-        __dt__19TWindowMenuIconLineFv(window_sub_status_disp, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(window_sub_status_disp);
-        }
-    }
-    return window_sub_status_disp;
 }
 
+TUnk_804CE7E8::~TUnk_804CE7E8() {}
+
+TUnk_804CE7E8::TUnk_804CE7E8(void *position, s32 client)
+    : TWindowMenuIconLine((u8 *)position, 5, (s16)client) {
+    sub_80248B7C(client);
 }

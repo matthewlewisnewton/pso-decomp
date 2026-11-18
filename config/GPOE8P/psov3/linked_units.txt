@@ -2261,7 +2261,6 @@ pso/unk/text_802432F0.cpp
 pso/ui/window/TWindowAddition_80244238.cpp
 pso/unk/text_80248994.cpp
 pso/ui/city/THunterGuildSeqOffline_80248A14.cpp
-pso/unk/text_80249004.cpp
 pso/ui/window/TWindowChoiceSetting_80249078.cpp
 pso/unk/text_802497A8.cpp
 pso/unk/text_8024AADC.cpp

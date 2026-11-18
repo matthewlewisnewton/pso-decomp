@@ -5,6 +5,7 @@
 
 class TUnk_804CE7E8 : public TWindowMenuIconLine {
 public:
+    TUnk_804CE7E8(void *position, s32 client);
     virtual ~TUnk_804CE7E8();
     virtual void run_task();
     virtual void render();

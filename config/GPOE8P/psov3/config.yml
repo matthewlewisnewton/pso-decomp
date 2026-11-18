@@ -3631,6 +3631,7 @@ force_active:
   - __ct__13TUnk_804C8678FP7TObjectPCcl
   - __ct__13TUnk_804C8678FP7TObjectPvl
   - __ct__13TUnk_804CC800FP3VeclllP7TObjectUc
+  - __ct__13TUnk_804CE7E8FPvl
   - __ct__13TUnk_804DCB64Fv
   - __ct__13TUnk_804E08D4FP7TObjectPv
   - __ct__13TUnk_804E0910FP7TObjectPv
@@ -4432,6 +4433,7 @@ force_active:
   - __dt__13TUnk_804CCC28Fv
   - __dt__13TUnk_804CCD0CFv
   - __dt__13TUnk_804CCD78Fv
+  - __dt__13TUnk_804CE7E8Fv
   - __dt__13TUnk_804D1160Fv
   - __dt__13TUnk_804DCB64Fv
   - __dt__13TUnk_804DDBF0Fv
@@ -5646,6 +5648,7 @@ force_active:
   - __vt__13TUnk_804CCC28
   - __vt__13TUnk_804CCD0C
   - __vt__13TUnk_804CCD78
+  - __vt__13TUnk_804CE7E8
   - __vt__13TUnk_804CF918
   - __vt__13TUnk_804CF930
   - __vt__13TUnk_804D1160
@@ -20102,6 +20105,7 @@ force_active:
   - render__13TUnk_804CC048Fv
   - render__13TUnk_804CC870Fv
   - render__13TUnk_804CCB28Fv
+  - render__13TUnk_804CE7E8Fv
   - render__13TUnk_804CE964Fv
   - render__13TUnk_804CF918FP19TWindowKeyBoardSoft
   - render__13TUnk_804CF930FP19TWindowKeyBoardSoft
@@ -21217,6 +21221,7 @@ force_active:
   - run_task__13TUnk_804CCC28Fv
   - run_task__13TUnk_804CCD0CFv
   - run_task__13TUnk_804CCD78Fv
+  - run_task__13TUnk_804CE7E8Fv
   - run_task__13TUnk_804CE964Fv
   - run_task__13TUnk_804D1160Fv
   - run_task__13TUnk_804DCB64Fv

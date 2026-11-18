@@ -6869,12 +6869,10 @@ pso/ui/frontend/TAdVIConfigGC_80248B8C.cpp:
 	.text       start:0x80248B8C end:0x80248BE8
 
 pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp:
-	.text       start:0x80248BE8 end:0x80249004
+	.text       start:0x80248BE8 end:0x80249058
 	.rodata     start:0x8044EAE8 end:0x8044EAF0
+	.data       start:0x804CE7E8 end:0x804CE804
 	.sdata2     start:0x805DCBA8 end:0x805DCBAC
-
-pso/unk/text_80249004.cpp:
-	.text       start:0x80249004 end:0x80249058
 
 pso/ui/window/TWindowSubItem_80249058.cpp:
 	.text       start:0x80249058 end:0x80249060
