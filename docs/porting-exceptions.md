@@ -1276,6 +1276,15 @@ GC/2.6 records eight-byte alignment for the emitted sections. The existing
 metadata; instructions, data and relocations remain compiler-generated.
 A port can use its compiler's default vtable and pointer alignment.
 
+### `TWindowGetComCard.cpp` confirmation window position
+
+The two floats at `0x804CF120` precede the compiler-emitted
+`TWindowGetComCard` vtable in `.data`. Under the default small-data settings,
+CodeWarrior puts the eight-byte position in `.sdata` and emits one SDA-relative
+instruction at the factory call. The guarded `.data` placement keeps the
+original `lis` and `addi` relocation pair and the vtable layout. A port can use
+the ordinary `WindowLayoutPosition` definition and its default data placement.
+
 ### `TCheckMemoryCard.cpp` section placement
 
 The native static initializer at `0x8033C69C` computes the card-menu position and layout
@@ -2331,10 +2340,10 @@ locals. See [recovery evidence](evidence/lobby-network-recovery.md).
 The PPP output routine at `804066D8` uses C linkage and a whole-function
 `opt_propagation off` scope. Its definition remains ordinary C++, and a small
 inline adapter performs the existing time query. The separate
-`ppp_is_lcp_protocol` predicate alone uses a small `cplusplus off/on` scope;
-removing that scope changes four bytes in the writer. It does not change the
-language mode of the writer itself. The optimizer scope restores after the
-complete definition. Ports can use ordinary language linkage and keep the
+`ppp_is_lcp_protocol` predicate uses a small `cplusplus off/on` scope. The
+pinned compiler emits `srwi` for its inlined integer result in C mode and
+`extrwi` in C++ mode. The optimizer scope restores after the complete
+writer definition. Ports can use an ordinary comparison and keep the
 unsigned 32-bit escape mask.
 
 The Ethernet socket opener at `804094B8` enables `opt_common_subs` for its

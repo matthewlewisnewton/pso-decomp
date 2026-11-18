@@ -87,6 +87,13 @@ signed 16-bit status supplied by its send routines. Each of these four
 interfaces has one shared declaration. Both IPv6 extension-option paths use
 the saved datagram length while the input loop advances its remaining count.
 
+The IPv6 neighbor-solicitation sender and its three wrappers also share a
+signed 16-bit status. The unspecified-source wrapper takes an address pointer
+and a signed 16-bit interface ID. Using those declarations lets the forwarding
+and advertisement paths return the probe status directly. In the buffer
+release path at `8041579C`, the cursor declaration precedes the byte offset
+local to preserve the original register assignment with typed segment fields.
+
 Several pre-existing network boundaries use scoped short-result declarations
 for providers whose broader declarations return words. These include DNS,
 IPv4/IPv6 dispatch, and neighbor-option callbacks. The scoped declarations
