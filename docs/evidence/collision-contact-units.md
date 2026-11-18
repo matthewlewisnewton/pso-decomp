@@ -35,8 +35,10 @@ solution. Earlier helpers retain their matches when using the claimed literals.
 The sphere routine matches all 1,848 bytes, including its references to the
 separate tables and constants. Its bounds calls retain existing linker symbol
 names and use explicit pointer arguments; those names do not establish class
-ownership. The byte-offset table indexing assumes the GameCube's 32-bit `s32`.
-Ports can use normal indexed arrays and an appropriate square root.
+ownership. The edge loop uses ordinary array indices for both corner lookups.
+After reading the edge endpoints it binds a const reference to the adjacent-face
+entry, then uses that entry to select the normal. GC/2.0 scales the corner index
+once and reuses the register for both table loads.
 
 The combined unit pooled both sets of numeric literals, leaving the sphere
 routine at 99.89% despite matching instruction encodings. Replacing its

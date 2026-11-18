@@ -114,12 +114,12 @@ s32 test_box_sphere_contact(CollisionPoint *corners, CollisionSphere *sphere) {
             for (j = 0; j < 4; j++) {
                 planeDistSq = planeDist * planeDist;
                 FaceEdgeLoop loop = *box_order();
-                s32 cornerOffset = loop.v[j] << 2;
-                startX = corners[*(s32 *)((u8 *)face + cornerOffset)].x;
+                startX = corners[face[loop.v[j]]].x;
                 CollisionPoint *end = &corners[face[loop.v[j + 1]]];
                 edgeX = startX - end->x;
-                edgeY = (startY = corners[*(s32 *)((u8 *)face + cornerOffset)].y) - end->y;
-                edgeZ = (startZ = corners[*(s32 *)((u8 *)face + cornerOffset)].z) - end->z;
+                edgeY = (startY = corners[face[loop.v[j]]].y) - end->y;
+                edgeZ = (startZ = corners[face[loop.v[j]]].z) - end->z;
+                const s32 &adjacentFace = adjacentFaces.v[i][loop.v[j]];
                 edgeT = (edgeZ * (footZ - startZ) + (edgeX * (footX - startX) + edgeY * (footY - startY))) / (edgeZ * edgeZ + (edgeX * edgeX + edgeY * edgeY));
                 nearX = edgeX * edgeT;
                 nearX += startX;
@@ -133,9 +133,9 @@ s32 test_box_sphere_contact(CollisionPoint *corners, CollisionSphere *sphere) {
                 toEdgeX *= toEdgeScale;
                 toEdgeY *= toEdgeScale;
                 toEdgeZ *= toEdgeScale;
-                if ((f32)__fabs(normals[*(s32 *)((u8 *)adjacentFaces.v[i] + cornerOffset)].x - toEdgeX) <= 0.025f &&
-                    (f32)__fabs(normals[*(s32 *)((u8 *)adjacentFaces.v[i] + cornerOffset)].y - toEdgeY) <= 0.025f &&
-                    (f32)__fabs(normals[*(s32 *)((u8 *)adjacentFaces.v[i] + cornerOffset)].z - toEdgeZ) <= 0.025f &&
+                if ((f32)__fabs(normals[adjacentFace].x - toEdgeX) <= 0.025f &&
+                    (f32)__fabs(normals[adjacentFace].y - toEdgeY) <= 0.025f &&
+                    (f32)__fabs(normals[adjacentFace].z - toEdgeZ) <= 0.025f &&
                     sphere->radius >= planeDist) {
                     faceHit &= 1;
                 } else if (planeDist <= sphere->radius) {

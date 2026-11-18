@@ -113,10 +113,8 @@ behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-help
 
 `TObjPlayer__sub_803DFB1C` and `test_box_sphere_contact` use scoped
 `opt_loop_invariants off` and inline controls to reproduce the native register
-allocation and square-root refinement. The sphere's byte-offset table accesses
-assume the GameCube's 32-bit `s32` layout. A port can use ordinary indexed
-arrays, inline settings, and an appropriate square root while validating its
-floating-point behavior. See [the evidence](evidence/collision-contact-units.md).
+allocation and square-root refinement. A port can use its own inline settings
+and square root while validating floating-point behavior. See [the evidence](evidence/collision-contact-units.md).
 
 ### Dark Gunner center native emission
 
