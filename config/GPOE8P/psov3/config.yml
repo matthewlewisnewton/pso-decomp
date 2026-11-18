@@ -8166,7 +8166,6 @@ force_active:
   - gyaranzo_movement_parameters
   - gyaranzo_resource_index_table
   - gyaranzo_resource_ptrs
-  - gyaranzo_volley_fire_frame
   - hair_bone_rotation_descriptor
   - hair_effect_selection_table
   - handleFallState__12TBoss1DragonFUl
