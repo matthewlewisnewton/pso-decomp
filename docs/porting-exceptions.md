@@ -15,6 +15,14 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### LSC initialization
+
+`pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with
+`-str reuse,readonly`, following the split recovered in upstream
+matchpass 18 (`b0b44cbda2`). Read-only string pooling keeps the build banner in
+`.rodata` and its volatile pointer in `.sdata2`. Ports can use ordinary C++
+string storage and retain the volatile read in `lsc_init`.
+
 ### Shared warning-window lifecycle
 
 The `TObjBagWarnWin` and `TObjBagWarnWin4P` units use guarded
@@ -194,6 +202,15 @@ If assembly is approved, a scalar C/C++ equivalent ships next to it (Matt,
 2026-11-04). The asm is guarded for the GameCube/MWCC build (`#ifdef __MWERKS__`)
 and the scalar version is the compiled fallback, so a port builds the C. Approved
 asm always has an entry in this register.
+
+### MusyX DSP firmware
+
+`src/musyx/runtime/dsp_import.c` defines the 32-byte-aligned firmware buffer
+and its 16-bit byte count. The firmware runs on the GameCube DSP.
+`tools/musyx_dsp.py` generates the initializer under the build directory
+from the user's verified DOL. Ports that emulate the GameCube DSP can
+supply the same firmware input. Ports with native audio can replace the
+DSP upload in `salInitDsp` with their audio backend.
 
 ### TCP protocol recovery
 
