@@ -14286,8 +14286,20 @@ pso/player/TObjPlayer_803E18C0.cpp:
 	.sdata2     start:0x805E1020 end:0x805E1038
 
 pso/player/TObjPlayer_803E1A58.cpp:
-	.text       start:0x803E1A58 end:0x803E1FC8
+	.text       start:0x803E1A58 end:0x803E1C40
+	.sdata2     start:0x805E1038 end:0x805E1050
+
+pso/player/TObjPlayerRenderBindings.cpp:
+	.text       start:0x803E1D1C end:0x803E1E74
+	.data       start:0x804FC780 end:0x804FC7F8
 	.bss        start:0x8058DB90 end:0x8058DBB0
+
+pso/player/TObjPlayerReloadTexture.cpp:
+	.text       start:0x803E1EE8 end:0x803E1F60
+	.data       start:0x804FC7F8 end:0x804FC810
+
+pso/player/TObjPlayerEffectState.cpp:
+	.text       start:0x803E1FB0 end:0x803E1FC8
 
 pso/unk/text_803E1FC8.cpp:
 	.text       start:0x803E1FC8 end:0x803E2008
@@ -14468,8 +14480,11 @@ pso/network/TcpProtocol.cpp:
 	.bss        start:0x805C1D48 end:0x805C1DF0
 
 pso/network/SocketProtocolRuntime.cpp:
-	.text       start:0x8041ED8C end:0x80421620
+	.text       start:0x8041ED8C end:0x80420C5C
 	.data       start:0x804FD890 end:0x804FD948
+
+pso/network/NetUdp.cpp:
+	.text       start:0x80420C5C end:0x80421620
 	.bss        start:0x805C1DF0 end:0x805C1E00
 
 pso/unk/text_80421620.cpp:
