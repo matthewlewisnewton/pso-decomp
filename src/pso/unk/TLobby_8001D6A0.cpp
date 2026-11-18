@@ -1,3 +1,4 @@
+#include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/enemy/dd/TObjEneDD.h"
@@ -299,7 +300,6 @@ struct File_8001DC30
   Sw_8001DC30 sw[4][0x60];
   Pair_8001DC30 pairs[4][0x60];
 };
-void read_disc_file(const char *, void *);
 }
 extern s32 battle_param_lab_variant;
 void load_battle_param_entry(void) {

@@ -1,3 +1,4 @@
+#include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_8023E480.h"
@@ -19,7 +20,6 @@ s32 set_stream_and_load_file__6TLobbyFi(void *);
 s32 sprintf(char *, const char *, ...);
 void load_gvm_texture_archive(s32, s32);
 extern char texture_prs_stream_filename_buffer[];
-s32 read_disc_file(void *, s32);
 s32 adxf_get_fsize_sct();
 s32 adxf_open__6TLobbyFUii(void *, s32);
 s32 xmalloc__FUl(s32);
@@ -65,12 +65,12 @@ s32 load_disc_prs_texture(s32 arg0, s32 arg1) {
     s32 b;
     s32 c;
     sprintf(texture_prs_disc_filename_buffer, "%s.prs", arg0);
-    if (((TScene *)texture_prs_disc_filename_buffer)->update_lobby_scene() != -1) {
+    if (get_resource_file_size(texture_prs_disc_filename_buffer) != -1) {
         a = adxf_open__6TLobbyFUii(texture_prs_disc_filename_buffer, 0);
         b = adxf_get_fsize_sct();
         ((TLobby *)a)->close_adxf_handle();
         b = xmalloc__FUl((s32)(b << 11));
-        if (read_disc_file(texture_prs_disc_filename_buffer, b) != -1) {
+        if (read_disc_file(texture_prs_disc_filename_buffer, (void *)b) != -1) {
             c = xmalloc__FUl(0x200000);
             prs_decompress_buffer(b, c);
             load_gvm_texture_archive(c, arg1);

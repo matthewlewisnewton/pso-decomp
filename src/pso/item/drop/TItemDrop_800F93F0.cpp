@@ -1,3 +1,4 @@
+#include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/item/drop/TItemDrop_800F93F0.h"
 #include "pso/item/TUnk_8049C658.h"
@@ -20,7 +21,6 @@ extern "C" {
 extern Head_800F957C resource_load_task_root[];
 int safe_free__23TAdSinglePlyChrSelectGCFUl(void*);
 s32 apply_rel_relocations(void *);
-s32 read_disc_file(void *, void *);
 void __dl__7TObjectFPv(void *);
 void __dt__7TObjectFv(void *, int);
 void *set_stream_and_load_file__6TLobbyFi(const char *path);
@@ -72,7 +72,7 @@ s32 load_relocatable_file(s32 arg0, s32 arg1) {
     Drop_800F9448 d;
     s32 n;
 
-    n = read_disc_file((void *) arg0, (void *) arg1);
+    n = read_disc_file((const char *)arg0, (void *) arg1);
     if (n > 0) {
         d.b = n;
         d.a = arg1;

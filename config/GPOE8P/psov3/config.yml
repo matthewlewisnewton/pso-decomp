@@ -3211,7 +3211,6 @@ force_active:
   - TWindowShortListCtrl__name
   - TWindowSimpleStatus__name
   - TWindowSnapShot__name
-  - TWindowSnapShot__sub_802A7EAC
   - TWindowSoundBalance__name
   - TWindowStatus__ct
   - TWindowStatus__name
@@ -10396,7 +10395,7 @@ force_active:
   - find_free_pool_entry__6TLobbyFPv
   - find_free_slot__15TWindowMainMenuFv
   - find_free_slot__6TLobbyFv
-  - find_gsl_entry__FPvl
+  - find_gsl_entry__FPCcl
   - find_header_by_id__6TLobbyFPvi
   - find_heal_target__13TOHealGeneralFv
   - find_index_in_table__11TBoss6Type2FUl
@@ -11114,6 +11113,7 @@ force_active:
   - get_player__11TPlayerSoulFv
   - get_player_entry__6TLobbyFii
   - get_player_load_state__Fv
+  - get_player_motion_filename
   - get_player_pos_in_arc__13TBoss5GryphonFPviiPvPv
   - get_player_state__6TOMineFv
   - get_pos_ptr__10TObjPlayerFv

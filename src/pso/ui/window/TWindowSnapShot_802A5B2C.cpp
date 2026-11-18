@@ -76,7 +76,7 @@ s32 RlcFile::allocate_buffer() {
 }
 
 s32 RlcFile::read_file(const char *name) {
-    buffer_size = TGStream::read_whole_file((s32)name, buffer);
+    buffer_size = TGStream::read_whole_file(name, buffer);
     if (!has_data()) {
         set_status(2);
         free_buffer();
@@ -86,7 +86,7 @@ s32 RlcFile::read_file(const char *name) {
 }
 
 s32 RlcFile::measure_file(const char *name) {
-    buffer_size = ((TLobby *)name)->get_resource_file_size();
+    buffer_size = TGStream::get_resource_file_size((const char *)name);
     if (!has_data()) {
         set_status(1);
         return 0;

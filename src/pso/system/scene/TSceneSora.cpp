@@ -1,3 +1,4 @@
+#include "pso/system/ResourceFile.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -157,7 +158,7 @@ void TSceneSora::load_sky_resources() {
         replace_file_extension__6TLobbyFPvPvPv(name1, tbl[ref.idx].name, sky_model_ext_s_njm);
         if (TRaderMapCore::is_not_split_screen() == 1) {
             replace_file_extension__6TLobbyFPvPvPv(name2, tbl[ref.idx].name, sky_model_ext_sm_gj);
-            ok = ((TScene *)name2)->update_lobby_scene();
+            ok = get_resource_file_size((const char *)name2);
         }
         if (ok <= 0) {
             replace_file_extension__6TLobbyFPvPvPv(name2, tbl[ref.idx].name, sky_model_ext_s_gj);

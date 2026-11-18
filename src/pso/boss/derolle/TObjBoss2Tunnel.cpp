@@ -1,3 +1,4 @@
+#include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/MatrixStack.h"
@@ -1163,7 +1164,7 @@ void load_data_buffers(void) {
     if (buf != NULL) {
         memset(buf, 0, 0x1818C);
     }
-    temp_r31 = ((TScene *)screen_binary_filename)->update_lobby_scene();
+    temp_r31 = get_resource_file_size(screen_binary_filename);
     if (temp_r31 <= 0x1818C) {
         temp_r30 = set_stream_and_load_file__6TLobbyFi(screen_binary_filename);
         if (temp_r30 != 0) {

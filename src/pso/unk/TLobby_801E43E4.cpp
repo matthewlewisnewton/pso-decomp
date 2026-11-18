@@ -143,7 +143,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     if (((TLobby *)path)->compare_file_extension("gvm") != 0) {
         change_file_extension__6TLobbyFPvPvPv(0, path, "gvm");
     }
-    size = ((TLobby *)path)->get_resource_file_size();
+    size = TGStream::get_resource_file_size((const char *)path);
     if (size <= 0) {
         TLobby::debug_print("psoLoadTexturePvmFile:%s file not found.", name);
         return -1;
@@ -226,7 +226,7 @@ u8 *load_gvm_texture_file(s32 name) {
     GvmFileHeader hdr;
     big = 0;
     TLobby::pump_frames();
-    size = ((TLobby *)name)->get_resource_file_size();
+    size = TGStream::get_resource_file_size((const char *)name);
     if (size <= 0) {
         TLobby::debug_print("LoadPvmFileTls:%s load error.", name);
         return NULL;

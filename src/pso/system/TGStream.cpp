@@ -1,3 +1,4 @@
+#include "pso/system/ResourceFile.h"
 #include "pso/system/TGStream.h"
 #include "pso/unk/TLobby_80131794.h"
 #include "pso/unk/text_800F93B4.h"
@@ -12,10 +13,9 @@
 #include "pso/player/TObjPlayer_80011014.h"
 
 extern "C" {
-s32 get_file_size__6TLobbyFv(void *);
 s32 adxf_get_stat(s32);
 s32 read_checked_align__6TLobbyFlll(s32);
-s32 strcmp(void *, void *);
+s32 strcmp(const char *, const char *);
 s32 strlen(char *);
 s32 strncpy(char *, char *, s32);
 u32 adxf_open__6TLobbyFUii(char *, s32);
@@ -99,12 +99,12 @@ const char *ep2_multi_area_gsl_filename_table[13] = {
     jungle01_multi_gsl_path, jungle02_multi_gsl_path, jungle03_multi_gsl_path, jungle04_multi_gsl_path, jungle05_multi_gsl_path, seabed01_multi_gsl_path, seabed02_multi_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, empty_gsl_path, jungle06_gsl_path, jungle07_gsl_path
 };
 
-s32 TLobby::get_resource_file_size() {
-    GslArchiveEntry *e = find_gsl_entry(this, 0);
+s32 TGStream::get_resource_file_size(const char *filename) {
+    GslArchiveEntry *e = find_gsl_entry(filename, 0);
     if (e != NULL) {
         return e->file_size;
     }
-    return get_file_size__6TLobbyFv(this);
+    return get_disc_file_size(filename);
 }
 
 void load_area_gsl(void) {
@@ -143,7 +143,7 @@ s32 TGStream::load_file(s32 name) {
     return buf;
 }
 
-s32 TGStream::read_whole_file(s32 name, u8 *dst) {
+s32 TGStream::read_whole_file(const char *name, u8 *dst) {
     TGStream stream((void *)name, 1);
     s32 size;
     s32 n;
@@ -212,7 +212,7 @@ void TGStream__sub_800FDD64(void) {  }
 s32 TGStream::get_file_size() { return gstream_file_size; }
 }
 s32 get_gstream_buffered_bytes();
-GslArchiveEntry *find_gsl_entry(void *name, s32 unused) {
+GslArchiveEntry *find_gsl_entry(const char *name, s32 unused) {
     GslArchiveEntry *e;
     s32 i;
     if (TItemDrop__gsl_adxf_handle == 0) {
@@ -220,7 +220,7 @@ GslArchiveEntry *find_gsl_entry(void *name, s32 unused) {
     }
     e = gsl_archive_entries;
     for (i = 0; i < TItemDrop__gsl_entry_count; i++, e++) {
-        if (strcmp(e, name) == 0) {
+        if (strcmp(e->name, name) == 0) {
             return e;
         }
     }
@@ -361,14 +361,14 @@ TGStream::TGStream(void *file, s32 direct_read_mode) {
     adxf_handle = 0;
     archive_entry = NULL;
     TGStream::reset();
-    archive_entry = find_gsl_entry(file, 1);
+    archive_entry = find_gsl_entry((const char *)file, 1);
     if (archive_entry != NULL) {
         adxf_handle = (s32)TItemDrop__gsl_adxf_handle;
         TLobby::adxf_seek((void *)adxf_handle, (int)(archive_entry->archive_offset), (int)0);
         gstream_file_size = archive_entry->file_size;
         strncpy(name, archive_entry->name, 0x20);
     } else {
-        size = get_file_size__6TLobbyFv(file);
+        size = get_disc_file_size((const char *)file);
         gstream_file_size = size;
         if (size > 0) {
             adxf_handle = adxf_open__6TLobbyFUii((char *)file, 0);
