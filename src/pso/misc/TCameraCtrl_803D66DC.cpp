@@ -170,7 +170,6 @@ void euler_yxz_to_quaternion(u8 *arg0, u8 *arg1);
 extern const f32 lbl_805E0E88;
 
 #pragma push
-#pragma use_lmw_stmw off
 
 #pragma push
 #pragma opt_common_subs off
