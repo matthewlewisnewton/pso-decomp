@@ -1358,6 +1358,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/effect/sprite/TQuadSpriteScl.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     "pso/effect/sprite/TQuadSpriteSclCol.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     "pso/effect/sprite/TQuadSpriteSclColRot.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    # Emit the balloon dispatch table before the two virtual methods' jump tables.
+    "pso/ui/window/TWindowFukidasi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     "pso/ui/window/TWindowGetComCard.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     "pso/ui/window/TWindowMainMenu1P.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # its class name ("TWindowOptionCtrl", 0x8044F478) and its strings sit in .rodata: readonly strings.

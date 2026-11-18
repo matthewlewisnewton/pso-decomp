@@ -250,6 +250,8 @@ extern u8 identity_matrix[];
 const char *window_fukidasi_class_name = TWindowFukidasi__class_name_string;
 extern Cam_80251380 *camera_ctrl_instance;
 extern void *lbl_805D63F0;
+#pragma push
+#pragma defer_codegen off
 void complete_speech_balloon(u8 *arg0) {
     s32 t;
     *(s8 *)(arg0 + 0x70) = 4;
@@ -260,7 +262,7 @@ void complete_speech_balloon(u8 *arg0) {
     ((TUnk_804CF0B8 *)arg0)->set_flag2c_bit100();
     ((TWindowBase *)arg0)->save_position();
     *(f32 *)(arg0 + 0x80) = 1.0f;
-    ((TWindowFukidasi *)arg0)->sync_display_pos();
+    ((TUnk_804CF0B8 *)arg0)->sync_display_pos();
     *(s32 *)(arg0 + 0x5C) = 0x186A0;
     t = *(u8 *)(arg0 + 0x72);
     switch (t) {
@@ -350,17 +352,17 @@ void TUnk_804CF0B8::calc_text_size(f32 *out) {
     }
 }
 
-void TWindowFukidasi::sync_display_pos() { *(f32*)((char*)this + 0x60) = *(f32*)((char*)this + 0x80); *(f32*)((char*)this + 0x64) = *(f32*)((char*)this + 0x80); }
+void TUnk_804CF0B8::sync_display_pos() { *(f32*)((char*)this + 0x60) = *(f32*)((char*)this + 0x80); *(f32*)((char*)this + 0x64) = *(f32*)((char*)this + 0x80); }
 
-s32 TWindowFukidasi::approach(f32 farg0) {
+s32 TUnk_804CF0B8::approach(f32 farg0) {
     f32 temp_f31;
 
-    temp_f31 = 0.47f * (farg0 - *(f32 *)((s8 *)this + 0x80));
+    temp_f31 = 0.47f * (farg0 - display_scale);
     if (fabs_float(temp_f31) < 0.011f) {
-        *(f32 *)((s8 *)this + 0x80) = farg0;
+        display_scale = farg0;
         return 1;
     }
-    *(f32 *)((s8 *)this + 0x80) = (f32) (*(f32 *)((s8 *)this + 0x80) + temp_f31);
+    display_scale = (f32) (display_scale + temp_f31);
     return 0;
 }
 
@@ -999,7 +1001,7 @@ void init_flags__15TWindowFukidasiFPvi(void *arg0, s32 arg1) {
     ((TUnk_804CF0B8 *)arg0)->m_71 = (u8) (((TUnk_804CF0B8 *)arg0)->m_71 & 0xFFFFFFFD);
 }
 
-void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
+void TUnk_804CF0B8::sub_80251DF0(u16 arg1, s32 str, s32 arg3, f32 farg0) {
     s32 temp_r3;
 
     *(s32 *)((s8 *)this + 0) = (s32) window_fukidasi_class_name;
@@ -1011,13 +1013,13 @@ void TUnk_804CF0B8::sub_80251DF0(s16 arg1, s32 str, s16 arg3, f32 farg0) {
     this->m_20 = arg3;
     if (str != 0) {
         temp_r3 = TWindowKeyBoardSoft::strnlen((s8 *)str, (u32)0x18);
-        *(s32 *)((s8 *)this + 0x78) = (s32)mem_alloc(temp_r3 + 1);
-        strncpy(*(s32 *)((s8 *)this + 0x78), str, temp_r3 + 1);
+        name = (char *)mem_alloc(temp_r3 + 1);
+        strncpy((s32)name, str, temp_r3 + 1);
     } else {
-        *(s32 *)((s8 *)this + 0x78) = 0;
+        name = NULL;
     }
-    ((s32 (*)(void *, s16))set_color__13TUnk_804CF0B8FUs)(this, arg1);
-    *(f32 *)((s8 *)this + 0x80) = 0.0f;
+    set_color(arg1);
+    display_scale = 0.0f;
     this->m_7c = farg0;
     this->m_48 = 0.0f;
     *(f32 *)((s8 *)this + 0x4C) = 0.0f;
@@ -1241,54 +1243,10 @@ void TUnk_804CF0B8::draw_body(void *ctx, u32 argb, f32 *offset, f32 depth) {
 }
 #pragma pop
 
-#pragma push
-#pragma fp_contract on
-void TUnk_804CF0B8::render() {
-    f32 off[2];
-    View_80252764 *v;
-    switch (((Fuki_80252764 *)this)->phase) {
-    case 0:
-        ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->project_anchor(NULL, ((Fuki_80252764 *)this)->head);
-        this->place_rect_at_head_or_slot();
-        ((Fuki_80252764 *)this)->center[0] = 0.5f * ((Fuki_80252764 *)this)->anchor[0] + ((Fuki_80252764 *)this)->rect[0];
-        ((Fuki_80252764 *)this)->center[1] = 0.5f * ((Fuki_80252764 *)this)->anchor[1] + ((Fuki_80252764 *)this)->rect[1];
-        ((Fuki_80252764 *)this)->phase = 1;
-        break;
-    case 2:
-        ((void (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(this);
-        break;
-    case 4:
-        ((void (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(this);
-        break;
-    case 6:
-        ((void (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(this);
-        break;
-    case 8:
-        this->place_rect_at_head_or_slot();
-        break;
-    case 9:
-        break;
-    }
-    ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->follow_anchor();
-    v = get_draw_context__11TWindowBaseFPv(((Fuki_80252764 *)this));
-    v->sx /= TCameraCtrl::get_view_scale();
-    v->sy /= TCameraCtrl::get_fov();
-    off[0] = 3.0f * ((Fuki_80252764 *)this)->tail;
-    off[1] = 2.5f * ((Fuki_80252764 *)this)->tail;
-    draw_body((struct DrawCtx_80252558 *)(v), (u32)(0xFF000000), off, 0.0299f + ((Fuki_80252764 *)this)->f54);
-    ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->draw_tail(v, (u32)(0xFF000000), off, 0.01495f + ((Fuki_80252764 *)this)->f54);
-    off[0] = 0.0f;
-    off[1] = 0.0f;
-    draw_body((struct DrawCtx_80252558 *)(v), ((Fuki_80252764 *)this)->color, off, 0.01495f + ((Fuki_80252764 *)this)->f54);
-    ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->draw_tail(v, ((Fuki_80252764 *)this)->color, off, 0.04485f + ((Fuki_80252764 *)this)->f54);
-    if (((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->is_active() != 0) {
-        draw_visible_window_entries(((Fuki_80252764 *)this), ((Fuki_80252764 *)this)->f24, v);
-        draw_name_plate__15TWindowFukidasiFv(this, v, ((Fuki_80252764 *)this)->color);
-    }
-}
 #pragma pop
 
-void TWindowFukidasi::run_task() {
+// Deferred code generation reverses these two definitions.
+void TUnk_804CF0B8::run_task() {
     u8 *arg0 = (u8 *)this;
   switch (*((u8 *) (((s8 *) arg0) + 0x70)))
   {
@@ -1357,3 +1315,50 @@ void TWindowFukidasi::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list(((u8 *) arg0) + 0x24);
   }
 }
+
+#pragma push
+#pragma fp_contract on
+void TUnk_804CF0B8::render() {
+    f32 off[2];
+    View_80252764 *v;
+    switch (((Fuki_80252764 *)this)->phase) {
+    case 0:
+        ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->project_anchor(NULL, ((Fuki_80252764 *)this)->head);
+        this->place_rect_at_head_or_slot();
+        ((Fuki_80252764 *)this)->center[0] = 0.5f * ((Fuki_80252764 *)this)->anchor[0] + ((Fuki_80252764 *)this)->rect[0];
+        ((Fuki_80252764 *)this)->center[1] = 0.5f * ((Fuki_80252764 *)this)->anchor[1] + ((Fuki_80252764 *)this)->rect[1];
+        ((Fuki_80252764 *)this)->phase = 1;
+        break;
+    case 2:
+        ((void (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(this);
+        break;
+    case 4:
+        ((void (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(this);
+        break;
+    case 6:
+        ((void (*)(void *))refresh_rect_placement__15TWindowFukidasiFPv)(this);
+        break;
+    case 8:
+        this->place_rect_at_head_or_slot();
+        break;
+    case 9:
+        break;
+    }
+    ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->follow_anchor();
+    v = get_draw_context__11TWindowBaseFPv(((Fuki_80252764 *)this));
+    v->sx /= TCameraCtrl::get_view_scale();
+    v->sy /= TCameraCtrl::get_fov();
+    off[0] = 3.0f * ((Fuki_80252764 *)this)->tail;
+    off[1] = 2.5f * ((Fuki_80252764 *)this)->tail;
+    draw_body((struct DrawCtx_80252558 *)(v), (u32)(0xFF000000), off, 0.0299f + ((Fuki_80252764 *)this)->f54);
+    ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->draw_tail(v, (u32)(0xFF000000), off, 0.01495f + ((Fuki_80252764 *)this)->f54);
+    off[0] = 0.0f;
+    off[1] = 0.0f;
+    draw_body((struct DrawCtx_80252558 *)(v), ((Fuki_80252764 *)this)->color, off, 0.01495f + ((Fuki_80252764 *)this)->f54);
+    ((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->draw_tail(v, ((Fuki_80252764 *)this)->color, off, 0.04485f + ((Fuki_80252764 *)this)->f54);
+    if (((TUnk_804CF0B8 *)((Fuki_80252764 *)this))->is_active() != 0) {
+        draw_visible_window_entries(((Fuki_80252764 *)this), ((Fuki_80252764 *)this)->f24, v);
+        draw_name_plate__15TWindowFukidasiFv(this, v, ((Fuki_80252764 *)this)->color);
+    }
+}
+#pragma pop

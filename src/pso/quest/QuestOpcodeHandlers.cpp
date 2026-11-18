@@ -1265,7 +1265,6 @@ void TObjPlayer__sub_8024ABDC(s32 arg0);
 void TLobby__sub_8024AC20(s32 arg0);
 void set_field28__11TWindowCtrlFs(u16);
 s32 close_windows_by_flags__11TWindowCtrlFUs(int, void *);
-void open_default__11TWindowCtrlFi(u16, s32);
 s32 __ct__15TWindowHelpItemFPvUs(s32, s32, s32);
 void align_menu_entry_positions(s32 win);
 int forward_trade_action_default__16TObjCityMainWarpFPviii(void *p, int a1, int a2, int a3);
@@ -1451,7 +1450,7 @@ void qst_op_chat_bubble(void) {
     s32 win;
     s32 v;
     if (id < 100) {
-        open_default__11TWindowCtrlFi(id, arg);
+        TWindowCtrl::open_default(id, arg);
         set_field28__11TWindowCtrlFs(id);
         return;
     }
@@ -1467,7 +1466,7 @@ void qst_op_chat_bubble(void) {
                 v = get_field_d4(player);
             }
             if (v == id) {
-                open_default__11TWindowCtrlFi(win, arg);
+                TWindowCtrl::open_default(win, arg);
                 set_field28__11TWindowCtrlFs(win);
                 return;
             }
@@ -5458,7 +5457,7 @@ void qst_op_message(void) {
     TWindowCtrl::set_close_flag();
     qst_message_speaker = speaker;
     if (speaker < 100) {
-        TWindowCtrl::open(speaker & 0xFFFF, text, 0x2D);
+        TWindowCtrl::open((u16)speaker, text, 0x2D);
         ((void (*)(s32))set_field28__11TWindowCtrlFs)((u16)speaker);
         qst_suspend_reason = QST_WAIT_MESSAGE;
     } else {

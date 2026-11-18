@@ -20,16 +20,12 @@ struct TWindowFukidasi
     int get_visible_flag();
     int is_bit10_set();
     s32 check_card_match_enabled(s32 arg1);
-    void sync_display_pos();
-    s32 approach(f32 farg0);
     void get_boundary_offset(s32 angle, f32 *out);
-    void run_task();
     void find_balloon_overlap_for(s32 arg1);
     void rearm_balloon(s32 arg1);
 };
 
 extern "C" {
-void sub_80251DF0__13TUnk_804CF0B8Fslsf(void *arg0, s16 arg1, s32 str, s16 arg3, f32 farg0);
 void sub_802504A8__13TUnk_804CF0B8Fv(void *arg0);
 s32 clamp_position__13TUnk_804CF0B8FPvf(void *arg0, void *arg1, f32 farg0);
 }

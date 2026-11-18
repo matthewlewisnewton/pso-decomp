@@ -6854,7 +6854,7 @@ force_active:
   - apply_velocity_if_ready__10TObjPlayerFl
   - apply_velocity_scale__FP3Vecff
   - apply_wall_response__10TObjPlayerFv
-  - approach__15TWindowFukidasiFf
+  - approach__13TUnk_804CF0B8Ff
   - approach_target__14CreationCameraFllff
   - approach_target__14TObjEneBm5WolfFf
   - approach_target__16TObjEneBm5GibonUFf
@@ -10362,7 +10362,7 @@ force_active:
   - find_dhcp_option
   - find_enemy_by_id__16TObjEneBm5GibonUFl
   - find_entry_rest__17TWindowSubComCardFPvl
-  - find_farthest_balloon_slot__11TWindowCtrlFPvUs
+  - find_farthest_balloon_slot__11TWindowCtrlFUs
   - find_first_open_cell__22TAdMultiPlyChrSelectGCFlPUl
   - find_free_chat_log_slot__6TLobbyFv
   - find_free_file_names__22TQuestVmDownLoadServerFv
@@ -11144,7 +11144,7 @@ force_active:
   - get_snd_queued
   - get_snd_space
   - get_sock_status_name__Fs
-  - get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv
+  - get_speaker_balloon_anchor__11TWindowCtrlFUsPfPl
   - get_split_screen_battle_timer_limit__FPUc
   - get_split_screen_character_save_record
   - get_state__12TBoss8DragonFv
@@ -20113,6 +20113,7 @@ force_active:
   - render__13TUnk_804CCB28Fv
   - render__13TUnk_804CE7E8Fv
   - render__13TUnk_804CE964Fv
+  - render__13TUnk_804CF0B8Fv
   - render__13TUnk_804CF918FP19TWindowKeyBoardSoft
   - render__13TUnk_804CF930FP19TWindowKeyBoardSoft
   - render__13TUnk_804D0658Fv
@@ -21231,6 +21232,7 @@ force_active:
   - run_task__13TUnk_804CCD78Fv
   - run_task__13TUnk_804CE7E8Fv
   - run_task__13TUnk_804CE964Fv
+  - run_task__13TUnk_804CF0B8Fv
   - run_task__13TUnk_804D0658Fv
   - run_task__13TUnk_804D1160Fv
   - run_task__13TUnk_804DCB64Fv
@@ -23679,7 +23681,7 @@ force_active:
   - symbol_chat_parts_layout_entries
   - symbol_chat_parts_window_layout
   - sync_center_position__19TObjEneBm9MericarolFv
-  - sync_display_pos__15TWindowFukidasiFv
+  - sync_display_pos__13TUnk_804CF0B8Fv
   - sync_field10_from_child__15TPlyPhotonChairFv
   - sync_height__12TObjEneReconFv
   - sync_hp__9TBoss6MagFv

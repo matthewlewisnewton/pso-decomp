@@ -4,6 +4,8 @@
 #include "types.h"
 #include "pso/system/task/TObject.h"
 
+class TUnk_804CF0B8;
+
 struct TWindowCtrl : public TObject {
     virtual ~TWindowCtrl();
     u16 m_1c;
@@ -26,7 +28,8 @@ struct TWindowCtrl : public TObject {
     u8 m_71;
     u8 unk_72[0x4];
     u16 m_76;
-    u8 unk_78[0x1C];
+    u8 unk_78[0xC];
+    TUnk_804CF0B8 *balloons[4];
     void* m_94;
     virtual void render();
     virtual void run_task();
@@ -53,7 +56,10 @@ struct TWindowCtrl : public TObject {
     static void create_alt_timer();
     static char *skip_name_prefix(void *self, char *s);
     s32 count_balloon_slots();
-    void *show_chat_balloon(s32 player, s32 flags, void *text, void *local);
+    void get_speaker_balloon_anchor(u16 id, f32 *height, s32 *name);
+    s32 find_farthest_balloon_slot(u16 speaker);
+    TUnk_804CF0B8 *acquire_balloon_slot(u16 player, s32 flags, s32 client);
+    TUnk_804CF0B8 *show_chat_balloon(u16 player, s32 flags, void *text, s32 client);
     void handle_chat_message(char *arg1);
     static void init_all_slots();
     static void init_all_slots2();
@@ -66,8 +72,8 @@ struct TWindowCtrl : public TObject {
     static void release_slot(s8 *arg0);
     static void close_windows_by_flags(u16 arg0);
     static s32 open_balloon(u16 arg0, u8 *arg1, s32 arg2, s32 arg3);
-    static s32 open(s32 arg0, s32 arg1, s32 arg2);
-    int open_default(int a1);
+    static s32 open(u16 arg0, s32 arg1, s32 arg2);
+    static s32 open_default(u16 speaker, s32 text);
     static void create_level_up_window(s32 arg0, s32 arg1);
     static void set_window_flags(void *arg0, s32 arg1, s32 arg2);
     void set_window_flags_off(s32 arg1);
@@ -87,7 +93,6 @@ struct TWindowCtrl : public TObject {
     static void shutdown();
     static void close();
     void set_flag1e_bit40();
-    u16 get_flags();
     static s32 get_window(s32 arg0);
     static s32 get_flag_bit4();
     static s32 get_flag_bit5();

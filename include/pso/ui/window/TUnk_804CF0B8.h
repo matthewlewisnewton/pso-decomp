@@ -5,14 +5,19 @@
 
 class TUnk_804CF0B8 : public TWindowAddition {
 public:
+    TUnk_804CF0B8(u16 speaker, s32 text, s32 client, f32 scale);
+    virtual void run_task();
+    void sync_display_pos();
+    s32 approach(f32 target);
     virtual ~TUnk_804CF0B8();
     void sub_80251790();
     void draw_body(void *, u32, f32 *, f32);
     void draw_body_row(void *, void *, f32, f32, f32, f32);
     void draw_tail(void *, u32, f32 *, f32);
-    void sub_80251DF0(s16, s32, s16, f32);
+    void sub_80251DF0(u16, s32, s32, f32);
     s32 clamp_position(void *, f32);
     void set_color(u16);
+    u16 get_speaker_id();
     void follow_anchor();
     s32 is_speaker_far_or_offscreen();
     s32 project_anchor(f32 *, f32 *);
@@ -52,10 +57,10 @@ public:
     u8 unk_72[0x1];
     s8 m_73;
     u8 unk_74[0x2];
-    s16 m_76;
+    u16 m_76;
     char *name;  // speaker name, drawn by draw_name_plate (inferred)
     f32 m_7c;
-    u8 unk_80[0x4];
+    f32 display_scale;
     s32 m_84;
     u8 unk_88[0x10];
 };

@@ -1,3 +1,4 @@
+#include "pso/ui/window/TUnk_804CF0B8.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/ui/window/TWindowCtrl_8024B048.h"
@@ -130,19 +131,17 @@ void TWindowCtrl::handle_controller() {
 
 }
 
-struct Obj_8024BB30 { u8 pad[0x84]; TWindowCtrl *children[4]; };
-
 extern "C" void TWindowCtrl__sub_8024BB30(TWindowCtrl *ctrl);
 
 void TWindowCtrl__sub_8024BB30(TWindowCtrl *ctrl) {
     u32 i;
     for (i = 0; i < 4; i++) {
-        TWindowCtrl *child = ((Obj_8024BB30 *)ctrl)->children[i];
+        TUnk_804CF0B8 *child = ctrl->balloons[i];
         if (child != 0 && child->all_parents_unqueued_for_destruction() == 0) {
-            if (ctrl->m_28 == child->get_flags()) {
+            if (ctrl->m_28 == child->get_speaker_id()) {
                 ctrl->m_28 = 0xFFFF;
             }
-            ((Obj_8024BB30 *)ctrl)->children[i] = 0;
+            ctrl->balloons[i] = 0;
         }
     }
 }

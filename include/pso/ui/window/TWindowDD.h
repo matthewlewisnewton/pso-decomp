@@ -105,7 +105,7 @@ struct TWindowDD
     void update_selected_id();
     static void build_player_word_lists();
     static void free_buffers();
-    static void open(s32 arg0, s32 arg1);
+    static void open(s32 message, u16 player);
     static u8 is_id_in_special_range(s16 id);
     static s32 classify_id(s16 arg0);
     static s32 get_player_battle_flag_state(u16 arg0);

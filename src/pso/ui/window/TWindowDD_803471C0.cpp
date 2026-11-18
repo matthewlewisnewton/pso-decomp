@@ -4,13 +4,13 @@
 #include "pso/ui/window/TWindowCtrl.h"
 
 extern "C" {
-void format_message__9TWindowDDFPvPvUs(s32 src, s32 dst, s32 player);
+void format_message__9TWindowDDFPvPvUs(s32 src, s32 dst, u16 player);
 
 extern s32 window_dd_buffer_a;
 
-void TWindowDD::open(s32 arg0, s32 arg1) {
-    format_message__9TWindowDDFPvPvUs(arg0, window_dd_buffer_a, arg1);
-    TWindowCtrl::open(arg1, window_dd_buffer_a, 0x4F);
+void TWindowDD::open(s32 message, u16 player) {
+    format_message__9TWindowDDFPvPvUs(message, window_dd_buffer_a, player);
+    TWindowCtrl::open(player, window_dd_buffer_a, 0x4F);
 }
 
 u8 TWindowDD::is_id_in_special_range(s16 id) {
