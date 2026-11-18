@@ -2,7 +2,7 @@
 
 Keep LLM notes, historical handoffs and recovery evidence in this directory. The [project README](../README.md) describes the upstream checkout. The fork README below records the state of the older fork.
 
-Use `great-merge/integration` to find pending contributions. Each upstream review branch starts from upstream master and contains the code and tests for one change. The first review branch is `great-merge/fork-data-ranges`. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) records the disposition of all 1,147 data bytes.
+Use `great-merge/integration` to find pending contributions. Collect work on the same subsystem into one upstream matchpass, with commits a reviewer can read in order. Start each review branch from current upstream master. The first candidate is `great-merge/frontend-scenes`. The [matchpass queue](notes/evidence/2026-11-18-upstream-matchpasses.md) records its validation and the remaining groups. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) accounts for all 1,147 data bytes.
 
 The [library and portability audit](notes/evidence/2026-11-18-libraries-and-ports.md) traces every fork change under `libs/` and `ports/` to its current implementation or documentation.
 

@@ -1,12 +1,12 @@
 # Fork data coverage at the November 18 sync point
 
-Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. First patch `ef2ca77a865197057945e9bf39e30a15a7a83ac4` on `great-merge/fork-data-ranges`.
+Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. The initial eight-byte checkpoint is `ef2ca77a86` on `great-merge/fork-data-ranges`. Its changes now open the front-end scenes matchpass.
 
 ## Current integration status
 
 **All 1,147 bytes are accounted for** at `66eec9e27e`. The integration build links 980 previously missing inventory bytes from source. Four bytes at 0x805D8A2C are verified original linker padding. The other 163 bytes were already outside the checker's original 984-byte deficit. The ledger records the original and current missing-byte counts and the commit that closed each row.
 
-Of the 980 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 804 bytes come from the fork integration work. The first patch is independent of PR 320.
+Of the 980 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 804 bytes come from the fork integration work. The front-end scenes matchpass builds directly on upstream master and is independent of PR 320.
 
 | Integration commit | Inventory gap closed (includes identified padding) | Additional matched bytes outside the inventory | Missing inventory bytes after commit |
 |---|---:|---:|---:|
@@ -34,7 +34,7 @@ The integration build matches the original DOL. All 27,572 functions are exact a
 
 The final address comparison against fork main `23aa26cec0` finds zero missing exact or source-linked functions and zero missing exact or source-linked data ranges. The aggregate comparison still flags a 2,025-byte difference in total reported coverage. All 2,176 bytes leaving coverage satisfy the per-address original alignment-padding check. The other direction adds 151 zero bytes, including 147 meeting that same check and four bytes of .bss at 0x8050104C. The two directions reconcile exactly. These are differences in section coverage, separate from the 1,147-byte inventory.
 
-The first patch still applies to upstream master as a single commit. Applying its exported patch to the upstream tree reproduces the reviewed tree exactly. The integration branch also contains local review candidates in game code, build configuration, portability support and developer tools. Its first patch is the review unit for publication. Fork-specific notes and the range ledger live under `fork/`.
+The [matchpass queue](2026-11-18-upstream-matchpasses.md) groups the recovered bytes with their subsystem changes. The first upstream candidate, `great-merge/frontend-scenes`, includes the ending globals, line drawing, title and menu assets, and character-select input state. Its standalone build recovers 60 inventory bytes and four adjacent bytes.
 
 ## Starting inventory
 
@@ -55,7 +55,7 @@ The largest group is 552 bytes in 20 intervals containing virtual tables. Some i
 
 The class name for TDPBShower has a proven consumer and pointer relocation. The isolated 16-byte recovery using the ordinary upstream compiler configuration failed the DOL hash. Both sections need four-byte placement and MWCC emits them with eight-byte alignment. The fork has a per-unit alignment override. Commit `707b399ca6` recovers both rows on the integration branch. The compiler emits the class vtable and the constructor sets the inherited name field. The per-unit alignment adjustment places the 12-byte string range at 0x80479C3C and its four-byte pointer at 0x805D4454. At this commit the address comparison showed 40 remaining fork-only exact and linked ranges totaling 848 bytes.
 
-## First patch and acceptance
+## Original eight-byte checkpoint
 
 The ending-scene owner defines the two globals at 0x805D4F10 and 0x805D4F14. Independent review found a handwritten int declaration for the fade state in the TEndingC writer. The amended patch uses the shared s32 declaration, and independent re-review accepted the exact head. The fresh baseline and final complete build used the local GPOE8P disc inputs. check_pr.py passed against the upstream baseline. All 27,572 functions remain exact and all 2,541 linked units pass. The linked ELF inputs select the compiled TEndingAB object. The compiled object defines the two four-byte symbols in .sbss. Both DOLs match the original SHA-1, 0d85744b51d7379efb025a943d0cd5aaae2191a3.
 
