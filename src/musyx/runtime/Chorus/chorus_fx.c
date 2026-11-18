@@ -220,8 +220,6 @@ void do_src2(void *src_in) {
 }
 #endif
 
-#pragma push
-#pragma peephole off
 void sndAuxCallbackChorus(u8 reason, Info_803BF884 *info, Work_803BF884 *c) {
     s32 *leftD;
     s32 *rightD;
@@ -288,13 +286,9 @@ void sndAuxCallbackChorus(u8 reason, Info_803BF884 *info, Work_803BF884 *c) {
         break;
     }
 }
-#pragma pop
 
 #pragma push
-#pragma peephole off
 #pragma dont_inline off
-#pragma inline_depth(4)
-#pragma auto_inline on
 
 static inline u32 sndAuxCallbackUpdateSettingsChorus_803BFBF0(AuxChorus_803BFBF0 *ch) {
     ch->work.currentPosHi = 0x140 - ((ch->baseDelay - 5) << 5);

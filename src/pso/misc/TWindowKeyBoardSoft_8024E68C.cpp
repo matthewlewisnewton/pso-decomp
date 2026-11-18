@@ -11,12 +11,6 @@ struct Vec2_8024EC34 { f32 x; f32 y; };
 
 extern u32 soft_keyboard_instance;
 extern "C" {
-s32 __cvt_fp2unsigned(f32);
-extern const f32 lbl_805DCC84;
-extern const f32 lbl_805DCC88;
-extern const float lbl_805DCC78;
-extern const f32 lbl_805DCC7C;
-extern const f32 lbl_805DCC80;
 void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q);
 s32 is_split_screen();
 f32 TCameraCtrl__sub_80068A04(s32);
@@ -24,7 +18,6 @@ Vec2_8024EC34 *get_zero_vec2();
 extern Vec2_8024EC34 keyboard_soft_viewport_offset_table[];
 extern Vec2_8024EC34 lbl_8044EC80[];
 extern Vec2_8024EC34 lbl_8044EC98[];
-extern const float lbl_805DCC94;
 s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b);
 static const f32 lbl_805DCC98 = 4.0f;
 static const f32 lbl_805DCC9C = 10.0f;
@@ -33,48 +26,47 @@ static const f32 lbl_805DCCA4 = 2.0f;
 u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *scale, u32 flags, f32 depth);
 
 void TWindowDrawContext::scale_point_about_pivot(f32 *q) {
-    if (lbl_805DCC78 != scale[0]) {
+    if (1.0f != scale[0]) {
         q[0] = scale[0] * (q[0] - pivot[0]) + pivot[0];
     }
-    if (lbl_805DCC78 != scale[1]) {
+    if (1.0f != scale[1]) {
         q[1] = scale[1] * (q[1] - pivot[1]) + pivot[1];
     }
 }
 
 void apply_context_transform_to_rect(TWindowDrawContext *c, f32 *q) {
-    if ((*(const f32 *)&lbl_805DCC78) != c->scale[0]) {
+    if (1.0f != c->scale[0]) {
         q[0] = c->scale[0] * (q[0] - c->pivot[0]) + c->pivot[0];
         q[2] = c->scale[0] * (q[2] - c->pivot[0]) + c->pivot[0];
     }
-    if ((*(const f32 *)&lbl_805DCC78) != c->scale[1]) {
+    if (1.0f != c->scale[1]) {
         q[1] = c->scale[1] * (q[1] - c->pivot[1]) + c->pivot[1];
         q[3] = c->scale[1] * (q[3] - c->pivot[1]) + c->pivot[1];
     }
 }
 }
 
-void apply_window_closing_stretch(TWindowDrawContext *context, int arg1) {
-  f32 temp_f2;
-  if (arg1 != 0)
-  {
-    temp_f2 = lbl_805DCC80;
-    context->scale[0] = (f32) (context->scale[0] * ((lbl_805DCC7C * (temp_f2 * ((f32) arg1))) + (*(const f32 *)&lbl_805DCC78)));
-    context->scale[1] = (f32) (context->scale[1] * ((*(const f32 *)&lbl_805DCC78) - (temp_f2 * ((f32) arg1))));
-  }
-}
-
-#pragma push
-#pragma opt_common_subs off
-
-void TWindowDrawContext::set_open_tick(s32 arg1) {
-    s32 temp_r0;
-    open_tick = arg1;
-    temp_r0 = open_tick;
-    if (temp_r0 < 0) {
-        color = (u32) ((__cvt_fp2unsigned(lbl_805DCC84 * ((lbl_805DCC88 + (f32) temp_r0) / lbl_805DCC88)) << 0x18) | 0xFF0000 | 0xFFFF);
+void apply_window_closing_stretch(TWindowDrawContext *context, int tick) {
+    if (tick != 0) {
+        const f32 stretch_per_tick = 2.0f / 9.0f;
+        context->scale[0] *= 2.3f * (stretch_per_tick * tick) + 1.0f;
+        context->scale[1] *= 1.0f - stretch_per_tick * tick;
     }
 }
-#pragma pop
+
+void TWindowDrawContext::set_open_tick(s32 tick) {
+    open_tick = tick;
+    if (open_tick < 0) {
+        f32 fade = (7.5f + open_tick) / 7.5f;
+#ifndef __MWERKS__
+        // The GameCube unsigned conversion returns zero for negative alpha.
+        if (fade < 0.0f) {
+            fade = 0.0f;
+        }
+#endif
+        color = (static_cast<u32>(255.0f * fade) << 24) | 0x00ffffff;
+    }
+}
 
 void TWindowDrawContext::set_bounds(f32 a, f32 b, f32 c, f32 d) {
     clip_left = a;
@@ -83,19 +75,15 @@ void TWindowDrawContext::set_bounds(f32 a, f32 b, f32 c, f32 d) {
     clip_bottom = d;
 }
 
-extern const f32 lbl_805DCC8C;
-
 void TWindowDrawContext::shrink_clip_right() {
-    inner_w = inner_w - lbl_805DCC8C;
-    clip_right = clip_right - lbl_805DCC8C;
+    inner_w -= 5.0f;
+    clip_right -= 5.0f;
 }
 
-extern const f32 lbl_805DCC90;
-
 void TWindowDrawContext::animate_scale() {
-    inner_y = inner_y + lbl_805DCC90;
-    inner_h = inner_h - lbl_805DCC90;
-    clip_top = clip_top + lbl_805DCC90;
+    inner_y += 6.0f;
+    inner_h -= 6.0f;
+    clip_top += 6.0f;
 }
 
 s32 TWindowDrawContext::is_point_in_bounds(f32 *quad) {
@@ -115,22 +103,22 @@ s32 clip_textured_quad__19TWindowKeyBoardSoftFPvPv(TWindowDrawContext *w, f32 *b
     sx = (b[6] - b[4]) / (b[2] - b[0]);
     sy = (b[7] - b[5]) / (b[3] - b[1]);
     d = w->clip_left - b[0];
-    if (d > (*(const f32 *)&lbl_805DCC94)) {
+    if (d > 0.0f) {
         b[0] = w->clip_left;
         b[4] = d * sx + b[4];
     }
     d = w->clip_top - b[1];
-    if (d > (*(const f32 *)&lbl_805DCC94)) {
+    if (d > 0.0f) {
         b[1] = w->clip_top;
         b[5] = d * sy + b[5];
     }
     d = b[2] - w->clip_right;
-    if (d > (*(const f32 *)&lbl_805DCC94)) {
+    if (d > 0.0f) {
         b[2] = w->clip_right;
         b[6] = -(d * sx - b[6]);
     }
     d = b[3] - w->clip_bottom;
-    if (d > (*(const f32 *)&lbl_805DCC94)) {
+    if (d > 0.0f) {
         b[3] = w->clip_bottom;
         b[7] = -(d * sy - b[7]);
     }
@@ -151,7 +139,7 @@ u32 init_text_window_layout(TWindowDrawContext *win, f32 *pos, f32 *size, f32 *s
     s32 cam;
     f32 t;
     if (flags & 0x800) {
-        mx = (*(const f32 *)&lbl_805DCC94);
+        mx = 0.0f;
         my = mx;
     } else {
         mx = lbl_805DCC98;
@@ -265,24 +253,24 @@ u32 TWindowDrawContext::free_singleton(u32 arg0, s16 arg1) {
 }
 
 u32 TWindowDrawContext::init_layout() {
-    x = lbl_805DCC94;
-    y = lbl_805DCC94;
-    w = lbl_805DCC94;
-    h = lbl_805DCC94;
-    inner_x = lbl_805DCC94;
-    inner_y = lbl_805DCC94;
-    inner_w = lbl_805DCC94;
-    inner_h = lbl_805DCC94;
-    clip_left = lbl_805DCC94;
-    clip_top = lbl_805DCC94;
-    clip_right = lbl_805DCC94;
-    clip_bottom = lbl_805DCC94;
-    pivot[0] = lbl_805DCC94;
-    pivot[1] = lbl_805DCC94;
-    scale[0] = lbl_805DCC78;
-    scale[1] = lbl_805DCC78;
+    x = 0.0f;
+    y = 0.0f;
+    w = 0.0f;
+    h = 0.0f;
+    inner_x = 0.0f;
+    inner_y = 0.0f;
+    inner_w = 0.0f;
+    inner_h = 0.0f;
+    clip_left = 0.0f;
+    clip_top = 0.0f;
+    clip_right = 0.0f;
+    clip_bottom = 0.0f;
+    pivot[0] = 0.0f;
+    pivot[1] = 0.0f;
+    scale[0] = 1.0f;
+    scale[1] = 1.0f;
     open_tick = 0;
     color = (u32)-1;
-    depth = lbl_805DCC94;
+    depth = 0.0f;
     return (u32)this;
 }

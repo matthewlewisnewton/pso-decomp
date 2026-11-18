@@ -9,11 +9,11 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 |---|---:|---:|
 | asm | 48 | 12 |
 | intrinsic | 92 | 60 |
-| hardware | 69 | 13 |
-| pragma | 5893 | 892 |
-| configure.py per-unit override | 224 | 224 |
+| hardware | 71 | 14 |
+| pragma | 4097 | 882 |
+| configure.py per-unit override | 229 | 229 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 61, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `inline_depth` 634, `opt_common_subs` 589, `auto_inline` 259, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `bool` 59, `defer_codegen` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -27,14 +27,14 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
-| `src/pso/math/MatrixTransforms.cpp:57` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
-| `src/pso/math/MatrixTransforms.cpp:58` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
+| `src/pso/math/MatrixTransforms.cpp:53` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
+| `src/pso/math/MatrixTransforms.cpp:54` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
 | `src/pso/math/MatrixVector.cpp:34` | `asm f32 vector_length(const Vec *v) {` |
 | `src/pso/math/MatrixVector.cpp:35` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
-| `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
-| `src/pso/math/MatrixVector.cpp:77` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
-| `src/pso/misc/TCameraCtrl_803D749C.cpp:557` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_f32_to_u8.inc"` |
-| `src/pso/misc/TCameraCtrl_803D749C.cpp:561` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_u8_to_f32.inc"` |
+| `src/pso/math/MatrixVector.cpp:73` | `asm void matrix_identity(u8 *arg0) {` |
+| `src/pso/math/MatrixVector.cpp:74` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp:530` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_f32_to_u8.inc"` |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp:534` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_u8_to_f32.inc"` |
 | `src/pso/unk/text_803D647C.cpp:28` | `asm f32 sin_table_lookup(s32 angle) {` |
 | `src/pso/unk/text_803D647C.cpp:29` | `#include "orig_asm/pso/unk/text_803D647C/sin_table_lookup.inc"` |
 | `src/pso/unk/text_803D647C.cpp:32` | `asm f32 cos_table_lookup(s32 angle) {` |
@@ -46,23 +46,23 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/unk/text_803D8910.cpp:93` | `#include "orig_asm/pso/unk/text_803D8910/vec3_cross.inc"` |
 | `src/pso/unk/text_803D9650.cpp:6` | `asm void matrix_apply_translation(MtxP m, f32 x, f32 y, f32 z) {` |
 | `src/pso/unk/text_803D9650.cpp:7` | `#include "orig_asm/pso/unk/text_803D9650/matrix_apply_translation.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:103` | `asm f32 normalize_vector(Vec *v) {` |
-| `src/pso/unk/text_803D96A8.cpp:104` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:142` | `asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {` |
-| `src/pso/unk/text_803D96A8.cpp:143` | `#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:174` | `asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {` |
-| `src/pso/unk/text_803D96A8.cpp:175` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:178` | `asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {` |
-| `src/pso/unk/text_803D96A8.cpp:179` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:182` | `asm s32 push_matrix(void) {` |
-| `src/pso/unk/text_803D96A8.cpp:183` | `#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:200` | `asm void scale_current_matrix(const f32 *v) {` |
-| `src/pso/unk/text_803D96A8.cpp:201` | `#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"` |
-| `src/pso/unk/text_803D96A8.cpp:204` | `asm void post_translate_matrix(const f32 *v) {` |
-| `src/pso/unk/text_803D96A8.cpp:205` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
-| `src/pso/unk/text_803E2D70.cpp:311` | `asm void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix, u32 accumulate) {` |
-| `src/pso/unk/text_803E2D70.cpp:312` | `#include "orig_asm/pso/unk/text_803E2D70/GXSetVtxAttrFmtv.inc"` |
-| `src/pso/unk/text_803E2D70.cpp:369` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
+| `src/pso/unk/text_803D96A8.cpp:96` | `asm f32 normalize_vector(Vec *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:97` | `#include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:129` | `asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:130` | `#include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:161` | `asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {` |
+| `src/pso/unk/text_803D96A8.cpp:162` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:165` | `asm void rotate_matrix_by_node_angles(const s32 *ang, u32 zxy) {` |
+| `src/pso/unk/text_803D96A8.cpp:166` | `#include "orig_asm/pso/unk/text_803D96A8/rotate_matrix_by_node_angles.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:169` | `asm s32 push_matrix(void) {` |
+| `src/pso/unk/text_803D96A8.cpp:170` | `#include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:184` | `asm void scale_current_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:185` | `#include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"` |
+| `src/pso/unk/text_803D96A8.cpp:188` | `asm void post_translate_matrix(const f32 *v) {` |
+| `src/pso/unk/text_803D96A8.cpp:189` | `#include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"` |
+| `src/pso/unk/text_803E2D70.cpp:305` | `asm void GXSetVtxAttrFmtv(Hdr_803E34B0 *job, ReorderedMatrix_803E3390 *matrix, u32 accumulate) {` |
+| `src/pso/unk/text_803E2D70.cpp:306` | `#include "orig_asm/pso/unk/text_803E2D70/GXSetVtxAttrFmtv.inc"` |
+| `src/pso/unk/text_803E2D70.cpp:363` | `asm void transform_chunk_vertices_pos_normal(register Hdr_803E34B0 *job, register ReorderedMatrix_803E3390 *matrix) {` |
 | `src/pso/unk/text_8042E8C4.cpp:19` | `asm void LaunchDol(register ModemLaunchContext *ctx) {` |
 | `src/pso/unk/text_8042E8C4.cpp:20` | `#include "orig_asm/pso/unk/text_8042E8C4/LaunchDol.inc"` |
 | `src/pso/unk/text_8042E9FC.cpp:10` | `static asm void pad_03_8042E9FC_text(void) {` |
@@ -98,7 +98,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TLobby_80429598.cpp:17` | `__rlwinm` |
 | `src/pso/misc/TLobby_80429598.cpp:18` | `__cntlzw` |
 | `src/pso/misc/TMainCursor.cpp:844` | `__cntlzw` |
-| `src/pso/misc/TNpcPlayer.cpp:3272` | `__cntlzw` |
+| `src/pso/misc/TNpcPlayer.cpp:3263` | `__cntlzw` |
 | `src/pso/misc/TOHealGeneral.cpp:64` | `__cntlzw` |
 | `src/pso/misc/TOSymbolchatColli.cpp:93` | `__cntlzw` |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp:542` | `__cntlzw` |
@@ -115,23 +115,23 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TWindowSubItem.cpp:359` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:96` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
-| `src/pso/network/ModemRuntime.cpp:363` | `__cntlzw` |
-| `src/pso/network/TcpProtocol.cpp:839` | `__cntlzw` |
+| `src/pso/network/ModemRuntime.cpp:362` | `__cntlzw` |
+| `src/pso/network/TcpProtocol.cpp:819` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
 | `src/pso/object/TObjTombstone.cpp:427` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_80011014.cpp:4878` | `__fabs` |
-| `src/pso/player/TObjPlayer_800AAFBC.cpp:303` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_800AAFBC.cpp:146` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:5874` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp:8738` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:5850` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp:8699` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp:27` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:44` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:54` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:59` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:71` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:118` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:43` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:53` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:58` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:70` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:117` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803E112C.cpp:38` | `__frsqrte` |
 | `src/pso/player/TObjPlayer_803E112C.cpp:136` | `__fabs` |
 | `src/pso/player/TObjPlayer_803E112C.cpp:137` | `__fabs` |
@@ -170,34 +170,36 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | File:line | Source |
 |---|---|
 | `src/pso/boss/TObjBoss2Tunnel_803E2BAC.cpp:22` | `#define GXWGFifo_803E2BCC (*(volatile WGPipe_803E2BCC *)0xCC008000)` |
+| `src/pso/misc/TLobby_804050DC.cpp:4467` | `net = ((a & 0x80000000) == 0) ? (a & 0xFF000000) : (((a & 0xC0000000) == 0x80000000) ? (a & 0xFFFF0000) : (((a & 0xE0000000) == 0xC0000000) ? (a & 0xFFFFFF00) : (0)));` |
+| `src/pso/misc/TLobby_804050DC.cpp:4469` | `mask = ((a & 0x80000000) == 0) ? (0xFF000000) : (((a & 0xC0000000) == 0x80000000) ? (0xFFFF0000) : (((a & 0xE0000000) == 0xC0000000) ? (0xFFFFFF00) : (0)));` |
 | `src/pso/misc/TMainCursor.cpp:895` | `((TMainCursor *)arg2)->set_flags(0xE0000800);` |
 | `src/pso/misc/TMainCursor.cpp:911` | `((TMainCursor *)arg2)->set_flags(0xE0000000);` |
 | `src/pso/misc/TParticleCtrl_803E29FC.cpp:32` | `#define GXWGFifo_803E2A1C (*(volatile WGPipe_803E2A1C *)0xCC008000)` |
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp:12` | `#define FIFO_803DF00C (*(volatile Pipe_803DF00C *)0xCC008000)` |
 | `src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp:34` | `#define FIFO_803DEECC (*(volatile Pipe_803DEECC *)0xCC008000)` |
-| `src/pso/object/TObjLight_803DF220.cpp:137` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = x;` |
-| `src/pso/object/TObjLight_803DF220.cpp:138` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = y;` |
-| `src/pso/object/TObjLight_803DF220.cpp:139` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = z;` |
-| `src/pso/object/TObjLight_803DF220.cpp:142` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).u32 = c;` |
+| `src/pso/object/TObjLight_803DF220.cpp:127` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = x;` |
+| `src/pso/object/TObjLight_803DF220.cpp:128` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = y;` |
+| `src/pso/object/TObjLight_803DF220.cpp:129` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = z;` |
+| `src/pso/object/TObjLight_803DF220.cpp:132` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).u32 = c;` |
 | `src/pso/player/TObjPlayer_800847A8.cpp:25` | `*(f32 *)0xCC008000 = farg0;` |
 | `src/pso/player/TObjPlayer_800847A8.cpp:26` | `*(f32 *)0xCC008000 = farg1;` |
 | `src/pso/player/TObjPlayer_800847A8.cpp:30` | `*(s32 *)0xCC008000 = arg0;` |
 | `src/pso/player/TObjPlayer_800847A8.cpp:34` | `*(f32 *)0xCC008000 = farg0;` |
 | `src/pso/player/TObjPlayer_800847A8.cpp:35` | `*(f32 *)0xCC008000 = farg1;` |
 | `src/pso/player/TObjPlayer_800847A8.cpp:36` | `*(f32 *)0xCC008000 = farg2;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:218` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = x;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:219` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = y;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:220` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = z;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:223` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).u32 = c;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:250` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = x;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:251` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = y;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:252` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = z;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:255` | `(*(volatile WGPipe_803E2810 *)0xCC008000).u32 = c;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:258` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
-| `src/pso/player/TObjPlayer_803E21B8.cpp:259` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:200` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = x;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:201` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = y;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:202` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).f32 = z;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:205` | `(*(volatile WGPipe_803E26A4 *)0xCC008000).u32 = c;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:232` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = x;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:233` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = y;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:234` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = z;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:237` | `(*(volatile WGPipe_803E2810 *)0xCC008000).u32 = c;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:240` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;` |
+| `src/pso/player/TObjPlayer_803E21B8.cpp:241` | `(*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;` |
 | `src/pso/player/TObjPlayer_803E5470.cpp:17` | `#define GXWGFifo_803E549C (*(volatile WGPipe_803E549C *)0xCC008000)` |
-| `src/pso/system/ChunkMaterialState.cpp:213` | `matrix_stack_base = (u8 *)0xE0000000;` |
-| `src/pso/system/ChunkMaterialState.cpp:214` | `current_matrix = 0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:208` | `matrix_stack_base = (u8 *)0xE0000000;` |
+| `src/pso/system/ChunkMaterialState.cpp:209` | `current_matrix = 0xE0000000;` |
 | `src/pso/system/ModelDrawContext.cpp:218` | `int src = cached_blend_factor_table[(v & 0xE0000000) >> 29];` |
 | `src/pso/unk/text_801E3F24.cpp:27` | `*(s32 *)0xCC008000 = arg0;` |
 | `src/pso/unk/text_801E3F24.cpp:31` | `*(f32 *)0xCC008000 = farg0;` |
@@ -205,52 +207,56 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/unk/text_801E3F24.cpp:33` | `*(f32 *)0xCC008000 = farg2;` |
 | `src/pso/unk/text_801E3F24.cpp:37` | `*(f32 *)0xCC008000 = farg0;` |
 | `src/pso/unk/text_801E3F24.cpp:38` | `*(f32 *)0xCC008000 = farg1;` |
-| `src/pso/unk/text_803E2D70.cpp:180` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:181` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:182` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:185` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).u32 = c;` |
-| `src/pso/unk/text_803E2D70.cpp:188` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = s;` |
-| `src/pso/unk/text_803E2D70.cpp:189` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:490` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:491` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:492` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:495` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:496` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:497` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:505` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:506` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:507` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:510` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:511` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:512` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:515` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
-| `src/pso/unk/text_803E2D70.cpp:516` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
-| `src/pso/unk/text_803E2D70.cpp:1061` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:1062` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:1063` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:1066` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:1067` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:1068` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:1102` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:1103` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:1104` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_803E2D70.cpp:1107` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
-| `src/pso/unk/text_803E2D70.cpp:1108` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
-| `src/pso/unk/text_803E2D70.cpp:1109` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1266` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_803E2D70.cpp:178` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:179` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:180` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:183` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).u32 = c;` |
+| `src/pso/unk/text_803E2D70.cpp:186` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = s;` |
+| `src/pso/unk/text_803E2D70.cpp:187` | `(*(volatile WGPipe_803E2D70 *)0xCC008000).f32 = t;` |
+| `src/pso/unk/text_803E2D70.cpp:484` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:485` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:486` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:489` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:490` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:491` | `(*(volatile WGPipe_803E36C4 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:495` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:496` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:497` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:500` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:501` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:502` | `(*(volatile WGPipe_803E352C *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:505` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = s;` |
+| `src/pso/unk/text_803E2D70.cpp:506` | `(*(volatile WGPipe_803E352C *)0xCC008000).s16 = t;` |
+| `src/pso/unk/text_803E2D70.cpp:1025` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1026` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1027` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:1030` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1031` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1032` | `(*(volatile WGPipe_803E46FC *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:1066` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1067` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1068` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_803E2D70.cpp:1071` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
+| `src/pso/unk/text_803E2D70.cpp:1072` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
+| `src/pso/unk/text_803E2D70.cpp:1073` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
+| `src/pso/unk/text_80421620.cpp:1265` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/unk/text_803367F4.cpp` | `-str reuse,readonly` | The title assets and bilingual prompts reference read-only string pools. |
+| `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `(multi-line entry; see configure.py)` | Preserve Shift-JIS trail bytes when compiling the Japanese prompts. |
 | `pso/network/TProtocol.cpp` | `GC/1.3.2` | GC/1.3.2 preserves these aggregate-copy matches under the GC/2.0 default. TProtocol's other weak helpers are validated through the complete link; see docs/evidence/compiler-default-gc20-adoption.md. |
 | `pso/object/TObjResultWin.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TWindowSubComCard_8007341C.cpp` | `-str reuse,readonly, -sdata 4, -pooldata=off` | Keep the challenge window strings read-only and independently addressed, and the two-float extent in normal data. |
 | `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/menu/TAdRicoRing.cpp` | `-str reuse,readonly, -sdata 4, -inline off,deferred` | Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order. |
 | `pso/boss/TBoss2DeRolLe.cpp` | `-inline on` | GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order. |
 | `pso/unk/data_805D8444.cpp` | `(multi-line entry; see configure.py)` | The De Rol Le constant pool starts at 0x805D8444, a four-byte boundary. |
 | `pso/boss/DarkFalzEffectConstants.cpp` | `(multi-line entry; see configure.py)` | The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary. |
 | `pso/misc/CameraControllerConstants.cpp` | `(multi-line entry; see configure.py)` | The camera constant pool starts at 0x805D8F7C, a four-byte boundary. |
+| `pso/render/ShadowProjectionConstants.cpp` | `(multi-line entry; see configure.py)` | The shadow projection float pool begins at 0x805D9414. |
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
@@ -290,7 +296,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `pso/enemy/TObjEneDubchik.cpp` | `-inline off,deferred, -str reuse,readonly` | Upstream #190 commit 9c4e9ea1d: TObjEneDubchik is written from its last function back. -inline off,deferred emits that order (the vtable lands before the switch tables). -str reuse,readonly keeps the motion-name pool in .rodata. These are upstream's own flags for this unit. |
 | `pso/enemy/TObjEnePanarms.cpp` | `-inline deferred, -sdata 4, -sym on` | Native private header sections preserve initializer and helper emission order. |
 | `pso/enemy/TObjEneDelDepth.cpp` | `-inline off,deferred` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/enemy/TObjEneMoja.cpp` | `-inline off,deferred` | Deferred emission puts the Moja vtable before the run_task switch table. |
 | `pso/object/TObjChip.cpp` | `-inline off,deferred` | TObjChip: render's colour template sits after draw_chips' in .rodata while render comes first in .text, so the source runs backwards. |
 | `pso/object/TObjVoloptPillar.cpp` | `(multi-line entry; see configure.py)` | GC/2.0 interleaves the BML model-table load with the debris initializer's copy tail. Map the original template to CodeWarrior's local aggregate. |
 | `pso/unk/text_8031EF14.cpp` | `(multi-line entry; see configure.py)` | GC/2.0 schedules the model and position loads across the aggregate copy tails. Disabling pooling keeps the three original debris templates. |
@@ -464,7 +469,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `pso/misc/TLobby_803FAEA0.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TLobby_803FC178.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TLobby_804048E8.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
-| `pso/misc/TLobby_804050DC.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TLobby_804050DC.cpp` | `-opt nocse, -inline noauto,level=4` | Inline the explicitly marked network helpers, with a four-level limit. This unit default replaces repeated dont_inline/inline_depth pragmas. |
+| `pso/misc/TLobby_8040FF0C.cpp` | `-opt nocse, -inline noauto,level=4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TLobby_8041112C.cpp` | `-opt nocse, -inline noauto,level=4` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/network/NetworkDispatcher.cpp` | `-opt nocse` | Extracted from TLobby_804050DC; preserve its compiler/CSE settings. |
 | `pso/network/TcpProtocol.cpp` | `-opt nocse` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 
@@ -475,8 +482,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `include/pso/misc/QuestDownloadInternal.h` | inline_depth×57, dont_inline×54, opt_propagation×10, opt_common_subs×9, opt_lifetimes×5, opt_dead_assignments×1 |
 | `include/pso/misc/QuestDownloadRecords.h` | options×1 |
 | `include/pso/misc/QuestDownloadScratch.h` | dont_inline×1, inline_depth×1 |
-| `src/musyx/runtime/Chorus/chorus_fx.c` | peephole×2, dont_inline×1, inline_depth×1, auto_inline×1 |
-| `src/musyx/runtime/StdReverb/reverb.c` | dont_inline×1, peephole×1 |
+| `src/musyx/runtime/Chorus/chorus_fx.c` | dont_inline×1 |
+| `src/musyx/runtime/StdReverb/reverb.c` | dont_inline×1 |
 | `src/musyx/runtime/hardware.c` | scheduling×1 |
 | `src/musyx/runtime/hw_aramdma.c` | opt_common_subs×1, bool×1, dont_inline×1, inline_depth×1 |
 | `src/musyx/runtime/hw_dolphin.c` | dont_inline×1, inline_depth×1, auto_inline×1, scheduling×1 |
@@ -499,16 +506,16 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/musyx/runtime/synthmacros.c` | bool×15, opt_common_subs×15, pack×8, dont_inline×6, inline_depth×6 |
 | `src/musyx/runtime/synthvoice.c` | opt_common_subs×11, dont_inline×5, inline_depth×5, pool_data×2, bool×1 |
 | `src/pso/audio/GcrnaStream.cpp` | readonly_strings×1, dont_inline×1, inline_depth×1, auto_inline×1 |
-| `src/pso/boss/Boss5GryphonBehavior.cpp` | inline_depth×54, auto_inline×54, dont_inline×54, fp_contract×28, scheduling×1, inline×1 |
+| `src/pso/boss/Boss5GryphonBehavior.cpp` | fp_contract×19, inline_depth×1, dont_inline×1 |
 | `src/pso/boss/Boss6Type1Appearance.cpp` | opt_common_subs×2 |
 | `src/pso/boss/Boss6Type2Appearance.cpp` | opt_lifetimes×1, pool_data×1, opt_loop_invariants×1, opt_common_subs×1, opt_propagation×1 |
 | `src/pso/boss/Boss6Type2Death.cpp` | pool_data×2, opt_common_subs×1 |
-| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | fp_contract×11, opt_common_subs×8, opt_propagation×4, inline_depth×3, dont_inline×2, defer_codegen×1, auto_inline×1, opt_lifetimes×1 |
-| `src/pso/boss/TBoss1Dragon.cpp` | fp_contract×24, inline_depth×7, auto_inline×7, dont_inline×7, opt_common_subs×7, readonly_strings×1, pool_data×1, scheduling×1, opt_loop_invariants×1, opt_propagation×1 |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | fp_contract×9, opt_common_subs×8, opt_propagation×3, defer_codegen×1, dont_inline×1, inline_depth×1, opt_lifetimes×1 |
+| `src/pso/boss/TBoss1Dragon.cpp` | fp_contract×21, opt_common_subs×7, inline_depth×1, dont_inline×1, readonly_strings×1, pool_data×1, scheduling×1, opt_loop_invariants×1, opt_propagation×1 |
 | `src/pso/boss/TBoss1DragonColli.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/boss/TBoss1DragonEffBullet.cpp` | fp_contract×1 |
-| `src/pso/boss/TBoss2DeRolLe.cpp` | fp_contract×16, opt_common_subs×7, dont_inline×3, inline_depth×3, auto_inline×2, opt_loop_invariants×1 |
-| `src/pso/boss/TBoss2Joint.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
+| `src/pso/boss/TBoss2DeRolLe.cpp` | fp_contract×12, opt_common_subs×6, opt_loop_invariants×1 |
+| `src/pso/boss/TBoss2Joint.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss2LaserLight.cpp` | defer_codegen×1 |
 | `src/pso/boss/TBoss2Mine_800375C0.cpp` | fp_contract×4, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/boss/TBoss2PhotonBullet_80038DCC.cpp` | fp_contract×1 |
@@ -521,7 +528,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/boss/TBoss3VoloptP01.cpp` | fp_contract×2, readonly_strings×1, opt_common_subs×1 |
 | `src/pso/boss/TBoss3VoloptP02.cpp` | fp_contract×6, opt_common_subs×4, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, opt_loop_invariants×1 |
 | `src/pso/boss/TBoss4DarkFalz_8004C93C.cpp` | fp_contract×4 |
-| `src/pso/boss/TBoss4Type1.cpp` | fp_contract×5, opt_propagation×2, opt_common_subs×2, defer_codegen×1, opt_loop_invariants×1 |
+| `src/pso/boss/TBoss4Type1.cpp` | fp_contract×4, opt_propagation×2, opt_common_subs×2, defer_codegen×1 |
 | `src/pso/boss/TBoss4Type2_80086C44.cpp` | opt_propagation×1 |
 | `src/pso/boss/TBoss4Type2_800874F4.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, readonly_strings×1, fp_contract×1 |
 | `src/pso/boss/TBoss4Type2_80340160.cpp` | opt_common_subs×1, opt_propagation×1 |
@@ -549,18 +556,18 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/boss/TBoss6SwordShot.cpp` | fp_contract×3, opt_common_subs×2 |
 | `src/pso/boss/TBoss6Tube_802B1020.cpp` | fp_contract×2 |
 | `src/pso/boss/TBoss6Type1_802B20C0.cpp` | readonly_strings×1 |
-| `src/pso/boss/TBoss6Type2.cpp` | inline_depth×74, auto_inline×74, dont_inline×74, opt_common_subs×20, opt_propagation×15, opt_dead_assignments×14, fp_contract×5, optimization_level×1 |
-| `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×2 |
+| `src/pso/boss/TBoss6Type2.cpp` | opt_common_subs×20, inline_depth×18, dont_inline×18, fp_contract×5, optimization_level×1 |
+| `src/pso/boss/TBoss6Type2_802BE588.cpp` | opt_common_subs×1 |
 | `src/pso/boss/TBoss6Type2_8032E708.cpp` | fp_contract×4, opt_common_subs×3, inline_depth×1, auto_inline×1, dont_inline×1, readonly_strings×1 |
 | `src/pso/boss/TBoss6Type2_80336E6C.cpp` | opt_common_subs×2, readonly_strings×1, opt_propagation×1 |
 | `src/pso/boss/TBoss6Zanzo.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/boss/TBoss7Joint.cpp` | opt_common_subs×1 |
 | `src/pso/boss/TBoss7LaserLight.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss7LaserPtcl.cpp` | fp_contract×2, dont_inline×1, inline_depth×1 |
-| `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×21, opt_common_subs×6 |
+| `src/pso/boss/TBoss8Dragon.cpp` | fp_contract×20, opt_common_subs×6 |
 | `src/pso/boss/TBoss8DragonDemo.cpp` | readonly_strings×1 |
 | `src/pso/boss/TBoss8DragonEffBullet.cpp` | fp_contract×1, pool_data×1 |
-| `src/pso/boss/TBoss8Dragon_8002CC48.cpp` | fp_contract×3, defer_codegen×2, opt_propagation×1 |
+| `src/pso/boss/TBoss8Dragon_8002CC48.cpp` | defer_codegen×2, fp_contract×1, opt_propagation×1 |
 | `src/pso/boss/TBoss8Dragon_80067034.cpp` | fp_contract×1 |
 | `src/pso/boss/TBoss8Dragon_802F376C.cpp` | fp_contract×1 |
 | `src/pso/boss/TBoss8Dragon_80325D38.cpp` | fp_contract×1 |
@@ -581,7 +588,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/effect/TEF_LensFlare.cpp` | opt_propagation×1 |
 | `src/pso/effect/TEffGuard.cpp` | readonly_strings×1 |
 | `src/pso/effect/TEffHit.cpp` | readonly_strings×1 |
-| `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×2, opt_common_subs×2, defer_codegen×1, opt_propagation×1 |
+| `src/pso/effect/TEffStarLight2D_Base.cpp` | fp_contract×2, opt_common_subs×2, defer_codegen×1 |
 | `src/pso/effect/TEffect.cpp` | readonly_strings×1 |
 | `src/pso/effect/TUnk_804CCC68.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/enemy/BringerEffects.cpp` | fp_contract×2 |
@@ -610,11 +617,11 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/enemy/TObjEneDellBiterEffects.cpp` | fp_contract×1 |
 | `src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp` | fp_contract×3, opt_loop_invariants×1 |
 | `src/pso/enemy/TObjEneDolmOlm.cpp` | opt_common_subs×2, defer_codegen×1, fp_contract×1 |
-| `src/pso/enemy/TObjEneDubchik.cpp` | opt_common_subs×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1 |
+| `src/pso/enemy/TObjEneDubchik.cpp` | opt_common_subs×2, inline_depth×1, opt_propagation×1 |
 | `src/pso/enemy/TObjEneEpsilonGuard_8035DD68.cpp` | opt_common_subs×3, fp_contract×2 |
-| `src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | opt_common_subs×3, fp_contract×3, defer_codegen×1, opt_propagation×1 |
+| `src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp` | opt_common_subs×2, fp_contract×1 |
 | `src/pso/enemy/TObjEneGibbles.cpp` | opt_loop_invariants×6, dont_inline×1, inline_depth×1, fp_contract×1, defer_codegen×1, opt_common_subs×1 |
-| `src/pso/enemy/TObjEneGyaranzo.cpp` | pool_data×4, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1, opt_common_subs×1, fp_contract×1, scheduling×1 |
+| `src/pso/enemy/TObjEneGyaranzo.cpp` | pool_data×2, inline_depth×1, opt_propagation×1, fp_contract×1, scheduling×1 |
 | `src/pso/enemy/TObjEneHoldEffect_8036CDFC.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/enemy/TObjEneIllGill.cpp` | opt_common_subs×1, opt_loop_invariants×1 |
 | `src/pso/enemy/TObjEneLappy.cpp` | opt_common_subs×2 |
@@ -630,7 +637,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/enemy/TObjEneMe3Stelth.cpp` | fp_contract×6, opt_propagation×1 |
 | `src/pso/enemy/TObjEneMe3Stelth_800F0AE4.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMerillLia.cpp` | opt_common_subs×2, defer_codegen×1, opt_loop_invariants×1, fp_contract×1 |
-| `src/pso/enemy/TObjEneMoja.cpp` | opt_common_subs×1 |
+| `src/pso/enemy/TObjEneMoja.cpp` | fp_contract×1, opt_common_subs×1, dont_inline×1, inline_depth×1, defer_codegen×1 |
 | `src/pso/enemy/TObjEneMorfos.cpp` | opt_common_subs×3, defer_codegen×1, opt_propagation×1, fp_contract×1 |
 | `src/pso/enemy/TObjEneMorfosArm_80335218.cpp` | readonly_strings×1 |
 | `src/pso/enemy/TObjEneMorfos_80337500.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -655,7 +662,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/enemy/TObjEneRecon_8031F800.cpp` | opt_common_subs×1 |
 | `src/pso/enemy/TObjEneRecon_8031FCB0.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/enemy/TObjEneShark.cpp` | defer_codegen×1 |
-| `src/pso/enemy/TObjEneSlimeTailAttack.cpp` | auto_inline×30, dont_inline×30, inline_depth×30, fp_contract×12, opt_common_subs×6, defer_codegen×1, opt_propagation×1 |
+| `src/pso/enemy/TObjEneSlimeTailAttack.cpp` | fp_contract×12, dont_inline×8, inline_depth×6, opt_common_subs×6, defer_codegen×1 |
 | `src/pso/enemy/panarms/TObjEnePanBARAMethods.h` | fp_contract×1 |
 | `src/pso/item/TItem.cpp` | fp_contract×2, readonly_strings×1, suppress_init_code×1 |
 | `src/pso/item/TItemAttackCol.cpp` | opt_lifetimes×1 |
@@ -695,22 +702,20 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/item/TUnk_804A67D0.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/item/TUnk_804A6AD8.cpp` | opt_common_subs×1 |
 | `src/pso/item/TUnk_804F0D34.cpp` | readonly_strings×1 |
-| `src/pso/map/CsnQuery.cpp` | fp_contract×6, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/math/MatrixTransforms.cpp` | peephole×1, scheduling×1 |
-| `src/pso/math/MatrixVector.cpp` | scheduling×4, fp_contract×1 |
+| `src/pso/map/CsnQuery.cpp` | fp_contract×4, inline_depth×1, dont_inline×1 |
+| `src/pso/math/MatrixVector.cpp` | fp_contract×1 |
 | `src/pso/menu/TAdEndText.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/menu/TAdGuideTxtGC.cpp` | readonly_strings×1, fp_contract×1, opt_common_subs×1 |
 | `src/pso/menu/TAdMultiOkGC.cpp` | fp_contract×3 |
 | `src/pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp` | peephole×1, fp_contract×1, opt_propagation×1 |
 | `src/pso/menu/TAdRicoRing.cpp` | opt_common_subs×2, opt_dead_assignments×1, fp_contract×1 |
-| `src/pso/menu/TAdTimeSetGC.cpp` | opt_common_subs×2 |
 | `src/pso/menu/TChCrLoadGmNjReq.cpp` | readonly_strings×1 |
 | `src/pso/misc/ChallengeMode.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/GbaDownloadRuntime.cpp` | fp_contract×1, optimization_level×1, dont_inline×1 |
 | `src/pso/misc/MaterialOpacityFade.cpp` | optimization_level×1, fp_contract×1 |
-| `src/pso/misc/ParticleBallistic.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1, pool_data×1 |
-| `src/pso/misc/ParticleOrbit.cpp` | fp_contract×3, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/misc/ParticleRadial.cpp` | inline_depth×16, auto_inline×16, dont_inline×16, fp_contract×3 |
+| `src/pso/misc/ParticleBallistic.cpp` | fp_contract×3, inline_depth×1, dont_inline×1, pool_data×1 |
+| `src/pso/misc/ParticleOrbit.cpp` | fp_contract×3, inline_depth×1, dont_inline×1 |
+| `src/pso/misc/ParticleRadial.cpp` | fp_contract×2, inline_depth×1, dont_inline×1 |
 | `src/pso/misc/PhotonBlastSummon.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/RenderFadeState.cpp` | opt_common_subs×1 |
 | `src/pso/misc/ShopToolStock.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -719,7 +724,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TBGLightningCtrl.cpp` | fp_contract×4 |
 | `src/pso/misc/TBreakUpMdl.cpp` | fp_contract×5 |
 | `src/pso/misc/TButterfly.cpp` | fp_contract×1 |
-| `src/pso/misc/TCameraCtrl.cpp` | dont_inline×75, auto_inline×75, opt_common_subs×6, opt_propagation×3, defer_codegen×1 |
+| `src/pso/misc/TCameraCtrl.cpp` | opt_common_subs×6, defer_codegen×1 |
 | `src/pso/misc/TCameraCtrl_80067654.cpp` | fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_8006782C.cpp` | fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_80067CE8.cpp` | fp_contract×1 |
@@ -732,11 +737,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TCameraCtrl_8006C8E4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, fp_contract×1 |
 | `src/pso/misc/TCameraCtrl_8006CC30.cpp` | fp_contract×2, inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TCameraCtrl_80082FCC.cpp` | opt_common_subs×1 |
-| `src/pso/misc/TCameraCtrl_803D6538.cpp` | scheduling×3, opt_common_subs×1 |
-| `src/pso/misc/TCameraCtrl_803D66DC.cpp` | use_lmw_stmw×1, opt_common_subs×1 |
-| `src/pso/misc/TCameraCtrl_803D676C.cpp` | use_lmw_stmw×1 |
-| `src/pso/misc/TCameraCtrl_803D6960.cpp` | scheduling×5, use_lmw_stmw×1 |
-| `src/pso/misc/TCameraCtrl_803D749C.cpp` | scheduling×7, use_lmw_stmw×4, peephole×3, optimize_for_size×3, opt_common_subs×2, optimization_level×1 |
+| `src/pso/misc/TCameraCtrl_803D66DC.cpp` | opt_common_subs×1 |
+| `src/pso/misc/TCameraCtrl_803D6960.cpp` | use_lmw_stmw×1 |
+| `src/pso/misc/TCameraCtrl_803D749C.cpp` | use_lmw_stmw×4, opt_common_subs×1 |
 | `src/pso/misc/TCameraCtrl_native.h` | opt_common_subs×6, inline_depth×3, dont_inline×3, opt_propagation×3, auto_inline×2 |
 | `src/pso/misc/TChCrEffCtrlPl_80339658.cpp` | readonly_strings×1, opt_common_subs×1, fp_contract×1 |
 | `src/pso/misc/TChCrEffTag.cpp` | fp_contract×1 |
@@ -756,12 +759,13 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TDeadSpot.cpp` | fp_contract×4, opt_common_subs×2 |
 | `src/pso/misc/TDuelEffectNumber.cpp` | fp_contract×2, opt_common_subs×2 |
 | `src/pso/misc/TDuelEffectNumber_80080290.cpp` | fp_contract×1 |
-| `src/pso/misc/TDuelEffectNumber_80080460.cpp` | fp_contract×1, opt_common_subs×1, opt_propagation×1 |
+| `src/pso/misc/TDuelEffectNumber_80080460.cpp` | fp_contract×1 |
+| `src/pso/misc/TEnding_8008C5C0.cpp` | pool_data×1 |
 | `src/pso/misc/TFogCtrl.cpp` | inline_depth×13, auto_inline×13, dont_inline×13, fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TFontSmallLobby_801C013C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TForceOperate.cpp` | opt_common_subs×2 |
 | `src/pso/misc/THunterGuildSeqOffline_80213788.cpp` | opt_propagation×2 |
-| `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×15, pool_data×1 |
+| `src/pso/misc/TKeyBoardControl.cpp` | fp_contract×7, pool_data×1 |
 | `src/pso/misc/TKeyBoardControl_80131C58.cpp` | opt_loop_invariants×1 |
 | `src/pso/misc/TKeyBoardControl_8025EC04.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TKeyBoardControl_803F0C50.cpp` | dont_inline×2, inline_depth×2 |
@@ -777,17 +781,15 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TLobby_80072048.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_800726F0.cpp` | readonly_strings×1 |
 | `src/pso/misc/TLobby_80082048.cpp` | fp_contract×1 |
-| `src/pso/misc/TLobby_800F8AA8.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/misc/TLobby_80103F5C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_8013A874.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_801F2D2C.cpp` | fp_contract×1 |
 | `src/pso/misc/TLobby_80207644.cpp` | opt_common_subs×3 |
 | `src/pso/misc/TLobby_80207DA8.cpp` | fp_contract×1 |
 | `src/pso/misc/TLobby_80222D24.cpp` | fp_contract×2, scheduling×2, readonly_strings×1 |
-| `src/pso/misc/TLobby_80228154.cpp` | fp_contract×1 |
 | `src/pso/misc/TLobby_80228818.cpp` | opt_propagation×1 |
-| `src/pso/misc/TLobby_8023F734.cpp` | opt_common_subs×3, opt_propagation×3, opt_dead_assignments×3, readonly_strings×1, fp_contract×1 |
-| `src/pso/misc/TLobby_802409AC.cpp` | opt_propagation×1, opt_lifetimes×1, fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TLobby_8023F734.cpp` | readonly_strings×1, opt_propagation×1, opt_common_subs×1 |
+| `src/pso/misc/TLobby_802409AC.cpp` | opt_propagation×1, opt_lifetimes×1, inline_depth×1, dont_inline×1 |
 | `src/pso/misc/TLobby_80291D94.cpp` | inline_depth×3, auto_inline×3, dont_inline×3, fp_contract×1 |
 | `src/pso/misc/TLobby_802A0F3C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_802A5120.cpp` | readonly_strings×1 |
@@ -796,24 +798,26 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TLobby_8034C18C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TLobby_8036DBC4.cpp` | readonly_strings×1, pool_data×1 |
 | `src/pso/misc/TLobby_803BFE50.cpp` | inline_depth×1, dont_inline×1 |
-| `src/pso/misc/TLobby_803C1A58.cpp` | opt_propagation×2, opt_common_subs×2, opt_lifetimes×1, inline_depth×1, dont_inline×1 |
+| `src/pso/misc/TLobby_803C1A58.cpp` | opt_propagation×2, opt_common_subs×1, opt_lifetimes×1, inline_depth×1, dont_inline×1 |
 | `src/pso/misc/TLobby_803C4698.cpp` | dont_inline×2, inline_depth×2, fp_contract×1 |
 | `src/pso/misc/TLobby_803DE778.cpp` | scheduling×2, peephole×2 |
-| `src/pso/misc/TLobby_803F8794.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
-| `src/pso/misc/TLobby_803FAEA0.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
+| `src/pso/misc/TLobby_803F8794.cpp` | opt_common_subs×11, dont_inline×8, inline_depth×8, scheduling×1 |
+| `src/pso/misc/TLobby_803FAEA0.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/misc/TLobby_803FC178.cpp` | dont_inline×16, inline_depth×16, opt_common_subs×9, opt_propagation×8, bool×3, opt_lifetimes×2, optimization_level×2, opt_dead_assignments×1 |
 | `src/pso/misc/TLobby_804048E8.cpp` | opt_common_subs×12, dont_inline×9, inline_depth×9, opt_propagation×8, scheduling×1 |
-| `src/pso/misc/TLobby_804050DC.cpp` | dont_inline×34, inline_depth×25, opt_common_subs×22, opt_propagation×12, optimization_level×9, pool_data×2, opt_unroll_loops×1, scheduling×1, opt_lifetimes×1 |
-| `src/pso/misc/TLobby_80426CAC.cpp` | dont_inline×4, inline_depth×3, opt_propagation×2, opt_common_subs×2, auto_inline×1 |
+| `src/pso/misc/TLobby_804050DC.cpp` | opt_propagation×13, opt_common_subs×12, opt_lifetimes×6, optimization_level×3, opt_loop_invariants×2, cplusplus×2, inline_depth×2 |
+| `src/pso/misc/TLobby_8040FF0C.cpp` | opt_strength_reduction×2, opt_propagation×2, opt_loop_invariants×1, opt_common_subs×1 |
+| `src/pso/misc/TLobby_8041112C.cpp` | opt_common_subs×11, opt_propagation×6, optimization_level×1 |
+| `src/pso/misc/TLobby_80426CAC.cpp` | inline_depth×2, dont_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/misc/TLobby_80428374.cpp` | dont_inline×3, inline_depth×2, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
-| `src/pso/misc/TLobby_80429598.cpp` | inline_depth×2, auto_inline×1, dont_inline×1, opt_propagation×1 |
+| `src/pso/misc/TLobby_80429598.cpp` | dont_inline×1, inline_depth×1, opt_propagation×1 |
 | `src/pso/misc/TLockOnCursor_8013D91C.cpp` | opt_loop_invariants×1 |
 | `src/pso/misc/TMainCursor.cpp` | fp_contract×3, opt_common_subs×1 |
 | `src/pso/misc/TMotorcycle_802D712C.cpp` | scheduling×1 |
 | `src/pso/misc/TNeedleShoot_802A4540.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TNeedleShoot_802A4668.cpp` | fp_contract×1 |
 | `src/pso/misc/TNowLoading.cpp` | fp_contract×2 |
-| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×9, opt_common_subs×3, opt_propagation×1 |
+| `src/pso/misc/TNpcPlayer.cpp` | fp_contract×6, opt_common_subs×3 |
 | `src/pso/misc/TNpcPlayer_8014DADC.cpp` | scheduling×1 |
 | `src/pso/misc/TNpcPlayer_8034DC20.cpp` | opt_pointer_analysis×1 |
 | `src/pso/misc/TOComputerMachine01_8023DD0C.cpp` | fp_contract×1 |
@@ -865,7 +869,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TPlyGuildCardTag_801E0284.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TPlyJoinGame.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TPlyJoinLobbyEntry.cpp` | inline_depth×9, dont_inline×9, auto_inline×8, opt_propagation×2, defer_codegen×2, readonly_strings×1, peephole×1 |
-| `src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/misc/TPlyRecvLogin.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TPlySmth.cpp` | auto_inline×2, dont_inline×2, inline_depth×1 |
 | `src/pso/misc/TQuadSpriteCol.cpp` | fp_contract×1 |
@@ -878,9 +882,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TQuestListOnline_80217464.cpp` | fp_contract×1 |
 | `src/pso/misc/TQuestVmDownLoadServer.cpp` | opt_propagation×1 |
 | `src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp` | readonly_strings×1, dont_inline×1, inline_depth×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | dont_inline×14, inline_depth×14, opt_common_subs×7, bool×1, opt_lifetimes×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp` | dont_inline×15, inline_depth×15, opt_lifetimes×3, opt_propagation×3, opt_common_subs×2, opt_dead_assignments×1 |
-| `src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp` | dont_inline×15, inline_depth×15, opt_common_subs×3, opt_propagation×3, opt_lifetimes×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | dont_inline×13, inline_depth×13, opt_common_subs×5, bool×1, opt_lifetimes×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp` | dont_inline×15, inline_depth×15, opt_lifetimes×3, opt_propagation×3, opt_common_subs×1 |
+| `src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp` | dont_inline×14, inline_depth×14, opt_common_subs×2, opt_propagation×2 |
 | `src/pso/misc/TRaderMapCore.cpp` | fp_contract×2, opt_common_subs×1 |
 | `src/pso/misc/TRaderMapCore_801FB2B8.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/misc/TRegister.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -888,7 +892,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TSaveChCr_8033A088.cpp` | opt_common_subs×2 |
 | `src/pso/misc/TScene.cpp` | defer_codegen×2, readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1, opt_propagation×1, opt_lifetimes×1 |
 | `src/pso/misc/TScene_800838C4.cpp` | opt_common_subs×1 |
-| `src/pso/misc/TSetManager_8020D918.cpp` | scheduling×1, opt_propagation×1 |
+| `src/pso/misc/TSetManager_8020D918.cpp` | opt_propagation×1 |
 | `src/pso/misc/TShopArmorListWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
 | `src/pso/misc/TShopDeleteItemWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1, opt_loop_invariants×1 |
 | `src/pso/misc/TShopEquipmentListWindow.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
@@ -900,7 +904,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TSwitch.cpp` | readonly_strings×1 |
 | `src/pso/misc/TTecAnti.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/misc/TTecBarta.cpp` | dont_inline×1, inline_depth×1 |
-| `src/pso/misc/TTecCtrl.cpp` | opt_propagation×1 |
 | `src/pso/misc/TTecDeband.cpp` | opt_common_subs×2, readonly_strings×1 |
 | `src/pso/misc/TTecGiBarta.cpp` | dont_inline×2, inline_depth×2, auto_inline×2 |
 | `src/pso/misc/TTecGiFoie.cpp` | opt_propagation×4, opt_common_subs×3, opt_dead_assignments×3, fp_contract×1 |
@@ -931,7 +934,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TWindowCtrl_8024B1A0.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024B7D4.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowCtrl_8024D960.cpp` | fp_contract×1, scheduling×1 |
-| `src/pso/misc/TWindowDD.cpp` | opt_propagation×2, opt_common_subs×2, fp_contract×1, opt_dead_assignments×1 |
+| `src/pso/misc/TWindowDD.cpp` | opt_propagation×2, opt_common_subs×2, fp_contract×1 |
 | `src/pso/misc/TWindowDD_803411E8.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowDD_80341334.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowDD_80341A08.cpp` | fp_contract×3 |
@@ -952,7 +955,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TWindowHelpItem_8025A60C.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowInputNumber_80256170.cpp` | fp_contract×2 |
 | `src/pso/misc/TWindowKeyBoardSoft.cpp` | optimization_level×2, opt_propagation×1, opt_common_subs×1 |
-| `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | opt_common_subs×1 |
 | `src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp` | opt_propagation×1 |
 | `src/pso/misc/TWindowLoadItemTexture.cpp` | opt_common_subs×1, fp_contract×1 |
 | `src/pso/misc/TWindowMainMenu1P.cpp` | fp_contract×1 |
@@ -996,7 +998,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TWindowSubStatusDisp_8025B050.cpp` | fp_contract×1 |
 | `src/pso/misc/TWindowSubStatusDisp_8025B4A0.cpp` | readonly_strings×1, fp_contract×1 |
 | `src/pso/misc/TWindowSubStatusDisp_802671F0.cpp` | fp_contract×3 |
-| `src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp` | fp_contract×2, opt_propagation×1 |
+| `src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp` | fp_contract×1, opt_propagation×1 |
 | `src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp` | fp_contract×3, opt_common_subs×1 |
 | `src/pso/misc/TWindowSubStatusDisp_80281198.cpp` | defer_codegen×2 |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp` | fp_contract×1 |
@@ -1014,8 +1016,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/misc/TWindowTimer.cpp` | readonly_strings×1 |
 | `src/pso/misc/TWindowTradeRequest_802E0170.cpp` | fp_contract×1 |
 | `src/pso/misc/TeneFakeTecThunderEff.cpp` | fp_contract×3 |
-| `src/pso/misc/pso_date.cpp` | opt_propagation×2, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/network/ModemRuntime.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, opt_common_subs×1 |
+| `src/pso/misc/pso_date.cpp` | opt_propagation×1 |
+| `src/pso/network/ModemRuntime.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/network/NetworkConfigLifecycle.cpp` | scheduling×1, peephole×1 |
 | `src/pso/network/NetworkDispatcher.cpp` | opt_common_subs×3, pool_data×1 |
 | `src/pso/network/NetworkInfoCodec.cpp` | scheduling×15, peephole×13, optimization_level×11, use_lmw_stmw×3 |
@@ -1025,10 +1027,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/network/NetworkPacketRuntime.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetworkTransport.cpp` | opt_common_subs×3, optimization_level×1 |
 | `src/pso/network/SocketProtocolRuntime.cpp` | dont_inline×3, inline_depth×3, opt_dead_assignments×1 |
-| `src/pso/network/TProtocol.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, scheduling×2 |
+| `src/pso/network/TProtocol.cpp` | inline_depth×2, dont_inline×2 |
 | `src/pso/network/TProtocol_801DA240.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/network/TTcpSocket.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/network/TcpProtocol.cpp` | pool_data×13, opt_common_subs×9, opt_propagation×8, dont_inline×1, inline_depth×1, optimize_for_size×1, opt_loop_invariants×1, opt_strength_reduction×1, opt_unroll_loops×1 |
+| `src/pso/network/TcpProtocol.cpp` | pool_data×10, opt_common_subs×7, opt_propagation×2, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
 | `src/pso/npc/TObjNpcAHM01.cpp` | readonly_strings×1 |
 | `src/pso/npc/TObjNpcARM00.cpp` | readonly_strings×1 |
 | `src/pso/npc/TObjNpcCloakroomBase.cpp` | readonly_strings×1 |
@@ -1068,10 +1070,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/object/TObjCGrass.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCMIcon_80299488.cpp` | common×2, fp_contract×1 |
 | `src/pso/object/TObjCMMainMenu_8028EA88.cpp` | readonly_strings×1 |
-| `src/pso/object/TObjCMName.cpp` | fp_contract×15, opt_common_subs×4, defer_codegen×1, opt_lifetimes×1, opt_loop_invariants×1 |
+| `src/pso/object/TObjCMName.cpp` | fp_contract×11, opt_common_subs×2, defer_codegen×1, opt_lifetimes×1, opt_loop_invariants×1 |
 | `src/pso/object/TObjCMProportion_80298FAC.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCamera.cpp` | readonly_strings×1, fp_contract×1 |
-| `src/pso/object/TObjChip.cpp` | fp_contract×4, inline_depth×1, auto_inline×1, dont_inline×1, readonly_strings×1 |
+| `src/pso/object/TObjChip.cpp` | fp_contract×4, inline_depth×1, readonly_strings×1 |
 | `src/pso/object/TObjCityMainWarp_801867F4.cpp` | fp_contract×1 |
 | `src/pso/object/TObjControl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjCurtainLobby.cpp` | readonly_strings×1 |
@@ -1083,9 +1085,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/object/TObjDFHorming.cpp` | fp_contract×6, auto_inline×3, dont_inline×3, inline_depth×2, readonly_strings×1, cplusplus×1, opt_common_subs×1 |
 | `src/pso/object/TObjDoaEx01.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/object/TObjDoor_8018E358.cpp` | fp_contract×2, opt_common_subs×1 |
-| `src/pso/object/TObjEZRopeSimulation.cpp` | auto_inline×1, inline_depth×1, dont_inline×1 |
 | `src/pso/object/TObjEnvSoundGlobal.cpp` | opt_common_subs×1 |
-| `src/pso/object/TObjFish.cpp` | fp_contract×2, dont_inline×1, inline_depth×1, defer_codegen×1 |
+| `src/pso/object/TObjFish.cpp` | fp_contract×2, defer_codegen×1 |
 | `src/pso/object/TObjFogCollisionSwitch.cpp` | readonly_strings×1, defer_codegen×1 |
 | `src/pso/object/TObjGrass.cpp` | opt_common_subs×3, readonly_strings×1, fp_contract×1 |
 | `src/pso/object/TObjGrassWeb.cpp` | fp_contract×1 |
@@ -1097,7 +1098,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/object/TObjLight.cpp` | fp_contract×1 |
 | `src/pso/object/TObjLight_80133568.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/object/TObjLight_80235C44.cpp` | fp_contract×2 |
-| `src/pso/object/TObjLight_803DF220.cpp` | scheduling×4, dont_inline×1, inline_depth×1 |
+| `src/pso/object/TObjLight_803DF220.cpp` | dont_inline×1, inline_depth×1 |
 | `src/pso/object/TObjLobbyMain.cpp` | readonly_strings×1 |
 | `src/pso/object/TObjLuker.cpp` | readonly_strings×1, opt_common_subs×1 |
 | `src/pso/object/TObjOnlineEndingHexLine.cpp` | fp_contract×2, opt_loop_invariants×1 |
@@ -1106,7 +1107,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/object/TObjRain.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainCtrl.cpp` | fp_contract×1 |
 | `src/pso/object/TObjRainbowLobby.cpp` | readonly_strings×1 |
-| `src/pso/object/TObjResultWin.cpp` | defer_codegen×1, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/object/TObjResultWin.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/object/TObjRoomId.cpp` | fp_contract×2 |
 | `src/pso/object/TObjSeabedSuisoBrakable.cpp` | opt_propagation×1 |
 | `src/pso/object/TObjSinBoard.cpp` | fp_contract×3, inline_depth×2, auto_inline×2, dont_inline×2 |
@@ -1125,7 +1126,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/object/TUnk_804A6DC0.cpp` | opt_common_subs×1 |
 | `src/pso/player/PhotonBlastResults.cpp` | fp_contract×1 |
 | `src/pso/player/PlayerTaskEffects.cpp` | defer_codegen×4 |
-| `src/pso/player/TObjPlayer.cpp` | inline_depth×5, auto_inline×5, dont_inline×5, fp_contract×4, opt_common_subs×1 |
+| `src/pso/player/TObjPlayer.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/player/TObjPlayerSet.cpp` | opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_80011014.cpp` | scheduling×42, fp_contract×11, opt_common_subs×3, opt_pointer_analysis×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_8002E784.cpp` | opt_common_subs×2, fp_contract×1 |
@@ -1133,18 +1134,16 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/player/TObjPlayer_8008DCF0.cpp` | opt_common_subs×3 |
 | `src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_800AAFBC.cpp` | fp_contract×1 |
-| `src/pso/player/TObjPlayer_800ACA60.cpp` | dont_inline×2, inline_depth×2, fp_contract×1, opt_common_subs×1 |
 | `src/pso/player/TObjPlayer_800BBE90.cpp` | fp_contract×2 |
 | `src/pso/player/TObjPlayer_800F0810.cpp` | opt_common_subs×3, opt_propagation×3 |
 | `src/pso/player/TObjPlayer_80109344.cpp` | opt_propagation×1 |
-| `src/pso/player/TObjPlayer_801542CC.cpp` | inline_depth×2, auto_inline×2, dont_inline×2, fp_contract×1 |
+| `src/pso/player/TObjPlayer_801542CC.cpp` | inline_depth×1, dont_inline×1 |
 | `src/pso/player/TObjPlayer_80178150.cpp` | opt_common_subs×1, opt_propagation×1 |
 | `src/pso/player/TObjPlayer_801A5AEC.cpp` | fp_contract×1, inline_depth×1, auto_inline×1, dont_inline×1 |
-| `src/pso/player/TObjPlayer_801AF2F0.cpp` | scheduling×13, fp_contract×10, opt_propagation×3 |
-| `src/pso/player/TObjPlayer_801BFED4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/player/TObjPlayer_801AF2F0.cpp` | fp_contract×5, opt_propagation×3, scheduling×1 |
 | `src/pso/player/TObjPlayer_801C0808.cpp` | inline_depth×23, auto_inline×23, dont_inline×23, opt_common_subs×1, fp_contract×1 |
 | `src/pso/player/TObjPlayer_801C5AB8.cpp` | fp_contract×1, opt_common_subs×1 |
-| `src/pso/player/TObjPlayer_801C7430.cpp` | inline_depth×262, dont_inline×262, auto_inline×260, opt_common_subs×3, fp_contract×3, opt_propagation×2, opt_dead_assignments×2, opt_lifetimes×2 |
+| `src/pso/player/TObjPlayer_801C7430.cpp` | dont_inline×42, inline_depth×36, opt_common_subs×3, fp_contract×3, opt_lifetimes×2 |
 | `src/pso/player/TObjPlayer_801D3554.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/player/TObjPlayer_801D84CC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
 | `src/pso/player/TObjPlayer_8023E480.cpp` | readonly_strings×1 |
@@ -1154,23 +1153,23 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/player/TObjPlayer_80357734.cpp` | fp_contract×3 |
 | `src/pso/player/TObjPlayer_803DA204.cpp` | optimize_for_size×3, scheduling×1, peephole×1 |
 | `src/pso/player/TObjPlayer_803DC834.cpp` | scheduling×2, peephole×2 |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp` | use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_803E112C.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_803E18C0.cpp` | scheduling×4 |
-| `src/pso/player/TObjPlayer_803E21B8.cpp` | scheduling×6, dont_inline×2, inline_depth×2, peephole×1 |
+| `src/pso/player/TObjPlayer_803E21B8.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/player/TObjPlayer_803E5470.cpp` | use_lmw_stmw×1 |
 | `src/pso/player/TUnk_80490470.cpp` | fp_contract×1 |
 | `src/pso/player/TUnk_804A5D28.cpp` | opt_common_subs×1, fp_contract×1 |
-| `src/pso/protocol/NetworkRuntime.cpp` | dont_inline×8, inline_depth×8, opt_common_subs×6, pool_data×5, opt_propagation×3, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
-| `src/pso/quest/QuestOpcodeHandlers.cpp` | opt_common_subs×2, opt_propagation×2, fp_contract×2, opt_dead_assignments×1, scheduling×1 |
+| `src/pso/protocol/NetworkRuntime.cpp` | opt_common_subs×6, dont_inline×6, inline_depth×6, pool_data×5, opt_lifetimes×1, opt_dead_assignments×1, bool×1 |
+| `src/pso/quest/QuestOpcodeHandlers.cpp` | opt_dead_assignments×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/quest/TQuestThread.cpp` | readonly_strings×1 |
 | `src/pso/system/AdxEncoder.cpp` | opt_propagation×2 |
 | `src/pso/system/AdxExpand.cpp` | fp_contract×1 |
 | `src/pso/system/AdxTalk.cpp` | fp_contract×1 |
 | `src/pso/system/AdxtServer.cpp` | opt_common_subs×1 |
-| `src/pso/system/ChunkMaterialState.cpp` | scheduling×3, use_lmw_stmw×1, optimize_for_size×1, inline_depth×1, auto_inline×1, dont_inline×1, peephole×1, opt_common_subs×1 |
+| `src/pso/system/ChunkMaterialState.cpp` | use_lmw_stmw×1, inline_depth×1, dont_inline×1 |
 | `src/pso/system/CityTraffic.cpp` | opt_propagation×1 |
-| `src/pso/system/GinjaMaterial.cpp` | scheduling×12, peephole×10, use_lmw_stmw×2 |
+| `src/pso/system/GinjaMaterial.cpp` | use_lmw_stmw×2 |
 | `src/pso/system/GinjaModelQueue.cpp` | scheduling×2, peephole×2, use_lmw_stmw×1 |
 | `src/pso/system/LscServer.cpp` | readonly_strings×1 |
 | `src/pso/system/LscStream.cpp` | dont_inline×2, inline_depth×2, readonly_strings×1, auto_inline×1 |
@@ -1211,7 +1210,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/ui/TAdMultiPlyChrSelectGC_802DEF54.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/ui/TAdPlayerLoadGC.cpp` | opt_common_subs×1 |
 | `src/pso/ui/TAdPlayerLoadGC_801E0C30.cpp` | fp_contract×1 |
-| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp` | opt_propagation×10, opt_lifetimes×4, opt_strength_reduction×2, inline_depth×1, auto_inline×1, dont_inline×1 |
+| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp` | opt_propagation×8, opt_lifetimes×2, opt_strength_reduction×2, inline_depth×1, dont_inline×1 |
 | `src/pso/ui/TAdPlayerLoadGC_803F339C.cpp` | opt_dead_assignments×1, optimize_for_size×1 |
 | `src/pso/ui/TAdPlyPltAnimGC.cpp` | fp_contract×4 |
 | `src/pso/ui/TAdPlyStatusGC.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
@@ -1222,7 +1221,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/ui/TAdSinglePlyChrSelectGC_80145778.cpp` | fp_contract×1 |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp` | inline_depth×6, auto_inline×6, dont_inline×6, fp_contract×1, opt_common_subs×1 |
 | `src/pso/ui/TAdSinglePlyChrSelectGC_80202A68.cpp` | inline_depth×3, auto_inline×3, dont_inline×3 |
-| `src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` | fp_contract×3, common×2, defer_codegen×2, opt_common_subs×2, scheduling×2, readonly_strings×1, opt_propagation×1 |
+| `src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` | readonly_strings×1, defer_codegen×1, fp_contract×1, opt_propagation×1 |
 | `src/pso/ui/TAdTitleGC.cpp` | fp_contract×1, opt_common_subs×1 |
 | `src/pso/ui/TChallenge4PItemSelect.cpp` | defer_codegen×1 |
 | `src/pso/ui/TFontSmallTask.cpp` | fp_contract×2 |
@@ -1306,7 +1305,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/unk/text_802C09E0.cpp` | readonly_strings×1 |
 | `src/pso/unk/text_802C9C18.cpp` | fp_contract×1 |
 | `src/pso/unk/text_802D23E0.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
-| `src/pso/unk/text_802EDE90.cpp` | opt_common_subs×1, opt_propagation×1, opt_lifetimes×1 |
+| `src/pso/unk/text_802EDE90.cpp` | opt_common_subs×1, opt_lifetimes×1 |
 | `src/pso/unk/text_802F0E24.cpp` | readonly_strings×1 |
 | `src/pso/unk/text_80307BE8.cpp` | fp_contract×1 |
 | `src/pso/unk/text_8030C340.cpp` | opt_propagation×1 |
@@ -1339,7 +1338,6 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/unk/text_803D8030.cpp` | scheduling×1 |
 | `src/pso/unk/text_803D8DE0.cpp` | scheduling×3, dont_inline×1, inline_depth×1 |
 | `src/pso/unk/text_803D8F74.cpp` | dont_inline×1, inline_depth×1 |
-| `src/pso/unk/text_803D96A8.cpp` | scheduling×5, peephole×3, fp_contract×1 |
 | `src/pso/unk/text_803DA12C.cpp` | scheduling×1, peephole×1 |
 | `src/pso/unk/text_803DA16C.cpp` | use_lmw_stmw×1 |
 | `src/pso/unk/text_803DA798.cpp` | scheduling×8, peephole×6, opt_common_subs×2, optimize_for_size×2, use_lmw_stmw×2 |
@@ -1357,10 +1355,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/unk/text_803E1FC8.cpp` | scheduling×1, peephole×1 |
 | `src/pso/unk/text_803E2070.cpp` | scheduling×1 |
 | `src/pso/unk/text_803E20B0.cpp` | scheduling×1 |
-| `src/pso/unk/text_803E2D70.cpp` | scheduling×8, peephole×6, dont_inline×5, inline_depth×5, use_lmw_stmw×5, opt_common_subs×1, bool×1, opt_propagation×1, optimization_level×1 |
+| `src/pso/unk/text_803E2D70.cpp` | dont_inline×4, inline_depth×4, use_lmw_stmw×4, bool×1, opt_propagation×1, optimization_level×1 |
 | `src/pso/unk/text_803E4D8C.cpp` | scheduling×3, opt_common_subs×2, peephole×1, optimize_for_size×1, use_lmw_stmw×1 |
 | `src/pso/unk/text_803F4D10.cpp` | scheduling×2, peephole×2, optimization_level×2 |
 | `src/pso/unk/text_803F4D84.cpp` | peephole×20, scheduling×19, optimize_for_size×1 |
-| `src/pso/unk/text_80421620.cpp` | opt_common_subs×1 |
 | `src/pso/unk/text_8042E9FC.cpp` | force_active×1 |
 | `src/pso/unk/text_8042EAD4.cpp` | optimize_for_size×4 |

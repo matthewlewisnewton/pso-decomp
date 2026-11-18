@@ -281,9 +281,6 @@ void TQuestVmDownLoadServer__sub_803E6B70(u8 *dst, s32 start, s32 count, s32 mod
     *dst = 0;
 }
 
-#pragma push
-#pragma opt_common_subs off
-
 void TQuestVmDownLoadServer::init_buffer_pointers() {
     quest_download_buffer_ptr = &(*(RecoveredGlobal_803E6ED0_lbl_805A05D0 *)&lbl_805A05D0).value;
     lbl_805D78D0 = &(*(RecoveredGlobal_803E6ED0_lbl_805A05D0 *)&lbl_805A05D0).value;
@@ -297,8 +294,6 @@ void TQuestVmDownLoadServer::init_buffer_pointers() {
     TQuestVmDownLoadServer__sub_803EAE84(0, 0x50, (void *)(0));
     reset_entry_text_accumulator();
 }
-
-#pragma pop
 
 s32 TQuestVmDownLoadServer::get_buffer_size() {
     return 0x48;
@@ -697,8 +692,6 @@ s32 TQuestVmDownLoadServer::match_prefix_length(const u8 *a, const u8 *b, s32 n)
 }
 
 #pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma opt_common_subs off
 
 s32 TQuestVmDownLoadServer::count_matching_name_prefix(s32 arg0, u8 *arg1) {
@@ -980,15 +973,10 @@ s32 TQuestVmDownLoadServer::find_file_info_index() {
     return 0;
 }
 
-#pragma push
-#pragma opt_common_subs off
-
 void TQuestVmDownLoadServer::set_file_info_name() {
     s32 arg0 = (s32)this;
     strcpy((void *) (quest_vm_download_server_file_info), (void *)arg0);
 }
-
-#pragma pop
 
 s32 TQuestVmDownLoadServer__sub_803E8788(int _w0, void * _w1, int _w2) {
     return -1;
