@@ -545,6 +545,9 @@ pso/object/TObjDFDemo5.cpp:
 	.sdata      start:0x805D27A0 end:0x805D27A4
 	.sdata2     start:0x805D8A08 end:0x805D8A20
 
+pso/boss/DarkFalzDemoConstants.cpp:
+	.sdata2     start:0x805D8A20 end:0x805D8A38
+
 pso/unk/text_80050050.cpp:
 	.text       start:0x80050050 end:0x80050134
 
