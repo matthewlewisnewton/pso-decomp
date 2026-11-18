@@ -1012,7 +1012,6 @@ struct VObj_8_684c72 : VBase_8_684c72 {
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 struct ByteBlock_C { u8 bytes[0xc]; };
 #pragma pop
@@ -1050,7 +1049,6 @@ struct Pkt_801D1888 { u8 cmd; u8 size; u8 pad[2]; u16 a; u16 b; };
 struct VOff_801D192C_arg0_801D18B0 { char pad_0[0x4]; char f_4[1]; };
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 struct ByteBlock_8 { u8 bytes[0x8]; };
 #pragma pop
@@ -2217,8 +2215,6 @@ void draw_and_send_field1c__10TObjPlayerFi(s32 arg0) {
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma opt_dead_assignments off
 void TObjPlayer__update_off_floor_state(u8 *player) {
   f32 var_f31;
   s16 *new_var;
@@ -2253,8 +2249,6 @@ extern int fold_flush_0;
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma opt_dead_assignments off
 void TObjPlayer__sub_801C8998(u8 *arg0) {
   f32 var_f0;
   f32 var_f1;
@@ -6330,7 +6324,6 @@ int get_flag__10TObjPlayerFPv(void* p) { return (*(u32*)((char*)p + 0x334) >> 29
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 u8 *TObjPlayer__sub_801D0EA0(u8 *arg0, u8 *arg1) {
     ((s32 (*)(void))TFontSmallLobby__sub_801C0228)();
@@ -6498,7 +6491,6 @@ void TObjPlayer::swap_endian_words() { ((G_ClientIDHeader *)this)->bswap(); bswa
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 u8 *TObjPlayer__sub_801D1514(u8 *arg0, u8 *arg1) {
     TFontSmallLobby__sub_801C0228((void*)(arg0));
@@ -6583,7 +6575,6 @@ void TObjPlayer::read_swapped_fields() { ((G_ClientIDHeader *)this)->bswap(); bs
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 u8 *copy_6x4b_hit_by_enemy_packet__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1) {
     ((u8 * (*)(void *))TFontSmallLobby__sub_801C0228)(arg0);
@@ -6657,7 +6648,6 @@ void TObjPlayer::swap_endian_shorts() { bswap_16__FPUs((char*)this + 0x2); bswap
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 s32 copy_photon_blast_data__10TObjPlayerFiPv(s32 arg0, u8 *arg1) {
   s32 var_r30;
@@ -6689,7 +6679,6 @@ extern int fold_flush_11;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void *TObjPlayer::init_6x49_packet() {
     TObjPlayer__sub_801D1F44((void*)((void *)((char *)this + 4)));
@@ -6758,7 +6747,6 @@ void TObjPlayer::send_swapped_header() { swap_header(); send_subcommand(this); }
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline on
 #pragma dont_inline off
 u8 *TObjPlayer__sub_801D21CC(u8 *arg0, u8 *arg1) {
     TFontSmallLobby__sub_801C0228((void*)(arg0));
@@ -6816,14 +6804,8 @@ void send_6x46_attack_finished(u8 *arg0) {
 void TObjPlayer__sub_801D2448(void* p) { ((G_ClientIDHeader *)p)->bswap(); ((TObjPlayer *)((char*)p + 0x4))->bswap_entry_list(); }
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 u8 get_6x46_strike_packet_size(s32 arg0) {
     return (u8) (0x30 - ((0xA - get_captured_target_count((s32 *)((void *) (arg0 + 4)))) * 4));
@@ -6832,14 +6814,8 @@ extern int fold_flush_14;
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 void *TObjPlayer__sub_801D24B0(void *arg0, void *arg1) {
@@ -6852,14 +6828,9 @@ extern int fold_flush_15;
 #pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
+#pragma dont_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void *TObjPlayer::copy_6x40_walk_to_position_packet(void *arg1) {
     TFontSmallLobby__sub_801C0228(this);
@@ -6871,13 +6842,10 @@ extern int fold_flush_16;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 u8 *TObjPlayer__sub_801D2540(u8 *arg0, u8 *arg1) {
     TFontSmallLobby__sub_801C0228((void*)((void*)(arg0)));
@@ -6893,14 +6861,10 @@ extern int fold_flush_17;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 u8 *TObjPlayer__sub_801D25AC(u8 *arg0, u8 *arg1) {
     TFontSmallLobby__sub_801C0228((void*)(arg0));
     *(s16 *)((s8 *)arg0 + 4) = (s16) *(s16 *)((s8 *)arg1 + 4);
@@ -7035,53 +6999,14 @@ int TUnk_804DDD28::vfunc_23() { return -1; }
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer::get_field_4() { return *(s32*)((char*)this + 0x4); }
 #pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s16 TObjPlayer__sub_801D2824(void* p) { return *(s16*)((char*)p + 0x8); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s16 TObjPlayer__sub_801D282C(void* p) { return *(s16*)((char*)p + 0x0); }
-#pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 #pragma opt_common_subs off
 void add_death_sink_progress(u8 *arg0, f32 farg0) {
     *(f32 *)((s8 *)arg0 + 8) = (f32) (*(f32 *)((s8 *)arg0 + 8) + farg0);
@@ -7092,111 +7017,34 @@ void add_death_sink_progress(u8 *arg0, f32 farg0) {
 extern int fold_flush_19;
 #pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-
 f32 TObjPlayer__sub_801D2858(void* p) { return *(f32*)((char*)p + 0x8); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::increment_run_counter() {
     u8 *arg0 = (u8 *)this;
     *(s32 *)((s8 *)arg0 + 4) = (s32) (*(s32 *)((s8 *)arg0 + 4) + 1);
 }
 extern int fold_flush_20;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer__sub_801D2870(void* p) { return *(s32*)((char*)p + 0x4); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer__sub_801D2878(void* p) { return *(s32*)((char*)p + 0xc); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::bswap_field_u32() { return bswap_32__FPUl(this); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void* TObjPlayer__sub_801D28A0(void* p, void* a1) { TFontSmallLobby__sub_801C0228((void*)(p)); *(void**)((char*)p + 0x4) = *(void**)((char*)a1 + 0x4); return p; }
-#pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void TObjPlayer__sub_801D28DC(void* p) { bswap_32__FPUl(p); bswap_32__FPUl((char*)p + 0x4); }
 #pragma pop
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 u8 *copy_6x4c_hit_by_enemy_packet__10TObjPlayerFPvPv(u8 *arg0, u8 *arg1) {
     TFontSmallLobby__sub_801C0228((void*)((void*)(arg0)));
@@ -7210,13 +7058,10 @@ extern int fold_flush_21;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void *TObjPlayer::copy_packet_pos_6x42(void *arg1) {
     TFontSmallLobby__sub_801C0228(this);
@@ -7228,241 +7073,50 @@ extern int fold_flush_22;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::clear_photon_blast_state() { return ((int (*)(void*, int))clear__8FlagWordFUl)((char*)this + 0x40, 62); }
 #pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::trigger_photon_blast() { return ((int (*)(void*, int))clear__8FlagWordFUl)((char*)this + 0x40, 4); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::check_photon_blast_flag() { return ((int (*)(void*, int))set__8FlagWordFUl)((void*)((char*)this + 0x40), 8); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::check_flag_clear() { return (((int (*)(void*, int))test_flags_any)((void*)((char*)this + 0x40), 1)) == 0; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer__sub_801D2A50(void* p) { return ((int (*)(void*, int))test_flags_any)((void*)((char*)p + 0x40), 8); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer__sub_801D2A78(void* p, f32 v) { *(f32*)((char*)p + 0x10) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer__sub_801D2A80(void* p) { return *(s32*)((char*)p + 0x8); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer__sub_801D2A88(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 8) = (s32) (*(s32 *)((s8 *)arg0 + 8) - 1);
 }
 extern int fold_flush_23;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 f32 TObjPlayer__sub_801D2A98(void* p) { return *(f32*)((char*)p + 0xc); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::set_field_0c(f32 v) { *(f32*)((char*)this + 0xc) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::set_field8(s32 v) { *(s32*)((char*)this + 0x8) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 Ent_801D2AB0 *TObjPlayer__sub_801D2AB0(Obj_801D2AB0 *p, s32 i) {
     return &p->arr[i];
 }
 extern int fold_flush_24;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::set_field_3c(f32 v) { *(f32*)((char*)this + 0x3c) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::start_photon_blast_action() { return ((int (*)(void*, int))set__8FlagWordFUl)((void*)((char*)this + 0x40), 4); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 f32 TObjPlayer::get_dist() { return *(f32*)((char*)this + 0x10); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void* get_element__10TObjPlayerFPvi(void* a0, int a1) {  return (char*)a0 + a1 * 24; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int is_alt_photon_blast_bank_empty__10TObjPlayerFPv(void* p) { return is_pb_palette_bank_empty((char*)p + 0x24); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::bswap_u16_pair_list() {
     Obj_801D2B2C *arg0 = (Obj_801D2B2C *)this;
     s32 i;
@@ -7472,30 +7126,12 @@ void TObjPlayer::bswap_u16_pair_list() {
     }
 }
 extern int fold_flush_25;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::bswap_u16_pair() { bswap_16__FPUs(this); bswap_16__FPUs((char*)this + 0x2); }
-#pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma fp_contract on
 s32 TObjPlayer__sub_801D2BB8(s32 arg0, s32 arg1) {
@@ -7508,13 +7144,10 @@ extern int fold_flush_26;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void TObjPlayer::bswap_entry_list() {
     s32 i;
@@ -7528,281 +7161,73 @@ extern int fold_flush_27;
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 void TObjPlayer::set_technique_state(s32 v) { *(s32*)((char*)this + 0xc) = v; }
 #pragma pop
 
 #pragma push
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TechniqueCastState::set_level(u8 v) { *(u8*)((char*)this + 0x0) = v; }
 #pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::test_bit1_at_10() { return ((int (*)(void*, int))test_flags_any)((void*)((char*)this + 0x10), 2); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer__sub_801D2CAC(u8 *arg0) {
     *(s32 *)((s8 *)arg0 + 0xC) = (s32) (*(s32 *)((s8 *)arg0 + 0xC) - 1);
 }
 extern int fold_flush_28;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 f32 TObjPlayer::get_float_14() { return *(f32*)((char*)this + 0x14); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer__sub_801D2CC4(void* p, f32 v) { *(f32*)((char*)p + 0x14) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void* get_technique_data__10TObjPlayerFPv(void* p) { return (char*)p + 0x20; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::set_tech_override(u8 v) { *(u8*)((char*)this + 0x1) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 f32 get_attack_controller_rate(void* p) { return *(f32*)((char*)p + 0x4); }
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 void TObjPlayer::set_attack_target(s16 v) { *(s16*)((char*)this + 0x2) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void* get_anim_field_c__10TObjPlayerFPv(void* p) { return (char*)p + 0xc; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 f32 TObjPlayer::calc_attack_stage_multiplier(s32 arg1) {
     s32 arg0 = (s32)this;
     return *(f32 *)((s8 *)((u8 *)(&attack_type_accuracy_scales.value) + (arg1 * 4)) + 0) * *(f32 *)((s8 *)((u8 *)(&attack_combo_accuracy_multipliers.value) + (get_validated_attack_stage((u8 *)(arg0)) * 4)) + 0);
 }
 extern int fold_flush_29;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int on_attack_finished__10TObjPlayerFPv(void* p) { return ((int (*)(void*))copy_attack_targets)((char*)p + 0x30); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::set_flag_1_at_c() { return ((int (*)(void*, int))set__8FlagWordFUl)((void*)((char*)this + 0xc), 1); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::increment_strike_counter() {
     u8 *arg0 = (u8 *)this;
     *(s16 *)((s8 *)arg0 + 0x12) = (s16) (*(s16 *)((s8 *)arg0 + 0x12) + 1);
 }
 extern int fold_flush_30;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::set_action_type(s32 v) { *(s32*)((char*)this + 0x1c) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer::get_field_1c() { return *(s32*)((char*)this + 0x1c); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::request_heavy_attack_particles() {
     u16 *arg0 = (u16 *)this;
     emit_heavy_attack_particles((s32)((s8 *)arg0 + 4), (s32)(*arg0));
 }
 extern int fold_flush_31;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void emit_heavy_attack_particles(s32 arg0, s32 arg1) {
     TObjPlayer::check_hit_by_id(arg0, arg1, 0xBB);
     TObjPlayer::check_hit_by_id(arg0, arg1, 0x1B7);
 }
 extern int fold_flush_32;
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 void clear_lockon_list__10TObjPlayerFPvPvff(s32 *arg0, void * _w1, f32 _w2, f32 _w3) {
     s32 var_r31;
@@ -7817,36 +7242,14 @@ void clear_lockon_list__10TObjPlayerFPvPvff(s32 *arg0, void * _w1, f32 _w2, f32 
     } while (var_r31 < 0xA);
 }
 extern int fold_flush_33;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::advance_and_clamp_state() {
     if ((*(s16 *)((s8 *)this + 0x10) = *(s16 *)((s8 *)this + 0x10) + 1) > 2) {
         set_saved_attack_stage((s16)(2));
     }
 }
 extern int fold_flush_34;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s16 get_validated_attack_stage(u8 *arg0) {
     s16 var_r31;
     var_r31 = *(s16 *)((s8 *)arg0 + 0x10);
@@ -7856,18 +7259,7 @@ s16 get_validated_attack_stage(u8 *arg0) {
     return var_r31;
 }
 extern int fold_flush_35;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer__sub_801D2EE8(s16 arg0) {
     if ((arg0 < 0) || (arg0 >= 3)) {
         return 0;
@@ -7875,18 +7267,7 @@ s32 TObjPlayer__sub_801D2EE8(s16 arg0) {
     return 1;
 }
 extern int fold_flush_36;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s16 TObjPlayer__sub_801D2F0C(void *arg0) {
     s16 var_r31;
     var_r31 = *(s16 *)((s8 *)arg0 + 2);
@@ -7896,18 +7277,7 @@ s16 TObjPlayer__sub_801D2F0C(void *arg0) {
     return var_r31;
 }
 extern int fold_flush_37;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s16 TObjPlayer__sub_801D2F4C(s16 *arg0) {
     s16 var_r31;
     var_r31 = *arg0;
@@ -7917,18 +7287,7 @@ s16 TObjPlayer__sub_801D2F4C(s16 *arg0) {
     return var_r31;
 }
 extern int fold_flush_38;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer__sub_801D2F8C(s16 arg0) {
     if ((arg0 < 0) || (arg0 >= 3)) {
         return 0;
@@ -7936,18 +7295,7 @@ s32 TObjPlayer__sub_801D2F8C(s16 arg0) {
     return 1;
 }
 extern int fold_flush_39;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void queue_physical_attack_input(PlayerAttackController *self, TObjPlayer *obj, s32 arg2, s16 arg3) {
     s16 t;
     if (((int (*)(void*, int))test_flags_any)((void*)(((void *)get_anim_field_c__10TObjPlayerFPv((void*)(self)))), 2) == 0 ||
@@ -7968,18 +7316,7 @@ void queue_physical_attack_input(PlayerAttackController *self, TObjPlayer *obj, 
     }
 }
 extern int fold_flush_40;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer::update_if_flag8_set() {
     s32 arg0 = (s32)this;
     if (((int (*)(void*, int))test_flags_any)((void*)(arg0 + 0xC), 8) != 0) {
@@ -7988,18 +7325,7 @@ s32 TObjPlayer::update_if_flag8_set() {
     return 0;
 }
 extern int fold_flush_41;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s32 TObjPlayer::tick_countdown_timer() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r0;
@@ -8013,36 +7339,14 @@ s32 TObjPlayer::tick_countdown_timer() {
     return 0;
 }
 extern int fold_flush_42;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void apply_anim_action__10TObjPlayerFPvi(u8 *arg0, s32 arg1) {
     ((FlagWord *)((void *) (arg0 + 0xC)))->set(2);
     *(s32 *)((s8 *)arg0 + 0x1C) = (s32) ((TObjPlayer *)arg1)->get_attack_recovery_count();
     TObjPlayer::check_status_flag_128((void*)((void *) (arg1)));
 }
 extern int fold_flush_43;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void begin_player_attack(u8 *player, s32 arg1, s16 arg2, s32 arg3) {
   s8 *new_var;
   ((TObjPlayer *)player)->set_saved_attack_stage((s16)((void *) arg2));
@@ -8059,18 +7363,6 @@ void begin_player_attack(u8 *player, s32 arg1, s16 arg2, s32 arg3) {
   }
 }
 extern int fold_flush_44;
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 s32 get_first_target_position__10TObjPlayerFPvPv(void *arg0, Vec_801D3224 *out) {
     Slot_801D3224 *s = (Slot_801D3224 *)TObjPlayer__sub_801D345C((void*)(arg0));
@@ -8087,18 +7379,7 @@ s32 get_first_target_position__10TObjPlayerFPvPv(void *arg0, Vec_801D3224 *out) 
     return 1;
 }
 extern int fold_flush_45;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void *capture_lockon_targets(Self_801D32A0 *self, Pl_801D32A0 *player) {
     Cur_801D32A0 *cur;
     s32 n;
@@ -8127,18 +7408,7 @@ void *capture_lockon_targets(Self_801D32A0 *self, Pl_801D32A0 *player) {
     return &self->count;
 }
 extern int fold_flush_46;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::reset_movement_state() {
     *(s16 *)((s8 *)((u8 *)this) + 2) = 0;
     *(s16 *)((s8 *)((u8 *)this) + 0) = 0;
@@ -8155,147 +7425,25 @@ void TObjPlayer::reset_movement_state() {
     clear_lockon_list__10TObjPlayerFPvPvff((s32 *)((void *)(((u8 *)this) + 0x30)), (void *)this, lbl_805DC3C0, lbl_805DC3BC);
 }
 extern int fold_flush_47;
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 s16 TObjPlayer::get_obj_id() { return *(s16*)((char*)this + 0x2); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TObjPlayer::set_saved_attack_stage(s16 v) { *(s16*)((char*)this + 0x10) = v; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::is_flag32_clear() { return (((int (*)(void*, int))test_flags_any)((void*)((char*)this + 0xc), 32)) == 0; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer__sub_801D345C(void* p) { return get_captured_target_entry((char*)p + 0x30, 0); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::get_field_340(int _w1) { return ((TObjPlayer *)((char*)this + 0x340))->set_action_palette_mode(); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TObjPlayer::check_status_flag_128(void* p) { return ((int (*)(void*, int))sub_8011E204__10TObjPlayerFl)(p, 128); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void handle_6x54(void) {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void handle_6x8C(void) {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void handle_6x65(void) {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void handle_6x8B(void) {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void handle_6x64(void) {  }
-#pragma pop

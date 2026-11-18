@@ -4,7 +4,6 @@
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/NinjaUtil.h"
-#include "pso/player/TUnk_80491460.h"
 #include "pso/object/TObjMotion.h"
 #include "pso/player/TUnk_80491478.h"
 
@@ -28,27 +27,6 @@ struct RecoveredGlobal_800ABA9C_lbl_8058D490 { s32 value; u8 remaining[0x2C]; };
 typedef char RecoveredGlobal_800ABA9C_lbl_8058D490_size[sizeof(RecoveredGlobal_800ABA9C_lbl_8058D490) == 0x30 ? 1 : -1];
 
 struct RecoveredGlobal_800ABA9C_lbl_8058D490;
-typedef struct Vec_800AB31C {
-    f32 x, y, z;
-} Vec_800AB31C;
-
-typedef struct Rot_800AB31C {
-    s32 x, y, z;
-} Rot_800AB31C;
-
-typedef struct Obj_800AB31C {
-    u8 pad0[0x18];
-    void *vptr;
-    Vec_800AB31C pos;
-    Vec_800AB31C pos2;
-    u8 mtx34[0x58 - 0x34];
-    f32 f58;
-    s32 f5C;
-    s32 f60;
-    s32 f64;
-    s32 f68;
-} Obj_800AB31C;
-
 typedef struct Vec_800ABB38 {
     f32 x, y, z;
 } Vec_800ABB38;
@@ -75,45 +53,6 @@ typedef struct Obj_800ABB38 {
     u8 padC4[0x3C4 - 0xC4];
     VObj_800ABB38 *effs[2];
 } Obj_800ABB38;
-
-typedef struct Pair_800AB0EC {
-    s32 a;
-    f32 b;
-} Pair_800AB0EC;
-
-struct VBase_800AB0EC { char pad[0x18]; };
-
-struct VObj_800AB0EC : VBase_800AB0EC {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8();
-    virtual void m9();
-    virtual void m10();
-    virtual void m11();
-    virtual void m12();
-    virtual void m13();
-    virtual void m14();
-    virtual void m15();
-    virtual void m16();
-    virtual void m17();
-    virtual void m18();
-    virtual void m19();
-    virtual void m20();
-    virtual s32 m21(s32, Pair_800AB0EC *, s32, s32, s32);
-};
-
-typedef struct Obj_800AB0EC {
-    u8 pad0[0x1C];
-    u8 pos[0x64 - 0x1C];
-    s32 f64;
-    s32 f68;
-} Obj_800AB0EC;
 
 struct Vec_800AB4F4 { f32 x, y, z; };
 
@@ -172,23 +111,13 @@ void __dl__7TObjectFPv(void *);
 void queue_destruction__7TObjectFv(void *);
 extern s32 lbl_80491478[];
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
-u32 csnVector(void *, void *, int);
-void *get_player_by_client_id(s32 i);
 s32 vec3_add_to(void *, void *);
-extern const f32 lbl_805D9B5C;
-extern const f32 lbl_805D9B60;
 f32 fabs_float(f32);
 s32 rotate_vector_by_matrix(int, void *, void *);
 s32 push_matrix_from(void *);
 extern RecoveredGlobal_800ABA9C_lbl_8058D490 identity_matrix;
-void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
-extern Vec_800AB31C lbl_8043ACE0[];
-extern s32 __vt__13TUnk_80491460[];
 extern void *tl_06;
-extern const f32 lbl_805D9B64;
 
-extern Pair_800AB0EC lbl_8043ACEC[];
-extern const f32 lbl_805D9B58;
 f32 newton_sqrtf();
 s32 project_actor_to_ground(void *, Vec_800AB4F4 *, int);
 s32 subtract_vector(void *, void *);
@@ -202,93 +131,7 @@ extern s32 player_sub_800ab7a0_id_table[];
 extern void *dubchik_resource;
 
 u8 *TObjPlayer__sub_800AB7A0(u8 *arg0, s32 arg1, u8 *arg2, s32 arg3, s32 arg4);
-void __dt__7TObjectFv(void *, int);
 
-s32 TUnk_80491460::try_hit_target(int arg1) {
-    u8 *e = (u8 *)arg1;
-    Obj_800AB0EC *o = (Obj_800AB0EC *)this;
-    if (e != NULL && !(*(s32 *)(e + 0x30) & 0xA00) && !(xz_distance_squared((Vec *)o->pos, (Vec *)(e + 0x2FC)) > lbl_805D9B58)) {
-        Pair_800AB0EC tmp = lbl_8043ACEC[0];
-        tmp.b = (f32)this->m_68;
-        Pair_800AB0EC arg = tmp;
-        ((VObj_800AB0EC *)e)->m21(o->f64, &arg, 0, -1, -1);
-        spawn_particle_effect((const Vec *)(e + 0x2FC), 0xFB);
-        queue_destruction__7TObjectFv(o);
-    }
-}
-
-void TUnk_80491460::run_task() {
-  s32 var_r31;
-  u8 *now_loading;
-  s32 new_var;
-    u8 *arg0 = (u8 *)this;
-  vec3_add_to((u8 *)&this->unk_1C, arg0 + 0x34);
-  ((TUnk_80491460 *)arg0)->m_60 = (s32) ((((TUnk_80491460 *)arg0)->m_60) + 1);
-  if (!((((TUnk_80491460 *)arg0)->m_60) & 3))
-  {
-    if (csnVector(arg0 + 0x28, (u8 *)&this->unk_1C, -1) != 0U)
-    {
-      queue_destruction__7TObjectFv(arg0);
-      return;
-    }
-    VecCopy__FP3VecPC3Vec(arg0 + 0x28, (u8 *)&this->unk_1C);
-    goto block_4;
-  }
-  block_4:
-  now_loading = (u8 *) (*((u8 **) (((s8 *) arg0) + 0x5C)));
-  if (now_loading != 0)
-  {
-    ((TParticleCtrl *)now_loading)->set_position((u8 *)&this->unk_1C);
-  }
-  ((TUnk_80491460 *)arg0)->m_58 = (f32) ((((TUnk_80491460 *)arg0)->m_58) + lbl_805D9B5C);
-  if ((((TUnk_80491460 *)arg0)->m_58) >= lbl_805D9B60)
-  {
-    queue_destruction__7TObjectFv(arg0);
-    return;
-  }
-  var_r31 = 0;
-  do
-  {
-    if (!arg0)
-    {
-    }
-    new_var = (s32)get_player_by_client_id(var_r31);
-    ((TUnk_80491460 *)arg0)->try_hit_target((int)((int) new_var));
-    var_r31 += 1;
-  }
-  while (var_r31 < 0xC);
-}
-
-void *TObjPlayer::dt(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = __vt__13TUnk_80491460;
-        if ((void *)this->rotation.pitch != NULL) { queue_destruction__7TObjectFv((void *)this->rotation.pitch); }
-        __dt__7TObjectFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
-    }
-    return this;
-}
-
-}
-TUnk_80491460::TUnk_80491460(void *arg1, s32 arg2, s32 arg3, s32 arg4) : TObject((TObject *)tl_06) {
-    VecCopy__FP3VecPC3Vec(&((Obj_800AB31C *)this)->pos, arg1);
-    VecCopy__FP3VecPC3Vec(&((Obj_800AB31C *)this)->pos2, arg1);
-    ((Obj_800AB31C *)this)->f58 = lbl_805D9B64;
-    push_matrix_from(&identity_matrix);
-    Vec_800AB31C v = lbl_8043ACE0[0];
-    rotate_matrix_y(0, arg2);
-    rotate_vector_by_matrix(0, &v, ((Obj_800AB31C *)this)->mtx34);
-    pop_matrix();
-    ((Obj_800AB31C *)this)->f64 = arg3;
-    Rot_800AB31C r;
-    r.x = 0;
-    r.y = arg2 + 0x4000;
-    r.z = 0x4000;
-    ((Obj_800AB31C *)this)->f5C = (s32)spawn_particle_effect_with_rotation(arg1, &r, 0x6D, 2);
-    ((Obj_800AB31C *)this)->f60 = 0;
-    ((Obj_800AB31C *)this)->f68 = arg4;
 }
 
 void TObjPlayer::cancel_action() {

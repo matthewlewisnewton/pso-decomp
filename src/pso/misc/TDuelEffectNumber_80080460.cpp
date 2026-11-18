@@ -47,9 +47,6 @@ f64 pow();
 
 extern void *TDuelEffectString__class_name;
 
-#pragma push
-#pragma opt_common_subs off
-#pragma opt_propagation off
 void render__17TDuelEffectStringFv(u8 *duel_effect_number) {
     f32 spC;
     f32 sp8;
@@ -71,7 +68,6 @@ void render__17TDuelEffectStringFv(u8 *duel_effect_number) {
     TWindowSubStatusDisp::get_player();
     set_default_alpha_blend();
 }
-#pragma pop
 
 void TDuelEffectString::run_task() {
     u8 *arg0 = (u8 *)this;

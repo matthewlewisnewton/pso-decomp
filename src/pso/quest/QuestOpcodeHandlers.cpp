@@ -795,11 +795,6 @@ struct ItemData_801E7810 {
     u8 data2[4];
 };
 
-struct RecoveredGlobal_801F196C_lbl_804499A8 {
-    s32 value;
-    u8 remaining[0x70];
-};
-
 struct ItemData_801E8000 {
     u8 b0, b1, b2, b3, b4, b5, b6;
     s8 b7;
@@ -812,8 +807,6 @@ struct ItemData_801E8000 {
 };
 
 typedef char RecoveredGlobal_8000F7FC_lbl_80515F48_size[sizeof(RecoveredGlobal_8000F7FC_lbl_80515F48) == 0x28 ? 1 : -1];
-
-typedef char RecoveredGlobal_801F196C_lbl_804499A8_size[sizeof(RecoveredGlobal_801F196C_lbl_804499A8) == 0x74 ? 1 : -1];
 
 union U_801E8784 { s32 i; f32 f; };
 
@@ -1991,7 +1984,6 @@ extern s32 gba_download_data_buffer;
 extern s32 gba_download_data_size;
 extern int evt2_random_enemies_mode;
 extern RecoveredGlobal_8000F7FC_lbl_80515F48 fn_801F3480;
-extern RecoveredGlobal_801F196C_lbl_804499A8 quest_sound_effect_ids;
 extern Pair_801F1838 lbl_80449A38[];
 extern Tbl_801EDC98 lobby_sub_801edc98_id_table;
 extern RecoveredGlobal_801EDC24_lbl_80449A88 lbl_80449A88;
@@ -4373,8 +4365,6 @@ void qst_op_shrink(s32 arg0) {
 }
 
 #pragma push
-#pragma opt_common_subs on
-#pragma opt_propagation on
 #pragma opt_dead_assignments off
 void qst_op_read_switch_flag_on_floor(s32 arg0) {
     s32 var_r31;
@@ -5404,8 +5394,6 @@ void qst_op_at_coords_call(u8 arg0) {
     ((void (*)(NpcSet_801EFD3C *, s32 *))create_quest_col)(&set, &qst_registers[first]);
 }
 
-#pragma push
-#pragma fp_contract on
 void qst_op_gettime(u8 arg0) {
     s32 spC;
     s32 sp8;
@@ -5413,7 +5401,6 @@ void qst_op_gettime(u8 arg0) {
     DateToSeconds((DateStamp *)(&spC), (int *)(&sp8));
     qst_registers[arg0] = sp8;
 }
-#pragma pop
 extern "C" {
 
 void qst_op_unhide_ene(s32 arg0) {
@@ -6083,7 +6070,7 @@ void qst_op_bgm(void) {
 }
 
 void qst_op_se(void) {
-    play_sound_effect((s32)((int) (*(s32 *)((s8 *)((u8 *)(&quest_sound_effect_ids.value) + (qst_args[0] * 4)) + 0))), 0, 0, 0);
+    play_sound_effect(quest_sound_effect_ids[qst_args[0]], 0, 0, 0);
 }
 
 void qst_op_fadeout(void) { TLobby::init_fadeout_state((s32)((void*)0)); qst_suspend_reason = QST_WAIT_FADE; }
@@ -6348,13 +6335,10 @@ void qst_op_jmp_on(s32 arg0, u8 arg1, u8 *arg2) {
 }
 }
 
-#pragma push
-#pragma fp_contract on
 void qst_op_call(u16 arg0) {
     qst_call_stack_push((int)((void *) (qst_pc)));
     qst_pc = qst_function_table[arg0];
 }
-#pragma pop
 
 void qst_op_modi(s32 arg0, u32 arg1) {
     qst_registers[(u8)arg0] %= arg1;
@@ -6416,10 +6400,7 @@ void qst_op_sub(s32 arg0, s32 arg1) {
     qst_registers[(u8)arg0] -= qst_registers[(u8)arg1];
 }
 
-#pragma push
-#pragma scheduling off
 void qst_op_addi(int a0, int a1) { qst_registers[(unsigned char)(a0)] += a1; }
-#pragma pop
 
 void qst_op_add(s32 arg0, s32 arg1) {
     qst_registers[(u8)arg0] += qst_registers[(u8)arg1];

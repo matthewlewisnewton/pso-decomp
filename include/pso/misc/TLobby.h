@@ -9,6 +9,8 @@
 #include "pso/network/ExiSendCompletion.h"
 
 struct TItemList;
+struct NetPacket;
+struct NetworkAddress;
 
 struct TLobbyFloorItemEntry {
     u8 n;
@@ -28,6 +30,8 @@ struct Lobby_8001FA1C;
 struct B_803FADA0;
 struct Self_803FD74C;
 struct Self_80402CE0;
+
+struct SpriteDescriptor;
 
 struct TLobby : public TObject {
     // Whether a challenge-mode task is running.
@@ -445,7 +449,7 @@ struct TLobby : public TObject {
     static void init_object_flag();
     static void set_flag_1_at_6c84();
     static void clear_flag_at_6c84();
-    static void*get_record(int a0);
+    static SpriteDescriptor *get_record(int index);
     void queue_destruction_and_cleanup();
     void set_flag_and_clear_download();
     static void destroy_global_object();
@@ -554,14 +558,7 @@ struct TLobby : public TObject {
     static s32 calc_delta(s32 arg0, s32 arg1);
     static void reset_player_state();
     void init_params();
-    void init_ipv6_interface_config();
-    void init_udp_socket_config();
-    void init_buffer_descriptor_b();
-    void init_buffer_descriptor_a();
     void init_buffer_desc_a();
-    void init_net_buffer_config();
-    void init_net_func_table();
-    void init_net_recv_desc();
     u8 *layout_buffers(u8 *p, u8 *end);
     static s32 alloc_buffer_slot(s32 size);
     static s16 init_net_session();
@@ -573,7 +570,6 @@ struct TLobby : public TObject {
     static s32 init_net_state_b();
     s32 set_active_flag();
     s32 mark_sub_ready();
-    void dispatch_received_packet(s32 arg1);
     static s16 get_checked_status_value(s16 arg0);
     static s32 clear_socket_slot(s16 i);
     static void update_connection_state(Self_803FD74C *self);
@@ -594,26 +590,23 @@ struct TLobby : public TObject {
     static void run_net_thread_loop();
     static void process_expired_timers();
     static s32 shutdown_network_handle();
-    void init_msg(s32 arg1);
-    void init_packet_header(s32 arg1);
-    void set_value_and_enable(s32 arg1);
     static s32 reset_socket_table();
-    static u8 *alloc_free_entry();
+    static NetPacket *alloc_free_entry();
     static s32 dispatch_slot_a(s16 arg0, s32 arg1);
     static s32 dispatch_slot_b(s16 arg0, s32 arg1);
     static s32 forward_net_op(s16 arg0, u8 *arg1, u8 *arg2);
-    static s16 forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s8 arg6, s32 arg7);
+    static s16 forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s16 arg6, s32 arg7);
     static void flush_flags_step();
     static void run_connect_step();
     static s16 init_net_sockets();
     static s32 send_ethernet_frame(s16 idx, s16 mode, u8 *addr, void *pkt);
     static s32 forward_socket_op_by_handle(s16 id, u8 *a, u8 *b);
     static s32 clear_table_entry_locked(s16 arg0);
-    static s32 call_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+    static s32 call_handler_by_index(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4);
     static s32 dispatch_handler_by_index(s16 arg0, s32 arg1, s32 arg2, s32 arg3);
     static s32 dispatch_handler_by_id(s16 arg0, s32 arg1, s32 arg2);
-    static s32 invoke_socket_callback(s16 i, s32 arg);
-    static s32 call_entry_callback(s16 i, s32 arg);
+    static s16 invoke_socket_callback(s16 i, s32 arg);
+    static s32 call_entry_callback(s16 i, s16 arg);
     static s16 is_slot_flag_0x40_set(s16 i);
     static s32 is_slot_flag_0x20_set(s16 i);
     static s16 is_entry_flag10_set(s16 i);
@@ -622,16 +615,10 @@ struct TLobby : public TObject {
     static s32 clear_all_used_records();
     static void tick_connection_timeouts();
     static void complete_pending_request(s16 id);
-    s32 build_dns_query_aaaa(u8 *name, s16 len);
-    s32 build_dns_query_a(u8 *name, s16 len);
-    s32 close_and_reset_connection();
-    void dispatch_request_callback(s16 arg1);
-    static s32 dispatch_by_addr_family(s32 arg0, u8 *arg1, u8 *arg2, u8 *arg3, void *arg4, void *arg5);
-    s32 is_multicast_address(s16 arg1);
-    s16 compare_sockaddr(u8 *arg1);
+    static s16 dispatch_by_addr_family(NetPacket *packet, NetworkAddress *dst, NetworkAddress *src,
+                                       u8 *ipv4_options, void *ipv6_options, s32 protocol);
     static s32 init_ipv4_interfaces();
     static u16 calc_pseudo_header_checksum(s32 src, s32 dst, s8 proto, void *pkt, s16 flag);
-    u16 calc_ip_checksum(s16 b);
     static s32 is_lookup_found(u32 arg0, u32 arg1);
     static s16 *get_active_entry_by_index(s16 arg0);
     static void tick_entry_timers();
@@ -644,7 +631,6 @@ struct TLobby : public TObject {
     static s32 reset_net_value();
     static s32 init_packet_fragment_pools();
     static void update_timeout_entries();
-    s32 reset_other_connection_lists();
     void clear_position();
     static s32 release_slot_by_id(u16 a);
     void insert_item_at(s16 idx, s32 a, s32 b);
@@ -729,7 +715,6 @@ struct TLobby : public TObject {
     static s32 send_atx_command_mode(s32 arg0);
     u32 compute_range_end(s32 arg1, u32 arg2);
     s32 validate_and_store_net_params();
-    void init_net_config();
     void send_text_packet_D9(char *str);
     static void tmp_buf_release_if_owner(const char *name);
     static s32 tmp_buf_release(const char *name);

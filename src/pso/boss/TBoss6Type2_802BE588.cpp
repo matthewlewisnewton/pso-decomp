@@ -276,28 +276,23 @@ void TBoss6Type2::sub_802BEB78() {
     }
 }
 
-#pragma push
-// Porting exception (approved by Matt 2026-11-04, see docs/porting-exceptions.md):
-// no honest source form reproduces MWCC's 0.0f load placement here without
-// opt_common_subs off. Remove this pragma when porting off MWCC.
-#pragma opt_common_subs off
 void TBoss6Type2::sub_802BEC28() {
     f32 temp_f1;
     s32 temp_r0;
     u32 player;
-    this->m_41c = (f32) (lbl_805DE4E4 - ((f32) this->m_460 / (f32) this->unk_45C));
+    this->m_41c = (f32) (1.0f - ((f32) this->m_460 / (f32) this->unk_45C));
     temp_f1 = this->m_41c;
-    if (temp_f1 < lbl_805DE4E0) {
-        this->m_41c = (f32) lbl_805DE4E0;
-    } else if (temp_f1 > lbl_805DE4E4) {
-        this->m_41c = (f32) lbl_805DE4E4;
+    if (temp_f1 < 0.0f) {
+        this->m_41c = 0.0f;
+    } else if (temp_f1 > 1.0f) {
+        this->m_41c = 1.0f;
     }
     play_persistent_sound((s32)(0x4006A30B), (const void *)this, (const Vec *)&this->position, 0, 1);
     temp_r0 = this->m_460 - 1;
     this->m_460 = temp_r0;
     if (temp_r0 < 0) {
         this->m_418 = 1;
-        this->m_41c = (f32) lbl_805DE4E4;
+        this->m_41c = 1.0f;
         if (this->check_target() != 0) {
             if (this->is_target_valid() == 0) {
                 play_sound_effect(0x40069E13, (const Vec *)&this->position, 0, 1);
@@ -312,7 +307,6 @@ void TBoss6Type2::sub_802BEC28() {
         this->set_action_state((void *)0x1B);
     }
 }
-#pragma pop
 
 void TBoss6Type2::spawn_death_soul() {
     u8 *arg0 = (u8 *)this;
