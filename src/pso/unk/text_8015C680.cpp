@@ -17,18 +17,19 @@ typedef char BmlResourceBlock_804B0088_descriptor_offset[(offsetof(BmlResourceBl
 struct BmlResourceBlock_804B00A8 { const char *model_filenames[4]; BmlResourceDescriptor descriptor; };
 typedef char BmlResourceBlock_804B00A8_size[(sizeof(BmlResourceBlock_804B00A8) == 0x20) ? 1 : -1];
 typedef char BmlResourceBlock_804B00A8_descriptor_offset[(offsetof(BmlResourceBlock_804B00A8, descriptor) == 0x10) ? 1 : -1];
-extern char lbl_80440508[];
-extern char lbl_80440520[];
-extern char lbl_80440540[];
-extern char lbl_80440560[];
-extern char lbl_8044057C[];
-extern char lbl_8044059C[];
-extern char lbl_804405BC[];
-extern char lbl_804405D8[];
-extern char lbl_804405F4[];
-extern char lbl_80440608[];
-extern char lbl_80440624[];
-extern char lbl_80440640[];
+static __declspec(section ".rodata") const char ancient_container_model[] ATTRIBUTE_ALIGN(4) = "fe_obj_o_container.gj";
+static __declspec(section ".rodata") const char ancient_container_fragment1_model[] ATTRIBUTE_ALIGN(4) = "fe_obj_o_container_hahen01.gj";
+static __declspec(section ".rodata") const char ancient_container_fragment2_model[] ATTRIBUTE_ALIGN(4) = "fe_obj_o_container_hahen02.gj";
+static __declspec(section ".rodata") const char ancient_container_bml[] ATTRIBUTE_ALIGN(4) = "bm_o_container_ancient.bml";
+static __declspec(section ".rodata") const char vs2_container_fragment1_model[] ATTRIBUTE_ALIGN(4) = "fe_obj_o_vs2container_hahen1.gj";
+static __declspec(section ".rodata") const char vs2_container_fragment2_model[] ATTRIBUTE_ALIGN(4) = "fe_obj_o_vs2container_hahen2.gj";
+static __declspec(section ".rodata") const char vs2_container_model[] ATTRIBUTE_ALIGN(4) = "fs_obj_o_vs2container.gj";
+static __declspec(section ".rodata") const char vs2_container_bml[] ATTRIBUTE_ALIGN(4) = "fe_obj_o_vs2container.bml";
+static __declspec(section ".rodata") const char ep2_box_model[] ATTRIBUTE_ALIGN(4) = "fs_obj_ex_box1.gj";
+static __declspec(section ".rodata") const char ep2_box_fragment1_model[] ATTRIBUTE_ALIGN(4) = "fe_obj_ex_box1_hahen01.gj";
+static __declspec(section ".rodata") const char ep2_box_fragment2_model[] ATTRIBUTE_ALIGN(4) = "fe_obj_ex_box1_hahen02.gj";
+// The filename pool reserves a full aligned slot for its final string.
+static __declspec(section ".rodata") const char ep2_box_bml[0x14] ATTRIBUTE_ALIGN(4) = "fe_obj_ex_box1.bml";
 extern BmlResourceBlock_804B0068 bm_o_container_ancient_resource_bundle;
 extern BmlResourceBlock_804B0088 fe_obj_o_vs2container_resource_bundle;
 extern BmlResourceBlock_804B00A8 fe_obj_ex_box1_resource_bundle;
@@ -104,9 +105,9 @@ void TUnk_804B6C24::apply_knockback_from_attacker(u8 *, f32) {  }
 s32 TUnk_804B6C24::try_start_action(s32, s32) { return 1; }
 s32 TUnk_804B6C24::roll_physical_accuracy(void *, s32, f32) { return 1; }
 
-__declspec(section ".data") BmlResourceBlock_804B0068 bm_o_container_ancient_resource_bundle = { { lbl_80440508, lbl_80440520, lbl_80440540, NULL }, { lbl_80440560, bm_o_container_ancient_resource_bundle.model_filenames, bm_o_container_ancient_motion_names, 3, 0 } };
-__declspec(section ".data") BmlResourceBlock_804B0088 fe_obj_o_vs2container_resource_bundle = { { lbl_8044057C, lbl_8044059C, lbl_804405BC, NULL }, { lbl_804405D8, fe_obj_o_vs2container_resource_bundle.model_filenames, fe_obj_o_vs2container_motion_names, 3, 0 } };
-__declspec(section ".data") BmlResourceBlock_804B00A8 fe_obj_ex_box1_resource_bundle = { { lbl_804405F4, lbl_80440608, lbl_80440624, NULL }, { lbl_80440640, fe_obj_ex_box1_resource_bundle.model_filenames, fe_obj_ex_box1_motion_names, 3, 0 } };
+__declspec(section ".data") BmlResourceBlock_804B0068 bm_o_container_ancient_resource_bundle = { { ancient_container_model, ancient_container_fragment1_model, ancient_container_fragment2_model, NULL }, { ancient_container_bml, bm_o_container_ancient_resource_bundle.model_filenames, bm_o_container_ancient_motion_names, 3, 0 } };
+__declspec(section ".data") BmlResourceBlock_804B0088 fe_obj_o_vs2container_resource_bundle = { { vs2_container_fragment1_model, vs2_container_fragment2_model, vs2_container_model, NULL }, { vs2_container_bml, fe_obj_o_vs2container_resource_bundle.model_filenames, fe_obj_o_vs2container_motion_names, 3, 0 } };
+__declspec(section ".data") BmlResourceBlock_804B00A8 fe_obj_ex_box1_resource_bundle = { { ep2_box_model, ep2_box_fragment1_model, ep2_box_fragment2_model, NULL }, { ep2_box_bml, fe_obj_ex_box1_resource_bundle.model_filenames, fe_obj_ex_box1_motion_names, 3, 0 } };
 __declspec(section ".sdata") const char *bm_o_container_ancient_motion_names[1] = { NULL };
 __declspec(section ".sdata") const char *fe_obj_o_vs2container_motion_names[1] = { NULL };
 __declspec(section ".sdata") const char *fe_obj_ex_box1_motion_names[1] = { NULL };
