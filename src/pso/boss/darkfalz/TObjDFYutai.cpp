@@ -24,13 +24,6 @@ typedef struct Data_800502FC {
     Range_800502FC r30;
 } Data_800502FC;
 
-typedef struct Obj_800502FC {
-    u8 pad0[0x20];
-    u16 id;
-    u8 pad22[2];
-    f32 t;
-} Obj_800502FC;
-
 extern "C" {
 extern const f32 lbl_805D8A30;
 extern const f32 lbl_805D8A34;
@@ -62,46 +55,42 @@ __declspec(section ".data") void *lbl_804858D8[2] = {
 #pragma dont_inline off
 #pragma inline_depth(1)
 void TObjDFYutai::render() {
-    Obj_800502FC *arg0 = (Obj_800502FC *)this;
     Vec v;
     u8 *p;
     f32 s;
     f32 w;
-    p = (u8 *)get_player_by_client_id(arg0->id);
-    if (p == NULL || TBoss4Type3__sub_8005254C(arg0->id) == 0) {
+    p = (u8 *)get_player_by_client_id(client_id);
+    if (p == NULL || TBoss4Type3__sub_8005254C(client_id) == 0) {
         return;
     }
-    s = lbl_804858D0.lerp(arg0->t);
-    w = lbl_804858D8.lerp(arg0->t);
+    s = lbl_804858D0.lerp(progress);
+    w = lbl_804858D8.lerp(progress);
     VecCopy((Vec *)&v, (const Vec *)(p + 0x38));
-    v.y += lbl_804858C8.min + arg0->t * (lbl_804858C8.max - lbl_804858C8.min);
+    v.y += lbl_804858C8.min + progress * (lbl_804858C8.max - lbl_804858C8.min);
     push_matrix();
     post_translate_matrix(&v);
     rotate_matrix_y(0, *(s32 *)(p + 0x60));
     scale_matrix(0, s, s, s);
-    TObjPlayer::draw_player_model_by_id(arg0->id, w);
+    TObjPlayer::draw_player_model_by_id(client_id, w);
     pop_matrix();
 }
 
 #pragma push
 #pragma opt_common_subs off
 void TObjDFYutai::run_task() {
-    u8 *arg0 = (u8 *)this;
-    f32 temp_f1;
-    if (TBoss4Type3__sub_8005254C((*(u16 *)((s8 *)arg0 + 0x20))) == 0) {
-        ((TObject *)arg0)->queue_destruction();
+    if (TBoss4Type3__sub_8005254C(client_id) == 0) {
+        queue_destruction();
         return;
     }
-    *(f32 *)((s8 *)arg0 + 0x24) = (f32) (*(f32 *)((s8 *)arg0 + 0x24) + *(f32 *)((s8 *)arg0 + 0x28));
-    temp_f1 = *(f32 *)((s8 *)arg0 + 0x24);
-    if (temp_f1 <= lbl_805D8A30) {
-        *(f32 *)((s8 *)arg0 + 0x24) = (f32) lbl_805D8A30;
-        ((TObject *)arg0)->queue_destruction();
+    progress += progress_step;
+    if (progress <= lbl_805D8A30) {
+        progress = lbl_805D8A30;
+        queue_destruction();
         return;
     }
-    if (temp_f1 >= lbl_805D8A34) {
-        *(f32 *)((s8 *)arg0 + 0x24) = (f32) lbl_805D8A34;
-        ((TObject *)arg0)->queue_destruction();
+    if (progress >= lbl_805D8A34) {
+        progress = lbl_805D8A34;
+        queue_destruction();
     }
 }
 #pragma pop
@@ -111,28 +100,33 @@ void TObjDFYutai::run_task() {
 TObjDFYutai::~TObjDFYutai() {}
 
 
-extern "C" {
+extern "C" const char *TObjDFYutai__name;
 
-
-extern s32 TObjDFYutai__name;
-
-}
-TObjDFYutai::TObjDFYutai(s32 arg1, s32 arg2, s16 arg3) : TObject((TObject *)arg1) {
-    *(s32 *)((s8 *)this + 0) = (s32) TObjDFYutai__name;
-    *(s32 *)((s8 *)this + 0x1C) = arg2;
-    *(s16 *)((s8 *)this + 0x20) = arg3;
-    switch (*(s32 *)((s8 *)this + 0x1C)) {
+TObjDFYutai::TObjDFYutai(s32 parent, s32 effect_mode, s16 player_id) : TObject((TObject *)parent) {
+    m_name = TObjDFYutai__name;
+    mode = effect_mode;
+    client_id = player_id;
+    switch (mode) {
     case 0:
-        *(f32 *)((s8 *)this + 0x24) = (f32) lbl_805D8A34;
-        *(f32 *)((s8 *)this + 0x28) = -0.011111111f;
+        progress = lbl_805D8A34;
+        progress_step = fade_out_step;
         break;
     case 1:
-        *(f32 *)((s8 *)this + 0x24) = (f32) lbl_805D8A30;
-        *(f32 *)((s8 *)this + 0x28) = 0.016666668f;
+        progress = lbl_805D8A30;
+        progress_step = fade_in_step;
         break;
     case 2:
-        *(f32 *)((s8 *)this + 0x24) = (f32) lbl_805D8A34;
-        *(f32 *)((s8 *)this + 0x28) = -0.11111111f;
+        progress = lbl_805D8A34;
+        progress_step = fast_fade_out_step;
         break;
     }
 }
+
+extern "C" {
+__declspec(section ".sdata2") extern const f32 lbl_805D8A30 = 0.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805D8A34 = 1.0f;
+}
+
+__declspec(section ".sdata2") const f32 TObjDFYutai::fade_out_step = -0.011111111f;
+__declspec(section ".sdata2") const f32 TObjDFYutai::fade_in_step = 0.016666668f;
+__declspec(section ".sdata2") const f32 TObjDFYutai::fast_fade_out_step = -0.11111111f;

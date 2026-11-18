@@ -584,7 +584,7 @@ pso/boss/darkfalz/TObjDFDemoF.cpp:
 pso/boss/darkfalz/TObjDFYutai.cpp:
 	.text       start:0x800502FC end:0x800505A8
 	.data       start:0x804858A8 end:0x804858F8
-	.sdata2     start:0x805D8A38 end:0x805D8A44
+	.sdata2     start:0x805D8A30 end:0x805D8A44
 
 pso/boss/darkfalz/TBoss4Type3_800505A8.cpp:
 	.text       start:0x800505A8 end:0x8005063C
@@ -6395,12 +6395,12 @@ pso/unk/TLobby_80226C3C.cpp:
 	.rodata     start:0x8044C860 end:0x8044C8D0
 	.data       start:0x804CB838 end:0x804CBE98
 	.bss        start:0x80514C60 end:0x80514F58
+	.sdata      start:0x805D3710 end:0x805D3720
 	.sbss       start:0x805D62D8 end:0x805D6338
 
 pso/unk/TLobby_80227A2C.cpp:
 	.text       start:0x80227A2C end:0x80227AA0
 	.ctors      start:0x80433FA0 end:0x80433FA4
-	.sdata      start:0x805D3710 end:0x805D3714
 
 pso/unk/TLobby_80227AA0.cpp:
 	.text       start:0x80227AA0 end:0x80228154
@@ -7162,7 +7162,7 @@ pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp:
 	.text       start:0x80257BC0 end:0x8025995C
 	.rodata     start:0x8044EE58 end:0x8044F000
 	.data       start:0x804CF960 end:0x804CF994
-	.sdata2     start:0x805DCEF0 end:0x805DCEF4
+	.sdata2     start:0x805DCEF0 end:0x805DCF30
 
 pso/ui/window/TWindowSubStatusDisp_8025995C.cpp:
 	.text       start:0x8025995C end:0x80259DB0

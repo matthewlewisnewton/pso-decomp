@@ -10,6 +10,16 @@ public:
     virtual ~TObjDFYutai();
     virtual void run_task();
     virtual void render();
+
+private:
+    s32 mode;
+    u16 client_id;
+    f32 progress;
+    f32 progress_step;
+
+    static const f32 fade_out_step;
+    static const f32 fade_in_step;
+    static const f32 fast_fade_out_step;
 };
 
 extern "C" {

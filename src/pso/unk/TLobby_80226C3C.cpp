@@ -17,6 +17,11 @@ void start_audio_stream_file(s32, char *);
 void play_cue_stream_file(s32 arg0);
 void TLobby__sub_803C94DC(u8 *arg0, s32 arg1);
 s32 TLobby__sub_803C9CB0(s32);
+s32 lbl_805D3710 = -140;
+s32 area_music_fade_frame_count = 60;
+f32 music_fade_full_scale = 200.0f;
+s16 music_active_stream_number = -1;
+
 void *sound_effect_stream_buffer;
 u32 cue_stream_work_buffer;
 s32 lbl_805D62E0;
@@ -139,12 +144,11 @@ s32 TKeyBoardControl__sub_801E3E24(s32 id, const char *name, void *buf, s32 size
 void TLobby__sub_803C5D24(u8 *arg0);
 char *strncpy(char *dst, const char *src, u32 n);
 }
-extern s16 lbl_805D371C;
 extern Program_80226FA0 *music_programs[];
 
 void init_music_sequencer(s32 program) {
     unlock_sequencer_flag(program);
-    lbl_805D371C = 0;
+    music_active_stream_number = 0;
     TLobby::release_bgm_resource();
     lbl_805D6300 = program;
     lbl_805D6304 = music_programs[program];
@@ -298,8 +302,6 @@ s32 VISetPreRetraceCallback(s32 *);
 void TLobby__sub_80227AA8(s32);
 void update_all_zones__14TObjBgmColCtrlFl(void);
 extern char lbl_80514D00[][0x20];
-extern s32 area_music_fade_frame_count;
-extern f32 music_fade_full_scale;
 void play_area_music(char *name);
 void TWindowOptionCtrl__sub_802273B4(s32 arg0);
 void TLobby__sub_803CA194(s32);
@@ -545,7 +547,7 @@ void play_area_music(char *name) {
     if (flag) {
         music_fade_slot_index = 0;
     }
-    lbl_805D371C = music_fade_slot_index + 1;
+    music_active_stream_number = music_fade_slot_index + 1;
     start_audio_stream_file(lbl_804CB850[music_fade_slot_index], name);
     TLobby__sub_803C94DC((u8 *)lbl_804CB850[music_fade_slot_index], 0);
     TLobby::close_option_window();

@@ -398,11 +398,11 @@ void text_builder_reset(void);
 
 s32 replace_owned_string__20TWindowSubStatusDispFPviiii(void *, s32, s32, s32, s32);
 
-extern s32 lbl_805DCF00;
+extern const u8 status_line_prefix[2];
 
 void update_stat_line__20TWindowSubStatusDispFPvi(void *window_sub_status_disp, s32 arg1) {
     text_builder_reset();
-    text_builder_append((u8 *)&lbl_805DCF00);
+    text_builder_append((u8 *)status_line_prefix);
     text_builder_append_int(arg1);
     *(s32 *)((s8 *)window_sub_status_disp + 0x24) = replace_owned_string__20TWindowSubStatusDispFPviiii(window_sub_status_disp, get_shared_text_buffer(), *(s32 *)((s8 *)window_sub_status_disp + 0x24), 0x10, 1);
 }
@@ -1157,3 +1157,17 @@ void *TWindowSubStatusDisp::dispose(s16 arg1) {
 
 extern const float lbl_805DCF14;
 void*TWindowSubStatusDisp::reset_entry(int a1, int a2) { reset_entry__20TWindowSubStatusDispFPv(this, a2); *(int*)((char*)this + 0x4) = (int)lbl_804CF9B0; *(float*)((char*)this + 0x14) = lbl_805DCF14; *(unsigned char *)&this->unk_1C = 51; *(unsigned char *)&this->m_1d = 51; *(int*)((char*)this + 0x20) = 0; *(int*)((char*)this + 0x24) = 0; *(int*)((char*)this + 0x28) = -1; *(int *)&this->m_2c = -1; *(int*)((char*)this + 0x30) = -1; *(int *)&this->m_34 = -1; *(int*)((char*)this + 0x18) = 0; return this; }
+
+__declspec(section ".sdata2") extern const f32 lbl_805DCEF8 ATTRIBUTE_ALIGN(8) = 0.0f;
+__declspec(section ".sdata2") extern const u8 status_line_prefix[] ATTRIBUTE_ALIGN(8) = "\xD7";
+__declspec(section ".sdata2") extern const f32 lbl_805DCF04 = -18.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF08 = 0.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF0C = -36.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF10 = 36.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF14 = 18.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF18 = 9.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF1C = 1.0f / 256.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF20 = -1.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF24 = 0.1495f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF28 = 100000.0f;
+__declspec(section ".sdata2") extern const f32 lbl_805DCF2C = 0.5f;

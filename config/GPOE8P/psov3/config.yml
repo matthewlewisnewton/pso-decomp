@@ -6965,6 +6965,7 @@ force_active:
   - area_fog_row_table
   - area_gsl_filename_table
   - area_initializer_dispatch_table
+  - area_music_fade_frame_count
   - area_music_filename_table
   - area_sound_remap_table_a
   - area_sound_remap_table_b
@@ -13284,7 +13285,6 @@ force_active:
   - lbl_805D3608
   - lbl_805D3638
   - lbl_805D3658
-  - lbl_805D3710
   - lbl_805D37F0
   - lbl_805D3818
   - lbl_805D3838
@@ -14002,6 +14002,18 @@ force_active:
   - lbl_805DC8C4
   - lbl_805DCCA8
   - lbl_805DCEF0
+  - lbl_805DCEF8
+  - lbl_805DCF04
+  - lbl_805DCF08
+  - lbl_805DCF0C
+  - lbl_805DCF10
+  - lbl_805DCF14
+  - lbl_805DCF18
+  - lbl_805DCF1C
+  - lbl_805DCF20
+  - lbl_805DCF24
+  - lbl_805DCF28
+  - lbl_805DCF2C
   - lbl_805DCFAC
   - lbl_805DCFB0
   - lbl_805DCFB4
@@ -14493,7 +14505,9 @@ force_active:
   - multi_sel_game_mode_position
   - multiplayer_controller_device_codes
   - music_active_mode_index
+  - music_active_stream_number
   - music_fade_frames_remaining
+  - music_fade_full_scale
   - music_fade_slot_index
   - music_fade_step
   - music_fade_volumes
@@ -22971,6 +22985,7 @@ force_active:
   - status_disp_item_icon_coord_table
   - status_disp_tab_label_message_ids
   - status_disp_texture_handle
+  - status_line_prefix
   - status_text_label_table
   - status_window_settings
   - stderr_buff
