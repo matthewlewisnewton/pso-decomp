@@ -5447,6 +5447,7 @@ force_active:
   - challenge_force_techniques_stages_01_02_03
   - challenge_force_techniques_stages_04_05
   - challenge_force_techniques_stages_06_07_08
+  - challenge_grade_letter_table
   - challenge_hunter_items_stage_00
   - challenge_hunter_items_stage_01
   - challenge_hunter_items_stage_02
@@ -5502,6 +5503,7 @@ force_active:
   - challenge_retry_window_pos
   - challenge_time_limit_initialized
   - challenge_time_limit_sentinel
+  - challenge_window_extent
   - change_action__11TBoss4Type2Fl
   - change_ai_state__10TNpcPlayerFUl
   - change_floor_reload_area__Fv

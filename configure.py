@@ -432,6 +432,9 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # see docs/evidence/compiler-default-gc20-adoption.md.
     "pso/network/TProtocol.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjResultWin.cpp": {"mw_version": "GC/1.3.2"},
+    # Keep the challenge window strings read-only and independently addressed,
+    # and the two-float extent in normal data.
+    "pso/misc/TWindowSubComCard_8007341C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-pooldata=off")},
     "pso/misc/TPlyMeetUserExtension_801DAC6C.cpp": {"mw_version": "GC/1.3.2"},
     # Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order.
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},

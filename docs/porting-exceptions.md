@@ -942,6 +942,17 @@ Vtable symbols are 0x18 bytes. The earlier 0x1C entries included four bytes of
 alignment padding. The balloon now owns its float pool from the eight-byte
 aligned address `0x805DCD08`, which retires its alignment override.
 
+### Challenge window data placement
+
+`pso/misc/TWindowSubComCard_8007341C.cpp` uses `-str reuse,readonly` to
+place the short and long strings in `.sdata2` and `.rodata` respectively.
+With data pooling enabled, CodeWarrior shares a base register across the long
+strings and changes the formatter's registers and address loads. The
+`-pooldata=off` setting restores the separate loads. `-sdata 4` keeps the
+eight-byte window extent in `.data` and preserves its two-instruction
+address loads. Ports can compile the ordinary C++ strings, table and extent
+with their default settings.
+
 ### Download status coordinate alignment
 
 `pso/misc/TDLGraph.cpp` uses `cw_align: .sdata2=4` for the three floats
