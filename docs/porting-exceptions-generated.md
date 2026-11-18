@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 48 | 12 |
-| intrinsic | 92 | 60 |
+| intrinsic | 92 | 61 |
 | hardware | 71 | 14 |
-| pragma | 4097 | 882 |
-| configure.py per-unit override | 229 | 229 |
+| pragma | 4101 | 884 |
+| configure.py per-unit override | 230 | 230 |
 
-Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `inline_depth` 634, `opt_common_subs` 589, `auto_inline` 259, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `bool` 59, `defer_codegen` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 36, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `fp_contract` 820, `dont_inline` 646, `inline_depth` 634, `opt_common_subs` 589, `auto_inline` 259, `opt_propagation` 214, `readonly_strings` 206, `scheduling` 182, `optimization_level` 82, `peephole` 76, `defer_codegen` 63, `bool` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 43, `pool_data` 38, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -139,8 +139,8 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `i
 | `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
 | `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
 | `src/pso/player/TObjPlayer_803E112C.cpp:163` | `__fabs` |
-| `src/pso/player/TObjPlayer_803E18C0.cpp:101` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803E18C0.cpp:124` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E18C0.cpp:33` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E1A58.cpp:82` | `__frsqrte` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:94` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:106` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_movement.cpp:99` | `__cntlzw` |
@@ -311,6 +311,7 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `i
 | `pso/object/TObjCamera.cpp` | `GC/1.3.2` | GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others. TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled. |
 | `pso/object/TObjComputer.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/item/TObjContainerJung.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TOContainerAncientEnemy.cpp` | `GC/1.3` | The const debris overrides require the original GC/1.3 instruction schedule. |
 | `pso/item/TObjContainerItem.cpp` | `GC/1.3.2` | The two below also schedule the by-value DirectAttackPayload read of their receive_direct_attack overrides only the way 1.3.2 does. |
 | `pso/misc/TContainerAncient01.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -695,8 +696,8 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `i
 | `src/pso/item/TItemShootParticle.cpp` | opt_propagation×1 |
 | `src/pso/item/TItemWpnCardEffect.cpp` | fp_contract×3, opt_common_subs×1 |
 | `src/pso/item/TObjContainerIdo_8018BEE4.cpp` | fp_contract×2 |
-| `src/pso/item/TObjContainerItem.cpp` | opt_propagation×2, readonly_strings×1, fp_contract×1 |
-| `src/pso/item/TObjContainerJung.cpp` | opt_propagation×3, fp_contract×2 |
+| `src/pso/item/TObjContainerItem.cpp` | opt_propagation×2, readonly_strings×1, defer_codegen×1, fp_contract×1, pool_data×1 |
+| `src/pso/item/TObjContainerJung.cpp` | opt_propagation×3, defer_codegen×1 |
 | `src/pso/item/TUnk_8049F8E0.cpp` | scheduling×1 |
 | `src/pso/item/TUnk_804A6200.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/item/TUnk_804A67D0.cpp` | dont_inline×2, inline_depth×2 |
@@ -821,6 +822,7 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `i
 | `src/pso/misc/TNpcPlayer_8014DADC.cpp` | scheduling×1 |
 | `src/pso/misc/TNpcPlayer_8034DC20.cpp` | opt_pointer_analysis×1 |
 | `src/pso/misc/TOComputerMachine01_8023DD0C.cpp` | fp_contract×1 |
+| `src/pso/misc/TOContainerAncientEnemy.cpp` | defer_codegen×1, pool_data×1, fp_contract×1 |
 | `src/pso/misc/TOCtrlDubchik_8015CA74.cpp` | opt_common_subs×3, opt_propagation×1, fp_contract×1 |
 | `src/pso/misc/TODoorFourLightSpace.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/misc/TODoorJungleMain.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
@@ -1155,7 +1157,8 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `i
 | `src/pso/player/TObjPlayer_803DC834.cpp` | scheduling×2, peephole×2 |
 | `src/pso/player/TObjPlayer_803DF7A8.cpp` | use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
 | `src/pso/player/TObjPlayer_803E112C.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
-| `src/pso/player/TObjPlayer_803E18C0.cpp` | scheduling×4 |
+| `src/pso/player/TObjPlayer_803E18C0.cpp` | scheduling×1 |
+| `src/pso/player/TObjPlayer_803E1A58.cpp` | scheduling×3 |
 | `src/pso/player/TObjPlayer_803E21B8.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/player/TObjPlayer_803E5470.cpp` | use_lmw_stmw×1 |
 | `src/pso/player/TUnk_80490470.cpp` | fp_contract×1 |
@@ -1265,7 +1268,6 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `i
 | `src/pso/unk/text_8013AAD4.cpp` | inline_depth×1, auto_inline×1, dont_inline×1 |
 | `src/pso/unk/text_8013F810.cpp` | opt_propagation×1, opt_lifetimes×1 |
 | `src/pso/unk/text_80145804.cpp` | dont_inline×1, inline_depth×1 |
-| `src/pso/unk/text_8015C534.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80171A98.cpp` | fp_contract×1 |
 | `src/pso/unk/text_80180D18.cpp` | fp_contract×1 |
 | `src/pso/unk/text_801BC688.cpp` | fp_contract×2 |
@@ -1305,6 +1307,7 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 822, `dont_inline` 646, `i
 | `src/pso/unk/text_802C09E0.cpp` | readonly_strings×1 |
 | `src/pso/unk/text_802C9C18.cpp` | fp_contract×1 |
 | `src/pso/unk/text_802D23E0.cpp` | inline_depth×1, auto_inline×1, dont_inline×1, scheduling×1 |
+| `src/pso/unk/text_802D5F44.cpp` | defer_codegen×1 |
 | `src/pso/unk/text_802EDE90.cpp` | opt_common_subs×1, opt_lifetimes×1 |
 | `src/pso/unk/text_802F0E24.cpp` | readonly_strings×1 |
 | `src/pso/unk/text_80307BE8.cpp` | fp_contract×1 |

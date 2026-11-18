@@ -297,7 +297,7 @@ void init_armor__10TObjPlayerFPv(void *arg0) {
 
 void render__13TUnk_804A2148Fv(u8 *);
 extern "C" s8 get_attach_slot__14TItemEquipBaseFv(TItemEquipBase *arg0);
-extern "C" void vfunc_59__11TItemWeaponFv();
+extern "C" void init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4();
 extern "C" void vfunc_58__11TItemWeaponFv();
 extern "C" void vfunc_57__11TItemWeaponFv();
 extern "C" void reserved_53__11TItemWeaponFv();
@@ -368,7 +368,7 @@ void *megid_projectile_weapon_vtable[63] = {
     (void *)&on_equip__11TItemWeaponFv, (void *)&on_unequip__11TItemWeaponFv, (void *)&request_equipped_model__11TItemWeaponFv, (void *)&release_model__11TItemWeaponFv,
     (void *)&apply_owner_bonuses__11TItemWeaponFv, (void *)&remove_owner_bonuses__11TItemWeaponFv, (void *)&on_model_loaded__11TItemWeaponFv, (void *)&launch_shot__11TItemWeaponFPUclll,
     (void *)&emit_marker_effects__13TUnk_804A204CFv, (void *)&update_attack__11TItemWeaponFv, (void *)&update_idle__11TItemWeaponFv, (void *)&reserved_53__13TUnk_804A204CFv,
-    (void *)&update_weapon__13TUnk_804A204CFv, (void *)&init_armor__10TObjPlayerFPv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&vfunc_59__11TItemWeaponFv,
+    (void *)&update_weapon__13TUnk_804A204CFv, (void *)&init_armor__10TObjPlayerFPv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4,
     (void *)&TObjPlayer__sub_8012443C, (void *)&deliver_hit__11TItemWeaponFlPUcllf, (void *)0x0,
 };
 void *recoil_weapon_shoot_model_vtable[7] = {
@@ -390,7 +390,7 @@ void *recoiling_projectile_weapon_vtable[63] = {
     (void *)&on_equip__11TItemWeaponFv, (void *)&on_unequip__11TItemWeaponFv, (void *)&request_equipped_model__11TItemWeaponFv, (void *)&release_model__11TItemWeaponFv,
     (void *)&apply_owner_bonuses__11TItemWeaponFv, (void *)&remove_owner_bonuses__11TItemWeaponFv, (void *)&on_model_loaded__11TItemWeaponFv, (void *)&launch_shot__11TItemWeaponFPUclll,
     (void *)&emit_marker_effects__13TUnk_804A2164Fv, (void *)&update_attack__11TItemWeaponFv, (void *)&update_idle__11TItemWeaponFv, (void *)&reserved_53__11TItemWeaponFv,
-    (void *)&update_weapon__13TUnk_804A2164Fv, (void *)&vfunc_57__11TItemWeaponFv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&vfunc_59__11TItemWeaponFv,
+    (void *)&update_weapon__13TUnk_804A2164Fv, (void *)&vfunc_57__11TItemWeaponFv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4,
     (void *)&drill_launcher_node_callback, (void *)&deliver_hit__11TItemWeaponFlPUcllf, (void *)0x0,
 };
 #define megid_projectile_weapon_vtable ((s32 *)megid_projectile_weapon_vtable)

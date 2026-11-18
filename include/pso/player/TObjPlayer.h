@@ -1241,7 +1241,6 @@ struct TObjPlayer : public TObjChara {
     static u8 *create_state_0(u8 *arg0);
     static u8 *create_vtable_804A63F0(u8 *arg0);
     static u8 *create_position_state(u8 *arg0);
-    s32 is_within_range(s32 arg1);
     static void clear_photon_blast_slots();
     void place_on_area_entry();
     void release_child_object();
@@ -1542,8 +1541,6 @@ struct TObjPlayer : public TObjChara {
     void build_shop_item_list();
     void reset_action_palette();
     u8 *create_state_513();
-    static void set_radar_marker_pos(int a0, void* a1);
-    static void spawn_item_from_arg(s32 arg0, s32 arg1);
     u8 *init_breakup_pieces(void *arg1, s32 arg2);
     static s32 dt_follow_particle_ctrl(s32 arg0, s16 arg1);
     u8 *create_vtable_variant();

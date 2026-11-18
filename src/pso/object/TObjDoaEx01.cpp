@@ -23,8 +23,6 @@
 #include "pso/misc/TODoorAncient01.h"
 #include "pso/map/FloorArea.h"
 
-struct RecoveredGlobal_8018D9B0_lbl_804B7158 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8018D9B0_lbl_804B7158_size[sizeof(RecoveredGlobal_8018D9B0_lbl_804B7158) == 0x10 ? 1 : -1];
 
 struct O_8018DB94 { u8 pad[0xac]; s32 state; f32 pos; f32 max; f32 speed; };
 
@@ -50,7 +48,7 @@ struct Obj_8018DBCC {
 
 extern "C" {
 extern u32 TObjContainerJungEx__resource_bundle;
-extern RecoveredGlobal_8018D9B0_lbl_804B7158 fe_obj_hako02_resource_descriptor;
+extern BmlResourceDescriptor fe_obj_hako02_resource_descriptor;
 
 
 u8 *TObjContainerJungEx__sub_8018D900(s32 arg0) {
@@ -76,7 +74,7 @@ void TObjContainerJungEx::free_data() {
 void TObjContainerJungEx::load_resource_instance() {
     s32 temp_r3;
     s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&fe_obj_hako02_resource_descriptor.value), 0, 0, (void *)(0));
+    temp_r3 = (int)new BmlResource(5, &fe_obj_hako02_resource_descriptor, 0, 0, (void *)(0));
     var_r0 = temp_r3;
     (*(s32 *)&TObjContainerJungEx__resource_bundle) = var_r0;
 }
