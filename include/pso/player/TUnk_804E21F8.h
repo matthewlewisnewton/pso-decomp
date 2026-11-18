@@ -6,7 +6,10 @@
 class TUnk_804E21F8 : public TUnk_804E23F0 {
 public:
     virtual ~TUnk_804E21F8();
-    virtual void vfunc_17(s32);
+    virtual void activate_effect(s32);
+    virtual void vfunc_57();
+    virtual void init_weapon_effect_descriptor(Desc_8011E5C4 *);
+    virtual void vfunc_62(Vec *);
     virtual void reserved_53();
     virtual void emit_marker_effects();
     virtual void update_weapon();

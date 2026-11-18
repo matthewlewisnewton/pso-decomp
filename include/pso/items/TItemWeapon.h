@@ -1,5 +1,7 @@
 #ifndef PSO_ITEMS_TITEMWEAPON_H
 #define PSO_ITEMS_TITEMWEAPON_H
+
+struct Desc_8011E5C4;
 #include "types.h"
 #include <stddef.h>
 #include "pso/item/TItemEquipBase.h"
@@ -60,7 +62,7 @@ struct TItemWeapon : public TItemEquipBase {
     virtual void update_weapon();
     virtual void vfunc_57();
     virtual void vfunc_58();
-    virtual void vfunc_59();
+    virtual void init_weapon_effect_descriptor(Desc_8011E5C4 *);
     virtual void vfunc_60();
     virtual void deliver_hit(s32 arg1, u8 *arg2, s32 arg3, s32 arg4, f32 farg0);
 

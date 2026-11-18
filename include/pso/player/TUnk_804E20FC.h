@@ -6,6 +6,7 @@
 class TUnk_804E20FC : public TUnk_804E23F0 {
 public:
     virtual ~TUnk_804E20FC();
+    virtual void init_weapon_effect_descriptor(Desc_8011E5C4 *);
     u8 unk_204[0x4];
     int m_208;
 };

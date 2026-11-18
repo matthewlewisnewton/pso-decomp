@@ -2089,6 +2089,13 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/item/TObjContainerItem.cpp` | Deferred emission and reverse definition order | CodeWarrior 1.3.2 emits the six compiler-generated virtual tables and the intervening switch table at their original addresses. The first out-of-line base override anchors its table here, while its destructor remains in the ancient-container text range. | Use ordinary class definitions and omit the emission pragma. |
 | Same file, `TUnk_804B6C24::debug_print_item_box_info` at `0x80189E3C` | Scoped `pool_data off` | Linking the diagnostic strings into this object makes the compiler pool their addresses and changes the routine. Independent addresses reproduce its original 232 bytes. | Use the named strings and omit the pooling pragma. |
 
+### Weapon factory virtual tables
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/unk/text_802D5F44.cpp` | Deferred generation for seven destructors | Immediate generation in the factory emits its switch table first. Reverse destructor definitions under deferred generation emit the seven compiler-generated virtual tables in the original order after that switch table. | Use ordinary destructor definitions and omit the emission pragma. |
+| `src/pso/player/TObjPlayer_802D5C0C.cpp` at `0x802D5C0C` | Explicit ABI entry for the weapon effect descriptor override | The method uses the weapon and descriptor in the two original pointer argument registers. A member definition under GC/2.0 changes the register allocation and instruction schedule. The existing byte views and a correctly sized color object preserve the original instructions. | Implement the override as an ordinary member with a typed descriptor and color. |
+
 ### Ceiling-debris renderer data addresses
 
 | Scope | Construct | Evidence and reason | Port action |
