@@ -1,4 +1,5 @@
 #include "pso/item/MagStats.h"
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/system/memory.h"
 #include "pso/item/drop/TItemDrop.h"
@@ -425,16 +426,16 @@ s32 init__9TItemDataFv(void *);
 
 
 void run_task__9TItemDropFv(void) {
-    mem_free((void *)TItemDrop__unit_star_bucket_counts);
+    ::operator delete[]((void *)TItemDrop__unit_star_bucket_counts);
     TItemDrop__unit_star_bucket_counts = 0;
-    mem_free((void *)TItemDrop__unit_star_classes);
+    ::operator delete[]((void *)TItemDrop__unit_star_classes);
     TItemDrop__unit_star_classes = 0;
 }
 
 
 void __dt__9TItemDropFv(void) {
-    TItemDrop__unit_star_classes = (u8 *)mem_alloc(0x88);
-    TItemDrop__unit_star_bucket_counts = (u8 *)mem_alloc(0xD);
+    TItemDrop__unit_star_classes = (u8 *)::operator new[](0x88);
+    TItemDrop__unit_star_bucket_counts = (u8 *)::operator new[](0xD);
     TItemDrop::count_unit_star_buckets();
 }
 
@@ -1016,7 +1017,7 @@ u8 *TItemDrop__sub_80107840(u8 *item_drop, s16 arg1) {
       var_r31 += 4;
     }
     while (var_r30 != 0x11);
-    mem_free((void *)((int) (((TItemDrop *)item_drop)->m_20)));
+    ::operator delete[]((void *)((int) (((TItemDrop *)item_drop)->m_20)));
     ((TItemDrop *)item_drop)->m_20 = 0;
     __dt__7TObjectFv((void *) item_drop, 0);
     if (arg1 > 0)
@@ -1036,7 +1037,7 @@ TItemDrop_80107900 *TItemDrop__ct(TItemDrop_80107900 *self, void *parent, s8 arg
     self->vt = &lbl_8049EF88.value;
     self->name = item_drop_class_name;
     TItemDrop__section_id = arg2;
-    self->list = (s32 *)mem_alloc(0x44);
+    self->list = (s32 *)::operator new[](0x44);
     for (i = 0; i != 0x11; i++) {
         a = __cvt_fp2unsigned(lbl_805DAAD8 * (lbl_805DAAE4 * (f32)rand()));
         b = __cvt_fp2unsigned(lbl_805DAAD4 * (lbl_805DAAE4 * (f32)rand()));

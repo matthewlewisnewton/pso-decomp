@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowMessage.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/quest/TQuestThread.h"
@@ -86,7 +87,7 @@ void TWindowSubShortMail::close() {
     src = ((TWindowSubComCard *)this->m_5c)->realloc_buffer();
     TWindowSubComCard::mask_profanity_words((char *)src, (char *)get_shared_text_buffer());
     TLobby::send_simple_mail(this->m_2c, (void *)(get_shared_text_buffer()));
-    mem_free((void *)src);
+    ::operator delete[]((void *)src);
     short_mail_ctrl = TLobby::get_short_mail_ctrl();
     for (var_r29 = 0; var_r29 < short_mail_ctrl; var_r29 += 1) {
         temp_r30 = (s32)TLobby__sub_8022598C(var_r29);
@@ -599,7 +600,7 @@ void TWindowSubShortMail::run_task() {
             if (((TWindowSubComCard *)(o->w50))->get_slot_or_neg1() == 0) {
                 void *b = ((void * (*)(void *)) realloc_buffer__17TWindowSubComCardFv)(o->w5c);
                 ((TLobby *)b)->set_short_mail_text();
-                mem_free(b);
+                ::operator delete[](b);
                 o->state = 1;
             } else {
                 o->state = 0x18;

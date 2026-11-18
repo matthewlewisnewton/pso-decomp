@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowSubComCard_80244774.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -180,7 +181,7 @@ void TWindowSubInformationBoard::run_task() {
             temp_r30 = ((TWindowSubComCard *)(this->keyboard))->realloc_buffer();
             set_info_board_text__6TLobbyFv();
             TLobby::flush_pending_send();
-            mem_free((void *)temp_r30);
+            ::operator delete[]((void *)temp_r30);
             this->m_1c = 0xBU;
             break;
         }

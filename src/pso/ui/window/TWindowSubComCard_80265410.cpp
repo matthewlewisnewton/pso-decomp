@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowCtrl_8024A054.h"
 #include "pso/ui/window/TWindowChoiceSetting.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC.h"
@@ -805,7 +806,7 @@ void TWindowMenu::run_task() {
 TWindowMenu::~TWindowMenu() {
     TWindowSubStatusDisp::destroy_allocation((s32)(*(void **)((s8 *)this + 0x84)), (s16)1);
     TWindowSubStatusDisp::destroy_status_display((s32)(*(void **)((s8 *)this + 0x88)), (s16)1);
-    mem_free(*(void **)((s8 *)this + 0x80));
+    ::operator delete[](*(void **)((s8 *)this + 0x80));
 }
 
 u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
@@ -821,7 +822,7 @@ u8 *TWindowMenu__ct(u8 *window_menu, u32 arg1, s32 arg2, s32 arg3) {
     *(s16 *)(window_menu + 0x70) = 0;
     *(s16 *)(window_menu + 0x20) = arg2;
     ((TWindowMenu *)window_menu)->reset_selection();
-    *(u8 **)(window_menu + 0x80) = (u8 *)mem_alloc(arg1 * 8);
+    *(u8 **)(window_menu + 0x80) = (u8 *)::operator new[](arg1 * 8);
     p = *(u8 **)(window_menu + 0x80);
     for (i = 0; i < arg1; i++) {
         *(s32 *)p = 0;

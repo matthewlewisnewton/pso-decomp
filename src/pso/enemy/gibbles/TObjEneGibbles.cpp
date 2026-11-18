@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/render/RenderFadeState.h"
@@ -2462,7 +2463,7 @@ void *TObjEneGibbles::create(void *arg0) {
 
 void TObjEneGibbles::free_static() {
     if ((u32) gibbles_combat_stat_entries != 0U) {
-        mem_free((void*)gibbles_combat_stat_entries);
+        ::operator delete[]((void*)gibbles_combat_stat_entries);
         gibbles_combat_stat_entries = 0U;
     }
     if ((u32) TObjEneGibbles__resource_bundle != 0U) {
@@ -2488,7 +2489,7 @@ void TObjEneGibbles::load_resources() {
     }
     TObjEneGibbles__render_node_index = 0;
     TObjEneGibbles__render_rotation_x = 0;
-    gibbles_combat_stat_entries = (u32) mem_alloc(0xC);
+    gibbles_combat_stat_entries = (u32) ::operator new[](0xC);
     gibbles_boss_stat_handle = register_boss__6TLobbyFl(0x3D);
     ((s32 *) gibbles_combat_stat_entries)[0] = dispatch_shared_handler_b__6TLobbyFl(0x3D);
     ((s32 *) gibbles_combat_stat_entries)[2] = dispatch_shared_handler_b__6TLobbyFl(0x3E);

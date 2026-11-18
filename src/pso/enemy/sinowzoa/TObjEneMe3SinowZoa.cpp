@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
 #include "pso/map/CsnQuery.h"
@@ -228,7 +229,7 @@ void TObjEneMe3SinowZoa::load_resources() {
     src = (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->m_c;
     count = src->nbTexture;
     TObjEneMe3SinowZoa__alternate_texture_list.nbTexture = count;
-    TObjEneMe3SinowZoa__alternate_texture_list.textures = (NJS_TEXNAME *)mem_alloc(count * sizeof(NJS_TEXNAME));
+    TObjEneMe3SinowZoa__alternate_texture_list.textures = (NJS_TEXNAME *)::operator new[](count * sizeof(NJS_TEXNAME));
     for (i = 0; i < count; i++) {
         ((TObjPlayer *)&TObjEneMe3SinowZoa__alternate_texture_list.textures[i])->copy_vec3(&src->textures[i]);
     }
@@ -301,7 +302,7 @@ void TObjEneMe3SinowZoa::free_resources() {
         TObjEneMe3SinowZoa__breakup_model = NULL;
     }
     if (TObjEneMe3SinowZoa__alternate_texture_list.textures != NULL) {
-        mem_free(TObjEneMe3SinowZoa__alternate_texture_list.textures);
+        ::operator delete[](TObjEneMe3SinowZoa__alternate_texture_list.textures);
         TObjEneMe3SinowZoa__alternate_texture_list.textures = NULL;
     }
     if (TObjEneMe3SinowZoa__bml_resource != 0) {

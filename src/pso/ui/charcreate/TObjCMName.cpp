@@ -3,6 +3,7 @@
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/MenuText.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/charcreate/CreationInput.h"
 #include "types.h"
 #include "pso/math/AngleLookup.h"
@@ -2207,7 +2208,7 @@ void TObjCMName::run_task() {
             ((TObjCMMainMenu *)name)->copy_char_name();
             strncpy((char *)appearance->name, name, 12);
             appearance->name[12] = 0;
-            mem_free(buf);
+            ::operator delete[](buf);
             play_sound_effect(sound, 0, 0, 0);
             TObjCMMainMenu::clear_task_state();
             keyboard->queue_destruction();

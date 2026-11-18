@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/player/TObjPlayer_801BDF5C.h"
 #include "pso/item/TItem.h"
 #include "pso/player/TObjPlayer_801C1FF8.h"
@@ -77,11 +78,11 @@ void TObjPlayer::free_shared_data() {
         TObjPlayer__shared_photon_blast_state = 0U;
     }
     if ((u32) player_shared_buffer_base != 0U) {
-        mem_free((void*)player_shared_buffer_base);
+        ::operator delete[]((void*)player_shared_buffer_base);
         player_shared_buffer_base = 0U;
     }
     if ((u32) TObjPlayer__shared_model_buffer != 0U) {
-        mem_free((void*)TObjPlayer__shared_model_buffer);
+        ::operator delete[]((void*)TObjPlayer__shared_model_buffer);
         TObjPlayer__shared_model_buffer = 0U;
     }
 }
@@ -91,10 +92,10 @@ void TObjPlayer::alloc_shared_buffers() {
     s32 temp_r3;
     s32 var_r0;
     if ((u32) TObjPlayer__shared_model_buffer == 0U) {
-        TObjPlayer__shared_model_buffer = (u32)mem_alloc((u32)((void *)0x9000));
+        TObjPlayer__shared_model_buffer = (u32)::operator new[]((u32)((void *)0x9000));
     }
     if ((u32) player_shared_buffer_base == 0U) {
-        player_shared_buffer_base = (u32)mem_alloc((u32)((void *)0x4800));
+        player_shared_buffer_base = (u32)::operator new[]((u32)((void *)0x4800));
     }
     if ((u32) TObjPlayer__shared_photon_blast_state == 0U) {
         temp_r3 = (int)::operator new(0x60);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/object/seabed/TObjSeabedSuisoBrakable.h"
 #include "pso/unk/TUnk_804DDBF0.h"
 #include "pso/unk/TUnk_804DDD28.h"
@@ -2744,13 +2745,13 @@ int TUnk_804DDBF0::vfunc_5(s32 arg1) {
 
 void TLobby__sub_802A7640(void) {
     if ((u32) (*(u32 *)&player_action_motion_buffer) != 0U) {
-        mem_free((void*)(*(u32 *)&player_action_motion_buffer));
+        ::operator delete[]((void*)(*(u32 *)&player_action_motion_buffer));
         (*(u32 *)&player_action_motion_buffer) = 0U;
     }
 }
 }
 void TLobby::alloc_boss4rock_buffer() {
-    player_action_motion_buffer = (s32)mem_alloc(0x100000);
+    player_action_motion_buffer = (s32)::operator new[](0x100000);
 }
 // inferred: unload half of enable_and_refresh in ending_scene_callbacks (frees what alloc_boss4rock_buffer allocated)
 void disable_and_free_boss4rock_buffer(void) { TLobby__sub_802A7640(); TLobby::set_photon_chair_flag(0); }

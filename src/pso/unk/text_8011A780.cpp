@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/network/protocol/subcmd_6x.h"
 #include "pso/item/TItem.h"
 #include "pso/unk/text_801036CC.h"
@@ -343,15 +344,15 @@ void TLobby::reset_item_id_counters() {
 
 extern "C" {
 TItemIdCounters::~TItemIdCounters() {
-    mem_free((void *)item_sync_counter_table);
+    ::operator delete[]((void *)item_sync_counter_table);
     item_sync_counter_table = 0;
-    mem_free((void *)item_id_counter_table);
+    ::operator delete[]((void *)item_id_counter_table);
     item_id_counter_table = 0;
 }
 
 TItemIdCounters::TItemIdCounters() {
-    item_id_counter_table = (s32)mem_alloc(48);
-    item_sync_counter_table = (s32)mem_alloc(48);
+    item_id_counter_table = (s32)::operator new[](48);
+    item_sync_counter_table = (s32)::operator new[](48);
     TLobby::reset_item_id_counters();
     lbl_805D54E0 = 0;
     build_item_id_mode = 0;

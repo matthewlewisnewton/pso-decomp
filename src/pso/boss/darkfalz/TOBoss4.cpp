@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include <stdlib.h>
@@ -97,8 +98,8 @@ TOBoss4Bird::TOBoss4Bird(void *set_data) {
     } else if (count > 6) {
         count = 6;
     }
-    offsets = (Vec *)mem_alloc(count * 0xC);
-    angles = (s32 *)mem_alloc(count * 4);
+    offsets = (Vec *)::operator new[](count * 0xC);
+    angles = (s32 *)::operator new[](count * 4);
     {
         TOBoss4BirdFormation formation = boss4_bird_vec_table;
         for (i = 0; i < count; i++) {
@@ -117,10 +118,10 @@ TOBoss4Bird::TOBoss4Bird(void *set_data) {
 
 TOBoss4Bird::~TOBoss4Bird() {
     if (offsets != NULL) {
-        mem_free(offsets);
+        ::operator delete[](offsets);
     }
     if (angles != NULL) {
-        mem_free(angles);
+        ::operator delete[](angles);
     }
 }
 
@@ -233,12 +234,12 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
     } else if (count > 8) {
         count = 8;
     }
-    models = (s32 *)mem_alloc(count * 4);
-    texlists = (s32 *)mem_alloc(count * 4);
-    positions = (Vec *)mem_alloc(count * 0xC);
-    speeds = (f32 *)mem_alloc(count * 4);
-    rotations = (TOBoss4RockAngles *)mem_alloc(count * 0xC);
-    rotation_speeds = (TOBoss4RockAngles *)mem_alloc(count * 0xC);
+    models = (s32 *)::operator new[](count * 4);
+    texlists = (s32 *)::operator new[](count * 4);
+    positions = (Vec *)::operator new[](count * 0xC);
+    speeds = (f32 *)::operator new[](count * 4);
+    rotations = (TOBoss4RockAngles *)::operator new[](count * 0xC);
+    rotation_speeds = (TOBoss4RockAngles *)::operator new[](count * 0xC);
     for (i = 0; i < count; i++) {
         model = 4.0f * ((1.0f / 32768.0f) * (f32)rand());
         models[i] = (s32)get_bml_model(model_resource, model);
@@ -259,22 +260,22 @@ TOBoss4Rock::TOBoss4Rock(void *set_data) {
 
 TOBoss4Rock::~TOBoss4Rock() {
     if (models != NULL) {
-        mem_free(models);
+        ::operator delete[](models);
     }
     if (texlists != NULL) {
-        mem_free(texlists);
+        ::operator delete[](texlists);
     }
     if (positions != NULL) {
-        mem_free(positions);
+        ::operator delete[](positions);
     }
     if (speeds != NULL) {
-        mem_free(speeds);
+        ::operator delete[](speeds);
     }
     if (rotations != NULL) {
-        mem_free(rotations);
+        ::operator delete[](rotations);
     }
     if (rotation_speeds != NULL) {
-        mem_free(rotation_speeds);
+        ::operator delete[](rotation_speeds);
     }
 }
 

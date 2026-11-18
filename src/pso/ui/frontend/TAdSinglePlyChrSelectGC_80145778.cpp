@@ -1,4 +1,5 @@
 #include "pso/ui/MenuText.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80144B14.h"
 #include "types.h"
@@ -45,8 +46,8 @@ void TAdSinglePlyChrSelectGC::render_status_disp(f32 arg1, f32 arg2) {
 void TAdSinglePlyChrSelectGC::free_resources() {
     delete menu_font_object;
     release_texture_list(menu_font_texture_list);
-    mem_free((void *)menu_font_glyph_table);
-    mem_free((void *)menu_font_palette);
+    ::operator delete[]((void *)menu_font_glyph_table);
+    ::operator delete[]((void *)menu_font_palette);
     TAdSinglePlyChrSelectGC::safe_free(menu_font_glyph_data);
 }
 #pragma pop
@@ -105,7 +106,7 @@ void load_menu_font(void) {
         *(menu_font_glyph_pixel_buffers + m) = menu_font_texture_list[0].entries[m].texture->surface->pixels;
         clear_words_80145804(*(menu_font_glyph_pixel_buffers + m), 0x2000);
     }
-    menu_font_palette = (s16 *)mem_alloc(0x100);
+    menu_font_palette = (s16 *)::operator new[](0x100);
     clear_words_80145804((u32 *)menu_font_palette, 0x40);
     menu_font_palette[0] = 0xFFF;
     menu_font_palette[1] = 0x3FFF;
@@ -115,7 +116,7 @@ void load_menu_font(void) {
     for (i = 0; i < 2; i++) {
         TLanguage::set_entry_index(i, 0);
     }
-    g = (Glyph_80145804 *)mem_alloc(0xB40);
+    g = (Glyph_80145804 *)::operator new[](0xB40);
     menu_font_glyph_table = g;
     for (i = 0; i < 2; i++) {
         v = 0;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_80103674.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 extern u32 item_buffer_temp_mode;
@@ -10,6 +11,6 @@ void init_item_chunk_buffers(void) {
     item_buffer_temp_mode = 0;
     item_buff_buffer = 0;
     for (i = 0; i != 2; i++) {
-        item_nj_chunk_buffer_table[i] = (u32)mem_alloc(0x200);
+        item_nj_chunk_buffer_table[i] = (u32)::operator new[](0x200);
     }
 }

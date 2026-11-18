@@ -1,4 +1,5 @@
 #include "pso/render/ChunkMaterialState.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/ui/TUnk_804E3008.h"
@@ -172,7 +173,7 @@ u8 *__dt__13TUnk_804E3008Fv(u8 *arg0, s16 arg1) {
         }
         temp_r3 = *(u32 *)((s8 *)arg0 + 0xE0);
         if (temp_r3 != 0U) {
-            mem_free((void *)temp_r3);
+            ::operator delete[]((void *)temp_r3);
             *(u32 *)((s8 *)arg0 + 0xE0) = 0U;
         }
         temp_r3_2 = ((TUnk_804E3008 *)arg0)->m_170;

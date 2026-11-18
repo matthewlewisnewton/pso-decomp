@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/task/TObject.h"
 #include "pso/render/TFogCtrl_EOR.h"
 #include "pso/render/TFogCtrl.h"
@@ -882,7 +883,7 @@ void TFogCtrl::reset() {
     TObjFogCollisionPoison__sub_801533BC();
     TQuestVmDownLoadServer::destroy_instance();
     if ((u32) fog_entry_array != 0U) {
-        mem_free((void *)fog_entry_array);
+        ::operator delete[]((void *)fog_entry_array);
     }
     fog_entry_array = 0U;
     ((s32 (*)(s32))fn_803E1FC8)(-1);
@@ -905,7 +906,7 @@ void init_scene_fog_system(void) {
         fog_default_entry.f38[i] = 0;
     }
     fog_default_entry.f18[6] = FOG_MAX;
-    fog_entry_array = (u32)mem_alloc(0x2000);
+    fog_entry_array = (u32)::operator new[](0x2000);
     for (i = 0; i < 0x80; i++) {
         copy_fog_entry((u8 *)&((FogParam_800FBC5C *)fog_entry_array)[i], (u8 *)&fog_default_entry);
     }

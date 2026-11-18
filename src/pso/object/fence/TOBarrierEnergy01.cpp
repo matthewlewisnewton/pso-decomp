@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/fence/TOBarrierEnergy01.h"
@@ -81,7 +82,7 @@ void TOBarrierEnergy01::load_resources() {
     }
     barrier_energy_shared_bml_archive = archive;
     barrier_energy_model = (void *)get_bml_model(archive, 0);
-    barrier_energy_texlists = (s32 *)mem_alloc(3 * sizeof(s32));
+    barrier_energy_texlists = (s32 *)::operator new[](3 * sizeof(s32));
     barrier_energy_texlists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_laz_guard_r.gvm");
     barrier_energy_texlists[1] = (s32)get_bml_texlist(barrier_energy_shared_bml_archive, 1);
     barrier_energy_texlists[2] = (s32)get_bml_texlist(barrier_energy_shared_bml_archive, 0);
@@ -91,7 +92,7 @@ void TOBarrierEnergy01::free_resources() {
     if (barrier_energy_texlists != NULL) {
         TObjPlayer::free_if_valid(barrier_energy_texlists[0]);
         if (barrier_energy_texlists != NULL) {
-            mem_free(barrier_energy_texlists);
+            ::operator delete[](barrier_energy_texlists);
             barrier_energy_texlists = NULL;
         }
     }

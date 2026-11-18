@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/unk/TLobby.h"
 #include "pso/player/TPlyPhotonChair.h"
@@ -283,7 +284,7 @@ int TUnk_804ED7D0::vfunc_5(s32) {
 
 void TLobby::free_singleton_805D6C80() {
     if ((u32) (*(u32 *)&lbl_805D6C80) != 0U) {
-        mem_free((void*)(*(u32 *)&lbl_805D6C80));
+        ::operator delete[]((void*)(*(u32 *)&lbl_805D6C80));
         (*(u32 *)&lbl_805D6C80) = 0U;
     }
 }
@@ -291,7 +292,7 @@ void TLobby::free_singleton_805D6C80() {
 void alloc_work_buffer__6TLobbyFv(void);
 
 void alloc_work_buffer__6TLobbyFv(void) {
-    lbl_805D6C80 = (s32)mem_alloc(0x1C0000);
+    lbl_805D6C80 = (s32)::operator new[](0x1C0000);
 }
 
 

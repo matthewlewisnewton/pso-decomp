@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubAreaMapDisp.h"
 #include "pso/ui/hud/TRaderMapCore.h"
@@ -177,7 +178,7 @@ void TWindowSubAreaMapDisp::run_task() {
 }
 TWindowSubAreaMapDisp::~TWindowSubAreaMapDisp() {
     if ((u32) this->m_74 != 0U) {
-        mem_free(*(void **)((s8 *)this + 0x74));
+        ::operator delete[](*(void **)((s8 *)this + 0x74));
         this->m_74 = 0U;
     }
     if ((s32) this->m_6c != 0) {
@@ -205,7 +206,7 @@ u8 *TWindowSubAreaMapDisp__ct(TWindowSubAreaMapDisp *window_sub_area_map_disp) {
         var_r30 = (u8 *)(get_floor_destination_name(get_current_floor_area()));
     }
     temp_r3 = measure_string_len__20TWindowSubStatusDispFv((int)var_r30);
-    window_sub_area_map_disp->m_74 = (s32)mem_alloc((temp_r3 + 1));
+    window_sub_area_map_disp->m_74 = (s32)::operator new[]((temp_r3 + 1));
     strncpy((int)window_sub_area_map_disp->m_74, (int)var_r30, (void *)(temp_r3 + 1));
     temp_r3_2 = (int)::operator new(0x24);
     var_r0 = temp_r3_2;

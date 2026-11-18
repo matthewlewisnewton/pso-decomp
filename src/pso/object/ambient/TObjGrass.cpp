@@ -1,4 +1,5 @@
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
@@ -518,7 +519,7 @@ void TObjGrass::load_resources() {
     lbl_805D515C = (u32) p;
     ((SampledMotionPoints *)lbl_805D5158)->sample_two_nodes((NJS_OBJECT *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8), (NJS_MOTION *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f430[TObjGrass__grass_type_param_table[9]].f4), 0x46, 0x48);
     ((SampledMotionPoints *)lbl_805D515C)->sample_two_nodes((NJS_OBJECT *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f42c->f8), (NJS_MOTION *)(((Data_800BF66C *)TObjGrass__resource_bundle)->f430[TObjGrass__grass_type_param_table[13]].f4), 0x3C, 0x3E);
-    TObjGrass__bml_resource = (u32) mem_alloc(0xC);
+    TObjGrass__bml_resource = (u32) ::operator new[](0xC);
     lbl_805D5140 = register_boss__6TLobbyFl(0x4E);
     ((s32 *) TObjGrass__bml_resource)[0] = dispatch_shared_handler_b__6TLobbyFl(0x51);
     ((s32 *) TObjGrass__bml_resource)[2] = dispatch_shared_handler_b__6TLobbyFl(0x52);
@@ -534,7 +535,7 @@ void TObjGrass::load_resources() {
 
 void TObjGrass::destroy_all() {
     if ((u32) TObjGrass__bml_resource != 0U) {
-        mem_free((void*)TObjGrass__bml_resource);
+        ::operator delete[]((void*)TObjGrass__bml_resource);
         TObjGrass__bml_resource = 0U;
     }
     if ((u32) lbl_805D515C != 0U) {

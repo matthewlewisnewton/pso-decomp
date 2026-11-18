@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/boss/galgryphon/TObjBoss5PillarSmoke.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"
@@ -49,8 +50,8 @@ TObjBoss5PillarSmoke::~TObjBoss5PillarSmoke() {
             ((Smoke_8028AEA4 *)this)->a[i] = NULL;
         }
     }
-    mem_free(((Smoke_8028AEA4 *)this)->b);
-    mem_free(((Smoke_8028AEA4 *)this)->a);
+    ::operator delete[](((Smoke_8028AEA4 *)this)->b);
+    ::operator delete[](((Smoke_8028AEA4 *)this)->a);
 }
 
 Smoke_8028AF6C *TObjBoss5PillarSmoke__ct(Smoke_8028AF6C *arg0, void *arg1, Node_8028AF6C *arg2) {
@@ -72,8 +73,8 @@ Smoke_8028AF6C *TObjBoss5PillarSmoke__ct(Smoke_8028AF6C *arg0, void *arg1, Node_
         ((TObject *)arg0)->queue_destruction();
         return arg0;
     }
-    arg0->a = (void **)mem_alloc(arg0->count * 4);
-    arg0->b = (void **)mem_alloc(arg0->count * 4);
+    arg0->a = (void **)::operator new[](arg0->count * 4);
+    arg0->b = (void **)::operator new[](arg0->count * 4);
     for (i = 0; i < arg0->count; i++) {
         arg0->a[i] = spawn_continuous_particle_effect_with_flags(lbl_80450CD0, 0x213, 0x40);
         arg0->b[i] = spawn_continuous_particle_effect_with_flags(lbl_80450CD0, 0x214, 0x40);

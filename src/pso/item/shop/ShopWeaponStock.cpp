@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/item/shop/ShopWeaponStock.h"
 #include "pso/unk/text_80104FCC.h"
@@ -635,7 +636,7 @@ void TLobby::free_lobby_resources() {
     s32 i;
     for (i = 3; i >= 0; i--) {
         if (((u32 *)&shop_weapon_stock_buffers)[i] != 0) {
-            mem_free((void *)(((u32 *)&shop_weapon_stock_buffers)[i]));
+            ::operator delete[]((void *)(((u32 *)&shop_weapon_stock_buffers)[i]));
             ((u32 *)&shop_weapon_stock_buffers)[i] = 0;
         }
     }
@@ -674,10 +675,10 @@ void load_weapon_random_tables(void) {
     }
     if (is_split_screen() == 1) {
         for (i = 0; i < 4; i++) {
-            ((s32 *)&shop_weapon_stock_buffers)[i] = (s32)mem_alloc(0x140);
+            ((s32 *)&shop_weapon_stock_buffers)[i] = (s32)::operator new[](0x140);
         }
     } else {
-        ((s32 *)&shop_weapon_stock_buffers)[0] = (s32)mem_alloc(0x140);
+        ((s32 *)&shop_weapon_stock_buffers)[0] = (s32)::operator new[](0x140);
     }
     shop_weapon_stock_level = 0;
 }

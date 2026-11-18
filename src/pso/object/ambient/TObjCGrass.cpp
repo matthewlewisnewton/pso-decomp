@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/ambient/TObjCGrass.h"
 #include "pso/object/base/TObjMotion.h"
@@ -203,7 +204,7 @@ void TObjCGrass::load_resources() {
 
 }
 TObjCGrass::~TObjCGrass() {
-    if (*(void **)((s8 *)this + 0xFC) != NULL) { mem_free(*(void **)((s8 *)this + 0xFC)); }
+    if (*(void **)((s8 *)this + 0xFC) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0xFC)); }
 }
 
 #pragma push
@@ -229,7 +230,7 @@ u8 *TObjCGrass__ct(Grass_800B8EFC *self, u8 *arg1, s32 arg2, s32 arg3) {
     self->f100 = self->fC4 - 1.0f;
     self->count = arg2;
     if (arg2 != 0) {
-        self->recs = (Rec_800B8EFC *)mem_alloc(self->count << 5);
+        self->recs = (Rec_800B8EFC *)::operator new[](self->count << 5);
     } else {
         self->recs = NULL;
     }

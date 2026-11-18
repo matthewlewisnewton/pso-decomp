@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
@@ -1012,7 +1013,7 @@ void TBoss6PlotFalz::free_buffer_pairs() {
             self->items[i] = 0;
         }
     }
-    mem_free(self->items);
+    ::operator delete[](self->items);
     self->items = 0;
 }
 typedef char MemberActionStorage_8004B084_size[sizeof(MemberActionStorage_8004B084) == 12 ? 1 : -1];
@@ -1031,7 +1032,7 @@ void build_tables__14TBoss6PlotFalzFPvPvi(Obj_8004AA80 *arg0, Rec_8004AA80 *arg1
     }
     arg0->count = arg2;
     arg0->items = NULL;
-    arg0->items = (s32 *)mem_alloc(arg0->count * 4);
+    arg0->items = (s32 *)::operator new[](arg0->count * 4);
     arg0->f8 = 0;
     arg0->fc = 0;
     for (j = 0; j < arg0->count; j++) {

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/TLobby_801E43E4.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/npc/TNpcPlayer.h"
 #include "types.h"
@@ -1872,7 +1873,7 @@ void __sinit_TNpcPlayer_cpp() {
 
 void TNpcPlayer::ensure_rock_singleton() {
     if ((u32) npc_player_char_data_buffer == 0U) {
-        npc_player_char_data_buffer = (u32)mem_alloc(0x1400);
+        npc_player_char_data_buffer = (u32)::operator new[](0x1400);
     }
 }
 
@@ -1889,7 +1890,7 @@ u8 *TNpcPlayer::build_npc_player_record(s32 arg0) {
         copy_player_visual_record(lbl_8050CF68, (u8 *)npc_player_char_data_buffer + arg0 * 0x50);
     }
     bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
-    mem_free((void *)npc_player_char_data_buffer);
+    ::operator delete[]((void *)npc_player_char_data_buffer);
     mode = game_difficulty_selection;
     npc_player_char_data_buffer = 0;
     if (mode >= 0 && mode <= 2) {
@@ -1935,7 +1936,7 @@ u8 *load_npc_player_template(s32 index) {
     if (npc_player_char_data_buffer != 0U) {
         return NULL;
     }
-    npc_player_char_data_buffer = (u32)mem_alloc(0x1400);
+    npc_player_char_data_buffer = (u32)::operator new[](0x1400);
     if (TNpcPlayer__data_805D5864 != 0) {
         TNpcPlayer__data_805D5864 = 0;
         copy_player_visual_record(lbl_8050CF68, lbl_8050D3E0);
@@ -1944,7 +1945,7 @@ u8 *load_npc_player_template(s32 index) {
         copy_player_visual_record(lbl_8050CF68, (u8 *)npc_player_char_data_buffer + index * 0x50);
     }
     bswap__15disp_data_part2Fv((s32)lbl_8050CF68);
-    mem_free((void *)npc_player_char_data_buffer);
+    ::operator delete[]((void *)npc_player_char_data_buffer);
     mode = game_difficulty_selection;
     npc_player_char_data_buffer = 0;
     if (mode >= 0 && mode <= 2) {

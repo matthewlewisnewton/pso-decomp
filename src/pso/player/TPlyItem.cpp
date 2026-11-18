@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/item/TItem.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
 #include "pso/unk/TLobby_8030A6A8.h"
@@ -634,7 +635,7 @@ u8 *TObjPlayer__sub_801D46D4(u8 *arg0, s32 arg1) {
     s32 n;
     *(s32 *)arg0 = arg1;
     n = *(s32 *)arg0;
-    *(s32 *)(arg0 + 4) = __construct_new_array(mem_alloc((n * 8 + 0x10)), TObjPlayer__sub_801D4730, 0, 8, n);
+    *(s32 *)(arg0 + 4) = __construct_new_array(::operator new[]((n * 8 + 0x10)), TObjPlayer__sub_801D4730, 0, 8, n);
     return arg0;
 }
 
@@ -644,7 +645,7 @@ u8 *TObjPlayer__sub_801D4678(u8 *arg0, s16 arg1) {
         q = *(u8 **)(arg0 + 4);
         if (q != NULL) {
             if (q != NULL) {
-                mem_free((q - 0x10));
+                ::operator delete[]((q - 0x10));
             }
         }
         if (arg1 > 0) {

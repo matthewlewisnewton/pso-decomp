@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TLobby_80209524.h"
 #include "pso/system/memory.h"
 #include "pso/unk/TLobby.h"
@@ -40,7 +41,7 @@ extern "C" {
 
 void *TLobby::free_boss4rock(s16 arg1) {
     if (this != NULL) {
-        mem_free((void *)(*(s32 *)&this->m_flags));
+        ::operator delete[]((void *)(*(s32 *)&this->m_flags));
         ::operator delete(*(void * *)&this->m_name);
         *(s32 *)&this->m_prev = 0;
         *(s32 *)&this->m_next = 0;
@@ -86,7 +87,7 @@ u8 *TLobby__sub_80209584(u8 *arg0, s32 arg1) {
         var_r0 = __ct__14SubtractiveRngFv((void *) temp_r3);
     }
     *(s32 *)((s8 *)arg0 + 0) = var_r0;
-    *(s32 *)((s8 *)arg0 + 4) = (s32)mem_alloc((arg1 * 4));
+    *(s32 *)((s8 *)arg0 + 4) = (s32)::operator new[]((arg1 * 4));
     *(s32 *)((s8 *)arg0 + 8) = 0;
     *(s32 *)((s8 *)arg0 + 0xC) = arg1;
     *(s32 *)((s8 *)arg0 + 0x10) = arg1;

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/TLobby_801E43E4.h"
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80120FC4.h"
 #include "pso/system/data/FlagWord.h"
@@ -92,7 +93,6 @@ struct Save_801039BC {
 };
 
 extern "C" {
-void mem_free(void *p);
 u32 TLobby__floor_item_entry_pool;
 Ent_801037A0 **floor_item_row_table;
 s32 floor_item_counts_by_floor;
@@ -101,7 +101,6 @@ int floor_item_free_id_count;
 u16 *floor_item_next_sort_keys;
 FlagWord lbl_805D5430;
 s32 __construct_new_array(s32, s32 *, s32, s32, s32);
-s32 mem_alloc(s32);
 extern s32 __ct__9FloorItemFv[];
     extern int lbl_805D5868;
 void TLobby__sub_801041BC(void *arg0);
@@ -444,28 +443,28 @@ void TLobby::reset_floor_items() {
 }
 
 void TLobby::free_boss_rocks() {
-    mem_free((void *)floor_item_next_sort_keys);
+    ::operator delete[]((void *)floor_item_next_sort_keys);
     floor_item_next_sort_keys = 0;
-    mem_free((void *)floor_item_free_id_stack);
+    ::operator delete[]((void *)floor_item_free_id_stack);
     floor_item_free_id_stack = 0;
     (*(s32 *)&floor_item_free_id_count) = 0;
-    mem_free((void *)floor_item_counts_by_floor);
+    ::operator delete[]((void *)floor_item_counts_by_floor);
     floor_item_counts_by_floor = 0;
-    mem_free((void *)floor_item_row_table);
+    ::operator delete[]((void *)floor_item_row_table);
     floor_item_row_table = 0;
     if ((u32) TLobby__floor_item_entry_pool != 0U) {
-        mem_free((void *)(TLobby__floor_item_entry_pool - 0x10));
+        ::operator delete[]((void *)(TLobby__floor_item_entry_pool - 0x10));
     }
     TLobby__floor_item_entry_pool = 0U;
     lbl_805D5430.reset();
 }
 void TLobby::alloc_objects() {
-    (*(s32 *)&TLobby__floor_item_entry_pool) = __construct_new_array(mem_alloc(0x1E610), __ct__9FloorItemFv, 0, 0x24, 0xD80);
-    floor_item_row_table = (Ent_801037A0 **)mem_alloc(0x48);
-    floor_item_counts_by_floor = mem_alloc(0x48);
-    floor_item_free_id_stack = mem_alloc(0x40);
+    (*(s32 *)&TLobby__floor_item_entry_pool) = __construct_new_array((s32)::operator new[](0x1E610), __ct__9FloorItemFv, 0, 0x24, 0xD80);
+    floor_item_row_table = (Ent_801037A0 **)::operator new[](0x48);
+    floor_item_counts_by_floor = (s32)::operator new[](0x48);
+    floor_item_free_id_stack = (s32)::operator new[](0x40);
     (*(s32 *)&floor_item_free_id_count) = 0;
-    floor_item_next_sort_keys = (u16 *)mem_alloc(0x24);
+    floor_item_next_sort_keys = (u16 *)::operator new[](0x24);
     lbl_805D5430.reset();
     TLobby::reset_floor_items();
 }

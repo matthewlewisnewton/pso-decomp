@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/task/TObject.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -95,8 +96,8 @@ void *TWindowMakeTeam__ct(void *arg0, void *arg1, s32 arg2) {
 }
 
 TWindowMakeTeam::~TWindowMakeTeam() {
-    mem_free((void *)this->m_28);
-    mem_free((void *)this->m_24);
+    ::operator delete[]((void *)this->m_28);
+    ::operator delete[]((void *)this->m_24);
     if (this->m_34 != 0) {
         ((TObject *)this->m_34)->queue_destruction();
         this->m_34 = 0;
@@ -155,7 +156,7 @@ void TWindowMakeTeam::run_task() {
         }
         if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
             s32 n;
-            mem_free(self->name);
+            ::operator delete[](self->name);
             self->name = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
             TWindowSubComCard::mask_profanity_words(self->name, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->name);
@@ -183,7 +184,7 @@ void TWindowMakeTeam::run_task() {
         }
         if (((TWindowSubComCard *)(self->keyboard))->update_keyboard() != 0) {
             s32 n;
-            mem_free(self->comment);
+            ::operator delete[](self->comment);
             self->comment = realloc_buffer__17TWindowSubComCardFv(self->keyboard);
             TWindowSubComCard::mask_profanity_words(self->comment, get_shared_text_buffer());
             n = measure_string_len__20TWindowSubStatusDispFv(self->comment);

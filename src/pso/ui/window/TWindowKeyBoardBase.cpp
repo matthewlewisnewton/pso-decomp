@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowKeyBoardBase_8008102C.h"
 #include "pso/ui/window/TWindowKeyBoardBase.h"
 #include <stddef.h>
@@ -1041,7 +1042,7 @@ void TWindowKeyBoardBase::run_task() {
 }
 
 TWindowKeyBoardBase::~TWindowKeyBoardBase() {
-    mem_free(*(void **)((s8 *)this + 0x9C));
+    ::operator delete[](*(void **)((s8 *)this + 0x9C));
     destroy__19TWindowKeyBoardBaseFPvs((u32 *)((s8 *)this + 0x84), -1);
     destroy__19TWindowKeyBoardBaseFPvs((u32 *)((s8 *)this + 0x6C), -1);
 }
@@ -1066,7 +1067,7 @@ u8 *TWindowKeyBoardBase__ct(u8 *arg0) {
     *(s32 *)&((TWindowKeyBoardBase *)arg0)->m_ac = 0;
     if (temp_r31 == 0) {
         init_keyboard_text_buffer((arg0 + 0x84), 0x24, 0);
-        *(s32 *)&((TWindowKeyBoardBase *)arg0)->m_9c = (s32)mem_alloc((u32)((void *)0x194));
+        *(s32 *)&((TWindowKeyBoardBase *)arg0)->m_9c = (s32)::operator new[]((u32)((void *)0x194));
         *(s32 *)&((TWindowKeyBoardBase *)arg0)->m_b0 = 0x94;
     }
     return arg0;

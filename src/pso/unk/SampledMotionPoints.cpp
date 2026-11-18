@@ -1,4 +1,5 @@
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/unk/text_803D853C.h"
 #include "types.h"
@@ -108,7 +109,7 @@ void SampledMotionPoints::sample(NJS_OBJECT *model, NJS_MOTION *motion, const s3
 }
 
 SampledMotionPoints::~SampledMotionPoints() {
-    mem_free(points);
+    ::operator delete[](points);
     points = NULL;
 }
 
@@ -123,7 +124,7 @@ SampledMotionPoints::SampledMotionPoints(s32 points_per_sample, f32 start, f32 e
     this->start *= this->step;
     this->end *= this->step;
     n = sample_count * this->points_per_sample;
-    points = (Vec *)mem_alloc(n * sizeof(Vec));
+    points = (Vec *)::operator new[](n * sizeof(Vec));
     for (i = 0; i < n; i++) {
         points[i].x = 0.0f;
         points[i].y = 0.0f;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TUnk_804CFA28.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8025A9B4.h"
@@ -167,12 +168,12 @@ void set_text_entry_string(u8 *arg0, u32 str, s32 arg2) {
         temp_r3 = *(u16 *)((s8 *)arg0 + 0);
         if (temp_r3 & 0x20) {
             *(u16 *)((s8 *)arg0 + 0) = (u16) (temp_r3 & 0xFFFFFFDF);
-            mem_free((void *)((int) (*(u32 *)((s8 *)arg0 + 0x20))));
+            ::operator delete[]((void *)((int) (*(u32 *)((s8 *)arg0 + 0x20))));
         }
     }
     if ((str != 0U) && (arg2 & 0x20)) {
         temp_r3_2 = TWindowKeyBoardSoft::strnlen((s8 *)str, (u32)(0x400));
-        *(u32 *)((s8 *)arg0 + 0x20) = ((u32)mem_alloc(temp_r3_2 + 1));
+        *(u32 *)((s8 *)arg0 + 0x20) = ((u32)::operator new[](temp_r3_2 + 1));
         strncpy((s32)((int) (*(u32 *)((s8 *)arg0 + 0x20))), str, temp_r3_2);
         *(s8 *)((s8 *)(temp_r3_2 + *(u32 *)((s8 *)arg0 + 0x20)) + 0) = 0;
         *(u16 *)((s8 *)arg0 + 0) = (u16) (*(u16 *)((s8 *)arg0 + 0) | 0x20);
@@ -251,7 +252,7 @@ void *TWindowSubStatusDisp__sub_8025AF0C(void *window_sub_status_disp, s16 arg1)
             temp_r3 = ((TUnk_804CFA28 *)window_sub_status_disp)->flags;
             if (temp_r3 & 0x20) {
                 ((TUnk_804CFA28 *)window_sub_status_disp)->flags = (u16) (temp_r3 & 0xFFFFFFDF);
-                mem_free((void *)(*(u32 *)((s8 *)window_sub_status_disp + 0x20)));
+                ::operator delete[]((void *)(*(u32 *)((s8 *)window_sub_status_disp + 0x20)));
             }
         }
         deleting_destructor__20TWindowSubStatusDispFs(window_sub_status_disp, 0);

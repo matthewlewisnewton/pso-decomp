@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80144B14.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80228F5C.h"
 #include "pso/ui/window/TWindowOptionCtrl.h"
@@ -408,7 +409,7 @@ void TWindowMessage::run_task() {
 }
 
 TWindowMessage::~TWindowMessage() {
-    if (*(void **)((s8 *)this + 0x7C) != NULL) { mem_free(*(void **)((s8 *)this + 0x7C)); }
+    if (*(void **)((s8 *)this + 0x7C) != NULL) { ::operator delete[](*(void **)((s8 *)this + 0x7C)); }
 }
 u8 *TWindowMessage__ct(u8 *window_addition, s32 arg1, u32 arg2, s32 arg3) {
     u32 i;
@@ -423,7 +424,7 @@ u8 *TWindowMessage__ct(u8 *window_addition, s32 arg1, u32 arg2, s32 arg3) {
     *(s32 *)(window_addition + 0x78) = 0xB4;
     *(f32 *)(window_addition + 0x84) = 0.0f;
     *(f32 *)(window_addition + 0x80) = 0.0f;
-    *(u8 **)(window_addition + 0x7C) = (u8 *)mem_alloc(arg2 * 8);
+    *(u8 **)(window_addition + 0x7C) = (u8 *)::operator new[](arg2 * 8);
     p = *(u8 **)(window_addition + 0x7C);
     for (i = 0; i < arg2; i++) {
         *(s32 *)p = 0;

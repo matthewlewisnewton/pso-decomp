@@ -3,6 +3,7 @@
 #pragma readonly_strings on
 
 #include "pso/system/vector.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 
 #include "pso/system/NinjaTypes.h"
@@ -247,8 +248,8 @@ Unk_8002DB7C::Unk_8002DB7C(s32 width, s32 strips, s32 materialWords, s16 *materi
     this->strips = strips;
     this->materialWords = materialWords;
     this->stripWords = this->width * 6 + 1;
-    this->polygons = (s16 *)mem_alloc((this->materialWords + 5 + this->stripWords * this->strips) * 2);
-    this->vertices = (u32 *)mem_alloc((this->width * (this->strips + 1) * 6 + 3) * 4);
+    this->polygons = (s16 *)::operator new[]((this->materialWords + 5 + this->stripWords * this->strips) * 2);
+    this->vertices = (u32 *)::operator new[]((this->width * (this->strips + 1) * 6 + 3) * 4);
     p = this->polygons;
     for (i = 0; i < this->materialWords; i++) {
         *p++ = *material++;
@@ -309,9 +310,9 @@ Unk_8002DB7C::Unk_8002DB7C(s32 width, s32 strips, s32 materialWords, s16 *materi
 }
 
 Unk_8002DB7C::~Unk_8002DB7C() {
-    mem_free(vertices);
+    ::operator delete[](vertices);
     vertices = NULL;
-    mem_free(polygons);
+    ::operator delete[](polygons);
     polygons = NULL;
     model.vertex_list = NULL;
     model.polygon_list = NULL;
@@ -461,7 +462,7 @@ void TBoss8Dragon__sub_8002D5F8(void) {
             if (n < 0) n = -n;
             total += n;
         }
-        lbl_805D4B6C = (UV_8002D4C0 *)mem_alloc(total * sizeof(UV_8002D4C0));
+        lbl_805D4B6C = (UV_8002D4C0 *)::operator new[](total * sizeof(UV_8002D4C0));
         uv = lbl_805D4B6C;
         uv_strip = start;
         for (uv_strip_index = 0; uv_strip_index < strip_count; uv_strip_index++) {
@@ -483,7 +484,7 @@ void TBoss8Dragon__sub_8002D5F8(void) {
     for (count_index = 0; count_index < vertex_count; count_index++, vtx += 6) {
         if (vtx[1] > 15.0f) lbl_805D4B74++;
     }
-    lbl_805D4B78 = (Ent_8002CE78 *)mem_alloc(lbl_805D4B74 * sizeof(Ent_8002CE78));
+    lbl_805D4B78 = (Ent_8002CE78 *)::operator new[](lbl_805D4B74 * sizeof(Ent_8002CE78));
     e = lbl_805D4B78;
     vtx = vstart;
     for (entry_index = 0; entry_index < vertex_count; vtx += 6, entry_index++) {
@@ -499,9 +500,9 @@ void TBoss8Dragon__sub_8002D5F8(void) {
 
 #pragma pop
 void TBoss8Dragon::free_resources() {
-    mem_free(lbl_805D4B78);
+    ::operator delete[](lbl_805D4B78);
     lbl_805D4B78 = NULL;
-    mem_free(lbl_805D4B6C);
+    ::operator delete[](lbl_805D4B6C);
     lbl_805D4B6C = NULL;
     delete lbl_805D4B64;
     lbl_805D4B64 = NULL;

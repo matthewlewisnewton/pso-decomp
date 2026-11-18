@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/boss/galgryphon/TObjBoss5PillarCtrl.h"
 #include "pso/system/task/TObject_80019A50.h"
 
@@ -53,7 +54,7 @@ TObjBoss5PillarCtrl::~TObjBoss5PillarCtrl() {
             ((Pc_8028B198 *)this)->a[i] = NULL;
         }
     }
-    mem_free(((Pc_8028B198 *)this)->a);
+    ::operator delete[](((Pc_8028B198 *)this)->a);
 }
 
 
@@ -74,7 +75,7 @@ Ctrl_8028B23C *TObjBoss5PillarCtrl__ct(Ctrl_8028B23C *arg0, void *arg1) {
         return arg0;
     }
     lst = lbl_805D4DD8->owner->list;
-    arg0->pillars = (void **)mem_alloc(arg0->count * 4);
+    arg0->pillars = (void **)::operator new[](arg0->count * 4);
     for (i = 0, n = lst->head; i < arg0->count; i++) {
         arg0->pillars[i] = TObjBoss5Pillar::create(n->data);
         n = n->next;

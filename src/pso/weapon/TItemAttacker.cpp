@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/weapon/TItemAttacker.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/vector.h"
 
 #include "types.h"
@@ -200,7 +201,7 @@ void TItemBuff__ct(void) {
         if ((s32) item_buffer_temp_mode != 0) {
             TLobby::tmp_buf_release((const char *)(s32) &(*(RecoveredGlobal_8010355C_lbl_8043E038 *)(s32 *)"TItemBuff").value);
         } else {
-            mem_free((void *)(*(u32 *)&item_buff_buffer));
+            ::operator delete[]((void *)(*(u32 *)&item_buff_buffer));
         }
         (*(u32 *)&item_buff_buffer) = 0;
     }
@@ -216,7 +217,7 @@ s32 create_item_buff(s32 arg0) {
         if ((temp_r3 != 0) && (arg0 < 0x40000)) {
             item_buff_buffer = TLobby::tmp_buf_use_req((const char *)(s32 *)"TItemBuff");
         } else {
-            item_buff_buffer = (s32)mem_alloc(arg0);
+            item_buff_buffer = (s32)::operator new[](arg0);
         }
     }
     return item_buff_buffer;

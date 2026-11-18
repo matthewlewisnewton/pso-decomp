@@ -1,4 +1,5 @@
 #include "pso/ui/window/TUnk_804CF0B8.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowCtrl.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 
@@ -13,7 +14,7 @@ TUnk_804CF0B8::~TUnk_804CF0B8() {
         TWindowCtrl::release_slot(&m_73);
     }
     if (name != NULL) {
-        mem_free(name);
+        ::operator delete[](name);
         name = NULL;
     }
 }

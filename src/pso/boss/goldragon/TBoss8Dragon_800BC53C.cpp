@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/boss/goldragon/TBoss8Dragon_800BC53C.h"
 #include "pso/system/memory.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
@@ -25,7 +26,7 @@ AreaAttackHistory::AreaAttackHistory(s32 capacity) : PointerBuffer(capacity, NUL
 
 PointerBuffer::PointerBuffer(s32 capacity, void *empty) {
     if (capacity > 0) {
-        entries = (void **)mem_alloc(capacity * sizeof(void *));
+        entries = (void **)::operator new[](capacity * sizeof(void *));
     } else {
         entries = NULL;
     }
@@ -37,7 +38,7 @@ PointerBuffer::PointerBuffer(s32 capacity, void *empty) {
 
 PointerBuffer::~PointerBuffer() {
     if (entries != NULL) {
-        mem_free(entries);
+        ::operator delete[](entries);
         entries = NULL;
     }
 }

@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/saver/SaverLifecycle.h"
 #include "pso/effect/enemy/TEneParticleCtrl.h"
@@ -1944,7 +1945,7 @@ void * create_ene_saver(void *arg0) {
 
 void TObjPlayer::free_resources() {
     if ((u32) (*(u32 *)&player_object_ptr_array) != 0U) {
-        mem_free((void*)(*(u32 *)&player_object_ptr_array));
+        ::operator delete[]((void*)(*(u32 *)&player_object_ptr_array));
         (*(u32 *)&player_object_ptr_array) = 0U;
     }
     if ((u32) (*(u32 *)&lbl_805D5064) != 0U) {
@@ -1995,7 +1996,7 @@ void initialize_saver_resources(void) {
     dir.x = (-10.0f);
     dir.y = dir.z = 0.0f;
     ((SampledMotionPoints *)lbl_805D506C)->sample_node_offsets((NJS_OBJECT *)RES->sub->f8, (NJS_MOTION *)(RES->ents[saver_action_table[3].motion].b), 0x19, (const Vec *)&pos, (const Vec *)&dir);
-    player_object_ptr_array = (s32 *)mem_alloc(0xC);
+    player_object_ptr_array = (s32 *)::operator new[](0xC);
     saver_boss_stat_handle = register_boss__6TLobbyFl(0x52);
     player_object_ptr_array[0] = dispatch_shared_handler_b__6TLobbyFl(0x57);
     player_object_ptr_array[2] = dispatch_shared_handler_b__6TLobbyFl(0x58);

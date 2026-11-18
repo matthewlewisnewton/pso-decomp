@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/enemy/flower/TObjEneRe2Flower_EffCurse3.h"
 #include "pso/enemy/flower/TObjEneRe2Flower_800C4B78.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -134,7 +135,7 @@ void TObjPlayer__sub_800C4D44(void) {
         release_texture_list(p);
     }
     if (player_render_texture_buffer != 0) {
-        mem_free(player_render_texture_buffer);
+        ::operator delete[](player_render_texture_buffer);
         player_render_texture_buffer = 0;
     }
 }
@@ -142,7 +143,7 @@ void TObjPlayer__sub_800C4D44(void) {
 void pso_load_texture__6TLobbyFv(void *, void *);
 void set_texture_name(void *, void *, s32, s32);
 void TObjPlayer::create_render_texture() {
-    ((TObjPlayer *)(&player_render_target))->set_render_rect((s32)(player_render_texture_buffer = mem_alloc(0x800)), 0x902, 0x20, 0x20);
+    ((TObjPlayer *)(&player_render_target))->set_render_rect((s32)(player_render_texture_buffer = ::operator new[](0x800)), 0x902, 0x20, 0x20);
     set_texture_name(&player_render_texture_name, &player_render_target, 0x18696, 0x40800000);
     lbl_80500C30.p = &player_render_texture_name;
     lbl_80500C30.v = 1;

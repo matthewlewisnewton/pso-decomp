@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TLobby_8001D6A0.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/ui/window/TWindowSubStatusDisp_80228F5C.h"
@@ -10,10 +11,8 @@ extern "C" {
     extern unsigned char lbl_804EF440[];
 void *reset_entry__20TWindowSubStatusDispFPv(void *a0, s32 _w1);
 s32 deleting_destructor__20TWindowSubStatusDispFs(void *, s32);
-void mem_free(void *p);
 extern u8 lbl_804EF440[];
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
-void *mem_alloc(u32 size);
 s32 measure_string_len__20TWindowSubStatusDispFv(void *);
 s32 strncpy(int, void *, int);
 typedef struct
@@ -62,7 +61,7 @@ void TWindowSubStatusDisp__sub_80338740(u8 *arg0, s32 arg1, s32 arg2, s8 arg3, s
         *(s8 *)((s8 *)arg0 + 0x1C) = 0x33;
     }
     temp_r3 = measure_string_len__20TWindowSubStatusDispFv((void *)arg2);
-    *(s32 *)((s8 *)arg0 + 0x24) = (s32)mem_alloc((temp_r3 + 1));
+    *(s32 *)((s8 *)arg0 + 0x24) = (s32)::operator new[]((temp_r3 + 1));
     strncpy((int) (*(s32 *)((s8 *)arg0 + 0x24)), (void *)arg2, (int)temp_r3);
     *(s8 *)((s8 *)temp_r3 + (*(s32 *)((s8 *)arg0 + 0x24))) = 0;
     *(s8 *)((s8 *)arg0 + 0x1D) = arg7;
@@ -139,7 +138,7 @@ void *TWindowSubStatusDisp::destroy_with_free(s16 arg1) {
     if (this != NULL) {
         *(s32 **)((s8 *)this + 4) = (s32*)lbl_804EF440;
         if ((u32) *(u32 *)((s8 *)this + 0x24) != 0U) {
-            mem_free(this->m_24);
+            ::operator delete[](this->m_24);
             *(u32 *)((s8 *)this + 0x24) = 0U;
         }
         deleting_destructor__20TWindowSubStatusDispFs(this, 0);

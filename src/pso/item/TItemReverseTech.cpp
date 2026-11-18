@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/frontend/TAdEndText.h"
 #include "pso/item/TItemReverseTechBG.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
@@ -235,9 +236,9 @@ void TItemReverseTech::load_textures() {
     Hdr_8011A270 *hdr;
     int file;
     int buf;
-    TItemReverseTech__name_buffer = (int)mem_alloc(0x1C);
+    TItemReverseTech__name_buffer = (int)::operator new[](0x1C);
     strncpy((char *)TItemReverseTech__name_buffer, name, 0x1B);
-    e = (Ent_8011A270 *)mem_alloc(0xCC);
+    e = (Ent_8011A270 *)::operator new[](0xCC);
     TItemReverseTech__entry_table = (int)e;
     for (i = 0; i < 17; i++, e++) {
         e->name = TItemReverseTech__name_buffer;
@@ -249,17 +250,17 @@ void TItemReverseTech::load_textures() {
     hdr->entries = TItemReverseTech__entry_table;
     file = set_stream_and_load_file__6TLobbyFi(name);
     if (file != 0) {
-        buf = (int)mem_alloc(0x200000);
+        buf = (int)::operator new[](0x200000);
         if (buf != 0 && prs_decompress_alloc(file, buf, 0x200000) > 0) {
             load_gvm_texture_archive(buf, TItemReverseTech__texture_archive);
         }
-        mem_free((void *)buf);
+        ::operator delete[]((void *)buf);
     }
     TAdSinglePlyChrSelectGC::safe_free(file);
 }
 #pragma pop
 
-void TItemReverseTech::free() { free_texture_if_valid((u32)TItemReverseTech__texture_archive); mem_free((void *)TItemReverseTech__name_buffer); TItemReverseTech__name_buffer = 0; mem_free((void *)TItemReverseTech__entry_table); TItemReverseTech__entry_table = 0; ::operator delete((void *)TItemReverseTech__texture_archive); TItemReverseTech__texture_archive = 0; }
+void TItemReverseTech::free() { free_texture_if_valid((u32)TItemReverseTech__texture_archive); ::operator delete[]((void *)TItemReverseTech__name_buffer); TItemReverseTech__name_buffer = 0; ::operator delete[]((void *)TItemReverseTech__entry_table); TItemReverseTech__entry_table = 0; ::operator delete((void *)TItemReverseTech__texture_archive); TItemReverseTech__texture_archive = 0; }
 
 void TItemReverseTech::create() {
     void *obj = TObject::operator new(0x28);

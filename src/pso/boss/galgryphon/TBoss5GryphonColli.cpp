@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/boss/galgryphon/TBoss5GryphonColli.h"
 #include "pso/boss/galgryphon/TBoss5GryphonDemo.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -90,7 +91,7 @@ TBoss5GryphonColli_C::TBoss5GryphonColli_C(TObject *parent, s32 count, const Vec
     entity_id = TLobby::alloc_actor_ids(0);
     VecCopy(&base_position, pos);
     body_count = count;
-    bodies = (CollisionBody *)mem_alloc(body_count * sizeof(CollisionBody));
+    bodies = (CollisionBody *)::operator new[](body_count * sizeof(CollisionBody));
     step = 2.0f * len;
     body = bodies;
     zero = 0.0f;

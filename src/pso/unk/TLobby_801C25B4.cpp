@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/map/TSetEvtDestroy.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowMessage.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/item/TItem.h"
@@ -1184,7 +1185,7 @@ void TLobby__sub_801C3A40(void) {
 void TLobby::init_char_slots() {
     TLobby__battle_mode_data_ptr = 0;
     lbl_805D5D9C = TKeyBoardControl__sub_8000F828() == 1 ? 0x19 : 0x1E;
-    lobby_char_slot_array = __construct_new_array(mem_alloc(0x3220), (void *)init_char_data__10TObjPlayerFv, (void *)destroy_char_data__10TObjPlayerFis, 0x42C, 0xC);
+    lobby_char_slot_array = __construct_new_array(::operator new[](0x3220), (void *)init_char_data__10TObjPlayerFv, (void *)destroy_char_data__10TObjPlayerFis, 0x42C, 0xC);
     TAdSinglePlyChrSelectGC__sub_801C5158();
     clear_battle_player_ready_flags();
     TLobby__battle_ctrl_default_value = 1;

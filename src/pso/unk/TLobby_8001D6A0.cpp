@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
 #include "pso/unk/TLobby_8001D6A0.h"
@@ -331,7 +332,7 @@ void load_battle_param_entry(void) {
       name = "BattleParamEntry_lab_on.dat";
     }
   }
-  file = (File_8001DC30 *) mem_alloc(0xF600);
+  file = (File_8001DC30 *) ::operator new[](0xF600);
   if (file != 0)
   {
     read_disc_file(name, file);
@@ -387,7 +388,7 @@ void load_battle_param_entry(void) {
       }
 
     }
-    mem_free(file);
+    ::operator delete[](file);
  ;
   }
 }
@@ -589,7 +590,7 @@ void TLobby::update_difficulty() {
 
 void TLobby::free_boss4_rock() {
     if ((u32) TLobby__battle_parameter_buffer != 0U) {
-        mem_free((void*)TLobby__battle_parameter_buffer);
+        ::operator delete[]((void*)TLobby__battle_parameter_buffer);
         TLobby__battle_parameter_buffer = 0U;
     }
     battle_param_stats = 0;
@@ -600,7 +601,7 @@ void TLobby::free_boss4_rock() {
 }
 
 void alloc_battle_param_tables(void) {
-    u8 *buf = (u8 *)mem_alloc(0x3d80);
+    u8 *buf = (u8 *)::operator new[](0x3d80);
     s32 i;
     for (i = 0; i < 0x3d80; i++) {
         buf[i] = 0;

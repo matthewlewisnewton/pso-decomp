@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_800F5BC0.h"
 #include "pso/system/memory.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
@@ -42,9 +43,9 @@ void scroll_strip_uvs(Provider_800F5BC0 *arg0, s16 arg1, s16 arg2) {
 
 void *destroy_buffer_pair(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0xC)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0xC)));
         *(s32 *)((s8 *)arg0 + 0xC) = 0;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 8)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 8)));
         *(s32 *)((s8 *)arg0 + 8) = 0;
         if (arg1 > 0) {
             ::operator delete(arg0);

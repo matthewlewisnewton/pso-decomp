@@ -30,8 +30,6 @@ struct TOBoss4Rock : public TOBoss4 {
 };
 
 extern "C" {
-void mem_free(void *p);
-void *mem_alloc(u32 size);
 }
 
 typedef char TOBoss4Rock_size[sizeof(TOBoss4Rock) == 0xB8 ? 1 : -1];

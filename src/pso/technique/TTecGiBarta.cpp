@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "types.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
@@ -134,7 +135,6 @@ struct Obj_80230CFC {
 extern "C" {
 void *get_bml_motion(void *, u32);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
-void *mem_alloc(u32 size);
 void matrix_mult_vec(s32, void *, void *);
 void rotate_matrix_y(s32, s32);
 extern u8 identity_matrix[];
@@ -145,7 +145,6 @@ s32 calc_technique_parameters(int, int, int);
 extern RecoveredGlobal_802308A0_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_802308A0_lbl_804CC55C lbl_804CC55C;
 u16 get_entity_id(void *);
-void mem_free(void *p);
 void __dl__7TObjectFPv(void *);
 extern void *__vt__11TTecGiBarta[];
 TTecGiBarta_80230B48 *__dt__11TTecGiBartaFv(TTecGiBarta_80230B48 *self, s16 deleting);
@@ -250,7 +249,7 @@ void TTecGiBarta::create_particles() {
     angles.a[0] = shot->f54;
     angles.a[1] = 0;
     angles.a[2] = shot->f5C;
-    shot->emitters = (void **)mem_alloc(TTecGiBarta__emitter_profile_table[shot->band].count * 4);
+    shot->emitters = (void **)::operator new[](TTecGiBarta__emitter_profile_table[shot->band].count * 4);
     for (i = 0; i < TTecGiBarta__emitter_profile_table[shot->band].count; i++) {
         *(Raw_802304A0 *)&pos = *(Raw_802304A0 *)&shot->pos;
         if (TTecGiBarta__emitter_profile_table[shot->band].rows[i].flags & 0x800) {
@@ -382,7 +381,7 @@ TTecGiBarta_80230B48 *__dt__11TTecGiBartaFv(TTecGiBarta_80230B48 *self, s16 dele
                 ((TObject *)self->emitters[i])->queue_destruction();
             }
         }
-        mem_free(self->emitters);
+        ::operator delete[](self->emitters);
         ((TObjPlayer *)self)->destroy_technique_effect_resources(0);
         if (deleting > 0) __dl__7TObjectFPv(self);
     }

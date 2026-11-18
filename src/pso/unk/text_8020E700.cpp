@@ -1,5 +1,6 @@
 // ---- pso/unk/text_8020E700
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/unk/text_8020E700.h"
 #include "pso/unk/text_8020EEFC.h"
@@ -270,7 +271,6 @@ void generate_armor_shop_stock(s32 arg0) {
 extern "C" {
 
 // ---- pso/unk/TLobby_8020EDBC
-void mem_free(void *p);
 }
 
 void TLobby::free_rocks() {
@@ -281,7 +281,7 @@ void TLobby::free_rocks() {
     do {
         u32 v = (u32)var_r29[var_r31];
         if (v != 0U) {
-            mem_free((void *)v);
+            ::operator delete[]((void *)v);
             var_r29[var_r31] = var_r30;
         }
         var_r28 -= 1;
@@ -297,7 +297,6 @@ void TLobby::free_rocks() {
 
 #include "pso/unk/text_8020EE2C.h"
 extern "C" {
-s32 mem_alloc(s32);
 }
 s32 create_named_object(s32 arg0);
 extern u8 lbl_8044BC40[];
@@ -309,10 +308,10 @@ void load_armor_random_table(void) {
     }
     if (is_split_screen() == 1) {
         for (i = 0; i < 4; i++) {
-            lbl_80513D78[i] = mem_alloc(0x1A4);
+            lbl_80513D78[i] = (s32)::operator new[](0x1A4);
         }
     } else {
-        lbl_80513D78[0] = mem_alloc(0x1A4);
+        lbl_80513D78[0] = (s32)::operator new[](0x1A4);
     }
     lbl_805D615C = 0;
 }

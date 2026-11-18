@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowSubComCard_802A5748.h"
@@ -387,7 +388,6 @@ extern void *TWindowSubSymbolChat__instance;
 s32 get_symbol_chat_data__20TWindowSubSymbolChatFv(s32);
 
 s32 play_symbol_sound__20TWindowSubSymbolChatFl();
-void mem_free(void *p);
 u32 create_menu__20TWindowSubSymbolChatFv(void *);
 u32 create_parts__20TWindowSubSymbolChatFv(void *);
 s32 TWindowSubSymbolChat__sub_80283944(int);
@@ -996,7 +996,7 @@ void TWindowSubSymbolChat::run_task() {
         if (((TWindowSubComCard *)(this->m_58))->update_keyboard() != 0) {
             temp_r3_2 = ((TWindowSubComCard *)(this->m_58))->realloc_buffer();
             ((TWindowSubSymbolChat *)(this->m_28))->set_entry_name((void *)temp_r3_2);
-            mem_free((void *)temp_r3_2);
+            ::operator delete[]((void *)temp_r3_2);
             this->m_1c = 4U;
         }
         break;

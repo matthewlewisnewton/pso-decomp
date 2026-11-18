@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/render/RenderFadeState.h"
@@ -761,19 +762,19 @@ void *TObjEneShark::create(void *arg0) {
 
 void TObjEneShark::free_resources() {
     if ((u32) TObjEneShark__resource_node != 0U) {
-        mem_free((void*)TObjEneShark__resource_node);
+        ::operator delete[]((void*)TObjEneShark__resource_node);
         TObjEneShark__resource_node = 0U;
     }
     if ((u32) TObjEneShark__resource_buf != 0U) {
-        mem_free((void*)TObjEneShark__resource_buf);
+        ::operator delete[]((void*)TObjEneShark__resource_buf);
         TObjEneShark__resource_buf = 0U;
     }
     if ((u32) shark_resource_data != 0U) {
-        mem_free((void*)shark_resource_data);
+        ::operator delete[]((void*)shark_resource_data);
         shark_resource_data = 0U;
     }
     if ((u32) shark_resource_buffer != 0U) {
-        mem_free((void*)shark_resource_buffer);
+        ::operator delete[]((void*)shark_resource_buffer);
         shark_resource_buffer = 0U;
     }
     if ((u32) shark_attack4_trail_buffer != 0U) {
@@ -816,10 +817,10 @@ void TLobby::load_shark_resources() {
     G_C0 = p;
     ((SampledMotionPoints *)G_BC)->sample_two_nodes((NJS_OBJECT *)RES->bodies->model, (NJS_MOTION *)RES->motions[TObjEneShark__action_table[3].idx].b, 5, 8);
     ((SampledMotionPoints *)G_C0)->sample_two_nodes((NJS_OBJECT *)RES->bodies->model, (NJS_MOTION *)RES->motions[TObjEneShark__action_table[4].idx].b, 0xA, 0xD);
-    G_A8 = (s32 *)mem_alloc(0xC);
-    G_AC = (s32 *)mem_alloc(0xC);
-    G_B0 = (s32 *)mem_alloc(0xC);
-    G_B4 = (s32 *)mem_alloc(0xC);
+    G_A8 = (s32 *)::operator new[](0xC);
+    G_AC = (s32 *)::operator new[](0xC);
+    G_B0 = (s32 *)::operator new[](0xC);
+    G_B4 = (s32 *)::operator new[](0xC);
     G_A8[0] = register_boss__6TLobbyFl(0x4F);
     G_A8[1] = register_boss__6TLobbyFl(0x50);
     G_A8[2] = register_boss__6TLobbyFl(0x51);

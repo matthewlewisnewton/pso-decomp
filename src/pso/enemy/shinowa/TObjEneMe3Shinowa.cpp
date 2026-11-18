@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/animation/MotionContext.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl_803D749C.h"
 #include "pso/enemy/shinowa/TObjEneMe3Shinowa.h"
@@ -199,7 +200,7 @@ void load_shinowa_mirage_resources() {
     src = (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__data_805D5298->models->m_c;
     n = src->nbTexture;
     lbl_80500FEC.nbTexture = n;
-    lbl_80500FEC.textures = (NJS_TEXNAME *)mem_alloc(n * sizeof(NJS_TEXNAME));
+    lbl_80500FEC.textures = (NJS_TEXNAME *)::operator new[](n * sizeof(NJS_TEXNAME));
     for (i = 0; i < n; i++) {
         ((TObjPlayer *)&lbl_80500FEC.textures[i])->copy_vec3(&src->textures[i]);
     }
@@ -312,7 +313,7 @@ void TObjEneMe3ShinowaMirage::free_shared_resources() {
         TObjEneMe3ShinowaMirage__data_805D52A0 = 0;
     }
     if (lbl_80500FEC.textures != 0) {
-        mem_free(lbl_80500FEC.textures);
+        ::operator delete[](lbl_80500FEC.textures);
         lbl_80500FEC.textures = 0;
     }
     if (TObjEneMe3ShinowaMirage__data_805D5298 != 0) {

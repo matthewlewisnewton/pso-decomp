@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/enemy/dd/TObjEneDD.h"
@@ -228,7 +229,7 @@ void TObjEneRe7Berura::load_static_resources() {
     re7_berura_demo_flag = 0;
     TObjEneRe7Berura__demo_target = 0;
     m = (u32)r->models->model;
-    buf = (u8 *)mem_alloc(0x660);
+    buf = (u8 *)::operator new[](0x660);
     re7_berura_static_buffer = buf;
     TObjEneRe7Berura__detached_part_states[0].node_matrices = buf;
     TObjEneRe7Berura__detached_part_states[1].node_matrices = buf + 0x330;
@@ -319,7 +320,7 @@ void TObjEneRe7Berura::destroy_children() {
         belra_uv_animation_buffer = 0U;
     }
     if (re7_berura_static_buffer != NULL) {
-        mem_free(re7_berura_static_buffer);
+        ::operator delete[](re7_berura_static_buffer);
         re7_berura_static_buffer = NULL;
     }
     if (TObjEneRe7Berura__shared_resource != NULL) {

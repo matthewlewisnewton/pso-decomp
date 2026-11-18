@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
@@ -1174,12 +1175,12 @@ void free_collision_body_parts(G_80156720 *arg0) {
     u8 *p = arg0->f9c;
     if (p != 0) {
         if (p != 0) {
-            mem_free((p - 0x10));
+            ::operator delete[]((p - 0x10));
         }
         arg0->f9c = 0;
     }
     if (arg0->fa4 != 0) {
-        mem_free(arg0->fa4);
+        ::operator delete[](arg0->fa4);
         arg0->fa4 = 0;
     }
 }
@@ -1189,7 +1190,7 @@ Part_80156780 *init_collision_body_parts(Obj_80156780 *self, Part_80156780 *src,
     s32 i;
     if (self->parts == 0) {
         self->count = count;
-        self->parts = (Part_80156780 *)mem_alloc(self->count * 0x2c);
+        self->parts = (Part_80156780 *)::operator new[](self->count * 0x2c);
         for (i = 0; i < self->count; i++) {
             copy_collision_body((CollisionBody *)&self->parts[i], (const CollisionBody *)src++);
         }
@@ -1197,7 +1198,7 @@ Part_80156780 *init_collision_body_parts(Obj_80156780 *self, Part_80156780 *src,
     }
     if (self->f9c == 0) {
         n = self->count;
-        self->f9c = __construct_new_array(mem_alloc(n * 4 + 0x10), (void (*)(void *))__ct__8FlagWordFv, 0, 4, n);
+        self->f9c = __construct_new_array(::operator new[](n * 4 + 0x10), (void (*)(void *))__ct__8FlagWordFv, 0, 4, n);
     }
     return self->parts;
 }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8024FBA8.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8025B4A0.h"
 #include "pso/system/memory.h"
@@ -31,12 +32,12 @@ void *window_label_value_part_vtable[6] = {
 void TWindowSubStatusDisp::set_string(u32 arg1) {
     s32 temp_r3;
 
-    mem_free((void *)(*(s32 *)((s8 *)this + 0x20)));
+    ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0x20)));
     *(s32 *)((s8 *)this + 0x20) = 0;
     if (arg1 != 0U) {
         *(f32 *)((s8 *)this + 8) = (f32) (0.0f);
         temp_r3 = measure_string_len__20TWindowSubStatusDispFv(arg1);
-        *(s32 *)((s8 *)this + 0x20) = (s32)mem_alloc(temp_r3 + 1);
+        *(s32 *)((s8 *)this + 0x20) = (s32)::operator new[](temp_r3 + 1);
         strncpy(*(s32 *)((s8 *)this + 0x20), arg1, temp_r3 + 1);
     }
 }
@@ -44,11 +45,11 @@ void TWindowSubStatusDisp::set_string(u32 arg1) {
 void TWindowSubStatusDisp::set_text(u32 arg1, s32 arg2, s32 arg3) {
     s32 temp_r3;
 
-    mem_free((void *)(*(s32 *)((s8 *)this + 0x1C)));
+    ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0x1C)));
     *(s32 *)((s8 *)this + 0x1C) = 0;
     if (arg1 != 0U) {
         temp_r3 = measure_string_len__20TWindowSubStatusDispFv(arg1);
-        *(s32 *)((s8 *)this + 0x1C) = (s32)mem_alloc(temp_r3 + 1);
+        *(s32 *)((s8 *)this + 0x1C) = (s32)::operator new[](temp_r3 + 1);
         strncpy(*(s32 *)((s8 *)this + 0x1C), arg1, temp_r3 + 1);
     }
     *(s32 *)((s8 *)this + 0x18) = arg3;
@@ -61,11 +62,11 @@ void TWindowSubStatusDisp::set_text(u32 arg1, s32 arg2) {
     s32 temp_r3;
     f64 tmp;
 
-    mem_free((void *)(*(s32 *)((s8 *)this + 0x1C)));
+    ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0x1C)));
     *(s32 *)((s8 *)this + 0x1C) = 0;
     if (arg1 != 0U) {
         temp_r3 = measure_string_len__20TWindowSubStatusDispFv(arg1);
-        *(s32 *)((s8 *)this + 0x1C) = (s32)mem_alloc(temp_r3 + 1);
+        *(s32 *)((s8 *)this + 0x1C) = (s32)::operator new[](temp_r3 + 1);
         strncpy(*(s32 *)((s8 *)this + 0x1C), arg1, temp_r3 + 1);
     }
     *(s32 *)((s8 *)this + 0x18) = arg2;
@@ -94,8 +95,8 @@ void TWindowSubStatusDisp__sub_8025B760(void *p) {
 void *destroy_free_buffers__20TWindowSubStatusDispFPvs(void *window_sub_status_disp, s16 arg1) {
     if (window_sub_status_disp != NULL) {
         *(void ***)((s8 *)window_sub_status_disp + 4) = window_label_value_part_vtable;
-        mem_free((void *)(*(s32 *)((s8 *)window_sub_status_disp + 0x20)));
-        mem_free((void *)(*(s32 *)((s8 *)window_sub_status_disp + 0x1C)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)window_sub_status_disp + 0x20)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)window_sub_status_disp + 0x1C)));
         deleting_destructor__20TWindowSubStatusDispFs(window_sub_status_disp, 0);
         if (arg1 > 0) {
             ::operator delete(window_sub_status_disp);

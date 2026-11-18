@@ -1,4 +1,5 @@
 #include "pso/render/render_util.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/object/collision/TOSymbolchatColli.h"
 
 #include "pso/system/NinjaTypes.h"
@@ -180,12 +181,12 @@ void *TOSymbolchatColli::create(void *arg0) {
     return o;
 }
 
-void TOSymbolchatColli::free_rock() { mem_free((void *)symbol_chat_colli_entries); symbol_chat_colli_entries = 0; }
+void TOSymbolchatColli::free_rock() { ::operator delete[]((void *)symbol_chat_colli_entries); symbol_chat_colli_entries = 0; }
 
 void TOSymbolchatColli::load_symbol_chat_data() {
     s32 h;
     s32 i;
-    symbol_chat_colli_entries = (int)mem_alloc(0x840);
+    symbol_chat_colli_entries = (int)::operator new[](0x840);
     h = set_stream_and_load_file__6TLobbyFi(lbl_805D3190);
     if (h != 0) {
         prs_decompress_buffer(h, symbol_chat_colli_entries);

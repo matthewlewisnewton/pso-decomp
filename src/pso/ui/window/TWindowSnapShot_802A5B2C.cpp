@@ -1,4 +1,5 @@
 #include "pso/system/RlcArchive.h"
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/ui/window/TWindowSnapShot_802A5B2C.h"
 #include "pso/system/memory.h"
@@ -10,9 +11,7 @@ extern "C" {
 s32 strncpy(void *, void *, int);
 s32 strcpy(void *, void *);
 s32 strlen(void *);
-void mem_free(void *);
 extern s32 lbl_804DD098[];
-u32 mem_alloc();
 s32 memset(void *, int, int);
 
 }
@@ -89,14 +88,13 @@ void fn_802A5CC4(u8 *arg0, s32 arg1) {
 
 void TWindowSnapShot::free_buffer() {
     if (this->m_prev != NULL) {
-        mem_free(this->m_prev);
+        ::operator delete[](this->m_prev);
         this->m_prev = 0;
     }
 }
 
 s32 alloc_buffer__15TWindowSnapShotFPv(TWindowSnapShot *window_snap_shot) {
-    window_snap_shot->get_buffer_size();
-    *(u32 *)((s8 *)window_snap_shot + 8) = mem_alloc();
+    *(u32 *)((s8 *)window_snap_shot + 8) = (u32)::operator new[](window_snap_shot->get_buffer_size());
     if ((u32) *(u32 *)((s8 *)window_snap_shot + 8) == 0U) {
         window_snap_shot->set_mode(4);
         return 0;

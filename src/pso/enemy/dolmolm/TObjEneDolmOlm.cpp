@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/dolmolm/TObjEneDolmOlm.h"
 #include "pso/render/reflection.h"
@@ -443,7 +444,6 @@ void * TObjEneDolmOlm__create(void *arg0);
 void free_bin_model_request(void*, int);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 u8 *__ct__14TObjEneDolmOlmFll(u8 *, s32, s32);
-void mem_free(void*);
 s32 get_mode__11TCameraCtrlFPv(void *);
 s32 create__13TUnk_80494968FUlUl(u32, u32);
 s32 init_collision_body_parts(void *, void *, int);
@@ -687,10 +687,10 @@ void TObjEneDolmOlm::load_shared_resources() {
     ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A14)->sample_two_nodes((NJS_OBJECT *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8, (NJS_MOTION *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[13]].b, 0x1C, 0x1D);
     ((SampledMotionPoints *)TObjEneDolmOlm__data_805D6A18)->sample_two_nodes((NJS_OBJECT *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x42C->f8, (NJS_MOTION *)((Res_80302784 *)TObjEneDolmOlm__resource_bundle)->x430[((s32 *) TObjEneDolmOlm__param_table)[17]].b, 0x14, 0x15);
     clear_motion_packed_rotation();
-    dolm_olm_combat_stat_id_pair = (u32) mem_alloc(8);
-    TObjEneDolmOlm__shared_handler_ids = (u32) mem_alloc(8);
-    TObjEneDolmOlm__registered_object_ids = (u32) mem_alloc(8);
-    TObjEneDolmOlm__behavior_params_by_variant = (u32) mem_alloc(8);
+    dolm_olm_combat_stat_id_pair = (u32) ::operator new[](8);
+    TObjEneDolmOlm__shared_handler_ids = (u32) ::operator new[](8);
+    TObjEneDolmOlm__registered_object_ids = (u32) ::operator new[](8);
+    TObjEneDolmOlm__behavior_params_by_variant = (u32) ::operator new[](8);
     ((s32 *) dolm_olm_combat_stat_id_pair)[0] = register_boss__6TLobbyFl(0x4F);
     ((s32 *) dolm_olm_combat_stat_id_pair)[1] = register_boss__6TLobbyFl(0x50);
     ((s32 *) TObjEneDolmOlm__shared_handler_ids)[0] = dispatch_shared_handler_b__6TLobbyFl(0x54);
@@ -711,19 +711,19 @@ void TObjEneDolmOlm::load_shared_resources() {
 }
 void TObjEneDolmOlm::free_shared_resources() {
     if ((u32) dolm_olm_combat_stat_id_pair != 0U) {
-        mem_free((void*)dolm_olm_combat_stat_id_pair);
+        ::operator delete[]((void*)dolm_olm_combat_stat_id_pair);
         dolm_olm_combat_stat_id_pair = 0U;
     }
     if ((u32) TObjEneDolmOlm__shared_handler_ids != 0U) {
-        mem_free((void*)TObjEneDolmOlm__shared_handler_ids);
+        ::operator delete[]((void*)TObjEneDolmOlm__shared_handler_ids);
         TObjEneDolmOlm__shared_handler_ids = 0U;
     }
     if ((u32) TObjEneDolmOlm__registered_object_ids != 0U) {
-        mem_free((void*)TObjEneDolmOlm__registered_object_ids);
+        ::operator delete[]((void*)TObjEneDolmOlm__registered_object_ids);
         TObjEneDolmOlm__registered_object_ids = 0U;
     }
     if ((u32) TObjEneDolmOlm__behavior_params_by_variant != 0U) {
-        mem_free((void*)TObjEneDolmOlm__behavior_params_by_variant);
+        ::operator delete[]((void*)TObjEneDolmOlm__behavior_params_by_variant);
         TObjEneDolmOlm__behavior_params_by_variant = 0U;
     }
     if ((u32) TObjEneDolmOlm__data_805D6A18 != 0U) {

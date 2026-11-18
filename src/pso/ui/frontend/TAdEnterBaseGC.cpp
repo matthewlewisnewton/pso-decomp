@@ -1,6 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 
 #include "pso/system/task/TObject.h"
 
@@ -437,7 +438,7 @@ void draw_masked_password_field(s32 arg0) {
         TAdEnterSerialAccessGC__sub_802C4B64(&plate, password_field_box_pos, &w, 0);
         str = realloc_buffer__17TWindowSubComCardFv(password_entry_keyboard_control);
         len = strlen(str);
-        mem_free(str);
+        ::operator delete[](str);
         memset(buf, 0, 0x80);
         q = buf;
         for (i = 0; i < len; i++) {

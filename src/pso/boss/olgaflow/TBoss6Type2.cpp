@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/player/TObjPlayer_803E4954.h"
@@ -2152,7 +2153,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
     if (cnt > avail) {
         cnt = avail;
     }
-    buf = (s32 *)mem_alloc(cnt * 4);
+    buf = (s32 *)::operator new[](cnt * 4);
     step = (s32)(31.0f * (3.0517578e-05f * (f32)rand()));
     j = 0;
     for (k = 0; k < cnt; k++) {
@@ -2170,7 +2171,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
         avail_tbl[j] = 0;
     }
     TBoss6Type2__sub_80356E50((s32)buf, cnt, arg1);
-    mem_free(buf);
+    ::operator delete[](buf);
     ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4006AB1D, ((void *)&boss6_arena_center), 0, 1);
 }
 

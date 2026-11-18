@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowKeyBoardBase_8008102C.h"
 #include "pso/system/memory.h"
 #include "pso/effect/TEF_LensFlare.h"
@@ -21,7 +22,7 @@ void init_keyboard_text_buffer(u8 *arg0, u32 arg1, u32 arg2) {
     u32 temp_r3_2;
     temp_r3 = (s16 *)(*(s16 **)((s8 *)arg0 + 0));
     if (temp_r3 != NULL) {
-        mem_free(temp_r3);
+        ::operator delete[](temp_r3);
     }
     if (arg2 == 0) {
         *(u32 *)((s8 *)arg0 + 0x14) = arg1;
@@ -30,7 +31,7 @@ void init_keyboard_text_buffer(u8 *arg0, u32 arg1, u32 arg2) {
     }
     temp_r3_2 = *(u32 *)((s8 *)arg0 + 0x14);
     if (temp_r3_2 != 0) {
-        *(s16 **)((s8 *)arg0 + 0) = (s16 *)mem_alloc((temp_r3_2 + 1) * 2);
+        *(s16 **)((s8 *)arg0 + 0) = (s16 *)::operator new[]((temp_r3_2 + 1) * 2);
         **(s16 **)((s8 *)arg0 + 0) = 0;
     } else {
         *(s16 **)((s8 *)arg0 + 0) = NULL;
@@ -44,7 +45,7 @@ void init_keyboard_text_buffer(u8 *arg0, u32 arg1, u32 arg2) {
 u32 *destroy__19TWindowKeyBoardBaseFPvs(u32 *arg0, s16 arg1) {
     if (arg0 != NULL) {
         if ((u32) *arg0 != 0U) {
-            mem_free((void *)(*arg0));
+            ::operator delete[]((void *)(*arg0));
         }
         if (arg1 > 0) {
             ::operator delete(arg0);

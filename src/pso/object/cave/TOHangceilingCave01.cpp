@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include <string.h>
@@ -118,7 +119,7 @@ void load_turiten_singo_resources(void) {
             p = load_resource_from_descriptor(p, 5, &turiten_singo_resource_descriptor, 0, 0, 0);
         }
         TOHangceilingCave01__model_archive = (BmlResource *)p;
-        turiten_singo_texture_lists = (s32 *)mem_alloc(0xC);
+        turiten_singo_texture_lists = (s32 *)::operator new[](0xC);
         turiten_singo_texture_lists[1] = 0;
         turiten_singo_texture_lists[0] = 0;
         turiten_singo_texture_lists[2] = (s32)get_bml_texlist(TOHangceilingCave01__model_archive, 0);
@@ -133,7 +134,7 @@ void load_turiten_singo_resources(void) {
             p = load_resource_from_descriptor(p, 5, &fe_obj_turiten_moto_resource_descriptor, 0, 0, 0);
         }
         TOHangceilingCave01__model_archive = (BmlResource *)p;
-        turiten_singo_texture_lists = (s32 *)mem_alloc(0xC);
+        turiten_singo_texture_lists = (s32 *)::operator new[](0xC);
         turiten_singo_texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_turiten_singo.gvm");
         turiten_singo_texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_turiten_singo_r.gvm");
         turiten_singo_texture_lists[2] = (s32)get_bml_texlist(TOHangceilingCave01__model_archive, 1);
@@ -149,7 +150,7 @@ void TOHangceilingCave01::destroy_instance() {
         TObjPlayer::free_if_valid(turiten_singo_texture_lists[1]);
         TObjPlayer::free_if_valid(turiten_singo_texture_lists[0]);
         if (turiten_singo_texture_lists != NULL) {
-            mem_free(turiten_singo_texture_lists);
+            ::operator delete[](turiten_singo_texture_lists);
             turiten_singo_texture_lists = NULL;
         }
     }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/weapon/TItemAttacker.h"
 #include "pso/item/TItemBuff.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
@@ -20,7 +21,7 @@ void TItemBuff::free_all_and_init() {
     var_r28 = 0;
     var_r29 = item_nj_chunk_buffer_table;
     do {
-        mem_free((void *)var_r29[var_r31]);
+        ::operator delete[]((void *)var_r29[var_r31]);
         var_r28 += 1;
         var_r29[var_r31] = var_r30;
         var_r31 += 1;

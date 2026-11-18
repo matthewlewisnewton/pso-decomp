@@ -1,4 +1,5 @@
 #include "pso/object/door/TODoorAncient06.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 
 #include "pso/system/task/TMainTask.h"
@@ -85,14 +86,14 @@ void *TODoorAncient06::create(void *set_data) {
 
 void TODoorAncient06::destroy() {
     if (model_nodes != NULL) {
-        mem_free(model_nodes);
+        ::operator delete[](model_nodes);
         model_nodes = NULL;
     }
     if (texture_lists != NULL) {
         TObjPlayer::free_if_valid(texture_lists[1]);
         TObjPlayer::free_if_valid(texture_lists[0]);
         if (texture_lists != NULL) {
-            mem_free(texture_lists);
+            ::operator delete[](texture_lists);
             texture_lists = NULL;
         }
     }
@@ -108,10 +109,10 @@ void TODoorAncient06::load_resources() {
         resource = load_resource_from_descriptor(resource, 1, &door_ancient_567_resource_descriptor, 0, 0, 0);
     }
     bml_resource = resource;
-    texture_lists = (s32 *)mem_alloc(8);
+    texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_door07_m_02_r.gvm");
     texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_door07_m_02_g.gvm");
-    model_nodes = (NJS_OBJECT *)mem_alloc(3 * sizeof(NJS_OBJECT));
+    model_nodes = (NJS_OBJECT *)::operator new[](3 * sizeof(NJS_OBJECT));
     if (bml_resource != NULL && model_nodes != NULL) {
         copy_model_node((u8 *)&model_nodes[0], (u8 *)bml_resource->models[0].model);
         model_nodes[0].child = NULL;

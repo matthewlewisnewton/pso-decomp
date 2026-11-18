@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TUnk_804CF918.h"
 #include "pso/unk/TLobby_8001D6A0.h"
 #include "pso/ui/window/TWindowSubStatusDisp_8024FBA8.h"
@@ -115,11 +116,11 @@ void TWindowHelpItem::set_flag4_and_field1c(s32 arg1) {
 void TWindowHelpItem::set_help_text(u32 arg1) {
     s32 temp_r3;
 
-    mem_free(((Item_8025A354 *)this)->label);
+    ::operator delete[](((Item_8025A354 *)this)->label);
     ((Item_8025A354 *)this)->label = 0;
     if (arg1 != 0U) {
         temp_r3 = measure_string_len__20TWindowSubStatusDispFv(arg1);
-        ((Item_8025A354 *)this)->label = (char *)mem_alloc(temp_r3 + 1);
+        ((Item_8025A354 *)this)->label = (char *)::operator new[](temp_r3 + 1);
         strncpy((s32)((Item_8025A354 *)this)->label, arg1, temp_r3 + 1);
     }
 }
@@ -174,7 +175,7 @@ void tick_display_timer__15TWindowHelpItemFPv(void *arg0) {
 void *destroy__15TWindowHelpItemFPvs(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(void ***)((s8 *)arg0 + 4) = lbl_804CF9F8;
-        mem_free((void *)(*(s32 *)((s8 *)arg0 + 0x18)));
+        ::operator delete[]((void *)(*(s32 *)((s8 *)arg0 + 0x18)));
         __dt__13TUnk_804CF918Fv(arg0, 0);
         if (arg1 > 0) {
             ::operator delete(arg0);

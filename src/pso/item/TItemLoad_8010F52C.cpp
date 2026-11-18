@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/item/TItemLoad_8010FC28.h"
 #include "pso/item/TItemLoad_8010F52C.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
@@ -44,7 +45,7 @@ struct VObj_8010F52C : Base_8010F52C {
 s32 load_gvm_texture_archive(s32, s32);
 
 void TItemLoad::free_all_models() {
-    mem_free((void *)item_load_model_buffer);
+    ::operator delete[]((void *)item_load_model_buffer);
     if (item_model_chunk_loader != NULL) {
         ((struct VObj_8010F52C *)item_model_chunk_loader)->m0(1);
     }
@@ -73,7 +74,7 @@ void TItemLoad__sub_8010F5A0(void) {
         var_r0_2 = ((TUnk_8049F40C *)temp_r3_2)->construct_with_vtable((void *)lbl_805D2BEC, 0xB4, 0x12F);
     }
     (*(s32 *)&item_model_chunk_loader) = var_r0_2;
-    item_load_model_buffer = (s32)mem_alloc(0x21000);
+    item_load_model_buffer = (s32)::operator new[](0x21000);
 }
 
 void TItemLoad::start_load_with_id(s32 id, s32 arg2) {

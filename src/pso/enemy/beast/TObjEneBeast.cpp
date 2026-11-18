@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/enemy/TObjEnemyCustom.h"
@@ -579,19 +580,19 @@ void *boss4_type3_instance;
 
 void free_boss4_rock_pool(void) {
     if ((u32) ene_beast_boss_id_buffer != 0U) {
-        mem_free((void*)ene_beast_boss_id_buffer);
+        ::operator delete[]((void*)ene_beast_boss_id_buffer);
         ene_beast_boss_id_buffer = 0U;
     }
     if ((u32) TObjEneBeast__boss4_rock_handler_ids != 0U) {
-        mem_free((void*)TObjEneBeast__boss4_rock_handler_ids);
+        ::operator delete[]((void*)TObjEneBeast__boss4_rock_handler_ids);
         TObjEneBeast__boss4_rock_handler_ids = 0U;
     }
     if ((u32) boss4_rock_pool != 0U) {
-        mem_free((void*)boss4_rock_pool);
+        ::operator delete[]((void*)boss4_rock_pool);
         boss4_rock_pool = 0U;
     }
     if ((u32) boss4_rock_shared_handler_ids != 0U) {
-        mem_free((void*)boss4_rock_shared_handler_ids);
+        ::operator delete[]((void*)boss4_rock_shared_handler_ids);
         boss4_rock_shared_handler_ids = 0U;
     }
     if ((u32) boss4_type3_instance != 0U) {
@@ -635,10 +636,10 @@ void TObjEneBeast::load_resources() {
     boss4_type3_instance = (void *)p;
     ((SampledMotionPoints *)beast_claw_trail_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[13]].f4), 5, 8);
     ((SampledMotionPoints *)boss4_type3_instance)->sample_two_nodes((NJS_OBJECT *)(((Data_8009241C *)ene_beast_bml_resource)->f42c->f8), (NJS_MOTION *)(((Data_8009241C *)ene_beast_bml_resource)->f430[((s32 *)beast_action_table)[17]].f4), 10, 13);
-    ene_beast_boss_id_buffer = (u32)mem_alloc(0xC);
-    TObjEneBeast__boss4_rock_handler_ids = (u32)mem_alloc(0xC);
-    boss4_rock_pool = (u32)mem_alloc(0xC);
-    boss4_rock_shared_handler_ids = (u32)mem_alloc(0xC);
+    ene_beast_boss_id_buffer = (u32)::operator new[](0xC);
+    TObjEneBeast__boss4_rock_handler_ids = (u32)::operator new[](0xC);
+    boss4_rock_pool = (u32)::operator new[](0xC);
+    boss4_rock_shared_handler_ids = (u32)::operator new[](0xC);
     ((s32 *)ene_beast_boss_id_buffer)[0] = register_boss__6TLobbyFl(0x4B);
     ((s32 *)ene_beast_boss_id_buffer)[1] = register_boss__6TLobbyFl(0x4C);
     ((s32 *)ene_beast_boss_id_buffer)[2] = register_boss__6TLobbyFl(0x4D);

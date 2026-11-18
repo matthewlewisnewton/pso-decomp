@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/ChunkMaterialState.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/player/TObjPlayer_802E6CA8.h"
 #include "types.h"
 #include "pso/render/NinjaUtil.h"
@@ -214,7 +215,7 @@ void *TObjPlayer::init_zeroed_object() {
 
 TUnk_804E3BD8::~TUnk_804E3BD8() {
     VObj_802E74E4 *temp_r3;
-    mem_free((void *)(*(s32 *)((s8 *)this + 0x28)));
+    ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0x28)));
     temp_r3 = *(VObj_802E74E4 **)((s8 *)this + 0x1C);
     if (temp_r3 != NULL) {
         temp_r3->m0(1);
@@ -234,7 +235,7 @@ void TUnk_804E3BD8::alloc_breakup_model(s32 model) {
     temp_r4 = *(s32 **)((s8 *)this + 0x1C);
     this->m_24 = (s32) *temp_r4;
     sub_802E75B8(temp_r4);
-    *(s32 *)&(this->unk_28) = (s32)mem_alloc(this->m_24 * 0x2C);
+    *(s32 *)&(this->unk_28) = (s32)::operator new[](this->m_24 * 0x2C);
 }
 
 void TObjPlayer__sub_802E7470(void) {  }

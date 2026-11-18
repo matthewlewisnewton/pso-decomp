@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/quest/TQuestThread.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowSubComCardList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/ui/window/TWindowMessage.h"
@@ -172,7 +173,7 @@ void TWindowSubComCard::sub_802721D8() {
   new_var = (u8 *)get_shared_text_buffer();
   message = (u8 *) new_var;
   TLobby::send_simple_mail(((TLobby *)lobby)->get_id(), message);
-  mem_free((void *)temp_r30);
+  ::operator delete[]((void *)temp_r30);
 }
 }
 
@@ -999,7 +1000,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
             TWindowSubComCard::mask_profanity_words((char *)src, (char *)get_shared_text_buffer());
             keyboard_mode = TWindowSubComCard::get_keyboard_mode();
             ((TWindowSubComCard *)keyboard_mode)->set_text((void *)(get_shared_text_buffer()));
-            mem_free((void *)src);
+            ::operator delete[]((void *)src);
             window_sub_com_card->m_1c = 1U;
             return;
         }
@@ -1125,7 +1126,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
             src = ((TWindowSubComCard *)(window_sub_com_card->m_80))->realloc_buffer();
             TWindowSubComCard::mask_profanity_words((char *)src, (char *)get_shared_text_buffer());
             ((TWindowSubComCard *)(window_sub_com_card->m_24))->set_card_text((int) (get_shared_text_buffer()));
-            mem_free((void *)src);
+            ::operator delete[]((void *)src);
             window_sub_com_card->m_1c = 1U;
             return;
         }

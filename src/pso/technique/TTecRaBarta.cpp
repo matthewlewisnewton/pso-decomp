@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/unk/text_8022BE64.h"
 #include "pso/technique/TTecRaBarta.h"
@@ -148,7 +149,6 @@ u16 get_entity_id(void *);
 void *get_bml_motion(void *, int);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 
-void *mem_alloc(u32 size);
 extern void *technique_effect_bml;
 extern void *lbl_805D63B0;
 s32 calc_technique_parameters(s32, s32, s32);
@@ -185,7 +185,7 @@ void TTecRaBarta::vfunc_8(void *pos) {
   u32 i;
   Vec point;
   Emitter_80237494 *binding;
-  self->emitters = (void **)mem_alloc(rabarta_band_emitter_table[self->band].count * 4);
+  self->emitters = (void **)::operator new[](rabarta_band_emitter_table[self->band].count * 4);
   for (i = 0; i < rabarta_band_emitter_table[self->band].count; i++)
   {
     VecCopy((Vec *)&point, (const Vec *)(self->source + 0x38));
@@ -375,7 +375,6 @@ struct Self_80237A94 {
     void **objs;
 };
 
-void mem_free(void *p);
 
 void *TTecRaBarta__ct(void *self_, void *source, void *origin, void *pos, void *level);
 void create__11TTecRaBartaFPvPvPvPv(void *arg0, void *arg1, void *arg2, void *arg3);
@@ -407,7 +406,7 @@ TTecRaBarta::~TTecRaBarta() {
         }
     }
     stop_sound_request((s32)((struct Self_80237A94 *)this)->emitters);
-    mem_free(((struct Self_80237A94 *)this)->objs);
+    ::operator delete[](((struct Self_80237A94 *)this)->objs);
 }
 
 

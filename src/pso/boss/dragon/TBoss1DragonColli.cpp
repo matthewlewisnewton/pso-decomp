@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/task/TObject.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/system/vector.h"
 #include "pso/object/base/TObjMotion.h"
@@ -168,7 +169,7 @@ s32 TBoss1DragonColli_C__ct(int arg0, void *arg1, int arg2, void *arg3, f32 scal
     VecCopy((Vec *)self->pos, (const Vec *)arg3);
     self->f1c = TLobby::alloc_actor_ids(0);
     self->count = arg2;
-    self->elems = (E_8002B4CC *)mem_alloc(self->count * 0x2C);
+    self->elems = (E_8002B4CC *)::operator new[](self->count * 0x2C);
     step = 2.0f * scale;
     e = self->elems;
     zero = 0.0f;

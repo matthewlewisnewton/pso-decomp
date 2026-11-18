@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/system/task/TObject.h"
@@ -700,19 +701,19 @@ extern G_800A884C *dimedian_resource_ptr;
 
 void TObjEneDimedian::free_boss_objects() {
     if ((u32) dimedian_boss_object_buf != 0U) {
-        mem_free((void*)dimedian_boss_object_buf);
+        ::operator delete[]((void*)dimedian_boss_object_buf);
         dimedian_boss_object_buf = 0U;
     }
     if ((u32) lbl_805D5074 != 0U) {
-        mem_free((void*)lbl_805D5074);
+        ::operator delete[]((void*)lbl_805D5074);
         lbl_805D5074 = 0U;
     }
     if ((u32) TObjEneDimedian__boss_objects != 0U) {
-        mem_free((void*)TObjEneDimedian__boss_objects);
+        ::operator delete[]((void*)TObjEneDimedian__boss_objects);
         TObjEneDimedian__boss_objects = 0U;
     }
     if ((u32) dimedian_buffer_ptr != 0U) {
-        mem_free((void*)dimedian_buffer_ptr);
+        ::operator delete[]((void*)dimedian_buffer_ptr);
         dimedian_buffer_ptr = 0U;
     }
     if ((u32) lbl_805D5088 != 0U) {
@@ -760,10 +761,10 @@ void TLobby::load_dimedian_resources() {
     (*(void **)&lbl_805D5088) = p;
     ((SampledMotionPoints *)(*(void **)&dimedian_type3_object))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[3].idx].b, 5, 8);
     ((SampledMotionPoints *)(*(void **)&lbl_805D5088))->sample_two_nodes((NJS_OBJECT *)RES_800A8118->bodies->model, (NJS_MOTION *)RES_800A8118->motions[dimedian_action_table[4].idx].b, 0xA, 0xD);
-    (*(s32 **)&dimedian_boss_object_buf) = (s32 *)mem_alloc(0xC);
-    (*(s32 **)&lbl_805D5074) = (s32 *)mem_alloc(0xC);
-    (*(s32 **)&TObjEneDimedian__boss_objects) = (s32 *)mem_alloc(0xC);
-    (*(s32 **)&dimedian_buffer_ptr) = (s32 *)mem_alloc(0xC);
+    (*(s32 **)&dimedian_boss_object_buf) = (s32 *)::operator new[](0xC);
+    (*(s32 **)&lbl_805D5074) = (s32 *)::operator new[](0xC);
+    (*(s32 **)&TObjEneDimedian__boss_objects) = (s32 *)::operator new[](0xC);
+    (*(s32 **)&dimedian_buffer_ptr) = (s32 *)::operator new[](0xC);
     (*(s32 **)&dimedian_boss_object_buf)[0] = register_boss__6TLobbyFl(0x53);
     (*(s32 **)&dimedian_boss_object_buf)[1] = register_boss__6TLobbyFl(0x54);
     (*(s32 **)&dimedian_boss_object_buf)[2] = register_boss__6TLobbyFl(0x55);

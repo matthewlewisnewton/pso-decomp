@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/task/TObject.h"
 #include "pso/ui/window/TWindowDD_WS_Word.h"
 #include "pso/ui/window/TWindowDD_803488A8.h"
@@ -372,7 +373,7 @@ void TWindowDD::init_and_mark_field8C() { init_layout_entries(); load_element_li
 
 void TWindowDD::free_child() {
     if (*(void **)((s8 *)this + 0x80) != NULL) {
-        mem_free(*(void **)((s8 *)this + 0x80));
+        ::operator delete[](*(void **)((s8 *)this + 0x80));
         this->m_9c = 0;
     }
     ((TWindowSubStatusDisp *)((char *)this + 36))->destroy_all_items();
@@ -401,7 +402,7 @@ void TWindowDD::load_element_list() {
     e = get_element_ptr__9TWindowDDFl(self->x70);
     if (e != NULL) {
         self->count = e->count;
-        self->buf = (s16 *)mem_alloc(self->count * 2);
+        self->buf = (s16 *)::operator new[](self->count * 2);
         for (i = 0; i < self->count; i++) {
             self->buf[i] = e->data[i];
         }
@@ -489,7 +490,7 @@ s32 TWindowDD_WS_Word::sub_80342268() {
 void *TWindowDD_WS_Word::destroy(s16 arg1) {
     if (this != NULL) {
         *(void ***)((s8 *)this + 0x18) = lbl_804EFC90;
-        if (this->m_80 != NULL) { mem_free(this->m_80); this->m_80 = 0; }
+        if (this->m_80 != NULL) { ::operator delete[](this->m_80); this->m_80 = 0; }
         __dt__11TWindowBaseFv(this, 0);
         if (arg1 > 0) {
             TObject::operator delete(this);

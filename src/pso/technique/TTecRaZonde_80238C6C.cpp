@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_8022BE64.h"
 #include "pso/technique/TTecRaZonde.h"
 #include "pso/system/vector.h"
@@ -172,7 +173,7 @@ typedef struct RecoveredFields_80238D10_arg0 RecoveredFields_80238D10_arg0;
 void TTecRaZonde::vfunc_8(void *) {
     struct Self_80238C6C *self = (struct Self_80238C6C *)this;
     u32 i;
-    self->emitters = (s32 *)mem_alloc(TTecRaZonde__band_profile_table[self->band].count * 4);
+    self->emitters = (s32 *)::operator new[](TTecRaZonde__band_profile_table[self->band].count * 4);
     for (i = 0; i < TTecRaZonde__band_profile_table[self->band].count; i++) {
         self->emitters[i] = (s32)create_particle_emitter(&self->points[i], TTecRaZonde__band_profile_table[self->band].entries[i].entry);
     }
@@ -250,7 +251,7 @@ TTecRaZonde::~TTecRaZonde() {
             ((Self_80238EC8 *)this)->objs[i] = 0;
         }
     }
-    mem_free(((Self_80238EC8 *)this)->objs);
+    ::operator delete[](((Self_80238EC8 *)this)->objs);
 }
 
 

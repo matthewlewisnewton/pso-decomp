@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/network/protocol/protocol_types.h"
@@ -161,7 +162,7 @@ void TLanguage::load_container_fragment_textures() {
             p = load_resource_from_descriptor(p, 1, (BmlResourceDescriptor *)(tbl + 0x50), 0, 0, 0);
         }
         ancient_container_resource_bundle = (BmlResource *)p;
-        ancient_container_fragment_texture_lists = (u32 *)mem_alloc(0xC);
+        ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)"fs_obj_ex_box2.gvm");
         ancient_container_fragment_texture_lists[1] = (u32)load_gvm_texture_file((s32)"fe_obj_ex_box2_hahen01.gvm");
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)"fe_obj_ex_box2_hahen02.gvm");
@@ -172,7 +173,7 @@ void TLanguage::load_container_fragment_textures() {
             p = load_resource_from_descriptor(p, 1, (BmlResourceDescriptor *)(tbl + 0x30), 0, 0, 0);
         }
         ancient_container_resource_bundle = (BmlResource *)p;
-        ancient_container_fragment_texture_lists = (u32 *)mem_alloc(0xC);
+        ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)"fs_obj_o_vs2container_r.gvm");
         ancient_container_fragment_texture_lists[1] = (u32)load_gvm_texture_file((s32)"fe_obj_o_vs2cont_hahen1_r.gvm");
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)"fe_obj_o_vs2cont_hahen2_r.gvm");
@@ -182,7 +183,7 @@ void TLanguage::load_container_fragment_textures() {
             p = load_resource_from_descriptor(p, 1, (BmlResourceDescriptor *)(tbl + 0x10), 0, 0, 0);
         }
         ancient_container_resource_bundle = (BmlResource *)p;
-        ancient_container_fragment_texture_lists = (u32 *)mem_alloc(0xC);
+        ancient_container_fragment_texture_lists = (u32 *)::operator new[](0xC);
         ancient_container_fragment_texture_lists[0] = (u32)load_gvm_texture_file((s32)"fe_obj_o_container_r.gvm");
         ancient_container_fragment_texture_lists[1] = (u32)load_gvm_texture_file((s32)"fe_obj_o_container_hahen01r.gvm");
         ancient_container_fragment_texture_lists[2] = (u32)load_gvm_texture_file((s32)"fe_obj_o_container_hahen02r.gvm");
@@ -206,7 +207,7 @@ void free_ancient_container_resources(void) {
         } while (var_r30 < 3);
         p = ancient_container_fragment_texture_lists;
         if (p != NULL) {
-            mem_free(p);
+            ::operator delete[](p);
             ancient_container_fragment_texture_lists = NULL;
         }
     }

@@ -1,10 +1,11 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/unk/TUnk_804F1C58.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 
 TUnk_804F1C58::~TUnk_804F1C58() {
-    mem_free(node_matrices);
+    ::operator delete[](node_matrices);
 }
 
 TUnk_804F1C58::TUnk_804F1C58(TObject *parent, void *model) : TObject(parent) {
@@ -13,7 +14,7 @@ TUnk_804F1C58::TUnk_804F1C58(TObject *parent, void *model) : TObject(parent) {
     pad_24 = 0.0f;
     pad_30 = 0;
     node_count = ((TObjBoss2Tunnel *)model)->count_tree_nodes();
-    node_matrices = mem_alloc(node_count * 0x30);
+    node_matrices = ::operator new[](node_count * 0x30);
     pad_34 = 0;
     node_callback = 0;
 }

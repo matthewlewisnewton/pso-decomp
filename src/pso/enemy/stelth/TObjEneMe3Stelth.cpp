@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <stddef.h>
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "types.h"
@@ -228,7 +229,7 @@ void TObjEneMe3Stelth::load_shared_resources() {
     src = (NJS_TEXLIST *)TObjEneMe3Stelth__bml_resource->models->m_c;
     n = src->nbTexture;
     TObjEneMe3Stelth__alternate_texture_list.nbTexture = n;
-    TObjEneMe3Stelth__alternate_texture_list.textures = (NJS_TEXNAME *)mem_alloc(n * sizeof(NJS_TEXNAME));
+    TObjEneMe3Stelth__alternate_texture_list.textures = (NJS_TEXNAME *)::operator new[](n * sizeof(NJS_TEXNAME));
     for (i = 0; i < n; i++) {
         ((TObjPlayer *)&TObjEneMe3Stelth__alternate_texture_list.textures[i])->copy_vec3(&src->textures[i]);
     }
@@ -325,7 +326,7 @@ void TObjEneMe3Stelth::free_shared_resources() {
         TObjEneMe3Stelth__breakup_model = NULL;
     }
     if (TObjEneMe3Stelth__alternate_texture_list.textures != NULL) {
-        mem_free(TObjEneMe3Stelth__alternate_texture_list.textures);
+        ::operator delete[](TObjEneMe3Stelth__alternate_texture_list.textures);
         TObjEneMe3Stelth__alternate_texture_list.textures = NULL;
     }
     if (TObjEneMe3Stelth__bml_resource != NULL) {

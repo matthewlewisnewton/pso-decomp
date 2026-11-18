@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/vector.h"
 #include "pso/system/task/TObject.h"
 #include "pso/system/task/TMainTask.h"
@@ -159,9 +160,9 @@ s32 TObjEneMe1Canadin::fade_alpha_step(f32 scale, s32 step) {
 TObjEneMe1Canadin_EffLight *__dt__26TObjEneMe1Canadin_EffLightFv(TObjEneMe1Canadin_EffLight *self, s16 flags) {
     if (self != NULL) {
         *(s32 **)((u8 *)self + 0x18) = __vt__26TObjEneMe1Canadin_EffLight;
-        mem_free(self->m_2C);
+        ::operator delete[](self->m_2C);
         self->m_2C = NULL;
-        mem_free(self->m_28);
+        ::operator delete[](self->m_28);
         self->m_28 = NULL;
         __dt__7TObjectFv(self, 0);
         if (flags > 0) {
@@ -178,8 +179,8 @@ TObjEneMe1Canadin_EffLight::TObjEneMe1Canadin_EffLight(TObject *parent, s32 coun
     m_1C = count;
     m_20 = 0;
     m_24 = 0;
-    m_28 = (TObjEneMe1Canadin_EffLightVertex *)mem_alloc(m_1C << 5);
-    m_2C = (TObjEneMe1Canadin_EffLightPoint *)mem_alloc(m_1C * 0x14);
+    m_28 = (TObjEneMe1Canadin_EffLightVertex *)::operator new[](m_1C << 5);
+    m_2C = (TObjEneMe1Canadin_EffLightPoint *)::operator new[](m_1C * 0x14);
     for (i = 0; i < m_1C; i++) {
         m_2C[i].width = 0.0f;
         m_2C[i].color = 0;

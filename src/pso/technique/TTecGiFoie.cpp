@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/technique/TTecGiFoie.h"
 #include "pso/system/task/TObject.h"
@@ -363,7 +364,7 @@ TUnk_804CC800::TUnk_804CC800(Vec *pos, s32 angle, s32 level_band, s32 tech_level
     single = single_particle;
     if (single != 0) {
         Rot_802312E4 r;
-        emitters = (TParticleCtrl **)mem_alloc(sizeof(*emitters));
+        emitters = (TParticleCtrl **)::operator new[](sizeof(*emitters));
         r.x = 0;
         r.y = 0;
         r.z = 0x4000;
@@ -371,7 +372,7 @@ TUnk_804CC800::TUnk_804CC800(Vec *pos, s32 angle, s32 level_band, s32 tech_level
         radius = 5.0f;
     } else {
         s32 i;
-        emitters = (TParticleCtrl **)mem_alloc(TTecGiFoie__emitter_profile_table[band].count * sizeof(*emitters));
+        emitters = (TParticleCtrl **)::operator new[](TTecGiFoie__emitter_profile_table[band].count * sizeof(*emitters));
         for (i = 0; i < TTecGiFoie__emitter_profile_table[band].count; i++) {
             Rot_802312E4 r;
             const Part_802312E4 *p;
@@ -403,7 +404,7 @@ TUnk_804CC800::~TUnk_804CC800() {
             emitters[i]->queue_destruction();
         }
     }
-    mem_free(emitters);
+    ::operator delete[](emitters);
 }
 
 void TUnk_804CC800::run_task() {

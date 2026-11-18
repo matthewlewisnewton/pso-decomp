@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/ArrayAllocation.h"
 #include "types.h"
 #include "pso/unk/text_80086D50.h"
 #include "pso/technique/TTecFoie.h"
@@ -101,7 +102,6 @@ extern RecoveredGlobal_8022FE84_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_8022FE84_lbl_804CC55C lbl_804CC55C;
 extern "C" {
 s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
-void mem_free(void *p);
 void __dl__7TObjectFPv(void *);
 // foie_emitter_parts_N (inferred, after TTecGiFoie's emitter_parts_N): the particle parts entry N of
 // TTecFoie__emitter_profile_table spawns; the scale of part 0x14 grows with the band.
@@ -149,7 +149,7 @@ void TTecFoie::create_particle_emitters() {
   fwd.y = 0;
   fwd.z = self->az;
   spawn_directional_particle(self->pos, &fwd, 0x18);
-  self->emitters = (void **) mem_alloc(TTecFoie__emitter_profile_table[self->band].count * 4);
+  self->emitters = (void **) ::operator new[](TTecFoie__emitter_profile_table[self->band].count * 4);
   for (i = 0; i < TTecFoie__emitter_profile_table[self->band].count; i++)
   {
     const Binding_8022FC94 *b = &TTecFoie__emitter_profile_table[self->band].parts[i];
@@ -239,7 +239,7 @@ TTecFoie_80230144 *__dt__8TTecFoieFv(TTecFoie_80230144 *self, s16 deleting) {
         for (u32 i = 0; i < TTecFoie__emitter_profile_table[self->band].count; ++i) {
             ((TObject *)self->emitters[i])->queue_destruction();
         }
-        mem_free(self->emitters);
+        ::operator delete[](self->emitters);
         ((TObjPlayer *)self)->destroy_technique_effect_resources(0);
         if (deleting > 0) __dl__7TObjectFPv(self);
     }

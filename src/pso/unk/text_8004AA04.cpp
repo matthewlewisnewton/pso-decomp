@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/NinjaUtil.h"
 #include "pso/unk/text_800F5BC0.h"
@@ -20,7 +21,7 @@ void ModelNodeTables::destroy() {
             items[i] = 0;
         }
     }
-    mem_free(items);
+    ::operator delete[](items);
     items = 0;
 }
 
@@ -37,7 +38,7 @@ void ModelNodeTables::init(const ModelNodeSpec *specs, s32 spec_count) {
     }
     count = spec_count;
     items = NULL;
-    items = (void **)mem_alloc(count * 4);
+    items = (void **)::operator new[](count * 4);
     scroll_u = 0;
     scroll_v = 0;
     for (j = 0; j < count; j++) {

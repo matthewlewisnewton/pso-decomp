@@ -1,4 +1,5 @@
 #include "pso/object/switch/TOChatSensorCapture.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/Language.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 
@@ -50,7 +51,7 @@ void TOChatSensorCapture::run_task() {
 }
 
 TOChatSensorCapture::~TOChatSensorCapture() {
-    for (int i = 0; i != 4; i++) mem_free(messages[i]);
+    for (int i = 0; i != 4; i++) ::operator delete[](messages[i]);
     TOChatSensorCapture__instance = 0;
 }
 
@@ -61,7 +62,7 @@ TOChatSensorCapture::TOChatSensorCapture(TObject *parent) : TObject(parent) {
     s32 i = 0;
     do {
         lifetime[i] = 0;
-        messages[i] = (char *)mem_alloc(0x100);
+        messages[i] = (char *)::operator new[](0x100);
         memset(messages[i], 0, 4);
         i += 1;
     } while (i != 4);

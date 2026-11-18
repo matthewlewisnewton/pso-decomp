@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/vector.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/player/TObjPlayer.h"
@@ -941,12 +942,12 @@ CsnHit *csnVector(const Vec *from, const Vec *to, u32 mask) {
 
 void TObjButterflyLobby::free_singleton_805D4E6C() {
     if (wall_query_scene_buffer != NULL) {
-        mem_free(wall_query_scene_buffer);
+        ::operator delete[](wall_query_scene_buffer);
         wall_query_scene_buffer = NULL;
     }
 }
 
-void TObjButterflyLobby::alloc_scene_buffer() { wall_query_scene_buffer = (E_80079580 *)mem_alloc(0x5000); }
+void TObjButterflyLobby::alloc_scene_buffer() { wall_query_scene_buffer = (E_80079580 *)::operator new[](0x5000); }
 
 extern "C" {
 void __construct_array(void *, void *, s32, s32, s32);

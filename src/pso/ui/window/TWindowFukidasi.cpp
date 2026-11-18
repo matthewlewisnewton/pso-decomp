@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TUnk_804CF0B8.h"
@@ -1014,7 +1015,7 @@ void TUnk_804CF0B8::sub_80251DF0(u16 arg1, s32 str, s32 arg3, f32 farg0) {
     this->m_20 = arg3;
     if (str != 0) {
         temp_r3 = TWindowKeyBoardSoft::strnlen((s8 *)str, (u32)0x18);
-        name = (char *)mem_alloc(temp_r3 + 1);
+        name = (char *)::operator new[](temp_r3 + 1);
         strncpy((s32)name, str, temp_r3 + 1);
     } else {
         name = NULL;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/item/TItemLoad.h"
 #include "pso/item/TItemLoad_8010FC28.h"
@@ -70,7 +71,7 @@ s32 TItemLoad::decompress_buffer(u32 arg0) {
     return 0;
 }
 
-void TItemLoad::free_boss4_rock() { mem_free((void *)item_load_compressed_work_buffer); item_load_compressed_work_buffer = 0; }
+void TItemLoad::free_boss4_rock() { ::operator delete[]((void *)item_load_compressed_work_buffer); item_load_compressed_work_buffer = 0; }
 
 struct Sp8Buf_8010fe6c_8010FDF0 {
     s32 field00;
@@ -96,10 +97,10 @@ s32 read_disc_file(u32, s32);
 s32 read_checked_align__6TLobbyFlll(s32, s32, s32, void *);
 s32 prs_decompress_alloc(s32, u32, s32);
 
-void TItemLoad::alloc_work_buffer() { item_load_compressed_work_buffer = (s32)mem_alloc((u32)((void*)24576)); item_load_work_buffer_busy = 0; }
+void TItemLoad::alloc_work_buffer() { item_load_compressed_work_buffer = (s32)::operator new[]((u32)((void*)24576)); item_load_work_buffer_busy = 0; }
 
 RelocatedFile::~RelocatedFile() {
-    mem_free(buffer);
+    ::operator delete[](buffer);
 }
 
 RelocatedFile::RelocatedFile(const char *path, s32 size) {
@@ -110,7 +111,7 @@ RelocatedFile::RelocatedFile(const char *path, s32 size) {
     buffer = NULL;
     root = NULL;
     if ((size != 0) && (path != NULL)) {
-        buffer = mem_alloc(size);
+        buffer = ::operator new[](size);
         item_buff = create_item_buff(size);
         if ((item_buff != 0) && (buffer != NULL) && (read_disc_file((u32)path, item_buff) > 0)) {
             temp_r31 = prs_decompress_alloc(item_buff, (u32)buffer, size);

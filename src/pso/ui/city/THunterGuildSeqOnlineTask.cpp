@@ -1,4 +1,5 @@
 #include "pso/system/task/TMainTask.h"
+#include "pso/system/ArrayAllocation.h"
 #include "pso/player/TPlyGuildCardTag_8013ABCC.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/city/THunterGuildSeqOnlineTask.h"
@@ -119,12 +120,12 @@ void TQuestListOnline::close_windows_and_reset() {
         TKeyBoardControl__sub_8000F95C();
         q = TQuestListOnline__bin_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         q = TQuestListOnline__dat_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         if (TQuestListOnline__download_window != 0) {
@@ -173,12 +174,12 @@ void TQuestListOnline::handle_quest_ready() {
         TKeyBoardControl__sub_8000F95C();
         q = TQuestListOnline__bin_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         q = TQuestListOnline__dat_download_state;
         if (*(void **)(q + 0x38) != NULL) {
-            mem_free(*(void **)(q + 0x38));
+            ::operator delete[](*(void **)(q + 0x38));
             *(void **)(q + 0x38) = NULL;
         }
         TQuestListOnline__bin_download_complete = 0;
@@ -312,7 +313,7 @@ void TQuestListOnline::begin_file_download() {
         if (s->buf == NULL) {
             strncpy(s->name, arg0->name, 0x10);
             ((Slot_802150E8 *)TQuestListOnline__dat_download_state)->size = arg0->size;
-            s->buf = mem_alloc(arg0->size);
+            s->buf = ::operator new[](arg0->size);
             memset(s->buf, 0, (void *)arg0->size);
             TQuestListOnline__dat_download_complete = 0;
             quest_download_received_bytes += arg0->size;
@@ -322,7 +323,7 @@ void TQuestListOnline::begin_file_download() {
         if (s->buf == NULL) {
             strncpy(s->name, arg0->name, 0x10);
             ((Slot_802150E8 *)TQuestListOnline__bin_download_state)->size = arg0->size;
-            s->buf = mem_alloc(arg0->size);
+            s->buf = ::operator new[](arg0->size);
             memset(s->buf, 0, (void *)arg0->size);
             TQuestListOnline__bin_download_complete = 0;
             TDLGraph::update_graph(quest_download_graph_current_bytes, quest_download_received_bytes += arg0->size);
@@ -360,11 +361,11 @@ void TQuestListOnline::copy_quest_list_data() {
 
 void TQuestListOnline::release_resources() {
     if ((u32) *(u32 *)((s8 *)&TQuestListOnline__bin_download_state + 0x38) != 0U) {
-        mem_free((void *)(*(u32 *)((s8 *)&TQuestListOnline__bin_download_state + 0x38)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)&TQuestListOnline__bin_download_state + 0x38)));
         *(u32 *)((s8 *)&TQuestListOnline__bin_download_state + 0x38) = 0U;
     }
     if ((u32) *(u32 *)((s8 *)&TQuestListOnline__dat_download_state + 0x38) != 0U) {
-        mem_free((void *)(*(u32 *)((s8 *)&TQuestListOnline__dat_download_state + 0x38)));
+        ::operator delete[]((void *)(*(u32 *)((s8 *)&TQuestListOnline__dat_download_state + 0x38)));
         *(u32 *)((s8 *)&TQuestListOnline__dat_download_state + 0x38) = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__selected_quest_info) != 0U) {
