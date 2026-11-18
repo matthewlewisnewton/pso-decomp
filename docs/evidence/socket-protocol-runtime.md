@@ -75,6 +75,93 @@ full-TCB SACK comparisons. The candidate DOL SHA-1 is
 `4fe6f3a8b8f49ed9b7d82d7e915f8316f66cc9ba`. The original is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
+## Comparison with the browser's AVE-TCP debug build
+
+The same GPOE8P Rev 2 disc contains two NetFront browser executables. Both
+the game and release browser identify their middleware as AVE-TCPv6.0 for GC
+1.16.1, built on October 23, 2002 at 17:47:54. The debug browser identifies
+`avetcpD.a` 1.16.1, built at 17:47:26 that day. All three name SDK
+`12Dec2001Patch3`. ACCESS also identifies Episode III as a consumer of the
+same middleware family. The measurements below use only the owned I & II Plus
+disc. [ACCESS announcement](https://www.access-company.com/news_event/archives/20030613-2/)
+
+| Executable and SHA-1 | SACK entry (bytes) | ACK entry (bytes) | Gather entry (bytes) |
+| --- | --- | --- | --- |
+| `PsoV3.dol` · `0d85744b51d7379efb025a943d0cd5aaae2191a3` | `0x8041FED4` (292) | `0x8041FFF8` (1048) | `0x80420410` (1984) |
+| `iwanaga.dol` · `4fbc45e48519f07b9b161debf0078db24c5aa24c` | `0x80152994` (292) | `0x80152AB8` (1048) | `0x80152ED0` (1984) |
+| `iwanagaD.dol` · `0fc3904718e56689b248ade22ba8ee1327b0a0e2` | `0x8016B4EC` (448) | `0x8016B07C` (1136) | `0x8016A738` (2372) |
+
+The release browser contains the game SACK function byte for byte. Its ACK
+differs at 16 relative calls and two words materializing the protocol-state
+address. Its gatherer differs at 42 relative calls. The debug browser has
+different code and function order. The five-entry table, the 65-position
+request ring, the 12-byte fragment stride and the ordering of callbacks and
+buffer operations identify the three debug routines.
+
+**SACK bounds.** The debug routine calculates the source at index `k+1`
+and the destination at index `k`, both from `TCB+0x2F8` with stride 8.
+It compares the signed loop index with 5 at `0x8016B658`, then clears slot
+four. Its neighboring SACK expiration routine uses the same pair of indexed
+addresses and compares the shift index with **4** at `0x8016B74C`. This
+distinction survives two compiler configurations and supports a source-level
+off-by-one in the update. With the range pair documented above, Unicorn
+observed the reads at `TCB+0x320` and `+0x324` in both browser builds. The
+debug PCs are `0x8016B640` and `0x8016B644`. All three disc executables and
+the bounded candidate produced the same complete control block. The candidate
+made zero reads from those two fields.
+
+**ACK locals.** The debug frame is 112 bytes. The request is at stack +48,
+its buffer reference at +24, the ring cursor at +40 and the FIFO destination
+at +16. The queued path initializes three kind bytes at +44, +36 and +28.
+The store to +36 at `0x8016B0E8` is the only direct access to the +32..+39
+slot, and its address is never passed. The spacing and three equal kind
+values support an extra buffer-reference initialization in the original.
+The clean candidate needs only the live descriptors. The debug code keeps
+the signed 16-bit socket handle and ring-head snapshot in separate registers.
+It snapshots the ring head **after** the initial descriptor copy at
+`0x8016B124`, then **before** the descriptor copy following the callback at
+`0x8016B1D4`. Both local zero tests use signed compares, while the unsigned
+field is compared to 64 for ring wrap. These observations give a source
+hypothesis for a signed local index. The original local declarations remain
+unknown.
+
+**Gatherer.** One debug register holds the index initialized to -1 at
+`0x8016AAA4` and assigned the first request index in the other branch at
+`0x8016AC18`. The gatherer uses this value to calculate its shift indices,
+start the scan at the index plus one (`0x8016ADA4`), test the reverse loop
+(`0x8016AE7C`), and select the trailing buffer (`0x8016AE98`). The debug
+cursor steps back 12 bytes before checking for an empty prefix at
+`0x8016AE10` and again after each copy at `0x8016AE74`. The port candidate
+keeps its cursor within the array. At `0x8016AE58..0x8016AE60` the debug
+routine stores the fragment length as a halfword, sign-extends it and adds
+it to the packet total.
+
+The same 2,400 gather and 1,600 ACK cases described above also agreed
+between the game and debug browser. The ACK comparison included 1,717
+callback events with the same simulated reentry. These comparisons used
+the debug executable's own buffer helpers, its registry at `0x804E6A28`
+and completion dispatchers at `0x8016EDF4` and `0x8016E50C`.
+
+**Reproduction.** Set `disc` to the Rev 2 disc image, and make the project's
+`dtk` and `powerpc-eabi-objdump` available on the shell path. With Unicorn
+2.1.4 available to Python, the checker verifies the input hashes, traces
+the adjacent reads and checks all `0x544` final bytes against the expected
+result. Omit `--candidate` to run the disc-only comparison.
+
+```sh
+dol_dir=$(mktemp -d)
+for name in PsoV3 iwanaga iwanagaD
+do
+    dtk vfs cp "$disc:files/$name.dol" "$dol_dir/$name.dol"
+done
+python3 tools/probe_socket_sack.py "$dol_dir" --candidate build/GPOE8P/psov3.dol
+powerpc-eabi-objdump -D -b binary -m powerpc:common -EB --adjust-vma=0x8000d760 \
+    --start-address=0x8016a738 --stop-address=0x8016b788 "$dol_dir/iwanagaD.dol"
+```
+
+The debug DOL's second text section starts at file offset `0x25A0` and
+virtual address `0x8000FD00`, giving the address adjustment used above.
+
 ## Published integration at b85d436d3e
 
 The local integration on fork main `9ab744a4ec` keeps main's upstream-derived
