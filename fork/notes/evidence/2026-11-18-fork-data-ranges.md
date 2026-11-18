@@ -4,21 +4,25 @@ Fork main `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5e
 
 ## Current integration status
 
-At integration commit `6baca82926`, the address checker confirms recovery of **392 bytes across 26 ledger rows**. It still finds **592 bytes** missing from both exact and source-linked data across 22 normalized ranges. The other **163 bytes** were outside the checker's original 984-byte deficit. The ledger records both missing-byte counts for every interval and names the commit that recovered each row.
+At integration commit `c83050f684`, **652 inventory bytes are now linked from source**. Another four bytes at 0x805D8A2C are verified original linker padding. **328 bytes remain** across 12 dispatch-table intervals. The other 163 bytes were outside the checker's original 984-byte deficit. The ledger records the original and current missing-byte counts and the commit that closed each row.
 
-Of the remaining bytes, 552 are in the 20 dispatch-table intervals, including 176 covered by the proposed splits in upstream PR 320. The other 40 are the music value at 0x805D3718 (4), the Dark Falz interval at 0x805D8A2C (12), and the status-window constants at 0x805DCF18 (24). The original table lists the owning fork source and symbol extent for each.
+Of the 652 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 476 bytes come from the fork integration work. The first patch is independent of PR 320.
 
-| Integration commit | Newly recovered inventory bytes | Additional matched bytes outside the inventory | Missing inventory bytes after commit |
+| Integration commit | Inventory gap closed (includes identified padding) | Additional matched bytes outside the inventory | Missing inventory bytes after commit |
 |---|---:|---:|---:|
 | `75a68a350c` and predecessors | 148 | 0 | 836 |
 | `7202f5fbd6` — event filenames, card, boss and network state | 84 | 4 | 752 |
 | `7aea3ba036` — player combat, boss dust and lighting | 112 | 0 | 640 |
 | `a427c24c40` — rotation, window and boss constants | 28 | 4 | 612 |
 | `6baca82926` — line-drawing resources and constants | 20 | 0 | 592 |
+| `8c4f54cf1d` — music, status window and Dark Falz | 40 (36 source, 4 padding) | 44 | 552 |
+| `e6e6079ea6` — Gifoie orbit-task dispatch table | 24 | 0 | 528 |
+| Selected PR 320 window commits, validated at `4dd0e29fe5` | 176 | 32 | 352 |
+| `c83050f684` — area-window dispatch table | 24 | 0 | 328 |
 
 This comparison covers fork main through `23aa26cec0`. The newer Gyaranzo change extends the fork's constant pool to 0x805DA258–0x805DA2A0. Upstream already links that entire range from `pso/enemy/gyaranzo/TObjEneGyaranzo.cpp`. The other two changes since the inventory update the fork's documentation.
 
-The integration build matches the original DOL. All 27,572 functions are exact and all 2,538 source-linked units pass. Consolidating the line-drawing implementation reduced the linked unit count by three. Against the pinned upstream build, exact and source-linked data each increased by 400 bytes. The checker identifies six four-byte alignment gaps that explain the 24-byte decrease in total reported data coverage. All 266 tooling tests passed. The first-patch branch remains independently reviewable from the upstream base.
+The integration build matches the original DOL. All 27,572 functions are exact and all 2,539 source-linked units pass. Compared with pinned upstream master, the integration branch gains 736 matched and source-linked data bytes, including 84 outside the original inventory. The checker identifies eight four-byte alignment gaps that explain the 32-byte decrease in total reported data coverage. The area-window patch also passed the full check against its immediate prerequisite.
 
 ## Starting inventory
 
