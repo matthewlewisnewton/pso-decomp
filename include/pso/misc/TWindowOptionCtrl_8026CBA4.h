@@ -10,6 +10,8 @@ struct WindowLayoutPosition {
 };
 
 extern "C" {
+extern const WindowLayoutPosition window_layout_rect_table[210];
+extern const WindowLayoutPosition window_layout_position_table[92];
 WindowLayoutPosition *get_window_layout_position(s32 index);
 }
 

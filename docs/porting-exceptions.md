@@ -15,6 +15,16 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Title resources and multiplayer game-mode messages
+
+`pso/unk/text_803367F4.cpp` and `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp`
+use `-str reuse,readonly` for the title texture names, archive names and
+game-mode prompts. The original pointer tables reference read-only storage.
+The message unit also uses the project's Shift-JIS wrapper and CodeWarrior's
+`-multibyte` setting. For example, the second byte of 能 is 0x5C, which the
+compiler otherwise consumes as a backslash. A port can use its normal string
+pooling and encode these messages for the game text renderer at its boundary.
+
 ### LSC initialization
 
 `pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with
@@ -195,7 +205,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | MWCC intrinsics | 92 | 60 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
 | CodeWarrior pragmas (excluding push/pop) | 4,120 | 880 |
-| Per-unit compiler overrides in `configure.py` | 224 | 224 |
+| Per-unit compiler overrides in `configure.py` | 223 | 223 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -663,6 +673,13 @@ same helpers with ordinary inlining and native pointer-sized handles.
 | `configure.py` | `pso/misc/TWindowActionPalette.cpp` | `-inline off,deferred` with reversed definitions | Places the compiler-generated vtable at `.data+0x308` before the icon switch table at `+0x320`, while retaining the original function order. See [unit evidence](evidence/action-palette-unit.md). | Use ordinary function ordering and compiler-generated virtual dispatch. |
 | `src/pso/misc/TWindowActionPalette.cpp` | Frame, slot-light position, and count-label position | Scoped `fp_contract on` | Preserves the existing fused coordinate arithmetic when the three fragments are consolidated. | Preserve fused float rounding when exact original positioning is required. |
 
+### Ending scene startup
+
+`TEnding::start_ending_scene` uses scoped `pool_data off` because CodeWarrior
+otherwise shares a `.rodata` base across both camera initializers and the
+music filename. The original loads their addresses independently. Ports can
+use the same vectors and filename without the pragma.
+
 ### Dark Falz demo 4
 
 | File | Scope | What | Why | Port should |
@@ -736,11 +753,13 @@ recovered the unit’s constants at `0x805DE4E0` and `0x805DE4E4`. With those
 definitions in the unit, the literal bounds `0.0f` and `1.0f` reproduce the
 original object under the normal optimizer settings.
 
-### Approved: `TObjEneMoja` constructor scaled-offset lookup ([#394](https://github.com/matthewlewisnewton/pso-decomp/pull/394))
+### Retired Moja constructor exception
 
-| File | Function | What | Why | Port should |
-|---|---|---|---|---|
-| `src/pso/enemy/TObjEneMoja.cpp` | `__ct__11TObjEneMojaFP7TObjectPv` (`0x800AF8B0`) | Scoped `#pragma opt_common_subs off` and the scaled-offset spelling `variant_offset = kind * sizeof(*lbl_805D50C8)` / `table[variant_offset / sizeof(*lbl_805D50C8)]` (and the same for `lbl_805D50D0`) | Approved by Matt on 2026-11-10 ~8:27 AM PT: "Yes, approve #394's scaled-offset lookup with a porting-exceptions register row." With CSE enabled, the two probability clamps use different floating-point registers. Literal bounds reproduce the instructions but create a second pair of constants at different addresses from the shared bounds at `0x805D9BD8` and `0x805D9BDC`. The scaled-offset form is required for the table loads: `table[kind]`, `table[variant]`, typed temps, a C-style cast and local table pointers all reach 99.84% (same 632-byte size) because of an r7/r8 swap around `lwz r7, lbl_805D50C8` / `slwi r8,r5,2` / `lwzx`. `*(table + kind)` reaches 98.28%. A true struct array does not fit: `load_resources` allocates two separate pointer tables. The constructor's two exclusive offsets at `0x805D9C60` and `0x805D9C64` are defined after use to retain their named relocations. | Drop the pragma, clamp to `[0.0f, 1.0f]`, and index the two tables directly with the variant. |
+Fork [#394](https://github.com/matthewlewisnewton/pso-decomp/pull/394) approved
+disabling common-subexpression elimination and scaling a variant index to a byte
+offset and back. The constructor and the preceding Moja behavior functions now
+share the original constant pool. The constructor clamps both probability fields
+with literal bounds and indexes the base and resistance tables directly.
 
 ### Approved: `TEF_LensFlare::render` ([#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272))
 
@@ -943,6 +962,17 @@ and ChallengeResult records are covered in
 Vtable symbols are 0x18 bytes. The earlier 0x1C entries included four bytes of
 alignment padding. The balloon now owns its float pool from the eight-byte
 aligned address `0x805DCD08`, which retires its alignment override.
+
+### Challenge window data placement
+
+`pso/misc/TWindowSubComCard_8007341C.cpp` uses `-str reuse,readonly` to
+place the short and long strings in `.sdata2` and `.rodata` respectively.
+With data pooling enabled, CodeWarrior shares a base register across the long
+strings and changes the formatter's registers and address loads. The
+`-pooldata=off` setting restores the separate loads. `-sdata 4` keeps the
+eight-byte window extent in `.data` and preserves its two-instruction
+address loads. Ports can compile the ordinary C++ strings, table and extent
+with their default settings.
 
 ### Download status coordinate alignment
 
@@ -1278,6 +1308,15 @@ GC/2.6 records eight-byte alignment for the emitted sections. The existing
 metadata; instructions, data and relocations remain compiler-generated.
 A port can use its compiler's default vtable and pointer alignment.
 
+### `TWindowGetComCard.cpp` confirmation window position
+
+The two floats at `0x804CF120` precede the compiler-emitted
+`TWindowGetComCard` vtable in `.data`. Under the default small-data settings,
+CodeWarrior puts the eight-byte position in `.sdata` and emits one SDA-relative
+instruction at the factory call. The guarded `.data` placement keeps the
+original `lis` and `addi` relocation pair and the vtable layout. A port can use
+the ordinary `WindowLayoutPosition` definition and its default data placement.
+
 ### `TCheckMemoryCard.cpp` section placement
 
 The native static initializer at `0x8033C69C` computes the card-menu position and layout
@@ -1342,13 +1381,16 @@ Linking `TObjBoss2Tunnel_802F2070.cpp` also needs `cw_align` (`.sbss=4 .sdata2=4
 |---|---|---|---|---|
 | `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
 
-### `TObjEneMoja.cpp`: `-inline off,deferred`
+### Moja resource and vtable emission
 
 The loader at `0x800AF56C` uses a shared `.data` base for the two BML descriptors, action table and collision body. With a single external struct view, CodeWarrior folds two subobject offsets into their loads and emits a 680-byte function. Defining the individual tables in the same translation unit restores the two address instructions and the original 688 bytes.
 
-The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions with `-inline off,deferred` preserve both the function order and the original data order. The adjacent constructor uses the same `.data` base at `0x80491828` for the vtable, action table, collision body and movement table, so it joins this unit.
+The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions under `defer_codegen on` in the final six-function group preserve both the function order and the original data order. The adjacent constructor uses the same `.data` base at `0x80491828` for the vtable, action table, collision body and movement table, so it joins this unit.
 
-Ports can drop the compiler switch. The render and target-acquisition bodies in `TObjPlayer_800ACA60.cpp` are ordinary `TObjEneMoja` members (`render`, and `vfunc_28` — the `TObjChara` override name for acquire_target).
+The earlier behavior functions use immediate emission. The collision flag word
+`0x8001` sits between two groups of compiler-generated float constants at
+`0x805D9BFC` and uses the native small read-only section. Ports can use the
+ordinary integer definition and omit the deferred-emission setting.
 
 ### `TBoss8Dragon.cpp`: `-inline off,deferred` ([#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302))
 
@@ -2242,3 +2284,108 @@ object metadata adjustment.
 | Same unit, resource names and class names | Unit `-str reuse,readonly` and `-sdata 4` | Readonly strings preserve `.rodata`; the small-data threshold keeps the two eight-byte filename lists in `.data`, before their `BmlResourceDescriptor`. Without these switches the strings enter `.data` and the lists enter `.sdata`. Existing `TOBoss4.cpp` uses the same switches for its resource lists. | Drop the switches; retain the typed lists and resource descriptor. |
 | Same unit, named render records and constants | MWCC-only `RICO_SECTION` annotations | Preserve the existing initialized `.data` records, readonly vector/fan records, and scalar `.sdata2` constants. The macro is empty on other compilers. The three short zero tails are linker alignment, not additional source objects. | Keep the ordinary typed values and ignore their GameCube sections. |
 | Same unit, `TAdRicoRingCtrl::render`, `run_task`, and `sub_8001B424` | Existing scoped `opt_common_subs off` (two), `opt_dead_assignments off` (one), and `fp_contract on` (one), moved with their functions | These controls were already in the retired fragments. Removing render CSE control gives 94.86%; removing its dead-assignment control gives 99.46%; removing both gives 95.29%. Removing the update CSE control gives 97%. Contraction retains the original fused reflected-position calculation. Six formerly manual scalar guards are now native local statics. | Drop the optimization pragmas; retain the scalar calculations and local statics. Preserve fused arithmetic if identical floating-point rounding is required. |
+
+
+### Lobby network recovery
+
+The `TLobby_804050DC`, `TLobby_8040FF0C`, and `TLobby_8041112C` object groups
+retain GC/1.2.5n and the existing `-opt nocse` configuration. Their per-object
+`-inline noauto,level=4` default in `configure.py` inlines explicitly marked
+helpers without automatically inlining other functions. This replaces the
+repeated source inline controls. The shared `LobbyNetworkInternal.h` needs
+no pragmas. `-inline auto,level=4` changes native instructions in the first
+and third groups, while `noauto,level=4` preserves all three complete objects.
+
+The remaining optimizer pragmas are accepted as scoped matching exceptions for
+this recovery. Each region is listed below and was tested against its complete
+object. Removing a setting or its restoration changes native instruction
+selection or register lifetimes. Adjacent functions share a setting only where
+the region table identifies the full range. The four `optimization_level`
+regions retain push/pop to restore every optimizer option affected by the level
+change.
+
+| Region begins | Level | Restored before |
+|---|---|---|
+| `TLobby::reset_socket_table` | 3 | `TLobby__sub_80406B6C` |
+| `TLobby::is_slot_flag_0x40_set` | 2 | `TLobby__sub_8040A2BC` |
+| `TLobby__sub_8040C8A8` | 2, with CSE disabled | `TLobby__sub_8040C978` |
+| `NetIPv6EmitRouterSolicitation` | 3 | `TLobby__sub_804182DC` |
+
+The sole remaining inline-depth exception is depth one for
+`TLobby__sub_8040B4BC`, restored explicitly to four afterward. An
+`inline_depth reset` would restore the compiler's initial depth instead of the
+unit's chosen depth and changes later native instructions. Propagation, CSE,
+lifetime, and loop controls preserve the following native instruction choices.
+
+| Control | Functions or neighborhoods | Reason |
+|---|---|---|
+| Lifetime analysis | `80406BD8–80406F0C`, `8040BD40`, `8040DE4C` | Keeps checksum and packet cursors, compressed-name offsets, and the release path in their original registers. |
+| Propagation | PPP send, buffer copy, Ethernet socket lookup, DNS send and decode, IPv4 input and send, IPv6 redirect and neighbor options | Preserves distinct length, status and callback values across calls. |
+| Common subexpressions | PPP receive, Ethernet receive and socket lookup, IPv4 route processing, IPv6 interface, prefix, send and neighbor routines | Preserves field-address reuse and the order of table and cursor loads. |
+| Loop invariants and strength reduction | PPP receive at `80405700` and IPv6 input at `8040FFF8` | Reproduces cursor increments and the native placement of loop-invariant loads. Strength reduction resumes before `804105E0`. |
+
+`TLobby__sub_80411604` uses an ordinary ANSI C++ definition with an `s16`
+interface ID. Its shared declaration and callers use that same type; the
+old-style C definition and block-local event-dispatch declarations are removed.
+Neighbor/router advertisement and router solicitation now receive signed short
+interface IDs, matching their ICMP callers. The router-solicitation send chain
+also consumes and returns short status values. Its link-address and IPv6 send
+declarations agree with those providers, so obsolete word-ID casts and local
+send declarations are unnecessary. Ports can keep these typed interfaces.
+The scoped legacy network declarations must be reconciled with their providers
+and every caller before replacing them with a common portable interface.
+In particular, `8040CE58` consumes `8040E780` through a scoped word-return
+declaration and returns that word to `8040DE4C`; the provider definition remains
+short-returning. Both sides' native conversion instructions support retaining
+this bounded legacy interface until the portable ABI is reconciled.
+
+All three lobby groups link from source. Their layout preserves the alignment
+of compiler-generated switch tables. IPv4 forwarding and sending use scoped
+`opt_propagation off` so the compiler keeps distinct packet and fragment
+cursors and reproduces their register lifetimes. A port can drop these
+settings and retain the fragment traversal and accounting described in the
+[recovery evidence](evidence/lobby-network-recovery.md).
+
+The lobby receive entry at `80405700` delegates to an inline implementation
+with a referenced entry-local byte and a first-declared receive count. This
+source organization reproduces native register lifetimes and stack placement;
+no separate helper is emitted. Ports may combine the bodies and use ordinary
+locals. See [recovery evidence](evidence/lobby-network-recovery.md).
+
+The PPP output routine at `804066D8` uses C linkage and a whole-function
+`opt_propagation off` scope. Its definition remains ordinary C++, and a small
+inline adapter performs the existing time query. The separate
+`ppp_is_lcp_protocol` predicate uses a small `cplusplus off/on` scope. The
+pinned compiler emits `srwi` for its inlined integer result in C mode and
+`extrwi` in C++ mode. The optimizer scope restores after the complete
+writer definition. Ports can use an ordinary comparison and keep the
+unsigned 32-bit escape mask.
+
+The Ethernet socket opener at `804094B8` enables `opt_common_subs` for its
+matching-socket lookup and caller. A port may drop it. The IPv4 receiver at
+`8040DE4C` disables propagation within its function scope to preserve the
+lifetimes of the packet, length, and interface arguments.
+
+The IPv6 address update at `80412CA4` enables `opt_common_subs` within its
+existing pragma scope. The corresponding linked upstream unit enables this
+optimization throughout. A port may omit the pragma and keep the typed
+interface lookup and short prefix length.
+
+Only the PPP output routine at `804066D8` needs C linkage. The IPv6 input and
+event dispatcher use ordinary C++. All language and optimizer controls in the
+three units fall between function definitions; the C-mode predicate is a
+separate helper between function definitions.
+
+The packet checksum at `80406BD8` uses scoped `opt_lifetimes off` as in
+upstream PR #304. A port can remove it while preserving the segment traversal
+and the order of the checksum additions.
+
+The DNS reader at `8040BD40` uses scoped `opt_lifetimes off`, following the
+upstream `NetDns.c` implementation at `9925c2c503`. Together with its separate
+decoded-source cursor and short-limit phase reuse, this produces its exact
+native body. Ports may drop the pragma while preserving cumulative label
+counts and compressed-name decoding.
+
+IPv4 input at `8040DE4C` uses scoped `opt_lifetimes off` to keep the packet
+length and the later subscription index in one register. A port can use
+separate locals and keep the signed 16-bit loop comparison.
