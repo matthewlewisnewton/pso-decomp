@@ -27,11 +27,11 @@ The receive-range routines at `0x8041F66C` and `0x8041F914` use unsigned endpoin
 
 The send ring holds 65 16-byte `TcpSendRequest` records. A completion callback can reenter the socket and move the queue head, so `0x8041FFF8` reloads the head and ring descriptor after the callback and before reading the next request.
 
-The scoped `opt_lifetimes off` setting, direct queue statements and native local declaration order reproduce the 1,048-byte routine exactly. The unreferenced eight-byte local area preserves the retail 96-byte frame and the FIFO destination descriptor at stack offset 20. Ports can remove that area and the optimizer settings while retaining the post-callback reload.
+The scoped `opt_lifetimes off` setting, direct queue statements and native local declaration order reproduce the 1,048-byte routine exactly. The `Acknowledgement` aggregate groups the existing signed 16-bit socket handle and unsigned 32-bit remaining count into one real eight-byte local, including alignment. It preserves the retail 96-byte frame and FIFO destination descriptor at stack offset 20 without an unused frame pad. Ports can use separate handle and remaining variables and omit the optimizer settings while retaining the post-callback reload.
 
 ## Send gathering
 
-`0x80420410` matches at 1,984 bytes. Its scoped `dont_inline on` and `opt_propagation off` settings, local declaration order and statement order reproduce the native register allocation. The integer address cursors preserve the original reverse and shift walks, including an unused final decrement before the array; conversions back to pointers occur only for guarded accesses. Ports should use bounded typed indices instead.
+`0x80420410` matches at 1,984 bytes. Its scoped `opt_propagation off` setting, local declaration order and statement order reproduce the native register allocation. The reversal and shift walks use typed indices. The prefix scan and reverse copy use a `NetPacketFragment *` cursor, including the original unused final decrement before the array. No integer native-address cursors are used. Ports should keep the cursor within the array or use bounded typed indices instead.
 
 The partial-fragment tail at `0x80420B6C` is unreachable in retail. The FIFO path initializes the partial index to `-1`, and every path reaching the tail retains that value. The tail is nevertheless required for the original bytes and remains in the C++. Its 16-bit length temporaries reproduce the native stores without the former `s64` widening.
 

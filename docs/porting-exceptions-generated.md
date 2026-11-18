@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 92 | 61 |
 | hardware | 71 | 14 |
-| pragma | 4106 | 885 |
+| pragma | 4105 | 885 |
 | configure.py per-unit override | 234 | 234 |
 
-Pragma kinds (excluding push/pop/once): `fp_contract` 821, `dont_inline` 648, `inline_depth` 634, `opt_common_subs` 589, `auto_inline` 259, `opt_propagation` 215, `readonly_strings` 205, `scheduling` 182, `optimization_level` 82, `peephole` 76, `defer_codegen` 64, `bool` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 44, `pool_data` 38, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `fp_contract` 821, `dont_inline` 647, `inline_depth` 634, `opt_common_subs` 589, `auto_inline` 259, `opt_propagation` 215, `readonly_strings` 205, `scheduling` 182, `optimization_level` 82, `peephole` 76, `defer_codegen` 64, `bool` 59, `pack` 46, `opt_loop_invariants` 45, `opt_lifetimes` 44, `pool_data` 38, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `opt_strength_reduction` 4, `suppress_init_code` 3, `cplusplus` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -1031,7 +1031,7 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 821, `dont_inline` 648, `i
 | `src/pso/network/NetworkMessageTransport.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetworkPacketRuntime.cpp` | dont_inline×4, inline_depth×3, auto_inline×1, opt_propagation×1, opt_common_subs×1 |
 | `src/pso/network/NetworkTransport.cpp` | opt_common_subs×3, optimization_level×1 |
-| `src/pso/network/SocketProtocolRuntime.cpp` | dont_inline×3, inline_depth×1, opt_lifetimes×1, opt_propagation×1 |
+| `src/pso/network/SocketProtocolRuntime.cpp` | dont_inline×2, inline_depth×1, opt_lifetimes×1, opt_propagation×1 |
 | `src/pso/network/TProtocol.cpp` | inline_depth×2, dont_inline×2 |
 | `src/pso/network/TProtocol_801DA240.cpp` | inline_depth×2, auto_inline×2, dont_inline×2 |
 | `src/pso/network/TTcpSocket.cpp` | readonly_strings×1, inline_depth×1, auto_inline×1, dont_inline×1 |

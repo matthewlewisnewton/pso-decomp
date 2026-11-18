@@ -101,19 +101,22 @@ boundary. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
 ### TCP send acknowledgement
 
 The same unit disables inlining and lifetime optimization around `0x8041FFF8`.
-Its native local declaration order and unreferenced eight-byte area reproduce
-the 96-byte stack frame and FIFO descriptor offset. Ports can omit the settings
-and dead storage while keeping the post-callback queue-head reload.
+Its native local declaration order and the `Acknowledgement` aggregate reproduce
+the 96-byte stack frame and FIFO descriptor offset. The aggregate groups the
+existing handle and remaining count, including alignment; it is not unused frame
+storage. Ports can use separate variables and omit the optimizer settings while
+keeping the post-callback queue-head reload.
 [Socket runtime evidence](evidence/socket-protocol-runtime.md)
 
 ### TCP send gathering
 
-`0x80420410` uses scoped `dont_inline on` and `opt_propagation off` controls and
-integer address cursors to reproduce the native reverse and shift walks. The
-unused final decrement can precede the array; only guarded accesses convert the
-addresses back to pointers. Ports should use bounded typed indices and can omit
-the optimizer settings. The unreachable retail partial-fragment tail remains
-for exact matching. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
+`0x80420410` uses a scoped `opt_propagation off` control to reproduce the
+native reverse and shift walks. The walks use typed indices and a
+`NetPacketFragment *` cursor rather than integer native addresses. The original
+unused final decrement can precede the array. Ports should keep the cursor
+within the array or use bounded typed indices and can omit the optimizer
+setting. The unreachable retail partial-fragment tail remains for exact
+matching. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
 
 ### Logo texture descriptor declaration
 
@@ -229,7 +232,7 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
 | MWCC intrinsics | 92 | 61 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 71 | 14 |
-| CodeWarrior pragmas (excluding push/pop) | 4,106 | 885 |
+| CodeWarrior pragmas (excluding push/pop) | 4,105 | 885 |
 | Per-unit compiler overrides in `configure.py` | 234 | 234 |
 | Approved regressions | 0 | 0 |
 
