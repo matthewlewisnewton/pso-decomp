@@ -10,13 +10,13 @@ No table is written by hand.
 
 The candidate based on `b85d436d3e` builds and links. Eighteen of the 21
 functions match. The data and BSS match. The linked DOL differs from the
-original at 23 instruction words, all in the three functions below. The
-project checksum gate therefore fails.
+original at 17 instruction words, all in the three functions below. Objdiff
+scores the text at 99.8325%. The project checksum gate therefore fails.
 
 | Function | Size | Differing linked words | Source change |
 | --- | ---: | ---: | --- |
 | SACK update, `0x8041FED4` | 292 | 1 | Shift from the next valid range and clear the last slot. |
-| ACK, `0x8041FFF8` | 1,048 | 12 | Complete the request, reload the head after the callback, and seek the cursor using the entry size. |
+| ACK, `0x8041FFF8` | 1,048 | 6 | Complete the request, reload the head after the callback, and seek the cursor using the entry size. |
 | Send gatherer, `0x80420410` | 1,984 | 10 | Index the two fragments in each swap and shift. Prepend from the end of the consumed prefix. |
 
 **SACK bounds.** With `last_reasm = 0`, a new range of `[100,160)` and an
@@ -34,20 +34,24 @@ and the send-side operations support the five-entry layout.
 Bounded source-index and destination-index loops, a one-past pointer, a
 counted move, a guarded final assignment, and clearing through the final
 iterator all produced different code. lwIP's SACK code also compacts valid
-entries and clears the trailing entries. I compiled two earlier versions of the full unit with 20 installed GC compiler
-releases. GC/1.2.5n preserved 18 exact functions in each, the most of any
-release tested. With that compiler the bounded loop compares the index to 4.
+entries and clears the trailing entries. Compiling the bounded checkpoint
+`f1b968a945` with 20 installed GC compiler releases produced no better code
+for these three functions. GC/1.2.5n preserved 18 exact functions, the most
+of any release tested. With that compiler the bounded loop compares the index
+to 4.
 [lwIP SACK implementation](https://github.com/lwip-tcpip/lwip/blob/master/src/core/tcp_in.c)
 
 **ACK frame.** The two operations at a completion boundary must stay ordered.
 The callback can change the ring head. The candidate snapshots the new head
 before copying the ring descriptor and uses that index to find the entry.
 The compiler allocates the original 96-byte frame with ordinary live buffers.
-Six instruction words use stack offset `0x24` for the FIFO destination where
-the original uses `0x14`. Two comparisons with zero use the unsigned head
-type, and two pairs of instructions set up the same call arguments in a
-different order. A diagnostic grouping the socket handle and a snapshot of
-the ring index in a local record matched all 1,048 bytes. I found no
+The browser debug build below uses a signed queue index in both lookups. The
+candidate reads that index after the first descriptor copy and before the
+post-callback copy. Both lookups advance by `sizeof(TcpSendRequest)`. The two
+zero comparisons and the call arguments now match. The only six differing
+instructions address the FIFO destination at stack offset `0x24` where the
+original uses `0x14`. A diagnostic grouping the socket handle and a snapshot
+of the ring index in a local record matched all 1,048 bytes. I found no
 independent consumer or shared type for that pair. The candidate retains
 separate operations. The fork's PPP implementation provided the precedent
 for testing consumed inline results and buffer lifetimes.
@@ -58,7 +62,9 @@ both C and C++ with GC/1.2.5n. Its prepend loop decrements its pointer before
 testing whether the prefix is empty, and again after consuming element zero.
 The candidate reads `source_end[-1]` only while an element remains. It then
 decrements `source_end` to that valid element. All ten differences are in
-that loop at `0x804209FC..0x80420A4C`. The other fragment walks and the final
+that loop at `0x804209FC..0x80420A4C`. Reusing the request and partial
+indices across both branches, as in the browser debug build, left the
+compiled function unchanged. The other fragment walks and the final
 signed halfword addition match. Offset and length are unsigned byte counts
 as in upstream. The fork's sole caller in `TcpProtocol.cpp` rebuilt to the
 same object bytes as the clean main baseline.
@@ -71,8 +77,11 @@ also covered data buffers and completion events, including callbacks changing
 the head. The emulator used the game buffer routines and intercepted the two
 completion notifications for the ACK comparison. Focused host cases passed
 with address, undefined-behavior and bounds sanitizers, including 200,000
-full-TCB SACK comparisons. The candidate DOL SHA-1 is
-`4fe6f3a8b8f49ed9b7d82d7e915f8316f66cc9ba`. The original is
+full-TCB SACK comparisons. A separate symbolic check of the changed PowerPC
+compaction loop for initial indices 1 through 4 found identical final values
+for every TCB word and every register live at the common exit. It models the
+TCB as ordinary RAM. Both DOLs are 5,233,088 bytes. The candidate SHA-1 is
+`d03a4023b996c22630fc45048ae69ce8098016f0`. The original is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 
 ## Comparison with the browser's AVE-TCP debug build
@@ -134,7 +143,12 @@ cursor steps back 12 bytes before checking for an empty prefix at
 `0x8016AE10` and again after each copy at `0x8016AE74`. The port candidate
 keeps its cursor within the array. At `0x8016AE58..0x8016AE60` the debug
 routine stores the fragment length as a halfword, sign-extends it and adds
-it to the packet total.
+it to the packet total. The debug partial-fragment branch reads
+`fragments[partial_fragment].length` at `0x8016B03C..0x8016B044`. Applying
+that expression and both debug loop bounds to the bounded source produced
+1,988 bytes, with 38 differing instruction words in aligned object
+comparison. The 1,984-byte candidate retains the retail load at offset
+`0x2C` in this unreachable branch.
 
 The same 2,400 gather and 1,600 ACK cases described above also agreed
 between the game and debug browser. The ACK comparison included 1,717

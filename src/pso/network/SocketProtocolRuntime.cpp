@@ -636,18 +636,23 @@ void TLobby__sub_8041FED4(TcpTcb *tcb) {
 
 #pragma push
 #pragma opt_lifetimes off
-static inline u32 send_request_offset(u32 index) {
-    return index * sizeof(TcpSendRequest);
+// The head is a signed request index in queue mode and a byte offset in FIFO mode.
+static inline s32 request_head_index(const TcpTcb *control) {
+    return control->f24;
+}
+
+static inline void advance_to_request(NetBufferRef *cursor, s32 index) {
+    TLobby__sub_80406EB8(cursor, index * sizeof(TcpSendRequest));
 }
 
 static inline void complete_and_seek_next_request(NetBufferRef *cursor, TcpTcb *control,
                                                  s16 handle, const TcpSendRequest *request) {
     complete_request_callback__6TLobbyFv(handle, request->callback, 0, request);
     // Completion can reenter the socket and move the head of its send queue.
-    const u32 index = control->f24;
+    const s32 index = request_head_index(control);
     NetMemcpy(cursor, &control->snd_buf, sizeof(*cursor));
     if (index != 0) {
-        TLobby__sub_80406EB8(cursor, send_request_offset(index));
+        advance_to_request(cursor, index);
     }
 }
 
@@ -672,9 +677,8 @@ s32 TLobby__sub_8041FFF8(u32 acknowledged, TcpTcb *control) {
         if (acknowledged != 0 && control->f20 != 0) {
             set_value_and_enable__6TLobbyFl(&request_ref, (s32)&request);
             NetMemcpy(&cursor, &control->snd_buf, sizeof(cursor));
-            if (control->f24 != 0) {
-                const u32 offset = send_request_offset(control->f24);
-                TLobby__sub_80406EB8(&cursor, offset);
+            if (request_head_index(control) != 0) {
+                advance_to_request(&cursor, request_head_index(control));
             }
             TLobby__sub_80406FD8(&request_ref, &cursor, sizeof(request));
             while (request.length <= remaining && control->f20 != 0) {
@@ -771,7 +775,6 @@ s32 TLobby__sub_8041FFF8(u32 acknowledged, TcpTcb *control) {
 s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *control) {
     s32 ring_index;
     s32 shift_count;
-    s32 first_request_index;
     TcpSendRequest request;
     u32 bytes_to_end;
     NetBufferRef ring_cursor;
@@ -785,7 +788,6 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
     s32 left_index;
     u16 ring_offset;
     s32 right_index;
-    s32 source_index;
     s32 partial_fragment;
     NetPacketFragment *output_fragment;
     NetBufferRef request_ref;
@@ -919,7 +921,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
         for (request_index = 0; request_index < (u32)control->req.fragment_count; request_index++) {
             if (offset < (u32)queued_fragment->length) {
                 packet->fragment_count = 1;
-                first_request_index = request_index;
+                partial_fragment = request_index;
                 skip_in_fragment = offset;
                 NetMemcpy(&packet->fragments[0].buffer, &queued_fragment->buffer, sizeof(NetBufferRef));
                 TLobby__sub_80406EB8(&packet->fragments[0].buffer, skip_in_fragment);
@@ -934,7 +936,7 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
                 packet->total_bytes = fragment_length;
                 packet->fragments[0].length = fragment_length;
                 for (request_index++; request_index < (u32)control->req.fragment_count; request_index++) {
-                    shift_count = request_index - first_request_index;
+                    shift_count = request_index - partial_fragment;
                     destination_index = shift_count;
                     left_index = shift_count - 1;
                     while (destination_index > 0) {
@@ -967,9 +969,9 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
         return 0;
     }
 
-    source_index = 0;
-    source_end = &control->req.fragments[source_index];
-    for (; source_index < (u32)control->req.fragment_count; source_index++) {
+    request_index = 0;
+    source_end = &control->req.fragments[request_index];
+    for (; request_index < (u32)control->req.fragment_count; request_index++) {
         if (length <= (u32)source_end->length) {
             packet->fragment_count = 1;
             NetMemcpy(&packet->fragments[0].buffer, &source_end->buffer, sizeof(NetBufferRef));
@@ -982,15 +984,15 @@ s32 TLobby__sub_80420410(u32 offset, u32 length, NetPacket *packet, TcpTcb *cont
         source_end++;
     }
     // source_end delimits the fully consumed prefix of the queued fragments.
-    source_index--;
-    while (source_index > -1) {
+    request_index--;
+    while (request_index > -1) {
         NetPacketFragment &previous = source_end[-1];
         packet->fragment_count++;
         NetMemcpy(&packet->fragments[output_count].buffer, &previous.buffer, sizeof(NetBufferRef));
         packet->total_bytes += packet->fragments[output_count].length = previous.length;
         output_count++;
         --source_end;
-        source_index--;
+        request_index--;
     }
     output_tail = &packet->fragments[output_count];
     if (partial_fragment < 0) {
