@@ -1920,7 +1920,7 @@ pso/enemy/TObjEneGyaranzo.cpp:
 	.data       start:0x80494108 end:0x804943FC
 	.bss        start:0x80500ED0 end:0x80500F80
 	.sbss       start:0x805D5200 end:0x805D5210
-	.sdata2     start:0x805DA278 end:0x805DA280
+	.sdata2     start:0x805DA258 end:0x805DA2A0
 
 pso/object/TObjGyaranzoMissile_800D40D8.cpp:
 	.text       start:0x800D40D8 end:0x800D47B4
