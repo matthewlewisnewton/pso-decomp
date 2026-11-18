@@ -236,7 +236,7 @@ s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
             }
             control->rcv_user.kind = 0;
             set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, (s16)control->fF0);
-            while (control->rcv_user.kind != 0) {
+            if (control->rcv_user.kind != 0) {
                 switch (control->t_state) {
                 case 0:
                 case 5:
@@ -247,7 +247,6 @@ s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
                     set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, -7);
                     break;
                 }
-                goto complete;
             }
             goto complete;
         }
