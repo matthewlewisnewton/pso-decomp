@@ -1122,10 +1122,10 @@ void end_view_override() {
     if (*(s32 *)((s8 *)(&(*(RecoveredGlobal_800694A8_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 0x400) {
         *(s32 *)((s8 *)(&(*(RecoveredGlobal_800694A8_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) = (s32) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_800694A8_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 0xFFFFFBFF);
     }
-    stack.sp10 = 320.0f;
-    stack.sp14 = 240.0f;
-    stack.sp30 = 640.0f;
-    stack.sp34 = 480.0f;
+    stack.sp10 = half_viewport_width;
+    stack.sp14 = half_viewport_height;
+    stack.sp30 = full_viewport_width;
+    stack.sp34 = full_viewport_height;
     stack.sp38 = 0.0f;
     stack.sp3C = 0.0f;
     stack.sp40 = TCameraCtrl__data_805D8FD0;
@@ -1154,10 +1154,10 @@ void TCameraCtrl::init_default_view() {
     TCameraCtrl__camera_mode = 0;
     TCameraCtrl::set_target_coords(0, 0);
     TCameraCtrl::set_target(0x280, 0x1E0);
-    stack.sp10 = 320.0f;
-    stack.sp14 = 240.0f;
-    stack.sp30 = 640.0f;
-    stack.sp34 = 480.0f;
+    stack.sp10 = half_viewport_width;
+    stack.sp14 = half_viewport_height;
+    stack.sp30 = full_viewport_width;
+    stack.sp34 = full_viewport_height;
     stack.sp20 = lbl_805D8FCC;
     stack.sp38 = 0.0f;
     stack.sp3C = 0.0f;
@@ -1193,10 +1193,10 @@ void TCameraCtrl::reset_default_view() {
     camera_renderer_setup_nop(&lbl_804FF5E8, 0x3555);
     TCameraCtrl::update_camera_state((f32) (0.0f), (f32) (0.0f), (f32) (0.0f));
     TCameraCtrl::look_at_position((f32) (0.0f), (f32) (0.0f), lbl_805D8FE4);
-    stack.sp10 = 320.0f;
-    stack.sp14 = 240.0f;
-    stack.sp30 = 640.0f;
-    stack.sp34 = 480.0f;
+    stack.sp10 = half_viewport_width;
+    stack.sp14 = half_viewport_height;
+    stack.sp30 = full_viewport_width;
+    stack.sp34 = full_viewport_height;
     stack.sp20 = lbl_805D8FCC;
     stack.sp38 = 0.0f;
     stack.sp3C = 0.0f;
@@ -1291,7 +1291,7 @@ s32 TCameraCtrl::get_camera_target_id(s32 arg0) {
 void TCameraCtrl::restore_full_screen_view() {
     if (is_split_screen() == 0) {
         ((TCameraCtrl *)((s32) &lbl_804FF67C[0]))->copy_view_state((s32)((s32) &TCameraCtrl__data_804FF634[0]));
-        TCameraCtrl__sub_801E32D8(320.0f, 240.0f);
+        TCameraCtrl__sub_801E32D8(half_viewport_width, half_viewport_height);
         GXSetScissorBoxOffset(0, 0);
         GXSetScissor(0, 0, 0x280, 0x1E0);
         TCameraCtrl__data_805D4E0A = 0;
@@ -1310,8 +1310,8 @@ void TCameraCtrl__sub_80068EF0(void) {
     f32 neg_h;
     if (is_split_screen() == 0) {
         ((TCameraCtrl *)((s32) &TCameraCtrl__data_804FF634[0]))->copy_view_state((s32)((s32) &lbl_804FF67C[0]));
-        neg_w = -(*(f32 *)((s8 *)&TCameraCtrl__data_804FF634[0] + 8) - 320.0f);
-        neg_h = -(*(f32 *)((s8 *)&TCameraCtrl__data_804FF634[0] + 0xC) - 240.0f);
+        neg_w = -(*(f32 *)((s8 *)&TCameraCtrl__data_804FF634[0] + 8) - half_viewport_width);
+        neg_h = -(*(f32 *)((s8 *)&TCameraCtrl__data_804FF634[0] + 0xC) - half_viewport_height);
         if (0.0f == neg_w && 0.0f == neg_h) {
             TCameraCtrl__data_805D4E0A = 0;
         } else {
@@ -1356,7 +1356,8 @@ void TCameraCtrl::set_split_viewport(s32 arg0, s32 i) {
     case 2:
         TCameraCtrl::set_target_coords(0, 0);
         TCameraCtrl::set_target(0x280, 0xF0);
-        GXSetViewport(0.0f, 0.0f, 640.0f, 480.0f, 0.0f, TCameraCtrl__data_805D8FAC);
+        GXSetViewport(0.0f, 0.0f, full_viewport_width, full_viewport_height, 0.0f,
+                      TCameraCtrl__data_805D8FAC);
         if (i == 0) {
             GXSetScissor(0, 0x6A, 0x280, 0xF0);
             GXSetScissorBoxOffset(0, 0x6A);
@@ -1397,9 +1398,9 @@ void TCameraCtrl::set_fullscreen_viewport() {
 f32 TCameraCtrl::get_split_offset(s32 arg0) {
     if ((is_split_screen() != 0) && (TCameraCtrl::get_camera_id() == 2)) {
         if (arg0 == 0) {
-            return 106.0f;
+            return split_scissor_top_first;
         }
-        return 116.0f;
+        return split_scissor_top_second;
     }
     return 0.0f;
 }
@@ -1489,3 +1490,25 @@ void TCameraCtrl::copy_vec_to_default(u8 *arg0) {
 // The shared scale is the second small-data object, following the initial zero.
 // Its explicit section also keeps GC/1.3.2 from selecting mutable .sdata.
 __declspec(section ".sdata2") const f32 TCameraCtrl__data_805D8FAC = 1.0f;
+
+// Define the local float pool in address order after the camera methods.
+namespace {
+const f32 split_scissor_top_first = 106.0f;
+const f32 split_scissor_top_second = 116.0f;
+const f32 full_viewport_width = 640.0f;
+const f32 full_viewport_height = 480.0f;
+const f32 half_viewport_width = 320.0f;
+const f32 half_viewport_height = 240.0f;
+const f32 lbl_805D8FC8 = 0.5f;
+const f32 lbl_805D8FCC = 250.0f;
+const f32 TCameraCtrl__data_805D8FD0 = 20.0f;
+const f32 TCameraCtrl__data_805D8FD4 = 15.0f;
+const f32 TCameraCtrl__data_805D8FD8 = 0.85f;
+const f32 TCameraCtrl__data_805D8FDC = 1.1333334f;
+const f32 TCameraCtrl__data_805D8FE0 = 21000.0f;
+const f32 lbl_805D8FE4 = -1.0f;
+const f32 lbl_805D8FE8 = 0.0175f;
+const f32 lbl_805D8FEC = 0.175f;
+const f32 lbl_805D8FF0 = 0.05f;
+const f32 lbl_805D8FF4 = 182.04445f;
+}
