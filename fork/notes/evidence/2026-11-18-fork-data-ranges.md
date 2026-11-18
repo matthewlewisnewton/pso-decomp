@@ -33,3 +33,18 @@ The ending-scene owner defines the two globals at 0x805D4F10 and 0x805D4F14. Ind
 Against the pinned fork build, the upstream address comparator reports 984 bytes missing from exact and linked data at baseline and 976 after the patch (47 to 46 normalized ranges). Each set describes the same bytes under two measures. Both comparisons preserve every fork exact and linked function. The tool also flags the existing difference of 1,961 total data bytes. Its address details report 2,156 bytes of lost alignment coverage and 195 bytes gained. These are unchanged by this patch. The checker applies its own padding rule and normalizes adjacent intervals, while the 1,147-byte inventory uses declared splits. The combined fork-parity gate is still open.
 
 The intended end state is shared source, configuration, and tooling with upstream, with fork-only LLM documentation. Keep this inventory and review evidence out of the upstream patch. Publication requires separate confirmation.
+
+## Four constant pools on the integration branch
+
+Commit `66f583cdfaf5beb64fede187d813847af45ff808` recovers the original split ranges below. The ledger above records the starting inventory.
+
+| Owner | Start | End (exclusive) | Bytes |
+|---|---|---|---:|
+| TObjPlayer_801AF2F0 | 0x805DC278 | 0x805DC2B0 | 56 |
+| TObjPlayer_801C7430 | 0x805DC374 | 0x805DC380 | 12 |
+| TWindowHelpItem_802540AC | 0x805DCE00 | 0x805DCE10 | 16 |
+| TeneFakeTecThunderEff | 0x805D99F0 | 0x805D9A0C | 28 |
+
+The upstream compiler emits the help-window coordinates and three action-state literals in the original order. The larger player pool exports constants referenced across units. The thunder effect needs its named loads to preserve two functions' floating-point instructions. With upstream's existing options, ordinary named definitions were emitted in .sdata. Specifying .sdata2 produced the original object layout and DOL. The final float occupies four bytes. The following four zero bytes are alignment padding.
+
+The full upstream check passed. Against the preceding integration commit, matched and source-linked data each increased by 112 bytes. Against the pinned fork, 42 intervals totaling 864 bytes remain missing under each measure. All fork exact and source-linked functions remain covered.
