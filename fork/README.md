@@ -4,6 +4,8 @@ Keep LLM notes, historical handoffs and recovery evidence in this directory. The
 
 Use `great-merge/integration` to find pending contributions. Each upstream review branch starts from upstream master and contains the code and tests for one change. The first review branch is `great-merge/fork-data-ranges`. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) records the disposition of all 1,147 data bytes.
 
+The [library and portability audit](notes/evidence/2026-11-18-libraries-and-ports.md) traces every fork change under `libs/` and `ports/` to its current implementation or documentation.
+
 The local `great-merge/fork-docs` branch represents upstream master with this documentation applied. After refreshing upstream, compare the two trees from the repository root. An empty result and exit status zero confirm that all differences are under this directory.
 
 ```sh
