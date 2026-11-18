@@ -1531,6 +1531,14 @@ None on main.
 
 ## 7. Upstream catch-up (rewrite later)
 
+<!-- register-source-revision: 23aa26cec0df883cb9020b0516bb33ed4a74378f -->
+
+The entries in this section record the original fork's source paths and reasons.
+The checker resolves them in fork commit `23aa26cec0`, which uses the fork's original
+source layout. The generated inventory at the top of this document scans the
+current integration checkout. An offline check of this historical table needs
+the recorded commit in the local Git repository.
+
 Matt, 2026-11-04 6:55 PM PT: "Yes, allow the one-time upstream asm exception with
 those guardrails." Code taken unchanged from upstream zeroz41/pso-decomp #167-#191
 may keep upstream's asm and other patterns the fork otherwise bans, so the fork can
@@ -1569,7 +1577,8 @@ function/symbol; unit; file (repo path); upstream PR (#167-#192 or the specifica
 `raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
 or `other: <what>`); the fork PR that brought it in; and the tag
 `upstream catch-up, rewrite later`. List and count them with
-`python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
+`python3 tools/list_port_exceptions.py --upstream-catchup`. Add `--count` to
+print the total.
 
 | Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
 |---|---|---|---|---|---|---|
