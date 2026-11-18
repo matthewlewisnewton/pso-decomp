@@ -6,6 +6,7 @@
 #include "pso/misc/TWindowMessage.h"
 #include "pso/misc/TWindowMessagePage.h"
 #include "pso/misc/TWindowMenu.h"
+#include "pso/misc/TWindowOptionCtrl_8026CBA4.h"
 #include "pso/misc/TWindowSubComCardList.h"
 #include "pso/misc/TUnk_804CF0B8.h"
 #include "pso/misc/TWindowFukidasi.h"
@@ -56,7 +57,10 @@ s32 TWindowShortListCtrl__check_controller_button(void *, s32);
 
 s32 is_player_input_active(s32);
 u8 *init_shop_judgment_window(void *p);
-extern u8 TWindowGetComCard__window_rect[];
+#ifdef __MWERKS__
+__declspec(section ".data")
+#endif
+WindowLayoutPosition TWindowGetComCard__window_rect = {152.0f, 370.0f};
 extern Pad_80252CCC controller_input_state[];
 void run_task__17TWindowGetComCardFv(GetCard_80252CCC *self);
 void TWindowFukidasi__sub_80252C38(void* p);
@@ -96,7 +100,7 @@ void run_task__17TWindowGetComCardFv(GetCard_80252CCC *self) {
             break;
         }
         if (self->win == 0) {
-            self->win = init_shop_judgment_window(TWindowGetComCard__window_rect);
+            self->win = init_shop_judgment_window(&TWindowGetComCard__window_rect);
             ((TWindowSubComCardList *)(self->win))->set_flag70_bit10();
         }
         ((TWindowSubComCard *)(self->win))->clear_flag_and_release();

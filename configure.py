@@ -427,11 +427,21 @@ GAME_COMPILER = "GC/2.0"
 # Per-unit settings that preserve matching code and data for the current source.
 # A successful profile is not proof of the original compiler or build history.
 GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
+    # The title assets and bilingual prompts reference read-only string pools.
+    "pso/unk/text_803367F4.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
+    # Preserve Shift-JIS trail bytes when compiling the Japanese prompts.
+    "pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp": {
+        "cflags": _switch(cflags_pso, "-str reuse,readonly", "-multibyte"),
+        "shift_jis": True,
+    },
     # GC/1.3.2 preserves these aggregate-copy matches under the GC/2.0 default.
     # TProtocol's other weak helpers are validated through the complete link;
     # see docs/evidence/compiler-default-gc20-adoption.md.
     "pso/network/TProtocol.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjResultWin.cpp": {"mw_version": "GC/1.3.2"},
+    # Keep the challenge window strings read-only and independently addressed,
+    # and the two-float extent in normal data.
+    "pso/misc/TWindowSubComCard_8007341C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-pooldata=off")},
     "pso/misc/TPlyMeetUserExtension_801DAC6C.cpp": {"mw_version": "GC/1.3.2"},
     # Shared Rico ring resource/constant bank; reverse definitions preserve native vtable order.
     "pso/menu/TAdRicoRing.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly", "-sdata 4", "-inline off,deferred")},
@@ -1010,7 +1020,11 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/misc/TLobby_803FAEA0.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_803FC178.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/misc/TLobby_804048E8.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
-        "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
+        # Inline the explicitly marked network helpers, with a four-level limit.
+        # This unit default replaces repeated dont_inline/inline_depth pragmas.
+        "pso/misc/TLobby_804050DC.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
+        "pso/misc/TLobby_8040FF0C.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
+        "pso/misc/TLobby_8041112C.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse", "-inline noauto,level=4")},
         # Extracted from TLobby_804050DC; preserve its compiler/CSE settings.
         "pso/network/NetworkDispatcher.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},
         "pso/network/TcpProtocol.cpp": {"cflags": _switch(cflags_middleware, "-opt nocse")},

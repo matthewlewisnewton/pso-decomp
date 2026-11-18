@@ -37,8 +37,13 @@ struct UdpRuntimeState {
     u32 m_c;
 };
 
+struct O_80420DE4;
+
 extern "C" {
 extern UdpRuntimeState udp_runtime_state;
+// Both IPv4 and IPv6 dispatchers supply a signed halfword interface index.
+s16 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *packet, NetworkAddress *source,
+    NetworkAddress *destination, s16 interface_index);
 s32 NetUdpClose(s16 handle);
 s16 NetUdpConnect(s16 handle, NetworkAddress* remoteAddress, s32 port,
                   s32 eventCallback, u32 receiveCallback);
@@ -46,6 +51,11 @@ s16 NetUdpCreate();
 s16 NetUdpBind(s16 handle, NetworkAddress* localAddress, s32 port);
 u16 NetUdpAllocateEphemeralPort();
 s16 NetValidateLocalAddress(NetworkAddress* address);
+}
+
+extern "C" {
+s32 NetIsMulticastAddress(NetworkAddress *address, s16 interface_index);
+s16 NetCompareAddresses(NetworkAddress *left, NetworkAddress *right);
 }
 
 #endif

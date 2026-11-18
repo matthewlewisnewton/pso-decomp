@@ -20,6 +20,28 @@
 #include "pso/boss/TObjBoss2Tunnel.h"
 
 extern const f32 TCameraCtrl__data_805D8FAC;
+
+namespace {
+extern const f32 split_scissor_top_first;
+extern const f32 split_scissor_top_second;
+extern const f32 full_viewport_width;
+extern const f32 full_viewport_height;
+extern const f32 half_viewport_width;
+extern const f32 half_viewport_height;
+extern const f32 lbl_805D8FC8;
+extern const f32 lbl_805D8FCC;
+extern const f32 TCameraCtrl__data_805D8FD0;
+extern const f32 TCameraCtrl__data_805D8FD4;
+extern const f32 TCameraCtrl__data_805D8FD8;
+extern const f32 TCameraCtrl__data_805D8FDC;
+extern const f32 TCameraCtrl__data_805D8FE0;
+extern const f32 lbl_805D8FE4;
+extern const f32 lbl_805D8FE8;
+extern const f32 lbl_805D8FEC;
+extern const f32 lbl_805D8FF0;
+extern const f32 lbl_805D8FF4;
+}
+
 struct RecoveredGlobal_8006ABAC_lbl_804FF610 {
     s32 value;
     u8 remaining[0x8];
@@ -36,8 +58,6 @@ f32 vec_squared_length(void *);
 }
 extern RadarMapViewState lbl_804FF5E8;
 extern u32 TCameraCtrl__up_vector[3];
-extern const f32 TCameraCtrl__data_805D8FDC;
-extern const f32 TCameraCtrl__data_805D8FE0;
 struct C30_8006AD34 { u8 b[0x30]; };
 RadarMapViewState lbl_804FF5E8;
 f32 camera_right[3];
@@ -306,8 +326,6 @@ extern s16 TCameraCtrl__viewport_size;
 extern s16 TCameraCtrl__viewport_height;
 extern s16 TCameraCtrl__viewport_x;
 extern s16 TCameraCtrl__viewport_y;
-extern const f32 TCameraCtrl__data_805D8FDC;
-extern const f32 TCameraCtrl__data_805D8FE0;
 s32 set_perspective_projection_from_fov(int, f32, f32, f32);
 s32 get_entity_id(void *);
 s32 get_camera_mode__11TCameraCtrlFv();
@@ -329,11 +347,6 @@ s32 camera_renderer_setup_nop(void *, int);
 extern f32 camera_default_view_value;
 extern f32 camera_default_view_value_b;
 extern s16 TCameraCtrl__camera_mode;
-extern const f32 lbl_805D8FCC;
-extern const f32 TCameraCtrl__data_805D8FD0;
-extern const f32 TCameraCtrl__data_805D8FD4;
-extern const f32 TCameraCtrl__data_805D8FD8;
-extern const f32 lbl_805D8FE4;
 extern RecoveredGlobal_80069534_lbl_804381BC camera_ctrl_scissor_default_vec;
 s32 activate_camera_mode(s32 arg0);
 bool TCameraCtrl__sub_800689F4(void);
@@ -359,12 +372,13 @@ struct Cam_80068958;
 void TCameraCtrl__sub_800689E8(void);
 bool TCameraCtrl__sub_800689F4(void);
 f32 TCameraCtrl__sub_80068A04(void);
-extern f32 lbl_805D8FC8;
+
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(4)
 inline void quad_80068B34(s32 i) {
-    TCameraCtrl::set_target_coords((s32)(320.0f * (f32)(i % 2)), (s32)(240.0f * (f32)(i / 2)));
+    TCameraCtrl::set_target_coords((s32)(half_viewport_width * (f32)(i % 2)),
+                                   (s32)(half_viewport_height * (f32)(i / 2)));
     TCameraCtrl::set_target(0x140, 0xF0);
 }
 inline void viewport_80068B34(void) {
@@ -434,9 +448,6 @@ s32 is_on_current_screen__11TCameraCtrlFv(void *, s32);
 u8 *get_player_by_client_id(s32);
 extern Big_8006A13C controller_input_state;
 extern s32 local_client_id;
-extern const f32 lbl_805D8FE8;
-extern const f32 lbl_805D8FEC;
-extern const f32 lbl_805D8FF0;
 void TCameraCtrl__sub_8006A044(s32 id, f32 v);
 }
 struct A_8006A35C { s8 f0; u8 pad1; s16 f2; s32 f4; s32 f8; };
@@ -447,7 +458,6 @@ void TCameraCtrl__sub_80068358(void *, void *, f32, f32);
 extern s32 camera_view_state_flag;
 extern s8 camera_ctrl_view_state_byte;
 extern s32 TCameraCtrl__pose_snap_flags;
-extern const f32 TCameraCtrl__data_805D8FD8;
 }
 struct RecoveredGlobal_8006A5DC_TCameraCtrl__data_804FF628 {
     u8 value;
@@ -559,7 +569,6 @@ struct Cam_8006A6C4
   f32 f1C4;
 };
 f32 sin_table_lookup(s32);
-extern const f32 lbl_805D8FF4;
 }
 void select_camera_controller(s32 arg0);
 typedef struct RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628 RecoveredGlobal_8006A7D8_TCameraCtrl__data_804FF628;
@@ -742,7 +751,6 @@ void render_shadows__7TObjectFv();
 }
 void __ct__7TObjectFP7TObject(void *, void *);
 extern s32 lbl_805D283C;
-extern const f32 lbl_805D8FE4;
 void run_task__11TCameraCtrlFv(u8 *arg0);
 void *camera_controller_registry[13] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
