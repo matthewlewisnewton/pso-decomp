@@ -998,6 +998,15 @@ on an eight-byte boundary and the linker supplies the four-byte zero tail
 after `lbl_805D8FA0`. Ports can compile the ordinary float definitions
 with their compiler's default alignment.
 
+### Shadow projection constant alignment
+
+`pso/render/ShadowProjectionConstants.cpp` uses `cw_align: .sdata2=4`
+to preserve the pool at `0x805D9414..0x805D9428`. Both C and C++ trials
+emit the original 20 bytes with GC/2.0's default eight-byte section
+alignment. The override records four-byte alignment in ELF and the
+CodeWarrior linker metadata. Ports can compile the C++ definitions with
+their compiler's default alignment.
+
 ### Time setting and calendar startup
 
 | File | Scope | Setting | Original layout | Port behavior |
