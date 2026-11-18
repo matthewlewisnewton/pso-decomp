@@ -3,14 +3,16 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 
+struct TWindowDrawContext;
+
 class TWindowDD_WS_String : public TWindowBase {
 public:
     TWindowDD_WS_String(void *position, void *size, s32 text, s32 mode);
     virtual ~TWindowDD_WS_String();
     virtual void run_task();
     virtual void render();
-    void draw(s32, s32, f32);
-    void draw_entry_if_visible(void *);
+    void draw(TWindowDrawContext *, s32, f32);
+    void draw_entry_if_visible(TWindowDrawContext *);
     s32 m_mode;
     f32 m_position[2];
     f32 m_size[2];

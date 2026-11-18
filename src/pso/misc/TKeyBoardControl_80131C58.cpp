@@ -239,12 +239,12 @@ s32 TKeyBoardControl::check_input_ready(s32 arg0) {
     if (((s32 (*)(s32))is_key_57_pressed__16TKeyBoardControlFi)(arg0) != 0) {
         return 0;
     }
-    if (((s32 (*)(s32))TKeyBoardControl__sub_801321B4)(arg0) != 0) {
+    if (TKeyBoardControl__sub_801321B4(arg0) != 0) {
         return 0;
     }
     return 1;
 }
-bool TKeyBoardControl__sub_801321B4(s32 arg0) {
+s32 TKeyBoardControl__sub_801321B4(s32 arg0) {
     if (TKeyBoardControl__sub_801323C8((K_801323C8 *)(arg0), (u8)((int)(0x56U))) != 0) {
         return 1;
     }
@@ -254,7 +254,7 @@ bool TKeyBoardControl__sub_801321B4(s32 arg0) {
     if ((get_key_state__16TKeyBoardControlFPv(&TKeyBoardControl__global_key_state.value) == 2) || (get_key_state__16TKeyBoardControlFPv(&TKeyBoardControl__global_key_state.value) == 4) || (get_key_state__16TKeyBoardControlFPv(&TKeyBoardControl__global_key_state.value) == 3)) {
         return 0;
     }
-    return TKeyBoardControl__sub_801323C8((K_801323C8 *)(arg0), (u8)((int)(0x5BU))) != 0;
+    return TKeyBoardControl__sub_801323C8((K_801323C8 *)(arg0), (u8)((int)(0x5BU))) != 0 ? 1 : 0;
 }
 
 typedef char RecoveredGlobal_80132274_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_80132274_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];

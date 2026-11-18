@@ -929,7 +929,7 @@ the window units, with a register row, to replace WindowConstructorAbi.h").
 |---|---|---|---|---|
 | `src/pso/misc/TWindowDD.cpp` | `TUnk_804EFBAC` ctor/dtor/`render`/`run_task`; `TWindowDD_WS_ScrollBar::render`/`run_task` | unit `configure.py` override `-inline off,deferred`; definitions written in reverse order | The original constructors reach the compiler-generated vtable from the same data base register as the layout/descriptor arrays. MWCC pools only data already defined when a function is generated; without deferral the generated vtable is created at the end of the unit and loaded separately (54.9% best). Deferred emission makes the vtable available during pooling and reverses definition order, so the definitions are written bottom to top. | Drop the flag; keep the ordinary constructor, destructor and `new`. |
 | `src/pso/misc/TWindowDD_80340EA8.cpp` | `TWindowDD_WS_ScrollBar` ctor/dtor | same | Same pooling timing (61.5% without deferral); reversed definitions also restore the `.sdata2` order. | Same. |
-| `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Source is identical to the Word recovery stacked in #566. | Same. |
+| `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Word detail: [Word native lifetime emission](#word-native-lifetime-emission). | Same. |
 | `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
 | `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowChallengeResult` ctor/dtor/`run_task` | same | Same pooling timing; with the class native, its sole producer `TObjOnlineEnding::create_result_window` uses ordinary `new` at 100%. | Same. |
 | `src/pso/misc/TWindowFukidasi.cpp` | Balloon virtual table and scalar pools | `-inline off,deferred` with scoped `defer_codegen off` on the first three functions | Immediate emission puts the unsigned conversion bias before the named angle scale. The deferred functions then emit the signed bias and place the native vtable before the jump tables. The shared inline text-measurement body supplies each unit’s float literal; the linker selects the ChallengeResult definition. See [balloon lifetime evidence](evidence/balloon-native-lifetime.md). | Drop the flag and pragma. Keep the ordinary destructor and scalar definitions. Define `measure_text_entry` once out of line. |
@@ -1275,6 +1275,15 @@ GC/2.6 records eight-byte alignment for the emitted sections. The existing
 `cw_comment_align.py` adapter changes only the ELF and CodeWarrior alignment
 metadata; instructions, data and relocations remain compiler-generated.
 A port can use its compiler's default vtable and pointer alignment.
+
+### `TWindowGetComCard.cpp` confirmation window position
+
+The two floats at `0x804CF120` precede the compiler-emitted
+`TWindowGetComCard` vtable in `.data`. Under the default small-data settings,
+CodeWarrior puts the eight-byte position in `.sdata` and emits one SDA-relative
+instruction at the factory call. The guarded `.data` placement keeps the
+original `lis` and `addi` relocation pair and the vtable layout. A port can use
+the ordinary `WindowLayoutPosition` definition and its default data placement.
 
 ### `TCheckMemoryCard.cpp` section placement
 
@@ -2223,6 +2232,21 @@ constant descriptors and constructor. The existing `fp_contract on` scope in
 `run_task` preserves the three fused movement updates; a port needing the same
 rounding can use `fmaf` for those expressions. See the
 [unit evidence](evidence/gol-dragon-fireball-unit.md).
+
+### Word native lifetime emission
+
+The Word row in [Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen)
+covers `src/pso/misc/TWindowDD_80342254.cpp`. The unit uses the CodeWarrior
+`-inline off,deferred` option and reverse function definitions. The native
+constructor needs its compiler-generated table available during data pooling;
+deferred emission supplies that timing and reverses definition order. The
+arrangement reproduces all original text, data, startup destinations and
+relocations, as detailed in [the evidence](evidence/window-word-native-emission.md).
+It reconstructs emitted layout and does not establish the retail build options
+or original source order. Ports should use the ordinary native constructor,
+destructor and new expression, omit this compiler override and arrange source
+for readability. Existing raw reset/list-loader and storage interfaces remain
+qualified separately.
 
 
 ### De Rol Le compiler and native scalar pool

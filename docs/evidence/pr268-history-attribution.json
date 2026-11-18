@@ -1,0 +1,1292 @@
+{
+  "original_head": "2b99de553e82eff0ab0bb70263c943bb68e23fb4",
+  "main": "78a6f8fae432ad941677d392d332273e1079603b",
+  "records": [
+    {
+      "sha": "2b99de553e82eff0ab0bb70263c943bb68e23fb4",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T07:48:53-08:00",
+      "message": "Merge stable main Recon recovery into PR 268",
+      "coauthors": []
+    },
+    {
+      "sha": "e60ed1e37c6f5b39d3a8673e38bc32572b4a3569",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T07:01:13-08:00",
+      "message": "Merge main network-config and photon-blast recovery into PR 268\n\n# Conflicts:\n#\tconfig/GPOE8P/psov3/config.yml",
+      "coauthors": []
+    },
+    {
+      "sha": "651a3c5194ce64e3a61f55d82bc52b8ac6798fd8",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T05:55:38-08:00",
+      "message": "Merge current main after Gal Gryphon recovery into PR 268",
+      "coauthors": []
+    },
+    {
+      "sha": "c5fb8e499e978331d05f9e11a755b9fc412d8f19",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T02:15:12-08:00",
+      "message": "Document bounded status page and ComCard ownership blockers",
+      "coauthors": []
+    },
+    {
+      "sha": "8b0f14037dda44ed23c7cf211df26926010ecd35",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T02:01:42-08:00",
+      "message": "Recover status display native lifetime and borrowed text table",
+      "coauthors": []
+    },
+    {
+      "sha": "1d267065d081613d7cfe521ebd485601b29f5aa5",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T01:30:49-08:00",
+      "message": "Recover shared render-state and raw vertex reset contracts",
+      "coauthors": []
+    },
+    {
+      "sha": "8382613545629686941fc963fbd1b07e31ac2131",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T00:44:11-08:00",
+      "message": "Recover CustomSelect native code and table with initialization hold",
+      "coauthors": []
+    },
+    {
+      "sha": "3cafc19119bce9d39e3f90133c5ecac20e5b8d1e",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T00:28:10-08:00",
+      "message": "Recover native CallBack window lifetime and compiler table",
+      "coauthors": []
+    },
+    {
+      "sha": "f79fc8e17fb2ae3ab41a8b891c4545ee8b9e6748",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-10T00:06:41-08:00",
+      "message": "Fix window vertex buffer extent and record Word renderer blocker",
+      "coauthors": []
+    },
+    {
+      "sha": "76695998f6e1571c73a18a5bde9d062523b5dec8",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T23:54:46-08:00",
+      "message": "Recover Hard keyboard state helpers and composer forwarding",
+      "coauthors": []
+    },
+    {
+      "sha": "ac3722fcd5a7f0d0c3ab5324219d2eb8a94ba936",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T23:49:42-08:00",
+      "message": "Recover composer input-flag value helpers and receivers",
+      "coauthors": []
+    },
+    {
+      "sha": "3cf7cae4e4bc02d93a9e3d5a763793c6cddc9bf8",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T23:43:57-08:00",
+      "message": "Recover Base close-request and keyboard Control flag receivers",
+      "coauthors": []
+    },
+    {
+      "sha": "fc54d7b66e1d40dc4b5c18f338622e0d86013de2",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T23:14:34-08:00",
+      "message": "Qualify held renderer against updated main and constant inventory",
+      "coauthors": []
+    },
+    {
+      "sha": "5b17fbc5ecb248c30e844ca91f982bff4cdb62f6",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T23:07:43-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "f8e034ae090942f4b90a5ca106910f2559dcd982",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T23:05:01-08:00",
+      "message": "Reconstruct balloon name-plate renderer with exactness hold",
+      "coauthors": []
+    },
+    {
+      "sha": "408486a9dd82f700bf43cc79cb35663df63b9964",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T22:32:18-08:00",
+      "message": "Qualify Chat recovery against current main and record renderer gap",
+      "coauthors": []
+    },
+    {
+      "sha": "2119afa3a367dcb7a6364d0a71565b91d0eb536e",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T22:29:13-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime\n\n# Conflicts:\n#\tsrc/pso/unk/text_8032AACC.cpp",
+      "coauthors": []
+    },
+    {
+      "sha": "7c9cc63d4aff1a2e782b96855fc72d7420435c51",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T22:25:56-08:00",
+      "message": "Recover Chat close and reopen receiver contracts",
+      "coauthors": []
+    },
+    {
+      "sha": "b42f850c1b98e3609a888b5d052e9fc54b0027cd",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T22:11:45-08:00",
+      "message": "Recover composer flag forwarding through Control and Chat",
+      "coauthors": []
+    },
+    {
+      "sha": "e56ab605d4b75352052cd711af52b571e9d4feb1",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T22:01:17-08:00",
+      "message": "Recover keyboard Control text-copy and query ownership",
+      "coauthors": []
+    },
+    {
+      "sha": "c99491924e90c06f1711e75b0e560f4cde35aa64",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:51:45-08:00",
+      "message": "Recover keyboard Control and composer text forwarding",
+      "coauthors": []
+    },
+    {
+      "sha": "c2cc6767f159b3bff7899a23eefdad3756839c2c",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:44:11-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "9d18ddcacadaf30525a901fa38f4c8f41ebf38ef",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:35:02-08:00",
+      "message": "Document keyboard position protocols and main integration",
+      "coauthors": []
+    },
+    {
+      "sha": "52e732433987268618cef48dee5d8a16e4612378",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:29:16-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime\n\n# Conflicts:\n#\tconfig/GPOE8P/psov3/config.yml",
+      "coauthors": []
+    },
+    {
+      "sha": "9559332e264b58665ff1f9b9e23e4e684daafa46",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:28:37-08:00",
+      "message": "Recover keyboard Control position wrapper contracts",
+      "coauthors": []
+    },
+    {
+      "sha": "79e89ce7345edcc1bf7472675c68fb569f347802",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:06:52-08:00",
+      "message": "Document the typed keyboard depth forwarding contract",
+      "coauthors": []
+    },
+    {
+      "sha": "c198b6170024ca45b3441e7508ae338ed71cc1a9",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:03:33-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "86a5e4a436afb27a220483aebe193c7b43440f50",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T21:03:33-08:00",
+      "message": "Recover typed keyboard depth forwarding through Control",
+      "coauthors": []
+    },
+    {
+      "sha": "f854351d1fac8b5b54daa29cae0a7acde7860792",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:54:27-08:00",
+      "message": "Document the observed composer status and setter protocol",
+      "coauthors": []
+    },
+    {
+      "sha": "838e673f374f5a5898d9665f27155a8eaa75fc36",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:50:25-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "4e41ccea0a1e0b29fe576ee159cbac67d3878cb0",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:50:25-08:00",
+      "message": "Recover composer status and void controller setter protocol",
+      "coauthors": []
+    },
+    {
+      "sha": "b56690de6194d026a9036afd52a59ecaad659895",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:39:59-08:00",
+      "message": "Document keyboard flag domains and current-main validation",
+      "coauthors": []
+    },
+    {
+      "sha": "0a721dc2130b0f59d6f0d9cbf79e1f9959d1459f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:37:16-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "fdbdcc62efd00259dd913732b3b2624decd9148c",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:37:16-08:00",
+      "message": "Recover distinct hardware and composer flag receivers",
+      "coauthors": []
+    },
+    {
+      "sha": "10bc3e84d64084fb9ea0b51d8f6257ec98be0e16",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:28:54-08:00",
+      "message": "Recover hardware keyboard input helper ownership",
+      "coauthors": []
+    },
+    {
+      "sha": "733f83605a6e754e3a3884173cf8bef6da6b1c70",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:18:54-08:00",
+      "message": "Qualify Snapshot checkpoint against Canadin main",
+      "coauthors": []
+    },
+    {
+      "sha": "ad86811834a049aecd8452341745343843c0631a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:17:31-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "23e92603996a1bcc0fe9a85ff1a190aaa4d0b467",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:15:47-08:00",
+      "message": "Record Snapshot validation against current pillar main",
+      "coauthors": []
+    },
+    {
+      "sha": "7ce5df2c8f6e1f98d0fdeb902a34235adcb44bd1",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:14:22-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "aa4150ccb3694e340917a81b277198512c03b4b9",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:12:59-08:00",
+      "message": "Recover Snapshot window lifetime and compiler table",
+      "coauthors": []
+    },
+    {
+      "sha": "e944bae257d23e8b2dd061fba00c6db51dc8cfe7",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T20:07:31-08:00",
+      "message": "Separate Snapshot capture storage from window receivers",
+      "coauthors": []
+    },
+    {
+      "sha": "da05632f73d56ee8343a237cfac5dfbc518177cf",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T19:56:26-08:00",
+      "message": "Recover WS_Word task and scroll helper ownership",
+      "coauthors": []
+    },
+    {
+      "sha": "384cf280cb301b0839f4f11a21ebd6bf0699bfd9",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T19:43:59-08:00",
+      "message": "Recover hardware keyboard construction with borrowed composer",
+      "coauthors": []
+    },
+    {
+      "sha": "b996f557e59c6b968b154c57b4ef2012fb290da7",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T19:38:29-08:00",
+      "message": "Document bounded ComCard recovery and current-main validation",
+      "coauthors": []
+    },
+    {
+      "sha": "abfb36d18690cb184e894eefe1b05b8b2fba331d",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T19:34:19-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "6f8c1191a74c1e6ef0183d22683730d88704e83b",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T19:34:19-08:00",
+      "message": "Recover ComCard construction and correct entry receivers",
+      "coauthors": []
+    },
+    {
+      "sha": "a3611ebc3cfba377927ef8495e0607aca39c508f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T19:13:44-08:00",
+      "message": "Recover palette construction and separate tag-storage receivers",
+      "coauthors": []
+    },
+    {
+      "sha": "507a83dc28c5a7a77d197981e80da073c7d9d3fd",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T18:46:54-08:00",
+      "message": "Recover native keyboard composer lifetime and text-holder receiver",
+      "coauthors": []
+    },
+    {
+      "sha": "744ca04f63d697d9a22e28419e1afac55da31db7",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T18:35:07-08:00",
+      "message": "Recover balloon construction while retaining destruction and ABI holds",
+      "coauthors": []
+    },
+    {
+      "sha": "c57714e1d8d247edb5d52ed4a6c6a9995f3e4cdf",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T18:17:05-08:00",
+      "message": "Recover native Menu and card-list lifetime chain",
+      "coauthors": []
+    },
+    {
+      "sha": "e99494222ff334dfed588ff80feea573a1b7c36f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T18:03:33-08:00",
+      "message": "Recover native ChatSymbol and PartsSet constructor chain",
+      "coauthors": []
+    },
+    {
+      "sha": "c08c3577c09ec38f2a141534d5de375e077c10f2",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:49:26-08:00",
+      "message": "Recover native WS_String lifetime and task ownership",
+      "coauthors": []
+    },
+    {
+      "sha": "2e83236557ff45f1f4754225b0d1f49bd2c23ae9",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:42:10-08:00",
+      "message": "Clarify Parts entry positions and document controlled constant probe",
+      "coauthors": []
+    },
+    {
+      "sha": "36c7adffe9b13c125922bd3dbf56b6a7f06f86fe",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:40:08-08:00",
+      "message": "Recover native HelpItem lifetime with direct-member construction",
+      "coauthors": []
+    },
+    {
+      "sha": "bf3b2680e8573dbad56482fa690cbe3347910446",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:28:18-08:00",
+      "message": "Record final main progress-table synchronization",
+      "coauthors": []
+    },
+    {
+      "sha": "8040ef989b19a4275dcd9fab38bc8f5cc39bb254",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:28:18-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "430010e38644fd2d54b911d9ae0e0422490e7bcf",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:23:41-08:00",
+      "message": "Record exact HelpItem prerequisites and retained constructor activation hold",
+      "coauthors": []
+    },
+    {
+      "sha": "621a52682cde6cbbbbaa8f0b6833660522ba4586",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:15:32-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-help-item-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "437f7eed7cb49eafc2ef958dd35e51739308147f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T17:15:32-08:00",
+      "message": "Separate HelpItem window layout from entry prefixes and qualify activation hold",
+      "coauthors": []
+    },
+    {
+      "sha": "f110ad682a4cb35cd0f2d41fabed1905631aa693",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T16:45:41-08:00",
+      "message": "Document verified SymbolChatParts source-link blocker and main integration",
+      "coauthors": []
+    },
+    {
+      "sha": "f8db5256e6bc938ceb0708360a80b71e7d382551",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T16:40:02-08:00",
+      "message": "Merge current main and retain relocated soft-keyboard Base ABI fixes",
+      "coauthors": []
+    },
+    {
+      "sha": "bbff0a6ebaff7fd4bf7dd5c075274679ad1b3faa",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T16:39:12-08:00",
+      "message": "Recover compiled SymbolChatParts lifetime and retain constant link hold",
+      "coauthors": []
+    },
+    {
+      "sha": "4980c356083cd3a47c9666ff5da779dbb13b3d54",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T16:11:54-08:00",
+      "message": "Recover native status-window lifetime family and qualify icon cleanup",
+      "coauthors": []
+    },
+    {
+      "sha": "08978811ebb444eabb920142a6c168b7d7419ba3",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:59:49-08:00",
+      "message": "Recover ShortCut window lifetime while retaining original setup helper",
+      "coauthors": []
+    },
+    {
+      "sha": "cc0ebdc2644cd6576f38b48d249f0bfb7f37fc52",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:53:21-08:00",
+      "message": "Recover QuestBoardSelect lifetime and explicit constructor interfaces",
+      "coauthors": []
+    },
+    {
+      "sha": "0843bf00eb1cd65426dc72f0f584a17d268a5a84",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:46:46-08:00",
+      "message": "Recover AreaMapDisp window lifetime with qualified legacy interfaces",
+      "coauthors": []
+    },
+    {
+      "sha": "3c0c5698a2ed42e77ea7a8a820e6d0413968ab83",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:36:47-08:00",
+      "message": "Record integrated LoadItemTexture validation and retained boundaries",
+      "coauthors": []
+    },
+    {
+      "sha": "264c378a0338dc5a24dcb7413ba9327d7bc23786",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:34:36-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-load-item-texture-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "a1144a6dd28d2d40a26f30c56bc7610964d124f7",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:34:36-08:00",
+      "message": "Recover LoadItemTexture lifetime and actual texture-request receiver",
+      "coauthors": []
+    },
+    {
+      "sha": "0074c2955e74768cefd260e7c44f417d8c53cd01",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:20:17-08:00",
+      "message": "Recover CustomEquip lifetime and correct CustomSelect helper ownership",
+      "coauthors": []
+    },
+    {
+      "sha": "badb5f5a181b272ca3ec458e1eab4101105a5871",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T15:06:49-08:00",
+      "message": "Recover ChallengeResult scale fields and explicit numeric entry forwarding",
+      "coauthors": []
+    },
+    {
+      "sha": "9803cb70ecb0c7f9c3ead8285846ddd6b2ecbe28",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T14:49:11-08:00",
+      "message": "Recover FaceType window lifetime while preserving opaque heading protocol",
+      "coauthors": []
+    },
+    {
+      "sha": "4dea8719cf6755a48adde660e1fff3ab28a6b6e7",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T14:38:13-08:00",
+      "message": "Recover SoundBalance lifetime and explicit entry text forwarding",
+      "coauthors": []
+    },
+    {
+      "sha": "a578d1161d6af0c28bb70a486e86f93656acea0e",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T14:27:49-08:00",
+      "message": "Recover native Room and Area inheritance and lifetimes",
+      "coauthors": []
+    },
+    {
+      "sha": "6346f39876e0e723e9182be14674f0e05cc7e5f3",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T14:14:56-08:00",
+      "message": "Qualify Help lifetime recovery on current PPPoE main",
+      "coauthors": []
+    },
+    {
+      "sha": "422a5d85a1e072d03120400a53ddaa7bce0c77ae",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T14:12:19-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-symbol-help-lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "a9dbe9d71a71f0959628803686684c7f831a3311",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T14:11:59-08:00",
+      "message": "Recover SymbolChatHelp lifetime and borrowed helper interfaces",
+      "coauthors": []
+    },
+    {
+      "sha": "e9ffe7079e339f9a5337a175ece4730d4fb2c834",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T14:02:19-08:00",
+      "message": "Recover native BreakIn window lifetime and compiler table",
+      "coauthors": []
+    },
+    {
+      "sha": "19e455b404f6fd3055ffa1f34ec9d6f3a81d5fb9",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T13:54:19-08:00",
+      "message": "Qualify Timer and UserSort recovery on current main",
+      "coauthors": []
+    },
+    {
+      "sha": "36da354ff04e856f0d019471815a3b9666c34979",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T13:54:19-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-timer-user-sort-lifetimes",
+      "coauthors": []
+    },
+    {
+      "sha": "6887cd6a0286ee987558d8b47b07ea9b936824f7",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T13:52:20-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-timer-user-sort-lifetimes",
+      "coauthors": []
+    },
+    {
+      "sha": "aa387ffc6ef0d3e1c321cc3355b8d6a718d88f3a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T13:51:30-08:00",
+      "message": "Recover native Timer and UserSort window lifetimes",
+      "coauthors": []
+    },
+    {
+      "sha": "bea88ffa0d2f44a37eab86103b320e9035deddd3",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T13:38:33-08:00",
+      "message": "Recover numeric-readout window lifetimes and shared interfaces",
+      "coauthors": []
+    },
+    {
+      "sha": "2205b0b428ac39dfd7e2ba6ec05f2cf848168d6c",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T13:09:05-08:00",
+      "message": "Recover remaining MenuIconLine descendant lifetimes",
+      "coauthors": []
+    },
+    {
+      "sha": "60d77e0f9ca4dce33b0d73234a5d1ce59bd6680c",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T12:46:52-08:00",
+      "message": "Recover ShortCutList and shared page-indicator lifetime",
+      "coauthors": []
+    },
+    {
+      "sha": "ce49598e556910ad347b1574739363a873a4ec34",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T12:31:54-08:00",
+      "message": "Recover native equipment-window lifetime chains",
+      "coauthors": []
+    },
+    {
+      "sha": "e48b2f66a589b3f34bf2921d21f13fafae722dd7",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T12:21:49-08:00",
+      "message": "Recover native ChoiceSetting lifetime and explicit argument forwarding",
+      "coauthors": []
+    },
+    {
+      "sha": "546eb00fc1c6b5f6c1465048675fc5585a89d7c2",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T12:08:42-08:00",
+      "message": "Qualify Log recovery against current fork main",
+      "coauthors": []
+    },
+    {
+      "sha": "0941259ed55b1c98cc0d1bf19d25624c12220688",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T12:07:45-08:00",
+      "message": "Merge commit 'fe6cdb14138b2413778c08f21fd1851170c22ab5' into sol61/pr268-log-scroll-lifetimes",
+      "coauthors": []
+    },
+    {
+      "sha": "c8302f469b23b66de719e3e1403e11fe3a1e12bd",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T12:06:42-08:00",
+      "message": "Recover native Log construction and bounded scrollbar storage",
+      "coauthors": []
+    },
+    {
+      "sha": "034308446b77aba2c1df8808860a1ed81d64b4df",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T11:49:32-08:00",
+      "message": "Recover main-menu lifetime with a consistent client contract",
+      "coauthors": []
+    },
+    {
+      "sha": "6af0917225a86909a6520b5d973ed8fbb126a237",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:53:42-08:00",
+      "message": "Record lifetime checks with typed file API main",
+      "coauthors": []
+    },
+    {
+      "sha": "31ef5f272462172464e6434a81b6287d24a4fe24",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:50:51-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-base-cleanup-next",
+      "coauthors": []
+    },
+    {
+      "sha": "790ab70a2fc528509d196703194d86ba89471308",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:48:26-08:00",
+      "message": "Qualify window lifetime recovery with current fork main",
+      "coauthors": []
+    },
+    {
+      "sha": "bc73cc5815fb5ba8a590a4b08581744fbdff4995",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:44:35-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-base-cleanup-next",
+      "coauthors": []
+    },
+    {
+      "sha": "3e497a25b903bf4798b353abd440cb4b4cfafa60",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:42:27-08:00",
+      "message": "Recover native cleanup and tables for three Base windows",
+      "coauthors": []
+    },
+    {
+      "sha": "8093f079751c5045078d2be2350286582d027dde",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:29:03-08:00",
+      "message": "Recover message descendant construction and Log destruction",
+      "coauthors": []
+    },
+    {
+      "sha": "9ef96cd1673fd908185cd272b8fe0e3a4af90328",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:16:31-08:00",
+      "message": "Correct task ownership and remove recovered constructor bindings",
+      "coauthors": []
+    },
+    {
+      "sha": "307a9e062f97b845a8f826a4c58440c7bc5445b8",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:04:28-08:00",
+      "message": "Record final native-window qualification on current main",
+      "coauthors": []
+    },
+    {
+      "sha": "5982db6bdf235927cf18431ae75da4d9a873d6f0",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:02:23-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into sol61/pr268-native-lifetime\n\n# Conflicts:\n#\tdocs/porting-exceptions.md",
+      "coauthors": []
+    },
+    {
+      "sha": "a4e393d72d5d93e05a0193d0813b40097f666ac9",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T10:02:02-08:00",
+      "message": "Recover native window construction and virtual table ownership",
+      "coauthors": []
+    },
+    {
+      "sha": "b3fa2a885cfba859c3ba2f63c286b01f65a0070c",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T09:15:49-08:00",
+      "message": "Recover Addition shared float fields without changing descendant layouts",
+      "coauthors": []
+    },
+    {
+      "sha": "d94e626cf72f180672d5e925d1eab7d5cfdbeec6",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T08:53:58-08:00",
+      "message": "Document real window constructor probe and caller ABI blocker",
+      "coauthors": []
+    },
+    {
+      "sha": "74966a46e24be7e560e55fa7b91d8b808e53e9a8",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-09T08:36:26-08:00",
+      "message": "Merge current main into GuildWarning recovery\n\nKeep main window ownership and quest VM, recover the exact GuildWarning renderer, and type the actual message factory size input. Current-main check_pr passes with one new exact function, zero regressions, and original DOL hash. Preserve the standing draft hold for unresolved window construction contracts.",
+      "coauthors": []
+    },
+    {
+      "sha": "3004a1a51343272ec7f2cf388d4959e7ca2ae08a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T06:41:59-08:00",
+      "message": "Pass message text into send_and_handle as a pointer.\n\nThe DOL already passes that pointer in r4. Declaring the argument as const void * matches the call without changing the linked bytes, and the shortcut, short-mail, and text prompt layouts use the same pointer type.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "f3d8aa73c6735df1dc88d83b9195ee36fe215b9c",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T01:36:33-08:00",
+      "message": "Pass layout pointers through com-card windows and name the message vptr.\n\nThe com-card lookup, yes/no prompt, and photon status window now pass the layout as a pointer, and the message constructor stores its vtable through a real field.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "3a6dab3952edfae9bf08255ec29911ca35540ada",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T01:27:41-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "77dce0d25288d05e8cc4c6f58645318f9734619a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T01:07:00-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "f7f4e323236ec87aae43a089697ebf7a678f0ec0",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T01:07:00-08:00",
+      "message": "Name message-window fields and pass layout pointers into yes/no windows.\n\nA real TUnk_804CDFE8 constructor still emits the TLobby base call and a compiler vtable, so TWindowMessage__ct stays the C function and stores its fields through the class.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "c7dfaa2c319be5de98b53b0a9a83ca367c2ed400",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:53:42-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "3ed175fb1bc159f8aaaac1c264bae70799e218fd",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:42:33-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "45fd0a999c4071510be3c2f7aa9cd20e1c5c1306",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:41:24-08:00",
+      "message": "Drop the message-window factory return cast.\n\nThe new result and the constructor already share one pointer register, so typing both as TWindowMessage* removes the cast and leaves the factory, the constructor, and update_window_mode_from_progress byte-exact.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "61ab2c6950fd93a4d6891024cd022515beca08d9",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:34:00-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "c1cc2becc3f7be24f67b2e7d1f53726408228f3a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:21:07-08:00",
+      "message": "Record the layout-retype check_pr result against current main.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "2c40560032a6404a3ea8cec7ef24336880e0757f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:19:30-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "69664f0bd647149d8e7863b26e5f6cdff3e194f6",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:19:23-08:00",
+      "message": "Retype window layout arguments as pointers on the real members.\n\nset_window_mode_4 and create_titled_window_menu only pass the layout and size registers through, so those project symbols take const void* and the callers that already hold a pointer drop the int-to-pointer cast and the local mangled prototypes.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "94ec3f356455e2cba9c4bf84961e22b2b2d563a5",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-05T00:14:47-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "f6989e88304148b9649c97a14483ffad3020c103",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T23:53:38-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "63f874b13f23b1b4a5542c2cbfd68a1eac832127",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T22:52:15-08:00",
+      "message": "Regenerate the porting-exceptions inventory for shifted line numbers\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "ad64264390c5976ed2ea8bb757a088e69cb978e4",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T22:51:02-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268\n\nCo-authored-by: Cursor <cursoragent@cursor.com>\n\n# Conflicts:\n#\tinclude/pso/misc/TUnk_804CE018.h",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "909aa9da0248461c2eb29d81ec777cff36090b64",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T22:50:02-08:00",
+      "message": "GuildWarning WIP: record the memory-card typing and measured blockers\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "134aa5ee4549a4f7b7a8a7843869f9e901e4190e",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T22:49:21-08:00",
+      "message": "GuildWarning WIP: keep main's TShopKeepItemWindow window lines\n\nWith the header lookup returning a pointer, main's (void *) casts on the\nTWindowInputNumber and TWindowHelpItem lines are plain pointer\nconversions, so those lines stay as on main.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "a65529c4d072dd6e5cac68c5f9dcd7078e901c78",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T22:43:57-08:00",
+      "message": "Type the memory-card check window's constructor and factory\n\nTCheckMemoryCard's constructor stores its three trailing arguments as\nintegers, so it takes u32 instead of void * (symbol\n__ct__16TCheckMemoryCardFP7TObjectUlUlUl). create_check_memory_card and\nfn_8033C5E4 return TCheckMemoryCard * and take the parent as TObject *\n(create_check_memory_card__23TAdSinglePlyChrSelectGCFP7TObjectUlUl).\n\nThe character-select save and start_check_memory_card call the static\nmember instead of local mangled prototypes; the card window is a\nTCheckMemoryCard *, ticked through run_task(). TAdSinglePlyChrSelectGC's\n0x40 field holds that pointer. TAdSinglePlyChrSelectGC__sub_8033B9F8\nreturns s32 (the caller tests it with cmpwi) and reads card->m_3c; the\nsave passes the card to __sub_8033B9EC explicitly.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "e4fcbacd3a2e9d49f16781004f0e86c218ec8021",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:45:36-08:00",
+      "message": "GuildWarning WIP: bring the evidence note up to date\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "f8b27dcade8faba8eac83e1f520269057c0f1d5f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:43:36-08:00",
+      "message": "Use the header yes/no window and layout lookup in three shop windows\n\nTWindow, TShopDeleteItemWindow and TShopKeepItemWindow include\nTWindowOptionCtrl_8026CBA4.h and TWindowSubComCard_80265410.h instead of\ndeclaring create_yes_no_window and get_window_layout_position locally, so\nthe layout's (s32) and (void *) casts go away.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "c48e0a2c7c7c37c99773dd74113658f366263b1e",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:42:39-08:00",
+      "message": "Declare TWindow__close only in TWindowSubComCard_80244774.h\n\n53 files replace their local u8 * / void * / TWin_8020F070 * prototypes\nwith the header's void * declaration; no call site changes.\n\nTWindowChatSymbol_802486A8, TWindowSubComCard_80271E7C,\nTWindowSubStatusDisp_8026F6DC and TWindowSubTradeMain_80330A84 keep the\nlocal prototype: each declares another function from that header with a\ndifferent signature.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "305840ba0faaf71052cba3465dcd78ae5e69fd47",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:41:38-08:00",
+      "message": "GuildWarning WIP: note why case 2's text is an int\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "7514cfd5658d8f42d09bb79f6ef4f2e9ae376528",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:37:43-08:00",
+      "message": "GuildWarning WIP: declare the yes/no window helpers only in their header\n\nThe defining unit includes TWindowSubComCard_80265410.h instead of\nrepeating create_yes_no_window, init_shop_judgment_window and\ncreate_window_menu locally, and keeps main's parameter names so its body\nlines are unchanged.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "2d345737ca92a508d25c6d65cebbddcaf0f8267f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:34:57-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "59a503f3471c6032e8d7d6c8aba8636180fcfb9a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:26:51-08:00",
+      "message": "GuildWarning WIP: keep the character-select message window as TWindowMessage *\n\nsave_character_to_card used one Win_801FEE14 * for the memory-card window\nand the message windows. The card window now has its own variable, so the\nmessage window is a TWindowMessage * with no cast on the factory result,\nsend_and_handle, or complete_reveal.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "24e49580123eb612f3e4acbef866463093fc47ee",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:25:19-08:00",
+      "message": "GuildWarning WIP: declare TWindow__close once with a generic window pointer\n\nTWindow__close accepts any window, so its header and definition take\nvoid * instead of u8 *. Existing u8 * callers still convert implicitly,\nthe defining unit includes its own header, and THunterGuildWarning and\nTChallenge4PItemSelect drop their local prototypes.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "fba89879fa03555e16bc2f4c844b40dabd1316e2",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:23:31-08:00",
+      "message": "GuildWarning WIP: construct the char-select slot with new and type the yes/no window layout\n\nTWindowMainMenu1P::create_char_select_slot now uses the real\nTUnk_804E0B28 constructor through new instead of a local mangled\n__ct prototype. create_yes_no_window, init_shop_judgment_window and\ncreate_window_menu take the layout as a const WindowLayoutPosition *\nin their header, so the quest-list callers use that one declaration\ninstead of local prototypes.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "477521818c3c628c43b5305cd7717e66187dd611",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T20:01:48-08:00",
+      "message": "GuildWarning WIP: use typed message-window members instead of receiver casts\n\nRestore TQuestListOnline::description_window to u32 so the description\nwindow keeps main's mangled send/destroy calls, send the info window's\ntext through TLobby::send_and_handle, and drop receiver casts on windows\nthe PR already types as TWindowMessage *. Type TWindowMainMenu4P's\nplayer lookup through the TObjPlayer header.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "7dc3325d91202e1db9694b02f3878a78ea245c5a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T19:58:05-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "131a7ba2c9a6a23e1ee416ca363d9525e4bd3ec4",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T19:58:05-08:00",
+      "message": "Call the real message-window factory from the challenge list and declare the layout lookup once.\n\nTQuestListChallenge::update_selection passes get_entity_id(...) straight\ninto TLobby::create_message_window and create_yes_no_window, the way the\noffline list in TWindow.cpp does. The shared id local was what swapped\nsel and the slot between r29 and r30. get_entity_id comes from its\nheader (u16), f24 is the entity pointer, and the yes/no prototype takes\nthe s32 slot its definition takes.\n\nget_window_layout_position gets a header with a WindowLayoutPosition\nreturn type. Its defining unit and the files this branch touched use it\ninstead of local prototypes.\n\nIn the guild-warning window setup, the message ids are passed directly.\nCase 2 keeps the id in an int; MWCC hoists the int-to-long argument\nconversion out of the loop, which is the original's preheader copy.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "87a69f8d0f432e716798f35cc6ab1a531a16883b",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T19:36:27-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "6e5e6f1e279cdfb5d104e309a8365c9947c53503",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T18:35:18-08:00",
+      "message": "Pass the guild-warning mode as an s32 through the constructor.\n\nThe second argument is the integer mode, and the symbol is project-assigned, so the ctor and create_instance no longer pun a pointer.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "1f4a172535a3269f8e9305c6b09f89045fc37769",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T18:28:36-08:00",
+      "message": "Merge origin/main into the guild-warning member-call branch.\n\nKeep the named window fields from main and the TLobby base, which has the same 0x1C size so those offsets do not move.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "a1b554cbbd514ec6561c9be5b43af2f58dd68a05",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T15:18:40-08:00",
+      "message": "Merge origin/main into the guild-warning member-call branch.",
+      "coauthors": []
+    },
+    {
+      "sha": "578026aa58bb44f9eb260db9efea96a141be05ce",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T15:17:44-08:00",
+      "message": "Call the real TLobby::create_message_window member from its callers.\n\nThe ad-hoc mangled prototypes and the extern \"C\" guild-warning helpers were the review hits. The helpers are members now, and the callers use the header declaration. The challenge list caller stays on its local prototype because the real s32 slot swaps two callee-saved registers.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "ce1bef0baa2bff7bdb45e1074561087bf7902d4b",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T14:27:17-08:00",
+      "message": "Call TLobby::create_message_window so the guild-warning slot stays a register move.\n\nThe factory's first two arguments are pointers and the slot is s32. The ctor still narrows that slot into construct_with_parent, which is the extsh in the original.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "f11742ad452dec6e8dcff565137c16cf01d0dd02",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T14:15:01-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "3329aebb2ea980fb92ec62715fee939b383133a8",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T12:33:15-08:00",
+      "message": "Derive window bases from TLobby so send_and_handle needs no cast.\n\nTLobby adds no fields past TObject, and both calls use the same pointer. The guild-warning unit stays exact.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "6430d26de39ce3b521d65e0bf39a83d232d6b609",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T12:29:07-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "734fce357299e7e48be13a59689fc7176198ac0a",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T12:13:00-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "e35ebf64cef51ff80593c1d1b2eb300193563dbe",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T11:26:56-08:00",
+      "message": "Name the guild-warning float pair from its symbol address.\n\nWarningWindowPair is not in the executable. The two-float copy of lbl_8044BC7C stays byte-exact under an address placeholder, and the evidence note records why the factory call and the TLobby cast cannot be removed.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "6abb494628992ca544b8d7f3657d186a9184d43d",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T11:24:48-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "8e4d590f6f913337f5118a8789b573d4bb3ac457",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T10:17:17-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "a3cac5ea228201eb3074206d68a6b59b82d6c127",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T09:02:14-08:00",
+      "message": "Link THunterGuildWarning_80211718 from source.\n\nThe renderer unit is byte-exact, so the DOL can take it from source. Destruction and send_and_handle now call the real methods, and the parent pointer is a TObject.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "coauthors": [
+        "Co-authored-by: Cursor <cursoragent@cursor.com>"
+      ]
+    },
+    {
+      "sha": "8b5e007a851902978bbddda315524ec1a1131aba",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-04T08:50:06-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "47214ee8f8cb6aa27bf298c4b5413b1b836960f6",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-03T23:13:43-08:00",
+      "message": "THunterGuildWarning: restore exact ctor ABI and stop owning split data\n\nUse the real void* constructor parameter so create_instance and the ctor\nunit relink exactly, and reference the split-owned renderer constants\nexternally instead of emitting an unowned .rodata section.\n\nCo-authored-by: DeepSeek V4.1 Flash 1017 <deepseek@openrouter>",
+      "coauthors": [
+        "Co-authored-by: DeepSeek V4.1 Flash 1017 <deepseek@openrouter>"
+      ]
+    },
+    {
+      "sha": "9cccd306cc3cc3285d6fbcec5b1a5de88acf2fcf",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-03T23:04:49-08:00",
+      "message": "Merge remote-tracking branch 'origin/main' into wave2-pr268",
+      "coauthors": []
+    },
+    {
+      "sha": "141d255e078bd8c8a720cc394a14608cb969772f",
+      "author": "matthewlewisnewton",
+      "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+      "date": "2026-11-02T07:26:08-08:00",
+      "message": "WIP: preserve GuildWarning source recovery with activation holds",
+      "coauthors": []
+    }
+  ]
+}

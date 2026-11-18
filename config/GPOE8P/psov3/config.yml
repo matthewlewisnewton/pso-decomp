@@ -730,7 +730,9 @@ force_active:
   - TLanguage__class_name
   - TLanguage__read_cursor
   - TLazerFenceSw__ct
-  - TLoadCtrl__ct
+  - TLoadCtrl__class_name
+  - TLoadCtrl__class_name_string
+  - TLoadCtrl__loading_mode
   - TLobby__battle_flag
   - TLobby__battle_team_table
   - TLobby__card_list_selected_index
@@ -2273,6 +2275,7 @@ force_active:
   - TWindowFukidasi__sub_802505C0
   - TWindowFukidasi__sub_80251790
   - TWindowGetComCard__sub_8007B60C
+  - TWindowGetComCard__window_rect
   - TWindowHelpItem__item_layout_entries
   - TWindowHelpItem__requirements_update_callback
   - TWindowHelpItem__resistance_layout_entries
@@ -2722,6 +2725,7 @@ force_active:
   - __ct__8TObjFishFP7TObjectPv
   - __ct__9TBoss6DPBFv
   - __ct__9TEffGuardFPC3Vec
+  - __ct__9TLoadCtrlFP7TObject
   - __ct__9TMainTaskFv
   - __ct__9TObjHashiFP7TObjectPv
   - __cvt_sll_dbl
@@ -3400,6 +3404,7 @@ force_active:
   - __dt__9TEffGuardFv
   - __dt__9TEndingABFv
   - __dt__9TItemLoadFv
+  - __dt__9TLoadCtrlFv
   - __dt__9TMainTaskFv
   - __dt__9TObjHashiFv
   - __dt__9TObjLightFv
@@ -4104,6 +4109,7 @@ force_active:
   - __vt__9TDeadSpot
   - __vt__9TEffGuard
   - __vt__9TEndingAB
+  - __vt__9TLoadCtrl
   - __vt__9TMainTask
   - __vt__9TObjChara
   - __vt__9TObjHashi
@@ -5925,7 +5931,7 @@ force_active:
   - close_and_send_text_list__6TLobbyFv
   - close_and_set_state_12__6TLobbyFv
   - close_and_set_state_13__6TLobbyFv
-  - close_child__20TWindowSubSymbolChatFv
+  - close_child__20TWindowSubSymbolChatFPvPv
   - close_com_card_window__6TLobbyFv
   - close_download__22TQuestVmDownLoadServerFv
   - close_giveup_window__6TLobbyFPv
@@ -6619,7 +6625,7 @@ force_active:
   - draw_active_beam__11TObjDoorKeyFv
   - draw_actor_model__10TObjPlayerFPv
   - draw_afterimages__11TObjDFDemo4Fv
-  - draw_agreement_text__18TAdAgreementBaseGCFv
+  - draw_agreement_text__18TAdAgreementBaseGCFPvPv
   - draw_and_send__10TObjPlayerFv
   - draw_and_send_field1c__10TObjPlayerFi
   - draw_animated_beam__18TObjLazerFenceNormFv
@@ -6658,7 +6664,7 @@ force_active:
   - draw_empty_warp_overlay__Fv
   - draw_enemy_gate_markers__13TRaderMapCoreFv
   - draw_entry__12TAdMultiOkGCFi
-  - draw_entry_if_visible__19TWindowDD_WS_StringFPv
+  - draw_entry_if_visible__19TWindowDD_WS_StringFP18TWindowDrawContext
   - draw_entry_tab__20TWindowSubStatusDispFPv
   - draw_fade__9TAdFadeGCFv
   - draw_fading_model_1_pair__25TBoss6Demo20_TYPE2_APPEARFv
@@ -6700,7 +6706,7 @@ force_active:
   - draw_locked__8TObjDoorFPv
   - draw_menu_backdrop_gradients__Fl
   - draw_message_frame_row__11TWindowBaseFPvPv
-  - draw_message_window__11TAdEp3ExistFl
+  - draw_message_window__11TAdEp3ExistFPvPv
   - draw_model_12__25TBoss6Demo20_TYPE2_APPEARFv
   - draw_model_13__23TBoss6Demo21_TYPE2_DEADFv
   - draw_model__10TBoss6RockFv
@@ -6763,7 +6769,7 @@ force_active:
   - draw_snapshot_capture_overlay
   - draw_split_screen_dividers__20TWindowSubStatusDispFv
   - draw_status_line
-  - draw_status_text__19TWindowKeyBoardHardFPv
+  - draw_status_text__19TWindowKeyBoardHardFP18TWindowDrawContext
   - draw_status_window__14TAdPlyStatusGCFPvPv
   - draw_status_window__15TAdMcSelectMcGCFv
   - draw_streaks__8TObjRainFv
@@ -16827,6 +16833,7 @@ force_active:
   - render__9TBoss6DPBFv
   - render__9TBoss6MagFv
   - render__9TEndingABFv
+  - render__9TLoadCtrlFv
   - render__9TObjLightFv
   - render__9TTecJelinFv
   - render__9TTecSiftaFv
@@ -17647,6 +17654,7 @@ force_active:
   - run_task__9TDeadSpotFv
   - run_task__9TEffGuardFv
   - run_task__9TEndingABFv
+  - run_task__9TLoadCtrlFv
   - run_task__9TObjLightFv
   - run_task__9TProtocolFv
   - run_task__9TSaveChCrFv
@@ -17906,6 +17914,7 @@ force_active:
   - set_bits_shift7__19TWindowKeyBoardHardFll
   - set_blast_level__16PhotonBlastGaugeFsSc
   - set_boss4_state__12TObjEneLappyFv
+  - set_callback__15TWindowCallBackFPFPvPv_v
   - set_camera__15TEndingPicStageFv
   - set_card_index__17TWindowSubComCardFl
   - set_card_window_flag__19TWindowKeyBoardHardFll
@@ -17965,7 +17974,6 @@ force_active:
   - set_field_100__11TCameraCtrlFl
   - set_field_3c__10TObjPlayerFf
   - set_field_4__6TLobbyFl
-  - set_field_60__15TWindowCallBackFPvi
   - set_field_74__14TWindowSubItemFs
   - set_field_8__15TPlyPhotonChairFl
   - set_field_d4_and_flag_200__10TObjPlayerFf

@@ -1,3 +1,4 @@
+#include "pso/misc/KeyboardInputQueries.h"
 #include "types.h"
 #include "pso/misc/TWindowMainMenu.h"
 #include "pso/misc/TWindowBase.h"
@@ -37,7 +38,6 @@ void window_request_show(void *arg0);
 extern "C" {
 s32 is_split_screen();
 s32 TWindowCtrl__sub_8024A314();
-s32 TKeyBoardControl__sub_801A58B0();
 s32 TKeyBoardControl__sub_801A58D8();
 s32 get_function_key_menu__16TKeyBoardControlFPv(void *arg0);
 void queue_destruction__7TObjectFv(void *);

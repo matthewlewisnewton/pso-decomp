@@ -5,9 +5,10 @@
 #include "pso/TObject.h"
 
 struct TLoadCtrl : public TObject {
+    explicit TLoadCtrl(TObject *parent);
     virtual ~TLoadCtrl();
-    u32 m_1c;
-    u32 m_20;
+    s32 m_1c;
+    s32 m_20;
     virtual void render();
     virtual void run_task();
     static void cleanup_scene();
@@ -16,6 +17,11 @@ struct TLoadCtrl : public TObject {
     static void step();
     static void set_field1C(s32 arg0);
 };
+
+extern "C" {
+extern TLoadCtrl *TLoadCtrl__instance;
+extern TObject *TLoadCtrl__fade_task;
+}
 
 typedef char TLoadCtrl_size[sizeof(TLoadCtrl) == 0x24 ? 1 : -1];
 #endif

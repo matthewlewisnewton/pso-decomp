@@ -1,3 +1,4 @@
+#include "pso/misc/WindowCallback.h"
 #ifndef PSO_UI_TADENTERSERIALACCESSGC_H
 #define PSO_UI_TADENTERSERIALACCESSGC_H
 
@@ -32,7 +33,7 @@ struct TAdEnterSerialAccessGC : public TAdEnterBaseGC {
     s32 get_field20_state();
     void set_state_3();
     static void init_state();
-    static void *create_callback(void *arg0, void *arg1, void *arg2);
+    static void *create_callback(void *arg0, void *arg1, WindowCallback callback);
     void set_active();
     static void create_default_callback();
     static s32 show_message_window(void *arg0, void *arg1);

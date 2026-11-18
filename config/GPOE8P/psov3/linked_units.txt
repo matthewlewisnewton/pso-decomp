@@ -207,6 +207,7 @@ pso/boss/Boss6Type2Death.cpp
 pso/boss/Boss7DeRolLeCBehavior.cpp
 pso/boss/DarkFalzDemoConstants.cpp
 pso/boss/DarkFalzEffectConstants.cpp
+pso/boss/DeRolLeDustConstants.cpp
 pso/boss/DragonTailCraterConstants.cpp
 pso/boss/GolDragonResources.cpp
 pso/boss/TBoss1Dragon.cpp
