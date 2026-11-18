@@ -215,7 +215,7 @@ extern s32 TLobby__sub_804053B8(void *self, u8 **pp)
   {
     return cb;
   }
-  if (b[0x1b] > (u16)((TLobby *)*pp)->get_field_4())
+  if (b[0x1b] > (u16)buffer_length((B_803FADA0 *)*pp))
   {
     return 0;
   }
@@ -276,7 +276,7 @@ extern u8 *TLobby__sub_8040555C(u8 *self, void *lobby, u8 *obj) {
     } else if (*(u16 *)(self + 0x12) != 0) {
         n = 4;
     }
-    buf = ((TLobby *)lobby)->alloc_from_buffer(n + 0x14);
+    buf = (u8 *)alloc_from_buffer((B_803FADA0 *)lobby, n + 0x14);
     if (buf == NULL) {
         return NULL;
     }
@@ -358,21 +358,21 @@ inline s32 TLobby__sub_80405700_impl(u8 &c)
     base = &lbl_805C04A8;
     for (;;)
     {
-      new_var = &*(Strm_80405A74 **)((u8 *)base + 0x18);
+      new_var = &base->frame_in;
       ppp_rx_frame_ptr = (frame = *new_var);
-      ppp_rx_frame_ptr->p = ((u8 *) frame) + ((base->value + 0x83) & (~3));
+      ppp_rx_frame_ptr->buf = ((u8 *) frame) + ((base->value + 0x83) & (~3));
       ppp_rx_frame_ptr->len = 0;
-      if ((TLobby__sub_803F812C(0x5d6, ppp_rx_frame_ptr->p, &ppp_rx_frame_ptr->len) != 0) || (ppp_rx_frame_ptr->len < 1))
+      if ((TLobby__sub_803F812C(0x5d6, ppp_rx_frame_ptr->buf, &ppp_rx_frame_ptr->len) != 0) || (ppp_rx_frame_ptr->len < 1))
       {
         break;
       }
       TLobby::get_time_ms(&lbl_805D7A94);
       frame = ppp_rx_frame_ptr;
-      b = (frame->p[0] & 0xFFFFFFFFFFFFFFFFu);
+      b = (frame->buf[0] & 0xFFFFFFFFFFFFFFFFu);
       id = b;
       if (!(b & 1))
       {
-        id = (b << 8) | frame->p[1];
+        id = (b << 8) | frame->buf[1];
       }
       ppp_input_packet__6TLobbyFPv(frame);
       if (((id != 0x21) && (id != 0x2d)) && (id != 0x2f))
@@ -412,7 +412,7 @@ inline s32 TLobby__sub_80405700_impl(u8 &c)
     {
       if (((ppp_rx_frame_ptr != 0) && (ppp_rx_frame_ptr->len < 0x800)) && (lbl_805D7AE8 == 0xf0b8))
       {
-        n = ((TLobby *)ppp_rx_frame_ptr)->get_field_4() - 2;
+        n = buffer_length((B_803FADA0 *)ppp_rx_frame_ptr) - 2;
         TLobby__sub_80401CAC((Outer_80401CAC *)&ppp_rx_frame_ptr, n);
         TLobby::get_time_ms(&lbl_805D7A94);
         ppp_input_packet__6TLobbyFPv(ppp_rx_frame_ptr);
@@ -429,8 +429,8 @@ inline s32 TLobby__sub_80405700_impl(u8 &c)
     }
     if (ppp_rx_frame_ptr == 0)
     {
-      ppp_rx_frame_ptr = (frame = *(Strm_80405A74 **)((u8 *)base + 0x18));
-      ppp_rx_frame_ptr->p = ((u8 *) frame) + ((base->value + 0x83) & (~3));
+      ppp_rx_frame_ptr = (frame = base->frame_in);
+      ppp_rx_frame_ptr->buf = ((u8 *) frame) + ((base->value + 0x83) & (~3));
       ppp_rx_frame_ptr->len = 0;
       lbl_805D7AE4 = 0;
       lbl_805D7AE8 = 0xffff;
@@ -444,7 +444,7 @@ inline s32 TLobby__sub_80405700_impl(u8 &c)
     {
       continue;
     }
-    ppp_rx_frame_ptr->p[ppp_rx_frame_ptr->len++] = c;
+    ppp_rx_frame_ptr->buf[ppp_rx_frame_ptr->len++] = c;
     lbl_805D7AE8 = (lbl_805D7AE8 >> 8) ^ lbl_804FD3A8[(lbl_805D7AE8 ^ c) & 0xff];
   }
 
@@ -481,7 +481,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
         return;
     }
     G = lbl_805C0038;
-    if (lbl_805D7A7A == 0 && arg0->p[0] == 0xFF && arg0->p[1] == 3 &&
+    if (lbl_805D7A7A == 0 && arg0->buf[0] == 0xFF && arg0->buf[1] == 3 &&
         TLobby__sub_80401BCC(&arg0, &lobby_ppp_read_buf, 2) == 2) {
         read_network_u16_be(&lobby_ppp_read_buf);
     }
@@ -495,14 +495,14 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, 0x800);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, 0x800);
         return;
     case 0x57:
         if (*(u8 *)((s8 *)G + 0xD4) != 5) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, -0x7923);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, -0x7923);
         return;
     case 0x2D:
         if (*(u8 *)((s8 *)G + 0x6C) != 5) {
@@ -517,7 +517,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, 0x800);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, 0x800);
         return;
     case 0x2F:
         if (*(u8 *)((s8 *)G + 0x6C) != 5) {
@@ -532,28 +532,28 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             (*(s16 *)((s8 *)G + 0x140))++;
             return;
         }
-        TLobby__sub_804060B8(arg0->p, arg0->len, 0x800);
+        TLobby__sub_804060B8(arg0->buf, arg0->len, 0x800);
         return;
     case 0xC021:
         (*(s16 *)((s8 *)G + 0x130))++;
-        TLobby__sub_803FDBF8(G + 4, arg0);
+        TLobby__sub_803FDBF8((Fsm_803FDBF8 *)(G + 4), arg0);
         return;
     case 0xC023:
         if (G[0] != 2 && G[0] != 3) {
             (*(s16 *)((s8 *)G + 0x140))++;
             if (G[0] == 0) {
-                TLobby__sub_8040098C((Self_8040098C *)(G + 4));
+                TLobby__sub_8040098C(G + 4);
             }
             return;
         }
         (*(s16 *)((s8 *)G + 0x132))++;
-        PADRead(G + 0x38, arg0);
+        NetPapDispatch((Conn_804004DC *)(G + 0x38), arg0);
         return;
     case 0xC223:
         if (G[0] != 2 && G[0] != 3) {
             (*(s16 *)((s8 *)G + 0x140))++;
             if (G[0] == 0) {
-                TLobby__sub_8040098C((Self_8040098C *)(G + 4));
+                TLobby__sub_8040098C(G + 4);
             }
             return;
         }
@@ -566,7 +566,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             return;
         }
         (*(s16 *)((s8 *)G + 0x134))++;
-        TLobby__sub_803FDBF8(G + 0x6C, arg0);
+        TLobby__sub_803FDBF8((Fsm_803FDBF8 *)(G + 0x6C), arg0);
         return;
     case 0x8057:
         if (G[0] != 3) {
@@ -577,7 +577,7 @@ void ppp_input_packet__6TLobbyFPv(Strm_80405A74 *arg0) {
             FWD_80405A74()
         }
         (*(s16 *)((s8 *)G + 0x138))++;
-        TLobby__sub_803FDBF8(G + 0xD4, arg0);
+        TLobby__sub_803FDBF8((Fsm_803FDBF8 *)(G + 0xD4), arg0);
         return;
     default:
         FWD_80405A74()
@@ -677,7 +677,7 @@ s32 TLobby__sub_804062A0(s16 arg0) {
 #pragma opt_propagation reset
 #pragma dont_inline off
 #pragma inline_depth(4)
-s32 TLobby__sub_80406328(s32 self, s16 type) {
+s16 TLobby__sub_80406328(s32 self, s16 type) {
     Strm_80405A74 *sv = (Strm_80405A74 *)self;
     void *me = (void *)self;
     s32 ty = type;
@@ -696,7 +696,7 @@ s32 TLobby__sub_80406328(s32 self, s16 type) {
             (*(s16 *)(G + 0x122))++;
             return -1;
         }
-        t = ((TLobby *)me)->alloc_from_buffer(4);
+        t = (u8 *)alloc_from_buffer((B_803FADA0 *)me, 4);
         p = *(u8 **)t;
         *p++ = 0xFF;
         *p++ = 3;
@@ -717,7 +717,7 @@ s32 TLobby__sub_80406328(s32 self, s16 type) {
             (*(s16 *)(G + 0x122))++;
             return -1;
         }
-        t = ((TLobby *)me)->alloc_from_buffer(4);
+        t = (u8 *)alloc_from_buffer((B_803FADA0 *)me, 4);
         p = *(u8 **)t;
         *p++ = 0xFF;
         *p++ = 3;
@@ -766,7 +766,7 @@ skip:
         }
         {
             s16 tg = tag;
-            u8 *t2 = ((TLobby *)a)->alloc_from_buffer(4);
+            u8 *t2 = (u8 *)alloc_from_buffer((B_803FADA0 *)a, 4);
             p = *(u8 **)t2;
             *p++ = 0xFF;
             *p++ = 3;
@@ -786,7 +786,7 @@ skip:
 #pragma opt_propagation reset
 #pragma dont_inline off
 #pragma inline_depth(4)
-s32 TLobby__sub_80406624(s32 a, s32 b, u16 code, void *self) {
+s16 TLobby__sub_80406624(s32 a, s32 b, u16 code, void *self) {
     s32 pad[4];
     u16 r30;
     u8 *r29;
@@ -798,7 +798,7 @@ s32 TLobby__sub_80406624(s32 a, s32 b, u16 code, void *self) {
         return -1;
     }
     r30 = code;
-    r29 = ((TLobby *)self)->alloc_from_buffer(4);
+    r29 = (u8 *)alloc_from_buffer((B_803FADA0 *)self, 4);
     p = *(u8 **)r29;
     *p++ = 0xff;
     *p++ = 3;
@@ -835,7 +835,7 @@ inline s32 ppp_protocol_field_is_two_bytes(s32 is_lcp, LcpOpts *opts, u16 proto)
 }
 
 #pragma cplusplus off
-s32 TLobby__sub_804066D8(Strm_80405A74 *p) {
+s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     Strm_80405A74 *frame;
     u8 *out;
     u8 *hdr;
@@ -862,13 +862,13 @@ s32 TLobby__sub_804066D8(Strm_80405A74 *p) {
     ppp = lbl_805C0038;
     opts = *(LcpOpts **)(ppp + 0x34);
 #pragma cplusplus on
-    *(s32 *)(ppp + 0x110) += ((u16)((TLobby *)p)->get_field_4()) + 2;
+    *(s32 *)(ppp + 0x110) += ((u16)buffer_length((B_803FADA0 *)p)) + 2;
 #pragma cplusplus off
     if (p == NULL || p->len < 4) {
         *(s16 *)(ppp + 0x122) += 1;
         return -1;
     }
-    src = p->p;
+    src = p->buf;
     addr = src[0];
     ctrl = src[1];
     proto = read_network_u16_be(src + 2);
@@ -890,8 +890,8 @@ s32 TLobby__sub_804066D8(Strm_80405A74 *p) {
     }
     skip = 4 - n;
     p->len -= skip;
-    p->p += skip;
-    hdr = p->p;
+    p->buf += skip;
+    hdr = p->buf;
     if (acfc != 0) {
         hdr[0] = addr;
         hdr[1] = ctrl;
@@ -903,10 +903,10 @@ s32 TLobby__sub_804066D8(Strm_80405A74 *p) {
     *hdr++ = proto;
     bufs = &lbl_805C04A8;
     frame = bufs->frame_out;
-    frame->p = (u8 *)frame + ((bufs->value + 3) & ~3);
-    out = frame->p;
+    frame->buf = (u8 *)frame + ((bufs->value + 3) & ~3);
+    out = frame->buf;
     if (lbl_805D7A7A != 0) {
-        NetMemcpy(out + 0x14, p->p, p->len);
+        NetMemcpy(out + 0x14, p->buf, p->len);
         frame->len = p->len;
     } else {
         *out++ = 0x7e;
@@ -938,7 +938,7 @@ s32 TLobby__sub_804066D8(Strm_80405A74 *p) {
             *out++ = c;
         }
         *out++ = 0x7e;
-        frame->len = out - frame->p;
+        frame->len = out - frame->buf;
     }
     state = lbl_805D7A8A;
     if (state == 7 || state == 0) {
@@ -947,7 +947,7 @@ s32 TLobby__sub_804066D8(Strm_80405A74 *p) {
 #pragma cplusplus on
     TLobby::get_time_ms(&lbl_805D7A94);
 #pragma cplusplus off
-    return (s16)send_network_frame(frame->len, frame->p);
+    return (s16)send_network_frame(frame->len, frame->buf);
 }
 #pragma cplusplus on
 #pragma pop
@@ -3245,8 +3245,8 @@ s32 TLobby::is_slot_flag_0x20_set(s16 i) {
     Ent_8040A19C *e;
     if (i < 0 || i > (*(G_8040A19C *)&lobby_handler_table_desc).n) { return 0; }
     e = (*(G_8040A19C *)&lobby_handler_table_desc).p;
-    if (*(s16 *)((u8 *)e + i * 0x30) == 0) { return 0; }
-    e = (Ent_8040A19C *)((u8 *)e + i * 0x30);
+    if (e[i].f0 == 0) { return 0; }
+    e = &e[i];
     if (e->f2 & 0x20) { return 1; }
     return 0;
 }
@@ -3924,7 +3924,7 @@ extern void TLobby__sub_8040B1C4(F_8040A45C *arg)
         e->f10 = e->f10 + 1;
         return;
     }
-    if (*(s16 *)((u8 *)e + 8) == 1 && *(u32 *)((u8 *)e + 0x20) == 0) {
+    if (e->f8 == 1 && e->f20 == 0) {
         e->fA = 2;
         e->f12 = 1;
         return;

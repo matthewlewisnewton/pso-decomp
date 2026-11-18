@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 91 | 57 |
 | hardware | 71 | 14 |
-| pragma | 7587 | 893 |
+| pragma | 7573 | 893 |
 | configure.py per-unit override | 218 | 218 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1675, `inline_depth` 1572, `fp_contract` 883, `opt_propagation` 857, `auto_inline` 804, `opt_common_subs` 685, `scheduling` 263, `readonly_strings` 206, `peephole` 104, `optimization_level` 97, `defer_codegen` 60, `bool` 58, `pack` 46, `pool_data` 46, `opt_loop_invariants` 45, `opt_lifetimes` 44, `opt_dead_assignments` 42, `use_lmw_stmw` 29, `optimize_for_size` 28, `cplusplus` 11, `opt_strength_reduction` 5, `common` 4, `suppress_init_code` 3, `opt_unroll_loops` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1671, `inline_depth` 1570, `fp_contract` 883, `opt_propagation` 856, `auto_inline` 804, `opt_common_subs` 677, `scheduling` 262, `readonly_strings` 206, `peephole` 104, `optimization_level` 97, `defer_codegen` 60, `bool` 59, `pack` 46, `pool_data` 46, `opt_lifetimes` 45, `opt_loop_invariants` 45, `opt_dead_assignments` 42, `use_lmw_stmw` 29, `optimize_for_size` 28, `cplusplus` 11, `opt_strength_reduction` 5, `common` 4, `suppress_init_code` 3, `opt_unroll_loops` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -27,8 +27,8 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1675, `inline_depth` 1572,
 | `src/musyx/runtime/StdReverb/reverb.c:91` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/DoCrossTalk.inc"` |
 | `src/musyx/runtime/StdReverb/reverb.c:94` | `asm void HandleReverb(void *sptr, void *rv, int k) {` |
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
-| `src/pso/math/MatrixTransforms.cpp:56` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
-| `src/pso/math/MatrixTransforms.cpp:57` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
+| `src/pso/math/MatrixTransforms.cpp:57` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
+| `src/pso/math/MatrixTransforms.cpp:58` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
 | `src/pso/math/MatrixVector.cpp:35` | `asm f32 vector_length(const Vec *v) {` |
 | `src/pso/math/MatrixVector.cpp:36` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
 | `src/pso/math/MatrixVector.cpp:76` | `asm void matrix_identity(u8 *arg0) {` |
@@ -796,7 +796,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1675, `inline_depth` 1572,
 | `src/pso/misc/TLobby_803DE778.cpp` | scheduling×2, peephole×2 |
 | `src/pso/misc/TLobby_803F8794.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
 | `src/pso/misc/TLobby_803FAEA0.cpp` | opt_common_subs×11, opt_propagation×8, dont_inline×8, inline_depth×8, scheduling×1 |
-| `src/pso/misc/TLobby_803FC178.cpp` | dont_inline×20, inline_depth×18, opt_common_subs×17, opt_propagation×9, optimization_level×2, bool×2, opt_lifetimes×1, opt_dead_assignments×1, scheduling×1 |
+| `src/pso/misc/TLobby_803FC178.cpp` | dont_inline×16, inline_depth×16, opt_common_subs×9, opt_propagation×8, bool×3, opt_lifetimes×2, optimization_level×2, opt_dead_assignments×1 |
 | `src/pso/misc/TLobby_804048E8.cpp` | opt_common_subs×12, dont_inline×9, inline_depth×9, opt_propagation×8, scheduling×1 |
 | `src/pso/misc/TLobby_804050DC.cpp` | opt_propagation×345, dont_inline×237, inline_depth×231, opt_common_subs×16, optimization_level×8, cplusplus×6, opt_lifetimes×4, opt_loop_invariants×1, opt_unroll_loops×1, pool_data×1 |
 | `src/pso/misc/TLobby_8040FF0C.cpp` | dont_inline×21, inline_depth×21, opt_propagation×19, opt_common_subs×3, cplusplus×2, opt_loop_invariants×1, opt_strength_reduction×1, pool_data×1 |

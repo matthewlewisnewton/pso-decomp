@@ -1,4 +1,5 @@
 #include "pso/protocol/PppConfigure.h"
+#include "pso/protocol/PppControlRuntime.h"
 #include "types.h"
 #include "string.h"
 #include "pso/misc/TLobby.h"
@@ -38,8 +39,6 @@ struct Q_803FA2A8 {
 
 struct P_803FA2A8 { u8 pad[0x30]; Q_803FA2A8 *q; };
 
-typedef struct B_803FADA0 { u8 *buf; u16 len; } B_803FADA0;
-
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
 extern "C" {
@@ -67,7 +66,6 @@ void TLobby__sub_803FADA0(B_803FADA0 **arg0, A_803FADA0 *arg1, s32 arg2, s32 arg
 
 extern s32 lbl_805D4810;
 
-
 void TLobby__sub_803F9FAC(u8 *obj);
 s32 TLobby__sub_803FA318(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src);
 s32 TLobby__sub_803FA4A4(PppConfigureContext *fsm, PppConfigureMessage *msg, u32 src);
@@ -80,7 +78,6 @@ extern const char lbl_805E1150[7];
 extern s16 lbl_805D4818[4];
 extern u32 lbl_804FD380[6];
 
-s32 TLobby__sub_803FE6CC(void *, u8, u8, void *);
 s32 TLobby__sub_803F9B94(void (*func)(Ent_803F9B48 *), u32 *out);
 s32 NetCompareStringsCaseInsensitiveN(u8 *a, u8 *b, u32 n);
 s32 TAdEndText__sub_8039994C(s32 c);
@@ -844,7 +841,7 @@ s32 verify_message_sequence__6TLobbyFPvPvUi(PppConfigureContext *arg0, PppConfig
         return -1;
     }
     u32 cur = ipv6cp_serialize_configure_options((Ipv6cpConfigureOptions *)arg0->options);
-    if (arg1->option_bytes != ((TLobby *)cur)->get_field_4()) {
+    if (arg1->option_bytes != (u16)buffer_length((B_803FADA0 *)cur)) {
         err = 1;
     } else {
         while ((a = ipv6cp_read_configure_byte(&cur)) != -1) {
@@ -1096,12 +1093,6 @@ typedef void (*Fn_803FD10C)(void);
 
 #pragma opt_propagation off
 #pragma opt_propagation reset
-
-typedef struct A_80403F4C {
-    u8 pad0[0x16];
-    u8 count;
-    u8 pad17[0x40 - 0x17];
-} A_80403F4C;
 
 typedef struct B_80403F4C {
     u8 bytes[0x44];

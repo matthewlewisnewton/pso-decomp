@@ -10,6 +10,7 @@
 #include "pso/network/IPv6.h"
 
 #include "types.h"
+#include "pso/protocol/PppControlRuntime.h"
 #include "pso/network/BufferPool.h"
 #include "pso/protocol/NetworkRuntime.h"
 #include "pso/network/EthernetReceiveFilter.h"
@@ -115,7 +116,7 @@ struct RecoveredGlobal_803FC1A0_lbl_805C02D0 {
     u8 remaining[0x3C];
 };
 
-struct Strm_80405A74;
+typedef B_803FADA0 Strm_80405A74;
 struct RecoveredGlobal_80401A68_lbl_805C04A8 {
     s32 value;
     u8 *pool;
@@ -368,13 +369,7 @@ struct Desc_803F8AD8 {
     void *z;
 };
 
-typedef struct Conn_804004DC {
-    u8 state;
-    u8 pad[7];
-    s16 abort;
-    u8 pad2[2];
-    u8 *sub;
-} Conn_804004DC;
+
 
 typedef struct Blk_80400BA8 {
     s16 flags;
@@ -468,9 +463,9 @@ struct P_8041D2B8 { s32 a; s32 b; s32 c; s32 d; };
 
 struct O_8041D2B8 { u8 pad0[0x238]; s32 f238; u8 pad23C[0x320 - 0x23C]; s16 n; u8 pad322[0xE]; P_8041D2B8 items[32]; };
 
-struct Strm_80405A74 { u8 *p; u16 len; };
 
-typedef struct B_803FADA0 { u8 *buf; u16 len; } B_803FADA0;
+
+
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
@@ -630,7 +625,6 @@ s32 TLobby__sub_8041123C(s32 arg0, s32 arg1, s16 arg2);
 s16 TLobby__sub_8040EF00(s16 arg0);
 s32 TLobby__sub_8040FE40(s16 arg0);
 void TLobby__sub_803F8930(u8 *arg0);
-s32 TLobby__sub_803FE6CC(void *, int, int, void *);
 void TLobby__sub_80405328(u8 *arg0);
 s16 TLobby__sub_8040FCEC(u32);
 s16 TLobby__sub_804136EC(u8 *);
@@ -675,9 +669,6 @@ s32 TLobby__sub_80421B3C(s32);
 s16 TLobby__sub_80401BCC(void *, void *, int);
 extern u8 lcp_read_value_buffer[4];
 extern u8 lobby_read_byte_buffer[1];
-s32 TLobby__sub_803FDBF8(void *, Strm_80405A74 *);
-void TLobby__sub_8040098C(Self_8040098C *self);
-s32 PADRead(void *, Strm_80405A74 *);
 s16 TLobby__sub_80403F4C(void *, Strm_80405A74 **);
 s16 TLobby__sub_804040E0(void *, Strm_80405A74 **);
 s32 TLobby__sub_804060B8(u8 *, s32, int);
@@ -774,8 +765,7 @@ extern s16 lbl_805D7A86;
 
 typedef char RecoveredGlobal_803FC1A0_lbl_805C02D0_size[sizeof(RecoveredGlobal_803FC1A0_lbl_805C02D0) == 0x40 ? 1 : -1];
 
-s32 TLobby__sub_803FE8BC(u8 *, void *);
-typedef struct Hdr_803FC4B4 { u8 type; u8 flag; s16 len; } Hdr_803FC4B4;
+
 struct O_80400ACC;
 void TLobby__sub_80400ACC(O_80400ACC *);
 struct Outer_80401CAC;
@@ -822,7 +812,6 @@ struct V_803FE600 {
     void (*fn)(O_803FE600 *, V_803FE600 *);
 };
 
-s32 TLobby__sub_803FE8BC(u8 *dst, void *src);
 
 struct O_80400ACC { u8 b0; u8 b1; u8 b2; u8 pad3[0x108 - 3]; s32 f108; };
 void TLobby__sub_80400ACC(O_80400ACC *o);
@@ -907,11 +896,7 @@ typedef char RecoveredGlobal_80403D28_lbl_805C0638_size[sizeof(RecoveredGlobal_8
 #pragma opt_common_subs on
 #pragma pop
 
-typedef struct A_80403F4C {
-    u8 pad0[0x16];
-    u8 count;
-    u8 pad17[0x40 - 0x17];
-} A_80403F4C;
+
 
 typedef struct B_80403F4C {
     u8 bytes[0x44];
@@ -1043,7 +1028,7 @@ inline s32 avail_80405A74(Strm_80405A74 **s) {
 inline s32 get_80405A74(Strm_80405A74 **s) {
     if (avail_80405A74(s)) {
         (*s)->len--;
-        return *(*s)->p++;
+        return *(*s)->buf++;
     }
     if (TLobby__sub_80401BCC(s, &ppp_input_byte, 1) != 1) {
         return -1;
@@ -1052,8 +1037,8 @@ inline s32 get_80405A74(Strm_80405A74 **s) {
 }
 #define FWD_80405A74()                                                       \
     (*(s16 *)(G + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)((TLobby *)arg0)->alloc_from_buffer(4); \
-    p = t->p;                                                                \
+    t = alloc_from_buffer(arg0, 4); \
+    p = t->buf;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \
     write_network_u16_be(p, code);                                           \
@@ -1091,10 +1076,8 @@ void TLobby__sub_80409818(s32 msg, s16 len, s16 idx, s16 arg3, u16 type);
 
 #pragma pop
 
-void TLobby__sub_8040059C(u8 *conn);
 void TLobby__sub_80402CE0(u8 *conn);
 void TLobby__sub_803FC318(u8 *conn);
-void TLobby__sub_803FEF4C(u8 *conn);
 void TLobby__sub_803F9FAC(u8 *conn);
 extern u8 *lbl_805D7ADC;
 
@@ -1111,7 +1094,7 @@ inline void open_conn_804062A0(void) {
 
 
 
-s32 TLobby__sub_804066D8(Strm_80405A74 *);
+s16 TLobby__sub_804066D8(Strm_80405A74 *);
 extern u32 lbl_805D7A90;
 s32 TLobby__sub_804048E8(Obj_80403F4C *, Strm_80405A74 **, s16);
 
@@ -4316,6 +4299,6 @@ typedef struct LcpOpts {
 typedef char LcpOpts_size_check[sizeof(LcpOpts) == 0x68 ? 1 : -1];
 
 
-typedef struct Strm_80405A74 Strm_80405A74;
+
 typedef struct RecoveredGlobal_80401A68_lbl_805C04A8 RecoveredGlobal_80401A68_lbl_805C04A8;
 #endif
