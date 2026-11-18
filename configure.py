@@ -1950,11 +1950,32 @@ def add_orig_asm_steps(config: ProjectConfig) -> None:
     config.reconfig_deps = [*(config.reconfig_deps or []), Path("tools/orig_asm.py")]
 
 
+def add_musyx_dsp_step(config: ProjectConfig) -> None:
+    out = config.out_path()
+    script = Path("tools/musyx_dsp.py")
+    config.custom_build_rules = [*(config.custom_build_rules or []), {
+        "name": "musyx_dsp",
+        "command": "$python tools/musyx_dsp.py $image_object $out",
+        "description": "MUSYX DSP $out",
+        "restat": True,
+    }]
+    steps = config.custom_build_steps = dict(config.custom_build_steps or {})
+    steps["pre-compile"] = [*steps.get("pre-compile", []), {
+        "outputs": [out / "include" / "musyx" / "dsp_image.inc"],
+        "rule": "musyx_dsp",
+        # DTK writes the original object as a side effect of the DOL split.
+        "inputs": [out / "config.json"],
+        "implicit": [script, Path("tools/link_units.py")],
+        "variables": {"image_object": str(out / "obj" / "musyx" / "runtime" / "dsp_import.o")},
+    }]
+
+
 # ===================================================================
 # Main Dispatch
 # ===================================================================
 if args.target == "psov3":
     add_orig_asm_steps(config)
+    add_musyx_dsp_step(config)
     # A disc image in orig/GPOE8P/, or the disc extracted there by wit.
     _disc_root = Path("orig/GPOE8P/P-GPOE")
     if not _disc_root.is_dir():
