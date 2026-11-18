@@ -1267,6 +1267,7 @@ pso/network/TUserAns_801E0198.cpp
 pso/ui/window/TWindow.cpp
 pso/ui/window/TWindowActionPalette.cpp
 pso/ui/window/TWindowActionPalette_801C1890.cpp
+pso/ui/window/TWindowAddition.cpp
 pso/ui/window/TWindowArea.cpp
 pso/ui/window/TWindowBreakIn.cpp
 pso/ui/window/TWindowCallBack.cpp

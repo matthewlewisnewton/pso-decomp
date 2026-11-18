@@ -3093,7 +3093,6 @@ force_active:
   - TTecZonde__ct
   - TWindowActionPalette__name
   - TWindowActionPalette__sub_801C1C20
-  - TWindowArea__ct
   - TWindowArea__name
   - TWindowBase__name
   - TWindowBreakIn__name
@@ -3400,6 +3399,7 @@ force_active:
   - __ct__11TObjEneMojaFP7TObjectPv
   - __ct__11TObjPathObjFP7TObjectPv
   - __ct__11TPlayerSoulFP7TObjectUs
+  - __ct__11TWindowAreaFv
   - __ct__12CursorActionFv
   - __ct__12TBGLightningFv
   - __ct__12TBoss3VoloptFPv
@@ -4053,6 +4053,7 @@ force_active:
   - __dt__11TSetManagerFv
   - __dt__11TTecRaBartaFv
   - __dt__11TTecRaZondeFv
+  - __dt__11TWindowAreaFv
   - __dt__11TWindowChatFv
   - __dt__11TWindowCostFv
   - __dt__12TAdBackTxtGCFv
@@ -5248,6 +5249,7 @@ force_active:
   - __vt__11TSetManager
   - __vt__11TTecRaBarta
   - __vt__11TTecRaZonde
+  - __vt__11TWindowArea
   - __vt__11TWindowBase
   - __vt__11TWindowChat
   - __vt__11TWindowCost
@@ -21028,6 +21030,7 @@ force_active:
   - run_task__11TSetManagerFv
   - run_task__11TTecRaBartaFv
   - run_task__11TTecRaZondeFv
+  - run_task__11TWindowAreaFv
   - run_task__11TWindowChatFv
   - run_task__11TWindowRoomFv
   - run_task__12TAdBackTxtGCFv

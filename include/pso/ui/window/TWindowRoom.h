@@ -7,18 +7,17 @@
 #include <stddef.h>
 
 struct TWindowRoom : public TWindowBase {
-    u8 unknown1C[0x14];
+    u8 unknown1C[0x8];
+    u8 entryList[0xC];
     f32 positionX;
     u8 unknown34[4];
     f32 width;
-    u8 unknown3C[0xC];
+    u8 unknown3C[4];
+    f32 layoutPosition[2];
     f32 unknown48;
     u8 unknown4C[0x14];
     f32 tabParameter;
 
-    static void *operator new(unsigned long size) {
-        return TObject::operator new(size);
-    }
     TWindowRoom(char *title);
     virtual ~TWindowRoom();
     void *get_title_entry();

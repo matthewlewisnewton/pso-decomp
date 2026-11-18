@@ -6786,10 +6786,14 @@ pso/ui/window/TWindowAddition_80244238.cpp:
 	.sdata      start:0x805D3878 end:0x805D3880
 	.sdata2     start:0x805DCAA8 end:0x805DCAB4
 
-pso/ui/window/TWindowArea.cpp:
-	.text       start:0x802443F0 end:0x80244774
-	.rodata     start:0x8044E640 end:0x8044E658
+pso/ui/window/TWindowAddition.cpp:
+	.text       start:0x802443F0 end:0x80244494
 	.data       start:0x804CDFE8 end:0x804CE000
+
+pso/ui/window/TWindowArea.cpp:
+	.text       start:0x80244494 end:0x80244774
+	.rodata     start:0x8044E640 end:0x8044E658
+	.data       start:0x804CE000 end:0x804CE018
 	.sdata      start:0x805D3880 end:0x805D3888
 	.sbss       start:0x805D63E8 end:0x805D63EC
 	.sdata2     start:0x805DCAB8 end:0x805DCAC8
