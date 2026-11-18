@@ -5,6 +5,7 @@
 
 class TUnk_804B6C24 : public TObjChara {
 public:
+    virtual void render();
     virtual ~TUnk_804B6C24();
     virtual void vfunc_79() const;
     virtual void vfunc_80();
@@ -19,7 +20,6 @@ public:
     virtual void apply_knockback_from_attacker(u8 *, f32);
     virtual f32 receive_weapon_special_attack(void *, void *);
     virtual int calc_distance_accuracy_penalty(void *, void *, void *, float);
-    virtual void render();
     virtual void run_task();
     virtual s32 select_melee_contact_body(void *target, f32 range);
     u8 unk_334[0x4];

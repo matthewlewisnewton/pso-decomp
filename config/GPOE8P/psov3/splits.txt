@@ -5817,10 +5817,10 @@ pso/object/TObjComputer.cpp:
 
 pso/item/TObjContainerItem.cpp:
 	.text       start:0x80188584 end:0x8018A55C
-	.rodata     start:0x80444B90 end:0x80444EF4
-	.data       start:0x804B6338 end:0x804B66F4
+	.rodata     start:0x80444B90 end:0x80444F58
+	.data       start:0x804B6338 end:0x804B6D70
 	.sdata      start:0x805D32D8 end:0x805D3300
-	.sbss       start:0x805D5B78 end:0x805D5B7C
+	.sbss       start:0x805D5B78 end:0x805D5B90
 
 pso/misc/TLazerFenceSw.cpp:
 	.text       start:0x8018A55C end:0x8018A584

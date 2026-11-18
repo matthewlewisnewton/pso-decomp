@@ -10,11 +10,11 @@ extern "C" {
 
 void __dl__7TObjectFPv(void *);
 
-extern s32 lbl_804B6C24[];
+extern s32 __vt__13TUnk_804B6C24[];
 
 void *__dt__13TUnk_804B6C24Fv(TUnk_804B6C24 *container, s16 deleting) {
     if (container != NULL) {
-        *(s32 **)((s8 *)container + 0x18) = lbl_804B6C24;
+        *(s32 **)((s8 *)container + 0x18) = __vt__13TUnk_804B6C24;
         ((CameraDistanceFade *)((s8 *)container + 0x340))->CameraDistanceFade::~CameraDistanceFade();
         __dt__9TObjCharaFv(container, 0);
         if (deleting > 0) {

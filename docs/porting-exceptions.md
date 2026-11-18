@@ -2082,6 +2082,13 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/item/TObjContainerJung.cpp` | Deferred generation and reverse function definitions | Immediate generation emits the three virtual tables in reverse order. Deferred generation reverses the function definitions and emits the tables in their native order. The existing scoped propagation controls still apply to the three debris methods. | Use ordinary class definitions and omit the emission and propagation pragmas. |
 | `src/pso/misc/TOContainerAncientEnemy.cpp` | Existing GC/1.3 compiler profile for this unit | GC/2.0 changes load scheduling in the two ancient-container debris methods when the shared virtual slot uses its native const-qualified signature. GC/1.3 restores the original instructions and the rest of the unit stays exact. | Keep the const-qualified override and use the port's normal compiler. |
 
+### Forest and Seabed container data
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/item/TObjContainerItem.cpp` | Deferred emission and reverse definition order | CodeWarrior 1.3.2 emits the six compiler-generated virtual tables and the intervening switch table at their original addresses. The first out-of-line base override anchors its table here, while its destructor remains in the ancient-container text range. | Use ordinary class definitions and omit the emission pragma. |
+| Same file, `TUnk_804B6C24::debug_print_item_box_info` at `0x80189E3C` | Scoped `pool_data off` | Linking the diagnostic strings into this object makes the compiler pool their addresses and changes the routine. Independent addresses reproduce its original 232 bytes. | Use the named strings and omit the pooling pragma. |
+
 ### Ceiling-debris renderer data addresses
 
 | Scope | Construct | Evidence and reason | Port action |

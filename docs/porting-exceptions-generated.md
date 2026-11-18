@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 92 | 61 |
 | hardware | 69 | 13 |
-| pragma | 5894 | 893 |
+| pragma | 5896 | 893 |
 | configure.py per-unit override | 225 | 225 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 882, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 63, `bool` 59, `pack` 46, `pool_data` 43, `opt_loop_invariants` 43, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 882, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 64, `bool` 59, `pack` 46, `pool_data` 44, `opt_loop_invariants` 43, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -689,7 +689,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/item/TItemShootParticle.cpp` | opt_propagation×1 |
 | `src/pso/item/TItemWpnCardEffect.cpp` | fp_contract×3, opt_common_subs×1 |
 | `src/pso/item/TObjContainerIdo_8018BEE4.cpp` | fp_contract×2 |
-| `src/pso/item/TObjContainerItem.cpp` | opt_propagation×2, readonly_strings×1, fp_contract×1 |
+| `src/pso/item/TObjContainerItem.cpp` | opt_propagation×2, readonly_strings×1, defer_codegen×1, fp_contract×1, pool_data×1 |
 | `src/pso/item/TObjContainerJung.cpp` | opt_propagation×3, defer_codegen×1 |
 | `src/pso/item/TUnk_8049F8E0.cpp` | scheduling×1 |
 | `src/pso/item/TUnk_804A6200.cpp` | dont_inline×2, inline_depth×2 |

@@ -18,7 +18,6 @@ typedef char TObjContainerNoItem_size[sizeof(TObjContainerNoItem) == 0x368 ? 1 :
 
 extern "C" {
 u8 *TObjContainerNoItem__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *__dt__19TObjContainerNoItemFv(void *arg0, s16 arg1);
 }
 
 #endif

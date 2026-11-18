@@ -1279,7 +1279,6 @@ force_active:
   - TObjCollision__ct
   - TObjComputer__ct
   - TObjContainerAbeEnemy__name
-  - TObjContainerAbeEnemy__vt77
   - TObjContainerBase__ct
   - TObjContainerEnemy__ct
   - TObjContainerEnemy__name
@@ -3156,6 +3155,8 @@ force_active:
   - __dt__17TObjBoss2DustCtrlFv
   - __dt__17TObjBoss7DustCtrlFv
   - __dt__17TObjBoss8DemoRoomFv
+  - __dt__17TObjContainerBaseFv
+  - __dt__17TObjContainerItemFv
   - __dt__17TObjContainerJungFv
   - __dt__17TObjEneBm3FlyNestFv
   - __dt__17TObjEneDf2BringerFv
@@ -3207,6 +3208,7 @@ force_active:
   - __dt__18TOTrapChainSawEdgeFv
   - __dt__18TObjChallengeRetryFv
   - __dt__18TObjCityDoor_LobbyFPvs
+  - __dt__18TObjContainerEnemyFv
   - __dt__18TObjEneBalClawBodyFv
   - __dt__18TObjEneEpsilonBodyFv
   - __dt__18TObjEneMe3SinowZoaFv
@@ -3245,6 +3247,7 @@ force_active:
   - __dt__19TObjBoss5PillarDemoFv
   - __dt__19TObjBoss7RaftSplashFv
   - __dt__19TObjContainerJungExFv
+  - __dt__19TObjContainerNoItemFv
   - __dt__19TObjEneBm9MericarolFPvs
   - __dt__19TObjEneDelDepthBombFv
   - __dt__19TObjEneEpsilonGuardFv
@@ -3852,6 +3855,8 @@ force_active:
   - __vt__17TObjBoss7DustCtrl
   - __vt__17TObjCityDoor_Shop
   - __vt__17TObjCityDoor_Warp
+  - __vt__17TObjContainerBase
+  - __vt__17TObjContainerItem
   - __vt__17TObjContainerJung
   - __vt__17TObjEZBoneRotBase
   - __vt__17TObjEneBm3FlyNest
@@ -3906,6 +3911,7 @@ force_active:
   - __vt__18TObjChallengeRetry
   - __vt__18TObjCityDoor_Guild
   - __vt__18TObjCityDoor_Lobby
+  - __vt__18TObjContainerEnemy
   - __vt__18TObjEneBalClawBody
   - __vt__18TObjEneBalClawClaw
   - __vt__18TObjEneEpsilonBody
@@ -3940,6 +3946,7 @@ force_active:
   - __vt__19TObjBoss5PillarDemo
   - __vt__19TObjBoss7RaftSplash
   - __vt__19TObjContainerJungEx
+  - __vt__19TObjContainerNoItem
   - __vt__19TObjEneDelDepthBomb
   - __vt__19TObjEneEpsilonGuard
   - __vt__19TObjStendGlassLobby
@@ -6004,7 +6011,12 @@ force_active:
   - consume_counter__14TOTrapChainSawFPv
   - container_break_particle_parameters
   - container_break_small_debris_parameters
+  - container_breakup_model_archive
+  - container_event_number_format
+  - container_fixed_item_message
+  - container_item_parameter_message
   - container_jung_collision_desc
+  - container_random_item_message
   - context_texture_obj
   - controller_default_pad_state
   - controller_device_id_table
@@ -6325,6 +6337,7 @@ force_active:
   - debug_font_texture_object
   - debug_print_area_num__17TObjWarpBossMultiFv
   - debug_print_area_num__25TObjCityMainWarpChallengeFv
+  - debug_print_item_box_info__18TObjContainerEnemyFv
   - debug_print_item_box_info__21TObjContainerAbeEnemyFv
   - debug_print_item_box_info__22TObjContainerJungEnemyFv
   - debug_print_item_box_info__23TOContainerAncientEnemyFv
@@ -7449,6 +7462,7 @@ force_active:
   - footer_divider_colors
   - footer_divider_vertices
   - forest_box_collision_body_parts
+  - forest_console_texture_filename
   - format_challenge_stage_times__23TAdSinglePlyChrSelectGCFll
   - format_dashed_serial__22TAdEnterSerialAccessGCFPUcUlPUl
   - format_date_text__13TObjTombstoneFv
@@ -10043,6 +10057,10 @@ force_active:
   - lbl_805D5AE4
   - lbl_805D5B30
   - lbl_805D5B78
+  - lbl_805D5B7C
+  - lbl_805D5B80
+  - lbl_805D5B84
+  - lbl_805D5B8C
   - lbl_805D5BE4
   - lbl_805D5BE8
   - lbl_805D5BEC
@@ -16211,7 +16229,9 @@ force_active:
   - receive_physical_attack__15TOTrapAncient01FPvf
   - receive_physical_attack__15TObjEneMe1GiGueFPvf
   - receive_physical_attack__16TOTrapAncient02RFPvf
+  - receive_physical_attack__18TObjContainerEnemyFPvf
   - receive_physical_attack__18TObjEneEpsilonBodyFPvf
+  - receive_physical_attack__19TObjContainerNoItemFPvf
   - receive_physical_attack__19TObjEneEpsilonGuardFPvf
   - receive_physical_attack__20TContainerAncient01RFPvf
   - receive_physical_attack__21TObjContainerAbeEnemyFPvf
@@ -17638,6 +17658,7 @@ force_active:
   - screen_meshes__19TOComputerMachine01
   - scroll_kind2_uvs__18TObjSeabedSuiso_CHFv
   - scroll_up_line__14TWindowMessageFPUc
+  - seabed_rare_console_texture_filename
   - seabed_suiso_brakable_collision_bodies
   - seabed_suiso_break_sets
   - seabed_suiso_chip_collision_bodies
@@ -20618,12 +20639,16 @@ force_active:
   - vfunc_6__15TOTrapAncient01FPsl
   - vfunc_6__17TAdExNetConfirmGCFv
   - vfunc_6__17TAdLicAgreementGCFv
+  - vfunc_6__17TObjContainerBaseFPsl
+  - vfunc_6__17TObjContainerItemFPsl
   - vfunc_6__17TObjContainerJungFPsl
   - vfunc_6__17TWindowMainMenu4PFv
   - vfunc_6__18TAdAgreementBaseGCFv
   - vfunc_6__18TAdTrialModemChkGCFv
+  - vfunc_6__18TObjContainerEnemyFPsl
   - vfunc_6__19TOMonumentAncient02FPsl
   - vfunc_6__19TObjContainerJungExFPsl
+  - vfunc_6__19TObjContainerNoItemFPsl
   - vfunc_6__20TContainerAncient01RFPsl
   - vfunc_6__20TObjEneMe1Gee_NEEDLEFv
   - vfunc_6__21TObjContainerAbeEnemyFPsl
@@ -20636,9 +20661,15 @@ force_active:
   - vfunc_6__9TTecJelinFPv
   - vfunc_6__9TTecZaruaFPv
   - vfunc_79__13TUnk_804B08BCCFv
+  - vfunc_79__13TUnk_804B6C24CFv
   - vfunc_79__15TBoss3VoloptP02FPl
+  - vfunc_79__17TObjContainerBaseCFv
+  - vfunc_79__17TObjContainerItemCFv
   - vfunc_79__17TObjContainerJungCFv
+  - vfunc_79__18TObjContainerEnemyCFv
   - vfunc_79__19TObjContainerJungExCFv
+  - vfunc_79__19TObjContainerNoItemCFv
+  - vfunc_79__21TObjContainerAbeEnemyCFv
   - vfunc_79__22TObjContainerJungEnemyCFv
   - vfunc_79__23TOContainerAncientEnemyCFv
   - vfunc_7__10TItemEffPGFv
@@ -20653,18 +20684,28 @@ force_active:
   - vfunc_7__9TTecSiftaFPv
   - vfunc_80__12TOMineIcon04Fv
   - vfunc_80__13TUnk_804B08BCFv
+  - vfunc_80__13TUnk_804B6C24Fv
+  - vfunc_80__17TObjContainerBaseFv
+  - vfunc_80__17TObjContainerItemFv
   - vfunc_80__17TObjContainerJungFv
+  - vfunc_80__18TObjContainerEnemyFv
   - vfunc_80__19TObjContainerJungExFv
+  - vfunc_80__19TObjContainerNoItemFv
   - vfunc_80__21TObjContainerAbeEnemyFv
   - vfunc_80__22TObjContainerJungEnemyFv
   - vfunc_80__23TOContainerAncientEnemyFv
   - vfunc_81__13TUnk_804B08BCFv
+  - vfunc_81__13TUnk_804B6C24Fv
   - vfunc_81__14TOTrapSeabed01Fv
   - vfunc_81__15TOTrapAncient01Fv
   - vfunc_81__15TOTrapAncient02Fv
   - vfunc_81__16TOTrapAncient02RFv
+  - vfunc_81__17TObjContainerBaseFv
+  - vfunc_81__17TObjContainerItemFv
   - vfunc_81__17TObjContainerJungFv
+  - vfunc_81__18TObjContainerEnemyFv
   - vfunc_81__19TObjContainerJungExFv
+  - vfunc_81__19TObjContainerNoItemFv
   - vfunc_81__21TObjContainerAbeEnemyFv
   - vfunc_81__22TObjContainerJungEnemyFv
   - vfunc_81__23TOContainerAncientEnemyFv
