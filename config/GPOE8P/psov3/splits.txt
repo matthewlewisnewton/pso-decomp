@@ -22,6 +22,7 @@ pso/unk/text_8000F740.cpp:
 pso/misc/TKeyBoardControl_8000F764.cpp:
 	.text       start:0x8000F764 end:0x8000FD54
 	.bss        start:0x804FE020 end:0x804FE120
+	.sdata2     start:0x805D7D00 end:0x805D7D18
 
 pso/player/TObjPlayer_80011014.cpp:
 	.text       start:0x8000FD54 end:0x80019848
@@ -130,6 +131,9 @@ pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.cpp:
 pso/misc/TLoadCtrl.cpp:
 	.text       start:0x8001C60C end:0x8001CAD4
 	.rodata     start:0x804349C0 end:0x804349F0
+	.data       start:0x80480C68 end:0x80480C80
+	.sdata      start:0x805D2630 end:0x805D2634
+	.sbss       start:0x805D4A80 end:0x805D4A8C
 
 pso/misc/TLoadingCur.cpp:
 	.text       start:0x8001CAD4 end:0x8001D198
@@ -336,6 +340,9 @@ pso/boss/TObjBoss2RaftSplash.cpp:
 	.text       start:0x8003AED4 end:0x8003AFBC
 	.data       start:0x804833A0 end:0x804833B8
 	.sdata2     start:0x805D85B0 end:0x805D85B4
+
+pso/boss/DeRolLeDustConstants.cpp:
+	.sdata2     start:0x805D85B8 end:0x805D85CC
 
 pso/unk/text_8003AFBC.cpp:
 	.text       start:0x8003AFBC end:0x8003B07C
@@ -7211,6 +7218,7 @@ pso/menu/TQuestBgmCtrl.cpp:
 	.sbss       start:0x805D5E60 end:0x805D5E70
 
 pso/quest/QuestOpcodeTables.cpp:
+	.rodata     start:0x804499A8 end:0x80449A38
 	.data       start:0x804C69D0 end:0x804C81D8
 
 pso/quest/QuestOpcodeHandlers.cpp:
@@ -8682,7 +8690,7 @@ pso/misc/TWindowFukidasi_80252BF8.cpp:
 
 pso/misc/TWindowGetComCard.cpp:
 	.text       start:0x80252C38 end:0x802530D0
-	.data       start:0x804CF128 end:0x804CF140
+	.data       start:0x804CF120 end:0x804CF140
 
 pso/unk/text_802530D0.cpp:
 	.text       start:0x802530D0 end:0x80253154
@@ -9483,7 +9491,8 @@ pso/misc/TWindowUserSort.cpp:
 
 pso/misc/TWindowMainMenu1P.cpp:
 	.text       start:0x80288520 end:0x80288940
-	.rodata     start:0x80450788 end:0x80450790
+	.rodata     start:0x8044FE00 end:0x80450790
+	.sdata      start:0x805D3AE8 end:0x805D3AEC
 
 pso/misc/TWindowMainMenu4P.cpp:
 	.text       start:0x80288940 end:0x80288B04
@@ -10547,7 +10556,7 @@ pso/unk/text_802CE68C.cpp:
 
 pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp:
 	.text       start:0x802CECE0 end:0x802D04C0
-	.rodata     start:0x804724B8 end:0x804724C8
+	.rodata     start:0x80472318 end:0x804724C8
 
 pso/enemy/TObjEneBm9Mericarol_802D04C0.cpp:
 	.text       start:0x802D04C0 end:0x802D05BC
@@ -10559,6 +10568,8 @@ pso/enemy/TObjEneBm9Mericarol.cpp:
 	.text       start:0x802D073C end:0x802D134C
 	.data       start:0x804E1548 end:0x804E18A4
 	.bss        start:0x80540B58 end:0x80540B98
+	.sdata      start:0x805D3F28 end:0x805D3F30
+	.sbss       start:0x805D6860 end:0x805D6880
 	.sdata2     start:0x805DE740 end:0x805DE758
 
 pso/enemy/TObjEneBm9Mericarol_Bomb.cpp:
@@ -11906,12 +11917,17 @@ pso/ui/TAdSinglePlyChrSelectGC_80336054.cpp:
 
 pso/misc/TLobby_803360CC.cpp:
 	.text       start:0x803360CC end:0x803367F4
-	.sdata2     start:0x805DF8E8 end:0x805DF908
+	.sbss       start:0x805D6D40 end:0x805D6D4C
+	.sdata2     start:0x805DF8E8 end:0x805DF90C
+
+original_padding_805DF90C:
+	.sdata2     start:0x805DF90C end:0x805DF910 align:4
 
 pso/unk/text_803367F4.cpp:
 	.text       start:0x803367F4 end:0x80336874
 	.ctors      start:0x80433FEC end:0x80433FF0
-	.data       start:0x804EE488 end:0x804EE60C
+	.rodata     start:0x80477668 end:0x80477830
+	.data       start:0x804EE488 end:0x804EEF64
 
 pso/unk/text_803369C8.cpp:
 	.text       start:0x80336874 end:0x80336E00
@@ -12931,9 +12947,10 @@ pso/boss/TBoss6Type2_8036DC80.cpp:
 pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp:
 	.text       start:0x8036DE10 end:0x8036EF0C
 	.ctors      start:0x80434014 end:0x80434018
+	.rodata     start:0x8047AD30 end:0x8047B8A8
 	.data       start:0x804F37A8 end:0x804F3A38
 	.sbss       start:0x805D7020 end:0x805D7024
-	.sdata2     start:0x805E0428 end:0x805E0440
+	.sdata2     start:0x805E0420 end:0x805E0440
 
 pso/boss/TObjBoss2Tunnel_8036EF0C.cpp:
 	.text       start:0x8036EF0C end:0x8036EF84
@@ -14139,7 +14156,7 @@ pso/unk/text_803D8910.cpp:
 
 pso/math/MatrixVector.cpp:
 	.text       start:0x803D8BAC end:0x803D8DE0
-	.sdata2     start:0x805E0EE0 end:0x805E0EE8
+	.sdata2     start:0x805E0ED8 end:0x805E0EE8
 
 pso/unk/text_803D8DE0.cpp:
 	.text       start:0x803D8DE0 end:0x803D8F74

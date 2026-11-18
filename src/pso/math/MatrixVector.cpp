@@ -18,7 +18,6 @@ void GXGetProjectionv(f32 *p);
 void GXGetViewportv(f32 *vp);
 void GXProject(f32 x, f32 y, f32 z, u8 *mtx, f32 *pm, f32 *vp, f32 *sx, f32 *sy, f32 *sz);
 void project_world_to_screen(u8 *mtx, Vec_803D8D1C *pos, f32 *out);
-extern f64 lbl_805E0ED8;
 s32 scale_matrix(f32, f32, f32);
 s32 translate_matrix(f32, f32, f32);
 
@@ -46,7 +45,7 @@ f32 vector_length(const Vec *v) {
 }
 #endif
 
-void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 arg2) {
+void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 angle) {
     u8 sp8[0x30];
     u8 *m;
     if (arg0 == 0) {
@@ -54,8 +53,9 @@ void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 arg2) {
     } else {
         m = arg0;
     }
-    if (arg2 != 0) {
-        PSMTXRotAxisRad((MtxP)sp8, (Vec *)arg1, lbl_805E0ED8 * arg2);
+    if (angle != 0) {
+        const f64 radiansPerAngleUnit = 3.141592f / 32768.0;
+        PSMTXRotAxisRad((MtxP)sp8, (Vec *)arg1, radiansPerAngleUnit * angle);
         PSMTXConcat((MtxP)m, (MtxP)sp8, (MtxP)m);
     }
 }

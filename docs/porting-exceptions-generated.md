@@ -11,7 +11,7 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | intrinsic | 92 | 60 |
 | hardware | 69 | 13 |
 | pragma | 4121 | 881 |
-| configure.py per-unit override | 224 | 224 |
+| configure.py per-unit override | 226 | 226 |
 
 Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 656, `inline_depth` 648, `opt_common_subs` 590, `auto_inline` 264, `opt_propagation` 213, `readonly_strings` 206, `scheduling` 182, `optimization_level` 87, `peephole` 76, `bool` 59, `defer_codegen` 58, `pack` 46, `opt_loop_invariants` 42, `opt_lifetimes` 38, `pool_data` 35, `use_lmw_stmw` 27, `optimize_for_size` 23, `opt_dead_assignments` 21, `suppress_init_code` 3, `opt_pointer_analysis` 3, `const_strings` 3, `exceptions` 2, `common` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `opt_strength_reduction` 2, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
@@ -29,8 +29,8 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 656, `i
 | `src/musyx/runtime/StdReverb/reverb.c:95` | `#include "orig_asm/musyx/runtime/StdReverb/reverb/HandleReverb.inc"` |
 | `src/pso/math/MatrixTransforms.cpp:53` | `asm void subtract_vector(Vec *v, const Vec *sub) {` |
 | `src/pso/math/MatrixTransforms.cpp:54` | `#include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"` |
-| `src/pso/math/MatrixVector.cpp:35` | `asm f32 vector_length(const Vec *v) {` |
-| `src/pso/math/MatrixVector.cpp:36` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
+| `src/pso/math/MatrixVector.cpp:34` | `asm f32 vector_length(const Vec *v) {` |
+| `src/pso/math/MatrixVector.cpp:35` | `#include "orig_asm/pso/math/MatrixVector/vector_length.inc"` |
 | `src/pso/math/MatrixVector.cpp:73` | `asm void matrix_identity(u8 *arg0) {` |
 | `src/pso/math/MatrixVector.cpp:74` | `#include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"` |
 | `src/pso/misc/TCameraCtrl_803D749C.cpp:530` | `#include "orig_asm/pso/misc/TCameraCtrl_803D749C/convert_color_f32_to_u8.inc"` |
@@ -243,6 +243,8 @@ Pragma kinds (excluding push/pop/once): `fp_contract` 826, `dont_inline` 656, `i
 
 | Unit | Override | Recorded reason (configure.py comment) |
 |---|---|---|
+| `pso/unk/text_803367F4.cpp` | `-str reuse,readonly` | The title assets and bilingual prompts reference read-only string pools. |
+| `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `(multi-line entry; see configure.py)` | Preserve Shift-JIS trail bytes when compiling the Japanese prompts. |
 | `pso/network/TProtocol.cpp` | `GC/1.3.2` | GC/1.3.2 preserves these aggregate-copy matches under the GC/2.0 default. TProtocol's other weak helpers are validated through the complete link; see docs/evidence/compiler-default-gc20-adoption.md. |
 | `pso/object/TObjResultWin.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |

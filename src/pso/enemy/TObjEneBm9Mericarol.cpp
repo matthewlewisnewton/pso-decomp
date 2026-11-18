@@ -1,3 +1,4 @@
+#include "pso/enemy/MericarolResources.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/player/demo_mode.h"
 #include "pso/misc/MaterialOpacityFade.h"
@@ -37,6 +38,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/enemy/TObjEneDD_800BB804.h"
 #include "pso/unk/text_802D1C84.h"
 #include "pso/npc/NpcModelRegistry.h"
+#include "pso/system/BmlResourceDescriptor.h"
 
 struct VBase_802D0C14 { char pad[0x18]; };
 
@@ -256,18 +258,7 @@ extern "C" void get_name__9TObjEnemyFv();
 extern "C" void get_pos__9TObjCharaFl();
 extern "C" void is_actor_cadence_frame__9TObjCharaFl();
 extern "C" void is_target_in_attack_range__9TObjCharaFv();
-extern "C" u8 lbl_80472324[];
-extern "C" u8 lbl_80472338[];
-extern "C" u8 lbl_80472354[];
-extern "C" u8 lbl_80472370[];
-extern "C" u8 lbl_8047238C[];
-extern "C" u8 lbl_804723A8[];
-extern "C" u8 lbl_804723C4[];
-extern "C" u8 lbl_804723E0[];
-extern "C" u8 lbl_804723FC[];
-extern "C" u8 lbl_80472418[];
-extern "C" u8 lbl_80472434[];
-extern "C" u8 lbl_8047244C[];
+
 extern "C" void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll();
 extern "C" void receive_physical_attack__9TObjCharaFPvf();
 extern "C" void receive_weapon_special_attack__9TObjCharaFPvPv();
@@ -288,24 +279,15 @@ extern "C" void update_flag30_timer__9TObjCharaFv();
 extern "C" void update_movement_status__9TObjCharaFv();
 extern "C" void update_object_view_visibility__8TObjBaseFff();
 extern "C" void update_poison_status__9TObjCharaFv();
-extern void *lbl_804E15BC[2];
-extern void *lbl_804E15C4[9];
-extern void *lbl_804E15F8[2];
-extern void *lbl_804E1600[9];
-struct Res_802D0D3C {
-    u8 pad0[0x42C];
-    s32 *f42C;
-    s32 f430;
-};
 
 struct Obj_802D0D3C {
-    s32 f0;
+    const char *class_name;
     u8 pad4[0x18 - 0x4];
     void *vt18;
     u8 pad1C[0x24 - 0x1C];
-    s32 f24;
+    GinjaTextureList *texture_list;
     u8 pad28[0x34 - 0x28];
-    s32 f34;
+    NJS_OBJECT *model;
     u8 pad38[0xB8 - 0x38];
     s16 fB8;
     u8 padBA[0x326 - 0xBA];
@@ -355,8 +337,6 @@ void *__ct__14TObjCollidableFP7TObject(void *, s32);
 void init_collision_body_parts(void *, void *, s32);
 u8 *__ct__17AreaAttackHistoryFl(u8 *arg0, s32 arg1);
 void __ct__15RenderFadeStateFv(void *);
-extern const s32 lbl_80472318[];
-extern s32 lbl_805D3F28;
 extern const f32 lbl_805DE6EC;
 extern const f32 lbl_805DE70C;
 static const f32 lbl_805DE750 = 0.002f;
@@ -365,47 +345,63 @@ void *lbl_804E1548[7] = {
     (void *)0x43610000, (void *)0x0, (void *)0x200, (void *)0x0,
     (void *)0x0, (void *)0x0, (void *)0x0,
 };
-void *lbl_804E1564[22] = {
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x41c80000,
-    (void *)0x0, (void *)0x0, (void *)0x8003, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0, (void *)0x42480000, (void *)0x0,
-    (void *)0x0, (void *)0x9d03, (void *)0x0, (void *)0x0,
-    (void *)0x0, (void *)0x0,
+CollisionBody mericarol_collision_bodies[2] = {
+    { { 0.0f, 0.0f, 0.0f }, 25.0f, 0.0f, 0, 0x8003, { 0.0f, 0.0f, 0.0f }, 0.0f },
+    { { 0.0f, 0.0f, 0.0f }, 50.0f, 0.0f, 0, 0x9D03, { 0.0f, 0.0f, 0.0f }, 0.0f },
 };
-__declspec(section ".data") void *lbl_804E15BC[2] = {
-    (void *)&lbl_80472324, (void *)0x0,
+__declspec(section ".data") const char *mericarol_model_names[2] = {
+    mericarol_body_model_name, NULL,
 };
-void *lbl_804E15C4[9] = {
-    (void *)&lbl_80472338, (void *)&lbl_80472354, (void *)&lbl_80472370, (void *)&lbl_8047238C,
-    (void *)&lbl_804723A8, (void *)&lbl_804723C4, (void *)&lbl_804723E0, (void *)&lbl_804723FC,
-    (void *)0x0,
+
+const char *mericarol_motion_names[9] = {
+    mericarol_attack_motion_name,
+    mericarol_damage_motion_name,
+    mericarol_dead_motion_name,
+    mericarol_fire_motion_name,
+    mericarol_laugh_motion_name,
+    mericarol_wait_motion_name,
+    mericarol_wait2_motion_name,
+    mericarol_wake_motion_name,
+    NULL,
 };
-void *lbl_804E15E8[4] = {
-    (void *)&lbl_80472418, (void *)&lbl_804E15BC, (void *)&lbl_804E15C4, (void *)0x10008,
+
+BmlResourceDescriptor mericarol_resource_descriptor = {
+    mericarol_archive_name, mericarol_model_names, mericarol_motion_names, 1, 8,
 };
-__declspec(section ".data") void *lbl_804E15F8[2] = {
-    (void *)&lbl_80472434, (void *)0x0,
+
+__declspec(section ".data") const char *mericarol_low_detail_model_names[2] = {
+    mericarol_low_detail_body_model_name, NULL,
 };
-void *lbl_804E1600[9] = {
-    (void *)&lbl_80472338, (void *)&lbl_80472354, (void *)&lbl_80472370, (void *)&lbl_8047238C,
-    (void *)&lbl_804723A8, (void *)&lbl_804723C4, (void *)&lbl_804723E0, (void *)&lbl_804723FC,
-    (void *)0x0,
+
+const char *mericarol_low_detail_motion_names[9] = {
+    mericarol_attack_motion_name,
+    mericarol_damage_motion_name,
+    mericarol_dead_motion_name,
+    mericarol_fire_motion_name,
+    mericarol_laugh_motion_name,
+    mericarol_wait_motion_name,
+    mericarol_wait2_motion_name,
+    mericarol_wake_motion_name,
+    NULL,
 };
-void *lbl_804E1624[4] = {
-    (void *)&lbl_8047244C, (void *)&lbl_804E15F8, (void *)&lbl_804E1600, (void *)0x10008,
+
+BmlResourceDescriptor mericarol_low_detail_resource_descriptor = {
+    mericarol_low_detail_archive_name, mericarol_low_detail_model_names, mericarol_low_detail_motion_names, 1, 8,
 };
-void *lbl_804E1634[36] = {
-    (void *)0x30000, (void *)0x3, (void *)0x3f19999a, (void *)0x0,
-    (void *)0x10000, (void *)0x5, (void *)0x3f800000, (void *)0x0,
-    (void *)0x10000, (void *)0x6, (void *)0x3f000000, (void *)0x0,
-    (void *)0x10000, (void *)0x5, (void *)0x3f000000, (void *)0x0,
-    (void *)0x20003, (void *)0x7, (void *)0x3f333333, (void *)0x0,
-    (void *)0x30000, (void *)0x1, (void *)0x3f4ccccd, (void *)0x0,
-    (void *)0x30000, (void *)0x2, (void *)0x3f000000, (void *)0x0,
-    (void *)0x10000, (void *)0x4, (void *)0x3f19999a, (void *)0x0,
-    (void *)0x10000, (void *)0x0, (void *)0x3f333333, (void *)0x0,
+
+TObjMotionAction mericarol_motion_actions[9] = {
+    { 3, 0, 3, 0.6f, 0 },
+    { 1, 0, 5, 1.0f, 0 },
+    { 1, 0, 6, 0.5f, 0 },
+    { 1, 0, 5, 0.5f, 0 },
+    { 2, 3, 7, 0.7f, 0 },
+    { 3, 0, 1, 0.8f, 0 },
+    { 3, 0, 2, 0.5f, 0 },
+    { 1, 0, 4, 0.6f, 0 },
+    { 1, 0, 0, 0.7f, 0 },
 };
+
+const char *TObjEneBm9Mericarol__class_name = mericarol_class_name_string;
 void *TObjEneBm9Mericarol__vtable[107] = {
     (void *)0x0, (void *)0x0, (void *)&__dt__19TObjEneBm9MericarolFPvs, (void *)&run_task__19TObjEneBm9MericarolFv,
     (void *)&render__19TObjEneBm9MericarolFv, (void *)&render_shadows__9TObjEnemyFv, (void *)&vfunc_6__8TObjBaseFPsl, (void *)&apply_object_set_data__8TObjBaseFPv,
@@ -534,9 +530,13 @@ void TObjEneBm9Mericarol::vfunc_63() {
 }
 void TObjEneBm9Mericarol::vfunc_28() {  }
 
-extern u32 TBoss4Type3_shared_instance;
-extern u32 lbl_805D6864;
-extern u32 lbl_805D6868;
+SampledMotionPoints *TBoss4Type3_shared_instance;
+SampledMotionPoints *mericarol_sampled_motion_points;
+BmlResource *mericarol_resource;
+s32 lbl_805D686C;
+u32 lbl_805D6870;
+u32 lbl_805D6874;
+u32 lbl_805D6878;
 
 void dispatch_state_handler__19TObjEneBm9MericarolFiUii(s32 actor, u32 arg1, s32 msg) {
     switch (arg1) {
@@ -660,7 +660,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
     self->vt18 = TObjEneBm9Mericarol__vtable;
     __construct_array(self->a3C8, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     __ct__19MaterialOpacityFadeFv((self->o46C));
-    self->f0 = lbl_805D3F28;
+    self->class_name = TObjEneBm9Mericarol__class_name;
     invoke_initialization_hook__9TObjEneDDFPv(self, arg2);
     ((TObjEneBm9Mericarol *)self)->init_size_tier_and_offsets();
     self->f438 = 0;
@@ -668,18 +668,18 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
         self->f438 |= 0x400;
     }
     ((TObjEneDD *)self)->init_position_vectors();
-    self->f34 = ((Res_802D0D3C *)lbl_805D6868)->f42C[2];
-    self->f24 = ((Res_802D0D3C *)lbl_805D6868)->f42C[3];
-    init_model__9TObjEneDDFP13CollisionBodyl(self, lbl_804E1564, 1);
-    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)((s32)lbl_804E1634));
-    ((TObjMotion *)self)->set_motion_list((BmlMotionEntry *)(((Res_802D0D3C *)lbl_805D6868)->f430));
+    self->model = mericarol_resource->models[0].model;
+    self->texture_list = mericarol_resource->models[0].m_c;
+    init_model__9TObjEneDDFP13CollisionBodyl(self, mericarol_collision_bodies, 1);
+    ((TObjMotion *)self)->set_action_table(mericarol_motion_actions);
+    ((TObjMotion *)self)->set_motion_list(mericarol_resource->motions);
     self->fB8 = 2;
     ((TObjMotion *)self)->set_animation(self->fB8);
     ((TObjMotion *)self)->set_field_b8(self->fB8);
     ph = ((TObjEneBm9Mericarol *)self)->get_phase();
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(self, bm9_mericarol_phase_hp_table[ph], lbl_80540B64[ph], lbl_80540B70[ph]);
-    self->f3C0 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
-    self->f3C4 = create__13TUnk_80494968FUlUl(0xA0303030, lbl_80472318[ph]);
+    self->f3C0 = create__13TUnk_80494968FUlUl(0xA0303030, mericarol_phase_effect_colors[ph]);
+    self->f3C4 = create__13TUnk_80494968FUlUl(0xA0303030, mericarol_phase_effect_colors[ph]);
     ((TObjChara *)self)->add_flags_2e4(0x12);
     self->f350 = lbl_804E1548;
     switch (((TObjEneBm9Mericarol *)self)->get_phase()) {
@@ -707,7 +707,7 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
         p = __ct__14TObjCollidableFP7TObject(p, 0);
     }
     self->f48C = p;
-    init_collision_body_parts(self->f48C, (u8 *)lbl_804E1564 + 0x2C, 1);
+    init_collision_body_parts(self->f48C, &mericarol_collision_bodies[1], 1);
     p = ::operator new(0x10);
     if (p != NULL) {
         p = __ct__17AreaAttackHistoryFl((u8 *)p, 8);
@@ -733,18 +733,18 @@ Obj_802D0D3C *TObjEneBm9Mericarol__ct(Obj_802D0D3C *self, void *parent, s32 arg2
 }
 
 void TObjEneBm9Mericarol::free_shared_instances() {
-    if ((u32) lbl_805D6864 != 0U) {
-        delete (SampledMotionPoints *)lbl_805D6864;
-        lbl_805D6864 = 0U;
+    if (mericarol_sampled_motion_points != NULL) {
+        delete mericarol_sampled_motion_points;
+        mericarol_sampled_motion_points = NULL;
     }
-    if ((u32) TBoss4Type3_shared_instance != 0U) {
-        delete (SampledMotionPoints *)TBoss4Type3_shared_instance;
-        TBoss4Type3_shared_instance = 0U;
+    if (TBoss4Type3_shared_instance != NULL) {
+        delete TBoss4Type3_shared_instance;
+        TBoss4Type3_shared_instance = NULL;
     }
     fn_802D1C84();
-    if ((u32) lbl_805D6868 != 0U) {
-        delete (BmlResource *)((void*)lbl_805D6868);
-        lbl_805D6868 = 0U;
+    if (mericarol_resource != NULL) {
+        delete mericarol_resource;
+        mericarol_resource = NULL;
     }
 }
 
@@ -758,31 +758,22 @@ void *TObjEneBm9Mericarol::create(void *arg0) {
     return o;
 }
 
-struct MotionEntry_802D1130 { s32 flags; s32 index; f32 speed; s32 pad; };
-struct MotionPair_802D1130 { s32 id; s32 motion; };
-struct SpawnPos_802D1130 { MotionPair_802D1130 *motions; s32 w[3]; };
 s32 is_split_screen();
 void TObjPlayer__sub_800F0928(void);
 extern const s32 lbl_804722E8[];
 extern const s32 lbl_804722F4[];
 extern const s32 lbl_80472300[];
 extern const s32 lbl_8047230C[];
-extern const SpawnPos_802D1130 lbl_80472480;
 static const f32 lbl_805DE754 = 0.7f;
-extern u32 lbl_805D686C;
-extern u32 lbl_805D6870;
-extern u32 lbl_805D6874;
-extern u32 lbl_805D6878;
 
 void TBoss4Type3__sub_802D1130(void) {
     s32 i;
-    void *p;
-    MotionPair_802D1130 *pair;
+    BmlMotionEntry *motion;
 
     if (is_split_screen() != 0) {
-        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E1624));
+        mericarol_resource = load_enemy_bml_resource(&mericarol_low_detail_resource_descriptor);
     } else {
-        lbl_805D6868 = (s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)lbl_804E15E8));
+        mericarol_resource = load_enemy_bml_resource(&mericarol_resource_descriptor);
     }
     lbl_805D686C = 0;
     lbl_805D6870 = 0;
@@ -799,21 +790,21 @@ void TBoss4Type3__sub_802D1130(void) {
         lbl_80540B70[i] = (u32)get_battle_resistance_params(lbl_80472300[i]);
         mericarol_phase_param_table[i] = (u32)get_battle_movement_params(lbl_8047230C[i]);
     }
-    p = new SampledMotionPoints(2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
-    TBoss4Type3_shared_instance = (u32)p;
-    p = new SampledMotionPoints(2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
-    lbl_805D6864 = (u32)p;
+    TBoss4Type3_shared_instance = new SampledMotionPoints(2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
+    mericarol_sampled_motion_points = new SampledMotionPoints(2, lbl_805DE70C, lbl_805DE704, lbl_805DE754);
     set_motion_packed_rotation();
-    pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430 + ((MotionEntry_802D1130 *)lbl_804E1634)[8].index;
-    ((SampledMotionPoints *)TBoss4Type3_shared_instance)->sample_two_nodes((NJS_OBJECT *)((Res_802D0D3C *)lbl_805D6868)->f42C[2], (NJS_MOTION *)pair->motion, 0x20, 0x21);
-    pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430 + ((MotionEntry_802D1130 *)lbl_804E1634)[8].index;
-    ((SampledMotionPoints *)lbl_805D6864)->sample_two_nodes((NJS_OBJECT *)((Res_802D0D3C *)lbl_805D6868)->f42C[2], (NJS_MOTION *)pair->motion, 0x2A, 0x2B);
+    motion = mericarol_resource->motions + mericarol_motion_actions[8].motion;
+    TBoss4Type3_shared_instance->sample_two_nodes(mericarol_resource->models[0].model, (NJS_MOTION *)motion->motion, 0x20, 0x21);
+    motion = mericarol_resource->motions + mericarol_motion_actions[8].motion;
+    mericarol_sampled_motion_points->sample_two_nodes(mericarol_resource->models[0].model, (NJS_MOTION *)motion->motion, 0x2A, 0x2B);
     clear_motion_packed_rotation();
     {
-        SpawnPos_802D1130 pos = lbl_80472480;
-        pair = (MotionPair_802D1130 *)((Res_802D0D3C *)lbl_805D6868)->f430;
-        pos.motions = pair;
-        NpcModelRegistry::register_animated_chunk(0x42, (void *)(((Res_802D0D3C *)lbl_805D6868)->f42C[2]), (void *)(((Res_802D0D3C *)lbl_805D6868)->f42C[3]), (const NpcAnimationBinding *)((s32)&pos), *(f32 *)&lbl_804E1564[3], lbl_805DE70C);
+        NpcAnimationBinding binding = mericarol_animation_binding;
+        motion = mericarol_resource->motions;
+        binding.motions = motion;
+        NpcModelRegistry::register_animated_chunk(0x42, mericarol_resource->models[0].model,
+                                                  mericarol_resource->models[0].m_c, &binding,
+                                                  mericarol_collision_bodies[0].radius, lbl_805DE70C);
     }
 }
 

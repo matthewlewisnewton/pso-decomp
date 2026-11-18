@@ -15,6 +15,16 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Title resources and multiplayer game-mode messages
+
+`pso/unk/text_803367F4.cpp` and `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp`
+use `-str reuse,readonly` for the title texture names, archive names and
+game-mode prompts. The original pointer tables reference read-only storage.
+The message unit also uses the project's Shift-JIS wrapper and CodeWarrior's
+`-multibyte` setting. For example, the second byte of 能 is 0x5C, which the
+compiler otherwise consumes as a backslash. A port can use its normal string
+pooling and encode these messages for the game text renderer at its boundary.
+
 ### LSC initialization
 
 `pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with
@@ -1275,6 +1285,15 @@ GC/2.6 records eight-byte alignment for the emitted sections. The existing
 `cw_comment_align.py` adapter changes only the ELF and CodeWarrior alignment
 metadata; instructions, data and relocations remain compiler-generated.
 A port can use its compiler's default vtable and pointer alignment.
+
+### `TWindowGetComCard.cpp` confirmation window position
+
+The two floats at `0x804CF120` precede the compiler-emitted
+`TWindowGetComCard` vtable in `.data`. Under the default small-data settings,
+CodeWarrior puts the eight-byte position in `.sdata` and emits one SDA-relative
+instruction at the factory call. The guarded `.data` placement keeps the
+original `lis` and `addi` relocation pair and the vtable layout. A port can use
+the ordinary `WindowLayoutPosition` definition and its default data placement.
 
 ### `TCheckMemoryCard.cpp` section placement
 

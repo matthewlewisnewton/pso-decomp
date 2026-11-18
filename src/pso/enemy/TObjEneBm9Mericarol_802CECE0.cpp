@@ -1,3 +1,4 @@
+#include "pso/enemy/MericarolResources.h"
 #include "pso/system/MatrixVectorArray.h"
 #include "pso/misc/SampledMotionPoints.h"
 #include "pso/enemy/EnemyUnknownHooks.h"
@@ -17,6 +18,29 @@ struct NJS_OBJECT;
 #include "pso/enemy/TObjEneEpsilon.h"
 #include "pso/enemy/TObjEneMe3ShinowaReal.h"
 #include "pso/player/TObjPlayer.h"
+
+extern "C" {
+extern const u32 mericarol_phase_effect_colors[3] = {0xFFFD42E3, 0xFF39374B, 0xFFDEFB46};
+extern const char mericarol_body_model_name[] = "bm9_s_meri_body.nj";
+extern const char mericarol_attack_motion_name[] = "atack_bm9_s_meri_body.njm";
+extern const char mericarol_damage_motion_name[] = "damage_bm9_s_meri_body.njm";
+extern const char mericarol_dead_motion_name[] = "dead_bm9_s_meri_body.njm";
+extern const char mericarol_fire_motion_name[] = "fire_bm9_s_meri_body.njm";
+extern const char mericarol_laugh_motion_name[] = "laugh_bm9_s_meri_body.njm";
+extern const char mericarol_wait_motion_name[] = "wait_bm9_s_meri_body.njm";
+extern const char mericarol_wait2_motion_name[] = "wait2_bm9_s_meri_body.njm";
+extern const char mericarol_wake_motion_name[] = "wake_bm9_s_meri_body.njm";
+extern const char mericarol_archive_name[] = "bm_ene_bm9_s_mericarol.bml";
+extern const char mericarol_low_detail_body_model_name[] = "lo_bm9_s_meri_body.nj";
+extern const char mericarol_low_detail_archive_name[] = "bm_ene_bm9_s_mericarol_low.bml";
+
+extern const char mericarol_class_name_string[] = "TObjEneBm9Mericarol";
+extern const NpcAnimationBinding mericarol_animation_binding = { NULL, mericarol_motion_actions, 3, 1, 9 };
+
+extern const Vec lbl_80472490 = {2.0f, 1.0f, 2.0f};
+extern const Vec lbl_8047249C = {2.0f, 1.0f, 2.0f};
+extern const Vec player_sub_802ce68c_zero_vec = {0.0f, 0.0f, 0.0f};
+}
 
 struct VBase_18_9c7b63
 {
@@ -642,8 +666,6 @@ s32 push_matrix();
 s32 pop_matrix();
 s32 post_translate_matrix(void *);
 extern u8 *mericarol_phase_param_table[];
-extern s32 TBoss4Type3_shared_instance;
-extern s32 lbl_805D6864;
 extern const f32 lbl_805DE6F4;
 extern const f32 lbl_805DE72C;
 extern const f32 lbl_805DE730;
@@ -1183,8 +1205,8 @@ void TObjPlayer__sub_802CFB64(u8 *player, s32 arg1) {
                 } else if (((TObjMotion *)player)->is_passing_frame(lbl_805DE730) != 0) {
                     play_sound_effect((s32)(((TObjEnemy *)(player))->remap_sound_for_area((s32)(0x3A40D))), (const Vec *)(player + 0x38), 0, 0);
                 }
-                e0 = (s32)((SampledMotionPoints *)((void *)TBoss4Type3_shared_instance))->lookup(*(f32 *)((s8 *)player + 0xC0));
-                e1 = (s32)((SampledMotionPoints *)((void *)lbl_805D6864))->lookup(*(f32 *)((s8 *)player + 0xC0));
+                e0 = (s32)(TBoss4Type3_shared_instance)->lookup(*(f32 *)((s8 *)player + 0xC0));
+                e1 = (s32)(mericarol_sampled_motion_points)->lookup(*(f32 *)((s8 *)player + 0xC0));
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix(player + 0x38);
