@@ -1,6 +1,6 @@
 # TCP send queues and SACK compaction
 
-The comparison uses GPOE8P and fork main `ea44fd833e`, which includes the exact receive delivery from [#606](https://github.com/matthewlewisnewton/pso-decomp/pull/606). Of the unit's 21 functions, 18 match exactly. All 184 initialized data bytes and all 16 BSS bytes match. Each function retains its original size and address in a diagnostic link of the complete C++ unit.
+The comparison uses GPOE8P and fork main `506d5b807f`, which includes the exact receive delivery from [#606](https://github.com/matthewlewisnewton/pso-decomp/pull/606). Of the unit's 21 functions, 18 match exactly. All 184 initialized data bytes and all 16 BSS bytes match. Each function retains its original size and address in a diagnostic link of the complete C++ unit.
 
 | Routine | Native size | Differing instruction words in the linked game |
 | --- | ---: | ---: |
@@ -12,11 +12,15 @@ Across the complete DOL, only these 50 words change. The diagnostic game has SHA
 
 ## SACK and receive reassembly
 
-The control block holds five SACK ranges at offsets `0x2F8..0x31F`. When inserting a new range that contains an existing range, the game copies that existing range's successors down one slot. Its loop goes one copy beyond the table, reads the words at `0x320` and `0x324`, and clears the destination. Those words hold the scoreboard's top index with its alignment bytes, and its unacknowledged sequence number. The bounded loop copies through source slot four and clears slot four. Retaining this bound changes the compare immediate at `0x8041FFBC` from five to four.
+The control block holds five SACK ranges at offsets `0x2F8..0x31F`. When inserting a new range that contains an existing range, the game copies that existing range's successors down one slot. Its loop goes one copy beyond the table, reads the words at `0x320` and `0x324`, and clears the destination. Those words hold the scoreboard's top index with its alignment bytes, and its unacknowledged sequence number. The bounded loop copies through source slot four and clears slot four. Compaction and expiration derive their limits from the array declaration. The compaction bound changes the compare immediate at `0x8041FFBC` from five to four.
 
 A PowerPC read trace observes both adjacent words in the game, the release browser and the debug browser shipped on the same disc. The bounded game produces the same final control block with zero reads from those words. A byte-identical routine given that same state would perform the original reads. Main currently counts the original five-iteration bound as an exact match.
 
-The receive-range routines at `0x8041F66C` and `0x8041F914` use the same unsigned endpoint subtraction to count the bytes removed from the reassembly queue. This calculation works across both signed and unsigned sequence-number wrap. Eliminating the former routine's unused eight-byte array leaves all 680 bytes of that routine and all 1,164 bytes of the latter routine exact.
+The receive-range routines at `0x8041F66C` and `0x8041F914` use the same unsigned endpoint subtraction to count the bytes removed from the reassembly queue. This calculation works across both signed and unsigned sequence-number wrap. Eliminating the former routine's unused eight-byte array leaves all 680 bytes of that routine and all 1,164 bytes of the latter routine exact. Insertion at
+`0x8041FDA0` and overlap handling at `0x8041F914` now subtract in the
+unsigned sequence space before interpreting a difference as signed.
+This removes signed overflow from receive-range insertion and merging
+while preserving the compiled socket object.
 
 ## Send acknowledgement
 
@@ -32,7 +36,7 @@ All 43 differing words lie between `0x8042098C` and `0x80420A4C`, in the forward
 
 ## Reproducing the comparisons
 
-The standard build keeps main's link set. It reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,631 source-linked units pass and the retention list has zero additions or removals. Against the stated baseline, `tools/check_pr.py` fails the exact-function check for the 292-byte SACK routine.
+The standard build keeps main's link set. It reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 3,633 source-linked units pass and the retention list has zero additions or removals. Against the stated baseline, `tools/check_pr.py` fails the exact-function check for the 292-byte SACK routine.
 
 For the diagnostic build, use a separate checkout with the normal project tools, original input files and a completed standard build. Add `pso/network/SocketProtocolRuntime.cpp` to the sorted list in `config/GPOE8P/psov3/linked_units.txt`. Then run the following with the same configure options as the standard build and Unicorn 2.1.4 available to Python.
 
@@ -43,4 +47,4 @@ ninja build/GPOE8P/psov3.dol
 python3 tools/probes/test_socket_runtime.py orig/GPOE8P/files/PsoV3.dol build/GPOE8P/psov3.dol
 ```
 
-Pass `--browser-dir` with a directory containing the disc's `iwanaga.dol` and `iwanagaD.dol` to reproduce the independent SACK traces. The probe verifies the SHA-1 of each reference executable. It checks the resulting SACK state and adjacent-field reads, 786 reassembly cases, 2,528 gathers, and 1,600 ACKs with 1,766 completion events. Cases include both sequence wraps, all 32 reassembly slots, all 12 packet fragments, queue wrap and partial consumption. The ACK checks intercept completions, record their arguments and exercise queue-head changes during a callback.
+Pass `--browser-dir` with a directory containing the disc's `iwanaga.dol` and `iwanagaD.dol` to reproduce the independent SACK traces. The probe verifies the SHA-1 of each reference executable. It checks the SACK state and adjacent-field accesses in the original trace, and exercises 21 more SACK cases on the bounded routines, including every possible compaction position in a full table. It also checks 786 reassembly cases, 12 out-of-order receive scenarios with overlapping data, 2,528 gathers, and 1,600 ACKs with 1,766 completion events. Cases include both sequence wraps, all 32 reassembly slots, all 12 packet fragments, queue wrap and partial consumption. The ACK checks intercept completions, record their arguments and exercise queue-head changes during a callback.

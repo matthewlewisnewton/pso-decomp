@@ -364,8 +364,9 @@ s32 TLobby__sub_8041F914(NetPacket *pkt, u16 x, TcpTcb *o, TcpHdr *th) {
         u32 pos;
         s32 total;
         s32 d;
-        s32 seq;
-        s32 end;
+        // Sequence arithmetic wraps modulo 2^32 before the signed ordering checks.
+        u32 seq;
+        u32 end;
         s16 j;
         s32 grow;
         NetBufferRef dst;
@@ -424,14 +425,14 @@ s32 TLobby__sub_8041F914(NetPacket *pkt, u16 x, TcpTcb *o, TcpHdr *th) {
             TLobby__sub_8041FDA0(o, 0, seq, end);
             o->last_reasm = 0;
         } else {
-            if (seq - o->reasm[0].start <= 0) {
+            if ((s32)(seq - o->reasm[0].start) <= 0) {
                 TLobby__sub_8041FDA0(o, 0, seq, end);
                 j = 0;
             } else {
                 for (j = 1; j <= o->reasm_n; j++) {
-                    if (seq - o->reasm[j].start <= 0) {
-                        if (seq - o->reasm[j - 1].end <= 0) {
-                            grow = end - o->reasm[j - 1].end;
+                    if ((s32)(seq - o->reasm[j].start) <= 0) {
+                        if ((s32)(seq - o->reasm[j - 1].end) <= 0) {
+                            grow = (s32)(end - o->reasm[j - 1].end);
                             if (grow < 0) {
                                 goto done;
                             }
@@ -445,8 +446,8 @@ s32 TLobby__sub_8041F914(NetPacket *pkt, u16 x, TcpTcb *o, TcpHdr *th) {
                     }
                 }
                 if (j == o->reasm_n + 1) {
-                    if (seq - o->reasm[j - 1].end <= 0) {
-                        grow = end - o->reasm[j - 1].end;
+                    if ((s32)(seq - o->reasm[j - 1].end) <= 0) {
+                        grow = (s32)(end - o->reasm[j - 1].end);
                         if (grow < 0) {
                             goto done;
                         }
@@ -459,11 +460,11 @@ s32 TLobby__sub_8041F914(NetPacket *pkt, u16 x, TcpTcb *o, TcpHdr *th) {
                 }
             }
             o->last_reasm = j;
-            while (j + 1 <= o->reasm_n && o->reasm[j].end - o->reasm[j + 1].start >= 0) {
-                if (o->reasm[j].end - o->reasm[j + 1].end >= 0) {
+            while (j + 1 <= o->reasm_n && (s32)((u32)o->reasm[j].end - (u32)o->reasm[j + 1].start) >= 0) {
+                if ((s32)((u32)o->reasm[j].end - (u32)o->reasm[j + 1].end) >= 0) {
                     sack_remove_8041F914(o, j + 1);
                 } else {
-                    o->reasm_total += o->reasm[j + 1].end - o->reasm[j].end;
+                    o->reasm_total += (s32)((u32)o->reasm[j + 1].end - (u32)o->reasm[j].end);
                     o->reasm[j].end = o->reasm[j + 1].end;
                     sack_remove_8041F914(o, j + 1);
                 }
@@ -497,23 +498,25 @@ void TLobby__sub_8041FDA0(TcpTcb *o, s16 idx, s32 a, s32 b) {
     o->reasm[idx].start = a;
     o->reasm[idx].end = b;
     o->reasm_n++;
-    o->reasm_total += b - a;
+    o->reasm_total += (u32)b - (u32)a;
 }
 
 void expire_timeout_entries__6TLobbyFv(TcpTcb *o) {
+    const s16 entries = sizeof(o->sack) / sizeof(o->sack[0]);
+    const s16 last = entries - 1;
     s16 i;
     s16 j;
     i = 0;
-    while (i < 5) {
+    while (i < entries) {
         if (o->sack[i].start == o->sack[i].end) {
             return;
         }
         if ((s32)(o->sack[i].end - o->rcv_nxt) <= 0) {
-            for (j = i; j < 4; j++) {
+            for (j = i; j < last; j++) {
                 o->sack[j] = o->sack[j + 1];
             }
-            o->sack[4].start = 0;
-            o->sack[4].end = 0;
+            o->sack[last].start = 0;
+            o->sack[last].end = 0;
         } else {
             i++;
         }
@@ -521,6 +524,7 @@ void expire_timeout_entries__6TLobbyFv(TcpTcb *o) {
 }
 
 void TLobby__sub_8041FED4(TcpTcb *tcb) {
+    const s16 last = sizeof(tcb->sack) / sizeof(tcb->sack[0]) - 1;
     u32 start;
     u32 end;
     s16 i;
@@ -531,22 +535,22 @@ void TLobby__sub_8041FED4(TcpTcb *tcb) {
     }
     start = tcb->reasm[tcb->last_reasm].start;
     end = tcb->reasm[tcb->last_reasm].end;
-    for (i = 4; i > 0; i--) {
+    for (i = last; i > 0; i--) {
         tcb->sack[i] = tcb->sack[i - 1];
     }
     tcb->sack[0].start = start;
     tcb->sack[0].end = end;
-    for (i = 4; i > 0; i--) {
+    for (i = last; i > 0; i--) {
         if (tcb->sack[i].start == tcb->sack[i].end) {
             continue;
         }
         for (j = i - 1; j >= 0; j--) {
             if ((s32)(tcb->sack[i].start - tcb->sack[j].start) >= 0 && (s32)(tcb->sack[i].end - tcb->sack[j].end) <= 0) {
-                for (k = i; k < 4; ++k) {
+                for (k = i; k < last; ++k) {
                     tcb->sack[k] = tcb->sack[k + 1];
                 }
-                tcb->sack[4].start = 0;
-                tcb->sack[4].end = 0;
+                tcb->sack[last].start = 0;
+                tcb->sack[last].end = 0;
                 break;
             }
         }

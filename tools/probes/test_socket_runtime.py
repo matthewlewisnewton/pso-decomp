@@ -7,7 +7,10 @@ from pathlib import Path
 import struct
 import sys
 
-from unicorn import Uc, UC_ARCH_PPC, UC_MODE_PPC32, UC_MODE_BIG_ENDIAN, UC_HOOK_CODE, UC_HOOK_MEM_READ
+from unicorn import (
+    Uc, UC_ARCH_PPC, UC_MODE_PPC32, UC_MODE_BIG_ENDIAN,
+    UC_HOOK_CODE, UC_HOOK_MEM_READ, UC_HOOK_MEM_WRITE,
+)
 from unicorn import ppc_const as ppc
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -61,24 +64,65 @@ class Game:
         return self.cpu.mem_read(TCB, STATE_SIZE)
 
 
-def check_sack(game, entry, expected_reads):
+def check_sack(game, entry, newest, queued, expected, expected_reads=()):
     state = bytearray(STATE_SIZE)
-    struct.pack_into(">II", state, 0xFC, 100, 160)
-    struct.pack_into(">II", state, 0x2F8, 110, 120)
+    struct.pack_into(">II", state, 0xFC, *newest)
     struct.pack_into(">II", state, 0x320, 0xFFFF0000, 0x12345678)
+
+    def pack_ranges(ranges):
+        state[0x2F8:0x320] = bytes(5 * 8)
+        for index, (start, end) in enumerate(ranges):
+            struct.pack_into(">II", state, 0x2F8 + index * 8, start, end)
+
+    pack_ranges(queued)
     reads = []
+    writes = []
 
     def record_read(cpu, access, address, size, value, user_data):
         reads.append((address - TCB, size))
 
-    hook = game.cpu.hook_add(UC_HOOK_MEM_READ, record_read, begin=TCB + 0x320, end=TCB + 0x327)
+    def record_write(cpu, access, address, size, value, user_data):
+        writes.append((address - TCB, size))
+
+    hooks = [
+        game.cpu.hook_add(kind, callback, begin=TCB + 0x320, end=TCB + 0x327)
+        for kind, callback in ((UC_HOOK_MEM_READ, record_read), (UC_HOOK_MEM_WRITE, record_write))
+    ]
     try:
         actual = game.run(entry, state)
     finally:
-        game.cpu.hook_del(hook)
-    struct.pack_into(">II", state, 0x2F8, 100, 160)
-    if actual != state or reads != expected_reads:
-        raise AssertionError(f"SACK state or access trace differs at {entry:#x}, reads {reads}")
+        for hook in hooks:
+            game.cpu.hook_del(hook)
+    pack_ranges(expected)
+    if actual != state or tuple(reads) != expected_reads or writes:
+        raise AssertionError(
+            f"SACK state or access trace differs at {entry:#x} with newest {newest} and queue {queued}. "
+            f"Adjacent reads {reads}, writes {writes}"
+        )
+
+
+def check_sack_boundaries(candidate):
+    newest = (100, 160)
+    outside = [(200, 210), (220, 230), (240, 250), (260, 270), (280, 290)]
+    fixtures = [
+        ([], [newest]),
+        (outside, [newest, *outside[:4]]),
+        ([(110, 120), (122, 132), outside[0], (132, 142), outside[4]], [newest, outside[0]]),
+    ]
+    for index in range(4):
+        queued = outside.copy()
+        queued[index] = (110, 120)
+        fixtures.append((queued, [newest, *outside[:index], *outside[index + 1:4]]))
+
+    def shift_ranges(ranges, shift):
+        return [((start + shift) & MASK, (end + shift) & MASK) for start, end in ranges]
+
+    shifts = (0, 0x7FFFFF90, 0xFFFFFF90)
+    for shift in shifts:
+        shifted_newest = shift_ranges([newest], shift)[0]
+        for queued, expected in fixtures:
+            check_sack(candidate, GAME_SACK, shifted_newest, shift_ranges(queued, shift), shift_ranges(expected, shift))
+    return len(shifts) * len(fixtures)
 
 
 def check_reassembly(original, candidate):
@@ -102,6 +146,52 @@ def check_reassembly(original, candidate):
                 ):
                     raise AssertionError(f"Reassembly differs for {count} ranges at {position:#x}")
                 cases += 1
+    return cases
+
+
+def check_wrapped_receive(candidate):
+    cpu = candidate.cpu
+    header = PACKET + 0x100
+    source = DATA + 0x1000
+    capacity = 256
+    segments = (
+        # Offset, length, and expected merged interval relative to the receive head.
+        (8, 16, 8, 24),
+        (20, 16, 8, 36),
+        (4, 12, 4, 36),
+        (12, 4, 4, 36),
+    )
+    cases = 0
+    for origin in (0x100000, 0x7FFFFFF0, 0xFFFFFFF0):
+        state = bytearray(STATE_SIZE)
+        struct.pack_into(">IB", state, 0xC8, DATA, 1)
+        struct.pack_into(">hh", state, 0xF8, -1, -1)
+        struct.pack_into(">I", state, 0x228, origin)
+        struct.pack_into(">I", state, 0x534, capacity)
+        cpu.mem_write(TCB, bytes(state))
+        cpu.mem_write(DATA, bytes(capacity))
+        expected_payload = bytearray(capacity)
+        for case, (offset, length, start, end) in enumerate(segments, 1):
+            packet = bytearray(0x9C)
+            struct.pack_into(">II", packet, 4, 1, length)
+            struct.pack_into(">h2xIB", packet, 12, length, source, 1)
+            tcp_header = bytearray(20)
+            struct.pack_into(">I", tcp_header, 4, (origin + offset) & MASK)
+            payload = bytes([case]) * length
+            cpu.mem_write(PACKET, bytes(packet))
+            cpu.mem_write(header, bytes(tcp_header))
+            cpu.mem_write(source, payload)
+            status = candidate.call(0x8041F914, PACKET, 0, TCB, header)
+            expected_payload[offset:offset + length] = payload
+            queue = cpu.mem_read(TCB + 0xF4, 16)
+            expected = (end - start, 0, 0, (origin + start) & MASK, (origin + end) & MASK)
+            if (
+                status != 0
+                or struct.unpack(">IhhII", queue) != expected
+                or cpu.mem_read(DATA, capacity) != expected_payload
+            ):
+                raise AssertionError(f"Receive range or payload mismatch at {origin:#x}, segment {case}")
+            cases += 1
     return cases
 
 
@@ -225,14 +315,21 @@ def main():
     args = parser.parse_args()
     original = Game(args.original, ORIGINAL_SHA1)
     candidate = Game(args.candidate)
-    retail_reads = [(0x320, 4), (0x324, 4)]
-    check_sack(original, GAME_SACK, retail_reads)
-    check_sack(candidate, GAME_SACK, [])
+    retail_reads = ((0x320, 4), (0x324, 4))
+    newest = (100, 160)
+    trace_case = newest, [(110, 120)], [newest]
+    check_sack(original, GAME_SACK, *trace_case, expected_reads=retail_reads)
+    check_sack(candidate, GAME_SACK, *trace_case)
     if args.browser_dir:
         for name, expected_sha1, entry in BROWSERS:
-            check_sack(Game(args.browser_dir / name, expected_sha1), entry, retail_reads)
-    cases = check_reassembly(original, candidate)
-    print(f"SACK compaction and {cases} reassembly comparisons passed.")
+            check_sack(Game(args.browser_dir / name, expected_sha1), entry, *trace_case, expected_reads=retail_reads)
+    sack_cases = check_sack_boundaries(candidate)
+    reassembly_cases = check_reassembly(original, candidate)
+    receive_cases = check_wrapped_receive(candidate)
+    print(
+        f"SACK trace, {sack_cases} SACK boundary cases, {reassembly_cases} reassembly comparisons "
+        f"and {receive_cases} out-of-order receive cases passed."
+    )
     check_send(original, candidate)
 
 
