@@ -13299,12 +13299,12 @@ force_active:
   - lbl_805D2C58
   - lbl_805D2E70
   - lbl_805D2EA8
-  - lbl_805D2F10
+  - TOContainerAncientEnemyRare__name
   - lbl_805D307C
   - lbl_805D3190
   - lbl_805D3198
   - lbl_805D32B8
-  - lbl_805D3420
+  - TObjRain__class_name
   - lbl_805D3428
   - lbl_805D34C0
   - lbl_805D34C8
@@ -13356,7 +13356,7 @@ force_active:
   - lbl_805D3CD4
   - lbl_805D3CD8
   - lbl_805D3CF0
-  - lbl_805D3D58
+  - TObjFish__class_name
   - lbl_805D3D90
   - lbl_805D3E58
   - lbl_805D3E60

@@ -88,7 +88,7 @@ const char *TOContainerAncientItemRare__name = "TOContainerAncientItemRare";
 const char *TOContainerAncientItemNone__name = "TOContainerAncientItemNone";
 const char *TOContainerAncientEnemy__name = "TOContainerAncientEnemy";
 const char *TOContainerAncientEnemyCommon__name = "TOContainerAncientEnemyCommon";
-const char *lbl_805D2F10 = "TOContainerAncientEnemyRare";
+const char *TOContainerAncientEnemyRare__name = "TOContainerAncientEnemyRare";
 
 // The three fragment texture lists of the current floor, loaded with the
 // archive (ancient_container_resource_bundle) by
@@ -476,7 +476,7 @@ void TOContainerAncientEnemy::vfunc_79() const {
         b.pad_38[0] = this->position.y;
         b.model = (s32)get_bml_model((BmlResource *)ancient_container_resource_bundle, 2);
         b.textures = (s32)get_bml_texlist((BmlResource *)ancient_container_resource_bundle, 2);
-        if (check_value_equals((s32)lbl_805D2F10) != 0) {
+        if (check_value_equals((s32)TOContainerAncientEnemyRare__name) != 0) {
             a.textures = ancient_container_fragment_texture_lists[1];
             b.textures = ancient_container_fragment_texture_lists[2];
         }
@@ -514,7 +514,7 @@ void *TOContainerAncientEnemyCommon__create(void *set_data) {
 }
 
 TOContainerAncientEnemyRare::TOContainerAncientEnemyRare(void *set_data) : TOContainerAncientEnemy(set_data) {
-    m_name = lbl_805D2F10;
+    m_name = TOContainerAncientEnemyRare__name;
     texlist = (s32) *ancient_container_fragment_texture_lists;
 }
 

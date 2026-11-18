@@ -455,11 +455,10 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
 
 #define init_fish_school__8TObjFishFPvll ((s32 (*)(void *, void *, int, int))init_fish_school__8TObjFishFPvll)
 
-const char *lbl_805D3D58 = TObjFish__class_name_string;
+const char *TObjFish__class_name = TObjFish__class_name_string;
 extern "C" {
 u8 *TObjFish__create(u8 *arg0);
 s32 __ct__8TObjBaseFP7TObject();
-extern const char *lbl_805D3D58;
 u8 *TObjFish__ct(u8 *arg0, s32 arg1, u8 *arg2);
 void *__dt__8TObjFishFv(void *arg0, s16 arg1);
 
@@ -480,7 +479,7 @@ u8 *TObjFish__ct(u8 *fish, s32 arg1, u8 *arg2) {
     f32 var_f1;
     __ct__8TObjBaseFP7TObject();
     *(s32 **)((s8 *)fish + 0x18) = (s32 *)__vt__8TObjFish;
-    *(s32 *)((s8 *)fish + 0) = (s32) lbl_805D3D58;
+    ((TObjFish *)fish)->m_name = TObjFish__class_name;
     ((TObjFish *)fish)->m_a0 = 0;
     VecCopy((Vec *)(fish + 0x38), (const Vec *)(arg2 + 0xC));
     copy_xyz(fish + 0x5C, arg2 + 0x18);
