@@ -5,6 +5,7 @@
 #include "pso/network/TcpReceiveQueue.h"
 #include "pso/network/NetworkReceiveCallback.h"
 #include "pso/network/NetworkTimer.h"
+#include "pso/network/TcpSendQueue.h"
 #include "types.h"
 #include "pso/misc/TLobby.h"
 
@@ -175,7 +176,6 @@ void NetMemcpy(void *_w0, void *_w1, int _w2);
 s32 TLobby__sub_80421938(O_80421938 *o, void *src, void *dst, void *cb, s32 flags);
 s32 TLobby__sub_80421F10(O_80421F10 *o, void *src, void *dst, s16 port, void *cb, s32 socket_index);
 extern S_804220A0 *tcp_protocol_state[];
-s32 complete_request_callback__6TLobbyFv(s32 idx_, void (*cb)(s16, s16, s32), s16 arg2, s32 *arg3);
 void OSReport(const char *, ...);
 s16 reset_socket_table__6TLobbyFv();
 s16 TLobby__sub_80409AD8();
@@ -226,7 +226,6 @@ extern u32 lbl_805D7B58;
 extern s32 dhcp_last_tick_ms;
 extern s32 dhcp_server_id;
 extern s32 lbl_805D7B28;
-s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2);
 s32 TLobby::cleanup_subsystems() {
     TLobby__sub_80419A7C();
     TLobby__sub_80409AA8();
@@ -599,12 +598,12 @@ void TLobby__sub_80421FB8(void *cb, void *hdr_, void *o_) {
     }
 }
 
-s32 complete_request_callback__6TLobbyFv(s32 idx_, void (*cb)(s16, s16, s32), s16 arg2, s32 *arg3) {
-    s16 idx = idx_;
+s32 complete_request_callback__6TLobbyFv(s16 handle, TcpSendCallback cb, s16 arg2, const TcpSendRequest *request) {
+    s32 idx = handle;
     S_804220A0 *s = tcp_protocol_state[0];
     s += idx;
     if (cb != NULL && !(s->flags & 8)) {
-        cb(arg2, idx, *arg3);
+        cb(arg2, idx, request->buffer.value);
     } else if (!(s->flags2 & 4)) {
         s->f2AE = arg2;
         s->flags2 |= 4;
@@ -818,7 +817,7 @@ s16 tcp_send__FsPFss_vcP10send_buffs(s32 nh, void (*notify)(s16, s16), char bufn
 }
 
 extern "C" {
-s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, void (*cb)(s16, s16), s16 arg2) {
+s32 set_thread_state_and_resume__6TLobbyFv(s32 idx, TcpSendCompletion cb, s16 arg2) {
   T_8042276C *s = (T_8042276C *) tcp_protocol_state[0];
   s16 new_var;
   s += (s16) idx;
