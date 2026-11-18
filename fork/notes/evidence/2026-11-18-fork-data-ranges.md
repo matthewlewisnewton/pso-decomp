@@ -4,9 +4,9 @@ Fork main `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5e
 
 ## Current integration status
 
-At integration commit `c83050f684`, **652 inventory bytes are now linked from source**. Another four bytes at 0x805D8A2C are verified original linker padding. **328 bytes remain** across 12 dispatch-table intervals. The other 163 bytes were outside the checker's original 984-byte deficit. The ledger records the original and current missing-byte counts and the commit that closed each row.
+At integration commit `3719b26d9a`, **764 inventory bytes are now linked from source**. Another four bytes at 0x805D8A2C are verified original linker padding. **216 bytes remain** across eight dispatch-table intervals. The other 163 bytes were outside the checker's original 984-byte deficit. The ledger records the original and current missing-byte counts and the commit that closed each row.
 
-Of the 652 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 476 bytes come from the fork integration work. The first patch is independent of PR 320.
+Of the 764 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 588 bytes come from the fork integration work. The first patch is independent of PR 320.
 
 | Integration commit | Inventory gap closed (includes identified padding) | Additional matched bytes outside the inventory | Missing inventory bytes after commit |
 |---|---:|---:|---:|
@@ -19,10 +19,12 @@ Of the 652 bytes now linked, 176 come from six recoveries already proposed in up
 | `e6e6079ea6` — Gifoie orbit-task dispatch table | 24 | 0 | 528 |
 | Selected PR 320 window commits, validated at `4dd0e29fe5` | 176 | 32 | 352 |
 | `c83050f684` — area-window dispatch table | 24 | 0 | 328 |
+| `d9898049b2` — equipment-kind, equipment-list and item-list dispatch tables | 84 | 0 | 244 |
+| `3719b26d9a` — status-list window dispatch table | 28 | 0 | 216 |
 
 This comparison covers fork main through `23aa26cec0`. The newer Gyaranzo change extends the fork's constant pool to 0x805DA258–0x805DA2A0. Upstream already links that entire range from `pso/enemy/gyaranzo/TObjEneGyaranzo.cpp`. The other two changes since the inventory update the fork's documentation.
 
-The integration build matches the original DOL. All 27,572 functions are exact and all 2,539 source-linked units pass. Compared with pinned upstream master, the integration branch gains 736 matched and source-linked data bytes, including 84 outside the original inventory. The checker identifies eight four-byte alignment gaps that explain the 32-byte decrease in total reported data coverage. The area-window patch also passed the full check against its immediate prerequisite.
+The integration build matches the original DOL. All 27,572 functions are exact and all 2,539 source-linked units pass. Compared with pinned upstream master, the integration branch gains 848 matched and source-linked data bytes, including 84 outside the original inventory. The checker identifies twelve four-byte alignment gaps that explain the 48-byte decrease in total reported data coverage. The status-list patch also passed the full check against its parent. All 266 tooling tests passed.
 
 ## Starting inventory
 
