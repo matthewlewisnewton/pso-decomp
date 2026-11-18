@@ -113,3 +113,8 @@ python3 tools/probe_socket_queue_port.py --dol orig/GPOE8P/files/PsoV3.dol \
 The differential runner exercises the queued-request and FIFO modes. It compares
 return values, packets, connection records, request rings, data buffers and
 completion events across architectures.
+
+With GCC 13.3 on x86-64 and AArch64 Linux under QEMU 8.2.2, each binary
+agreed with the retail DOL in 2,400 gather and 1,600 ACK cases, including
+1,717 completion events. The GameCube socket object from this port branch
+was byte-identical to bounded native checkpoint `7ae77309ec`.
