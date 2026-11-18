@@ -1,12 +1,12 @@
 # Fork data coverage at the November 18 sync point
 
-Fork main `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. First patch `ef2ca77a865197057945e9bf39e30a15a7a83ac4` on `great-merge/fork-data-ranges`.
+Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. First patch `ef2ca77a865197057945e9bf39e30a15a7a83ac4` on `great-merge/fork-data-ranges`.
 
 ## Current integration status
 
-At integration commit `8804f7af44`, **956 inventory bytes are now linked from source**. Another four bytes at 0x805D8A2C are verified original linker padding. **24 bytes remain** in the soft keyboard dispatch table at 0x804D0004–0x804D001C. The other 163 bytes were outside the checker's original 984-byte deficit. The ledger records the original and current missing-byte counts and the commit that closed each row.
+**All 1,147 bytes are accounted for** at `66eec9e27e`. The integration build links 980 previously missing inventory bytes from source. Four bytes at 0x805D8A2C are verified original linker padding. The other 163 bytes were already outside the checker's original 984-byte deficit. The ledger records the original and current missing-byte counts and the commit that closed each row.
 
-Of the 956 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 780 bytes come from the fork integration work. The first patch is independent of PR 320.
+Of the 980 bytes now linked, 176 come from six recoveries already proposed in upstream PR 320. The integration branch uses those commits locally with their original authorship. PR 320 is open at `f72cca569d` and these changes are pending upstream. The other 804 bytes come from the fork integration work. The first patch is independent of PR 320.
 
 | Integration commit | Inventory gap closed (includes identified padding) | Additional matched bytes outside the inventory | Missing inventory bytes after commit |
 |---|---:|---:|---:|
@@ -26,10 +26,15 @@ Of the 956 bytes now linked, 176 come from six recoveries already proposed in up
 | `e4d3db27d0` — speech-balloon dispatch table | 24 | 0 | 88 |
 | `af37412365` — item-help dispatch table | 24 | 0 | 64 |
 | `8804f7af44` — status rank prefixes and display dispatch table | 40 | 0 | 24 |
+| `66eec9e27e` — soft keyboard dispatch table | 24 | 0 | 0 |
 
 This comparison covers fork main through `23aa26cec0`. The newer Gyaranzo change extends the fork's constant pool to 0x805DA258–0x805DA2A0. Upstream already links that entire range from `pso/enemy/gyaranzo/TObjEneGyaranzo.cpp`. The other two changes since the inventory update the fork's documentation.
 
-The integration build matches the original DOL. All 27,572 functions are exact and all 2,539 source-linked units pass. Compared with pinned upstream master, the integration branch gains 1,040 matched and source-linked data bytes, including 84 outside the original inventory. The 60-byte decrease in total reported data coverage comes from alignment gaps. Each of the five latest recovery commits passed the full check against its parent. All 266 tooling tests passed.
+The integration build matches the original DOL. All 27,572 functions are exact and all 2,539 source-linked units pass. Compared with pinned upstream master, the integration branch gains 1,064 matched and source-linked data bytes, including 84 outside the original inventory. The 64-byte decrease in total reported data coverage comes from alignment gaps. Each of the six latest recovery commits passed the full check against its parent. All 266 tooling tests passed.
+
+The final address comparison against fork main `23aa26cec0` finds zero missing exact or source-linked functions and zero missing exact or source-linked data ranges. The aggregate comparison still flags a 2,025-byte difference in total reported coverage. All 2,176 bytes leaving coverage satisfy the per-address original alignment-padding check. The other direction adds 151 zero bytes, including 147 meeting that same check and four bytes of .bss at 0x8050104C. The two directions reconcile exactly. These are differences in section coverage, separate from the 1,147-byte inventory.
+
+The first patch still applies to upstream master as a single commit. Applying its exported patch to the upstream tree reproduces the reviewed tree exactly. The integration branch also contains local review candidates in game code, build configuration, portability support and developer tools. Its first patch is the review unit for publication. Fork-specific notes and the range ledger live under `fork/`.
 
 ## Starting inventory
 
@@ -61,7 +66,7 @@ The ending-scene owner defines the two globals at 0x805D4F10 and 0x805D4F14. Ind
 | Matched data bytes | 1,743,987 | 1,743,995 |
 | Linked data bytes | 1,744,207 | 1,744,215 |
 
-Against the pinned fork build, the upstream address comparator reports 984 bytes missing from exact and linked data at baseline and 976 after the patch (47 to 46 normalized ranges). Each set describes the same bytes under two measures. Both comparisons preserve every fork exact and linked function. The tool also flags the existing difference of 1,961 total data bytes. Its address details report 2,156 bytes of lost alignment coverage and 195 bytes gained. These are unchanged by this patch. The checker applies its own padding rule and normalizes adjacent intervals, while the 1,147-byte inventory uses declared splits. The combined fork-parity gate is still open.
+Against the pinned fork build, the upstream address comparator reports 984 bytes missing from exact and linked data at baseline and 976 after the patch (47 to 46 normalized ranges). Each set describes the same bytes under two measures. Both comparisons preserve every fork exact and linked function. The tool also flags the existing difference of 1,961 total data bytes. Its address details report 2,156 bytes of lost alignment coverage and 195 bytes gained. These are unchanged by this patch. The checker applies its own padding rule and normalizes adjacent intervals, while the 1,147-byte inventory uses declared splits. At that first-patch checkpoint, the combined fork-parity gate was still open.
 
 The intended end state is shared source, configuration, and tooling with upstream, with fork-only LLM documentation. Keep this inventory and review evidence out of the upstream patch. Publication requires separate confirmation.
 
