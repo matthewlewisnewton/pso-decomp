@@ -977,7 +977,7 @@ force_active:
   - TLobby__sub_80403168
   - TLobby__sub_80403308
   - TLobby__sub_80403634
-  - TLobby__sub_80403DA8
+  - configure_and_open_network_transport
   - TLobby__sub_8041A3CC
   - TLobby__sub_8041A498
   - TLobby__sub_8041A5B4

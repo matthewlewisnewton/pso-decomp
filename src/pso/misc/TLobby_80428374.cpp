@@ -101,9 +101,9 @@ extern s16 lbl_805D7A8A;
 void TLobby__sub_80428DC8(s16 type, s16 index, u8 *src, s16 *nstr, s16 *nint);
 s16 TLobby__sub_80428EC0(u8 *src, u8 *dst, u8 **next);
 s16 TLobby__sub_804293B0(u8 *buf, s16 len);
-s16 TLobby__sub_804036FC(u16 *avail);
-s16 TLobby__sub_80403730(u8 *dst, u16 n);
-s16 TLobby__sub_804037B0(void *src, u16 len);
+s16 network_input_available(u16 *avail);
+s16 recv_network_bytes(u8 *dst, u16 n);
+s16 send_network_bytes(void *src, u16 len);
 struct ModemFieldLayout {
     s32 count;
     s32 kind[4];
@@ -203,7 +203,7 @@ s32 init_modem_session_config(void) {
 static inline void modem_flush_input(void) {
     u16 avail;
     u8 discard[2];
-    while (TLobby__sub_804036FC(&avail) == 0 && avail != 0 && TLobby__sub_80403730(discard, 1) == 0) {
+    while (network_input_available(&avail) == 0 && avail != 0 && recv_network_bytes(discard, 1) == 0) {
     }
 }
 
@@ -442,9 +442,9 @@ s16 TLobby__sub_80428A38(void) {
         }
     }
     lobby_net_session_state.out[out] = 0;
-    while (TLobby__sub_804036FC(&avail) == 0 && avail != 0 && TLobby__sub_80403730(discard, 1) == 0) {
+    while (network_input_available(&avail) == 0 && avail != 0 && recv_network_bytes(discard, 1) == 0) {
     }
-    if (TLobby__sub_804037B0(lobby_net_session_state.out, NetStringLength((char *)lobby_net_session_state.out)) != 0) {
+    if (send_network_bytes(lobby_net_session_state.out, NetStringLength((char *)lobby_net_session_state.out)) != 0) {
         return 4;
     }
     return 0;
@@ -496,9 +496,9 @@ s16 TLobby__sub_80428BB0(ModemRequest *req) {
         lobby_net_session_state.cmd[len++] = cfg->terminator;
     }
     lobby_net_session_state.cmd[len] = 0;
-    while (TLobby__sub_804036FC(&avail) == 0 && avail != 0 && TLobby__sub_80403730(discard, 1) == 0) {
+    while (network_input_available(&avail) == 0 && avail != 0 && recv_network_bytes(discard, 1) == 0) {
     }
-    if (TLobby__sub_804037B0(lobby_net_session_state.cmd, NetStringLength((char *)lobby_net_session_state.cmd)) != 0) {
+    if (send_network_bytes(lobby_net_session_state.cmd, NetStringLength((char *)lobby_net_session_state.cmd)) != 0) {
         return 4;
     }
     return TLobby__sub_804290D4(req->timeout);
@@ -706,12 +706,12 @@ s16 TLobby__sub_804293B0(u8 *buf, s16 len) {
 
     remaining = len;
     while (remaining > 0) {
-        TLobby__sub_804036FC(&avail);
+        network_input_available(&avail);
         if ((n = avail) != 0U) {
             if (remaining < n) {
                 n = remaining;
             }
-            if (TLobby__sub_80403730(buf, n) == 0) {
+            if (recv_network_bytes(buf, n) == 0) {
                 buf += n;
                 remaining -= n;
                 continue;

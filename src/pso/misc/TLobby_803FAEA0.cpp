@@ -814,7 +814,7 @@ extern "C" {
 
 void TLobby__sub_803F8238(void);
 void TLobby__sub_804283C8(u32, void *);
-s32 TLobby__sub_804037F0(void);
+s32 close_all_connections(void);
 
 struct Sess_803FB6A0 { u8 pad[0x22]; s16 h22; u8 pad2[0x3C]; u32 w60; u8 pad3[0x6C]; };
 struct St_803FB6A0 { u8 busy; u8 pad[3]; u8 state; u8 rest[0x143]; };
@@ -835,7 +835,7 @@ s32 TLobby__sub_803FB6A0(void) {
     }
     lbl_805D7A86 = 0;
     lbl_805D7A8A = 7;
-    TLobby__sub_804037F0();
+    close_all_connections();
     if (sess->h22 != 0 && sess->w60 != 0 && NetStringLength((const char*)sess->w60) != 0) {
         TLobby__sub_804283C8(sess->w60, sess);
     }
@@ -862,14 +862,14 @@ typedef struct LobbyPkt_803FB7A4 {
 } LobbyPkt_803FB7A4;
 #define LOBBY_NOTIFY() do { if (g->cb != NULL) { TUdpSocket::unlock_mutex(lbl_805C18A0.value); g->cb(lbl_805D7A82, 0); TLobby::lock_mutex(lbl_805C18A0.value); } } while (0)
 #define LOBBY_ABORT(code, st) do { lbl_805D7A82 = (code); lbl_805D7A8A = (st); LOBBY_NOTIFY(); return 0; } while (0)
-s16 TLobby__sub_80403D28(s32, s16, s16, s16, s16, s16, char *, s16);
+s16 ppp_begin_connect(s32, s16, s16, s16, s16, s16, char *, s16);
 s32 TLobby__sub_803F8090(void);
-s16 TLobby__sub_80403C60(u8 *);
-s16 TLobby__sub_80403BA8(u8 *, u8 *, s32);
-s16 TLobby__sub_80403B04(u8 *, u8 *, s32);
-s32 TLobby__sub_804038F4(s32, s32, s32);
-s32 TLobby__sub_804039C8(s16, s32, s32, s32, s32, s32, s32);
-s16 TLobby__sub_80403864(void);
+s16 lcp_connect(u8 *);
+s16 pap_connect(u8 *, u8 *, s32);
+s16 chap_connect(u8 *, u8 *, s32);
+s32 ipv6cp_set_interface_identifiers(s32, s32, s32);
+s32 ipcp_configure_all_options(s16, s32, s32, s32, s32, s32, s32);
+s16 negotiate_ipcp_and_ipv6cp(void);
 s16 wait_for_connection__6TLobbyFPv(Conn_804004DC *);
 s32 TLobby__sub_803FB7A4(void) {
     extern s32 lbl_805D7A94;
@@ -893,7 +893,7 @@ s32 TLobby__sub_803FB7A4(void) {
     lbl_805D7A8A = 2;
     TLobby::get_time_ms(&lbl_805D7A94);
     lbl_805D7A84 = 1;
-    rc = TLobby__sub_80403D28(0, 0, g->h80, g->h7E, g->h7C, 1, g->modem.s48, g->flags & 4);
+    rc = ppp_begin_connect(0, 0, g->h80, g->h7E, g->h7C, 1, g->modem.s48, g->flags & 4);
     if (rc != 0 || lbl_805D7A86 != 0) {
         if (lbl_805D7A86 != 0) {
             lbl_805D7A82 = 0xd;
@@ -1003,14 +1003,14 @@ L242:
     pkt.d = g->start_tick;
     pkt.g = (s32)g->user;
     pkt.h = (s32)g->password;
-    if (TLobby__sub_80403C60((u8 *)&pkt) != 0) {
+    if (lcp_connect((u8 *)&pkt) != 0) {
         LOBBY_ABORT(5, 8);
     }
     h2 = g->h2;
     if (h2 == 6 || h2 == 0) {
-        TLobby__sub_804038F4(0, (s32)g->bufC0, (s32)g->bufC8);
+        ipv6cp_set_interface_identifiers(0, (s32)g->bufC0, (s32)g->bufC8);
     }
-    TLobby__sub_804039C8(mode, g->wA8, g->wAC, g->wB0, g->wB4, g->wB8, g->wBC);
+    ipcp_configure_all_options(mode, g->wA8, g->wAC, g->wB0, g->wB4, g->wB8, g->wBC);
     lbl_805D7AA0 = 0;
     ok = 0;
     switch (g->h98 & 0x7f) {
@@ -1018,7 +1018,7 @@ L242:
         ok = 1;
         break;
     case 0:
-        rc = TLobby__sub_80403BA8((u8 *)g->user, (u8 *)g->password, 0x80);
+        rc = pap_connect((u8 *)g->user, (u8 *)g->password, 0x80);
         if (rc != 0) {
             LOBBY_NOTIFY();
             return 0;
@@ -1026,7 +1026,7 @@ L242:
         ok = 1;
         break;
     case 2:
-        rc = TLobby__sub_80403B04((u8 *)g->user, (u8 *)g->password, 0x82);
+        rc = chap_connect((u8 *)g->user, (u8 *)g->password, 0x82);
         if (rc != 0) {
             LOBBY_NOTIFY();
             return 0;
@@ -1041,7 +1041,7 @@ L242:
         for (r29 = 0; r29 < 2; r29++) {
             u16 st = lbl_805D7A78;
             if (st == 0x80) {
-                rc = TLobby__sub_80403BA8((u8 *)g->user, (u8 *)g->password, st);
+                rc = pap_connect((u8 *)g->user, (u8 *)g->password, st);
                 if (rc == 0) {
                     ok = 1;
                     break;
@@ -1051,7 +1051,7 @@ L242:
                     return 0;
                 }
             } else if (st == 0x82) {
-                rc = TLobby__sub_80403B04((u8 *)g->user, (u8 *)g->password, st);
+                rc = chap_connect((u8 *)g->user, (u8 *)g->password, st);
                 if (rc == 0) {
                     ok = 1;
                     break;
@@ -1072,7 +1072,7 @@ L242:
     if (ok == 0) {
         LOBBY_ABORT(6, 8);
     }
-    if (TLobby__sub_80403864() != 0) {
+    if (negotiate_ipcp_and_ipv6cp() != 0) {
         LOBBY_ABORT(7, 8);
     }
     lbl_805D7A8A = 4;
