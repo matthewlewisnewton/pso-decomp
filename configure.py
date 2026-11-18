@@ -441,6 +441,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/unk/data_805D8444.cpp": {"cw_align": ".sdata2=4"},
     # The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary.
     "pso/boss/DarkFalzEffectConstants.cpp": {"cw_align": ".sdata2=4"},
+    # The camera constant pool starts at 0x805D8F7C, a four-byte boundary.
+    "pso/misc/CameraControllerConstants.cpp": {"cw_align": ".sdata2=4"},
     # Keep the eight-byte effect-ID pair in .data beside the state table.
     "pso/boss/TBoss4Type1.cpp": {"cflags": _switch(cflags_pso, "-sdata 4")},
     # Reverse definitions reproduce both native rope vtables and function order.

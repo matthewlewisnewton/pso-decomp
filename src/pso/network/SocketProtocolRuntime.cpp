@@ -5,10 +5,6 @@
 #include "types.h"
 #include "pso/misc/TLobby.h"
 
-struct P_8041FE44 { u32 a; u32 b; };
-
-struct O_8041FE44 { u8 pad0[0x228]; u32 now; u8 pad22C[0x2F8 - 0x22C]; P_8041FE44 items[5]; };
-
 struct S_80420BD0 {
     u8 pad0[0x20]; s32 f20; u8 pad24[8]; u8 data2C[8]; u32 f34;
     u8 pad38[0x1FC - 0x38]; s32 f1FC; u8 pad200[4];
@@ -18,64 +14,6 @@ struct S_80420BD0 {
 struct Item_80420FC8 { s16 len; u8 pad2[2]; u8 data[8]; };
 
 struct Pkt_80420FC8 { u8 pad0[4]; s32 count; s32 len; Item_80420FC8 items[1]; };
-
-struct P_8041F66C { s32 a; s32 b; };
-
-struct O_8041F66C {
-    u8 pad0[0xD8]; s32 fD8; u8 padDC[4]; u32 fE0; u8 padE4[0xF4 - 0xE4];
-    s32 total; s16 n; s16 fFA; P_8041F66C items[32]; u8 pad1FC[0x228 - 0x1FC]; s32 now;
-    u8 pad22C[0x534 - 0x22C]; u32 f534;
-};
-
-struct Obj_8041ED8C {
-    u8 pad0[6];
-    s16 f6;
-    u8 pad8[3];
-    u8 fB;
-    u8 padC[0xC8 - 0xC];
-    u8 fC8[8];
-    u8 padD0[0xD8 - 0xD0];
-    u32 fD8;
-    u32 fDC;
-    u8 padE0[4];
-    u8 fE4[4];
-    u8 fE8;
-    u8 padE9[3];
-    u32 fEC;
-    s32 fF0;
-    u8 padF4[0x200 - 0xF4];
-    s32 f200;
-    u8 f204;
-    u8 pad205[0x2D0 - 0x205];
-    s32 f2D0;
-    u8 pad2D4[0x534 - 0x2D4];
-    u32 f534;
-    u8 pad538[4];
-    u32 f53C;
-    u8 pad540[4];
-};
-
-struct G_8041ED8C { Obj_8041ED8C *p; s16 n; u8 pad[0xA2]; };
-
-struct Buf_8041ED8C { u8 b[8]; };
-
-struct Obj_8041F11C {
-    u8 pad0[6];
-    s16 f6;
-    u8 pad8[3];
-    u8 fB;
-    u8 padC[0xD8 - 0xC];
-    u32 fD8;
-    u8 padDC[0xE8 - 0xDC];
-    u8 fE8;
-    u8 padE9[0x200 - 0xE9];
-    s32 f200;
-    u8 pad204[0x2D0 - 0x204];
-    s32 f2D0;
-    u8 pad2D4[0x544 - 0x2D4];
-};
-
-struct G_8041F11C { Obj_8041F11C *p; s16 n; u8 pad[0xA2]; };
 
 struct Hdr_80420DE4 { u16 src; u16 dst; u16 len; u16 sum; };
 
@@ -93,59 +31,55 @@ s16 select_source_address__6TLobbyFPvPv(void *, void *);
 s16 TLobby__sub_8040DA54(void *, void *);
 s16 is_addr_unspecified__6TLobbyFPv(void *);
 s16 udp_sendto__6TLobbyFsPvPvPvUsi(s16 id, Pkt_80420FC8 *pkt, NetworkAddress *src, NetworkAddress *dst, u16 port, s32 arg5);
-void TLobby__sub_8041F66C(O_8041F66C *o);
-void set_slot_state_and_resume__6TLobbyFv(s16, s32, s16);
+void TLobby__sub_8041F66C(TcpTcb *o);
+void expire_timeout_entries__6TLobbyFv(TcpTcb *o);
 void TLobby__sub_80406EB8(void *, u32);
 void TLobby__sub_80406FD8(void *, void *, u32);
-void TLobby__sub_8041A9AC(Obj_8041ED8C *);
-extern G_8041ED8C tcp_protocol_state;
-s32 TLobby__sub_8041ED8C(Obj_8041ED8C *self, void *data, u32 len, s32 arg3);
-s32 TLobby__sub_8041F11C(Obj_8041F11C *self);
+s16 TLobby__sub_8041A9AC(void *);
+extern TcpState tcp_protocol_state;
 s16 compare_sockaddr__6TLobbyFPUc(void *, void *);
 s16 is_multicast_address__6TLobbyFs(void *, s32);
 s16 TLobby__sub_80421F10(void *, void *, void *, u16, s32, s16);
 s32 udp_input__6TLobbyFPvPvPvi(O_80420DE4 *arg0, NetworkAddress *src, NetworkAddress *dst, s32 arg3);
 UdpRuntimeState udp_runtime_state;
 
-struct O_8041FE44;
-
-s32 TLobby__sub_8041ED8C(Obj_8041ED8C *self, void *data, u32 len, s32 arg3) {
-    s16 idx = self - tcp_protocol_state.p;
+s32 TLobby__sub_8041ED8C(TcpTcb *self, NetBufferRef *data, u32 len, TcpReceiveCallback callback) {
+    s16 idx = self - tcp_protocol_state.tcbs;
     s32 m;
     u32 k;
-    Buf_8041ED8C src;
-    Buf_8041ED8C dst;
-    if (self->fE8 != 0) {
+    NetBufferRef src;
+    NetBufferRef dst;
+    if (self->rcv_user.kind != 0) {
         return -4;
     }
-    if ((self->f204 >> 6) & 1) {
+    if (self->f204_b6) {
         return -4;
     }
-    self->f200 = arg3;
-    NetMemcpy(self->fE4, data, 8);
+    self->recv_done = callback;
+    NetMemcpy(&self->rcv_user, data, sizeof(NetBufferRef));
     self->fEC = len;
     m = 0;
     self->fF0 = m;
     if (self->fD8 == 0) {
-        switch (self->f6) {
+        switch (self->t_state) {
         case 0:
         case 5:
         case 7:
         case 8:
         case 10:
-            self->fE8 = m;
-            set_slot_state_and_resume__6TLobbyFv(idx, self->f200, -7);
-            while (self->fE8 != 0) {
-                self->fE8 = m;
-                set_slot_state_and_resume__6TLobbyFv(idx, self->f200, -7);
+            self->rcv_user.kind = m;
+            set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, -7);
+            while (self->rcv_user.kind != 0) {
+                self->rcv_user.kind = m;
+                set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, -7);
             }
             return 0;
         case -1:
-            self->fE8 = m;
-            set_slot_state_and_resume__6TLobbyFv(idx, self->f200, -11);
-            while (self->fE8 != 0) {
-                self->fE8 = m;
-                set_slot_state_and_resume__6TLobbyFv(idx, self->f200, -11);
+            self->rcv_user.kind = m;
+            set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, -11);
+            while (self->rcv_user.kind != 0) {
+                self->rcv_user.kind = m;
+                set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, -11);
             }
             return 0;
         default:
@@ -155,9 +89,9 @@ s32 TLobby__sub_8041ED8C(Obj_8041ED8C *self, void *data, u32 len, s32 arg3) {
     do {
         m = (s32)(self->fD8 > self->fEC ? self->fEC : self->fD8);
         self->fF0 = m;
-        NetMemcpy(&src, self->fC8, 8);
+        NetMemcpy(&src, &self->rcv_buf, sizeof(src));
         TLobby__sub_80406EB8(&src, self->fDC);
-        NetMemcpy(&dst, self->fE4, 8);
+        NetMemcpy(&dst, &self->rcv_user, sizeof(dst));
         if (self->fDC + m > self->f534) {
             k = self->f534 - self->fDC;
             TLobby__sub_80406FD8(&dst, &src, k);
@@ -165,7 +99,7 @@ s32 TLobby__sub_8041ED8C(Obj_8041ED8C *self, void *data, u32 len, s32 arg3) {
             m -= k;
             self->fD8 -= k;
             self->fDC = 0;
-            NetMemcpy(&src, self->fC8, 8);
+            NetMemcpy(&src, &self->rcv_buf, sizeof(src));
         }
         TLobby__sub_80406FD8(&dst, &src, m);
         self->fD8 -= m;
@@ -173,92 +107,230 @@ s32 TLobby__sub_8041ED8C(Obj_8041ED8C *self, void *data, u32 len, s32 arg3) {
         if (self->fDC >= self->f534) {
             self->fDC -= self->f534;
         }
-        self->fE8 = 0;
-        set_slot_state_and_resume__6TLobbyFv(idx, self->f200, self->fF0);
-    } while (self->fE8 != 0 && self->fD8 != 0);
+        self->rcv_user.kind = 0;
+        set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, self->fF0);
+    } while (self->rcv_user.kind != 0 && self->fD8 != 0);
     if (self->f53C == 0) {
-        self->fB &= ~1;
+        self->flags &= ~1;
     }
-    if (self->f6 != -1 && self->f6 != 0) {
+    if (self->t_state != -1 && self->t_state != 0) {
         TLobby__sub_8041A9AC(self);
     }
-    if (self->fE8 != 0) {
-        switch (self->f6) {
+    if (self->rcv_user.kind != 0) {
+        switch (self->t_state) {
         case 0:
         case 5:
         case 7:
         case 8:
         case 10:
-            set_slot_state_and_resume__6TLobbyFv(idx, self->f200, -7);
+            set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, -7);
             break;
         case -1:
-            set_slot_state_and_resume__6TLobbyFv(idx, self->f200, -11);
+            set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, -11);
             break;
         default:
             return 0;
         }
     }
-    if (self->fD8 == 0 && (self->fB & 8) && !(self->fB & 0x20)) {
-        NetDispatchSocketEvent((s16)(self - tcp_protocol_state.p), self->f2D0, 3, 3);
-        self->fB |= 0x20;
+    if (self->fD8 == 0 && (self->flags & 8) && !(self->flags & 0x20)) {
+        NetDispatchSocketEvent((s16)(self - tcp_protocol_state.tcbs), self->event_ctx, 3, 3);
+        self->flags |= 0x20;
     }
     return 0;
 }
 
-s32 TLobby__sub_8041F11C(Obj_8041F11C *self) {
-    s16 idx = self - (*(G_8041F11C *)&tcp_protocol_state).p;
-    while (self->fE8 != 0) {
-        self->fE8 = 0;
-        set_slot_state_and_resume__6TLobbyFv(idx, self->f200, -7);
+s32 TLobby__sub_8041F11C(TcpTcb *self) {
+    s16 idx = self - tcp_protocol_state.tcbs;
+    while (self->rcv_user.kind != 0) {
+        self->rcv_user.kind = 0;
+        set_slot_state_and_resume__6TLobbyFv(idx, self->recv_done, -7);
     }
-    if (self->fD8 == 0 && !(self->fB & 0x20)) {
-        NetDispatchSocketEvent((s16)(self - (*(G_8041F11C *)&tcp_protocol_state).p), self->f2D0, 3, 3);
-        self->fB |= 0x20;
+    if (self->fD8 == 0 && !(self->flags & 0x20)) {
+        NetDispatchSocketEvent((s16)(self - tcp_protocol_state.tcbs), self->event_ctx, 3, 3);
+        self->flags |= 0x20;
     }
     return 0;
 }
 
-void TLobby__sub_8041F66C(O_8041F66C *o) {
+s32 TLobby__sub_8041F204(NetPacket *packet, u16 skip, TcpTcb *control) {
+    s16 handle;
+    s16 index;
+    unsigned int amount;
+    unsigned int offset;
+    NetBufferRef destination;
+    NetBufferRef source;
+
+    handle = control - tcp_protocol_state.tcbs;
+    if (!control->f204_b6) {
+        offset = 0;
+        index = 1;
+        while (index < (u32)packet->fragment_count) {
+            if ((u16)packet->fragments[index].length > skip) {
+                offset = skip;
+                break;
+            }
+            skip -= packet->fragments[index].length;
+            index++;
+        }
+        if (index == (u32)packet->fragment_count) {
+            return 0;
+        }
+        if (control->rcv_user.kind) {
+            NetMemcpy(&destination, &control->rcv_user, sizeof(NetBufferRef));
+            while (index < (u32)packet->fragment_count) {
+                NetMemcpy(&source, &packet->fragments[index].buffer, sizeof(NetBufferRef));
+                if (offset != 0) {
+                    TLobby__sub_80406EB8(&source, offset);
+                }
+                if (control->fEC - control->fF0 >= packet->fragments[index].length - offset) {
+                    amount = packet->fragments[index].length - offset;
+                    TLobby__sub_80406FD8(&destination, &source, amount);
+                    control->fF0 += amount;
+                    control->fDC += amount;
+                    if (control->fDC >= control->f534) {
+                        control->fDC -= control->f534;
+                    }
+                    control->fE0 += amount;
+                    if (control->fE0 >= control->f534) {
+                        control->fE0 -= control->f534;
+                    }
+                    TLobby__sub_80406EB8(&destination, amount);
+                    offset = 0;
+                    index++;
+                } else {
+                    amount = control->fEC - control->fF0;
+                    TLobby__sub_80406FD8(&destination, &source, amount);
+                    control->fF0 += amount;
+                    control->fDC += amount;
+                    if (control->fDC >= control->f534) {
+                        control->fDC -= control->f534;
+                    }
+                    control->fE0 += amount;
+                    if (control->fE0 >= control->f534) {
+                        control->fE0 -= control->f534;
+                    }
+                    offset += amount;
+                }
+                if (control->fEC == control->fF0) {
+                    control->rcv_user.kind = 0;
+                    set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, (s16)control->fF0);
+                    if (!control->rcv_user.kind) {
+                        goto store_received;
+                    }
+                    NetMemcpy(&destination, &control->rcv_user, sizeof(NetBufferRef));
+                    if (index < (u32)packet->fragment_count) {
+                        continue;
+                    }
+                    switch (control->t_state) {
+                    case 0:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                        control->rcv_user.kind = 0;
+                        set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, -7);
+                        break;
+                    }
+                    goto complete;
+                }
+            }
+            control->rcv_user.kind = 0;
+            set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, (s16)control->fF0);
+            goto check_pending_receive;
+closed_state_receive:
+            switch (control->t_state) {
+            case 0:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+                control->rcv_user.kind = 0;
+                set_slot_state_and_resume__6TLobbyFv(handle, control->recv_done, -7);
+                break;
+            }
+            goto complete;
+check_pending_receive:
+            if (control->rcv_user.kind != 0) {
+                goto closed_state_receive;
+            }
+            goto complete;
+        }
+store_received:
+        NetMemcpy(&destination, &control->rcv_buf, sizeof(NetBufferRef));
+        TLobby__sub_80406EB8(&destination, control->fE0);
+        while (index < (u32)packet->fragment_count) {
+            NetMemcpy(&source, &packet->fragments[index].buffer, sizeof(NetBufferRef));
+            if (offset != 0) {
+                TLobby__sub_80406EB8(&source, offset);
+            }
+            amount = packet->fragments[index].length - offset;
+            if (amount > control->f534 - control->fD8) {
+                amount = control->f534 - control->fD8;
+            }
+            control->fD8 += amount;
+            if (control->fE0 + amount >= control->f534) {
+                TLobby__sub_80406FD8(&destination, &source, control->f534 - control->fE0);
+                NetMemcpy(&destination, &control->rcv_buf, sizeof(NetBufferRef));
+                TLobby__sub_80406EB8(&source, control->f534 - control->fE0);
+                amount -= control->f534 - control->fE0;
+                control->fE0 = 0;
+            }
+            if (amount != 0) {
+                TLobby__sub_80406FD8(&destination, &source, amount);
+                control->fE0 += amount;
+                TLobby__sub_80406EB8(&destination, amount);
+            }
+            offset = 0;
+            index++;
+        }
+complete:
+        TLobby__sub_8041F66C(control);
+        return 0;
+    }
+    return -1;
+}
+
+void TLobby__sub_8041F66C(TcpTcb *o) {
     s16 i;
     s16 cnt;
     s16 j;
     s32 d;
     u8 unused[8];
-    if (o->n == -1) {
+    if (o->reasm_n == -1) {
         return;
     }
-    for (i = 0; i <= o->n; i++) {
-        if (o->now - o->items[i].b < 0) {
+    for (i = 0; i <= o->reasm_n; i++) {
+        if ((s32)(o->rcv_nxt - o->reasm[i].end) < 0) {
             break;
         }
     }
-    if (i <= o->n && o->now - o->items[i].a >= 0) {
-        d = o->items[i].b - o->now;
+    if (i <= o->reasm_n && (s32)(o->rcv_nxt - o->reasm[i].start) >= 0) {
+        d = o->reasm[i].end - o->rcv_nxt;
         o->fE0 += d;
         if (o->fE0 >= o->f534) {
             o->fE0 -= o->f534;
         }
         cnt = i + 1;
         o->fD8 += d;
-        o->now = o->items[i].b;
+        o->rcv_nxt = o->reasm[i].end;
     } else {
         cnt = i;
     }
-    ((TLobby *)o)->expire_timeout_entries();
+    expire_timeout_entries__6TLobbyFv(o);
     if (cnt <= 0) {
         return;
     }
-    o->n -= cnt;
+    o->reasm_n -= cnt;
     for (j = 0; j < cnt; j++) {
-        o->total -= o->items[j].b - o->items[j].a;
+        o->reasm_total -= o->reasm[j].end - o->reasm[j].start;
     }
-    for (j = 0; j <= o->n; j++) {
-        o->items[j] = o->items[j + cnt];
+    for (j = 0; j <= o->reasm_n; j++) {
+        o->reasm[j] = o->reasm[j + cnt];
     }
-    if (o->n == -1) {
-        o->fFA = -1;
+    if (o->reasm_n == -1) {
+        o->last_reasm = -1;
     } else {
-        o->fFA = 0;
+        o->last_reasm = 0;
     }
 }
 
@@ -425,21 +497,20 @@ void TLobby__sub_8041FDA0(TcpTcb *o, s16 idx, s32 a, s32 b) {
     o->reasm_total += b - a;
 }
 
-void TLobby::expire_timeout_entries() {
-    O_8041FE44 *o = (O_8041FE44 *)this;
+void expire_timeout_entries__6TLobbyFv(TcpTcb *o) {
     s16 i;
     s16 j;
     i = 0;
     while (i < 5) {
-        if (o->items[i].a == o->items[i].b) {
+        if (o->sack[i].start == o->sack[i].end) {
             return;
         }
-        if ((s32)(o->items[i].b - o->now) <= 0) {
+        if ((s32)(o->sack[i].end - o->rcv_nxt) <= 0) {
             for (j = i; j < 4; j++) {
-                o->items[j] = o->items[j + 1];
+                o->sack[j] = o->sack[j + 1];
             }
-            o->items[4].a = 0;
-            o->items[4].b = 0;
+            o->sack[4].start = 0;
+            o->sack[4].end = 0;
         } else {
             i++;
         }

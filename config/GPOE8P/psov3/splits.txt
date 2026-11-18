@@ -497,7 +497,7 @@ pso/boss/TBoss4DarkFalz_8004C93C.cpp:
 	.ctors      start:0x80433F34 end:0x80433F38
 	.rodata     start:0x804371E0 end:0x80437298
 	.data       start:0x80484F40 end:0x80485448
-	.sdata2     start:0x805D8938 end:0x805D8940
+	.sdata2     start:0x805D8938 end:0x805D8968
 
 pso/unk/text_8004D9A8.cpp:
 	.text       start:0x8004D9A8 end:0x8004E020
@@ -735,10 +735,14 @@ pso/misc/TCameraCtrl_8006782C.cpp:
 
 pso/misc/TCameraCtrl_80067C88.cpp:
 	.text       start:0x80067C88 end:0x80067CE8
+	.sdata2     start:0x805D8F60 end:0x805D8F68
 
 pso/misc/TCameraCtrl_80067CE8.cpp:
 	.text       start:0x80067CE8 end:0x80067F44
 	.sdata2     start:0x805D8F68 end:0x805D8F7C
+
+pso/misc/CameraControllerConstants.cpp:
+	.sdata2     start:0x805D8F7C end:0x805D8FA8 align:4
 
 pso/misc/TCameraCtrl_80067F44.cpp:
 	.text       start:0x80067F44 end:0x80067F8C
@@ -14209,7 +14213,16 @@ pso/object/TObjLight_803DF220.cpp:
 	.sdata2     start:0x805E0FD0 end:0x805E0FD8
 
 pso/player/TObjPlayer_803DF7A8.cpp:
-	.text       start:0x803DF7A8 end:0x803E1FC8
+	.text       start:0x803DF7A8 end:0x803E112C
+	.sdata2     start:0x805E0FD8 end:0x805E1000
+
+pso/player/TObjPlayer_803E112C.cpp:
+	.text       start:0x803E112C end:0x803E18C0
+	.rodata     start:0x8047E498 end:0x8047E56C
+	.sdata2     start:0x805E1000 end:0x805E1020
+
+pso/player/TObjPlayer_803E18C0.cpp:
+	.text       start:0x803E18C0 end:0x803E1FC8
 	.bss        start:0x8058DB90 end:0x8058DBB0
 
 pso/unk/text_803E1FC8.cpp:
@@ -14381,7 +14394,7 @@ pso/network/TcpProtocol.cpp:
 
 pso/network/SocketProtocolRuntime.cpp:
 	.text       start:0x8041ED8C end:0x80421620
-	.data       start:0x804FD890 end:0x804FD8F0
+	.data       start:0x804FD890 end:0x804FD948
 	.bss        start:0x805C1DF0 end:0x805C1E00
 
 pso/unk/text_80421620.cpp:

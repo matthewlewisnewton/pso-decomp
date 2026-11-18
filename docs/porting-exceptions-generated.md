@@ -8,12 +8,12 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | Category | Hits | Files |
 |---|---:|---:|
 | asm | 48 | 12 |
-| intrinsic | 91 | 57 |
+| intrinsic | 95 | 59 |
 | hardware | 69 | 13 |
-| pragma | 5884 | 890 |
-| configure.py per-unit override | 217 | 217 |
+| pragma | 5892 | 892 |
+| configure.py per-unit override | 218 | 218 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066, `fp_contract` 883, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `opt_loop_invariants` 41, `use_lmw_stmw` 29, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 60, `bool` 59, `pack` 46, `opt_loop_invariants` 43, `pool_data` 42, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -119,7 +119,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066,
 | `src/pso/misc/TWindowSubStatusDisp_8025A9B4.cpp:95` | `__cntlzw` |
 | `src/pso/misc/TWindowSubStatusDisp_80287570.cpp:209` | `__cntlzw` |
 | `src/pso/network/ModemRuntime.cpp:363` | `__cntlzw` |
-| `src/pso/network/TcpProtocol.cpp:846` | `__cntlzw` |
+| `src/pso/network/TcpProtocol.cpp:839` | `__cntlzw` |
 | `src/pso/object/TObjCMMainMenu_8028D9A8.cpp:108` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol.cpp:12` | `__cntlzw` |
 | `src/pso/object/TObjQuestCol2.cpp:11` | `__cntlzw` |
@@ -130,17 +130,21 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066,
 | `src/pso/player/TObjPlayer_8012AF98.cpp:12` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:5874` | `__cntlzw` |
 | `src/pso/player/TObjPlayer_801AF2F0.cpp:8738` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:95` | `__cntlzw` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:116` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:131` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:149` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:159` | `__fabs` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:164` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:176` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:376` | `__frsqrte` |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp:399` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:27` | `__cntlzw` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:44` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:54` | `__fabs` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:59` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:71` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp:118` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:38` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:136` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:137` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:138` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:162` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E112C.cpp:163` | `__fabs` |
+| `src/pso/player/TObjPlayer_803E18C0.cpp:101` | `__frsqrte` |
+| `src/pso/player/TObjPlayer_803E18C0.cpp:124` | `__frsqrte` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:94` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_actions.cpp:106` | `__cntlzw` |
 | `src/pso/protocol/subcommand_validation_movement.cpp:99` | `__cntlzw` |
@@ -236,7 +240,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066,
 | `src/pso/unk/text_803E2D70.cpp:1107` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = x;` |
 | `src/pso/unk/text_803E2D70.cpp:1108` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = y;` |
 | `src/pso/unk/text_803E2D70.cpp:1109` | `(*(volatile WGPipe_803E47E0 *)0xCC008000).f32 = z;` |
-| `src/pso/unk/text_80421620.cpp:1258` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
+| `src/pso/unk/text_80421620.cpp:1266` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 
 ## configure.py per-unit compiler overrides
 
@@ -249,6 +253,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066,
 | `pso/boss/TBoss2DeRolLe.cpp` | `-inline on` | GC/2.0 preserves the attack parameter copy; inline scalar helpers retain operand order. |
 | `pso/unk/data_805D8444.cpp` | `(multi-line entry; see configure.py)` | The De Rol Le constant pool starts at 0x805D8444, a four-byte boundary. |
 | `pso/boss/DarkFalzEffectConstants.cpp` | `(multi-line entry; see configure.py)` | The Dark Falz effect float pool starts at 0x805D8AB4, a four-byte boundary. |
+| `pso/misc/CameraControllerConstants.cpp` | `(multi-line entry; see configure.py)` | The camera constant pool starts at 0x805D8F7C, a four-byte boundary. |
 | `pso/boss/TBoss4Type1.cpp` | `-sdata 4` | Keep the eight-byte effect-ID pair in .data beside the state table. |
 | `pso/object/TObjEZRopeSimulation.cpp` | `-inline deferred` | Reverse definitions reproduce both native rope vtables and function order. |
 | `pso/ui/DrawLine.cpp` | `-inline off,deferred, -fp_contract on` | Reverse definitions retain native function and vtable order. |
@@ -1146,7 +1151,9 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1158, `inline_depth` 1066,
 | `src/pso/player/TObjPlayer_80357734.cpp` | fp_contract×3 |
 | `src/pso/player/TObjPlayer_803DA204.cpp` | optimize_for_size×3, scheduling×1, peephole×1 |
 | `src/pso/player/TObjPlayer_803DC834.cpp` | scheduling×2, peephole×2 |
-| `src/pso/player/TObjPlayer_803DF7A8.cpp` | scheduling×4, fp_contract×1, use_lmw_stmw×1 |
+| `src/pso/player/TObjPlayer_803DF7A8.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
+| `src/pso/player/TObjPlayer_803E112C.cpp` | fp_contract×1, use_lmw_stmw×1, dont_inline×1, inline_depth×1, opt_loop_invariants×1 |
+| `src/pso/player/TObjPlayer_803E18C0.cpp` | scheduling×4 |
 | `src/pso/player/TObjPlayer_803E21B8.cpp` | scheduling×6, dont_inline×2, inline_depth×2, peephole×1 |
 | `src/pso/player/TObjPlayer_803E5470.cpp` | use_lmw_stmw×1 |
 | `src/pso/player/TUnk_80490470.cpp` | fp_contract×1 |
