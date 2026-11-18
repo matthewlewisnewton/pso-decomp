@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -5,7 +6,6 @@
 #include "pso/camera/CameraPlayback.h"
 #include "pso/system/task/TObject.h"
 #include "pso/object/base/TObjMotion.h"
-#include "pso/object/ambient/TObjFish_800E2FFC.h"
 #include "pso/camera/TCameraCtrl_800687BC.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_80052374.h"
@@ -18,7 +18,6 @@
 #include "pso/boss/darkfalz/TBoss4Uro.h"
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/ui/hud/TNowLoading.h"
-#include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/unk/text_803D8F74.h"
@@ -101,10 +100,10 @@ void TObjDFDemo3::render() {
     post_translate_matrix((u8 *)&this->m_a0);
     rotate_matrix_y(0, this->m_ac);
     set_current_texture_list((GinjaTextureList *)this->m_98);
-    ((TObjFish *)(this->m_b8))->set_draw_callback_list();
+    ((ModelNodePositionCapture *)(this->m_b8))->install();
     set_chunk_render_flags(1);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
-    ((TObjFish *)this->m_b8)->clear_render_callback();
+    ((ModelNodePositionCapture *)this->m_b8)->clear();
     set_chunk_render_flags(2);
     draw_model_motion((void *)(*(s32 *)&this->m_94), (void *)(*(s32 *)&this->m_9c), *(f32 *)&this->_padB4);
     clear_chunk_render_flags();
@@ -166,7 +165,7 @@ S_EF94 *__dt__11TObjDFDemo3Fv(S_EF94 *o, s16 flag) {
     if (o != 0) {
         o->vt = __vt__11TObjDFDemo3;
         if (o->fb8 != 0) {
-            TObjFish::init_state_1(o->fb8);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)o->fb8);
             o->fb8 = 0;
         }
         for (i = 0; i < 1; i++) {
@@ -218,7 +217,7 @@ u8 *TObjDFDemo3__ct(u8 *base, s32 parent, s32 arg2, s32 arg3) {
         set_scripted_camera_pose(base + 0xA0, base + 0xA0, &c);
     }
     lbl_804856E0.cache_target_and_forward(0x1555);
-    *(s32 *)((s8 *)base + 0xB8) = TObjFish__sub_800E3124(lbl_804856C0, (s32)(base + 0xBC));
+    *(ModelNodePositionCapture **)((s8 *)base + 0xB8) = ModelNodePositionCapture::create((ModelNodePositionEntry *)lbl_804856C0, (Vec *)(base + 0xBC));
     *(s32 *)((s8 *)base + 0xB0) = 0;
     return base;
 }

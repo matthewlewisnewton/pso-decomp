@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -7,7 +8,6 @@
 #include "pso/system/PadRumble.h"
 #include "pso/system/task/TObject.h"
 #include "pso/object/trap/TOTrapAncient01_80226534.h"
-#include "pso/object/ambient/TObjFish_800E2FFC.h"
 #include "pso/boss/olgaflow/Boss6Type2Appearance.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/camera/TCameraCtrl_800687BC.h"
@@ -117,9 +117,9 @@ void TBoss6Demo20_TYPE2_APPEAR::draw_fading_model_4() {
         set_motion_packed_rotation();
         post_translate_matrix((void *)&boss6_type2_appear_origin);
         set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0xC0)));
-        ((TObjFish *)(this->m_7c))->set_draw_callback_list();
+        m_7c->install();
         draw_model_motion((void *)this->m_bc, (void *)this->m_c4, *(f32 *)((s8 *)this + 0xE0));
-        ((TObjFish *)this->m_7c)->clear_render_callback();
+        m_7c->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (var_f31 < 1.0f) {
@@ -282,7 +282,7 @@ O_8033D9E4 *__dt__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D9E4 *arg0, s16 arg1) {
         restore_player_cameras();
         refresh_players_equipment__14TBoss6PlotFalzFPv();
         if (arg0->f7c != 0) {
-            TObjFish::init_state_1(arg0->f7c);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)arg0->f7c);
             arg0->f7c = 0;
         }
         __dt__7TObjectFv(arg0, 0);
@@ -350,7 +350,7 @@ u8 *TBoss6Demo20_TYPE2_APPEAR__ct(TBoss6Demo20_TYPE2_APPEAR *boss6_demo20_type2_
     boss6_demo20_type2_appear->m_d4 = (s32)get_bml_model((BmlResource *)count, 0xC);
     *(s32 *)((s8 *)boss6_demo20_type2_appear + 0xD8) = (s32)get_bml_texlist((BmlResource *)count, 0xC);
     boss6_demo20_type2_appear->m_dc = get_bml_motion(count, 0x22);
-    boss6_demo20_type2_appear->m_7c = TObjFish__sub_800E3124((u8 *)boss6_type2_appear_model_node_descriptors, (s32)((u8 *)boss6_demo20_type2_appear + 0x1C));
+    boss6_demo20_type2_appear->m_7c = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type2_appear_model_node_descriptors, (Vec *)((u8 *)boss6_demo20_type2_appear + 0x1C));
     for (i = 0; i < 9; i++) {
         self->arr[i] = 0;
     }

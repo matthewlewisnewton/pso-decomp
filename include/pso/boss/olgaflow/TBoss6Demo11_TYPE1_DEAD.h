@@ -4,6 +4,7 @@
 #include "pso/system/task/TObject.h"
 #include <dolphin/mtx.h>
 
+class ModelNodePositionCapture;
 struct AnimationMotion;
 struct TObjFish;
 class TParticleCtrl;
@@ -28,8 +29,8 @@ public:
     f32 frame;               // 0x40, animation frame (inferred)
     s32 timer;               // 0x44, frame counter (inferred)
     TObjFish *owner;         // 0x48, the parent passed to the ctor (get_phase() polled)
-    Vec effect_points[5];    // 0x4C, filled by TObjFish__sub_800E3124
-    TObjFish *node_effect;   // 0x88, TObjFish__sub_800E3124 result
+    Vec effect_points[5];
+    ModelNodePositionCapture *node_effect;
     TParticleCtrl *emitter;  // 0x8C, create_particle_emitter result
 };
 typedef char TBoss6Demo11_TYPE1_DEAD_size[sizeof(TBoss6Demo11_TYPE1_DEAD) == 0x90 ? 1 : -1];

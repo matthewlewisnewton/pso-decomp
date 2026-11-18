@@ -2231,7 +2231,7 @@ force_active:
   - TObjFish__area_event_stage
   - TObjFish__class_name_string
   - TObjFish__ct
-  - TObjFish__sub_800E3188
+  - __dt__24ModelNodePositionCaptureFv
   - TObjFish__sub_802E7B40
   - TObjFish__sub_802E7B94
   - TObjFish__sub_802E7CC4
@@ -2261,7 +2261,7 @@ force_active:
   - TObjFish__sub_802ED4AC
   - TObjFish__sub_8033FF64
   - TObjFish__sub_8034029C
-  - TObjFish_draw_callback_state
+  - model_node_position_capture_state
   - TObjFogCollisionPoison__ct
   - TObjFogCollisionPoison__instances
   - TObjFogCollisionPoison__name
@@ -9777,7 +9777,7 @@ force_active:
   - draw_body_models__11TBoss6Type2Fv
   - draw_body_row__13TUnk_804CF0B8FPvPvffff
   - draw_bottom_bar__20TWindowSubStatusDispFv
-  - draw_callback_transform_to_view__8TObjFishFv
+  - capture_node__24ModelNodePositionCaptureFP10NJS_OBJECT
   - draw_char_info_sprites__19TChCrTagInformationFv
   - draw_character_background_frame__12TAdBackTxtGCFll
   - draw_chunk_textured_strips
@@ -12106,7 +12106,7 @@ force_active:
   - is_enabled__9TItemDropFv
   - is_end__12TCharaMakingFv
   - is_entity_locally_controlled__Fl
-  - is_entry_table_valid__8TObjFishFv
+  - is_valid__24ModelNodePositionCaptureFP22ModelNodePositionEntry
   - is_entry_valid__23TAdSinglePlyChrSelectGCFPvi
   - is_entry_valid__6TLobbyFl
   - is_falz_alive__15TBoss6CrushRockFv

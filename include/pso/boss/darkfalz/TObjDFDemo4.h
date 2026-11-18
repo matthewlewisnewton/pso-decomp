@@ -6,8 +6,9 @@
 #include "pso/boss/darkfalz/TObjDFDemo5.h"
 #include "pso/unk/ModelNodeTables.h"
 
+class ModelNodePositionCapture;
+
 class TParticleCtrl;
-struct TObjFish;
 
 struct TObjDFDemo4 : public TObjBase {
     TObjDFDemo4(TObject *parent, const Vec *pos, s32 angle);
@@ -26,7 +27,7 @@ struct TObjDFDemo4 : public TObjBase {
     s32 angle;
     s32 timer;
     f32 frame;
-    TObjFish *node_list; // tracks node_positions
+    ModelNodePositionCapture *node_list; // tracks node_positions
     Vec node_positions[2];
 };
 

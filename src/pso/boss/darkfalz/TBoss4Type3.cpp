@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/SampledMotionPoints.h"
 #include "pso/system/BmlAccessors.h"
@@ -27,7 +28,6 @@
 #include "pso/render/render_util.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/enemy/dd/TObjEneDD.h"
-#include "pso/object/ambient/TObjFish.h"
 
 
 #include "pso/system/task/TObject.h"
@@ -162,7 +162,7 @@ struct Self_8005AE60 {
     f32 f3F8;
     s32 f3FC;
     u8 pad400[0x438 - 0x400];
-    s32 a438[3];
+    ModelNodePositionCapture *a438[3];
     Seg_8005AE60 a444[3];
     u8 pad57c[0x51C - 0x51C];
 };
@@ -393,7 +393,6 @@ extern void* __vt__13TObjBs4CutAtk[];
 
 extern s32 local_client_id;
 
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 s32 init_collision_body_parts(void *, void *, int);
 extern s32 model_render_flags;
 extern s32 tl_04;
@@ -858,7 +857,7 @@ Self_8005AE60 *TBoss4Type3__ct(Self_8005AE60 *self, s32 parent, s32 *arg2) {
     self->f3F8 = 0.6f;
     self->f3F4 = 0.0f;
     for (i = 0; i < 3; i++) {
-        self->a438[i] = TObjFish__sub_800E3124((u8 *)(((void **)boss4_type3_effect_desc_ptr_table)[i]), (s32)&self->a444[i]);
+        self->a438[i] = ModelNodePositionCapture::create((ModelNodePositionEntry *)(((void **)boss4_type3_effect_desc_ptr_table)[i]), (Vec *)&self->a444[i]);
     }
     set_motion_packed_rotation();
     model = (s32)get_bml_model((BmlResource *)self->f390, ((s32 *)lbl_80486FB0)[0]);
@@ -920,7 +919,7 @@ S_8005AD50 *__dt__11TBoss4Type3Fv(S_8005AD50 *o, s16 flag) {
             o->f528 = 0;
         }
         for (i = 0; i < 3; i++) {
-            TObjFish::init_state_1(o->fx[i]);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)o->fx[i]);
             o->fx[i] = 0;
         }
         free_collision_body_parts(o);
@@ -1138,9 +1137,9 @@ void TBoss4Type3::draw_model_set(const s32 *tbl, f32 t) {
     for (i = 0; i < 3; i++) {
         set_current_texture_list(get_bml_texlist((BmlResource *)this->m_390, tbl[i]));
         off = i;
-        ((TObjFish *)((s32)this->render_lists[off]))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)((s32)this->render_lists[off]))->install();
         draw_model_motion((void *)(get_bml_model((BmlResource *)this->m_390, tbl[i])), (void *)(get_bml_motion(this->m_390, TBoss4Type3__anim_state_table[this->m_3f0].motions[i])), this->m_3f4);
-        ((TObjFish *)this->render_lists[off])->clear_render_callback();
+        this->render_lists[off]->clear();
     }
     clear_motion_packed_rotation();
     model_render_flags &= ~0x20000;

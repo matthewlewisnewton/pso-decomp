@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -28,7 +29,6 @@
 #include "pso/system/BmlResource.h"
 #include "pso/boss/darkfalz/TObjDFDemo5.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
-#include "pso/object/ambient/TObjFish_800E2FFC.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/system/task/TObject.h"
@@ -233,7 +233,6 @@ u8 TObjEnePanarms__sub_800E2E54(void *arg0);
 u8 TObjEnePanarms__sub_800E2E68(void *arg0);
 u8 is_below_half_hp__14TObjEnePanarmsFPv(void *arg0);
 s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self);
-void clear_render_callback__8TObjFishFv(void);
 void refresh_lobby_state__10TObjPlayerFv();
 f32 horizontal_distance_squared(void *, void *);
 s32 angle_difference_abs(s32, s32);
@@ -322,7 +321,7 @@ __declspec(section ".ctors") static void *const panarms_global_initializer = (vo
 // Indexed by the half's state: set_state runs enter, run_task runs update.
 extern PanBARAState TObjEnePanarms__state_fn_table[17];
 
-void clear_render_callback__8TObjFishFv(void) { set_chunk_model_node_callback(0); }
+void ModelNodePositionCapture::clear() { set_chunk_model_node_callback(0); }
 
 s32 TObjEnePanarms__sub_800E2FB4(O_800E2FB4 *self) {
     return self->state == 9 || self->state == 11;
@@ -423,7 +422,7 @@ void __sinit_TObjEnePanarms_cpp() {
 
 PanBARAState TObjEnePanarms__state_fn_table[17] = {};
 
-TObjFishNodeEntry panbara_draw_callback_entries[2] = {
+ModelNodePositionEntry panbara_draw_callback_entries[2] = {
     { 3 },
     { -1 },
 };
@@ -495,7 +494,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
     } else {
         set_param(22);
     }
-    m_3dc = (void *)TObjFish__sub_800E3124((u8 *)panbara_draw_callback_entries, (s32)unk_3E0);
+    m_3dc = ModelNodePositionCapture::create(panbara_draw_callback_entries, (Vec *)unk_3E0);
     if (m_3dc == NULL) {
         return;
     }
@@ -534,7 +533,7 @@ TObjEnePanBARA::TObjEnePanBARA(TObject *parent, void *setData, s32 index) : TObj
 TObjEnePanBARA::~TObjEnePanBARA() {
     free_collision_body_parts(this);
     collision_body_parts = NULL;
-    TObjFish::init_state_1(m_3dc);
+    ModelNodePositionCapture::destroy(m_3dc);
 }
 
 void TObjEnePanBARA::run_task() {
@@ -642,7 +641,7 @@ void TObjEnePanBARA::render() {
     this->update_linked_effect();
 }
 
-void TObjEnePanBARA::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); set_current_texture_list((GinjaTextureList *)((*(void* *)&this->texlist))); ((TObjFish *)(this->m_3dc))->set_draw_callback_list(); TObjMotion::draw(); ((int (*)(void*))clear_render_callback__8TObjFishFv)(this->m_3dc); ((int (*)(void))pop_matrix)(); }
+void TObjEnePanBARA::draw() { ((int (*)(void*))push_matrix)(this); ((int (*)(void*))post_translate_matrix)((char*)this + 0x38); ((int (*)(void*, void*))rotate_matrix_y)((void*)0, *(void* *)&this->rotation_y); set_current_texture_list((GinjaTextureList *)((*(void* *)&this->texlist))); this->m_3dc->install(); TObjMotion::draw(); this->m_3dc->clear(); ((int (*)(void))pop_matrix)(); }
 
 void TObjEnePanBARA::update_linked_effect() {
     u8 *arg0 = (u8 *)this;

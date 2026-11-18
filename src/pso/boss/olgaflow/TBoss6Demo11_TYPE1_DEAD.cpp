@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -16,7 +17,6 @@
 #include "pso/unk/text_80087278.h"
 #include "pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
-#include "pso/object/ambient/TObjFish_800E2FFC.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -28,11 +28,7 @@ struct FishSpawnEntry {
     s32 point;
 };
 
-// One node of the list TObjFish__sub_800E3124 reads (node -1 ends it).
-struct EffectNodeDesc {
-    s32 node;
-    Vec offset;
-};
+// One node of the list ModelNodePositionCapture::create reads (node -1 ends it).
 
 extern s32 lbl_804DF614[]; // model ids, defined in TBoss6Type1.cpp
 
@@ -45,8 +41,8 @@ void *TBoss6PlotFalz::create(void *parent, void *arg) {
     return new TBoss6Demo11_TYPE1_DEAD((TObject *)parent, arg);
 }
 
-inline const EffectNodeDesc *dead_effect_nodes() {
-    static const EffectNodeDesc lbl_80477E60[] = {
+inline const ModelNodePositionEntry *dead_effect_nodes() {
+    static const ModelNodePositionEntry lbl_80477E60[] = {
         {0, {0.0f, 0.0f, 0.0f}},
         {4, {0.0f, 0.0f, 0.0f}},
         {6, {0.0f, 0.0f, 0.0f}},
@@ -79,7 +75,7 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg) : T
         parts[i].texture = (s32)get_bml_texlist(resource, model_id);
         parts[i].motion = get_bml_motion(resource, death_motion_indices[i]);
     }
-    node_effect = (TObjFish *)TObjFish__sub_800E3124((u8 *)dead_effect_nodes(), (s32)effect_points);
+    node_effect = ModelNodePositionCapture::create((ModelNodePositionEntry *)dead_effect_nodes(), effect_points);
     emitter = NULL;
     activate_camera_mode(5);
     set_scripted_camera_pose(&position, &position, dead_camera_angles());
@@ -91,7 +87,7 @@ TBoss6Demo11_TYPE1_DEAD::TBoss6Demo11_TYPE1_DEAD(TObject *parent, void *arg) : T
 TBoss6Demo11_TYPE1_DEAD::~TBoss6Demo11_TYPE1_DEAD() {
     restore_player_cameras();
     if (node_effect != NULL) {
-        TObjFish::init_state_1(node_effect);
+        ModelNodePositionCapture::destroy(node_effect);
         node_effect = NULL;
     }
     if (emitter != NULL) {
@@ -212,9 +208,9 @@ void TBoss6Demo11_TYPE1_DEAD::render_fade_model() {
         set_current_texture_list((GinjaTextureList *)parts[0].texture);
         draw_model_motion((void *)parts[0].model, parts[0].motion, frame);
         set_current_texture_list((GinjaTextureList *)parts[1].texture);
-        node_effect->set_draw_callback_list();
+        node_effect->install();
         draw_model_motion((void *)parts[1].model, parts[1].motion, frame);
-        node_effect->clear_render_callback();
+        node_effect->clear();
         clear_motion_packed_rotation();
         pop_matrix();
         if (fade < 1.0f) {

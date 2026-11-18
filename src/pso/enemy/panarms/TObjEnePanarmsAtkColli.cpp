@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/enemy/panarms/TObjEnePanarmsAtkColli.h"
@@ -15,12 +16,8 @@
 // Stored in the object name field by the constructor.
 const char *TObjEnePanarmsAtkColli_class_name = "TObjEnePanarmsAtkColli";
 extern "C" TObjEnemy *__ct__9TObjEnemyFP7TObject(void *, void *);
-struct Entry_800E31C4 { s32 id; u8 data[0xC]; };
-
 __declspec(section ".data") s32 TObjEnePanarmsAtkColli__type_index_table[2] = {1, 2};
 Vec panarms_atk_zero_vec = {0.0f, 0.0f, 0.0f};
-
-struct Obj_800E31C4 { Entry_800E31C4 *list; Vec *vecs; };
 
 struct Base_800E32C0 { u8 pad[0x18]; };
 
@@ -97,7 +94,6 @@ struct Obj_800E3428 { u8 pad0[0x38]; Vec pos; Vec dir; u8 pad1[0x378 - 0x50]; f3
 struct Obj_800E322C { u8 pad0[0x10]; u32 f10; u8 pad1[0x38 - 0x14]; Vec pos; u8 pad2[0x378 - 0x44]; f32 f378; };
 
 extern "C" {
-Obj_800E31C4 *fn_800E31C4(Obj_800E31C4 *self, Entry_800E31C4 *list, Vec *vecs);
 __declspec(section ".rodata") Pair_800E3374 lbl_8043CDF0[] = { 0 };
 __declspec(section ".rodata") Pair_800E32C0 lbl_8043CDF8[] = { 0 };
 void fn_800E3374(Obj_800E3374 *arg0, V_800E3374 *arg1);
@@ -111,19 +107,18 @@ void vec3_add_to(void *, void *);
 f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
-Obj_800E31C4 *fn_800E31C4(Obj_800E31C4 *self, Entry_800E31C4 *list, Vec *vecs) {
-    Entry_800E31C4 *p;
-    Vec *q;
-    self->list = list;
-    self->vecs = vecs;
-    p = self->list;
-    q = self->vecs;
-    while (p->id != -1) {
-        VecCopy((Vec *)q, &panarms_atk_zero_vec);
-        p++;
-        q++;
+ModelNodePositionCapture::ModelNodePositionCapture(ModelNodePositionEntry *entry_list, Vec *output_positions) {
+    ModelNodePositionEntry *entry;
+    Vec *position;
+    entries = entry_list;
+    positions = output_positions;
+    entry = entries;
+    position = positions;
+    while (entry->node_index != -1) {
+        VecCopy(position, &panarms_atk_zero_vec);
+        entry++;
+        position++;
     }
-    return self;
 }
 
 void fn_800E322C(void *p, void *t) {

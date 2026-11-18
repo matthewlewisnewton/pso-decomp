@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -27,7 +28,6 @@
 #include "pso/system/task/TMainTask.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
-#include "pso/object/ambient/TObjFish_800E2FFC.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/SoundEffect.h"
@@ -163,8 +163,8 @@ static PanarmsState lbl_8049515C[14] = {
     { &TObjEnePanarms::enter_rejoin, &TObjEnePanarms::update_state_effect },
     { &TObjEnePanarms::enter_down_state, &TObjEnePanarms::update_spin },
 };
-/* Model nodes the constructor hands to TObjFish__sub_800E3124. */
-TObjFishNodeEntry panarms_model_node_desc[6] = {
+/* Model nodes the constructor hands to ModelNodePositionCapture::create. */
+ModelNodePositionEntry panarms_model_node_desc[6] = {
     { 0x35 }, { 0x22 }, { 0x38 }, { 0x46 }, { 0x3b }, { -1 },
 };
 
@@ -311,7 +311,7 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *setData) : TObjEnemy(paren
         particle_handles[i] = 0;
     }
     motion_flags &= ~1;
-    m_39c = TObjFish__sub_800E3124((u8 *)panarms_model_node_desc, (s32)&m_3a0);
+    m_39c = ModelNodePositionCapture::create(panarms_model_node_desc, (Vec *)&m_3a0);
     m_38c = 1;
     attack_count = 0;
     max_hp = hp;
@@ -345,7 +345,7 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *setData) : TObjEnemy(paren
 }
 
 TObjEnePanarms::~TObjEnePanarms() {
-    TObjFish::init_state_1(*(u8 **)((s8 *)this + 0x39C));
+    ModelNodePositionCapture::destroy((ModelNodePositionCapture *)*(u8 **)((s8 *)this + 0x39C));
     ((TObject *)(*(u8 **)((s8 *)this + 0x3E4)))->queue_destruction();
     ((TObject *)(*(u8 **)((s8 *)this + 0x3E8)))->queue_destruction();
     free_collision_body_parts(this);
@@ -429,7 +429,7 @@ void TObjEnePanarms::render() {
     }
 }
 
-void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); set_current_texture_list((GinjaTextureList *)((*(void**)((char*)p + 0x24)))); ((TObjFish *)(((TObjEneRe7Berura *)p)->m_39c))->set_draw_callback_list(); ((TObjMotion *)p)->draw(); ((TObjFish *)(((TObjEneRe7Berura *)p)->m_39c))->clear_render_callback(); pop_matrix(); }
+void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); set_current_texture_list((GinjaTextureList *)((*(void**)((char*)p + 0x24)))); ((ModelNodePositionCapture *)(((TObjEneRe7Berura *)p)->m_39c))->install(); ((TObjMotion *)p)->draw(); ((ModelNodePositionCapture *)(((TObjEneRe7Berura *)p)->m_39c))->clear(); pop_matrix(); }
 
 #pragma push
 #pragma fp_contract on

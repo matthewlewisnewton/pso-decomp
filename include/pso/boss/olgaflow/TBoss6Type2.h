@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+class ModelNodePositionCapture;
+
 struct TBoss6Type2Point { f32 x, y, z; };
 
 struct Blk_802BCFD4;
@@ -99,7 +101,7 @@ struct TBoss6Type2 : public TObjEnemy
     u8 _pad5CC[0x5FC - 0x5CC];
     TBoss6Type2Point contact_point_5fc;
     u8 _pad608[0x764 - 0x608];
-    u32 m_764;
+    ModelNodePositionCapture *m_764;
     void* m_768;
     u8 pad_76C[0x7B4 - 0x76C];
 

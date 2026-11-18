@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "pso/boss/olgaflow/Boss6Type2Data.h"
 
 const char *TBoss6Type2__name = "TBoss6Type2";
@@ -16,7 +17,7 @@ const Tbl_802B9C00 TBoss6Type2__particle_attachment_table[14] = {
     { 0x22D, 8 }, { 0x22D, 9 }, { 0x22D, 10 }, { 0x22D, 3 }, { 0x22D, 4 }, { 0x22D, 5 }, { 0x228, -1 },
     { 0x22A, -1 }, { 0x137, 16 }, { 0x138, 16 }, { 0x139, 16 }, { 0x13A, 16 }, { 0x13B, 16 }, { 0x22C, 13 },
 };
-const TObjFishNodeEntry boss6_type2_effect_desc_table[20] = {
+const ModelNodePositionEntry boss6_type2_effect_desc_table[20] = {
     { 0x01 }, { 0x13 }, { 0x14 }, { 0x16 }, { 0x17, { 0.0f, -5.0f, 0.0f } }, { 0x18 }, { 0x1B }, { 0x1C },
     { 0x1E }, { 0x1F, { 0.0f, -5.0f, 0.0f } }, { 0x20 }, { 0x24 }, { 0x30 }, { 0x3A }, { 0x48 }, { 0x4B },
     { 0x50 }, { 0x51 }, { 0x51, { 0.0f, 1.0f, 0.0f } }, { -1 },

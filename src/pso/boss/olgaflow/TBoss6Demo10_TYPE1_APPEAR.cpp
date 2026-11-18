@@ -1,10 +1,10 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/camera/CameraPlayback.h"
 #include "pso/system/PadRumble.h"
-#include "pso/object/ambient/TObjFish_800E2FFC.h"
 #include "pso/boss/olgaflow/Boss6Type1Appearance.h"
 #include "pso/camera/TCameraCtrl_800687BC.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -42,7 +42,7 @@ struct Fish_8033CB4C
   s32 x3C;
   u8 x40[0x54 - 0x40];
   u8 x54[0x60 - 0x54];
-  s32 x60;
+  ModelNodePositionCapture *x60;
   s32 x64;
 };
 
@@ -74,9 +74,9 @@ void TBoss6Demo10_TYPE1_APPEAR::sub_8033C7C8() {
     set_current_texture_list((GinjaTextureList *)this->m_20);
     draw_model_motion((void *)(*(s32 *)((s8 *)this + 0x1C)), (void *)(*(s32 *)((s8 *)this + 0x24)), *(f32 *)((s8 *)this + 0x34));
     set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)this + 0x2C)));
-    ((TObjFish *)(this->m_60))->set_draw_callback_list();
+    ((ModelNodePositionCapture *)(this->m_60))->install();
     draw_model_motion((void *)this->m_28, (void *)this->m_30, *(f32 *)((s8 *)this + 0x34));
-    ((TObjFish *)this->m_60)->clear_render_callback();
+    ((ModelNodePositionCapture *)this->m_60)->clear();
     clear_motion_packed_rotation();
     pop_matrix();
 }
@@ -160,7 +160,7 @@ TBoss6Demo10_TYPE1_APPEAR::~TBoss6Demo10_TYPE1_APPEAR() {
     refresh_players_equipment__14TBoss6PlotFalzFPv();
     ((TBoss6PlotFalz *)(((u8 *)this) + 0x40))->free_buffer_pairs();
     if ((u32) this->m_60 != 0U) {
-        TObjFish::init_state_1(*(void **)((s8 *)this + 0x60));
+        ModelNodePositionCapture::destroy((ModelNodePositionCapture *)*(void **)((s8 *)this + 0x60));
         this->m_60 = 0U;
     }
     if ((u32) *(u32 *)((s8 *)this + 0x64) != 0U) {
@@ -186,7 +186,7 @@ TBoss6Demo10_TYPE1_APPEAR::TBoss6Demo10_TYPE1_APPEAR(TObject *parent) : TObject(
       ((Fish_8033CB4C *)this)->tbl[i].b = (s32)get_bml_texlist((BmlResource *)n, k);
       ((Fish_8033CB4C *)this)->tbl[i].c = get_bml_motion(n, boss6_type1_appear_motion_indices[i]);
     }
-    ((Fish_8033CB4C *)this)->x60 = TObjFish__sub_800E3124((u8 *)boss6_type1_appear_node_desc, (s32)(((Fish_8033CB4C *)this)->x54));
+    ((Fish_8033CB4C *)this)->x60 = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type1_appear_node_desc, (Vec *)(((Fish_8033CB4C *)this)->x54));
     ((Fish_8033CB4C *)this)->x64 = 0;
     build_tables__14TBoss6PlotFalzFPvPvi(((Fish_8033CB4C *)this)->x40, boss6_type1_appear_model_node_descriptors, 2);
     activate_camera_mode(5);

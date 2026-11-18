@@ -6,6 +6,8 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+class ModelNodePositionCapture;
+
 struct TObjDFHorming;
 
 struct TBoss4Type3CollisionState {
@@ -67,7 +69,7 @@ struct TBoss4Type3 : public TObjEnemy {
     u32 m_3fc;
     u8 _pad400[4];
     void *effect_parts[13];
-    void *render_lists[3];
+    ModelNodePositionCapture *render_lists[3];
     u8 _pad444[0xC];
     void* m_450;
     u8 _pad454[0x8];

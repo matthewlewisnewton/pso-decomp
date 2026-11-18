@@ -2,7 +2,7 @@
 #define PSO_BOSS_OLGAFLOW_BOSS6TYPE2DATA_H
 
 #include "types.h"
-#include "pso/boss/darkfalz/TObjDFDemo5.h"
+#include "pso/system/ModelNodePositionCapture.h"
 
 // TBoss6Type2's class name and the constructor/battle tables. They live in their own unit ahead of
 // TBoss6Type2.cpp: its code addresses every table on its own (no shared .rodata base) and TBoss6Rock
@@ -27,7 +27,7 @@ extern const s32 TBoss6Type2__initial_rotation[3];
 extern const TBoss6Type2DefaultParams TBoss6Type2__default_battle_parameters;
 extern const s32 TBoss6Type2__initial_actor_flag_masks[4];
 extern const Tbl_802B9C00 TBoss6Type2__particle_attachment_table[14];
-extern const TObjFishNodeEntry boss6_type2_effect_desc_table[20];
+extern const ModelNodePositionEntry boss6_type2_effect_desc_table[20];
 extern const s32 boss6_type2_variant_id_table[4];
 extern const s32 lbl_8047128C[2];
 extern const Ent_802B9F3C boss6_type2_plot_falz_entry_table[2];

@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
@@ -165,7 +166,6 @@ u8 * get_player_data__10TObjPlayerFi(s32);
 void spawn__15TBoss6RockChaseFll(void *, void *);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 s32 init_collision_body_parts(void *, void *, int);
 void build_tables__14TBoss6PlotFalzFPvPvi(void *, void *, int);
 void TBoss6Type2__sub_802BA7B0(void* p);
@@ -634,7 +634,7 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     }
     }
     init_motion_entries();
-    m_764 = TObjFish__sub_800E3124((u8 *)boss6_type2_effect_desc_table, (s32)&m_59c);
+    m_764 = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type2_effect_desc_table, (Vec *)&m_59c);
     build_tables__14TBoss6PlotFalzFPvPvi(&m_768, (void *)boss6_type2_plot_falz_entry_table, 2);
     m_458 = create_zanzo__11TBoss6Type1FPvPvPv(this, 7, 0xF);
     m_478 = 0;
@@ -696,7 +696,7 @@ TBoss6Type2::~TBoss6Type2() {
     ((TBoss6PlotFalz *)&m_768)->free_buffer_pairs();
     for (i = 0; i < 1; i++) {
         if (((Fish_802BE014 *)this)->fish[i] != 0) {
-            TObjFish::init_state_1(((Fish_802BE014 *)this)->fish[i]);
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)((Fish_802BE014 *)this)->fish[i]);
             ((Fish_802BE014 *)this)->fish[i] = 0;
         }
     }
@@ -1266,16 +1266,16 @@ void TBoss6Type2::draw_body_models() {
     f32 zero;
     f32 a;
     s32 b;
-    u32 obj;
+    ModelNodePositionCapture *capture;
     s32 done;
     s32 i;
     Ent_802BCAB8 *e;
     s32 p0;
     s32 p1;
     set_motion_packed_rotation();
-    obj = this->m_764;
+    capture = m_764;
     done = 0;
-    if (obj != 0) {
+    if (capture != NULL) {
         zero = 0.0f;
         for (i = 0; i < 2; i++) {
             e = &((Obj_802BCAB8 *)arg0)->ents[i];
@@ -1299,9 +1299,9 @@ void TBoss6Type2::draw_body_models() {
                     if (done != 0) {
                         draw_model_motion((void *)p1, (void *)(*(s32 *)((s8 *)arg0 + 0x498)), *(f32 *)((s8 *)arg0 + 0x49C));
                     } else {
-                        ((TObjFish *)obj)->set_draw_callback_list();
+                        capture->install();
                         draw_model_motion((void *)p1, (void *)(*(s32 *)((s8 *)arg0 + 0x498)), *(f32 *)((s8 *)arg0 + 0x49C));
-                        ((TObjFish *)obj)->clear_render_callback();
+                        capture->clear();
                         done = 1;
                     }
                 } else {
@@ -1312,9 +1312,9 @@ void TBoss6Type2::draw_body_models() {
                     if (done != 0) {
                         draw_model_blend_motion((void *)p1, &prm, *(f32 *)((s8 *)arg0 + 0x4A4));
                     } else {
-                        ((TObjFish *)obj)->set_draw_callback_list();
+                        capture->install();
                         draw_model_blend_motion((void *)p1, &prm, *(f32 *)((s8 *)arg0 + 0x4A4));
-                        ((TObjFish *)obj)->clear_render_callback();
+                        capture->clear();
                         done = 1;
                     }
                 }

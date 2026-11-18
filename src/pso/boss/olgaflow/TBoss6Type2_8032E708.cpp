@@ -1,3 +1,4 @@
+#include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -988,17 +989,17 @@ void TBoss6Mag::draw_model_motion_blend() {
     bml_model = (s32)get_bml_model((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 1);
     set_current_texture_list((GinjaTextureList *)temp_r31);
     if ((0.0f) == *(f32 *)((s8 *)this + 0x3E8)) {
-        ((TObjFish *)(*(s32 *)((s8 *)this + 0x458)))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->install();
         draw_model_motion((void *)bml_model, (void *)(*(s32 *)((s8 *)this + 0x3DC)), *(f32 *)((s8 *)this + 0x3E0));
-        ((TObjFish *)(*(s32 *)((s8 *)this + 0x458)))->clear_render_callback();
+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->clear();
     } else {
         stack.sp8 = *(s32 *)((s8 *)this + 0x3F0);
         stack.sp10 = *(f32 *)((s8 *)this + 0x3F4);
         stack.spC = *(s32 *)((s8 *)this + 0x3DC);
         stack.sp14 = *(f32 *)((s8 *)this + 0x3E0);
-        ((TObjFish *)(*(s32 *)((s8 *)this + 0x458)))->set_draw_callback_list();
+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->install();
         draw_model_blend_motion((void *)bml_model, &stack.sp8, *(f32 *)((s8 *)this + 0x3E8));
-        ((TObjFish *)(*(s32 *)((s8 *)this + 0x458)))->clear_render_callback();
+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->clear();
     }
     clear_motion_packed_rotation();
 }
@@ -1240,7 +1241,7 @@ void *fn_8033068C(void *arg0, s16 arg1) {
         *(void **)((s8 *)arg0 + 0x18) = lbl_804EDDEC;
         update_all_parts__11TBoss6Type2FPv((s32)arg0);
         if ((u32) *(u32 *)((s8 *)arg0 + 0x458) != 0U) {
-            TObjFish::init_state_1(*(void **)((s8 *)arg0 + 0x458));
+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)*(void **)((s8 *)arg0 + 0x458));
             *(u32 *)((s8 *)arg0 + 0x458) = 0U;
         }
         free_collision_body_parts(arg0);
@@ -1260,7 +1261,6 @@ void __ct__9TObjEnemyFP7TObject(void *, s32, void *);
 s32 exchange_object_state__9TObjEnemyFls(void *, Key_80330724 *, s32);
 void init_collision_body_parts(void *, void *, s32);
 f32 *dispatch_shared_handler_a__6TLobbyFl(int);
-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);
 void TBoss6Mag__sub_803309C4(void *, void *);
 
 u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {
@@ -1307,7 +1307,7 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {
     *(s32 *)((s8 *)arg0 + 0x390) = *(s32 *)((s8 *)arg2 + 0x5C);
     ((TBoss6Type2 *)arg0)->init_segment_angle_range();
     TBoss6Type2__sub_803300C8(arg0);
-    *(s32 *)((s8 *)arg0 + 0x458) = TObjFish__sub_800E3124((u8 *)lbl_804773DC, (s32)(arg0 + 0x44C));
+    *(ModelNodePositionCapture **)((s8 *)arg0 + 0x458) = ModelNodePositionCapture::create((ModelNodePositionEntry *)lbl_804773DC, (Vec *)(arg0 + 0x44C));
     TBoss6Mag__sub_803309C4(arg0 + 0x408, (void *)lbl_804773FC);
     d = dispatch_shared_handler_a__6TLobbyFl(0x2E);
     *(s32 *)((s8 *)arg0 + 0x3C0) = (s32)d[0];

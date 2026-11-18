@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+class ModelNodePositionCapture;
 struct Boss6EffectPoint { f32 x, y, z; };
 // One of the two part-motion players at 0x444 (render blends prev_motion_id/prev_frame into
 // motion_id/frame by blend; names inferred from that use).
@@ -78,14 +79,12 @@ struct TBoss6Type1 : public TObjEnemy {
     s32 m_508;
     u8 unk_50C[0x6C];
     // Model node positions, filled through the node callback list at 0x654 (TBoss6Type1__ct passes
-    // this array to TObjFish__sub_800E3124); node 7 is where the boss's sounds play from.
     Vec node_points[8];
     Boss6EffectPoint trail_points[3];
     u8 unknown_5FC[0x3C];
     Boss6EffectPoint effect_points[2];
-    // TObjFish__sub_800E3124 lists, one per model; render passes each to
-    // set_draw_callback_list before it draws that model.
-    void *draw_callback_lists[2];
+    // Installed while the corresponding model draws.
+    ModelNodePositionCapture *draw_callback_lists[2];
     u8 scroll_strips_u[0x14]; // scroll_strips_uv(8, 0) every frame
     u8 scroll_strips_v[0x14]; // scroll_strips_uv(0, 0x22) every frame
     TObject *map_csn;

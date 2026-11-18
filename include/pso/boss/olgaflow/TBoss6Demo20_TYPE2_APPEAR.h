@@ -3,6 +3,7 @@
 #include "types.h"
 #include "pso/system/task/TObject.h"
 
+class ModelNodePositionCapture;
 class TBoss6Demo20_TYPE2_APPEAR : public TObject {
 public:
     virtual ~TBoss6Demo20_TYPE2_APPEAR();
@@ -13,7 +14,7 @@ public:
     virtual void render();
     virtual void run_task();
     u8 unk_1C[0x60];
-    u32 m_7c;
+    ModelNodePositionCapture *m_7c;
     u8 unk_80[0x3C];
     s32 m_bc;
     u8 unk_C0[0x4];
