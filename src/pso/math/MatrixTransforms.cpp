@@ -31,8 +31,6 @@ void rotate_matrix_z(Matrix34* matrix, s32 angle) {
 
 }
 
-#pragma push
-#pragma peephole off
 extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
     u32 var_r0;
     u32 var_r3;
@@ -48,8 +46,6 @@ extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
     }
     PSMTXCopy((MtxP)var_r3, (MtxP)var_r0);
 }
-
-#pragma pop
 
 // Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
 // Fork scalar C++ (#306, not a match: the original is paired-single psq_l/ps_sub/psq_st):
@@ -96,9 +92,6 @@ void euler_yxz_to_quaternion(u8 *arg0, u8 *arg1) {
     *(f32 *)((s8 *)arg1 + 0xC) = (f32) ((temp_f29 * (-temp_f1 * temp_f27)) + (temp_f30 * (temp_f31 * temp_f28)));
 }
 
-#pragma push
-#pragma scheduling off
-
 void translate_matrix(u32 arg0, f32 x, f32 y, f32 z) {
     u32 var_r3;
     u32 phi_r3;
@@ -109,4 +102,3 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z) {
     }
     matrix_apply_translation(phi_r3, x, y, z);
 }
-#pragma pop

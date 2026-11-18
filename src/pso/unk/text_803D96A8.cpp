@@ -59,8 +59,6 @@ void rotate_matrix_x(Matrix34* matrix, s32 angle) {
 
 }
 
-#pragma push
-#pragma scheduling off
 extern "C" void concat_matrix(MtxP dest, const f32 (*source)[4]) {
     MtxP elements = dest;
     const f32 (*selected_source)[4] = source;
@@ -72,13 +70,9 @@ extern "C" void concat_matrix(MtxP dest, const f32 (*source)[4]) {
     }
     PSMTXConcat(elements, selected_source, elements);
 }
-#pragma pop
 
 extern "C" {
 
-#pragma push
-#pragma peephole off
-#pragma fp_contract on
 void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
     u32 var_r4;
     u32 elements;
@@ -93,7 +87,6 @@ void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
     }
     PSMTXConcat((const f32 (*)[4])var_r4, (const f32 (*)[4])elements, (MtxP)elements);
 }
-#pragma pop
 
 // 0x803D97B4. The original body is assembly: one unconverted double frsqrte
 // estimate feeds the component fmuls and the fres return with no frsp, which
@@ -112,8 +105,6 @@ f32 normalize_vector(Vec *v) {
 }
 #endif
 
-#pragma push
-#pragma scheduling off
 s32 push_matrix_from(void *src) {
     u32 next = current_matrix + 0x30;
     if (next > matrix_stack_limit) {
@@ -123,10 +114,7 @@ s32 push_matrix_from(void *src) {
     current_matrix = next;
     return 1;
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 s32 pop_matrices(s32 arg0) {
     u32 temp_r3;
     temp_r3 = current_matrix - (arg0 * 0x30);
@@ -136,7 +124,6 @@ s32 pop_matrices(s32 arg0) {
     current_matrix = temp_r3;
     return 1;
 }
-#pragma pop
 
 // Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
 asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {
@@ -183,8 +170,6 @@ asm s32 push_matrix(void) {
 #include "orig_asm/pso/unk/text_803D96A8/push_matrix.inc"
 }
 
-#pragma push
-#pragma scheduling off
 s32 pop_matrix(void) {
     u32 temp_r3;
     temp_r3 = current_matrix - 0x30;
@@ -194,7 +179,6 @@ s32 pop_matrix(void) {
     current_matrix = temp_r3;
     return 1;
 }
-#pragma pop
 
 // Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
 asm void scale_current_matrix(const f32 *v) {
@@ -205,15 +189,11 @@ asm void post_translate_matrix(const f32 *v) {
 #include "orig_asm/pso/unk/text_803D96A8/post_translate_matrix.inc"
 }
 
-#pragma push
-#pragma scheduling off
-#pragma peephole off
 void TObjPlayer__sub_803D9C60(u32 *p) {
     u32 v = *p;
     *p = ((v & 0xFF000000) >> 24) | ((v & 0xFF0000) >> 8) | ((v & 0xFF00) << 8) | ((v & 0xFF) << 24);
 }
 }
-#pragma pop
 
 u32 *find_gvrt_texture_chunk(TLobby *lobby, u32 *arg1, u32 *arg2) {
     u32 tag;
@@ -255,15 +235,12 @@ s32 TObjPlayer__sub_803D9DA8(A_803D9DA8 *arg0, B_803D9DA8 *arg1) {
     return 1;
 }
 
-#pragma push
-#pragma peephole off
 s32 TObjPlayer::is_gvm_load_ok() {
     if (TObjPlayer__sub_803DB244() == 0) {
         return 1;
     }
     return -1;
 }
-#pragma pop
 
 s32 TObjPlayer__sub_803D9E38(s32 *arg0, u32 arg1, s32 *arg2, u32 *arg3) {
     s32 sp8;

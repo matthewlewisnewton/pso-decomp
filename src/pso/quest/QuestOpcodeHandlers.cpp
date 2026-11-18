@@ -4365,8 +4365,6 @@ void qst_op_shrink(s32 arg0) {
 }
 
 #pragma push
-#pragma opt_common_subs on
-#pragma opt_propagation on
 #pragma opt_dead_assignments off
 void qst_op_read_switch_flag_on_floor(s32 arg0) {
     s32 var_r31;
@@ -5396,8 +5394,6 @@ void qst_op_at_coords_call(u8 arg0) {
     ((void (*)(NpcSet_801EFD3C *, s32 *))create_quest_col)(&set, &qst_registers[first]);
 }
 
-#pragma push
-#pragma fp_contract on
 void qst_op_gettime(u8 arg0) {
     s32 spC;
     s32 sp8;
@@ -5405,7 +5401,6 @@ void qst_op_gettime(u8 arg0) {
     DateToSeconds((DateStamp *)(&spC), (int *)(&sp8));
     qst_registers[arg0] = sp8;
 }
-#pragma pop
 extern "C" {
 
 void qst_op_unhide_ene(s32 arg0) {
@@ -6340,13 +6335,10 @@ void qst_op_jmp_on(s32 arg0, u8 arg1, u8 *arg2) {
 }
 }
 
-#pragma push
-#pragma fp_contract on
 void qst_op_call(u16 arg0) {
     qst_call_stack_push((int)((void *) (qst_pc)));
     qst_pc = qst_function_table[arg0];
 }
-#pragma pop
 
 void qst_op_modi(s32 arg0, u32 arg1) {
     qst_registers[(u8)arg0] %= arg1;
@@ -6408,10 +6400,7 @@ void qst_op_sub(s32 arg0, s32 arg1) {
     qst_registers[(u8)arg0] -= qst_registers[(u8)arg1];
 }
 
-#pragma push
-#pragma scheduling off
 void qst_op_addi(int a0, int a1) { qst_registers[(unsigned char)(a0)] += a1; }
-#pragma pop
 
 void qst_op_add(s32 arg0, s32 arg1) {
     qst_registers[(u8)arg0] += qst_registers[(u8)arg1];

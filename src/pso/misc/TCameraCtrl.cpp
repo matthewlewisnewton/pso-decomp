@@ -6,120 +6,62 @@
 // multiply intact. This is an emission arrangement, not recovered source order.
 #include "pso/misc/TCameraCtrl_native.h"
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TUnk_80488A28::run_task() { }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void *TCameraCtrl::get_target_ptr() { return &m_44; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl__sub_800687C8(void) {
     *(f32 *)((s8 *)(&(*(RecoveredGlobal_800687C8_TCameraCtrl__data_804FF6C4 *)&TCameraCtrl__up_vector).value) + 0) = (f32) 0.0f;
     *(f32 *)((s8 *)(&(*(RecoveredGlobal_800687C8_TCameraCtrl__data_804FF6C4 *)&TCameraCtrl__up_vector).value) + 4) = (f32) TCameraCtrl__data_805D8FAC;
     *(f32 *)((s8 *)(&(*(RecoveredGlobal_800687C8_TCameraCtrl__data_804FF6C4 *)&TCameraCtrl__up_vector).value) + 8) = (f32) 0.0f;
 }
-#pragma pop
 
 // The compiler emits deferred functions in reverse definition order.
 #pragma defer_codegen on
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 int TCameraCtrl__sub_8006B3B8(void* p) { return set_fixed_position_and_target__11TCameraCtrlFPUcPUc(p); }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 int TCameraCtrl::reset_battle_camera() { return reset_to_local_player__11TCameraCtrlFv(this); }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 int TCameraCtrl__sub_8006B370(f32 farg0) {
     u32 v = *(u32 *)&farg0 & 0x7F800000;
     return v == 0x7F800000;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 int is_quest_active(void) { return quest_active_flag; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 get_mode__11TCameraCtrlFPv(void* p) { return *(s32*)((char*)p + 0x1c); }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 // Entity-ID queries return a widened 16-bit field in r3.
 s32 TCameraCtrl__sub_8006B358(void* p) { return *(u16*)((char*)p + 0x20); }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::set_target_coords(int a0, int a1) { TCameraCtrl__viewport_x = a0; TCameraCtrl__viewport_y = a1; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::set_target(int a0, int a1) { TCameraCtrl__viewport_size = a0; TCameraCtrl__viewport_height = a1; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 int TCameraCtrl::get_camera_id() { return TCameraCtrl__camera_id; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 int TCameraCtrl::get_instance() { return camera_split_screen_selector; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 *get_character_select_request_buffer(void) {
     return &chr_select_request_buffer.value;
 }
-#pragma pop
 
 
 #pragma push
 #pragma opt_common_subs off
-#pragma dont_inline off
-#pragma auto_inline off
 u8 *TCameraCtrl__ct(u8 *arg0, void *parent) {
     s32 i;
     s32 k;
@@ -215,9 +157,6 @@ u8 *TCameraCtrl__ct(u8 *arg0, void *parent) {
 #pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::setup_default_view(void *arg1_arg) {
     Vec_8006AF9C *arg1 = (Vec_8006AF9C *)arg1_arg;
     Vec_8006AF9C eye;
@@ -248,22 +187,14 @@ void TCameraCtrl::setup_default_view(void *arg1_arg) {
     set_perspective_projection_from_fov(m_19c, TCameraCtrl__data_805D8FDC, TCameraCtrl__data_805D8FAC, TCameraCtrl__data_805D8FE0);
     set_camera_look_at((u8 *)&eye, (u8 *)&at, (u8 *)TCameraCtrl__up_vector);
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 u8 *copy_view_params__11TCameraCtrlFii(C30_8006AD34 *destination, const C30_8006AD34 *source) {
     *destination = *source;
     return (u8 *)destination;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::run_task() {
     V3_8006AD34 v;
     u8 *t;
@@ -314,13 +245,10 @@ void TCameraCtrl::run_task() {
     }
     calc_rotated_axes();
 }
-#pragma pop
 
 
 #pragma push
 #pragma opt_common_subs off
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::calc_rotated_axes() {
     typedef char sp8_offset[(offsetof(Stack_8006AC70, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_8006AC70, spC) == 0x4) ? 1 : -1];
@@ -349,9 +277,6 @@ void TCameraCtrl::calc_rotated_axes() {
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::calc_axes_from_angles(s32 arg0, s32 arg1, s32 arg2) {
     typedef char sp8_offset[(offsetof(Stack_8006ABAC, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_8006ABAC, spC) == 0x4) ? 1 : -1];
@@ -378,9 +303,6 @@ void TCameraCtrl::calc_axes_from_angles(s32 arg0, s32 arg1, s32 arg2) {
 #pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::render() {
     if ((is_split_screen() == 0) && (TMainTask::get_render_pass() != 1)) {
         if (m_1c == 0) {
@@ -389,12 +311,8 @@ void TCameraCtrl::render() {
         m_1c = 0;
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 Ctl_8006AA90 *TCameraCtrl__sub_8006AA90(Ctl_8006AA90 *self, s16 arg1) {
     s32 i;
     if (self != NULL) {
@@ -414,12 +332,8 @@ Ctl_8006AA90 *TCameraCtrl__sub_8006AA90(Ctl_8006AA90 *self, s16 arg1) {
     }
     return self;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::update_target_from_state() {
     if ((!(*(s32 *)((s8 *)TCameraCtrl__view_state + 8) & 4) && !(*(s32 *)((s8 *)TCameraCtrl__view_state + 8) & 8)) || (*(s32 *)((s8 *)TCameraCtrl__view_state + 8) & 0x20) || (*(s32 *)((s8 *)TCameraCtrl__view_state + 8) & 0x80) || (*(s32 *)((s8 *)TCameraCtrl__view_state + 8) & 0x800)) {
         if (*(s32 *)((s8 *)TCameraCtrl__view_state + 8) & 2) {
@@ -435,12 +349,8 @@ void TCameraCtrl::update_target_from_state() {
         }
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::update_active_controller() {
   s32 temp_r3;
   s32 var_r27;
@@ -530,12 +440,8 @@ void TCameraCtrl::update_active_controller() {
     }
   }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void select_camera_controller(s32 arg0) {
   u8 *temp_r0;
   (*(RecoveredGlobal_8006A788_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value = arg0;
@@ -546,12 +452,8 @@ void select_camera_controller(s32 arg0) {
     (((VObj_18_f8ef8c *)(temp_r0))->m5());
   }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::update_shake() {
   Cam_8006A6C4 *self = (Cam_8006A6C4 *) this;
   f32 amp;
@@ -565,12 +467,8 @@ void TCameraCtrl::update_shake() {
     self->f70 = 0.0f;
   }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::select_active_controller(s8 arg0) {
   f32 temp_f0;
   f32 temp_f0_2;
@@ -608,22 +506,14 @@ void TCameraCtrl::select_active_controller(s8 arg0) {
     }
   }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 // Consumers retain a 16-bit result; the stored controller selector is one byte.
 u16 TCameraCtrl__sub_8006A5DC(void) {
     return (*(RecoveredGlobal_8006A5DC_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void reset_cameras_to_actor(void *actor, s32 arg1) {
   s32 view = 0;
   u16 new_var;
@@ -695,12 +585,8 @@ void reset_cameras_to_actor(void *actor, s32 arg1) {
     VecCopy((Vec *)(&((Master_8006A410 *) camera_ctrl_instance)->tgt[view]), (const Vec *)&c->tgt);
   }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::reset_view_state() {
     A_8006A35C *pa = (A_8006A35C *)TCameraCtrl__view_state;
     B_8006A35C *pb = (B_8006A35C *)TCameraCtrl__data_804FF634;
@@ -730,12 +616,8 @@ void TCameraCtrl::reset_view_state() {
     camera_ctrl_view_state_byte = -1;
     TCameraCtrl__data_805D4E0A = 0;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void reset__11TCameraCtrlFv(void) {
     TCameraCtrl__data_805D4E0A = 0;
     TCameraCtrl__sub_80068354();
@@ -744,12 +626,8 @@ void reset__11TCameraCtrlFv(void) {
     *(s32 *)((s8 *)TCameraCtrl__view_state + 4) = 0;
     *(s32 *)((s8 *)TCameraCtrl__view_state + 8) = 0;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::cycle_spectate_target() {
     void *pad;
     u8 *q;
@@ -802,12 +680,8 @@ void TCameraCtrl::cycle_spectate_target() {
         }
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::set_shake_preset(s32 arg0) {
     void *p;
     if ((void *) camera_ctrl_instance != NULL) {
@@ -833,12 +707,8 @@ void TCameraCtrl::set_shake_preset(s32 arg0) {
         }
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl__sub_8006A044(s32 id, f32 v) {
     O_8006A044 *p;
     if ((*(O_8006A044 * *)&camera_ctrl_instance) != 0) {
@@ -848,19 +718,11 @@ void TCameraCtrl__sub_8006A044(s32 id, f32 v) {
         start_pad_rumble_all(0x60, id);
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void *TCameraCtrl::get_params() { return &m_20; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::reset_view_flags() {
     Cam_80069F20 *c = ((Cam_80069F20 *)&TCameraCtrl__view_state);
     f32 v;
@@ -905,12 +767,8 @@ void TCameraCtrl::reset_view_flags() {
     ((Out_80069F20 *)camera_ctrl_instance)->f58 = v;
     ((Out_80069F20 *)camera_ctrl_instance)->f5c = v;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 activate_camera_mode(s32 arg0) {
   u8 *temp_r3;
   short new_var;
@@ -940,12 +798,8 @@ s32 activate_camera_mode(s32 arg0) {
   }
   return 1;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 restore_player_cameras(void) {
     s32 identity;
     u8 *player;
@@ -971,14 +825,10 @@ s32 restore_player_cameras(void) {
     }
     return 0;
 }
-#pragma pop
 
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma dont_inline off
-#pragma auto_inline off
 s32 TCameraCtrl::release_photon_blast_camera() {
     s32 temp_r0;
     if (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069D7C_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 8) {
@@ -991,9 +841,6 @@ s32 TCameraCtrl::release_photon_blast_camera() {
 #pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void set_active_camera_pose_from_params(u8 *arg0) {
     u8 *temp_r4;
     if ((*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 8) || (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069D04_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 4)) {
@@ -1009,12 +856,8 @@ void set_active_camera_pose_from_params(u8 *arg0) {
         }
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void set_active_camera_pose(u8 *arg0, u8 *arg1) {
     u8 *temp_r5;
     if ((*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 8) || (*(s32 *)((s8 *)(&(*(RecoveredGlobal_80069C94_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) & 4)) {
@@ -1029,12 +872,8 @@ void set_active_camera_pose(u8 *arg0, u8 *arg1) {
         }
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::update_pose_smoothing() {
     u8 *arg0 = (u8 *)this;
   u8 *new_var;
@@ -1062,12 +901,8 @@ void TCameraCtrl::update_pose_smoothing() {
   approach_camera_vector(&this->position, (u8 *)&this->unk_1A0, (f32) (*((f32 *) (((s8 *) arg0) + 0x1B8))));
   approach_camera_vector((u8 *)&this->m_184, (u8 *)&this->m_1ac, this->m_1bc);
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::update_position() {
     u8 *arg0 = (u8 *)this;
     u8 *temp_r3;
@@ -1087,12 +922,8 @@ void TCameraCtrl::update_position() {
         *(f32 *)((s8 *)temp_r3 + 0x13C) = (f32) this->position.z;
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::update_target_smoothing() {
     u8 *arg0 = (u8 *)this;
     u8 *temp_r3;
@@ -1115,12 +946,8 @@ void TCameraCtrl::update_target_smoothing() {
     }
     approach_camera_vector((u8 *)&this->m_184, (u8 *)&this->m_1ac, this->m_1bc);
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::clamp_to_target_obstruction() {
     View_800698C8 *self = (View_800698C8 *)this;
     s32 n;
@@ -1163,12 +990,8 @@ void TCameraCtrl::clamp_to_target_obstruction() {
         self->look.z = self->pos.z + hit->point[1].z;
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::resolve_anchor_obstruction() {
     View_800696D0 *self = (View_800696D0 *)this;
     Vec_800696D0 d;
@@ -1218,19 +1041,11 @@ void TCameraCtrl::resolve_anchor_obstruction() {
         *flag = 0;
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void*TCameraCtrl::get_target() { return (char*)this + 0x68; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void CameraViewParams::apply() {
     *(s32 *)((s8 *)(&(*(RecoveredGlobal_8006961C_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) = (s32) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8006961C_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) | 0x200);
     *(f32 *)((s8 *)(&(*(RecoveredGlobal_8006961C_TCameraCtrl__data_804FF634 *)&TCameraCtrl__data_804FF634).value) + 0x28) = (f32) width;
@@ -1250,23 +1065,15 @@ void CameraViewParams::apply() {
     *(f32 *)((s8 *)(&(*(RecoveredGlobal_8006961C_TCameraCtrl__data_804FF634 *)&TCameraCtrl__data_804FF634).value) + 0x40) = (f32) pad_30[4];
     *(f32 *)((s8 *)(&(*(RecoveredGlobal_8006961C_TCameraCtrl__data_804FF634 *)&TCameraCtrl__data_804FF634).value) + 0x44) = (f32) pad_30[5];
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void CameraViewParams::apply_if_overridden() {
     if (*(s32 *)((s8 *)&TCameraCtrl__view_state[0] + 8) & 0x400) {
         apply();
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 CameraViewParams::begin_override() {
     if ((*(G_800695A0 *)&TCameraCtrl__view_state).flags & 0x400) {
         return 0;
@@ -1275,13 +1082,10 @@ s32 CameraViewParams::begin_override() {
     apply();
     return 1;
 }
-#pragma pop
 
 
 #pragma push
 #pragma opt_common_subs off
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::reset_viewport_scissor() {
     typedef char sp8_offset[(offsetof(Stack_80069534, sp8) == 0x0) ? 1 : -1];
     typedef char spC_offset[(offsetof(Stack_80069534, spC) == 0x4) ? 1 : -1];
@@ -1302,9 +1106,6 @@ void TCameraCtrl::reset_viewport_scissor() {
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma dont_inline off
-#pragma auto_inline off
 void end_view_override() {
     typedef char sp8_offset[(offsetof(Stack_800694A8, sp8) == 0x0) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_800694A8, sp10) == 0x8) ? 1 : -1];
@@ -1336,9 +1137,6 @@ void end_view_override() {
 #pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::init_default_view() {
     typedef char sp8_offset[(offsetof(Stack_800693F4, sp8) == 0x0) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_800693F4, sp10) == 0x8) ? 1 : -1];
@@ -1372,12 +1170,8 @@ void TCameraCtrl::init_default_view() {
     camera_default_view_value = TCameraCtrl__data_805D8FAC;
     camera_default_view_value_b = TCameraCtrl__data_805D8FD8;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::reset_default_view() {
     typedef char sp8_offset[(offsetof(Stack_80069318, sp8) == 0x0) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_80069318, sp10) == 0x8) ? 1 : -1];
@@ -1412,33 +1206,21 @@ void TCameraCtrl::reset_default_view() {
     camera_default_view_value_b = TCameraCtrl__data_805D8FD8;
     ((TCameraCtrl *)(&stack.sp8))->update_projection_params();
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 TCameraCtrl__sub_80069304(void) {
     return ((u32) *(u32 *)((s8 *)(&(*(RecoveredGlobal_80069304_TCameraCtrl__data_804FF628 *)&TCameraCtrl__view_state).value) + 8) >> 0xAU) & 1;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::create() {
     void *obj = __nw__7TObjectFUl(0x1D4);
     if (obj != 0) {
         TCameraCtrl__ct((u8 *)obj, (void *)tl_camera);
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 *TCameraCtrl::get_view_matrix() {
     if (is_split_screen() != 0) {
         if (get_mode__11TCameraCtrlFPv((void *) (&(*(RecoveredGlobal_80069258_main_task *)&(*(RecoveredGlobal_800691C8_main_task *)&main_task)).value)) & 1) {
@@ -1448,12 +1230,8 @@ s32 *TCameraCtrl::get_view_matrix() {
     }
     return &(*(RecoveredGlobal_80069258_TCameraCtrl__data_804FF6D0 *)&TCameraCtrl__view_matrix).value;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::apply_split_screen_view_matrix() {
     if (is_split_screen() != 0) {
         if (get_mode__11TCameraCtrlFPv(&(*(RecoveredGlobal_800691C8_main_task *)&main_task).value) & 1) {
@@ -1465,12 +1243,8 @@ void TCameraCtrl::apply_split_screen_view_matrix() {
     }
     TCameraCtrl::concat_matrix(0U, (u32) &TCameraCtrl__view_matrix[0]);
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void transform_to_view__11TCameraCtrlFii(s32 arg0, s32 arg1) {
     push_matrix();
     if (is_split_screen() != 0) {
@@ -1481,12 +1255,8 @@ void transform_to_view__11TCameraCtrlFii(s32 arg0, s32 arg1) {
     matrix_mult_vec(0, (void *)arg0, (void *)arg1);
     pop_matrix();
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 TCameraCtrl::get_camera_target_id(s32 arg0) {
     s32 var_r31;
     s32 var_r3;
@@ -1516,12 +1286,8 @@ s32 TCameraCtrl::get_camera_target_id(s32 arg0) {
     }
     return 0xFFFF;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::restore_full_screen_view() {
     if (is_split_screen() == 0) {
         ((TCameraCtrl *)((s32) &lbl_804FF67C[0]))->copy_view_state((s32)((s32) &TCameraCtrl__data_804FF634[0]));
@@ -1531,22 +1297,14 @@ void TCameraCtrl::restore_full_screen_view() {
         TCameraCtrl__data_805D4E0A = 0;
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::copy_view_state(s32 src) {
     s32 dst = (s32)this;
     *(O_80068FCC *)dst = *(O_80068FCC *)src;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl__sub_80068EF0(void) {
     f32 neg_w;
     f32 neg_h;
@@ -1566,12 +1324,8 @@ void TCameraCtrl__sub_80068EF0(void) {
         }
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 f32 TCameraCtrl::get_view_scale() {
     if (is_split_screen() != 0) {
         if (TCameraCtrl::get_camera_id() == 2) {
@@ -1581,12 +1335,8 @@ f32 TCameraCtrl::get_view_scale() {
     }
     return TCameraCtrl__data_805D8FAC;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 f32 TCameraCtrl::get_fov() {
     if (is_split_screen() != 0) {
         if (TCameraCtrl::get_camera_id() == 2) {
@@ -1596,12 +1346,8 @@ f32 TCameraCtrl::get_fov() {
     }
     return TCameraCtrl__data_805D8FAC;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::set_split_viewport(s32 arg0, s32 i) {
     switch (arg0) {
     case 1:
@@ -1637,12 +1383,8 @@ void TCameraCtrl::set_split_viewport(s32 arg0, s32 i) {
         break;
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::set_fullscreen_viewport() {
     TCameraCtrl::set_target_coords(0, 0);
     TCameraCtrl::set_target(0x280, 0x1E0);
@@ -1650,12 +1392,8 @@ void TCameraCtrl::set_fullscreen_viewport() {
     GXSetScissor((int) ((s32) TCameraCtrl__viewport_x), (int) ((s32) TCameraCtrl__viewport_y), (int) ((s32) TCameraCtrl__viewport_size), (int) ((s32) TCameraCtrl__viewport_height));
     GXSetScissorBoxOffset(0, 0);
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 f32 TCameraCtrl::get_split_offset(s32 arg0) {
     if ((is_split_screen() != 0) && (TCameraCtrl::get_camera_id() == 2)) {
         if (arg0 == 0) {
@@ -1665,37 +1403,21 @@ f32 TCameraCtrl::get_split_offset(s32 arg0) {
     }
     return 0.0f;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 f32 TCameraCtrl__sub_80068A04(void) {
     return 0.0f;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 bool TCameraCtrl__sub_800689F4(void) {
     return TCameraCtrl__data_805D4E0A != 0;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl__sub_800689E8(void) { TCameraCtrl__pose_snap_flags = 0; }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 u16 TCameraCtrl::get_nth_view_player_id(s32 n) {
     s32 count = 0;
     u16 result = 0;
@@ -1717,12 +1439,8 @@ u16 TCameraCtrl::get_nth_view_player_id(s32 n) {
     }
     return result;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 s32 TCameraCtrl::get_split_screen_view_index(u16 id) {
     s32 result = 0;
     s32 n = 0;
@@ -1742,12 +1460,8 @@ s32 TCameraCtrl::get_split_screen_view_index(u16 id) {
     }
     return result;
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::sync_split_view_slots(s32 arg0, s32 arg1) {
     s32 i;
     s32 id;
@@ -1765,16 +1479,11 @@ void TCameraCtrl::sync_split_view_slots(s32 arg0, s32 arg1) {
         }
     }
 }
-#pragma pop
 
 
-#pragma push
-#pragma dont_inline off
-#pragma auto_inline off
 void TCameraCtrl::copy_vec_to_default(u8 *arg0) {
     VecCopy((Vec *)(&TCameraCtrl__up_vector[0]), (const Vec *)(arg0));
 }
-#pragma pop
 
 
 // The shared scale is the second small-data object, following the initial zero.
