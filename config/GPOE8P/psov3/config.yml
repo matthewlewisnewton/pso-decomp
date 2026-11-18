@@ -4977,6 +4977,7 @@ force_active:
   - __dt__20TWindowMessageScrollFv
   - __dt__20TWindowShortListCtrlFv
   - __dt__20TWindowSubQuestBoardFv
+  - __dt__20TWindowSubStatusDispFv
   - __dt__21TAdMultiChgGameModeGCFv
   - __dt__21TAdMultiSelGameModeGCFv
   - __dt__21TBoss1DragonEffBreathFv
@@ -6229,6 +6230,7 @@ force_active:
   - __vt__20TWindowMessageScroll
   - __vt__20TWindowShortListCtrl
   - __vt__20TWindowSubQuestBoard
+  - __vt__20TWindowSubStatusDisp
   - __vt__21TAdMultiChgGameModeGC
   - __vt__21TAdMultiSelGameModeGC
   - __vt__21TBoss1DragonEffBreath
@@ -20470,6 +20472,7 @@ force_active:
   - render__20TWindowChoiceSettingFv
   - render__20TWindowShortListCtrlFv
   - render__20TWindowSubQuestBoardFv
+  - render__20TWindowSubStatusDispFv
   - render__21TAdMultiChgGameModeGCFv
   - render__21TAdMultiSelGameModeGCFv
   - render__21TBoss1DragonEffBreathFv
@@ -21611,6 +21614,7 @@ force_active:
   - run_task__20TWindowMessageScrollFv
   - run_task__20TWindowShortListCtrlFv
   - run_task__20TWindowSubQuestBoardFv
+  - run_task__20TWindowSubStatusDispFv
   - run_task__21TAdMultiChgGameModeGCFv
   - run_task__21TAdMultiSelGameModeGCFv
   - run_task__21TBoss1DragonEffBreathFv
@@ -23049,6 +23053,7 @@ force_active:
   - status_disp_tab_label_message_ids
   - status_disp_texture_handle
   - status_line_prefix
+  - status_rank_prefixes
   - status_text_label_table
   - status_window_settings
   - stderr_buff

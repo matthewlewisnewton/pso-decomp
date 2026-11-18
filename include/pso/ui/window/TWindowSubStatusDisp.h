@@ -16,6 +16,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
         RECORD_SET_EP2_SPLIT
     };
 
+    explicit TWindowSubStatusDisp(s32 client);
     virtual ~TWindowSubStatusDisp();
     void calc_row_width();
     virtual void run_task();
@@ -128,7 +129,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void init_gauge_entry();
     void update_status_entry();
     void update_hp_tp_level();
-    void *dt(s16 arg1);
     static f32 get_base_y(f32 farg0);
     void update_entry_color();
     void set_entry_state(s8 arg1);

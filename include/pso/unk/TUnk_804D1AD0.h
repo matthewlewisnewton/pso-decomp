@@ -10,7 +10,7 @@ public:
     s32 create_status_category_menu();
     virtual void render();
     virtual void run_task();
-    u8 unk_1C[0x4];
+    s32 client;
     void * m_20;
     u8 unk_24[0x4];
     s32 m_28;

@@ -358,7 +358,7 @@ s32 TWindowSubStatusDisp::get_display_mode() {
 void TWindowSubStatusDisp::vt16() {  }
 
 // rank letters by clear rank: "", "B", "A", "S"
-extern char *lbl_804D2B20[];
+extern const char *status_rank_prefixes[4];
 
 void vt5__20TWindowSubStatusDispFv(u8 *window_base) {
   s32 type;
@@ -460,7 +460,7 @@ void TWindowSubStatusDisp::vt4() {
         } else {
             set_text_entry_string((u8 *)entry, (u32)TWindowSubStatusDisp::get_message_10(0x9A), 0);
         }
-        set_text_entry_string((u8 *)label, (u32)lbl_804D2B20[rank], 0);
+        set_text_entry_string((u8 *)label, (u32)status_rank_prefixes[rank], 0);
     }
 
     entry = (u16 *)get_array_entry(7);
@@ -502,7 +502,7 @@ void TWindowSubStatusDisp::vt4() {
         *value &= ~2;
         *label &= ~2;
         set_text_entry_string((u8 *)entry, (u32)TWindowSubStatusDisp::get_message_10(0x99), 0);
-        set_text_entry_string((u8 *)label, (u32)lbl_804D2B20[rank], 0);
+        set_text_entry_string((u8 *)label, (u32)status_rank_prefixes[rank], 0);
     }
 
     entry = (u16 *)get_array_entry(0xD);
@@ -751,7 +751,6 @@ void vt0__20TWindowSubStatusDispFv(u8 *window_base) {
 
 #include "types.h"
 
-struct SD_80281760 { const char *f0; u8 pad4[0x14]; void *vt; u8 pad1c[4]; s16 f20; u8 pad22[0x3E]; s16 f60; s16 f62; u8 pad64[4]; void *f68; f32 f6c; f32 f70; };
 
 extern "C" {
 s32 fn_8026C7AC(void *arg0, s8 arg1);
@@ -760,13 +759,10 @@ extern s32 lbl_805DD6F4;
 void *init__21TWindowSubComCardListFiii(void *, int, int, s32);
 s32 get_window_layout_position(int);
 
-extern s32 __vt__20TWindowSubStatusDisp[];
 extern const f32 lbl_805DD70C;
-SD_80281760 *TWindowSubStatusDisp__ct(SD_80281760 *arg0, s32 arg1);
 void *get_player_by_client_id(s32 i);
 s32 draw_visible_window_entries(void *, void *, s32);
 s32 draw_list_page_indicator(s32, s32);
-void __dl__7TObjectFPv(void *);
 }
 s32 delete_if_allocated(s32 arg0, s16 arg1);
 #pragma defer_codegen on
@@ -856,32 +852,31 @@ void TWindowSubStatusDisp::run_task() {
   ((TWindowBase *)arg0)->update_window_entry_list((void *) (((u8 *) arg0) + 0x24));
 }
 
-void *TWindowSubStatusDisp::dt(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = __vt__20TWindowSubStatusDisp;
-        delete_if_allocated(this->m_68, 1);
-        __dt__11TWindowBaseFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
-    }
-    return this;
+extern const char lbl_805DD6F8[];
+extern const char lbl_805DD6FC[];
+extern const char lbl_805DD700[];
+extern const char lbl_805DD704[];
+const char *status_rank_prefixes[4] = {
+    lbl_805DD6F8, lbl_805DD6FC, lbl_805DD700, lbl_805DD704,
+};
+
+TWindowSubStatusDisp::~TWindowSubStatusDisp() {
+    delete_if_allocated(m_68, 1);
 }
-SD_80281760 *TWindowSubStatusDisp__ct(SD_80281760 *arg0, s32 arg1) {
-    void *w;
-    __ct__11TWindowBaseFPUcsPUc(arg0, (u8 *)TWindowSubStatusDisp__window_layout, (s16)arg1, (u8 *)(get_window_layout_position(0x19)));
-    arg0->vt = ((u8 *)&__vt__20TWindowSubStatusDisp);
-    arg0->f0 = TWindowSubStatusDisp__class_name;
-    arg0->f20 = arg1;
-    arg0->f60 = 0;
-    arg0->f62 = arg0->f60;
-    arg0->f6c = lbl_805DD70C;
-    arg0->f70 = lbl_805DD70C;
-    w = ::operator new(0xC);
-    if (w != NULL) {
-        w = init__21TWindowSubComCardListFiii(w, 0, 3, arg1);
+
+TWindowSubStatusDisp::TWindowSubStatusDisp(s32 client)
+    : TWindowBase((u8 *)TWindowSubStatusDisp__window_layout, (s16)client,
+                  (u8 *)get_window_layout_position(0x19)) {
+    m_name = TWindowSubStatusDisp__class_name;
+    m_20 = client;
+    page = 0;
+    m_62 = page;
+    scale_x = lbl_805DD70C;
+    scale_y = lbl_805DD70C;
+    void *indicator = ::operator new(0xC);
+    if (indicator != NULL) {
+        indicator = init__21TWindowSubComCardListFiii(indicator, 0, 3, client);
     }
-    arg0->f68 = w;
-    ((TWindowSubStatusDisp *)arg0)->dispatch_page_init();
-    return arg0;
+    m_68 = (u32)indicator;
+    dispatch_page_init();
 }
