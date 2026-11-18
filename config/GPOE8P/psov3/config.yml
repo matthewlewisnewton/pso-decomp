@@ -4961,6 +4961,8 @@ force_active:
   - bm_o_trap_ancient01_model_names
   - bm_o_trap_ancient01_motion_names
   - bm_o_trap_ancient01_resource_descriptor
+  - bm_o_vs2_model_names
+  - bm_o_vs2_motion_names
   - bm_obj_boss7_common_model_names
   - bm_obj_boss7_common_motion_names
   - bm_obj_boss8_piller_model_names

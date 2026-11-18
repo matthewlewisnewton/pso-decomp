@@ -1420,6 +1420,7 @@ pso/misc/TOVS2Wall01.cpp
 pso/misc/TOVS2Wall01_8017BCC8.cpp
 pso/misc/TOVS2Wall01_8017BE08.cpp
 pso/misc/TOVS2Wall01_8017C7A4.cpp
+pso/misc/TOVS2WallResources.cpp
 pso/misc/TOVS2Wreck01.cpp
 pso/misc/TOVS2Wreck02.cpp
 pso/misc/TOVS2Wreck03.cpp

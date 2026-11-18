@@ -5567,6 +5567,13 @@ pso/misc/TOTrapAncient02.cpp:
 	.sbss       start:0x805D5AD8 end:0x805D5AE8
 	.sdata2     start:0x805DBA78 end:0x805DBAA8
 
+pso/misc/TOVS2WallResources.cpp:
+	.rodata     start:0x80442F40 end:0x80443168
+	.data       start:0x804B4E78 end:0x804B5000
+	.sdata      start:0x805D31C0 end:0x805D31E4
+	.sbss       start:0x805D5AE8 end:0x805D5AEC
+	.sdata2     start:0x805DBAA8 end:0x805DBAB8
+
 pso/unk/text_8017B8A0.cpp:
 	.text       start:0x8017B9AC end:0x8017BBAC
 

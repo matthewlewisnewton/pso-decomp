@@ -1,3 +1,4 @@
+#include "pso/misc/TOVS2WallResources.h"
 #include "types.h"
 #include "pso/misc/TOVS2Wreck06.h"
 #include "pso/misc/TOVS2Wall01.h"
@@ -28,12 +29,10 @@ void *__dt__12TOVS2Wreck06Fv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-extern void *TOVS2Wreck06__class_name;
-
 void *TOVS2Wreck06__ct(void *arg0, void *arg1) {
     __ct__5TOVS2FPvl(arg0, arg1, 5);
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TOVS2Wreck06;
-    *(void * *)&((TOVS2Wreck06 *)arg0)->m_name = TOVS2Wreck06__class_name;
+    ((TOVS2Wreck06 *)arg0)->m_name = TOVS2Wreck06__class_name;
     return arg0;
 }
 
