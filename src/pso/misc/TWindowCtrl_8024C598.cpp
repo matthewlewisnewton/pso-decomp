@@ -17,7 +17,7 @@ s32 TWindowCtrl__sub_8024C5C4(Obj_8024C5C4 *self) {
 }
 
 void TWindowCtrl::set_flag1e_bit40() { this->m_1e |= 0x40; }
-u16 TWindowCtrl::get_flags() { return this->m_76; }
+u16 TUnk_804CF0B8::get_speaker_id() { return m_76; }
 int TUnk_804CF0B8::get_flag_bit1() { return ((this->m_71) >> 1) & 0x1; }
 
 }

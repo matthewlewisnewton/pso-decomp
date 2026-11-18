@@ -62,10 +62,7 @@ TWindowSubAreaMap::TWindowSubAreaMap(TObject *object, void *arg2) : TObject(obje
     *(void * *)&this->m_name = TWindowSubAreaMap__name;
     *(void **)((s8 *)this + 0x20) = object;
     *(void **)((s8 *)this + 0x1C) = arg2;
-    o = __nw__7TObjectFUl(0x78);
-    if (o != NULL) {
-        o = TWindowSubAreaMapDisp__ct((TWindowSubAreaMapDisp *)((u8 *)o));
-    }
+    o = new TWindowSubAreaMapDisp();
     *(void **)((s8 *)this + 0x24) = o;
 }
 
@@ -81,22 +78,22 @@ void TWindowSubAreaMapDisp::update_manual_scroll() {
             this->m_64 = (f32) (this->m_64 - lbl_805DD478);
         }
         if ((is_on_current_screen__11TCameraCtrlFv((int)temp_r31, 0x40) != 0) || (is_flag_set__11TLoadingCurFv((void *) ((u8 *)&(*(RecoveredGlobal_802715F0_lbl_8050E208 *)&controller_input_state).value + 0x160), 0x40) != 0)) {
-            *(f32 *)&this->unk_60 = (f32) (*(f32 *)&this->unk_60 + lbl_805DD478);
+            this->m_60 = (f32) (this->m_60 + lbl_805DD478);
         }
         if ((is_on_current_screen__11TCameraCtrlFv((int)temp_r31, 0x80) != 0) || (is_flag_set__11TLoadingCurFv((void *) ((u8 *)&(*(RecoveredGlobal_802715F0_lbl_8050E208 *)&controller_input_state).value + 0x160), 0x80) != 0)) {
-            *(f32 *)&this->unk_60 = (f32) (*(f32 *)&this->unk_60 - lbl_805DD478);
+            this->m_60 = (f32) (this->m_60 - lbl_805DD478);
         }
         if (is_on_current_screen__11TCameraCtrlFv((int)temp_r31, 0x20000) != 0) {
-            *(f32 *)&this->unk_68 = (f32) (*(f32 *)&this->unk_68 - lbl_805DD478);
+            this->m_68 = (f32) (this->m_68 - lbl_805DD478);
         }
         if (is_on_current_screen__11TCameraCtrlFv((int)temp_r31, 0x10000) != 0) {
-            *(f32 *)&this->unk_68 = (f32) (*(f32 *)&this->unk_68 + lbl_805DD478);
+            this->m_68 = (f32) (this->m_68 + lbl_805DD478);
         }
-        TRaderMapCore::pan_horizontal((f32) (*(f32 *)&this->unk_60));
+        TRaderMapCore::pan_horizontal((f32) (this->m_60));
         TRaderMapCore::pan_vertical(this->m_64);
-        TRaderMapCore::add_zoom_distance((f32) (*(f32 *)&this->unk_68));
-        *(f32 *)&this->unk_60 = (f32) (*(f32 *)&this->unk_60 * lbl_805DD47C);
+        TRaderMapCore::add_zoom_distance((f32) (this->m_68));
+        this->m_60 = (f32) (this->m_60 * lbl_805DD47C);
         this->m_64 = (f32) (this->m_64 * lbl_805DD47C);
-        *(f32 *)&this->unk_68 = (f32) (*(f32 *)&this->unk_68 * lbl_805DD47C);
+        this->m_68 = (f32) (this->m_68 * lbl_805DD47C);
     }
 }

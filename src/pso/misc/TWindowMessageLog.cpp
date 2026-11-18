@@ -1,3 +1,4 @@
+#include "pso/misc/Scroll_8026D790.h"
 #include "types.h"
 #include "pso/misc/TWindowMessageLog.h"
 #include "pso/misc/TWindowBase.h"
@@ -66,7 +67,7 @@ void TWindowMessageLog::update_scroll_position() {
     array_entry = (s32)this->get_array_entry(var_r30);
     stack.sp8 = (this->m_48 - lbl_805DD248) - lbl_805DD24C;
     stack.spC = (*(f32 *)((s8 *)array_entry + 0xC) + *(f32 *)((s8 *)array_entry + 0x14)) - *(f32 *)((s8 *)temp_r31 + 0xC);
-    ((TWindowMenu *)(*(u8 **)((s8 *)((u8 *)this) + 0x90)))->copy_position(&stack.sp8);
+    ((Scroll_8026D790 *)(*(u8 **)((s8 *)((u8 *)this) + 0x90)))->copy_position(&stack.sp8);
     this->clamp_scroll_offset();
 }
 

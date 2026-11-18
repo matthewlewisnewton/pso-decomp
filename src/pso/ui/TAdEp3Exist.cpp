@@ -22,10 +22,9 @@ const char *TAdEp3Exist__name = "TAdEp3Exist";
 const f32 lbl_8047B8C4[2] = { 85.0f, 384.0f };
 const f32 lbl_8047B8CC[2] = { 470.0f, 32.0f };
 
-extern "C" void draw_message_window__11TAdEp3ExistFl(void);
 
 void TAdEp3Exist::vfunc_6() {
-    TAdEnterSerialAccessGC::create_callback((void *)lbl_8047B8C4, (void *)lbl_8047B8CC, (void *)draw_message_window__11TAdEp3ExistFl);
+    TAdEnterSerialAccessGC::create_callback((void *)lbl_8047B8C4, (void *)lbl_8047B8CC, TAdEp3Exist::draw_message_window);
 }
 
 struct Obj_8036F4DC { u8 pad0[8]; u8 cnt; u8 bits; };
@@ -107,9 +106,8 @@ s32 prs_decompress(Prs_8036F5B0 *c, u8 *src, s32 arg2, s32 arg3);
 int request_scene_change__21TAdMultiChgGameModeGCFv(void*);
 int request_transition__21TAdMultiChgGameModeGCFv(void*);
 
-void TAdEp3Exist::draw_message_window(s32 arg1) {
-    s32 arg0 = (s32)this;
-    ((TWindowBase *)arg0)->draw_window_frame((void *) (arg1));
+void TAdEp3Exist::draw_message_window(void *window, void *frame_context) {
+    ((TWindowBase *)window)->draw_window_frame(frame_context);
     render_status_line__15TAdSubPlyItemGCFi((int) (get_localized_text_entry(0x2C, 0xA)), -1, (f32) (lbl_805E0440 - (f32) (calc_text_width((char *)(get_localized_text_entry(0x2C, 0xA))) >> 1U)), (f32) (lbl_805E0444), (f32) (lbl_805E0448));
 }
 

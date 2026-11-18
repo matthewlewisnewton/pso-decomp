@@ -9,7 +9,6 @@ char *strncpy(char *, const char *, unsigned long);
 void *memset(void *, int, unsigned long);
 unsigned long strlen(const char *);
 int sprintf(char *, const char *, ...);
-void LaunchDol(ModemLaunchContext *);
 extern const char lbl_80480404[];
 // Address anchor into adjacent pooled literals; see modem-launch-recovery-evidence.md.
 extern const char lbl_80480240[];

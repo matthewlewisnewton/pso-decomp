@@ -1,4 +1,6 @@
 #include "pso/ui/PlayerWindowDispatch.h"
+#include "pso/misc/TWindowBase.h"
+#include "pso/misc/TUnk_804CF0B8.h"
 #include "types.h"
 #include "pso/misc/TWindowCtrl_8024B7D4.h"
 #include "pso/misc/TWindowCtrl.h"
@@ -94,7 +96,7 @@ extern s32 local_client_id;
 void TWindowCtrl__sub_8024B9C0(void *arg0) {
     if ((u32) *(u32 *)((s8 *)arg0 + 0x30) != 0U) {
         if (is_player_window_visible(local_client_id) != 0) {
-            ((TWindowLockOn *)(*(u32 *)((s8 *)arg0 + 0x30)))->request_close();
+            ((TWindowBase *)(*(u32 *)((s8 *)arg0 + 0x30)))->request_close();
             return;
         }
         window_request_show((void *)(*(u32 *)((s8 *)arg0 + 0x30)));
@@ -104,7 +106,7 @@ void TWindowCtrl__sub_8024B9C0(void *arg0) {
 void TWindowCtrl::update_trade_window() {
     if ((u32) this->m_34 != 0U) {
         if ((is_player_window_visible(local_client_id) != 0) || (TWindowCtrl__sub_8024B000(this, local_client_id) != 0) || ((is_split_screen() != 0) && (TRaderMapCore::is_active() == 0))) {
-            ((TWindowLockOn *)(this->m_34))->request_close();
+            ((TWindowBase *)(this->m_34))->request_close();
             return;
         }
         window_request_show((void *)this->m_34);
@@ -122,16 +124,16 @@ void TWindowCtrl::handle_controller() {
 
 }
 
-struct Obj_8024BB30 { u8 pad[0x84]; TWindowCtrl *children[4]; };
+struct Obj_8024BB30 { u8 pad[0x84]; TUnk_804CF0B8 *children[4]; };
 
 extern "C" void TWindowCtrl__sub_8024BB30(TWindowCtrl *ctrl);
 
 void TWindowCtrl__sub_8024BB30(TWindowCtrl *ctrl) {
     u32 i;
     for (i = 0; i < 4; i++) {
-        TWindowCtrl *child = ((Obj_8024BB30 *)ctrl)->children[i];
+        TUnk_804CF0B8 *child = ((Obj_8024BB30 *)ctrl)->children[i];
         if (child != 0 && child->all_parents_unqueued_for_destruction() == 0) {
-            if (ctrl->m_28 == child->get_flags()) {
+            if (ctrl->m_28 == child->get_speaker_id()) {
                 ctrl->m_28 = 0xFFFF;
             }
             ((Obj_8024BB30 *)ctrl)->children[i] = 0;
@@ -277,7 +279,7 @@ void TWindowCtrl::update_party_status_rows() {
                 is_script_controlled__10TObjPlayerFv(pl) != 0 ||
                 (obj_isState3_324__9TObjCharaFv(pl) != 0 &&
                  (((TObjPlayer *)pl)->get_field_828() != 0 || ((TNpcPlayer *)pl)->get_action_flags() == 0xFFFF))) {
-                ((TWindowLockOn *)w)->request_close();
+                ((TWindowBase *)w)->request_close();
             } else {
                 window_request_show(w);
                 if (w->y != y) {

@@ -7,6 +7,7 @@
 #include "pso/misc/TWindowBase.h"
 
 struct TWindowSubStatusDisp : public TWindowBase {
+    TWindowSubStatusDisp(s32 client);
     virtual ~TWindowSubStatusDisp();
     void calc_row_width();
     virtual void run_task();
@@ -36,11 +37,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void dispatch_page_update();
     void dispatch_page_init();
     void set_count_ratio_text(s32 arg1, s32 arg2);
-    void handle_choice_input();
     void clear_visible_flag();
-    void increment_counter();
-    static s32 destroy_allocation(s32 arg0, s16 arg1);
-    void *reset_selection();
     static s32 get_status_index(int arg0);
     static s32 get_status_index_or_default(u16 *arg0);
     static s32 *get_status_window(int arg0);
@@ -65,9 +62,7 @@ struct TWindowSubStatusDisp : public TWindowBase {
     static void draw_status(s32 arg1, s32 arg2, s32 arg3);
     static void dispatch_without_flags(s32 arg1, s32 arg2, s32 arg3);
     static void *refresh_with_default_list(s32 a, s32 b);
-    void handle_input();
     int is_flag_4_set();
-    void set_input_mode(u8 v);
     s16 get_item_type();
     s16 get_field_2F8();
     s16 get_stat();
@@ -92,16 +87,13 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void add_item_info_entry(s32 arg1, s32 arg2, s32 arg3);
     void add_ground_item(s32 arg1, s32 arg2);
     void init_scroll_pos();
-    void *destroy_item_list_resources(s16 arg1);
     int is_flag80_set();
     void add_text_entry(s32 arg1, s32 arg2);
     void set_entry1_field20(s32 arg1);
-    void *deleting_dtor(s16 arg1);
     void start_hp_text_color_transition();
     void init_gauge_entry();
     void update_status_entry();
     void update_hp_tp_level();
-    void *dt(s16 arg1);
     static f32 get_base_y(f32 farg0);
     void update_entry_color();
     void set_entry_state(s8 arg1);
@@ -133,7 +125,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     static s32 calc_entry_offset();
     static s32 get_layout_id();
     static s32 resolve_player_slot(s32 slot);
-    void render_status_and_children();
     u8 *init_layout_entry_copy(u8 *arg1);
     u8 *init_layout_entry_rect(u8 *arg1, s16 arg2);
     void advance_state();
@@ -156,8 +147,6 @@ struct TWindowSubStatusDisp : public TWindowBase {
     void update_pb_counter_approach();
     u8 *init_part_direct(u8 *arg1, s32 arg2);
     void append_entry(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
-    u8 *ct_helper(s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-    u8 *construct_item_list(s32 arg1, s32 arg2, s16 arg3);
     s32 update_hp_entry();
     static s32 destroy_status_display(s32 arg0, s16 arg1);
     u8 *construct_type1_heading(s32 arg1, s32 arg2);

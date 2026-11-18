@@ -5,11 +5,9 @@
 #include "pso/misc/TWindowAddition.h"
 
 struct TWindowSubCustomSelect : public TWindowAddition {
+    TWindowSubCustomSelect(s32 client);
     virtual ~TWindowSubCustomSelect();
     virtual void render();
-    u8 _pad60[0x8];
-    void* m_68;
-    u8 _pad6C[0x4];
     u8 m_70;
     u8 m_71;
     u8 m_72;
@@ -26,14 +24,11 @@ struct TWindowSubCustomSelect : public TWindowAddition {
     void draw_palette_cells(int arg1);
     virtual void run_task();
     int is_active();
+    void *sub_80277290();
 };
 
 typedef char TWindowSubCustomSelect_size[sizeof(TWindowSubCustomSelect) == 0x84 ? 1 : -1];
 
-extern "C" {
-u8 *TWindowSubCustomSelect__ct(TWindowSubCustomSelect *arg0, s32 arg1);
-void *__dt__22TWindowSubCustomSelectFv(void *arg0, s16 arg1);
-void render__22TWindowSubCustomSelectFv(TWindowSubCustomSelect *arg0);
-}
+typedef char TWindowSubCustomSelect_fields_begin[offsetof(TWindowSubCustomSelect, m_70) == 0x70 ? 1 : -1];
 
 #endif

@@ -474,8 +474,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/boss/TBoss6EmptyWarp_802B0E2C.cpp": {"cflags": _switch(cflags_pso, "-str reuse,readonly")},
     # Calendar month/day stores retain GC/1.3.2 scheduling; see calendar-conversion-evidence.md.
     "pso/misc/pso_date.cpp": {"mw_version": "GC/1.3.2"},
-    # The balloon float pool begins at 0x805DCD0C, which is four-byte aligned.
-    "pso/misc/TWindowFukidasi.cpp": {"cw_align": ".sdata2=4"},
+    # Native balloon virtual-table emission uses deferred code generation.
+    "pso/misc/TWindowFukidasi.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # The class string and name pointer start on four-byte boundaries.
     "pso/effect/TDPBShower.cpp": {"cw_align": ".rodata=4 .sdata=4"},
     "pso/object/TObjCMName.cpp": {"cflags": _switch(cflags_pso, "-sym on"), "cw_align": ".sdata2=4"},
@@ -668,6 +668,22 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     # Row-header copy is a 16-byte struct assignment. -inline off outlines it;
     # noauto,level=1 inlines that helper only. The rest of the unit stays out of line.
     "pso/misc/TWindowMainMenu_802AD538.cpp": {"cflags": _switch(cflags_pso, "-inline noauto,level=1")},
+    # Window native lifetime (Matt's approval, Nov 14 2026, 1:35 PM PT): deferred emission makes
+    # the compiler-generated Word vtable exist while metadata is pooled; reverse definitions keep
+    # the original addresses and pool order. See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowDD_80342254.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the ComCard follower window vtable
+    # (TUnk_804CE964). See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowComCard_80249CBC.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the TUnk_804EFBAC selection window
+    # vtable. See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowDD.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the TWindowDD_WS_ScrollBar vtable.
+    # See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowDD_80340EA8.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
+    # Window native lifetime: same deferred emission for the TWindowChallengeResult vtable;
+    # definitions are written in reverse order. See docs/evidence/window-native-lifetime-deferred.md.
+    "pso/misc/TWindowChallengeResult.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},
     # Soft-keyboard clip, scale, and layout fuse multiply-adds into fmadds/fnmsubs
     # (scale_point_about_pivot, apply_context_transform_to_rect,
     # apply_window_closing_stretch, clip_textured_quad, init_text_window_layout).
@@ -963,6 +979,8 @@ MIDDLEWARE: List[Tuple[str, int, str, List[str], Dict[str, Dict[str, Any]]]] = [
         "pso/system/AdxExpand.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
         "pso/system/AdxManager.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
         "pso/system/AdxStreamRuntime.cpp": {"cflags": _switch(cflags_middleware, "-inline auto", "-str reuse,readonly")},
+        # Keep the build banner in .rodata and its volatile pointer in .sdata2.
+        "pso/system/LscInit.cpp": {"cflags": _switch(cflags_middleware, "-str reuse,readonly")},
     }),
     # Sega's Ginja model library.
     ("ginja", 0x803D6538, "GC/2.0", _switch(cflags_middleware, "-O3,p", "-opt nopeephole"), {
@@ -1451,11 +1469,32 @@ def add_orig_asm_steps(config: ProjectConfig) -> None:
     config.reconfig_deps = [*(config.reconfig_deps or []), Path("tools/orig_asm.py")]
 
 
+def add_musyx_dsp_step(config: ProjectConfig) -> None:
+    out = config.out_path()
+    script = Path("tools/musyx_dsp.py")
+    config.custom_build_rules = [*(config.custom_build_rules or []), {
+        "name": "musyx_dsp",
+        "command": "$python tools/musyx_dsp.py $image_object $out",
+        "description": "MUSYX DSP $out",
+        "restat": True,
+    }]
+    steps = config.custom_build_steps = dict(config.custom_build_steps or {})
+    steps["pre-compile"] = [*steps.get("pre-compile", []), {
+        "outputs": [out / "include" / "musyx" / "dsp_image.inc"],
+        "rule": "musyx_dsp",
+        # DTK writes the original object as a side effect of the DOL split.
+        "inputs": [out / "config.json"],
+        "implicit": [script, Path("tools/link_units.py")],
+        "variables": {"image_object": str(out / "obj" / "musyx" / "runtime" / "dsp_import.o")},
+    }]
+
+
 # ===================================================================
 # Main Dispatch
 # ===================================================================
 if args.target == "psov3":
     add_orig_asm_steps(config)
+    add_musyx_dsp_step(config)
     # A disc image in orig/GPOE8P/, or the disc extracted there by wit.
     _disc_root = Path("orig/GPOE8P/P-GPOE")
     if not _disc_root.is_dir():

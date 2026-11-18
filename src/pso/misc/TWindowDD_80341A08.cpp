@@ -6,17 +6,18 @@
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
 #include "pso/misc/TWindowDD_80341A08.h"
 #include "pso/misc/TWindowBase.h"
+#include "pso/misc/WindowVertexBufferAbi.h"
 
 #include "pso/misc/TWindowDD.h"
 #include "pso/misc/TWindowHelpItem.h"
-#include "pso/misc/TWindowKeyBoardSoft.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/TUnk_804CFA28.h"
 #include "pso/system/GinjaMaterialState.h"
 #include "pso/unk/text_803D619C.h"
 
 extern "C" {
 void TWindowDD__sub_80341674(TWindowDD_WS_Word *, TWindowDrawContext *);
-void draw_visible_window_entries(TWindowDD_WS_Word *, TWindowDDWordEntryList *, TWindowKeyBoardSoft *);
+void draw_visible_window_entries(TWindowDD_WS_Word *, TWindowDDWordEntryList *, TWindowDrawContext *);
 extern const s32 TWindowDD__data_805DFC14;
 extern const s32 lbl_805DFC18;
 extern const f32 lbl_805DFCA0;
@@ -24,13 +25,13 @@ extern const f32 lbl_805DFCA0;
 
 void TWindowDD_WS_Word::render() {
     TWindowDD_WS_Word *self = this;
-    TWindowKeyBoardSoft *entry;
+    TWindowDrawContext *entry;
     TUnk_804CFA28 *item;
     s32 idx;
     s32 i;
     s32 j;
-    entry = (TWindowKeyBoardSoft *)TWindowDD::draw_default_entry((s32)self);
-    self->calc_inner_rect((u8 *)entry);
+    entry = (TWindowDrawContext *)TWindowDD::draw_default_entry((s32)self);
+    self->calc_inner_rect(entry);
     TWindowDD__sub_80341674(self, entry);
     if (self->m_8c != 0) {
         self->m_8c = 0;
@@ -103,9 +104,9 @@ void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *contex
     }
     center = lbl_805DFCA4 * self->m_4c + self->m_44;
     f32 depth = TWindowDD__sub_80348AD4(self->m_54, TWindowDD__data_805DFCA8);
-    reinterpret_cast<TWindowDD *>(vertices)->reset_entries(depth, -1);
+    reset_entries__9TWindowDDFf(vertices, -1, depth);
     s32 point_table = self->point_table_index;
-    reinterpret_cast<TWindowDD *>(vertices)->copy_point_table(point_table);
+    copy_vertex_uv_table(vertices, point_table);
     TWindowDD__sub_80348A2C(context, vertices);
 
     scale = context->scale[1];
@@ -178,8 +179,8 @@ void TWindowDD__sub_80341674(TWindowDD_WS_Word *self, TWindowDrawContext *contex
     // The selection highlight uses a separate point table and depth bias.
     if (self->m_74 > 0 && self->sub_80342254()) {
         depth = TWindowDD__sub_80348AD4(self->m_54, lbl_805DFCAC);
-        reinterpret_cast<TWindowDD *>(vertices)->reset_entries(depth, -1);
-        reinterpret_cast<TWindowDD *>(vertices)->copy_point_table(1);
+        reset_entries__9TWindowDDFf(vertices, -1, depth);
+        copy_vertex_uv_table(vertices, 1);
         TWindowDD__sub_80348A2C(context, vertices);
 
         f32 selected_row = (f32)self->m_6c;
@@ -274,7 +275,6 @@ struct Entry_80341FFC {
 
 extern "C" {
 s32 apply_both_choices__9TWindowDDFll(void *, int);
-s32 sub_80342268__17TWindowDD_WS_WordFv();
 extern const f32 TWindowDD__data_805DFB20;
 extern const float TWindowDD__data_805DFCA8;
 s32 init_window_layout_entries(void *, void *, int);
@@ -289,7 +289,7 @@ void TWindowDD::reset_cursor() { this->m_80 = 0; }
 
 #pragma push
 #pragma fp_contract on
-void TWindowDD::handle_scroll_input() {
+void TWindowDD_WS_Word::run_task() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3_3;
     s32 temp_r3_4;
@@ -299,78 +299,78 @@ void TWindowDD::handle_scroll_input() {
     s32 temp_r5;
     s32 var_r30;
     s32 var_r30_2;
-    if (sub_80342268__17TWindowDD_WS_WordFv() != 0) {
-        if (apply_both_choices__9TWindowDDFll((u8 *)&this->m_7c, 0x20) != 0) {
-            temp_r4 = *(s32 *)&this->m_84;
-            if (temp_r4 < (s32) (*(s32 *)&this->m_90 - 1)) {
-                switch (((TWindowDD_WS_Word *)arg0)->can_scroll(1)) {
+    if (sub_80342268() != 0) {
+        if (apply_both_choices__9TWindowDDFll((u8 *)&this->m_60, 0x20) != 0) {
+            temp_r4 = *(s32 *)&this->m_68;
+            if (temp_r4 < (s32) (*(s32 *)&this->m_74 - 1)) {
+                switch (can_scroll(1)) {
                 case 0:
-                    *(s32 *)&this->m_88 = (s32) (*(s32 *)&this->m_88 + 1);
+                    *(s32 *)&this->m_6c = (s32) (*(s32 *)&this->m_6c + 1);
                     break;
                 case 1:
-                    *(f32 *)((s8 *)arg0 + 0x88) = (f32) (*(f32 *)((s8 *)arg0 + 0x88) + TWindowDD__data_805DFB20);
+                    scroll_offset = (f32) (scroll_offset + TWindowDD__data_805DFB20);
                     break;
                 }
                 add_scroll_offset(1);
             } else {
                 add_scroll_offset((int)(-temp_r4));
-                *(s32 *)&this->m_88 = 0;
-                *(f32 *)((s8 *)arg0 + 0x88) = (f32) (*(const f32 *)&TWindowDD__data_805DFCA8);
+                *(s32 *)&this->m_6c = 0;
+                scroll_offset = (f32) (*(const f32 *)&TWindowDD__data_805DFCA8);
             }
-        } else if (apply_both_choices__9TWindowDDFll((u8 *)&this->m_7c, 0x10) != 0) {
-            if ((s32) *(s32 *)&this->m_84 > 0) {
-                switch (((TWindowDD_WS_Word *)arg0)->can_scroll(-1)) {
+        } else if (apply_both_choices__9TWindowDDFll((u8 *)&this->m_60, 0x10) != 0) {
+            if ((s32) *(s32 *)&this->m_68 > 0) {
+                switch (can_scroll(-1)) {
                 case 0:
-                    *(s32 *)&this->m_88 = (s32) (*(s32 *)&this->m_88 - 1);
+                    *(s32 *)&this->m_6c = (s32) (*(s32 *)&this->m_6c - 1);
                     break;
                 case 1:
-                    *(f32 *)((s8 *)arg0 + 0x88) = (f32) (*(f32 *)((s8 *)arg0 + 0x88) - TWindowDD__data_805DFB20);
+                    scroll_offset = (f32) (scroll_offset - TWindowDD__data_805DFB20);
                     break;
                 }
                 add_scroll_offset(-1);
             } else {
-                *(s32 *)&this->m_88 = (s32) (*(s32 *)&this->m_98 - 1);
-                add_scroll_offset((int)((*(s32 *)&this->m_90 - *(s32 *)&this->m_84) - 1));
-                *(f32 *)((s8 *)arg0 + 0x88) = (f32) (TWindowDD__data_805DFB20 * (f32) -(*(s32 *)&this->m_84 - *(s32 *)&this->m_88));
+                *(s32 *)&this->m_6c = (s32) (*(s32 *)&this->m_7c - 1);
+                add_scroll_offset((int)((*(s32 *)&this->m_74 - *(s32 *)&this->m_68) - 1));
+                scroll_offset = (f32) (TWindowDD__data_805DFB20 * (f32) -(*(s32 *)&this->m_68 - *(s32 *)&this->m_6c));
             }
-        } else if ((apply_both_choices__9TWindowDDFll((u8 *)&this->m_7c, 0x10000) != 0) && ((s32) *(s32 *)&this->m_84 < (s32) (*(s32 *)&this->m_90 - 1))) {
-            if (sub_80341AC0__17TWindowDD_WS_WordFv(arg0) != 0) {
-                temp_r4_2 = *(s32 *)&this->m_94;
+        } else if ((apply_both_choices__9TWindowDDFll((u8 *)&this->m_60, 0x10000) != 0) && ((s32) *(s32 *)&this->m_68 < (s32) (*(s32 *)&this->m_74 - 1))) {
+            if (sub_80341AC0() != 0) {
+                temp_r4_2 = *(s32 *)&this->visible_row_count;
                 temp_r4_3 = temp_r4_2 - 1;
-                temp_r5 = *(s32 *)&this->m_84 + (temp_r4_2 - (*(s32 *)&this->m_88 + 1));
-                temp_r3_3 = *(s32 *)&this->m_90;
+                temp_r5 = *(s32 *)&this->m_68 + (temp_r4_2 - (*(s32 *)&this->m_6c + 1));
+                temp_r3_3 = *(s32 *)&this->m_74;
                 var_r30 = temp_r4_3;
                 if ((s32) (temp_r5 + temp_r4_3) >= temp_r3_3) {
                     var_r30 = (temp_r3_3 - temp_r5) - 1;
                 }
                 if (var_r30 <= 0) {
-                    *(s32 *)&this->m_88 = temp_r4_3;
-                    add_scroll_offset((int)((*(s32 *)&this->m_90 - 1) - *(s32 *)&this->m_84));
+                    *(s32 *)&this->m_6c = temp_r4_3;
+                    add_scroll_offset((int)((*(s32 *)&this->m_74 - 1) - *(s32 *)&this->m_68));
                 } else {
                     add_scroll_offset(var_r30);
-                    *(f32 *)((s8 *)arg0 + 0x88) = (f32) (((f32) var_r30 * TWindowDD__data_805DFB20) + *(f32 *)((s8 *)arg0 + 0x88));
+                    scroll_offset = (f32) (((f32) var_r30 * TWindowDD__data_805DFB20) + scroll_offset);
                 }
             } else {
-                *(s32 *)&this->m_88 = (s32) (*(s32 *)&this->m_90 - 1);
-                add_scroll_offset((int)((*(s32 *)&this->m_90 - 1) - *(s32 *)&this->m_84));
+                *(s32 *)&this->m_6c = (s32) (*(s32 *)&this->m_74 - 1);
+                add_scroll_offset((int)((*(s32 *)&this->m_74 - 1) - *(s32 *)&this->m_68));
             }
-        } else if ((apply_both_choices__9TWindowDDFll((u8 *)&this->m_7c, 0x20000) != 0) && ((s32) *(s32 *)&this->m_84 > 0)) {
-            if (sub_80341AC0__17TWindowDD_WS_WordFv(arg0) != 0) {
-                var_r30_2 = *(s32 *)&this->m_94 - 1;
-                temp_r3_4 = *(s32 *)&this->m_84 - *(s32 *)&this->m_88;
+        } else if ((apply_both_choices__9TWindowDDFll((u8 *)&this->m_60, 0x20000) != 0) && ((s32) *(s32 *)&this->m_68 > 0)) {
+            if (sub_80341AC0() != 0) {
+                var_r30_2 = *(s32 *)&this->visible_row_count - 1;
+                temp_r3_4 = *(s32 *)&this->m_68 - *(s32 *)&this->m_6c;
                 if ((temp_r3_4 - var_r30_2) < 0) {
                     var_r30_2 = temp_r3_4;
                 }
                 if (var_r30_2 <= 0) {
-                    *(s32 *)&this->m_88 = 0;
-                    add_scroll_offset((int)(-*(s32 *)&this->m_84));
+                    *(s32 *)&this->m_6c = 0;
+                    add_scroll_offset((int)(-*(s32 *)&this->m_68));
                 } else {
                     add_scroll_offset((int)(-var_r30_2));
-                    *(f32 *)((s8 *)arg0 + 0x88) = (f32) -(((f32) var_r30_2 * TWindowDD__data_805DFB20) - *(f32 *)((s8 *)arg0 + 0x88));
+                    scroll_offset = (f32) -(((f32) var_r30_2 * TWindowDD__data_805DFB20) - scroll_offset);
                 }
             } else {
-                *(s32 *)&this->m_88 = 0;
-                add_scroll_offset((int)(-*(s32 *)&this->m_84));
+                *(s32 *)&this->m_6c = 0;
+                add_scroll_offset((int)(-*(s32 *)&this->m_68));
             }
         }
     }
@@ -479,7 +479,7 @@ void TWindowDD::get_cursor_pos(u8 *arg1) {
 #pragma pop
 
 s32 TWindowDD::get_field_68() { return this->m_84; }
-void TWindowDD::add_scroll_offset(int a1) { this->m_84 = (this->m_84 + a1); this->m_a8 = 1; TWindowDD::spawn_window(); }
+void TWindowDD_WS_Word::add_scroll_offset(int offset) { m_68 += offset; m_8c = 1; TWindowDD::spawn_window(); }
 
 }
 

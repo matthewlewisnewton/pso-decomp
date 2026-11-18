@@ -5,7 +5,10 @@
 #include "pso/misc/TWindowMenuIconLine.h"
 
 struct TWindowSubItemList : public TWindowMenuIconLine {
+    TWindowSubItemList(void *position, s32 client);
     virtual ~TWindowSubItemList();
+    void reset_selected();
+    void refresh();
     void sub_8027ACF8(u8 *);
     void render();
     void run_task();
@@ -15,18 +18,9 @@ struct TWindowSubItemList : public TWindowMenuIconLine {
 
 typedef char TWindowSubItemList_size[sizeof(TWindowSubItemList) == 0x90 ? 1 : -1];
 
-extern "C" {
-u8 *TWindowSubItemList__ct(u8 *arg0, s32 arg1, s16 arg2);
-void *__dt__18TWindowSubItemListFv(void *arg0, s16 arg1);
-u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2);
-}
+extern "C" TWindowSubItemList *create_sub_item_list_window(void *position, void *extent, s32 client);
 
-// --- C functions defined in TWindowSubItemList.cpp ---
-extern "C" {
-u8 *TWindowSubItemList__ct(u8 *arg0, s32 arg1, s16 arg2);
-void *__dt__18TWindowSubItemListFv(void *arg0, s16 arg1);
-u8 *create_sub_item_list_window(s32 arg0, s32 arg1, s16 arg2);
-}
-// --- end of C functions
+typedef char TWindowSubItemList_unk_88_offset[offsetof(TWindowSubItemList, unk_88) == 0x88 ? 1 : -1];
+typedef char TWindowSubItemList_m_8c_offset[offsetof(TWindowSubItemList, m_8c) == 0x8C ? 1 : -1];
 
 #endif

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "pso/misc/TWindowBase.h"
 #include "pso/misc/TKeyBoardControl_80131C58.h"
-#include "pso/misc/TKeyBoardControl_8025EC04.h"
 #include "pso/misc/TKeyBoardControl_803F0C50.h"
 #include "pso/misc/TWindowCtrl_8024A054.h"
 #include "pso/misc/TWindowSubComCard_80244774.h"
@@ -13,10 +12,10 @@
 #include "pso/misc/TWindowSubComCard.h"
 #include "pso/misc/TWindowSubTradeMain.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
+#include "pso/misc/TWindowKeyBoardHard.h"
 #include "pso/misc/TWindowKeyBoardHard_802601D4.h"
 #include "pso/misc/TWindowKeyBoardSoft_80261440.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
-#include "pso/unk/text_8025FF8C.h"
 
 struct RecoveredGlobal_80131C5C_lbl_8050E208 {
     s32 value;
@@ -93,15 +92,15 @@ void run_task__16TKeyBoardControlFv(TKeyBoardControl *key_board_control) {
         temp_r5 = temp_r3 * 0x50;
         if (TWindowShortListCtrl__check_controller_button((void *) ((u8 *)&controller_input_state.value + temp_r5 + 0x20), 0x200, temp_r5) != 0) {
             key_board_control->m_1c = (u16) (key_board_control->m_1c & 0xFFFE);
-            TKeyBoardControl__sub_8025EC04((u8 *)key_board_control->m_24);
+            ((TWindowKeyBoardHard *)key_board_control->m_24)->reset_input_state();
             if ((u32) key_board_control->m_28 != 0U) {
                 window_request_show(*(void **)((s8 *)key_board_control + 0x28));
             }
         }
-    } else if (((s32)((TKeyBoardControl *)(key_board_control->m_24))->is_key_held()) == 0) {
+    } else if (((s32)((TWindowKeyBoardHard *)(key_board_control->m_24))->is_key_held()) == 0) {
         key_board_control->m_1c = (u16) (key_board_control->m_1c | 1);
         if ((u32) key_board_control->m_28 != 0U) {
-            ((TWindowLockOn *)(*(void **)((s8 *)key_board_control + 0x28)))->request_close();
+            ((TWindowBase *)(*(void **)((s8 *)key_board_control + 0x28)))->request_close();
         }
     }
 }
@@ -116,7 +115,6 @@ TKeyBoardControl::~TKeyBoardControl() {
 extern "C" {
 void __ct__7TObjectFP7TObject(void *, void *);
 void *__nw__7TObjectFUl(u32);
-u8 *TWindowKeyBoardBase__ct(u8 *arg0);
 void TKeyBoardControl__sub_802613A4(TKeyBoardControl *arg0);
 extern s32 __vt__16TKeyBoardControl[];
 extern const char *TKeyBoardControl__class_name;
@@ -131,51 +129,42 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
     *(const char **)((u8 *)self + 0x0) = TKeyBoardControl__class_name;
     self->m_1c = 0;
     self->m_1e = client;
-    o = __nw__7TObjectFUl(0xB8);
-    if (o != NULL) {
-        o = TWindowKeyBoardBase__ct((u8 *)o);
-    }
+    o = new TWindowKeyBoardBase;
     self->m_20 = (u32)o;
     ((TWindowKeyBoardBase *)self->m_20)->init_keyboard_text_field(arg2, arg3);
-    ((TKeyBoardControl *)self->m_20)->set_flag62_bit8();
-    o = __nw__7TObjectFUl(0x74);
-    if (o != NULL) {
-        o = TWindowKeyBoardHard__ct((TWindowKeyBoardHard *)o, self->m_20);
-    }
+    ((TWindowKeyBoardBase *)self->m_20)->set_flag62_bit8();
+    o = new TWindowKeyBoardHard((TWindowKeyBoardBase *)self->m_20);
     self->m_24 = (u32)o;
-    TKeyBoardControl__sub_8025EC04((u8 *)self->m_24);
-    o = __nw__7TObjectFUl(0x70);
-    if (o != NULL) {
-        o = TWindowKeyBoardSoft__ct((u8 *)o, self->m_20, client);
-    }
+    ((TWindowKeyBoardHard *)self->m_24)->reset_input_state();
+    o = new TWindowKeyBoardSoft((TWindowKeyBoardBase *)self->m_20, client);
     self->m_28 = (u32)o;
     switch (mode) {
     case 0:
         self->m_1c |= 2;
-        TKeyBoardControl__sub_8025CC3C((void *)self->m_20);
-        fn_8025FF8C((void *)self->m_24);
+        ((TWindowKeyBoardBase *)self->m_20)->set_input_flags_12();
+        ((TWindowKeyBoardHard *)self->m_24)->reset_composer_input_flags();
         ((TKeyBoardControl *)self->m_28)->release();
         break;
     case 1:
         self->m_1c |= 2;
         self->m_1c |= 8;
-        ((TKeyBoardControl *)self->m_24)->enable_caps_led();
+        ((TWindowKeyBoardHard *)self->m_24)->enable_caps_led();
         TKeyBoardControl__sub_802613A4((TKeyBoardControl *)self->m_28);
-        TKeyBoardControl__sub_8025CC04((u8 *)self->m_20);
+        ((TWindowKeyBoardBase *)self->m_20)->set_input_flags_92();
         break;
     case 2:
         self->m_1c |= 2;
         self->m_1c |= 0x10;
-        ((TKeyBoardControl *)self->m_24)->enable_kana_led();
+        ((TWindowKeyBoardHard *)self->m_24)->enable_kana_led();
         ((TKeyBoardControl *)self->m_28)->release_input();
-        TKeyBoardControl__sub_8025CBCC((u8 *)self->m_20);
+        ((TWindowKeyBoardBase *)self->m_20)->set_input_flags_112();
         break;
     case 3:
         kb = self;
         kb->m_1c |= 0x20;
-        ((TKeyBoardControl *)self->m_24)->enable_keyboard_led();
+        ((TWindowKeyBoardHard *)self->m_24)->enable_keyboard_led();
         ((TKeyBoardControl *)self->m_28)->close();
-        TKeyBoardControl__sub_8025CBC0((void *)self->m_20);
+        ((TWindowKeyBoardBase *)self->m_20)->set_input_flags_212();
         break;
     }
     return kb;
@@ -184,13 +173,13 @@ TKeyBoardControl *TKeyBoardControl__ct(TKeyBoardControl *self, TObject *parent, 
 
 void TKeyBoardControl__sub_80131F5C(void) {  }
 void TKeyBoardControl__sub_80131F60(void) {  }
-void TKeyBoardControl::set_flag60_bit200() { *(u32*)((char*)this + 0x60) |= 0x200; }
-void TKeyBoardControl::clear_flag60_bit200() { *(u32*)((char*)this + 0x60) &= 0xfffffdff; }
-int TKeyBoardControl::is_key_held() { return (*(u32*)((char*)this + 0x60) >> 8) & 0x1; }
-void TKeyBoardControl::set_flag62_bit2() { *(u16*)((char*)this + 0x62) |= 0x2; }
-int TKeyBoardControl::is_active() { return (*(u16*)((char*)this + 0x60) >> 5) & 0x1; }
-int TKeyBoardControl::is_key_active() { return *(u16*)((char*)this + 0x60) & 0x1; }
-void TKeyBoardControl::set_flag62_bit8() { *(u16*)((char*)this + 0x62) |= 0x8; }
+void TWindowKeyBoardHard::set_flag60_bit200() { m_60 |= 0x200; }
+void TWindowKeyBoardHard::clear_flag60_bit200() { m_60 &= 0xfffffdff; }
+int TWindowKeyBoardHard::is_key_held() { return (m_60 >> 8) & 0x1; }
+void TWindowKeyBoardBase::set_flag62_bit2() { m_62 |= 0x2; }
+int TWindowKeyBoardBase::is_active() { return (m_60 >> 5) & 0x1; }
+int TWindowKeyBoardBase::is_key_active() { return m_60 & 0x1; }
+void TWindowKeyBoardBase::set_flag62_bit8() { m_62 |= 0x8; }
 
 typedef char RecoveredGlobal_801320CC_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_801320CC_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];
 
@@ -250,12 +239,12 @@ s32 TKeyBoardControl::check_input_ready(s32 arg0) {
     if (((s32 (*)(s32))is_key_57_pressed__16TKeyBoardControlFi)(arg0) != 0) {
         return 0;
     }
-    if (((s32 (*)(s32))TKeyBoardControl__sub_801321B4)(arg0) != 0) {
+    if (TKeyBoardControl__sub_801321B4(arg0) != 0) {
         return 0;
     }
     return 1;
 }
-bool TKeyBoardControl__sub_801321B4(s32 arg0) {
+s32 TKeyBoardControl__sub_801321B4(s32 arg0) {
     if (TKeyBoardControl__sub_801323C8((K_801323C8 *)(arg0), (u8)((int)(0x56U))) != 0) {
         return 1;
     }
@@ -265,7 +254,7 @@ bool TKeyBoardControl__sub_801321B4(s32 arg0) {
     if ((get_key_state__16TKeyBoardControlFPv(&TKeyBoardControl__global_key_state.value) == 2) || (get_key_state__16TKeyBoardControlFPv(&TKeyBoardControl__global_key_state.value) == 4) || (get_key_state__16TKeyBoardControlFPv(&TKeyBoardControl__global_key_state.value) == 3)) {
         return 0;
     }
-    return TKeyBoardControl__sub_801323C8((K_801323C8 *)(arg0), (u8)((int)(0x5BU))) != 0;
+    return TKeyBoardControl__sub_801323C8((K_801323C8 *)(arg0), (u8)((int)(0x5BU))) != 0 ? 1 : 0;
 }
 
 typedef char RecoveredGlobal_80132274_TKeyBoardControl__data_80506270_size[sizeof(RecoveredGlobal_80132274_TKeyBoardControl__data_80506270) == 0xB0 ? 1 : -1];

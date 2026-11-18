@@ -1,5 +1,6 @@
-#include "pso/misc/TextEntryMeasurement.h"
+#include "pso/misc/TextEntryMeasurementInline.h"
 #include "types.h"
+#include "pso/misc/TWindowSubStatusDisp_802598E4.h"
 #include "pso/TObject.h"
 #include "pso/misc/TLobby_8001D6A0.h"
 #include "pso/misc/TWindowSubStatusDisp_8025A9B4.h"
@@ -27,17 +28,8 @@ struct Entry_80246DCC {
     s32 f20;
 };
 
-struct Win_80246DCC {
-    s32 f0;
-    u8 pad4[0x18 - 0x4];
-    void *vt;
-    u8 pad1c[0x60 - 0x1c];
-    f32 f60;
-    f32 f64;
-};
 
 Entry_80246DCC *get_array_entry__11TWindowBaseFi(void *, s32);
-void draw_right_aligned_number(void);
 s32 get_window_layout_position(s32);
 extern const char lbl_8044E7BC[];
 extern const f32 lbl_805DCB60;
@@ -72,41 +64,23 @@ const char *lbl_804CE2AC[3] = {
     "Team Name : ", "Clear Time : ", "Death : ",
 };
 #pragma pop
-void *lbl_804CE2B8[6] = {
-    (void *)0x0, (void *)0x0, (void *)&dt__22TWindowChallengeResultFPvs, (void *)&init_subwindow__22TWindowChallengeResultFPv,
-    (void *)&render__22TWindowChallengeResultFv, (void *)&render_shadows__7TObjectFv,
-};
-#define lbl_804CE2B8 ((s32 *)lbl_804CE2B8)
 
-void init_subwindow__22TWindowChallengeResultFPv(void* p) { ((TWindowDD *)p)->initialize_subwindow(); ((TWindowBase *)p)->update_window_entry_list((char*)p + 0x24); }
-
-void *dt__22TWindowChallengeResultFPvs(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = lbl_804CE2B8;
-        ((TWindowDD *)arg0)->destroy_window_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
-
-Win_80246DCC *TWindowChallengeResult__ct(Win_80246DCC *self, s32 str, s32 arg2, s32 arg3) {
+// Deferred compilation emits these definitions in reverse order.
+TWindowChallengeResult::TWindowChallengeResult(s32 str, s32 arg2, s32 arg3)
+    : TWindowBase((u8 *)lbl_804CE298, 4, (u8 *)get_window_layout_position(0x3F)) {
     s32 i;
     Entry_80246DCC *e;
     s32 m;
 
-    ((TWindowDD *)self)->construct_base((u8 *)lbl_804CE298, (s16)4, (u8 *)(get_window_layout_position(0x3F)));
-    self->vt = lbl_804CE2B8;
-    self->f0 = (s32)lbl_805D3898;
+    m_name = lbl_805D3898;
     for (i = 0; i < 3; i++) {
-        e = get_array_entry__11TWindowBaseFi(self, i * 2);
+        e = get_array_entry__11TWindowBaseFi(this, i * 2);
         set_text_entry_string((u8 *)e, (u32)lbl_804CE2AC[i], 0);
         measure_text_entry(e);
         e->f8 = lbl_805DCB60 - e->f10;
     }
-    set_text_entry_string((u8 *)(get_array_entry__11TWindowBaseFi(self, 1)), str, 0x20);
-    e = get_array_entry__11TWindowBaseFi(self, 3);
+    set_text_entry_string((u8 *)(get_array_entry__11TWindowBaseFi(this, 1)), str, 0x20);
+    e = get_array_entry__11TWindowBaseFi(this, 3);
     text_builder_reset();
     m = arg2 / 3600;
     arg2 = arg2 % 3600;
@@ -122,19 +96,22 @@ Win_80246DCC *TWindowChallengeResult__ct(Win_80246DCC *self, s32 str, s32 arg2, 
         append_padded_number(arg2, 2);
     }
     set_text_entry_string((u8 *)e, (u32)(get_shared_text_buffer()), 0x20);
-    e = get_array_entry__11TWindowBaseFi(self, 5);
+    e = get_array_entry__11TWindowBaseFi(this, 5);
     e->f20 = arg3;
-    draw_right_aligned_number();
+    draw_right_aligned_number(e);
     e->f8 = lbl_805DCB60 + e->f10;
     if (TCameraCtrl::get_camera_id() == 4) {
-        self->f60 = lbl_805DCB68;
-        self->f64 = lbl_805DCB68;
+        scale_x = lbl_805DCB68;
+        scale_y = lbl_805DCB68;
     } else {
-        self->f60 = lbl_805DCB6C;
-        self->f64 = lbl_805DCB6C;
+        scale_x = lbl_805DCB6C;
+        scale_y = lbl_805DCB6C;
     }
-    return self;
 }
+
+TWindowChallengeResult::~TWindowChallengeResult() {}
+
+void TWindowChallengeResult::run_task() { ((TWindowDD *)this)->initialize_subwindow(); update_window_entry_list(&m_24); }
 
 }
 

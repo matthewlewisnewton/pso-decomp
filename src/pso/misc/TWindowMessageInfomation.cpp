@@ -16,10 +16,8 @@ struct RecoveredGlobal_8026A100___vt__24TWindowMessageInfomation {
 };
 
 extern "C" {
-u8 * TWindowMessage__ct(void *, s32, u32, s16);
 extern s32 __vt__24TWindowMessageInfomation[];
 extern const char *lbl_805D3988;
-u8 *TWindowMessageInfomation__ct(u8 *arg0, s32 arg1, s16 arg2);
 s32 draw_visible_window_entries(s32, s32, s32);
 
 void TWindowMessageInfomation::render() {
@@ -34,10 +32,9 @@ TWindowMessageInfomation::~TWindowMessageInfomation() {
 }
 
 typedef char RecoveredGlobal_8026A100___vt__24TWindowMessageInfomation_size[sizeof(RecoveredGlobal_8026A100___vt__24TWindowMessageInfomation) == 0x18 ? 1 : -1];
-u8 *TWindowMessageInfomation__ct(u8 *arg0, s32 arg1, s16 arg2) {
-    TWindowMessage__ct(arg0, arg1, 0x10U, arg2);
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8026A100___vt__24TWindowMessageInfomation *)&__vt__24TWindowMessageInfomation).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) ((s32)lbl_805D3988);
-    return arg0;
+TWindowMessageInfomation::TWindowMessageInfomation(s32 arg1, s32 arg2)
+    : TWindowMessage(arg1, 0x10U, arg2) {
+    *(s32 *)((s8 *)((u8 *)this) + 0) = (s32) ((s32)lbl_805D3988);
+
 }
 

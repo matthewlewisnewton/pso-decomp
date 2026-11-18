@@ -1,13 +1,18 @@
+#include "pso/misc/KeyboardInputQueries.h"
 #include "types.h"
 #include "pso/misc/TKeyBoardControl_8025CB70.h"
-#include "pso/misc/TKeyBoardControl_8025EC04.h"
-#include "pso/unk/text_8025FF8C.h"
 #include "pso/misc/TWindowKeyBoardBase.h"
+#include "pso/misc/TWindowKeyBoardBase.h"
+#include "pso/misc/TWindowDrawContext.h"
 #include "pso/misc/KeyboardCharacterMaps.h"
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TWindowKeyBoardHard.h"
 #include "pso/misc/TWindowKeyBoardSoft.h"
 #include "pso/ui/Language.h"
+#include "pso/misc/TWindowSubStatusDisp_8024FBA8.h"
+#include "pso/misc/TWindowDD.h"
+#include "pso/misc/TWindowKeyBoardHard_802601D4.h"
+#include "pso/misc/TWindowBase.h"
 
 struct RecoveredFields_8025FC60_arg0 {
     u8 unknown_0[0x60];
@@ -19,18 +24,6 @@ struct RecoveredFields_8025FC60_arg0 {
 struct RecoveredGlobal_8025FC60_TKeyBoardControl__data_80506270 {
     s32 value;
     u8 remaining[0xAC];
-};
-
-struct Sub_8025EDB4 {
-    u8 pad[0xB4];
-    s32 flags;
-};
-
-struct Ctl_8025EDB4 {
-    u8 pad[0x60];
-    u32 flags;
-    u8 pad64[0xC];
-    Sub_8025EDB4 *sub;
 };
 
 struct Ctl_8025F21C { u8 p0[0x60]; u32 f60; };
@@ -51,19 +44,16 @@ struct Ctl_8025F4A0 {
 
 extern "C" {
 
-s32 TKeyBoardControl__sub_801321B4(void *);
 s32 TKeyBoardControl__sub_80132274(void *);
 s32 is_key_57_pressed__16TKeyBoardControlFi(void *);
 s32 TKeyBoardControl__sub_801323C8(void *, int);
 u8 get_key_state__16TKeyBoardControlFPv(s32 *);
 extern s32 TKeyBoardControl__global_key_state[];
 u8 TKeyBoardControl__sub_8013239C(void *, u8);
-s32 TKeyBoardControl__sub_801A58B0(void);
-s32 set_input_mode__20TWindowSubStatusDispFUc(s32, s32);
 
-void TKeyBoardControl__sub_8025EC04(u8 *arg0) {
-    *(s32 *)((s8 *)arg0 + 0x68) = 0;
-    *(s32 *)((s8 *)arg0 + 0x60) = (s32) (*(s32 *)((s8 *)arg0 + 0x60) | 0x100);
+void TWindowKeyBoardHard::reset_input_state() {
+    m_68 = 0;
+    m_60 |= 0x100;
 }
 
 s32 TKeyBoardControl::is_printable_key(void *arg0, u8 arg1) {
@@ -110,24 +100,23 @@ u16 TWindowKeyBoardHard::lookup_key_char(u8 arg1) {
     return keyboard_kana_unshifted_map[arg1];
 }
 
-#define arg0 ((Ctl_8025EDB4 *)arg0_)
-s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
+s32 TWindowKeyBoardHard::translate_key_char(u8 arg1, u16 *arg2) {
     s32 shift;
     u32 f;
     u16 c;
 
-    f = arg0->flags;
+    f = m_60;
     if (f & 1) {
         shift = f & 0x20;
-    } else if (TKeyBoardControl::is_printable_key(arg0, arg1) != 0) {
-        shift = arg0->flags & 0x20;
+    } else if (TKeyBoardControl::is_printable_key(this, arg1) != 0) {
+        shift = m_60 & 0x20;
     } else {
-        shift = arg0->flags & 0x80;
+        shift = m_60 & 0x80;
     }
-    if (!(arg0->sub->flags & 1) || get_key_state__16TKeyBoardControlFPv(TKeyBoardControl__global_key_state) != 0) {
+    if (!(m_composer->m_b4 & 1) || get_key_state__16TKeyBoardControlFPv(TKeyBoardControl__global_key_state) != 0) {
         switch (get_key_state__16TKeyBoardControlFPv(TKeyBoardControl__global_key_state)) {
         case 0:
-            if ((arg0->flags & 4) && current_language == LANGUAGE_JAPANESE) {
+            if ((m_60 & 4) && current_language == LANGUAGE_JAPANESE) {
                 *arg2 = keyboard_jp_symbol_map[arg1];
             } else if (shift != 0) {
                 *arg2 = keyboard_jp_shifted_map[arg1];
@@ -136,7 +125,7 @@ s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
             }
             break;
         case 2:
-            if (arg0->flags & 8) {
+            if (m_60 & 8) {
                 *arg2 = keyboard_fr_alternate_map[arg1];
             } else if (shift != 0) {
                 *arg2 = keyboard_fr_shifted_map[arg1];
@@ -145,7 +134,7 @@ s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
             }
             break;
         case 4:
-            if (arg0->flags & 8) {
+            if (m_60 & 8) {
                 *arg2 = keyboard_es_alternate_map[arg1];
             } else if (shift != 0) {
                 *arg2 = keyboard_es_shifted_map[arg1];
@@ -154,7 +143,7 @@ s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
             }
             break;
         case 3:
-            if (arg0->flags & 8) {
+            if (m_60 & 8) {
                 *arg2 = keyboard_de_alternate_map[arg1];
             } else if (shift != 0) {
                 *arg2 = keyboard_de_shifted_map[arg1];
@@ -170,13 +159,13 @@ s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
             }
             break;
         }
-        if (arg0->sub->flags & 1) {
-            return ((arg0->flags >> 7) & 1) ? 2 : 0;
+        if (m_composer->m_b4 & 1) {
+            return ((m_60 >> 7) & 1) ? 2 : 0;
         }
         return 1;
     }
-    if (arg0->sub->flags & 2) {
-        if (arg0->flags & 4) {
+    if (m_composer->m_b4 & 2) {
+        if (m_60 & 4) {
             *arg2 = keyboard_jp_symbol_map[arg1];
         } else if (shift != 0) {
             *arg2 = keyboard_jp_fullwidth_shifted_map[arg1];
@@ -185,18 +174,18 @@ s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
         }
         return 1;
     }
-    if (arg0->sub->flags & 4) {
-        if (TKeyBoardControl::is_printable_key(arg0, arg1) != 0) {
-            if (arg0->flags & 4) {
+    if (m_composer->m_b4 & 4) {
+        if (TKeyBoardControl::is_printable_key(this, arg1) != 0) {
+            if (m_60 & 4) {
                 *arg2 = keyboard_jp_symbol_map[arg1];
             } else if (shift != 0) {
                 *arg2 = keyboard_jp_shifted_map[arg1];
             } else {
                 *arg2 = keyboard_jp_unshifted_map[arg1];
             }
-            return ((arg0->flags >> 7) & 1) ? 2 : 0;
+            return ((m_60 >> 7) & 1) ? 2 : 0;
         }
-        if (arg0->flags & 4) {
+        if (m_60 & 4) {
             *arg2 = keyboard_jp_symbol_map[arg1];
         } else if (shift != 0) {
             *arg2 = keyboard_jp_fullwidth_shifted_map[arg1];
@@ -205,8 +194,8 @@ s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
         }
         return 1;
     }
-    *arg2 = ((TWindowKeyBoardHard *)arg0)->lookup_key_char(arg1);
-    if (!(arg0->sub->flags & 8)) {
+        *arg2 = lookup_key_char(arg1);
+    if (!(m_composer->m_b4 & 8)) {
         return 1;
     }
     c = *arg2;
@@ -222,11 +211,9 @@ s32 TKeyBoardControl::translate_key_char(void *arg0_, u8 arg1, u16 *arg2) {
     *arg2 += 0xA1;
     return 1;
 }
-#undef arg0
 
-s32 TKeyBoardControl::get_input_mode() {
-    Ctl_8025F21C *c = (Ctl_8025F21C *)this;
-    if (c->f60 & 0x40) {
+s32 TWindowKeyBoardHard::get_input_mode() {
+    if (m_60 & 0x40) {
         return 3;
     }
     switch (current_language) {
@@ -240,7 +227,7 @@ s32 TKeyBoardControl::get_input_mode() {
     case LANGUAGE_JAPANESE:
         return 3;
     }
-    return (s32)c;
+    return (s32)this;
 }
 
 s32 TWindowKeyBoardHard::poll_input() {
@@ -295,7 +282,7 @@ u8 TWindowKeyBoardHard::sub_8025F2F8(u8 arg1) {
         return arg1;
     }
     *(u32 *)((u8 *)this + 0x6C) = 7;
-    bit = ((TKeyBoardControl *)this)->get_input_mode();
+    bit = get_input_mode();
     for (i = 0, p = keyboard_accent_base_chars; (s32)*p != 0; i++, p++) {
         if (arg1 == *p) {
             modes = keyboard_layout_mode_table[i >> 1][idx];
@@ -470,7 +457,7 @@ void TWindowKeyBoardHard::process_key_input(u8 arg1) {
         *(s32 *)((s8 *)this + 0x6C) = 7;
         return;
     }
-    temp_r31 = TKeyBoardControl::translate_key_char(this, arg1, &sp8);
+    temp_r31 = translate_key_char(arg1, &sp8);
     if (sp8 == 0x1F) {
         *(s32 *)((s8 *)this + 0x6C) = 7;
         return;
@@ -485,8 +472,8 @@ block_7:
         if ((sub_80260438() != 0) && ((s32) sp8 >= 0x61) && ((s32) sp8 <= 0x7A)) {
             sp8 -= 0x20;
         }
-        set_input_mode__20TWindowSubStatusDispFUc(*(s32 *)((s8 *)this + 0x70), temp_r31);
-        ((TWindowKeyBoardBase *)(*(s32 *)((s8 *)this + 0x70)))->insert_character(sp8);
+        m_composer->set_input_mode(temp_r31);
+        m_composer->insert_character(sp8);
     }
 }
 
@@ -517,7 +504,7 @@ void TWindowKeyBoardHard::update_modifier_flags() {
             arg0->field_60 &= 0xFFFFFFFD;
         }
     }
-    if (TKeyBoardControl__sub_801321B4(&(*(RecoveredGlobal_8025FC60_TKeyBoardControl__data_80506270 *)&TKeyBoardControl__global_key_state).value) != 0) {
+    if (TKeyBoardControl__sub_801321B4((s32)&(*(RecoveredGlobal_8025FC60_TKeyBoardControl__data_80506270 *)&TKeyBoardControl__global_key_state).value) != 0) {
         arg0->field_60 |= 2;
     } else {
         arg0->field_60 &= 0xFFFFFFFD;
@@ -562,28 +549,173 @@ void TWindowKeyBoardHard::update_modifier_flags() {
     *(s32 *)((s8 *)temp_r3_4 + 0xB4) = (s32) (*(s32 *)((s8 *)temp_r3_4 + 0xB4) & 0xFFFFFFDF);
 }
 
-void TKeyBoardControl::enable_keyboard_led() {
-    if ((u32) *(u32 *)((s8 *)this + 0x70) != 0U) {
-        *(s32 *)((s8 *)this + 0x60) = (s32) (*(s32 *)((s8 *)this + 0x60) | 0x1000);
-        TKeyBoardControl__sub_8025CBC0((void *)(*(u32 *)((s8 *)this + 0x70)));
-        fn_8025FF8C(this);
+void TWindowKeyBoardHard::enable_keyboard_led() {
+    if (m_composer != NULL) {
+        m_60 = (s32) (m_60 | 0x1000);
+        m_composer->set_input_flags_212();
+        reset_composer_input_flags();
     }
 }
 
-void TKeyBoardControl::enable_kana_led() {
-    if ((u32) *(u32 *)((s8 *)this + 0x70) != 0U) {
-        *(s32 *)((s8 *)this + 0x60) = (s32) (*(s32 *)((s8 *)this + 0x60) | 0x800);
-        TKeyBoardControl__sub_8025CBCC((u8 *)(*(u32 *)((s8 *)this + 0x70)));
-        fn_8025FF8C(this);
+void TWindowKeyBoardHard::enable_kana_led() {
+    if (m_composer != NULL) {
+        m_60 = (s32) (m_60 | 0x800);
+        m_composer->set_input_flags_112();
+        reset_composer_input_flags();
     }
 }
 
-void TKeyBoardControl::enable_caps_led() {
-    if ((u32) *(u32 *)((s8 *)this + 0x70) != 0U) {
-        *(s32 *)((s8 *)this + 0x60) = (s32) (*(s32 *)((s8 *)this + 0x60) | 0x400);
-        TKeyBoardControl__sub_8025CC04((u8 *)(*(u32 *)((s8 *)this + 0x70)));
-        fn_8025FF8C(this);
+void TWindowKeyBoardHard::enable_caps_led() {
+    if (m_composer != NULL) {
+        m_60 = (s32) (m_60 | 0x400);
+        m_composer->set_input_flags_92();
+        reset_composer_input_flags();
     }
 }
 
 }
+
+void TWindowKeyBoardHard::reset_composer_input_flags() {
+    if (m_composer != NULL) {
+        m_60 |= 0x40;
+        m_composer->set_input_flags_12();
+        switch (current_language) {
+        case LANGUAGE_JAPANESE:
+        case LANGUAGE_ENGLISH:
+            break;
+        case LANGUAGE_GERMAN:
+        case LANGUAGE_FRENCH:
+        case LANGUAGE_SPANISH:
+            m_6c = 7;
+            break;
+        }
+    }
+}
+
+#pragma inline_depth(1)
+#pragma auto_inline off
+#pragma dont_inline off
+struct Pt_80260020 { f32 x, y; };
+
+
+
+
+extern "C" {
+extern s32 lbl_8044F0CC[];
+extern s32 lbl_8044F0D4[];
+extern s32 keyboard_hard_status_text_a[];
+extern s32 keyboard_hard_status_text_b[];
+extern s32 lbl_8044F0FC[];
+extern s32 lbl_8044F104[];
+static const f32 lbl_805DD068 = -1.0f;
+static const f32 lbl_805DD06C = 100000.0f;
+extern const f32 lbl_805DD070;
+
+void TWindowKeyBoardHard::release_keyboard() { TWindowKeyBoardBase* m = this->m_composer; if (m) m->reset_input_flags_for_language(); }
+
+void TWindowKeyBoardHard::draw_status_text(TWindowDrawContext *ctx) {
+    s32 flags;
+    if (m_composer != NULL && current_language == LANGUAGE_JAPANESE) {
+        f32 inv = lbl_805DD068 / ctx->depth;
+        Pt_80260020 pt;
+        pt.x = ctx->inner_x;
+        pt.y = ctx->inner_y;
+        set_text_draw_params((s32)ctx, 0, 0, (f32)inv, (f32)lbl_805DD06C);
+        flags = m_composer->m_b4;
+        if (!(flags & 1)) {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F0CC, -1, 0, (f32)lbl_805DD070);
+        } else if (flags & 2) {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F0D4, -1, 0, (f32)lbl_805DD070);
+        } else if (flags & 4) {
+            if (flags & 8) {
+                draw_window_text((f32 *)&pt, (const char *)keyboard_hard_status_text_a, -1, 0, (f32)lbl_805DD070);
+            } else {
+                draw_window_text((f32 *)&pt, (const char *)keyboard_hard_status_text_b, -1, 0, (f32)lbl_805DD070);
+            }
+        } else if (flags & 8) {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F0FC, -1, 0, (f32)lbl_805DD070);
+        } else {
+            draw_window_text((f32 *)&pt, (const char *)lbl_8044F104, -1, 0, (f32)lbl_805DD070);
+        }
+    }
+}
+
+void TWindowKeyBoardHard::render() {
+    s32 temp;
+    if (((s32) this->m_68 > 0) && (is_key_active() == 0)) {
+        temp = TWindowDD::draw_default_entry((s32)this);
+        draw_status_text((TWindowDrawContext *)temp);
+    }
+}
+
+}
+
+extern "C" {
+s32 get_window_layout_position(int);
+extern const char *TWindowKeyBoardHard__name;
+s32 initialize_subwindow__9TWindowDDFv(void *);
+s32 has_non_modifier_key__16TKeyBoardControlFv(void *);
+
+
+void TWindowKeyBoardHard::run_task() {
+    s32 temp_r3_2;
+    TWindowKeyBoardBase *temp_r3;
+
+    if (this->m_composer != NULL) {
+        if ((is_key_active() == 0) && (this->m_composer->is_key_active() == 0)) {
+            if (has_non_modifier_key__16TKeyBoardControlFv(this) != 0) {
+                if (current_language == LANGUAGE_JAPANESE) {
+                    this->m_68 = 0x3C;
+                }
+                this->m_60 = (s32) (this->m_60 & 0xFFFFFEFF);
+                temp_r3 = this->m_composer;
+                temp_r3->m_b4 = temp_r3->m_b4 & 0xFFFFFFBF;
+                if (!(this->m_60 & 0x40)) {
+                    this->m_composer->reset_input_flags_for_language();
+                }
+            }
+            update_modifier_flags();
+            process_all_key_states();
+        }
+        temp_r3_2 = this->m_68;
+        if (temp_r3_2 > 0) {
+            this->m_68 = (temp_r3_2 - 1);
+        }
+        initialize_subwindow__9TWindowDDFv(this);
+        update_fade();
+    }
+}
+
+TWindowKeyBoardHard::~TWindowKeyBoardHard() {}
+
+TWindowKeyBoardHard::TWindowKeyBoardHard(TWindowKeyBoardBase *composer)
+    : TWindowBase((u8 *)lbl_804CFAD0, 4,
+                  (u8 *)get_window_layout_position(0xB9)) {
+    m_name = TWindowKeyBoardHard__name;
+    m_60 = 0;
+    m_composer = composer;
+    m_64 = 0;
+    m_68 = 0;
+    m_6c = 7;
+    release_keyboard();
+}
+
+extern char lbl_8044F0A8[];
+const char *TWindowKeyBoardHard__name = lbl_8044F0A8;
+}
+
+void TWindowKeyBoardHard::set_bits_shift7(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 7), -0x81);
+}
+void TWindowKeyBoardHard::update_card_window_page_flags(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 6), -0x41);
+}
+void TWindowKeyBoardHard::clear_card_window_flag(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 4), -0x11);
+}
+void TWindowKeyBoardHard::set_card_window_flag(s32 arg0, s32 arg1) {
+    TWindowKeyBoardHard::set_card_window_flags((void *)arg0, (s32)(arg1 << 5), -0x21);
+}
+int TWindowKeyBoardHard::sub_8026042C() { return (this->m_60 >> 6) & 0x1; }
+int TWindowKeyBoardHard::sub_80260438() { return (this->m_60 >> 10) & 0x1; }
+int TWindowKeyBoardHard::is_key_active() { return this->m_60 & 0x200; }

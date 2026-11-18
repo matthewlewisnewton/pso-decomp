@@ -3,13 +3,14 @@
 #include "pso/misc/TWindowSubSymbolChatFaceType.h"
 #include "pso/misc/TWindowSubSymbolChatParts.h"
 #include "pso/misc/TWindowSubSymbolChat.h"
+#include "pso/misc/TWindowSubSymbolChatHelp.h"
 
-void TWindowSubSymbolChat::set_flag60_bit1() {
-    *(u8 *)((s8 *)this + 0x60) = (u8) (*(u8 *)((s8 *)this + 0x60) | 1);
+void TWindowSubSymbolChatHelp::set_flag60_bit1() {
+    m_60 = (u8)(m_60 | 1);
 }
 
-void TWindowSubSymbolChat::set_flag60_bit2() {
-    *(u8 *)((s8 *)this + 0x60) = (u8) (*(u8 *)((s8 *)this + 0x60) | 2);
+void TWindowSubSymbolChatHelp::set_flag60_bit2() {
+    m_60 = (u8)(m_60 | 2);
 }
 
 s32 TWindowSubSymbolChatParts::sub_80283974() {

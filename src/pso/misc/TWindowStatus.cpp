@@ -1,4 +1,5 @@
 #include "pso/system/CurrentTextureList.h"
+#include "pso/misc/WindowLayoutDescriptor.h"
 #include "types.h"
 #include "pso/misc/TWindowSimpleStatus.h"
 #include "pso/misc/TWindowBase.h"
@@ -46,13 +47,9 @@ s32 draw_visible_window_entries(void *, void *, int);
 extern const f32 lbl_805DD470;
 extern const f32 lbl_805DD474;
 
-void *TWindowStatus__ct(void *arg0);
-void *__dt__13TWindowStatusFv(void *arg0, s16 arg1);
-void TWindowSimpleStatus__ct(void *);
 s32 get_window_layout_position(s32);
 
 void __dl__7TObjectFPv(void *);
-void __dt__19TWindowSimpleStatusFv(void *, int);
 void update_lockon_window(u8 *arg0);
 void update_status_help_item(s32 arg0);
 
@@ -174,25 +171,17 @@ void TWindowStatus::run_task() {
     ((TWindowBase *)arg0)->update_window_entry_list((void *)(arg0 + 0x24));
 }
 
-extern s32 __vt__13TWindowStatus[];
+extern u8 lbl_804D0D98[];
+WindowLayoutDescriptor status_window_settings = {
+    {228.0f, 76.0f}, 70050.0f, lbl_804D0D98, 0xB28
+};
 
-void *__dt__13TWindowStatusFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__13TWindowStatus;
-        __dt__19TWindowSimpleStatusFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TWindowStatus::~TWindowStatus() {}
 
-extern void *TWindowStatus__name;
+extern const char *TWindowStatus__name;
 
-void *TWindowStatus__ct(void *window_status) {
-    TWindowSimpleStatus__ct(window_status);
-    *(s32 **)((s8 *)window_status + 0x18) = __vt__13TWindowStatus;
-    *(void * *)&((TWindowStatus *)window_status)->m_name = TWindowStatus__name;
-    return window_status;
+TWindowStatus::TWindowStatus(void *position, s32 client, u8 *descriptor)
+    : TWindowSimpleStatus(position, client, descriptor) {
+    m_name = TWindowStatus__name;
 }
 }

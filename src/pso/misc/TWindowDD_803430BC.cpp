@@ -859,7 +859,7 @@ Obj_80343C64 *TWindowDD__ct(Obj_80343C64 *self, void *parent, void *arg2) {
       TWindowDD__sub_803412A0((u8 *)q);
     }
   }
-  format_word_select_message((WordSelectMessage *)self->fC4, (char *)TWindowDD__work_buffer, local_client_id & 0xFFFF);
+  format_word_select_message((WordSelectMessage *)self->fC4, (char *)TWindowDD__work_buffer, (u16)local_client_id);
   {
     a.x = lbl_805DFBF0;
     a.y = lbl_805DFBF4;
