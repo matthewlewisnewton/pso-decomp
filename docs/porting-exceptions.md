@@ -15,6 +15,13 @@ The mechanical inventory (each line and file) is generated into
 Reasons are cited only where a file, PR or approval records one; otherwise the
 entry says *reason not recorded*.
 
+### Reverse-tech scene cleanup
+
+`TItemReverseTech::run_cleanup_callbacks` uses a 32-bit integer address in
+the CodeWarrior build. This reproduces the original load-and-decrement
+sequence, including the unused decrement after the first record is read.
+The portable branch indexes the same callback table in reverse order.
+
 ### LSC initialization
 
 `pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with
