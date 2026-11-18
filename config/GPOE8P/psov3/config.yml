@@ -731,7 +731,9 @@ force_active:
   - TLanguage__class_name
   - TLanguage__read_cursor
   - TLazerFenceSw__ct
-  - TLoadCtrl__ct
+  - TLoadCtrl__class_name
+  - TLoadCtrl__class_name_string
+  - TLoadCtrl__loading_mode
   - TLobby__battle_flag
   - TLobby__battle_team_table
   - TLobby__card_list_selected_index
@@ -1419,6 +1421,7 @@ force_active:
   - TObjEneBm5Wolf__pack_member_list
   - TObjEneBm5Wolf__stat_params
   - TObjEneBm5Wolf__sub_800B8A24
+  - TObjEneBm9Mericarol__class_name
   - TObjEneBm9Mericarol__ct
   - TObjEneBm9Mericarol__vtable
   - TObjEneDarkGunCenter__sub_800A0B18
@@ -2262,6 +2265,7 @@ force_active:
   - TWindowFukidasi__sub_802505C0
   - TWindowFukidasi__sub_80251790
   - TWindowGetComCard__sub_8007B60C
+  - TWindowGetComCard__window_rect
   - TWindowHelpItem__item_layout_entries
   - TWindowHelpItem__requirements_update_callback
   - TWindowHelpItem__resistance_layout_entries
@@ -2297,6 +2301,8 @@ force_active:
   - TWindowLockOn__update_for_enemy
   - TWindowLockOn__update_for_item
   - TWindowLockOn__update_for_other_player
+  - TWindowMainMenu1P__class_name_string
+  - TWindowMainMenu1P__name
   - TWindowMeseta__class_name
   - TWindowMessageYesNo__name
   - TWindowPartyStatus__name
@@ -2710,6 +2716,7 @@ force_active:
   - __ct__8TObjFishFP7TObjectPv
   - __ct__9TBoss6DPBFv
   - __ct__9TEffGuardFPC3Vec
+  - __ct__9TLoadCtrlFP7TObject
   - __ct__9TMainTaskFv
   - __ct__9TObjHashiFP7TObjectPv
   - __cvt_sll_dbl
@@ -3367,6 +3374,7 @@ force_active:
   - __dt__9TEffGuardFv
   - __dt__9TEndingABFv
   - __dt__9TItemLoadFv
+  - __dt__9TLoadCtrlFv
   - __dt__9TMainTaskFv
   - __dt__9TObjHashiFv
   - __dt__9TObjLightFv
@@ -4056,6 +4064,7 @@ force_active:
   - __vt__9TDeadSpot
   - __vt__9TEffGuard
   - __vt__9TEndingAB
+  - __vt__9TLoadCtrl
   - __vt__9TMainTask
   - __vt__9TObjChara
   - __vt__9TObjHashi
@@ -9542,10 +9551,6 @@ force_active:
   - lbl_804DDB8C
   - lbl_804DF4E0
   - lbl_804E1548
-  - lbl_804E15BC
-  - lbl_804E15C4
-  - lbl_804E15F8
-  - lbl_804E1600
   - lbl_804E285C
   - lbl_804E286C
   - lbl_804E28A0
@@ -10004,6 +10009,9 @@ force_active:
   - lbl_805D6808
   - lbl_805D681C
   - lbl_805D6840
+  - lbl_805D6870
+  - lbl_805D6874
+  - lbl_805D6878
   - lbl_805D6910
   - lbl_805D6948
   - lbl_805D6990
@@ -10995,6 +11003,14 @@ force_active:
   - menu_font_render_rects
   - merge_adjacent_free_blocks__6TLobbyFv
   - merge_halves__14TObjEnePanarmsFv
+  - mericarol_collision_bodies
+  - mericarol_low_detail_model_names
+  - mericarol_low_detail_motion_names
+  - mericarol_low_detail_resource_descriptor
+  - mericarol_model_names
+  - mericarol_motion_names
+  - mericarol_resource
+  - mericarol_resource_descriptor
   - merill_lia_low_model_names
   - merill_lia_low_motion_names
   - merill_lia_model_names
@@ -16007,6 +16023,7 @@ force_active:
   - quest_bgm_area_filename_table
   - quest_bgm_carnaval_filename
   - quest_bgm_chu_f_filename
+  - quest_bgm_clear_filename
   - quest_bgm_dreams_filename
   - quest_bgm_dreams_kids_filename
   - quest_bgm_ed_piano_filename
@@ -16019,6 +16036,7 @@ force_active:
   - quest_bgm_mambo_filename
   - quest_bgm_matter_filename
   - quest_bgm_miles_filename
+  - quest_bgm_miniclear_filename
   - quest_bgm_nomal_filename
   - quest_bgm_open_filename
   - quest_bgm_smile_filename
@@ -16670,6 +16688,7 @@ force_active:
   - render__9TBoss6DPBFv
   - render__9TBoss6MagFv
   - render__9TEndingABFv
+  - render__9TLoadCtrlFv
   - render__9TObjLightFv
   - render__9TTecJelinFv
   - render__9TTecSiftaFv
@@ -17488,6 +17507,7 @@ force_active:
   - run_task__9TDeadSpotFv
   - run_task__9TEffGuardFv
   - run_task__9TEndingABFv
+  - run_task__9TLoadCtrlFv
   - run_task__9TObjLightFv
   - run_task__9TProtocolFv
   - run_task__9TSaveChCrFv
