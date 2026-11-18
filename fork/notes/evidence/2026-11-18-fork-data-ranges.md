@@ -38,6 +38,8 @@ The [matchpass queue](2026-11-18-upstream-matchpasses.md) groups the recovered b
 
 Fork main subsequently advanced to `3342e42983` with the TCP runtime recovery. Its executable build inputs match the checked fork checkout. Comparing that build to integration still gives zero missing exact or source-linked functions and zero missing exact or source-linked data ranges. The 2,025-byte aggregate coverage difference has the same address-level reconciliation. The network matchpass includes eight bytes of the existing inventory. Together the first two review branches cover 68 inventory bytes.
 
+Four prepared matchpasses now cover 132 inventory bytes. Front-end scenes cover 60, network runtime eight, chunk rendering 32 and scene resources 32. Their combined build gains another four linked bytes outside the inventory.
+
 ## Starting inventory
 
 The [range ledger](2026-11-18-fork-data-ranges.tsv) breaks the 1,147 bytes into 90 nonoverlapping intervals, divided at fork owner boundaries. The addresses are absolute and the end is exclusive. Each fork owner is in the fork executable's Ninja link inputs as a compiled source object. Each row names the upstream baseline report unit covering it (or records absence). The source mentions are lexical references to overlapping upstream symbols, including declarations. They are leads for porting and do not establish ownership by themselves.
