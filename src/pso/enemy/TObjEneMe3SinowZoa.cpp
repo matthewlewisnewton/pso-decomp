@@ -559,8 +559,8 @@ extern const f32 lbl_805DF350;
 
 extern const f32 lbl_805DF374;
 extern const f32 lbl_805DF378;
-extern f32 lbl_805DF37C;
-extern f32 lbl_805DF380;
+extern const f32 lbl_805DF37C;
+extern const f32 lbl_805DF380;
 extern const f32 lbl_805DF384;
 extern const f32 lbl_805DF388;
 extern const f32 lbl_805DF38C;

@@ -8,7 +8,7 @@
 #include "pso/TParticleCtrl.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/misc/TCameraCtrl.h"
-#include "pso/object/TObjChip.h"
+#include "pso/TObjChip.h"
 #include "pso/object/TObjFish.h"
 #include "pso/object/TObjLight_80133568.h"
 #include "pso/player/TObjPlayer.h"
@@ -20,7 +20,6 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/boss/TUnk_80484888.h"
-#include "pso/unk/text_80049FD8.h"
 #include "pso/boss/TBoss3Volopt.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/unk/text_803D8F74.h"
@@ -37,6 +36,31 @@ void matrix_mult_vec(s32 matrix, const Vec *src, Vec *dst);
 extern GC_Mtx identity_matrix;
 }
 
+
+static const char volopt_pillar_class_name[] = "TObjVoloptPillar";
+const char *TObjVoloptPillar_name = volopt_pillar_class_name;
+const DirectAttackPayload volopt_pillar_attack = {0, 0.0f};
+const Vec volopt_pillar_push = {0.0f, 0.0f, 0.0f};
+
+extern "C" void fn_80049FD8(TObjVoloptPillar *pillar) {
+    const s32 debris_model_index = 14; // fe_obj_vo_tenjo_hahen01.nj
+    const TObjChipParams params = {
+        {0.5f, 0.03f, 0.25f},
+        {pillar->position.x, pillar->position.y, pillar->position.z},
+        {4.5f, -3.0f, 4.5f},
+        {0x400, 0x100, 0x400},
+        {4, 60},
+        {0.0f, 1.0f},
+        (s32)boss3_volopt_resources->models[debris_model_index].model,
+        (s32)boss3_volopt_resources->models[debris_model_index].m_c,
+        2,
+    };
+
+    // The legacy constructor takes a mutable pointer and only copies from it.
+    new TObjChip(tl_05, const_cast<TObjChipParams *>(&params));
+    new TObjChip(tl_05, const_cast<TObjChipParams *>(&params));
+    new TObjChip(tl_05, const_cast<TObjChipParams *>(&params));
+}
 
 static s32 volopt_pillar_model;
 static s32 volopt_pillar_base_model;
@@ -75,6 +99,7 @@ void TObjVoloptPillar::render() {
     }
 }
 
+#pragma pool_data off
 void TObjVoloptPillar::run_task() {
     s32 i;
     TObjChara *target;
@@ -112,7 +137,8 @@ void TObjVoloptPillar::run_task() {
                             {
                                 Vec away = *&target->position;
                                 subtract_vector(&away, &boss3_volopt_spawn_pos);
-                                angle = volopt_pillar_rad_to_angle * atan2_float(away.x, away.z);
+                                const f64 angle_units_per_radian = 10430.38043493439;
+                                angle = angle_units_per_radian * atan2_float(away.x, away.z);
                                 {
                                     Vec push = volopt_pillar_push;
                                     push.x = TBoss3VoloptP02::get_float_param(2);
@@ -148,6 +174,8 @@ void TObjVoloptPillar::run_task() {
         break;
     }
 }
+
+#pragma pool_data reset
 
 void TObjVoloptPillar::cache_target_values() {
     volopt_pillar_model = (s32)boss3_volopt_resources->models[0x17].model;

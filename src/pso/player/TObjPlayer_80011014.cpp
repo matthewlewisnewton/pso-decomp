@@ -1,3 +1,4 @@
+#include "pso/system/MainPhaseTable.h"
 #include "pso/system/RandomRatio.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/TObjPlayer_800F0810.h"
@@ -6,6 +7,7 @@
 #include "pso/system/SoundEffect.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/PlayerAttackParams.h"
+#include "pso/player/PlayerCombatConstants.h"
 #include "pso/system/vector.h"
 #include "pso/system/byteswap.h"
 #include "pso/protocol/protocol_types.h"
@@ -381,14 +383,6 @@ extern s32 game_difficulty_selection;
 void display_exp_gain(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
 void show_tp_font(s32 arg0, u32 arg1, s32 arg2, s32 arg3);
 s16 obj_getS16_118(u8* p);
-typedef void (*SceneFn_8000FD54)(void);
-
-typedef struct SceneEntry_8000FD54 {
-    SceneFn_8000FD54 init;
-    SceneFn_8000FD54 update;
-    SceneFn_8000FD54 exit;
-} SceneEntry_8000FD54;
-
 typedef struct SceneState_8000FD54 {
     s32 cur;
     s32 next;
@@ -941,11 +935,7 @@ extern const f32 player_defense_stat_status_light_colors[4] = {1.0f, 0.4f, 0.8f,
 extern const f32 TObjPlayer__data_80434060[3] = {0.0f, 1.0f, 0.0f};
 extern const s16 lbl_8043406C[4] = {0, 2, 5, 10};
 extern const Vec_800115C4 lbl_80434074 = {0.0f, 0.0f, 0.0f};
-extern const f64 TObjPlayer__data_804340B8;
 extern int TObjPlayer__data_8050D460[];
-extern u8 lbl_804340A8[];
-extern s32 lbl_804340B0[];
-extern SceneEntry_8000FD54 main_phase_table[];
 extern SceneState_8000FD54 main_phase_state;
 extern RecoveredGlobal_80010E44_lbl_8050EA40 lobby_rule_settings;
 extern RecoveredGlobal_8001806C_lbl_8058D490 identity_matrix;
@@ -960,8 +950,8 @@ void obj_setField96_1(ObjFlags* p);
 }
 
 void main(void) {
-    SceneFn_8000FD54 fn;
-    SceneFn_8000FD54 update;
+    MainPhaseCallback fn;
+    MainPhaseCallback update;
 
     init_game_systems();
     while (main_phase_state.cur != 0) {
@@ -3468,7 +3458,6 @@ s16 *TObjPlayer::get_attribute_entry(s32 i) {
 
 #pragma push
 #pragma fp_contract on
-extern const double lbl_80434090;
 #define get_ata__10TObjPlayerFv(a) ((short (*)(const void *))get_ata__10TObjPlayerFv)(a)
 #define obj_testFlag_2E4__9TObjCharaFUl(a, b) ((int (*)(const void *, RangedU))obj_testFlag_2E4__9TObjCharaFUl)(a, b)
 #define VecCopy__FP3VecPC3Vec(a, b) ((void (*)(RangedVec *, const RangedVec *))VecCopy__FP3VecPC3Vec)(a, b)
@@ -3487,7 +3476,7 @@ int TObjChara::calc_distance_accuracy_penalty(void *attacker, void *body_arg, vo
             else subtract_vector(&delta,&((RangedActor*)attacker)->position);
             const float squared=delta.x*delta.x+delta.z*delta.z;
             const float dist=newton_sqrtf(squared);
-            float pen=(float)(dist*lbl_80434090);
+            float pen=(float)(dist*player_distance_accuracy_scale);
             pen*=(0.33333334f);
             chance-=pen;
         }
@@ -3524,7 +3513,7 @@ void show_meseta_label(s32 arg0, u32 arg1, s32 arg2, s32 arg3) {
         if (((s32 (*)(s32))&TObjPlayer::is_locally_controlled)(arg0) != 0) {
             size <<= 1;
         }
-        ((void (*)(u32, s32, s32, s32, void *, s16, s32))create_font_small_task)(arg1, -0x100, size, arg2, lbl_804340A8, arg3, ((s32 (*)(s32))get_entity_id)(arg0));
+        ((void (*)(u32, s32, s32, s32, const void *, s16, s32))create_font_small_task)(arg1, -0x100, size, arg2, player_meseta_popup_label, arg3, ((s32 (*)(s32))get_entity_id)(arg0));
     }
 }
 
@@ -3553,7 +3542,7 @@ void TObjChara::try_apply_damage(u32 arg1, s32 arg2) {
 void TObjChara::show_miss_popup(const float *pos) {
     if (((s32 (*)(void *, u32))obj_testFlags30__14TObjCollidableFUl)(this, 0x02000000) == 0 && ((s32 (*)(void *))&TObjPlayer::is_locally_controlled)(this) == 0 && pos != NULL) {
         if (TObjPlayer::get_player_count() == 0 || this->entity_id >= 0x1000) {
-            TOCtrlDubchik::create_font((s32)pos, 0xFFFF0000, 0x14, (s32)lbl_804340B0);
+            TOCtrlDubchik::create_font((s32)pos, 0xFFFF0000, 0x14, (s32)player_miss_popup_label);
         }
     }
 }
@@ -3614,7 +3603,7 @@ s32 TObjChara::select_melee_contact_body(void *source, f32 factor) {
             }
             dist = point.x * point.x + point.z * point.z;
             r = (((Actor_80016454 *)this)->bodies[i].radius + ((TObjChara *)((Actor_80016454 *)source))->get_attack_range()) * (((Actor_80016454 *)this)->bodies[i].radius + ((TObjChara *)((Actor_80016454 *)source))->get_attack_range());
-            diff = angle_difference_abs(((Actor_80016454 *)source)->yaw, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(point.x, point.z)));
+            diff = angle_difference_abs(((Actor_80016454 *)source)->yaw, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(point.x, point.z)));
             if (dist < r && diff < ((TObjChara *)((Actor_80016454 *)source))->get_attack_angle()) {
                 selected = i;
                 break;
@@ -3630,7 +3619,7 @@ s32 TObjChara::select_melee_contact_body(void *source, f32 factor) {
         dist2 = point.x * point.x + point.z * point.z;
         r2 = ((TObjChara *)((Actor_80016454 *)source))->get_attack_range() * ((TObjChara *)((Actor_80016454 *)source))->get_attack_range();
         r2 = r2 * r2;
-        diff = angle_difference_abs(((Actor_80016454 *)source)->yaw, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(point.x, point.z)));
+        diff = angle_difference_abs(((Actor_80016454 *)source)->yaw, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(point.x, point.z)));
         if (r2 < dist2 || ((TObjChara *)((Actor_80016454 *)source))->get_attack_angle() < diff) {
             return 0;
         }
@@ -3946,7 +3935,7 @@ s32 TObjChara::is_target_in_attack_range() {
                         subtract_vector(&v, &p->pos);
                         dist = v.x * v.x + v.z * v.z;
                         range = (p->target->parts[i].radius + ((TObjChara *)p)->get_attack_range()) * (p->target->parts[i].radius + ((TObjChara *)p)->get_attack_range());
-                        ang = ((s32)angle_difference_abs(p->rotY, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(v.x, v.z))));
+                        ang = ((s32)angle_difference_abs(p->rotY, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(v.x, v.z))));
                         if (dist < range && ang < ((TObjChara *)p)->get_attack_angle()) {
                             return 1;
                         }
@@ -3954,7 +3943,7 @@ s32 TObjChara::is_target_in_attack_range() {
                 }
             } else {
                 dist = calc_xz_distance_sq((s32)((s32)p), (u32)((u32)t), &out);
-                ang = ((s32)angle_difference_abs(p->rotY, (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(out.x, out.z))));
+                ang = ((s32)angle_difference_abs(p->rotY, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(out.x, out.z))));
                 if (p->target->parts != NULL) {
                     prod = (p->target->parts->radius + ((TObjChara *)p)->get_attack_range()) * (p->target->parts->radius + ((TObjChara *)p)->get_attack_range());
                 } else {
@@ -4004,7 +3993,7 @@ f32 enemy_pursue_point(u8 *arg0, s32 arg1, Vec_800180E8 arg2, f32 farg0, f32 far
     if (farg1 * farg1 <= d0 || d1 < (1e-05f) || d2 < (1e-05f) || ((TObjEnemy *)(arg0))->is_actor_cadence_frame(0x96) != 0) {
         VecCopy__FP3VecPC3Vec((s32)&d, (s32)&arg2);
         subtract_vector(&d, arg0 + 0x2FC);
-        a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
+        a = (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
         d.z = farg1;
         d.x = d.y = (0.0f);
         push_matrix_from(&identity_matrix);
@@ -4164,7 +4153,7 @@ void calc_velocity_toward_destination(Obj_800180E8 *self, Vec_800180E8 *pos, Vec
         self->vz = (0.0f);
         self->vx = (0.0f);
     } else {
-        a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
+        a = (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
         d.z = speed;
         d.x = d.y = (0.0f);
         push_matrix_from(&identity_matrix);
@@ -4204,7 +4193,7 @@ s32 select_enemy_destination(Obj_800182A0 *self, Vec_800182A0 *arg1, int flags) 
         }
         if (self->fA4 != NULL) {
             subtract_vector(&d, &self->pos);
-            a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
+            a = (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
             scratch_vec.vector.x = scratch_vec.vector.y = (0.0f);
             scratch_vec.vector.z = self->fA4->fC;
             push_matrix_from(&identity_matrix);
@@ -4232,7 +4221,7 @@ s32 check_path_obstructed(u8 *arg0, Vec_80018428 *arg1) {
     ((s32 (*)(void *, void *)) VecCopy__FP3VecPC3Vec)(&d, arg1);
     subtract_vector(&d, arg0 + 0x2FC);
     if ((9e+04f) < (d.x * d.x) + (d.z * d.z)) {
-        a = (s32) (TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
+        a = (s32) (player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
         d.y = d.x = (0.0f);
         d.z = (3e+02f);
         push_matrix_from(&identity_matrix);
@@ -4262,7 +4251,7 @@ void enemy_turn_half_toward_dest(Obj_80018570 *self) {
     s32 a;
     VecCopy__FP3VecPC3Vec((s32)&d, (s32)&self->dest);
     subtract_vector(&d, &self->pos);
-    a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
+    a = (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
     self->angle = lerp_angle_half__Fll(self->angle, a);
     angle_difference_abs(self->angle, a);
 }
@@ -4270,7 +4259,7 @@ void enemy_turn_half_toward_dest(Obj_80018570 *self) {
 s32 TObjEnemy::turn_toward_direction(s32 max_step, Vec *direction) {
     s32 target_angle;
 
-    target_angle = (s32) (TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(direction->x, direction->z));
+    target_angle = (s32) (player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(direction->x, direction->z));
     this->rotation.yaw = approach_angle_limited(this->rotation.yaw, target_angle, max_step);
     return angle_difference_abs(this->rotation.yaw, target_angle);
 }
@@ -4280,7 +4269,7 @@ void enemy_turn_toward_dest(Obj_80018660 *self, s32 turn) {
     s32 a;
     VecCopy__FP3VecPC3Vec((s32)&d, (s32)&self->dest);
     subtract_vector(&d, &self->pos);
-    a = (s32)(TObjPlayer__data_804340B8 * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
+    a = (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(d.x, d.z));
     self->angle = approach_angle_limited(self->angle, a, turn);
     angle_difference_abs(self->angle, a);
 }

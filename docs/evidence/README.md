@@ -7,6 +7,8 @@ limitations before applying its conclusions to current code.
 See the [documentation index](../README.md) for current contributor and operator
 guides.
 
+- [Quadrilateral and sphere collision units](collision-contact-units.md)
+- [Screen and projection constants](screen-projection-constants.md)
 - [Photon Mylla scalar pool](photon-mylla-constant-pool.md)
 - [Chunk vertex-color cache constant ownership](chunk-vertex-color-cache-pool.md)
 - [Equipment menu helper scalar ownership](equipment-menu-helper-unit.md)
@@ -44,6 +46,7 @@ guides.
 - [Gryphon and Dragon source repair feasibility for GC/1.3.2](compiler-consolidation-gc132-game-blockers.md)
 - [Creation-menu icon animation interfaces](creation-icon-animation.md)
 - [GameCube decomp survey of scalar vector math](gc-decomp-vector-math-survey.md)
+- [Gryphon behavior scalar constant unit](gryphon-behavior-constant-pool.md)
 - [Conversion-pool constants](conversion-pool-constants.md)
 - [Crush-rock render/physics unit](crush-rock-physics-unit.md)
 - [Critical-hit effect complete unit](critical-hit-effect-unit.md)
@@ -52,6 +55,7 @@ guides.
 - [DD descendant virtual slot](dd-descendant-slot-evidence.md)
 - [DD scaled random receiver](dd-scaled-random-evidence.md)
 - [Dead-spot effect wrapper](dead-spot-e4-evidence.md)
+- [Df2 Bringer shared scalar pool](df2-bringer-constant-pool.md)
 - [Download graph recovery](download-graph-recovery.md)
 - [Dragon fireball unit](dragon-fireball-unit.md)
 - [Gol Dragon fireball unit](gol-dragon-fireball-unit.md)
@@ -62,6 +66,7 @@ guides.
 - [Equipment requirement match and link limit](equip-requirements-match.md)
 - [Empty enemy-call interfaces](enemy-empty-hooks-evidence.md)
 - [Floor-area sound wrappers](floor-area-sound-evidence.md)
+- [Speech-balloon native lifetime and constant pools](balloon-native-lifetime.md)
 - [Speech-balloon name plate and complete unit](fukidasi-name-plate-recovery.md)
 - [Gee native recovery checkpoint](gee-native-recovery-evidence.md)
 - [Gryphon shockwave constant ownership](gryphon-shockwave-constants.md)
@@ -120,6 +125,7 @@ guides.
 - [Texture input and runtime surface](texture-input-evidence.md)
 - [`vec3_add_to` paired-single exception](vec3-add-to-paired-single.md)
 - [Vector helper contracts](vector-helper-evidence.md)
+- [Window-controller flag accessors](window-controller-flag-accessors.md)
 - [Window effect light recovery](window-effect-light-recovery-evidence.md)
 
 - [Word-select formatter completion and table grouping](word-select-completion.md)

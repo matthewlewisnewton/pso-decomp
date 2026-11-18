@@ -1,3 +1,4 @@
+#include "pso/protocol/PacketBuffer.h"
 #include "types.h"
 #include "pso/network/BufferPool.h"
 #include "pso/misc/TLobby.h"
@@ -418,9 +419,7 @@ struct H_803F8BA4 {
     u32 g;
 };
 
-struct Strm_80405A74 { u8 *p; u16 len; };
-
-typedef struct B_803FADA0 { u8 *buf; u16 len; } B_803FADA0;
+typedef B_803FADA0 Strm_80405A74;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
@@ -1063,8 +1062,8 @@ struct Self_8040098C;
 #pragma inline_depth(4)
 #define FWD_80405A74()                                                       \
     (*(G + 0x13A))++;                                            \
-    t = (Strm_80405A74 *)((TLobby *)arg0)->alloc_from_buffer(4); \
-    p = t->p;                                                                \
+    t = alloc_from_buffer(arg0, 4); \
+    p = t->buf;                                                                \
     *p++ = 0xFF;                                                             \
     *p++ = 3;                                                                \
     write_network_u16_be(p, code);                                           \
