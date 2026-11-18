@@ -14,7 +14,7 @@ public:
     virtual void emit_marker_effects();
     virtual void update_weapon();
     void sub_802D577C();
-    u8 unk_204[0x44];
+    u8 unk_20c[0x3c];
     s16 m_248;
     u8 unk_24A[0x2];
     f32 m_24c;

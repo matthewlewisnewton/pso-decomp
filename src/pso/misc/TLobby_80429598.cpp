@@ -22,8 +22,6 @@ extern volatile u32 __SIRegs[0x100];
 #define BBA_LEADING_ZEROES(value) pso::port::exi_leading_zeroes(value)
 #endif
 
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 /* Adapter state: the receive message queue and the interrupt statistics counters (one counter per BBA

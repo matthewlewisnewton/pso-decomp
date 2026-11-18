@@ -1197,7 +1197,6 @@ void TAdTimeSetGC::rebuild_and_maybe_close() {
 #undef close_windows__23TAdSinglePlyChrSelectGCFPv
 #undef create_backgrounds__23TAdSinglePlyChrSelectGCFPv
 
-#pragma opt_common_subs off
 void TAdTimeSetGC::run_task() {
     TAdTimeSetGCStateAction *entry_action;
     load_status = poll_load_status();
@@ -1213,7 +1212,6 @@ void TAdTimeSetGC::run_task() {
         timer = 0;
     }
 }
-#pragma opt_common_subs reset
 
 TAdTimeSetGC::~TAdTimeSetGC() {
     if (owned_object != NULL) {

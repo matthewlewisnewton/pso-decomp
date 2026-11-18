@@ -65,9 +65,6 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/boss/Boss5GryphonActionScripts.h"
 
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct Vec_8006426C { f32 x, y, z; };
 
 struct Obj_8006426C {
@@ -188,15 +185,11 @@ struct Dragon_80060020 {
     f32 f6F4;
 };
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct GA_80063FB8 { s32 value; u8 remaining[0x10]; };
 
 struct GB_80063FB8 { s32 value; u8 remaining[0x8]; };
 
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 struct GA_800640A4 { s32 value; u8 remaining[0x10]; };
 
@@ -1674,14 +1667,11 @@ f32 random_in_range__12TBoss8DragonFff(f32 farg0, f32 farg1) {
 }
 #pragma pop
 
-#pragma push
-#pragma scheduling off
 f32 TBoss8Dragon__sub_8005EAD0(void *arg0, void *arg1, int arg2) {
   u8 *temp_r4;
   temp_r4 = (u8 *)arg1 + (arg2 * 8);
   return ((f32 (*)(int, f32, f32))random_in_range__12TBoss8DragonFff)((int)arg0, (f32) (*((f32 *) (((s8 *) temp_r4) + 0x28))), (f32) (*((f32 *) (((s8 *) temp_r4) + 0x2C))));
 }
-#pragma pop
 
 void TBoss8Dragon::set_random_param(u8 *arg1) {
     *(s32 *)((s8 *)arg1 + 4) = (s32) (lbl_805D8D9C * (lbl_805D8D98 * (f32) rand()));
@@ -1723,17 +1713,12 @@ void TBoss8Dragon::calc_params(void *arg1, s32 arg2) {
     *(s32 *)((s8 *)arg1 + 8) = ((s32 (*)(void *, void *, int))get_random_sign__12TBoss8DragonFiPvi)(this, (void *)arg2, 0);
 }
 
-#pragma push
-#pragma fp_contract on
 void TBoss8Dragon::calc_product_and_ratio(void *arg1, s32 arg2) {
     *(s32 *)((s8 *)arg1 + 4) = calc_product__12TBoss8DragonFiiii((s32)this, arg2, 0, 1);
     *(f32 *)((s8 *)arg1 + 8) = TBoss8Dragon__sub_8005EAD0((void *)this, (void *)arg2, 0);
 }
-#pragma pop
 
 typedef void (TBoss5Gryphon::*StateAction)(int);
-#pragma push
-#pragma inline on
 static inline StateAction *dispatch_state_actions() {
 static StateAction actions[35] = {
     (StateAction)&TBoss5Gryphon::fn_80063714,
@@ -1774,7 +1759,6 @@ static StateAction actions[35] = {
 };
     return actions;
 }
-#pragma pop
 
 void *lbl_8048802C[16] = {
     (void *)0x0, (void *)0x42860000, (void *)0x0, (void *)0x0,
@@ -2262,8 +2246,6 @@ void TBoss5Gryphon::fn_8005FE18(s32 event) {
     }
 }
 
-#pragma push
-#pragma fp_contract on
 #define PLAY_SE(o, id) ((TBoss5Gryphon *)o)->play_se((id))
 extern const f32 lbl_805D8DB8;
 
@@ -2302,8 +2284,6 @@ void TBoss5Gryphon::update_roar_state(s32 event) {
         break;
     }
 }
-
-#pragma pop
 
 extern const f32 lbl_805D8DE8;
 extern const f32 lbl_805D8DF0;
@@ -3548,68 +3528,9 @@ void TBoss5Gryphon::wait_for_players(s32 arg1) {
     }
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma fp_contract on
-
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma pop
-
-#pragma push
-#pragma fp_contract on
-#pragma pop
-
-#pragma push
-#pragma fp_contract on
-#pragma pop
-
-#pragma push
-#pragma fp_contract on
-#pragma pop
-
-#pragma push
-#pragma fp_contract on
 #define F(t, o) (*(t *)(arg0 + (o)))
-#pragma pop
 
 #pragma push
-#pragma fp_contract on
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-
-#pragma push
-#pragma fp_contract on
-#pragma pop
 
 void TBoss5Gryphon::fn_800627E4(u32 arg1) {
     s32 *p = (s32 *)((u8 *)this + 0x6E8);
@@ -4119,10 +4040,6 @@ void TBoss5Gryphon::dispatch_action(u32 state, s32 event) {
 }
 #pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon::spawn_switch_attack() {
     s32 particle_effect_with_flags;
 
@@ -4131,12 +4048,7 @@ void TBoss8Dragon::spawn_switch_attack() {
         attach_particle_model((u8 *)particle_effect_with_flags, (s32)(get_bml_model(boss5_gryphon_bml_resource, 2)), (s32)boss5_gryphon_texture_list, 0, 0, (f32)lbl_805D8D88);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon::spawn_attack_effect() {
     s32 particle_effect_with_flags;
 
@@ -4145,7 +4057,6 @@ void TBoss8Dragon::spawn_attack_effect() {
         attach_particle_model((u8 *)particle_effect_with_flags, (s32)(get_bml_model(boss5_gryphon_bml_resource, 1)), (s32)boss5_gryphon_texture_list, 0, 0, (f32)lbl_805D8D88);
     }
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on
@@ -4181,21 +4092,12 @@ void TBoss5Gryphon::spawn_lightning_effect() {
 }
 #pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_80063EF4(s32 arg0) {
     if (((TObjMotion *)arg0)->is_passing_frame(lbl_805D8EBC) != 0) {
         ((TBoss5Gryphon *)arg0)->spawn_ground_splash();
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::spawn_ground_splash() {
     Stack_80063F34 stack;
     f32 temp_f1;
@@ -4211,12 +4113,6 @@ void TBoss5Gryphon::spawn_ground_splash() {
         }
     }
 }
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 void TBoss8Dragon__sub_80063FB8(s32 arg0, s32 arg1, f32 farg0) {
     struct CopyStack_80063FB8 { u8 bytes[0x14]; };
@@ -4254,12 +4150,7 @@ void TBoss8Dragon__sub_80064114(s32 arg0, s32 arg1) {
     TBoss8Dragon__sub_80067074(arg1, (s32)&parameters);
     TObjEneDD::setup_instance(arg0, arg1, (u8 *)&parameters, 0);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_800641A8(u8 *ene_dd) {
     struct CopyStack_800641A8 { u8 bytes[0x14]; };
     CopyStack_800641A8 copy_storage_800641A8;
@@ -4275,12 +4166,8 @@ void TBoss8Dragon__sub_800641A8(u8 *ene_dd) {
         reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(ene_dd, 0, boss5_gryphon_attack_params[0], 0);
     }
 }
-#pragma pop
 
 #pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 #pragma push
 #pragma fp_contract on
@@ -4321,11 +4208,6 @@ void TBoss8Dragon__sub_8006435C(u8 *ene_dd) {
     reset_hp__9TObjEneDDFP15BattleBaseStatsP12AttackParamsP15ActorParamBlock(ene_dd, 0, boss5_gryphon_attack_params[0], 0);
 }
 #pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 void TBoss8Dragon__sub_8006442C(Dragon_8006442C *arg0) {
     Fx_8006442C fx;
@@ -4375,12 +4257,7 @@ void TBoss5Gryphon::update_collider_from_table() {
     __memcpy(&parameters, &gryphon_collider_desc, sizeof(parameters));
     TBoss8Dragon__sub_800670E0((s32)this + 0x3C0, &parameters);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_800646F0(s32 arg0) {
     typedef char sp8_offset[(offsetof(Stack_800646F0, field_0) == 0x0) ? 1 : -1];
     typedef char sp10_offset[(offsetof(Stack_800646F0, field_8) == 0x8) ? 1 : -1];
@@ -4392,47 +4269,17 @@ void TBoss8Dragon__sub_800646F0(s32 arg0) {
     ((TObjEneDD *)arg0)->emit_effect_at_position((void *) (&stack));
     ((TBoss5Gryphon *)arg0)->reload_stats_for_type();
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon::run_default_state() { query_default(); attack_default(); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TBoss8Dragon::update_state_3() { return emit_part_attack_effect__13TBoss5GryphonFPvi(this, 3); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TBoss8Dragon::set_state_2() { return emit_part_attack_effect__13TBoss5GryphonFPvi(this, 2); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TBoss8Dragon::attack_default() { return emit_part_attack_effect__13TBoss5GryphonFPvi(this, 1); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int TBoss8Dragon::query_default() { return emit_part_attack_effect__13TBoss5GryphonFPvi(this, 0); }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_80064828(u8 *arg0) {
     if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D8D80) != 0) {
         ((TBoss8Dragon *)arg0)->query_default();
@@ -4450,12 +4297,7 @@ void TBoss8Dragon__sub_80064828(u8 *arg0) {
         ((TBoss8Dragon *)arg0)->update_state_3();
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_800648C8(u8 *arg0) {
     if (((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D8EC0) != 0) {
         ((TBoss8Dragon *)arg0)->query_default();
@@ -4473,12 +4315,7 @@ void TBoss8Dragon__sub_800648C8(u8 *arg0) {
         ((TBoss8Dragon *)arg0)->update_state_3();
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 int emit_part_attack_effect__13TBoss5GryphonFPvi(void *ene_dd, int arg1) {
     EffectGeometryParameters prm;
     Vec_80064968 *p;
@@ -4492,24 +4329,14 @@ int emit_part_attack_effect__13TBoss5GryphonFPvi(void *ene_dd, int arg1) {
     spawn_particle_effect_with_flags(p, ((Obj_80064968 *)ene_dd)->f5f0->f8, 0x40);
     ((TBoss8Dragon *)p)->spawn_attack_effect();
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon::copy_spawn_params(G_GalGryphonBossActions_6xA0 *cmd) {
     cmd->header.client_id = this->entity_id;
     VecCopy__FP3VecPC3Vec(&cmd->pos, &this->position);
     cmd->angle_y = this->rotation.yaw;
     cmd->send();
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_80064AB0(O_80064AB0 *self) {
     P_80064AB0 p;
     TBoss8Dragon__sub_800660A4(&p);
@@ -4519,12 +4346,7 @@ void TBoss8Dragon__sub_80064AB0(O_80064AB0 *self) {
     p.z = self->z;
     ((TBoss8Dragon *)(&p))->send_boss_actions();
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::apply_remote_action(G_GalGryphonBossActions_6xA0 *cmd) {
     VecCopy__FP3VecPC3Vec(&this->m_484, &cmd->pos);
     subtract_vector(&this->m_484, &this->position);
@@ -4536,12 +4358,7 @@ void TBoss5Gryphon::apply_remote_action(G_GalGryphonBossActions_6xA0 *cmd) {
     }
     this->m_4c0 |= 2;
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void G_GalGryphonBossAction::copy_action_state(G_GalGryphonBossAction *src) {
     this->state = src->state;
     this->timer = src->timer;
@@ -4551,12 +4368,7 @@ void G_GalGryphonBossAction::copy_action_state(G_GalGryphonBossAction *src) {
 void set_collider_contact_low(u8 *arg0);
 void set_collider_contact_high(u8 *arg0);
 void handle_6x9F_gal_gryphon_boss_actions(void *arg0);
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void handle_6xA0_gal_gryphon_boss_actions(G_GalGryphonBossActions_6xA0 *cmd) {
     TBoss5Gryphon *gryphon;
     cmd->bswap();
@@ -4565,24 +4377,13 @@ void handle_6xA0_gal_gryphon_boss_actions(G_GalGryphonBossActions_6xA0 *cmd) {
         gryphon->apply_remote_action(cmd);
     }
 }
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 void TBoss5Gryphon::set_target_from_action(void *arg1) {
     enemy_set_target_id(this, (u16) *(s32 *)((s8 *)arg1 + 4));
     this->target_destination.x = (f32) *(f32 *)((s8 *)arg1 + 8);
     this->target_destination.z = (f32) *(f32 *)((s8 *)arg1 + 0xC);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void handle_6x9F_gal_gryphon_boss_actions(void *boss8_dragon) {
     void *x;
     ((TBoss8Dragon *)boss8_dragon)->bswap_boss_actions();
@@ -4591,12 +4392,7 @@ void handle_6x9F_gal_gryphon_boss_actions(void *boss8_dragon) {
         ((TBoss5Gryphon *)x)->set_target_from_action(boss8_dragon);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 extern "C" {
 
 s32 TBoss5Gryphon::reload_stats_for_phase(void *) {
@@ -4610,118 +4406,47 @@ void TBoss5Gryphon::reload_stats_for_type() {
                            boss5_gryphon_attack_params[boss5_gryphon_attack_indices[0]],
                            boss5_gryphon_resistance_params[boss5_gryphon_resistance_indices[0]]);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::set_offscreen_height() { this->position.y = lbl_805D8EC4; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::set_low_flight_height() { this->position.y = lbl_805D8E20; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::set_flight_height() { *(float*)((char*)this + 0x3c) = lbl_805D8DEC; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::set_ground_height() { this->position.y = lbl_805D8D84; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::enter_offscreen_mode() { this->m_4e4 = 3; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::enter_low_flight_mode() { this->m_4e4 = 2; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void set_flag_4e4__12TBoss8DragonFPv(void* p) { *(s32*)((char*)p + 0x4e4) = 1; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::enter_ground_mode() { this->m_4e4 = 0; }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_80064DB8(u8 *arg0) {
     if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D8D80) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D8D54)) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D8E00)) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D8E0C)) != 0)) {
         ((TBoss5Gryphon *)arg0)->play_se(0x40032D08);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss8Dragon__sub_80064E3C(u8 *arg0) {
     if ((((TObjMotion *)arg0)->is_passing_frame((f32)lbl_805D8EC0) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D8DF8)) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D8D50)) != 0) || (((TObjMotion *)arg0)->is_passing_frame((f32)((f32)lbl_805D8D54)) != 0)) {
         ((TBoss5Gryphon *)arg0)->play_se(0x40032D08);
     }
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void spawn_ancient_trap__12TBoss8DragonFii(s32 arg0, s32 arg1) {
     play_persistent_sound((s32)(arg1), (const void *)(arg0), (const Vec *)(arg0 + 0x560), 0, 0);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::play_se(s32 arg1) {
     s32 arg0 = (s32)this;
     play_sound_effect((s32)(arg1), (const Vec *)(arg0 + 0x560), 0, 0);
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::update_linked_ground_position() {
     update_linked_position__12TObjEneDD_STFf(lbl_805D8EC8);
 }
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 #define CFG ((Cfg_80064F50 *)boss5_gryphon_behavior_params[2])
 void TBoss5Gryphon::vfunc_88() {
@@ -4792,40 +4517,15 @@ void TBoss5Gryphon::shift_position_history() {
     VecCopy__FP3VecPC3Vec((void*)(arg0 + 0x2FC), (void*)(arg0 + 0x3C0));
     VecCopy__FP3VecPC3Vec((void*)(arg0 + 0x74), (void*)(arg0 + 0x2FC));
 }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::vfunc_61() {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::vfunc_62() {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::vfunc_63() {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::vfunc_28() {  }
-#pragma pop
 
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 void TBoss5Gryphon::update_state_or_dispatch_tick() {
     TBoss5Gryphon *obj = (TBoss5Gryphon *)this;
     if (!(*(s32 *)((s8 *)obj + 0x4C0) & 0xC) && (*(s16 *)((s8 *)obj + 0x32C) <= 0)) {
@@ -4834,12 +4534,6 @@ void TBoss5Gryphon::update_state_or_dispatch_tick() {
         obj->dispatch_action(*(s16 *)((s8 *)obj + 0x326), 9);
     }
 }
-#pragma pop
-
-#pragma push
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 struct O_8005F740;
 struct Obj_8005FBC4;
@@ -5084,7 +4778,6 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     return self;
 }
 }
-#pragma pop
 
 __declspec(section ".sdata2") const f32 lbl_805D8D70 = 6.0f;
 __declspec(section ".sdata2") const f32 lbl_805D8D74 = 0.5f;

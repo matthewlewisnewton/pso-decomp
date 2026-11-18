@@ -1,6 +1,6 @@
 #include "pso/ui/TMessageWindowController.h"
 #include "pso/misc/TWindowBase.h"
-#include "pso/misc/TQuestListChallenge.h"
+#include "pso/quest/TQuestListChallenge.h"
 #include "pso/misc/TWindowAddition.h"
 #include "pso/misc/TLobby.h"
 #include "pso/misc/TQuestVmDownLoadServer.h"

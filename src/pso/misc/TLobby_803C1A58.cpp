@@ -394,7 +394,6 @@ s32 TLobby::is_aiff_header() {
 
 #pragma push
 #pragma opt_propagation off
-#pragma opt_common_subs off
 u8 *TLobby__sub_803C2388(u8 *hdr, s32 *rate, s32 *channels, s32 *bits, s32 *frames) {
     u8 *p;
     u8 *end;

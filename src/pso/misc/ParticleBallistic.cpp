@@ -24,7 +24,6 @@
 #include "pso/misc/TParticleCtrl_80327D30.h"
 #include "pso/player/TObjPlayer_80083594.h"
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 struct Stack_80088844 {

@@ -31,7 +31,7 @@ The concrete callback definitions have `void(void)` signatures:
 - TCP: `TLobby__sub_8041A5B4` and `TLobby__sub_8041A3CC`.
 - DHCP: `TLobby__sub_80423298`.
 - EXI: `TLobby::update_exi_status`.
-- Miscellaneous timers: `TLobby__sub_804078B4`, `TLobby__sub_80411334`,
+- Miscellaneous timers: `age_arp_cache`, `TLobby__sub_80411334`,
   `TLobby::tick_entry_timers`, `NetIPv6TickNeighborDiscovery` and
   `TLobby::update_timeout_entries`.
 - The native address-word wrappers: `TLobby::tick_connection_timeouts`.

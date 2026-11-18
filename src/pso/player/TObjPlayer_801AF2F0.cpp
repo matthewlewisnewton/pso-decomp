@@ -2120,7 +2120,7 @@ void TObjPlayer__sub_801BF6DC(void *p, s16 v);
 s32 set_anim_state__10TObjPlayerFs(void *, s16);
 s32 set_action_id__10TObjPlayerFs(void *, s32);
 int TObjPlayer__sub_801BF840(void *p);
-int TObjPlayer__sub_801BF8AC(void *p);
+void TObjPlayer__sub_801BF8AC(void *p);
 void set_equip_slot_entry(s32, s32, s32);
 void TObjPlayer__sub_801BF8F8(s32 *p);
 s32 TObjPlayer__sub_801BF914(void *);
@@ -5509,74 +5509,51 @@ TObjPlayer::ActionPalette* TObjPlayer::select_action_palette(int secondary) {
     return (ActionPalette*)fn_801C1E44((s32)action_palettes);
 }
 
-#pragma push
-#pragma fp_contract on
 extern "C" {
 void TObjPlayer__sub_801B5AF8(s32 arg0, s32 arg1) {
     TWindowActionPalette::get_slot_type_for_index((s32 *)(((TObjPlayer *)arg0)->refresh_effect()), (s32)arg1);
 }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 extern "C" {
 s32 TObjPlayer::get_action_palette_entry(s32 arg1) {
     s32 arg0 = (s32)this;
     return get_entry_by_index__20TWindowActionPaletteFPll(((TObjPlayer *)arg0)->refresh_effect(), arg1);
 }
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 extern "C" {
 void TObjPlayer::select_action_palette_and_apply(s32 arg1, s32 arg2, s32 arg3) {
     s32 arg0 = (s32)this;
     TWindowActionPalette__sub_801C1D7C((s32)((TObjPlayer*)arg0)->select_action_palette(arg1), arg2, arg3);
 }
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 extern "C" {
 void TObjPlayer__sub_801B5A44(s32 arg0, s32 secondary, s32 i, s32 arg3, s32 arg4) {
     TWindowActionPalette::set_slot_by_index((s32)((TObjPlayer*)arg0)->select_action_palette(secondary), i, arg3, arg4);
 }
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 extern "C" {
 void TObjPlayer::set_action_palette_entry(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     s32 arg0 = (s32)this;
     TWindowActionPalette::set_palette_entry((s32)((TObjPlayer*)arg0)->select_action_palette(arg1), arg2, arg3, arg4, arg5);
 }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 extern "C" {
 void TObjPlayer::refresh_party_cursors(s32 arg0) {
     TObjPlayer::update_party_cursors(((TObjPlayer *)arg0)->refresh_effect(), arg0);
 }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 extern "C" {
 void TObjPlayer::is_effect_channel_active(s32 arg0, s32 arg1) {
     is_action_channel_active(((TObjPlayer *)arg0)->refresh_effect(), arg1);
 }
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 extern "C" {
 s32 is_action_channel_available__10TObjPlayerFii(s32 arg0, s32 arg1) {
     if (arg1 == 1) {
@@ -5592,7 +5569,6 @@ block_5:
     return is_action_channel_active(((TObjPlayer *)arg0)->refresh_effect(), arg1);
 }
 }
-#pragma pop
 
 extern "C" {
 s32 TObjPlayer::has_action_palette_entry() {
@@ -6808,11 +6784,6 @@ extern "C" {
 int TLobby::player_flag_1() { return set_battle_flag__10TObjPlayerFl(this, 1); }
 }
 
-#pragma push
-#pragma scheduling off
-#pragma scheduling on
-#pragma scheduling off
-#pragma scheduling on
 extern "C" {
 void prepare_guild_return__10TObjPlayerFPv(void *player) {
     set_area__6TLobbyFl(((u8 *)&lbl_80515BA0), 0, get_floor_map_terrain(0));
@@ -6824,20 +6795,11 @@ void prepare_guild_return__10TObjPlayerFPv(void *player) {
     TNpcPlayer::apply_to_players((s32)(((void * (*)(void *))get_dest_area__17TObjAreaWarpQuestFv)(((u8 *)&lbl_80515BA0))), (void *)(get_party_position()), (s32)(get_party_yaw()));
 }
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma scheduling on
-#pragma scheduling off
 extern "C" {
 int fn_801B309C(void* p) { return ((int (*)(void*))recover_full__10TObjPlayerFPv)(p); }
 }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
-#pragma scheduling on
 extern "C" {
 s32 build_player_equipment_requirement_stats(TObjPlayer *self, PlayerRequirementStats *player_requirement_stats) {
     set_params__10TObjPlayerFPvPvPviPv(player_requirement_stats, self, self->get_stats(),
@@ -6845,7 +6807,6 @@ s32 build_player_equipment_requirement_stats(TObjPlayer *self, PlayerRequirement
     return 1;
 }
 }
-#pragma pop
 
 #pragma push
 #pragma scheduling off

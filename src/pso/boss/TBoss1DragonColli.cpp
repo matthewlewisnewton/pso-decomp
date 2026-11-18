@@ -64,7 +64,6 @@ s32 __ct__14TObjCollidableFP7TObject(void *, void *);
 extern CollisionBody TBoss1DragonColli_sphere_chain_desc;
 extern s32 __vt__19TBoss1DragonColli_C[];
 extern s32 TBoss1DragonColli_C__name;
-extern const f32 lbl_805D8120;
 s32 TBoss1DragonColli_C__ct(int arg0, void *arg1, int arg2, void *arg3, f32 scale);
 void queue_destruction__7TObjectFv(void*);
 }
@@ -191,7 +190,7 @@ s32 TBoss1DragonColli_C__ct(int arg0, void *arg1, int arg2, void *arg3, f32 scal
     self->f1c = TLobby::alloc_actor_ids(0);
     self->count = arg2;
     self->elems = (E_8002B4CC *)::operator new[](self->count * 0x2C);
-    step = lbl_805D8120 * scale;
+    step = 2.0f * scale;
     e = self->elems;
     zero = lbl_805D8108;
     z = scale * (self->count - 1);

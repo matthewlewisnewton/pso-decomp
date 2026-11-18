@@ -21,7 +21,6 @@ struct RecoveredGlobal_8042839C_lbl_805D0A40 {
 };
 
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 struct RecoveredGlobal_8042E768_lbl_805D1D20 {
@@ -139,21 +138,8 @@ void TLobby__sub_80427378(Ent_80427D40 *e);
 s16 TLobby__sub_804275B0(s32, u16);
 s16 TLobby__sub_80427988(Ent_80427D40 *e, u8 *p, u16 len);
 
-#pragma push
-#pragma opt_propagation off
-#pragma pop
-
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-#pragma pop
-
 #define arg0 ((s32)argp)
 #undef arg0
-
-#pragma push
-#pragma dont_inline on
-#pragma pop
 
 s16 TLobby::build_ethernet_frame_header(void *src, void *mac, u16 type, u8 flag, u16 a, u16 len) {
   u8 *p;
@@ -803,7 +789,6 @@ s16 TLobby::get_slot_id(s16 arg0) {
 
 #define TBL_80427D40 ((Ent_80427D40 *)&lobby_pppoe_slot_table)
 #pragma push
-#pragma dont_inline off
 #pragma inline_depth(4)
 static inline void check_80427D40(void) {
     s32 now;
@@ -1021,10 +1006,7 @@ s16 TLobby__sub_80428360(s32) {
 
 typedef char RecoveredGlobal_8042839C_lbl_805D0A40_size[sizeof(RecoveredGlobal_8042839C_lbl_805D0A40) == 0x60 ? 1 : -1];
 
-#pragma push
-#pragma opt_common_subs off
 typedef char RecoveredGlobal_8042DD70_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042DD70_lbl_805D1D20) == 0x1C ? 1 : -1];
-#pragma pop
 
 typedef char RecoveredGlobal_8042E768_lbl_805D1D20_size[sizeof(RecoveredGlobal_8042E768_lbl_805D1D20) == 0x1C ? 1 : -1];
 

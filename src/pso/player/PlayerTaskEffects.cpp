@@ -817,9 +817,9 @@ namespace accessors {
 extern "C" {
 void update_player_scale_camera(PlayerScaleState *state) {
   f32 z = lbl_805DC34C * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state);
-  TObjPlayer__sub_801C6FE0(state->camera_position, lbl_805DC32C, lbl_805DC344 * (lbl_805DC348 * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state)), z);
-  TObjPlayer__sub_801C6FE0(state->camera_target, lbl_805DC32C, lbl_805DC350 * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state), lbl_805DC354);
-  request_follow_camera_offsets(((f32* (*)(f32*))TObjPlayer__sub_801C6FDC)(state->camera_target), ((f32* (*)(f32*))TObjPlayer__sub_801C6FDC)(state->camera_position), 0xFFFF);
+  TObjPlayer__sub_801C6FE0(state->camera.position, lbl_805DC32C, lbl_805DC344 * (lbl_805DC348 * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state)), z);
+  TObjPlayer__sub_801C6FE0(state->camera.target, lbl_805DC32C, lbl_805DC350 * ((f32 (*)(PlayerScaleState*))get_scalar__16PlayerScaleStateFv)(state), lbl_805DC354);
+  request_follow_camera_offsets(((f32* (*)(f32*))TObjPlayer__sub_801C6FDC)(state->camera.target), ((f32* (*)(f32*))TObjPlayer__sub_801C6FDC)(state->camera.position), 0xFFFF);
 }
 
 }

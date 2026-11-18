@@ -1318,7 +1318,7 @@ s32 TLobby__sub_80407358(void) {
     Tbl_80408718 *g = &lbl_805C1AB0;
     s32 tmp[2];
     TLobby::release_slot_by_id(0x806);
-    NetUnregisterTimer(TLobby__sub_804078B4);
+    NetUnregisterTimer(age_arp_cache);
     TLobby__sub_803F8A24(g);
     g->count = 0;
     g->h2 = 0;
@@ -1328,15 +1328,15 @@ s32 TLobby__sub_80407358(void) {
 }
 
 void TLobby__sub_804073B8(void) {
-    TUdpSocket__sub_80407508();
+    arp_init();
 }
 
 s32 TLobby::dispatch_slot_a(s16 arg0, s32 arg1) {
-    return TLobby__sub_80407C60(arg0, arg1);
+    return arp_remove_alias(arg0, arg1);
 }
 
 s32 TLobby::dispatch_slot_b(s16 arg0, s32 arg1) {
-    return TLobby__sub_80407D98(arg0, arg1);
+    return arp_add_alias(arg0, arg1);
 }
 
 s32 TLobby__sub_80407418(s16 id) {
@@ -1368,14 +1368,14 @@ s32 TLobby__sub_80407418(s16 id) {
 }
 
 s32 TLobby::forward_net_op(s16 arg0, u8 *arg1, u8 *arg2) {
-    return TLobby__sub_8040799C(arg0, arg1, arg2);
+    return arp_resolve_and_send(arg0, arg1, arg2);
 }
 
 s16 TLobby::forward_net_op_5args(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s32 arg5, s16 arg6, s32 arg7) {
-    return TLobby__sub_80407F20(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+    return register_arp_interface(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
 
-s32 TUdpSocket__sub_80407508(void) {
+s32 arp_init(void) {
     s16 n4;
     Ent_8040799C *e;
     Peer_8040799C *p;
@@ -1407,13 +1407,13 @@ s32 TUdpSocket__sub_80407508(void) {
     for (n4 = t->h8, q = t->nodes; n4 > 0; q++, n4--) {
         NetMemset(q, 0, sizeof(Node_80407C60));
     }
-    register_protocol_handler__6TLobbyFUsi(0x806, (Handler_8041A130)TLobby__sub_80407640);
-    NetRegisterTimer(60000, 1, (NetTimerCallback)TLobby__sub_804078B4);
+    register_protocol_handler__6TLobbyFUsi(0x806, (Handler_8041A130)arp_handle_packet);
+    NetRegisterTimer(60000, 1, (NetTimerCallback)age_arp_cache);
     return 0;
 }
 
 #pragma opt_common_subs on
-extern s32 TLobby__sub_80407640(void *pkt, s16 a, s16 b, s16 c)
+extern s32 arp_handle_packet(void *pkt, s16 a, s16 b, s16 c)
 {
   Tbl_8040799C *t = (Tbl_8040799C *)&lbl_805C1AB0;
   ArpHeader *pp;
@@ -1471,7 +1471,7 @@ extern s32 TLobby__sub_80407640(void *pkt, s16 a, s16 b, s16 c)
 }
 
 #pragma opt_common_subs reset
-void TLobby__sub_804078B4(void) {
+void age_arp_cache(void) {
     Peer_8040799C *p;
     s16 n;
 
@@ -1499,7 +1499,7 @@ void TLobby__sub_804078B4(void) {
     }
 }
 
-s32 TLobby__sub_8040799C(s16 idx, void *name, void *arg2) {
+s32 arp_resolve_and_send(s16 idx, void *name, void *arg2) {
     Tbl_8040799C *t = ((Tbl_8040799C *)&lbl_805C1AB0);
     Ent_8040799C *e;
     Peer_8040799C *p;
@@ -1521,7 +1521,7 @@ s32 TLobby__sub_8040799C(s16 idx, void *name, void *arg2) {
                 Clear_8040799C(p);
                 p->conn = NULL;
             }
-            TLobby__sub_80408060(p, (NetPacket *)arg2);
+            arp_hold_packet(p, (NetPacket *)arg2);
             Send_8040799C(e, name);
             p->f2 = t->hC;
         }
@@ -1529,14 +1529,14 @@ s32 TLobby__sub_8040799C(s16 idx, void *name, void *arg2) {
         u8 buf[6];
         NetMemset(buf, 0, 6);
         np = (Peer_8040799C *)find_or_add_peer_entry__6TLobbyFssUcPvUcPvs(e->f2, e->f4, e->fF, name, e->fE, buf, 1);
-        TLobby__sub_80408060(np, (NetPacket *)arg2);
+        arp_hold_packet(np, (NetPacket *)arg2);
         Send_8040799C(e, name);
         np->f2 = t->hC;
     }
     return ret;
 }
 
-s32 TLobby__sub_80407C60(s16 idx, s32 addr) {
+s32 arp_remove_alias(s16 idx, s32 addr) {
     Tbl_8040799C *t = ((Tbl_8040799C *)&lbl_805C1AB0);
     Ent_8040799C *e;
     Node_80407C60 *prev;
@@ -1576,7 +1576,7 @@ s32 TLobby__sub_80407C60(s16 idx, s32 addr) {
     return -1;
 }
 
-s32 TLobby__sub_80407D98(s16 idx, s32 addr) {
+s32 arp_add_alias(s16 idx, s32 addr) {
     s16 lim;
     Node_80407C60 *next;
     Node_80407C60 *p;
@@ -1618,7 +1618,7 @@ s32 TLobby__sub_80407D98(s16 idx, s32 addr) {
     return 0;
 }
 
-s16 TLobby__sub_80407F20(s16 a, s16 b, s16 c, s16 d, s16 e, s32 f, s16 g, s32 h)
+s16 register_arp_interface(s16 a, s16 b, s16 c, s16 d, s16 e, s32 f, s16 g, s32 h)
 {
     Ent_8040799C *base;
     Ent_8040799C *slot;
@@ -1655,7 +1655,7 @@ s16 TLobby__sub_80407F20(s16 a, s16 b, s16 c, s16 d, s16 e, s32 f, s16 g, s32 h)
     return idx;
 }
 
-void TLobby__sub_80408060(Peer_8040799C *peer, NetPacket *pkt) {
+void arp_hold_packet(Peer_8040799C *peer, NetPacket *pkt) {
     Conn_8040799C *slot;
     s16 total;
     Conn_8040799C *oldest;
@@ -4838,7 +4838,7 @@ s32 select_source_address__6TLobbyFPvPv(Out_8040D95C *arg0, In_8040D95C *arg1) {
             return -6;
         }
         arg0->type = 4;
-        return TLobby__sub_8040EF50(&arg0->f4, e->fC, e->f2);
+        return ipv4_source_for_subnet(&arg0->f4, e->fC, e->f2);
         }
     case 6:
         ok = NetIPv6IsUnspecified((u8 *)&arg0->f4);
@@ -4970,7 +4970,7 @@ s16 TLobby__sub_8040DC8C(u8 *arg0, u8 *arg1) {
         if (temp_r3_3 == NULL) {
             return -6;
         }
-        temp_r3 = TLobby__sub_8040EF00(*(s16 *)((s8 *)temp_r3_3 + 2));
+        temp_r3 = get_ipv4_interface_mtu(*(s16 *)((s8 *)temp_r3_3 + 2));
         if (temp_r3 < 0x28) {
             return -6;
         }
@@ -5233,7 +5233,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
   s16 fragment_tail_bytes;
   u8 *header;
   u16 TUdpSocket__sub_80419864(void *, s16);
-  s16 TLobby__sub_8040EDE4(s32, u32, s16);
+  s16 ipv4_send_to_interface(s32, u32, s16);
   u16 t46;
   u16 t44;
   u16 g1[2];
@@ -5280,7 +5280,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
   {
     target = (u8 *)((Ipv4Route *)route)->gateway;
   }
-  mtu = TLobby__sub_8040EF00(ifidx);
+  mtu = get_ipv4_interface_mtu(ifidx);
   if (mtu < 0)
   {
     return mtu;
@@ -5338,7 +5338,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
       fragment_record->fragments[fragment_record->fragment_count].length = header_bytes;
       NetBufferRefInitKind1(&fragment_record->fragments[fragment_record->fragment_count].buffer, (s32)fragment_header);
       fragment_record->fragment_count += 1;
-      result = TLobby__sub_8040EDE4((s32)fragment_record, (u32) target, ifidx);
+      result = ipv4_send_to_interface((s32)fragment_record, (u32) target, ifidx);
       if (result < 0)
       {
         NetReleasePacket(fragment_record);
@@ -5383,7 +5383,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
     plain_record->fragments[plain_record->fragment_count].length = header_bytes;
     NetBufferRefInitKind1(&plain_record->fragments[plain_record->fragment_count].buffer, (s32)plain_header);
     plain_record->fragment_count += 1;
-    result = TLobby__sub_8040EDE4((s32)plain_record, (u32) target, ifidx);
+    result = ipv4_send_to_interface((s32)plain_record, (u32) target, ifidx);
     NetReleasePacket(plain_record);
   }
   return result;
@@ -5420,9 +5420,9 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
   s16 total_bytes;
   s32 source_byte_offset;
   Ipv4Route *route;
-  s16 TLobby__sub_8040EDE4(s32, u32, s16);
+  s16 ipv4_send_to_interface(s32, u32, s16);
   s16 TLobby__sub_8040FDA0(u32, s16);
-  s16 TLobby__sub_8040EF50(u32 *, u32, s16);
+  s16 ipv4_source_for_subnet(u32 *, u32, s16);
   union {
     s64 alignment;
     NetPacket packet;
@@ -5435,7 +5435,7 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
   }
   if (src == 0)
   {
-    result = TLobby__sub_8040EF50(&src, route->gateway, route->iface);
+    result = ipv4_source_for_subnet(&src, route->gateway, route->iface);
     if (result < 0)
     {
       return result;
@@ -5443,7 +5443,7 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
   }
   if (TLobby__sub_8040FDA0(src, route->iface) != 0)
   {
-    result = TLobby__sub_8040EF50(&src, route->gateway, route->iface);
+    result = ipv4_source_for_subnet(&src, route->gateway, route->iface);
     if (result < 0)
     {
       return result;
@@ -5489,7 +5489,7 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
   ip->id = state->packet_id;
   NetMemcpy(&ip->src, &src, 4);
   NetMemcpy(&ip->dst, &dst, 4);
-  mtu = TLobby__sub_8040EF00(ifidx);
+  mtu = get_ipv4_interface_mtu(ifidx);
   if (mtu < 0)
   {
     return mtu;
@@ -5510,7 +5510,7 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
     rec->fragments[rec->fragment_count].length = 20;
     NetBufferRefInitKind1(&rec->fragments[rec->fragment_count].buffer, (s32)ip);
     rec->fragment_count += 1;
-    return TLobby__sub_8040EDE4((s32)rec, (u32) target, ifidx);
+    return ipv4_send_to_interface((s32)rec, (u32) target, ifidx);
   }
   fragment_offset = 0;
   if (df != 0)
@@ -5608,7 +5608,7 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
     fragment_record->fragments[fragment_record->fragment_count].length = 20;
     NetBufferRefInitKind1(&fragment_record->fragments[fragment_record->fragment_count].buffer, (s32)ip);
     fragment_record->fragment_count += 1;
-    result = TLobby__sub_8040EDE4((s32)fragment_record, (u32) target, ifidx);
+    result = ipv4_send_to_interface((s32)fragment_record, (u32) target, ifidx);
     if (result < 0)
     {
       return result;
@@ -5647,7 +5647,7 @@ u16 NetPacketChecksum(NetPacket *self, s16 b) {
     return ~s;
 }
 
-s32 TLobby__sub_8040ED28(void) {
+s32 shutdown_ipv4_routing(void) {
     TLobby__sub_803F8958(&(*(RecoveredGlobal_8040ED28_lbl_805C1B60 *)&ipv4_address_routing_state).value);
     ((RecoveredGlobal_8040ED28_lbl_805C1B60 *)&ipv4_address_routing_state)->counts.route_count = 0;
     ((RecoveredGlobal_8040ED28_lbl_805C1B60 *)&ipv4_address_routing_state)->counts.interface_count = 0;
@@ -5655,7 +5655,7 @@ s32 TLobby__sub_8040ED28(void) {
     return 0;
 }
 
-s32 TLobby__sub_8040ED70(void) {
+s32 init_ipv4_routing(void) {
     NetInitBufferDescriptorA((NetConfig_803F895C *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value));
     NetMemset((void *)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 8))), 0, (int)((int) (*(s16 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 0) * 0x14)));
     NetMemset((void *)((int) (*(s32 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 0xC))), 0, (int)((int) (*(s16 *)((s8 *)(&(*(RecoveredGlobal_8040ED70_lbl_805C1B60 *)&ipv4_address_routing_state).value) + 2) * 0x14)));
@@ -5663,7 +5663,7 @@ s32 TLobby__sub_8040ED70(void) {
     return 0;
 }
 
-s32 TLobby__sub_8040EDE4(s32 arg0, u32 dst, s16 idx) {
+s32 ipv4_send_to_interface(s32 arg0, u32 dst, s16 idx) {
     Ipv4RoutingState *g;
     Ipv4Iface *ifc;
 
@@ -5682,7 +5682,7 @@ s32 TLobby__sub_8040EDE4(s32 arg0, u32 dst, s16 idx) {
 }
 
 #pragma opt_common_subs on
-s16 TLobby__sub_8040EF00(s16 arg0) {
+s16 get_ipv4_interface_mtu(s16 arg0) {
     struct Fields_temp_r3 { s16 field_0; u8 pad_2[2]; s16 field_4; };
     u8 *temp_r3;
     if ((arg0 < 0) || (arg0 >= (s16) *(s16 *)((s8 *)(&ipv4_address_routing_state.value) + 2))) {
@@ -5695,7 +5695,7 @@ s16 TLobby__sub_8040EF00(s16 arg0) {
     return ((Fields_temp_r3*)temp_r3)->field_4;
 }
 
-s32 TLobby__sub_8040EF50(u32 *out, u32 dst, s16 idx) {
+s32 ipv4_source_for_subnet(u32 *out, u32 dst, s16 idx) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     Ipv4Iface *ifc;
     s16 count;
@@ -5727,7 +5727,7 @@ s32 TLobby__sub_8040EF50(u32 *out, u32 dst, s16 idx) {
     return -6;
 }
 
-s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
+s32 copy_ipv4_interface_addresses(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
     s16 TLobby__sub_80409EB0(s16 arg0, s32 arg1);
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     Ipv4Iface *ifc;
@@ -5778,7 +5778,7 @@ s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
     return count;
 }
 
-s16 TLobby__sub_8040F1A0(s16 idx) {
+s16 bring_down_ipv4_interface(s16 idx) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     s16 *pn;
     Ipv4Iface **pifs;
@@ -5839,7 +5839,7 @@ s16 TLobby__sub_8040F1A0(s16 idx) {
     return 0;
 }
 
-extern s16 TLobby__sub_8040F454(u32 addr, u32 mask, u32 broadcast, s16 idx) {
+extern s16 bring_up_ipv4_interface(u32 addr, u32 mask, u32 broadcast, s16 idx) {
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     s16 *pn;
     Ipv4Iface **pifs;

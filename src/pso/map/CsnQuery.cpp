@@ -9,7 +9,6 @@
 #include "pso/render/render_util.h"
 
 #pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 struct ByteBlock_C { u8 bytes[0xc]; };
 
@@ -584,8 +583,6 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007
 
 #pragma fp_contract on
 
-#pragma push
-#pragma fp_contract on
 M_80079C64 *refill_csn_candidate_cache(P_80079C64 *arg0, M_80079C64 **arg1, u32 arg2) {
     f32 rr;
     f32 dz;
@@ -615,7 +612,6 @@ M_80079C64 *refill_csn_candidate_cache(P_80079C64 *arg0, M_80079C64 **arg1, u32 
     *arg1 = 0;
     return *first;
 }
-#pragma pop
 
 CsnGroup *select_ground_query_groups(CsnVector *origin, u32 mask) {
   f32 dx;
@@ -700,8 +696,6 @@ u32 TObjPlayer__sub_80079DE0(void *a, void *b) {
     return lbl_804FFD40[0];
 }
 
-#pragma push
-#pragma fp_contract on
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask) {
     V_80079F58 *pos = (V_80079F58 *)arg0;
     Grp_80079F58 **lp;
@@ -763,7 +757,6 @@ s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask) {
     out->id = 0;
     return cnt;
 }
-#pragma pop
 
 void TObjPlayer::copy_wall_polygon(u8 *arg1) {
     u8 *arg0 = (u8 *)this;

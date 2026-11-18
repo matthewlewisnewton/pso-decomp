@@ -1,5 +1,4 @@
 // Reverse definitions with deferred emission preserve function and native vtable order.
-#pragma auto_inline off
 #include "pso/TObjEZRopeBase.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/misc/MaterialColorFade.h"
@@ -252,9 +251,6 @@ void *TObjPlayer::create_hairmove(void *arg1, void *arg2) {
     return new TObjHMS_EZRope_Player(this, arg1, arg2);
 }
 
-#pragma push
-#pragma inline_depth(1)
-#pragma dont_inline off
 void TObjPlayer__sub_800FF244(u8 *arg0, u8 *arg1) {
     *arg0 = *arg1;
     *reinterpret_cast<ByteBlock_C *>(arg0 + 4) = *reinterpret_cast<const ByteBlock_C *>(arg1 + 4);
@@ -273,7 +269,6 @@ void TObjPlayer__sub_800FF1FC(f32 *arg0, f32 *arg1) {
     *reinterpret_cast<ByteBlock_C *>(reinterpret_cast<u8 *>(arg0) + 4) =
         *reinterpret_cast<const ByteBlock_C *>(reinterpret_cast<const u8 *>(arg1) + 4);
 }
-#pragma pop
 
 TObjHMS_EZRope_Player::TObjHMS_EZRope_Player(TObjPlayer *arg1, void *arg2, void *arg3)
     : TObjEZRopeBase(arg1) {

@@ -25,8 +25,6 @@ s32 draw_window_scrollbar(void *, int, void *);
 s32 forward_render__20TWindowSubStatusDispFv(void *, int);
 extern s32 local_client_id;
 
-#pragma push
-#pragma fp_contract on
 void TUnk_804D0948::render() {
     u8 *arg0 = (u8 *)this;
     s32 temp_r3;
@@ -51,7 +49,6 @@ void TUnk_804D0948::render() {
         draw_window_scrollbar(p, temp_r3, (u8 *)&this->m_68);
     }
 }
-#pragma pop
 
 void TUnk_804D0948::run_task() {
     TWindowMenuIconLine::run_task();

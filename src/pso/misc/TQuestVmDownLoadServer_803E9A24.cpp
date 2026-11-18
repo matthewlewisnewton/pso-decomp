@@ -593,7 +593,6 @@ s32 TQuestVmDownLoadServer::count_leading_entries(s32 i, s32 end) {
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(3)
-#pragma opt_common_subs off
 #pragma opt_lifetimes off
 #pragma opt_propagation off
 
@@ -1027,7 +1026,6 @@ void TQuestVmDownLoadServer__sub_803EBA98(s32 start, QuestDownloadTextNode *arg1
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(1)
-#pragma opt_dead_assignments off
 
 QuestDownloadTextNode *get_next_node__22TQuestVmDownLoadServerFPv(QuestDownloadQueueNode *p) {
     QuestDownloadQueueNode *best = NULL;
@@ -1132,7 +1130,7 @@ def:
         if (t->a != 0x1F) {
             goto def;
         }
-        if (TQuestVmDownLoadServer__sub_803EEA48((s32)&lbl_805A0470 + lbl_805D78F0, t->off, QUEST_TEXT_SCRATCH(base), &count) > 0) {
+        if (format_number_text_all_modes((s32)&lbl_805A0470 + lbl_805D78F0, t->off, QUEST_TEXT_SCRATCH(base), &count) > 0) {
             goto build;
         }
         goto def;
