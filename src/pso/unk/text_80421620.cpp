@@ -373,8 +373,6 @@ s32 TLobby__sub_804218AC(s32 arg0, s32 arg1) {
     return temp_r31;
 }
 
-#pragma push
-#pragma opt_common_subs off
 typedef char RecoveredGlobal_804219D0_lbl_805C1C50_size[sizeof(RecoveredGlobal_804219D0_lbl_805C1C50) == 0xF8 ? 1 : -1];
 
 s32 TLobby__sub_80421938(O_80421938 *o, void *src, void *dst, void *cb, s32 flags) {
@@ -397,7 +395,6 @@ s32 TLobby__sub_804219D0(s32 arg0, s32 arg1, s32 arg2) {
     TUdpSocket::unlock_mutex((int)((void *) ((*(RecoveredGlobal_804219D0_lbl_805C1C50 *)&network_dispatch_state).value)));
     return temp_r31;
 }
-#pragma pop
 
 typedef char RecoveredGlobal_80421A50_lbl_805C1C50_size[sizeof(RecoveredGlobal_80421A50_lbl_805C1C50) == 0xF8 ? 1 : -1];
 s32 TLobby__sub_80421A50(s32 arg0, s32 arg1, s32 arg2) {

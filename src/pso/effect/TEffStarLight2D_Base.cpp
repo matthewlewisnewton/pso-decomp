@@ -169,8 +169,6 @@ void TEffStarLight2D::queue_child_destruction() {
     }
 }
 
-#pragma push
-#pragma opt_propagation off
 void TEffStarLight2D::render() {
     s32 index = 0;
     TEffStarLightChild *next;
@@ -187,7 +185,6 @@ void TEffStarLight2D::render() {
     }
     set_default_alpha_blend();
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on

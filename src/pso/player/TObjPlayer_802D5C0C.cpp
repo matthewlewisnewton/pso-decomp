@@ -1,6 +1,7 @@
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
 #include "pso/item/TItem.h"
+#include "pso/item/WeaponEffectDescriptor.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/player/TUnk_804E23F0.h"
 #include "pso/items/TItemWeapon.h"
@@ -157,16 +158,16 @@ void* init_state_445__10TObjPlayerFPv(void* a0);
 s32 get_weapon_color__11TItemWeaponFPv(NJS_ARGB *, void *);
 int __ct__11TItemWeaponFP7TObjectPUc(void);
 
-void init_weapon_effect_descriptor__13TUnk_804E23F0FP13Desc_8011E5C4(u8 *weapon, u8 *arg1) {
+void TUnk_804E23F0::init_weapon_effect_descriptor(Desc_8011E5C4 *desc) {
     NJS_ARGB color;
 
-    *(f32 *)((s8 *)arg1 + 0x4C) = (f32) *(f32 *)((s8 *)weapon + 0x200);
-    *(s32 *)((s8 *)arg1 + 0x58) = 0xC000;
-    *(s32 *)((s8 *)arg1 + 0x40) = (s32) (*(s32 *)((s8 *)arg1 + 0x40) | 2);
-    get_weapon_color__11TItemWeaponFPv(&color, weapon);
-    copy_argb((NJS_ARGB *)(arg1 + 0x60), &color);
-    *(s32 *)((s8 *)arg1 + 0x74) = (s32) *(s32 *)((s8 *)weapon + 0x208);
-    *(s32 *)((s8 *)arg1 + 0x70) = (s32) *(s32 *)((s8 *)weapon + 0x204);
+    desc->scale = effect_scale;
+    desc->m_58 = 0xC000;
+    desc->flags |= 2;
+    P802D5C0C::get_weapon_color__11TItemWeaponFPv(&color, this);
+    copy_argb(&desc->color, &color);
+    desc->m_74 = m_208;
+    desc->m_70 = m_204;
 }
 
 void TUnk_804E23F0::update_weapon() {

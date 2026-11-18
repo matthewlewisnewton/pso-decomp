@@ -16,54 +16,8 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/misc/TParticleCtrl_80327D30.h"
 #include "pso/player/TObjPlayer_80083594.h"
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 
 #pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
-#pragma inline_depth(1)
-#pragma auto_inline off
 #pragma dont_inline off
 
 struct RecoveredGlobal_8008C21C_TParticleCtrl__data_8048E7A8 {
@@ -443,8 +397,6 @@ void *__dt__13TUnk_8048E7A8Fv(void *arg0, s16 arg1) {
 #pragma fp_contract on
 typedef char RecoveredGlobal_8008C21C_TParticleCtrl__data_8048E7A8_size[sizeof(RecoveredGlobal_8008C21C_TParticleCtrl__data_8048E7A8) == 0x18 ? 1 : -1];
 
-#pragma push
-#pragma fp_contract on
 typedef char RecoveredGlobal_8008BF58_TParticleCtrl__data_8048E7A8_size[sizeof(RecoveredGlobal_8008BF58_TParticleCtrl__data_8048E7A8) == 0x18 ? 1 : -1];
 u8 *construct_radial_particle(u8 *object, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4, s16 arg5) {
     struct Fields_arg0 { u8 pad_0[24]; s32 * field_18; u16 field_1C; u8 pad_1E[6]; u16 field_24; s16 field_26; f32 field_28; f32 field_2C; f32 field_30; f32 field_34; f32 field_38; f32 field_3C; f32 field_40; f32 field_44; u8 pad_48[20]; f32 field_5C; u8 pad_60[8]; f32 field_68; u8 pad_6C[4]; f32 field_70; f32 field_74; f32 field_78; u8 pad_7C[25]; s8 field_95; };
@@ -481,7 +433,6 @@ u8 *construct_radial_particle(u8 *object, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4
     }
     return object;
 }
-#pragma pop
 
 u8 *TParticleCtrl::init_random_particle(u8 *arg1, u8 *arg2, s32 arg3) {
     struct Fields_arg0 { u8 pad_0[24]; s32 * field_18; u16 field_1C; u8 pad_1E[6]; u16 field_24; u8 pad_26[2]; f32 field_28; f32 field_2C; f32 field_30; f32 field_34; f32 field_38; f32 field_3C; f32 field_40; f32 field_44; u8 pad_48[20]; f32 field_5C; u8 pad_60[8]; f32 field_68; u8 pad_6C[4]; f32 field_70; f32 field_74; f32 field_78; };
