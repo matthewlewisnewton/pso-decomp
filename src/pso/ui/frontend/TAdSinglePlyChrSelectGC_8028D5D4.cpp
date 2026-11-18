@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
+#include "pso/ui/charcreate/CharacterLoadBuffer.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h"
 #include "pso/unk/TLobby.h"
 #include "pso/unk/TLobby_8028D714.h"
@@ -24,8 +25,7 @@ s32 TAdSinglePlyChrSelectGC::get_result() {
     }
     return 0;
 }
-u32 TLobby::alloc_load_buffer(s32 size) {
-    s32 slot = (s32)this;
+u32 advance_character_load_buffer(s32 slot, s32 size) {
     u32 p;
     if (chr_select_load_buffer_base == 0U) {
         return 0U;
@@ -57,7 +57,7 @@ u32 TLobby::alloc_load_buffer(s32 size) {
 }
 
 
-int TLobby::start_load_default() { return alloc_load_buffer(0); }
+void *get_character_load_buffer(s32 slot) { return (void *)advance_character_load_buffer(slot, 0); }
 
 s32 TLobby__sub_8028D738(s32 i) {
     s32 temp_r3;

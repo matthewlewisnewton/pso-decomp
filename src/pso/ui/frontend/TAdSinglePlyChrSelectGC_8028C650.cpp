@@ -1,26 +1,18 @@
-#include "types.h"
-#include "pso/object/ambient/TObjFish_8001ED90.h"
+#include "pso/system/BmlResource.h"
+#include "pso/ui/charcreate/CharacterLoadBuffer.h"
+#include "pso/ui/charcreate/TChCrLoadGmNjReq.h"
 #include "pso/unk/TLobby.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
-extern "C" {
-
-u32 init_bin_model_request(u32, s32, void *, void *, s32, s32, s32);
-
-void TAdSinglePlyChrSelectGC::start_character_load_task() {
-    u32 var_r31;
-
-    if ((TLobby::tmp_buf_is_free() != 0) && (this->try_acquire_slot() != 0)) {
-        var_r31 = (int)::operator new(0x440);
-        if (var_r31 != 0U) {
-            var_r31 = init_bin_model_request(var_r31, 6, ((u8 *)this) + 0x60, ((u8 *)this) + 0x64, 0, 0, ((TLobby *)(this->m_24))->start_load_default());
+void TChCrLoadGmNjReq::start_character_load_task() {
+    if (TLobby::tmp_buf_is_free() != 0 && try_acquire_slot() != 0) {
+        BmlResource *loaded = (BmlResource *)::operator new(sizeof(BmlResource));
+        if (loaded != NULL) {
+            loaded = init_from_id_lists(loaded, 6, model_ids, &model_ids[1], 0, 0, get_character_load_buffer(load_slot));
         }
-        *(u32 *)((s8 *)((u8 *)this) + 0x68) = var_r31;
-        if (var_r31 != 0U) {
-            *(s32 *)((s8 *)((u8 *)this) + 0x74) = 0x12C;
-            this->m_2c = 1;
+        loaded_bml = loaded;
+        if (loaded != NULL) {
+            load_timer = 0x12C;
+            state = 1;
         }
     }
-}
-
 }

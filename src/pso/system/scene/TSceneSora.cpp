@@ -39,15 +39,13 @@ struct Ref_80207478 { s32 id; s32 idx; s32 pad; };
 
 struct Ent_80207478 { s32 f0; char *name; };
 
-struct Res_80207478 { void *buf; s32 n; };
-
 #pragma readonly_strings on
 
 extern "C" {
 s32 TSceneSora__sky_active_flag = 1;
 const char *TSceneSora__name = "TSceneSora";
 s32 TSceneSora__instance;
-u32 TSceneSora__sky_bml_resource;
+BmlResource *TSceneSora__sky_bml_resource;
 s32 TSceneSora__has_sky_motion;
 
 void TSceneSora__sub_80207430(void);
@@ -56,7 +54,6 @@ u8 *__ct__10TSceneSoraFl(TSceneSora *arg0, s32 _w1);
 void draw_ginja_model_with_motion(void *model, void *motion, f32 frame);
 s32 rotate_matrix_y(int, int);
 void *get_current_floor();
-u32 init_bin_model_request(void *, int, Res_80207478 *, Res_80207478 *, int, int, int);
 s32 lookup_scene_object__6TLobbyFPv(void *, Ref_80207478 *);
 void *adxf_open__6TLobbyFUii(char *, int);
 extern char sky_model_ext_s_njm[];
@@ -70,7 +67,7 @@ extern s32 tl_05;
 void TSceneSora::render() {
     if ((s32) TSceneSora__sky_active_flag != 0) {
         TParticleCtrl::begin_effect_render();
-        set_current_texture_list(get_bml_texlist((BmlResource *)((*(s32 *)&TSceneSora__sky_bml_resource)), 0));
+        set_current_texture_list(get_bml_texlist(TSceneSora__sky_bml_resource, 0));
         push_matrix();
         rotate_matrix_y(0, this->rotation_y);
         if ((u32) this->m_94 != 0U) {
@@ -106,13 +103,13 @@ TSceneSora::~TSceneSora() {
 }
 TSceneSora::TSceneSora(s32 _w1) : TObjBase((TObject *)_w1) {
     this->m_name = TSceneSora__name;
-    this->m_90 = (u32)get_bml_model((BmlResource *)((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+    this->m_90 = (u32)get_bml_model(TSceneSora__sky_bml_resource, 0);
     if (TSceneSora__has_sky_motion != 0) {
-        this->m_94 = get_bml_motion((int) ((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+        this->m_94 = get_bml_motion((s32)TSceneSora__sky_bml_resource, 0);
     } else {
         this->m_94 = 0;
     }
-    this->m_98 = (u32)get_bml_texlist((BmlResource *)((*(s32 *)&TSceneSora__sky_bml_resource)), 0);
+    this->m_98 = (u32)get_bml_texlist(TSceneSora__sky_bml_resource, 0);
     *(f32 *)((s8 *)this + 0x9C) = 0.1f;
     this->m_a0 = 0.0f;
 }
@@ -121,7 +118,7 @@ extern "C" {
 void TSceneSora::create_instance() {
     s32 scene_sora;
 
-    if ((u32) TSceneSora__sky_bml_resource != 0U) {
+    if (TSceneSora__sky_bml_resource != NULL) {
         scene_sora = __nw__7TObjectFUl(0xA4);
         if (scene_sora != 0) {
             scene_sora = ((s32)__ct__10TSceneSoraFl((TSceneSora *)((u8 *)scene_sora), (s32)tl_05));
@@ -134,9 +131,9 @@ void TSceneSora::create_instance() {
 
 void TSceneSora__sub_80207430(void) {
     TSceneSora__sky_active_flag = 1;
-    if ((void *) (*(u8 * *)&TSceneSora__sky_bml_resource) != NULL) {
-        delete (BmlResource *)(*(u8 * *)&TSceneSora__sky_bml_resource);
-        (*(u8 * *)&TSceneSora__sky_bml_resource) = NULL;
+    if (TSceneSora__sky_bml_resource != NULL) {
+        delete TSceneSora__sky_bml_resource;
+        TSceneSora__sky_bml_resource = NULL;
     }
     TSceneSora__instance = 0;
 }
@@ -145,14 +142,14 @@ void TSceneSora::load_sky_resources() {
     char name2[0x20];
     char name1[0x20];
     Ref_80207478 ref;
-    Res_80207478 b;
-    Res_80207478 a;
+    void *models[2];
+    void *motions[2];
     Ent_80207478 *tbl;
     s32 ok;
     void *p;
-    u32 o;
+    BmlResource *loaded;
     TSceneSora__instance = 0;
-    TSceneSora__sky_bml_resource = 0;
+    TSceneSora__sky_bml_resource = NULL;
     TSceneSora__has_sky_motion = 0;
     if (lookup_scene_object__6TLobbyFPv(get_current_floor(), &ref) != 0) {
         ok = 0;
@@ -167,26 +164,26 @@ void TSceneSora::load_sky_resources() {
         }
         p = adxf_open__6TLobbyFUii(name2, 0);
         if (p != NULL) {
-            b.buf = name2;
+            models[0] = name2;
             ((TLobby *)p)->close_adxf_handle();
         } else {
             return;
         }
         p = adxf_open__6TLobbyFUii(name1, 0);
         if (p != NULL) {
-            a.buf = name1;
+            motions[0] = name1;
             TSceneSora__has_sky_motion = 1;
             ((TLobby *)p)->close_adxf_handle();
         } else {
-            a.buf = NULL;
+            motions[0] = NULL;
         }
-        b.n = 0;
-        a.n = 0;
-        o = (u32)(int)::operator new(0x440);
-        if (o != 0) {
-            o = init_bin_model_request((void *)o, 1, &b, &a, 0, 0, 0);
+        models[1] = NULL;
+        motions[1] = NULL;
+        loaded = (BmlResource *)::operator new(sizeof(BmlResource));
+        if (loaded != NULL) {
+            loaded = init_from_id_lists(loaded, 1, models, motions, 0, 0, NULL);
         }
-        TSceneSora__sky_bml_resource = o;
+        TSceneSora__sky_bml_resource = loaded;
         TSceneSora__sky_active_flag = 1;
     }
 }

@@ -59,4 +59,8 @@ typedef char BmlResource_models_offset[offsetof(BmlResource, models) == 0x42C ? 
 typedef char BmlResource_motions_offset[offsetof(BmlResource, motions) == 0x430 ? 1 : -1];
 typedef char BmlResource_model_count_offset[offsetof(BmlResource, model_count) == 0x434 ? 1 : -1];
 
+// The list-based initializer takes caller-allocated storage and null-terminated ID lists.
+BmlResource *init_from_id_lists(BmlResource *self, s32 kind, void **models, void **motions,
+                                s32 callback, s32 context, void *arena);
+
 #endif

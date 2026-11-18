@@ -12,16 +12,13 @@
 #include "pso/ui/charcreate/TCharaMaking.h"
 #include "pso/system/task/TObject.h"
 
-struct Obj_8028C8A8 { u8 pad[0x6c]; s32 f6c; };
-
 s32 chr_select_slot_state;
 
 void TChCrLoadGmNjReq::sub_8028C8A8() {
-    Obj_8028C8A8 *o = (Obj_8028C8A8 *)this;
     if (chr_select_slot_state < 0 || chr_select_slot_state > 1) return;
-    if (o->f6c == 0) return;
+    if (slot_claimed == 0) return;
     chr_select_slot_state--;
-    o->f6c = 0;
+    slot_claimed = 0;
 }
 
 struct Cm_8028CB6C { u8 pad[0x3E]; s16 f3e; };
@@ -110,18 +107,18 @@ extern s32 chr_select_preview_base_offset_table[];
 
 extern s32 chr_select_slot_state;
 
-s32 TAdSinglePlyChrSelectGC::try_acquire_slot() {
+s32 TChCrLoadGmNjReq::try_acquire_slot() {
     if (((s32) chr_select_slot_state < 0) || ((s32) chr_select_slot_state > 1)) {
         return 0;
     }
-    if ((s32) *(s32 *)((s8 *)this + 0x6C) != 0) {
+    if (slot_claimed != 0) {
         return 0;
     }
     if ((s32) chr_select_slot_state >= 1) {
         return 0;
     }
     chr_select_slot_state += 1;
-    *(s32 *)((s8 *)this + 0x6C) = 1;
+    slot_claimed = 1;
     return 1;
 }
 
