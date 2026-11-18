@@ -1417,6 +1417,7 @@ force_active:
   - TObjEneBm5Wolf__pack_member_list
   - TObjEneBm5Wolf__stat_params
   - TObjEneBm5Wolf__sub_800B8A24
+  - TObjEneBm9Mericarol__class_name
   - TObjEneBm9Mericarol__ct
   - TObjEneBm9Mericarol__vtable
   - TObjEneDarkGunCenter__sub_800A0B18
@@ -2296,6 +2297,8 @@ force_active:
   - TWindowLockOn__update_for_enemy
   - TWindowLockOn__update_for_item
   - TWindowLockOn__update_for_other_player
+  - TWindowMainMenu1P__class_name_string
+  - TWindowMainMenu1P__name
   - TWindowMeseta__class_name
   - TWindowMessageYesNo__name
   - TWindowPartyStatus__name
@@ -9543,10 +9546,6 @@ force_active:
   - lbl_804DDB8C
   - lbl_804DF4E0
   - lbl_804E1548
-  - lbl_804E15BC
-  - lbl_804E15C4
-  - lbl_804E15F8
-  - lbl_804E1600
   - lbl_804E285C
   - lbl_804E286C
   - lbl_804E28A0
@@ -10005,6 +10004,9 @@ force_active:
   - lbl_805D6808
   - lbl_805D681C
   - lbl_805D6840
+  - lbl_805D6870
+  - lbl_805D6874
+  - lbl_805D6878
   - lbl_805D6910
   - lbl_805D6948
   - lbl_805D6990
@@ -10996,6 +10998,14 @@ force_active:
   - menu_font_render_rects
   - merge_adjacent_free_blocks__6TLobbyFv
   - merge_halves__14TObjEnePanarmsFv
+  - mericarol_collision_bodies
+  - mericarol_low_detail_model_names
+  - mericarol_low_detail_motion_names
+  - mericarol_low_detail_resource_descriptor
+  - mericarol_model_names
+  - mericarol_motion_names
+  - mericarol_resource
+  - mericarol_resource_descriptor
   - merill_lia_low_model_names
   - merill_lia_low_motion_names
   - merill_lia_model_names
@@ -16008,6 +16018,7 @@ force_active:
   - quest_bgm_area_filename_table
   - quest_bgm_carnaval_filename
   - quest_bgm_chu_f_filename
+  - quest_bgm_clear_filename
   - quest_bgm_dreams_filename
   - quest_bgm_dreams_kids_filename
   - quest_bgm_ed_piano_filename
@@ -16020,6 +16031,7 @@ force_active:
   - quest_bgm_mambo_filename
   - quest_bgm_matter_filename
   - quest_bgm_miles_filename
+  - quest_bgm_miniclear_filename
   - quest_bgm_nomal_filename
   - quest_bgm_open_filename
   - quest_bgm_smile_filename
