@@ -2075,6 +2075,13 @@ mechanical inventory does not currently enumerate function-pointer conversions.
 | `src/pso/misc/TOContainerAncientEnemy.cpp` | Deferred generation and reverse function definitions | GC/2.0 emits the seven class virtual tables in reverse native order with immediate generation. Deferred generation and reverse definitions reproduce both the original text order and the table order at `0x804B00F4..0x804B0A08`. The resource loader shares the unit because its descriptors precede the tables in data and its functions follow the classes in text. | Use ordinary class definitions and compiler-generated virtual tables in any source order. |
 | Same file, `TLanguage::load_container_fragment_textures` at `0x8015C680` | Scoped `pool_data off` | With the texture names and loader in the same unit, GC/2.0 normally addresses the names through one read-only base and emits 464 bytes. Independent references restore the original 516-byte routine and its relocations. | Omit the pragma and retain the typed resource definitions and load order. |
 
+### Jungle container virtual tables and shared debris signature
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/item/TObjContainerJung.cpp` | Deferred generation and reverse function definitions | Immediate generation emits the three virtual tables in reverse order. Deferred generation reverses the function definitions and emits the tables in their native order. The existing scoped propagation controls still apply to the three debris methods. | Use ordinary class definitions and omit the emission and propagation pragmas. |
+| `src/pso/misc/TOContainerAncientEnemy.cpp` | Existing GC/1.3 compiler profile for this unit | GC/2.0 changes load scheduling in the two ancient-container debris methods when the shared virtual slot uses its native const-qualified signature. GC/1.3 restores the original instructions and the rest of the unit stays exact. | Keep the const-qualified override and use the port's normal compiler. |
+
 ### Ceiling-debris renderer data addresses
 
 | Scope | Construct | Evidence and reason | Port action |

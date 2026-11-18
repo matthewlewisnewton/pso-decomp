@@ -8,7 +8,7 @@ public:
     virtual ~TUnk_804B08BC();
     virtual void vfunc_81();
     virtual void vfunc_80();
-    virtual void vfunc_79();
+    virtual void vfunc_79() const;
 };
 
 #endif

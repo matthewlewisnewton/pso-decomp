@@ -328,7 +328,7 @@ void TUnk_804B08BC::vfunc_81() {
     }
 }
 
-void TUnk_804B08BC::vfunc_79() {
+void TUnk_804B08BC::vfunc_79() const {
     Obj_8015C234 *self = (Obj_8015C234 *)this;
     if (this->mode == 1) {
         return;
@@ -556,7 +556,7 @@ f32 TOContainerAncientEnemy::receive_physical_attack(void *, f32) {
     return lbl_805DB39C;
 }
 
-void TOContainerAncientEnemy::vfunc_79() {
+void TOContainerAncientEnemy::vfunc_79() const {
     Obj_8015B94C *self = (Obj_8015B94C *)this;
     void *o;
     if (this->mode != 1) {

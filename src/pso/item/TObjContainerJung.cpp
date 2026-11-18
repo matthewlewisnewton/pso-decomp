@@ -3,6 +3,7 @@
 #include "pso/system/CurrentTextureList.h"
 #include "pso/misc/RenderFadeState.h"
 #include "pso/system/BmlResourceClass.h"
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/vector.h"
 #include "pso/misc/TRaderMapCore.h"
 #include "pso/object/TObjFish.h"
@@ -29,14 +30,82 @@
 #include "pso/item/TObjContainerJung.h"
 
 extern "C" {
+static __declspec(section ".rodata") const char fe_obj_hako01_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako01.gj";
+static __declspec(section ".rodata") const char fe_obj_hako01_hahen1_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako01_hahen1.gj";
+static __declspec(section ".rodata") const char fe_obj_hako01_hahen2_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako01_hahen2.gj";
+static __declspec(section ".rodata") const char fe_obj_hako01_light_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako01_light.gj";
+static __declspec(section ".rodata") const char bm_obj_hako01_bml[] ATTRIBUTE_ALIGN(4) = "bm_obj_hako01.bml";
+static __declspec(section ".rodata") const char fe_obj_hako02_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako02.gj";
+static __declspec(section ".rodata") const char fe_obj_hako02_hahen1_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako02_hahen1.gj";
+static __declspec(section ".rodata") const char fe_obj_hako02_hahen2_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako02_hahen2.gj";
+static __declspec(section ".rodata") const char fe_obj_hako02_light_gj[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako02_light.gj";
+static __declspec(section ".rodata") const char fe_obj_hako02_bml[] ATTRIBUTE_ALIGN(4) = "fe_obj_hako02.bml";
+
+const char *bm_obj_hako01_model_names[5] = {
+    fe_obj_hako01_gj, fe_obj_hako01_hahen1_gj, fe_obj_hako01_hahen2_gj, fe_obj_hako01_light_gj, NULL,
+};
+__declspec(section ".sdata") const char *bm_obj_hako01_motion_names[1] = { NULL };
+BmlResourceDescriptor TObjContainerJung__resource_descriptor = {
+    bm_obj_hako01_bml, bm_obj_hako01_model_names, bm_obj_hako01_motion_names, 4, 0,
+};
+
+const char *fe_obj_hako02_model_names[5] = {
+    fe_obj_hako02_gj, fe_obj_hako02_hahen1_gj, fe_obj_hako02_hahen2_gj, fe_obj_hako02_light_gj, NULL,
+};
+__declspec(section ".sdata") const char *fe_obj_hako02_motion_names[1] = { NULL };
+// Loaded by TObjContainerJungEx::load_resource_instance.
+BmlResourceDescriptor fe_obj_hako02_resource_descriptor = {
+    fe_obj_hako02_bml, fe_obj_hako02_model_names, fe_obj_hako02_motion_names, 4, 0,
+};
+
+CollisionBody container_jung_collision_desc = {
+    { 0.0f, 6.0f, 0.0f }, 9.0f, 9.0f, 0, 0x38003, { 0.0f, 0.0f, 0.0f }, 0.0f,
+};
+
+s32 TObjContainerJung__bml_model_resource;
+s32 TObjContainerJung__bml_aux_handle;
+u32 TObjContainerJungEx__resource_bundle;
+
+static __declspec(section ".rodata") const char TObjContainerJung_class_name[] ATTRIBUTE_ALIGN(4) = "TObjContainerJung";
+__declspec(section ".sdata") const char *TObjContainerJung__name = TObjContainerJung_class_name;
+
+static __declspec(section ".rodata") const TObjChipParams container_jung_debris_desc = {
+    { 0.5f, 0.03f, 0.3f }, { 0.0f, 0.0f, 0.0f }, { 3.0f, 6.0f, 3.0f }, { 0x800, 0x100, 0x800 }, { 4, 0x32 }, { 0.0f, 0.8f }, 0, 0, 0x16,
+};
+static __declspec(section ".rodata") const TObjChipParams container_jung_spawn_params = {
+    { 0.5f, 0.03f, 0.2f }, { 0.0f, 0.0f, 0.0f }, { 3.5f, 6.0f, 3.5f }, { 0x400, 0x100, 0x400 }, { 4, 0x32 }, { 0.0f, 0.7f }, 0, 0, 0x16,
+};
+
+static __declspec(section ".rodata") const char TObjContainerJungEx_class_name[] ATTRIBUTE_ALIGN(4) = "TObjContainerJungEx";
+__declspec(section ".sdata") const char *TObjContainerJungEx__name = TObjContainerJungEx_class_name;
+
+static __declspec(section ".rodata") const TObjChipParams container_jung_ex_spawn_params_a = {
+    { 0.5f, 0.07f, 0.26f }, { 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f, 5.0f }, { 0x400, 0x100, 0x400 }, { 5, 0x32 }, { 0.0f, 0.6f }, 0, 0, 0x16,
+};
+static __declspec(section ".rodata") const TObjChipParams container_jung_ex_spawn_params_b = {
+    { 0.5f, 0.07f, 0.26f }, { 0.0f, 0.0f, 0.0f }, { 4.0f, 4.5f, 4.0f }, { 0x200, 0x100, 0x200 }, { 6, 0x32 }, { 0.0f, 0.5f }, 0, 0, 0x16,
+};
+
+static __declspec(section ".rodata") const char TObjContainerJungEnemy_class_name[] ATTRIBUTE_ALIGN(4) = "TObjContainerJungEnemy";
+__declspec(section ".sdata") const char *TObjContainerJungEnemy__name = TObjContainerJungEnemy_class_name;
+
+static __declspec(section ".rodata") const TObjChipParams container_jung_enemy_spawn_params_a = {
+    { 0.5f, 0.03f, 0.2f }, { 0.0f, 0.0f, 0.0f }, { 3.0f, 5.0f, 3.0f }, { 0x800, 0x100, 0x800 }, { 7, 0x32 }, { 0.0f, 1.0f }, 0, 0, 0x16,
+};
+static __declspec(section ".rodata") const TObjChipParams container_jung_enemy_spawn_params_b = {
+    { 0.5f, 0.03f, 0.19f }, { 0.0f, 0.0f, 0.0f }, { 3.5f, 5.0f, 3.5f }, { 0x400, 0x100, 0x400 }, { 5, 0x32 }, { 0.0f, 1.0f }, 0, 0, 0x16,
+};
+
+extern const char lbl_80445430[] = "EVT NO : %d";
+// The debug string occupies the final aligned slot of the unit.
+extern const char lbl_8044543C[0x14] = "MODEL SELECT";
+}
+
+extern "C" {
 u32 init_collision_body_parts(void *, s32, s32);
 
 s32 free_collision_body_parts(void *);
 s32 __dl__7TObjectFPv(void *);
-
-#pragma push
-#pragma fp_contract on
-#pragma pop
 
 s32 post_translate_matrix(void *);
 void draw_ginja_object(void *);
@@ -44,10 +113,6 @@ s32 rotate_matrix_y(s32, s32);
 s32 push_matrix();
 s32 pop_matrix();
 void *__nw__7TObjectFUl(int);
-
-#pragma push
-#pragma fp_contract on
-#pragma pop
 
 extern void *tl_05;
 
@@ -62,42 +127,12 @@ struct Pkt_8018CB44 { u16 a; u16 b; s32 c; s32 d; s32 e; };
 extern "C" {
 void queue_destruction__7TObjectFv(void *arg0);
 void debug_printf_at(s32 id, const char *fmt, ...);
-extern const char lbl_80445430[] = "EVT NO : %d";
-extern const char lbl_8044543C[] = "MODEL SELECT";
 s32 get_current_floor();
 extern s32 local_client_id;
 
 s32 scale_matrix(s32, f32, f32, f32);
 
-void TObjContainerJungEnemy::vfunc_6(s16 *arg1, s32 arg2) {
-    u8 *arg0 = (u8 *)this;
-    if (arg2 != 0) {
-        if ((s16) *arg1 == 1) {
-            ((TObjContainerJungEnemy *)arg0)->vfunc_79();
-            ((TObjCollidable *)arg0)->clear_player_status_flag(0, 1);
-            ((TObjCollidable *)arg0)->set_flag8();
-            queue_destruction__7TObjectFv((arg0));
-            this->mode = 1;
-        }
-    } else if ((s16) *arg1 == 1) {
-        ((TObjCollidable *)arg0)->clear_player_status_flag(0, 1);
-        ((TObjCollidable *)arg0)->set_flag8();
-        queue_destruction__7TObjectFv((arg0));
-        this->mode = 1;
-    }
-}
-
 struct Vec_8018C9F0 { f32 x, y, z; };
-struct Spawn_8018C9F0 {
-    u8 pad0[0xC];
-    Vec_8018C9F0 pos;
-    u8 pad18[0x20];
-    f32 f38;
-    u8 pad3c[4];
-    s32 f40;
-    s32 f44;
-    u8 pad48[4];
-};
 struct Obj_8018C9F0 {
     u8 pad0[0x24];
     s32 f24;
@@ -114,43 +149,191 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
 u8 *__ct__8TObjChipFP7TObjectP14TObjChipParams(u8 *arg0, u8 *arg1, u8 *arg2);
 }
 void play_container_break_sound(s32 arg0);
-extern Spawn_8018C9F0 lbl_80445398;
-extern Spawn_8018C9F0 lbl_804453E4;
+
+extern "C" {
+u32 init_collision_body_parts(void *, s32, s32);
+u8 * init_container_base(void *, s32);
+extern s32 __vt__22TObjContainerJungEnemy[];
+s32 get_model__19TObjContainerJungExFl(s32);
+s32 TObjContainerJung__sub_8018D3B8(s32);
+s32 get_model_by_index__17TObjContainerJungFl(s32);
+s32 free_collision_body_parts(void *);
+s32 submit_cursor_candidate(void *, s32);
+s32 __dl__7TObjectFPv(void *);
+void *__nw__7TObjectFUl(int);
+
+extern void *tl_05;
+
+}
+
+struct Vec_8018CFD4 { f32 x, y, z; };
+
+struct Obj_8018CFD4 { u8 pad[0x38]; Vec_8018CFD4 pos; };
+
+extern "C" {
+u32 init_collision_body_parts(void *, s32, s32);
+u8 * init_container_base(void *, s32);
+
+extern s32 __vt__19TObjContainerJungEx[];
+void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
+}
+void play_container_break_sound(s32 arg0);
+extern "C" {
+s32 get_model__19TObjContainerJungExFl(s32);
+void *__nw__7TObjectFUl(int);
+extern void *tl_05;
+s32 post_translate_matrix(void *);
+s32 scale_matrix(s32, f32, f32, f32);
+
+s32 free_collision_body_parts(void *);
+s32 submit_cursor_candidate(void *, s32);
+s32 rotate_matrix_y(s32, s32);
+s32 push_matrix();
+s32 __dl__7TObjectFPv(void *);
+
+}
+
+struct Vec_8018D4DC { f32 x, y, z; };
+
+struct Obj_8018D4DC {
+    u8 pad0[0x38];
+    Vec_8018D4DC pos;
+    u8 pad44[0x326 - 0x44];
+    s16 f326;
+};
+
+extern "C" {
+u32 init_collision_body_parts(void *, s32, s32);
+u8 * init_container_base(void *, s32);
+
+extern s32 __vt__17TObjContainerJung[];
+s32 scale_matrix(s32, f32, f32, f32);
+s32 rotate_matrix_y(s32, s32);
+s32 push_matrix();
+s32 post_translate_matrix(void *);
+
+void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
+}
+void play_container_break_sound(s32 arg0);
+extern "C" {
+void *__nw__7TObjectFUl(int);
+extern void *tl_05;
+s32 free_collision_body_parts(void *);
+s32 submit_cursor_candidate(void *, s32);
+s32 __dl__7TObjectFPv(void *);
+
+}
+
+// Deferred generation preserves the native text and virtual table order.
+#pragma defer_codegen on
+extern "C" {
+
+u8 *TObjContainerJung__ct(u8 *arg0, s32 arg1, s32 _w2) {
+    init_container_base(arg0, arg1);
+    *(s32 **)((s8 *)arg0 + 0x18) = __vt__17TObjContainerJung;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerJung__name;
+    ((TObjContainerJung *)arg0)->mode = 0;
+    ((TObjContainerJung *)arg0)->actorFlags = (s32) (((TObjContainerJung *)arg0)->actorFlags | 0x60000000);
+    init_collision_body_parts(arg0, (s32) &container_jung_collision_desc, 1);
+    ((TObjPlayer *)arg0)->register_object_by_id();
+    VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
+    VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
+    *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + container_jung_collision_desc.offset.y);
+    return arg0;
+}
+
+TObjContainerJung::~TObjContainerJung() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
+}
+
+void TObjContainerJung::vfunc_80() {
+
+    switch (this->mode) {
+    case 0:
+        if ((s32) this->m_364 != 0) {
+            submit_cursor_candidate(this, -1);
+        }
+    case 1:
+        return;
+    }
+}
+
+void TObjContainerJung::vfunc_81() {
+    if ((void *)(*(u8 **)&TObjContainerJung__bml_model_resource) != NULL) {
+        switch (this->mode) {
+        case 0:
+            set_current_texture_list((GinjaTextureList *)(TObjContainerJung__bml_aux_handle));
+            push_matrix();
+            post_translate_matrix((u8 *)&this->position);
+            rotate_matrix_y(0, this->rotation.yaw);
+            scale_matrix(0, 0.85f, 0.85f, 0.85f);
+            draw_ginja_object((void *)(u8 *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 0));
+            TParticleCtrl::begin_effect_render();
+            draw_ginja_object((void *)(u8 *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 3));
+            TParticleCtrl::end_effect_render();
+            pop_matrix();
+            break;
+        case 1:
+            break;
+        }
+    }
+}
+
+void TObjContainerJung::vfunc_6(s16 *arg1, s32 arg2) {
+    u8 *arg0 = (u8 *)this;
+    if (arg2 != 0) {
+        if ((s16) *arg1 == 1) {
+            this->vfunc_79();
+            ((TObjChara *)arg0)->request_box_item_drop((u8 *)&this->position, 1);
+            ((TObjCollidable *)arg0)->clear_player_status_flag(0, 1);
+            ((TObjCollidable *)arg0)->set_flag8();
+            queue_destruction__7TObjectFv((arg0));
+            this->mode = 1;
+        }
+    } else if ((s16) *arg1 == 1) {
+        ((TObjCollidable *)arg0)->clear_player_status_flag(0, 1);
+        ((TObjCollidable *)arg0)->set_flag8();
+        queue_destruction__7TObjectFv((arg0));
+        this->mode = 1;
+    }
+}
 
 #pragma push
 #pragma opt_propagation off
-extern "C" {
-void TObjContainerJungEnemy__vt77(const Obj_8018C9F0 *self) {
+void TObjContainerJung::vfunc_79() const {
+    const Obj_8018D4DC *self = reinterpret_cast<const Obj_8018D4DC *>(this);
+    void *o;
     if (self->f326 != 1) {
-        Spawn_8018C9F0 a = lbl_80445398;
-        f32 za;
-        f32 ya;
-        f32 xa;
-        xa = self->pos.x;
-        ya = self->pos.y;
-        za = self->pos.z;
-        a.pos.x = xa;
-        a.pos.y = ya;
-        a.pos.z = za;
-        a.f38 = ya;
-        a.f40 = self->f36c;
-        a.f44 = self->f24;
-        Spawn_8018C9F0 b = lbl_804453E4;
-        f32 zb;
-        f32 yb;
-        f32 xb;
-        xb = self->pos.x;
-        yb = self->pos.y;
-        zb = self->pos.z;
-        b.pos.x = xb;
-        b.pos.y = yb;
-        b.pos.z = zb;
-        b.f38 = yb;
-        b.f40 = self->f370;
-        b.f44 = self->f24;
+        TObjChipParams a = container_jung_debris_desc;
+        f32 pz;
+        f32 py;
+        f32 px;
+        px = self->pos.x;
+        py = self->pos.y;
+        pz = self->pos.z;
+        a.pos.x = px;
+        a.pos.y = py;
+        a.pos.z = pz;
+        a.pad_38[0] = py;
+        a.model = (s32) (u8 *)get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 1);
+        a.textures = TObjContainerJung__bml_aux_handle;
+        TObjChipParams b = container_jung_spawn_params;
+        f32 qz;
+        f32 qy;
+        f32 qx;
+        qx = self->pos.x;
+        qy = self->pos.y;
+        qz = self->pos.z;
+        b.pos.x = qx;
+        b.pos.y = qy;
+        b.pos.z = qz;
+        b.pad_38[0] = qy;
+        b.model = (s32) (u8 *)get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 2);
+        b.textures = TObjContainerJung__bml_aux_handle;
         spawn_particle_effect_with_flags((void *)&self->pos, 0x45, 0x40);
         spawn_particle_effect_with_flags((void *)&self->pos, 0x46, 0x40);
-        void *o = __nw__7TObjectFUl(0x234);
+        o = __nw__7TObjectFUl(0x234);
         if (o != 0) {
             __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);
         }
@@ -163,78 +346,60 @@ void TObjContainerJungEnemy__vt77(const Obj_8018C9F0 *self) {
 }
 #pragma pop
 
-f32 TObjContainerJungEnemy::receive_physical_attack(void *, f32) {
-    Obj_8018CB44 *arg0 = (Obj_8018CB44 *)this;
-    s16 sp8;
-    Pkt_8018CB44 pkt;
-    if ((this->entity_id >= 0x1000U) && (arg0->f80 != 0U) && (((TObjCollidable *)arg0)->access_object_saved_state(&sp8, 1) != 0)) {
-        sp8 = 1;
-        ((TObjCollidable *)arg0)->access_object_saved_state(&sp8, 0);
-        ((TObjCollidable *)arg0)->send_object_state_update(&sp8);
-        ((TLobby *)(&pkt))->init_packet_67_04();
-        pkt.b = this->entity_id;
-        pkt.c = get_current_floor();
-        pkt.d = this->set_params[0];
-        pkt.e = local_client_id;
-        ((TLobby *)(&pkt))->byteswap_and_send();
+void TObjContainerJung::load_resources() {
+    s32 temp_r3;
+    s32 var_r0;
+    temp_r3 = (int)new BmlResource(5, &TObjContainerJung__resource_descriptor, 0, 0, (void *)(0));
+    var_r0 = temp_r3;
+    (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
+    TObjContainerJung__bml_aux_handle = (s32)TObjFish__sub_8001EDB0((BmlResource *)var_r0, 0);
+}
+
+void TObjContainerJung::release() {
+    delete (BmlResource *)(TObjContainerJung__bml_model_resource);
+    TObjContainerJung__bml_model_resource = 0;
+    TObjContainerJung__bml_aux_handle = 0;
+}
+
+void *TObjContainerJung::create(void *arg0) {
+    void *o = __nw__7TObjectFUl(0x368);
+    if (o != NULL) {
+        o = TObjContainerJung__ct((u8 *)o, (s32)tl_05, (s32)arg0);
     }
-    return 0.0f;
+    return o;
 }
 
-void TObjContainerJungEnemy::debug_print_item_box_info() {
-    Obj_8018CBF0 *self = (Obj_8018CBF0 *)this;
-    ((TObjContainerJungEnemy *)self)->load_models();
-    TObjNpcEnemy::set_global_count(0xFF00FF);
-    debug_printf_at(0x130020, lbl_80445430, this->set_params[0]);
-    debug_printf_at(0x130021, lbl_8044543C);
-    TObjNpcEnemy::set_global_count(0xF0F0F0FF);
-}
-
-void TObjContainerJungEnemy::vfunc_81() {
-
-    switch (this->mode) {
-    case 0:
-        set_current_texture_list((GinjaTextureList *)(this->texlist));
-        push_matrix();
-        post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation.yaw);
-        scale_matrix(0, 0.85f, 0.85f, 0.85f);
-        draw_ginja_object(*(void * *)&this->m_368);
-        TParticleCtrl::begin_effect_render();
-        draw_ginja_object(*(void * *)&this->m_374);
-        TParticleCtrl::end_effect_render();
-        pop_matrix();
-    case 1:
-        return;
+u8 *TObjContainerJung::get_model_by_index(s32 arg0) {
+    if ((void *) (*(u8 * *)&TObjContainerJung__bml_model_resource) != NULL) {
+        return (u8 *)get_bml_model((BmlResource *)(*(u8 * *)&TObjContainerJung__bml_model_resource), arg0);
     }
+    return NULL;
 }
+
+s32 TObjContainerJung__sub_8018D3B8(s32) {
+    return TObjContainerJung__bml_aux_handle;
 }
 
-struct RecoveredGlobal_8018CEDC_lbl_804B7168 {
-    s32 value;
-    u8 remaining[0x28];
-};
+u8 *TObjContainerJungEx__ct(u8 *arg0, s32 arg1, s32 _w2) {
+    init_container_base(arg0, arg1);
+    *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TObjContainerJungEx;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerJungEx__name;
+    ((TObjContainerJungEx *)arg0)->mode = 0;
+    ((TObjContainerJungEx *)arg0)->actorFlags = (s32) (((TObjContainerJungEx *)arg0)->actorFlags | 0x60000000);
+    init_collision_body_parts(arg0, (s32) &container_jung_collision_desc, 1);
+    ((TObjPlayer *)arg0)->register_object_by_id();
+    VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
+    VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
+    *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + container_jung_collision_desc.offset.y);
+    return arg0;
+}
 
-struct RecoveredGlobal_8018CEDC___vt__22TObjContainerJungEnemy {
-    s32 value;
-    u8 remaining[0x148];
-};
+TObjContainerJungEx::~TObjContainerJungEx() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
+}
 
-extern "C" {
-u32 init_collision_body_parts(void *, s32, s32);
-u8 * init_container_base(void *, s32);
-extern RecoveredGlobal_8018CEDC_lbl_804B7168 container_jung_collision_desc;
-extern s32 __vt__22TObjContainerJungEnemy[];
-extern s32 TObjContainerJungEnemy__name;
-s32 get_model__19TObjContainerJungExFl(s32);
-s32 TObjContainerJung__sub_8018D3B8(s32);
-s32 get_model_by_index__17TObjContainerJungFl(s32);
-s32 free_collision_body_parts(void *);
-s32 submit_cursor_candidate(void *, s32);
-s32 __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
-
-void TObjContainerJungEnemy::vfunc_80() {
+void TObjContainerJungEx::vfunc_80() {
 
     switch (this->mode) {
     case 0:
@@ -244,6 +409,122 @@ void TObjContainerJungEnemy::vfunc_80() {
     case 1:
         return;
     }
+}
+
+void TObjContainerJungEx::vfunc_81() {
+
+    switch (this->mode) {
+    case 0:
+        set_current_texture_list((GinjaTextureList *)(TObjContainerJungEx__sub_8018D900(0)));
+        push_matrix();
+        post_translate_matrix((u8 *)&this->position);
+        rotate_matrix_y(0, this->rotation.yaw);
+        scale_matrix(0, 0.85f, 0.85f, 0.85f);
+        draw_ginja_object((void *)get_model__19TObjContainerJungExFl(0));
+        TParticleCtrl::begin_effect_render();
+        draw_ginja_object((void *)get_model__19TObjContainerJungExFl(3));
+        TParticleCtrl::end_effect_render();
+        pop_matrix();
+    case 1:
+        return;
+    }
+}
+
+void TObjContainerJungEx::vfunc_6(s16 *arg1, s32 arg2) {
+    u8 *arg0 = (u8 *)this;
+    if (arg2 != 0) {
+        if ((s16) *arg1 == 1) {
+            this->vfunc_79();
+            ((TUnk_804B6C24 *)arg0)->spawn_item((s32)arg0);
+            ((TObjCollidable *)arg0)->set_flag8();
+            queue_destruction__7TObjectFv((arg0));
+            this->mode = 1;
+        }
+    } else if ((s16) *arg1 == 1) {
+        ((TObjCollidable *)arg0)->set_flag8();
+        queue_destruction__7TObjectFv((arg0));
+        this->mode = 1;
+    }
+}
+
+#pragma push
+#pragma opt_propagation off
+void TObjContainerJungEx::vfunc_79() const {
+    const Obj_8018CFD4 *self = reinterpret_cast<const Obj_8018CFD4 *>(this);
+    TObjChipParams a = container_jung_ex_spawn_params_a;
+    f32 pz;
+    f32 py;
+    f32 px;
+    px = self->pos.x;
+    py = self->pos.y;
+    pz = self->pos.z;
+    a.pos.x = px;
+    a.pos.y = py;
+    a.pos.z = pz;
+    a.pad_38[0] = py;
+    a.model = get_model__19TObjContainerJungExFl(1);
+    a.textures = (s32)TObjContainerJungEx__sub_8018D900(0);
+    TObjChipParams b = container_jung_ex_spawn_params_b;
+    f32 qz;
+    f32 qy;
+    f32 qx;
+    qx = self->pos.x;
+    qy = self->pos.y;
+    qz = self->pos.z;
+    b.pos.x = qx;
+    b.pos.y = qy;
+    b.pos.z = qz;
+    b.pad_38[0] = qy;
+    b.model = get_model__19TObjContainerJungExFl(2);
+    b.textures = (s32)TObjContainerJungEx__sub_8018D900(0);
+    spawn_particle_effect_with_flags((void *)&self->pos, 0x45, 0x40);
+    spawn_particle_effect_with_flags((void *)&self->pos, 0x46, 0x40);
+    void *o = __nw__7TObjectFUl(0x234);
+    if (o != NULL) {
+        __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);
+    }
+    o = __nw__7TObjectFUl(0x234);
+    if (o != NULL) {
+        __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&b);
+    }
+    play_container_break_sound((s32)self);
+}
+#pragma pop
+
+void *TObjContainerJungEx::create(void *arg0) {
+    void *o = __nw__7TObjectFUl(0x368);
+    if (o != NULL) {
+        o = TObjContainerJungEx__ct((u8 *)o, (s32)tl_05, (s32)arg0);
+    }
+    return o;
+}
+
+u8 *TObjContainerJungEnemy__ct(u8 *arg0, s32 arg1, s32 _w2) {
+    init_container_base(arg0, arg1);
+    *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TObjContainerJungEnemy;
+    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerJungEnemy__name;
+    ((TObjContainerJungEnemy *)arg0)->load_models();
+    ((TObjContainerJungEnemy *)arg0)->mode = 0;
+    ((TObjContainerJungEnemy *)arg0)->actorFlags = (s32) (((TObjContainerJungEnemy *)arg0)->actorFlags | 0x60000000);
+    init_collision_body_parts(arg0, (s32) &container_jung_collision_desc, 1);
+    ((TObjPlayer *)arg0)->register_object_by_id();
+    VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
+    VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
+    *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + container_jung_collision_desc.offset.y);
+    return arg0;
+}
+
+TObjContainerJungEnemy::~TObjContainerJungEnemy() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
+}
+
+void *TObjContainerJungEnemy::create(void *arg0) {
+    void *o = __nw__7TObjectFUl(0x378);
+    if (o != NULL) {
+        o = TObjContainerJungEnemy__ct((u8 *)o, (s32)tl_05, (s32)arg0);
+    }
+    return o;
 }
 
 void TObjContainerJungEnemy::load_models() {
@@ -276,185 +557,7 @@ void TObjContainerJungEnemy::load_models() {
     }
 }
 
-extern void *tl_05;
-
-void *TObjContainerJungEnemy::create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0x378);
-    if (o != NULL) {
-        o = TObjContainerJungEnemy__ct((u8 *)o, (s32)tl_05, (s32)arg0);
-    }
-    return o;
-}
-
-void *__dt__22TObjContainerJungEnemyFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__22TObjContainerJungEnemy;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
-typedef char RecoveredGlobal_8018CEDC_lbl_804B7168_size[sizeof(RecoveredGlobal_8018CEDC_lbl_804B7168) == 0x2C ? 1 : -1];
-typedef char RecoveredGlobal_8018CEDC___vt__22TObjContainerJungEnemy_size[sizeof(RecoveredGlobal_8018CEDC___vt__22TObjContainerJungEnemy) == 0x14C ? 1 : -1];
-u8 *TObjContainerJungEnemy__ct(u8 *arg0, s32 arg1, s32 _w2) {
-    init_container_base(arg0, arg1);
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8018CEDC___vt__22TObjContainerJungEnemy *)&__vt__22TObjContainerJungEnemy).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerJungEnemy__name;
-    ((TObjContainerJungEnemy *)arg0)->load_models();
-    ((TObjContainerJungEnemy *)arg0)->mode = 0;
-    ((TObjContainerJungEnemy *)arg0)->actorFlags = (s32) (((TObjContainerJungEnemy *)arg0)->actorFlags | 0x60000000);
-    init_collision_body_parts(arg0, (s32) &container_jung_collision_desc.value, 1);
-    ((TObjPlayer *)arg0)->register_object_by_id();
-    VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
-    VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + *(f32 *)((s8 *)&container_jung_collision_desc.value + 4));
-    return arg0;
-}
-
-}
-
-struct RecoveredGlobal_8018D314_lbl_804B7168 {
-    s32 value;
-    u8 remaining[0x28];
-};
-
-struct RecoveredGlobal_8018D314___vt__19TObjContainerJungEx {
-    s32 value;
-    u8 remaining[0x148];
-};
-
-struct Vec_8018CFD4 { f32 x, y, z; };
-
-struct Spawn_8018CFD4 {
-    u8 pad0[0xC];
-    Vec_8018CFD4 pos;
-    u8 pad18[0x38 - 0x18];
-    f32 f38;
-    u8 pad3c[4];
-    s32 f40;
-    s32 f44;
-    u8 pad48[4];
-};
-
-struct Obj_8018CFD4 { u8 pad[0x38]; Vec_8018CFD4 pos; };
-
-extern "C" {
-u32 init_collision_body_parts(void *, s32, s32);
-u8 * init_container_base(void *, s32);
-
-extern s32 __vt__19TObjContainerJungEx[];
-extern s32 TObjContainerJungEx__name;
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-}
-void play_container_break_sound(s32 arg0);
-extern "C" {
-s32 get_model__19TObjContainerJungExFl(s32);
-void *__nw__7TObjectFUl(int);
-extern Spawn_8018CFD4 container_jung_ex_spawn_params_a;
-extern Spawn_8018CFD4 container_jung_ex_spawn_params_b;
-extern void *tl_05;
-void TObjContainerJungEx__vt77(const Obj_8018CFD4 *self);
-s32 post_translate_matrix(void *);
-s32 scale_matrix(s32, f32, f32, f32);
-
-s32 free_collision_body_parts(void *);
-s32 submit_cursor_candidate(void *, s32);
-s32 rotate_matrix_y(s32, s32);
-s32 push_matrix();
-s32 __dl__7TObjectFPv(void *);
-
-void *TObjContainerJungEx::create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0x368);
-    if (o != NULL) {
-        o = TObjContainerJungEx__ct((u8 *)o, (s32)tl_05, (s32)arg0);
-    }
-    return o;
-}
-
-#pragma push
-#pragma opt_propagation off
-void TObjContainerJungEx__vt77(const Obj_8018CFD4 *self) {
-    Spawn_8018CFD4 a = container_jung_ex_spawn_params_a;
-    f32 pz;
-    f32 py;
-    f32 px;
-    px = self->pos.x;
-    py = self->pos.y;
-    pz = self->pos.z;
-    a.pos.x = px;
-    a.pos.y = py;
-    a.pos.z = pz;
-    a.f38 = py;
-    a.f40 = get_model__19TObjContainerJungExFl(1);
-    a.f44 = (s32)TObjContainerJungEx__sub_8018D900(0);
-    Spawn_8018CFD4 b = container_jung_ex_spawn_params_b;
-    f32 qz;
-    f32 qy;
-    f32 qx;
-    qx = self->pos.x;
-    qy = self->pos.y;
-    qz = self->pos.z;
-    b.pos.x = qx;
-    b.pos.y = qy;
-    b.pos.z = qz;
-    b.f38 = qy;
-    b.f40 = get_model__19TObjContainerJungExFl(2);
-    b.f44 = (s32)TObjContainerJungEx__sub_8018D900(0);
-    spawn_particle_effect_with_flags((void *)&self->pos, 0x45, 0x40);
-    spawn_particle_effect_with_flags((void *)&self->pos, 0x46, 0x40);
-    void *o = __nw__7TObjectFUl(0x234);
-    if (o != NULL) {
-        __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);
-    }
-    o = __nw__7TObjectFUl(0x234);
-    if (o != NULL) {
-        __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&b);
-    }
-    play_container_break_sound((s32)self);
-}
-#pragma pop
-
-void TObjContainerJungEx::vfunc_6(s16 *arg1, s32 arg2) {
-    u8 *arg0 = (u8 *)this;
-    if (arg2 != 0) {
-        if ((s16) *arg1 == 1) {
-            this->vfunc_79();
-            ((TUnk_804B6C24 *)arg0)->spawn_item((s32)arg0);
-            ((TObjCollidable *)arg0)->set_flag8();
-            queue_destruction__7TObjectFv((arg0));
-            this->mode = 1;
-        }
-    } else if ((s16) *arg1 == 1) {
-        ((TObjCollidable *)arg0)->set_flag8();
-        queue_destruction__7TObjectFv((arg0));
-        this->mode = 1;
-    }
-}
-
-void TObjContainerJungEx::vfunc_81() {
-
-    switch (this->mode) {
-    case 0:
-        set_current_texture_list((GinjaTextureList *)(TObjContainerJungEx__sub_8018D900(0)));
-        push_matrix();
-        post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation.yaw);
-        scale_matrix(0, 0.85f, 0.85f, 0.85f);
-        draw_ginja_object((void *)get_model__19TObjContainerJungExFl(0));
-        TParticleCtrl::begin_effect_render();
-        draw_ginja_object((void *)get_model__19TObjContainerJungExFl(3));
-        TParticleCtrl::end_effect_render();
-        pop_matrix();
-    case 1:
-        return;
-    }
-}
-
-void TObjContainerJungEx::vfunc_80() {
+void TObjContainerJungEnemy::vfunc_80() {
 
     switch (this->mode) {
     case 0:
@@ -466,163 +569,86 @@ void TObjContainerJungEx::vfunc_80() {
     }
 }
 
-void *__dt__19TObjContainerJungExFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TObjContainerJungEx;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
+void TObjContainerJungEnemy::vfunc_81() {
+
+    switch (this->mode) {
+    case 0:
+        set_current_texture_list((GinjaTextureList *)(this->texlist));
+        push_matrix();
+        post_translate_matrix((u8 *)&this->position);
+        rotate_matrix_y(0, this->rotation.yaw);
+        scale_matrix(0, 0.85f, 0.85f, 0.85f);
+        draw_ginja_object(*(void * *)&this->m_368);
+        TParticleCtrl::begin_effect_render();
+        draw_ginja_object(*(void * *)&this->m_374);
+        TParticleCtrl::end_effect_render();
+        pop_matrix();
+    case 1:
+        return;
     }
-    return arg0;
-}
-typedef char RecoveredGlobal_8018D314_lbl_804B7168_size[sizeof(RecoveredGlobal_8018D314_lbl_804B7168) == 0x2C ? 1 : -1];
-typedef char RecoveredGlobal_8018D314___vt__19TObjContainerJungEx_size[sizeof(RecoveredGlobal_8018D314___vt__19TObjContainerJungEx) == 0x14C ? 1 : -1];
-u8 *TObjContainerJungEx__ct(u8 *arg0, s32 arg1, s32 _w2) {
-    init_container_base(arg0, arg1);
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8018D314___vt__19TObjContainerJungEx *)&__vt__19TObjContainerJungEx).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerJungEx__name;
-    ((TObjContainerJungEx *)arg0)->mode = 0;
-    ((TObjContainerJungEx *)arg0)->actorFlags = (s32) (((TObjContainerJungEx *)arg0)->actorFlags | 0x60000000);
-    init_collision_body_parts(arg0, (s32) &container_jung_collision_desc.value, 1);
-    ((TObjPlayer *)arg0)->register_object_by_id();
-    VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
-    VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + *(f32 *)((s8 *)&container_jung_collision_desc.value + 4));
-    return arg0;
-}
 }
 
-struct RecoveredGlobal_8018D47C_lbl_804B7134 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8018D47C_lbl_804B7134_size[sizeof(RecoveredGlobal_8018D47C_lbl_804B7134) == 0x10 ? 1 : -1];
-
-struct RecoveredGlobal_8018D85C_lbl_804B7168 {
-    s32 value;
-    u8 remaining[0x28];
-};
-
-struct RecoveredGlobal_8018D85C___vt__17TObjContainerJung {
-    s32 value;
-    u8 remaining[0x148];
-};
-
-struct Vec_8018D4DC { f32 x, y, z; };
-
-struct Spawn_8018D4DC {
-    u8 pad0[0xC];
-    Vec_8018D4DC pos;
-    u8 pad18[0x20];
-    f32 f38;
-    u8 pad3c[4];
-    s32 f40;
-    s32 f44;
-    u8 pad48[4];
-};
-
-struct Obj_8018D4DC {
-    u8 pad0[0x38];
-    Vec_8018D4DC pos;
-    u8 pad44[0x326 - 0x44];
-    s16 f326;
-};
-
-extern "C" {
-extern s32 TObjContainerJung__bml_model_resource;
-extern RecoveredGlobal_8018D47C_lbl_804B7134 TObjContainerJung__resource_descriptor;
-extern s32 TObjContainerJung__bml_aux_handle;
-u32 init_collision_body_parts(void *, s32, s32);
-u8 * init_container_base(void *, s32);
-
-extern s32 __vt__17TObjContainerJung[];
-extern s32 TObjContainerJung__name;
-s32 scale_matrix(s32, f32, f32, f32);
-s32 rotate_matrix_y(s32, s32);
-s32 push_matrix();
-s32 post_translate_matrix(void *);
-
-void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);
-}
-void play_container_break_sound(s32 arg0);
-extern "C" {
-void *__nw__7TObjectFUl(int);
-extern Spawn_8018D4DC container_jung_debris_desc;
-extern Spawn_8018D4DC container_jung_spawn_params;
-extern void *tl_05;
-void TObjContainerJung__vt77(const Obj_8018D4DC *self);
-s32 free_collision_body_parts(void *);
-s32 submit_cursor_candidate(void *, s32);
-s32 __dl__7TObjectFPv(void *);
-
-s32 TObjContainerJung__sub_8018D3B8(s32) {
-    return TObjContainerJung__bml_aux_handle;
+void TObjContainerJungEnemy::debug_print_item_box_info() {
+    Obj_8018CBF0 *self = (Obj_8018CBF0 *)this;
+    ((TObjContainerJungEnemy *)self)->load_models();
+    TObjNpcEnemy::set_global_count(0xFF00FF);
+    debug_printf_at(0x130020, lbl_80445430, this->set_params[0]);
+    debug_printf_at(0x130021, lbl_8044543C);
+    TObjNpcEnemy::set_global_count(0xF0F0F0FF);
 }
 
-u8 *TObjContainerJung::get_model_by_index(s32 arg0) {
-    if ((void *) (*(u8 * *)&TObjContainerJung__bml_model_resource) != NULL) {
-        return (u8 *)get_bml_model((BmlResource *)(*(u8 * *)&TObjContainerJung__bml_model_resource), arg0);
+f32 TObjContainerJungEnemy::receive_physical_attack(void *, f32) {
+    Obj_8018CB44 *arg0 = (Obj_8018CB44 *)this;
+    s16 sp8;
+    Pkt_8018CB44 pkt;
+    if ((this->entity_id >= 0x1000U) && (arg0->f80 != 0U) && (((TObjCollidable *)arg0)->access_object_saved_state(&sp8, 1) != 0)) {
+        sp8 = 1;
+        ((TObjCollidable *)arg0)->access_object_saved_state(&sp8, 0);
+        ((TObjCollidable *)arg0)->send_object_state_update(&sp8);
+        ((TLobby *)(&pkt))->init_packet_67_04();
+        pkt.b = this->entity_id;
+        pkt.c = get_current_floor();
+        pkt.d = this->set_params[0];
+        pkt.e = local_client_id;
+        ((TLobby *)(&pkt))->byteswap_and_send();
     }
-    return NULL;
-}
-
-void *TObjContainerJung::create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0x368);
-    if (o != NULL) {
-        o = TObjContainerJung__ct((u8 *)o, (s32)tl_05, (s32)arg0);
-    }
-    return o;
-}
-
-void TObjContainerJung::release() {
-    delete (BmlResource *)(TObjContainerJung__bml_model_resource);
-    TObjContainerJung__bml_model_resource = 0;
-    TObjContainerJung__bml_aux_handle = 0;
-}
-
-void TObjContainerJung::load_resources() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&TObjContainerJung__resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(u8 * *)&TObjContainerJung__bml_model_resource) = (unsigned char *) ((void *) var_r0);
-    TObjContainerJung__bml_aux_handle = (s32)TObjFish__sub_8001EDB0((BmlResource *)var_r0, 0);
+    return 0.0f;
 }
 
 #pragma push
 #pragma opt_propagation off
-void TObjContainerJung__vt77(const Obj_8018D4DC *self) {
-    void *o;
+void TObjContainerJungEnemy::vfunc_79() const {
+    const Obj_8018C9F0 *self = reinterpret_cast<const Obj_8018C9F0 *>(this);
     if (self->f326 != 1) {
-        Spawn_8018D4DC a = container_jung_debris_desc;
-        f32 pz;
-        f32 py;
-        f32 px;
-        px = self->pos.x;
-        py = self->pos.y;
-        pz = self->pos.z;
-        a.pos.x = px;
-        a.pos.y = py;
-        a.pos.z = pz;
-        a.f38 = py;
-        a.f40 = (s32) (u8 *)get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 1);
-        a.f44 = TObjContainerJung__bml_aux_handle;
-        Spawn_8018D4DC b = container_jung_spawn_params;
-        f32 qz;
-        f32 qy;
-        f32 qx;
-        qx = self->pos.x;
-        qy = self->pos.y;
-        qz = self->pos.z;
-        b.pos.x = qx;
-        b.pos.y = qy;
-        b.pos.z = qz;
-        b.f38 = qy;
-        b.f40 = (s32) (u8 *)get_bml_model((BmlResource *)TObjContainerJung__bml_model_resource, 2);
-        b.f44 = TObjContainerJung__bml_aux_handle;
+        TObjChipParams a = container_jung_enemy_spawn_params_a;
+        f32 za;
+        f32 ya;
+        f32 xa;
+        xa = self->pos.x;
+        ya = self->pos.y;
+        za = self->pos.z;
+        a.pos.x = xa;
+        a.pos.y = ya;
+        a.pos.z = za;
+        a.pad_38[0] = ya;
+        a.model = self->f36c;
+        a.textures = self->f24;
+        TObjChipParams b = container_jung_enemy_spawn_params_b;
+        f32 zb;
+        f32 yb;
+        f32 xb;
+        xb = self->pos.x;
+        yb = self->pos.y;
+        zb = self->pos.z;
+        b.pos.x = xb;
+        b.pos.y = yb;
+        b.pos.z = zb;
+        b.pad_38[0] = yb;
+        b.model = self->f370;
+        b.textures = self->f24;
         spawn_particle_effect_with_flags((void *)&self->pos, 0x45, 0x40);
         spawn_particle_effect_with_flags((void *)&self->pos, 0x46, 0x40);
-        o = __nw__7TObjectFUl(0x234);
+        void *o = __nw__7TObjectFUl(0x234);
         if (o != 0) {
             __ct__8TObjChipFP7TObjectP14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);
         }
@@ -635,12 +661,11 @@ void TObjContainerJung__vt77(const Obj_8018D4DC *self) {
 }
 #pragma pop
 
-void TObjContainerJung::vfunc_6(s16 *arg1, s32 arg2) {
+void TObjContainerJungEnemy::vfunc_6(s16 *arg1, s32 arg2) {
     u8 *arg0 = (u8 *)this;
     if (arg2 != 0) {
         if ((s16) *arg1 == 1) {
-            this->vfunc_79();
-            ((TObjChara *)arg0)->request_box_item_drop((u8 *)&this->position, 1);
+            ((TObjContainerJungEnemy *)arg0)->vfunc_79();
             ((TObjCollidable *)arg0)->clear_player_status_flag(0, 1);
             ((TObjCollidable *)arg0)->set_flag8();
             queue_destruction__7TObjectFv((arg0));
@@ -654,64 +679,4 @@ void TObjContainerJung::vfunc_6(s16 *arg1, s32 arg2) {
     }
 }
 
-void TObjContainerJung::vfunc_81() {
-    if ((void *)(*(u8 **)&TObjContainerJung__bml_model_resource) != NULL) {
-        switch (this->mode) {
-        case 0:
-            set_current_texture_list((GinjaTextureList *)(TObjContainerJung__bml_aux_handle));
-            push_matrix();
-            post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation.yaw);
-            scale_matrix(0, 0.85f, 0.85f, 0.85f);
-            draw_ginja_object((void *)(u8 *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 0));
-            TParticleCtrl::begin_effect_render();
-            draw_ginja_object((void *)(u8 *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 3));
-            TParticleCtrl::end_effect_render();
-            pop_matrix();
-            break;
-        case 1:
-            break;
-        }
-    }
-}
-
-void TObjContainerJung::vfunc_80() {
-
-    switch (this->mode) {
-    case 0:
-        if ((s32) this->m_364 != 0) {
-            submit_cursor_candidate(this, -1);
-        }
-    case 1:
-        return;
-    }
-}
-
-void *__dt__17TObjContainerJungFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__17TObjContainerJung;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__13TUnk_804B6C24Fv((TUnk_804B6C24 *)arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
-typedef char RecoveredGlobal_8018D85C_lbl_804B7168_size[sizeof(RecoveredGlobal_8018D85C_lbl_804B7168) == 0x2C ? 1 : -1];
-typedef char RecoveredGlobal_8018D85C___vt__17TObjContainerJung_size[sizeof(RecoveredGlobal_8018D85C___vt__17TObjContainerJung) == 0x14C ? 1 : -1];
-u8 *TObjContainerJung__ct(u8 *arg0, s32 arg1, s32 _w2) {
-    init_container_base(arg0, arg1);
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8018D85C___vt__17TObjContainerJung *)&__vt__17TObjContainerJung).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjContainerJung__name;
-    ((TObjContainerJung *)arg0)->mode = 0;
-    ((TObjContainerJung *)arg0)->actorFlags = (s32) (((TObjContainerJung *)arg0)->actorFlags | 0x60000000);
-    init_collision_body_parts(arg0, (s32) &container_jung_collision_desc.value, 1);
-    ((TObjPlayer *)arg0)->register_object_by_id();
-    VecCopy((Vec *)(arg0 + 0x74), (const Vec *)(arg0 + 0x38));
-    VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
-    *(f32 *)((s8 *)arg0 + 0x78) = (f32) (*(f32 *)((s8 *)arg0 + 0x78) + *(f32 *)((s8 *)&container_jung_collision_desc.value + 4));
-    return arg0;
-}
 }

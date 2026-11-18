@@ -635,6 +635,8 @@ GAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {
     "pso/object/TObjCamera.cpp": {"mw_version": "GC/1.3.2"},
     "pso/object/TObjComputer.cpp": {"mw_version": "GC/1.3.2"},
     "pso/item/TObjContainerJung.cpp": {"mw_version": "GC/1.3.2"},
+    # The const debris overrides require the original GC/1.3 instruction schedule.
+    "pso/misc/TOContainerAncientEnemy.cpp": {"mw_version": "GC/1.3"},
     # The two below also schedule the by-value DirectAttackPayload read of
     # their receive_direct_attack overrides only the way 1.3.2 does.
     "pso/item/TObjContainerItem.cpp": {"mw_version": "GC/1.3.2"},

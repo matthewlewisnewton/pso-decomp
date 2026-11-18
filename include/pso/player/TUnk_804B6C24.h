@@ -6,7 +6,7 @@
 class TUnk_804B6C24 : public TObjChara {
 public:
     virtual ~TUnk_804B6C24();
-    virtual void vfunc_79();
+    virtual void vfunc_79() const;
     virtual void vfunc_80();
     virtual void vfunc_81();
     virtual void debug_print_item_box_info();

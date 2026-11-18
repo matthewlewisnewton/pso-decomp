@@ -855,7 +855,7 @@ void TObjContainerNoItem::vfunc_6(s16 *arg1, s32 arg2) {
 }
 
 typedef char RecoveredGlobal_801897A4___vt__18TObjContainerEnemy_size[sizeof(RecoveredGlobal_801897A4___vt__18TObjContainerEnemy) == 0x14C ? 1 : -1];
-void TObjContainerNoItem::vfunc_79() {
+void TObjContainerNoItem::vfunc_79() const {
     Obj_8018990C *self = (Obj_8018990C *)this;
     void *o;
     if (this->mode != 1) {
@@ -997,7 +997,7 @@ void TObjContainerEnemy::vfunc_6(s16 *arg1, s32 arg2) {
 }
 
 typedef char RecoveredGlobal_801897A4___vt__18TObjContainerEnemy_size[sizeof(RecoveredGlobal_801897A4___vt__18TObjContainerEnemy) == 0x14C ? 1 : -1];
-void TObjContainerEnemy::vfunc_79() {
+void TObjContainerEnemy::vfunc_79() const {
     Obj_8018990C *self = (Obj_8018990C *)this;
     void *o;
     if (this->mode != 1) {
@@ -1150,7 +1150,7 @@ void TObjContainerItem::vfunc_6(s16 *arg1, s32 arg2) {
     }
 }
 
-void TObjContainerItem::vfunc_79() {
+void TObjContainerItem::vfunc_79() const {
     Obj_8018990C *self = (Obj_8018990C *)this;
     void *o;
     if (this->mode != 1) {
@@ -1612,7 +1612,7 @@ void load_forest_box_resources(void) {
 
 void TUnk_804B6C24::vfunc_81() {  }
 void TUnk_804B6C24::vfunc_80() {  }
-void TUnk_804B6C24::vfunc_79() {  }
+void TUnk_804B6C24::vfunc_79() const {  }
 void TLazerFenceSw__sub_8018A554(void* p, f32 v) { *(f32*)((char*)p + 0x1c) = v; }
 #pragma pop
 

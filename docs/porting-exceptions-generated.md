@@ -10,10 +10,10 @@ The curated register with reasons is [porting-exceptions.md](porting-exceptions.
 | asm | 48 | 12 |
 | intrinsic | 92 | 61 |
 | hardware | 69 | 13 |
-| pragma | 5895 | 893 |
-| configure.py per-unit override | 224 | 224 |
+| pragma | 5894 | 893 |
+| configure.py per-unit override | 225 | 225 |
 
-Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 884, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 62, `bool` 59, `pack` 46, `pool_data` 43, `opt_loop_invariants` 43, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
+Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068, `fp_contract` 882, `auto_inline` 804, `opt_common_subs` 629, `opt_propagation` 267, `scheduling` 261, `readonly_strings` 206, `peephole` 104, `optimization_level` 88, `defer_codegen` 63, `bool` 59, `pack` 46, `pool_data` 43, `opt_loop_invariants` 43, `opt_dead_assignments` 42, `opt_lifetimes` 41, `use_lmw_stmw` 30, `optimize_for_size` 28, `common` 4, `suppress_init_code` 3, `opt_pointer_analysis` 3, `opt_strength_reduction` 3, `const_strings` 3, `exceptions` 2, `opt_unroll_loops` 2, `no_static_dtors` 2, `explicit_zero_data` 2, `inline` 1, `opt_dead_code` 1, `global_optimizer` 1, `cplusplus` 1, `force_active` 1, `options` 1
 
 ## Assembly
 
@@ -306,6 +306,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `pso/object/TObjCamera.cpp` | `GC/1.3.2` | GC/1.3.2: the container files 0x8018807C-0x8018D900, the CRC-32 pair (`xoris/xori 0xFFFF`; 2.x always emits `li -1; xor`), and five others. TObjCamera: 1.3.2 copies CameraSoundEvent member by member unscheduled. |
 | `pso/object/TObjComputer.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/item/TObjContainerJung.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
+| `pso/misc/TOContainerAncientEnemy.cpp` | `GC/1.3` | The const debris overrides require the original GC/1.3 instruction schedule. |
 | `pso/item/TObjContainerItem.cpp` | `GC/1.3.2` | The two below also schedule the by-value DirectAttackPayload read of their receive_direct_attack overrides only the way 1.3.2 does. |
 | `pso/misc/TContainerAncient01.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
 | `pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp` | `GC/1.3.2` | no comment of its own (may share the comment of the entry above; otherwise reason not recorded) |
@@ -689,7 +690,7 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 1160, `inline_depth` 1068,
 | `src/pso/item/TItemWpnCardEffect.cpp` | fp_contract×3, opt_common_subs×1 |
 | `src/pso/item/TObjContainerIdo_8018BEE4.cpp` | fp_contract×2 |
 | `src/pso/item/TObjContainerItem.cpp` | opt_propagation×2, readonly_strings×1, fp_contract×1 |
-| `src/pso/item/TObjContainerJung.cpp` | opt_propagation×3, fp_contract×2 |
+| `src/pso/item/TObjContainerJung.cpp` | opt_propagation×3, defer_codegen×1 |
 | `src/pso/item/TUnk_8049F8E0.cpp` | scheduling×1 |
 | `src/pso/item/TUnk_804A6200.cpp` | dont_inline×2, inline_depth×2 |
 | `src/pso/item/TUnk_804A67D0.cpp` | dont_inline×2, inline_depth×2 |
