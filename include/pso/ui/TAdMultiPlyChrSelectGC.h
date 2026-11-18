@@ -59,7 +59,7 @@ struct TAdMultiPlyChrSelectGC : public TObject {
     static int get_state();
     static int get_selected_slot();
     static int get_global_6700();
-    static void update_transition_anim_if_active();
+    static void update_transition_anim_if_active(void *window, void *frame_context);
     void update_transition_anim();
     s32 get_player_index();
     void set_cursor_index(s32 v);
