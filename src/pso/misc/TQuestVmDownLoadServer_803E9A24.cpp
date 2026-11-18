@@ -1125,7 +1125,7 @@ def:
         if (t->a != 0x1F) {
             goto def;
         }
-        if (TQuestVmDownLoadServer__sub_803EEA48((s32)&lbl_805A0470 + lbl_805D78F0, t->off, QUEST_TEXT_SCRATCH(base), &count) > 0) {
+        if (format_number_text_all_modes((s32)&lbl_805A0470 + lbl_805D78F0, t->off, QUEST_TEXT_SCRATCH(base), &count) > 0) {
             goto build;
         }
         goto def;

@@ -521,7 +521,7 @@ QuestDownloadTextNode *TQuestVmDownLoadServer__sub_803EBEFC(QuestDownloadEntryPr
 void TQuestVmDownLoadServer__sub_803EC09C(void);
 s32 TQuestVmDownLoadServer__sub_803EDC20(u32 input_address);
 u8 *TQuestVmDownLoadServer__sub_803EDDA4(u16 *start, u16 *end);
-void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end);
+void process_entry_text_range(s32 start, s32 end);
 void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTextNode *text, QuestDownloadEntryNode *entries);
 void TQuestVmDownLoadServer__sub_803EFCB4(u8 *data, s32 key, s32 sub_key, s32 *cnt, s32 *total, u8 *buf, s32 flags);
 void TQuestVmDownLoadServer__sub_803EFF20(u8 *data, s32 key, s32 sub_key, s32 *best, u8 *dst, s32 flags);
@@ -1712,10 +1712,10 @@ extern u8 lbl_8047F9B8[];
 extern u8 *lbl_8047FBD4[];
 
 // The frontend starts and fills the actual halfword scratch object.
-s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
+s32 convert_romaji_to_kana(const u16 *input, s32 count,
                                       u16 *output, s32 *outputCount);
 
-void TQuestVmDownLoadServer__sub_803EE2E4(void);
+void reset_entry_text_accumulator(void);
 
 extern u8 lbl_8058DC48[0x50];
 extern u8 lbl_8058DCE8[0x50];
@@ -1737,22 +1737,22 @@ struct QuestDownloadRequestView {
     QuestDownloadRequestView(QuestDownloadRequestStorage *value) : storage(value) {}
 };
 
-void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end);
+void process_entry_text_range(s32 start, s32 end);
 
 #pragma pop
 
 // Keep the independent buffer addresses and native call-site lifetimes.
 void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTextNode *text, QuestDownloadEntryNode *entries);
 
-u16 *TQuestVmDownLoadServer__sub_803EE718(s32 i, s32 len);
+u16 *get_entry_text(s32 i, s32 len);
 
-u8 *TQuestVmDownLoadServer__sub_803EE828(void);
+u8 *convert_all_entry_text(void);
 
-void TQuestVmDownLoadServer__sub_803EE870(s32 index, s32 mode);
+void free_slot_node_chain(s32 index, s32 mode);
 
-s32 TQuestVmDownLoadServer__sub_803EE934(void);
+s32 build_all_entry_text(void);
 
-s32 TQuestVmDownLoadServer__sub_803EEA48(s32 arg0, s32 arg1, void *arg2, s32 *arg3);
+s32 format_number_text_all_modes(s32 arg0, s32 arg1, void *arg2, s32 *arg3);
 
 struct Tbl_803EEB10 {
     u8 units[0x14];

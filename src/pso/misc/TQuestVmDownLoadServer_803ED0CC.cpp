@@ -475,7 +475,7 @@ u8 *TQuestVmDownLoadServer::find_keyword_entry(u16 *start, u16 *end) {
     return NULL;
 }
 
-s32 TQuestVmDownLoadServer__sub_803EDF64(const u16 *input, s32 count,
+s32 convert_romaji_to_kana(const u16 *input, s32 count,
                                       u16 *output, s32 *outputCount) {
     u8 byte;
     u8 first;
@@ -575,11 +575,11 @@ emit_mapping:
     return 0;
 }
 
-void TQuestVmDownLoadServer__sub_803EE2E4(void) {
+void reset_entry_text_accumulator(void) {
     lbl_8058DC98[0] = 0;
 }
 
-void TQuestVmDownLoadServer__sub_803EE2F4(s32 start, s32 end) {
+void process_entry_text_range(s32 start, s32 end) {
     s32 emittedLength;
     s32 length;
     QuestDownloadTextNode *text;
@@ -701,7 +701,7 @@ void TQuestVmDownLoadServer__sub_803EE580(s32 start, s32 length, QuestDownloadTe
 
 #pragma pop
 
-u16 *TQuestVmDownLoadServer__sub_803EE718(s32 i, s32 len) {
+u16 *get_entry_text(s32 i, s32 len) {
     u16 *out;
     s32 n;
     s32 end;
@@ -727,15 +727,15 @@ u16 *TQuestVmDownLoadServer__sub_803EE718(s32 i, s32 len) {
     return lbl_805A02A8;
 }
 
-u8 *TQuestVmDownLoadServer__sub_803EE828(void) {
-    TQuestVmDownLoadServer__sub_803EC71C((u16 *)(((u8 *)&lbl_805A0340)), (u8 *)(((u8 *)&lbl_805A02A8)), (s32)(TQuestVmDownLoadServer__sub_803EE934()));
+u8 *convert_all_entry_text(void) {
+    TQuestVmDownLoadServer__sub_803EC71C((u16 *)(((u8 *)&lbl_805A0340)), (u8 *)(((u8 *)&lbl_805A02A8)), (s32)(build_all_entry_text()));
     return ((u8 *)&lbl_805A02A8);
 }
 
 #pragma push
 #pragma opt_propagation off
 
-void TQuestVmDownLoadServer__sub_803EE870(s32 index, s32 mode) {
+void free_slot_node_chain(s32 index, s32 mode) {
     QuestDownloadSlot *base = quest_download_slot_chain_table;
     u8 *member = reinterpret_cast<u8 *>(base + index);
     // This character address stays inside the live slot and names its real
@@ -761,7 +761,7 @@ void TQuestVmDownLoadServer__sub_803EE870(s32 index, s32 mode) {
 
 #pragma pop
 
-s32 TQuestVmDownLoadServer__sub_803EE934(void) {
+s32 build_all_entry_text(void) {
     s32 r;
     QuestDownloadTextNode *node;
     u16 *out;
@@ -792,7 +792,7 @@ s32 TQuestVmDownLoadServer__sub_803EE934(void) {
     return total;
 }
 
-s32 TQuestVmDownLoadServer__sub_803EEA48(s32 arg0, s32 arg1, void *arg2, s32 *arg3) {
+s32 format_number_text_all_modes(s32 arg0, s32 arg1, void *arg2, s32 *arg3) {
     s32 i;
     void *r;
     if (lbl_805D7904 == -1) {
