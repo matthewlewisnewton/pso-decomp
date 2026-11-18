@@ -7695,6 +7695,7 @@ force_active:
   - bml_resource__16TObjHashiVersus1
   - bml_resource__16TObjHashiVersus2
   - bml_resource__9TObjHashi
+  - body_motion_indices
   - boss06_plotfalz_dat_model_names
   - boss06_plotfalz_dat_motion_names
   - boss06_rock_dat_model_names
@@ -7795,8 +7796,10 @@ force_active:
   - boss4_type3_state_name_wait_next
   - boss4_type3_states
   - boss4_zako_draw_buffers
+  - boss5_gryphon_attack_indices
   - boss5_gryphon_attack_param_ids
   - boss5_gryphon_attack_params
+  - boss5_gryphon_base_indices
   - boss5_gryphon_base_param_ids
   - boss5_gryphon_base_params
   - boss5_gryphon_behavior_param_ids
@@ -7804,6 +7807,8 @@ force_active:
   - boss5_gryphon_bml_desc
   - boss5_gryphon_body_bml_desc
   - boss5_gryphon_body_bml_resource
+  - boss5_gryphon_body_model_names
+  - boss5_gryphon_body_motion_names
   - boss5_gryphon_bone_capture_index
   - boss5_gryphon_bone_capture_node_indices
   - boss5_gryphon_bone_capture_origin
@@ -7813,8 +7818,11 @@ force_active:
   - boss5_gryphon_direction_vec
   - boss5_gryphon_instance
   - boss5_gryphon_params_b
+  - boss5_gryphon_particle_model_names
+  - boss5_gryphon_particle_motion_names
   - boss5_gryphon_render_flags
   - boss5_gryphon_render_node_index
+  - boss5_gryphon_resistance_indices
   - boss5_gryphon_resistance_param_ids
   - boss5_gryphon_resistance_params
   - boss5_gryphon_scale_x_table
@@ -10076,6 +10084,7 @@ force_active:
   - emit_player_sprite_particle__Flll
   - emit_shifta_support_effect__FPUc
   - emit_zalure_support_effect__FPvi
+  - emitter_nodes
   - empty_post_damage_hook__FPvPv
   - empty_state__14TObjEneBm5WolfFv
   - empty_warp_overlay_vertices
@@ -10534,6 +10543,8 @@ force_active:
   - floor_scene_table
   - floor_sound_bank_table
   - floor_sound_bank_volume_table
+  - flower_normal_collision_parts
+  - flower_tower_collision_parts
   - flush_cache__6TMovieFv
   - flush_pending__6TLobbyFv
   - flush_pending_effect__12TBoss8DragonFv
@@ -12640,8 +12651,6 @@ force_active:
   - lbl_80485610
   - lbl_8048561C
   - lbl_804856C0
-  - body_motion_indices
-  - emitter_nodes
   - lbl_80485798
   - lbl_80485AE0
   - lbl_80485B08
@@ -12657,11 +12666,8 @@ force_active:
   - lbl_80487090
   - lbl_80487100
   - lbl_80487150
-  - lbl_80487848
-  - lbl_80487858
-  - lbl_80487890
-  - lbl_80487A88
-  - lbl_80487A9C
+  - lbl_804878B4
+  - lbl_804878D0
   - lbl_80487B1C
   - lbl_80487CD8
   - lbl_8048802C
@@ -12688,10 +12694,6 @@ force_active:
   - lbl_804912A0
   - lbl_804912AC
   - lbl_8049168C
-  - moja_enemy_standard_descriptor
-  - moja_enemy_ultimate_descriptor
-  - moja_enemy_movement_parameters
-  - moja_enemy_collision_body
   - lbl_80492BE4
   - lbl_80492C20
   - lbl_80492C2C
@@ -12706,8 +12708,6 @@ force_active:
   - lbl_80492DD0
   - lbl_80492DDC
   - lbl_80492F28
-  - flower_normal_collision_parts
-  - flower_tower_collision_parts
   - lbl_804933D8
   - lbl_80493D6C
   - lbl_80493DA0
@@ -12720,8 +12720,6 @@ force_active:
   - lbl_80495458
   - lbl_80495484
   - lbl_80495524
-  - panbara_draw_callback_entries
-  - panbara_action_tables
   - lbl_80496368
   - lbl_804966FC
   - lbl_80496C68
@@ -13011,9 +13009,6 @@ force_active:
   - lbl_804E0B60
   - lbl_804E135C
   - lbl_804E1548
-  - mericarol_collision_bodies
-  - mericarol_resource_descriptor
-  - mericarol_low_detail_resource_descriptor
   - lbl_804E1BB0
   - lbl_804E286C
   - lbl_804E29F0
@@ -14406,13 +14401,16 @@ force_active:
   - menu_font_render_rects
   - merge_adjacent_free_blocks__6TLobbyFv
   - merge_halves__14TObjEnePanarmsFv
+  - mericarol_collision_bodies
   - mericarol_low_detail_model_names
   - mericarol_low_detail_motion_names
+  - mericarol_low_detail_resource_descriptor
   - mericarol_model_names
   - mericarol_motion_actions
   - mericarol_motion_names
   - mericarol_phase_param_table
   - mericarol_resource
+  - mericarol_resource_descriptor
   - mericarol_sampled_motion_points
   - merill_lia_low_model_names
   - merill_lia_low_motion_names
@@ -14487,8 +14485,12 @@ force_active:
   - modem_write_string
   - moja_action_table
   - moja_enemy_actions
+  - moja_enemy_collision_body
+  - moja_enemy_movement_parameters
+  - moja_enemy_standard_descriptor
   - moja_enemy_standard_model_names
   - moja_enemy_standard_motion_names
+  - moja_enemy_ultimate_descriptor
   - moja_enemy_ultimate_model_names
   - moja_enemy_ultimate_motion_names
   - monument_ancient01_collision_body
@@ -14935,6 +14937,8 @@ force_active:
   - panarms_motion_param_table
   - panarms_npc_spawn_descriptor
   - panarms_turn_delta_table
+  - panbara_action_tables
+  - panbara_draw_callback_entries
   - pap_recv_auth_request
   - parse_action_packet__11TBoss6Type2FPv
   - parse_aix_header__6TLobbyFPviPv
@@ -20733,6 +20737,7 @@ force_active:
   - reserved_53__13TUnk_804F0AF8Fv
   - reserved_53__13TUnk_804F27E0Fv
   - resetTechniqueContactQuery__Fv
+  - reset__11BmlResourceFv
   - reset__11TItemMagSubFv
   - reset__13TRaderMapCoreFv
   - reset__14TBoss2TentacleFv
@@ -20753,7 +20758,6 @@ force_active:
   - reset_and_invoke__6TLobbyFv
   - reset_and_recreate__14TBoss6PlotFalzFv
   - reset_bar_colors__8TDLGraphFv
-  - reset__11BmlResourceFv
   - reset_behind_player__13TUnk_80488838Fv
   - reset_buffer_pool
   - reset_by_door__18TObjLazerFenceNormFv

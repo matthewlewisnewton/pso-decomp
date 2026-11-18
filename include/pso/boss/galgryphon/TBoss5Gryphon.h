@@ -142,7 +142,7 @@ struct TBoss5Gryphon : public TObjEneDD_ST {
     void spawn_ground_splash();
     void update_collider_from_table();
     void set_target_from_action(void *arg1);
-    s32 reload_stats_for_phase(void *);
+    void reload_stats_for_phase(void *);
     void reload_stats_for_type();
     void set_flight_height();
     void refresh_target_periodically();
