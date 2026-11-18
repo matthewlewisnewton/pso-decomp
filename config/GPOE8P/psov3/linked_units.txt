@@ -202,6 +202,7 @@ pso/boss/Boss5GryphonBehavior.cpp
 pso/boss/Boss5GryphonConstants.cpp
 pso/boss/Boss6Type1Appearance.cpp
 pso/boss/Boss6Type2Appearance.cpp
+pso/boss/Boss6Type2Data.cpp
 pso/boss/Boss6Type2Death.cpp
 pso/boss/Boss7DeRolLeCBehavior.cpp
 pso/boss/DarkFalzDemoConstants.cpp

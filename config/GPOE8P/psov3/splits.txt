@@ -10396,6 +10396,10 @@ pso/boss/TBoss6Type1.cpp:
 	.sbss       start:0x805D6728 end:0x805D6740
 	.sdata2     start:0x805DE2C8 end:0x805DE3F0
 
+pso/boss/Boss6Type2Data.cpp:
+	.rodata     start:0x80471050 end:0x80471350
+	.sdata      start:0x805D3EB8 end:0x805D3EBC
+
 pso/boss/TBoss6Type2.cpp:
 	.text       start:0x802B97E0 end:0x802BE588
 	.rodata     start:0x804713B8 end:0x804713D0
