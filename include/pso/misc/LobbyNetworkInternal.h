@@ -1001,6 +1001,26 @@ void TLobby__sub_80401CAC(Outer_80401CAC *, u16);
 
 #pragma pop
 
+/* Transmit-side view of the three protocol state machines and link counters. */
+typedef struct PppLinkState {
+    u8 active;
+    u8 pad01[3];
+    Conn_804004DC lcp;
+    u8 pad38[0x6c - 0x38];
+    Conn_804004DC ipcp;
+    u8 padA0[0xd4 - 0xa0];
+    Conn_804004DC ipv6cp;
+    u8 pad108[8];
+    s32 transmit_bytes;
+    s32 transmit_frames;
+    u8 pad118[0x122 - 0x118];
+    s16 transmit_errors;
+    s16 allocation_errors;
+} PppLinkState;
+typedef char PppLinkIpcpOffset[offsetof(PppLinkState, ipcp) == 0x6c ? 1 : -1];
+typedef char PppLinkIpv6cpOffset[offsetof(PppLinkState, ipv6cp) == 0xd4 ? 1 : -1];
+typedef char PppLinkErrorsOffset[offsetof(PppLinkState, transmit_errors) == 0x122 ? 1 : -1];
+
 typedef struct Lobby_804062A0 {
     u8 state;
     u8 pad[3];
@@ -2615,7 +2635,6 @@ inline s16 is_iface_destination_8040EDE4(s16 idx, u32 dst) {
 s32 TLobby__sub_8040EDE4(s32, u32, s16);
 
 
-struct Ipv4LengthSlot_8040E780 { s16 v; u8 pad[10]; };
 s32 TLobby__sub_8040EDE4(s32, u32, s16);
 #pragma push
 #pragma opt_common_subs on

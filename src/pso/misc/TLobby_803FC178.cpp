@@ -410,27 +410,6 @@ typedef B_803FADA0 Strm_80405A74;
 
 typedef struct A_803FADA0 { u8 pad0[4]; u32 a; u32 b; } A_803FADA0;
 
-struct IpcpConfigureValues {
-    s16 mask;
-    u8 unknown2[2];
-    s32 address0, address1;
-    s16 compression, slots;
-    u8 slot_id;
-    u8 unknown11[3];
-    s32 word14, word18, word1C, word20;
-};
-struct IpcpConfigureSide {
-    s16 mask;
-    u8 unknown2[2];
-    IpcpConfigureValues wanted, agreed;
-};
-struct IpcpConfigureOptions { IpcpConfigureSide sides[2]; u32 buffer; };
-typedef char IpcpValues_size_803FFB84[sizeof(IpcpConfigureValues) == 0x24 ? 1 : -1];
-typedef char IpcpSide_size_803FFB84[sizeof(IpcpConfigureSide) == 0x4C ? 1 : -1];
-typedef char IpcpOptions_size_803FFB84[sizeof(IpcpConfigureOptions) == 0x9C ? 1 : -1];
-typedef char IpcpRequestMaskOffset[offsetof(IpcpConfigureOptions, sides) + offsetof(IpcpConfigureSide, agreed) == 0x28 ? 1 : -1];
-typedef char IpcpReplyMaskOffset[sizeof(IpcpConfigureSide) + offsetof(IpcpConfigureSide, agreed) == 0x74 ? 1 : -1];
-
 typedef struct B_803FADA0 Ent_80401CE8;
 
 struct RecoveredGlobal_803FD21C_lobby_net_buffer_desc_b {

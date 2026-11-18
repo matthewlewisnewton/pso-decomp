@@ -681,77 +681,77 @@ s16 TLobby__sub_80406328(s32 self, s16 type) {
     Strm_80405A74 *sv = (Strm_80405A74 *)self;
     void *me = (void *)self;
     s32 ty = type;
-    u8 *G;
-    u8 *t;
+    PppLinkState *G;
+    B_803FADA0 *t;
     u8 *p;
     s16 tag = 0x21;
     u8 pad[0x30];
     if (ty == -0x7923) {
-        G = lbl_805C0038;
-        if (G[0xd4] != 5) {
-            (*(s16 *)(G + 0x122))++;
+        G = (PppLinkState *)lbl_805C0038;
+        if (G->ipv6cp.state != 5) {
+            G->transmit_errors++;
             return -1;
         }
-        if (G[0] == 0) {
-            (*(s16 *)(G + 0x122))++;
+        if (G->active == 0) {
+            G->transmit_errors++;
             return -1;
         }
-        t = (u8 *)alloc_from_buffer((B_803FADA0 *)me, 4);
-        p = *(u8 **)t;
+        t = alloc_from_buffer((B_803FADA0 *)me, 4);
+        p = t->buf;
         *p++ = 0xFF;
         *p++ = 3;
         write_network_u16_be(p, 0x57);
         if (t == NULL) {
-            (*(s16 *)(G + 0x124))++;
+            G->allocation_errors++;
             return -1;
         }
         return TLobby__sub_804066D8((Strm_80405A74 *)t);
     }
-    G = lbl_805C0038;
-    if (G[0x6c] != 5) {
-        (*(s16 *)(G + 0x122))++;
+    G = (PppLinkState *)lbl_805C0038;
+    if (G->ipcp.state != 5) {
+        G->transmit_errors++;
         return -1;
     }
     if (ty == 0x86dd) {
-        if (G[0] == 0) {
-            (*(s16 *)(G + 0x122))++;
+        if (G->active == 0) {
+            G->transmit_errors++;
             return -1;
         }
-        t = (u8 *)alloc_from_buffer((B_803FADA0 *)me, 4);
-        p = *(u8 **)t;
+        t = alloc_from_buffer((B_803FADA0 *)me, 4);
+        p = t->buf;
         *p++ = 0xFF;
         *p++ = 3;
         write_network_u16_be(p, 0x57);
         if (t == NULL) {
-            (*(s16 *)(G + 0x124))++;
+            G->allocation_errors++;
             return -1;
         }
         return TLobby__sub_804066D8((Strm_80405A74 *)t);
     }
     {
-        u8 *e = *(u8 **)(G + 0x9c);
+        IpcpConfigureOptions *e = (IpcpConfigureOptions *)G->ipcp.opts;
         if (lbl_805D7A90 & 2) {
             s16 r;
-            if (!(*(s16 *)(e + 0x28) & 4)) goto skip;
-            r = TLobby__sub_804048E8(*(Obj_80403F4C **)(e + 0x98), &sv, e[0x84]);
+            if (!(e->sides[0].agreed.mask & 4)) goto skip;
+            r = TLobby__sub_804048E8(e->compression_state, &sv, e->sides[1].agreed.slot_id);
             switch (r) {
             case 0x40: tag = 0x21; break;
             case 0x80: tag = 0x2d; break;
             case 0x70: tag = 0x2f; break;
             default:
-                (*(s16 *)(G + 0x122))++;
+                G->transmit_errors++;
                 return -1;
             }
         } else {
             s16 r;
-            if (!(*(s16 *)(e + 0x74) & 4)) goto skip;
-            r = TLobby__sub_804048E8(*(Obj_80403F4C **)(e + 0x98), &sv, e[0x84]);
+            if (!(e->sides[1].agreed.mask & 4)) goto skip;
+            r = TLobby__sub_804048E8(e->compression_state, &sv, e->sides[1].agreed.slot_id);
             switch (r) {
             case 0x40: tag = 0x21; break;
             case 0x80: tag = 0x2d; break;
             case 0x70: tag = 0x2f; break;
             default:
-                (*(s16 *)(G + 0x122))++;
+                G->transmit_errors++;
                 return -1;
             }
         }
@@ -759,20 +759,20 @@ s16 TLobby__sub_80406328(s32 self, s16 type) {
 skip:
     {
         void *a = (void *)sv;
-        G = lbl_805C0038;
-        if (G[0] == 0) {
-            (*(s16 *)(G + 0x122))++;
+        G = (PppLinkState *)lbl_805C0038;
+        if (G->active == 0) {
+            G->transmit_errors++;
             return -1;
         }
         {
             s16 tg = tag;
-            u8 *t2 = (u8 *)alloc_from_buffer((B_803FADA0 *)a, 4);
-            p = *(u8 **)t2;
+            B_803FADA0 *t2 = alloc_from_buffer((B_803FADA0 *)a, 4);
+            p = t2->buf;
             *p++ = 0xFF;
             *p++ = 3;
             write_network_u16_be(p, tg);
             if (t2 == NULL) {
-                (*(s16 *)(G + 0x124))++;
+                G->allocation_errors++;
                 return -1;
             }
             return TLobby__sub_804066D8((Strm_80405A74 *)t2);
@@ -789,23 +789,24 @@ skip:
 s16 TLobby__sub_80406624(s32 a, s32 b, u16 code, void *self) {
     s32 pad[4];
     u16 r30;
-    u8 *r29;
+    B_803FADA0 *r29;
     u8 *p;
-    u8 *ret;
+    B_803FADA0 *ret;
 
-    if (lbl_805C0038[0] == 0) {
-        *(s16 *)(lbl_805C0038 + 0x122) = *(s16 *)(lbl_805C0038 + 0x122) + 1;
+    PppLinkState *link = (PppLinkState *)lbl_805C0038;
+    if (link->active == 0) {
+        link->transmit_errors++;
         return -1;
     }
     r30 = code;
-    r29 = (u8 *)alloc_from_buffer((B_803FADA0 *)self, 4);
-    p = *(u8 **)r29;
+    r29 = alloc_from_buffer((B_803FADA0 *)self, 4);
+    p = r29->buf;
     *p++ = 0xff;
     *p++ = 3;
     write_network_u16_be(p, r30);
     ret = r29;
     if (r29 == 0) {
-        *(s16 *)(lbl_805C0038 + 0x124) = *(s16 *)(lbl_805C0038 + 0x124) + 1;
+        link->allocation_errors++;
         return -1;
     }
     return TLobby__sub_804066D8((Strm_80405A74 *)ret);
@@ -851,7 +852,7 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     s16 state;
     u32 accm = -1;
     s32 n = 4;
-    u8 *ppp;
+    PppLinkState *ppp;
     s32 sz;
     u16 proto;
     s32 c;
@@ -859,13 +860,13 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     s32 skip;
     s32 acfc;
 
-    ppp = lbl_805C0038;
-    opts = *(LcpOpts **)(ppp + 0x34);
+    ppp = (PppLinkState *)lbl_805C0038;
+    opts = (LcpOpts *)ppp->lcp.opts;
 #pragma cplusplus on
-    *(s32 *)(ppp + 0x110) += ((u16)buffer_length((B_803FADA0 *)p)) + 2;
+    ppp->transmit_bytes += ((u16)buffer_length((B_803FADA0 *)p)) + 2;
 #pragma cplusplus off
     if (p == NULL || p->len < 4) {
-        *(s16 *)(ppp + 0x122) += 1;
+        ppp->transmit_errors += 1;
         return -1;
     }
     src = p->buf;
@@ -910,7 +911,7 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
         frame->len = p->len;
     } else {
         *out++ = 0x7e;
-        *(s32 *)(ppp + 0x114) += 1;
+        ppp->transmit_frames += 1;
         while ((c = get_80405A74(&p)) != -1) {
             crc = (u16)(((u16)crc >> 8) ^ lbl_804FD3A8[((u16)crc ^ c) & 0xff]);
             if ((c < 0x20 && (accm & (1u << c))) || c == 0x7d || c == 0x7e) {
@@ -3897,28 +3898,30 @@ void TLobby__sub_8040AFE0(void) {
 #pragma inline_depth(4)
 #pragma dont_inline off
 #pragma inline_depth(4)
-extern void TLobby__sub_8040B1C4(F_8040A45C *arg)
+static inline s16 dns_send_message(F_8040A45C *query, Rec_8040B33C *server) {
+    UdpBuf_8040AFE0 tmp;
+    tmp.len = query->f18->len;
+    tmp.data = query->f18->data;
+    return TUdpSocket__sub_80421BAC(query->f4, NULL, &server->f0, 0, NULL, 1, &tmp);
+}
+
+extern void TLobby__sub_8040B1C4(F_8040A45C *e)
 {
-    F_8040A45C *e = (F_8040A45C *)arg;
     G_8040A45C *base;
     Rec_8040B33C *found;
-    u8 y[4];
-    UdpBuf_8040AFE0 tmp;
-    u8 x[4];
     s16 ret;
     s16 *dp;
 
-    base = (G_8040A45C *)&dns_resolver_state;
-    if ((found = fnar_8040B1C4((G_8040A45C *)base, (F_8040A45C *)e)) == NULL) {
+    base = &dns_resolver_state;
+    if ((found = fnar_8040B1C4(base, e)) == NULL) {
         TLobby__sub_8040BE40(e, -0x44, 0);
         return;
     }
     dp = &base->nb;
     base->f18 = e->f10 % *dp;
     e->fA = base->fC[e->f10 / *dp];
-    tmp.len = e->f18->len;
-    tmp.data = e->f18->data;
-    ret = TUdpSocket__sub_80421BAC(e->f4, 0, (u32 *)found, 0, 0, 1, &tmp);
+
+    ret = dns_send_message(e, found);
     if (ret < 0) {
         e->fA = 1;
         e->f10 = e->f10 + 1;
@@ -6267,12 +6270,12 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
 #pragma inline_depth(4)
 #pragma opt_common_subs on
 #pragma opt_propagation off
-s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void *proto)
+s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void *proto)
 {
   u8 *output_fragment;
   s32 offset_step;
-  u8 *length_field;
-  u8 *buffer_ref;
+  s16 *length_field;
+  NetBufferRef *buffer_ref;
   s32 last_source_index;
   s16 scan_remaining;
   s16 copy_remaining;
@@ -6286,7 +6289,7 @@ s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void 
   Ipv4ProtocolState *state;
   u32 checksum;
   s32 fragment_offset;
-  u8 *fragment_record;
+  NetPacket *fragment_record;
   s16 last;
   s32 amount;
   s32 source_index;
@@ -6357,7 +6360,7 @@ s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void 
   {
     ip->ttl = state->default_ttl;
   }
-  total_bytes = *((s32 *) (rec + 8));
+  total_bytes = rec->total_bytes;
   if (total_bytes == 0)
   {
     return 0;
@@ -6386,10 +6389,10 @@ s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void 
     checksum = (checksum >> 16) + (checksum & 0xFFFF);
     checksum += checksum >> 16;
     ip->checksum = ~checksum;
-    *((s32 *) (rec + 8)) += 20;
-    ((Ipv4LengthSlot_8040E780 *) (rec + 0xc))[*((s32 *) (rec + 4))].v = 20;
-    ((TLobby *)((rec + 0x10) + ((*((s32 *) (rec + 4))) * 12)))->set_value_and_enable( (s32) ip);
-    *((s32 *) (rec + 4)) += 1;
+    rec->total_bytes += 20;
+    rec->fragments[rec->fragment_count].length = 20;
+    ((TLobby *)&rec->fragments[rec->fragment_count].buffer)->set_value_and_enable( (s32) ip);
+    rec->fragment_count += 1;
     return TLobby__sub_8040EDE4((s32)rec, (u32) target, ifidx);
   }
   fragment_offset = 0;
@@ -6401,18 +6404,18 @@ s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void 
   chunk *= 8;
   ip->fragment = 0;
   offset_step = chunk / 8;
-  fragment_record = (u8 *)&workspace.packet;
+  fragment_record = &workspace.packet;
   do
   {
-    *((s32 *) (fragment_record + 4)) = 0;
-    *((s32 *) (fragment_record + 8)) = 0;
+    fragment_record->fragment_count = 0;
+    fragment_record->total_bytes = 0;
     scan_remaining = chunk;
     fragment_count = 0;
-    scan_index = (last_source_index = (*((s32 *) (rec + 4))) - 1);
-    source_fragment = rec + (scan_index * (s32)sizeof(NetPacketFragment));
+    scan_index = (last_source_index = rec->fragment_count - 1);
+    source_fragment = (u8 *)rec + (scan_index * (s32)sizeof(NetPacketFragment));
     while ((scan_remaining > 0) && (scan_index >= 0))
     {
-      scan_remaining -= *((s16 *) (source_fragment + 12));
+      scan_remaining -= *(s16 *)(source_fragment + offsetof(NetPacket, fragments[0].length));
       source_fragment -= sizeof(NetPacketFragment);
       scan_index--;
       fragment_count++;
@@ -6426,27 +6429,27 @@ s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void 
     last = 0;
     while ((copy_remaining > 0) && (copy_index >= 0))
     {
-      source_fragment = rec + source_byte_offset;
-      output_fragment = fragment_record + output_byte_offset;
-      buffer_ref = source_fragment + 16;
-      NetMemcpy(output_fragment + 16, buffer_ref, 8);
-      length_field = source_fragment + 12;
-      source_length = (s16 *) length_field;
+      source_fragment = (u8 *)rec + source_byte_offset;
+      output_fragment = (u8 *)fragment_record + output_byte_offset;
+      buffer_ref = (NetBufferRef *)(source_fragment + offsetof(NetPacket, fragments[0].buffer));
+      NetMemcpy(output_fragment + offsetof(NetPacket, fragments[0].buffer), buffer_ref, 8);
+      length_field = (s16 *)(source_fragment + offsetof(NetPacket, fragments[0].length));
+      source_length = length_field;
       amount = copy_remaining;
-      if ((*((s16 *) length_field)) > amount)
+      if (*length_field > amount)
       {
-        *((s16 *) (output_fragment + 12)) = copy_remaining;
-        *((s32 *) (fragment_record + 8)) += amount;
+        *(s16 *)(output_fragment + offsetof(NetPacket, fragments[0].length)) = copy_remaining;
+        fragment_record->total_bytes += amount;
         *source_length -= copy_remaining;
-        *((s32 *) (rec + 8)) -= amount;
-        TLobby__sub_80406EB8((NetBufferRef *)buffer_ref, amount);
+        rec->total_bytes -= amount;
+        TLobby__sub_80406EB8(buffer_ref, amount);
         copy_remaining = 0;
       }
       else
       {
-        *((s16 *) (output_fragment + 12)) = *((s16 *) length_field);
-        *((s32 *) (fragment_record + 8)) += *source_length;
-        *((s32 *) (rec + 8)) -= *source_length;
+        *(s16 *)(output_fragment + offsetof(NetPacket, fragments[0].length)) = *length_field;
+        fragment_record->total_bytes += *source_length;
+        rec->total_bytes -= *source_length;
         copy_remaining -= *source_length;
         if (source_index == 0)
         {
@@ -6459,14 +6462,14 @@ s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void 
         }
         else
         {
-          *((s32 *) (rec + 4)) -= 1;
+          rec->fragment_count -= 1;
           copy_index--;
           output_byte_offset -= sizeof(NetPacketFragment);
           source_index--;
           source_byte_offset -= sizeof(NetPacketFragment);
         }
       }
-      *((s32 *) (fragment_record + 4)) += 1;
+      fragment_record->fragment_count += 1;
     }
 
     if (last == 1)
@@ -6478,16 +6481,16 @@ s16 TLobby__sub_8040E780(u8 *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void 
       ip->fragment = 0x2000;
     }
     ip->fragment |= fragment_offset;
-    ip->length = (*((s32 *) (fragment_record + 8))) + 20;
+    ip->length = fragment_record->total_bytes + 20;
     ip->checksum = 0;
     checksum = TUdpSocket__sub_80419864(ip, 10);
     checksum = (checksum >> 16) + (checksum & 0xFFFF);
     checksum += checksum >> 16;
     ip->checksum = ~checksum;
-    *((s32 *) (fragment_record + 8)) += 20;
-    *((s16 *) ((fragment_record + ((*((s32 *) (fragment_record + 4))) * 12)) + 12)) = 20;
-    ((TLobby *)((fragment_record + 0x10) + ((*((s32 *) (fragment_record + 4))) * 12)))->set_value_and_enable( (s32) ip);
-    *((s32 *) (fragment_record + 4)) += 1;
+    fragment_record->total_bytes += 20;
+    fragment_record->fragments[fragment_record->fragment_count].length = 20;
+    ((TLobby *)&fragment_record->fragments[fragment_record->fragment_count].buffer)->set_value_and_enable( (s32) ip);
+    fragment_record->fragment_count += 1;
     result = TLobby__sub_8040EDE4((s32)fragment_record, (u32) target, ifidx);
     if (result < 0)
     {
