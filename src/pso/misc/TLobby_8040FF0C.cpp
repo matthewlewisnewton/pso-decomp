@@ -61,13 +61,9 @@ static inline NetPacket *reassemble_ipv6_input(u8 *ip, Ipv6FragmentHeader *frag,
 }
 #pragma opt_loop_invariants off
 #pragma opt_strength_reduction off
-#pragma cplusplus off
 s32 TLobby__sub_8040FFF8(u8 *ip, int len, s16 id) {
-    s16 TLobby__sub_8040D510(struct Icmp6ErrorInfo *msg, u8 *ip, s32 len, s16 iface); /* the definition takes an s16 len */
-    s16 TLobby__sub_804105E0(u8 *ip, u8 *packet, s16 len, s16 iface); /* the definition returns s32 */
     s16 TLobby__sub_8041B974(u8 *, u8 *, u8 *);
     s32 TLobby__sub_80421938(struct O_80421938 *, void *, void *, void *, s16);
-    s16 TLobby__sub_804136CC(s16);
     s16 NetIPv6IsMulticast(u8 *);
     s16 NetIPv6IsUnspecified(u8 *);
     struct NetworkAddress src_addr;
@@ -129,6 +125,7 @@ s32 TLobby__sub_8040FFF8(u8 *ip, int len, s16 id) {
     reassembled = 0;
     dst_cmp = dst;
     delivered = 0;
+    const s16 options_packet_length = total_len;
     for (;;) {
         if (next_header == IPV6_NH_NONE) {
             return 0;
@@ -149,7 +146,7 @@ s32 TLobby__sub_8040FFF8(u8 *ip, int len, s16 id) {
                 TLobby__sub_8040D510(&options_error, hdr, total_len, iface);
                 status = -1;
             } else {
-                status = process_options_header(ext, remaining, hdr, total_len, iface);
+                status = process_options_header(ext, remaining, hdr, options_packet_length, iface);
             }
             if (status < 0) {
                 goto ret;
@@ -172,7 +169,7 @@ s32 TLobby__sub_8040FFF8(u8 *ip, int len, s16 id) {
             goto payload;
 
         case IPV6_NH_DEST_OPTIONS:
-            status = process_options_header(ext, remaining, hdr, total_len, iface);
+            status = process_options_header(ext, remaining, hdr, options_packet_length, iface);
             if (status < 0) {
                 goto ret;
             }
@@ -277,13 +274,12 @@ ret:
 }
 
 #pragma opt_strength_reduction reset
-#pragma cplusplus on
 #pragma opt_propagation off
-extern s32 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
+extern s16 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
 {
   s16 TLobby__sub_804136AC(s16);
-  s32 TLobby__sub_80415D0C(NetPacket *, u8 *, NetIPv6SendParameters *, s16);
-  s32 TLobby__sub_80410BA8(NetPacket *, NetIPv6SendParameters *, s16, void *);
+
+
   s16 NetIPv6IsMulticast(u8 *);
   NetIPv6SendParameters params;
   u8 err[8];
@@ -301,7 +297,7 @@ extern s32 TLobby__sub_804105E0(u8 *self, u8 *p, s16 lim, s16 ctx)
   u8 state;
   u8 *dst;
   s32 adv;
-  s32 r21;
+  s16 r21;
   l = lim;
   tot = l - 0x28;
   hop_limit = &params.hop_limit;
@@ -460,9 +456,9 @@ s16 TLobby__sub_80410958(u8 *opt, s16 len, u8 *hdr, s16 pktlen, s16 idx) {
     return 0;
 }
 
-s32 TLobby__sub_80410A98(NetPacket *pkt, u8 *dst, u8 *src, Ipv6SendOptions *opts, s32 next_header) {
-    s32 TLobby__sub_80410BA8(void *, void *, s32, void *);
-    s32 TLobby__sub_80415D0C(NetPacket *, u8 *, NetIPv6SendParameters *, s32);
+s16 TLobby__sub_80410A98(NetPacket *pkt, u8 *dst, u8 *src, Ipv6SendOptions *opts, s32 next_header) {
+
+
     s16 NetIPv6IsMulticast(u8 *arg0);
     s16 TLobby__sub_804136AC(s16 arg0);
     u8 *nexthop;

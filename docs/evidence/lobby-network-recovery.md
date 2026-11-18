@@ -1,7 +1,7 @@
 # Lobby network recovery at 0x804050DC
 
 Recovery started at `84420bea523b79b3e2daf384b26fb1211560e0be`. The pull request
-uses `f8b7b04cc635ff3b95385b716ba41c88811ad49d` as its verification baseline.
+uses `a7e1ed966fafddaf4f9008f3e988bb3713d454f7` as its verification baseline.
 The original address range contains 281 functions and 84,260 code bytes.
 All 281 functions and all 888 allocated data/BSS bytes now match in the
 three source-linked objects. The starting build had 244 exact functions
@@ -31,7 +31,7 @@ DOL hash verifies all three groups’ linked contributions.
 ## Review revisions
 
 The three objects use the same explicit-inline default. The shared header has
-zero pragma lines. The source groups have 47, 8 and 22 respectively. A stock
+zero pragma lines. The source groups have 47, 6 and 20 respectively. A stock
 compiler comparison tested each retained change of setting and its restoration.
 The [exception register](../porting-exceptions.md#lobby-network-recovery)
 identifies the affected regions.
@@ -73,11 +73,19 @@ unsafe assumption about adjacency of separate local arrays. Direct field
 access preserves the native stack offsets without keeping redundant pointer
 aliases alive.
 
-The event dispatcher at `80411604` has an old-style C definition with an `s16`
-parameter promoted at its call boundary. The scoped MWCC language control
-retains that convention while allowing the surrounding C++ declarations. Its
-compiled body is exact. A port should replace this with one explicit promoted
-integer signature and an intentional conversion at the function entry.
+The event dispatcher at `80411604` and its callers share a signed 16-bit
+interface ID. The ordinary C++ definition reproduces the complete function.
+The PPP writer at `804066D8` uses one compiler scope around its definition.
+Its inlined time query calls the C++ interface. All compiler directives in the
+three source groups fall between function definitions.
+
+The route lookup at `8040EF00` and the socket-flag predicate both take and
+return a signed 16-bit value. The ICMPv6 error sender at `8040D510` takes
+an `Icmp6ErrorInfo *`, a packet pointer, a signed 16-bit packet length and a
+signed 16-bit interface ID. The IPv6 forwarder at `804105E0` returns the
+signed 16-bit status supplied by its send routines. Each of these four
+interfaces has one shared declaration. Both IPv6 extension-option paths use
+the saved datagram length while the input loop advances its remaining count.
 
 Several pre-existing network boundaries use scoped short-result declarations
 for providers whose broader declarations return words. These include DNS,
@@ -189,7 +197,7 @@ inputs. The three objects contribute the following matched ranges.
 
 The rebuilt DOL is byte-identical to the original. Its SHA-1 is
 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The baseline comparison
-records 37 newly exact functions and zero regressions. All 3,628 linked
+records 37 newly exact functions and zero regressions. All 3,631 linked
 units pass the linkage and retention checks. An independent ELF comparison
 verified function order, allocated section bytes including linker padding,
 and all 1,810 relocation sites and targets across the three objects.
@@ -217,7 +225,7 @@ occupies an eight-byte-aligned workspace.
 IPv6 input at `8040FFF8` now matches all 1,512 bytes. The input checks the
 length before saving the interface index and restores that index after the
 ICMPv6 handler. The raw-socket scan reads its active flag as an unsigned
-halfword. The C body uses the project’s interface-lookup and record-release
+halfword. The C++ body uses the project’s interface-lookup and record-release
 adapters. The source was adapted from [upstream PR #310](https://github.com/zeroz41/pso-decomp/pull/310),
 head `6c7e082755`.
 

@@ -2214,7 +2214,7 @@ repeated source inline controls. The shared `LobbyNetworkInternal.h` needs
 no pragmas. `-inline auto,level=4` changes native instructions in the first
 and third groups, while `noauto,level=4` preserves all three complete objects.
 
-The remaining 77 source pragma lines describe optimizer and language regions.
+The remaining source pragmas describe optimizer and language regions.
 Adjacent functions share a setting until its explicit restoration.
 Removing each remaining setting or restoration was tested against the complete
 object. The four `optimization_level` regions retain push/pop to restore every
@@ -2240,9 +2240,14 @@ lifetime, and loop controls preserve the following native instruction choices.
 | Common subexpressions | PPP receive, Ethernet receive and socket lookup, IPv4 route processing, IPv6 interface, prefix, send and neighbor routines | Preserves field-address reuse and the order of table and cursor loads. |
 | Loop invariants and strength reduction | PPP receive at `80405700` and IPv6 input at `8040FFF8` | Reproduces cursor increments and the native placement of loop-invariant loads. Strength reduction resumes before `804105E0`. |
 
-`TLobby__sub_80411604` uses scoped `cplusplus off`/`on` around its old-style C
-parameter declaration to retain the promoted-short call convention. Ports
-should use an explicit integer parameter and a documented short conversion.
+`TLobby__sub_80411604` uses an ordinary ANSI C++ definition with an `s16`
+interface ID. Its shared declaration and callers use that same type; the
+old-style C definition and block-local event-dispatch declarations are removed.
+Neighbor/router advertisement and router solicitation now receive signed short
+interface IDs, matching their ICMP callers. The router-solicitation send chain
+also consumes and returns short status values. Its link-address and IPv6 send
+declarations agree with those providers, so obsolete word-ID casts and local
+send declarations are unnecessary. Ports can keep these typed interfaces.
 The scoped legacy network declarations must be reconciled with their providers
 and every caller before replacing them with a common portable interface.
 In particular, `8040CE58` consumes `8040E780` through a scoped word-return
@@ -2263,10 +2268,11 @@ source organization reproduces native register lifetimes and stack placement;
 no separate helper is emitted. Ports may combine the bodies and use ordinary
 locals. See [recovery evidence](evidence/lobby-network-recovery.md).
 
-The PPP output routine at `804066D8` retains a C region within its frame
-writer, restoring C++ before the time query. This matches the register
-allocation of the upstream C implementation. Ports can compile the routine
-in one language and keep the unsigned 32-bit escape mask.
+The PPP output routine at `804066D8` uses one whole-function C scope with
+propagation disabled. A small inline C++ adapter performs the existing time
+query; the scope restores both settings after the complete definition. This
+matches the register allocation of the upstream C implementation. Ports can
+compile the routine in one language and keep the unsigned 32-bit escape mask.
 
 The Ethernet socket opener at `804094B8` enables `opt_common_subs` for its
 matching-socket lookup and caller. A port may drop it. The IPv4 receiver at
@@ -2278,9 +2284,9 @@ existing pragma scope. The corresponding linked upstream unit enables this
 optimization throughout. A port may omit the pragma and keep the typed
 interface lookup and short prefix length.
 
-The body of IPv6 input at `8040FFF8` uses the upstream C language mode.
-The inline adapters call the interface lookup and the typed packet release
-operation. A port can call both directly in its usual language mode.
+Only the PPP output routine at `804066D8` has a whole-function C language
+scope. The IPv6 input and event dispatcher use ordinary C++. All language
+and optimizer controls in the three units fall between function definitions.
 
 The packet checksum at `80406BD8` uses scoped `opt_lifetimes off` as in
 upstream PR #304. A port can remove it while preserving the segment traversal

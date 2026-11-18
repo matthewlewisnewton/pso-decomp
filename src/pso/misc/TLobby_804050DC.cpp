@@ -762,11 +762,18 @@ inline s32 ppp_protocol_field_is_two_bytes(s32 is_lcp, LcpOpts *opts, u16 proto)
     return r;
 }
 
+inline void ppp_update_send_timestamp() {
+    TLobby::get_time_ms(&lbl_805D7A94);
+}
+
+#pragma push
+#pragma opt_propagation off
+#pragma cplusplus off
 s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     Strm_80405A74 *frame;
     u8 *out;
     u8 *hdr;
-    LcpOpts *opts;
+    struct LcpOpts *opts;
     RecoveredGlobal_80401A68_lbl_805C04A8 *bufs;
     u16 fcs;
     s32 crc = 0xffff;
@@ -778,7 +785,7 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     s16 state;
     u32 accm = -1;
     s32 n = 4;
-    PppLinkState *ppp;
+    struct PppLinkState *ppp;
     s32 sz;
     u16 proto;
     s32 c;
@@ -786,10 +793,9 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     s32 skip;
     s32 acfc;
 
-    ppp = (PppLinkState *)lbl_805C0038;
-    opts = (LcpOpts *)ppp->lcp.opts;
+    ppp = (struct PppLinkState *)lbl_805C0038;
+    opts = (struct LcpOpts *)ppp->lcp.opts;
     ppp->transmit_bytes += ((u16)buffer_length((B_803FADA0 *)p)) + 2;
-#pragma cplusplus off
     if (p == NULL || p->len < 4) {
         ppp->transmit_errors += 1;
         return -1;
@@ -870,13 +876,11 @@ s16 TLobby__sub_804066D8(Strm_80405A74 *p) {
     if (state == 7 || state == 0) {
         return 0;
     }
-#pragma cplusplus on
-    TLobby::get_time_ms(&lbl_805D7A94);
-#pragma opt_propagation off
+    ppp_update_send_timestamp();
     return (s16)send_network_frame(frame->len, frame->buf);
 }
+#pragma pop
 
-#pragma opt_propagation reset
 s32 TLobby::shutdown_network_handle() {
     TLobby__sub_803F8A08((void *)((void *) (&lobby_udp_socket_table)));
     lobby_udp_socket_table = 0;
@@ -2743,7 +2747,7 @@ s16 TLobby::is_entry_flag10_set(s16 i) {
     return 0;
 }
 
-s32 is_socket_flag_set__6TLobbyFs(s16 i) {
+s16 is_socket_flag_set__6TLobbyFs(s16 i) {
     if (i < 0 || i > (*(G_8040A25C *)&lobby_handler_table_desc).n) { return 0; }
     Ent_8040A25C *e = (*(G_8040A25C *)&lobby_handler_table_desc).p;
     if (e[i].f0 == 0) { return 0; }
@@ -4673,7 +4677,6 @@ s16 TLobby__sub_8040D510(Icmp6ErrorInfo *err, u8 *hdr, s16 len, s16 idx) {
     s16 NetIPv6IsUnspecified(u8 *addr);
     s16 TLobby__sub_80411F1C(u8 *, u8 *, s16);
     s16 TLobby__sub_80413D78(u8 *addr, s16 idx);
-    s16 TLobby__sub_80410A98(NetPacket *, u8 *, u8 *, Ipv6SendOptions *, s32);
     u8 *src;
     NetPacket *pkt;
     u8 source[16];
@@ -4733,7 +4736,6 @@ s16 TLobby__sub_8040D718(u8 type, u8 code, u8 *src, u8 *dst, NetPacket *pkt, s16
     s16 NetIPv6IsMulticast(u8 *arg0);
     s16 NetIPv6IsUnspecified(u8 *arg0);
     s16 TLobby__sub_80411F1C(u8 *, u8 *, s16);
-    s16 TLobby__sub_80410A98(NetPacket *, u8 *, u8 *, Ipv6SendOptions *, s32);
     Icmp6MessageHeader hdr;
     s16 r;
 
@@ -4764,14 +4766,15 @@ s16 TLobby__sub_8040D718(u8 type, u8 code, u8 *src, u8 *dst, NetPacket *pkt, s16
     return 0;
 }
 
-s32 TLobby::dispatch_by_addr_family(s32 arg0, u8 *arg1, u8 *arg2, u8 *arg3, void *arg4, void *arg5) {
-    s32 TLobby__sub_8040E780(s32, s32, s32, s32, s32, s32, void *);
-    s32 TLobby__sub_80410A98(NetPacket *, u8 *, u8 *, Ipv6SendOptions *, s32);
-    switch (*(s32 *)arg2) {
+s16 TLobby__sub_8040E780(NetPacket *, u32, u32, u8, u8, u8, s32);
+
+s16 TLobby::dispatch_by_addr_family(NetPacket *packet, NetworkAddress *dst, NetworkAddress *src,
+                                       u8 *ipv4_options, void *ipv6_options, s32 protocol) {
+    switch (src->family) {
     case 4:
-        return TLobby__sub_8040E780(arg0, *(s32 *)(arg1 + 4), *(s32 *)(arg2 + 4), arg3[0], arg3[1], arg3[2], arg5);
+        return TLobby__sub_8040E780(packet, dst->ipv4, src->ipv4, ipv4_options[0], ipv4_options[1], ipv4_options[2], protocol);
     case 6:
-        return TLobby__sub_80410A98((NetPacket *)arg0, arg1 + 4, arg2 + 4, (Ipv6SendOptions *)arg4, (s32)arg5);
+        return TLobby__sub_80410A98(packet, dst->address, src->address, (Ipv6SendOptions *)ipv6_options, protocol);
     case 0:
     default:
         return -2;
@@ -5203,8 +5206,6 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
   s16 len;
   s16 fragment_tail_bytes;
   u8 *header;
-
-  s16 TLobby__sub_8040EF00(s16);
   u16 TUdpSocket__sub_80419864(void *, s16);
   s16 TLobby__sub_8040EDE4(s32, u32, s16);
   u16 t46;
@@ -5362,7 +5363,7 @@ s16 TUdpSocket__sub_8040E354(u8 *self, u32 key, u8 *pkt, s16 total, s16 id)
   return result;
 }
 
-s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, void *proto)
+s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df, s32 proto)
 {
   u8 *output_fragment;
   s32 offset_step;
@@ -5396,8 +5397,6 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
   s16 TLobby__sub_8040EDE4(s32, u32, s16);
   s16 TLobby__sub_8040FDA0(u32, s16);
   s16 TLobby__sub_8040EF50(u32 *, u32, s16);
-
-  s16 TLobby__sub_8040EF00(s16); /* declared s16 here; the definition returns s32 */
   union {
     s64 alignment;
     NetPacket packet;
@@ -5460,7 +5459,7 @@ s16 TLobby__sub_8040E780(NetPacket *rec, u32 dst, u32 src, u8 ttl, u8 tos, u8 df
   total_bytes = total_bytes + 20;
   ip->length = total_bytes;
   state->packet_id += 1;
-  ip->protocol = (u8) ((s32) proto);
+  ip->protocol = (u8)proto;
   ip->id = state->packet_id;
   NetMemcpy(&ip->src, &src, 4);
   NetMemcpy(&ip->dst, &dst, 4);
@@ -5754,7 +5753,6 @@ s32 TLobby__sub_8040F00C(s16 idx, NetBufferRef *out, s16 len, s32 arg3) {
 }
 
 s16 TLobby__sub_8040F1A0(s16 idx) {
-    s16 is_socket_flag_set__6TLobbyFs(s16);
     Ipv4RoutingState *g = (Ipv4RoutingState *)&ipv4_address_routing_state;
     s16 *pn;
     Ipv4Iface **pifs;
@@ -5825,7 +5823,6 @@ extern s16 TLobby__sub_8040F454(u32 addr, u32 mask, u32 broadcast, s16 idx) {
     s16 err;
     s16 found;
     u32 gateway;
-    s16 is_socket_flag_set__6TLobbyFs(s16); /* declared s16 here; the definition returns s32 */
 
     if (idx < 0 || idx >= *(pn = &g->nifaces)) {
         return -0x109;

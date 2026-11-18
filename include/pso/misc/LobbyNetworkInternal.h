@@ -594,8 +594,8 @@ extern RecoveredGlobal_8041123C_lbl_805C1BB8 ipv6_address_routing_state;
 u8 * TLobby__sub_80413264(void *, s32);
 s32 TLobby__sub_80413230(u8 *arg0, s32 arg1);
 void TLobby__sub_804136AC(s16 arg0);
-s32 is_socket_flag_set__6TLobbyFs(s16);
-s32 TLobby__sub_804136CC(s16 arg0);
+s16 is_socket_flag_set__6TLobbyFs(s16);
+s16 TLobby__sub_804136CC(s16 arg0);
 s16 NetIPv6IsLoopback(u8 *arg0);
 s32 NetIPv6IsUnspecified(u8 *arg0);
 s16 NetIPv6CompareAddresses(s32 arg0, s32 arg1);
@@ -683,7 +683,7 @@ s16 TLobby__sub_80417028(IPv6NeighborSolicitation *ns, u8 *src, u8 *dst, s16 ifa
 s16 NetIPv6HandleNeighborSolicitation(u8 *arg0, void *arg1, void *arg2, void *arg3);
 u16 TLobby__sub_80411040(const IPv6Address *, const IPv6Address *, u8, const NetPacket *, s16);
 s16 NetIPv6GetInterfaceLinkLayerAddress(s32 arg0, s16 arg1, s16 arg2);
-s32 NetIPv6EmitRouterSolicitation(NetPacket *arg0, NetIPv6SendParameters *arg1, s32 arg2);
+s16 NetIPv6EmitRouterSolicitation(NetPacket *arg0, NetIPv6SendParameters *arg1, s16 arg2);
 extern struct G_80415B38 ipv6_neighbor_discovery_state;
 s16 NetIPv6SendNeighborAdvertisement(Pkt_804179A4 *arg0, u8 *arg1, u8 arg2, Sock_804179A4 *arg3, s16 arg4);
 s32 NetRegisterTimer(s32 period, s16 locked, NetTimerCallback fn);
@@ -2207,7 +2207,10 @@ s16 TLobby__sub_8040D510(Icmp6ErrorInfo *err, u8 *hdr, s16 len, s16 idx);
 
 struct O_80421938;
 s32 TLobby__sub_80421938(O_80421938 *, void *, void *, void *, s32);
-s32 TLobby__sub_804105E0(u8 *, u8 *, s16, s16);
+s16 TLobby__sub_804105E0(u8 *, u8 *, s16, s16);
+s16 TLobby__sub_80415D0C(NetPacket *, u8 *, NetIPv6SendParameters *, s16);
+s16 TLobby__sub_80410BA8(NetPacket *, NetIPv6SendParameters *, s16, void *);
+s16 TLobby__sub_80410A98(NetPacket *, u8 *, u8 *, Ipv6SendOptions *, s32);
 inline s16 process_options_header(u8 *p, s16 rem, u8 *ip, s16 m, s16 id) {
     s16 TLobby__sub_80410958(u8 *, s16, u8 *, s16, s16);
     s32 n;
@@ -2792,7 +2795,7 @@ extern G_80415B38 ipv6_neighbor_discovery_state;
 
 struct Arg2_80415B38 { u8 *addr; u8 *val; };
 typedef struct Ent_80418670 { u8 pad0[3]; u8 f3; u8 pad4[2]; s16 f6; u8 pad8[0xC]; u8 f14[0x10]; } Ent_80418670;
-s32 TLobby__sub_80411604(int, int, void *);
+s32 TLobby__sub_80411604(s16, int, void *);
 Ent_80418670 *NetIPv6SelectDefaultRouter(void *arg0);
 
 typedef struct Rtr_8041615C {
@@ -2964,7 +2967,7 @@ inline Peer_80416994 *ScanPeers_80416994(Glob_80416994 *g, void *name) {
     return hit;
 }
 
-s16 TLobby__sub_80417294(NetPacketFragment *, s32, u8 *, void *);
+s16 TLobby__sub_80417294(NetPacketFragment *, s32, u8 *, s16);
 
 /* Neighbour discovery option 3 (prefix information, 32 bytes): a router advertisement's on-link prefix. */
 typedef struct Ipv6NdPrefixInfoOption {
@@ -3112,7 +3115,6 @@ typedef char Layout_NetIcmpv6RouterSolicitation_header[offsetof(NetIcmpv6RouterS
 
 E_804184DC *NetIPv6FindOrSelectNeighborCacheEntry(u8 *, u8 *, s16);
 inline s32 notify_804182DC(E_804184DC *e) {
-    s16 TLobby__sub_80410BA8(NetPacket *, NetIPv6SendParameters *, s16, void *);
     NetPacket *nw;
     nw = TLobby::alloc_free_entry();
     if (nw == 0) {
@@ -3298,7 +3300,7 @@ s32 TLobby__sub_8040A0C0(s16, u8 *);
 s16 TLobby__sub_8040C340(D_8040A45C *, C_8040A45C *);
 s16 TUdpSocket__sub_8040E354(u8 *, u32, u8 *, s16, s16);
 s32 NetIPv6FindTargetLinkLayerAddressOption(u8 *, s32, u8 **, s16 *);
-s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *, u8 *, s16, s32, s32, s32);
+s16 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *, u8 *, s16, s32, s32, s16);
 }
 
 /* Option bits of LcpVals.mask (bit N = LCP option type N). */

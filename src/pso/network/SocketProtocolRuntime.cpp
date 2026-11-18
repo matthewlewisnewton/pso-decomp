@@ -88,7 +88,6 @@ s32 TLobby__sub_803F87C4(void *);
 void NetMemcpy(void *_w0, void *_w1, int _w2);
 s32 TLobby__sub_80420BD0(void *arg0, S_80420BD0 *s, s32 arg2);
 s32 TLobby__sub_80420D38(u16 arg0, u8 arg1);
-s16 dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(void *, void *, void *, s32, s32, int);
 s16 TLobby__sub_8040D8F0(void *, void *, int, void *, int);
 s16 select_source_address__6TLobbyFPvPv(void *, void *);
 s16 TLobby__sub_8040DA54(void *, void *);
@@ -647,7 +646,7 @@ s16 udp_sendto__6TLobbyFsPvPvPvUsi(s16 id, Pkt_80420FC8 *pkt, NetworkAddress *sr
     add_item_80420FC8(pkt, &e->sourcePort, 8);
     e->checksum = 0;
     e->checksum = TLobby__sub_8040D8F0(src, dst, 0x11, pkt, 1);
-    return dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(pkt, dst, src, arg5 + 4, arg5 + 4, 0x11);
+    return TLobby::dispatch_by_addr_family((NetPacket *)pkt, dst, src, (u8 *)(arg5 + 4), (void *)(arg5 + 4), 0x11);
 }
 #pragma pop
 

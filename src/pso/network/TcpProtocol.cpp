@@ -500,8 +500,6 @@ s32 close_if_open__6TLobbyFv(void *);
 void clear_position__6TLobbyFv(void *);
 u8 *alloc_free_entry__6TLobbyFv(void);
 
-s16 dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(NetPacket *, u8 *, u8 *, u8 *, u8 *, s32);
-
 s16 TLobby__sub_8041A9AC(void *connection);
 
 #pragma push
@@ -1137,7 +1135,8 @@ send:
             tp->snd_max = tp->snd_nxt + len;
         }
         {
-            s16 rc = dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(m, tp->remote, tp->local, tp->f2D6, tp->f2DC, 6);
+            s16 rc = TLobby::dispatch_by_addr_family(m, (NetworkAddress *)tp->remote, (NetworkAddress *)tp->local,
+                                                   tp->f2D6, tp->f2DC, 6);
             NetReleasePacket((NetPacket *)m);
             if (rc < 0) {
                 return rc;
@@ -1166,7 +1165,6 @@ send:
 
 s16 TLobby__sub_8041B3D4(u8 *dst, u8 *src, u16 src_port, u16 dst_port, s32 seq, s32 ack, u8 flags) {
     s16 TLobby__sub_8040DA54(u8 *arg0, u8 *arg1);
-    s16 dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(NetPacket *, u8 *, u8 *, u8 *, u8 *, s32);
     TcpHeader_8041B3D4 hdr;
     u8 wire[20];
     u8 opts[16];
@@ -1204,7 +1202,7 @@ s16 TLobby__sub_8041B3D4(u8 *dst, u8 *src, u16 src_port, u16 dst_port, s32 seq, 
     NetBufferRefInitKind1(&pkt->fragments[0].buffer, (s32)wire);
     hdr.checksum = TLobby__sub_8040D8F0(src, dst, 6, (u8 *)pkt, 1);
     NetMemcpy(wire + 16, &hdr.checksum, 2);
-    if (dispatch_by_addr_family__6TLobbyFlPUcPUcPUcPvPv(pkt, dst, src, opts + 4, opts + 4, 6) < 0) {
+    if (TLobby::dispatch_by_addr_family(pkt, (NetworkAddress *)dst, (NetworkAddress *)src, opts + 4, opts + 4, 6) < 0) {
         NetReleasePacket(pkt);
         return -1;
     }

@@ -58,8 +58,8 @@ s32 TLobby__sub_804112B8(s32 arg0, s32 arg1, s16 arg2) {
 #pragma opt_common_subs reset
 void TLobby__sub_80411334(void) {
     s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(u8 *, s16);
-    s32 NetIPv6SendRouterSolicitation(s16);
-    s32 TLobby__sub_80411604(s16, int, void *);
+    s16 NetIPv6SendRouterSolicitation(s16);
+
     Ipv6NdState *g = (Ipv6NdState *)&ipv6_address_routing_state;
     s16 i;
     s16 j;
@@ -158,14 +158,8 @@ void TLobby__sub_80411334(void) {
     }
 }
 
-// The original C definition promotes the short parameter at the call boundary.
-#pragma cplusplus off
-s32 TLobby__sub_80411604(id, n, pp)
-s16 id;
-int n;
-void *pp;
+s32 TLobby__sub_80411604(s16 id, int n, void *pp)
 {
-#pragma cplusplus on
   s16 TLobby__sub_8042325C(s16, s32, s32, s32 (*)(s32, s32, s32));
   s32 TLobby__sub_8041347C(u8 *src, s16 id, u8 *key, s16 a, s16 b, s16 c);
   s16 TLobby__sub_80412618(void *, s16);
@@ -513,7 +507,6 @@ extern s32 TLobby__sub_80412058(s16 id, u8 *self, s32 len, u8 *out) {
 }
 
 s16 TLobby__sub_80412210(s16 idx) {
-    s16 is_socket_flag_set__6TLobbyFs(s16);
     G_80412210 *g = ((G_80412210 *)&ipv6_address_routing_state);
     u8 d[16];
     u8 c[16];
@@ -590,7 +583,6 @@ s16 TLobby__sub_80412618(void *pi_arg, s16 idx)
   s16 TLobby__sub_80409D7C(s16, s32, s32, s32);
   s16 TLobby__sub_80409CE0(s16, s32, s32, s32);
   s16 NetCompareBitPrefix(u8 *, u8 *, s16);
-  s16 is_socket_flag_set__6TLobbyFs(s16);
   s16 TLobby__sub_8041347C(u8 *, s16, u8 *, s16, s16, s16);
     Ipv6NdPrefixEvent *pi = (Ipv6NdPrefixEvent *)pi_arg;
     Ipv6NdState *g = (Ipv6NdState *)&ipv6_address_routing_state;
@@ -771,7 +763,6 @@ s16 TLobby__sub_80412CA4(u8 *addr, s16 plen, s16 x, s16 idx, s32 y)
   s16 TLobby__sub_80409CE0(s16, s32, s32, s32);
   s16 NetCompareBitsBackward(u8 *, u8 *, s16);
   s16 NetIPv6GetAddressScopeClass(u8 *);
-  s16 is_socket_flag_set__6TLobbyFs(s16);
     Ipv6NdState *g = (Ipv6NdState *)&ipv6_address_routing_state;
     s16 *pn;
     Ipv6NdIface **pifs;
@@ -1031,7 +1022,7 @@ void TLobby__sub_804136AC(s16 i) {
     TLobby::is_slot_flag_0x20_set(i);
 }
 
-s32 TLobby__sub_804136CC(s16 i) {
+s16 TLobby__sub_804136CC(s16 i) {
     return is_socket_flag_set__6TLobbyFs(i);
 }
 
@@ -2286,7 +2277,7 @@ s16 TLobby__sub_80415D0C(NetPacket *pkt, u8 *nexthop, NetIPv6SendParameters *par
     E_804179A4 *NetIPv6FindOrSelectNeighborCacheEntry(void *, int, int);
     Q_804179A4 *NetIPv6SelectPendingPacketSlot(void);
     s16 NetIPv6SendMulticastNeighborProbe(u8 *entry);
-    s16 TLobby__sub_80410BA8(void *, void *, s16, void *);
+
     G_80415B38 *g = &ipv6_neighbor_discovery_state;
     E_804179A4 *e;
     Ent_80418670 *r;
@@ -2428,11 +2419,11 @@ s32 NetIPv6SendUnspecifiedSourceNeighborSolicitation(s32 arg0, s32 arg1) {
     return temp_r31;
 }
 
-s32 NetIPv6SendRouterSolicitation(s32 arg0) {
-    s16 TLobby__sub_804145D4(void *, void *);
+s16 NetIPv6SendRouterSolicitation(s16 arg0) {
+    s16 TLobby__sub_804145D4(u8 *, s16);
     u8 address[0x1C];
     u8 addr[0x10];
-    s32 temp_r31;
+    s16 temp_r31;
     u8 *free_entry;
 
     free_entry = (u8 *)(TLobby::alloc_free_entry());
@@ -2442,10 +2433,10 @@ s32 NetIPv6SendRouterSolicitation(s32 arg0) {
     *(s32 *)((s8 *)free_entry + 4) = 0;
     *(s32 *)((s8 *)free_entry + 8) = 0;
     init_ipv6_all_routers_multicast_address((u8 *)(address), (s8)(2));
-    if (TLobby__sub_804145D4((void *)addr, (void *)arg0) < 0) {
+    if (TLobby__sub_804145D4(addr, arg0) < 0) {
         NetMemset(addr, 0, 0x10);
     }
-    temp_r31 = NetIPv6EmitRouterSolicitation((NetPacket *)(free_entry), (NetIPv6SendParameters *)(addr), (s32)(arg0));
+    temp_r31 = NetIPv6EmitRouterSolicitation((NetPacket *)(free_entry), (NetIPv6SendParameters *)(addr), arg0);
     NetReleasePacket((NetPacket *)free_entry);
     return temp_r31;
 }
@@ -2597,7 +2588,7 @@ s16 NetIPv6HandleRedirect(NetPacket *pkt, u8 *src, void *arg2, s16 iface) {
     s16 NetIPv6IsLinkLocal(u8 *arg0);
     s16 NetIPv6IsMulticast(u8 *arg0);
     s16 NetIPv6ParseRedirectOptions(u8 *arg0, s32 n, u8 *arg2, s32 arg3, s16 *arg4, s16 arg5);
-    s32 TLobby__sub_80411604(s16, int, void *);
+
 
     frag = &pkt->fragments[1];
     optlen = sizeof(opts);
@@ -2753,10 +2744,10 @@ s32 NetIPv6FindTargetLinkLayerAddressOption(u8 *o, s32 len, u8 **out, s16 *outle
     return 0;
 }
 
-s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 arg3, s32 arg4, s32 id) {
-    s32 TLobby__sub_80410BA8(void *, void *, s32, void *);
-    s16 TLobby__sub_80413C0C(void *, s32);
-    s16 TLobby__sub_80413AA0(void *, s32);
+s16 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 arg3, s32 arg4, s16 id) {
+
+    s16 TLobby__sub_80413C0C(void *, s16);
+    s16 TLobby__sub_80413AA0(void *, s16);
     Arg_80416994 a;
     Arg_80416994 b;
     Glob_80416994 *g = (Glob_80416994 *)&ipv6_neighbor_discovery_state;
@@ -2810,7 +2801,7 @@ s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 
             e->flags = msg->flags;
             if (e->sub != 0) {
                 Pkt_80416994 *pkt = (Pkt_80416994 *)TLobby::alloc_free_entry();
-                s32 ret;
+                s16 ret;
                 if (pkt == 0) {
                     ret = -0x10E;
                 } else {
@@ -2819,7 +2810,7 @@ s32 NetIPv6ApplyNeighborAdvertisement(Msg_80416994 *msg, u8 *name, s16 len, s32 
                     pkt->items[pkt->n].port = e->sub->port;
                     NetBufferRefInitKind1((NetBufferRef *)pkt->items[pkt->n].val, e->sub->val);
                     pkt->n++;
-                    ret = TLobby__sub_80410BA8(pkt, e->sub->addr, e->f8, e->data);
+                    ret = TLobby__sub_80410BA8((NetPacket *)pkt, (NetIPv6SendParameters *)e->sub->addr, e->f8, e->data);
                     NetReleasePacket((NetPacket *)pkt);
                 }
                 e->sub->state = 0;
@@ -2951,7 +2942,7 @@ s16 TLobby__sub_80417028(IPv6NeighborSolicitation *ns, u8 *src, u8 *dst, s16 ifa
     s16 NetIPv6IsUnspecified(u8 *arg0);
     s16 TLobby__sub_80413C0C(u8 *, s16);
     s16 TLobby__sub_80413AA0(u8 *, s16);
-    s32 TLobby__sub_80411604(s16, int, void *);
+
     s16 NetIPv6IsMulticast(u8 *arg0);
 
     flags = 0;
@@ -2993,8 +2984,8 @@ s16 TLobby__sub_80417028(IPv6NeighborSolicitation *ns, u8 *src, u8 *dst, s16 ifa
     return r;
 }
 
-s16 NetIPv6HandleRouterAdvertisement(u8 *arg0, u8 *arg1, s32 arg2, void *arg3) {
-    s16 TLobby__sub_80417494(void *, u8 *, void *);
+s16 NetIPv6HandleRouterAdvertisement(u8 *arg0, u8 *arg1, s32 arg2, s16 arg3) {
+    s16 TLobby__sub_80417494(void *, u8 *, s16);
     u8 sp28[8];
     u8 sp18[16];
     u32 n;
@@ -3026,10 +3017,9 @@ s16 NetIPv6HandleRouterAdvertisement(u8 *arg0, u8 *arg1, s32 arg2, void *arg3) {
 }
 
 #pragma opt_propagation off
-extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *id)
+extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, s16 id)
 {
-  // Native C call boundary passes a promoted interface word; the callee stores its low 16 bits.
-  Ent_80416678 *TLobby__sub_804182DC(void *, void *, s16, s32);
+  Ent_80416678 *TLobby__sub_804182DC(void *, void *, s16, s16);
   u8 buf58[8];
   u8 *new_var3;
   Ipv6NdPrefixInfoOption prefix_opt;
@@ -3066,7 +3056,7 @@ extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *i
       case 1:
         new_var = len - 2;
         payload = p + 2;
-        TLobby__sub_804182DC(dst, payload, new_var, (s32)id)->flags |= 0x80;
+        TLobby__sub_804182DC(dst, payload, new_var, id)->flags |= 0x80;
         TLobby__sub_80406EB8(&self->buffer, len);
         break;
 
@@ -3080,7 +3070,7 @@ extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *i
         prefix_event.prefix_len = prefix_opt.prefix_len;
         prefix_event.preferred_lifetime = prefix_opt.preferred_lifetime;
         prefix_event.valid_lifetime = prefix_opt.valid_lifetime;
-        TLobby__sub_80411604((int) id, 2, &prefix_event);
+        TLobby__sub_80411604(id, 2, &prefix_event);
       }
         TLobby__sub_80406EB8(&self->buffer, len);
         break;
@@ -3092,7 +3082,7 @@ extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *i
         TLobby__sub_80406FD8(buf58, &self->buffer, 8);
         mtu_event.router = dst;
         mtu_event.mtu = mtu_opt.mtu;
-        TLobby__sub_80411604((int) id, 4, &mtu_event);
+        TLobby__sub_80411604(id, 4, &mtu_event);
       }
         TLobby__sub_80406EB8(&self->buffer, len);
         break;
@@ -3113,7 +3103,7 @@ extern s16 TLobby__sub_80417294(NetPacketFragment *self, s32 n, u8 *dst, void *i
 }
 
 s16 TLobby__sub_80417494(void *buf, u8 *a, s16 c) {
-    s32 TLobby__sub_80411604(s16, int, void *);
+
     G_80415B38 *g = &ipv6_neighbor_discovery_state;
     s16 *pc = &g->nc;
     Rtr_80418734 **pl = (Rtr_80418734 **)&g->c;
@@ -3185,8 +3175,8 @@ s16 TLobby__sub_80417494(void *buf, u8 *a, s16 c) {
 }
 
 #pragma opt_propagation reset
-s16 NetIPv6HandleRouterSolicitation(u8 *o, s32 arg1, s32 arg2, s32 arg3) {
-    s16 TLobby__sub_80417868(void *, u32, s32, s32);
+s16 NetIPv6HandleRouterSolicitation(u8 *o, s32 arg1, s32 arg2, s16 arg3) {
+    s16 TLobby__sub_80417868(void *, u32, s32, s16);
     u8 b[8];
     u8 a[8];
     s32 pad;
@@ -3262,9 +3252,8 @@ s16 NetIPv6SendNeighborAdvertisement(Pkt_804179A4 *arg0, u8 *address, u8 arg2, S
     E_804179A4 *e;
     void *p6;
     s32 TLobby__sub_80406FD8(void *, void *, int);
-    s16 TLobby__sub_80410BA8(void *, void *, s16, void *);
+
     s16 TLobby__sub_80411040(void *, void *, int, void *, int);
-    s32 TLobby__sub_80411604(int, int, void *);
     s16 TLobby__sub_804136AC(s16 arg0);
     s16 TLobby__sub_80413934(void *, s16);
     s16 TLobby__sub_804145D4(void *, s16);
@@ -3381,7 +3370,7 @@ done:
         }
     }
 tail:
-    return TLobby__sub_80410BA8(arg0, arg3, arg4, p6);
+    return TLobby__sub_80410BA8((NetPacket *)arg0, (NetIPv6SendParameters *)arg3, arg4, p6);
 }
 
 #pragma opt_propagation reset
@@ -3487,7 +3476,7 @@ s32 NetIPv6SendUnicastNeighborProbe(u8 *arg0) {
 s16 NetIPv6EmitNeighborSolicitation(NetPacket *net_packet, u8 *target, NetIPv6SendParameters *addr, s16 iface, u8 *link_address) {
     s16 NetIPv6IsMulticast(u8 *);
     s16 NetIPv6IsUnspecified(u8 *);
-    s16 TLobby__sub_80410BA8(NetPacket *, NetIPv6SendParameters *, s16, u8 *);
+
     NetIcmpv6NeighborSolicitation message;
     NetSourceLinkLayerOption option;
     s16 result;
@@ -3533,9 +3522,8 @@ s16 NetIPv6EmitNeighborSolicitation(NetPacket *net_packet, u8 *target, NetIPv6Se
 
 #pragma push
 #pragma optimization_level 3
-s32 NetIPv6EmitRouterSolicitation(NetPacket *net_packet, NetIPv6SendParameters *addr, s32 arg2) {
-    s32 TLobby__sub_80410BA8(NetPacket *, NetIPv6SendParameters *, s32, void *);
-    s16 NetIPv6GetInterfaceLinkLayerAddress(s32, s16, s32);
+s16 NetIPv6EmitRouterSolicitation(NetPacket *net_packet, NetIPv6SendParameters *addr, s16 arg2) {
+
     s16 NetIPv6IsMulticast(u8 *);
     s16 NetIPv6IsUnspecified(u8 *);
     NetIcmpv6RouterSolicitation message;
@@ -4156,11 +4144,10 @@ void TLobby::update_timeout_entries() {
 
 s16 TLobby__sub_80419374(E_80419258 *e) {
     IcmpError_80419374 v4;
-    IcmpError_80419374 v6;
+    Icmp6ErrorInfo v6;
     u8 *data;
     u16 len;
     s16 TUdpSocket__sub_8040CE58(IcmpError_80419374 *icmp, u8 *data, s16 len, s16 id);
-    s16 TLobby__sub_8040D510(IcmpError_80419374 *icmp, u8 *data, s16 len, s16 id);
 
     if (e->list == NULL) {
         return 0;
@@ -4182,7 +4169,7 @@ s16 TLobby__sub_80419374(E_80419258 *e) {
     case 6:
         v6.type = 3;
         v6.code = 1;
-        v6.unused = 0;
+        v6.pointer = 0;
         return TLobby__sub_8040D510(&v6, data, len, e->f24);
     }
     return -1;

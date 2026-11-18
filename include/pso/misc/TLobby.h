@@ -10,6 +10,7 @@
 
 struct TItemList;
 struct NetPacket;
+struct NetworkAddress;
 
 struct TLobbyFloorItemEntry {
     u8 n;
@@ -612,7 +613,8 @@ struct TLobby : public TObject {
     static s32 clear_all_used_records();
     static void tick_connection_timeouts();
     static void complete_pending_request(s16 id);
-    static s32 dispatch_by_addr_family(s32 arg0, u8 *arg1, u8 *arg2, u8 *arg3, void *arg4, void *arg5);
+    static s16 dispatch_by_addr_family(NetPacket *packet, NetworkAddress *dst, NetworkAddress *src,
+                                       u8 *ipv4_options, void *ipv6_options, s32 protocol);
     static s32 init_ipv4_interfaces();
     static u16 calc_pseudo_header_checksum(s32 src, s32 dst, s8 proto, void *pkt, s16 flag);
     static s32 is_lookup_found(u32 arg0, u32 arg1);
