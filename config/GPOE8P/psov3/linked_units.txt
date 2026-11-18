@@ -586,6 +586,7 @@ pso/enemy/TUnk_804909C4.cpp
 pso/item/ChallengeForceLoadouts.cpp
 pso/item/ChallengeHunterLoadouts.cpp
 pso/item/ChallengeRangerLoadouts.cpp
+pso/item/ReverseTechSceneHooks.cpp
 pso/item/SRankSlicerWeapons.cpp
 pso/item/SpecialProjectileWeapons.cpp
 pso/item/TItem.cpp
