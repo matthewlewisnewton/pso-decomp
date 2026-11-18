@@ -336,7 +336,6 @@ void TAdPlayerLoadGC::update_card_rename(s32 card_channel) {
 // results and before restoring the disk ID. Keep those reads at their boundaries.
 #pragma push
 #pragma inline_depth(2)
-#pragma auto_inline off
 #pragma dont_inline off
 inline s32 read_card_channel(s32 index) {
     return *static_cast<volatile s32 *>(&lbl_805A29B0[index].state);
@@ -470,7 +469,6 @@ void TAdPlayerLoadGC__sub_803F2240(s32 arg0) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 void TAdPlayerLoadGC__sub_803F2610(s32 arg0) {
     CardChannel card_channel;
@@ -535,7 +533,6 @@ void TAdPlayerLoadGC__sub_803F2610(s32 arg0) {
 
 #pragma push
 #pragma opt_propagation off
-#pragma opt_lifetimes on
 void TRKSuppAccessFile(s32 arg0) {
     CardChannel card_channel;
     card_channel.value = read_card_channel(arg0);
@@ -585,7 +582,6 @@ void TRKSuppAccessFile(s32 arg0) {
 
 #pragma push
 #pragma opt_propagation off
-#pragma opt_lifetimes on
 void TAdPlayerLoadGC__sub_803F2A4C(s32 arg0) {
     CardChannel card_channel;
     card_channel.value = read_card_channel(arg0);
@@ -752,7 +748,6 @@ extern s32 lbl_805E10E8;
 // stack/register allocation and the generated command-table branch targets.
 #pragma push
 #pragma opt_strength_reduction off
-#pragma opt_propagation on
 s32 TAdPlayerLoadGC__sub_803F2F1C(void) {
     s32 channel;
     s32 result;

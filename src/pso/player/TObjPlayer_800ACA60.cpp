@@ -1174,9 +1174,6 @@ void TObjEneMoja::vfunc_59() {
 #pragma dont_inline off
 #pragma inline_depth(1)
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(1)
 void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self) {
     f32 ticks;
     f32 dist;
@@ -1253,7 +1250,6 @@ void update_appearance_drop__11TObjEneMojaFv(Moja_800AE450 *self) {
         break;
     }
 }
-#pragma pop
 
 void update_appearance_jump__11TObjEneMojaFv(Moja_800AE7F4 *self) {
     Vec_800AE7F4 off;

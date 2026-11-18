@@ -193,13 +193,10 @@ void calc_cursor_step__19TWindowKeyBoardSoftFiPvPv(TWindowKeyBoardSoft *arg0, s3
     }
 }
 
-#pragma push
-#pragma fp_contract on
 s32 TWindowKeyBoardSoft::sub_802605DC() {
     s32 idx = calc_key_index__19TWindowKeyBoardSoftFiii(this, (s32)(((Win_802605DC *)this)->f65), (s32)(((Win_802605DC *)this)->f66));
     return idx + ((s8 *)TWindowKeyBoardSoft__data_8044F124)[((u8 *)&TWindowKeyBoardSoft__data_804CB7C8)[idx]];
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on
@@ -216,15 +213,11 @@ f32 calc_key_x__19TWindowKeyBoardSoftFiii(TWindowKeyBoardSoft *arg0, s32 arg1, s
 }
 #pragma pop
 
-#pragma push
-#pragma fp_contract on
 s32 calc_key_index__19TWindowKeyBoardSoftFiii(TWindowKeyBoardSoft *arg1, s32 arg2, s32 arg3) {
     return arg2 + (arg3 * 0x10);
 }
-#pragma pop
 
 #pragma push
-#pragma fp_contract on
 #pragma fp_contract on
 f32 TWindowKeyBoardSoft__sub_802606E0(TWindowKeyBoardSoft *) {
     return -((0.5f * (f32) (*(u8 *)((s8 *)TWindowKeyBoardSoft__language_text_resources + 0) * *(u8 *)((s8 *)TWindowKeyBoardSoft__language_text_resources + 1))) - 153.0f);
@@ -232,7 +225,6 @@ f32 TWindowKeyBoardSoft__sub_802606E0(TWindowKeyBoardSoft *) {
 #pragma pop
 
 #pragma push
-#pragma fp_contract on
 #pragma fp_contract on
 f32 TWindowKeyBoardSoft::calc_key_coord(s32 arg0, s32 arg1) {
     return (19.0f * (f32) arg1) + 1.0f;
@@ -285,8 +277,6 @@ void TWindowKeyBoardSoft__sub_80260760(void *self, s32 key, s32 *count, u32 *col
     }
 }
 
-#pragma push
-#pragma fp_contract on
 void TWindowKeyBoardSoft::sub_80260808(s32 arg1) {
     s32 temp_r5;
     temp_r5 = arg1 * 0x50;
@@ -296,7 +286,6 @@ void TWindowKeyBoardSoft::sub_80260808(s32 arg1) {
         ((TWindowKeyBoardSoft *)(*(u32 *)((s8 *)((u8 *)this) + 0x6C)))->handle_backspace();
     }
 }
-#pragma pop
 
 typedef char RecoveredGlobal_8026088C_lbl_8050E208_size[sizeof(RecoveredGlobal_8026088C_lbl_8050E208) == 0x1B0 ? 1 : -1];
 typedef char RecoveredFields_8026088C_arg0_60_offset[offsetof(RecoveredFields_8026088C_arg0, field_60) == 0x60 ? 1 : -1];
@@ -493,8 +482,6 @@ void TWindowKeyBoardSoft__sub_80261134(void *self) {
     ((TWindowKeyBoardSoft *)self)->update_focus_flags();
 }
 
-#pragma push
-#pragma fp_contract on
 void TWindowKeyBoardSoft::update_focus_flags() {
     void *temp_r3;
     void *temp_r3_2;
@@ -519,10 +506,7 @@ void TWindowKeyBoardSoft::update_focus_flags() {
     temp_r3_2 = *(void **)((s8 *)this + 0x6C);
     *(s32 *)((s8 *)temp_r3_2 + 0xB4) = (s32) (*(s32 *)((s8 *)temp_r3_2 + 0xB4) | 0x40);
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 void TWindowKeyBoardSoft::handle_page_cycle_input(s32 arg1) {
     s32 spC;
     s32 sp8;
@@ -548,7 +532,6 @@ void TWindowKeyBoardSoft::handle_page_cycle_input(s32 arg1) {
         this->update_focus_flags();
     }
 }
-#pragma pop
 
 void TKeyBoardControl::close() {
     void *temp_r3;
@@ -1004,8 +987,6 @@ void TWindowKeyBoardSoft::run_task() {
 }
 
 }
-
-#pragma fp_contract off
 
 extern "C" {
 s32 get_window_layout_position(int);

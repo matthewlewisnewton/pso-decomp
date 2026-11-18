@@ -361,8 +361,6 @@ extern const f32 lbl_805D8B7C;
 extern const f32 lbl_805D8B80;
 extern s32 tl_04;
 
-#pragma push
-#pragma fp_contract on
 struct Cam_800531C8 { u8 pad[0x178]; Vec_80053E40 pos; };
 
 extern "C" {
@@ -665,7 +663,6 @@ void TBoss4Type1::sub_800525AC() {
         set_state(1);
     }
 }
-#pragma pop
 
 void TBoss4Type1::sub_800528B8() {
     if ((s32) *(s32 *)((s8 *)this + 0x398) == 0) {
@@ -1708,8 +1705,6 @@ s32 TBoss4Type1::create(s32 arg0) {
     return (s32)new TBoss4Type1(new TObjControl((TObject *)tl_04), (s32 *)arg0);
 }
 
-#pragma push
-#pragma opt_loop_invariants off
 TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     s32 i;
     s32 j;
@@ -1758,5 +1753,4 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     hp_ratio = lbl_805D8B18;
     set_state(0);
 }
-#pragma pop
 }

@@ -54,14 +54,14 @@ void TLobby::run_frame() {
     ((TObject *)tl_camera)->run_tasks();
     ((TObject *)tl_07)->run_tasks();
     ((TObject *)tl_particle)->run_tasks();
-    if ((TLoadCtrl__sub_800F9F00() != 0U) && (all_parents_unqueued_for_destruction__7TObjectFv() != 0)) {
+    if ((TLoadCtrl__sub_800F9F00() != NULL) && (all_parents_unqueued_for_destruction__7TObjectFv() != 0)) {
         ((TObject *)tl_fade)->run_tasks();
     }
     set_depth_buffer_settings_1();
     ((TObject *)tl_su)->render_nodes();
     ((TObject *)tl_07)->render_nodes();
     ((TObject *)tl_particle)->render_nodes();
-    if ((TLoadCtrl__sub_800F9F00() != 0U) && (all_parents_unqueued_for_destruction__7TObjectFv() != 0)) {
+    if ((TLoadCtrl__sub_800F9F00() != NULL) && (all_parents_unqueued_for_destruction__7TObjectFv() != 0)) {
         ((TObject *)tl_fade)->render_nodes();
     }
     ((TObject *)tl_su)->debug_render();

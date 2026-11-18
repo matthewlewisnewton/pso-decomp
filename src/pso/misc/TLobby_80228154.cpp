@@ -509,8 +509,6 @@ void TLobby::set_area(s32 arg1) {
     *(s32 *)((s8 *)this + 0x18) = get_floor_map_terrain(*(s32 *)&this->m_next);
 }
 
-#pragma push
-#pragma fp_contract on
 s32 select_area_entrance(void *arg0) {
     s32 temp_r0;
     s32 temp_r3;
@@ -536,7 +534,6 @@ s32 select_area_entrance(void *arg0) {
     }
     return (temp_r0 < 0) ? 0 : 4;
 }
-#pragma pop
 
 typedef char RecoveredGlobal_80228634_lbl_804CBE98_size[sizeof(RecoveredGlobal_80228634_lbl_804CBE98) == 0x1B0 ? 1 : -1];
 void run_area_scene_cleanup(u8 *arg0) {

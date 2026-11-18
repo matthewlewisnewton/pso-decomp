@@ -149,9 +149,6 @@ void TObjPlayer::setup_vtx_desc() {
     TObjPlayer::setup_tex_gen();
 }
 
-#pragma push
-#pragma scheduling off
-
 s32 TObjPlayer::setup_color_channels(int arg0) {
     GXSetNumChans(arg0);
     GXSetChanCtrl(4, 0, 0, 1, 0, 0, 2);
@@ -161,25 +158,15 @@ s32 TObjPlayer::setup_color_channels(int arg0) {
 }
 
 s32 TObjPlayer__sub_803E24E0(void) { return apply_cached_blend_mode(0x0); }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 s32 TObjPlayer::apply_blend_mode_1() { return apply_cached_blend_mode(0x1); }
-#pragma pop
 
-#pragma push
-#pragma scheduling off
 void TObjPlayer::set_tev_passclr() {
     GXSetNumTevStages((void *)(1));
     GXSetTevOrder(0, 0xFF, 0xFF, 4);
     GXSetTevOp(0, 4);
 }
-#pragma pop
 
-#pragma push
-#pragma peephole off
-#pragma scheduling off
 void set_tev_stage_mode(s32 arg0) {
     s32 temp_r31 = arg0;
     GXSetNumTevStages((void *) ((u8) temp_r31));
@@ -197,19 +184,14 @@ void set_tev_stage_mode(s32 arg0) {
         return;
     }
 }
-#pragma pop
 
 #pragma push
-#pragma scheduling off
 extern "C" {
 s32 TObjPlayer::set_num_tex_gens_zero() { return GXSetNumTexGens(0x0); }
-#pragma push
-#pragma scheduling off
 void TObjPlayer::setup_tex_gen() {
     GXSetNumTexGens((s32)(1U));
     GXSetTexCoordGen2(0, 1, 4, 0x3C, 0, 0x7D);
 }
-#pragma pop
 
 #pragma push
 #pragma dont_inline off

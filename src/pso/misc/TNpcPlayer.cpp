@@ -2805,8 +2805,6 @@ void TNpcPlayer::update_condition_flags() {
     }
 }
 
-#pragma push
-#pragma fp_contract on
 void partner_observe_surroundings(TNpcPlayer *npc_player) {
     f32 temp_f3;
     s32 temp_r3_2;
@@ -2863,7 +2861,6 @@ void partner_observe_surroundings(TNpcPlayer *npc_player) {
         *(u8 *)((s8 *)npc_player + 0x8D) = 0U;
     }
 }
-#pragma pop
 
 #pragma push
 #pragma fp_contract on
@@ -3003,7 +3000,6 @@ void select_path_waypoint__10TNpcPlayerFv(Self_801501A0 *self) {
 
 #pragma push
 #pragma opt_common_subs off
-#pragma opt_propagation off
 s32 needs_movement__10TNpcPlayerFPvPvi(u8 *arg0, void * _w1, int _w2) {
     f32 temp_f1;
     f32 var_f31;
@@ -3038,8 +3034,6 @@ void TNpcPlayer::init_follow_target() {
 
 void TNpcPlayer::render() {  }
 
-#pragma push
-#pragma fp_contract on
 s32 TNpcPlayer::check_movement_progress() {
     u8 *arg0 = (u8 *)this;
     s8 temp_r3;
@@ -3064,7 +3058,6 @@ s32 TNpcPlayer::check_movement_progress() {
     }
     return 1;
 }
-#pragma pop
 
 s32 partner_view_check_moved(u8 *arg0) {
     Stack_8014FEAC stack;
@@ -3260,8 +3253,6 @@ Npc_8014F844 *init_ai_state__10TNpcPlayerFPvi(Npc_8014F844 *self, s32 id) {
     return self;
 }
 
-#pragma push
-#pragma fp_contract on
 s32 refresh_npc_view_actor_lost(void *arg0) {
     u32 v;
     *(u32 *)((s8 *)arg0 + 0x94) = (u32)get_player_by_client_id(*(u16 *)((s8 *)arg0 + 0x8A));
@@ -3271,7 +3262,6 @@ s32 refresh_npc_view_actor_lost(void *arg0) {
     }
     return (u32) __cntlzw(((TObject *)v)->all_parents_unqueued_for_destruction()) >> 5;
 }
-#pragma pop
 
 void *TNpcPlayer::dt(s16 arg1) {
     if (this != NULL) {

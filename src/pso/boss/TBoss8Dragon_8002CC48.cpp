@@ -781,16 +781,10 @@ f32 apply_velocity_scale(Vec *v, f32 farg0, f32 farg1) {
     return var_f31;
 }
 
-#pragma push
-#pragma fp_contract on
 f32 lerp__9TDeadSpotFff(f32 farg0, f32 farg1) {
     return ((farg1 - farg0) * ((3.0517578125e-05f) * (f32) rand())) + farg0;
 }
-#pragma pop
 
-#pragma push
-#pragma fp_contract on
 f32 rand_signed_unit(void) {
     return (2.0f) * (((3.0517578125e-05f) * (f32) rand()) - (0.5f));
 }
-#pragma pop
