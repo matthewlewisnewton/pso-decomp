@@ -292,12 +292,18 @@ complete:
     return -1;
 }
 
+#pragma push
+#pragma dont_inline off
+#pragma inline_depth(4)
+static inline u32 reassembly_length(const TcpReasmRange &range) {
+    return (u32)range.end - (u32)range.start;
+}
+
 void TLobby__sub_8041F66C(TcpTcb *o) {
     s16 i;
     s16 cnt;
     s16 j;
     s32 d;
-    u8 unused[8];
     if (o->reasm_n == -1) {
         return;
     }
@@ -324,7 +330,7 @@ void TLobby__sub_8041F66C(TcpTcb *o) {
     }
     o->reasm_n -= cnt;
     for (j = 0; j < cnt; j++) {
-        o->reasm_total -= o->reasm[j].end - o->reasm[j].start;
+        o->reasm_total -= reassembly_length(o->reasm[j]);
     }
     for (j = 0; j <= o->reasm_n; j++) {
         o->reasm[j] = o->reasm[j + cnt];
@@ -336,17 +342,12 @@ void TLobby__sub_8041F66C(TcpTcb *o) {
     }
 }
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline void sack_remove_8041F914(TcpTcb *o, s16 idx) {
     s16 j;
-    s32 len;
     if (idx < 0 || o->reasm_n < 0 || idx > o->reasm_n) {
         return;
     }
-    len = o->reasm[idx].end - o->reasm[idx].start;
-    o->reasm_total -= len;
+    o->reasm_total -= reassembly_length(o->reasm[idx]);
     for (j = idx; j < o->reasm_n; j++) {
         o->reasm[j] = o->reasm[j + 1];
     }
