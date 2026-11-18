@@ -166,10 +166,10 @@ the generated file counts each `asm` line and its `orig_asm` include separately.
 | Category | Hits | Files / units |
 |---|---:|---:|
 | Assembly (`asm` + `orig_asm` include) | 48 source lines | 12 |
-| MWCC intrinsics | 91 | 57 |
+| MWCC intrinsics | 95 | 59 |
 | Direct hardware access (GX FIFO `0xCC008000` etc.) | 69 | 13 |
-| CodeWarrior pragmas (excluding push/pop) | 5,884 | 890 |
-| Per-unit compiler overrides in `configure.py` | 215 | 215 |
+| CodeWarrior pragmas (excluding push/pop) | 5,892 | 892 |
+| Per-unit compiler overrides in `configure.py` | 217 | 217 |
 | Approved regressions | 0 | 0 |
 
 ## Rule for assembly
@@ -909,6 +909,15 @@ ordinary C++ coordinates directly and omit the object alignment override.
 alignment, which would move the pool four bytes forward. The existing alignment
 tool records four-byte alignment in ELF and the CodeWarrior comment section.
 Ports can use the C++ definitions with their compiler's normal alignment.
+
+### Camera controller constant alignment
+
+`pso/misc/CameraControllerConstants.cpp` uses `cw_align: .sdata2=4` to
+place its floats at `0x805D8F7C`, where GC/2.0's default eight-byte
+section alignment would shift the pool. The following camera pool starts
+on an eight-byte boundary and the linker supplies the four-byte zero tail
+after `lbl_805D8FA0`. Ports can compile the ordinary float definitions
+with their compiler's default alignment.
 
 ### Time setting and calendar startup
 

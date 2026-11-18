@@ -831,6 +831,7 @@ pso/menu/TChCrEffWall.cpp
 pso/menu/TChCrLoadGmNjReq.cpp
 pso/menu/TObjTagChallenge.cpp
 pso/menu/TQuestBgmCtrl.cpp
+pso/misc/CameraControllerConstants.cpp
 pso/misc/CameraDistanceFade.cpp
 pso/misc/ChallengeMode.cpp
 pso/misc/CharacterAppearanceTables.cpp
