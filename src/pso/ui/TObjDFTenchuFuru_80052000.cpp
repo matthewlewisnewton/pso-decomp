@@ -1,3 +1,4 @@
+#include "pso/boss/DarkFalzEffectConstants.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/system/GinjaMaterial.h"
@@ -26,11 +27,6 @@ extern u8 *camera_ctrl_instance;
 extern const f32 lbl_805D8A30;
 extern const f32 lbl_805D8A34;
 extern const f32 lbl_805D8A5C;
-extern const f32 lbl_805D8AC4;
-extern const f32 lbl_805D8AC8;
-extern const f32 lbl_805D8ACC;
-extern const f32 lbl_805D8AD0;
-extern const f32 lbl_805D8AD4;
 s32 post_translate_matrix(void *);
 s32 TObjPlayer__sub_80052390();
 s32 push_matrix();
@@ -65,25 +61,25 @@ void TObjDFUsoTower::run_task() {
         subtract_vector(&v, &arg0->pos);
         v.y = lbl_805D8A30;
         d = vector_length(&v);
-        if (d <= lbl_805D8AC4) {
+        if (d <= df_uso_tower_fade_near_distance) {
             r = lbl_805D8A30;
-        } else if (d >= lbl_805D8AC8) {
+        } else if (d >= df_uso_tower_fade_far_distance) {
             r = lbl_805D8A34;
         } else {
-            r = (d - lbl_805D8AC4) / lbl_805D8A5C;
+            r = (d - df_uso_tower_fade_near_distance) / lbl_805D8A5C;
         }
-        arg0->f94 = lbl_805D8ACC * r;
+        arg0->f94 = df_uso_tower_initial_fade_scale * r;
         break;
     }
     case 1:
-        r = arg0->f94 + lbl_805D8AD0;
+        r = arg0->f94 + df_uso_tower_fade_in_step;
         arg0->f94 = r;
         if (r > lbl_805D8A34) {
             arg0->f94 = lbl_805D8A34;
         }
         break;
     case 2:
-        r = arg0->f94 + lbl_805D8AD4;
+        r = arg0->f94 + df_uso_tower_fade_out_step;
         arg0->f94 = r;
         if (r < lbl_805D8A30) {
             arg0->f94 = lbl_805D8A30;

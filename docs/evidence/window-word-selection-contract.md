@@ -10,7 +10,7 @@ changing binary behavior.
 This follows continuation `55036c5e414961a678e2631e556a913a223d8345`, focused
 `37ed8308f9df0e8ff4426bcc187f378f337a2cbc` and unchanged main
 `e65f11ce6ec99c006909422f81da1c0a46ac062e`. The separate
-[Parts provenance audit](window-parts-control-provenance-audit.md) establishes no
+[Parts provenance audit](https://github.com/matthewlewisnewton/pso-decomp/blob/9fa510f9c9388f5c149b4bc25be931150663e1d0/docs/evidence/window-parts-control-provenance-audit.md) establishes no
 independent justification for its compiler control; that lane remains held.
 
 ## Definition and original callers

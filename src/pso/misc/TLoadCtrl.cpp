@@ -5,6 +5,8 @@
 #include "pso/misc/TCameraCtrl.h"
 #include "pso/misc/TKeyBoardControl.h"
 #include "pso/misc/TLobby.h"
+#include "pso/misc/TNowLoading.h"
+#include "pso/system/vector.h"
 
 struct Base_8001C8B8_8001C61C { char pad[0x18]; };
 struct VObj_8001C8B8_8001C61C : Base_8001C8B8_8001C61C {
@@ -17,8 +19,6 @@ struct RecoveredGlobal_8001C828___vt__9TLoadCtrl {
 };
 
 struct RecoveredGlobal_8001C7A0___vt__9TLoadCtrl { s32 value; u8 remaining[0x14]; };
-
-struct Vec_8001C620 { s32 x, y, z; };
 
 struct Obj_8001C620 { u8 pad[0x1C]; s32 f1c; s32 f20; };
 
@@ -47,7 +47,6 @@ void fn_8034AD2C(void);
 extern s32 lbl_80515BA0[];
 extern s32 tl_su;
 extern s32 tl_camera;
-s32 TNowLoading__ct(s32, void *, void *);
 void set_active_camera_pose(u8 *arg0, u8 *arg1);
 s32 activate_camera_mode(s32 arg0);
 }
@@ -55,9 +54,8 @@ void update_sound_request_slots(void);
 extern "C" {
 s32 TAdLoadQuestGC__ct(s32, void *);
 s32 __ct__14TAdFloorLoadGCFP7TObjectPv(s32, void *, int);
-extern u8 lbl_804349CC[];
-extern Vec_8001C620 lbl_804349D8;
-extern Vec_8001C620 lbl_804349E4;
+extern const char TLoadCtrl__class_name_string[] = "TLoadCtrl";
+static const Vec now_loading_position = {0.0f, 0.0f, -100.0f};
 void TAdLoadQuestGC__sub_8030984C(void);
 void TNowLoading__sub_8001D4D0(void);
 void fn_8034AD28(void);
@@ -73,6 +71,11 @@ extern void *camera_ctrl_instance;
 
 typedef char RecoveredGlobal_8001C828___vt__9TLoadCtrl_size[sizeof(RecoveredGlobal_8001C828___vt__9TLoadCtrl) == 0x18 ? 1 : -1];
 
+// Keep the three initializer addresses independent in the native object.
+#ifdef __MWERKS__
+#pragma push
+#pragma pool_data off
+#endif
 void TLoadCtrl::run_task() {
     Obj_8001C620 *self = (Obj_8001C620 *)this;
     s32 o;
@@ -85,7 +88,7 @@ void TLoadCtrl::run_task() {
             case 0:
                 o = __nw__7TObjectFUl(0x3C);
                 if ((u32)o != 0) {
-                    TNowLoading__ct(o, self, lbl_804349CC);
+                    TNowLoading__ct(reinterpret_cast<TNowLoading_8001D3A8 *>(o), self, &now_loading_position);
                 }
                 break;
             case 1:
@@ -115,12 +118,16 @@ void TLoadCtrl::run_task() {
             TKeyBoardControl::update_input_frame();
         }
         update_sound_request_slots();
-        Vec_8001C620 a = lbl_804349D8;
-        Vec_8001C620 b = lbl_804349E4;
+        Vec camera_position = {0.0f, 0.0f, 0.0f};
+        Vec camera_direction = {0.0f, 0.0f, -1.0f};
         activate_camera_mode(9);
-        set_active_camera_pose((u8 *)&a, (u8 *)&b);
+        set_active_camera_pose((u8 *)&camera_position, (u8 *)&camera_direction);
     }
 }
+
+#ifdef __MWERKS__
+#pragma pop
+#endif
 
 u8 *__dt__9TLoadCtrlFv(u8 *arg0, s16 arg1) {
     if (arg0 != NULL) {

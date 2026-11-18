@@ -1,3 +1,4 @@
+#include "libc/ctype.h"
 #include "pso/map/WallQuery.h"
 #include "pso/math/ScratchVectorStorage.h"
 #include "types.h"
@@ -11,11 +12,6 @@
 #pragma auto_inline off
 #pragma dont_inline off
 struct ByteBlock_C { u8 bytes[0xc]; };
-
-struct RecoveredGlobal_800790F0_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
 
 
 
@@ -137,7 +133,6 @@ struct Wall_8007A138 {
     u32 flags;
 };
 
-extern RecoveredGlobal_800790F0_lbl_804F5800 lbl_804F5800;
 extern "C" {
 s32 csn_query_hit_count;
 f32 csn_query_nearest_hit_t;
@@ -189,9 +184,8 @@ f32 vector_length(void *);
 Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b, u32 mask);
 s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *e, Vec_8007A138 *d, f32 radius, f32 hsq, f32 inv);
 
-typedef char RecoveredGlobal_800790F0_lbl_804F5800_size[sizeof(RecoveredGlobal_800790F0_lbl_804F5800) == 0x100 ? 1 : -1];
 s32 get_csn_group_flags(u8 arg0) {
-    return *(u8 *)((s8 *)((u8 *)&lbl_804F5800.value + arg0) + 0) & 0xC0;
+    return __ctype_map[arg0] & __letter;
 }
 
 void TObjPlayer__sub_80079108(void) {  }

@@ -1,3 +1,4 @@
+#include "pso/boss/DragonTailCraterConstants.h"
 #include "pso/system/CurrentTextureList.h"
 #include "types.h"
 #include "pso/boss/TBoss8Dragon_800BC53C.h"
@@ -103,8 +104,6 @@ extern s32 __vt__15TObjBoss1Crater[];
 extern Crater_8002C544 *TObjBoss1Crater__instance_list[];
 extern s32 TObjBoss1Crater__name;
 extern s32 TObjBoss1Crater__instance_count;
-extern const f32 lbl_805D8160;
-extern const f32 lbl_805D8164;
 Crater_8002C544 *TObjBoss1Crater__ct(Crater_8002C544 *self, void *arg1, void *arg2, void *arg3);
 f32 TBoss1Dragon__sub_80027634(u32);
 s32 TObjBoss1Crater__sub_8002C7E4(void *);
@@ -217,8 +216,8 @@ Crater_8002C544 *TObjBoss1Crater__ct(Crater_8002C544 *self, void *arg1, void *ar
     self->f0 = TObjBoss1Crater__name;
     self->fA4->fC = r;
     VecCopy((Vec *)self->pos, (const Vec *)arg3);
-    r = lbl_805D8164 * (f32)rand();
-    self->f60 = (s32)(lbl_805D8160 * r);
+    r = dragon_crater_random_scale * (f32)rand();
+    self->f60 = (s32)(dragon_crater_yaw_units_per_turn * r);
     self->fB0 = create_particle_emitter(self->pos, 0x40, r);
     p = ::operator new(0x10);
     if (p != NULL) {

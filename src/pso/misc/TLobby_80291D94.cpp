@@ -23,21 +23,6 @@ struct RecoveredGlobal_80070ACC_lbl_8048D208 {
     u8 remaining[0x14];
 };
 
-struct RecoveredGlobal_8039994C_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
-struct RecoveredGlobal_80399904_lbl_804F5A00 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
-struct RecoveredGlobal_80399928_lbl_804F5900 {
-    s32 value;
-    u8 remaining[0xFC];
-};
-
 struct G_80070B34 { u8 pad[0x10]; s32 x10; };
 
 struct A_80291FC0 {
@@ -186,8 +171,6 @@ void TLobby::set_challenge_split_flag() {
     }
 }
 typedef char RecoveredGlobal_80070ACC_lbl_8048D208_size[sizeof(RecoveredGlobal_80070ACC_lbl_8048D208) == 0x18 ? 1 : -1];
-typedef char RecoveredGlobal_8039994C_lbl_804F5800_size[sizeof(RecoveredGlobal_8039994C_lbl_804F5800) == 0x100 ? 1 : -1];
-typedef char RecoveredGlobal_80399904_lbl_804F5A00_size[sizeof(RecoveredGlobal_80399904_lbl_804F5A00) == 0x100 ? 1 : -1];
 void TLobby__sub_80291DF8(s32 v) {
     if (((s32 (*)(void))is_challenge_mode_active)() != 0) {
         if (v < 0x3c || v > 0xe10) {
@@ -196,7 +179,6 @@ void TLobby__sub_80291DF8(s32 v) {
         (*(G_80070B34 *)&(*(RecoveredGlobal_80291DC0_lbl_804DB1F0 *)&lbl_804DB1F0)).x10 = mix_seed_checked__6TLobbyFi(v);
     }
 }
-typedef char RecoveredGlobal_80399928_lbl_804F5900_size[sizeof(RecoveredGlobal_80399928_lbl_804F5900) == 0x100 ? 1 : -1];
 
 }
 
