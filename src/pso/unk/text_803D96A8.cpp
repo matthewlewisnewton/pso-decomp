@@ -1,3 +1,6 @@
+#ifndef __MWERKS__
+#include <pso/port/VectorMathFallbacks.h>
+#endif
 #include "types.h"
 #include "pso/render/GinjaModelQueue.h"
 #include "pso/unk/text_803D96A8.h"
@@ -85,9 +88,15 @@ void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
 }
 #pragma pop
 
+#ifdef __MWERKS__
 asm f32 normalize_vector(Vec *v) {
 #include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"
 }
+#else
+f32 normalize_vector(Vec *v) {
+    return pso::port::normalize_vector(v);
+}
+#endif
 
 #pragma push
 #pragma scheduling off

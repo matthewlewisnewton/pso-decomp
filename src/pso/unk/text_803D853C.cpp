@@ -1,3 +1,6 @@
+#ifndef __MWERKS__
+#include <pso/port/VectorMathFallbacks.h>
+#endif
 #include "pso/render/DebugFont.h"
 #include "pso/unk/text_803D853C.h"
 #define PSO_SDK_COMPACT_MATH
@@ -209,9 +212,17 @@ void render_debug_text(u32 enabled) {
 #pragma pop
 extern "C" {
 
+#ifdef __MWERKS__
 asm void vec3_add_to(Vec *dst, const Vec *src) {
 #include "orig_asm/pso/unk/text_803D853C/vec3_add_to.inc"
 }
+#else
+void vec3_add_to(Vec *dst, const Vec *src) {
+    dst->x += src->x;
+    dst->y += src->y;
+    dst->z += src->z;
+}
+#endif
 
 #pragma push
 #pragma scheduling off
@@ -248,9 +259,15 @@ void get_current_matrix(void *m) {
 }
 #pragma pop
 
+#ifdef __MWERKS__
 asm f32 vec3_dot(const Vec *a, const Vec *b) {
 #include "orig_asm/pso/unk/text_803D853C/vec3_dot.inc"
 }
+#else
+f32 vec3_dot(const Vec *a, const Vec *b) {
+    return pso::port::vec3_dot(a, b);
+}
+#endif
 
 #pragma push
 #pragma scheduling off
@@ -265,9 +282,15 @@ void TObjPlayer::invert_matrix_in_place(u32 arg0) {
 }
 #pragma pop
 
+#ifdef __MWERKS__
 asm f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
 #include "orig_asm/pso/unk/text_803D853C/vec3_cross.inc"
 }
+#else
+f32 vec3_cross(const Vec *a, const Vec *b, Vec *out) {
+    return pso::port::vec3_cross(a, b, out);
+}
+#endif
 
 #pragma push
 #pragma scheduling off

@@ -1,3 +1,4 @@
+#ifdef __MWERKS__
 #include "types.h"
 #include "pso/unk/SharedMemory.h"
 
@@ -28,3 +29,56 @@ asm void LaunchDol(register LaunchDolContext *context) {
 }
 
 }
+#else
+#include <pso/port/LoaderTransfer.h>
+
+namespace pso { namespace port {
+bool step_loader_handoff(LoaderState& state, LoaderBackend& backend) {
+    switch (state.pc) {
+    case 0x8042E9ECu:
+        state.gpr[0] = backend.load_u32_be(uint32_t(state.gpr[26] + 0xE0u));
+        break;
+    case 0x8042E9F0u:
+        backend.synchronize_instructions();
+        break;
+    case 0x8042E9F4u:
+        state.lr = state.gpr[0];
+        break;
+    case 0x8042E9F8u:
+        state.pc = state.lr & ~uint32_t(3);
+        return true;
+    default:
+        return false;
+    }
+    state.pc += 4u;
+    return true;
+}
+
+bool step_loader_restore(LoaderState& state, LoaderBackend& backend) {
+    switch (state.pc) {
+    case 0x8042E9FCu: {
+        const uint32_t stack = state.gpr[1];
+        for (unsigned reg = 26; reg < 32; ++reg)
+            state.gpr[reg] = backend.load_u32_be(uint32_t(stack + 8u + (reg - 26u) * 4u));
+        break;
+    }
+    case 0x8042EA00u:
+        state.gpr[0] = backend.load_u32_be(uint32_t(state.gpr[1] + 0x24u));
+        break;
+    case 0x8042EA04u:
+        state.lr = state.gpr[0];
+        break;
+    case 0x8042EA08u:
+        state.gpr[1] = uint32_t(state.gpr[1] + 0x20u);
+        break;
+    case 0x8042EA0Cu:
+        state.pc = state.lr & ~uint32_t(3);
+        return true;
+    default:
+        return false;
+    }
+    state.pc += 4u;
+    return true;
+}
+} }
+#endif

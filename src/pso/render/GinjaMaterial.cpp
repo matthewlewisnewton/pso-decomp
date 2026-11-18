@@ -1,3 +1,4 @@
+#include "pso/system/GinjaParameterHandler.h"
 #include "pso/system/ModelDrawCallback.h"
 #include "pso/render/GinjaMaterialState.h"
 #include "pso/player/TObjPlayer_803E1A58.h"
@@ -386,7 +387,6 @@ void ginja_set_alpha_compare(s32 ref) {
 
 extern GinjaSceneState *current_render_context;
 // Each handler gets the parameter's value and the bits that changed (update_ginja_cached_parameter).
-typedef void (*GinjaParameterHandler)(u32 value, u32 changed);
 extern GinjaParameterHandler ginja_parameter_handlers[11];
 extern s32 material_alpha_compare_reference;
 
@@ -399,7 +399,12 @@ void apply_ginja_material_params(GinjaDrawRecord *record) {
     for (; count > 0; --count, ++parameter) {
         u32 changed = update_ginja_cached_parameter(parameter->kind, parameter->value);
         if (changed != 0) {
+#ifdef __MWERKS__
             ginja_parameter_handlers[parameter->kind](parameter->value, changed);
+#else
+            invoke_ginja_parameter_handler(ginja_parameter_handlers[parameter->kind],
+                                           parameter->kind, parameter->value, changed);
+#endif
         }
     }
     if ((u32)(ginja_draw_flags & 2) != 0) {

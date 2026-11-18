@@ -146,8 +146,6 @@
 
 // ---- TLobby_80104374.cpp
 
-struct In_8010440C { u8 pad0; u8 idx; };
-struct In_80104438 { u8 pad0; u8 idx; };
 
 extern "C" {
 extern int* item_sync_counter_table;
@@ -159,8 +157,6 @@ void send_6x25_equip_item(void *arg0, s32 arg1, s32 arg2);
 extern s32 local_client_id;
 extern s32 TLobby__designated_client_id;
 int get_item_field_6__10TObjPlayerFPv(void *p);
-void *TLobby__sub_8010440C(In_8010440C *arg0);
-void *get_weapon_factory_for_item(In_80104438 *arg0);
 s32 TItemDropSub__sub_80107B74();
 }
 
@@ -390,20 +386,20 @@ void TLobby::forward_message(s32 buf, u32 arg1) {
 void TLobby::mark_selected() { lobby_drop_flag = 1; }
 int TLobby::get_drop_flag() {  return lobby_drop_flag; }
 
-void *TLobby__sub_8010440C(In_8010440C *arg0) {
-    u8 i = arg0->idx;
+ItemCreateFunction TLobby__sub_8010440C(u8 *item) {
+    u8 i = item[1];
     if (i < 0x18) {
-        return item_tool_factory_table[i];
+        return (ItemCreateFunction)item_tool_factory_table[i];
     }
-    return (void *)TItemObject::create;
+    return (ItemCreateFunction)TItemObject::create;
 }
 
-void *get_weapon_factory_for_item(In_80104438 *arg0) {
-    u8 i = arg0->idx;
+ItemCreateFunction get_weapon_factory_for_item(u8 *item) {
+    u8 i = item[1];
     if (i < 0xAA) {
-        return weapon_factory_table[i];
+        return (ItemCreateFunction)weapon_factory_table[i];
     }
-    return (void *)create_common_weapon;
+    return (ItemCreateFunction)create_common_weapon;
 }
 
 void TLobby__sub_80104464(void) {  }
@@ -950,14 +946,13 @@ struct Obj_80105538 {
 
 extern "C" {
 // Item factories by item group (item[0]) and, for armor, by subgroup (item[1]).
-typedef TItem *(*Fn_8010542C)(u8 *item);
 TItem *TLobby__sub_801054E0(u8 *item);
-Fn_8010542C item_pro_create_fn_table[4] = {
+ItemCreateFunction item_pro_create_fn_table[4] = {
     0, TItemProArmor::create, TItemProShield::create, TItemProUnit::create,
 };
-Fn_8010542C item_create_fn_table[5] = {
-    (Fn_8010542C)create_weapon_for_item, TLobby__sub_801054E0, TItemMag::create, TItemObject::create_tool,
-    (Fn_8010542C)TItemMoney::create,
+ItemCreateFunction item_create_fn_table[5] = {
+    create_weapon_for_item, TLobby__sub_801054E0, TItemMag::create, TItemObject::create_tool,
+    (ItemCreateFunction)TItemMoney::create,
 };
 extern Entry_8010567C *quest_object_entries;
 int check_class_equip_permission(TObjPlayer *player, s32 perm);
@@ -1210,7 +1205,7 @@ u8 roll_weapon_special_channel15(u8 arg0) { return roll_weapon_special_for_stars
 
 TItem *construct_item(TItemData *data) {
     Item_8010542C *src = (Item_8010542C *)data;
-    Fn_8010542C fn;
+    ItemCreateFunction fn;
     if (src != 0) {
         Item_8010542C item = *src;
         ((TItemData *)&item)->decode_from_network();
@@ -1219,7 +1214,11 @@ TItem *construct_item(TItemData *data) {
                 fn = item_create_fn_table[*(u8 *)src];
                 if (fn != 0) {
                     observe_item_id(item.b.w[2]);
+#ifdef __MWERKS__
                     return fn((u8 *)&item);
+#else
+                    return invoke_item_factory(fn, (u8 *)&item, *(u8 *)src);
+#endif
                 }
             }
         }
