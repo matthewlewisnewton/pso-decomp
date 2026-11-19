@@ -37,6 +37,12 @@ The new upstream owners include the item archive loader, the small help font, Gi
 
 `great-merge/fork-docs` carries the fork documentation on this upstream master. The complete earlier integration snapshot remains on `great-merge/integration` while its remaining source groups and fork tooling are carried forward.
 
+## Working fork on upstream PR 326
+
+`great-merge/current/working-fork` combines the twenty native source components at `734e53187f` with the fork documentation under `fork/` and the fork's runnable tools. The source-only review branches continue to start from upstream master. The 94 changed tool paths, 14 host-port paths and one workflow match their versions on the earlier tooling branch. The original tool archive is included under `fork/tooling/original/`.
+
+The fork build reproduced the retail executable, and the fork's PR checker passed all 2,415 linked units and the generated linker retention check. All 26,872 required entries matched. Host portability checks passed normally and with address and undefined-behavior sanitizers. The polygon and sphere fixtures passed. Four fork test suites identify remaining source work. The BML model and texture accessor tests still require the shared typed interface across its callers. Three Dark Falz Zako fixtures depend on the corresponding cleanup, resource initialization and texture-slot sources. The full Python test run recorded 264 failed subtests and five errors across those four suites.
+
 ## Review queue on the previous master
 
 
