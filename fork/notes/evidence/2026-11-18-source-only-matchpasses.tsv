@@ -1,18 +1,19 @@
 original_group	source_review_branch	commit	changed_paths	validation
-radar-camera	great-merge/upstream/radar-camera	f1c660f6a15743ab27a79ebd061718e12fff4708	20	Upstream checks and retail SHA-1 passed
-quest-cache	great-merge/upstream/quest-cache	272b19d0b3a7372e83fc19da42cdcdc18065d932	7	Upstream checks and retail SHA-1 passed
-guild-card-chat	great-merge/upstream/guild-card-chat	5067a2b5c57b92689b29c9a865dc2db35a31d38f	82	Upstream checks and retail SHA-1 passed
-archive-lifecycle	great-merge/upstream/archive-lifecycle	6bf3c243158bb379625f486541b16dfb1bdd5080	14	Upstream checks and retail SHA-1 passed
-runtime-array-allocation	great-merge/upstream/runtime-array-allocation	b249bc3da7af7ba74a2f8e203fe3b85000bcd077	157	Upstream checks and retail SHA-1 passed
+radar-camera	great-merge/upstream/radar-camera	940a3997cdd7b499f89f4a699972180858956b84	20	Upstream checks and retail SHA-1 passed
+quest-cache	great-merge/upstream/quest-cache	368fb061e9335cc01a0c73fdd0f32c9b31ab71ec	7	Upstream checks and retail SHA-1 passed
+guild-card-chat	great-merge/upstream/guild-card-chat	9df0829de9b79eba7804e59f478f6569fa77932e	82	Upstream checks and retail SHA-1 passed
+archive-lifecycle	great-merge/upstream/archive-lifecycle	9b7141d61d53a1373bf49ac2f2c32c5ce33d2211	14	Upstream checks and retail SHA-1 passed
+runtime-array-allocation	great-merge/upstream/runtime-array-allocation	d69da2f8d4dd7c8ae428bb061801317d5ff83bce	157	Upstream checks and retail SHA-1 passed
 link-verification				Fork-only linker tooling
-window-lists	great-merge/upstream/window-lists	e67617ef5ef26601c571f363c51c846a0a00d5d9	55	Upstream checks and retail SHA-1 passed
-result-windows	great-merge/upstream/result-windows	5b85cae0d983a1eba22574a1c2ef45a95480d03b	51	Upstream checks and retail SHA-1 passed
-texture-strips	great-merge/upstream/texture-strips	2e3eb391020607a2a50283827045b2acd1cfb6bd	33	Upstream checks and retail SHA-1 passed
-raft-encounters	great-merge/upstream/raft-encounters	680b1b44a21b5b252983c52ffa23e6aa274ed1f9	21	Upstream checks and retail SHA-1 passed
-player-techniques	great-merge/upstream/player-techniques	136c85e73de85fea9767697c1599091642c2b3b5	48	Upstream checks and retail SHA-1 passed; player combat, shared clamping, weapon canopy lifetimes and trail joints verified
-enemy-motion	great-merge/upstream/enemy-motion	906ce832de7003882c3f76d035f28297f58ca08b	16	Upstream checks and retail SHA-1 passed
-battle-parameters	great-merge/upstream/battle-parameters	23a3a99e6e819487336225ad2a81fbfc801b9dc7	79	Upstream checks and retail SHA-1 passed
-boss-effects	great-merge/upstream/boss-effects	0e2d5dc6636a3ae82e945006f44ce261552a50a3	31	Upstream checks and retail SHA-1 passed
-audio-streams	great-merge/upstream/audio-streams	22ecb2bd0d2c84f7b793686dc6a4293e396a1671	106	Upstream checks and retail SHA-1 passed; 18 pitch forwarding and nine voice-pool cases passed
-host-portability	great-merge/upstream/native-callbacks-sdk	4def9bb0206c0454de8e2011fe02e6d1da1b6f88	10	Upstream checks and retail SHA-1 passed
-collision-results	great-merge/upstream/collision-results	0385e4c583fa68a58b8a17d1682f233f4b2bc6ec	12	Upstream checks and retail SHA-1 passed
+window-lists	great-merge/upstream/window-lists	00a67bf03d839b4bad38bb0b06b87442af6f1db9	55	Upstream checks and retail SHA-1 passed
+result-windows	great-merge/upstream/result-windows	b0d8f1e29c2920fb070a1d5f3cadcc849034fe35	51	Upstream checks and retail SHA-1 passed
+texture-strips	great-merge/upstream/texture-strips	7eef03d80f5563662ba810acf550e2c2e2a6b062	33	Upstream checks and retail SHA-1 passed
+raft-encounters	great-merge/upstream/raft-encounters	386c99255b0da791623ffb3694b9beea73fc54a0	21	Upstream checks and retail SHA-1 passed
+player-techniques	great-merge/upstream/player-techniques	cca246ec26209c1f9b4089aa7bc6e9d9e2019554	48	Upstream checks and retail SHA-1 passed; player combat, shared clamping, weapon canopy lifetimes and trail joints verified
+enemy-motion	great-merge/upstream/enemy-motion	d17543716c857ba0baa4b71755cfa733de36d510	16	Upstream checks and retail SHA-1 passed
+battle-parameters	great-merge/upstream/battle-parameters	40a3122ce71953c0102d2d0e7ebf2626a199ae0b	79	Upstream checks and retail SHA-1 passed
+boss-effects	great-merge/upstream/boss-effects	acd33d0af275c70dd96edce1b8e00c7bdfea1fe0	31	Upstream checks and retail SHA-1 passed
+audio-streams	great-merge/upstream/audio-streams	694270fb8bc87bc560a83b9d7b2e796c05e18519	77	Upstream checks and retail SHA-1 passed; audio pitch and AFS loader checks passed
+host-portability	great-merge/upstream/native-callbacks-sdk	d9e51bc35f245e31a2953113786d5a297a312485	10	Upstream checks and retail SHA-1 passed
+collision-results	great-merge/upstream/collision-results	0252e0bcab421f8d1a7ddf7c6d0fb157d7b5d975	12	Upstream checks and retail SHA-1 passed
+memory-moves	great-merge/upstream/memory-moves	c73a05326b43865a5b08ffad1b79a718bc328a82	32	Upstream checks and retail SHA-1 passed; 96 guarded byte and word copy cases

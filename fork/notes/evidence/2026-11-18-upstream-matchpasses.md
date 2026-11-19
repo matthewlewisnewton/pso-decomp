@@ -6,20 +6,26 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
-| `great-merge/upstream/combined` · `3cb6c67430` | Combined source matchpasses, including sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `366d4055c1` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `d52d660625` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/combined` · `d86ae41c4d` | Combined source matchpasses, including the shared item archive reader, sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/all-source` · `eae28ce0b6` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `36342709bb` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
 
-The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists sixteen independently tested local branches based on upstream `2ad5dece70`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
+The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists seventeen independently tested local branches based on upstream `f76fdd7ff1`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
 
-The [pending source index](2026-11-18-upstream-source-groups.tsv) assigns 4,357 edit blocks across 665 path names to thirteen additional local drafts. Each draft contains one subsystem group. The combined result builds. Individual drafts still need compatible bases and independent checks before submission.
+The [pending source index](2026-11-18-upstream-source-groups.tsv) assigns 4,357 edit blocks across 665 path names to thirteen additional local drafts. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
 
 The fork's enhanced linker checker had produced thousands of retention-list changes. The source-only cumulative build starts from the stock list and updates the affected symbol names. The stock compiler also reproduces the adjacent Dark Falz weighted-selection and material routines in one source unit. Together they emit the two floats at 0x805D8AD8 and 0x805D8ADC naturally. This removes the fork's object-alignment helper from the upstream build. The comparison with fork main found zero lost matched or source-linked function or data ranges. Its total extent decreases by 2,045 bytes, with 2,200 bytes of verified padding leaving coverage and 155 bytes entering coverage.
 
-The four authorized submissions are [#321](https://github.com/zeroz41/pso-decomp/pull/321), [#322](https://github.com/zeroz41/pso-decomp/pull/322), [#323](https://github.com/zeroz41/pso-decomp/pull/323) and [#324](https://github.com/zeroz41/pso-decomp/pull/324). PR 321 merged. After maintainer feedback, the three open PRs were updated in place and each hosted match-gate passed. Their published heads are `c129aa6073`, `341d5288c0` and `40b5e279e7`, respectively.
+The four authorized submissions are [#321](https://github.com/zeroz41/pso-decomp/pull/321), [#322](https://github.com/zeroz41/pso-decomp/pull/322), [#323](https://github.com/zeroz41/pso-decomp/pull/323) and [#324](https://github.com/zeroz41/pso-decomp/pull/324). All four merged. The maintainer asked to keep specialized tooling on the fork. The network, renderer and resource-loading reviews were updated in place, passed upstream CI and merged as `800d66a50b`, `1cd8f309f7` and `f76fdd7ff1`. The network update also resolved the PPP linker conflict.
+
+## Item model and texture archive reads
+
+The model and texture loaders share a five-word reader. Their concrete objects span 0x40 and 0x28 bytes respectively. The native constructors pass the AFS filename, partition, and file count to the common initializer. Reads forward the handle, sector count, and destination to the alignment-checked ADXF function. The interface now serves the GSL, scene and sound-bank callers too. The local audio and archive group at `694270fb8b` contains 77 changed paths against the merged master.
+
+All seventeen individual source groups, the combined source, complete native source and integration reproduced the retail SHA-1. The stock PR checks passed. The fork-only probes exercised 12 AFS open cases, eight model and texture lifecycles, every destination alignment modulo 32, the existing 70 resource-reader cases and the existing ADXF suite. All 294 fork tests passed. The local memory group at `c73a05326b` covers byte and word copying across 32 files. Both overlapping copy directions, zero lengths, disjoint buffers and identical pointers were tested on retail and two builds (96 cases per image).
 
 ## Player combat and weapon animation
 

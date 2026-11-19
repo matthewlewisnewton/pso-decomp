@@ -1,5 +1,9 @@
 # Fork data coverage at the November 18 sync point
 
+## After the four upstream reviews merged
+
+As of upstream `f76fdd7ff1`, 644 of the original 1,147 bytes remain across 29 ranges. The three latest merges recovered 72 bytes across four rows compared with `2ad5dece70`. The last column of the [range ledger](2026-11-18-fork-data-ranges.tsv) compares source-linked data from a clean build of the merged master with fork main and excludes verified padding. Full local integration accounts for every row.
+
 ## After upstream PR 325 landed
 
 Upstream master `2ad5dece70` has 716 bytes still missing across 33 of the 90 original inventory rows. PR 325 closed 32 bytes since the previous upstream build. The [per-range column](2026-11-18-fork-data-ranges.tsv) gives the residual at each original address. Both the combined nineteen-group build `4aaee804a2` and the full integration build `2ea980a848` preserve all fork-matched and source-linked data ranges. Both reproduce the retail GPOE8P executable. In the newly consolidated De Rol Le dust unit, aligning the origin constant to eight bytes reproduces the four original padding bytes at 0x805D85B4 and places the five controller constants at 0x805D85B8–0x805D85CB.
