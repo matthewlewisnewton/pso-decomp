@@ -2,6 +2,20 @@
 
 Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. The initial eight-byte checkpoint is `ef2ca77a86` on `great-merge/fork-data-ranges`. Its changes now open the front-end scenes matchpass.
 
+## Landed upstream and the twelve-group build
+
+On upstream master `b2cac76477`, 748 of the original inventory bytes still need coverage. The twelve published and local review groups build together at `ee4e1655cb`. Their combined tree recovers 676 of those 748 bytes. Comparing the game built from that tree to fork main leaves **72 bytes across eight original ledger rows**. The report coalesces the last two adjacent Dark Falz rows. The [range ledger](2026-11-18-fork-data-ranges.tsv) records the contribution of each additional review and the measured residual by address.
+
+| Remaining owner | Inventory bytes | Intended group |
+| --- | ---: | --- |
+| Area selection window | 24 | Window layout and area selection |
+| Photon Blast shower class name and pointer | 16 | Particle creation and lifetime |
+| Gal Gryphon controller pointer | 4 | Boss encounter state |
+| Area music fade | 4 | Music sequencing and streaming |
+| Dark Falz effect and demo constants | 24 | Boss effects. Four bytes at 0x805D8A2C are original linker padding. |
+
+The integration tree at `fc96ba681f` contains the recoveries for all of these rows. Comparing its build against fork main finds zero lost exact or source-linked functions or data ranges. The report flags the total data extent for manual reconciliation. Removing 2,196 bytes of verified alignment padding and gaining 151 bytes of covered addresses accounts for the 2,045-byte decrease. This comparison is separate from the original 1,147-byte inventory.
+
 ## After upstream PR 320 landed
 
 Upstream master `77a34b3d72` contains all 176 inventory bytes previously credited to PR 320. Comparing the original inventory with a fresh build of master leaves 808 bytes across its 90 rows. The four submitted matchpasses recover 132 inventory bytes. The two local UI matchpasses recover 372 more. The combined six-group build leaves 304 inventory bytes in 18 ranges, including the four verified padding bytes at 0x805D8A2C. Its exact and linked data totals increase by 548 bytes, including 44 outside the initial inventory. Of the 304 still outside these six reviews, 272 belong to player, enemy and effect work, 24 to the area window, four to music and four to padding.

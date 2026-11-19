@@ -1,5 +1,30 @@
 # Upstream matchpasses
 
+## Local reviews based on the landed front-end matchpass
+
+Upstream master `b2cac76477` is a parent of integration merge `6f2212d865`. That merge keeps the landed window destructors, status gauge, PPP control and quest downloads. At integration `fc96ba681f`, the retail GPOE8P executable matches. All 27,572 functions and all 2,539 selected source units are exact. The merge gained 928 matched and source-linked data bytes over the previous integration build and 792 over upstream. The [data ledger](2026-11-18-fork-data-ranges.md) reconciles the total extent against fork main.
+
+| Local review | Review order | Independent validation |
+| --- | --- | --- |
+| `great-merge/texture-strips` at `ea1d01d79a` | 35 files. Follow the shared strip collector from Olga Flow and its appearance scene to enemy models, Photon Blasts and city objects. The first commit recovers the constructor and its callers. The second exercises the buffer lifetime. | Tested texture selection through child and sibling nodes, both winding signs, UV scrolling, failed allocation and release on the retail and rebuilt games. |
+| `great-merge/result-windows` at `0256acb840` | 53 files. Review text measurement, the challenge result window, its shared page indicator, the battle results music task and finally the duel result window. | Both games passed 180 page and arrow cases, including wraparound, simultaneous directions and a one-page list. |
+| `great-merge/player-techniques` at `2db5656989` | 11 files. Trace the player action and enemy thunder data into the combat distance, hit-display and targeting helpers. Then follow the Gifoie orbit task through creation and release. | All 168 newly linked bytes are in the original inventory. Both games passed 10 distance inputs and 36 particle cleanup cases covering all six level bands. |
+| `great-merge/raft-encounters` at `f4dd13cbc3` | 26 files. Start with De Rol Le's tunnel state and the dust helix parameters used by both raft fights. Follow the position, strip slot and frame counter through the two dust tasks, the weapon and enemy trail callers, and the GX renderer. | All 64 newly linked bytes are in the inventory. Both slot rings wrapped through 22 selections. The probes checked the positions and colors written for all 20 strips and ten lifetime cases on both games. |
+
+Each local branch was built against master independently. Each reproduced retail with all 27,572 functions and 2,538 linked units exact. All tracked files in the four tested build directories matched their respective Git trees. The four local reviews in the earlier queue below remain prepared on `77a34b3d72`.
+
+## Validation across all twelve groups
+
+The local branch `great-merge/verify-twelve` at `ee4e1655cb` combines the four submitted and eight prepared reviews. For the result windows, preserve the native help and status constructors from the list-window branch while typing their page indicators. For the battle loader, retain the resource reader's return type and the battle bank's size and offset checks. Regenerating linker retention from the combined objects yields 26,217 names, with zero stale or missing entries. This branch is a validation build for the series.
+
+The combined build matches retail. Against `b2cac76477` it adds 716 matched and source-linked data bytes, including 676 in the starting inventory. The standalone texture, results, combat and raft probes all passed on this build. The resource and battle probes also passed 70 file-read cases, 384 table lookups and 32 difficulty-bank loads. The remaining 72 inventory bytes have owners in the [range ledger](2026-11-18-fork-data-ranges.md).
+
+## How to split the remaining integration edits
+
+The [integration path index](2026-11-18-integration-review-paths.tsv) covers all 1,048 changed path names outside `fork/` between master `b2cac76477` and integration `fc96ba681f`. It counts the old and new sides of a move separately. For 179 paths a standalone review contains the same final file or deletion. Another 202 paths overlap a review but carry additional or differently adapted changes. The index routes 663 paths by their integration commits. Four shared linker and symbol files need to travel in pieces with the owning changes. Reviewers can look up each source path, its existing review branches and the integration commits that touched it.
+
+The model-resource family alone touches hundreds of callers. Stage the shared archive loader and renderer declarations first, then group the callers by use. The index distinguishes boss encounters, enemy attachments, menus and character selection, equipment and effects, lobby and NPC objects, doors and traps, and stage scenery. Keep the allocation-operator migration separate because it also reaches code that never opens a model archive. The window frame and area selection group follows the native base layout through its consumers. Batch automation and contributor handoffs have a separate review decision. The fork-wide index below also includes source paths not yet reconciled on integration.
+
 ## Submissions against upstream master `77a34b3d72`
 
 | Review | Head | Files | Additional linked bytes |
@@ -26,7 +51,7 @@ The four submitted reviews and the two local UI branches also passed a combined 
 
 ## Fork-wide review index
 
-The [fork change index](2026-11-18-fork-review-index.tsv) assigns all 7,495 changed entries between common ancestor `fba9382235` and fork main `3342e42983` to review families. Git pairs 2,912 renames at its 50% similarity threshold. There are also 2,630 additions, 978 modifications and 975 deletions. Each row records the original and fork paths, a comparison path, file-level evidence and reviews touching any of those paths. A path shared with a review may still contain unrelated changes. The index uses source ownership and filenames to route further review. It leaves 805 entries with an unresolved owner.
+The [fork change index](2026-11-18-fork-review-index.tsv) assigns all 7,495 changed entries between common ancestor `fba9382235` and fork main `3342e42983` to review families. Git pairs 2,912 renames at its 50% similarity threshold. There are also 2,630 additions, 978 modifications and 975 deletions. Each row records the original and fork paths, a comparison path, file-level evidence and reviews touching any of those paths. A path shared with a review may still contain unrelated changes. The index uses source ownership and filenames to route further review. The first pass left 805 entries with an unresolved owner. A second pass routed 65 using direct fork includes or out-of-line method definitions and their declaring headers. The affected rows name the source evidence. **740 entries still have an unresolved owner.**
 
 All 374 changed documentation and evidence paths have a local destination under `fork/`. Three executable evidence models are preserved there as Markdown examples. The repository license and third-party license text have separate provenance entries. Shared source and build changes still require semantic comparison before deciding which fork implementation to retain.
 

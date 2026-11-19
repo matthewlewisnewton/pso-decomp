@@ -185,10 +185,10 @@ Pragma kinds (excluding push/pop/once): `dont_inline` 861, `inline_depth` 848, `
 | `src/pso/network/NetDhcp.c:182` | `} else if ((lbl_805D7B28 & 0xE0000000) == 0xC0000000) {` |
 | `src/pso/network/NetIcmp.c:134` | `net = ((a & 0x80000000) == 0) ? (a & 0xFF000000) : (((a & 0xC0000000) == 0x80000000) ? (a & 0xFFFF0000) : (((a & 0xE0000000) == 0xC0000000) ? (a & 0xFFFFFF00) : (0)));` |
 | `src/pso/network/NetIcmp.c:136` | `mask = ((a & 0x80000000) == 0) ? (0xFF000000) : (((a & 0xC0000000) == 0x80000000) ? (0xFFFF0000) : (((a & 0xE0000000) == 0xC0000000) ? (0xFFFFFF00) : (0)));` |
-| `src/pso/object/ambient/TObjLight_803DF220.cpp:128` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = x;` |
-| `src/pso/object/ambient/TObjLight_803DF220.cpp:129` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = y;` |
-| `src/pso/object/ambient/TObjLight_803DF220.cpp:130` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = z;` |
-| `src/pso/object/ambient/TObjLight_803DF220.cpp:133` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).u32 = c;` |
+| `src/pso/object/ambient/TObjLight_803DF220.cpp:125` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = x;` |
+| `src/pso/object/ambient/TObjLight_803DF220.cpp:126` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = y;` |
+| `src/pso/object/ambient/TObjLight_803DF220.cpp:127` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).f32 = z;` |
+| `src/pso/object/ambient/TObjLight_803DF220.cpp:130` | `(*(volatile WGPipe_803DF5E4 *)0xCC008000).u32 = c;` |
 | `src/pso/player/TObjPlayer_80083594.cpp:293` | `*(f32 *)0xCC008000 = farg0;` |
 | `src/pso/player/TObjPlayer_80083594.cpp:294` | `*(f32 *)0xCC008000 = farg1;` |
 | `src/pso/player/TObjPlayer_80083594.cpp:295` | `*(f32 *)0xCC008000 = farg2;` |
