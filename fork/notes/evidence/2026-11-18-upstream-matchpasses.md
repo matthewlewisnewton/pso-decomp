@@ -8,7 +8,26 @@ Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025
 
 The [original data ledger](2026-11-18-fork-data-ranges.tsv) accounts for all 1,147 bytes again on the new base. It verifies 980 source-linked bytes, including the 24-byte keyboard virtual table at 0x804D0004, plus 167 bytes of alignment padding.
 
-The working fork reproduces retail and passes its regenerated linked-symbol check. Its documentation and tools are under the fork-only layer. All 133 overlay paths round-trip and all eleven layer tests pass. The network, resource, encounter drawing and world-object standalone branches also point to their already validated replays on `af11a99125`. The other standalone reviews and the remaining historical source records are still in the review queue.
+The working fork reproduces retail and passes its regenerated linked-symbol check. Its documentation and tools are under the fork-only layer. All 133 overlay paths round-trip and all eleven layer tests pass. The network, resource, encounter drawing and world-object standalone branches also point to their already validated replays on `af11a99125`. The standalone review updates are listed below. The historical source audit continues in the fork review index.
+
+## Standalone reviews on upstream master `af11a99125`
+
+The seven remaining review families and the alternate combat build with the allocation dependency now have verified local heads. Each head contains one subsystem review commit based directly on the new upstream master. The previous grouped commits remain available under `great-merge/snapshots/6e09dda9c5/`. The fork tooling, documentation and workflows stay in the fork layer.
+
+| Review | Head | Paths requiring conflict resolution |
+| --- | --- | --- |
+| memory | `88f754be9e` | 8 |
+| spatial-effects | `a2c7411173` | 1 |
+| combat | `6802a8b2ce` | 6 |
+| window-frames | `4618815064` | 23 |
+| bml-resource-lifetime | `343fbe8d17` | 15 |
+| render-interfaces | `e8a06c9c0e` | 3 |
+| actor-presentation | `dffec79c24` | 1 |
+| combat-with-runtime-array-allocation | `87675984b6` | 14 |
+
+All eight builds reproduce the original executable and pass the upstream project checker. Address-level comparisons preserve the exact and linked functions and data from each previous review and the new master. Comparison against the historical fork finds no losses beyond the current upstream baseline. The branches with extra files route calls through upstream's relocated status classes. Memory and combat keep the same allocation behavior in the new owners, and the resource and rendering reviews retain the typed consumers of upstream's native breakup classes.
+
+The window branch uses its existing placement calls in upstream's consolidated balloon file. Its original 90 data ranges cover 980 source-linked bytes and 167 alignment bytes, including all 24 keyboard virtual table bytes. It can be reviewed separately from the existing chat placement follow-up.
 
 ## Previous review queue on upstream master `6e09dda9c5`
 
