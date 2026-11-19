@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `6b6b24813d` includes the chat balloon, typed bone rotation, native rope simulation and NPC resources. The all-source snapshot is `93db064cff`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `b1d4ca3d91` includes the chat balloon, typed bone rotation, native rope simulation and NPC resources. The all-source snapshot is `604fb8532f`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -16,7 +16,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
 | `great-merge/current/render-interfaces` | `6c43c3a146` |
 | `great-merge/current/actor-presentation` | `ba1790084a` |
-| `great-merge/current/world-object-resources` | `a370ce1bd3` |
+| `great-merge/current/world-object-resources` | `436bcf4fc1` |
 
 The window review reconciles 57 overlapping paths. It retains upstream's native menu and word-select construction and its item-help constant pool, along with the fork's typed callers and field layouts. Sixteen overlapping signatures retain the fork types and original linked addresses. The rebased window review supplies the original chat balloon, item-help and software-keyboard virtual tables. All 90 entries in the [data range ledger](2026-11-18-fork-data-ranges.tsv) now resolve to 980 source-linked bytes and 167 bytes of alignment padding.
 
@@ -40,7 +40,11 @@ The first NPC replay accounts for twenty-four historical source and declaration 
 
 The follow-up at `6b6b24813d` carries the HFW01 and NFW01 model and texture pointers, their archive filenames and the NPC character-data filename. The four original resource methods, four pointer slots and seven strings retain their original addresses. The standalone world review at `a370ce1bd3`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The 133-path overlay round-trips and all eleven layer tests pass.
 
-Twenty neighboring source files already carry their fork changes. The audit tracks the remaining Moja motion pointer, Soutokufu XZ query and shared file-read signature. This follow-up closes twenty-four entries in the [fork source index](2026-11-18-fork-review-index.tsv). The index has 1,446 entries awaiting owner comparison and 654 with partial evidence.
+Twenty neighboring source files already carry their fork changes. The preceding follow-up closes twenty-four entries in the [fork source index](2026-11-18-fork-review-index.tsv).
+
+The interface replay at `b1d4ca3d91` completes the three open NPC source differences. Both asynchronous callers use the shared typed filename. Moja uses the shared archive’s motion list, and Soutokufu and the two Gryphon switch callers use the original XZ tests. The dragon and Gryphon effect templates and copy sites share the original twenty-byte record. The standalone world review at `436bcf4fc1`, all-source snapshot and working fork all pass the original executable and linkage checks. The fork overlay round-trips 133 paths and passes eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) closes nine additional entries. The index has 1,441 entries awaiting owner comparison and 650 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
