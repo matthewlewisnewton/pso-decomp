@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `9ede604f8a` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, the Bal Claw and Berura combat states, the shared enemy experience and item-drop methods, the typed inventory methods, record export and sorting, and the player scale and size packet interfaces. The all-source snapshot is `36571c928a`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `79eea9a7e4` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, the Bal Claw and Berura combat states, the shared enemy experience and item-drop methods, the typed inventory methods, record export and sorting, the player scale and size packet interfaces, and the typed equipment and packet callers. The all-source snapshot is `d4d8f7afbf`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -259,6 +259,14 @@ The 13-file replay at `9ede604f8a` gives the player scale state and camera vecto
 All 16 exports occupy the original addresses and sizes. The 6 affected source units retain all 1,191 exact functions, including 27 original direct calls to these exports. The dependent combat branch at `91bebad92c`, the combined stack, the all-source snapshot and working fork reproduce the retail executable and pass the project checker. All 133 overlay paths round-trip, and the eleven fork layer tests pass.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 7 fork records. It has 1,229 entries awaiting owner comparison and 828 with partial evidence.
+
+### Player equipment and equip packets
+
+The 16-file replay at `79eea9a7e4` restores the fork's player equipment eligibility and unequip methods and its saved battle equipment constructor. Equip and unequip use typed item pointers and the original item virtual methods. Shop, shortcut, inventory, enemy and MAG callers pass the player and item ID explicitly. The outgoing equip and unequip structures retain their 12-byte and 8-byte wire formats. The unit attachment calls retain the original signed-byte conversion and integer temporary so the compiler emits the original virtual dispatch sequence.
+
+All five renamed exports retain their addresses and sizes across 840 instruction bytes. The 13 affected source units retain all 917 exact functions, including 26 original direct calls and the saved equipment array constructor reference. The dependent combat branch at `37b78ac803`, the combined stack, the all-source snapshot and working fork reproduce the retail executable and pass the project checker. All 133 overlay paths round-trip, and the eleven fork layer tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 15 fork records. It has 1,227 entries awaiting owner comparison and 830 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
