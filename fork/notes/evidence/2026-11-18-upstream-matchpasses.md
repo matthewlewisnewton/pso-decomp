@@ -27,20 +27,30 @@ The seventeen checked components form six larger local branches on upstream `f76
 
 | Review branch | Commit | Paths | Components |
 | --- | --- | ---: | --- |
-| `great-merge/reviews/resource-lifetimes` | `f49ca5d08c` | 91 | archive-lifecycle, quest-cache, audio-streams |
+| `great-merge/reviews/resource-lifetimes` | `125d69fe6c` | 91 | archive-lifecycle, quest-cache, audio-streams |
 | `great-merge/reviews/window-interaction` | `4c814cd01f` | 166 | window-lists, result-windows, guild-card-chat |
 | `great-merge/reviews/combat` | `24ec973274` | 142 | battle-parameters, enemy-motion, collision-results, player-techniques |
 | `great-merge/reviews/encounter-drawing` | `1826acfd4a` | 97 | radar-camera, raft-encounters, texture-strips, boss-effects |
 | `great-merge/reviews/memory` | `bc9ede35e0` | 185 | runtime-array-allocation, memory-moves |
 | `great-merge/reviews/native-callbacks` | `d9e51bc35f` | 10 | native-callbacks-sdk |
 
+The resource group also names the stream buffer and cue work area at 0x805D62D8 and 0x805D62DC. After moving their associated declarations, callers and linker entries together, the recovered source immediately before these two names and the complete source both passed independently. The former checkpoint is `great-merge/fork-validation/archive-and-memory-callers` at `e6646c0fc3`. The three-file remainder belongs to the resource group.
+
 The resource group passed the ADXF, archive, sound-slot, disc-read and quest-cache checks. The window group passed the guild-card and results-page checks. The combat and encounter groups passed the battle, collision, weapon, camera, trail and strip-animation checks. The memory group passed 96 guarded copy cases. The native callback C++ host checks passed on the fork.
+
+## Buildable boundaries in the remaining drafts
+
+The original thirteen-way split crosses changes to shared interfaces. The local branch `great-merge/fork-validation/before-window-layouts` at `13f3dd6b54` groups the archive, texture and memory interfaces with the code that calls them. It defers the window layout fields until their corresponding classes and consumers change. On its verified base, `great-merge/fork-validation/window-layouts` at `c703356789` reaches exactly the same source tree as `great-merge/upstream/all-source`. The remaining difference at this boundary covers 196 paths, including 169 UI sources and headers. Both stages reproduce retail and pass the upstream PR checks. The comparisons from combined source to the first stage and from there to the complete source lose zero exact or source-linked function and data ranges.
+
+The 514-path archive and caller stage is a local build checkpoint. It still needs smaller related review groups. The two commits preserve a working base while that split is refined.
 
 ## Item model and texture archive reads
 
 The model and texture loaders share a five-word reader. Their concrete objects span 0x40 and 0x28 bytes respectively. The native constructors pass the AFS filename, partition, and file count to the common initializer. Reads forward the handle, sector count, and destination to the alignment-checked ADXF function. The interface now serves the GSL, scene and sound-bank callers too. The local audio and archive group at `694270fb8b` contains 77 changed paths against the merged master.
 
 All seventeen individual source groups, the combined source, complete native source and integration reproduced the retail SHA-1. The stock PR checks passed. The fork-only probes exercised 12 AFS open cases, eight model and texture lifecycles, every destination alignment modulo 32, the existing 70 resource-reader cases and the existing ADXF suite. All 294 fork tests passed. The local memory group at `c73a05326b` covers byte and word copying across 32 files. Both overlapping copy directions, zero lengths, disjoint buffers and identical pointers were tested on retail and two builds (96 cases per image).
+
+The fork source ledger reconciles twelve more full-file edits that rename verified storage or spell a retail float as a literal. The comparison checked the complete ancestor and fork tokens, original storage addresses, current names, and source-linked function sizes. One further file changed only its location or whitespace.
 
 ## Player combat and weapon animation
 
