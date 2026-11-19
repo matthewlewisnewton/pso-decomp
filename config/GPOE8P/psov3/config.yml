@@ -11235,6 +11235,7 @@ force_active:
   - get_rcv_count
   - get_rcv_space
   - get_registered_object_count__Fv
+  - get_rel_module_image
   - get_remain_count__10TTecSlicerFv
   - get_render_mode_for_tv_format
   - get_result__16TObjItemOKWindowFv

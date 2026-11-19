@@ -1815,3 +1815,12 @@ Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389
 Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/unk/TLobby_801E2F94.cpp	5
 Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/unk/text_80290D1C.cpp	2
 Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/unk/text_80320358.cpp	1
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	config/GPOE8P/psov3/config.yml	1
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	config/GPOE8P/psov3/splits.txt	2
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	config/GPOE8P/psov3/symbols.txt	2
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	include/pso/system/RelModuleBuffer.h	1
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	include/pso/system/movie/TMovie.h	2
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	include/pso/unk/text_80320358.h	1
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	src/pso/boss/olgaflow/TBoss6Zanzo.cpp	2
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	src/pso/system/movie/TMovie.cpp	10
+Movie REL loading and lifetime	92defbe7240e565b2d42f223662ad35d669c51dd	src/pso/unk/text_80320358.cpp	15
