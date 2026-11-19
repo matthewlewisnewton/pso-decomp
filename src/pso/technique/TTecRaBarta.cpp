@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
@@ -157,7 +158,6 @@ extern Scale_802377FC lbl_804CC55C;
 void calc_parameters__11TTecRaBartaFv(RaBarta_802377FC *self);
 
 s32 play_sound_effect(s32, s32, s32, s32);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 typedef struct Obj_80237310 Obj_80237310;
 typedef struct Owner_80237310 Owner_80237310;

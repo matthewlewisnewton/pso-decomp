@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/technique/TTecAnti.h"
 #include "pso/unk/TUnk_804CC0E8.h"
@@ -19,7 +20,6 @@ const char *TTecAnti_name_ref = "TTecAnti";
 
 struct Obj_8022ACB4 { u8 pad[0xA6]; s16 state; };
 extern "C" {
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(int, void *, int, int);
 
 }

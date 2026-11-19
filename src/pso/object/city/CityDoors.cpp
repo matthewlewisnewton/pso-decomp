@@ -1,3 +1,4 @@
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -558,7 +559,6 @@ void TObjCityDoor_Warp::run_task() {
 }
 
 void city_door_tick_opening__13TUnk_804B5BA8Fv(void *);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(s32, s32, s32, s32);
 void city_door_tick_opening__17TObjCityDoor_WarpFv(u8 *arg0);
 void city_door_play_close_sound__17TObjCityDoor_WarpFv(s32 arg0);

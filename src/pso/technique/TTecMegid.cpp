@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 // ---- pso/technique/TTecMegid
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
@@ -234,7 +235,6 @@ void *spawn_continuous_particle_effect_with_flags(void *, u32, u16);
 extern s32 technique_effect_bml;
 extern s32 lbl_805D63B0;
 u32 __nw__7TObjectFUl(s32 a0 = 0);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecMegid::update_by_state() {
     u8 *arg0 = (u8 *)this;

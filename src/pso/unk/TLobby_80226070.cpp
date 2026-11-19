@@ -1,9 +1,9 @@
+#include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/unk/TLobby.h"
-#include "pso/technique/TTecRaFoie.h"
 #include "pso/unk/TLobby_802268F4.h"
 #include "pso/unk/TLobby_80227A2C.h"
 #include "pso/object/trap/TOTrapAncient01_80226534.h"
@@ -15,7 +15,6 @@
 
 extern "C" {
 
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 s8 sound_mode_value = 1;
 s32 last_sound_effect_slot = -1;
@@ -99,7 +98,6 @@ void TLobby__sub_8022644C(void);
 void set_menu_index_main__6TLobbyFPUc(void);
 int TLobby__sub_80226308(void);
 void TTecRaFoie__sub_80226254(void);
-s32 set_sound_slot_pitch();
 
 int TLobby::get_lobby_data() {  return lbl_805D6280; }
 
@@ -130,9 +128,9 @@ void update_music_stream_gain(s32 user) {
 
 void TTecRaFoie__sub_80226254(void) {  }
 
-void TTecRaFoie::update_technique_slot(s32 arg0) {
-    if (((s32) lbl_805D62B0 != 0) && (arg0 >= 0) && (arg0 < 0x28)) {
-        set_sound_slot_pitch();
+void update_technique_slot__10TTecRaFoieFl(s32 slot, s32 pitch, s32 duration) {
+    if (lbl_805D62B0 != 0 && slot >= 0 && slot < 0x28) {
+        set_sound_slot_pitch(slot, pitch, duration);
     }
 }
 

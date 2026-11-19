@@ -1,3 +1,4 @@
+#include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include <string.h>
 #include "pso/weapon/TItemWeapon.h"
@@ -1495,7 +1496,6 @@ struct Player_8012065C : VBase_8012065C {
 };
 
 extern "C" {
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(s32, s32, s32, s32);
 void set_flag_8_if_check_passes__10TObjPlayerFv();
 

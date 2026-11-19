@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
@@ -139,7 +140,6 @@ struct GiFoie_8023179C {
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void *spawn_continuous_particle_with_direction(void *pos, void *dir, s32 id);
 void * find_entity_by_id(u16);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(s32, void *, s32, s32);
 void __dl__7TObjectFPv(void *);
 void construct_area_technique_base(void *, void *, void *, void *, void *);

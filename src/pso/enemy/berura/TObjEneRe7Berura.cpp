@@ -1,3 +1,4 @@
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -89,7 +90,6 @@ extern TObjMotionAction TObjEneRe7Berura__animation_definitions[];
 void TObjEneRe7Berura__sub_80093C80(TObjEneRe7Berura *self, s32 arg1);
 void TObjEneRe7Berura__sub_80094624(TObjEneRe7Berura *self, s32 arg1);
 s32 TObjEneRe7Berura__sub_80094DB4(TObjEneRe7Berura *);
-void update_technique_slot__10TTecRaFoieFl(s32);
 }
 
 
@@ -1245,7 +1245,7 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
         }
         vfunc_102();
         vfunc_89();
-        ((void (*)(s32, s32, s32))update_technique_slot__10TTecRaFoieFl)(
+        update_technique_slot__10TTecRaFoieFl(
             play_persistent_sound(remap_sound_for_area(0x4003C61E), (s32)this, (u32)&position, 0, 0),
             0x400, 0);
         break;

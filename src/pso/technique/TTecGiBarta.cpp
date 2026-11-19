@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
@@ -153,7 +154,6 @@ TTecGiBarta_80230C58 *TTecGiBarta__ct(TTecGiBarta_80230C58 *self, void * _w1, vo
 void construct_facing_technique__10TObjPlayerFPviPvii();
 s32 play_sound_effect(s32, s32, s32, s32);
 void *find_entity_by_id(u16 id);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecGiBarta::update_technique_by_phase() {
     u8 *arg0 = (u8 *)this;

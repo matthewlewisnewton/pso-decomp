@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/unk/text_8022BE64.h"
@@ -77,7 +78,6 @@ s32 calc_technique_parameters(int, int, int);
 extern RecoveredGlobal_80230D9C_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_80230D9C_lbl_804CC55C lbl_804CC55C;
 u16 get_entity_id(void *);
-void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
 s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
 f32 vector_length(void *);
 void normalize_vector(void *);
@@ -160,7 +160,6 @@ struct VObj_18_9c98dd : VBase_18_9c98dd {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(s32, void *, s32, s32);
 TParticleCtrl *create_particle_emitter(const void *pos, s32 id);
 

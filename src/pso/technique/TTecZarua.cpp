@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/technique/TTecZarua.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -123,7 +124,6 @@ void construct_area_technique_base(void *);
 extern const char *TTecZarua__name;
 extern s32 __vt__9TTecZarua[];
 s32 play_sound_effect(int, void *, int, int);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 get_entity_id(void *);
 Zarua_8023C420 *init_instance__9TTecZaruaFPviiii(Zarua_8023C420 *self, s32 _w1, s32 _w2, s32 _w3, s32 _w4);
 void copy_technique_target_list(void *, void *);

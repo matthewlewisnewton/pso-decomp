@@ -1,3 +1,4 @@
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/system/Adxf.h"
 #include "pso/audio/SoundBankTables.h"
 #include "pso/unk/TLobby.h"

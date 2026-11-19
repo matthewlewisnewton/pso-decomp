@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/BmlAccessors.h"
@@ -161,7 +162,6 @@ s32 get_type__10TObjPlayerFPv(void *);
 List_8022BD74 *find_area_contact__13TUnk_804CC148Fl(Tec_8022BD74 *, void *);
 List_8022BD74 *collect_body_contacts_for_target__10TObjPlayerFl(Tec_8022BD74 *, void *);
 s32 play_sound_effect(s32, s32, s32, s32);
-s32 update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 
 void TTecBarta::update_technique_by_state() {
     u8 *arg0 = (u8 *)this;

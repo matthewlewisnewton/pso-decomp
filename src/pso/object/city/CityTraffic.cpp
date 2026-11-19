@@ -1,3 +1,4 @@
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/system/StripBufferPair.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -72,7 +73,6 @@ struct Car_80181074 {
 };
 
 extern "C" {
-s32 update_technique_slot__10TTecRaFoieFl(s32, int, int);
 s32 vec3_add_to(void *, void *);
 }
 

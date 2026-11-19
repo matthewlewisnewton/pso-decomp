@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -71,7 +72,6 @@ extern void *lbl_805D63B0;
 
 s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
 #define play_sound_effect ((s32 (*)(s32, s32, s32, s32))play_sound_effect)
-void update_technique_slot__10TTecRaFoieFl(s32 handle, s32 pitch, s32 c);
 
 struct RecoveredGlobal_80238388_lbl_8044DAF0 {
     s32 value;
@@ -462,7 +462,6 @@ struct Sub_80238AE8 { u8 pad[0xA4]; u8 *inner; };
 
 extern "C" {
 void run_task__10TTecRaFoieFv(TTecRaFoie *arg0);
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(s32, void *, s32, s32);
 extern s32 tl_particle;
 s32 __ct__7TObjectFP7TObject(void *, void *);

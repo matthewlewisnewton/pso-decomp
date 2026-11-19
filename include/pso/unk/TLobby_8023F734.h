@@ -3,6 +3,7 @@
 
 struct AdxfHandle;
 
+#include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 
 struct Ent_8023FCC0 {
@@ -105,7 +106,6 @@ void set_clamped_field27c__6TLobbyFf(void *arg0, f32 farg0);
 void set_field0__6TLobbyFPv(struct SoundRequestVoice *voice, void *owner);
 void set_menu_index__6TLobbyFl(void *p, s32 v);
 void set_mode__6TLobbyFPvi(void *arg0, s32 arg1);
-void set_sound_slot_pitch(s32 slot, s32 pitch, s32 duration);
 }
 void set_sound_slot_special_scale(s32 slot, f32 scale);
 extern "C" {
@@ -161,7 +161,6 @@ void send_find_user_self_tag__6TLobbyFl(s32 arg0);
 void set_clamped_field27c__6TLobbyFf(void *arg0, f32 farg0);
 void set_menu_index__6TLobbyFl(void *p, s32 v);
 void set_mode__6TLobbyFPvi(void *arg0, s32 arg1);
-void set_sound_slot_pitch(s32 slot, s32 pitch, s32 duration);
 }
 void set_sound_slot_special_scale(s32 slot, f32 scale);
 extern "C" {

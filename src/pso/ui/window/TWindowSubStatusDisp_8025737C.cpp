@@ -1,3 +1,4 @@
+#include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/TUnk_804CF948.h"
@@ -102,7 +103,6 @@ struct Bar_8025799C {
     s16 timer;
 };
 
-void update_technique_slot__10TTecRaFoieFl(s32, s32, s32);
 s32 play_sound_effect(u32, s32, s32, s32);
 void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
 u32 update_text_color_transition(Fade_802575C0 *fade);
