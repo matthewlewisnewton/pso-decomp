@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `6fd023cca6` and the complete source snapshot at `73ac51e257` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `bc1a0d94db` and the complete source snapshot at `64434d4f40` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -105,6 +105,14 @@ The 30-file review at `62ac4dd661` combines this state work with typed scale, ca
 All five builds reproduce the retail executable and pass the project checker. The address audit retains the two source-linked scale constants. Each variant preserves its parent's address coverage. All 133 overlay paths round-trip and all eleven fork-layer tests pass.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records ten reconciled header removals, two fully reconciled declarations and partial evidence for 7 source files. It has 1,119 entries awaiting comparison and 894 with partial evidence.
+
+## Quest download text, cache and save images
+
+The eight-file replay at `bc1a0d94db` carries the fork's quest request and input records into the current frontend, parser, cache writer and text converter. Both request consumers read the same 0x10-byte layout. The 39 input entries use their original eight-byte stride, with the character at offset zero and the signed length at offset four. The eight text exports retain the names from `5a7a047c3e` and their original addresses and sizes. The request keeps the type tag used in the original append_message_text linker name. The standalone replay at `629294b6a4` is based directly on upstream master.
+
+The 28-file review at `1d0631030f` combines the text replay with the quest file cache and memory-card save-image review from `819c685f00`. The combined review starts directly on upstream master `af11a99125` and preserves 1,276 exact source-linked functions across 19 changed units. The five text units preserve all 198 exact functions and 352 source-linked bytes in the input table and scratch storage. All five builds reproduce retail and pass the project checker.
+
+The linked decoder passes empty input, ASCII, mixed Shift-JIS, a full 36-entry input and overflow. The cache probe passes all 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction. The fork overlay round-trips 133 paths and passes all eleven layer tests. The [fork source index](2026-11-18-fork-review-index.tsv) adds partial evidence to seven source and header entries.
 
 ## Standalone reviews on upstream master `af11a99125`
 
