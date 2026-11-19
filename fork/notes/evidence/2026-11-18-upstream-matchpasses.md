@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `e5105e2cae` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, and Pan Arms coordination. The all-source snapshot is `43ede3ff3c`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `a7c3cdfdc1` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership. The all-source snapshot is `f80cb1fb77`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `4443638522` |
+| `great-merge/current/combat` | `03ca305e1d` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -187,6 +187,16 @@ All 27 method symbols match the fork by name, original address and size across 3
 The standalone combat review at `4443638522`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 7 fork records. It accounts for both small state units and the remaining C declaration. It has 1,282 entries awaiting owner comparison and 778 with partial evidence.
+
+### Gibbles and Gyaranzo combat methods
+
+The six-file replay at `a7c3cdfdc1` restores Gibbles' native joint tracking, both joint attacks, landing damage, ground contact effects, and action methods. Gyaranzo owns its original action dispatch, chase and return, knockback, missile aiming and volley, fade, visibility and death breakup. The restored Gyaranzo class matches the fork declaration set, field order, and virtual order.
+
+All 24 method symbols match the fork by name, original address and size across 8,764 instruction bytes. The two affected source units retain all 83 exact linked functions and each data section.
+
+The standalone combat review at `03ca305e1d`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 5 fork records. It has 1,281 entries awaiting owner comparison and 778 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
