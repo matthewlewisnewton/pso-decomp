@@ -163,6 +163,10 @@ The review, cumulative source at `5f25ff5c5b` and working fork compiled and comp
 
 Commit `bd65f0d44b` adds the shared Seabed wall and wreck declarations to the same review. The spawner uses the fork's typed 76-byte debris record, and the wall accesses the typed resource pointer and fade member. The review, cumulative source at `db9345607c` and working fork each compiled three affected objects. The previously anonymous data now has the fork's external name at 0x8044311C. Allocated bytes, the other symbols and relocation targets match. All 294 fork tests and the retention check passed.
 
+Commit `118f154267` carries the shared map-collision factory from fork commit `30ed6f3ed6` into the same review. The factory accepts a set-data pointer and returns a `TObjMapCsn` pointer. Jungle doors and rocks, Seabed wrecks, arena objects and the factory tables use the shared interface. The factory and native constructor stay at 0x80194934 and 0x801949FC. All 21 factory table records still target the same entry point. The lab constructor's compatibility call keeps its existing floating-point arguments.
+
+The review rebuilt 22 affected objects. The cumulative source at `64af88f68e` and working fork each rebuilt 23. Allocated sections, addressable symbols and relocations match after mapping the two renamed symbols. The 294 fork tests and the linker retention check passed.
+
 ## World and camera constant ownership
 
 Fork commit `c7470b0f0e` placed 146 floating-point constants in source. All 608 bytes are already exact at their original addresses in the source objects selected by upstream master `c572111ed6`. The actor and camera review at `5d0802c2e5`, cumulative source at `5f25ff5c5b` and working fork at `433a38f909` select the same 47 owners. The source ownership was checked from the generated linker inputs. Each affected object was rebuilt on all four snapshots. The comparison checked the original split data and the compiled sections, symbol locations and relocation targets. It accounts for every source definition in that fork commit.
@@ -171,7 +175,7 @@ The [fork source index](2026-11-18-fork-review-index.tsv) records the addresses 
 
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `db9345607c` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `64af88f68e` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
