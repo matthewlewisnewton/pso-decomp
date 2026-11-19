@@ -2531,7 +2531,6 @@ force_active:
   - TObjPlayer__sub_80079120
   - TObjPlayer__sub_80079124
   - TObjPlayer__sub_80079DE0
-  - __ct__10CsnContactFv
   - TObjPlayer__sub_80082C30
   - TObjPlayer__sub_80083F9C
   - TObjPlayer__sub_80083FA4
@@ -8795,6 +8794,7 @@ force_active:
   - cleanup_materials__6TSceneFv
   - clearState__12TBoss1DragonFv
   - clear_30_slots__10TObjPlayerFv
+  - clear__10CsnContactFv
   - clear__14PadRumbleLevelFv
   - clear__15PadRumbleEffectFv
   - clear_action_flag__10TObjPlayerFv
@@ -8886,7 +8886,6 @@ force_active:
   - clear_task_state__14TObjCMMainMenuFv
   - clear_technique_contacts__10TObjPlayerFv
   - clear_thread_state__12TQuestThreadFv
-  - clear__10CsnContactFv
   - clear_work__12TBoss1DragonFv
   - clear_work_buffer__FPUc
   - clitical_texture_list
@@ -9401,6 +9400,12 @@ force_active:
   - creation_texture_cache
   - cri_copyright_string
   - cry_bm7_s_paa_body_motion_filename
+  - csn_edge_tolerance
+  - csn_epsilon
+  - csn_ground_ray_length
+  - csn_negative_epsilon
+  - csn_no_hit_t
+  - csn_one
   - csn_query_hit_buffer
   - csn_query_hit_count
   - csn_query_map_object
@@ -10690,7 +10695,6 @@ force_active:
   - fn_800779FC
   - fn_80077A70
   - fn_80077B34
-  - reset__6CsnHitFv
   - fn_8007FE78
   - fn_8009BD00
   - fn_8009E2DC
@@ -11075,7 +11079,6 @@ force_active:
   - get_condition__10TNpcPlayerFv
   - get_container_param__Fl
   - get_cursor_origin__19TWindowSubMagPhotonFPv
-  - get_data_ptr__10TObjMapCsnFv
   - get_destroy_event_obj__6TLobbyFv
   - get_display_mode__20TWindowSubStatusDispFv
   - get_dist__10TObjPlayerFv
@@ -11773,7 +11776,6 @@ force_active:
   - init_6x8D_technique_level_packet__FPUc
   - init__10TBoss2MineFPvi
   - init__10TNpcPlayerFv
-  - __ct__13WallRayResultFv
   - init__11TOVS2Wall01Fi
   - init__11TOVS2Wall01Fv
   - init__12TAdTimeSetGCFv
@@ -11809,7 +11811,6 @@ force_active:
   - init_air_turn__12TBoss1DragonFl
   - init_alpha__11TBreakUpMdlFlf
   - init_and_reset_forward__10TObjPlayerFPv
-  - __ct__6CsnHitFv
   - init_and_send__10TObjPlayerFv
   - init_and_set_flag__6TLobbyFv
   - init_attack_params__11TBoss6Type2Fv
@@ -13222,7 +13223,6 @@ force_active:
   - lbl_804FF234
   - lbl_804FF67C
   - lbl_804FF82C
-  - lbl_804FF9C0
   - lbl_804FFD40
   - lbl_80500140
   - lbl_805007C8
@@ -20908,6 +20908,7 @@ force_active:
   - reset__16TCheckMemoryCardFv
   - reset__16TObjEneBm5GibonUFv
   - reset__21TObjEneRe7BeruraPunchFv
+  - reset__6CsnHitFv
   - reset__6TLobbyFi
   - reset__7RlcFileFv
   - reset__8TGStreamFv
