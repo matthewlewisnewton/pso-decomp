@@ -1,6 +1,16 @@
 # Upstream matchpasses
 
-## Current review queue on upstream master `6e09dda9c5`
+## Combined great-merge on upstream master `af11a99125`
+
+The combined source at `445a623fc0` and the complete source snapshot at `bc03a17a35` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+
+Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
+
+The [original data ledger](2026-11-18-fork-data-ranges.tsv) accounts for all 1,147 bytes again on the new base. It verifies 980 source-linked bytes, including the 24-byte keyboard virtual table at 0x804D0004, plus 167 bytes of alignment padding.
+
+The working fork reproduces retail and passes its regenerated linked-symbol check. Its documentation and tools are under the fork-only layer. All 133 overlay paths round-trip and all eleven layer tests pass. The network, resource, encounter drawing and world-object standalone branches also point to their already validated replays on `af11a99125`. The other standalone reviews and the remaining historical source records are still in the review queue.
+
+## Previous review queue on upstream master `6e09dda9c5`
 
 The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `a409bd5c82` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, the Bal Claw and Berura combat states, the shared enemy experience and item-drop methods, the typed inventory methods, record export and sorting, the player scale and size packet interfaces, the typed equipment and packet callers, and the typed movement hold, release and animation interfaces. The all-source snapshot is `0a610fd618`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
@@ -289,7 +299,7 @@ A clean build of `af11a99125` reproduced the original executable and passed the 
 
 Across the original 90 fork data ranges, the new master links 956 bytes and retains 167 bytes of alignment padding. The remaining 24 bytes are the software keyboard virtual table at 0x804D0004. The existing verified window replay emits that table. The new master now emits the other two window tables, recovering 48 bytes from the preceding master. The [data range ledger](2026-11-18-fork-data-ranges.tsv) records every range.
 
-The existing combined and all-source branches stay at their verified heads on `6e09dda9c5` while their replay is reconciled. A three-way comparison found 42 conflicts, including 23 window and menu paths, 14 encounter and effect paths, and 3 build metadata files. Several conflicts follow upstream's native class and virtual table changes. The replay needs those definitions and the fork's typed consumers together.
+The combined and all-source branches initially stayed on `6e09dda9c5` while their replay was reconciled. A three-way comparison found 42 conflicts, including 23 window and menu paths, 14 encounter and effect paths, and 3 build metadata files. Several conflicts follow upstream's native class and virtual table changes. The replay needs those definitions and the fork's typed consumers together.
 
 ## Replay on upstream master `6e09dda9c5`
 
