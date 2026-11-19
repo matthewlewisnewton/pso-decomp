@@ -9,7 +9,7 @@ window-lists	great-merge/upstream/window-lists	e67617ef5ef26601c571f363c51c846a0
 result-windows	great-merge/upstream/result-windows	5b85cae0d983a1eba22574a1c2ef45a95480d03b	51	Upstream checks and retail SHA-1 passed
 texture-strips	great-merge/upstream/texture-strips	2e3eb391020607a2a50283827045b2acd1cfb6bd	33	Upstream checks and retail SHA-1 passed
 raft-encounters	great-merge/upstream/raft-encounters	680b1b44a21b5b252983c52ffa23e6aa274ed1f9	21	Upstream checks and retail SHA-1 passed
-player-techniques	great-merge/upstream/player-techniques	c48087c80d04392a807037cb9345449ea5eae1de	8	Upstream checks and retail SHA-1 passed
+player-techniques	great-merge/upstream/player-techniques	136c85e73de85fea9767697c1599091642c2b3b5	48	Upstream checks and retail SHA-1 passed; player combat, shared clamping, weapon canopy lifetimes and trail joints verified
 enemy-motion	great-merge/upstream/enemy-motion	906ce832de7003882c3f76d035f28297f58ca08b	16	Upstream checks and retail SHA-1 passed
 battle-parameters	great-merge/upstream/battle-parameters	23a3a99e6e819487336225ad2a81fbfc801b9dc7	79	Upstream checks and retail SHA-1 passed
 boss-effects	great-merge/upstream/boss-effects	0e2d5dc6636a3ae82e945006f44ce261552a50a3	31	Upstream checks and retail SHA-1 passed

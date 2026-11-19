@@ -6,9 +6,9 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
-| `great-merge/upstream/combined` · `1581a9e94a` | Combined source matchpasses, including collision results and sound-slot pitch | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `ba35b49bff` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `edeba877db` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/combined` · `3cb6c67430` | Combined source matchpasses, including sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/all-source` · `366d4055c1` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `d52d660625` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
@@ -20,6 +20,14 @@ The [pending source index](2026-11-18-upstream-source-groups.tsv) assigns 4,357 
 The fork's enhanced linker checker had produced thousands of retention-list changes. The source-only cumulative build starts from the stock list and updates the affected symbol names. The stock compiler also reproduces the adjacent Dark Falz weighted-selection and material routines in one source unit. Together they emit the two floats at 0x805D8AD8 and 0x805D8ADC naturally. This removes the fork's object-alignment helper from the upstream build. The comparison with fork main found zero lost matched or source-linked function or data ranges. Its total extent decreases by 2,045 bytes, with 2,200 bytes of verified padding leaving coverage and 155 bytes entering coverage.
 
 The four authorized submissions are [#321](https://github.com/zeroz41/pso-decomp/pull/321), [#322](https://github.com/zeroz41/pso-decomp/pull/322), [#323](https://github.com/zeroz41/pso-decomp/pull/323) and [#324](https://github.com/zeroz41/pso-decomp/pull/324). PR 321 merged. After maintainer feedback, the three open PRs were updated in place and each hosted match-gate passed. Their published heads are `c129aa6073`, `341d5288c0` and `40b5e279e7`, respectively.
+
+## Player combat and weapon animation
+
+The 48-path player-combat review at `136c85e73d` includes the existing distance and Gifoie changes and the shared animation used by Madam's Parasol and Madam's Umbrella. Both canopy models have three scale components at 0x1F8. The idle transition plays the opening sound once when x reaches one. Both weapons apply the scale in draw mode 2. The floating-point and integer helpers at 0x80115B80 and 0x80115BC0 also control other weapon and effect animations. The trail setter at 0x801210B0 updates a pair of signed joint indices on the weapon.
+
+The combined combat review, isolated weapon changes, cumulative reviews, full source and fork integration each passed their native build and PR checks with retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Across retail and every rebuilt image the private check in `tools/probes/check_weapon_animation.py` verified 18 clamping cases, 96 animation frames, eight draw modes, 16 construction, destruction and regeneration cases, and five guarded writes to the trail arrays. The existing distance and Gifoie checks passed on the same images.
+
+The [source ledger](2026-11-18-fork-review-index.tsv) also records 35 original weapon factories, 23 destructors and 28 of their headers. Each factory preserved its null-item and allocation-failure paths, original allocation size, parent and item arguments, and constructor address. Each destructor preserved its table write, base destruction and conditional release. Original descriptive table names are recorded at their linked addresses. The review column in the source ledger was refreshed against the actual four submissions and the sixteen current local review branches. It records overlap by path. The source-comparison column gives the evidence for individual fork edits. The same audit found 27 entire single-function source files matching at their current owners and 69 headers consisting entirely of declarations verified against native definitions. It compared return and parameter types, linkage, compiled address and function size. The ledger retains the original prototype spellings.
 
 ## Sound pitch and voice slots
 
@@ -37,7 +45,7 @@ The standalone and cumulative native builds pass the upstream checks. The privat
 
 ## Fork-only tooling and archival copies
 
-The runnable overlay differs from the full native source in 104 project paths, including 79 tool files. This includes the private collision and sound pitch checks. The [original tooling inventory](2026-11-18-original-fork-tools.tsv) separately accounts for all 96 original fork tool, test and workflow changes outside the documentation. Of those originals, 42 are active byte-for-byte. The archive under `fork/tooling/original/` holds 32 originals whose active versions have changed and 22 originals absent from the active tools. Their Git blob IDs and file modes are recorded independently of the current branch names. Historical utilities use the source layout of fork main `3342e42983`.
+The runnable overlay differs from the full native source in 105 project paths, including 80 tool files. This includes the private collision, sound pitch and weapon animation checks. The [original tooling inventory](2026-11-18-original-fork-tools.tsv) separately accounts for all 96 original fork tool, test and workflow changes outside the documentation. Of those originals, 42 are active byte-for-byte. The archive under `fork/tooling/original/` holds 32 originals whose active versions have changed and 22 originals absent from the active tools. Their Git blob IDs and file modes are recorded independently of the current branch names. Historical utilities use the source layout of fork main `3342e42983`.
 
 ## Runtime array allocation and the twenty-group build
 
@@ -189,7 +197,7 @@ The radar, quest-cache and guild-card header decisions are recorded at their cur
 
 The deletion pass covers all 975 original fork deletions. Retain 403 headers that compiler dependencies show are used by live units on both builds, 360 source files with identical exact function addresses and sizes across upstream, integration and fork main, five live data-only owners and two native owners whose functions were regrouped. Another 119 paths are absent from all three trees. Integration already contains 14 further removals. For 71 files the original contents moved elsewhere on the fork. One historical deletion names the path now used for the recovered window base constructor and destructor. The [file ledger](2026-11-18-fork-review-index.tsv) records the evidence on each row. A decision to retain a live upstream file resolves the deletion of that path. Any fork additions that replaced it retain their own review records.
 
-There are still 3,611 source records marked for owner comparison and 318 with partial text matches. These records can carry source-level information even when the full linked game matches.
+There are still 3,415 source records marked for owner comparison and 318 with partial text matches. These records can carry source-level information even when the full linked game matches.
 
 All 374 changed documentation and evidence paths have a local destination under `fork/`. Three executable evidence models are preserved there as Markdown examples. The repository license and third-party license text have separate provenance entries. Shared source and build changes still require semantic comparison before deciding which fork implementation to retain.
 
