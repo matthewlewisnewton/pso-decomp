@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `28385477f6` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources and typed quest records. The all-source snapshot is `cdf791b7e7`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `e5c8760ae8` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records and challenge retry objects. The all-source snapshot is `94316e81d3`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -16,7 +16,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
 | `great-merge/current/render-interfaces` | `6c43c3a146` |
 | `great-merge/current/actor-presentation` | `ba1790084a` |
-| `great-merge/current/world-object-resources` | `436bcf4fc1` |
+| `great-merge/current/world-object-resources` | `bbbb69ff1b` |
 
 The window review reconciles 57 overlapping paths. It retains upstream's native menu and word-select construction and its item-help constant pool, along with the fork's typed callers and field layouts. Sixteen overlapping signatures retain the fork types and original linked addresses. The rebased window review supplies the original chat balloon, item-help and software-keyboard virtual tables. All 90 entries in the [data range ledger](2026-11-18-fork-data-ranges.tsv) now resolve to 980 source-linked bytes and 167 bytes of alignment padding.
 
@@ -50,7 +50,13 @@ The NPC interface replay closes nine additional entries in the [fork source inde
 
 The replay at `28385477f6` restores the fork’s typed quest VM arguments, complete match and item data, and story flag traversal. The string push and dictionary matcher retain their original addresses and sizes. The review verifies 189 historical quest download functions, twenty data and state symbols and the original executable. The standalone resource review at `5b3de69908`, combined stack, all-source snapshot and working fork passed the full project checks. The 133-path fork overlay round-trips and all eleven tests pass.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) closes six entries and adds evidence for eight more. It has 1,429 entries awaiting owner comparison and 656 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) closes six entries and adds evidence for eight more.
+
+### Challenge retry objects
+
+The replay at `e5c8760ae8` carries the original state, countdown, menu and message fields into both challenge retry classes and their current owners. It preserves all 62 function names, addresses and sizes in those owners on the combined stack. The standalone world review at `bbbb69ff1b`, combined stack, all-source snapshot and working fork pass the project checker and reproduce the original executable. The fork overlay round-trips 133 paths and passes all eleven layer tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) closes the two header entries and records the field replay against both source owners. It has 1,427 entries awaiting owner comparison and 656 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
