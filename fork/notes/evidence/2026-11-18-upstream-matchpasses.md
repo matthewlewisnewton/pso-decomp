@@ -117,6 +117,10 @@ Commit `b363e57965` carries 38 names from fork commit `ff61f623a6` for the Gee, 
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
+## Current source comparison
+
+The current source at `34b52ae04b` retains six additional complete fork edits. One complete file matches after translating the include moves. Five whole patches can be merged in either direction against the original fork point while reproducing the current owners exactly. The six current blobs match those tested by the audit. The [fork source index](2026-11-18-fork-review-index.tsv) records those owners and their blobs. 2,291 rows still require full or partial owner comparison.
+
 ## Review queue on the previous master
 
 
