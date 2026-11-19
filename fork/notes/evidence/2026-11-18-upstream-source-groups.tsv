@@ -1504,3 +1504,13 @@ Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/front
 Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdTimeSetGC.cpp	6
 Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp	4
 Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp	1
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	config/GPOE8P/psov3/symbols.txt	3
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	include/pso/system/save/CardSaveFile.h	1
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	include/pso/ui/frontend/TAdPlayerLoadGC.h	2
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	include/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.h	2
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	src/pso/boss/derolle/TObjBoss2Tunnel.cpp	20
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	src/pso/object/TObjSinBoard.cpp	6
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	src/pso/quest/TQuestListVM.cpp	9
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	src/pso/quest/TQuestVmDownLoadServer.cpp	12
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp	33
+Memory-card save images	29e4f6d4ab01d21c7cc4108755971e94b0fe49f6	src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp	18

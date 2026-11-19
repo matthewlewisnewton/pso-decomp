@@ -1,3 +1,4 @@
+#include "pso/system/save/CardSaveFile.h"
 #include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/TMCFormatSequence.h"
@@ -95,48 +96,6 @@ struct QVm_801F7890 {
     s32 f2A0;
 };
 
-struct Req_801F7478 {
-    char name[0x12];
-    char title[0x22];
-    u8 key[0x10];
-    char *s44;
-    char *s48;
-    s16 h4C;
-    s16 h4E;
-    s32 w50;
-    s16 h54;
-    s32 w58;
-    s32 w5C;
-};
-
-struct Req_801F770C {
-    char name[0x12];
-    char title[0x22];
-    u8 key[0x10];
-    char *s44;
-    char *s48;
-    s16 h4C;
-    s16 h4E;
-    s32 w50;
-    s16 h54;
-    s32 w58;
-    s32 w5C;
-};
-
-struct Req_801F718C {
-    char name[0x12];
-    char title[0x22];
-    u8 key[0x10];
-    char *s44;
-    char *s48;
-    s16 h4C;
-    s16 h4E;
-    s32 w50;
-    s16 h54;
-    s32 w58;
-    s32 w5C;
-};
-
 struct Src_801F718C {
     u8 pad0[0x10];
     char title[0x24];
@@ -149,8 +108,6 @@ struct QVm_801F6D24;extern "C" {
 void *memset(void *, int, u32);
 int sprintf(char *, const char *, ...);
 void subtractive_rng_seed(SubtractiveRng *, u32);
-void TAdPlayerLoadGC__sub_801E14E4(void *);
-void TAdPlayerLoadGC__sub_801E14E8(u8 *arg0, s32 arg1);
 char *strncpy(char *, const char *, u32);
 void *memcpy(void *, const void *, u32);
 }
@@ -916,7 +873,7 @@ void TQuestVmDownLoadServer::find_free_file_names() {
 }
 
 void TQuestVmDownLoadServer::build_file_slot_image() {
-    Req_801F770C req;
+    CardSaveDescriptor req;
     s32 r;
     if (this->m_25c >= 0 && poll_memcard_result(this->m_25c) == 0) {
         if (*(s32 *)&this->unk_264 > 0) {
@@ -927,18 +884,18 @@ void TQuestVmDownLoadServer::build_file_slot_image() {
             this->m_260 = TQuestVmDownLoadServer::alloc(*(s32 *)&this->unk_264 << 13);
             if (this->m_260 != NULL) {
                 memset(&req, 0, sizeof(req));
-                strncpy(req.name, TQuestVmDownLoadServer__data_804C8690, 0x12);
+                strncpy(req.filename, TQuestVmDownLoadServer__data_804C8690, 0x12);
                 strncpy(req.title, quest_download_file_slot.title, 0x22);
                 memcpy(req.key, TQuestVmDownLoadServer__memcard_key, 0x10);
-                req.s44 = TQuestVmDownLoadServer__data_805DC5B8;
-                req.s48 = TQuestVmDownLoadServer__data_805DC5BC;
-                req.h4C = 1;
-                req.h4E = 1;
-                req.w50 = 0;
-                req.h54 = 1;
-                req.w58 = (s32)quest_download_file_slot.f38;
-                req.w5C = quest_download_file_slot.f34;
-                TAdPlayerLoadGC__sub_801E14E8((u8 *)&req, 3);
+                req.banner = TQuestVmDownLoadServer__data_805DC5B8;
+                req.icon = TQuestVmDownLoadServer__data_805DC5BC;
+                req.field_4c = 1;
+                req.field_4e = 1;
+                req.field_50 = 0;
+                req.omit_title_space = 1;
+                req.data = (u8 *)quest_download_file_slot.f38;
+                req.size = quest_download_file_slot.f34;
+                set_card_save_artwork(&req, 3);
                 r = TAdPlayerLoadGC::build_save_file_image(this->m_260, &req);
                 TAdPlayerLoadGC__sub_801E14E4(&req);
                 switch (r) {
@@ -985,7 +942,7 @@ void TQuestVmDownLoadServer::abort_download() {
     }
 }
 void TQuestVmDownLoadServer::write_memcard_file() {
-    Req_801F7478 req;
+    CardSaveDescriptor req;
     s32 r;
     if (this->m_25c >= 0 && poll_memcard_result(this->m_25c) == 0) {
         if (this->m_268 > 0) {
@@ -996,18 +953,18 @@ void TQuestVmDownLoadServer::write_memcard_file() {
             this->m_260 = TQuestVmDownLoadServer::alloc(this->m_268 << 13);
             if (this->m_260 != NULL) {
                 memset(&req, 0, sizeof(req));
-                strncpy(req.name, TQuestVmDownLoadServer__data_804C8690, 0x12);
+                strncpy(req.filename, TQuestVmDownLoadServer__data_804C8690, 0x12);
                 strncpy(req.title, TQuestVmDownLoadServer__download_file_state.title, 0x22);
                 memcpy(req.key, TQuestVmDownLoadServer__memcard_key, 0x10);
-                req.s44 = TQuestVmDownLoadServer__data_805DC5B8;
-                req.s48 = TQuestVmDownLoadServer__data_805DC5BC;
-                req.h4C = 1;
-                req.h4E = 1;
-                req.w50 = 0;
-                req.h54 = 1;
-                req.w58 = (s32)TQuestVmDownLoadServer__download_file_state.f38;
-                req.w5C = TQuestVmDownLoadServer__download_file_state.f34;
-                TAdPlayerLoadGC__sub_801E14E8((u8 *)&req, 3);
+                req.banner = TQuestVmDownLoadServer__data_805DC5B8;
+                req.icon = TQuestVmDownLoadServer__data_805DC5BC;
+                req.field_4c = 1;
+                req.field_4e = 1;
+                req.field_50 = 0;
+                req.omit_title_space = 1;
+                req.data = (u8 *)TQuestVmDownLoadServer__download_file_state.f38;
+                req.size = TQuestVmDownLoadServer__download_file_state.f34;
+                set_card_save_artwork(&req, 3);
                 r = TAdPlayerLoadGC::build_save_file_image(this->m_260, &req);
                 TAdPlayerLoadGC__sub_801E14E4(&req);
                 switch (r) {
@@ -1056,7 +1013,7 @@ void TQuestVmDownLoadServer::finish_download() {
     }
 }
 void TQuestVmDownLoadServer::build_file_info_image() {
-    Req_801F718C req;
+    CardSaveDescriptor req;
     s32 r;
     if ((s32)TQuestVmDownLoadServer__download_kind != 1) {
         this->show_status_message(get_message_text(0x41), 1);
@@ -1073,18 +1030,18 @@ void TQuestVmDownLoadServer::build_file_info_image() {
                 this->m_260 = TQuestVmDownLoadServer::alloc(*(s32 *)&this->unk_26C << 13);
                 if (this->m_260 != NULL) {
                     memset(&req, 0, sizeof(req));
-                    strncpy(req.name, TQuestVmDownLoadServer__data_804C8690, 0x12);
+                    strncpy(req.filename, TQuestVmDownLoadServer__data_804C8690, 0x12);
                     strncpy(req.title, quest_download_file_info.title, 0x22);
                     memcpy(req.key, TQuestVmDownLoadServer__memcard_key, 0x10);
-                    req.s44 = TQuestVmDownLoadServer__data_805DC5B8;
-                    req.s48 = TQuestVmDownLoadServer__data_805DC5BC;
-                    req.h4C = 1;
-                    req.h4E = 1;
-                    req.w50 = 0;
-                    req.h54 = 1;
-                    req.w58 = quest_download_file_info.f38;
-                    req.w5C = quest_download_file_info.f34;
-                    TAdPlayerLoadGC__sub_801E14E8((u8 *)&req, 3);
+                    req.banner = TQuestVmDownLoadServer__data_805DC5B8;
+                    req.icon = TQuestVmDownLoadServer__data_805DC5BC;
+                    req.field_4c = 1;
+                    req.field_4e = 1;
+                    req.field_50 = 0;
+                    req.omit_title_space = 1;
+                    req.data = (u8 *)quest_download_file_info.f38;
+                    req.size = quest_download_file_info.f34;
+                    set_card_save_artwork(&req, 3);
                     r = TAdPlayerLoadGC::build_save_file_image(this->m_260, &req);
                     TAdPlayerLoadGC__sub_801E14E4(&req);
                     switch (r) {

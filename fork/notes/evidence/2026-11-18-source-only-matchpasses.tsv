@@ -1,6 +1,6 @@
 original_group	source_review_branch	commit	changed_paths	validation
 radar-camera	great-merge/upstream/radar-camera	940a3997cdd7b499f89f4a699972180858956b84	20	Upstream checks and retail SHA-1 passed
-quest-cache	great-merge/upstream/quest-cache	bec454312ffb22335d6ee366bb712f6a5b4ac850	21	Stock checks and retail SHA-1 passed; quest cache and memory-card operations verified
+quest-cache	great-merge/upstream/quest-cache	f438bf695dbc9c3ebfa423f24acce31a0de52ee5	25	Stock checks and retail SHA-1 passed; quest cache, card operations and save images verified
 guild-card-chat	great-merge/upstream/guild-card-chat	9df0829de9b79eba7804e59f478f6569fa77932e	82	Upstream checks and retail SHA-1 passed
 archive-lifecycle	great-merge/upstream/archive-lifecycle	9b7141d61d53a1373bf49ac2f2c32c5ce33d2211	14	Upstream checks and retail SHA-1 passed
 runtime-array-allocation	great-merge/upstream/runtime-array-allocation	d69da2f8d4dd7c8ae428bb061801317d5ff83bce	157	Upstream checks and retail SHA-1 passed
