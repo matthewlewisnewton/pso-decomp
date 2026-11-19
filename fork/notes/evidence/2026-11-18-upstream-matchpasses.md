@@ -288,6 +288,10 @@ The four renamed exports match 676 instruction bytes. Twenty direct calls retain
 
 The audit reconciles 10 complete fork paths, including the two options factories, the complete option state machine, and the option header's declarations on the save task that owns them. It records partial evidence for 5 more paths. It has 1,484 entries awaiting owner comparison and 677 with partial evidence.
 
+### Option layout and save-task source audit
+
+The current source at `467564e30b` carries both complete fork units for window positions and the memory-card save dialog. The layout uses the shared two-float position records and preserves the existing split-screen table choice and window ordering. The save dialog uses the original save-task receiver, format and result calls, and the compiler-generated deleting entry. All 13 original functions are source-linked and reproduce their instruction bytes at the same addresses in both builds. The audit has 1,482 entries awaiting owner comparison and 677 with partial evidence.
+
 ## Consolidated review queue on `c572111ed6`
 
 The local branches below group related changes for review. The component branches retain their individual validation records. Together the eleven groups cover the 1,339 added, changed and removed source paths in the difference from upstream master to `a5540e955c`. Separate path entries count both endpoints of renames. Shared files can appear in multiple groups.
