@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 // Compiled -inline off,deferred: the functions are written from the last
 // (0x80354B18 load_resources) back to the first (0x803537D4), so CodeWarrior
@@ -30,7 +31,6 @@
 #include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803D96A8.h"
 

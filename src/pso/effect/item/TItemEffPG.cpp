@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/math/ClampedStep.h"
 #include "pso/system/NinjaTypes.h"
@@ -134,7 +135,6 @@ s16 get_validated_attack_stage(u8 *arg0);
 void get_weapon_color__11TItemWeaponFPv(f32 *, void *);
 u8 *create__10TTecSlicerFPUs(SlicerLaunchData_8012D9C8 *);
 extern const f32 lbl_805DFDF8;
-s32 spawn_particle_effect(void *, s32);
 void *find_entity_by_id(s32);
 void create_fire_explosion_effect(void *, f32, void *, int, void *);
 void *TObjPlayer__sub_802E449C(void *a0);
@@ -539,7 +539,7 @@ void TObjPlayer::spawn_particle_at_entity_slot(s32 arg0, s32 arg1, s32 arg2, s32
     if (entity != NULL) {
         temp_r5 = *(u8 **)((s8 *)entity + 0xA4);
         if ((temp_r5 != NULL) && (arg3 < (s32) *(s32 *)((s8 *)entity + 0xA8))) {
-            spawn_particle_effect(&((Tbl_8034F204 *)temp_r5)->arr[arg3], 0x1BF);
+            spawn_particle_effect((const Vec *)(&((Tbl_8034F204 *)temp_r5)->arr[arg3]), 0x1BF);
         }
     }
 }
@@ -578,5 +578,5 @@ void TUnk_804F0810::emit_marker_effects() {
     u8 sp8[0x18];
     struct VObj_8034EFDC *o = (struct VObj_8034EFDC *)this->owner;
     o->m63(0x30, sp8);
-    spawn_particle_effect(sp8, 0x1D0);
+    spawn_particle_effect((const Vec *)sp8, 0x1D0);
 }

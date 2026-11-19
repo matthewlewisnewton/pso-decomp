@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -8,7 +9,6 @@
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
 #include "pso/map/CsnQuery.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/stelth/TObjEneMe3Stelth.h"
@@ -2152,11 +2152,11 @@ s32 TObjEneMe3Stelth::try_spawn_ground_effect(s32 arg1) {
     pos.y += 15.0f;
     hit = csnVectorUnder(&pos, (u32 *)&m_120, 0x15);
     if (hit != NULL && (hit[0] & 4)) {
-        effect = spawn_particle_effect((void *)(hit[1] + 0x38), 0x49);
+        effect = spawn_particle_effect((const Vec *)(hit[1] + 0x38), 0x49);
         if (effect != NULL) {
             attach_particle_model((u8 *)effect, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, 1.0f);
         }
-        spawn_particle_effect((void *)(hit[1] + 0x38), 0xA4);
+        spawn_particle_effect((const Vec *)(hit[1] + 0x38), 0xA4);
         TObjEneGibbles__sub_800D8988(&position);
         return 1;
     }

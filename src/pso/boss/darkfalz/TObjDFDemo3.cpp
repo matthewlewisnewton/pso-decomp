@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -22,7 +23,6 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/boss/darkfalz/TBoss4DarkFalz.h"
 
@@ -140,7 +140,7 @@ void TObjDFDemo3::run_task() {
         }
     }
     if ((s32) this->m_b0 == 0x86) {
-        temp_r3 = (u32)spawn_particle_effect(&this->m_a0, 0x9B);
+        temp_r3 = (u32)spawn_particle_effect((const Vec *)&this->m_a0, 0x9B);
         if (temp_r3 != 0U) {
             ((TParticleCtrl *)temp_r3)->set_flags(0x40);
         }

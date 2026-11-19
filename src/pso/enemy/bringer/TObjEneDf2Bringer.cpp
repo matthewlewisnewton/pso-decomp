@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
@@ -24,7 +25,6 @@
 #include "pso/unk/text_803D8F74.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/math/AngleLookup.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/system/BmlResourceDescriptor.h"
 
@@ -1436,12 +1436,12 @@ void TObjEneDf2Bringer::spawn_offset_particle() {
     stack.z = 7.0f;
     rotate_xz_pair_by_angle(&stack.x, &stack.z, this->rotation_y, 0.0f, -5.0f);
     vec3_add_to(&stack.x, ((u8 *)this) + 0x38);
-    spawn_particle_effect(&stack.x, 0xF3);
+    spawn_particle_effect((const Vec *)&stack.x, 0xF3);
 }
 
 void TObjEneDf2Bringer::spawn_particle_if_in_band() {
     if ((((TObjMotion *)((u8 *)this))->is_passing_frame(0.0f) != 0) || (((TObjMotion *)((u8 *)this))->is_passing_frame(8.0f) != 0)) {
-        spawn_particle_effect(((u8 *)this) + 0x38, 0xF0);
+        spawn_particle_effect((const Vec *)(((u8 *)this) + 0x38), 0xF0);
     }
 }
 

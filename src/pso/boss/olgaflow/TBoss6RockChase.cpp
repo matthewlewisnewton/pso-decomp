@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -6,7 +7,6 @@
 #include "pso/boss/olgaflow/TBoss6RockChase.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/render/GinjaMaterial.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
 #include "pso/boss/olgaflow/TBoss6Rock.h"
@@ -165,8 +165,8 @@ void TBoss6RockChase::run_task() {
             *(f32 *)&this->_padB8 = 0.0f;
             damage_players_in_range();
             play_sound_effect(0x4006B51E, &this->position, 0, 0);
-            spawn_particle_effect(((u8 *)&this->position), 0x220);
-            spawn_particle_effect(((u8 *)&this->position), 0x222);
+            spawn_particle_effect(&this->position, 0x220);
+            spawn_particle_effect(&this->position, 0x222);
             TBoss6PlotFalz::apply_radial_effect_to_players((u8 *)&this->position, 0xC0, 0xF, 100.0f);
             ((TBoss6Rock *)(arg0 + 0x38))->spawn_crush_rocks(this->m_b0);
             play_sound_effect(0x4006AB1F, &this->position, 0, 0);

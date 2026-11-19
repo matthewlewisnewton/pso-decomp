@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/system/SoundEffect.h"
@@ -25,7 +26,6 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/enemy/gibon/TObjEneBm5GibonU.h"
 #include "pso/unk/text_803D8F74.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D96A8.h"
 extern "C" void has_flag_0x800__9TObjCharaFv();
@@ -560,14 +560,14 @@ int TObjEneBm5GibonU::spawn_landing_effect(Vec *pos) {
     v.y += 15.0f;
     hit = csnVectorUnder(&v, &m_120, 5);
     if (hit != NULL && (hit->flags & 4)) {
-        p = spawn_particle_effect(hit->obj + 0x38, 0x49);
+        p = spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0x49);
         if (p != NULL) {
             attach_particle_model((u8 *)p, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, 1.0f);
             if (m_464 == 1) {
                 ((TParticleCtrl *)p)->set_scale(1.5f, 1.0f);
             }
         }
-        p = spawn_particle_effect(hit->obj + 0x38, 0xA4);
+        p = spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0xA4);
         if (p != NULL && m_464 == 1) {
             ((TParticleCtrl *)p)->set_scale(1.5f, 1.0f);
         }

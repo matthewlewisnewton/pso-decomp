@@ -18,3 +18,4 @@ host-portability	great-merge/upstream/native-callbacks-sdk	d8c3791adee9d8a777bcc
 collision-results	great-merge/upstream/collision-results	0252e0bcab421f8d1a7ddf7c6d0fb157d7b5d975	12	Upstream checks and retail SHA-1 passed
 memory-moves	great-merge/upstream/memory-moves	c73a05326b43865a5b08ffad1b79a718bc328a82	32	Upstream checks and retail SHA-1 passed; 96 guarded byte and word copy cases
 positional-sound	great-merge/upstream/positional-sound	cc23e836c9793f3629a5a85464a1cd91e7805016	259	Upstream checks and retail SHA-1 passed; one-shot, persistent, floor dispatch and particle checks passed
+particle-factories	great-merge/upstream/particle-factories	4137dcb168bf0811b64643844e59a842b92c4ede	188	Stock checks, retail SHA-1, factory boundary tests and compiled caller accounting passed

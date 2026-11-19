@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/render/render_util.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -27,7 +28,6 @@
 #include "pso/object/container/TObjContainerBase.h"
 #include "pso/object/container/TObjContainerItem.h"
 #include "pso/ui/window/TWindowKeyBoardHard_801FBA48.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/object/container/TObjContainerNoItem.h"
 #include "pso/object/container/TObjContainerEnemy.h"
 #include "pso/object/base/TObjChara.h"
@@ -649,8 +649,8 @@ void TObjContainerItem::vfunc_79() const {
         b.pad_38[0] = self->y;
         b.model = get_container_param(0);
         b.textures = lbl_805D5B7C;
-        spawn_particle_effect_with_flags(&self->x, 0x45, 0x40);
-        spawn_particle_effect_with_flags(&self->x, 0x46, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&self->x, 0x45, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&self->x, 0x46, 0x40);
         o = TObject::operator new(0x234);
         if (o != NULL) {
             __ct__8TObjChipFP7TObjectPC14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);
@@ -775,8 +775,8 @@ void TObjContainerEnemy::vfunc_79() const {
         b.pad_38[0] = self->y;
         b.model = get_container_param(0);
         b.textures = lbl_805D5B7C;
-        spawn_particle_effect_with_flags(&self->x, 0x45, 0x40);
-        spawn_particle_effect_with_flags(&self->x, 0x46, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&self->x, 0x45, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&self->x, 0x46, 0x40);
         o = TObject::operator new(0x234);
         if (o != NULL) {
             __ct__8TObjChipFP7TObjectPC14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);
@@ -884,8 +884,8 @@ void TObjContainerNoItem::vfunc_79() const {
         b.pad_38[0] = self->y;
         b.model = get_container_param(0);
         b.textures = lbl_805D5B7C;
-        spawn_particle_effect_with_flags(&self->x, 0x45, 0x40);
-        spawn_particle_effect_with_flags(&self->x, 0x46, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&self->x, 0x45, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&self->x, 0x46, 0x40);
         o = TObject::operator new(0x234);
         if (o != NULL) {
             __ct__8TObjChipFP7TObjectPC14TObjChipParams((u8 *)o, (u8 *)tl_05, (u8 *)&a);

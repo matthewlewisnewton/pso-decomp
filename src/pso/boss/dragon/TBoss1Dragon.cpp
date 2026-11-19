@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -2917,7 +2918,7 @@ void TBoss1Dragon::handleFallState(u32 reason) {
         case 2:
             this->impactAge = (this->impactAge + 1);
             if ((s32) this->impactAge == 4) {
-                spawn_particle_effect_with_flags(((void *) &this->position.x), this->effectResource->particle_ids[2], 0x40);
+                spawn_particle_effect_with_flags((const Vec *)&this->position.x, this->effectResource->particle_ids[2], 0x40);
                 TCameraCtrl::set_shake_preset(1);
                 apply_landing_attack__12TBoss1DragonFi((s32)this);
                 return;
@@ -3419,7 +3420,7 @@ void TBoss1Dragon::update_lift_state(u32 arg1) {
             play_se_at_pos__12TBoss1DragonFii((s32)self, 0x4003A803);
         }
         if (((TObjMotion *)self)->is_passing_frame(46.0f) != 0) {
-            spawn_particle_effect_with_flags(&self->position.x, self->effectResource->particle_ids[1], 0x40);
+            spawn_particle_effect_with_flags((const Vec *)&self->position.x, self->effectResource->particle_ids[1], 0x40);
         }
         switch (self->impactAge) {
         case 1:
@@ -4426,7 +4427,7 @@ int TBoss1Dragon::apply_foot_step_attack(int arg1) {
         break;
     }
     reset_hp((u8 *)0, (u8 *)(TBoss1Dragon__part_hp_stats[0]), (u8 *)0);
-    spawn_particle_effect_with_flags(b, this->effectResource->particle_ids[3], 0x40);
+    spawn_particle_effect_with_flags((const Vec *)b, this->effectResource->particle_ids[3], 0x40);
 }
 
 void TBoss1Dragon::clear_work() {
@@ -4446,7 +4447,7 @@ void TBoss1Dragon::spawn_impact_crater(s32 arg1) {
         this->m_6a4 = (temp_r5 + 1);
         ((TObjBoss1Crater *)tl_02)->create(&position.x);
     }
-    spawn_particle_effect_with_flags((&position.x), this->effectResource->particle_ids[0], 0x840);
+    spawn_particle_effect_with_flags((const Vec *)&position.x, this->effectResource->particle_ids[0], 0x840);
     TCameraCtrl::set_shake_preset(1);
 }
 #pragma pop

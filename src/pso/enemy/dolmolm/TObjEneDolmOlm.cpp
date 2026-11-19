@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/system/SoundEffect.h"
@@ -391,7 +392,6 @@ extern u32 TObjEneDolmOlm__data_805D6A14;
 extern u32 TObjEneDolmOlm__data_805D6A18;
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 Hit_80300D00 *csnVectorUnder(void *, void *, s32, f32);
-void *spawn_particle_effect(const void *pos, s32 id);
 extern s32 actor_frame_tick;
 void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec *arg1);
 f32 random_ratio__9TObjCharaFv();
@@ -1399,20 +1399,20 @@ void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec *arg1) {
             if (actor_frame_tick % 5 == 0) {
                 play_floor_area_sound_effect((const Vec *)(arg0 + 0x38));
             }
-            e = (s32)spawn_particle_effect(hit->obj + 0x38, 0x49);
+            e = (s32)spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0x49);
             if (e != 0) {
                 attach_particle_model((u8 *)e, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, 1.0f);
             }
-            spawn_particle_effect(hit->obj + 0x38, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x38), 0xA4);
         } else if (hit->flags & 2) {
             if (actor_frame_tick % 10 == 0) {
                 play_floor_area_sound_effect((const Vec *)(arg0 + 0x38));
             }
-            e = (s32)spawn_particle_effect(hit->obj + 0x54, 0x49);
+            e = (s32)spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0x49);
             if (e != 0) {
                 attach_particle_model((u8 *)e, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, 1.0f);
             }
-            spawn_particle_effect(hit->obj + 0x54, 0xA4);
+            spawn_particle_effect((const Vec *)(hit->obj + 0x54), 0xA4);
         }
         *(s32 *)(arg0 + 0x3E4) = *(s32 *)(hit->obj + 0x18);
         if (*(s32 *)(arg0 + 0x3E4) & 0x4000) {

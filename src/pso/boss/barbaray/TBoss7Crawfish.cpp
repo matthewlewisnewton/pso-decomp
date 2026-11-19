@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -8,7 +9,6 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/system/task/TObject_80019A50.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/system/vector.h"
 #include "types.h"
 #include <stddef.h>
@@ -181,8 +181,8 @@ void TBoss7Crawfish::spawn_ground_effects() {
     position.x = *(f32 *)((s8 *)arg0 + 0x38);
     position.y = 0.0f;
     position.z = *(f32 *)((s8 *)arg0 + 0x40);
-    spawn_particle_effect((&position.x), 0x20D);
-    spawn_particle_effect((&position.x), 0x20E);
+    spawn_particle_effect((const Vec *)&position.x, 0x20D);
+    spawn_particle_effect((const Vec *)&position.x, 0x20E);
 }
 
 #define arg0 ((s32)arg0_)

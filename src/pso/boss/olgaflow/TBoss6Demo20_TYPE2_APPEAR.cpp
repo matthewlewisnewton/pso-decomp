@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -21,7 +22,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.h"
 #include "pso/system/SoundEffect.h"
-#include "pso/unk/text_80087278.h"
 
 
 struct RecoveredGlobal_8033DCA8_lbl_80477F2C { s32 value; u8 remaining[8]; };
@@ -221,12 +221,12 @@ void run_task__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D6DC *self) {
     play_persistent_sound(0x4003C627, self, 0, 0, 0);
     switch (self->frame) {
     case 0xB9:
-        spawn_particle_effect_with_flags(self->obj40, 0x220, 0x40);
-        spawn_particle_effect_with_flags(self->obj70, 0x220, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)self->obj40, 0x220, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)self->obj70, 0x220, 0x40);
         break;
     case 0xED:
-        spawn_particle_effect_with_flags((void *)&boss6_type2_appear_origin, 0x221, 0x40);
-        spawn_particle_effect_with_flags((void *)&boss6_type2_appear_origin, 0x225, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&boss6_type2_appear_origin, 0x221, 0x40);
+        spawn_particle_effect_with_flags((const Vec *)&boss6_type2_appear_origin, 0x225, 0x40);
         break;
     }
     for (i = 0; i < 9; i++) {

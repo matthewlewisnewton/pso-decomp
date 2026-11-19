@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
@@ -126,7 +127,6 @@ s32 attach_particle_model(int, int, int, int, int, f32);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, u16 e);
 void *spawn_continuous_particle_effect_with_flags(void *, s32, u16);
 extern s32 lbl_805D63B0;
-void *spawn_particle_effect(const void *pos, s32 id);
 void *TTecFoie__ct(void *, void *, void *, void *, void *);
 void *construct_aimed__8TTecFoieFlPUcPUcs(void *, void *, void *, void *, void *);
 
@@ -205,8 +205,8 @@ void TTecFoie::init_projectile_params() {
 
 void TTecFoie::vfunc_6() {
     s32 arg0 = (s32)this;
-    spawn_particle_effect((const void *)(arg0 + 0x20), 0x1DC);
-    spawn_particle_effect((const void *)(arg0 + 0x20), 0x1DD);
+    spawn_particle_effect((const Vec *)(arg0 + 0x20), 0x1DC);
+    spawn_particle_effect((const Vec *)(arg0 + 0x20), 0x1DD);
 }
 
 void TTecFoie::vfunc_8(void *target_arg) {

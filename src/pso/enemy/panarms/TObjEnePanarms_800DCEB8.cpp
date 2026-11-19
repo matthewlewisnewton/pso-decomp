@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -33,7 +34,6 @@
 #include "pso/system/BmlResource.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/camera/TCameraCtrl.h"
@@ -792,7 +792,7 @@ void TObjEnePanarms::update_fall() {
     if ((*((f32 *) (((s8 *) arg0) + 0x3C))) <= (*((f32 *) (((s8 *) arg0) + 0x384))))
     {
       *((f32 *) (((s8 *) arg0) + 0x3C)) = *((f32 *) (((s8 *) arg0) + 0x384));
-      spawn_particle_effect(((u8 *)&this->position), 0xF0);
+      spawn_particle_effect(&this->position, 0xF0);
       set_state((s32)((void*)(3)));
       return;
     }
@@ -802,7 +802,7 @@ void TObjEnePanarms::update_fall() {
   {
     VecCopy((Vec *)(&stack.sp8), (const Vec *)(arg0 + 0x2FC));
     stack.spC = 5.0f + (*((f32 *) (((s8 *) arg0) + 0x384)));
-    spawn_particle_effect((&stack.sp8), 0xF0);
+    spawn_particle_effect((const Vec *)&stack.sp8, 0xF0);
   }
 }
 
@@ -948,7 +948,7 @@ void TObjEnePanarms::update_dead() {
     if ((temp_f2 >= 21.0f) && (temp_f2 < (21.0f + panarms_dead_particle_frame_window))) {
         VecCopy((Vec *)(&stack.sp14), (const Vec *)((u8 *)this + 0x2FC));
         stack.sp18 += 5.0f;
-        spawn_particle_effect((&stack.sp14), 0xF0);
+        spawn_particle_effect((const Vec *)&stack.sp14, 0xF0);
     }
     temp_r0 = this->m_388;
     if (temp_r0 <= 0x78) {
@@ -1113,7 +1113,7 @@ void TObjEnePanarms::update_hit_effect() {
     f32 temp_f1;
     temp_f1 = this->frame;
     if ((temp_f1 >= 20.0f) && (temp_f1 < 20.6f)) {
-        spawn_particle_effect((((u8 *)this) + 0x38), 0xF0);
+        spawn_particle_effect((const Vec *)(((u8 *)this) + 0x38), 0xF0);
     }
     if (this->motion_flags & 0x10) {
         set_state((s32)((void*)(0xA)));
@@ -1229,7 +1229,7 @@ void TObjEnePanarms::update_state_effect() {
     f32 temp_f1;
     temp_f1 = this->frame;
     if ((temp_f1 >= 20.0f) && (temp_f1 < 20.6f)) {
-        spawn_particle_effect((((u8 *)this) + 0x38), 0xF0);
+        spawn_particle_effect((const Vec *)(((u8 *)this) + 0x38), 0xF0);
     }
     if (this->motion_flags & 0x10) {
         set_state((s32)((void*)(3)));

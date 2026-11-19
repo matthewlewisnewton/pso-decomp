@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/camera/RadarMapViewState.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -20,7 +21,6 @@
 #include "pso/enemy/saver/TObjEneSaver.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
@@ -837,7 +837,7 @@ void TObjEneSaver::sub_800A4D9C() {
         fail:
             F(s16, 0x328) = 2;
         done:
-            spawn_particle_effect((u8 *)&this->position, 0xF3);
+            spawn_particle_effect(&this->position, 0xF3);
         }
         break;
     case 1:
@@ -860,7 +860,7 @@ void TObjEneSaver::sub_800A4D9C() {
             check_enemy_body_collisions(arg0);
             F(s16, 0x328) = 2;
             TObjPlayer__sub_800A5960(arg0);
-            spawn_particle_effect((u8 *)&this->position, 0xF3);
+            spawn_particle_effect(&this->position, 0xF3);
             play_sound_effect(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AD04), &this->position, 0, 0);
             F(u32, 0x374) &= ~0x10;
         }

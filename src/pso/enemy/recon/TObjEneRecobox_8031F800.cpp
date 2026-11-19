@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
@@ -54,7 +55,6 @@
 
 #include "pso/system/task/TMainTask.h"
 
-#include "pso/unk/text_80087278.h"
 
 #include "pso/system/task/TObject_80019A50.h"
 

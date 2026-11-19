@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -64,7 +65,6 @@ struct RecoveredFields_802CE510_temp_r3
 };
 
 extern "C" {
-void *spawn_particle_effect(const void *pos, s32 id);
 typedef struct RecoveredFields_802CE510_temp_r3 RecoveredFields_802CE510_temp_r3;
 
 typedef struct Stack_802CE510 Stack_802CE510;
@@ -1391,7 +1391,7 @@ void fn_802CE510(int owner) {
     {
       if (temp_r31 != 0)
       {
-        particle_effect = (unsigned int)spawn_particle_effect((const void *)(((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_4 + 0x38), 0x49);
+        particle_effect = (unsigned int)spawn_particle_effect((const Vec *)(((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_4 + 0x38), 0x49);
         if (particle_effect != 0U)
         {
           ;
@@ -1400,7 +1400,7 @@ void fn_802CE510(int owner) {
           new_var = (int) particle_effect;
           ((TParticleCtrl *)new_var)->set_scale(5.0f, 1.0f);
         }
-        temp_r3_3 = (unsigned int)spawn_particle_effect((const void *)(((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_4 + 0x38), 0xA4);
+        temp_r3_3 = (unsigned int)spawn_particle_effect((const Vec *)(((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_4 + 0x38), 0xA4);
         if (temp_r3_3 != 0U)
         {
           ((TParticleCtrl *)temp_r3_3)->set_scale(5.0f, 1.5f);
@@ -1408,7 +1408,7 @@ void fn_802CE510(int owner) {
       }
       else
       {
-        temp_r3_4 = (unsigned int)spawn_particle_effect((const void *)(owner + 0x38), 0xF3);
+        temp_r3_4 = (unsigned int)spawn_particle_effect((const Vec *)(owner + 0x38), 0xF3);
         if (temp_r3_4 != 0U)
         {
           ((TParticleCtrl *)temp_r3_4)->set_scale(5.0f, 2.0f);

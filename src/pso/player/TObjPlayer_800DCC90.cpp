@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/nanodrago/TObjEneNanoDrago.h"
 #include "types.h"
@@ -52,7 +53,6 @@ Obj_800DC4B4 *find_active_entity_by_id(u16);
 s32 subtract_vector(void *, void *);
 s32 vec3_add_to(void *, void *);
 u32 csnVector(void *, void *, int);
-void spawn_particle_effect(void *, int);
 extern const f32 lbl_805D5260;
 extern const f32 lbl_805D5268;
 extern s32 lbl_805D5270;
@@ -118,8 +118,8 @@ void TUnk_80494E48::run_task() {
             if (obj->flags & 0x800) {
                 ((TObjEneNanoDrago *)att)->request_growth();
             }
-            spawn_particle_effect(obj->pos, 0xFB);
-            spawn_particle_effect(obj->pos, 0xFC);
+            spawn_particle_effect((const Vec *)obj->pos, 0xFB);
+            spawn_particle_effect((const Vec *)obj->pos, 0xFC);
             if (is_split_screen() == 0 && local_client_id == arg0->owner) {
                 ((TObjEneNanoDrago *)att)->trigger_hit_camera_shake((u32)obj);
             }

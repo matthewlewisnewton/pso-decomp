@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -40,7 +41,6 @@
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
 #include "pso/object/ambient/TObjLight_80133568.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/unk/text_803D8F74.h"

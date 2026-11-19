@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -13,7 +14,6 @@
 #include "pso/camera/TCameraCtrl.h"
 #include "pso/camera/TCameraCtrl_800687BC.h"
 #include "pso/player/TObjPlayer_803E4954.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 #include "pso/boss/olgaflow/TBoss6PlotFalz.h"

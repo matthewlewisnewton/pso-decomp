@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -12,7 +13,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/unk/text_803D8F74.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/map/CsnQuery.h"
@@ -164,7 +164,7 @@ void TUnk_8049442C::sub_800D4200() {
             }
         }
     }
-    spawn_particle_effect(arg0 + 0x38, 0xFB);
+    spawn_particle_effect((const Vec *)(arg0 + 0x38), 0xFB);
     play_sound_effect((s32)((void *)remap_area_sound_id(0x4003A80C, 0x19)), (const Vec *)(arg0 + 0x38), 0, 0);
     ((TObject *)arg0)->queue_destruction();
 }

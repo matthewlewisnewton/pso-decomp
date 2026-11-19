@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/boss/Boss6ScrollStrips.h"
 #include "pso/enemy/BattleParameters.h"
@@ -13,7 +14,6 @@
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
-#include "pso/unk/text_80087278.h"
 #include "pso/render/render_util.h"
 #include "pso/system/task/TObject.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"

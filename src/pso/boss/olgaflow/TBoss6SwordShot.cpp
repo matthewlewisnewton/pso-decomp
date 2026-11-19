@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -13,7 +14,6 @@
 
 #include <stddef.h>
 #include "pso/player/TObjPlayer_80011014.h"
-#include "pso/unk/text_80087278.h"
 
 
 extern "C" {

@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -16,7 +17,6 @@
 #include "pso/enemy/lappy/TObjEneLappy.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/task/TObject.h"
@@ -914,7 +914,7 @@ void TObjEneLappy::update_moving() {
                     return;
                 }
                 if (--*(s16 *)&this->m_396 < 0) {
-                    spawn_particle_effect((u8 *)&this->position, 0xF3);
+                    spawn_particle_effect(&this->position, 0xF3);
                     *(s16 *)&this->m_396 = 2;
                 }
                 play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x3AF12)), arg0, &this->position, (s32)(0), (s32)(0));

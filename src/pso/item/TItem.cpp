@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/NinjaTypes.h"
@@ -47,7 +48,6 @@
 #include "pso/unk/text_801057A8.h"
 #include "pso/unk/text_801D98F8.h"
 #include "pso/unk/text_80104FCC.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D853C.h"
@@ -1401,7 +1401,7 @@ void TItem::snap_to_owner() {}
 
 void TItem::apply_switch_attack(s32 effect) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect_with_flags(&owner->m_2fc, effect, 0x10);
+        TParticleCtrl *particle = spawn_particle_effect_with_flags((const Vec *)&owner->m_2fc, effect, 0x10);
         if (particle != NULL) {
             particle->set_owner_id(get_owner_client());
         }

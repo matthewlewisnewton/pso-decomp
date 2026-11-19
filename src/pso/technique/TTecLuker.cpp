@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/player/TObjPlayer.h"
@@ -153,7 +154,6 @@ extern TelepipeFieldCollisionBodyTemplate telepipe_field_collision_body_template
 extern s32 telepipe_field_collider_vtable[];
 bool TTecLuker__sub_8023401C(u8 *arg0);
 u32 recovery_technique_charge_particle_ids[2] = { 0xB7, 0xB8 };
-void* spawn_particle_effect(float*,u32);
 void TTecLuker__updateRecoveryTechniqueCharge(TechniqueChargeEmitter* state);
 }
 u8 TTecLuker__visit_counts[4] = { 0, 0, 0, 0 };
@@ -254,7 +254,7 @@ s32 submit_cursor_candidate(void *, s32);
 void TTecLuker__updateRecoveryTechniqueCharge(TechniqueChargeEmitter* state) {
     ++state->age;
     if(state->age%10==0) {
-        for(int i=0;i<2;++i)spawn_particle_effect(state->position,recovery_technique_charge_particle_ids[i]);
+        for(int i=0;i<2;++i)spawn_particle_effect((const Vec *)state->position,recovery_technique_charge_particle_ids[i]);
     }
     if(!((TObjPlayer *)(state->actor))->check_flag_0x80())((TObject *)state)->queue_destruction();
     else if(state->age>=180)((TObject *)state)->queue_destruction();
@@ -778,7 +778,7 @@ void run_task__9TTecLukerFv(u8 *tec_luker) {
         }
         if ((get_player_by_client_id(((TTecLuker *)tec_luker)->m_f6) != 0) && (get_pipe_interaction_latch(*(void **)((s8 *)tec_luker + 0xF0)) != 0) && (are_players_gathered_near(tec_luker + 0xFC, 0, 10.0f) != 0)) {
             offset_point_toward_camera(tec_luker + 0xFC, (u8 *)((s32 *) &sp8), 10.0f);
-            spawn_particle_effect((float *) &sp8, 0xB3);
+            spawn_particle_effect((const Vec *)((float *) &sp8), 0xB3);
             player = (u8 *)get_player_by_client_id(((TTecLuker *)tec_luker)->m_f6);
             if (player != NULL) {
                 TObjPlayer::play_effect_default((int)player, (int)0xA);

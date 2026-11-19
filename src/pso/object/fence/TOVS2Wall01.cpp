@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -40,7 +41,6 @@
 #include "pso/object/TObjChip.h"
 #include "pso/system/task/TMainTask.h"
 
-#include "pso/unk/text_80087278.h"
 #include "pso/object/fence/TOVS2Wall01_8017BCC8.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/object/fence/WallHitPacket.h"
@@ -219,8 +219,8 @@ void init__11TOVS2Wall01Fi(s32 arg0) {
         ((TOVS2Wall01 *)arg0)->spawn_debris(index);
         index += 1;
     } while (index <= 0xF);
-    spawn_particle_effect((void *)(arg0 + 0x38), 0x45);
-    spawn_particle_effect((void *)(arg0 + 0x38), 0x46);
+    spawn_particle_effect((const Vec *)(arg0 + 0x38), 0x45);
+    spawn_particle_effect((const Vec *)(arg0 + 0x38), 0x46);
     play_sound_effect(0x4004BC05, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
@@ -240,8 +240,8 @@ f32 take_hit__11TOVS2Wall01FPvUi(u8 *ovs2_wall01, void *attacker) {
         } else {
             ((TOVS2Wall01 *)ovs2_wall01)->save_and_send_state(0);
         }
-        spawn_particle_effect((ovs2_wall01 + 0x38), 0x1D0);
-        spawn_particle_effect((ovs2_wall01 + 0x38), 1);
+        spawn_particle_effect((const Vec *)(ovs2_wall01 + 0x38), 0x1D0);
+        spawn_particle_effect((const Vec *)(ovs2_wall01 + 0x38), 1);
     }
     return 0.0f;
 }

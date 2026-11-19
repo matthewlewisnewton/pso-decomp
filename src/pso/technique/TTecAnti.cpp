@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
@@ -128,7 +129,6 @@ s32 is_parents_unqueued__9TTecLukerFUl();
 void deliver_technique_to_party_targets(void *);
 void run_task__8TTecAntiFv(Anti_8022B150 *self);
 s32 is_split_screen();
-void *spawn_particle_effect_with_flags(void *, int, int);
 int spawn_support_tec_range_effect(void*);
 }
 u8 *construct_delayed_point_sound(u8 *arg0, u8 *arg1, s16 arg2, s32 arg3, u8 *arg4);
@@ -252,11 +252,11 @@ void TTecAnti::vfunc_7(void *pl_arg) {
             }
         }
     } else if (self->xAC != 0) {
-        o = spawn_particle_effect_with_flags(pl->x2FC, 0x1F8, 0x10);
+        o = spawn_particle_effect_with_flags((const Vec *)pl->x2FC, 0x1F8, 0x10);
         if (o != NULL) {
             set_owner_id__13TParticleCtrlFUs(o, get_entity_id((int)pl));
         }
-        o = spawn_particle_effect_with_flags(pl->x2FC, 0x1FF, 0x10);
+        o = spawn_particle_effect_with_flags((const Vec *)pl->x2FC, 0x1FF, 0x10);
         if (o != NULL) {
             set_owner_id__13TParticleCtrlFUs(o, get_entity_id((int)pl));
         }

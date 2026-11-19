@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -21,7 +22,6 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/math/AngleLookup.h"
 #include <stdlib.h>
-#include "pso/unk/text_80087278.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803E2D70.h"
 #include "pso/unk/text_803D96A8.h"
@@ -812,7 +812,7 @@ void TObjPlayer__sub_800A16C4(u8 *player) {
 void TObjEneDarkGunner::vfunc_61() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30((s32)(0x100U));
-    spawn_particle_effect(((u8 *)&this->m_2fc), 0xD7);
+    spawn_particle_effect((const Vec *)&this->m_2fc, 0xD7);
     play_sound_effect(0x4003B22D, &this->position, 0, 0);
 }
 
@@ -1067,7 +1067,7 @@ void TObjPlayer__sub_800A1D70(u8 *arg0) {
             ((TObjPlayer *)arg0)->m_310 = (f32) ((((TObjPlayer *)arg0)->m_310 * temp_f1) / temp_f31);
         }
         if (*(s32 *)((s8 *)arg0 + 0x388) & 0x400000) {
-            spawn_particle_effect((arg0 + 0x2FC), 0xD7);
+            spawn_particle_effect((const Vec *)(arg0 + 0x2FC), 0xD7);
         }
         *(s16 *)((s8 *)arg0 + 0x39E) = 0;
         ((TObjPlayer *)arg0)->m_37c = 1;

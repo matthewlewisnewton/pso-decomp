@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8DragonEffBullet.h"
 #include "pso/system/task/TObject_80019A50.h"
@@ -90,7 +91,7 @@ void TBoss8DragonEffBullet::run_task() {
     case 1:
         arg0->field_34 += 1;
         if ((s32) arg0->field_34 == 1) {
-            spawn_particle_effect_with_flags((void *)&arg0->field_1C, (s32)(*(u8 **)((s8 *)arg0->field_54 + 4)), 0x40);
+            spawn_particle_effect_with_flags((const Vec *)&arg0->field_1C, (s32)(*(u8 **)((s8 *)arg0->field_54 + 4)), 0x40);
             temp_r3_3 = arg0->field_50;
             if (temp_r3_3 != NULL) {
                 ((TObject *)temp_r3_3)->queue_destruction();
@@ -105,7 +106,7 @@ void TBoss8DragonEffBullet::run_task() {
             TBoss8Dragon__sub_802FB220(get_enemy_entity((u16)arg0->field_48), (int)&arg0->field_1C, arg0->field_44);
         }
         if ((s32) arg0->field_34 <= 2) {
-            spawn_particle_effect_with_flags((void *)&arg0->field_1C, (s32)(*(u8 **)((s8 *)arg0->field_54 + 8)), 0x40);
+            spawn_particle_effect_with_flags((const Vec *)&arg0->field_1C, (s32)(*(u8 **)((s8 *)arg0->field_54 + 8)), 0x40);
             return;
         }
         arg0->field_38 = 2;

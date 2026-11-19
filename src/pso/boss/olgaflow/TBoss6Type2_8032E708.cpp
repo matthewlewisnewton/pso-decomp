@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -15,7 +16,6 @@
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include <stdlib.h>
-#include "pso/unk/text_80087278.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
@@ -396,7 +396,7 @@ void TBoss6Mag::sub_8032E8DC() {
         break;
     }
     if (!(((Obj_8032E8DC *)this)->f3C8 & 0x1F) && is_active__11TBoss6Type2Fv(((Obj_8032E8DC *)this)->f378) != 0) {
-        spawn_particle_effect_with_flags(((Obj_8032E8DC *)this)->sw, 0x224, 0x2040);
+        spawn_particle_effect_with_flags((const Vec *)(((Obj_8032E8DC *)this)->sw), 0x224, 0x2040);
     }
 }
 

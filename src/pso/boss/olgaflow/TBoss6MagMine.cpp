@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -13,7 +14,6 @@
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/player/TObjPlayer.h"
@@ -258,12 +258,12 @@ s32 is_player_in_range__13TBoss6MagMineFPv(void *arg0_) {
     return 0;
 }
 
-void vt4__13TBoss6MagMineFv(void* p) { spawn_particle_effect_with_flags(((char*)p + 0x38), (s32)((void*)252), (s32)((void*)64)); ((TObject *)p)->queue_destruction(); }
+void vt4__13TBoss6MagMineFv(void* p) { spawn_particle_effect_with_flags((const Vec *)((char*)p + 0x38), 252, 64); ((TObject *)p)->queue_destruction(); }
 
 void vt3__13TBoss6MagMineFv(s32 arg0) {
     explode__13TBoss6MagMineFPv((Mine_80368C14 *)(arg0));
-    spawn_particle_effect_with_flags((void *)(arg0 + 0x38), 0xFB, 0x40);
-    spawn_particle_effect_with_flags((void *)(arg0 + 0x38), 0xFC, 0x40);
+    spawn_particle_effect_with_flags((const Vec *)(arg0 + 0x38), 0xFB, 0x40);
+    spawn_particle_effect_with_flags((const Vec *)(arg0 + 0x38), 0xFC, 0x40);
     TBoss6PlotFalz::apply_radial_effect_to_players((void *)(arg0 + 0x38), (s16)0xC0, (s16)0xF, (f32)100.0f);
     ((TObject *)arg0)->queue_destruction();
 }

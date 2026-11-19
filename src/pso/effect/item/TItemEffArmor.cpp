@@ -1,8 +1,8 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "types.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/TUnk_8049EFB8.h"
 #include "pso/unk/text_80107D4C.h"
 #include "pso/ui/hud/TRaderMapCore.h"
@@ -303,7 +303,7 @@ void TUnk_8049EFB8::run_task() {
             if (is_item_area_enabled() == 1) {
                 get_entity_id((void *)player);
                 if (TObjPlayer__sub_80117E50() != 0) {
-                    spawn_particle_effect((void *)(player + 0x2FC), 0x1BE);
+                    spawn_particle_effect((const Vec *)(player + 0x2FC), 0x1BE);
                 }
             }
         }

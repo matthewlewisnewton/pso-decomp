@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/base/TObjChara.h"
@@ -20,7 +21,6 @@
 #include "pso/object/warp/TObjAreaWarpQuest.h"
 #include "pso/ui/frontend/TAdChrSelASlotGC.h"
 #include "pso/unk/TLobby_80207644.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801A6D60.h"
 
 
@@ -435,7 +435,7 @@ void TObjLuker::run_task() {
                     if (flag != 0) {
                         this->m_b0 = 1;
                         offset_point_toward_camera((u8 *)&this->position, (u8 *)spC, 10.0f);
-                        spawn_particle_effect(spC, 0xB3);
+                        spawn_particle_effect((const Vec *)spC, 0xB3);
                         p = PBC_801A1418(local_client_id);
                         if (p != NULL) {
                             TObjPlayer::play_effect_default((int)p, (int)0xA);

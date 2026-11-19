@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
 #include "pso/render/RenderFadeState.h"
 #include "pso/system/BmlAccessors.h"
@@ -33,7 +34,6 @@
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/system/MatrixOps.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/render/GinjaMaterial.h"
 #include "pso/system/task/TObject.h"

@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/camera/RadarMapViewState.h"
 #include "pso/enemy/BattleParameters.h"
@@ -2331,7 +2332,7 @@ void TObjFish__sub_802EC468(s32 arg0, f32 farg0, f32 farg1) {
     stack.x = -((camera_world_view.direction.x * farg1) - stack.x);
     stack.y -= (camera_world_view.direction.y * farg1) - farg0;
     stack.z = -((camera_world_view.direction.z * farg1) - stack.z);
-    spawn_particle_effect_with_flags((&stack.x), 0x127, 0x40);
+    spawn_particle_effect_with_flags((const Vec *)&stack.x, 0x127, 0x40);
 }
 #pragma pop
 void TBoss7DeRolLeC::update_projectile_spawns() {

@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -19,7 +20,6 @@
 #include "pso/map/FloorArea.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
@@ -689,12 +689,12 @@ s32 TObjEneGibbles::spawn_ground_impact_effects(void *pos, f32 farg0) {
     v.y += 15.0f;
     hit = (s32 *)csnVectorUnder((s32 *)&v, (s32)this + 0x120, 5, y);
     if ((hit != NULL) && (hit[0] & 4)) {
-        p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0x49);
+        p = (u8 *)spawn_particle_effect((const Vec *)(hit[1] + 0x38), 0x49);
         if (p != NULL) {
             attach_particle_model(p, TParticleCtrl::get_particle_model(2), TParticleCtrl::get_instance(), 0, 1, 1.0f);
             ((TParticleCtrl *)p)->set_scale(farg0, 1.0f);
         }
-        p = (u8 *)spawn_particle_effect((void *)(hit[1] + 0x38), 0xA4);
+        p = (u8 *)spawn_particle_effect((const Vec *)(hit[1] + 0x38), 0xA4);
         if (p != NULL) {
             ((TParticleCtrl *)p)->set_scale(farg0, 1.5f);
         }
@@ -716,7 +716,7 @@ s32 TObjEneGibbles__sub_802D7BE0(s32 arg0) {
             ((TObjEneGibbles *)arg0)->spawn_ground_impact_effects((void *)((void *) (arg0 + 0x38)), 3.0f);
             return 0;
         }
-        spawn_particle_effect((void *)(arg0 + 0x38), 0x20E);
+        spawn_particle_effect((const Vec *)(arg0 + 0x38), 0x20E);
         return 1;
     }
     return 2;

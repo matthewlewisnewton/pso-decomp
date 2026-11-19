@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/camera/RadarMapViewState.h"
 #include "pso/system/StripBufferPair.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -106,13 +107,7 @@ extern s32 __vt__24TObjCity_Season_FireWork[];
 
 }
 
-extern "C" {
 
-}
-
-extern "C" {
-
-}
 
 struct Stack_80183604
 {
@@ -202,9 +197,6 @@ s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern const char *TObjCity_Season_FireWorkCtrl__name;
 }
 
-extern "C" {
-
-}
 
 #pragma pop
 
@@ -308,9 +300,6 @@ extern "C" {
 #pragma push
 #include "types.h"
 
-extern "C" {
-
-}
 
 #pragma pop
 
@@ -356,9 +345,6 @@ s32 post_translate_matrix(void *);
 extern s32 lbl_805D5B34;
 }
 
-extern "C" {
-
-}
 
 #pragma pop
 
@@ -410,9 +396,6 @@ s32 post_translate_matrix(void *);
 extern CitySeasonEasterEggModelTable city_season_easter_egg_model_table;
 }
 
-extern "C" {
-
-}
 
 #pragma pop
 
@@ -473,9 +456,6 @@ s32 post_translate_matrix(void *);
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 }
 
-extern "C" {
-
-}
 
 #pragma pop
 
@@ -1287,8 +1267,8 @@ void TObjCity_Season_FireWork::run_task() {
         break;
     case 1:
         if (self->timer == 10) {
-            spawn_particle_effect_with_flags(self->pos, 0x85, 0x40);
-            spawn_particle_effect_with_flags(self->pos, 0x86, 0x40);
+            spawn_particle_effect_with_flags((const Vec *)self->pos, 0x85, 0x40);
+            spawn_particle_effect_with_flags((const Vec *)self->pos, 0x86, 0x40);
         }
         self->timer++;
         if (self->timer >= 15) {
@@ -1307,7 +1287,7 @@ void TObjCity_Season_FireWork::run_task() {
         break;
     case 2:
         if (self->timer == 0 || self->timer == 4 || self->timer == 8) {
-            spawn_particle_effect_with_flags(self->pos, self->burstEffectId, 0x40);
+            spawn_particle_effect_with_flags((const Vec *)self->pos, self->burstEffectId, 0x40);
         }
         self->timer++;
         self->pos[1] -= 0.8f;

@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
 #include "pso/boss/galgryphon/TBoss5GryphonSnarl.h"
 #include "pso/system/BmlAccessors.h"

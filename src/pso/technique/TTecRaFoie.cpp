@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -56,15 +57,13 @@ typedef struct TObjPlayer_80237FB8 {
 
 extern "C" {
 u32 find_entity_by_id(int);
-void *spawn_particle_effect_with_flags(const void *pos, s32 id, s32 flags);
 void spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv(Obj_80237DAC *self);
 
 u16 get_entity_id(void *);
 void construct_area_technique_base(void *, void *, void *, void *, int);
 s32 is_split_screen();
 void attach_particle_model(void *, void *, void *, int, int, f32);
-void spawn_particle_effect(void *, s32, void *);
-#define spawn_particle_effect ((void * (*)(Vec *, int))spawn_particle_effect)
+
 s32 is_parents_unqueued__9TTecLukerFUl();
 s32 is_valid_and_active__10TObjPlayerFUl(int);
 #define is_valid_and_active__10TObjPlayerFUl ((s32 (*)(TObjPlayer_80237FB8 *))is_valid_and_active__10TObjPlayerFUl)
@@ -187,7 +186,6 @@ void TTecRaFoie::vfunc_8(void *) {
 
 #undef is_valid_and_active__10TObjPlayerFUl
 
-#undef spawn_particle_effect
 #define spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv ((s32 (*)(void *))spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv)
 
 #include <stddef.h>

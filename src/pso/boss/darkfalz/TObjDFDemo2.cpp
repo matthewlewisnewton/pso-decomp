@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -11,7 +12,6 @@
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/player/TObjPlayer_80052374.h"
 #include "pso/player/TObjPlayer_803E4954.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
 #include "pso/boss/darkfalz/TObjDFDemo3.h"
@@ -139,7 +139,7 @@ void TObjDFDemo2::run_task() {
     Obj_8004EA2C *arg0 = (Obj_8004EA2C *)this;
     void *e;
     if (arg0->ftimer == 0x90) {
-        e = (void *)spawn_particle_effect(arg0->fac, 0xC3);
+        e = (void *)spawn_particle_effect((const Vec *)arg0->fac, 0xC3);
         if (e != NULL) {
             ((TParticleCtrl *)e)->set_flags(0x40);
         }
@@ -148,7 +148,7 @@ void TObjDFDemo2::run_task() {
     }
     while (arg0->ftimer >= 0xB4) {
         if (arg0->fa8 != 0 || arg0->ftimer <= 0xDC) {
-            e = (void *)spawn_particle_effect(arg0->fac, 0x14E);
+            e = (void *)spawn_particle_effect((const Vec *)arg0->fac, 0x14E);
             if (e != NULL) {
                 ((TParticleCtrl *)e)->set_flags(0x40);
             }

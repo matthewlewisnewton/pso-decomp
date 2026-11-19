@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -17,7 +18,6 @@
 #include "pso/render/GinjaMaterialState.h"
 #include "pso/system/vector.h"
 #include "pso/unk/text_80086D50.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
@@ -482,7 +482,7 @@ void TBoss3VoloptMonitor::spawn_effects() {
     angle[1] = rotation_y;
     angle[2] = 0;
     spawn_directional_particle(&m_2fc, angle, (slot & 3) == 0 ? 0x62 : 0x61);
-    spawn_particle_effect(&m_2fc, 0x45);
+    spawn_particle_effect((const Vec *)&m_2fc, 0x45);
 }
 
 void TBoss3VoloptMonitor::set_hit_flags_and_notify() {

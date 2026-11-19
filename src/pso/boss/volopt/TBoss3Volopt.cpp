@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/memory.h"
 #include "pso/enemy/BattleParameters.h"
@@ -39,7 +40,6 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/byteswap.h"
 #include "pso/system/vector.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_801F43B4.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/object/ruins/TOCapsuleAncient01.h"

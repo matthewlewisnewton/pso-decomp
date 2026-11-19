@@ -1,9 +1,9 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
 #include "pso/technique/TTecResta.h"
 #include "pso/unk/TUnk_804CCBC0.h"
 #include "pso/effect/particle/TParticleCtrl_800867E4.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/system/vector.h"
 #include "pso/technique/TTecReverser.h"
 
@@ -267,11 +267,11 @@ void TTecResta::vfunc_7(void *arg1_arg) {
             }
         }
     } else if (*(s32 *)&arg0->m_ac != 0) {
-        void *e = spawn_particle_effect_with_flags((u8 *)player + 0x2FC, 0x1F6, 0x10);
+        void *e = spawn_particle_effect_with_flags((const Vec *)((u8 *)player + 0x2FC), 0x1F6, 0x10);
         if (e != NULL) {
             set_owner_id__13TParticleCtrlFUs(e, get_entity_id((int)player));
         }
-        e = spawn_particle_effect_with_flags((u8 *)player + 0x2FC, 0x1F7, 0x10);
+        e = spawn_particle_effect_with_flags((const Vec *)((u8 *)player + 0x2FC), 0x1F7, 0x10);
         if (e != NULL) {
             set_owner_id__13TParticleCtrlFUs(e, get_entity_id((int)player));
         }

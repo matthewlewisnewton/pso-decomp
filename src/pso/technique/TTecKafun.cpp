@@ -1,10 +1,10 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/technique/TTecKafun.h"
 #include "pso/system/task/TObject.h"
 #include "pso/system/task/TObject_80019A50.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/effect/TUnk_804CC148.h"
 
 
@@ -41,9 +41,9 @@ void TTecKafun::run_task() {
         ((TObject *)arg0)->queue_destruction();
         return;
     }
-    spawn_particle_effect((arg0 + 0x20), (this->m_f0));
+    spawn_particle_effect((const Vec *)(arg0 + 0x20), (this->m_f0));
     if ((s32) this->m_fc == 1) {
-        spawn_particle_effect((arg0 + 0x20), (this->m_f4));
+        spawn_particle_effect((const Vec *)(arg0 + 0x20), (this->m_f4));
     }
     ((TUnk_804CC148 *)arg0)->apply_technique_to_area_targets();
     ((TObject *)arg0)->queue_destruction();

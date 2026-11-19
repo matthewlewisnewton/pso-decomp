@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
@@ -222,7 +223,6 @@ struct Obj_80238F84 {
 
 extern "C" {
 void create_timed_particle_emitter(void *, s32, s32, s32, void *);
-void spawn_particle_effect(void *, s32, void *);
 void run_task__11TTecRaZondeFv(Obj_80238F84 *self);
 void TTecRaZonde::create(void *origin, void *level) {
     void *o;
@@ -271,7 +271,7 @@ void run_task__11TTecRaZondeFv(Obj_80238F84 *self) {
             if (i == 1) {
                 create_timed_particle_emitter((u8 *)self->source + 0x2FC, ((RProfile_80238F84 *)TTecRaZonde__band_profile_table)[self->band].entries[i].entry, 0, 60, self->source);
             } else {
-                spawn_particle_effect((u8 *)self->source + 0x2FC, ((RProfile_80238F84 *)TTecRaZonde__band_profile_table)[self->band].entries[i].entry, self->source);
+                spawn_particle_effect((const Vec *)((u8 *)self->source + 0x2FC), ((RProfile_80238F84 *)TTecRaZonde__band_profile_table)[self->band].entries[i].entry);
             }
         }
     }

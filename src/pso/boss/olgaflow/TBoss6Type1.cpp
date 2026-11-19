@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
 #include "pso/network/protocol/protocol_types.h"
@@ -31,7 +32,6 @@
 #include "pso/unk/text_803E2D70.h"
 #include "pso/unk/text_803D8F74.h"
 #include <stdlib.h>
-#include "pso/unk/text_80087278.h"
 #include "pso/render/render_util.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 
@@ -1514,8 +1514,8 @@ void TBoss6Type1::update_beam_attack() {
         dlt.y *= s;
         dlt.z *= s;
         for (j = 0; j < cnt; j++) {
-            spawn_particle_effect_with_flags(&e, 0x212, 0x40);
-            spawn_particle_effect_with_flags(&e, 0x213, 0x40);
+            spawn_particle_effect_with_flags((const Vec *)&e, 0x212, 0x40);
+            spawn_particle_effect_with_flags((const Vec *)&e, 0x213, 0x40);
             vec3_add_to(&e, &dlt);
         }
         VecCopy((Vec *)&self->f56C, (const Vec *)&c);

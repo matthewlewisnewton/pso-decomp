@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -32,7 +33,6 @@
 
 #include "pso/player/TObjPlayer_80011014.h"
 
-#include "pso/unk/text_80087278.h"
 
 #include "pso/unk/text_803D96A8.h"
 

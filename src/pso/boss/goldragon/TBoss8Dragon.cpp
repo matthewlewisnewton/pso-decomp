@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -684,7 +685,6 @@ struct Cam_802FDC1C { s32 f0; f32 *p4; f32 *p8; };
 
 s32 get_current_floor();
 void TBoss1Dragon__sub_80027A80(u8 *arg0, u8 *arg1);
-void *spawn_particle_effect_with_flags(const void *pos, s32 id, s32 flags);
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 void enemy_clear_target__12TObjEneDD_STFUs(void *);
@@ -2549,7 +2549,7 @@ void TBoss8Dragon__sub_802FB828(u8 *ene_dd, s32 arg1) {
     ((s32 (*)(void *, void *, void *, s32))emit_effect__12TBoss8DragonFPv)(ene_dd, a, &eff, *(s32 *)(ene_dd + 0x680));
     ((s32 (*)(void *, void *, void *, s32))emit_effect__12TBoss8DragonFPv)(ene_dd, b, &eff, *(s32 *)(ene_dd + 0x680));
     ((TObjEneDD *)ene_dd)->reset_hp((u8 *)0, (u8 *)(TBoss8Dragon__data_80541DC8[0]), (u8 *)0);
-    spawn_particle_effect_with_flags((const void *)b, (s32)(*(void **)(*(u8 **)(ene_dd + 0x760) + 0x10)), (s32)(0x40));
+    spawn_particle_effect_with_flags((const Vec *)b, (s32)(*(void **)(*(u8 **)(ene_dd + 0x760) + 0x10)), (s32)(0x40));
 }
 
 int TBoss8Dragon::check_condition_default(void* p) { return ((int (*)(void*, int))TBoss8Dragon__sub_802FB828)(p, 0); }
@@ -2698,7 +2698,7 @@ void TBoss8Dragon::spawn_ground_effect() {
         temp_f1 = *(f32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 4)) + 4);
         if (!(temp_f1 > 30.0f)) {
             stack.spC = temp_f1;
-            spawn_particle_effect_with_flags(&stack.sp8, this->m_760[1], 0x40);
+            spawn_particle_effect_with_flags((const Vec *)&stack.sp8, this->m_760[1], 0x40);
         }
     }
 }
@@ -3616,7 +3616,7 @@ void TBoss8Dragon::sub_802F8F88(s32 arg1) {
                         TBoss8DragonEffBullet__ct(b, (u8 *)&sub_tasks, (u8 *)&m_410, &v, F(s32, 0x75C), get_entity_id(((u8 *)this)));
                     }
                 }
-                spawn_particle_effect_with_flags(&m_410, (s32)((void *)*(s32 *)((s8 *)(F(u8 *, 0x760)) + 0x24)), 0x40);
+                spawn_particle_effect_with_flags((const Vec *)&m_410, (s32)((void *)*(s32 *)((s8 *)(F(u8 *, 0x760)) + 0x24)), 0x40);
                 F(s32, 0x84C) = 3;
                 F(s32, 0x854) = 0;
                 F(s32, 0x3C0) &= ~0x30;
@@ -4712,7 +4712,7 @@ void TBoss8Dragon::sub_802F6838(s32 arg1) {
                 reset_hp((u8 *)0, (u8 *)(TBoss8Dragon__data_80541DC8[4]), (u8 *)0);
                 ((void (*)(void *, void *, void *, s32))emit_effect__12TBoss8DragonFPv)(this, &v, &e, 0);
                 reset_hp((u8 *)0, (u8 *)(TBoss8Dragon__data_80541DC8[0]), (u8 *)0);
-                spawn_particle_effect_with_flags((const void *)&v, (s32)((void *)*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 8)), (s32)(0x40));
+                spawn_particle_effect_with_flags(&v, (s32)((void *)*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 8)), (s32)(0x40));
                 if (*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 0xC) != -1) {
                     spawn_particle_effect_with_flags(&position, (s32)((void *)*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 0xC)), 0x40);
                 }
@@ -4726,7 +4726,7 @@ void TBoss8Dragon::sub_802F6838(s32 arg1) {
                 reset_hp((u8 *)0, (u8 *)(TBoss8Dragon__data_80541DC8[4]), (u8 *)0);
                 ((void (*)(void *, void *, void *, s32))emit_effect__12TBoss8DragonFPv)(this, &v, &e, 0);
                 reset_hp((u8 *)0, (u8 *)(TBoss8Dragon__data_80541DC8[0]), (u8 *)0);
-                spawn_particle_effect_with_flags((const void *)&v, (s32)((void *)*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 8)), (s32)(0x40));
+                spawn_particle_effect_with_flags(&v, (s32)((void *)*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 8)), (s32)(0x40));
                 if (*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 0xC) != -1) {
                     spawn_particle_effect_with_flags(&position, (s32)((void *)*(s32 *)((s8 *)(*(u8 **)((s8 *)this + 0x760)) + 0xC)), 0x40);
                 }

@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #pragma defer_codegen on
@@ -7,7 +8,6 @@
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/task/TObject_80019A50.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/system/vector.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/enemy/epsilon/TObjEneEpsilonGuard.h"
@@ -197,8 +197,8 @@ void TBoss6DPB::sub_8035D8B0() {
     W_8035D8B0 *arg0 = (W_8035D8B0 *)this;
     V_8035D8B0 v = arg0->v;
     v.b = 5.0f;
-    spawn_particle_effect_with_flags(&v, 0x21C, 0x40);
-    spawn_particle_effect_with_flags(&v, 0x21D, 0x40);
+    spawn_particle_effect_with_flags((const Vec *)&v, 0x21C, 0x40);
+    spawn_particle_effect_with_flags((const Vec *)&v, 0x21D, 0x40);
     create_TDPBShower((void *)tl_02, &arg0->v);
 }
 }

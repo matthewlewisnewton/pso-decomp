@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaTypes.h"
@@ -110,7 +111,6 @@ typedef struct Golla_801AB868 {
 
 extern u8 *photon_blast_shared_resource;
 extern "C" {
-void *spawn_particle_effect(const void *pos, s32 id);
 void *find_entity_by_id(u16 id);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 u32 __nw__7TObjectFUl(int);
@@ -343,7 +343,7 @@ void TPhotonGolla::run_task() {
     *(s16 *)((s8 *)arg0 + 0x14C) = (s16) (u8) *(s16 *)((s8 *)arg0 + 0x14C);
     if ((s32) *(s32 *)&this->unk_1C8 == 0x50) {
         VecCopy((Vec *)(arg0 + 0x1AC), (const Vec *)(this->m_148 + 0x44));
-        spawn_particle_effect((arg0 + 0x1AC), 0x133);
+        spawn_particle_effect((const Vec *)(arg0 + 0x1AC), 0x133);
         TPhotonGolla::spawn_concentrate(arg0);
     }
     temp_r0 = *(s32 *)&this->unk_1C8;

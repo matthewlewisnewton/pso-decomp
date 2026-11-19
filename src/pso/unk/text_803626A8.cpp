@@ -1,3 +1,4 @@
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/NinjaTypes.h"
@@ -52,7 +53,6 @@ s32 rotate_matrix_y(int, int);
 s32 push_matrix_from(void *);
 s32 pop_matrix();
 f32 post_translate_matrix(void *);
-void *spawn_particle_effect(const void *pos, s32 id);
 s16 get_validated_attack_stage(u8 *arg0);
 extern s32 knuckle_marker_joint_table[];
 s32 TObjPlayer__sub_800F0928(void *);
@@ -109,7 +109,7 @@ void TUnk_804F26E0::vfunc_62() {
   u8 sp8[0x10];
   s32 n;
   owner->get_anim_node_position(knuckle_marker_joint_table[(owner->has_valid_handle() * 3) + get_validated_attack_stage(((u8 *)owner) + 0x7CC)], (Vec *)sp8);
-  spawn_particle_effect(sp8, 0x1D0);
+  spawn_particle_effect((const Vec *)sp8, 0x1D0);
 }
 
 // S-rank knuckle equip hook (was s_rank_knuckle_equip): sets the owner's EVP.

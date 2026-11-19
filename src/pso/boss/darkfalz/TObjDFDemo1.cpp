@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -24,7 +25,6 @@
 #include "pso/system/PadRumble.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D8F74.h"
 
 #pragma readonly_strings on
@@ -152,7 +152,7 @@ void TObjDFDemo1::run_task() {
         }
     }
     if (timer >= 0x46 && timer <= 0x82) {
-        TParticleCtrl *fx = (TParticleCtrl *)spawn_particle_effect(&pos, 0x14E);
+        TParticleCtrl *fx = spawn_particle_effect(&pos, 0x14E);
         if (fx != NULL) {
             fx->set_flags(0x40);
         }
