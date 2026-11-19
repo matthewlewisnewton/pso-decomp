@@ -1,5 +1,56 @@
 # Upstream matchpasses
 
+## Review groups closing the data inventory
+
+Four upstream submissions and ten local reviews reproduce retail when combined at `great-merge/verify-fourteen` (`5d66c65409`). The last 72 inventory bytes fit into the following three reviews. The [ledger](2026-11-18-fork-data-ranges.md) records each range.
+
+| Local branch | Review scope | Validation |
+| --- | --- | --- |
+| `great-merge/window-lists` · `f205cde58d` | 55 files from current master. The area-selection menu extends the existing window-list group. Follow its list entries, construction and dispatch together. | The area selector contributes 24 more inventory bytes. The full branch contributes 344 inventory bytes and 380 linked bytes. |
+| `great-merge/boss-effects` · `081015bbac` | 32 files. Follow effect creation and controller lifetime from the Photon Blast shower, Gal Gryphon and Olga Flow sword shot to the Dark Falz material, wave offsets and player mirror. | Independently reproduced retail and linked 40 additional bytes. Four more inventory bytes are original Dark Falz alignment padding. |
+| `great-merge/audio-streams` · `0ea1105986` | 38 files beyond the combined master and PR 324 base `e713338046`. Review the CRI file handles and their stream lifecycle, then the area sequencer and fade. Submit after the disc reader lands. | Independently reproduced retail. The CRI pool, AFS directory, 75 seeks, reads, cancellation, error paths and all 70 resource-read cases passed on retail and rebuilt images. The branch adds 12 linked bytes beyond the reader, including the final four music inventory bytes. |
+
+The combined fourteen-group build has 26,228 required linker entries, with zero missing or stale. Socket, battle, stream, resource, texture-strip, result-page, combat and raft-encounter checks passed on the combined build. The full-tree comparison recovered all fork-matched and source-linked address ranges. The fork-wide source review continues below.
+
+## Enemy motion and collision
+
+The local branch `great-merge/enemy-motion` at `b9c637ebce` contains four commits across 16 files on master `b2cac76477`. Read the slime child slots and spawning first, then its six animation methods, Gyaranzo's lifecycle and fade states, and the Merill Lia and Morfos movement and collision tables. The branch preserves the upstream model accessors and allocator. The standalone build reproduced retail with 27,572 functions and 2,538 selected source units exact. These changes recover source structure after the byte inventory is closed.
+
+## Host portability and the sixteen-group build
+
+The local `great-merge/host-portability` branch at `879339cca0` adds the host math, loader transfer, EXI Ethernet, material and item callback checks together with their SDK and game declarations. The 25-file review built independently from master. All five host executables passed normally and under the address and undefined-behavior sanitizers. The console build reproduced retail.
+
+The combined branch `great-merge/verify-sixteen` at `67ce4e8e78` contains the four submissions and twelve local reviews. It reproduces retail, retains 26,233 linker entries with zero stale or missing entries and passes the console behavior and host checks. All 5,542 tracked files in the tested export matched the branch. The sixteen groups gain 792 matched and linked bytes over master, with 27,572 exact functions and 2,539 exact source-linked units. The comparison against fork main found zero lost matched or linked address ranges.
+
+## Remaining integration changes by review group
+
+`great-merge/review-slices` starts at the sixteen-group build. Its 18 local commits distribute all 5,242 remaining edit blocks across 795 paths. The [group index](2026-11-18-remaining-integration-groups.tsv) records every affected path and commit. The final tree at `b9cf4ee959` is identical to integration `fc96ba681f` outside `fork/`. No commit in the sequence adds fork documentation. This checks that the grouping preserves the complete integrated source. The commits are working boundaries for the next reviews. Each needs its own compatible base, linker regeneration and retail check before publication.
+
+| Group | Local commit | Paths |
+| --- | --- | ---: |
+| Archive and renderer interfaces | `d750427f6c` | 40 |
+| Array allocation and release | `59cb5b60ba` | 29 |
+| Enemy model archives and attachments | `21690ed866` | 76 |
+| Dark Falz models, textures and effect lifetimes | `5fe9e1854d` | 33 |
+| Boss models and effect resources | `b6d6d7ddd4` | 71 |
+| Lobby, NPC and ambient models | `186d250443` | 64 |
+| Stage scenery and map models | `4716af3886` | 43 |
+| Doors, switches and trap models | `4eb8d3d90f` | 68 |
+| Player equipment, techniques and effects | `3aea834bee` | 85 |
+| Character creation and menu models | `1c74049cdf` | 59 |
+| Window frame and layout | `ab1e9565d7` | 74 |
+| Chat, lists and option windows | `4c18620cdf` | 58 |
+| Shop, status and battle windows | `3d7f721cd8` | 66 |
+| Resource buffers and player motion archives | `c7c5201559` | 26 |
+| Area sound and disc streaming | `2228e2c171` | 10 |
+| Collision, rendering and compiler checks | `a7b197aaa7` | 9 |
+| Fork build reports and contributor handoffs | `6683a6df99` | 14 |
+| Fork batch integration and validation | `b9cf4ee959` | 19 |
+
+Start with the archive and renderer declarations. Migrate model consumers by subsystem while providing compatible accessors for the callers that still use master’s interfaces. Carry each symbol change with the source that owns its address. For windows, land the shared frame before the list, shop and battle callers. Keep the fork build reports, contributor handoffs and batch integration tools out of the upstream queue pending a maintainer use case. The fork retains both tooling groups locally.
+
+At the fork-wide level, 1,636 records change only an include directory whose old and new paths are paired by Git or a path-derived header guard. Another 16 are identical file moves. The fork-side delta column distinguishes those from 2,234 content changes, 2,260 additions, 975 removals and 374 documentation records. These counts describe the history on the fork. Additions, removals and content changes still need comparison with the current upstream implementation.
+
 ## Local reviews based on the landed front-end matchpass
 
 Upstream master `b2cac76477` is a parent of integration merge `6f2212d865`. That merge keeps the landed window destructors, status gauge, PPP control and quest downloads. At integration `fc96ba681f`, the retail GPOE8P executable matches. All 27,572 functions and all 2,539 selected source units are exact. The merge gained 928 matched and source-linked data bytes over the previous integration build and 792 over upstream. The [data ledger](2026-11-18-fork-data-ranges.md) reconciles the total extent against fork main.
@@ -21,7 +72,7 @@ The combined build matches retail. Against `b2cac76477` it adds 716 matched and 
 
 ## How to split the remaining integration edits
 
-The [integration path index](2026-11-18-integration-review-paths.tsv) covers all 1,048 changed path names outside `fork/` between master `b2cac76477` and integration `fc96ba681f`. It counts the old and new sides of a move separately. For 179 paths a standalone review contains the same final file or deletion. Another 202 paths overlap a review but carry additional or differently adapted changes. The index routes 663 paths by their integration commits. Four shared linker and symbol files need to travel in pieces with the owning changes. Reviewers can look up each source path, its existing review branches and the integration commits that touched it.
+The [integration path index](2026-11-18-integration-review-paths.tsv) covers all 1,048 changed path names outside `fork/` between master `b2cac76477` and integration `fc96ba681f`. It counts the old and new sides of a move separately. For 249 paths a standalone review contains the same final file or deletion. Another 214 paths overlap a review but carry additional or differently adapted changes. The index routes 581 paths by their integration commits. Four shared linker and symbol files need to travel in pieces with the owning changes. Reviewers can look up each source path, its existing review branches and the integration commits that touched it.
 
 The model-resource family alone touches hundreds of callers. Stage the shared archive loader and renderer declarations first, then group the callers by use. The index distinguishes boss encounters, enemy attachments, menus and character selection, equipment and effects, lobby and NPC objects, doors and traps, and stage scenery. Keep the allocation-operator migration separate because it also reaches code that never opens a model archive. The window frame and area selection group follows the native base layout through its consumers. Batch automation and contributor handoffs have a separate review decision. The fork-wide index below also includes source paths not yet reconciled on integration.
 
@@ -51,7 +102,11 @@ The four submitted reviews and the two local UI branches also passed a combined 
 
 ## Fork-wide review index
 
-The [fork change index](2026-11-18-fork-review-index.tsv) assigns all 7,495 changed entries between common ancestor `fba9382235` and fork main `3342e42983` to review families. Git pairs 2,912 renames at its 50% similarity threshold. There are also 2,630 additions, 978 modifications and 975 deletions. Each row records the original and fork paths, a comparison path, file-level evidence and reviews touching any of those paths. A path shared with a review may still contain unrelated changes. The index uses source ownership and filenames to route further review. The first pass left 805 entries with an unresolved owner. A second pass routed 65 using direct fork includes or out-of-line method definitions and their declaring headers. The affected rows name the source evidence. **740 entries still have an unresolved owner.**
+The [fork change index](2026-11-18-fork-review-index.tsv) routes every one of the **7,495 fork change records** between common ancestor `fba9382235` and fork main `3342e42983`. There are 2,912 renames at Git’s 50% similarity threshold, 2,630 additions, 978 modifications and 975 deletions. Each row records both paths where available, its comparison path, changes made on the fork side, routing evidence and any existing review touching those paths.
+
+The original pass left 805 rows without an owner. The audit used direct callers, declaring headers, common-ancestor file contents, fork commits, modified or deleted declarations and linked address owners. All 805 now have a review destination. For example, the two unlabelled weapon headers lead to the Yasminkov controller, the deleted Gogo-ball marker header leads to the two constructors called by the lobby game, and the dial-prefix validator leads to the dialing screen. The index explicitly calls out the mixed `TLobby.h` declarations for review with their callers.
+
+Source retention still needs a content decision for each substantive difference. Start with the radar map view record and its camera callers, the quest-download cache records and their readers, and the guild-card record and its selection screen. These fork types do not appear under the same names on integration. Compare layout, field accesses, callers and current upstream types before carrying any of them forward.
 
 All 374 changed documentation and evidence paths have a local destination under `fork/`. Three executable evidence models are preserved there as Markdown examples. The repository license and third-party license text have separate provenance entries. Shared source and build changes still require semantic comparison before deciding which fork implementation to retain.
 

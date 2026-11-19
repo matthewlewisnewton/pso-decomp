@@ -1,12 +1,12 @@
 integration_path	change	review_group	evidence	standalone_branches_touching_path	integration_commits_touching_path
 .github/workflows/source-checks.yml	add	Compiler and host-build checks	Group by integration commit		4c2893b024
-config/GPOE8P/psov3/config.yml	modify	Linker configuration for each contributing group	Regenerate from compiled objects	network-runtime, scene-resources, window-lists, chat-windows, link-verification, result-windows, texture-strips, player-techniques, raft-encounters	
-config/GPOE8P/psov3/linked_units.txt	modify	Linker configuration for each contributing group	Review by address and owning unit	window-lists, result-windows	
-config/GPOE8P/psov3/splits.txt	modify	Linker configuration for each contributing group	Review by address and owning unit	network-runtime, chunk-rendering, scene-resources, window-lists, chat-windows, result-windows, player-techniques, raft-encounters	
-config/GPOE8P/psov3/symbols.txt	modify	Linker configuration for each contributing group	Review by address and owning unit	network-runtime, chunk-rendering, scene-resources, window-lists, chat-windows, battle-parameters, result-windows, texture-strips, player-techniques, raft-encounters	
-configure.py	modify	Particle effects and encounter choreography / Audio streaming, playback and music gain / front-end scenes (merged) / chat-windows / Enemy movement, collision and encounters / Item factory / result-windows	Compare partial edits with branch	chat-windows, result-windows	707b399ca6 6f1614cf5f a427c24c40 6baca82926 e4d3db27d0 37a52e8d24 34393935ff d17d089c11
-include/pso/audio/AdxStreamRuntime.h	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-include/pso/audio/AdxfInternal.h	add	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+config/GPOE8P/psov3/config.yml	modify	Linker configuration for each contributing group	Regenerate from compiled objects	network-runtime, scene-resources, window-lists, chat-windows, link-verification, result-windows, texture-strips, player-techniques, raft-encounters, boss-effects, audio-streams, enemy-motion	—
+config/GPOE8P/psov3/linked_units.txt	modify	Linker configuration for each contributing group	Review by address and owning unit	window-lists, result-windows	—
+config/GPOE8P/psov3/splits.txt	modify	Linker configuration for each contributing group	Review by address and owning unit	network-runtime, chunk-rendering, scene-resources, window-lists, chat-windows, result-windows, player-techniques, raft-encounters, boss-effects, audio-streams, enemy-motion	—
+config/GPOE8P/psov3/symbols.txt	modify	Linker configuration for each contributing group	Review by address and owning unit	network-runtime, chunk-rendering, scene-resources, window-lists, chat-windows, battle-parameters, result-windows, texture-strips, player-techniques, raft-encounters, boss-effects, audio-streams, enemy-motion	—
+configure.py	modify	Particle effects and encounter choreography / Audio streaming, playback and music gain / front-end scenes (merged) / chat-windows / Enemy movement, collision and encounters / Item factory / result-windows	Compare partial edits with branch	chat-windows, result-windows, boss-effects	707b399ca6 6f1614cf5f a427c24c40 6baca82926 e4d3db27d0 37a52e8d24 34393935ff d17d089c11
+include/pso/audio/AdxStreamRuntime.h	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+include/pso/audio/AdxfInternal.h	add	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 include/pso/boss/Boss6ScrollStrips.h	add	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	82ad7eb0a0
 include/pso/boss/barbaray/TBoss7DeRolLeC.h	modify	Symbol names by owning subsystem / Array allocation and object ownership	Group by integration commit		242b2534ee 9558253032
 include/pso/boss/barbaray/TObjBoss7Dust.h	modify	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
@@ -20,39 +20,39 @@ include/pso/boss/darkfalz/TBoss4Zanzo.h	modify	Model resources — Boss encounte
 include/pso/boss/darkfalz/TOBoss4Rock.h	modify	Array allocation and object ownership	Group by integration commit		9558253032
 include/pso/boss/darkfalz/TObjDFDemo4.h	modify	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
 include/pso/boss/darkfalz/TObjDFDemo5.h	modify	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
-include/pso/boss/darkfalz/TObjDFYutai.h	modify	Particle effects and encounter choreography	Group by integration commit		8c4f54cf1d
+include/pso/boss/darkfalz/TObjDFYutai.h	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	8c4f54cf1d
 include/pso/boss/derolle/TObjBoss2Dust.h	modify	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
 include/pso/boss/derolle/TObjBoss2DustCtrl.h	modify	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
-include/pso/boss/galgryphon/TBoss5Gryphon.h	modify	Enemy movement, collision and encounters	Group by integration commit		37a52e8d24
-include/pso/boss/galgryphon/TObjBoss5Ctrl.h	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
-include/pso/boss/galgryphon/TObjBoss5PillarDemo.h	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
+include/pso/boss/galgryphon/TBoss5Gryphon.h	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	37a52e8d24
+include/pso/boss/galgryphon/TObjBoss5Ctrl.h	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
+include/pso/boss/galgryphon/TObjBoss5PillarDemo.h	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
 include/pso/boss/olgaflow/Boss6Type2Data.h	modify	Model-node capture and enemy attachments / texture-strips	Compare partial edits with branch	texture-strips	3615371fd3 82ad7eb0a0
 include/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.h	modify	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	82ad7eb0a0
 include/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.h	modify	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
 include/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.h	modify	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
 include/pso/boss/olgaflow/TBoss6PlotFalz.h	modify	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	82ad7eb0a0
-include/pso/boss/olgaflow/TBoss6SwordShot.h	modify	Enemy movement, collision and encounters	Group by integration commit		4acd25cfe8
+include/pso/boss/olgaflow/TBoss6SwordShot.h	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	4acd25cfe8
 include/pso/boss/olgaflow/TBoss6Type1.h	modify	Model-node capture and enemy attachments / texture-strips	Compare partial edits with branch	texture-strips	3615371fd3 82ad7eb0a0
 include/pso/boss/olgaflow/TBoss6Type2.h	modify	Model-node capture and enemy attachments / texture-strips	Compare partial edits with branch	texture-strips	3615371fd3 82ad7eb0a0
 include/pso/camera/TCameraCtrl.h	modify	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	caf9da4ca5
 include/pso/effect/item/TItemEffectWeapon.h	modify	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
-include/pso/effect/photon/TDPBShower.h	modify	Particle effects and encounter choreography	Group by integration commit		707b399ca6
+include/pso/effect/photon/TDPBShower.h	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	707b399ca6
 include/pso/enemy/BattleParameters.h	add	battle-parameters	Identical final blob or deletion on standalone branch	battle-parameters	aa2b4b3bd2
 include/pso/enemy/TObjEnePanBARA.h	modify	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
 include/pso/enemy/TUnk_80486924.h	modify	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
 include/pso/enemy/berura/TObjEneRe7Berura.h	modify	Model-node capture and enemy attachments	Group by integration commit		e0e70dd3f5
-include/pso/enemy/dd/TObjEneDD.h	modify	Particle effects and encounter choreography	Group by integration commit		707b399ca6
-include/pso/enemy/gibon/TObjEneBm5GibonU.h	modify	Enemy movement, collision and encounters	Group by integration commit		2ee504f230
-include/pso/enemy/gyaranzo/TObjEneGyaranzo.h	modify	Enemy movement, collision and encounters	Group by integration commit		2ee504f230
+include/pso/enemy/dd/TObjEneDD.h	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	707b399ca6
+include/pso/enemy/gibon/TObjEneBm5GibonU.h	modify	enemy-motion	Identical final blob or deletion on standalone branch	enemy-motion	2ee504f230
+include/pso/enemy/gyaranzo/TObjEneGyaranzo.h	modify	enemy-motion	Identical final blob or deletion on standalone branch	enemy-motion	2ee504f230
 include/pso/enemy/panarms/TObjEnePanarms.h	modify	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
-include/pso/enemy/slime/SlimeAnimationState.h	add	Enemy movement, collision and encounters	Group by integration commit		14e2747f1d
-include/pso/enemy/slime/TObjEneSlime.h	modify	Enemy movement, collision and encounters	Group by integration commit		642ec6c146
-include/pso/enemy/slime/TObjEneSlimeOne.h	modify	Enemy movement, collision and encounters	Group by integration commit		642ec6c146 14e2747f1d
-include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h	modify	Enemy movement, collision and encounters	Group by integration commit		14e2747f1d
-include/pso/enemy/slime/TObjEneSlimeTailAttack.h	modify	Enemy movement, collision and encounters	Group by integration commit		642ec6c146
-include/pso/item/ItemCreateFunction.h	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+include/pso/enemy/slime/SlimeAnimationState.h	add	enemy-motion	Identical final blob or deletion on standalone branch	enemy-motion	14e2747f1d
+include/pso/enemy/slime/TObjEneSlime.h	modify	enemy-motion	Identical final blob or deletion on standalone branch	enemy-motion	642ec6c146
+include/pso/enemy/slime/TObjEneSlimeOne.h	modify	enemy-motion	Identical final blob or deletion on standalone branch	enemy-motion	642ec6c146 14e2747f1d
+include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h	modify	enemy-motion	Identical final blob or deletion on standalone branch	enemy-motion	14e2747f1d
+include/pso/enemy/slime/TObjEneSlimeTailAttack.h	modify	enemy-motion	Identical final blob or deletion on standalone branch	enemy-motion	642ec6c146
+include/pso/item/ItemCreateFunction.h	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 include/pso/item/TItemSpecialEvent.h	add	Item factory	Group by integration commit		34393935ff
-include/pso/item/TItemTexLoad.h	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+include/pso/item/TItemTexLoad.h	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 include/pso/item/TUnk_804F112C.h	delete	Item factory	Group by integration commit		34393935ff
 include/pso/network/NetTcpState.h	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	b332dc4f9a db0bd68721
 include/pso/network/NetworkRuntime.h	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	7202f5fbd6
@@ -65,33 +65,33 @@ include/pso/object/ambient/TObjFish_800E2FFC.h	delete	Model-node capture and ene
 include/pso/object/ambient/TObjLight_803DF220.h	modify	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
 include/pso/object/ending/TObjOnlineEnding.h	modify	result-windows	Identical final blob or deletion on standalone branch	result-windows	d17d089c11
 include/pso/player/TObjPlayer.h	modify	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	6f2212d865 fc96ba681f
-include/pso/player/TObjPlayer_80121010.h	modify	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+include/pso/player/TObjPlayer_80121010.h	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 include/pso/quest/TQuestThread.h	modify	chat-windows	Identical final blob or deletion on standalone branch	chat-windows	bc7f6d8d1a
 include/pso/render/ChunkPolygonList.h	add	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	4a2b05c546
 include/pso/render/ChunkTextureStripCollector.h	modify	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	faa20235f3
 include/pso/render/ChunkVertexJob.h	add	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	a9bb83527d
 include/pso/render/CurrentTextureList.h	add	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		af3a517c99
-include/pso/system/Adxf.h	add	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+include/pso/system/Adxf.h	add	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 include/pso/system/ArrayAllocation.h	add	Array allocation and object ownership	Group by integration commit		9558253032
 include/pso/system/BmlAccessors.h	add	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		a4aa9e0827
 include/pso/system/BmlResource.h	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		a4aa9e0827 4a4d087073 8b0259b538 29c97a563e
 include/pso/system/BmlResourceLoad.h	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		8b0259b538
 include/pso/system/BmlResourceLoader.h	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		8b0259b538
-include/pso/system/GinjaParameterHandler.h	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+include/pso/system/GinjaParameterHandler.h	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 include/pso/system/GslArchive.h	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113
 include/pso/system/ModelNodePositionCapture.h	add	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
 include/pso/system/ResourceFile.h	add	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113 34cdd1526e
 include/pso/system/RlcArchive.h	modify	Window frame, layout and area selection / Resource buffers and player-motion archives	Group by integration commit		11799c9505 ae2c172468
 include/pso/system/StripBufferPair.h	add	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	faa20235f3
-include/pso/system/TGStream.h	modify	scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources	385404c113 34cdd1526e 1ca2b401ad
+include/pso/system/TGStream.h	modify	audio-streams	Identical final blob or deletion on standalone branch	scene-resources, audio-streams	385404c113 34cdd1526e 1ca2b401ad
 include/pso/system/TrailStrip.h	add	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
 include/pso/system/memory.h	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
 include/pso/system/scene/TScene.h	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113
 include/pso/technique/TTecGiFoie.h	modify	player-techniques	Identical final blob or deletion on standalone branch	player-techniques	e6e6079ea6
 include/pso/ui/ItemListRow.h	modify	Window frame, layout and area selection	Group by integration commit		42687a6baf
 include/pso/ui/charcreate/CharacterLoadBuffer.h	add	Model resources — Menus, windows and character selection	Group by integration commit		29c97a563e
-include/pso/ui/charcreate/TChCrLoadAfs.h	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+include/pso/ui/charcreate/TChCrLoadAfs.h	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 include/pso/ui/charcreate/TChCrLoadGmNjReq.h	modify	Model resources — Menus, windows and character selection	Group by integration commit		29c97a563e
 include/pso/ui/chat/TWindowChatSymbol.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
 include/pso/ui/chat/TWindowSubShortMail.h	modify	chat-windows	Identical final blob or deletion on standalone branch	chat-windows	bc7f6d8d1a
@@ -113,7 +113,7 @@ include/pso/ui/window/TUnk_804EF4E0.h	modify	window-lists	Identical final blob o
 include/pso/ui/window/TUnk_804EFBAC.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
 include/pso/ui/window/TWindowActionPalette.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505 4c42018c19
 include/pso/ui/window/TWindowAddition.h	modify	upstream window lifecycles (merged) / Window frame, layout and area selection	Group by integration commit		5a561bcd62 4c42018c19
-include/pso/ui/window/TWindowArea.h	modify	Window frame, layout and area selection	Group by integration commit		c83050f684
+include/pso/ui/window/TWindowArea.h	modify	window-lists	Identical final blob or deletion on standalone branch	window-lists	c83050f684
 include/pso/ui/window/TWindowBase.h	modify	upstream window lifecycles (merged) / Window frame, layout and area selection	Group by integration commit		5a561bcd62 9693628876 42687a6baf 11799c9505 4c42018c19
 include/pso/ui/window/TWindowBreakIn.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
 include/pso/ui/window/TWindowCallBack.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
@@ -152,7 +152,7 @@ include/pso/ui/window/TWindowMeseta.h	modify	Window frame, layout and area selec
 include/pso/ui/window/TWindowMessage.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505 4c42018c19
 include/pso/ui/window/TWindowMessageQuest.h	modify	Window frame, layout and area selection	Group by integration commit		4c42018c19
 include/pso/ui/window/TWindowQuantity.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
-include/pso/ui/window/TWindowRoom.h	modify	upstream window lifecycles (merged) / Window frame, layout and area selection	Group by integration commit		c1a9d99f97 c83050f684 9693628876 42687a6baf 11799c9505
+include/pso/ui/window/TWindowRoom.h	modify	upstream window lifecycles (merged) / Window frame, layout and area selection	Compare partial edits with branch	window-lists	c1a9d99f97 c83050f684 9693628876 42687a6baf 11799c9505
 include/pso/ui/window/TWindowShortCut.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
 include/pso/ui/window/TWindowSimpleStatus.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
 include/pso/ui/window/TWindowSnapShot.h	modify	Window frame, layout and area selection / Resource buffers and player-motion archives / scene-resources	Compare partial edits with branch	scene-resources	9693628876 42687a6baf 11799c9505 5bd1ce23b0 ae2c172468 385404c113
@@ -176,10 +176,10 @@ include/pso/ui/window/TWindowTimer.h	modify	Window frame, layout and area select
 include/pso/ui/window/TWindowUserSort.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876 42687a6baf 11799c9505
 include/pso/ui/window/TextEntryMeasurement.h	add	result-windows	Identical final blob or deletion on standalone branch	result-windows	9d440121eb
 include/pso/unk/ModelNodeTables.h	modify	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	faa20235f3
-include/pso/unk/TLobby.h	modify	front-end scenes (merged) / Model resources — Archive loading, rendering and shared declarations / scene-resources / Audio streaming, playback and music gain / battle-parameters / Resource buffers and player-motion archives / texture-strips	Compare partial edits with branch	scene-resources, battle-parameters, texture-strips	6baca82926 4a4d087073 29c97a563e 385404c113 34cdd1526e 1ca2b401ad aa2b4b3bd2 8619e5caf3 faa20235f3
+include/pso/unk/TLobby.h	modify	front-end scenes (merged) / Model resources — Archive loading, rendering and shared declarations / scene-resources / Audio streaming, playback and music gain / battle-parameters / Resource buffers and player-motion archives / texture-strips	Compare partial edits with branch	scene-resources, battle-parameters, texture-strips, audio-streams	6baca82926 4a4d087073 29c97a563e 385404c113 34cdd1526e 1ca2b401ad aa2b4b3bd2 8619e5caf3 faa20235f3
 include/pso/unk/TLobby_8001EF5C.h	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		a4aa9e0827
 include/pso/unk/TLobby_800F9DA0.h	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113
-include/pso/unk/TLobby_8023F734.h	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+include/pso/unk/TLobby_8023F734.h	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 include/pso/unk/TLobby_80338E9C.h	delete	window-lists	Identical final blob or deletion on standalone branch	window-lists	6be15b784e
 include/pso/unk/TUnk_804C3E60.h	modify	result-windows	Identical final blob or deletion on standalone branch	result-windows	8006b9fd73
 include/pso/unk/TUnk_804CE7D0.h	modify	Window frame, layout and area selection	Group by integration commit		9693628876
@@ -198,27 +198,27 @@ include/pso/unk/text_80268384.h	modify	window-lists	Identical final blob or dele
 include/pso/unk/text_8026CB5C.h	modify	Window frame, layout and area selection	Group by integration commit		7f2104b445
 include/pso/unk/text_80278E48.h	modify	window-lists	Identical final blob or deletion on standalone branch	window-lists	d9898049b2
 include/pso/unk/text_80338F3C.h	delete	window-lists	Identical final blob or deletion on standalone branch	window-lists	6be15b784e
-include/pso/unk/text_803CC294.h	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+include/pso/unk/text_803CC294.h	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 include/pso/unk/text_803DA798.h	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
 include/pso/unk/text_803DD5E0.h	modify	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	4a2b05c546
 include/pso/unk/text_803DE8BC.h	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
-libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c	modify	Physics, SDK declarations and host checks	Group by integration commit		920837de75
+libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	920837de75
 libs/PowerPC_EABI_Support/Runtime/Src/NMWException.cp	modify	Array allocation and object ownership	Group by integration commit		9558253032
-libs/dolphin/include/libc/ctype.h	modify	Physics, SDK declarations and host checks	Group by integration commit		920837de75
-libs/dolphin/src/mtx/mtxvec.c	modify	Physics, SDK declarations and host checks	Group by integration commit		920837de75
-ports/include/pso/port/ExiEthernetFallbacks.h	add	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	4e9c97644c
-ports/include/pso/port/LoaderTransfer.h	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/include/pso/port/PortCompat.h	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/include/pso/port/VectorMathFallbacks.h	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/tests/.gitignore	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/tests/Makefile	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/tests/exi_ethernet_fallbacks.cpp	add	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	4e9c97644c
-ports/tests/ginja_parameter_callbacks.cpp	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/tests/item_factory_callbacks.cpp	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/tests/loader_transfer.cpp	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-ports/tests/vector_math_fallbacks.cpp	add	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+libs/dolphin/include/libc/ctype.h	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	920837de75
+libs/dolphin/src/mtx/mtxvec.c	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	920837de75
+ports/include/pso/port/ExiEthernetFallbacks.h	add	network-runtime / host-portability	Identical final blob or deletion on standalone branch	network-runtime, host-portability	4e9c97644c
+ports/include/pso/port/LoaderTransfer.h	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/include/pso/port/PortCompat.h	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/include/pso/port/VectorMathFallbacks.h	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/tests/.gitignore	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/tests/Makefile	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/tests/exi_ethernet_fallbacks.cpp	add	network-runtime / host-portability	Identical final blob or deletion on standalone branch	network-runtime, host-portability	4e9c97644c
+ports/tests/ginja_parameter_callbacks.cpp	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/tests/item_factory_callbacks.cpp	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/tests/loader_transfer.cpp	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+ports/tests/vector_math_fallbacks.cpp	add	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 src/musyx/runtime/dsp_import.c	modify	Audio streaming, playback and music gain	Group by integration commit		6f1614cf5f
-src/pso/audio/AdxStream.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+src/pso/audio/AdxStream.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 src/pso/boss/TUnk_80484AFC.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/boss/barbaray/TBoss7Crawfish.cpp	modify	Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/boss/barbaray/TBoss7DeRolLeC.cpp	modify	Symbol names by owning subsystem / Model resources — Boss encounter models / Array allocation and object ownership / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 9558253032 8b0259b538 aa2b4b3bd2
@@ -227,8 +227,8 @@ src/pso/boss/barbaray/TObjBoss7Dust.cpp	modify	raft-encounters	Identical final b
 src/pso/boss/darkfalz/TBoss4Thanks.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/boss/darkfalz/TBoss4Type1.cpp	modify	Model resources — Boss encounter models / Model-node capture and enemy attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 9f6136a721 3615371fd3 aa2b4b3bd2
 src/pso/boss/darkfalz/TBoss4Type2_8004A978.cpp	modify	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	faa20235f3
-src/pso/boss/darkfalz/TBoss4Type3.cpp	modify	Particle effects and encounter choreography / Model resources — Boss encounter models / Model-node capture and enemy attachments / battle-parameters	Compare partial edits with branch	battle-parameters	707b399ca6 af3a517c99 a4aa9e0827 9f6136a721 3615371fd3 aa2b4b3bd2
-src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp	modify	Particle effects and encounter choreography	Group by integration commit		a427c24c40
+src/pso/boss/darkfalz/TBoss4Type3.cpp	modify	Particle effects and encounter choreography / Model resources — Boss encounter models / Model-node capture and enemy attachments / battle-parameters	Compare partial edits with branch	battle-parameters, boss-effects	707b399ca6 af3a517c99 a4aa9e0827 9f6136a721 3615371fd3 aa2b4b3bd2
+src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	a427c24c40
 src/pso/boss/darkfalz/TBoss4Zako.cpp	modify	battle-parameters	Identical final blob or deletion on standalone branch	battle-parameters	aa2b4b3bd2
 src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp	modify	chunk-rendering / Model resources — Boss encounter models	Compare partial edits with branch	chunk-rendering	caf9da4ca5 af3a517c99 a4aa9e0827 9f6136a721
 src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp	modify	Model resources — Boss encounter models	Group by integration commit		a4aa9e0827 9f6136a721
@@ -245,7 +245,7 @@ src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp	modify	Model resources — Boss e
 src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp	modify	Model resources — Boss encounter models	Group by integration commit		a4aa9e0827 9f6136a721
 src/pso/boss/darkfalz/TObjDFHorming.cpp	modify	Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	9f6136a721 8b0259b538 aa2b4b3bd2
 src/pso/boss/darkfalz/TObjDFJisin.cpp	modify	Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 aa2b4b3bd2
-src/pso/boss/darkfalz/TObjDFYutai.cpp	modify	Particle effects and encounter choreography	Group by integration commit		8c4f54cf1d
+src/pso/boss/darkfalz/TObjDFYutai.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	8c4f54cf1d
 src/pso/boss/derolle/TBoss2DeRolLe.cpp	modify	Enemy movement, collision and encounters / Model resources — Boss encounter models / Array allocation and object ownership / battle-parameters	Compare partial edits with branch	battle-parameters, raft-encounters	7202f5fbd6 af3a517c99 9558253032 8b0259b538 aa2b4b3bd2
 src/pso/boss/derolle/TBoss2Fin.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99
 src/pso/boss/derolle/TBoss2Joint.cpp	modify	battle-parameters	Identical final blob or deletion on standalone branch	battle-parameters	aa2b4b3bd2
@@ -264,47 +264,47 @@ src/pso/boss/dragon/TBoss1DragonColli.cpp	modify	Array allocation and object own
 src/pso/boss/dragon/TObjBoss1Crater.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99
 src/pso/boss/dragon/TObjBoss1Floor.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99
 src/pso/boss/dragon/TObjBoss1Rock.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99
-src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp	modify	Model resources — Boss encounter models / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 37a52e8d24 aa2b4b3bd2
+src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp	modify	Model resources — Boss encounter models / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters, boss-effects	af3a517c99 a4aa9e0827 8b0259b538 37a52e8d24 aa2b4b3bd2
 src/pso/boss/galgryphon/TBoss5GryphonColli.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp	modify	Model resources — Boss encounter models	Group by integration commit		a4aa9e0827
 src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp	modify	Model resources — Boss encounter models	Group by integration commit		a4aa9e0827 8b0259b538
 src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp	modify	Model resources — Boss encounter models	Group by integration commit		a4aa9e0827
-src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
-src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
-src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
+src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
+src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
+src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
 src/pso/boss/galgryphon/TObjBoss5FloorGrass.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99
 src/pso/boss/galgryphon/TObjBoss5Pillar.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99
 src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
-src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
+src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
 src/pso/boss/galgryphon/TObjBoss5PillarSmoke_8028AEA4.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/boss/goldragon/TBoss8Dragon.cpp	modify	Symbol names by owning subsystem / Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 8b0259b538 aa2b4b3bd2
 src/pso/boss/goldragon/TBoss8DragonColli.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/boss/goldragon/TBoss8DragonEffTail.cpp	modify	Model resources — Boss encounter models	Group by integration commit		8b0259b538
 src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp	modify	Model resources — Boss encounter models / Array allocation and object ownership	Group by integration commit		af3a517c99 9558253032
-src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
+src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
 src/pso/boss/goldragon/TBoss8Dragon_800BC53C.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99
 src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99 8b0259b538
 src/pso/boss/goldragon/TObjBoss8Piller.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99 8b0259b538
 src/pso/boss/olgaflow/Boss6Type2Data.cpp	modify	Model-node capture and enemy attachments / texture-strips	Compare partial edits with branch	texture-strips	3615371fd3 82ad7eb0a0
 src/pso/boss/olgaflow/TBoss6CrushRock.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99 a4aa9e0827
-src/pso/boss/olgaflow/TBoss6DPB.cpp	modify	Particle effects and encounter choreography / battle-parameters	Compare partial edits with branch	battle-parameters	707b399ca6 aa2b4b3bd2
+src/pso/boss/olgaflow/TBoss6DPB.cpp	modify	Particle effects and encounter choreography / battle-parameters	Compare partial edits with branch	battle-parameters, boss-effects	707b399ca6 aa2b4b3bd2
 src/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp	modify	Model resources — Boss encounter models / Model-node capture and enemy attachments / texture-strips	Compare partial edits with branch	texture-strips	af3a517c99 a4aa9e0827 3615371fd3 82ad7eb0a0
 src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp	modify	Symbol names by owning subsystem / Model resources — Boss encounter models / Model-node capture and enemy attachments	Group by integration commit		242b2534ee af3a517c99 a4aa9e0827 3615371fd3
 src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp	modify	Model resources — Boss encounter models / Model-node capture and enemy attachments	Group by integration commit		af3a517c99 a4aa9e0827 3615371fd3
 src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp	modify	Model resources — Boss encounter models / Model-node capture and enemy attachments	Group by integration commit		af3a517c99 a4aa9e0827 3615371fd3
-src/pso/boss/olgaflow/TBoss6EffFlowSoul.cpp	modify	Particle effects and encounter choreography	Group by integration commit		707b399ca6
+src/pso/boss/olgaflow/TBoss6EffFlowSoul.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	707b399ca6
 src/pso/boss/olgaflow/TBoss6Kakusan.cpp	modify	battle-parameters	Identical final blob or deletion on standalone branch	battle-parameters	aa2b4b3bd2
 src/pso/boss/olgaflow/TBoss6MagMine.cpp	modify	Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 aa2b4b3bd2
 src/pso/boss/olgaflow/TBoss6Mine.cpp	modify	Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 aa2b4b3bd2
 src/pso/boss/olgaflow/TBoss6PlotFalz.cpp	modify	Model resources — Boss encounter models / Array allocation and object ownership / battle-parameters / texture-strips	Compare partial edits with branch	battle-parameters, texture-strips	a4aa9e0827 9558253032 8b0259b538 aa2b4b3bd2 82ad7eb0a0 faa20235f3
 src/pso/boss/olgaflow/TBoss6Rock.cpp	modify	Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/boss/olgaflow/TBoss6RockChase.cpp	modify	Model resources — Boss encounter models / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 aa2b4b3bd2
-src/pso/boss/olgaflow/TBoss6SwordShot.cpp	modify	Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	4acd25cfe8 aa2b4b3bd2
+src/pso/boss/olgaflow/TBoss6SwordShot.cpp	modify	Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters, boss-effects	4acd25cfe8 aa2b4b3bd2
 src/pso/boss/olgaflow/TBoss6Thanks.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/boss/olgaflow/TBoss6Tube.cpp	modify	Model resources — Boss encounter models	Group by integration commit		af3a517c99 a4aa9e0827 8b0259b538
-src/pso/boss/olgaflow/TBoss6Type1.cpp	modify	Symbol names by owning subsystem / Model resources — Boss encounter models / Array allocation and object ownership / Model-node capture and enemy attachments / Enemy movement, collision and encounters / battle-parameters / texture-strips	Compare partial edits with branch	battle-parameters, texture-strips	242b2534ee af3a517c99 a4aa9e0827 9558253032 3615371fd3 4acd25cfe8 3a73dc46ea aa2b4b3bd2 82ad7eb0a0
-src/pso/boss/olgaflow/TBoss6Type2.cpp	modify	Particle effects and encounter choreography / Model resources — Boss encounter models / Array allocation and object ownership / Model-node capture and enemy attachments / battle-parameters / texture-strips	Compare partial edits with branch	battle-parameters, texture-strips	707b399ca6 af3a517c99 a4aa9e0827 9558253032 3615371fd3 aa2b4b3bd2 82ad7eb0a0
+src/pso/boss/olgaflow/TBoss6Type1.cpp	modify	Symbol names by owning subsystem / Model resources — Boss encounter models / Array allocation and object ownership / Model-node capture and enemy attachments / Enemy movement, collision and encounters / battle-parameters / texture-strips	Compare partial edits with branch	battle-parameters, texture-strips, boss-effects	242b2534ee af3a517c99 a4aa9e0827 9558253032 3615371fd3 4acd25cfe8 3a73dc46ea aa2b4b3bd2 82ad7eb0a0
+src/pso/boss/olgaflow/TBoss6Type2.cpp	modify	Particle effects and encounter choreography / Model resources — Boss encounter models / Array allocation and object ownership / Model-node capture and enemy attachments / battle-parameters / texture-strips	Compare partial edits with branch	battle-parameters, texture-strips, boss-effects	707b399ca6 af3a517c99 a4aa9e0827 9558253032 3615371fd3 aa2b4b3bd2 82ad7eb0a0
 src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp	modify	Model resources — Boss encounter models / Model-node capture and enemy attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 3615371fd3 aa2b4b3bd2
 src/pso/boss/olgaflow/TBoss6Zanzo.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/boss/volopt/TBoss3Volopt.cpp	modify	Model resources — Boss encounter models / battle-parameters / Resource buffers and player-motion archives	Compare partial edits with branch	battle-parameters	a4aa9e0827 8b0259b538 aa2b4b3bd2 8619e5caf3
@@ -344,7 +344,7 @@ src/pso/effect/particle/TParticleCtrl_800867E4.cpp	modify	Model resources — Pl
 src/pso/effect/particle/TParticleCtrl_800874F4.cpp	modify	Array allocation and object ownership / Model resources — Player equipment and effect models / scene-resources	Compare partial edits with branch	scene-resources	9558253032 8b0259b538 385404c113
 src/pso/effect/particle/TParticleCtrl_80327D30.cpp	modify	Model resources — Player equipment and effect models	Group by integration commit		af3a517c99
 src/pso/effect/photon/PhotonBlastSummon.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
-src/pso/effect/photon/TDPBShower.cpp	modify	Particle effects and encounter choreography	Group by integration commit		707b399ca6
+src/pso/effect/photon/TDPBShower.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	707b399ca6
 src/pso/effect/photon/TPhotonEstlla.cpp	modify	Model resources — Player equipment and effect models / texture-strips	Compare partial edits with branch	texture-strips	af3a517c99 faa20235f3
 src/pso/effect/photon/TPhotonFarlla.cpp	modify	Model resources — Player equipment and effect models / texture-strips	Compare partial edits with branch	texture-strips	af3a517c99 faa20235f3
 src/pso/effect/photon/TPhotonGolla.cpp	modify	Model resources — Player equipment and effect models / texture-strips	Compare partial edits with branch	texture-strips	af3a517c99 faa20235f3
@@ -372,7 +372,7 @@ src/pso/enemy/bringer/TObjEneDf2Bringer.cpp	modify	Model resources — Enemy mod
 src/pso/enemy/canadin/CanadinEffects.cpp	modify	Array allocation and object ownership / raft-encounters	Compare partial edits with branch	raft-encounters	9558253032 fc96ba681f
 src/pso/enemy/canadin/TObjEneMe1Canadin.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 8b0259b538 3a73dc46ea aa2b4b3bd2
 src/pso/enemy/darkgunner/DarkGunner.cpp	modify	Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
-src/pso/enemy/dd/TObjEneDD.cpp	modify	Particle effects and encounter choreography / Model resources — Enemy models and attachments	Group by integration commit		707b399ca6 8b0259b538
+src/pso/enemy/dd/TObjEneDD.cpp	modify	Particle effects and encounter choreography / Model resources — Enemy models and attachments	Compare partial edits with branch	boss-effects	707b399ca6 8b0259b538
 src/pso/enemy/deldepth/DelDepthMotion.cpp	modify	Model resources — Enemy models and attachments	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/enemy/deldepth/TObjEneDelDepth.cpp	modify	Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/enemy/dellbiter/TObjEneDellBiter.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
@@ -390,19 +390,19 @@ src/pso/enemy/fly/TObjEneBm3FlyNest.cpp	modify	Symbol names by owning subsystem 
 src/pso/enemy/gee/TObjEneMe1Gee.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/enemy/gee/TObjEneMe1Gee_NEEDLE_802A4A44.cpp	modify	Model resources — Enemy models and attachments	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/enemy/gibbles/TObjEneGibbles.cpp	modify	Model resources — Enemy models and attachments / Array allocation and object ownership / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 9558253032 8b0259b538 aa2b4b3bd2
-src/pso/enemy/gibon/TObjEneBm5GibonU.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 8b0259b538 2ee504f230 aa2b4b3bd2
+src/pso/enemy/gibon/TObjEneBm5GibonU.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters, enemy-motion	242b2534ee af3a517c99 a4aa9e0827 8b0259b538 2ee504f230 aa2b4b3bd2
 src/pso/enemy/gigue/TObjEneMe1GiGue.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp	modify	Model resources — Enemy models and attachments	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters	Group by integration commit		af3a517c99 a4aa9e0827 3a73dc46ea
-src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 2ee504f230 aa2b4b3bd2
+src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters, enemy-motion	af3a517c99 a4aa9e0827 8b0259b538 2ee504f230 aa2b4b3bd2
 src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp	modify	Model resources — Enemy models and attachments	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp	modify	Model resources — Enemy models and attachments	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/enemy/illgill/TObjEneIllGill.cpp	modify	Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/enemy/lappy/TObjEneLappy.cpp	modify	Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 8b0259b538 aa2b4b3bd2
 src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 8b0259b538 5869a3ed4c aa2b4b3bd2
-src/pso/enemy/merilllia/TObjEneMerillLia.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Array allocation and object ownership / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 9558253032 8b0259b538 b3f0cfce63 aa2b4b3bd2
+src/pso/enemy/merilllia/TObjEneMerillLia.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Array allocation and object ownership / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters, enemy-motion	242b2534ee af3a517c99 a4aa9e0827 9558253032 8b0259b538 b3f0cfce63 aa2b4b3bd2
 src/pso/enemy/moja/TObjEneMoja.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Array allocation and object ownership / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 9558253032 8b0259b538 5869a3ed4c aa2b4b3bd2
-src/pso/enemy/morfos/TObjEneMorfos.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 8b0259b538 b3f0cfce63 aa2b4b3bd2
+src/pso/enemy/morfos/TObjEneMorfos.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters, enemy-motion	242b2534ee af3a517c99 8b0259b538 b3f0cfce63 aa2b4b3bd2
 src/pso/enemy/morfos/TObjEneMorfosArm.cpp	modify	Model resources — Enemy models and attachments	Group by integration commit		af3a517c99
 src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp	modify	Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/enemy/panarms/TObjEnePanarms.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters / Model-node capture and enemy attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 5869a3ed4c 3615371fd3 aa2b4b3bd2
@@ -416,26 +416,26 @@ src/pso/enemy/saver/SaverLifecycle.cpp	modify	Model resources — Enemy models a
 src/pso/enemy/shark/TObjEneShark.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Array allocation and object ownership / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 9558253032 8b0259b538 aa2b4b3bd2
 src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Array allocation and object ownership / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 9558253032 8b0259b538 aa2b4b3bd2
 src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp	modify	Symbol names by owning subsystem / Model resources — Enemy models and attachments / Array allocation and object ownership / battle-parameters	Compare partial edits with branch	battle-parameters	242b2534ee af3a517c99 a4aa9e0827 9558253032 8b0259b538 aa2b4b3bd2
-src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters	Group by integration commit		af3a517c99 a4aa9e0827 14e2747f1d
-src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 642ec6c146 14e2747f1d aa2b4b3bd2
+src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters	Compare partial edits with branch	enemy-motion	af3a517c99 a4aa9e0827 14e2747f1d
+src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp	modify	Model resources — Enemy models and attachments / Enemy movement, collision and encounters / battle-parameters	Compare partial edits with branch	battle-parameters, enemy-motion	af3a517c99 a4aa9e0827 8b0259b538 642ec6c146 14e2747f1d aa2b4b3bd2
 src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp	modify	Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 aa2b4b3bd2
 src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp	modify	Model resources — Enemy models and attachments / battle-parameters / texture-strips	Compare partial edits with branch	battle-parameters, texture-strips	af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2 faa20235f3
 src/pso/enemy/stelth/TObjEneMe3Stelth.cpp	modify	Model resources — Enemy models and attachments / Array allocation and object ownership / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 9558253032 8b0259b538 aa2b4b3bd2
 src/pso/enemy/wolf/TObjEneBm5Wolf.cpp	modify	Model resources — Enemy models and attachments / battle-parameters	Compare partial edits with branch	battle-parameters	af3a517c99 a4aa9e0827 8b0259b538 aa2b4b3bd2
 src/pso/item/TItem.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/item/TItemBuff.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
-src/pso/item/TItemLoad.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+src/pso/item/TItemLoad.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 src/pso/item/TItemLoad_8010F52C.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/item/TItemLoad_8010FDF0.cpp	modify	Array allocation and object ownership / scene-resources	Compare partial edits with branch	scene-resources	9558253032 385404c113 6f2212d865
-src/pso/item/TItemLoad_8010FF68.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-src/pso/item/TItemLoad_8010FFAC.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+src/pso/item/TItemLoad_8010FF68.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+src/pso/item/TItemLoad_8010FFAC.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 src/pso/item/TItemLoad_80110010.cpp	modify	Model resources — Player equipment and effect models / Array allocation and object ownership	Group by integration commit		a4aa9e0827 9558253032
 src/pso/item/TItemLoad_801105AC.cpp	modify	Array allocation and object ownership / Model resources — Player equipment and effect models	Group by integration commit		9558253032 8b0259b538
 src/pso/item/TItemLockCountCtrl.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
-src/pso/item/TItemObject.cpp	modify	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+src/pso/item/TItemObject.cpp	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 src/pso/item/TItemReverseTech.cpp	modify	Array allocation and object ownership / scene-resources	Compare partial edits with branch	scene-resources	9558253032 34cdd1526e
 src/pso/item/TItemSpecialEvent.cpp	add	Item factory	Group by integration commit		34393935ff
-src/pso/item/TItemTexLoad.cpp	modify	Array allocation and object ownership / Audio streaming, playback and music gain	Group by integration commit		9558253032 1ca2b401ad
+src/pso/item/TItemTexLoad.cpp	modify	Array allocation and object ownership / Audio streaming, playback and music gain	Compare partial edits with branch	audio-streams	9558253032 1ca2b401ad
 src/pso/item/TUnk_804F112C.cpp	delete	Item factory	Group by integration commit		34393935ff
 src/pso/item/drop/TItemDrop_800F93F0.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113 34cdd1526e 6f2212d865
 src/pso/item/drop/TItemDrop_80105D0C.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
@@ -448,7 +448,7 @@ src/pso/network/ModemRuntime.cpp	modify	network-runtime	Identical final blob or 
 src/pso/network/NetTcp.c	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	b332dc4f9a
 src/pso/network/NetworkThreadRuntime.c	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	7202f5fbd6
 src/pso/network/SocketProtocolRuntime.c	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	b332dc4f9a db0bd68721 8a221ccb53
-src/pso/network/TLobby_80429598.c	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	4e9c97644c
+src/pso/network/TLobby_80429598.c	modify	network-runtime / host-portability	Identical final blob or deletion on standalone branch	network-runtime, host-portability	4e9c97644c
 src/pso/network/TPlyJoinLobbyEntry.cpp	modify	Array allocation and object ownership / chat-windows	Compare partial edits with branch	chat-windows	9558253032 bc7f6d8d1a
 src/pso/network/TTcpSocket.cpp	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	b332dc4f9a
 src/pso/network/text_80421620.c	modify	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	b332dc4f9a
@@ -628,14 +628,14 @@ src/pso/player/PhotonBlastResults.cpp	modify	Model resources — Player equipmen
 src/pso/player/PlayerTaskEffects.cpp	modify	Model resources — Player equipment and effect models	Group by integration commit		af3a517c99
 src/pso/player/TObjPlayer_80011014.cpp	modify	player-techniques	Identical final blob or deletion on standalone branch	player-techniques	242b2534ee 7aea3ba036
 src/pso/player/TObjPlayer_8002E784.cpp	modify	Model resources — Player equipment and effect models	Group by integration commit		af3a517c99
-src/pso/player/TObjPlayer_80052374.cpp	modify	Symbol names by owning subsystem / Particle effects and encounter choreography	Group by integration commit		242b2534ee a427c24c40
+src/pso/player/TObjPlayer_80052374.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	242b2534ee a427c24c40
 src/pso/player/TObjPlayer_80083594.cpp	modify	Model resources — Player equipment and effect models	Group by integration commit		af3a517c99 6f2212d865
 src/pso/player/TObjPlayer_801542CC.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/player/TObjPlayer_801AF2F0.cpp	modify	player-techniques / Model resources — Player equipment and effect models	Compare partial edits with branch	player-techniques	66f583cdfa af3a517c99
 src/pso/player/TObjPlayer_801BDF5C.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/player/TObjPlayer_801C7430.cpp	modify	player-techniques	Identical final blob or deletion on standalone branch	player-techniques	66f583cdfa
 src/pso/player/TObjPlayer_801D84CC.cpp	modify	Model resources — Player equipment and effect models	Group by integration commit		af3a517c99
-src/pso/player/TObjPlayer_8023E480.cpp	modify	Model resources — Player equipment and effect models / scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources	af3a517c99 385404c113 34cdd1526e 1ca2b401ad
+src/pso/player/TObjPlayer_8023E480.cpp	modify	Model resources — Player equipment and effect models / scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources, audio-streams	af3a517c99 385404c113 34cdd1526e 1ca2b401ad
 src/pso/player/TObjPlayer_802790CC.cpp	modify	Window frame, layout and area selection	Group by integration commit		42687a6baf
 src/pso/player/TObjPlayer_802E6CA8.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032 6f2212d865
 src/pso/player/TObjPlayer_8033E910.cpp	modify	Model resources — Player equipment and effect models	Group by integration commit		af3a517c99
@@ -656,17 +656,17 @@ src/pso/quest/TQuestVmDownLoadServer.cpp	modify	Resource buffers and player-moti
 src/pso/quest/challenge/TChallenge4PItemSelect.cpp	modify	Window frame, layout and area selection	Group by integration commit		4c42018c19
 src/pso/render/ChunkMaterialState.cpp	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
 src/pso/render/ChunkTextureStripCollector.cpp	modify	texture-strips	Identical final blob or deletion on standalone branch	texture-strips	faa20235f3
-src/pso/render/GinjaMaterial.cpp	modify	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+src/pso/render/GinjaMaterial.cpp	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 src/pso/render/TFogCtrl.cpp	modify	Array allocation and object ownership / scene-resources	Compare partial edits with branch	scene-resources	9558253032 385404c113
 src/pso/system/GbaDownloadRuntime.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113
 src/pso/system/ModelNodePositionCapture.cpp	add	Model-node capture and enemy attachments	Group by integration commit		3615371fd3
-src/pso/system/TGStream.cpp	modify	scene-resources / Audio streaming, playback and music gain / Resource buffers and player-motion archives	Compare partial edits with branch	scene-resources	385404c113 34cdd1526e 1ca2b401ad 8619e5caf3
+src/pso/system/TGStream.cpp	modify	scene-resources / Audio streaming, playback and music gain / Resource buffers and player-motion archives	Compare partial edits with branch	scene-resources, audio-streams	385404c113 34cdd1526e 1ca2b401ad 8619e5caf3
 src/pso/system/TLanguage.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	34cdd1526e
 src/pso/system/scene/TEndingAB.cpp	modify	front-end scenes (merged) / Model resources — Archive loading, rendering and shared declarations	Group by integration commit		ef2ca77a86 af3a517c99
 src/pso/system/scene/TEndingC_8008D00C.cpp	modify	front-end scenes (merged) / Model resources — Archive loading, rendering and shared declarations	Group by integration commit		ef2ca77a86 af3a517c99
 src/pso/system/scene/TEndingPic.cpp	modify	front-end scenes (merged) / Model resources — Archive loading, rendering and shared declarations	Group by integration commit		ef2ca77a86 af3a517c99
 src/pso/system/scene/TScene.cpp	modify	Model resources — Archive loading, rendering and shared declarations / scene-resources	Compare partial edits with branch	scene-resources	af3a517c99 385404c113
-src/pso/system/scene/TSceneSora.cpp	modify	Model resources — Archive loading, rendering and shared declarations / scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources	af3a517c99 a4aa9e0827 8b0259b538 29c97a563e 385404c113 1ca2b401ad
+src/pso/system/scene/TSceneSora.cpp	modify	Model resources — Archive loading, rendering and shared declarations / scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources, audio-streams	af3a517c99 a4aa9e0827 8b0259b538 29c97a563e 385404c113 1ca2b401ad
 src/pso/system/scene/TScene_800F9D80.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113
 src/pso/system/scene/TScene_80327B00.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/technique/TTecBarta.cpp	modify	Model resources — Player equipment and effect models / Array allocation and object ownership	Group by integration commit		a4aa9e0827 9558253032 6f2212d865
@@ -678,8 +678,8 @@ src/pso/technique/TTecMegid.cpp	modify	Model resources — Player equipment and 
 src/pso/technique/TTecRaBarta.cpp	modify	Model resources — Player equipment and effect models / Array allocation and object ownership	Group by integration commit		a4aa9e0827 9558253032
 src/pso/technique/TTecRaFoie.cpp	modify	Model resources — Player equipment and effect models	Group by integration commit		af3a517c99 a4aa9e0827
 src/pso/technique/TTecRaZonde_80238C6C.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
-src/pso/ui/charcreate/TChCrLoadAfs.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp	modify	Model resources — Menus, windows and character selection / Audio streaming, playback and music gain	Group by integration commit		a4aa9e0827 8b0259b538 29c97a563e 1ca2b401ad
+src/pso/ui/charcreate/TChCrLoadAfs.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp	modify	Model resources — Menus, windows and character selection / Audio streaming, playback and music gain	Compare partial edits with branch	audio-streams	a4aa9e0827 8b0259b538 29c97a563e 1ca2b401ad
 src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp	modify	Model resources — Menus, windows and character selection	Group by integration commit		8b0259b538 29c97a563e
 src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp	modify	Model resources — Menus, windows and character selection	Group by integration commit		8b0259b538
 src/pso/ui/charcreate/TObjCMName.cpp	modify	Array allocation and object ownership / chat-windows	Compare partial edits with branch	chat-windows	9558253032 bc7f6d8d1a
@@ -739,7 +739,7 @@ src/pso/ui/frontend/TAdPlayerLoadGC_800F9EF8.cpp	modify	scene-resources	Identica
 src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113
 src/pso/ui/frontend/TAdPlyPltAnimGC.cpp	modify	Model resources — Menus, windows and character selection	Group by integration commit		af3a517c99
 src/pso/ui/frontend/TAdPlyStatusGC.cpp	modify	Model resources — Menus, windows and character selection	Group by integration commit		af3a517c99
-src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp	modify	Particle effects and encounter choreography / Model resources — Menus, windows and character selection	Group by integration commit		707b399ca6 af3a517c99 a4aa9e0827 6f2212d865
+src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp	modify	Particle effects and encounter choreography / Model resources — Menus, windows and character selection	Compare partial edits with branch	boss-effects	707b399ca6 af3a517c99 a4aa9e0827 6f2212d865
 src/pso/ui/frontend/TAdRayGC.cpp	modify	Model resources — Menus, windows and character selection	Group by integration commit		af3a517c99
 src/pso/ui/frontend/TAdRicoRingCtrl.cpp	modify	Model resources — Menus, windows and character selection	Group by integration commit		af3a517c99 a4aa9e0827 8b0259b538
 src/pso/ui/frontend/TAdScrollWinGC.cpp	modify	Model resources — Menus, windows and character selection	Group by integration commit		af3a517c99
@@ -765,9 +765,9 @@ src/pso/ui/window/TObjBagWarnWin.cpp	modify	Window frame, layout and area select
 src/pso/ui/window/TObjResultWin.cpp	modify	Window frame, layout and area selection	Group by integration commit		4c42018c19
 src/pso/ui/window/TWindow.cpp	modify	Window frame, layout and area selection	Group by integration commit		4c42018c19
 src/pso/ui/window/TWindowActionPalette.cpp	modify	upstream window lifecycles (merged) / window-lists / Model resources — Menus, windows and character selection / Window frame, layout and area selection	Compare partial edits with branch	window-lists	5a561bcd62 af37412365 af3a517c99 9693628876 42687a6baf 11799c9505 4c42018c19
-src/pso/ui/window/TWindowAddition.cpp	add	Window frame, layout and area selection	Group by integration commit		c83050f684 4c42018c19
+src/pso/ui/window/TWindowAddition.cpp	add	Window frame, layout and area selection	Compare partial edits with branch	window-lists	c83050f684 4c42018c19
 src/pso/ui/window/TWindowAddition_80244238.cpp	modify	Window frame, layout and area selection	Group by integration commit		4c42018c19
-src/pso/ui/window/TWindowArea.cpp	modify	upstream window lifecycles (merged) / Window frame, layout and area selection	Group by integration commit		5a561bcd62 c83050f684 42687a6baf 11799c9505
+src/pso/ui/window/TWindowArea.cpp	modify	upstream window lifecycles (merged) / Window frame, layout and area selection	Compare partial edits with branch	window-lists	5a561bcd62 c83050f684 42687a6baf 11799c9505
 src/pso/ui/window/TWindowChallengeResult.cpp	modify	upstream window lifecycles (merged) / result-windows / Window frame, layout and area selection	Compare partial edits with branch	result-windows	5a561bcd62 9d440121eb d17d089c11 42687a6baf 4c42018c19
 src/pso/ui/window/TWindowCheckBox.cpp	modify	window-lists / Window frame, layout and area selection	Compare partial edits with branch	window-lists	d9898049b2 9693628876
 src/pso/ui/window/TWindowChoiceSetting.cpp	modify	upstream window lifecycles (merged) / window-lists / Window frame, layout and area selection	Compare partial edits with branch	window-lists	5a561bcd62 f20aaf813a 11799c9505 4c42018c19
@@ -882,32 +882,32 @@ src/pso/ui/window/TWindowUserSort.cpp	modify	upstream window lifecycles (merged)
 src/pso/ui/window/TextEntryMeasurement.cpp	add	result-windows	Identical final blob or deletion on standalone branch	result-windows	9d440121eb
 src/pso/unk/SampledMotionPoints.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/unk/TLobby_8001D6A0.cpp	modify	Array allocation and object ownership / scene-resources / battle-parameters / Resource buffers and player-motion archives	Compare partial edits with branch	scene-resources, battle-parameters	9558253032 385404c113 aa2b4b3bd2 510782e359 8619e5caf3
-src/pso/unk/TLobby_8001EF5C.cpp	modify	Model resources — Archive loading, rendering and shared declarations / Array allocation and object ownership / scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources	a4aa9e0827 9558253032 4a4d087073 8b0259b538 29c97a563e 385404c113 34cdd1526e 1ca2b401ad
+src/pso/unk/TLobby_8001EF5C.cpp	modify	Model resources — Archive loading, rendering and shared declarations / Array allocation and object ownership / scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources, audio-streams	a4aa9e0827 9558253032 4a4d087073 8b0259b538 29c97a563e 385404c113 34cdd1526e 1ca2b401ad
 src/pso/unk/TLobby_8002C140.cpp	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		8b0259b538
 src/pso/unk/TLobby_8003A95C.cpp	modify	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
-src/pso/unk/TLobby_80067410.cpp	modify	Enemy movement, collision and encounters	Group by integration commit		75a68a350c
+src/pso/unk/TLobby_80067410.cpp	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	75a68a350c
 src/pso/unk/TLobby_800F5CF0.cpp	modify	Array allocation and object ownership / texture-strips	Compare partial edits with branch	texture-strips	9558253032 faa20235f3
 src/pso/unk/TLobby_800F8AA8.cpp	modify	Model resources — Archive loading, rendering and shared declarations / scene-resources	Compare partial edits with branch	scene-resources	af3a517c99 385404c113
 src/pso/unk/TLobby_800F9690.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113 34cdd1526e
 src/pso/unk/TLobby_800F9D38.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113 34cdd1526e
-src/pso/unk/TLobby_800F9DA0.cpp	modify	scene-resources / Audio streaming, playback and music gain	Compare partial edits with branch	scene-resources	385404c113 1ca2b401ad
-src/pso/unk/TLobby_800FA100.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-src/pso/unk/TLobby_800FA164.cpp	modify	Audio streaming, playback and music gain / Resource buffers and player-motion archives	Group by integration commit		1ca2b401ad 8619e5caf3
-src/pso/unk/TLobby_800FA2A0.cpp	modify	Audio streaming, playback and music gain / Resource buffers and player-motion archives	Group by integration commit		1ca2b401ad 8619e5caf3
-src/pso/unk/TLobby_800FA388.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-src/pso/unk/TLobby_800FA774.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+src/pso/unk/TLobby_800F9DA0.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	scene-resources, audio-streams	385404c113 1ca2b401ad
+src/pso/unk/TLobby_800FA100.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+src/pso/unk/TLobby_800FA164.cpp	modify	Audio streaming, playback and music gain / Resource buffers and player-motion archives	Compare partial edits with branch	audio-streams	1ca2b401ad 8619e5caf3
+src/pso/unk/TLobby_800FA2A0.cpp	modify	Audio streaming, playback and music gain / Resource buffers and player-motion archives	Compare partial edits with branch	audio-streams	1ca2b401ad 8619e5caf3
+src/pso/unk/TLobby_800FA388.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+src/pso/unk/TLobby_800FA774.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 src/pso/unk/TLobby_80103F5C.cpp	modify	Array allocation and object ownership / Item factory	Group by integration commit		9558253032 34393935ff
-src/pso/unk/TLobby_80104374.cpp	modify	Physics, SDK declarations and host checks / Item factory	Group by integration commit		4e9c97644c 34393935ff
+src/pso/unk/TLobby_80104374.cpp	modify	Physics, SDK declarations and host checks / Item factory	Compare partial edits with branch	host-portability	4e9c97644c 34393935ff
 src/pso/unk/TLobby_801C25B4.cpp	modify	Array allocation and object ownership / result-windows	Compare partial edits with branch	result-windows	9558253032 8006b9fd73 1af1a6bd8a
 src/pso/unk/TLobby_801E2F94.cpp	modify	chunk-rendering / Model resources — Archive loading, rendering and shared declarations / Resource buffers and player-motion archives	Compare partial edits with branch	chunk-rendering	caf9da4ca5 af3a517c99 8619e5caf3
 src/pso/unk/TLobby_801E43E4.cpp	modify	Model resources — Archive loading, rendering and shared declarations / scene-resources / Resource buffers and player-motion archives	Compare partial edits with branch	scene-resources	af3a517c99 385404c113 34cdd1526e 8619e5caf3 6f2212d865
 src/pso/unk/TLobby_801F3A24.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113
 src/pso/unk/TLobby_80207DA8.cpp	modify	scene-resources / Resource buffers and player-motion archives	Compare partial edits with branch	scene-resources	7202f5fbd6 385404c113 8619e5caf3
 src/pso/unk/TLobby_80209524.cpp	modify	Symbol names by owning subsystem / Array allocation and object ownership / scene-resources / Resource buffers and player-motion archives	Compare partial edits with branch	scene-resources	242b2534ee 9558253032 385404c113 8619e5caf3
-src/pso/unk/TLobby_80226C3C.cpp	modify	Symbol names by owning subsystem / Audio streaming, playback and music gain / scene-resources	Compare partial edits with branch	scene-resources	242b2534ee 8c4f54cf1d 34cdd1526e
-src/pso/unk/TLobby_80227A2C.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		8c4f54cf1d
+src/pso/unk/TLobby_80226C3C.cpp	modify	Symbol names by owning subsystem / Audio streaming, playback and music gain / scene-resources	Compare partial edits with branch	scene-resources, audio-streams	242b2534ee 8c4f54cf1d 34cdd1526e
+src/pso/unk/TLobby_80227A2C.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	8c4f54cf1d
 src/pso/unk/TLobby_80228154.cpp	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		af3a517c99
-src/pso/unk/TLobby_8023F734.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
+src/pso/unk/TLobby_8023F734.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
 src/pso/unk/TLobby_802409AC.cpp	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
 src/pso/unk/TLobby_8028A7C8.cpp	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		8b0259b538
 src/pso/unk/TLobby_8028EA28.cpp	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		8b0259b538
@@ -931,7 +931,7 @@ src/pso/unk/text_8007F8D0.cpp	modify	scene-resources	Identical final blob or del
 src/pso/unk/text_800D8830.cpp	modify	Symbol names by owning subsystem	Group by integration commit		242b2534ee
 src/pso/unk/text_800F5BC0.cpp	modify	Array allocation and object ownership / texture-strips	Compare partial edits with branch	texture-strips	9558253032 faa20235f3
 src/pso/unk/text_800F9B84.cpp	modify	scene-resources	Identical final blob or deletion on standalone branch	scene-resources	385404c113 34cdd1526e
-src/pso/unk/text_800FA464.cpp	modify	Audio streaming, playback and music gain / Resource buffers and player-motion archives	Group by integration commit		1ca2b401ad 8619e5caf3
+src/pso/unk/text_800FA464.cpp	modify	Audio streaming, playback and music gain / Resource buffers and player-motion archives	Compare partial edits with branch	audio-streams	1ca2b401ad 8619e5caf3
 src/pso/unk/text_80103674.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/unk/text_8010F168.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
 src/pso/unk/text_8011A780.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
@@ -961,22 +961,22 @@ src/pso/unk/text_80357058.cpp	modify	raft-encounters	Identical final blob or del
 src/pso/unk/text_8035B6B0.cpp	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		a4aa9e0827 8b0259b538
 src/pso/unk/text_8035B750.cpp	modify	Model resources — Archive loading, rendering and shared declarations	Group by integration commit		8b0259b538
 src/pso/unk/text_803626A8.cpp	modify	Model resources — Archive loading, rendering and shared declarations / battle-parameters	Compare partial edits with branch	battle-parameters	a4aa9e0827 8b0259b538 aa2b4b3bd2
-src/pso/unk/text_803CC134.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-src/pso/unk/text_803CC294.cpp	modify	Audio streaming, playback and music gain	Group by integration commit		1ca2b401ad
-src/pso/unk/text_803D853C.cpp	modify	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
-src/pso/unk/text_803D96A8.cpp	modify	Physics, SDK declarations and host checks / Resource buffers and player-motion archives	Group by integration commit		4e9c97644c 8619e5caf3
+src/pso/unk/text_803CC134.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+src/pso/unk/text_803CC294.cpp	modify	audio-streams	Identical final blob or deletion on standalone branch	audio-streams	1ca2b401ad
+src/pso/unk/text_803D853C.cpp	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
+src/pso/unk/text_803D96A8.cpp	modify	Physics, SDK declarations and host checks / Resource buffers and player-motion archives	Compare partial edits with branch	host-portability	4e9c97644c 8619e5caf3
 src/pso/unk/text_803DA798.cpp	modify	Model resources — Archive loading, rendering and shared declarations / Resource buffers and player-motion archives	Group by integration commit		af3a517c99 8619e5caf3
 src/pso/unk/text_803DAFA8.cpp	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
 src/pso/unk/text_803DD5E0.cpp	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
 src/pso/unk/text_803DE8BC.cpp	modify	Resource buffers and player-motion archives	Group by integration commit		8619e5caf3
 src/pso/unk/text_803E2F28.cpp	modify	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	a9bb83527d 4a2b05c546
 src/pso/unk/text_803E4CE8.cpp	modify	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	a9bb83527d
-src/pso/unk/text_8042E8C4.cpp	modify	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+src/pso/unk/text_8042E8C4.cpp	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 src/pso/weapon/TItemAttacker.cpp	modify	Array allocation and object ownership	Group by integration commit		9558253032
-src/pso/weapon/TItemWeapon.cpp	modify	Physics, SDK declarations and host checks	Group by integration commit		4e9c97644c
+src/pso/weapon/TItemWeapon.cpp	modify	host-portability	Identical final blob or deletion on standalone branch	host-portability	4e9c97644c
 tools/check_pr.py	modify	link-verification	Identical final blob or deletion on standalone branch	link-verification	bd986915f0
 tools/ci_report.py	modify	Fork batch tooling and contributor handoffs	Group by integration commit		5bb224c3e5
-tools/cw_comment_align.py	add	Particle effects and encounter choreography	Group by integration commit		707b399ca6
+tools/cw_comment_align.py	add	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	707b399ca6
 tools/evidence_applicability.py	add	Fork batch tooling and contributor handoffs	Group by integration commit		5bb224c3e5
 tools/handoff_report.py	add	Fork batch tooling and contributor handoffs	Group by integration commit		5bb224c3e5
 tools/handoff_resume.py	add	Fork batch tooling and contributor handoffs	Group by integration commit		5bb224c3e5
@@ -997,12 +997,12 @@ tools/merge_batch_validate_acceptance.py	add	Fork batch tooling and contributor 
 tools/merge_batch_validate_development.py	add	Fork batch tooling and contributor handoffs	Group by integration commit		5bb224c3e5
 tools/merge_batch_validate_zero_loss.py	add	Fork batch tooling and contributor handoffs	Group by integration commit		5bb224c3e5
 tools/musyx_dsp.py	add	Audio streaming, playback and music gain	Group by integration commit		6f1614cf5f
-tools/probes/check_adxf.py	add	Audio streaming, playback and music gain / battle-parameters	Group by integration commit		1ca2b401ad 3cb6af949d
+tools/probes/check_adxf.py	add	Audio streaming, playback and music gain / battle-parameters	Compare partial edits with branch	audio-streams	1ca2b401ad 3cb6af949d
 tools/probes/check_battle_tables.py	add	battle-parameters	Compare partial edits with branch	battle-parameters	3cb6af949d
 tools/probes/check_chunk_vertex_transforms.py	add	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	a9bb83527d
 tools/probes/check_combat_techniques.py	add	player-techniques	Identical final blob or deletion on standalone branch	player-techniques	a33e039f8f
 tools/probes/check_encounter_trails.py	add	raft-encounters	Identical final blob or deletion on standalone branch	raft-encounters	fc96ba681f
-tools/probes/check_resource_reads.py	add	scene-resources / Audio streaming, playback and music gain / battle-parameters	Compare partial edits with branch	scene-resources	3cfb401fdb 1ca2b401ad 3cb6af949d
+tools/probes/check_resource_reads.py	add	scene-resources / Audio streaming, playback and music gain / battle-parameters	Compare partial edits with branch	scene-resources, audio-streams	3cfb401fdb 1ca2b401ad 3cb6af949d
 tools/probes/check_result_pages.py	add	result-windows	Identical final blob or deletion on standalone branch	result-windows	5da513fabe
 tools/probes/check_socket_queues.py	add	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	db0bd68721 8a221ccb53
 tools/probes/check_strip_animation.py	add	texture-strips	Compare partial edits with branch	texture-strips	2b8e188b82
@@ -1014,7 +1014,7 @@ tools/probes/gpoe8p_image.py	add	battle-parameters / result-windows / texture-st
 tools/probes/test_chunk_polygon_dispatch.py	add	chunk-rendering	Identical final blob or deletion on standalone branch	chunk-rendering	4a2b05c546
 tools/probes/test_sphere_contact.py	add	chunk-rendering	Group by integration commit		d6b3af53a2
 tools/progress_map.py	modify	Fork batch tooling and contributor handoffs	Group by integration commit		5bb224c3e5
-tools/project.py	modify	Particle effects and encounter choreography	Group by integration commit		707b399ca6
+tools/project.py	modify	boss-effects	Identical final blob or deletion on standalone branch	boss-effects	707b399ca6
 tools/report_delta.py	modify	link-verification	Identical final blob or deletion on standalone branch	link-verification	bd986915f0
 tools/tests/fixtures/darkfalz-config-1f86b669.py.gz	add	Compiler and host-build checks	Group by integration commit		4c2893b024
 tools/tests/fixtures/modem_control_harness.cpp.in	add	network-runtime	Identical final blob or deletion on standalone branch	network-runtime	3e83afaa84

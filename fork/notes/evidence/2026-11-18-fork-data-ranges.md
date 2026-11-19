@@ -2,6 +2,12 @@
 
 Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. The initial eight-byte checkpoint is `ef2ca77a86` on `great-merge/fork-data-ranges`. Its changes now open the front-end scenes matchpass.
 
+## Fourteen review groups close the inventory
+
+Local branch `great-merge/verify-fourteen` at `5d66c65409` accounts for all 1,147 bytes across the [90 ledger rows](2026-11-18-fork-data-ranges.tsv). From the last 72 bytes, the area selector links 24, the boss effects link 40, and the area music sequencer links four. Four original linker-padding bytes at `0x805D8A2C` belong to the Dark Falz review. The two final columns record these contributions and the zero residual in each row.
+
+Against upstream master `b2cac76477`, the combined build gains 792 matched and source-linked data bytes and one exact linked unit. It reproduces the retail executable with all 27,572 functions and 2,539 selected units exact. Against fork main `3342e42983`, there are zero lost exact or linked functions or data ranges. The overall reported data extent still requires the alignment reconciliation recorded below.
+
 ## Landed upstream and the twelve-group build
 
 On upstream master `b2cac76477`, 748 of the original inventory bytes still need coverage. The twelve published and local review groups build together at `ee4e1655cb`. Their combined tree recovers 676 of those 748 bytes. Comparing the game built from that tree to fork main leaves **72 bytes across eight original ledger rows**. The report coalesces the last two adjacent Dark Falz rows. The [range ledger](2026-11-18-fork-data-ranges.tsv) records the contribution of each additional review and the measured residual by address.
@@ -22,7 +28,7 @@ Upstream master `77a34b3d72` contains all 176 inventory bytes previously credite
 
 The added columns of the [range ledger](2026-11-18-fork-data-ranges.tsv) record the remaining byte count on this master, the contributing PR or local branch, and the deficit after applying all six groups. The original baseline and integration columns retain the earlier comparison.
 
-Upstream merged PR 321 as `b2cac76477`. Its complete Git tree equals the tested front-end branch. The current upstream deficit fell from 808 to 748 original inventory bytes. The remaining three submitted PRs cover 72 of those and the two queued UI branches cover 372. The last ledger column reports the deficit on the landed tree by address.
+Upstream merged PR 321 as `b2cac76477`. Its complete Git tree equals the tested front-end branch. The current upstream deficit fell from 808 to 748 original inventory bytes. The remaining three submitted PRs cover 72 of those and the two queued UI branches cover 372. The upstream-b2cac76477 column reports the deficit on the landed tree by address.
 
 ## Integration against the original baseline
 
