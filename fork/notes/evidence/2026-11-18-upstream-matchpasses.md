@@ -9,7 +9,7 @@ The local branches below group related changes for review. The component branche
 | Archive loading, audio streaming and quest-cache lifetimes | `great-merge/current/resource-lifetimes` | `ba96b4a344` | 219 |
 | Array allocation, memory copies and nullable release | `great-merge/current/memory` | `381e372339` | 257 |
 | Enemy targeting, battle parameters, collision and player techniques | `great-merge/current/combat` | `ac997883bf` | 209 |
-| Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `34176d99e2` | 112 |
+| Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `8ccc7adee4` | 117 |
 | Positional sound, area effects and particle spawning | `great-merge/current/spatial-effects` | `748755c261` | 342 |
 | Model hierarchy, renderer callbacks and matrix interfaces | `great-merge/current/render-interfaces` | `ad8e27cbe6` | 189 |
 | Texture binding, BML accessors and archive lifetime | `great-merge/current/bml-resource-lifetime` | `39e6385750` | 453 |
@@ -54,7 +54,7 @@ The network and world-object rows use their existing review branches. Each branc
 
 ### Cumulative review stack
 
-The local branch `great-merge/current/review-stack` puts all eleven review groups on upstream `c572111ed6`. The world-object group has two commits and changes 38 paths in total. The audio callback follow-up belongs to the standalone resource-lifetimes group and appears at the cumulative tip. The tip at `94eb357b12` changes 1,355 paths, counting both sides of renames. The standalone review branches remain available.
+The local branch `great-merge/current/review-stack` puts all eleven review groups on upstream `c572111ed6`. The world-object group has two commits and changes 38 paths in total. The audio callback and typed encounter follow-ups extend their standalone reviews and appear at the end of the cumulative stack. The tip at `070583514d` changes 1,356 paths, counting both sides of renames. The standalone review branches remain available.
 
 | Stage | Group | Stack commit | Paths in stage | Object-file checks |
 | --- | --- | --- | ---: | --- |
@@ -71,12 +71,13 @@ The local branch `great-merge/current/review-stack` puts all eleven review group
 | 11 | world-object-resources | `bad4f7f29a` | 33 | 1,987 objects, 505 renamed exports |
 | 11 | Challenge enemy-set records and buffers | `e24c516c41` | 6 | 644 affected objects, 11 renamed exports |
 | 3 | Audio file-system callbacks and stream buffers | `94eb357b12` | 18 | 644 affected objects, 5 renamed exports |
+| 6 | Barba Ray encounter and Olga Flow death records | `070583514d` | 8 | 893 affected objects, 8 renamed exports, 2 local records |
 
 The stack combines the array allocator and nullable release with typed archive loaders, carries the positional effects interfaces through combat and encounter drawing, and updates Gyaranzo’s fade field alongside the renderer header rename. The stage checks compare allocated sections, symbol locations and relocations with validated objects. They normalize same-address symbol aliases and check the raw references for stale names, missing providers and duplicate exports. The encounter through renderer stages match one Gryphon object's compiler-generated local names by section, offset, size and linkage. All 1,987 affected objects through `bad4f7f29a` match the cumulative source baseline. That check covers 505 renamed exports across 2,481 selected linker inputs. Validation ran at the object-file level.
 
-The only source differences from `93204afa01` are the compiler-profile comment in `configure.py`, whose fork wording stays on the working fork, and removal of an empty C-linkage block in `src/pso/unk/text_800FA464.cpp`. The working fork descends from the review stack and carries the local documentation and tooling. The review stack is local pending publication approval.
+The only source differences from `afe1ce8cb5` are the compiler-profile comment in `configure.py`, whose fork wording stays on the working fork, and removal of an empty C-linkage block in `src/pso/unk/text_800FA464.cpp`. The working fork descends from the review stack and carries the local documentation and tooling. The review stack is local pending publication approval.
 
-The stack covers the cumulative source already prepared for upstream. The [fork source index](2026-11-18-fork-review-index.tsv) still has 1,769 entries awaiting owner comparison and 490 with some matching edit blocks. These entries track the older fork history through upstream's split realignment. Each needs a disposition before the historical source audit is complete.
+The stack covers the cumulative source already prepared for upstream. The [fork source index](2026-11-18-fork-review-index.tsv) still has 1,761 entries awaiting owner comparison and 496 with some matching edit blocks. These entries track the older fork history through upstream's split realignment. Each needs a disposition before the historical source audit is complete.
 
 ### Challenge map set and action records
 
@@ -89,6 +90,14 @@ The builder remains at 0x80209D34 with size 0x454. All 644 affected objects comp
 `ba96b4a344` groups the CVFS, DVD, memory-file and ADX callers with the existing resource-lifetimes review. The cumulative counterpart is `94eb357b12`. The shared registration forwards the callback context, diagnostic message and handle word. The file backends have the same signed size and opaque open types. ADX supplies the path and mode explicitly to its size queries. The public queries accept a const path and use the existing private path parser. The DVD completion callback has the two arguments used by the SDK.
 
 Both stream buffers retain their addresses at 0x805D62D8 and 0x805D62DC and use the fork's pointer types. The three snapshots each recompiled 644 affected objects. Their allocated sections, symbol locations and relocations match their preceding objects after mapping five symbol names. Each renamed export has exactly one provider and no references to its old name. The fork retention list includes the three affected names that it carried before the change. Validation ran at the object-file level.
+
+### Barba Ray encounter and Olga Flow death records
+
+`8ccc7adee4` extends the encounter-drawing review. The stack includes the same changes at `070583514d`. Barba Ray selects crawfish action, position and yaw through the named pattern tables. Both spawn routines use class members and the shared angle type. The model and motion accessors return their actual types, and the tentacle node bank uses the Ninja layout for child and sibling links, position and roll. The Olga Flow death demo uses the fork's names for the origin and motion indices.
+
+The standalone review recompiled 897 affected objects. The cumulative stack and working fork each recompiled 893. The allocated sections, symbol locations and relocation targets match their preceding objects after alias normalization. Eight renamed exports and two local records each have one definition and no stale references. The four renamed routines have the same bytes as the extracted function ranges and preserve the preceding object's section offsets. Their unlinked offsets are eight bytes past the extracted offsets. The fork's six affected retention entries follow the new names. Validation ran at the object-file level.
+
+Three additional fork edits are already present under their current owners. The native container destructor, mine-trap physical attack member and reverse-tech cleanup walk match the extracted code and relocation targets at 0x8015C8D8, 0x8016F5B4 and 0x8011A3D8 respectively. The source index records those checks alongside the encounter changes.
 
 ## Review branches on upstream PR 326
 
