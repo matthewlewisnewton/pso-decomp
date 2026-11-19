@@ -167,6 +167,12 @@ Commit `118f154267` carries the shared map-collision factory from fork commit `3
 
 The review rebuilt 22 affected objects. The cumulative source at `64af88f68e` and working fork each rebuilt 23. Allocated sections, addressable symbols and relocations match after mapping the two renamed symbols. The 294 fork tests and the linker retention check passed.
 
+### Lobby-animal resources and animation binding
+
+Upstream `c572111ed6` already source-links the lobby-animal resources and native virtual tables from fork commits `b0c58784d5` and `703fed303b` in its consolidated `src/pso/object/lobby/LobbyPigeonPath.cpp`. The original linker split and fresh compiled objects agree across 1,612 bytes of resource, profile and virtual-table ranges, including their 114 relocations. The comparison includes 40 bytes of zero-filled resource state and one trailing alignment byte. All six virtual tables are at their original offsets. Each of the four builds uses this source owner, and its 10,460 text bytes and text relocations also agree with the original.
+
+Commit `aae96ffd62` adds the remaining typed Seabed dolphin animation binding to the actor-animation review. The combined source at `a64b19131b` uses the named motions field on the native BML resource. The standalone review uses the archive layout and compatibility call available on that branch. Both build the same code and data as their prior objects. The working fork also matches its prior object, and all 294 fork tests and the retention check passed.
+
 ## World and camera constant ownership
 
 Fork commit `c7470b0f0e` placed 146 floating-point constants in source. All 608 bytes are already exact at their original addresses in the source objects selected by upstream master `c572111ed6`. The actor and camera review at `5d0802c2e5`, cumulative source at `5f25ff5c5b` and working fork at `433a38f909` select the same 47 owners. The source ownership was checked from the generated linker inputs. Each affected object was rebuilt on all four snapshots. The comparison checked the original split data and the compiled sections, symbol locations and relocation targets. It accounts for every source definition in that fork commit.
@@ -175,7 +181,7 @@ The [fork source index](2026-11-18-fork-review-index.tsv) records the addresses 
 
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `64af88f68e` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `a64b19131b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
