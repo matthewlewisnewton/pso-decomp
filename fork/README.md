@@ -4,6 +4,8 @@ Use `great-merge/current/working-fork` for the current combined working fork. Th
 
 The maintainer wants the fork's tools to stay local. `great-merge/fork-tooling` preserves the working tools, probes, workflows, host checks and build helpers. The [original tool inventory](notes/evidence/2026-11-18-original-fork-tools.tsv) locates the exact version of each historical tool change, including archival copies under `fork/tooling/original/`. `great-merge/fork-docs` carries the fork's documentation on top of upstream master. The [matchpass history](notes/evidence/2026-11-18-upstream-matchpasses.md) records native checks, review dependencies and the published PRs.
 
+The local `great-merge/current/layered-fork` cutover candidate keeps the review-stack files identical outside `fork/` and fork-named workflows. Its tooling workspace applies the working fork's tool and host-compatibility changes in a separate checkout.
+
 A review branch should have an empty diff against its base for the fork-local paths. For example, run this on a branch prepared from current upstream master.
 
 ```sh

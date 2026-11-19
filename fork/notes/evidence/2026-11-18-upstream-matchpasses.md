@@ -99,7 +99,15 @@ The standalone review recompiled 897 affected objects. The cumulative stack and 
 
 Three additional fork edits are already present under their current owners. The native container destructor, mine-trap physical attack member and reverse-tech cleanup walk match the extracted code and relocation targets at 0x8015C8D8, 0x8016F5B4 and 0x8011A3D8 respectively. The source index records those checks alongside the encounter changes.
 
-## Review branches on upstream PR 326
+### Fork-only tooling workspace
+
+The local `great-merge/current/layered-fork` candidate at `7c4288c43c` adds 448 files to the cumulative source at `070583514d`. All its changes are additions under `fork/` or `.github/workflows/fork-*.yml`. The existing review files, stock build tools, and native configuration have the same Git tree entries as the stack.
+
+The tooling workspace restores the active tools, host sources and build settings in a disposable checkout. Applying its compressed patch reproduces all 133 non-layer working-fork changes from `b6d4a527ad`, including file modes and binary fixtures. Both the source checkout and materialized checkout are clean. The fork check workflow uses this workspace for its host checks.
+
+The layer check, 11 layer tests, all 294 existing tooling tests, the polygon and sphere probes, and the portable behavior and sanitizer checks passed locally. The 18 native translation units whose source differs in the tooling workspace have the same allocated sections, addressable symbols and relocations in the previously verified working-fork and stack object snapshots. The native source audit continues independently of the layer candidate.
+
+
 
 Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. These first twenty branches combine at `734e53187f`. The four resource commits below extend `great-merge/current/all-source` to `59ab60ae41` across 1082 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
 
