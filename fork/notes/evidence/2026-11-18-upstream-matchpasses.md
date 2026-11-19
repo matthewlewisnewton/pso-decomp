@@ -55,7 +55,7 @@ The original fork tip `3342e42983` has 798 subsequent first-parent commits. Comp
 
 Sixteen more complete fork-point patches reproduce their current owner when merged in both directions. Three contain only include-directory or header-guard moves after mapping Git renames. Another sixteen have every fork edit block present with unique surrounding source context. The comparison preserves comments and directives. The block check skips multiline literals and comments and requires the old contextual form to be absent. The index records the current owner in each case.
 
-The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,090 paths requiring an owner comparison and 305 with partially matched edit blocks.
+The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,087 paths requiring an owner comparison and 305 with partially matched edit blocks.
 
 ## One-shot positional sound requests
 
@@ -104,6 +104,10 @@ The source-only review, the cumulative game source and integration passed the st
 The collision component `f71b7189b4` and combat group `89df16b535` recover the shared downward query, the two position projection helpers and the two grounded particle effects. The query returns the existing contact pool. The helpers take vectors, and both grounded effects pass a full local position to the particle emitter. The original instruction addresses and enclosing function sizes agree for all 36 downward queries, eight projection calls and 15 effect calls. Delbiter reads its two secondary points at contact indices 2 and 3.
 
 All four native builds reproduced retail and passed upstream's checks. The fork probe ran 39 cases on each and on the original game. It covered misses before and after triangle testing, unsigned mask forwarding, source and output aliasing, the optional normal output and the two particle IDs and their lifetimes. The original startup, contact-pool and radial-wall cases passed on the same images.
+
+## Memory-card and save windows already upstream
+
+Upstream commit `ddca6f4122` contains the exact final fork files for the main lobby frame, multiplayer save screen and memory-card format sequence. Later upstream changes moved or folded these files. Comparing the recovered call sites in the fork, upstream master and integration confirms both lobby slot probes, 14 multiplayer save calls and ten format-sequence calls. These include message text, window closing, menu choice, confirmation, cancellation and the integer card slot. The review index records their original instruction addresses.
 
 ## Buildable boundaries in the remaining drafts
 
