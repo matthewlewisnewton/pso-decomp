@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `41a07248bc` and the complete source snapshot at `f17f3f27ea` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `e254c361e1` and the complete source snapshot at `88ebee9c79` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -77,6 +77,16 @@ All four source builds reproduce retail and pass the project checker. The three 
 The address audit confirms that six fork data files for mines, Seabed walls, ancient wrecks and forest warps already emit every original range from their current native owners. All 180 named objects retain 3,768 exact source-linked bytes. Eleven placeholder labels have descriptive native class-name symbols. The two warp confirmation methods keep current pointer arguments because their callers pass the confirming player. The [fork source index](2026-11-18-fork-review-index.tsv) closes 7 records and adds evidence to 7 others. It has 1,137 records awaiting comparison and 884 with partial evidence.
 
 Two local review branches are based directly on upstream master `af11a99125`. `great-merge/current/title-and-compass-rendering` at `fb95d7b4a9` groups the title changes with texture inputs and the radar and lobby compass in 33 files. Its 19 affected units retain 310 exact functions. `great-merge/current/world-resource-tables` at `2c74919ee9` groups the world-object names, resource ownership and typed table users from `97f1a285af`, `cd2697d2dc`, and `6b7e2c53f3` in 20 files. Its 10 affected units retain 360 exact functions. Both branches reproduce retail and pass the checker independently and in the combined validation at `df36afcd13`.
+
+## ADX stream files and grouped audio review
+
+The twelve-file replay at `e254c361e1` carries the 0x40-byte ADX stream file layout and seven file operations from `b11af52845` into the current audio and archive owners. ADX, LSC, ADXF and the stream driver use that layout for size, offsets, seek, initialization and the ring buffer. The seven exports keep their original names, addresses and lengths. The standalone review at `0e967ac715` starts directly at upstream master `af11a99125`.
+
+The grouped audio and archive review at `8d955ba78e` combines this replay with the sector reader, signed ADXB channels and sound pitch and duration from `f59cf4090d`. The overlapping file keeps the archive reader's named fields and uses the typed file calls. The 73-file review preserves all 899 exact, source-linked functions in its 55 changed compilation units.
+
+All five source builds reproduce the retail DOL and pass the project checker. The nine stream-file units preserve all 100 exact functions and the 2,560-byte source-linked request pool at `0x80575140`. Each build preserves its parent's address-level coverage. The upstream-shaped reviews share upstream's historical 24-byte keyboard table deficit. The combined stack preserves those bytes through the window review. The 133 overlay paths round-trip and all eleven layer tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) reconciles five equivalent sources and records the scope covered in ten other source files. It has 1,127 entries awaiting comparison and 889 with partial evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
