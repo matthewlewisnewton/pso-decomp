@@ -11,6 +11,7 @@ The local branches below group related changes for review. The component branche
 | Enemy targeting, battle parameters, collision and player techniques | `great-merge/current/combat` | `ac997883bf` | 209 |
 | Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `34176d99e2` | 112 |
 | Positional sound, area effects and particle spawning | `great-merge/current/spatial-effects` | `748755c261` | 342 |
+| Model hierarchy, renderer callbacks and matrix interfaces | `great-merge/current/render-interfaces` | `ad8e27cbe6` | 189 |
 | Texture binding, BML accessors and archive lifetime | `great-merge/current/bml-resource-lifetime` | `39e6385750` | 453 |
 | Window entry, input and rendering interfaces | `great-merge/current/window-frames` | `37e0caf80a` | 268 |
 
@@ -37,6 +38,10 @@ The grouped effects branch compiled 559 selected objects, including 331 edited s
 The texture and BML review keeps the existing four-commit dependency chain. The first commit carries the current texture-list type through renderer callers. The next recovers typed BML model and texture accessors. The third applies the interfaces to the Dark Falz Zako model and texture lifetime, followed by the shared archive constructor and destructor. Those boundaries provide a review order across the 453 paths.
 
 A fresh build of the grouped BML tip reproduced all 984 affected objects from the validated snapshot, including 437 edited sources. Allocated sections, exact symbol locations and relocations match. Each of the ten renamed exports retains its address and has one provider across the 2,487 selected linker inputs, with no stale references. Validation ran at the object-file level.
+
+The render-interfaces review combines the model hierarchy, node position capture, material fades, native callback types and shared matrix and vector operations into six commits. The Berura, Canadin and draw traversal callers keep their typed node and matrix state and call the recovered matrix or view helpers. The small SDK declaration fixes travel with their native callers.
+
+The grouped branch rebuilt 1,350 selected objects, including 116 edited sources. Allocated sections, symbol locations and relocation targets match validated baselines after mapping names by address and size. Of those objects, 1,348 match upstream and both components. The other two match the model-rendering component. The 2,487 selected linker inputs have one provider for each of the 154 renamed exports and no stale or unresolved references to those names. The other 78 names are private. Validation ran at the object-file level.
 
 ## Review branches on upstream PR 326
 
