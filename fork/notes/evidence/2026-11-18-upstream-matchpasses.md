@@ -179,9 +179,17 @@ Fork commit `c7470b0f0e` placed 146 floating-point constants in source. All 608 
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records the addresses and owners for the original 48 source files, including one fragment since folded into its current owner. The [original data inventory](2026-11-18-fork-data-ranges.tsv) tracks its own 90 address ranges.
 
+## Gyaranzo resources, parameters and missile state
+
+Upstream `c572111ed6` already source-links the Gyaranzo catalog, tuning pool, resource state, parameter records and missile virtual table. The selected source objects match the original 836-byte ranges and all 15 data relocations on upstream, the local review, cumulative source and working fork. The data comparison includes the shared volley timer and the original alignment at the end of the alternate archive string.
+
+Commit `ba84021c8a` adds the fork's typed resource handles, movement and collision records, model index arrays and breakup parameters to the battle-parameters review. The movement and collision records now have their own symbol entries at 0x804941DC and 0x804941F8. The preceding animation action table covers its 128 bytes. The flagged index table retains its trailing zero halfword to cover the original 28-byte extent. The standalone review retains the existing texture-list cast required by its archive declaration. The combined source is `a5540e955c`.
+
+Three affected translation units in each local tree match their prior objects after normalizing the renamed symbols. Allocated sections, addressable symbols and relocation targets all agree. All 294 fork tests and the retention check passed. The fork retention list adds the two newly named records and updates the name of the missile class pointer.
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `a64b19131b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `a5540e955c` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
