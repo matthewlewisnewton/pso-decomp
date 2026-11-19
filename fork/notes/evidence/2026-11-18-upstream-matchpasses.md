@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `1b721d5692` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior and shared encounter callbacks. The all-source snapshot is `515c385676`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `e5105e2cae` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, and Pan Arms coordination. The all-source snapshot is `43ede3ff3c`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `98c3031b75` |
+| `great-merge/current/combat` | `4443638522` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -177,6 +177,16 @@ All 28 method symbols match the fork by name, original address and size across 1
 The standalone combat review at `98c3031b75`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 13 fork records, including the complete Morfos Arm and Sinow Zoa Real declarations. It has 1,287 entries awaiting owner comparison and 776 with partial evidence.
+
+### Pan Arms body and half coordination
+
+The nine-file replay at `e5105e2cae` restores the Pan Arms body and both halves as typed links. The halves use their native state predicates, target acquisition, split transitions and position methods. The body uses the original ground probes, combine path and warp. The GameCube instructions for the warp and the byte-sized half-health result remain exact.
+
+All 27 method symbols match the fork by name, original address and size across 3,280 instruction bytes. All 132 exact linked functions and every data section in the four affected units remain intact.
+
+The standalone combat review at `4443638522`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 7 fork records. It accounts for both small state units and the remaining C declaration. It has 1,282 entries awaiting owner comparison and 778 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
