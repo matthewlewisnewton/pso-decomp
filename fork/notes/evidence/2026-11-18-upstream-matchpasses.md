@@ -2,7 +2,7 @@
 
 ## Review branches on upstream PR 326
 
-Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. The 20 branches combine on `great-merge/current/all-source` at `734e53187f` across 979 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
+Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. These first twenty branches combine at `734e53187f`. The four resource commits below extend `great-merge/current/all-source` to `59ab60ae41` across 1082 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
 
 | Subject | Local branch | Commit | Paths from current master |
 | --- | --- | --- | ---: |
@@ -37,11 +37,22 @@ The new upstream owners include the item archive loader, the small help font, Gi
 
 `great-merge/fork-docs` carries the fork documentation on this upstream master. The complete earlier integration snapshot remains on `great-merge/integration` while its remaining source groups and fork tooling are carried forward.
 
+## Renderer and BML resource reviews
+
+The first branch starts from upstream master `c572111ed6`. Each later branch builds on the one immediately above it. The last column counts paths changed by that step. Review the two accessor and Dark Falz commits together to follow the archive entry into the game code that uses it. The resource lifecycle commit then carries the constructor and destructor through the callers. All four review trees and their four counterparts on the combined local source branch passed the retail executable and upstream checks.
+
+| Subject | Local branch | Commit | Paths in step |
+| --- | --- | --- | ---: |
+| Pass the current texture list to the renderer and its callers | `great-merge/current/texture-binding` | `1c3fb51ca6` | 353 |
+| Recover the typed BML model and texture accessors | `great-merge/current/bml-accessors` | `4ed5af2ee8` | 257 |
+| Recover the Dark Falz Zako model and texture lifetime | `great-merge/current/bml-zako` | `3fe1598ae8` | 17 |
+| Recover the BML resource constructor, destructor and archive layout | `great-merge/current/bml-resource-lifetime` | `39e6385750` | 230 |
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the twenty native source components at `734e53187f` with the fork documentation under `fork/` and the fork's runnable tools. The source-only review branches continue to start from upstream master. The 94 changed tool paths, 14 host-port paths and one workflow match their versions on the earlier tooling branch. The original tool archive is included under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `59ab60ae41` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
-The fork build reproduced the retail executable, and the fork's PR checker passed all 2,415 linked units and the generated linker retention check. All 26,872 required entries matched. Host portability checks passed normally and with address and undefined-behavior sanitizers. The polygon and sphere fixtures passed. Four fork test suites identify remaining source work. The BML model and texture accessor tests still require the shared typed interface across its callers. Three Dark Falz Zako fixtures depend on the corresponding cleanup, resource initialization and texture-slot sources. The full Python test run recorded 264 failed subtests and five errors across those four suites.
+All 294 fork tests pass, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
 ## Review queue on the previous master
 
