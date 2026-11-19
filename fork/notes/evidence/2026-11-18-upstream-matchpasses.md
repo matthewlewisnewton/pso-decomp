@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `bc1a0d94db` and the complete source snapshot at `64434d4f40` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `fde739ef91` and the complete source snapshot at `33af6752b5` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -113,6 +113,14 @@ The eight-file replay at `bc1a0d94db` carries the fork's quest request and input
 The 28-file review at `1d0631030f` combines the text replay with the quest file cache and memory-card save-image review from `819c685f00`. The combined review starts directly on upstream master `af11a99125` and preserves 1,276 exact source-linked functions across 19 changed units. The five text units preserve all 198 exact functions and 352 source-linked bytes in the input table and scratch storage. All five builds reproduce retail and pass the project checker.
 
 The linked decoder passes empty input, ASCII, mixed Shift-JIS, a full 36-entry input and overflow. The cache probe passes all 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction. The fork overlay round-trips 133 paths and passes all eleven layer tests. The [fork source index](2026-11-18-fork-review-index.tsv) adds partial evidence to seven source and header entries.
+
+## Enemy appearance resources, movement and targeting
+
+The nine-file replay at `fde739ef91` carries Moja's typed appearance clamp and resource declarations into the current enemy, NPC and model-binding owners. The clamp uses the fork name and retains address `0x800ACA60` and its 72 original instruction bytes. The local component at `c5767c0784` is directly on upstream master. Mericarol's data owner exposes distinct three-entry tables for base stats, attack, resistance and movement. The names follow the four consuming calls. The 48 original bytes of those tables and the 24 original bytes of the Moja resource state stay source-linked.
+
+The 80-file review at `952a177bf3` combines this replay with the enemy movement and target selection batch at `938245496d`. It starts directly on upstream master `af11a99125` and preserves all 2,379 exact functions across 35 changed source units. All five builds reproduce the retail executable and pass the project checker. The appearance component retains 121 exact functions across its five compilation units.
+
+Linked execution passed eight appearance inputs, four phase tables, 34 guarded enemy-state cases and 19 player-targeting cases. The 133 fork overlay paths round-trip and all eleven tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles the Moja resource header and records partial evidence for 5 other entries.
 
 ## Standalone reviews on upstream master `af11a99125`
 
