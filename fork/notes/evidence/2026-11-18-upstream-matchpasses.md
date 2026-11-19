@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `fde739ef91` and the complete source snapshot at `33af6752b5` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `8230aed0c4` and the complete source snapshot at `9e47b7e625` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -121,6 +121,14 @@ The nine-file replay at `fde739ef91` carries Moja's typed appearance clamp and r
 The 80-file review at `952a177bf3` combines this replay with the enemy movement and target selection batch at `938245496d`. It starts directly on upstream master `af11a99125` and preserves all 2,379 exact functions across 35 changed source units. All five builds reproduce the retail executable and pass the project checker. The appearance component retains 121 exact functions across its five compilation units.
 
 Linked execution passed eight appearance inputs, four phase tables, 34 guarded enemy-state cases and 19 player-targeting cases. The 133 fork overlay paths round-trip and all eleven tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles the Moja resource header and records partial evidence for 5 other entries.
+
+## Bulk replay of player techniques and item effects
+
+Use the old review base, the donor tip and the current target for each three-way comparison. Start with an existing subsystem delta. The whole-fork trial surfaced 2,747 conflicting paths and the archived source queue surfaced 491. The old technique batch applied to current master with zero text conflicts. Replaying it on the Great Merge source would touch seven paths. The current tree already retains the technique changes there with the current rotation and scratch-vector fields, array allocation, particle declarations and three separate data owners.
+
+The 57-file technique replay at `ff77410f60` retains the three upstream data splits and refreshes the matching declarations. A second commit adds the typed Bringer and equipment constructors and the shared reverse-tech callback pair. The resulting 71-file review at `94af1568a6` starts on `af11a99125`. The 17-path item-effects delta is also on the cumulative source at `8230aed0c4`. The weapon hit callback retains its full-register call sequence. The other equipment callers use the 16-bit owner ID declared by their factory.
+
+The technique, grouped, combined and working-fork builds reproduce the retail executable and pass the project checker. The grouped review inherits the 24-byte keyboard table gap from master. The cumulative source and working fork retain that range and lose no matched or linked addresses against fork main. The checked tables retain 28 Bringer virtual-table bytes, 80 equipment virtual-table bytes, the 44-byte equipment collision template and the 56-byte reverse-tech callback table at their retail addresses. The three added retention names are regenerated only on the working fork. All 133 overlay paths round-trip and all eleven fork layer tests pass.
 
 ## Standalone reviews on upstream master `af11a99125`
 
