@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `5439d728d5` changes 1,374 paths counting both sides of renames. The all-source snapshot is `b42a9334b8`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `1c761f22be` changes 1,375 paths counting both sides of renames. The all-source snapshot is `f9988fe940`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `00d9ae7483` | `1b33f02f81` |
 | `great-merge/current/combat` | `e566cc2ccd` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `1001dd7640` | `9445c1e728` |
-| `great-merge/current/window-frames` | `9bc5490c5e` | `942a0c050f` |
+| `great-merge/current/window-frames` | `70f73ffcbb` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `3b5e256b38` | `fa2a1e5837` |
@@ -25,6 +25,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Dark Falz scene parts and Gol Dragon model override | Included in its encounter review | `bfbb029994` |
 | Shortcut preview and symbol-chat construction | Included in its window review | `76d4f68f70` |
 | Typed word-select formatters and callers | Included in its window review | `5439d728d5` |
+| Time-setting scene and shared display constants | Included in its window review | `1c761f22be` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -63,6 +64,14 @@ The window review at `9bc5490c5e` and cumulative stack at `5439d728d5` carry the
 All eight entry points retain their original bytes and addresses under the fork names. Each has one provider and no caller refers to an old label. Each build compiled 2,450 source objects. The comparison covers 2,485 selected inputs on the window branch and 2,484 each on the combined stack and working fork. Their allocated sections, symbol locations and relocations match the preceding builds after mapping the eight names. Both reviews passed the upstream checker in object-report mode. The comparison with fork main found no lost matched or linked code or non-padding data. The executable hash remains unverified on this base.
 
 The source index closes three complete fork paths and records partial recoveries on seven more. The new shared header, the message display source and the incoming message source match the fork after include relocation and whitespace normalization. The index now has 1,726 entries awaiting owner comparison and 526 with partial evidence. All 133 tooling paths still reproduce in the fork-only workspace.
+
+### Time-setting scene and shared display constants
+
+The window review at `70f73ffcbb` and its cumulative counterpart `1c761f22be` carry the fork names for the startup actions, message timer and text buffer, two display formats, sprite unit scale and nameplate height. The handler at 0x802E2AD4 is called `show_load_message` because the native `create_backgrounds` at 0x802E1C6C allocates the two backgrounds. The load-message handler calls it and opens the dialog. Seven scene field offsets and the 24-byte state record are checked in source. The 25-state table and its callback references match the original.
+
+The four method addresses and four pooled-data addresses retain their original bytes and references. Each renamed method has a single provider. Each of the three builds compiled 2,450 source objects. The standalone review compared 2,485 selected inputs and the combined stack and working fork each compared 2,484. The allocated sections, symbol locations and relocation destinations agree with their preceding builds. Both review heads passed the upstream checker in object-report mode. The fork-main comparison continues to account for all matched and linked source ranges separately from the historical padding difference. The executable hash remains unverified on this base.
+
+The fork source index closes the complete default-sprite wrapper and records partial evidence for three more source paths. It has 1,724 entries awaiting owner comparison and 527 with partial evidence. The fork-layer check and eleven unit tests passed. The fork-only workspace still reproduces all 133 tooling paths.
 
 ## Consolidated review queue on `c572111ed6`
 
