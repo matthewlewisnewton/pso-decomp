@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `5e5153f184` and the complete source snapshot at `7d38c6c657` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `a3f7ba1352` and the complete source snapshot at `f4edb367ce` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -201,6 +201,14 @@ The eleven-file component `7d38c6c657` carries the Dragon and Gol Dragon firebal
 The combined local review `e00e1ec6c4` extends material opacity and Dragon fades `1c20f1a945` to 59 files on `af11a99125`. Its vector-normalization call uses the existing declaration on that base at 0x8007E9EC. Great Merge uses the typed declaration for the same original function. All four builds reproduce the retail executable and pass the project checker. The six changed source units retain all 362 original exact, source-linked functions. The cumulative branches retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
 
 Linked execution covered eight constructions, twenty-four breath-height cases and twelve fireball lifecycles. The harness supplies vector, particle, sound and attack callbacks and verifies the original motion, particle selections, impact and destruction boundaries. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Ten entries in the [fork source index](2026-11-18-fork-review-index.tsv) record the corresponding evidence.
+
+## Photon Blast sequence, Estlla line and Leilla summon
+
+The eight-file cumulative replay `f4edb367ce` carries the native Photon Line from `bf9fb51dfa`, its Estlla caller, and the typed Leilla setup and summon packet. The line keeps its original collision record and hit limit. Leilla uses its native object and a shared 0x24-byte parameter record in the existing in-place setup. A C++ constructor variant changed the compiler's register allocation, so the verified review keeps the in-place call at the original address. The fork's native shower behavior from `3b07dfd01b` was already present in the consolidated Olga Flow effects owner.
+
+The 15-file local review `640bb6049b` combines this component with the typed sequence, result owner and attachment work already integrated at `6db60a1081`. The complete review reproduces the retail executable on `af11a99125` and retains all 79 exact, source-linked functions in the six affected units. All cumulative builds reproduce retail and retain the historical fork's matched and linked addresses. The upstream-based branch inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
+
+Linked execution covered eight line constructions, sixteen path and hit-limit cases, and twenty Leilla setup cases with simulated allocation and engine callbacks. The fork-only overlay round-trips all 133 paths and passes all eleven tests. Ten entries in the [fork source index](2026-11-18-fork-review-index.tsv) carry the corresponding evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
