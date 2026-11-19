@@ -13,7 +13,7 @@ public:
     TUnk_804F0AF8(TObject *parent, u8 *item);
     static u8 *create(u8 *item); // weapon_factory_table entry
     s32 unk_1F8;
-    u32 m_1fc;
+    s32 m_1fc;
 };
 
 #endif

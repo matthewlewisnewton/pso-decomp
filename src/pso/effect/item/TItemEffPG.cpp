@@ -381,9 +381,15 @@ TUnk_804F0AF8::TUnk_804F0AF8(TObject *parent, u8 *item) : TItemWeapon(parent, it
 
 TUnk_804F0AF8::~TUnk_804F0AF8() {}
 
-void TUnk_804F0AF8::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)16384)), (s32)((void*)((void*)0))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)3640)), (s32)((void*)((void*)0))); }
+void TUnk_804F0AF8::update_attack() {
+    add_integer_clamped(&unk_1F8, 16384, 0);
+    add_integer_clamped(&m_1fc, 3640, 0);
+}
 
-void TUnk_804F0AF8::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)-8192)), (s32)((void*)((void*)-30947))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)-7281))); }
+void TUnk_804F0AF8::update_idle() {
+    add_integer_clamped(&unk_1F8, -8192, -30947);
+    add_integer_clamped(&m_1fc, -1820, -7281);
+}
 
 void TUnk_804F0AF8::reserved_53() { draw_weapon_at_joint((s32)this, (s8)((void*)49)); update_trail_slot(0); update_trail_slot(1); }
 
@@ -417,9 +423,17 @@ TUnk_804F0A00::TUnk_804F0A00(TObject *parent, u8 *item) : TItemWeapon(parent, it
 
 TUnk_804F0A00::~TUnk_804F0A00() {}
 
-void TUnk_804F0A00::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)-3640)), (s32)((void*)((void*)0))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)2730)), (s32)((void*)((void*)0))); add_integer_clamped((s32 *)((char*)this + 0x200), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)0))); }
+void TUnk_804F0A00::update_attack() {
+    add_integer_clamped(&unk_1F8, -3640, 0);
+    add_integer_clamped(&m_1fc, 2730, 0);
+    add_integer_clamped(&unk_200, -1820, 0);
+}
 
-void TUnk_804F0A00::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)((void*)1820)), (s32)((void*)((void*)7281))); add_integer_clamped((s32 *)((char*)this + 0x1fc), (s32)((void*)((void*)-1820)), (s32)((void*)((void*)-5461))); add_integer_clamped((s32 *)((char*)this + 0x200), (s32)((void*)((void*)1820)), (s32)((void*)((void*)9102))); }
+void TUnk_804F0A00::update_idle() {
+    add_integer_clamped(&unk_1F8, 1820, 7281);
+    add_integer_clamped(&m_1fc, -1820, -5461);
+    add_integer_clamped(&unk_200, 1820, 9102);
+}
 
 void TUnk_804F0A00::vfunc_60() {
     s32 player_list;
@@ -544,8 +558,12 @@ TUnk_804F0810::TUnk_804F0810(TObject *parent, u8 *item) : TItemWeapon(parent, it
 
 TUnk_804F0810::~TUnk_804F0810() {}
 
-void TUnk_804F0810::update_attack() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)(-4551)), (s32)((void*)(0))); }
-void TUnk_804F0810::update_idle() { add_integer_clamped((s32 *)((char*)this + 0x1f8), (s32)((void*)(1820)), (s32)((void*)(13653))); }
+void TUnk_804F0810::update_attack() {
+    add_integer_clamped(&unk_1F8, -4551, 0);
+}
+void TUnk_804F0810::update_idle() {
+    add_integer_clamped(&unk_1F8, 1820, 13653);
+}
 void TUnk_804F0810::reserved_53() { draw_weapon_at_joint((s32)this, (s8)((void*)49)); update_trail_slot(0); update_trail_slot(1); }
 
 void TUnk_804F0810::vfunc_60() {

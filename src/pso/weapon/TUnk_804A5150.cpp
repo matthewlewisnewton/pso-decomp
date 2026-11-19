@@ -11,9 +11,15 @@
 #include "pso/system/MatrixOps.h"
 
 
-void TUnk_804A5150::update_idle() { add_integer_clamped(&rotation_x, (s32)((void*)-910), (s32)((void*)-7281)); add_integer_clamped(&rotation_z, (s32)((void*)-910), (s32)((void*)-9102)); }
+void TUnk_804A5150::update_idle() {
+    add_integer_clamped(&rotation_x, -910, -7281);
+    add_integer_clamped(&rotation_z, -910, -9102);
+}
 
-void TUnk_804A5150::update_attack() { add_integer_clamped(&rotation_x, (s32)((void*)1820), (s32)((void*)0)); add_integer_clamped(&rotation_z, (s32)((void*)1820), (s32)((void*)0)); }
+void TUnk_804A5150::update_attack() {
+    add_integer_clamped(&rotation_x, 1820, 0);
+    add_integer_clamped(&rotation_z, 1820, 0);
+}
 
 void TUnk_804A5150::vfunc_60() {
     s32 player_list;
