@@ -11,6 +11,7 @@ The local branches below group related changes for review. The component branche
 | Enemy targeting, battle parameters, collision and player techniques | `great-merge/current/combat` | `ac997883bf` | 209 |
 | Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `34176d99e2` | 112 |
 | Positional sound, area effects and particle spawning | `great-merge/current/spatial-effects` | `748755c261` | 342 |
+| Texture binding, BML accessors and archive lifetime | `great-merge/current/bml-resource-lifetime` | `39e6385750` | 453 |
 | Window entry, input and rendering interfaces | `great-merge/current/window-frames` | `37e0caf80a` | 268 |
 
 The memory review applies the array allocation component `63c3f4ea45` first, then the memory-copy and nullable release changes from `6194d462e1`. The two components overlap in the menu font cleanup. Its resolved form uses matching array allocation and deletion for the glyph table and palette, and uses the nullable release helper for the glyph data. The compiler output confirms both array delete calls and the nullable release call.
@@ -32,6 +33,10 @@ The grouped combat branch compiled 1,283 selected objects, including 145 edited 
 The spatial-effects review brings the world-position particle factories together with one-shot, persistent and area-dependent sound requests. The two commits touch many of the same callers. The combined form retains both typed interfaces across 58 overlapping files. The Dolmolm caller now takes its declarations from the shared headers.
 
 The grouped effects branch compiled 559 selected objects, including 331 edited sources. All match upstream and both standalone components after mapping six renamed symbols to their original addresses. The 2,487 selected linker inputs contain one provider for each renamed export and no unresolved or stale references to those names. Validation ran at the object-file level.
+
+The texture and BML review keeps the existing four-commit dependency chain. The first commit carries the current texture-list type through renderer callers. The next recovers typed BML model and texture accessors. The third applies the interfaces to the Dark Falz Zako model and texture lifetime, followed by the shared archive constructor and destructor. Those boundaries provide a review order across the 453 paths.
+
+A fresh build of the grouped BML tip reproduced all 984 affected objects from the validated snapshot, including 437 edited sources. Allocated sections, exact symbol locations and relocations match. Each of the ten renamed exports retains its address and has one provider across the 2,487 selected linker inputs, with no stale references. Validation ran at the object-file level.
 
 ## Review branches on upstream PR 326
 
