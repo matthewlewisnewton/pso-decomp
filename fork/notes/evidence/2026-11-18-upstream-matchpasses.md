@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `5c49304572` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, and the Bal Claw and Berura combat states. The all-source snapshot is `77c5db529b`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `556783a12a` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, the Bal Claw and Berura combat states, and the shared enemy experience and item-drop methods. The all-source snapshot is `4ab9b94d71`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `9c9de5d77c` |
+| `great-merge/current/combat` | `10ea2b04c3` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -227,6 +227,14 @@ All 30 method symbols match the fork by name, address and size across 12,120 ins
 The standalone combat review at `9c9de5d77c`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The combined stack and working fork source-link the chat balloon, item help and software-keyboard virtual tables. The standalone combat branch uses the original link inputs for those three 24-byte tables. The 133-path tooling overlay round-trips and all eleven overlay tests pass.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 12 fork records. It has 1,261 entries awaiting owner comparison and 796 with partial evidence.
+
+### Shared enemy experience and item drops
+
+The 29-file replay at `556783a12a` restores the shared `TObjEnemy` methods for awarding experience and requesting standard item drops. All 24 retail branches to the experience-and-drop method and both branches to the request method keep their original targets. The request method retains the original branch to the 6x60 drop request. Source callers now pass the native enemy receiver, including five callers that previously omitted it in source.
+
+The affected 26 gameplay units retain all 1,367 exact functions. Both new exports match fork names at the original addresses and sizes. The standalone combat review at `10ea2b04c3`, combined stack, all-source snapshot and working fork reproduce the retail executable and pass the project checker. The standalone combat branch uses the existing original link inputs for the three window virtual tables. The fork overlay round-trips all 133 paths and passes eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) carries call-site evidence against 28 fork records. It has 1,256 entries awaiting owner comparison and 801 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
