@@ -161,6 +161,12 @@ Commit `c72bbfbf33` extends the world-object review with the shared wreck resour
 
 The review, cumulative source at `5f25ff5c5b` and working fork compiled and compared 14 affected objects each. Allocated bytes and relocation targets match. The two debris tables gain the external binding used by the fork at the same offsets and sizes. All 294 fork tests and its linker retention check passed. The fork's generated retention list records the two shared tables.
 
+## World and camera constant ownership
+
+Fork commit `c7470b0f0e` placed 146 floating-point constants in source. All 608 bytes are already exact at their original addresses in the source objects selected by upstream master `c572111ed6`. The actor and camera review at `5d0802c2e5`, cumulative source at `5f25ff5c5b` and working fork at `433a38f909` select the same 47 owners. The source ownership was checked from the generated linker inputs. Each affected object was rebuilt on all four snapshots. The comparison checked the original split data and the compiled sections, symbol locations and relocation targets. It accounts for every source definition in that fork commit.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records the addresses and owners for the original 48 source files, including one fragment since folded into its current owner. The [original data inventory](2026-11-18-fork-data-ranges.tsv) tracks its own 90 address ranges.
+
 ## Working fork on upstream PR 326
 
 `great-merge/current/working-fork` combines the native source through `5f25ff5c5b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
