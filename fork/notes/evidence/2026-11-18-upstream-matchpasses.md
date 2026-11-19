@@ -2,7 +2,7 @@
 
 ## Consolidated review queue on upstream master
 
-The local branches below group related changes for review. The component branches retain their individual validation records.
+The local branches below group related changes for review. The component branches retain their individual validation records. Together the eleven groups cover the 1,339 added, changed and removed source paths in the difference from upstream master to `a5540e955c`. Separate path entries count both endpoints of renames. Shared files can appear in multiple groups.
 
 | Review | Local branch | Tip | Paths from pinned master |
 | --- | --- | --- | ---: |
@@ -13,6 +13,9 @@ The local branches below group related changes for review. The component branche
 | Positional sound, area effects and particle spawning | `great-merge/current/spatial-effects` | `748755c261` | 342 |
 | Model hierarchy, renderer callbacks and matrix interfaces | `great-merge/current/render-interfaces` | `ad8e27cbe6` | 189 |
 | Texture binding, BML accessors and archive lifetime | `great-merge/current/bml-resource-lifetime` | `39e6385750` | 453 |
+| Actor orientation, demo playback and animation bindings | `great-merge/current/actor-presentation` | `9c1e8b2c3f` | 381 |
+| Network buffer, timer, DNS and PPP contracts | `great-merge/current/network-contracts` | `202831ff52` | 47 |
+| World-object resources and map-collision setup | `great-merge/current/world-object-resources` | `118f154267` | 33 |
 | Window entry, input and rendering interfaces | `great-merge/current/window-frames` | `37e0caf80a` | 268 |
 
 The memory review applies the array allocation component `63c3f4ea45` first, then the memory-copy and nullable release changes from `6194d462e1`. The two components overlap in the menu font cleanup. Its resolved form uses matching array allocation and deletion for the glyph table and palette, and uses the nullable release helper for the glyph data. The compiler output confirms both array delete calls and the nullable release call.
@@ -42,6 +45,12 @@ A fresh build of the grouped BML tip reproduced all 984 affected objects from th
 The render-interfaces review combines the model hierarchy, node position capture, material fades, native callback types and shared matrix and vector operations into six commits. The Berura, Canadin and draw traversal callers keep their typed node and matrix state and call the recovered matrix or view helpers. The small SDK declaration fixes travel with their native callers.
 
 The grouped branch rebuilt 1,350 selected objects, including 116 edited sources. Allocated sections, symbol locations and relocation targets match validated baselines after mapping names by address and size. Of those objects, 1,348 match upstream and both components. The other two match the model-rendering component. The 2,487 selected linker inputs have one provider for each of the 154 renamed exports and no stale or unresolved references to those names. The other 78 names are private. Validation ran at the object-file level.
+
+The actor-presentation review keeps six commits covering the shared demo predicate, actor positions and rotations, action and motion lists, NPC bindings, named actor parameters and the Seabed dolphin registration. At shared call sites, the NPC bound check uses the typed rotation with the binding’s debug action limit, and the Gee breakup calls use the typed position and yaw with the named model records.
+
+The grouped actor branch rebuilt 1,486 selected objects, including 353 edited sources. Of those objects, 1,448 match upstream and every component after name normalization. Thirty-eight match the validated actor-camera component. The 2,487 selected linker inputs contain one provider for each of the 35 renamed exports and no unresolved or stale references to those names. The other 14 names are private. Validation ran at the object-file level.
+
+The network and world-object rows use their existing review branches. Each branch matches the tracked files in its verified build snapshot. Their per-commit comparisons and tests are recorded in the sections below.
 
 ## Review branches on upstream PR 326
 
