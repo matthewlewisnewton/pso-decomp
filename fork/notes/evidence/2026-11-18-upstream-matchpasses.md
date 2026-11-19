@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `4e41d94861` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, the Bal Claw and Berura combat states, the shared enemy experience and item-drop methods, and the typed inventory methods. The all-source snapshot is `8c2a1ed45d`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `4c56068484` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, the Bal Claw and Berura combat states, the shared enemy experience and item-drop methods, and the typed inventory methods, record export and sorting. The all-source snapshot is `18189e9459`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -238,11 +238,19 @@ The [fork source index](2026-11-18-fork-review-index.tsv) carries call-site evid
 
 ### Player inventory and item-list ownership
 
-The 22-file replay at `4e41d94861` carries the inventory walk, item lookup, update, quantity and equipped-item operations onto `TPlyItem` and `TItemList`. Shop, quest, player item and death-drop calls use the typed receivers and pass the node explicitly. The replay preserves the current native placement classes and their list layout. The item-owner accessor still uses the existing 32-bit return representation in this batch.
+The 22-file replay at `4e41d94861` carries the inventory walk, item lookup, update, quantity and equipped-item operations onto `TPlyItem` and `TItemList`. Shop, quest, player item and death-drop calls use the typed receivers and pass the node explicitly. The replay preserves the current native placement classes and their list layout. At this revision, the item-owner accessor used the existing 32-bit return representation.
 
 The 29 exports match the fork by name, original address and size for 3,184 instruction bytes. The 15 affected gameplay units retain all 1,153 functions and 145 original direct calls to the recovered methods. The standalone combat review at `ffa3cf9604`, combined stack, all-source snapshot and working fork reproduce the retail executable and pass the project checker. The standalone combat branch uses the original link inputs for the three window virtual tables that are source-linked on the combined stack. All 133 fork overlay paths round-trip and the eleven layer tests pass.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) carries evidence against 25 fork records. It has 1,238 entries awaiting owner comparison and 819 with partial evidence.
+
+### Typed inventory record export and sorting
+
+The 13-file replay at `4c56068484` restores the native inventory sort list and the constructor, destructor and copy assignment for its records. The item-list owner is a `TItem *`, and the list lookup, NPC export, trade removal and quest callers pass the original types. The normal and death-drop exports use typed record pointers, and copy and removal use the shared 0x1C-byte inventory entry.
+
+The nine exports match the fork by name, address and size across 888 instruction bytes. The replay preserves 34 original direct calls to those exports and all 1,111 functions in the 7 affected source units. The combined stack, all-source snapshot and working fork reproduce the retail executable and pass the project checker. The dependent combat review at `c556067784` also passes with the array-allocation runtime on its base. All 133 overlay paths round-trip and all eleven fork layer tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 11 fork records. It has 1,233 entries awaiting owner comparison and 824 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
