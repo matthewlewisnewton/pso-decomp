@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `568010cb36` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, and native needle contact dispatch. The all-source snapshot is `69c8a85d29`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `7a8afe9254` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces. The all-source snapshot is `a6daa646e1`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `151b8668c5` |
+| `great-merge/current/combat` | `0184305183` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -147,6 +147,16 @@ The current box, sphere and line projection units match the fork’s collision r
 The standalone combat review at `151b8668c5`, combined and all-source stacks and working fork reproduce the original executable and pass the project checker. The working fork updates the retained dispatch name. The 133-path tooling overlay round-trips and passes all eleven tests.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records 8 entries. It has 1,296 entries awaiting owner comparison and 770 with partial evidence.
+
+### Canadin formation and Sinow motion interfaces
+
+The nine-file replay at `7a8afe9254` restores the native Canadin formation slots, hover methods and color argument. Shinowa uses the fork's state and effect names with the current typed effect pointers. Sinow Zoa uses a native movement collision method and the shared Ninja model types for all three material lookups.
+
+All eight recovered method symbols retain their original addresses and 1,044 instruction bytes. The three affected source units retain all 263 exact linked functions. The form of the Sinow Zoa collision call preserves the original signed comparison.
+
+The standalone combat review at `0184305183`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 8 fork records. It has 1,293 entries awaiting owner comparison and 773 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
