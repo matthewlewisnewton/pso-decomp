@@ -54,7 +54,7 @@ The network and world-object rows use their existing review branches. Each branc
 
 ### Cumulative review stack
 
-The local branch `great-merge/current/review-stack` puts all eleven review groups on upstream `c572111ed6`. Each commit can be reviewed against its parent. The tip at `bad4f7f29a` changes 1,339 paths, counting both sides of renames. The standalone review branches remain available.
+The local branch `great-merge/current/review-stack` puts all eleven review groups on upstream `c572111ed6`. The first ten groups each have one commit. The world-object group has two commits and changes 38 paths in total. The tip at `e24c516c41` changes 1,342 paths, counting both sides of renames. The standalone review branches remain available.
 
 | Stage | Group | Stack commit | Paths in stage | Object-file checks |
 | --- | --- | --- | ---: | --- |
@@ -69,12 +69,19 @@ The local branch `great-merge/current/review-stack` puts all eleven review group
 | 9 | render-interfaces | `46f198c984` | 190 | 1,985 objects, 466 renamed exports |
 | 10 | actor-presentation | `15b085f571` | 381 | 1,986 objects, 501 renamed exports |
 | 11 | world-object-resources | `bad4f7f29a` | 33 | 1,987 objects, 505 renamed exports |
+| 11 | Challenge enemy-set records and buffers | `e24c516c41` | 6 | 644 affected objects, 11 renamed exports |
 
-The stack combines the array allocator and nullable release with typed archive loaders, carries the positional effects interfaces through combat and encounter drawing, and updates Gyaranzo’s fade field alongside the renderer header rename. The stage checks compare allocated sections, symbol locations and relocations with validated objects. They normalize same-address symbol aliases and check the raw references for stale names, missing providers and duplicate exports. The encounter through renderer stages match one Gryphon object's compiler-generated local names by section, offset, size and linkage. All 1,987 affected objects at the final tip match the cumulative source baseline. The final check covers 505 renamed exports across 2,481 selected linker inputs. Validation ran at the object-file level.
+The stack combines the array allocator and nullable release with typed archive loaders, carries the positional effects interfaces through combat and encounter drawing, and updates Gyaranzo’s fade field alongside the renderer header rename. The stage checks compare allocated sections, symbol locations and relocations with validated objects. They normalize same-address symbol aliases and check the raw references for stale names, missing providers and duplicate exports. The encounter through renderer stages match one Gryphon object's compiler-generated local names by section, offset, size and linkage. All 1,987 affected objects through `bad4f7f29a` match the cumulative source baseline. That check covers 505 renamed exports across 2,481 selected linker inputs. Validation ran at the object-file level.
 
-The only source differences from `a5540e955c` are the compiler-profile comment in `configure.py`, whose fork wording stays on the working fork, and removal of an empty C-linkage block in `src/pso/unk/text_800FA464.cpp`. The working fork descends from the review stack and carries the local documentation and tooling. The review stack is local pending publication approval.
+The only source differences from `fd07993cc6` are the compiler-profile comment in `configure.py`, whose fork wording stays on the working fork, and removal of an empty C-linkage block in `src/pso/unk/text_800FA464.cpp`. The working fork descends from the review stack and carries the local documentation and tooling. The review stack is local pending publication approval.
 
-The stack covers the cumulative source already prepared for upstream. The [fork source index](2026-11-18-fork-review-index.tsv) still has 1,789 entries awaiting owner comparison and 481 with some matching edit blocks. These entries track the older fork history through upstream's split realignment. Each needs a disposition before the historical source audit is complete.
+The stack covers the cumulative source already prepared for upstream. The [fork source index](2026-11-18-fork-review-index.tsv) still has 1,781 entries awaiting owner comparison and 482 with some matching edit blocks. These entries track the older fork history through upstream's split realignment. Each needs a disposition before the historical source audit is complete.
+
+### Challenge map set and action records
+
+`e24c516c41` carries the typed enemy-set builder from fork commits `1f4e2d4a22` and `6dd3ce20d4` into the consolidated map-loading owner. It keeps the existing source boundary, uses the 0x10 header, 0x18 random event, 0x14 fixed event and 0x48 placement records, and keeps the neighboring array allocator and nullable release calls. The placement room and wave fields stay at offsets 0x0C and 0x0E. The builder preserves the unwritten header word during the original 16-byte copy. The fork's declaration order, mutable copy source and separate tail-address increment remain in the code and preserve the compiler's instruction order.
+
+The builder remains at 0x80209D34 with size 0x454. All 644 affected objects compiled fresh and match the preceding stack after mapping the four function names and seven buffer names. The raw symbol check finds one provider for every renamed export across 2,481 selected inputs and no stale references. The working fork updates all eleven retention entries and compiles the same owner object. The map-collision factory header also has a complete fork-side comparison against the existing stack.
 
 ## Review branches on upstream PR 326
 
