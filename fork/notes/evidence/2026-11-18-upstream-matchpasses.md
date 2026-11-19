@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `a39c9a4d2b` changes 1,388 paths counting both sides of renames. The all-source snapshot is `3d98a37eed`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `531ec09862` changes 1,388 paths counting both sides of renames. The all-source snapshot is `6417fc9850`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `2b52cfe3cb` | `942a0c050f` |
+| `great-merge/current/window-frames` | `ef53963eb2` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -36,6 +36,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Native Com Card follower | Included in the window review | `011823a1c6` |
 | Native word selection lifetime and scrolling | Included in the window review | `f6648c7664` |
 | Native word-select menu, scrollbar and string window | Included in the window review | `a39c9a4d2b` |
+| Native status gauge constructors and drawing | Included in the window review | `531ec09862` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -130,6 +131,14 @@ The window review at `2b52cfe3cb` and combined stack at `a39c9a4d2b` restore the
 The menu and scrollbar use translation-unit-specific deferred compilation. The scrollbar keeps its span helpers inline to preserve the original draw instructions. The generated six-word dispatch tables start at 0x804EFBAC and 0x804EFBE4 with their original four targets. Each table ends before four zero bytes restored by the following unit's eight-byte data alignment. All twelve renamed ranges have one provider with the original bytes and addresses. The standalone review builds with 2,486 selected inputs. The combined source and the working fork use 2,485, with identical allocated sections, symbols and relocations.
 
 Upstream master, the standalone window review, the combined source, the all-source snapshot and the working fork all reproduced the original GPOE8P executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The project checker passed with a full build for the window review, combined source and all-source snapshot. The comparison with fork main found zero regressions or missing linked code or non-padding data. Its aggregate data count is 2,358 bytes lower, from 2,521 bytes of historical alignment padding leaving coverage and 163 bytes entering coverage. The fork layer passed eleven tests and materialized all 133 tooling paths. The audit closes three complete headers and adds evidence for six other paths. It has 1,681 entries awaiting owner comparison and 556 with partial evidence.
+
+### Native status gauge constructors and drawing
+
+The window review at `ef53963eb2` and combined stack at `531ec09862` restore the gauge base constructor at 0x80256BDC and the derived constructor at 0x802572F0. The derived class reads a 36-byte layout record through named fields. The width and update routines also use the class fields. The extended gauge calls the inherited bar renderer with a typed draw context. Six source units agree on the constructor and drawing entry points, including both item-help constructors.
+
+The two 24-byte dispatch tables at 0x804CF918 and 0x804CF930 have their original layout, with a zero in the pure base class slot. The three renamed ranges have one provider each. The allocated bytes, symbols and relocation targets match the preceding window pass across all 2,486 standalone inputs and 2,485 combined inputs. The standalone window review, combined source, all-source snapshot and working fork reproduced GPOE8P SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The standalone, combined and all-source project checks passed with full builds. The original fork comparison has no regressions or loss of linked code or non-padding data, with the same reconciled aggregate padding difference as the preceding pass. The fork layer passed eleven tests and materialized all 133 tooling paths.
+
+The source audit closes two complete gauge headers and adds evidence for seven other paths. It has 1,675 entries awaiting owner comparison and 560 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
