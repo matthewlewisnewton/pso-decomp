@@ -26,14 +26,12 @@ struct List_8010F68C { Ent_8010F68C *ents; u32 count; };
 struct Load_8010F68C { u8 pad[0x24]; s32 id; List_8010F68C *list; void *f2c[4]; void *f3c; };
 
 extern "C" {
-extern s32 lbl_805D2BE8;
-extern s32 lbl_805D2BEC;
-extern void *item_texture_archive_loader;
-extern void *item_model_chunk_loader;
+extern const char *lbl_805D2BE8;
+extern const char *lbl_805D2BEC;
+extern TUnk_8049F41C *item_texture_archive_loader;
+extern TUnk_8049F40C *item_model_chunk_loader;
 extern s32 item_load_model_buffer;
-void init__13TUnk_8049F42CFv(void *, void *, int, int);
 extern s32 lbl_8049F40C[];
-s32 decompress_buffer__9TItemLoadFUl();
 void *TLobby__sub_801E38A0(s32, u32 *, s32 *, s32, s32 *);
 extern u8 lbl_80506208[];
 extern s32 item_load_tmp_buffer;
@@ -65,22 +63,22 @@ void TItemLoad__sub_8010F5A0(void) {
     temp_r3 = (int)::operator new(0x28);
     var_r0 = temp_r3;
     if (var_r0 != 0) {
-        var_r0 = ((s32)((TUnk_8049F41C *)temp_r3)->construct((void *)lbl_805D2BE8, 0xB5, 0x144));
+        var_r0 = ((s32)((TUnk_8049F41C *)temp_r3)->construct(lbl_805D2BE8, 0xB5, 0x144));
     }
     (*(s32 *)&item_texture_archive_loader) = var_r0;
     temp_r3_2 = (int)::operator new(0x40);
     var_r0_2 = temp_r3_2;
     if (var_r0_2 != 0) {
-        var_r0_2 = ((TUnk_8049F40C *)temp_r3_2)->construct_with_vtable((void *)lbl_805D2BEC, 0xB4, 0x12F);
+        var_r0_2 = ((TUnk_8049F40C *)temp_r3_2)->construct_with_vtable(lbl_805D2BEC, 0xB4, 0x12F);
     }
     (*(s32 *)&item_model_chunk_loader) = var_r0_2;
     item_load_model_buffer = (s32)::operator new[](0x21000);
 }
 
-void TItemLoad::start_load_with_id(s32 id, s32 arg2) {
+void TUnk_8049F40C::start_load_with_id(s32 id, s32 arg2) {
     Load_8010F61C *self = (Load_8010F61C *)this;
     s32 i;
-    if (id != 0 && ((TItemLoad *)self)->begin_load(arg2) == 1) {
+    if (id != 0 && begin_load(arg2) == 1) {
         self->id = id;
         self->f28 = 0;
         for (i = 0; i < 4; i++) {
@@ -103,7 +101,7 @@ void TUnk_8049F40C::vfunc_3() {
     if (TLobby::tmp_buf_is_free() == 1) {
         h = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
         off = ((Load_8010F68C *)this)->id;
-        total = decompress_buffer__9TItemLoadFUl();
+        total = TItemLoad::decompress_buffer(h);
         pos = 0;
         n = 0;
         while (pos < total) {
@@ -131,7 +129,7 @@ void TUnk_8049F40C::vfunc_3() {
         }
         TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
         ((Load_8010F68C *)this)->id = 0;
-        ((TItemLoad *)((Load_8010F68C *)this))->reset_state();
+        reset_state();
     }
 }
 
@@ -146,11 +144,11 @@ void *TUnk_8049F40C::dt(s16 arg1) {
     return this;
 }
 
-s32 TUnk_8049F40C::construct_with_vtable(void *a1, int a2, int a3) {
+s32 TUnk_8049F40C::construct_with_vtable(const char *filename, s32 partition_id, s32 file_count) {
     int arg0 = (int)this;
     Load_8010F838 *self = (Load_8010F838 *)arg0;
     s32 i;
-    init__13TUnk_8049F42CFv(self, a1, a2, a3);
+    init(filename, partition_id, file_count);
     self->vtbl = ((s32 *)&lbl_8049F40C);
     self->id = 0;
     for (i = 0; i < 4; i++) {
@@ -161,18 +159,18 @@ s32 TUnk_8049F40C::construct_with_vtable(void *a1, int a2, int a3) {
     return (s32)self;
 }
 
-void TItemLoad::begin_load_if_pending(s32 arg1, s32 arg2) {
+void TUnk_8049F41C::begin_load_if_pending(s32 arg1, s32 arg2) {
     if ((arg1 != 0) && (begin_load(arg2) == 1)) {
         *(s32 *)((s8 *)this + 0x24) = arg1;
     }
 }
 
-void TItemLoad::reload_item() {
+void TUnk_8049F41C::vfunc_3() {
     s32 temp_r31;
 
     if (TLobby::tmp_buf_is_free() == 1) {
         temp_r31 = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
-        decompress_buffer__9TItemLoadFUl();
+        TItemLoad::decompress_buffer(temp_r31);
         load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
         TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
         *(s32 *)((s8 *)this + 0x24) = 0;
@@ -193,8 +191,8 @@ void *__dt__13TUnk_8049F41CFv(void *arg0, s16 arg1) {
     return arg0;
 }
 
-void *TUnk_8049F41C::construct(void *_w1, int _w2, int _w3) {
-    init__13TUnk_8049F42CFv(this, _w1, _w2, _w3);
+void *TUnk_8049F41C::construct(const char *filename, s32 partition_id, s32 file_count) {
+    init(filename, partition_id, file_count);
     *(s32 * *)&(*(TObject * *)((u8 *)this + 0x14)) = lbl_8049F41C;
     *(u32 *)((s8 *)this + 0x24) = 0;
     return this;

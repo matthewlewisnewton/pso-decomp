@@ -9034,7 +9034,7 @@ force_active:
   - connect_pppoe__FPl
   - constant_material_color
   - construct__12T_OWEHMS_ExpFP10TObjPlayer
-  - construct__13TUnk_8049F41CFPvii
+  - construct__13TUnk_8049F41CFPCcll
   - construct__13TUnk_804EF8C0Fv
   - construct__19TPlayerBattleCtrl4PFP7TObject
   - construct__9TTecJelinFPviiii
@@ -9063,7 +9063,7 @@ force_active:
   - construct_variant_a__9TWindowDDFPv
   - construct_variant_b__9TWindowDDFPv
   - construct_weapon_casing__10TObjPlayerFPUcPUcPUcPUcPUc
-  - construct_with_vtable__13TUnk_8049F40CFPvii
+  - construct_with_vtable__13TUnk_8049F40CFPCcll
   - consume_counter__14TOTrapChainSawFPv
   - container_break_particle_parameters
   - container_break_small_debris_parameters
@@ -20855,7 +20855,7 @@ force_active:
   - request_game_mode_transition__11TAdEp3ExistFv
   - request_heavy_attack_particles__10TObjPlayerFv
   - request_jittered_camera__11TBoss6Type1FPvPvPvi
-  - request_load__9TItemLoadFl
+  - read__17ItemArchiveReaderFPv
   - request_menu__16TQuestListOnlineFv
   - request_normal_attack_stage1__10TObjPlayerFv
   - request_player_camera_offsets__11TBoss6Type2FPvff
@@ -24755,7 +24755,7 @@ force_active:
   - update_load_state__12TAdTimeSetGCFv
   - update_load_state__16TAdChrSelASlotGCFv
   - update_load_state__16TAdChrSelBSlotGCFv
-  - update_load_state__9TItemLoadFv
+  - update_load_state__13TUnk_8049F42CFv
   - update_load_status__12TQuestListVMFv
   - update_lobby_chair__10TObjPlayerFl
   - update_lobby_pigeon_visibility__13TUnk_804E0898Fv

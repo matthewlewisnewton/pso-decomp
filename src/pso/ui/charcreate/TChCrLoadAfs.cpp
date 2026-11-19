@@ -94,7 +94,7 @@ void TChCrLoadAfs::start_download() {
             load_state = 3;
             return;
         }
-        TLobby::read_checked_align((s32)load_handle, count, buffer_address);
+        ADXF_ReadNw(load_handle, count, (void *)buffer_address);
         load_state = 1;
     }
 }
@@ -252,7 +252,7 @@ void TChCrLoadAfsTextureReq::start_read() {
         buf = (u32)TQuestVmDownLoadServer::alloc(n << 11);
         buffers[index] = buf;
         if (buf != 0) {
-            TLobby::read_checked_align((s32)load_handle, n, buffers[index]);
+            ADXF_ReadNw(load_handle, n, (void *)buffers[index]);
             state = 2;
         }
     }

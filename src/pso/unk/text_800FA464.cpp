@@ -41,7 +41,7 @@ void process_async_file_reads(void) {
                     async_file_read_texture_buffer = TLobby::tmp_buf_use_req("FSVR_READPVM");
                     if (async_file_read_texture_buffer != 0) {
                         lobby_download_state_ptr = ADXF_Open(async_file_read_current_request->name, 0);
-                        TLobby::read_checked_align((s32)lobby_download_state_ptr, async_file_read_current_request->count, async_file_read_texture_buffer);
+                        ADXF_ReadNw(lobby_download_state_ptr, async_file_read_current_request->count, (void *)async_file_read_texture_buffer);
                         async_file_read_state = 3;
                     }
                 } else if (async_file_read_current_request->flags & 4) {
@@ -50,10 +50,10 @@ void process_async_file_reads(void) {
                     AdxfHandle *h = lobby_download_state_ptr = ADXF_Open(async_file_read_current_request->name, 0);
                     if (h != 0) {
                         if (async_file_read_current_request->count > 1) {
-                            TLobby::read_checked_align((s32)h, async_file_read_current_request->count - 1, (u32)async_file_read_current_request->dst);
+                            ADXF_ReadNw(h, async_file_read_current_request->count - 1, async_file_read_current_request->dst);
                             async_file_read_state = 1;
                         } else {
-                            TLobby::read_checked_align((s32)h, 1, async_file_read_sector_buffer);
+                            ADXF_ReadNw(h, 1, (void *)async_file_read_sector_buffer);
                             async_file_read_state = 2;
                         }
                     }
@@ -67,7 +67,7 @@ void process_async_file_reads(void) {
             TLobby::pop_and_close();
             async_file_read_state = 0;
         } else if (ADXF_GetStat(lobby_download_state_ptr) == 3) {
-            TLobby::read_checked_align((s32)lobby_download_state_ptr, 1, async_file_read_sector_buffer);
+            ADXF_ReadNw(lobby_download_state_ptr, 1, (void *)async_file_read_sector_buffer);
             async_file_read_state = 2;
         }
         break;

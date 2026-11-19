@@ -1,3 +1,4 @@
+#include "pso/item/TUnk_8049F42C.h"
 #include "types.h"
 #include "pso/system/data/FlagWord.h"
 #include "pso/item/TItemLoad.h"
@@ -7,14 +8,12 @@
 extern "C" {
 
 s32 test_flags_any(s32 *flags, s32 mask);
-s32 free_texture__9TItemLoadFv();
-s32 get_ring_lobby__9TItemLoadFv();
 
-void TItemLoad::update_ring() {
+void TUnk_8049F42C::update_ring() {
     s32 arg0 = (s32)this;
     s32 temp_r3;
 
-    temp_r3 = get_ring_lobby__9TItemLoadFv();
+    temp_r3 = get_status();
     if (temp_r3 != 2) {
         if (temp_r3 == 3) {
             ((FlagWord *)(arg0 + 0x1C))->clear(1);
@@ -25,9 +24,9 @@ void TItemLoad::update_ring() {
     }
 }
 
-void TItemLoad::update_load_state() {
+void TUnk_8049F42C::update_load_state() {
     u8 *arg0 = (u8 *)this;
-    free_texture__9TItemLoadFv();
+    close();
     if (test_flags_any((s32 *)(arg0 + 0x1C), 1) != 0) {
         *(s32 *)((s8 *)arg0 + 0x18) = 1;
         return;

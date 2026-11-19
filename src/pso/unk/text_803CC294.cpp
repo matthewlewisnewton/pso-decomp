@@ -1,3 +1,4 @@
+#include "pso/system/Adxf.h"
 #include <string.h>
 
 #include "types.h"
@@ -265,12 +266,12 @@ s32 ADXF_Stop(AdxfHandle *adxf) {
     return stop_803CC980(adxf);
 }
 
-s32 TLobby::read_checked_align(s32 arg0, s32 arg1, s32 arg2) {
-    if (arg2 & 0x1F) {
+s32 ADXF_ReadNw(AdxfHandle *file, s32 sectors, void *destination) {
+    if ((u32)destination & 0x1F) {
         TLobby::notify_error("E0120401:'buf' isn't 32byte alignment.(ADXF_ReadNw)");
         return -3;
     }
-    return ADXF_ReadNw32((AdxfHandle *)arg0, arg1, (void *)arg2);
+    return ADXF_ReadNw32(file, sectors, destination);
 }
 #define LE32_803CD5C4(p) ((p)[0] | ((p)[1] << 8) | ((p)[2] << 16) | ((p)[3] << 24))
 // ADXF_ReadNw32 (named by its messages)

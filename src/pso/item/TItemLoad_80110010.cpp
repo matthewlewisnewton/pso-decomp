@@ -27,7 +27,6 @@ struct Node_801103F4 : Base_801103F4 {
     virtual void m0(s32);
 };
 
-struct Load_8011006C { void *buf; s32 f4; s32 f8; s32 fC; s32 f10; void *f14; };
 
 __declspec(section ".data") const char *item_model_names[15] = {
     "gun_bullet.gj", "armor_scan.gj", "ixm_box01.gj", "ixm_box02.gj", "ixm_box03.gj", "ixm_box04.gj", "ixm_box05.gj",
@@ -55,15 +54,14 @@ void *TItemLoad__sub_801107EC(void *p);
 void *lookup_item_pmt_record(u8 *item);
 extern void *TItemLoad__model_load_task_root;
 extern s32 *TItemLoad__model_slot_in_use;
-void TLobby__sub_801E3E9C(s32, s32, void *, s32);
+s32 TLobby__sub_801E3E9C(s32, const char *, void *, s32);
 extern s32 lbl_8049F43C[];
-Load_8011006C *init_buffer__9TItemLoadFPviii(Load_8011006C *self, s32 arg1, s32 arg2, s32 count);
 s32 get_bml_motion(s32, s32);
 
 void *TUnk_8049F42C::sub_80110010(s16 arg1) {
     if (this != NULL) {
         *(s32 *)((s8 *)this + 0x14) = (s32)lbl_8049F43C;
-        ((TItemLoad *)this)->free_texture();
+        close();
         ::operator delete[]((void *)(*(s32 *)((s8 *)this + 0)));
         if (arg1 > 0) {
             ::operator delete(this);
@@ -74,16 +72,16 @@ void *TUnk_8049F42C::sub_80110010(s16 arg1) {
 
 extern s32 TItemLoad__bml_resource;
 
-Load_8011006C *init_buffer__9TItemLoadFPviii(Load_8011006C *self, s32 id, s32 arg2, s32 count) {
+ItemAfsArchive *ItemAfsArchive::initialize(const char *filename, s32 partition_id, s32 count) {
     s32 n = (count + 1) * 2;
-    self->f14 = lbl_8049F43C;
-    self->buf = ::operator new[]((n + 0x116) & ~3);
-    self->f8 = arg2;
-    self->f4 = 0;
-    self->fC = 0;
-    TLobby__sub_801E3E9C(arg2, id, self->buf, 0);
-    self->f10 = 1;
-    return self;
+    *(s32 **)((u8 *)this + 0x14) = lbl_8049F43C;
+    buffer = ::operator new[]((n + 0x116) & ~3);
+    partition = partition_id;
+    handle = NULL;
+    sectors = 0;
+    TLobby__sub_801E3E9C(partition_id, filename, buffer, 0);
+    mode = 1;
+    return this;
 }
 
 s32 TItemLoad::has_resource_id(s32 id) {

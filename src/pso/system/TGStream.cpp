@@ -187,7 +187,7 @@ s32 TGStream::load_sct_file(const char *name, u8 *dst) {
 }
 
 void TGStream::read_sectors_sync(s32 sector_count, void *destination) {
-    TLobby::read_checked_align((s32)adxf_handle, sector_count, (s32)destination);
+    ADXF_ReadNw(adxf_handle, sector_count, destination);
     TLobby::set_read_params(&adxf_handle, (int)sector_count, (int)destination);
 loop_1:
     if (ADXF_GetStat(adxf_handle) != 3) {
@@ -250,7 +250,7 @@ void open_gsl_archive(char *name) {
         TItemDrop__gsl_adxf_handle = ADXF_Open(name, 0);
         if (TItemDrop__gsl_adxf_handle != 0) {
             TGStream::reset();
-            TLobby::read_checked_align((s32)TItemDrop__gsl_adxf_handle, 6, (s32)gsl_archive_entries);
+            ADXF_ReadNw(TItemDrop__gsl_adxf_handle, 6, gsl_archive_entries);
             TLobby::set_read_params(&TItemDrop__gsl_adxf_handle, 6, (int)gsl_archive_entries);
             for (;;) {
                 if (ADXF_GetStat(TItemDrop__gsl_adxf_handle) == 3) {
@@ -279,7 +279,7 @@ void TLobby::read_data_sync(s32 arg0, s32 arg1, s32 arg2) {
     s32 sp8;
 
     sp8 = arg0;
-    TLobby::read_checked_align(sp8, arg1, arg2);
+    ADXF_ReadNw((AdxfHandle *)sp8, arg1, (void *)arg2);
     TLobby::set_read_params(&sp8, (int)arg1, (int)arg2);
 loop_1:
     if (ADXF_GetStat((AdxfHandle *)sp8) != 3) {

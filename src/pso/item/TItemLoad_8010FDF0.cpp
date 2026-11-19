@@ -18,12 +18,11 @@ extern "C" {
 s32 test_flags_any(s32 *flags, s32 mask);
 extern s32 lbl_8049F42C[];
 extern s32 item_load_work_buffer_busy;
-void init_buffer__9TItemLoadFPviii(void *);
 struct VOff_8010FD2C_arg0_8010fd2c { char pad_0[0x1C]; char f_1C[1]; };
 
 extern s32 item_load_compressed_work_buffer;
 
-void TItemLoad::advance_load_state() {
+void TUnk_8049F42C::advance_load_state() {
     u8 *arg0 = (u8 *)this;
     if (test_flags_any((s32 *)(arg0 + 0x1C), 4) == 0) {
         if ((s32) item_load_work_buffer_busy != 1) {
@@ -33,9 +32,9 @@ void TItemLoad::advance_load_state() {
         }
     } else {
 block_3:
-        if (((TItemLoad *)arg0)->load_data((int) (*(s32 *)((s8 *)arg0 + 0x20))) != 0U) {
+        if (open(file_id) != NULL) {
             TItemLoad__sub_801107DC(arg0);
-            ((TItemLoad *)arg0)->request_load(item_load_compressed_work_buffer);
+            read((void *)item_load_compressed_work_buffer);
             *(s32 *)((s8 *)arg0 + 0x18) = 2;
         }
     }
@@ -55,9 +54,9 @@ u8 *__dt__13TUnk_8049F42CFv(u8 *arg0, s16 arg1) {
     return arg0;
 }
 
-void *TUnk_8049F42C::init() {
+void *TUnk_8049F42C::init(const char *filename, s32 partition_id, s32 file_count) {
     struct VOff_8010FD2C_arg0_8010fd2c *self = (struct VOff_8010FD2C_arg0_8010fd2c *)this;
-    init_buffer__9TItemLoadFPviii(this);
+    initialize(filename, partition_id, file_count);
     *(s32 * *)&(*(TObject * *)((u8 *)this + 0x14)) = lbl_8049F42C;
     __ct__8FlagWordFv((self->f_1C));
     *(u32 *)((s8 *)this + 0x18) = 0;
@@ -94,7 +93,6 @@ struct Sp8Buf_8010fe6c_8010FDF0 {
 };
 
 s32 apply_rel_relocations(s32 *);
-s32 read_checked_align__6TLobbyFlll(s32, s32, s32, void *);
 s32 prs_decompress_alloc(s32, u32, s32);
 
 void TItemLoad::alloc_work_buffer() { item_load_compressed_work_buffer = (s32)::operator new[]((u32)((void*)24576)); item_load_work_buffer_busy = 0; }
@@ -125,8 +123,8 @@ RelocatedFile::RelocatedFile(const char *path, s32 size) {
     }
 }
 
-void TItemLoad::request_load(s32 arg1) {
-    read_checked_align__6TLobbyFlll(*(s32 *)&this->m_flags, *(s32 *)&this->m_next, arg1, this);
+void ItemArchiveReader::read(void *destination) {
+    ADXF_ReadNw(handle, sectors, destination);
 }
 
 }
