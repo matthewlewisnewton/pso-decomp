@@ -1,5 +1,9 @@
 # Fork data coverage at the November 18 sync point
 
+## Data coverage on upstream master `6e09dda9c5`
+
+A fresh original-executable build and exact object report account for 908 source-linked bytes and 167 alignment bytes across all 90 rows of the [range ledger](2026-11-18-fork-data-ranges.tsv). The upstream change covers 36 more bytes across `0x805D8ADC` (4 bytes), `0x805D8AE0` (8 bytes), `0x805DC278` (8 bytes), `0x805DCE00` (16 bytes). The 72 remaining bytes are the three original 24-byte virtual tables at `0x804CF0B8` (chat balloon), `0x804CF8B0` (item help) and `0x804D0004` (software keyboard).
+
 ## Data coverage on upstream master `3f35d99bb1`
 
 Fresh compiled objects and both address reports account for all 90 ranges on `great-merge/current/review-stack` at `3b34b9def9`. The new data pass increases upstream's share from 684 to 872 exact source-linked bytes. There are 108 remaining source bytes on upstream in 7 ledger rows. The combined stack supplies all of them, for a total of 980 exact source-linked bytes and 167 bytes of checked alignment padding. The [range ledger](2026-11-18-fork-data-ranges.tsv) records both builds at every original address. The executable hash gate is separate from this object report.

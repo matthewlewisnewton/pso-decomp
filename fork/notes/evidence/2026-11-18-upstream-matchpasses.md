@@ -1,5 +1,20 @@
 # Upstream matchpasses
 
+## Replay on upstream master `6e09dda9c5`
+
+Upstream advanced 65 commits from `3f35d99bb1`. A fresh build of `6e09dda9c5` reproduces the original GameCube executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Four local candidates have passed that same executable check and the full project checker against the new master.
+
+| Local candidate | Tip |
+| --- | --- |
+| Network contracts | `great-merge/incoming/6e09dda9c5/network-contracts` at `5e90284b9a` |
+| Actor presentation | `great-merge/incoming/6e09dda9c5/actor-presentation` at `ba1790084a` |
+| World-object resources | `great-merge/incoming/6e09dda9c5/world-object-resources` at `31557ce897` |
+| Chat balloon overlap | `great-merge/incoming/6e09dda9c5/balloon-overlap` at `14bf7316fd` |
+
+The three review groups preserve all 15 original commits. The chat balloon candidate restores the typed rectangle test and the three placement queries at their original addresses, covering 524 instruction bytes. Placement now uses the viewport root's first child and returns the overlapping balloon through the actual member interface. The combined stack at `467564e30b` remains the latest fully verified combined build. Its replay has 63 paths requiring reconciliation, including upstream's window constructor changes.
+
+The [data range ledger](2026-11-18-fork-data-ranges.tsv) verifies 908 source-linked bytes and 167 padding bytes on the new upstream base. The three remaining ranges each account for a 24-byte compiler-generated virtual table.
+
 ## Current review queue on upstream master `3f35d99bb1`
 
 The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `467564e30b` changes 1,471 paths counting both sides of renames. The all-source snapshot is `5e1dc83969`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
