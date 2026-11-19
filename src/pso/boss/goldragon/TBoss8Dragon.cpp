@@ -978,7 +978,6 @@ struct Obj_802FAC08;
 struct Rot_802F6838 { s32 x, y, z; };
 s32 restore_player_cameras(void);
 void activate_camera_mode(s32, f32);
-void set_scripted_camera_pose(void *, void *, void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 void refresh_and_send_entity_flags__9TObjEnemyFv(void);
 void vec3_add_to(void *, void *);
@@ -4659,7 +4658,7 @@ void TBoss8Dragon::sub_802F6838(s32 arg1) {
         cam.frame_step = 0.5f;
         activate_camera_mode(5, 0.0f);
         cam.cache_target_and_forward(0x31C7);
-        set_scripted_camera_pose((u8 *)&position, (u8 *)&position, (u8 *)&this->rotation.pitch);
+        set_scripted_camera_pose(&position, &position, &rotation);
         break;
     }
     case 2:

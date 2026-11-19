@@ -73,7 +73,6 @@ extern void *__vt__23TBoss6Demo21_TYPE2_DEAD[];
 void push_matrix();
 void post_translate_matrix(void *);
 s32 get_bml_motion(void *, int);
-void set_scripted_camera_pose(void *, void *, void *);
 void __ct__7TObjectFP7TObject(void *);
 void *get_fish_count__8TObjFishFv(void);
 s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
@@ -93,7 +92,7 @@ extern "C" const u32 lbl_804780B8[3] = {0x0, 0xc0000000, 0x40cccccd};
 extern "C" const u32 boss6_type2_death_effect_desc_a[8] = {0x24, 0x0, 0x0, 0x0, 0xffffffff, 0x0, 0x0, 0x0};
 extern "C" const u32 boss6_type2_death_effect_desc_b[8] = {0x19, 0x0, 0x0, 0x0, 0xffffffff, 0x0, 0x0, 0x0};
 extern "C" const u32 boss6_type2_death_effect_desc_c[12] = {0x2, 0x0, 0x0, 0x0, 0x3, 0x0, 0x0, 0x0, 0xffffffff, 0x0, 0x0, 0x0};
-extern "C" const u32 lbl_80478134[3] = {0x0, 0x0, 0x0};
+extern "C" const CameraAngles lbl_80478134 = {0, 0, 0};
 extern "C" const CameraPlayback lbl_80478140 = {1, 1, 0, 0.0f, 0.7f};
 extern "C" const u32 boss6_type2_death_emitter_ranges[12] = {0x0, 0x8e, 0x228, 0xfa, 0x13a, 0x22a, 0x11d, 0x1ac, 0x22e, 0xf2, 0x13a, 0x179};
 extern "C" const u32 lbl_8047817C[3] = {0xffff4000, 0xffffff60, 0xffff4000};
@@ -104,7 +103,6 @@ extern "C" const char *TBoss6Demo21_TYPE2_DEAD__name = TBoss6Demo21_TYPE2_DEAD__
 #define boss6_type2_death_effect_desc_a ((u8 *)boss6_type2_death_effect_desc_a)
 #define boss6_type2_death_effect_desc_b ((u8 *)boss6_type2_death_effect_desc_b)
 #define boss6_type2_death_effect_desc_c ((u8 *)boss6_type2_death_effect_desc_c)
-#define lbl_80478134 ((u8 *)lbl_80478134)
 #define boss6_type2_death_emitter_ranges ((Rng_8033E0F0 *)boss6_type2_death_emitter_ranges)
 #pragma pool_data off
 extern "C" {
@@ -411,7 +409,8 @@ void *TBoss6Demo21_TYPE2_DEAD__ct(void *arg0p, void *arg1, void *arg2) {
     *(ModelNodePositionCapture **)((s8 *)arg0 + 0x80) = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type2_death_effect_desc_b, (Vec *)(arg0 + 0x74));
     *(ModelNodePositionCapture **)((s8 *)arg0 + 0x9C) = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type2_death_effect_desc_c, (Vec *)(arg0 + 0x84));
     activate_camera_mode(5);
-    set_scripted_camera_pose(arg0 + 0x58, arg0 + 0x58, lbl_80478134);
+    const Vec *camera_position = &((TBoss6Demo21_TYPE2_DEAD *)arg0)->camera_position;
+    set_scripted_camera_pose(camera_position, camera_position, &lbl_80478134);
     lbl_80478140.cache_target_and_forward(0x416C);
     for (i = 0; i < 4; i++) {
         ((Fish_8033E688 *)arg0)->arr[i] = 0;

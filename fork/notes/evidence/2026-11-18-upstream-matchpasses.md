@@ -7,15 +7,15 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
 | `great-merge/upstream/combined` · `d86ae41c4d` | Combined source matchpasses, including the shared item archive reader, sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `118cd6898c` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `6619fc80f1` | Thirteen subsystem drafts and fifteen follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/all-source` · `67e3b18f06` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `8f36179c05` | Thirteen subsystem drafts and sixteen follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
 
 The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists twenty independently tested local branches based on upstream `f76fdd7ff1`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
 
-The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the later changes to collision, matrix math, the ADX decoder, positional sound requests, particle factories, enemy targeting, demo playback, ground contacts, memory-card operations, save images and actor orientation. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
+The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the later changes to collision, matrix math, the ADX decoder, positional sound requests, particle factories, enemy targeting, demo playback, ground contacts, memory-card operations, save images, actor orientation and encounter camera calls. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
 
 The fork's enhanced linker checker had produced thousands of retention-list changes. The source-only cumulative build starts from the stock list and updates the affected symbol names. The stock compiler also reproduces the adjacent Dark Falz weighted-selection and material routines in one source unit. Together they emit the two floats at 0x805D8AD8 and 0x805D8ADC naturally. This removes the fork's object-alignment helper from the upstream build. The comparison with fork main found zero lost matched or source-linked function or data ranges. Its total extent decreases by 2,045 bytes, with 2,200 bytes of verified padding leaving coverage and 155 bytes entering coverage.
 
@@ -36,7 +36,7 @@ Seventeen checked components form the first six larger local branches on upstrea
 | `great-merge/upstream/positional-sound` | `cc23e836c9` | 259 | one-shot, persistent and area sound with particles |
 | `great-merge/upstream/particle-factories` | `4137dcb168` | 188 | particle factories and controller initialization |
 | `great-merge/upstream/demo-playback` | `a4bc4be6f8` | 112 | shared demo playback state and game-wide callers |
-| `great-merge/upstream/actor-camera-angles` | `a1776fbb96` | 256 | actor orientation and scripted camera playback |
+| `great-merge/upstream/actor-camera-angles` | `edea475228` | 269 | actor orientation and scripted camera playback |
 
 The resource group also names the stream buffer and cue work area at 0x805D62D8 and 0x805D62DC. After moving their associated declarations, callers and linker entries together, the recovered source immediately before these two names and the complete source both passed independently. The former checkpoint is `great-merge/fork-validation/archive-and-memory-callers` at `e6646c0fc3`. The three-file remainder belongs to the resource group.
 
@@ -56,7 +56,7 @@ The original fork tip `3342e42983` has 798 subsequent first-parent commits. Comp
 
 Sixteen more complete fork-point patches reproduce their current owner when merged in both directions. Three contain only include-directory or header-guard moves after mapping Git renames. Another sixteen have every fork edit block present with unique surrounding source context. The comparison preserves comments and directives. The block check skips multiline literals and comments and requires the old contextual form to be absent. The index records the current owner in each case.
 
-The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,073 paths requiring an owner comparison and 305 with partially matched edit blocks.
+The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,072 paths requiring an owner comparison and 305 with partially matched edit blocks.
 
 ## One-shot positional sound requests
 
@@ -126,7 +126,7 @@ Four builds passed the upstream checks and reproduced retail. The fork-only prob
 
 The independent review begins with the scripted camera class and its motion banks at `90543935ed`. Its second commit, `a1776fbb96`, recovers the actor's pitch, yaw and roll at 0x5C and the two shared actor methods previously attributed to Dark Falz. The compiler identified uses of the removed actor members in player, enemy, boss, NPC, effect and stage code. Independent fields on weapon models, map collision records and other objects retain their own owners.
 
-Both review commits, the cumulative source and integration passed the upstream checks and reproduced the original game. The fork probe checked the previous-position copy, angle address, guarded camera pose writes, projection caching, selection by floor, bank and motion index, and frame stepping, looping and stopping. It passed on retail and the three complete builds. Some encounter callers still carry their own camera pose declarations; their types remain in the source-comparison queue.
+Both review commits, the cumulative source and integration passed the upstream checks and reproduced the original game. The fork probe checked the previous-position copy, angle address, guarded camera pose writes, projection caching, selection by floor, bank and motion index, and frame stepping, looping and stopping. It passed on retail and the three complete builds. The third review commit `edea475228` applies the shared declarations to all 20 camera pose calls and all ten playback queries. It recovers named camera positions for the Dark Falz and Olga Flow encounters and stores fixed camera poses as vectors and angles. The 29 calls forwarding playback and the four angle and nine previous-position calls retain every original branch target and enclosing function size. The three updated builds passed and reproduced retail. Comparison with the original fork found zero function, data-match or non-padding coverage regressions; 2,200 bytes of alignment padding left coverage and 155 bytes entered, for the previously recorded change of 2,045 bytes.
 
 ## Buildable boundaries in the remaining drafts
 

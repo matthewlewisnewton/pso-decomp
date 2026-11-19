@@ -21,7 +21,6 @@ struct Obj_800665FC { s32 f0; u8 pad4[0x14]; void *f18; f32 f1c; f32 f20; s32 f2
 extern "C" {
 void set_camera_capture_overlay_alpha(int a0);
 s32 restore_player_cameras();
-CameraPlayback *get_scripted_camera_playback();
 
 int TBoss8Dragon__sub_8005D700(void);
 s32 activate_camera_mode(s32 arg0);

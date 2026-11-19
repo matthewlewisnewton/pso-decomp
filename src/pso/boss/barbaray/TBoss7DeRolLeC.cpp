@@ -903,7 +903,6 @@ s32 restore_player_cameras();
 
 s32 activate_camera_mode(s32 arg0);
 
-CameraPlayback *get_scripted_camera_playback();
 
 s32 query_teammate_state__9TObjEneDDFv();
 

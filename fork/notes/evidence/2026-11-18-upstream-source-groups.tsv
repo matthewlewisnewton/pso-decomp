@@ -1770,3 +1770,24 @@ Actor orientation and scripted camera playback	6619fc80f11a713f8cd7bb9a2d62fc20c
 Actor orientation and scripted camera playback	6619fc80f11a713f8cd7bb9a2d62fc20c3e1cd6d	src/pso/weapon/TUnk_804A6BD0.cpp	2
 Actor orientation and scripted camera playback	6619fc80f11a713f8cd7bb9a2d62fc20c3e1cd6d	src/pso/weapon/TUnk_804A6CC8.cpp	2
 Actor orientation and scripted camera playback	6619fc80f11a713f8cd7bb9a2d62fc20c3e1cd6d	src/pso/weapon/WeaponAttackActions.cpp	1
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	include/pso/boss/darkfalz/TObjDFDemo3.h	3
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	include/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.h	3
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	include/pso/camera/CameraHelpers.h	3
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	include/pso/camera/CameraPlayback.h	3
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/barbaray/TBoss7DeRolLeC.cpp	1
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/darkfalz/TObjDFDemo2.cpp	7
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/darkfalz/TObjDFDemo3.cpp	7
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp	3
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/derolle/TBoss2DeRolLe.cpp	4
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/dragon/TBoss1Dragon.cpp	3
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/dragon/TBoss1DragonDemo.cpp	1
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp	2
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp	1
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/goldragon/TBoss8Dragon.cpp	2
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/goldragon/TBoss8DragonDemo.cpp	1
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp	7
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp	4
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp	4
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/volopt/TBoss3VoloptP02.cpp	3
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/effect/photon/PhotonBlastSummon.cpp	4
+Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/unk/text_8004D9A8.cpp	11

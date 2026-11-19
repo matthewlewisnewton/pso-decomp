@@ -195,7 +195,6 @@ s32 VecCopy__FP3VecPC3Vec(s32, s32);
 void TBoss1Dragon__sub_800275BC(TBoss1Dragon *arg0, s32 arg1, u8 *arg2, s32 arg3);
 s32 restore_player_cameras(void);
 s32 activate_camera_mode(s32);
-s32 set_scripted_camera_pose(void *, void *, void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 s32 vec3_add_to(void *, void *);
 extern s32 TBoss1Dragon__part_hp_stats[5];
@@ -1922,7 +1921,7 @@ void TBoss1Dragon::update_death_state(u32 arg1) {
             cam.frame_step = (0.5f);
             activate_camera_mode(5);
             cam.cache_target_and_forward(0x31C7);
-            set_scripted_camera_pose(&((TBoss1Dragon *)((u8 *)this))->position, &((TBoss1Dragon *)((u8 *)this))->position, &((TBoss1Dragon *)((u8 *)this))->rotation.pitch);
+            set_scripted_camera_pose(&position, &position, &rotation);
             break;
         case 1:
             cam.index = 1;
@@ -1932,7 +1931,7 @@ void TBoss1Dragon::update_death_state(u32 arg1) {
             cam.frame_step = (0.5f);
             activate_camera_mode(5);
             cam.cache_target_and_forward(0x3333);
-            set_scripted_camera_pose(&((TBoss1Dragon *)((u8 *)this))->position, &((TBoss1Dragon *)((u8 *)this))->position, &((TBoss1Dragon *)((u8 *)this))->rotation.pitch);
+            set_scripted_camera_pose(&position, &position, &rotation);
             break;
         }
         break;

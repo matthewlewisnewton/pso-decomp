@@ -225,7 +225,6 @@ extern const f32 lbl_805D8D94;
 f64 atan2_float(f32, f32);
 s32 restore_player_cameras(void);
 s32 activate_camera_mode(s32 arg0);
-void set_scripted_camera_pose(void *, void *, void *);
 void play_cue_stream_file(s32 name);
 extern const f32 lbl_805D8DD4;
 extern const f32 lbl_805D8E80;
@@ -3601,7 +3600,7 @@ void TBoss5Gryphon::update_death_state(u32 arg1) {
             cam.frame_step = 0.5f;
             activate_camera_mode(5);
             cam.cache_target_and_forward(0x31C7);
-            set_scripted_camera_pose(arg0 + 0x38, arg0 + 0x38, (u8 *)&this->rotation.pitch);
+            set_scripted_camera_pose(&position, &position, &rotation);
             break;
         }
         return;

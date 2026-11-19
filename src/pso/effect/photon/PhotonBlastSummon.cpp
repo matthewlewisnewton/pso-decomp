@@ -35,7 +35,6 @@ struct RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628 {
 };
 
 extern "C" {
-s32 set_scripted_camera_pose(int, int, void *);
 extern RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628 TCameraCtrl__view_state;
 extern u32 lbl_805D5D20;
 const f32 *get_photon_blast_entry__10TObjPlayerFi(s32);
@@ -124,7 +123,6 @@ typedef char RecoveredGlobal_801A7310_TCameraCtrl__data_804FF628_size[sizeof(Rec
 void TUnk_804C3248::begin_photon_summon_camera(s8 arg1) {
     u8 *arg0 = (u8 *)this;
     CameraPlayback playback;
-    s32 temp_r3;
     playback.index = arg1;
     playback.bank = (s8)(get_current_floor_area() == AREA_DARK_FALZ);
     playback.flags = 0;
@@ -134,8 +132,7 @@ void TUnk_804C3248::begin_photon_summon_camera(s8 arg1) {
         TCameraCtrl::select_active_controller(5);
     }
     playback.cache_target_and_forward(0x4222);
-    temp_r3 = (long) (arg0 + 0x38);
-    set_scripted_camera_pose(temp_r3, temp_r3, (u8 *)&this->rotation.pitch);
+    set_scripted_camera_pose(&position, &position, &rotation);
     *(s32 *)((s8 *)arg0 + 0xFC) = 1;
 }
 
@@ -395,7 +392,6 @@ void apply_all_default__8TFogCtrlFv(void) { TFogCtrl::apply_all((s32)((void*)63)
 extern s32 TSceneSora__sky_active_flag;
 extern u32 TSceneSora__instance;
 u16 TCameraCtrl__sub_8006A5DC();
-CameraPlayback *get_scripted_camera_playback();
 
 extern void *tl_05;
 

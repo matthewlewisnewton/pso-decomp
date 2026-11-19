@@ -66,14 +66,12 @@ struct Obj_8004EB78 {
     u8 pad1c[0x90 - 0x1C];
     Ent_8004EB78 ent[2];
     void *a8;
-    u8 pos[0xC];
+    Vec pos;
     void *b8;
     s32 bc;
     f32 c0;
 };
-struct Pose_8004EB78 { s32 a; s32 b; s32 c; };
 s32 get_bml_motion(s32, s32);
-void set_scripted_camera_pose(void *, void *, void *);
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 extern s32 boss4_zanzo_bml_index_table[];
 void *__dt__11TObjDFDemo2Fv(void *arg0, s16 arg1);
@@ -90,7 +88,7 @@ void reset_motion_fields__8TObjBaseFv();
 void update_object_view_visibility__8TObjBaseFff();
 
 const char *TObjDFDemo2__name = "TObjDFDemo2";
-__declspec(section ".rodata") Pose_8004EB78 lbl_80437384 = {0, 0, 0};
+__declspec(section ".rodata") CameraAngles lbl_80437384 = {0, 0, 0};
 __declspec(section ".data") void *TObjDFDemo2__motion_index_table[2] = {
     (void *)0x12, (void *)0x11,
 };
@@ -186,7 +184,7 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
     __ct__8TObjBaseFP7TObject(self, parent);
     self->vt18 = (u8 *)__vt__11TObjDFDemo2;
     self->vt0 = (s32) TObjDFDemo2__name;
-    VecCopy((Vec *)self->pos, (const Vec *)arg2);
+    VecCopy(&self->pos, (const Vec *)arg2);
     self->b8 = arg3;
     self->a8 = arg4;
     cnt = (s32)TBoss4Uro::get_instance_count();
@@ -200,12 +198,12 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
     self->c0 = -0.5f;
     activate_camera_mode(5);
     {
-        Pose_8004EB78 p = lbl_80437384;
-        p.b = (s32) self->b8;
-        set_scripted_camera_pose(self->pos, self->pos, &p);
+        CameraAngles p = lbl_80437384;
+        p.yaw = (s32) self->b8;
+        set_scripted_camera_pose(&self->pos, &self->pos, &p);
     }
     lbl_80485680.cache_target_and_forward(0x4444);
-    play_sound_effect(0x4003A325, (const Vec *)self->pos, 0, 1);
+    play_sound_effect(0x4003A325, &self->pos, 0, 1);
     self->bc = 0;
     return self;
 }

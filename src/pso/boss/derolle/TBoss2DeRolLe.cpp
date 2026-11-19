@@ -1277,7 +1277,6 @@ s32 restore_player_cameras();
 
 s32 activate_camera_mode(int);
 
-void set_scripted_camera_pose(void *, void *, void *);
 
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 
@@ -1303,7 +1302,6 @@ void spawn_ceil_junk__13TBoss2DeRolLeFii(s32 arg1, s32 arg2);
 
 s32 get_flag_b4__9TObjEneDDFv(void *);
 
-CameraPlayback *get_scripted_camera_playback(void);
 
 s32 restore_player_cameras();
 
@@ -6124,6 +6122,7 @@ void TBoss2DeRolLe__sub_8002FCE4(Obj_8002FCE4 *self, u32 kind) {
 #define o ((Rol_8002F7C4 *)arg0)
 
 void handle_death_state__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1) {
+    TBoss2DeRolLe *boss = (TBoss2DeRolLe *)arg0;
     CameraPlayback cam;
     Vec v;
     Vec w;
@@ -6155,7 +6154,7 @@ void handle_death_state__13TBoss2DeRolLeFPvPv(void *arg0, void *arg1) {
         cam.frame_step = 0.7f;
         ((s32 (*)(int, f32))activate_camera_mode)(5, 0.0f);
         cam.cache_target_and_forward(0x2AAA);
-        set_scripted_camera_pose(&o->pos, &o->pos, &o->f5C);
+        set_scripted_camera_pose(&boss->position, &boss->position, &boss->rotation);
         break;
     case 2:
         if (o->f3CC->f8 & 0x400) {

@@ -17,7 +17,6 @@ struct RecoveredGlobal_8002B744___vt__16TBoss1DragonDemo {
 };
 
 extern "C" {
-CameraPlayback *get_scripted_camera_playback();
 s32 isV2Mode__12TBoss1DragonFv();
 s32 __ct__7TObjectFP7TObject(void *, void *);
 extern RecoveredGlobal_8002B744___vt__16TBoss1DragonDemo __vt__16TBoss1DragonDemo;

@@ -20,4 +20,4 @@ memory-moves	great-merge/upstream/memory-moves	c73a05326b43865a5b08ffad1b79a718b
 positional-sound	great-merge/upstream/positional-sound	cc23e836c9793f3629a5a85464a1cd91e7805016	259	Upstream checks and retail SHA-1 passed; one-shot, persistent, floor dispatch and particle checks passed
 particle-factories	great-merge/upstream/particle-factories	4137dcb168bf0811b64643844e59a842b92c4ede	188	Stock checks, retail SHA-1, factory boundary tests and compiled caller accounting passed
 demo-playback	great-merge/upstream/demo-playback	a4bc4be6f8e542ef658cb42d9c42418a2551c2f9	112	Stock checks, retail SHA-1, demo predicate cases and all compiled callers verified
-actor-camera-angles	great-merge/upstream/actor-camera-angles	a1776fbb96100f831634493544078c0f3d744769	256	Stock checks and retail SHA-1 passed for both commits; actor storage and scripted camera behavior checked
+actor-camera-angles	great-merge/upstream/actor-camera-angles	edea475228f09c76e439b7f8ccd430a7f8ea3789	269	Stock checks and retail SHA-1 passed for all three commits; actor storage, playback and encounter pose calls verified

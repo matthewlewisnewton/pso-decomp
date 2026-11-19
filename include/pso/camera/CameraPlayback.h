@@ -2,7 +2,10 @@
 #define PSO_CAMERA_CAMERAPLAYBACK_H
 
 #include "types.h"
+#include "pso/system/AngleTypes.h"
 #include <stddef.h>
+
+struct Vec;
 
 struct CameraPlayback {
     void cache_target_and_forward(s32 angle) const;
@@ -18,5 +21,10 @@ typedef char CameraPlaybackSize[(sizeof(CameraPlayback) == 0xC) ? 1 : -1];
 typedef char CameraPlaybackFlagsOffset[(offsetof(CameraPlayback, flags) == 2) ? 1 : -1];
 typedef char CameraPlaybackFrameOffset[(offsetof(CameraPlayback, frame) == 4) ? 1 : -1];
 typedef char CameraPlaybackStepOffset[(offsetof(CameraPlayback, frame_step) == 8) ? 1 : -1];
+
+extern "C" {
+void set_scripted_camera_pose(const Vec *position, const Vec *target, const CameraAngles *angles);
+CameraPlayback *get_scripted_camera_playback();
+}
 
 #endif

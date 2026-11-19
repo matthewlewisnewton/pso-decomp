@@ -35,11 +35,9 @@ s32 push_matrix();
 s32 post_translate_matrix(void *);
 void render__11TObjDFDemo3Fv(u8 *arg0);
 s32 get_bml_motion(s32, s32);
-void set_scripted_camera_pose(void *, void *, void *);
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 }
 
-struct IVec_8004F030 { s32 x, y, z; };
 
 struct S_EF94 {
     u8 pad0[0x18];
@@ -68,7 +66,7 @@ S_EF94 *__dt__11TObjDFDemo3Fv(S_EF94 *o, s16 flag);
 u8 *TObjDFDemo3__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
 
 const char *TObjDFDemo3__name = "TObjDFDemo3";
-__declspec(section ".rodata") IVec_8004F030 lbl_804373A4 = {0, 0, 0};
+__declspec(section ".rodata") CameraAngles lbl_804373A4 = {0, 0, 0};
 void *lbl_804856C0[8] = {
     (void *)0x0, (void *)0x0, (void *)0x0, (void *)0x0,
     (void *)0xffffffff, (void *)0x0, (void *)0x0, (void *)0x0,
@@ -97,7 +95,7 @@ void TObjDFDemo3::render() {
     }
     push_matrix();
     set_motion_packed_rotation();
-    post_translate_matrix((u8 *)&this->m_a0);
+    post_translate_matrix(&camera_position);
     rotate_matrix_y(0, this->m_ac);
     set_current_texture_list((GinjaTextureList *)this->m_98);
     ((ModelNodePositionCapture *)(this->m_b8))->install();
@@ -140,14 +138,14 @@ void TObjDFDemo3::run_task() {
         }
     }
     if ((s32) this->m_b0 == 0x86) {
-        temp_r3 = (u32)spawn_particle_effect((const Vec *)&this->m_a0, 0x9B);
+        temp_r3 = (u32)spawn_particle_effect(&camera_position, 0x9B);
         if (temp_r3 != 0U) {
             ((TParticleCtrl *)temp_r3)->set_flags(0x40);
         }
     }
     temp_r0 = this->m_b0;
     if ((temp_r0 == 0x28) || (temp_r0 == 0x3C)) {
-        play_sound_effect(0x4003D03A, (const Vec *)&this->m_a0, 0, 1);
+        play_sound_effect(0x4003D03A, &camera_position, 0, 1);
     }
     if ((*(f32 *)&this->_padB4 += 1.0f) > 119.0f) {
         *(f32 *)&this->_padB4 = 119.0f;
@@ -212,9 +210,10 @@ u8 *TObjDFDemo3__ct(u8 *base, s32 parent, s32 arg2, s32 arg3) {
     *(s32 *)((s8 *)base + 0x90) = 0;
     activate_camera_mode(5);
     {
-        IVec_8004F030 c = lbl_804373A4;
-        c.y = *(s32 *)((s8 *)base + 0xAC);
-        set_scripted_camera_pose(base + 0xA0, base + 0xA0, &c);
+        CameraAngles c = lbl_804373A4;
+        c.yaw = *(s32 *)((s8 *)base + 0xAC);
+        const Vec *camera_position = &((TObjDFDemo3 *)base)->camera_position;
+        set_scripted_camera_pose(camera_position, camera_position, &c);
     }
     lbl_804856E0.cache_target_and_forward(0x1555);
     *(ModelNodePositionCapture **)((s8 *)base + 0xB8) = ModelNodePositionCapture::create((ModelNodePositionEntry *)lbl_804856C0, (Vec *)(base + 0xBC));

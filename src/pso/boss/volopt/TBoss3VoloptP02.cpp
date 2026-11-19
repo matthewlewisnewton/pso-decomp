@@ -68,8 +68,6 @@ void vec3_add_to(void *, void *);
 s32 restore_player_cameras(void);
 s32 activate_camera_mode(int, f32);
 void start_camera_shake(s32 id, f32 v);
-s32 set_scripted_camera_pose(void *, void *, void *);
-u8 *get_scripted_camera_playback(s16);
 void TObjPlayer__sub_801BA42C(void);
 u8 *get_player_by_client_id(s32);
 extern u8 identity_matrix[];
@@ -1111,13 +1109,14 @@ void TBoss3VoloptP02::update_death_sequence() {
         activate_camera_mode(5, 0.0f);
         cam.cache_target_and_forward(0x160A);
         this->rotation.yaw = 0;
-        set_scripted_camera_pose(&boss3_volopt_spawn_pos, &boss3_volopt_spawn_pos, &this->rotation.pitch);
+        set_scripted_camera_pose(&boss3_volopt_spawn_pos, &boss3_volopt_spawn_pos, &rotation);
         TObjPlayer::freeze_all_players();
         TWindowCtrl::init_all_slots();
         state = 2;
         break;
     case 2:
-        if ((*(u16 *)(get_scripted_camera_playback((*(s16 *)&timer)--) + 2) & 1) || *(s16 *)&timer < 0) {
+        (*(s16 *)&timer)--;
+        if ((get_scripted_camera_playback()->flags & 1) || *(s16 *)&timer < 0) {
             restore_player_cameras();
             TWindowCtrl::init_all_slots2();
             TObjPlayer__sub_801BA42C();
