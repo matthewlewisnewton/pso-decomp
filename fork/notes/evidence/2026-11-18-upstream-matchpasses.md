@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `bfbb029994` changes 1,367 paths counting both sides of renames. The all-source snapshot is `93122b81a9`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `76d4f68f70` changes 1,369 paths counting both sides of renames. The all-source snapshot is `68a837ec3e`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `00d9ae7483` | `1b33f02f81` |
 | `great-merge/current/combat` | `e566cc2ccd` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `1001dd7640` | `9445c1e728` |
-| `great-merge/current/window-frames` | `73da7884fb` | `942a0c050f` |
+| `great-merge/current/window-frames` | `51ded1241f` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `3b5e256b38` | `fa2a1e5837` |
@@ -23,6 +23,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Enemy action, targeting and resource names | Included in its combat review | `0cce15ee15` |
 | Stream entries, AFS tag and CVFS diagnostics | Included in its resource review | `132daf866a` |
 | Dark Falz scene parts and Gol Dragon model override | Included in its encounter review | `bfbb029994` |
+| Shortcut preview and symbol-chat construction | Included in its window review | `76d4f68f70` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -45,6 +46,14 @@ The resource-lifetimes review at `665123cc84` carries 21 names from the fork. Th
 The standalone resource review compiled 2,450 source objects and the encounter review compiled 2,449. The cumulative stack and working fork each compiled 2,450. Every selected input has the same allocated contents and relocation destinations as its reference after resolving the new names to their original addresses. The three renamed exports have one provider each. Each named private record has the original bytes and offset. The stock checker passed in object-report mode against current upstream for both reviews and the cumulative stack. The address comparison against fork main still has no lost matched or linked code or non-padding data. The executable hash on this base remains unverified.
 
 The source index gives partial evidence for eight historical paths and closes the Nano Drago and main-menu header records. Their complete declarations and comments survive in order and linkage at the current owners, including the ancestor-side removals. The index has 1,741 entries awaiting owner comparison and 514 with partial evidence. The layer check and eleven unit tests passed, and the disposable workspace still reproduces all 133 tooling paths.
+
+### Shortcut preview and native symbol-chat construction
+
+The window review at `51ded1241f` and cumulative stack at `76d4f68f70` now carry the complete 52-byte shortcut preview pool at 0x805DD348 through 0x805DD37B. It has the separator, icon choices, dimensions and depth under the fork names. The preview, preset list and chat list construct `TWindowChatSymbol` directly. The editor calls the same native constructor for its base subobject and uses the base selection and visibility methods. The fork tooling overlay retains the empty-kind host behavior.
+
+The preview retains its 1,044 original instruction bytes. The five earlier functions and their table remain in the current shop window owner. The implementation keeps the name `show_shortcut` because it fills the whole window, including the entry labels and icons. The word-select formatter still uses the current `TWindowDD` declaration. The fork index records that remaining source difference and the recovered changes across 7 historical paths. It has 1,734 entries awaiting owner comparison and 521 with partial evidence.
+
+Each of the three builds compiled 2,450 source objects. The standalone review compared 2,485 selected inputs. The combined stack and working fork compared 2,484 each. Allocated sections, symbol locations and relocation destinations match the preceding objects after resolving the new names to their original addresses. The thirteen data entries and three symbol-chat method definitions have one provider each, the same original bytes and no unresolved references to the old names. Both review heads passed the stock checker in object-report mode. The comparison with fork main found no lost matched or linked code or non-padding data. The executable hash remains unverified on this base.
 
 ## Consolidated review queue on `c572111ed6`
 
