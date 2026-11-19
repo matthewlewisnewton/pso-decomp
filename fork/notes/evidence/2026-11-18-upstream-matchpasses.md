@@ -44,6 +44,21 @@ The original thirteen-way split crosses changes to shared interfaces. The local 
 
 The 514-path archive and caller stage is a local build checkpoint. It still needs smaller related review groups. The two commits preserve a working base while that split is refined.
 
+Two smaller interfaces within the checkpoint now build on the combined source and
+memory changes (`5c12a4b1cf`). These are stacked local review candidates.
+
+| Local branch | Commit | Paths changed from parent | Review scope |
+| --- | --- | ---: | --- |
+| `great-merge/fork-validation/current-texture-list` | `90e77d43ef` | 353 | Pass the current texture list to the renderer from each game caller. |
+| `great-merge/fork-validation/bml-accessors` | `2085b37b6b` | 258 | Use one typed BML model and texture accessor declaration across archive loads and their game callers. |
+
+Both pass upstream's build and regression checks and produce the retail DOL.
+The BML stage also passes all three fork accessor-contract tests for declarations,
+consumers, and table layout. Counts overlap because many game objects both load
+and draw a model. Comparing the second stage with the earlier pre-window checkpoint
+leaves 364 changed paths.
+
+
 ## Item model and texture archive reads
 
 The model and texture loaders share a five-word reader. Their concrete objects span 0x40 and 0x28 bytes respectively. The native constructors pass the AFS filename, partition, and file count to the common initializer. Reads forward the handle, sector count, and destination to the alignment-checked ADXF function. The interface now serves the GSL, scene and sound-bank callers too. The local audio and archive group at `694270fb8b` contains 77 changed paths against the merged master.

@@ -15,7 +15,7 @@ GINJA_SAN := $(GINJA_BIN)_san
 EXI_BIN := exi_ethernet_fallbacks
 EXI_SAN := $(EXI_BIN)_san
 
-.PHONY: all run sanitize clean
+.PHONY: all run sanitize clean musyx
 
 all: $(BIN) $(CALLBACK_BIN) $(LOADER_BIN) $(GINJA_BIN) $(EXI_BIN)
 
@@ -53,5 +53,17 @@ sanitize: vector_math_fallbacks.cpp ../include/pso/port/VectorMathFallbacks.h ..
 	$(CXX) $(CPPFLAGS) -std=c++98 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -o $(EXI_SAN) exi_ethernet_fallbacks.cpp
 	./$(EXI_SAN)
 
+# The original MusyX layouts require a compiler and runtime with 32-bit pointers and longs.
+musyx: musyx_fallbacks
+	./musyx_fallbacks
+
+MUSYX_RUNTIME := ../../src/musyx/runtime
+MUSYX_SOURCES := musyx_fallbacks.cpp $(MUSYX_RUNTIME)/Chorus/chorus_fx.c $(MUSYX_RUNTIME)/StdReverb/reverb.c
+musyx_fallbacks: $(MUSYX_SOURCES) $(MUSYX_RUNTIME)/musyx_runtime_b.h $(MUSYX_RUNTIME)/musyx_dspvoice.h \
+		../../include/pso/audio/SoundReverb.h ../../include/pso/audio/SoundMixVoice.h ../../include/types.h
+	$(CXX) $(CPPFLAGS) -I../../include -I../../src -I../../libs/dolphin/include $(CXXFLAGS) \
+		-m32 -msse2 -mfpmath=sse -fno-builtin -ffunction-sections -fdata-sections \
+		-Wl,--gc-sections -o $@ $(MUSYX_SOURCES)
+
 clean:
-	rm -f $(BIN) $(SAN) $(CALLBACK_BIN) $(CALLBACK_SAN) $(LOADER_BIN) $(LOADER_SAN) $(GINJA_BIN) $(GINJA_SAN) $(EXI_BIN) $(EXI_SAN)
+	rm -f musyx_fallbacks $(BIN) $(SAN) $(CALLBACK_BIN) $(CALLBACK_SAN) $(LOADER_BIN) $(LOADER_SAN) $(GINJA_BIN) $(GINJA_SAN) $(EXI_BIN) $(EXI_SAN)

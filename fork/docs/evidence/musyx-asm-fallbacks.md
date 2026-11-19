@@ -81,3 +81,20 @@ truncation toward zero (`(s32)` of an in-range float). `DoCrossTalk`'s
   `HandleReverb` with `mix == 0` stores `(s32)(0.6 * sample)`, leaves
   `preDelayCurrent` on the line base, writes the last sample to `line[0]`,
   and writes the 4-byte pointer bits at float index 110.
+
+
+## Integration validation
+
+The integration build retains upstream's compiler pragmas and reproduces the retail DOL
+(`0d85744b51d7379efb025a943d0cd5aaae2191a3`). Both recovered source files compile
+and run as 32-bit C++ with the actual MusyX headers. On x86 Linux with multilib startup
+files installed, run `make -C ports/tests musyx`. On the validation host, the same
+test and source objects were linked with the installed i386 C library and a minimal
+process entry point.
+
+The fixture checks 160 outputs for each resampler, phase carry, ring wrap, and the
+three retained history samples. It checks nearest-even cross-talk output and dry
+and wet reverb on all three channels. Predelay lengths 0, 1, 2, 110, 111, and 112
+are covered by guard values. The host implementation reproduces the cursor store
+at float index 110 whenever that slot exists. On shorter allocations it skips that
+store. The GameCube assembly is unchanged.
