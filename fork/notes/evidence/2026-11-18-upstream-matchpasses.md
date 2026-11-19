@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `bdc5b56af7` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects and player technique casts. The all-source snapshot is `cbaddf6273`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `320749ae74` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts and dragon attack ownership. The all-source snapshot is `3bacd2e72e`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -11,7 +11,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
 | `great-merge/current/combat` | `c780ad28de` |
-| `great-merge/current/encounter-drawing` | `629568f631` |
+| `great-merge/current/encounter-drawing` | `d5e81a793d` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
 | `great-merge/current/render-interfaces` | `6c43c3a146` |
@@ -64,7 +64,15 @@ The 25-file replay at `bdc5b56af7` restores the original 6x47 packet, player cas
 
 The standalone combat review at `c780ad28de`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork-only linker inventory replaces two stale retained names with their recovered exports. The fork overlay round-trips 133 paths and passes all eleven layer tests.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) records the coverage at 25 paths. It has 1,413 entries awaiting owner comparison and 668 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) records the coverage at 25 paths.
+
+### Dragon attack and camera ownership
+
+The 20-file replay at `320749ae74` types the Gol Dragon leader, attack-slot and spawn calls, the Dragon burrow trail, the live camera target and the render position. The source replay follows functions at their original addresses through upstream's combined owners. All ten renamed functions retain their original addresses and sizes. Twelve linked units contain 435 exact functions. The two class vtables match at `0x804E4BF0` and `0x804F1A78`.
+
+The standalone encounter review at `d5e81a793d`, combined stack, all-source snapshot and working fork pass the project checker and reproduce the original executable. The fork-only linker inventory updates four retained names. The 133-path overlay round-trips and all eleven layer tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records 24 source and declaration entries. It has 1,395 entries awaiting owner comparison and 684 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
