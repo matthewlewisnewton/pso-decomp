@@ -1,697 +1,697 @@
 proposed_group	local_commit	path	edit_blocks
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	config/GPOE8P/psov3/config.yml	1
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	config/GPOE8P/psov3/symbols.txt	50
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	include/pso/render/CurrentTextureList.h	1
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	include/pso/system/BmlAccessors.h	1
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	include/pso/system/BmlResource.h	5
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	include/pso/system/BmlResourceLoad.h	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	include/pso/system/BmlResourceLoader.h	1
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	include/pso/unk/TLobby.h	1
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	include/pso/unk/TLobby_8001EF5C.h	3
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/camera/TObjCamera.cpp	9
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/quest/TOQuestTalkBase.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_8001EF5C.cpp	46
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_8002C140.cpp	3
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_800F8AA8.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_801E2F94.cpp	3
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_801E43E4.cpp	3
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_80228154.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_8028A7C8.cpp	3
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_8028EA28.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TLobby_803382E4.cpp	4
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TUnk_8048E1A4.cpp	13
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/TUnk_804CC870.cpp	4
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8001C388.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8004AA04.cpp	5
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8004D9A8.cpp	5
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_80066F5C.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_80184C2C.cpp	9
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8026C664.cpp	1
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8028A714.cpp	4
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8028A820.cpp	4
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8029EE2C.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_802AE978.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_802E10D8.cpp	3
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_802F0E24.cpp	6
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_802F190C.cpp	2
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8035B6B0.cpp	3
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_8035B750.cpp	5
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_803626A8.cpp	10
-Archive and renderer interfaces	d5f5e73dede4513fd19a877db01f4d48f12a5e74	src/pso/unk/text_803DA798.cpp	3
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	config/GPOE8P/psov3/config.yml	70
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	config/GPOE8P/psov3/linked_units.txt	1
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	config/GPOE8P/psov3/splits.txt	1
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	config/GPOE8P/psov3/symbols.txt	162
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	include/pso/enemy/TObjEnePanBARA.h	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	include/pso/enemy/TUnk_80486924.h	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	include/pso/enemy/berura/TObjEneRe7Berura.h	6
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	include/pso/enemy/panarms/TObjEnePanarms.h	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	include/pso/object/ambient/TObjFish_800E2FFC.h	1
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	include/pso/system/ModelNodePositionCapture.h	1
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/effect/enemy/TEneEffHamon.cpp	4
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/TObjEnemyCustom.cpp	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/TUnk_804909C4.cpp	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/balclaw/TObjEneBalClaw.cpp	6
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/balclaw/TObjEneBalClawBody.cpp	4
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp	3
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/beast/TObjEneBeast.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/berura/TObjEneRe7Berura.cpp	46
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/bringer/TObjEneDf2Bringer.cpp	6
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/canadin/TObjEneMe1Canadin.cpp	26
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/darkgunner/DarkGunner.cpp	12
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/dd/TObjEneDD.cpp	4
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/deldepth/DelDepthMotion.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/deldepth/TObjEneDelDepth.cpp	12
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/dellbiter/TObjEneDellBiter.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/dimedian/TObjEneDimedian.cpp	8
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp	13
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp	8
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/dubchik/TObjEneDubchik.cpp	12
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp	4
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/flower/TObjEneRe2Flower.cpp	8
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp	3
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/fly/TObjEneBm3Fly.cpp	7
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/fly/TObjEneBm3FlyNest.cpp	26
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gee/TObjEneMe1Gee.cpp	13
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gee/TObjEneMe1Gee_NEEDLE_802A4A44.cpp	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gibbles/TObjEneGibbles.cpp	9
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gibon/TObjEneBm5GibonU.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gigue/TObjEneMe1GiGue.cpp	11
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp	3
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp	6
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp	5
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp	3
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/illgill/TObjEneIllGill.cpp	8
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/lappy/TObjEneLappy.cpp	19
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp	24
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/merilllia/TObjEneMerillLia.cpp	17
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/moja/TObjEneMoja.cpp	24
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/morfos/TObjEneMorfos.cpp	20
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/morfos/TObjEneMorfosArm.cpp	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp	7
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/panarms/TObjEnePanarms.cpp	15
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp	6
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp	12
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/recon/TObjEneRecobox_8031E800.cpp	2
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp	8
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/recon/TObjEneRecon.cpp	7
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/recon/TObjEneReconBomb.cpp	4
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/saver/SaverLifecycle.cpp	8
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/shark/TObjEneShark.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp	13
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp	18
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp	10
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp	14
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp	3
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp	7
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/stelth/TObjEneMe3Stelth.cpp	13
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/enemy/wolf/TObjEneBm5Wolf.cpp	8
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/object/ambient/TObjFish_800E2FFC.cpp	1
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/system/ModelNodePositionCapture.cpp	1
-Enemy model archives and attachments	191ad01cf08cf36b58d86d4167d2785a8f0364fb	src/pso/unk/TLobby_8001D6A0.cpp	7
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	config/GPOE8P/psov3/symbols.txt	20
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TBoss4Type1.h	3
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TBoss4Type3.h	2
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TBoss4Uro.h	2
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h	1
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TBoss4ZakoTexture.h	1
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TBoss4Zanzo.h	1
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TObjDFDemo4.h	3
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	include/pso/boss/darkfalz/TObjDFDemo5.h	5
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TBoss4Thanks.cpp	4
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TBoss4Type1.cpp	16
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TBoss4Type3.cpp	13
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp	10
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp	5
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TBoss4Zanzo.cpp	13
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TOBoss4.cpp	12
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFDemo1.cpp	6
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFDemo2.cpp	5
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFDemo3.cpp	11
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFDemo4.cpp	14
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFDemo5.cpp	16
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp	2
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp	5
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFHorming.cpp	8
-Dark Falz models, textures and effect lifetimes	0c928e17e23e531912d5b8bdb1d61f2b924271e7	src/pso/boss/darkfalz/TObjDFJisin.cpp	16
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	config/GPOE8P/psov3/config.yml	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	config/GPOE8P/psov3/symbols.txt	24
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	include/pso/boss/barbaray/TBoss7DeRolLeC.h	1
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	include/pso/boss/olgaflow/Boss6Type2Data.h	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	include/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.h	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	include/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.h	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	include/pso/boss/olgaflow/TBoss6Type1.h	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	include/pso/boss/olgaflow/TBoss6Type2.h	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/TUnk_80484AFC.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/barbaray/TBoss7Crawfish.cpp	11
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/barbaray/TBoss7DeRolLeC.cpp	20
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TBoss2DeRolLe.cpp	7
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TBoss2Fin.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TBoss2Mine.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TBoss2Tentacle.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TObjBoss2CeilJunk.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp	5
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TObjBoss2Tunnel.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp	7
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/dragon/TBoss1Dragon.cpp	7
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/dragon/TObjBoss1Crater.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/dragon/TObjBoss1Floor.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/dragon/TObjBoss1Rock.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp	8
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp	6
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/galgryphon/TObjBoss5FloorGrass.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/galgryphon/TObjBoss5Pillar.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/goldragon/TBoss8Dragon.cpp	9
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/goldragon/TBoss8DragonEffTail.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp	7
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/goldragon/TObjBoss8Piller.cpp	8
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/Boss6Type2Data.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6CrushRock.cpp	4
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp	11
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp	13
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp	16
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp	20
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6MagMine.cpp	4
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Mine.cpp	4
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6PlotFalz.cpp	10
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Rock.cpp	7
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6RockChase.cpp	4
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Thanks.cpp	6
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Tube.cpp	9
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Type1.cpp	33
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Type2.cpp	17
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp	11
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TBoss3Volopt.cpp	10
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TBoss3VoloptCore.cpp	3
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp	7
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TBoss3VoloptMonitor.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TBoss3VoloptP01.cpp	5
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TBoss3VoloptP02.cpp	6
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp	4
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TObjVoloptCage.cpp	4
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TObjVoloptPillar.cpp	5
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/boss/volopt/TObjVoloptShutter.cpp	2
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/unk/text_8004D9A8.cpp	1
-Boss models and effect resources	7953a6caf64ea730cd1305672f47e4c7f7eea4a4	src/pso/unk/text_800F5BC0.cpp	1
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	config/GPOE8P/psov3/symbols.txt	2
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	include/pso/object/ambient/TObjFish.h	2
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	include/pso/object/ambient/TObjFish_8001ED90.h	2
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcBase.cpp	2
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcBringer.cpp	3
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcCloakroomBase.cpp	6
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcConnoisseur.cpp	3
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcEnemy.cpp	2
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcExpertBase.cpp	6
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcFemaleBase.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcFemaleChild.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcFemaleDwarf.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcFemaleFat.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcFemaleMacho.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcFemaleOld.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcFemaleTall.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcGovernorBase.cpp	6
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcHosa.cpp	9
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcHosa2.cpp	9
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcKenkyu.cpp	8
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcKenkyu2.cpp	9
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcKenkyuW.cpp	8
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMaleBase.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMaleChild.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMaleDwarf.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMaleFat.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMaleMacho.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMaleOld.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMaleTall.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcMoja.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcNgcBase.cpp	3
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcNgcBase_80358AE8.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcNurseBase.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcSecretaryBase.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcSoldierBase.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcSoldierMacho.cpp	4
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/npc/TObjNpcSoutokufu.cpp	8
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ambient/TButterfly.cpp	7
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ambient/TOBiwaMushi.cpp	11
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ambient/TOKurage.cpp	6
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ambient/TObjCGrass.cpp	8
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ambient/TObjFish.cpp	21
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ambient/TObjGrass.cpp	8
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ambient/TObjRain.cpp	2
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/city/CityDoors.cpp	12
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/city/CitySeason.cpp	9
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/city/CityTraffic.cpp	3
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/city/CityVerticalModel.cpp	2
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp	9
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lab/TOCapsuleLabo.cpp	7
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lab/TObjLaboDesignBase.cpp	7
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/LobbyGoGoBall.cpp	30
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/LobbyPigeonPath.cpp	30
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjButterflyLobby_80350958.cpp	11
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjCurtainLobby.cpp	5
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjKabochaLobby.cpp	5
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjLobbyMain.cpp	7
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjRainbowLobby.cpp	6
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjStendGlassLobby.cpp	5
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjSuisouLobby.cpp	5
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjTreeLobby.cpp	5
-Lobby, NPC and ambient models	be8d870a089d708a1368cf9b6716437e572fbb1c	src/pso/object/lobby/TObjWeddingLobby.cpp	5
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	config/GPOE8P/psov3/symbols.txt	25
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TDeadSpot.cpp	2
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TMotorcycle.cpp	11
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TOBind_801586B8.cpp	11
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TOHealGeneral.cpp	7
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjBigTuitate.cpp	16
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjChip.cpp	2
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjComputer.cpp	17
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjDoaEx01.cpp	14
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjHashi.cpp	12
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjLiveMonitor.cpp	10
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjSinBoard.cpp	5
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjTank.cpp	10
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/TObjTombstone.cpp	8
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/base/TObjMapObject.cpp	2
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TOAirconCave01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TOAirconCave02.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TOCakeshopCave01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TODragonflyCave01.cpp	7
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TOHangceilingCave01.cpp	12
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TORainbowCave01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TORevlightCave01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TORockCave.cpp	28
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TOSignCave01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TOSignCave02.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/cave/TOSignCave03.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/jungle/TOGrassJungle.cpp	7
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/jungle/TOJungleDesign.cpp	11
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/jungle/TORockJungleL01.cpp	5
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/mine/TOCapsuleMachine01.cpp	7
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/mine/TOComputerMachine01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/mine/TODragonflyMachine01.cpp	7
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/mine/TOHangerMachine01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/mine/TOLightMachine01.cpp	11
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/mine/TOMonitorMachine01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/mine/TOSparkMachine01.cpp	8
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/ruins/TOCapsuleAncient01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/ruins/TOMonumentAncient01.cpp	6
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/ruins/TOMonumentAncient02.cpp	8
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp	8
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/seabed/TObjSuisoChip.cpp	3
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/object/wreck/TOWreckAncient.cpp	11
-Stage scenery and map models	99a2926dbad792cdc57e78b8c12f7e9fb83ca110	src/pso/unk/TLobby_80209524.cpp	28
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	config/GPOE8P/psov3/symbols.txt	49
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/container/TContainerAncient01.cpp	18
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/container/TOContainerAncientEnemy.cpp	17
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/container/TObjContainerIdo_8018BEE4.cpp	11
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/container/TObjContainerItem.cpp	14
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/container/TObjContainerJung.cpp	24
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient01.cpp	6
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient03.cpp	6
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient04.cpp	6
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient05.cpp	6
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient06.cpp	5
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient07.cpp	5
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient08.cpp	10
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorAncient09.cpp	10
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorCave01.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorCave02.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorCave03.cpp	7
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorFourLightSpace.cpp	15
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorJungleMain.cpp	14
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorLabo.cpp	24
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorMachine01.cpp	12
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorMachine02.cpp	8
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorVS2Door01.cpp	6
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TODoorVoShip.cpp	8
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TObjDoorJung.cpp	11
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TObjDoorKey.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/door/TObjDoor_8018E358.cpp	13
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TLazerFenceSw.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TOBarrierEnergy01.cpp	7
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TOFenceAncient01.cpp	4
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TOFenceAncient02.cpp	4
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TOFenceAncient03.cpp	4
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TOFenceAncient04.cpp	4
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TOFenceBase.cpp	2
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TOVS2Wall01.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TObjLazerFence4.cpp	4
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/fence/TObjLazerFenceNorm.cpp	14
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TODummyKeyCave01.cpp	1
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TOKeyAncient01.cpp	6
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TOKeyAncient02.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TOKeyAncient03.cpp	7
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TOKeyCave01.cpp	8
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TOKeyGenericSw.cpp	12
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TOKeyJungleMain.cpp	7
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/key/TOKeyMachine01.cpp	6
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/switch/TOSensorAncient01.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/switch/TOSensorGeneral01.cpp	10
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOExplosiveMachine.cpp	13
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOMine.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOMineIcon01.cpp	2
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOMineIcon02.cpp	2
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOMineIcon03.cpp	2
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOMineIcon04.cpp	2
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOTrap.cpp	2
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOTrapAncient01.cpp	10
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOTrapAncient02.cpp	15
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOTrapChainSawEdge.cpp	15
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/trap/TOTrapSeabed01.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjAreaWarpEndingJung.cpp	9
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjCityMainWarpChallenge.cpp	4
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjCityMainWarp_80186F84.cpp	1
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjLaboMapWarp.cpp	16
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjMapWarpAncient.cpp	12
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjWarpBossMulti.cpp	16
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjWarpJungMain.cpp	7
-Doors, switches and trap models	788bdd298c3aff45680e5b2214e670d403dced8e	src/pso/object/warp/TObjWarpLobby.cpp	7
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	config/GPOE8P/psov3/config.yml	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	config/GPOE8P/psov3/linked_units.txt	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	config/GPOE8P/psov3/splits.txt	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	config/GPOE8P/psov3/symbols.txt	19
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	configure.py	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	include/pso/item/TItemSpecialEvent.h	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	include/pso/item/TUnk_804F112C.h	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	include/pso/unk/text_803DA798.h	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TBGLightningCtrl.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TBreakUpMdl.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TDuelEffectNumber.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TDuelEffectString.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TEF_LensFlare.cpp	4
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TEffClitical.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TEffIndirectCtrl.cpp	3
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/TKomorebi.cpp	11
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/item/TItemEffEquip.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/item/TItemEffPG.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/ParticleBallistic.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/ParticleOrbit.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/ParticleRadial.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/TParticleCtrl.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/TParticleCtrl_80085EE4.cpp	3
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/TParticleCtrl_800867E4.cpp	3
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/TParticleCtrl_800874F4.cpp	7
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/particle/TParticleCtrl_80327D30.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonEstlla.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonFarlla.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonGolla.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonLeilla.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonMylla.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonPilla.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonRainbow.cpp	3
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/photon/TPhotonYoulla.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/sprite/TQuadSpriteCol.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/sprite/TQuadSpriteNormal.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/sprite/TQuadSpriteScl.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/sprite/TQuadSpriteSclCol.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/effect/sprite/TQuadSpriteSclColRot.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/item/TItemLoad_80110010.cpp	6
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/item/TItemLoad_801105AC.cpp	5
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/item/TItemSpecialEvent.cpp	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/item/TUnk_804F112C.cpp	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/PhotonBlastResults.cpp	5
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/PlayerTaskEffects.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_8002E784.cpp	3
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_80083594.cpp	9
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_801AF2F0.cpp	5
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_801D84CC.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_8023E480.cpp	3
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_802790CC.cpp	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_8033E910.cpp	4
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TObjPlayer_80357B2C.cpp	4
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TPlayerFootStamp.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TPlyPhotonChair.cpp	12
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/player/TUnk_80491478.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/technique/TTecBarta.cpp	4
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/technique/TTecCtrl.cpp	5
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/technique/TTecGiBarta.cpp	7
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/technique/TTecMegid.cpp	3
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/technique/TTecRaBarta.cpp	4
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/technique/TTecRaFoie.cpp	7
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/unk/TLobby_80103F5C.cpp	1
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/unk/TLobby_80104374.cpp	2
-Player equipment, techniques and effects	e701065b452eec857dcedd697633fff995fbadf6	src/pso/unk/text_803DA798.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	config/GPOE8P/psov3/symbols.txt	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	include/pso/ui/ItemListRow.h	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	include/pso/ui/hud/TRaderMapCore.h	1
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/system/scene/TEndingAB.cpp	4
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/system/scene/TEndingC_8008D00C.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/system/scene/TEndingPic.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/system/scene/TScene.cpp	5
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/system/scene/TSceneSora.cpp	9
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp	4
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/city/TCheckRoomSequence.cpp	7
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/city/TMedicalCenterSequence.cpp	1
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdBackTxtGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp	4
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdChrSelSlotGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdEndText.cpp	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdGameStartBackGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdGameStartGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdGameStartLineGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdGameStartShadowGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdGameStartShineGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdGuideButtonGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdMcSelectCursorGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdMcSelectMcGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp	6
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdMultiOkGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdMultiPlayerNoGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdPlyPltAnimGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdPlyStatusGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp	5
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdRayGC.cpp	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdRicoRingCtrl.cpp	9
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdScrollWinGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdSelectTxtSubGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp	10
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdTitleGC.cpp	2
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/frontend/TAdTitleTexGC.cpp	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/hud/TLockOnCursor.cpp	8
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/hud/TMainCursor.cpp	3
-Character creation and menu models	62cb0e28d2dc6b03a8d7981cc6b37fccda1e0b22	src/pso/ui/hud/TRaderMapCore.cpp	11
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	config/GPOE8P/psov3/config.yml	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	config/GPOE8P/psov3/symbols.txt	27
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TUnk_804CE964.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TUnk_804CF0B8.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TUnk_804D0658.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TUnk_804EFBAC.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowActionPalette.h	3
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowAddition.h	3
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowBase.h	6
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowBreakIn.h	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowCallBack.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowComCard.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowDD_WS_ScrollBar.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowDD_WS_String.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowDeposit.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowDrawContext.h	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowInputNumber.h	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowLockOn.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowMeseta.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowMessage.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowQuantity.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowRoom.h	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowSnapShot.h	7
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowSnapShot_802A5B2C.h	4
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowSoundBalance.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowTimer.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/ui/window/TWindowUserSort.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	include/pso/unk/text_8026CB5C.h	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/quest/TQuestListChallenge.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/quest/TQuestListOnline.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/quest/TQuestListVM.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/quest/challenge/TChallenge4PItemSelect.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TMessageWindowController.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TObjBagWarnWin.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TObjResultWin.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindow.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowActionPalette.cpp	29
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowAddition.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowAddition_80244238.cpp	11
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowArea.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowCheckBox.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowComCard.cpp	4
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowCtrlMain.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowCtrl_8024C6CC.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowDD_8034055C.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowDD_80340A78.cpp	7
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowDD_80341334.cpp	9
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowDD_80341A08.cpp	12
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowDD_803488A8.cpp	6
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowDeposit.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowEffectLight.cpp	4
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowFukidasi.cpp	24
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowFukidasi_80252BF8.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowGetComCard_8007B54C.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowInputNumber.cpp	7
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowLockOn_80262C3C.cpp	21
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowMeseta.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowMessage.cpp	9
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowMessageInfomation.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowMessageLog.cpp	15
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowMessagePage.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowMessageScroll.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowQuantity.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowRoom.cpp	3
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowSnapShot.cpp	20
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp	26
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowSoundBalance.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/ui/window/TWindowUserSort.cpp	2
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/unk/TLobby_80338E9C.cpp	1
-Window frame and layout	c3efa4344eac2371e79946afe9fcd3acbd799102	src/pso/unk/text_8026CB5C.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	config/GPOE8P/psov3/symbols.txt	13
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/chat/TWindowChatSymbol.h	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/chat/TWindowSubSymbolChatFaceType.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/chat/TWindowSubSymbolChatHelp.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/chat/TWindowSubSymbolChatParts.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowDD_WS_Word.h	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowKeyBoardBase.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowKeyBoardHard.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowKeyBoardSoft.h	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowKeyBoardSoft_8024E68C.h	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowMenu.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowMenuIconLine.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowMenuMainMenu.h	4
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowShortCut.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowSubAreaMapDisp.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowSubCustomSelect.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/ui/window/TWindowSubMagPhoton.h	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	include/pso/unk/TUnk_804CE7D0.h	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/quest/challenge/TChallenge4PItemSelect.cpp	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/ShortMail.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowChatSymbol.cpp	5
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubShortMail_80131AA4.cpp	4
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp	3
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubSymbolChat.cpp	3
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp	5
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubSymbolChatParts.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp	4
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp	3
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/keyboard/TKeyBoardControl.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowChoiceSetting.cpp	4
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowChoiceSetting_80249078.cpp	3
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowChoiceSetting_80249240.cpp	3
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowKeyBoardBase.cpp	6
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowKeyBoardSoft_8024E68C.cpp	19
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowMainMenu_802AD538.cpp	11
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowMenuMainMenu.cpp	3
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowOptionCtrl.cpp	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowShortCut.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp	4
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubAreaMapDisp.cpp	5
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubComCardList.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubComCard_8007341C.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubComCard_8007A810.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubComCard_80244774.cpp	27
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubComCard_80249120.cpp	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubComCard_80265410.cpp	12
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubCustomSelect.cpp	11
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubMag.cpp	1
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubMagPhoton.cpp	4
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/ui/window/TWindowSubShortCutList.cpp	2
-Chat, lists and option windows	b723c6a923b44139088d216d372107c7d17fdb52	src/pso/unk/text_8026C664.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	config/GPOE8P/psov3/symbols.txt	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowChallengeResult.h	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowDuelResult.h	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowHelpItem.h	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowLoadItemTexture.h	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowMessageQuest.h	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowSimpleStatus.h	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowSubCustomEquip.h	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowSubQuestBoardSelect.h	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	include/pso/ui/window/TWindowSubStatusDisp.h	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/quest/TQuestListChallenge.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/quest/TQuestListOnline.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/quest/TQuestListVM.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/THunterGuildSeqOffline.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/THunterGuildSeqOnlineTask.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/THunterGuildWarning.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopArmorListWindow.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopDeleteItemWindow.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopEquipmentGearSequence.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopEquipmentListWindow.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopEquipmentSellWindow.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopEquipmentSequence.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopGetItemWindow.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopItemListWindow.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopItemTecSequence.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopJudgmentItemWindow.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/city/TShopKeepItemWindow.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowChallengeResult.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowDuelResult.cpp	6
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowHelpItem.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowHelpItem_802530D0.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowHelpItem_802531A0.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowHelpItem_802540AC.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowHelpItem_80255AB4.cpp	10
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowHelpItem_8025A60C.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowLoadItemTexture.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowMessageQuest.cpp	7
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowPartyStatus.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowShop.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSimpleStatus.cpp	7
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowStatus.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubCustomEquip.cpp	17
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubEquipKind.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubEquipList.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubItemList.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubQuestBoardSelect.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_800FC3E0.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_80144B14.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp	6
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp	61
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp	1
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp	16
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_8026DFE8.cpp	3
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp	14
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp	2
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp	4
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp	6
-Shop, status and battle windows	ba214230c9ebfbb0e1f305cfd86a699f961dad3b	src/pso/unk/text_80255A38.cpp	1
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	config/GPOE8P/psov3/config.yml	4
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	config/GPOE8P/psov3/symbols.txt	35
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	include/pso/system/RlcArchive.h	1
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	include/pso/system/memory.h	1
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	include/pso/unk/TLobby.h	1
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	include/pso/unk/text_800D8830.h	1
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	include/pso/unk/text_803DE8BC.h	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/quest/QuestOpcodeHandlers.cpp	4
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/quest/TQuestVmDownLoadServer.cpp	6
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/render/ChunkMaterialState.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/system/TGStream.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_800FA164.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_800FA2A0.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_801E2F94.cpp	10
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_801E43E4.cpp	1
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_80207DA8.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_80226C3C.cpp	4
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_802409AC.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_8028EA28.cpp	1
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TLobby_803DE778.cpp	4
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/TUnk_804DDD28.cpp	4
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/text_800D8830.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/text_800FA464.cpp	3
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/text_803D96A8.cpp	3
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/text_803DA798.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/text_803DAFA8.cpp	2
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/text_803DD5E0.cpp	11
-Resource buffers, motion archives and area streaming	402106a6c3989b415a7b8954c7dccfca8ce863f2	src/pso/unk/text_803DE8BC.cpp	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	config/GPOE8P/psov3/config.yml	1
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	config/GPOE8P/psov3/symbols.txt	50
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	include/pso/render/CurrentTextureList.h	1
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	include/pso/system/BmlAccessors.h	1
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	include/pso/system/BmlResource.h	5
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	include/pso/system/BmlResourceLoad.h	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	include/pso/system/BmlResourceLoader.h	1
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	include/pso/unk/TLobby.h	1
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	include/pso/unk/TLobby_8001EF5C.h	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/camera/TObjCamera.cpp	9
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/quest/TOQuestTalkBase.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_8001EF5C.cpp	46
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_8002C140.cpp	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_800F8AA8.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_801E2F94.cpp	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_801E43E4.cpp	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_80228154.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_8028A7C8.cpp	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_8028EA28.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TLobby_803382E4.cpp	4
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TUnk_8048E1A4.cpp	13
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/TUnk_804CC870.cpp	4
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8001C388.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8004AA04.cpp	5
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8004D9A8.cpp	5
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_80066F5C.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_80184C2C.cpp	9
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8026C664.cpp	1
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8028A714.cpp	4
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8028A820.cpp	4
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8029EE2C.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_802AE978.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_802E10D8.cpp	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_802F0E24.cpp	6
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_802F190C.cpp	2
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8035B6B0.cpp	3
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_8035B750.cpp	5
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_803626A8.cpp	10
+Archive and renderer interfaces	35275f0da4eb44347e6202abf78b92da7ccd33c6	src/pso/unk/text_803DA798.cpp	3
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	config/GPOE8P/psov3/config.yml	70
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	config/GPOE8P/psov3/linked_units.txt	1
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	config/GPOE8P/psov3/splits.txt	1
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	config/GPOE8P/psov3/symbols.txt	162
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	include/pso/enemy/TObjEnePanBARA.h	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	include/pso/enemy/TUnk_80486924.h	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	include/pso/enemy/berura/TObjEneRe7Berura.h	6
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	include/pso/enemy/panarms/TObjEnePanarms.h	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	include/pso/object/ambient/TObjFish_800E2FFC.h	1
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	include/pso/system/ModelNodePositionCapture.h	1
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/effect/enemy/TEneEffHamon.cpp	4
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/TObjEnemyCustom.cpp	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/TUnk_804909C4.cpp	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/balclaw/TObjEneBalClaw.cpp	6
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/balclaw/TObjEneBalClawBody.cpp	4
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp	3
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/beast/TObjEneBeast.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/berura/TObjEneRe7Berura.cpp	46
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/bringer/TObjEneDf2Bringer.cpp	6
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/canadin/TObjEneMe1Canadin.cpp	26
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/darkgunner/DarkGunner.cpp	12
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/dd/TObjEneDD.cpp	4
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/deldepth/DelDepthMotion.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/deldepth/TObjEneDelDepth.cpp	12
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/dellbiter/TObjEneDellBiter.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/dimedian/TObjEneDimedian.cpp	8
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp	13
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp	8
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/dubchik/TObjEneDubchik.cpp	12
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp	4
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/flower/TObjEneRe2Flower.cpp	8
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp	3
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/fly/TObjEneBm3Fly.cpp	7
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/fly/TObjEneBm3FlyNest.cpp	26
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gee/TObjEneMe1Gee.cpp	13
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gee/TObjEneMe1Gee_NEEDLE_802A4A44.cpp	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gibbles/TObjEneGibbles.cpp	9
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gibon/TObjEneBm5GibonU.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gigue/TObjEneMe1GiGue.cpp	11
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp	3
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp	6
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp	5
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp	3
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/illgill/TObjEneIllGill.cpp	8
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/lappy/TObjEneLappy.cpp	19
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp	24
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/merilllia/TObjEneMerillLia.cpp	17
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/moja/TObjEneMoja.cpp	24
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/morfos/TObjEneMorfos.cpp	20
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/morfos/TObjEneMorfosArm.cpp	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp	7
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/panarms/TObjEnePanarms.cpp	15
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp	6
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp	12
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/recon/TObjEneRecobox_8031E800.cpp	2
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp	8
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/recon/TObjEneRecon.cpp	7
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/recon/TObjEneReconBomb.cpp	4
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/saver/SaverLifecycle.cpp	8
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/shark/TObjEneShark.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp	13
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp	18
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp	10
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp	14
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp	3
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp	7
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/stelth/TObjEneMe3Stelth.cpp	13
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/enemy/wolf/TObjEneBm5Wolf.cpp	8
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/object/ambient/TObjFish_800E2FFC.cpp	1
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/system/ModelNodePositionCapture.cpp	1
+Enemy model archives and attachments	b4d47e13555d581c6f7dac55dc4db8394a8c94b9	src/pso/unk/TLobby_8001D6A0.cpp	7
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	config/GPOE8P/psov3/symbols.txt	20
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TBoss4Type1.h	3
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TBoss4Type3.h	2
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TBoss4Uro.h	2
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h	1
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TBoss4ZakoTexture.h	1
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TBoss4Zanzo.h	1
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TObjDFDemo4.h	3
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	include/pso/boss/darkfalz/TObjDFDemo5.h	5
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TBoss4Thanks.cpp	4
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TBoss4Type1.cpp	16
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TBoss4Type3.cpp	13
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp	10
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp	5
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TBoss4Zanzo.cpp	13
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TOBoss4.cpp	12
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFDemo1.cpp	6
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFDemo2.cpp	5
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFDemo3.cpp	11
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFDemo4.cpp	14
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFDemo5.cpp	16
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp	2
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp	5
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFHorming.cpp	8
+Dark Falz models, textures and effect lifetimes	ccd7a77b1ba154c77ee5bfa4b44fcbd42d3400d0	src/pso/boss/darkfalz/TObjDFJisin.cpp	16
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	config/GPOE8P/psov3/config.yml	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	config/GPOE8P/psov3/symbols.txt	24
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	include/pso/boss/barbaray/TBoss7DeRolLeC.h	1
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	include/pso/boss/olgaflow/Boss6Type2Data.h	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	include/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.h	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	include/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.h	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	include/pso/boss/olgaflow/TBoss6Type1.h	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	include/pso/boss/olgaflow/TBoss6Type2.h	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/TUnk_80484AFC.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/barbaray/TBoss7Crawfish.cpp	11
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/barbaray/TBoss7DeRolLeC.cpp	20
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TBoss2DeRolLe.cpp	7
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TBoss2Fin.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TBoss2Mine.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TBoss2Tentacle.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TObjBoss2CeilJunk.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp	5
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TObjBoss2Tunnel.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp	7
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/dragon/TBoss1Dragon.cpp	7
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/dragon/TObjBoss1Crater.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/dragon/TObjBoss1Floor.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/dragon/TObjBoss1Rock.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp	8
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp	6
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/galgryphon/TObjBoss5FloorGrass.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/galgryphon/TObjBoss5Pillar.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/goldragon/TBoss8Dragon.cpp	9
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/goldragon/TBoss8DragonEffTail.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp	7
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/goldragon/TObjBoss8Piller.cpp	8
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/Boss6Type2Data.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6CrushRock.cpp	4
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp	11
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp	13
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp	16
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp	20
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6MagMine.cpp	4
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Mine.cpp	4
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6PlotFalz.cpp	10
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Rock.cpp	7
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6RockChase.cpp	4
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Thanks.cpp	6
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Tube.cpp	9
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Type1.cpp	33
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Type2.cpp	17
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp	11
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TBoss3Volopt.cpp	10
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TBoss3VoloptCore.cpp	3
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp	7
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TBoss3VoloptMonitor.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TBoss3VoloptP01.cpp	5
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TBoss3VoloptP02.cpp	6
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp	4
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TObjVoloptCage.cpp	4
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TObjVoloptPillar.cpp	5
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/boss/volopt/TObjVoloptShutter.cpp	2
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/unk/text_8004D9A8.cpp	1
+Boss models and effect resources	bd1d975231a880fdd9ebf57bbaa5a6467221882c	src/pso/unk/text_800F5BC0.cpp	1
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	config/GPOE8P/psov3/symbols.txt	2
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	include/pso/object/ambient/TObjFish.h	2
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	include/pso/object/ambient/TObjFish_8001ED90.h	2
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcBase.cpp	2
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcBringer.cpp	3
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcCloakroomBase.cpp	6
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcConnoisseur.cpp	3
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcEnemy.cpp	2
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcExpertBase.cpp	6
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcFemaleBase.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcFemaleChild.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcFemaleDwarf.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcFemaleFat.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcFemaleMacho.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcFemaleOld.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcFemaleTall.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcGovernorBase.cpp	6
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcHosa.cpp	9
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcHosa2.cpp	9
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcKenkyu.cpp	8
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcKenkyu2.cpp	9
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcKenkyuW.cpp	8
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMaleBase.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMaleChild.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMaleDwarf.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMaleFat.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMaleMacho.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMaleOld.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMaleTall.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcMoja.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcNgcBase.cpp	3
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcNgcBase_80358AE8.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcNurseBase.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcSecretaryBase.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcSoldierBase.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcSoldierMacho.cpp	4
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/npc/TObjNpcSoutokufu.cpp	8
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ambient/TButterfly.cpp	7
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ambient/TOBiwaMushi.cpp	11
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ambient/TOKurage.cpp	6
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ambient/TObjCGrass.cpp	8
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ambient/TObjFish.cpp	21
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ambient/TObjGrass.cpp	8
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ambient/TObjRain.cpp	2
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/city/CityDoors.cpp	12
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/city/CitySeason.cpp	9
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/city/CityTraffic.cpp	3
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/city/CityVerticalModel.cpp	2
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp	9
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lab/TOCapsuleLabo.cpp	7
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lab/TObjLaboDesignBase.cpp	7
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/LobbyGoGoBall.cpp	30
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/LobbyPigeonPath.cpp	30
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjButterflyLobby_80350958.cpp	11
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjCurtainLobby.cpp	5
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjKabochaLobby.cpp	5
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjLobbyMain.cpp	7
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjRainbowLobby.cpp	6
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjStendGlassLobby.cpp	5
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjSuisouLobby.cpp	5
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjTreeLobby.cpp	5
+Lobby, NPC and ambient models	cf02ac04fd7114a756e081f96917618b26391e34	src/pso/object/lobby/TObjWeddingLobby.cpp	5
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	config/GPOE8P/psov3/symbols.txt	25
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TDeadSpot.cpp	2
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TMotorcycle.cpp	11
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TOBind_801586B8.cpp	11
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TOHealGeneral.cpp	7
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjBigTuitate.cpp	16
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjChip.cpp	2
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjComputer.cpp	17
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjDoaEx01.cpp	14
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjHashi.cpp	12
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjLiveMonitor.cpp	10
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjSinBoard.cpp	5
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjTank.cpp	10
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/TObjTombstone.cpp	8
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/base/TObjMapObject.cpp	2
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TOAirconCave01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TOAirconCave02.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TOCakeshopCave01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TODragonflyCave01.cpp	7
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TOHangceilingCave01.cpp	12
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TORainbowCave01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TORevlightCave01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TORockCave.cpp	28
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TOSignCave01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TOSignCave02.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/cave/TOSignCave03.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/jungle/TOGrassJungle.cpp	7
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/jungle/TOJungleDesign.cpp	11
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/jungle/TORockJungleL01.cpp	5
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/mine/TOCapsuleMachine01.cpp	7
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/mine/TOComputerMachine01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/mine/TODragonflyMachine01.cpp	7
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/mine/TOHangerMachine01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/mine/TOLightMachine01.cpp	11
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/mine/TOMonitorMachine01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/mine/TOSparkMachine01.cpp	8
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/ruins/TOCapsuleAncient01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/ruins/TOMonumentAncient01.cpp	6
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/ruins/TOMonumentAncient02.cpp	8
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp	8
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/seabed/TObjSuisoChip.cpp	3
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/object/wreck/TOWreckAncient.cpp	11
+Stage scenery and map models	46464b6852dd56295bf9700f98b7ad4f4250688e	src/pso/unk/TLobby_80209524.cpp	28
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	config/GPOE8P/psov3/symbols.txt	49
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/container/TContainerAncient01.cpp	18
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/container/TOContainerAncientEnemy.cpp	17
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/container/TObjContainerIdo_8018BEE4.cpp	11
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/container/TObjContainerItem.cpp	14
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/container/TObjContainerJung.cpp	24
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient01.cpp	6
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient03.cpp	6
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient04.cpp	6
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient05.cpp	6
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient06.cpp	5
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient07.cpp	5
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient08.cpp	10
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorAncient09.cpp	10
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorCave01.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorCave02.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorCave03.cpp	7
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorFourLightSpace.cpp	15
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorJungleMain.cpp	14
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorLabo.cpp	24
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorMachine01.cpp	12
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorMachine02.cpp	8
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorVS2Door01.cpp	6
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TODoorVoShip.cpp	8
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TObjDoorJung.cpp	11
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TObjDoorKey.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/door/TObjDoor_8018E358.cpp	13
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TLazerFenceSw.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TOBarrierEnergy01.cpp	7
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TOFenceAncient01.cpp	4
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TOFenceAncient02.cpp	4
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TOFenceAncient03.cpp	4
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TOFenceAncient04.cpp	4
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TOFenceBase.cpp	2
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TOVS2Wall01.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TObjLazerFence4.cpp	4
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/fence/TObjLazerFenceNorm.cpp	14
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TODummyKeyCave01.cpp	1
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TOKeyAncient01.cpp	6
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TOKeyAncient02.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TOKeyAncient03.cpp	7
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TOKeyCave01.cpp	8
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TOKeyGenericSw.cpp	12
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TOKeyJungleMain.cpp	7
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/key/TOKeyMachine01.cpp	6
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/switch/TOSensorAncient01.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/switch/TOSensorGeneral01.cpp	10
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOExplosiveMachine.cpp	13
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOMine.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOMineIcon01.cpp	2
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOMineIcon02.cpp	2
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOMineIcon03.cpp	2
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOMineIcon04.cpp	2
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOTrap.cpp	2
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOTrapAncient01.cpp	10
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOTrapAncient02.cpp	15
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOTrapChainSawEdge.cpp	15
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/trap/TOTrapSeabed01.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjAreaWarpEndingJung.cpp	9
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjCityMainWarpChallenge.cpp	4
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjCityMainWarp_80186F84.cpp	1
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjLaboMapWarp.cpp	16
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjMapWarpAncient.cpp	12
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjWarpBossMulti.cpp	16
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjWarpJungMain.cpp	7
+Doors, switches and trap models	2f2320c2f89f0bff2f22bb460deef7089895d7ed	src/pso/object/warp/TObjWarpLobby.cpp	7
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	config/GPOE8P/psov3/config.yml	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	config/GPOE8P/psov3/linked_units.txt	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	config/GPOE8P/psov3/splits.txt	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	config/GPOE8P/psov3/symbols.txt	19
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	configure.py	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	include/pso/item/TItemSpecialEvent.h	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	include/pso/item/TUnk_804F112C.h	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	include/pso/unk/text_803DA798.h	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TBGLightningCtrl.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TBreakUpMdl.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TDuelEffectNumber.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TDuelEffectString.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TEF_LensFlare.cpp	4
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TEffClitical.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TEffIndirectCtrl.cpp	3
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/TKomorebi.cpp	11
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/item/TItemEffEquip.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/item/TItemEffPG.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/ParticleBallistic.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/ParticleOrbit.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/ParticleRadial.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/TParticleCtrl.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/TParticleCtrl_80085EE4.cpp	3
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/TParticleCtrl_800867E4.cpp	3
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/TParticleCtrl_800874F4.cpp	7
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/particle/TParticleCtrl_80327D30.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonEstlla.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonFarlla.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonGolla.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonLeilla.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonMylla.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonPilla.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonRainbow.cpp	3
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/photon/TPhotonYoulla.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/sprite/TQuadSpriteCol.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/sprite/TQuadSpriteNormal.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/sprite/TQuadSpriteScl.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/sprite/TQuadSpriteSclCol.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/effect/sprite/TQuadSpriteSclColRot.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/item/TItemLoad_80110010.cpp	6
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/item/TItemLoad_801105AC.cpp	5
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/item/TItemSpecialEvent.cpp	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/item/TUnk_804F112C.cpp	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/PhotonBlastResults.cpp	5
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/PlayerTaskEffects.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_8002E784.cpp	3
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_80083594.cpp	9
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_801AF2F0.cpp	5
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_801D84CC.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_8023E480.cpp	3
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_802790CC.cpp	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_8033E910.cpp	4
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TObjPlayer_80357B2C.cpp	4
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TPlayerFootStamp.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TPlyPhotonChair.cpp	12
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/player/TUnk_80491478.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/technique/TTecBarta.cpp	4
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/technique/TTecCtrl.cpp	5
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/technique/TTecGiBarta.cpp	7
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/technique/TTecMegid.cpp	3
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/technique/TTecRaBarta.cpp	4
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/technique/TTecRaFoie.cpp	7
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/unk/TLobby_80103F5C.cpp	1
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/unk/TLobby_80104374.cpp	2
+Player equipment, techniques and effects	3625863d324c6e070d7b557d60f6db485d97285b	src/pso/unk/text_803DA798.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	config/GPOE8P/psov3/symbols.txt	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	include/pso/ui/ItemListRow.h	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	include/pso/ui/hud/TRaderMapCore.h	1
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/system/scene/TEndingAB.cpp	4
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/system/scene/TEndingC_8008D00C.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/system/scene/TEndingPic.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/system/scene/TScene.cpp	5
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/system/scene/TSceneSora.cpp	9
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp	4
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/city/TCheckRoomSequence.cpp	7
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/city/TMedicalCenterSequence.cpp	1
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdBackTxtGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp	4
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdChrSelSlotGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdEndText.cpp	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdGameStartBackGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdGameStartGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdGameStartLineGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdGameStartShadowGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdGameStartShineGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdGuideButtonGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdMcSelectCursorGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdMcSelectMcGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp	6
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdMultiOkGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdMultiPlayerNoGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdPlyPltAnimGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdPlyStatusGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp	5
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdRayGC.cpp	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdRicoRingCtrl.cpp	9
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdScrollWinGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdSelectTxtSubGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp	10
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdTitleGC.cpp	2
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/frontend/TAdTitleTexGC.cpp	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/hud/TLockOnCursor.cpp	8
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/hud/TMainCursor.cpp	3
+Character creation and menu models	314fa3fa33ce6855f868a4701cde36511047369a	src/pso/ui/hud/TRaderMapCore.cpp	11
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	config/GPOE8P/psov3/config.yml	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	config/GPOE8P/psov3/symbols.txt	27
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TUnk_804CE964.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TUnk_804CF0B8.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TUnk_804D0658.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TUnk_804EFBAC.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowActionPalette.h	3
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowAddition.h	3
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowBase.h	6
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowBreakIn.h	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowCallBack.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowComCard.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowDD_WS_ScrollBar.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowDD_WS_String.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowDeposit.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowDrawContext.h	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowInputNumber.h	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowLockOn.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowMeseta.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowMessage.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowQuantity.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowRoom.h	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowSnapShot.h	7
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowSnapShot_802A5B2C.h	4
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowSoundBalance.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowTimer.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/ui/window/TWindowUserSort.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	include/pso/unk/text_8026CB5C.h	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/quest/TQuestListChallenge.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/quest/TQuestListOnline.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/quest/TQuestListVM.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/quest/challenge/TChallenge4PItemSelect.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TMessageWindowController.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TObjBagWarnWin.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TObjResultWin.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindow.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowActionPalette.cpp	29
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowAddition.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowAddition_80244238.cpp	11
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowArea.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowCheckBox.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowComCard.cpp	4
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowCtrlMain.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowCtrl_8024C6CC.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowDD_8034055C.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowDD_80340A78.cpp	7
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowDD_80341334.cpp	9
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowDD_80341A08.cpp	12
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowDD_803488A8.cpp	6
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowDeposit.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowEffectLight.cpp	4
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowFukidasi.cpp	24
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowFukidasi_80252BF8.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowGetComCard_8007B54C.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowInputNumber.cpp	7
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowLockOn_80262C3C.cpp	21
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowMeseta.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowMessage.cpp	9
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowMessageInfomation.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowMessageLog.cpp	15
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowMessagePage.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowMessageScroll.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowQuantity.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowRoom.cpp	3
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowSnapShot.cpp	20
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp	26
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowSoundBalance.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/ui/window/TWindowUserSort.cpp	2
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/unk/TLobby_80338E9C.cpp	1
+Window frame and layout	849d31d746bfe47ef3e7726d8c6808cf08ade1a8	src/pso/unk/text_8026CB5C.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	config/GPOE8P/psov3/symbols.txt	13
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/chat/TWindowChatSymbol.h	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/chat/TWindowSubSymbolChatFaceType.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/chat/TWindowSubSymbolChatHelp.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/chat/TWindowSubSymbolChatParts.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowDD_WS_Word.h	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowKeyBoardBase.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowKeyBoardHard.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowKeyBoardSoft.h	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowKeyBoardSoft_8024E68C.h	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowMenu.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowMenuIconLine.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowMenuMainMenu.h	4
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowShortCut.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowSubAreaMapDisp.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowSubCustomSelect.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/ui/window/TWindowSubMagPhoton.h	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	include/pso/unk/TUnk_804CE7D0.h	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/quest/challenge/TChallenge4PItemSelect.cpp	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/ShortMail.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowChatSymbol.cpp	5
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubShortMail_80131AA4.cpp	4
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp	3
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubSymbolChat.cpp	3
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp	5
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubSymbolChatParts.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp	4
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp	3
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/keyboard/TKeyBoardControl.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowChoiceSetting.cpp	4
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowChoiceSetting_80249078.cpp	3
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowChoiceSetting_80249240.cpp	3
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowKeyBoardBase.cpp	6
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowKeyBoardSoft_8024E68C.cpp	19
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowMainMenu_802AD538.cpp	11
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowMenuMainMenu.cpp	3
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowOptionCtrl.cpp	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowShortCut.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp	4
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubAreaMapDisp.cpp	5
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubComCardList.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubComCard_8007341C.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubComCard_8007A810.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubComCard_80244774.cpp	27
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubComCard_80249120.cpp	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubComCard_80265410.cpp	12
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubCustomSelect.cpp	11
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubMag.cpp	1
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubMagPhoton.cpp	4
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/ui/window/TWindowSubShortCutList.cpp	2
+Chat, lists and option windows	afc318fb29988893b29dfbc3f63ac18c14ed5c08	src/pso/unk/text_8026C664.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	config/GPOE8P/psov3/symbols.txt	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowChallengeResult.h	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowDuelResult.h	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowHelpItem.h	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowLoadItemTexture.h	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowMessageQuest.h	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowSimpleStatus.h	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowSubCustomEquip.h	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowSubQuestBoardSelect.h	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	include/pso/ui/window/TWindowSubStatusDisp.h	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/quest/TQuestListChallenge.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/quest/TQuestListOnline.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/quest/TQuestListVM.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/THunterGuildSeqOffline.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/THunterGuildSeqOnlineTask.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/THunterGuildWarning.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopArmorListWindow.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopDeleteItemWindow.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopEquipmentGearSequence.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopEquipmentListWindow.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopEquipmentSellWindow.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopEquipmentSequence.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopGetItemWindow.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopItemListWindow.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopItemTecSequence.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopJudgmentItemWindow.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/city/TShopKeepItemWindow.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowChallengeResult.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowDuelResult.cpp	6
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowHelpItem.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowHelpItem_802530D0.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowHelpItem_802531A0.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowHelpItem_802540AC.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowHelpItem_80255AB4.cpp	10
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowHelpItem_8025A60C.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowLoadItemTexture.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowMessageQuest.cpp	7
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowPartyStatus.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowShop.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSimpleStatus.cpp	7
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowStatus.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubCustomEquip.cpp	17
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubEquipKind.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubEquipList.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubItemList.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubQuestBoardSelect.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_800FC3E0.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_80144B14.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp	6
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp	61
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp	1
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp	16
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_8026DFE8.cpp	3
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp	14
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp	2
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp	4
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp	6
+Shop, status and battle windows	48fcfc75ba8fabaa1e5a3e51b9e85e341f5598c6	src/pso/unk/text_80255A38.cpp	1
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	config/GPOE8P/psov3/config.yml	4
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	config/GPOE8P/psov3/symbols.txt	35
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	include/pso/system/RlcArchive.h	1
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	include/pso/system/memory.h	1
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	include/pso/unk/TLobby.h	1
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	include/pso/unk/text_800D8830.h	1
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	include/pso/unk/text_803DE8BC.h	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/quest/QuestOpcodeHandlers.cpp	4
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/quest/TQuestVmDownLoadServer.cpp	6
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/render/ChunkMaterialState.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/system/TGStream.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_800FA164.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_800FA2A0.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_801E2F94.cpp	10
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_801E43E4.cpp	1
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_80207DA8.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_80226C3C.cpp	4
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_802409AC.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_8028EA28.cpp	1
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TLobby_803DE778.cpp	4
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/TUnk_804DDD28.cpp	4
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/text_800D8830.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/text_800FA464.cpp	3
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/text_803D96A8.cpp	3
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/text_803DA798.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/text_803DAFA8.cpp	2
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/text_803DD5E0.cpp	11
+Resource buffers, motion archives and area streaming	edeba877db9ae85e73bede0ebbd4d8f97585b839	src/pso/unk/text_803DE8BC.cpp	3

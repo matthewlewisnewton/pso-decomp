@@ -6,9 +6,9 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
-| `great-merge/upstream/combined` · `5dd80ccf47` | Combined source matchpasses, including collision results | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `5e4eb45fd0` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `402106a6c3` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/combined` · `1581a9e94a` | Combined source matchpasses, including collision results and sound-slot pitch | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/all-source` · `ba35b49bff` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `edeba877db` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
@@ -21,6 +21,14 @@ The fork's enhanced linker checker had produced thousands of retention-list chan
 
 The four authorized submissions are [#321](https://github.com/zeroz41/pso-decomp/pull/321), [#322](https://github.com/zeroz41/pso-decomp/pull/322), [#323](https://github.com/zeroz41/pso-decomp/pull/323) and [#324](https://github.com/zeroz41/pso-decomp/pull/324). PR 321 merged. After maintainer feedback, the three open PRs were updated in place and each hosted match-gate passed. Their published heads are `c129aa6073`, `341d5288c0` and `40b5e279e7`, respectively.
 
+## Sound pitch and voice slots
+
+The existing audio review at `22ecb2bd0d` now covers 106 paths. The wrapper at 0x80226258 takes a sound slot, pitch and slide duration. It accepts slots 0 through 39 when sound is enabled. The lower-level voice setter at 0x8023F8F4 accepts slots 0 through 31. The merge branch previously called the setter without arguments and relied on the compiler leaving registers untouched. Player, enemy, weapon, technique and UI callers now use a common declaration. The warning sound caller uses the four-argument playback declaration and passes its returned slot to the wrapper.
+
+The audio branch, combined reviews, full native source and fork integration each passed a clean build and their PR checks. Each produced retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 294 fork tests passed. The fork-main comparison found zero lost exact or source-linked function and data ranges. Its net decrease in total data extent remains 2,045 bytes from the reconciled padding and coverage changes. The private check at `tools/probes/check_sound_slot_pitch.py` exercised 18 gate and argument cases and nine guarded full-pool comparisons on retail and all four rebuilt images. It checks positive and negative pitches, wraparound, slot boundaries, disabled sound, and both explicit and default durations.
+
+The original fork header and two complete caller changes are credited in the [source ledger](2026-11-18-fork-review-index.tsv). The same ledger identifies 62 further original headers whose complete declarations, linkage, comments and includes are present at their current owners. For three modified headers the comparison also checked the common ancestor for removals. Other changes in the consolidated sound and technique source files retain their own review entries.
+
 ## Collision results
 
 The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) includes `great-merge/upstream/collision-results` at `0385e4c583`. The 32 contacts at 0x804FF9C0 have a 28-byte stride. The line and ground queries share the eight-byte result at 0x80500140. The radial query extends it with the index and penetration depth of the deepest contact. Three native constructors generate the original startup routine at 0x8007A6C8. The player reads the selected contact through the same record type.
@@ -29,7 +37,7 @@ The standalone and cumulative native builds pass the upstream checks. The privat
 
 ## Fork-only tooling and archival copies
 
-The runnable overlay differs from the full native source in 103 project paths, including 78 tool files. This includes the private collision check. The [original tooling inventory](2026-11-18-original-fork-tools.tsv) separately accounts for all 96 original fork tool, test and workflow changes outside the documentation. Of those originals, 42 are active byte-for-byte. The archive under `fork/tooling/original/` holds 32 originals whose active versions have changed and 22 originals absent from the active tools. Their Git blob IDs and file modes are recorded independently of the current branch names. Historical utilities use the source layout of fork main `3342e42983`.
+The runnable overlay differs from the full native source in 104 project paths, including 79 tool files. This includes the private collision and sound pitch checks. The [original tooling inventory](2026-11-18-original-fork-tools.tsv) separately accounts for all 96 original fork tool, test and workflow changes outside the documentation. Of those originals, 42 are active byte-for-byte. The archive under `fork/tooling/original/` holds 32 originals whose active versions have changed and 22 originals absent from the active tools. Their Git blob IDs and file modes are recorded independently of the current branch names. Historical utilities use the source layout of fork main `3342e42983`.
 
 ## Runtime array allocation and the twenty-group build
 
@@ -181,7 +189,7 @@ The radar, quest-cache and guild-card header decisions are recorded at their cur
 
 The deletion pass covers all 975 original fork deletions. Retain 403 headers that compiler dependencies show are used by live units on both builds, 360 source files with identical exact function addresses and sizes across upstream, integration and fork main, five live data-only owners and two native owners whose functions were regrouped. Another 119 paths are absent from all three trees. Integration already contains 14 further removals. For 71 files the original contents moved elsewhere on the fork. One historical deletion names the path now used for the recovered window base constructor and destructor. The [file ledger](2026-11-18-fork-review-index.tsv) records the evidence on each row. A decision to retain a live upstream file resolves the deletion of that path. Any fork additions that replaced it retain their own review records.
 
-There are still 3,675 source records marked for owner comparison and 319 with partial text matches. These records can carry source-level information even when the full linked game matches.
+There are still 3,611 source records marked for owner comparison and 318 with partial text matches. These records can carry source-level information even when the full linked game matches.
 
 All 374 changed documentation and evidence paths have a local destination under `fork/`. Three executable evidence models are preserved there as Markdown examples. The repository license and third-party license text have separate provenance entries. Shared source and build changes still require semantic comparison before deciding which fork implementation to retain.
 

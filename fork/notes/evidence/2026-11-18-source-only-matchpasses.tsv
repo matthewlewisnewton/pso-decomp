@@ -13,6 +13,6 @@ player-techniques	great-merge/upstream/player-techniques	c48087c80d04392a807037c
 enemy-motion	great-merge/upstream/enemy-motion	906ce832de7003882c3f76d035f28297f58ca08b	16	Upstream checks and retail SHA-1 passed
 battle-parameters	great-merge/upstream/battle-parameters	23a3a99e6e819487336225ad2a81fbfc801b9dc7	79	Upstream checks and retail SHA-1 passed
 boss-effects	great-merge/upstream/boss-effects	0e2d5dc6636a3ae82e945006f44ce261552a50a3	31	Upstream checks and retail SHA-1 passed
-audio-streams	great-merge/upstream/audio-streams	3a0699df1498596e80beb259abeeb020ead0340d	79	Upstream checks and retail SHA-1 passed
+audio-streams	great-merge/upstream/audio-streams	22ecb2bd0d2c84f7b793686dc6a4293e396a1671	106	Upstream checks and retail SHA-1 passed; 18 pitch forwarding and nine voice-pool cases passed
 host-portability	great-merge/upstream/native-callbacks-sdk	4def9bb0206c0454de8e2011fe02e6d1da1b6f88	10	Upstream checks and retail SHA-1 passed
 collision-results	great-merge/upstream/collision-results	0385e4c583fa68a58b8a17d1682f233f4b2bc6ec	12	Upstream checks and retail SHA-1 passed
