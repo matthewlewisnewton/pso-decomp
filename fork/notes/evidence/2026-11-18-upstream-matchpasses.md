@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `a7c3cdfdc1` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership. The all-source snapshot is `f80cb1fb77`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `ec8de0a5ed` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, and Gibbles construction and teardown. The all-source snapshot is `5aaa4a30e8`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `03ca305e1d` |
+| `great-merge/current/combat` | `03cda7414b` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -197,6 +197,16 @@ All 24 method symbols match the fork by name, original address and size across 8
 The standalone combat review at `03ca305e1d`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 5 fork records. It has 1,281 entries awaiting owner comparison and 778 with partial evidence.
+
+### Gibbles construction, teardown and targeting
+
+The replay at `ec8de0a5ed` uses the fork's native Gibbles factory, constructor, destructor and targeting override. The constructor creates the two original collision objects and initializes the opacity and camera fades. The destructor frees both collision objects and the compiler handles the fade member teardown. The factory still creates the original controller before its enemy.
+
+The three compiled method symbols retain 1,808 original instruction bytes. The movement parameters, three collision templates and compiler-generated 83-entry virtual table retain 492 bytes at their original addresses. The table keeps the destructor and targeting override in their original slots. Deferred generation places the table before the two switch tables and keeps all 54 exact linked functions in address order.
+
+The standalone combat review at `03cda7414b`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records the recovered lifecycle against the two original fork records. It has 1,281 entries awaiting owner comparison and 778 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
