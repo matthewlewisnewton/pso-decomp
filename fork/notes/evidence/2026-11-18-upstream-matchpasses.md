@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `db34d2e32f` and the complete source snapshot at `1e2fe01fbd` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `a2c975c575` and the complete source snapshot at `056498255a` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -217,6 +217,16 @@ The three-file component `1e2fe01fbd` carries the typed inventory access and ite
 The combined local review `59f1eaacb9` extends the quest lists, filenames and downloads review `8c7134e424` to 44 files on `af11a99125`. Its inventory calls retain the existing upstream-base entry points. The cumulative build uses the corresponding typed inventory methods already integrated there. All four builds reproduce the retail executable and pass the project checker. All 929 functions in the two changed source units remain exact and source-linked. The cumulative builds retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
 
 Linked checks covered 24 inventory searches, 40 deletion cases and eight revival-item pickup cases with simulated item and inventory providers. They cover missing owners, byte sign extension, the upper destination limit, and the original behavior when the source and destination registers overlap. The fork-only overlay round-trips all 133 paths and passes all eleven tests. Four entries in the [fork source index](2026-11-18-fork-review-index.tsv) carry the corresponding evidence.
+
+## Enemy model archives and appearance
+
+The five-file replay at `056498255a` carries the Gibbles resource contracts from the fork's native lifecycle, the Morfos archive and model traversal from `5d373037ea` and its follow-ups, and the byte buffer and typed model and texture records from `93c5d139d2` and `b92fac49d3`. Gibbles and Morfos and its arm now keep their archive pointers and read model, texture and motion entries directly. Both Gibbles descriptors retain one model, ten motions and their original filenames. The loader shares the model record with its callers.
+
+The archived 73-file batch at `9f5506ed2c` provided the dependency map. The typed enemy archive factories and model-node capture already use the current owners. All 133 names in the fork's enemy filename batch `3ec6bd3db1` are present at the same addresses and sizes. The capture and Monest callback units retain 48 exact source-linked functions.
+
+The local review at `86f0163316` extends enemy appearance, movement and targeting to 83 files on `af11a99125`. It uses the upstream archive entry points and preserves the unsigned texture-slot comparison in its loader. The cumulative version uses its existing native archive constructors and callbacks. All four builds reproduce the retail executable and pass the project checker. All 136 functions in the four changed source units remain exact and source-linked. The cumulative builds retain the historical fork's exact and linked function and data coverage. The standalone review shares the upstream 24-byte keyboard virtual table gap at 0x804D0004.
+
+The fork-only layer round-trips all 133 overlay paths and all eleven layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) records six source comparisons.
 
 ## Standalone reviews on upstream master `af11a99125`
 
