@@ -101,6 +101,12 @@ Commit `625979515a` extends the same window review with 53 paths. The shared lay
 
 Original fork and combined source `3e348a15d4` have 446 branches to the same lookup address and identical enclosing function boundaries. These branches connect 64 original source files to 59 current files. The original, review, combined and working-fork executables passed 56 sparse lookups, 100 symbol-chat lookups, 36 bounds cases, 16 selected IDs, 64 card updates and 72 insertions each. The three local builds passed the upstream checks, reproduced the retail image and passed 640 item-row rendering cases each. The working fork also passed all 294 fork tests.
 
+### Main-menu entries and navigation
+
+Commit `37e0caf80a` extends the existing window review with the fork's typed row and slot arrays, lifecycle and navigation methods. The outer menu controller uses its typed child window for population, selection and submenu updates. Frame drawing and texture binding use the current native window helpers. The two arrays begin at 0x64 and 0x124. The controller's factory has the same implementation as fork main after translating its include paths.
+
+The review, the cumulative source at `3661bc5e1b` and the working fork each compiled and compared 17 affected objects. Their allocated code and data sections, symbol locations and relocation targets match the preceding objects after accounting for 29 renamed symbols. The working fork passed all 294 tests and the retention check.
+
 ## Actor animation tables and motion resources
 
 `great-merge/current/actor-animation` starts directly from upstream master `c572111ed6`. Commit `238612cb27` connects the shared action and motion setters to the enemy, boss, player, object and Photon Blast callers in 71 files. The actor stores a TObjMotionAction pointer at 0xD8 and a BmlMotionEntry pointer at 0xDC. Archive callers use the motion list at 0x430.
@@ -127,7 +133,7 @@ All affected translation units compiled on both review bases and on the cumulati
 
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `825665ae67` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `3661bc5e1b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
