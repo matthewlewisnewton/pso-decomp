@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `65b75fdd24` changes 1,445 paths counting both sides of renames. The all-source snapshot is `496b29652b`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `df5b75721a` changes 1,454 paths counting both sides of renames. The all-source snapshot is `bc41fc5e35`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `ba6d8f0d4a` | `942a0c050f` |
+| `great-merge/current/window-frames` | `09874ab4f6` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -44,6 +44,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Native chat and keyboard child ownership | Included in the window review | `96d3b95da5` |
 | Shared window layout and vertex records | Included in the window review | `0dd3f7aebc` |
 | Native message constructors and shared scrollbar storage | Included in the window review | `65b75fdd24` |
+| Native numeric readout windows | Included in the window review | `df5b75721a` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -202,6 +203,14 @@ The window review at `ba6d8f0d4a` and cumulative stack at `65b75fdd24` use nativ
 The six message constructors and four scrollbar routines match 844 original instruction bytes. All 24 scrollbar call sites reach their original addresses in the linked executable. Each build compiled 2,451 source objects. The object comparison preserves every selected section and relocation after mapping the ten names. The standalone review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three upstream-shaped project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
 
 The audit reconciles 5 complete fork paths and records partial evidence for 25 paths. It has 1,555 entries awaiting owner comparison and 646 with partial evidence.
+
+### Native numeric readout windows
+
+The window review at `09874ab4f6` and cumulative stack at `df5b75721a` use native construction for Meseta, Quantity and Cost. The Meseta and Quantity scales are floats at their original offsets. Shared factory declarations preserve the word-valued client inputs and the narrowing at the short-client call sites. The shop callers use the Cost value bridge with its actual receiver.
+
+The three constructors and value bridge match 700 original instruction bytes. The twelve factory calls, ten value-update calls and four direct constructor calls retain their original targets in the linked executable. The three virtual tables and Quantity descriptor preserve their 92 bytes at the original addresses. Each build compiled 2,451 source objects. The object comparison preserves all selected inputs after mapping the four names. The window review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three project checks passed with full builds, and the fork layer passed eleven tests and reproduced all 133 tooling paths.
+
+The audit reconciles 4 complete fork headers and records partial evidence for 16 paths. It has 1,539 entries awaiting owner comparison and 658 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
