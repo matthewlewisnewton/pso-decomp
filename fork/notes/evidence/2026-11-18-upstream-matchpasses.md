@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `1acf4a9819` and the complete source snapshot at `92f3bda8d4` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `5e5153f184` and the complete source snapshot at `7d38c6c657` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -193,6 +193,14 @@ The 25-file replay `92f3bda8d4` carries the typed window-controller flag accesso
 The local review `a19c782cfa` is based directly on `af11a99125`. All four builds reproduce the original executable and pass the project checker. All 570 functions in the nineteen changed source units stay exact and source-linked. The cumulative branches retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
 
 Linked execution covered 200 flag changes, 320 read-only queries, and 48 menu factory cases. The factory cases check the original allocation size, forwarded position, item count, client ID, and allocation-failure return through simulated allocation and construction. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Twelve entries in the [fork source index](2026-11-18-fork-review-index.tsv) record the corresponding evidence.
+
+## Dragon attacks and material fades
+
+The eleven-file component `7d38c6c657` carries the Dragon and Gol Dragon fireball and breath changes from `0b0f090a42`, `4f68b08348`, `90e5ebb1cf`, and `ebeb4b1d6b`. Both fireball types use native constructors at their four original call sites. Their states, emitter pointers and particle tables stay at their original locations. Both breath effects use typed position and velocity fields and keep their original attack-history allocation and cleanup.
+
+The combined local review `e00e1ec6c4` extends material opacity and Dragon fades `1c20f1a945` to 59 files on `af11a99125`. Its vector-normalization call uses the existing declaration on that base at 0x8007E9EC. Great Merge uses the typed declaration for the same original function. All four builds reproduce the retail executable and pass the project checker. The six changed source units retain all 362 original exact, source-linked functions. The cumulative branches retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
+
+Linked execution covered eight constructions, twenty-four breath-height cases and twelve fireball lifecycles. The harness supplies vector, particle, sound and attack callbacks and verifies the original motion, particle selections, impact and destruction boundaries. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Ten entries in the [fork source index](2026-11-18-fork-review-index.tsv) record the corresponding evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
