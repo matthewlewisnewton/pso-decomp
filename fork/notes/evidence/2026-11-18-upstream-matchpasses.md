@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `315bce551c` changes 1,379 paths counting both sides of renames. The all-source snapshot is `7bf2564ff0`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `63e8a18e15` changes 1,381 paths counting both sides of renames. The all-source snapshot is `9112840dd3`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -10,7 +10,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/memory` | `f69270a9e6` | `96b4cca0db` |
 | `great-merge/current/resource-lifetimes` | `b4b46375d2` | `16772fda0f` |
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
-| `great-merge/current/combat` | `1e45071f32` | `de49f74be1` |
+| `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
 | `great-merge/current/window-frames` | `70f73ffcbb` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
@@ -31,6 +31,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Equipment effect collision template | Included in its spatial effects review | `d927dd90c2` |
 | Sinow Zoa melee dispatch | Included in its combat review | `b82940c3d7` |
 | Technique texture archive and list names | Included in its resource lifetimes review | `315bce551c` |
+| Enemy projectile, nest, claw and color sequences | Included in its combat review | `63e8a18e15` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -93,6 +94,14 @@ Four existing review groups carry the latest fork changes. The actor-presentatio
 The original layout and bytes agree for eight named ranges, including three functions and five data records. Each of the four renamed exports has one provider. The four standalone reviews, cumulative stack and materialized working source agree with their corresponding earlier object layouts and relocation targets after the alias changes. The stock checker passed in object-report mode on the standalone reviews and cumulative stack. The executable hash remains unverified on this base. The fork layer passed eleven tests and reproduces all 133 tooling paths.
 
 The source audit closes the complete technique texture-name file and adds evidence for eight other fork paths. It has 1,708 entries awaiting owner comparison and 538 with partial evidence.
+
+### Enemy projectile, nest, claw and color sequences
+
+The combat review at `a42b08d6eb` and cumulative stack at `63e8a18e15` carry the fork's typed Dark Gunner projectile constructor and hit dispatch, including the 16-bit owner ID and the shared collision query and attack interfaces. The Fly nest uses its const pending-spawn check and named replenish fields. The Bal Claw body and claw share the base model selector. The claw's setup is named `initialize_claw` because it is called from both native constructors after construction of the base. Gee's color sequences use the base Gee receiver, named color fields and an unsigned flag test. Moja's name string has its fork label in the symbol registry and its pointer initializer keeps the original storage.
+
+Nine renamed ranges match the original bytes, including eight routines and one string. The standalone combat review compares 2,488 selected inputs and the combined stack and materialized fork each compare 2,484. Each renamed export has one provider, and the allocated sections and relocation targets match the preceding builds after mapping the renamed symbols. The standalone and combined heads passed the project checker in object-report mode. The executable hash remains unverified on this base. The fork layer passed eleven tests and reproduces all 133 tooling paths.
+
+The source audit accounts for the complete projectile implementation and header and adds evidence for ten other fork paths. It has 1,702 entries awaiting owner comparison and 542 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
