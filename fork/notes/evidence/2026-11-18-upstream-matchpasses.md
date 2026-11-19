@@ -48,11 +48,25 @@ The first branch starts from upstream master `c572111ed6`. Each later branch bui
 | Recover the Dark Falz Zako model and texture lifetime | `great-merge/current/bml-zako` | `3fe1598ae8` | 17 |
 | Recover the BML resource constructor, destructor and archive layout | `great-merge/current/bml-resource-lifetime` | `39e6385750` | 230 |
 
+## Model hierarchy, enemy resources and renderer callbacks
+
+`great-merge/current/model-rendering` starts directly from upstream master `c572111ed6`. Its three commits change 120 distinct paths. Review them as a single group. The first identifies the position-capture class used by Pan Arms, Dark Falz and Olga Flow. The second recovers the enemy resources that supply model and animation data, including Berura’s two banks of 17 node matrices. The third follows the model node through callback registration, renderer traversal, and the animation cache. Barba Ray passes the current motion and frame through that cache.
+
+| Commit | Change | Paths in commit |
+| --- | --- | ---: |
+| `227b920bce` | Recover shared model-node position capture and its render callers | 38 |
+| `444549edc9` | Recover enemy model resources, animation tables and detached-part matrices | 20 |
+| `c08b78456f` | Pass typed model nodes through renderer callbacks and the animation cache | 78 |
+
+All three standalone commits, their counterparts on the combined source branch, and the fork build passed upstream checks and reproduced retail GPOE8P. Direct execution covered the 64-entry capture limit and repeated node indices, 16 endpoint visibility combinations, 16 recursive matrix-traversal cases, three renderer traversals with callbacks installed and cleared, 24 capture-forwarding cases, six animation samples and four cached draws. The original fork and current sources register the same 37 distinct targets. Their 99 compiled setter branches have the same addresses and enclosing function sizes across 36 original and 36 current source owners.
+
+The [original fork index](2026-11-18-fork-review-index.tsv) records ten complete original file edits and the setter sites on mixed files. The current combined source is `01e8aa6ff7`. The 90 original byte ranges still account for 980 linked source bytes and 167 verified padding bytes.
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `59ab60ae41` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `01e8aa6ff7` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
-All 294 fork tests pass, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
+All 294 fork tests pass after the model-rendering changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
 ## Review queue on the previous master
 
