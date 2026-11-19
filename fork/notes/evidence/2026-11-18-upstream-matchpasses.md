@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `e254c361e1` and the complete source snapshot at `88ebee9c79` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `4640c99919` and the complete source snapshot at `0e5a46cff2` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -87,6 +87,14 @@ The grouped audio and archive review at `8d955ba78e` combines this replay with t
 All five source builds reproduce the retail DOL and pass the project checker. The nine stream-file units preserve all 100 exact functions and the 2,560-byte source-linked request pool at `0x80575140`. Each build preserves its parent's address-level coverage. The upstream-shaped reviews share upstream's historical 24-byte keyboard table deficit. The combined stack preserves those bytes through the window review. The 133 overlay paths round-trip and all eleven layer tests pass.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) reconciles five equivalent sources and records the scope covered in ten other source files. It has 1,127 entries awaiting comparison and 889 with partial evidence.
+
+## Window drawing and textured-quad clipping
+
+The 26-file replay at `4640c99919` carries the typed drawing and fade work from `1ea275a10d` and `ac66ceeead` into the current window owners. The shared draw context transforms the quad bounds, and the clip-and-transform call accepts the original 0x20-byte textured quad. Both keep their existing linker names. The keyboard fade uses the fork expression without the local common-subexpression override and keeps its signed tick and unsigned alpha conversion.
+
+The review at `26e763735b` has one follow-up commit above the window-frame prerequisite `4618815064`, which supplies the draw-context layout. The two source interfaces are used by keyboard, chat, action palette, menu and status renderers. All four builds reproduce the retail executable and pass the project checker. The 24 edited source units preserve 417 exact functions in the combined review and 417 in the local window review. Both keep 67 original direct branches to the two shared calls inside those units.
+
+The address audit covers 144 source-linked bytes in the draw context float pool, viewport offset tables and the soft keyboard table. All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles one declaration and records the checked scope in 23 other files. It has 1,121 entries awaiting comparison and 894 with partial evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
