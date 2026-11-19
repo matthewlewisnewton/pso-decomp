@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `011823a1c6` changes 1,385 paths counting both sides of renames. The all-source snapshot is `9ed1d606a3`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `f6648c7664` changes 1,387 paths counting both sides of renames. The all-source snapshot is `96536c02de`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `0a446167fd` | `942a0c050f` |
+| `great-merge/current/window-frames` | `6bb8433bb1` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -34,6 +34,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Enemy projectile, nest, claw and color sequences | Included in its combat review | `63e8a18e15` |
 | Rain and fish lifetime and resource records | Included in the world-object review | `28582fc056` |
 | Native Com Card follower | Included in the window review | `011823a1c6` |
+| Native word selection lifetime and scrolling | Included in the window review | `f6648c7664` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -112,6 +113,14 @@ The world-object review at `90d72bb2bd` uses the native rain and fish constructo
 The combined stack at `011823a1c6` preserves the bytes and locations of nine renamed ranges, including the three class-name pointers and the follower dispatch table. The fish's 52-byte dispatch table and 240-byte area resource table retain their original layouts. Both standalone reviews and the combined stack passed the upstream checker in object-report mode. The compiled sections and relocation targets agree with their preceding builds after mapping the renamed symbols. The executable hash remains unverified on this base. The fork layer passed all eleven tests and reproduced all 133 tooling paths.
 
 The source audit closes three complete headers and records additional evidence for seven original paths. It has 1,693 entries awaiting owner comparison and 548 with partial evidence.
+
+### Native word selection lifetime and scrolling
+
+The window review at `6bb8433bb1` and combined stack at `f6648c7664` use the native word-selection constructor, destructor, scroll update and offset method. The constructor lays out the visible rows, list ID and scroll position through named fields. The class uses the shared entry list in `TWindowBase`. The standalone review uses its existing array-release name and the combined stack uses the array operator carried by the memory review. Both target the original routine at 0x80147A80.
+
+The word-window source uses the fork's deferred compiler setting and lists the functions in reverse so their compiled order stays the same. The compiler emits the six-word dispatch table at 0x804EFC90 with its original four method targets. A build with the entry-table definition in the same file put the 168-byte table ahead of that dispatch table and changed the constructor instructions. The adjacent entries now have a source-linked unit at their original range of 0x804EFCA8 through 0x804EFD4F. Joining the two data ranges reproduces the previous allocation, content and references. The five renamed exports each have one provider and match their original ranges.
+
+The standalone review and combined stack passed the project checker in object-report mode. They compiled 2,451 source objects each, with 2,486 selected inputs for the standalone and 2,485 for the combined stack. The working fork uses the same selected inputs and object layouts as the combined stack. The executable hash remains unverified. The fork layer passed eleven tests and reproduced all 133 tooling paths. The source audit closes the complete word-window header and records evidence for four other paths. It has 1,689 entries awaiting owner comparison and 551 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
