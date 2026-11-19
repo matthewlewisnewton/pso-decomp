@@ -1534,7 +1534,6 @@ s32 is_alive__8TObjBaseFv();
 
 u8 *get_enemy_entity(u16 arg0);
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 
 
 s32 vec3_add_to(int, void *);
@@ -4181,7 +4180,7 @@ void update_projectile_spawns__13TBoss2DeRolLeFPv(u8 *arg0) {
         *(s32 *)((s8 *)arg0 + 0x53C) = 0;
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x53C) <= 0x10) {
-        play_persistent_sound(0x4003AD00, (s32)arg0, (u32)(arg0 + 0x530), 0, 0);
+        play_persistent_sound(0x4003AD00, arg0, (const Vec *)(arg0 + 0x530), 0, 0);
         *(s32 *)((s8 *)arg0 + 0x53C) = (s32) (*(s32 *)((s8 *)arg0 + 0x53C) + 1);
     }
 }
@@ -4190,7 +4189,7 @@ void TBoss2DeRolLe__sub_800338BC(void) {  }
 
 int play_sound(void* p, int a1) { return play_sound_effect((s32)p, (const Vec *)a1, 0, 0); }
 
-int spawn_trap__13TBoss2DeRolLeFPvii(void* p, int a1, int a2) { return play_persistent_sound((s32)p, (a1), (a2), 0, 0); }
+int spawn_trap__13TBoss2DeRolLeFPvii(void* p, int a1, int a2) { return play_persistent_sound((s32)p, (const void *)((a1)), (const Vec *)a2, 0, 0); }
 
 #pragma push
 #pragma opt_common_subs off

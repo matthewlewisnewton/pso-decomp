@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -84,7 +85,6 @@ s16 get_entity_id(void *);
 void apply_actor_gravity(TObjEnemy *enemy, s32 *arg1, f32 farg0);
 extern "C" {
 s32 calc_velocity_toward_destination(void *, Vec, Vec, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 }
 void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 extern "C" {
@@ -773,7 +773,7 @@ void TObjEneMe1GiGue__sub_802CC900(TObjEneMe1GiGue *gigue) {
             }
             break;
         case 2:
-            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(gigue, 0x3A81D)), (s32)gigue, (u32)&gigue->position, (s32)(0), (s32)(0));
+            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(gigue, 0x3A81D)), gigue, &gigue->position, (s32)(0), (s32)(0));
             if (gigue->frame >= 20.0f) {
                 TObjEneMe1GiGue__sub_802CB03C(gigue);
                 if ((particle = (TParticleCtrl *)spawn_particle_effect(&gigue->m_39c, 0x203)) != NULL) {
@@ -852,7 +852,7 @@ void TObjEneMe1GiGue__sub_802CC614(TObjEneMe1GiGue *gigue) {
             }
             break;
         case 2:
-            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(gigue, 0x3A820)), (s32)gigue, (u32)&gigue->position, (s32)(0), (s32)(0));
+            play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(gigue, 0x3A820)), gigue, &gigue->position, (s32)(0), (s32)(0));
             if (gigue->frame >= 10.0f) {
                 TObjEneMe1GiGue__sub_802CB03C(gigue);
                 n = gigue->m_3c0;
@@ -1032,7 +1032,7 @@ void TObjEneMe1GiGue::update_rush_attack() {
         if (this->m_3ec >= 50.0f) {
             this->state = 3;
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(this, 0x3A819)), (s32)this, (u32)&this->position, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(this, 0x3A819)), this, &this->position, (s32)(0), (s32)(0));
         break;
     }
     case 3:
@@ -1058,7 +1058,7 @@ void TObjEneMe1GiGue::update_rush_attack() {
         if (this->m_3ec > 15.0f) {
             this->turn_toward_direction(((EnemyMoveParams *)this->movementParameters)->turn_speed * 2, (Vec *)&this->x_speed);
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(this, 0x3A819)), (s32)this, (u32)&this->position, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(this, 0x3A819)), this, &this->position, (s32)(0), (s32)(0));
         project_actor_to_ground(this, &this->position, 0);
         break;
     case 4:
@@ -1088,7 +1088,7 @@ void TObjEneMe1GiGue::update_rush_attack() {
                 spawn_particle_effect(&this->position, 0xF0);
             }
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(this, 0x3A819)), (s32)this, (u32)&this->position, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(this, 0x3A819)), this, &this->position, (s32)(0), (s32)(0));
         this->check_object_collisions();
         check_enemy_body_collisions(this);
         this->update_enemy_collision_flags();
@@ -1298,7 +1298,7 @@ void TObjEneMe1GiGue__sub_802CB378(TObjEneMe1GiGue *gigue) {
                 spawn_particle_effect(&gigue->position, 0xF0);
             }
         }
-        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(gigue, 0x3A819)), (s32)gigue, (u32)&gigue->position, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(TObjEneMe1GiGue::remap_sound_id(gigue, 0x3A819)), gigue, &gigue->position, (s32)(0), (s32)(0));
         ((TObjPlayer *)gigue)->update_collisions();
         break;
     case -1:
@@ -1317,7 +1317,7 @@ void init__15TObjEneMe1GiGueFPv(TObjEneMe1GiGue *gigue) {
         flags = gigue->actorFlags | 0x04000000;
         gigue->actorFlags = flags;
         gigue->requested_action = 0;
-        ((TBoss3Volopt *)&gigue->m_2fc)->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)&gigue->m_2fc);
         gigue->m_3fc.start_fade_in();
         gigue->state = 1;
     case 1:

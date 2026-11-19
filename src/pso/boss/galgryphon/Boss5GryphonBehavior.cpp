@@ -506,7 +506,6 @@ s32 TObjLight__sub_801337F8(void *);
 s32 draw__10TObjMotionFv(void *);
 u8 * find_entity_by_id();
 void free_collision_body_parts(void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void __dl__7TObjectFPv(void *);
 s32 render_nodes__7TObjectFv(s32, s32);
 void __dt__7TObjectFv(void *, int);
@@ -4544,7 +4543,7 @@ void TBoss8Dragon__sub_80064E3C(u8 *boss5_gryphon) {
 #pragma auto_inline off
 #pragma dont_inline off
 void spawn_ancient_trap__12TBoss8DragonFii(s32 arg0, s32 arg1) {
-    play_persistent_sound(arg1, arg0, arg0 + 0x560, 0, 0);
+    play_persistent_sound(arg1, (const void *)arg0, (const Vec *)(arg0 + 0x560), 0, 0);
 }
 #pragma pop
 

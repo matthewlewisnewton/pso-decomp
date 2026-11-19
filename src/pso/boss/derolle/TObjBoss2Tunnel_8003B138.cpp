@@ -151,7 +151,6 @@ void shift_queue_push_next__15TObjBoss2TunnelFPv(Obj_8003C2A0 *self);
 void * init__13TUnk_804835D8Fv(void *arg0);
 f32 rand_signed_unit(void);
 void *__ct__13TObjBoss2DustFv(void *, void *, Vec *);
-void play_persistent_sound(int, void *, int, int, int);
 void enable_fog__15TObjBoss2TunnelFv(void);
 void enable_fog__15TObjBoss2TunnelFPv(TObjBoss2Tunnel *arg0);
 void TObjBoss2Tunnel__sub_801339EC(f32, f32, f32);

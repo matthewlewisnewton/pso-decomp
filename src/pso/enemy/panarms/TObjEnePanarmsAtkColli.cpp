@@ -343,7 +343,6 @@ struct Obj_800E37E4 {
 };
 
 extern "C" {
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 extern s32 __vt__22TObjEnePanarmsAtkColli[];
 void *TObjEnePanarmsAtkColli__ct(Obj_800E37E4 *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 
@@ -361,7 +360,7 @@ void TObjEnePanarmsAtkColli::run_task() {
         ((void (*)(void *))check_radius_collisions)(arg0);
         return;
     case 1:
-        play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003BA2A)), (s32)arg0, (u32)&this->position, 0, 0);
+        play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003BA2A)), arg0, &this->position, 0, 0);
         ((void (*)(void *))sweep_segment_collisions)(arg0);
         return;
     }

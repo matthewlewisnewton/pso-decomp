@@ -99,7 +99,6 @@ extern const char *TObjLuker__name;
 void *TObjLuker__ct(void *arg0, void *arg1, void *arg2);
 f32 horizontal_distance_squared(void *, void *);
 s32 check_flag_100__10TObjPlayerFPv(void *);
-s32 play_persistent_sound(int, void *, void *, int, int);
 s32 TTecLuker__sub_8023401C(void *);
 void *create_telepipe_visual(void *, void *, int, int);
 s32 get_entity_id(int);
@@ -415,7 +414,7 @@ void TObjLuker::run_task() {
                 *(void * *)&this->m_a4 = o;
                 *(s32 *)&this->m_b4 = 0;
             }
-            play_persistent_sound(0x4002B219, arg0, (u8 *)&this->position, 0, 0);
+            play_persistent_sound(0x4002B219, arg0, &this->position, 0, 0);
             switch (this->m_b0) {
             case 0:
                 sp8 = 0;

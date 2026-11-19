@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/memory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/network/protocol/protocol_types.h"
@@ -70,7 +71,6 @@ f32 fabs_float(f32 x);
 f32 newton_sqrtf(f32 x);
 s32 get_current_floor(void);
 s16 get_actor_hp__9TObjCharaFv(u8 *p);
-s32 play_persistent_sound(u32 id, TObject *source, f32 *pos, s32, s32);
 u16 find_nearest_visible_player(TObject *self, s32 flags, f32 range);
 s32 is_local_client_floor_leader();
 void request_follow_camera_offsets(Vec *position, Vec *target, s32 id, f32 blend);

@@ -9,6 +9,7 @@ extern "C" {
 // Plays a one-shot sound effect at a world position; returns the request
 // handle stop_sound_request takes.
 s32 play_sound_effect(s32 id, const Vec *position, s32 adjustment, s32 flags);
+s32 play_persistent_sound(s32 id, const void *identity, const Vec *position, s32 adjustment, s32 flags);
 }
 
 #endif

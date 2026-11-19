@@ -7,15 +7,15 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
 | `great-merge/upstream/combined` · `d86ae41c4d` | Combined source matchpasses, including the shared item archive reader, sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `5c534e70e5` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `54bd96bdc6` | Thirteen subsystem drafts and four follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/all-source` · `37e1a23e55` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `2246720217` | Thirteen subsystem drafts and six follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
 
 The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists eighteen independently tested local branches based on upstream `f76fdd7ff1`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
 
-The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the later changes to collision, matrix math, the ADX decoder and one-shot sound requests. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
+The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the later changes to collision, matrix math, the ADX decoder and positional sound requests. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
 
 The fork's enhanced linker checker had produced thousands of retention-list changes. The source-only cumulative build starts from the stock list and updates the affected symbol names. The stock compiler also reproduces the adjacent Dark Falz weighted-selection and material routines in one source unit. Together they emit the two floats at 0x805D8AD8 and 0x805D8ADC naturally. This removes the fork's object-alignment helper from the upstream build. The comparison with fork main found zero lost matched or source-linked function or data ranges. Its total extent decreases by 2,045 bytes, with 2,200 bytes of verified padding leaving coverage and 155 bytes entering coverage.
 
@@ -23,7 +23,7 @@ The four authorized submissions are [#321](https://github.com/zeroz41/pso-decomp
 
 ## Review groups on the merged master
 
-Seventeen checked components form the first six larger local branches on upstream `f76fdd7ff1`. Each branch below builds independently, passes the stock PR checks and reproduces the retail executable. The first five cover game subsystems. The sixth holds the smaller native callback and SDK changes. The separate one-shot sound recovery is the seventh review group. All seven are local.
+Seventeen checked components form the first six larger local branches on upstream `f76fdd7ff1`. Each branch below builds independently, passes the stock PR checks and reproduces the retail executable. The first five cover game subsystems. The sixth holds the smaller native callback and SDK changes. The positional sound recovery is the seventh review group. All seven are local.
 
 | Review branch | Commit | Paths | Components |
 | --- | --- | ---: | --- |
@@ -33,7 +33,7 @@ Seventeen checked components form the first six larger local branches on upstrea
 | `great-merge/reviews/encounter-drawing` | `1826acfd4a` | 97 | radar-camera, raft-encounters, texture-strips, boss-effects |
 | `great-merge/reviews/memory` | `bc9ede35e0` | 185 | runtime-array-allocation, memory-moves |
 | `great-merge/reviews/native-callbacks` | `d8c3791ade` | 11 | native-callbacks-sdk |
-| `great-merge/upstream/one-shot-sound` | `fcd789803e` | 207 | one-shot-sound |
+| `great-merge/upstream/positional-sound` | `cc23e836c9` | 259 | one-shot, persistent and area sound with particles |
 
 The resource group also names the stream buffer and cue work area at 0x805D62D8 and 0x805D62DC. After moving their associated declarations, callers and linker entries together, the recovered source immediately before these two names and the complete source both passed independently. The former checkpoint is `great-merge/fork-validation/archive-and-memory-callers` at `e6646c0fc3`. The three-file remainder belongs to the resource group.
 
@@ -53,7 +53,7 @@ The original fork tip `3342e42983` has 798 subsequent first-parent commits. Comp
 
 Sixteen more complete fork-point patches reproduce their current owner when merged in both directions. Three contain only include-directory or header-guard moves after mapping Git renames. Another sixteen have every fork edit block present with unique surrounding source context. The comparison preserves comments and directives. The block check skips multiline literals and comments and requires the old contextual form to be absent. The index records the current owner in each case.
 
-The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,207 paths requiring an owner comparison and 312 with partially matched edit blocks.
+The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,172 paths requiring an owner comparison and 306 with partially matched edit blocks.
 
 ## One-shot positional sound requests
 
@@ -62,6 +62,14 @@ The original fork recovered a signed request handle and a read-only world positi
 Both original and integrated source-linked images contain 1,198 direct PowerPC branches to `play_sound_effect` at 0x8022675C. Each branch's enclosing function has the same address and size and is an exact source match in both reports. Across 294 current caller files, the source expression count equals the compiled branch count for each file. Eighteen original fork paths contain only the historical sound edit. The ledger records 35 call-site addresses for those paths and partial evidence for 1,111 calls across 272 other paths.
 
 The standalone, cumulative and fork builds passed the upstream checker and reproduced retail. The fork-only probe `tools/probes/check_one_shot_sound.py` executes eight cases covering admission, duplicate suppression, allocation failure, position copying and returned handles. It observes the packed request arguments and checks neighboring slots and the caller's vector for writes. It passed on the original fork binary and all three rebuilds. The results-page and weapon-animation probes also passed on all four images.
+
+## Persistent and area sound with particles
+
+The positional sound group at `cc23e836c9` has three commits on upstream `f76fdd7ff1`. Its first commit remains available at `great-merge/upstream/one-shot-sound`. The second recovers persistent requests with separate owner and position pointers, the six floor-specific request IDs and the one-shot floor dispatcher's return value. The third restores the two area sound-and-particle routines and the shared particle spawn that takes a position. Enemy callers now pass the position directly to the correct routine.
+
+All 195 direct persistent-sound branches in the original and integrated images have the same source-linked address and enclosing function. Each of the 82 caller files has the expected number of typed calls. Both area sound-and-particle entries have the same nine and ten callers by instruction address. The two calls to the common particle routine are present. The fork-only check `tools/probes/check_persistent_sound.py` exercises slot creation, reuse with a new position, admission failure, allocation failure, owner retention and all four area dispatch routines across 36 floors. The sound ID, returned handle, particle IDs and 30-unit vertical offset are checked on the emitted code.
+
+An independent pass on the current texture list verified 600 original source-linked calls across 348 current caller files. Twenty-seven fork paths contain only those interface changes. Five wreck object files contain only native destructor conversions and removal of raw declarations. Each class has its destructor declared and defined at the current owner and both builds reproduce its address, symbol and size. The review index records partial evidence separately where a path has additional fork changes.
 
 ## Buildable boundaries in the remaining drafts
 

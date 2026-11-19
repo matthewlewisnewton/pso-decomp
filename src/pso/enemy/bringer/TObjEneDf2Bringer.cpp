@@ -685,7 +685,6 @@ s32 TObjEneDf2Bringer__sub_80099248(void *);
 s32 enemy_validate_retained_target(void *);
 u32 enemy_probe_wall_ahead__13TBoss5GryphonFfff(void *, f32, f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 subtract_vector(void *, void *);
 TParticleCtrl *create_particle_emitter(const void *pos, s32 id);
 s32 matrix_mult_vec(int, void *, void *);
@@ -1516,7 +1515,7 @@ s32 attack_visible_players__17TObjEneDf2BringerFPv(Obj_80098EFC *self) {
 }
 
 void TObjEneDf2Bringer__sub_80098EB4(s32 arg0) {
-    play_persistent_sound((((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003B708)), arg0, (arg0 + 0x38), 0, 0);
+    play_persistent_sound((((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003B708)), (const void *)arg0, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 s32 TObjEneDf2Bringer::vfunc_104(f32 farg0) {
@@ -1879,7 +1878,7 @@ void TObjEneDf2Bringer__sub_8009813C(u8 *arg0, s32 arg1) {
                 play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003B40E)), (const Vec *)(arg0 + 0x38), 0, 0);
                 TObjPlayer::play_effect_if_v2(-0x200);
             }
-            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AD09)), (s32)arg0, (u32)(arg0 + 0x38), (s32)(0), (s32)(0));
+            play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AD09)), arg0, (const Vec *)(arg0 + 0x38), (s32)(0), (s32)(0));
             break;
         case 2:
             F(s32, 0x4B0)++;
@@ -2015,7 +2014,7 @@ void action__17TObjEneDf2BringerFPvi(u8 *arg0, s32 arg1) {
         }
         ((TObjEneDD *)arg0)->vfunc_102();
         ((TObjEneDD *)arg0)->vfunc_89();
-        play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AD0F)), (s32)arg0, (u32)(arg0 + 0x38), (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AD0F)), arg0, (const Vec *)(arg0 + 0x38), (s32)(0), (s32)(0));
         return;
     case 5:
         if ((u32) *(u32 *)((s8 *)arg0 + 0x4C4) != 0U) {

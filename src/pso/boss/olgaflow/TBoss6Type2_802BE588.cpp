@@ -6,7 +6,6 @@
 #include "pso/boss/olgaflow/TBoss6Type2.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include <dolphin/mtx/GeoTypes.h>
 
 // TBoss6Type2 state handlers and their state-action table (one TU: the table's
@@ -94,7 +93,6 @@ int send_action_packet__11TBoss6Type2FSc(void*, void*);
 s32 TBoss6Type2__sub_802BB768(void *);
 s32 VecCopy__FP3VecPC3Vec(void *, void *);
 extern const f32 lbl_805DE3F8;
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 extern const f32 lbl_805DE404;
 extern const f32 lbl_805DE400;
 void TBoss6Type2__sub_802BA598(TBoss6Type2 *self, s32 elapsed, s32 duration);
@@ -160,7 +158,7 @@ void TBoss6Type2::reset_state_timers() {
 void TBoss6Type2::sub_802BFA1C() {
     s32 temp_r0;
 
-    play_persistent_sound(0x4006A612, (s32)this, (u32)&position, 0, 1);
+    play_persistent_sound(0x4006A612, this, &position, 0, 1);
     temp_r0 = state_timer - 1;
     state_timer = temp_r0;
     if (temp_r0 < 0) {
@@ -535,7 +533,7 @@ void TBoss6Type2::sub_802BEC28() {
     } else if (ratio > 1.0f) {
         state_progress = 1.0f;
     }
-    play_persistent_sound(0x4006A30B, (s32)this, (u32)&position, 0, 1);
+    play_persistent_sound(0x4006A30B, this, &position, 0, 1);
     if (--state_timer < 0) {
         m_418 = 1;
         state_progress = 1.0f;
@@ -571,7 +569,7 @@ void TBoss6Type2::sub_802BEB78() {
 void TBoss6Type2::update_attack_timer() {
     u32 player;
 
-    play_persistent_sound(0x4006A30B, (s32)this, (u32)&position, 0, 1);
+    play_persistent_sound(0x4006A30B, this, &position, 0, 1);
     if (--state_timer < 0) {
         if (check_target() != 0) {
             if (is_target_valid() == 0) {
@@ -624,7 +622,7 @@ void TBoss6Type2::update_charge_timer() {
     } else if (temp_f1 > 1.0f) {
         this->state_progress = 1.0f;
     }
-    play_persistent_sound(0x4006A30B, ((s32) this), (0U), 0, 0);
+    play_persistent_sound(0x4006A30B, this, (0U), 0, 0);
     temp_r0 = this->state_timer - 1;
     this->state_timer = temp_r0;
     if (temp_r0 < 0) {

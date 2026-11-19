@@ -39,7 +39,6 @@ extern s32 model_render_flags;
 void TObjPlayer__sub_800A04F0(void *);
 void TObjEneBalClawClaw__sub_80091134(TObjEneBalClawClaw *claw);
 s32 check_path_obstructed(void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void TObjEneBalClawClaw__sub_80091200(TObjEneBalClawClaw *claw);
 TObjChara *find_active_entity_by_id(u16);
 void TObjEneBalClawClaw__sub_80090ECC(TObjEneBalClawClaw *claw);
@@ -337,7 +336,7 @@ void TObjEneBalClawClaw::update_chase(void *p) {
             reset_active_state(claw);
             break;
         }
-        play_persistent_sound(0x4003B235, (s32)claw, (u32)&claw->position, 0, 0);
+        play_persistent_sound(0x4003B235, claw, &claw->position, 0, 0);
         Vec target_pos = *(Vec *)&((TObjChara *)claw->target)->m_2fc;
         update_enemy_wander_move(claw, &target_pos, 1, (EnemyMoveParams *)claw->movementParameters,
                                  ((EnemyMoveParams *)claw->movementParameters)->min_distance);
@@ -372,7 +371,7 @@ void TObjEneBalClawClaw__sub_80091200(TObjEneBalClawClaw *claw) {
         claw->m_310 *= 0.9f;
         apply_actor_gravity(claw, NULL, 0.0f);
         ((TObjPlayer *)claw)->update_collisions();
-        play_persistent_sound(0x4003B235, (s32)claw, (u32)&claw->position, 0, 0);
+        play_persistent_sound(0x4003B235, claw, &claw->position, 0, 0);
         if (claw->action_flags != 8) {
             claw->actorFlags &= ~0x200;
             claw->m_388 &= ~1;

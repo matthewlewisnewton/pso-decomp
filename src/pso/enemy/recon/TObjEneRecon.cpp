@@ -32,7 +32,6 @@
 #include "pso/enemy/recon/TObjEneRecobox.h"
 #include "pso/enemy/shinowa/TObjEneMe3ShinowaReal.h"
 #include "pso/enemy/recon/TObjEneRecon_8031D780.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
@@ -1323,12 +1322,12 @@ s32 TObjEneRecon::vfunc_104(f32 farg0) {
 
 void TObjEneRecon::spawn_trap_a() {
     s32 arg0 = (s32)this;
-    play_persistent_sound((TObjEneRecobox::remap_area_sound_id(0x4003AD07)), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((TObjEneRecobox::remap_area_sound_id(0x4003AD07)), (const void *)((arg0)), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneRecon::spawn_trap_b() {
     s32 arg0 = (s32)this;
-    play_persistent_sound((TObjEneRecobox::remap_area_sound_id(0x4003B206)), (arg0), (arg0 + 0x38), 0, 0);
+    play_persistent_sound((TObjEneRecobox::remap_area_sound_id(0x4003B206)), (const void *)((arg0)), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 u16 TObjEneRecon__sub_8031D878(void *arg0) {

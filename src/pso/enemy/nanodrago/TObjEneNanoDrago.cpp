@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -74,7 +75,6 @@ extern "C" f32 atan2_float(f32 y, f32 x);
 extern "C" void check_enemy_body_collisions(void *arg0);
 
 extern "C" u32 get_player_by_client_id(s32);
-extern "C" s32 play_area_sound_effect__12TBoss3VoloptFv(void *, s32);
 
 void move_with_wall_slide(u8 *arg0);
 
@@ -86,7 +86,6 @@ extern "C" void *find_entity_by_id(u16 id);
 extern "C" u32 __nw__7TObjectFUl(u32);
 extern "C" s32 enemy_turn_half_toward_dest(void *);
 extern "C" s32 construct_beam_effect__10TObjPlayerFPvPvPviPv(u32, void *, void *, u8, void *);
-extern "C" s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 extern "C" s32 check_path_obstructed(void *, Vec *);
 extern "C" void calc_velocity_toward_destination(void *, Vec, Vec, f32);
 extern "C" void project_actor_to_ground(void *, void *, s32);
@@ -605,7 +604,7 @@ void TObjEneNanoDrago::update_single_beam_state() {
             }
             break;
         case 2:
-            play_persistent_sound(0x4003AD1E, (s32)this, (u32)&position, 0, 0);
+            play_persistent_sound(0x4003AD1E, this, &position, 0, 0);
             if (frame >= 20.0f) {
                 capture_beam_origins();
                 u32 obj = __nw__7TObjectFUl(0x100);
@@ -675,7 +674,7 @@ void TObjEneNanoDrago::update_multi_beam_state() {
             }
             break;
         case 2:
-            play_persistent_sound(0x4003AD1E, (s32)this, (u32)&position, 0, 0);
+            play_persistent_sound(0x4003AD1E, this, &position, 0, 0);
             if (frame >= 20.0f) {
                 capture_beam_origins();
                 for (i = 0; i < beamTargetCount; i++) {
@@ -1096,7 +1095,7 @@ void TObjEneNanoDrago::update_fade_in_state() {
         flags = actorFlags | 0x04000000;
         actorFlags = flags;
         requested_action = 0;
-        play_area_sound_effect__12TBoss3VoloptFv(&m_2fc, flags);
+        play_area_sound_and_particles_b((const Vec *)&m_2fc);
         ((TUnk_80494938 *)(&appearFade))->start_fade_in();
         state = 1;
     case 1:

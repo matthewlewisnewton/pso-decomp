@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/render/render_util.h"
@@ -10,7 +11,6 @@
 #include "pso/math/MatrixTransforms.h"
 #include "pso/unk/TLobby_8030A6A8.h"
 #include "pso/object/ruins/TOMonumentAncient02.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer_801542CC.h"
@@ -121,7 +121,7 @@ void TOMonumentAncient02::run_task() {
         }
         break;
     case 2:
-        play_persistent_sound(sound_id, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound(sound_id, this, &position, 0, 0);
         break;
     }
 }

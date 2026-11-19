@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/technique/TTecCtrl.h"
 #include "pso/render/render_util.h"
@@ -1495,7 +1496,6 @@ int bswap_16__FPUs(void*);
 int bswap_32__FPUl(void*);
 void update_players__6TLobbyFv(s32 arg0);
 u8 * get_character_save_record(u16);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 u32 __nw__7TObjectFUl(s32);
 s32 capture_technique_targets__10TObjPlayerFv(void *, void *);
 void launch_technique__10TObjPlayerFv(s32, s32, void *);
@@ -4042,7 +4042,7 @@ void TObjPlayer::update_photon_blast_action() {
       ((TObjPlayer *)(arg0 + 0x4AC))->set_field8((int) (*((s16 *) (((s8 *) TObjPlayer::get_photon_blast_entry(((TFontSmallLobby *)(arg0 + 0x4AC))->get_valid_index())) + 0x12))));
       ((TObjPlayer *)(arg0 + 0x4AC))->set_field_0c((f32) lbl_805DC398);
     }
-      play_persistent_sound(0x4002A823, (s32)arg0, 0, 0, 0);
+      play_persistent_sound(0x4002A823, arg0, 0, 0, 0);
       break;
     case 1:
       this->frame = (f32) ((this->frame) + TObjPlayer__sub_801D2A98((void *) (arg0 + 0x4AC)));
@@ -4069,7 +4069,7 @@ void TObjPlayer::update_photon_blast_action() {
       ((TObjPlayer *)arg0)->get_photon_blast_complete_threshold();
       ((s32 (*)(void *))TObjPlayer__sub_801D2A78)((void *) (arg0 + 0x4AC));
     }
-      play_persistent_sound(0x4002A823, (s32)arg0, 0, 0, 0);
+      play_persistent_sound(0x4002A823, arg0, 0, 0, 0);
       break;
     case 3:
       if (((s32 (*)(void *))TObjPlayer__sub_801D2A50)((void *) (arg0 + 0x4AC)) != 0)

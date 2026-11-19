@@ -224,7 +224,6 @@ int toggle_particle_effect__10TObjPlayerFv(void*);
 void free_collision_body_parts(void *);
 s32 project_actor_to_ground(void *, void *, int);
 s32 add_radar_scaled_marker(void *, s32, s16, s32, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void create__11TTecRaBartaFPvPvPvPv(void *source, void *origin, void *pos, void *level);
 void TBoss6PlotFalz__sub_802AC008(f32 farg0, f32 farg1);
 void vec3_add_to(Vec *, Vec *);
@@ -1151,7 +1150,7 @@ void TBoss4Type1::sub_80053440() {
         }
     }
     arg0->node_tables.scroll_strips();
-    play_persistent_sound(0x4003BC0E, (s32)arg0, (u32)&arg0->pos, 0x40, 2);
+    play_persistent_sound(0x4003BC0E, arg0, &arg0->pos, 0x40, 2);
 }
 
 void TBoss4Type1::update_follow_camera_offsets() {
@@ -1259,7 +1258,7 @@ void TBoss4Type2::sub_80052EF8() {
         ((s32 (*)(void *, Vec *, Vec *))set_pos_from_scaled_offset__11TBoss4Type2FPvPvPv)(this, &a, &b);
     }
     calc_scaled_field(((s32 (*)(void *, s32, s32))TBoss4Type2__sub_80054384)(this, self->f3a4, self->f3ac), ((s32 (*)(void *, s32, s32))TBoss4Type2__sub_80054384)(this, self->f3a0, self->f3a8));
-    play_persistent_sound(0x4003A80D, (s32)this, (u32)self->f38, 0, 0);
+    play_persistent_sound(0x4003A80D, this, (const Vec *)self->f38, 0, 0);
     if (--self->f398 < 0) {
         self->f3a4 = self->f3a0;
         self->f3ac = self->f3a8;
@@ -1403,7 +1402,7 @@ void TBoss4Type2::update_tech_charge() {
         }
     }
     if (*(f32 *)((s8 *)this + 0x3E8) >= 8.0f && *(f32 *)((s8 *)this + 0x3E8) <= 17.0f) {
-        play_persistent_sound(0x4003B512, (s32)this, (u32)this + 0x38, 0, 1);
+        play_persistent_sound(0x4003B512, this, (const Vec *)((u32)this + 0x38), 0, 1);
     }
     if (*(s32 *)((s8 *)this + 0x398) == 0x26) {
         if ((r = ((u32 (*)(void *, s32))spawn_particle_effect)(ent, 0xFD)) != 0) {

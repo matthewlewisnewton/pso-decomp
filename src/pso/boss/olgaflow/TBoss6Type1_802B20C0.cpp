@@ -1,6 +1,5 @@
 #pragma readonly_strings on
 #include "types.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/boss/olgaflow/TBoss6Type1_802B20C0.h"
 #include "pso/system/vector.h"
 #include "pso/boss/olgaflow/TBoss6Type1.h"
@@ -330,7 +329,7 @@ void TBoss6Type1::init_move_attack() {
 void TBoss6Type1::update_hit_timer() {
     s32 temp_r3;
 
-    play_persistent_sound(0x40032614, (s32)this, 0, 0, 0);
+    play_persistent_sound(0x40032614, this, 0, 0, 0);
     if ((s32) this->action_timer == 0x3C) {
         play_sound_effect(0x39403, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
     }
@@ -385,7 +384,7 @@ void TBoss6Type1::sub_802B2A94() {
             VecCopy((Vec *)((u8 *)arg0 + 0x420), &down_centop_land_pos);
         }
     }
-    play_persistent_sound(0x4003B012, ((s32) arg0), ((u32)((u8 *)arg0 + 0x38)), 0, 0);
+    play_persistent_sound(0x4003B012, arg0, (const Vec *)((u8 *)arg0 + 0x38), 0, 0);
     temp_r0_2 = *(s32 *)((s8 *)arg0 + 0x410) - 1;
     *(s32 *)((s8 *)arg0 + 0x410) = temp_r0_2;
     if (temp_r0_2 < 0) {
@@ -472,7 +471,7 @@ void TBoss6Type1::init_state() {
 void TBoss6Type1::tick_trap_countdown() {
     s32 temp_r0;
 
-    play_persistent_sound(0x40038F0F, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);
+    play_persistent_sound(0x40038F0F, this, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
     temp_r0 = this->action_timer - 1;
     this->action_timer = temp_r0;
     if (temp_r0 < 0) {
@@ -502,7 +501,7 @@ void TBoss6Type1::update_charge() {
     s32 temp_r0;
 
     ((TBoss6Type1 *)arg0)->interpolate_pos_to_target((s32)(this->action_timer), (s32)(*(s32 *)((s8 *)arg0 + 0x40C)));
-    play_persistent_sound(0x40038F0F, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+    play_persistent_sound(0x40038F0F, arg0, (const Vec *)(arg0 + 0x38), 0, 0);
     temp_r0 = this->action_timer - 1;
     this->action_timer = temp_r0;
     if (temp_r0 < 0) {
@@ -572,7 +571,7 @@ void TBoss6Type1::sub_802B31E4() {
         if (*(f32 *)((s8 *)arg0 + 0x4DC) > 0.0f) {
             var_r3 = 0x4003AD0D;
         }
-        play_persistent_sound((s32)var_r3, (s32)arg0, (u32)&arg0->node_points[7], 0, 1);
+        play_persistent_sound((s32)var_r3, arg0, &arg0->node_points[7], 0, 1);
     }
     if (*(f32 *)((s8 *)arg0 + 0x4DC) > 0.0f) {
         TBoss6Type1__sub_802B4B04(((u8 *)arg0));

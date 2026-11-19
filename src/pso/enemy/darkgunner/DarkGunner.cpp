@@ -146,7 +146,6 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0);
 void enemy_set_heading_velocity(f32 speed, TObjEnemy *enemy, s32 heading);
 extern "C" {
 f32 TObjPlayer__sub_800A3200(s32 arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 extern s32 actor_frame_tick;
 s32 TObjPlayer__sub_800A2390(void *arg0_);
 
@@ -1324,7 +1323,7 @@ s32 TObjPlayer__sub_800A2390(void *arg0_) {
             enemy->f388 &= ~0x80000;
             enemy->state = 3;
         }
-        play_persistent_sound((s32)(0x4003AD28), (s32)enemy, (u32)((u8 *)enemy + 0x38), (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(0x4003AD28), enemy, (const Vec *)((u8 *)enemy + 0x38), (s32)(0), (s32)(0));
         if (enemy->f3AC > 0) {
             enemy->f3AC--;
             if (enemy->fA4->f18 & 0x300000) {

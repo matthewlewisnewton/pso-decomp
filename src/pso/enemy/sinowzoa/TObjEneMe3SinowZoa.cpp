@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -107,7 +108,6 @@ s32 get_item_id__5TItemFv();
 s32 check_v2_mode__9TObjEneDDFv(s32, s32);
 void TObjEneDD__sub_800BA438(void *, void *);
 s32 TObjEneMe3SinowZoa__sub_800D72A4(TUnk_80494938 *fade);
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 f32 * TBoss3Volopt__sub_800F059C(void *);
 void create__10TTecDebandFlll(void *, void *, int);
 void create__9TTecJelinFllll(void *, void *, void *, int);
@@ -806,7 +806,7 @@ void TObjEneMe3SinowZoa::sub_80319E74(s32 arg1) {
         t = this->m_3e0;
         v.y = t - 20.0f;
         if (this->m_3c0 == 0) {
-            TBoss3Volopt__sub_800D8D88(&v, t);
+            play_area_sound_and_particles_a(&v);
         } else {
             create_timed_particle_emitter(&this->position, 0x79, 0, 0xF);
         }
@@ -902,7 +902,7 @@ void TObjEneMe3SinowZoa__sub_80319B8C(TObjEneMe3SinowZoa *self, s32 arg1) {
         VecCopy(&v, &self->position);
         temp_f1 = self->m_3e0;
         v.y = temp_f1 - TObjEneMe3SinowZoa__data_805DF314;
-        TBoss3Volopt__sub_800D8D88(&v, temp_f1);
+        play_area_sound_and_particles_a(&v);
         break;
     case 3:
         if (self->fade.advance_toward_max() != 0) {

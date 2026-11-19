@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/EnemyTargetCandidate.h"
@@ -244,7 +245,6 @@ void spawn_missile_volley__19TObjGyaranzoMissileFPv(u8 *arg0);
 
 void update__19TObjGyaranzoMissileFPv(u8 *arg0);
 
-s32 TBoss3Volopt__sub_800D8D88(void *, s32);
 }
 s32 get_gyaranzo_missile_int_parameter(s32 i);
 
@@ -1286,7 +1286,7 @@ void update__19TObjGyaranzoMissileFPv(u8 *arg0) {
         temp_r4 = *(s32 *)((s8 *)arg0 + 0x30) | 0x04000000;
         *(s32 *)((s8 *)arg0 + 0x30) = temp_r4;
         ((TObjMotion *)arg0)->requested_action = 0;
-        TBoss3Volopt__sub_800D8D88(arg0 + 0x2FC, temp_r4);
+        play_area_sound_and_particles_a((const Vec *)(arg0 + 0x2FC));
         ((TObjEneGyaranzo *)arg0)->fade.start_fade_in();
         *(s32 *)((s8 *)arg0 + 0x37C) = 1;
     case 1:

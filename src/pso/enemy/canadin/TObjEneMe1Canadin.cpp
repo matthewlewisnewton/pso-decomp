@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/math/FloatRounding.h"
@@ -221,9 +222,7 @@ s32 is_player_entity_id(u16 arg0);
 void set_part_position__9TObjEneDDFPvPvi(void *, s32, s32);
 s32 collect_enemy_target_candidates(void *, Entry_8009E860 *);
 void clear_attack_receipts__9TObjEneDDFv();
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
 s32 trigger_dell_biter_events__10TObjPlayerFv(void *, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 matrix_mult_vec(int, Vec *, Vec *);
 s32 rotate_vector_by_matrix(int, Vec *, Vec *);
 
@@ -971,7 +970,7 @@ void TObjEneMe1Canadin__sub_8009DE90(TObjEneMe1Canadin *self, s32 arg1) {
         self->m_3FC = 4;
         self->m_4B8 = 1;
         self->fade.start_fade_in();
-        TBoss3Volopt__sub_800D8D88((s32)&self->position);
+        play_area_sound_and_particles_a(&self->position);
         return;
     case 3:
         if (self->fade.advance_toward_max() != 0) {
@@ -1765,7 +1764,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(TObjEneMe1Canadin *self, s32 arg1) {
         } else {
             self->m_410 = 0xFF000000;
         }
-        play_persistent_sound(0x4003B71D, (s32)self, (u32)&self->m_2fc, 0, 0);
+        play_persistent_sound(0x4003B71D, self, (const Vec *)&self->m_2fc, 0, 0);
         self->vfunc_89();
         break;
     }

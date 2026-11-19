@@ -1,9 +1,9 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "pso/system/StripBufferPair.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/object/city/CityTraffic.h"
 #include "pso/object/city/CityTrafficTables.h"
@@ -450,11 +450,11 @@ void TObjCityAirCar_Car::run_task() {
     if ((((Car_80180E70 *)this)->path == 1 && ((Car_80180E70 *)this)->frame >= 15.5f && ((Car_80180E70 *)this)->frame <= 35.5f) ||
         (((Car_80180E70 *)this)->path == 2 && ((Car_80180E70 *)this)->frame >= 15.0f && ((Car_80180E70 *)this)->frame <= 35.0f)) {
         if (((Car_80180E70 *)this)->model == 4) {
-            play_persistent_sound(0x4004CB02, (s32)((Car_80180E70 *)this), (u32)&((Car_80180E70 *)this)->pos, 0, 0);
+            play_persistent_sound(0x4004CB02, (Car_80180E70 *)this, (const Vec *)((u32)&((Car_80180E70 *)this)->pos), 0, 0);
         } else if (((Car_80180E70 *)this)->model == 0) {
-            update_technique_slot__10TTecRaFoieFl(play_persistent_sound(0x4004C101, (s32)((Car_80180E70 *)this), (u32)&((Car_80180E70 *)this)->pos, 0, 0), -0x200, 0);
+            update_technique_slot__10TTecRaFoieFl(play_persistent_sound(0x4004C101, (Car_80180E70 *)this, (const Vec *)((u32)&((Car_80180E70 *)this)->pos), 0, 0), -0x200, 0);
         } else {
-            play_persistent_sound(0x4004C101, (s32)((Car_80180E70 *)this), (u32)&((Car_80180E70 *)this)->pos, 0, 0);
+            play_persistent_sound(0x4004C101, (Car_80180E70 *)this, (const Vec *)((u32)&((Car_80180E70 *)this)->pos), 0, 0);
         }
     }
     if (city_air_car_model_resource != 0) {

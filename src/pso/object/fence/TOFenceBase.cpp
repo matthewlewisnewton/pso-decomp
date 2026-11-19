@@ -1,7 +1,7 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/fence/TOFenceBase.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/object/switch/TSwitch.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -50,7 +50,7 @@ void TOFenceBase::update_trigger() {
         }
         break;
     }
-    play_persistent_sound(0x4004C10F, (s32)this, (u32)&position, 0, 0);
+    play_persistent_sound(0x4004C10F, this, &position, 0, 0);
 }
 
 void TOFenceBase::run_task() {

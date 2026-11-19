@@ -330,7 +330,6 @@ s32 check_demo_mode__10TObjPlayerFv(void *);
 s32 query_teammate_state__9TObjEneDDFv(void);
 void VecCopy__FP3VecPC3Vec(void *, void *);
 
-s32 play_persistent_sound(int, void *, void *, int, int);
 s32 clamp_to_ground__14TBoss6GravBallFv();
 
 
@@ -342,7 +341,7 @@ void update_charge_effects__14TBoss6GravBallFPv(u8 *self) {
     s32 temp_r0_3;
 
     TBoss6GravBall__sub_803233AC(self);
-    play_persistent_sound(0x4003C418, self, self + 0xC8, 0, 0);
+    play_persistent_sound(0x4003C418, self, (const Vec *)(self + 0xC8), 0, 0);
     temp_r0 = *(s32 *)((s8 *)self + 0xB8);
     if (temp_r0 >= 0x96) {
         if (temp_r0 == 0x96) {
@@ -416,7 +415,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
             }
         }
         TBoss6GravBall__sub_80323544((arg0));
-        play_persistent_sound(0x4003B51A, arg0, arg0 + 0xC8, 0, 0);
+        play_persistent_sound(0x4003B51A, arg0, (const Vec *)(arg0 + 0xC8), 0, 0);
         switch (((TBoss6GravBall *)((int) (*(s32 *)((s8 *)arg0 + 0xAC))))->get_state()) {
         case 0x27:
             return;

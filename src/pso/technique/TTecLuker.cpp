@@ -227,7 +227,6 @@ void *TTecLuker__ct(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 s32 mark_area_change_pending();
 s32 send_6x21_inter_level_warp(void *, s32);
 s32 get_floor_map_terrain(s32);
-s32 play_persistent_sound(s32, void *, void *, s32, s32);
 s32 set_area__6TLobbyFl(s32 *, s32, s32);
 void run_task__9TTecLukerFv(u8 *arg0);
 f32 horizontal_distance_squared(void *, void *);
@@ -772,7 +771,7 @@ void run_task__9TTecLukerFv(u8 *tec_luker) {
             ((TObject *)tec_luker)->queue_destruction();
             return;
         }
-        play_persistent_sound(0x4002B219, tec_luker, tec_luker + 0xFC, 0, 0);
+        play_persistent_sound(0x4002B219, tec_luker, (const Vec *)(tec_luker + 0xFC), 0, 0);
         if ((u32) ((TTecLuker *)tec_luker)->m_f0 == 0U) {
             ((TObject *)tec_luker)->queue_destruction();
             return;

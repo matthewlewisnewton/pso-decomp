@@ -1,3 +1,4 @@
+#include "pso/unk/text_800D8830.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TObjPlayer_800D8FDC.h"
@@ -96,10 +97,8 @@ void enemy_set_target_id(void *, u16);
 s32 get_camera_ctrl__9TObjEneDDFv(void *, int);
 s32 pack_debug_text_position(s32, s32);
 s32 attack_target_history_add(s32 object, s32 target);
-void play_floor_area_persistent_sound(void *owner, void *pos);
 s32 TObjEneGibbles__sub_800D8988(s32);
 f32 horizontal_distance_squared(void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void TObjPlayer__sub_8023DEE0(s16 *p, s16 a, s16 b, u16 id);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -556,7 +555,7 @@ void TObjEneDellBiter::fn_8030591C() {
             play_floor_area_persistent_sound(this, &position);
             return;
         }
-        play_persistent_sound(this->remap_sound_for_area((s32)((void *)0x40039E13)), (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound(this->remap_sound_for_area((s32)((void *)0x40039E13)), this, &position, 0, 0);
         spawn_particle_effect(&position, 0xF0);
     }
 }

@@ -59,7 +59,6 @@ void *spawn_continuous_particle_with_direction(void *pos, void *dir, s32 id);
 s32 angle_difference_abs(s32, s32);
 void *get_player_by_client_id(s32 i);
 s32 minimap_render_dot(void *, int, int, int);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void subtract_vector(void *, void *);
 extern s32 tl_05;
 s32 obj_setFlags30(void *, int);
@@ -355,7 +354,7 @@ void TObjEneIllGill::update_charge_attack() {
                 o->chargeFrames = c + 1;
             }
         }
-        play_persistent_sound((s32)(0x4003A34F), (s32)o, (u32)&o->position, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(0x4003A34F), o, &o->position, (s32)(0), (s32)(0));
         if (o->primaryEffect != 0 && ((TObject *)(o->primaryEffect))->all_parents_unqueued_for_destruction() != 0) {
             ((TParticleCtrl *)o->primaryEffect)->set_position(&o->chargeEffectPosition1);
         }
@@ -442,7 +441,7 @@ void TObjEneIllGill::update_shadow_attack() {
         }
         break;
     case 2:
-        play_persistent_sound((s32)(0x4003A356), (s32)enemy, (u32)&position, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(0x4003A356), enemy, &position, (s32)(0), (s32)(0));
         apply_actor_gravity((TObjEnemy *)enemy, (s32 *)(0), 0.0f);
         if (this->target != NULL) {
             Vec w;

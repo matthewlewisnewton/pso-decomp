@@ -57,7 +57,6 @@ s32 push_matrix();
 extern s32 model_render_flags;
 void free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
-s32 play_persistent_sound(s32, void *, void *, s16, s32);
 extern s32 actor_frame_tick;
 s32 minimap_render_dot(void *, s32, s16, s32);
 s32 submit_cursor_candidate(void *, int);

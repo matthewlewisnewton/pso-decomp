@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/animation/MotionContext.h"
@@ -97,7 +98,6 @@ extern "C" {
 s32 enemy_validate_retained_target(void *, int);
 void get_camera_ctrl__9TObjEneDDFv(Vec *, Vec *);
 void TObjEneDD__sub_800BA438(s32 arg0, u8 *arg1);
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 void TObjEneMe3ShinowaMirage__sub_800E4FE8(TObjEneMe3Shinowa *shinowa, s32 arg1);
 void TObjEneMe3ShinowaMirage__sub_800E50D8(TObjEneMe3Shinowa *shinowa, s32 arg1);
 void TObjEneMe3ShinowaMirage__sub_800E5220(TObjEneMe3Shinowa *shinowa, s32 arg1);
@@ -727,7 +727,7 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {
         VecCopy(&pos, &position);
         y = m_3c8;
         pos.y = y - 20.0f;
-        TBoss3Volopt__sub_800D8D88(&pos, y);
+        play_area_sound_and_particles_a(&pos);
         return;
     case 3:
         if (m_3e8.advance_toward_max() != 0) {

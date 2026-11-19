@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 
@@ -120,7 +121,6 @@ void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
 f32 subtract_vector(void *, void *);
 extern const f64 lbl_8043BF28;
 void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void matrix_mult_vec(void *, Vec *, Vec *);
 s32 post_translate_matrix(void *);
 s16 get_entity_id(void *);
@@ -148,7 +148,6 @@ u32 vfunc_101__9TObjEneDDFPUc();
 s32 collect_enemy_target_candidates(void *, TargetCandidate *, f32);
 s32 pack_debug_text_position(s32, s32);
 
-void TBoss3Volopt__sub_800D8D88(s32);
 
 s32 push_matrix();
 extern s32 lbl_8043BE98[];
@@ -615,7 +614,7 @@ s32 TObjEneMe1Gee::handle_message(s32 id) {
 }
 
 void TObjEneMe1Gee::sub_800CB968() {
-    play_persistent_sound(this->handle_message(0x3BC16), (s32)this, (u32)&this->m_2fc, 0, 0);
+    play_persistent_sound(this->handle_message(0x3BC16), this, (const Vec *)&this->m_2fc, 0, 0);
 }
 
 s32 TObjEneMe1Gee::vfunc_104(f32 range) { return this->select_and_apply_target(range); }
@@ -861,7 +860,7 @@ void TObjEneMe1Gee::state_move(s32 arg1) {
         this->actorFlags = (this->actorFlags & 0xFEFFFFFF);
         this->m_47c = 1;
         fade.start_fade_in();
-        ((TBoss3Volopt *)&this->position)->play_area_sound_effect();
+        play_area_sound_and_particles_b(&this->position);
         return;
     case 3:
         if (this->fade.advance_toward_max() != 0) {
@@ -896,7 +895,7 @@ void TObjEneMe1Gee::sub_800CAFD8(s32 arg1) {
         VecCopy(&pos, &this->position);
         pos.y += 150.0f;
         this->m_3f8 = pos.y;
-        TBoss3Volopt__sub_800D8D88((s32) &pos);
+        play_area_sound_and_particles_a(&pos);
         this->vfunc_91();
         this->m_434 = 0;
         return;
@@ -1212,7 +1211,7 @@ void TObjEneMe1Gee::sub_800CA454(s32 arg1) {
                 }
                 play_sound_effect(this->handle_message(0x3AD17), (const Vec *)&this->m_2fc, 0, 0);
             } else {
-                play_persistent_sound((s32)(this->handle_message(0x3A914)), (s32)this, (u32)&this->m_2fc, 0, 0);
+                play_persistent_sound((s32)(this->handle_message(0x3A914)), this, (const Vec *)&this->m_2fc, 0, 0);
             }
             break;
         }

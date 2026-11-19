@@ -1,3 +1,5 @@
+#include "pso/effect/PositionSoundEffects.h"
+#include "pso/unk/text_800D8830.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
@@ -493,7 +495,6 @@ s32 test_elt_flag__13TUnk_80493450Fll(void *, int, int);
 void beast_update_approach__16TObjEneMerillLiaFv(u8 *arg0);
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
-void play_floor_area_sound_effect(void *pos);
 extern s32 actor_frame_tick;
 void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *arg0);
 f32 enemy_backstep_from_point(void *, void *, f32);
@@ -1488,7 +1489,7 @@ void TObjEneMerillLia::sub_800D5570() {
         this->phase = 1;
         this->requested_action = 1;
         ((TUnk_80494938 *)((u8 *)arg0 + 0x3A8))->start_fade_in();
-        ((TBoss3Volopt *)(arg0->sub38))->play_area_sound_effect();
+        play_area_sound_and_particles_b((const Vec *)arg0->sub38);
         break;
     case 1:
         spawn_ground_effect__16TObjEneMerillLiaFPv((u8 *)arg0);
@@ -1736,7 +1737,7 @@ void spawn_ground_effect__16TObjEneMerillLiaFPv(u8 *motion) {
             spawn_particle_effect((void *)(*(s32 *)((s8 *)temp_r3 + 4) + 0x38), 0xA4);
         }
         if ((((TObjMotion *)motion)->is_passing_frame(7.0f) != 0) || (((TObjMotion *)motion)->is_passing_frame(22.0f) != 0)) {
-            play_floor_area_sound_effect((motion + 0x38));
+            play_floor_area_sound_effect((const Vec *)(motion + 0x38));
         }
     }
 }

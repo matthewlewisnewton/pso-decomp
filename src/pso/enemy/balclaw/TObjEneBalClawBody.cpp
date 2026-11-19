@@ -90,7 +90,6 @@ TObjChara *find_active_entity_by_id(u16);
 s32 fn_80090464(void *, int);
 u8 *get_enemy_entity(u16);
 s32 minimap_render_dot(void *, int, int, int);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 post_translate_matrix(void *);
 s32 push_matrix();
 void queue_destruction__7TObjectFv(void *arg0);
@@ -388,7 +387,7 @@ void TObjPlayer__sub_8008FAD0(TObjEneBalClawBody *body) {
             reset_enemy_state__10TObjPlayerFv();
             break;
         }
-        play_persistent_sound(0x4003B235, (s32)body, (u32)&body->position, 0, 0);
+        play_persistent_sound(0x4003B235, body, &body->position, 0, 0);
         body->y_speed = 0.0f;
         {
             Vec pos = *(Vec *)&((TObjChara *)body->target)->m_2fc;

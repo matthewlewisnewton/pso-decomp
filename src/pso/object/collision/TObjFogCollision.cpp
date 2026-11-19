@@ -11,7 +11,6 @@
 #include "pso/system/task/TObject_8001A448.h"
 #include "pso/object/TUnk_804AF7B0.h"
 #include "pso/map/FloorArea.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/object/collision/TObjFogCollision.h"
 #include "pso/object/collision/TObjFogCollision_Manager.h"
 #include "pso/object/collision/TObjFogCollisionSwitch.h"
@@ -369,14 +368,14 @@ void TObjFogCollisionPoison__sub_80153520(s32 arg0) {
     switch (get_current_floor_area()) {
     case AREA_VR_SPACESHIP_ALPHA:
     case AREA_VR_SPACESHIP_BETA:
-        play_persistent_sound(0x4004BC16, arg0, arg0 + 0x38, 0, 0);
+        play_persistent_sound(0x4004BC16, (const void *)arg0, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     case AREA_SEABED_UPPER:
     case AREA_SEABED_LOWER:
-        play_persistent_sound(0x4004BC24, arg0, arg0 + 0x38, 0, 0);
+        play_persistent_sound(0x4004BC24, (const void *)arg0, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     default:
-        play_persistent_sound(0x4004BC1C, arg0, arg0 + 0x38, 0, 0);
+        play_persistent_sound(0x4004BC1C, (const void *)arg0, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     }
 }

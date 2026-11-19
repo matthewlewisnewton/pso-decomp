@@ -164,7 +164,6 @@ void *destroy_buffer_pair(void *arg0, s16 arg1);
 extern "C" {
 s32 approach_angle_limited(s32, s32, s32);
 s32 free_collision_body_parts(void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void __dl__7TObjectFPv(void *);
 s32 create_ex__11TTecGiBartaFPvPvPv(void *, void *, s32, s32);
 void __destroy_arr(void *, void *, u32, u32);
@@ -734,7 +733,7 @@ void TObjEneRe4Sorcerer__sub_800EE1CC(TObjEneRe4Sorcerer *self, s32 arg1) {
                 self->requested_action = 4;
                 self->m_4e8 = 3;
             }
-            play_persistent_sound(self->remap_sound_for_area(0x4003A814), (s32)self, (u32)&self->position, 0, 0);
+            play_persistent_sound(self->remap_sound_for_area(0x4003A814), self, &self->position, 0, 0);
             break;
         case 2:
         case 3:
@@ -1206,15 +1205,15 @@ void TObjEneRe4Sorcerer__vt85(TObjEneRe4Sorcerer *self, u32 state, s32 reason) {
 }
 
 void TObjEneRe4Sorcerer__sub_800EF214(TObjEneRe4Sorcerer *self) {
-    play_persistent_sound(self->remap_sound_for_area(0x4003A81D), (s32)self, (u32)&self->position, 0, 0);
+    play_persistent_sound(self->remap_sound_for_area(0x4003A81D), self, &self->position, 0, 0);
 }
 
 void TObjEneRe4Sorcerer::create_effect() {
     if (m_3e8 == 0) {
-        play_persistent_sound(remap_sound_for_area(0x4003A812), (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound(remap_sound_for_area(0x4003A812), this, &position, 0, 0);
         return;
     }
-    play_persistent_sound(remap_sound_for_area(0x4003AB13), (s32)this, (u32)&position, 0, 0);
+    play_persistent_sound(remap_sound_for_area(0x4003AB13), this, &position, 0, 0);
 }
 
 s32 TObjEneRe4Sorcerer::cast_resta() {

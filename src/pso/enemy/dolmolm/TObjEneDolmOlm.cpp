@@ -1,3 +1,5 @@
+#include "pso/effect/PositionSoundEffects.h"
+#include "pso/unk/text_800D8830.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -390,7 +392,6 @@ extern u32 TObjEneDolmOlm__data_805D6A18;
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 Hit_80300D00 *csnVectorUnder(void *, void *, s32, f32);
 void *spawn_particle_effect(const void *pos, s32 id);
-void play_floor_area_sound_effect(void *);
 extern s32 actor_frame_tick;
 void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec *arg1);
 f32 random_ratio__9TObjCharaFv();
@@ -931,7 +932,7 @@ void TObjEneDolmOlm::vfunc_83() {
     default:
         if (this->m_390 != 0) {
             ((TUnk_80494938 *)(&self->obj))->start_fade_in();
-            ((TBoss3Volopt *)(self->sub38))->play_area_sound_effect();
+            play_area_sound_and_particles_b((const Vec *)self->sub38);
             this->phase = 1;
             return;
         }
@@ -1396,7 +1397,7 @@ void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec *arg1) {
     if (hit != NULL) {
         if (hit->flags & 4) {
             if (actor_frame_tick % 5 == 0) {
-                play_floor_area_sound_effect(arg0 + 0x38);
+                play_floor_area_sound_effect((const Vec *)(arg0 + 0x38));
             }
             e = (s32)spawn_particle_effect(hit->obj + 0x38, 0x49);
             if (e != 0) {
@@ -1405,7 +1406,7 @@ void spawn_ground_effects__14TObjEneDolmOlmFPvPv(u8 *arg0, Vec *arg1) {
             spawn_particle_effect(hit->obj + 0x38, 0xA4);
         } else if (hit->flags & 2) {
             if (actor_frame_tick % 10 == 0) {
-                play_floor_area_sound_effect(arg0 + 0x38);
+                play_floor_area_sound_effect((const Vec *)(arg0 + 0x38));
             }
             e = (s32)spawn_particle_effect(hit->obj + 0x54, 0x49);
             if (e != 0) {

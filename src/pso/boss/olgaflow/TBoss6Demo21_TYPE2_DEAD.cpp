@@ -82,7 +82,6 @@ f32 vector_length(void *);
 void subtract_vector(void *, void *);
 void normalize_vector(void *);
 #define __vt__23TBoss6Demo21_TYPE2_DEAD ((u8 *)__vt__23TBoss6Demo21_TYPE2_DEAD)
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);
 void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0);
 
@@ -244,10 +243,10 @@ void run_task__23TBoss6Demo21_TYPE2_DEADFv(Fish_8033E0F0 *arg0) {
         break;
     }
     if (arg0->timer >= 0x12C && arg0->timer <= 0x1AC) {
-        play_persistent_sound(0x4003352E, (s32)arg0, 0, 0, 0);
+        play_persistent_sound(0x4003352E, arg0, 0, 0, 0);
     }
     if (arg0->timer >= 0x1D7 && arg0->timer <= 0x23A) {
-        play_persistent_sound(0x32D2F, (s32)arg0, 0, 0, 0);
+        play_persistent_sound(0x32D2F, arg0, 0, 0, 0);
     }
     switch (arg0->timer) {
     case 0xAE:

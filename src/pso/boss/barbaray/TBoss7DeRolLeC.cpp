@@ -1197,7 +1197,6 @@ s32 is_alive__8TObjBaseFv();
 
 u8 *get_enemy_entity(u16 arg0);
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 #define TObjFish__sub_802E7B40 ((s32 (*)(void *))TObjFish__sub_802E7B40)
 #define TObjFish__sub_802E7B94 ((s32 (*)(void *))TObjFish__sub_802E7B94)
 void TObjFish__sub_802E8AD4(Fish_802E8AD4* o, u32 k);
@@ -2368,7 +2367,7 @@ void TObjFish__sub_802EC32C(TBoss7DeRolLeC *) {  }
 void TObjFish::set_effect_target_position(void* p, void* a1, void* a2) { play_sound_effect((s32)a1, (const Vec *)a2, 0, 0); }
 
 void TObjFish::spawn_via_trap(s32 arg0, s32 arg1, s32 arg2) {
-    play_persistent_sound(arg1, arg0, arg2, 0, 0);
+    play_persistent_sound(arg1, (const void *)arg0, (const Vec *)arg2, 0, 0);
 }
 
 void TBoss7DeRolLeC::dispatch_action(u32 state, s32 reason) {

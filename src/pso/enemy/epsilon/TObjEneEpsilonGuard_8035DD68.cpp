@@ -547,7 +547,6 @@ void TObjEneEpsilonGuard::sub_8035EA90() {
 
 void vfunc_88__19TObjEneEpsilonGuardFv(void *);
 void vfunc_89__19TObjEneEpsilonGuardFv(void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 int TObjEneEpsilonGuard__sub_8035F950(TObjEneEpsilonBody *body);
 
 void TObjEneEpsilonGuard::update_guard_state() {
@@ -569,12 +568,12 @@ void TObjEneEpsilonGuard::update_guard_state() {
             sub_8035EA90();
         }
         if (flags & 0x20) {
-            play_persistent_sound(0x4003A846, (s32)this, (u32)&position, 0, 0);
+            play_persistent_sound(0x4003A846, this, &position, 0, 0);
             return;
         }
         state = mode;
         if ((state != 4) && (state != 5)) {
-            play_persistent_sound(0x4003AD43, (s32)this, (u32)&position, 0, 0);
+            play_persistent_sound(0x4003AD43, this, &position, 0, 0);
         }
     }
 }

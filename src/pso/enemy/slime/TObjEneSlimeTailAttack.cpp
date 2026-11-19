@@ -373,7 +373,6 @@ void is_target_in_attack_range__9TObjCharaFv();
 
 void receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll();
 s32 minimap_render_dot(void *, s32, s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 
 void receive_physical_attack__9TObjCharaFPvf();
 
@@ -982,7 +981,7 @@ void TObjEneSlimeOne::run_task() {
             submit_cursor_candidate(this, -1);
         }
         animation->advance();
-        play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);
+        play_persistent_sound(0x4003B21C, this, &this->position, 0, 0);
         update_trail_position();
         clear_child_flag();
         if ((s32)this->state != 13) {

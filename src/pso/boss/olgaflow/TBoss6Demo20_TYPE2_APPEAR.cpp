@@ -7,7 +7,6 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/PadRumble.h"
 #include "pso/system/task/TObject.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/boss/olgaflow/Boss6Type2Appearance.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/camera/TCameraCtrl_800687BC.h"
@@ -219,7 +218,7 @@ void run_task__25TBoss6Demo20_TYPE2_APPEARFv(O_8033D6DC *self) {
         play_sound_effect(0x40031C2B, 0, 0, 0);
         break;
     }
-    play_persistent_sound(0x4003C627, (s32)self, 0, 0, 0);
+    play_persistent_sound(0x4003C627, self, 0, 0, 0);
     switch (self->frame) {
     case 0xB9:
         spawn_particle_effect_with_flags(self->obj40, 0x220, 0x40);

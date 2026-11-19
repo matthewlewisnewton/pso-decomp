@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/render/CurrentTextureList.h"
@@ -5,7 +6,6 @@
 #include "types.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/boss/goldragon/TBoss8Dragon_80065C90.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/system/vector.h"
@@ -111,7 +111,6 @@ extern const s32 lbl_804722F4[];
 extern const s32 lbl_80472300[];
 extern const s32 lbl_8047230C[];
 extern void *tl_04;
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 is_valid_target__9TObjEneDDFv(TObjBase *target);
 s32 free_collision_body_parts(void *);
 void init_collision_body_parts(void *, void *, s32);
@@ -496,7 +495,7 @@ void TObjEneBm9Mericarol::init_size_tier_and_offsets() {
 s32 TObjEneBm9Mericarol::get_phase() { return m_45c; }
 
 void TObjEneBm9Mericarol::sub_802D073C() {
-    play_persistent_sound((s32)(remap_sound_for_area(0x3A810)), (s32)this, (u32)&position, (s32)(0), (s32)(0));
+    play_persistent_sound((s32)(remap_sound_for_area(0x3A810)), this, &position, (s32)(0), (s32)(0));
 }
 
 void TObjEneBm9Mericarol::handle_action(s32 arg1) {
@@ -523,7 +522,7 @@ void TObjEneBm9Mericarol::sub_802D05BC(s32 arg1) {
         set_field_378(2);
         enemy_clear_target__12TObjEneDD_STFUs(this);
         m_46c.start_fade_in();
-        ((TBoss3Volopt *)&position)->play_area_sound_effect();
+        play_area_sound_and_particles_b(&position);
         return;
     case 3:
         if (m_46c.advance_toward_max() != 0) {
@@ -1382,11 +1381,11 @@ void fn_802CE510(int owner) {
     temp_r31 = ((RecoveredFields_802CE510_temp_r3 *) temp_r3)->field_0 & 4;
     if (temp_r31 != 0)
     {
-      play_floor_area_persistent_sound((void *)owner, (void *)(owner + 0x38));
+      play_floor_area_persistent_sound((const TObject *)owner, (const Vec *)(owner + 0x38));
     }
     else
     {
-      play_persistent_sound((s32)((void *) ((TObjEnemy *)((void *) owner))->remap_sound_for_area(0x3B211)), owner, (owner + 0x38), 0, 0);
+      play_persistent_sound((s32)((void *) ((TObjEnemy *)((void *) owner))->remap_sound_for_area(0x3B211)), (const void *)owner, (const Vec *)(owner + 0x38), 0, 0);
     }
     if (((((TObjMotion *)owner)->is_passing_frame((f32)(5.0f)) != 0) || (((TObjMotion *)owner)->is_passing_frame((f32)(15.0f)) != 0)) || (((TObjMotion *)owner)->is_passing_frame((f32)(25.0f)) != 0))
     {

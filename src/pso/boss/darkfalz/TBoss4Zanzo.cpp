@@ -71,7 +71,6 @@ TParticleCtrl *create_particle_emitter(const void *pos, s32 id);
 f32 atan2_float(f32 y, f32 x);
 
 void TBoss4Type2__sub_80057128(void *arg0);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void create__11TTecRaBartaFPvPvPvPv(void *source, void *origin, void *pos, void *level);
 extern s32 boss4_type2_attack_pattern_table[];
 extern s32 game_difficulty_selection;
@@ -911,7 +910,7 @@ void TBoss4Type2::jisin_update() {
         TBoss4Type2::create_jisin((void *)arg0, (void *)(*(s32 *)((s8 *)arg0 + 0x3A0)));
     }
     if ((s32) *(s32 *)((s8 *)arg0 + 0x398) <= 0x1E) {
-        play_persistent_sound((s32)(0x4003AD16), (s32)arg0, (u32)(arg0 + 0x38), (s32)(0), (s32)(1));
+        play_persistent_sound((s32)(0x4003AD16), arg0, (const Vec *)(arg0 + 0x38), (s32)(0), (s32)(1));
     }
     temp_r0 = *(s32 *)((s8 *)arg0 + 0x398) - 1;
     *(s32 *)((s8 *)arg0 + 0x398) = temp_r0;
@@ -988,7 +987,7 @@ void TBoss4Type2::beam_update() {
             }
         }
         if (*(f32 *)((s8 *)arg0 + 0x3D0) >= 8.0f && *(f32 *)((s8 *)arg0 + 0x3D0) <= 17.0f) {
-            play_persistent_sound((s32)(0x4003B512), (s32)arg0, (u32)(arg0 + 0x38), (s32)(0), (s32)(1));
+            play_persistent_sound((s32)(0x4003B512), arg0, (const Vec *)(arg0 + 0x38), (s32)(0), (s32)(1));
         }
     }
     if (*(s32 *)((s8 *)arg0 + 0x398) == 0x26) {
@@ -1195,7 +1194,7 @@ void TBoss4Type2::tenchu_update() {
         }
     }
     if ((s32) *(s32 *)((s8 *)boss4_type2 + 0x398) > 6) {
-        play_persistent_sound((s32)(0x4003AD16), (s32)boss4_type2, (u32)(boss4_type2 + 0x38), (s32)(0), (s32)(1));
+        play_persistent_sound((s32)(0x4003AD16), boss4_type2, (const Vec *)(boss4_type2 + 0x38), (s32)(0), (s32)(1));
     }
     temp_r0_2 = *(s32 *)((s8 *)boss4_type2 + 0x398) - 1;
     *(s32 *)((s8 *)boss4_type2 + 0x398) = temp_r0_2;

@@ -60,7 +60,6 @@ s32 set_field_e4__10TObjPlayerFll(void *, int, f32);
 void spawn_dead_spot_scale15(s32 point, s32 delay);
 void *find_entity_by_id(u16 id);
 void free_collision_body_parts(void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 s32 vec3_add_to(void *, void *);
@@ -196,7 +195,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
             arc = (-120.0f) / (distance * distance);
             height = 30.0f;
         }
-        play_persistent_sound(((TObjEneBm3FlyNest *)m_up)->copy_target_state(0x4003A828), (s32)this, (u32)origin, 0, 0);
+        play_persistent_sound(((TObjEneBm3FlyNest *)m_up)->copy_target_state(0x4003A828), this, origin, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 1:
@@ -205,7 +204,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
             state = 2;
             velocity.y = 0.5f * distance;
         }
-        play_persistent_sound(((TObjEneBm3FlyNest *)m_up)->copy_target_state(0x4003A828), (s32)this, (u32)origin, 0, 0);
+        play_persistent_sound(((TObjEneBm3FlyNest *)m_up)->copy_target_state(0x4003A828), this, origin, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     case 2:
@@ -224,7 +223,7 @@ void TObjEneBm3FlyNest_CarryFly::run_task() {
         v += 0.5f * distance;
         offset.x = velocity.x * v;
         offset.z = velocity.z * v;
-        play_persistent_sound(((TObjEneBm3FlyNest *)m_up)->copy_target_state(0x4003A828), (s32)this, (u32)target, 0, 0);
+        play_persistent_sound(((TObjEneBm3FlyNest *)m_up)->copy_target_state(0x4003A828), this, target, 0, 0);
         TObjPlayer::play_effect_if_v2(-0x400);
         break;
     }

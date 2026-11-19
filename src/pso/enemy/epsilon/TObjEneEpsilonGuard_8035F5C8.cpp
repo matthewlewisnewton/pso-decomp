@@ -70,7 +70,6 @@ s32 * epsilon_guard_angle_sample_write_ptr;
 Vec * epsilon_guard_camera_sample_read_ptr;
 Vec * epsilon_guard_camera_sample_end_ptr;
 void draw_with_fade__19TObjEneEpsilonGuardFPvi(TObjEneEpsilonBody *body, s32 arg1);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 check_path_obstructed(void *, void *);
 void create_fire_explosion_effect(void *, f32, Vec *, s32, s32);
 u32 TObjEneEpsilonGuard__sub_8035FD50(TObjEneEpsilonBody *body, s32 slot);
@@ -222,7 +221,7 @@ void TObjEneEpsilonBody::run_task() {
         transition_enemy_state(0);
     }
     if (mode != 9) {
-        play_persistent_sound(0x4003AD43, (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound(0x4003AD43, this, &position, 0, 0);
     }
     vfunc_88();
     update_position();
@@ -477,7 +476,7 @@ void TObjEneEpsilonGuard__sub_803616E4(TObjEneEpsilonBody *body, s32 arg1) {
                 body->action_timer = 2;
                 body->m_4ec = lbl_805D6F8C->m_1c;
             }
-            play_persistent_sound(0x4003BC47, (s32)body, (u32)&body->position, 0, 0);
+            play_persistent_sound(0x4003BC47, body, &body->position, 0, 0);
             break;
         }
         case 2:
@@ -748,7 +747,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 body->color_step.g = (lbl_80479CAC[body->color_index].g - body->color.g) / 30.0f;
                 body->color_step.b = (lbl_80479CAC[body->color_index].b - body->color.b) / 30.0f;
             }
-            play_persistent_sound(0x4003A349, (s32)this, (u32)&position, 0, 0);
+            play_persistent_sound(0x4003A349, this, &position, 0, 0);
             break;
         case 1:
             body->action_timer--;
@@ -760,7 +759,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 body->m_4f8 = 1.0f;
                 body->action_step = 2;
             }
-            play_persistent_sound(0x4003A349, (s32)this, (u32)&position, 0, 0);
+            play_persistent_sound(0x4003A349, this, &position, 0, 0);
             break;
         case 2:
             body->m_4f8 = body->m_4f8 - 0.033333335f;
@@ -769,7 +768,7 @@ void TObjEneEpsilonGuard::handle_warp_state(s32 arg1) {
                 body->action_step = 3;
                 play_sound_effect(0x40039F4A, &position, 0, 0);
             } else {
-                play_persistent_sound(0x4003A349, (s32)this, (u32)&position, 0, 0);
+                play_persistent_sound(0x4003A349, this, &position, 0, 0);
             }
             break;
         }

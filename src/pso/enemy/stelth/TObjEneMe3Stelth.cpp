@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <stddef.h>
@@ -121,7 +122,6 @@ void action__16TObjEneMe3StelthFPvi(TObjEneMe3Stelth *stelth, s32 arg1);
 }
 void move_with_wall_slide(u8 *arg0);
 extern "C" {
-s32 TBoss3Volopt__sub_800D8D88(void *, f32);
 void TObjEneMe3Stelth__sub_800F3FE4(TObjEneMe3Stelth *stelth, s32 arg1);
 f32 *TBoss3Volopt__sub_800F059C(void *);
 f32 atan2_float(f32 y, f32 x);
@@ -730,7 +730,7 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {
         t = m_3d0;
         v.y = t - 20.0f;
         if (m_3c0 == 0) {
-            TBoss3Volopt__sub_800D8D88(&v, t);
+            play_area_sound_and_particles_a(&v);
         } else {
             create_timed_particle_emitter((u8 *)&position, 0x79, 0, 0xF);
         }
@@ -823,7 +823,7 @@ void TObjEneMe3Stelth__sub_800F3FE4(TObjEneMe3Stelth *stelth, s32 arg1) {
         VecCopy(&pos, &stelth->position);
         temp_f1 = stelth->m_3d0;
         pos.y = temp_f1 - 10.0f;
-        TBoss3Volopt__sub_800D8D88(&pos, temp_f1);
+        play_area_sound_and_particles_a(&pos);
         break;
     case 3:
         if (stelth->m_404.advance_toward_max() != 0) {

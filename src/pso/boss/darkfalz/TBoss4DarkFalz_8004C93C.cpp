@@ -302,7 +302,6 @@ struct RecoveredGlobal_lbl_80485448 { s32 value; u8 remaining[0x8]; };
 extern RecoveredGlobal_lbl_80485448 lbl_80485448;
 void *create__11TBoss4Type2Fl(void *);
 void normalize_vector(Vec *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 is_timer_expired__14TBoss4DarkFalzFv();
 
 void TBoss4DarkFalz::update_leader_die_type2() {  }
@@ -391,7 +390,7 @@ void TBoss4DarkFalz::start_demo1() {
 
 void TBoss4DarkFalz::spawn_ancient_trap() {
     if (sub_8004D990() > 0) {
-        play_persistent_sound(0x4003A30A, (s32)this, 0, -0x20, 2);
+        play_persistent_sound(0x4003A30A, this, 0, -0x20, 2);
     }
 }
 
@@ -457,7 +456,7 @@ void TBoss4DarkFalz::start_effect() {
     *(s32 *)((s8 *)this + 0x380) = 0;
 }
 void TBoss4DarkFalz::spawn_trap() {
-    play_persistent_sound(0x4003A30A, (s32)this, 0, -0x18, 2);
+    play_persistent_sound(0x4003A30A, this, 0, -0x18, 2);
 }
 void TBoss4DarkFalz::check_timeout() {
     if ((is_timer_expired__14TBoss4DarkFalzFv() != 0) || (TBoss4DarkFalz__sub_8004B07C((s32)this) != 0)) {

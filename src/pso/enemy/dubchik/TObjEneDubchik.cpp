@@ -1,3 +1,4 @@
+#include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -191,7 +192,6 @@ struct Self_800AA334 { u8 pad[0x3B0]; VObj_14_fddec9 sub; };
 
 
 extern "C" {
-void TBoss3Volopt__sub_800D8D88(s32 arg0);
 void TObjPlayer__sub_800A8E04(u8 *arg0);
 void obj_setFlags30(void *, u32);
 void dubchik_start_dying(u8 *arg0);
@@ -216,7 +216,6 @@ extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 s32 update_enemy_wander_move(void *, Vec *, s32, f32);
 s32 sub_8004292C__15TObjEnemyCustomFv();
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void TObjPlayer__sub_800A9E9C(void *arg0_);
 s32 update_shock_clock__9TObjCharaFv();
 
@@ -809,7 +808,7 @@ extern "C" void TObjPlayer__sub_800A9E9C(void *arg0_) {
         } else {
             var_r0 = ((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003B200);
         }
-        play_persistent_sound((s32)var_r0, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound((s32)var_r0, arg0, (const Vec *)(arg0 + 0x38), 0, 0);
         if (*(u8 **)((s8 *)arg0 + 0x2A8) != NULL) {
             if (*(s16 *)((s8 *)arg0 + 0x392) != 0) {
                 var_f31 = ((TObjEneDubchik *)arg0)->sub_800AAF78(2);
@@ -983,7 +982,7 @@ void TObjEneDubchik::update_fall_apart() {
     case 3: {
         s32 all_done;
         ((TObjPlayer *)this)->render_model_and_set_attach_points();
-        play_persistent_sound(remap_sound_for_area(0x4003AD07), (s32)this, (u32)&position, 0, 0);
+        play_persistent_sound(remap_sound_for_area(0x4003AD07), this, &position, 0, 0);
         all_done = 1;
         for (i = 0; i < 3; i++) {
             if (part_hit[i] != 0 && parts[i] != NULL) {
@@ -1271,7 +1270,7 @@ extern "C" void TObjPlayer__sub_800A8E04(u8 *ene_me1_gi_gue) {
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags = (((TObjEneMe1GiGue *)ene_me1_gi_gue)->actorFlags | 0x04000000);
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->requested_action = 5;
         ((TObjMotion *)ene_me1_gi_gue)->advance_animation();
-        TBoss3Volopt__sub_800D8D88((s32)(ene_me1_gi_gue + 0x2FC));
+        play_area_sound_and_particles_a((const Vec *)(ene_me1_gi_gue + 0x2FC));
         ((TUnk_80494938 *)(ene_me1_gi_gue + 0x3B0))->start_fade_in();
         ((TObjEneMe1GiGue *)ene_me1_gi_gue)->state = 1;
     case 1:

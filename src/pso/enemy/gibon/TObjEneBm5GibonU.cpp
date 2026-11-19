@@ -1,3 +1,5 @@
+#include "pso/effect/PositionSoundEffects.h"
+#include "pso/unk/text_800D8830.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -466,7 +468,6 @@ s32 transform_relative_position__9TObjEneDDFPv(void *, int);
 extern s32 game_difficulty_selection;
 void attach_particle_model(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 Hit_800CCC6C *csnVectorUnder(Vec *, void *, s32);
-s32 play_floor_area_sound_effect(void *);
 void TObjEneBm5GibonU__sub_800D02F8(TObjEneBm5GibonU *self, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFE30(TObjEneBm5GibonU *self, s32 arg1);
 void TObjEneBm5GibonU__sub_800CFA48(TObjEneBm5GibonU *self, s32 arg1);
@@ -2103,7 +2104,7 @@ void TObjEneBm5GibonU__sub_800D02F8(TObjEneBm5GibonU *self, s32 arg1) {
         self->m_478 = 0;
         VecCopy(home, &self->position);
         self->m_3d8.start_fade_in();
-        ((TBoss3Volopt *)&self->position)->play_area_sound_effect();
+        play_area_sound_and_particles_b(&self->position);
         break;
     case 3:
         if (self->m_3d8.advance_toward_max() != 0) {

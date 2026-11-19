@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/math/ClampedStep.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/CurrentTextureList.h"
@@ -16,7 +17,6 @@
 #include "pso/weapon/TItemAttackCol.h"
 #include "pso/item/TUnk_804F0BF0.h"
 #include "pso/render/MaterialColorFade.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/boss/derolle/TBoss2DeRolLe.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/system/task/TObject_8001A448.h"
@@ -323,7 +323,7 @@ void TUnk_804F0BF0::run_task() {
             *(f32 *)((s8 *)arg0 + 0x28) = (f32) (temp_f1_3 - 0.06666667f);
         }
     }
-    play_persistent_sound(0x4001A343, (s32)arg0, (u32)(arg0 + 0x5C), 0, 0);
+    play_persistent_sound(0x4001A343, arg0, (const Vec *)(arg0 + 0x5C), 0, 0);
 }
 
 void TUnk_804F0BF0::render() {

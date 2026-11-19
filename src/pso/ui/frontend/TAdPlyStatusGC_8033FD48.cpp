@@ -1,5 +1,6 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 // ---- pso/ui/frontend/TAdPlyStatusGC_8033FD48
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -211,7 +212,6 @@ void fn_8034009C(TBoss6Demo15_TYPE2_WAIT *boss6_demo15_type2_wait) {
 
 // ---- pso/boss/darkfalz/TBoss4Type2_80340160
 
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 
 
 #include "pso/enemy/dd/TObjEneDD.h"
@@ -239,7 +239,7 @@ void TBoss6Demo15_TYPE2_WAIT::run_task() {
             ((TParticleCtrl *)temp_r3)->set_position((u8 *)&this->m_40);
         }
         ((TBoss6Demo15_TYPE2_WAIT *)arg0)->check_any_player_near();
-        play_persistent_sound(0x4003A126, (s32)arg0, (u32)(arg0 + 0x40), 0, 0);
+        play_persistent_sound(0x4003A126, arg0, (const Vec *)(arg0 + 0x40), 0, 0);
         if (((TObjFish *)(*(u8 * *)&this->unk_1C))->get_phase() != 4) {
             ((TObject *)arg0)->queue_destruction();
         }

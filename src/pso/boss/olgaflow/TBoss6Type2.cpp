@@ -151,7 +151,6 @@ union TypedVector_802BAA74 {
 extern "C" {
 s32 submit_cursor_candidate(void *, int);
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void TObjPlayer__sub_8023DEE0(s16 *p, s16 a, s16 b, u16 id);
 void TBoss6Type2__sub_802BA7BC(u8 *o);
 AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
@@ -1140,7 +1139,7 @@ void TBoss6Type2::run_task() {
     ((TBoss6Type2 *)arg0)->sub_802BB554();
     copy_vec_array();
     if ((s32) this->m_418 != 0) {
-        play_persistent_sound(0x4006B00C, (s32)arg0, (u32)(arg0 + 0x38), 0, 0);
+        play_persistent_sound(0x4006B00C, arg0, (const Vec *)(arg0 + 0x38), 0, 0);
     }
     update_countdown();
     ((TBoss6Type2 *)arg0)->update_possess_target();

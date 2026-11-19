@@ -84,7 +84,6 @@ f32 vec3_add_to(void *, void *);
 f32 subtract_vector(void *, void *);
 f32 normalize_vector(void *);
 f64 TBoss5GryphonLightningWing__sub_80324CEC(f32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);
 s32 init_collision_body_parts(void *, void *, int);
 static u32 TBoss6Mine__collision_body_template[11] = {
@@ -295,7 +294,7 @@ void TBoss6Mine::state_2() {
         this->state_frames = 0;
         this->state = 3;
     }
-    play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);
+    play_persistent_sound(0x4003B21C, this, &this->position, 0, 0);
 }
 
 void TBoss6Mine::state_1() {

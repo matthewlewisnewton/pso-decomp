@@ -435,7 +435,6 @@ s32 enemy_backstep_from_point(void *, void *, f32);
 f32 update_enemy_wander_move(void *, void *, int, f32);
 f32 atan2_float(f32 y, f32 x);
 s32 lerp_angle_half__Fll(int, int);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 s32 update_action_hold_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__12TObjEneLappyFv(s32 arg0);
 s32 update_movement_status__9TObjCharaFv();
@@ -918,7 +917,7 @@ void TObjEneLappy::update_moving() {
                     spawn_particle_effect((u8 *)&this->position, 0xF3);
                     *(s16 *)&this->m_396 = 2;
                 }
-                play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x3AF12)), (s32)arg0, (u32)&this->position, (s32)(0), (s32)(0));
+                play_persistent_sound((s32)(((TObjEnemy *)(arg0))->remap_sound_for_area(0x3AF12)), arg0, &this->position, (s32)(0), (s32)(0));
                 goto block_47;
             }
 block_47:

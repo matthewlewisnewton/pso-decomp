@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/CurrentTextureList.h"
@@ -75,7 +76,6 @@ extern const Packet_801ADD10 photon_pilla_laser_packet = {
 };
 extern void *photon_pilla_laser_offset_table[];
 
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 u8 *TPhotonMagicSquare__ct(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 farg0);
 void *find_entity_by_id(u16 id);
 u32 get_entity_id();
@@ -185,7 +185,7 @@ void TPhotonPilla::run_task() {
         this->apply_photon_blast_effects();
     }
     if ((s32) this->m_1a4 != 0) {
-        play_persistent_sound(0x4002462F, (s32)this, 0, 0, 0);
+        play_persistent_sound(0x4002462F, this, 0, 0, 0);
     }
 }
 

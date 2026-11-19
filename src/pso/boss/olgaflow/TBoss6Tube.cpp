@@ -40,7 +40,6 @@ s32 TBoss6Tube__previous_scroll_phase;
 f32 TBoss6Tube__scroll_delta;
 s32 query_teammate_state__9TObjEneDDFv(void);
 void draw_ginja_object(void);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 
 void TBoss6Tube::render() {
     TBoss6Tube_802B1020 *o = (TBoss6Tube_802B1020 *)this;
@@ -152,7 +151,7 @@ void TBoss6Tube::update_wobble() {
 void TBoss6Tube::spawn_trap() {
     s32 arg0 = (s32)this;
     TBoss6Tube__sub_802B129C((u8 *)arg0);
-    play_persistent_sound(0x40033520, arg0, 0, 0, 0);
+    play_persistent_sound(0x40033520, (const void *)arg0, 0, 0, 0);
 }
 
 void TBoss6Tube::update_timer() {

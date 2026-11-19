@@ -52,7 +52,6 @@ extern s32 local_client_id;
 extern u32 model_render_flags;
 void *find_entity_by_id(u16 id);
 void minimap_render_dot(f32 *pos, s32 color, s32, s32);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 TObject *create_particle_emitter(Vec *pos, s32 id);
 void set_matrix_identity(s32 matrix, f32 scale);
 void rotate_vector_by_matrix(s32 matrix, Vec *src, Vec *dst);
@@ -575,7 +574,7 @@ void TBoss3VoloptCore::update_orbit_state() {
             drop_angle = orbit_angle;
             this->update_if_active(9);
         }
-        play_persistent_sound((s32)(0x4003BC05), (s32)this, (u32)&position.x, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(0x4003BC05), this, (const Vec *)&position.x, (s32)(0), (s32)(0));
         break;
     case -1:
         break;
@@ -684,7 +683,7 @@ void TBoss3VoloptCore::update_topple_state() {
         }
         break;
     case 3:
-        play_persistent_sound((s32)(0x4003BC05), (s32)this, (u32)&position.x, (s32)(0), (s32)(0));
+        play_persistent_sound((s32)(0x4003BC05), this, (const Vec *)&position.x, (s32)(0), (s32)(0));
         advance_animation();
         orbit_angle -= get_orbit_speed(0);
         sweep_angle -= get_orbit_speed(0);

@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/boss/galgryphon/TBoss5Gryphon.h"
@@ -68,7 +69,6 @@ void TBoss8Dragon__sub_800640A4(s32, Vec *);
 void attach_particle_model(void *, s32, s32, s32, s32, f32);
 Res_80355570 *csnVecterUnder(Vec *, s32);
 void add_radar_scaled_marker(Vec *, s32, s32, s32, f32);
-void play_persistent_sound(s32, void *, Vec *, s32, s32);
 extern s32 boss5_gryphon_bml_resource;
 extern s32 boss5_gryphon_texture_list;
 s32 *gryphon_tornado_particle_id_table;

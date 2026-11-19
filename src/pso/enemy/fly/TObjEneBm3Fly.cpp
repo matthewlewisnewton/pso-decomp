@@ -48,7 +48,6 @@ TUnk_8048FA00 * TObjEneBm3Fly__breakup_model;
 s32 vec3_add_to(void *, void *);
 f32 vec3_dot(void *, void *);
 s32 subtract_vector(void *, void *);
-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
 void TObjEneBm3Fly__play_orbit_flight_sound(TObjEneBm3Fly *fly);
 f32 calc_scaled_value__15TObjBoss2TunnelFlf(int, int, f32, f32);
 void TObjEneBm3Fly__sub_800B02C8(TObjEneBm3Fly *arg0, s32 arg1);
@@ -452,12 +451,12 @@ u16 TObjEneBm3Fly::get_active_id() {
 }
 
 void TObjEneBm3Fly::play_pitched_cue() {
-    play_persistent_sound(this->remap_sound_for_area(0x40039E22), (s32)this, (u32)&this->position, 0, 0);
+    play_persistent_sound(this->remap_sound_for_area(0x40039E22), this, &this->position, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x400);
 }
 
 void TObjEneBm3Fly__play_orbit_flight_sound(TObjEneBm3Fly *fly) {
-    play_persistent_sound(fly->remap_sound_for_area(0x4003AB23), (s32)fly, (u32)&fly->position, 0, 0);
+    play_persistent_sound(fly->remap_sound_for_area(0x4003AB23), fly, &fly->position, 0, 0);
     TObjPlayer::play_effect_if_v2(-0x400);
 }
 

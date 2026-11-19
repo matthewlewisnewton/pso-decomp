@@ -8,7 +8,6 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/vector.h"
-#include "pso/object/trap/TOTrapAncient01_80226534.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/camera/CameraHelpers.h"
 #include "pso/camera/TCameraCtrl.h"
@@ -129,7 +128,7 @@ void TBoss6Demo11_TYPE1_DEAD::run_task() {
         break;
     }
     if (timer >= 0x89) {
-        play_persistent_sound(0x4003A424, (s32)this, 0, 0, 0);
+        play_persistent_sound(0x4003A424, this, 0, 0, 0);
     }
     switch (timer) {
     case 0xE:
