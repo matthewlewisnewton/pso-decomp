@@ -1,5 +1,36 @@
 # Upstream matchpasses
 
+## Current source-only submission queue
+
+The maintainer requested that specialized tools stay on the fork. Upstream candidates contain game and library source, headers and the configuration needed to build those sources. Run the upstream repository's own checks on a clean source branch. The working fork supplies its own probes, CI, host harnesses, and build helpers on a separate branch.
+
+| Local branch | Purpose | Verified relationship |
+| --- | --- | --- |
+| `great-merge/upstream/combined` · `5dd80ccf47` | Combined source matchpasses, including collision results | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/all-source` · `5e4eb45fd0` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `402106a6c3` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
+| `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
+| `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
+
+The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists sixteen independently tested local branches based on upstream `2ad5dece70`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
+
+The [pending source index](2026-11-18-upstream-source-groups.tsv) assigns 4,357 edit blocks across 665 path names to thirteen additional local drafts. Each draft contains one subsystem group. The combined result builds. Individual drafts still need compatible bases and independent checks before submission.
+
+The fork's enhanced linker checker had produced thousands of retention-list changes. The source-only cumulative build starts from the stock list and updates the affected symbol names. The stock compiler also reproduces the adjacent Dark Falz weighted-selection and material routines in one source unit. Together they emit the two floats at 0x805D8AD8 and 0x805D8ADC naturally. This removes the fork's object-alignment helper from the upstream build. The comparison with fork main found zero lost matched or source-linked function or data ranges. Its total extent decreases by 2,045 bytes, with 2,200 bytes of verified padding leaving coverage and 155 bytes entering coverage.
+
+The four authorized submissions are [#321](https://github.com/zeroz41/pso-decomp/pull/321), [#322](https://github.com/zeroz41/pso-decomp/pull/322), [#323](https://github.com/zeroz41/pso-decomp/pull/323) and [#324](https://github.com/zeroz41/pso-decomp/pull/324). PR 321 merged. After maintainer feedback, the three open PRs were updated in place and each hosted match-gate passed. Their published heads are `c129aa6073`, `341d5288c0` and `40b5e279e7`, respectively.
+
+## Collision results
+
+The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) includes `great-merge/upstream/collision-results` at `0385e4c583`. The 32 contacts at 0x804FF9C0 have a 28-byte stride. The line and ground queries share the eight-byte result at 0x80500140. The radial query extends it with the index and penetration depth of the deepest contact. Three native constructors generate the original startup routine at 0x8007A6C8. The player reads the selected contact through the same record type.
+
+The standalone and cumulative native builds pass the upstream checks. The private check in `tools/probes/check_collision_results.py` runs the actual initialization and selection instructions on the original and rebuilt images. It checks the contact pool and both adjacent records, the untouched 0x400-byte group buffer, guards around each constructor's destination, empty and missed rays, ties, signed depths and the last contact slot.
+
+## Fork-only tooling and archival copies
+
+The runnable overlay differs from the full native source in 103 project paths, including 78 tool files. This includes the private collision check. The [original tooling inventory](2026-11-18-original-fork-tools.tsv) separately accounts for all 96 original fork tool, test and workflow changes outside the documentation. Of those originals, 42 are active byte-for-byte. The archive under `fork/tooling/original/` holds 32 originals whose active versions have changed and 22 originals absent from the active tools. Their Git blob IDs and file modes are recorded independently of the current branch names. Historical utilities use the source layout of fork main `3342e42983`.
+
 ## Runtime array allocation and the twenty-group build
 
 The standalone review `great-merge/runtime-array-allocation` at `aa4fb55c76` builds directly on upstream `2ad5dece70`. Start at `TOBoss4Rock.cpp` with array allocation at 0x80147AA8 and conditional release at 0x80147A80. The shared declaration replaces local prototypes across game callers and the runtime's array destructor. Two callers now pass the snapshot size and the keyboard text size explicitly. All 157 files belong to the same two-function interface change. Native code and linked data match the upstream baseline by address. On retail and rebuilt images, 16 allocation cases cover forwarded sizes and returned pointers, and four release cases cover null and non-null storage.
@@ -61,9 +92,9 @@ Three local review branches build directly on upstream revision `b2cac76477`. Th
 
 `great-merge/verify-nineteen` at `3f1999b4d9` includes that review alongside the previous eighteen. The retail checksum, all 27,572 functions, all 2,539 linked units and the linker retention check passed. The complete integration source and BML behavior fixture are at `ccfeb84258`.
 
-## Remaining integration changes by review group
+## Historical integration groups before the tooling split
 
-`great-merge/pending-reviews` starts on the twenty-group build at `c0550da29f`. The [group index](2026-11-18-remaining-integration-groups.tsv) assigns 4,609 remaining edit blocks across 714 path names to 17 local commits. The final source at `70fe7f549f` equals integration `5604c903e1` outside `fork/`. Every review commit excludes the fork documentation.
+The archived `great-merge/fork-validation/pending-with-tooling` starts on the twenty-group build at `c0550da29f`. The [group index](2026-11-18-remaining-integration-groups.tsv) assigns 4,609 remaining edit blocks across 714 path names to 17 local commits. The final source at `70fe7f549f` equals integration `5604c903e1` outside `fork/`. Every review commit excludes the fork documentation.
 
 | Group | Local commit | Paths |
 | --- | --- | ---: |
@@ -85,7 +116,7 @@ Three local review branches build directly on upstream revision `b2cac76477`. Th
 | Fork build reports and contributor handoffs | `317281de76` | 14 |
 | Fork batch integration and validation | `70fe7f549f` | 19 |
 
-The first fifteen rows are candidates for upstream review. The last two preserve the contributor and batch tools while their upstream applicability is evaluated. Keep only documentation as a lasting fork-specific difference when the source branches converge. The earlier review sequence through `great-merge/review-slices` at `55a4d83f3d` also reproduces the integrated source outside `fork/`.
+This historical grouping included tooling in the proposed rows. The current source-only index above supersedes it. Contributor and batch tools stay on the fork. The earlier review sequence through `great-merge/review-slices` at `55a4d83f3d` also reproduces the integrated source outside `fork/`.
 
 The initial archive-interface partition exposes a return-type conflict in the fish model header when built alone. Package each public signature with its declaration, definition and affected callers. Stage the model loader's internal layout and filename-list lifecycle separately from the return-type migration. For the window reviews, land the frame before the list, shop and battle callers. The individual draft rows still need their own compatible bases and retail checks.
 
@@ -150,7 +181,7 @@ The radar, quest-cache and guild-card header decisions are recorded at their cur
 
 The deletion pass covers all 975 original fork deletions. Retain 403 headers that compiler dependencies show are used by live units on both builds, 360 source files with identical exact function addresses and sizes across upstream, integration and fork main, five live data-only owners and two native owners whose functions were regrouped. Another 119 paths are absent from all three trees. Integration already contains 14 further removals. For 71 files the original contents moved elsewhere on the fork. One historical deletion names the path now used for the recovered window base constructor and destructor. The [file ledger](2026-11-18-fork-review-index.tsv) records the evidence on each row. A decision to retain a live upstream file resolves the deletion of that path. Any fork additions that replaced it retain their own review records.
 
-There are still 3,737 source records marked for owner comparison and 319 with partial text matches. These records can carry source-level information even when the full linked game matches.
+There are still 3,675 source records marked for owner comparison and 319 with partial text matches. These records can carry source-level information even when the full linked game matches.
 
 All 374 changed documentation and evidence paths have a local destination under `fork/`. Three executable evidence models are preserved there as Markdown examples. The repository license and third-party license text have separate provenance entries. Shared source and build changes still require semantic comparison before deciding which fork implementation to retain.
 

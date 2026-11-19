@@ -1,16 +1,16 @@
-# Fork documentation
+# Fork documentation and local tools
 
-Keep LLM notes, historical handoffs and recovery evidence in this directory. The [project README](../README.md) describes the upstream checkout. The fork README below records the state of the older fork.
+Use `great-merge/integration` for the complete working fork. The native changes intended for upstream are on `great-merge/upstream/all-source`. Use the [source-only matchpass register](notes/evidence/2026-11-18-source-only-matchpasses.tsv) for independently tested review branches and the [pending index](notes/evidence/2026-11-18-upstream-source-groups.tsv) for additional subsystem drafts.
 
-Use `great-merge/integration` to find pending contributions. Collect work on the same subsystem into one upstream matchpass, with commits a reviewer can read in order. Start each review branch from current upstream master and record any prerequisite review. The [matchpass queue](notes/evidence/2026-11-18-upstream-matchpasses.md) records the four submitted reviews, twelve local review branches, their dependencies and the combined retail check. The [remaining review groups](notes/evidence/2026-11-18-remaining-integration-groups.tsv) account for the rest of the current integration tree. The [integration path index](notes/evidence/2026-11-18-integration-review-paths.tsv) maps outstanding edits to their review groups. The [range ledger](notes/evidence/2026-11-18-fork-data-ranges.md) accounts for all 1,147 data bytes.
+The maintainer wants the fork's tools to stay local. `great-merge/fork-tooling` preserves the working tools, probes, workflows, host checks and build helpers. The [original tool inventory](notes/evidence/2026-11-18-original-fork-tools.tsv) locates the exact version of each historical tool change, including archival copies under `fork/tooling/original/`. `great-merge/fork-docs` carries the fork's documentation on top of upstream master. The [matchpass history](notes/evidence/2026-11-18-upstream-matchpasses.md) records native checks, review dependencies and the published PRs.
 
-The [library and portability audit](notes/evidence/2026-11-18-libraries-and-ports.md) traces every fork change under `libs/` and `ports/` to its current implementation or documentation.
-
-The local `great-merge/fork-docs` branch represents upstream master with this documentation applied. After refreshing upstream, compare the two trees from the repository root. An empty result and exit status zero confirm that all differences are under this directory.
+A review branch should have an empty diff against its base for the fork-local paths. For example, run this on a branch prepared from current upstream master.
 
 ```sh
-git diff --exit-code upstream/master great-merge/fork-docs -- . ':(exclude)fork/**'
+git diff --exit-code upstream/master...HEAD -- fork/ tools/ ports/ .github/ docs/
 ```
+
+The [project README](../README.md) describes the upstream checkout. The historical fork README follows.
 
 ---
 
