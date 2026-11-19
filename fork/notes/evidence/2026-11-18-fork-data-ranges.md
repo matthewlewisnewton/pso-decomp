@@ -1,6 +1,20 @@
 # Fork data coverage at the November 18 sync point
 
-## After upstream PR 326
+## All 90 ranges accounted for on upstream PR 326
+
+At `d5446188e8`, 980 bytes of the original inventory lie in exact data sections from linked source files. Another 167 bytes are original zero-fill alignment gaps. The check used the retail image, symbol extents and section boundaries at each address. Upstream `c572111ed6` already supplied 684 source-linked bytes and the same 167 padding bytes. The fifteen local source components supply the remaining 296 source bytes. The last three columns of the [range ledger](2026-11-18-fork-data-ranges.tsv) record linked bytes, verified padding and remaining bytes separately. The historical object sizes below describe the initial fork build.
+
+| Last five ranges | Start | Exact linked bytes |
+| --- | --- | ---: |
+| Speech-balloon dispatch table | 0x804CF0B8 | 24 |
+| Item-help dispatch table | 0x804CF8B0 | 24 |
+| Software keyboard dispatch table | 0x804D0004 | 24 |
+| Item-help coordinates | 0x805DCE00 | 16 |
+| Status window constants | 0x805DCF18 | 24 |
+
+The combined branch reproduces the original executable and passes the upstream checker with all 27,572 functions and 2,415 linked units exact. The remaining fork-wide work concerns source-level differences and their review grouping.
+
+## At the twelve-component checkpoint after upstream PR 326
 
 Upstream `c572111ed6` covers 851 of the original 1,147 bytes. Its clean retail build leaves 296 bytes in 12 of the 90 inventory rows, down from 644 bytes before PR 326. On this base, the twelve-group local source branch `great-merge/current/all-source` at `0ac68a6d4c` recovers 184 more bytes. Its five remaining rows total 112 bytes. The keyboard and speech balloon each own 24. The item-help window owns 24 bytes of dispatch data and 16 bytes of constants. The status window owns 24 bytes of constants. The [range ledger](2026-11-18-fork-data-ranges.tsv) records both measurements at every original address.
 
@@ -113,7 +127,7 @@ The ending-scene owner defines the two globals at 0x805D4F10 and 0x805D4F14. Ind
 
 Against the pinned fork build, the upstream address comparator reports 984 bytes missing from exact and linked data at baseline and 976 after the patch (47 to 46 normalized ranges). Each set describes the same bytes under two measures. Both comparisons preserve every fork exact and linked function. The tool also flags the existing difference of 1,961 total data bytes. Its address details report 2,156 bytes of lost alignment coverage and 195 bytes gained. These are unchanged by this patch. The checker applies its own padding rule and normalizes adjacent intervals, while the 1,147-byte inventory uses declared splits. At that first-patch checkpoint, the combined fork-parity gate was still open.
 
-The intended end state is shared source, configuration, and tooling with upstream, with fork-only LLM documentation. Keep this inventory and review evidence out of the upstream patch. Publication requires separate confirmation.
+The intended end state is shared game source and its build configuration, with fork-specific tooling and LLM documentation kept on the fork. Keep this inventory and review evidence out of the upstream patch. Publication requires separate confirmation.
 
 ## Four constant pools on the integration branch
 
