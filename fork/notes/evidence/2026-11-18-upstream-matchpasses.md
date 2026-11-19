@@ -8,6 +8,7 @@ The local branches below group related changes for review. The component branche
 | --- | --- | --- | ---: |
 | Archive loading, audio streaming and quest-cache lifetimes | `great-merge/current/resource-lifetimes` | `369be14322` | 206 |
 | Array allocation, memory copies and nullable release | `great-merge/current/memory` | `381e372339` | 257 |
+| Enemy targeting, battle parameters, collision and player techniques | `great-merge/current/combat` | `ac997883bf` | 209 |
 | Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `34176d99e2` | 112 |
 | Window entry, input and rendering interfaces | `great-merge/current/window-frames` | `37e0caf80a` | 268 |
 
@@ -22,6 +23,10 @@ The grouped resource branch compiled 1,007 selected objects, including 168 edite
 The encounter-drawing review brings together radar map and marker state, De Rol Le and Barba Ray raft effects, scrolling strips and the Dark Falz and Olga Flow effects. City seasonal rendering keeps both shared declarations. The two Olga Flow constructors call the typed strip initializers and create their typed afterimage receivers. The comment-only configure.py edit stays on the fork.
 
 The grouped drawing branch compiled 1,571 selected objects, including 74 edited sources. Of these, 1,564 match upstream and each standalone component, and seven match their validated individual components. The comparison maps 40 names at their original addresses. Across 2,484 selected linker inputs, each of the 37 renamed exports has one provider with no stale references. The three private records match their compiled local offsets and sizes. Validation ran at the object-file level.
+
+The combat review keeps six commits covering enemy movement and targeting, battle parameters, Gyaranzo resource records, ground contacts, player techniques and the special-event item. In the overlapping callers, typed ground queries receive the shared target vectors. The Gyaranzo constructor keeps the native lifecycle and reads the typed movement, collision and model records. The special-event item inherits the existing compiler profile under its renamed source path.
+
+The grouped combat branch compiled 1,283 selected objects, including 145 edited sources. Of these, 1,272 match upstream and every standalone component. Ten match their validated individual components. The Gyaranzo object matches the cumulative source when 13 differently named calls are compared by function address and size. The objects agree on allocated bytes and symbol locations. The selected 2,486 linker inputs contain one provider for each of the 65 renamed exports and no unresolved or stale references to those names. The private missile attack record stays at 0x8043C464. Validation ran at the object-file level.
 
 ## Review branches on upstream PR 326
 
