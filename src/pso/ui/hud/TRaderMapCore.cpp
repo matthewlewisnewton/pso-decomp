@@ -129,7 +129,7 @@ struct Rec_801FAAEC {
 
 struct Map_801FAAEC { Rec_801FAAEC *recs; u32 tex; s32 count; };
 
-struct Gate_801FA1E0 { f32 x; f32 z; f32 scale; u16 rot; s16 kind; s32 color; };
+struct Gate_801FA1E0 { f32 x; f32 z; f32 scale; u16 rot; s16 kind; u32 color; };
 
 typedef struct Vec4_801F9E9C {
     f32 v[4];
@@ -251,7 +251,6 @@ extern Gate_801FA1E0 TRaderMapCore__marker_buffer[128];
 s32 minimap_render_dot(Vec *arg0, s32 arg1, s16 arg2, s32 arg3);
 s32 minimap_render_gate(Vec *pos, u32 color, u16 rot, s16 kind, s32 flags);
 s32 add_radar_scaled_marker(Vec *arg0, s32 arg1, s16 arg2, s32 arg3, f32 scale);
-s32 add_radar_scaled_gate(Vec *pos, s32 color, u16 rot, s16 kind, s32 flags, f32 scale);
 }
 void update_radar_auto_discovery(TRaderMapCore *core, s32 arg1, void *arg2);
 extern "C" {
@@ -1314,7 +1313,7 @@ s32 add_radar_scaled_marker(Vec *pos, s32 arg1, s16 arg2, s32 arg3, f32 scale) {
     return 1;
 }
 
-s32 add_radar_scaled_gate(Vec *pos, s32 color, u16 rot, s16 kind, s32 flags, f32 scale) {
+s32 add_radar_scaled_gate(Vec *pos, u32 color, u16 rot, s16 kind, s32 flags, f32 scale) {
     Vec *cam = &TRaderMapCore__map_view_state[0].position;
     Vec v;
     if (TRaderMapCore__data_805D5F30 > 0x7F) {

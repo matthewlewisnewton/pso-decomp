@@ -17,7 +17,7 @@
 struct Col_8019750C { u8 pad0[0x38]; f32 pos[3]; u8 pad44[0x4C]; f32 f90; s32 f94; u8 pad98[4]; s32 f9C; };
 
 struct Ply_8019750C { u8 pad0[0x38]; f32 pos[3]; };
-struct Icon_80197110 { u8 pad0[0x38]; f32 pos[3]; u8 pad44[0x1C]; s32 f60; u8 pad64[0x2C]; s32 f90; s32 f94; s32 f98; f32 f9C; u32 fA0; };
+struct Icon_80197110 { u8 pad0[0x38]; Vec pos; u8 pad44[0x1C]; s32 f60; u8 pad64[0x2C]; s32 f90; s32 f94; s32 f98; f32 f9C; u32 fA0; };
 
 struct Pl_801973B0 { u8 pad0[0x38]; f32 pos[3]; };
 
@@ -32,7 +32,6 @@ const char *TObjRaderIcon__name = "TObjRaderIcon";
 void check_any_player_in_range__12TObjRaderColFPv(Col_8019750C *arg0);
 extern s32 local_client_id;
 extern s32 __vt__13TObjRaderIcon[];
-void add_radar_scaled_gate(void *, u32, u16, s32, s32, f32);
 u8 is_current_floor_switch_set(u16);
 
 extern void *tl_05;
@@ -232,13 +231,13 @@ void TObjRaderIcon::run_task() {
             }
         }
         if (all == 1) {
-            add_radar_scaled_gate(arg0->pos, 0xFF00FF00, arg0->f60, 0, 0, arg0->f9C);
+            add_radar_scaled_gate(&arg0->pos, 0xFF00FF00, arg0->f60, 0, 0, arg0->f9C);
         } else {
-            add_radar_scaled_gate(arg0->pos, 0xFFFF0000, arg0->f60, 0, 0, arg0->f9C);
+            add_radar_scaled_gate(&arg0->pos, 0xFFFF0000, arg0->f60, 0, 0, arg0->f9C);
         }
         break;
     case 1:
-        add_radar_scaled_gate(arg0->pos, arg0->fA0, arg0->f60, 0, 0, arg0->f9C);
+        add_radar_scaled_gate(&arg0->pos, arg0->fA0, arg0->f60, 0, 0, arg0->f9C);
         break;
     }
 }
