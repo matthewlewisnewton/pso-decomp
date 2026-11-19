@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `14f9743af7` and the complete source snapshot at `cd78bb8275` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `69a8e24daa` and the complete source snapshot at `9ee8a5ecdb` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -59,6 +59,14 @@ The replay at `14f9743af7` carries the camera members and registry accesses from
 The six-file standalone review at `4efd7c3fe9` is one source commit on upstream master `af11a99125`. All four builds reproduce retail and pass the project checker. The 3 affected source units preserve 97 exact functions in the combined stack and 97 in the standalone patch, including both split-screen accessors and the orbit update. The address audit verifies 700 source-linked bytes covering the NPC destinations, camera vtables, look-at up vector, camera-mode float pool and motion sampler tables. Each branch preserves the address coverage of its parent.
 
 All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 2 declarations and adds evidence to 5 source records. It has 1,152 records awaiting comparison and 877 with partial evidence.
+
+## Dragon material fade and grouped rendering reviews
+
+The replay at `69a8e24daa` carries `e3a3822f2f` onto the Dragon and Gol Dragon source owners. The floating-point setter belongs to `MaterialColorFade` and writes the rate at offset 0x10. All 6 original calls use the actual fade state. The Gol Dragon's integer operation keeps its original address and its X position field remains a 32-bit float at 0x688.
+
+The five-file standalone component at `cc3bff1e8b` is directly based on upstream master `af11a99125`. The four component builds reproduce retail and pass the project checker. Both affected source units retain all 345 exact functions, and the two material vtables retain 88 original bytes. Address coverage is preserved relative to each parent. All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 1 declaration and adds evidence to 3 records. It has 1,151 records awaiting comparison and 877 with partial evidence.
+
+Two grouped commits consolidate the related changes for local review. `great-merge/current/camera-and-radar-views` at `e89ec01968` combines the camera controller replay with radar views and markers in 25 files, covering 623 exact functions in 19 affected source units. `great-merge/current/material-opacity-and-dragon-fade` at `1c20f1a945` combines the Dragon fade with the shared opacity class and its callers in 51 files, covering 1516 exact functions in 26 affected source units. Both grouped commits are based on upstream master. They each reproduce retail and pass the project checker. The combined validation tree at `73cd80f7ff` also passes both checks.
 
 ## Standalone reviews on upstream master `af11a99125`
 
