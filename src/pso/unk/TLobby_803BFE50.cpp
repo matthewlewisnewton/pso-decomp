@@ -1,4 +1,5 @@
 #include "types.h"
+#include "pso/audio/AdxbDecoder.h"
 #include "pso/unk/TLobby_803BFE50.h"
 #include "pso/audio/SjRingBuffer.h"
 #include "pso/unk/TLobby.h"
@@ -22,7 +23,7 @@ typedef struct Rec_803C0628 {
 
 typedef struct S_803C0628 {
     s32 f0;
-    s32 f4;
+    TLobby *decoder;
     s32 f8;
     Obj_803C0628 *objs[4];
     Rec_803C0628 recs[3];
@@ -136,7 +137,6 @@ s32 TLobby__sub_803C3AC4(u8 *arg0);
 void TLobby__sub_803C3A04(u8 *arg0);
 void TLobby__sub_803C3984(u8 *arg0);
 void TLobby__sub_803C34F4(TLobby *decoder);
-s32 TLobby__sub_803C3B38(int);
 s32 TLobby__sub_803C3B44(u8 *arg0);
 void TLobby__sub_803BFFC0(u8 *arg0);
 void TLobby__sub_803BFFFC(u8 *arg0, s32 arg1, s32 arg2);
@@ -200,8 +200,8 @@ void TLobby::send_packet_by_id_2() {
     ((TLobby *)(*(s32 *)((s8 *)arg0 + 4)))->get_packet_flag_for_state();
 }
 void TLobby::send_with_offset4() {
-    u8 *arg0 = (u8 *)this;
-    TLobby__sub_803C3B38((int) (*(s32 *)((s8 *)arg0 + 4)));
+    AudioStreamInputState *stream = (AudioStreamInputState *)this;
+    TLobby__sub_803C3B38((const AdxbDecoder *)stream->decoder);
 }
 void TLobby::notify_field_4() {
     u8 *arg0 = (u8 *)this;
@@ -336,7 +336,7 @@ inline void drain_audio_stream_decoder(AudioStreamInputState *st) {
     TLobby__sub_803D3130(&st->src_chunk, bytes, &head, &tail);
     s->vt->put_chunk(s, 0, &head);
     s->vt->unget_chunk(s, 1, &tail);
-    for (i = 0; i < TLobby__sub_803C3B38((int)st->decoder); i++) {
+    for (i = 0; i < TLobby__sub_803C3B38((const AdxbDecoder *)st->decoder); i++) {
         TLobby__sub_803D3130(&st->out_chunks[i], n * 2, &head, &tail);
         if (st->output_callback != NULL) {
             st->output_callback(st->output_context, i, head.data, head.size);
@@ -391,7 +391,7 @@ void TLobby__sub_803C0628(void *arg0_, s32 *arg1, s32 *arg2, s32 *arg3) {
     s32 t;
     s32 v;
     h = (s32)arg0->objs[0];
-    for (i = 0; i < ((s32)TLobby__sub_803C3B38(arg0->f4)); i++) {
+    for (i = 0; i < TLobby__sub_803C3B38((const AdxbDecoder *)arg0->decoder); i++) {
         arg0->objs[i]->vt->fn18(arg0->objs[i], 0, 0x4000, &arg0->recs[i]);
     }
     *arg1 = (arg0->recs[0].a - (s32)sj_ring_buffer_get_buffer((SjRingBuffer*)h)) / 2;
@@ -406,7 +406,7 @@ void TLobby__sub_803C0628(void *arg0_, s32 *arg1, s32 *arg2, s32 *arg3) {
     } else {
         *arg3 = 0x1FFFFFFF;
     }
-    ((TLobby *)(arg0->f4))->get_field_0x3c();
+    arg0->decoder->get_field_0x3c();
 }
 
 void TLobby::reset_flag() {
