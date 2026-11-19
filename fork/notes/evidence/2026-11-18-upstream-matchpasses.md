@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `1c761f22be` changes 1,375 paths counting both sides of renames. The all-source snapshot is `f9988fe940`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `44bfc6c84b` changes 1,377 paths counting both sides of renames. The all-source snapshot is `35b03921ce`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -11,7 +11,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/resource-lifetimes` | `665123cc84` | `16772fda0f` |
 | `great-merge/current/spatial-effects` | `00d9ae7483` | `1b33f02f81` |
 | `great-merge/current/combat` | `e566cc2ccd` | `de49f74be1` |
-| `great-merge/current/encounter-drawing` | `1001dd7640` | `9445c1e728` |
+| `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
 | `great-merge/current/window-frames` | `70f73ffcbb` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
@@ -26,6 +26,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Shortcut preview and symbol-chat construction | Included in its window review | `76d4f68f70` |
 | Typed word-select formatters and callers | Included in its window review | `5439d728d5` |
 | Time-setting scene and shared display constants | Included in its window review | `1c761f22be` |
+| Boss effect constants and model handles | Included in the encounter review | `44bfc6c84b` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -72,6 +73,14 @@ The window review at `70f73ffcbb` and its cumulative counterpart `1c761f22be` ca
 The four method addresses and four pooled-data addresses retain their original bytes and references. Each renamed method has a single provider. Each of the three builds compiled 2,450 source objects. The standalone review compared 2,485 selected inputs and the combined stack and working fork each compared 2,484. The allocated sections, symbol locations and relocation destinations agree with their preceding builds. Both review heads passed the upstream checker in object-report mode. The fork-main comparison continues to account for all matched and linked source ranges separately from the historical padding difference. The executable hash remains unverified on this base.
 
 The fork source index closes the complete default-sprite wrapper and records partial evidence for three more source paths. It has 1,724 entries awaiting owner comparison and 527 with partial evidence. The fork-layer check and eleven unit tests passed. The fork-only workspace still reproduces all 133 tooling paths.
+
+### Boss effect constants and model handles
+
+The encounter review at `8f5eb4303f` and the cumulative stack at `44bfc6c84b` carry the fork's named Dark Falz projectile and fade coefficients, the Dragon tail and crater scales, the De Rol Le tunnel effect tail, the Vol Opt pillar template, and the Olga Flow death sequence limit. The Dark Falz tower uses its typed fade state and inherited position. The Olga Flow motion parts store model and texture-list pointers. The two tunnel guard labels use descriptive source names for the existing word and byte allocations.
+
+Twenty named ranges match the original data or uninitialized storage sizes at their exact addresses. The check found one provider for each of the three renamed exports. All allocated sections, symbol locations and relocation destinations agree with their preceding builds after the three names are accounted for. The standalone review compiled 2,449 source objects and compared 2,487 selected inputs. The combined stack and working fork each compiled 2,450 source objects and compared 2,484 selected inputs. Both review heads passed the upstream checker in object-report mode. The fork comparison retains all non-padding source coverage. The executable hash remains unverified on this base.
+
+The fork source index accounts for the two complete constant units and their headers and records additional evidence for eleven original source paths. It has 1,715 entries awaiting owner comparison and 532 with partial evidence. The fork layer passed all eleven tests and its materialized workspace reproduces all 133 tooling paths.
 
 ## Consolidated review queue on `c572111ed6`
 
