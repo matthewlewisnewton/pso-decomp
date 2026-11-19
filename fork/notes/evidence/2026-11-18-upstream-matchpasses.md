@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `69a8e24daa` and the complete source snapshot at `9ee8a5ecdb` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `41a07248bc` and the complete source snapshot at `f17f3f27ea` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -67,6 +67,16 @@ The replay at `69a8e24daa` carries `e3a3822f2f` onto the Dragon and Gol Dragon s
 The five-file standalone component at `cc3bff1e8b` is directly based on upstream master `af11a99125`. The four component builds reproduce retail and pass the project checker. Both affected source units retain all 345 exact functions, and the two material vtables retain 88 original bytes. Address coverage is preserved relative to each parent. All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 1 declaration and adds evidence to 3 records. It has 1,151 records awaiting comparison and 877 with partial evidence.
 
 Two grouped commits consolidate the related changes for local review. `great-merge/current/camera-and-radar-views` at `e89ec01968` combines the camera controller replay with radar views and markers in 25 files, covering 623 exact functions in 19 affected source units. `great-merge/current/material-opacity-and-dragon-fade` at `1c20f1a945` combines the Dragon fade with the shared opacity class and its callers in 51 files, covering 1516 exact functions in 26 affected source units. Both grouped commits are based on upstream master. They each reproduce retail and pass the project checker. The combined validation tree at `73cd80f7ff` also passes both checks.
+
+## Title rendering and world resource tables
+
+The title replay at `41a07248bc` carries the shared resource layout from `296081bae4`. The 46 title sprites and 46 frame entries use the same descriptor types as the lobby and radar. The original accessors return the texture list and sprite directly. The texture list declaration explicitly retains its original .data placement. The English and Japanese mode-change tables have names that follow the two language cases.
+
+All four source builds reproduce retail and pass the project checker. The three affected units retain 67 exact functions and 2,874 exact source-linked bytes across twelve title and mode-change ranges. All 133 overlay paths round-trip and all eleven fork-layer tests pass.
+
+The address audit confirms that six fork data files for mines, Seabed walls, ancient wrecks and forest warps already emit every original range from their current native owners. All 180 named objects retain 3,768 exact source-linked bytes. Eleven placeholder labels have descriptive native class-name symbols. The two warp confirmation methods keep current pointer arguments because their callers pass the confirming player. The [fork source index](2026-11-18-fork-review-index.tsv) closes 7 records and adds evidence to 7 others. It has 1,137 records awaiting comparison and 884 with partial evidence.
+
+Two local review branches are based directly on upstream master `af11a99125`. `great-merge/current/title-and-compass-rendering` at `fb95d7b4a9` groups the title changes with texture inputs and the radar and lobby compass in 33 files. Its 19 affected units retain 310 exact functions. `great-merge/current/world-resource-tables` at `2c74919ee9` groups the world-object names, resource ownership and typed table users from `97f1a285af`, `cd2697d2dc`, and `6b7e2c53f3` in 20 files. Its 10 affected units retain 360 exact functions. Both branches reproduce retail and pass the checker independently and in the combined validation at `df36afcd13`.
 
 ## Standalone reviews on upstream master `af11a99125`
 
