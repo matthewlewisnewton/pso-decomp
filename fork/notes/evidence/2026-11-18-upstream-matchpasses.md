@@ -1,5 +1,11 @@
 # Upstream matchpasses
 
+## Runtime array allocation and the twenty-group build
+
+The standalone review `great-merge/runtime-array-allocation` at `aa4fb55c76` builds directly on upstream `2ad5dece70`. Start at `TOBoss4Rock.cpp` with array allocation at 0x80147AA8 and conditional release at 0x80147A80. The shared declaration replaces local prototypes across game callers and the runtime's array destructor. Two callers now pass the snapshot size and the keyboard text size explicitly. All 157 files belong to the same two-function interface change. Native code and linked data match the upstream baseline by address. On retail and rebuilt images, 16 allocation cases cover forwarded sizes and returned pointers, and four release cases cover null and non-null storage.
+
+The combined `great-merge/verify-twenty` at `c0550da29f` includes the nineteen earlier groups and this matchpass. It reproduces retail with 27,572 exact functions and 2,529 exact linked units. The upstream PR checks passed. All twelve earlier subsystem checks passed after adapting the battle-table and strip checks to the new operator names. The comparison with fork main found zero lost exact or linked function or data ranges. Its data extent differs by the verified padding and coverage amounts below. Integration at `5604c903e1` uses the reviewed include order in twenty files, eliminating twenty follow-up diffs, and also reproduces retail.
+
 ## Rebuilt on upstream master after PR 325
 
 Upstream [PR 325](https://github.com/zeroz41/pso-decomp/pull/325) consolidated game source files and recovered additional data. Both the combined nineteen-review branch `great-merge/verify-nineteen` at `4aaee804a2` and full integration at `2ea980a848` build on that master (`2ad5dece70`). The builds reproduce GPOE8P SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 27,572 functions and 2,529 source-linked units are exact. Both pass the upstream PR checks with 26,322 required linker entries. Matched data increases by 764 bytes over this master, to 1,747,103. The integration test suite passed all 294 tests.
@@ -57,30 +63,29 @@ Three local review branches build directly on upstream revision `b2cac76477`. Th
 
 ## Remaining integration changes by review group
 
-`great-merge/pending-reviews` starts on the nineteen-group build at `4aaee804a2`. The [group index](2026-11-18-remaining-integration-groups.tsv) assigns 5,120 remaining edit blocks across 789 paths to 18 local commits. The final source at `f719af0bcc` equals integration `2ea980a848` outside `fork/`. Every review commit excludes the fork documentation.
+`great-merge/pending-reviews` starts on the twenty-group build at `c0550da29f`. The [group index](2026-11-18-remaining-integration-groups.tsv) assigns 4,609 remaining edit blocks across 714 path names to 17 local commits. The final source at `70fe7f549f` equals integration `5604c903e1` outside `fork/`. Every review commit excludes the fork documentation.
 
 | Group | Local commit | Paths |
 | --- | --- | ---: |
-| Archive and renderer interfaces | `eb355f89e0` | 40 |
-| Array allocation and release | `886cd6a24d` | 29 |
-| Enemy model archives and attachments | `4e9788da34` | 76 |
-| Dark Falz models, textures and effect lifetimes | `3f8d32ad9b` | 33 |
-| Boss models and effect resources | `8fef142449` | 71 |
-| Lobby, NPC and ambient models | `aeecf758ed` | 64 |
-| Stage scenery and map models | `c7e850822e` | 43 |
-| Doors, switches and trap models | `dd9a8ad3e5` | 68 |
-| Player equipment, techniques and effects | `16f50b2d27` | 85 |
-| Character creation and menu models | `1d6f151bac` | 53 |
-| Window frame and layout | `7c752d5751` | 74 |
-| Chat, lists and option windows | `9ff0ed4a1d` | 58 |
-| Shop, status and battle windows | `2010b47058` | 66 |
-| Resource buffers and player motion archives | `0fd0893dc6` | 25 |
-| Area sound and disc streaming | `13ba358298` | 10 |
-| Collision, rendering and compiler checks | `9d12d1f35e` | 9 |
-| Fork build reports and contributor handoffs | `a381a8d037` | 14 |
-| Fork batch integration and validation | `f719af0bcc` | 19 |
+| Archive and renderer interfaces | `10504dd69b` | 40 |
+| Enemy model archives and attachments | `9f5506ed2c` | 73 |
+| Dark Falz models, textures and effect lifetimes | `89cb376d3d` | 30 |
+| Boss models and effect resources | `4a32f93428` | 64 |
+| Lobby, NPC and ambient models | `a23cf3b8ee` | 63 |
+| Stage scenery and map models | `989d530723` | 44 |
+| Doors, switches and trap models | `159a0bce6c` | 67 |
+| Player equipment, techniques and effects | `44fa993d9e` | 66 |
+| Character creation and menu models | `8fb27c819d` | 46 |
+| Window frame and layout | `d945fff3fe` | 70 |
+| Chat, lists and option windows | `a13aaab0f0` | 53 |
+| Shop, status and battle windows | `a97037d195` | 64 |
+| Resource buffers and player motion archives | `48fc44a9ea` | 24 |
+| Area sound and disc streaming | `387433f527` | 10 |
+| Collision, rendering and compiler checks | `b2296290b0` | 8 |
+| Fork build reports and contributor handoffs | `317281de76` | 14 |
+| Fork batch integration and validation | `70fe7f549f` | 19 |
 
-The first sixteen rows are candidates for upstream review. The last two preserve the fork’s contributor and batch tools for a separate disposition. Their implementations remain recoverable in Git. Keep only the documentation as a lasting fork-specific difference when the source branches converge. The earlier review sequence through `great-merge/review-slices` at `55a4d83f3d` also reproduces the integrated source outside `fork/`.
+The first fifteen rows are candidates for upstream review. The last two preserve the contributor and batch tools while their upstream applicability is evaluated. Keep only documentation as a lasting fork-specific difference when the source branches converge. The earlier review sequence through `great-merge/review-slices` at `55a4d83f3d` also reproduces the integrated source outside `fork/`.
 
 The initial archive-interface partition exposes a return-type conflict in the fish model header when built alone. Package each public signature with its declaration, definition and affected callers. Stage the model loader's internal layout and filename-list lifecycle separately from the return-type migration. For the window reviews, land the frame before the list, shop and battle callers. The individual draft rows still need their own compatible bases and retail checks.
 
@@ -143,7 +148,9 @@ The source-comparison columns distinguish exact blob matches, whole-source match
 
 The radar, quest-cache and guild-card header decisions are recorded at their current game owners. The weapon review compared fork definitions, native class declarations, function addresses and exact linked sizes. It identified 53 explicit destructor wrappers, 22 manual factories, 12 constructor bodies and 59 corresponding declaration records whose behavior upstream already expresses through C++ weapon classes. For example, at 0x80121278 the fork writes the vtable, calls the base destructor and conditionally frees the object. The matching upstream implementation is `TUnk_804A07C0::~TUnk_804A07C0()`. At 0x80121318 upstream also constructs that class directly from the same parent and item. The per-path evidence names the class and address for each decision.
 
-There are still 3,737 records marked for owner comparison and 786 fork deletions requiring review, in addition to partially matched records. A split fork file can contain several native owners. Review its remaining functions individually before crediting the whole file.
+The deletion pass covers all 975 original fork deletions. Retain 403 headers that compiler dependencies show are used by live units on both builds, 360 source files with identical exact function addresses and sizes across upstream, integration and fork main, five live data-only owners and two native owners whose functions were regrouped. Another 119 paths are absent from all three trees. Integration already contains 14 further removals. For 71 files the original contents moved elsewhere on the fork. One historical deletion names the path now used for the recovered window base constructor and destructor. The [file ledger](2026-11-18-fork-review-index.tsv) records the evidence on each row. A decision to retain a live upstream file resolves the deletion of that path. Any fork additions that replaced it retain their own review records.
+
+There are still 3,737 source records marked for owner comparison and 319 with partial text matches. These records can carry source-level information even when the full linked game matches.
 
 All 374 changed documentation and evidence paths have a local destination under `fork/`. Three executable evidence models are preserved there as Markdown examples. The repository license and third-party license text have separate provenance entries. Shared source and build changes still require semantic comparison before deciding which fork implementation to retain.
 
