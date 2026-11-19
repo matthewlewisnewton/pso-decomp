@@ -8,7 +8,7 @@
 #include "pso/weapon/TUnk_804F28E0.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/effect/item/TItemEffectWeapon_803632B4.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/system/task/TMainTask.h"
 
 extern "C" {
@@ -44,12 +44,12 @@ void TUnk_804F28E0::emit_marker_effects() {
 
 void TUnk_804F28E0::update_idle() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1FC), 0.5f, 4.0f);
+    add_float_clamped((f32 *)(arg0 + 0x1FC), 0.5f, 4.0f);
 }
 
 void TUnk_804F28E0::update_attack() {
     s32 arg0 = (s32)this;
-    TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1FC), -1.0f, 0.0f);
+    add_float_clamped((f32 *)(arg0 + 0x1FC), -1.0f, 0.0f);
 }
 
 

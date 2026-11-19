@@ -285,7 +285,6 @@ struct TObjPlayer : public TObjChara {
     int is_frozen();
     static void send_6x26_unequip_item(void *player, void *item);
     player_class_type get_class_type();
-    static void add_angle_clamped(s32 *arg0, s32 arg1, s32 arg2);
     static void step_angle_clamped(void *actor, int arg1);
     void call_callback_1ec(s32 arg1, s32 arg2);
     void copy_wall_polygon(u8 *arg1);

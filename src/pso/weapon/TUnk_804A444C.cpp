@@ -1,3 +1,4 @@
+#include "pso/math/ClampedStep.h"
 #include "types.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80128A70.h"
@@ -40,13 +41,13 @@ void TUnk_804A444C::emit_marker_effects() {
 
 void TUnk_804A444C::update_idle() {
     if (barrel_angle < 0x2000) {
-        TObjPlayer::add_angle_clamped(&barrel_angle, 0x2D8, 0x2000);
+        add_integer_clamped(&barrel_angle, 0x2D8, 0x2000);
     }
 }
 
 void TUnk_804A444C::update_attack() {
     if (barrel_angle > 0) {
-        TObjPlayer::add_angle_clamped(&barrel_angle, -0x2000, 0);
+        add_integer_clamped(&barrel_angle, -0x2000, 0);
     }
 }
 

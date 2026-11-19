@@ -5,7 +5,7 @@
 #include "pso/system/NinjaTypes.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/item/TItem.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/technique/TTecSlicer.h"
 #include "pso/item/TItemEquipVariant_80120CF8.h"
 #include "pso/system/task/TMainTask.h"
@@ -97,19 +97,19 @@ void TUnk_804A5B20::update_idle() {
     case 5:
     {
       s32 lim;
-      TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), 0x1555, 0x8000);
+      add_integer_clamped((s32 *)(arg0 + 0x1F8), 0x1555, 0x8000);
       new_var = 0x8000;
       if (new_var <= ((s32) (this->rotation)))
       {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x204), (f32)lbl_805DAF40, (f32)lbl_805DAF44);
+        add_float_clamped((f32 *)(arg0 + 0x204), (f32)lbl_805DAF40, (f32)lbl_805DAF44);
       }
     }
       break;
     case 6:
       break;
     case 7:
-      TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x204), (f32)lbl_805DAF48, (f32)lbl_805DAF4C);
-      TObjPlayer::add_angle_clamped((s32 *)(arg0 + 0x1F8), -0x1555, -0x8000);
+      add_float_clamped((f32 *)(arg0 + 0x204), (f32)lbl_805DAF48, (f32)lbl_805DAF4C);
+      add_integer_clamped((s32 *)(arg0 + 0x1F8), -0x1555, -0x8000);
       break;
   }
 }
@@ -117,15 +117,15 @@ void TUnk_804A5B20::update_idle() {
 void TUnk_804A5B20::update_attack() {
     switch ((s32)get_item_index__5TItemFv()) {
     case 5:
-        TItemEffOrgaFlowShot::approach_value(&scale.z, lbl_805DAF50, lbl_805DAF38);
+        add_float_clamped(&scale.z, lbl_805DAF50, lbl_805DAF38);
         if (lbl_805DAF38 <= scale.z) {
-            TObjPlayer::add_angle_clamped(&rotation, -0x2AAA, 0);
+            add_integer_clamped(&rotation, -0x2AAA, 0);
         }
     case 6:
         return;
     case 7:
-        TItemEffOrgaFlowShot::approach_value(&scale.z, lbl_805DAF54, lbl_805DAF3C);
-        TObjPlayer::add_angle_clamped(&rotation, 0x2AAA, 0);
+        add_float_clamped(&scale.z, lbl_805DAF54, lbl_805DAF3C);
+        add_integer_clamped(&rotation, 0x2AAA, 0);
         break;
     }
 }

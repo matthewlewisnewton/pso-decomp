@@ -9,7 +9,7 @@
 #include "pso/technique/TTecFoie.h"
 #include "pso/map/FloorArea.h"
 #include "pso/item/TItem.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/vector.h"
@@ -104,16 +104,16 @@ void TUnk_804A4F60::vfunc_60() {
 }
 
 void TUnk_804A4F60::update_idle() {
-    TObjPlayer::add_angle_clamped(&rotation_z, 0x38E, 0x2AAA);
+    add_integer_clamped(&rotation_z, 0x38E, 0x2AAA);
     if (rotation_z == 0x2AAA) {
-        TItemEffOrgaFlowShot::approach_value(&extension, 0.5f, 6.0f);
+        add_float_clamped(&extension, 0.5f, 6.0f);
     }
 }
 
 void TUnk_804A4F60::update_attack() {
-    TItemEffOrgaFlowShot::approach_value(&extension, -2.0f, 0.0f);
+    add_float_clamped(&extension, -2.0f, 0.0f);
     if (0.0f == extension) {
-        TObjPlayer::add_angle_clamped(&rotation_z, -0x71C, 0);
+        add_integer_clamped(&rotation_z, -0x71C, 0);
     }
 }
 

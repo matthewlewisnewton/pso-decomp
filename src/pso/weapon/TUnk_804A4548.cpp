@@ -4,7 +4,7 @@
 #include "pso/math/AngleLookup.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/weapon/TUnk_804A4548.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/effect/item/TItemEffFlame.h"
 #include "pso/unk/text_80129D18.h"
 #include "pso/unk/text_8011BE50.h"
@@ -25,7 +25,7 @@ void TUnk_804A4548::update_weapon() {
     WeaponVector v;
     s32 a[3];
     if (recoil_state == 1) {
-        TItemEffOrgaFlowShot::approach_value(&barrel_offset, (-0.5f), (-2.0f));
+        add_float_clamped(&barrel_offset, (-0.5f), (-2.0f));
         if ((-2.0f) == barrel_offset) {
             recoil_state = 2;
             ang = owner->rotation_y + 0x4000;
@@ -38,7 +38,7 @@ void TUnk_804A4548::update_weapon() {
             TObjPlayer::launch_weapon_casing((s32)tl_05, (u32)this, 3, (u32)&v, (u32)a);
         }
     } else if (recoil_state == 2) {
-        TItemEffOrgaFlowShot::approach_value(&barrel_offset, 0.2f, 0.0f);
+        add_float_clamped(&barrel_offset, 0.2f, 0.0f);
         if (0.0f == barrel_offset) {
             recoil_state = 0;
         }

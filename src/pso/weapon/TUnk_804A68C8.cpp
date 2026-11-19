@@ -2,7 +2,7 @@
 #include "pso/weapon/TUnk_804A68C8.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/item/TItem.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/weapon/TItemWeapon.h"
 #include "pso/system/MatrixOps.h"
 #include "pso/system/task/TMainTask.h"
@@ -22,7 +22,7 @@ void TUnk_804A68C8::update_idle() {
         attack_spawned = 0;
     }
     if (get_item_index() == 5) {
-        TItemEffOrgaFlowShot::approach_value(&scale, -0.2f, 0.6f);
+        add_float_clamped(&scale, -0.2f, 0.6f);
     }
 }
 
@@ -45,7 +45,7 @@ void TUnk_804A68C8::update_attack() {
         attack_spawned = 1;
     }
     if (get_item_index() == 5) {
-        TItemEffOrgaFlowShot::approach_value(&scale, 0.1f, 1.0f);
+        add_float_clamped(&scale, 0.1f, 1.0f);
     }
 }
 

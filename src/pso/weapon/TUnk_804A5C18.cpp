@@ -4,7 +4,7 @@
 #include "pso/system/MatrixOps.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/unk/text_80087278.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/player/TObjPlayer_80109344.h"
 #include "pso/unk/text_8011B620.h"
 #include "pso/item/TItem.h"
@@ -52,16 +52,16 @@ void TUnk_804A5C18::emit_marker_effects() {
 
 void TUnk_804A5C18::update_idle() {
     if (barrel_angle < 0x2000) {
-        TObjPlayer::add_angle_clamped(&barrel_angle, 0x2D8, 0x2000);
+        add_integer_clamped(&barrel_angle, 0x2D8, 0x2000);
     }
-    TItemEffOrgaFlowShot::approach_value(&slide_offset, -0.4f, -1.2f);
+    add_float_clamped(&slide_offset, -0.4f, -1.2f);
 }
 
 void TUnk_804A5C18::update_attack() {
     if (barrel_angle > 0) {
-        TObjPlayer::add_angle_clamped(&barrel_angle, -0x2000, 0);
+        add_integer_clamped(&barrel_angle, -0x2000, 0);
     }
-    TItemEffOrgaFlowShot::approach_value(&slide_offset, 0.6f, 0.0f);
+    add_float_clamped(&slide_offset, 0.6f, 0.0f);
 }
 
 TUnk_804A5C18::TUnk_804A5C18(TObject *parent, u8 *item) : TItemWeapon(parent, item) {

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/weapon/TUnk_804A5248.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/unk/text_80120D50.h"
 #include "pso/unk/text_8012C268.h"
 #include "pso/weapon/TItemWeaponRifle.h"
@@ -26,7 +26,7 @@ void TUnk_804A5248::vfunc_60() {
 void TUnk_804A5248::update_idle() {
     s32 arg0 = (s32)this;
     if (get_item_index__5TItemFv() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), 0.1f, 0.6f);
+        add_float_clamped((f32 *)(arg0 + 0x1F8), 0.1f, 0.6f);
     }
 }
 
@@ -34,7 +34,7 @@ void TUnk_804A5248::update_idle() {
 void TUnk_804A5248::update_attack() {
     s32 arg0 = (s32)this;
     if (get_item_index__5TItemFv() == 5) {
-        TItemEffOrgaFlowShot::approach_value((f32 *)(arg0 + 0x1F8), 0.2f, 1.0f);
+        add_float_clamped((f32 *)(arg0 + 0x1F8), 0.2f, 1.0f);
     }
 }
 

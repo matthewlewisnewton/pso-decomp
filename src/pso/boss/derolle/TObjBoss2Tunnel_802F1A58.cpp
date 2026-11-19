@@ -19,7 +19,7 @@
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 #include "pso/boss/TUnk_804E4B3C.h"
 #include <stddef.h>
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel_802F2070.h"
 #include "pso/system/vector.h"
 #include "pso/system/MatrixStack.h"
@@ -358,18 +358,18 @@ void TUnk_804E4B3C::sub_802F2400() {
             return;
         }
         if (temp_f1 < 100.0f) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)((s8 *)this + 0x5C), 0.02f, (f32)((f32) (0.1f * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value(&segment_x, (-1.0f), (-50.0f));
+            add_float_clamped((f32 *)((s8 *)this + 0x5C), 0.02f, (f32)((f32) (0.1f * lbl_805DEC68)));
+            add_float_clamped(&segment_x, (-1.0f), (-50.0f));
             return;
         }
         if (temp_f1 < 200.0f) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)((s8 *)this + 0x5C), 0.04f, (f32)((f32) (0.2f * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value(&segment_x, (-1.0f), (-30.000002f));
+            add_float_clamped((f32 *)((s8 *)this + 0x5C), 0.04f, (f32)((f32) (0.2f * lbl_805DEC68)));
+            add_float_clamped(&segment_x, (-1.0f), (-30.000002f));
             return;
         }
         if (temp_f1 < 300.0f) {
-            TItemEffOrgaFlowShot::approach_value((f32 *)((s8 *)this + 0x5C), 0.06f, (f32)((f32) (0.3f * lbl_805DEC68)));
-            TItemEffOrgaFlowShot::approach_value(&segment_x, (-1.0f), (-15.000001f));
+            add_float_clamped((f32 *)((s8 *)this + 0x5C), 0.06f, (f32)((f32) (0.3f * lbl_805DEC68)));
+            add_float_clamped(&segment_x, (-1.0f), (-15.000001f));
         }
     }
 }

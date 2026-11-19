@@ -2,7 +2,7 @@
 #include "pso/system/data/FlagWord.h"
 #include "pso/item/TItemMenuCtrl_80115AF0.h"
 #include "pso/item/TItemMenuCtrl.h"
-#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/math/ClampedStep.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/boss/derolle/TObjBoss2Tunnel.h"
 #include "pso/effect/item/TItemEffectWeapon.h"
@@ -34,25 +34,25 @@ u8 *spawn_star_light_2d(s32 arg0, s32 arg1, s32 arg2) {
 }
 #pragma pop
 
-void TItemEffOrgaFlowShot::approach_value(f32 *arg0, f32 farg0, f32 farg1) {
-    *arg0 += farg0;
-    if (farg0 > 0.0f) {
-        if (*arg0 > farg1) {
-            *arg0 = farg1;
+void add_float_clamped(f32 *value, f32 step, f32 target) {
+    *value += step;
+    if (step > 0.0f) {
+        if (*value > target) {
+            *value = target;
         }
-    } else if (*arg0 < farg1) {
-        *arg0 = farg1;
+    } else if (*value < target) {
+        *value = target;
     }
 }
 
-void TObjPlayer::add_angle_clamped(s32 *arg0, s32 arg1, s32 arg2) {
-    *arg0 += arg1;
-    if (arg1 > 0) {
-        if ((s32) *arg0 > arg2) {
-            *arg0 = arg2;
+void add_integer_clamped(s32 *value, s32 step, s32 target) {
+    *value += step;
+    if (step > 0) {
+        if (*value > target) {
+            *value = target;
         }
-    } else if ((s32) *arg0 < arg2) {
-        *arg0 = arg2;
+    } else if (*value < target) {
+        *value = target;
     }
 }
 

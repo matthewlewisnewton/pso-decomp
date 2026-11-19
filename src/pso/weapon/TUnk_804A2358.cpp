@@ -34,7 +34,7 @@ void TUnk_804A2358::vfunc_57() { this->roll_technique(); this->roll_technique();
 TUnk_804A2358::~TUnk_804A2358() {}
 
 TUnk_804A2358::TUnk_804A2358(TObject *parent, u8 *item) : TItemWeapon(parent, item) {
-    set_weapon_trail_joints((s32)this, 2, 6, 5);
+    set_weapon_trail_joints(this, 2, 6, 5);
     set_weapon_flags(35);
     ((TObjPlayer *)this)->set_effect_state(13);
 }
