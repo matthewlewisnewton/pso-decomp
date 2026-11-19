@@ -157,9 +157,13 @@ Commit `6f03218555` names 109 model, archive, texture and diagnostic references 
 
 The comparison pinned each of the 112 names to its original read-only offset and size. Allocated code and data, the other symbol entries and relocation targets match in the six objects on each of the review, cumulative source at `457411adb3` and working fork. The fork passed all 294 tests and its linker retention check.
 
+Commit `c72bbfbf33` extends the world-object review with the shared wreck resource handles, collision entries and debris tables. The wreck spawner uses the existing `TObjChipParams` type. Forest warp models and textures use pointers through the resource getters and the four warp classes. The native warp table owner shares the read-only destination and screen positions and the quest flags with their callers.
+
+The review, cumulative source at `5f25ff5c5b` and working fork compiled and compared 14 affected objects each. Allocated bytes and relocation targets match. The two debris tables gain the external binding used by the fork at the same offsets and sizes. All 294 fork tests and its linker retention check passed. The fork's generated retention list records the two shared tables.
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `457411adb3` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `5f25ff5c5b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
