@@ -1,5 +1,18 @@
 # Upstream matchpasses
 
+## Consolidated review queue on upstream master
+
+The local branches below group related changes for review. The component branches retain their individual validation records.
+
+| Review | Local branch | Tip | Paths from pinned master |
+| --- | --- | --- | ---: |
+| Array allocation, memory copies and nullable release | `great-merge/current/memory` | `381e372339` | 257 |
+| Window entry, input and rendering interfaces | `great-merge/current/window-frames` | `37e0caf80a` | 268 |
+
+The memory review applies the array allocation component `63c3f4ea45` first, then the memory-copy and nullable release changes from `6194d462e1`. The two components overlap in the menu font cleanup. Its resolved form uses matching array allocation and deletion for the glyph table and palette, and uses the nullable release helper for the glyph data. The compiler output confirms both array delete calls and the nullable release call.
+
+The standalone memory branch compiled 857 selected objects, including 247 edited sources and 610 callers of changed headers. All allocated sections, symbol locations and relocation targets match prior compiled objects once the five aliases are mapped to their original addresses. In 856 cases the objects match upstream and both standalone components. The lobby-join object matches the validated array-allocation component. The check compares object files on the pinned master `c572111ed6`.
+
 ## Review branches on upstream PR 326
 
 Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. These first twenty branches combine at `734e53187f`. The four resource commits below extend `great-merge/current/all-source` to `59ab60ae41` across 1082 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
