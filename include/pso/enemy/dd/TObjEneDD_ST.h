@@ -5,6 +5,16 @@
 
 class TObjEneDD_ST : public TObjEneDD {
 public:
+    u16 target_entity_id;
+    TObjChara *current_target;
+    Vec target_destination;
+    Vec target_direction;
+    f32 target_distance;
+    s32 acquisition_counter;
+    s32 acquisition_period;
+    s32 validation_counter;
+    s32 validation_period;
+
     TObjEneDD_ST(TObject *parent);
     virtual ~TObjEneDD_ST();
     f32 get_motion_frame();
@@ -24,9 +34,14 @@ public:
     virtual s32 vfunc_104(f32);
     void sub_800F5874(s32);
     void sub_800F5864(s32);
+    s32 check_target_validity();
     s32 enemy_check_target_valid();
     s32 enemy_has_live_target();
 };
 
+
+typedef char TObjEneDD_ST_size_check[sizeof(TObjEneDD_ST) == 0x3C0 ? 1 : -1];
+
+extern "C" s32 enemy_validate_retained_target(TObjEneDD_ST *enemy);
 
 #endif

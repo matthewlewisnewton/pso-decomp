@@ -39,19 +39,15 @@ void *get_player_by_client_id(s32 i);
 #include "pso/boss/derolle/TBoss2DeRolLe.h"
 #include "pso/enemy/epsilon/TObjEneEpsilon.h"
 #include "pso/unk/TLobby.h"
-struct O_800B98C0;
 extern "C" {
 s32 transform_relative_position__9TObjEneDDFPv(void *, int);
 s32 calc_shot_position__13TBoss5GryphonFPUcfff(void *, s32, f32, f32, f32);
 f32 atan2_float(f32 y, f32 x);
 u16 set_squared_value__9TObjEneDDFf(void *, f32);
 }
-struct O_800B98C0 { u8 pad[0x38c]; u16 f38c; u8 pad2[2]; s32 f390; };
-struct Obj_800B9958 { u8 pad[0x38c]; u16 id; u8 pad2[2]; s32 ptr; };
-struct Obj_800B98D8 { u8 pad[0x38c]; u16 target_id; u8 pad2[2]; void *target; };
 extern "C" {
 s32 find_active_entity_by_id(u16);
-void enemy_set_target_id(Obj_800B9958 *self, u16 id);
+void enemy_set_target_id(TObjEneDD_ST *self, u16 id);
 f32 normalize_vector_xz__FP3Vec(void *, f32, f32);
 }
 extern const f32 lbl_805D9E80 = -0.1f;
@@ -541,12 +537,12 @@ void TObjEneDD::release_resource() {
 
 TObjEneDD::TObjEneDD(TObject *parent) : TObjEnemy(parent) {
     m_name = TObjEneDD__name;
-    *(u32 *)((s8 *)this + 0x374) = 0;
-    *(u32 *)((s8 *)this + 0x378) = 0;
-    *(f32 *)((s8 *)this + 0x37C) = 5.0f;
-    *(u32 *)((s8 *)this + 0x380) = 0;
-    *(u32 *)((s8 *)this + 0x384) = 0;
-    *(u32 *)((s8 *)this + 0x388) = 0;
+    this->previous_mode = 0;
+    this->next_mode = 0;
+    this->wall_probe_distance = 5.0f;
+    this->blocked_move_count = 0;
+    this->ground_miss_count = 0;
+    this->active_flag = 0;
 }
 
 TObjEneDD::~TObjEneDD() {}
@@ -602,7 +598,7 @@ void TObjEneDD::vfunc_85() {
 }
 
 u8 TObjEneDD::vfunc_86() {
-    return (u8) (*(s32 *)((s8 *)this + 0x374) != this->mode);
+    return (u8) (this->previous_mode != this->mode);
 }
 
 void TObjEneDD::transition_enemy_state(s32 state) {
@@ -612,10 +608,10 @@ void TObjEneDD::transition_enemy_state(s32 state) {
 }
 
 void TObjEneDD::sub_800BBA0C() {
-    *(s32 *)((s8 *)((u8 *)this) + 0x374) = (s32) this->mode;
+    this->previous_mode = (s32) this->mode;
 }
 
-void TObjEneDD::set_field_378(s32 v) { *(s32*)((char*)this + 0x378) = v; }
+void TObjEneDD::set_field_378(s32 v) { this->next_mode = v; }
 
 s32 load_enemy_bml_resource(u8 *arg0) {
     s32 var_r0;
@@ -867,16 +863,16 @@ void TBoss5Gryphon::calc_shot_position(u8 *arg1, f32 farg0, f32 farg1, f32 farg2
     u8 *arg0 = (u8 *)this;
     s32 temp_r5;
 
-    f32 reach = farg2 + this->m_37c;
+    f32 reach = farg2 + this->wall_probe_distance;
     if (((TBoss5Gryphon *)arg0)->enemy_probe_wall_ahead(farg0, farg1, reach) == 0U) {
         *(f32 *)((s8 *)arg1 + 0) = (f32) ((farg0 * farg2) + *(f32 *)((s8 *)arg0 + 0x38));
         *(f32 *)((s8 *)arg1 + 4) = (f32) *(f32 *)((s8 *)arg0 + 0x3C);
         *(f32 *)((s8 *)arg1 + 8) = (f32) ((farg1 * farg2) + *(f32 *)((s8 *)arg0 + 0x40));
-        *(s32 *)((s8 *)arg0 + 0x380) = 0;
+        this->blocked_move_count = 0;
         return;
     }
-    temp_r5 = *(s32 *)((s8 *)arg0 + 0x380);
-    *(s32 *)((s8 *)arg0 + 0x380) = (temp_r5 + 1);
+    temp_r5 = this->blocked_move_count;
+    this->blocked_move_count = (temp_r5 + 1);
     VecCopy__FP3VecPC3Vec(arg1, (u8 *)&this->position, temp_r5);
 }
 
@@ -924,7 +920,7 @@ void calc_wall_slide_destination(void *arg0, void *arg1, f32 dx, f32 dz, f32 dis
 void calc_wall_clamped_destination(void *arg0, void *arg1, f32 dx, f32 dz, f32 dist) {
     Ene_800BAF1C *e = (Ene_800BAF1C *)arg0;
     Vec *out = (Vec *)arg1;
-    Node_800BAF1C *n = (Node_800BAF1C *)((TBoss5Gryphon *)e)->enemy_probe_wall_ahead(dx, dz, dist + ((TBoss5Gryphon *)e)->m_37c);
+    Node_800BAF1C *n = (Node_800BAF1C *)((TBoss5Gryphon *)e)->enemy_probe_wall_ahead(dx, dz, dist + ((TBoss5Gryphon *)e)->wall_probe_distance);
     if (n == NULL) {
         e->count = 0;
     } else {
@@ -937,7 +933,7 @@ void calc_wall_clamped_destination(void *arg0, void *arg1, f32 dx, f32 dz, f32 d
         px = p->x;
         ddz = p->z - e->pos.z;
         ddx = px - e->pos.x;
-        dist = ((f32 (*)(f32, f32, f32))newton_sqrtf)(ddx * ddx + ddz * ddz, px, ddz) - ((TBoss5Gryphon *)e)->m_37c;
+        dist = ((f32 (*)(f32, f32, f32))newton_sqrtf)(ddx * ddx + ddz * ddz, px, ddz) - ((TBoss5Gryphon *)e)->wall_probe_distance;
     }
     out->x = dx * dist + e->pos.x;
     out->y = e->pos.y;
@@ -957,9 +953,9 @@ u8 *TBoss5Gryphon::try_move_actor_xz_on_ground(u8 *arg1) {
         *(f32 *)((s8 *)((u8 *)this) + 0x38) = (f32) *(f32 *)((s8 *)arg1 + 0);
         *(f32 *)((s8 *)((u8 *)this) + 0x40) = (f32) *(f32 *)((s8 *)arg1 + 8);
         VecCopy((Vec *)(((u8 *)this) + 0x248), (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4) + 0xC));
-        this->m_384 = 0;
+        this->ground_miss_count = 0;
     } else {
-        this->m_384 = (this->m_384 + 1);
+        this->ground_miss_count = (this->ground_miss_count + 1);
     }
     return temp_r3;
 }
@@ -978,7 +974,7 @@ u8 *TObjEneDD::vfunc_101(u8 *arg1) {
     this->prev_position.z = (f32) *(f32 *)((s8 *)arg0 + 0x40);
     *(f32 *)((s8 *)arg0 + 0x38) = (f32) *(f32 *)((s8 *)arg1 + 0);
     *(f32 *)((s8 *)arg0 + 0x40) = (f32) *(f32 *)((s8 *)arg1 + 8);
-    *(s32 *)((s8 *)arg0 + 0x384) = 0;
+    this->ground_miss_count = 0;
     return temp_r3;
 }
 
@@ -994,7 +990,7 @@ u8 *TObjEneDD::vfunc_102() {
     this->prev_position.x = (f32) *(f32 *)((s8 *)arg0 + 0x38);
     this->prev_position.y = temp_f31;
     this->prev_position.z = (f32) *(f32 *)((s8 *)arg0 + 0x40);
-    *(s32 *)((s8 *)arg0 + 0x384) = 0;
+    this->ground_miss_count = 0;
     return temp_r3;
 }
 
@@ -1041,19 +1037,18 @@ void TObjEneDD::move_to_wall_clamped_destination(f32 farg0, f32 farg1, f32 dist)
 }
 
 int TObjEneDD::has_move_failures(s32 arg1) {
-    u8 *arg0 = (u8 *)this;
     u8 var_r5;
     var_r5 = 0;
-    if (((s32) *(s32 *)((s8 *)arg0 + 0x380) >= arg1) || ((s32) *(s32 *)((s8 *)arg0 + 0x384) >= arg1)) {
+    if (((s32) this->blocked_move_count >= arg1) || ((s32) this->ground_miss_count >= arg1)) {
         var_r5 = 1;
     }
     return var_r5;
 }
 
 
-void TObjEneDD_ST::set_active() { *(s32*)((char*)this + 0x388) = 1; }
+void TObjEneDD_ST::set_active() { this->active_flag = 1; }
 
-void TObjEneDD::clear_field_388() { *(s32*)((char*)this + 0x388) = 0; }
+void TObjEneDD::clear_field_388() { this->active_flag = 0; }
 
 void TObjEneDD::init_model(CollisionBody *bodies, s32 count) {
     init_collision_body_parts(this, bodies, count);
@@ -1480,50 +1475,57 @@ void TObjEneDD::update_velocity() {
 }
 
 
-void TObjEneDD_ST::init_float_params() { *(float*)((char*)this + 0x394) = 0.0f; *(float*)((char*)this + 0x398) = 0.0f; *(float*)((char*)this + 0x39c) = 0.0f; *(float*)((char*)this + 0x3a0) = 0.0f; *(float*)((char*)this + 0x3a4) = 0.0f; *(float*)((char*)this + 0x3a8) = 0.0f; *(float*)((char*)this + 0x3ac) = 0.0f; }
+void TObjEneDD_ST::init_float_params() {
+    target_destination.x = 0.0f;
+    target_destination.y = 0.0f;
+    target_destination.z = 0.0f;
+    target_direction.x = 0.0f;
+    target_direction.y = 0.0f;
+    target_direction.z = 0.0f;
+    target_distance = 0.0f;
+}
 
 
-void enemy_set_target_id(Obj_800B9958 *self, u16 id) {
-    self->id = id;
+void enemy_set_target_id(TObjEneDD_ST *self, u16 id) {
+    self->target_entity_id = id;
     if (id != 0xFFFF) {
-        self->ptr = find_active_entity_by_id(self->id);
+        self->current_target = (TObjChara *)find_active_entity_by_id(self->target_entity_id);
     } else {
-        self->id = 0xFFFF;
-        self->ptr = 0;
+        self->target_entity_id = 0xFFFF;
+        self->current_target = 0;
     }
 }
 
 void TObjEneDD_ST::set_target_player(void *player) {
-    Obj_800B98D8 *self = (Obj_800B98D8 *)this;
     s32 n;
     s32 i;
-    self->target_id = 0xFFFF;
-    self->target = 0;
+    target_entity_id = 0xFFFF;
+    current_target = 0;
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         if (player == TObjPlayer::get_player_data(i)) {
-            self->target_id = get_entity_id(player);
-            self->target = player;
+            target_entity_id = get_entity_id(player);
+            current_target = (TObjChara *)player;
             return;
         }
     }
 }
 
 void TObjEneDD_ST::enemy_clear_target(u16 _w1) {
-    ((O_800B98C0 *)this)->f390 = 0;
-    ((O_800B98C0 *)this)->f38c = 0xFFFF;
+    current_target = 0;
+    target_entity_id = 0xFFFF;
 }
 
 void TObjEneDD_ST::enemy_init_acquire_period(s32 arg1) {
-    *(s32 *)((s8 *)((u8 *)this) + 0x3B0) = (s32) (this->entity_id % arg1);
-    *(s32 *)((s8 *)((u8 *)this) + 0x3B4) = arg1;
+    acquisition_counter = entity_id % arg1;
+    acquisition_period = arg1;
 }
 
 s32 TObjEneDD_ST::vfunc_104(f32 distance) { return select_nearest_target(distance); }
 
 s32 enemy_bind_or_clear_target(void *self, u16 x) {
     if (x != 0xFFFF) {
-        enemy_set_target_id((Obj_800B9958 *)(self), x);
+        enemy_set_target_id((TObjEneDD_ST *)self, x);
         return 1;
     }
     enemy_clear_target__12TObjEneDD_STFUs(self);
@@ -1566,45 +1568,40 @@ s32 TObjEneDD_ST::enemy_tick_target_acquisition(s32 *counter, s32 limit, f32 sca
 }
 
 s32 TObjEneDD_ST::update_linked_position(f32 scale) {
-    return this->enemy_tick_target_acquisition((s32 *)((u8 *)this + 0x3B0), *(s32 *)((s8 *)this + 0x3B4), scale);
+    return enemy_tick_target_acquisition(&acquisition_counter, acquisition_period, scale);
 }
 
 void TObjEneDD_ST::enemy_copy_target_destination() {
-    u32 temp_r4;
-    temp_r4 = *(u32 *)((s8 *)((u8 *)this) + 0x390);
-    if (temp_r4 != 0U) {
-        set_target_destination((const Vec *)(temp_r4 + 0x38));
+    if (current_target != NULL) {
+        set_target_destination(&current_target->position);
     }
 }
 
 void TObjEneDD::set_target_destination(const Vec *position) { VecCopy((Vec *)((char *)this + 0x394), position); }
 
 void TObjEneDD_ST::enemy_init_validate_period(s32 arg1) {
-    *(s32 *)((s8 *)((u8 *)this) + 0x3BC) = arg1;
-    *(s32 *)((s8 *)((u8 *)this) + 0x3B8) = (s32) ((this->entity_id + 3) % *(s32 *)((s8 *)((u8 *)this) + 0x3BC));
+    validation_period = arg1;
+    validation_counter = (entity_id + 3) % validation_period;
 }
 
-s32 enemy_validate_retained_target(u8 *ene_dd_st) {
-    if (tick_period_counter((s32)ene_dd_st, (s32 *)(ene_dd_st + 0x3B8), (*(s32 *)((s8 *)ene_dd_st + 0x3BC))) != 0) {
-        if (transform_relative_position__9TObjEneDDFPv(ene_dd_st, (int) (*(s32 *)((s8 *)ene_dd_st + 0x390))) != 0) {
+s32 enemy_validate_retained_target(TObjEneDD_ST *enemy) {
+    if (tick_period_counter((s32)enemy, &enemy->validation_counter, enemy->validation_period) != 0) {
+        if (transform_relative_position__9TObjEneDDFPv(enemy, (s32)enemy->current_target) != 0) {
             return 1;
         }
-        goto block_5;
-    }
-    if (((TObjEneDD_ST *)ene_dd_st)->enemy_has_live_target() != 0) {
+    } else if (enemy->enemy_has_live_target() != 0) {
         return 1;
     }
-block_5:
-    enemy_clear_target__12TObjEneDD_STFUs(ene_dd_st);
+    enemy_clear_target__12TObjEneDD_STFUs(enemy);
     return 0;
 }
 
-s32 TObjEneEpsilon::update_death_check() {
-    if ((this->vfunc_99() == 0) && (is_player_entity_id(this->m_38c) == 0)) {
+s32 TObjEneDD_ST::check_target_validity() {
+    if ((this->vfunc_99() == 0) && (is_player_entity_id(target_entity_id) == 0)) {
         enemy_clear_target__12TObjEneDD_STFUs(this);
         return 0;
     }
-    return enemy_validate_retained_target((u8 *)this);
+    return enemy_validate_retained_target(this);
 }
 
 void TObjEneDD::turn_toward_target_direction(s32 arg1) {
@@ -1663,14 +1660,14 @@ void TObjEneEpsilon__sub_800B92AC(u8 *ene_epsilon, s32 arg1, f32 farg0) {
 }
 
 s32 TObjEneDD_ST::vfunc_83() {
-    if ((is_player_entity_id(*(u16 *)((s8 *)this + 0x38C)) != 0) && (get_player_by_client_id(*(u16 *)((s8 *)this + 0x38C)) == 0U)) {
+    if ((is_player_entity_id(this->target_entity_id) != 0) && (get_player_by_client_id(this->target_entity_id) == 0U)) {
         enemy_clear_target__12TObjEneDD_STFUs(this);
     }
     TObjEneDD::vfunc_83();
 }
 
 s32 TObjEneDD_ST::enemy_check_target_valid() {
-    u16 id = *(u16 *)((s8 *)this + 0x38C);
+    u16 id = this->target_entity_id;
     if (id == 0xFFFF) {
         return 0;
     }
@@ -1678,13 +1675,13 @@ s32 TObjEneDD_ST::enemy_check_target_valid() {
         enemy_clear_target__12TObjEneDD_STFUs(this);
         return 0;
     }
-    return is_valid_target__9TObjEneDDFv(*(s32 *)((s8 *)this + 0x390));
+    return is_valid_target__9TObjEneDDFv((s32)current_target);
 }
 
 #pragma push
 #pragma fp_contract on
 s32 TObjEneDD_ST::enemy_has_live_target() {
-    u32 id = *(u16 *)((s8 *)this + 0x38C);
+    u32 id = this->target_entity_id;
     if (id == 0xFFFF) {
         return 0;
     }
@@ -1692,7 +1689,7 @@ s32 TObjEneDD_ST::enemy_has_live_target() {
         enemy_clear_target__12TObjEneDD_STFUs(this);
         return 0;
     }
-    return ((TObjBase *)(*(void **)((s8 *)this + 0x390)))->is_alive();
+    return current_target->is_alive();
 }
 #pragma pop
 

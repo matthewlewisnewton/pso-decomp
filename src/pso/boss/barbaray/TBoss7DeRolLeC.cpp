@@ -1415,7 +1415,7 @@ TBoss7DeRolLeC::TBoss7DeRolLeC(TObject *parent, void *set_data) : TObjEneDD_ST(p
     check_state_flag_2();
     movementParameters = &boss7_movement_parameters;
     initialize_enemy_state(0x49);
-    unk_37C = 20.0f;
+    wall_probe_distance = 20.0f;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);
     unk_7A8 = 0;
@@ -1773,7 +1773,7 @@ void TBoss7DeRolLeC::set_state_and_send(s32 arg1) {
         pa.a = this->entity_id;
         pa.b = arg1;
         pa.c = (s16)this->action_index;
-        pa.d = this->unk_38C;
+        pa.d = this->target_entity_id;
         ((TBoss7Joint *)(&pa))->broadcast_state();
         return;
     }

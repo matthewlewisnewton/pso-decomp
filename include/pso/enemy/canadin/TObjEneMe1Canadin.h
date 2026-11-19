@@ -57,15 +57,6 @@ struct TObjEneMe1Canadin : public TObjEneDD_ST {
     void vfunc_61();
     void vfunc_28();
     void render();
-    u8 unk_374[0x4];
-    s32 m_378;
-    f32 m_37C;
-    u8 unk_380[0x10];
-    TObjChara *m_390;
-    Vec m_394;
-    Vec m_3A0;
-    f32 m_3AC;
-    u8 unk_3B0[0x10];
     TObjEneMe1Canadin *m_3C0;
     s32 m_3C4;
     u32 m_3C8;

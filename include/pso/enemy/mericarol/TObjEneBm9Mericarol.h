@@ -73,15 +73,6 @@ struct TObjEneBm9Mericarol : public TObjEneDD_ST {
     void sub_802D073C();
     void sub_802D093C();
     void sub_802D0940();
-    u8 unk_374[0x4];
-    s32 m_378;
-    f32 m_37c;
-    u8 unk_380[0x10];
-    TObjBase *m_390;
-    u8 unk_394[0xC];
-    Vec m_3a0;
-    f32 m_3ac;
-    u8 unk_3B0[0x10];
     TUnk_80494968 *m_3c0[2];
     RenderFadeState m_3c8[4];
     u32 m_438;

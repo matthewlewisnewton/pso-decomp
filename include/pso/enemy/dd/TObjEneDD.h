@@ -5,6 +5,13 @@
 #include "pso/enemy/TObjEnemy.h"
 
 struct TObjEneDD : public TObjEnemy {
+    s32 previous_mode;
+    s32 next_mode;
+    f32 wall_probe_distance;
+    s32 blocked_move_count;
+    s32 ground_miss_count;
+    s32 active_flag;
+
     TObjEneDD(TObject *parent);
     virtual ~TObjEneDD();
     void set_part_local_pos(void *, s32);
@@ -102,5 +109,7 @@ struct TObjEneDD : public TObjEnemy {
     void init_position_vectors();
     static void release_resource();
 };
+
+typedef char TObjEneDD_size_check[sizeof(TObjEneDD) == 0x38C ? 1 : -1];
 
 #endif

@@ -20,7 +20,6 @@
 
 #include "pso/enemy/TObjEnePanBARA.h"
 #include "pso/enemy/panarms/TObjEnePanarmsAtkColli.h"
-#include "pso/enemy/berura/TObjEneRe7Berura.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/boss/darkfalz/TObjDFDemo5.h"
 #include "pso/player/TObjPlayer.h"
@@ -430,7 +429,7 @@ void TObjEnePanarms::render() {
     }
 }
 
-void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); set_current_texture_list((GinjaTextureList *)((*(void**)((char*)p + 0x24)))); ((ModelNodePositionCapture *)(((TObjEneRe7Berura *)p)->m_39c))->install(); ((TObjMotion *)p)->draw(); ((ModelNodePositionCapture *)(((TObjEneRe7Berura *)p)->m_39c))->clear(); pop_matrix(); }
+void TObjEnePanarms__sub_800DEEF8(void* p) { push_matrix(p); post_translate_matrix((char*)p + 0x38); rotate_matrix_y((void*)0, *(void**)((char*)p + 0x60)); set_current_texture_list((GinjaTextureList *)((*(void**)((char*)p + 0x24)))); ((TObjEnePanarms *)p)->m_39c->install(); ((TObjMotion *)p)->draw(); ((TObjEnePanarms *)p)->m_39c->clear(); pop_matrix(); }
 
 #pragma push
 #pragma fp_contract on

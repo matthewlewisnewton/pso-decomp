@@ -492,7 +492,6 @@ s32 init_motion_record(s32);
 void TBoss8Dragon__sub_80067074(s32 arg0, s32 arg1);
 void start_camera_shake(s32 id, f32 v);
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0);
-s32 enemy_validate_retained_target(u8 *arg0);
 s32 update_linked_position__12TObjEneDD_STFf(f32);
 s32 enemy_set_target_id(void *, u16);
 s32 update_velocity__9TObjEneDDFv();
@@ -1933,7 +1932,7 @@ void TBoss8Dragon::flush_pending_effect() {
 void TBoss5Gryphon::refresh_target_periodically() {
     TBoss5Gryphon::update_linked_ground_position();
     if (!(this->targetRefreshCounter & 0x1F)) {
-        if (enemy_validate_retained_target((u8 *)this) != 0) {
+        if (enemy_validate_retained_target(this) != 0) {
             enemy_copy_target_destination();
         } else {
             this->set_target_destination(&lbl_80437938);
@@ -1956,7 +1955,7 @@ void TBoss8Dragon::fire_at_angle(s32 arg1) {
 
 void TBoss5Gryphon::update_heading(s32 arg1) {
     update_velocity__9TObjEneDDFv();
-    turn_toward_angle_limited__13TBoss5GryphonFPvii(this, arg1, (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), this->m_3a8)));
+    turn_toward_angle_limited__13TBoss5GryphonFPvii(this, arg1, (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), this->target_direction.z)));
 }
 
 void turn_toward_angle_limited__13TBoss5GryphonFPvii(void *selfv, s32 arg1, s32 arg2) {
@@ -1971,7 +1970,7 @@ void turn_toward_angle_limited__13TBoss5GryphonFPvii(void *selfv, s32 arg1, s32 
 
 void TBoss8Dragon::update_facing(f32 farg0) {
     update_velocity__9TObjEneDDFv();
-    ((s32 (*)(void *, s32, f32))move_along_angle__13TBoss5GryphonFPvif)(this, (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), this->m_3a8)), farg0);
+    ((s32 (*)(void *, s32, f32))move_along_angle__13TBoss5GryphonFPvif)(this, (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), this->target_direction.z)), farg0);
 }
 
 #pragma push
@@ -4420,8 +4419,8 @@ void handle_6xA0_gal_gryphon_boss_actions(TBoss8Dragon *boss8_dragon) {
 
 void TBoss5Gryphon::set_target_from_action(void *arg1) {
     enemy_set_target_id(this, (u16) *(s32 *)((s8 *)arg1 + 4));
-    this->m_394 = (f32) *(f32 *)((s8 *)arg1 + 8);
-    this->m_39c = (f32) *(f32 *)((s8 *)arg1 + 0xC);
+    this->target_destination.x = (f32) *(f32 *)((s8 *)arg1 + 8);
+    this->target_destination.z = (f32) *(f32 *)((s8 *)arg1 + 0xC);
 }
 #pragma pop
 
@@ -4847,7 +4846,7 @@ TBoss5Gryphon *TBoss5Gryphon__ct(TBoss5Gryphon *self, void *parent, void *data) 
     self->check_state_flag_2();
     *(void **)((u8 *)self + 0x350) = lbl_804878B4;
     ((TObjEneDD *)self)->initialize_enemy_state(77);
-    self->m_37c = 20.0f;
+    self->wall_probe_distance = 20.0f;
     ((TObjEneDD *)self)->set_target_destination(&lbl_80437938);
     self->enemy_init_acquire_period(10);
     self->enemy_init_validate_period(10);

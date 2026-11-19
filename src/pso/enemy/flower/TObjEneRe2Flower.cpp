@@ -400,7 +400,7 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     } else {
         initialize_enemy_state(13);
     }
-    m_37c = lbl_805D9FBC;
+    wall_probe_distance = lbl_805D9FBC;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);
     m_3c0 = rotation_y;
@@ -757,7 +757,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
                     enemy_set_target_id(arg0, idx);
                 }
             }
-        } else if (((TObjEneEpsilon *)arg0)->update_death_check() == 0) {
+        } else if (((TObjEneDD_ST *)arg0)->check_target_validity() == 0) {
             break;
         }
         ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
@@ -863,7 +863,7 @@ void fn_800C3088(u8 *arg0, int arg1) {
     return;
     case 0:
       ((TObjMotion *)arg0)->advance_animation();
-      enemy_validate_retained_target(arg0);
+      enemy_validate_retained_target((TObjEneDD_ST *)arg0);
       switch (((RecoveredFields_800C3088_arg0 *) arg0)->field_414)
     {
       case 0:

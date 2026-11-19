@@ -1219,3 +1219,107 @@ Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/e
 Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/gee/TObjEneMe1Gee.cpp	5
 Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/recon/TObjEneRecon.cpp	6
 Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp	5
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/barbaray/TBoss7DeRolLeC.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/barbaray/TBoss7Joint.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/derolle/TBoss2DeRolLe.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/derolle/TBoss2Joint.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/derolle/TBoss2Mine.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/dragon/TBoss1Dragon.h	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/galgryphon/TBoss5Gryphon.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/boss/goldragon/TBoss8Dragon.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/berura/TObjEneRe7Berura.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/bringer/TObjEneDf2Bringer.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/canadin/TObjEneMe1Canadin.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/dd/TObjEneDD.h	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/dellbiter/TObjEneDellBiter.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/epsilon/TObjEneEpsilon.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/flower/TObjEneRe2Flower.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/fly/TObjEneBm3Fly.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/fly/TObjEneBm3FlyNest.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/gee/TObjEneMe1Gee.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/gibon/TObjEneBm5GibonU.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/mericarol/TObjEneBm9Mericarol.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/morfos/TObjEneMorfos.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/recon/TObjEneRecobox.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/recon/TObjEneRecon.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/shinowa/TObjEneMe3Shinowa.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/sorcerer/TObjEneRe4Bit.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/stelth/TObjEneMe3Stelth.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	include/pso/enemy/wolf/TObjEneBm5Wolf.h	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/boss/barbaray/TBoss7DeRolLeC.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/boss/derolle/TBoss2DeRolLe.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/boss/dragon/TBoss1Dragon.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/boss/goldragon/TBoss8Dragon.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/berura/TObjEneRe7Berura.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/canadin/TObjEneMe1Canadin.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/dd/TObjEneDD.cpp	17
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/dellbiter/TObjEneDellBiter.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/flower/TObjEneRe2Flower.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/fly/TObjEneBm3Fly.cpp	3
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/fly/TObjEneBm3FlyNest.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/gee/TObjEneMe1Gee.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/gibon/TObjEneBm5GibonU.cpp	5
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/morfos/TObjEneMorfos.cpp	3
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp	4
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp	1
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/stelth/TObjEneMe3Stelth.cpp	2
+Common enemy movement state	ab16574760cad524f247a399d02a9cac199225be	src/pso/enemy/wolf/TObjEneBm5Wolf.cpp	5
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	config/GPOE8P/psov3/symbols.txt	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/boss/barbaray/TBoss7DeRolLeC.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/boss/derolle/TBoss2DeRolLe.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/boss/dragon/TBoss1Dragon.h	4
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/boss/galgryphon/TBoss5Gryphon.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/boss/goldragon/TBoss8Dragon.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/berura/TObjEneRe7Berura.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/bringer/TObjEneDf2Bringer.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/canadin/TObjEneMe1Canadin.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/dd/TObjEneDD_ST.h	3
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/dellbiter/TObjEneDellBiter.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/epsilon/TObjEneEpsilon.h	2
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h	2
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/flower/TObjEneRe2Flower.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/fly/TObjEneBm3Fly.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/gee/TObjEneMe1Gee.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/gibon/TObjEneBm5GibonU.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/mericarol/TObjEneBm9Mericarol.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/morfos/TObjEneMorfos.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/recon/TObjEneRecobox.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/recon/TObjEneRecon.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/shinowa/TObjEneMe3Shinowa.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/sorcerer/TObjEneRe4Bit.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/stelth/TObjEneMe3Stelth.h	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	include/pso/enemy/wolf/TObjEneBm5Wolf.h	2
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/boss/barbaray/TBoss7DeRolLeC.cpp	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/boss/dragon/TBoss1Dragon.cpp	40
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp	5
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/boss/goldragon/TBoss8Dragon.cpp	16
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/berura/TObjEneRe7Berura.cpp	16
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/bringer/TObjEneDf2Bringer.cpp	6
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/canadin/TObjEneMe1Canadin.cpp	30
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/dd/TObjEneDD.cpp	26
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/dellbiter/TObjEneDellBiter.cpp	4
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp	8
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp	1
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/flower/TObjEneRe2Flower.cpp	2
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/fly/TObjEneBm3Fly.cpp	35
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/gee/TObjEneMe1Gee.cpp	31
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/gibon/TObjEneBm5GibonU.cpp	57
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp	23
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/morfos/TObjEneMorfos.cpp	9
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp	2
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/recon/TObjEneRecon.cpp	6
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp	38
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp	42
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp	19
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/stelth/TObjEneMe3Stelth.cpp	43
+Shared enemy target state and validation	6fa3beb86872e85909bbdb80ce5e4cb50423f60b	src/pso/enemy/wolf/TObjEneBm5Wolf.cpp	44

@@ -3110,7 +3110,7 @@ void *TBoss2DeRolLe__ct(void *arg0, void *arg1, void *arg2) {
     ((TObjEneDD *)self)->check_state_flag_2();
     ((TBoss2DeRolLe *)self)->movementParameters = (u8 *)lbl_8048228C;
     ((TObjEneDD *)self)->initialize_enemy_state(0x2D);
-    ((TBoss2DeRolLe *)self)->m_37c = 20.0f;
+    ((TBoss2DeRolLe *)self)->wall_probe_distance = 20.0f;
     ((TObjEneDD_ST *)self)->enemy_init_acquire_period(0x1E);
     ((TObjEneDD_ST *)self)->enemy_init_validate_period(0x1E);
     self->f3C4 = 0;

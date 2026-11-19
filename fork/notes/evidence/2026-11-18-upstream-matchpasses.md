@@ -7,8 +7,8 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
 | `great-merge/upstream/combined` · `d86ae41c4d` | Combined source matchpasses, including the shared item archive reader, sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `33d31f81ee` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `77a21ec039` | Thirteen subsystem drafts and eight follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/all-source` · `cde29df8f1` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `6fa3beb868` | Thirteen subsystem drafts and ten follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
@@ -29,7 +29,7 @@ Seventeen checked components form the first six larger local branches on upstrea
 | --- | --- | ---: | --- |
 | `great-merge/reviews/resource-lifetimes` | `9b8dd63af4` | 96 | archive-lifecycle, quest-cache, audio-streams |
 | `great-merge/reviews/window-interaction` | `4c814cd01f` | 166 | window-lists, result-windows, guild-card-chat |
-| `great-merge/reviews/combat` | `6516431b23` | 148 | battle-parameters, enemy-motion, collision-results, player-techniques |
+| `great-merge/reviews/combat` | `18e3816c9c` | 178 | battle-parameters, enemy-motion, collision-results, player-techniques |
 | `great-merge/reviews/encounter-drawing` | `1826acfd4a` | 97 | radar-camera, raft-encounters, texture-strips, boss-effects |
 | `great-merge/reviews/memory` | `bc9ede35e0` | 185 | runtime-array-allocation, memory-moves |
 | `great-merge/reviews/native-callbacks` | `d8c3791ade` | 11 | native-callbacks-sdk |
@@ -54,7 +54,7 @@ The original fork tip `3342e42983` has 798 subsequent first-parent commits. Comp
 
 Sixteen more complete fork-point patches reproduce their current owner when merged in both directions. Three contain only include-directory or header-guard moves after mapping Git renames. Another sixteen have every fork edit block present with unique surrounding source context. The comparison preserves comments and directives. The block check skips multiline literals and comments and requires the old contextual form to be absent. The index records the current owner in each case.
 
-The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,115 paths requiring an owner comparison and 305 with partially matched edit blocks.
+The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,103 paths requiring an owner comparison and 305 with partially matched edit blocks.
 
 ## One-shot positional sound requests
 
@@ -85,6 +85,12 @@ A separate history comparison found 31 source paths whose entire sequence of for
 The enemy-motion component at `13468aa162` and the larger combat group at `6516431b23` recover the collector and its five source owners. The shared player record has a 16-bit ID, two padding bytes and a horizontal squared distance. Canadin now forwards its range argument explicitly, including the observed 22,500 limit. Shinowa receives the number of filled records from the member function before indexing the shared table. All six compiled calls to the collector occur at the same original instruction addresses.
 
 The component, combat, cumulative source and integration builds passed the upstream checks and reproduced retail. Nineteen cases on each build and the original image check live players, strict range boundaries, ties, horizontal distances, out-of-range and inactive players, the returned count, table bounds, padding and Canadin's forwarded floating-point argument. The fork-only test skips four Gekko paired-single register spill instructions unsupported by the emulator. The scalar save and restore instructions still execute.
+
+## Shared enemy movement and target state
+
+The two local changes in the combat group at `18e3816c9c` restore six movement fields on TObjEneDD and nine target fields on TObjEneDD_ST. The original fork and the new headers compile to the same offsets and storage widths for all fifteen fields. The base classes occupy 0x38C and 0x3C0 bytes. Across 28 concrete classes the sizes and the offsets and widths of 836 identified subclass members following the shared state agree with the preceding integration build.
+
+The target policy at 0x800B9578 belongs to TObjEneDD_ST. The compiled game has 30 direct calls to this method and 28 to the retained-target validator at 0x800B95E0. All call addresses and enclosing function sizes match the original fork. The enemy-motion component, combat group, cumulative native source and integration each passed the stock checker and reproduced retail after both changes. On all four final builds and the original image, 34 guarded cases exercised movement counters, target lookup, validation and neighboring object memory. The nineteen existing player-candidate cases also passed on each image.
 
 ## Buildable boundaries in the remaining drafts
 

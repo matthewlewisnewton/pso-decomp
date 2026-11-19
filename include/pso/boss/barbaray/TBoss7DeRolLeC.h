@@ -52,11 +52,6 @@ struct TBoss7DeRolLeC : public TObjEneDD_ST {
     void apply_paralysis();
     void apply_poison_status();
     void vfunc_28();
-    u8 pad_374[0x8];
-    f32 unk_37C;                  // 20.0 (the joints set 3.0)
-    u8 pad_380[0xC];
-    u16 unk_38C;
-    u8 pad_38E[0x32];
     CollisionBody unk_3C0;        // copy of lbl_80473C3C, the body's collision sphere
     Vec unk_3EC[20];
     Vec unk_4DC[4];

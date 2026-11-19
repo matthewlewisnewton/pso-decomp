@@ -32,7 +32,6 @@ struct TBoss2Joint : public TObjEneDD {
     void init_joint_offset(s32 arg1);
     void update_position_history();
     s32 init_params();
-    u8 pad_374[0x18];
     s32 m_38c;
     const Vec *anchor;  // run_task copies the joint's position from it (a TBoss2DeRolLe body point)
     u8 pad_394[0x4];

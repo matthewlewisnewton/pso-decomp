@@ -146,7 +146,7 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEn
     reset_hp(lbl_805D6F80, lbl_805D6F84, lbl_805D6F88);
     check_state_flag_4();
     movementParameters = &epsilon_body_movement;
-    m_37c = 10.0f;
+    wall_probe_distance = 10.0f;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);
     color_index = (s32)(4.0f * random_ratio()) % 4;
@@ -409,7 +409,7 @@ void TObjEneEpsilonGuard__sub_803616E4(TObjEneEpsilonBody *body, s32 arg1) {
         if (!(body->flags & 0x80)) {
             body->enemy_copy_target_destination();
             body->update_velocity();
-            body->m_4f8 = body->m_3a0 * sin_table_lookup(body->rotation_y) + body->m_3a8 * cos_table_lookup(body->rotation_y);
+            body->m_4f8 = body->target_direction.x * sin_table_lookup(body->rotation_y) + body->target_direction.z * cos_table_lookup(body->rotation_y);
             if (body->m_4f8 < cos_table_lookup(0x1000)) {
                 body->turn_toward_target_direction(body->turn_step);
                 body->vfunc_102();

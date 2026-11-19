@@ -80,7 +80,6 @@ s32 TObjEneDellBiter__scrolling_uv_polygon_list;
 s32 TObjEneDellBiter__last_uv_scroll_tick;
 s32 turn_toward_angle_limited__15TObjBoss2TunnelFlllll(int, int, int, int, int);
 void fill_value_array(s32 address);
-s32 enemy_validate_retained_target(u8 *ene_dd_st);
 u32 enemy_probe_wall_ahead__13TBoss5GryphonFfff(void *, f32, f32, f32);
 s16 get_attack_params_atp_min(void *p);
 s32 obj_is_hit_receivable(u8 *arg0);
@@ -243,7 +242,7 @@ void TObjEneDellBiter::init_params() {
     set_state_8();
     movementParameters = &TObjEneDellBiter__param_table;
     initialize_enemy_state(0x48);
-    field_37c = 20.0f;
+    wall_probe_distance = 20.0f;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);
     flags = 0;
@@ -570,7 +569,7 @@ s32 TObjEneDellBiter::validate_or_update_target() {
     if (!(flags & 8)) {
         return update_linked_position(300.0f);
     }
-    s32 valid = enemy_validate_retained_target((u8 *)this);
+    s32 valid = enemy_validate_retained_target(this);
     if (valid == 0) {
         flags &= ~8;
     }
@@ -1025,7 +1024,7 @@ void TObjEneDellBiter::fn_803044AC(s32 reason) {
                 state_timer = 1;
                 bodies->flags |= 0x700;
             }
-            if (enemy_validate_retained_target((u8 *)this) != 0) {
+            if (enemy_validate_retained_target(this) != 0) {
                 this->enemy_copy_target_destination();
                 this->update_velocity();
             }
@@ -1055,7 +1054,7 @@ void TObjEneDellBiter::fn_803044AC(s32 reason) {
             if (check_rush_collisions() != 0) {
                 hit = 1;
             }
-            if (enemy_validate_retained_target((u8 *)this) != 0) {
+            if (enemy_validate_retained_target(this) != 0) {
                 Vec v;
                 VecCopy(&v, &current_target->position);
                 subtract_vector(&v, &position);

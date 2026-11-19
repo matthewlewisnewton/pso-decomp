@@ -387,7 +387,7 @@ orbit:
                 orbit_angle += orbit_angle_step;
                 set_orbit_destination(orbit_angle);
                 update_velocity();
-                move_with_wall_slide_commit__9TObjEneDDFfff(this, TObjEneEpsilonGuard__movement_params, m_3a0, m_3a8, TObjEneEpsilonGuard__movement_params->m_8);
+                move_with_wall_slide_commit__9TObjEneDDFfff(this, TObjEneEpsilonGuard__movement_params, target_direction.x, target_direction.z, TObjEneEpsilonGuard__movement_params->m_8);
             }
             break;
         case 2:
@@ -423,10 +423,10 @@ void TObjEneEpsilonGuard__sub_8035E8C0(TObjEneEpsilonGuard *guard, s32 msg) {
         guard->update_velocity();
         if (!(guard->flags & 0x200)) {
             TObjEneEpsilonGuardParams *d = TObjEneEpsilonGuard__movement_params;
-            if (guard->m_3ac > d->orbit_radius + d->m_4) {
+            if (guard->target_distance > d->orbit_radius + d->m_4) {
                 guard->flags |= 0x200;
             } else {
-                move_with_wall_slide_commit__9TObjEneDDFfff(guard, d, -guard->m_3a0, -guard->m_3a8, d->m_4);
+                move_with_wall_slide_commit__9TObjEneDDFfff(guard, d, -guard->target_direction.x, -guard->target_direction.z, d->m_4);
             }
         }
         guard->rotation_y = guard->calc_angle_to_target();
@@ -551,19 +551,19 @@ int TObjEneEpsilonGuard__sub_8035F950(TObjEneEpsilonBody *body);
 
 void TObjEneEpsilonGuard::update_guard_state() {
     s16 state;
-    TObjCollidable *body;
+    TObjEneEpsilonBody *body;
 
     if (!(flags & 0x40)) {
-        body = find_entity_by_id(body_id);
-        if ((body == NULL) || (TObjEneEpsilonGuard__sub_8035F950((TObjEneEpsilonBody *)body) == 1)) {
+        body = (TObjEneEpsilonBody *)find_entity_by_id(body_id);
+        if ((body == NULL) || (TObjEneEpsilonGuard__sub_8035F950(body) == 1)) {
             if (flags & 0x10) {
                 transition_enemy_state(5);
             } else {
                 transition_enemy_state(4);
             }
         } else {
-            m_390 = body;
-            m_38c = get_entity_id(m_390);
+            current_target = body;
+            target_entity_id = get_entity_id(current_target);
             enemy_copy_target_destination();
             sub_8035EA90();
         }
@@ -744,15 +744,15 @@ s32 TObjEneEpsilonGuard::calc_angle_to_target() {
 
     enemy_copy_target_destination();
     x = position.x;
-    return (s32) (10430.38043493439 * atan2_float(x - m_394.x, position.z - m_394.z));
+    return (s32) (10430.38043493439 * atan2_float(x - target_destination.x, position.z - target_destination.z));
 }
 
 #pragma push
 #pragma fp_contract on
 void TObjEneEpsilonGuard::set_orbit_destination(s32 angle) {
     enemy_copy_target_destination();
-    m_394.x = (TObjEneEpsilonGuard__movement_params->orbit_radius * sin_table_lookup(angle)) + m_394.x;
-    m_394.z = (TObjEneEpsilonGuard__movement_params->orbit_radius * cos_table_lookup(angle)) + m_394.z;
+    target_destination.x = (TObjEneEpsilonGuard__movement_params->orbit_radius * sin_table_lookup(angle)) + target_destination.x;
+    target_destination.z = (TObjEneEpsilonGuard__movement_params->orbit_radius * cos_table_lookup(angle)) + target_destination.z;
 }
 #pragma pop
 

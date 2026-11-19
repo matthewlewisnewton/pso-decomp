@@ -360,7 +360,7 @@ void TObjEneMe3StelthReal::init_common() {
     reset_hp((u8 *)TObjEneMe3Stelth__base_params_by_variant[v], (u8 *)TObjEneMe3Stelth__attack_params_by_variant[v], (u8 *)TObjEneMe3Stelth__resistance_params_by_variant[v]);
     check_state_flag_4();
     movementParameters = TObjEneMe3Stelth__shared_params;
-    m_37c = 10.0f;
+    wall_probe_distance = 10.0f;
     enemy_init_acquire_period(0x1E);
     enemy_init_validate_period(0x1E);
     m_3cc = 0;
@@ -502,13 +502,13 @@ s32 TObjEneMe3Stelth::test_body_collision(s32 angle, f32 distance) {
 #pragma fp_contract on
 bool TObjEneMe3Stelth__sub_800F4C10(TObjEneMe3Stelth *stelth, f32) {
     f32 temp_f31;
-    if (fabs_float(stelth->target->position.y - stelth->position.y) >= 20.0f) {
+    if (fabs_float(stelth->current_target->position.y - stelth->position.y) >= 20.0f) {
         return 0;
     }
-    if (stelth->m_3ac > 25.0f) {
+    if (stelth->target_distance > 25.0f) {
         return 0;
     }
-    temp_f31 = (stelth->m_3a0 * sin_table_lookup(stelth->rotation_y)) + (stelth->m_3a8 * cos_table_lookup(stelth->rotation_y));
+    temp_f31 = (stelth->target_direction.x * sin_table_lookup(stelth->rotation_y)) + (stelth->target_direction.z * cos_table_lookup(stelth->rotation_y));
     return (temp_f31 < cos_table_lookup(0x1E00)) == 0;
 }
 #pragma pop
@@ -517,19 +517,19 @@ void TObjEneMe3Stelth::attack_and_unequip() {
     if (is_passing_frame(15.0f) == 0 && near == 0) {
         return;
     }
-    if (enemy_check_target_valid() != 0 && target->select_melee_contact_body(this, 1.0f) != 0) {
-        f32 d = target->receive_physical_attack(this, 1.0f);
-        target->apply_knockback_from_attacker((u8 *)this, 3.0f);
+    if (enemy_check_target_valid() != 0 && current_target->select_melee_contact_body(this, 1.0f) != 0) {
+        f32 d = current_target->receive_physical_attack(this, 1.0f);
+        current_target->apply_knockback_from_attacker((u8 *)this, 3.0f);
         if (d > 0.0f) {
             if (sub_800F47D4() != 0) {
-                TObjChara *t = target;
+                TObjChara *t = current_target;
                 if (TObjPlayer::is_locally_controlled(t) != 0 && get_item_field_6__10TObjPlayerFPv(t) != 0) {
                     TObjPlayer::send_6x26_unequip_item((void *)t, (void *)(get_item_id__5TItemFv()));
                     ((TObjPlayer *)t)->get_hand_joint_position((s32)&m_3f8);
                     spawn_particle_effect(&m_3f8, 0x1D0);
                 }
             } else if (near != 0 && random_ratio() <= 0.1666f) {
-                TObjEneDD__sub_800BA438(this, target);
+                TObjEneDD__sub_800BA438(this, current_target);
             }
         }
     }
@@ -542,7 +542,7 @@ s32 TObjEneMe3Stelth::check_target_in_range() {
 
     var_r31 = 0;
     if (!(m_3cc & 0x10000)) {
-        temp_f1 = m_3ac;
+        temp_f1 = target_distance;
         if ((temp_f1 > 100.0f) && (temp_f1 < 150.0f) && (test_body_collision(rotation_y, temp_f1 - 20.0f) == 0)) {
             var_r31 = 1;
         }
@@ -771,7 +771,7 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {
         break;
     case 3:
         if (update_linked_position(200.0f) != 0) {
-            if (m_3ac <= 40.0f) {
+            if (target_distance <= 40.0f) {
                 transition_enemy_state(0xD);
                 break;
             }
@@ -799,7 +799,7 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {
         if (update_linked_position(200.0f) != 0) {
             enemy_copy_target_destination();
             update_velocity();
-            m_434 = (m_3a0 * sin_table_lookup(rotation_y)) + (m_3a8 * cos_table_lookup(rotation_y));
+            m_434 = (target_direction.x * sin_table_lookup(rotation_y)) + (target_direction.z * cos_table_lookup(rotation_y));
             if (m_434 < cos_table_lookup(0x1000)) {
                 turn_toward_target_direction(0x500);
                 vfunc_102();
@@ -838,7 +838,6 @@ void TObjEneMe3Stelth__sub_800F3FE4(TObjEneMe3Stelth *stelth, s32 arg1) {
     }
 }
 void TObjEneMe3Stelth::update_state_fade_in(s32 arg1) {
-    s32 enemy_validate_retained_target(void *, s32);
     s32 t;
     switch (arg1) {
     case 4:
@@ -872,7 +871,7 @@ void TObjEneMe3Stelth::update_state_fade_in(s32 arg1) {
             }
             t = m_428;
             m_3e8 = (t << 24) | (m_3e8 & 0x00FFFFFF);
-            if (enemy_validate_retained_target(this, t) == 0) {
+            if (enemy_validate_retained_target(this) == 0) {
                 m_424 = 0;
                 m_3e8 = 0;
             }
@@ -970,12 +969,12 @@ void TObjEneMe3Stelth::state_chase_target(s32 arg1) {
         set_field_378(6);
         vfunc_96();
         m_3cc &= ~7;
-        m_3ac = 300.0f;
+        target_distance = 300.0f;
         m_430 = TObjEneMe3Stelth__behavior_params_by_variant[m_3c8]->m_00;
         m_434 = 0.0f;
         return;
     case 3:
-        if (target == NULL) {
+        if (current_target == NULL) {
             vfunc_111();
             transition_enemy_state(0xD);
             return;
@@ -995,7 +994,7 @@ void TObjEneMe3Stelth::state_chase_target(s32 arg1) {
             enemy_copy_target_destination();
             update_velocity();
             TObjEneMe3Stelth__sub_800F0C90(this);
-            m_434 = (m_3a0 * sin_table_lookup(rotation_y)) + (m_3a8 * cos_table_lookup(rotation_y));
+            m_434 = (target_direction.x * sin_table_lookup(rotation_y)) + (target_direction.z * cos_table_lookup(rotation_y));
             if (m_434 < cos_table_lookup(0x1000)) {
                 turn_toward_target_direction(0x500);
                 vfunc_102();
@@ -1048,10 +1047,10 @@ void TObjEneMe3Stelth__sub_800F348C(TObjEneMe3Stelth *stelth, s32 arg1) {
             break;
         case 1:
             stelth->advance_animation();
-            if (((TObjEneEpsilon *)stelth)->update_death_check() != 0) {
+            if (stelth->check_target_validity() != 0) {
                 stelth->enemy_copy_target_destination();
                 stelth->update_velocity();
-                ang = (s32)(10430.38043493439 * atan2_float(stelth->m_3a0, stelth->m_3a8));
+                ang = (s32)(10430.38043493439 * atan2_float(stelth->target_direction.x, stelth->target_direction.z));
             } else {
                 ang = stelth->rotation_y;
             }
@@ -1064,23 +1063,23 @@ void TObjEneMe3Stelth__sub_800F348C(TObjEneMe3Stelth *stelth, s32 arg1) {
             break;
         case 2:
             stelth->advance_animation();
-            if (((TObjEneEpsilon *)stelth)->update_death_check() != 0) {
+            if (stelth->check_target_validity() != 0) {
                 stelth->enemy_copy_target_destination();
                 stelth->update_velocity();
             }
             if (stelth->frame + stelth->play_speed >= 14.0f) {
-                if (stelth->test_body_collision(stelth->rotation_y, stelth->m_3ac - 20.0f) != 0) {
+                if (stelth->test_body_collision(stelth->rotation_y, stelth->target_distance - 20.0f) != 0) {
                     stelth->m_424 = 5;
                 } else {
-                    t = stelth->m_3ac - 20.0f;
+                    t = stelth->target_distance - 20.0f;
                     VecCopy(&v, &stelth->position);
-                    v.x += stelth->m_3a0 * t;
+                    v.x += stelth->target_direction.x * t;
                     v.y += 20.0f;
-                    v.z += stelth->m_3a8 * t;
+                    v.z += stelth->target_direction.z * t;
                     if (csnVecterUnder((s32)&v, 0x15) != 0) {
                         if (stelth->room == ((TScene *)(&v))->find_section_at_position()) {
                             stelth->m_424 = 3;
-                            stelth->m_434 = (stelth->m_3ac - 20.0f) / 12.857143f;
+                            stelth->m_434 = (stelth->target_distance - 20.0f) / 12.857143f;
                             stelth->vfunc_91();
                             play_sound_effect(0x3A835, &stelth->position, 0, 0);
                         } else {
@@ -1101,22 +1100,22 @@ void TObjEneMe3Stelth__sub_800F348C(TObjEneMe3Stelth *stelth, s32 arg1) {
                 stelth->vfunc_92();
                 stelth->play_hit_effect();
             }
-            stelth->move_with_wall_slide_commit(stelth->m_3a0, stelth->m_3a8, stelth->m_434);
+            stelth->move_with_wall_slide_commit(stelth->target_direction.x, stelth->target_direction.z, stelth->m_434);
             stelth->vfunc_89();
             break;
         case 4:
             stelth->advance_animation();
             if (stelth->is_passing_frame(25.0f) != 0) {
                 if (stelth->enemy_check_target_valid() != 0) {
-                    if (stelth->target->select_melee_contact_body(stelth, 1.0f) != 0) {
-                        stelth->target->receive_physical_attack(stelth, 1.0f);
-                        stelth->target->apply_knockback_from_attacker((u8 *)stelth, 3.0f);
+                    if (stelth->current_target->select_melee_contact_body(stelth, 1.0f) != 0) {
+                        stelth->current_target->receive_physical_attack(stelth, 1.0f);
+                        stelth->current_target->apply_knockback_from_attacker((u8 *)stelth, 3.0f);
                     }
                 }
                 play_sound_effect(0x3A838, &stelth->position, 0, 0);
             }
             stelth->m_434 *= 0.85f;
-            stelth->move_with_wall_slide_on_ground(stelth->m_3a0, stelth->m_3a8, stelth->m_434);
+            stelth->move_with_wall_slide_on_ground(stelth->target_direction.x, stelth->target_direction.z, stelth->m_434);
             stelth->vfunc_89();
             break;
         }
@@ -1168,22 +1167,22 @@ void TObjEneMe3Stelth__sub_800F3214(TObjEneMe3Stelth *stelth, s32 arg1) {
         case 0:
             stelth->attack_and_unequip();
             if (stelth->frame < 20.0f) {
-                if (((TObjEneEpsilon *)stelth)->update_death_check() != 0) {
+                if (stelth->check_target_validity() != 0) {
                     stelth->enemy_copy_target_destination();
                     stelth->update_velocity();
-                    var_r4 = (s32) (10430.38043493439 * atan2_float(stelth->m_3a0, stelth->m_3a8));
+                    var_r4 = (s32) (10430.38043493439 * atan2_float(stelth->target_direction.x, stelth->target_direction.z));
                 } else {
                     var_r4 = stelth->rotation_y;
                 }
                 stelth->rotation_y = approach_angle_limited(stelth->rotation_y, var_r4, 0x300);
-                stelth->m_3a0 = sin_table_lookup(stelth->rotation_y);
-                stelth->m_3a8 = cos_table_lookup(stelth->rotation_y);
+                stelth->target_direction.x = sin_table_lookup(stelth->rotation_y);
+                stelth->target_direction.z = cos_table_lookup(stelth->rotation_y);
             }
             stelth->vfunc_112();
             TObjEneMe3Stelth__sub_800F0C90(stelth);
             temp_f1 = stelth->frame;
             if ((temp_f1 >= 0.0f) && (temp_f1 <= 5.0f)) {
-                move_to_shot_position__9TObjEneDDFfff(stelth, (int) TObjEneMe3Stelth__behavior_params_by_variant[stelth->m_3c8], stelth->m_3a0, stelth->m_3a8, TObjEneMe3Stelth__behavior_params_by_variant[stelth->m_3c8]->m_08);
+                move_to_shot_position__9TObjEneDDFfff(stelth, (int) TObjEneMe3Stelth__behavior_params_by_variant[stelth->m_3c8], stelth->target_direction.x, stelth->target_direction.z, TObjEneMe3Stelth__behavior_params_by_variant[stelth->m_3c8]->m_08);
             } else {
                 stelth->vfunc_102();
             }
@@ -1219,10 +1218,10 @@ void TObjEneMe3Stelth::run_walk_state(s32 arg1) {
         if (this->vfunc_104(200.0f) != 0) {
             this->enemy_copy_target_destination();
             this->update_velocity();
-            this->m_42c = (s32) (10430.38043493439 * atan2_float(this->m_3a0, this->m_3a8));
+            this->m_42c = (s32) (10430.38043493439 * atan2_float(this->target_direction.x, this->target_direction.z));
             if (this->test_body_collision(this->m_42c + 0x8000, 80.0f) == 0) {
-                this->m_3a0 *= -1.0f;
-                this->m_3a8 *= -1.0f;
+                this->target_direction.x *= -1.0f;
+                this->target_direction.z *= -1.0f;
                 this->m_424 = 0;
                 this->m_430 = 7.111111f;
             }
@@ -1273,7 +1272,7 @@ void TObjEneMe3Stelth::run_walk_state(s32 arg1) {
                 this->vfunc_92();
                 this->play_hit_effect();
             }
-            this->move_clamped_on_ground(this->m_3a0, this->m_3a8, this->m_430);
+            this->move_clamped_on_ground(this->target_direction.x, this->target_direction.z, this->m_430);
             return;
         case 2:
             if (this->get_flag_b4() != 0) {
@@ -1428,7 +1427,7 @@ void TObjEneMe3Stelth__sub_800F290C(TObjEneMe3Stelth *stelth, s32 arg1) {
             if (stelth->m_3c0 == 1 && stelth->random_ratio() <= stelth->m_3e0) {
                 stelth->transition_enemy_state(0x12);
             } else {
-                stelth->transition_enemy_state(stelth->m_378);
+                stelth->transition_enemy_state(stelth->next_mode);
             }
         }
         break;
@@ -1567,7 +1566,7 @@ void TObjEneMe3Stelth__sub_800F2270(TObjEneMe3Stelth *stelth, s32 arg1) {
             if (stelth->m_404.decay_value_toward_floor() != 0) {
                 stelth->m_3cc |= 2;
                 if (stelth->update_linked_position(200.0f) != 0) {
-                    if (stelth->target == NULL) {
+                    if (stelth->current_target == NULL) {
                         break;
                     }
                     arr[0] = (s32)(3.0f * stelth->random_ratio()) - 1;
@@ -1577,16 +1576,16 @@ void TObjEneMe3Stelth__sub_800F2270(TObjEneMe3Stelth *stelth, s32 arg1) {
                     }
                     arr[2] = -(arr[0] + arr[1]);
                     for (i = 0; i < 3; i++) {
-                        VecCopy(&p, &stelth->target->position);
-                        ang = stelth->target->rotation_y + ((arr[i] + 1) << 14);
+                        VecCopy(&p, &stelth->current_target->position);
+                        ang = stelth->current_target->rotation_y + ((arr[i] + 1) << 14);
                         p.x = 20.0f * cos_table_lookup(ang) + p.x;
                         p.z = p.z - 20.0f * sin_table_lookup(ang);
                         p.y += 5.0f;
                         VecCopy(&q, &p);
-                        q.x += p.x - stelth->target->position.x;
-                        q.z += p.z - stelth->target->position.z;
+                        q.x += p.x - stelth->current_target->position.x;
+                        q.z += p.z - stelth->current_target->position.z;
                         if (TObjEneMe3Stelth__sub_800F0F84(stelth, &q) == 0 &&
-                            csnVector(&stelth->target->position, &q, 0x88E0) == 0 &&
+                            csnVector(&stelth->current_target->position, &q, 0x88E0) == 0 &&
                             csnVectorUnder(&p, (u32 *)&stelth->m_120, 0x15) != 0 &&
                             ((TScene *)(&p))->find_section_at_position() == stelth->room) {
                             VecCopy(&stelth->position, &p);
@@ -1981,12 +1980,12 @@ void TObjEneMe3Stelth__sub_800F1098(TObjEneMe3Stelth *stelth, s32 arg1) {
         switch (stelth->m_424) {
         case 0:
         default:
-            if (stelth->target == NULL) {
+            if (stelth->current_target == NULL) {
                 stelth->transition_enemy_state(6);
                 break;
             }
             {
-                Vec dest = stelth->m_394;
+                Vec dest = stelth->target_destination;
                 if (select_enemy_destination(stelth, &dest, 1) != 0) {
                     Vec pos = *(Vec *)&stelth->m_2fc;
                     copy_position_if_valid__10TObjPlayerFii((s32)stelth, (s32)&pos);
@@ -1995,7 +1994,7 @@ void TObjEneMe3Stelth__sub_800F1098(TObjEneMe3Stelth *stelth, s32 arg1) {
                     enemy_set_heading_velocity(((StelthMovementParams *)stelth->movementParameters)->speed, stelth, stelth->rotation_y);
                     move_with_wall_slide((u8 *)stelth);
                 } else {
-                    VecCopy(&d, &stelth->m_394);
+                    VecCopy(&d, &stelth->target_destination);
                     subtract_vector(&d, (Vec *)&stelth->m_2fc);
                     r = stelth->turn_toward_direction(((StelthMovementParams *)stelth->movementParameters)->turn, &d);
                 }
@@ -2028,16 +2027,16 @@ void TObjEneMe3Stelth__sub_800F1098(TObjEneMe3Stelth *stelth, s32 arg1) {
                 c[2] = lbl_8043D680[2];
                 matrix_mult_vec(0, (Vec *)c, &out);
                 pop_matrix();
-                if (stelth->target != NULL) {
-                    VecCopy(&d, &stelth->m_394);
+                if (stelth->current_target != NULL) {
+                    VecCopy(&d, &stelth->target_destination);
                     subtract_vector(&d, (Vec *)&stelth->m_2fc);
                     r = stelth->turn_toward_direction(((StelthMovementParams *)stelth->movementParameters)->turn, &d);
                 } else {
                     r = ((s32 *)stelth->m_318)[3];
                 }
-                if (r < ((s32 *)stelth->m_318)[3] / 2 && stelth->target != NULL) {
+                if (r < ((s32 *)stelth->m_318)[3] / 2 && stelth->current_target != NULL) {
                     if (game_difficulty_selection == 3) {
-                        ((TTecRaFoie *)stelth)->create(&out, (u8 *)&stelth->m_394, (void *)TObjEneDD::clamp_frame_index(TObjEneMe3Stelth__behavior_params_by_variant[stelth->m_3c8]->attack_tech_level));
+                        ((TTecRaFoie *)stelth)->create(&out, (u8 *)&stelth->target_destination, (void *)TObjEneDD::clamp_frame_index(TObjEneMe3Stelth__behavior_params_by_variant[stelth->m_3c8]->attack_tech_level));
                     } else {
                         TTecGiFoie::create(stelth, &out, (void *)TObjEneDD::clamp_frame_index(TObjEneMe3Stelth__behavior_params_by_variant[stelth->m_3c8]->attack_tech_level));
                     }
@@ -2071,7 +2070,7 @@ s32 TObjEneMe3Stelth__sub_800F0F84(TObjEneMe3Stelth *stelth, Vec *pos) {
     VecCopy(&stelth->position, pos);
     TObjPlayer::init_all_slots();
     stelth->vfunc_89();
-    if ((body->flags & 0x80000) && get_valid_target_player__10TNpcPlayerFv(get_entity_id(stelth->target)) == 0) {
+    if ((body->flags & 0x80000) && get_valid_target_player__10TNpcPlayerFv(get_entity_id(stelth->current_target)) == 0) {
         VecCopy(&stelth->position, &sp);
         TObjPlayer::init_all_slots();
         return 1;

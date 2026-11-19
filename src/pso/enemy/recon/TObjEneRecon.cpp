@@ -950,7 +950,7 @@ void TObjEneRecon__sub_8031C920(u8 *arg0, s32 arg1) {
         break;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();
-        if (((TObjEneEpsilon *)arg0)->update_death_check() != 0 || ((VObj_18_2afebf *)(arg0))->m102(200.0f) != 0) {
+        if (((TObjEneDD_ST *)arg0)->check_target_validity() != 0 || ((VObj_18_2afebf *)(arg0))->m102(200.0f) != 0) {
             switch (F(s32, 0x3C0)) {
             case 0:
                 ((TObjEneRecon *)arg0)->set_orbit_destination(F(s32, 0x3D0));
@@ -1022,7 +1022,7 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
         }
         switch (*(s32 *)((s8 *)arg0 + 0x3C0)) {
         case 0:
-            if (((TObjEneEpsilon *)arg0)->m_390 == 0) {
+            if (((TObjEneEpsilon *)arg0)->current_target == 0) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(1);
             }
             break;
@@ -1035,7 +1035,7 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
         break;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();
-        if (((TObjEneEpsilon *)arg0)->update_death_check() == 0) {
+        if (((TObjEneDD_ST *)arg0)->check_target_validity() == 0) {
             enemy_clear_target__12TObjEneDD_STFUs(arg0);
         }
         switch (*(s32 *)((s8 *)arg0 + 0x3C0)) {
@@ -1043,7 +1043,7 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
             ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
             ((TObjEneDD *)arg0)->update_velocity();
             ((TObjEneEpsilon *)arg0)->rotation_y = approach_angle_limited(((TObjEneEpsilon *)arg0)->rotation_y,
-                (s32)(10430.38043493439 * atan2_float(((TObjEneEpsilon *)arg0)->m_3a0, *(f32 *)((s8 *)arg0 + 0x3A8))),
+                (s32)(10430.38043493439 * atan2_float(((TObjEneEpsilon *)arg0)->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8))),
                 0x400);
             (*(s32 *)((s8 *)arg0 + 0x3C4))++;
             if (*(s32 *)((s8 *)arg0 + 0x3C4) > 0xF) {
@@ -1105,7 +1105,7 @@ void TObjEneRecon__sub_8031CF30(u8 *arg0, s32 arg1) {
         break;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();
-        if (((TObjEneEpsilon *)arg0)->update_death_check() == 0) {
+        if (((TObjEneDD_ST *)arg0)->check_target_validity() == 0) {
             enemy_clear_target__12TObjEneDD_STFUs(arg0);
         }
         switch (F(s32, 0x3C0)) {
@@ -1197,7 +1197,7 @@ void TObjEneRecon__sub_8031D380(u8 *arg0, s32 arg1) {
       return;
     case 0:
       ((TObjMotion *)arg0)->advance_animation();
-      if ((((TObjEneEpsilon *)arg0)->update_death_check() != 0) || ((((VObj_18_83f71d *)(arg0))->m102((200.0f))) != 0))
+      if ((((TObjEneDD_ST *)arg0)->check_target_validity() != 0) || ((((VObj_18_83f71d *)(arg0))->m102((200.0f))) != 0))
     {
       ((TObjEneDD *)arg0)->transition_enemy_state(4);
     }

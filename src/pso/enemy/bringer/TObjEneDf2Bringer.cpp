@@ -682,7 +682,6 @@ f32 atan2_float(f32 y, f32 x);
 void fill_value_array(s32);
 s32 turn_toward_angle_limited__15TObjBoss2TunnelFlllll(s32, s32, s32, s32, s32);
 s32 TObjEneDf2Bringer__sub_80099248(void *);
-s32 enemy_validate_retained_target(void *);
 u32 enemy_probe_wall_ahead__13TBoss5GryphonFfff(void *, f32, f32, f32);
 s32 approach_angle_limited(s32, s32, s32);
 s32 subtract_vector(void *, void *);
@@ -1360,7 +1359,6 @@ void TObjEneDf2Bringer::sub_800994F8() {  }
 
 #undef sub_80098DEC__17TObjEneDf2BringerFv
 #undef transition_enemy_state__9TObjEneDDFl
-#define enemy_validate_retained_target ((s32 (*)())enemy_validate_retained_target)
 #define update_linked_position__12TObjEneDD_STFf ((s32 (*)(f32))update_linked_position__12TObjEneDD_STFf)
 void update_attack_child__17TObjEneDf2BringerFPv(Bringer_800993E8 *obj) {
     Fields_800993E8 *self = (Fields_800993E8 *)obj;
@@ -1457,7 +1455,7 @@ void update_flag_0x3C0__17TObjEneDf2BringerFPv(void *arg0) {
         update_linked_position__12TObjEneDD_STFf(300.0f);
         return;
     }
-    if (enemy_validate_retained_target() == 0) {
+    if (enemy_validate_retained_target((TObjEneDD_ST *)arg0) == 0) {
         *(s32 *)((s8 *)arg0 + 0x3C0) = (s32) (*(s32 *)((s8 *)arg0 + 0x3C0) & 0xFFFFFFF7);
     }
 }
@@ -1549,7 +1547,6 @@ s32 TObjEneDf2Bringer::check_stage_advance() {
     return 0;
 }
 
-#undef enemy_validate_retained_target
 #undef update_linked_position__12TObjEneDD_STFf
 #define TObjEneDf2Bringer__sub_80097714 ((s32 (*)(void *, void *))TObjEneDf2Bringer__sub_80097714)
 void TObjEneDf2Bringer::dispatch_action(u32 state, s32 reason) {
@@ -1835,7 +1832,7 @@ void TObjEneDf2Bringer__sub_8009813C(u8 *arg0, s32 arg1) {
                 F(s32, 0x3C0) |= 4;
                 F(Sub_8009813C *, 0xA4)->flags |= 0x700;
             }
-            if (enemy_validate_retained_target(arg0) != 0) {
+            if (enemy_validate_retained_target((TObjEneDD_ST *)arg0) != 0) {
                 ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
                 ((TObjEneDD *)arg0)->update_velocity();
             }
@@ -1860,7 +1857,7 @@ void TObjEneDf2Bringer__sub_8009813C(u8 *arg0, s32 arg1) {
             if (TObjEneDf2Bringer__sub_80099248(arg0) != 0) {
                 hit = 1;
             }
-            if (enemy_validate_retained_target(arg0) != 0) {
+            if (enemy_validate_retained_target((TObjEneDD_ST *)arg0) != 0) {
                 VecCopy((Vec *)&d, (const Vec *)(F(u8 *, 0x390) + 0x38));
                 subtract_vector(&d, arg0 + 0x38);
                 if (normalize_vector_xz((Vec *)(&d)) >= 30.0f) {

@@ -82,17 +82,6 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {
     void update_death_state(s32 mode);
     s32 acquire_target_in_view();
 
-    u8 unk_374[0x4];
-    s32 m_378;
-    f32 m_37c;
-    u8 unk_380[0x10];
-    TObjChara *m_390;
-    f32 m_394;
-    f32 m_398;
-    void *m_39c;
-    Vec m_3a0;
-    f32 m_3ac;
-    u8 unk_3B0[0x10];
     u32 m_3c0;
     u32 m_3c4;
     u32 m_3c8;

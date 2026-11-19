@@ -310,7 +310,7 @@ TObjEneBm3FlyNest::TObjEneBm3FlyNest(TObject *parent, Bm3FlyNestSetData *set_dat
     check_state_flag_1();
     movementParameters = &bm3_fly_nest_params;
     initialize_enemy_state(4);
-    unk_37c = 10.0f;
+    wall_probe_distance = 10.0f;
     init_params();
     if (total_num > set_data->unknown_02) {
         total_num = set_data->unknown_02;
@@ -839,7 +839,7 @@ void TObjEneBm3FlyNest::handle_motion_event(s32 reason) {
                 transition_enemy_state(4);
                 return;
             }
-            transition_enemy_state(unk_378);
+            transition_enemy_state(next_mode);
             return;
         }
         break;

@@ -22,7 +22,7 @@ struct TBoss7Joint : public TObjEneDD {
     virtual void vfunc_28();
     virtual void vfunc_88();
     virtual void vfunc_93();
-    u8 unk_374[0x44];
+    u8 pad_38c[0x2C];
     s32 index;              // constructor argument: the joint's place along the body
     u8 _pad3BC[0x4];
     Vec *source_position;   // constructor argument: run_task copies it into position

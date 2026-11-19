@@ -277,7 +277,7 @@ void TObjEneMe1Gee::init_state() {
     this->check_state_flag_1();
     this->movementParameters = &me1_gee_init_params;
     this->initialize_enemy_state(0x36);
-    this->m_37c = lbl_805DA0B8;
+    this->wall_probe_distance = lbl_805DA0B8;
     this->enemy_init_acquire_period(0x2D);
     this->enemy_init_validate_period(0x2D);
     this->set_active();
@@ -495,7 +495,7 @@ void TObjEneMe1Gee::update_from_float_sum() {
 }
 
 void TObjEneMe1Gee::update_angle() {
-    this->rotation_y = approach_angle_limited(this->rotation_y, (s32) (lbl_8043BF28 * atan2_float(this->m_3a0.x, this->m_3a0.z)), 0x400);
+    this->rotation_y = approach_angle_limited(this->rotation_y, (s32) (lbl_8043BF28 * atan2_float(this->target_direction.x, this->target_direction.z)), 0x400);
     this->rotation_y = (s32) (s16) this->rotation_y;
 }
 
@@ -540,7 +540,7 @@ s32 TObjEneMe1Gee::find_attack_target(f32 *out, f32 range) {
     n = collect_enemy_target_candidates(this, recs, range);
     for (i = 0; i < n; i++) {
         p = get_player_by_client_id(recs[i].id);
-        if (p != this->m_390) {
+        if (p != this->current_target) {
             this->m_3c0 = (TObjEneMe1Gee *)find_entity_by_id(this->m_48c);
             if (this->m_3c0->vfunc_116(p) != 0) {
                 *out = newton_sqrtf(recs[i].distance_squared);
@@ -558,10 +558,10 @@ s32 TObjEneMe1Gee::check_can_attack() {
     s32 var_r31;
 
     var_r31 = 0;
-    if (this->m_3ac < 70.0f) {
+    if (this->target_distance < 70.0f) {
         var_r31 = 1;
         *(void **)&this->m_3c0 = find_entity_by_id(this->m_48c);
-        if ((this->m_3c0->vfunc_116(this->m_390) == 0) && (this->find_attack_target(&sp8, 22500.0f) != 0) && (sp8 > 70.0f)) {
+        if ((this->m_3c0->vfunc_116(this->current_target) == 0) && (this->find_attack_target(&sp8, 22500.0f) != 0) && (sp8 > 70.0f)) {
             var_r31 = 0;
         }
     }
@@ -586,7 +586,7 @@ s32 TObjEneMe1Gee::vfunc_108() {
 }
 
 s32 TObjEneMe1Gee::check_death_trigger() {
-    if (this->m_390 == NULL) {
+    if (this->current_target == NULL) {
         this->transition_enemy_state(0xF);
         return 1;
     }
@@ -722,7 +722,7 @@ s32 TObjEneMe1Gee::sub_800CB5A0(s32 mask) {
 
 TObjChara *TObjEneMe1Gee::sub_800CB584() {
     if (this->m_3c8 & 0x40000) {
-        return this->m_390;
+        return this->current_target;
     }
     return NULL;
 }
@@ -1157,7 +1157,7 @@ void TObjEneMe1Gee::sub_800CA454(s32 arg1) {
             if (this->update_linked_position(TObjEneMe1Gee__data_805DA0A8) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)this)->update_death_check() == 0) {
+        } else if (this->check_target_validity() == 0) {
             break;
         }
         this->enemy_copy_target_destination();
@@ -1175,16 +1175,16 @@ void TObjEneMe1Gee::sub_800CA454(s32 arg1) {
             this->update_angle();
             this->m_434 = 3;
             this->destroy_subobj(&TObjEneMe1Gee__data_8043BDC0);
-            VecCopy(dir, &this->m_394);
+            VecCopy(dir, &this->target_destination);
             break;
         case 3: {
             Vec d;
             this->update_velocity();
             this->update_angle();
-            VecCopy(&d, &this->m_394);
+            VecCopy(&d, &this->target_destination);
             subtract_vector(&d, dir);
             if (normalize_vector_xz(&d) < 0.6f) {
-                VecCopy(dir, &this->m_394);
+                VecCopy(dir, &this->target_destination);
             } else {
                 dir->x = 0.6f * d.x + dir->x;
                 dir->y = 0.6f * d.y + dir->y;
@@ -1299,7 +1299,7 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
             if (this->update_linked_position(TObjEneMe1Gee__data_805DA0A8) == 0) {
                 break;
             }
-        } else if (((TObjEneEpsilon *)this)->update_death_check() == 0) {
+        } else if (this->check_target_validity() == 0) {
             break;
         }
         switch (this->m_434) {
@@ -1312,13 +1312,13 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
                 this->m_438 = 0;
                 this->m_434 = 1;
                 if (this->m_3c8 & 0x40000) {
-                    if (this->m_3ac < lbl_805DA0B0) {
+                    if (this->target_distance < lbl_805DA0B0) {
                         this->m_434 = 2;
                         this->destroy_subobj(&TObjEneMe1Gee__data_8043BDC0);
                     }
-                } else if (this->m_3ac < 100.0f) {
+                } else if (this->target_distance < 100.0f) {
                     this->m_3c0 = (TObjEneMe1Gee *)find_entity_by_id(this->m_48c);
-                    if (this->m_3c0->vfunc_116(this->m_390) != 0) {
+                    if (this->m_3c0->vfunc_116(this->current_target) != 0) {
                         this->m_3c8 |= 0x40000;
                     } else if (this->find_attack_target(&dist, 10000.0f) != 0) {
                         if (dist < 100.0f) {
@@ -1353,10 +1353,10 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
                 } else {
                     this->m_43c = 1;
                 }
-                x = this->m_3a0.x;
-                z = this->m_3a0.z * c - x * s;
-                this->m_3a0.x = x * c + this->m_3a0.z * s;
-                this->m_3a0.z = z;
+                x = this->target_direction.x;
+                z = this->target_direction.z * c - x * s;
+                this->target_direction.x = x * c + this->target_direction.z * s;
+                this->target_direction.z = z;
                 this->m_448 = 0.25f * k;
                 this->m_44c = 0.25f * (this->m_3ec - this->m_3f4);
             }
@@ -1368,20 +1368,20 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
                 this->sub_800CBC04();
             }
             this->m_3f8 += this->m_44c;
-            this->move_to_wall_clamped_destination(this->m_3a0.x, this->m_3a0.z, this->m_448);
+            this->move_to_wall_clamped_destination(this->target_direction.x, this->target_direction.z, this->m_448);
             break;
         case 2:
             this->enemy_copy_target_destination();
             this->update_velocity();
             this->update_angle();
             this->sub_800CBF58(this->position.y + this->m_3ec);
-            if (this->m_3ac < 18.0f) {
+            if (this->target_distance < 18.0f) {
                 if (this->sub_800CBA80() != 0) {
                     this->m_438 = 0;
                     this->m_434 = 3;
                 }
             } else {
-                if (this->m_3ac > lbl_805DA0B0) {
+                if (this->target_distance > lbl_805DA0B0) {
                     this->m_434 = 1;
                 }
                 TObjEneEpsilon__sub_800B92AC((u8 *)this, 0x200, this->m_42c->m_0);
@@ -1401,14 +1401,14 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
                     this->m_434 = 5;
                 } else {
                     this->m_438 = 0;
-                    if (this->m_3ac < 13.0f) {
+                    if (this->target_distance < 13.0f) {
                         this->m_434 = 3;
-                    } else if (this->m_3ac < lbl_805DA0B0) {
+                    } else if (this->target_distance < lbl_805DA0B0) {
                         this->m_434 = 2;
                     } else {
                         this->m_434 = 1;
                         this->destroy_subobj(&TObjEneMe1Gee__data_8043BDB0);
-                        if (this->m_3ac > 100.0f) {
+                        if (this->target_distance > 100.0f) {
                             this->m_3c8 &= ~0x40000;
                         }
                     }
@@ -1416,12 +1416,12 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
             } else if (this->is_passing_frame((f32)lbl_805DA0B8) != 0) {
                 this->m_408++;
                 if (this->sub_800CBA80() != 0) {
-                    if (this->m_390->select_melee_contact_body(this, 1.0f) != 0) {
-                        this->m_390->receive_physical_attack(this, 1.0f);
-                        this->m_390->apply_knockback_from_attacker((u8 *)this, 3.0f);
+                    if (this->current_target->select_melee_contact_body(this, 1.0f) != 0) {
+                        this->current_target->receive_physical_attack(this, 1.0f);
+                        this->current_target->apply_knockback_from_attacker((u8 *)this, 3.0f);
                         if (this->random_ratio() <= 0.25f) {
                             DirectAttackPayload p = {0x11, 0.0f};
-                            this->m_390->receive_direct_attack(this, p, 0, -1, -1);
+                            this->current_target->receive_direct_attack(this, p, 0, -1, -1);
                         }
                     }
                 }
@@ -1487,11 +1487,11 @@ void TObjEneMe1Gee::sub_800C9A94(s32 arg1) {
                     }
                     t *= 0.125f;
                     this->m_444 = t;
-                    dir->x = -this->m_3a0.x;
-                    dir->z = -this->m_3a0.z;
+                    dir->x = -this->target_direction.x;
+                    dir->z = -this->target_direction.z;
                     this->m_448 = 0.125f * (this->m_3e8 - this->m_3f4);
-                    this->m_450 = 0.125f * (70.0f - this->m_3ac);
-                    this->m_44c = this->m_3ac;
+                    this->m_450 = 0.125f * (70.0f - this->target_distance);
+                    this->m_44c = this->target_distance;
                     play_sound_effect(this->handle_message(0x3AD13), (const Vec *)&this->m_2fc, 0, 0);
                 }
                 this->m_438++;
@@ -1506,8 +1506,8 @@ void TObjEneMe1Gee::sub_800C9A94(s32 arg1) {
                     Vec v;
                     f32 c;
                     this->m_44c += this->m_450;
-                    v.x = dir->x * this->m_44c + this->m_394.x;
-                    v.z = dir->z * this->m_44c + this->m_394.z;
+                    v.x = dir->x * this->m_44c + this->target_destination.x;
+                    v.z = dir->z * this->m_44c + this->target_destination.z;
                     subtract_vector(&v, &this->position);
                     c = normalize_vector_xz(&v);
                     this->move_to_wall_clamped_destination(v.x, v.z, c);
@@ -1550,7 +1550,7 @@ void TObjEneMe1Gee::sub_800C9964(s32 arg1) {
         this->m_408 = 0;
         return;
     case 3:
-        if ((this->vfunc_108() == 0) && (this->m_3ac < 1.0f)) {
+        if ((this->vfunc_108() == 0) && (this->target_distance < 1.0f)) {
             this->transition_enemy_state(6);
         }
     case 5:
@@ -1561,7 +1561,7 @@ void TObjEneMe1Gee::sub_800C9964(s32 arg1) {
         this->update_velocity();
         this->update_angle();
         this->set_move_speed_x();
-        this->move_with_wall_slide_commit(this->m_3a0.x, this->m_3a0.z, lbl_805DA0D0);
+        this->move_with_wall_slide_commit(this->target_direction.x, this->target_direction.z, lbl_805DA0D0);
         this->vfunc_88();
         break;
     }
@@ -1589,7 +1589,7 @@ void TObjEneMe1Gee::sub_800C96B4(s32 mode) {
         break;
     case 3:
         if (this->m_438 == 3) {
-            this->transition_enemy_state(this->m_378);
+            this->transition_enemy_state(this->next_mode);
         }
         break;
     case 0:
@@ -1703,8 +1703,8 @@ void TObjEneMe1Gee::state_return_home(s32 arg1) {
             this->update_velocity();
             update_angle();
             set_move_speed_x();
-            if (this->m_3ac > lbl_805DA0CC) {
-                this->move_with_wall_slide_commit(this->m_3a0.x, this->m_3a0.z, lbl_805DA0D0);
+            if (this->target_distance > lbl_805DA0CC) {
+                this->move_with_wall_slide_commit(this->target_direction.x, this->target_direction.z, lbl_805DA0D0);
             }
             break;
         }
@@ -2036,7 +2036,7 @@ int TUnk_8049387C::vfunc_116(TObjChara *) {
     s32 n = 0;
     s32 i;
     for (i = 0; i < this->m_494; i++) {
-        if (this->m_498[i]->sub_800CB584() == this->m_390) {
+        if (this->m_498[i]->sub_800CB584() == this->current_target) {
             n++;
         }
     }
@@ -2132,7 +2132,7 @@ void TUnk_8049387C::vfunc_110(s32 arg1) {
         this->m_468.b = TObjEneMe1Gee__data_8043BDB0.b;
         this->m_434 = 0;
         for (k = 2, i = 0; i < this->m_494; k += 2, i++) {
-            this->m_498[i]->set_state_flag(this->m_390, k);
+            this->m_498[i]->set_state_flag(this->current_target, k);
         }
         break;
     case 3:
