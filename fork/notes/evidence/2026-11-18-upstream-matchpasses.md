@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `c794af0ca9` and the complete source snapshot at `6e875143d0` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `0ddee16b36` and the complete source snapshot at `12448601ae` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -137,6 +137,14 @@ The 40-file replay at `c794af0ca9` carries the source portions of `784ab5b061`, 
 The local review at `6a5bf7aead` starts directly on `af11a99125`. It and the combined stack each retain all 2,260 exact functions across the 36 affected source units. The four corrected exports have the original addresses and sizes, and all 66 original direct branches reach those addresses. The standalone, cumulative source, review stack and working fork reproduce the retail executable and pass the project checker. The standalone retains the existing upstream 24-byte keyboard table coverage gap. The cumulative source and working fork retain that table and all matching and linked address coverage from fork main.
 
 Linked execution passed 184 group queries, all 16 combinations of source and destination chain lengths, 32 saved-state cases and eight registrations. The fork-only overlay restores 133 paths and passes all eleven tests. The [fork source index](2026-11-18-fork-review-index.tsv) records the replayed interface in 34 original paths.
+
+## Network startup, packet release and saved configuration
+
+The 33-file replay at `0ddee16b36` carries the fork's startup APIs, packet-pool release, typed address helpers and saved configuration requests onto the existing C and C++ source owners. Three startup names follow the actual IPv4 routing, IPv6 routing and IPv6 neighbor-discovery records. The card load request applies the compiler frame alignment to its local parameter declaration, with a plain C-linkage prototype for callers. The named 19-byte file header remains source-linked at `0x804FD338`.
+
+The local review at `2f060fcbb8` extends the existing buffers, DNS, timer and PPP review at `ebe7edd892`. The full review starts on `af11a99125` and covers 60 files with 670 exact source-linked functions in 33 affected units. The new component at `1b609ebabb` and the cumulative replay each preserve 393 exact functions across 20 affected units. All 12 updated exports preserve their addresses and sizes. Their 60 original direct branches retain their targets. All five builds reproduce retail and pass the project checker. The two upstream-shaped reviews inherit the upstream 24-byte keyboard table coverage gap. The cumulative source and working fork retain that table and all matched and linked address coverage from fork main.
+
+Linked checks covered 140 packet-pool operations, 42 card load requests, 36 polls, five file-header inputs and eight startup records. The TCP queue probe passed 786 reassembly comparisons, 12 out-of-order receives, 2,528 gathers and 1,600 acknowledgments. All 133 fork-only overlay paths round-trip and all eleven layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) accounts for the complete network codec and request units and adds evidence for three other paths.
 
 ## Standalone reviews on upstream master `af11a99125`
 
