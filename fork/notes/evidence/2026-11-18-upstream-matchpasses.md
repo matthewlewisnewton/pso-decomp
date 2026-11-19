@@ -266,6 +266,10 @@ The preview and list constructors and the list factory retain 480 original instr
 
 The audit reconciles 1 complete fork header and records partial evidence for 5 paths. It has 1,501 entries awaiting owner comparison and 675 with partial evidence.
 
+### Front-end callback header audit
+
+The complete fork headers for `TAdEp3Exist` and `TAdAgreementBaseGC` match the current owners at `fd001b831c` after adjusting their path-based include guards and the relocated `TObject` include. The [fork source index](2026-11-18-fork-review-index.tsv) records both matching blobs. The audit has 1,501 entries awaiting owner comparison and 673 with partial evidence.
+
 ## Consolidated review queue on `c572111ed6`
 
 The local branches below group related changes for review. The component branches retain their individual validation records. Together the eleven groups cover the 1,339 added, changed and removed source paths in the difference from upstream master to `a5540e955c`. Separate path entries count both endpoints of renames. Shared files can appear in multiple groups.
