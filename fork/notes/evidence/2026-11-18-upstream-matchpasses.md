@@ -2,13 +2,21 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `445a623fc0` and the complete source snapshot at `bc03a17a35` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `09e54f5530` and the complete source snapshot at `b40f17ae0d` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
 The [original data ledger](2026-11-18-fork-data-ranges.tsv) accounts for all 1,147 bytes again on the new base. It verifies 980 source-linked bytes, including the 24-byte keyboard virtual table at 0x804D0004, plus 167 bytes of alignment padding.
 
 The working fork reproduces retail and passes its regenerated linked-symbol check. Its documentation and tools are under the fork-only layer. All 133 overlay paths round-trip and all eleven layer tests pass. The network, resource, encounter drawing and world-object standalone branches also point to their already validated replays on `af11a99125`. The standalone review updates are listed below. The historical source audit continues in the fork review index.
+
+## Character-selection plates and slots
+
+The 15-file replay at `09e54f5530` restores both selection plate layouts, move-plate construction, the shared serial and password plate drawing interface, and the numeric slot singleton factory used in the single-player and multiplayer menus. It replays the fork changes from `b12e7f4cc2`, `20662930dc`, and the related rendering changes from `264695a61f` onto the current source owners. The coordinate and draw parameters are mutable because the target compiler otherwise changes the instruction order. The geometry and drawing helpers read the input coordinates.
+
+The standalone review at `e78bca5864` is based directly on upstream master `af11a99125` and uses its texture binding. The combined source and standalone review reproduce the retail DOL and pass the project checker. Six renamed exports keep their original sizes and addresses, and 36 direct calls reach them within the eight affected units. All 239 source-linked functions in those units match. Seven plate tables and two virtual tables retain 216 original source-linked bytes. The standalone branch has the same 24-byte keyboard-table coverage gap as upstream master. The combined branch retains those bytes through the window review.
+
+The working fork passes its symbol inventory check, all eleven fork layer tests pass, and all 133 overlay paths round-trip. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 4 records and adds evidence to 14 others. It has 1,200 records awaiting owner comparison and 853 with partial evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
