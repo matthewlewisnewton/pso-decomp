@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `c8fe70331a` and the complete source snapshot at `abbbbcf008` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `14f9743af7` and the complete source snapshot at `cd78bb8275` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -51,6 +51,14 @@ The 17-file replay at `c8fe70331a` carries `e8128ff09d` onto the current source 
 The standalone review at `940dabd110` is one source commit directly on upstream master `af11a99125`. The four source builds reproduce the retail DOL and pass the project checker. The 15 affected units retain 1570 exact functions in the combined builds and 1577 in the standalone. Each build retains the two source-linked ranges at `0x8050BEE0` and `0x8050BF00` for 64 exact bytes. All four preserve the address coverage in their parents. The working fork keeps its existing host compiler guard in the collision query.
 
 All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 2 declarations and adds evidence to 15 source records. It has 1,159 records awaiting comparison and 872 with partial evidence.
+
+## Camera views and controllers
+
+The replay at `14f9743af7` carries the camera members and registry accesses from `dbc976eb97` and the split-screen vector and orbit controls from `3717ee6db2`. It keeps the original low-byte selector, 48-byte view copy, 0x70-byte orbit-controller layout, and the second controller input context. The conversation controller owns its position and target vectors. The main camera task retains the original field reads that match with the current compiler profile.
+
+The six-file standalone review at `4efd7c3fe9` is one source commit on upstream master `af11a99125`. All four builds reproduce retail and pass the project checker. The 3 affected source units preserve 97 exact functions in the combined stack and 97 in the standalone patch, including both split-screen accessors and the orbit update. The address audit verifies 700 source-linked bytes covering the NPC destinations, camera vtables, look-at up vector, camera-mode float pool and motion sampler tables. Each branch preserves the address coverage of its parent.
+
+All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 2 declarations and adds evidence to 5 source records. It has 1,152 records awaiting comparison and 877 with partial evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
