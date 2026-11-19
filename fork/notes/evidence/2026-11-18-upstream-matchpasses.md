@@ -73,6 +73,13 @@ model. Comparing the fourth stage with the earlier pre-window checkpoint leaves
 196 changed paths. The window-layout group follows that checkpoint.
 
 
+The source ledger reconciles 25 original fork headers that declared a constructor
+or destructor through a raw C entry point. Each native class header declares the
+corresponding lifetime operation. Its implementation matches the original address
+and size in both source-linked builds. The small-lobby font header accounts for
+28 further C declarations with matching return types, argument types, linkage
+and native definitions. These headers add no files to the upstream review groups.
+
 ## Item model and texture archive reads
 
 The model and texture loaders share a five-word reader. Their concrete objects span 0x40 and 0x28 bytes respectively. The native constructors pass the AFS filename, partition, and file count to the common initializer. Reads forward the handle, sector count, and destination to the alignment-checked ADXF function. The interface now serves the GSL, scene and sound-bank callers too. The local audio and archive group at `694270fb8b` contains 77 changed paths against the merged master.
