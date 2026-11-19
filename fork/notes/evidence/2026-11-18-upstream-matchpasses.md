@@ -6,7 +6,7 @@ The local branches below group related changes for review. The component branche
 
 | Review | Local branch | Tip | Paths from pinned master |
 | --- | --- | --- | ---: |
-| Archive loading, audio streaming and quest-cache lifetimes | `great-merge/current/resource-lifetimes` | `369be14322` | 206 |
+| Archive loading, audio streaming and quest-cache lifetimes | `great-merge/current/resource-lifetimes` | `ba96b4a344` | 219 |
 | Array allocation, memory copies and nullable release | `great-merge/current/memory` | `381e372339` | 257 |
 | Enemy targeting, battle parameters, collision and player techniques | `great-merge/current/combat` | `ac997883bf` | 209 |
 | Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `34176d99e2` | 112 |
@@ -54,7 +54,7 @@ The network and world-object rows use their existing review branches. Each branc
 
 ### Cumulative review stack
 
-The local branch `great-merge/current/review-stack` puts all eleven review groups on upstream `c572111ed6`. The first ten groups each have one commit. The world-object group has two commits and changes 38 paths in total. The tip at `e24c516c41` changes 1,342 paths, counting both sides of renames. The standalone review branches remain available.
+The local branch `great-merge/current/review-stack` puts all eleven review groups on upstream `c572111ed6`. The world-object group has two commits and changes 38 paths in total. The audio callback follow-up belongs to the standalone resource-lifetimes group and appears at the cumulative tip. The tip at `94eb357b12` changes 1,355 paths, counting both sides of renames. The standalone review branches remain available.
 
 | Stage | Group | Stack commit | Paths in stage | Object-file checks |
 | --- | --- | --- | ---: | --- |
@@ -70,18 +70,25 @@ The local branch `great-merge/current/review-stack` puts all eleven review group
 | 10 | actor-presentation | `15b085f571` | 381 | 1,986 objects, 501 renamed exports |
 | 11 | world-object-resources | `bad4f7f29a` | 33 | 1,987 objects, 505 renamed exports |
 | 11 | Challenge enemy-set records and buffers | `e24c516c41` | 6 | 644 affected objects, 11 renamed exports |
+| 3 | Audio file-system callbacks and stream buffers | `94eb357b12` | 18 | 644 affected objects, 5 renamed exports |
 
 The stack combines the array allocator and nullable release with typed archive loaders, carries the positional effects interfaces through combat and encounter drawing, and updates Gyaranzo’s fade field alongside the renderer header rename. The stage checks compare allocated sections, symbol locations and relocations with validated objects. They normalize same-address symbol aliases and check the raw references for stale names, missing providers and duplicate exports. The encounter through renderer stages match one Gryphon object's compiler-generated local names by section, offset, size and linkage. All 1,987 affected objects through `bad4f7f29a` match the cumulative source baseline. That check covers 505 renamed exports across 2,481 selected linker inputs. Validation ran at the object-file level.
 
-The only source differences from `fd07993cc6` are the compiler-profile comment in `configure.py`, whose fork wording stays on the working fork, and removal of an empty C-linkage block in `src/pso/unk/text_800FA464.cpp`. The working fork descends from the review stack and carries the local documentation and tooling. The review stack is local pending publication approval.
+The only source differences from `93204afa01` are the compiler-profile comment in `configure.py`, whose fork wording stays on the working fork, and removal of an empty C-linkage block in `src/pso/unk/text_800FA464.cpp`. The working fork descends from the review stack and carries the local documentation and tooling. The review stack is local pending publication approval.
 
-The stack covers the cumulative source already prepared for upstream. The [fork source index](2026-11-18-fork-review-index.tsv) still has 1,781 entries awaiting owner comparison and 482 with some matching edit blocks. These entries track the older fork history through upstream's split realignment. Each needs a disposition before the historical source audit is complete.
+The stack covers the cumulative source already prepared for upstream. The [fork source index](2026-11-18-fork-review-index.tsv) still has 1,769 entries awaiting owner comparison and 490 with some matching edit blocks. These entries track the older fork history through upstream's split realignment. Each needs a disposition before the historical source audit is complete.
 
 ### Challenge map set and action records
 
 `e24c516c41` carries the typed enemy-set builder from fork commits `1f4e2d4a22` and `6dd3ce20d4` into the consolidated map-loading owner. It keeps the existing source boundary, uses the 0x10 header, 0x18 random event, 0x14 fixed event and 0x48 placement records, and keeps the neighboring array allocator and nullable release calls. The placement room and wave fields stay at offsets 0x0C and 0x0E. The builder preserves the unwritten header word during the original 16-byte copy. The fork's declaration order, mutable copy source and separate tail-address increment remain in the code and preserve the compiler's instruction order.
 
 The builder remains at 0x80209D34 with size 0x454. All 644 affected objects compiled fresh and match the preceding stack after mapping the four function names and seven buffer names. The raw symbol check finds one provider for every renamed export across 2,481 selected inputs and no stale references. The working fork updates all eleven retention entries and compiles the same owner object. The map-collision factory header also has a complete fork-side comparison against the existing stack.
+
+### Audio file-system callbacks and stream buffers
+
+`ba96b4a344` groups the CVFS, DVD, memory-file and ADX callers with the existing resource-lifetimes review. The cumulative counterpart is `94eb357b12`. The shared registration forwards the callback context, diagnostic message and handle word. The file backends have the same signed size and opaque open types. ADX supplies the path and mode explicitly to its size queries. The public queries accept a const path and use the existing private path parser. The DVD completion callback has the two arguments used by the SDK.
+
+Both stream buffers retain their addresses at 0x805D62D8 and 0x805D62DC and use the fork's pointer types. The three snapshots each recompiled 644 affected objects. Their allocated sections, symbol locations and relocations match their preceding objects after mapping five symbol names. Each renamed export has exactly one provider and no references to its old name. The fork retention list includes the three affected names that it carried before the change. Validation ran at the object-file level.
 
 ## Review branches on upstream PR 326
 
