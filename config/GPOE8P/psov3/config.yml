@@ -227,6 +227,7 @@ force_active:
   - TAdGameStartGC__class_name_string
   - TAdGameStartLineGC__name
   - TAdGameStartShadowGC__name
+  - TAdGameStartShadowGC__texture_list
   - TAdGameStartSubGC__class_name_string
   - TAdGuideTxtGC__class_name
   - TAdLdQuestPrtGC__class_name
@@ -405,9 +406,13 @@ force_active:
   - TBoss1Dragon__sub_80028B28
   - TBoss1Dragon__sub_80028BE0
   - TBoss2DeRolLe__attack_params_table
+  - TBoss2DeRolLe__base_params
   - TBoss2DeRolLe__ct
   - TBoss2DeRolLe__current_attack_id
+  - TBoss2DeRolLe__data_805D4BA0
+  - TBoss2DeRolLe__instance
   - TBoss2DeRolLe__mine_ground_targets
+  - TBoss2DeRolLe__resistance_params
   - TBoss2DeRolLe__sequence_match_index
   - TBoss2DeRolLe__shared_handler_id_table
   - TBoss2DeRolLe__sub_8002F73C
@@ -516,6 +521,7 @@ force_active:
   - TBoss6CrushPtcl__ct
   - TBoss6CrushPtcl__name
   - TBoss6CrushRock__name
+  - TBoss6DPB__class_name
   - TBoss6Demo10_TYPE1_APPEAR__class_name
   - TBoss6Demo10_TYPE1_APPEAR__name
   - TBoss6Demo11_TYPE1_DEAD__name
@@ -783,7 +789,6 @@ force_active:
   - TContainerAncient01__sub_8018B180
   - TContainerAncient01__sub_8018BE90
   - TDPBShower__class_name
-  - TDPBShower__class_name_string
   - TDuelEffectCtrl__class_name
   - TDuelEffectNumber__class_name
   - TDuelEffectNumber__sub_800802F8
@@ -807,7 +812,9 @@ force_active:
   - TEffect__class_name
   - TEndingAB__sub_8008CCC0
   - TEndingAB__sub_8008D5A0
+  - TEndingC__class_name_string
   - TEndingC__wall_texture_list
+  - TEndingC__wall_texture_list_entry
   - TEndingPic__sub_8008D5AC
   - TEnding__class_name
   - TEnding__sub_8008D5B8
@@ -835,6 +842,7 @@ force_active:
   - TForceOperate__class_name_string
   - TForceOperate__name
   - TGameProtocol__class_name
+  - TGameProtocol__instance
   - THunterGuildSeqOffline__sub_80213980
   - THunterGuildSeqOffline__sub_80213B18
   - THunterGuildSeqOffline__sub_80213E64
@@ -980,6 +988,7 @@ force_active:
   - TLobby__disk_error_msg_table
   - TLobby__download_list_window
   - TLobby__floor_item_entry_pool
+  - TLobby__gba_joyboot_send_buffer
   - TLobby__init_ref_count
   - TLobby__item_data_table_buffer
   - TLobby__join_entries_dtor_registration
@@ -989,6 +998,8 @@ force_active:
   - TLobby__list_window
   - TLobby__lobby_entered_flag
   - TLobby__login_pending_flag
+  - TLobby__map_set_file_buffer
+  - TLobby__map_set_file_buffer_size
   - TLobby__network_stack_init_count
   - TLobby__new_game_setup_flags
   - TLobby__next_send_chunk
@@ -1291,6 +1302,7 @@ force_active:
   - TLobby__trade_main_window
   - TLobby__trade_window_state
   - TLobby_init_ref_count
+  - TLobby_scene_load_callback_table
   - TLobby_warp_menu_window
   - TLockOnCursor__sub_8013E0D0
   - TLockOnCursor__sub_8013EB6C
@@ -1372,7 +1384,10 @@ force_active:
   - TOCapsuleMachine01_class_name
   - TOChatSensorCapture__class_name
   - TOChatSensorCapture__instance
+  - TOChatSensorFolder__ct
+  - TOChatSensorFolder__instance
   - TOChatSensor__ct
+  - TOChatSensor__name
   - TOContainerAncientEnemyCommon__name
   - TOContainerAncientEnemyRare__name
   - TOContainerAncientEnemy__collision_body_params
@@ -1570,6 +1585,8 @@ force_active:
   - TObjAreaWarpQuest__sub_8019DCD8
   - TObjAreaWarp__name
   - TObjBagWarnWin4P__message_window_size
+  - TObjBagWarnWin4P__name
+  - TObjBagWarnWin__message_window_size
   - TObjBagWarnWin__name
   - TObjBgmColCtrl__current_theme_id
   - TObjBgmColCtrl__instance
@@ -1592,7 +1609,10 @@ force_active:
   - TObjBoss1Rock__name
   - TObjBoss2CeilJunk__name
   - TObjBoss2DustCtrl__ct
+  - TObjBoss2DustCtrl__name
+  - TObjBoss2DustCtrl__sub_8003AB5C
   - TObjBoss2DustCtrl_dust_counter
+  - TObjBoss2Dust__name
   - TObjBoss2Tunnel__ct
   - TObjBoss2Tunnel__data_8048DF2C
   - TObjBoss2Tunnel__global_flags
@@ -1713,6 +1733,7 @@ force_active:
   - TObjContainerJung__resource_descriptor
   - TObjContainerJung__sub_8018D3B8
   - TObjContainerNoItem__name
+  - TObjControl__name
   - TObjDFBeamCursor__name
   - TObjDFDemo0__ct
   - TObjDFDemo0__entry_table
@@ -2220,6 +2241,7 @@ force_active:
   - TObjEneSlime__ct
   - TObjEneSlime__name
   - TObjEneSlime__sub_800EB9F0
+  - TObjEnemy_class_name
   - TObjEnvSoundEx__class_name
   - TObjEnvSoundEx__ct
   - TObjEnvSoundGlobal__class_name
@@ -2798,6 +2820,7 @@ force_active:
   - TObjQuestColA__class_name
   - TObjQuestColApcINW__name
   - TObjQuestColApcIN__name
+  - TObjQuestColBase__instance_count
   - TObjQuestCol__class_name
   - TObjRaderCol__name
   - TObjRaderHideCol__name
@@ -2930,8 +2953,6 @@ force_active:
   - TQuestVmDownLoadServer__sub_803E6F98
   - TQuestVmDownLoadServer__sub_803E7018
   - TQuestVmDownLoadServer__sub_803E7098
-  - read_quest_name_cache_image
-  - rotate_quest_name_cache_page
   - TQuestVmDownLoadServer__sub_803E9A74
   - TQuestVmDownLoadServer__sub_803E9FFC
   - TQuestVmDownLoadServer__sub_803EA1A8
@@ -3787,6 +3808,7 @@ force_active:
   - __ct__16TOWreckAncient05FPv
   - __ct__16TOWreckAncient06FPv
   - __ct__16TOWreckAncient07FPv
+  - __ct__16TObjBagWarnWin4PFv
   - __ct__16TObjCMAssignMenuFv
   - __ct__16TObjCMAutoMkDataFP7TObject
   - __ct__16TObjCMProportionFP7TObject
@@ -7108,6 +7130,7 @@ force_active:
   - balclaw_body_collision
   - balclaw_claw_class_name
   - balclaw_claw_model_node_desc
+  - balclaw_last_shared_update_frame
   - bank_credit_meseta__Fll
   - bank_debit_meseta__Fll
   - bank_item_records_by_slot
@@ -8468,6 +8491,8 @@ force_active:
   - chat_dispatch_accepted_result__FPl
   - chat_log_add_line__FPCc
   - chat_log_remove_line__Fl
+  - chat_sensor_folder_name_ptr
+  - chat_sensor_table
   - chat_text_lacks_language_tag__FPCc
   - chcr_eff_fade_strip_rect
   - chcr_eff_wall_gradient_table
@@ -8636,7 +8661,14 @@ force_active:
   - chr_select_load_buffer_table
   - chr_select_slot_state
   - chr_select_state
+  - chunk_blend_header_bits
+  - chunk_has_vertex_colors
   - chunk_object_current_matrix
+  - chunk_previous_strip_flags
+  - chunk_strip_dirty_flags
+  - chunk_texture_record_index
+  - chunk_vertex_cache_buffer
+  - chunk_vertex_cache_state
   - circle_arena__13TBoss5GryphonFl
   - circle_destination__13TObjEneBm3FlyFl
   - circling_state__14TObjEneBm5WolfFl
@@ -9089,7 +9121,6 @@ force_active:
   - copy_cmd_88_marker_record__FPvPv
   - copy_cmd_c4_entry__Fii
   - copy_color_entry__15TWindowMainMenuFPvPv
-  - copy_from__15GuildCardRecordFPC15GuildCardRecord
   - copy_data__18TCheckRoomSequenceFPvPv
   - copy_debris_params__8TObjChipFPvPv
   - copy_drop_node__FPUcPUc
@@ -9103,7 +9134,9 @@ force_active:
   - copy_from__11TMainCursorFPv
   - copy_from__13TItemAttackerFPv
   - copy_from__14TechniqueBoostFP14TechniqueBoost
+  - copy_from__15GuildCardRecordFPC15GuildCardRecord
   - copy_from__15TEffStarLight2DFPv
+  - copy_from__17RadarMapViewStateFPC17RadarMapViewState
   - copy_from__23MagNodeOscillationStateFP23MagNodeOscillationState
   - copy_from_subobject__15TEffStarLight2DFPv
   - copy_gauge_warn_vec__10TObjPlayerFv
@@ -9167,7 +9200,6 @@ force_active:
   - copy_transform__10TNpcPlayerFPvPv
   - copy_transform__11TBoss6Type1FPv
   - copy_transform__11TBoss6Type2FPv
-  - copy_from__17RadarMapViewStateFPC17RadarMapViewState
   - copy_transform_second__10TNpcPlayerFPvPvPv
   - copy_udp_socket_event_record
   - copy_unequip_fields__10TObjPlayerFPv
@@ -9204,6 +9236,7 @@ force_active:
   - countdown_and_destroy__20TObjChallenge4PRetryFv
   - crawfish_action_table
   - crc32_table
+  - create_TDPBShower__FPvPv
   - create_TObjWarpString__FPcUs
   - create__10TBoss6RockFl
   - create__10TBoss6RockFv
@@ -9532,6 +9565,7 @@ force_active:
   - derolle_part_transform_template
   - derolle_segment_joint_node_offsets
   - derolle_segment_texture_slots
+  - derolle_texture_list_handle
   - despawn_state__14TObjEneBm5WolfFl
   - destroy__12TBoss1DragonFPvs
   - destroy__12TPhotonGollaFPvs
@@ -10949,6 +10983,9 @@ force_active:
   - gattai_bm7_s_pal_body_motion_filename
   - gattai_bm7_s_par_body_motion_filename
   - gb_advance_collision_body_parts
+  - gba_download_graph
+  - gba_joyboot_send_buffer
+  - gba_joyboot_status
   - gba_joyboot_transfer_callback__Fll
   - gcci_version_string
   - gcrna_aligned_audio_storage
@@ -11303,6 +11340,7 @@ force_active:
   - gray_out_unusable_entries__14TWindowSubItemFv
   - group_selection_area_id_table
   - gryphon_action_probability_table_a
+  - gryphon_area_cleanup_callbacks
   - gryphon_collider_desc
   - gryphon_demo_collision_body_desc
   - gryphon_effect_param_block
@@ -12451,6 +12489,8 @@ force_active:
   - lbl_804394A4
   - lbl_804394BC
   - lbl_804394D4
+  - lbl_804398E0
+  - lbl_804398EC
   - lbl_80439EC4
   - lbl_8043A164
   - lbl_8043A16C
@@ -12527,6 +12567,7 @@ force_active:
   - lbl_8044DB08
   - lbl_8044DB14
   - lbl_8044DB2C
+  - lbl_8044DC00
   - lbl_8044DD00
   - lbl_8044DD0C
   - lbl_8044E688
@@ -12550,6 +12591,7 @@ force_active:
   - lbl_8044F9F0
   - lbl_8044F9F8
   - lbl_8044FA00
+  - lbl_8044FA28
   - lbl_8044FCF0
   - lbl_804507A8
   - lbl_804507BC
@@ -12738,6 +12780,7 @@ force_active:
   - lbl_8048D4C0
   - lbl_8048D5A8
   - lbl_8048E020
+  - lbl_8048EB18
   - lbl_8048FAF8
   - lbl_8048FF30
   - lbl_80490668
@@ -13156,6 +13199,7 @@ force_active:
   - lbl_804F9E60
   - lbl_804FC688
   - lbl_804FC810
+  - lbl_804FCE38
   - lbl_804FCEA4
   - lbl_804FCEB4
   - lbl_804FCEC4
@@ -13310,8 +13354,6 @@ force_active:
   - lbl_80581330
   - lbl_80581A30
   - lbl_8058DC00
-  - quest_name_cache_image
-  - quest_name_cache_index
   - lbl_805A02A8
   - lbl_805A0340
   - lbl_805A0698
@@ -13488,8 +13530,14 @@ force_active:
   - lbl_805D4B8C
   - lbl_805D4B90
   - lbl_805D4BB0
+  - lbl_805D4BB4
+  - lbl_805D4BB8
+  - lbl_805D4BBC
+  - lbl_805D4BC0
+  - lbl_805D4BCC
   - lbl_805D4BD0
   - lbl_805D4BD8
+  - lbl_805D4BE4
   - lbl_805D4C04
   - lbl_805D4D6C
   - lbl_805D4D70
@@ -13620,6 +13668,7 @@ force_active:
   - lbl_805D60A4
   - lbl_805D60AC
   - lbl_805D60B8
+  - lbl_805D60D4
   - lbl_805D6158
   - lbl_805D615C
   - lbl_805D6160
@@ -13735,6 +13784,7 @@ force_active:
   - lbl_805D6BEC
   - lbl_805D6BF8
   - lbl_805D6BFC
+  - lbl_805D6C18
   - lbl_805D6C80
   - lbl_805D6D80
   - lbl_805D6D84
@@ -13828,6 +13878,9 @@ force_active:
   - lbl_805D75F0
   - lbl_805D7600
   - lbl_805D7610
+  - lbl_805D765C
+  - lbl_805D7664
+  - lbl_805D766C
   - lbl_805D7688
   - lbl_805D7694
   - lbl_805D76A8
@@ -13840,6 +13893,11 @@ force_active:
   - lbl_805D7720
   - lbl_805D77A0
   - lbl_805D77A4
+  - lbl_805D77D8
+  - lbl_805D77D9
+  - lbl_805D77E4
+  - lbl_805D77F4
+  - lbl_805D77FC
   - lbl_805D7818
   - lbl_805D7828
   - lbl_805D7830
@@ -13847,17 +13905,23 @@ force_active:
   - lbl_805D783C
   - lbl_805D7840
   - lbl_805D7844
-  - quest_name_cache_dirty
-  - quest_name_cache_page_end
-  - quest_name_cache_write_cursor
-  - quest_name_cache_free_nodes
+  - lbl_805D78A0
+  - lbl_805D78A4
+  - lbl_805D78AC
+  - lbl_805D78B0
+  - lbl_805D78B4
   - lbl_805D78E8
   - lbl_805D7908
   - lbl_805D790C
   - lbl_805D7A58
+  - lbl_805D7A5C
   - lbl_805D7A70
   - lbl_805D7A74
   - lbl_805D7AA8
+  - lbl_805D7AC0
+  - lbl_805D7AC4
+  - lbl_805D7ACC
+  - lbl_805D7AEC
   - lbl_805D7B14
   - lbl_805D7B1C
   - lbl_805D7B28
@@ -14137,6 +14201,7 @@ force_active:
   - lbl_805E00C0
   - lbl_805E00C4
   - lbl_805E0DA4
+  - lbl_805E10F8
   - lbl_805E1190
   - lcp_read_byte_buffer
   - lcp_read_value_buffer
@@ -14237,6 +14302,7 @@ force_active:
   - lobby_buffer_pool_state
   - lobby_buffer_refcount
   - lobby_butterfly_bml_resource
+  - lobby_callback_tables_refcount
   - lobby_checked_read_ptr_table
   - lobby_class_name
   - lobby_com_card_window
@@ -14268,6 +14334,7 @@ force_active:
   - lobby_exi_prev_status
   - lobby_exi_stable_count
   - lobby_exi_stable_target
+  - lobby_floor_scene_callbacks
   - lobby_font_texture_loaded
   - lobby_font_texture_prs_data
   - lobby_game_mode_state
@@ -14335,8 +14402,10 @@ force_active:
   - lobby_texlist__16TObjKabochaLobby
   - lobby_texlist__16TObjWeddingLobby
   - lobby_texlist__19TObjStendGlassLobby
+  - lobby_timer_list_head
   - lobby_title_texture_list
   - lobby_tool_random_rel
+  - lobby_udp_socket_table
   - lobby_udp_test_game_entries
   - lobby_wait_ready_flag
   - lobby_weapon_random_tables_ptr
@@ -14404,6 +14473,8 @@ force_active:
   - map_csn_box_triangle_indices
   - map_csn_collision_flag_table
   - map_pad_buttons__16TKeyBoardControlFUs
+  - map_set_data_handle_a
+  - map_set_data_handle_b
   - map_shape_region_samples__FlPl
   - map_warp_destination_offsets
   - mark_confirmed__18TWindowInputNumberFv
@@ -14562,6 +14633,7 @@ force_active:
   - morfos_resistance_stats
   - morfos_resource_descriptor
   - motion_blend_factor
+  - motion_sampler_function_table
   - motion_trail_node_index
   - motorcycle_class_name
   - motorcycle_resource_descriptor
@@ -14993,6 +15065,7 @@ force_active:
   - panarms_turn_delta_table
   - panbara_action_tables
   - panbara_draw_callback_entries
+  - pap_read_byte_buffer
   - pap_recv_auth_request
   - parse_action_packet__11TBoss6Type2FPv
   - parse_aix_header__6TLobbyFPviPv
@@ -19682,6 +19755,8 @@ force_active:
   - quest_bgm_smile_filename
   - quest_col_apc_warp_target_pos
   - quest_col_base_class_name
+  - quest_collision_task_root
+  - quest_collision_warp_pending
   - quest_convert_string
   - quest_decrypt_result_size
   - quest_download_aram_base
@@ -19712,10 +19787,17 @@ force_active:
   - quest_download_request_0x25
   - quest_download_request_unassigned
   - quest_download_slot_table
+  - quest_download_text_write_ptr
   - quest_floor_designations
   - quest_list_battle_stage_table
   - quest_list_challenge_stage_table
   - quest_list_vm_instance
+  - quest_name_cache_dirty
+  - quest_name_cache_free_nodes
+  - quest_name_cache_image
+  - quest_name_cache_index
+  - quest_name_cache_page_end
+  - quest_name_cache_write_cursor
   - quest_name_index_table
   - quest_player_class_name_buffer
   - quest_player_name_buffer
@@ -19789,6 +19871,7 @@ force_active:
   - read_input__16TKeyBoardControlFl
   - read_into_buffer__9TLanguageFll
   - read_quest_chunk__22TQuestVmDownLoadServerFUlUcUcPUcPl
+  - read_quest_name_cache_image
   - read_stream_u16__Fv
   - read_stream_u8__Fv
   - read_swapped_fields__10TObjPlayerFv
@@ -21030,6 +21113,7 @@ force_active:
   - room_window_layout_entries
   - rotate_animated_node__20TODragonflyMachine01Fv
   - rotate_heading_by_stick__13TUnk_80488E00Fv
+  - rotate_quest_name_cache_page
   - rotate_title_background_quad__FlPUcPUclf
   - route_around_object__10TNpcPlayerFv
   - runListNum
@@ -21909,6 +21993,10 @@ force_active:
   - scan_memcard_quest_files__12TQuestListVMFv
   - scan_nearby_enemies__10TNpcPlayerFPvPvf
   - scene_file_buffer_size
+  - scene_fog_color
+  - scene_fog_enable_flag
+  - scene_fog_end_distance
+  - scene_fog_start_distance
   - scene_fog_type
   - scene_format_dispatch_tables
   - schedule_pack_reaction__14TObjEneBm5WolfFlUs
@@ -23838,6 +23926,7 @@ force_active:
   - tec_deband_class_name_ptr
   - tec_jelin_class_name_ptr
   - tec_kafun_class_name_ptr
+  - tec_zonde_effect_task_list
   - technique_contact_list
   - technique_contact_query_results
   - technique_menu_category_lists

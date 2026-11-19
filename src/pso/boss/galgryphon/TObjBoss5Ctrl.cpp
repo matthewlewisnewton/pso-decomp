@@ -7,7 +7,6 @@
 #pragma readonly_strings on
 #pragma fp_contract on
 
-TObjBoss5Ctrl *boss5_ctrl_instance;
 
 extern "C" {
 s32 get_current_floor();
