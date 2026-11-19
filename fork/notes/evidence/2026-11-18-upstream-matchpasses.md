@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `22f7ebeb5b` changes 1,470 paths counting both sides of renames. The all-source snapshot is `233d145764`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `467564e30b` changes 1,471 paths counting both sides of renames. The all-source snapshot is `5e1dc83969`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `61d3d45839` | `942a0c050f` |
+| `great-merge/current/window-frames` | `c50d4c1908` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -52,6 +52,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Native symbol-chat editor windows | Included in the window review | `11129323ca` |
 | Native shortcut preview and list | Included in the window review | `fd001b831c` |
 | Native item preview and lock-on windows | Included in the window review | `22f7ebeb5b` |
+| Native choice and sound option windows | Included in the window review | `467564e30b` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -278,6 +279,14 @@ The window review at `61d3d45839` and cumulative stack at `22f7ebeb5b` use nativ
 The four renamed exports retain 700 instruction bytes. Fourteen direct calls retain their original destinations, including the two factories, all three item icon requests and both lock-on binding calls. Two descriptors, two virtual tables and four layout tables retain 624 bytes at the original addresses. All selected sections and relocations match after mapping the four names. The window review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
 
 The audit reconciles 3 complete fork declarations and records partial evidence for 8 paths. It has 1,493 entries awaiting owner comparison and 678 with partial evidence.
+
+### Native choice and sound option windows
+
+The window review at `c50d4c1908` and cumulative stack at `467564e30b` use the native sound balance constructor and the two unsigned-count choice constructors. Sound balance measures both labels from their text pointers and restores both gains from the original settings call. The choice factory forwards the original extent pointer and count, and the information popup owns its entry initializer. The cursor still interprets the stored 16-bit count as signed.
+
+The four renamed exports match 676 instruction bytes. Twenty direct calls retain their original linked destinations. Two descriptors, two layout tables and three virtual tables retain their 260 bytes at the original addresses. The linked addresses and sizes confirm the choice exports even where the compiler's intermediate object contains extra space. All selected sections and relocations match the previous build after mapping the four names. The window review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
+
+The audit reconciles 10 complete fork paths, including the two options factories, the complete option state machine, and the option header's declarations on the save task that owns them. It records partial evidence for 5 more paths. It has 1,484 entries awaiting owner comparison and 677 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
