@@ -4,6 +4,7 @@
 // Record types and data shared by the three quest download server TUs (_803E6970, _803E8918, _803E9A24).
 
 #include "types.h"
+#include "pso/quest/QuestDownloadCacheTypes.h"
 #include "pso/quest/TQuestVmDownLoadServer_803E6970.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
 #include "pso/quest/QuestDownloadCharTables.h"
@@ -86,12 +87,6 @@ struct Node_803ECD1C { u8 pad[0xC]; Node_803ECD1C *next; };
 struct Node_803ECD8C { s32 *link; u8 pad[8]; Node_803ECD8C *next; };
 
 struct Node_803ECE5C { s32 *link; u8 pad[4]; Node_803ECE5C *next; };
-
-struct R_803E76A4 { u8 cnt; u8 pad[7]; };
-
-struct R_803E773C { u8 a; u8 b; u16 c; s16 d; s16 e; };
-
-struct R_803E779C { u8 a; u8 b; u16 c; s16 d; s16 e; };
 
 struct R_803E9F54 { u8 pad[0x14]; s8 a; u8 b; u8 pad2[6]; };
 
@@ -202,8 +197,6 @@ struct Ent_803E6970 {
     u8 pad[6];
 };
 
-struct R_803E77F0 { u8 a; u8 b; u16 c; s16 d; s16 e; };
-
 struct Tok_803E9FFC { s16 off; u8 a; u8 b; };
 
 struct Seg_803E9FFC { s16 off; u8 x2; u8 x3; u8 a; u8 b; u8 pad2[2]; Seg_803E9FFC *next; };
@@ -228,19 +221,9 @@ struct N_803EBD38 {
     N_803EBD38 *next;
 };
 
-struct Page_803E840C {
-    s32 page;
-    s32 dirty;
-    Page_803E840C *next;
-    u8 data[0x400];
-};
-
-struct Ent_803E840C { u8 a; u8 b; u16 c; s16 d; s16 e; };
-
 struct Cache_803E840C {
     u8 name[0x44];
-    Ent_803E840C ents[128];
-    Page_803E840C pages[10];
+    QuestDownloadFileCache cache;
 };
 
 
@@ -253,11 +236,7 @@ struct Ent_803E9DE0 { u8 a; u8 b; u8 off; u8 d; };
 
 typedef Req_803EEF2C Msg_803E9190;
 
-struct Ent_803E8B1C { u8 pad[2]; u8 len; char name[1]; };
-
-struct Node_803E8B1C { Ent_803E8B1C *ent; Node_803E8B1C *next; };
-
-struct Out_803E8C2C { s16 a; s16 id; s16 len; s16 pre; u8 pad[4]; Ent_803E8B1C *ent; };
+struct Out_803E8C2C { s16 a; s16 id; s16 len; s16 pre; u8 pad[4]; u8 *encodedRecord; };
 
 typedef Out_803E8C2C Out_803E8B1C;
 
@@ -267,21 +246,10 @@ struct NameCache_80591EC8 {
     u8 pages[8][0x400];
 };
 
-struct NameHash_80593EC8 {
-    Node_803E8B1C *hash[0x50];
-    Node_803E8B1C nodes[0x200];
-};
-
 // lbl_80591EC8 and lbl_80593EC8 seen as the one area they form: three functions address both from one base.
 struct NameCacheArea_80591EC8 {
     NameCache_80591EC8 cache;
-    NameHash_80593EC8 names;
-};
-
-struct Ent_803E7ACC {
-    s32 index;
-    s32 state;
-    Ent_803E7ACC *next;
+    QuestDownloadCachedNameIndex names;
 };
 
 extern "C" {
@@ -350,7 +318,7 @@ Node_803EB878 *TQuestVmDownLoadServer__sub_803EB878(Node_803EB878 *p);
 void TQuestVmDownLoadServer__sub_803ECD1C(Node_803ECD1C *p);
 void TQuestVmDownLoadServer__sub_803ECD8C(Node_803ECD8C *p);
 void TQuestVmDownLoadServer__sub_803ECE5C(Node_803ECE5C *p);
-extern R_803E76A4 quest_download_slot_table[];
+extern QuestDownloadFileCache quest_download_slot_table;
 N_803E9FA4 *insert_sorted_node__22TQuestVmDownLoadServerFP10N_803E9FA4(N_803E9FA4 *arg0, N_803E9FA4 *arg1);
 int strncmp(const char *, const char *, u32);
 extern s32 quest_download_name_search_lo;
@@ -428,8 +396,8 @@ void *TQuestVmDownLoadServer__sub_803ECF48(void);
 void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, const Tok_803E9FFC *t);
 void *TQuestVmDownLoadServer__sub_803ECED0(void);
 void *TQuestVmDownLoadServer__sub_803ECF0C(void);
-extern u8 *file_page_cache_head;
-extern NameHash_80593EC8 lbl_80593EC8;
+extern QuestDownloadCachePage *file_page_cache_head;
+extern QuestDownloadCachedNameIndex lbl_80593EC8;
 s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg2);
 void TQuestVmDownLoadServer__sub_803EFF20(u8 *data, s32 a1, s32 a2, s32 *best, u8 *dst, s32 flags);
 extern const char ask_header_signature[];

@@ -3313,13 +3313,12 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
         for (; (u16)(p[0] + (p[1] << 8)) != 0; p += (u16)(p[0] + (p[1] << 8))) {
             s16 m;
             s32 r;
-            Ent_803E8B1C *e = (Ent_803E8B1C *)p;
-            n = e->len;
-            m = TQuestVmDownLoadServer::match_prefix_length((u8 *)e->name, name, (s16)n);
+            n = p[2];
+            m = TQuestVmDownLoadServer::match_prefix_length(p + 3, name, (s16)n);
             if (m >= pre) {
                 pre = m + 1;
             }
-            r = strncmp(e->name, (char *)name, (s16)n);
+            r = strncmp((char *)(p + 3), (char *)name, (s16)n);
             if (r == 0) {
                 if ((s16)n == len && first) {
                     return 2;
@@ -3327,7 +3326,7 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
                 blen = n;
                 found = p;
             } else if (r > 0) {
-                if (strncmp(e->name, (char *)name, len) == 0 && first) {
+                if (strncmp((char *)(p + 3), (char *)name, len) == 0 && first) {
                     return 2;
                 }
                 break;
@@ -3349,7 +3348,7 @@ s32 TQuestVmDownLoadServer__sub_803F0500(u8 *name, s16 len, Out_803E8C2C *out) {
     out->id = found - page;
     out->len = blen;
     out->pre = pre;
-    out->ent = (Ent_803E8B1C *)found;
+    out->encodedRecord = found;
     return 1;
 }
 
@@ -3385,16 +3384,16 @@ s32 TQuestVmDownLoadServer__sub_803F06B8(const char *name, s16 len, Out_803F0268
     out->len2 = o1.pre > o2.pre ? o1.pre : o2.pre;
     if (o1.len > o2.len) {
         out->len = o1.len;
-        out->count = TQuestVmDownLoadServer__sub_803F03B4((u8 *)o1.ent, out->ents, 0, &max);
+        out->count = TQuestVmDownLoadServer__sub_803F03B4(o1.encodedRecord, out->ents, 0, &max);
         o2.id = -1;
     } else if (o1.len < o2.len) {
         out->len = o2.len;
-        out->count = TQuestVmDownLoadServer__sub_803F03B4((u8 *)o2.ent, out->ents, 0, &max);
+        out->count = TQuestVmDownLoadServer__sub_803F03B4(o2.encodedRecord, out->ents, 0, &max);
         o1.id = -1;
     } else {
         out->len = o1.len;
-        n = TQuestVmDownLoadServer__sub_803F03B4((u8 *)o1.ent, out->ents, 0, &max);
-        out->count = TQuestVmDownLoadServer__sub_803F03B4((u8 *)o2.ent, out->ents, n, &max);
+        n = TQuestVmDownLoadServer__sub_803F03B4(o1.encodedRecord, out->ents, 0, &max);
+        out->count = TQuestVmDownLoadServer__sub_803F03B4(o2.encodedRecord, out->ents, n, &max);
     }
     out->x4 = r = TQuestVmDownLoadServer::acquire_slot_entry(o1.a, o1.id, o2.id, max);
     if (r == 0xFFFFFFFF) {

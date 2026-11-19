@@ -5,13 +5,12 @@
 
 extern "C" {
 RecoveredGlobal_803E8710_lbl_8058DE08 quest_vm_download_server_file_info;
-// 128 slot entries, then ten 0x40C-byte file pages (Cache_803E840C views both from the file info on).
-R_803E76A4 quest_download_slot_table[0x2C78 / sizeof(R_803E76A4)];
+QuestDownloadFileCache quest_download_slot_table;
 RecoveredGlobal_803E8084_lbl_80590AC4 quest_name_index_table;
 u8 lbl_80591AC4[0x404];
 s32 quest_download_ask_header_size;
 s32 quest_download_header_name_index_hi_count;
-u8 *file_page_cache_head;
+QuestDownloadCachePage *file_page_cache_head;
 s32 quest_download_name_search_lo;
 s32 quest_download_name_search_hi;
 
@@ -531,8 +530,8 @@ s32 TQuestVmDownLoadServer__sub_803E7390(u8 a, u8 b, u8 c) {
 void TQuestVmDownLoadServer::invalidate_entries_by_id(s32 id) {
     s32 i;
     for (i = 0; i < 128; i++) {
-        if (id == ((R_803E773C *)quest_download_slot_table)[i].e) {
-            ((R_803E773C *)quest_download_slot_table)[i].e = -1;
+        if (id == quest_download_slot_table.entries[i].cachedId) {
+            quest_download_slot_table.entries[i].cachedId = -1;
         }
     }
 }
@@ -540,22 +539,22 @@ void TQuestVmDownLoadServer::invalidate_entries_by_id(s32 id) {
 void TQuestVmDownLoadServer::clear_entries_by_id(s32 id) {
     s32 i;
     for (i = 0; i < 128; i++) {
-        if (id == (s16)(((R_803E773C *)quest_download_slot_table)[i].e >> 12)) {
-            ((R_803E773C *)quest_download_slot_table)[i].e = -1;
+        if (id == (s16)(quest_download_slot_table.entries[i].cachedId >> 12)) {
+            quest_download_slot_table.entries[i].cachedId = -1;
         }
     }
 }
 
 s32 TQuestVmDownLoadServer::release_ref_slot(u32 arg0) {
-    R_803E76A4 *r;
+    QuestDownloadCacheEntry *r;
     if (arg0 >= 0x80U) {
         return -1;
     }
-    r = &quest_download_slot_table[arg0];
-    if (r->cnt == 0) {
+    r = &quest_download_slot_table.entries[arg0];
+    if (r->referenceCount == 0) {
         return -1;
     }
-    r->cnt--;
+    r->referenceCount--;
     return 0;
 }
 
@@ -563,8 +562,8 @@ s32 TQuestVmDownLoadServer::set_slot_values_for_indices(s32 *arg0, s32 arg1, u32
     s32 i;
     for (i = 0; i < arg1; i++, arg0++) {
         s32 idx = *arg0;
-        if (idx >= 0 && idx < 0x80 && ((R_803E773C *)quest_download_slot_table)[idx].a != 0) {
-            ((R_803E773C *)quest_download_slot_table)[idx].b = (u8)arg2;
+        if (idx >= 0 && idx < 0x80 && quest_download_slot_table.entries[idx].referenceCount != 0) {
+            quest_download_slot_table.entries[idx].value = (u8)arg2;
         }
     }
     return 0;
@@ -577,10 +576,10 @@ s32 TQuestVmDownLoadServer::get_max_size_of_indices(s32 arg1) {
     for (i = 0; i < arg1; i++) {
         s32 idx = arg0[i];
         if (idx >= 0 && idx < 0x80) {
-            R_803E773C *r = &((R_803E773C *)&quest_download_slot_table)[idx];
-            if (r->a != 0) {
-                if (max < r->b) {
-                    max = r->b;
+            QuestDownloadCacheEntry *r = &quest_download_slot_table.entries[idx];
+            if (r->referenceCount != 0) {
+                if (max < r->value) {
+                    max = r->value;
                 }
             }
         }
@@ -589,62 +588,55 @@ s32 TQuestVmDownLoadServer::get_max_size_of_indices(s32 arg1) {
 }
 
 s32 TQuestVmDownLoadServer__sub_803E779C(u32 arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
-    R_803E779C *r;
+    QuestDownloadCacheEntry *r;
     if (arg0 >= 0x80U) {
         return -1;
     }
-    r = &((R_803E779C *)&quest_download_slot_table)[arg0];
-    if (r->a == 0) {
+    r = &quest_download_slot_table.entries[arg0];
+    if (r->referenceCount == 0) {
         return -1;
     }
-    *arg1 = r->d;
-    *arg2 = r->e;
-    *arg3 = r->b;
-    return r->c;
+    *arg1 = r->fileOffset;
+    *arg2 = r->cachedId;
+    *arg3 = r->value;
+    return r->pageIndex;
 }
 
 u32 TQuestVmDownLoadServer::acquire_slot_entry(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 i;
-    R_803E77F0 *r;
+    QuestDownloadCacheEntry *r;
     s32 free_idx;
-    r = ((R_803E77F0 *)&quest_download_slot_table);
+    r = quest_download_slot_table.entries;
     free_idx = -1;
     for (i = 0; i < 128; i++, r++) {
-        if (r->a == 0) {
+        if (r->referenceCount == 0) {
             if (free_idx == -1) {
                 free_idx = i;
             }
-        } else if (r->c == arg0 && r->d == arg1 && r->e == arg2) {
-            r->a++;
+        } else if (r->pageIndex == arg0 && r->fileOffset == arg1 && r->cachedId == arg2) {
+            r->referenceCount++;
             return i;
         }
     }
     if (free_idx == -1) {
         return -1;
     }
-    r = &((R_803E77F0 *)&quest_download_slot_table)[free_idx];
-    r->a = 1;
-    r->c = arg0;
-    r->d = arg1;
-    r->e = arg2;
-    r->b = arg3;
+    r = &quest_download_slot_table.entries[free_idx];
+    r->referenceCount = 1;
+    r->pageIndex = arg0;
+    r->fileOffset = arg1;
+    r->cachedId = arg2;
+    r->value = arg3;
     return free_idx;
 }
 
 void TQuestVmDownLoadServer__sub_803E79AC(void) {
     int i;
     for (i = 0; i < 0x80; i++) {
-        quest_download_slot_table[i].cnt = 0;
+        quest_download_slot_table.entries[i].referenceCount = 0;
     }
 }
 
-struct Page_803E7B9C {
-    s32 page;
-    s32 dirty;
-    Page_803E7B9C *next;
-    u8 data[0x400];
-};
-#define HEAD_803E7B9C (*(Page_803E7B9C **)&file_page_cache_head)
 
 #pragma push
 #pragma dont_inline off
@@ -701,33 +693,33 @@ inline s32 SeekRetry_803E7ACC(s32 pos) {
     return 0;
 }
 void TQuestVmDownLoadServer::retry_seek_active_entries() {
-    Ent_803E7ACC *e;
+    QuestDownloadCachePage *e;
     u8 unused[0x18];
-    for (e = (Ent_803E7ACC *)file_page_cache_head; e != NULL; e = e->next) {
+    for (e = file_page_cache_head; e != NULL; e = e->next) {
         if (e->state == 1) {
-            SeekRetry_803E7ACC((e->index << 10) + 0x3400);
+            SeekRetry_803E7ACC((e->pageIndex << 10) + 0x3400);
         }
     }
 }
 #pragma pop
 
 void TQuestVmDownLoadServer::set_active() {
-    *(s32 *)((s8 *)file_page_cache_head + 4) = 1;
+    file_page_cache_head->state = 1;
 }
 
 u8 *TQuestVmDownLoadServer::get_cached_page(s32 page) {
     u8 unused[0x38];
-    Page_803E7B9C *prev = NULL;
-    Page_803E7B9C *p = HEAD_803E7B9C;
+    QuestDownloadCachePage *prev = NULL;
+    QuestDownloadCachePage *p = file_page_cache_head;
 
     for (;;) {
-        if (p->page == page) {
+        if (p->pageIndex == page) {
             if (prev != NULL) {
                 prev->next = p->next;
-                p->next = HEAD_803E7B9C;
-                HEAD_803E7B9C = p;
+                p->next = file_page_cache_head;
+                file_page_cache_head = p;
             }
-            return p->data;
+            return p->bytes;
         }
         if (p->next == NULL) {
             break;
@@ -736,19 +728,19 @@ u8 *TQuestVmDownLoadServer::get_cached_page(s32 page) {
         p = p->next;
     }
     prev->next = NULL;
-    p->next = HEAD_803E7B9C;
-    HEAD_803E7B9C = p;
-    if (p->dirty == 1) {
-        if (Seek_803E7B9C(p->page * 0x400 + 0x3400) != -1) {
+    p->next = file_page_cache_head;
+    file_page_cache_head = p;
+    if (p->state == 1) {
+        if (Seek_803E7B9C(p->pageIndex * 0x400 + 0x3400) != -1) {
             Write_803E7B9C();
         }
     }
-    p->page = page;
-    p->dirty = 0;
-    if (Seek_803E7B9C(p->page * 0x400 + 0x3400) != -1) {
-        TQuestVmDownLoadServer::aram_dma_read((void *)quest_download_file_handle, p->data, 0x400);
+    p->pageIndex = page;
+    p->state = 0;
+    if (Seek_803E7B9C(p->pageIndex * 0x400 + 0x3400) != -1) {
+        TQuestVmDownLoadServer::aram_dma_read((void *)quest_download_file_handle, p->bytes, 0x400);
     }
-    return p->data;
+    return p->bytes;
 }
 #pragma pop
 
@@ -1068,22 +1060,22 @@ s32 TQuestVmDownLoadServer::read_ask_header() {
 
 void TQuestVmDownLoadServer::init_page_cache() {
     Cache_803E840C *c;
-    Page_803E840C *p;
-    Ent_803E840C *e;
+    QuestDownloadCachePage *p;
+    QuestDownloadCacheEntry *e;
     u32 i;
     c = (Cache_803E840C *)&quest_vm_download_server_file_info;
-    *(Page_803E840C **)&file_page_cache_head = p = c->pages;
-    for (; p < &c->pages[9]; p++) {
-        p->page = -1;
-        p->dirty = 0;
+    file_page_cache_head = p = c->cache.pages;
+    for (; p < &c->cache.pages[9]; p++) {
+        p->pageIndex = -1;
+        p->state = 0;
         p->next = p + 1;
     }
-    p->page = -1;
-    p->dirty = 0;
+    p->pageIndex = -1;
+    p->state = 0;
     p->next = NULL;
-    e = c->ents;
+    e = c->cache.entries;
     for (i = 0; i < 128; i++) {
-        e[i].a = 0;
+        e[i].referenceCount = 0;
     }
 }
 
