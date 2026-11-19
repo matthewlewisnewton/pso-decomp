@@ -2,16 +2,16 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-All eleven local review groups and the three follow-up commits were replayed on `3f35d99bb1`. The cumulative stack at `3b34b9def9` changes 1,364 paths counting both sides of renames. The matching all-source stack is `f316df63ad`. The snapshots on `c572111ed6` remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `bfbb029994` changes 1,367 paths counting both sides of renames. The all-source snapshot is `93122b81a9`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
 | `great-merge/current/network-contracts` | `f68c619ed6` | `756d4a874b` |
 | `great-merge/current/memory` | `f69270a9e6` | `96b4cca0db` |
-| `great-merge/current/resource-lifetimes` | `fcab64f825` | `16772fda0f` |
+| `great-merge/current/resource-lifetimes` | `665123cc84` | `16772fda0f` |
 | `great-merge/current/spatial-effects` | `00d9ae7483` | `1b33f02f81` |
 | `great-merge/current/combat` | `e566cc2ccd` | `de49f74be1` |
-| `great-merge/current/encounter-drawing` | `5101697a58` | `9445c1e728` |
+| `great-merge/current/encounter-drawing` | `1001dd7640` | `9445c1e728` |
 | `great-merge/current/window-frames` | `73da7884fb` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
@@ -21,6 +21,8 @@ All eleven local review groups and the three follow-up commits were replayed on 
 | Audio file-system callbacks | Included in its review branch | `50bc7543d7` |
 | Barba Ray and Olga Flow encounter records | Included in its review branch | `3b34b9def9` |
 | Enemy action, targeting and resource names | Included in its combat review | `0cce15ee15` |
+| Stream entries, AFS tag and CVFS diagnostics | Included in its resource review | `132daf866a` |
+| Dark Falz scene parts and Gol Dragon model override | Included in its encounter review | `bfbb029994` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -35,6 +37,14 @@ The combat review at `e566cc2ccd` and cumulative stack at `0cce15ee15` carry 30 
 All 2,451 combat and 2,450 cumulative compiled source objects preserve the preceding allocated sections, symbol locations and relocations after the 30 aliases are mapped by original address and size. The working fork compiles the same 2,450 source objects. Every renamed method has one definition per build, matches its extracted instruction bytes, and has no stale reference. The upstream checker passed in object-report mode for both the combat review and cumulative stack. The executable hash remains unverified on this base.
 
 The address comparison against fork main found zero lost matched or linked functions and zero lost non-padding data ranges. The stock report flags a net decrease of 2,358 bytes of aggregate data coverage. Its address rows account for 2,521 bytes of removed alignment padding and 163 bytes of added coverage. The previous range ledger remains valid because every allocated section and relocation is preserved.
+
+### Streaming diagnostics and encounter models
+
+The resource-lifetimes review at `665123cc84` carries 21 names from the fork. The stream table names its four entries, the two creation diagnostics keep their call sites, and the AFS tag and fourteen live CVFS diagnostics keep the same addresses. The encounter review at `1001dd7640` carries two Dark Falz draw methods, seven scoped strip and frame constants, and the Gol Dragon model override. The two Dark Falz scene classes use model and texture pointers in their shared part layout. Gol Dragon uses the native Ninja model structure for its cloned node override.
+
+The standalone resource review compiled 2,450 source objects and the encounter review compiled 2,449. The cumulative stack and working fork each compiled 2,450. Every selected input has the same allocated contents and relocation destinations as its reference after resolving the new names to their original addresses. The three renamed exports have one provider each. Each named private record has the original bytes and offset. The stock checker passed in object-report mode against current upstream for both reviews and the cumulative stack. The address comparison against fork main still has no lost matched or linked code or non-padding data. The executable hash on this base remains unverified.
+
+The source index gives partial evidence for eight historical paths and closes the Nano Drago and main-menu header records. Their complete declarations and comments survive in order and linkage at the current owners, including the ancestor-side removals. The index has 1,741 entries awaiting owner comparison and 514 with partial evidence. The layer check and eleven unit tests passed, and the disposable workspace still reproduces all 133 tooling paths.
 
 ## Consolidated review queue on `c572111ed6`
 
