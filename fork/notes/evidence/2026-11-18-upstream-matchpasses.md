@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `ce18186367` and the complete source snapshot at `ae11653726` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `b7468e6f16` and the complete source snapshot at `3a5297fa66` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -161,6 +161,14 @@ The 10-file replay at `ce18186367` carries the native source from `0550bf24c1`, 
 The local review at `7cb3ebf845` extends the existing world-resource review `2c74919ee9` on `af11a99125`. The full review covers 29 files and retains 401 exact functions across 15 affected source units. The new component `5d9be6d4ed` and cumulative replay each retain 41 exact functions across five affected units. The constructors remain at `0x80195400` and `0x80197490`. Both 52-byte virtual tables and their original relocations remain in the same locations. The five builds reproduce the retail executable and pass the project checker. The two upstream-shaped builds inherit the existing 24-byte keyboard-table gap. The cumulative source and working fork retain that table and all matched and linked address coverage from fork main.
 
 Linked checks passed 32 particle constructions with their flag words and emitter pointers, 96 radar transitions and both visible and hidden states for the two cave signs. Each visible sign drew all nine models in the original order and balanced nine matrix pushes and three effect pairs. All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles five source or declaration paths and adds evidence for five other paths.
+
+## Native ending walls, pictures and scene startup
+
+The seven-file component at `3a5297fa66` carries the ending wall and picture controllers from `11d8ab092c` and `8dd092872c` into their current scene owners. Their native constructors keep the 0xF0-byte allocation and six textured quads. The scene startup constructs both children with the original parents. The wall controller uses the shared Ginja texture layout to bind four 14-entry texture lists at 0x8048E840. The existing camera startup already emits the two constants recovered in `2259468d9c` at their original locations.
+
+The local review `901b8c33ff` adds the ending replay to the title and compass work at `fb95d7b4a9` for a 40-file review based on `af11a99125`. The component is also available at `e0889a9809`. All five builds reproduce the original executable and pass the project checker. All 35 functions in the four affected scene units still match and link. The cumulative source and working fork retain the historical fork's matched and linked addresses. The upstream-shaped builds inherit the existing 24-byte keyboard virtual table gap at 0x804D0004.
+
+Linked execution checked both controllers at 30 and 25 ticks per second, covering four constructions, 104 transition cases, ten archive selections and 56 texture entries. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Nine rows of the [fork source index](2026-11-18-fork-review-index.tsv) carry the corresponding evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
