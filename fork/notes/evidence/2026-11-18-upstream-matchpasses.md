@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `a62c10cd43` and the complete source snapshot at `b2359e82ad` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `313c0f88bc` and the complete source snapshot at `7b7758db44` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -33,6 +33,16 @@ The 44-file replay at `a62c10cd43` carries the fork's typed creation menu icons,
 The standalone review at `5430552ee1` is one commit directly on upstream master `af11a99125`. Both source branches and the working fork reproduce the retail DOL and pass the project checker. Six renamed exports retain their addresses and sizes. The 30 source-linked units retain all 583 exact functions, 50 original calls to the recovered interfaces, and 352 original bytes in the nine checked icon, heading and fade data ranges. The standalone review preserves upstream's coverage. The combined stack retains the keyboard table through the window review.
 
 All 133 overlay paths round-trip and all eleven fork layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 10 records and adds evidence to 7 others. It has 1,173 records awaiting comparison and 864 with partial evidence.
+
+## Texture inputs and compass sprites
+
+The 19-file source replay at `313c0f88bc` draws from `1539d9b78d`, `d1a35e4a99`, `fc3ec799fb` and `e52b2c722a`. The shared 0x24-byte Ginja input types configuration and entry registration for the menu font, image buffers, archive requests, captures, signboard, and effects. The radar and lobby share the 0x20-byte sprite descriptor and 0x14-byte frame layout. The radar loader, release path, binder and descriptor all use the same typed texture-list slot at `0x805D5F4C`.
+
+The 24-file standalone review at `3c9cccdd7a` is one source commit directly on upstream master `af11a99125`. It includes upstream's texture-entry layout and the corresponding field references. It keeps upstream's allocation and release calls. All four source builds reproduce the retail DOL and pass the project checker. The combined branches retain all 215 exact functions in 13 affected units. The standalone retains 243 exact functions in 16 units. All four retain the same 24 direct retail calls to the four checked entry points and 316 exact bytes in seven original data ranges. Address coverage has no losses relative to each parent. The standalone inherits the upstream keyboard-table baseline, and the combined stack retains the 24 bytes through the window review.
+
+All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 4 records and adds evidence to 15 others. It has 1,162 records awaiting comparison and 871 with partial evidence.
+
+The bulk replay preview used the fork's first-parent branch point `1f2ecc1887` and current source ownership. Of 218 unambiguous whole-file mappings, 21 have a clean candidate, two already reproduce the current file, and 91 have changes outside overlapping sections. The remaining 104 need a closer comparison. The preview is a routing aid. Each candidate still needs source review and a build.
 
 ## Standalone reviews on upstream master `af11a99125`
 
