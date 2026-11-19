@@ -1,5 +1,20 @@
 # Upstream matchpasses
 
+## Rebuilt on upstream master after PR 325
+
+Upstream [PR 325](https://github.com/zeroz41/pso-decomp/pull/325) consolidated game source files and recovered additional data. Both the combined nineteen-review branch `great-merge/verify-nineteen` at `4aaee804a2` and full integration at `2ea980a848` build on that master (`2ad5dece70`). The builds reproduce GPOE8P SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All 27,572 functions and 2,529 source-linked units are exact. Both pass the upstream PR checks with 26,322 required linker entries. Matched data increases by 764 bytes over this master, to 1,747,103. The integration test suite passed all 294 tests.
+
+The native comparison against fork main found zero lost matched or source-linked functions or data ranges on either build. The report flags a 2,045-byte decrease in total data extent. Its address records account for 2,200 bytes of original alignment padding leaving coverage and 155 bytes entering coverage. The [range ledger](2026-11-18-fork-data-ranges.md) tracks the smaller, original 1,147-byte inventory separately.
+
+| Local review rebuilt directly on this master | Files | Commit |
+| --- | ---: | --- |
+| Radar and shared camera records | 22 | `e26535409b` |
+| Quest download cache and name pages | 9 | `169252cbc2` |
+| Guild cards and chat windows | 84 | `e2b6da332f` |
+| BML archive lifecycle and filename lists | 16 | `cbd518de3f` |
+
+Each of these four local branches independently passed the upstream checks. The guild-card branch includes the earlier chat-window review. The nineteen-group build passed the retail and rebuilt checks for radar, quest downloads, guild cards, archive lists, battle tables, CRI streaming, scene reads, texture strips, encounter trails, result pages and combat techniques. The socket queue checks also passed. Older baseline-specific measurements follow below.
+
 ## Review groups closing the data inventory
 
 Four upstream submissions and ten local reviews reproduce retail when combined at `great-merge/verify-fourteen` (`5d66c65409`). The last 72 inventory bytes fit into the following three reviews. The [ledger](2026-11-18-fork-data-ranges.md) records each range.
@@ -42,28 +57,28 @@ Three local review branches build directly on upstream revision `b2cac76477`. Th
 
 ## Remaining integration changes by review group
 
-`great-merge/pending-reviews` starts on the nineteen-group build. The [group index](2026-11-18-remaining-integration-groups.tsv) assigns the remaining 5,122 edit blocks across 789 paths to 18 local commits. The final source at `59b5983cc4` equals integration `ccfeb84258` outside `fork/`. None of these review commits carries the fork documentation.
+`great-merge/pending-reviews` starts on the nineteen-group build at `4aaee804a2`. The [group index](2026-11-18-remaining-integration-groups.tsv) assigns 5,120 remaining edit blocks across 789 paths to 18 local commits. The final source at `f719af0bcc` equals integration `2ea980a848` outside `fork/`. Every review commit excludes the fork documentation.
 
 | Group | Local commit | Paths |
 | --- | --- | ---: |
-| Archive and renderer interfaces | `efc66f0927` | 40 |
-| Array allocation and release | `5e5f02b6d7` | 29 |
-| Enemy model archives and attachments | `e5dde3d4a0` | 76 |
-| Dark Falz models, textures and effect lifetimes | `040a3220d7` | 33 |
-| Boss models and effect resources | `1c0bad1e39` | 71 |
-| Lobby, NPC and ambient models | `04c52d81e4` | 64 |
-| Stage scenery and map models | `90ba13855b` | 43 |
-| Doors, switches and trap models | `b01aadc7ae` | 68 |
-| Player equipment, techniques and effects | `8534c513e5` | 85 |
-| Character creation and menu models | `a18fcd19fe` | 53 |
-| Window frame and layout | `7bafff01e5` | 74 |
-| Chat, lists and option windows | `45b81b8ea5` | 58 |
-| Shop, status and battle windows | `dc0b957a74` | 66 |
-| Resource buffers and player motion archives | `a14ad50308` | 25 |
-| Area sound and disc streaming | `b1334c2ebb` | 10 |
-| Collision, rendering and compiler checks | `eb3c3c8156` | 9 |
-| Fork build reports and contributor handoffs | `f42db5a44d` | 14 |
-| Fork batch integration and validation | `59b5983cc4` | 19 |
+| Archive and renderer interfaces | `eb355f89e0` | 40 |
+| Array allocation and release | `886cd6a24d` | 29 |
+| Enemy model archives and attachments | `4e9788da34` | 76 |
+| Dark Falz models, textures and effect lifetimes | `3f8d32ad9b` | 33 |
+| Boss models and effect resources | `8fef142449` | 71 |
+| Lobby, NPC and ambient models | `aeecf758ed` | 64 |
+| Stage scenery and map models | `c7e850822e` | 43 |
+| Doors, switches and trap models | `dd9a8ad3e5` | 68 |
+| Player equipment, techniques and effects | `16f50b2d27` | 85 |
+| Character creation and menu models | `1d6f151bac` | 53 |
+| Window frame and layout | `7c752d5751` | 74 |
+| Chat, lists and option windows | `9ff0ed4a1d` | 58 |
+| Shop, status and battle windows | `2010b47058` | 66 |
+| Resource buffers and player motion archives | `0fd0893dc6` | 25 |
+| Area sound and disc streaming | `13ba358298` | 10 |
+| Collision, rendering and compiler checks | `9d12d1f35e` | 9 |
+| Fork build reports and contributor handoffs | `a381a8d037` | 14 |
+| Fork batch integration and validation | `f719af0bcc` | 19 |
 
 The first sixteen rows are candidates for upstream review. The last two preserve the fork’s contributor and batch tools for a separate disposition. Their implementations remain recoverable in Git. Keep only the documentation as a lasting fork-specific difference when the source branches converge. The earlier review sequence through `great-merge/review-slices` at `55a4d83f3d` also reproduces the integrated source outside `fork/`.
 

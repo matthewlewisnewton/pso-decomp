@@ -1,5 +1,10 @@
 # Fork data coverage at the November 18 sync point
 
+## After upstream PR 325 landed
+
+Upstream master `2ad5dece70` has 716 bytes still missing across 33 of the 90 original inventory rows. PR 325 closed 32 bytes since the previous upstream build. The [per-range column](2026-11-18-fork-data-ranges.tsv) gives the residual at each original address. Both the combined nineteen-group build `4aaee804a2` and the full integration build `2ea980a848` preserve all fork-matched and source-linked data ranges. Both reproduce the retail GPOE8P executable. In the newly consolidated De Rol Le dust unit, aligning the origin constant to eight bytes reproduces the four original padding bytes at 0x805D85B4 and places the five controller constants at 0x805D85B8–0x805D85CB.
+
+
 Original fork inventory at `8937534387e0ee55dc2bdce311b90642d922ea4a`. Upstream master `92a266f5ebb72b0fce6f1ca70b690d0464779d7a`. The initial eight-byte checkpoint is `ef2ca77a86` on `great-merge/fork-data-ranges`. Its changes now open the front-end scenes matchpass.
 
 ## Fourteen review groups close the inventory
