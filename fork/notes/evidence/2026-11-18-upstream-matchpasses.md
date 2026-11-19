@@ -107,9 +107,13 @@ Commit `8e9c7309f9` adds 62 paths to the same actor animation review. The fork's
 
 The branch, the cumulative source at `292b7e793c` and the working fork each compiled 667 affected translation units. Allocated sections, symbols and relocation targets agree with their prior objects after mapping the three renamed symbols. This check includes NPC data records and uses each tree's prior objects as its baseline. All 294 fork tests passed.
 
+### Actor motion and parameter data names
+
+Commit `b363e57965` carries 38 names from fork commit `ff61f623a6` for the Gee, Gi Gue, Morfos, Shark, Berura, Stelth, Gryphon and Olga Flow data. The names still identify the same records on fork main. The corresponding addresses, section, linkage metadata, storage and references stay consistent across the review and combined source. Ten affected translation units per build preserve their allocated code and data sections and relocation targets after resolving the renamed symbols. The fork retention check and 294 fork tests passed. The cumulative source commit is `34b52ae04b`.
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `292b7e793c` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `34b52ae04b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
