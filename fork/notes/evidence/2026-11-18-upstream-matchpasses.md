@@ -1,5 +1,30 @@
 # Upstream matchpasses
 
+## Bulk replay on upstream master `6b080e67ab`
+
+The new upstream build reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` and passes the project checker. The [90-range data ledger](2026-11-18-fork-data-ranges.tsv) records 980 source-linked bytes and 167 bytes of alignment padding. Upstream links the final 24-byte keyboard table at `0x804D0004`. The address comparison with the historical retail-matched fork build reports zero exact or source-linked losses.
+
+Three-way replay applied 13 existing review groups directly to the new upstream master. The network review needed four overlapping files reconciled around the upstream native socket classes and the fork's shared datagram layout. All 14 local heads are single commits on `6b080e67ab`, reproduce retail, pass `tools/check_pr.py`, and retain comparable exact and linked coverage from the historical fork. Each review contains source changes only. The overlapping component reviews are available for integration and grouping.
+
+| Local review | Head | Changed files |
+| --- | --- | ---: |
+| `stage-traps-and-resources` | `000cc1dbe8` | 66 |
+| `enemy-archives-and-appearance` | `660fa19579` | 83 |
+| `quest-inventory-and-resource-lists` | `951537b5fe` | 44 |
+| `player-techniques-and-item-effects` | `c780db3055` | 71 |
+| `camera-and-radar-views` | `7d296c4b1a` | 25 |
+| `window-menus-and-controller-flags` | `2ffe296480` | 25 |
+| `photon-blast-sequence-and-effects` | `a1d5cdd5be` | 15 |
+| `title-compass-and-ending-scenes` | `e7879a64c5` | 40 |
+| `dragon-attacks-and-material-fades` | `4a54365dba` | 59 |
+| `resource-lifetimes` | `6132f74a35` | 224 |
+| `encounter-drawing` | `77961d8d48` | 153 |
+| `world-object-resources` | `b9a70258fa` | 95 |
+| `stage-objects-and-weather` | `52b5c14a44` | 37 |
+| `network-startup-and-packet-lifetime` | `d892292ba8` | 60 |
+
+The cumulative draft began with 85 overlapping paths. It has 69 unresolved paths after applying the socket group and the equivalent declaration and method rewrites. Most remaining overlaps share the keyboard and draw-context class changes. Replay those interfaces and their callers as a family, then verify the combined build and apply the fork-only layer. The validated cumulative refs still point to `af11a99125`-based builds. All branch updates in this pass were local.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
