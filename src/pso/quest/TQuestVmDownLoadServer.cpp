@@ -181,7 +181,6 @@ SubtractiveRng TQuestVmDownLoadServer__rng_cipher_state;
 __declspec(section ".data") u32 download_rng_seed_pair[2];
 u32 create__13TAdMcSelectGCFPv(s32);
 s32 get_memcard_free_files(s32);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32, int);
 u8 *init_shop_judgment_window(void *p);
 s32 TQuestVmDownLoadServer__sub_801F8538(void *data, s32 size);
 s32 draw_window_bg__23TAdSinglePlyChrSelectGCFllll(s32, void *, s32, s32);
@@ -811,7 +810,7 @@ void TQuestVmDownLoadServer::check_memcard_slot() {
         slot = t;
     }
     if (TAdPlayerLoadGC::probe_card_slot(slot) != 0 && TAdPlayerLoadGC::probe_and_check_card(slot) != 0) {
-        cap = query_memcard_capacity__15TAdPlayerLoadGCFl(slot, 0);
+        cap = TAdPlayerLoadGC::query_memcard_capacity(slot, 0);
         switch (cap) {
         case -0xFD:
             seq = (u8 *)new TMCFormatSequence((TObject *)(void *)arg0, (void *)(void *)((void *)slot));

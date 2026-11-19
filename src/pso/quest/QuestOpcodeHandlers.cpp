@@ -4926,10 +4926,10 @@ void qst_op_player_effect_nc(u8 arg0) {
 void qst_op_has_ep3_save_file() {
     u8 reg = qst_args[0];
     s32 ok = 0;
-    if (TAdPlayerLoadGC::probe_card_slot(0) != 0 && TAdPlayerLoadGC::find_card_file(0, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result((void *)0) == 0) {
+    if (TAdPlayerLoadGC::probe_card_slot(0) != 0 && TAdPlayerLoadGC::find_card_file(0, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result(0) == 0) {
         ok = 1;
     }
-    if (ok == 0 && TAdPlayerLoadGC::probe_card_slot(1) != 0 && TAdPlayerLoadGC::find_card_file(1, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result((void *)1) == 0) {
+    if (ok == 0 && TAdPlayerLoadGC::probe_card_slot(1) != 0 && TAdPlayerLoadGC::find_card_file(1, "PSO3_CHARACTER") == 0 && TAdPlayerLoadGC::get_load_result(1) == 0) {
         ok = 1;
     }
     qst_registers[reg] = ok;

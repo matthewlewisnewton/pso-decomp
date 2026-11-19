@@ -34,8 +34,6 @@ extern "C" {
 s32 get_memcard_free_files(s32 chan);
 s32 poll_memcard_result(s32 chan);
 s32 start_memcard_format(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-s32 query_memcard_capacity__15TAdPlayerLoadGCFl(s32 chan, s32 arg1);
-s32 poll_load_status__15TAdPlayerLoadGCFl(s32 chan, const char *name);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(ControllerInputContext *context, s32 mask);
 TWindowMessage *update_window_mode_from_progress__6TLobbyFPv(const f32 *pos, const f32 *size);
 TWindowMenu *check_room_seq_4__16TAdChrSelASlotGCFl(const f32 *pos, s32 arg1);
@@ -328,7 +326,7 @@ void TAdTimeSetGC::close_and_next_cancel() {
 
 void TAdTimeSetGC::update_load_state() {
     if (is_load_complete() != 0) {
-        if (((TAdPlayerLoadGC *)0)->check_card_result_code() == 0) {
+        if (TAdPlayerLoadGC::check_card_result_code(0) == 0) {
             change_state(0x16);
             return;
         }
@@ -341,8 +339,7 @@ void TAdTimeSetGC::sub_802E2D3C() {
 }
 
 void TAdTimeSetGC::update_load_countdown() {
-    // check_card_result_code() is declared as a member, but takes the card slot.
-    if (((TAdPlayerLoadGC *)0)->check_card_result_code() == 0) {
+    if (TAdPlayerLoadGC::check_card_result_code(0) == 0) {
         change_state(0x16);
         return;
     }
@@ -370,7 +367,7 @@ void TAdTimeSetGC::close_scene() {
 }
 
 void TAdTimeSetGC::sub_802E2BD4() {
-    if (poll_load_status__15TAdPlayerLoadGCFl(0, pso_character_card_filename) == 0) {
+    if (TAdPlayerLoadGC::poll_load_status(0, pso_character_card_filename) == 0) {
         change_state(9);
     }
 }
@@ -403,7 +400,7 @@ void TAdTimeSetGC::sub_802E2AD4() {
 }
 
 void TAdTimeSetGC::advance_when_load_done() {
-    if (poll_load_status__15TAdPlayerLoadGCFl(0, pso_guildcard_card_filename) == 0) {
+    if (TAdPlayerLoadGC::poll_load_status(0, pso_guildcard_card_filename) == 0) {
         change_state(0xB);
     }
 }
@@ -759,7 +756,7 @@ s32 TAdTimeSetGC::check_capacity() {
     s32 files = count_flags();
     s32 blocks = count_selected_flags();
     s32 free_files = get_memcard_free_files(0);
-    s32 free_blocks = query_memcard_capacity__15TAdPlayerLoadGCFl(0, 0);
+    s32 free_blocks = TAdPlayerLoadGC::query_memcard_capacity(0, 0);
 
     if (files > free_files || blocks > free_blocks) {
         return 0;

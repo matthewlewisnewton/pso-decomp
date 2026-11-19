@@ -33,19 +33,19 @@ public:
 public:
     static s32 get_instance();
     static void set_state(int a0);
-    static void reset_load_state(void *arg0, void *arg1);
+    static void reset_load_state(s32 channel, u64 *serial_number);
     static void poll_card_load(s32 arg0);
-    s32 check_card_result_code();
+    static s32 check_card_result_code(s32 channel);
     static s32 probe_and_check_card(s32 chan);
-    static void unmount_card_and_clear_flags(s32 n);
+    static void unmount_card_and_clear_flags(s32 channel, s32 result);
     static void load_banner_files();
-    static s32 get_load_result(void * _w0);
+    static s32 get_load_result(s32 channel);
     static s32 build_save_file_image(void *image, void *desc);
     static s32 probe_card_slot(s32 chan);
     static s32 find_card_file(s32 chan, const char *name);
     static s32 check_memcard_status(s32 arg0);
-    static s32 query_memcard_capacity(s32 arg0);
-    static s32 poll_load_status(s32 arg0);
+    static s32 query_memcard_capacity(s32 channel, s32 unused);
+    static s32 poll_load_status(s32 channel, const char *name);
     static s32 get_or_set_channel_flag(s32 arg0, s32 arg1);
     static s32 get_load_state();
     static void step_set_attributes(s32 arg0);

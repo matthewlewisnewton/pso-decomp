@@ -1489,3 +1489,18 @@ Ground contacts and grounded effects	a3630f51a37028b22f8bea2761f9d4bb4b059c36	sr
 Ground contacts and grounded effects	a3630f51a37028b22f8bea2761f9d4bb4b059c36	src/pso/unk/text_8029E7BC.cpp	7
 Ground contacts and grounded effects	a3630f51a37028b22f8bea2761f9d4bb4b059c36	src/pso/unk/text_8029EC3C.cpp	7
 Ground contacts and grounded effects	a3630f51a37028b22f8bea2761f9d4bb4b059c36	src/pso/unk/text_80355970.cpp	6
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	config/GPOE8P/psov3/config.yml	1
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	config/GPOE8P/psov3/symbols.txt	6
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	include/pso/ui/frontend/TAdPlayerLoadGC.h	5
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/boss/derolle/TObjBoss2Tunnel.cpp	7
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/quest/QuestOpcodeHandlers.cpp	2
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/quest/TQuestVmDownLoadServer.cpp	2
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdChrSelBSlotGC.cpp	2
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdMcCheckGC.cpp	2
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdPlayerLoadGC.cpp	2
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp	37
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp	8
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp	4
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/frontend/TAdTimeSetGC.cpp	6
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp	4
+Memory-card operations	713dd64200ab061c9d832ac68f552179d4c5f4bf	src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp	1

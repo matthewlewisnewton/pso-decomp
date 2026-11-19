@@ -99,7 +99,7 @@ void TAdChrSelBSlotGC::reset_slot_state() {
 void TAdChrSelBSlotGC__sub_8030E550(void) {  }
 void TAdChrSelBSlotGC::update_load_state() {
     if (TAdPlayerLoadGC::get_instance() == 0) {
-        if ((u32) (TAdPlayerLoadGC::get_load_result((void *)1) + 0x10000) == 0xFF83U) {
+        if ((u32) (TAdPlayerLoadGC::get_load_result(1) + 0x10000) == 0xFF83U) {
             this->m_1c = 0x18;
             return;
         }
@@ -347,7 +347,7 @@ void update_slot_state__16TAdChrSelBSlotGCFPv(void *ad_chr_sel_b_slot_gc) {
         *(u32 *)((s8 *)ad_chr_sel_b_slot_gc + 0x70) = 0U;
     }
     if ((u32) (poll_memcard_result(1) + 0x10000) != 0xFFFFU) {
-        if ((((TAdPlayerLoadGC *)1)->check_card_result_code() != 0) && (poll_memcard_result(1) == 0)) {
+        if ((TAdPlayerLoadGC::check_card_result_code(1) != 0) && (poll_memcard_result(1) == 0)) {
             ((TAdChrSelBSlotGC *)ad_chr_sel_b_slot_gc)->m_74 = TAdChrSelASlotGC__sub_8030C688((TAdChrSelASlotGC *)(TAdChrSelBSlotGC::get_global_slot_data()), 1);
             ((TAdChrSelBSlotGC *)ad_chr_sel_b_slot_gc)->m_1c = 0xA;
             return;

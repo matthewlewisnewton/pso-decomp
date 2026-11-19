@@ -1163,13 +1163,13 @@ void init_fresh_character_slot(s32 arg0) {
 }
 
 s32 TAdPlayerLoadGC__sub_801FD770(void) {
-    u8 buf[8];
+    u64 serial_number;
     s32 i;
     if (card_character_save_buffer == 0) return 0;
     if (init_and_register__23TAdSinglePlyChrSelectGCFi((s32)card_character_save_buffer) == 0) return 1;
-    TAdPlayerLoadGC::reset_load_state((void *)0, (void *)buf);
+    TAdPlayerLoadGC::reset_load_state(0, &serial_number);
     for (i = 0; i < 8; i++) {
-        u8 b = buf[i];
+        u8 b = ((u8 *)&serial_number)[i];
         u8 a = ((u8 *)system_save_payload)[i + 0x110];
         if (a != b) return 1;
     }
@@ -1178,14 +1178,14 @@ s32 TAdPlayerLoadGC__sub_801FD770(void) {
 }
 
 s32 TAdPlayerLoadGC__sub_801FD814(void) {
-    u8 buf[8];
+    u64 serial_number;
     s32 i;
     u32 p = secondary_card_character_save_buffer;
     if (p == 0) return 0;
     if (init_and_register__23TAdSinglePlyChrSelectGCFi((s32)p) == 0) return 1;
-    TAdPlayerLoadGC::reset_load_state((void *)1, (void *)buf);
+    TAdPlayerLoadGC::reset_load_state(1, &serial_number);
     for (i = 0; i < 8; i++) {
-        u8 b = buf[i];
+        u8 b = ((u8 *)&serial_number)[i];
         u8 a = secondary_card_system_save_payload[i + 0x110];
         if (a != b) return 1;
     }
@@ -3793,7 +3793,7 @@ extern u32 guild_card_save_file_buffer;
 
 void reset_save_header__23TAdSinglePlyChrSelectGCFv(void) {
   volatile unsigned long long sp10;
-  s32 sp8;
+  u64 serial_number;
   memset((s32)((void *) system_save_payload), 0, 0x11C);
   *((s16 *) (((s8 *) system_save_payload) + 4)) = -0x32;
   *((s8 *) (((s8 *) system_save_payload) + 6)) = 0;
@@ -3801,8 +3801,8 @@ void reset_save_header__23TAdSinglePlyChrSelectGCFv(void) {
   *((s32 *) (((s8 *) system_save_payload) + 8)) = default_clock_offset_frames();
   *((s16 *) (((s8 *) system_save_payload) + 0xC)) = 0;
   *((s16 *) (((s8 *) system_save_payload) + 0xE)) = 0;
-  TAdPlayerLoadGC::reset_load_state((void *)0, &sp8);
-  memmove(system_save_payload + 0x110, &sp8, 8);
+  TAdPlayerLoadGC::reset_load_state(0, &serial_number);
+  memmove(system_save_payload + 0x110, &serial_number, sizeof(serial_number));
   getDateStamp((DateStamp *)(&sp10));
   DateToSeconds((DateStamp *)(&sp10), (int *)(system_save_payload + 0x118));
 }
