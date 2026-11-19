@@ -2,7 +2,7 @@
 
 ## Review branches on upstream PR 326
 
-Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. The fifteen branches combine on `great-merge/current/all-source` at `d5446188e8` across 708 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
+Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. The 19 branches combine on `great-merge/current/all-source` at `5cbffc94ab` across 947 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
 
 | Subject | Local branch | Commit | Paths from current master |
 | --- | --- | --- | ---: |
@@ -21,8 +21,14 @@ Upstream master `c572111ed6` reorganized 715 files. The branches below start dir
 | Recover guild-card records, chat windows and keyboard input | `great-merge/current/guild-card-chat` | `df16b13beb` | 82 |
 | Recover item-help dispatch and status window display data | `great-merge/current/item-help-status` | `372fd86847` | 10 |
 | Recover ground contact results and radial collision queries | `great-merge/current/collision-results` | `121062c25f` | 60 |
+| Recover byte and word copies and nullable heap release | `great-merge/current/memory-moves` | `6194d462e1` | 116 |
+| Recover array allocation and storage release across game systems | `great-merge/current/runtime-array-allocation` | `63c3f4ea45` | 156 |
+| Recover world-position particle factories and callers | `great-merge/current/particle-factories` | `a70dd5edd0` | 188 |
+| Recover positional sound requests and area-dependent effects | `great-merge/current/positional-sound` | `25b8532604` | 252 |
 
 The combined branch recovers all 296 source bytes still missing on master in the original inventory. Guild-card and keyboard work supplies the last 48 bytes of speech-balloon and keyboard dispatch tables. The item-help and status window component supplies the final 64 bytes from the broader window-list group. Other window-list source changes still require comparison. The 90-row [address ledger](2026-11-18-fork-data-ranges.tsv) accounts for 980 exact source-linked bytes and 167 bytes of verified alignment padding. Comparison with fork main finds zero lost exact or linked functions and zero lost non-padding data ranges. The executable checks also covered all eight guild cards, all 256 item-help window flag combinations, and the ground-contact and radial queries.
+
+Retail execution covered 40 overlapping, nonoverlapping and zero-length byte and word copies, 13 array allocation and release cases, and the nullable scalar release and file wrapper. The particle factories passed 30 cases. One-shot sound passed eight admission and position tests. Persistent sound passed its slot checks and four dispatch routines across all 36 floors. The allocation and copy changes belong together for review. The particle factories and positional sound share the spatial effect callers.
 
 The new upstream owners include the item archive loader, the small help font, Gifoie, the Dark Falz player fade, the character-creation ruler and the two weapon-effect files. The review patches retain those upstream owners. Executable probes covered radar gates, both encounter strip rings, battle tables, targeting, demo playback, character vectors, quest caching, save artwork, GVM archives, Olga Flow trail frames and weapon animation. The port retains the upstream identity matrix table and the named tunnel scroll speed at their verified addresses.
 

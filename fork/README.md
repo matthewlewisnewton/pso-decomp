@@ -1,6 +1,6 @@
 # Fork documentation and local tools
 
-Use `great-merge/integration` for the complete working fork. The native changes intended for upstream are on `great-merge/upstream/all-source`. Use the [source-only matchpass register](notes/evidence/2026-11-18-source-only-matchpasses.tsv) for independently tested review branches and the [pending index](notes/evidence/2026-11-18-upstream-source-groups.tsv) for additional subsystem drafts.
+The source port onto upstream master is on `great-merge/current/all-source`. Its [review queue](notes/evidence/2026-11-18-upstream-matchpasses.md) lists the independently validated components. `great-merge/integration` preserves the earlier working fork during the port. The [pending index](notes/evidence/2026-11-18-upstream-source-groups.tsv) records the earlier subsystem drafts.
 
 The maintainer wants the fork's tools to stay local. `great-merge/fork-tooling` preserves the working tools, probes, workflows, host checks and build helpers. The [original tool inventory](notes/evidence/2026-11-18-original-fork-tools.tsv) locates the exact version of each historical tool change, including archival copies under `fork/tooling/original/`. `great-merge/fork-docs` carries the fork's documentation on top of upstream master. The [matchpass history](notes/evidence/2026-11-18-upstream-matchpasses.md) records native checks, review dependencies and the published PRs.
 
