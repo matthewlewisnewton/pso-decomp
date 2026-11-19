@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `b0e659e91b` and the complete source snapshot at `9489a33655` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `1acf4a9819` and the complete source snapshot at `92f3bda8d4` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -185,6 +185,14 @@ The twelve-file replay at `9489a33655` carries native starlight construction and
 The combined local review `0701b795c1` extends creation effects and their color renderer `5430552ee1` to 53 files on `af11a99125`. All four builds reproduce the original executable and pass the project checker. The six affected source units retain all 88 original exact, source-linked functions. The cumulative branches retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
 
 Linked checks covered fifteen child constructions, four factory allocation and split-screen cases, thirty-six task visibility and movement cases and sixteen flag updates. The tests substitute the projection, vector math and allocation helpers and retain the scalar register saves around the child constructor. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Ten entries in the [fork source index](2026-11-18-fork-review-index.tsv) carry the source evidence.
+
+## Window controller flags and menu creation
+
+The 25-file replay `92f3bda8d4` carries the typed window-controller flag accessors from `9bd754054e` and the menu pointer stores from `cf65d957cd` into the current owners. The flags use the controller's 16-bit word at 0x1C and the child field at 0x3C. Shop lists and challenge item selection store the factory's TWindowMenu pointer directly. Character selection, the short list, room sequences and area warps all use the same factory declaration. Room and equipment-sell callers retain the original 16-bit client ID conversion.
+
+The local review `a19c782cfa` is based directly on `af11a99125`. All four builds reproduce the original executable and pass the project checker. All 570 functions in the nineteen changed source units stay exact and source-linked. The cumulative branches retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
+
+Linked execution covered 200 flag changes, 320 read-only queries, and 48 menu factory cases. The factory cases check the original allocation size, forwarded position, item count, client ID, and allocation-failure return through simulated allocation and construction. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Twelve entries in the [fork source index](2026-11-18-fork-review-index.tsv) record the corresponding evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
