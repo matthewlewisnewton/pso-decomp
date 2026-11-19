@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `a3f7ba1352` and the complete source snapshot at `f4edb367ce` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `db34d2e32f` and the complete source snapshot at `1e2fe01fbd` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -209,6 +209,14 @@ The eight-file cumulative replay `f4edb367ce` carries the native Photon Line fro
 The 15-file local review `640bb6049b` combines this component with the typed sequence, result owner and attachment work already integrated at `6db60a1081`. The complete review reproduces the retail executable on `af11a99125` and retains all 79 exact, source-linked functions in the six affected units. All cumulative builds reproduce retail and retain the historical fork's matched and linked addresses. The upstream-based branch inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
 
 Linked execution covered eight line constructions, sixteen path and hit-limit cases, and twenty Leilla setup cases with simulated allocation and engine callbacks. The fork-only overlay round-trips all 133 paths and passes all eleven tests. Ten entries in the [fork source index](2026-11-18-fork-review-index.tsv) carry the corresponding evidence.
+
+## Quest item operations and player inventory
+
+The three-file component `1e2fe01fbd` carries the typed inventory access and item data from `4430049671` and `ba1838d281`. Four quest opcodes use the native item record, slot and owner types. The player keeps its typed inventory pointer at 0xD00. Revival pickup and mag feeding keep the original item checks and now use typed item owners. The story quest traversal from `ce647f0670` was already present in full, apart from the current TLobby include path.
+
+The combined local review `59f1eaacb9` extends the quest lists, filenames and downloads review `8c7134e424` to 44 files on `af11a99125`. Its inventory calls retain the existing upstream-base entry points. The cumulative build uses the corresponding typed inventory methods already integrated there. All four builds reproduce the retail executable and pass the project checker. All 929 functions in the two changed source units remain exact and source-linked. The cumulative builds retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the existing 24-byte keyboard virtual table gap at 0x804D0004.
+
+Linked checks covered 24 inventory searches, 40 deletion cases and eight revival-item pickup cases with simulated item and inventory providers. They cover missing owners, byte sign extension, the upper destination limit, and the original behavior when the source and destination registers overlap. The fork-only overlay round-trips all 133 paths and passes all eleven tests. Four entries in the [fork source index](2026-11-18-fork-review-index.tsv) carry the corresponding evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
