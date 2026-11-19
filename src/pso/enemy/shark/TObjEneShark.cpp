@@ -965,7 +965,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     __construct_array(self->f3CC, (void *)__ct__15RenderFadeStateFv, __dt__15RenderFadeStateFv, 0x1C, 4);
     *(const char **)self = TObjEneShark_name_ref;
     self->m79(arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     self->f334 = self->f368;
     ((TObjEneShark *)self)->apply_clamped_mode_param();
     ((TObjEneShark *)self)->sub_800AC9DC(self->f368);
@@ -980,7 +980,7 @@ void *TObjEneShark__ct(void *arg0, void *arg1, void *arg2) {
     self->f350 = lbl_804915B4 + self->f334 * 0x1C;
     self->f33E = self->f32C;
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     initialize_enemy_photon_effect(self);
     self->f2AC = (s32)(182.04445f * (360.0f * ((TObjChara *)self)->random_ratio()));
     self->f33A = 0xF;

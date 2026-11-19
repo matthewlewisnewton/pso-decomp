@@ -44,7 +44,7 @@ TObjNpcMaleTall *TObjNpcMaleTall__ct(TObjNpcMaleTall *npc, TObjControl *control,
     *(s32 **)((u8 *)npc + 0x18) = __vt__15TObjNpcMaleTall;
     npc->m_name = TObjNpcMaleTall__name;
     npc->apply_set_data(set_data);
-    ((TObjPlayer *)npc)->init_position_vectors();
+    ((TObjChara *)npc)->initialize_position_copies();
     npc->model = (void *)TObjNpcMaleTall__shared_model_resource->models->model;
     npc->texlist = (s32)TObjNpcMaleTall__shared_model_resource->models->m_c;
     npc->setup_common();

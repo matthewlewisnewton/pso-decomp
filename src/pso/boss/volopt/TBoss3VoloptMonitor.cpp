@@ -280,7 +280,7 @@ void TBoss3VoloptMonitor::run_task() {
     dispatch_state();
     update_prev_position();
     if (obj_testFlags30(0x800) == 0) {
-        ((TBoss3VoloptHiraisin *)this)->copy_position();
+        ((TObjChara *)this)->copy_body_to_center();
         submit_cursor_candidate(this, -1);
         minimap_render_dot(&position, -0x5DB4, 1, 0);
     }
@@ -482,8 +482,8 @@ void TBoss3VoloptMonitor::spawn_effects() {
     angle[0] = 0;
     angle[1] = this->rotation.yaw;
     angle[2] = 0;
-    spawn_directional_particle(&m_2fc, angle, (slot & 3) == 0 ? 0x62 : 0x61);
-    spawn_particle_effect((const Vec *)&m_2fc, 0x45);
+    spawn_directional_particle(&body_center_position.x, angle, (slot & 3) == 0 ? 0x62 : 0x61);
+    spawn_particle_effect(&body_center_position, 0x45);
 }
 
 void TBoss3VoloptMonitor::set_hit_flags_and_notify() {

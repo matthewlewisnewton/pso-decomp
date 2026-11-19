@@ -197,9 +197,9 @@ void TOVS2Wall01::spawn_debris(s32 index) {
         { 1024, 256, 1024 }, { 1, 20 }, { 0.0f, 0.6f }, 0, 0, 20,
     };
 
-    params.pos[0] = m_2fc;
-    params.pos[1] = m_300;
-    params.pos[2] = m_304;
+    params.pos[0] = body_center_position.x;
+    params.pos[1] = body_center_position.y;
+    params.pos[2] = body_center_position.z;
     params.pad_38[0] = position.y;
     params.model = (s32)get_bml_model(TOVS2Wall01__bml_resource, index);
     params.textures = (s32)get_bml_texlist(TOVS2Wall01__bml_resource, index);

@@ -113,7 +113,7 @@ void TObjNpcBase::setup_common() {
     init_collision_body_parts(self, npc_base_collision_body_desc, 1);
     ((TObjPlayer *)self)->register_object_by_id();
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     this->apply_set_params(0, 1);
 }
 
@@ -367,7 +367,7 @@ void TObjNpcBase::update_wandering() {
         if (100.0f < horizontal_distance_squared(&v, (u8 *)&this->position)) {
             Vec d = v;
             select_enemy_destination(arg0, &d, 0);
-            *(f32 *)((s8 *)arg0 + 0x308) = this->m_310 = 0.0f;
+            *(f32 *)((s8 *)arg0 + 0x308) = this->movement_velocity.z = 0.0f;
             this->phase = 1;
             this->request_action(1);
         }
@@ -383,7 +383,7 @@ void TObjNpcBase::update_wandering() {
             this->play_voice();
         }
         {
-            f32 dist = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->m_2fc);
+            f32 dist = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->body_center_position.x);
             r = *(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4) + *(f32 *)((s8 *)(*(u8 * *)&this->bodies) + 0xC);
             if (dist < r * r || (*(u32 *)((s8 *)(*(u8 * *)&this->bodies) + 0x18) & 0x380000)) {
                 this->phase = 3;
@@ -661,7 +661,7 @@ void TObjNpcBase::run_task() {
   advance_animation();
   this->update_prev_position();
   new_var = ((u8 *)this);
-  ((TBoss3VoloptHiraisin *)new_var)->copy_position();
+  ((TObjChara *)new_var)->copy_body_to_center();
   if ((((s32)this->m_3a8) > 0) && (TRaderMapCore::is_not_split_screen() == 0))
   {
     submit_cursor_candidate((void *) this, -1);

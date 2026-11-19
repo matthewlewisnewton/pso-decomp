@@ -217,7 +217,7 @@ TUnk_804B08BC::TUnk_804B08BC(void *set_data) : TUnk_804B6C24(tl_05, set_data) {
     init_collision_body_parts(this, &TOContainerAncientEnemy__collision_body_params, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += TOContainerAncientEnemy__collision_body_params.offset.y;
     model = (void *)get_bml_model(ancient_container_resource_bundle, 0);
     texlist = (s32)get_bml_texlist(ancient_container_resource_bundle, 0);
@@ -379,7 +379,7 @@ TOContainerAncientEnemy::TOContainerAncientEnemy(void *set_data) : TUnk_804B6C24
     init_collision_body_parts(this, &TOContainerAncientEnemy__collision_body_params, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += TOContainerAncientEnemy__collision_body_params.offset.y;
     model = (void *)get_bml_model(ancient_container_resource_bundle, 0);
     texlist = (s32)get_bml_texlist(ancient_container_resource_bundle, 0);

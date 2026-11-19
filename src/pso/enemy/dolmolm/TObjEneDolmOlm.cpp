@@ -380,7 +380,6 @@ s32 rotate_vector_by_matrix(int, void *, void *);
 extern RecoveredGlobal_80300FC0_lbl_8058D490 identity_matrix;
 s32 check_path_obstructed(void *, void *);
 void check_path_ahead__14TObjEneDolmOlmFlf(u8 *arg0, s32 arg1, f32 farg0);
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
 s32 submit_cursor_candidate(void *, int);
 s32 TObjEneDolmOlm__sub_80301C3C(void *);
 extern u32 TObjEneDolmOlm__resource_bundle;
@@ -601,7 +600,7 @@ TObjEneDolmOlm::TObjEneDolmOlm(s32 arg1, s32 arg2) : TUnk_80493450((TObject *)ar
     __ct__13TUnk_80494938Fv((((u8 *)this) + 0x3A8));
     m_name = obj_ene_dolm_olm_class_name;
     this->apply_set_data((void *)arg2);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     this->sub_80301148();
     *(void * *)&this->action_table = TObjEneDolmOlm__param_table;
     this->set_field_d8((s32)(*(void * *)&this->action_table));
@@ -614,7 +613,7 @@ TObjEneDolmOlm::TObjEneDolmOlm(s32 arg1, s32 arg2) : TUnk_80493450((TObject *)ar
     *(u8 * *)&this->movementParameters = (u8 *) lbl_804E6898 + *(s32 *)&this->variant * 0x1C;
     this->referenceHp = this->hp;
     this->advance_position();
-    copy_position__20TBoss3VoloptHiraisinFv(this);
+    ((TObjChara *)this)->copy_body_to_center();
     initialize_enemy_photon_effect(this);
     *(s32 *)&this->m_2ac = 182.04445f * (360.0f * ((f32 (*)(void *)) random_ratio__9TObjCharaFv)(this));
     *(s16 *)&this->resetTimer = 0xF;
@@ -799,7 +798,7 @@ void TObjEneDolmOlm::run_task() {
     }
   }
   this->advance_position();
-  copy_position__20TBoss3VoloptHiraisinFv((void *) ((u8 *)this));
+  ((TObjChara *)this)->copy_body_to_center();
   submit_cursor_candidate((void *) this, -1);
   if (((RecoveredFields_8030247C_arg0 *) ((u8 *)this))->field_3E4 & 0x4000)
   {
@@ -1280,8 +1279,8 @@ void TObjEneDolmOlm::vfunc_60() {
     }
 }
 void TObjEneDolmOlm::advance_position() {
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
-    this->m_300 += 20.0f;
+    VecCopy(&this->body_center_position, (const Vec *)&this->position);
+    this->body_center_position.y += 20.0f;
 }
 void TObjEneDolmOlm::request_stand_action() { this->requested_action = 1; }
 #pragma push

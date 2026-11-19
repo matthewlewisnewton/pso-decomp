@@ -134,7 +134,7 @@ void TOTrapAncient02R::submit_cursor_and_notify() {
 TOTrapAncient02::TOTrapAncient02(TObject *parent, void *set_data) : TOTrap(parent) {
     m_name = TOTrapAncient02__name;
     apply_object_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     calc_attach_pos();
     model = (void *)TOTrapAncient02__shared_resource->models->model;
     texlist = (s32)TOTrapAncient02__shared_resource->models->m_c;
@@ -488,7 +488,7 @@ void TOTrapAncient02::vfunc_86() {}
 TOTrapAncient02R::TOTrapAncient02R(TObject *parent, void *set_data) : TOTrapAncient02(parent, set_data) {
     m_name = TOTrapAncient02R__name;
     apply_object_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     calc_attach_pos();
     model = (void *)TOTrapAncient02__shared_resource->models->model;
     texlist = (s32)TOTrapAncient02__shared_resource->models->m_c;
@@ -601,7 +601,7 @@ void TOTrapAncient02R::vfunc_81() {
                     phase = 2;
                     VecCopy(&scratch_vec, &position);
                     scratch_vec.y += h344 + h348;
-                    VecCopy(&lbl_8050BF00, (Vec *)&((TObjChara *)target)->m_2fc);
+                    VecCopy(&lbl_8050BF00, &((TObjChara *)target)->body_center_position);
                     subtract_vector(&lbl_8050BF00, &scratch_vec);
                     if (((TObjBoss2Tunnel *)&lbl_8050BF00)->update_scale() < 1e-5f) {
                         lbl_8050BF00.x = lbl_8050BF00.y = 0.0f;
@@ -630,13 +630,13 @@ void TOTrapAncient02R::vfunc_81() {
                         break;
                     }
                     case 0:
-                        TTecFoie::create_ex(this, &scratch_vec, (Vec *)&((TObjChara *)target)->m_2fc, (void *)tech_level);
+                        TTecFoie::create_ex(this, &scratch_vec, &((TObjChara *)target)->body_center_position, (void *)tech_level);
                         break;
                     case 2:
                         ((TTecGiBarta *)this)->create_ex(&scratch_vec, (void *)ang, (void *)tech_level);
                         break;
                     case 3:
-                        TTecMegid::create((s32)this, (s32)&scratch_vec, (s32)(Vec *)&((TObjChara *)target)->m_2fc, tech_level);
+                        TTecMegid::create((s32)this, (s32)&scratch_vec, (s32)&((TObjChara *)target)->body_center_position, tech_level);
                         break;
                     case 4:
                         TTecGiFoie::create(this, &scratch_vec, (void *)tech_level);

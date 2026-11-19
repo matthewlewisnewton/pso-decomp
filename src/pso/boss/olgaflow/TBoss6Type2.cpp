@@ -610,9 +610,9 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     init_collision_body_parts(this, boss6_type2_collision_parts, 3);
     advance_position();
-    m_310 = 0.0f;
-    y_speed = 0.0f;
-    x_speed = 0.0f;
+    movement_velocity.z = 0.0f;
+    movement_velocity.y = 0.0f;
+    movement_velocity.x = 0.0f;
     target = 0;
     bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2C)), (u8 *)(get_battle_attack_params(0x2C)), (u8 *)(get_battle_resistance_params(0x2C)));
     referenceHp = m_4f8 = hp;
@@ -1685,8 +1685,8 @@ void TBoss6Type2::copy_vec_array() {
 }
 
 void TBoss6Type2::advance_position() {
-    VecCopy((Vec *)&m_2fc, &position);
-    this->m_300 += 30.0f;
+    VecCopy(&body_center_position, &position);
+    this->body_center_position.y += 30.0f;
 }
 
 void TBoss6Type2::sub_802BBE20() {

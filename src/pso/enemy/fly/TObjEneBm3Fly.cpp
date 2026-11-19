@@ -222,7 +222,7 @@ void TObjEneBm3Fly::run_task() {
         this->vfunc_85();
         effect = this->particle_effect;
         if (effect == NULL) {
-            this->particle_effect = create_particle_emitter(&this->m_2fc, 0xC7);
+            this->particle_effect = create_particle_emitter(&this->body_center_position.x, 0xC7);
             effect = this->particle_effect;
             if (effect != NULL) {
                 effect->enable();
@@ -242,9 +242,9 @@ void TObjEneBm3Fly::run_task() {
             }
             dx = side * cos_table_lookup(this->rotation.yaw);
             dz = side * -sin_table_lookup(this->rotation.yaw);
-            this->particle_effect->position.x = ((Vec *)&this->m_2fc)->x + dx;
-            this->particle_effect->position.y = -1.5f + ((Vec *)&this->m_2fc)->y;
-            this->particle_effect->position.z = ((Vec *)&this->m_2fc)->z + dz;
+            this->particle_effect->position.x = (&this->body_center_position)->x + dx;
+            this->particle_effect->position.y = -1.5f + (&this->body_center_position)->y;
+            this->particle_effect->position.z = (&this->body_center_position)->z + dz;
         }
     } else {
         effect = this->particle_effect;
@@ -355,9 +355,9 @@ void TObjEneBm3Fly::update_state_flag() {
 }
 
 void TObjEneBm3Fly::store_position() {
-    this->m_2fc = (f32) this->position.x;
-    this->m_304 = (f32) this->position.z;
-    VecCopy(&this->center, (const Vec *)&this->m_2fc);
+    this->body_center_position.x = (f32) this->position.x;
+    this->body_center_position.z = (f32) this->position.z;
+    VecCopy(&this->center, &this->body_center_position);
 }
 #pragma push
 #pragma opt_common_subs off
@@ -365,7 +365,7 @@ void TObjEneBm3Fly::clamp_flight_height() {
     if ((this->m_42c - this->position.y) < (1.2f)) {
         this->m_42c = (1.2f) + this->position.y;
     }
-    this->m_300 = this->m_42c;
+    this->body_center_position.y = this->m_42c;
 }
 #pragma pop
 void TObjEneBm3Fly::vfunc_89() { TObjEneDD::vfunc_89(); this->clamp_flight_height(); }
@@ -535,8 +535,8 @@ void TObjEneBm3Fly::sub_800B1214(s32 arg1) {
             break;
         }
         this->update_collide_flag();
-        this->prev_position.x = this->m_2fc;
-        this->prev_position.z = this->m_304;
+        this->prev_position.x = this->body_center_position.x;
+        this->prev_position.z = this->body_center_position.z;
         this->clamp_flight_height();
         this->vfunc_88();
         break;
@@ -589,8 +589,8 @@ void TObjEneBm3Fly__sub_800B0F70(TObjEneBm3Fly *arg0, s32 arg1) {
         arg0->position.z = radius * cos_table_lookup(a) + arg0->m_41c.z;
         arg0->rotation.yaw = a - 0x4000;
         arg0->update_collide_flag();
-        arg0->prev_position.x = arg0->m_2fc;
-        arg0->prev_position.z = arg0->m_304;
+        arg0->prev_position.x = arg0->body_center_position.x;
+        arg0->prev_position.z = arg0->body_center_position.z;
         arg0->vfunc_88();
         TObjEneBm3Fly__play_orbit_flight_sound(arg0);
         break;
@@ -658,7 +658,7 @@ void TObjEneBm3Fly__sub_800B0B20(TObjEneBm3Fly *ene_bm3_fly, s32 arg1) {
         }
         ene_bm3_fly->update();
         ene_bm3_fly->update_velocity();
-        VecCopy(pos, (const Vec *)&ene_bm3_fly->m_2fc);
+        VecCopy(pos, &ene_bm3_fly->body_center_position);
         subtract_vector(pos, off);
         if (ene_bm3_fly->m_3c4 == 0) {
             if ((0.0f) == ene_bm3_fly->m_430.x && (0.0f) == ene_bm3_fly->m_430.z) {
@@ -977,13 +977,13 @@ void TObjEneBm3Fly::update_recoil_state(s32 arg1) {
         advance_animation();
         t = this->m_3c0;
         this->m_3c0 = t + 1;
-        this->m_430.x = this->x_speed;
-        this->m_430.z = this->m_310;
+        this->m_430.x = this->movement_velocity.x;
+        this->m_430.z = this->movement_velocity.z;
         v = normalize_vector_xz(&this->m_430);
         update_dd_flag(this->m_430.x, this->m_430.z, v);
         this->clamp_flight_height();
-        this->x_speed *= (0.5f);
-        this->m_310 *= (0.5f);
+        this->movement_velocity.x *= (0.5f);
+        this->movement_velocity.z *= (0.5f);
         this->vfunc_89();
         break;
     case 5:
@@ -1009,7 +1009,7 @@ void action__13TObjEneBm3FlyFPvi(TObjEneBm3Fly *child, s32 arg1) {
         TBoss8Dragon__sub_800BB7DC(child);
         TBoss8Dragon__sub_800BB7D8(child, 0xF1, (1.0f));
         play_sound_effect(child->remap_sound_for_area(0x4003E425), &child->position, 0, 0);
-        TBoss3Volopt::create_breakup_mdl((s32)TObjEneBm3Fly__breakup_model, (s32)&bm3_fly_breakup_params, child->texlist, (s32)&child->m_2fc, child->rotation.yaw);
+        TBoss3Volopt::create_breakup_mdl((s32)TObjEneBm3Fly__breakup_model, (s32)&bm3_fly_breakup_params, child->texlist, (s32)&child->body_center_position.x, child->rotation.yaw);
         child->m_3c0 = 0;
         return;
     case 3:
@@ -1042,8 +1042,8 @@ void TObjEneBm3Fly::state_death_fall(s32 arg1) {
         this->m_3c0 = 0;
         this->m_3c4 = 0;
         this->m_3e0 = 0.0f;
-        this->m_430.x = (f32) this->x_speed;
-        this->m_430.z = (f32) this->m_310;
+        this->m_430.x = (f32) this->movement_velocity.x;
+        this->m_430.z = (f32) this->movement_velocity.z;
         this->m_3e4 = normalize_vector_xz(&this->m_430);
         temp_copy = this->remap_sound_for_area(0x4003E425);
         play_sound_effect(temp_copy, &this->position, 0, 0);

@@ -443,7 +443,7 @@ TObjGrass::TObjGrass(TObject *parent, void *set_data) : TObjEnemy(parent) {
     s32 t;
     m_name = TObjGrass__class_name;
     apply_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     apply_actor_gravity(this, 0, (0.0f));
     t = *(s32 *)((s8 *)TObjGrass__resource_bundle + 0x430);
     *(s32 *)&motion_list = t;
@@ -470,7 +470,7 @@ TObjGrass::TObjGrass(TObject *parent, void *set_data) : TObjEnemy(parent) {
     movementParameters = &((E1C_800BF924 *)lbl_804929E4)[variant];
     referenceHp = hp;
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     register_object_by_id();
     m_398 = (0.0f);
     mode = 0;
@@ -621,7 +621,7 @@ void TObjGrass::run_task() {
         this->target = NULL;
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     this->m_2b4 += (1.0f);
 }
@@ -729,7 +729,7 @@ void TObjGrass::vfunc_28() {
                     f32 xx;
                     f32 zz;
                     VecCopy((Vec *)&v, (const Vec *)(p + 0x2FC));
-                    subtract_vector(&v, (u8 *)&this->m_2fc);
+                    subtract_vector(&v, (u8 *)&this->body_center_position.x);
                     xx = v.x * v.x;
                     zz = v.z * v.z;
                     d = xx + zz;
@@ -1146,7 +1146,7 @@ void TObjGrass::sub_800BDD70() {
             this->timer = 0;
         } else {
             VecCopy((Vec *)&sp8, (const Vec *)(this->target + 0x2FC));
-            subtract_vector(&sp8, (u8 *)&this->m_2fc);
+            subtract_vector(&sp8, (u8 *)&this->body_center_position.x);
             ang = ((TObjEnemy *)arg0)->turn_toward_direction(*(s32 *)((s8 *)this->movementParameters + 8), (Vec *)&sp8);
             apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), (0.0f));
             if (ang < ((AttackParams *)(this->m_318))->get_attack_angle()) {
@@ -1545,7 +1545,7 @@ s32 TObjGrass::sub_800BCE44() {
   u8 *temp_r3;
   ((TObjBase *)arg0)->obj_clearFlags30((u32)(0x04040000));
   ((TObjMotion *)arg0)->advance_animation();
-  this->m_310 = (f32) (0.0f);
+  this->movement_velocity.z = (f32) (0.0f);
   *((f32 *) (((s8 *) arg0) + 0x308)) = (f32) (0.0f);
   apply_actor_gravity((TObjEnemy *)((void *) arg0), (s32 *)(0), (f32) (0.0f));
   ((TObjPlayer *)arg0)->update_collisions();
@@ -1646,7 +1646,7 @@ void TObjGrass::update_dying(void *arg0_) {
     case 1:
         move_with_wall_slide(arg0);
         *(f32 *)((s8 *)arg0 + 0x308) *= (0.5f);
-        ((TObjEnePanarms *)arg0)->m_310 *= (0.5f);
+        ((TObjEnePanarms *)arg0)->movement_velocity.z *= (0.5f);
         if (((TObjMotion *)arg0)->is_passing_frame((f32)(23.0f)) != 0) {
             ((TObjEnePanarms *)arg0)->phase = 2;
             spawn_particle_effect((const Vec *)(arg0 + 0x38), 0xF0);

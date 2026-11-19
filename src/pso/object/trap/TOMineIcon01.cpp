@@ -32,7 +32,7 @@ TOMineIcon01::~TOMineIcon01() {
 TOMineIcon01::TOMineIcon01(TObject *parent, void *set_data) : TOMine(parent) {
     m_name = TOMineIcon01__name;
     apply_object_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     calc_attach_pos();
     model = (void *)get_bml_model(lbl_805D5A50, 4);
     texlist = (s32)get_bml_texlist(lbl_805D5A50, 4);

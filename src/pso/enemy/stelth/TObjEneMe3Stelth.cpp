@@ -437,12 +437,12 @@ void TObjEneMe3Stelth::vfunc_62() {
 }
 void TObjEneMe3Stelth::vfunc_61() {  }
 void TObjEneMe3Stelth::copy_pos_with_height_offset() {
-    VecCopy((Vec *)&m_2fc, &position);
-    m_300 += 12.0f + m_3d4;
-    VecCopy(&center, (Vec *)&m_2fc);
+    VecCopy(&body_center_position, &position);
+    body_center_position.y += 12.0f + m_3d4;
+    VecCopy(&center, &body_center_position);
 }
 void TObjEneMe3Stelth::vfunc_88() {
-    bodies->offset.y = m_300 - position.y;
+    bodies->offset.y = body_center_position.y - position.y;
 }
 void TObjEneMe3Stelth::setup_move_bounds() {
     if (sub_800F4850() != 0) {
@@ -691,7 +691,7 @@ void TObjEneMe3Stelth::vfunc_113(s32 arg1) {
         m_424 = 0;
         VecCopy(&position, &home_position);
         VecCopy(&prev_position, &home_position);
-        VecCopy((Vec *)&m_2fc, &home_position);
+        VecCopy(&body_center_position, &home_position);
         m_3d0 = position.y;
         m_3e8 = 0;
         m_3ec = 0;
@@ -1434,11 +1434,11 @@ void TObjEneMe3Stelth__sub_800F290C(TObjEneMe3Stelth *stelth, s32 arg1) {
         break;
     case 0:
         stelth->advance_animation();
-        VecCopy(&v, (Vec *)&stelth->x_speed);
+        VecCopy(&v, &stelth->movement_velocity);
         c = normalize_vector_xz(&v);
         stelth->move_clamped_on_ground(v.x, v.z, c);
-        stelth->x_speed *= 0.8f;
-        stelth->m_310 *= 0.8f;
+        stelth->movement_velocity.x *= 0.8f;
+        stelth->movement_velocity.z *= 0.8f;
         stelth->vfunc_89();
         break;
     case 5:
@@ -1988,15 +1988,15 @@ void TObjEneMe3Stelth__sub_800F1098(TObjEneMe3Stelth *stelth, s32 arg1) {
             {
                 Vec dest = stelth->target_destination;
                 if (select_enemy_destination(stelth, &dest, 1) != 0) {
-                    Vec pos = *(Vec *)&stelth->m_2fc;
+                    Vec pos = stelth->body_center_position;
                     copy_position_if_valid__10TObjPlayerFii((s32)stelth, (s32)&pos);
-                    stelth->m_300 += 5.0f;
+                    stelth->body_center_position.y += 5.0f;
                     r = ((TObjEnemy *)stelth)->enemy_turn_toward_dest(((StelthMovementParams *)stelth->movementParameters)->turn);
                     enemy_set_heading_velocity(((StelthMovementParams *)stelth->movementParameters)->speed, stelth, stelth->rotation.yaw);
                     move_with_wall_slide((u8 *)stelth);
                 } else {
                     VecCopy(&d, &stelth->target_destination);
-                    subtract_vector(&d, (Vec *)&stelth->m_2fc);
+                    subtract_vector(&d, &stelth->body_center_position);
                     r = stelth->turn_toward_direction(((StelthMovementParams *)stelth->movementParameters)->turn, &d);
                 }
             }
@@ -2030,7 +2030,7 @@ void TObjEneMe3Stelth__sub_800F1098(TObjEneMe3Stelth *stelth, s32 arg1) {
                 pop_matrix();
                 if (stelth->current_target != NULL) {
                     VecCopy(&d, &stelth->target_destination);
-                    subtract_vector(&d, (Vec *)&stelth->m_2fc);
+                    subtract_vector(&d, &stelth->body_center_position);
                     r = stelth->turn_toward_direction(((StelthMovementParams *)stelth->movementParameters)->turn, &d);
                 } else {
                     r = ((s32 *)stelth->m_318)[3];

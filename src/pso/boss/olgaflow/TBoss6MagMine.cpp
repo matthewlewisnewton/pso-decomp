@@ -433,7 +433,7 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {
     VecCopy__FP3VecPC3Vec(arg0 + 0x44, VecCopy__FP3VecPC3Vec(arg0 + 0x50, VecCopy__FP3VecPC3Vec(arg0 + 0x74, arg0 + 0x38)));
     init_collision_body_parts(self, __vt__13TBoss6MagMine, 1);
     VecCopy__FP3VecPC3Vec(arg0 + 0x2FC, arg0 + 0x38);
-    *(f32 *)((s8 *)self + 0x308) = ((TBoss3Volopt *)self)->y_speed = *(f32 *)((s8 *)self + 0x310) = 0.0f;
+    *(f32 *)((s8 *)self + 0x308) = ((TBoss3Volopt *)self)->movement_velocity.y = *(f32 *)((s8 *)self + 0x310) = 0.0f;
     *(s32 *)((s8 *)self + 0x2A8) = 0;
     ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));
     ((TBoss3Volopt *)self)->referenceHp = ((TBoss3Volopt *)self)->hp;

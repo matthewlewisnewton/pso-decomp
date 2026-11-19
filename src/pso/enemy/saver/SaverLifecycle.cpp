@@ -94,7 +94,6 @@ s32 __dl__7TObjectFPv(void *);
 extern void *TObjEneSaver__vtable[83];
 Obj_800A73F8 *__dt__12TObjEneSaverFv(Obj_800A73F8 *arg0, s16 arg1);
 void* get_center__12TObjEneSaverFv(void* p);
-void copy_position__20TBoss3VoloptHiraisinFv(s32 arg0);
 s32 create__13TUnk_80494968FUlUl(u32, u32);
 void __ct__9TObjEnemyFP7TObject(void *, void *, void *);
 void init_collision_body_parts(void *, void *, s32);
@@ -387,7 +386,7 @@ void TObjEneSaver::update_collapse_and_destroy() {
         step_angle_clamped__10TObjPlayerFPvi(arg0, 0);
         move_with_wall_slide(arg0);
         *(f32 *)((s8 *)arg0 + 0x308) *= 0.5f;
-        ((TObjEneSaver *)arg0)->m_310*= 0.5f;
+        ((TObjEneSaver *)arg0)->movement_velocity.z*= 0.5f;
         if (((VObj1 *)(arg0 + 0x3A4))->m4() == 1) {
             TObjPlayer::apply_effect_variant_a((s32)(arg0 + 0x38), 0);
             ((TObjEneSaver *)arg0)->phase = 2;
@@ -430,7 +429,7 @@ void TObjEneSaver::update_entry_motion() {
         apply_actor_gravity((TObjEnemy *)(this), (s32 *)(0), 0.0f);
         break;
     case 1:
-        this->m_310 = (f32) 0.0f;
+        this->movement_velocity.z = (f32) 0.0f;
         *(f32 *)((s8 *)((u8 *)this) + 0x308) = (f32) 0.0f;
         apply_actor_gravity((TObjEnemy *)(this), (s32 *)(0), 0.0f);
         if ((u32) this->action_flags != 8U) {
@@ -498,7 +497,7 @@ void TObjEneSaver::update_knockback_state() {
     case 1:
         move_with_wall_slide(((u8 *)this));
         *(f32 *)((s8 *)((u8 *)this) + 0x308) *= 0.5f;
-        this->m_310 *= 0.5f;
+        this->movement_velocity.z *= 0.5f;
         if ((u32) this->action_flags != 8U) {
             this->requested_action = 7;
             this->phase = 2;
@@ -827,7 +826,7 @@ void TObjEneSaver::sub_800A4D9C() {
                 copy_position_if_valid__10TObjPlayerFii((s32)arg0, (s32)&pos);
             }
             VecCopy((Vec *)&d, (const Vec *)(arg0 + 0x29C));
-            subtract_vector(&d, (u8 *)&this->m_2fc);
+            subtract_vector(&d, (u8 *)&this->body_center_position.x);
             {
                 f32 dist = newton_sqrtf(d.x * d.x + d.z * d.z);
                 dist -= 15.0f;
@@ -1922,7 +1921,7 @@ void TObjEneSaver::run_task() {
         this->target = NULL;
     }
     this->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)this);
+    ((TObjChara *)this)->copy_body_to_center();
     sub_800A435C__12TObjEneSaverFv(this);
     this->m_2b4 += 1.0f;
 }
@@ -2032,7 +2031,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     __ct__13TUnk_80490470Fv(((u8 *)arg0 + 0x3A4));
     ((TObjEneSaver *)arg0)->m_name = TObjEneSaver__class_name;
     arg0->apply_set_data(arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(f32 *)((s8 *)arg0 + 0x70) = 1.0f;
     arg0->scale.y = 1.0f;
     arg0->scale.x = 1.0f;
@@ -2065,7 +2064,7 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {
     arg0->movementParameters = (u8*)lbl_80490B28;
     arg0->referenceHp = arg0->hp;
     ((TObjEnemy *)arg0)->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)arg0);
+    ((TObjChara *)arg0)->copy_body_to_center();
     initialize_enemy_photon_effect(arg0);
     *(s32 *)((s8 *)arg0 + 0x374) = 1;
     *(s32 *)((s8 *)arg0 + 0x38C) = 0;

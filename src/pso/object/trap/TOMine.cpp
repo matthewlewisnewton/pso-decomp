@@ -774,7 +774,7 @@ TOMineTrap::TOMineTrap(TObjBase *owner, s16 kind, s16 slot) : TOMine(tl_05) {
         }
         m_37e = slot + kind * 20 + get_trap_type() * 80u;
         VecCopy(&float_position, VecCopy(&home_position, VecCopy(&position, &owner->position)));
-        ((TObjPlayer *)this)->init_position_vectors();
+        ((TObjChara *)this)->initialize_position_copies();
         calc_attach_pos();
         spawn_disp_objects();
         m_370 = owner->rotation.yaw;
@@ -872,7 +872,7 @@ void TOMineTrap::run_task() {
         if (find_target_in_range() == 1) {
             set_triggered();
         }
-        VecCopy((Vec *)&m_2fc, &float_position);
+        VecCopy(&body_center_position, &float_position);
         VecCopy(&bodies->center, &float_position);
         break;
     case 3:

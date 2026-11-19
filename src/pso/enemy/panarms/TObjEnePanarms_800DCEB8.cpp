@@ -299,8 +299,8 @@ TObjEnePanarms::TObjEnePanarms(TObject *parent, void *setData) : TObjEnemy(paren
     set_field_dc((s32)TObjEnePanarms__entry_params_resource->motions);
     set_animation(0);
     set_field_b8(0);
-    VecCopy((Vec *)&m_2fc, &position);
-    x_speed = y_speed = m_310 = 0.0f;
+    VecCopy(&body_center_position, &position);
+    movement_velocity.x = movement_velocity.y = movement_velocity.z = 0.0f;
     move_velocity.x = move_velocity.y = move_velocity.z = 0.0f;
     target = NULL;
     bind_enemy_combat_stats((u8 *)get_battle_base_stats(49), (u8 *)get_battle_attack_params(49),
@@ -385,7 +385,7 @@ void TObjEnePanarms::run_task() {
                 advance_animation();
             }
             if ((*(s32 *)&this->m_3dc != 0 && this->state != 4) || this->state == 1) {
-                minimap_render_dot(&this->m_2fc, -0x5DB4, 1, 0);
+                minimap_render_dot(&this->body_center_position.x, -0x5DB4, 1, 0);
             }
         }
     }
@@ -409,7 +409,7 @@ void TObjEnePanarms::render() {
     saved_model_render_flags = model_render_flags;
     fade = &((Obj_800DEF5C *)this)->fades[cam];
     fade->update();
-    if (fade->updateFromCamera(&this->m_2fc) != 0) {
+    if (fade->updateFromCamera(&this->body_center_position.x) != 0) {
         ((VFade_800DEF5C *)fade)->begin_draw();
         draw = 1;
         if (defer_render() != 0) {

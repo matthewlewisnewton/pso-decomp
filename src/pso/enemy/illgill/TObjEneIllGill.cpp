@@ -203,9 +203,9 @@ void TObjEneIllGill::update_charge_attack() {
         ((TObjMotion *)o)->advance_animation();
         apply_actor_gravity(o, 0, 0.0f);
         if (o->target != NULL) {
-            Vec v = *((Vec *)&((TObjChara *)o->target)->m_2fc);
+            Vec v = *(&((TObjChara *)o->target)->body_center_position);
             s32 d;
-            subtract_vector(&v, (Vec *)&o->m_2fc);
+            subtract_vector(&v, &o->body_center_position);
             d = o->turn_toward_direction((s32)(2.0f * (f32)((IllGillMovementParameters *)o->movementParameters)->turn), &v);
             if (d < ((AttackParams *)(o->m_318))->get_attack_angle()) {
                 s32 ang = (s32)(10430.38043493439 * atan2_float(v.x, v.z));
@@ -220,13 +220,13 @@ void TObjEneIllGill::update_charge_attack() {
                 rotate_matrix_y(0, ang);
                 rotate_vector_by_matrix(0, &v, &v);
                 pop_matrices(1);
-                vec3_add_to(&v, (Vec *)&o->m_2fc);
-                if (select_enemy_destination(o, v, 1) != 0 || select_enemy_destination(o, *((Vec *)&((TObjChara *)o->target)->m_2fc), 1) != 0) {
+                vec3_add_to(&v, &o->body_center_position);
+                if (select_enemy_destination(o, v, 1) != 0 || select_enemy_destination(o, *(&((TObjChara *)o->target)->body_center_position), 1) != 0) {
                     o->phase = 1;
                     o->requested_action = 8;
                     obj_setFlags30(o, 0x4000000);
                     o->set_indexed_flags(0, 0x80);
-                    copy_position_if_valid__10TObjPlayerFii(o, (*((Vec *)&o->m_2fc)));
+                    copy_position_if_valid__10TObjPlayerFii(o, (*(&o->body_center_position)));
                     o->actionTimer = 10;
                     play_sound_effect(0x4003A34E, &o->position, 0, 0);
                 } else {
@@ -246,9 +246,9 @@ void TObjEneIllGill::update_charge_attack() {
         obj_setFlags30(o, 0x4000000);
         o->set_indexed_flags(0, 0x80);
         {
-            Vec v = *((Vec *)&((TObjChara *)o->target)->m_2fc);
+            Vec v = *(&((TObjChara *)o->target)->body_center_position);
             s32 d;
-            subtract_vector(&v, (Vec *)&o->m_2fc);
+            subtract_vector(&v, &o->body_center_position);
             d = o->turn_toward_direction((s32)(2.0f * (f32)((IllGillMovementParameters *)o->movementParameters)->turn), &v);
             if (d < ((AttackParams *)(o->m_318))->get_attack_angle()) {
                 s32 ang = (s32)(10430.38043493439 * atan2_float(v.x, v.z));
@@ -263,8 +263,8 @@ void TObjEneIllGill::update_charge_attack() {
                 rotate_matrix_y(0, ang);
                 rotate_vector_by_matrix(0, &v, &v);
                 pop_matrices(1);
-                vec3_add_to(&v, (Vec *)&o->m_2fc);
-                if (select_enemy_destination(o, v, 1) == 0 && select_enemy_destination(o, *((Vec *)&((TObjChara *)o->target)->m_2fc), 1) == 0) {
+                vec3_add_to(&v, &o->body_center_position);
+                if (select_enemy_destination(o, v, 1) == 0 && select_enemy_destination(o, *(&((TObjChara *)o->target)->body_center_position), 1) == 0) {
                     if (o->targetId == 0xFFFF) {
                         o->target = NULL;
                     } else {
@@ -338,7 +338,7 @@ void TObjEneIllGill::update_charge_attack() {
             ((TObjEnemy *)o)->enemy_turn_toward_dest((s32)(4.5f * (f32)prm->turn));
             enemy_set_heading_velocity(spd, (TObjEnemy *)(o), o->rotation.yaw);
             move_with_wall_slide((u8 *)o);
-            d2 = horizontal_distance_squared((Vec *)&o->m_29c, (Vec *)&o->m_2fc);
+            d2 = horizontal_distance_squared((Vec *)&o->m_29c, &o->body_center_position);
             t = spd + o->bodies->radius;
             if (d2 < t * t || ((IllGillMovementParameters *)o->movementParameters)->range * ((IllGillMovementParameters *)o->movementParameters)->range < d2 || 120.0f < (f32)(c = o->chargeFrames)) {
                 if (o->targetId == 0xFFFF) {
@@ -411,8 +411,8 @@ void TObjEneIllGill::update_shadow_attack() {
             this->actionTimer = 0;
         } else {
             Vec v;
-            VecCopy(&v, (const Vec *)((u8 *)&((TObjChara *)target)->m_2fc));
-            subtract_vector(&v, &m_2fc);
+            VecCopy(&v, &((TObjChara *)target)->body_center_position);
+            subtract_vector(&v, &body_center_position.x);
             a = ((TObjEnemy *)enemy)->turn_toward_direction(((IllGillMovementParameters *)movementParameters)->turn, &v);
             apply_actor_gravity((TObjEnemy *)enemy, (s32 *)(0), 0.0f);
             if (a < ((AttackParams *)(ill_gill_combat_parameter_variants[2]))->get_attack_angle()) {
@@ -428,7 +428,7 @@ void TObjEneIllGill::update_shadow_attack() {
             this->requested_action = 4;
             this->actionTimer = 0;
             {
-                Vec d = *(Vec *)((u8 *)&((TObjChara *)target)->m_2fc);
+                Vec d = ((TObjChara *)target)->body_center_position;
                 IllGillEffectRotation ang;
                 subtract_vector(&d, &shadowEffectPosition);
                 ang.x = (s32)(10430.38043493439 * atan2_float(d.z, newton_sqrtf(d.x * d.x + d.y * d.y)));
@@ -446,8 +446,8 @@ void TObjEneIllGill::update_shadow_attack() {
         apply_actor_gravity((TObjEnemy *)enemy, (s32 *)(0), 0.0f);
         if (this->target != NULL) {
             Vec w;
-            VecCopy(&w, (const Vec *)((u8 *)&((TObjChara *)target)->m_2fc));
-            subtract_vector(&w, &m_2fc);
+            VecCopy(&w, &((TObjChara *)target)->body_center_position);
+            subtract_vector(&w, &body_center_position.x);
             a = angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(w.x, w.z)));
             if (a < ((AttackParams *)(ill_gill_combat_parameter_variants[2]))->get_attack_angle()) {
                 VecCopy(&w, (const Vec *)((u8 *)&((TObjChara *)target)->position));
@@ -536,10 +536,10 @@ void TObjEneIllGill::update_death_fall() {
       return;
     return;
     case 2:
-      this->m_300 += 5.0f;
+      this->body_center_position.y += 5.0f;
       move_with_wall_slide(arg0);
-      x_speed *= 0.5f;
-      this->m_310 *= 0.5f;
+      movement_velocity.x *= 0.5f;
+      this->movement_velocity.z *= 0.5f;
       if (((TObjMotion *)arg0)->is_passing_frame((f32)(30.0f)) != 0)
     {
       this->phase = 3;
@@ -579,7 +579,7 @@ void TObjEneIllGill::vfunc_63() {
         temp_r5 = (u8 *)this->bodies;
         bodies->flags = (s32) (bodies->flags & 0xFFFF7FFE);
         this->free_resources();
-        spawn_particle_effect((const Vec *)&m_2fc, 0xF2);
+        spawn_particle_effect(&body_center_position, 0xF2);
         ((TObjPlayer *)arg0)->refresh_lobby_state();
         ((TObjEnemy *)arg0)->send_entity_set_flags();
     }
@@ -589,8 +589,8 @@ void TObjEneIllGill::update_damage_recovery() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30(0x04040000);
     ((TObjMotion *)arg0)->advance_animation();
-    this->m_310 = 0.0f;
-    this->x_speed = 0.0f;
+    this->movement_velocity.z = 0.0f;
+    this->movement_velocity.x = 0.0f;
     apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
     ((TObjPlayer *)arg0)->update_collisions();
     if (((TObjMotion *)arg0)->is_passing_frame(30.0f) != 0) {
@@ -603,8 +603,8 @@ void TObjEneIllGill::update_damage_recovery() {
             this->actorFlags |= 0x2000;
             this->target = 0;
             this->targetId = 0xFFFF;
-            VecCopy((Vec *)(((u8 *)&this->m_290)), (const Vec *)(&m_2fc));
-            VecCopy((Vec *)(&m_29c), (const Vec *)(&m_2fc));
+            VecCopy((Vec *)(((u8 *)&this->m_290)), (const Vec *)(&body_center_position.x));
+            VecCopy((Vec *)(&m_29c), (const Vec *)(&body_center_position.x));
             this->chargeDistance = 0.0f;
         }
         this->referenceHp = this->hp;
@@ -710,8 +710,8 @@ void TObjEneIllGill::update_weapon_attack() {
             this->actorFlags = (s32) (this->actorFlags & 0xFFDFFFFF);
             this->actionTimer = 0;
         } else {
-            Vec v = *(Vec *)((u8 *)&((TObjChara *)temp_r6)->m_2fc);
-            subtract_vector(&v, &m_2fc);
+            Vec v = ((TObjChara *)temp_r6)->body_center_position;
+            subtract_vector(&v, &body_center_position.x);
             temp_r30_2 = ((TObjEnemy *)actor)->turn_toward_direction((((IllGillMovementParameters *)movementParameters)->turn), &v);
             apply_actor_gravity((TObjEnemy *)actor, (s32 *)(0), 0.0f);
             if (temp_r30_2 < ((AttackParams *)(this->m_318))->get_attack_angle()) {
@@ -951,13 +951,13 @@ void TObjEneIllGill::update_chase_target() {
             this->phase = 0;
         case 0: {
             Vec dir;
-            t = this->m_300 += 5.0f;
+            t = this->body_center_position.y += 5.0f;
             {
-                Vec tgt = *(Vec *)((u8 *)&((TObjChara *)target)->m_2fc);
+                Vec tgt = ((TObjChara *)target)->body_center_position;
                 d = enemy_move_toward(arg0, id, &tgt, 0, 0.125f * r, t);
             }
-            VecCopy(&dir, (const Vec *)((u8 *)&((TObjChara *)target)->m_2fc));
-            subtract_vector(&dir, &m_2fc);
+            VecCopy(&dir, &((TObjChara *)target)->body_center_position);
+            subtract_vector(&dir, &body_center_position.x);
             a = angle_difference_abs(this->rotation.yaw,
                                      (s32)(10430.38043493439 * atan2_float(dir.x, dir.z)));
             if (a < ((AttackParams *)(this->m_318))->get_attack_angle()) {
@@ -966,13 +966,13 @@ void TObjEneIllGill::update_chase_target() {
             break;
         }
         case 2: {
-            t = this->m_300;
-            this->m_300 += 5.0f;
+            t = this->body_center_position.y;
+            this->body_center_position.y += 5.0f;
             {
-                Vec tgt = *(Vec *)((u8 *)&((TObjChara *)target)->m_2fc);
+                Vec tgt = ((TObjChara *)target)->body_center_position;
                 enemy_pursue_point(arg0, id, &tgt, r, 40.0f, t);
             }
-            d = horizontal_distance_squared(&m_29c, &m_2fc);
+            d = horizontal_distance_squared(&m_29c, &body_center_position.x);
             t = r + this->bodies->radius;
             if (d < t * t) {
                 if (this->targetId == 0xFFFF) {
@@ -1030,7 +1030,7 @@ void TObjEneIllGill::update_forward_movement() {
     rotate_vector_by_matrix(0, &v, &v);
     pop_matrices(1);
     vec3_add_to(&v, &home_position);
-    this->m_300 += 5.0f;
+    this->body_center_position.y += 5.0f;
     d = step_toward_destination__10TObjPlayerFPvPvf(player, v, 2.0f * ((IllGillMovementParameters *)movementParameters)->speed);
     movement = (IllGillMovementParameters *)movementParameters;
     a = movement->range * movement->range;
@@ -1068,7 +1068,7 @@ void TObjEneIllGill::update_idle() {
         if (horizontal_distance_squared((u8 *)&this->position, (u8 *)&this->home_position) > 10000.0f) {
             move_toward_dest_with_detour();
         } else {
-            this->m_300 += 5.0f;
+            this->body_center_position.y += 5.0f;
             movement = (IllGillMovementParameters *)movementParameters;
             ((TObjEnemy *)arg0)->enemy_wander_home((f32) (0.25f * movement->speed), 100.0f, 50.0f, movement->turn);
         }
@@ -1091,7 +1091,7 @@ void TObjEneIllGill::move_toward_dest_with_detour() {
     TObjEneIllGill *o = this;
     s32 ang;
     VecCopy((Vec *)(Vec *)&o->m_29c, (const Vec *)&o->home_position);
-    VecCopy((Vec *)&(o->m_290), (const Vec *)(Vec *)&o->m_2fc);
+    VecCopy((Vec *)&(o->m_290), &o->body_center_position);
     VecCopy((Vec *)&o->prev_position, (const Vec *)&o->position);
     VecCopy((Vec *)&scratch_vec, (const Vec *)&o->home_position);
     subtract_vector(&scratch_vec, &o->position);
@@ -1127,7 +1127,7 @@ void TObjEneIllGill::move_toward_dest_with_detour() {
     }
     ((TObjEnemy *)o)->enemy_turn_toward_dest(((IllGillMovementParameters *)o->movementParameters)->turn);
     enemy_set_heading_velocity(((IllGillMovementParameters *)o->movementParameters)->speed, (TObjEnemy *)(o), o->rotation.yaw);
-    (*((Vec *)&o->m_2fc)).y += 5.0f;
+    (*(&o->body_center_position)).y += 5.0f;
     move_with_wall_slide((u8 *)o);
 }
 
@@ -1239,10 +1239,10 @@ void TObjEneIllGill::vfunc_28() {
                 if (id >= 0x4000) continue;
                 if (id == entity_id) continue;
                 if (((TObjChara *)pl)->actorFlags & 0x02000800) continue;
-                VecCopy(&v, (const Vec *)(pl + offsetof(TObjChara, m_2fc)));
-                subtract_vector(&v, &m_2fc);
+                VecCopy(&v, (const Vec *)(pl + offsetof(TObjChara, body_center_position.x)));
+                subtract_vector(&v, &body_center_position.x);
                 d = v.x * v.x + v.z * v.z;
-                if (d < bestDist && check_path_obstructed(this, pl + offsetof(TObjChara, m_2fc)) == 0) {
+                if (d < bestDist && check_path_obstructed(this, pl + offsetof(TObjChara, body_center_position.x)) == 0) {
                     best = id;
                     bestDist = d;
                 }
@@ -1363,7 +1363,7 @@ void TObjEneIllGill::run_task() {
         o->target = NULL;
     }
     o->update_prev_position();
-    ((TBoss3VoloptHiraisin *)o)->copy_position();
+    ((TObjChara *)o)->copy_body_to_center();
     submit_cursor_candidate(o, -1);
     o->m_2b4 += 1.0f;
 }
@@ -1384,7 +1384,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     this->set_param(0x52);
     this->apply_set_data(setData);
     this->clear_lobby_object_state();
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     apply_actor_gravity((TObjEnemy *)self, (s32 *)(0), 0.0f);
     model = (void *)illGillResource->models->model;
     texlist = (s32)illGillResource->models->m_c;
@@ -1401,7 +1401,7 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
     this->add_flags_2e4(8);
     init_collision_body_parts(self, &illGillCollisionBody, 1);
     this->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     register_object_by_id();
     movementParameters = &illGillMovement;
     attackType = 0;
@@ -1436,8 +1436,8 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren
         actorFlags |= 0x2000;
         target = 0;
         targetId = 0xFFFF;
-        VecCopy((Vec *)&m_290, (const Vec *)&m_2fc);
-        VecCopy((Vec *)&m_29c, (const Vec *)&m_2fc);
+        VecCopy((Vec *)&m_290, &body_center_position);
+        VecCopy((Vec *)&m_29c, &body_center_position);
         chargeDistance = 0.0f;
     }
 }

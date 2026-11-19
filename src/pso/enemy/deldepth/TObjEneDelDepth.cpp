@@ -303,10 +303,10 @@ void TObjEneDelDepth::init() {
     ((TObjMotion *)arg0)->set_field_dc((int)TObjEneDelDepth__shared_resource->motions);
     ((TObjMotion *)arg0)->set_animation(0);
     ((TObjMotion *)arg0)->set_field_b8(0);
-    VecCopy((Vec *)((u8 *)&this->m_2fc), &this->position);
-    this->m_310 = (f32) TObjEneDelDepth__data_805DF258;
-    this->y_speed = (f32) TObjEneDelDepth__data_805DF258;
-    x_speed = (f32) TObjEneDelDepth__data_805DF258;
+    VecCopy(&this->body_center_position, &this->position);
+    this->movement_velocity.z = (f32) TObjEneDelDepth__data_805DF258;
+    this->movement_velocity.y = (f32) TObjEneDelDepth__data_805DF258;
+    movement_velocity.x = (f32) TObjEneDelDepth__data_805DF258;
     this->target = 0;
     ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x30)), (u8 *)(get_battle_attack_params(0x30)), (u8 *)(get_battle_resistance_params(0x30)));
     this->referenceHp = (s16) this->hp;
@@ -356,7 +356,7 @@ void TObjEneDelDepth::run_task() {
     motionController->update_animation_frame();
     this->sub_803152A0();
     if (this->action != 0xD) {
-        minimap_render_dot(&o->m_2fc, -0x5DB4, 1, 0);
+        minimap_render_dot(&o->body_center_position.x, -0x5DB4, 1, 0);
     }
     update_ground_check();
 }

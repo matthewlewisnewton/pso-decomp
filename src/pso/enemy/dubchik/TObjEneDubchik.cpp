@@ -624,7 +624,7 @@ void TObjEneDubchik::run_task() {
     ((TObjPlayer *)arg0)->run_synced_state_handler();
     ((TObjEneDubchik *)arg0)->sub_800AB068();
     ((TObjEnemy *)arg0)->update_prev_position();
-    VecCopy(&this->center, (const Vec *)&this->m_2fc);
+    VecCopy(&this->center, &this->body_center_position);
     if (((TObjCollidable *)arg0)->obj_testFlags30(0x04000000) == 0) {
         submit_cursor_candidate(arg0, -1);
     }

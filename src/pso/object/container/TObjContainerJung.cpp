@@ -163,7 +163,7 @@ TObjContainerJung::TObjContainerJung(TObject *parent, void *set_data) : TUnk_804
     init_collision_body_parts(this, (s32)&container_jung_collision_desc, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += container_jung_collision_desc.offset.y;
 }
 
@@ -306,7 +306,7 @@ TObjContainerJungEx::TObjContainerJungEx(TObject *parent, void *set_data) : TUnk
     init_collision_body_parts(this, (s32)&container_jung_collision_desc, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += container_jung_collision_desc.offset.y;
 }
 
@@ -419,7 +419,7 @@ TObjContainerJungEnemy::TObjContainerJungEnemy(TObject *parent, void *set_data) 
     init_collision_body_parts(this, (s32)&container_jung_collision_desc, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += container_jung_collision_desc.offset.y;
 }
 

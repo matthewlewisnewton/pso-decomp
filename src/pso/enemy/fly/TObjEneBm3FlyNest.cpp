@@ -300,7 +300,7 @@ TObjEneBm3FlyNest::TObjEneBm3FlyNest(TObject *parent, Bm3FlyNestSetData *set_dat
     model = (void *)nest_resources->models[1].model;
     texlist = (s32)nest_resources->models[0].m_c;
     init_model(bm3_flynest_collider_params, 1);
-    m_300 = 20.0f + position.y;
+    body_center_position.y = 20.0f + position.y;
     vfunc_88();
     set_field_d8((s32)bm3_flynest_hit_action_table);
     set_field_dc((s32)nest_resources->motions);
@@ -445,9 +445,9 @@ void TObjEneBm3FlyNest::vfunc_62() {
 
 void TObjEneBm3FlyNest::vfunc_61() {  }
 
-void TObjEneBm3FlyNest::copy_pos() { VecCopy(&center, (Vec *)&m_2fc); }
+void TObjEneBm3FlyNest::copy_pos() { VecCopy(&center, &body_center_position); }
 
-void TObjEneBm3FlyNest::vfunc_88() { set_part_local_pos(&m_2fc, 0); }
+void TObjEneBm3FlyNest::vfunc_88() { set_part_local_pos(&body_center_position.x, 0); }
 
 void TObjEneBm3FlyNest::update_replenish() {
     s32 room_left;
@@ -898,7 +898,7 @@ void TObjEneBm3FlyNest::state_dying(s32 reason) {
                 if (unk_4c8 >= 4) {
                     r = rand_range(5.0f, 10.0f);
                     a = get_random_scaled__9TObjEneDDFv(this);
-                    VecCopy(&p, (Vec *)&m_2fc);
+                    VecCopy(&p, &body_center_position);
                     p.x = r * sin_table_lookup(a) + p.x;
                     p.y += 5.0f;
                     p.z = r * cos_table_lookup(a) + p.z;
@@ -1023,7 +1023,7 @@ void TObjEneBm3FlyNest::render() {
             saved_chunk_polygon_flags_or_mask = chunk_polygon_flags_or_mask;
             cm = &fades[cam];
             cm->update();
-            if (cm->updateFromCamera(&m_2fc) != 0) {
+            if (cm->updateFromCamera(&body_center_position.x) != 0) {
                 cm->set_flags_and_apply_damage_color();
                 if (defer_render() != 0) {
                     visible = 0;
@@ -1067,7 +1067,7 @@ void TObjEneBm3FlyNest::render() {
                 pop_matrix();
             }
             update_primary_light();
-            if (cm->updateFromCamera(&m_2fc) != 0) {
+            if (cm->updateFromCamera(&body_center_position.x) != 0) {
                 cm->clear_flag_and_notify();
             }
             model_render_flags = saved_model_render_flags;
@@ -1075,7 +1075,7 @@ void TObjEneBm3FlyNest::render() {
             chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask;
         }
     }
-    VecCopy((Vec *)&m_2fc, &unk_3c8[0]);
+    VecCopy(&body_center_position, &unk_3c8[0]);
 }
 
 #pragma pool_data off

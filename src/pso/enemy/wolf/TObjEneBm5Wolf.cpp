@@ -465,10 +465,10 @@ void TObjEneBm5Wolf::vfunc_61() {  }
 
 void TObjEneBm5Wolf::update_collision_center() {
 
-    this->m_2fc = (f32) this->position.x;
-    this->m_300 = (f32) ((this->m_40c) + (10.0f + this->position.y));
-    this->m_304 = (f32) this->position.z;
-    VecCopy(&this->center, (const Vec *)&this->m_2fc);
+    this->body_center_position.x = (f32) this->position.x;
+    this->body_center_position.y = (f32) ((this->m_40c) + (10.0f + this->position.y));
+    this->body_center_position.z = (f32) this->position.z;
+    VecCopy(&this->center, &this->body_center_position);
 }
 
 void TObjEneBm5Wolf::vfunc_88() {
@@ -534,7 +534,7 @@ void TObjEneBm5Wolf::choose_roaming_destination() {
     temp_f3 = 120.0f * this->rand_range(0.3f, 1.0f);
     this->target_destination.x = (f32) ((dir.x * temp_f3) + this->groupAnchor.x);
     this->target_destination.z = (f32) ((dir.z * temp_f3) + this->groupAnchor.z);
-    hit = csnVector((Vec *)&this->m_2fc, &this->target_destination, 0x88E0U);
+    hit = csnVector(&this->body_center_position, &this->target_destination, 0x88E0U);
     if (hit != NULL) {
         dir.x = hit->contact->point.x - this->position.x;
         dir.z = hit->contact->point.z - this->position.z;
@@ -610,7 +610,7 @@ s32 TObjEneBm5Wolf::select_death_direction(s32 *heading) {
     Vec v;
     Vec side;
     s32 ret;
-    VecCopy(&v, (const Vec *)&this->x_speed);
+    VecCopy(&v, &this->movement_velocity);
     v.y = 0.0f;
     if (0.0f != normalize_vector_xz(&v)) {
         *heading = (s32)(RADIANS_TO_ANGLE * atan2_float(v.x, v.z));
@@ -1653,7 +1653,7 @@ void TObjEneBm5Wolf::repositioning_state(s32 arg1) {
                 dz *= 2.0f;
                 if (((TBoss5Gryphon *)this)->enemy_probe_wall_ahead(dx, dz, 1.0f) == 0U) {
                     Vec v;
-                    VecCopy(&v, (const Vec *)&this->m_2fc);
+                    VecCopy(&v, &this->body_center_position);
                     v.x += dx;
                     v.z += dz;
                     if (csnVectorUnder(&v, (u32 *)&this->m_120, 0x15) != NULL) {
@@ -1749,17 +1749,17 @@ void TObjEneBm5Wolf::hurt_state(s32 arg1) {
     case 0: {
         Vec v;
         this->advance_animation();
-        VecCopy(&v, (const Vec *)&this->x_speed);
+        VecCopy(&v, &this->movement_velocity);
         {
         f32 c = normalize_vector_xz(&v);
         this->move_with_wall_slide_on_ground(v.x, v.z, c);
         }
         if (this->roamingSubstate == 0) {
-            this->x_speed *= 0.5f;
-            this->m_310 *= 0.5f;
+            this->movement_velocity.x *= 0.5f;
+            this->movement_velocity.z *= 0.5f;
         } else {
-            this->x_speed *= 0.9f;
-            this->m_310 *= 0.9f;
+            this->movement_velocity.x *= 0.9f;
+            this->movement_velocity.z *= 0.9f;
             this->rotation.yaw = approach_angle_limited(this->rotation.yaw, this->m_42c, 0x300);
             this->rotation.yaw = (s16) this->rotation.yaw;
             if (this->is_passing_frame(22.0f) != 0) {
@@ -1842,14 +1842,14 @@ void TObjEneBm5Wolf::update_dying_state(s32 arg1) {
             if (this->wall_probe_distance < 28.0f) {
                 this->wall_probe_distance = this->wall_probe_distance + this->stoppingDistance;
             }
-            VecCopy(&vel, (const Vec *)&this->x_speed);
+            VecCopy(&vel, &this->movement_velocity);
             c = normalize_vector_xz(&vel);
             this->move_clamped_on_ground(vel.x, vel.z, c);
             if (this->is_passing_frame(22.0f) != 0) {
                 spawn_recoil_dust__14TObjEneBm5WolfFiPv(this, &vel);
             }
-            this->x_speed *= 0.8f;
-            this->m_310 *= 0.8f;
+            this->movement_velocity.x *= 0.8f;
+            this->movement_velocity.z *= 0.8f;
             advance_pose_turn(this->rotation.yaw);
             this->vfunc_88();
             break;
@@ -2008,14 +2008,14 @@ void TObjEneBm5Wolf::render_debug() {
     }
     leader = TObjEneBm5Wolf::find_pack_leader(this->m_3dc);
     if (leader != 0) {
-        debug_draw_line(&this->m_2fc, &leader->m_2fc, 0xFFC0C0C0, 0xFF6060FF);
+        debug_draw_line(&this->body_center_position.x, &leader->body_center_position.x, 0xFFC0C0C0, 0xFF6060FF);
         return;
     }
     {
     Vec v;
-    VecCopy(&v, (const Vec *)&this->m_2fc);
+    VecCopy(&v, &this->body_center_position);
     v.y += 50.0f;
-    debug_draw_line(&this->m_2fc, &v, 0xFFC0C0C0, 0xFF6060FF);
+    debug_draw_line(&this->body_center_position.x, &v, 0xFFC0C0C0, 0xFF6060FF);
     }
 }
 #pragma pop

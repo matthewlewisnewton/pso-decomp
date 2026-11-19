@@ -295,8 +295,8 @@ TUnk_80486924::TUnk_80486924(TObject *parent, s32 *params) : TObjEnemy(parent) {
     this->rotation.yaw = 0;
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body_parts = init_collision_body_parts(this, boss4_type2_collision_body_parts, 1);
-    VecCopy((Vec *)&m_2fc, &position);
-    x_speed = y_speed = m_310 = 0.0f;
+    VecCopy(&body_center_position, &position);
+    movement_velocity.x = movement_velocity.y = movement_velocity.z = 0.0f;
     target = 0;
     bind_enemy_combat_stats((u8 *)get_battle_base_stats(0x37), (u8 *)get_battle_attack_params(0x37), (u8 *)get_battle_resistance_params(0x37));
     referenceHp = hp;
@@ -395,7 +395,7 @@ void TUnk_80486924::run_task() {
     } else {
         collision_body_parts->flags &= ~1;
     }
-    add_radar_scaled_marker(&m_2fc, 0xFFFFA24C, 1, 1, 5.0f);
+    add_radar_scaled_marker(&body_center_position.x, 0xFFFFA24C, 1, 1, 5.0f);
     if (action != 2) {
         Vec pos = *(Vec *)&position;
         Vec dir = *(Vec *)&position;

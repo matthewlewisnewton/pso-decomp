@@ -231,15 +231,8 @@ public:
     s16 m_2f6;
     s16 m_2f8;
     s16 m_2fa;
-    f32 m_2fc;
-    f32 m_300;
-    f32 m_304;
-    union {
-        u8 unk_308[0x4];
-        f32 x_speed;
-    };
-    f32 y_speed;
-    f32 m_310;
+    Vec body_center_position;
+    Vec movement_velocity;
     s32 m_314;
     u32 m_318;
     ActorParamBlock *param_block;  // get_actor_param_block
@@ -253,16 +246,17 @@ public:
     u16 tp;
     u8 unk_330[0x4];
 
-    // Typed views of the vectors the fields above split up: the movement
-    // destination at 0x29C, the body centre other actors measure distance to
-    // at 0x2FC, and the velocity at 0x308.
     Vec *destination() { return (Vec *)&m_29c; }
-    Vec *body_center() { return (Vec *)&m_2fc; }
-    Vec *velocity() { return (Vec *)unk_308; }
+    void copy_body_to_center();
+    void initialize_position_copies();
+    Vec *body_center() { return &body_center_position; }
+    Vec *velocity() { return &movement_velocity; }
 };
 
 extern "C" void *__dt__9TObjCharaFv(void *, s16);
 
+typedef char TObjCharaBodyCenterOffset[offsetof(TObjChara, body_center_position) == 0x2FC ? 1 : -1];
+typedef char TObjCharaMovementVelocityOffset[offsetof(TObjChara, movement_velocity) == 0x308 ? 1 : -1];
 typedef char TObjCharaGroundNormalOffset[offsetof(TObjChara, ground_normal) == 0x248 ? 1 : -1];
 
 #endif

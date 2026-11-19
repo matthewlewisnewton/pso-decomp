@@ -224,7 +224,7 @@ void TBoss3VoloptCore::run_task() {
         dispatch_reaction_state();
         position.y = (position.y > 7.0f) ? position.y : 7.0f;
         update_prev_position();
-        TBoss3Volopt::set_camera_focus((Vec *)&m_2fc);
+        TBoss3Volopt::set_camera_focus(&body_center_position);
         clear_all_status_effects();
     }
 }
@@ -303,9 +303,9 @@ void TBoss3VoloptCore::update_charge_state() {
         }
         break;
     case 1:
-        VecCopy((Vec *)unk_308, &((TObjPlayer *)target)->position);
-        subtract_vector((Vec *)unk_308, &position);
-        turn_toward_direction(0x800, (Vec *)unk_308);
+        VecCopy(&movement_velocity, &((TObjPlayer *)target)->position);
+        subtract_vector(&movement_velocity, &position);
+        turn_toward_direction(0x800, &movement_velocity);
         if (--charge_timer <= 0) {
             charge_timer = 0x96;
             charge_step = 2;
@@ -323,11 +323,11 @@ void TBoss3VoloptCore::update_charge_state() {
             state = 4;
             return;
         }
-        VecCopy((Vec *)unk_308, (Vec *)&player->m_2fc);
-        subtract_vector((Vec *)unk_308, &position);
-        vec_set_length((Vec *)unk_308, 5.0f);
-        turn_toward_direction(0x800, (Vec *)unk_308);
-        vec3_add_to(&position, (Vec *)unk_308);
+        VecCopy(&movement_velocity, &player->body_center_position);
+        subtract_vector(&movement_velocity, &position);
+        vec_set_length(&movement_velocity, 5.0f);
+        turn_toward_direction(0x800, &movement_velocity);
+        vec3_add_to(&position, &movement_velocity);
         if (check_target_collision() != 0) {
             charge_step = 4;
             state = 4;
@@ -338,11 +338,11 @@ void TBoss3VoloptCore::update_charge_state() {
         }
         break;
     case 4:
-        VecCopy((Vec *)unk_308, &home_pos);
-        subtract_vector((Vec *)unk_308, &position);
-        distance = vec_set_length((Vec *)unk_308, 5.0f);
-        turn_toward_direction(0x800, (Vec *)unk_308);
-        vec3_add_to(&position, (Vec *)unk_308);
+        VecCopy(&movement_velocity, &home_pos);
+        subtract_vector(&movement_velocity, &position);
+        distance = vec_set_length(&movement_velocity, 5.0f);
+        turn_toward_direction(0x800, &movement_velocity);
+        vec3_add_to(&position, &movement_velocity);
         check_target_collision();
         if (distance < 10.0f) {
             targetId = 0xFFFF;

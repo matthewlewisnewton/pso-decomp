@@ -949,7 +949,7 @@ void TObjEnemy::update_prev_position() {
     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));
     temp_r3 = (unsigned char *) (this->m_2b0);
     if (temp_r3 != NULL) {
-        this->m_300 = (f32) ((0.5f * *(f32 *)((s8 *)temp_r3 + 0x10)) + this->m_300);
+        this->body_center_position.y = (f32) ((0.5f * *(f32 *)((s8 *)temp_r3 + 0x10)) + this->body_center_position.y);
     }
 }
 

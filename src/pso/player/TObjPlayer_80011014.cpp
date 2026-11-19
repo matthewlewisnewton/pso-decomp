@@ -1138,9 +1138,9 @@ void clear_velocity(u8 *arg0) {
 }
 
 void TObjPlayer::apply_velocity() {
-    this->position.x = (f32) (this->position.x + *(f32 *)&this->unk_308);
-    this->position.y = (f32) (this->position.y + this->y_speed);
-    this->position.z = (f32) (this->position.z + this->m_310);
+    this->position.x = (f32) (this->position.x + this->movement_velocity.x);
+    this->position.y = (f32) (this->position.y + this->movement_velocity.y);
+    this->position.z = (f32) (this->position.z + this->movement_velocity.z);
 }
 
 s16 TObjPlayer::clamp_tp() {
@@ -1757,13 +1757,13 @@ void apply_actor_gravity(TObjEnemy *enemy, s32 *arg1, f32 farg0) {
         ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)(arg1, &position.x);
     }
     if (temp_r31 != 0) {
-        ((TObjEnemy *)enemy)->y_speed += (-0.10888889f);
-        *(f32 *)((s8 *)enemy + 0x3C) = (f32) (*(f32 *)((s8 *)enemy + 0x3C) + ((TObjEnemy *)enemy)->y_speed);
+        ((TObjEnemy *)enemy)->movement_velocity.y += (-0.10888889f);
+        *(f32 *)((s8 *)enemy + 0x3C) = (f32) (*(f32 *)((s8 *)enemy + 0x3C) + ((TObjEnemy *)enemy)->movement_velocity.y);
         temp_f1 = position.y + farg0;
         position.y = temp_f1;
         if (*(f32 *)((s8 *)enemy + 0x3C) <= temp_f1) {
             *(f32 *)((s8 *)enemy + 0x3C) = temp_f1;
-            ((TObjEnemy *)enemy)->y_speed = 0.0f;
+            ((TObjEnemy *)enemy)->movement_velocity.y = 0.0f;
             enemy->actorFlags = (s32) (enemy->actorFlags | 0x800000);
             return;
         }
@@ -2794,7 +2794,7 @@ void TObjChara::apply_knockback_from_attacker(u8 *arg1, f32) {
     ((s32 (*)(void *, void *))subtract_vector)(&diff, ((u8 *)this) + 0x38);
     if ((diff.x * diff.x) + (diff.z * diff.z) < (1e-05f)) {
         *(f32 *)((s8 *)((u8 *)this) + 0x308) = (0.0f);
-        this->m_310 = (0.0f);
+        this->movement_velocity.z = (0.0f);
         return;
     }
     scale = 10.0f + (10.0f - *(f32 *)(this->m_2b0 + 0x14));
@@ -2803,7 +2803,7 @@ void TObjChara::apply_knockback_from_attacker(u8 *arg1, f32) {
     }
     ((TObjBoss2Tunnel *)(&diff))->update_scale();
     *(f32 *)((s8 *)((u8 *)this) + 0x308) = -scale * diff.x;
-    this->m_310 = -scale * diff.z;
+    this->movement_velocity.z = -scale * diff.z;
     }
 }
 
@@ -3404,7 +3404,7 @@ void TObjChara::apply_poison_status() {
 void TObjPlayer::spawn_recovery_effect() {
     u8 *arg0 = (u8 *)this;
     if (((s32 (*)(void *, s32))obj_testFlags30__14TObjCollidableFUl)(arg0, 0x02000000) == 0) {
-        create_timed_particle_emitter_with_flags(((u8 *)&this->m_2fc), 0x10A, 0, 0xA, 0x40);
+        create_timed_particle_emitter_with_flags(((u8 *)&this->body_center_position.x), 0x10A, 0, 0xA, 0x40);
     }
 }
 extern "C" {
@@ -4017,7 +4017,7 @@ f32 TObjEnemy::enemy_wander_home(f32 farg0, f32 farg1, f32 farg2, s32 turn) {
     f32 var_f31;
     s32 ang;
     u8 *arg0 = (u8 *)this;
-    var_f31 = horizontal_distance_squared((u8 *)&this->m_2fc, (u8 *)&this->m_29c);
+    var_f31 = horizontal_distance_squared((u8 *)&this->body_center_position.x, (u8 *)&this->m_29c);
     if ((var_f31 < (farg0 * farg0)) || (((TObjEnemy *)(arg0))->is_actor_cadence_frame(0x96) != 0)) {
         v.x = v.y = (0.0f);
         v.z = (1.0f);
@@ -4033,13 +4033,13 @@ f32 TObjEnemy::enemy_wander_home(f32 farg0, f32 farg1, f32 farg2, s32 turn) {
             Vec c = v;
             select_enemy_destination((Obj_800182A0 *) arg0, (Vec *) &c, 1);
         }
-        *(f32 *)((s8 *)arg0 + 0x308) = ((TObjEnemy *)arg0)->m_310 = (0.0f);
+        *(f32 *)((s8 *)arg0 + 0x308) = ((TObjEnemy *)arg0)->movement_velocity.z = (0.0f);
         ((TObjEnemy *)arg0)->m_2ac = 0;
     } else {
         ((TObjEnemy *)arg0)->enemy_turn_toward_dest(turn);
         enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation.yaw);
         move_with_wall_slide(arg0);
-        var_f31 = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->m_2fc);
+        var_f31 = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->body_center_position.x);
         ((TObjEnemy *)arg0)->m_2ac = ((TObjEnemy *)arg0)->m_2ac + 1;
     }
     return var_f31;
@@ -4129,7 +4129,7 @@ void enemy_set_heading_velocity(f32 farg0, TObjEnemy *enemy, s32 arg1) {
     rotate_vector_by_matrix(0, &stack.x, &stack.x);
     pop_matrix();
     *(f32 *)((s8 *)enemy + 0x308) = stack.x;
-    enemy->m_310 = stack.z;
+    enemy->movement_velocity.z = stack.z;
 }
 
 void calc_velocity_toward_destination(Obj_800180E8 *self, Vec *pos, Vec *dest, f32 speed) {
@@ -4399,9 +4399,9 @@ s32 TObjChara::recalc_combat_stats(void *motion_arg, void *arg2, void *bonus_arg
 void TObjChara::calc_attach_pos() {
     u8 *arg0 = (u8 *)this;
     if ((void *) this->m_2b0 != NULL) {
-        this->m_2fc = (f32) this->position.x;
-        this->m_300 = (f32) (((0.5f) * *(f32 *)(this->m_2b0 + 0x10)) + this->position.y);
-        this->m_304 = (f32) this->position.z;
+        this->body_center_position.x = (f32) this->position.x;
+        this->body_center_position.y = (f32) (((0.5f) * *(f32 *)(this->m_2b0 + 0x10)) + this->position.y);
+        this->body_center_position.z = (f32) this->position.z;
         return;
     }
     ((s32 (*)(void *, void *))VecCopy__FP3VecPC3Vec)(arg0 + 0x2FC, (u8 *)&this->position);

@@ -209,9 +209,9 @@ void TObjEneBalClawBody::run_task() {
     sub_8008FF50();
     update_wobble();
     update_claw_angle();
-    VecCopy((Vec *)&m_2fc, &position);
-    center_y = m_300;
-    m_300 = center_y + (m_3b4 + m_3bc);
+    VecCopy(&body_center_position, &position);
+    center_y = body_center_position.y;
+    body_center_position.y = center_y + (m_3b4 + m_3bc);
     lift = m_3b4;
     body = bodies;
     body->offset.y = lift + m_3bc;
@@ -380,7 +380,7 @@ void TObjPlayer__sub_8008FAD0(TObjEneBalClawBody *body) {
         body->requested_action = v;
         body->state = 1;
         if (body->target != NULL) {
-            VecCopy((Vec *)&body->m_29c, (Vec *)&((TObjChara *)body->target)->m_2fc);
+            VecCopy((Vec *)&body->m_29c, &((TObjChara *)body->target)->body_center_position);
         }
         break;
     case 1:
@@ -389,12 +389,12 @@ void TObjPlayer__sub_8008FAD0(TObjEneBalClawBody *body) {
             break;
         }
         play_persistent_sound(0x4003B235, body, &body->position, 0, 0);
-        body->y_speed = 0.0f;
+        body->movement_velocity.y = 0.0f;
         {
-            Vec pos = *(Vec *)&((TObjChara *)body->target)->m_2fc;
+            Vec pos = ((TObjChara *)body->target)->body_center_position;
             ((s32 (*)(void *, Vec *, int, f32))update_enemy_wander_move)(body, &pos, 1, ((EnemyMoveParams *)body->movementParameters)->min_distance);
         }
-        body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, (Vec *)&body->x_speed);
+        body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, &body->movement_velocity);
         body->advance_animation();
         apply_actor_gravity(body, NULL, 0.0f);
         ((TObjPlayer *)body)->update_collisions();
@@ -416,17 +416,17 @@ void TObjPlayer__sub_8008F910(TObjEneBalClawBody *body) {
         body->state = 1;
     case 1: {
         body->advance_animation();
-        body->y_speed = 0.0f;
-        Vec v = *(Vec *)&body->m_2fc;
-        v.x += body->x_speed;
-        v.z += body->m_310;
+        body->movement_velocity.y = 0.0f;
+        Vec v = body->body_center_position;
+        v.x += body->movement_velocity.x;
+        v.z += body->movement_velocity.z;
         if (check_path_obstructed(body, &v) == 0) {
             move_with_wall_slide((u8 *)body);
         } else {
-            body->x_speed = body->m_310 = 0.0f;
+            body->movement_velocity.x = body->movement_velocity.z = 0.0f;
         }
-        body->x_speed *= 0.9f;
-        body->m_310 *= 0.9f;
+        body->movement_velocity.x *= 0.9f;
+        body->movement_velocity.z *= 0.9f;
         apply_actor_gravity(body, NULL, 0.0f);
         ((TObjPlayer *)body)->update_collisions();
         if (body->action_flags != 8U) {
@@ -474,7 +474,7 @@ void TObjPlayer::run_death_sequence() {
             }
         } else {
             body->requested_action = 9;
-            body->y_speed = body->m_3b4 / 11.666666f;
+            body->movement_velocity.y = body->m_3b4 / 11.666666f;
             body->state = 2;
         }
         play_sound_effect(0x4003AD37, &body->position, 0, 0);
@@ -488,7 +488,7 @@ void TObjPlayer::run_death_sequence() {
     case 2:
         body->advance_animation();
         if (body->frame >= 10.0f) {
-            body->m_3b4 -= body->y_speed;
+            body->m_3b4 -= body->movement_velocity.y;
             if (body->m_3b4 <= 0.0f) {
                 body->m_3b4 = 0.0f;
                 body->state = 3;
@@ -497,7 +497,7 @@ void TObjPlayer::run_death_sequence() {
         break;
     case 3:
         TObjPlayer__sub_800A04F0(&body->fade);
-        fn_800D911C((Vec *)&body->m_2fc);
+        fn_800D911C(&body->body_center_position);
         body->m_388 |= 4;
         body->state = 4;
     case 4:
@@ -540,31 +540,31 @@ void TObjPlayer__sub_8008F1DC(TObjEneBalClawBody *body) {
         if (body->target == NULL) {
             reset_enemy_state__10TObjPlayerFv();
         } else {
-            body->y_speed = 0.0f;
-            calc_velocity_toward_destination(body, *(Vec *)&body->m_2fc, *(Vec *)&((TObjChara *)body->target)->m_2fc, 0.7f);
+            body->movement_velocity.y = 0.0f;
+            calc_velocity_toward_destination(body, body->body_center_position, ((TObjChara *)body->target)->body_center_position, 0.7f);
             {
-                Vec n1 = *(Vec *)&body->m_2fc;
-                n1.x += body->x_speed;
-                n1.z += body->m_310;
+                Vec n1 = body->body_center_position;
+                n1.x += body->movement_velocity.x;
+                n1.z += body->movement_velocity.z;
                 if (check_path_obstructed(body, &n1) == 0) {
                     move_with_wall_slide((u8 *)body);
                 }
             }
-            body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, (Vec *)&body->x_speed);
-            body->m_3c0 = xz_distance_squared((Vec *)&body->m_2fc, (Vec *)&((TObjChara *)body->target)->m_2fc);
+            body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, &body->movement_velocity);
+            body->m_3c0 = xz_distance_squared(&body->body_center_position, &((TObjChara *)body->target)->body_center_position);
             if (body->m_3c0 <= ((AttackParams *)body->m_318)->get_attack_range() * ((AttackParams *)body->m_318)->get_attack_range()) {
                 body->requested_action = 7;
                 body->state = 2;
-                body->effects[2] = (TParticleCtrl *)spawn_particle_effect_with_rotation(&body->m_2fc, body->m_3f8, 0x12B, 2);
+                body->effects[2] = (TParticleCtrl *)spawn_particle_effect_with_rotation(&body->body_center_position.x, body->m_3f8, 0x12B, 2);
                 body->effects[2]->enable();
-                body->effects[3] = (TParticleCtrl *)spawn_particle_effect_with_rotation(&body->m_2fc, body->m_3f8, 0x12C, 2);
+                body->effects[3] = (TParticleCtrl *)spawn_particle_effect_with_rotation(&body->body_center_position.x, body->m_3f8, 0x12C, 2);
                 body->effects[3]->enable();
             }
         }
         break;
     case 2:
         push_matrix_from(identity_matrix);
-        post_translate_matrix(&body->m_2fc);
+        post_translate_matrix(&body->body_center_position.x);
         rotate_matrix_y(0, body->rotation.yaw);
         body->calc_joint_matrices(body->frame);
         pop_matrix();
@@ -584,17 +584,17 @@ void TObjPlayer__sub_8008F1DC(TObjEneBalClawBody *body) {
         } else {
             body->effects[3]->enable();
         }
-        body->y_speed = 0.0f;
-        calc_velocity_toward_destination(body, *(Vec *)&body->m_2fc, *(Vec *)&((TObjChara *)body->target)->m_2fc, 0.7f);
+        body->movement_velocity.y = 0.0f;
+        calc_velocity_toward_destination(body, body->body_center_position, ((TObjChara *)body->target)->body_center_position, 0.7f);
         {
-            Vec n2 = *(Vec *)&body->m_2fc;
-            n2.x += body->x_speed;
-            n2.z += body->m_310;
+            Vec n2 = body->body_center_position;
+            n2.x += body->movement_velocity.x;
+            n2.z += body->movement_velocity.z;
             if (check_path_obstructed(body, &n2) == 0) {
                 move_with_wall_slide((u8 *)body);
             }
         }
-        body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, (Vec *)&body->x_speed);
+        body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, &body->movement_velocity);
         if (body->is_passing_frame(10.0f) != 0) {
             play_sound_effect(0x4003B034, &body->position, 0, 0);
             if (((TObjChara *)body->target)->select_melee_contact_body(body, 1.0f) != 0) {
@@ -638,8 +638,8 @@ void TObjPlayer__sub_8008EDE8(TObjEneBalClawBody *body) {
         if (body->targetId != 0xFFFF) {
             body->requested_action = 1;
             body->state = 1;
-            if (select_enemy_destination(body, *(Vec *)&body->m_2fc, 1) != 0) {
-                ((void (*)(void *, Vec))copy_position_if_valid__10TObjPlayerFii)(body, *(Vec *)&body->m_2fc);
+            if (select_enemy_destination(body, body->body_center_position, 1) != 0) {
+                ((void (*)(void *, Vec))copy_position_if_valid__10TObjPlayerFii)(body, body->body_center_position);
             }
         } else {
             ((TObjPlayer *)body)->reset_enemy_state();
@@ -649,18 +649,18 @@ void TObjPlayer__sub_8008EDE8(TObjEneBalClawBody *body) {
         if (body->target == NULL) {
             reset_enemy_state__10TObjPlayerFv();
         } else {
-            body->y_speed = 0.0f;
-            calc_velocity_toward_destination(body, *(Vec *)&body->m_2fc, *(Vec *)&((TObjChara *)body->target)->m_2fc, 0.7f);
+            body->movement_velocity.y = 0.0f;
+            calc_velocity_toward_destination(body, body->body_center_position, ((TObjChara *)body->target)->body_center_position, 0.7f);
             {
-                Vec n1 = *(Vec *)&body->m_2fc;
-                n1.x += body->x_speed;
-                n1.z += body->m_310;
+                Vec n1 = body->body_center_position;
+                n1.x += body->movement_velocity.x;
+                n1.z += body->movement_velocity.z;
                 if (check_path_obstructed(body, &n1) == 0) {
                     move_with_wall_slide((u8 *)body);
                 }
             }
-            body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, (Vec *)&body->x_speed);
-            body->m_3c0 = xz_distance_squared((Vec *)&body->m_2fc, (Vec *)&((TObjChara *)body->target)->m_2fc);
+            body->turn_toward_direction(((EnemyMoveParams *)body->movementParameters)->turn_speed, &body->movement_velocity);
+            body->m_3c0 = xz_distance_squared(&body->body_center_position, &((TObjChara *)body->target)->body_center_position);
             if (body->m_3c0 <= ((AttackParams *)body->m_318)->get_attack_range() * ((AttackParams *)body->m_318)->get_attack_range()) {
                 body->requested_action = 2;
                 body->state = 2;
@@ -672,13 +672,13 @@ void TObjPlayer__sub_8008EDE8(TObjEneBalClawBody *body) {
         if (body->target == NULL) {
             reset_enemy_state__10TObjPlayerFv();
         } else {
-            body->y_speed = 0.0f;
-            calc_velocity_toward_destination(body, *(Vec *)&body->m_2fc, *(Vec *)&((TObjChara *)body->target)->m_2fc, 0.7f);
+            body->movement_velocity.y = 0.0f;
+            calc_velocity_toward_destination(body, body->body_center_position, ((TObjChara *)body->target)->body_center_position, 0.7f);
             move_with_wall_slide((u8 *)body);
             {
-                Vec n2 = *(Vec *)&body->m_2fc;
-                n2.x += body->x_speed;
-                n2.z += body->m_310;
+                Vec n2 = body->body_center_position;
+                n2.x += body->movement_velocity.x;
+                n2.z += body->movement_velocity.z;
                 if (check_path_obstructed(body, &n2) == 0) {
                     move_with_wall_slide((u8 *)body);
                 }
@@ -926,10 +926,10 @@ void TObjPlayer__sub_8008E310(TObjEneBalClawBody *body) {
         body->m_384 = 0x258;
         body->state = 1;
         body->requested_action = 5;
-        body->effects[0] = create_particle_emitter(&body->m_2fc, 0x128);
+        body->effects[0] = create_particle_emitter(&body->body_center_position.x, 0x128);
         break;
     case 1:
-        body->effects[0]->set_position(&body->m_2fc);
+        body->effects[0]->set_position(&body->body_center_position.x);
         body->advance_animation();
         apply_actor_gravity(body, NULL, 0.0f);
         all = 1;
@@ -959,7 +959,7 @@ void TObjPlayer__sub_8008E310(TObjEneBalClawBody *body) {
                     body->hp += ((TObjChara *)claw2)->get_actor_hp();
                 }
             }
-            body->effects[1] = create_particle_emitter(&body->m_2fc, 0x12A);
+            body->effects[1] = create_particle_emitter(&body->body_center_position.x, 0x12A);
             body->effects[1]->enable();
             body->requested_action = 0xB;
             body->m_388 |= 0x04000000;
@@ -967,19 +967,19 @@ void TObjPlayer__sub_8008E310(TObjEneBalClawBody *body) {
         }
         break;
     case 2:
-        body->effects[0]->set_position(&body->m_2fc);
+        body->effects[0]->set_position(&body->body_center_position.x);
         body->advance_animation();
         apply_actor_gravity(body, NULL, 0.0f);
         if (body->frame < 9.0f) {
             body->effects[1]->enable();
         } else {
             body->effects[1]->clear_active_flag();
-            body->effects[1]->set_position(&body->m_2fc);
+            body->effects[1]->set_position(&body->body_center_position.x);
         }
         if (body->requested_action != 0xB) {
             queue_destruction__7TObjectFv(body->effects[0]);
             body->effects[0] = NULL;
-            spawn_particle_effect((const Vec *)&body->m_2fc, 0x129);
+            spawn_particle_effect(&body->body_center_position, 0x129);
             TObjPlayer__sub_8008E934(body, 1);
             body->advance_animation();
             body->m_388 &= ~0x04000000;
@@ -989,7 +989,7 @@ void TObjPlayer__sub_8008E310(TObjEneBalClawBody *body) {
         }
         break;
     case 3:
-        body->effects[1]->set_position(&body->m_2fc);
+        body->effects[1]->set_position(&body->body_center_position.x);
         body->advance_animation();
         apply_actor_gravity(body, NULL, 0.0f);
         if (--body->timer <= 0) {
@@ -1092,8 +1092,8 @@ void TObjPlayer::update_move_to_target() {
     case 0: {
         self->actorFlags &= ~0x100;
         self->requested_action = self->get_flag_0x388_b24() != 0 ? 1 : 6;
-        Vec d = *(Vec *)&self->m_2fc;
-        subtract_vector(&d, (Vec *)&((TObjChara *)self->target)->m_2fc);
+        Vec d = self->body_center_position;
+        subtract_vector(&d, &((TObjChara *)self->target)->body_center_position);
         self->pick_open_direction((f32 *)&d, 60.0f, 30.0f);
         self->state = 1;
         break;
@@ -1104,16 +1104,16 @@ void TObjPlayer::update_move_to_target() {
             break;
         }
         if (this->is_actor_cadence_frame(0x5A) != 0) {
-            Vec d2 = *(Vec *)&self->m_2fc;
-            subtract_vector(&d2, (Vec *)&((TObjChara *)self->target)->m_2fc);
+            Vec d2 = self->body_center_position;
+            subtract_vector(&d2, &((TObjChara *)self->target)->body_center_position);
             self->pick_open_direction((f32 *)&d2, 60.0f, 30.0f);
         }
-        VecCopy((Vec *)&self->m_290, (const Vec *)&self->m_2fc);
+        VecCopy((Vec *)&self->m_290, &self->body_center_position);
         calc_velocity_toward_destination(self, *(Vec *)&self->m_290, *(Vec *)&self->m_29c, ((EnemyMoveParams *)self->movementParameters)->min_distance);
-        self->turn_toward_direction(((EnemyMoveParams *)self->movementParameters)->turn_speed, (Vec *)&self->x_speed);
-        Vec v = *(Vec *)&self->m_2fc;
-        v.x += self->x_speed;
-        v.z += self->m_310;
+        self->turn_toward_direction(((EnemyMoveParams *)self->movementParameters)->turn_speed, &self->movement_velocity);
+        Vec v = self->body_center_position;
+        v.x += self->movement_velocity.x;
+        v.z += self->movement_velocity.z;
         if (check_path_obstructed(self, &v) == 0) {
             move_with_wall_slide((u8 *)self);
         }
@@ -1139,13 +1139,13 @@ void TObjPlayer__sub_8008DD14(TObjEneBalClawBody *self) {
         VecCopy((Vec *)&self->m_29c, (const Vec *)&self->home_position);
         break;
     case 1: {
-        self->y_speed = 0.0f;
-        VecCopy((Vec *)&self->m_290, (const Vec *)&self->m_2fc);
+        self->movement_velocity.y = 0.0f;
+        VecCopy((Vec *)&self->m_290, &self->body_center_position);
         calc_velocity_toward_destination(self, *(Vec *)&self->m_290, *(Vec *)&self->m_29c, ((EnemyMoveParams *)self->movementParameters)->min_distance);
-        self->turn_toward_direction(((EnemyMoveParams *)self->movementParameters)->turn_speed, (Vec *)&self->x_speed);
-        Vec v = *(Vec *)&self->m_2fc;
-        v.x += self->x_speed;
-        v.z += self->m_310;
+        self->turn_toward_direction(((EnemyMoveParams *)self->movementParameters)->turn_speed, &self->movement_velocity);
+        Vec v = self->body_center_position;
+        v.x += self->movement_velocity.x;
+        v.z += self->movement_velocity.z;
         if (check_path_obstructed(self, &v) == 0) {
             move_with_wall_slide((u8 *)self);
         }

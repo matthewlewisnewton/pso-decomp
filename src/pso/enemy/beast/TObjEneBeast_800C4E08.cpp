@@ -148,8 +148,8 @@ void TUnk_80493450::beast_update_dead() {
     }
     if (this->frame < (BEAST_DEATH_SLIDE_FRAME_SCALE * (BEAST_DEATH_SLIDE_FRAME_COUNT * this->play_speed))) {
         move_with_wall_slide((arg0));
-        x_speed *= BEAST_HORIZONTAL_SPEED_DAMPING;
-        m_310 *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.x *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.z *= BEAST_HORIZONTAL_SPEED_DAMPING;
     } else if (((TObjCollidable *)arg0)->obj_testFlags30(0x800000) == 0) {
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), BEAST_GROUND_HEIGHT_OFFSET);
     }
@@ -164,7 +164,7 @@ void TUnk_80493450::beast_update_hurt() {
     Vec v;
 
     advance_animation();
-    VecCopy(&v, (const Vec *)&m_2fc);
+    VecCopy(&v, &body_center_position);
     scratch_vec.x = scratch_vec.y = BEAST_ZERO_VECTOR_COMPONENT;
     scratch_vec.z = get_collision_body_radius(0);
     ((void (*)(void *, void *))push_matrix_from)(identity_matrix, &scratch_vec);
@@ -172,14 +172,14 @@ void TUnk_80493450::beast_update_hurt() {
     rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
     pop_matrix();
     vec3_add_to(&v, &scratch_vec);
-    v.x += x_speed;
-    v.z += m_310;
+    v.x += movement_velocity.x;
+    v.z += movement_velocity.z;
     if (check_path_obstructed(this, &v) == 0) {
         move_with_wall_slide(arg0);
-        x_speed *= BEAST_HORIZONTAL_SPEED_DAMPING;
-        m_310 *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.x *= BEAST_HORIZONTAL_SPEED_DAMPING;
+        movement_velocity.z *= BEAST_HORIZONTAL_SPEED_DAMPING;
     } else {
-        x_speed = m_310 = BEAST_ZERO_SPEED;
+        movement_velocity.x = movement_velocity.z = BEAST_ZERO_SPEED;
     }
     ((TObjPlayer *)this)->update_collisions();
     if (is_passing_frame(BEAST_ANIMATION_START_FRAME) != 0) {
@@ -347,9 +347,9 @@ void TUnk_80493450::beast_update_group_chase() {
         break;
     }
     if (target != NULL) {
-        Vec v = *(Vec *)&((TObjChara *)target)->m_2fc;
+        Vec v = ((TObjChara *)target)->body_center_position;
         d = enemy_backstep_from_point(this, &v, m_398);
-        turn_toward_direction((s32)((Sub350_800C57F0 *)movementParameters)->p8, (Vec *)&x_speed);
+        turn_toward_direction((s32)((Sub350_800C57F0 *)movementParameters)->p8, &movement_velocity);
         r = m_398 + bodies->radius;
         if (d < r * r) {
             mode = 3;
@@ -384,11 +384,11 @@ void TUnk_80493450::beast_update_approach() {
                 if (this->m_38c++ < BEAST_HOME_CHASE_FRAME_COUNT) {
                     VecCopy(&sp14, &this->home_position);
                 } else {
-                    VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->m_2fc);
+                    VecCopy(&sp14, &((TObjChara *)this->target)->body_center_position);
                 }
             } else {
                 this->m_38c = 0U;
-                VecCopy(&sp14, (const Vec *)&((TObjChara *)this->target)->m_2fc);
+                VecCopy(&sp14, &((TObjChara *)this->target)->body_center_position);
             }
             update_target_near_flag();
             sub_800C4E08();
@@ -429,8 +429,8 @@ void TUnk_80493450::update_turn_toward_target() {
     case 1:
         if (arg0->target != NULL && arg0->is_actor_cadence_frame(0x1E) != 0) {
             Vec d;
-            VecCopy(&d, (const Vec *)&((TObjChara *)arg0->target)->m_2fc);
-            subtract_vector(&d, &arg0->m_2fc);
+            VecCopy(&d, &((TObjChara *)arg0->target)->body_center_position);
+            subtract_vector(&d, &arg0->body_center_position.x);
             ang = arg0->turn_toward_direction((s32)((Ctl_800C5B10 *)arg0->movementParameters)->field_8, &d);
             if (d.x * d.x + d.z * d.z < BEAST_GROUP_APPROACH_DISTANCE_SQ || arg0->children == 0) {
                 arg0->mode = 3;
@@ -445,8 +445,8 @@ void TUnk_80493450::update_turn_toward_target() {
     case 2:
         if (arg0->target != NULL && arg0->is_actor_cadence_frame(0x1E) != 0) {
             Vec d;
-            VecCopy(&d, (const Vec *)&((TObjChara *)arg0->target)->m_2fc);
-            subtract_vector(&d, &arg0->m_2fc);
+            VecCopy(&d, &((TObjChara *)arg0->target)->body_center_position);
+            subtract_vector(&d, &arg0->body_center_position.x);
             ang = angle_difference_abs(arg0->rotation.yaw, (s32)(BEAST_ANGLE_UNITS_PER_RADIAN * atan2_float(d.x, d.z)));
             if (d.x * d.x + d.z * d.z < BEAST_GROUP_APPROACH_DISTANCE_SQ || arg0->children == 0) {
                 arg0->mode = 3;
@@ -534,7 +534,7 @@ void TUnk_80493450::beast_idle_update() {
     range = *(f32 *)((s8 *)arg0 + 0x358) + (*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4) + *(f32 *)((s8 *)(*(u8 * *)&this->bodies) + 0xC));
     if (range * range < dist) {
         VecCopy((Vec *)&this->m_29c, &this->home_position);
-        VecCopy((Vec *)&this->m_290, (const Vec *)&this->m_2fc);
+        VecCopy((Vec *)&this->m_290, &this->body_center_position);
         VecCopy(&this->prev_position, &this->position);
         VecCopy(&scratch_vec, &this->home_position);
         subtract_vector(&scratch_vec, (u8 *)&this->position);
@@ -679,11 +679,11 @@ void TUnk_80493450::vfunc_28() {
                 }
                 id = get_entity_id(player);
                 if (id < 0x4000 && id != self->entity_id && player->obj_testFlags30(0x03000800) == 0) {
-                    VecCopy(&d, (Vec *)&player->m_2fc);
-                    subtract_vector(&d, &self->m_2fc);
+                    VecCopy(&d, &player->body_center_position);
+                    subtract_vector(&d, &self->body_center_position.x);
                     dist = d.x * d.x + d.z * d.z;
-                    if (dist < best_dist && check_path_obstructed(self, &player->m_2fc) != 1 &&
-                        csnVector(&self->m_2fc, &player->m_2fc, -1) == 0) {
+                    if (dist < best_dist && check_path_obstructed(self, &player->body_center_position.x) != 1 &&
+                        csnVector(&self->body_center_position.x, &player->body_center_position.x, -1) == 0) {
                         best = id;
                         best_dist = dist;
                     }
@@ -776,7 +776,7 @@ void TUnk_80493450::run_task() {
     }
   }
   ((TObjEnemy *)arg0)->update_prev_position();
-  ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+  ((TObjChara *)arg0)->copy_body_to_center();
   submit_cursor_candidate((void *) arg0, -1);
   this->m_2b4 += BEAST_FRAME_INCREMENT;
 }

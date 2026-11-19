@@ -357,7 +357,6 @@ s32 is_split_screen();
 s32 get_bml_motion(u32, int);
 
 
-s32 copy_position__20TBoss3VoloptHiraisinFv(void *);
 
 
 u32 load_enemy_bml_resource_named(BmlResourceDescriptor *, const char *);
@@ -638,7 +637,7 @@ void TObjEneGyaranzo::run_task() {
     }
     ((TObjPlayer *)((u8 *)this))->dispatch_state_update();
     this->update_prev_position();
-    copy_position__20TBoss3VoloptHiraisinFv(this);
+    ((TObjChara *)this)->copy_body_to_center();
     submit_cursor_candidate(this, -1);
     minimap_render_dot(((u8 *)this) + 0x38, -0x5DB4, 1, 0);
 }
@@ -1229,7 +1228,7 @@ void TObjEneGyaranzo::select_targets() {
         if (p == arg0) continue;
         if (*(u32 *)((s8 *)p + 0x30) & 0x2000800) continue;
         VecCopy((Vec *)&d, (const Vec *)(p + 0x2FC));
-        subtract_vector(&d, (u8 *)&this->m_2fc);
+        subtract_vector(&d, (u8 *)&this->body_center_position.x);
         dist = d.x * d.x + d.z * d.z;
         if (!(dist < 90000.0f)) continue;
         if (check_path_obstructed(arg0, p + 0x2FC) == 1) continue;

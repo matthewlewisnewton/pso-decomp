@@ -460,12 +460,12 @@ void TObjEneMe3SinowZoa::vfunc_61() {  }
 
 void TObjEneMe3SinowZoa::copy_pos_with_height_offset() {
     VecCopy(body_center(), &position);
-    this->m_300 = this->m_300 + (TObjEneMe3SinowZoa__data_805DF2FC + this->m_3e4);
+    this->body_center_position.y = this->body_center_position.y + (TObjEneMe3SinowZoa__data_805DF2FC + this->m_3e4);
     VecCopy(&center, &position);
 }
 
 void TObjEneMe3SinowZoa::vfunc_88() {
-    bodies->offset.y = this->m_300 - this->position.y;
+    bodies->offset.y = this->body_center_position.y - this->position.y;
 }
 
 void TObjEneMe3SinowZoa::vfunc_95() { TObjEneDD::vfunc_95(); sub_800F5874(38); }
@@ -1579,8 +1579,8 @@ void TObjEneMe3SinowZoa::state_knockback(s32 arg1) {
         VecCopy(&v, velocity());
         len = normalize_vector_xz((Vec *)(&v));
         this->move_clamped_on_ground(v.x, v.z, len);
-        this->x_speed *= 0.8f;
-        this->m_310 *= 0.8f;
+        this->movement_velocity.x *= 0.8f;
+        this->movement_velocity.z *= 0.8f;
         this->vfunc_89();
         break;
     case 5:
@@ -2008,7 +2008,7 @@ void TObjEneMe3SinowZoa__sub_803170F0(TObjEneMe3SinowZoa *self, s32 arg1) {
 
 inline s32 approach_80316C3C(TObjEneMe3SinowZoa *self) {
     copy_position_if_valid__10TObjPlayerFii(self, *self->body_center());
-    self->m_300 += TObjEneMe3SinowZoa__data_805DF308;
+    self->body_center_position.y += TObjEneMe3SinowZoa__data_805DF308;
     return ((TObjEnemy *)self)->enemy_turn_toward_dest(((TObjEneMe3SinowZoaMoveParams *)self->movementParameters)->turn);
 }
 inline s32 seek_80316C3C(TObjEneMe3SinowZoa *self, Vec *diff) {

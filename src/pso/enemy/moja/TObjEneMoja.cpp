@@ -408,7 +408,7 @@ static const s32 moja_collision_flags = 0x8001;
 TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     m_name = TObjEneMoja__name;
     apply_set_data(setData);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     mode = 0;
     phase = 0;
     techniqueChance = 0.3f + parameters[1];
@@ -439,7 +439,7 @@ TObjEneMoja::TObjEneMoja(TObject *parent, void *setData) : TObjEnemy(parent) {
     movementParameters = &moja_enemy_movement_parameters[variant];
     referenceHp = hp;
     update_prev_position();
-    ((TBoss3VoloptHiraisin *)this)->copy_position();
+    ((TObjChara *)this)->copy_body_to_center();
     register_object_by_id();
     resetTimer = 0;
     timer = resetTimer;
@@ -608,7 +608,7 @@ void TObjEneMoja::run_task() {
         }
     }
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     submit_cursor_candidate(arg0, -1);
     temp_r4 = this->target;
     if ((temp_r4 != NULL) && (*(s32 *)((s8 *)temp_r4 + 0x30) & 0x02000800)) {
@@ -722,11 +722,11 @@ void TObjEneMoja::vfunc_28() {
                     f32 xx;
                     f32 zz;
                     VecCopy((Vec *)&v, (const Vec *)(p + 0x2FC));
-                    subtract_vector(&v, &m_2fc);
+                    subtract_vector(&v, &body_center_position.x);
                     xx = v.x * v.x;
                     zz = v.z * v.z;
                     d = xx + zz;
-                    if (d < best && check_path_obstructed(this, p + 0x2FC) != 1 && csnVector(&m_2fc, p + 0x2FC, -1) == 0U) {
+                    if (d < best && check_path_obstructed(this, p + 0x2FC) != 1 && csnVector(&body_center_position.x, p + 0x2FC, -1) == 0U) {
                         best_id = id;
                         best = d;
                     }
@@ -890,13 +890,13 @@ void TObjEneMoja::update_appearance_jump() {
         ticks = 12.0f / play_speed;
         jumpSpeed = jumpSpeed / ticks;
         ((s32 (*)(void *, Vec, Vec, f32))calc_velocity_toward_destination)(this, *(Vec *)&m_290, *(Vec *)&m_29c, jumpSpeed);
-        y_speed = delta.y / ticks;
+        movement_velocity.y = delta.y / ticks;
         phase = 1;
         break;
     case 1:
-        position.x += x_speed;
-        position.y += y_speed;
-        position.z += m_310;
+        position.x += movement_velocity.x;
+        position.y += movement_velocity.y;
+        position.z += movement_velocity.z;
         if (is_passing_frame(20.0f) == 0) {
             return;
         }
@@ -910,7 +910,7 @@ void TObjEneMoja::update_appearance_jump() {
                 break;
             }
             if (((s32 (*)(void *))obj_is_hit_receivable)(p) != 0) {
-                dist = horizontal_distance_squared((int)((u8 *)p + 0x2FC), &m_2fc);
+                dist = horizontal_distance_squared((int)((u8 *)p + 0x2FC), &body_center_position.x);
                 if (dist <= 2500.0f) {
                     Hit_800AE7F4 hit;
                     hit.a = 0;
@@ -970,13 +970,13 @@ void TObjEneMoja::update_appearance_drop() {
         ticks = 12.0f / play_speed;
         jumpSpeed = jumpSpeed / ticks;
         ((s32 (*)(void *, Vec, Vec, f32))calc_velocity_toward_destination)(this, *(Vec *)&m_290, *(Vec *)&m_29c, jumpSpeed);
-        y_speed = scratch_vec.y / ticks;
+        movement_velocity.y = scratch_vec.y / ticks;
         phase = 1;
         break;
     case 1:
-        position.x += x_speed;
-        position.y += y_speed;
-        position.z += m_310;
+        position.x += movement_velocity.x;
+        position.y += movement_velocity.y;
+        position.z += movement_velocity.z;
         if (is_passing_frame(20.0f) == 0) {
             return;
         }
@@ -990,7 +990,7 @@ void TObjEneMoja::update_appearance_drop() {
                 break;
             }
             if (((s32 (*)(void *))obj_is_hit_receivable)(p) != 0) {
-                dist = horizontal_distance_squared((int)((u8 *)p + 0x2FC), &m_2fc);
+                dist = horizontal_distance_squared((int)((u8 *)p + 0x2FC), &body_center_position.x);
                 if (dist <= 2500.0f) {
                     Hit_800AE450 hit;
                     hit.a = 0;
@@ -1473,10 +1473,10 @@ void TObjEneMoja::update_attack_jump() {
             if (target != NULL) {
                 Vec dest = *(Vec *)(target + 0x2FC);
                 if (select_enemy_destination(this, (Vec *)&dest, 1) != 0) {
-                    Vec pos = *(Vec *)&m_2fc;
+                    Vec pos = body_center_position;
                     copy_position_if_valid__10TObjPlayerFii(this, (Vec *)&pos);
                     VecCopy((Vec *)&delta, (const Vec *)&m_29c);
-                    subtract_vector(&delta, &m_2fc);
+                    subtract_vector(&delta, &body_center_position.x);
                     jumpSpeed = -20.0f + newton_sqrtf(delta.x * delta.x + delta.z * delta.z);
                     jumpSpeed = jumpSpeed / (12.0f / play_speed);
                     phase = 1;
@@ -1501,7 +1501,7 @@ void TObjEneMoja::update_attack_jump() {
                     break;
                 }
                 if (((s32 (*)(void *))obj_is_hit_receivable)(p) != 0) {
-                    d = horizontal_distance_squared((s32)(p + 0x2FC), &m_2fc);
+                    d = horizontal_distance_squared((s32)(p + 0x2FC), &body_center_position.x);
                     if (d <= ((AttackParams *)(m_318))->get_damage_radius() * ((AttackParams *)(m_318))->get_damage_radius()) {
                         Hit_800ACFE8 hit;
                         hit.a = 0;
@@ -1599,8 +1599,8 @@ void TObjPlayer::update_ground_effect() {
         play_sound_effect((s32)((void *)((TObjEnemy *)(this))->remap_sound_for_area(0x3A807)), (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         TObjPlayer::play_effect_if_v2(-0x300);
     }
-    this->m_310 = 0.0f;
-    *(f32 *)&this->unk_308 = 0.0f;
+    this->movement_velocity.z = 0.0f;
+    this->movement_velocity.x = 0.0f;
     apply_actor_gravity((TObjEnemy *)this, (s32 *)(0), 0.0f);
     this->update_collisions();
     if ((u32) this->action_flags != 8U) {
@@ -1652,8 +1652,8 @@ void TObjEneMoja::update_death_state() {
     }
     if (this->frame < 0.5f * (30.0f * this->play_speed)) {
         move_with_wall_slide(arg0);
-        (*(f32 *)&this->unk_308) *= 0.5f;
-        this->m_310 *= 0.5f;
+        (this->movement_velocity.x) *= 0.5f;
+        this->movement_velocity.z *= 0.5f;
     } else if (!((this->actorFlags) & 0x800000)) {
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
     }

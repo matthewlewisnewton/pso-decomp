@@ -93,7 +93,7 @@ s32 TOCtrlDubchik::select_melee_contact_body(void *, f32) {
 TOCtrlDubchik::TOCtrlDubchik(TObject *parent, void *set_data) : TObjEnemy(parent) {
     m_name = TOCtrlDubchik__name;
     apply_set_data(set_data);
-    ((TObjPlayer *)this)->init_position_vectors();
+    ((TObjChara *)this)->initialize_position_copies();
     model = (unsigned char *) ((void *) *(void **)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TOCtrlDubchik__shared_resource) + 0x42C)) + 8));
     texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TOCtrlDubchik__shared_resource) + 0x42C)) + 0xC);
     init_collision_body_parts(this, &TOCtrlDubchik__collision_body, 1);
@@ -230,7 +230,7 @@ void TOCtrlDubchik::run_task() {
         complete_and_destroy();
         break;
     }
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
+    VecCopy(&this->body_center_position, (const Vec *)&this->position);
     ((TObjCollidable *)arg0)->refresh_collision_body_centers();
     submit_cursor_candidate(arg0, -1);
 }
@@ -343,7 +343,7 @@ f32 TOCtrlDubchik::receive_weapon_special_attack(void *attacker, void *hit) {
         if (hit != NULL) {
             VecCopy(&pos, &((A_8015C9D4 *)hit)->pos);
         } else {
-            VecCopy(&pos, (Vec *)&m_2fc);
+            VecCopy(&pos, &body_center_position);
         }
         TOCtrlDubchik::create_font((s32)&pos, (s32)0xFFFF0000, 0x14, (s32)"MISS");
     }

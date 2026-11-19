@@ -924,7 +924,7 @@ void TObjEneSlimeOne::initialize_slime_instance_state() {
   ((TObjMotion *)actor)->set_animation(0);
   ((TObjMotion *)actor)->set_field_b8(0);
   VecCopy((Vec *)(new_var = actor + 0x2FC), (const Vec *)(actor + 0x38));
-  ((TObjEneSlimeOne *)actor)->m_310 = 0.0f;
+  ((TObjEneSlimeOne *)actor)->movement_velocity.z = 0.0f;
   *((f32 *) (((s8 *) actor) + 0x30C)) = 0.0f;
   *((f32 *) (((s8 *) actor) + 0x308)) = 0.0f;
   *((s32 *) (((s8 *) actor) + 0x2A8)) = 0;
@@ -1945,8 +1945,8 @@ s32 TObjEneSlimeTailAttack::sub_800E85BC() {
             TObjPlayer *pl = (TObjPlayer *)e;
             f32 lo = pl->position.y - 5.0f;
             f32 hi = 5.0f + (pl->position.y + pl->m_d48);
-            if (!(this->m_300 < lo) && !(this->m_300 > hi) &&
-                !(horizontal_distance_squared((const Vec *)&this->m_2fc, (const Vec *)&pl->position) > 56.25f)) {
+            if (!(this->body_center_position.y < lo) && !(this->body_center_position.y > hi) &&
+                !(horizontal_distance_squared(&this->body_center_position, (const Vec *)&pl->position) > 56.25f)) {
                 if (e->m21(*(s32 *)((u8 *)this + 0x374), hit, 0, -1, -1) != 0.0f) {
                     e->m23(this);
                 }
@@ -1960,7 +1960,7 @@ s32 TObjEneSlimeTailAttack::sub_800E85BC() {
         void *owner = *(void **)((u8 *)this + 0x374);
         if (owner == NULL || id2 != (u16)get_entity_id(owner)) {
             e2 = (Ent_800E8AD0 *)get_enemy_entity(id2);
-            if (e2 != NULL && !(horizontal_distance_squared((const Vec *)&this->m_2fc, (const Vec *)((u8 *)e2 + 0x2FC)) > 56.25f)) {
+            if (e2 != NULL && !(horizontal_distance_squared(&this->body_center_position, (const Vec *)((u8 *)e2 + 0x2FC)) > 56.25f)) {
                 if (e2->m21(*(s32 *)((u8 *)this + 0x374), hit, 0, -1, -1) != 0.0f) {
                     e2->m23(this);
                 }

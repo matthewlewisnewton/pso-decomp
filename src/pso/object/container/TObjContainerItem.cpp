@@ -590,7 +590,7 @@ TObjContainerItem::TObjContainerItem(TObject *parent, void *set_data) : TUnk_804
     init_collision_body_parts(this, &forest_box_collision_body_parts, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += forest_box_collision_body_parts.center[1];
 }
 
@@ -689,7 +689,7 @@ TObjContainerEnemy::TObjContainerEnemy(TObject *parent, void *set_data) : TUnk_8
     init_collision_body_parts(this, &forest_box_collision_body_parts, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += forest_box_collision_body_parts.center[1];
 }
 
@@ -814,7 +814,7 @@ TObjContainerNoItem::TObjContainerNoItem(TObject *parent, void *set_data) : TUnk
     init_collision_body_parts(this, &forest_box_collision_body_parts, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += forest_box_collision_body_parts.center[1];
 }
 
@@ -922,7 +922,7 @@ TObjContainerBase::TObjContainerBase(TObject *parent, void *set_data) : TUnk_804
     init_collision_body_parts(this, &forest_box_collision_body_parts, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += forest_box_collision_body_parts.center[1];
 }
 
@@ -1033,7 +1033,7 @@ TObjContainerAbeEnemy::TObjContainerAbeEnemy(TObject *parent, void *set_data) : 
     init_collision_body_parts(this, &forest_box_collision_body_parts, 1);
     register_object_by_id();
     VecCopy(&center, &position);
-    VecCopy((Vec *)&m_2fc, &position);
+    VecCopy(&body_center_position, &position);
     center.y += forest_box_collision_body_parts.center[1];
 }
 

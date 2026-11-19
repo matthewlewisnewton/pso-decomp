@@ -579,8 +579,8 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     this->rotation.yaw = 0;
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     unk_394 = init_collision_body_parts(this, lbl_80485E2C, 3);
-    VecCopy((Vec *)&m_2fc, &position);
-    x_speed = y_speed = m_310 = 0.0f;
+    VecCopy(&body_center_position, &position);
+    movement_velocity.x = movement_velocity.y = movement_velocity.z = 0.0f;
     target = 0;
     bind_enemy_combat_stats((u8 *)get_battle_base_stats(0x36), (u8 *)get_battle_attack_params(0x36), (u8 *)get_battle_resistance_params(0x36));
     referenceHp = hp;
@@ -693,7 +693,7 @@ void TBoss4Type1::render() {
 
 void TBoss4Type1::snapshot_position() {
     u8 *arg0 = (u8 *)this;
-    VecCopy__FP3VecPC3Vec((u8 *)&this->m_2fc, arg0 + 0x38);
+    VecCopy__FP3VecPC3Vec((u8 *)&this->body_center_position.x, arg0 + 0x38);
     *(f32 *)((s8 *)arg0 + 0x300) += 50.0f;
 }
 

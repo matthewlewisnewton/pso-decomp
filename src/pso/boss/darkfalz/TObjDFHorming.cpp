@@ -665,9 +665,9 @@ void TBoss4DarkFalz::handle_defeat() {
         p = get_player_by_client_id((void *) ((u16) local_client_id));
         if (p != 0) {
             save = *(struct V3_8004B654 *)(arg0 + 0x2FC);
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)(p + 0x2FC));
+            VecCopy(&this->body_center_position, (const Vec *)(p + 0x2FC));
             ((TObjEnemy *)arg0)->distribute_experience();
-            VecCopy((Vec *)&this->m_2fc, (const Vec *)&save);
+            VecCopy(&this->body_center_position, (const Vec *)&save);
         }
     }
     flags[0] = 0x800;
@@ -933,7 +933,7 @@ s32 TBoss4DarkFalz__ct(s32 a0, s32 arg1, s32 a2) {
     VecCopy((Vec *)(boss4_dark_falz + 0x44), (const Vec *)(VecCopy((Vec *)(boss4_dark_falz + 0x50), (const Vec *)(VecCopy((Vec *)(boss4_dark_falz + 0x74), (const Vec *)(boss4_dark_falz + 0x38))))));
     VecCopy((Vec *)(boss4_dark_falz + 0x2FC), (const Vec *)(boss4_dark_falz + 0x38));
     *(f32 *)((s8 *)boss4_dark_falz + 0x310) = (f32) 0.0f;
-    ((TBoss4DarkFalz *)boss4_dark_falz)->y_speed = (f32) 0.0f;
+    ((TBoss4DarkFalz *)boss4_dark_falz)->movement_velocity.y = (f32) 0.0f;
     *(f32 *)((s8 *)boss4_dark_falz + 0x308) = (f32) 0.0f;
     *(s32 *)((s8 *)boss4_dark_falz + 0x2A8) = 0;
     if ((s32) game_difficulty_selection == 0) {

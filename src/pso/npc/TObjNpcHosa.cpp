@@ -54,7 +54,7 @@ u8 *TObjNpcHosa__ct(u8 *player, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)player + 0x18) = __vt__11TObjNpcHosa;
     *(s32 *)((s8 *)player + 0) = (s32) TObjNpcHosa__name;
     ((TObjNpcHosa *)(player))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)player)->init_position_vectors();
+    ((TObjChara *)player)->initialize_position_copies();
     *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcHosa__static_model_resource)), 0);
     ((TObjNpcHosa *)player)->texlist = (s32)get_bml_texlist((BmlResource *)((*(s32 *)&TObjNpcHosa__static_model_resource)), 0);
     ((TObjNpcBase *)player)->setup_common();

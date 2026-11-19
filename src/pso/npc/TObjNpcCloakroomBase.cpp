@@ -77,7 +77,7 @@ u8 *TObjNpcCloakroomBase__ct(u8 *arg0, s32 arg1, s32 arg2) {
     *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TObjNpcCloakroomBase;
     *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcCloakroomBase__name;
     ((TObjNpcCloakroomBase *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcCloakroomBase__static_instance) + 0x42C)) + 8);
     ((TObjNpcCloakroomBase *)arg0)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcCloakroomBase__static_instance) + 0x42C)) + 0xC);
     ((TObjNpcBase *)arg0)->setup_common();

@@ -1020,7 +1020,7 @@ void TUnk_80482EC0::vfunc_105(s32 arg1) {
         ((VObj_80037EE0 *)arg0)->m93();
         *(s32 *)((s8 *)arg0 + 0x38C) = (s32) (*(s32 *)((s8 *)arg0 + 0x38C) & 0xFFFFFFF8);
         VecCopy((Vec *)(arg0 + 0x39C), (const Vec *)(arg0 + 0x390));
-        subtract_vector(arg0 + 0x39C, (u8 *)&this->m_2fc);
+        subtract_vector(arg0 + 0x39C, (u8 *)&this->body_center_position.x);
         *(f32 *)((s8 *)arg0 + 0x3DC) = normalize_vector_xz((Vec *)(arg0 + 0x39C));
         temp_r3 = (s32) ((10430.38043493439) * atan2_float(*(f32 *)((s8 *)arg0 + 0x39C), *(f32 *)((s8 *)arg0 + 0x3A4)));
         this->rotation.yaw = temp_r3;
@@ -1212,7 +1212,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             (*(s32 *)((s8 *)arg0 + 0x3CC))++;
             if (*(s32 *)((s8 *)arg0 + 0x3CC) >= 0xF) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 1;
-                play_sound_effect(0x4003A804, (const Vec *)&this->m_2fc, 0, 0);
+                play_sound_effect(0x4003A804, &this->body_center_position, 0, 0);
             }
             *(f32 *)((s8 *)arg0 + 0x2FC) = *(f32 *)((s8 *)arg0 + 0x404) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x2FC);
             *(f32 *)((s8 *)arg0 + 0x304) = *(f32 *)((s8 *)arg0 + 0x40C) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x304);
@@ -1238,7 +1238,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             }
             ((TUnk_80482D04 *)arg0)->move_mine();
             VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x390));
-            subtract_vector(&v, (u8 *)&this->m_2fc);
+            subtract_vector(&v, (u8 *)&this->body_center_position.x);
             if (((TObjBoss2Tunnel *)(&v))->update_scale() <= (4.5f)) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 3;
             }
@@ -1298,7 +1298,7 @@ void TUnk_80482D04::vfunc_106(s32 arg1) {
         this->rotation.roll += 2.56e+03f;
         ((TUnk_80482D04 *)arg0)->move_mine();
         VecCopy((Vec *)&v, (const Vec *)(arg0 + 0x390));
-        subtract_vector(&v, (u8 *)&this->m_2fc);
+        subtract_vector(&v, (u8 *)&this->body_center_position.x);
         s = normalize_vector_xz((Vec *)(&v));
         s *= (0.75f);
         if (s < (0.2f)) {

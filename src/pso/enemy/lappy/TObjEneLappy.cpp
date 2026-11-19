@@ -506,10 +506,10 @@ s32 TObjEneLappy::advance_flee_step() {
     s32 var_r30;
     s32 var_r29;
     VecCopy((Vec *)((LappyVec *)&arg0->prev_position), (const Vec *)&arg0->position);
-    VecCopy((Vec *)&sp20, (const Vec *)((LappyVec *)&arg0->m_2fc));
-    vec3_add_to(&sp20, (LappyVec *)&arg0->unk_308);
+    VecCopy((Vec *)&sp20, &arg0->body_center_position);
+    vec3_add_to(&sp20, (LappyVec *)&arg0->movement_velocity);
     if (arg0->is_actor_cadence_frame(0x1E) != 0) {
-        if (csnVector((LappyVec *)&arg0->m_2fc, &sp20, -1) != 0U) {
+        if (csnVector((LappyVec *)&arg0->body_center_position.x, &sp20, -1) != 0U) {
             return 0;
         }
         if (((TObjChara *)arg0)->random_ratio() < 0.5f) {
@@ -521,19 +521,19 @@ s32 TObjEneLappy::advance_flee_step() {
         var_r31 = 0;
 loop_7:
         if (var_r29 == 0) {
-            VecCopy((Vec *)&sp14, (const Vec *)((LappyVec *)&arg0->unk_308));
+            VecCopy((Vec *)&sp14, &arg0->movement_velocity);
         } else {
             push_matrix_from(&identity_matrix);
             rotate_matrix_y(0, (int)(var_r30 * var_r31));
-            rotate_vector_by_matrix(0, (LappyVec *)&arg0->unk_308, &sp14);
+            rotate_vector_by_matrix(0, (LappyVec *)&arg0->movement_velocity, &sp14);
             pop_matrices(1);
         }
         VecCopy((Vec *)&sp8, (const Vec *)&arg0->position);
         vec3_add_to(&sp8, &sp14);
         if (((s32)project_actor_to_ground(arg0, &sp8, 0)) == 1) {
             VecCopy((Vec *)&arg0->position, (const Vec *)&sp8);
-            VecCopy((Vec *)((LappyVec *)&arg0->unk_308), (const Vec *)&arg0->position);
-            subtract_vector((LappyVec *)&arg0->unk_308, (LappyVec *)&arg0->prev_position);
+            VecCopy(&arg0->movement_velocity, (const Vec *)&arg0->position);
+            subtract_vector((LappyVec *)&arg0->movement_velocity, (LappyVec *)&arg0->prev_position);
             return 1;
         }
         var_r29 += 1;
@@ -545,8 +545,8 @@ loop_7:
     }
     if (((s32)project_actor_to_ground(arg0, &sp20, 0)) == 1) {
         VecCopy((Vec *)((LappyVec *)&arg0->position), (const Vec *)&sp20);
-        VecCopy((Vec *)((LappyVec *)&arg0->unk_308), (const Vec *)((LappyVec *)&arg0->position));
-        subtract_vector((LappyVec *)&arg0->unk_308, (LappyVec *)&arg0->prev_position);
+        VecCopy(&arg0->movement_velocity, (const Vec *)((LappyVec *)&arg0->position));
+        subtract_vector((LappyVec *)&arg0->movement_velocity, (LappyVec *)&arg0->prev_position);
         return 1;
     }
     return 0;
@@ -632,7 +632,7 @@ s32 TObjEneLappy::apply_move_friction() {
     if (this->frame < (0.5f * (30.0f * this->play_speed))) {
         move_with_wall_slide((u8 *)this);
         *(f32 *)((s8 *)this + 0x308) *= 0.5f;
-        this->m_310 *= 0.5f;
+        this->movement_velocity.z *= 0.5f;
     }
 }
 void TObjEneLappy::vfunc_63() {
@@ -738,7 +738,7 @@ void TObjEneLappy::update_attacking() {
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
         if (((TObjMotion *)arg0)->is_passing_frame(11.0f) != 0) {
             enemy_set_heading_velocity(*(f32 *)((s8 *)this->movementParameters + 4), (TObjEnemy *)(arg0), this->rotation.yaw);
-            this->y_speed = 0.0f;
+            this->movement_velocity.y = 0.0f;
             this->phase = 1;
         }
         break;
@@ -746,8 +746,8 @@ void TObjEneLappy::update_attacking() {
         VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
         *(f32 *)((s8 *)arg0 + 0x38) += *(f32 *)((s8 *)arg0 + 0x308);
         *(f32 *)((s8 *)arg0 + 0x308) *= 0.95f;
-        *(f32 *)((s8 *)arg0 + 0x40) += this->m_310;
-        this->m_310 *= 0.95f;
+        *(f32 *)((s8 *)arg0 + 0x40) += this->movement_velocity.z;
+        this->movement_velocity.z *= 0.95f;
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
         if (((TObjMotion *)arg0)->is_passing_frame(14.0f) != 0) {
             temp_r3 = this->target;
@@ -770,10 +770,10 @@ void TObjEneLappy::update_attacking() {
     case 3:
         VecCopy((Vec *)(arg0 + 0x44), (const Vec *)(arg0 + 0x38));
         *(f32 *)((s8 *)arg0 + 0x38) += *(f32 *)((s8 *)arg0 + 0x308);
-        *(f32 *)((s8 *)arg0 + 0x40) += this->m_310;
+        *(f32 *)((s8 *)arg0 + 0x40) += this->movement_velocity.z;
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
         if (this->action_flags != 4U) {
-            *(f32 *)((s8 *)arg0 + 0x308) = this->y_speed = this->m_310 = 0.0f;
+            *(f32 *)((s8 *)arg0 + 0x308) = this->movement_velocity.y = this->movement_velocity.z = 0.0f;
             this->actorFlags &= 0xFFDFFFFF;
             this->vfunc_59();
             this->timer = 0;
@@ -837,7 +837,7 @@ void TObjEneLappy::update_moving() {
         if (temp_r6 != NULL) {
             Vec target1 = *(Vec *)(temp_r6 + 0x2FC);
             enemy_backstep_from_point(arg0, &target1.x, (f32) (*(f32 *)((s8 *)((u8 *)(*(u8 * *)&this->movementParameters)) + 4)));
-            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
             ((TObjPlayer *)arg0)->update_collisions();
             return;
@@ -865,7 +865,7 @@ void TObjEneLappy::update_moving() {
                 temp_r4 = (u8 *)(*(u8 * *)&this->movementParameters);
                 ((TObjEnemy *)(arg0))->enemy_wander_home(*(f32 *)((s8 *)temp_r4 + 4), 100.0f, 50.0f, *(s32 *)((s8 *)temp_r4 + 8));
             }
-            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+            turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
             play_walk_sound();
             goto block_48;
         case 1:
@@ -876,7 +876,7 @@ void TObjEneLappy::update_moving() {
                 if (temp_f1 > 22500.0f) {
                     *(s16 *)&this->m_37a = 0;
                 }
-                turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), (Vec *)unk_308);
+                turn_toward_direction(*(s32 *)((u8 *)movementParameters + 8), &movement_velocity);
                 temp_r3_3 = (u8 *)(*(u8 * *)&this->movementParameters);
                 if (*(f32 *)((s8 *)temp_r3_3 + 0) * *(f32 *)((s8 *)temp_r3_3 + 0) < temp_f1 || temp_f1 < *(f32 *)((s8 *)temp_r3_3 + 4) * *(f32 *)((s8 *)temp_r3_3 + 4)) {
                     this->target = NULL;
@@ -1580,7 +1580,7 @@ u8 *TObjEneLappy__ct(u8 *self, s32 arg1, Set_800C1C4C *set) {
     *(s16 *)(self + 0x32E) = *(s16 *)(self + 0x2BA);
     *(s16 *)(self + 0x33E) = *(s16 *)(self + 0x32C);
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     ((TObjPlayer *)self)->register_object_by_id();
     scale = 6.0f * (1.0f + ((TObjChara *)self)->random_ratio());
     *(s16 *)(self + 0x37E) = 30.0f * scale;

@@ -313,7 +313,7 @@ void *TObjNpcMoja__ct(void *selfv, void *parent, void *arg2v) {
     *(u8 **)(self + 0x18) = (u8 *)__vt__11TObjNpcMoja;
     ((TObjNpcMoja *)self)->m_name = TObjNpcMoja__name;
     ((VObj_8014C780 *)self)->m79(arg2);
-    ((TObjPlayer *)self)->init_position_vectors();
+    ((TObjChara *)self)->initialize_position_copies();
     ((VObj_8014C780 *)self)->m85(0, 1);
     *(s32 *)(self + 0x34) = (s32)get_bml_model((BmlResource *)lbl_805D50D8, 0);
     *(s32 *)(self + 0x24) = (s32)get_bml_texlist((BmlResource *)lbl_805D50D8, 0);
@@ -323,7 +323,7 @@ void *TObjNpcMoja__ct(void *selfv, void *parent, void *arg2v) {
     init_collision_body_parts(self, lbl_804AABD8, 1);
     ((TObjPlayer *)self)->register_object_by_id();
     ((TObjEnemy *)self)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)self)->copy_position();
+    ((TObjChara *)self)->copy_body_to_center();
     return self;
 }
 

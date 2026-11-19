@@ -42,7 +42,7 @@ TObjNpcFemaleChild *TObjNpcFemaleChild__ct(TObjNpcFemaleChild *npc, TObjControl 
     *(s32 **)((u8 *)npc + 0x18) = __vt__18TObjNpcFemaleChild;
     npc->m_name = TObjNpcFemaleChild__name;
     npc->apply_set_data(set_data);
-    ((TObjPlayer *)npc)->init_position_vectors();
+    ((TObjChara *)npc)->initialize_position_copies();
     npc->model = (void *)TObjNpcFemaleChild__static_instance->models->model;
     npc->texlist = (s32)TObjNpcFemaleChild__static_instance->models->m_c;
     npc->setup_common();

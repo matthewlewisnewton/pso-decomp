@@ -727,7 +727,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     *(const char **)((s8 *)arg0 + 0) = TObjEneMerillLia__class_name;
     ((VObj_18_4c2345 *) arg0)->m79((s32)arg2);
     ((TObjEneMerillLia *)arg0)->init_params_from_position();
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     *(s32 *)((s8 *)arg0 + 0x334) = *(s32 *)((s8 *)arg0 + 0x368);
     ((TObjEneMerillLia *)arg0)->clamp_and_apply_mode_param();
     ((TObjEneMerillLia *)arg0)->load_entry_params(*(s32 *)((s8 *)arg0 + 0x368));
@@ -742,7 +742,7 @@ void *TObjEneMerillLia__ct(void *arg0v, void *arg1, void *arg2) {
     ((TObjEnemy *)arg0)->movementParameters = &merill_lia_movement_parameters[((TObjEnemy *)arg0)->subtype];
     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);
     ((TObjEnemy *)arg0)->update_prev_position();
-    ((TBoss3VoloptHiraisin *)arg0)->copy_position();
+    ((TObjChara *)arg0)->copy_body_to_center();
     ((TObjPlayer *)arg0)->register_object_by_id();
     *(s32 *)((s8 *)arg0 + 0x2AC) = 182.04445f * (360.0f * ((TObjChara *)arg0)->random_ratio());
     *(s16 *)((s8 *)arg0 + 0x33A) = 0xF;
@@ -917,7 +917,7 @@ void TObjEneMerillLia::run_task() {
     }
   }
   this->update_prev_position();
-  ((TBoss3VoloptHiraisin *)this)->copy_position();
+  ((TObjChara *)this)->copy_body_to_center();
   submit_cursor_candidate((void *) this, -1);
   this->m_2b4 += 1.0f;
 }

@@ -2752,7 +2752,7 @@ void run_task__10TObjPlayerFv(TObjPlayer *player) {
     ((s32 (*)(void *, s16, s32))run_action_state_phase__10TObjPlayerFisi)(player, player->mode, 1);
     player->advance_animation();
     ((TObjChara *)player)->calc_attach_pos();
-    ((TBoss3VoloptHiraisin *)player)->copy_position();
+    ((TObjChara *)player)->copy_body_to_center();
     ((TObjPlayer *)((u8 *)player + 0x84C))->copy_offset_position(player);
     if (((TObjCollidable *)player)->obj_testFlags30(0x800) != 0) {
         ((TObjCollidable *)player)->refresh_collision_body_centers();
@@ -4339,8 +4339,8 @@ void *TObjPlayer::apply_wall_response() {
         f32 speed;
         Vec from;
         Vec to;
-        angle = (s32)(lbl_80446F68 * atan2_float(x_speed, m_310));
-        speed = vector_length((Vec *)unk_308);
+        angle = (s32)(lbl_80446F68 * atan2_float(movement_velocity.x, movement_velocity.z));
+        speed = vector_length(&movement_velocity);
         reach = speed + TObjPlayer__sub_8017A1A4(this, 0);
         dx = reach * sin_table_lookup(angle);
         dz = reach * cos_table_lookup(angle);
@@ -4363,7 +4363,7 @@ void *TObjPlayer::apply_wall_response() {
     Vec move;
     WallRayQuery query;
     Vec rays[8];
-    VecCopy(&move, (Vec *)unk_308);
+    VecCopy(&move, &movement_velocity);
     move.y = TObjPlayer__data_805DC278;
     Vec *origin = &query.origin;
     f32 reach = radius + vector_length(&move);
@@ -4400,13 +4400,13 @@ void *TObjPlayer::apply_wall_response() {
             ((TObjPlayer *)&dir)->calc_move(&slide, &step);
             move_target.x = position.x + step.x;
             move_target.z = position.z + step.z;
-            ((TObjPlayer *)unk_308)->calc_move(&slide, &step);
-            VecCopy((Vec *)unk_308, &step);
+            ((TObjPlayer *)&movement_velocity)->calc_move(&slide, &step);
+            VecCopy(&movement_velocity, &step);
             blocked = NULL;
         }
     }
 
-    VecCopy(&move, (Vec *)unk_308);
+    VecCopy(&move, &movement_velocity);
     query.radius = radius;
     query.count = 8;
     origin->x = position.x + move.x;
@@ -4465,8 +4465,8 @@ void *TObjPlayer::apply_wall_response() {
             } else {
                 Vec next_ray;
                 VecCopy(&next_ray, &query.rays[next->index]);
-                move.x = -m_310;
-                move.z = x_speed;
+                move.x = -movement_velocity.z;
+                move.z = movement_velocity.x;
                 f32 side = vec3_dot(&move, &first_ray);
                 if (side * vec3_dot(&move, &next_ray) >= TObjPlayer__data_805DC278) {
                     blocked = NULL;

@@ -30,7 +30,7 @@ TUnk_804CC948::~TUnk_804CC948() {
 
 TUnk_804CC948::TUnk_804CC948(s32 actor, s32 parent) : TObject((TObject *)parent) {
     m_actor = (TObjPlayer *)actor;
-    VecCopy(&m_position, (Vec *)&m_actor->m_2fc);
+    VecCopy(&m_position, &m_actor->body_center_position);
     m_age = 0;
     m_sound_handle = play_sound_effect(0x4002B21D, &m_position, 0, 0);
 }

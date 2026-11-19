@@ -191,16 +191,16 @@ void TObjEneRe4Bit::vfunc_62() {
 
 void TObjEneRe4Bit::vfunc_61() {  }
 
-void TObjEneRe4Bit::copy_pos() { VecCopy(&center, (Vec *)&m_2fc); }
+void TObjEneRe4Bit::copy_pos() { VecCopy(&center, &body_center_position); }
 
 void TObjEneRe4Bit::vfunc_88() {
-    bodies->offset.y = m_300 - position.y;
+    bodies->offset.y = body_center_position.y - position.y;
 }
 
 void TObjEneRe4Bit::update_position_flag() {
     Vec pos;
 
-    VecCopy(&pos, (Vec *)&m_2fc);
+    VecCopy(&pos, &body_center_position);
     if (vfunc_101((u8 *)&pos) == 0) {
         m_3cc &= ~0x800;
         return;
@@ -215,14 +215,14 @@ void TObjEneRe4Bit::update_homing_velocity() {
     f32 s;
     VecCopy(&dir, m_3c0);
     dir.y = dir.y + m_3d8;
-    subtract_vector(&dir, (Vec *)&m_2fc);
+    subtract_vector(&dir, &body_center_position);
     s = 0.01f * ((TObjBoss2Tunnel *)&dir)->update_scale();
     m_3f8.x = 0.9f * (dir.x * s + m_3f8.x);
     m_3f8.y = 0.9f * (dir.y * s + m_3f8.y);
     m_3f8.z = 0.9f * (dir.z * s + m_3f8.z);
-    vec3_add_to((Vec *)&m_2fc, &m_3f8);
-    position.x = m_2fc;
-    position.z = m_304;
+    vec3_add_to(&body_center_position, &m_3f8);
+    position.x = body_center_position.x;
+    position.z = body_center_position.z;
 }
 #pragma pop
 
@@ -239,7 +239,7 @@ s32 TObjEneRe4Bit::sub_800ED498() {
 
 s32 TObjEneRe4Bit::get_state() { return m_404; }
 
-Vec *TObjEneRe4Bit::get_spell_data() { return (Vec *)&m_2fc; }
+Vec *TObjEneRe4Bit::get_spell_data() { return &body_center_position; }
 
 void TObjEneRe4Bit::sub_800ED47C() { m_3d0 = 3; }
 
@@ -301,7 +301,7 @@ void TObjEneRe4Bit::call_vt_90_91() {
 void TObjEneRe4Bit::set_flag3cc_bit2000() { m_3cc |= 0x2000; }
 
 void TObjEneRe4Bit::reset_transform() {
-    VecCopy((Vec *)&m_2fc, m_3c0);
+    VecCopy(&body_center_position, m_3c0);
     m_3f8.x = 0.0f;
     m_3f8.y = 0.0f;
     m_3f8.z = 0.0f;
@@ -471,10 +471,10 @@ void TObjEneRe4Bit__sub_800ECD28(TObjEneRe4Bit *bit, s32 arg1) {
         return;
     case 0:
         bit->m_408 = bit->m_408 + 1;
-        VecCopy((Vec *)&bit->m_2fc, bit->m_3c0);
-        bit->m_300 = bit->m_300 + bit->m_3d8;
-        bit->m_2fc = bit->m_2fc + calc_elapsed_scaled__9TObjEneDDFv(bit);
-        bit->m_304 = bit->m_304 + calc_elapsed_scaled__9TObjEneDDFv(bit);
+        VecCopy(&bit->body_center_position, bit->m_3c0);
+        bit->body_center_position.y = bit->body_center_position.y + bit->m_3d8;
+        bit->body_center_position.x = bit->body_center_position.x + calc_elapsed_scaled__9TObjEneDDFv(bit);
+        bit->body_center_position.z = bit->body_center_position.z + calc_elapsed_scaled__9TObjEneDDFv(bit);
         bit->vfunc_102();
         return;
     case 5:
@@ -563,7 +563,7 @@ void TObjEneRe4Bit::render() {
     if (draw != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        translate_matrix(0, 0.0f, m_300 - position.y, 0.0f);
+        translate_matrix(0, 0.0f, body_center_position.y - position.y, 0.0f);
         rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, 2.0f, 2.0f, 2.0f);
         draw_chunk_object(model);

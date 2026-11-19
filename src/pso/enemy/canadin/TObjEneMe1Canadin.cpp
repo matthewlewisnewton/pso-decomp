@@ -517,10 +517,10 @@ void TObjEneMe1Canadin::vfunc_62() { if (mode != 12) { transition_enemy_state(12
 void TObjEneMe1Canadin::vfunc_61() {  }
 
 void TObjEneMe1Canadin::copy_pos() {
-    m_2fc = (f32) position.x;
-    m_300 = (f32) m_3F8;
-    m_304 = (f32) position.z;
-    VecCopy(&center, (const Vec *)&m_2fc);
+    body_center_position.x = (f32) position.x;
+    body_center_position.y = (f32) m_3F8;
+    body_center_position.z = (f32) position.z;
+    VecCopy(&center, &body_center_position);
 }
 
 void TObjEneMe1Canadin::vfunc_88() {
@@ -1077,7 +1077,7 @@ void TObjEneMe1Canadin::vfunc_110(s32 arg1) {
             if (m_400 <= 0) {
                 m_4B8 = 2;
                 m_470 = 1;
-                play_sound_effect(0x4003B21A, (const Vec *)&m_2fc, 0, 0);
+                play_sound_effect(0x4003B21A, &body_center_position, 0, 0);
             }
             break;
         case 1:
@@ -1257,8 +1257,8 @@ void TObjEneMe1Canadin__sub_8009D320(TObjEneMe1Canadin *self, s32 arg1) {
                 self->reset_map_core((void *)&TObjEneMe1Canadin__map_core_default_vec4);
                 VecCopy(pos, &self->target_destination);
                 self->m_49C = new TObjEneMe1Canadin_EffLine(self, self->m_414, pos);
-                play_sound_effect(0x4002B71B, (const Vec *)&self->m_2fc, 0, 0);
-                play_sound_effect(0x4002B51E, (const Vec *)&self->m_2fc, 0, 0);
+                play_sound_effect(0x4002B71B, &self->body_center_position, 0, 0);
+                play_sound_effect(0x4002B51E, &self->body_center_position, 0, 0);
             }
             break;
         case 3: {
@@ -1304,7 +1304,7 @@ void TObjEneMe1Canadin__sub_8009D320(TObjEneMe1Canadin *self, s32 arg1) {
                 self->reset_map_core((void *)&canadin_formation_reset_vec4);
                 self->m_404++;
                 new TObjEneMe1Canadin_EffDischarge(self, self->m_414, pos);
-                play_sound_effect(0x4002A408, (const Vec *)&self->m_2fc, 0, 0);
+                play_sound_effect(0x4002A408, &self->body_center_position, 0, 0);
             }
             break;
         case 5:
@@ -1428,7 +1428,7 @@ void TObjEneMe1Canadin__sub_8009CC74(TObjEneMe1Canadin *self, s32 arg1) {
                 }
                 self->m_484 = 0.25f * len;
                 self->m_488 = 0.25f * (self->m_3EC - self->m_3F4);
-                play_sound_effect(0x4003AD18, (const Vec *)&self->m_2fc, 0, 0);
+                play_sound_effect(0x4003AD18, &self->body_center_position, 0, 0);
             }
             TObjEneMe1Canadin__sub_8009E948(self);
             self->m_474++;
@@ -1482,7 +1482,7 @@ void TObjEneMe1Canadin__sub_8009CC74(TObjEneMe1Canadin *self, s32 arg1) {
                         self->current_target->vfunc_74(0);
                     }
                 }
-                play_sound_effect(0x4003B219, (const Vec *)&self->m_2fc, 0, 0);
+                play_sound_effect(0x4003B219, &self->body_center_position, 0, 0);
             } else if (self->m_474 > 50) {
                 if (self->m_404 >= 3) {
                     self->m_470 = 4;
@@ -1670,12 +1670,12 @@ void TObjEneMe1Canadin__sub_8009C510(TObjEneMe1Canadin *self, s32 arg1) {
         break;
     case 0:
         self->advance_animation();
-        VecCopy(&v, (const Vec *)&self->x_speed);
+        VecCopy(&v, &self->movement_velocity);
         f = normalize_vector_xz(&v);
         self->move_with_wall_slide_on_ground(v.x, v.z, f);
         f *= 0.5f;
-        self->x_speed = v.x * f;
-        self->m_310 = v.z * f;
+        self->movement_velocity.x = v.x * f;
+        self->movement_velocity.z = v.z * f;
         switch (self->m_474) {
         case 0:
             self->m_484 -= 0.13f;
@@ -1737,7 +1737,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(TObjEneMe1Canadin *self, s32 arg1) {
             self->transition_enemy_state(0xD);
             self->hp = 0;
             self->actorFlags |= 0x800;
-            play_sound_effect(0x4003AD1F, (const Vec *)&self->m_2fc, 0, 0);
+            play_sound_effect(0x4003AD1F, &self->body_center_position, 0, 0);
         }
         break;
     case 1:
@@ -1764,7 +1764,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(TObjEneMe1Canadin *self, s32 arg1) {
         } else {
             self->m_410 = 0xFF000000;
         }
-        play_persistent_sound(0x4003B71D, self, (const Vec *)&self->m_2fc, 0, 0);
+        play_persistent_sound(0x4003B71D, self, &self->body_center_position, 0, 0);
         self->vfunc_89();
         break;
     }
@@ -1787,11 +1787,11 @@ void TObjEneMe1Canadin__sub_8009C178(TObjEneMe1Canadin *self, s32 arg1) {
         } else {
             self->send_entity_set_flags();
         }
-        create_timed_particle_emitter(&self->m_2fc, 0x117, 0, 0x19);
-        create_timed_particle_emitter(&self->m_2fc, 0x118, 0x19, 0xF);
+        create_timed_particle_emitter(&self->body_center_position.x, 0x117, 0, 0x19);
+        create_timed_particle_emitter(&self->body_center_position.x, 0x118, 0x19, 0xF);
         self->fade.set_rate_from_divisor(0x19);
         self->fade.reset_color();
-        play_sound_effect(0x4003AD18, (const Vec *)&self->m_2fc, 0, 0);
+        play_sound_effect(0x4003AD18, &self->body_center_position, 0, 0);
         return;
     case 3:
         if ((self->fade.decay_value_toward_floor() != 0) && (self->vfunc_109() != 0)) {
@@ -1856,14 +1856,14 @@ void TObjEneMe1Canadin::vfunc_112(s32 arg1) {
             m_3C0 = (TObjEneMe1Canadin *)find_entity_by_id(m_4C8);
             m_3C0->vfunc_117((u32)this);
         }
-        TBoss3Volopt::create_breakup_mdl((s32)canadin_follower_breakup_model, 0, (s32)(texlist), (s32)&m_2fc, (s32)(this->rotation.yaw));
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_follower_breakup_model, 0, (s32)(texlist), (s32)&body_center_position.x, (s32)(this->rotation.yaw));
         m_3C8 |= 0x400000;
-        VecCopy(&pos, (const Vec *)&m_2fc);
+        VecCopy(&pos, &body_center_position);
         temp_f1 = pos.y;
         pos.y = temp_f1 - 5.0f;
         trigger_dell_biter_events__10TObjPlayerFv(&pos, temp_f1);
         refresh_and_send_entity_flags();
-        play_sound_effect(0x4003AA1E, (const Vec *)&m_2fc, 0, 0);
+        play_sound_effect(0x4003AA1E, &body_center_position, 0, 0);
         return;
     case 0:
         queue_destruction();
@@ -1908,7 +1908,7 @@ void TObjEneMe1Canadin::update_by_state(s32 arg1) {
     case 0:
         advance_animation();
         m_3F8 = (f32) (position.y + m_3EC);
-        m_300 = (f32) m_3F8;
+        body_center_position.y = (f32) m_3F8;
         move_with_wall_slide_commit(m_484, m_488, 0.2f);
     case 3:
     case 5:
@@ -2024,11 +2024,11 @@ void TObjEneMe1Canadin::render() {
     }
     VecCopy(&m_414[3], &lbl_8043A268);
     VecCopy(&m_414[1], &lbl_8043A274);
-    VecCopy(&m_414[2], (const Vec *)&m_2fc);
-    VecCopy(&m_414[0], (const Vec *)&m_2fc);
-    VecCopy(&m_414[4], (const Vec *)&m_2fc);
-    VecCopy(&m_414[5], (const Vec *)&m_2fc);
-    VecCopy(&m_414[6], (const Vec *)&m_2fc);
+    VecCopy(&m_414[2], &body_center_position);
+    VecCopy(&m_414[0], &body_center_position);
+    VecCopy(&m_414[4], &body_center_position);
+    VecCopy(&m_414[5], &body_center_position);
+    VecCopy(&m_414[6], &body_center_position);
 }
 
 void TObjEneMe1Canadin::update_if_ready() { if (get_target_info() != 0) { this->update_by_field_0x354(); } }
@@ -2229,7 +2229,7 @@ void TObjEneMe1CanadinLeader::update_formation_state(void *arg0) {
     case 1:
         TObjEneMe1CanadinLeader__sub_8009E4AC(self, 0);
         self->m_4F4 = 2;
-        play_sound_effect(0x4003AD1B, (const Vec *)&self->m_2fc, 0, 0);
+        play_sound_effect(0x4003AD1B, &self->body_center_position, 0, 0);
         break;
     case 2:
         if (self->m_4B8 == 0) {
@@ -2251,7 +2251,7 @@ void TObjEneMe1CanadinLeader::update_formation_state(void *arg0) {
     case 4:
         TObjEneMe1CanadinLeader__sub_8009E4AC(self, 2);
         self->m_4F4 = 5;
-        play_sound_effect(0x4003AD1C, (const Vec *)&self->m_2fc, 0, 0);
+        play_sound_effect(0x4003AD1C, &self->body_center_position, 0, 0);
         break;
     case 5:
         if (self->m_4B8 == 0) {
@@ -2269,7 +2269,7 @@ void TObjEneMe1CanadinLeader::update_formation_state(void *arg0) {
     case 7:
         TObjEneMe1CanadinLeader__sub_8009E4AC(self, 4);
         self->m_4F4 = 8;
-        play_sound_effect(0x4003AD1B, (const Vec *)&self->m_2fc, 0, 0);
+        play_sound_effect(0x4003AD1B, &self->body_center_position, 0, 0);
         break;
     case 8:
         if (self->m_4B8 == 0) {
@@ -2323,7 +2323,7 @@ void TObjEneMe1CanadinLeader::vfunc_110(s32 arg1) {
             if (m_400 <= 0) {
                 m_4B8 = 2;
                 m_470 = 1;
-                play_sound_effect(0x4003B21A, (const Vec *)&m_2fc, 0, 0);
+                play_sound_effect(0x4003B21A, &body_center_position, 0, 0);
             }
             break;
         case 1:
@@ -2382,12 +2382,12 @@ void TObjEneMe1CanadinLeader::vfunc_112(s32 mode) {
     s32 i;
     switch (mode) {
     case 4:
-        TBoss3Volopt::create_breakup_mdl((s32)canadin_leader_breakup_model, 0, (s32)texlist, (s32)&m_2fc, (s32)this->rotation.yaw);
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_leader_breakup_model, 0, (s32)texlist, (s32)&body_center_position.x, (s32)this->rotation.yaw);
         for (i = 0; i < m_4D0; i++) {
             ((TObjEneMe1CanadinLeader *)m_4D4[i])->set_flag3c8_bit20();
         }
         m_3C8 |= 0x400000;
-        play_sound_effect(0x4003B71D, (const Vec *)&m_2fc, 0, 0);
+        play_sound_effect(0x4003B71D, &body_center_position, 0, 0);
         ((TObjPlayer *)this)->refresh_lobby_state();
         break;
     case 0:

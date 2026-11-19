@@ -44,7 +44,7 @@ TObjNpcMaleBase *TObjNpcMaleBase__ct(TObjNpcMaleBase *npc, TObjControl *control,
     *(s32 **)((u8 *)npc + 0x18) = __vt__15TObjNpcMaleBase;
     npc->m_name = TObjNpcMaleBase__name;
     npc->apply_set_data(set_data);
-    ((TObjPlayer *)npc)->init_position_vectors();
+    ((TObjChara *)npc)->initialize_position_copies();
     npc->model = (void *)TObjNpcMaleBase__shared_bml_archive->models->model;
     npc->texlist = (s32)TObjNpcMaleBase__shared_bml_archive->models->m_c;
     npc->setup_common();

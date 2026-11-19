@@ -167,7 +167,6 @@ s32 TObjEneGibbles__sub_802D9A04(void *arg0);
 extern s32 gibbles_boss_stat_handle;
 extern s32 gibbles_combat_stats_handle;
 extern u32 TObjEneGibbles__resource_bundle;
-void copy_position__20TBoss3VoloptHiraisinFv(s32 arg0);
 void init_collision_body_parts(void *, void *, int);
 void *__ct__14TObjCollidableFP7TObject(void *, int);
 void __construct_array(void *, void *, void *, int, int);
@@ -764,19 +763,19 @@ void TObjEneGibbles__sub_802D7DAC(s32 arg0) {
 void TObjEneGibbles__sub_802D7E3C(void) {  }
 
 void TObjEneGibbles::update_shadow_height() {
-    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->m_300 - this->position.y);
+    *(f32 *)((s8 *)this->bodies + 4) = (f32) (this->body_center_position.y - this->position.y);
 }
 
 void TObjEneGibbles::update_position() {
     u8 *arg0 = (u8 *)this;
 
     VecCopy((Vec *)(arg0 + 0x2FC), &this->position);
-    this->m_300 += 15.0f;
+    this->body_center_position.y += 15.0f;
     switch (this->mode) {
     case 2:
     case 6:
     case 0xA:
-        this->m_300 = (f32) (this->m_300 + this->m_38c);
+        this->body_center_position.y = (f32) (this->body_center_position.y + this->m_38c);
         break;
     }
 }
@@ -960,8 +959,8 @@ void TObjEneGibbles::update_action_state() {
         play_sound_effect(((TObjEneGibbles*)((void *)((void *)(arg0))))->resolve_sound_id((u32)(0x3AD34)), (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     case 1:
-        this->m_310 = 0.0f;
-        (*(f32 *)&this->unk_308) = 0.0f;
+        this->movement_velocity.z = 0.0f;
+        (this->movement_velocity.x) = 0.0f;
         apply_actor_gravity((TObjEnemy *)(arg0), (s32 *)(0), 0.0f);
         if ((u32) this->action_flags != 8U) {
             this->phase = 3;
@@ -1646,7 +1645,7 @@ void TObjEneGibbles::vfunc_60() {
     case 0:
     default: {
         VecCopy((Vec *)((Vec *) &v), (const Vec *)((Vec *) (this->target + 0x2FC)));
-        subtract_vector(&v, (u8 *)&this->m_2fc);
+        subtract_vector(&v, (u8 *)&this->body_center_position.x);
         f64 t = atan2_float(v.x, v.z);
         this->mode = 4;
         if ((s32) (10430.38043493439 * t) < 0x10) {
@@ -2420,7 +2419,7 @@ void TObjEneGibbles::run_task() {
     }
     this->update_position();
     this->update_shadow_height();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)this);
+    ((TObjChara *)this)->copy_body_to_center();
     this->sync_state();
     this->m_2b4 += 1.0f;
 }
@@ -2548,7 +2547,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     __construct_array(arg0 + 0x3DC, (void *)__ct__15RenderFadeStateFv, (void *)__dt__15RenderFadeStateFv, 0x1C, 4);
     ((TObjEneGibbles *)arg0)->m_name = TObjEneGibbles__class_name;
     ((TObjEneGibbles *)arg0)->apply_set_data((void *)arg2);
-    ((TObjPlayer *)arg0)->init_position_vectors();
+    ((TObjChara *)arg0)->initialize_position_copies();
     ((TObjEneGibbles *)arg0)->scale.x = ((TObjEneGibbles *)arg0)->scale.y = *(f32 *)((s8 *)arg0 + 0x70) = 1.0f;
     ((TObjEneGibbles *)arg0)->init_params();
     ((TObjEneGibbles *)arg0)->mode = 0;
@@ -2571,7 +2570,7 @@ u8 *TObjEneGibbles__ct(u8 *arg0, void *parent, s32 arg2) {
     ((TObjEneGibbles *)arg0)->referenceHp = ((TObjEneGibbles *)arg0)->hp;
     ((TObjEneGibbles *)arg0)->update_position();
     ((TObjEneGibbles *)arg0)->update_shadow_height();
-    copy_position__20TBoss3VoloptHiraisinFv((s32)arg0);
+    ((TObjChara *)arg0)->copy_body_to_center();
     initialize_enemy_photon_effect(arg0);
     ((TObjEneGibbles *)arg0)->m_374 = 1;
     *(s32 *)((s8 *)arg0 + 0x3B0) = 0;

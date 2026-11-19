@@ -421,10 +421,10 @@ void TObjEneMe3Shinowa::vfunc_62() {
 
 void TObjEneMe3Shinowa::vfunc_61() {  }
 
-void TObjEneMe3Shinowa::copy_position_vector() { VecCopy(&center, (const Vec *)&m_2fc); }
+void TObjEneMe3Shinowa::copy_position_vector() { VecCopy(&center, &body_center_position); }
 
 void TObjEneMe3Shinowa::vfunc_88() {
-    bodies->offset.y = m_3cc + (m_300 - position.y);
+    bodies->offset.y = m_3cc + (body_center_position.y - position.y);
 }
 
 void fn_800E762C(TObjEneMe3Shinowa *) {  }
@@ -688,7 +688,7 @@ void TObjEneMe3Shinowa::action(s32 arg1) {
         m_404 = 0;
         VecCopy(&position, &home_position);
         VecCopy(&prev_position, &home_position);
-        VecCopy((Vec *)&m_2fc, &home_position);
+        VecCopy(&body_center_position, &home_position);
         m_3c8 = position.y;
         if (!(m_3c4 & 0x1000)) {
             m_3d0 = 0;
@@ -1256,20 +1256,20 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(TObjEneMe3Shinowa *shinowa, s32 arg1)
             }
         }
         VecCopy(&save_pos, &shinowa->position);
-        VecCopy(&save_center, (Vec *)&shinowa->m_2fc);
+        VecCopy(&save_center, &shinowa->body_center_position);
         VecCopy(&shinowa->position, &shinowa->target_destination);
-        VecCopy((Vec *)&shinowa->m_2fc, &shinowa->position);
-        shinowa->m_300 += 20.0f;
+        VecCopy(&shinowa->body_center_position, &shinowa->position);
+        shinowa->body_center_position.y += 20.0f;
         v *= shinowa->m_410;
         calc_wall_clamped_destination(shinowa, &dest, -shinowa->target_direction.x, -shinowa->target_direction.z, v);
         if (shinowa->vfunc_18((u8 *)&dest) == 0) {
             shinowa->m_410 *= 0.8f;
             VecCopy(&shinowa->position, &save_pos);
-            VecCopy((Vec *)&shinowa->m_2fc, &save_center);
+            VecCopy(&shinowa->body_center_position, &save_center);
         } else {
             shinowa->m_410 = 1.0f;
             VecCopy(&shinowa->position, &save_pos);
-            VecCopy((Vec *)&shinowa->m_2fc, &save_center);
+            VecCopy(&shinowa->body_center_position, &save_center);
             subtract_vector(&dest, &shinowa->position);
             f32 len = normalize_vector_xz(&dest);
             shinowa->move_clamped_on_ground(dest.x, dest.z, len);
@@ -1457,11 +1457,11 @@ void TObjEneMe3ShinowaMirage__sub_800E4FE8(TObjEneMe3Shinowa *shinowa, s32 arg1)
         break;
     case 0:
         shinowa->advance_animation();
-        VecCopy(&dir, (Vec *)&shinowa->x_speed);
+        VecCopy(&dir, &shinowa->movement_velocity);
         len = normalize_vector_xz(&dir);
         shinowa->move_clamped_on_ground(dir.x, dir.z, len);
-        shinowa->x_speed *= 0.8f;
-        shinowa->m_310 *= 0.8f;
+        shinowa->movement_velocity.x *= 0.8f;
+        shinowa->movement_velocity.z *= 0.8f;
         shinowa->vfunc_89();
         break;
     case 5:
@@ -1590,9 +1590,9 @@ void TObjEneMe3Shinowa::render() {
         dispatch_if_active();
         model_render_flags = saved_model_render_flags;
         update_primary_light();
-        VecCopy((Vec *)&m_2fc, &lbl_80500FF4);
+        VecCopy(&body_center_position, &lbl_80500FF4);
     } else if ((get_main_phase() == 0xF) || (is_split_screen() == 0)) {
-        VecCopy((Vec *)&m_2fc, &position);
+        VecCopy(&body_center_position, &position);
     }
     TParticleCtrl::end_effect_render();
 }

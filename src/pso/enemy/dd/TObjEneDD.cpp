@@ -553,10 +553,10 @@ void TObjEneDD::init_position_vectors() {
     VecCopy(&this->home_position, (const Vec *)&this->position);
     VecCopy(&this->center, (const Vec *)&this->position);
     ((TBoss3Volopt *)arg0)->reset_photon_effect();
-    VecCopy((Vec *)&this->m_2fc, (const Vec *)&this->position);
+    VecCopy(&this->body_center_position, (const Vec *)&this->position);
     *(f32 *)((s8 *)arg0 + 0x308) = 0.0f;
-    this->y_speed = 0.0f;
-    this->m_310 = 0.0f;
+    this->movement_velocity.y = 0.0f;
+    this->movement_velocity.z = 0.0f;
     this->ground_normal.x = 0.0f;
     ground_normal.y = 0.0f;
     this->ground_normal.z = 0.0f;
@@ -854,7 +854,7 @@ s32 TBoss5Gryphon::enemy_probe_wall_ahead(f32 farg0, f32 farg1, f32 farg2) {
     return farg0 * 0;
   }
   stack.x = (*((f32 *) (((s8 *) ((u8 *)this)) + 0x38))) + temp_f30;
-  stack.y = this->m_300;
+  stack.y = this->body_center_position.y;
   stack.z = (*((f32 *) (((s8 *) ((u8 *)this)) + 0x40))) + temp_f31;
   return csnVector((void *) (((u8 *)this) + 0x2FC), &stack.x, 0x88E0);
 }
