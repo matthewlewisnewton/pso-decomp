@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `7a8afe9254` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces. The all-source snapshot is `a6daa646e1`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `36e551a432` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native formation and action handling. The all-source snapshot is `ddfe469df5`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `0184305183` |
+| `great-merge/current/combat` | `1aeceb4919` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -157,6 +157,16 @@ All eight recovered method symbols retain their original addresses and 1,044 ins
 The standalone combat review at `0184305183`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 8 fork records. It has 1,293 entries awaiting owner comparison and 773 with partial evidence.
+
+### Canadin formation, actions and discharge
+
+The six-file replay at `36e551a432` restores the fork's native Canadin formation, movement, fade and action interfaces. The typed follower factory takes the original leader, spawn vector and two indices. Both Canadin classes share the native fade and movement methods. Eight action handlers dispatch through the Canadin class, and the discharge effect invokes its original receiver.
+
+All 34 method symbols match the fork names, addresses and sizes across 8,284 original instruction bytes. The two affected units retain all 115 exact linked functions. The leader header and the original float ceiling helper are accounted for in the fork source index.
+
+The standalone combat review at `1aeceb4919`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 5 fork records. It has 1,292 entries awaiting owner comparison and 773 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
