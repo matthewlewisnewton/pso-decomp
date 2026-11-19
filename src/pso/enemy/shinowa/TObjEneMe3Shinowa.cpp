@@ -450,7 +450,7 @@ s32 TObjEneMe3Shinowa::check_body_collision_at(s32 arg1, f32 farg0) {
     farg0 *= 0.5f;
     CollisionBody *body = bodies;
     s32 res;
-    s32 a = rotation_y;
+    s32 a = this->rotation.yaw;
     s32 b = body->flags;
     body->offset.x = 0.0f;
     body->offset.z = farg0;
@@ -458,12 +458,12 @@ s32 TObjEneMe3Shinowa::check_body_collision_at(s32 arg1, f32 farg0) {
     body->half_width = 8.0f;
     body->shape = 1;
     body->flags = 0x9D01;
-    rotation_y = arg1;
+    this->rotation.yaw = arg1;
     ((void (*)(void *, s32, f32, f32))check_enemy_body_collisions)(this, arg1, 0.0f, farg0);
     res = (body->flags & 0x380000) != 0;
     copy_collision_body(body, shinowa_mirage_model_init_data);
     body->flags = b;
-    rotation_y = a;
+    this->rotation.yaw = a;
     return res;
 }
 #pragma push
@@ -474,8 +474,8 @@ s32 check_in_range__23TObjEneMe3ShinowaMirageFPv(TObjEneMe3Shinowa *shinowa) {
     if (shinowa->target_distance > 25.0f) {
         return 0;
     }
-    f31 = shinowa->target_direction.z * cos_table_lookup(shinowa->rotation_y);
-    f31 += shinowa->target_direction.x * sin_table_lookup(shinowa->rotation_y);
+    f31 = shinowa->target_direction.z * cos_table_lookup(shinowa->rotation.yaw);
+    f31 += shinowa->target_direction.x * sin_table_lookup(shinowa->rotation.yaw);
     return (s32)((u32)__cntlzw(f31 < cos_table_lookup(0x1E00)) >> 5);
 }
 #pragma pop
@@ -512,7 +512,7 @@ s32 TObjEneMe3Shinowa::can_hit_same_target() {
         if (target_distance > 100.0f && target_distance < 150.0f) {
             mine = get_room__8TObjBaseFv(this);
             theirs = get_room__8TObjBaseFv(current_target);
-            if (theirs == mine && check_body_collision_at(rotation_y, target_distance - 20.0f) == 0) {
+            if (theirs == mine && check_body_collision_at(this->rotation.yaw, target_distance - 20.0f) == 0) {
                 ret = 1;
             }
         }
@@ -561,7 +561,7 @@ void TObjEneMe3Shinowa::apply_effect_pair() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix((u8 *)&position);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     entry = (s32)TObjEneMe3ShinowaMirage__data_805D52A4->lookup(frame);
     if (entry != 0U) {
         mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 2);
@@ -816,7 +816,7 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(TObjEneMe3Shinowa *shinowa, s32 arg1)
             shinowa->m_40c = (s32) (RADIANS_TO_ANGLE * atan2_float(shinowa->target_direction.x, shinowa->target_direction.z));
             return;
         }
-        shinowa->m_40c = (s32) shinowa->rotation_y;
+        shinowa->m_40c = (s32) shinowa->rotation.yaw;
         return;
     case 3:
         if (shinowa->m_404 == 3) {
@@ -830,7 +830,7 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(TObjEneMe3Shinowa *shinowa, s32 arg1)
             shinowa->advance_animation();
             shinowa->m_414 = shinowa->get_node_world_y();
             shinowa->m_3c8 = shinowa->m_3c8 + (node_world_y - shinowa->m_414);
-            shinowa->rotation_y += 0x8000;
+            shinowa->rotation.yaw += 0x8000;
             shinowa->m_404 = 1;
             shinowa->m_3cc = shinowa->m_3c8 - shinowa->position.y;
             break;
@@ -839,7 +839,7 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(TObjEneMe3Shinowa *shinowa, s32 arg1)
             if (shinowa->frame > 29.0f) {
                 shinowa->frame = 29.0f;
             }
-            shinowa->rotation_y = approach_angle_limited(shinowa->rotation_y, shinowa->m_40c, 0x800);
+            shinowa->rotation.yaw = approach_angle_limited(shinowa->rotation.yaw, shinowa->m_40c, 0x800);
             shinowa->m_410 = (f32) (shinowa->m_410 - 0.3f);
             if (shinowa->m_410 < -5.0f) {
                 shinowa->m_410 = -5.0f;
@@ -910,7 +910,7 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {
         if (update_linked_position(200.0f) != 0) {
             enemy_copy_target_destination();
             update_velocity();
-            m_414 = (f32) ((target_direction.x * sin_table_lookup(rotation_y)) + (target_direction.z * cos_table_lookup(rotation_y)));
+            m_414 = (f32) ((target_direction.x * sin_table_lookup(this->rotation.yaw)) + (target_direction.z * cos_table_lookup(this->rotation.yaw)));
             if (m_414 < cos_table_lookup(0x1000)) {
                 turn_toward_target_direction(0x500);
                 vfunc_102();
@@ -968,9 +968,9 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(TObjEneMe3Shinowa *shinowa, s32 arg1)
                 shinowa->update_velocity();
                 angle = (s32)(10430.38043493439 * atan2_float(shinowa->target_direction.x, shinowa->target_direction.z));
             } else {
-                angle = shinowa->rotation_y;
+                angle = shinowa->rotation.yaw;
             }
-            shinowa->rotation_y = approach_angle_limited(shinowa->rotation_y, angle, 0x1000);
+            shinowa->rotation.yaw = approach_angle_limited(shinowa->rotation.yaw, angle, 0x1000);
             if (shinowa->is_passing_frame(10.0f) != 0) {
                 shinowa->m_404 = 2;
             }
@@ -984,7 +984,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(TObjEneMe3Shinowa *shinowa, s32 arg1)
                 shinowa->update_velocity();
             }
             if (shinowa->frame + shinowa->play_speed >= 14.0f) {
-                if (shinowa->check_body_collision_at(shinowa->rotation_y, shinowa->target_distance - 20.0f) != 0) {
+                if (shinowa->check_body_collision_at(shinowa->rotation.yaw, shinowa->target_distance - 20.0f) != 0) {
                     shinowa->m_404 = 5;
                 } else {
                     d = shinowa->target_distance - 20.0f;
@@ -1038,7 +1038,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(TObjEneMe3Shinowa *shinowa, s32 arg1)
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix(&shinowa->position);
-                rotate_matrix_y(0, shinowa->rotation_y);
+                rotate_matrix_y(0, shinowa->rotation.yaw);
                 mult_vec_array__10TObjPlayerFUll(0, entry, &sp14, 2);
                 pop_matrix();
                 shinowa->m_3e0->vfunc_6(&sp14, &sp20);
@@ -1087,11 +1087,11 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(TObjEneMe3Shinowa *shinowa, s32 arg1)
                     shinowa->update_velocity();
                     angle = (s32)(10430.38043493439 * atan2_float(shinowa->target_direction.x, shinowa->target_direction.z));
                 } else {
-                    angle = shinowa->rotation_y;
+                    angle = shinowa->rotation.yaw;
                 }
-                shinowa->rotation_y = approach_angle_limited(shinowa->rotation_y, angle, 0x300);
-                shinowa->target_direction.x = sin_table_lookup(shinowa->rotation_y);
-                shinowa->target_direction.z = cos_table_lookup(shinowa->rotation_y);
+                shinowa->rotation.yaw = approach_angle_limited(shinowa->rotation.yaw, angle, 0x300);
+                shinowa->target_direction.x = sin_table_lookup(shinowa->rotation.yaw);
+                shinowa->target_direction.z = cos_table_lookup(shinowa->rotation.yaw);
             }
             shinowa->apply_effect_pair();
             if (shinowa->frame >= 0.0f && shinowa->frame <= 5.0f) {
@@ -1161,7 +1161,7 @@ void TObjEneMe3ShinowaReal__sub_800E5950(TObjEneMe3Shinowa *shinowa, s32 arg1) {
         shinowa->advance_animation();
         switch (shinowa->m_404) {
         case 0:
-            shinowa->rotation_y = approach_angle_limited(shinowa->rotation_y, shinowa->m_40c, 0x31C7);
+            shinowa->rotation.yaw = approach_angle_limited(shinowa->rotation.yaw, shinowa->m_40c, 0x31C7);
             if (shinowa->frame + shinowa->play_speed >= 15.0f) {
                 shinowa->m_404 = 1;
                 shinowa->vfunc_91();
@@ -1274,13 +1274,13 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(TObjEneMe3Shinowa *shinowa, s32 arg1)
             f32 len = normalize_vector_xz(&dest);
             shinowa->move_clamped_on_ground(dest.x, dest.z, len);
         }
-        shinowa->rotation_y = (s32)(10430.38043493439 * atan2_float(shinowa->target_direction.x, shinowa->target_direction.z));
+        shinowa->rotation.yaw = (s32)(10430.38043493439 * atan2_float(shinowa->target_direction.x, shinowa->target_direction.z));
         if (shinowa->m_40c != 0) {
             rot[0] = 0;
             if (shinowa->m_40c > 0) {
-                rot[1] = shinowa->rotation_y;
+                rot[1] = shinowa->rotation.yaw;
             } else {
-                rot[1] = shinowa->rotation_y - 0x8000;
+                rot[1] = shinowa->rotation.yaw - 0x8000;
             }
             rot[2] = -0x4000;
             if (shinowa->m_424 == NULL) {
@@ -1499,7 +1499,7 @@ void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {
                 effect_pos.x = 0.0f;
                 effect_pos.y = 10.0f;
                 effect_pos.z = 20.0f;
-                ((TObjBoss2Tunnel *)&effect_pos)->init_zako(&position, rotation_y);
+                ((TObjBoss2Tunnel *)&effect_pos)->init_zako(&position, this->rotation.yaw);
                 TObjPlayer::spawn_effect_f8((s32)&effect_pos, 0x14);
             }
             break;
@@ -1508,10 +1508,10 @@ void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {
             if (m_408 >= 0x14) {
                 m_404 = 2;
                 m_3c4 |= 2;
-                TBoss3Volopt::create_breakup_mdl((s32)TObjEneMe3ShinowaMirage__data_805D52A0, (s32)&shinowa_mirage_breakup_params, texlist, (s32)&position, rotation_y);
+                TBoss3Volopt::create_breakup_mdl((s32)TObjEneMe3ShinowaMirage__data_805D52A0, (s32)&shinowa_mirage_breakup_params, texlist, (s32)&position, this->rotation.yaw);
                 VecCopy(&pos, &position);
-                pos.x += 20.0f * sin_table_lookup(rotation_y);
-                pos.z += 20.0f * cos_table_lookup(rotation_y);
+                pos.x += 20.0f * sin_table_lookup(this->rotation.yaw);
+                pos.z += 20.0f * cos_table_lookup(this->rotation.yaw);
                 ((TObjPlayer *)&pos)->trigger_dell_biter_events();
                 play_sound_effect(remap_sound_for_area(0x4003AD16), &position, 0, 0);
             }
@@ -1576,7 +1576,7 @@ void TObjEneMe3Shinowa::render() {
             push_matrix();
             post_translate_matrix(&position);
             translate_matrix(0, 0.0f, m_3cc, 0.0f);
-            rotate_matrix_y(0, rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             TObjEneMe3ShinowaMirage__render_node_index = 0;
             set_chunk_model_node_callback((s32)((void *)(TObjEneMe3ShinowaMirage::advance_camera_ctrl_step)));
             if (detail == 1) {
@@ -1634,7 +1634,7 @@ void TObjEneMe3Shinowa::vfunc_118() {
         }
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, 1.0f, 1.0f,
                      1.0f);
         for (i = 0; i < 3; i++) {
@@ -1805,9 +1805,9 @@ void TObjEneMe3ShinowaReal::vfunc_114(s32 arg1) {
                 }
             } else {
                 VecCopy(&pos, &position);
-                pos.x = 15.0f * sin_table_lookup(rotation_y) + pos.x;
+                pos.x = 15.0f * sin_table_lookup(this->rotation.yaw) + pos.x;
                 pos.y += 17.0f;
-                pos.z = 15.0f * cos_table_lookup(rotation_y) + pos.z;
+                pos.z = 15.0f * cos_table_lookup(this->rotation.yaw) + pos.z;
                 m_424->set_position(&pos);
             }
         }
@@ -1867,9 +1867,9 @@ void TObjEneMe3ShinowaReal::vfunc_116(s32 arg1) {
                     }
                 } else {
                     VecCopy(&pos, &position);
-                    pos.x += 15.0f * sin_table_lookup(rotation_y);
+                    pos.x += 15.0f * sin_table_lookup(this->rotation.yaw);
                     pos.y += 17.0f;
-                    pos.z += 15.0f * cos_table_lookup(rotation_y);
+                    pos.z += 15.0f * cos_table_lookup(this->rotation.yaw);
                     m_424->set_position(&pos);
                 }
             }
@@ -1976,7 +1976,7 @@ void TObjEneMe3ShinowaMirage::activate_mirage(s32 index) {
         VecCopy(&position, &owner->position);
         VecCopy(&prev_position, &position);
         VecCopy(&bodies->center, &position);
-        copy_xyz(&rotation_x, &owner->rotation_x);
+        copy_xyz(&this->rotation.pitch, &owner->rotation.pitch);
         actorFlags &= ~0x800;
         actorFlags = 0x20000000;
         hp = hpmax;

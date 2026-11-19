@@ -51,7 +51,7 @@ void TUnk_804A4F60::psycho_wand_roll_extra() {
     } else {
         targets.count = 0;
     }
-    cast_rotation_y = owner->rotation_y;
+    cast_rotation_y = owner->rotation.yaw;
     VecCopy(&cast_position, &owner->position);
     send_activate_effect(3.0f * (3.0517578e-05f * (f32)rand()));
 }

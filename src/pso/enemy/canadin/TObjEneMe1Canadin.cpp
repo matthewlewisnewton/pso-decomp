@@ -393,7 +393,7 @@ TObjEneMe1Canadin::TObjEneMe1Canadin(TObject *parent, TObjEneMe1Canadin *leader,
     set_index = sub_id;
     calc_move_vector((int)m_3C0, &position);
     VecCopy(&position, pos);
-    rotation_y = m_3C0->rotation_y;
+    this->rotation.yaw = m_3C0->rotation.yaw;
     m_3C8 = 0;
     m_3C4 = 1;
     setup_enemy();
@@ -611,8 +611,8 @@ void TObjEneMe1Canadin::update_hover_height() {
 }
 
 void TObjEneMe1Canadin::update_angle() {
-    rotation_y = approach_angle_limited(rotation_y, (s32) (10430.38043493439 * atan2_float(target_direction.x, target_direction.z)), 0x400);
-    rotation_y = (s32) (s16) rotation_y;
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32) (10430.38043493439 * atan2_float(target_direction.x, target_direction.z)), 0x400);
+    this->rotation.yaw = (s32) (s16) this->rotation.yaw;
 }
 
 void TObjEneMe1Canadin::update_move(void* p) { if (((TObjEneDD_ST *)p)->enemy_has_live_target() != 0) { ((TObjEneDD_ST *)p)->enemy_copy_target_destination(); ((TObjEneDD *)p)->update_velocity(); ((TObjEneMe1Canadin *)p)->update_angle(); } }
@@ -1583,7 +1583,7 @@ void TObjEneMe1Canadin__sub_8009C91C(TObjEneMe1Canadin *self, s32 arg1) {
                     c = normalize_vector_xz(&v);
                     self->move_to_wall_clamped_destination(v.x, v.z, c);
                 }
-                self->rotation_y = (s32)(10430.38043493439 * atan2_float(dir->x, dir->z)) + 0x8000;
+                self->rotation.yaw = (s32)(10430.38043493439 * atan2_float(dir->x, dir->z)) + 0x8000;
                 TObjEneMe1Canadin::push_history_entry(self->eff_light, 0.8f, self->m_414, self->m_4B4);
                 break;
             }
@@ -1750,7 +1750,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(TObjEneMe1Canadin *self, s32 arg1) {
         self->update_velocity();
         TObjEneMe1Canadin__sub_8009EB98(self, self->position.y + self->m_3EC);
         TObjEneEpsilon__sub_800B92AC((u8 *)self, 0x200, 0.68f);
-        self->rotation_z += 0x2000;
+        self->rotation.roll += 0x2000;
         self->m_470++;
         if (self->m_470 >= 0x96) {
             CanadinBehaviorParams c = canadin_projectile_param_block;
@@ -1769,7 +1769,7 @@ void TObjEneMe1Canadin__sub_8009C2EC(TObjEneMe1Canadin *self, s32 arg1) {
         break;
     }
     case 5:
-        self->rotation_z = 0;
+        self->rotation.roll = 0;
         break;
     }
 }
@@ -1856,7 +1856,7 @@ void TObjEneMe1Canadin::vfunc_112(s32 arg1) {
             m_3C0 = (TObjEneMe1Canadin *)find_entity_by_id(m_4C8);
             m_3C0->vfunc_117((u32)this);
         }
-        TBoss3Volopt::create_breakup_mdl((s32)canadin_follower_breakup_model, 0, (s32)(texlist), (s32)&m_2fc, (s32)(rotation_y));
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_follower_breakup_model, 0, (s32)(texlist), (s32)&m_2fc, (s32)(this->rotation.yaw));
         m_3C8 |= 0x400000;
         VecCopy(&pos, (const Vec *)&m_2fc);
         temp_f1 = pos.y;
@@ -1902,8 +1902,8 @@ void TObjEneMe1Canadin::update_by_state(s32 arg1) {
     case 4:
         requested_action = 0;
         m_3F8 = (f32) (position.y + m_3EC);
-        m_484 = sin_table_lookup(rotation_y);
-        m_488 = cos_table_lookup(rotation_y);
+        m_484 = sin_table_lookup(this->rotation.yaw);
+        m_488 = cos_table_lookup(this->rotation.yaw);
         return;
     case 0:
         advance_animation();
@@ -1979,7 +1979,7 @@ void TObjEneMe1Canadin::render() {
         push_matrix();
         post_translate_matrix(&position);
         translate_matrix(0, 0.0f, m_3F4, 0.0f);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         temp_r0 = mode;
         var_r29 = 1;
         if ((temp_r0 == 1) || (temp_r0 == 0xB)) {
@@ -2002,7 +2002,7 @@ void TObjEneMe1Canadin::render() {
                 }
                 set_chunk_model_node_callback(NULL);
             } else {
-                rotate_matrix_z(NULL, rotation_z);
+                rotate_matrix_z(NULL, this->rotation.roll);
                 TObjEneMe1Canadin__render_node_index = -1;
                 TObjEneMe1Canadin__render_point_cursor = m_414;
                 VecCopy(&m_414[3], &lbl_8043A268);
@@ -2052,7 +2052,7 @@ void TObjEneMe1Canadin::render_canadin_model_with_debug_type() {
         set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         draw_chunk_object((void *)model);
         pop_matrix();
@@ -2129,7 +2129,7 @@ void TObjEneMe1CanadinLeader::vfunc_107() {
     if (n < 1) {
         n = 1;
     }
-    angle = rotation_y;
+    angle = this->rotation.yaw;
     id = (entity_id + 1) & 0xFFFF;
     sub = set_index + 1;
     for (i = 0; i < n; i++) {
@@ -2382,7 +2382,7 @@ void TObjEneMe1CanadinLeader::vfunc_112(s32 mode) {
     s32 i;
     switch (mode) {
     case 4:
-        TBoss3Volopt::create_breakup_mdl((s32)canadin_leader_breakup_model, 0, (s32)texlist, (s32)&m_2fc, (s32)rotation_y);
+        TBoss3Volopt::create_breakup_mdl((s32)canadin_leader_breakup_model, 0, (s32)texlist, (s32)&m_2fc, (s32)this->rotation.yaw);
         for (i = 0; i < m_4D0; i++) {
             ((TObjEneMe1CanadinLeader *)m_4D4[i])->set_flag3c8_bit20();
         }

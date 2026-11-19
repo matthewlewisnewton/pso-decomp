@@ -39,7 +39,7 @@ void TObjEneMorfosArm::render() {
     }
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)this->texlist);
     TObjPlayer::toggle_particle_effect();
     ((TObjMotion *)arg0)->draw();
@@ -57,7 +57,7 @@ void TObjEneMorfosArm::run_task() {
         return;
     }
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(TObjEneMorfosArm__sub_803326B4(temp_r3)));
-    this->rotation_y = TObjEneMorfosArm__sub_803326BC(*(u8 * *)&this->m_fc);
+    this->rotation.yaw = TObjEneMorfosArm__sub_803326BC(*(u8 * *)&this->m_fc);
     if (this->motion_flags & 0x10) {
         ((TObject *)arg0)->queue_destruction();
     }
@@ -74,7 +74,7 @@ TObjEneMorfosArm::TObjEneMorfosArm(TObject *parent, void *owner) : TObjMotion(pa
     m_fc = (u32)owner;
     m_100 = get_entity_id((void *)m_fc);
     VecCopy(&position, (const Vec *)TObjEneMorfosArm__sub_803326B4((void *)m_fc));
-    rotation_y = TObjEneMorfosArm__sub_803326BC((void *)m_fc);
+    this->rotation.yaw = TObjEneMorfosArm__sub_803326BC((void *)m_fc);
     model = *(void **)(*(u8 **)(TObjEneMorfosArm__parent_morfos_instance + 0x42C) + 8);
     resource = *(u8 **)(TObjEneMorfosArm__parent_morfos_instance + 0x42C);
     texlist = *(s32 *)(resource + 0xC);

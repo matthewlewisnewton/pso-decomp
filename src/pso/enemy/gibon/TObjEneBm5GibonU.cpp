@@ -529,7 +529,7 @@ s32 TObjEneBm5GibonU::check_hit_sphere(int angle, f32 scale) {
     u32 saved_flags;
     scale *= 0.5f;
     body = bodies;
-    saved_rotation = rotation_y;
+    saved_rotation = this->rotation.yaw;
     saved_flags = body->flags;
     body->offset.x = 0.0f;
     body->offset.z = scale;
@@ -537,7 +537,7 @@ s32 TObjEneBm5GibonU::check_hit_sphere(int angle, f32 scale) {
     body->half_width = 8.0f;
     body->shape = 1;
     body->flags = 0x9D01;
-    rotation_y = angle;
+    this->rotation.yaw = angle;
     vfunc_89();
     update_enemy_collision_flags();
     hit = (body->flags & 0x380000) != 0;
@@ -547,7 +547,7 @@ s32 TObjEneBm5GibonU::check_hit_sphere(int angle, f32 scale) {
         copy_collision_body(body, &gibon_collision_body_templates[0]);
     }
     body->flags = saved_flags;
-    rotation_y = saved_rotation;
+    this->rotation.yaw = saved_rotation;
     return hit;
 }
 
@@ -626,7 +626,7 @@ void TObjEneBm5GibonU::render_debug() {
         set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if (m_464 == 1) {
             scale_matrix(0, 1.5f, 1.5f, 1.5f);
         } else {
@@ -715,7 +715,7 @@ void TObjEneBm5GibonU::render() {
                 translate_matrix(0, 0.0f, 0.3f, 0.0f);
                 rotate_matrix_z(0, rot[2]);
                 rotate_matrix_x(0, rot[0]);
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 translate_matrix(0, 0.0f, 0.0f, -3.0f);
                 scale_matrix(0, 2.0f, 1.0f, 3.0f);
                 rotate_matrix_x(0, -0x4000);
@@ -731,7 +731,7 @@ void TObjEneBm5GibonU::render() {
                 m_3f4[cam].set_flags_and_apply_damage_color();
             }
             post_translate_matrix(&position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             translate_matrix(0, 0.0f, 0.0f, -10.0f);
             if (m_464 == 1) {
                 scale_matrix(0, 1.5f, 1.5f, 1.5f);
@@ -814,7 +814,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 if (select_enemy_destination(this, target_destination, 1) != 0) {
                     copy_position_if_valid__10TObjPlayerFii(this, *(Vec *)&m_2fc);
                     r = enemy_turn_toward_dest(((TObjEneBm5GibonUMovementParameters *)movementParameters)->turn);
-                    enemy_set_heading_velocity(((TObjEneBm5GibonUMovementParameters *)movementParameters)->speed, this, rotation_y);
+                    enemy_set_heading_velocity(((TObjEneBm5GibonUMovementParameters *)movementParameters)->speed, this, this->rotation.yaw);
                     move_with_wall_slide((u8 *)this);
                 } else {
                     VecCopy(&v, &target_destination);
@@ -838,7 +838,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 p.y = 15.0f;
                 p.z = 12.0f;
                 push_matrix_from(identity_matrix);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 rotate_vector_by_matrix(0, &p, &p);
                 pop_matrices(1);
                 vec3_add_to(&p, &m_2fc);
@@ -855,7 +855,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                         if (r < ((AttackParams *)m_318)->get_attack_angle() / 2 && current_target != 0) {
                             TTecMegid::create((s32)this, (s32)&p, (s32)&target_destination, (s32)(get_clamped_level()));
                         } else {
-                            TTecMegid::create_ex((s32)this, (s32)&p, rotation_y, (s32)(get_clamped_level()));
+                            TTecMegid::create_ex((s32)this, (s32)&p, this->rotation.yaw, (s32)(get_clamped_level()));
                         }
                         play_sound_effect(0x4002A60B, &p, 0, 0);
                         break;
@@ -874,7 +874,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                             v.y = 0.0f;
                             v.z = 1.0f;
                             push_matrix_from(identity_matrix);
-                            rotate_matrix_y(0, rotation_y);
+                            rotate_matrix_y(0, this->rotation.yaw);
                             rotate_vector_by_matrix(0, &v, &v);
                             pop_matrix();
                             e = TObject::operator new(0x260);
@@ -888,13 +888,13 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                 } else {
                     switch (m_468) {
                     case 1:
-                        ((TTecGiBarta *)this)->create_ex(&p, (void *)rotation_y, (void *)(get_clamped_level()));
+                        ((TTecGiBarta *)this)->create_ex(&p, (void *)this->rotation.yaw, (void *)(get_clamped_level()));
                         break;
                     default:
                         if (r < ((AttackParams *)m_318)->get_attack_angle() / 2 && current_target != 0) {
                             TTecFoie::create_ex((void *)this, &p, (void *)&current_target->m_2fc, (void *)(get_clamped_level()));
                         } else {
-                            TTecFoie::create((void *)this, &p, (void *)rotation_y, (void *)(get_clamped_level()));
+                            TTecFoie::create((void *)this, &p, (void *)this->rotation.yaw, (void *)(get_clamped_level()));
                         }
                         break;
                     }
@@ -902,7 +902,7 @@ void TObjEneBm5GibonU::state_cast_technique(s32 arg1) {
                     v.y = 0.0f;
                     v.z = 0.0f;
                     push_matrix_from(identity_matrix);
-                    rotate_matrix_y(0, rotation_y);
+                    rotate_matrix_y(0, this->rotation.yaw);
                     rotate_vector_by_matrix(0, &v, &v);
                     pop_matrices(1);
                     if (m_468 != 1) {
@@ -1014,9 +1014,9 @@ void TObjEneBm5GibonU__sub_800CDB98(TObjEneBm5GibonU *self, s32 arg1) {
                 }
             }
             self->approach_target(0.1f);
-            self->rotation_y = approach_angle_limited(self->rotation_y, self->m_528, 0x1000);
-            self->rotation_y = (s16)self->rotation_y;
-            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation_y);
+            self->rotation.yaw = approach_angle_limited(self->rotation.yaw, self->m_528, 0x1000);
+            self->rotation.yaw = (s16)self->rotation.yaw;
+            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation.yaw);
             if (self->frame <= 33.0f) {
                 self->move_with_wall_slide_on_ground(self->target_direction.x, self->target_direction.z, self->m_498);
             }
@@ -1075,7 +1075,7 @@ void TObjEneBm5GibonU__sub_800CE060(TObjEneBm5GibonU *self, s32 arg1) {
                 sp14.x = 0.0f;
                 sp14.y = 0.0f;
                 sp14.z = -10.0f;
-                rotate_xz_pair_by_angle(&sp14.x, &sp14.z, self->rotation_y);
+                rotate_xz_pair_by_angle(&sp14.x, &sp14.z, self->rotation.yaw);
                 vec3_add_to(&sp14, &self->position);
                 if (self->m_464 == 1) {
                     spawn_dead_spot_scale15((s32)&sp14, 0x32);
@@ -1084,8 +1084,8 @@ void TObjEneBm5GibonU__sub_800CE060(TObjEneBm5GibonU *self, s32 arg1) {
                 }
                 spawn_effect_at_ground(&sp14, 0x46);
             }
-            self->rotation_y = approach_angle_limited(self->rotation_y, self->m_528, 0x300);
-            self->rotation_y = (s16)self->rotation_y;
+            self->rotation.yaw = approach_angle_limited(self->rotation.yaw, self->m_528, 0x300);
+            self->rotation.yaw = (s16)self->rotation.yaw;
             if (self->wall_probe_distance < 28.0f) {
                 self->wall_probe_distance += self->m_530;
             }
@@ -1099,7 +1099,7 @@ void TObjEneBm5GibonU__sub_800CE060(TObjEneBm5GibonU *self, s32 arg1) {
             }
             self->x_speed *= 0.8f;
             self->m_310 *= 0.8f;
-            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation_y);
+            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation.yaw);
             self->vfunc_88();
             break;
         case 1:
@@ -1160,8 +1160,8 @@ void TObjEneBm5GibonU__sub_800CE370(TObjEneBm5GibonU *self, s32 arg1) {
         } else {
             self->x_speed *= 0.9f;
             self->m_310 *= 0.9f;
-            self->rotation_y = approach_angle_limited(self->rotation_y, self->m_528, 0x300);
-            self->rotation_y = (s16) self->rotation_y;
+            self->rotation.yaw = approach_angle_limited(self->rotation.yaw, self->m_528, 0x300);
+            self->rotation.yaw = (s16) self->rotation.yaw;
             if (self->is_passing_frame(26.0f) != 0) {
                 TObjEneBm5GibonU__sub_800D0AE8(self, &sp8);
             }
@@ -1195,7 +1195,7 @@ void action__16TObjEneBm5GibonUFPvi(TObjEneBm5GibonU *self, s32 arg1) {
         return;
     case 0:
         self->advance_animation();
-        ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation_y);
+        ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation.yaw);
         if (self->is_passing_frame(10.0f) != 0) {
             play_sound_effect((s32)((void *)self->remap_sound_for_area(0x3AA22)), (const Vec *)&self->position, 0, 0);
         }
@@ -1247,7 +1247,7 @@ void TObjEneBm5GibonU__sub_800CE694(TObjEneBm5GibonU *self, s32 arg1) {
             if (((TObjEneBm5GibonU *)self)->is_active() == 0) {
                 self->m_528 = -self->m_528;
             }
-            self->m_528 += self->rotation_y;
+            self->m_528 += self->rotation.yaw;
             (self->m_51c)++;
             if (self->m_51c > 8) {
                 self->m_518 = 2;
@@ -1282,7 +1282,7 @@ void TObjEneBm5GibonU__sub_800CE694(TObjEneBm5GibonU *self, s32 arg1) {
             }
             TObjEneBm5GibonU__sub_800CCDE4(self);
             self->move_with_wall_slide_on_ground(self->target_direction.x, self->target_direction.z, 1.8f);
-            self->rotation_y = approach_angle_limited(self->rotation_y, self->m_528, 0xF00);
+            self->rotation.yaw = approach_angle_limited(self->rotation.yaw, self->m_528, 0xF00);
             ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->m_528);
             self->vfunc_89();
             self->update_enemy_collision_flags();
@@ -1309,10 +1309,10 @@ void TObjEneBm5GibonU__sub_800CE978(TObjEneBm5GibonU *self, s32 arg1) {
         self->m_518 = 0;
         VecCopy(home, &self->position);
         TObjBoss2Tunnel::calc_scaled_value(0x200, 1.6f);
-        self->m_52c = self->rotation_y;
+        self->m_52c = self->rotation.yaw;
         if (self->enemy_has_live_target() != 0) {
-            dir.x = sin_table_lookup(self->rotation_y);
-            dir.z = cos_table_lookup(self->rotation_y);
+            dir.x = sin_table_lookup(self->rotation.yaw);
+            dir.z = cos_table_lookup(self->rotation.yaw);
             tgt = (u8 *)self->current_target;
             diff.x = ((TObjEneBm5GibonU *)tgt)->position.x - self->position.x;
             diff.z = ((TObjEneBm5GibonU *)tgt)->position.z - self->position.z;
@@ -1423,9 +1423,9 @@ void TObjEneBm5GibonU__sub_800CEBD8(TObjEneBm5GibonU *self, s32 arg1) {
                 }
             }
             self->approach_target(0.1f);
-            self->rotation_y = approach_angle_limited((s32)(self->rotation_y), (s32)(self->m_528), 0x1000);
-            self->rotation_y = (s32) (s16) self->rotation_y;
-            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation_y);
+            self->rotation.yaw = approach_angle_limited((s32)(self->rotation.yaw), (s32)(self->m_528), 0x1000);
+            self->rotation.yaw = (s32) (s16) self->rotation.yaw;
+            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation.yaw);
             if (self->frame <= 28.0f) {
                 self->move_with_wall_slide_on_ground(self->target_direction.x, self->target_direction.z, self->m_498);
             } else if ((s32) self->m_564 == 0) {
@@ -1517,8 +1517,8 @@ void TObjEneBm5GibonU::run_idle_state(s32 arg1) {
       }
       else
       {
-        fx = sin_table_lookup(current_target->rotation_y);
-        fz = cos_table_lookup(current_target->rotation_y);
+        fx = sin_table_lookup(current_target->rotation.yaw);
+        fz = cos_table_lookup(current_target->rotation.yaw);
         fz = (fx * b->x) + (fz * b->z);
         if (fz < cos_table_lookup(0x6AAA))
         {
@@ -1547,9 +1547,9 @@ void TObjEneBm5GibonU::run_idle_state(s32 arg1) {
         VecCopy(a, &current_target->position);
         m_530 = calc_xz_direction_to__16TObjEneBm5GibonUFPvPvPv(this, a, b);
         m_534 = rand_range(50.0f, 80.0f);
-        fwd.x = sin_table_lookup(rotation_y);
+        fwd.x = sin_table_lookup(this->rotation.yaw);
         fwd.y = 0.0f;
-        fwd.z = cos_table_lookup(rotation_y);
+        fwd.z = cos_table_lookup(this->rotation.yaw);
         to.x = current_target->position.x - position.x;
         to.y = 0.0f;
         to.z = current_target->position.z - position.z;
@@ -1636,11 +1636,11 @@ void TObjEneBm5GibonU::run_idle_state(s32 arg1) {
           m_51c++;
           if (m_51c >= 0x28)
           {
-            ang = rotation_y;
+            ang = this->rotation.yaw;
           }
           else
           {
-            ang = rotation_y + (m_528 << 11);
+            ang = this->rotation.yaw + (m_528 << 11);
           }
           fz = sin_table_lookup(ang);
           fx = cos_table_lookup(ang);
@@ -1663,8 +1663,8 @@ void TObjEneBm5GibonU::run_idle_state(s32 arg1) {
 
       }
 
-      rotation_y = approach_angle_limited(rotation_y, (s32) (10430.38043493439 * atan2_float(position.x - prev_position.x, position.z - prev_position.z)), 0x200);
-      rotation_y = (s16) rotation_y;
+      this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32) (10430.38043493439 * atan2_float(position.x - prev_position.x, position.z - prev_position.z)), 0x200);
+      this->rotation.yaw = (s16) this->rotation.yaw;
       play_speed = 1.05f * m_498;
       face_target();
       vfunc_89();
@@ -1742,8 +1742,8 @@ void TObjEneBm5GibonU__sub_800CF4BC(TObjEneBm5GibonU *self, s32 arg1) {
             VecCopy(vel, dir);
             self->m_52c = *rot;
         }
-        self->rotation_y = approach_angle_limited(self->rotation_y, self->m_52c, 0x800);
-        self->rotation_y = (s16)self->rotation_y;
+        self->rotation.yaw = approach_angle_limited(self->rotation.yaw, self->m_52c, 0x800);
+        self->rotation.yaw = (s16)self->rotation.yaw;
         if (self->is_passing_frame(18.0f) != 0) {
             self->m_498 = 6.0f;
         }
@@ -1882,7 +1882,7 @@ void TObjEneBm5GibonU__sub_800CFA48(TObjEneBm5GibonU *self, s32 arg1) {
             }
             self->face_target();
         } else {
-            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation_y);
+            ((TObjEneBm5GibonU *)self)->turn_toward_angle(self->rotation.yaw);
         }
         switch (self->m_518) {
         case 0:
@@ -2139,8 +2139,8 @@ void TObjEneBm5GibonU__sub_800D0420(TObjEneBm5GibonU *self, s32 arg1) {
         enemy_clear_target__12TObjEneDD_STFUs(self);
         self->m_478 = 0;
         VecCopy(home, &self->position);
-        self->position.x -= 100.0f * sin_table_lookup(self->rotation_y);
-        self->position.z -= 100.0f * cos_table_lookup(self->rotation_y);
+        self->position.x -= 100.0f * sin_table_lookup(self->rotation.yaw);
+        self->position.z -= 100.0f * cos_table_lookup(self->rotation.yaw);
         self->m_530 = 3.5714285f;
         break;
     case 3:
@@ -2167,8 +2167,8 @@ void TObjEneBm5GibonU__sub_800D0420(TObjEneBm5GibonU *self, s32 arg1) {
             if (self->frame > 28.0f) {
                 self->m_530 *= 0.8f;
             }
-            self->position.x += self->m_530 * sin_table_lookup(self->rotation_y);
-            self->position.z += self->m_530 * cos_table_lookup(self->rotation_y);
+            self->position.x += self->m_530 * sin_table_lookup(self->rotation.yaw);
+            self->position.z += self->m_530 * cos_table_lookup(self->rotation.yaw);
         }
         self->vfunc_102();
         self->vfunc_88();
@@ -2331,14 +2331,14 @@ s32 TObjEneBm5GibonU__sub_800D0968(TObjEneBm5GibonU *self, int _w1) {
         self->update_velocity();
         return (s32) (10430.38043493439 * atan2_float((f64) self->target_direction.x, (f64) self->target_direction.z));
     }
-    self->target_direction.x = sin_table_lookup(self->rotation_y);
+    self->target_direction.x = sin_table_lookup(self->rotation.yaw);
     self->target_direction.y = (f32) 0.0f;
-    self->target_direction.z = cos_table_lookup(self->rotation_y);
+    self->target_direction.z = cos_table_lookup(self->rotation.yaw);
     VecCopy(&self->target_destination, &self->position);
     self->target_destination.x = (f32) ((30.0f * self->target_direction.x) + self->target_destination.x);
     self->target_destination.z = (f32) ((30.0f * self->target_direction.z) + self->target_destination.z);
     self->target_distance = 30.0f;
-    return self->rotation_y;
+    return self->rotation.yaw;
 }
 #pragma pop
 
@@ -2491,9 +2491,9 @@ void TObjEneBm5GibonU::pick_wander_destination() {
 void TObjEneBm5GibonU::face_target() {
     Vec off;
     Vec q;
-    off.x = sin_table_lookup(rotation_y) * 0.0f;
+    off.x = sin_table_lookup(this->rotation.yaw) * 0.0f;
     q.x = position.x + off.x;
-    off.z = cos_table_lookup(rotation_y) * 0.0f;
+    off.z = cos_table_lookup(this->rotation.yaw) * 0.0f;
     q.z = position.z + off.z;
     q.x = current_target->position.x - q.x;
     q.z = current_target->position.z - q.z;
@@ -2502,7 +2502,7 @@ void TObjEneBm5GibonU::face_target() {
 
 void TObjEneBm5GibonU::turn_toward_angle(s32 angle) {
     s32 d;
-    d = angle_diff_s16(this->rotation_y, angle);
+    d = angle_diff_s16(this->rotation.yaw, angle);
     if (d > 0x3000) {
         d = 0x3000;
     } else if (d < -0x3000) {

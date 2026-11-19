@@ -91,9 +91,9 @@ TObjEneBalClawClaw::TObjEneBalClawClaw(TObject *parent, TObjEneBalClaw *body, s3
     set_group = body->set_group;
     VecCopy(&position, pos);
     VecCopy(&home_position, &body->home_position);
-    rotation_z = 0;
-    rotation_x = 0;
-    rotation_y = rot_y;
+    this->rotation.roll = 0;
+    this->rotation.pitch = 0;
+    this->rotation.yaw = rot_y;
     sub_80091A38();
     set_entry = NULL;
     m_3b8 = body->m_3b8;
@@ -533,14 +533,14 @@ void TObjEneBalClawClaw::render() {
             model_render_flags &= 0xFFFFFBFF;
             if (check_demo_mode() == 1) {
                 post_translate_matrix(&position);
-                rotate_matrix_x(0, rotation_x);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_x(0, this->rotation.pitch);
+                rotate_matrix_y(0, this->rotation.yaw);
                 draw_chunk_object(model);
             } else {
                 translate_matrix(0, 0.0f, m_3b4 + m_3bc, 0.0f);
                 post_translate_matrix(&position);
-                rotate_matrix_x(0, rotation_x);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_x(0, this->rotation.pitch);
+                rotate_matrix_y(0, this->rotation.yaw);
                 if (m_388 & 4) {
                     if (fade.has_visible_opacity() != 0) {
                         fade.set_flags_and_apply_damage_color();
@@ -604,7 +604,7 @@ void TObjEneBalClawClaw::update_follow_parent(void *p) {
 
 void TObjEneBalClawClaw__sub_80090A10(TObjEneBalClawClaw *claw, Vec *pos, s32 rot_y, s16 hp) {
     VecCopy(&claw->position, pos);
-    claw->rotation_y = rot_y;
+    claw->rotation.yaw = rot_y;
     claw->referenceHp = hp;
     claw->hp = hp;
     claw->sub_80090798();

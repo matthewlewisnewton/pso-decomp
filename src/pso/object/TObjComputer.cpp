@@ -279,7 +279,7 @@ void TObjGbAdvance::render() {
         set_current_texture_list(get_bml_texlist((BmlResource *)TObjGbAdvance__data_805D5B74, 0));
         push_matrix();
         post_translate_matrix(&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object((void *)get_bml_model((BmlResource *)TObjGbAdvance__data_805D5B74, 0));
         draw_ginja_object((void *)get_bml_model((BmlResource *)TObjGbAdvance__data_805D5B74, 1));
         draw_ginja_object((void *)get_bml_model((BmlResource *)TObjGbAdvance__data_805D5B74, 2));

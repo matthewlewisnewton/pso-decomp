@@ -2450,7 +2450,7 @@ s32 TObjPlayer::send_respawn_position() {
     ((TObjPlayer *)(&cmd))->init_cmd_6x24();
     pick = list[(s32)((f32)count * (lbl_805DC2D8 * (lbl_805DC288 * (f32)rand())))].obj;
     if (pick == NULL || count == 0) {
-        area = this->rotation_y;
+        area = this->rotation.yaw;
         VecCopy((Vec *)pos, (const Vec *)((u8 *)this + 0x38));
     } else {
         area = pick->ang;
@@ -2909,7 +2909,7 @@ void draw_body__10TObjPlayerFPvi(u8 *player, s32 arg1) {
     VecCopy((Vec *)(&stack.sp8), (const Vec *)(player + 0x38));
     stack.spC += *(f32 *)((s8 *)player + 0x5FC);
     translate_matrix_vec3((u8 *)(0), (u8 *)&stack.sp8);
-    ((s32 (*)(int, int))rotate_matrix_y)(0, (int) (((TObjPlayer *)player)->rotation_y));
+    ((s32 (*)(int, int))rotate_matrix_y)(0, (int) (((TObjPlayer *)player)->rotation.yaw));
     if (((PlayerScaleState *)(player  + 0x5B0))->is_scaled() != 0) {
         temp_r3 = (u8 *)(TObjPlayer__sub_801BF934(player + 0x5B0));
         ((s32 (*)(int, f32, f32, f32))scale_matrix)(0, (f32) (*(f32 *)((s8 *)temp_r3 + 0)), (f32) (*(f32 *)((s8 *)temp_r3 + 4)), (f32) (*(f32 *)((s8 *)temp_r3 + 8)));
@@ -3155,7 +3155,7 @@ s32 TObjPlayer::start_freeze() {
     set_action_id__10TObjPlayerFs((u8 *)&this->m_5f0, 0x10);
     ((TObjPlayer *)((u8 *)&this->m_5f0))->set_anim_state(((TObjPlayer *)arg0)->get_idle_animation());
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
     return 1;
 }
 
@@ -3168,7 +3168,7 @@ s32 TObjPlayer::init_photon_blast(s16 arg1) {
     set_action_id__10TObjPlayerFs((u8 *)&this->m_5f0, 0x10);
     ((TObjPlayer *)((u8 *)&this->m_5f0))->set_anim_state(arg1);
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
     return 1;
 }
 
@@ -3184,7 +3184,7 @@ s32 TObjPlayer::start_camera_pan(s16 arg1, s32 angle) {
     ((s32 (*)(void *))set_action_id__10TObjPlayerFs)(arg0 + 0x5F0);
     ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->requested_action);
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
     return 1;
 }
 
@@ -4440,7 +4440,7 @@ void *TObjPlayer::apply_wall_response() {
             corner.y = origin->y;
             corner.z = origin->z + pz;
             s32 target = calc_angle_to(&corner, &move_target);
-            angle = lerp_angle_half(approach_angle_adaptive(rotation_y, target), target);
+            angle = lerp_angle_half(approach_angle_adaptive(this->rotation.yaw, target), target);
             move.x = TObjPlayer__sub_801BF814(&m_5e0) * sin_table_lookup(angle);
             move.y = TObjPlayer__data_805DC278;
             move.z = TObjPlayer__sub_801BF814(&m_5e0) * cos_table_lookup(angle);
@@ -4491,7 +4491,7 @@ void TObjPlayer::init_effect_5f0() {
     set_action_id__10TObjPlayerFs((u8 *)&this->m_5f0, 0x10);
     ((TObjPlayer *)((u8 *)&this->m_5f0))->set_anim_state(((TObjPlayer *)arg0)->get_idle_animation());
     ((TObjPlayer *)(arg0 + 0x5F0))->set_state(0);
-    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation_y);
+    ((TObjPlayer *)(arg0 + 0x5F0))->set_anim_state(this->rotation.yaw);
 }
 
 void TObjPlayer::clear_lobby_flag(void *base) {
@@ -5502,9 +5502,9 @@ void TObjPlayer::clear_action_flag() {
 }
 
 void TObjPlayer::update_facing_vector() {
-    this->m_404 = sin_table_lookup(this->rotation_y);
+    this->m_404 = sin_table_lookup(this->rotation.yaw);
     *(f32 *)((s8 *)((u8 *)this) + 0x408) = (f32) TObjPlayer__data_805DC278;
-    this->m_40c = cos_table_lookup(this->rotation_y);
+    this->m_40c = cos_table_lookup(this->rotation.yaw);
     update_ground_contact();
     if ((u32) this->m_424 != 0U) {
         ((TMainCursor *)(*(void **)((s8 *)((u8 *)this) + 0x424)))->reset_slots();
@@ -6993,7 +6993,7 @@ s32 TObjPlayer::try_pickup_item() {
 void TObjPlayer::draw() {
     push_matrix();
     translate_matrix_vec3((u8 *)(0), (u8 *)(((s32 (*)(void *))get_position_ptr__10TObjPlayerFv)(this)));
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     calc_joint_matrices(this->current_motion, *(f32 *)&TObjPlayer__data_805DC278, *(s32 *)((s8 *)this + 0xE0));
     pop_matrix();
 }
@@ -7001,7 +7001,7 @@ void TObjPlayer::draw() {
 void draw__10TObjPlayerFPvf(void *player, f32 at_frame) {
     push_matrix();
     translate_matrix_vec3((u8 *)(0), (u8 *)(((s32 (*)(void *))get_position_ptr__10TObjPlayerFv)(player)));
-    rotate_matrix_y(0, ((TObjPlayer *)player)->rotation_y);
+    rotate_matrix_y(0, ((TObjPlayer *)player)->rotation.yaw);
     ((TObjPlayer *)player)->calc_joint_matrices(((TObjPlayer *)player)->current_motion, at_frame, *(s32 *)((s8 *)player + 0xE0));
     pop_matrix();
 }

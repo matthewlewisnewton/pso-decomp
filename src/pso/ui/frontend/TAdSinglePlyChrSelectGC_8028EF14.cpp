@@ -352,9 +352,9 @@ void *TCMCharacter__ct(void *motion, void *arg1) {
     *(f32 *)((s8 *)motion + 0x40) = 0.0f;
     *(f32 *)((s8 *)motion + 0x3C) = 0.0f;
     *(f32 *)((s8 *)motion + 0x38) = 0.0f;
-    ((TObjMotion *)motion)->rotation_z = 0;
-    ((TObjMotion *)motion)->rotation_y = 0;
-    ((TObjMotion *)motion)->rotation_x = 0;
+    ((TObjMotion *)motion)->rotation.roll = 0;
+    ((TObjMotion *)motion)->rotation.yaw = 0;
+    ((TObjMotion *)motion)->rotation.pitch = 0;
     load_creation_shape_rel((W_80290250 *)motion);
     reset_character_creation_figure_rotation();
     creation_resource_ready_state = 0;

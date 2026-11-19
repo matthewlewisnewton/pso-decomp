@@ -59,7 +59,7 @@ void TPhotonMagicSquare::render() {
     TParticleCtrl::begin_effect_render();
     push_matrix();
     post_translate_matrix(&self->vB8);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_current_texture_list((GinjaTextureList *)this->texlist);
     scale_current_matrix(&self->v68);
     NJS_ARGB saved = self->color;

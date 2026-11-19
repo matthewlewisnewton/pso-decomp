@@ -1605,7 +1605,7 @@ s32 TObjEneDD_ST::check_target_validity() {
 }
 
 void TObjEneDD::turn_toward_target_direction(s32 arg1) {
-    this->rotation_y = (s16) approach_angle_limited(this->rotation_y, (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8))), arg1);
+    this->rotation.yaw = (s16) approach_angle_limited(this->rotation.yaw, (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)this + 0x3A0), *(f32 *)((s8 *)this + 0x3A8))), arg1);
 }
 
 void TObjEneEpsilon::fire_attack_c(s32 arg1, s32 arg2, f32 farg0) {
@@ -1613,7 +1613,7 @@ void TObjEneEpsilon::fire_attack_c(s32 arg1, s32 arg2, f32 farg0) {
 
     temp_f30 = farg0;
     turn_toward_target_direction(arg2);
-    calc_shot_position__13TBoss5GryphonFPUcfff(this, arg1, sin_table_lookup(this->rotation_y), cos_table_lookup(this->rotation_y), temp_f30);
+    calc_shot_position__13TBoss5GryphonFPUcfff(this, arg1, sin_table_lookup(this->rotation.yaw), cos_table_lookup(this->rotation.yaw), temp_f30);
 }
 
 void TObjEneEpsilon::fire_attack_b(s32 arg1, s32 arg2, f32 farg0) {
@@ -1622,8 +1622,8 @@ void TObjEneEpsilon::fire_attack_b(s32 arg1, s32 arg2, f32 farg0) {
 
     dist = farg0;
     turn_toward_target_direction(arg2);
-    dz = cos_table_lookup(this->rotation_y);
-    calc_wall_slide_destination((void *)this, (void *)arg1, (f32)(sin_table_lookup(this->rotation_y)), (f32)((f32)dz), (f32)((f32)dist));
+    dz = cos_table_lookup(this->rotation.yaw);
+    calc_wall_slide_destination((void *)this, (void *)arg1, (f32)(sin_table_lookup(this->rotation.yaw)), (f32)((f32)dz), (f32)((f32)dist));
 }
 
 void TObjEneEpsilon::fire_attack_a(s32 out, s32 arg2, f32 farg0) {
@@ -1631,7 +1631,7 @@ void TObjEneEpsilon::fire_attack_a(s32 out, s32 arg2, f32 farg0) {
 
     dist = farg0;
     turn_toward_target_direction(arg2);
-    calc_wall_clamped_destination((void *)this, (void *)out, (f32)(sin_table_lookup(this->rotation_y)), (f32)((f32)cos_table_lookup(this->rotation_y)), (f32)((f32)dist));
+    calc_wall_clamped_destination((void *)this, (void *)out, (f32)(sin_table_lookup(this->rotation.yaw)), (f32)((f32)cos_table_lookup(this->rotation.yaw)), (f32)((f32)dist));
 }
 
 void TObjEneEpsilon__sub_800B9384(u8 *arg0, s32 arg1, f32 farg0) {

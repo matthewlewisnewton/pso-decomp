@@ -761,7 +761,7 @@ void TObjCity_Season_EasterEgg::render() {
         set_current_texture_list((GinjaTextureList *)city_season_xmas_model_table[0]);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_chunk_object((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x42C)) + 0x18)));
         draw_chunk_object((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x42C)) + 0x8)));
         pop_matrix();
@@ -812,7 +812,7 @@ void TObjCity_Season_ValentineHeart::render() {
         set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)city_season_xmas_model_table + 4)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_model_motion((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x42C)) + 0x28)), (void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x430)) + 0x14)), this->m_b0);
         pop_matrix();
     }
@@ -867,7 +867,7 @@ void TObjCity_Season_XmasTree::render() {
         set_current_texture_list((GinjaTextureList *)(*(s32 *)((s8 *)city_season_xmas_model_table + 8)));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_model_motion((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x42C)) + 0x78)), (void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x430)) + 0xC)), this->m_b0);
         draw_model_motion((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x42C)) + 0x68)), (void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x430)) + 4)), this->m_b0);
         draw_chunk_object((void *)(*(s32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 0x42C)) + 0x88)));
@@ -904,7 +904,7 @@ void TObjCity_Season_XmasWreath::render() {
         set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)&city_season_xmas_model_table + 8))));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+        ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         draw_chunk_object((void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)temp_r31 + 0x42C)) + 0x58)));
         pop_matrix();
     }
@@ -933,7 +933,7 @@ void *TObjCity_Season_HalloweenPumpkin__create(void *arg0) {
 extern "C" {
 void TObjCity_Season_HalloweenPumpkin::run_task() {
     if ((u32) *(u32 *)((s8 *)&city_season_easter_egg_model_table.value + 0xC) != 0U) {
-        this->rotation_y = (this->rotation_y + 0x40);
+        this->rotation.yaw = (this->rotation.yaw + 0x40);
     }
 }
 }
@@ -950,7 +950,7 @@ void TObjCity_Season_HalloweenPumpkin::render() {
         set_current_texture_list((GinjaTextureList *)((*(s32 *)((s8 *)&city_season_xmas_model_table + 0xC))));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+        ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         draw_chunk_object((void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)temp_r31 + 0x42C)) + 8)));
         pop_matrix();
     }
@@ -1007,7 +1007,7 @@ void TObjCity_Season_21_21::render() {
             ((s32 (*)(void *, int, int))scroll_strip_uvs)((void *)lbl_805D5B34, 0, (int) ((s16) uv_scroll));
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
-            ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+            ((s32 (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
             draw_chunk_object((void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0x42C)) + 0x18)));
             draw_model_motion((void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0x42C)) + 8)), (void *)(*(s32 *)((s8 *)(*(u8 **)((s8 *)temp_r3 + 0x430)) + 4)), this->m_b0);
             pop_matrix();
@@ -1128,7 +1128,7 @@ void TObjCity_Season_Board::render() {
         scroll_strip_uvs(lbl_805D5B48, (s16) this->uv_scroll, 0);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_chunk_object((void *)lbl_805D5B3C);
         draw_chunk_object((void *)lbl_805D5B40);
         pop_matrix();

@@ -667,7 +667,7 @@ void TObjEneDubchik::render() {
             saved_model_render_flags = model_render_flags;
             ((TObjEneDubchik *)arg0)->sub_800A8A7C();
             post_translate_matrix(arg0 + 0x38);
-            rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation_y));
+            rotate_matrix_y(0, (int) (((TObjEneDubchik *)arg0)->rotation.yaw));
             scale_matrix(0, 1.3f, 1.3f, 1.3f);
             model_render_flags &= 0xFFFFFBFF;
             if (check_demo_mode() == 1) {
@@ -915,7 +915,7 @@ void TObjEneDubchik::update_fall_apart() {
         m_388 &= ~0x800000;
         ((TObjPlayer *)this)->set_invuln_flags();
         requested_action = 4;
-        enemy_set_heading_velocity(-7.0f, this, rotation_y);
+        enemy_set_heading_velocity(-7.0f, this, this->rotation.yaw);
         ((TObjPlayer *)this)->render_model_and_set_attach_points();
         for (i = 0; i < 3; i++) {
             if (parts[i] == NULL && random_ratio() >= 0.5f) {

@@ -574,7 +574,7 @@ void TObjEneLappy::render() {
             toggle_particle_effect__10TObjPlayerFv();
             push_matrix();
             post_translate_matrix(((u8 *)this) + 0x38);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             if (this->m_374 & 0x400) {
                 scale_matrix(0, 2.0f, 1.5f, 2.0f);
                 TObjEneDD__sub_800B9B24(0.6666667f);
@@ -735,7 +735,7 @@ void TObjEneLappy::update_attacking() {
         ((TObjEnemy *)arg0)->enemy_turn_toward_dest((s32)((void *) *(s32 *)((s8 *)this->movementParameters + 8)));
         apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
         if (((TObjMotion *)arg0)->is_passing_frame(11.0f) != 0) {
-            enemy_set_heading_velocity(*(f32 *)((s8 *)this->movementParameters + 4), (TObjEnemy *)(arg0), this->rotation_y);
+            enemy_set_heading_velocity(*(f32 *)((s8 *)this->movementParameters + 4), (TObjEnemy *)(arg0), this->rotation.yaw);
             this->y_speed = 0.0f;
             this->phase = 1;
         }
@@ -887,7 +887,7 @@ void TObjEneLappy::update_moving() {
         case 2:
             break;
         case 3:
-            this->rotation_y = lerp_angle_half__Fll(this->rotation_y, this->m_390);
+            this->rotation.yaw = lerp_angle_half__Fll(this->rotation.yaw, this->m_390);
             if ((u32) this->action_flags == 1U) {
                 *(s32 *)&this->actorFlags = (*(s32 *)&this->actorFlags & 0xFBFFFFFF);
                 *(s16 *)&this->m_37a = 4;
@@ -899,15 +899,15 @@ void TObjEneLappy::update_moving() {
             goto block_48;
         case 4:
             if (temp_r3 == 1U) {
-                enemy_set_heading_velocity((f32) (3.5f * *(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4)), (TObjEnemy *)(arg0), this->rotation_y);
+                enemy_set_heading_velocity((f32) (3.5f * *(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4)), (TObjEnemy *)(arg0), this->rotation.yaw);
                 *(s16 *)&this->unk_394 = (s16) (*(s16 *)&this->unk_394 + 1);
-                if (((f32) *(s16 *)&this->unk_394 > 15.0f) && (((u16 (*)(void *, void *, f32))find_nearest_visible_player)(arg0, &probe.x, 300.0f) != 0xFFFFU) && (angle_difference_abs(this->rotation_y, (int) ((s32) (10430.38043493439 * atan2_float(probe.x, probe.z)))) < 0xAAA)) {
+                if (((f32) *(s16 *)&this->unk_394 > 15.0f) && (((u16 (*)(void *, void *, f32))find_nearest_visible_player)(arg0, &probe.x, 300.0f) != 0xFFFFU) && (angle_difference_abs(this->rotation.yaw, (int) ((s32) (10430.38043493439 * atan2_float(probe.x, probe.z)))) < 0xAAA)) {
                     if (((TObjChara *)arg0)->random_ratio() >= 0.5f) {
                         var_r4 = -0x4000;
                     } else {
                         var_r4 = 0x4000;
                     }
-                    this->rotation_y = (s32) (this->rotation_y + var_r4);
+                    this->rotation.yaw = (s32) (this->rotation.yaw + var_r4);
                     *(s16 *)&this->unk_394 = 0;
                 }
                 if (((TObjEneLappy *)arg0)->advance_flee_step() == 0) {

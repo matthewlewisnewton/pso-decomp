@@ -49,7 +49,7 @@ BmlResource *butterfly_bml_resource;
 void TButterfly::draw_model() {
     push_matrix();
     post_translate_matrix(&this->position.x);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_matrix_x(0, -0x2000);
     draw_ginja_model_with_motion((void *)get_bml_model(butterfly_bml_resource, 0), get_bml_motion(butterfly_bml_resource, 0), this->motion_frame);
     pop_matrix();

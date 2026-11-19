@@ -789,7 +789,7 @@ void render_and_get_joint_pos__14TObjEneGibblesFPvii(u8 *enemy, s32 arg1, s32 ar
     set_motion_packed_rotation();
     push_matrix_from((void *) (&identity_matrix.value));
     post_translate_matrix((void *) (enemy + 0x38));
-    rotate_matrix_y(0, (int) (((TObjEnemy *)enemy)->rotation_y));
+    rotate_matrix_y(0, (int) (((TObjEnemy *)enemy)->rotation.yaw));
     scale_matrix_vec3(0, (enemy + 0x68));
     set_motion_packed_rotation();
     ((TObjEnemy *)enemy)->calc_joint_matrices((f32) (((TObjEnemy *)enemy)->frame));
@@ -908,7 +908,7 @@ void TObjEneGibbles::sub_802D8140() {
       stack.x = 0.0f;
       stack.y = 0.0f;
       stack.z = -10.0f;
-      rotate_xz_pair_by_angle(&stack.x, &stack.z, this->rotation_y, 0.0f);
+      rotate_xz_pair_by_angle(&stack.x, &stack.z, this->rotation.yaw, 0.0f);
       vec3_add_to(&stack.x, ((u8 *)this) + 0x38);
       TObjPlayer__sub_800D93C4((s32)&stack.x, 0xA);
       spawn_effect_at_ground(&stack, 0x46);
@@ -1007,7 +1007,7 @@ void TObjEneGibbles::vfunc_62() {
             if (pl != 0) {
                 VecCopy(&v, (const Vec *)(pl + 0x2FC));
                 subtract_vector(&v, (u8 *)this + 0x2FC);
-                angle_difference_abs(this->rotation_y, (s32) (10430.38043493439 * atan2_float(v.x, v.z)));
+                angle_difference_abs(this->rotation.yaw, (s32) (10430.38043493439 * atan2_float(v.x, v.z)));
             }
             this->mode = 8;
             this->requested_action = 8;
@@ -1103,11 +1103,11 @@ int TObjEneGibbles::test_flag_256() {
             pl = (u8 *)TObjPlayer::get_player_data(i);
             if (pl != NULL && !(((TObjPlayer *)pl)->actorFlags & 0x800)
                 && calc_distance_to_client__10TObjPlayerFlUsUl(arg0, i, &v) < 900.0f
-                && angle_difference_abs(this->rotation_y, (s32) (10430.38043493439 * atan2_float(v.x, v.z))) < 0x2AAA
+                && angle_difference_abs(this->rotation.yaw, (s32) (10430.38043493439 * atan2_float(v.x, v.z))) < 0x2AAA
                 && ((TObjPlayer *)pl)->test_action_mask(0xE0) != 0) {
                 VecCopy((Vec *)((Vec *) &v), (const Vec *)((Vec *) (arg0 + 0x2FC)));
                 subtract_vector(&v, pl + 0x2FC);
-                if (angle_difference_abs(((TObjPlayer *)pl)->rotation_y, (s32) (10430.38043493439 * atan2_float(v.x, v.z))) < 0x2AAA) {
+                if (angle_difference_abs(((TObjPlayer *)pl)->rotation.yaw, (s32) (10430.38043493439 * atan2_float(v.x, v.z))) < 0x2AAA) {
                     this->m_3b0 = pl;
                     this->m_374 |= 0x20;
                     return 1;
@@ -1689,7 +1689,7 @@ s32 TObjEneGibbles::is_target_in_attack_range() {
         obj = this->target;
         if (obj != NULL && this->m_318 != 0 && !(*(s32 *)((s8 *)obj + 0x30) & 0x02000800)) {
             dist = calc_xz_distance_sq((s32)arg0, (u32)obj, (void *)&v);
-            ang = angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
+            ang = angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
             sub = *(u8 **)(this->target + 0xA4);
             if (sub != NULL) {
                 rad = *(f32 *)((s8 *)sub + 0xC);
@@ -2301,7 +2301,7 @@ void TObjEneGibbles::render() {
             break;
         }
         translate_matrix_vec3((u8 *)(0), (u8 *)&v);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix_vec3(0, (u8 *)this + 0x68);
         TObjEneGibbles__render_node_index = 0;
         TObjEneGibbles__render_rotation_x = this->m_3bc;

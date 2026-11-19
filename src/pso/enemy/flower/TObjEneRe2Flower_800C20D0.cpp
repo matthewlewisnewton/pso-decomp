@@ -246,7 +246,7 @@ void TObjEneRe2Flower::render() {
         set_alpha_ref_override(0);
         TObjEneDD::clear_global_flag_400();
         translate_matrix(0, lbl_805D9FAC, m_3c8, lbl_805D9FAC);
-        re2_flower_node_yaw = rotation_y - m_3c0;
+        re2_flower_node_yaw = this->rotation.yaw - m_3c0;
         re2_flower_node_points = &m_3dc[0].x;
         m_3dc[0].x = lbl_805D9FAC;
         m_3dc[0].y = lbl_805D9FB0;
@@ -316,7 +316,7 @@ void TObjEneRe2Flower::vfunc_106() {
     set_current_texture_list((GinjaTextureList *)texlist);
     push_matrix();
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     TObjEneDD::clear_global_flag_400();
     TObjPlayer::toggle_particle_effect();
     set_alpha_ref_override(0);

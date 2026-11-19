@@ -1433,7 +1433,7 @@ void TObjEneDf2Bringer::spawn_offset_particle() {
     stack.x = -5.0f;
     stack.y = 0.0f;
     stack.z = 7.0f;
-    rotate_xz_pair_by_angle(&stack.x, &stack.z, this->rotation_y, 0.0f, -5.0f);
+    rotate_xz_pair_by_angle(&stack.x, &stack.z, this->rotation.yaw, 0.0f, -5.0f);
     vec3_add_to(&stack.x, ((u8 *)this) + 0x38);
     spawn_particle_effect((const Vec *)&stack.x, 0xF3);
 }
@@ -1616,7 +1616,7 @@ void TObjEneDf2Bringer__sub_80098BAC(u8 *ene_dd_st, s32 arg1) {
         if (((s32)update_linked_position__12TObjEneDD_STFf(ene_dd_st, 300.0f)) != 0) {
             ((TObjEneDD_ST *)ene_dd_st)->enemy_copy_target_destination();
             ((TObjEneDD *)ene_dd_st)->update_velocity();
-            ((TObjEneDD_ST *)ene_dd_st)->rotation_y = (s32) (10430.38043493439 * atan2_float((f64) *(f32 *)((s8 *)ene_dd_st + 0x3A0), (f64) *(f32 *)((s8 *)ene_dd_st + 0x3A8)));
+            ((TObjEneDD_ST *)ene_dd_st)->rotation.yaw = (s32) (10430.38043493439 * atan2_float((f64) *(f32 *)((s8 *)ene_dd_st + 0x3A0), (f64) *(f32 *)((s8 *)ene_dd_st + 0x3A8)));
             transition_enemy_state__9TObjEneDDFl(ene_dd_st, 2);
         }
     case 5:
@@ -1776,19 +1776,19 @@ void TObjEneDf2Bringer__sub_8009859C(u8 *ene_df2_bringer, s32 arg1) {
         }
         {
         s32 ang;
-        ((TObjEneDf2Bringer *)ene_df2_bringer)->rotation_y = approach_angle_limited((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation_y), (s32)(ang = (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)ene_df2_bringer + 0x3A0), *(f32 *)((s8 *)ene_df2_bringer + 0x3A8)))), 0x300);
-        *(s32 *)((s8 *)ene_df2_bringer + 0x480) = turn_toward_angle_limited__15TObjBoss2TunnelFlllll((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation_y), (s32)(*(s32 *)((s8 *)ene_df2_bringer + 0x480)), ang, 0x200, 0x2000);
+        ((TObjEneDf2Bringer *)ene_df2_bringer)->rotation.yaw = approach_angle_limited((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation.yaw), (s32)(ang = (s32) (10430.38043493439 * atan2_float(*(f32 *)((s8 *)ene_df2_bringer + 0x3A0), *(f32 *)((s8 *)ene_df2_bringer + 0x3A8)))), 0x300);
+        *(s32 *)((s8 *)ene_df2_bringer + 0x480) = turn_toward_angle_limited__15TObjBoss2TunnelFlllll((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation.yaw), (s32)(*(s32 *)((s8 *)ene_df2_bringer + 0x480)), ang, 0x200, 0x2000);
         }
         temp_r30_2 = (*(u8 * *)&TObjEneDf2Bringer__data_805D4FB4);
         if (*(f32 *)((s8 *)ene_df2_bringer + 0x3AC) <= (f32) *(s32 *)((s8 *)temp_r30_2 + 0x28)) {
-            t = *(f32 *)((s8 *)ene_df2_bringer + 0x3A8) * cos_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation_y));
-            t = (*(f32 *)((s8 *)ene_df2_bringer + 0x3A0) * sin_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation_y))) + t;
+            t = *(f32 *)((s8 *)ene_df2_bringer + 0x3A8) * cos_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation.yaw));
+            t = (*(f32 *)((s8 *)ene_df2_bringer + 0x3A0) * sin_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation.yaw))) + t;
             if (t >= cos_table_lookup(0x1800)) {
                 *(s32 *)((s8 *)ene_df2_bringer + 0x4AC) = 1;
             }
         } else {
-            t = cos_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation_y));
-            ((TObjEneDD *)ene_df2_bringer)->move_clamped_on_ground(sin_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation_y)), t, *(f32 *)((s8 *)temp_r30_2 + 4));
+            t = cos_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation.yaw));
+            ((TObjEneDD *)ene_df2_bringer)->move_clamped_on_ground(sin_table_lookup((s32)(((TObjEneDf2Bringer *)ene_df2_bringer)->rotation.yaw)), t, *(f32 *)((s8 *)temp_r30_2 + 4));
         }
         ((TObjEneDD *)(ene_df2_bringer))->vfunc_89();
         TObjEneDf2Bringer__sub_80098EB4((s32)ene_df2_bringer);
@@ -1941,7 +1941,7 @@ void TObjEneDf2Bringer__sub_80097E9C(u8 *arg0, s32 arg1) {
         break;
     case 0:
         ((TObjMotion *)arg0)->advance_animation();
-        temp_r3 = ((TObjEneDf2Bringer *)arg0)->rotation_y;
+        temp_r3 = ((TObjEneDf2Bringer *)arg0)->rotation.yaw;
         *(s32 *)((s8 *)arg0 + 0x480) = turn_toward_angle_limited__15TObjBoss2TunnelFlllll(temp_r3, (s32)((int) (*(s32 *)((s8 *)arg0 + 0x480))), temp_r3, 0x200, 0x2000);
         switch (*(s32 *)((s8 *)arg0 + 0x4B0)) {
         case 0:
@@ -1953,7 +1953,7 @@ void TObjEneDf2Bringer__sub_80097E9C(u8 *arg0, s32 arg1) {
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix(arg0 + 0x38);
-                rotate_matrix_y(0, (int) (((TObjEneDf2Bringer *)arg0)->rotation_y));
+                rotate_matrix_y(0, (int) (((TObjEneDf2Bringer *)arg0)->rotation.yaw));
                 matrix_mult_vec(0, (void *)(entry + 0x18), (void *)&stack.sp8);
                 matrix_mult_vec(0, (void *)entry, &stack.sp14);
                 pop_matrix();
@@ -2308,7 +2308,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
         if (var_r27 != 0) {
             push_matrix();
             post_translate_matrix(arg0 + 0x38);
-            rotate_matrix_y(0, ((TObjEneDf2Bringer *)arg0)->rotation_y);
+            rotate_matrix_y(0, ((TObjEneDf2Bringer *)arg0)->rotation.yaw);
             set_chunk_model_node_callback((s32)&bringer_render_node_callback);
             set_motion_packed_rotation();
             if (var_r31 == 1) {

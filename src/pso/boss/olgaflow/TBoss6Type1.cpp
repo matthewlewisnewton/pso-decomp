@@ -939,7 +939,7 @@ void TBoss6Type1__sub_802B8A70(TBoss6Type1 *self) {
     s8 v;
     f32 ratio;
     s32 total;
-    v = ((u32)self->rotation_y >> 8) & 0xFF;
+    v = ((u32)self->rotation.yaw >> 8) & 0xFF;
     v = 128.0f * (0.000030517578f * (f32)rand() - 0.5f) + v;
     ratio = 0.5f;
     atk.b1 = 0x1C;
@@ -1267,13 +1267,13 @@ void TBoss6Type1::update_turn_to_center() {
   {
     var_r31 = 0x8000;
   }
-  if (angle_difference_abs((int) (this->rotation_x), (int) var_r31) < 0x666)
+  if (angle_difference_abs((int) (this->rotation.pitch), (int) var_r31) < 0x666)
   {
-    this->rotation_x = var_r31;
+    this->rotation.pitch = var_r31;
   }
   else
   {
-    this->rotation_x = (s32) ((this->rotation_x) + 0x666);
+    this->rotation.pitch = (s32) ((this->rotation.pitch) + 0x666);
   }
   stack.x = -(*((f32 *) (((s8 *) arg0) + 0x38)));
   temp_f1 = -(*((f32 *) (((s8 *) arg0) + 0x40)));
@@ -1287,12 +1287,12 @@ void TBoss6Type1::update_turn_to_center() {
       var_r4 += 0x8000;
     }
     var_r5 = 0x1555;
-    new_var = this->rotation_y;
+    new_var = this->rotation.yaw;
     if ((this->m_414) == 0)
     {
       var_r5 = 0x1B4;
     }
-    this->rotation_y = approach_angle_limited(new_var, (int) var_r4, (int) var_r5);
+    this->rotation.yaw = approach_angle_limited(new_var, (int) var_r4, (int) var_r5);
   }
 }
 
@@ -1376,7 +1376,7 @@ void TBoss6Type1::update_part_positions() {
             subtract_vector(&v, &arg0->pos);
             push_matrix();
             set_matrix_identity(0);
-            rotate_matrix_y(0, -this->rotation_y);
+            rotate_matrix_y(0, -this->rotation.yaw);
             matrix_mult_vec(0, &v, e);
             pop_matrix();
             VecCopy((Vec *)&e->n, (const Vec *)e);
@@ -1801,9 +1801,9 @@ void TBoss6Type1__sub_802B6944(TBoss6Type1 *boss) {
     for (s32 i = 0; i < 5; i++) {
         Vec pos = boss->node_points[lbl_80470F70[i]];
         Vec dir;
-        dir.x = side * cos_table_lookup(-boss->rotation_y);
+        dir.x = side * cos_table_lookup(-boss->rotation.yaw);
         dir.y = height;
-        dir.z = side * sin_table_lookup(-boss->rotation_y);
+        dir.z = side * sin_table_lookup(-boss->rotation.yaw);
         subtract_vector(&dir, &pos);
         f32 len = ((f32 (*)(void *))vector_length)(&dir);
         if (len <= 0.00001f) {
@@ -1965,7 +1965,7 @@ void TBoss6Type1::sub_802B626C() {
         s32 model = (s32)get_bml_model((BmlResource *)this->bml_resource, 0);
         s32 pitch = 0;
         Vec pos = this->node_points[7];
-        s32 yaw = this->rotation_y + 0x8000;
+        s32 yaw = this->rotation.yaw + 0x8000;
         static f32 s_min_width = 0.15f;
         static f32 s_max_width = 0.625f;
         static f32 s_grow_end = 0.1f;
@@ -2598,14 +2598,14 @@ void TBoss6Type1::spawn_map_csn() {
     VecCopy(&data.position, &position);
     push_matrix();
     set_matrix_identity(0);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, &boss6_map_csn_offset, &offset);
     data.position.x += offset.x;
     data.position.y = 0.0f;
     data.position.z += offset.z;
     pop_matrix();
     data.rotation_x = 0;
-    data.rotation_y = rotation_y;
+    data.rotation_y = this->rotation.yaw;
     data.rotation_z = 0;
     VecCopy(&data.scale, &boss6_map_csn_scale);
     data.params[0] = 2;
@@ -2631,8 +2631,8 @@ void TBoss6Type1::draw_model() {
     Vec pos = *&position;
     pos.y = pos.y + m_4e8;
     post_translate_matrix(&pos);
-    rotate_matrix_y(0, rotation_y);
-    rotate_matrix_x(0, rotation_x);
+    rotate_matrix_y(0, this->rotation.yaw);
+    rotate_matrix_x(0, this->rotation.pitch);
     TBoss6PlotFalz__sub_802AC008(m_4d4, m_4d8);
     draw_part_motions();
     TBoss6PlotFalz::update_camera_target();

@@ -62,7 +62,7 @@ void TObjEneRe4Sorcerer::vfunc_106() {
         push_matrix();
         post_translate_matrix(&position);
         translate_matrix(0, 0.0f, 22.0f, 0.0f);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         m_3c0 = (m_3c0 + 5);
         scroll_strip_uvs(TObjEneRe4Sorcerer__uv_scroll_buffer, m_3c0, 0);
         m_3c4 += 0.01f;
@@ -567,7 +567,7 @@ void TObjEneRe4Sorcerer::render() {
             push_matrix();
             post_translate_matrix(&position);
             translate_matrix(0, 0.0f, 22.0f, 0.0f);
-            rotate_matrix_y(0, rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             TObjEneRe4Sorcerer__render_node_index = 0;
             TObjEneRe4Sorcerer__saved_render_flags = 0;
             TObjEneRe4Sorcerer__effect_render_scale = m_3f8;
@@ -713,7 +713,7 @@ void TObjEneRe4Sorcerer__sub_800EE1CC(TObjEneRe4Sorcerer *self, s32 arg1) {
                             self->m_3c8 |= 8;
                             self->apply_mylla_effect();
                         }
-                        self->rotation_y = (s32)(RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
+                        self->rotation.yaw = (s32)(RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
                     } else {
                         self->m_4e8 = 1;
                         self->requested_action = 1;
@@ -910,7 +910,7 @@ void TObjEneRe4Sorcerer__sub_800EE7DC(TObjEneRe4Sorcerer *self, s32 arg1) {
                         self->m_3c8 |= 8;
                         self->set_photon_state();
                     }
-                    self->rotation_y = (s32)(RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
+                    self->rotation.yaw = (s32)(RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
                 }
             } else if (self->m_4e4 >= 0xF0) {
                 self->m_4e8 = 5;
@@ -1272,15 +1272,15 @@ s32 TObjEneRe4Sorcerer::cast_technique() {
 void TObjEneRe4Sorcerer::turn_to_target() {
     enemy_copy_target_destination();
     update_velocity();
-    rotation_y = approach_angle_limited(rotation_y, (s32)(RADIANS_TO_ANGLE * atan2_float(target_direction.x, target_direction.z)), 0xA00);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32)(RADIANS_TO_ANGLE * atan2_float(target_direction.x, target_direction.z)), 0xA00);
 }
 
 void TObjEneRe4Sorcerer::calc_orb_positions() {
     f32 temp_f2;
     f32 temp_f31;
 
-    temp_f31 = 15.0f * cos_table_lookup(rotation_y);
-    temp_f2 = 15.0f * -sin_table_lookup(rotation_y);
+    temp_f31 = 15.0f * cos_table_lookup(this->rotation.yaw);
+    temp_f2 = 15.0f * -sin_table_lookup(this->rotation.yaw);
     bit_anchors[1].x = position.x + temp_f31;
     bit_anchors[1].y = 18.0f + position.y;
     bit_anchors[1].z = position.z + temp_f2;
@@ -1404,7 +1404,7 @@ void TObjEneRe4Sorcerer__sub_800EF95C(TObjEneRe4Sorcerer *self, f32 speed) {
     self->vfunc_102();
     VecCopy(&self->prev_position, &self->position);
     self->update_collision_center();
-    self->rotation_y = self->m_3f0 + 0x8000;
+    self->rotation.yaw = self->m_3f0 + 0x8000;
     self->calc_orb_positions();
     self->m_3f0 += 0x2AAA;
     self->transform_part_positions();

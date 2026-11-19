@@ -139,7 +139,7 @@ void TObjEneEpsilonGuard__sub_8035DEC0(TObjEneEpsilonGuard *guard) {
 
 void TObjEneEpsilonGuard::set_target(s32 pos, s32 angle, s32 arg3) {
     VecCopy(&position, (const Vec *)pos);
-    rotation_y = angle;
+    this->rotation.yaw = angle;
     if (arg3 != 0) {
         flags |= 0x100;
     } else {
@@ -205,7 +205,7 @@ void TObjEneEpsilonGuard::render_with_fade(s32 detail) {
     push_matrix();
     post_translate_matrix(&this->position.x);
     translate_matrix(0, 0.0f, 24.0f, 0.0f);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     TObjEneDD::clear_global_flag_400();
     epsilon_guard_camera_step = 0;
     epsilon_guard_camera_ctrl_ptr = &this->effect_anchor;
@@ -307,7 +307,7 @@ void TObjEneEpsilonGuard::handle_break_state(s32 arg1) {
         break_timer++;
         if (break_timer >= 0x14) {
             vfunc_96();
-            TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA8, (s32)&epsilon_guard_breakup_params, texlist, (s32)&position, rotation_y);
+            TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA8, (s32)&epsilon_guard_breakup_params, texlist, (s32)&position, this->rotation.yaw);
             play_sound_effect(0x4003AD4C, (const Vec *)&m_2fc, 0, 0);
             ((TObjPlayer *)&m_2fc)->trigger_dell_biter_events();
             state_step = 1;
@@ -354,7 +354,7 @@ void TObjEneEpsilonGuard::state_orbit(s32 msg) {
         flags &= ~0x18;
         vfunc_96();
         state_step = 0;
-        orbit_angle = rotation_y;
+        orbit_angle = this->rotation.yaw;
         orbit_angle_step = 0;
         return;
     case 3:
@@ -398,7 +398,7 @@ orbit:
             }
             break;
         }
-        rotation_y = calc_angle_to_target();
+        this->rotation.yaw = calc_angle_to_target();
         vfunc_89();
         break;
     }
@@ -430,7 +430,7 @@ void TObjEneEpsilonGuard__sub_8035E8C0(TObjEneEpsilonGuard *guard, s32 msg) {
                 move_with_wall_slide_commit__9TObjEneDDFfff(guard, d, -guard->target_direction.x, -guard->target_direction.z, d->m_4);
             }
         }
-        guard->rotation_y = guard->calc_angle_to_target();
+        guard->rotation.yaw = guard->calc_angle_to_target();
         guard->vfunc_89();
         break;
     }
@@ -889,9 +889,9 @@ void *TObjEneEpsilonGuard__ct(TObjEneEpsilonGuard *guard, TObject *parent, TObjE
     guard->set_group = body->set_group;
     VecCopy(&guard->position, pos);
     VecCopy(&guard->home_position, &body->home_position);
-    guard->rotation_z = 0;
-    guard->rotation_x = 0;
-    guard->rotation_y = angle;
+    guard->rotation.roll = 0;
+    guard->rotation.pitch = 0;
+    guard->rotation.yaw = angle;
     guard->init_model_and_state();
     guard->vfunc_95();
     guard->flags |= 0x10;

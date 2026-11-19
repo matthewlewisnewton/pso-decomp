@@ -1066,7 +1066,7 @@ s32 TObjGrass::is_target_in_attack_range() {
         BIND(2)
     }
     dist = calc_xz_distance_sq((s32)this, (u32)this->target, (void *)&v);
-    ang = angle_difference_abs(this->rotation_y, (s32)((10430.38043493439) * atan2_float(v.x, v.z)));
+    ang = angle_difference_abs(this->rotation.yaw, (s32)((10430.38043493439) * atan2_float(v.x, v.z)));
     t = this->target;
     if (*(u8 **)((s8 *)t + 0xA4) != NULL) {
         r = *(f32 *)((s8 *)(*(u8 **)((s8 *)t + 0xA4)) + 0xC);
@@ -1204,7 +1204,7 @@ void TObjGrass::sub_800BDD70() {
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix((u8 *)&this->position);
-                rotate_matrix_y(0, this->rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 scale_matrix(0, (1.3f), (1.3f), (1.3f));
                 mult_vec_array__10TObjPlayerFUll(0, ent, &sp14, 2);
                 pop_matrix();
@@ -1659,7 +1659,7 @@ void TObjGrass::update_dying(void *arg0_) {
             v.x = (0.0f);
             v.z = (-15.0f);
             push_matrix_from(identity_matrix);
-            rotate_matrix_y(0, ((TObjEnePanarms *)arg0)->rotation_y);
+            rotate_matrix_y(0, ((TObjEnePanarms *)arg0)->rotation.yaw);
             rotate_vector_by_matrix(0, &v, &v);
             pop_matrices(1);
             vec3_add_to(&v, arg0 + 0x38);

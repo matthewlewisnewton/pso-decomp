@@ -417,7 +417,7 @@ void TObjEneRe4Bit__sub_800ECED0(TObjEneRe4Bit *bit, s32 arg1) {
                 bit->m_408 = 1;
                 bit->m_404 = 2;
             }
-            bit->rotation_y = bit->rotation_y + 0x1800;
+            bit->rotation.yaw = bit->rotation.yaw + 0x1800;
             break;
         }
         bit->update_homing_velocity();
@@ -451,7 +451,7 @@ void TObjEneRe4Bit__sub_800ECE04(TObjEneRe4Bit *bit, s32 arg1) {
         if (bit->m_3d8 < 0.0f) {
             bit->m_3d8 = 0.0f;
         }
-        bit->rotation_y = bit->rotation_y - 0x1800;
+        bit->rotation.yaw = bit->rotation.yaw - 0x1800;
         bit->update_homing_velocity();
         bit->update_position_flag();
         break;
@@ -564,7 +564,7 @@ void TObjEneRe4Bit::render() {
         push_matrix();
         post_translate_matrix(&position.x);
         translate_matrix(0, 0.0f, m_300 - position.y, 0.0f);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, 2.0f, 2.0f, 2.0f);
         draw_chunk_object(model);
         pop_matrix();

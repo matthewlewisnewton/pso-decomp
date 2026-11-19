@@ -850,7 +850,7 @@ void TObjContainerNoItem::vfunc_81() {
         set_current_texture_list((GinjaTextureList *)lbl_805D5B7C);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, lbl_805DBCFC, lbl_805DBCFC, lbl_805DBCFC);
         draw_ginja_box_tree((u8 *)(*(s32 *)((s8 *)arg0 + 0x34)));
         pop_matrix();
@@ -952,7 +952,7 @@ void TObjContainerBase::vfunc_81() {
             set_current_texture_list((GinjaTextureList *)lbl_805D5B8C);
             push_matrix();
             post_translate_matrix(self->pos);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_box_tree((u8 *)dispatch_fish_event__6TLobbyFPv((void *)2));
             pop_matrix();
             break;
@@ -1063,7 +1063,7 @@ void TObjContainerAbeEnemy::vfunc_81() {
             set_current_texture_list((GinjaTextureList *)lbl_805D5B8C);
             push_matrix();
             post_translate_matrix(self->pos);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_box_tree((u8 *)dispatch_fish_event__6TLobbyFPv((void *)2));
             pop_matrix();
             break;

@@ -764,8 +764,8 @@ void TObjEneDarkGunner::sub_800A159C() {
     o->hover_height = (o->hover_height < 0.0f) ? 0.0f : ((o->hover_height < 9.0f) ? o->hover_height : 9.0f);
     push_matrix_from(identity_matrix);
     post_translate_matrix((s32)&o->pos);
-    rotate_matrix_z(0, this->rotation_z);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_z(0, this->rotation.roll);
+    rotate_matrix_y(0, this->rotation.yaw);
     Vec t = lbl_8043A6A4;
     lo = 5.0f + o->hover_height;
     t.y = lo + this->render_y_offset;
@@ -1255,12 +1255,12 @@ s32 TObjPlayer__sub_800A2390(void *arg0_) {
         break;
     case 1:
         apply_actor_gravity((TObjEnemy *)enemy, (s32 *)(0), 0.0f);
-        ((TObjPlayer *)enemy)->rotation_z -= 0x1000;
-        if (((TObjPlayer *)enemy)->rotation_z < 0) {
-            ((TObjPlayer *)enemy)->rotation_z = 0;
+        ((TObjPlayer *)enemy)->rotation.roll -= 0x1000;
+        if (((TObjPlayer *)enemy)->rotation.roll < 0) {
+            ((TObjPlayer *)enemy)->rotation.roll = 0;
         }
         if (((TObjPlayer *)enemy)->actorFlags & 0x800000) {
-            ((TObjPlayer *)enemy)->rotation_z = 0;
+            ((TObjPlayer *)enemy)->rotation.roll = 0;
             ((TObjPlayer *)enemy)->requested_action = 2;
             enemy->state = 2;
             ((TObjPlayer *)enemy)->actorFlags &= 0xFBFBFFFF;
@@ -1278,7 +1278,7 @@ s32 TObjPlayer__sub_800A2390(void *arg0_) {
         }
         break;
     case 3:
-        ((TObjPlayer *)enemy)->rotation_z = 0;
+        ((TObjPlayer *)enemy)->rotation.roll = 0;
         enemy->fA4->f18 &= ~4;
         enemy->fA4->f18 |= 2;
         ((TObjMotion *)enemy)->advance_animation();
@@ -1297,21 +1297,21 @@ s32 TObjPlayer__sub_800A2390(void *arg0_) {
         }
         break;
     case 6:
-        ((TObjPlayer *)enemy)->rotation_y += 0x555;
+        ((TObjPlayer *)enemy)->rotation.yaw += 0x555;
         enemy->f398++;
         if (enemy->f398 >= 4) {
             enemy->state = 4;
         }
         break;
     case 4:
-        enemy->f3A8 = ((TObjPlayer *)enemy)->rotation_y;
+        enemy->f3A8 = ((TObjPlayer *)enemy)->rotation.yaw;
         enemy->f3A0 = TObjPlayer__sub_800A3200(0);
         enemy->f3A4 = 0.0f;
         enemy->f3AC = 0;
         enemy->f39E = 0;
         ((TObjPlayer *)enemy)->requested_action = 1;
         enemy->state = 5;
-        ((TObjPlayer *)enemy)->rotation_z = 0;
+        ((TObjPlayer *)enemy)->rotation.roll = 0;
         enemy->fA4->f18 &= ~4;
         enemy->fA4->f18 |= 2;
     case 5:
@@ -1358,7 +1358,7 @@ void TObjEneDarkGunner::sub_800A27CC() {
     case 0:
         if (((TObjEneDarkGunner *)((TObjPlayer *)this))->m_388 & 0x10000) {
             ((TObjPlayer *)this)->actorFlags |= 0x04040000;
-            ((TObjPlayer *)this)->rotation_z = 0x8000;
+            ((TObjPlayer *)this)->rotation.roll = 0x8000;
             ((TObjPlayer *)this)->m_37c = 1;
         } else {
             ((TObjPlayer *)this)->requested_action = 0;

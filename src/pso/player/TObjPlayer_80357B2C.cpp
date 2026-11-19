@@ -433,8 +433,8 @@ void spawn_mirror_pair(TObjPlayer *player, TObjBase *target, Vec *pos, s32 phase
         spawn_particle_effect((const Vec *)&player->m_2fc, 0x69);
     }
     if (phase == 1) {
-        new TUnk_804F166C(tl_05, pos, target->rotation_y);
-        new TUnk_804F166C(tl_05, pos, target->rotation_y - 0x8000);
+        new TUnk_804F166C(tl_05, pos, target->rotation.yaw);
+        new TUnk_804F166C(tl_05, pos, target->rotation.yaw - 0x8000);
     }
 }
 

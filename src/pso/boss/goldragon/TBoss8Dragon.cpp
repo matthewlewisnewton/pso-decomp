@@ -2058,8 +2058,8 @@ void TBoss8Dragon__sub_802FC9D8(u8 *arg0) {
 #pragma push
 #pragma fp_contract on
 void TBoss8Dragon::calc_orbit_xz(f32 *arg1, f32 *arg2) {
-    *arg1 = (185.0f * sin_table_lookup(this->rotation_y)) + this->position.x;
-    *arg2 = (185.0f * cos_table_lookup(this->rotation_y)) + this->position.z;
+    *arg1 = (185.0f * sin_table_lookup(this->rotation.yaw)) + this->position.x;
+    *arg2 = (185.0f * cos_table_lookup(this->rotation.yaw)) + this->position.z;
 }
 
 #pragma pop
@@ -2579,8 +2579,8 @@ void draw_beam_segments__12TBoss8DragonFPvfff(u8 *ene_dd, f32 a, f32 b, f32 c) {
 
     *(f32 *)((s8 *)&fx + 8) = a - 2.0f;
     fill_value_array(*(s32 *)((s8 *)ene_dd + 0x680));
-    sn = sin_table_lookup(((TObjEneDD *)ene_dd)->rotation_y);
-    cs = cos_table_lookup(((TObjEneDD *)ene_dd)->rotation_y);
+    sn = sin_table_lookup(((TObjEneDD *)ene_dd)->rotation.yaw);
+    cs = cos_table_lookup(((TObjEneDD *)ene_dd)->rotation.yaw);
     VecCopy__FP3VecPC3Vec(&v1, ene_dd + 0x38);
     v1.x += -4.0f * cs;
     v1.y = 0.0f;
@@ -2763,7 +2763,7 @@ void TBoss8Dragon::freeze_player_at_self() {
             ((TObjPlayer *)player)->actorFlags = (s32) (((TObjPlayer *)player)->actorFlags & 0xFFEFFFDF);
             VecCopy__FP3VecPC3Vec(player + 0x38, (u8 *)&this->position);
             *(f32 *)((s8 *)player + 0x3C) = (f32) (*(f32 *)((s8 *)player + 0x3C) - 200.0f);
-            ((TObjPlayer *)player)->rotation_y = (s32) this->rotation_y;
+            ((TObjPlayer *)player)->rotation.yaw = (s32) this->rotation.yaw;
             return;
         }
     }
@@ -3696,7 +3696,7 @@ void TBoss8Dragon::sub_802F89F8(s32 event) {
         case 1:
             this->advance_animation();
             if (this->frame > 22.0f) {
-                this->rotation_x = (s32)(-16384.0f * ((this->frame - 22.0f) / (this->frame_count - 22.0f)));
+                this->rotation.pitch = (s32)(-16384.0f * ((this->frame - 22.0f) / (this->frame_count - 22.0f)));
             }
             if (this->get_flag_b4() != 0) {
                 this->requested_action = 0x18;
@@ -3705,7 +3705,7 @@ void TBoss8Dragon::sub_802F89F8(s32 event) {
             break;
         case 2:
             this->advance_animation();
-            this->rotation_x = 0;
+            this->rotation.pitch = 0;
             if (this->frame > 22.0f) {
                 this->m_85c = 0x1000;
                 this->m_84c = 3;
@@ -3745,31 +3745,31 @@ void TBoss8Dragon::sub_802F89F8(s32 event) {
                     TBoss8DragonEffBullet__ct(bullet, &this->sub_tasks, &this->m_410, &pos, this->m_75c, get_entity_id((u8 *)this));
                 }
             }
-            this->rotation_x -= this->m_85c;
+            this->rotation.pitch -= this->m_85c;
             break;
         case 4:
             this->m_85c -= 0x50;
             if (this->m_85c < 0x1300) {
                 this->m_85c = 0x1300;
-                this->rotation_x -= this->m_85c;
-                if ((this->rotation_x & 0xFFFF) <= 0x1300 || (this->rotation_x & 0xFFFF) >= 0xED00) {
-                    this->rotation_x = 0;
+                this->rotation.pitch -= this->m_85c;
+                if ((this->rotation.pitch & 0xFFFF) <= 0x1300 || (this->rotation.pitch & 0xFFFF) >= 0xED00) {
+                    this->rotation.pitch = 0;
                     this->m_860 = (s32)(RADIANS_TO_ANGLE * atan2_float(-this->position.x, -this->position.z));
                     this->m_84c = 5;
                 }
             } else {
-                this->rotation_x -= this->m_85c;
+                this->rotation.pitch -= this->m_85c;
             }
             break;
         case 5:
             this->advance_animation();
-            step = (f32)angle_diff_s16(this->rotation_y, this->m_860);
+            step = (f32)angle_diff_s16(this->rotation.yaw, this->m_860);
             step *= 0.3f;
             if ((step < 512.0f && step >= -512.0f) || this->get_flag_b4() != 0) {
-                this->rotation_y = this->m_860;
+                this->rotation.yaw = this->m_860;
                 this->m_84c = 6;
             } else {
-                this->rotation_y += (s32)step;
+                this->rotation.yaw += (s32)step;
             }
             break;
         case 6:
@@ -3794,7 +3794,7 @@ void TBoss8Dragon::sub_802F89F8(s32 event) {
         }
         break;
     case 5:
-        this->rotation_x = 0;
+        this->rotation.pitch = 0;
         this->sub_8002AE64();
         this->m_64c = 0;
         break;
@@ -3996,7 +3996,7 @@ void TBoss8Dragon::sub_802F8270(s32 arg1) {
                 ((void (*)(void *))TBoss8Dragon__sub_802FB484)(this);
             }
             if ((s16) this->requested_action != 8) {
-                fn_802F2E7C((int) (*(s32 *)((s8 *)this + 0x684)), ((u8 *)this) + 0x38, (int) (this->rotation_y));
+                fn_802F2E7C((int) (*(s32 *)((s8 *)this + 0x684)), ((u8 *)this) + 0x38, (int) (this->rotation.yaw));
                 *(s32 *)((s8 *)this + 0x850) = 1;
                 return;
             }
@@ -4013,8 +4013,8 @@ void TBoss8Dragon::sub_802F8270(s32 arg1) {
             break;
         case 2:
             var_f31 = 0.9f;
-            temp_f30 = sin_table_lookup((int) (this->rotation_y));
-            temp_f29 = cos_table_lookup((int) (this->rotation_y));
+            temp_f30 = sin_table_lookup((int) (this->rotation.yaw));
+            temp_f29 = cos_table_lookup((int) (this->rotation.yaw));
             if ((s32) *(s32 *)((s8 *)this + 0x74C) != 0) {
                 var_f31 = this->clamp_step_in_radius(temp_f30, temp_f29, 0.9f);
             }
@@ -4374,8 +4374,8 @@ void TBoss8Dragon::sub_802F75C8(s32 arg1) {
             this->enemy_copy_target_destination();
             this->update_velocity();
         } else {
-            *(f32 *)((s8 *)this + 0x3A0) = sin_table_lookup((int) (this->rotation_y));
-            *(f32 *)((s8 *)this + 0x3A8) = cos_table_lookup((int) (this->rotation_y));
+            *(f32 *)((s8 *)this + 0x3A0) = sin_table_lookup((int) (this->rotation.yaw));
+            *(f32 *)((s8 *)this + 0x3A8) = cos_table_lookup((int) (this->rotation.yaw));
         }
         *(f32 *)((s8 *)this + 0x394) = (350.0f * *(f32 *)((s8 *)this + 0x3A0));
         *(f32 *)((s8 *)this + 0x398) = 0.0f;
@@ -4384,9 +4384,9 @@ void TBoss8Dragon::sub_802F75C8(s32 arg1) {
         return;
     case 0:
         this->update_velocity();
-        this->rotation_y = approach_angle_limited((this->rotation_y), ((s32) (RADIANS_TO_ANGLE * atan2_float((f32) (*(f32 *)((s8 *)this + 0x3A0)), (f32) (*(f32 *)((s8 *)this + 0x3A8))))), 0x600);
-        *(f32 *)((s8 *)this + 0x38) = (f32) ((*(f32 *)((s8 *)this + 0x868) * sin_table_lookup((int) (this->rotation_y))) + *(f32 *)((s8 *)this + 0x38));
-        *(f32 *)((s8 *)this + 0x40) = (f32) ((*(f32 *)((s8 *)this + 0x868) * cos_table_lookup((int) (this->rotation_y))) + *(f32 *)((s8 *)this + 0x40));
+        this->rotation.yaw = approach_angle_limited((this->rotation.yaw), ((s32) (RADIANS_TO_ANGLE * atan2_float((f32) (*(f32 *)((s8 *)this + 0x3A0)), (f32) (*(f32 *)((s8 *)this + 0x3A8))))), 0x600);
+        *(f32 *)((s8 *)this + 0x38) = (f32) ((*(f32 *)((s8 *)this + 0x868) * sin_table_lookup((int) (this->rotation.yaw))) + *(f32 *)((s8 *)this + 0x38));
+        *(f32 *)((s8 *)this + 0x40) = (f32) ((*(f32 *)((s8 *)this + 0x868) * cos_table_lookup((int) (this->rotation.yaw))) + *(f32 *)((s8 *)this + 0x40));
         ((s32 (*)(void *)) TBoss8Dragon__sub_802FB300)(this);
         *(s32 *)((s8 *)this + 0x850) = (s32) (*(s32 *)((s8 *)this + 0x850) + 1);
         if ((s32) *(s32 *)((s8 *)this + 0x850) > 0xA) {
@@ -4659,7 +4659,7 @@ void TBoss8Dragon::sub_802F6838(s32 arg1) {
         cam.frame_step = 0.5f;
         activate_camera_mode(5, 0.0f);
         cam.cache_target_and_forward(0x31C7);
-        set_scripted_camera_pose((u8 *)&position, (u8 *)&position, (u8 *)&rotation_x);
+        set_scripted_camera_pose((u8 *)&position, (u8 *)&position, (u8 *)&this->rotation.pitch);
         break;
     }
     case 2:
@@ -4701,7 +4701,7 @@ void TBoss8Dragon::sub_802F6838(s32 arg1) {
                 DragonAttackParams e = TBoss8Dragon__body_effect_parameters;
                 e.field_8 = 12.0f;
                 VecCopy__FP3VecPC3Vec(&v, &lbl_804744F0);
-                rotate_xz_pair_by_angle(&v.x, &v.z, this->rotation_y);
+                rotate_xz_pair_by_angle(&v.x, &v.z, this->rotation.yaw);
                 vec3_add_to(&v, (u8 *)&position);
                 reset_hp((u8 *)0, (u8 *)(TBoss8Dragon__data_80541DC8[4]), (u8 *)0);
                 ((void (*)(void *, void *, void *, s32))emit_effect__12TBoss8DragonFPv)(this, &v, &e, 0);
@@ -4715,7 +4715,7 @@ void TBoss8Dragon::sub_802F6838(s32 arg1) {
                 DragonAttackParams e = TBoss8Dragon__body_effect_parameters;
                 e.field_8 = 25.0f;
                 VecCopy__FP3VecPC3Vec(&v, &lbl_804744FC);
-                rotate_xz_pair_by_angle(&v.x, &v.z, this->rotation_y);
+                rotate_xz_pair_by_angle(&v.x, &v.z, this->rotation.yaw);
                 vec3_add_to(&v, (u8 *)&position);
                 reset_hp((u8 *)0, (u8 *)(TBoss8Dragon__data_80541DC8[4]), (u8 *)0);
                 ((void (*)(void *, void *, void *, s32))emit_effect__12TBoss8DragonFPv)(this, &v, &e, 0);
@@ -4974,7 +4974,7 @@ void TBoss8Dragon::sub_802F610C(s32 arg1) {
         TBoss8Dragon__sub_802FBBC8(((u8 *)this), p);
         return;
     case 6:
-        this->set_speed(this->rotation_y);
+        this->set_speed(this->rotation.yaw);
         return;
     case 0:
         this->advance_animation();
@@ -4994,9 +4994,9 @@ void TBoss8Dragon::sub_802F610C(s32 arg1) {
         if (this->frame > 24.0f && this->frame < 30.0f) {
             return;
         }
-        this->rotation_y = approach_angle_limited(this->rotation_y, *p, 0x200);
-        s = sin_table_lookup(this->rotation_y);
-        c = cos_table_lookup(this->rotation_y);
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, *p, 0x200);
+        s = sin_table_lookup(this->rotation.yaw);
+        c = cos_table_lookup(this->rotation.yaw);
         if (*(s32 *)((s8 *)this + 0x74C) != 0) {
             scale = this->clamp_step_in_radius(s, c, 0.8f);
         }
@@ -5147,9 +5147,9 @@ void TBoss8Dragon::sub_802F5CC8(s32 arg1) {
         this->advance_animation();
         ((s32 (*)(void *))spawn_effect_if_in_band__12TBoss8DragonFi)(this);
         ((s32 (*)(void *))TBoss8Dragon__sub_802FB09C)(this);
-        this->rotation_y = approach_angle_limited(this->rotation_y, *p, 0x200);
-        s = sin_table_lookup(this->rotation_y);
-        c = cos_table_lookup(this->rotation_y);
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, *p, 0x200);
+        s = sin_table_lookup(this->rotation.yaw);
+        c = cos_table_lookup(this->rotation.yaw);
         scale = 2.0f;
         if (*(s32 *)((s8 *)this + 0x74C) != 0) {
             scale = this->clamp_step_in_radius(s, c, scale);
@@ -5248,8 +5248,8 @@ void TBoss8Dragon::handle_walk_state(s32 arg1) {
                 this->m_850 = 1;
                 return;
             }
-            this->rotation_y = (s32) *(s32 *)((s8 *)temp_r4 + 0x1C);
-            this->set_speed(this->rotation_y);
+            this->rotation.yaw = (s32) *(s32 *)((s8 *)temp_r4 + 0x1C);
+            this->set_speed(this->rotation.yaw);
             this->send_6xA8_action();
             return;
         }
@@ -5258,11 +5258,11 @@ void TBoss8Dragon::handle_walk_state(s32 arg1) {
         TBoss8Dragon__sub_802FBBC8(((u8 *)this), (s32 *)((u8 *)this + 0x60));
         return;
     case 6:
-        this->set_speed(this->rotation_y);
+        this->set_speed(this->rotation.yaw);
         return;
     case 0:
-        temp_f31 = sin_table_lookup(this->rotation_y);
-        temp_f1 = cos_table_lookup(this->rotation_y);
+        temp_f31 = sin_table_lookup(this->rotation.yaw);
+        temp_f1 = cos_table_lookup(this->rotation.yaw);
         f32 speed = 4.0f;
         *(f32 *)((s8 *)this + 0x38) = (f32) ((temp_f31 * speed) + *(f32 *)((s8 *)this + 0x38));
         this->position.z = (f32) ((temp_f1 * speed) + this->position.z);
@@ -5309,9 +5309,9 @@ void TBoss8Dragon::sub_802F57E4(s32 arg1) {
     case 0:
         *(s32 *)((s8 *)this + 0x758) = (s32) (*(s32 *)((s8 *)this + 0x758) + *(s32 *)((s8 *)this + 0x85C));
         if ((s32) *(s32 *)((s8 *)this + 0x85C) >= 0) {
-            this->rotation_y = (s32) (*(s32 *)((s8 *)this + 0x758) + 0x9800);
+            this->rotation.yaw = (s32) (*(s32 *)((s8 *)this + 0x758) + 0x9800);
         } else {
-            this->rotation_y = (s32) (*(s32 *)((s8 *)this + 0x758) + 0xFFFF6800);
+            this->rotation.yaw = (s32) (*(s32 *)((s8 *)this + 0x758) + 0xFFFF6800);
         }
         this->calc_velocity_from_angle();
         temp_r4 = *(s32 *)((s8 *)this + 0x84C);
@@ -5342,7 +5342,7 @@ void TBoss8Dragon::sub_802F5644(s32 arg1) {
         this->target_direction.y = 0.0f;
         this->target_direction.z = (f32) -this->position.z;
         normalize_vector_xz__FP3Vec((u8 *)this + 0x3A0);
-        this->rotation_y = (s32) (RADIANS_TO_ANGLE * atan2_float((f32) (*(f32 *)((s8 *)this + 0x3A0)), this->target_direction.z));
+        this->rotation.yaw = (s32) (RADIANS_TO_ANGLE * atan2_float((f32) (*(f32 *)((s8 *)this + 0x3A0)), this->target_direction.z));
         return;
     case 2:
     case 11:
@@ -5483,9 +5483,9 @@ void TBoss8Dragon::sub_802F51DC(s32 arg1) {
         }
         v.x = *(f32 *)((s8 *)this + 0x394) - *(f32 *)((s8 *)this + 0x38);
         v.z = *(f32 *)((s8 *)this + 0x39C) - *(f32 *)((s8 *)this + 0x40);
-        if ((s32) ((u16) ((s32) (RADIANS_TO_ANGLE * atan2_float(v.x, v.z)) - this->rotation_y) + 0x2000) > 0x4000) {
-            v.x = sin_table_lookup(this->rotation_y);
-            v.z = cos_table_lookup(this->rotation_y);
+        if ((s32) ((u16) ((s32) (RADIANS_TO_ANGLE * atan2_float(v.x, v.z)) - this->rotation.yaw) + 0x2000) > 0x4000) {
+            v.x = sin_table_lookup(this->rotation.yaw);
+            v.z = cos_table_lookup(this->rotation.yaw);
             var_f2 = 120.0f;
         } else {
             var_f2 = normalize_vector_xz__FP3Vec(&v);
@@ -5735,12 +5735,12 @@ void update_movement__12TBoss8DragonFPv(u8 *arg0) {
     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&old, arg0 + 0x38);
     v = ((TBoss8Dragon *)arg0)->frame;
     if (v < 4.0f) {
-        ((TObjEneDD *)arg0)->move_to_shot_position(sin_table_lookup(((TBoss8Dragon *)arg0)->rotation_y), cos_table_lookup(((TBoss8Dragon *)arg0)->rotation_y), scale);
+        ((TObjEneDD *)arg0)->move_to_shot_position(sin_table_lookup(((TBoss8Dragon *)arg0)->rotation.yaw), cos_table_lookup(((TBoss8Dragon *)arg0)->rotation.yaw), scale);
     } else if (!(v < 9.0f)) {
         if (v < 19.0f) {
             TObjEneEpsilon__sub_800B9384((arg0), iscale, scale);
         } else if (v < 24.0f) {
-            ((TObjEneDD *)arg0)->move_to_shot_position(sin_table_lookup(((TBoss8Dragon *)arg0)->rotation_y), cos_table_lookup(((TBoss8Dragon *)arg0)->rotation_y), scale);
+            ((TObjEneDD *)arg0)->move_to_shot_position(sin_table_lookup(((TBoss8Dragon *)arg0)->rotation.yaw), cos_table_lookup(((TBoss8Dragon *)arg0)->rotation.yaw), scale);
         } else if (!(v < 30.0f)) {
             TObjEneEpsilon__sub_800B9384((arg0), iscale, scale);
         }
@@ -5925,9 +5925,9 @@ void TBoss8Dragon::draw() {
 
     push_matrix();
     post_translate_matrix((void *) (((u8 *)this) + 0x38));
-    rotate_matrix_y(0, this->rotation_y);
-    rotate_matrix_x(0, this->rotation_x);
-    rotate_matrix_z(0, (int) (this->rotation_z));
+    rotate_matrix_y(0, this->rotation.yaw);
+    rotate_matrix_x(0, this->rotation.pitch);
+    rotate_matrix_z(0, (int) (this->rotation.roll));
     scale_current_matrix((void *) (((u8 *)this) + 0x68));
     temp_r31 = this->model;
     temp_r4 = (unsigned char *) (*(void **)((s8 *)TBoss8Dragon__data_805D6988 + 0x42C));
@@ -5955,9 +5955,9 @@ void TBoss8Dragon::draw_with_fade(s32 arg1, s32 arg2) {
         }
         push_matrix();
         post_translate_matrix((void *)arg1);
-        rotate_matrix_y(0, this->rotation_y);
-        rotate_matrix_x(0, this->rotation_x);
-        rotate_matrix_z(0, (int) (this->rotation_z));
+        rotate_matrix_y(0, this->rotation.yaw);
+        rotate_matrix_x(0, this->rotation.pitch);
+        rotate_matrix_z(0, (int) (this->rotation.roll));
         scale_current_matrix((void *) (((u8 *)this) + 0x68));
         TObjPlayer::toggle_particle_effect();
         if (this->m_3c0 & 0x80) {

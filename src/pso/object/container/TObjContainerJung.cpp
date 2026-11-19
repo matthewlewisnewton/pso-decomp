@@ -191,7 +191,7 @@ void TObjContainerJung::vfunc_81() {
             set_current_texture_list((GinjaTextureList *)TObjContainerJung__bml_aux_handle);
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             scale_matrix(0, 0.85f, 0.85f, 0.85f);
             draw_ginja_object((void *)get_bml_model((BmlResource *)*(u8 **)&TObjContainerJung__bml_model_resource, 0));
             TParticleCtrl::begin_effect_render();
@@ -334,7 +334,7 @@ void TObjContainerJungEx::vfunc_81() {
         set_current_texture_list((GinjaTextureList *)TObjContainerJungEx__sub_8018D900(0));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, 0.85f, 0.85f, 0.85f);
         draw_ginja_object((void *)TObjContainerJungEx::get_model(0));
         TParticleCtrl::begin_effect_render();
@@ -481,7 +481,7 @@ void TObjContainerJungEnemy::vfunc_81() {
         set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, 0.85f, 0.85f, 0.85f);
         draw_ginja_object(*(void * *)&this->m_368);
         TParticleCtrl::begin_effect_render();

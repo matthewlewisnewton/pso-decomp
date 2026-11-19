@@ -1334,7 +1334,7 @@ void TObjEneMerillLia::beast_update_hurt() {
     scratch_vec.x = 0.0f;
     scratch_vec.z = get_collision_body_radius(0);
     push_matrix_from(&identity_matrix);
-    rotate_matrix_y(0, -this->rotation_y);
+    rotate_matrix_y(0, -this->rotation.yaw);
     rotate_vector_by_matrix(0, &scratch_vec, &scratch_vec);
     pop_matrix();
     vec3_add_to(&pos, &scratch_vec);
@@ -1684,7 +1684,7 @@ void TObjEneMerillLia::vfunc_94() {
     stack.y = 10.0f;
     stack.z = 0.5f * *(f32 *)(this->m_2b0 + 0x10);
     push_matrix_from((void *)&identity_matrix.value);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, (void *)&stack.x, (void *)&stack.x);
     pop_matrix();
     vec3_add_to((void *)&stack.x, (void *)(arg0 + 0x38));

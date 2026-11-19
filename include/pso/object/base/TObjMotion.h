@@ -3,6 +3,7 @@
 #include "pso/system/task/TObject.h"
 #include "pso/object/CursorAction.h"
 #include "pso/system/data/FlagWord.h"
+#include "pso/system/AngleTypes.h"
 #include <stddef.h>
 #include <dolphin/mtx/GeoTypes.h>
 #include "pso/system/NinjaTypes.h"
@@ -43,6 +44,8 @@ public:
     s32 set_event_source_flag(s32);
     void set_entity_id(u16 id);
     int set_position_from(void *pos);
+    void save_previous_position();
+    CameraAngles *get_rotation();
     s32 get_texlist();
     s32 is_alive();
     u16 entity_id;  // the object table id, 0xFFFF while unregistered
@@ -60,9 +63,7 @@ public:
     Vec position;
     Vec prev_position;  // where it stood before this frame's move
     Vec home_position;  // the set position it returns to
-    s32 rotation_x;
-    s32 rotation_y;
-    s32 rotation_z;
+    CameraAngles rotation;
     Vec scale;        // the set entry's params 1-3, a scale for most objects
     Vec center;         // the point the virtual center getter returns
     void *set_entry;    // its row of the floor's object or enemy set
@@ -296,6 +297,8 @@ typedef char TObjBaseSize[sizeof(TObjBase)==0x90?1:-1];
 typedef char TObjCollidableSize[sizeof(TObjCollidable)==0xAC?1:-1];
 typedef char CollisionBodySize[sizeof(CollisionBody)==0x2C?1:-1];
 typedef char TObjMotionSize[sizeof(TObjMotion)==0xFC?1:-1];
+typedef char ActorAnglesOffset[offsetof(TObjBase, rotation) == 0x5C ? 1 : -1];
+typedef char ActorScaleOffset[offsetof(TObjBase, scale) == 0x68 ? 1 : -1];
 typedef char WorldActorModelOffset[offsetof(TObjBase,model)==0x34?1:-1];
 typedef char MotionActionsOffset[offsetof(TObjMotion,action_table)==0xD8?1:-1];
 typedef char MotionListOffset[offsetof(TObjMotion,motion_list)==0xDC?1:-1];

@@ -362,7 +362,7 @@ u8 *construct_city_air_car(TObjCityAirCar_Car *city_air_car_car, void *parent, s
     city_air_car_car->m_a4 = 0;
     *(s32 *)((s8 *)city_air_car_car + 0xA8) = 0;
     city_air_car_car->update_path_motion();
-    city_air_car_car->rotation_z = 0;
+    city_air_car_car->rotation.roll = 0;
     return (u8 *)city_air_car_car;
 }
 
@@ -493,9 +493,9 @@ void TObjCityAirCar_Car::render() {
         TParticleCtrl::end_effect_render();
         push_matrix();
         post_translate_matrix((void *) ((u8 *)this + 0x38));
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((s32) this->m_9c != 0) {
-            rotate_matrix_z(0, this->rotation_z);
+            rotate_matrix_z(0, this->rotation.roll);
         }
         set_current_texture_list((GinjaTextureList *)city_common_texture_list);
         get_city_common_model((*(s32 *)((s8 *)((u8 *)city_aircar_model_indices + (this->m_9c * 4)) + 0)));

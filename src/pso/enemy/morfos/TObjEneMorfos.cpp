@@ -1214,7 +1214,7 @@ void TObjEneMorfos::vfunc_62() {
     if (pl != 0) {
         VecCopy((Vec *)&v, (const Vec *)&pl->pos);
         subtract_vector(&v, &arg0->pos);
-        d = angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
+        d = angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
     } else {
         d = 0;
     }
@@ -1255,13 +1255,13 @@ s32 TObjEneMorfos::approach_value(s32 arg1, s32 arg2) {
     s32 var_r31;
 
     var_r31 = 0;
-    temp_r3 = angle_diff_s16(this->rotation_y);
+    temp_r3 = angle_diff_s16(this->rotation.yaw);
     if (temp_r3 > arg2) {
-        this->rotation_y = (s32) (this->rotation_y + arg2);
+        this->rotation.yaw = (s32) (this->rotation.yaw + arg2);
     } else if (temp_r3 < (s32) -arg2) {
-        this->rotation_y = (s32) (this->rotation_y - arg2);
+        this->rotation.yaw = (s32) (this->rotation.yaw - arg2);
     } else {
-        this->rotation_y = arg1;
+        this->rotation.yaw = arg1;
         var_r31 = 1;
     }
     return var_r31;
@@ -1589,14 +1589,14 @@ void TObjEneMorfos__sub_80333AD0(u8 *ene_morfos, s32 arg1) {
             if (((TObjEneDD_ST *)ene_morfos)->enemy_has_live_target() != 0) {
                 *(s32 *)((s8 *)ene_morfos + 0x4BC) = (s32) (u16) (s32) (10430.38043493439 * ((f64 (*)(f32, f32)) atan2_float)((f32) (*(f32 *)((s8 *)ene_morfos + 0x3A0)), (f32) (*(f32 *)((s8 *)ene_morfos + 0x3A8))));
             } else {
-                *(s32 *)((s8 *)ene_morfos + 0x4BC) = (s32) ((TObjEneMorfos *)ene_morfos)->rotation_y;
+                *(s32 *)((s8 *)ene_morfos + 0x4BC) = (s32) ((TObjEneMorfos *)ene_morfos)->rotation.yaw;
             }
             *(s32 *)((s8 *)ene_morfos + 0x4B4) = 1;
         case 1:
             if (((TObjEneMorfos *)ene_morfos)->approach_value((s32)((int) (*(s32 *)((s8 *)ene_morfos + 0x4BC))), (s32)((int) (*(s32 *)((s8 *)((u8 *) TObjEneMorfos__param_table) + 0x18)))) != 0) {
                 *(s32 *)((s8 *)ene_morfos + 0x4B4) = 2;
-                *(f32 *)((s8 *)ene_morfos + 0x4CC) = sin_table_lookup((int) (((TObjEneMorfos *)ene_morfos)->rotation_y));
-                *(f32 *)((s8 *)ene_morfos + 0x4D4) = cos_table_lookup((int) (((TObjEneMorfos *)ene_morfos)->rotation_y));
+                *(f32 *)((s8 *)ene_morfos + 0x4CC) = sin_table_lookup((int) (((TObjEneMorfos *)ene_morfos)->rotation.yaw));
+                *(f32 *)((s8 *)ene_morfos + 0x4D4) = cos_table_lookup((int) (((TObjEneMorfos *)ene_morfos)->rotation.yaw));
             }
             ((TObjEneDD *)(ene_morfos))->vfunc_102();
             break;
@@ -1609,7 +1609,7 @@ void TObjEneMorfos__sub_80333AD0(u8 *ene_morfos, s32 arg1) {
                 } else if (((TObjEneDD_ST *)ene_morfos)->enemy_has_live_target() != 0) {
                     *(s32 *)((s8 *)ene_morfos + 0x4BC) = (s32) (u16) (s32) (10430.38043493439 * ((f64 (*)(f32, f32)) atan2_float)((f32) (*(f32 *)((s8 *)ene_morfos + 0x3A0)), (f32) (*(f32 *)((s8 *)ene_morfos + 0x3A8))));
                 } else {
-                    *(s32 *)((s8 *)ene_morfos + 0x4BC) = (s32) ((TObjEneMorfos *)ene_morfos)->rotation_y;
+                    *(s32 *)((s8 *)ene_morfos + 0x4BC) = (s32) ((TObjEneMorfos *)ene_morfos)->rotation.yaw;
                 }
                 ((TObjEneMorfos *)ene_morfos)->approach_value((s32)((int) (*(s32 *)((s8 *)ene_morfos + 0x4BC))), (s32)((int) (*(s32 *)((s8 *)((u8 *) TObjEneMorfos__param_table) + 0x18))));
             } else {
@@ -1936,10 +1936,10 @@ void TObjEneMorfos::state_patrol(s32 arg1) {
         *(s32 *)((s8 *)this + 0x3C0) = (s32) (*(s32 *)((s8 *)this + 0x3C0) & 0xFFFFFFF8);
         set_field_378(8);
         *(s32 *)((s8 *)this + 0x4B0) = 0;
-        this->m_4bc = (this->rotation_y + 0x3800);
+        this->m_4bc = (this->rotation.yaw + 0x3800);
         break;
     case 3:
-        if ((s32) this->rotation_y >= (s32) this->m_4bc) {
+        if ((s32) this->rotation.yaw >= (s32) this->m_4bc) {
             transition_enemy_state((s32)6);
         }
         break;
@@ -1950,8 +1950,8 @@ void TObjEneMorfos::state_patrol(s32 arg1) {
         if (is_patrol_active__21TObjEneRe7BeruraPunchFv(this) == 0) {
             this->play_speed = 1.6f;
         }
-        temp_r4 = this->rotation_y;
-        this->rotation_y = (temp_r4 + 0x280);
+        temp_r4 = this->rotation.yaw;
+        this->rotation.yaw = (temp_r4 + 0x280);
         ((V_A_803326C4 *) this)->m100(temp_r4);
         this->vfunc_89();
         break;
@@ -2077,7 +2077,7 @@ void TObjEneMorfos::render_part(s32 idx, s32 mode) {
     TObjPlayer::toggle_particle_effect();
     push_matrix();
     post_translate_matrix(self->pos);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     TObjEneMorfos__phase = 0;
     TObjEneMorfos__camera_path_cursor = (s32)self->f498;
     set_chunk_model_node_callback((s32)((void *)TObjEneMorfos::record_camera_path_point));
@@ -2153,7 +2153,7 @@ s32 TObjEneMorfos::render_model_if_visible() {
             set_current_texture_list((GinjaTextureList *)this->texlist);
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             this->draw();
             pop_matrix();
             if (*(s32 *)((s8 *)((u8 *)this) + 0x3C0) & 0x10) {

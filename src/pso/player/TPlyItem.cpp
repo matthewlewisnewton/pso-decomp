@@ -843,7 +843,7 @@ TUnk_804C4498::TUnk_804C4498(TObject *parent, TObjBase *source, const Vec *pos, 
     } else {
         this->client_id = get_entity_id(source);
         this->room = source->get_room();
-        this->heading = source->rotation_y;
+        this->heading = source->rotation.yaw;
     }
     VecCopy(&this->origin, pos);
     this->unk_1C = arg;

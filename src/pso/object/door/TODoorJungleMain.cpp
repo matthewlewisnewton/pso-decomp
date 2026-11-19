@@ -245,16 +245,16 @@ void TODoorJungleMain::run_task() {
                 Vec b = {-40.0f, 0.0f, 0.0f};
                 set_matrix_identity((u8 *)&mtx);
                 translate_matrix_vec3((u8 *)&mtx, (u8 *)&this->position);
-                rotate_matrix_y((int)&mtx, this->rotation_y);
+                rotate_matrix_y((int)&mtx, this->rotation.yaw);
                 matrix_mult_vec(&mtx, &a, &a);
                 matrix_mult_vec(&mtx, &b, &b);
                 spawn_particle_effect_with_flags(&a, 0x229, 0x800);
                 spawn_particle_effect_with_flags(&b, 0x229, 0x800);
             }
         }
-        minimap_render_gate((u8 *)&this->position, 0xFF00FF00, this->rotation_y, 0, 0);
+        minimap_render_gate((u8 *)&this->position, 0xFF00FF00, this->rotation.yaw, 0, 0);
     } else {
-        minimap_render_gate((u8 *)&this->position, 0xFFFF0000, this->rotation_y, 0, 0);
+        minimap_render_gate((u8 *)&this->position, 0xFFFF0000, this->rotation.yaw, 0, 0);
         ((TObjCollidable *)arg0)->clear_player_status_flag(0, 8);
     }
 }

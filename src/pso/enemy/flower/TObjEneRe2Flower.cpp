@@ -404,7 +404,7 @@ TObjEneRe2Flower::TObjEneRe2Flower(TObject *parent, void *setData) : TObjEneDD_S
     wall_probe_distance = lbl_805D9FBC;
     enemy_init_acquire_period(30);
     enemy_init_validate_period(30);
-    m_3c0 = rotation_y;
+    m_3c0 = this->rotation.yaw;
     m_3c8 = lbl_805D9FAC;
     m_3cc = 0;
     m_3d0 = 0;
@@ -734,7 +734,7 @@ void TObjEneDD::state_chase_target(s32 arg1) {
             if (d > lbl_805D9FE0 || *(void **)((s8 *)arg0 + 0x390) == NULL) {
                 ((TObjEneDD *)arg0)->transition_enemy_state(2);
             } else if (d < lbl_805D9FE4) {
-                t = angle_difference_abs(this->rotation_y, *(s32 *)((s8 *)arg0 + 0x420));
+                t = angle_difference_abs(this->rotation.yaw, *(s32 *)((s8 *)arg0 + 0x420));
                 if (t < ((AttackParams *)(this->m_318))->get_attack_angle()) {
                     ((TObjEneDD *)arg0)->transition_enemy_state(5);
                 }
@@ -765,8 +765,8 @@ void TObjEneDD::state_chase_target(s32 arg1) {
         ((TObjEneDD *)arg0)->update_velocity();
         (*(s32 *)((s8 *)arg0 + 0x414))++;
         *(s32 *)((s8 *)arg0 + 0x420) = (s32)(10430.38043493439 * atan2_float(*(f32 *)((s8 *)arg0 + 0x3A0), *(f32 *)((s8 *)arg0 + 0x3A8)));
-        this->rotation_y = approach_angle_limited(this->rotation_y, *(s32 *)((s8 *)arg0 + 0x420), (s32)(*(void **)((s8 *)this->movementParameters + 8)));
-        this->rotation_y = (s16)this->rotation_y;
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, *(s32 *)((s8 *)arg0 + 0x420), (s32)(*(void **)((s8 *)this->movementParameters + 8)));
+        this->rotation.yaw = (s16)this->rotation.yaw;
         this->vfunc_102();
         this->vfunc_88();
         ((TObjEneDD *)arg0)->noop();
@@ -818,11 +818,11 @@ void fn_800C32DC(u8 *owner, s32 arg1) {
             VecCopy((Vec *)(&stack.x), (const Vec *)(owner + 0x3DC));
             stack.y = lbl_805D9FDC + *(f32 *)((s8 *)owner + 0x3C);
             if ((((TObjEneRe2Flower *)owner)->get_flag_11() != 0) || (TObjEneDD::check_v2_mode() != 0)) {
-                TTecMegid::create_ex((s32)owner, (s32)((void *)&stack.x), (s32)((int) (((TObjEneRe2Flower *)owner)->rotation_y)), (s32)((int) (TObjEneDD::clamp_frame_index((int) (*(s32 *)((s8 *)re2_flower_movement_params + 0x18))))));
+                TTecMegid::create_ex((s32)owner, (s32)((void *)&stack.x), (s32)((int) (((TObjEneRe2Flower *)owner)->rotation.yaw)), (s32)((int) (TObjEneDD::clamp_frame_index((int) (*(s32 *)((s8 *)re2_flower_movement_params + 0x18))))));
             } else {
                 temp_r3_3 = __nw__7TObjectFUl(0x104);
                 if (temp_r3_3 != 0U) {
-                    TObjPlayer__sub_800C4A5C(temp_r3_3, owner, &stack.x, (int) (((TObjEneRe2Flower *)owner)->rotation_y));
+                    TObjPlayer__sub_800C4A5C(temp_r3_3, owner, &stack.x, (int) (((TObjEneRe2Flower *)owner)->rotation.yaw));
                 }
             }
             play_sound_effect(fn_800C3A60((s32)owner, 0x4003A10E), (const Vec *)(owner + 0x3DC), 0, 0);

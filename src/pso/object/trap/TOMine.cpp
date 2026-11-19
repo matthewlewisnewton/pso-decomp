@@ -439,8 +439,8 @@ void TOMine::update_float_height() {
             this->m_340 = (s32) (this->m_340 | 2);
         }
     } else {
-        this->rotation_x = (this->rotation_x + 0x800);
-        float_position.y = (f32) (float_position.y + sin_table_lookup(this->rotation_x));
+        this->rotation.pitch = (this->rotation.pitch + 0x800);
+        float_position.y = (f32) (float_position.y + sin_table_lookup(this->rotation.pitch));
     }
 }
 void TOMineTrap__sub_80170CD4(void* p) { ((TOMineTrap *)p)->sync_position(); }
@@ -491,7 +491,7 @@ void TOMine::follow_target() {
   temp_f2 = *((f32 *) (((s8 *) arg0) + 0x48));
   *((f32 *) (((s8 *) arg0) + 0x3C)) = (f32) ((0.5f * ((25.0f + (*((f32 *) ((this->target) + 0x3C)))) - temp_f2)) + temp_f2);
   ((TObjChara *)arg0)->calc_attach_pos();
-  this->rotation_y = (s32) (10430.38043493439 * atan2_float((f64) stack.x, (f64) stack.z));
+  this->rotation.yaw = (s32) (10430.38043493439 * atan2_float((f64) stack.x, (f64) stack.z));
   ((TObjCollidable *)arg0)->refresh_collision_body_centers();
 }
 #pragma pop
@@ -777,7 +777,7 @@ TOMineTrap::TOMineTrap(TObjBase *owner, s16 kind, s16 slot) : TOMine(tl_05) {
         ((TObjPlayer *)this)->init_position_vectors();
         calc_attach_pos();
         spawn_disp_objects();
-        m_370 = owner->rotation_y;
+        m_370 = owner->rotation.yaw;
         alt_room = owner->alt_room;
         room = owner->room;
         switch (attack.kind) {
@@ -1222,7 +1222,7 @@ void TOMineDisp::render() {
     push_matrix();
     temp_r31 = *(s32 *)&this->m_up;
     post_translate_matrix(((u8 *)this) + 0x38);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     ((TOMine *)temp_r31)->free_parts();
     TParticleCtrl::begin_effect_render();
     temp_r4 = model_render_flags;

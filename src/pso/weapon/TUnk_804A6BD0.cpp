@@ -21,12 +21,12 @@ void TUnk_804A6BD0::emit_marker_effects() {
     s32 a;
 
     slide_state = 2;
-    a = owner->rotation_y - 0x4000;
+    a = owner->rotation.yaw - 0x4000;
     dir.x = sin_table_lookup(a);
     dir.y = 1.0f;
     dir.z = cos_table_lookup(a);
     angle[0] = 0x4000;
-    angle[1] = owner->rotation_y;
+    angle[1] = owner->rotation.yaw;
     angle[2] = 0;
     TObjPlayer::launch_weapon_casing((s32)tl_05, (u32)this, 3, (u32)&dir, (u32)angle);
     get_joint_position(2, &muzzle);

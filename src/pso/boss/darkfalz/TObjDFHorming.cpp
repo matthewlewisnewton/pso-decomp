@@ -341,16 +341,6 @@ typedef struct Params_8004B3BC {
     u8 pad20[0x48 - 0x20];
 } Params_8004B3BC;
 
-typedef struct Hit_8004B7DC {
-    s32 f0;
-    s32 f4;
-} Hit_8004B7DC;
-
-typedef struct Hit_8004B8F8 {
-    s32 f0;
-    s32 f4;
-} Hit_8004B8F8;
-
 struct Desc_8004BD58 { s16 f0; s16 f2; u8 pad4[0x3C]; };
 
 struct Boss_8004B20C {
@@ -396,7 +386,6 @@ void create__10TBoss4ZakoFl(void *);
 Desc_8004BD58 TBoss4DarkFalz__data_804FF1E8;
 extern s32 game_difficulty_selection;
 
-Hit_8004B7DC *get_hit_data__14TBoss4DarkFalzFv(void *);
 }
 void reset_cameras_to_actor(void *, s32);
 
@@ -730,8 +719,8 @@ void TBoss4DarkFalz__sub_8004B7DC(TBoss4DarkFalz *boss4_dark_falz) {
             v.x += 2.5e+02f * sin_table_lookup(ang);
             v.z += 2.5e+02f * cos_table_lookup(ang);
             ((TObjBase *)p)->set_position_from(&v);
-            ((TBoss4DarkFalz *)p)->save_position();
-            get_hit_data__14TBoss4DarkFalzFv(p)->f4 = ang + 0x8000;
+            ((TObjBase *)p)->save_previous_position();
+            ((TObjBase *)p)->get_rotation()->yaw = ang + 0x8000;
             ((TObjPlayer *)p)->refresh_equipment_slot();
             if (TObjPlayer::is_locally_controlled(p) != 0) {
                 reset_cameras_to_actor(p, 0);
@@ -757,8 +746,8 @@ void TBoss4DarkFalz__sub_8004B8F8(TBoss4DarkFalz *boss4_dark_falz) {
             v.x += 12.5f * sin_table_lookup(ang);
             v.z += 12.5f * cos_table_lookup(ang);
             ((TObjBase *)p)->set_position_from(&v);
-            ((TBoss4DarkFalz *)p)->save_position();
-            ((Hit_8004B8F8 *)((TBoss4DarkFalz *)p)->get_hit_data())->f4 = 0x8000;
+            ((TObjBase *)p)->save_previous_position();
+            ((TObjBase *)p)->get_rotation()->yaw = 0x8000;
             ((TObjPlayer *)p)->refresh_equipment_slot();
             if (TObjPlayer::is_locally_controlled(p) != 0) {
                 reset_cameras_to_actor(p, 0);

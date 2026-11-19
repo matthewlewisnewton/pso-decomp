@@ -4543,7 +4543,7 @@ void handle_debug_pad_input__13TBoss2DeRolLeFPvPv(void *arg0_, void *arg1_) {
         *(s32 *)((s8 *)arg0 + 0x3C0) &= ~4;
         *(s32 *)((s8 *)arg0 + 0x3C0) |= 0x100;
         *(f32 *)((s8 *)arg0 + 0x6A4) = 0.0f;
-        ((TBoss2DeRolLe *)arg0)->rotation_z = 0;
+        ((TBoss2DeRolLe *)arg0)->rotation.roll = 0;
         *(s32 *)((s8 *)arg0 + 0x6E4) = 1;
         *(s32 *)((s8 *)arg0 + 0x6E8) = 0;
         *(s32 *)((s8 *)arg0 + 0x6E0) = 0;
@@ -5591,7 +5591,7 @@ void TBoss2DeRolLe__sub_80030A38(u8 *arg0, u32 arg1) {
                 *(s32 *)((s8 *)arg0 + 0x6E0) = 2;
                 ((TBoss2DeRolLe *)arg0)->requested_action = 2;
                 *(f32 *)((s8 *)arg0 + 0x40) = -1200.0f;
-                ((TBoss2DeRolLe *)arg0)->rotation_z = 0x8000;
+                ((TBoss2DeRolLe *)arg0)->rotation.roll = 0x8000;
                 *(f32 *)((s8 *)arg0 + 0x6A4) = 93.0f;
             }
             break;
@@ -5639,7 +5639,7 @@ void TBoss2DeRolLe__sub_80030A38(u8 *arg0, u32 arg1) {
                 ((TBoss2DeRolLe *)arg0)->requested_action = 1;
                 *(s32 *)((s8 *)arg0 + 0x654) = 1;
                 set_position_index__13TBoss2DeRolLeFPvi(arg0, *(s32 *)((s8 *)arg0 + 0x654));
-                ((TBoss2DeRolLe *)arg0)->rotation_z = 0;
+                ((TBoss2DeRolLe *)arg0)->rotation.roll = 0;
                 *(f32 *)((s8 *)arg0 + 0x6A4) = -137.0f;
                 TObjBoss2Tunnel::set_global_flag_400();
             }
@@ -6473,9 +6473,9 @@ void TBoss2DeRolLe::render_body() {
     TObjEneDD::clear_global_flag_400();
     push_matrix();
     post_translate_matrix(self->pos);
-    rotate_matrix_y(0, this->rotation_y);
-    rotate_matrix_x(0, this->rotation_x);
-    rotate_matrix_z(0, this->rotation_z);
+    rotate_matrix_y(0, this->rotation.yaw);
+    rotate_matrix_x(0, this->rotation.pitch);
+    rotate_matrix_z(0, this->rotation.roll);
     Vec scale = {2.0f, 2.0f, 2.0f};
     TObjEneDD::check_v2_mode();
     scale_current_matrix(&scale);

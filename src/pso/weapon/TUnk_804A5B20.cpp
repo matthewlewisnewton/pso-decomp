@@ -83,7 +83,7 @@ void TUnk_804A5B20::emit_marker_effects() {
     launch.multiplier = owner->query_extended_state();
     get_weapon_color__11TItemWeaponFPv(tmp, this);
     copy_argb((NJS_ARGB *)launch.color, (NJS_ARGB *)tmp);
-    launch.facing = owner->rotation_y;
+    launch.facing = owner->rotation.yaw;
     get_joint_position(1, launch.first);
     get_joint_position(2, launch.second);
     TTecSlicer::create((u16*)&launch);

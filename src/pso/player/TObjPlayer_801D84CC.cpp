@@ -111,7 +111,7 @@ void TUnk_804C4540::render() {
         select_actor_lighting((s32)this);
         push_matrix();
         translate_matrix_vec3(0, (u8 *)&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         save_render_material_state((u8 *)&render_material_state);
         apply_material_color_override();
         set_current_texture_list((GinjaTextureList *)(((u8 *)this + 0xCF4)));
@@ -127,7 +127,7 @@ void TUnk_804C4540::render() {
     }
     push_matrix();
     translate_matrix_vec3(0, (u8 *)&position);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     calc_joint_matrices(current_motion, frame, (s32)joint_matrices);
     pop_matrix();
 }
@@ -156,7 +156,7 @@ TUnk_804C4540::TUnk_804C4540(TObject *parent, TUnk_801D8A4C *src) : TObjPlayer(p
     set_floor_index(1);
     set_floor_index(1);
     VecCopy(&position, (const Vec *)((TObjPlayer *)src->pose)->get_sub_object());
-    rotation_y = ((TObjPlayer *)src->pose)->get_lock_timer();
+    this->rotation.yaw = ((TObjPlayer *)src->pose)->get_lock_timer();
     select_class_action_provider();
     joint_matrices = TObjPlayer__shared_model_buffer + get_entity_id(this) * 0xC00;
     init_motion((TObjMotionAction *)get_table_entry_by_clamped_index(), (BmlMotionEntry *)*(s32 *)player_ending_motion_object, 1);
@@ -164,7 +164,7 @@ TUnk_804C4540::TUnk_804C4540(TObject *parent, TUnk_801D8A4C *src) : TObjPlayer(p
     set_action_flag_40();
     push_matrix();
     translate_matrix_vec3(0, (u8 *)&position);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     calc_joint_matrices(current_motion, 0.0f, (s32)joint_matrices);
     pop_matrix();
     TObjPlayer::assign_lobby_slot_if_flagged((s32)this, &src->items[0]);

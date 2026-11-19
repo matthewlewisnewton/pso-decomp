@@ -551,7 +551,7 @@ TObjMapWarp::TObjMapWarp(TObject *parent, void *set_data) : TObjWarpBase(parent,
     for (i = 0; i < 4; i++) {
         push_matrix_from(identity_matrix);
         post_translate_matrix(&scale);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         matrix_mult_vec(0, &map_warp_destination_offsets[i], destinations[i]);
         pop_matrix();
         playerPopups[i] = 0;
@@ -745,7 +745,7 @@ void TObjMapWarpForest::render() {
         set_current_texture_list((GinjaTextureList *)textures);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         draw_ginja_object((void *)baseModel);
         TParticleCtrl::begin_effect_render();
         draw_ginja_model_with_motion((void *)beamModel, (void *)motion, (f32)frame);
@@ -970,7 +970,7 @@ void TObjAreaWarpForest::render() {
         set_current_texture_list((GinjaTextureList *)self->fDC);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(self->f38);
-        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
         draw_ginja_model((s32)m->f4);
@@ -1071,7 +1071,7 @@ void TObjAreaWarpQuest::render() {
         set_current_texture_list((GinjaTextureList *)self->fDC);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(self->f38);
-        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation_y);
+        ((void (*)(int, int))rotate_matrix_y)(0, this->rotation.yaw);
         push_matrix();
         ((void (*)(void *))post_translate_matrix)(m->f8);
         draw_ginja_model((s32)m->f4);
@@ -1518,7 +1518,7 @@ void TObjAreaWarpEndingJung::render() {
         TObjWarpJung::set_global_render_param();
         ((s32 (*)(void))push_matrix)();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjWarpJung::render_warp(0);
         TParticleCtrl::begin_effect_render();
         TObjWarpJung::render_warp_effect(1, (s32) this->m_c4);

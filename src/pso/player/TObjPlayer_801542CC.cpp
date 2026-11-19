@@ -249,7 +249,7 @@ void TObjPlayer__sub_8015434C(CollisionBody_80155FBC *set, s32 start, s32 count)
                 horizontal_distance_squared(&pos, &actor->position) < 40000.0f) {
                 Vec other_pos = actor->position;
                 other_body = actor->bodies;
-                other_facing = actor->rotation_y;
+                other_facing = actor->rotation.yaw;
                 other_count = actor->body_count;
                 push_matrix_from(identity_matrix);
                 rotate_matrix_y(0, other_facing);
@@ -570,7 +570,7 @@ void TObjCollidable::refresh_collision_body_centers() {
     if (arg0 != NULL && this->bodies != NULL && ((TObject *)arg0)->all_parents_unqueued_for_destruction() != 0) {
         n = arg0->count;
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         for (i = 0; i < n; i++) {
             VecCopy__FP3VecPC3Vec(&sp8, &arg0->ents[i]);
             rotate_vector_by_current_matrix(&sp8, &sp8);
@@ -1065,7 +1065,7 @@ u32 TObjCollidable::check_actor_body_contact(void *o_arg, f32 range) {
             a.colliders = this->bodies;
             a.count = self->a8;
             VecCopy__FP3VecPC3Vec(&a.position, &self->pos);
-            a.facing = this->rotation_y;
+            a.facing = this->rotation.yaw;
             b.colliders = o->a4;
             b.count = o->a8;
             VecCopy__FP3VecPC3Vec(&b.position, &o->pos);

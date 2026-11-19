@@ -81,7 +81,7 @@ void TObjEneRecon::render_shadows() {
     temp_r30 = (s32)get_bml_texlist(TObjEneRecon__recobox_static_instance, 2);
     push_matrix();
     translate_matrix(0, *((f32 *) (((s8 *) this) + 0x38)), *((f32 *) (((s8 *) this) + 0x3C)), *((f32 *) (((s8 *) this) + 0x40)));
-    rotate_matrix_zyx(0, this->rotation_x, this->rotation_y, this->rotation_z);
+    rotate_matrix_zyx(0, this->rotation.pitch, this->rotation.yaw, this->rotation.roll);
     scale_matrix(0, 1.5f, 1.5f, 1.5f);
     set_current_texture_list((GinjaTextureList *)temp_r30);
     draw_chunk_object((void *)bml_model);
@@ -99,7 +99,7 @@ void TObjEneRecon::vfunc_106() {
         set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
         draw_chunk_object(this->model);
@@ -116,7 +116,7 @@ s32 TObjEneRecon::render_model_if_visible() {
             set_current_texture_list((GinjaTextureList *)((this->texlist)));
             push_matrix();
             translate_matrix(0, (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x38)), (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x448)), (f32) (*(f32 *)((s8 *)((u8 *)this) + 0x40)));
-            rotate_matrix_y(0, (int) (this->rotation_y));
+            rotate_matrix_y(0, (int) (this->rotation.yaw));
             this->draw();
             pop_matrix();
             restore_render_scissor(1);
@@ -191,7 +191,7 @@ void render__12TObjEneReconFv(u8 *ene_recon) {
                     set_current_texture_list((GinjaTextureList *)((((TObjEneRecon *)ene_recon)->texlist)));
                     push_matrix();
                     translate_matrix(0, (f32) (*(f32 *)((s8 *)ene_recon + 0x38)), (f32) (*(f32 *)((s8 *)ene_recon + 0x448)), (f32) (*(f32 *)((s8 *)ene_recon + 0x40)));
-                    rotate_matrix_y(0, (int) (((TObjEneRecon *)ene_recon)->rotation_y));
+                    rotate_matrix_y(0, (int) (((TObjEneRecon *)ene_recon)->rotation.yaw));
                     TObjEneDD::clear_global_flag_400();
                     recon_intro_stage = 0;
                     recon_model_matrix_ptr = ene_recon + 0x40C;
@@ -1043,7 +1043,7 @@ void TObjEneRecon__sub_8031CCFC(u8 *arg0, s32 arg1) {
         case 0:
             ((TObjEneDD_ST *)arg0)->enemy_copy_target_destination();
             ((TObjEneDD *)arg0)->update_velocity();
-            ((TObjEneEpsilon *)arg0)->rotation_y = approach_angle_limited(((TObjEneEpsilon *)arg0)->rotation_y,
+            ((TObjEneEpsilon *)arg0)->rotation.yaw = approach_angle_limited(((TObjEneEpsilon *)arg0)->rotation.yaw,
                 (s32)(10430.38043493439 * atan2_float(((TObjEneEpsilon *)arg0)->target_direction.x, *(f32 *)((s8 *)arg0 + 0x3A8))),
                 0x400);
             (*(s32 *)((s8 *)arg0 + 0x3C4))++;
@@ -1234,7 +1234,7 @@ void TObjEneRecon::sub_8031D4B0(s32 arg1) {
         *(s32 *)((s8 *)arg0 + 0x444) = (s32) (*(s32 *)((s8 *)arg0 + 0x444) | 2);
         *(s32 *)((s8 *)arg0 + 0x30) = (*(s32 *)((s8 *)arg0 + 0x30) | 0x01000000);
         *(s32 *)((s8 *)arg0 + 0x3C0) = 0;
-        this->rotation_y = (s32) (10430.38043493439 * atan2_float((f32) (*(f32 *)((s8 *)arg0 + 0x428)), (f32) (*(f32 *)((s8 *)arg0 + 0x430))));
+        this->rotation.yaw = (s32) (10430.38043493439 * atan2_float((f32) (*(f32 *)((s8 *)arg0 + 0x428)), (f32) (*(f32 *)((s8 *)arg0 + 0x430))));
         enemy_clear_target__12TObjEneDD_STFUs(arg0);
         break;
     case 3:
@@ -1894,8 +1894,8 @@ void run_task__12TObjEneReconFv(TObjEneRecon *ene_recon) {
                 if (TObjEneDD::check_v2_mode() != 0) {
                     var_f30 *= 3.0f;
                 }
-                temp_f31 = var_f30 * cos_table_lookup(ene_recon->rotation_y);
-                temp_f2 = var_f30 * -sin_table_lookup(ene_recon->rotation_y);
+                temp_f31 = var_f30 * cos_table_lookup(ene_recon->rotation.yaw);
+                temp_f2 = var_f30 * -sin_table_lookup(ene_recon->rotation.yaw);
                 *(f32 *)((s8 *)(*(u8 **)((s8 *)ene_recon + 0x478)) + 0x60) = (f32) (ene_recon->m_2fc + temp_f31);
                 *(f32 *)((s8 *)(*(u8 **)((s8 *)ene_recon + 0x478)) + 0x64) = (f32) (-1.5f + ene_recon->m_300);
                 *(f32 *)((s8 *)(*(u8 **)((s8 *)ene_recon + 0x478)) + 0x68) = (f32) (ene_recon->m_304 + temp_f2);

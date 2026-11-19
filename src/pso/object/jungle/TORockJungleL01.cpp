@@ -166,7 +166,7 @@ void TORockJungleS01::vfunc_16() {
     for (i = 0; i < 1; i++) {
         VecCopy(&offset, &offsets[i]);
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         rotate_vector_by_matrix(0, &offset, &offset);
         pop_matrix();
         VecCopy((Vec *)params.pos, &position);
@@ -260,7 +260,7 @@ void TORockJungleM01::vfunc_16() {
     for (i = 0; i < 1; i++) {
         VecCopy(&offset, &offsets[i]);
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         rotate_vector_by_matrix(0, &offset, &offset);
         pop_matrix();
         VecCopy((Vec *)params.pos, &position);

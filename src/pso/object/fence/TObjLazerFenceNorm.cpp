@@ -227,7 +227,7 @@ void TObjLazerFenceNorm::draw_model() {
     set_current_texture_list((GinjaTextureList *)lazer_fence_norm_texture_list);
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
-    rotate_matrix_y(NULL, this->rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     draw_ginja_object(this->m_bc);
     pop_matrix();
 }
@@ -367,7 +367,7 @@ void TObjLazerFenceExtra::render_lazer_fence_model() {
     set_current_texture_list((GinjaTextureList *)lazer_fence_norm_texture_list);
     push_matrix();
     post_translate_matrix((void *)((char *)this + 56));
-    rotate_matrix_y(NULL, this->rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     draw_ginja_object(*(void * *)&this->m_bc);
     pop_matrix();
 }
@@ -381,7 +381,7 @@ void TObjLazerFenceExtra::draw_lazer_fence_extra_model() {
     set_current_texture_list((GinjaTextureList *)lazer_fence_norm_texture_list);
     push_matrix();
     post_translate_matrix(arg0->f38);
-    rotate_matrix_y(NULL, this->rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     draw_ginja_object((void *)this->m_bc);
     TParticleCtrl::begin_effect_render();
     draw_ginja_model_with_motion((void *)arg0->fC0, (void *)this->m_c4, this->frame);

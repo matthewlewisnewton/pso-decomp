@@ -163,7 +163,7 @@ void TORockCave::render() {
         vfunc_14();
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
@@ -181,7 +181,7 @@ void TORockCaveSimple::render() {
     if (update_object_view_visibility(unk_AC, m_b0) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)texlist);
         draw_ginja_object(model);
         pop_matrix();
@@ -244,7 +244,7 @@ void TORockCaveBrakable::vfunc_16() {
     for (i = 0; i < 6; i++) {
         VecCopy(&offset, &offsets[i]);
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         rotate_vector_by_matrix(0, &offset, &offset);
         pop_matrix();
         VecCopy((Vec *)params.pos, &position);

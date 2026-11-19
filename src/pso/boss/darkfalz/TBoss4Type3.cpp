@@ -1018,7 +1018,7 @@ void TBoss4Type3::run_task() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix(&this->position.x);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     matrix_mult_vec(0, e, v[0]);
     matrix_mult_vec(0, e + 0xC, v[1]);
     pop_matrix();
@@ -1050,12 +1050,12 @@ void TBoss4Type3::draw() {
     ((void (*)(void *))toggle_particle_effect__10TObjPlayerFv)(this);
     push_matrix();
     ((void (*)(void *))post_translate_matrix)((void *)((char *)this + 56));
-    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation_y);
+    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation.yaw);
     sub_8005A438();
     pop_matrix();
     push_matrix();
     ((void (*)(void *))post_translate_matrix)((void *)((char *)this + 1152));
-    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation_y);
+    ((void (*)(int, void *))rotate_matrix_y)(0, *(void * *)&this->rotation.yaw);
     TObjPlayer::draw_player_model_by_id(this->m_3ba, this->m_3c8);
     pop_matrix();
     TParticleCtrl::end_effect_render();
@@ -1366,7 +1366,7 @@ void TBoss4Type3::interp_position_between_nodes() {
     s32 i;
 
     a = this->m_3ac << 12;
-    this->rotation_y = approach_angle_limited(this->rotation_y, -(a + (s32)(this->m_39c * (f32)((s32 (*)(s32, s32))angle_diff_s16)(a, this->m_3a8 << 12))), 0x888);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, -(a + (s32)(this->m_39c * (f32)((s32 (*)(s32, s32))angle_diff_s16)(a, this->m_3a8 << 12))), 0x888);
     ids[0] = this->m_3a4;
     ids[1] = this->m_3a0;
     for (i = 0; i < 2; i++) {
@@ -1421,15 +1421,15 @@ void TBoss4Type3::turn_toward_player(s32 arg1) {
     if ((u16)arg1 != 0xFFFF) {
         p = (Ply_80059ABC *)get_player_by_client_id((u16)((u16)arg1));
         if (p != NULL) {
-            self->rotation_y = approach_angle_limited(self->rotation_y, (s32)(10430.38043493439 * atan2_float(p->f38 - 10000.0f, p->f40)), 0x888);
+            self->rotation.yaw = approach_angle_limited(self->rotation.yaw, (s32)(10430.38043493439 * atan2_float(p->f38 - 10000.0f, p->f40)), 0x888);
             calc_grid_index();
         }
     }
 }
 
 void TBoss4Type3::calc_grid_index() {
-    this->m_3ac = (s32) (((u32) -(this->rotation_y + 0x800) >> 0xCU) & 0xF);
-    this->m_3a8 = (s32) (((u32) -(this->rotation_y + 0x800) >> 0xCU) & 0xF);
+    this->m_3ac = (s32) (((u32) -(this->rotation.yaw + 0x800) >> 0xCU) & 0xF);
+    this->m_3a8 = (s32) (((u32) -(this->rotation.yaw + 0x800) >> 0xCU) & 0xF);
 }
 
 void TBoss4Type3__sub_800599F4(void *p, int lo, int hi) {

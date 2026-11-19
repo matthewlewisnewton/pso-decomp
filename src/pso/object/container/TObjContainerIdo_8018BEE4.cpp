@@ -125,14 +125,14 @@ void render__16TObjContainerIdoFv(u8 *container_ido) {
         }
         push_matrix();
         post_translate_matrix(container_ido + 0xC0);
-        rotate_matrix_y(0, ((TObjContainerIdo *)container_ido)->rotation_y);
-        rotate_matrix_x(0, ((TObjContainerIdo *)container_ido)->rotation_x);
+        rotate_matrix_y(0, ((TObjContainerIdo *)container_ido)->rotation.yaw);
+        rotate_matrix_x(0, ((TObjContainerIdo *)container_ido)->rotation.pitch);
         draw_ginja_object((void *)get_bml_model((BmlResource *)TObjContainerIdo__model_resource, 0));
         pop_matrix();
         push_matrix();
         post_translate_matrix(container_ido + 0x38);
-        rotate_matrix_y(0, ((TObjContainerIdo *)container_ido)->rotation_y);
-        rotate_matrix_x(0, ((TObjContainerIdo *)container_ido)->rotation_x);
+        rotate_matrix_y(0, ((TObjContainerIdo *)container_ido)->rotation.yaw);
+        rotate_matrix_x(0, ((TObjContainerIdo *)container_ido)->rotation.pitch);
         draw_ginja_object((void *)get_bml_model((BmlResource *)TObjContainerIdo__model_resource, 1));
         pop_matrix();
         if (var_r31 != 0) {

@@ -466,8 +466,8 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {
     best = 0.0f;
     id = 0xFFFF;
     limit = cos_table_lookup(0xAAA);
-    s = sin_table_lookup(rotation_y);
-    c = cos_table_lookup(rotation_y);
+    s = sin_table_lookup(this->rotation.yaw);
+    c = cos_table_lookup(this->rotation.yaw);
     n = TLobby::get_game_mode();
     for (i = 0; i < n; i++) {
         p = TObjPlayer::get_player_data(i);
@@ -587,9 +587,9 @@ s32 TObjEneRe7Berura::step_toward_target(s32 arg1, s32 arg2) {
     s32 var_r31;
 
     var_r31 = 0;
-    temp_r3 = angle_diff_s16(this->rotation_y);
+    temp_r3 = angle_diff_s16(this->rotation.yaw);
     if (temp_r3 > arg2) {
-        this->rotation_y = (s32) (this->rotation_y + arg2);
+        this->rotation.yaw = (s32) (this->rotation.yaw + arg2);
         temp_r0 = this->m_4bc;
         if (temp_r0 < 0) {
             this->m_4bc = 0;
@@ -597,7 +597,7 @@ s32 TObjEneRe7Berura::step_toward_target(s32 arg1, s32 arg2) {
             this->m_4bc = (s32) (temp_r0 + arg2);
         }
     } else if (temp_r3 < (s32) -arg2) {
-        this->rotation_y = (s32) (this->rotation_y - arg2);
+        this->rotation.yaw = (s32) (this->rotation.yaw - arg2);
         temp_r0_2 = this->m_4bc;
         if (temp_r0_2 > 0) {
             this->m_4bc = 0;
@@ -605,7 +605,7 @@ s32 TObjEneRe7Berura::step_toward_target(s32 arg1, s32 arg2) {
             this->m_4bc = (s32) (temp_r0_2 - arg2);
         }
     } else {
-        this->rotation_y = arg1;
+        this->rotation.yaw = arg1;
         var_r31 = 1;
     }
     return var_r31;
@@ -948,14 +948,14 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *self, s32 arg1) {
             if (self->enemy_has_live_target() != 0) {
                 self->m_4c8 = (s32) (u16) (s32) (RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
             } else {
-                self->m_4c8 = self->rotation_y;
+                self->m_4c8 = self->rotation.yaw;
             }
             self->m_4c4 = 1;
         case 1:
             if (self->step_toward_target(self->m_4c8, 0x100) != 0) {
                 self->m_4c4 = 2;
-                self->m_4d8 = sin_table_lookup(self->rotation_y);
-                self->m_4e0 = cos_table_lookup(self->rotation_y);
+                self->m_4d8 = sin_table_lookup(self->rotation.yaw);
+                self->m_4e0 = cos_table_lookup(self->rotation.yaw);
                 self->init_fields4B8();
             }
             self->vfunc_102();
@@ -970,7 +970,7 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *self, s32 arg1) {
                     if (self->enemy_has_live_target() != 0) {
                         self->m_4c8 = (s32) (u16) (s32) (RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
                     } else {
-                        self->m_4c8 = self->rotation_y;
+                        self->m_4c8 = self->rotation.yaw;
                     }
                     self->step_toward_target(self->m_4c8, 0x100);
                 }
@@ -1064,7 +1064,7 @@ void TObjEneRe7Berura__sub_80093C80(TObjEneRe7Berura *self, s32 arg1) {
                 self->m_418[self->m_3f4] |= 3;
                 self->m_3fc.reset_obstruction_fade();
                 VecCopy(&v, &TObjEneRe7Berura__detached_part_states[self->m_3f4].origin);
-                rotate_xz_pair_by_angle(&v.x, &v.z, self->rotation_y);
+                rotate_xz_pair_by_angle(&v.x, &v.z, self->rotation.yaw);
                 vec3_add_to(&v, &self->position);
                 launch__21TObjEneRe7BeruraPunchFll(self->m_3f8, self->m_3f4, &v, &self->target_destination.x);
                 self->m_4c0 = 1;
@@ -1178,7 +1178,7 @@ void TObjEneRe7Berura__sub_80093888(TObjEneRe7Berura *actor, s32 arg1) {
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix(&actor->position);
-                rotate_matrix_y(0, actor->rotation_y);
+                rotate_matrix_y(0, actor->rotation.yaw);
                 mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 4);
                 pop_matrix();
                 actor->m_440[0]->vfunc_6(&sp8, &sp14);
@@ -1233,9 +1233,9 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {
             m_4c8 = t - 0xB;
             v = (m_4c8 > 0x100) ? 0x100 : m_4c8;
             if (m_4bc > 0) {
-                rotation_y += v;
+                this->rotation.yaw += v;
             } else {
-                rotation_y -= v;
+                this->rotation.yaw -= v;
             }
         }
         if ((m_4c0 & 0x1F) < 0x10) {
@@ -1271,10 +1271,10 @@ void TObjEneRe7Berura::state_patrol(void *arg0, int arg1) {
         self->m_3c0 = self->m_3c0 | 4;
         self->set_field_378(9);
         self->m_4c0 = 0;
-        self->m_4c8 = self->rotation_y + 0x3800;
+        self->m_4c8 = self->rotation.yaw + 0x3800;
         break;
     case 3:
-        if (self->rotation_y >= self->m_4c8) {
+        if (self->rotation.yaw >= self->m_4c8) {
             self->transition_enemy_state(5);
         }
         break;
@@ -1283,7 +1283,7 @@ void TObjEneRe7Berura::state_patrol(void *arg0, int arg1) {
         if (((TObjEneRe7BeruraPunch *)self)->is_patrol_active() == 0) {
             self->play_speed = 1.6f;
         }
-        self->rotation_y = self->rotation_y + 0x280;
+        self->rotation.yaw = self->rotation.yaw + 0x280;
         self->vfunc_102();
         self->vfunc_89();
         break;
@@ -1466,7 +1466,7 @@ void TObjEneRe7Berura::render() {
         set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if (mode == 5) {
             re7_berura_demo_state = 0;
             lbl_805D4F6C = 0;
@@ -1567,7 +1567,7 @@ void TObjEneRe7Berura::vfunc_106() {
         set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         idx = (s32)parameters[0];
         if (idx < 0) {
             idx = 0;

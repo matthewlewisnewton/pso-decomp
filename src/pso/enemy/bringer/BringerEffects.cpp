@@ -65,9 +65,9 @@ u8 *construct_bringer_rush_effect(u8 *rush, s32 parent, u8 *source, s32 recipien
     VecCopy(&displacement, &((TObjChara *)recipient)->position);
     subtract_vector(&displacement, &((TObjBase *)source)->position);
     displacement.y = 0.0f;
-    self->direction.x = sin_table_lookup(((TObjBase *)source)->rotation_y);
+    self->direction.x = sin_table_lookup(((TObjBase *)source)->rotation.yaw);
     self->direction.y = 0.0f;
-    self->direction.z = cos_table_lookup(((TObjBase *)source)->rotation_y);
+    self->direction.z = cos_table_lookup(((TObjBase *)source)->rotation.yaw);
     if (is_vec_xz_cross_negative(&self->direction, &displacement) != 0) {
         rotate_xz_pair_by_angle(&self->direction.x, &self->direction.z, -0x1800);
     } else {
@@ -281,10 +281,10 @@ TUnk_8048FE08::~TUnk_8048FE08() {}
 
 void TUnk_8048FE08::setup_dir_shot(const Vec *origin, s32 angle, f32 attack_power) {
     VecCopy(&position, origin);
-    rotation_y = angle;
-    direction.x = sin_table_lookup(rotation_y);
+    this->rotation.yaw = angle;
+    direction.x = sin_table_lookup(this->rotation.yaw);
     direction.y = 0.0f;
-    direction.z = cos_table_lookup(rotation_y);
+    direction.z = cos_table_lookup(this->rotation.yaw);
     active = 1;
     fill_value_array((s32)attack_history);
     distance = 0.0f;

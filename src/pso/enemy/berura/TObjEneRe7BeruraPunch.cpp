@@ -80,7 +80,7 @@ void TObjEneRe7BeruraPunch::render() {
         push_matrix();
         post_translate_matrix(&this->position);
         translate_matrix(0, 0.0f, this->m_cc, 0.0f);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         temp_f1 = this->m_f4;
         scale_matrix(0, temp_f1, temp_f1, 1.0f);
         TObjEneRe7Berura::init_part(this->m_b8);
@@ -181,13 +181,13 @@ void TObjEneRe7BeruraPunch::launch(s32 arg1, s32 arg2) {
     this->snap_to_ground();
     owner = find_entity_by_id(this->owner_id);
     if (owner != NULL) {
-        this->rotation_y = owner->rotation_y;
+        this->rotation.yaw = owner->rotation.yaw;
     } else {
-        this->rotation_y = 0;
+        this->rotation.yaw = 0;
     }
-    this->m_bc = sin_table_lookup(this->rotation_y);
+    this->m_bc = sin_table_lookup(this->rotation.yaw);
     this->m_c0 = 0.0f;
-    this->m_c4 = cos_table_lookup(this->rotation_y);
+    this->m_c4 = cos_table_lookup(this->rotation.yaw);
     this->m_c8 = 300.0f;
     this->reset();
     this->m_b4 = 1;
@@ -261,10 +261,10 @@ void TObjEneRe7BeruraPunch::run_task() {
     }
     if (this->m_b4 == 1) {
         ang.x = 0;
-        ang.y = this->rotation_y + 0x4000;
+        ang.y = this->rotation.yaw + 0x4000;
         ang.z = -0x4000;
-        s = -sin_table_lookup(this->rotation_y);
-        c = -cos_table_lookup(this->rotation_y);
+        s = -sin_table_lookup(this->rotation.yaw);
+        c = -cos_table_lookup(this->rotation.yaw);
         if (this->m_d0 == NULL) {
             this->m_d0 = create_particle_emitter(&this->position, 0xDD);
             if (this->m_d0 != NULL) {

@@ -168,12 +168,12 @@ TObjEneEpsilonBody::TObjEneEpsilonBody(TObject *parent, void *set_data) : TObjEn
     target_position.y = 0.0f;
     target_position.z = 0.0f;
     for (i = 0; i < 4; i++) {
-        TObjEneEpsilonGuard *guard = ((TObjEneEpsilonGuard *)this)->create((void *)(u16)(entity_id + 1 + i), (void *)(set_index + 1 + i), &position, (void *)rotation_y);
+        TObjEneEpsilonGuard *guard = ((TObjEneEpsilonGuard *)this)->create((void *)(u16)(entity_id + 1 + i), (void *)(set_index + 1 + i), &position, (void *)this->rotation.yaw);
         if (guard != NULL) {
             guard_ids[i] = get_entity_id(guard);
         }
         VecCopy(&guard_position[i], &position);
-        guard_rotation_y[i] = rotation_y;
+        guard_rotation_y[i] = this->rotation.yaw;
     }
     mode = 0;
     dispatch_action(mode, 4);
@@ -410,7 +410,7 @@ void TObjEneEpsilonGuard__sub_803616E4(TObjEneEpsilonBody *body, s32 arg1) {
         if (!(body->flags & 0x80)) {
             body->enemy_copy_target_destination();
             body->update_velocity();
-            body->m_4f8 = body->target_direction.x * sin_table_lookup(body->rotation_y) + body->target_direction.z * cos_table_lookup(body->rotation_y);
+            body->m_4f8 = body->target_direction.x * sin_table_lookup(body->rotation.yaw) + body->target_direction.z * cos_table_lookup(body->rotation.yaw);
             if (body->m_4f8 < cos_table_lookup(0x1000)) {
                 body->turn_toward_target_direction(body->turn_step);
                 body->vfunc_102();
@@ -905,7 +905,7 @@ void TObjEneEpsilonBody::action_destroy(s32 reason) {
             action_timer++;
             if (action_timer >= 0x14) {
                 vfunc_95();
-                TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA4, (s32)&epsilon_guard_destroy_breakup_params, (s32)texlist, (s32)body_center(), (s32)rotation_y);
+                TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA4, (s32)&epsilon_guard_destroy_breakup_params, (s32)texlist, (s32)body_center(), (s32)this->rotation.yaw);
                 play_sound_effect(0x4003AD4C, (const Vec *)&m_2fc, 0, 0);
                 ((TObjPlayer *)body_center())->trigger_dell_biter_events();
                 flags |= 1;
@@ -975,7 +975,7 @@ void TObjEneEpsilonBody::sub_803606A0(s32 i) {
     }
     push_matrix_from(identity_matrix);
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_motion_packed_rotation();
     calc_joint_matrices(frame);
     clear_motion_packed_rotation();
@@ -1046,7 +1046,7 @@ void draw_with_fade__19TObjEneEpsilonGuardFPvi(TObjEneEpsilonBody *body, s32 arg
     push_matrix();
     post_translate_matrix(&body->position.x);
     translate_matrix(0, 0.0f, 24.0f, 0.0f);
-    rotate_matrix_y(0, body->rotation_y);
+    rotate_matrix_y(0, body->rotation.yaw);
     TObjEneDD::clear_global_flag_400();
     if (body->flags & 2) {
         set_chunk_model_node_callback((s32)((void *) TObjEneEpsilonGuard::record_camera_angle_samples));
@@ -1089,7 +1089,7 @@ void TObjEneEpsilonBody::render_body_effect() {
         push_matrix();
         post_translate_matrix(&position.x);
         translate_matrix(0, 0.0f, 24.0f, 0.0f);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         temp_f1 = m_4f8;
         scale_matrix(0, temp_f1, 1.0f, temp_f1);
         set_current_texture_list((GinjaTextureList *)texlist);

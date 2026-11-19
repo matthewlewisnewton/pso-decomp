@@ -358,7 +358,7 @@ void TObjFish::run_task() {
         turn *= 0.12f;
         f->angle += (s32)turn;
         if ((k & 3) == 0) {
-            turn = (s16)((s16)((s32)(10430.38043493439 * atan2_float(f->target.x - f->pos.x, f->target.z - f->pos.z)) - rotation_y) - f->yaw);
+            turn = (s16)((s16)((s32)(10430.38043493439 * atan2_float(f->target.x - f->pos.x, f->target.z - f->pos.z)) - this->rotation.yaw) - f->yaw);
             turn *= 0.8f;
             f->yaw += (s32)turn;
         }

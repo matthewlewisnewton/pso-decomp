@@ -44,7 +44,7 @@ void TObjEneMe1GiGueBarrier::render() {
     if (defer_render() == 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)texlist);
         TParticleCtrl::end_effect_render();
         draw();
@@ -59,7 +59,7 @@ void TObjEneMe1GiGueBarrier::run_task() {
         return;
     }
     VecCopy(&position, owner->update_and_get_pos());
-    rotation_y = m_fc->sub_802CAC48();
+    this->rotation.yaw = m_fc->sub_802CAC48();
     advance_animation();
     m_108 = m_108 - 1;
     switch (m_104) {
@@ -102,7 +102,7 @@ TObjEneMe1GiGueBarrier::TObjEneMe1GiGueBarrier(TObject *parent, void *owner) : T
     m_fc = (TObjEneMe1GiGue *)owner;
     m_100 = get_entity_id(m_fc);
     VecCopy(&position, m_fc->update_and_get_pos());
-    rotation_y = m_fc->sub_802CAC48();
+    this->rotation.yaw = m_fc->sub_802CAC48();
     m_108 = m_fc->get_field_44c();
     m_fc->sub_802CABF4();
     m_104 = 0;

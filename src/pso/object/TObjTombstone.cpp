@@ -156,7 +156,7 @@ void TObjTombstone::setup(s32 client, TObjTombstoneRecord *src) {
     this->client_id = client;
     this->record = *src;
     VecCopy(&this->position, &this->record.position);
-    this->rotation_y = this->client_id << 0xD;
+    this->rotation.yaw = this->client_id << 0xD;
     this->m_b0 = 0.0f;
     this->m_b4 = 0.0f;
     this->m_b8 = 0.0f;
@@ -270,7 +270,7 @@ extern "C" void TObjTombstone__sub_80075DFC(TObjTombstone *self) {
             sum += rate[1];
         }
         if (kind != -1) {
-            s32 angle = self->rotation_y - ((count - 1) * 0x2000) / 2;
+            s32 angle = self->rotation.yaw - ((count - 1) * 0x2000) / 2;
             TItemData item = lbl_8048D278[kind];
             s32 dropped = 0;
             s32 step;
@@ -476,7 +476,7 @@ void TObjTombstone::update_render_flags() {
         }
         push_matrix();
         post_translate_matrix(&this->position.x);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)this->texlist);
         draw_ginja_object(this->model);
         pop_matrix();

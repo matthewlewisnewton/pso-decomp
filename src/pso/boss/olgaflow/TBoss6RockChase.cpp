@@ -141,7 +141,7 @@ s32 TBoss6RockChase::damage_players_in_range() {
 }
 #pragma pop
 
-void TBoss6RockChase::render() { push_matrix(this); post_translate_matrix((char*)this + 0x38); rotate_matrix_y((void*)0, *(void* *)&this->rotation_y); rotate_matrix_x((void*)0, *(void* *)&this->rotation_x); rotate_matrix_z((void*)0, *(void* *)&this->rotation_z); set_current_texture_list((GinjaTextureList *)((*(void* *)&this->m_c4))); draw_ginja_object(*(void* *)&this->m_c0); pop_matrix(); }
+void TBoss6RockChase::render() { push_matrix(this); post_translate_matrix((char*)this + 0x38); rotate_matrix_y((void*)0, *(void* *)&this->rotation.yaw); rotate_matrix_x((void*)0, *(void* *)&this->rotation.pitch); rotate_matrix_z((void*)0, *(void* *)&this->rotation.roll); set_current_texture_list((GinjaTextureList *)((*(void* *)&this->m_c4))); draw_ginja_object(*(void* *)&this->m_c0); pop_matrix(); }
 
 #pragma push
 #pragma opt_common_subs off
@@ -154,7 +154,7 @@ void TBoss6RockChase::run_task() {
             this->m_b4 = (temp_r3 - 1);
             return;
         }
-        this->rotation_y = (s32) (this->rotation_y + this->m_bc);
+        this->rotation.yaw = (s32) (this->rotation.yaw + this->m_bc);
         *(f32 *)&this->_padB8 += -0.9375f;
         if (*(f32 *)&this->_padB8 < -11.25f) {
             *(f32 *)&this->_padB8 = -11.25f;
@@ -192,9 +192,9 @@ u8 *TBoss6RockChase__ct(TBoss6RockChase *boss6_rock_chase, s32 arg1, s32 arg2, s
     boss6_rock_chase->m_ac = arg1;
     boss6_rock_chase->m_b0 = arg3;
     boss6_rock_chase->m_b4 = (s32) (15.0f * (3.0517578e-05f * (f32) rand()));
-    ((TBoss6RockChase *)boss6_rock_chase)->rotation_x = (s32) (2048.0f * ((3.0517578e-05f * (f32) rand()) - 0.5f));
-    boss6_rock_chase->rotation_y = (s32) (65535.0f * (3.0517578e-05f * (f32) rand()));
-    boss6_rock_chase->rotation_z = (s32) (2048.0f * ((3.0517578e-05f * (f32) rand()) - 0.5f));
+    ((TBoss6RockChase *)boss6_rock_chase)->rotation.pitch = (s32) (2048.0f * ((3.0517578e-05f * (f32) rand()) - 0.5f));
+    boss6_rock_chase->rotation.yaw = (s32) (65535.0f * (3.0517578e-05f * (f32) rand()));
+    boss6_rock_chase->rotation.roll = (s32) (2048.0f * ((3.0517578e-05f * (f32) rand()) - 0.5f));
     boss6_rock_chase->m_bc = (s32) (8192.0f * ((3.0517578e-05f * (f32) rand()) - 0.5f));
     *(f32 *)((s8 *)boss6_rock_chase + 0xB8) = 0.0f;
     VecCopy((Vec *)((u8 *)boss6_rock_chase + 0x38), (const Vec *)(arg2));

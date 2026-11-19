@@ -511,7 +511,7 @@ s32 TObjEneMe3SinowZoa::check_body_collision_at(s32 arg1, f32 farg0) {
     f32 f2 = farg0 * lbl_805DF304;
     CollisionBody *body = bodies;
     u8 res;
-    s32 rot = rotation_y;
+    s32 rot = this->rotation.yaw;
     u32 flags = body->flags;
     body->offset.x = TObjEneMe3SinowZoa__data_805DF31C;
     body->offset.z = f2;
@@ -519,12 +519,12 @@ s32 TObjEneMe3SinowZoa::check_body_collision_at(s32 arg1, f32 farg0) {
     body->half_width = TObjEneMe3SinowZoa__data_805DF2FC;
     body->shape = 1;
     body->flags = 0x9D01;
-    rotation_y = arg1;
+    this->rotation.yaw = arg1;
     ((void (*)(void *, s32, f32, f32))check_enemy_body_collisions)(this, arg1, TObjEneMe3SinowZoa__data_805DF31C, f2);
     res = (body->flags & 0x380000) != 0;
     copy_collision_body(body, &sinow_zoa_collision_parts);
     body->flags = flags;
-    rotation_y = rot;
+    this->rotation.yaw = rot;
     return res;
 }
 
@@ -544,7 +544,7 @@ block_4:
     if (self->target_distance > 25.0f) {
         return 0;
     }
-    temp_f31 = (self->target_direction.x * sin_table_lookup(self->rotation_y)) + (self->target_direction.z * cos_table_lookup(self->rotation_y));
+    temp_f31 = (self->target_direction.x * sin_table_lookup(self->rotation.yaw)) + (self->target_direction.z * cos_table_lookup(self->rotation.yaw));
     return (temp_f31 < cos_table_lookup(0x1E00)) == 0;
 }
 
@@ -587,7 +587,7 @@ s32 TObjEneMe3SinowZoa::is_target_in_range() {
     var_r31 = 0;
     if (!(this->m_3cc & 0x10000)) {
         temp_f1 = this->target_distance;
-        if ((temp_f1 > 50.0f) && (temp_f1 < 150.0f) && (this->check_body_collision_at(this->rotation_y, temp_f1 - 20.0f) == 0)) {
+        if ((temp_f1 > 50.0f) && (temp_f1 < 150.0f) && (this->check_body_collision_at(this->rotation.yaw, temp_f1 - 20.0f) == 0)) {
             var_r31 = 1;
         }
     }
@@ -878,7 +878,7 @@ void TObjEneMe3SinowZoa::state_chase(s32 arg1) {
         if (this->update_linked_position(200.0f) != 0) {
             this->enemy_copy_target_destination();
             this->update_velocity();
-            this->m_444 = (this->target_direction.x * sin_table_lookup(this->rotation_y)) + (this->target_direction.z * cos_table_lookup(this->rotation_y));
+            this->m_444 = (this->target_direction.x * sin_table_lookup(this->rotation.yaw)) + (this->target_direction.z * cos_table_lookup(this->rotation.yaw));
             if (this->m_444 < cos_table_lookup(0x1000)) {
                 this->turn_toward_target_direction(0x500);
                 this->vfunc_102();
@@ -1080,7 +1080,7 @@ void TObjEneMe3SinowZoa::state_chase_target(s32 arg1) {
             this->enemy_copy_target_destination();
             this->update_velocity();
             TObjEneMe3SinowZoa__sub_80316840(this);
-            this->m_444 = (this->target_direction.x * sin_table_lookup(this->rotation_y)) + (this->target_direction.z * cos_table_lookup(this->rotation_y));
+            this->m_444 = (this->target_direction.x * sin_table_lookup(this->rotation.yaw)) + (this->target_direction.z * cos_table_lookup(this->rotation.yaw));
             if (this->m_444 < cos_table_lookup(0x1000)) {
                 this->turn_toward_target_direction(0x500);
                 this->vfunc_102();
@@ -1132,9 +1132,9 @@ void TObjEneMe3SinowZoa__sub_80318F7C(TObjEneMe3SinowZoa *self, s32 arg1) {
                 self->update_velocity();
                 target = (s32)(RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
             } else {
-                target = self->rotation_y;
+                target = self->rotation.yaw;
             }
-            self->rotation_y = approach_angle_limited(self->rotation_y, target, 0x1000);
+            self->rotation.yaw = approach_angle_limited(self->rotation.yaw, target, 0x1000);
             if (self->is_passing_frame(TObjEneMe3SinowZoa__data_805DF314) != 0) {
                 self->m_434 = 2;
             }
@@ -1149,7 +1149,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(TObjEneMe3SinowZoa *self, s32 arg1) {
                 self->update_velocity();
             }
             if (self->frame + self->play_speed >= 14.0f) {
-                if (self->check_body_collision_at(self->rotation_y, self->target_distance - 20.0f) != 0) {
+                if (self->check_body_collision_at(self->rotation.yaw, self->target_distance - 20.0f) != 0) {
                     self->m_434 = 7;
                 } else {
                     Vec v;
@@ -1278,11 +1278,11 @@ void TObjEneMe3SinowZoa__sub_80318C0C(TObjEneMe3SinowZoa *self, s32 arg1) {
                     self->update_velocity();
                     var_r4 = (s32) (RADIANS_TO_ANGLE * atan2_float(self->target_direction.x, self->target_direction.z));
                 } else {
-                    var_r4 = self->rotation_y;
+                    var_r4 = self->rotation.yaw;
                 }
-                self->rotation_y = approach_angle_limited(self->rotation_y, var_r4, 0x300);
-                self->target_direction.x = sin_table_lookup(self->rotation_y);
-                self->target_direction.z = cos_table_lookup(self->rotation_y);
+                self->rotation.yaw = approach_angle_limited(self->rotation.yaw, var_r4, 0x300);
+                self->target_direction.x = sin_table_lookup(self->rotation.yaw);
+                self->target_direction.z = cos_table_lookup(self->rotation.yaw);
             }
             self->vfunc_112();
             TObjEneMe3SinowZoa__sub_80316840(self);
@@ -1375,7 +1375,7 @@ void TObjEneMe3SinowZoa__sub_8031884C(TObjEneMe3SinowZoa *self, s32 arg1) {
         self->advance_animation();
         switch (self->m_434) {
         case 0:
-            self->rotation_y = approach_angle_limited(self->rotation_y, self->m_43c, 0x31C7);
+            self->rotation.yaw = approach_angle_limited(self->rotation.yaw, self->m_43c, 0x31C7);
             if ((self->frame + self->play_speed) >= TObjEneMe3SinowZoa__data_805DF2F0) {
                 self->m_434 = 1;
                 self->vfunc_91();
@@ -1621,7 +1621,7 @@ void TObjEneMe3SinowZoa__sub_80317F90(TObjEneMe3SinowZoa *self, s32 arg1) {
                 v.x = TObjEneMe3SinowZoa__data_805DF31C;
                 v.y = TObjEneMe3SinowZoa__data_805DF314;
                 v.z = 20.0f;
-                ((TObjBoss2Tunnel *)(&v))->init_zako(&self->position, self->rotation_y);
+                ((TObjBoss2Tunnel *)(&v))->init_zako(&self->position, self->rotation.yaw);
                 TObjPlayer::spawn_effect_f8((s32)&v, 0x14);
             }
             break;
@@ -1630,10 +1630,10 @@ void TObjEneMe3SinowZoa__sub_80317F90(TObjEneMe3SinowZoa *self, s32 arg1) {
             if (self->m_438 >= 0x14) {
                 self->m_434 = 2;
                 self->m_3cc |= 2;
-                TBoss3Volopt::create_breakup_mdl((s32)TObjEneMe3SinowZoa__breakup_model, (s32)&sinow_zoa_breakup_params, (s32)self->texlist, (s32)&self->position, self->rotation_y);
+                TBoss3Volopt::create_breakup_mdl((s32)TObjEneMe3SinowZoa__breakup_model, (s32)&sinow_zoa_breakup_params, (s32)self->texlist, (s32)&self->position, self->rotation.yaw);
                 VecCopy(&p, &self->position);
-                p.x += 20.0f * sin_table_lookup(self->rotation_y);
-                p.z += 20.0f * cos_table_lookup(self->rotation_y);
+                p.x += 20.0f * sin_table_lookup(self->rotation.yaw);
+                p.z += 20.0f * cos_table_lookup(self->rotation.yaw);
                 ((TObjPlayer *)(&p))->trigger_dell_biter_events();
                 play_sound_effect(0x4003AD2E, &self->position, 0, 0);
             }
@@ -1719,7 +1719,7 @@ void TObjEneMe3SinowZoa__sub_80317B50(TObjEneMe3SinowZoa *self, s32 arg1) {
                     for (i = 0; i < 3; i++) {
                         s32 ang;
                         VecCopy(&pos, &self->current_target->position);
-                        ang = self->current_target->rotation_y + ((d[i] + 1) << 14);
+                        ang = self->current_target->rotation.yaw + ((d[i] + 1) << 14);
                         pos.x += 20.0f * cos_table_lookup(ang);
                         pos.z -= 20.0f * sin_table_lookup(ang);
                         pos.y += TObjEneMe3SinowZoa__data_805DF308;
@@ -1731,7 +1731,7 @@ void TObjEneMe3SinowZoa__sub_80317B50(TObjEneMe3SinowZoa *self, s32 arg1) {
                             csnVectorUnder(&pos, (u32 *)&self->m_120, 0x15) != 0 &&
                             self->room == ((TScene *)(&pos))->find_section_at_position()) {
                             VecCopy(&self->position, &pos);
-                            self->rotation_y = ang + 0xC000;
+                            self->rotation.yaw = ang + 0xC000;
                             break;
                         }
                     }
@@ -1807,7 +1807,7 @@ void TObjEneMe3SinowZoa::render() {
             push_matrix();
             post_translate_matrix(&this->position);
             translate_matrix(0, TObjEneMe3SinowZoa__data_805DF31C, this->m_3e4, TObjEneMe3SinowZoa__data_805DF31C);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             TObjEneMe3SinowZoa__render_node_index = 0;
             if (mode == 1) {
                 this->draw();
@@ -1841,7 +1841,7 @@ s32 TObjEneMe3SinowZoa::render_model_if_visible() {
             push_matrix();
             post_translate_matrix(&this->position);
             translate_matrix(0, TObjEneMe3SinowZoa__data_805DF31C, this->m_3e4, TObjEneMe3SinowZoa__data_805DF31C);
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             this->draw();
             pop_matrix();
             restore_render_scissor(1);
@@ -1893,7 +1893,7 @@ void TObjEneMe3SinowZoa::vfunc_115() {
         }
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_matrix(0, TObjEneMe3SinowZoa__data_805DF2F4, TObjEneMe3SinowZoa__data_805DF2F4, TObjEneMe3SinowZoa__data_805DF2F4);
         {
             s32 i;
@@ -2015,7 +2015,7 @@ inline s32 seek_80316C3C(TObjEneMe3SinowZoa *self, Vec *diff) {
     s32 angle;
     if (select_enemy_destination(self, self->target_destination, 1) != 0) {
         angle = approach_80316C3C(self);
-        enemy_set_heading_velocity(((TObjEneMe3SinowZoaMoveParams *)self->movementParameters)->speed, self, self->rotation_y);
+        enemy_set_heading_velocity(((TObjEneMe3SinowZoaMoveParams *)self->movementParameters)->speed, self, self->rotation.yaw);
         move_with_wall_slide((u8 *)self);
     } else {
         VecCopy(diff, &self->target_destination);
@@ -2086,7 +2086,7 @@ void TObjEneMe3SinowZoa__sub_80316C3C(TObjEneMe3SinowZoa *self, s32 arg1) {
                 self->advance_animation();
                 push_matrix_from(identity_matrix);
                 post_translate_matrix(&self->position);
-                rotate_matrix_y(0, self->rotation_y);
+                rotate_matrix_y(0, self->rotation.yaw);
                 set_motion_packed_rotation();
                 self->calc_joint_matrices(TObjEneMe3SinowZoa__data_805DF314);
                 clear_motion_packed_rotation();
@@ -2107,7 +2107,7 @@ void TObjEneMe3SinowZoa__sub_80316C3C(TObjEneMe3SinowZoa *self, s32 arg1) {
                         create__11TTecRaBartaFPvPvPvPv(self, &out, &self->position,
                             TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[self->m_3c8]->m_24));
                     } else {
-                        ((TTecGiBarta *)self)->create_ex(&out, (void *)self->rotation_y, (void *)(TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[self->m_3c8]->m_24)));
+                        ((TTecGiBarta *)self)->create_ex(&out, (void *)self->rotation.yaw, (void *)(TObjEneDD::clamp_frame_index(TObjEneMe3SinowZoa__kind_param_tbls[self->m_3c8]->m_24)));
                     }
                 } else if (self->m_3cc & 0x100000) {
                     self->m_434 = 4;

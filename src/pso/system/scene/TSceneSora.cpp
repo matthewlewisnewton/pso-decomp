@@ -70,7 +70,7 @@ void TSceneSora::render() {
         TParticleCtrl::begin_effect_render();
         set_current_texture_list(get_bml_texlist(TSceneSora__sky_bml_resource, 0));
         push_matrix();
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if ((u32) this->m_94 != 0U) {
             draw_ginja_model_with_motion((void *)this->m_90, (void *)this->m_94, (f32)this->m_a0);
         } else {

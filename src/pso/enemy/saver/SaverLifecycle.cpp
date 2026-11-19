@@ -311,7 +311,7 @@ void TObjEneSaver::apply_lookup_entry_effect() {
         push_matrix();
         set_matrix_identity(0);
         post_translate_matrix((void *) (((u8 *)this) + 0x38));
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         mult_vec_array__10TObjPlayerFUll(0, entry, &sp8, 2);
         pop_matrix();
         temp_r3_2 = (unsigned char *) (*(void **)((s8 *)((u8 *)this) + 0x3C0));
@@ -533,7 +533,7 @@ void TObjEneSaver::vfunc_62() {
         if (e != NULL) {
             VecCopy((Vec *)&v, (const Vec *)(e + 0x2FC));
             subtract_vector(&v, &o->pos);
-            d = angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
+            d = angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
         } else {
             d = 0;
         }
@@ -756,7 +756,7 @@ int TObjEneSaver::test_flag_256() {
             if (!(calc_distance_to_client__10TObjPlayerFlUsUl(self, i, &v) < 900.0f)) {
                 continue;
             }
-            if (angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(v.x, v.z))) >= 0x2AAA) {
+            if (angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(v.x, v.z))) >= 0x2AAA) {
                 continue;
             }
             if (((TObjPlayer *)p)->test_action_mask(0xE0) == 0) {
@@ -1212,7 +1212,7 @@ s32 TObjEneSaver::is_target_in_attack_range() {
         tgt = this->target;
         if (tgt != NULL && this->m_318 != 0U && !(*(s32 *)((s8 *)tgt + 0x30) & 0x02000800)) {
             dist = calc_xz_distance_sq((s32)arg0, (u32)tgt, (void *)&v);
-            ang = angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
+            ang = angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(v.x, v.z)));
             p = *(u8 **)(this->target + 0xA4);
             if (p != NULL) {
                 var_f29 = *(f32 *)((s8 *)p + 0xC);
@@ -1794,7 +1794,7 @@ void TObjEneSaver::render() {
         set_current_texture_list((GinjaTextureList *)(((TObjEneSaver *)arg0)->texlist));
         push_matrix_from(NULL);
         translate_matrix_vec3(0, (u8 *)&this->position);
-        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);
+        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation.yaw);
         lbl_805D505C = 0;
         lbl_805D5060 = *(s32 *)((s8 *)arg0 + 0x39C);
         set_chunk_model_node_callback((s32)((void *)TObjPlayer::step_cutscene_frame));
@@ -1847,7 +1847,7 @@ void TObjEneSaver::render() {
     } else {
         push_matrix_from(identity_matrix);
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation_y);
+        rotate_matrix_y(0, ((TObjEneSaver *)arg0)->rotation.yaw);
         set_motion_packed_rotation();
         ((TObjEnemy *)arg0)->calc_joint_matrices(((TObjEneSaver *)arg0)->frame);
         clear_motion_packed_rotation();

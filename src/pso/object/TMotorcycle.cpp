@@ -81,7 +81,7 @@ void TMotorcycle::render() {
             set_current_texture_list((GinjaTextureList *)TMotorcycle__texture_list);
             push_matrix();
             post_translate_matrix((u8 *)&this->position);
-            rotate_matrix_yxz(0, (this->rotation_x), (this->rotation_y), (this->rotation_z));
+            rotate_matrix_yxz(0, (this->rotation.pitch), (this->rotation.yaw), (this->rotation.roll));
             get_bml_model((BmlResource *)((*(s32 *)&TMotorcycle__bml_resource)), this->m_bc);
             draw_ginja_object();
             pop_matrix();

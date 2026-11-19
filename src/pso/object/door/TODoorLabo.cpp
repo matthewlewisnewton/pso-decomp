@@ -254,7 +254,7 @@ void render__19TODoorFourLightBaseFv(TODoorFourLightBase *door_four_light_base) 
         push_matrix();
         set_current_texture_list((GinjaTextureList *)(((void *)self->m20())));
         post_translate_matrix((u8 *)door_four_light_base + 0x38);
-        rotate_matrix_y(0, door_four_light_base->rotation_y);
+        rotate_matrix_y(0, door_four_light_base->rotation.yaw);
         draw_ginja_model_with_motion((void *)door_four_light_base->m_d4, (void *)door_four_light_base->motion, (f32)door_four_light_base->animation_frame);
         pop_matrix();
         break;
@@ -262,7 +262,7 @@ void render__19TODoorFourLightBaseFv(TODoorFourLightBase *door_four_light_base) 
         push_matrix();
         set_current_texture_list((GinjaTextureList *)(((void *)self->m20())));
         post_translate_matrix((u8 *)door_four_light_base + 0x38);
-        rotate_matrix_y(0, door_four_light_base->rotation_y);
+        rotate_matrix_y(0, door_four_light_base->rotation.yaw);
         draw_ginja_model_with_motion((void *)door_four_light_base->m_d4, (void *)door_four_light_base->motion, (f32)door_four_light_base->animation_end_frame);
         pop_matrix();
         break;
@@ -274,7 +274,7 @@ void render__19TODoorFourLightBaseFv(TODoorFourLightBase *door_four_light_base) 
         push_matrix();
         set_current_texture_list((GinjaTextureList *)(((void *)self->m20())));
         post_translate_matrix((u8 *)door_four_light_base + 0x38);
-        rotate_matrix_y(0, door_four_light_base->rotation_y);
+        rotate_matrix_y(0, door_four_light_base->rotation.yaw);
         draw_ginja_object((void *)door_four_light_base->m_d4);
         pop_matrix();
         break;

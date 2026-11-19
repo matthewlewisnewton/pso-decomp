@@ -606,7 +606,7 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     texlist = 0;
     model = 0;
     VecCopy(&position, &TBoss6Type2__initial_position);
-    copy_xyz(&rotation_x, (void *)TBoss6Type2__initial_rotation);
+    copy_xyz(&this->rotation.pitch, (void *)TBoss6Type2__initial_rotation);
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     init_collision_body_parts(this, boss6_type2_collision_parts, 3);
     advance_position();
@@ -639,7 +639,7 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     m_478 = 0;
     m_47c = 0x11;
     TBoss6Type2__sub_802BE4E0((s32 *)&m_480, (s32 *)boss6_type2_zero_vec);
-    m_480 = rotation_y;
+    m_480 = this->rotation.yaw;
     VecCopy((Vec *)&target_position, &position);
     m_474 = 0;
     for (i = 0; i < 32; i++) {
@@ -1606,7 +1606,7 @@ s32 TBoss6Type2::choose_turn_motion() {
     temp_f3 = *(f32 *)((s8 *)player + 0x38);
     temp_f0 = ((f64 (*)(f32, f32, f32))atan2_float)(temp_f3 - *(f32 *)((s8 *)this + 0x38), *(f32 *)((s8 *)player + 0x40) - *(f32 *)((s8 *)this + 0x40), temp_f3);
     var_r31 = 0xF;
-    if (angle_diff_s16(this->rotation_y, (s32) (10430.38043493439 * temp_f0)) < 0) {
+    if (angle_diff_s16(this->rotation.yaw, (s32) (10430.38043493439 * temp_f0)) < 0) {
         var_r31 = 0x10;
     }
     return var_r31;
@@ -1713,7 +1713,7 @@ void TBoss6Type2::sub_802BBE20() {
             subtract_vector((Vec *)&v, (Vec *)&arg0->pos);
             push_matrix();
             set_matrix_identity(0);
-            rotate_matrix_y(0, -((TBoss6Type2 *)this)->rotation_y);
+            rotate_matrix_y(0, -((TBoss6Type2 *)this)->rotation.yaw);
             matrix_mult_vec(0, &v, e);
             pop_matrix();
             VecCopy((Vec *)&e->n, (const Vec *)e);
@@ -1774,7 +1774,7 @@ void TBoss6Type2__sub_802BBC74(TBoss6Type2 *self) {
     case 18:
     case 21:
         radius = 839.99994f;
-        start_angle = (self->rotation_y - 0x1500) & 0xFFFF;
+        start_angle = (self->rotation.yaw - 0x1500) & 0xFFFF;
         sound = 0x40069E09;
         end_angle = start_angle + 0x8500;
         break;
@@ -1782,7 +1782,7 @@ void TBoss6Type2__sub_802BBC74(TBoss6Type2 *self) {
     case 19:
     case 22:
         radius = 839.99994f;
-        start_angle = (self->rotation_y - 0x7000) & 0xFFFF;
+        start_angle = (self->rotation.yaw - 0x7000) & 0xFFFF;
         sound = 0x40069E09;
         end_angle = start_angle + 0x8500;
         break;
@@ -1890,7 +1890,7 @@ void TBoss6Type2__sub_802BB818(TBoss6Type2 *self, f32) {
     params.owner = self;
     VecCopy(&params.origin, (const Vec *)&self->position);
     params.origin.y += 150.0f;
-    params.rotation_y = self->rotation_y;
+    params.rotation_y = self->rotation.yaw;
     TBoss4DarkFalz__sub_8004B4F0(&params, ((TBoss6Type1 *)self->m_3f8)->get_mag_mine_ptr());
     params.active = 1;
     VecCopy(&params.pos, &params.origin);
@@ -2270,9 +2270,9 @@ s32 TBoss6Type2::turn_toward_target_position() {
         if ((s32) m_418 != 0) {
             var_r31 = 0x369;
         }
-        temp_r30 = (s32)rotation_y;
-        rotation_y = approach_angle_limited((s32)((int) ((s32)rotation_y)), (s32)((s32) ((s32) (10430.38043493439 * atan2_float(sp8.f.x, sp8.f.z)))), var_r31);
-        if (var_r31 == angle_difference_abs(temp_r30, (int) ((s32)rotation_y))) {
+        temp_r30 = (s32)this->rotation.yaw;
+        this->rotation.yaw = approach_angle_limited((s32)((int) ((s32)this->rotation.yaw)), (s32)((s32) ((s32) (10430.38043493439 * atan2_float(sp8.f.x, sp8.f.z)))), var_r31);
+        if (var_r31 == angle_difference_abs(temp_r30, (int) ((s32)this->rotation.yaw))) {
             if ((s32) m_508 == 0) {
                 play_sound_effect(0x4006A602, &position, 0, 0);
                 m_508 = 1;
@@ -2582,7 +2582,7 @@ void TBoss6Type2::aim_toward_point(void *arg1_arg) {
     } else {
         VecCopy((Vec *)&v, (const Vec *)vec_802_b9_a68);
         subtract_vector(&v, &arg0->pos);
-        ang = (s16)((s32)(10430.38043493439 * atan2_float(v.x, v.z)) - this->rotation_y);
+        ang = (s16)((s32)(10430.38043493439 * atan2_float(v.x, v.z)) - this->rotation.yaw);
     }
     if (ang < -0x2800 || ang > 0x2800) {
         ang = 0;
@@ -2801,7 +2801,7 @@ void TBoss6Type2::render_body_effects() {
     TObjPlayer::toggle_particle_effect();
     push_matrix();
     post_translate_matrix((const f32 *)((u8 *)this + 0x38));
-    rotate_matrix_y(NULL, this->rotation_y);
+    rotate_matrix_y(NULL, this->rotation.yaw);
     var_r31 = 0;
     if ((0.0f == this->state_progress) || (1.0f == this->state_progress)) {
         var_r31 = 1;
@@ -2822,7 +2822,7 @@ void TBoss6Type2::draw() {
     if (*(u16 *)((s8 *)this + 0x55C) != 65535) {
         push_matrix();
         post_translate_matrix((const f32 *)((char *)this + 1568));
-        rotate_matrix_y(NULL, this->rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         boss6type2_draw_models((s32)((char *)this + 1396), (s32)((char *)this + 1404), (s32)((char *)this + 1412), *(u32 *)((s8 *)this + 0x58C), *(u32 *)((s8 *)this + 0x590), *(u32 *)((s8 *)this + 0x594), *(u32 *)((s8 *)this + 0x598), *(s32 *)((s8 *)this + 0x570), 1.0f);
         pop_matrix();
     }

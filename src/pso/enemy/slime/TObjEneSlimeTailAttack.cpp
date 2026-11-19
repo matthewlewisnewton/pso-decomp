@@ -1004,7 +1004,7 @@ void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *ene_slime_one) {
             v.y += ene_slime_one->draw_offset_y;
             post_translate_matrix(&v);
         }
-        rotate_matrix_y(0, ene_slime_one->rotation_y);
+        rotate_matrix_y(0, ene_slime_one->rotation.yaw);
         scale_matrix_vec3(0, ((u8 *)ene_slime_one + 0x3A8));
         ene_slime_one->animation->draw(temp_r31);
         pop_matrix();
@@ -1224,7 +1224,7 @@ void TObjEneSlimeOne::sub_800EA364() {
     f32 accel;  // inferred: the per-frame speed-up added to move_speed
     s32 i;
     s32 ang;
-    rotation_y += 0x100;
+    this->rotation.yaw += 0x100;
     if (m_398 > 0.0f) {
         m_39c += 0xC00;
         accel = 0.25f * (0.5f * (0.5f + sin_table_lookup(m_39c)));
@@ -1333,11 +1333,11 @@ void TObjEneSlimeOne::sub_800E9EFC() {
     if (f < 0.0f) {
         f = 0.0f;
     }
-    this->rotation_y = f * (f32)this->turn_speed + (f32)this->rotation_y;
+    this->rotation.yaw = f * (f32)this->turn_speed + (f32)this->rotation.yaw;
     if (this->target_client_id == 0xFFFF) {
         r = find_nearest_visible_player(this, &sp14, 162.5f);
         if (r != 0xFFFF &&
-            angle_difference_abs(this->rotation_y, (s32)(10430.38043493439 * atan2_float(sp14.x, sp14.z))) < 0x1C71) {
+            angle_difference_abs(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(sp14.x, sp14.z))) < 0x1C71) {
             *(s32 *)((s8 *)((u8 *)this) + 0x39C) = 0;
             this->target_client_id = r;
         }
@@ -1351,7 +1351,7 @@ void TObjEneSlimeOne::sub_800E9EFC() {
             sp8.y = 0.0f;
             sp8.z = 0.0f;
             TObjPlayer::calc_distance_to_client((s32)this, this->target_client_id, (u32)&sp8);
-            this->rotation_y = approach_angle_limited(this->rotation_y, (s32)(10430.38043493439 * atan2_float(sp8.x, sp8.z)), 0x280);
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, (s32)(10430.38043493439 * atan2_float(sp8.x, sp8.z)), 0x280);
         }
         if (this->state_timer > n) {
             animation->set_state(0);
@@ -1380,11 +1380,11 @@ void TObjEneSlimeOne::sub_800E9DC8() {
     f32 sp[3];
     s32 r = 0;
     s32 t;
-    this->rotation_y = this->rotation_y + this->turn_speed;
+    this->rotation.yaw = this->rotation.yaw + this->turn_speed;
     if (((TObjEneSlimeOne *)this)->find_nearest_enemy_with_flag((s32)sp, 500.0f) != 0xFFFF) {
         t = (s32) (10430.38043493439 * atan2_float(sp[0], sp[2]));
-        if (angle_difference_abs(this->rotation_y, t) < 0x444) {
-            this->rotation_y = t;
+        if (angle_difference_abs(this->rotation.yaw, t) < 0x444) {
+            this->rotation.yaw = t;
             r = 1;
         }
     }
@@ -1508,7 +1508,7 @@ void TObjEneSlimeOne::start_tail_attack() {
     this->state_timer = 0x5A;
     animation->set_state(0);
     play_sound_effect(0x4003A318, &self->dest, 0, 0);
-    ((void (*)(void *, void *, s32, void *))create__22TObjEneSlimeTailAttackFiiii)(self, &self->dest, this->rotation_y, self);
+    ((void (*)(void *, void *, s32, void *))create__22TObjEneSlimeTailAttackFiiii)(self, &self->dest, this->rotation.yaw, self);
     ((int (*)(void*, void*))set_display_mode__15TObjEneSlimeOneFPvi)(self, (void*)((void *)2));
 }
 
@@ -1717,10 +1717,10 @@ void *TObjEneSlimeWaterBomb__ct(TObjEneSlimeWaterBomb *ene_slime_water_bomb, voi
     *(s32 **)((s8 *)ene_slime_water_bomb + 0x18) = __vt__21TObjEneSlimeWaterBomb;
     *(s32 *)((s8 *)ene_slime_water_bomb + 0) = (s32) TObjEneSlimeWaterBomb__name;
     *(void **)((s8 *)ene_slime_water_bomb + 0x38C) = arg2;
-    ene_slime_water_bomb->rotation_y = *(s32 *)((s8 *)(*(u8 * *)&ene_slime_water_bomb->m_up) + 0x60);
+    ene_slime_water_bomb->rotation.yaw = *(s32 *)((s8 *)(*(u8 * *)&ene_slime_water_bomb->m_up) + 0x60);
     VecCopy((Vec *)((u8 *) ene_slime_water_bomb + 0x38), (const Vec *)(*(u8 * *)&ene_slime_water_bomb->m_up + 0x38));
-    s = sin_table_lookup(ene_slime_water_bomb->rotation_y);
-    c = cos_table_lookup(ene_slime_water_bomb->rotation_y);
+    s = sin_table_lookup(ene_slime_water_bomb->rotation.yaw);
+    c = cos_table_lookup(ene_slime_water_bomb->rotation.yaw);
     *(f32 *)((s8 *)ene_slime_water_bomb + 0x38) += 15.0f * s;
     *(f32 *)((s8 *)ene_slime_water_bomb + 0x3C) += 20.0f;
     *(f32 *)((s8 *)ene_slime_water_bomb + 0x40) += 15.0f * c;
@@ -1864,7 +1864,7 @@ void *TObjEneSlimeTailAttack__ct(TObjEneSlimeTailAttack *ene_slime_tail_attack, 
   ene_slime_tail_attack->requested_action = 6;
   ((TObjMotion *)ene_slime_tail_attack)->set_animation(ene_slime_tail_attack->requested_action);
   ((TObjMotion *)ene_slime_tail_attack)->set_field_b8(ene_slime_tail_attack->requested_action);
-  ene_slime_tail_attack->rotation_y = arg3;
+  ene_slime_tail_attack->rotation.yaw = arg3;
   VecCopy((Vec *)(((u8 *) ene_slime_tail_attack) + 0x38), (const Vec *)arg2);
   *((s32 *) (((s8 *) ene_slime_tail_attack) + 0x378)) = 1;
   *((s32 *) (((s8 *) ene_slime_tail_attack) + 0x37C)) = 0xFFFF;
@@ -1998,7 +1998,7 @@ void TObjEneSlimeTailAttack::sub_800E841C() {
     u8 *arg0 = (u8 *)this;
     push_matrix();
     post_translate_matrix((u8 *)&this->position);
-    rotate_matrix_y(0, (int) (((TObjEneSlimeTailAttack *)arg0)->rotation_y));
+    rotate_matrix_y(0, (int) (((TObjEneSlimeTailAttack *)arg0)->rotation.yaw));
     set_current_texture_list((GinjaTextureList *)((((TObjEneSlimeTailAttack *)arg0)->texlist)));
     if ((s32) *(s32 *)((s8 *)arg0 + 0x378) != 0) {
         TObjPlayer__sub_800E81A8();

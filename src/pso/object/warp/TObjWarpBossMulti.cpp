@@ -271,7 +271,7 @@ void TObjWarpBoss::render() {
 block_4:
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)warp_boss_model_handle);
         draw_ginja_object((void *)boss_warp_base_model);
         if (model != 0) {
@@ -884,7 +884,7 @@ void TObjWarpBossMulti::render() {
 block_4:
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, rotation_y);
+        rotate_matrix_y(NULL, this->rotation.yaw);
         set_current_texture_list((GinjaTextureList *)model_handle);
         draw_ginja_object((void *)base_model);
         TParticleCtrl::begin_effect_render();

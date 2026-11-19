@@ -576,7 +576,7 @@ TBoss4Type1::TBoss4Type1(TObject *parent, s32 *params) : TObjEnemy(parent) {
     texlist = 0;
     model = 0;
     VecCopy(&position, &lbl_80486150);
-    rotation_y = 0;
+    this->rotation.yaw = 0;
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     unk_394 = init_collision_body_parts(this, lbl_80485E2C, 3);
     VecCopy((Vec *)&m_2fc, &position);
@@ -897,7 +897,7 @@ void TBoss4Type1::push_players_out_of_colliders() {
             }
             if (((f32 (*)(void *, void *))xyz_distance)(((TObjPlayer *)pl)->get_position_ptr(), &pos) > 0.0f) {
                 ((TObjBase *)pl)->set_position_from(&pos);
-                ((TBoss4DarkFalz *)pl)->save_position();
+                ((TObjBase *)pl)->save_previous_position();
                 ((TObjCollidable *)pl)->set_indexed_flags(0, 0x900000);
                 *(u32 *)(pl + 0x30) &= ~0x20;
             }
@@ -916,8 +916,8 @@ void TBoss4Type1::sub_80053D4C() {
         Vec v = arg0->spots[i].pos;
         VecCopy__FP3VecPC3Vec(&q->local, &v);
         subtract_vector(&v, &arg0->pos);
-        s = sin_table_lookup(-this->rotation_y);
-        c = cos_table_lookup(-this->rotation_y);
+        s = sin_table_lookup(-this->rotation.yaw);
+        c = cos_table_lookup(-this->rotation.yaw);
         Vec t = v;
         v.x = c * t.x + s * t.z;
         v.z = -s * t.x + c * t.z;
@@ -1061,8 +1061,8 @@ void TBoss4Type1::sub_80053670() {
     add_radar_scaled_marker(arg0 + 0x438, -0x5DB4, 1, 1, 5.0f);
     add_radar_scaled_marker(arg0 + 0x450, -0x5DB4, 1, 1, 5.0f);
     add_radar_scaled_marker(arg0 + 0x468, -0x5DB4, 1, 1, 5.0f);
-    temp_f29 = sin_table_lookup(this->rotation_y);
-    temp_f30 = cos_table_lookup(this->rotation_y);
+    temp_f29 = sin_table_lookup(this->rotation.yaw);
+    temp_f30 = cos_table_lookup(this->rotation.yaw);
     temp_f27 = 37.5f;
     var_r29 = 0;
     var_r28 = 0x25;

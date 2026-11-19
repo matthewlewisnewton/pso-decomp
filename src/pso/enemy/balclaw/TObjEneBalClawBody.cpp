@@ -565,12 +565,12 @@ void TObjPlayer__sub_8008F1DC(TObjEneBalClawBody *body) {
     case 2:
         push_matrix_from(identity_matrix);
         post_translate_matrix(&body->m_2fc);
-        rotate_matrix_y(0, body->rotation_y);
+        rotate_matrix_y(0, body->rotation.yaw);
         body->calc_joint_matrices(body->frame);
         pop_matrix();
         body->get_anim_node_position(8, &body->m_3ec);
         body->m_3f8[0] = 0;
-        body->m_3f8[1] = body->rotation_y + 0x4000;
+        body->m_3f8[1] = body->rotation.yaw + 0x4000;
         body->m_3f8[2] = -0x4000;
         if (body->frame >= 9.0f && body->frame < 17.0f) {
             body->effects[2]->set_position(&body->m_3ec);
@@ -859,15 +859,15 @@ void TObjEneBalClawBody::render() {
             if (check_demo_mode() == 1) {
                 TObjPlayer::set_visibility_flags_by_count(this, 4);
                 post_translate_matrix((u8 *)&position);
-                rotate_matrix_x(0, rotation_x);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_x(0, this->rotation.pitch);
+                rotate_matrix_y(0, this->rotation.yaw);
                 draw_chunk_object(model);
             } else {
                 TObjPlayer::set_visibility_flags_by_count(this, m_3d8);
                 translate_matrix(0, 0.0f, m_3b4 + m_3bc, 0.0f);
                 post_translate_matrix((u8 *)&position);
-                rotate_matrix_x(0, rotation_x);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_x(0, this->rotation.pitch);
+                rotate_matrix_y(0, this->rotation.yaw);
                 if (m_388 & 4) {
                     if ((&fade)->has_visible_opacity() != 0) {
                         (&fade)->set_flags_and_apply_damage_color();
@@ -1052,7 +1052,7 @@ void calc_slot_offset_position__10TObjPlayerFPviPvPv(TObjEneBalClawBody *self, s
     s32 angle;
     push_matrix();
     angle = (s32)(182.04445f * (f32)(slot * 0x5A + 0x2D));
-    *angle_out = self->rotation_y + angle;
+    *angle_out = self->rotation.yaw + angle;
     out->x = 0.0f;
     out->y = 0.0f;
     out->z = 13.0f;

@@ -28,12 +28,12 @@ void TUnk_804A4548::update_weapon() {
         add_float_clamped(&barrel_offset, (-0.5f), (-2.0f));
         if ((-2.0f) == barrel_offset) {
             recoil_state = 2;
-            ang = owner->rotation_y + 0x4000;
+            ang = owner->rotation.yaw + 0x4000;
             v.x = sin_table_lookup(ang);
             v.y = 0.0f;
             v.z = cos_table_lookup(ang);
             a[0] = 0x4000;
-            a[1] = owner->rotation_y;
+            a[1] = owner->rotation.yaw;
             a[2] = 0;
             TObjPlayer::launch_weapon_casing((s32)tl_05, (u32)this, 3, (u32)&v, (u32)a);
         }

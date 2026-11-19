@@ -353,7 +353,7 @@ void TUnk_804E21F8::emit_marker_effects() {
     origin = pad_20c;
     count = pad_24a;
     n = count;
-    angle = pad_250 - owner->rotation_y;
+    angle = pad_250 - owner->rotation.yaw;
     step = 0x10000 / count;
     while (n != 0) {
         fire_shot_at_target(origin++, item_model, angle);

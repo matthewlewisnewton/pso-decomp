@@ -3,13 +3,15 @@
 
 #include "types.h"
 
-struct E_8006C668 { s32 a; void *p; };
+struct CameraMotionData;
+struct CameraMotionDirectory { CameraMotionData **entries; };
+struct E_8006C668 { CameraMotionDirectory *directory; void *p; };
 
 struct G_8006C668 { E_8006C668 e[8]; };
 
 struct Entry_8006C6CC {
     const char *filename; // "Bo01OpCam.rel"...
-    s32 f4;
+    u32 flags;
 };
 
 struct Bank_8006C6CC {

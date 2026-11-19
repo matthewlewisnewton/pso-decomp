@@ -658,7 +658,7 @@ void TObjEneMoja::render() {
         push_matrix();
         translate_matrix(0, 0.0f, sinkOffset, 0.0f);
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         if (check_demo_mode() == 1) {
             draw_chunk_object((s32)model);
         } else {
@@ -872,7 +872,7 @@ void TObjEneMoja::update_appearance_jump() {
         off.y = -500.0f;
         off.z = 200.0f;
         ((s32 (*)(void *))push_matrix_from)(identity_matrix);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         ((s32 (*)(int, void *, void *))rotate_vector_by_matrix)(0, &off, &off);
         pop_matrices(1);
         VecCopy((Vec *)&tmp, &home_position);
@@ -885,7 +885,7 @@ void TObjEneMoja::update_appearance_jump() {
         VecCopy((Vec *)&m_290, &position);
         VecCopy((Vec *)&delta, (const Vec *)&m_29c);
         subtract_vector(&delta, &position);
-        rotation_y = (s32)(10430.38043493439 * atan2_float(delta.x, delta.z));
+        this->rotation.yaw = (s32)(10430.38043493439 * atan2_float(delta.x, delta.z));
         jumpSpeed = newton_sqrtf(delta.x * delta.x + delta.z * delta.z);
         ticks = 12.0f / play_speed;
         jumpSpeed = jumpSpeed / ticks;
@@ -954,10 +954,10 @@ void TObjEneMoja::update_appearance_drop() {
     default:
         VecCopy((Vec *)&scratch_vec, &home_position);
         subtract_vector(&scratch_vec, &position);
-        rotation_y = approach_angle_limited(rotation_y,
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw,
             (s32)(10430.38043493439 * atan2_float(scratch_vec.x, scratch_vec.z)),
             ((MojaMovementParameters *)movementParameters)->unknown_08);
-        if (rotation_y >= ((MojaMovementParameters *)movementParameters)->unknown_08) {
+        if (this->rotation.yaw >= ((MojaMovementParameters *)movementParameters)->unknown_08) {
             return;
         }
         requested_action = 5;
@@ -1107,7 +1107,7 @@ s32 TObjEneMoja::is_target_in_attack_range() {
     if (this->mode > 1 && (t = this->target) != NULL &&
         this->m_318 != 0 && !(*(u32 *)((s8 *)t + 0x30) & 0x02000800)) {
         dist = calc_xz_distance_sq((s32)this, (u32)t, (void *)&d);
-        angd = angle_difference_abs(this->rotation_y,
+        angd = angle_difference_abs(this->rotation.yaw,
                                     (s32)(10430.38043493439 * atan2_float(d.x, d.z)));
         c = *(u8 **)(this->target + 0xA4);
         if (c != NULL) {
@@ -1640,7 +1640,7 @@ void TObjEneMoja::update_death_state() {
         v.y = 10.0f;
         v.z = 0.5f * *(f32 *)(this->m_2b0 + 0x10);
         push_matrix_from(identity_matrix);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         rotate_vector_by_matrix(0, &v, &v);
         pop_matrix();
         vec3_add_to(&v, (u8 *)&this->position);

@@ -550,9 +550,9 @@ void TUnk_804B8E18::render() {
     VecCopy((Vec *)&dir, &velocity);
     dir.y = 0.0f;
     len = vector_length(&dir);
-    direction_to_rotation_yx((u8 *)&dir, &rotation_y, &rotation_z);
+    direction_to_rotation_yx((u8 *)&dir, &this->rotation.yaw, &this->rotation.roll);
     unk_334 = (u16)unk_334;
-    rotation_y = (u16)rotation_y;
+    this->rotation.yaw = (u16)this->rotation.yaw;
     if (0.0f != len) {
         normalize_vector(&dir);
         VecCopy(&prev_position, (const Vec *)&dir);
@@ -572,10 +572,10 @@ void TUnk_804B8E18::render() {
     rate = (s32)(182.04445f * (4096.0f * len));
     if (0.0f != rate) {
         step = rate;
-        unk_334 = approach_angle_limited(unk_334, rotation_y, step);
-        unk_338 = approach_angle_limited(unk_338, rotation_x, step);
+        unk_334 = approach_angle_limited(unk_334, this->rotation.yaw, step);
+        unk_338 = approach_angle_limited(unk_338, this->rotation.pitch, step);
     }
-    rotation_x += (s32)(182.04445f * (7.0f * len));
+    this->rotation.pitch += (s32)(182.04445f * (7.0f * len));
     push_matrix_from(0);
     translate_matrix_vec3((u8 *)(0), (u8 *)&pos);
     rate = 0.15f * (*(Glob_80199A44 *)&gogo_ball_configuration).scale;

@@ -175,7 +175,7 @@ void TBoss6Rock::run_task() {
     if (m_e4 != NULL) {
         s32 model = (s32)get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id);
         u64 pos = (s32)&position;
-        m_e4->set_target(m_c4 != 0, (Vec *)pos, &rotation_x, (s32)TBoss6Rock__data_805D6EF4, model,
+        m_e4->set_target(m_c4 != 0, (Vec *)pos, &this->rotation.pitch, (s32)TBoss6Rock__data_805D6EF4, model,
                          TBoss6Rock__data_80479258[m_b4].radius);
     }
 }
@@ -197,9 +197,9 @@ void TBoss6Rock::draw_model() {
     }
     push_matrix();
     post_translate_matrix(&position.x);
-    rotate_matrix_y(NULL, rotation_y);
-    rotate_matrix_x(NULL, rotation_x);
-    rotate_matrix_z(NULL, rotation_z);
+    rotate_matrix_y(NULL, this->rotation.yaw);
+    rotate_matrix_x(NULL, this->rotation.pitch);
+    rotate_matrix_z(NULL, this->rotation.roll);
     set_current_texture_list((GinjaTextureList *)TBoss6Rock__data_805D6EF4);
     draw_ginja_object((void *)get_bml_model(TBoss6Rock__data_805D6EF0, TBoss6Rock__data_80479258[m_b4].model_id));
     pop_matrix();
@@ -217,7 +217,7 @@ void TBoss6Rock::init_spin_params() {
 void TBoss6Rock::update_fall() {
     f32 accel = -0.75f;
     f32 max_speed = -9.0f;
-    rotation_y += m_d0;
+    this->rotation.yaw += m_d0;
     if (m_bc == 1) {
         accel = -0.9375f;
         max_speed = -11.25f;
@@ -338,9 +338,9 @@ const RockKindParams *TBoss6Rock::get_rock_entry(s32 i) {
 }
 
 void TBoss6Rock::randomize_motion() {
-    rotation_x = 2048.0f * (3.0517578125e-05f * rand() - 0.5f);
-    rotation_y = 65535.0f * (3.0517578125e-05f * rand());
-    rotation_z = 2048.0f * (3.0517578125e-05f * rand() - 0.5f);
+    this->rotation.pitch = 2048.0f * (3.0517578125e-05f * rand() - 0.5f);
+    this->rotation.yaw = 65535.0f * (3.0517578125e-05f * rand());
+    this->rotation.roll = 2048.0f * (3.0517578125e-05f * rand() - 0.5f);
     m_d0 = 8192.0f * (3.0517578125e-05f * rand() - 0.5f);
     VecCopy(&position, &m_d4);
     position.y = 450.0f;

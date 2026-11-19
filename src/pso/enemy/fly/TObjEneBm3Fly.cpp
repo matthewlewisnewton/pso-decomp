@@ -240,8 +240,8 @@ void TObjEneBm3Fly::run_task() {
             if (TObjEneDD::check_v2_mode() != 0) {
                 side *= 3.0f;
             }
-            dx = side * cos_table_lookup(this->rotation_y);
-            dz = side * -sin_table_lookup(this->rotation_y);
+            dx = side * cos_table_lookup(this->rotation.yaw);
+            dz = side * -sin_table_lookup(this->rotation.yaw);
             this->particle_effect->position.x = ((Vec *)&this->m_2fc)->x + dx;
             this->particle_effect->position.y = -1.5f + ((Vec *)&this->m_2fc)->y;
             this->particle_effect->position.z = ((Vec *)&this->m_2fc)->z + dz;
@@ -487,7 +487,7 @@ void TObjEneBm3Fly::sub_800B1214(s32 arg1) {
         p->x = (3e+01f) * sin_table_lookup(this->m_448) + this->m_41c.x;
         p->y = this->m_444;
         p->z = (3e+01f) * cos_table_lookup(this->m_448) + this->m_41c.z;
-        this->rotation_y = (s32)(10430.38043493439 * atan2_float(this->m_40c.x, this->m_40c.z));
+        this->rotation.yaw = (s32)(10430.38043493439 * atan2_float(this->m_40c.x, this->m_40c.z));
         enemy_clear_target__12TObjEneDD_STFUs(this);
         break;
     case 3:
@@ -531,7 +531,7 @@ void TObjEneBm3Fly::sub_800B1214(s32 arg1) {
                 this->m_42c = this->m_430.y * this->m_43c + this->m_42c;
                 this->position.z = this->m_430.z * this->m_43c + this->position.z;
             }
-            this->rotation_y = (s32)(10430.38043493439 * atan2_float(this->m_430.x, this->m_430.z));
+            this->rotation.yaw = (s32)(10430.38043493439 * atan2_float(this->m_430.x, this->m_430.z));
             break;
         }
         this->update_collide_flag();
@@ -587,7 +587,7 @@ void TObjEneBm3Fly__sub_800B0F70(TObjEneBm3Fly *arg0, s32 arg1) {
         arg0->position.x = radius * sin_table_lookup(a) + arg0->m_41c.x;
         arg0->m_42c = (1e+01f) * sin_table_lookup(arg0->m_3d4) + arg0->m_444;
         arg0->position.z = radius * cos_table_lookup(a) + arg0->m_41c.z;
-        arg0->rotation_y = a - 0x4000;
+        arg0->rotation.yaw = a - 0x4000;
         arg0->update_collide_flag();
         arg0->prev_position.x = arg0->m_2fc;
         arg0->prev_position.z = arg0->m_304;
@@ -662,8 +662,8 @@ void TObjEneBm3Fly__sub_800B0B20(TObjEneBm3Fly *ene_bm3_fly, s32 arg1) {
         subtract_vector(pos, off);
         if (ene_bm3_fly->m_3c4 == 0) {
             if ((0.0f) == ene_bm3_fly->m_430.x && (0.0f) == ene_bm3_fly->m_430.z) {
-                ene_bm3_fly->m_430.x = sin_table_lookup(ene_bm3_fly->rotation_y);
-                ene_bm3_fly->m_430.z = cos_table_lookup(ene_bm3_fly->rotation_y);
+                ene_bm3_fly->m_430.x = sin_table_lookup(ene_bm3_fly->rotation.yaw);
+                ene_bm3_fly->m_430.z = cos_table_lookup(ene_bm3_fly->rotation.yaw);
             }
             if (vec3_dot(&ene_bm3_fly->m_430, &ene_bm3_fly->target_direction) < (0.99f)) {
                 if (is_vec_xz_cross_negative(&ene_bm3_fly->m_430, &ene_bm3_fly->target_direction) != 0) {
@@ -710,7 +710,7 @@ void TObjEneBm3Fly__sub_800B0B20(TObjEneBm3Fly *ene_bm3_fly, s32 arg1) {
         ene_bm3_fly->m_42c = ene_bm3_fly->approach_value(pos->y, ene_bm3_fly->target_destination.y);
         pos->y = ene_bm3_fly->m_42c;
         ene_bm3_fly->clamp_flight_height();
-        ene_bm3_fly->rotation_y = (s32)(10430.38043493439 * atan2_float(ene_bm3_fly->m_430.x, ene_bm3_fly->m_430.z));
+        ene_bm3_fly->rotation.yaw = (s32)(10430.38043493439 * atan2_float(ene_bm3_fly->m_430.x, ene_bm3_fly->m_430.z));
         ene_bm3_fly->vfunc_89();
         pos->x -= ene_bm3_fly->position.x;
         pos->y -= ene_bm3_fly->m_42c;
@@ -766,8 +766,8 @@ void TObjEneBm3Fly::execute_action(s32 arg1) {
                 update_height_offset();
             }
             this->update_velocity();
-            this->m_430.x = sin_table_lookup(this->rotation_y);
-            this->m_430.z = cos_table_lookup(this->rotation_y);
+            this->m_430.x = sin_table_lookup(this->rotation.yaw);
+            this->m_430.z = cos_table_lookup(this->rotation.yaw);
             update_state_flag();
             this->m_42c = this->approach_value(this->m_42c, this->target_destination.y);
             this->clamp_flight_height();
@@ -835,7 +835,7 @@ void TObjEneBm3Fly::state_circle_target(s32 arg1) {
             this->m_3cc = 0;
         } else {
             this->m_3c0 = 0;
-            this->m_3d0 = this->rotation_y + 0x8000;
+            this->m_3d0 = this->rotation.yaw + 0x8000;
             this->m_3d4 = 0;
             this->m_3cc = 0;
             this->m_3d8 = 0;
@@ -893,7 +893,7 @@ void TObjEneBm3Fly::state_circle_target(s32 arg1) {
         update_dd_flag(this->m_430.x, this->m_430.z, speed);
         this->m_42c = this->approach_value(this->m_42c, this->target_destination.y + vertical);
         this->clamp_flight_height();
-        this->rotation_y = (s32)(10430.38043493439 * atan2_float(
+        this->rotation.yaw = (s32)(10430.38043493439 * atan2_float(
             this->current_target->position.x - this->position.x, this->current_target->position.z - this->position.z));
         this->vfunc_89();
         this->play_pitched_cue();
@@ -1009,7 +1009,7 @@ void action__13TObjEneBm3FlyFPvi(TObjEneBm3Fly *child, s32 arg1) {
         TBoss8Dragon__sub_800BB7DC(child);
         TBoss8Dragon__sub_800BB7D8(child, 0xF1, (1.0f));
         play_sound_effect(child->remap_sound_for_area(0x4003E425), &child->position, 0, 0);
-        TBoss3Volopt::create_breakup_mdl((s32)TObjEneBm3Fly__breakup_model, (s32)&bm3_fly_breakup_params, child->texlist, (s32)&child->m_2fc, child->rotation_y);
+        TBoss3Volopt::create_breakup_mdl((s32)TObjEneBm3Fly__breakup_model, (s32)&bm3_fly_breakup_params, child->texlist, (s32)&child->m_2fc, child->rotation.yaw);
         child->m_3c0 = 0;
         return;
     case 3:
@@ -1131,7 +1131,7 @@ void TObjEneBm3Fly::render() {
         set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix();
         translate_matrix(0, this->position.x, this->m_42c, this->position.z);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
         set_alpha_ref_override(0x8F);
@@ -1153,7 +1153,7 @@ void TObjEneBm3Fly::vfunc_106() {
         set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
         draw_chunk_object(model);

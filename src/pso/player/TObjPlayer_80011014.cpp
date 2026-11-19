@@ -1468,7 +1468,7 @@ void TObjEnemy::draw_ground_shadow(const Vec *scale, s32 forceDraw) {
     translate_matrix(0, position.x, 0.3f + position.y, position.z);
     rotate_matrix_z(0, rotationZ);
     rotate_matrix_x(0, rotationX);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_matrix_x(0, -0x4000);
     if (scale != NULL) {
         scale_matrix(0, scale->x, scale->z, 1.0f);
@@ -3926,7 +3926,7 @@ s32 TObjChara::is_target_in_attack_range() {
                         subtract_vector(&v, &p->pos);
                         dist = v.x * v.x + v.z * v.z;
                         range = (p->target->parts[i].radius + ((TObjChara *)p)->get_attack_range()) * (p->target->parts[i].radius + ((TObjChara *)p)->get_attack_range());
-                        ang = ((s32)angle_difference_abs(this->rotation_y, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(v.x, v.z))));
+                        ang = ((s32)angle_difference_abs(this->rotation.yaw, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(v.x, v.z))));
                         if (dist < range && ang < ((TObjChara *)p)->get_attack_angle()) {
                             return 1;
                         }
@@ -3934,7 +3934,7 @@ s32 TObjChara::is_target_in_attack_range() {
                 }
             } else {
                 dist = calc_xz_distance_sq((s32)((s32)p), (u32)((u32)t), &out);
-                ang = ((s32)angle_difference_abs(this->rotation_y, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(out.x, out.z))));
+                ang = ((s32)angle_difference_abs(this->rotation.yaw, (s32)(player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(out.x, out.z))));
                 if (p->target->parts != NULL) {
                     prod = (p->target->parts->radius + ((TObjChara *)p)->get_attack_range()) * (p->target->parts->radius + ((TObjChara *)p)->get_attack_range());
                 } else {
@@ -3958,7 +3958,7 @@ f32 enemy_move_toward(u8 *arg0, s32 turn, Vec arg2, s32 arg3, f32 farg0) {
         }
     }
     ((TObjEnemy *)arg0)->enemy_turn_toward_dest(turn);
-    enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation_y);
+    enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation.yaw);
     move_with_wall_slide(arg0);
     return horizontal_distance_squared(&arg2, arg0 + 0x38);
 }
@@ -3997,7 +3997,7 @@ f32 enemy_pursue_point(u8 *arg0, s32 turn, Vec arg2, f32 farg0, f32 farg1) {
         }
     }
     ((TObjEnemy *)arg0)->enemy_turn_toward_dest(turn);
-    enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation_y);
+    enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation.yaw);
     move_with_wall_slide(arg0);
     return horizontal_distance_squared(&arg2, arg0 + 0x2FC);
 }
@@ -4037,7 +4037,7 @@ f32 TObjEnemy::enemy_wander_home(f32 farg0, f32 farg1, f32 farg2, s32 turn) {
         ((TObjEnemy *)arg0)->m_2ac = 0;
     } else {
         ((TObjEnemy *)arg0)->enemy_turn_toward_dest(turn);
-        enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation_y);
+        enemy_set_heading_velocity(farg0, (TObjEnemy *)arg0, ((TObjEnemy *)arg0)->rotation.yaw);
         move_with_wall_slide(arg0);
         var_f31 = horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->m_2fc);
         ((TObjEnemy *)arg0)->m_2ac = ((TObjEnemy *)arg0)->m_2ac + 1;
@@ -4248,8 +4248,8 @@ s32 TObjEnemy::turn_toward_direction(s32 max_step, Vec *direction) {
     s32 target_angle;
 
     target_angle = (s32) (player_radians_to_game_angle * ((f64 (*)(f32, f32))atan2_float)(direction->x, direction->z));
-    this->rotation_y = approach_angle_limited(this->rotation_y, target_angle, max_step);
-    return angle_difference_abs(this->rotation_y, target_angle);
+    this->rotation.yaw = approach_angle_limited(this->rotation.yaw, target_angle, max_step);
+    return angle_difference_abs(this->rotation.yaw, target_angle);
 }
 
 s32 TObjEnemy::enemy_turn_toward_dest(s32 turn) {

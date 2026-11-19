@@ -292,7 +292,7 @@ TUnk_80486924::TUnk_80486924(TObject *parent, s32 *params) : TObjEnemy(parent) {
     texlist = 0;
     model = 0;
     VecCopy(&position, &boss4_type2_start_position);
-    rotation_y = 0;
+    this->rotation.yaw = 0;
     VecCopy(&prev_position, VecCopy(&home_position, VecCopy(&center, &position)));
     collision_body_parts = init_collision_body_parts(this, boss4_type2_collision_body_parts, 1);
     VecCopy((Vec *)&m_2fc, &position);

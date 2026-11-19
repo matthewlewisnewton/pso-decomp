@@ -3531,7 +3531,7 @@ void TObjFish__sub_802E9DBC(u8 *arg0, u32 arg1, s32 arg2) {
             t2 = self->frame - 13.0f;
             { f32 h_ = 0.5f * self->f754; d = t2 * (h_ * t2); }
             self->z = self->f75C + d;
-            ((TBoss7DeRolLeC *)self)->rotation_z = self->f760 * t;
+            ((TBoss7DeRolLeC *)self)->rotation.roll = self->f760 * t;
             break;
         }
         case 6:
@@ -4038,7 +4038,7 @@ void TObjFish__sub_802E8E34(u8 *boss7_de_rol_le_c, u32 arg1) {
         *(s32 *)((s8 *)boss7_de_rol_le_c + 0x628) = *(s32 *)((s8 *)boss7_de_rol_le_c + 0x628) | 4;
         *(s32 *)((s8 *)boss7_de_rol_le_c + 0x628) = *(s32 *)((s8 *)boss7_de_rol_le_c + 0x628) & 0xFFFFFEFF;
         ((s32 (*)(void *))TObjFish__sub_802ECC44)(boss7_de_rol_le_c);
-        ((TBoss7DeRolLeC *)boss7_de_rol_le_c)->rotation_x = 0;
+        ((TBoss7DeRolLeC *)boss7_de_rol_le_c)->rotation.pitch = 0;
         *(f32 *)((s8 *)boss7_de_rol_le_c + 0x6F0) = 0.0f;
         return;
     case 9:

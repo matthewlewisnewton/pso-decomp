@@ -595,7 +595,7 @@ void TObjEneBm9Mericarol::sub_802D01D8(s32 arg1) {
             break;
         }
         if (distance < 50.0f) {
-            if (angle_difference_abs(rotation_y, m_4a0) < 0x4000) {
+            if (angle_difference_abs(this->rotation.yaw, m_4a0) < 0x4000) {
                 if (random_ratio() <= m_448) {
                     transition_enemy_state(9);
                     break;
@@ -630,8 +630,8 @@ void TObjEneBm9Mericarol::sub_802D01D8(s32 arg1) {
         update_velocity();
         m_494++;
         m_4a0 = (s32)(RADIANS_TO_ANGLE * atan2_float(target_direction.x, target_direction.z));
-        rotation_y = approach_angle_limited(rotation_y, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
-        rotation_y = (s16)rotation_y;
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
+        this->rotation.yaw = (s16)this->rotation.yaw;
         vfunc_102();
         vfunc_88();
         sub_802D073C();
@@ -669,8 +669,8 @@ void TObjEneBm9Mericarol::handle_shot_state(s32 arg1) {
         enemy_copy_target_destination();
         update_velocity();
         m_4a0 = (s32)(RADIANS_TO_ANGLE * atan2_float(target_direction.x, target_direction.z));
-        rotation_y = approach_angle_limited(rotation_y, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
-        rotation_y = (s16)rotation_y;
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
+        this->rotation.yaw = (s16)this->rotation.yaw;
         vfunc_102();
         vfunc_88();
         sub_802D073C();
@@ -747,7 +747,7 @@ void TObjEneBm9Mericarol::sub_802CFB64(s32 arg1) {
                 push_matrix();
                 set_matrix_identity(0);
                 post_translate_matrix(&position.x);
-                rotate_matrix_y(0, rotation_y);
+                rotate_matrix_y(0, this->rotation.yaw);
                 mult_vec_array__10TObjPlayerFUll(0, points0, trail0, 2);
                 mult_vec_array__10TObjPlayerFUll(0, points1, trail1, 2);
                 pop_matrix();
@@ -769,8 +769,8 @@ void TObjEneBm9Mericarol::sub_802CFB64(s32 arg1) {
         enemy_copy_target_destination();
         update_velocity();
         m_4a0 = (s32)(RADIANS_TO_ANGLE * atan2_float(target_direction.x, target_direction.z));
-        rotation_y = approach_angle_limited(rotation_y, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
-        rotation_y = (s16)rotation_y;
+        this->rotation.yaw = approach_angle_limited(this->rotation.yaw, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
+        this->rotation.yaw = (s16)this->rotation.yaw;
         vfunc_102();
         vfunc_88();
         sub_802D073C();
@@ -831,7 +831,7 @@ void TObjEneBm9Mericarol::sub_802CF7B4(s32 arg1) {
                 update_velocity();
             }
             m_4a0 = (s32)(RADIANS_TO_ANGLE * atan2_float(target_direction.x, target_direction.z));
-            rotation_y = approach_angle_limited(rotation_y, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, m_4a0, ((TObjEneBm9MericarolMovementParameters *)movementParameters)->move.turn_speed);
             vfunc_89();
             return;
         case 1:
@@ -1023,10 +1023,10 @@ void TObjEneBm9Mericarol::state_burrow(s32 arg1) {
             advance_animation();
             if (get_flag_b4() != 0) {
                 m_490 = 1;
-                x = 10.0f * sin_table_lookup(rotation_y);
+                x = 10.0f * sin_table_lookup(this->rotation.yaw);
                 pos.y = 0.0f;
                 pos.x = x;
-                pos.z = 10.0f * cos_table_lookup(rotation_y);
+                pos.z = 10.0f * cos_table_lookup(this->rotation.yaw);
                 vec3_add_to(&pos, &position);
                 TObjPlayer::spawn_dead_spot_here((s32)&pos, 0x32);
                 spawn_ground_effect(&pos, 0x46);
@@ -1255,7 +1255,7 @@ void TObjEneBm9Mericarol::render() {
     set_current_texture_list((GinjaTextureList *)texlist);
     push_matrix();
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_alpha_ref_override(0);
     TObjEneDD::clear_global_flag_400();
     translate_matrix(0, 0.0f, m_43c, 0.0f);
@@ -1334,7 +1334,7 @@ void TObjEneBm9Mericarol::draw_color_variant() {
         set_current_texture_list((GinjaTextureList *)texlist);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         TObjEneDD::clear_global_flag_400();
         TObjPlayer::toggle_particle_effect();
         set_alpha_ref_override(0);
@@ -1354,7 +1354,7 @@ void TObjEneBm9Mericarol::sub_802CE68C(Vec *out, s32 node) {
     set_motion_packed_rotation();
     push_matrix_from(&identity_matrix);
     post_translate_matrix(&position.x);
-    rotate_matrix_y(0, rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     set_motion_packed_rotation();
     calc_joint_matrices(frame);
     clear_motion_packed_rotation();

@@ -90,7 +90,7 @@ s32 TUnk_8048E1A4::freeze_shell_hold() {
     if (p == 0) {
         return;
     }
-    this->rotation_y += 0x10;
+    this->rotation.yaw += 0x10;
     if (((TObjCollidable *)p)->obj_testFlags30(0x800) == 0) {
         if (((TObjCollidable *)p)->obj_testFlags30(0x20) != 0) {
             return;
@@ -113,7 +113,7 @@ void TUnk_8048E1A4::freeze_shell_grow() {
     u8 *arg0 = (u8 *)this;
     Vec stack;
     f32 temp_f0;
-    this->rotation_y = (this->rotation_y + 0x1000);
+    this->rotation.yaw = (this->rotation.yaw + 0x1000);
     this->scale.z += 0.1f;
     temp_f0 = this->scale.z;
     this->scale.y = temp_f0;
@@ -127,7 +127,7 @@ void TUnk_8048E1A4::freeze_shell_grow() {
         stack.y = 0.0f;
         stack.z = 10.0f * this->scale.x;
         push_matrix_from(&identity_matrix.value);
-        rotate_matrix_y(0, (int) (this->rotation_y * 2));
+        rotate_matrix_y(0, (int) (this->rotation.yaw * 2));
         rotate_vector_by_matrix(0, &stack.x, &stack.x);
         pop_matrix();
         vec3_add_to(&stack.x, (u8 *)&this->position);
@@ -181,7 +181,7 @@ void TUnk_8048E1A4::render() {
         set_current_texture_list(get_bml_texlist((BmlResource *)((void *)freeze_shell_bml_resource), 1));
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         scale_current_matrix((u8 *)&this->scale);
         switch (*(s32 *)((s8 *)arg0 + 0x334)) {
         case 0:

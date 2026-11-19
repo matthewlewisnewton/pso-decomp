@@ -209,7 +209,7 @@ void TObjNpcBase::apply_set_params(s32 arg1, s32 arg2) {
     }
     ((TObjNpcBase *)arg0)->sub_80149360((s32) *(f32 *)((s8 *)arg0 + 0x364));
     ((TObjNpcBase *)arg0)->sub_80149358((s32) *(f32 *)((s8 *)arg0 + 0x360));
-    this->m_384 = (s32) this->rotation_y;
+    this->m_384 = (s32) this->rotation.yaw;
     if ((s32) this->m_3ac > 0) {
         this->m_398 = 400.0f;
         return;
@@ -377,7 +377,7 @@ void TObjNpcBase::update_wandering() {
         u8 *o;
         f32 r;
         ((TObjEnemy *)arg0)->enemy_turn_toward_dest(*(s32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 8));
-        enemy_set_heading_velocity(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), (TObjEnemy *)arg0, this->rotation_y);
+        enemy_set_heading_velocity(*(f32 *)((s8 *)(*(u8 * *)&this->movementParameters) + 4), (TObjEnemy *)arg0, this->rotation.yaw);
         move_with_wall_slide(arg0);
         if (((TObjMotion *)arg0)->is_passing_frame(1.0f) != 0 || ((TObjMotion *)arg0)->is_passing_frame(15.0f) != 0) {
             this->play_voice();
@@ -408,7 +408,7 @@ void TObjNpcBase::update_wandering() {
 void TObjNpcBase::update_standing() {
     switch (this->phase) {
     case 0:
-        if (this->rotation_y != this->m_384) {
+        if (this->rotation.yaw != this->m_384) {
             this->phase = 2;
             this->request_action(1);
         } else {
@@ -419,8 +419,8 @@ void TObjNpcBase::update_standing() {
     case 1:
         break;
     case 2:
-        if (this->rotation_y != this->m_384) {
-            this->rotation_y = approach_angle_limited(this->rotation_y, this->m_384, *(s32 *)((s8 *)this->movementParameters + 8));
+        if (this->rotation.yaw != this->m_384) {
+            this->rotation.yaw = approach_angle_limited(this->rotation.yaw, this->m_384, *(s32 *)((s8 *)this->movementParameters + 8));
         } else {
             this->phase = 1;
             this->request_action(0);
@@ -586,7 +586,7 @@ void TObjNpcBase::render() {
         set_current_texture_list((GinjaTextureList *)this->texlist);
         push_matrix_from(0);
         translate_matrix_vec3(0, (u8 *) &this->position);
-        rotate_matrix_y(0, this->rotation_y);
+        rotate_matrix_y(0, this->rotation.yaw);
         set_motion_packed_rotation();
         if ((s32) this->m_394 != 0) {
             draw_chunk_object(this->model);

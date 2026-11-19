@@ -92,7 +92,7 @@ void TOKeyJungleMain::render() {
             set_current_texture_list(get_bml_texlist(TOKeyJungleMain__static_model_resource, 1));
             push_matrix();
             post_translate_matrix(&position.x);
-            rotate_matrix_y(0, rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_object((void *)get_bml_model(TOKeyJungleMain__static_model_resource, 1));
             pop_matrix();
             return;
@@ -100,7 +100,7 @@ void TOKeyJungleMain::render() {
             set_current_texture_list(get_bml_texlist(TOKeyJungleMain__static_model_resource, 1));
             push_matrix();
             post_translate_matrix(&position.x);
-            rotate_matrix_y(0, rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             draw_ginja_model_with_motion((void *)get_bml_model(TOKeyJungleMain__static_model_resource, 1),
                                          get_bml_motion(TOKeyJungleMain__static_model_resource, 1), switch_frame);
             TParticleCtrl::begin_effect_render();

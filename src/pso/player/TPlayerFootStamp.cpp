@@ -3,7 +3,6 @@
 #include "pso/render/CurrentTextureList.h"
 #include "types.h"
 #include <stdlib.h>
-#include "pso/boss/darkfalz/TBoss4DarkFalz.h"
 #include "pso/map/CsnQuery.h"
 #include "pso/map/FloorArea.h"
 #include "pso/math/AngleLookup.h"
@@ -82,7 +81,7 @@ TPlayerFootStamp::TPlayerFootStamp(TObjPlayer *player, s32 side) : TObject(tl_07
     f32 length;
     f32 width;
     f32 offset;
-    s32 *rotation;
+    CameraAngles *rotation;
     CsnHit *ground;
     s16 angle;
     Vec dir[2];
@@ -210,8 +209,7 @@ TPlayerFootStamp::TPlayerFootStamp(TObjPlayer *player, s32 side) : TObject(tl_07
         verts[3].v = 1.0f;
         verts[3].color = color;
 
-        // TBoss4DarkFalz::get_hit_data returns &rotation_x of any TObjBase.
-        rotation = (s32 *)((TBoss4DarkFalz *)player)->get_hit_data();
+        rotation = player->get_rotation();
         VecCopy(&position, (Vec *)player->get_position_ptr());
         position.y += 5.0f;
         ground = csnVecterUnder(&position, 0x16EF);
@@ -219,7 +217,7 @@ TPlayerFootStamp::TPlayerFootStamp(TObjPlayer *player, s32 side) : TObject(tl_07
             queue_destruction();
             return;
         }
-        angle = rotation[1];
+        angle = rotation->yaw;
         VecCopy(&position, &ground->contact->point);
         position.y += 0.5f * ((1.0f / 32768.0f) * rand()) + 0.5f;
         if (this->side != 0) {
@@ -246,7 +244,7 @@ TPlayerFootStamp::TPlayerFootStamp(TObjPlayer *player, s32 side) : TObject(tl_07
         }
         push_matrix();
         set_matrix_identity(NULL);
-        rotate_matrix_y(NULL, rotation[1]);
+        rotate_matrix_y(NULL, rotation->yaw);
         rotate_matrix_z(NULL, pitch);
         fn_803D8DE0(0, dir, dir, 2);
         pop_matrix();

@@ -904,7 +904,7 @@ s32 TObjEneDolmOlm::render_model_if_visible() {
             set_current_texture_list((GinjaTextureList *)this->texlist);
             push_matrix();
             post_translate_matrix((void *) (((u8 *)this) + 0x38));
-            rotate_matrix_y(0, this->rotation_y);
+            rotate_matrix_y(0, this->rotation.yaw);
             this->draw();
             pop_matrix();
             restore_render_scissor(1);
@@ -1346,7 +1346,7 @@ void TObjEneDolmOlm::vfunc_93() {
     push_matrix();
     set_matrix_identity(0);
     post_translate_matrix(&o->pos);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     mult_vec_array__10TObjPlayerFUll(0, e, &a, 2);
     pop_matrix();
     eff = o->effs[idx];
@@ -1361,7 +1361,7 @@ void TObjEneDolmOlm::vfunc_94() {
     stack.y = 10.0f;
     stack.z = 0.5f * *(f32 *)(this->m_2b0 + 0x10);
     push_matrix_from((void *)&identity_matrix.value);
-    rotate_matrix_y(0, this->rotation_y);
+    rotate_matrix_y(0, this->rotation.yaw);
     rotate_vector_by_matrix(0, (void *)&stack.x, (void *)&stack.x);
     pop_matrix();
     vec3_add_to((void *)&stack.x, (void *)(arg0 + 0x38));
