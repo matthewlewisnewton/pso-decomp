@@ -276,6 +276,21 @@ Three renamed exports and seven other recovered or verified interfaces retain th
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 37 fork records. It has 1,216 entries awaiting owner comparison and 841 with partial evidence.
 
+## Incoming upstream master `af11a99125`
+
+A clean build of `af11a99125` reproduced the original executable and passed the project checker. Four review groups replay cleanly onto it. Their builds reproduce retail and retain the new upstream source coverage. Comparisons with the original fork build found no additional source or linked coverage losses.
+
+| Review group | Local branch | Head | Replayed commits |
+| --- | --- | --- | --- |
+| network-contracts | `great-merge/incoming/af11a99125/network-contracts` | `ebe7edd892` | 3 |
+| resource-lifetimes | `great-merge/incoming/af11a99125/resource-lifetimes` | `a53303e898` | 9 |
+| encounter-drawing | `great-merge/incoming/af11a99125/encounter-drawing` | `94363b6618` | 10 |
+| world-object-resources | `great-merge/incoming/af11a99125/world-object-resources` | `6dd9ff3049` | 11 |
+
+Across the original 90 fork data ranges, the new master links 956 bytes and retains 167 bytes of alignment padding. The remaining 24 bytes are the software keyboard virtual table at 0x804D0004. The existing verified window replay emits that table. The new master now emits the other two window tables, recovering 48 bytes from the preceding master. The [data range ledger](2026-11-18-fork-data-ranges.tsv) records every range.
+
+The existing combined and all-source branches stay at their verified heads on `6e09dda9c5` while their replay is reconciled. A three-way comparison found 42 conflicts, including 23 window and menu paths, 14 encounter and effect paths, and 3 build metadata files. Several conflicts follow upstream's native class and virtual table changes. The replay needs those definitions and the fork's typed consumers together.
+
 ## Replay on upstream master `6e09dda9c5`
 
 Upstream advanced 65 commits from `3f35d99bb1`. A fresh build of `6e09dda9c5` reproduces the original GameCube executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Four local candidates have passed that same executable check and the full project checker against the new master.
