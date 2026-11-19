@@ -1,6 +1,33 @@
 # Upstream matchpasses
 
-## Consolidated review queue on upstream master
+## Current review queue on upstream master `3f35d99bb1`
+
+All eleven local review groups and the three follow-up commits were replayed on `3f35d99bb1`. The cumulative stack at `3b34b9def9` changes 1,364 paths counting both sides of renames. The matching all-source stack is `f316df63ad`. The snapshots on `c572111ed6` remain under `great-merge/snapshots/c572111ed6/`.
+
+| Review branch | Standalone tip | Cumulative commit |
+| --- | --- | --- |
+| `great-merge/current/network-contracts` | `f68c619ed6` | `756d4a874b` |
+| `great-merge/current/memory` | `f69270a9e6` | `96b4cca0db` |
+| `great-merge/current/resource-lifetimes` | `fcab64f825` | `16772fda0f` |
+| `great-merge/current/spatial-effects` | `00d9ae7483` | `1b33f02f81` |
+| `great-merge/current/combat` | `832832702f` | `de49f74be1` |
+| `great-merge/current/encounter-drawing` | `5101697a58` | `9445c1e728` |
+| `great-merge/current/window-frames` | `73da7884fb` | `942a0c050f` |
+| `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
+| `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
+| `great-merge/current/actor-presentation` | `3b5e256b38` | `fa2a1e5837` |
+| `great-merge/current/world-object-resources` | `fe57774bc0` | `5996f01f11` |
+| Challenge enemy-set records | Included in its review branch | `4fa38ff78e` |
+| Audio file-system callbacks | Included in its review branch | `50bc7543d7` |
+| Barba Ray and Olga Flow encounter records | Included in its review branch | `3b34b9def9` |
+
+The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
+
+The cumulative validation compiled 2,450 selected source objects. Of the 2,415 objects present in the preceding stack, 2,403 are identical in allocated sections, symbol locations and relocations after same-address aliases are normalized. Twelve differ only in the data sections moved or adopted from upstream. The configured link set has 2,484 inputs and no new unresolved strong reference. The combat, encounter and window reviews compiled 47 affected objects each, and the renderer review compiled 48. The stock checker passed in object-report mode against a fresh upstream object report, with 27,572 exact functions, all 2,450 linked units exact and no loss of non-padding coverage. The original executable hash gate remains pending on this base.
+
+The fork-only branch `great-merge/current/layered-fork` at `a3aab5454f` leaves the cumulative source tree identical outside the fork layer. Its materialized checkout reproduces all 133 overlay paths from `500467cd41`. The layer check and eleven unit tests passed on the rebased head. The [original range ledger](2026-11-18-fork-data-ranges.tsv) still accounts for all 1,147 bytes. Upstream now supplies 872 exact source-linked bytes, the combined stack supplies the remaining 108, and 167 bytes are verified alignment padding.
+
+## Consolidated review queue on `c572111ed6`
 
 The local branches below group related changes for review. The component branches retain their individual validation records. Together the eleven groups cover the 1,339 added, changed and removed source paths in the difference from upstream master to `a5540e955c`. Separate path entries count both endpoints of renames. Shared files can appear in multiple groups.
 

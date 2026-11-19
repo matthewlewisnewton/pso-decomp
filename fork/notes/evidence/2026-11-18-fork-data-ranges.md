@@ -1,5 +1,9 @@
 # Fork data coverage at the November 18 sync point
 
+## Data coverage on upstream master `3f35d99bb1`
+
+Fresh compiled objects and both address reports account for all 90 ranges on `great-merge/current/review-stack` at `3b34b9def9`. The new data pass increases upstream's share from 684 to 872 exact source-linked bytes. There are 108 remaining source bytes on upstream in 7 ledger rows. The combined stack supplies all of them, for a total of 980 exact source-linked bytes and 167 bytes of checked alignment padding. The [range ledger](2026-11-18-fork-data-ranges.tsv) records both builds at every original address. The executable hash gate is separate from this object report.
+
 ## All 90 ranges accounted for on upstream PR 326
 
 At `d5446188e8`, 980 bytes of the original inventory lie in exact data sections from linked source files. Another 167 bytes are original zero-fill alignment gaps. The check used the retail image, symbol extents and section boundaries at each address. Upstream `c572111ed6` already supplied 684 source-linked bytes and the same 167 padding bytes. The fifteen local source components supply the remaining 296 source bytes. The last three columns of the [range ledger](2026-11-18-fork-data-ranges.tsv) record linked bytes, verified padding and remaining bytes separately. The historical object sizes below describe the initial fork build.
