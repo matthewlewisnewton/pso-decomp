@@ -1,5 +1,9 @@
 # Fork data coverage at the November 18 sync point
 
+## After upstream PR 326
+
+Upstream `c572111ed6` covers 851 of the original 1,147 bytes. Its clean retail build leaves 296 bytes in 12 of the 90 inventory rows, down from 644 bytes before PR 326. On this base, the twelve-group local source branch `great-merge/current/all-source` at `0ac68a6d4c` recovers 184 more bytes. Its five remaining rows total 112 bytes. The keyboard and speech balloon each own 24. The item-help window owns 24 bytes of dispatch data and 16 bytes of constants. The status window owns 24 bytes of constants. The [range ledger](2026-11-18-fork-data-ranges.tsv) records both measurements at every original address.
+
 ## After the four upstream reviews merged
 
 As of upstream `f76fdd7ff1`, 644 of the original 1,147 bytes remain across 29 ranges. The three latest merges recovered 72 bytes across four rows compared with `2ad5dece70`. The last column of the [range ledger](2026-11-18-fork-data-ranges.tsv) compares source-linked data from a clean build of the merged master with fork main and excludes verified padding. Full local integration accounts for every row.

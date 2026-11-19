@@ -1,6 +1,32 @@
 # Upstream matchpasses
 
-## Current source-only submission queue
+## Review branches on upstream PR 326
+
+Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. The twelve branches combine on `great-merge/current/all-source` at `0ac68a6d4c` across 607 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
+
+| Subject | Local branch | Commit | Paths from current master |
+| --- | --- | --- | ---: |
+| Recover radar map views and actor markers | `great-merge/current/radar-camera` | `a87a5d8123` | 20 |
+| Recover encounter strip selection and texture scrolling | `great-merge/current/texture-strips` | `6ceb6c20b8` | 33 |
+| Recover the shared demo playback check and its callers | `great-merge/current/demo-playback` | `32cf63b74b` | 112 |
+| Recover enemy movement and player target selection | `great-merge/current/enemy-motion` | `938245496d` | 74 |
+| Recover native callback signatures and SDK math declarations | `great-merge/current/native-callbacks-sdk` | `777ad3e8aa` | 11 |
+| Recover battle parameter tables and their consumers | `great-merge/current/battle-parameters` | `de0774585f` | 79 |
+| Recover actor positions, movement vectors and scripted camera playback | `great-merge/current/actor-camera-angles` | `5d0802c2e5` | 340 |
+| Recover quest download caching and memory-card save images | `great-merge/current/quest-cache` | `819c685f00` | 25 |
+| Recover archive loaders, movie lifetime and GVM textures | `great-merge/current/archive-lifecycle` | `4443f0c85f` | 130 |
+| Recover Dark Falz effects and Olga Flow trail frames | `great-merge/current/boss-effects` | `cb172b2134` | 51 |
+| Recover the De Rol Le and Barba Ray raft effects | `great-merge/current/raft-encounters` | `2032c512f9` | 20 |
+| Recover player combat constants, weapon animation and technique effects | `great-merge/current/player-techniques` | `474dab4b5c` | 48 |
+
+The combined branch recovers 184 of the 296 original inventory bytes still missing on master. The five remaining window rows account for 112 bytes. Comparison with fork main finds zero lost exact functions, source-linked functions or non-padding data extent. The [original address ledger](2026-11-18-fork-data-ranges.tsv) records the source-linked byte count for each of its 90 rows.
+
+The new upstream owners include the item archive loader, the small help font, Gifoie, the Dark Falz player fade, the character-creation ruler and the two weapon-effect files. The review patches retain those upstream owners. Executable probes covered radar gates, both encounter strip rings, battle tables, targeting, demo playback, character vectors, quest caching, save artwork, GVM archives, Olga Flow trail frames and weapon animation. The port retains the upstream identity matrix table and the named tunnel scroll speed at their verified addresses.
+
+`great-merge/fork-docs` carries the fork documentation on this upstream master. The complete earlier integration snapshot remains on `great-merge/integration` while its remaining source groups and fork tooling are carried forward.
+
+## Review queue on the previous master
+
 
 The maintainer requested that specialized tools stay on the fork. Upstream candidates contain game and library source, headers and the configuration needed to build those sources. Run the upstream repository's own checks on a clean source branch. The working fork supplies its own probes, CI, host harnesses, and build helpers on a separate branch.
 
@@ -13,7 +39,7 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
 
-The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists twenty independently tested local branches based on upstream `f76fdd7ff1`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
+The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists twenty independently tested local branches based on upstream `f76fdd7ff1`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. The register preserves the verified components on that previous master. Earlier validation branches below also contain fork tools and serve as historical evidence.
 
 The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the later changes to collision, matrix math, the ADX decoder, positional sound requests, particle factories, enemy targeting, demo playback, ground contacts, memory-card operations, save images, actor orientation, encounter camera calls, Olga Flow afterimages, movie modules, GVM texture archives, heap release and character movement vectors. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
 
