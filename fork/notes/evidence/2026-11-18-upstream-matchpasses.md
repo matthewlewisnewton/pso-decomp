@@ -50,7 +50,7 @@ The original thirteen-way split crosses changes to shared interfaces. The local 
 
 The 514-path archive and caller stage is a local build checkpoint. It still needs smaller related review groups. The two commits preserve a working base while that split is refined.
 
-Four changes within the checkpoint now build on the combined source and
+Five changes within the checkpoint now build on the combined source and
 memory changes (`5c12a4b1cf`). These are stacked local review candidates.
 
 | Local branch | Commit | Paths changed from parent | Review scope |
@@ -59,8 +59,9 @@ memory changes (`5c12a4b1cf`). These are stacked local review candidates.
 | `great-merge/fork-validation/bml-accessors` | `2085b37b6b` | 258 | Use one typed BML model and texture accessor declaration across archive loads and their game callers. |
 | `great-merge/fork-validation/bml-lifecycle` | `ae0c1877fc` | 228 | Construct and destroy each model archive through its native C++ owner, including every loader and teardown caller. |
 | `great-merge/fork-validation/model-node-capture` | `c9c246ddfd` | 38 | Install and clear model-node capture during rendering and write captured positions for boss and enemy effects. |
+| `great-merge/fork-validation/enemy-model-resources` | `5028bc4339` | 44 | Recover enemy model and animation resources, detached-part state, and the shared floor-area sound calls. Includes the eight Canadin and Morfos parameter tables their loaders use. |
 
-All four pass upstream's build and regression checks and reproduce the retail DOL.
+All five pass upstream's build and regression checks and reproduce the retail DOL.
 The BML accessor stage also passes the fork tests for declarations, consumers, and
 table layout. Executing the built renderer setter verified its return value and
 the single context slot it writes for both null and non-null lists. Five archive
@@ -69,8 +70,8 @@ empty, null and 63–65-entry table cases, registered the correct callback, and 
 two distinct outputs for a repeated node index.
 
 Path counts overlap because many game objects load, render, and destroy the same
-model. Comparing the fourth stage with the earlier pre-window checkpoint leaves
-196 changed paths. The window-layout group follows that checkpoint.
+model. Comparing the fifth stage with the earlier pre-window checkpoint leaves
+154 changed paths. The window-layout group follows that checkpoint.
 
 
 The source ledger reconciles 25 original fork headers that declared a constructor
