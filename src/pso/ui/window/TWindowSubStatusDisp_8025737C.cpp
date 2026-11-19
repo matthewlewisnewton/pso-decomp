@@ -1,3 +1,4 @@
+#include "pso/render/ColorCopy.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
@@ -6,7 +7,6 @@
 #include "pso/system/memory.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
-#include "pso/ui/frontend/TAdChrMoveEffectGC.h"
 #include "pso/ui/window/TWindowSubComCard.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
@@ -179,7 +179,7 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
         arg0->tr = c.r;
         arg0->tg = c.g;
         arg0->tb = c.b;
-        ((TAdChrMoveEffectGC *)(&c))->copy4(&arg0->col);
+        copy_color_bytes(&c, &arg0->col);
         time = 1.0f / time;
         arg0->cr = c.r;
         arg0->cg = c.g;
@@ -191,7 +191,21 @@ void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time) {
     }
 }
 
-void TAdChrMoveEffectGC::copy4(void* q) { *(u8 *)&this->m_name = *(u8*)((char*)q + 0x0); *(u8*)((char*)this + 0x1) = *(u8*)((char*)q + 0x1); *(u8*)((char*)this + 0x2) = *(u8*)((char*)q + 0x2); *(u8*)((char*)this + 0x3) = *(u8*)((char*)q + 0x3); }
+}
+
+#pragma push
+#pragma scheduling off
+void copy_color_bytes(void *destination, const void *source) {
+    u8 *dst = (u8 *)destination;
+    const u8 *src = (const u8 *)source;
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+    dst[3] = src[3];
+}
+#pragma pop
+
+extern "C" {
 
 void TUnk_804CF948::calc_bar_width() {
     TUnk_804CF930::calc_bar_width();

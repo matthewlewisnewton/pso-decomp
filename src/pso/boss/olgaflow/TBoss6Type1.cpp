@@ -18,6 +18,7 @@
 #include "pso/object/base/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/boss/olgaflow/TBoss6Type1.h"
+#include "pso/boss/olgaflow/TBoss6Zanzo.h"
 #include "pso/boss/olgaflow/TBoss6SwordShot.h"
 #include "pso/boss/olgaflow/TBoss6Mine.h"
 #include "pso/boss/darkfalz/TObjDFHorming.h"
@@ -554,7 +555,6 @@ struct Arr_802B93C4 { u8 pad[0x378]; s32 arr[32]; };
 struct Tmp_802B93C4 { s32 a; s16 b; s16 c; u8 pad[0x10]; };
 
 void TBoss6Type1__sub_802B854C(void *);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 extern u8 __vt__11TBoss6Type1[];
 
 }
@@ -605,10 +605,10 @@ const f32 TBoss6Type1__sword_shot_hit_radii[4] = {15.0f, 20.0f, 25.0f, 50.0f};
 const s32 lbl_80470F70[5] = {4, 3, 7, 5, 6};
 // The zero vector TBoss6Type1__sub_802B6504 starts the mine offsets from.
 const Vec lbl_80470F84 = {0.0f, 0.0f, 0.0f};
-const u32 boss6_type1_trail_point_offsets[7] = {
+const u32 boss6_type1_trail_colors[7] = {
     0xFFFF4000, 0xFFFFFF60, 0xFFFFFF60, 0xFFFF4000, 0xFFFFFF60, 0xFFFFFF60, 0xFFFF4000,
 };
-const s32 lbl_80470FAC[2] = {-0xC000, -0x40};
+const u32 boss6_type1_effect_colors[2] = {0xFFFF4000, 0xFFFFFFC0};
 const Vec TBoss6Type1__data_80470FB4 = {0.0f, 19.8f, -5.0f};
 const Vec lbl_80470FC0 = {0.0f, 25.43f, 45.42f};
 const Vec lbl_80470FCC = {0.0f, -5.0f, 5.0f};
@@ -700,8 +700,8 @@ s32 TBoss6Type1__ct(s32 arg0_, s32 parent, s32 arg2_) {
     *(ModelNodePositionCapture **)((s8 *)arg0 + 0x650) = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type1_model_node_desc_b, (Vec *)(arg0 + 0x5FC));
     ((TBoss6Type1 *)arg0)->scroll_strips_u.build_tables(boss6_type1_build_table, 2);
     ((TBoss6Type1 *)arg0)->scroll_strips_v.build_tables(lbl_80470EA0, 1);
-    *(s32 *)((s8 *)arg0 + 0x400) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 7, 0xF);
-    *(s32 *)((s8 *)arg0 + 0x404) = create_zanzo__11TBoss6Type1FPvPvPv(arg0, 2, 0xF);
+    ((TBoss6Type1 *)arg0)->trail_point_receiver = TBoss6Zanzo::create((TBoss6Type1 *)arg0, 7, 0xF);
+    ((TBoss6Type1 *)arg0)->effect_point_receiver = TBoss6Zanzo::create((TBoss6Type1 *)arg0, 2, 0xF);
     *(s32 *)((s8 *)arg0 + 0x414) = 0;
     *(s8 *)((s8 *)arg0 + 0x41C) = 0;
     TBoss6Type1__sub_802B96C0((s32)(arg0 + 0x420), (s32)&lbl_80470EAC);
@@ -2028,7 +2028,7 @@ void TBoss6Type1::update_trail_points() {
     subtract_vector(&points[2],&delta);
     vec3_add_to(&points[4],&delta);
     VecCopy((Vec *)&points[6], (const Vec *)&points[0]);
-    ((TBoss6Type1 *)trail_point_receiver)->set_effect_points((f32 *)points, (u32 *)boss6_type1_trail_point_offsets);
+    trail_point_receiver->set_effect_points(points, boss6_type1_trail_colors);
 }
 
 void TBoss6Type1::update_effect_points() {
@@ -2036,7 +2036,7 @@ void TBoss6Type1::update_effect_points() {
     VecCopy((Vec *)&points[0], (const Vec *)&effect_points[0]);
     VecCopy((Vec *)&points[1], (const Vec *)&effect_points[1]);
     TBoss6Type1::set_part_default_value((int)this, &points[1]);
-    ((TBoss6Type1 *)effect_point_receiver)->set_effect_points((f32 *)points, (u32 *)lbl_80470FAC);
+    effect_point_receiver->set_effect_points(points, boss6_type1_effect_colors);
 }
 
 void TBoss6Type1::set_part_default_value(int a0, void* a1) { *(float*)((char*)a1 + 0x4) = 10.0f; }

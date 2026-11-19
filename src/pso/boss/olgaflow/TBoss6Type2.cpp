@@ -11,6 +11,7 @@
 #include "pso/object/base/TObjChara.h"
 #include "pso/boss/olgaflow/TBoss6Mag.h"
 #include "pso/boss/olgaflow/TBoss6Type2.h"
+#include "pso/boss/olgaflow/TBoss6Zanzo.h"
 #include <stddef.h>
 #include "pso/boss/olgaflow/TBoss6EffHyoui.h"
 #include "pso/boss/volopt/TBoss3Volopt.h"
@@ -177,7 +178,6 @@ void TBoss6Rock__sub_80354A44(void);
 void free_collision_body_parts(void *);
 void set_screen_pos__11TBoss6Type2FPv(void *arg0);
 void TBoss6Type2__sub_802BE4E0(s32 *arg0, s32 *arg1);
-s32 create_zanzo__11TBoss6Type1FPvPvPv(void *, int, int);
 void TBoss6Type2__sub_802BD938(u8 *arg0, u8 *arg1);
 
 f64 atan2_float(f32, f32);
@@ -635,7 +635,7 @@ TBoss6Type2::TBoss6Type2(TObject *parent, s32 *params) : TObjEnemy(parent) {
     init_motion_entries();
     m_764 = ModelNodePositionCapture::create((ModelNodePositionEntry *)boss6_type2_effect_desc_table, (Vec *)&m_59c);
     scroll_strips.build_tables(boss6_type2_plot_falz_entry_table, 2);
-    m_458 = create_zanzo__11TBoss6Type1FPvPvPv(this, 7, 0xF);
+    trail_effect = TBoss6Zanzo::create(this, 7, 0xF);
     m_478 = 0;
     m_47c = 0x11;
     TBoss6Type2__sub_802BE4E0((s32 *)&m_480, (s32 *)boss6_type2_zero_vec);

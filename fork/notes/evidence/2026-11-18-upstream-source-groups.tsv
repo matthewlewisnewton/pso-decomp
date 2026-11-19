@@ -1791,3 +1791,27 @@ Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src
 Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/boss/volopt/TBoss3VoloptP02.cpp	3
 Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/effect/photon/PhotonBlastSummon.cpp	4
 Encounter camera poses and playback	8f36179c05d4933c755aff85f9246822f7c700e4	src/pso/unk/text_8004D9A8.cpp	11
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	config/GPOE8P/psov3/symbols.txt	6
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.h	3
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/boss/olgaflow/TBoss6Type1.h	5
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/boss/olgaflow/TBoss6Type2.h	2
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/boss/olgaflow/TBoss6Zanzo.h	8
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/player/TObjPlayer.h	1
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/render/ColorCopy.h	1
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/render/TriangleFan3D.h	1
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/system/NinjaTypes.h	5
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/ui/frontend/TAdChrMoveEffectGC.h	1
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	include/pso/unk/text_80320358.h	1
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp	6
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/boss/olgaflow/TBoss6Type1.cpp	7
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/boss/olgaflow/TBoss6Type1_80320AE0.cpp	2
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/boss/olgaflow/TBoss6Type2.cpp	3
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/boss/olgaflow/TBoss6Zanzo.cpp	29
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/object/TObjSinBoard.cpp	5
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/ui/frontend/TAdChrMoveEffectGC.cpp	9
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp	7
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/ui/frontend/TAdRicoRingCtrl.cpp	4
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp	4
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/unk/TLobby_801E2F94.cpp	5
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/unk/text_80290D1C.cpp	2
+Olga Flow afterimages and colored triangle fans	7a9570338ff8a3aa84279378ac28e389722e3272	src/pso/unk/text_80320358.cpp	1

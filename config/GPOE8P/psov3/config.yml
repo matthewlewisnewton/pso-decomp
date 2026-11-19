@@ -9194,7 +9194,7 @@ force_active:
   - copy_target_record__11TMainCursorFPvPv
   - copy_target_state__17TObjEneBm3FlyNestFl
   - copy_tech_params__10TObjPlayerFPvPv
-  - copy_trail_buffer__11TBoss6ZanzoFPvPv
+  - copy_trail_buffer__11TBoss6ZanzoFP15Boss6TrailFrameP15Boss6TrailFrame
   - copy_transform__10TNpcPlayerFPvPv
   - copy_transform__11TBoss6Type1FPv
   - copy_transform__11TBoss6Type2FPv
@@ -23772,7 +23772,7 @@ force_active:
   - sub_8031D4B0__12TObjEneReconFl
   - sub_8031F6C0__14TObjEneRecoboxFl
   - sub_8031F800__14TObjEneRecoboxFv
-  - sub_803205C4__11TBoss6ZanzoFv
+  - draw_trail__11TBoss6ZanzoFv
   - sub_80320B38__20TAdGameStartShadowGCFv
   - sub_8032A140__19TAdMcSelectCursorGCFv
   - sub_8032A15C__19TAdMcSelectCursorGCFv

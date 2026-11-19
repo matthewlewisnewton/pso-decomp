@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -68,8 +69,6 @@ int push_matrix(void*);
 // inferred: the vertex list draw_tri_fan_2d reads (cf. VtxList_80077BC0)
 struct RicoRingFan { f32 *positions; u32 *colors; s32 n; s32 count; };
 
-// inferred: the quad draw_tri_fan_3d reads (cf. ZanzoQuad)
-struct RicoRingQuad { Vec *positions; u32 *colors; void *uvs; s32 count; };
 
 const char *rico_ring_model_names[2] = { "rico_ring.nj", NULL };
 const char *rico_ring_motion_names[2] = { "rico_ring.njm", NULL };
@@ -79,7 +78,7 @@ BmlResourceDescriptor TAdRicoRingCtrl__resource_descriptor = {
 // inferred: vertex colours, corners and quad of the ring sprite TAdRicoRingCtrl::render draws in 3D
 u32 rico_ring_quad_colors[4] = { 0xB0, 0xB0, 0xB0, 0xB0 };
 Vec rico_ring_quad_vertices[4] = { 0.0f };
-RicoRingQuad rico_ring_quad = { rico_ring_quad_vertices, rico_ring_quad_colors, NULL, 4 };
+NJS_POINT3COL rico_ring_quad = { rico_ring_quad_vertices, rico_ring_quad_colors, NULL, 4 };
 // inferred: the screen rectangle and colours of the fade TAdRicoRingCtrl::render draws in 2D
 f32 rico_ring_fade_positions[8] = { 350.0f, 0.0f, 640.0f, 0.0f, 640.0f, 600.0f, 350.0f, 600.0f };
 u32 rico_ring_fade_colors[4];
@@ -346,7 +345,7 @@ void TAdRicoRingCtrl::render() {
         v[11] = g;
         lbl_805D4A31 = 1;
     }
-    ((TObjPlayer *)&rico_ring_quad)->draw_tri_fan_3d(4, 6);
+    draw_tri_fan_3d(&rico_ring_quad, 4, 6);
     t = *(f32 *)&this->unk_24;
     if (t > 0.0f) {
         RicoRingFan args = { rico_ring_fade_positions, rico_ring_fade_colors, 0, 4 };

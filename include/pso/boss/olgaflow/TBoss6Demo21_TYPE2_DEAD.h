@@ -5,6 +5,8 @@
 #include <dolphin/mtx.h>
 #include "pso/system/task/TObject.h"
 
+struct TBoss6Zanzo;
+
 class TBoss6Demo21_TYPE2_DEAD : public TObject {
 public:
     virtual ~TBoss6Demo21_TYPE2_DEAD();
@@ -24,7 +26,8 @@ public:
     s32 m_70;
     u8 unk_74[0x28];
     s32 m_9c;
-    u8 unk_A0[0x14];
+    u8 unk_A0[0x10];
+    TBoss6Zanzo *trail_effect;
 public:
     void draw_model_13();
     static void draw_fading_model_8(void *p);
@@ -34,4 +37,5 @@ public:
 typedef char TBoss6Demo21_TYPE2_DEAD_size[sizeof(TBoss6Demo21_TYPE2_DEAD) == 0xB4 ? 1 : -1];
 
 typedef char TBoss6Demo21_TYPE2_DEAD_camera_position_offset[offsetof(TBoss6Demo21_TYPE2_DEAD, camera_position) == 0x58 ? 1 : -1];
+typedef char TBoss6Demo21_TYPE2_DEAD_trail_offset[offsetof(TBoss6Demo21_TYPE2_DEAD, trail_effect) == 0xB0 ? 1 : -1];
 #endif

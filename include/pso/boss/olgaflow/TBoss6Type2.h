@@ -6,6 +6,8 @@
 #include <stddef.h>
 #include "pso/enemy/TObjEnemy.h"
 
+struct TBoss6Zanzo;
+
 class ModelNodePositionCapture;
 
 struct TBoss6Type2Point { f32 x, y, z; };
@@ -70,7 +72,7 @@ struct TBoss6Type2 : public TObjEnemy
     u8 unk_440[0x14];
     s16 m_454;
     u8 unk_456[0x2];
-    u32 m_458;
+    TBoss6Zanzo *trail_effect;
     s32 state_duration;  // what state_timer was last set to
     s32 state_timer;     // counts down to 0 in the state handlers
     u16 m_464;

@@ -1,10 +1,10 @@
+#include "pso/render/ColorCopy.h"
 #include "types.h"
 #include <stddef.h>
 #include "pso/ui/chat/TWindowSubSymbolChatPartsSet.h"
 #include "pso/ui/frontend/TAdPlyChrSelPlateGC.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/render/ModelDrawContext.h"
-#include "pso/ui/frontend/TAdChrMoveEffectGC.h"
 #include "pso/ui/charcreate/TObjCMHairMenu.h"
 
 struct O_802C4D5C { u8 pad[0x2a8]; f32 v[1]; };
@@ -69,16 +69,16 @@ void TAdEnterSerialAccessGC__sub_802C4B64(TAdPlyChrSelPlateGC *plate, NJS_POINT2
     fan.num = 4;
     fan.p[0].x = x;
     fan.p[0].y = y;
-    ((TAdChrMoveEffectGC *)&fan.col[0])->copy4(&color);
+    copy_color_bytes(&fan.col[0], &color);
     fan.p[1].x = fan.p[0].x;
     fan.p[1].y = fan.p[0].y + plate->plate_size.y;
-    ((TAdChrMoveEffectGC *)&fan.col[1])->copy4(&color);
+    copy_color_bytes(&fan.col[1], &color);
     fan.p[2].x = fan.p[0].x + plate->plate_size.x;
     fan.p[2].y = fan.p[0].y + plate->plate_size.y;
-    ((TAdChrMoveEffectGC *)&fan.col[2])->copy4(&color);
+    copy_color_bytes(&fan.col[2], &color);
     fan.p[3].x = fan.p[0].x + plate->plate_size.x;
     fan.p[3].y = fan.p[0].y;
-    ((TAdChrMoveEffectGC *)&fan.col[3])->copy4(&color);
+    copy_color_bytes(&fan.col[3], &color);
     ((TObjCMHairMenu *)&fan)->draw_tri_fan_2d(4, 7, 0.001f * (f32)depth + (-30.0f));
 }
 #pragma pop
@@ -217,7 +217,7 @@ S_802C5040 *__ct__19TAdPlyChrSelPlateGCFv(S_802C5040 *arg0, s32 arg1, Arg_802C50
         arg0->c[i].b[3] = 0;
     }
     ((TWindowSubSymbolChatPartsSet *)((u8 *)arg0 + 0x21C))->copy_vec2(arg2);
-    ((TAdChrMoveEffectGC *)((u8 *)arg0 + 0x3A8))->copy4((u8 *)arg2 + 8);
+    copy_color_bytes((u8 *)arg0 + 0x3A8, (u8 *)arg2 + 8);
     return arg0;
 }
 }

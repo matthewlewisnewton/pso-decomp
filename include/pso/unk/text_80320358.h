@@ -4,6 +4,7 @@
 #include "types.h"
 
 extern "C" {
+s32 fn_803204B0(void *p);
 u8 *load_rel_module(u8 *arg0, s32 arg1);
 }
 

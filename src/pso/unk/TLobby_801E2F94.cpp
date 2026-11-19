@@ -1,3 +1,4 @@
+#include "pso/render/TriangleFan3D.h"
 #include "pso/system/memory.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/render/CurrentTextureList.h"
@@ -167,13 +168,6 @@ struct Lines_801E341C {
     u32 *colors;
 };
 
-struct UV_801E3784 { s16 u, v; };
-
-struct Tris_801E3784 {
-    Vec *positions;
-    u32 *colors;
-    UV_801E3784 *uvs;
-};
 
 extern "C" {
 void GXBegin(s32, s32, u16);
@@ -321,10 +315,9 @@ void TObjCMHairMenu::draw_tri_fan_2d(s32 count, s32 flags, f32 scale) {
     }
     TObjEneRe4Sorcerer__sub_801E3F20();
 }
-void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
-    Tris_801E3784 *t = (Tris_801E3784 *)this;
+void draw_tri_fan_3d(NJS_POINT3COL *fan, s32 n, u32 flags) {
     Vec *p;
-    UV_801E3784 *uv;
+    NJS_TEX *uv;
     u32 *c;
     s32 i;
     load_camera_view_matrix();
@@ -341,9 +334,9 @@ void TObjPlayer::draw_tri_fan_3d(s32 n, u32 flags) {
         setup_opaque_color_draw();
     }
     GXBegin(0xA0, 4, n);
-    c = t->colors;
-    p = t->positions;
-    uv = t->uvs;
+    c = fan->col;
+    p = fan->p;
+    uv = fan->tex;
     for (i = 0; i < n; i++) {
         TObjPlayer__sub_801E3F30(p->x, p->y, p->z);
         TObjPlayer__sub_801E3F24(*c);
