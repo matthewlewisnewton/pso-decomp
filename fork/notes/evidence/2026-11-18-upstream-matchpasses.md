@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `76d4f68f70` changes 1,369 paths counting both sides of renames. The all-source snapshot is `68a837ec3e`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `5439d728d5` changes 1,374 paths counting both sides of renames. The all-source snapshot is `b42a9334b8`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `00d9ae7483` | `1b33f02f81` |
 | `great-merge/current/combat` | `e566cc2ccd` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `1001dd7640` | `9445c1e728` |
-| `great-merge/current/window-frames` | `51ded1241f` | `942a0c050f` |
+| `great-merge/current/window-frames` | `9bc5490c5e` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `3b5e256b38` | `fa2a1e5837` |
@@ -24,6 +24,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Stream entries, AFS tag and CVFS diagnostics | Included in its resource review | `132daf866a` |
 | Dark Falz scene parts and Gol Dragon model override | Included in its encounter review | `bfbb029994` |
 | Shortcut preview and symbol-chat construction | Included in its window review | `76d4f68f70` |
+| Typed word-select formatters and callers | Included in its window review | `5439d728d5` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -51,9 +52,17 @@ The source index gives partial evidence for eight historical paths and closes th
 
 The window review at `51ded1241f` and cumulative stack at `76d4f68f70` now carry the complete 52-byte shortcut preview pool at 0x805DD348 through 0x805DD37B. It has the separator, icon choices, dimensions and depth under the fork names. The preview, preset list and chat list construct `TWindowChatSymbol` directly. The editor calls the same native constructor for its base subobject and uses the base selection and visibility methods. The fork tooling overlay retains the empty-kind host behavior.
 
-The preview retains its 1,044 original instruction bytes. The five earlier functions and their table remain in the current shop window owner. The implementation keeps the name `show_shortcut` because it fills the whole window, including the entry labels and icons. The word-select formatter still uses the current `TWindowDD` declaration. The fork index records that remaining source difference and the recovered changes across 7 historical paths. It has 1,734 entries awaiting owner comparison and 521 with partial evidence.
+The preview retains its 1,044 original instruction bytes. The five earlier functions and their table remain in the current shop window owner. The implementation keeps the name `show_shortcut` because it fills the whole window, including the entry labels and icons. The typed word-select formatter and its callers are covered in the follow-up below. The fork index records the preview and symbol-chat changes across seven historical paths. It has 1,734 entries awaiting owner comparison and 521 with partial evidence.
 
 Each of the three builds compiled 2,450 source objects. The standalone review compared 2,485 selected inputs. The combined stack and working fork compared 2,484 each. Allocated sections, symbol locations and relocation destinations match the preceding objects after resolving the new names to their original addresses. The thirteen data entries and three symbol-chat method definitions have one provider each, the same original bytes and no unresolved references to the old names. Both review heads passed the stock checker in object-report mode. The comparison with fork main found no lost matched or linked code or non-padding data. The executable hash remains unverified on this base.
+
+### Typed word-select formatters and callers
+
+The window review at `9bc5490c5e` and cumulative stack at `5439d728d5` carry the fork's 12-byte word-select record through Japanese, English, German, French and Spanish formatting. The dispatcher, speaker lookup and message display share the original 16-bit speaker contract. The incoming message, shortcut preview and list, editor and existing window display pass the typed record. The Spanish archive loader and formatter share the word-prefix category pointer.
+
+All eight entry points retain their original bytes and addresses under the fork names. Each has one provider and no caller refers to an old label. Each build compiled 2,450 source objects. The comparison covers 2,485 selected inputs on the window branch and 2,484 each on the combined stack and working fork. Their allocated sections, symbol locations and relocations match the preceding builds after mapping the eight names. Both reviews passed the upstream checker in object-report mode. The comparison with fork main found no lost matched or linked code or non-padding data. The executable hash remains unverified on this base.
+
+The source index closes three complete fork paths and records partial recoveries on seven more. The new shared header, the message display source and the incoming message source match the fork after include relocation and whitespace normalization. The index now has 1,726 entries awaiting owner comparison and 526 with partial evidence. All 133 tooling paths still reproduce in the fork-only workspace.
 
 ## Consolidated review queue on `c572111ed6`
 
