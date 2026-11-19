@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `531ec09862` changes 1,388 paths counting both sides of renames. The all-source snapshot is `6417fc9850`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `73745157f7` changes 1,392 paths counting both sides of renames. The all-source snapshot is `c2fda15d41`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `ef53963eb2` | `942a0c050f` |
+| `great-merge/current/window-frames` | `79d3848fdf` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -37,6 +37,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Native word selection lifetime and scrolling | Included in the window review | `f6648c7664` |
 | Native word-select menu, scrollbar and string window | Included in the window review | `a39c9a4d2b` |
 | Native status gauge constructors and drawing | Included in the window review | `531ec09862` |
+| Shared bag-warning window lifecycle | Included in the window review | `73745157f7` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -139,6 +140,14 @@ The window review at `ef53963eb2` and combined stack at `531ec09862` restore the
 The two 24-byte dispatch tables at 0x804CF918 and 0x804CF930 have their original layout, with a zero in the pure base class slot. The three renamed ranges have one provider each. The allocated bytes, symbols and relocation targets match the preceding window pass across all 2,486 standalone inputs and 2,485 combined inputs. The standalone window review, combined source, all-source snapshot and working fork reproduced GPOE8P SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The standalone, combined and all-source project checks passed with full builds. The original fork comparison has no regressions or loss of linked code or non-padding data, with the same reconciled aggregate padding difference as the preceding pass. The fork layer passed eleven tests and materialized all 133 tooling paths.
 
 The source audit closes two complete gauge headers and adds evidence for seven other paths. It has 1,675 entries awaiting owner comparison and 560 with partial evidence.
+
+### Shared bag-warning window lifecycle
+
+The window review at `79d3848fdf` and combined stack at `73745157f7` use a common update routine for the single-player and four-player bag warnings. Both classes share the window pointer, 128-byte message buffer and countdown at the original offsets. Each keeps its own eligibility check and message creation. The current single-player native constructor and folded source owner are preserved.
+
+The original compiler inlines the shared lifecycle into both 176-byte update methods. The window-root test uses the full-register return convention already used by these callers. The bool declaration produces a low-byte mask in those two methods. Six affected constructor, open and update ranges and every selected link input have the same bytes and relocations as the previous window pass. The standalone window review, combined source, all-source snapshot and working fork reproduced GPOE8P SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three upstream-shaped project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
+
+The source audit closes four warning headers and the relocated page-indicator header. It records partial evidence for three warning source paths. It has 1,667 entries awaiting owner comparison and 563 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
