@@ -7948,7 +7948,7 @@ force_active:
   - boss7_derolle_c_motion_id
   - boss7_derolle_light_pool
   - boss7_dust_angle_step
-  - boss7_dust_draw_at__FPll
+  - boss7_dust_draw_at__FPC3Vecl
   - boss7_dust_helix_radius
   - boss7_dust_helix_rise
   - boss7_dust_origin
