@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `0ed3cc93c7` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, and the BML model and motion callbacks. The all-source snapshot is `29746fd77b`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `1c90d6df9b` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments. The all-source snapshot is `6db60a1081`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `ece92dc455` |
+| `great-merge/current/combat` | `5ef27baa2d` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -106,7 +106,13 @@ The original executable contains 506 branches to the BML resource constructor an
 
 The replay at `0ed3cc93c7` carries the original model and motion callback signatures into the current archive owner. The texture completion callback and the resource completion check use the native request and resource fields. The callbacks match at 0x8001F998 and 0x8001FA1C under their typed signatures. The standalone BML review at `ae880a661a`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The 133-path overlay round-trips and passes all eleven layer tests.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) has 1,329 entries awaiting owner comparison and 747 with partial evidence.
+### Photon Blast sequence and attachments
+
+The nine-file replay at `1c90d6df9b` restores the fork's native Photon Blast sequence receiver, typed admission slots and original action-hold call. Both result paths use the sequence to calculate damage. The summon uses the original camera vectors and a shared attachment record from joint traversal through particle creation, updates and release. Golla reads the joint position through the same record.
+
+The original calculation, hold and constructor link at 0x801A826C, 0x801A86E0 and 0x801A9E10. All 55 functions in the three affected source units remain exact at their original addresses and sizes. The standalone combat review at `5ef27baa2d`, combined and all-source stacks and working fork reproduce the original executable and pass the project checker. The fork overlay round-trips 133 paths and passes all eleven layer tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records 11 source and declaration entries. It has 1,323 entries awaiting owner comparison and 752 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
