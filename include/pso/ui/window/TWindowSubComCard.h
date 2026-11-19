@@ -125,9 +125,6 @@ struct TWindowSubComCard : public TObject {
     s32 open_yesno_dialog();
     s32 confirm_and_free();
     void set_com_param(s32 arg1);
-    void*get_card_data_ptr();
-    void*get_name();
-    void*get_sub_obj();
     void destroy_keyboard();
     void set_page(s16 v);
     void set_flag_10();

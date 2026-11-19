@@ -6,6 +6,7 @@
 #include "pso/item/TItemData.h"
 
 struct NJS_TEXLIST;
+struct GuildCardRecord;
 
 struct TLobbyFloorItemEntry {
     u8 n;
@@ -375,7 +376,6 @@ struct TLobby : public TObject {
     void add_token(const char *src);
     void trim_whitespace();
     static void refresh_player_status();
-    s32 get_id();
     static void clear_flag_bit2();
     static int get_com_card_data();
     static int get_global_63e0();
@@ -994,7 +994,7 @@ struct TLobby : public TObject {
     s32 get_field_308();
     static void send_find_user_self_tag(s32 arg0);
     static void find_and_load_com_card(u32 arg0);
-    static void*get_com_card_entry(int a0);
+    static GuildCardRecord *get_com_card_entry(int index);
     static char *skip_to_comma_field(char *s, s32 a, s32 b);
     char *build_text_from_comma_list();
     static void remove_com_card_entry(s32 arg0);

@@ -9089,7 +9089,7 @@ force_active:
   - copy_cmd_88_marker_record__FPvPv
   - copy_cmd_c4_entry__Fii
   - copy_color_entry__15TWindowMainMenuFPvPv
-  - copy_com_card_entry__6TLobbyFPvPv
+  - copy_from__15GuildCardRecordFPC15GuildCardRecord
   - copy_data__18TCheckRoomSequenceFPvPv
   - copy_debris_params__8TObjChipFPvPv
   - copy_drop_node__FPUcPUc

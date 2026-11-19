@@ -66,7 +66,6 @@ struct Ent_80271F04 {
 extern "C" {
 s32 *get_shared_text_buffer(void);
 }
-s32 *get_selected_guild_card_record(void);
 extern "C" {
 void set_value_by_key(void *, u16, s32);
 s32 open_hard_keyboard__6TLobbyFPv(void *);
@@ -166,14 +165,14 @@ void cleanup__17TWindowSubComCardFPv(void* p) { ((TWindowMenu *)(*(void**)((char
 void TWindowSubComCard::sub_802721D8() {
   u8 *new_var;
   s32 temp_r30;
-  u8 *lobby;
+  GuildCardRecord *card;
   u8 *message;
   temp_r30 = ((TWindowSubComCard *)(*((u8 **) (((s8 *) ((u8 *)this)) + 0x80))))->realloc_buffer();
-  lobby = (u8 *) ((u8* (*)(void))get_selected_guild_card_record)();
+  card = get_selected_guild_card_record();
   TWindowSubComCard::mask_profanity_words((char *)temp_r30, (char *)get_shared_text_buffer());
   new_var = (u8 *)get_shared_text_buffer();
   message = (u8 *) new_var;
-  TLobby::send_simple_mail(((TLobby *)lobby)->get_id(), message);
+  TLobby::send_simple_mail(card->get_id(), message);
   ::operator delete[]((void *)temp_r30);
 }
 }
@@ -189,7 +188,6 @@ void text_builder_append(u8 *str);
 void text_builder_reset();
 extern "C" {
 void load_selected_guild_card_record(int, int);
-void* TWindowSubComCard__sub_8027523C(void* p);
 
 void TWindowSubComCard::set_card_index(s32 arg1) {
     if ((s32) this->m_28 != arg1) {
@@ -200,21 +198,21 @@ void TWindowSubComCard::set_card_index(s32 arg1) {
 
 void TWindowSubComCard::set_selected_card(s32 arg1) {
     u8 *temp_r31;
-    s32 temp_r30;
+    GuildCardRecord *card;
     Rec_80272290 *cnt;
     if (*(s32 *)&this->m_28 != arg1) {
         *(s32 *)&this->m_28 = arg1;
         cnt = get_com_count__17TWindowSubComCardFv();
         temp_r31 = cnt[arg1].f4;
         load_selected_guild_card_record((int)temp_r31, arg1 * 0xD4);
-        temp_r30 = ((s32 (*)(void))get_selected_guild_card_record)();
+        card = get_selected_guild_card_record();
         text_builder_reset();
         text_builder_append((temp_r31 + 0x14));
-        text_builder_append((u8 *)(((TWindowSubComCard *)temp_r30)->get_name()));
+        text_builder_append((u8 *)card->get_text_19());
         text_builder_append((u8 *)"\n");
-        text_builder_append((u8 *)(((void* (*)(int))TWindowSubComCard__sub_8027523C)(temp_r30)));
+        text_builder_append((u8 *)card->get_text_2a());
         text_builder_append((u8 *)"\n");
-        text_builder_append((u8 *)(((TWindowSubComCard *)temp_r30)->get_card_data_ptr()));
+        text_builder_append((u8 *)card->get_text_3b());
         ((TWindowMessage *)(*(s32 *)&this->m_6c))->append_line((int)get_shared_text_buffer(), 0x82);
     }
 }
@@ -608,7 +606,7 @@ void rebuild_com_card_list__17TWindowSubComCardFii(s32 arg0, s32 arg1) {
     s32 i;
     s16 sel;
     s16 pos;
-    void *e;
+    GuildCardRecord *e;
     cur = ((TWindowMenu *)arg1)->get_selected_value();
     sel = -1;
     TLobby::clear_flag_bit2();
@@ -617,8 +615,8 @@ void rebuild_com_card_list__17TWindowSubComCardFii(s32 arg0, s32 arg1) {
     n = TLobby::get_com_card_data();
     for (i = n - 1; i >= 0; i--) {
         e = TLobby::get_com_card_entry(i);
-        forward_trade_action_default__16TObjCityMainWarpFPviii((void *)arg1, (int)(((TWindowSubComCard *)e)->get_sub_obj()), 7, (int)(((GuildCardRecord *)e)->get_serial()));
-        if (cur == ((GuildCardRecord *)e)->get_serial()) {
+        forward_trade_action_default__16TObjCityMainWarpFPviii((void *)arg1, (int)e->get_name(), 7, (int)(e->get_serial()));
+        if (cur == e->get_serial()) {
             sel = (n - 1) - i;
         }
     }
@@ -1228,7 +1226,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
             window_sub_com_card->m_68 = 0U;
         }
         if ((u32) window_sub_com_card->m_78 == 0U) {
-            var_r29 = ((s32 (*)(void))get_selected_guild_card_record)();
+            var_r29 = (s32)get_selected_guild_card_record();
             temp_r30_2 = ((u32 (*)(int))__nw__7TObjectFUl)(0x64);
             if (temp_r30_2 != 0U) {
                 temp_r30_2 = (u32)TWindowUserSort__ct((u8 *)temp_r30_2, (get_window_layout_position(0x8A)), (var_r29));
@@ -1308,7 +1306,7 @@ void run_task__17TWindowSubComCardFv(TWindowSubComCard *window_sub_com_card) {
         }
         break;
     case 0x25:
-        ((s32 (*)(void))get_selected_guild_card_record)();
+        get_selected_guild_card_record();
         TLobby__sub_8024259C();
         fn_8024AB54((window_sub_com_card->m_20));
         window_sub_com_card->m_2c = 0;
@@ -1845,8 +1843,6 @@ TWindowSubComCard::TWindowSubComCard(TObject *object, void *arg2) : TObject(obje
     this->m_1c = 0;
 }
 
-struct SelectedGuildCardRecord { s32 value; u8 remaining[0xB8]; };
-extern SelectedGuildCardRecord selected_guild_card_record;
 extern "C" {
 void fn_80247ED8(void *p);
 
@@ -1856,14 +1852,14 @@ void TWindowSubComCard::set_com_param(s32 arg1) {
 }
 }
 
-s32 *get_selected_guild_card_record(void) {
-    return &selected_guild_card_record.value;
+GuildCardRecord *get_selected_guild_card_record() {
+    return &selected_guild_card_record;
 }
 
-void*TWindowSubComCard::get_card_data_ptr() { return (char*)this + 0x3b; }
-void* TWindowSubComCard__sub_8027523C(void* p) { return (char*)p + 0x2a; }
-void*TWindowSubComCard::get_name() { return (char*)this + 0x19; }
-void*TWindowSubComCard::get_sub_obj() { return (char*)this + 0x8; }
+char *GuildCardRecord::get_text_3b() { return s3B; }
+char *GuildCardRecord::get_text_2a() { return s2A; }
+char *GuildCardRecord::get_text_19() { return s19; }
+char *GuildCardRecord::get_name() { return name; }
 void TWindowSubComCard::destroy_keyboard() { void* m = *(void* *)&this->m_28; if (m) fn_80247ED8(m); }
 s16 TWindowSubComCardList::get_field_72() { return *(s16 *)&this->m_72; }
 void TWindowSubComCard::set_page(s16 v) { *(s16*)((char*)this + 0x7a) = v; }
