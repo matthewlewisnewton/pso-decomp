@@ -15,6 +15,24 @@ The three review groups preserve all 15 original commits. The chat balloon candi
 
 The [data range ledger](2026-11-18-fork-data-ranges.tsv) verifies 908 source-linked bytes and 167 padding bytes on the new upstream base. The three remaining ranges each account for a 24-byte compiler-generated virtual table.
 
+### Seven more review groups and the combined replay through encounters
+
+| Local review branch | Tip |
+| --- | --- |
+| Array allocation, memory copies and release | `great-merge/incoming/6e09dda9c5/memory` at `e8c95dbad0` |
+| Archive, streaming and quest-cache lifetimes | `great-merge/incoming/6e09dda9c5/resource-lifetimes` at `9a269ca0e4` |
+| Positional sound and particle effects | `great-merge/incoming/6e09dda9c5/spatial-effects` at `e1e487e5d3` |
+| Combat and player techniques | `great-merge/incoming/6e09dda9c5/combat` at `91438961d3` |
+| Encounter and boss-effect rendering | `great-merge/incoming/6e09dda9c5/encounter-drawing` at `629568f631` |
+| Texture and BML resource lifetimes | `great-merge/incoming/6e09dda9c5/bml-resource-lifetime` at `daa3a3af77` |
+| Renderer and model interfaces | `great-merge/incoming/6e09dda9c5/render-interfaces` at `6c43c3a146` |
+
+All seven branches were replayed on `6e09dda9c5`, retaining their 39 original commits. The resolved allocation calls use paired array allocation and release in upstream's reordered fog, keyboard, area-map and word-select sources. The charge emitter retains the shared particle and sound declarations in upstream's consolidated unit. Dead Spot retains the typed ground and texture calls in their respective review branches. The encounter and combat groups use upstream's new owners for the overlapping float and string data.
+
+Each review branch passed the full project checker against the new upstream baseline and reproduced the original executable. The resource, effects, combat and encounter branches also preserve all exact functions and linked data ranges from their preceding review branches.
+
+The cumulative replay through the first six groups is `great-merge/incoming/6e09dda9c5/combined-through-encounters` at `dd85301db0`. It resolves all ten conflicts from that portion of the old stack, passes the full checker, and reproduces the original executable. Ten of the eleven standalone review groups now have validated heads on the new base. The window review awaits reconciliation with upstream's constructor changes before the remaining groups can join the cumulative replay.
+
 ## Current review queue on upstream master `3f35d99bb1`
 
 The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `467564e30b` changes 1,471 paths counting both sides of renames. The all-source snapshot is `5e1dc83969`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
