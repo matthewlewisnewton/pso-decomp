@@ -62,6 +62,12 @@ All three standalone commits, their counterparts on the combined source branch, 
 
 The [original fork index](2026-11-18-fork-review-index.tsv) records ten complete original file edits and the setter sites on mixed files. The current combined source is `01e8aa6ff7`. The 90 original byte ranges still account for 980 linked source bytes and 167 verified padding bytes.
 
+### Shared material opacity
+
+Commit `6d4d503ab5` extends model rendering with the fork's original `MaterialOpacityFade` class and implementation. Its 47 changed paths include the rename from the Sinow Zoa unit to the rendering owner. The low-level opacity check, rate, color and fade operations have the same class across the Sinow Zoa, Stelth, Epsilon, Morfos and related callers. The symbol table maps the same 17 function and data entries to their original fork names.
+
+The review compiled and compared 60 affected objects. The cumulative branch `825665ae67` and the working fork each compared 62 objects. Allocated code and data, symbol locations and relocation targets match each tree's preceding objects after the renames. All 294 fork tests passed and the linker retention list remains current.
+
 ## Audio streaming and item archives
 
 `great-merge/current/audio-streaming` starts directly from upstream master `c572111ed6`. Its three commits change 65 distinct paths. Review the archive and sound work together. ADXF opens, seeks, reads and closes sector-based files for the item, scene, character and sound loaders. The ADXB decoder supplies the signed channel count to its buffer and ring operations. The sound slot passes pitch and slide duration from the technique and weapon callers to the voice pool.
@@ -121,7 +127,7 @@ All affected translation units compiled on both review bases and on the cumulati
 
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `81349deed2` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `825665ae67` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
