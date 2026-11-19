@@ -22,7 +22,7 @@ The window review reconciles 57 overlapping paths. It retains upstream's native 
 
 The full stack and all-source snapshot retain all exact functions and linked data from both the prior review stack and the historical fork. The window review, full stack, all-source snapshot and working fork passed their project checks and reproduced the original GameCube executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The full stack has 2,456 exact source-linked units. The working fork passed the generated retention check after recalculating its local linker inventory. The layer check and eleven unit tests passed, and the materialized fork reproduces all 133 tooling paths.
 
-The [fork review index](2026-11-18-fork-review-index.tsv) has 1,482 entries awaiting owner comparison and 677 with partial evidence.
+The source audit reconciles the snapshot and main-menu headers. The target compiler confirms all six historical menu field offsets against their current names. The snapshot and item-help builds source-link all 46 original routines at the same addresses and sizes. Five source or interface records now have partial evidence in the [fork review index](2026-11-18-fork-review-index.tsv). The index has 1,475 entries awaiting owner comparison and 682 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
