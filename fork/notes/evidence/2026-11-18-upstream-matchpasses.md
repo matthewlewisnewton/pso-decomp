@@ -111,11 +111,23 @@ The branch, the cumulative source at `292b7e793c` and the working fork each comp
 
 Commit `b363e57965` carries 38 names from fork commit `ff61f623a6` for the Gee, Gi Gue, Morfos, Shark, Berura, Stelth, Gryphon and Olga Flow data. The names still identify the same records on fork main. The corresponding addresses, section, linkage metadata, storage and references stay consistent across the review and combined source. Ten affected translation units per build preserve their allocated code and data sections and relocation targets after resolving the renamed symbols. The fork retention check and 294 fork tests passed. The cumulative source commit is `34b52ae04b`.
 
+### Special-event items and snapshot-window lifetime
+
+The existing player-techniques review now includes commit `c950b4cfd0`, which carries the fork's inferred `TItemSpecialEvent` class name into upstream's consolidated use-effect unit, factory table and build entries. The item owner remains at 0xF0. The established use-effect methods and compiler profile stay with the consolidated unit.
+
+Commit `fb6e85d03f` extends the existing window review. The options menu creates a `TWindowSnapShot`, the class implements its virtual renderer, and both use the current window entry and draw-context fields. Player-motion RLC loading remains in its current owner.
+
+All affected translation units compiled on both review bases and on the cumulative and working branches. Comparing the combined objects found identical allocated sections and relocation targets after mapping the renamed symbols. All 294 fork tests passed on the combined overlay. Cumulative source is `81349deed2`.
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `34b52ae04b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `81349deed2` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
+
+## Whole-tree merge trial
+
+A three-way merge of the full fork at the latest shared ancestor produced 2,571 conflicts, with upstream's native file layout accounting for much of the path churn. Using the fork's original branch point produced 2,371 conflicts. The earlier native integration tree yielded 358 conflicts and 23 clean changes. Clean paths still need ownership validation. For example, some historical window sources add methods the current tree already defines in consolidated units.
 
 ## Current source comparison
 
