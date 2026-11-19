@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `3e3744f3fa` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading. The all-source snapshot is `20acd906d4`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `0ed3cc93c7` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, and the BML model and motion callbacks. The all-source snapshot is `29746fd77b`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -13,7 +13,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/combat` | `ece92dc455` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
-| `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
+| `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
 | `great-merge/current/render-interfaces` | `6c43c3a146` |
 | `great-merge/current/actor-presentation` | `ba1790084a` |
 | `great-merge/current/world-object-resources` | `bbbb69ff1b` |
@@ -96,7 +96,17 @@ The 41-file replay at `3e3744f3fa` restores the shared enemy archive declaration
 
 The standalone review at `ece92dc455` uses the combat group's existing battle parameter declarations. The combined stack, all-source snapshot, standalone review and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips 133 paths and passes all eleven layer tests.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) records 38 source and declaration entries. It has 1,373 entries awaiting owner comparison and 703 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) records 38 source and declaration entries.
+
+### Bulk replay and BML resource lifetime
+
+A mapped three-way replay from fork main `3342e42983` onto the source stack at `3e3744f3fa` found 844 paths with one current owner. It prepares 94 complete file edits and can extract nonoverlapping changes in another 657 files. The other 93 mapped files only yielded overlapping changes. These are replay candidates. Each subsystem still needs declaration and symbol reconciliation, a full build and coverage comparisons.
+
+The original executable contains 506 branches to the BML resource constructor and destructor in 441 functions. Comparing the old and current source owners at the original function addresses verified 483 allocations and releases as typed C++ calls. The other 23 have exact binary evidence. All original call sites in 222 indexed source files have source and binary evidence. This gives 194 open entries specific evidence about allocation and cleanup. Each entry records the current owner and original function addresses.
+
+The replay at `0ed3cc93c7` carries the original model and motion callback signatures into the current archive owner. The texture completion callback and the resource completion check use the native request and resource fields. The callbacks match at 0x8001F998 and 0x8001FA1C under their typed signatures. The standalone BML review at `ae880a661a`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The 133-path overlay round-trips and passes all eleven layer tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) has 1,329 entries awaiting owner comparison and 747 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
