@@ -10,7 +10,7 @@ All eleven local review groups and the three follow-up commits were replayed on 
 | `great-merge/current/memory` | `f69270a9e6` | `96b4cca0db` |
 | `great-merge/current/resource-lifetimes` | `fcab64f825` | `16772fda0f` |
 | `great-merge/current/spatial-effects` | `00d9ae7483` | `1b33f02f81` |
-| `great-merge/current/combat` | `832832702f` | `de49f74be1` |
+| `great-merge/current/combat` | `e566cc2ccd` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `5101697a58` | `9445c1e728` |
 | `great-merge/current/window-frames` | `73da7884fb` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
@@ -20,12 +20,21 @@ All eleven local review groups and the three follow-up commits were replayed on 
 | Challenge enemy-set records | Included in its review branch | `4fa38ff78e` |
 | Audio file-system callbacks | Included in its review branch | `50bc7543d7` |
 | Barba Ray and Olga Flow encounter records | Included in its review branch | `3b34b9def9` |
+| Enemy action, targeting and resource names | Included in its combat review | `0cce15ee15` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
 The cumulative validation compiled 2,450 selected source objects. Of the 2,415 objects present in the preceding stack, 2,403 are identical in allocated sections, symbol locations and relocations after same-address aliases are normalized. Twelve differ only in the data sections moved or adopted from upstream. The configured link set has 2,484 inputs and no new unresolved strong reference. The combat, encounter and window reviews compiled 47 affected objects each, and the renderer review compiled 48. The stock checker passed in object-report mode against a fresh upstream object report, with 27,572 exact functions, all 2,450 linked units exact and no loss of non-padding coverage. The original executable hash gate remains pending on this base.
 
 The fork-only branch `great-merge/current/layered-fork` at `a3aab5454f` leaves the cumulative source tree identical outside the fork layer. Its materialized checkout reproduces all 133 overlay paths from `500467cd41`. The layer check and eleven unit tests passed on the rebased head. The [original range ledger](2026-11-18-fork-data-ranges.tsv) still accounts for all 1,147 bytes. Upstream now supplies 872 exact source-linked bytes, the combined stack supplies the remaining 108, and 167 bytes are verified alignment padding.
+
+### Enemy action, targeting and resource names
+
+The combat review at `e566cc2ccd` and cumulative stack at `0cce15ee15` carry 30 fork method names across nine enemy source owners. The changes cover Gee swarm phases, target commitment and activation, Gi Gue barrier and action state, Gyaranzo armor and debris, and the other enemy targeting and resource accessors. Gee uses the fork's unsigned flag field, activation delay, and four named fighter and appearance masks. The source index records the names and addresses against 15 original fork paths. It has 1,747 entries awaiting owner comparison and 510 with partial evidence.
+
+All 2,451 combat and 2,450 cumulative compiled source objects preserve the preceding allocated sections, symbol locations and relocations after the 30 aliases are mapped by original address and size. The working fork compiles the same 2,450 source objects. Every renamed method has one definition per build, matches its extracted instruction bytes, and has no stale reference. The upstream checker passed in object-report mode for both the combat review and cumulative stack. The executable hash remains unverified on this base.
+
+The address comparison against fork main found zero lost matched or linked functions and zero lost non-padding data ranges. The stock report flags a net decrease of 2,358 bytes of aggregate data coverage. Its address rows account for 2,521 bytes of removed alignment padding and 163 bytes of added coverage. The previous range ledger remains valid because every allocated section and relocation is preserved.
 
 ## Consolidated review queue on `c572111ed6`
 
