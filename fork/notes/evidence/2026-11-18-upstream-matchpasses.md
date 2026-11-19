@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `1c90d6df9b` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments. The all-source snapshot is `6db60a1081`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `2cb50b645a` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, and typed character initialization. The all-source snapshot is `e315abd7e4`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `5ef27baa2d` |
+| `great-merge/current/combat` | `6e52270263` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -112,7 +112,15 @@ The nine-file replay at `1c90d6df9b` restores the fork's native Photon Blast seq
 
 The original calculation, hold and constructor link at 0x801A826C, 0x801A86E0 and 0x801A9E10. All 55 functions in the three affected source units remain exact at their original addresses and sizes. The standalone combat review at `5ef27baa2d`, combined and all-source stacks and working fork reproduce the original executable and pass the project checker. The fork overlay round-trips 133 paths and passes all eleven layer tests.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) records 11 source and declaration entries. It has 1,323 entries awaiting owner comparison and 752 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) records 11 source and declaration entries.
+
+### Character initialization, starting inventory and level growth
+
+The 22-file replay at `2cb50b645a` types the shared level rows and the saved character stat block. Character creation, selection reset, NPC setup and the two challenge rebuild paths use the common inventory and stat interfaces. Level advancement and battle-level resets read the original stat increments and experience fields. The class index retains the original full-register argument at the shared calls, and the table consumers apply the original signed byte conversion.
+
+All 954 functions in the fifteen affected source files remain exact at the original addresses and sizes. The twelve starting inventories and their pointer table account for 1,728 exact source-linked bytes. The standalone combat review at `6e52270263`, combined and all-source stacks and working fork reproduce the original executable and pass the project checker. The 133-path fork overlay round-trips and passes all eleven layer tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records 20 source and declaration entries. It has 1,311 entries awaiting owner comparison and 761 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
