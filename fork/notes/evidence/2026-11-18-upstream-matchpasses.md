@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `8a0619369b` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and shared boss action packets. The all-source snapshot is `01eab49b88`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `9f1e618729` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets, including Gal Gryphon. The all-source snapshot is `f9e8006472`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -11,7 +11,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
 | `great-merge/current/combat` | `c780ad28de` |
-| `great-merge/current/encounter-drawing` | `c7db801ce9` |
+| `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
 | `great-merge/current/render-interfaces` | `6c43c3a146` |
@@ -80,7 +80,15 @@ The 10-file replay at `8a0619369b` recovers the common 8-, 12-, 20- and 24-byte 
 
 The standalone encounter review at `c7db801ce9`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork-only inventory updates seven retained exports. The 133-path overlay round-trips and all eleven layer tests pass.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) records 11 source and declaration entries. It has 1,390 entries awaiting owner comparison and 688 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) records 11 source and declaration entries.
+
+### Gal Gryphon action packet
+
+The seven-file replay at `9f1e618729` restores the original 0xA0 packet and action state from `cdfb1d660b`. The typed sender, receive handler, action copy and byte swaps live in the current Gal Gryphon unit. The run-time action readers use the same parameter record. All eight renamed functions retain their original exact instructions, addresses and sizes. The two affected source units contain 180 exact functions.
+
+The standalone encounter review at `764b12bea2`, combined stack, all-source snapshot and working fork pass the project checker, including the original executable hash. The fork linker inventory updates seven retained exports. The 133-path fork overlay round-trips and all eleven layer tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records 7 source and declaration entries. It has 1,388 entries awaiting owner comparison and 690 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
