@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/npc/TObjNpcHFW01.h"
 #include "pso/render/GvmTextureArchive.h"
@@ -6,7 +7,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/task/TObject.h"
 
 #pragma readonly_strings on
@@ -39,7 +39,7 @@ void * TObjNpcHFW01__create(void *arg0) {
 void TObjNpcHFW01::free_static_resources() {
     if ((u32) TObjNpcHFW01__texture_handle != 0U) {
         release_texture_list((void*)TObjNpcHFW01__texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcHFW01__texture_handle);
+        safe_free((void *)TObjNpcHFW01__texture_handle);
         TObjNpcHFW01__texture_handle = 0U;
     }
     if ((u32) TObjNpcHFW01__resource_node != 0U) {

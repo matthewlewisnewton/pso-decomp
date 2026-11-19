@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GinjaMaterialState.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "types.h"
@@ -51,7 +52,7 @@ void TLanguage::free_alphabet_textures() {
         if (entry->texture != NULL) {
             release_texture_list(localized_alphabet_list);
         }
-        TAdSinglePlyChrSelectGC::safe_free((u32)localized_alphabet_list);
+        safe_free(localized_alphabet_list);
         localized_alphabet_list = NULL;
     }
 }

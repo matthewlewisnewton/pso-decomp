@@ -13,7 +13,6 @@
 #include "pso/ui/chat/TWindowChat_800774C0.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/ui/chat/TWindowChat.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/network/protocol/protocol_types.h"
 #include "pso/unk/TLobby_801E43E4.h"
 #include "pso/system/byteswap.h"
@@ -269,7 +268,7 @@ void TWindowSubSymbolChat::load_symbol_chat_data() {
     e = w->e;
     data = (s32)load_disc_file("symbolchat.dat");
     move_data(e, (const void *)data, (u32)0x420);
-    TAdSinglePlyChrSelectGC::safe_free(data);
+    safe_free((void *)data);
     for (i = 0; i < 6; i++) {
         ((TWindowSubSymbolChat *)(&e[i]))->bswap_entry();
         t = (s32)get_symbol_chat_preset(i);

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -11,7 +12,6 @@
 #include "pso/object/TMotorcycle.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803D853C.h"
@@ -104,7 +104,7 @@ void *TMotorcycle::create() {
 void TMotorcycle::free_statics() {
     if ((u32) TMotorcycle__texture_list != 0U) {
         release_texture_list((void*)TMotorcycle__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(TMotorcycle__texture_list);
+        safe_free((void *)TMotorcycle__texture_list);
         TMotorcycle__texture_list = 0U;
     }
     if ((u32) TMotorcycle__bml_resource != 0U) {

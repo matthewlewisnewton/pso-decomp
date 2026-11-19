@@ -13,7 +13,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/system/TGStream.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/TLobby_800FA2A0.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 
@@ -306,7 +305,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_model((Lobby_8001FBEC *) self, bml_header_record_ptr->rawSize, self->nmodel++, p);
-                    TAdSinglePlyChrSelectGC::safe_free(p);
+                    safe_free((void *)p);
                 } else {
                     TLobby::debug_print("TBinModel: Can't malloc(LOADMODEL)");
                 }
@@ -358,7 +357,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
                 if (p != 0) {
                     prs_decompress_buffer((s32)lobby_bml_read_buffer, p);
                     bind_bml_motion((Lobby_8001FB6C *) self, self->nmodel++, (void *) p);
-                    TAdSinglePlyChrSelectGC::safe_free(p);
+                    safe_free((void *)p);
                 } else {
                     TLobby::debug_print("TBinModel: Can't malloc(LOADMOTION)");
                 }
@@ -444,7 +443,7 @@ void TLobby::free_chr_select_data() {
         bml_load_buffer = 0U;
     }
     TItemDrop__sub_800FE2D8();
-    TAdSinglePlyChrSelectGC::safe_free(lobby_download_buffer);
+    safe_free((void *)lobby_download_buffer);
     lobby_download_buffer = 0;
 }
 void TLobby::init_download_buffers() {
@@ -734,7 +733,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                         st.align_read_offset(blk);
                         disc_read_filename = lbl_805D2B10;
                         prs_decompress_buffer(buf, (s32)resource_decompress_buffer);
-                        TAdSinglePlyChrSelectGC::safe_free(buf);
+                        safe_free((void *)buf);
                         bind_bml_model((Lobby_8001FBEC *)(this), size, i, (s32)((s32)resource_decompress_buffer));
                     } else {
                         TLobby::debug_print("TBinModel:%s Malloc failed.", descriptor->archive_filename);
@@ -756,7 +755,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                             st.read_data((s32)((void *)tbuf), (s32)tsize);
                             st.align_read_offset(blk);
                             prs_decompress_buffer(tbuf, (s32)resource_decompress_buffer);
-                            TAdSinglePlyChrSelectGC::safe_free(tbuf);
+                            safe_free((void *)tbuf);
                             if (load_gvm_texture_archive((void *)resource_decompress_buffer, (GinjaTextureList *)models[i].m_c) > 0) {
                                 models[i].m_0 |= 1;
                             } else {
@@ -783,7 +782,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                     st.read_data((s32)((void *)mb), (s32)sz);
                     st.align_read_offset(blk);
                     prs_decompress_buffer(mb, (s32)resource_decompress_buffer);
-                    TAdSinglePlyChrSelectGC::safe_free(mb);
+                    safe_free((void *)mb);
                     bind_bml_motion((struct Lobby_8001FB6C *)this, j, resource_decompress_buffer);
                     break;
                 }

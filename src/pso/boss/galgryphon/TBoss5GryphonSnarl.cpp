@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
@@ -9,7 +10,6 @@
 
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_8005D700.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"
 #include "pso/ui/hud/TNowLoading.h"
 #include "pso/effect/particle/TParticleCtrl.h"
@@ -151,7 +151,7 @@ void TBoss5GryphonSnarl__sub_80066E88(void) {
 void TLobby__sub_80066EC0(void) {
     if ((u32) boss5_common_texture_list != 0U) {
         release_texture_list((void*)boss5_common_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(boss5_common_texture_list);
+        safe_free((void *)boss5_common_texture_list);
         boss5_common_texture_list = 0U;
     }
     delete (BmlResource *)lbl_805D4DD8;

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -14,7 +15,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/unk/TLobby.h"
 #include "pso/system/TLanguage.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 struct Desc_8036D774 { f32 *pos; u32 *col; s32 a; s32 n; };
 
@@ -176,7 +176,7 @@ s32 release_texture_list(void*);
 void TLobby::free_singleton_805D7018() {
     if ((u32) TBGMulti__textures != 0U) {
         release_texture_list((void*)TBGMulti__textures);
-        TAdSinglePlyChrSelectGC::safe_free(TBGMulti__textures);
+        safe_free((void *)TBGMulti__textures);
         TBGMulti__textures = 0U;
     }
 }

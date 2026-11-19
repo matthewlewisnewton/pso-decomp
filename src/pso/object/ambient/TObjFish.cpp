@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -451,7 +452,6 @@ s32 TObjFish::init_fish_school(void *arg1_arg, s32 arg2, s32 arg3) {
 #pragma pop
 
 
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 #define init_fish_school__8TObjFishFPvll ((s32 (*)(void *, void *, int, int))init_fish_school__8TObjFishFPvll)
 
@@ -465,7 +465,7 @@ void *__dt__8TObjFishFv(void *arg0, s16 arg1);
 void *__dt__8TObjFishFv(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = (s32 *)__vt__8TObjFish;
-        if (*(void **)((s8 *)arg0 + 0xA0) != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)(*(void **)((s8 *)arg0 + 0xA0))); ((TObjFish *)arg0)->m_a0 = 0; }
+        if (*(void **)((s8 *)arg0 + 0xA0) != NULL) { safe_free((*(void **)((s8 *)arg0 + 0xA0))); ((TObjFish *)arg0)->m_a0 = 0; }
         __dt__8TObjBaseFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);

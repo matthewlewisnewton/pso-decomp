@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/camera/RadarMapViewState.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
@@ -416,7 +417,7 @@ void TRaderMapCore::load_frame_texture() {
 void TRaderMapCore::free_statics() {
     if ((u32) TRaderMapCore__data_805D5F4C != 0U) {
         release_texture_list((GinjaTextureList *)TRaderMapCore__data_805D5F4C);
-        TAdSinglePlyChrSelectGC::safe_free(TRaderMapCore__data_805D5F4C);
+        safe_free((void *)TRaderMapCore__data_805D5F4C);
         TRaderMapCore__data_805D5F4C = 0U;
     }
     if ((u32) TRaderMapCore__frame_model_resource != 0U) {

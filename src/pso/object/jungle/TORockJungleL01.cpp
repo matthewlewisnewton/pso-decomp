@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "types.h"
@@ -22,7 +23,6 @@
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/vector.h"
 #include "pso/math/MatrixVector.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
@@ -94,7 +94,7 @@ void TORockJungleS01::load_resources() {
 void TORockJungleS01::free_globals() {
     if (TORockJungleS01__texture_resource != NULL) {
         release_texture_list(TORockJungleS01__texture_resource);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TORockJungleS01__texture_resource);
+        safe_free(TORockJungleS01__texture_resource);
         TORockJungleS01__texture_resource = NULL;
     }
     if (TORockJungleS01__bml_resource != NULL) {

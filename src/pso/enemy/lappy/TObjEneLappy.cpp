@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
@@ -1242,7 +1243,6 @@ void *TObjEneLappy::create(void *arg0) {
 #include "pso/boss/volopt/TBoss3Volopt.h"
 #include "pso/enemy/panarms/TObjEnePanarms.h"
 #include "pso/enemy/berura/TObjEneRe7Berura.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 struct Set_800C1C4C {
     u8 pad0[0xA];
@@ -1389,7 +1389,7 @@ void TLobby::cleanup_handles() {
     if (TLobby::get_instance() == 0) {
         if ((u32) (*(u32 *)&rappy_alternate_texture_list) != 0U) {
             release_texture_list((void*)(*(u32 *)&rappy_alternate_texture_list));
-            TAdSinglePlyChrSelectGC::safe_free((*(u32 *)&rappy_alternate_texture_list));
+            safe_free((void *)(*(u32 *)&rappy_alternate_texture_list));
             (*(u32 *)&rappy_alternate_texture_list) = 0U;
         }
     } else {

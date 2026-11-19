@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/Adxf.h"
 #include "pso/system/ResourceFile.h"
@@ -9,7 +10,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
 #include "pso/system/scene/TScene.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 #pragma readonly_strings on
 
@@ -48,14 +48,14 @@ s32 load_streamed_prs_texture(s32 arg0, s32 arg1) {
     sprintf(texture_prs_stream_filename_buffer, "%s.prs", arg0);
     h = (s32)load_disc_file(texture_prs_stream_filename_buffer);
     if (h == 0) {
-        TAdSinglePlyChrSelectGC::safe_free(h);
+        safe_free((void *)h);
         return 0;
     }
     buf = (s32)TQuestVmDownLoadServer::alloc(0x100000);
     prs_decompress_buffer(h, buf);
     load_gvm_texture_archive((void *)buf, (GinjaTextureList *)arg1);
-    TAdSinglePlyChrSelectGC::safe_free(buf);
-    TAdSinglePlyChrSelectGC::safe_free(h);
+    safe_free((void *)buf);
+    safe_free((void *)h);
     return 1;
 }
 

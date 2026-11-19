@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/map/TSetManager.h"
@@ -11,7 +12,6 @@
 #include "pso/unk/TLobby_8020E3BC.h"
 #include "pso/system/THeap.h"
 #include "pso/system/scene/TScene.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
 #include "pso/map/FloorArea.h"
 
@@ -331,22 +331,22 @@ void depart_floor_population(int unused) {
         }
     }
     if (TLobby__data_805D6114 != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__data_805D6114);
+        safe_free(TLobby__data_805D6114);
         TLobby__data_805D6114 = 0;
     }
     if (TLobby__data_805D610C != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__data_805D610C);
+        safe_free(TLobby__data_805D610C);
         TLobby__data_805D610C = 0;
     }
 }
 
 void TLobby::free_resources() {
     if (TLobby__data_805D6144 != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__data_805D6144);
+        safe_free(TLobby__data_805D6144);
         TLobby__data_805D6144 = NULL;
     }
     if (quest_object_entries != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)quest_object_entries);
+        safe_free(quest_object_entries);
         quest_object_entries = NULL;
     }
     if (TLobby__data_805D6108 != NULL) {
@@ -358,11 +358,11 @@ void TLobby::free_resources() {
         TLobby__data_805D6104 = NULL;
     }
     if (TLobby__data_805D613C != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__data_805D613C);
+        safe_free(TLobby__data_805D613C);
         TLobby__data_805D613C = NULL;
     }
     if (TLobby__data_805D6138 != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__data_805D6138);
+        safe_free(TLobby__data_805D6138);
         TLobby__data_805D6138 = NULL;
     }
 }

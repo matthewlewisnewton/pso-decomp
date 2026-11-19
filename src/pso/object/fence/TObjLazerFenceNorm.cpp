@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -13,7 +14,6 @@
 #include "pso/object/base/TObjMotion.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/object/fence/TObjLazerFenceNorm.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/map/FloorArea.h"
 #include "pso/system/task/TMainTask.h"
@@ -144,7 +144,7 @@ void TObjLazerFenceNorm::free_resources() {
     }
     if ((u32) lazer_fence_norm_texture_list != 0U) {
         release_texture_list((void*)lazer_fence_norm_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)lazer_fence_norm_texture_list);
+        safe_free((void *)lazer_fence_norm_texture_list);
         lazer_fence_norm_texture_list = 0;
     }
 }

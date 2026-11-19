@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/Adxf.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -92,7 +93,7 @@ TChCrLoadAfsTextureReq::~TChCrLoadAfsTextureReq() {
     this->finish_request();
     for (i = 0; i < this->count; i++) {
         if (this->buffers[i] != 0) {
-            TAdSinglePlyChrSelectGC::safe_free(this->buffers[i]);
+            safe_free((void *)this->buffers[i]);
             this->buffers[i] = 0;
         }
     }

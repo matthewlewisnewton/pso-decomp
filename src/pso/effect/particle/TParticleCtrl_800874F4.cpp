@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/ResourceFile.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -17,7 +18,6 @@
 #include "pso/unk/TUnk_8048E7A8.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 #include "pso/system/vector.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -639,7 +639,7 @@ void TParticleCtrl::free_all() {
     }
     if ((u32) TParticleCtrl__texture_list != 0U) {
         release_texture_list((void*)TParticleCtrl__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(TParticleCtrl__texture_list);
+        safe_free((void *)TParticleCtrl__texture_list);
         TParticleCtrl__texture_list = 0U;
     }
 }

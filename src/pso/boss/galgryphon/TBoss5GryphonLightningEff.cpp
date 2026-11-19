@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/boss/galgryphon/TBoss5GryphonLightningEff.h"
@@ -14,7 +15,6 @@
 #include <stdlib.h>
 #include "pso/unk/TLobby_803255F8.h"
 #include "pso/unk/TLobby.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 
 struct Ent_80325248 { u8 b[0xC]; };
@@ -179,7 +179,7 @@ s32 release_texture_list(void*);
 void TLobby::free_char_select_singleton() {
     if ((u32) inazuma_texture_list != 0U) {
         release_texture_list((void*)inazuma_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)inazuma_texture_list);
+        safe_free(inazuma_texture_list);
         inazuma_texture_list = 0U;
     }
 }

@@ -1,8 +1,8 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/unk/TLobby.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 extern "C" {
 
@@ -14,7 +14,7 @@ GinjaTextureList *green_door_texture_handle;
 void TLobby::free_shared_objects() {
     if (green_door_texture_handle != NULL) {
         release_texture_list(green_door_texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free((u32)green_door_texture_handle);
+        safe_free(green_door_texture_handle);
         green_door_texture_handle = NULL;
     }
     if (green_door_bml_resource != NULL) {

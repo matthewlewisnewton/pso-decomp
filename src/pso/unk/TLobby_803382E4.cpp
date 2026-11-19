@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
@@ -19,7 +20,6 @@
 #include "pso/quest/TQuestVmDownLoadServer.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/math/AngleLookup.h"
 
 
@@ -166,8 +166,8 @@ void TLobby::load_now_loading_texture() {
         read_disc_file_sectors("NowLoading.prs", (void *)temp_r3);
         prs_decompress_buffer((temp_r3), (temp_r31));
         load_gvm_texture_archive((void *)temp_r31, (GinjaTextureList *)lbl_804EF1DC);
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
-        TAdSinglePlyChrSelectGC::safe_free(temp_r31);
+        safe_free((void *)temp_r3);
+        safe_free((void *)temp_r31);
         lobby_request_flags |= 2;
     }
 }

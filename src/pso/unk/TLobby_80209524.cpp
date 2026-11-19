@@ -6,7 +6,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/unk/TLobby_8007C550.h"
 #include "pso/unk/text_80209584.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/byteswap.h"
 #include "pso/unk/text_802097B0.h"
 #include "pso/item/drop/TItemDrop_80105D0C.h"
@@ -573,10 +572,10 @@ void init_buffers__6TLobbyFii(s32 id, s32 arg1) {
         challenge_action_buffer = (u8 *)TQuestVmDownLoadServer::alloc(0x1000);
         challenge_action_size = 0;
         TLobby__sub_80209D34(id);
-        TAdSinglePlyChrSelectGC::safe_free((u32)challenge_action_buffer);
-        TAdSinglePlyChrSelectGC::safe_free((u32)challenge_event_buffer);
+        safe_free(challenge_action_buffer);
+        safe_free(challenge_event_buffer);
         challenge_event_buffer = NULL;
-        TAdSinglePlyChrSelectGC::safe_free((u32)challenge_enemy_buffer);
+        safe_free(challenge_enemy_buffer);
         challenge_enemy_buffer = NULL;
     }
 }
@@ -1065,7 +1064,7 @@ u32 alloc__22TQuestVmDownLoadServerFUl();
 
 void TLobby::free_data_60F0() {
     if (TLobby__map_set_file_buffer != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)TLobby__map_set_file_buffer);
+        safe_free(TLobby__map_set_file_buffer);
         TLobby__map_set_file_buffer = NULL;
         TLobby__map_set_file_buffer_size = 0;
     }

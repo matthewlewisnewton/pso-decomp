@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
@@ -13,7 +14,6 @@
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/TUnk_804B5C08.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/object/TUnk_804B5BA8.h"
 #include "pso/object/base/TObjMotion.h"
 #include "pso/object/city/TObjCityDoor_Shop.h"
@@ -148,7 +148,7 @@ s32 release_texture_list(void*);
 void TLobby::free_map_resources() {
     if ((u32) city_common_texture_list != 0U) {
         release_texture_list((void*)city_common_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(city_common_texture_list);
+        safe_free((void *)city_common_texture_list);
         city_common_texture_list = 0U;
     }
     delete (BmlResource *)city_common_model_archive;

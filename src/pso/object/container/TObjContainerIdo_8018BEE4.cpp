@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
@@ -21,7 +22,6 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/unk/TLobby.h"
 #include "pso/npc/TObjNpcEnemy.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/SoundEffect.h"
@@ -278,7 +278,7 @@ void *__dt__15RenderFadeStateFv(void *arg0, s16 arg1);
 void TObjContainerIdo::free_resources() {
     if ((u32) container_ido_texture_gvm_handle != 0U) {
         release_texture_list((void*)container_ido_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(container_ido_texture_gvm_handle);
+        safe_free((void *)container_ido_texture_gvm_handle);
         container_ido_texture_gvm_handle = 0U;
     }
     if ((u32) TObjContainerIdo__model_resource != 0U) {

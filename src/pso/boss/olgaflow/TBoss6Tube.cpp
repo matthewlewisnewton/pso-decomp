@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -15,7 +16,6 @@
 #include "pso/unk/text_803D96A8.h"
 #include "pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h"
 #include "pso/boss/olgaflow/TBoss6Tube_802B15F4.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/task/TObject.h"
 #include "pso/system/MatrixStack.h"
@@ -228,7 +228,7 @@ void TBoss6Tube::free_resources() {
     }
     if ((u32) boss6_tube_texture_list != 0U) {
         release_texture_list((void*)boss6_tube_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(boss6_tube_texture_list);
+        safe_free((void *)boss6_tube_texture_list);
         boss6_tube_texture_list = 0U;
     }
     TBoss6Tube::reset_state();

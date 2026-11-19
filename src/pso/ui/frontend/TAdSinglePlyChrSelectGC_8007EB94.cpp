@@ -1,20 +1,12 @@
 #include "types.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
-#include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/system/memory.h"
 
-extern "C" {
-
-int xmalloc__FUl(void*);
-s32 xfree__FPv();
-
+void *operator new(size_t size) {
+    return xmalloc(size);
 }
 
-void *operator new(size_t size) { return (void *)xmalloc__FUl((void *)size); }
-
-
-void TAdSinglePlyChrSelectGC::safe_free(u32 arg0) {
-    if (arg0 != 0U) {
-        xfree__FPv();
+void safe_free(void *allocation) {
+    if (allocation != NULL) {
+        xfree(allocation);
     }
 }
-

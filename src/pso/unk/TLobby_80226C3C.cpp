@@ -5,7 +5,6 @@
 #include "pso/system/TLoadCtrl.h"
 #include "pso/unk/TLobby_802268F4.h"
 #include "pso/system/memory.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 struct Passage_80226FA0 { s16 first, repeat, count, transition, next; };
 
@@ -605,7 +604,7 @@ void TLobby::shutdown_buffers() {
     }
     TLobby::dec_ref_and_shutdown();
     if (lbl_805D62EC != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D62EC);
+        safe_free((void *)lbl_805D62EC);
     }
 }
 

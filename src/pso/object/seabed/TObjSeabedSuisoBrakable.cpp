@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 // The seabed tanks' shared resources: the archive and texture loader, the
 // scrolled-texture and model-node tables TObjSeabedSuiso_CH and
 // TObjSeabedSuisoBrakable read.
@@ -29,7 +30,6 @@
 #include "pso/render/ModelDrawContext.h"
 #include "pso/system/vector.h"
 #include "pso/render/NinjaUtil.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
 
@@ -40,7 +40,7 @@ NJS_OBJECT *TObjSeabedSuisoBrakable::model13_nodes[3];
 void TObjSeabedSuisoBrakable::free_static_resources() {
     if (texture_list != 0) {
         release_texture_list((GinjaTextureList *)texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(texture_list);
+        safe_free((void *)texture_list);
         texture_list = 0;
     }
     if (bml_resource != NULL) {

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
@@ -24,7 +25,6 @@
 #include "pso/boss/volopt/TObjVoloptCage.h"
 #include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/ui/frontend/TAdEnterPasswordGC.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/TLobby.h"
 #include "pso/unk/TLobby_80226070.h"
 #include "pso/unk/text_803D853C.h"
@@ -143,7 +143,7 @@ void TOTrapSeabed01::load_resources() {
 void TOTrapSeabed01::free_static_resources() {
     if (TOTrapSeabed01__texture_file != 0) {
         release_texture_list(TOTrapSeabed01__texture_file);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TOTrapSeabed01__texture_file);
+        safe_free(TOTrapSeabed01__texture_file);
         TOTrapSeabed01__texture_file = 0;
     }
     if (TOTrapSeabed01__bml_resource != NULL) {

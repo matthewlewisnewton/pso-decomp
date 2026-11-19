@@ -88,18 +88,18 @@ void load_memcard_file(void) {
         TLobby::run_frame();
     }
     if (read_card_save_header(&hdr, buf) != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        safe_free(buf);
         return;
     }
     fn_80197FD0(hdr.data, hdr.size);
-    TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+    safe_free(buf);
 }
 
 void TLobby__sub_80197F74(void) {}
 
 void TLobby::free_global_buffer() {
     if (TObjSinBoard__texture_buffer != 0) {
-        TAdSinglePlyChrSelectGC::safe_free(TObjSinBoard__texture_buffer);
+        safe_free((void *)TObjSinBoard__texture_buffer);
         TObjSinBoard__texture_buffer = 0;
         if (signboard_texture_list.entries->texture != NULL) {
             release_texture_list(&signboard_texture_list);

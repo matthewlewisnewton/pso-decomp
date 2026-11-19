@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 // Compiled -inline off,deferred: the functions are written from the last
@@ -30,7 +31,6 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/vector.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803D96A8.h"
 
@@ -102,7 +102,7 @@ void TBoss6Rock::free_data() {
     }
     if (TBoss6Rock__data_805D6EF4 != NULL) {
         release_texture_list(TBoss6Rock__data_805D6EF4);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TBoss6Rock__data_805D6EF4);
+        safe_free(TBoss6Rock__data_805D6EF4);
         TBoss6Rock__data_805D6EF4 = NULL;
     }
 }

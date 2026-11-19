@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/player/TPlayerFootStamp.h"
 #include "pso/render/CurrentTextureList.h"
@@ -15,7 +16,6 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/vector.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D8DE0.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/camera/TCameraCtrl.h"
@@ -67,7 +67,7 @@ void load_player_footstamp(void) {
 void TPlayerFootStamp::free_instance() {
     if ((u32) player_footstamp_texture_gvm_handle != 0U) {
         release_texture_list((GinjaTextureList *)player_footstamp_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(player_footstamp_texture_gvm_handle);
+        safe_free((void *)player_footstamp_texture_gvm_handle);
         player_footstamp_texture_gvm_handle = 0U;
     }
 }

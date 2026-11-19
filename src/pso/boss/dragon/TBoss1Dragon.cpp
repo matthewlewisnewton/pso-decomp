@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
@@ -5129,7 +5130,6 @@ block_12:
 }
 
 #include "pso/enemy/panarms/TObjEnePanarms.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
 
 #pragma inline_depth(1)
@@ -5488,7 +5488,7 @@ void TBoss1Dragon::requestActionRefresh() {
 
 void TBoss1Dragon::free_resources() {
     if ((u32) TBoss1Dragon__data_805D4B28 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)TBoss1Dragon__data_805D4B28));
+        safe_free((void *)TBoss1Dragon__data_805D4B28);
         TBoss1Dragon__data_805D4B28 = 0U;
     }
     if ((u32) TBoss1Dragon__data_805D4B08 != 0U) {

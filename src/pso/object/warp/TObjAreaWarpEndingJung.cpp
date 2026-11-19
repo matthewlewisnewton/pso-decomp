@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -450,7 +451,7 @@ void load_forest_warp_resources(void) {
 void TObjWarpBase::free_globals() {
     if ((u32) forest_warp_texture_list != 0U) {
         release_texture_list((void*)forest_warp_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(forest_warp_texture_list);
+        safe_free((void *)forest_warp_texture_list);
         forest_warp_texture_list = 0U;
     }
     delete forest_warp_bml_resource;

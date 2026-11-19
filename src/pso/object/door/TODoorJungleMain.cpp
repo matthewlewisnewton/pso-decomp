@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
@@ -24,7 +25,6 @@
 
 #include "pso/player/TObjPlayer.h"
 
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 #include "pso/system/BmlResourceDescriptor.h"
 
@@ -321,7 +321,7 @@ void TODoorJungleMain::load_resources() {
 void TODoorJungleMain::free_static_resources() {
     if ((u32) door_jungle_main_gvm_texture != 0U) {
         release_texture_list((void*)door_jungle_main_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free(door_jungle_main_gvm_texture);
+        safe_free((void *)door_jungle_main_gvm_texture);
         door_jungle_main_gvm_texture = 0U;
     }
     if ((u32) TODoorJungleMain__bml_resource != 0U) {

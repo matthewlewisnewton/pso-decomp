@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/unk/TLobby_801F3A24.h"
@@ -14,7 +15,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/quest/TQuestListOnline.h"
 #include "pso/quest/TQuestListVM.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 struct QuestObjRow_801F3AD8 {
     u8 pad0[2];
@@ -42,7 +42,7 @@ void refresh_quest_list__6TLobbyFi(s32 arg0) {
         if (temp_r3 != 0) {
             read_disc_file((const char *)arg0, (void *)temp_r3);
             rebuild_all__6TLobbyFi(temp_r3);
-            TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+            safe_free((void *)temp_r3);
         }
     }
 }
@@ -368,7 +368,7 @@ void open_session__6TLobbyFi(s32 arg0) {
             populate_quest_floor_sets();
             TLobby::init_id_tables();
             TLobby__data_805D6134 = 1;
-            TAdSinglePlyChrSelectGC::safe_free(TLobby__data_805D5EE0);
+            safe_free((void *)TLobby__data_805D5EE0);
             TLobby__data_805D5EE0 = 0;
         }
     }

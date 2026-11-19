@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/npc/TObjNpcARM00.h"
@@ -10,7 +11,6 @@
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/task/TObject.h"
 
 #pragma readonly_strings on
@@ -28,7 +28,7 @@ void *__ct__11TObjControlFP7TObject(void *, void *);
 void TObjNpcARM00::free_resources() {
     if ((u32) TObjNpcARM00__texture_list != 0U) {
         release_texture_list((void*)TObjNpcARM00__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcARM00__texture_list);
+        safe_free((void *)TObjNpcARM00__texture_list);
         TObjNpcARM00__texture_list = 0U;
     }
     if ((u32) TObjNpcARM00__model_resource != 0U) {

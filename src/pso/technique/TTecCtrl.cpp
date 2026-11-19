@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -12,7 +13,6 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
 #include "pso/ui/hud/TLockOnCursor.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/technique/TTecAnti.h"
 #include "pso/technique/TTecBarta.h"
 #include "pso/technique/TTecFoie.h"
@@ -251,7 +251,7 @@ void TLobby__sub_8022F068(void) {
         if ((u32) *(u32 *)((s8 *)temp_r4 + 8) != 0U) {
             release_texture_list(lbl_805D63B0, (s32) temp_r4);
         }
-        TAdSinglePlyChrSelectGC::safe_free((u32) lbl_805D63B0);
+        safe_free(lbl_805D63B0);
         lbl_805D63B0 = NULL;
     }
     if ((void *) technique_effect_bml != NULL) {

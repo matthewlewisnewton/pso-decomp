@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -10,7 +11,6 @@
 
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/task/TObject.h"
@@ -84,7 +84,7 @@ void *TObjTank__create(void *arg0) {
 void TObjTank::free_globals() {
     if (TObjTank__texture_list != NULL) {
         release_texture_list(TObjTank__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TObjTank__texture_list);
+        safe_free(TObjTank__texture_list);
         TObjTank__texture_list = NULL;
     }
     if ((u32) tank_bml_resource != 0U) {

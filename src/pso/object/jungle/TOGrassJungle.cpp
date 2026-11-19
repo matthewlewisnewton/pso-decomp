@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
@@ -7,7 +8,6 @@
 #include "pso/system/BmlResource.h"
 #include "pso/object/jungle/TOGrassJungle.h"
 #include "pso/object/TMotorcycle.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/base/TObjMotion.h"
@@ -35,7 +35,7 @@ void *TOGrassJungle__create(void *arg0) {
 void TOGrassJungle::release_static_instance() {
     if (TOGrassJungle__grass_gvm_texture != NULL) {
         release_texture_list(TOGrassJungle__grass_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free((u32)TOGrassJungle__grass_gvm_texture);
+        safe_free(TOGrassJungle__grass_gvm_texture);
         TOGrassJungle__grass_gvm_texture = NULL;
     }
     if ((u32) TOGrassJungle__bml_resource != 0U) {

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/ChunkMaterialState.h"
 #include "pso/object/TObjHMS_EZRope_Player_800FEFCC.h"
 #include "types.h"
@@ -7,7 +8,6 @@
 #include "pso/object/TObjHMS_EZRope_Player.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -96,9 +96,9 @@ extern void *__vt__21TObjHMS_EZRope_Player[];
 void *__dt__21TObjHMS_EZRope_PlayerFv(TObjHMS_EZRope_Player *arg0, s16 arg1) {
     if (arg0 != NULL) {
         *(s32 **)((s8 *)arg0 + 0x18) = (s32 *)__vt__21TObjHMS_EZRope_Player;
-        if (arg0->m_3c != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)arg0->m_3c); *(s32 *)((s8 *)arg0 + 0x3C) = 0; }
-        if (*(void **)((s8 *)arg0 + 0x40) != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)(*(void **)((s8 *)arg0 + 0x40))); *(s32 *)((s8 *)arg0 + 0x40) = 0; }
-        if (arg0->m_44 != NULL) { TAdSinglePlyChrSelectGC::safe_free((u32)arg0->m_44); *(s32 *)((s8 *)arg0 + 0x44) = 0; }
+        if (arg0->m_3c != NULL) { safe_free(arg0->m_3c); *(s32 *)((s8 *)arg0 + 0x3C) = 0; }
+        if (*(void **)((s8 *)arg0 + 0x40) != NULL) { safe_free((*(void **)((s8 *)arg0 + 0x40))); *(s32 *)((s8 *)arg0 + 0x40) = 0; }
+        if (arg0->m_44 != NULL) { safe_free(arg0->m_44); *(s32 *)((s8 *)arg0 + 0x44) = 0; }
         __dt__14TObjEZRopeBaseFv(arg0, 0);
         if (arg1 > 0) {
             __dl__7TObjectFPv(arg0);
@@ -441,7 +441,7 @@ void *__vt__21TObjHMS_EZRope_Player[6] = {
 #pragma pop
 
 TObjEZRopeBase::~TObjEZRopeBase() {
-    if (m_2c != nullptr) { TAdSinglePlyChrSelectGC::safe_free((u32)m_2c); m_2c = nullptr; }
+    if (m_2c != nullptr) { safe_free(m_2c); m_2c = nullptr; }
 }
 
 extern "C" {

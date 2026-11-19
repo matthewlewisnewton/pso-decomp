@@ -14,7 +14,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/unk/TUnk_804C57E0.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
 #include "pso/render/GinjaTexture.h"
 #include "pso/system/NinjaTypes.h"
@@ -164,7 +163,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
     TGStream::load_sct_file((const char *)path, (u8 *)buf);
     ret = load_gvm_texture_archive((void *)buf, (GinjaTextureList *)arg1);
     if (allocated != 0) {
-        TAdSinglePlyChrSelectGC::safe_free(buf);
+        safe_free((void *)buf);
     } else {
         TLobby::tmp_buf_release("LoadTexturePvm");
     }
@@ -197,7 +196,7 @@ s32 TLobby::pso_load_texture() {
 void TObjPlayer::free_if_valid(s32 texlist) {
     if (texlist != 0) {
         release_texture_list((GinjaTextureList *)texlist);
-        TAdSinglePlyChrSelectGC::safe_free(texlist);
+        safe_free((void *)texlist);
     }
 }
 
@@ -244,7 +243,7 @@ GinjaTextureList *load_gvm_texture_file(const char *filename) {
     count = read_gvm_file_header(buf, &hdr);
     if (count == 0) {
         if (big != 0) {
-            TAdSinglePlyChrSelectGC::safe_free((u32)big);
+            safe_free(big);
         } else {
             TLobby::tmp_buf_release("LoadPvmFileTls");
         }
@@ -275,7 +274,7 @@ GinjaTextureList *load_gvm_texture_file(const char *filename) {
     }
     load_gvm_texture_archive(buf, res);
     if (big != 0) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)big);
+        safe_free(big);
     } else {
         TLobby::tmp_buf_release("LoadPvmFileTls");
     }

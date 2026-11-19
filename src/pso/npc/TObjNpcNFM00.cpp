@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "types.h"
 #include "pso/npc/TObjNpcNFM00.h"
 #include "pso/object/TObjControl.h"
@@ -5,7 +6,6 @@
 #include "pso/render/GinjaTexture.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/system/task/TMainTask.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/TLobby.h"
 #include "pso/unk/text_800F9B84.h"
 
@@ -29,7 +29,7 @@ void *TObjNpcNFM00__create(void *set_data) {
 void TObjNpcNFM00::free_resources() {
     if (TObjNpcNFM00__texture_gvm_handle != 0) {
         release_texture_list((GinjaTextureList *)TObjNpcNFM00__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcNFM00__texture_gvm_handle);
+        safe_free((void *)TObjNpcNFM00__texture_gvm_handle);
         TObjNpcNFM00__texture_gvm_handle = 0;
     }
     if (TObjNpcNFM00__shared_named_model_object != 0) {

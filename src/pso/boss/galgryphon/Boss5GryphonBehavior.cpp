@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
@@ -66,7 +67,6 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/unk/TLobby_803255F8.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/render/GinjaTexture.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
@@ -4934,7 +4934,7 @@ void TBoss5Gryphon::cleanup() {
     TBoss8Dragon__sub_80066A4C();
     if ((u32) boss5_gryphon_texture_list != 0U) {
         release_texture_list((GinjaTextureList *)boss5_gryphon_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(boss5_gryphon_texture_list);
+        safe_free((void *)boss5_gryphon_texture_list);
         boss5_gryphon_texture_list = 0U;
     }
     if ((u32) boss5_gryphon_bml_resource != 0U) {

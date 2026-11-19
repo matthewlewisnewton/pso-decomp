@@ -8,7 +8,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
 #include "pso/system/scene/TScene.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 
 #include "types.h"
@@ -494,7 +493,7 @@ void TLobby__sub_802083C0(void);
 
 void TLobby__sub_802083C0(void) {
     if ((u32) forest_rel_work_buffer != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)forest_rel_work_buffer));
+        safe_free((void *)forest_rel_work_buffer);
         forest_rel_work_buffer = 0U;
         forest_rel_module = 0;
         forest_rel_set_data_table = 0;

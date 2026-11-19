@@ -80,7 +80,7 @@ def run(dol):
     game.hook("alloc__22TQuestVmDownLoadServerFUl", acquire_large)
     game.hook("TQuestVmDownLoadServer__sub_8007EBDC", allocate_list)
     game.hook("tmp_buf_release__6TLobbyFPCc", lambda *_: None)
-    game.hook("safe_free__23TAdSinglePlyChrSelectGCFUl", lambda *_: None)
+    game.hook("safe_free__FPv", lambda *_: None)
     # Texture slot 1 means an existing GPU entry can be reused.
     game.hook("TObjPlayer__sub_803D9E38", lambda *_: 1)
 
@@ -96,9 +96,9 @@ def run(dol):
             if storage == SHARED:
                 label, *_ = game.calls["tmp_buf_release__6TLobbyFPCc"][0]
                 assert string(label) == b"LoadPvmFileTls"
-                assert "safe_free__23TAdSinglePlyChrSelectGCFUl" not in game.calls
+                assert "safe_free__FPv" not in game.calls
             else:
-                assert game.calls["safe_free__23TAdSinglePlyChrSelectGCFUl"][0][0] == LARGE
+                assert game.calls["safe_free__FPv"][0][0] == LARGE
                 assert "tmp_buf_release__6TLobbyFPCc" not in game.calls
             if not count:
                 assert result == 0 and "TQuestVmDownLoadServer__sub_8007EBDC" not in game.calls

@@ -21,7 +21,7 @@ CLOSE = "ADXF_Close"
 SEEK = "ADXF_Seek"
 READ = "ADXF_ReadNw"
 ALLOC = "alloc__22TQuestVmDownLoadServerFUl"
-FREE = "safe_free__23TAdSinglePlyChrSelectGCFUl"
+FREE = "safe_free__FPv"
 DECODE = "prs_decompress_buffer"
 
 

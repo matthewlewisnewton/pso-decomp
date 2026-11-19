@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/render/render_util.h"
@@ -15,7 +16,6 @@
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/task/TObject.h"
 #define CAT2(a, b) a##b
 #define CAT(a, b) CAT2(a, b)
@@ -382,7 +382,7 @@ void load_forest_box_resources(void) {
 void TLobby::free_char_select_resources() {
     if ((u32) lbl_805D5B7C != 0U) {
         release_texture_list((void*)lbl_805D5B7C);
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D5B7C);
+        safe_free((void *)lbl_805D5B7C);
         lbl_805D5B7C = 0U;
     }
     if ((u32) lbl_805D5B78 != 0U) {
@@ -416,7 +416,7 @@ void TLobby::load_console_resources() {
 void TLobby::free_chr_select_slot() {
     if ((u32) lbl_805D5B8C != 0U) {
         release_texture_list((void*)lbl_805D5B8C);
-        TAdSinglePlyChrSelectGC::safe_free(lbl_805D5B8C);
+        safe_free((void *)lbl_805D5B8C);
         lbl_805D5B8C = 0U;
     }
     if ((u32) container_breakup_model_archive != 0U) {

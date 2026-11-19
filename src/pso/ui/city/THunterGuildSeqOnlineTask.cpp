@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/player/TPlyGuildCardTag_8013ABCC.h"
@@ -369,11 +370,11 @@ void TQuestListOnline::release_resources() {
         *(u32 *)((s8 *)&TQuestListOnline__dat_download_state + 0x38) = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__selected_quest_info) != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((int) ((*(u32 *)&TQuestListOnline__selected_quest_info)));
+        safe_free((void *)((*(u32 *)&TQuestListOnline__selected_quest_info)));
         (*(u32 *)&TQuestListOnline__selected_quest_info) = 0U;
     }
     if ((u32) TQuestListOnline__quest_list_buffer != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(TQuestListOnline__quest_list_buffer);
+        safe_free((void *)TQuestListOnline__quest_list_buffer);
         TQuestListOnline__quest_list_buffer = 0U;
     }
     if ((u32) (*(u32 *)&TQuestListOnline__download_window) != 0U) {

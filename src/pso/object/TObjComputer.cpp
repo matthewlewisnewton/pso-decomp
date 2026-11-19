@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -21,7 +22,6 @@
 #include "pso/npc/TObjNpcEnemy.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/unk/text_80087278.h"
@@ -174,7 +174,7 @@ void load_computer_resources(void) {
 void TObjComputer::free_resources() {
     if ((u32) TObjComputer__texture_gvm_handle != 0U) {
         release_texture_list((void*)TObjComputer__texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjComputer__texture_gvm_handle);
+        safe_free((void *)TObjComputer__texture_gvm_handle);
         TObjComputer__texture_gvm_handle = 0U;
     }
     if ((u32) TObjComputer__model_archive != 0U) {

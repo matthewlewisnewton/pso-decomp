@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "pso/ui/MenuText.h"
 #include "pso/system/ArrayAllocation.h"
@@ -49,7 +50,7 @@ void TAdSinglePlyChrSelectGC::free_resources() {
     release_texture_list(menu_font_texture_list);
     ::operator delete[]((void *)menu_font_glyph_table);
     ::operator delete[]((void *)menu_font_palette);
-    TAdSinglePlyChrSelectGC::safe_free(menu_font_glyph_data);
+    safe_free((void *)menu_font_glyph_data);
 }
 #pragma pop
 

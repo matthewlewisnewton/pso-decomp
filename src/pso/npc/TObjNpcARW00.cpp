@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/npc/TObjNpcARW00.h"
@@ -8,7 +9,6 @@
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcFemaleBase.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 const char *TObjNpcARW00__name = "TObjNpcARW00";
 
@@ -21,7 +21,7 @@ void release_texture_list(void*);
 void TObjNpcARW00::free_resources() {
     if ((u32) TObjNpcARW00__gvm_texture_handle != 0U) {
         release_texture_list((void*)TObjNpcARW00__gvm_texture_handle);
-        TAdSinglePlyChrSelectGC::safe_free(TObjNpcARW00__gvm_texture_handle);
+        safe_free((void *)TObjNpcARW00__gvm_texture_handle);
         TObjNpcARW00__gvm_texture_handle = 0U;
     }
     if ((u32) TObjNpcARW00__static_model != 0U) {

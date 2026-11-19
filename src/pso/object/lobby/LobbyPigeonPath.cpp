@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
@@ -15,7 +16,6 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/object/TObjPathObj.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/object/TUnk_804E0988.h"
 #include "pso/object/TUnk_804E094C.h"
 #include "pso/object/TUnk_804E0910.h"
@@ -595,7 +595,7 @@ void TObjPlayer::load_seabed_dolphin() {
 void TObjPlayer__sub_802C2900(void) {
     if ((u32) (*(u32 *)&seabed_dolphin_texture_handle) != 0U) {
         release_texture_list((void*)(*(u32 *)&seabed_dolphin_texture_handle));
-        TAdSinglePlyChrSelectGC::safe_free((*(u32 *)&seabed_dolphin_texture_handle));
+        safe_free((void *)(*(u32 *)&seabed_dolphin_texture_handle));
         (*(u32 *)&seabed_dolphin_texture_handle) = 0U;
     }
     if ((u32) seabed_dolphin_bml_archive != 0U) {
@@ -787,7 +787,7 @@ void TObjPlayer::load_jungle_ebi_resources() {
 void TObjPlayer::free_chr_select() {
     if ((u32) jungle_ebi_texture_gvm_handle != 0U) {
         release_texture_list((void*)jungle_ebi_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(jungle_ebi_texture_gvm_handle);
+        safe_free((void *)jungle_ebi_texture_gvm_handle);
         jungle_ebi_texture_gvm_handle = 0U;
     }
     if ((u32) jungle_ebi_model_resource != 0U) {
@@ -955,7 +955,7 @@ void TObjPlayer::load_jungle_bird_resources() {
 void TObjPlayer::free_statics() {
     if ((u32) lobby_pigeon_texture_gvm != 0U) {
         release_texture_list((void*)lobby_pigeon_texture_gvm);
-        TAdSinglePlyChrSelectGC::safe_free(lobby_pigeon_texture_gvm);
+        safe_free((void *)lobby_pigeon_texture_gvm);
         lobby_pigeon_texture_gvm = 0U;
     }
     if ((u32) jungle_bird_bml_resource != 0U) {
@@ -1133,7 +1133,7 @@ void TObjPlayer::load_kamome_resources() {
 void TObjPlayer::destroy_instance() {
     if ((u32) lobby_kamome_texture_gvm_handle != 0U) {
         release_texture_list((void*)lobby_kamome_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free(lobby_kamome_texture_gvm_handle);
+        safe_free((void *)lobby_kamome_texture_gvm_handle);
         lobby_kamome_texture_gvm_handle = 0U;
     }
     if ((u32) lobby_kamome_model_resource != 0U) {

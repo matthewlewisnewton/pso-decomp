@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/render/GvmTextureArchive.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -21,7 +22,6 @@ public:
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 struct Vtx_802A9D40 { f32 x, y, z, u, v; s32 c; };
 
@@ -135,7 +135,7 @@ void *TBGLightningCtrl__create(void *arg0) {
 void TBGLightningCtrl::destroy_instance() {
     if ((u32) (*(u32 *)&bg_lightning_texture_handle) != 0U) {
         release_texture_list((void*)(*(u32 *)&bg_lightning_texture_handle));
-        TAdSinglePlyChrSelectGC::safe_free((*(u32 *)&bg_lightning_texture_handle));
+        safe_free((void *)(*(u32 *)&bg_lightning_texture_handle));
         (*(u32 *)&bg_lightning_texture_handle) = 0U;
     }
 }

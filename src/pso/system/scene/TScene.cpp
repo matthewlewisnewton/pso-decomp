@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -22,7 +23,6 @@
 #include "pso/quest/TQuestVmDownLoadServer.h"
 #include "pso/object/lobby/TObjButterflyLobby.h"
 #include "pso/map/TObjMapCsn.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/TLobby.h"
 #include "pso/system/task/TObject.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -976,22 +976,22 @@ void TScene::free_scene_resources() {
     u32 temp_r3;
     temp_r3 = TScene__material_info_buffer;
     if (temp_r3 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+        safe_free((void *)temp_r3);
         TScene__material_info_buffer = 0U;
     }
     temp_r3 = TScene__data_805D6020;
     if (temp_r3 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+        safe_free((void *)temp_r3);
         TScene__data_805D6020 = 0U;
     }
     temp_r3 = TScene__texture_animation_buffer;
     if (temp_r3 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+        safe_free((void *)temp_r3);
         TScene__texture_animation_buffer = 0U;
     }
     temp_r3 = TScene__supplementary_rel_buffer;
     if (temp_r3 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+        safe_free((void *)temp_r3);
         TScene__supplementary_rel_buffer = 0U;
     }
     temp_r3 = (u32)TScene__data_805D5FCC;
@@ -1003,13 +1003,13 @@ void TScene::free_scene_resources() {
     }
     temp_r3 = TScene__collision_file_buffer;
     if (temp_r3 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+        safe_free((void *)temp_r3);
         TScene__collision_file_buffer = 0U;
     }
     TObjButterflyLobby::free_singleton_805D4E6C();
     temp_r3 = TScene__map_rel_load_buffer;
     if (temp_r3 != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free(temp_r3);
+        safe_free((void *)temp_r3);
         TScene__map_rel_load_buffer = 0U;
     }
     (*(s32 *)&scene_collision_data) = 0;

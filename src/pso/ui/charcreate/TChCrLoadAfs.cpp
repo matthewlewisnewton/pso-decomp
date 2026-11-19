@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/Adxf.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/math/FloatRounding.h"
@@ -64,7 +65,6 @@ void TChCrLoadAfs::poll_load() {
 #include "pso/ui/charcreate/TChCrLoadAfsTextureReq.h"
 #include "pso/ui/charcreate/CharacterAppearanceTables.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 extern "C" { extern const char TChCrLoadAfs__class_name_string[13] = "TChCrLoadAfs"; }
 extern "C" { extern const char TChCrLoadAfsTextureReq__class_name_string[23] = "TChCrLoadAfsTextureReq"; }
 
@@ -128,7 +128,7 @@ TChCrLoadAfs::~TChCrLoadAfs() {
     }
     u32 buffer = buffer_address;
     if (buffer != 0) {
-        TAdSinglePlyChrSelectGC::safe_free(buffer);
+        safe_free((void *)buffer);
         buffer_address = 0;
     }
     release_load_slot();
@@ -218,7 +218,7 @@ void TChCrLoadAfsTextureReq::update_loading() {
     if (retry != 0) {
         ADXF_Close(load_handle);
         load_handle = 0;
-        TAdSinglePlyChrSelectGC::safe_free(buffers[index]);
+        safe_free((void *)buffers[index]);
         buffers[index] = 0;
         state = 1;
         return;

@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/unk/TLobbyEventTheme.h"
@@ -5,7 +6,6 @@
 #include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/TLobby.h"
 #include "pso/network/TPlyJoinLobbyEntry.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 
 #pragma readonly_strings on
 
@@ -74,7 +74,7 @@ TLobbyEventTheme::TLobbyEventTheme() : TObject(tl_00) {
 void free_obj_lobby_main() {
     if (lobby_main_texture_gvm != NULL) {
         release_texture_list(lobby_main_texture_gvm);
-        TAdSinglePlyChrSelectGC::safe_free((u32)lobby_main_texture_gvm);
+        safe_free(lobby_main_texture_gvm);
         lobby_main_texture_gvm = NULL;
     }
 }

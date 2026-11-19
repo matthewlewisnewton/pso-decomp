@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/task/TMainTask.h"
 #include "pso/ui/window/TWindowMessage.h"
@@ -124,7 +125,7 @@ void TAdSinglePlyChrSelectGC::init_logo_state(s32 arg0) {
     single_ply_quest_download_server = 0xFFFF;
 }
 void TAdSinglePlyChrSelectGC::noop() {  }
-void TUnk_804EF8C0::free_buffer() { if (*(unsigned int*)((char*)this + 0x20) != 0) { TAdSinglePlyChrSelectGC::safe_free((u32)(*(void**)((char*)this + 0x20))); *(int*)((char*)this + 0x20) = 0; *(int*)((char*)this + 0x1c) = 0; } }
+void TUnk_804EF8C0::free_buffer() { if (*(unsigned int*)((char*)this + 0x20) != 0) { safe_free((*(void**)((char*)this + 0x20))); *(int*)((char*)this + 0x20) = 0; *(int*)((char*)this + 0x1c) = 0; } }
 void TUnk_804EF8C0::clear_buffer() { if (*(unsigned int*)((char*)this + 0x20) != 0) { memset(*(void**)((char*)this + 0x20), (void*)0, *(void**)((char*)this + 0x1c)); } }
 void TUnk_804EF8C0::alloc_download_buffer() {
     if ((u32) *(u32 *)((s8 *)this + 0x20) == 0U) {

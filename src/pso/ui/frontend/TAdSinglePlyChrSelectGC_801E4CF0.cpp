@@ -29,7 +29,7 @@ extern s32 __vt__13TUnk_804C57E0[];
 
 TUnk_804C57E0::~TUnk_804C57E0() {
     release_texture_list(this->m_3c);
-    TAdSinglePlyChrSelectGC::safe_free(this->m_44);
+    safe_free((void *)this->m_44);
 }
 
 void TUnk_804C57E0::init_image_buffer(u8 *arg1, s32 arg2) {

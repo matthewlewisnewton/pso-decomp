@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/save/CardSaveFile.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <stdio.h>
@@ -111,7 +112,7 @@ TQuestListVM::~TQuestListVM() {
         list_window = NULL;
     }
     if (card_buffer != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)card_buffer);
+        safe_free(card_buffer);
         card_buffer = NULL;
     }
     quest_list_vm_instance = NULL;

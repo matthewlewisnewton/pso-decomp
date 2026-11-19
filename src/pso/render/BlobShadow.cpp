@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include <stddef.h>
 #include "types.h"
 #include "pso/object/base/TObjMotion.h"
@@ -9,7 +10,6 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/render/GinjaTexture.h"
 #include "pso/render/GvmTextureArchive.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/player/TObjPlayer_80011014.h"
 
 #pragma readonly_strings on
@@ -82,7 +82,7 @@ block_2:
 void release_blob_shadow_texture(void) {
     if (blob_shadow_texture_list != 0U) {
         release_texture_list((GinjaTextureList *)blob_shadow_texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(blob_shadow_texture_list);
+        safe_free((void *)blob_shadow_texture_list);
         blob_shadow_texture_list = 0U;
     }
 }

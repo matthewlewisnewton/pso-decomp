@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
@@ -48,7 +49,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/ui/hud/TNowLoading.h"
 #include "pso/ui/window/TWindowCtrl.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/system/vector.h"
 #include "pso/enemy/dd/TObjEneDD_800BB804.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
@@ -1619,7 +1619,7 @@ void *TBoss8Dragon::create(void *arg0) {
 
 void TBoss8Dragon::free_static() {
     if ((u32) (*(u32 *)&TBoss8Dragon__data_805D69A8) != 0U) {
-        TAdSinglePlyChrSelectGC::safe_free((u32)((void*)(*(u32 *)&TBoss8Dragon__data_805D69A8)));
+        safe_free((void *)(*(u32 *)&TBoss8Dragon__data_805D69A8));
         (*(u32 *)&TBoss8Dragon__data_805D69A8) = 0U;
     }
     if ((u32) TBoss8Dragon__data_805D6988 != 0U) {

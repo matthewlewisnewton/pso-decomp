@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "pso/system/TGStream.h"
 #include "types.h"
@@ -12,7 +13,6 @@
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/unk/TLobby.h"
 #include "pso/ui/window/TWindowDD.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/Language.h"
 #include "pso/unk/WindowLayoutRecord.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
@@ -1080,7 +1080,7 @@ void TLobby::load_ask_dictionary() {
     aram = Dolphin_ARAlloc(aligned);
     data = (s32)load_disc_file(lbl_8044F098);
     TLobby::aram_transfer_sync(3, data, aram, aligned);
-    TAdSinglePlyChrSelectGC::safe_free(data);
+    safe_free((void *)data);
     TQuestVmDownLoadServer__sub_803F0C04(aram, size, 3, 1, 0x2710);
     TQuestVmDownLoadServer__sub_803F09A4();
 }

@@ -9,7 +9,6 @@
 #include "pso/unk/TLobby.h"
 #include "pso/enemy/dd/TObjEneDD.h"
 #include "pso/quest/TQuestVmDownLoadServer.h"
-#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/map/FloorArea.h"
 #include "pso/player/TObjPlayer_80011014.h"
 
@@ -179,7 +178,7 @@ s32 TGStream::load_sct_file(const char *name, u8 *dst) {
         }
         stream.read_sectors_sync(sectors, buf);
         prs_decompress_buffer((s32)buf, (s32)dst);
-        TAdSinglePlyChrSelectGC::safe_free((u32)buf);
+        safe_free(buf);
         return stream.archive_entry->decoded_size;
     }
     stream.read_sectors_sync(sectors, dst);

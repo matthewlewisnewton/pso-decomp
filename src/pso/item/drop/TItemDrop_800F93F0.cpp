@@ -1,3 +1,4 @@
+#include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/item/drop/TItemDrop_800F93F0.h"
@@ -19,7 +20,6 @@ struct Head_800F957C { u8 pad[0x14]; N_800F957C *first; };
 
 extern "C" {
 extern Head_800F957C resource_load_task_root[];
-int safe_free__23TAdSinglePlyChrSelectGCFUl(void*);
 s32 apply_rel_relocations(void *);
 
 TUnk_8049C658::~TUnk_8049C658() {}
@@ -68,13 +68,13 @@ s32 load_relocatable_file(s32 arg0, s32 arg1) {
 }
 
 #pragma pop
-int free_data_file(void* p) { return safe_free__23TAdSinglePlyChrSelectGCFUl(p); }
+void free_data_file(void *data) { safe_free(data); }
 void *load_data_file(const char *path) { return load_disc_file(path); }
 void TLobby::free_nodes_with_id(u32 arg0) {
     N_800F957C *n = resource_load_task_root->first;
     while (n != 0) {
         if (n->id24 == arg0) {
-            safe_free__23TAdSinglePlyChrSelectGCFUl(n->p1C);
+            safe_free(n->p1C);
             if (n != 0) {
                 n->m0(1);
             }

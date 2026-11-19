@@ -16,7 +16,7 @@ boss-effects	great-merge/upstream/boss-effects	b85422c3e074329e8d9c439d8f4cbe76b
 audio-streams	great-merge/upstream/audio-streams	50a99fbc96cc511f66c574e3fa51faaeb907c9bb	82	Upstream checks and retail SHA-1 passed; audio pitch and AFS loader checks passed; signed channel count and stream callers verified
 host-portability	great-merge/upstream/native-callbacks-sdk	d8c3791adee9d8a777bcc04bff425027f193651e	11	Upstream checks and retail SHA-1 passed; shared matrix constants verified
 collision-results	great-merge/upstream/collision-results	f71b7189b4f48d26b2b91691ce643e28ad82e61a	62	Stock checks and retail SHA-1 passed; contact pool, radial selection, downward queries, aliased projection and grounded effects verified
-memory-moves	great-merge/upstream/memory-moves	c73a05326b43865a5b08ffad1b79a718bc328a82	32	Upstream checks and retail SHA-1 passed; 96 guarded byte and word copy cases
+memory-moves	great-merge/upstream/memory-moves	4b7aba01b4bcb020f5c96a124edca7c6764dfca4	117	Stock checks and retail SHA-1 passed; guarded byte and word copies, heap release and the data-file wrapper verified
 positional-sound	great-merge/upstream/positional-sound	cc23e836c9793f3629a5a85464a1cd91e7805016	259	Upstream checks and retail SHA-1 passed; one-shot, persistent, floor dispatch and particle checks passed
 particle-factories	great-merge/upstream/particle-factories	4137dcb168bf0811b64643844e59a842b92c4ede	188	Stock checks, retail SHA-1, factory boundary tests and compiled caller accounting passed
 demo-playback	great-merge/upstream/demo-playback	a4bc4be6f8e542ef658cb42d9c42418a2551c2f9	112	Stock checks, retail SHA-1, demo predicate cases and all compiled callers verified
