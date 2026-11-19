@@ -76,11 +76,24 @@ Each step reproduced the retail executable and passed the upstream checker indep
 
 The [original fork index](2026-11-18-fork-review-index.tsv) maps all 198 linked branches to these 17 entry points from 54 original source owners to 43 current owners. Their destinations and enclosing function boundaries agree. Eight original source or header edits were reconciled in full. Other edits in mixed files remain open in the index.
 
+## Menu frames, item lists and text clipping
+
+`great-merge/current/window-foundations` groups the existing result-window, guild-card and item-help changes on upstream master `c572111ed6`. Its 128 paths include the page indicator and draw context needed by the next review. `great-merge/current/window-frames` adds 169 paths against that base. It follows the window from its frame and scrolling state through menu closure, item rows and text clipping.
+
+| Commit | Review scope | Paths in commit |
+| --- | --- | ---: |
+| `593e0b3399` | Recover the shared window frame, layout entries and scroll offsets | 160 |
+| `977f5f052e` | Use the shared window close and clipping operations for menus, item rows and text | 18 |
+
+The UI base, both review steps, their cumulative counterparts and the working fork reproduce the retail GPOE8P image and pass the project checks. The 0x60-byte window base owns the entry list, flags, target and displayed geometry. Its 0x70-byte extension adds two content-scale and two scroll coordinates. The item-row renderer reads the same 0x4C-byte context as the menu frame and glyph clipper. Its original vtable slot at 0x804CF9C0 points to 0x80259510. The original code and the current build have the same 154 direct branches to the other fourteen frame and lifecycle entry points, across 87 original and 84 current source owners.
+
+Direct execution covered 63 sparse lists and their destruction order, all 256 low-byte close-flag states, 64 clipping rectangles, 80 frame dispatch cases and 640 item rows. The item-row emulator omits the paired-single spill and reload of FPR31. The adjacent scalar save and restore still execute. Host checks exercised 20,000 rectangles with frame interpolation, scrolling and clipping under address and undefined-behavior sanitizers. The [original fork index](2026-11-18-fork-review-index.tsv) records seven complete file comparisons and the linked branches in mixed files. The pointer return of the shared item-entry accessor remains open.
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `c340c57edc` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `c0ef1af710` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
-All 294 fork tests pass after the audio-streaming changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
+All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
 ## Review queue on the previous master
 
