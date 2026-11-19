@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `b55c8aabcf` changes 1,410 paths counting both sides of renames. The all-source snapshot is `7a016ac0be`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `6d9c527699` changes 1,422 paths counting both sides of renames. The all-source snapshot is `11e280bd42`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `bb6b24551c` | `942a0c050f` |
+| `great-merge/current/window-frames` | `85ece01de8` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -39,6 +39,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Native status gauge constructors and drawing | Included in the window review | `531ec09862` |
 | Shared bag-warning window lifecycle | Included in the window review | `73745157f7` |
 | Typed player-window commands and queries | Included in the window review | `b55c8aabcf` |
+| Native window callbacks and borrowed draw arguments | Included in the window review | `6d9c527699` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -157,6 +158,14 @@ The window review at `bb6b24551c` and combined stack at `b55c8aabcf` carry the f
 The eight name changes keep their addresses, instruction bytes and single definitions. The 216-byte callback table preserves all 18 three-word records and their relocation targets. The lobby give-up loop uses a scoped client index and player value to retain the original register allocation with the corrected command declaration. The selected link inputs have matching sections, symbols and relocations after the names are mapped. The standalone review, combined source, all-source snapshot and working fork reproduced the original executable SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The project checker passed with full builds for the three upstream-shaped branches. The fork layer passed eleven tests and materialized all 133 tooling paths.
 
 The audit reconciles 13 complete fork paths and records partial evidence against 33 other paths. It has 1,635 entries awaiting owner comparison and 582 with partial evidence.
+
+### Native window callbacks and borrowed draw arguments
+
+The window review at `85ece01de8` and combined stack at `6d9c527699` construct the callback window through its native class and use the shared two-argument callback type. The producers cover serial entry, password, agreement, Episode III, player status, symbol chat and character selection. The character-select callback stays on the native transition class that constructs and owns the callback window. The current window descriptor and inherited size fields retain their layouts.
+
+Eight functions retain their original addresses, instructions and single definitions. The compiler-generated 24-byte callback window table keeps the original four method targets at 0x804DE374. Every selected link input retains its allocated bytes, symbol positions and relocations after mapping the function names. The standalone review, combined source, all-source snapshot and working fork reproduced SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The project checker passed with full builds for the three upstream-shaped branches. The fork layer passed eleven tests and materialized all 133 tooling paths.
+
+The audit reconciles 4 complete fork paths and records partial evidence for 16 others. It has 1,618 entries awaiting owner comparison and 595 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
