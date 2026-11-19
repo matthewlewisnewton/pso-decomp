@@ -62,11 +62,25 @@ All three standalone commits, their counterparts on the combined source branch, 
 
 The [original fork index](2026-11-18-fork-review-index.tsv) records ten complete original file edits and the setter sites on mixed files. The current combined source is `01e8aa6ff7`. The 90 original byte ranges still account for 980 linked source bytes and 167 verified padding bytes.
 
+## Audio streaming and item archives
+
+`great-merge/current/audio-streaming` starts directly from upstream master `c572111ed6`. Its three commits change 65 distinct paths. Review the archive and sound work together. ADXF opens, seeks, reads and closes sector-based files for the item, scene, character and sound loaders. The ADXB decoder supplies the signed channel count to its buffer and ring operations. The sound slot passes pitch and slide duration from the technique and weapon callers to the voice pool.
+
+| Commit | Change | Paths in commit |
+| --- | --- | ---: |
+| `bffabbeb7b` | Recover ADXF sector reads and their archive callers | 31 |
+| `7cce238123` | Recover the signed ADXB channel count and streaming callers | 5 |
+| `35f924abcd` | Pass pitch and duration through the sound slot and its effect callers | 32 |
+
+Each step reproduced the retail executable and passed the upstream checker independently and on the cumulative source. The working fork reproduced the same executable. Linked execution covered 75 seeks, pending reads, cancellation, 12 archive opens, eight item loader lifecycles, 32 buffer alignments, 70 resource loading cases, every signed channel byte, and 18 pitch-forwarding and nine full voice-pool cases. Two fork-only probes now recognize the upstream names.
+
+The [original fork index](2026-11-18-fork-review-index.tsv) maps all 198 linked branches to these 17 entry points from 54 original source owners to 43 current owners. Their destinations and enclosing function boundaries agree. Eight original source or header edits were reconciled in full. Other edits in mixed files remain open in the index.
+
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `01e8aa6ff7` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `c340c57edc` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
-All 294 fork tests pass after the model-rendering changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
+All 294 fork tests pass after the audio-streaming changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
 ## Review queue on the previous master
 
