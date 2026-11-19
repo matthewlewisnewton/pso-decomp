@@ -1,8 +1,8 @@
 #include "pso/unk/text_801C23A8.h"
+#include "pso/system/ArrayAllocation.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/window/TWindowDuelResult.h"
 #include "pso/map/TSetEvtDestroy.h"
-#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowMessage.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/item/TItem.h"

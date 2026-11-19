@@ -1,7 +1,7 @@
 #include "pso/system/ResourceFile.h"
+#include "pso/system/ArrayAllocation.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/unk/TLobby_801E43E4.h"
-#include "pso/system/ArrayAllocation.h"
 #include "pso/object/base/TObjChara.h"
 #include "pso/npc/TNpcPlayer.h"
 #include "types.h"

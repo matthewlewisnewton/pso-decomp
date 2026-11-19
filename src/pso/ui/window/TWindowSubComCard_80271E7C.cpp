@@ -1,7 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/keyboard/TKeyBoardControl.h"
-#include "pso/quest/TQuestThread.h"
 #include "pso/system/ArrayAllocation.h"
+#include "pso/quest/TQuestThread.h"
 #include "pso/ui/window/TWindowSubComCardList.h"
 #include "pso/unk/TLobby.h"
 #include "pso/ui/window/TWindowMessage.h"

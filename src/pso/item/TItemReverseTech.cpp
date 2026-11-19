@@ -1,7 +1,7 @@
 #include "pso/system/ResourceFile.h"
+#include "pso/system/ArrayAllocation.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
-#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/frontend/TAdEndText.h"
 #include "pso/item/TItemReverseTechBG.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"

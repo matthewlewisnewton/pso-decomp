@@ -1,7 +1,7 @@
 #include "pso/system/TrailStrip.h"
+#include "pso/system/ArrayAllocation.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/item/TItemEffectWeapon.h"
-#include "pso/system/ArrayAllocation.h"
 #include "pso/item/TItemEquipVariant_8012A82C.h"
 #include "pso/render/render_util.h"
 #include "pso/effect/particle/TParticleCtrl.h"

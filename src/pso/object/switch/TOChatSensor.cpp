@@ -1,8 +1,8 @@
-#include "pso/system/ArrayAllocation.h"
 #pragma defer_codegen on
 #pragma readonly_strings on
 
 #include "pso/object/switch/TOChatSensorCapture.h"
+#include "pso/system/ArrayAllocation.h"
 
 #include "pso/ui/Language.h"
 

@@ -1,6 +1,6 @@
 #include "pso/render/ChunkTextureStripCollector.h"
-#include "types.h"
 #include "pso/system/ArrayAllocation.h"
+#include "types.h"
 #include "pso/enemy/TObjEnemy.h"
 
 #include <stddef.h>

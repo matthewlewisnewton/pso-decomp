@@ -1,9 +1,9 @@
 #include "pso/system/ResourceFile.h"
+#include "pso/system/ArrayAllocation.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "pso/ui/window/TWindowKeyBoardBase.h"
 #include "types.h"
-#include "pso/system/ArrayAllocation.h"
 #include "pso/ui/window/TWindowMessage.h"
 #include "pso/ui/window/TWindowBase.h"
 #include <string.h>

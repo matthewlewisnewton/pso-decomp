@@ -1,8 +1,8 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "pso/ui/keyboard/TKeyBoardControl.h"
-#include "types.h"
 #include "pso/system/ArrayAllocation.h"
+#include "types.h"
 
 #include "pso/system/task/TObject.h"
 

@@ -1,6 +1,6 @@
 #include "pso/system/Adxf.h"
-#include "pso/item/TItemTexLoad.h"
 #include "pso/system/ArrayAllocation.h"
+#include "pso/item/TItemTexLoad.h"
 #include "pso/object/ambient/TObjFish_8001ED90.h"
 #include "pso/player/TObjPlayer_8023E480.h"
 #include "pso/unk/text_803CC294.h"

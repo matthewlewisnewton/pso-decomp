@@ -1,7 +1,7 @@
 #include "pso/system/TrailStrip.h"
+#include "pso/system/ArrayAllocation.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
-#include "pso/system/ArrayAllocation.h"
 #include "pso/system/vector.h"
 #include "pso/system/task/TObject.h"
 #include "pso/system/task/TMainTask.h"

@@ -1,6 +1,6 @@
 #include "pso/system/ResourceFile.h"
-#include "pso/render/render_util.h"
 #include "pso/system/ArrayAllocation.h"
+#include "pso/render/render_util.h"
 #include "pso/object/collision/TOSymbolchatColli.h"
 
 #include "pso/system/NinjaTypes.h"

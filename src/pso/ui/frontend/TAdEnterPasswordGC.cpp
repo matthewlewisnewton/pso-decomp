@@ -1,7 +1,7 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/ui/keyboard/TKeyBoardControl.h"
-#include "types.h"
 #include "pso/system/ArrayAllocation.h"
+#include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/frontend/TAdEnterBaseGC_8032B38C.h"
 #include "pso/ui/frontend/TAdEnterPasswordGC.h"

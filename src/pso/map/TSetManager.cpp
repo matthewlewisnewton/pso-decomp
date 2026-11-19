@@ -1,6 +1,6 @@
 #include "pso/system/ResourceFile.h"
-#include "pso/map/TSetManager.h"
 #include "pso/system/ArrayAllocation.h"
+#include "pso/map/TSetManager.h"
 #include "types.h"
 
 #pragma readonly_strings on
