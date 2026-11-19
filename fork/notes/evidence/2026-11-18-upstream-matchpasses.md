@@ -54,19 +54,27 @@ The network and world-object rows use their existing review branches. Each branc
 
 ### Cumulative review stack
 
-The local branch `great-merge/current/review-stack` starts at upstream `c572111ed6` and contains the first five of the eleven review groups. Each commit represents one review applied to its predecessor. The five-stage tip at `b0eaa64461` changes 762 source paths, counting both sides of renames. The independent review branches remain available.
+The local branch `great-merge/current/review-stack` puts all eleven review groups on upstream `c572111ed6`. Each commit can be reviewed against its parent. The tip at `bad4f7f29a` changes 1,339 paths, counting both sides of renames. The standalone review branches remain available.
 
-| Stage | Group | Stack commit | Validation |
-| --- | --- | --- | --- |
-| 1 | network-contracts | `0368c735e9` | Tree equals the validated network review |
-| 2 | memory | `a4009abcdc` | 906 rebuilt objects, 16 renamed exports |
-| 3 | resource-lifetimes | `d11ba26152` | 1,090 rebuilt objects, 68 renamed exports |
-| 4 | spatial-effects | `d5893ac4aa` | 1,258 rebuilt objects, 74 renamed exports |
-| 5 | combat | `b0eaa64461` | 1,558 rebuilt objects, 139 renamed exports |
+| Stage | Group | Stack commit | Paths in stage | Object-file checks |
+| --- | --- | --- | ---: | --- |
+| 1 | network-contracts | `0368c735e9` | 47 | Tree equals the validated network review |
+| 2 | memory | `a4009abcdc` | 257 | 906 objects, 16 renamed exports |
+| 3 | resource-lifetimes | `f484c8671a` | 206 | 1,090 objects, 68 renamed exports |
+| 4 | spatial-effects | `e3a6e2fe36` | 341 | 1,258 objects, 74 renamed exports |
+| 5 | combat | `7dd3f44c70` | 211 | 1,558 objects, 139 renamed exports |
+| 6 | encounter-drawing | `8a3dc02c93` | 110 | 1,715 objects, 176 renamed exports |
+| 7 | window-frames | `141a9f9105` | 268 | 1,874 objects, 308 renamed exports |
+| 8 | bml-resource-lifetime | `90ce759593` | 451 | 1,875 objects, 312 renamed exports |
+| 9 | render-interfaces | `46f198c984` | 190 | 1,985 objects, 466 renamed exports |
+| 10 | actor-presentation | `15b085f571` | 381 | 1,986 objects, 501 renamed exports |
+| 11 | world-object-resources | `bad4f7f29a` | 33 | 1,987 objects, 505 renamed exports |
 
-The grouped archive code uses the memory review’s nullable release helper and array allocation calls. The effects layer keeps the pitch and positional interfaces together. The combat layer uses the typed particle calls and the shared allocation and copy routines in the battle-parameter loader. After normalizing same-address symbol names, every rebuilt object matches a validated baseline. Each rebuilt stage was checked for stale references and duplicate or missing providers among its renamed exports. Validation ran at the object-file level.
+The stack combines the array allocator and nullable release with typed archive loaders, carries the positional effects interfaces through combat and encounter drawing, and updates Gyaranzo’s fade field alongside the renderer header rename. The stage checks compare allocated sections, symbol locations and relocations with validated objects. They normalize same-address symbol aliases and check the raw references for stale names, missing providers and duplicate exports. The encounter through renderer stages match one Gryphon object's compiler-generated local names by section, offset, size and linkage. All 1,987 affected objects at the final tip match the cumulative source baseline. The final check covers 505 renamed exports across 2,481 selected linker inputs. Validation ran at the object-file level.
 
-The next incoming group is encounter drawing. The full eleven-group content comparison with the cumulative source remains open.
+The only source differences from `a5540e955c` are the compiler-profile comment in `configure.py`, whose fork wording stays on the working fork, and removal of an empty C-linkage block in `src/pso/unk/text_800FA464.cpp`. The working fork descends from the review stack and carries the local documentation and tooling. The review stack is local pending publication approval.
+
+The stack covers the cumulative source already prepared for upstream. The [fork source index](2026-11-18-fork-review-index.tsv) still has 1,789 entries awaiting owner comparison and 481 with some matching edit blocks. These entries track the older fork history through upstream's split realignment. Each needs a disposition before the historical source audit is complete.
 
 ## Review branches on upstream PR 326
 
