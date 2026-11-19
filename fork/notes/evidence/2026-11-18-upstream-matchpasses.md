@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `e5c8760ae8` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records and challenge retry objects. The all-source snapshot is `94316e81d3`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `bdc5b56af7` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects and player technique casts. The all-source snapshot is `cbaddf6273`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `91438961d3` |
+| `great-merge/current/combat` | `c780ad28de` |
 | `great-merge/current/encounter-drawing` | `629568f631` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
@@ -56,7 +56,15 @@ The [fork source index](2026-11-18-fork-review-index.tsv) closes six entries and
 
 The replay at `e5c8760ae8` carries the original state, countdown, menu and message fields into both challenge retry classes and their current owners. It preserves all 62 function names, addresses and sizes in those owners on the combined stack. The standalone world review at `bbbb69ff1b`, combined stack, all-source snapshot and working fork pass the project checker and reproduce the original executable. The fork overlay round-trips 133 paths and passes all eleven layer tests.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) closes the two header entries and records the field replay against both source owners. It has 1,427 entries awaiting owner comparison and 656 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) closes the two header entries and records the field replay against both source owners.
+
+### Player technique casts
+
+The 25-file replay at `bdc5b56af7` restores the original 6x47 packet, player cast state, NPC sender and target handling from `ca6e72d5e7` and its companion predicate change `d6b6ecb087`. Mapped three-way replay handled 16 paths automatically and identified 44 overlaps across eight paths. The remaining historical source unit now lives in the combined technique controller. The 364-byte handler and 15 renamed functions retain their original instructions, addresses and source linkage.
+
+The standalone combat review at `c780ad28de`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork-only linker inventory replaces two stale retained names with their recovered exports. The fork overlay round-trips 133 paths and passes all eleven layer tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records the coverage at 25 paths. It has 1,413 entries awaiting owner comparison and 668 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
