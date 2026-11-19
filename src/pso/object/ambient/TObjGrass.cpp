@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/BmlResource.h"
 #include "pso/unk/SampledMotionPoints.h"
@@ -383,7 +384,6 @@ void TObjGrassWeb__sub_800BC798(Web_800BC798 *o);
 Vec grass_camera_vec;
 Vec grass_render_vec;
 Vec grass_origin_vec;
-extern u8 lbl_804FF5E8[];
 f32 calc_xz_distance_sq(s32 arg0, u32 arg1, void *arg2);
 extern void *tl_04;
 struct VBase_14_d701ad { char pad[0x14]; };
@@ -1597,7 +1597,7 @@ void TObjGrass::update_camera_vec_by_stage() {
         grass_camera_vec.x = (0.0f);
         v->y = (0.0f);
         v->z = (0.0f);
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)v, (s32)v);
         break;
     case 0x32:
         break;
@@ -1608,7 +1608,7 @@ void TObjGrass::update_camera_vec_by_stage() {
         grass_render_vec.x = (0.0f);
         v->y = (0.0f);
         v->z = (0.0f);
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)v, (s32)v);
         break;
     case 0x3F:
         break;
@@ -1619,7 +1619,7 @@ void TObjGrass::update_camera_vec_by_stage() {
         grass_origin_vec.x = (0.0f);
         v->y = (0.0f);
         v->z = (0.0f);
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)v, (s32)v);
         break;
     }
     TObjGrass__render_node_index++;

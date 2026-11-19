@@ -9167,7 +9167,7 @@ force_active:
   - copy_transform__10TNpcPlayerFPvPv
   - copy_transform__11TBoss6Type1FPv
   - copy_transform__11TBoss6Type2FPv
-  - copy_transform__13TRaderMapCoreFPv
+  - copy_from__17RadarMapViewStateFPC17RadarMapViewState
   - copy_transform_second__10TNpcPlayerFPvPvPv
   - copy_udp_socket_event_record
   - copy_unequip_fields__10TObjPlayerFPv
@@ -22512,7 +22512,7 @@ force_active:
   - setup_move__16TObjEneMe3StelthFv
   - setup_move_bounds__16TObjEneMe3StelthFv
   - setup_move_bounds__18TObjEneMe3SinowZoaFv
-  - setup_overhead_projection__13TRaderMapCoreFv
+  - setup_overhead_projection__13TRaderMapCoreFP17RadarMapViewState
   - setup_photon_blast_camera__13TUnk_804C3248Fv
   - setup_projection_tex_matrix__10TObjPlayerFv
   - setup_projection_texture__10TObjPlayerFlll

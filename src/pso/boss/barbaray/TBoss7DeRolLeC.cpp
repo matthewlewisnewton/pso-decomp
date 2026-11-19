@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "pso/enemy/BattleParameters.h"
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -1219,7 +1220,6 @@ s32 spawn_default_particle__8TObjFishFv(s32, s32);
 
 s32 TObjFish__sub_802F18E8(void *);
 
-extern f32 lbl_804FF5E8[];
 
 struct Boss_802E83E8 { u8 pad[0x728]; s32 timer; s32 count; u8 pad730[0x7CC - 0x730]; u16 targets[4]; };
 
@@ -2329,9 +2329,9 @@ void spawn_particle_201__8TObjFishFii(s32 arg1, s32 arg2) {
 void TObjFish__sub_802EC468(s32 arg0, f32 farg0, f32 farg1) {
     Vec stack;
     VecCopy__FP3VecPC3Vec((int)((void *)&stack.x), (void *)arg0);
-    stack.x = -((*(f32 *)((s8 *)&lbl_804FF5E8 + 0xC) * farg1) - stack.x);
-    stack.y -= (*(f32 *)((s8 *)&lbl_804FF5E8 + 0x10) * farg1) - farg0;
-    stack.z = -((*(f32 *)((s8 *)&lbl_804FF5E8 + 0x14) * farg1) - stack.z);
+    stack.x = -((camera_world_view.direction.x * farg1) - stack.x);
+    stack.y -= (camera_world_view.direction.y * farg1) - farg0;
+    stack.z = -((camera_world_view.direction.z * farg1) - stack.z);
     spawn_particle_effect_with_flags((&stack.x), 0x127, 0x40);
 }
 #pragma pop

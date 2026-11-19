@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "pso/system/StripBufferPair.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -145,7 +146,6 @@ s32 TLobby__sub_80184C54();
 u32 __nw__7TObjectFUl(int);
 f32 vec3_dot(void *, void *);
 f32 subtract_vector(void *, void *);
-extern f32 lbl_804FF5E8[];
 extern s32 camera_ctrl_instance;
 
 void fn_80141CB8(void *, void *, void *, void *);
@@ -1191,7 +1191,7 @@ void TObjCity_Season_FireWorkCtrl::run_task() {
     {
       VecCopy((Vec *)(&stack.sp14), (const Vec *)(arg0 + 0x38));
       subtract_vector((void *)&stack.sp14, (void *)(camera_ctrl_instance + 0x178));
-      if ((((TObjBoss2Tunnel *)(&stack.sp14))->update_scale() < 450.0f) && (vec3_dot((void *)&stack.sp14, (void *) ((u8 *)&lbl_804FF5E8 + 0xC)) > 0.0f))
+      if ((((TObjBoss2Tunnel *)(&stack.sp14))->update_scale() < 450.0f) && (vec3_dot((void *)&stack.sp14, &camera_world_view.direction) > 0.0f))
       {
         temp_f30 = rand_signed_unit();
         temp_f30 = (this->scale.x) * temp_f30;

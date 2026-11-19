@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "types.h"
 #include "pso/ui/frontend/TAdLoadNetworkGC.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -17,7 +18,6 @@ struct Net_803084AC { u8 pad0[0x20]; void *obj[5]; Vec pos; };
 
 struct Net_80308518 { u8 pad0[0x18]; void *vt; u8 pad1[4]; void *obj[5]; };
 
-struct Ray_803085A0 { Vec a; Vec b; };
 
 ParticleAngles TAdLoadNetworkGC__object_offset_table[5] = {
     {0x4000, 0, 0}, {0x4000, 0, 0}, {0, 0, 0}, {0x4000, 0, 0}, {0x4000, 0, 0},
@@ -27,7 +27,6 @@ extern "C" {
 extern u8 __vt__16TAdLoadNetworkGC[];
 void *__ct__7TObjectFP7TObject(void *, void *);
 const s32 load_network_object_id_table[5] = {19, 21, 23, 29, 110};
-extern Ray_803085A0 lbl_804FF5E8;
 const char *TAdLoadNetworkGC__class_name = "TAdLoadNetworkGC";
 Net_803084AC *TAdLoadNetworkGC__ct(Net_803084AC *self, void *parent, Vec *pos);
 void TAdLoadNetworkGC::run_task() {
@@ -56,9 +55,9 @@ Net_803084AC *TAdLoadNetworkGC__ct(Net_803084AC *self, void *parent, Vec *pos) {
     *(void **)((u8 *)self + 0x18) = __vt__16TAdLoadNetworkGC;
     *(const char **)self = TAdLoadNetworkGC__class_name;
     VecCopy((Vec *)&self->pos, (const Vec *)pos);
-    self->pos.x = 100.0f * lbl_804FF5E8.b.x + lbl_804FF5E8.a.x;
-    self->pos.y = 100.0f * lbl_804FF5E8.b.y + lbl_804FF5E8.a.y;
-    self->pos.z = 100.0f * lbl_804FF5E8.b.z + lbl_804FF5E8.a.z;
+    self->pos.x = 100.0f * camera_world_view.direction.x + camera_world_view.position.x;
+    self->pos.y = 100.0f * camera_world_view.direction.y + camera_world_view.position.y;
+    self->pos.z = 100.0f * camera_world_view.direction.z + camera_world_view.position.z;
     for (i = 0; i < 5; i++) {
         self->obj[i] = 0;
         self->obj[i] = fn_80086FE0(&self->pos, &TAdLoadNetworkGC__object_offset_table[i], load_network_object_id_table[i], 1);

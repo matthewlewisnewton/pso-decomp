@@ -31,6 +31,8 @@ struct RadarPlayerMarker {
     NJS_ARGB color;
 };
 
+struct RadarMapViewState;
+
 struct TRaderMapCore : public TObjBase {
     TRaderMapCore(TObject *parent);
     virtual ~TRaderMapCore();
@@ -85,7 +87,7 @@ struct TRaderMapCore : public TObjBase {
     void set_marker_shown(s32 slot, s32 shown);
     void set_target_flag();
     void draw_player_markers();
-    void copy_transform(void* q);
+    void setup_overhead_projection(RadarMapViewState *view);
     void setup_view(s32 arg1);
     void render_region_records(void * _w1);
     void set_default_view_size();

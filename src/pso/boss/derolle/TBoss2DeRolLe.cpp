@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -1551,7 +1552,6 @@ extern s32 derolle_action_mode_sequence_table[];
 
 extern s32 derolle_action_sequence_table[];
 
-extern f32 lbl_804FF5E8[];
 
 extern "C" {
 
@@ -4167,9 +4167,9 @@ void spawn_ceil_junk__13TBoss2DeRolLeFii(s32 arg1, s32 arg2) {
 void spawn_offset_particle__13TBoss2DeRolLeFiff(s32 arg0, f32 farg0, f32 farg1) {
     Vec stack;
     VecCopy__FP3VecPC3Vec((int)((void *)&stack.x), (void *)arg0);
-    stack.x = -((*(f32 *)((s8 *)&lbl_804FF5E8 + 0xC) * farg1) - stack.x);
-    stack.y -= (*(f32 *)((s8 *)&lbl_804FF5E8 + 0x10) * farg1) - farg0;
-    stack.z = -((*(f32 *)((s8 *)&lbl_804FF5E8 + 0x14) * farg1) - stack.z);
+    stack.x = -((camera_world_view.direction.x * farg1) - stack.x);
+    stack.y -= (camera_world_view.direction.y * farg1) - farg0;
+    stack.z = -((camera_world_view.direction.z * farg1) - stack.z);
     spawn_particle_effect_with_flags((&stack.x), 0x127, 0x40);
 }
 

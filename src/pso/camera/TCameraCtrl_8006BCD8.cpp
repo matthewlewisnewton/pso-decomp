@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "types.h"
 #include "pso/camera/TCameraCtrl_8006C254.h"
 #include "pso/unk/TUnk_80488B38.h"
@@ -21,7 +22,6 @@
 
 void direction_to_pitch_yaw(u8 *arg0, s32 *arg1, s32 *arg2);
 void set_camera_look_at(u8 *eye, u8 *target, u8 *up);
-extern f32 lbl_804FF5E8[];
 extern TCameraCtrl *camera_ctrl_instance;
 extern void* camera_controller_registry[];
 void* camera_controller_registry[];
@@ -146,9 +146,9 @@ void TUnk_80488B68::post_update_view() {
     at.z = camera_ctrl_instance->tgt_z;
     Vec up = {0.0f, 1.0f, 0.0f};
     set_camera_look_at((u8 *)&camera_ctrl_instance->pos_x, (u8 *)&at, (u8 *)&up);
-    *(f32 *)((s8 *)&lbl_804FF5E8 + 0) = camera_ctrl_instance->pos_x;
-    *(f32 *)((s8 *)&lbl_804FF5E8 + 4) = camera_ctrl_instance->pos_y;
-    *(f32 *)((s8 *)&lbl_804FF5E8 + 8) = camera_ctrl_instance->pos_z;
+    camera_world_view.position.x = camera_ctrl_instance->pos_x;
+    camera_world_view.position.y = camera_ctrl_instance->pos_y;
+    camera_world_view.position.z = camera_ctrl_instance->pos_z;
 }
 
 void CameraPlayback::cache_target_and_forward(s32 angle) const {

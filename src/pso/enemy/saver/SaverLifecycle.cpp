@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -1396,7 +1397,6 @@ struct Obj_800A677C : VObj_800A677C {
 
 extern "C" {
 s32 rotate_matrix_x(int, void *);
-extern f32 lbl_804FF5E8[];
 s32 angle_diff_s16(s32, s32);
 void step_angle_clamped__10TObjPlayerFPvi(void *arg0, s32 arg1);
 void turn_toward_target__12TObjEneSaverFv(Obj_800A6B14 *self);
@@ -1779,7 +1779,7 @@ void TObjPlayer::step_cutscene_frame() {
         *(f32 *)((s8 *)&lbl_80500978.value + 0) = (f32) 0.0f;
         *(f32 *)((s8 *)&lbl_80500978.value + 4) = (f32) 0.0f;
         *(f32 *)((s8 *)&lbl_80500978.value + 8) = (f32) 0.0f;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)&lbl_804FF5E8, (s32)((void *)&lbl_80500978.value), (s32)((void *)&lbl_80500978.value));
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)((void *)&lbl_80500978.value), (s32)((void *)&lbl_80500978.value));
     }
     lbl_805D505C += 1;
 }

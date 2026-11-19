@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/render/CurrentTextureList.h"
@@ -481,7 +482,6 @@ void TObjEneIllGill::update_shadow_attack() {
     ((TObjPlayer *)enemy)->update_collisions();
     minimap_render_dot(&position, -0x5DB4, 1, 0);
 }
-extern u8 lbl_804FF5E8[];
 void TObjEneIllGill::capture_effect_positions() {
     Vec *v;
     switch (illGillModelNodeIndex) {
@@ -490,28 +490,28 @@ void TObjEneIllGill::capture_effect_positions() {
         v->x = 0.0f;
         v->y = 0.0f;
         v->z = 0.0f;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)v, (s32)v);
         break;
     case 44:
         v = &illGillShadowEffectPosition;
         v->x = 0.0f;
         v->y = 0.0f;
         v->z = 0.0f;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)v, (s32)v);
         break;
     case 40:
         v = &illGillChargeEffectPosition1;
         v->x = 0.0f;
         v->y = 0.0f;
         v->z = 0.0f;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)v, (s32)v);
         break;
     case 27:
         v = &illGillChargeEffectPosition2;
         v->x = 0.0f;
         v->y = 0.0f;
         v->z = 0.0f;
-        TObjBoss2Tunnel::transform_vec_by_camera((s32)lbl_804FF5E8, (s32)v, (s32)v);
+        TObjBoss2Tunnel::transform_vec_by_camera((s32)&camera_world_view, (s32)v, (s32)v);
         break;
     }
     illGillModelNodeIndex++;

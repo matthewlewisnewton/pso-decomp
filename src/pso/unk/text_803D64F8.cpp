@@ -1,27 +1,17 @@
-#include "types.h"
-struct Obj_803D64F8 {
-    f32 a, b, c, d, e, f;
-    s32 g;
-    s32 h;
-    f32 i, j;
-};
+#include "pso/camera/RadarMapViewState.h"
 
-extern "C" {
-void fn_803D64F8(Obj_803D64F8 *p);
 #pragma push
 #pragma scheduling off
-void fn_803D64F8(Obj_803D64F8 *p) {
-    p->a = 0.0f;
-    p->b = 0.0f;
-    p->c = 0.0f;
-    p->d = 0.0f;
-    p->e = 0.0f;
-    p->f = -1.0f;
-    p->g = 0;
-    p->h = 0x2aaa;
-    p->i = -1.0f;
-    p->j = -60000.0f;
+void initialize_radar_map_view(RadarMapViewState *view) {
+    view->position.x = 0.0f;
+    view->position.y = 0.0f;
+    view->position.z = 0.0f;
+    view->direction.x = 0.0f;
+    view->direction.y = 0.0f;
+    view->direction.z = -1.0f;
+    view->rotation_y = 0;
+    view->field1c = 0x2aaa;
+    view->field20 = -1.0f;
+    view->field24 = -60000.0f;
 }
 #pragma pop
-
-}

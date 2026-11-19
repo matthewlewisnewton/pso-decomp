@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "types.h"
 #include "pso/camera/TCameraCtrl_8006B3D8.h"
 #include "pso/camera/TCameraCtrl_8006C7C4.h"
@@ -24,7 +25,7 @@
 struct C30_8006AD34 { u8 b[0x30]; };
 
 
-f32 lbl_804FF5E8[10];
+RadarMapViewState camera_world_view;
 f32 camera_right[3];
 struct CameraPitchRotatedUpVector { s32 value; u8 remaining[0x8]; };
 CameraPitchRotatedUpVector camera_pitch_rotated_up_vector;
@@ -225,7 +226,6 @@ s32 TCameraCtrl__sub_80069304(void);
 struct SceneProjectionState { s32 value; u8 remaining[0x54]; };
 extern SceneProjectionState scene_projection_state;
 s32 camera_renderer_setup_nop(void *, int);
-s32 fn_803D64F8(void *);
 s32 activate_camera_mode(s32 arg0);
 bool TCameraCtrl__sub_800689F4(void);
 Cam_80068958 *get_character_select_request_buffer(void);
@@ -618,12 +618,12 @@ u8 *TCameraCtrl__ct(u8 *arg0, void *parent) {
         self->split_tgt[j].y = 0.0f;
         self->split_tgt[j].z = 0.0f;
     }
-    lbl_804FF5E8[0] = 0.0f;
-    lbl_804FF5E8[1] = 0.0f;
-    lbl_804FF5E8[2] = 0.0f;
-    lbl_804FF5E8[3] = 0.0f;
-    lbl_804FF5E8[4] = 0.0f;
-    lbl_804FF5E8[5] = -1.0f;
+    camera_world_view.position.x = 0.0f;
+    camera_world_view.position.y = 0.0f;
+    camera_world_view.position.z = 0.0f;
+    camera_world_view.direction.x = 0.0f;
+    camera_world_view.direction.y = 0.0f;
+    camera_world_view.direction.z = -1.0f;
     return arg0;
 }
 #pragma pop
@@ -634,17 +634,17 @@ void TCameraCtrl::setup_default_view(void *arg1_arg) {
     Vec at;
     Vec d;
     Vec *pat;
-    eye.x = lbl_804FF5E8[0];
-    eye.y = lbl_804FF5E8[1];
-    eye.z = lbl_804FF5E8[2];
+    eye.x = camera_world_view.position.x;
+    eye.y = camera_world_view.position.y;
+    eye.z = camera_world_view.position.z;
     if (arg1 != 0) {
         eye.x += arg1->x;
         eye.y += arg1->y;
         eye.z += arg1->z;
     }
-    at.x = lbl_804FF5E8[3] + eye.x;
-    at.y = lbl_804FF5E8[4] + eye.y;
-    at.z = lbl_804FF5E8[5] + eye.z;
+    at.x = camera_world_view.direction.x + eye.x;
+    at.y = camera_world_view.direction.y + eye.y;
+    at.z = camera_world_view.direction.z + eye.z;
     d.x = eye.x - at.x;
     d.y = eye.y - at.y;
     d.z = eye.z - at.z;
@@ -695,28 +695,28 @@ void TCameraCtrl::run_task() {
         v.x = (((f32 *)t)[0] + GF(0x184)) - GF(0x178);
         v.y = (((f32 *)t)[1] + GF(0x188)) - GF(0x17C);
         v.z = (((f32 *)t)[2] + GF(0x18C)) - GF(0x180);
-        lbl_804FF5E8[0] = *(f32 *)(arg0 + 0x178);
-        lbl_804FF5E8[1] = *(f32 *)(arg0 + 0x17C);
-        lbl_804FF5E8[2] = *(f32 *)(arg0 + 0x180);
+        camera_world_view.position.x = *(f32 *)(arg0 + 0x178);
+        camera_world_view.position.y = *(f32 *)(arg0 + 0x17C);
+        camera_world_view.position.z = *(f32 *)(arg0 + 0x180);
         if (0.0f != vec_squared_length(&v)) {
             normalize_vector(&v);
         }
-        lbl_804FF5E8[3] = v.x;
-        lbl_804FF5E8[4] = v.y;
-        lbl_804FF5E8[5] = v.z;
+        camera_world_view.direction.x = v.x;
+        camera_world_view.direction.y = v.y;
+        camera_world_view.direction.z = v.z;
         vector_length(&v);
     }
     if (is_split_screen() != 0) {
         if (TCameraCtrl__view_state[0] == 5) {
-            ((TObjBoss2Tunnel *)lbl_804FF5E8)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
+            ((TObjBoss2Tunnel *)&camera_world_view)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
             for (i = 1; i < 4; i++) {
                 copy_view_params__11TCameraCtrlFii(&TCameraCtrl__view_matrices[i], &TCameraCtrl__view_matrices[0]);
             }
         } else {
-            ((TObjBoss2Tunnel *)lbl_804FF5E8)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
+            ((TObjBoss2Tunnel *)&camera_world_view)->render(&TCameraCtrl__view_matrices[TCameraCtrl::get_camera_no()]);
         }
     } else {
-        ((TObjBoss2Tunnel *)lbl_804FF5E8)->render(TCameraCtrl__view_matrix);
+        ((TObjBoss2Tunnel *)&camera_world_view)->render(TCameraCtrl__view_matrix);
     }
     ((TCameraCtrl *)arg0)->calc_rotated_axes();
 }
@@ -1613,8 +1613,8 @@ void TCameraCtrl::reset_default_view() {
     TCameraCtrl::set_target(0x280, 0x1E0);
     TCameraCtrl::set_fullscreen_viewport();
     TCameraCtrl::reset_viewport_scissor();
-    fn_803D64F8(lbl_804FF5E8);
-    camera_renderer_setup_nop(lbl_804FF5E8, 0x3555);
+    initialize_radar_map_view(&camera_world_view);
+    camera_renderer_setup_nop(&camera_world_view, 0x3555);
     TCameraCtrl::update_camera_state(0.0f, 0.0f, 0.0f);
     TCameraCtrl::look_at_position(0.0f, 0.0f, -1.0f);
     stack.sp10 = 320.0f;

@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "types.h"
 #include "pso/unk/TUnk_80488A28.h"
 #include "pso/camera/TCameraCtrl_80067FC0.h"
@@ -61,7 +62,6 @@ extern "C" {
 void GXSetScissorBoxOffset(s32, s32);
 f32 vector_length(void *);
 void normalize_vector(void *);
-extern Vec lbl_804FF5E8;
 extern Flags_8006835C TCameraCtrl__view_state;
 extern Scissor_8006835C TCameraCtrl__data_804FF634;
 extern u8 TCameraCtrl__up_vector[];
@@ -215,9 +215,9 @@ void TUnk_80488A28::post_update_view() {
     e.y = camera_ctrl_instance->target.y + t->y;
     e.z = camera_ctrl_instance->target.z + t->z;
     set_camera_look_at((u8 *)&camera_ctrl_instance->pos, (u8 *)&e, (u8 *)TCameraCtrl__up_vector);
-    lbl_804FF5E8.x = camera_ctrl_instance->pos.x;
-    lbl_804FF5E8.y = camera_ctrl_instance->pos.y;
-    lbl_804FF5E8.z = camera_ctrl_instance->pos.z;
+    camera_world_view.position.x = camera_ctrl_instance->pos.x;
+    camera_world_view.position.y = camera_ctrl_instance->pos.y;
+    camera_world_view.position.z = camera_ctrl_instance->pos.z;
     if (TCameraCtrl__view_state.flags & 0x200) {
         GXSetScissorBoxOffset((s32)-(TCameraCtrl__data_804FF634.x - 320.0f), (s32)-(TCameraCtrl__data_804FF634.y - 240.0f));
         TCameraCtrl__sub_801E32D8(TCameraCtrl__data_804FF634.x, TCameraCtrl__data_804FF634.y);

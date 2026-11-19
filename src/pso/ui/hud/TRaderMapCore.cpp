@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/BmlAccessors.h"
@@ -112,7 +113,6 @@ struct Region_801F9D84 {
 
 struct Map_801F9D84 { Region_801F9D84 *regions; void *textures; s32 count; };
 
-struct Cam_801F9314 { Vec dir; Vec pos; s32 rot; };
 
 struct Color_801FAAEC { f32 r, g, b, a; };
 
@@ -163,29 +163,8 @@ typedef struct Player_801F9E9C {
     u8 sub828[4];
 } Player_801F9E9C;
 
-struct Glob_801F97C4 {
-    u8 pad0[0x28];
-    f32 f28;
-    u8 pad2c[0x4];
-    f32 f30;
-    u8 rest[0x44];
-};
 
-struct Glob_801F986C {
-    u8 pad0[0x28];
-    f32 f28;
-    u8 pad2c[0x4];
-    f32 f30;
-    u8 rest[0x44];
-};
 
-struct Glob_801F9770 {
-    u8 pad0[0x28];
-    f32 f28;
-    u8 pad2c[0x4];
-    f32 f30;
-    u8 rest[0x44];
-};
 
 struct Pad_801FAF24 {
     u8 pad0[0x20];
@@ -254,8 +233,6 @@ void TCameraCtrl__sub_801E32D8(f32 farg0, f32 farg1);
 s32 GXSetScissorBoxOffset(int, int);
 extern Rect_801F9228 radar_map_view_scissor_table[3];
 extern s32 camera_ctrl_instance;
-struct TRaderMapCoreMapViewState { s32 value; u8 remaining[0x74]; };
-extern TRaderMapCoreMapViewState TRaderMapCore__map_view_state;
 s32 memset(void *, int, int);
 extern RadarViewRect_801FA9D8 radar_map_view_rect_table[3];
 void begin_map_view__13TRaderMapCoreFii(s32 arg0, s32 arg1);
@@ -282,7 +259,6 @@ void rotate_vector_by_matrix(void *, Vec *, Vec *);
 void rotate_matrix_y(void *, s32);
 s32 push_matrix_from(void *src);
 extern u8 identity_matrix[];
-void setup_overhead_projection__13TRaderMapCoreFv(s32 arg0, Cam_801F9314 *arg1);
 }
 void rotate_matrix_zyx(void *m, s32 x, s32 y, s32 z);
 extern "C" {
@@ -335,14 +311,6 @@ void set_camera_look_at(u8 *eye, u8 *target, u8 *up);
 
 #define SHOW(t) ((s32 (*)(void *))should_show_map__13TRaderMapCoreFv)(t)
 
-struct RadarView_801FA46C {
-    f32 x;
-    f32 distance;
-    f32 z;
-    u8 padC[0xC];
-    s32 rot;
-    u8 pad1C[0xC];
-};
 
 Color_801FAAEC radar_map_backdrop_color = { 1.0f, 0.3f, 0.3f, 0.3f };
 RadarViewRect_801FA9D8 radar_map_view_rect_table[3] = {
@@ -403,16 +371,14 @@ f32 radar_overhead_projection_scale = 75.0f;
 #define MAP_801FAAEC ((Map_801FAAEC *)TRaderMapCore__floor_map_resource)
 
 Gate_801FA1E0 TRaderMapCore__marker_buffer[128];
-TRaderMapCoreMapViewState TRaderMapCore__map_view_state;
+RadarMapViewState TRaderMapCore__map_view_state[3];
 s16 *TRaderMapCore__floor_discovery_table[18];
 
-struct GRec_801FB490 { u8 pad0[4]; f32 f4; u8 pad8[8]; f32 f10; f32 f14; s32 f18; u8 pad1c[0x28 - 0x1C]; };
 
 struct MRec_801FB490 { f32 v[3]; s32 a0; f32 a4; s16 h[2]; u8 padac[0x28 - 0x18]; };
 extern "C" {
 
 
-s32 fn_803D64F8(void *);
 }
 
 
@@ -531,7 +497,7 @@ extern "C" {
 #pragma push
 #pragma opt_common_subs off
 TRaderMapCore::TRaderMapCore(TObject *parent) : TObjBase(parent) {
-    GRec_801FB490 *g;
+    RadarMapViewState *g;
     s32 i;
     u32 j;
     m_name = rader_map_core_name_ptr;
@@ -539,12 +505,12 @@ TRaderMapCore::TRaderMapCore(TObject *parent) : TObjBase(parent) {
     m_17c = init_map_ptr(&m_90, 0);
     m_180 = init_map_ptr(&m_90, 1);
     for (i = 0; i < 3; i++) {
-        g = (GRec_801FB490 *)&TRaderMapCore__map_view_state + i;
-        fn_803D64F8(g);
-        g->f4 = lbl_805D35F0;
-        g->f10 = -1.0f;
-        g->f14 = 0.0f;
-        g->f18 = 0x8000;
+        g = &TRaderMapCore__map_view_state[i];
+        initialize_radar_map_view(g);
+        g->position.y = lbl_805D35F0;
+        g->direction.y = -1.0f;
+        g->direction.z = 0.0f;
+        g->rotation_y = 0x8000;
     }
     m_150 = 500.0f;
     viewport_width = 640.0f;
@@ -716,9 +682,9 @@ void TRaderMapCore::update_pan_zoom_input() {
         if (p != 0 && TWindowShortListCtrl__check_controller_button(controller_input_state[((TRaderMapCore *)p)->get_map_id()].ctl, 0x200) != 0 &&
             has_flag__13TRaderMapCoreFv(controller_input_state[((TRaderMapCore *)p)->get_map_id()].ctl, 0x10000) != 0) {
             self->f184 = p;
-            u8 *cam = (u8 *)&TRaderMapCore__map_view_state;
-            *(f32 *)((s8 *)cam + 0x28) = *(f32 *)((s8 *)self->f184 + 0x38);
-            *(f32 *)((s8 *)cam + 0x30) = *(f32 *)((s8 *)self->f184 + 0x40);
+            RadarMapViewState *cam = &TRaderMapCore__map_view_state[1];
+            cam->position.x = *(f32 *)((s8 *)self->f184 + 0x38);
+            cam->position.z = *(f32 *)((s8 *)self->f184 + 0x40);
             self->f188 = 0.0f;
             self->f18C = 0.0f;
             self->f190 = 0.0f;
@@ -872,7 +838,7 @@ void begin_map_view__13TRaderMapCoreFii(s32 arg0, s32 arg1) {
     viewport.value18 = *(f32 *)((s8 *)temp_r5 + 0x10);
     ((TRaderMapCore*)arg0)->configure_viewport(&viewport);
     TRaderMapCore::set_view_scissor((void *)arg0, 2, (void *)((void *) ((u8 *)&radar_map_view_scissor_table + (arg1 * 0x10))));
-    setup_overhead_projection__13TRaderMapCoreFv((s32)arg0, (Cam_801F9314 *)((void *) ((u8 *)&TRaderMapCore__map_view_state.value + (arg1 * 0x28))));
+    ((TRaderMapCore *)arg0)->setup_overhead_projection(&TRaderMapCore__map_view_state[arg1]);
     Vec dir = { 0.0f, -1.0f, 0.0f };
     NJS_ARGB color = { 1.0f, 1.0f, 1.0f, 1.0f };
     ((TObjLight *)&dir)->set_light(&color, 1.0f);
@@ -955,65 +921,79 @@ void TRaderMapCore::draw_compass(s32 mode) {
     }
 }
 
-void TRaderMapCore::copy_transform(void* q) { *(f32 *)&this->m_name = *(f32*)((char*)q + 0x0); *(f32 *)&this->m_flags = *(f32*)((char*)q + 0x4); *(f32 *)&this->m_prev = *(f32*)((char*)q + 0x8); *(f32 *)&this->m_next = *(f32*)((char*)q + 0xc); *(f32 *)&this->m_up = *(f32*)((char*)q + 0x10); *(f32 *)&this->m_down = *(f32*)((char*)q + 0x14); *(u32*)((char*)this + 0x18) = *(u32*)((char*)q + 0x18); *(u32 *)&this->entity_id = *(u32*)((char*)q + 0x1c); *(f32 *)&this->m_20 = *(f32*)((char*)q + 0x20); *(f32 *)&this->texlist = *(f32*)((char*)q + 0x24); }
+#pragma push
+#pragma scheduling off
+void RadarMapViewState::copy_from(const RadarMapViewState *source) {
+    position.x = source->position.x;
+    position.y = source->position.y;
+    position.z = source->position.z;
+    direction.x = source->direction.x;
+    direction.y = source->direction.y;
+    direction.z = source->direction.z;
+    rotation_y = source->rotation_y;
+    field1c = source->field1c;
+    field20 = source->field20;
+    field24 = source->field24;
+}
+#pragma pop
 
 void TRaderMapCore::update_follow_projection(s32 mode) {
-    RadarView_801FA46C *view = (RadarView_801FA46C *)&TRaderMapCore__map_view_state;
-    RadarView_801FA46C *free_view = view + 1;
-    RadarView_801FA46C *out = view + 2;
+    RadarMapViewState *view = TRaderMapCore__map_view_state;
+    RadarMapViewState *free_view = view + 1;
+    RadarMapViewState *out = view + 2;
     if (this->m_134 >= 0) {
-        view->x = this->player_marker_records[this->m_134].x;
-        view->z = this->player_marker_records[this->m_134].z;
+        view->position.x = this->player_marker_records[this->m_134].x;
+        view->position.z = this->player_marker_records[this->m_134].z;
     }
     if (this->m_168 & 1) {
-        view->rot = 0x8000 - ((TCameraCtrl *)camera_ctrl_instance)->yaw;
+        view->rotation_y = 0x8000 - ((TCameraCtrl *)camera_ctrl_instance)->yaw;
         if (get_current_floor_area() == AREA_DE_ROL_LE) {
-            free_view->rot = 0;
+            free_view->rotation_y = 0;
             this->m_174 = 0x8000 - ((TCameraCtrl *)camera_ctrl_instance)->yaw;
         } else {
-            free_view->rot = 0x8000;
+            free_view->rotation_y = 0x8000;
             this->m_174 = -((TCameraCtrl *)camera_ctrl_instance)->yaw;
         }
     } else if (get_current_floor_area() == AREA_DE_ROL_LE) {
-        view->rot = 0;
-        free_view->rot = 0;
+        view->rotation_y = 0;
+        free_view->rotation_y = 0;
         this->m_174 = 0;
     } else {
-        view->rot = 0x8000;
-        free_view->rot = 0x8000;
+        view->rotation_y = 0x8000;
+        free_view->rotation_y = 0x8000;
         this->m_174 = 0;
     }
     if (this->m_168 & 2) {
         switch (this->m_16c) {
         case 0:
             this->m_170 *= 1.2f;
-            view->distance += this->m_170;
-            if (view->distance > lbl_805D35F0) {
-                view->distance = lbl_805D35F0;
+            view->position.y += this->m_170;
+            if (view->position.y > lbl_805D35F0) {
+                view->position.y = lbl_805D35F0;
             }
             break;
         case 1:
             this->m_170 *= 1.2f;
-            view->distance += this->m_170;
-            if (view->distance > lbl_805D35F8) {
-                view->distance = lbl_805D35F8;
+            view->position.y += this->m_170;
+            if (view->position.y > lbl_805D35F8) {
+                view->position.y = lbl_805D35F8;
             }
             break;
         case 2:
             this->m_170 *= 1.2f;
-            view->distance -= this->m_170;
-            if (view->distance < lbl_805D35F4) {
-                view->distance = lbl_805D35F4;
+            view->position.y -= this->m_170;
+            if (view->position.y < lbl_805D35F4) {
+                view->position.y = lbl_805D35F4;
             }
             break;
         }
     } else {
-        view->distance = lbl_805D35F0;
+        view->position.y = lbl_805D35F0;
     }
     if (mode == 2) {
-        ((TRaderMapCore *)out)->copy_transform(free_view);
+        out->copy_from(free_view);
     } else {
-        ((TRaderMapCore *)out)->copy_transform(view);
+        out->copy_from(view);
     }
 }
 
@@ -1259,7 +1239,7 @@ s32 TRaderMapCore::block_region_by_id(s16 id) {
 }
 
 s32 minimap_render_dot(Vec *pos, s32 arg1, s16 arg2, s32 arg3) {
-    Vec *cam = (Vec *)&TRaderMapCore__map_view_state;
+    Vec *cam = &TRaderMapCore__map_view_state[0].position;
     Vec v;
     u8 pad[0x10];
     Dot_801F9B8C *d;
@@ -1285,7 +1265,7 @@ s32 minimap_render_dot(Vec *pos, s32 arg1, s16 arg2, s32 arg3) {
 }
 
 s32 minimap_render_gate(Vec *pos, u32 color, u16 rot, s16 kind, s32 flags) {
-    Vec *cam = (Vec *)&TRaderMapCore__map_view_state;
+    Vec *cam = &TRaderMapCore__map_view_state[0].position;
     Vec v;
     u8 pad[0x10];
     if (TRaderMapCore__data_805D5F30 > 0x7F) {
@@ -1309,7 +1289,7 @@ s32 minimap_render_gate(Vec *pos, u32 color, u16 rot, s16 kind, s32 flags) {
 }
 
 s32 add_radar_scaled_marker(Vec *pos, s32 arg1, s16 arg2, s32 arg3, f32 scale) {
-    Vec *cam = (Vec *)&TRaderMapCore__map_view_state;
+    Vec *cam = &TRaderMapCore__map_view_state[0].position;
     Vec v;
     u8 pad[0x10];
     Dot_801F9B8C *d;
@@ -1335,7 +1315,7 @@ s32 add_radar_scaled_marker(Vec *pos, s32 arg1, s16 arg2, s32 arg3, f32 scale) {
 }
 
 s32 add_radar_scaled_gate(Vec *pos, s32 color, u16 rot, s16 kind, s32 flags, f32 scale) {
-    Vec *cam = (Vec *)&TRaderMapCore__map_view_state;
+    Vec *cam = &TRaderMapCore__map_view_state[0].position;
     Vec v;
     if (TRaderMapCore__data_805D5F30 > 0x7F) {
         return 0;
@@ -1368,8 +1348,8 @@ void TRaderMapCore::reset_marker_scale() {
 
 void TRaderMapCore::pan_horizontal(f32 farg0) {
     if (TRaderMapCore__view_mode == 1 || TRaderMapCore__view_mode == 2) {
-        Glob_801F986C *g = (Glob_801F986C *)&TRaderMapCore__map_view_state;
-        g->f28 -= farg0;
+        RadarMapViewState *g = &TRaderMapCore__map_view_state[1];
+        g->position.x -= farg0;
         switch (get_current_floor_area()) {
         case AREA_VOL_OPT:
         case AREA_DARK_FALZ:
@@ -1377,11 +1357,11 @@ void TRaderMapCore::pan_horizontal(f32 farg0) {
         case AREA_TOWER:
             return;
         default:
-            if (g->f28 < -6000.0f) {
-                g->f28 = -6000.0f;
+            if (g->position.x < -6000.0f) {
+                g->position.x = -6000.0f;
             }
-            if (g->f28 > 6000.0f) {
-                g->f28 = 6000.0f;
+            if (g->position.x > 6000.0f) {
+                g->position.x = 6000.0f;
             }
             break;
         }
@@ -1390,8 +1370,8 @@ void TRaderMapCore::pan_horizontal(f32 farg0) {
 
 void TRaderMapCore::pan_vertical(f32 farg0) {
     if (TRaderMapCore__view_mode == 1 || TRaderMapCore__view_mode == 2) {
-        Glob_801F97C4 *g = (Glob_801F97C4 *)&TRaderMapCore__map_view_state;
-        g->f30 -= farg0;
+        RadarMapViewState *g = &TRaderMapCore__map_view_state[1];
+        g->position.z -= farg0;
         switch (get_current_floor_area()) {
         case AREA_VOL_OPT:
         case AREA_DARK_FALZ:
@@ -1399,11 +1379,11 @@ void TRaderMapCore::pan_vertical(f32 farg0) {
         case AREA_TOWER:
             return;
         default:
-            if (g->f30 < -6000.0f) {
-                g->f30 = -6000.0f;
+            if (g->position.z < -6000.0f) {
+                g->position.z = -6000.0f;
             }
-            if (g->f30 > 6000.0f) {
-                g->f30 = 6000.0f;
+            if (g->position.z > 6000.0f) {
+                g->position.z = 6000.0f;
             }
             break;
         }
@@ -1411,25 +1391,25 @@ void TRaderMapCore::pan_vertical(f32 farg0) {
 }
 
 void TRaderMapCore::open_free_map_view() {
-    s32 g = (s32)&TRaderMapCore__map_view_state;
+    RadarMapViewState *g = &TRaderMapCore__map_view_state[1];
     TRaderMapCore__view_mode = 1;
     {
         NJS_POINT2 p = TRaderMapCore__sub_801F9D38((TRaderMapCore *)TRaderMapCore__instance);
-        ((Glob_801F9770 *)g)->f28 = p.x;
-        ((Glob_801F9770 *)g)->f30 = p.y;
+        g->position.x = p.x;
+        g->position.z = p.y;
     }
 }
 
 void TRaderMapCore::add_zoom_distance(f32 farg0) {
     f32 temp_f0;
     if (((s32) TRaderMapCore__view_mode == 1) || ((s32) TRaderMapCore__view_mode == 2)) {
-        temp_f0 = *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) + farg0;
-        *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) = temp_f0;
+        temp_f0 = TRaderMapCore__map_view_state[1].position.y + farg0;
+        TRaderMapCore__map_view_state[1].position.y = temp_f0;
         if (temp_f0 < lbl_805D35F4) {
-            *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) = (f32) lbl_805D35F4;
+            TRaderMapCore__map_view_state[1].position.y = (f32) lbl_805D35F4;
         }
-        if (*(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) > lbl_805D35F8) {
-            *(f32 *)((s8 *)&TRaderMapCore__map_view_state.value + 0x2C) = (f32) lbl_805D35F8;
+        if (TRaderMapCore__map_view_state[1].position.y > lbl_805D35F8) {
+            TRaderMapCore__map_view_state[1].position.y = (f32) lbl_805D35F8;
         }
     }
 }
@@ -1520,18 +1500,18 @@ s32 TRaderMapCore::save_floor_discovery(int floor, void *map_data) {
     return 1;
 }
 
-void setup_overhead_projection__13TRaderMapCoreFv(s32 arg0, Cam_801F9314 *arg1) {
+void TRaderMapCore::setup_overhead_projection(RadarMapViewState *view) {
     Vec up = { 0.0f, 0.0f, -1.0f };
     Vec eye;
     Vec at;
-    eye.x = arg1->dir.x * lbl_805D3608;
-    eye.y = arg1->dir.y * lbl_805D3608;
-    eye.z = arg1->dir.z * lbl_805D3608;
-    at.x = arg1->pos.x + eye.x;
-    at.y = arg1->pos.y + eye.y;
-    at.z = arg1->pos.z + eye.z;
+    eye.x = view->position.x * lbl_805D3608;
+    eye.y = view->position.y * lbl_805D3608;
+    eye.z = view->position.z * lbl_805D3608;
+    at.x = view->direction.x + eye.x;
+    at.y = view->direction.y + eye.y;
+    at.z = view->direction.z + eye.z;
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, 0x8000 - arg1->rot);
+    rotate_matrix_y(0, 0x8000 - view->rotation_y);
     rotate_vector_by_matrix(0, &up, &up);
     pop_matrix();
     set_perspective_projection_from_fov((182.04445f * radar_overhead_projection_scale), 1.1333334f, 1.0f, 10000.0f);

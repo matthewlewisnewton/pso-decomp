@@ -1,3 +1,4 @@
+#include "pso/camera/RadarMapViewState.h"
 #include "types.h"
 #include "pso/unk/TUnk_80488A28.h"
 #include "pso/system/vector.h"
@@ -199,7 +200,6 @@ void normalize_vector(FollowVector *);
 extern FollowVector lbl_80438534;
 void camera_renderer_setup_nop(void *, s32);
 extern FollowVector lbl_80438528;
-extern u8 lbl_804FF5E8[];
 FollowVector *get_position_ptr__10TObjPlayerFv(void *);
 FollowVector *get_target_ptr__11TCameraCtrlFv(void *);
 }
@@ -782,7 +782,7 @@ void TUnk_80488E00::vfunc_10() {
             break;
         }
     }
-    camera_renderer_setup_nop(lbl_804FF5E8, self->id);
+    camera_renderer_setup_nop(&camera_world_view, self->id);
     TCameraCtrl::update_camera_state(self->pos.x, self->pos.y, self->pos.z);
 }
 
