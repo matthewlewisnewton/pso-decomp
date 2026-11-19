@@ -52,6 +52,22 @@ The grouped actor branch rebuilt 1,486 selected objects, including 353 edited so
 
 The network and world-object rows use their existing review branches. Each branch matches the tracked files in its verified build snapshot. Their per-commit comparisons and tests are recorded in the sections below.
 
+### Cumulative review stack
+
+The local branch `great-merge/current/review-stack` starts at upstream `c572111ed6` and contains the first five of the eleven review groups. Each commit represents one review applied to its predecessor. The five-stage tip at `b0eaa64461` changes 762 source paths, counting both sides of renames. The independent review branches remain available.
+
+| Stage | Group | Stack commit | Validation |
+| --- | --- | --- | --- |
+| 1 | network-contracts | `0368c735e9` | Tree equals the validated network review |
+| 2 | memory | `a4009abcdc` | 906 rebuilt objects, 16 renamed exports |
+| 3 | resource-lifetimes | `d11ba26152` | 1,090 rebuilt objects, 68 renamed exports |
+| 4 | spatial-effects | `d5893ac4aa` | 1,258 rebuilt objects, 74 renamed exports |
+| 5 | combat | `b0eaa64461` | 1,558 rebuilt objects, 139 renamed exports |
+
+The grouped archive code uses the memory review’s nullable release helper and array allocation calls. The effects layer keeps the pitch and positional interfaces together. The combat layer uses the typed particle calls and the shared allocation and copy routines in the battle-parameter loader. After normalizing same-address symbol names, every rebuilt object matches a validated baseline. Each rebuilt stage was checked for stale references and duplicate or missing providers among its renamed exports. Validation ran at the object-file level.
+
+The next incoming group is encounter drawing. The full eleven-group content comparison with the cumulative source remains open.
+
 ## Review branches on upstream PR 326
 
 Upstream master `c572111ed6` reorganized 715 files. The branches below start directly from that revision. Each was compiled from fresh objects, reproduced the original GPOE8P executable (SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`) and passed the upstream checker against a fresh master build. These first twenty branches combine at `734e53187f`. The four resource commits below extend `great-merge/current/all-source` to `59ab60ae41` across 1082 paths. The combined build passed the same checks. These are local review components. The previous matchpass grouping remains the guide for bundling related components for submission.
