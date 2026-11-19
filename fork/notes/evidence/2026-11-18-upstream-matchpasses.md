@@ -21,6 +21,21 @@ The fork's enhanced linker checker had produced thousands of retention-list chan
 
 The four authorized submissions are [#321](https://github.com/zeroz41/pso-decomp/pull/321), [#322](https://github.com/zeroz41/pso-decomp/pull/322), [#323](https://github.com/zeroz41/pso-decomp/pull/323) and [#324](https://github.com/zeroz41/pso-decomp/pull/324). All four merged. The maintainer asked to keep specialized tooling on the fork. The network, renderer and resource-loading reviews were updated in place, passed upstream CI and merged as `800d66a50b`, `1cd8f309f7` and `f76fdd7ff1`. The network update also resolved the PPP linker conflict.
 
+## Review groups on the merged master
+
+The seventeen checked components form six larger local branches on upstream `f76fdd7ff1`. Each branch below builds independently, passes the stock PR checks and reproduces the retail executable. The first five cover game subsystems. The last holds the smaller native callback and SDK changes. All six are local.
+
+| Review branch | Commit | Paths | Components |
+| --- | --- | ---: | --- |
+| `great-merge/reviews/resource-lifetimes` | `f49ca5d08c` | 91 | archive-lifecycle, quest-cache, audio-streams |
+| `great-merge/reviews/window-interaction` | `4c814cd01f` | 166 | window-lists, result-windows, guild-card-chat |
+| `great-merge/reviews/combat` | `24ec973274` | 142 | battle-parameters, enemy-motion, collision-results, player-techniques |
+| `great-merge/reviews/encounter-drawing` | `1826acfd4a` | 97 | radar-camera, raft-encounters, texture-strips, boss-effects |
+| `great-merge/reviews/memory` | `bc9ede35e0` | 185 | runtime-array-allocation, memory-moves |
+| `great-merge/reviews/native-callbacks` | `d9e51bc35f` | 10 | native-callbacks-sdk |
+
+The resource group passed the ADXF, archive, sound-slot, disc-read and quest-cache checks. The window group passed the guild-card and results-page checks. The combat and encounter groups passed the battle, collision, weapon, camera, trail and strip-animation checks. The memory group passed 96 guarded copy cases. The native callback C++ host checks passed on the fork.
+
 ## Item model and texture archive reads
 
 The model and texture loaders share a five-word reader. Their concrete objects span 0x40 and 0x28 bytes respectively. The native constructors pass the AFS filename, partition, and file count to the common initializer. Reads forward the handle, sector count, and destination to the alignment-checked ADXF function. The interface now serves the GSL, scene and sound-bank callers too. The local audio and archive group at `694270fb8b` contains 77 changed paths against the merged master.
