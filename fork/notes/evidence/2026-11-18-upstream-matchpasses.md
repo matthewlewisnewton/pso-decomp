@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `63e8a18e15` changes 1,381 paths counting both sides of renames. The all-source snapshot is `9112840dd3`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `011823a1c6` changes 1,385 paths counting both sides of renames. The all-source snapshot is `9ed1d606a3`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,11 +12,11 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `70f73ffcbb` | `942a0c050f` |
+| `great-merge/current/window-frames` | `0a446167fd` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
-| `great-merge/current/world-object-resources` | `fe57774bc0` | `5996f01f11` |
+| `great-merge/current/world-object-resources` | `90d72bb2bd` | `5996f01f11` |
 | Challenge enemy-set records | Included in its review branch | `4fa38ff78e` |
 | Audio file-system callbacks | Included in its review branch | `50bc7543d7` |
 | Barba Ray and Olga Flow encounter records | Included in its review branch | `3b34b9def9` |
@@ -32,6 +32,8 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Sinow Zoa melee dispatch | Included in its combat review | `b82940c3d7` |
 | Technique texture archive and list names | Included in its resource lifetimes review | `315bce551c` |
 | Enemy projectile, nest, claw and color sequences | Included in its combat review | `63e8a18e15` |
+| Rain and fish lifetime and resource records | Included in the world-object review | `28582fc056` |
+| Native Com Card follower | Included in the window review | `011823a1c6` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -102,6 +104,14 @@ The combat review at `a42b08d6eb` and cumulative stack at `63e8a18e15` carry the
 Nine renamed ranges match the original bytes, including eight routines and one string. The standalone combat review compares 2,488 selected inputs and the combined stack and materialized fork each compare 2,484. Each renamed export has one provider, and the allocated sections and relocation targets match the preceding builds after mapping the renamed symbols. The standalone and combined heads passed the project checker in object-report mode. The executable hash remains unverified on this base. The fork layer passed eleven tests and reproduces all 133 tooling paths.
 
 The source audit accounts for the complete projectile implementation and header and adds evidence for ten other fork paths. It has 1,702 entries awaiting owner comparison and 542 with partial evidence.
+
+### Rain, fish and the Com Card follower
+
+The world-object review at `90d72bb2bd` uses the native rain and fish constructors. Rain uses the fork's typed drop array in initialization, movement and drawing. Fish uses the typed placement fields, destructor and five area resource descriptors. The ancient rare enemy container uses its original class-name pointer. The window review at `0a446167fd` gives both status-window callers the native Com Card follower constructor and binds its selected-index setter to that class. The Com Card unit uses the fork's deferred compilation setting and emits its dispatch table before the icon switch table.
+
+The combined stack at `011823a1c6` preserves the bytes and locations of nine renamed ranges, including the three class-name pointers and the follower dispatch table. The fish's 52-byte dispatch table and 240-byte area resource table retain their original layouts. Both standalone reviews and the combined stack passed the upstream checker in object-report mode. The compiled sections and relocation targets agree with their preceding builds after mapping the renamed symbols. The executable hash remains unverified on this base. The fork layer passed all eleven tests and reproduced all 133 tooling paths.
+
+The source audit closes three complete headers and records additional evidence for seven original paths. It has 1,693 entries awaiting owner comparison and 548 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
