@@ -10,6 +10,7 @@ The local branches below group related changes for review. The component branche
 | Array allocation, memory copies and nullable release | `great-merge/current/memory` | `381e372339` | 257 |
 | Enemy targeting, battle parameters, collision and player techniques | `great-merge/current/combat` | `ac997883bf` | 209 |
 | Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `34176d99e2` | 112 |
+| Positional sound, area effects and particle spawning | `great-merge/current/spatial-effects` | `748755c261` | 342 |
 | Window entry, input and rendering interfaces | `great-merge/current/window-frames` | `37e0caf80a` | 268 |
 
 The memory review applies the array allocation component `63c3f4ea45` first, then the memory-copy and nullable release changes from `6194d462e1`. The two components overlap in the menu font cleanup. Its resolved form uses matching array allocation and deletion for the glyph table and palette, and uses the nullable release helper for the glyph data. The compiler output confirms both array delete calls and the nullable release call.
@@ -27,6 +28,10 @@ The grouped drawing branch compiled 1,571 selected objects, including 74 edited 
 The combat review keeps six commits covering enemy movement and targeting, battle parameters, Gyaranzo resource records, ground contacts, player techniques and the special-event item. In the overlapping callers, typed ground queries receive the shared target vectors. The Gyaranzo constructor keeps the native lifecycle and reads the typed movement, collision and model records. The special-event item inherits the existing compiler profile under its renamed source path.
 
 The grouped combat branch compiled 1,283 selected objects, including 145 edited sources. Of these, 1,272 match upstream and every standalone component. Ten match their validated individual components. The Gyaranzo object matches the cumulative source when 13 differently named calls are compared by function address and size. The objects agree on allocated bytes and symbol locations. The selected 2,486 linker inputs contain one provider for each of the 65 renamed exports and no unresolved or stale references to those names. The private missile attack record stays at 0x8043C464. Validation ran at the object-file level.
+
+The spatial-effects review brings the world-position particle factories together with one-shot, persistent and area-dependent sound requests. The two commits touch many of the same callers. The combined form retains both typed interfaces across 58 overlapping files. The Dolmolm caller now takes its declarations from the shared headers.
+
+The grouped effects branch compiled 559 selected objects, including 331 edited sources. All match upstream and both standalone components after mapping six renamed symbols to their original addresses. The 2,487 selected linker inputs contain one provider for each renamed export and no unresolved or stale references to those names. Validation ran at the object-file level.
 
 ## Review branches on upstream PR 326
 
