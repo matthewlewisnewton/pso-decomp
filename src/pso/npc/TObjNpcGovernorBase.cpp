@@ -1,7 +1,7 @@
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/npc/TObjNpcGovernorBase.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/npc/TUnk_804A9F50.h"
 

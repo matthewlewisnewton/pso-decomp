@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/BmlResource.h"
 #include "pso/render/ChunkMaterialState.h"
@@ -84,7 +85,6 @@ extern s32 model_render_flags;
 void render__8TObjDoorFPv(Door_8018E40C *arg0);
 s32 draw_closed__8TObjDoorFPv(Door_8018E5F4 *arg0);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 s32 get_bml_motion(s32, s32);
 s32 draw_locked__8TObjDoorFPv(Door_8018E74C *arg0);
@@ -550,7 +550,7 @@ extern "C" const char lbl_80445588[] = "fe_obj_door.gvm";
 void TObjDoor::load_resources() {
     s32 p = (int)new BmlResource(5, &door_resource_descriptor, 0, 0, NULL);
     door_resource_handle = p;
-    TObjDoor__resource_param = (s32)load_gvm_texture_file((s32)lbl_80445588);
+    TObjDoor__resource_param = (s32)load_gvm_texture_file(lbl_80445588);
     TObjDoor__model_resource_ptrs.f0 = (s32)get_bml_model((BmlResource *)door_resource_handle, 4);
     TObjDoor__model_resource_ptrs.f4 = (s32)get_bml_model((BmlResource *)door_resource_handle, 3);
     TObjDoor__model_resource_ptrs.c = (Node_8018E358 *)get_bml_model((BmlResource *)door_resource_handle, 0);

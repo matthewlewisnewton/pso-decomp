@@ -41,7 +41,7 @@
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/object/TMotorcycle.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/object/seabed/TObjSeabedSuisoBrakable.h"
 #include "pso/object/container/TContainerAncient01.h"
 #include "pso/unk/text_803D8F74.h"
@@ -309,7 +309,6 @@ void post_translate_matrix(const void *);
 extern const f32 lbl_805DBCF8;
 u32 init_collision_body_parts(void *, void *, s32);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern s32 local_client_id;
 extern const f32 lbl_805DBCF4;
 extern "C" {
@@ -361,7 +360,7 @@ void load_forest_box_resources(void) {
     case AREA_OLGA_FLOW:
         bundle = new BmlResource(5, &bm_obj_seabed_con_resource_descriptor, 0, 0, NULL);
         lbl_805D5B78 = (BmlResource *)bundle;
-        lbl_805D5B7C = (s32)load_gvm_texture_file((s32)seabed_container_texture_filename);
+        lbl_805D5B7C = (s32)load_gvm_texture_file(seabed_container_texture_filename);
         lbl_805D5B80 = &forest_box_break_params[2];
         lbl_805D5B84 = &forest_box_break_params[3];
         node = (u32 *)find_object_node((NJS_OBJECT *)(get_bml_model(lbl_805D5B78, 1)), 2);
@@ -372,7 +371,7 @@ void load_forest_box_resources(void) {
     default:
         bundle = new BmlResource(5, &fe_obj_hako01_hahen02_resource_descriptor, 0, 0, NULL);
         lbl_805D5B78 = (BmlResource *)bundle;
-        lbl_805D5B7C = TLobby::is_online_ready() != 0 ? (s32)load_gvm_texture_file((s32)forest_box_texture_filename_a) : (s32)load_gvm_texture_file((s32)((s32)forest_box_texture_filename_n));
+        lbl_805D5B7C = TLobby::is_online_ready() != 0 ? (s32)load_gvm_texture_file(forest_box_texture_filename_a) : (s32)load_gvm_texture_file(forest_box_texture_filename_n);
         lbl_805D5B80 = &forest_box_break_params[0];
         lbl_805D5B84 = &forest_box_break_params[1];
         break;
@@ -403,13 +402,13 @@ void TLobby::load_console_resources() {
     case AREA_OLGA_FLOW:
         p = new BmlResource(5, &bm_obj_seabed_con_rare_resource_descriptor, 0, 0, NULL);
         container_breakup_model_archive = (BmlResource *)p;
-        lbl_805D5B8C = (u32)load_gvm_texture_file((s32)"obj_seabed_con_rare.gvm");
+        lbl_805D5B8C = (u32)load_gvm_texture_file("obj_seabed_con_rare.gvm");
         break;
     case AREA_GAL_GRYPHON:
     default:
         p = new BmlResource(5, &fe_obj_con_hahen1_resource_descriptor, 0, 0, NULL);
         container_breakup_model_archive = (BmlResource *)p;
-        lbl_805D5B8C = (u32)load_gvm_texture_file((s32)"obj_abecon.gvm");
+        lbl_805D5B8C = (u32)load_gvm_texture_file("obj_abecon.gvm");
         break;
     }
 }

@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/ui/font/TFontSmallHelp.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_800FBD74.h"
@@ -13,7 +14,7 @@
 #include "pso/player/TObjPlayer_80011014.h"
 
 extern "C" {
-extern s32 localized_alphabet_list;
+extern GinjaTextureList *localized_alphabet_list;
 extern const f32 lbl_805DA9C0;
 extern const f32 lbl_805DA9C4;
 extern const f32 lbl_805DA9C8;
@@ -43,7 +44,7 @@ void TWindowSubStatusDisp::render_forward() {
 }
 
 void TWindowSubStatusDisp::begin_render() {
-    set_current_texture_list((GinjaTextureList *)localized_alphabet_list);
+    set_current_texture_list(localized_alphabet_list);
 }
 
 void TFontSmallHelp::set_color(u32 text_color) {

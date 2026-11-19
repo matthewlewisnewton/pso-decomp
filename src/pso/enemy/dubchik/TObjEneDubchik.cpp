@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
@@ -147,7 +148,6 @@ AnimationMotion *get_bml_motion(BmlResource *resource, s32 index);
 void TObjPlayer__sub_800A4294(void);
 s32 load_enemy_bml_resource_named(s32 arg0, s32 arg1);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 Node_800AA82C *lbl_805D509C;
 Node_800AA82C *lbl_805D50A0;
 void *breakup_model_ptr;
@@ -507,9 +507,9 @@ extern "C" void TObjPlayer__sub_800AA82C(void) {
     }
     dubchik_texlist = *(NJS_TEXLIST **)((u8 *)dubchik_resource->mdl + 0x1C);
     if (TObjEneDD::check_v2_mode() != 0) {
-        dubchik_variant_texlist = (NJS_TEXLIST *)load_gvm_texture_file((s32)me2_y_me2_z_a_gvm_filename);
+        dubchik_variant_texlist = (NJS_TEXLIST *)load_gvm_texture_file(me2_y_me2_z_a_gvm_filename);
     } else {
-        dubchik_variant_texlist = (NJS_TEXLIST *)load_gvm_texture_file((s32)me2_y_me2_z_gvm_filename);
+        dubchik_variant_texlist = (NJS_TEXLIST *)load_gvm_texture_file(me2_y_me2_z_gvm_filename);
     }
     n = (Node_800AA82C *)find_model_node(*(s32 *)((u8 *)dubchik_resource->mdl + 0x18), 0x17);
     n->f30 = 0;

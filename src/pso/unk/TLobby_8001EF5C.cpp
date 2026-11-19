@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/Adxf.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
@@ -99,7 +100,7 @@ u8 * lobby_bml_read_buffer;
 void check_bin_model_loaded__6TLobbyFPvPv(Obj_8001F8D8 *self, void * _w1);
 s32 bind_bml_motion(struct Lobby_8001FB6C *self, s32 idx, void *bytes);
 s32 change_file_extension__6TLobbyFPvPvPv(char *arg0, char *arg1, char *arg2);
-s32 load_gvm_texture_archive(s32, s32);
+
 s32 create_file_load_entry__6TLobbyFllUllPPv(void *, s32, void *, void *, void *);
 s32 TLobby__sub_800F9FF4(s32);
 s32 release_texture_list(void *);
@@ -205,7 +206,7 @@ void BmlResource::load_texture_sub(void *arg1, s32 arg2) {
     if (size > 0x40000) {
         TLobby::debug_print("LoadTextureSub: %s too large.", buf);
     } else if (size > 0) {
-        load_gvm_texture_archive(lobby_download_buffer, (s32)models[arg2].m_c);
+        load_gvm_texture_archive((void *)lobby_download_buffer, (GinjaTextureList *)models[arg2].m_c);
         models[arg2].m_0 |= 1;
     } else {
         models[arg2].m_0 |= 2;
@@ -414,7 +415,7 @@ s32 TLobby::load_bml_exec(u8 *arg0, u8 *arg1) {
             self->state = 9;
         } else if (ADXF_GetStat(lobby_bml_file_handle) == 3) {
             TLobby::reset_read_state();
-            load_gvm_texture_archive((s32) lobby_bml_read_buffer, (s32) self->entries[bml_load_entry_index].texture);
+            load_gvm_texture_archive((void *)lobby_bml_read_buffer, (GinjaTextureList *)self->entries[bml_load_entry_index].texture);
             self->entries[bml_load_entry_index].flags |= 1;
             bml_load_entry_index++;
             bml_header_record_ptr++;
@@ -756,7 +757,7 @@ BmlResource::BmlResource(s32 kind, BmlResourceDescriptor *descriptor, s32 on_loa
                             st.align_read_offset(blk);
                             prs_decompress_buffer(tbuf, (s32)resource_decompress_buffer);
                             TAdSinglePlyChrSelectGC::safe_free(tbuf);
-                            if (load_gvm_texture_archive((s32)resource_decompress_buffer, (s32)models[i].m_c) > 0) {
+                            if (load_gvm_texture_archive((void *)resource_decompress_buffer, (GinjaTextureList *)models[i].m_c) > 0) {
                                 models[i].m_0 |= 1;
                             } else {
                                 models[i].m_0 |= 2;

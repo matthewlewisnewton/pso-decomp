@@ -6,7 +6,7 @@
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
 #include "pso/unk/TLobby_80131794.h"
 #include "pso/unk/TLobby_801E43E4.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/byteswap.h"
 #include "pso/system/TLanguage.h"
 #include "pso/network/TProtocol.h"
@@ -27,7 +27,7 @@ s32 TProtocol__send_60(int, int, int);
 s32 dispatch_6x_subcommand(void *);
 extern u32 TLobby__protocol_instance;
 char *strncpy(char *, const char *, u32);
-s32 load_gvm_texture_archive(u32, void *);
+
 s32 load_texture_list(s32 **);
 s32 append_command_to_batch_buffer(void *, s32);
 u8 *TQuestVmDownLoadServer__sub_8007EBDC(s32, s32);
@@ -162,7 +162,7 @@ s32 TLobby::load_texture_pvm_file(const char *name, s32 arg1) {
         buf = TLobby::tmp_buf_use_req("LoadTexturePvm");
     }
     TGStream::load_sct_file((const char *)path, (u8 *)buf);
-    ret = load_gvm_texture_archive(buf, (void *)arg1);
+    ret = load_gvm_texture_archive((void *)buf, (GinjaTextureList *)arg1);
     if (allocated != 0) {
         TAdSinglePlyChrSelectGC::safe_free(buf);
     } else {
@@ -209,78 +209,82 @@ struct GvmFileHeader {
     u16 count;
 };
 
-s32 TLanguage__read_cursor;
+u8 *gvm_read_cursor;
 
-u8 *load_gvm_texture_file(s32 name) {
+extern "C" {
+s32 read_gvm_file_header(u8 *cursor, GvmFileHeader *header);
+void read_gvm_bytes(u8 *destination, s32 size);
+}
+
+GinjaTextureList *load_gvm_texture_file(const char *filename) {
     s32 count;
     s32 i;
-    NJS_TEXLIST *res;
-    NJS_TEXNAME *ent;
+    GinjaTextureList *res;
+    GinjaTextureEntry *ent;
     u8 *str;
-    u32 buf;
-    u32 big;
+    u8 *buf;
+    u8 *big;
     s32 size;
     GvmFileHeader hdr;
     big = 0;
     TLobby::pump_frames();
-    size = TGStream::get_resource_file_size((const char *)name);
+    size = TGStream::get_resource_file_size(filename);
     if (size <= 0) {
-        TLobby::debug_print("LoadPvmFileTls:%s load error.", name);
+        TLobby::debug_print("LoadPvmFileTls:%s load error.", filename);
         return NULL;
     }
     size = ((size + 0x7FF) / 2048) * 2048;
     if (size > 0x40000) {
-        big = (u32)TQuestVmDownLoadServer::alloc(size);
+        big = (u8 *)TQuestVmDownLoadServer::alloc(size);
         buf = big;
     } else {
-        buf = TLobby::tmp_buf_use_req("LoadPvmFileTls");
+        buf = (u8 *)TLobby::tmp_buf_use_req("LoadPvmFileTls");
     }
-    TGStream::load_sct_file((const char *)name, (u8 *)buf);
-    count = TLanguage::read_file_header(buf, &hdr);
+    TGStream::load_sct_file(filename, buf);
+    count = read_gvm_file_header(buf, &hdr);
     if (count == 0) {
         if (big != 0) {
-            TAdSinglePlyChrSelectGC::safe_free(big);
+            TAdSinglePlyChrSelectGC::safe_free((u32)big);
         } else {
             TLobby::tmp_buf_release("LoadPvmFileTls");
         }
         return NULL;
     }
-    res = (NJS_TEXLIST *)TQuestVmDownLoadServer__sub_8007EBDC(1, count * 0x2C + 8);
-    res->nbTexture = count;
+    res = (GinjaTextureList *)TQuestVmDownLoadServer__sub_8007EBDC(1, count * (sizeof(GinjaTextureEntry) + 0x20) + sizeof(GinjaTextureList));
+    res->count = count;
     i = 0;
-    res->textures = (NJS_TEXNAME *)(res + 1);
-    ent = (NJS_TEXNAME *)(res + 1);
+    res->entries = (GinjaTextureEntry *)(res + 1);
+    ent = (GinjaTextureEntry *)(res + 1);
     str = (u8 *)(ent + count);
     for (; i < count; i++, ent++, str += 0x20) {
-        ent->filename = str;
-        TLanguage__read_cursor += 2;
+        ent->name = (char *)str;
+        gvm_read_cursor += 2;
         if (hdr.flags & 1) {
-            TLanguage::read_into_buffer((s32)str, 0x1C);
+            read_gvm_bytes(str, 0x1C);
             str[0x1C] = 0;
         }
         if (hdr.flags & 2) {
-            TLanguage__read_cursor += 2;
+            gvm_read_cursor += 2;
         }
         if (hdr.flags & 4) {
-            TLanguage__read_cursor += 2;
+            gvm_read_cursor += 2;
         }
         if (hdr.flags & 8) {
-            TLanguage__read_cursor += 4;
+            gvm_read_cursor += 4;
         }
     }
     load_gvm_texture_archive(buf, res);
     if (big != 0) {
-        TAdSinglePlyChrSelectGC::safe_free(big);
+        TAdSinglePlyChrSelectGC::safe_free((u32)big);
     } else {
         TLobby::tmp_buf_release("LoadPvmFileTls");
     }
-    return (u8 *)res;
+    return res;
 }
 
-int TLanguage::read_file_header(int cursor, void *header) {
-    GvmFileHeader *hdr = (GvmFileHeader *)header;
-    TLanguage__read_cursor = cursor;
-    TLanguage::read_into_buffer((s32)hdr, 4);
+s32 read_gvm_file_header(u8 *cursor, GvmFileHeader *hdr) {
+    gvm_read_cursor = cursor;
+    read_gvm_bytes((u8 *)hdr, 4);
     hdr->size = TLanguage::read_u32_le();
     hdr->flags = TLanguage::read_u16_le();
     hdr->count = TLanguage::read_u16_le();
@@ -290,22 +294,22 @@ int TLanguage::read_file_header(int cursor, void *header) {
     return hdr->count;
 }
 
-void TLanguage::read_into_buffer(s32 arg0, s32 arg1) {
-    move_data((void *)arg0, (const void *)TLanguage__read_cursor, (u32)arg1);
-    TLanguage__read_cursor += arg1;
+void read_gvm_bytes(u8 *destination, s32 size) {
+    move_data(destination, gvm_read_cursor, (u32)size);
+    gvm_read_cursor += size;
 }
 
 s32 TLanguage::read_u32_le() {
-    s32 v = *(u8 *)TLanguage__read_cursor++;
-    v |= *(u8 *)TLanguage__read_cursor++ << 8;
-    v |= *(u8 *)TLanguage__read_cursor++ << 16;
-    v |= *(u8 *)TLanguage__read_cursor++ << 24;
+    s32 v = *gvm_read_cursor++;
+    v |= *gvm_read_cursor++ << 8;
+    v |= *gvm_read_cursor++ << 16;
+    v |= *gvm_read_cursor++ << 24;
     return v;
 }
 
 s32 TLanguage::read_u16_le() {
-    s32 lo = *(u8 *)TLanguage__read_cursor++;
-    lo |= *(u8 *)TLanguage__read_cursor++ << 8;
+    s32 lo = *gvm_read_cursor++;
+    lo |= *gvm_read_cursor++ << 8;
     return lo;
 }
 

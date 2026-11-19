@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "types.h"
 #include "pso/boss/goldragon/TBoss8Dragon_8028A8F8.h"
 #include "pso/boss/goldragon/TBoss8Dragon.h"

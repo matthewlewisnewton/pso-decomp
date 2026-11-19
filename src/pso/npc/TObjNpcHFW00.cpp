@@ -1,6 +1,6 @@
 #include "types.h"
 #include "pso/npc/TObjNpcHFW00.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/npc/TUnk_804A92A8.h"
 #include "pso/unk/TLobby.h"
@@ -50,7 +50,7 @@ void TObjNpcHFW00::free_resources() {
 
 void TObjNpcHFW00::load_resources() {
     TObjNpcHFW00__shared_resource_obj = (u32)create_named_object((s32)"npc_g00_data.rel");
-    TObjNpcHFW00__texture_handle = (u32)load_gvm_texture_file((s32)"n_g00_body.gvm");
+    TObjNpcHFW00__texture_handle = (u32)load_gvm_texture_file("n_g00_body.gvm");
 }
 
 }

@@ -7,7 +7,7 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/network/TProtocol.h"
 #include "pso/math/MatrixTransforms.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/TLobby.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -149,11 +149,11 @@ void TODoorCave02::load_resources() {
     if (enable_v2_features == 1 && TLobby::is_online_ready() != 0) {
         resource = new BmlResource(1, &door_cave02_a_resource_descriptor, 0, 0, NULL);
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa02r_a.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_do_doa02r_a.gvm");
     } else {
         resource = new BmlResource(1, &door_cave02_resource_descriptor, 0, 0, NULL);
         bml_resource = resource;
-        texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_do_doa02r.gvm");
+        texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_do_doa02r.gvm");
     }
     texture_lists[1] = (s32)bml_resource->models[0].m_c;
 }

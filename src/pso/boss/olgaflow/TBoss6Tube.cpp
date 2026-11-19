@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -208,7 +209,6 @@ u8 *TBoss6Tube__ct(TBoss6Tube *boss6_tube, u8 *arg1) {
     return (u8 *)boss6_tube;
 }
 
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 s32 release_texture_list(void*);
 }
@@ -238,7 +238,7 @@ void TBoss6Tube::load_resources() {
     TBoss6Tube::reset_state();
     r = (int)new BmlResource(5, &boss06_tube_dat_resource_descriptor, 0, 0, NULL);
     boss6_tube_bml_resource = r;
-    boss6_tube_texture_list = (u32)load_gvm_texture_file((s32)"boss06_tube_dat.gvm");
+    boss6_tube_texture_list = (u32)load_gvm_texture_file("boss06_tube_dat.gvm");
     if (boss6_tube_bml_resource != 0 && boss6_tube_texture_list != 0) {
         return;
     }

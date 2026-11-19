@@ -29,7 +29,7 @@
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/unk/text_803D8F74.h"
 
@@ -129,8 +129,8 @@ void load_turiten_singo_resources(void) {
         p = new BmlResource(5, &fe_obj_turiten_moto_resource_descriptor, 0, 0, NULL);
         TOHangceilingCave01__model_archive = (BmlResource *)p;
         turiten_singo_texture_lists = (s32 *)::operator new[](0xC);
-        turiten_singo_texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_turiten_singo.gvm");
-        turiten_singo_texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_turiten_singo_r.gvm");
+        turiten_singo_texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_turiten_singo.gvm");
+        turiten_singo_texture_lists[1] = (s32)load_gvm_texture_file("fs_obj_turiten_singo_r.gvm");
         turiten_singo_texture_lists[2] = (s32)get_bml_texlist(TOHangceilingCave01__model_archive, 1);
         TOHangceilingCave01__model_root = get_bml_model(TOHangceilingCave01__model_archive, 2);
         turiten_singo_key_model_index = 1;

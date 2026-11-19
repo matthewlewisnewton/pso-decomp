@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "pso/system/BmlResource.h"
@@ -136,7 +137,6 @@ struct Obj_80181F10;
 
 extern u8 *city_common_model_archive;
 extern s32 city_common_texture_list;
-u8 * load_gvm_texture_file(s32);
 extern "C" {
 void render__18TObjCityDoor_LobbyFv(void* p);
 s32 post_translate_matrix(void *);
@@ -162,7 +162,7 @@ void load_city_common_resources(void) {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, (BmlResourceDescriptor *)&bm_obj_city_common_resource_descriptor.value, 0, 0, NULL);
     (*(s32 *)&city_common_model_archive) = var_r0;
-    (*(u8 * *)&city_common_texture_list) = load_gvm_texture_file((s32)city_common_texture_filename);
+    city_common_texture_list = (u32)load_gvm_texture_file(city_common_texture_filename);
 }
 extern "C" {
 void TObjCityDoor_Lobby::render() { if (is_phase_e__9TObjEneDDFPv(this) != 0) { process_lobby_action_14(); } }

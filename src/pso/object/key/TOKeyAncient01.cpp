@@ -3,7 +3,7 @@
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/animation/ActorAnimationState.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/key/TOKeyAncient01.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -88,9 +88,9 @@ void TOKeyAncient01::load_resources() {
     TOKeyAncient01__shared_resource_object = resource;
     TOKeyAncient01__texture_lists = (s32 *)::operator new[](0x10);
     TOKeyAncient01__texture_lists[0] = (s32)TOKeyAncient01__shared_resource_object->models[0].m_c;
-    TOKeyAncient01__texture_lists[1] = (s32)load_gvm_texture_file((s32) "o_key_ancient01b.gvm");
-    TOKeyAncient01__texture_lists[2] = (s32)load_gvm_texture_file((s32) "o_key_ancient01g.gvm");
-    TOKeyAncient01__texture_lists[3] = (s32)load_gvm_texture_file((s32) "o_key_ancient01p.gvm");
+    TOKeyAncient01__texture_lists[1] = (s32)load_gvm_texture_file("o_key_ancient01b.gvm");
+    TOKeyAncient01__texture_lists[2] = (s32)load_gvm_texture_file("o_key_ancient01g.gvm");
+    TOKeyAncient01__texture_lists[3] = (s32)load_gvm_texture_file("o_key_ancient01p.gvm");
 }
 
 TOKeyAncient01::~TOKeyAncient01() {

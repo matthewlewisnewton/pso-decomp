@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
 #include "pso/render/RenderFadeState.h"
@@ -268,7 +269,6 @@ void *TObjContainerIdo::create(void *arg0) {
 struct Ido_8018C7BC { u8 pad[0xCC]; s32 ids[4]; };
 
 u32 container_ido_texture_gvm_handle;
-u8 * load_gvm_texture_file(s32);
 extern s32 __vt__16TObjContainerIdo[];
 extern "C" {
 s32 release_texture_list(void*);
@@ -291,7 +291,7 @@ void TObjContainerIdo::load_resources() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, &container_ido_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TObjContainerIdo__model_resource) = var_r0;
-    (*(u8 * *)&container_ido_texture_gvm_handle) = load_gvm_texture_file((s32) "obj_containerido.GVM");
+    container_ido_texture_gvm_handle = (u32)load_gvm_texture_file("obj_containerido.GVM");
 }
 TObjContainerIdo::~TObjContainerIdo() {
     this->unregister_object_by_id();

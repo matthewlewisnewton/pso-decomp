@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -32,7 +33,6 @@ s32 draw_ginja_object();
 u32 TMotorcycle__bml_resource;
 u32 TMotorcycle__texture_list;
 }
-u8 * load_gvm_texture_file(s32);
 extern "C" {
 s32 init_collision_body_parts(void *, void *, int);
 void *TObjMesBase__ct(TObjMesBase *arg0, s32 arg1, s32 arg2);
@@ -117,7 +117,7 @@ void TMotorcycle::load_resources() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, &motorcycle_resource_descriptor, 0, 0, NULL);
     (*(u8 * *)&TMotorcycle__bml_resource) = (unsigned char *) ((void *) var_r0);
-    (*(u8 * *)&TMotorcycle__texture_list) = load_gvm_texture_file((s32) "obj_motorcycle.GVM");
+    TMotorcycle__texture_list = (u32)load_gvm_texture_file("obj_motorcycle.GVM");
     TMotorcycle::add_entry((s16)(0x3C), (s32)((void *) (((s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 0)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), 16.0f, 0.0f);
     TMotorcycle::add_entry((s16)(0x3D), (s32)((void *) (((s32)get_bml_model((BmlResource *)((*(u8 * *)&TMotorcycle__bml_resource)), 1)))), (s32)((void *) ((*(u8 * *)&TMotorcycle__texture_list))), 16.0f, 0.0f);
 }

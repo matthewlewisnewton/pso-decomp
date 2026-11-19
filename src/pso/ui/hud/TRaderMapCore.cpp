@@ -32,7 +32,7 @@
 #include "pso/unk/text_800F9B84.h"
 #include "pso/system/scene/TScene.h"
 #include "pso/render/GinjaTexture.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC_801A6D60.h"
 #include "pso/system/MatrixStack.h"
@@ -410,7 +410,7 @@ void TRaderMapCore::load_frame_texture() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, &obj_f_enemy_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TRaderMapCore__frame_model_resource) = var_r0;
-    (*(u8 * *)&TRaderMapCore__data_805D5F4C) = load_gvm_texture_file((s32)"RaderMapFrame.gvm");
+    TRaderMapCore__data_805D5F4C = (u32)load_gvm_texture_file("RaderMapFrame.gvm");
 }
 
 void TRaderMapCore::free_statics() {

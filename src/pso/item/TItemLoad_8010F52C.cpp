@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/item/TItemLoad_8010FC28.h"
@@ -40,7 +41,6 @@ struct VObj_8010F52C : Base_8010F52C {
     virtual void m0(int);
 };
 
-s32 load_gvm_texture_archive(s32, s32);
 
 void TItemLoad::free_all_models() {
     ::operator delete[]((void *)item_load_model_buffer);
@@ -171,7 +171,7 @@ void TUnk_8049F41C::vfunc_3() {
     if (TLobby::tmp_buf_is_free() == 1) {
         temp_r31 = TLobby::tmp_buf_use_req((const char *)item_load_tmp_buffer);
         TItemLoad::decompress_buffer(temp_r31);
-        load_gvm_texture_archive(temp_r31, *(s32 *)((s8 *)this + 0x24));
+        load_gvm_texture_archive((void *)temp_r31, *(GinjaTextureList **)((s8 *)this + 0x24));
         TLobby::tmp_buf_release((const char *)item_load_tmp_buffer);
         *(s32 *)((s8 *)this + 0x24) = 0;
         reset_state();

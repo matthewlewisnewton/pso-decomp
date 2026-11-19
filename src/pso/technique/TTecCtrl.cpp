@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/task/TObject.h"
@@ -183,7 +184,6 @@ s32 release_texture_list(void *, s32);
 struct TechniqueRingwaveTextureList { u8 * value; u8 remaining[0x8]; };
 extern TechniqueRingwaveTextureList technique_ringwave_texture_list;
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 void bind_gvm_texture_list(const char *, void *);
 }
@@ -235,7 +235,7 @@ extern s32 __vt__8TTecCtrl[];
 void load_technique_resources(void) {
     u8 *p = (u8 *)new BmlResource(1, &technique_resource_descriptor, 0, 0, NULL);
     technique_effect_bml = p;
-    lbl_805D63B0 = (void **)load_gvm_texture_file((s32)"technic.gvm");
+    lbl_805D63B0 = (void **)load_gvm_texture_file("technic.gvm");
     bind_gvm_texture_list("technic_pt", ((u8 *)&technique_ringwave_texture_list));
     TTecZondeEff::init_resources();
 }

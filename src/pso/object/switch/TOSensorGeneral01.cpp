@@ -4,7 +4,7 @@
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/math/MatrixTransforms.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/switch/TOSensorGeneral01.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -116,7 +116,7 @@ void TOSensorGeneral01::load_assets() {
     sensor_general_shared_bml_archive = resource;
     TOSensorGeneral01__texture_lists = (s32 *)::operator new[](8);
     TOSensorGeneral01__texture_lists[1] = (s32)sensor_general_shared_bml_archive->models[0].m_c;
-    TOSensorGeneral01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_sensor_r.gvm");
+    TOSensorGeneral01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_sensor_r.gvm");
 }
 
 TOSensorGeneral01::~TOSensorGeneral01() {}

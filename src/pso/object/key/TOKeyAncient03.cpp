@@ -4,7 +4,7 @@
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/key/TOKeyAncient03.h"
 #include "pso/network/client_id.h"
@@ -186,7 +186,7 @@ void TOKeyAncient03::load_resources() {
     textures = (s32 *)::operator new[](8);
     TOKeyAncient03__texture_variants = textures;
     textures[0] = (s32)TOKeyAncient03__model_archive->models[0].m_c;
-    TOKeyAncient03__texture_variants[1] = (s32)load_gvm_texture_file((s32) "fs_obj_o_doorpanelg.gvm");
+    TOKeyAncient03__texture_variants[1] = (s32)load_gvm_texture_file("fs_obj_o_doorpanelg.gvm");
 }
 
 TOKeyAncient03::~TOKeyAncient03() {}

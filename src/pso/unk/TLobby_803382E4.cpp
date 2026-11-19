@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -34,7 +35,7 @@ struct A_80338608 { u8 pad[0x14]; u32 col; };
 struct B_80338608 { u8 pad[0xC]; u32 col; };
 
 extern "C" {
-s32 load_gvm_texture_archive(int, void *);
+
 s32 lobby_request_flags;
 void TCameraCtrl__sub_80068EF0(void);
 void draw_projected_quads__15TObjBoss2TunnelFPvi(void *, s32);
@@ -44,7 +45,6 @@ int info_icon_texture;
 s32 lobby_pulse_color_phase;
 u32 __cvt_fp2unsigned(f32);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 s32 release_texture_list(s32 *);
 int free_if_valid__10TObjPlayerFl(void*);
@@ -165,7 +165,7 @@ void TLobby::load_now_loading_texture() {
         temp_r3 = (s32)TQuestVmDownLoadServer::alloc(0x2000);
         read_disc_file_sectors("NowLoading.prs", (void *)temp_r3);
         prs_decompress_buffer((temp_r3), (temp_r31));
-        load_gvm_texture_archive(temp_r31, lbl_804EF1DC);
+        load_gvm_texture_archive((void *)temp_r31, (GinjaTextureList *)lbl_804EF1DC);
         TAdSinglePlyChrSelectGC::safe_free(temp_r3);
         TAdSinglePlyChrSelectGC::safe_free(temp_r31);
         lobby_request_flags |= 2;
@@ -263,4 +263,4 @@ void TLobby::update_pulse_colors(s32 arg0) {
 void TWindowSubStatusDisp__sub_803386F0(void) { free_if_valid__10TObjPlayerFl((void*)info_icon_texture); }
 }
 
-void load_info_icon(void) { info_icon_texture = (int)load_gvm_texture_file((s32)"InfoIcon.gvm"); }
+void load_info_icon(void) { info_icon_texture = (int)load_gvm_texture_file("InfoIcon.gvm"); }

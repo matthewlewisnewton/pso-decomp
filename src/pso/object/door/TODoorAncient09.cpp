@@ -7,7 +7,7 @@
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/map/FloorArea.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/TLobby.h"
 #include "pso/unk/TLobby_80160804.h"
 #include "pso/object/fence/TOBarrierEnergy01.h"
@@ -78,7 +78,7 @@ void TODoorAncient09::load_resources() {
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = (s32)bml_resource->models[0].m_c;
-    texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_o_door05l_g.gvm");
+    texture_lists[1] = (s32)load_gvm_texture_file("fs_obj_o_door05l_g.gvm");
 }
 
 void TODoorAncient09::destroy() {

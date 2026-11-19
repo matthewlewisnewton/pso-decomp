@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/BmlResource.h"
@@ -338,7 +339,6 @@ typedef struct { u8 pad[4]; u32 n; } Anim_802C17FC;
 s32 debug_draw_line(s32 *, s32 *, s32, s32);
 }
 
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 
 s32 sub_802C1BFC__13TUnk_804E0910Fv(Obj_802C1BFC *self);
@@ -582,7 +582,7 @@ s32 TUnk_804E0988::sub_802C2A10() {
 void TObjPlayer::load_seabed_dolphin() {
     Obj_802C2958 *o = (Obj_802C2958 *)new BmlResource(5, &bm_obj_seabed_dolphin_resource_descriptor, 0, 0, NULL);
     (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive) = o;
-    seabed_dolphin_texture_handle = (s32)load_gvm_texture_file((s32)("obj_seabed_dolphin.gvm"));
+    seabed_dolphin_texture_handle = (s32)load_gvm_texture_file("obj_seabed_dolphin.gvm");
     Q_802C2958 q = *(Q_802C2958 *)seabed_dolphin_anim_binding;
     q.a = (*(Obj_802C2958 * *)&seabed_dolphin_bml_archive)->f430;
     TLobby::spawn_npc_enemy((s16)0x40, (s32)get_bml_model((BmlResource *)seabed_dolphin_bml_archive, 0), (NJS_TEXLIST *)seabed_dolphin_texture_handle, &q, (f32)((16.0f)), (f32)((1e+01f)));
@@ -781,7 +781,7 @@ void TObjPlayer::load_jungle_ebi_resources() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, &bm_obj_jungle_ebi_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&jungle_ebi_model_resource) = var_r0;
-    (*(u8 * *)&jungle_ebi_texture_gvm_handle) = load_gvm_texture_file((s32)("obj_jungle_ebi.gvm"));
+    jungle_ebi_texture_gvm_handle = (u32)load_gvm_texture_file("obj_jungle_ebi.gvm");
 }
 
 void TObjPlayer::free_chr_select() {
@@ -949,7 +949,7 @@ void TObjPlayer::load_jungle_bird_resources() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, &bm_obj_jungle_bird_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&jungle_bird_bml_resource) = var_r0;
-    (*(u8 * *)&lobby_pigeon_texture_gvm) = load_gvm_texture_file((s32)("obj_jungle_bird.gvm"));
+    lobby_pigeon_texture_gvm = (u32)load_gvm_texture_file("obj_jungle_bird.gvm");
 }
 
 void TObjPlayer::free_statics() {
@@ -1127,7 +1127,7 @@ void TObjPlayer::load_kamome_resources() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, &bm_obj_jungle_kamome_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&lobby_kamome_model_resource) = var_r0;
-    (*(u8 * *)&lobby_kamome_texture_gvm_handle) = load_gvm_texture_file((s32)("obj_jungle_kamome.gvm"));
+    lobby_kamome_texture_gvm_handle = (u32)load_gvm_texture_file("obj_jungle_kamome.gvm");
 }
 
 void TObjPlayer::destroy_instance() {

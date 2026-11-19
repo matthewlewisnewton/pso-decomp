@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "pso/effect/particle/ParticleFactory.h"
@@ -129,7 +130,6 @@ u32 TODoorJungleMain__bml_resource;
 
 u32 door_jungle_main_gvm_texture;
 
-u8 * load_gvm_texture_file(s32);
 extern "C" {
 
 s32 get_bml_motion(void *, s32);
@@ -315,7 +315,7 @@ void TODoorJungleMain::load_resources() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(0x1, &bm_o_jungle_doormain_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&TODoorJungleMain__bml_resource) = var_r0;
-    (*(u8 * *)&door_jungle_main_gvm_texture) = load_gvm_texture_file((s32) "o_jungle_doormain.gvm");
+    door_jungle_main_gvm_texture = (u32)load_gvm_texture_file("o_jungle_doormain.gvm");
 }
 
 void TODoorJungleMain::free_static_resources() {

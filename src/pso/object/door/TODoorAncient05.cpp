@@ -7,7 +7,7 @@
 #include "pso/system/task/TObject.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/boss/dragon/TBoss1Dragon.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -106,7 +106,7 @@ void TODoorAncient05::load_resources() {
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[0] = (s32)bml_resource->models[0].m_c;
-    texture_lists[1] = (s32)load_gvm_texture_file((s32)"fs_obj_door07_m_01_g.gvm");
+    texture_lists[1] = (s32)load_gvm_texture_file("fs_obj_door07_m_01_g.gvm");
     model_nodes = (NJS_OBJECT *)::operator new[](3 * sizeof(NJS_OBJECT));
     if (bml_resource != NULL && model_nodes != NULL) {
         copy_model_node((u8 *)&model_nodes[0], (u8 *)bml_resource->models[0].model);

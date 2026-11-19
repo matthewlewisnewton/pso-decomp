@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -182,7 +183,6 @@ extern s32 __vt__16TODoorLaboNormal[];
 extern s32 __vt__10TODoorLabo[];
 Self_8029F7E0 *TODoorLaboNormal__ct(Self_8029F7E0 *self, void *parent, s32 arg);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 Door_8029FAE4 *TODoorLabo__ct(Door_8029FAE4 *arg0, void *parent, s32 arg);
 s32 release_texture_list(void*);
@@ -463,14 +463,14 @@ void TLanguage__sub_802A0204(void) {
     case AREA_SEABED_UPPER:
         var_r0 = (int)new BmlResource(5, &bm_o_door_seabed01_resource_descriptor, 0, 0, NULL);
         door_labo_bml_resource = var_r0;
-        lbl_805D6604 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui_green.GVM"));
-        lbl_805D6608 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui.GVM"));
+        lbl_805D6604 = (u32)load_gvm_texture_file("fs_obj_doorx4_atui_green.GVM");
+        lbl_805D6608 = (u32)load_gvm_texture_file("fs_obj_doorx4_atui.GVM");
         return;
     case AREA_SEABED_LOWER:
         var_r0_2 = (int)new BmlResource(5, &bm_o_door_seabed01_resource_descriptor, 0, 0, NULL);
         door_labo_bml_resource = var_r0_2;
-        lbl_805D6604 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui_green_02.GVM"));
-        lbl_805D6608 = (u32)load_gvm_texture_file((s32)("fs_obj_doorx4_atui_02.GVM"));
+        lbl_805D6604 = (u32)load_gvm_texture_file("fs_obj_doorx4_atui_green_02.GVM");
+        lbl_805D6608 = (u32)load_gvm_texture_file("fs_obj_doorx4_atui_02.GVM");
         return;
     }
 }
@@ -541,14 +541,14 @@ void TLanguage__sub_8029FF0C(void) {
     case AREA_SEABED_UPPER:
         var_r0 = (int)new BmlResource(5, &bm_o_door_seabed01_u_resource_descriptor, 0, 0, NULL);
         seabed_four_light_door_bml_resource = var_r0;
-        seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_u_green.GVM"));
-        TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_u.GVM"));
+        seabed_four_light_door_textures = (s32)load_gvm_texture_file("fs_obj_doorx4_u_green.GVM");
+        TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file("fs_obj_doorx4_u.GVM");
         return;
     case AREA_SEABED_LOWER:
         var_r0_2 = (int)new BmlResource(5, &bm_o_door_seabed01_u_resource_descriptor, 0, 0, NULL);
         seabed_four_light_door_bml_resource = var_r0_2;
-        seabed_four_light_door_textures = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_usui_green_02.GVM"));
-        TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file((s32)("fs_obj_doorx4_usui_02.GVM"));
+        seabed_four_light_door_textures = (s32)load_gvm_texture_file("fs_obj_doorx4_usui_green_02.GVM");
+        TODoorFourLightSeabedU__texture_list = (s32)load_gvm_texture_file("fs_obj_doorx4_usui_02.GVM");
         return;
     }
 }
@@ -612,8 +612,8 @@ s32 TODoorFourLightSeabedU::vfunc_22() {
 void load_labo_door_resources(void) {
     s32 r = (int)new BmlResource(5, &labo_door_resource_descriptor, 0, 0, NULL);
     TODoorLabo__bml_resource = r;
-    TODoorLabo__green_texture_list = (s32)load_gvm_texture_file((s32)("obj_o_labodoor_l_grn.GVM"));
-    labo_door_red_textures = (s32)load_gvm_texture_file((s32)("obj_o_labodoor_l_red.GVM"));
+    TODoorLabo__green_texture_list = (s32)load_gvm_texture_file("obj_o_labodoor_l_grn.GVM");
+    labo_door_red_textures = (s32)load_gvm_texture_file("obj_o_labodoor_l_red.GVM");
 }
 
 const char *odoor_labo_class_name = "TODoorLabo";
@@ -689,8 +689,8 @@ void TODoorLabo::init_model_by_type() {
 void TODoorLabo::load_resources() {
     s32 r = (int)new BmlResource(5, &labo_door_resource_descriptor_2, 0, 0, NULL);
     (*(s32 *)&TODoorLabo__model_archive) = r;
-    (*(s32 *)&TODoorLaboNormal__green_texture_list) = (s32)load_gvm_texture_file((s32)("o_labodoor_nrm_green.GVM"));
-    (*(s32 *)&TODoorLaboNormal__red_texture_list) = (s32)load_gvm_texture_file((s32)("o_labodoor_nrm_red.GVM"));
+    (*(s32 *)&TODoorLaboNormal__green_texture_list) = (s32)load_gvm_texture_file("o_labodoor_nrm_green.GVM");
+    (*(s32 *)&TODoorLaboNormal__red_texture_list) = (s32)load_gvm_texture_file("o_labodoor_nrm_red.GVM");
 }
 
 void TODoorLabo::free_resources() {

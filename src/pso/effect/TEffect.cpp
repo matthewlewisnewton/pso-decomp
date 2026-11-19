@@ -79,13 +79,13 @@ s32 find_particle_texture_index(s32 id) {
 
 void copy_slot_to_anim_frame(TextureFrameSlot *slot) {
     slot->frames->entries[slot->frame].texture = slot->texlist->entries[slot->slot].texture;
-    slot->frames->entries[slot->frame].value04 = slot->texlist->entries[slot->slot].value04;
+    slot->frames->entries[slot->frame].attributes = slot->texlist->entries[slot->slot].attributes;
     slot->frames->entries[slot->frame].name = slot->texlist->entries[slot->slot].name;
 }
 
 void copy_anim_frame_to_slot(TextureFrameSlot *slot) {
     slot->texlist->entries[slot->slot].texture = slot->frames->entries[slot->frame].texture;
-    slot->texlist->entries[slot->slot].value04 = slot->frames->entries[slot->frame].value04;
+    slot->texlist->entries[slot->slot].attributes = slot->frames->entries[slot->frame].attributes;
     slot->texlist->entries[slot->slot].name = slot->frames->entries[slot->frame].name;
 }
 

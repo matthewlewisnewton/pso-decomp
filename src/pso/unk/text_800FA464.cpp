@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/memory.h"
 #include "pso/system/Adxf.h"
 #include "types.h"
@@ -18,7 +19,7 @@ struct AsyncFileReadRequest {
 };
 
 extern "C" {
-void load_gvm_texture_archive(u32, s32);
+
 }
 AsyncFileReadRequest *async_file_read_current_request;
 void *lobby_stack_entry_list_tail;
@@ -103,7 +104,7 @@ void process_async_file_reads(void) {
             TLobby::pop_and_close();
             async_file_read_state = 0;
         } else if (ADXF_GetStat(lobby_download_state_ptr) == 3) {
-            load_gvm_texture_archive(async_file_read_texture_buffer, async_file_read_current_request->tex);
+            load_gvm_texture_archive((void *)async_file_read_texture_buffer, (GinjaTextureList *)async_file_read_current_request->tex);
             TLobby::tmp_buf_release("FSVR_READPVM");
             TLobby::notify_and_close();
         }

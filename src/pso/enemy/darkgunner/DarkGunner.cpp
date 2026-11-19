@@ -46,7 +46,7 @@ extern "C" void test_flag_256__9TObjCharaFv();
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/enemy/gyaranzo/TObjGyaranzoMissile.h"
 
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/enemy/saver/SaverLifecycle.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/render/MaterialColorFade.h"
@@ -1523,7 +1523,7 @@ void load_darkgunner_effect_resources() {
     lbl_805D5028 = ((Node_800A2DCC *)get_bml_model((BmlResource *)player_effect_bml_resource, 0))->model[1];
     TObjPlayer__sub_800A4294();
     TEneEffHamon::init_fish_effects();
-    TObjPlayer__effect_resource = (u32)load_gvm_texture_file((s32)"re5_b_gunner_body_pika.gvm");
+    TObjPlayer__effect_resource = (u32)load_gvm_texture_file("re5_b_gunner_body_pika.gvm");
     for (i = 0; i < 1; i++) {
         lbl_805D4FF8[i] = (s32)get_battle_base_stats(30 + i);
         lbl_805D4FFC[i] = (s32)get_battle_attack_params(30 + i);

@@ -3,7 +3,7 @@
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/TObjTank.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/system/vector.h"
 #include "pso/object/base/TObjMotion.h"
@@ -30,7 +30,7 @@ s32 push_matrix();
 s32 post_translate_matrix(void *);
 s32 draw_ginja_object();
 u32 tank_bml_resource;
-u32 TObjTank__texture_list;
+GinjaTextureList *TObjTank__texture_list;
 s32 init_collision_body_parts(void *, void *, int);
 extern s32 __vt__8TObjTank[];
 s32 release_texture_list(void*);
@@ -38,7 +38,7 @@ s32 free_collision_body_parts(void *);
 
 void TObjTank::render() {
     void *p;
-    if ((this->update_object_view_visibility(400.0f, 20.0f) != 0) && (p = (*(void * *)&TObjTank__texture_list))) {
+    if ((this->update_object_view_visibility(400.0f, 20.0f) != 0) && (p = TObjTank__texture_list)) {
         set_current_texture_list((GinjaTextureList *)p);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
@@ -82,10 +82,10 @@ void *TObjTank__create(void *arg0) {
 }
 
 void TObjTank::free_globals() {
-    if ((u32) TObjTank__texture_list != 0U) {
-        release_texture_list((void*)TObjTank__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free(TObjTank__texture_list);
-        TObjTank__texture_list = 0U;
+    if (TObjTank__texture_list != NULL) {
+        release_texture_list(TObjTank__texture_list);
+        TAdSinglePlyChrSelectGC::safe_free((u32)TObjTank__texture_list);
+        TObjTank__texture_list = NULL;
     }
     if ((u32) tank_bml_resource != 0U) {
         delete (BmlResource *)tank_bml_resource;
@@ -96,6 +96,6 @@ void TObjTank::load_globals() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(5, &fs_obj_tank_resource_descriptor, 0, 0, NULL);
     (*(s32 *)&tank_bml_resource) = var_r0;
-    (*(u8 * *)&TObjTank__texture_list) = load_gvm_texture_file((s32)"fs_obj_tank.GVM");
+    TObjTank__texture_list = load_gvm_texture_file("fs_obj_tank.GVM");
 }
 

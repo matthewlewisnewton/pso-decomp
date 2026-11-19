@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -47,7 +48,6 @@ extern "C" {
 s32 VecCopy__FP3VecPC3Vec(void *, s32, s8, f32, f32);
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 void __dl__7TObjectFPv(void *);
 s32 __ct__7TObjectFP7TObject(u8 *, void *);
@@ -60,7 +60,7 @@ void emit_particle_strip_vertices(void *, int);
 
 extern void *__vt__12TBGLightning[];
 extern void *__vt__16TBGLightningCtrl[];
-extern unsigned char lbl_8046FCA0[];
+extern const char lbl_8046FCA0[];
 __declspec(section ".rodata") extern const char TBGLightning__class_name_string[] = "TBGLightning";
 const char *TBGLightning__name = TBGLightning__class_name_string;
 __declspec(section ".rodata") extern const char TBGLightningCtrl__class_name_string[] = "TBGLightningCtrl";
@@ -140,9 +140,9 @@ void TBGLightningCtrl::destroy_instance() {
     }
 }
 
-void load_bg_lightning(void) { bg_lightning_texture_handle = (int)load_gvm_texture_file((s32)lbl_8046FCA0); }
+void load_bg_lightning(void) { bg_lightning_texture_handle = (int)load_gvm_texture_file(lbl_8046FCA0); }
 
-__declspec(section ".rodata") extern unsigned char lbl_8046FCA0[] = "bg_lightning.gvm";
+__declspec(section ".rodata") extern const char lbl_8046FCA0[] = "bg_lightning.gvm";
 
 extern const f32 lbl_805DE040 = 0.0f;
 void submit_particle_quad(void *arg0, f32 *p, f32 *d, s32 c) {

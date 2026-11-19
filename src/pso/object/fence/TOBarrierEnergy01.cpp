@@ -7,7 +7,7 @@
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/map/FloorArea.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/TLobby_80156B18.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/ambient/TObjFish.h"
@@ -79,7 +79,7 @@ void TOBarrierEnergy01::load_resources() {
     barrier_energy_shared_bml_archive = archive;
     barrier_energy_model = (void *)get_bml_model(archive, 0);
     barrier_energy_texlists = (s32 *)::operator new[](3 * sizeof(s32));
-    barrier_energy_texlists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_laz_guard_r.gvm");
+    barrier_energy_texlists[0] = (s32)load_gvm_texture_file("fs_obj_laz_guard_r.gvm");
     barrier_energy_texlists[1] = (s32)get_bml_texlist(barrier_energy_shared_bml_archive, 1);
     barrier_energy_texlists[2] = (s32)get_bml_texlist(barrier_energy_shared_bml_archive, 0);
 }

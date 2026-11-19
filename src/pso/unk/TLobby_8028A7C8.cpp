@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/unk/TLobby.h"
@@ -8,7 +9,7 @@ extern "C" {
 s32 release_texture_list(void*);
 
 void *green_door_bml_resource;
-void *green_door_texture_handle;
+GinjaTextureList *green_door_texture_handle;
 
 void TLobby::free_shared_objects() {
     if (green_door_texture_handle != NULL) {

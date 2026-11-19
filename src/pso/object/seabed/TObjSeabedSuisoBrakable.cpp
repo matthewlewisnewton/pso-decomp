@@ -12,7 +12,7 @@
 #include "pso/animation/ActorAnimationState.h"
 #include "pso/effect/particle/TParticleCtrl_800874F4.h"
 #include "pso/map/FloorArea.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/object/switch/TSwitch.h"
 #include "pso/ui/window/TWindowKeyBoardHard_801FBA48.h"
 #include "pso/object/door/TObjDoorJung.h"
@@ -60,10 +60,10 @@ void TObjSeabedSuisoBrakable::load_resources() {
     case AREA_SEABED_LOWER: {
         p = new BmlResource(1, (BmlResourceDescriptor *)&bm_obj_seabed_suiso_2_resource_descriptor, 0, 0, NULL);
         bml_resource = (BmlResource *)p;
-        if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso_2.GVM")) != 0) {
+        if ((texture_list = (u32)load_gvm_texture_file("obj_seabed_suiso_2.GVM")) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_2_texture_names;
             for (i = 0; i < 5; i++) {
-                texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
+                texture_entries[i] = find_texture_entry_by_name((GinjaTextureList *)texture_list, names.name[i]);
             }
         }
         break;
@@ -72,10 +72,10 @@ void TObjSeabedSuisoBrakable::load_resources() {
     default: {
         p = new BmlResource(1, (BmlResourceDescriptor *)&bm_obj_seabed_suiso_resource_descriptor, 0, 0, NULL);
         bml_resource = (BmlResource *)p;
-        if ((texture_list = (u32)load_gvm_texture_file((s32)"obj_seabed_suiso.GVM")) != 0) {
+        if ((texture_list = (u32)load_gvm_texture_file("obj_seabed_suiso.GVM")) != 0) {
             SeabedSuisoTextureNames names = seabed_suiso_texture_names;
             for (i = 0; i < 5; i++) {
-                texture_entries[i] = ((TObjDoorJung *)texture_list)->find_entry_by_name(names.name[i]);
+                texture_entries[i] = find_texture_entry_by_name((GinjaTextureList *)texture_list, names.name[i]);
             }
         }
         break;

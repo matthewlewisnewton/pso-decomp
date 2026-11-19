@@ -6,7 +6,7 @@
 #include "pso/network/TProtocol.h"
 #include "pso/map/FloorArea.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/key/TOKeyMachine01.h"
 #include "pso/network/client_id.h"
@@ -223,7 +223,7 @@ void TOKeyMachine01::load_assets() {
     BmlResource *resource = new BmlResource(1, &bm_fs_obj_ki_doa_panel_resource_descriptor, 0, 0, NULL);
     TOKeyMachine01__resource_bundle = resource;
     TOKeyMachine01__texture_lists = (s32 *)::operator new[](8);
-    TOKeyMachine01__texture_lists[0] = (s32)load_gvm_texture_file((s32) "fs_obj_ki_doa_panel_r.gvm");
+    TOKeyMachine01__texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_ki_doa_panel_r.gvm");
     TOKeyMachine01__texture_lists[1] = (s32)TOKeyMachine01__resource_bundle->models[0].m_c;
 }
 

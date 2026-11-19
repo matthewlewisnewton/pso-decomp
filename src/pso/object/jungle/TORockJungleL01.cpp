@@ -19,7 +19,7 @@
 #include "pso/system/MatrixStack.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/system/SoundEffect.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/vector.h"
 #include "pso/math/MatrixVector.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
@@ -78,14 +78,14 @@ void TORockJungleS01::load_resources() {
     TORockJungleS01__bml_resource = resource;
     switch (get_current_floor_area()) {
     case AREA_SEASIDE:
-        TORockJungleS01__texture_resource = (GinjaTextureList *)load_gvm_texture_file((s32)lbl_804658EC);
+        TORockJungleS01__texture_resource = load_gvm_texture_file(lbl_804658EC);
         break;
     case AREA_MOUNTAIN:
-        TORockJungleS01__texture_resource = (GinjaTextureList *)load_gvm_texture_file((s32)lbl_80465904);
+        TORockJungleS01__texture_resource = load_gvm_texture_file(lbl_80465904);
         break;
     case AREA_JUNGLE_EAST:
     default:
-        TORockJungleS01__texture_resource = (GinjaTextureList *)load_gvm_texture_file((s32)lbl_8046591C);
+        TORockJungleS01__texture_resource = load_gvm_texture_file(lbl_8046591C);
         break;
     }
     TMotorcycle::add_entry(0x3E, get_model(0), get_jungle_rock_texture_resource(0), 5.0f, 0.0f);

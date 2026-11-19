@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/Adxf.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/item/TItemTexLoad.h"
@@ -9,7 +10,7 @@
 
 extern "C" {
 void prs_decompress_alloc(void*, s32, s32);
-void load_gvm_texture_archive(s32, void*);
+
 void *lookup_item_pmt_record(u8 *item);
 void TObjPlayer__sub_803DD5E8(void*, void*, void*, int);
 char* strncpy(char*, const char*, u32);
@@ -26,7 +27,7 @@ void TItemTexLoad::load_texture_archive() {
     s32 r = TLobby::tmp_buf_use_req((const char *)(&t));
     if (r != 0) {
         prs_decompress_alloc(m_archive_buffer, r, 0x40000);
-        load_gvm_texture_archive(r, &m_texture_list);
+        load_gvm_texture_archive((void *)r, (GinjaTextureList *)&m_texture_list);
         TLobby::tmp_buf_release((const char *)&t);
         m_state = 2;
     } else {
@@ -122,7 +123,7 @@ TItemTexLoad::~TItemTexLoad() {
 TItemTexLoad::TItemTexLoad(TObject* parent) : TObject(parent) {
     m_name = TItemTexLoad_name;
     TObjPlayer__sub_803DD5E8(&m_texture_list, &m_texture_entry, item_texture_filename_buffer, 1);
-    m_texture_entry.value04 = 0;
+    m_texture_entry.attributes = 0;
     m_texture_list.count = 1;
     m_texture_index = -1;
     m_state = 0;

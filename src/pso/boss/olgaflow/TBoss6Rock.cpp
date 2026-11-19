@@ -17,7 +17,7 @@
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixTransforms.h"
 #include "pso/math/MatrixVector.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/unk/TLobby.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/map/TObjMapCsn.h"
@@ -81,7 +81,7 @@ void TBoss6Rock::load_resources() {
     s32 i;
     resource = new BmlResource(5, &boss6_rock_resource_descriptor, 0, 0, NULL);
     TBoss6Rock__data_805D6EF0 = resource;
-    TBoss6Rock__data_805D6EF4 = (GinjaTextureList *)load_gvm_texture_file((s32) "boss06_rock_dat.gvm");
+    TBoss6Rock__data_805D6EF4 = load_gvm_texture_file("boss06_rock_dat.gvm");
     if (TBoss6Rock__data_805D6EF0 == NULL || TBoss6Rock__data_805D6EF4 == NULL) {
         return;
     }

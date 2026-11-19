@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
@@ -1379,9 +1380,8 @@ __declspec(section ".data") s32 lappy_variant_speed_ptr_table[2];
 
 s32 release_texture_list(void*);
 }
-u8 *load_gvm_texture_file(s32 arg0);
-extern u8 lbl_8043BA28[];
-extern u8 lbl_8043BA44[];
+extern const char lbl_8043BA28[];
+extern const char lbl_8043BA44[];
 extern s32 game_difficulty_selection;
 extern s32 TLobby__event_theme_id;
 
@@ -1464,9 +1464,9 @@ void TObjEneLappy::load_resources() {
     }
     if (TLobby::get_instance() == 0) {
         if (rare) {
-            (*(u32 *)&rappy_alternate_texture_list) = (u32)load_gvm_texture_file((s32)lbl_8043BA28);
+            (*(u32 *)&rappy_alternate_texture_list) = (u32)load_gvm_texture_file(lbl_8043BA28);
         } else {
-            (*(u32 *)&rappy_alternate_texture_list) = (u32)load_gvm_texture_file((s32)lbl_8043BA44);
+            (*(u32 *)&rappy_alternate_texture_list) = (u32)load_gvm_texture_file(lbl_8043BA44);
         }
     } else {
         (*(u32 *)&rappy_alternate_texture_list) = *(s32 *)(*(u8 **)(RES_800C17B8 + 0x42C) + 0x1C);

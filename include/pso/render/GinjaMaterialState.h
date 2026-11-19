@@ -41,8 +41,11 @@ typedef struct GinjaTextureState {
 } GinjaTextureState;
 typedef struct GinjaTextureEntry {
   char *name;
-  u32 value04;
-  GinjaTextureState *texture;
+  u32 attributes;
+  union {
+    u32 global_index;
+    GinjaTextureState *texture;
+  };
 } GinjaTextureEntry;
 typedef struct GinjaTextureList {
   GinjaTextureEntry *entries;

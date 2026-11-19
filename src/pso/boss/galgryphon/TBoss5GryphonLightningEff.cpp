@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/boss/galgryphon/TBoss5GryphonLightningEff.h"
 #include "pso/render/MaterialColorFade.h"
@@ -171,7 +172,6 @@ Self_8032537C *__ct__25TBoss5GryphonLightningEffFv(Self_8032537C *self, void *pa
 #pragma pop
 
 #pragma readonly_strings on
-    u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 s32 release_texture_list(void*);
 }
@@ -183,4 +183,4 @@ void TLobby::free_char_select_singleton() {
         inazuma_texture_list = 0U;
     }
 }
-void load_f512_inazuma(void) { (*(int *)&inazuma_texture_list) = (int)load_gvm_texture_file((s32)(unsigned char *)"f512_inazuma.gvm"); }
+void load_f512_inazuma(void) { (*(int *)&inazuma_texture_list) = (int)load_gvm_texture_file("f512_inazuma.gvm"); }

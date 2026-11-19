@@ -8,7 +8,7 @@
 #include "pso/player/TObjPlayer.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/render/GinjaTexture.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/player/TObjPlayer_80011014.h"
 
@@ -87,4 +87,4 @@ void release_blob_shadow_texture(void) {
     }
 }
 
-void load_ha_u032_kage(void) { blob_shadow_texture_list = (u32)load_gvm_texture_file((s32)"ha_u032_kage.gvm"); }
+void load_ha_u032_kage(void) { blob_shadow_texture_list = (u32)load_gvm_texture_file("ha_u032_kage.gvm"); }

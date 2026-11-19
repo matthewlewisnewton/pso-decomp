@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -109,7 +110,6 @@ struct TObjLazerFenceNorm_80192CCC {
 
 s32 release_texture_list(void*);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 
 void load_lazer_fence_norm_resources(void) {
@@ -126,12 +126,12 @@ void load_lazer_fence_norm_resources(void) {
     case AREA_TOWER:
         obj = new BmlResource(5, &lazer_fence_norm_episode2_resource_descriptor, 0, 0, NULL);
         lazer_fence_norm_bml_resource = (s32)obj;
-        lazer_fence_norm_texture_list = (s32)load_gvm_texture_file((s32)"fe_obj_lazer2_2.gvm");
+        lazer_fence_norm_texture_list = (s32)load_gvm_texture_file("fe_obj_lazer2_2.gvm");
         break;
     default:
         obj = new BmlResource(5, &lazer_fence_norm_episode1_resource_descriptor, 0, 0, NULL);
         lazer_fence_norm_bml_resource = (s32)obj;
-        lazer_fence_norm_texture_list = (s32)load_gvm_texture_file((s32)"fe_obj_lazer2.gvm");
+        lazer_fence_norm_texture_list = (s32)load_gvm_texture_file("fe_obj_lazer2.gvm");
         break;
     }
 }

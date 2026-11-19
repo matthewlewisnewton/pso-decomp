@@ -1,3 +1,5 @@
+#include "pso/render/GinjaMaterialState.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "types.h"
 #include "pso/unk/TLobby_800F9690.h"
 #include "pso/system/TLanguage.h"
@@ -6,8 +8,6 @@
 #include "pso/ui/Language.h"
 #include "pso/ui/window/TWindowSubStatusDisp.h"
 
-struct GvmTextureInner { char pad8[0x8]; u32 f8; };
-struct GvmTexture { struct GvmTextureInner *f0; };
 
 extern const char TLanguage__class_name[];
 extern const char f256_alphabet_gvp[];
@@ -37,19 +37,18 @@ extern const char TextSpanish[];
 extern const char TextEnglish[];
 int TWindowKeyBoardSoft__text_resource;
 int text_language_group_table;
-struct GvmTexture *localized_alphabet_list;
+GinjaTextureList *localized_alphabet_list;
 language current_language;
 int TWindowKeyBoardSoft__language_text_resources;
 
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 s32 release_texture_list(void *);
 }
 
 void TLanguage::free_alphabet_textures() {
     if (localized_alphabet_list != NULL) {
-        struct GvmTextureInner *inner = localized_alphabet_list->f0;
-        if (inner->f8 != 0U) {
+        GinjaTextureEntry *entry = localized_alphabet_list->entries;
+        if (entry->texture != NULL) {
             release_texture_list(localized_alphabet_list);
         }
         TAdSinglePlyChrSelectGC::safe_free((u32)localized_alphabet_list);
@@ -66,7 +65,7 @@ void TLanguage::free_text_resources() {
 
 void TLanguage::load_fonts(s32 language) {
     s32 sp8;
-    GvmTexture *alphabet;
+    GinjaTextureList *alphabet;
     sp8 = TLobby::tmp_buf_use_req(TLanguage__class_name);
     TLanguage::draw_string((void *)f256_alphabet_gvp, &sp8, 0x48);
     TLobby::tmp_buf_release((const char *)TLanguage__class_name);
@@ -77,7 +76,7 @@ void TLanguage::load_fonts(s32 language) {
             TLanguage::draw_string((void *)f128_keyjpn_gvp, &sp8, 2);
             TLanguage::draw_string((void *)f064_wordmojitex_jpn_gvp, &sp8, 3);
             TLanguage::decode_font_data((void *)b256_menutext01_j_gvp, &sp8, 0x4B, 0x4C);
-            alphabet = (GvmTexture *)load_gvm_texture_file((s32)TextureJapanese_gvm);
+            alphabet = load_gvm_texture_file(TextureJapanese_gvm);
             localized_alphabet_list = alphabet;
             break;
 
@@ -86,7 +85,7 @@ void TLanguage::load_fonts(s32 language) {
             TLanguage::draw_string((void *)f128_keyeng_gvp, &sp8, 2);
             TLanguage::draw_string((void *)f064_wordmojitex_ger_gvp, &sp8, 3);
             TLanguage::decode_font_data((void *)b256_menutext01_e_gvp, &sp8, 0x4B, 0x4C);
-            alphabet = (GvmTexture *)load_gvm_texture_file((s32)TextureGerman_gvm);
+            alphabet = load_gvm_texture_file(TextureGerman_gvm);
             localized_alphabet_list = alphabet;
             break;
 
@@ -95,7 +94,7 @@ void TLanguage::load_fonts(s32 language) {
             TLanguage::draw_string((void *)f128_keyeng_gvp, &sp8, 2);
             TLanguage::draw_string((void *)f064_wordmojitex_fre_gvp, &sp8, 3);
             TLanguage::decode_font_data((void *)b256_menutext01_e_gvp, &sp8, 0x4B, 0x4C);
-            alphabet = (GvmTexture *)load_gvm_texture_file((s32)TextureFrench_gvm);
+            alphabet = load_gvm_texture_file(TextureFrench_gvm);
             localized_alphabet_list = alphabet;
             break;
 
@@ -104,7 +103,7 @@ void TLanguage::load_fonts(s32 language) {
             TLanguage::draw_string((void *)f128_keyeng_gvp, &sp8, 2);
             TLanguage::draw_string((void *)f064_wordmojitex_spa_gvp, &sp8, 3);
             TLanguage::decode_font_data((void *)b256_menutext01_e_gvp, &sp8, 0x4B, 0x4C);
-            alphabet = (GvmTexture *)load_gvm_texture_file((s32)TextureSpanish_gvm);
+            alphabet = load_gvm_texture_file(TextureSpanish_gvm);
             localized_alphabet_list = alphabet;
             break;
 
@@ -113,7 +112,7 @@ void TLanguage::load_fonts(s32 language) {
             TLanguage::draw_string((void *)f128_keyeng_gvp, &sp8, 2);
             TLanguage::draw_string((void *)f064_wordmojitex_eng_gvp, &sp8, 3);
             TLanguage::decode_font_data((void *)b256_menutext01_e_gvp, &sp8, 0x4B, 0x4C);
-            alphabet = (GvmTexture *)load_gvm_texture_file((s32)TextureEnglish_gvm);
+            alphabet = load_gvm_texture_file(TextureEnglish_gvm);
             localized_alphabet_list = alphabet;
             break;
     }

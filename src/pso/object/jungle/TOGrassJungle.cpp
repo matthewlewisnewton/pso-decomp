@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
 #include "pso/render/CurrentTextureList.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/object/jungle/TOGrassJungle_8029CD90.h"
 #include "pso/system/BmlResourceDescriptor.h"
 #include "pso/system/BmlResource.h"
@@ -15,7 +15,7 @@
 
 extern "C" {
 BmlResource *TOGrassJungle__bml_resource;
-u32 TOGrassJungle__grass_gvm_texture;
+GinjaTextureList *TOGrassJungle__grass_gvm_texture;
 const char *bm_o_grass_jungle_motion_names[1] = { NULL };
 const char *bm_o_grass_jungle_model_names[3] = { "fe_obj_kusa_hinata.gj", "fe_obj_kusa_kage.gj", NULL };
 BmlResourceDescriptor ograss_jungle_resource_descriptor = { "bm_o_grass_jungle.bml", bm_o_grass_jungle_model_names, bm_o_grass_jungle_motion_names, 2, 0 };
@@ -33,10 +33,10 @@ void *TOGrassJungle__create(void *arg0) {
 }
 
 void TOGrassJungle::release_static_instance() {
-    if ((u32) TOGrassJungle__grass_gvm_texture != 0U) {
-        release_texture_list((void*)TOGrassJungle__grass_gvm_texture);
-        TAdSinglePlyChrSelectGC::safe_free(TOGrassJungle__grass_gvm_texture);
-        TOGrassJungle__grass_gvm_texture = 0U;
+    if (TOGrassJungle__grass_gvm_texture != NULL) {
+        release_texture_list(TOGrassJungle__grass_gvm_texture);
+        TAdSinglePlyChrSelectGC::safe_free((u32)TOGrassJungle__grass_gvm_texture);
+        TOGrassJungle__grass_gvm_texture = NULL;
     }
     if ((u32) TOGrassJungle__bml_resource != 0U) {
         delete TOGrassJungle__bml_resource;
@@ -47,8 +47,8 @@ void TOGrassJungle::load_resources() {
     s32 var_r0;
     var_r0 = (long)new BmlResource(1, &ograss_jungle_resource_descriptor, 0, 0, NULL);
     (*(u8 * *)&TOGrassJungle__bml_resource) = (unsigned char *) ((void *) var_r0);
-    (*(u8 * *)&TOGrassJungle__grass_gvm_texture) = load_gvm_texture_file((s32)"o_grass_jungle.gvm");
-    TMotorcycle::add_entry(0x3F, (int) (get_bml_model(TOGrassJungle__bml_resource, 0)), (int) ((*(u8 * *)&TOGrassJungle__grass_gvm_texture)), 12.0f, -10.0f);
+    TOGrassJungle__grass_gvm_texture = load_gvm_texture_file("o_grass_jungle.gvm");
+    TMotorcycle::add_entry(0x3F, (int) (get_bml_model(TOGrassJungle__bml_resource, 0)), (int) (TOGrassJungle__grass_gvm_texture), 12.0f, -10.0f);
 }
 
 s32 __ct__8TObjBaseFP7TObject(void *, void *);
@@ -60,7 +60,7 @@ s32 push_matrix();
 
 void TOGrassJungle::render() {
     if (this->update_object_view_visibility(400.0f, 20.0f) == 1) {
-        set_current_texture_list((GinjaTextureList *)TOGrassJungle__grass_gvm_texture);
+        set_current_texture_list(TOGrassJungle__grass_gvm_texture);
         push_matrix();
         post_translate_matrix((u8 *)&this->position);
         rotate_matrix_y(0, this->rotation.yaw);

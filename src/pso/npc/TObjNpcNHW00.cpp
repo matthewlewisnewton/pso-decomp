@@ -3,7 +3,7 @@
 #include "pso/object/TObjControl.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/GinjaTexture.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/unk/TLobby.h"
@@ -40,7 +40,7 @@ void TObjNpcNHW00::free_static_resources() {
 
 void TObjNpcNHW00::load_resources() {
     TObjNpcNHW00__shared_named_model_object = create_named_object((s32)"npc_b00_data.rel");
-    TObjNpcNHW00__texture_gvm_handle = (u32)load_gvm_texture_file((s32)"n_b00_body.gvm");
+    TObjNpcNHW00__texture_gvm_handle = (u32)load_gvm_texture_file("n_b00_body.gvm");
 }
 
 TObjNpcNHW00::~TObjNpcNHW00() {}

@@ -23,7 +23,7 @@
 #include "pso/unk/TLobby_8030A6A8.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 
 // Built -inline off,deferred: the functions below are written last-to-first, which puts
 // __vt__19TObjGoalWarpAncient before __vt__18TObjMapWarpAncient in .data (the key function
@@ -65,7 +65,7 @@ s32 TObjGoalWarpAncient::register_warp_object(s32 index) {
 void TObjGoalWarpAncient::load_resources() {
     BmlResource *resource = new BmlResource(1, &bm_o_warp_ancient_resource_descriptor, 0, 0, NULL);
     ancient_warp_shared_resource = resource;
-    goal_warp_ancient_gvm_texture = (s32)load_gvm_texture_file((s32)"de_obj2_swarp_beam_r.gvm");
+    goal_warp_ancient_gvm_texture = (s32)load_gvm_texture_file("de_obj2_swarp_beam_r.gvm");
 }
 
 void TObjMapWarpAncient::free_globals() {

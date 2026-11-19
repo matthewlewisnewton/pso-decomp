@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/ResourceFile.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -192,7 +193,6 @@ extern u32 TParticleCtrl__texture_list;
 u8 *create_ballistic_particle(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4, s16 arg5);
 u8 *create_orbit_particle(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, u16 arg4, s16 arg5);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 int sprintf(char *, const char *, ...);
 char *strcpy(char *, const char *);
@@ -682,7 +682,7 @@ void load_particle_entry_resources(void) {
     read_disc_file(name, (void *)particle_area_entry_table);
     p = new BmlResource(1, (BmlResourceDescriptor *)particle_regular_bml_descriptor, 0, 0, NULL);
     TParticleCtrl__regular_bml_resource = (u32)p;
-    TParticleCtrl__texture_list = (u32)load_gvm_texture_file((s32)lbl_804394D4);
+    TParticleCtrl__texture_list = (u32)load_gvm_texture_file(lbl_804394D4);
 }
 extern "C" {
 

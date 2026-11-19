@@ -4,7 +4,7 @@
 #include "pso/object/door/TODoorAncient03.h"
 #include "pso/system/task/TMainTask.h"
 #include "pso/effect/particle/TParticleCtrl.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -71,7 +71,7 @@ void TODoorAncient03::load_resources() {
     s32 *texlists = (s32 *)::operator new[](2 * sizeof(s32));
     door_ancient03_texlists = texlists;
     texlists[0] = (s32)door_ancient03_archive->models[0].m_c;
-    door_ancient03_texlists[1] = (s32)load_gvm_texture_file((s32)"fe_obj_o_door03g.gvm");
+    door_ancient03_texlists[1] = (s32)load_gvm_texture_file("fe_obj_o_door03g.gvm");
 }
 
 void TODoorAncient03::free_resources() {

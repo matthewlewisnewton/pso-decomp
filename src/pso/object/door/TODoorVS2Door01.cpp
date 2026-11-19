@@ -6,7 +6,7 @@
 #include "pso/system/task/TObject.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/math/MatrixTransforms.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/boss/darkfalz/TOBoss4Rock.h"
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
@@ -153,7 +153,7 @@ void TODoorVS2Door01::load_resources() {
     bml_resource = resource;
     texture_lists = (s32 *)::operator new[](8);
     texture_lists[1] = (s32)bml_resource->models[0].m_c;
-    texture_lists[0] = (s32)load_gvm_texture_file((s32)"fs_obj_o_vs2door01lr.gvm");
+    texture_lists[0] = (s32)load_gvm_texture_file("fs_obj_o_vs2door01lr.gvm");
 }
 
 TODoorVS2Door01::~TODoorVS2Door01() {

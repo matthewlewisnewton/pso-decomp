@@ -21,7 +21,7 @@
 #include "pso/object/ambient/TObjFish.h"
 #include "pso/enemy/gyaranzo/TObjGyaranzoMissile.h"
 #include "pso/effect/enemy/TEneEffHamon.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/enemy/saver/SaverLifecycle.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/render/MaterialColorFade.h"

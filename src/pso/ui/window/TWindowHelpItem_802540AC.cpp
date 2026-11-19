@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/ui/window/PageIndicator.h"
 #include "types.h"
 #include "pso/unk/WindowLayoutRecord.h"
@@ -238,7 +239,7 @@ extern "C" u8 lbl_805DCDFC[4];
 extern "C" void sub_802534B0__15TWindowHelpItemFv(void *);
 extern "C" u8 lbl_8044EDB8[];
 extern "C" u8 lbl_8044EDC0[];
-extern "C" u8 localized_alphabet_list[];
+extern "C" GinjaTextureList *localized_alphabet_list;
 extern "C" u8 lbl_805D63F0[];
 extern "C" u8 lbl_805DCDC8[];
 extern "C" u8 lbl_805DCDCC[];

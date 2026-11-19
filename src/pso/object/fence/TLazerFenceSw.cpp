@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -68,12 +69,11 @@ void debug_printf_at(int, void *, ...);
 extern u8 lbl_80445CD8[];
 
 }
-u8 *load_gvm_texture_file(s32 arg0);
 
 extern s32 game_difficulty_selection;
-extern u8 lbl_80445CF0[];
-extern u8 lbl_80445D08[];
-extern u8 lbl_80445D20[];
+extern const char lbl_80445CF0[];
+extern const char lbl_80445D08[];
+extern const char lbl_80445D20[];
 extern "C" {
 void *__ct__18CameraDistanceFadeFv(void *self);
 
@@ -271,14 +271,14 @@ void TLazerFenceSw::load_resources() {
     if (TContainerAncient01::is_global_state_in_table() == 1 || area == AREA_SEABED_UPPER || area == AREA_SEABED_LOWER) {
         obj = new BmlResource(5, &fe_obj_switch_laz_j_resource_descriptor, 0, 0, NULL);
         lazer_fence_switch_bml_resource = obj;
-        TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445CF0);
+        TLazerFenceSw__texture_list = (s32)load_gvm_texture_file(lbl_80445CF0);
     } else {
         obj = new BmlResource(5, &laser_fence_switch_resource_descriptor, 0, 0, NULL);
         lazer_fence_switch_bml_resource = obj;
         if (game_difficulty_selection == 3) {
-            TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445D08);
+            TLazerFenceSw__texture_list = (s32)load_gvm_texture_file(lbl_80445D08);
         } else {
-            TLazerFenceSw__texture_list = (s32)load_gvm_texture_file((s32)lbl_80445D20);
+            TLazerFenceSw__texture_list = (s32)load_gvm_texture_file(lbl_80445D20);
         }
     }
     lazer_fence_sw_ginja_model_table[0] = (s32)get_bml_model((BmlResource *)lazer_fence_switch_bml_resource, 0);

@@ -1,3 +1,4 @@
+#include "pso/render/GvmTextureArchive.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
 #include "pso/render/render_util.h"
@@ -74,7 +75,6 @@ void *TObjMesBase__ct(TObjMesBase *arg0, s32 arg1, s32 arg2);
 extern s32 __vt__12TObjComputer[];
 void *TObjComputer__ct(void *arg0, void *parent, void *row);
 }
-u8 *load_gvm_texture_file(s32 arg0);
 extern "C" {
 s32 scroll_ginja_mesh_uvs(void *, s32, s32, u16, s32);
 s32 PPCSync();
@@ -159,13 +159,13 @@ void load_computer_resources(void) {
     case AREA_SEASIDE_NIGHT: case AREA_TOWER:
         p = new BmlResource(5, &fs_obj_tanmatu02_resource_descriptor, 0, 0, NULL);
         TObjComputer__model_archive = (u32) p;
-        TObjComputer__texture_gvm_handle = (u32)load_gvm_texture_file((s32)"fs_obj_tanmatu02.gvm");
+        TObjComputer__texture_gvm_handle = (u32)load_gvm_texture_file("fs_obj_tanmatu02.gvm");
         computer_uv_scroll_phase = 0;
         break;
     default:
         p = new BmlResource(5, &fe_obj_tanmatu02_resource_descriptor, 0, 0, NULL);
         TObjComputer__model_archive = (u32) p;
-        TObjComputer__texture_gvm_handle = (u32)load_gvm_texture_file((s32)"fe_obj_computer.gvm");
+        TObjComputer__texture_gvm_handle = (u32)load_gvm_texture_file("fe_obj_computer.gvm");
         computer_uv_scroll_phase = 1;
         break;
     }

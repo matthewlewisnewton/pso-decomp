@@ -1,7 +1,7 @@
 #include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/npc/TObjNpcAHM01.h"
-#include "pso/system/TLanguage_801E4874.h"
+#include "pso/render/GvmTextureArchive.h"
 #include "pso/npc/TObjNpcARM00.h"
 #include "pso/unk/text_800F9B84.h"
 #include "pso/npc/TUnk_804A9F50.h"
@@ -39,7 +39,7 @@ void TObjNpcAHM01::free_resources() {
 
 void TObjNpcAHM01::load_resources() {
     TObjNpcAHM01__shared_object = (u32)create_named_object((s32)"npc_c01_data.rel");
-    TObjNpcAHM01__texture_handle = (u32)load_gvm_texture_file((s32)"n_c01_e_body.gvm");
+    TObjNpcAHM01__texture_handle = (u32)load_gvm_texture_file("n_c01_e_body.gvm");
 }
 
 }
