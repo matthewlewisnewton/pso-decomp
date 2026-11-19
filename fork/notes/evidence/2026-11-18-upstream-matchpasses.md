@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `a2c975c575` and the complete source snapshot at `056498255a` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -227,6 +227,14 @@ The archived 73-file batch at `9f5506ed2c` provided the dependency map. The type
 The local review at `86f0163316` extends enemy appearance, movement and targeting to 83 files on `af11a99125`. It uses the upstream archive entry points and preserves the unsigned texture-slot comparison in its loader. The cumulative version uses its existing native archive constructors and callbacks. All four builds reproduce the retail executable and pass the project checker. All 136 functions in the four changed source units remain exact and source-linked. The cumulative builds retain the historical fork's exact and linked function and data coverage. The standalone review shares the upstream 24-byte keyboard virtual table gap at 0x804D0004.
 
 The fork-only layer round-trips all 133 overlay paths and all eleven layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) records six source comparisons.
+
+## Stage traps, debris and player state
+
+The 31-file replay at `2a2a454320` carries the trap archive array from `92e4892cdc`, typed chip copy and model draw queue from `9ac34042fb`, and the player flag method and its callers from `9a4fe1fccc` and `68aa010f97`. The three Ancient02 records share one array of 0x18-byte entries. Ancient and Seabed traps, warps, and other callers read the flag on the player class. The battle result path keeps the original linkage form because the receiver is already in the incoming register. The chip copy keeps the original mutable pointer signature and reads its input. The Seabed template stays in read-only storage. The chip unit and its consumers share the two parameter layouts.
+
+The local review at `2e2a94a0f5` adds this work to stage objects, weather, and resources for 66 files on upstream `af11a99125`. Every build reproduces retail and passes the project checker. All 1,554 functions in the 24 affected units remain exact and source-linked. The linked audit verifies all 72 bytes of the archive array, including each filename, model-list pointer and count. The 36 flag calls, three draw-queue calls and one chip-copy call retain their original targets. The cumulative builds preserve the historical fork's covered addresses. The upstream-shaped review shares the existing upstream 24-byte keyboard table gap at 0x804D0004.
+
+The fork-only layer round-trips all 133 paths and passes all eleven tests. The [fork source index](2026-11-18-fork-review-index.tsv) records ten source comparisons.
 
 ## Standalone reviews on upstream master `af11a99125`
 
