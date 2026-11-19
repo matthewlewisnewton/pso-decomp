@@ -1,5 +1,29 @@
 # Upstream matchpasses
 
+## Current review queue on upstream master `6e09dda9c5`
+
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `93f6f59440` includes the chat balloon patch. The all-source snapshot is `0e1c39a104`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+
+| Review branch | Tip |
+| --- | --- |
+| `great-merge/current/network-contracts` | `5e90284b9a` |
+| `great-merge/current/memory` | `e8c95dbad0` |
+| `great-merge/current/resource-lifetimes` | `9a269ca0e4` |
+| `great-merge/current/spatial-effects` | `e1e487e5d3` |
+| `great-merge/current/combat` | `91438961d3` |
+| `great-merge/current/encounter-drawing` | `629568f631` |
+| `great-merge/current/window-frames` | `cb1ebc1100` |
+| `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
+| `great-merge/current/render-interfaces` | `6c43c3a146` |
+| `great-merge/current/actor-presentation` | `ba1790084a` |
+| `great-merge/current/world-object-resources` | `31557ce897` |
+
+The window review reconciles 57 overlapping paths. It retains upstream's native menu and word-select construction and its item-help constant pool, along with the fork's typed callers and field layouts. Sixteen overlapping signatures retain the fork types and original linked addresses. The rebased window review supplies the original chat balloon, item-help and software-keyboard virtual tables. All 90 entries in the [data range ledger](2026-11-18-fork-data-ranges.tsv) now resolve to 980 source-linked bytes and 167 bytes of alignment padding.
+
+The full stack and all-source snapshot retain all exact functions and linked data from both the prior review stack and the historical fork. The window review, full stack, all-source snapshot and working fork passed their project checks and reproduced the original GameCube executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The full stack has 2,456 exact source-linked units. The working fork passed the generated retention check after recalculating its local linker inventory. The layer check and eleven unit tests passed, and the materialized fork reproduces all 133 tooling paths.
+
+The [fork review index](2026-11-18-fork-review-index.tsv) has 1,482 entries awaiting owner comparison and 677 with partial evidence.
+
 ## Replay on upstream master `6e09dda9c5`
 
 Upstream advanced 65 commits from `3f35d99bb1`. A fresh build of `6e09dda9c5` reproduces the original GameCube executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. Four local candidates have passed that same executable check and the full project checker against the new master.
@@ -33,7 +57,7 @@ Each review branch passed the full project checker against the new upstream base
 
 The cumulative replay through the first six groups is `great-merge/incoming/6e09dda9c5/combined-through-encounters` at `dd85301db0`. It resolves all ten conflicts from that portion of the old stack, passes the full checker, and reproduces the original executable. Ten of the eleven standalone review groups now have validated heads on the new base. The window review awaits reconciliation with upstream's constructor changes before the remaining groups can join the cumulative replay.
 
-## Current review queue on upstream master `3f35d99bb1`
+## Previous review queue on upstream master `3f35d99bb1`
 
 The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `467564e30b` changes 1,471 paths counting both sides of renames. The all-source snapshot is `5e1dc83969`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 

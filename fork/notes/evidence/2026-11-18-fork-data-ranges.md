@@ -1,5 +1,9 @@
 # Fork data coverage at the November 18 sync point
 
+## All 1,147 bytes accounted for on the replayed stack
+
+The window review at `cb1ebc1100` and the combined stack at `93f6f59440` supply all 72 source bytes still missing on upstream `6e09dda9c5`. The three 24-byte virtual tables start at `0x804CF0B8`, `0x804CF8B0` and `0x804D0004`. The [range ledger](2026-11-18-fork-data-ranges.tsv) identifies their owners and records each validated range. Both builds and the all-source snapshot at `0e1c39a104` account for all 1,147 bytes with 980 exact source bytes and 167 checked padding bytes.
+
 ## Data coverage on upstream master `6e09dda9c5`
 
 A fresh original-executable build and exact object report account for 908 source-linked bytes and 167 alignment bytes across all 90 rows of the [range ledger](2026-11-18-fork-data-ranges.tsv). The upstream change covers 36 more bytes across `0x805D8ADC` (4 bytes), `0x805D8AE0` (8 bytes), `0x805DC278` (8 bytes), `0x805DCE00` (16 bytes). The 72 remaining bytes are the three original 24-byte virtual tables at `0x804CF0B8` (chat balloon), `0x804CF8B0` (item help) and `0x804D0004` (software keyboard).
