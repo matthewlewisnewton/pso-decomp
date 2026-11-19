@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `4640c99919` and the complete source snapshot at `0e5a46cff2` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `6fd023cca6` and the complete source snapshot at `73ac51e257` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -95,6 +95,16 @@ The 26-file replay at `4640c99919` carries the typed drawing and fade work from 
 The review at `26e763735b` has one follow-up commit above the window-frame prerequisite `4618815064`, which supplies the draw-context layout. The two source interfaces are used by keyboard, chat, action palette, menu and status renderers. All four builds reproduce the retail executable and pass the project checker. The 24 edited source units preserve 417 exact functions in the combined review and 417 in the local window review. Both keep 67 original direct branches to the two shared calls inside those units.
 
 The address audit covers 144 source-linked bytes in the draw context float pool, viewport offset tables and the soft keyboard table. All 133 overlay paths round-trip and all eleven fork-layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles one declaration and records the checked scope in 23 other files. It has 1,121 entries awaiting comparison and 894 with partial evidence.
+
+## Player state, scaling and shrink packets
+
+The 26-file replay at `6fd023cca6` carries the player-state fold from `3a4e3f6a3b`. One header replaces ten fragment headers with 40 shared declarations. Upstream already builds their implementations in the native player unit. The audit verifies 82 exact functions spanning 2,656 original bytes in the former fragments. The one-instruction accessor at `0x801BF914` returns its incoming pointer, which is used by 3 original call sites. Entity ID stores consume the original full-width arguments and write the low halfword.
+
+The 30-file review at `62ac4dd661` combines this state work with typed scale, camera offsets and shrink and restore packets in two commits on upstream master `af11a99125`. It preserves all 1918 exact source-linked functions in the 14 changed compilation units. The original flag storage is at offset 4. The build with a constructed flag member inserted calls in two player constructors, so the final source keeps the original explicit initialization. The 25-file state-only review is at `ba9932dbb1`.
+
+All five builds reproduce the retail executable and pass the project checker. The address audit retains the two source-linked scale constants. Each variant preserves its parent's address coverage. All 133 overlay paths round-trip and all eleven fork-layer tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records ten reconciled header removals, two fully reconciled declarations and partial evidence for 7 source files. It has 1,119 entries awaiting comparison and 894 with partial evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
