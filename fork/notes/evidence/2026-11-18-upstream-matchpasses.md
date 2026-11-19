@@ -2,13 +2,13 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `b1d4ca3d91` includes the chat balloon, typed bone rotation, native rope simulation and NPC resources. The all-source snapshot is `604fb8532f`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `28385477f6` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources and typed quest records. The all-source snapshot is `cdf791b7e7`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
 | `great-merge/current/network-contracts` | `5e90284b9a` |
 | `great-merge/current/memory` | `e8c95dbad0` |
-| `great-merge/current/resource-lifetimes` | `9a269ca0e4` |
+| `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
 | `great-merge/current/combat` | `91438961d3` |
 | `great-merge/current/encounter-drawing` | `629568f631` |
@@ -44,7 +44,13 @@ Twenty neighboring source files already carry their fork changes. The preceding 
 
 The interface replay at `b1d4ca3d91` completes the three open NPC source differences. Both asynchronous callers use the shared typed filename. Moja uses the shared archive’s motion list, and Soutokufu and the two Gryphon switch callers use the original XZ tests. The dragon and Gryphon effect templates and copy sites share the original twenty-byte record. The standalone world review at `436bcf4fc1`, all-source snapshot and working fork all pass the original executable and linkage checks. The fork overlay round-trips 133 paths and passes eleven tests.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) closes nine additional entries. The index has 1,441 entries awaiting owner comparison and 650 with partial evidence.
+The NPC interface replay closes nine additional entries in the [fork source index](2026-11-18-fork-review-index.tsv).
+
+### Quest data and arguments
+
+The replay at `28385477f6` restores the fork’s typed quest VM arguments, complete match and item data, and story flag traversal. The string push and dictionary matcher retain their original addresses and sizes. The review verifies 189 historical quest download functions, twenty data and state symbols and the original executable. The standalone resource review at `5b3de69908`, combined stack, all-source snapshot and working fork passed the full project checks. The 133-path fork overlay round-trips and all eleven tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) closes six entries and adds evidence for eight more. It has 1,429 entries awaiting owner comparison and 656 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
