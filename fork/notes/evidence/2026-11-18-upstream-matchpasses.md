@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `f6648c7664` changes 1,387 paths counting both sides of renames. The all-source snapshot is `96536c02de`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `a39c9a4d2b` changes 1,388 paths counting both sides of renames. The all-source snapshot is `3d98a37eed`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `6bb8433bb1` | `942a0c050f` |
+| `great-merge/current/window-frames` | `2b52cfe3cb` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -35,10 +35,11 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Rain and fish lifetime and resource records | Included in the world-object review | `28582fc056` |
 | Native Com Card follower | Included in the window review | `011823a1c6` |
 | Native word selection lifetime and scrolling | Included in the window review | `f6648c7664` |
+| Native word-select menu, scrollbar and string window | Included in the window review | `a39c9a4d2b` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
-The cumulative validation compiled 2,450 selected source objects. Of the 2,415 objects present in the preceding stack, 2,403 are identical in allocated sections, symbol locations and relocations after same-address aliases are normalized. Twelve differ only in the data sections moved or adopted from upstream. The configured link set has 2,484 inputs and no new unresolved strong reference. The combat, encounter and window reviews compiled 47 affected objects each, and the renderer review compiled 48. The stock checker passed in object-report mode against a fresh upstream object report, with 27,572 exact functions, all 2,450 linked units exact and no loss of non-padding coverage. The original executable hash gate remains pending on this base.
+The cumulative validation compiled 2,450 selected source objects. Of the 2,415 objects present in the preceding stack, 2,403 are identical in allocated sections, symbol locations and relocations after same-address aliases are normalized. Twelve differ only in the data sections moved or adopted from upstream. The configured link set has 2,484 inputs and no new unresolved strong reference. The combat, encounter and window reviews compiled 47 affected objects each, and the renderer review compiled 48. The stock checker passed in object-report mode against a fresh upstream object report, with 27,572 exact functions, all 2,450 linked units exact and no loss of non-padding coverage. That replay was checked at the object level. The current stack also passed the executable hash check recorded below.
 
 The fork-only branch `great-merge/current/layered-fork` at `a3aab5454f` leaves the cumulative source tree identical outside the fork layer. Its materialized checkout reproduces all 133 overlay paths from `500467cd41`. The layer check and eleven unit tests passed on the rebased head. The [original range ledger](2026-11-18-fork-data-ranges.tsv) still accounts for all 1,147 bytes. Upstream now supplies 872 exact source-linked bytes, the combined stack supplies the remaining 108, and 167 bytes are verified alignment padding.
 
@@ -121,6 +122,14 @@ The window review at `6bb8433bb1` and combined stack at `f6648c7664` use the nat
 The word-window source uses the fork's deferred compiler setting and lists the functions in reverse so their compiled order stays the same. The compiler emits the six-word dispatch table at 0x804EFC90 with its original four method targets. A build with the entry-table definition in the same file put the 168-byte table ahead of that dispatch table and changed the constructor instructions. The adjacent entries now have a source-linked unit at their original range of 0x804EFCA8 through 0x804EFD4F. Joining the two data ranges reproduces the previous allocation, content and references. The five renamed exports each have one provider and match their original ranges.
 
 The standalone review and combined stack passed the project checker in object-report mode. They compiled 2,451 source objects each, with 2,486 selected inputs for the standalone and 2,485 for the combined stack. The working fork uses the same selected inputs and object layouts as the combined stack. The executable hash remains unverified. The fork layer passed eleven tests and reproduced all 133 tooling paths. The source audit closes the complete word-window header and records evidence for four other paths. It has 1,689 entries awaiting owner comparison and 551 with partial evidence.
+
+### Native word-select menu, scrollbar and string window
+
+The window review at `2b52cfe3cb` and combined stack at `a39c9a4d2b` restore the native three-row menu, scrollbar and string-window constructors and their callers. The menu selection fields and scrollbar geometry fields have named layouts. The string window takes a typed draw context and reserves all 192 bytes for eight vertices. Its renderer preserves the original instructions, including the stack frame.
+
+The menu and scrollbar use translation-unit-specific deferred compilation. The scrollbar keeps its span helpers inline to preserve the original draw instructions. The generated six-word dispatch tables start at 0x804EFBAC and 0x804EFBE4 with their original four targets. Each table ends before four zero bytes restored by the following unit's eight-byte data alignment. All twelve renamed ranges have one provider with the original bytes and addresses. The standalone review builds with 2,486 selected inputs. The combined source and the working fork use 2,485, with identical allocated sections, symbols and relocations.
+
+Upstream master, the standalone window review, the combined source, the all-source snapshot and the working fork all reproduced the original GPOE8P executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The project checker passed with a full build for the window review, combined source and all-source snapshot. The comparison with fork main found zero regressions or missing linked code or non-padding data. Its aggregate data count is 2,358 bytes lower, from 2,521 bytes of historical alignment padding leaving coverage and 163 bytes entering coverage. The fork layer passed eleven tests and materialized all 133 tooling paths. The audit closes three complete headers and adds evidence for six other paths. It has 1,681 entries awaiting owner comparison and 556 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
