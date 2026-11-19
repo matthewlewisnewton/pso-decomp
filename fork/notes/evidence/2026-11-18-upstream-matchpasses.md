@@ -179,6 +179,19 @@ Fork commit `c7470b0f0e` placed 146 floating-point constants in source. All 608 
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records the addresses and owners for the original 48 source files, including one fragment since folded into its current owner. The [original data inventory](2026-11-18-fork-data-ranges.tsv) tracks its own 90 address ranges.
 
+## Interface, combat, actor and menu constant ownership
+
+The [numeric constant audit](2026-11-19-numeric-constant-audit.tsv) checks 729 definitions from 11 fork commits across 194 historical source files. These cover the original interface, combat, actor and menu pool batches and later camera, angle, Dragon, shop and De Rol Le changes. Fresh builds compared 3,036 bytes with the original split objects at each address. The generated linker inputs identify the selected owner for every value.
+
+Upstream `c572111ed6` emits 712 definitions from 184 compiled objects. The other 17 values are already present at their original addresses in selected upstream objects. The cumulative source at `a5540e955c` and working fork at `073b2523e4` emit all 729 from 188 compiled objects. The 68 bytes below are part of the original [1,147-byte inventory](2026-11-18-fork-data-ranges.tsv). All three standalone review branches were rebuilt for their affected owners.
+
+| Range | Bytes | Standalone review | Selected source owner |
+| --- | ---: | --- | --- |
+| 0x805D85B8–0x805D85CC | 20 | `raft-encounters 2032c512f9` | TObjBoss2DustCtrl.cpp |
+| 0x805D8AE0–0x805D8AE8 | 8 | `boss-effects cb172b2134` | TBoss4Type3_800524E8.cpp |
+| 0x805DCE00–0x805DCE10 | 16 | `item-help-status 372fd86847` | TWindowHelpItem_802540AC.cpp |
+| 0x805DCF18–0x805DCF30 | 24 | `item-help-status 372fd86847` | TWindowSubStatusDisp_80257BC0.cpp |
+
 ## Gyaranzo resources, parameters and missile state
 
 Upstream `c572111ed6` already source-links the Gyaranzo catalog, tuning pool, resource state, parameter records and missile virtual table. The selected source objects match the original 836-byte ranges and all 15 data relocations on upstream, the local review, cumulative source and working fork. The data comparison includes the shared volley timer and the original alignment at the end of the alternate archive string.
