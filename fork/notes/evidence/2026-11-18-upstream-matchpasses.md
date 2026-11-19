@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `7620a6ee98` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, and the Ginja draw and material interfaces. The all-source snapshot is `e0dd2ac6d2`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `5c49304572` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, the Ginja draw and material interfaces, and the Bal Claw and Berura combat states. The all-source snapshot is `77c5db529b`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `03cda7414b` |
+| `great-merge/current/combat` | `9c9de5d77c` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -217,6 +217,16 @@ The four exports retain their original addresses and sizes. The retail executabl
 The standalone renderer review at `60bd735c2e`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The three 24-byte virtual tables for the chat balloon, item help and software keyboard are verified on the combined stack and working fork. The standalone renderer base carries those tables through the original link inputs. The 133-path tooling overlay round-trips and all eleven overlay tests pass.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records evidence for 60 entries. It has 1,267 entries awaiting owner comparison and 790 with partial evidence.
+
+### Bal Claw body and Berura combat states
+
+The eight-file replay at `5c49304572` gives Bal Claw its native form selection, state reset, targeting movement and death sequence. The body constructor reads the typed 0x40-byte placement record. Berura owns its original patrol, action, turn-limit and punch state methods, and the factory tables use its native placement entry point.
+
+All 30 method symbols match the fork by name, address and size across 12,120 instruction bytes. The three gameplay source units retain 96 exact functions. The factory unit keeps the three original 0xA5 pointers. The detached punch retains its original branch to each of the two Berura owner methods.
+
+The standalone combat review at `9c9de5d77c`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The combined stack and working fork source-link the chat balloon, item help and software-keyboard virtual tables. The standalone combat branch uses the original link inputs for those three 24-byte tables. The 133-path tooling overlay round-trips and all eleven overlay tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence against 12 fork records. It has 1,261 entries awaiting owner comparison and 796 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
