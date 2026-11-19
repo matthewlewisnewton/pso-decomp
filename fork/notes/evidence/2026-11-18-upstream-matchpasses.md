@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `0ddee16b36` and the complete source snapshot at `12448601ae` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `a2948b5308` and the complete source snapshot at `de7f626bb1` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -145,6 +145,14 @@ The 33-file replay at `0ddee16b36` carries the fork's startup APIs, packet-pool 
 The local review at `2f060fcbb8` extends the existing buffers, DNS, timer and PPP review at `ebe7edd892`. The full review starts on `af11a99125` and covers 60 files with 670 exact source-linked functions in 33 affected units. The new component at `1b609ebabb` and the cumulative replay each preserve 393 exact functions across 20 affected units. All 12 updated exports preserve their addresses and sizes. Their 60 original direct branches retain their targets. All five builds reproduce retail and pass the project checker. The two upstream-shaped reviews inherit the upstream 24-byte keyboard table coverage gap. The cumulative source and working fork retain that table and all matched and linked address coverage from fork main.
 
 Linked checks covered 140 packet-pool operations, 42 card load requests, 36 polls, five file-header inputs and eight startup records. The TCP queue probe passed 786 reassembly comparisons, 12 out-of-order receives, 2,528 gathers and 1,600 acknowledgments. All 133 fork-only overlay paths round-trip and all eleven layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) accounts for the complete network codec and request units and adds evidence for three other paths.
+
+## Quest stage records, localized filenames and downloads
+
+The 15-file replay at `a2948b5308` uses one typed stage record for the challenge and battle lists and passes the actual filename field to the shared offline quest loader. The two filename helpers share one declaration across their quest, scene, map and archive callers. A null destination keeps the original in-place behavior. The stage-title call keeps the original third-register argument at its existing call site. The fork's eight-byte floor-name format is now a named constant at `0x80438660` in the consolidated floor window.
+
+The local review at `8c7134e424` extends the quest download text and cache review at `1d0631030f`. It starts on `af11a99125` and covers 42 files with 1,604 exact source-linked functions in 32 affected units. The new component at `26190ba914` and cumulative replay each preserve 328 exact functions across 13 affected units. All 47 direct branches to the two filename helpers keep their original targets. The five builds reproduce retail and pass the project checker. The two upstream-shaped builds inherit the existing 24-byte keyboard-table gap. The cumulative source and working fork retain that table and all matched and linked address coverage from fork main.
+
+Linked checks passed 20 filename transformations, 24 stage-list queries, and 132 localized filename combinations across all 22 stage records. The download cache passed its slot, page, bucket, free-list, read and eviction probe. All 133 overlay paths round-trip and all eleven layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles three former quest or floor-window source paths and updates evidence for two others.
 
 ## Standalone reviews on upstream master `af11a99125`
 
