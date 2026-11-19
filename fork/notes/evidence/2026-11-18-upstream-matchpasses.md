@@ -43,6 +43,12 @@ Commit `6294e0d34a` extends the native callbacks and SDK review with four shared
 
 The patch changes 61 paths, including 53 source files. The review compiled and compared 950 affected objects. The cumulative source at `ae12ac4f52` and the working fork each compiled and compared 945. Their allocated sections, addressable symbols and relocation targets match their prior objects after mapping the four symbol names. The working fork passed 294 tests and its linker retention check.
 
+### Network buffer and packet layouts
+
+Commit `22e91f2417` starts the network contracts review on upstream master. It brings the fork's typed DHCP buffers to the upstream C implementation. Outgoing, reply and receive storage retain their existing 1500-byte regions. The DNS resolver and packed buffer pool keep their upstream records and gain compile-time checks for the field offsets covered by the fork. The changes leave the network state machine and its callback behavior intact.
+
+The review, the cumulative source at `4a30242839` and the working fork each compiled and compared 39 affected objects. Their allocated sections, symbol locations and relocations match their baselines. The working fork passed all 294 tests and its linker retention check.
+
 ## Renderer and BML resource reviews
 
 The first branch starts from upstream master `c572111ed6`. Each later branch builds on the one immediately above it. The last column counts paths changed by that step. Review the two accessor and Dark Falz commits together to follow the archive entry into the game code that uses it. The resource lifecycle commit then carries the constructor and destructor through the callers. All four review trees and their four counterparts on the combined local source branch passed the retail executable and upstream checks.
@@ -139,7 +145,7 @@ All affected translation units compiled on both review bases and on the cumulati
 
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `ae12ac4f52` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `4a30242839` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
