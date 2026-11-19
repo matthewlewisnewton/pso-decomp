@@ -8,6 +8,7 @@ The local branches below group related changes for review. The component branche
 | --- | --- | --- | ---: |
 | Archive loading, audio streaming and quest-cache lifetimes | `great-merge/current/resource-lifetimes` | `369be14322` | 206 |
 | Array allocation, memory copies and nullable release | `great-merge/current/memory` | `381e372339` | 257 |
+| Radar, raft effects, scrolling strips and boss trail rendering | `great-merge/current/encounter-drawing` | `34176d99e2` | 112 |
 | Window entry, input and rendering interfaces | `great-merge/current/window-frames` | `37e0caf80a` | 268 |
 
 The memory review applies the array allocation component `63c3f4ea45` first, then the memory-copy and nullable release changes from `6194d462e1`. The two components overlap in the menu font cleanup. Its resolved form uses matching array allocation and deletion for the glyph table and palette, and uses the nullable release helper for the glyph data. The compiler output confirms both array delete calls and the nullable release call.
@@ -17,6 +18,10 @@ The standalone memory branch compiled 857 selected objects, including 247 edited
 The resource-lifetimes review keeps five commits in order. The archive and quest components establish the loader, cache and save-image contracts. The three audio commits then adopt typed sector reads, signed ADXB channels and pitch forwarding. Eight overlapping files combine the two sets of declarations and calls. The sky loader keeps its typed BML lists and uses the shared ADXF close operation. The asynchronous texture loader checks completion through ADXF and passes the texture to the typed GVM loader.
 
 The grouped resource branch compiled 1,007 selected objects, including 168 edited sources. After mapping 52 symbol names by section, address and size, all rebuilt objects match previously compiled versions. Of these, 992 match upstream and every standalone component. Fourteen match the archive component and one matches the quest component. A separate check across all 2,487 selected linker inputs found a single provider for each renamed export and no unresolved or stale references to those names. Validation ran at the object-file level.
+
+The encounter-drawing review brings together radar map and marker state, De Rol Le and Barba Ray raft effects, scrolling strips and the Dark Falz and Olga Flow effects. City seasonal rendering keeps both shared declarations. The two Olga Flow constructors call the typed strip initializers and create their typed afterimage receivers. The comment-only configure.py edit stays on the fork.
+
+The grouped drawing branch compiled 1,571 selected objects, including 74 edited sources. Of these, 1,564 match upstream and each standalone component, and seven match their validated individual components. The comparison maps 40 names at their original addresses. Across 2,484 selected linker inputs, each of the 37 renamed exports has one provider with no stale references. The three private records match their compiled local offsets and sizes. Validation ran at the object-file level.
 
 ## Review branches on upstream PR 326
 
