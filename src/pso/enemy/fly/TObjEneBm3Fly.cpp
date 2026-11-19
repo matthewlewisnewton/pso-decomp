@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/enemy/BattleParameters.h"
@@ -1071,7 +1072,7 @@ void TObjEneBm3Fly::state_death_fall(s32 arg1) {
                     this->m_3e4 = 0.0f;
                     this->m_428 &= ~2;
                     spawn_landing_dead_spot((s32)&this->position, 0xA);
-                    ((TObjPlayer *)&this->position)->spawn_effect_at_ground(0x1E);
+                    spawn_effect_at_ground(&this->position, 0x1E);
                 }
             }
             this->clamp_flight_height();

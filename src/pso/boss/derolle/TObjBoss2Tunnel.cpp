@@ -486,32 +486,32 @@ s16 TObjBoss2Tunnel::turn_toward_angle_limited(s32 arg0, s32 cur, s32 target, s3
 
 void TObjBoss2Tunnel::init_zako(void* a1, s32 _w2) { rotate_xz_pair_by_angle((f32 *)this, (f32 *)((char*)this + 0x8), (s32)_w2); vec3_add_to(this, a1); }
 
-s32 TObjBoss2Tunnel::adjust_to_ground(s32 arg0, void *arg1) {
-    s32 *temp_r3;
+s32 adjust_point_to_ground(const Vec *source, Vec *destination) {
+    CsnHit *hit;
 
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
-    ((Vec *)arg1)->y += 20.0f;
-    temp_r3 = csnVecterUnder((s32)arg1, 0x16EF);
-    if (temp_r3 != NULL) {
-        VecCopy((Vec *)arg1, (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4)));
+    VecCopy(destination, source);
+    destination->y += 20.0f;
+    hit = csnVecterUnder(destination, 0x16EF);
+    if (hit != NULL) {
+        VecCopy(destination, &hit->contact->point);
         return 1;
     }
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
+    VecCopy(destination, source);
     return 0;
 }
 
-s32 TObjBoss2Tunnel::spawn_effect(s32 arg0, void *arg1, void *arg2) {
-    s32 *temp_r3;
+s32 adjust_point_to_ground_with_normal(const Vec *source, Vec *destination, Vec *normal) {
+    CsnHit *hit;
 
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
-    ((Vec *)arg1)->y += 20.0f;
-    temp_r3 = csnVecterUnder((s32)arg1, 0x16EF);
-    if (temp_r3 != NULL) {
-        VecCopy((Vec *)arg1, (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4)));
-        VecCopy((Vec *)arg2, (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4) + 0xC));
+    VecCopy(destination, source);
+    destination->y += 20.0f;
+    hit = csnVecterUnder(destination, 0x16EF);
+    if (hit != NULL) {
+        VecCopy(destination, &hit->contact->point);
+        VecCopy(normal, &hit->contact->normal);
         return 1;
     }
-    VecCopy((Vec *)arg1, (const Vec *)arg0);
+    VecCopy(destination, source);
     return 0;
 }
 

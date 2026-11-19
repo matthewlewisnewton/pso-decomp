@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -169,7 +170,7 @@ void TObjEneBeast::vfunc_94() {
     rotate_vector_by_matrix(0, &stack.x, &stack.x);
     pop_matrix();
     vec3_add_to(&stack.x, (u8 *)&this->position);
-    ((TObjPlayer *)(&stack.x))->spawn_effect_at_ground(0x23);
+    spawn_effect_at_ground(&stack, 0x23);
     TObjPlayer::spawn_dead_spot_type2((s32)&stack.x, 0xF);
 }
 

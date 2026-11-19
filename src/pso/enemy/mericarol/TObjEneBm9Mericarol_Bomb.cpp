@@ -124,7 +124,7 @@ void TObjEneBm9Mericarol_Bomb::run_task() {
         pos.x += velocity.x;
         pos.y += velocity.y;
         pos.z += velocity.z;
-        hit = (CsnHit *)csnVecterUnder((s32)&pos, 0x16EF);
+        hit = csnVecterUnder(&pos, 0x16EF);
         if (hit != NULL) {
             position.y = hit->contact->point.y;
             VecCopy(&shadow_pos, &hit->contact->normal);

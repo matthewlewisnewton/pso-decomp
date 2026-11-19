@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/unk/TLobby_801E43E4.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_80120FC4.h"
@@ -956,7 +957,6 @@ ItemCreateFunction item_create_fn_table[5] = {
 };
 extern Entry_8010567C *quest_object_entries;
 int check_class_equip_permission(TObjPlayer *player, s32 perm);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 void send_6x60_standard_drop_item_request(Obj_80105538 *self);
 }
 void *build_6x06_send_guild_card(void *arg0);
@@ -1274,7 +1274,7 @@ void send_6x60_standard_drop_item_request(Obj_80105538 *self) {
                         v.x = pkt.x;
                         v.y = 100.0f;
                         v.z = pkt.z;
-                        if (csnVecterUnder((s32)&v, 1) != 0) {
+                        if (csnVecterUnder(&v, 1) != 0) {
                             ((TLobby *)(&pkt))->dispatch_packet_wrapper();
                         }
                     }

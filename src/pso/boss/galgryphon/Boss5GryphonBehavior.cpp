@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
@@ -130,9 +131,7 @@ struct Obj_80063088 {
 
 struct Fx_8005E594 { u8 pad[0x14]; s32 f14; };
 
-struct Hit2_8005E594 { u8 pad[4]; f32 y; };
 
-struct Hit_8005E594 { u8 pad[4]; Hit2_8005E594 *p; };
 
 struct Obj_8005E594 {
     u8 pad0[0x3E4];
@@ -149,9 +148,7 @@ struct Cfg_80064F50 { u8 pad[0x18]; s32 i18; s32 i1C; s32 i20; s32 i24; };
 
 struct Obj_80064F50 { u8 pad0[0xA4]; Part_80064F50 *parts; u8 padA8[0x4C0 - 0xA8]; u32 flags4C0; u8 pad4C4[0x4E4 - 0x4C4]; s32 mode4E4; u8 pos4E8[4]; };
 
-struct Hit2_80060020 { u8 pad[4]; f32 y; };
 
-struct Hit_80060020 { u8 pad[4]; Hit2_80060020 *p; };
 
 struct Cfg_80060020 { s16 h0; s16 h2; s32 f4; };
 
@@ -223,7 +220,6 @@ extern const f32 lbl_805D8D80;
 extern const f32 lbl_805D8E5C;
 extern const f32 lbl_805D8E9C;
 extern const f32 lbl_805D8EA0;
-u8 * csnVecterUnder(s32 *, s32);
 extern const f32 lbl_805D8D90;
 extern const f32 lbl_805D8D94;
 f64 atan2_float(f32, f32);
@@ -367,11 +363,6 @@ struct Obj_80060F4C {
 };
 
 struct ByteBlock_10 { u8 bytes[0x10]; };
-
-struct Stack_80063F34 {
-    s32 sp8;
-    f32 spC;
-};
 
 struct Stack_800646F0 {
     s32 sp8;
@@ -1118,7 +1109,7 @@ void TBoss8Dragon__sub_8005D9BC(u8 *arg0, s32 arg1, s32 arg2) {
     Vec tmp;
     f32 r;
     s32 ang;
-    u8 *p;
+    CsnHit *ground;
 
     r = calc_random_ratio__10TObjPlayerFv(arg0 + 0x5F4);
     r = 100.0f * r + 100.0f;
@@ -1138,8 +1129,8 @@ void TBoss8Dragon__sub_8005D9BC(u8 *arg0, s32 arg1, s32 arg2) {
         out.y = *(f32 *)((s8 *)arg0 + 0x3C);
         out.z = r * cos_table_lookup(ang) + *(f32 *)((s8 *)arg0 + 0x40);
         ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&tmp, &out);
-        p = ((u8 * (*)(void *, s32))csnVecterUnder)(&tmp, 0x16EF);
-        if (p == NULL || *(f32 *)((s8 *)(*(u8 **)((s8 *)p + 4)) + 4) > 6.0f) {
+        ground = csnVecterUnder(&tmp, 0x16EF);
+        if (ground == NULL || ground->contact->point.y > 6.0f) {
             out.x = 100.0f * sin_table_lookup(ang) + *(f32 *)((s8 *)arg0 + 0x38);
             out.y = *(f32 *)((s8 *)arg0 + 0x3C);
             out.z = 100.0f * cos_table_lookup(ang) + *(f32 *)((s8 *)arg0 + 0x40);
@@ -1470,11 +1461,11 @@ void TBoss5Gryphon::update_ground_effects() {
     p[4].z = 0.5f * (arg0->cp[6].z + arg0->cp[7].z);
     q = pts;
     for (i = 0; i < 16; i++, q++) {
-        Hit_8005E594 *hit = (Hit_8005E594 *)csnVecterUnder((s32 *)q, 0x16EF);
+        CsnHit *hit = csnVecterUnder(q, 0x16EF);
         if (hit == NULL) {
             q->y = lbl_805D8D94;
         } else {
-            f32 y = hit->p->y;
+            f32 y = hit->contact->point.y;
             if (y > 6.0f) {
                 q->y = 6.0f;
             } else {
@@ -2228,28 +2219,28 @@ void TBoss5Gryphon::fn_80060020(u32 arg1) {
             if (calc_random_ratio__10TObjPlayerFv(self->f5F4) > 0.5f) {
                 pl = ((u8 *(*)(u16))get_player_by_client_id)((s32)(lbl_805D8DCC * calc_random_ratio__10TObjPlayerFv(self->f5F4)));
                 if (((TObjBase *)pl)->is_alive() != 0) {
-                    Hit_80060020 *hit;
+                    CsnHit *hit;
                     r *= lbl_805D8DD0;
                     do {
                         v.x = r * sin_table_lookup(ang) + ((Vec *)(pl + 0x38))->x;
                         v.y = lbl_805D8DD0 + ((Vec *)(pl + 0x38))->y;
                         v.z = r * cos_table_lookup(ang) + ((Vec *)(pl + 0x38))->z;
-                        hit = (Hit_80060020 *)csnVecterUnder((s32 *)&v, 0x16EF);
+                        hit = csnVecterUnder(&v, 0x16EF);
                         ang += 0x2000;
-                    } while (hit == NULL || hit->p->y > 6.0f);
+                    } while (hit == NULL || hit->contact->point.y > 6.0f);
                     found = 1;
                 }
             }
             if (found == 0) {
-                Hit_80060020 *hit;
+                CsnHit *hit;
                 r *= lbl_805D8DD4;
                 do {
                     v.x = r * sin_table_lookup(ang);
                     v.y = 0.0f;
                     v.z = r * cos_table_lookup(ang);
-                    hit = (Hit_80060020 *)csnVecterUnder((s32 *)&v, 0x16EF);
+                    hit = csnVecterUnder(&v, 0x16EF);
                     r -= lbl_805D8DCC;
-                } while (hit == NULL || hit->p->y > 6.0f);
+                } while (hit == NULL || hit->contact->point.y > 6.0f);
             }
             {
                 a2 = 10430.38043493439 * atan2_float(v.x - self->pos.x, v.z - self->pos.z);
@@ -4059,16 +4050,16 @@ void TBoss8Dragon__sub_80063EF4(s32 arg0) {
 #pragma auto_inline off
 #pragma dont_inline off
 void TBoss5Gryphon::spawn_ground_splash() {
-    Stack_80063F34 stack;
+    Vec position;
     f32 temp_f1;
-    u8 *temp_r3;
-    VecCopy__FP3VecPC3Vec((void*)(&stack.sp8), (void*)((void *) (((u8 *)this) + 0x38)));
-    temp_r3 = csnVecterUnder(&stack.sp8, 0x16EF);
-    if (temp_r3 != NULL) {
-        temp_f1 = *(f32 *)((s8 *)(*(void **)((s8 *)temp_r3 + 4)) + 4);
+    CsnHit *hit;
+    VecCopy__FP3VecPC3Vec(&position, (void*)((void *) (((u8 *)this) + 0x38)));
+    hit = csnVecterUnder(&position, 0x16EF);
+    if (hit != NULL) {
+        temp_f1 = hit->contact->point.y;
         if (!(temp_f1 > 6.0f)) {
-            stack.spC = temp_f1;
-            spawn_particle_effect_with_flags((const Vec *)&stack.sp8, (s32)((void *) (**(s32 **)((s8 *)((u8 *)this) + 0x5F0))), 0x40);
+            position.y = temp_f1;
+            spawn_particle_effect_with_flags(&position, (s32)((void *) (**(s32 **)((s8 *)((u8 *)this) + 0x5F0))), 0x40);
             play_se(0x40032D01);
         }
     }

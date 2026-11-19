@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
@@ -1292,7 +1293,7 @@ void TObjEnePanBARA::sub_800E0950() {
     temp_r0 = this->action_timer;
     if (temp_r0 <= 0x78) {
         if (temp_r0 == 0x78) {
-            ((TObjPlayer *)unk_3A4)->spawn_ground_effect(0x78);
+            spawn_ground_effect((const Vec *)unk_3A4, 0x78);
             TObjPlayer::spawn_dead_spot_default((s32)unk_3A4, 6);
         }
         this->position.y += -0.15625f;

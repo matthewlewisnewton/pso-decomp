@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
@@ -106,11 +107,6 @@ struct Obj_802342A4
   Vec pos;
 };
 
-struct Hit_8023453C
-{
-  u8 pad[4];
-  void *pos;
-};
 
 struct Fx_8023453C
 {
@@ -231,7 +227,6 @@ s32 set_area__6TLobbyFl(s32 *, s32, s32);
 void run_task__9TTecLukerFv(u8 *arg0);
 f32 horizontal_distance_squared(void *, void *);
 extern s32 camera_ctrl_instance;
-Hit_8023453C *csnVecterUnder(void *, s32);
 u32 spawn_continuous_particle_effect_with_flags(void *, s32, s32);
 }
 void init_telepipe_packet_header(void* p);
@@ -612,12 +607,11 @@ Obj_8023448C *__dt__13TUnk_804CCA0CFv(Obj_8023448C *arg0, s16 arg1) {
 #pragma opt_common_subs off
 #pragma opt_loop_invariants off
 typedef struct Fx_8023453C Fx_8023453C;
-typedef struct Hit_8023453C Hit_8023453C;
 void *create_telepipe_visual(void *self, Vec *pos, u32 id, s32 res) {
   Vec v;
   Vec v2;
   long long off;
-  Hit_8023453C *hit;
+  CsnHit *hit;
   void *p;
   const s32 *row;
   s32 i;
@@ -629,7 +623,7 @@ void *create_telepipe_visual(void *self, Vec *pos, u32 id, s32 res) {
   VecCopy((Vec *)(&((Fx_8023453C *) self)->pos2), (const Vec *)(&((Fx_8023453C *) self)->pos));
   if (hit != 0)
   {
-    VecCopy((Vec *)(&((Fx_8023453C *) self)->pos2), (const Vec *)hit->pos);
+    VecCopy((Vec *)(&((Fx_8023453C *) self)->pos2), &hit->contact->point);
   }
   row = telepipe_visual_template_table[id];
   off = id * 4;

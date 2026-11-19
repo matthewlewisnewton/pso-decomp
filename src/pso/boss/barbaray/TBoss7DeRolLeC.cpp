@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/camera/RadarMapViewState.h"
@@ -3610,7 +3611,7 @@ void handle_tentacle_attack_state__8TObjFishFPvUii(Fish_802E9ADC *o, u32 arg1, s
                     v.x = r * sin_table_lookup(ang);
                     v.y = -1.85f;
                     v.z = r * cos_table_lookup(ang);
-                    TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                    adjust_point_to_ground(&v, &v);
                 }
                 ((TBoss7Tentacle *)(o->tent[o->idx]))->start_attack_at_position((u8 *)&v, (s32)o->arg);
                 o->idx++;
@@ -4326,7 +4327,7 @@ void TObjFish__sub_802E85E0(u8 *arg0, u32 arg1, s32 arg2) {
                         v.x = scale * sin_table_lookup(r);
                         v.y = -1.85f;
                         v.z = scale * cos_table_lookup(r);
-                        TObjBoss2Tunnel::adjust_to_ground((s32)&v, (void *)&v);
+                        adjust_point_to_ground(&v, &v);
                     }
                     for (j = 0; j != 4; j++) {
                         ((TBoss7Tentacle *)(self->kids[j]))->start_attack_at_position((u8 *)&v, self->f738);

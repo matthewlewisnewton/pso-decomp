@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/effect/particle/ParticleFactory.h"
@@ -73,7 +74,6 @@ void fn_800E762C(TObjEneMe3Shinowa *);
 u16 TObjEneMe3ShinowaReal__sub_800E45CC(TObjEneMe3Shinowa *shinowa);
 extern s32 model_render_flags;
 TObjEneMe3ShinowaMirage *create__23TObjEneMe3ShinowaMirageFPvPv(void *, s32, s32, s32);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 mult_vec_array__10TObjPlayerFUll(int, int, void *, int);
 s32 push_matrix();
 s32 post_translate_matrix(void *);
@@ -992,7 +992,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(TObjEneMe3Shinowa *shinowa, s32 arg1)
                     v.x += shinowa->target_direction.x * d;
                     v.y += 20.0f;
                     v.z += shinowa->target_direction.z * d;
-                    if (csnVecterUnder((s32)&v, 0x15) != 0U) {
+                    if (csnVecterUnder(&v, 0x15) != 0U) {
                         shinowa->m_404 = 3;
                         shinowa->m_414 = (shinowa->target_distance - 20.0f) / 12.857143f;
                         shinowa->vfunc_91();

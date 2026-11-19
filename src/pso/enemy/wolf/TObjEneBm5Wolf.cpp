@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
@@ -1834,7 +1835,7 @@ void TObjEneBm5Wolf::update_dying_state(s32 arg1) {
                 rotate_xz_pair_by_angle(&pos.x, &pos.z, this->rotation_y);
                 vec3_add_to(&pos, &this->position);
                 TObjPlayer::spawn_dead_spot_type2((s32)&pos, 0x32);
-                ((TObjPlayer *)(&pos))->spawn_effect_at_ground(0x46);
+                spawn_effect_at_ground(&pos, 0x46);
             }
             this->rotation_y = approach_angle_limited(this->rotation_y, *tgt, 0x300);
             this->rotation_y = (s16)this->rotation_y;

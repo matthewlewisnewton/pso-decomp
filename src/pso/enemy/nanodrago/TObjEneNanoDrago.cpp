@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
@@ -971,7 +972,7 @@ void TObjEneNanoDrago::update_dying_state() {
     case 3:
         timer = (timer - 1);
         if (timer <= 0) {
-            ((TObjPlayer *)(&position))->spawn_ground_effect(0x1E);
+            spawn_ground_effect(&position, 0x1E);
             TObjPlayer__sub_800D92BC((s32)&position, 0xF);
             state = 4;
             return;

@@ -2,6 +2,7 @@
 #define PSO_MAP_CSNQUERY_H
 
 #include "types.h"
+#include "pso/map/CsnGroundQuery.h"
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include "pso/system/NinjaTypes.h"
@@ -44,25 +45,6 @@ typedef char CsnGroupFlagsOffset[offsetof(CsnGroup, flags) == 0x14 ? 1 : -1];
 
 CsnGroup* select_ground_query_groups(CsnVector* origin, u32 mask);
 
-// The polygon a segment query hit: the hit point and the polygon normal.
-struct CsnContact {
-    Vec point;
-    Vec normal;
-    u32 flags;
-
-    CsnContact();
-    void clear();
-};
-
-// The result csnVector returns (one static record, NULL when nothing is hit).
-struct CsnHit {
-    u32 hit_mask;        // (inferred) bit 0: ground contact, others: per-flag contacts
-    CsnContact *contact;
-
-    CsnHit();
-    void reset();
-};
-
 // A radial wall query (select_deepest_wall_ray's input): count rays from
 // origin, one per entry of rays (field names inferred).
 struct WallRayQuery {
@@ -84,10 +66,6 @@ struct WallRayResult : CsnHit {
     WallRayResult();
 };
 
-typedef char CsnContactSize[sizeof(CsnContact) == 0x1C ? 1 : -1];
-typedef char CsnContactNormalOffset[offsetof(CsnContact, normal) == 0xC ? 1 : -1];
-typedef char CsnHitSize[sizeof(CsnHit) == 8 ? 1 : -1];
-typedef char CsnHitContactOffset[offsetof(CsnHit, contact) == 4 ? 1 : -1];
 typedef char WallRayResultSize[sizeof(WallRayResult) == 0x10 ? 1 : -1];
 
 extern "C" {
@@ -107,7 +85,6 @@ s32 TObjPlayer__sub_80079118(const char *name);
 void TObjPlayer__sub_8007911C(void);
 void TObjPlayer__sub_80079120(s32 _w0);
 void TObjPlayer__sub_80079124(void *_w0, void *_w1);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 get_csn_group_flags(u8 arg0);
 }

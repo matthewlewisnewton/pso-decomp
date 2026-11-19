@@ -1,3 +1,5 @@
+#include "pso/effect/GroundEffects.h"
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -206,18 +208,18 @@ void fn_800D911C(Vec *position) {
 
 void TObjPlayer::trigger_dell_biter_events() { spawn_particle_effect((const Vec *)this, 251); spawn_particle_effect((const Vec *)this, 252); spawn_particle_effect((const Vec *)this, 227); }
 
-void TObjPlayer::spawn_ground_effect(s32 arg1) {
-    s32 sp8;
+void spawn_ground_effect(const Vec *position, s32 lifetime) {
+    Vec ground_position;
 
-    TObjBoss2Tunnel::adjust_to_ground((s32)this, &sp8);
-    create_timed_particle_emitter((&sp8), 0xE5, 0, (arg1));
+    adjust_point_to_ground(position, &ground_position);
+    create_timed_particle_emitter(&ground_position, 0xE5, 0, lifetime);
 }
 
-void TObjPlayer::spawn_effect_at_ground(s32 arg1) {
-    s32 sp8;
+void spawn_effect_at_ground(const Vec *position, s32 lifetime) {
+    Vec ground_position;
 
-    TObjBoss2Tunnel::adjust_to_ground((s32)this, &sp8);
-    create_timed_particle_emitter(&sp8, 0xE4, 0, arg1);
+    adjust_point_to_ground(position, &ground_position);
+    create_timed_particle_emitter(&ground_position, 0xE4, 0, lifetime);
 }
 
 // Dead-stripped from the DOL: the selector-0 corner dead spots come in the same

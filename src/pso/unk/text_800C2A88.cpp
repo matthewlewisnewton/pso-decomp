@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/TObjEnemy.h"
@@ -223,7 +224,7 @@ void fn_800C2AC4(u8 *arg0, int arg1) {
         else
         {
           TObjPlayer__sub_800D9290((s32)&stack.x, 0x32);
-          ((TObjPlayer *)(&stack.x))->spawn_ground_effect(0x46);
+          spawn_ground_effect(&stack, 0x46);
         }
       }
         (((TObjEneDD *)(arg0))->vfunc_102());

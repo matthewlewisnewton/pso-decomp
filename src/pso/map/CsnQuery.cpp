@@ -116,7 +116,6 @@ extern "C" {
 s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 void TObjPlayer__sub_80079120(s32 _w0);
 extern u32 lbl_804FFD40[];
-s32 *csnVecterUnder(s32 arg0, s32 arg1);
 void TObjPlayer__sub_80079124(void *, void *);
 u32 TObjPlayer__sub_80079DE0(void *, void *);
 f32 vec_squared_length(Vec *);
@@ -887,19 +886,19 @@ done:
     TObjPlayer__sub_80079118("csnVectorUnder(Use Buffer)");
     return var_r31;
 }
-s32 *csnVecterUnder(s32 origin, s32 mask) {
-    s32 *var_r31;
+CsnHit *csnVecterUnder(const Vec *origin, u32 mask) {
+    CsnHit *hit;
     TObjPlayer__sub_80079108();
     TObjPlayer__sub_8007911C();
-    TObjPlayer__sub_80079120(origin);
-    var_r31 = ((s32 *)&lbl_80500140);
-    if (((u32)select_ground_query_groups((CsnVector *)(origin), mask)) == 0U) {
-        var_r31 = 0;
+    TObjPlayer__sub_80079120((s32)origin);
+    hit = &lbl_80500140;
+    if (select_ground_query_groups((CsnVector *)origin, mask) == NULL) {
+        hit = NULL;
     } else if (evaluate_ground_triangles((Vec *)origin, mask, (CsnGroup **)lbl_804FFD40) == 0) {
-        var_r31 = 0;
+        hit = NULL;
     }
     TObjPlayer__sub_80079118("csnVecterUnder()");
-    return var_r31;
+    return hit;
 }
 
 

@@ -509,37 +509,37 @@ void TObjEneDellBiter::spawn_front_particle() {
 
 s32 TObjEneDellBiter::fn_803059BC(const Vec *origin) {
     Vec pos;
-    CsnGroundHit *hit;
+    CsnHit *hit;
     void *e;
     VecCopy(&pos, origin);
     pos.y += 15.0f;
-    hit = (CsnGroundHit *)csnVectorUnder(&pos, (u32 *)&m_120, 0x4007);
+    hit = (CsnHit *)csnVectorUnder(&pos, (u32 *)&m_120, 0x4007);
     if (hit != NULL) {
-        flags_3c4 = hit->surface->flags;
+        flags_3c4 = hit->contact->flags;
         if (flags_3c4 & 0x4000) {
-            VecCopy(&reflection_position, &hit->surface->point);
+            VecCopy(&reflection_position, &hit->contact->point);
         } else {
             VecCopy(&reflection_position, &position);
         }
-        if (hit->flags & 4) {
-            e = (void *)spawn_particle_effect(&hit->surface->point_38, 0x49);
+        if (hit->hit_mask & 4) {
+            e = (void *)spawn_particle_effect(&hit->contact[2].point, 0x49);
             if (e != NULL) {
                 attach_particle_model((u8 *)e, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, 1.0f);
                 ((TParticleCtrl *)e)->set_scale(3.0f, 3.0f);
             }
-            e = (void *)spawn_particle_effect(&hit->surface->point_38, 0xA4);
+            e = (void *)spawn_particle_effect(&hit->contact[2].point, 0xA4);
             if (e != NULL) {
                 ((TParticleCtrl *)e)->set_scale(3.0f, 3.0f);
             }
             return 1;
         }
-        if (hit->flags & 2) {
-            e = (void *)spawn_particle_effect(&hit->surface->point_54, 0x49);
+        if (hit->hit_mask & 2) {
+            e = (void *)spawn_particle_effect(&hit->contact[3].point, 0x49);
             if (e != NULL) {
                 attach_particle_model((u8 *)e, (s32)(TParticleCtrl::get_particle_model(2)), (s32)(TParticleCtrl::get_instance()), 0, 1, 1.0f);
                 ((TParticleCtrl *)e)->set_scale(3.0f, 3.0f);
             }
-            e = (void *)spawn_particle_effect(&hit->surface->point_54, 0xA4);
+            e = (void *)spawn_particle_effect(&hit->contact[3].point, 0xA4);
             if (e != NULL) {
                 ((TParticleCtrl *)e)->set_scale(3.0f, 3.0f);
             }

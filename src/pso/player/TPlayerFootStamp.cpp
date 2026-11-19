@@ -214,7 +214,7 @@ TPlayerFootStamp::TPlayerFootStamp(TObjPlayer *player, s32 side) : TObject(tl_07
         rotation = (s32 *)((TBoss4DarkFalz *)player)->get_hit_data();
         VecCopy(&position, (Vec *)player->get_position_ptr());
         position.y += 5.0f;
-        ground = (CsnHit *)csnVecterUnder((s32)&position, 0x16EF);
+        ground = csnVecterUnder(&position, 0x16EF);
         if (ground == NULL) {
             queue_destruction();
             return;

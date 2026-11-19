@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/player/demo_mode.h"
 #include "pso/system/BmlResource.h"
 #include "pso/animation/MotionContext.h"
@@ -149,7 +150,6 @@ s32 angle_diff_s16(s32, s32);
 
 #include "pso/object/lobby/LobbyPigeon.h"
 
-struct Hit_802C22A4 { u8 pad0[4]; Vec *n; };
 
 struct Obj_802C22A4 {
     u8 pad0[0x1E]; s16 f1E; u8 pad20[0x38 - 0x20]; Vec pos;
@@ -161,7 +161,6 @@ struct Obj_802C22A4 {
 struct PigeonMovement { s32 motion; f32 pathSpeed, animationSpeed, lookAhead; s32 turnStep; };
 
 extern "C" {
-s32 *csnVecterUnder(s32 origin, s32 mask);
 void vec3_add_to(void *, void *);
 
 s32 get_bml_motion(void *, s32);
@@ -718,12 +717,12 @@ s32 TUnk_804E094C::update_path_follow_rotation(void *, f32) {
                                                      &b, this->m_a4 + e->d);
     if (this->visibility != 0) {
         Vec p = self->vAC;
-        Hit_802C22A4 *hit;
+        CsnHit *hit;
         vec3_add_to(&p, &self->pos);
         p.y += (1e+04f);
-        hit = (Hit_802C22A4 *)csnVecterUnder((s32)&p, 0x16EF);
+        hit = csnVecterUnder(&p, 0x16EF);
         if (hit != NULL) {
-            self->pos.y = hit->n->y;
+            self->pos.y = hit->contact->point.y;
         }
     }
     {

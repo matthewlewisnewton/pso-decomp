@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/data/FlagWord.h"
@@ -70,7 +71,6 @@ struct Flg_8015610C { u8 pad[0x18]; u32 flags; };
 struct P_8015610C { u8 pad[0xA4]; Flg_8015610C *f; };
 
 
-struct Hit_80156844 { u32 f0; Vec *v; };
 
 struct Obj_80154B60 { u8 pad[0x1C]; u16 id; };
 struct Obj_801559D0 { u8 pad38[0x38]; Vec pos; u8 pad44[0x60 - 0x44]; s32 f60; u8 pad64[0xA4 - 0x64]; u32 a4; s32 a8; };
@@ -166,7 +166,6 @@ void free_collision_body_parts(G_80156720 *arg0);
 u16 get_entity_id(int);
 void *memcpy(void *, const void *, u32);
 s32 *csnVectorUnder(s32 arg0, u32 *arg1, s32 arg2);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 u16 TObjRoomId__sub_801A1DB8(u16);
 s32 project_actor_to_ground(Obj_80156844 *self, Vec *pos, Vec *normal);
 }
@@ -1205,7 +1204,7 @@ Part_80156780 *init_collision_body_parts(Obj_80156780 *self, Part_80156780 *src,
 
 s32 project_actor_to_ground(Obj_80156844 *self, Vec *pos, Vec *normal) {
     Vec v;
-    Hit_80156844 *hit;
+    CsnHit *hit;
     u16 r;
     void *coll;
     s32 flags;
@@ -1218,16 +1217,16 @@ s32 project_actor_to_ground(Obj_80156844 *self, Vec *pos, Vec *normal) {
     }
     coll = self->f90;
     if (coll != 0) {
-        hit = (Hit_80156844 *)csnVectorUnder((s32)&v, (u32 *)coll, flags);
+        hit = (CsnHit *)csnVectorUnder((s32)&v, (u32 *)coll, flags);
     } else {
-        hit = (Hit_80156844 *)csnVecterUnder((s32)&v, flags);
+        hit = csnVecterUnder(&v, flags);
     }
     if (hit == NULL) {
         return 0;
     }
-    VecCopy__FP3VecPC3Vec(pos, hit->v);
+    VecCopy__FP3VecPC3Vec(pos, &hit->contact->point);
     if (normal != NULL) {
-        VecCopy__FP3VecPC3Vec(normal, &hit->v[1]);
+        VecCopy__FP3VecPC3Vec(normal, &hit->contact->normal);
     }
     return 1;
 }

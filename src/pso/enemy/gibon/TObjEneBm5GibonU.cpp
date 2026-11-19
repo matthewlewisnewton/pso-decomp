@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
@@ -1081,7 +1082,7 @@ void TObjEneBm5GibonU__sub_800CE060(TObjEneBm5GibonU *self, s32 arg1) {
                 } else {
                     TObjPlayer::spawn_dead_spot_type2((s32)&sp14, 0x32);
                 }
-                ((TObjPlayer *)(&sp14))->spawn_effect_at_ground(0x46);
+                spawn_effect_at_ground(&sp14, 0x46);
             }
             self->rotation_y = approach_angle_limited(self->rotation_y, self->m_528, 0x300);
             self->rotation_y = (s16)self->rotation_y;

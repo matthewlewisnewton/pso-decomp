@@ -62,7 +62,6 @@ struct Req_801D3780 {
     s32 id;
     s32 extra;
 };
-struct Ground_801D3C38 { u8 pad0[4]; Vec *pos; };
 extern "C" {
 void send_6x29_delete_item__10TObjPlayerFPvii(void *, s32, s32);
 s32 poll_memcard_result(s32);
@@ -895,7 +894,7 @@ void *find_placement_obstruction(void *self, Body_801D3E20 *s) {
 #pragma push
 #pragma fp_contract on
 s32 TUnk_804C4498::step_placement_search() {
-    Ground_801D3C38 *g;
+    CsnHit *g;
     if (check_player_action_allowed() != 0 && this->online != 0 &&
         TAdPlayerLoadGC::probe_card_slot(get_chr_select_state__23TAdSinglePlyChrSelectGCFv()) != 1) {
         TLobby::disconnect_protocol();
@@ -914,13 +913,13 @@ s32 TUnk_804C4498::step_placement_search() {
     this->candidate.x = this->radius * sin_table_lookup(this->angle) + this->origin.x;
     this->candidate.y = this->origin.y;
     this->candidate.z = this->radius * cos_table_lookup(this->angle) + this->origin.z;
-    g = (Ground_801D3C38 *)csnVecterUnder((s32)&this->candidate, 0x41);
+    g = csnVecterUnder(&this->candidate, 0x41);
     if (g == NULL) {
         this->angle += this->step;
         this->sample++;
         return 0;
     }
-    this->candidate.y = 6.0f + g->pos->y;
+    this->candidate.y = 6.0f + g->contact->point.y;
     placement_search_collision_body.radius = 3.0f;
     placement_search_collision_body.f14 = 0;
     placement_search_collision_body.mask = 0x31F03;

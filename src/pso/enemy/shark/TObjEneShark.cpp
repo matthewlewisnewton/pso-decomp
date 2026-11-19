@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/system/SoundEffect.h"
@@ -235,7 +236,7 @@ void TObjEneShark::vfunc_94() {
     rotate_vector_by_matrix(0, &stack.x, &stack.x);
     pop_matrix();
     vec3_add_to(&stack.x, (u8 *)&this->position);
-    ((TObjPlayer *)(&stack.x))->spawn_ground_effect(0x23);
+    spawn_ground_effect(&stack, 0x23);
     TObjPlayer__sub_800D92BC((s32)&stack.x, 0xF);
 }
 

@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
@@ -1676,7 +1677,7 @@ void TObjGrass::update_dying(void *arg0_) {
             }
             play_sound_effect((s32)((void *)((TObjEnemy *)(arg0))->remap_sound_for_area(0x4003AB0A)), (const Vec *)(arg0 + 0x38), 0, 0);
             TObjPlayer::spawn_dead_spot_default((s32)(arg0 + 0x38), 0xA);
-            ((TObjPlayer *)(arg0 + 0x38))->spawn_ground_effect(0x1E);
+            spawn_ground_effect((const Vec *)(arg0 + 0x38), 0x1E);
         }
         ((TObjEnePanarms *)arg0)->scale.y -= 0.01f;
         if (((TObjEnePanarms *)arg0)->scale.y < 0.0f) {

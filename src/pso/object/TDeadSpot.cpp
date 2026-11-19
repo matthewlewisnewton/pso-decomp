@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #ifndef PSO_TDEADSPOT_H
 #define PSO_TDEADSPOT_H
@@ -52,9 +53,7 @@ struct Obj_800D8228 { u8 pad0[0x18]; void *vt; E_800D8228 e[4]; Vec base; Vec di
 
 struct Vtx_800D8314 { Vec pos; f32 u; f32 v; s32 color; };
 
-struct Plane_800D8314 { Vec point; Vec normal; };
 
-struct Ground_800D8314 { u32 unk; Plane_800D8314 *plane; };
 
 struct Mark_800D8314 {
     s32 name;
@@ -79,7 +78,6 @@ void update_fade_in_alpha__9TDeadSpotFPv(Obj_800D7FD4 *arg0);
 extern s32 lbl_80494A10[];
 Obj_800D80E4 *init_corner_vertices__9TDeadSpotFPv(Obj_800D80E4 *arg0, void * _w1, Vec * _w2, void * _w3, s32 _w4, s32 _w5, f32 _w6);
 void run_task__9TDeadSpotFv(Obj_800D8228 *arg0);
-Ground_800D8314 *csnVecterUnder(void *, s32);
 }
 void direction_to_rotation_yx(u8 *arg0, s32 *arg1, s32 *arg2);
 extern "C" {
@@ -110,7 +108,7 @@ void TUnk_804949D8::vfunc_6() {
     stack.x = temp_f1;
     stack.z = this->m_28 * cos_table_lookup(temp_r3);
     vec3_add_to(&stack.x, (u8 *)&this->unk_1C);
-    TObjBoss2Tunnel::adjust_to_ground((s32)&stack.x, &stack.x);
+    adjust_point_to_ground(&stack, &stack);
     ((TParticleCtrl *)this->m_34)->set_position(&stack.x);
 }
 #pragma pop
@@ -292,7 +290,7 @@ Mark_800D8314 *__ct__9TDeadSpotFv(Mark_800D8314 *self, void *parent, Vec *point,
     Vec tmp;
     s32 yaw;
     s32 pitch;
-    Ground_800D8314 *ground;
+    CsnHit *ground;
     f32 n1x, n1y, n1z;
     f32 scale;
     f32 first;
@@ -326,7 +324,7 @@ Mark_800D8314 *__ct__9TDeadSpotFv(Mark_800D8314 *self, void *parent, Vec *point,
         ((TObject *)self)->queue_destruction();
         return self;
     }
-    VecCopy((Vec *)&self->center, (const Vec *)&ground->plane->point);
+    VecCopy((Vec *)&self->center, (const Vec *)&ground->contact->point);
     self->center.y += 0.5f * (3.0517578125e-05f * (f32)rand()) + 0.213456f;
     basis[0].x = 0.0f;
     basis[0].y = 0.0f;
@@ -334,7 +332,7 @@ Mark_800D8314 *__ct__9TDeadSpotFv(Mark_800D8314 *self, void *parent, Vec *point,
     basis[1].x = 0.0f;
     basis[1].y = 1.0f;
     basis[1].z = 0.0f;
-    direction_to_rotation_yx((u8 *)&ground->plane->normal, &yaw, &pitch);
+    direction_to_rotation_yx((u8 *)&ground->contact->normal, &yaw, &pitch);
     if (pitch < 0x3000 || pitch > 0x5000) {
         ((TObject *)self)->queue_destruction();
         return self;
@@ -386,7 +384,7 @@ Mark_800D8314 *__ct__9TDeadSpotFv(Mark_800D8314 *self, void *parent, Vec *point,
             bad = 0;
             ground = csnVecterUnder(&tmp, 0x16EF);
             if (ground != NULL) {
-                if (ground->plane->point.y - tmp.y < -3.0f) {
+                if (ground->contact->point.y - tmp.y < -3.0f) {
                     bad = 1;
                 }
             } else {

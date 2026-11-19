@@ -1158,7 +1158,7 @@ void TObjEneMe3SinowZoa__sub_80318F7C(TObjEneMe3SinowZoa *self, s32 arg1) {
                     v.x = self->target_direction.x * d + v.x;
                     v.y += 20.0f;
                     v.z = self->target_direction.z * d + v.z;
-                    if (csnVecterUnder((s32)&v, 0x15) != 0) {
+                    if (csnVecterUnder(&v, 0x15) != 0) {
                         if (self->room == ((TScene *)(&v))->find_section_at_position()) {
                             if (self->m_3c0 != 0) {
                                 ((TObjEneMe3SinowZoa *)&self->fade)->set_field_10(TObjEneMe3SinowZoa__data_805DF30C);

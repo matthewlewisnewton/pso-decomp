@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
@@ -1028,7 +1029,7 @@ void TObjEneBm9Mericarol::state_burrow(s32 arg1) {
                 pos.z = 10.0f * cos_table_lookup(rotation_y);
                 vec3_add_to(&pos, &position);
                 TObjPlayer::spawn_dead_spot_here((s32)&pos, 0x32);
-                ((TObjPlayer *)&pos)->spawn_ground_effect(0x46);
+                spawn_ground_effect(&pos, 0x46);
             }
             vfunc_102();
             return;

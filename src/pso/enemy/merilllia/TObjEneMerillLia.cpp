@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
@@ -1687,7 +1688,7 @@ void TObjEneMerillLia::vfunc_94() {
     rotate_vector_by_matrix(0, (void *)&stack.x, (void *)&stack.x);
     pop_matrix();
     vec3_add_to((void *)&stack.x, (void *)(arg0 + 0x38));
-    ((TObjPlayer *)(&stack.x))->spawn_ground_effect(0x23);
+    spawn_ground_effect(&stack, 0x23);
     TObjPlayer__sub_800D92BC((s32)&stack.x, 0xF);
 }
 

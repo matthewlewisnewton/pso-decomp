@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/vector.h"
@@ -95,10 +96,6 @@ typedef struct Coll_800C4754 {
     s32 flags;
 } Coll_800C4754;
 
-typedef struct Hit_800C4754 {
-    u8 pad0[0x4];
-    u8 *tri;
-} Hit_800C4754;
 
 struct VBase_800C4754 { char pad[0x18]; };
 struct Obj_800C4754 : VBase_800C4754 {
@@ -140,7 +137,6 @@ struct Obj_800C4754 : VBase_800C4754 {
 
 extern "C" {
 
-s32 *csnVecterUnder(s32 origin, s32 mask);
 u32 csnVector(void *, void *, int);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void TObjEneDD__sub_800C2618(void *p);
@@ -240,7 +236,7 @@ void TObjEneRe2Flower_Bomb::run_task() {
     Obj_800C4754 *o = (Obj_800C4754 *)this;
     Vec tmp;
     Rot_800C4754 rot;
-    Hit_800C4754 *hit;
+    CsnHit *hit;
     f32 d;
 
     switch (o->fF8) {
@@ -263,10 +259,10 @@ void TObjEneRe2Flower_Bomb::run_task() {
         o->start.x += o->velA.x;
         o->start.y += o->fF0;
         o->start.z += o->velA.z;
-        hit = (Hit_800C4754 *)csnVecterUnder((s32)&o->start, 0x16EF);
+        hit = csnVecterUnder(&o->start, 0x16EF);
         if (hit != NULL) {
-            o->pos.y = *(f32 *)(hit->tri + 4);
-            VecCopy((Vec *)&o->accel, (const Vec *)(hit->tri + 0xC));
+            o->pos.y = hit->contact->point.y;
+            VecCopy((Vec *)&o->accel, &hit->contact->normal);
             o->f100 = 1;
         } else {
             o->f100 = 0;

@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/camera/RadarMapViewState.h"
@@ -2720,7 +2721,7 @@ using constructor_data::boss2_derolle_particle_limits;
 
 using constructor_data::__vt__13TBoss2DeRolLe;
 
-u32 TBoss2DeRolLe__mine_ground_targets[15];
+Vec TBoss2DeRolLe__mine_ground_targets[5];
 
 u32 boss2_derolle_primary_color_targets[3];
 
@@ -2984,7 +2985,7 @@ void load_resources__13TBoss2DeRolLeFv(void) {
     TBoss2Tentacle__sub_8003A0AC();
     TBoss2Mine__sub_80038D88();
     for (k = 0; k < 5; k++) {
-        TObjBoss2Tunnel::adjust_to_ground((s32)&derolle_mine_offsets[k], (u8 *)TBoss2DeRolLe__mine_ground_targets + k * 0xC);
+        adjust_point_to_ground(&derolle_mine_offsets[k], &TBoss2DeRolLe__mine_ground_targets[k]);
     }
     TBoss2Fin::init_effect_table();
     res = (*(u8 * *)&lbl_805D4BA4);
@@ -5409,7 +5410,7 @@ void TBoss2DeRolLe__sub_800310F8(void *arg0, void *arg1, int arg2) {
                     v.x = r * sin_table_lookup(a);
                     v.y = -1.85f;
                     v.z = r * cos_table_lookup(a);
-                    TObjBoss2Tunnel::adjust_to_ground((s32)&v, &v);
+                    adjust_point_to_ground(&v, &v);
                 }
                 {
                     Self_800310F8 *o = (Self_800310F8 *)arg0;

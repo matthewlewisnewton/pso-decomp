@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/vector.h"
@@ -42,11 +43,6 @@ struct RecoveredFields_8023A510_arg0 {
     f32 field_80;
 };
 
-struct RecoveredFields_8023A510_temp_r3 {
-    u8 unknown_0[0x4];
-    u8 * field_4;
-};
-
 struct RecoveredFields_8023A510_temp_r3_2 {
     u8 unknown_0[0x4];
     u8 * field_4;
@@ -62,7 +58,6 @@ struct RecoveredFields_8023A510_temp_r6 {
 extern "C" {
 s32 check_technique_projectile_wall_hit__13TUnk_804CCC68Fv(void *, f32, f32);
 f32 fabs_float(f32);
-s32 *csnVecterUnder(s32 origin, s32 mask);
 u8 *csnVector(f32 *, f32 *, s32);
 s32 angle_difference_abs(s32 a, s32 b);
 void step_ground_technique_projectile(RecoveredFields_8023A510_arg0 *arg0);
@@ -95,7 +90,6 @@ typedef char RecoveredFields_8023A510_arg0_64_offset[offsetof(RecoveredFields_80
 typedef char RecoveredFields_8023A510_arg0_78_offset[offsetof(RecoveredFields_8023A510_arg0, field_78) == 0x78 ? 1 : -1];
 typedef char RecoveredFields_8023A510_arg0_7C_offset[offsetof(RecoveredFields_8023A510_arg0, field_7C) == 0x7C ? 1 : -1];
 typedef char RecoveredFields_8023A510_arg0_80_offset[offsetof(RecoveredFields_8023A510_arg0, field_80) == 0x80 ? 1 : -1];
-typedef char RecoveredFields_8023A510_temp_r3_4_offset[offsetof(RecoveredFields_8023A510_temp_r3, field_4) == 0x4 ? 1 : -1];
 typedef char RecoveredFields_8023A510_temp_r3_2_4_offset[offsetof(RecoveredFields_8023A510_temp_r3_2, field_4) == 0x4 ? 1 : -1];
 typedef char RecoveredFields_8023A510_temp_r6_C_offset[offsetof(RecoveredFields_8023A510_temp_r6, field_C) == 0xC ? 1 : -1];
 typedef char RecoveredFields_8023A510_temp_r6_10_offset[offsetof(RecoveredFields_8023A510_temp_r6, field_10) == 0x10 ? 1 : -1];
@@ -117,7 +111,7 @@ void step_ground_technique_projectile(RecoveredFields_8023A510_arg0 *arg0) {
     typedef char sp3C_offset[(offsetof(Stack_8023A510, sp3C) == 0x34) ? 1 : -1];
     Stack_8023A510 stack;
     f32 temp_f1;
-    u8 *temp_r3;
+    CsnHit *temp_r3;
     u8 *temp_r3_2;
     u8 *temp_r6;
     VecCopy((Vec *)(((u8 *)arg0) + 0x78), (const Vec *)(((u8 *)arg0) + 0x20));
@@ -125,9 +119,9 @@ void step_ground_technique_projectile(RecoveredFields_8023A510_arg0 *arg0) {
     arg0->field_28 = (f32) ((arg0->field_50 * arg0->field_64) + arg0->field_28);
     VecCopy((Vec *)(&stack.sp1C), (const Vec *)(((u8 *)arg0) + 0x20));
     stack.sp20 += 1e+01f;
-    temp_r3 = (u8 *)(csnVecterUnder((s32)&stack.sp1C, 0x16EF));
+    temp_r3 = csnVecterUnder((const Vec *)&stack.sp1C, 0x16EF);
     if (temp_r3 != NULL) {
-        arg0->field_24 = (f32) (5.0f + *(f32 *)((s8 *)(((RecoveredFields_8023A510_temp_r3 *)temp_r3)->field_4) + 4));
+        arg0->field_24 = (f32) (5.0f + temp_r3->contact->point.y);
     }
     if (fabs_float(arg0->field_7C - arg0->field_24) > 12.0f) {
         arg0->field_24 = (f32) arg0->field_7C;

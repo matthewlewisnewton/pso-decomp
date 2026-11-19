@@ -22,7 +22,6 @@ struct Ctl_80325F7C { u8 pad[0x38]; Vec pos; };
 
 typedef struct Seg_80326074 { Vec pos; f32 pad; } Seg_80326074;
 
-typedef struct Hit_80326074 { u8 pad[4]; f32 *pos; } Hit_80326074;
 
 typedef struct Wing_80326074 {
     u8 pad0[0x48];
@@ -138,7 +137,7 @@ void TBoss5GryphonLightningHorn::rebuild_lightning_segments() {
     Vec q;
     Vec p;
     Vec d;
-    Hit_80326074 *hit;
+    CsnHit *hit;
     f32 h;
     f32 len;
     s32 i;
@@ -148,8 +147,8 @@ void TBoss5GryphonLightningHorn::rebuild_lightning_segments() {
     p.y += self->vel.y;
     p.z += self->vel.z;
     p.y = 60.0f;
-    hit = (Hit_80326074 *)csnVecterUnder((s32)&p, 0x16EF);
-    if (hit == NULL || (h = hit->pos[1]) > lbl_805D8D48) {
+    hit = csnVecterUnder(&p, 0x16EF);
+    if (hit == NULL || (h = hit->contact->point.y) > lbl_805D8D48) {
         get_wing_position__26TBoss5GryphonLightningWingFl(self, &p);
         self->vel.x *= 0.5f;
         self->vel.y *= 0.5f;
@@ -208,13 +207,13 @@ s32 TBoss8Dragon::spawn_ground_lightning(s32 arg0, s32 arg1, s32 arg2) {
     f32 ground_height;
     s32 allocation;
     s32 effect;
-    u8* collision;
+    CsnHit *collision;
     VecCopy(&position, (const Vec *)arg1);
-    collision = (u8 *)csnVecterUnder((s32)((s32*)&position), 0x16EF);
+    collision = csnVecterUnder(&position, 0x16EF);
     if (collision == NULL) {
         position.y = lbl_805D8D48;
     } else {
-        ground_height = *(f32*)((s8 *)(*(u8**)((s8 *)collision + 4)) + 4);
+        ground_height = collision->contact->point.y;
         if (ground_height > lbl_805D8D48) {
             position.y = lbl_805D8D48;
         } else {

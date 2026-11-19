@@ -77,8 +77,92 @@ def check(path):
     print(f"{path}: startup, 32 contacts, three constructors, six radial selection cases passed")
 
 
+def check_ground_queries(path):
+    game = GameImage(path.read_bytes())
+    cpu = game.cpu
+    cpu.reg_write(UC_PPC_REG_MSR, cpu.reg_read(UC_PPC_REG_MSR) | 0x2000)
+    base = 0x81118000
+    source, separate_dest, separate_normal = (base + n for n in (16, 48, 80))
+    contact, groups = base + 128, base + 192
+    result = game.symbols["lbl_80500140"]
+    group_buffer = game.symbols["lbl_804FFD40"]
+    point = struct.pack(">3f", 12.5, -6.0, 3.25)
+    normal_vector = struct.pack(">3f", 0.0, 1.0, 0.0)
+    origin = struct.pack(">3f", -7.5, 8.0, 4.0)
+    raised = struct.pack(">3f", -7.5, 28.0, 4.0)
+    select = "select_ground_query_groups__FP9CsnVectorUl"
+    triangles = "evaluate_ground_triangles__FP3VecUlPP8CsnGroup"
+    game.hook(select, lambda *_: groups if has_group else 0)
+    game.hook(triangles, lambda *_: int(has_triangle))
+    cases = 0
+    for has_group, has_triangle in ((False, False), (True, False), (True, True)):
+        for mask in (0, 0x16EF, 0x80000001):
+            cpu.mem_write(source, origin)
+            value = game.call("csnVecterUnder", source, mask)
+            assert value == (result if has_triangle else 0)
+            assert game.calls[select][0][:2] == (source, mask)
+            if has_group:
+                assert game.calls[triangles] == [(source, mask, group_buffer)]
+            else:
+                assert triangles not in game.calls
+            assert cpu.mem_read(source, 12) == origin
+            cases += 1
+
+    def sample(destination, mask, unused):
+        assert destination == dest and mask == 0x16EF
+        assert cpu.mem_read(destination, 12) == raised
+        return result if hit else 0
+
+    game.hook("csnVecterUnder", sample)
+    cpu.mem_write(contact, point + normal_vector + struct.pack(">I", 0x4000))
+    cpu.mem_write(result, struct.pack(">II", 1, contact))
+    for function in ("adjust_point_to_ground", "adjust_point_to_ground_with_normal"):
+        with_normal = function.endswith("_with_normal")
+        for hit in (False, True):
+            for dest in (source, separate_dest):
+                for normal in (tuple(dict.fromkeys((source, dest, separate_normal))) if with_normal else (separate_normal,)):
+                    state = bytearray(b"\xa5" * 112)
+                    state[source - base:source - base + 12] = origin
+                    cpu.mem_write(base, bytes(state))
+                    assert game.call(function, source, dest, normal) == int(hit)
+                    assert len(game.calls["csnVecterUnder"]) == 1
+                    state[dest - base:dest - base + 12] = point if hit else (raised if dest == source else origin)
+                    if hit and with_normal:
+                        state[normal - base:normal - base + 12] = normal_vector
+                    assert cpu.mem_read(base, len(state)) == state
+                    cases += 1
+    effect_game = GameImage(path.read_bytes())
+    effect_cpu = effect_game.cpu
+    effect_cpu.reg_write(UC_PPC_REG_MSR, effect_cpu.reg_read(UC_PPC_REG_MSR) | 0x2000)
+
+    def place(position, destination, unused):
+        assert position == source and destination != position
+        assert effect_cpu.mem_read(position, 12) == origin
+        effect_cpu.mem_write(destination, point if hit else origin)
+        return int(hit)
+
+    def emit(destination, actual_id, attributes):
+        assert actual_id == effect_id and attributes == 0
+        assert effect_cpu.reg_read(UC_PPC_REG_6) == lifetime & 0xFFFFFFFF
+        assert effect_cpu.mem_read(destination, 12) == (point if hit else origin)
+        return 0
+
+    effect_game.hook("adjust_point_to_ground", place)
+    effect_game.hook("create_timed_particle_emitter", emit)
+    effect_cpu.mem_write(source, origin)
+    for name, effect_id in (("spawn_ground_effect", 0xE5), ("spawn_effect_at_ground", 0xE4)):
+        for hit in (True, False):
+            for lifetime in (-1, 0, 35, 120):
+                effect_game.call(name, source, lifetime)
+                assert list(effect_game.calls) == ["adjust_point_to_ground", "create_timed_particle_emitter"]
+                assert effect_cpu.mem_read(source, 12) == origin
+                cases += 1
+    return cases
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         raise SystemExit(f"usage: {sys.argv[0]} PsoV3.dol [rebuilt.dol ...]")
     for image in sys.argv[1:]:
         check(Path(image))
+        print(f"{image}: {check_ground_queries(Path(image))} ground query and effect cases passed")

@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
@@ -1647,7 +1648,7 @@ void TObjEneMoja::update_death_state() {
         TObjPlayer::play_effect_if_v2(-0x300);
         spawn_particle_effect(&v, 0xF0);
         spawn_dead_spot_scale15(&v, 0x14);
-        ((TObjPlayer *)(&v))->spawn_effect_at_ground(0x32);
+        spawn_effect_at_ground(&v, 0x32);
     }
     if (this->frame < 0.5f * (30.0f * this->play_speed)) {
         move_with_wall_slide(arg0);

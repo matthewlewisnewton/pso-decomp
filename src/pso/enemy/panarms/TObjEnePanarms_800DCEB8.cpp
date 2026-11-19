@@ -1,3 +1,4 @@
+#include "pso/effect/GroundEffects.h"
 #include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
@@ -955,7 +956,7 @@ void TObjEnePanarms::update_dead() {
             stack.sp8 = (0.5f * this->position.x) + (0.5f * *(f32 *)((s8 *)this + 0x3A0));
             stack.spC = this->position.y;
             stack.sp10 = (0.5f * this->position.z) + (0.5f * *(f32 *)((s8 *)this + 0x3A8));
-            ((TObjPlayer *)(&stack.sp8))->spawn_ground_effect(0x78);
+            spawn_ground_effect((const Vec *)&stack.sp8, 0x78);
             TObjPlayer::spawn_dead_spot_default((s32)((void *)&stack.sp8), 6);
         }
         if ((s32) this->m_388 == 0x5A) {

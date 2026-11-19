@@ -1,3 +1,4 @@
+#include "pso/map/CsnGroundQuery.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
@@ -63,7 +64,6 @@ struct Me_800DC648 {
 struct Ang_800DC83C { s32 x, y, z; };
 
 extern "C" {
-s32 *csnVecterUnder(s32 origin, s32 mask);
 extern s32 lbl_805D5254;
 extern D_800DC448 *nano_drago_entry_params_resource;
 u16 get_entity_id(void *);
@@ -144,12 +144,12 @@ void hit_object_in_radius__10TObjPlayerFPvPvPv(Src_800DC4B4 *arg0, Obj_800DC4B4 
 }
 
 s32 TObjPlayer::snap_to_ground(s32 arg0, s32 arg1) {
-    u8 *temp_r3;
-    temp_r3 = (u8 *)(csnVecterUnder(arg1, 0x16EF));
+    CsnHit *temp_r3;
+    temp_r3 = csnVecterUnder((const Vec *)arg1, 0x16EF);
     if (temp_r3 == NULL) {
         return 0;
     }
-    VecCopy((Vec *)(arg1), (const Vec *)(*(s32 *)((s8 *)temp_r3 + 4)));
+    VecCopy((Vec *)(arg1), &temp_r3->contact->point);
     return 1;
 }
 

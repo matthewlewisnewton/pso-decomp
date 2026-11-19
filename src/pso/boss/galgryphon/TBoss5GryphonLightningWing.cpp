@@ -113,13 +113,13 @@ s32 spawn_lightning_wing__12TBoss8DragonFiiiiii(s32 arg0, s32 arg1, s32 mid, s32
     f32 ground_height;
     s32 allocation;
     s32 effect;
-    u8* collision;
+    CsnHit *collision;
     VecCopy(&position, (const Vec *)arg3);
-    collision = (u8 *)csnVecterUnder((s32)((s32*)&position), 0x16EF);
+    collision = csnVecterUnder(&position, 0x16EF);
     if (collision == NULL) {
         position.y = lbl_805D8D48;
     } else {
-        ground_height = *(f32*)((s8 *)(*(u8**)((s8 *)collision + 4)) + 4);
+        ground_height = collision->contact->point.y;
         if (ground_height > lbl_805D8D48) {
             position.y = lbl_805D8D48;
         } else {
