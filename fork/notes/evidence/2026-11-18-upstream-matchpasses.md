@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `93f6f59440` includes the chat balloon patch. The all-source snapshot is `0e1c39a104`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `81fc986ad1` includes the chat balloon and typed bone rotation. The all-source snapshot is `eb9ea67230`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -16,13 +16,19 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
 | `great-merge/current/render-interfaces` | `6c43c3a146` |
 | `great-merge/current/actor-presentation` | `ba1790084a` |
-| `great-merge/current/world-object-resources` | `31557ce897` |
+| `great-merge/current/world-object-resources` | `bbe6cf744d` |
 
 The window review reconciles 57 overlapping paths. It retains upstream's native menu and word-select construction and its item-help constant pool, along with the fork's typed callers and field layouts. Sixteen overlapping signatures retain the fork types and original linked addresses. The rebased window review supplies the original chat balloon, item-help and software-keyboard virtual tables. All 90 entries in the [data range ledger](2026-11-18-fork-data-ranges.tsv) now resolve to 980 source-linked bytes and 167 bytes of alignment padding.
 
 The full stack and all-source snapshot retain all exact functions and linked data from both the prior review stack and the historical fork. The window review, full stack, all-source snapshot and working fork passed their project checks and reproduced the original GameCube executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The full stack has 2,456 exact source-linked units. The working fork passed the generated retention check after recalculating its local linker inventory. The layer check and eleven unit tests passed, and the materialized fork reproduces all 133 tooling paths.
 
-The source audit reconciles the snapshot and main-menu headers. The target compiler confirms all six historical menu field offsets against their current names. The snapshot and item-help builds source-link all 46 original routines at the same addresses and sizes. Five source or interface records now have partial evidence in the [fork review index](2026-11-18-fork-review-index.tsv). The index has 1,475 entries awaiting owner comparison and 682 with partial evidence.
+The source audit reconciles the snapshot and main-menu headers. The target compiler confirms all six historical menu field offsets against their current names. The snapshot and item-help builds source-link all 46 original routines at the same addresses and sizes. Five source or interface records now have partial evidence in the [fork review index](2026-11-18-fork-review-index.tsv).
+
+### World objects, NPCs and quests
+
+Comparing complete source-linked functions by original address and size aligned 316 open world, NPC and quest source records with current owners. Forty of those records span multiple owners. This gives the source audit a starting point for naming, type and declaration changes.
+
+The replay at `81fc986ad1` restores the fork's typed bone-rotation constructors, player factory and recursive angle math, along with the player action mask and both hair-effect call sites. The native code preserves the fork's object sizes and all four changed exports at their original addresses and sizes. The standalone world review at `bbe6cf744d`, the combined stack, all-source snapshot and working fork passed the full build, original executable hash and project checks. The overlay round-trips all 133 paths, and its eleven tests passed. The [fork source index](2026-11-18-fork-review-index.tsv) has 1,471 entries awaiting owner comparison and 683 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
