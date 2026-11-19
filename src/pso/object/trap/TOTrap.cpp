@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
@@ -188,7 +189,7 @@ f32 TOTrap::receive_physical_attack(void *arg1, f32) {
 }
 
 void TOTrap::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         this->vfunc_88();
         return;
     }
@@ -239,7 +240,7 @@ void TOTrap::render() {
             post_translate_matrix((u8 *)&this->position);
             rotate_matrix_y(0, this->rotation_y);
             set_current_texture_list((GinjaTextureList *)this->texlist);
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 draw_chunk_object(this->model);
             } else {
                 draw_model_motion((void *)this->model, (void *)this->current_motion, this->frame);

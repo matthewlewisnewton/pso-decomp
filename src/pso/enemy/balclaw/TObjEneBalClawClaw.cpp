@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -153,7 +154,7 @@ void TObjEneBalClawClaw::run_task() {
     CollisionBody *body;
     TObjBase *parent;
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80090824();
         sub_800914A4();
         return;
@@ -530,7 +531,7 @@ void TObjEneBalClawClaw::render() {
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 post_translate_matrix(&position);
                 rotate_matrix_x(0, rotation_x);
                 rotate_matrix_y(0, rotation_y);

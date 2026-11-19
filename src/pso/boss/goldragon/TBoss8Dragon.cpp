@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
@@ -1467,7 +1468,6 @@ s32 has_enough_enemies__12TBoss8DragonFv();
 // (from _802F3F20)
 s32 draw__10TObjMotionFv(void *, int);
 // (from _802F42A0)
-int check_demo_mode__10TObjPlayerFv(void*);
 }
 // (from _802F4324)
 extern "C" {
@@ -1822,7 +1822,7 @@ void TBoss8Dragon::run_task() {
     s32 temp_r30;
     s32 temp_r30_2;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }
@@ -5898,7 +5898,7 @@ void TBoss8Dragon::copy_vectors() {
 void TBoss8Dragon::render() {
     s32 view = 0;
     u8 pos[0xC];
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         draw_motion_model();
         return;
     }
@@ -5922,7 +5922,7 @@ void TBoss8Dragon::render() {
 
 int TBoss8Dragon::vfunc_105() { return get_target_info(); }
 
-void TBoss8Dragon::render_shadows() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { draw(); } }
+void TBoss8Dragon::render_shadows() { if (check_demo_mode() == 0) { draw(); } }
 
 void TBoss8Dragon::draw() {
     void *temp_r31;

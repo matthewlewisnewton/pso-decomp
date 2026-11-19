@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #pragma readonly_strings on
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
@@ -196,7 +197,7 @@ TORockCaveBrakable::TORockCaveBrakable() {
 TORockCaveBrakable::~TORockCaveBrakable() {}
 
 void TORockCaveBrakable::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         vfunc_19();
         return;
     }

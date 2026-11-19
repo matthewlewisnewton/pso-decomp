@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/BmlResource.h"
@@ -279,7 +280,7 @@ TOWreckAncientBrakable::~TOWreckAncientBrakable() {
 void TOWreckAncientBrakable::run_task() {
     s32 temp_r0_2;
 
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOWreckAncientBrakable__sub_8017D444(this);
         return;
     }

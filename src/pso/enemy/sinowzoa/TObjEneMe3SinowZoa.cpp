@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
@@ -384,7 +385,7 @@ TObjEneMe3SinowZoa::~TObjEneMe3SinowZoa() {
 
 void TObjEneMe3SinowZoa::run_task() {
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->action();
         return;
     }
@@ -1753,7 +1754,7 @@ void TObjEneMe3SinowZoa::render() {
     s32 draw;
     s32 i;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_115();
         return;
     }

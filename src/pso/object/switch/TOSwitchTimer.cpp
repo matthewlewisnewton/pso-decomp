@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/object/switch/TOSwitchTimer.h"
 #include "pso/player/TObjPlayer_80011014.h"
@@ -57,7 +58,7 @@ extern "C" {
 extern const char *TOSwitchTimer__name;
 
 void TOSwitchTimer::render() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = 0.3f;
         color.r = 0.6f;

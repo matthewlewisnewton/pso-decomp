@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/boss/barbaray/TBoss7Joint.h"
@@ -112,7 +113,7 @@ void TBoss7Joint::vfunc_62() {
 
 void TBoss7Joint::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         VecCopy(&position, source_position);
         this->vfunc_83();
         store_position();

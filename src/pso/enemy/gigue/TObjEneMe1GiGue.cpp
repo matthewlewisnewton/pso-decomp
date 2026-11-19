@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/system/SoundEffect.h"
@@ -444,7 +445,7 @@ void *TObjEneMe1GiGue::create(void *set_data) {
 }
 
 void TObjEneMe1GiGue::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         load_params();
         TObjEneMe1GiGue__sub_802CD054(this);
         return;
@@ -549,7 +550,7 @@ void TObjEneMe1GiGue::render() {
     if (vis == 0) {
         return;
     }
-    if (TObjPlayer::check_demo_mode() != 1 && (m_388 & 0x40000)) {
+    if (check_demo_mode() != 1 && (m_388 & 0x40000)) {
         return;
     }
     saved_model_render_flags = model_render_flags;
@@ -568,7 +569,7 @@ void TObjEneMe1GiGue::render() {
     translate_matrix(0, position.x, m_3ec + (position.y + m_3e8), position.z);
     rotate_matrix_y(NULL, rotation_y);
     model_render_flags &= ~0x400;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(model);
     } else if (m_388 & 4) {
         if (((MaterialColorFade *)&m_3fc)->has_visible_opacity() != 0) {

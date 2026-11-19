@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
@@ -1133,7 +1134,7 @@ void TObjEneLappy::run_task() {
     u8 *temp_r3;
     u8 *temp_r3_2;
     sub_800C20C0__12TObjEneLappyFv();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         apply_variant_speeds__12TObjEneLappyFv((Obj_800BFCD4 *)(this));
         TObjPlayer__sub_800BFF54(this);
         return;

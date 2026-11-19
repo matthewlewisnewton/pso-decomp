@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #pragma defer_codegen on
 #pragma readonly_strings on
 
@@ -197,7 +198,7 @@ void TOChatSensor::run_task() {
 
 void TOChatSensor::render() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = 0.3f;
         color.r = 0.3f;

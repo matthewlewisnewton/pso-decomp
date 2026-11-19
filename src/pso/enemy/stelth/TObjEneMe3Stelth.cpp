@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
@@ -402,7 +403,7 @@ TObjEneMe3Stelth::~TObjEneMe3Stelth() {
 }
 void TObjEneMe3Stelth::run_task() {
     s32 flags;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         setup_move();
         return;
     }
@@ -1612,7 +1613,7 @@ void TObjEneMe3Stelth::add_instance() {
 void TObjEneMe3Stelth::render() {
     s32 mode;
     s32 draw;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         draw_with_debug_info();
         return;
     }

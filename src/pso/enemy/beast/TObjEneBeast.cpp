@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -289,7 +290,7 @@ void TObjEneBeast::render() {
     translate_matrix(0, 0.0f, ((Obj_8009211C *)this)->f380, 0.0f);
     post_translate_matrix(((Obj_8009211C *)this)->f38);
     rotate_matrix_y(0, ((Obj_8009211C *)this)->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object((void *)(((Obj_8009211C *)this)->f34));
     } else {
         TObjPlayer::toggle_particle_effect();

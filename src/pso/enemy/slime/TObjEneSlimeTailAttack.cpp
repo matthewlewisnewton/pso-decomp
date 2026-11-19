@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -658,7 +659,7 @@ u8 *TObjEneSlime__ct(TObjEneSlime *ene_slime, s32 arg1, u8 *arg2) {
     ene_slime->child_limit = (s32) *(s16 *)((s8 *)arg2 + 2);
     temp_r0 = ene_slime->child_limit;
     if (temp_r0 < 1) {
-        if (TObjPlayer::check_demo_mode() != 0) {
+        if (check_demo_mode() != 0) {
             ene_slime->child_limit = 3;
         }
     } else if (temp_r0 > 4) {
@@ -678,7 +679,7 @@ void TObjEneSlime::vfunc_63() { this->release_split_slimes(); }
 void TObjEneSlime::run_task() {
     s32 sp8;
 
-    if ((TObjPlayer::check_demo_mode() == 0) && (has_no_active_slot(this) != 0)) {
+    if ((check_demo_mode() == 0) && (has_no_active_slot(this) != 0)) {
         sp8 = 0x800;
         send_6x0A_enemy_state(&sp8);
         exchange_object_state((s32)&sp8, (s16)0);
@@ -694,7 +695,7 @@ void TObjEneSlime::render() {
     s32 temp_r30_2;
     s32 temp_r31;
     temp_r31 = this->defer_render();
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         temp_r30 = (this->state36C * 4) & 4;
         debug_printf_at(0x130020, "TYPE [0/1] : %s", (int) (*(s32 *)((s8 *)((u8 *)slime_debug_label_table + temp_r30) + 0)));
         TObjPlayer::toggle_particle_effect();
@@ -964,7 +965,7 @@ TObjEneSlimeOne::~TObjEneSlimeOne() {
 }
 
 void TObjEneSlimeOne::run_task() {
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if ((s32)this->state != 13 && (this->parent_slime == 0 || parent_slime->all_parents_unqueued_for_destruction() == 0)) {
             set_state(13);
         }
@@ -991,7 +992,7 @@ void TObjEneSlimeOne::run_task() {
 }
 void render__15TObjEneSlimeOneFv(TObjEneSlimeOne *ene_slime_one) {
     s32 temp_r31;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(ene_slime_one->alpha <= 0.0f) && (((TObjEneSlimeOne *)(ene_slime_one))->update_object_view_visibility(500.0f, 20.0f) != 0)) {
+    if ((check_demo_mode() == 0) && !(ene_slime_one->alpha <= 0.0f) && (((TObjEneSlimeOne *)(ene_slime_one))->update_object_view_visibility(500.0f, 20.0f) != 0)) {
         temp_r31 = ene_slime_one->defer_render();
         if (ene_slime_one->alpha < 1.0f) {
             TObjPlayer__sub_800EBE48(ene_slime_one->alpha);

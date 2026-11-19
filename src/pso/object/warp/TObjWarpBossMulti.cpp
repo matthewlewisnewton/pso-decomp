@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -239,7 +240,7 @@ TObjWarpBoss::~TObjWarpBoss() {
 }
 
 void TObjWarpBoss::run_task() {
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (!(state_flags & 1) && (state != next_state)) {
             if (state_step != -1) {
                 state_step = -1;

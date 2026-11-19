@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/dd/TObjEneDD_ST.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "pso/system/StripBufferPair.h"
@@ -403,7 +404,7 @@ TObjEneRe7Berura::~TObjEneRe7Berura() {
 }
 
 void TObjEneRe7Berura::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_105();
         return;
     }
@@ -1423,7 +1424,7 @@ void TObjEneRe7Berura::render() {
     s32 f2;
     s32 l3;
     s32 l4;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_106();
         return;
     }

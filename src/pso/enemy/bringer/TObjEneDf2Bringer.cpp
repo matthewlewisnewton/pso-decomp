@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/StripBufferPair.h"
@@ -1301,7 +1302,7 @@ TObjEneDf2Bringer::~TObjEneDf2Bringer() {
 
 void run_task__17TObjEneDf2BringerFv(u8 *arg0) {
     s32 temp_r0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneDf2Bringer *)(arg0))->vfunc_83();
         return;
     }
@@ -2253,7 +2254,7 @@ void render__17TObjEneDf2BringerFv(u8 *arg0) {
     s32 temp_r27;
     s32 mode;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneDf2Bringer *)(arg0))->vfunc_105();
         return;
     }

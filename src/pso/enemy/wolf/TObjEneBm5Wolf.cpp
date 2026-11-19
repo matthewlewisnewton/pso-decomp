@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -412,7 +413,7 @@ void TObjEneBm5Wolf::run_task() {
     s16 temp_r0;
     s16 temp_r3_2;
     s32 temp_r3;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_state();
         return;
     }
@@ -1886,7 +1887,7 @@ void TObjEneBm5Wolf::advance_spawn_timer() {
 void TObjEneBm5Wolf::render() {
     s32 rot[3];
     s32 var_r31;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->render_debug();
         return;
     }

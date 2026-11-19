@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/lobby/TObjStendGlassLobby.h"
@@ -41,7 +42,7 @@ void TObjStendGlassLobby::render() {
 }
 
 void TObjStendGlassLobby::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         demo_step();
     }
     switch (fade_state) {

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
@@ -388,7 +389,7 @@ TObjEneMe3Shinowa::~TObjEneMe3Shinowa() {
 }
 
 void TObjEneMe3Shinowa::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_mirage();
         return;
     }
@@ -1541,7 +1542,7 @@ void TObjEneMe3Shinowa::render() {
     s32 detail;
     s32 draw;
     s32 i;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_118();
         return;
     }

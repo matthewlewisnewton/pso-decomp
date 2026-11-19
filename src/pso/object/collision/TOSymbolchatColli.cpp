@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/system/ResourceFile.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/render/render_util.h"
@@ -142,7 +143,7 @@ void TOSymbolchatColli::init_collision_params() {
 
 void TOSymbolchatColli::render() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         NJS_ARGB color;
         color.a = 0.3f;
         color.r = 0.0f;

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h"
 #include "pso/system/BmlAccessors.h"
@@ -234,7 +235,7 @@ void TObjEneEpsilonGuard::render_with_fade(s32 detail) {
 
 void TObjEneEpsilonGuard::render() {
     s32 detail;
-    if ((TObjPlayer::check_demo_mode() == 0) && !(actorFlags & 0x02000000)) {
+    if ((check_demo_mode() == 0) && !(actorFlags & 0x02000000)) {
         detail = 0;
         if (!(flags & 0x10)) {
             if (TObjEneDD::is_main_phase_15() != 0) {

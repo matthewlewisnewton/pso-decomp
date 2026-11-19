@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
@@ -259,7 +260,7 @@ void TBoss3VoloptMonitor::run_task() {
     s32 i;
     s32 in_zone;
     s32 base;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_800420D8();
         return;
     }

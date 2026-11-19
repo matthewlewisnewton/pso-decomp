@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #pragma readonly_strings on
@@ -226,7 +227,7 @@ void TObjVoloptCage::update_state() {
 }
 
 void TObjVoloptCage::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         run_demo_task();
         return;
     }

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "types.h"
@@ -185,7 +186,7 @@ s32 TUnk_804B2578::sub_801688C0() {
 }
 
 void TUnk_804B2578::run_task() {
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         vfunc_80();
         sub_80168398();
         if (sub_801688C0() != 0 && mode != 3 && is_passing_frame(8.0f) != 0) {
@@ -201,7 +202,7 @@ void TUnk_804B2578::render() {
     s32 lit1;
     s32 lit2;
 
-    if (sub_801688C0() != 0 || TObjPlayer::check_demo_mode() == 1) {
+    if (sub_801688C0() != 0 || check_demo_mode() == 1) {
         push_matrix();
         post_translate_matrix(&position.x);
         rotate_matrix_y(NULL, rotation_y);

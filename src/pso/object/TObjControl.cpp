@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #pragma defer_codegen on
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -1251,7 +1252,7 @@ void TObjControl::run_task() {
         queue_destruction();
         return;
     }
-    if (TObjPlayer::check_demo_mode() == 0) {
+    if (check_demo_mode() == 0) {
         if (((EnemyControlDispatch *)(enemy))->m31() != 0) {
             ((TObject *)enemy)->resume_update();
             ((EnemyControlDispatch *)(enemy))->m61();

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/unk/text_800D8830.h"
@@ -684,7 +685,7 @@ void TObjEneBm5GibonU::render() {
     s32 cam;
     s32 vis;
     s32 fade;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         render_debug();
         return;
     }
@@ -2608,7 +2609,7 @@ void TObjEneBm5GibonU::run_task() {
     s16 temp_r3_2;
     s32 temp_r3;
     TObject *partner;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }

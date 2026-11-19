@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/BmlResource.h"
 #include "pso/enemy/deldepth/DelDepthData.h"
@@ -339,7 +340,7 @@ TObjEneDelDepth::~TObjEneDelDepth() {
 void TObjEneDelDepth::run_task() {
     TObjEneDelDepth *o = this;
     TObjEneDelDepth::Action fn;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_target_depth();
         return;
     }
@@ -362,7 +363,7 @@ void TObjEneDelDepth::run_task() {
 
 void TObjEneDelDepth::render() {
     TObjEneDelDepth *o = this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->fn_80315518();
         return;
     }

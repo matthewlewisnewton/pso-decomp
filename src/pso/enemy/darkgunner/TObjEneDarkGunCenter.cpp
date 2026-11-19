@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/enemy/darkgunner/TObjEneDarkGunCenter.h"
@@ -408,7 +409,7 @@ void TObjEneDarkGunCenter::run_task() {
     s32 t;
     s32 id;
     u8 *e;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(void *))TObjEneDarkGunCenter__sub_800A0B18)(self);
         return;
     }

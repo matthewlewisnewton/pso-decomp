@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #include "pso/system/ModelNodePositionCapture.h"
@@ -540,7 +541,7 @@ void TObjEnePanBARA::run_task() {
     Vec a;
     f32 s;
 
-    if (m_378 != 0 && TObjPlayer::check_demo_mode() != 0) {
+    if (m_378 != 0 && check_demo_mode() != 0) {
         sub_800E1C98__14TObjEnePanBARAFl(this, 0);
     }
     pad_3c8.x = ((Tgt_800E2200 *)m_3a0)->x - position.x;

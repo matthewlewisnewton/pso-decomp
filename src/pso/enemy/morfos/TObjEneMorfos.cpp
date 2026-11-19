@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
@@ -1150,7 +1151,7 @@ u8 *__dt__13TObjEneMorfosFv(u8 *object, s16 arg1) {
 }
 
 void run_task__13TObjEneMorfosFv(u8 *ene_morfos) {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneMorfos *)(ene_morfos))->vfunc_106();
         return;
     }
@@ -2112,7 +2113,7 @@ static const Vec morfos_render_shadow_scale = {2.0f, 1.0f, 2.0f};
 void render__13TObjEneMorfosFv(u8 *ene_morfos) {
     s32 cam;
     s32 vis;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((VObj_80332850 *)ene_morfos)->m104();
         return;
     }

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -550,7 +551,7 @@ void TObjEneMoja::run_task() {
     u16 temp_r3;
     u8 *temp_r3_2;
     u8 *temp_r4;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TObjPlayer__sub_800ACA0C(arg0);
         return;
     }
@@ -657,7 +658,7 @@ void TObjEneMoja::render() {
         translate_matrix(0, 0.0f, sinkOffset, 0.0f);
         post_translate_matrix(&position);
         rotate_matrix_y(0, rotation_y);
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object((s32)model);
         } else {
             TObjPlayer::toggle_particle_effect();

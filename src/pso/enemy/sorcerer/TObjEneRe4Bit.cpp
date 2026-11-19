@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -149,7 +150,7 @@ TObjEneRe4Bit::~TObjEneRe4Bit() {
 }
 
 void TObjEneRe4Bit::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_105();
         return;
     }
@@ -525,7 +526,7 @@ void TObjEneRe4Bit::render() {
     s32 saved;
     s32 draw;
     NJS_TEXNAME *textures;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_106();
         return;
     }

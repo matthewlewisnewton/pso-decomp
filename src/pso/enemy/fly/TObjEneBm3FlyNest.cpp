@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
@@ -358,7 +359,7 @@ TObjEneBm3FlyNest::~TObjEneBm3FlyNest() {
 #pragma push
 #pragma fp_contract on
 void TObjEneBm3FlyNest::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         init();
         return;
     }
@@ -997,7 +998,7 @@ void TObjEneBm3FlyNest::render() {
     s32 res;
     s32 visible;
     f32 t;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         render_with_state_debug();
         return;
     }

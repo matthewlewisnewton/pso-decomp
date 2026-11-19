@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -203,7 +204,6 @@ extern "C" {
 int VecCopy__FP3VecPC3Vec(void*, void*);
 s32 get_flag_bit6__13TBoss5GryphonFv();
 void TBoss8Dragon__sub_8005FB90(u8 *arg0);
-int check_demo_mode__10TObjPlayerFv(void*);
 void project_sound_origin_from_camera(s32 arg0, u8 *arg1, f32 farg0);
 s32 query_teammate_state__9TObjEneDDFv();
 s32 add_radar_scaled_marker(void *, int, int, int, f32);
@@ -1252,11 +1252,11 @@ void TBoss5Gryphon::render_model() {
     pop_matrix();
 }
 
-void TBoss5Gryphon::render_shadows() { if (check_demo_mode__10TObjPlayerFv(this) == 0) { render_model(); } }
+void TBoss5Gryphon::render_shadows() { if (check_demo_mode() == 0) { render_model(); } }
 
 void TBoss5Gryphon::render() {
     s32 view = 0;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }
@@ -4696,7 +4696,7 @@ void TBoss5Gryphon::run_task() {
     s32 var_r30;
     s32 i;
     u8 *arg0 = (u8 *)this;
-    if (((int (*)())check_demo_mode__10TObjPlayerFv)() != 0) {
+    if (check_demo_mode() != 0) {
         ((TBoss5Gryphon *)(arg0))->vfunc_83();
         return;
     }

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/TODragonfly.h"
@@ -62,7 +63,7 @@ TODragonfly::~TODragonfly() {}
 void TODragonfly::run_task() {
     bob_angle = bob_angle + bob_angle_step;
     bob_offset = bob_height * sin_table_lookup(bob_angle);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         update_demo();
         return;
     }

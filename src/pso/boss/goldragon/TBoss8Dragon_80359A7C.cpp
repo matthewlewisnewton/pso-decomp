@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TObjEnemy.h"
 #include "types.h"
@@ -23,7 +24,7 @@ void TUnk_804F1A78::run_task() {
     s32 temp_r0_2;
     s32 temp_r30;
     s32 temp_r30_2;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }

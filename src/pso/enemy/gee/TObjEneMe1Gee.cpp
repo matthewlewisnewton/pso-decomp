@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/system/SoundEffect.h"
@@ -338,7 +339,7 @@ TObjEneMe1Gee::~TObjEneMe1Gee() {
 
 void TObjEneMe1Gee::run_task() {
     u8 *object;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_114();
         return;
     }
@@ -1804,7 +1805,7 @@ void TObjEneMe1Gee::render() {
     s32 var_r30;
     s32 var_r29;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_115();
         return;
     }
@@ -1921,7 +1922,7 @@ void TObjEneMe1Gee::vfunc_115() {
 TUnk_8049387C::~TUnk_8049387C() {}
 
 void TUnk_8049387C::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_114();
         return;
     }

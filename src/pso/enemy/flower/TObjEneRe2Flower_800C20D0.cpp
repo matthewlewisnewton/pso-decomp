@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -207,7 +208,7 @@ void TObjEneRe2Flower::render() {
     s32 visible;
     s32 save8;
     s32 save14;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_106();
         return;
     }

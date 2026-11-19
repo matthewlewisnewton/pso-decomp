@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
@@ -480,7 +481,7 @@ TObjEneMe1Canadin::~TObjEneMe1Canadin() {
 }
 
 void TObjEneMe1Canadin::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_if_ready();
         return;
     }
@@ -1952,7 +1953,7 @@ void TObjEneMe1Canadin::render() {
     s16 temp_r0_2;
     s32 var_r30;
     s32 var_r29;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         render_canadin_model_with_debug_type();
         return;
     }
@@ -2083,7 +2084,7 @@ TObjEneMe1CanadinLeader::~TObjEneMe1CanadinLeader() {
 }
 
 void TObjEneMe1CanadinLeader::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         update_if_ready();
         return;
     }

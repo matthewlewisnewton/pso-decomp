@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -245,7 +246,7 @@ void TBoss3VoloptHiraisin::render() {
         }
         translate_matrix(0, 0.0f, sin_table_lookup(hover_angle), 0.0f);
         rotate_matrix_y(NULL, rotation_y);
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();
@@ -286,7 +287,7 @@ void TBoss3VoloptHiraisin::dispatch_state() {
 }
 
 void TBoss3VoloptHiraisin::run_task() {
-    if (TObjPlayer::check_demo_mode() != 1) {
+    if (check_demo_mode() != 1) {
         if (mode != 5) {
             if (has_flag_0x800() != 0) {
                 vfunc_63();

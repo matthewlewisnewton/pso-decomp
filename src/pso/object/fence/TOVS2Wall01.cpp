@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
@@ -520,7 +521,7 @@ void TOVS2Wall01::render() {
 }
 void TOVS2Wall01::run_task() {
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         TOVS2Wall01__sub_8017B9AC(arg0);
         return;
     }

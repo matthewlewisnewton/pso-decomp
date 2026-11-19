@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/unk/text_800D8830.h"
@@ -861,7 +862,7 @@ void * TObjEneMerillLia__create(void *arg0) {
 
 void TObjEneMerillLia::run_task() {
   s16 temp_r0;
-  if (TObjPlayer::check_demo_mode() == 1)
+  if (check_demo_mode() == 1)
   {
     (this->vfunc_101());
     return;
@@ -967,7 +968,7 @@ void TObjEneMerillLia::render() {
     translate_matrix(0, 0.0f, (f32) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_380, 0.0f);
     post_translate_matrix(((u8 *)this) + 0x38);
     rotate_matrix_y(0, (int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_60);
-    if (TObjPlayer::check_demo_mode() == 1)
+    if (check_demo_mode() == 1)
     {
       draw_chunk_object((void *)((int) ((RecoveredFields_800D6810_arg0 *) ((u8 *)this))->field_34));
     }

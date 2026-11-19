@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
@@ -157,7 +158,7 @@ extern const f32 lbl_805D9E88;
 void render__12TObjEneReconFv(u8 *ene_recon) {
     s32 var_r29;
     s32 var_r31;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRecon *)(ene_recon))->vfunc_106();
         return;
     }
@@ -1853,7 +1854,7 @@ void run_task__12TObjEneReconFv(TObjEneRecon *ene_recon) {
     u8 *temp_r3_2;
     u8 *temp_r3_3;
     u8 *temp_r3_4;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRecon *)(ene_recon))->vfunc_105();
         return;
     }

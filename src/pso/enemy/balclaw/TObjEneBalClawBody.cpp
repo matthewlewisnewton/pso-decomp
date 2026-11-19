@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -187,7 +188,7 @@ void TObjEneBalClawBody::run_task() {
     CollisionBody *body;
 
     TObjEneBalClaw__sub_8008D68C();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_8008DC90();
         sub_8008FC0C();
         return;
@@ -855,7 +856,7 @@ void TObjEneBalClawBody::render() {
             TObjPlayer::toggle_particle_effect();
             push_matrix();
             model_render_flags &= 0xFFFFFBFF;
-            if (TObjPlayer::check_demo_mode() == 1) {
+            if (check_demo_mode() == 1) {
                 TObjPlayer::set_visibility_flags_by_count(this, 4);
                 post_translate_matrix((u8 *)&position);
                 rotate_matrix_x(0, rotation_x);

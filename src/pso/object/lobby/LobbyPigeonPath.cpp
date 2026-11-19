@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/system/BmlResource.h"
 #include "pso/animation/MotionContext.h"
 #include "pso/system/BmlAccessors.h"
@@ -477,7 +478,7 @@ void TUnk_804E0988::vfunc_13() {
 
 void TUnk_804E0988::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     set_current_texture_list((GinjaTextureList *)seabed_dolphin_texture_handle);
@@ -655,7 +656,7 @@ void TUnk_804E094C::vfunc_13() {
 
 void TUnk_804E094C::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     set_current_texture_list((GinjaTextureList *)((*(s32 *)&jungle_ebi_texture_gvm_handle)));
@@ -845,7 +846,7 @@ void TUnk_804E0910::vfunc_13() {
 
 void TUnk_804E0910::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_pigeon_texture_gvm)));
@@ -1023,7 +1024,7 @@ void TUnk_804E08D4::vfunc_13() {
 
 void TUnk_804E08D4::vfunc_14() {
     u8 *arg0 = (u8 *)this;
-    if ((TObjPlayer::check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
+    if ((check_demo_mode() == 1) && (TMainTask::get_render_pass() == 0)) {
         ((s32 (*)(void *, s32, s32, f32))draw_line_strip__10TObjPlayerFPviif)(arg0, *(s32 *)&this->unk_98, *(s32 *)((s8 *)arg0 + 0xA0), (1.0f));
     }
     set_current_texture_list((GinjaTextureList *)((*(s32 *)&lobby_kamome_texture_gvm_handle)));
@@ -1235,7 +1236,7 @@ void TUnk_804E0898::vfunc_13() {
 
 void TUnk_804E0898::vfunc_14() {
     LobbyPigeon *self = (LobbyPigeon *)this;
-  if (TObjPlayer::check_demo_mode() == 1 &&
+  if (check_demo_mode() == 1 &&
       TMainTask::get_render_pass() == 0)
     draw_line_strip__10TObjPlayerFPviif((u8 *)(self), (s32)(self->model),
                                         (s32)(self->path), (1.0f));

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -189,7 +190,7 @@ void TBoss3VoloptCore::release() {}
 
 void TBoss3VoloptCore::run_task() {
     vol_opt_active_hit_zone = calc_hit_zone_index();
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80040558();
         return;
     }
@@ -273,7 +274,7 @@ void TBoss3VoloptCore::render() {
         } else {
             rotate_matrix_y(0, rotation_y);
         }
-        if (TObjPlayer::check_demo_mode() == 1) {
+        if (check_demo_mode() == 1) {
             draw_chunk_object(model);
         } else {
             draw();

@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
@@ -334,7 +335,7 @@ TObjEneBm9Mericarol::~TObjEneBm9Mericarol() {
 void TObjEneBm9Mericarol::run_task() {
     s16 state;
     s32 flags;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_105();
         return;
     }
@@ -1198,7 +1199,7 @@ void TObjEneBm9Mericarol::render() {
     u32 s1;
     u32 s2;
     s16 *plist;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         draw_color_variant();
         return;
     }

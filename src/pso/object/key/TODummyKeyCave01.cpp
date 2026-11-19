@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
 #include "pso/system/BmlAccessors.h"
@@ -122,7 +123,7 @@ void TODummyKeyCave01::run_task() {
     u32 st;
     u8 skip;
     void *o;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((TObjBase *)self)->obj_clearFlags30(0x08000000);
     }
     if (this->m_98 < 0x100) {

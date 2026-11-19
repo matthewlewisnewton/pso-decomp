@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -335,7 +336,7 @@ void draw_actor_model__10TObjPlayerFPv(Player_800A7CA4 *self) {
     push_matrix();
     post_translate_matrix(self->pos);
     rotate_matrix_y(0, self->f60);
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         draw_chunk_object(self->f34);
     } else {
         switch (self->f326) {

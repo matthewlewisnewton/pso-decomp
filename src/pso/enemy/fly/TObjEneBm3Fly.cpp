@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -207,7 +208,7 @@ void TObjEneBm3Fly::run_task() {
     f32 side;
     TObject *nest;
     TParticleCtrl *effect;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_105();
         return;
     }
@@ -1106,7 +1107,7 @@ void TObjEneBm3Fly::vfunc_105() {  }
 
 void TObjEneBm3Fly::render() {
     s32 kind;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->vfunc_106();
         return;
     }

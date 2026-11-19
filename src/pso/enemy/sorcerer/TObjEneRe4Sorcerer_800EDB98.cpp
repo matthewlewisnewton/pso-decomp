@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
@@ -518,7 +519,7 @@ void TObjEneRe4Sorcerer::render() {
     s32 temp_r31;
     s32 var_r28;
     s32 var_r27;
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         vfunc_106();
         return;
     }
@@ -1544,7 +1545,7 @@ void TObjEneRe4Sorcerer::vfunc_28() {  }
 void TObjEneRe4Sorcerer::run_task() {
     s32 i;
     void *p;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_105();
         return;
     }

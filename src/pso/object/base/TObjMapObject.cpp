@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/object/base/TObjMotion.h"
@@ -55,7 +56,7 @@ s32 TObjMapObject::is_any_player_within_radius_xz(f32 radius_sq) {
 }
 
 void TObjMapObject::run_task() {
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         sub_80158604();
         return;
     }

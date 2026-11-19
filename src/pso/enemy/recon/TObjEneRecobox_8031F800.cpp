@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -906,7 +907,7 @@ Obj_8031FE14 *fn_8031FE14(Obj_8031FE14 *arg0, s16 arg1) {
 }
 
 void TObjEneRecobox::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->update_if_800BB858();
         return;
     }
@@ -1382,7 +1383,7 @@ void TObjEneRecobox::render() {
     s32 var_r28;
     s32 var_r27;
     u8 *arg0 = (u8 *)this;
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         ((TObjEneRecobox *)arg0)->draw_with_debug_info();
         return;
     }

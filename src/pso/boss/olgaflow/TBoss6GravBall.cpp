@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
@@ -326,7 +327,6 @@ typedef void (TBoss6GravBall::*ActP_80323BBC)(void *);
 typedef void (TBoss6GravBall::*Act0_80323BBC)();
 
 extern "C" {
-s32 check_demo_mode__10TObjPlayerFv(void *);
 s32 query_teammate_state__9TObjEneDDFv(void);
 void VecCopy__FP3VecPC3Vec(void *, void *);
 
@@ -441,7 +441,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
 }
 
 void run_task__14TBoss6GravBallFv(TBoss6GravBall_80323BBC *arg0) {
-    if (check_demo_mode__10TObjPlayerFv(arg0) != 0) {
+    if (check_demo_mode() != 0) {
         return;
     }
     if (query_teammate_state__9TObjEneDDFv() != 0) {

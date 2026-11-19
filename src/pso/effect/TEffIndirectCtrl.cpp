@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/system/ResourceFile.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #pragma readonly_strings on
@@ -458,7 +459,7 @@ void TEffIndirectCtrl::copy_and_flush_texture(s32 arg1) {
 }
 
 void TEffIndirectCtrl::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0 || m_46 == 0) {
+    if (check_demo_mode() != 0 || m_46 == 0) {
         m_3c += (s8)((u8 *)m_20)[4];
         m_40 += (s8)((u8 *)m_20)[5];
         *(f32 *)unk_48 = (s8)((u8 *)m_20)[1];
@@ -589,7 +590,7 @@ s8 find_indirect_effect_ctrl(s32 kind) {
         if (indirect_effect_ctrl_table[i] != 0) {
             u8 id = TEffIndirectCtrl__sub_802A9554(indirect_effect_ctrl_table[i]);
             if (id == (u8)kind) {
-                if (TObjPlayer::check_demo_mode() == 0) {
+                if (check_demo_mode() == 0) {
                     TEffIndirectCtrl__sub_802A9548(indirect_effect_ctrl_table[i]);
                 }
                 return i;

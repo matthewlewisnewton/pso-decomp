@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -1405,7 +1406,7 @@ void TObjEneDarkGunner::run_task() {
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5024, 8, 0, 1);
         TObjPlayer__sub_8023DEE0((s16 *)lbl_805D5028, 8, 0, 0);
     }
-    if (TObjPlayer::check_demo_mode() == 1) {
+    if (check_demo_mode() == 1) {
         ((void (*)(VObj_18_800A28A4 *))init_scale_global__10TObjPlayerFv)(((VObj_18_800A28A4 *)this));
         TObjPlayer__sub_800A1974(((VObj_18_800A28A4 *)this));
         return;

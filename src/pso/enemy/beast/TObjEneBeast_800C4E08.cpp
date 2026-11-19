@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "types.h"
@@ -733,7 +734,7 @@ TUnk_80493450::~TUnk_80493450() {}
 void TUnk_80493450::run_task() {
     u8 *arg0 = (u8 *)this;
   s16 temp_r0;
-  if (TObjPlayer::check_demo_mode() == 1)
+  if (check_demo_mode() == 1)
   {
     (this->vfunc_101());
     return;

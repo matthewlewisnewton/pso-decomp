@@ -1,3 +1,4 @@
+#include "pso/player/demo_mode.h"
 #include "pso/effect/particle/ParticleFactory.h"
 #include "pso/unk/text_800D8830.h"
 #include "pso/enemy/BattleParameters.h"
@@ -317,7 +318,7 @@ TObjEneDellBiter::~TObjEneDellBiter() {
 }
 
 void TObjEneDellBiter::run_task() {
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         this->fn_80303538();
         return;
     }
@@ -1471,7 +1472,7 @@ void TObjEneDellBiter::render() {
     s32 draw;
     s32 i;
 
-    if (TObjPlayer::check_demo_mode() != 0) {
+    if (check_demo_mode() != 0) {
         vfunc_106();
         return;
     }
