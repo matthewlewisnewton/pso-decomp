@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `2cb50b645a` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, and typed character initialization. The all-source snapshot is `e315abd7e4`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `fec32dd03b` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, and typed technique effects. The all-source snapshot is `68f4ad558a`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -10,7 +10,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/memory` | `e8c95dbad0` |
 | `great-merge/current/resource-lifetimes` | `5b3de69908` |
 | `great-merge/current/spatial-effects` | `e1e487e5d3` |
-| `great-merge/current/combat` | `6e52270263` |
+| `great-merge/current/combat` | `f7fb6e725e` |
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
@@ -120,7 +120,15 @@ The 22-file replay at `2cb50b645a` types the shared level rows and the saved cha
 
 All 954 functions in the fifteen affected source files remain exact at the original addresses and sizes. The twelve starting inventories and their pointer table account for 1,728 exact source-linked bytes. The standalone combat review at `6e52270263`, combined and all-source stacks and working fork reproduce the original executable and pass the project checker. The 133-path fork overlay round-trips and passes all eleven layer tests.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) records 20 source and declaration entries. It has 1,311 entries awaiting owner comparison and 761 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) records 20 source and declaration entries.
+
+### Technique factories, lightning effects and band sound
+
+The 22-file replay at `fec32dd03b` restores both static Gi-Barta factories and places bolt construction on the native lightning effect class. The original executable has nine direct calls to the ice factories and 36 to the bolt constructor. All 45 calls use the corrected types in the current source owners, including the player dispatcher, bosses, enemies, a trap and a weapon. Barta, Gi-Barta and Megid share the band sound schedule and its original pitch changes.
+
+All 435 functions in the sixteen affected source units remain exact and source-linked. The audit also traces 1,572 existing bytes of technique resource and tuning data into the current controller. The standalone combat review at `f7fb6e725e`, combined and all-source stacks and working fork reproduce the original executable and pass the project checker. The 133-path fork overlay round-trips and passes its eleven tests.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records 22 source and declaration entries. It has 1,301 entries awaiting owner comparison and 769 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
