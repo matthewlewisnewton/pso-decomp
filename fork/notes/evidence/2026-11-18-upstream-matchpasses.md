@@ -37,6 +37,12 @@ The new upstream owners include the item archive loader, the small help font, Gi
 
 `great-merge/fork-docs` carries the fork documentation on this upstream master. The complete earlier integration snapshot remains on `great-merge/integration` while its remaining source groups and fork tooling are carried forward.
 
+### Shared matrix and vector calls
+
+Commit `6294e0d34a` extends the native callbacks and SDK review with four shared functions from the fork. Matrix copy and concatenation use SDK matrix pointers and preserve their null-argument convention. Checked vector normalization now exposes its XYZ input and floating-point length. The two-argument view transform uses the existing camera declaration. The four symbol names stay at their verified addresses. The effect caller at `TeneFakeTecThunderEff.cpp` carries the fork's original declaration for the ignored result because changing its return type moved two independent pointer increments in the compiler output.
+
+The patch changes 61 paths, including 53 source files. The review compiled and compared 950 affected objects. The cumulative source at `ae12ac4f52` and the working fork each compiled and compared 945. Their allocated sections, addressable symbols and relocation targets match their prior objects after mapping the four symbol names. The working fork passed 294 tests and its linker retention check.
+
 ## Renderer and BML resource reviews
 
 The first branch starts from upstream master `c572111ed6`. Each later branch builds on the one immediately above it. The last column counts paths changed by that step. Review the two accessor and Dark Falz commits together to follow the archive entry into the game code that uses it. The resource lifecycle commit then carries the constructor and destructor through the callers. All four review trees and their four counterparts on the combined local source branch passed the retail executable and upstream checks.
@@ -133,7 +139,7 @@ All affected translation units compiled on both review bases and on the cumulati
 
 ## Working fork on upstream PR 326
 
-`great-merge/current/working-fork` combines the native source through `3661bc5e1b` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
+`great-merge/current/working-fork` combines the native source through `ae12ac4f52` with the documentation under `fork/` and runnable fork tooling. The 94 tool paths, 14 host-port paths and one workflow carried by the earlier working fork remain available. The original tool archive is under `fork/tooling/original/`.
 
 All 294 fork tests pass after the window frame and item-list changes, including the shared BML accessor checks and the three Dark Falz Zako fixtures. The rebuilt retail executable passed all 2,415 linked units, the 26,872-entry retention check, eight BML filename-list cases, and 64 model and texture retrieval cases. The [fork source index](2026-11-18-fork-review-index.tsv) records the original edits for nineteen files with 36 matching calls and the separate header and Zako initialization comparisons. The earlier host portability and sanitizer results remain recorded at `b66fafd6e9`. The source-wide audit continues beyond this resource family.
 
