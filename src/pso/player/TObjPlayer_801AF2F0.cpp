@@ -4381,7 +4381,7 @@ void *TObjPlayer::apply_wall_response() {
     Vec dir;
     if (blocked != NULL) {
         ray = blocked->index;
-        normal = &blocked->hits[ray].normal;
+        normal = &blocked->contact[ray].normal;
         VecCopy(&dir, &move);
         ((TObjBoss2Tunnel *)&dir)->update_scale();
         if (vec3_dot(&dir, normal) > lbl_805DC2B8) {
@@ -4392,7 +4392,7 @@ void *TObjPlayer::apply_wall_response() {
             end.x = origin->x + hit_ray->x;
             end.y = origin->y + hit_ray->y;
             end.z = origin->z + hit_ray->z;
-            vsub(&blocked->hits->point, &end, &dir);
+            vsub(&blocked->contact->point, &end, &dir);
             ((TObjPlayer *)&dir)->calc_wall_slide_point(normal, &slide);
             vsub(origin, &move_target, &dir);
             dir.y = TObjPlayer__data_805DC278;
@@ -4418,10 +4418,10 @@ void *TObjPlayer::apply_wall_response() {
         angle += 0x2000;
         offset++;
     }
-    WallRayResult *wall = (WallRayResult *)query_prepared_wall_polygons(&query);
+    WallRayResult *wall = query_prepared_wall_polygons(&query);
     if (wall != NULL) {
         ray = wall->index;
-        normal = &wall->hits[ray].normal;
+        normal = &wall->contact[ray].normal;
         VecCopy(&dir, &move);
         ((TObjBoss2Tunnel *)&dir)->update_scale();
         f32 facing = vec3_dot(&dir, normal);
@@ -4431,7 +4431,7 @@ void *TObjPlayer::apply_wall_response() {
             blocked = NULL;
         } else {
             f32 push = lbl_805DC298 + wall->depth;
-            Vec *wall_normal = &wall->hits[ray].normal;
+            Vec *wall_normal = &wall->contact[ray].normal;
             f32 px = wall_normal->x * push;
             f32 pz = wall_normal->z * push;
             Vec corner;
@@ -4456,7 +4456,7 @@ void *TObjPlayer::apply_wall_response() {
                 angle += 0x2000;
                 offset++;
             }
-            WallRayResult *next = (WallRayResult *)query_prepared_wall_polygons(&query);
+            WallRayResult *next = query_prepared_wall_polygons(&query);
             if (next == NULL) {
                 blocked = NULL;
                 position.x += px;
