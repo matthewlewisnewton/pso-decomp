@@ -2628,7 +2628,7 @@ inline void release_index_entries(s32 *ids, s32 n) {
             }
             if (b != -1) {
                 TQuestVmDownLoadServer__sub_803EF8E0(TQuestVmDownLoadServer::get_buffer_ptr(b));
-                TQuestVmDownLoadServer__sub_803E8918();
+                mark_quest_name_cache_dirty();
             }
         }
     }
@@ -2950,7 +2950,7 @@ s32 TQuestVmDownLoadServer__sub_803EF958(u32 id, u16 key, s32 *ids, s32 n) {
         if (*p != 0 && *p == v) {
             if (key & 0x8000) {
                 TQuestVmDownLoadServer__sub_803E8924(b);
-                TQuestVmDownLoadServer__sub_803E8918();
+                mark_quest_name_cache_dirty();
             }
             return 3;
         }
@@ -2961,7 +2961,7 @@ s32 TQuestVmDownLoadServer__sub_803EF958(u32 id, u16 key, s32 *ids, s32 n) {
         *p = v;
         if (key & 0x8000) {
             TQuestVmDownLoadServer__sub_803E8924(b);
-            TQuestVmDownLoadServer__sub_803E8918();
+            mark_quest_name_cache_dirty();
         } else {
             TQuestVmDownLoadServer::set_active();
         }
@@ -3407,7 +3407,7 @@ s32 TQuestVmDownLoadServer__sub_803F0890(void) {
         return -3;
     }
     TQuestVmDownLoadServer__sub_803E8150();
-    TQuestVmDownLoadServer__sub_803E9764();
+    write_dirty_quest_name_cache();
     TQuestVmDownLoadServer::retry_seek_active_entries();
     if (TQuestVmDownLoadServer__sub_803E86C8() == -1) {
         return -2;
@@ -3441,7 +3441,7 @@ s32 TQuestVmDownLoadServer__sub_803F08E4(s8 *quest_vm_down_load_server) {
         return -2;
     }
     TQuestVmDownLoadServer::init_page_cache();
-    __VIRetraceHandler();
+    initialize_quest_name_cache();
     if (lbl_805D78F8 == 0x8000) {
         return -6;
     }

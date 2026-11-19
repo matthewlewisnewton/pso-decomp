@@ -2930,8 +2930,8 @@ force_active:
   - TQuestVmDownLoadServer__sub_803E6F98
   - TQuestVmDownLoadServer__sub_803E7018
   - TQuestVmDownLoadServer__sub_803E7098
-  - TQuestVmDownLoadServer__sub_803E93DC
-  - TQuestVmDownLoadServer__sub_803E95BC
+  - read_quest_name_cache_image
+  - rotate_quest_name_cache_page
   - TQuestVmDownLoadServer__sub_803E9A74
   - TQuestVmDownLoadServer__sub_803E9FFC
   - TQuestVmDownLoadServer__sub_803EA1A8
@@ -13310,8 +13310,8 @@ force_active:
   - lbl_80581330
   - lbl_80581A30
   - lbl_8058DC00
-  - lbl_80591EC8
-  - lbl_80593EC8
+  - quest_name_cache_image
+  - quest_name_cache_index
   - lbl_805A02A8
   - lbl_805A0340
   - lbl_805A0698
@@ -13847,10 +13847,10 @@ force_active:
   - lbl_805D783C
   - lbl_805D7840
   - lbl_805D7844
-  - lbl_805D7868
-  - lbl_805D786C
-  - lbl_805D7870
-  - lbl_805D7878
+  - quest_name_cache_dirty
+  - quest_name_cache_page_end
+  - quest_name_cache_write_cursor
+  - quest_name_cache_free_nodes
   - lbl_805D78E8
   - lbl_805D7908
   - lbl_805D790C

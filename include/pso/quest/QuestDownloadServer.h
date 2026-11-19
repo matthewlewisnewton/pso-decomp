@@ -240,16 +240,10 @@ struct Out_803E8C2C { s16 a; s16 id; s16 len; s16 pre; u8 pad[4]; u8 *encodedRec
 
 typedef Out_803E8C2C Out_803E8B1C;
 
-// Name cache: eight 0x400-byte record pages (lbl_80591EC8), then the hash buckets (lbl_80593EC8)
-// and the free-list node pool that __VIRetraceHandler links up.
-struct NameCache_80591EC8 {
+// Name cache: eight 0x400-byte record pages (quest_name_cache_image), then the hash buckets (quest_name_cache_index)
+// and the free-list node pool that initialize_quest_name_cache links up.
+struct QuestDownloadNameCacheImage {
     u8 pages[8][0x400];
-};
-
-// lbl_80591EC8 and lbl_80593EC8 seen as the one area they form: three functions address both from one base.
-struct NameCacheArea_80591EC8 {
-    NameCache_80591EC8 cache;
-    QuestDownloadCachedNameIndex names;
 };
 
 extern "C" {
@@ -273,8 +267,8 @@ extern s32 quest_download_server_state;
 extern s32 quest_download_file_handle;
 extern RecoveredGlobal_803E8710_lbl_8058DE08 quest_vm_download_server_file_info;
 extern s32 lbl_805D78F8;
-extern NameCache_80591EC8 lbl_80591EC8;
-extern u8 lbl_805D7868;
+extern QuestDownloadNameCacheImage quest_name_cache_image;
+extern u8 quest_name_cache_dirty;
 struct Sub_803ED9AC { u8 pad[2]; u8 type; u8 x3; u32 id; };
 struct Elem_803ED9AC {
     s16 len;
@@ -309,7 +303,7 @@ extern s32 lbl_805D7888;
 s32 TQuestVmDownLoadServer__sub_803E7098(u8 *p, u16 code);
 s32 TQuestVmDownLoadServer__sub_803EC69C(u32);
 extern RecoveredGlobal_803E8084_lbl_80590AC4 quest_name_index_table;
-void __VIRetraceHandler(void);
+void initialize_quest_name_cache(void);
 Node_803EB894 *detach_node_chain__22TQuestVmDownLoadServerFv(Node_803EB894 *p);
 Node_803EB420 *advance_nodes__22TQuestVmDownLoadServerFl(Node_803EB420 *p, s32 n);
 extern s32 lbl_805D78AC;
@@ -340,7 +334,7 @@ extern u8 lbl_80591AC4[];
 extern s32 lbl_805D7820;
 extern s32 quest_download_ask_header_size;
 extern s32 quest_download_header_name_index_hi_count;
-extern s32 lbl_805D7874;
+extern s32 quest_name_cache_page_index;
 extern s32 lbl_805D78FC;
 void append_message_text__22TQuestVmDownLoadServerFlP12Req_803EEF2CUc(u8 *arg0, s32 arg1, Req_803EEF2C *arg2, u8 arg3);
 u32 strlen(const char *);
@@ -397,7 +391,7 @@ void *TQuestVmDownLoadServer__sub_803E9FFC(s32 arg0, s32 arg1, const Tok_803E9FF
 void *TQuestVmDownLoadServer__sub_803ECED0(void);
 void *TQuestVmDownLoadServer__sub_803ECF0C(void);
 extern QuestDownloadCachePage *file_page_cache_head;
-extern QuestDownloadCachedNameIndex lbl_80593EC8;
+extern QuestDownloadCachedNameIndex quest_name_cache_index;
 s32 TQuestVmDownLoadServer__sub_803E8C2C(char *arg0, s16 arg1, Out_803E8C2C *arg2);
 void TQuestVmDownLoadServer__sub_803EFF20(u8 *data, s32 a1, s32 a2, s32 *best, u8 *dst, s32 flags);
 extern const char ask_header_signature[];
