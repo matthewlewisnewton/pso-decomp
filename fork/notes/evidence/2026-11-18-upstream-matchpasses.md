@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `3f001efd86` includes the chat balloon, typed bone rotation and native rope simulation. The all-source snapshot is `bb719eca21`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `a07ec1a39a` includes the chat balloon, typed bone rotation, native rope simulation and NPC resources. The all-source snapshot is `6a716f34f3`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -16,7 +16,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/bml-resource-lifetime` | `daa3a3af77` |
 | `great-merge/current/render-interfaces` | `6c43c3a146` |
 | `great-merge/current/actor-presentation` | `ba1790084a` |
-| `great-merge/current/world-object-resources` | `cc7b595095` |
+| `great-merge/current/world-object-resources` | `0fe5806ad0` |
 
 The window review reconciles 57 overlapping paths. It retains upstream's native menu and word-select construction and its item-help constant pool, along with the fork's typed callers and field layouts. Sixteen overlapping signatures retain the fork types and original linked addresses. The rebased window review supplies the original chat balloon, item-help and software-keyboard virtual tables. All 90 entries in the [data range ledger](2026-11-18-fork-data-ranges.tsv) now resolve to 980 source-linked bytes and 167 bytes of alignment padding.
 
@@ -32,7 +32,11 @@ The replay at `81fc986ad1` restores the fork's typed bone-rotation constructors,
 
 The rope replay at `3f001efd86` restores the native player and base constructors, typed collision and segment records, and the De Rol Le fin constructor and segment table. Six changed functions retain their original addresses and sizes. Nine linked data records include the two native virtual tables and the 72-byte fin segment table. One source-specific compiler setting reproduces the original function and table order. The standalone world review at `cc7b595095`, the combined stack, the all-source snapshot and the working fork all reproduce the original executable. The fork overlay retains its 133 paths and all eleven tests pass.
 
-The [fork source index](2026-11-18-fork-review-index.tsv) accounts for ten rope and fin records. It has 1,465 entries awaiting owner comparison and 683 with partial evidence.
+The [fork source index](2026-11-18-fork-review-index.tsv) accounts for ten rope and fin records.
+
+The NPC resource replay at `a07ec1a39a` reconciles thirteen classes. Their current owners already source-link the twenty-six original loader and cleanup methods and have the typed BML descriptor paths. The replay gives thirty-nine existing strings explicit definitions, types the eight GVM model and texture pointers and preserves their original addresses. The standalone world review at `0fe5806ad0`, combined stack, all-source snapshot and working fork pass the original executable and linkage checks. One hundred thirty-three overlay paths round-trip and all eleven fork layer tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) accounts for twenty-four NPC source and declaration records. It has 1,454 entries awaiting owner comparison and 670 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
