@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `6e09dda9c5`
 
-The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `ec8de0a5ed` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, and Gibbles construction and teardown. The all-source snapshot is `5aaa4a30e8`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
+The eleven standalone reviews and the combined source stack have been replayed on `6e09dda9c5`. The upstream-shaped stack at `7620a6ee98` includes the chat balloon, typed bone rotation, native rope simulation, NPC resources, typed quest records, challenge retry objects, player technique casts, dragon attack ownership and the shared boss action packets and typed enemy archive loading, the BML model and motion callbacks, and the Photon Blast sequence and attachments, typed character initialization, typed technique effects, the named technique resource data, native needle contact dispatch, and the Canadin and Sinow interfaces, including native Canadin formation and action handling, Gi Gue attacks, Morfos behavior, shared encounter callbacks, Pan Arms coordination, and Gibbles and Gyaranzo combat ownership, Gibbles construction and teardown, and the Ginja draw and material interfaces. The all-source snapshot is `e0dd2ac6d2`. The preceding heads are preserved under `great-merge/snapshots/3f35d99bb1/`.
 
 | Review branch | Tip |
 | --- | --- |
@@ -14,7 +14,7 @@ The eleven standalone reviews and the combined source stack have been replayed o
 | `great-merge/current/encounter-drawing` | `764b12bea2` |
 | `great-merge/current/window-frames` | `cb1ebc1100` |
 | `great-merge/current/bml-resource-lifetime` | `ae880a661a` |
-| `great-merge/current/render-interfaces` | `6c43c3a146` |
+| `great-merge/current/render-interfaces` | `60bd735c2e` |
 | `great-merge/current/actor-presentation` | `ba1790084a` |
 | `great-merge/current/world-object-resources` | `bbbb69ff1b` |
 
@@ -207,6 +207,16 @@ The three compiled method symbols retain 1,808 original instruction bytes. The m
 The standalone combat review at `03cda7414b`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The fork tooling overlay round-trips all 133 paths and passes eleven tests.
 
 The [fork source index](2026-11-18-fork-review-index.tsv) records the recovered lifecycle against the two original fork records. It has 1,281 entries awaiting owner comparison and 778 with partial evidence.
+
+### Ginja draw, material and texture interfaces
+
+The 74-file replay at `7620a6ee98` restores the fork's model pointer through the shared renderer, draw callbacks and direct callers. Material drawing accepts a const draw record with typed parameters. Model drawing shares the original zero-argument preparation call, and texture slot selection and release use the public texture declarations.
+
+The four exports retain their original addresses and sizes. The retail executable has 206 direct model draw branches, six preparation branches, two material decoder branches and fourteen texture slot branches. Item model traversal also uses the pointer-typed indirect callback. All 1,305 functions in the 68 affected gameplay source units match exactly on the combined stack.
+
+The standalone renderer review at `60bd735c2e`, combined stack, all-source snapshot and working fork reproduce the original executable and pass the project checker. The three 24-byte virtual tables for the chat balloon, item help and software keyboard are verified on the combined stack and working fork. The standalone renderer base carries those tables through the original link inputs. The 133-path tooling overlay round-trips and all eleven overlay tests pass.
+
+The [fork source index](2026-11-18-fork-review-index.tsv) records evidence for 60 entries. It has 1,267 entries awaiting owner comparison and 790 with partial evidence.
 
 ## Replay on upstream master `6e09dda9c5`
 
