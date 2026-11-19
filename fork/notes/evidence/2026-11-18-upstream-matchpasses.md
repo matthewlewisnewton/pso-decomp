@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `8230aed0c4` and the complete source snapshot at `9e47b7e625` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `c794af0ca9` and the complete source snapshot at `6e875143d0` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -129,6 +129,14 @@ Use the old review base, the donor tip and the current target for each three-way
 The 57-file technique replay at `ff77410f60` retains the three upstream data splits and refreshes the matching declarations. A second commit adds the typed Bringer and equipment constructors and the shared reverse-tech callback pair. The resulting 71-file review at `94af1568a6` starts on `af11a99125`. The 17-path item-effects delta is also on the cumulative source at `8230aed0c4`. The weapon hit callback retains its full-register call sequence. The other equipment callers use the 16-bit owner ID declared by their factory.
 
 The technique, grouped, combined and working-fork builds reproduce the retail executable and pass the project checker. The grouped review inherits the 24-byte keyboard table gap from master. The cumulative source and working fork retain that range and lose no matched or linked addresses against fork main. The checked tables retain 28 Bringer virtual-table bytes, 80 equipment virtual-table bytes, the 44-byte equipment collision template and the 56-byte reverse-tech callback table at their retail addresses. The three added retention names are regenerated only on the working fork. All 133 overlay paths round-trip and all eleven fork layer tests pass.
+
+## Shared enemy registration, state and group links
+
+The 40-file replay at `c794af0ca9` carries the source portions of `784ab5b061`, `32902e97ea` and `ecf2bfb910` together. The 24 caller branches to `0x8003F0E8` register their receiver in the object table. The fork's `TObjEnemy::register_by_id` expresses the underlying call. The 36 saved-state caller branches pass a pointer to the existing 12-byte lobby object record. Beast and Merill Lia use `TObjEnemy::has_group` and `TObjEnemy::link_last_group_child` at the original group call sites.
+
+The local review at `6a5bf7aead` starts directly on `af11a99125`. It and the combined stack each retain all 2,260 exact functions across the 36 affected source units. The four corrected exports have the original addresses and sizes, and all 66 original direct branches reach those addresses. The standalone, cumulative source, review stack and working fork reproduce the retail executable and pass the project checker. The standalone retains the existing upstream 24-byte keyboard table coverage gap. The cumulative source and working fork retain that table and all matching and linked address coverage from fork main.
+
+Linked execution passed 184 group queries, all 16 combinations of source and destination chain lengths, 32 saved-state cases and eight registrations. The fork-only overlay restores 133 paths and passes all eleven tests. The [fork source index](2026-11-18-fork-review-index.tsv) records the replayed interface in 34 original paths.
 
 ## Standalone reviews on upstream master `af11a99125`
 
