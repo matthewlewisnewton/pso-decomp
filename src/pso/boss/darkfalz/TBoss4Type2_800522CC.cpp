@@ -2,8 +2,11 @@
 #include "pso/boss/darkfalz/TBoss4Type2.h"
 #include <stdlib.h>
 
-// Its own TU: the u32-to-float bias double and the 1/32768 scale are pooled again here, after
-// TObjDFJisin's copies of both.
+#include "pso/render/MaterialColorFade.h"
+#include "pso/player/TObjPlayer_80052374.h"
+#include "pso/render/ChunkMaterialState.h"
+#include "pso/player/TObjPlayer.h"
+
 s32 TBoss4Type2::pick_weighted_random(s32 n, f32 *w, s32 *t) {
     s32 i;
     f32 acc;
@@ -17,4 +20,29 @@ s32 TBoss4Type2::pick_weighted_random(s32 n, f32 *w, s32 *t) {
         acc += w[i];
     }
     return t[n - 1];
+}
+
+struct C_80052390 { f32 a, b, c, d; };
+
+extern int saved_model_render_flags;
+extern int saved_chunk_polygon_flags_and_mask;
+extern int saved_chunk_polygon_flags_or_mask;
+extern int chunk_polygon_flags_or_mask;
+extern int chunk_polygon_flags_and_mask;
+extern int model_render_flags;
+extern s32 lbl_805D8AE8;
+extern const f32 lbl_805D8AEC;
+void TObjPlayer::sync_player_globals() { chunk_polygon_flags_and_mask = saved_chunk_polygon_flags_and_mask; chunk_polygon_flags_or_mask = saved_chunk_polygon_flags_or_mask; model_render_flags = saved_model_render_flags; }
+void TObjPlayer__sub_80052390(f32 x) {
+    C_80052390 c;
+    s32 old = (*(s32 *)&model_render_flags);
+    (*(s32 *)&model_render_flags) = old & ~0x10;
+    (*(s32 *)&saved_model_render_flags) = old;
+    (*(s32 *)&saved_chunk_polygon_flags_and_mask) = (*(s32 *)&chunk_polygon_flags_and_mask);
+    (*(s32 *)&saved_chunk_polygon_flags_or_mask) = (*(s32 *)&chunk_polygon_flags_or_mask);
+    (*(s32 *)&model_render_flags) |= lbl_805D8AE8;
+    set_chunk_material_override_pair(0xFF00, 0x800);
+    c.a = lbl_805D8AEC + x;
+    c.b = c.c = c.d = 0.0f;
+    set_constant_material((const NJS_ARGB *)(((f32 *)&c)));
 }
