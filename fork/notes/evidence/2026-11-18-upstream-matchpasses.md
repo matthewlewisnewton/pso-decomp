@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `6d9c527699` changes 1,422 paths counting both sides of renames. The all-source snapshot is `11e280bd42`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `fcaf0573ae` changes 1,428 paths counting both sides of renames. The all-source snapshot is `cecdbcbde0`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `85ece01de8` | `942a0c050f` |
+| `great-merge/current/window-frames` | `904154a252` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -40,6 +40,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Shared bag-warning window lifecycle | Included in the window review | `73745157f7` |
 | Typed player-window commands and queries | Included in the window review | `b55c8aabcf` |
 | Native window callbacks and borrowed draw arguments | Included in the window review | `6d9c527699` |
+| Keyboard queries, composer modes and chat availability | Included in the window review | `fcaf0573ae` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -166,6 +167,14 @@ The window review at `85ece01de8` and combined stack at `6d9c527699` construct t
 Eight functions retain their original addresses, instructions and single definitions. The compiler-generated 24-byte callback window table keeps the original four method targets at 0x804DE374. Every selected link input retains its allocated bytes, symbol positions and relocations after mapping the function names. The standalone review, combined source, all-source snapshot and working fork reproduced SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The project checker passed with full builds for the three upstream-shaped branches. The fork layer passed eleven tests and materialized all 133 tooling paths.
 
 The audit reconciles 4 complete fork paths and records partial evidence for 16 others. It has 1,618 entries awaiting owner comparison and 595 with partial evidence.
+
+### Keyboard queries, composer modes and chat availability
+
+The window review at `904154a252` and combined stack at `fcaf0573ae` use a shared declaration for the three keyboard input queries, with a signed full-register result. The composer owns its input-mode byte and setter. The hard and soft keyboards take the draw context in their status and frame routines. The chat availability test uses the real chat receiver, its composer state and the signed hard-keyboard timer. The controller, log and trade callers share that declaration. This pass changes 24 paths.
+
+Three renamed functions and six query or gate functions retain their original addresses, instruction bytes and individual providers. Every selected link input agrees with the previous pass after normalizing the three names in symbols and relocations. The standalone review, combined source, all-source snapshot and working fork reproduced the original executable SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. The three upstream-shaped project checks passed with full builds. The comparison against fork main found no lost compiled or linked functions or non-padding data. The fork layer passed eleven tests and materialized all 133 tooling paths.
+
+The audit reconciles 5 complete fork paths and records partial evidence for 18 others. It has 1,605 entries awaiting owner comparison and 603 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
