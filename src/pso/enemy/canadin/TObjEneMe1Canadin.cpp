@@ -1,3 +1,4 @@
+#include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -207,12 +208,11 @@ struct CanadinLeaderCall : CanadinLeaderCallBase {
     virtual s32 m114(TObjChara *player);
 };
 
-struct Entry_8009E860 { u16 id; u8 pad2[2]; f32 dist; };
 
 u16 get_entity_id(void *);
 f32 newton_sqrtf(f32);
 void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);
-s32 TObjEneMe1Canadin__sub_8009E860(TObjEneMe1Canadin *self, f32 *out, f32 _w2);
+s32 TObjEneMe1Canadin__sub_8009E860(TObjEneMe1Canadin *self, f32 *out, f32 squared_range);
 void TObjEneEpsilon__sub_800B92AC(u8 *arg0, s32 arg1, f32 farg0);
 int select_and_apply_target__12TObjEneDD_STFf(void*);
 s32 get_camera_ctrl__9TObjEneDDFv(Vec *, Vec *);
@@ -220,7 +220,6 @@ s32 update_camera_sequence__9TObjEneDDFv();
 void TObjEneDD__sub_800BA5A4(void *, void *, void *);
 s32 is_player_entity_id(u16 arg0);
 void set_part_position__9TObjEneDDFPvPvi(void *, s32, s32);
-s32 collect_enemy_target_candidates(void *, Entry_8009E860 *);
 void clear_attack_receipts__9TObjEneDDFv();
 s32 trigger_dell_biter_events__10TObjPlayerFv(void *, f32);
 s32 matrix_mult_vec(int, Vec *, Vec *);
@@ -644,21 +643,21 @@ void TObjEneMe1Canadin__sub_8009E948(TObjEneMe1Canadin *self) {
 void TObjEneMe1Canadin__sub_8009E930(TObjEneMe1Canadin *self) {
     self->bodies->flags &= ~0x28;
 }
-s32 TObjEneMe1Canadin__sub_8009E860(TObjEneMe1Canadin *self, f32 *out, f32 _w2) {
-    Entry_8009E860 list[5];
+s32 TObjEneMe1Canadin__sub_8009E860(TObjEneMe1Canadin *self, f32 *out, f32 squared_range) {
+    PlayerTargetCandidate list[5];
     s32 found;
     s32 count;
     TObjChara *player;
     s32 i;
     found = 0;
     *out = -1.0f;
-    count = collect_enemy_target_candidates(self, list);
+    count = collect_enemy_target_candidates(self, list, squared_range);
     for (i = 0; i < count; i++) {
         player = get_player_by_client_id(list[i].id);
         if (player != self->m_390) {
             self->m_3C0 = (TObjEneMe1Canadin *)find_entity_by_id(self->m_4C8);
             if (((CanadinLeaderCall *)self->m_3C0)->m114(player) != 0) {
-                *out = newton_sqrtf(list[i].dist);
+                *out = newton_sqrtf(list[i].distance_squared);
                 found = 1;
                 self->set_target_player(player);
                 break;

@@ -1,3 +1,4 @@
+#include "pso/enemy/PlayerTargetCandidate.h"
 #pragma fp_contract on
 #include "pso/system/BmlResource.h"
 #include "types.h"
@@ -370,10 +371,8 @@ s32 VecCopy__FP3VecPC3Vec(void *, void *, s32);
 #include "pso/boss/goldragon/TBoss8Dragon_800BB650.h"
 
 
-struct Ent_800BB484 { s16 id; f32 dist; };
 extern "C" {
-struct EnemyTargetCandidateTable { s32 value; u8 remaining[0x1C]; };
-EnemyTargetCandidateTable enemy_target_candidate_table;
+PlayerTargetCandidate enemy_target_candidate_table[4];
 typedef struct Ent_800BB388 {
     u8 pad0[0x30];
     s32 flags30;
@@ -383,7 +382,6 @@ typedef struct Ent_800BB388 {
 }
 Ent_800BB388;
 u16 enemy_nearest_visible_enemy_sq(Ent_800BB388 *self, f32 range);
-s32 collect_enemy_target_candidates(s32 arg0, Ent_800BB484 *out, f32 farg0);
 }
 
 
@@ -735,13 +733,19 @@ u16 enemy_find_nearest_player_in_range(u8 *self, f32 range) {
     return enemy_nearest_visible_player_sq(self, range * range);
 }
 
-void TBoss8Dragon__sub_800BB650(void* p, void* q) { *(u16*)((char*)p + 0x0) = *(u16*)((char*)q + 0x0); *(f32*)((char*)p + 0x4) = *(f32*)((char*)q + 0x4); }
+#pragma push
+#pragma scheduling off
+extern "C" void copy_player_target_candidate(PlayerTargetCandidate *dest, const PlayerTargetCandidate *source) {
+    dest->id = source->id;
+    dest->distance_squared = source->distance_squared;
+}
+#pragma pop
 
-s32 collect_enemy_target_candidates(s32 arg0, Ent_800BB484 *out, f32 farg0) {
+s32 collect_enemy_target_candidates(const TObjEneDD *enemy, PlayerTargetCandidate *out, f32 squared_range) {
     s32 n;
     s32 cnt;
-    Ent_800BB484 tmp;
-    u8 *p;
+    PlayerTargetCandidate tmp;
+    TObjPlayer *player;
     s32 mi;
     s32 j;
     f32 mx;
@@ -749,52 +753,52 @@ s32 collect_enemy_target_candidates(s32 arg0, Ent_800BB484 *out, f32 farg0) {
     s32 k;
     n = 0;
     cnt = TLobby::get_game_mode();
-    if (farg0 > 0.0f) {
+    if (squared_range > 0.0f) {
         for (s32 i = 0; i < cnt; i++) {
-            p = ((u8 *)TObjPlayer::get_player_data(i));
-            if (((TObjBase *)p)->is_alive() != 0) {
-                d = horizontal_distance_squared((const Vec *)(arg0 + 0x38), (const Vec *)(p + 0x38));
-                if (d < farg0) {
-                    out[n].id = get_entity_id(p);
-                    out[n].dist = d;
+            player = (TObjPlayer *)TObjPlayer::get_player_data(i);
+            if (player->is_alive() != 0) {
+                d = horizontal_distance_squared(&enemy->position, &player->position);
+                if (d < squared_range) {
+                    out[n].id = get_entity_id(player);
+                    out[n].distance_squared = d;
                     n++;
                 }
             }
         }
     } else {
         for (s32 i = 0; i < cnt; i++) {
-            p = ((u8 *)TObjPlayer::get_player_data(i));
-            if (((TObjBase *)p)->is_alive() != 0) {
-                d = horizontal_distance_squared((const Vec *)(arg0 + 0x38), (const Vec *)(p + 0x38));
-                out[n].id = get_entity_id(p);
-                out[n].dist = d;
+            player = (TObjPlayer *)TObjPlayer::get_player_data(i);
+            if (player->is_alive() != 0) {
+                d = horizontal_distance_squared(&enemy->position, &player->position);
+                out[n].id = get_entity_id(player);
+                out[n].distance_squared = d;
                 n++;
             }
         }
     }
     if (n > 1) {
         for (k = n - 1; k >= 1; k--) {
-            mx = out[0].dist;
+            mx = out[0].distance_squared;
             mi = 0;
             for (j = 1; j <= k; j++) {
-                f32 v = out[j].dist;
+                f32 v = out[j].distance_squared;
                 if (v > mx) {
                     mx = v;
                     mi = j;
                 }
             }
             if (mi != k) {
-                TBoss8Dragon__sub_800BB650(&tmp, &out[mi]);
-                TBoss8Dragon__sub_800BB650(&out[mi], &out[k]);
-                TBoss8Dragon__sub_800BB650(&out[k], &tmp);
+                copy_player_target_candidate(&tmp, &out[mi]);
+                copy_player_target_candidate(&out[mi], &out[k]);
+                copy_player_target_candidate(&out[k], &tmp);
             }
         }
     }
     return n;
 }
 
-void TObjEneDD::collect_target_candidates(s32 arg0, f32 farg0) {
-    collect_enemy_target_candidates(arg0, (Ent_800BB484 *)(&enemy_target_candidate_table.value), farg0);
+s32 TObjEneDD::collect_target_candidates(f32 squared_range) {
+    return collect_enemy_target_candidates(this, enemy_target_candidate_table, squared_range);
 }
 
 u16 enemy_nearest_visible_enemy_sq(Ent_800BB388 *self, f32 range) {

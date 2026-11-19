@@ -1,3 +1,4 @@
+#include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "types.h"
@@ -61,7 +62,6 @@ void TObjEneBm3Fly__sub_800B0F70(TObjEneBm3Fly *arg0, s32 arg1);
 f32 fabs_float(f32);
 s32 get_random_scaled__9TObjEneDDFv(void *);
 s32 enemy_set_target_id(void *, u16);
-s32 collect_enemy_target_candidates(void *, EnemyTargetCandidate *, f32);
 u16 get_entity_id(void *);
 void TObjEneBm3Fly__sub_800B0B20(TObjEneBm3Fly *arg0, s32 arg1);
 u32 TObjEneEpsilon__sub_800B92F8(void *, s32, f32);
@@ -410,7 +410,7 @@ s32 TObjEneBm3Fly::can_attack_target() {
 }
 
 void TObjEneBm3Fly::choose_attack() {
-    EnemyTargetCandidate players[4];
+    PlayerTargetCandidate players[4];
     TObjEneBm3FlyNest *nest;
     s32 count;
     u16 id;

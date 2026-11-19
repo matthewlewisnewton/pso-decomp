@@ -688,7 +688,7 @@ force_active:
   - TBoss8Dragon__sub_80064E3C
   - TBoss8Dragon__sub_80065F08
   - TBoss8Dragon__sub_800660A4
-  - TBoss8Dragon__sub_800BB650
+  - copy_player_target_candidate
   - TBoss8Dragon__sub_802F3C94
   - TBoss8Dragon__sub_802F3F20
   - TBoss8Dragon__sub_802F46F4

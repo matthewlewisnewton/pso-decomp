@@ -89,7 +89,7 @@ struct TObjEneDD : public TObjEnemy {
     void move_with_wall_slide_on_ground(f32 farg0, f32 farg1, f32 farg2);
     void move_to_shot_position(f32 farg0, f32 farg1, f32 farg2);
     static void set_squared_value(f32 farg0);
-    static void collect_target_candidates(s32 arg0, f32 farg0);
+    s32 collect_target_candidates(f32 squared_range);
     static void create_instance();
     static int get_enemy_count();
     void handle_state(s32 arg1);

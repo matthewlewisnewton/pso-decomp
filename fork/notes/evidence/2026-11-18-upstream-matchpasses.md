@@ -7,15 +7,15 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
 | `great-merge/upstream/combined` · `d86ae41c4d` | Combined source matchpasses, including the shared item archive reader, sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `26c78c3339` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `658cf280aa` | Thirteen subsystem drafts and seven follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/all-source` · `33d31f81ee` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `77a21ec039` | Thirteen subsystem drafts and eight follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
 
 The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists nineteen independently tested local branches based on upstream `f76fdd7ff1`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
 
-The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the later changes to collision, matrix math, the ADX decoder, positional sound requests and particle factories. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
+The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the later changes to collision, matrix math, the ADX decoder, positional sound requests, particle factories and enemy targeting. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
 
 The fork's enhanced linker checker had produced thousands of retention-list changes. The source-only cumulative build starts from the stock list and updates the affected symbol names. The stock compiler also reproduces the adjacent Dark Falz weighted-selection and material routines in one source unit. Together they emit the two floats at 0x805D8AD8 and 0x805D8ADC naturally. This removes the fork's object-alignment helper from the upstream build. The comparison with fork main found zero lost matched or source-linked function or data ranges. Its total extent decreases by 2,045 bytes, with 2,200 bytes of verified padding leaving coverage and 155 bytes entering coverage.
 
@@ -29,7 +29,7 @@ Seventeen checked components form the first six larger local branches on upstrea
 | --- | --- | ---: | --- |
 | `great-merge/reviews/resource-lifetimes` | `9b8dd63af4` | 96 | archive-lifecycle, quest-cache, audio-streams |
 | `great-merge/reviews/window-interaction` | `4c814cd01f` | 166 | window-lists, result-windows, guild-card-chat |
-| `great-merge/reviews/combat` | `8168b4dd95` | 143 | battle-parameters, enemy-motion, collision-results, player-techniques |
+| `great-merge/reviews/combat` | `6516431b23` | 148 | battle-parameters, enemy-motion, collision-results, player-techniques |
 | `great-merge/reviews/encounter-drawing` | `1826acfd4a` | 97 | radar-camera, raft-encounters, texture-strips, boss-effects |
 | `great-merge/reviews/memory` | `bc9ede35e0` | 185 | runtime-array-allocation, memory-moves |
 | `great-merge/reviews/native-callbacks` | `d8c3791ade` | 11 | native-callbacks-sdk |
@@ -54,7 +54,7 @@ The original fork tip `3342e42983` has 798 subsequent first-parent commits. Comp
 
 Sixteen more complete fork-point patches reproduce their current owner when merged in both directions. Three contain only include-directory or header-guard moves after mapping Git renames. Another sixteen have every fork edit block present with unique surrounding source context. The comparison preserves comments and directives. The block check skips multiline literals and comments and requires the old contextual form to be absent. The index records the current owner in each case.
 
-The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,117 paths requiring an owner comparison and 305 with partially matched edit blocks.
+The audio branch also recovers the signed ADXB channel count and its three stream callers. All 256 possible channel bytes returned their sign-extended values. The query and output-drain loops selected the expected rings for negative, zero, mono and stereo counts. These checks ran on integration, the audio and resource branches and the cumulative native queue. All four builds passed the stock checker and reproduced the retail SHA-1. The review index currently lists 2,115 paths requiring an owner comparison and 305 with partially matched edit blocks.
 
 ## One-shot positional sound requests
 
@@ -79,6 +79,12 @@ The independently buildable branch `great-merge/upstream/particle-factories` at 
 The original and integrated executables have 369 direct calls to the basic factory across 144 current caller files and 187 to the flagged factory across 46. Every instruction maps to the same original function, and each current source file has the expected number of typed calls. Thirty test cases execute the factories and initializers on the original image and the three rebuilt images. They cover the first and last global and area IDs, the first invalid ID, allocation failures, flag truncation, task selection, position copying and bounds of controller writes. All three builds reproduce the retail executable and pass the upstream checks.
 
 A separate history comparison found 31 source paths whose entire sequence of fork edits had already landed on upstream master. The source index records the corresponding fork and upstream commits for each path. Every pair has identical before and after contents and file modes at that path.
+
+## Enemy player target selection
+
+The enemy-motion component at `13468aa162` and the larger combat group at `6516431b23` recover the collector and its five source owners. The shared player record has a 16-bit ID, two padding bytes and a horizontal squared distance. Canadin now forwards its range argument explicitly, including the observed 22,500 limit. Shinowa receives the number of filled records from the member function before indexing the shared table. All six compiled calls to the collector occur at the same original instruction addresses.
+
+The component, combat, cumulative source and integration builds passed the upstream checks and reproduced retail. Nineteen cases on each build and the original image check live players, strict range boundaries, ties, horizontal distances, out-of-range and inactive players, the returned count, table bounds, padding and Canadin's forwarded floating-point argument. The fork-only test skips four Gekko paired-single register spill instructions unsupported by the emulator. The scalar save and restore instructions still execute.
 
 ## Buildable boundaries in the remaining drafts
 

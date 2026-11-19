@@ -1,3 +1,4 @@
+#include "pso/enemy/PlayerTargetCandidate.h"
 #include "pso/effect/PositionSoundEffects.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
@@ -129,12 +130,6 @@ s32 rand(f32);
 extern const f32 lbl_805DA0B8;
 extern const f32 TObjEneMe1Gee__data_805DA0C0;
 
-// One entry collect_enemy_target_candidates fills: an entity id and its horizontal squared distance
-// (TObjEneDD.cpp calls the same record Ent_800BB484).
-struct TargetCandidate {
-    u16 id;
-    f32 dist;
-};
 
 f32 newton_sqrtf(f32);
 
@@ -145,7 +140,6 @@ extern const f32 lbl_805D9E84;
 extern const f32 lbl_805D9E88;
 void get_camera_ctrl__9TObjEneDDFv(s32, s32);
 u32 vfunc_101__9TObjEneDDFPUc();
-s32 collect_enemy_target_candidates(void *, TargetCandidate *, f32);
 s32 pack_debug_text_position(s32, s32);
 
 
@@ -536,7 +530,7 @@ void TObjEneMe1Gee::sub_800CBC04() {
 }
 
 s32 TObjEneMe1Gee::find_attack_target(f32 *out, f32 range) {
-    TargetCandidate recs[5];
+    PlayerTargetCandidate recs[5];
     s32 found;
     s32 n;
     TObjPlayer *p;
@@ -549,7 +543,7 @@ s32 TObjEneMe1Gee::find_attack_target(f32 *out, f32 range) {
         if (p != this->m_390) {
             this->m_3c0 = (TObjEneMe1Gee *)find_entity_by_id(this->m_48c);
             if (this->m_3c0->vfunc_116(p) != 0) {
-                *out = newton_sqrtf(recs[i].dist);
+                *out = newton_sqrtf(recs[i].distance_squared);
                 found = 1;
                 this->set_target_player(p);
                 break;

@@ -1207,3 +1207,15 @@ Particle factories and controller initialization	658cf280aad95e9bce70b3b880eff30
 Particle factories and controller initialization	658cf280aad95e9bce70b3b880eff30d3dc468da	src/pso/weapon/TUnk_804E24F0.cpp	3
 Particle factories and controller initialization	658cf280aad95e9bce70b3b880eff30d3dc468da	src/pso/weapon/TUnk_804F28E0.cpp	3
 Particle factories and controller initialization	658cf280aad95e9bce70b3b880eff30d3dc468da	src/pso/weapon/shoot/TItemShootGun_8011B598.cpp	3
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	config/GPOE8P/psov3/config.yml	1
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	config/GPOE8P/psov3/symbols.txt	2
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	include/pso/boss/goldragon/TBoss8Dragon_800BB650.h	2
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	include/pso/enemy/PlayerTargetCandidate.h	1
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	include/pso/enemy/dd/TObjEneDD.h	1
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	include/pso/enemy/fly/TObjEneBm3Fly.h	1
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/canadin/TObjEneMe1Canadin.cpp	7
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/dd/TObjEneDD.cpp	14
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/fly/TObjEneBm3Fly.cpp	3
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/gee/TObjEneMe1Gee.cpp	5
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/recon/TObjEneRecon.cpp	6
+Enemy player target selection	77a21ec039212e9193318a4dc58893d7e29ead70	src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp	5
