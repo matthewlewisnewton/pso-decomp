@@ -20,6 +20,17 @@
 #include "pso/network/NetTcpState.h"
 #include "pso/network/text_80421620.h"
 
+#ifndef __MWERKS__
+/* The original compiler accepted local prototypes with different integer widths.
+   Use the definitions' argument and return types on other compilers. */
+struct Th_8041D584;
+struct Sack_8041D584;
+s32 TLobby__sub_8041A6A4(TcpTcb *tcb, s16 timer);
+s32 TLobby__sub_8041B3D4(void *, void *, s16, s16, s32, s32, u8);
+void TLobby__sub_8041D584(TcpTcb *, struct Th_8041D584 *, struct Sack_8041D584 *, s16);
+void NetYieldOutsideDispatcherThread(void);
+#endif
+
 /* This file's functions. */
 s32 abort_tcp_connection(s16 arg0);
 void clear_position(TcpTcb *tcb);
@@ -169,7 +180,9 @@ void TLobby__sub_8041A498(TcpTcb *tcp_tcb, s16 arg1) {
 }
 
 extern void TLobby__sub_8041A5B4(void) {
+#ifdef __MWERKS__
     s32 TLobby__sub_8041A6A4(TcpTcb *tcb, s32 timer); /* declared here with an s32 timer; the definition takes s16 */
+#endif
     s16 *t;
     TcpState *g = (TcpState *)&tcp_protocol_state;
     TcpTcb *tcb;
@@ -201,7 +214,9 @@ extern void TLobby__sub_8041A5B4(void) {
 #pragma push
 #pragma opt_common_subs on
 extern s32 TLobby__sub_8041A6A4(TcpTcb *tcb, s16 timer) {
+#ifdef __MWERKS__
     s32 TLobby__sub_8041B3D4(void*, void*, u16, u16, u32, u32, s32); /* declared here with other parameter types; the definition is s32 (void *, void *, s16, s16, s32, s32, u8) */
+#endif
     TcpState *g = &tcp_protocol_state;
     s16 keep;
     s32 win;
@@ -350,7 +365,11 @@ s16 TLobby__sub_8041A9AC(TcpTcb *tp)
     if (mss < 0) {
         return mss;
     }
+#ifdef __MWERKS__
     idle = (u32)__cntlzw(tp->snd_una - tp->snd_max) >> 5;
+#else
+    idle = tp->snd_una == tp->snd_max;
+#endif
     if (tp->snd_max == tp->snd_una && tp->idle >= tp->rxtcur) {
         switch (tp->f540) {
         case 1:
@@ -802,7 +821,9 @@ extern TcpTcb *TLobby__sub_8041B774(TcpTcb *self, TcpHdr *th, u8 *a, u8 *b) {
     s32 n;
     s16 idx;
     u8 *sp;
+#ifdef __MWERKS__
     s16 TLobby__sub_8041E780(void); /* declared s16 here; the definition returns s32 */
+#endif
 
     if (self->f2C4 <= self->pending) return NULL;
     idx = TLobby__sub_8041E780();
@@ -897,7 +918,9 @@ s16 tcp_input(u8 *pkt, u8 *a, u8 *b) {
     s16 srtt;
     s32 TLobby__sub_80422AB8(s16, void (*)(s16, s16, s32, s32), s16, s32, s32, s32); /* declared here with an s16 first parameter; the definition takes s32 */
     s16 compare_sockaddr(NetworkAddress *, NetworkAddress *); /* declared s16 here; the definition returns s32 */
+#ifdef __MWERKS__
     s16 TLobby__sub_8041B3D4(void *, void *, u16, u16, s32, s32, u8); /* declared s16 here; the definition is s32 (void *, void *, s16, s16, s32, s32, u8) */
+#endif
 
     ((NetPacket *)pkt)->total_bytes = ((NetPacket *)pkt)->total_bytes - ((NetPacket *)pkt)->fragments[0].length;
     *(s16 *)(pkt + offsetof(NetPacket, fragments[0].length)) = 0;
@@ -1595,7 +1618,9 @@ s16 TLobby__sub_8041D524(TcpTcb *tcb, s32 x);
 #pragma opt_common_subs on
 s32 TLobby__sub_8041D0C8(TcpTcb *self, u8 *data, s16 total, u8 *p6)
 {
+#ifdef __MWERKS__
   void TLobby__sub_8041D584(TcpTcb *self, u8 *p6, TcpSeqRange *tbl, s16 n); /* declared here with other parameter types; the definition is void (TcpTcb *, Th_8041D584 *, Sack_8041D584 *, s16) */
+#endif
   s32 n;
   s16 done = 0;
   u8 sz;
@@ -1661,7 +1686,11 @@ s32 TLobby__sub_8041D0C8(TcpTcb *self, u8 *data, s16 total, u8 *p6)
             }
           }
 
+#ifdef __MWERKS__
           TLobby__sub_8041D584(self, p6, tbl, (s16) n);
+#else
+          TLobby__sub_8041D584(self, (struct Th_8041D584 *)p6, (struct Sack_8041D584 *)tbl, (s16)n);
+#endif
           if (TLobby__sub_8041D524(self, last) != 0)
           {
             self->edge = self->snd_una;
@@ -2368,7 +2397,9 @@ extern s32 TLobby__sub_8041E5E4(s16 idx, u8 *a, u16 id) {
 extern void TLobby__sub_8041E8A8(s16 idx);
 extern s32 TLobby__sub_8041E780(void)
 {
+#ifdef __MWERKS__
     void TLobby__sub_8041E8A8(s32); /* declared here with an s32 1st argument; the definition takes s16 */
+#endif
   TcpState *g_m = (TcpState *) (*(u8(*)[])&tcp_protocol_state);
   TcpTcb *rec;
   s32 bestIdx = 0;

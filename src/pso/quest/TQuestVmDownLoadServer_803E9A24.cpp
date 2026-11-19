@@ -955,6 +955,12 @@ struct Work_80595008 {
 
 extern Work_80595008 lbl_80595008;
 
+#ifndef __MWERKS__
+static Slot_803EA428 *quest_download_slot_at(s32 index) {
+    return reinterpret_cast<Slot_803EA428 *>(&quest_download_slot_chain_table[index]);
+}
+#endif
+
 #pragma push
 #pragma dont_inline off
 #pragma inline_depth(2)
@@ -1000,7 +1006,11 @@ s32 TQuestVmDownLoadServer__sub_803EA428(s32 start, s32 end) {
     text = (u8 *)&quest_download_scratch_storage + start;
     // position holds the slot displacement on the run paths and an input address in the text scans.
     position = start * sizeof(Slot_803EA428);
+#ifdef __MWERKS__
     slot = reinterpret_cast<Slot_803EA428 *>(workspace.address + offsetof(Work_80595008, slots) + position);
+#else
+    slot = quest_download_slot_at(start);
+#endif
     kind = 0;
     if (TQuestVmDownLoadServer__sub_803EDB58(*text)) {
         position = reinterpret_cast<size_t>(text + 1);
@@ -1067,7 +1077,11 @@ s32 TQuestVmDownLoadServer__sub_803EA428(s32 start, s32 end) {
             item->x4 = -1;
             item->c = 0;
             item->next = NULL;
+#ifdef __MWERKS__
             reinterpret_cast<s8 *>(workspace.address + offsetof(Work_80595008, slots) + offsetof(Slot_803EA428, width))[position] = stop - start + 1;
+#else
+            slot->width = stop - start + 1;
+#endif
             append_candidate_items(item, &slot->list);
         }
         return 1;
@@ -1202,8 +1216,12 @@ inline s32 select_download_length(s32 start, s32 end) {
 }
 #pragma pop
 
+#ifdef __MWERKS__
 #define QUEST_WORKSPACE_SLOT(address, index) \
     reinterpret_cast<Slot_803EA428 *>((address) + offsetof(Work_80595008, slots) + (index) * sizeof(Slot_803EA428))
+#else
+#define QUEST_WORKSPACE_SLOT(address, index) ((void)(address), quest_download_slot_at(index))
+#endif
 
 #pragma push
 #pragma dont_inline off

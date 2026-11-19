@@ -7,15 +7,15 @@ The maintainer requested that specialized tools stay on the fork. Upstream candi
 | Local branch | Purpose | Verified relationship |
 | --- | --- | --- |
 | `great-merge/upstream/combined` · `d86ae41c4d` | Combined source matchpasses, including the shared item archive reader, sound-slot pitch and weapon animation | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/all-source` · `eae28ce0b6` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
-| `great-merge/upstream/pending-reviews` · `36342709bb` | Thirteen additional subsystem draft commits on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
+| `great-merge/upstream/all-source` · `6ba7a9a7d8` | Complete native source currently recovered on integration | Retail hash and upstream PR checks pass |
+| `great-merge/upstream/pending-reviews` · `aaa8072d5a` | Thirteen subsystem drafts and two follow-up native recoveries on the combined source | Its complete Git tree equals `great-merge/upstream/all-source` |
 | `great-merge/pending-reviews` | Alias for the current source-only queue | Same commit as `great-merge/upstream/pending-reviews` |
 | `great-merge/fork-tooling` | Runnable fork tools, hosted workflow changes, test harnesses and the fork's build helpers | The active tool files retain their original working paths |
 | `great-merge/fork-docs` | Documentation kept for the fork | Its project files outside `fork/` equal upstream |
 
 The [source matchpass register](2026-11-18-source-only-matchpasses.tsv) lists seventeen independently tested local branches based on upstream `f76fdd7ff1`. Each reproduced retail and passed the stock upstream checker. The former link-verification proposal is now entirely fork-local. The source portion of the host-portability proposal contains native item and rendering callbacks and SDK declarations. Use the branch names in the register for future submissions. Earlier validation branches below also contain fork tools and serve as historical evidence.
 
-The [pending source index](2026-11-18-upstream-source-groups.tsv) assigns 4,357 edit blocks across 665 path names to thirteen additional local drafts. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
+The [pending source index](2026-11-18-upstream-source-groups.tsv) records the original 4,357 edit blocks across 665 path names in thirteen local drafts and the ten later edits to the collision and matrix owners. Each draft contains one subsystem group. The combined result builds. On the merged upstream base, the thirteenth cumulative build passes. The first twelve original intermediate builds exposed dependencies across groups. Their current source index describes the original split.
 
 The fork's enhanced linker checker had produced thousands of retention-list changes. The source-only cumulative build starts from the stock list and updates the affected symbol names. The stock compiler also reproduces the adjacent Dark Falz weighted-selection and material routines in one source unit. Together they emit the two floats at 0x805D8AD8 and 0x805D8ADC naturally. This removes the fork's object-alignment helper from the upstream build. The comparison with fork main found zero lost matched or source-linked function or data ranges. Its total extent decreases by 2,045 bytes, with 2,200 bytes of verified padding leaving coverage and 155 bytes entering coverage.
 
@@ -29,18 +29,24 @@ The seventeen checked components form six larger local branches on upstream `f76
 | --- | --- | ---: | --- |
 | `great-merge/reviews/resource-lifetimes` | `125d69fe6c` | 91 | archive-lifecycle, quest-cache, audio-streams |
 | `great-merge/reviews/window-interaction` | `4c814cd01f` | 166 | window-lists, result-windows, guild-card-chat |
-| `great-merge/reviews/combat` | `24ec973274` | 142 | battle-parameters, enemy-motion, collision-results, player-techniques |
+| `great-merge/reviews/combat` | `8168b4dd95` | 143 | battle-parameters, enemy-motion, collision-results, player-techniques |
 | `great-merge/reviews/encounter-drawing` | `1826acfd4a` | 97 | radar-camera, raft-encounters, texture-strips, boss-effects |
 | `great-merge/reviews/memory` | `bc9ede35e0` | 185 | runtime-array-allocation, memory-moves |
-| `great-merge/reviews/native-callbacks` | `d9e51bc35f` | 10 | native-callbacks-sdk |
+| `great-merge/reviews/native-callbacks` | `d8c3791ade` | 11 | native-callbacks-sdk |
 
 The resource group also names the stream buffer and cue work area at 0x805D62D8 and 0x805D62DC. After moving their associated declarations, callers and linker entries together, the recovered source immediately before these two names and the complete source both passed independently. The former checkpoint is `great-merge/fork-validation/archive-and-memory-callers` at `e6646c0fc3`. The three-file remainder belongs to the resource group.
 
 The resource group passed the ADXF, archive, sound-slot, disc-read and quest-cache checks. The window group passed the guild-card and results-page checks. The combat and encounter groups passed the battle, collision, weapon, camera, trail and strip-animation checks. The memory group passed 96 guarded copy cases. The native callback C++ host checks passed on the fork.
 
+The combat group now reads character flags through MSL's 256-byte table and the
+shared letter mask. The SDK group names the angle conversion and declares the two
+floats the identity kernel uses. Both groups and both follow-up cumulative builds
+passed the stock checker and matched retail. The portable implementations and
+their tests are on the fork tooling branch.
+
 ## Buildable boundaries in the remaining drafts
 
-The original thirteen-way split crosses changes to shared interfaces. The local branch `great-merge/fork-validation/before-window-layouts` at `13f3dd6b54` groups the archive, texture and memory interfaces with the code that calls them. It defers the window layout fields until their corresponding classes and consumers change. On its verified base, `great-merge/fork-validation/window-layouts` at `c703356789` reaches exactly the same source tree as `great-merge/upstream/all-source`. The remaining difference at this boundary covers 196 paths, including 169 UI sources and headers. Both stages reproduce retail and pass the upstream PR checks. The comparisons from combined source to the first stage and from there to the complete source lose zero exact or source-linked function and data ranges.
+The original thirteen-way split crosses changes to shared interfaces. The local branch `great-merge/fork-validation/before-window-layouts` at `13f3dd6b54` groups the archive, texture and memory interfaces with the code that calls them. It defers the window layout fields until their corresponding classes and consumers change. On its verified base, `great-merge/fork-validation/window-layouts` at `c703356789` reaches the complete native snapshot at `eae28ce0b6`. The two follow-up native recoveries are recorded in the current queue above. The remaining difference at this boundary covers 196 paths, including 169 UI sources and headers. Both stages reproduce retail and pass the upstream PR checks. The comparisons from combined source to the first stage and from there to the complete source lose zero exact or source-linked function and data ranges.
 
 The 514-path archive and caller stage is a local build checkpoint. It still needs smaller related review groups. The two commits preserve a working base while that split is refined.
 

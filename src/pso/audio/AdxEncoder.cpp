@@ -97,6 +97,11 @@ struct AdxEncoder {                /* 0x2D0, pool of 8 */
     s16 start_hist2[2];
 };
 
+#ifdef __MWERKS__
+#define ADXENC_ABS(value) __abs(value)
+#else
+#define ADXENC_ABS(value) ((value) < 0 ? -(value) : (value))
+#endif
 #define ADXENC_MAX(a, b) (((a) > (b)) ? (a) : (b))
 #define ADXENC_MIN(a, b) (((a) < (b)) ? (a) : (b))
 
@@ -770,8 +775,8 @@ inline void predict_sample_8020(AdxEncChannel *c, s32 i, s16 smp) {
         s32 d = smp - ((c->coef.coef1 * c->hist1) >> 12) - ((c->coef.coef2 * c->hist2) >> 12);
         s16 r = ADXENC_MIN(32767, ADXENC_MAX(-32768, d));
         c->samples[i] = r;
-        if (__abs(r) > c->peak) {
-            c->peak = __abs(r);
+        if (ADXENC_ABS(r) > c->peak) {
+            c->peak = ADXENC_ABS(r);
         }
         c->hist2 = c->hist1;
         c->hist1 = smp;

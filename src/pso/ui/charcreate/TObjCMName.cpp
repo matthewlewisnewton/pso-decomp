@@ -282,7 +282,9 @@ u8 is_not_dressing_room_mode__14TObjCMMainMenuFv(void);
 s32 * TObjCMMainMenu__sub_80298DD4(void);
 void fn_802993F0(void);
 u32 __cvt_fp2unsigned(f32);
-char * strncpy(char *, const char *, u32);
+#ifdef __MWERKS__
+char *strncpy(char *, const char *, u32);
+#endif
 extern u8 __vt__14TObjCMHairMenu[];
 extern void *__vt__16TObjCMAssignMenu[];
 extern Ent_802964B0 class_appearance_table[];
@@ -1805,7 +1807,11 @@ void TObjCMHairMenu::render() {
         pts[1].y *= scale;
         pts[2].y *= scale;
         pts[3].y *= scale;
+#ifdef __MWERKS__
         color.c[3] = 255.0f * t;
+#else
+        color.rgba = (color.rgba & 0xFFFFFF00U) | (u8)(255.0f * t);
+#endif
         TObjCMHairMenu__sub_801E3F54(&cols[0], TObjCMHairMenu__sub_801E3F54(&cols[1],
             TObjCMHairMenu__sub_801E3F54(&cols[2], TObjCMHairMenu__sub_801E3F54(&cols[3], &color))));
         for (s32 i = 0; i < 3; i++) {
@@ -1826,7 +1832,11 @@ void TObjCMHairMenu::render() {
                     pts[j].y = scale * lbl_804650D4[j].y + i * step;
                 }
                 HairBarColor bar_color = lbl_804650F4[i];
+#ifdef __MWERKS__
                 bar_color.c[3] = 255.0f * t;
+#else
+                bar_color.rgba = (bar_color.rgba & 0xFFFFFF00U) | (u8)(255.0f * t);
+#endif
                 TObjCMHairMenu__sub_801E3F54(&cols[0], TObjCMHairMenu__sub_801E3F54(&cols[1],
                     TObjCMHairMenu__sub_801E3F54(&cols[2], TObjCMHairMenu__sub_801E3F54(&cols[3], &bar_color))));
                 ((TObjCMHairMenu *)&list)->draw_tri_fan_2d(4, 6, -2.4375f);

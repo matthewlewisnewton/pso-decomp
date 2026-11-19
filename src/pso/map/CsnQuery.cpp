@@ -1,3 +1,4 @@
+#include "libc/ctype.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/system/vector.h"
@@ -22,11 +23,6 @@ __declspec(section ".sdata2") extern const f32 csn_one;
 #pragma auto_inline off
 #pragma dont_inline off
 struct ByteBlock_C { u8 bytes[0xc]; };
-
-struct RecoveredGlobal_800790F0_lbl_804F5800 {
-    s32 value;
-    u8 remaining[0xFC];
-};
 
 struct E_80079580 { u8 pad[0x24]; u32 f24; };
 
@@ -99,7 +95,6 @@ struct Wall_8007A138 {
     u32 flags;
 };
 
-extern RecoveredGlobal_800790F0_lbl_804F5800 __ctype_map;
 s32 *scene_collision_data;
 E_80079580 *wall_query_scene_buffer;
 s32 csn_query_hit_count;
@@ -144,9 +139,8 @@ f32 vector_length(void *);
 Wall_8007A138 *query_collision_segment_groups(Vec *a, Vec *b, u32 mask);
 s32 calc_segment_xz_distance_sq(Vec *c, Vec *o, Vec *e, Vec *d, f32 radius, f32 hsq, f32 inv);
 
-typedef char RecoveredGlobal_800790F0_lbl_804F5800_size[sizeof(RecoveredGlobal_800790F0_lbl_804F5800) == 0x100 ? 1 : -1];
 s32 get_csn_group_flags(u8 arg0) {
-    return *(u8 *)((s8 *)((u8 *)&__ctype_map.value + arg0) + 0) & 0xC0;
+    return __ctype_map[arg0] & __letter;
 }
 
 void TObjPlayer__sub_80079108(void) {  }
@@ -198,7 +192,6 @@ s32 calc_segment_xz_distance_sq(Vec *c, Vec *o, Vec *e, Vec *d, f32 radius, f32 
 
 // Drops a vertical ray from origin through the faces of the listed groups and
 // records the nearest ground contact plus one contact per special surface bit.
-void vsub(void *, void *, void *);
 }
 s32 evaluate_ground_triangles(Vec *origin_arg, u32 mask_arg, CsnGroup **list_arg) {
   CsnVector *origin = (CsnVector *) origin_arg;
@@ -220,7 +213,11 @@ s32 evaluate_ground_triangles(Vec *origin_arg, u32 mask_arg, CsnGroup **list_arg
   f32 ox;
   f32 oy;
   f32 oz;
+#ifdef __MWERKS__
   CsnContact *hit;
+#else
+  CsnContact *hit = NULL;
+#endif
   CsnHit *hdr;
   lbl_80500140.hit_mask = 0;
   hdr = &lbl_80500140;
@@ -379,7 +376,7 @@ s32 evaluate_ground_triangles(Vec *origin_arg, u32 mask_arg, CsnGroup **list_arg
 
   return hdr->hit_mask & 1;
 }
-extern WallRayResult csn_query_map_object;
+extern "C" WallRayResult csn_query_map_object;
 
 CsnGroup *select_ground_query_groups(CsnVector *arg0, u32 arg1);
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);

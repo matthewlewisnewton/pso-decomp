@@ -124,7 +124,11 @@ void TWindowShortCut::show_shortcut(s32 index, s32 *shortcut) {
     set_sprite_uv_from_pixels(detail_icon, detail_origin->u, detail_origin->v);
     set_text_entry_string(kind_label, (u32)TWindowSubStatusDisp::get_message_10(0xC5), 0);
     set_text_entry_string(kind_name, (u32)TWindowSubStatusDisp::get_message_10(0xC0 + kind), 0);
+#ifdef __MWERKS__
     s32 kind_sprite = shortcut_kind_sprites[kind - 1];
+#else
+    s32 kind_sprite = kind == 0 ? 0 : shortcut_kind_sprites[kind - 1];
+#endif
     SpriteOrigin *kind_origin = (SpriteOrigin *)TWindowSubStatusDisp::get_entry_ptr(kind_sprite);
     set_sprite_uv_from_pixels(kind_icon, kind_origin->u, kind_origin->v);
 

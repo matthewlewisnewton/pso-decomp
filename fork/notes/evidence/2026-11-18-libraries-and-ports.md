@@ -28,3 +28,29 @@ Eight paths have identical contents on the fork and integration. They are the `L
 | `ports/README.md` | The fork’s porting guide lives under [fork/ports](../../ports/README.md). |
 
 The fork’s older conversion-pool symbol rewriting hook has no active build caller. The fork’s own [conversion-pool investigation](../../docs/evidence/conversion-pool-constants.md) records the translation-unit merge that retired it. The integration linker tools still identify conversion pools, and the native build reproduces the original executable without the hook.
+
+## Host kernel reconciliation
+
+Compared with fork source `3342e42983`, seven current game source units had lost
+host code or still depended on a Metrowerks-only operation. All seven now compile
+for 32-bit x86. The host C++ build uses the project's 32-bit layout, enables the
+compiler's compatibility mode, and ignores Metrowerks section annotations. The
+TCP unit compiles as C with implicit function declarations treated as errors.
+
+| Current owner | Checks on the recovered code |
+| --- | --- |
+| `pso/math/MatrixVector.cpp` | Five vector lengths, the explicit and current-matrix destinations, and guards around all 12 matrix elements. The native identity kernel uses an SDA21 relocation to 0x805D46AC. The retail data holds floats 1 and 0. The angle conversion has double bits 0x3F1921FB00000000. |
+| `pso/audio/AdxEncoder.cpp` | Encoded five two-sample blocks through channel 1 with peaks 0, 32768, 32767, 301 and 177. Verified signed residuals and block scales. |
+| `pso/ui/window/TWindowShortCut.cpp` | Executed the compiled shortcut display with simulated UI services. Kinds 0–3 selected sprites 0, 0x12, 0x10 and 0x11. |
+| `pso/ui/charcreate/TObjCMName.cpp` | Observed the four packed vertex colors in the compiled hair menu at fades 0.70, 0.83 and 1.00. Background and all three slider colors retained their RGB bits and received the expected low alpha byte. |
+| `pso/quest/TQuestVmDownLoadServer_803E9A24.cpp` | Ran the selection parser with separately allocated workspace and slot arrays. Runs starting at 0, 4 and 79 updated the expected slot's list and width. Neighboring slots and workspace guards survived. |
+| `pso/network/NetTcp.c` | Observed the sender's idle flag for equal, increasing, decreasing and wrapping sequence numbers. The host compiler uses the callee definitions' argument widths. |
+| `pso/map/CsnQuery.cpp` | Checked character classification for all 256 byte values. The query initializes the debug contact on the host before any triangle writes it. |
+
+On an x86 Linux multilib system, `make -C ports/tests game-kernels musyx` runs the
+matrix, ADX and MusyX regression tests. The validation host supplied its i386 C
+and math libraries and a small process entry point. The stock GameCube build and
+regression checker passed with all seven units and produced the retail SHA-1
+`0d85744b51d7379efb025a943d0cd5aaae2191a3`. The complete historical source edits
+in the two matrix files have been reconciled. The other rows establish the listed
+behaviors and retain their outstanding source-level comparisons in the review index.

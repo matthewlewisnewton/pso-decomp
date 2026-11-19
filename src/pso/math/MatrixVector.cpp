@@ -1,5 +1,8 @@
 #include "types.h"
 #include "pso/math/MatrixVector.h"
+#ifndef __MWERKS__
+#include "libc/math.h"
+#endif
 
 extern "C" {
 extern u8 *current_matrix;
@@ -14,13 +17,19 @@ void scale_matrix_vec3(u8 *arg0, u8 *arg1) {
     scale_matrix((f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 4)), (f32) (*(f32 *)((s8 *)arg1 + 8)));
 }
 
+#ifdef __MWERKS__
 asm f32 vector_length(const Vec *v) {
 #include "orig_asm/pso/math/MatrixVector/vector_length.inc"
 }
+#else
+f32 vector_length(const Vec *v) {
+    return sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
+}
+#endif
 
 #pragma push
 #pragma scheduling off
-void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 arg2) {
+void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 angle) {
     u8 sp8[0x30];
     u8 *m;
     if (arg0 == 0) {
@@ -28,8 +37,9 @@ void rotate_matrix_about_axis(u8 *arg0, s32 arg1, s32 arg2) {
     } else {
         m = arg0;
     }
-    if (arg2 != 0) {
-        PSMTXRotAxisRad((MtxP)sp8, (Vec *)arg1, 9.587378008291125e-05 * arg2);
+    if (angle != 0) {
+        const f64 radiansPerAngleUnit = 3.141592f / 32768.0;
+        PSMTXRotAxisRad((MtxP)sp8, (Vec *)arg1, radiansPerAngleUnit * angle);
         PSMTXConcat((MtxP)m, (MtxP)sp8, (MtxP)m);
     }
 }
@@ -39,12 +49,22 @@ void translate_matrix_vec3(u8 *arg0, u8 *arg1) {
     translate_matrix((f32) (*(f32 *)((s8 *)arg1 + 0)), (f32) (*(f32 *)((s8 *)arg1 + 4)), (f32) (*(f32 *)((s8 *)arg1 + 8)));
 }
 
-// 1.0f in .sdata, read by the assembly below (not yet split into this unit).
-extern f32 lbl_805D46AC;
+// The paired-single identity kernel reads 1.0f from this shared {1.0f, 0.0f} pair.
+extern f32 lbl_805D46AC[2];
 
+#ifdef __MWERKS__
 asm void matrix_identity(MtxP m) {
 #include "orig_asm/pso/math/MatrixVector/matrix_identity.inc"
 }
+#else
+void matrix_identity(MtxP m) {
+    for (int row = 0; row < 3; ++row) {
+        for (int col = 0; col < 4; ++col) {
+            m[row][col] = row == col ? 1.0f : 0.0f;
+        }
+    }
+}
+#endif
 
 #pragma push
 #pragma scheduling off

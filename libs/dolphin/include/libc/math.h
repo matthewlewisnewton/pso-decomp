@@ -25,6 +25,7 @@ double copysign(double x, double y);
 
 double floor(double x);
 
+#ifdef __MWERKS__
 #ifdef PSO_SDK_COMPACT_MATH
 #define PSO_MATH_LOCAL_CONST const
 #else
@@ -69,6 +70,17 @@ extern inline float sqrt(float x)
 
 #define fabs(x) __fabs(x)
 #define fabsf(x) __fabsf(x)
+#else
+#ifdef __cplusplus
+extern "C" {
+#endif
+double sqrt(double x);
+float sqrtf(float x);
+float fabsf(float x);
+#ifdef __cplusplus
+}
+#endif
+#endif
 
 long __fpclassifyf(float x);
 long __fpclassifyd(double x);

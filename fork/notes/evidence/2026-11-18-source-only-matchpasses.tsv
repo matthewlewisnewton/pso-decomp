@@ -14,6 +14,6 @@ enemy-motion	great-merge/upstream/enemy-motion	d17543716c857ba0baa4b71755cfa733d
 battle-parameters	great-merge/upstream/battle-parameters	40a3122ce71953c0102d2d0e7ebf2626a199ae0b	79	Upstream checks and retail SHA-1 passed
 boss-effects	great-merge/upstream/boss-effects	acd33d0af275c70dd96edce1b8e00c7bdfea1fe0	31	Upstream checks and retail SHA-1 passed
 audio-streams	great-merge/upstream/audio-streams	694270fb8bc87bc560a83b9d7b2e796c05e18519	77	Upstream checks and retail SHA-1 passed; audio pitch and AFS loader checks passed
-host-portability	great-merge/upstream/native-callbacks-sdk	d9e51bc35f245e31a2953113786d5a297a312485	10	Upstream checks and retail SHA-1 passed
+host-portability	great-merge/upstream/native-callbacks-sdk	d8c3791adee9d8a777bcc04bff425027f193651e	11	Upstream checks and retail SHA-1 passed; shared matrix constants verified
 collision-results	great-merge/upstream/collision-results	0252e0bcab421f8d1a7ddf7c6d0fb157d7b5d975	12	Upstream checks and retail SHA-1 passed
 memory-moves	great-merge/upstream/memory-moves	c73a05326b43865a5b08ffad1b79a718bc328a82	32	Upstream checks and retail SHA-1 passed; 96 guarded byte and word copy cases

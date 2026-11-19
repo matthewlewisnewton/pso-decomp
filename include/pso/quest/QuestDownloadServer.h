@@ -356,7 +356,11 @@ s32 find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138(const char *na
 void DCInvalidateRange(void *, u32);
 void ARQPostRequest(void *req, u32 owner, u32 type, u32 prio, u32 src, u32 dst, u32 len, void (*cb)(u8 *));
 u32 OSGetTick(void);
+#ifdef __MWERKS__
 u32 __OSBusClock : 0x800000F8;
+#else
+extern u32 __OSBusClock;
+#endif
 void *memcpy(void *, const void *, u32);
 void OSReport(const char *, ...);
 void ARQRemoveRequest(void *);

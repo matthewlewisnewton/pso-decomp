@@ -695,3 +695,5 @@ Resource buffers, motion archives and area streaming	36342709bb72e501450579d70b6
 Resource buffers, motion archives and area streaming	36342709bb72e501450579d70b6498e743a27c43	src/pso/unk/text_803DAFA8.cpp	2
 Resource buffers, motion archives and area streaming	36342709bb72e501450579d70b6498e743a27c43	src/pso/unk/text_803DD5E0.cpp	11
 Resource buffers, motion archives and area streaming	36342709bb72e501450579d70b6498e743a27c43	src/pso/unk/text_803DE8BC.cpp	3
+Collision character classification	e7fbdfe397f23783eb200fb25048a7dfacc13be8	src/pso/map/CsnQuery.cpp	7
+Matrix angle and identity constants	aaa8072d5a65fe5a2bbbdf656d3349baaa6d84e4	src/pso/math/MatrixVector.cpp	3
