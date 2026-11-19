@@ -1056,12 +1056,15 @@ pso/network/TTcpSocket.cpp:
 	.data       start:0x8048D378 end:0x8048D4C0
 
 pso/map/CsnQuery.cpp:
-	.text       start:0x800790F0 end:0x8007A810
+	.text       start:0x800790F0 end:0x8007A720
 	.ctors      start:0x80433F4C end:0x80433F50
 	.rodata     start:0x80438988 end:0x80438A08
 	.bss        start:0x804FF9C0 end:0x80500158
 	.sbss       start:0x805D4E68 end:0x805D4E80
 	.sdata2     start:0x805D91F0 end:0x805D9210
+
+pso/map/CsnResult.cpp:
+	.text       start:0x8007A720 end:0x8007A810
 
 pso/ui/window/TWindowSubComCard_8007A810.cpp:
 	.text       start:0x8007A810 end:0x8007B370

@@ -2531,7 +2531,7 @@ force_active:
   - TObjPlayer__sub_80079120
   - TObjPlayer__sub_80079124
   - TObjPlayer__sub_80079DE0
-  - TObjPlayer__sub_8007A7B8
+  - __ct__10CsnContactFv
   - TObjPlayer__sub_80082C30
   - TObjPlayer__sub_80083F9C
   - TObjPlayer__sub_80083FA4
@@ -5202,7 +5202,6 @@ force_active:
   - __restore_gpr
   - __save_fpr
   - __save_gpr
-  - __sinit_CsnQuery_cpp
   - __sinit_TAdPlayerLoadGC_800F9EF8_cpp
   - __sinit_TItem_cpp__Fv
   - __sinit_TLobby_80227A2C_cpp
@@ -8887,7 +8886,7 @@ force_active:
   - clear_task_state__14TObjCMMainMenuFv
   - clear_technique_contacts__10TObjPlayerFv
   - clear_thread_state__12TQuestThreadFv
-  - clear_velocity_vectors__10TObjPlayerFv
+  - clear__10CsnContactFv
   - clear_work__12TBoss1DragonFv
   - clear_work_buffer__FPUc
   - clitical_texture_list
@@ -10691,7 +10690,7 @@ force_active:
   - fn_800779FC
   - fn_80077A70
   - fn_80077B34
-  - fn_8007A7A0
+  - reset__6CsnHitFv
   - fn_8007FE78
   - fn_8009BD00
   - fn_8009E2DC
@@ -11774,7 +11773,7 @@ force_active:
   - init_6x8D_technique_level_packet__FPUc
   - init__10TBoss2MineFPvi
   - init__10TNpcPlayerFv
-  - init__10TObjMapCsnFv
+  - __ct__13WallRayResultFv
   - init__11TOVS2Wall01Fi
   - init__11TOVS2Wall01Fv
   - init__12TAdTimeSetGCFv
@@ -11810,7 +11809,7 @@ force_active:
   - init_air_turn__12TBoss1DragonFl
   - init_alpha__11TBreakUpMdlFlf
   - init_and_reset_forward__10TObjPlayerFPv
-  - init_and_return__10TObjMapCsnFl
+  - __ct__6CsnHitFv
   - init_and_send__10TObjPlayerFv
   - init_and_set_flag__6TLobbyFv
   - init_attack_params__11TBoss6Type2Fv
@@ -19731,7 +19730,7 @@ force_active:
   - query_field_340__10TObjPlayerFPv
   - query_segment_wall_meshes
   - query_status_field__20TWindowSubStatusDispFPvSc
-  - query_wall_segment__FPvPvPvl
+  - query_wall_segment__FP3VecP3VecUlP10CsnContact
   - quest_and_shop_error_text
   - quest_bgm_area_filename_table
   - quest_bgm_carnaval_filename

@@ -49,13 +49,18 @@ struct CsnContact {
     Vec point;
     Vec normal;
     u32 flags;
+
+    CsnContact();
+    void clear();
 };
 
 // The result csnVector returns (one static record, NULL when nothing is hit).
 struct CsnHit {
     u32 hit_mask;        // (inferred) bit 0: ground contact, others: per-flag contacts
     CsnContact *contact;
-    u8 pad_8[0x38];
+
+    CsnHit();
+    void reset();
 };
 
 // A radial wall query (select_deepest_wall_ray's input): count rays from
@@ -68,20 +73,22 @@ struct WallRayQuery {
     Vec *rays;
 };
 
-// One ray's wall contact (field names inferred).
-struct WallRayHit {
-    Vec point;
-    Vec normal;
-    u8 pad_18[0x4];
+typedef char WallRayQuerySize[sizeof(WallRayQuery) == 0x1C ? 1 : -1];
+typedef char WallRayQueryOriginOffset[offsetof(WallRayQuery, origin) == 0xC ? 1 : -1];
+
+// The radial query extends the common result with the deepest ray.
+struct WallRayResult : CsnHit {
+    s32 index;
+    f32 depth;
+
+    WallRayResult();
 };
 
-// The deepest contact of a wall ray query (field names inferred).
-struct WallRayResult {
-    s32 hit;
-    WallRayHit *hits;
-    s32 index;  // the ray that went deepest
-    f32 depth;
-};
+typedef char CsnContactSize[sizeof(CsnContact) == 0x1C ? 1 : -1];
+typedef char CsnContactNormalOffset[offsetof(CsnContact, normal) == 0xC ? 1 : -1];
+typedef char CsnHitSize[sizeof(CsnHit) == 8 ? 1 : -1];
+typedef char CsnHitContactOffset[offsetof(CsnHit, contact) == 4 ? 1 : -1];
+typedef char WallRayResultSize[sizeof(WallRayResult) == 0x10 ? 1 : -1];
 
 extern "C" {
 CsnHit *csnVector(const Vec *from, const Vec *to, u32 mask);
@@ -105,8 +112,8 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2);
 s32 get_csn_group_flags(u8 arg0);
 }
 s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);
-void *query_prepared_wall_polygons(void *self);
-s32 query_wall_segment(void *arg0, void *arg1, void *arg2, s32 arg3);
+WallRayResult *query_prepared_wall_polygons(WallRayQuery *query);
+s32 query_wall_segment(Vec *from, Vec *to, u32 mask, CsnContact *contact);
 CsnGroup *select_ground_query_groups(CsnVector *origin, u32 mask);
 
 #endif
