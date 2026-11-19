@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `0dd3f7aebc` changes 1,433 paths counting both sides of renames. The all-source snapshot is `017048193e`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `65b75fdd24` changes 1,445 paths counting both sides of renames. The all-source snapshot is `496b29652b`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `8b5b17c95c` | `942a0c050f` |
+| `great-merge/current/window-frames` | `ba6d8f0d4a` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -43,6 +43,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Keyboard queries, composer modes and chat availability | Included in the window review | `fcaf0573ae` |
 | Native chat and keyboard child ownership | Included in the window review | `96d3b95da5` |
 | Shared window layout and vertex records | Included in the window review | `0dd3f7aebc` |
+| Native message constructors and shared scrollbar storage | Included in the window review | `65b75fdd24` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -193,6 +194,14 @@ The window review at `8b5b17c95c` and combined stack at `0dd3f7aebc` name and ch
 The word-select menu, scrollbar, string and word windows use the shared 24-byte vertex record. The storage initializer and UV copy use the fork's declarations at their original addresses. Their callers preserve the eight-vertex buffers and relocation targets. The combined comparison matches all selected inputs after mapping the two function names. The standalone review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three upstream-shaped project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
 
 The audit reconciles 2 complete fork headers and records partial evidence for 29 paths. It has 1,581 entries awaiting owner comparison and 625 with partial evidence.
+
+### Native message constructors and shared scrollbar storage
+
+The window review at `ba6d8f0d4a` and cumulative stack at `65b75fdd24` use native constructors for Message, Infomation, Log, Page, Quest and Scroll. Their factories pass the original extent, row counts, client words and flags. Log, SubComCardList, MenuIconLine, CustomSelect and SymbolChatParts use the 12-byte scrollbar storage. ChoiceSetting shares the frame counter and release helpers through the original storage-level interface.
+
+The six message constructors and four scrollbar routines match 844 original instruction bytes. All 24 scrollbar call sites reach their original addresses in the linked executable. Each build compiled 2,451 source objects. The object comparison preserves every selected section and relocation after mapping the ten names. The standalone review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three upstream-shaped project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
+
+The audit reconciles 5 complete fork paths and records partial evidence for 25 paths. It has 1,555 entries awaiting owner comparison and 646 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
