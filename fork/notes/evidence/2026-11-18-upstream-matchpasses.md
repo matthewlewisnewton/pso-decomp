@@ -2,7 +2,7 @@
 
 ## Current review queue on upstream master `3f35d99bb1`
 
-The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `70717f69b9` changes 1,463 paths counting both sides of renames. The all-source snapshot is `278e59a4e1`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
+The eleven local review groups were replayed on `3f35d99bb1`. The current cumulative stack at `11129323ca` changes 1,466 paths counting both sides of renames. The all-source snapshot is `aa5c4df9d5`. The previous upstream snapshots remain under `great-merge/snapshots/c572111ed6/`.
 
 | Review branch | Standalone tip | Cumulative commit |
 | --- | --- | --- |
@@ -12,7 +12,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | `great-merge/current/spatial-effects` | `f781f52b51` | `1b33f02f81` |
 | `great-merge/current/combat` | `a42b08d6eb` | `de49f74be1` |
 | `great-merge/current/encounter-drawing` | `8f5eb4303f` | `9445c1e728` |
-| `great-merge/current/window-frames` | `d1766607d8` | `942a0c050f` |
+| `great-merge/current/window-frames` | `f872aebd46` | `942a0c050f` |
 | `great-merge/current/bml-resource-lifetime` | `3ed5b08f94` | `beded0d4d9` |
 | `great-merge/current/render-interfaces` | `5a4673df7e` | `5af38c6b3d` |
 | `great-merge/current/actor-presentation` | `5a2a778de3` | `fa2a1e5837` |
@@ -49,6 +49,7 @@ The eleven local review groups were replayed on `3f35d99bb1`. The current cumula
 | Native menu and guild-card list lifetimes | Included in the window review | `9808118b7b` |
 | Native lobby, area map and quest-board windows | Included in the window review | `f5fda12041` |
 | Native action palette and customization windows | Included in the window review | `70717f69b9` |
+| Native symbol-chat editor windows | Included in the window review | `11129323ca` |
 
 The updated master splits out six data blocks that the prior fork stack recovered inside code files. The replay uses upstream's six data units and moves 48 typed definitions into them. The first eight bytes of the player's later small-data pool still belong to its code unit. Each moved block matches the upstream source object and the extracted bytes at its original range, allowing the original four bytes of trailing alignment padding in three blocks. The preceding code owners have identical instructions and relocations. The render group also carries eight Canadin and Morfos table names into the new upstream data units with declarations that match their callers. Every renamed table has one provider and no reference to a placeholder name.
 
@@ -247,6 +248,14 @@ The window review at `d1766607d8` and cumulative stack at `70717f69b9` use nativ
 The three constructors and action lookup retain 896 original instruction bytes and all five direct call targets. The three descriptors and three compiler tables retain 132 bytes at the original addresses. The object comparison preserves all selected input sections and relocations after mapping the four names. The window review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
 
 The audit reconciles 2 complete fork headers and records partial evidence for 7 paths. It has 1,512 entries awaiting owner comparison and 670 with partial evidence.
+
+### Native symbol-chat editor windows
+
+The window review at `f872aebd46` and cumulative stack at `11129323ca` use native constructors for FaceType, Help, Parts and PartsSet. The seven allocation sites borrow the original editor values and retain the original heading and scrollbar cleanup order. Six help-state operations use the actual Help receiver, with all twelve original calls retained.
+
+The four constructors and six help operations retain 844 instruction bytes at their original addresses and all nineteen direct call targets. Three layout descriptors and four compiler tables retain their 156 bytes. Every selected input preserves its allocated sections and relocations after mapping the ten names. The window review, combined stack, all-source snapshot and working fork reproduce SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`. All three project checks passed with full builds. The fork layer passed eleven tests and reproduced all 133 tooling paths.
+
+The audit reconciles 5 complete fork declarations or owners and records partial evidence for 11 paths. It has 1,503 entries awaiting owner comparison and 674 with partial evidence.
 
 ## Consolidated review queue on `c572111ed6`
 
