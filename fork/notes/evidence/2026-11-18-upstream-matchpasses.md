@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `b7468e6f16` and the complete source snapshot at `3a5297fa66` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `3abf82f134` and the complete source snapshot at `e931dd4156` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -169,6 +169,14 @@ The seven-file component at `3a5297fa66` carries the ending wall and picture con
 The local review `901b8c33ff` adds the ending replay to the title and compass work at `fb95d7b4a9` for a 40-file review based on `af11a99125`. The component is also available at `e0889a9809`. All five builds reproduce the original executable and pass the project checker. All 35 functions in the four affected scene units still match and link. The cumulative source and working fork retain the historical fork's matched and linked addresses. The upstream-shaped builds inherit the existing 24-byte keyboard virtual table gap at 0x804D0004.
 
 Linked execution checked both controllers at 30 and 25 ticks per second, covering four constructions, 104 transition cases, ten archive selections and 56 texture entries. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Nine rows of the [fork source index](2026-11-18-fork-review-index.tsv) carry the corresponding evidence.
+
+## Stage objects and weather
+
+The rain replay `e931dd4156` carries the consolidated rain unit from `f38e6ec6c7` into the current ambient-object source. The 16-drop layout, streak points and colors, and native constructor are retained. The spawning task now names its countdown and constructs both its controller and drops through their native types. Its original 0x20-byte allocation and split-screen condition are preserved. The jungle warp already carries the typed animation motion and six source-linked constants from `8762a22f23` in its current owner.
+
+The combined local review `caddbc33aa` extends the world-resource and scene-object review `7cb3ebf845` into a 37-file review on `af11a99125`. All four builds reproduce the original executable and pass the project checker. All eleven functions in the three rain units remain exact and source-linked. The cumulative branches retain the historical fork's matched and linked addresses. The upstream-shaped review inherits the 24-byte keyboard virtual table gap at 0x804D0004.
+
+The linked weather tests cover eight constructor inputs, twelve floor and activity combinations and sixteen scheduling and allocation cases. The harness substitutes the console vector addition helper and retains the ordinary register saves around the rain initializer. The fork-only layer round-trips all 133 overlay paths and passes all eleven tests. Seven entries in the [fork source index](2026-11-18-fork-review-index.tsv) carry the source evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
