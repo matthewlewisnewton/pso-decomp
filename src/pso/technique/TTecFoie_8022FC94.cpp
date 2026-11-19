@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
@@ -102,7 +103,6 @@ s32 clamp_nonnegative_int(s32 x);
 extern RecoveredGlobal_8022FE84_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_8022FE84_lbl_804CC55C lbl_804CC55C;
 extern "C" {
-s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
 void __dl__7TObjectFPv(void *);
 // foie_emitter_parts_N (inferred, after TTecGiFoie's emitter_parts_N): the particle parts entry N of
 // TTecFoie__emitter_profile_table spawns; the scale of part 0x14 grows with the band.
@@ -215,7 +215,7 @@ void TTecFoie::vfunc_8(void *target_arg) {
     d.kind = 1;
     d.amount = this->power;
     target->receive(((Tec_80230004 *)this)->owner, d, ((Tec_80230004 *)this)->f8, 0, -1);
-    play_sound_effect(0x4002A828, target->pos, 0, 0);
+    play_sound_effect(0x4002A828, (const Vec *)target->pos, 0, 0);
     queue_destruction();
 }
 

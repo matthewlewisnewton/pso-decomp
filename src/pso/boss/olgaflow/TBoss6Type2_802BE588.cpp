@@ -173,7 +173,7 @@ void TBoss6Type2::init_timer_and_play_sound() {
     u8 *arg0 = (u8 *)this;
     static s32 dur = (s32)(30.0f / lbl_805DE3F4);
   this->state_timer = (this->state_duration = dur);
-  play_sound_effect(0x69126, arg0 + 0x38, 0, 1);
+  play_sound_effect(0x69126, (const Vec *)(arg0 + 0x38), 0, 1);
 }
 
 void TBoss6Type2::pick_next_zako() {
@@ -327,7 +327,7 @@ void TBoss6Type2::update_timer() {
     s32 temp_r0;
 
     if ((s32) this->state_timer == (s32) (this->state_duration - 7)) {
-        play_sound_effect(0x4006A604, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4006A604, (const Vec *)(arg0 + 0x38), 0, 0);
     }
     temp_r0 = this->state_timer - 1;
     this->state_timer = temp_r0;
@@ -388,7 +388,7 @@ void TBoss6Type2::update_death_sequence() {
 void TBoss6Type2::init_attack_timers() {
     this->state_duration = 0xB4;
     this->state_timer = 0xB4;
-    play_sound_effect(0x4006970E, (void *)(((u8 *)this) + 0x38), 0, 1);
+    play_sound_effect(0x4006970E, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
     if ((s32) *(s32 *)((s8 *)((u8 *)this) + 0x418) == 0) {
         TBoss6Type2__sub_802BB7C0(this);
         return;
@@ -403,7 +403,7 @@ void TBoss6Type2::update_attack_sequence() {
     s32 temp_r0_2;
 
     if ((s32) this->state_timer == (s32) (this->state_duration - 0x3C)) {
-        play_sound_effect(0x69C0F, arg0 + 0x38, 0, 1);
+        play_sound_effect(0x69C0F, (const Vec *)(arg0 + 0x38), 0, 1);
     }
     if ((s32) this->state_timer == (s32) (this->state_duration - 0x78)) {
         TBoss6Type2__sub_802BAD04((s32)arg0);
@@ -516,7 +516,7 @@ void TBoss6Type2::spawn_death_soul() {
     this->state_duration = temp_r0;
     this->state_timer = temp_r0;
     *(s32 *)((s8 *)arg0 + 0x420) = 0;
-    play_sound_effect(0x68A25, arg0 + 0x38, 0, 1);
+    play_sound_effect(0x68A25, (const Vec *)(arg0 + 0x38), 0, 1);
     ((TBoss6Type2 *)arg0)->spawn_particle_slot(6);
     TBoss6Type2__sub_802BB768(arg0);
     if (*(u16 *)((s8 *)arg0 + 0x464) != 0xFFFF) {

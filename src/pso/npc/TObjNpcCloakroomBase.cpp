@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/BmlResource.h"
 #include "types.h"
 #include "pso/npc/TObjNpcCloakroomBase.h"
@@ -27,16 +28,15 @@ u32 TObjNpcCloakroomBase__static_instance;
 
 extern "C" {
 extern s32 __vt__20TObjNpcCloakroomBase[];
-s32 play_sound_effect(s32, s32, s32, s32);
 void *__ct__11TObjControlFP7TObject(void *, void *);
 
 void TObjNpcCloakroomBase::play_voice() {
     s32 arg0 = (s32)this;
     if (get_current_floor_area() != AREA_CAVE3) {
-        play_sound_effect(0x40003804, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x40003804, (const Vec *)(arg0 + 0x38), 0, 0);
         return;
     }
-    play_sound_effect(0x40003802, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x40003802, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 extern void *tl_04;

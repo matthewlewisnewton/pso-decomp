@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
@@ -84,7 +85,6 @@ void clear_password__18TAdEnterPasswordGCFPv(T_8032BBF0 *self);
 void update_children__18TAdEnterPasswordGCFPv(O_8032BC1C *arg0);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 get_field_118__22TAdEnterSerialAccessGCFv(void);
-s32 play_sound_effect(int, int, int, int);
 s32 forward_input__22TAdEnterSerialAccessGCFPv(void *, int, s32);
 s32 strlen(s32);
 extern u8 controller_input_state[];

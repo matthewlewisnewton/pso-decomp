@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/frontend/TAdSelectGameModeGC.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/ui/frontend/TAdDrawLineCtrl.h"
@@ -39,7 +40,6 @@ extern "C" {
 int enable_camera__19TAdSelectGameModeGCFv(void);
 s32 free_sub_ctrls__19TAdSelectGameModeGCFv();
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(int, int, int, int);
 extern s32 TAdSelectGameModeGC__cached_mode_value;
 void __ct__7TObjectFP7TObject(void *, void *);
 void *__ct__9TAdBackGCFv(void *, void *);

@@ -221,7 +221,7 @@ void init__11TOVS2Wall01Fi(s32 arg0) {
     } while (index <= 0xF);
     spawn_particle_effect((void *)(arg0 + 0x38), 0x45);
     spawn_particle_effect((void *)(arg0 + 0x38), 0x46);
-    play_sound_effect(0x4004BC05, (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(0x4004BC05, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 f32 take_hit__11TOVS2Wall01FPvUi(u8 *ovs2_wall01, void *attacker) {

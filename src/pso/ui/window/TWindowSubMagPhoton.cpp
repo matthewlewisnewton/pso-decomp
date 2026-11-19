@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/item/MagStats.h"
 #include "types.h"
 #include "pso/ui/window/TWindowSubMagPhoton.h"
@@ -100,7 +101,6 @@ s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 init_photon_blast_entries__19TWindowSubMagPhotonFv(void *, int);
 extern s32 __vt__19TWindowSubMagPhoton[];
 u8 *TWindowSubMagPhoton__ct(TWindowSubMagPhoton *arg0, s32 arg1, s32 arg2, s16 arg3);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
 void draw_cursor_sprite__21TWindowSubCustomEquipFPvPvif(void *, void *, int, f32);
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
@@ -135,7 +135,7 @@ void TWindowSubMagPhoton::update_selection_input() {
     u8 *window_choice_setting;
     window_choice_setting = (u8 *)&controller_input_state + (is_player_input_active(((s32) this->client_index)) * 0x50) + 0x20;
     if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0xF0, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0xF0, 6, 1) != 0)) {
-        play_sound_effect(0x54100, (s32)(0U), 0, 0);
+        play_sound_effect(0x54100, 0U, 0, 0);
         if ((apply_choice__20TWindowChoiceSettingFllll(window_choice_setting, 0x10, 6, 1) != 0) || (apply_choice__20TWindowChoiceSettingFllll((void *) ((u8 *)&controller_input_state + 0x160), 0x10, 6, 1) != 0)) {
             this->m_61 = (this->m_61 + 1);
         }

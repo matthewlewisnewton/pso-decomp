@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
@@ -30,7 +31,7 @@ void TObjPlayer::play_effect_if_v2(s32 arg0) {
 struct SndEnt_8022675C {
     s32 flags;
     s32 id;
-    Vec *src;
+    const Vec *src;
     Vec pos;
     s16 timer; // frames left: 0x96 when played, 5 to fade out; the same id is not replayed while >= 0x94
     s16 x1a;
@@ -225,7 +226,6 @@ s32 fn_802264B8(s32 slot, s32) {
 SndEnt_8022675C lbl_805145F0[40];
 u8 lbl_80514C30[0x20];
 f32 lbl_80514C50[4];
-s32 play_sound_effect(s32 id, Vec *src, s32 a2, s32 flags);
 
 s32 TOTrapAncient01::check_trigger_flag(s32 arg0, s32 arg1) {
     s32 var_r3;
@@ -295,7 +295,7 @@ s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags) {
     }
     return idx;
 }
-s32 play_sound_effect(s32 id, Vec *src, s32 a2, s32 flags) {
+s32 play_sound_effect(s32 id, const Vec *src, s32 a2, s32 flags) {
     s32 i;
     s32 idx;
     Vec *pos;
@@ -318,7 +318,7 @@ s32 play_sound_effect(s32 id, Vec *src, s32 a2, s32 flags) {
     if (idx >= 0) {
         if (src != NULL) {
             pos = &lbl_805145F0[idx].pos;
-            VecCopy((Vec *)pos, (const Vec *)src);
+            VecCopy(pos, src);
             ((void (*)(s32, Vec *))TLobby__sub_80227AF8)(idx, pos);
         }
         lbl_805145F0[idx].flags &= lbl_805DC748;

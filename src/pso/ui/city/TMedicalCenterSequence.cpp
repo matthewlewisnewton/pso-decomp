@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/city/TMedicalCenterMes.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/hud/TRaderMapCore.h"
@@ -132,7 +133,6 @@ extern RecoveredGlobal_TMedicalCenterSequence__data_80513E90 TMedicalCenterSeque
 u8 *TShopSequence__ct(u8 *arg0);
 u8 *TMedicalCenterSequence__ct(u8 *arg0, s32 arg1, s32 arg2);
 u8 *create_yes_no_window(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 try_spend_actor_meseta(u8 *arg0, s32 arg1);
 int sub_802239EC__13TShopSequenceFv(void *);
 s32 close_window__13TShopSequenceFv(void *);

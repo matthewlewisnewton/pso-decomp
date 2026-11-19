@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
@@ -103,7 +104,6 @@ struct Bar_8025799C {
     s16 timer;
 };
 
-s32 play_sound_effect(u32, s32, s32, s32);
 void* init_from__13TUnk_804CF930FPvi(void* a0, void* a1, int a2);
 u32 update_text_color_transition(Fade_802575C0 *fade);
 void start_text_color_transition(Fade_802575C0 *arg0, u32 rgb, f32 time);

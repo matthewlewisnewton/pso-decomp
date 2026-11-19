@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 
 #include <stddef.h>
@@ -116,7 +117,6 @@ extern const f32 lbl_805DA0B0;
 f32 atan2_float(f32 y, f32 x);
 f32 calc_elapsed_scaled__9TObjEneDDFv(void *);
 void rotate_xz_pair_by_angle(f32 *arg0, f32 *arg1, s32 arg2);
-s32 play_sound_effect(s32, u32, s16, s32);
 f32 subtract_vector(void *, void *);
 extern const f64 lbl_8043BF28;
 void TObjEneEpsilon__sub_800B92F8(u8 *arg0, s32 arg1, f32 farg0);
@@ -1210,7 +1210,7 @@ void TObjEneMe1Gee::sub_800CA454(s32 arg1) {
                     queue_destruction__7TObjectFv(this->m_464);
                     this->m_464 = NULL;
                 }
-                play_sound_effect(this->handle_message(0x3AD17), (u32)&this->m_2fc, 0, 0);
+                play_sound_effect(this->handle_message(0x3AD17), (const Vec *)&this->m_2fc, 0, 0);
             } else {
                 play_persistent_sound((s32)(this->handle_message(0x3A914)), (s32)this, (u32)&this->m_2fc, 0, 0);
             }
@@ -1348,7 +1348,7 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
                 f32 k;
                 this->enemy_copy_target_destination();
                 this->update_velocity();
-                play_sound_effect(this->handle_message(0x3AD13), (u32)&this->m_2fc, 0, 0);
+                play_sound_effect(this->handle_message(0x3AD13), (const Vec *)&this->m_2fc, 0, 0);
                 k = 956.25f;
                 inv = 1.0f / newton_sqrtf(k);
                 k *= inv;
@@ -1397,7 +1397,7 @@ void TObjEneMe1Gee::sub_800C9DF8(s32 arg1) {
         case 3:
             this->requested_action = 1;
             this->m_434 = 4;
-            play_sound_effect(this->handle_message(0x3AD15), (u32)&this->m_2fc, 0, 0);
+            play_sound_effect(this->handle_message(0x3AD15), (const Vec *)&this->m_2fc, 0, 0);
         case 4:
             this->enemy_copy_target_destination();
             this->update_velocity();
@@ -1499,7 +1499,7 @@ void TObjEneMe1Gee::sub_800C9A94(s32 arg1) {
                     this->m_448 = 0.125f * (this->m_3e8 - this->m_3f4);
                     this->m_450 = 0.125f * (70.0f - this->m_3ac);
                     this->m_44c = this->m_3ac;
-                    play_sound_effect(this->handle_message(0x3AD13), (u32)&this->m_2fc, 0, 0);
+                    play_sound_effect(this->handle_message(0x3AD13), (const Vec *)&this->m_2fc, 0, 0);
                 }
                 this->m_438++;
                 if (this->m_438 >= 8) {
@@ -1729,7 +1729,7 @@ void TObjEneMe1Gee::vfunc_112(s32 arg1) {
             this->m_3c0->vfunc_117((u32)this);
         }
         TBoss3Volopt::create_breakup_mdl((s32)TObjEneMe1Gee__data_805D51C4, 0, this->texlist, (s32)&this->m_2fc, this->rotation_y);
-        play_sound_effect(this->handle_message(0x3A843), (u32)&this->position, 0, 0);
+        play_sound_effect(this->handle_message(0x3A843), &this->position, 0, 0);
         this->m_3c8 |= 0x400000;
         this->actorFlags |= 0x01000000;
         VecCopy(&pos, (Vec *)&this->m_2fc);

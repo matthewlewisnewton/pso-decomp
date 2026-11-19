@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/frontend/TAdMultiOkGC.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
@@ -76,7 +77,6 @@ typedef struct { P3_80307034 v[11]; } Pos_80307034;
 typedef struct { u32 c[12]; } Col_80307034;
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
 extern Pad_80306DF4 controller_physical_port_bank[];
 s32 multi_confirm_texture_list;
 void __ct__7TObjectFP7TObject(void *, void *);

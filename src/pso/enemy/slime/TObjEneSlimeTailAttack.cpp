@@ -1267,7 +1267,7 @@ void TObjEneSlimeOne::sub_800EA364() {
 void TObjEneSlimeOne::enter_slime_state() {
     *(s32 *)((s8 *)((u8 *)this) + 0x394) = 8;
     animation->set_state(9);
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003AD1D, ((u8 *)this) + 0x38, 0, 0);
+    play_sound_effect(0x4003AD1D, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
     ((int (*)(void*, int))set_display_mode__15TObjEneSlimeOneFPvi)(this, 1);
 }
 
@@ -1290,7 +1290,7 @@ void TObjEneSlimeOne::update_slime_timer() {
 
 void TObjEneSlimeOne::enter_appear_state() {
     *(s32 *)((s8 *)((u8 *)this) + 0x394) = 0x14;
-    ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003AD1D, ((u8 *)this) + 0x38, 0, 0);
+    play_sound_effect(0x4003AD1D, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
     animation->set_state(0xA);
     ((int (*)(void*, int))set_display_mode__15TObjEneSlimeOneFPvi)(this, 1);
 }
@@ -1446,7 +1446,7 @@ void TObjEneSlimeOne::update_water_bomb_timer() {
     if (temp_r0 > 0) {
         spawn_particle_effect(((u8 *)this) + 0x2FC, 0xFF);
     } else if (temp_r0 == 0) {
-        ((s32 (*)(s32, void *, s32, s32))play_sound_effect)(0x4003A017, ((u8 *)this) + 0x38, 0, 0);
+        play_sound_effect(0x4003A017, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
         spawn_particle_effect(((u8 *)this) + 0x2FC, 0xE2);
         ((TObjEneSlimeWaterBomb *)((u8 *)this))->create(((u8 *)this));
     }
@@ -1546,7 +1546,7 @@ void TObjEneSlimeOne::init_split_effect() {
     this->draw_scale.y = 1.0f;
     this->draw_scale.x = 1.0f;
     spawn_particle_effect((((u8 *)this) + 0x2FC), 0xCE);
-    play_sound_effect(0x4003A61A, ((u8 *)this) + 0x38, 0, 0);
+    play_sound_effect(0x4003A61A, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
     animation->set_state(5);
     ((s32 (*)(void *, int))set_display_mode__15TObjEneSlimeOneFPvi)(this, 0);
 }
@@ -1566,7 +1566,7 @@ void TObjEneSlimeOne::sub_800E95F4() {
     this->draw_scale.x = 1.0f;
     this->state_timer = 5;
     ((TObjPlayer *)((u8 *)this))->refresh_lobby_state();
-    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4003A81B, (u32)(((u8 *)this) + 0x38), 0, 0);
+    play_sound_effect(0x4003A81B, (const Vec *)(((u8 *)this) + 0x38), 0, 0);
     spawn_particle_effect((((u8 *)this) + 0x2FC), 0xFE);
     animation->set_state(5);
     set_display_mode__15TObjEneSlimeOneFPvi(this, 0);

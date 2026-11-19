@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802DBCC4.h"
 #include "pso/ui/window/TWindowSubComCardList.h"
@@ -60,7 +61,6 @@ int request_scene_change__21TAdMultiChgGameModeGCFv(void*);
 
 u8 player_number_text_buffer[0x80];
 extern "C" {
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 TAdMultiPlyChrSelectGC__sub_802DBEC4(void *, s32 *);
 extern s8 lbl_80472880[];
 extern s8 lbl_80472888[];

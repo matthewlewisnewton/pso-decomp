@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
@@ -78,7 +79,6 @@ s32 calc_technique_parameters(int, int, int);
 extern RecoveredGlobal_80230D9C_lbl_804CC510 tech_high_level_linear_power_table;
 extern RecoveredGlobal_80230D9C_lbl_804CC55C lbl_804CC55C;
 u16 get_entity_id(void *);
-s32 play_sound_effect(s32 id, void *pos, s32 a, s32 b);
 f32 vector_length(void *);
 void normalize_vector(void *);
 extern void *__vt__11TTecRaZonde[];
@@ -160,7 +160,6 @@ struct VObj_18_9c98dd : VBase_18_9c98dd {
 
 extern "C" {
 void *find_entity_by_id(u16 id);
-s32 play_sound_effect(s32, void *, s32, s32);
 TParticleCtrl *create_particle_emitter(const void *pos, s32 id);
 
 typedef struct RecoveredFields_80238D10_arg0 RecoveredFields_80238D10_arg0;
@@ -387,18 +386,18 @@ void TTecResta::play_launch_sound() {
     switch (self->band) {
     case 0:
     case 1:
-        h = play_sound_effect(0x4002AB0E, self->pos, 0, 0);
+        h = play_sound_effect(0x4002AB0E, (const Vec *)self->pos, 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, 0x100, 0);
         }
         break;
     case 2:
     case 3:
-        play_sound_effect(0x4002AB0E, self->pos, 0, 0);
+        play_sound_effect(0x4002AB0E, (const Vec *)self->pos, 0, 0);
         break;
     case 4:
     case 5:
-        h = play_sound_effect(0x4002AB0E, self->pos, 0, 0);
+        h = play_sound_effect(0x4002AB0E, (const Vec *)self->pos, 0, 0);
         if (h >= 0) {
             update_technique_slot__10TTecRaFoieFl(h, -0x100, 0);
         }

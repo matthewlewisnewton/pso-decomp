@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802DD8E0.h"
@@ -29,7 +30,6 @@ s32 TAdMultiPlyChrSelectGC__sub_802E0024(s32, s32);
 void create_effects__14TAdGameStartGCFPv(u8 *parent);
 s32 get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii(void *, s32);
 s32 clear_entries__18TAdChrMoveEffectGCFv();
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 get_instance__22TAdMultiPlyChrSelectGCFv(s32);
 extern s32 controller_physical_port_bank[];
 s32 TAdMultiPlyChrSelectGC__sub_802C5A44(int, void *, int);

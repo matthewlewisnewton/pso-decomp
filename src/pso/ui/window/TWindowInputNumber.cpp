@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowInputNumber.h"
@@ -38,7 +39,6 @@ WindowDescriptor window_input_number_layout = {
 
 extern "C" {
 
-s32 play_sound_effect(s32 a0 = 0, s32 a1 = 0, s32 a2 = 0, s32 a3 = 0);
 s32 is_confirmed__18TWindowInputNumberFv();
 s32 save_position__11TWindowBaseFv();
 

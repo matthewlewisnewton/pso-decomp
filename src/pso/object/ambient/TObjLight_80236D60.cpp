@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/object/TUnk_804CCAC8.h"
 
@@ -9,7 +10,6 @@
 #include "pso/system/task/TObject.h"
 extern "C" {
 __declspec(section ".data") u32 TObjLight__support_charge_effect_ids[2] = {0x1F4, 0x1F5};
-s32 play_sound_effect(int, void *, int, int);
 void stop_sound_request(s32 idx);
 }
 
@@ -30,5 +30,5 @@ TUnk_804CCAC8::TUnk_804CCAC8(s32 actor, s32 parent) : TObject((TObject *)((void 
     this->actor = (void *)actor;
     VecCopy((Vec *)position, (const Vec *)((s32)this->actor + 0x2FC));
     age = 0;
-    sound = play_sound_effect(0x4002B71B, position, 0, 0);
+    sound = play_sound_effect(0x4002B71B, (const Vec *)position, 0, 0);
 }

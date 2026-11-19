@@ -906,7 +906,7 @@ void TObjEneEpsilonBody::action_destroy(s32 reason) {
             if (action_timer >= 0x14) {
                 vfunc_95();
                 TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA4, (s32)&epsilon_guard_destroy_breakup_params, (s32)texlist, (s32)body_center(), (s32)rotation_y);
-                play_sound_effect(0x4003AD4C, &m_2fc, 0, 0);
+                play_sound_effect(0x4003AD4C, (const Vec *)&m_2fc, 0, 0);
                 ((TObjPlayer *)body_center())->trigger_dell_biter_events();
                 flags |= 1;
                 action_step = 1;

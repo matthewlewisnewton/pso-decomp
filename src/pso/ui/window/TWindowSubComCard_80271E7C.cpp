@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/quest/TQuestThread.h"
@@ -669,7 +670,6 @@ void TWindowSubComCard__sub_8007AF10(s32 arg0);
 s32 update_press__17TWindowSubComCardFv(int);
 void TWindowSubShortMail__sub_80131998(void *arg0);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(int, int, int, int);
 s32 TLobby__sub_8024259C();
 s32 fn_80244958(int, int);
 void fn_802449E0(u8 *arg0);

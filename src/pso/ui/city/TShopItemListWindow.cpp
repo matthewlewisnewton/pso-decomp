@@ -3,6 +3,7 @@
 #pragma auto_inline off
 #pragma dont_inline off
 
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -141,7 +142,6 @@ extern "C" {
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 const char *TShopItemListWindow__class_name = "TShopItemListWindow";
 s32 sub_802239EC__13TShopSequenceFv(void *);
-s32 play_sound_effect(int, int, int, int);
 s32 get_item_count__24TShopEquipmentSellWindowFv(void *a, s32 b);
 int obj_getPtr2B0_20(u8 *p);
 s32 get_entity_id(void *);

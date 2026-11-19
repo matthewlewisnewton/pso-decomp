@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/frontend/TAdDrawLineCtrl.h"
@@ -79,7 +80,6 @@ s32 TAdChrSelASlotGC__sub_8030C688(TAdChrSelASlotGC *self, s32 kind);
 s32 check_room_seq_4__16TAdChrSelASlotGCFl(void *pos, s32 arg1);
 s32 TAdChrSelSlotGC__sub_802C7498(s32, s32);
 void TAdSubPlyItemGC__sub_802D6D88(TAdSubPlyItemGC *self);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 
 void TAdChrSelASlotGC::render() {

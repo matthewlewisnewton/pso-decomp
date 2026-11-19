@@ -1,6 +1,7 @@
 #pragma defer_codegen on
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowOptionCtrl.h"
 #include "pso/unk/TUnk_804F01A8.h"
@@ -98,7 +99,6 @@ void *create_sub_menu_window__17TWindowOptionCtrlFv(void *);
 void *create_option_menu__17TWindowOptionCtrlFv(void *);
 void set_field_value__17TWindowOptionCtrlFls(s32 arg0, s16 arg1);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-void play_sound_effect(int, int, int, int);
 extern u8 controller_input_state[];
 extern s32 __vt__17TWindowOptionCtrl[];
 void __ct__7TObjectFP7TObject(void *);

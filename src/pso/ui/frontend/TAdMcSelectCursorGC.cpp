@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/frontend/TAdMcSelectCursorGC.h"
@@ -44,7 +45,6 @@ void __ct__7TObjectFP7TObject(void *, s32);
 extern s32 __vt__19TAdMcSelectCursorGC[];
 const char *TAdMcSelectCursorGC__class_name = "TAdMcSelectCursorGC";
 Obj_8032A574 *TAdMcSelectCursorGC__ct(Obj_8032A574 *arg0, s32 parent);
-void play_sound_effect(s32, s32, s32, s32);
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
 void restore_saved_depth_alpha_state(void);

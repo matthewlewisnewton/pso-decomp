@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -111,7 +112,6 @@ Slot_803086A8 *get_attack_entry__16TObjOnlineEndingFi(s32);
 s32 apply_hit_to_target__14TBoss7CrawfishFPvPv(void *, void *);
 void TBoss7Crawfish__sub_803087D4(s32 arg0, s32 arg1);
 int TBoss7Crawfish__sub_80308BEC(void* p);
-s32 play_sound_effect(s32, s32, s32, s32);
 int change_state__14TBoss7CrawfishFl(void*, int);
 int scale_current_matrix(void*);
 int post_translate_matrix(void*);
@@ -157,7 +157,7 @@ void TBoss7Crawfish__sub_803087D4(s32 arg0, s32 arg1) {
 
 void TBoss7Crawfish::spawn_effect(s32 arg1) {
     s32 arg0 = (s32)this;
-    play_sound_effect(arg1, arg0 + 0x38, 0, 0);
+    play_sound_effect(arg1, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 s32 TBoss7Crawfish::is_visible() {

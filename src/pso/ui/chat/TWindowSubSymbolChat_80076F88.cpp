@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/memory.h"
 #include "pso/system/ResourceFile.h"
 #include "types.h"
@@ -52,7 +53,6 @@ s32 is_initialized__20TWindowSubSymbolChatFv();
 int get_instance__20TWindowSubSymbolChatFv(void*);
 s32 strncpy(void *, void *, int);
 extern s32 local_client_id;
-s32 play_sound_effect(s32, u32, s16, s32);
 E_80077480 *get_character_save_record(u32 id);
 
 void TWindowSubSymbolChat::send_selected_symbol_chat(s32 *arg0) {

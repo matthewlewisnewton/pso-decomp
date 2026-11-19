@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
@@ -37,7 +38,6 @@ s8 *TLobby__sub_80146D44(void);
 int reset_mode_state__21TAdMultiChgGameModeGCFv(void*);
 char *realloc_buffer__17TWindowSubComCardFv(u8 *);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-void play_sound_effect(int, int, int, int);
 s32 forward_input__22TAdEnterSerialAccessGCFPv(void *, int, char *);
 s32 strlen(const char *);
 extern u8 controller_input_state[];

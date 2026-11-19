@@ -530,7 +530,7 @@ void TObjEneIllGill::update_death_fall() {
       apply_actor_gravity((TObjEnemy *)arg0, (s32 *)(0), 0.0f);
       if (((TObjMotion *)arg0)->is_passing_frame((f32)(10.0f)) != 0)
     {
-      play_sound_effect(0x4003A351, (u8 *)&this->position, 0, 0);
+      play_sound_effect(0x4003A351, &this->position, 0, 0);
       this->phase = 2;
     }
       return;
@@ -550,7 +550,7 @@ void TObjEneIllGill::update_death_fall() {
     case 3:
       if (((TObjMotion *)arg0)->is_passing_frame((f32)(52.0f)) != 0)
     {
-      play_sound_effect(0x4003A358, (u8 *)&this->position, 0, 0);
+      play_sound_effect(0x4003A358, &this->position, 0, 0);
       TObjPlayer::apply_effect_variant_b((s32)&position, 0xA);
       fn_800D911C(&position);
       this->phase = 4;

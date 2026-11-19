@@ -1310,14 +1310,14 @@ void TBoss4Type2::update_spawn_uro() {
             VecCopy__FP3VecPC3Vec(&p.pos, s);
             if (create__9TBoss4UroFi(&p) != NULL) {
                 spawn_particle_effect(s, 0x7D);
-                play_sound_effect(0x4003A810, s, 0, 1);
+                play_sound_effect(0x4003A810, (const Vec *)s, 0, 1);
                 self->count++;
             }
         }
     }
     ((TBoss4DarkFalz *)self->owner)->sub_8004D990();
     if (self->timer == 0x106) {
-        play_sound_effect(0x4003AD0F, s, 0, 1);
+        play_sound_effect(0x4003AD0F, (const Vec *)s, 0, 1);
     }
     if (--self->timer < 0) {
         self->f3d0 = 5;
@@ -1353,7 +1353,7 @@ void TBoss4Type2::update_state() {
 void TBoss4Type2::update_attack_countdown() {
     s32 temp_r0;
     if ((s32) *(s32 *)((s8 *)this + 0x398) == 0x2D) {
-        play_sound_effect(0x4003AD11, (void *)(&((Foo *)this)->arr[*(s32 *)((s8 *)this + 0x3A8)]), 0, 1);
+        play_sound_effect(0x4003AD11, (const Vec *)(&((Foo *)this)->arr[*(s32 *)((s8 *)this + 0x3A8)]), 0, 1);
     }
     temp_r0 = *(s32 *)((s8 *)this + 0x398) - 1;
     *(s32 *)((s8 *)this + 0x398) = temp_r0;
@@ -1409,7 +1409,7 @@ void TBoss4Type2::update_tech_charge() {
         if ((r = ((u32 (*)(void *, s32))spawn_particle_effect)(ent, 0xFD)) != 0) {
             ((TParticleCtrl *)r)->set_flags(0x40);
         }
-        play_sound_effect(0x4003A813, (u8 *)this + 0x38, 0, 1);
+        play_sound_effect(0x4003A813, (const Vec *)((u8 *)this + 0x38), 0, 1);
         if (idx == 0) {
             TBoss4Type2Params *params = (TBoss4Type2Params *)get_battle_movement_params(0x36);
             create__11TTecRaBartaFPvPvPvPv(this, (u8 *)this + 0x3B8, (u8 *)this + 0x3B8, (void *)params->rabarta_level);
@@ -1540,7 +1540,7 @@ void TBoss4Type2::sub_800525AC() {
                 if (particle_emitter != 0) {
                     ((TParticleCtrl *)((void *) *(u32 *)((s8 *)this + 0x41C)))->set_flags(0x40U);
                 }
-                play_sound_effect(0x40039717, (u8 *)this + 0x38, 0, 1);
+                play_sound_effect(0x40039717, (const Vec *)((u8 *)this + 0x38), 0, 1);
             }
             if ((u32) *(u32 *)((s8 *)this + 0x420) == 0) {
                 temp_r3_12 = (u32)create_particle_emitter((temp_r31), 0x13B);

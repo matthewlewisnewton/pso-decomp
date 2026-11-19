@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/ControllerInputState.h"
@@ -64,7 +65,6 @@ struct Lines_80261DD8 {
     s32 count;
 };
 
-s32 play_sound_effect(int, int, int, int);
 s32 draw_default_entry__9TWindowDDFl();
 int update_keyboard_close_mode(void*);
 f32 TWindowKeyBoardSoft__sub_802606E0(TWindowKeyBoardSoft *);

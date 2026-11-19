@@ -948,10 +948,10 @@ void TWindowTimer::throw_gogo_ball(s32 arg1, s32 arg2) {
     stack.sp14 = *(f32 *)((s8 *)((u8 *)this) + 0);
     stack.sp18 = *(f32 *)((s8 *)((u8 *)this) + 8);
     if (is_on_current_screen__11TCameraCtrlFv((void *) ((u8 *)&controller_input_state + 0x20), 4) != 0) {
-        play_sound_effect(0x4001A311, this, 0, 0);
+        play_sound_effect(0x4001A311, (const Vec *)this, 0, 0);
         stack.sp1C = 1;
     } else {
-        play_sound_effect(0x4002A600, this, 0, 0);
+        play_sound_effect(0x4002A600, (const Vec *)this, 0, 0);
         stack.sp1C = 0;
     }
     ((TWindowTimer *)((s32)&stack.sp8))->send_gogo_ball();
@@ -1096,7 +1096,7 @@ void TUnk_804B8DD0::update_effects() {
             VecCopy((Vec *)&v6, &this->pos);
             v6.y += 7.0f;
             spawn_particle_effect_with_flags(&v6, 0x20D, 0x40);
-            play_sound_effect(0x4001A82E, (u8 *)&this->pos, 0, 0);
+            play_sound_effect(0x4001A82E, &this->pos, 0, 0);
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) == 2) {
         (this->m_30)++;
@@ -1107,7 +1107,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2a.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2a, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2a, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->pos, 0, 0);
+                play_sound_effect(0x4001C112, &this->pos, 0, 0);
             }
         } else {
             if (this->m_30 == 1) {
@@ -1116,7 +1116,7 @@ void TUnk_804B8DD0::update_effects() {
                 v2b.y += 7.0f;
                 spawn_particle_effect_with_flags(&v2b, 0x45, 0x40);
                 spawn_particle_effect_with_flags(&v2b, 0x189, 0x40);
-                play_sound_effect(0x4001C112, (u8 *)&this->pos, 0, 0);
+                play_sound_effect(0x4001C112, &this->pos, 0, 0);
             }
         }
     } else if (*(u16 *)((s8 *)&gogo_ball_configuration + 0x48) != 0) {

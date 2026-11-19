@@ -1,5 +1,6 @@
 #pragma defer_codegen on
 
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowSubComCard_802A5748.h"
 #include "pso/unk/TLobby_803382E4.h"
@@ -18,7 +19,6 @@ s32 get_localized_text_entry(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 poll_memcard_result(s32 chan);
 s32 start_memcard_format(int, int, int, int, int);
-s32 play_sound_effect(int, int, int, int);
 extern s32 controller_input_state[];
 u32 create__19TWindowMessageYesNoFPvPvPvPv(s32, s32, s32, s32);
 void __ct__7TObjectFP7TObject(void *);

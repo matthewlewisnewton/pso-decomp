@@ -1042,7 +1042,7 @@ void TObjEneRecon::update_child_spawn() {
     if (create__12TObjEneReconFPvPvPvPvPv(o, id, arg, &pos, &dir) != 0) {
         n = o->f410++;
         o->ids[n] = id;
-        play_sound_effect(remap_area_sound_id__14TObjEneRecoboxFUl(0x4003A80F, o->f414++, n), o->pos38, 0, 0);
+        play_sound_effect(remap_area_sound_id__14TObjEneRecoboxFUl(0x4003A80F, o->f414++, n), (const Vec *)o->pos38, 0, 0);
     }
 }
 

@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -170,7 +171,6 @@ void __dl__7TObjectFPv(void *);
 void vfunc_101__12TObjEneSharkFv(void);
 extern s32 shark_render_node_index;
 s32 vec3_add_to(void *, void *);
-s32 play_sound_effect(void *, void *, int, int);
 void vfunc_96__12TObjEneSharkFv(s32 arg0);
 void vfunc_98__12TObjEneSharkFv(s32 arg0);
 void vfunc_97__12TObjEneSharkFv(s32 arg0);
@@ -201,24 +201,24 @@ void TObjEneShark::vfunc_101() {  }
 
 void TObjEneShark::vfunc_98() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60C)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60C), (const Vec *)(arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x300);
 }
 
 void TObjEneShark::vfunc_97() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60B)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60B), (const Vec *)(arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x300);
 }
 
 void TObjEneShark::vfunc_96() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60D)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60D), (const Vec *)(arg0 + 0x38), 0, 0);
 }
 
 void TObjEneShark::vfunc_95() {
     s32 arg0 = (s32)this;
-    play_sound_effect((void *) (((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60B)), (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(((TObjEnemy *)((void *)arg0))->remap_sound_for_area(0x4003A60B), (const Vec *)(arg0 + 0x38), 0, 0);
     TObjPlayer::play_effect_if_v2(-0x300);
 }
 

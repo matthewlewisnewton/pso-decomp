@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/window/TWindowDrawContext.h"
 #include "pso/ui/window/TextEntryMeasurement.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -180,7 +181,6 @@ Ent_802511E4 * find_entity_by_id(u16);
 u32 get_battle_ctrl_flag__10TObjPlayerFUs(u16);
 u32 get_player_by_client_id(u32);
 s32 get_array_entry__11TWindowBaseFi(void *, s32);
-s32 play_sound_effect(int, int, int, int);
 s32 get_field_20__17TWindowSubComCardFv();
 s32 set_depth__11TWindowBaseFf(f32);
 s32 sub_80246948__11TWindowBaseFv(void *);

@@ -861,7 +861,6 @@ void TBoss2Mine::vfunc_104(s32 reason) {
 }
 
 #undef transition_enemy_state__9TObjEneDDFl
-#define play_sound_effect ((s32 (*)(s32, u32, s16, s32))play_sound_effect)
 #define set_node_offsets__10TBoss2MineFv ((void (*)(void *))set_node_offsets__10TBoss2MineFv)
 
 
@@ -903,7 +902,7 @@ void TBoss2Mine::vfunc_107(s32 arg1) {
       TObjEneDD__sub_800BA5A4(arg0, copy_storage_800384C8.bytes);
       spawn_particle_effect_with_flags((void *)((*((s32 *) (((s8 *) arg0) + 0xA4))) + 0x1C), 0x16B, 0x40);
       *((s32 *) (((s8 *) arg0) + 0x3CC)) = 2;
-      play_sound_effect(0x4003AD05, (u32)(arg0 + 0x2FC), 0, 0);
+      play_sound_effect(0x4003AD05, (const Vec *)(arg0 + 0x2FC), 0, 0);
     }
       break;
   }
@@ -992,11 +991,9 @@ void TUnk_80482EC0::vfunc_88() {
     *(f32 *)((s8 *)(*(void **)((s8 *)this + 0xA4)) + 4) = (f32) ((5.0f) + (*(f32 *)((s8 *)this + 0x300) - *(f32 *)((s8 *)this + 0x3C)));
 }
 
-#undef play_sound_effect
 #undef set_node_offsets__10TBoss2MineFv
 #define calc_elapsed_scaled__9TObjEneDDFv ((f32 (*)(void *, int, int))calc_elapsed_scaled__9TObjEneDDFv)
 #define init_params__10TBoss2MineFlf ((s32 (*)(void *, int, f32))init_params__10TBoss2MineFlf)
-#define play_sound_effect ((s32 (*)(int, void *, int, int, int))play_sound_effect)
 #define update_pulse_state__10TBoss2MineFv ((s32 (*)(void *))update_pulse_state__10TBoss2MineFv)
 void TBoss2Mine::set_launch_position_velocity(u8 *arg1, u8 *arg2) {
     u8 *arg0 = (u8 *)this;
@@ -1082,7 +1079,7 @@ void TUnk_80482EC0::vfunc_106(s32 arg1) {
         *(s32 *)((s8 *)((u8 *)this) + 0x3C8) = 0;
         temp_r7 = (s32) ((3e+01f) * calc_elapsed_scaled__9TObjEneDDFv(this, 0x8000, temp_r5));
         *(s32 *)((s8 *)((u8 *)this) + 0x3CC) = (temp_r7 + 0xB4);
-        play_sound_effect(0x4003A804, (void *) (((u8 *)this) + 0x2FC), 0, 0, temp_r7);
+        play_sound_effect(0x4003A804, (const Vec *)(((u8 *)this) + 0x2FC), 0, 0);
         init_params__10TBoss2MineFlf(this, 0x1E, (f32) ((0.25f)));
         return;
     case 3:
@@ -1135,7 +1132,6 @@ TUnk_80482D04::TUnk_80482D04(TObject *parent, u16 entity_id, s32 set_index)
 
 #undef calc_elapsed_scaled__9TObjEneDDFv
 #undef init_params__10TBoss2MineFlf
-#undef play_sound_effect
 #undef update_pulse_state__10TBoss2MineFv
 TUnk_80482D04::~TUnk_80482D04() {}
 
@@ -1215,7 +1211,7 @@ void TUnk_80482D04::vfunc_105(s32 arg1) {
             (*(s32 *)((s8 *)arg0 + 0x3CC))++;
             if (*(s32 *)((s8 *)arg0 + 0x3CC) >= 0xF) {
                 *(s32 *)((s8 *)arg0 + 0x3C8) = 1;
-                play_sound_effect(0x4003A804, (u8 *)&this->m_2fc, 0, 0);
+                play_sound_effect(0x4003A804, (const Vec *)&this->m_2fc, 0, 0);
             }
             *(f32 *)((s8 *)arg0 + 0x2FC) = *(f32 *)((s8 *)arg0 + 0x404) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x2FC);
             *(f32 *)((s8 *)arg0 + 0x304) = *(f32 *)((s8 *)arg0 + 0x40C) * *(f32 *)((s8 *)arg0 + 0x3DC) + *(f32 *)((s8 *)arg0 + 0x304);

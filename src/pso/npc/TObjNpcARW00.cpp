@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/npc/TObjNpcARW00.h"
 #include "pso/system/TLanguage_801E4874.h"
@@ -12,7 +13,6 @@
 const char *TObjNpcARW00__name = "TObjNpcARW00";
 
 extern "C" {
-s32 play_sound_effect(int, void *, int, int);
 extern s32 __vt__12TObjNpcARW00[];
 u32 TObjNpcARW00__static_model;
 u32 TObjNpcARW00__gvm_texture_handle;
@@ -53,6 +53,6 @@ u8 *TObjNpcARW00__ct(u8 *arg0, s32 arg1, s32 arg2) {
 
 void TObjNpcARW00::play_voice() {
     s32 arg0 = (s32)this;
-    play_sound_effect(0x40004C15, (void *)(arg0 + 0x38), 0, 0);
+    play_sound_effect(0x40004C15, (const Vec *)(arg0 + 0x38), 0, 0);
 }
 

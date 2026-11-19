@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
@@ -123,7 +124,6 @@ struct SerialAccessEnteredValueTable { s32 value; u8 remaining[0xC]; };
 extern SerialAccessEnteredValueTable serial_access_entered_value_table;
 int serial_to_hex_string__22TAdEnterSerialAccessGCFi(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(int, int, int, int);
 s32 forward_input__22TAdEnterSerialAccessGCFPv(void *, void *, int);
 s32 strlen(int);
 u32 TAdEnterSerialAccessGC__keyboard_control;

@@ -290,7 +290,7 @@ void TOWreckAncientBrakable::run_task() {
         temp_r0_2 = switch_id;
         if ((temp_r0_2 >= 0) && (temp_r0_2 < 0x100) && (is_current_floor_switch_set((u16) temp_r0_2) == 1)) {
             state = 1;
-            play_sound_effect(0x43C11, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x43C11, &this->position, 0, 0);
             spawn_particle_effect(&this->position, 0x45);
             spawn_particle_effect(&this->position, 0x46);
             spawn_debris();

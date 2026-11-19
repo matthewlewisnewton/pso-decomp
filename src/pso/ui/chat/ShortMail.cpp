@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/memory.h"
 #include "types.h"
 #include "pso/ui/chat/ShortMail.h"
@@ -148,7 +149,6 @@ s32 TLobby::find_free_slot() {
 }
 }
 
-extern "C" s32 play_sound_effect(int, void *, int, int);
 
 void TLobby__sub_80225A08(void *p) {
     s32 slot = TLobby::find_free_slot();

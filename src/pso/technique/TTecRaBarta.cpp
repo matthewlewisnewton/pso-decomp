@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/system/ArrayAllocation.h"
@@ -157,7 +158,6 @@ extern Params_802377FC tech_high_level_linear_power_table;
 extern Scale_802377FC lbl_804CC55C;
 void calc_parameters__11TTecRaBartaFv(RaBarta_802377FC *self);
 
-s32 play_sound_effect(s32, s32, s32, s32);
 
 typedef struct Obj_80237310 Obj_80237310;
 typedef struct Owner_80237310 Owner_80237310;
@@ -240,32 +240,32 @@ void TTecRaBarta::vfunc_9() {
 
     switch (*(s16 *)&this->unk_7A) {
     case 0:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, 0x100, 0);
         }
         return;
     case 1:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         return;
     case 2:
     case 3:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x180, 0);
         }
         break;
     case 4:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x250, 0);
         }
         break;
     case 5:
-        this->m_ec = play_sound_effect(0x4002A706, this->source + 0x2FC, 0, 0);
+        this->m_ec = play_sound_effect(0x4002A706, (const Vec *)(this->source + 0x2FC), 0, 0);
         handle = this->m_ec;
         if (handle >= 0) {
             update_technique_slot__10TTecRaFoieFl(handle, -0x100, 0);

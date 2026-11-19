@@ -126,7 +126,7 @@ void TBoss6Type1::update_attack_countdown() {
 void TBoss6Type1::init_charge_attack() {
     this->m_40c = 0x3C;
     this->action_timer = 0x3C;
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x4003A811), (void*)(((u8 *)this) + 0x38), (void*)(0), (void*)(1));
+    play_sound_effect(0x4003A811, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
     this->release_effect_slot((s32)((void*)(0)));
     this->release_effect_slot((s32)((void*)(1)));
 }
@@ -233,8 +233,8 @@ void TBoss6Type1::init_work() {
     this->m_40c = 0x3C;
     this->action_timer = 0x3C;
     VecCopy((Vec *)(((u8 *)this) + 0x420), &cenbtm_pos);
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x39403), ((u8 *)this) + 0x584, (void*)(0), (void*)(1));
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x4003A811), ((u8 *)this) + 0x38, (void*)(0), (void*)(1));
+    play_sound_effect(0x39403, (const Vec *)(((u8 *)this) + 0x584), 0, 1);
+    play_sound_effect(0x4003A811, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
     this->release_effect_slot((s32)((void*)(0)));
     this->spawn_effect_slot((s32)((void*)(1)));
 }
@@ -262,7 +262,7 @@ void TBoss6Type1::tick_attack_sequence() {
 void TBoss6Type1::init_charge() {
     this->m_40c = 0x3C;
     this->action_timer = 0x3C;
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x4003A811), (void*)((void *)(((u8 *)this) + 0x38)), (void*)(0), (void*)(1));
+    play_sound_effect(0x4003A811, (const Vec *)((void *)(((u8 *)this) + 0x38)), 0, 1);
     this->release_effect_slot((s32)((void*)(0)));
     this->spawn_effect_slot((s32)((void*)(1)));
 }
@@ -300,13 +300,13 @@ void TBoss6Type1::enter_release_state() {
     this->m_40c = 0x5A;
     this->action_timer = 0x5A;
     ((s32 (*)(void))release_object__11TBoss6Type1FPv)();
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x4003B515), (u8 *)&this->position, (void*)(0), (void*)(0));
+    play_sound_effect(0x4003B515, &this->position, 0, 0);
     ((TBoss6Type1 *)arg0)->spawn_effect_slot((s32)((void*)(0)));
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(1)));
     ((TBoss6PlotFalz *)(this->m_3f8))->activate_warp();
     ((TBoss6PlotFalz *)(this->m_3f8))->reset_state();
     if (((TBoss6Type1 *)arg0)->count_matches(0x1F, 4) == 0) {
-        ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x68A24), (u8 *)&this->position, (void*)(0), (void*)(1));
+        play_sound_effect(0x68A24, &this->position, 0, 1);
     }
 }
 
@@ -324,7 +324,7 @@ void TBoss6Type1::init_move_attack() {
     this->m_40c = 0x1E;
     this->action_timer = 0x1E;
     damage_players_in_range__11TBoss6Type1Fv();
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x40039C19), (u8 *)&this->position, (void*)(0), (void*)(0));
+    play_sound_effect(0x40039C19, &this->position, 0, 0);
 }
 
 void TBoss6Type1::update_hit_timer() {
@@ -332,7 +332,7 @@ void TBoss6Type1::update_hit_timer() {
 
     play_persistent_sound(0x40032614, (s32)this, 0, 0, 0);
     if ((s32) this->action_timer == 0x3C) {
-        ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x39403), (void*)(((u8 *)this) + 0x38), (void*)(0), (void*)(1));
+        play_sound_effect(0x39403, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
     }
     temp_r3 = this->action_timer;
     if (temp_r3 > 0) {
@@ -359,7 +359,7 @@ void TBoss6Type1::advance_plot_to_state2() {
     ((TBoss6PlotFalz *)(this->m_3f8))->free_child();
     ((TBoss6PlotFalz *)(this->m_3f8))->set_state_2();
     spawn_map_csn();
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x40039C13), (u8 *)&this->position, (void*)(0), (void*)(0));
+    play_sound_effect(0x40039C13, &this->position, 0, 0);
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(0)));
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(1)));
     ((TBoss6Type1 *)arg0)->latch_phase_counter();
@@ -463,8 +463,8 @@ void TBoss6Type1::init_state() {
     this->m_40c = 0x3C;
     this->action_timer = 0x3C;
     VecCopy((Vec *)(((u8 *)this) + 0x420), &centop_pos);
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x39403), (void*)(((u8 *)this) + 0x584), (void*)(0), (void*)(1));
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x4003A811), (void*)(((u8 *)this) + 0x38), (void*)(0), (void*)(1));
+    play_sound_effect(0x39403, (const Vec *)(((u8 *)this) + 0x584), 0, 1);
+    play_sound_effect(0x4003A811, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
     this->release_effect_slot((s32)((void*)(0)));
     this->spawn_effect_slot((s32)((void*)(1)));
 }
@@ -535,7 +535,7 @@ void TBoss6Type1::update_timer() {
 }
 
 void TBoss6Type1::sub_802B3178() {
-    void*p = (void*)this; ((TBoss6Type1 *)p)->m_40c = 123; *(int*)((char*)p + 0x410) = 123; clamp_to_arena_radius__11TBoss6Type1FPvPvf(p, (char*)p + 0x420); ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)((void*)231170), (void*)((void*)0), (void*)((void*)0), (void*)((void*)0)); ((TBoss6Type1 *)p)->spawn_effect_slot((s32)((void*)((void*)0))); ((TBoss6Type1 *)p)->release_effect_slot((s32)((void*)((void*)1))); }
+    void*p = (void*)this; ((TBoss6Type1 *)p)->m_40c = 123; *(int*)((char*)p + 0x410) = 123; clamp_to_arena_radius__11TBoss6Type1FPvPvf(p, (char*)p + 0x420); play_sound_effect((s32)((void*)231170), (const Vec *)((void*)0), (s32)((void*)0), (s32)((void*)0)); ((TBoss6Type1 *)p)->spawn_effect_slot((s32)((void*)((void*)0))); ((TBoss6Type1 *)p)->release_effect_slot((s32)((void*)((void*)1))); }
 
 void TBoss6Type1::sub_802B31E4() {
     TBoss6Type1 *arg0 = this;
@@ -641,7 +641,7 @@ void TBoss6Type1::init_action_timer() {
     }
     *(s32 *)((s8 *)arg0 + 0x410) = (s32) *(s32 *)((s8 *)arg0 + 0x40C);
     calc_grid_cell_position__11TBoss6Type1FPvPv(arg0, arg0 + 0x420);
-    ((int (*)(void*, void*, void*, void*))play_sound_effect)((void*)(0x40039C21), arg0 + 0x5E4, (void*)(0), (void*)(0));
+    play_sound_effect(0x40039C21, (const Vec *)(arg0 + 0x5E4), 0, 0);
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(0)));
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(1)));
 }
@@ -673,7 +673,7 @@ void TBoss6Type1::init_attack_timer() {
     }
     *(s32 *)((s8 *)arg0 + 0x410) = (s32) *(s32 *)((s8 *)arg0 + 0x40C);
     TBoss6Type1__sub_802B5598(arg0, arg0 + 0x420);
-    play_sound_effect(0x4003BF07, arg0 + 0x5E4, 0, 0);
+    play_sound_effect(0x4003BF07, (const Vec *)(arg0 + 0x5E4), 0, 0);
     ((TBoss6Type1 *)arg0)->release_effect_slot(0);
     ((TBoss6Type1 *)arg0)->spawn_effect_slot(1);
 }
@@ -704,7 +704,7 @@ void TBoss6Type1::set_phase_timer_3E() {
     *(s32 *)((s8 *)arg0 + 0x410) = (s32) *(s32 *)((s8 *)arg0 + 0x40C);
     *(s32 *)((s8 *)arg0 + 0x40C) = 0x3E;
     *(s32 *)((s8 *)arg0 + 0x410) = 0x3E;
-    play_sound_effect(0x4003BF07, arg0 + 0x5E4, 0, 0);
+    play_sound_effect(0x4003BF07, (const Vec *)(arg0 + 0x5E4), 0, 0);
     ((TBoss6Type1 *)arg0)->spawn_effect_slot(0);
     ((TBoss6Type1 *)arg0)->release_effect_slot(1);
 }
@@ -765,12 +765,12 @@ void TBoss6Type1::start_attack() {
         this->m_40c = 0x1E;
         this->action_timer = 0x1E;
     }
-    play_sound_effect(0x40039706, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x40039706, &this->position, 0, 0);
     ((TBoss6Type1 *)arg0)->release_effect_slot((s32)((void*)(0)));
     ((TBoss6Type1 *)arg0)->spawn_effect_slot((s32)((void*)(1)));
     if (((TBoss6Type1 *)arg0)->count_matches(0x19, 4) > 0) {
         ((TBoss6Type1 *)arg0)->latch_phase_counter();
-        play_sound_effect(0x68A24, (u8 *)&this->position, 0, 1);
+        play_sound_effect(0x68A24, &this->position, 0, 1);
     }
 }
 

@@ -164,12 +164,12 @@ void TBoss6RockChase::run_task() {
             *(f32 *)((s8 *)arg0 + 0x3C) = 0.0f;
             *(f32 *)&this->_padB8 = 0.0f;
             damage_players_in_range();
-            play_sound_effect(0x4006B51E, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4006B51E, &this->position, 0, 0);
             spawn_particle_effect(((u8 *)&this->position), 0x220);
             spawn_particle_effect(((u8 *)&this->position), 0x222);
             TBoss6PlotFalz::apply_radial_effect_to_players((u8 *)&this->position, 0xC0, 0xF, 100.0f);
             ((TBoss6Rock *)(arg0 + 0x38))->spawn_crush_rocks(this->m_b0);
-            play_sound_effect(0x4006AB1F, (u8 *)&this->position, 0, 0);
+            play_sound_effect(0x4006AB1F, &this->position, 0, 0);
             ((TObject *)arg0)->queue_destruction();
         }
     }

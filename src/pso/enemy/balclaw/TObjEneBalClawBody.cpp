@@ -477,7 +477,7 @@ void TObjPlayer::run_death_sequence() {
             body->y_speed = body->m_3b4 / 11.666666f;
             body->state = 2;
         }
-        play_sound_effect(0x4003AD37, (u8 *)&body->position, 0, 0);
+        play_sound_effect(0x4003AD37, &body->position, 0, 0);
         break;
     case 1:
         body->advance_animation();

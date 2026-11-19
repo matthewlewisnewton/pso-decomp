@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/memory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/network/protocol/protocol_types.h"
@@ -1250,7 +1251,6 @@ void unhide_room_set_objects(s32 a, s16 b, s16 c, s32 d);
 s32 TCheckRoomSequence__sub_80210D44(u8 *item, s32 slot);
 s32 handle_main_phase__6TLobbyFl();
 void try_close__6TLobbyFPv(void *p);
-s32 play_sound_effect(int, int, int, int);
 void play_cue_stream_file(s32 name);
 int TLobby__sub_802272B4(void*);
 int TLobby__sub_8022733C(void*);

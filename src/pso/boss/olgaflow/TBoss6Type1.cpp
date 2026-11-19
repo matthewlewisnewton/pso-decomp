@@ -982,7 +982,7 @@ void handle_6xA4_olga_flow_boss_actions(void *arg) {
 void TBoss6Type1::vfunc_62() {
     this->actorFlags = (s32) (this->actorFlags & 0xFFFFFDFF);
     this->m_4d4 = 1.0f;
-    ((void (*)(s32, void *, s32, s32, void *))play_sound_effect)(0x39E01, ((u8 *)this) + 0x584, 0, 1, this);
+    play_sound_effect(0x39E01, (const Vec *)(((u8 *)this) + 0x584), 0, 1);
 }
 
 void TBoss6Type1::vfunc_63() { if (*(int *)&this->m_374 != 40) { set_action_state((s32)((void*)40)); } }
@@ -1521,7 +1521,7 @@ void TBoss6Type1::update_beam_attack() {
         VecCopy((Vec *)&self->f56C, (const Vec *)&c);
     }
     {
-        play_sound_effect(0x4003B00A, &c, 0, 0);
+        play_sound_effect(0x4003B00A, (const Vec *)&c, 0, 0);
         TBoss6PlotFalz::apply_radial_effect_to_players(&c, 0xC0, 0xF, 100.0f);
     }
 }
@@ -1591,7 +1591,7 @@ void TBoss6Type1__sub_802B715C(TBoss6Type1 *self) {
         !(frame < 10.5f || frame > 15.0f)) {
         f32 end = 10.5f + self->part_motions[0].frame_step;
         if (frame >= 10.5f && frame < end) {
-            play_sound_effect(0x40038A0E, &self->effect_points[0], 0, 0);
+            play_sound_effect(0x40038A0E, (const Vec *)&self->effect_points[0], 0, 0);
         }
         self->update_effect_points();
         n = TLobby::get_game_mode();

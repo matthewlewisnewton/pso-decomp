@@ -1,6 +1,7 @@
 #pragma defer_codegen on
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/unk/text_80104FCC.h"
 #include "pso/ui/city/THunterGuildSeqOnlineTask_802156A0.h"
 #include "pso/ui/window/TWindowShortListCtrl_80221828.h"
@@ -198,7 +199,6 @@ u32 __nw__7TObjectFUl(int);
 u32 __ct__15TWindowHelpItemFPvUs(int, int, u16);
 u32 create__22TWindowLoadItemTextureFPv(int, u16);
 extern s32 local_client_id;
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 sub_802239EC__13TShopSequenceFv(void *);
 void __dl__7TObjectFPv(void *);
 extern s32 __vt__23TShopJudgmentItemWindow[];

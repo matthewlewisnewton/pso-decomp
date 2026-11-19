@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/ItemListRow.h"
 #include "types.h"
 #include "pso/system/ControllerInputState.h"
@@ -164,7 +165,6 @@ void fn_80266BD0(s32 index, u8 *first, u8 *second, s32 player);
 void TWindowSubStatusDisp__sub_80258A28(u8 *arg0, s32 arg1, s32 arg2);
 void *get_player_by_client_id(s32 i);
 s8 clamp_char_at__10TObjPlayerFl(s32, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 finalize_state__20TWindowSubStatusDispFv(s32);
 s32 is_flag80_set__20TWindowSubStatusDispFv(s32);
 s32 advance_state__20TWindowSubStatusDispFv();

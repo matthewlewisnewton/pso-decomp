@@ -1,4 +1,5 @@
 // ---- pso/ui/window/TWindowSubTrade_802B1AB4
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/ui/window/TWindowMessage.h"
@@ -91,7 +92,6 @@ s32 draw_text_gray__17TWindowSubComCardFllll(void *list, void *text, int kind, i
 s32 is_trade_range_bit_set(s32 client);
 TWindowSubComCardList *TWindowSubComCard__sub_802B1C1C(TWindowSubTrade *);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(int, int, int, int);
 extern s32 controller_input_state[];
 }
 

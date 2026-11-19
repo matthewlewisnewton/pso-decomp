@@ -307,7 +307,7 @@ void TObjEneEpsilonGuard::handle_break_state(s32 arg1) {
         if (break_timer >= 0x14) {
             vfunc_96();
             TBoss3Volopt::create_breakup_mdl((s32)lbl_805D6FA8, (s32)&epsilon_guard_breakup_params, texlist, (s32)&position, rotation_y);
-            play_sound_effect(0x4003AD4C, &m_2fc, 0, 0);
+            play_sound_effect(0x4003AD4C, (const Vec *)&m_2fc, 0, 0);
             ((TObjPlayer *)&m_2fc)->trigger_dell_biter_events();
             state_step = 1;
         }

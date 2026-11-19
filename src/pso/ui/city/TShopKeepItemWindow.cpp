@@ -3,6 +3,7 @@
 #pragma auto_inline off
 #pragma dont_inline off
 
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/city/TShopKeepItemWindow.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
@@ -79,7 +80,6 @@ s32 store_item_in_bank(u8 *item, s32 arg1, s32 slot);
 void copy_bank_to_card_window(s32 slot);
 s32 sub_8022397C__15TShopWindowBaseFv(void *);
 s32 sub_802239EC__13TShopSequenceFv(void *);
-s32 play_sound_effect(s32, s32, s32, s32);
 void TWindowHelpItem__set_displayed_item_by_id(u32, s32);
 u32 create_item_list_window(s32, s32, u16);
 void sort_bank_items(s32 slot);

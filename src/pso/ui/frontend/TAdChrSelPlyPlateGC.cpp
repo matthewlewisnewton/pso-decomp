@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/keyboard/TKeyBoardControl_803DE9C4.h"
@@ -94,7 +95,6 @@ void copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void *);
 s32 get_field_20__22TAdMultiPlyChrSelectGCFv();
 s32 lbl_805D67D0;
 s32 lbl_805D67D4;
-s32 play_sound_effect(int, void *, int, int);
 s32 TAdMultiPlyChrSelectGC__sub_802C5F1C(void *);
 extern u8 controller_physical_port_bank[];
 

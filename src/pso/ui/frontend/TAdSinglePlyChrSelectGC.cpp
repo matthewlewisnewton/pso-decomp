@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/frontend/TAdFadeGC.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -46,7 +47,6 @@ const char *TAdSinglePlyChrSelectGC__class_name = TAdSinglePlyChrSelectGC__class
 extern const T_802D4F2C single_chr_select_position_table;
 
 extern "C" {
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 extern char controller_input_state[];
 s32 poll_memcard_result(s32 chan);

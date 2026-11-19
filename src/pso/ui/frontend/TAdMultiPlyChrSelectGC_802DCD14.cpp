@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802DCD14.h"
@@ -14,7 +15,6 @@
 extern "C" {
 s32 TAdPlyPltAnimCtrlGC__sub_80355148();
 extern const f32 lbl_805DE89C;
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 get_instance__22TAdMultiPlyChrSelectGCFv(s32);
 extern s8 controller_physical_port_bank[];
 s32 clear_entries__18TAdChrMoveEffectGCFv();

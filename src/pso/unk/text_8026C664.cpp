@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
@@ -148,7 +149,6 @@ struct Pad_8026C9DC {
 };
 
 extern "C" {
-void play_sound_effect(s32, s32, s32, s32);
 extern Pad_8026C9DC controller_input_state[];
 
 s32 handle_list_page_flip_input(PageIndicator *arg0) {

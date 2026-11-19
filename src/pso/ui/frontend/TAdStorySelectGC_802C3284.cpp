@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/frontend/TAdStorySelectGC.h"
 #include "pso/ui/frontend/TAdDrawLineCtrl.h"
 #include "pso/unk/TLobby_80132ED0.h"
@@ -32,7 +33,6 @@ const char *TAdStorySelectGC__class_name = TAdStorySelectGC__class_name_string;
 s32 story_select_cursor;
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
-void play_sound_effect(s32, s32, s32, s32);
 extern u8 controller_input_state[];
 void __ct__7TObjectFP7TObject(void *, void *);
 void __ct__9TAdBackGCFv(void *, void *);

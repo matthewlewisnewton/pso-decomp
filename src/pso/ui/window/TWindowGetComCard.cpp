@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowGetComCard_8007B54C.h"
 #include "pso/unk/text_8024AC64.h"
@@ -45,7 +46,6 @@ extern s32 local_client_id;
 u8 *TWindowGetComCard__ct(TWindowGetComCard *arg0);
 void start_player_data_load__17TWindowSubComCardFl(void);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
-void play_sound_effect(s32, s32, s32, s32);
 s32 is_player_input_active(s32);
 u8 *init_shop_judgment_window(void *p);
 __declspec(section ".data") f32 TWindowGetComCard__window_rect[2] = {152.0f, 370.0f};

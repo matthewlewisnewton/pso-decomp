@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/keyboard/TKeyBoardControl.h"
 #include "pso/system/ArrayAllocation.h"
 #include "types.h"
@@ -39,7 +40,6 @@ struct L_8034CDE0 { u8 f0; u8 n; u8 pad2[2]; I_8034CDE0 items[1]; };
 
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(int, int, int, int);
 s32 set_info_board_text__6TLobbyFv();
 extern s32 controller_input_state[];
 s32 TKeyBoardControl__ct(s32, s32, s32, s32, s32, s32);

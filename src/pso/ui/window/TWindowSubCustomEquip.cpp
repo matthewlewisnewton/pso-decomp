@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/system/ControllerInputState.h"
@@ -283,7 +284,6 @@ f32 lbl_805D6478;
 u8 lbl_805D647C;
 s32 fn_8002AE08(int);
 s32 apply_choice__20TWindowChoiceSettingFllll(void *, int, int, int);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 set_help_text__15TWindowHelpItemFll(u8 *, s32);
 

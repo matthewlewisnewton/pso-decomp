@@ -93,7 +93,7 @@ void TBoss1DragonEffBullet::run_task() {
                 ((TObject *)temp_r3_4)->queue_destruction();
                 arg0->field_44 = NULL;
             }
-            play_sound_effect(0x4003AD0C, &arg0->field_1C, 0, 0);
+            play_sound_effect(0x4003AD0C, (const Vec *)&arg0->field_1C, 0, 0);
             ((TBoss1Dragon *)(TBoss1Dragon::get_instance()))->apply_fireball_impact_damage((s32)&arg0->field_1C);
         }
         if ((s32) arg0->field_34 <= 2) {
@@ -131,7 +131,7 @@ u8 *TBoss1DragonEffBullet__ct(u8 *boss1_dragon_eff_bullet, s32 arg1, s32 arg2, s
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_38 = 0;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_44 = 0;
     ((TBoss1DragonEffBullet *)boss1_dragon_eff_bullet)->m_48 = 0;
-    play_sound_effect(0x4003B20B, boss1_dragon_eff_bullet + 0x1C, 0, 0);
+    play_sound_effect(0x4003B20B, (const Vec *)(boss1_dragon_eff_bullet + 0x1C), 0, 0);
     return boss1_dragon_eff_bullet;
 }
 

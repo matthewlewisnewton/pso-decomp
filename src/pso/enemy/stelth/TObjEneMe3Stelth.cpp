@@ -533,7 +533,7 @@ void TObjEneMe3Stelth::attack_and_unequip() {
             }
         }
     }
-    play_sound_effect(0x3AA37, (u8 *)&position, 0, 0);
+    play_sound_effect(0x3AA37, &position, 0, 0);
 }
 void TObjEneMe3Stelth::vfunc_108() {  }
 s32 TObjEneMe3Stelth::check_target_in_range() {
@@ -1082,7 +1082,7 @@ void TObjEneMe3Stelth__sub_800F348C(TObjEneMe3Stelth *stelth, s32 arg1) {
                             stelth->m_424 = 3;
                             stelth->m_434 = (stelth->m_3ac - 20.0f) / 12.857143f;
                             stelth->vfunc_91();
-                            play_sound_effect(0x3A835, (u8 *)&stelth->position, 0, 0);
+                            play_sound_effect(0x3A835, &stelth->position, 0, 0);
                         } else {
                             stelth->m_424 = 5;
                         }
@@ -1113,7 +1113,7 @@ void TObjEneMe3Stelth__sub_800F348C(TObjEneMe3Stelth *stelth, s32 arg1) {
                         stelth->target->apply_knockback_from_attacker((u8 *)stelth, 3.0f);
                     }
                 }
-                play_sound_effect(0x3A838, (u8 *)&stelth->position, 0, 0);
+                play_sound_effect(0x3A838, &stelth->position, 0, 0);
             }
             stelth->m_434 *= 0.85f;
             stelth->move_with_wall_slide_on_ground(stelth->m_3a0, stelth->m_3a8, stelth->m_434);
@@ -1262,7 +1262,7 @@ void TObjEneMe3Stelth::run_walk_state(s32 arg1) {
             if ((this->frame + this->play_speed) >= 15.0f) {
                 this->m_424 = 1;
                 this->vfunc_91();
-                play_sound_effect(0x3A835, (u8 *)&this->position, 0, 0);
+                play_sound_effect(0x3A835, &this->position, 0, 0);
             }
             this->vfunc_102();
             this->vfunc_89();
@@ -1421,7 +1421,7 @@ void TObjEneMe3Stelth__sub_800F290C(TObjEneMe3Stelth *stelth, s32 arg1) {
         stelth->requested_action = 4;
         stelth->advance_animation();
         stelth->set_active();
-        play_sound_effect(0x3A839, (u8 *)&stelth->position, 0, 0);
+        play_sound_effect(0x3A839, &stelth->position, 0, 0);
         break;
     case 3:
         if (stelth->get_flag_b4() != 0) {
@@ -1467,7 +1467,7 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {
         case 0:
             advance_animation();
             if (is_passing_frame(18.0f) != 0 || is_passing_frame(28.0f) != 0) {
-                play_sound_effect(0x3A836, (u8 *)&position, 0, 0);
+                play_sound_effect(0x3A836, &position, 0, 0);
             }
             if (get_flag_b4() != 0) {
                 m_424 = 1;
@@ -1494,7 +1494,7 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {
                 v.x += 20.0f * sin_table_lookup(rotation_y);
                 v.z += 20.0f * cos_table_lookup(rotation_y);
                 ((TObjPlayer *)(&v))->trigger_dell_biter_events();
-                play_sound_effect(0x3AD3A, (u8 *)&position, 0, 0);
+                play_sound_effect(0x3AD3A, &position, 0, 0);
             }
             vfunc_102();
             break;

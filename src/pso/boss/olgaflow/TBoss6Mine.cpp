@@ -199,7 +199,7 @@ void TBoss6Mine::explode_damage_players() {
             }
         }
     }
-    play_sound_effect(0x4003BA1E, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x4003BA1E, &this->position, 0, 0);
 }
 
 void TBoss6Mine::state_7() {

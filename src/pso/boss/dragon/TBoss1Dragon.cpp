@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/system/BmlResource.h"
@@ -183,7 +184,6 @@ extern s32 TLobby__designated_client_id;
 s32 isV2Mode__12TBoss1DragonFv(void);
 u8 *__nw__7TObjectFUl(s32);
 u8 *__ct__16TBoss1DragonDemoFv(u8 *arg0, s32 arg1, s32 arg2, f32 farg0);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 play_cue_stream_file(void *, int);
 void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 extern s32 tl_01;
@@ -4791,7 +4791,7 @@ void spawn_trap__12TBoss1DragonFii(s32 arg0, s32 arg1) {
 }
 
 void play_se_at_pos__12TBoss1DragonFii(s32 arg0, s32 arg1) {
-    play_sound_effect(arg1, (s32)&((TBoss1Dragon *)arg0)->m_63c, 0, 0);
+    play_sound_effect(arg1, (const Vec *)((s32)&((TBoss1Dragon *)arg0)->m_63c), 0, 0);
 }
 
 s32 select_forward_target__12TBoss1DragonFPv(u8 *self) {

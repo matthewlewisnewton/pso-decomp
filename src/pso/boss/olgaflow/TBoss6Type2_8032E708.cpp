@@ -1127,7 +1127,7 @@ void TBoss6Mag::vfunc_63() {
         TBoss6Type2__sub_802BD340((int) (*(s32 *)((s8 *)arg0 + 0x378)));
         *(f32 *)((s8 *)arg0 + 0x3F8) = 1.0f;
         ((TBoss6Mag *)arg0)->set_action(4);
-        play_sound_effect(0x69E17, arg0 + 0x38, 0, 0);
+        play_sound_effect(0x69E17, (const Vec *)(arg0 + 0x38), 0, 0);
         break;
     }
 }
@@ -1135,7 +1135,7 @@ void TBoss6Mag::vfunc_63() {
 void spawn_ground_effect__10TObjPlayerFPv(u8 *arg0) {
     *(f32 *)((s8 *)arg0 + 0x3F8) = 1.0f;
     *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) & 0xFFFFFDFF);
-    play_sound_effect(0x6A816, arg0 + 0x38, 0, 0);
+    play_sound_effect(0x6A816, (const Vec *)(arg0 + 0x38), 0, 0);
     *(f32 *)((s8 *)arg0 + 0x3BC) = 0.0f;
 }
 void TBoss6PlotFalz__sub_802AC008(f32, f32);

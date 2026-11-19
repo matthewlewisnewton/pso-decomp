@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/StripBufferPair.h"
 #include "pso/enemy/BattleParameters.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
@@ -164,7 +165,6 @@ extern "C" {
 s32 approach_angle_limited(s32, s32, s32);
 s32 free_collision_body_parts(void *);
 s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);
-s32 play_sound_effect(void *, void *, int, int);
 void __dl__7TObjectFPv(void *);
 s32 create_ex__11TTecGiBartaFPvPvPv(void *, void *, s32, s32);
 void __destroy_arr(void *, void *, u32, u32);
@@ -631,7 +631,7 @@ void TObjEneRe4Sorcerer::handle_death_state(s32 arg1) {
         fn_800D911C((Vec *)&m_2fc);
         TObjPlayer__sub_800A04F0(&fade);
         m_3f8 = 0.0f;
-        play_sound_effect((void *)remap_sound_for_area(0x4003AD19), &position, 0, 0);
+        play_sound_effect((s32)((void *)remap_sound_for_area(0x4003AD19)), (const Vec *)&position, 0, 0);
         return;
     case 0:
         advance_animation();

@@ -2,6 +2,7 @@
 #pragma readonly_strings on
 
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/MenuText.h"
 #include "pso/system/ArrayAllocation.h"
 #include "pso/ui/charcreate/CreationInput.h"
@@ -102,7 +103,6 @@ struct Auto_802952E0
 };
 
 extern "C" {
-s32 play_sound_effect(s32, s32, s32, s32);
 void run_task__16TObjCMAssignMenuFv(void *arg0);
 void TCameraCtrl__sub_80068EF0(void);
 s32 get_message_text(s32 arg0);
@@ -1595,14 +1595,14 @@ void TObjCMHairMenu::run_task() {
             if (temp_r0 >= 4) {
                 selection = 0;
             }
-            ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+            play_sound_effect(0x54100, 0, 0, 0);
         } else if (creation_direction_repeated(0x10) != 0) {
             temp_r0_2 = selection - 1;
             selection = temp_r0_2;
             if (temp_r0_2 < 0) {
                 selection = 3;
             }
-            ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+            play_sound_effect(0x54100, 0, 0, 0);
         }
         temp_r3 = selection;
         if (temp_r3 == 0) {
@@ -1611,12 +1611,12 @@ void TObjCMHairMenu::run_task() {
                 if (++app->hair >= count) {
                     app->hair = 0;
                 }
-                ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+                play_sound_effect(0x54100, 0, 0, 0);
             } else if (creation_direction_repeated(0x40) != 0) {
                 if (--app->hair < 0) {
                     app->hair = count - 1;
                 }
-                ((s32 (*)(int, int, int, int))play_sound_effect)(0x54100, 0, 0, 0);
+                play_sound_effect(0x54100, 0, 0, 0);
             }
         } else {
             app = appearance;
@@ -1638,7 +1638,7 @@ void TObjCMHairMenu::run_task() {
             }
         }
         if (creation_buttons_pressed(6) != 0) {
-            ((s32 (*)(int, int, int, int))play_sound_effect)(0x53704, 0, 0, 0);
+            play_sound_effect(0x53704, 0, 0, 0);
             TObjCMMainMenu::clear_task_state();
             active = 0;
         }
@@ -2094,7 +2094,7 @@ void TObjCMProportion::run_task() {
             temp_r3_4->height = (f32) 0.0f;
         }
         if (creation_buttons_pressed(6) != 0) {
-            ((void (*)(s32, s32, s32, s32))play_sound_effect)(0x53704, 0, 0, 0);
+            play_sound_effect(0x53704, 0, 0, 0);
             TObjCMMainMenu::clear_task_state();
             arg0->active = 0;
         }

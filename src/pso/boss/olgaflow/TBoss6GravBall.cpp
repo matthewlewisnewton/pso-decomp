@@ -391,7 +391,7 @@ void update_charge_effects__14TBoss6GravBallFPv(u8 *self) {
         *(s32 *)((s8 *)self + 0xB4) = 0;
         clear_player_grav_flags__14TBoss6GravBallFv(self);
         *(s32 *)((s8 *)self + 0xB0) = 2;
-        play_sound_effect(0x4003C417, self + 0xC8, 0, 0);
+        play_sound_effect(0x4003C417, (const Vec *)(self + 0xC8), 0, 0);
         return;
     default:
         ((TObject *)self)->queue_destruction();
@@ -431,7 +431,7 @@ void update_state__14TBoss6GravBallFPv(u8 *arg0) {
             *(s32 *)((s8 *)arg0 + 0xB8) = 0;
             *(s32 *)((s8 *)arg0 + 0xB4) = 0;
             *(s32 *)((s8 *)arg0 + 0xB0) = 1;
-            play_sound_effect(0x4003B516, arg0 + 0xC8, 0, 0);
+            play_sound_effect(0x4003B516, (const Vec *)(arg0 + 0xC8), 0, 0);
             break;
         case 0x20:
         default:

@@ -879,7 +879,7 @@ void TObjAreaWarp::confirm_area_transfer(void *player) {
     ((TObjAreaWarpQuest *)(&lbl_80515BA0.value))->get_dest_area();
     ((s32 (*)(void))send_inter_level_warp_all__10TNpcPlayerFl)();
     send_6x21_inter_level_warp(player, (((TObjAreaWarpQuest *)(&lbl_80515BA0.value))->get_dest_area()));
-    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x40003205, 0U, 0, 0);
+    play_sound_effect(0x40003205, 0U, 0, 0);
 }
 
 void handle_6x94_inter_level_warp(Pkt_8019C988 *arg0) {

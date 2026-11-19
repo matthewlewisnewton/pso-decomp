@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC.h"
@@ -31,7 +32,6 @@ extern const f32 lbl_805DD1DC;
 extern const f32 lbl_805DD1E0;
 u32 construct_type1_heading__20TWindowSubStatusDispFll(u32, s32, s16);
 s32 TWindowSubComCard__sub_8026906C(void);
-s32 play_sound_effect(s32 a0 = 0, s32 a1 = 0, s32 a2 = 0, s32 a3 = 0);
 s32 is_open__13TUnk_804D0658Fv();
 s32 get_array_entry__11TWindowBaseFi(void * a0 = 0, s16 a1 = 0);
 

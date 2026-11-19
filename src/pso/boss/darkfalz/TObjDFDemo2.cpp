@@ -143,7 +143,7 @@ void TObjDFDemo2::run_task() {
         if (e != NULL) {
             ((TParticleCtrl *)e)->set_flags(0x40);
         }
-        play_sound_effect(0x4003AD15, arg0->fac, 0, 1);
+        play_sound_effect(0x4003AD15, (const Vec *)arg0->fac, 0, 1);
         start_pad_rumble_all(0xC0, 0xF);
     }
     while (arg0->ftimer >= 0xB4) {
@@ -205,7 +205,7 @@ void *TObjDFDemo2__ct(void *arg0, void *parent, void *arg2, void *arg3, void *ar
         set_scripted_camera_pose(self->pos, self->pos, &p);
     }
     lbl_80485680.cache_target_and_forward(0x4444);
-    play_sound_effect(0x4003A325, self->pos, 0, 1);
+    play_sound_effect(0x4003A325, (const Vec *)self->pos, 0, 1);
     self->bc = 0;
     return self;
 }

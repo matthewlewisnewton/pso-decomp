@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
 #include "pso/system/main_loop.h"
@@ -188,7 +189,6 @@ extern s32 saved_model_render_flags;
 extern s32 model_render_flags;
 
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(int, int, int, int);
 extern RecoveredGlobal_80335A58_lbl_8050E208 controller_input_state;
 extern RecoveredGlobal_80335A58_lbl_8050E3B8 controller_physical_port_bank;
 

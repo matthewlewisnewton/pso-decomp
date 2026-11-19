@@ -605,7 +605,7 @@ void TBoss3VoloptCore::sub_8003F81C() {
             Vec pos = *&position;
             pos.y -= 20.0f;
             effect = create_particle_emitter(&pos, 0x31);
-            play_sound_effect(0x4003AD1E, &position.x, 0, 0);
+            play_sound_effect(0x4003AD1E, (const Vec *)&position.x, 0, 0);
             state = 3;
         }
         break;

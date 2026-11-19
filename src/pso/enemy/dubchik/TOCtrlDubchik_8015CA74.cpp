@@ -322,7 +322,7 @@ void TOCtrlDubchik::sub_8015CA74() {
     spawn_particle_effect(&this->position, 0x46);
     area = get_current_floor_area();
     if (area >= 0x17 || area < 0x13) {
-        play_sound_effect(0x4003AD16, (u8 *)&this->position, 0, 0);
+        play_sound_effect(0x4003AD16, &this->position, 0, 0);
     }
     for (i = registered_player_count; i < registered_player_count + lbl_805D5870; i++) {
         p = (u8 *)TObjPlayer::get_player_data(i);

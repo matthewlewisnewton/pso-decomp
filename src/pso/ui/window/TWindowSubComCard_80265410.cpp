@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/window/TextEntryMeasurement.h"
 #include "types.h"
 #include "pso/system/ArrayAllocation.h"
@@ -92,7 +93,6 @@ struct Card_80265AA4 {
 struct Ent_80265C30;
 
 Ent_80265C30 * get_array_entry__11TWindowBaseFi(void *w, s32 i);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 __nw__7TObjectFUl(int);
 void * get_field_20__17TWindowSubComCardFv(void *e);
 void TWindowChat__sub_80247D2C(void *p);

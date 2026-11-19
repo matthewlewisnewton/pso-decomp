@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802D50A0.h"
@@ -48,7 +49,6 @@ extern NJS_POINT2 lbl_80472848[];
 extern TObject *tl_02;
 extern s32 tl_clipout;
 extern s32 TAdMultiPlyChrSelectGC__data_805DE898;
-s32 play_sound_effect(s32, s32, s32, s32);
 
 extern s8 controller_physical_port_bank[];
 extern u32 multi_chr_select_serial_access_state;

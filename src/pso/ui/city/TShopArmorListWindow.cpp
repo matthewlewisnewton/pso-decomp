@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/city/TShopWindowBase.h"
 #include "pso/ui/window/TWindowMenuIconLine.h"
@@ -210,7 +211,6 @@ u32 create_yes_no_window(int, u16, int, int);
 s32 get_window_layout_position(s32);
 extern const s32 local_client_id;
 s32 sub_802239EC__13TShopSequenceFv(void *);
-s32 play_sound_effect(int, int, int, int);
 void send_6x25_equip_item(void *arg0, s32 arg1, s32 arg2);
 void handle_buy_confirm__20TShopArmorListWindowFv(Win_8021A634 *w);
 s32 TLobby__sub_8021B274();

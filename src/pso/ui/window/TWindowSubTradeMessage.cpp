@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/ui/window/TWindowSubTradeMessage.h"
 #include "pso/ui/window/TWindowMessage.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -13,7 +14,6 @@ struct TradeMessageParentVirtual : TradeMessageParentBase {
 struct TradeMessageInput { u8 base[0x20]; u8 buttons[0x30]; };
 extern "C" {
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void*,s32);
-void play_sound_effect(s32,s32,s32,s32);
 u8* get_window_layout_position(s32);
 TWindowMessage* create__14TWindowMessageFlPCfUll(void*,const f32*,s32,s32);
 extern TradeMessageInput controller_input_state[];

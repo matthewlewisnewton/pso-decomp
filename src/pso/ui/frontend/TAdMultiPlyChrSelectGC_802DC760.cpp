@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802DBCC4.h"
@@ -22,7 +23,6 @@ struct Ent_802DC8A0 { u8 d[0x50]; };
 struct Pair_802DC8A0 { u8 d[8]; };
 
 extern "C" {
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C5A44(int, void *, int);
 extern RecoveredGlobal_802DCA20_lbl_804727E8 multi_chr_select_item_rect_table;
 extern s32 controller_physical_port_bank[];

@@ -1,5 +1,6 @@
 #pragma defer_codegen on
 
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/unk/TLobby_80132ED0.h"
@@ -144,7 +145,6 @@ void populate_sub_item_list(Win_8027ABFC *arg0);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
 u32 is_action_active__10TObjPlayerFv(s32);
 void decrement_clamped(void *, s32);
-void play_sound_effect(s32, s32, s32, s32);
 s32 __nw__7TObjectFUl(s32);
 s32 TWindowCtrl__sub_8024A228(s32);
 u32 __ct__15TWindowHelpItemFPvUs(s32, s32, s32);

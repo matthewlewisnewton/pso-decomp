@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/system/ControllerInputState.h"
 #include "pso/ui/window/TWindowChoiceSetting.h"
@@ -154,7 +155,6 @@ s32 TWindowSubSymbolChat__sub_800771C4(struct TWSC *, s32);
 s32 refresh_parts__20TWindowSubSymbolChatFv();
 s32 get_message_10__20TWindowSubStatusDispFl(s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 void clamp_list_scroll_offset(s32, NJS_POINT2 *, NJS_POINT2 *);
 s32 draw_window_scrollbar(s32, s32, void *);
 void * reset_selection__20TWindowSubStatusDispFv(void *, NJS_POINT2 *);
@@ -280,7 +280,7 @@ void TWindowSubSymbolChatParts::sub_80285054() {
     u8 *input;
     input = (u8 *)&controller_input_state + 0x20;
     if ((TWindowChoiceSetting::apply_choice((s32)input, 0xF0, 6, 1) != 0) || (TWindowChoiceSetting::apply_choice((s32)((void *) ((u8 *)&controller_input_state + 0x160)), 0xF0, 6, 1) != 0)) {
-        ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x54100, 0U, 0, 0);
+        play_sound_effect(0x54100, 0U, 0, 0);
         if ((TWindowChoiceSetting::apply_choice((s32)input, 0x80, 6, 1) != 0) || (TWindowChoiceSetting::apply_choice((s32)((void *) ((u8 *)&controller_input_state + 0x160)), 0x80, 6, 1) != 0)) {
             *(u8 *)((s8 *)((u8 *)this) + 0x72) = (u8) (*(u8 *)((s8 *)((u8 *)this) + 0x72) + 1);
         }

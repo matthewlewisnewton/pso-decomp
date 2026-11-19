@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/chat/TWindowSubSymbolChatPartsSet.h"
 #include "pso/ui/chat/TWindowChatSymbol_802486A8.h"
@@ -221,7 +222,6 @@ T_802869BC *TWindowSubSymbolChatPartsSet__ct(T_802869BC *self, void *parent, s16
 void TWindowSubSymbolChatFaceType__sub_80283C84(void *, void *, f32, f32);
 
 void render__28TWindowSubSymbolChatPartsSetFv(TWindowSubSymbolChatPartsSet *arg0);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 draw_visible_window_entries(void *, void *, int, f32);
 u8 *draw_default_entry__9TWindowDDFl();
 s32 forward_render__20TWindowSubStatusDispFv(int, int);

@@ -814,7 +814,7 @@ void TObjEneDarkGunner::vfunc_61() {
     u8 *arg0 = (u8 *)this;
     ((TObjBase *)arg0)->obj_clearFlags30((s32)(0x100U));
     spawn_particle_effect(((u8 *)&this->m_2fc), 0xD7);
-    play_sound_effect(0x4003B22D, (u8 *)&this->position, 0, 0);
+    play_sound_effect(0x4003B22D, &this->position, 0, 0);
 }
 
 int TObjPlayer__sub_800A1808(void* p) { return (*(u32*)((char*)p + 0x30) >> 23) & 0x1; }
@@ -1034,7 +1034,7 @@ void TObjPlayer__sub_800A1C84(TObjPlayer *enemy) {
         TObjPlayer__sub_800A04F0((u8 *)enemy + 0x408);
         fn_800D911C((Vec *)((u8 *)enemy + 0x2FC));
         *(s32 *)((s8 *)enemy + 0x388) |= 4;
-        play_sound_effect(0x4003AD37, (u8 *)enemy + 0x38, 0, 0);
+        play_sound_effect(0x4003AD37, (const Vec *)((u8 *)enemy + 0x38), 0, 0);
         enemy->m_37c = 1;
         break;
     case 1:
@@ -1127,7 +1127,7 @@ s32 TObjPlayer__sub_800A1FEC(void *arg0) {
         self->count = 0;
         self->fB8 = 3;
         play_sound_effect(0x4003B52F, &self->pos, 0, 0);
-        play_sound_effect(0x4003AD29, (u8 *)arg0 + 0x38, 0, 0);
+        play_sound_effect(0x4003AD29, (const Vec *)((u8 *)arg0 + 0x38), 0, 0);
         self->state = 1;
         break;
     case 1:

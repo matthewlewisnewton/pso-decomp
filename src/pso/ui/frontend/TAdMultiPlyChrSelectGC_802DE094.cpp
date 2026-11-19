@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowBase.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802DBCC4.h"
@@ -23,7 +24,6 @@ void load_tables(int a0);
 s32 *TAdSinglePlyChrSelectGC__sub_801FE4BC(u32 i);
 s32 is_slot_active__23TAdSinglePlyChrSelectGCFUi(u32 arg0);
 u32 check_flag__23TAdSinglePlyChrSelectGCFl(s32);
-s32 play_sound_effect(s32, s32, s32, s32);
 u32 __nw__7TObjectFUl(s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C561C(s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C5688(s32);

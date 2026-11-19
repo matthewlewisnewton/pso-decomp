@@ -717,7 +717,7 @@ void TBoss7Tentacle::restart_particle_effect() {
     particle_effect = TObjPlayer__sub_802E80A0();
     attach_particle_model((int) temp_r3, (int) queue_boss_effect__10TObjPlayerFPv(4), (int) particle_effect, 0, 0, 1.0f);
   }
-  play_sound_effect(0x3A809, (void *) (arg0 + 0x1C), 0, 0);
+  play_sound_effect(0x3A809, (const Vec *)(arg0 + 0x1C), 0, 0);
 }
 
 }

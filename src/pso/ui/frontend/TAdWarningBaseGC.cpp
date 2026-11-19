@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/window/TWindowMessage.h"
 #include "pso/ui/window/TWindowBase.h"
@@ -26,7 +27,6 @@ struct V_8032D214 : B_8032D214 {
 extern "C" {
 s32 update_window_mode_from_progress__6TLobbyFPv(void *, void *);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-void play_sound_effect(int, int, int, int);
 extern u8 controller_input_state[];
 extern u8 controller_physical_port_bank[];
 void *__ct__12TAdBackTxtGCFv(void *, void *);

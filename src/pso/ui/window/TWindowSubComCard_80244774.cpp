@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/render/CurrentTextureList.h"
 #include "pso/unk/text_8026CB5C.h"
@@ -143,7 +144,6 @@ struct Rect_802455CC { f32 x, y, w, h; u8 pad10[0x20 - 0x10]; f32 px, py, sx, sy
 
 void disallow_rendering__7TObjectFv(TObject *);
 int copy_vec2__28TWindowSubSymbolChatPartsSetFPv(void*);
-s32 play_sound_effect(s32, s32, s32, s32);
 int TWindowSubComCard__sub_80244774(void);
 f32 TWindowSubComCard__sub_80244784(TWindowSubComCard *arg0);
 void save_position__11TWindowBaseFv(void* p);
@@ -410,7 +410,7 @@ void TWindowBase::sub_80244F2C(u8 *arg1, u8 *arg2, s16 arg3) {
     }
     temp_r3_2 = window_flags;
     if ((temp_r3_2 & 1) && (temp_r3_2 & 2) && !(temp_r3_2 & 0x20)) {
-        ((s32 (*)(int, int, int, int))play_sound_effect)(0x53703, 0, 0, 0);
+        play_sound_effect(0x53703, 0, 0, 0);
     }
     if (TWindowSubStatusDisp::get_card_window_scale((int) (client_index)) <= 0.0f) {
         open_tick = 0x01000000;
@@ -946,7 +946,7 @@ void TWindowSubComCard::update_open_close() {
         if ((f32) *(s32 *)&this->m_5c >= 7.5f) {
             if (temp_r5 & 4) {
                 if (!(temp_r5 & 0x20)) {
-                    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x53704, 0U, 0, 0);
+                    play_sound_effect(0x53704, 0U, 0, 0);
                 }
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c & ~5);
                 return;
@@ -964,7 +964,7 @@ void TWindowSubComCard::update_open_close() {
             card_window_flags = *(s32 *)&this->m_2c;
             if (card_window_flags & 4) {
                 if (!(card_window_flags & 0x20)) {
-                    ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x53703, 0U, 0, 0);
+                    play_sound_effect(0x53703, 0U, 0, 0);
                 }
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c & 0xFFFFFFFB);
                 *(s32 *)&this->m_2c = (s32) (*(s32 *)&this->m_2c | 1);

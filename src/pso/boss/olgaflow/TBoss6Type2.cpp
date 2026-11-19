@@ -1001,7 +1001,7 @@ void TBoss6Type2::vfunc_62() {
         }
     }
     if ((s32) m_418 != 0) {
-        ((s32 (*)(int, void *, int, int))play_sound_effect)(0x68A24, &position, 0, 1);
+        play_sound_effect(0x68A24, &position, 0, 1);
     }
 }
 
@@ -1509,7 +1509,7 @@ void TBoss6Type2::update_countdown() {
 void TBoss6Type2::play_sound_if_no_target() {
     u8 *arg0 = (u8 *)this;
     if (is_target_valid() == 0) {
-        play_sound_effect(TBoss6Type2__no_target_sound_ids[TBoss6Type2::find_index_in_table(this->m_2e4)], arg0 + 0x38, 0, 1);
+        play_sound_effect(TBoss6Type2__no_target_sound_ids[TBoss6Type2::find_index_in_table(this->m_2e4)], (const Vec *)(arg0 + 0x38), 0, 1);
     }
 }
 
@@ -1536,7 +1536,7 @@ void TBoss6Type2::play_phase_sound() {
             var_r3 = 0x6852B;
             break;
         }
-        play_sound_effect(var_r3, arg0 + 0x38, 0, 1);
+        play_sound_effect(var_r3, (const Vec *)(arg0 + 0x38), 0, 1);
     }
 }
 
@@ -2172,7 +2172,7 @@ void TBoss6Type2::drop_random_rocks(s32 arg0, s32 arg1) {
     }
     TBoss6Type2__sub_80356E50((s32)buf, cnt, arg1);
     ::operator delete[](buf);
-    ((s32 (*)(int, void *, int, int))play_sound_effect)(0x4006AB1D, ((void *)&boss6_arena_center), 0, 1);
+    play_sound_effect(0x4006AB1D, &boss6_arena_center, 0, 1);
 }
 
 void TBoss6Type2::spawn_rocks_around_players() {
@@ -2206,7 +2206,7 @@ void TBoss6Type2::spawn_rocks_around_players() {
         spawn__15TBoss6RockChaseFll(this, &q);
         n++;
     }
-    play_sound_effect(0x4006AB1D, (void *)&boss6_arena_center, 0, 1);
+    play_sound_effect(0x4006AB1D, &boss6_arena_center, 0, 1);
 }
 
 void TBoss6Type2__sub_802BAD04(s32 arg0) {
@@ -2442,7 +2442,7 @@ void TBoss6Type2::update_possess_target() {
             spawn_flow_soul__11TBoss6Type2Fiii((s32)this, (s32)&v, 0x1E);
             ((TBoss6EffHyoui *)(*(u16 *)((s8 *)((u8 *)this) + 0x55C)))->create((void *)1, (void *)0x1E);
             if (this->is_target_valid() == 0) {
-                play_sound_effect(0x40069E13, ((u8 *)this) + 0x38, 0, 1);
+                play_sound_effect(0x40069E13, (const Vec *)(((u8 *)this) + 0x38), 0, 1);
             }
             spawn_particle_effect(pl + 0x38, 0x36);
             done = 1;
@@ -2555,7 +2555,7 @@ void TBoss6Type2::sub_802BA078() {
                 spawn_particle_effect_with_flags(&v, 0x223, 0x40);
             }
             if (this->is_target_valid() == 0) {
-                ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4000AD13, 0, 0, 0);
+                play_sound_effect(0x4000AD13, 0, 0, 0);
             }
         }
     }
@@ -2642,7 +2642,7 @@ void TBoss6Type2::update_footstep_effects() {
       if ((*((f32 *) (((s8 *) temp_r29) + 4))) < footstep_height_threshold)
       {
         *((s32 *) (((s8 *) (((u8 *) arg0) + temp_r4)) + 0)) = 1;
-        ((s32 (*)(s32, u32, s16, s32))play_sound_effect)(0x4006A300, (u32) temp_r29, 0, 0);
+        play_sound_effect(0x4006A300, (const Vec *)temp_r29, 0, 0);
         spawn_particle_effect_with_flags(temp_r29, 0x220, 0x40);
         if (((s32)this->m_418) == 0)
         {

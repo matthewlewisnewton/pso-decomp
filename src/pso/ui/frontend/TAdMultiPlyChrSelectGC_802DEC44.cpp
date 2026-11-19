@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.h"
 #include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802DEC44.h"
@@ -6,7 +7,6 @@
 
 extern "C" {
 s32 is_slot_active__23TAdSinglePlyChrSelectGCFUi();
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 TAdMultiPlyChrSelectGC__sub_802C5A44(int, void *, int);
 }
 s32 is_multiplayer_character_slot_selected(s32 arg0);

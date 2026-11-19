@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/effect/TEffGuard.h"
 #include "pso/system/task/TObject_80019A50.h"
 #include "pso/unk/text_80087278.h"
@@ -6,9 +7,6 @@
 #include "pso/system/task/TObject.h"
 #pragma readonly_strings on
 const char* TEffGuard__class_name = "TEffGuard";
-extern "C" {
-s32 play_sound_effect(u32, const Vec*, s32, s32);
-}
 
 void TEffGuard::run_task() {
     s32 particle;

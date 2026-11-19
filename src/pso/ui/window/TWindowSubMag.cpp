@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/item/MagStats.h"
 #include "pso/unk/text_8025373C.h"
 #include "pso/ui/window/TWindowMessage.h"
@@ -101,7 +102,6 @@ void *fn_802628C0(s32, const f32 *, s32);
 s32 call_if_split_screen(void *, s32);
 s32 update_help_item__13TWindowSubMagFv(void *, s32);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
-s32 play_sound_effect(s32, s32, s32, s32);
 s32 are_status_entries_ready__13TWindowSubMagFi(void *);
 void *TWindowSubMagPhoton__ct(void *, s32, s32, s32);
 int TWindowSubMag__sub_8027C0E8(void* p);

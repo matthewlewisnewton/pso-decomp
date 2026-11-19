@@ -1,3 +1,4 @@
+#include "pso/system/SoundEffect.h"
 #include "pso/system/TGStream.h"
 #include "pso/system/RlcArchive.h"
 #include "pso/system/ControllerInputState.h"
@@ -82,7 +83,6 @@ s32 TObjBoss2Tunnel__sub_8007CAE8(f32 *, f32);
 s32 draw_visible_window_entries(void *, void *, void *);
 s32 test_flag_4c__23TAdSinglePlyChrSelectGCFv(void *, int);
 s32 verify_snapshot_checksum__15TObjBoss2TunnelFv(void);
-s32 play_sound_effect(s32, s32, s32, s32);
 
 void TWindowSnapShot::free_shared_instance() {
     struct VObj_802A7DDC *o;

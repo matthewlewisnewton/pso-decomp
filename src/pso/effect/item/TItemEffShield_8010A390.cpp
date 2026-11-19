@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "types.h"
 #include "pso/item/TUnk_8049F148.h"
 #include "pso/boss/darkfalz/TBoss4Type2_80086C44.h"
@@ -97,7 +98,6 @@ extern "C" {
 extern "C" { extern char TItemEffShield__class_name_string[]; }
 const char *TItemEffShield__class_name = TItemEffShield__class_name_string;
 void *get_player_by_client_id(s32 i);
-void play_sound_effect(s32, void *, s32, s32);
 void run_task__14TItemEffShieldFv(Shield_8010A4C0 *self);
 
 }
@@ -147,7 +147,7 @@ void run_task__14TItemEffShieldFv(Shield_8010A4C0 *self) {
         switch (self->m_3c) {
         case 0:
             if (self->m_38 - 1 == r->m_20) {
-                play_sound_effect(0x4001A81E, self->m_1c, 0, 0);
+                play_sound_effect(0x4001A81E, (const Vec *)self->m_1c, 0, 0);
                 ((TItemEffShield *)self)->spawn_recipe_particles();
                 self->m_3c++;
                 self->m_38 = 0;

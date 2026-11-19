@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/render/CurrentTextureList.h"
 #include "types.h"
@@ -163,7 +164,6 @@ NJS_ARGB TPhotonMagicSquare__color_palette[6] = {
 extern RecoveredGlobal_801AD0F0___vt__18TPhotonMagicSquare __vt__18TPhotonMagicSquare;
 extern const char *TPhotonMagicSquare__data_805D3508;
 extern u8 *photon_blast_shared_resource;
-s32 play_sound_effect(int, int, int, int);
 
 }
 TPhotonMagicSquare::~TPhotonMagicSquare() {

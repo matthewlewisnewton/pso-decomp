@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/audio/SoundSlotPitch.h"
 #include "types.h"
 #include "pso/technique/TTecJelin.h"
@@ -123,7 +124,6 @@ void run_task__9TTecJelinFv(struct Self_802336F0 *self);
 void construct_area_technique_base(void *);
 extern const char *tec_jelin_class_name_ptr;
 extern s32 __vt__9TTecJelin[];
-s32 play_sound_effect(int, void *, int, int);
 s32 get_entity_id(void *);
 Jelin_80233958 *construct__9TTecJelinFPviiii(Jelin_80233958 *self, s32 _w1, s32 _w2, s32 _w3, s32 _w4);
 void copy_technique_target_list(void *, void *);

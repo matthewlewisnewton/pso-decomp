@@ -1,4 +1,5 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/system/SoundEffect.h"
 #include "pso/enemy/nanodrago/TObjEneNanoDrago.h"
 #include "types.h"
 #include "pso/render/NinjaUtil.h"
@@ -48,7 +49,6 @@ struct Me_800DC9EC {
 
 extern "C" { u8 *find_entity_by_id(s16);
 Obj_800DC4B4 *find_active_entity_by_id(u16);
-s32 play_sound_effect(int, void *, int, int);
 s32 subtract_vector(void *, void *);
 s32 vec3_add_to(void *, void *);
 u32 csnVector(void *, void *, int);
