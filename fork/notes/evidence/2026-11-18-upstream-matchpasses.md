@@ -2,7 +2,7 @@
 
 ## Combined great-merge on upstream master `af11a99125`
 
-The combined source at `be20c53a56` and the complete source snapshot at `3c38a6d669` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
+The combined source at `a62c10cd43` and the complete source snapshot at `b2359e82ad` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
 
 Both source builds reproduce the retail executable, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`, and pass the project checker. The address-level comparisons preserve every exact and linked function and data range from the prior combined build and the new upstream base. The historical fork report still counts 2,382 more total data bytes because its report uses the older split layout. Its comparable exact and linked coverage has no losses, and the same accounting difference was present before this replay.
 
@@ -25,6 +25,14 @@ The 16-file replay at `be20c53a56` completes the shared numeric slot and unsigne
 The local review at `90d87fc82b` adds one commit on top of the archive prerequisite `86d1a7faec`, which is based on upstream master `af11a99125`. It uses the archive branch's heap interface. All four source builds reproduce the retail DOL and pass the project checker. Fourteen renamed exports retain their addresses and sizes. The seven related units retain all 68 exact source-linked functions, 23 original calls to the renamed interfaces, and 48 bytes of exact slot cursors. The archive-dependent review keeps the historical fork coverage already present in its prerequisite. The combined stack covers the original 24-byte keyboard table through the window review.
 
 Upstream already contains the fork's draw-line fold and the typed copy of the vertices. All 17 original functions remain exact and source-linked. The working fork passes symbol retention, all 133 fork-only overlay paths round-trip, and all eleven layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 6 records and adds evidence to 8 others. It has 1,190 entries awaiting owner comparison and 857 with partial evidence.
+
+## Character creation effects and color rendering
+
+The 44-file replay at `a62c10cd43` carries the fork's typed creation menu icons, heading labels, wall and fade renderer. The indexed icon animation and its callers use the full-width result of the original glyph extent query. The grid and fade strip retain the original positions and opacity behavior. The geometry interfaces at `0x801E352C` and `0x801E35C4` belong to the shared 16-byte vertex-and-color list. The letterbox, fade and split-screen dividers use that list directly. Other callers retain their existing descriptor storage and use the shared receiver type.
+
+The standalone review at `5430552ee1` is one commit directly on upstream master `af11a99125`. Both source branches and the working fork reproduce the retail DOL and pass the project checker. Six renamed exports retain their addresses and sizes. The 30 source-linked units retain all 583 exact functions, 50 original calls to the recovered interfaces, and 352 original bytes in the nine checked icon, heading and fade data ranges. The standalone review preserves upstream's coverage. The combined stack retains the keyboard table through the window review.
+
+All 133 overlay paths round-trip and all eleven fork layer tests pass. The [fork source index](2026-11-18-fork-review-index.tsv) reconciles 10 records and adds evidence to 7 others. It has 1,173 records awaiting comparison and 864 with partial evidence.
 
 ## Standalone reviews on upstream master `af11a99125`
 
