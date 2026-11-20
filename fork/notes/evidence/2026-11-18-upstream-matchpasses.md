@@ -126,6 +126,28 @@ The stage review uses the BML/GVM provider as its parent and validates the share
 
 The prepared reviews and prerequisites touch 1,660 of 1,761 combined diff paths. The remaining 101 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
 
+## Historical fade and debris replay and review assignments
+
+The 21-file replay at `99d8d2c898` restores the native negative fade method at `0x800A0554` with all six enemy callers, and uses the fork's typed debris position and spread vectors with all known consumers. The retail executable and matched and source-linked code and data are preserved. All 90 original ranges still account for 980 source-linked bytes and 167 alignment bytes. The working fork reproduces retail, its 133 overlay paths round-trip and all eleven layer tests pass.
+
+| Review | Local head | Changed files |
+| --- | --- | ---: |
+| Enemy, boss and battle parameters | `ad99e7980f` | 344 |
+| Player, techniques, inventory, holds and quest runtime | `7148a593c1` | 275 |
+| Stage objects, collision, debris and Challenge encounters | `cdc0344e09` | 206 |
+| Rendering, presentation, preview and scratch-vector stack | `8c368b4a6c` | 428 |
+| Window framework, keyboard and drawing | `ca78f691aa` | 380 |
+| Camera, scenes and character preview | `fc59b9c0a4` | 168 |
+| Audio, disc archives, REL and movie lifetime | `5e789c86fb` | 99 |
+
+The stage review is measured against the BML/GVM provider at `d7f1fb19b2`. The rendering stack branches from upstream and validates its shared renderer, presentation, starlight, preview and scratch-vector layers together. All listed builds reproduce retail and pass the project gate. The inventory sorting and record helper probe reaches the linker and needs the project’s native array allocation and release operators from the shared memory review. Its staged source checkpoint is `11fc7dae6d`.
+
+The prepared reviews and prerequisites touch 1,762 of 1,763 combined diff paths. The 1 unassigned paths are below. Shared paths still need line-level merge validation when review groups are sequenced.
+
+- `include/pso/unk/text_801D40D4.h`
+
+A raw three-way replay confirmed 12 historical source deltas already present in their mapped owners. Four historical technique resource ranges also retain all 1,596 exact source-linked bytes in the consolidated technique controller. The historical source index has 1,003 records awaiting owner comparison and 944 with partial evidence. The remaining replay candidates need source review.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
