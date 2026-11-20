@@ -1,5 +1,7 @@
 # Upstream matchpasses
 
+Group related source recovery into matchpass-sized reviews. Use upstream names wherever the corresponding entities have equivalent behavior, types and linkage. Keep documentation and tooling changes on the fork layer.
+
 ## Bulk replay on upstream master `6b080e67ab`
 
 The new upstream build reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` and passes the project checker. The [90-range data ledger](2026-11-18-fork-data-ranges.tsv) records 980 source-linked bytes and 167 bytes of alignment padding. Upstream links the final 24-byte keyboard table at `0x804D0004`. The address comparison with the historical retail-matched fork build reports zero exact or source-linked losses.
@@ -894,6 +896,12 @@ The 2,074-file review queue covers 26 groups. The canonical source and working f
 Source `195c6e16c2` and landing checkpoint `6664106132` carry 51 changed files. This batch covers the reviewed stage accessors and Dubchik attachment owner, equipment and Symbol Chat name restoration, GoGo Ball counter and prompt receiver. The audit closes 1 historical comparisons and leaves 990 open.
 
 The 2,085-file review queue covers 26 groups. The canonical source and working fork reproduce retail. The equipment review restores seven upstream names or linkage spellings. Compiler relocations confirm both Symbol Chat overloads. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-stage-owner-replay.json)
+
+## Native source recovery across subsystems
+
+Source `89b1ccecd7` and landing checkpoint `40d3c9ff83` carry 33 changed files. This batch covers ADXF command history, Gi Gue flight and attack effects, Ginja texture loading and resource callers, main-menu controllers and single-player backdrop. The audit closes 14 historical comparisons and leaves 976 open.
+
+The 2,106-file review queue covers 27 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-native-history-replay.json)
 
 ## Ordered upstream review candidates
 
