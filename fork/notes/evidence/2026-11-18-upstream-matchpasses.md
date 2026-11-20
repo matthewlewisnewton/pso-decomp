@@ -1062,6 +1062,19 @@ The combined review queue at `3f8e3a05c0` carries 438 changed paths for this bat
 
 The queue now spans 2,585 files across 48 groups. A path comparison leaves 159 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The listed review bases identify prerequisite branches. The source audit closes 2 historical comparisons, leaving 713 open. [Validation evidence](2026-11-20-particles-attachments-bml-and-display-packaging.json)
 
+## Save images, actor layout and scene ownership
+
+The combined review queue at `52fb47e450` carries 343 changed paths for this batch. The native source reproduces retail at `83decd2d24`. Its 37-path enemy acquisition update also passed on the working fork with all 294 tooling tests. The queue reproduces retail with 2,451 exact linked units and zero lost matched or linked coverage.
+
+| Review | Local head | Review base | Changed files |
+| --- | --- | --- | ---: |
+| Native memory-card save images | `3a7ed59b8b` | `49b48c32e6` | 10 |
+| Actor body center, movement and rotation layout | `015dd577a9` | `49b48c32e6` | 275 |
+| Character creation presentation and packed-color drawing | `64ad571ed4` | `e03302a703` | 50 |
+| Slime child actors and Canadin formation ownership | `4d38fbac42` | `a9c6341c40` | 14 |
+
+The queue now spans 2,610 files across 50 groups. A path comparison leaves 135 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The listed review bases identify prerequisite branches. The source audit closes 0 historical comparisons, leaving 713 open. [Validation evidence](2026-11-20-saves-actor-layout-and-family-packaging.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

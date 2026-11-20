@@ -1,0 +1,1397 @@
+{
+  "source": "83decd2d24dc6104040afd060e0cc2754b110409",
+  "source_parent": "a0ab810dd1684b53eac5578277c4defdb158350b",
+  "landing": "f86f5f0a4114eff98ba7e9bebeb6fe066bf71151",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "canonical_source_validation": {
+    "all-source": {
+      "head": "83decd2d24dc6104040afd060e0cc2754b110409",
+      "report_sha256": "39752d337da697a4cc2144fd5bc61d4d142277328545e291d02b15b35c5f428e",
+      "strict_sha256": "b4168e70a6cd58dbb6688c55c5b473df2e4f7103e86427c5150bbe95db5e1f6f",
+      "exact_functions": 27572,
+      "exact_linked_units": 2449,
+      "comparisons": {
+        "upstream": {
+          "lost_function_ranges": 0,
+          "lost_linked_data_ranges": 0,
+          "omitted_alignment_ranges": 0
+        },
+        "historical": {
+          "lost_function_ranges": 0,
+          "lost_linked_data_ranges": 0,
+          "omitted_alignment_ranges": 30
+        }
+      }
+    },
+    "working-fork": {
+      "head": "9069494118ef511357eb6c3c55c8f9b0f4ee378e",
+      "report_sha256": "39752d337da697a4cc2144fd5bc61d4d142277328545e291d02b15b35c5f428e",
+      "strict_sha256": "5c3eafba3b1c878de5762a56481433be4b0c9a4947dc6e12a70cf5a2940d91f2",
+      "exact_functions": 27572,
+      "exact_linked_units": 2449,
+      "passing_tool_tests": 294,
+      "comparisons": {
+        "upstream": {
+          "lost_function_ranges": 0,
+          "lost_linked_data_ranges": 0,
+          "omitted_alignment_ranges": 0
+        },
+        "historical": {
+          "lost_function_ranges": 0,
+          "lost_linked_data_ranges": 0,
+          "omitted_alignment_ranges": 30
+        }
+      }
+    }
+  },
+  "canonical_source_changes": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/EnemyTargeting.h",
+    "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+    "include/pso/enemy/panarms/TObjEnePanarms.h",
+    "include/pso/enemy/slime/TObjEneSlimeOne.h",
+    "include/pso/object/base/CollisionActorLookup.h",
+    "include/pso/player/TObjPlayer_801542CC.h",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/deldepth/DelDepthMotion.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+    "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_800EBE2C.cpp",
+    "src/pso/player/TObjPlayer_801542CC.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "52fb47e4500af657ee229f91105c36434a1c1732",
+    "tree": "a81aae1945ed9c865090cbab74214f58141ede4e",
+    "previous": "3f8e3a05c0cefe55593422a07f5928b5c069b09d",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "0394e28c275546fc002b9269980a9e1fe048ab92",
+      "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "1b0d09f9e03c80521d1ef00e2bea567966edf697",
+      "96e12501e15a4340f8516a312337ce3f26b98786",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "93e344aaab7852228430b396e50d8175b0b69eee",
+      "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+      "4d38fbac428eac879a54e375460f5442ff8dbe5e",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "9448059d81db540704b609616e96771e90827654",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "1e7920fdc675df08303dca4499f49020df69774d",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "64ad571ed44a2c5e026c179e19b5a260295aa11b",
+      "5caa76608e8ba418a516e656b24770f0a0884003",
+      "91eed3bfdcca772ee0ae616c5f972a6aefe2ba11",
+      "c5493f319d431c46557faad569d5c3b443a7c273",
+      "f3d6a88dd80ce304cb986e494d70ef63b386c985",
+      "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c",
+      "ede02613cc11ca81807ff370d7fad931c614a236",
+      "bbd95644256571c98ca6fb5d66e77d39013bbab5",
+      "86686aa676c3b7e0ad5f90d157c69cab1567af97",
+      "d0530355706221482463e0da78d8bf0703a8777b",
+      "540e1a91ba6ec917aa50fc1feffb48ed686373dd",
+      "03eb2c367e070700af46456703e5a656ade68310",
+      "1dfa045120b25b8b0bc323af80e9004479b65561",
+      "c2936d95ef1525aa3cb3e0bc2f0b8a46809f18e9",
+      "57a10b0f98d8a5e728f2344a843dfad0725a5e30",
+      "fd2120f67cfad9f35ca2e374b2734e9d62970431",
+      "3a7ed59b8ba5108112aef381e1b57b660e6c6cb5",
+      "015dd577a979c2b716c20951c19267957dec104b"
+    ],
+    "files": 2610,
+    "incremental_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+      "include/pso/boss/darkfalz/TObjDFHorming.h",
+      "include/pso/boss/volopt/TBoss3VoloptHiraisin.h",
+      "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+      "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+      "include/pso/enemy/slime/SlimeAnimationState.h",
+      "include/pso/enemy/slime/TObjEneSlime.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h",
+      "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+      "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/object/base/TObjMotion.h",
+      "include/pso/object/cave/CaveSignRender.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/render/ColorCopy.h",
+      "include/pso/render/ColorLineList.h",
+      "include/pso/system/save/CardSaveFile.h",
+      "include/pso/ui/UISprite.h",
+      "include/pso/ui/charcreate/TChCrEffFade.h",
+      "include/pso/ui/charcreate/TChCrEffTag.h",
+      "include/pso/ui/charcreate/TChCrEffTagStr.h",
+      "include/pso/ui/charcreate/TObjCMIcon.h",
+      "include/pso/ui/charcreate/TObjCMIcon_80299488.h",
+      "include/pso/ui/charcreate/TObjCMMainMenu.h",
+      "include/pso/ui/frontend/TAdChrMoveEffectGC.h",
+      "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+      "include/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.h",
+      "include/pso/ui/window/TWindowCtrlMain.h",
+      "include/pso/unk/TLobby_801E2F94.h",
+      "include/pso/unk/text_80293D84.h",
+      "src/pso/boss/TUnk_80484A94.cpp",
+      "src/pso/boss/TUnk_80484AFC.cpp",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "src/pso/boss/darkfalz/TBoss4Fade.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "src/pso/boss/darkfalz/TOBoss4.cpp",
+      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/derolle/TBoss2Mine.cpp",
+      "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffTail.cpp",
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/goldragon/TBoss8DragonColli.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp",
+      "src/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp",
+      "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+      "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/boss/volopt/TObjVoloptCage.cpp",
+      "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+      "src/pso/camera/TObjCamera.cpp",
+      "src/pso/effect/TEffStarLight2D_Base.cpp",
+      "src/pso/effect/TKomorebi.cpp",
+      "src/pso/effect/enemy/TEneParticleCtrl.cpp",
+      "src/pso/effect/item/TItemEffNeedle.cpp",
+      "src/pso/effect/photon/PhotonBlastSummon.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonLine.cpp",
+      "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+      "src/pso/effect/photon/TPhotonMylla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/effect/photon/TPhotonRainbow.cpp",
+      "src/pso/effect/photon/TPhotonYoulla.cpp",
+      "src/pso/enemy/TObjEnemyCustom.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/beast/TObjEneBeast.cpp",
+      "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp",
+      "src/pso/enemy/bringer/BringerEffects.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/CanadinEffects.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiterEffects.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031E800.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/item/TItem.cpp",
+      "src/pso/item/TItemEquipBase.cpp",
+      "src/pso/item/armor/TItemProArmorParticle.cpp",
+      "src/pso/item/mag/TItemMagSub.cpp",
+      "src/pso/map/TObjMapCsn.cpp",
+      "src/pso/npc/TObjNpcBase.cpp",
+      "src/pso/npc/TObjNpcBringer.cpp",
+      "src/pso/npc/TObjNpcEnemy.cpp",
+      "src/pso/npc/TObjNpcLappy.cpp",
+      "src/pso/npc/TObjNpcMoja.cpp",
+      "src/pso/object/TMotorcycle.cpp",
+      "src/pso/object/TOBind_801586B8.cpp",
+      "src/pso/object/TOHealGeneral.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/TObjControl.cpp",
+      "src/pso/object/TObjDoaEx01.cpp",
+      "src/pso/object/TObjEZBoneRotBase.cpp",
+      "src/pso/object/TObjHashi.cpp",
+      "src/pso/object/TObjParticle.cpp",
+      "src/pso/object/TObjSinBoard.cpp",
+      "src/pso/object/TObjTank.cpp",
+      "src/pso/object/TObjTombstone.cpp",
+      "src/pso/object/ambient/TButterfly.cpp",
+      "src/pso/object/ambient/TOKurage.cpp",
+      "src/pso/object/ambient/TObjFish.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/ambient/TObjLight_80235C44.cpp",
+      "src/pso/object/base/TObjBase.cpp",
+      "src/pso/object/base/TObjMapObject.cpp",
+      "src/pso/object/base/TObjMotion.cpp",
+      "src/pso/object/cave/TOAirconCave01.cpp",
+      "src/pso/object/cave/TOAirconCave02.cpp",
+      "src/pso/object/cave/TOCakeshopCave01.cpp",
+      "src/pso/object/cave/TODragonflyCave01.cpp",
+      "src/pso/object/cave/TOHangceilingCave01.cpp",
+      "src/pso/object/cave/TORainbowCave01.cpp",
+      "src/pso/object/cave/TORevlightCave01.cpp",
+      "src/pso/object/cave/TORockCave.cpp",
+      "src/pso/object/cave/TOSignCave03.cpp",
+      "src/pso/object/city/CityDoors.cpp",
+      "src/pso/object/city/CitySeason.cpp",
+      "src/pso/object/city/CityTraffic.cpp",
+      "src/pso/object/collision/TObjRaderCol.cpp",
+      "src/pso/object/container/TContainerAncient01.cpp",
+      "src/pso/object/container/TOContainerAncientEnemy.cpp",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+      "src/pso/object/container/TObjContainerItem.cpp",
+      "src/pso/object/container/TObjContainerJung.cpp",
+      "src/pso/object/door/TODoorAncient01.cpp",
+      "src/pso/object/door/TODoorAncient03.cpp",
+      "src/pso/object/door/TODoorAncient04.cpp",
+      "src/pso/object/door/TODoorAncient05.cpp",
+      "src/pso/object/door/TODoorAncient06.cpp",
+      "src/pso/object/door/TODoorAncient07.cpp",
+      "src/pso/object/door/TODoorAncient08.cpp",
+      "src/pso/object/door/TODoorAncient09.cpp",
+      "src/pso/object/door/TODoorBase.cpp",
+      "src/pso/object/door/TODoorCave01.cpp",
+      "src/pso/object/door/TODoorCave02.cpp",
+      "src/pso/object/door/TODoorCave03.cpp",
+      "src/pso/object/door/TODoorFourLightSpace.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/door/TODoorLabo.cpp",
+      "src/pso/object/door/TODoorMachine01.cpp",
+      "src/pso/object/door/TODoorMachine02.cpp",
+      "src/pso/object/door/TODoorVS2Door01.cpp",
+      "src/pso/object/door/TODoorVoShip.cpp",
+      "src/pso/object/door/TObjDoorJung.cpp",
+      "src/pso/object/door/TObjDoor_8018E358.cpp",
+      "src/pso/object/ending/TObjOnlineEndingHexLine.cpp",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp",
+      "src/pso/object/fence/TOFenceBase.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/fence/TObjLazerFence4.cpp",
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+      "src/pso/object/jungle/TOGrassJungle.cpp",
+      "src/pso/object/jungle/TOJungleDesign.cpp",
+      "src/pso/object/jungle/TORockJungleL01.cpp",
+      "src/pso/object/key/TOKeyAncient01.cpp",
+      "src/pso/object/key/TOKeyAncient02.cpp",
+      "src/pso/object/key/TOKeyAncient03.cpp",
+      "src/pso/object/key/TOKeyCave01.cpp",
+      "src/pso/object/key/TOKeyGenericSw.cpp",
+      "src/pso/object/key/TOKeyJungleMain.cpp",
+      "src/pso/object/key/TOKeyMachine01.cpp",
+      "src/pso/object/lab/TOCapsuleLabo.cpp",
+      "src/pso/object/lab/TObjLaboDesignBase.cpp",
+      "src/pso/object/lobby/LobbyGoGoBall.cpp",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp",
+      "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+      "src/pso/object/lobby/TObjCurtainLobby.cpp",
+      "src/pso/object/lobby/TObjKabochaLobby.cpp",
+      "src/pso/object/lobby/TObjLobbyMain.cpp",
+      "src/pso/object/lobby/TObjRainbowLobby.cpp",
+      "src/pso/object/lobby/TObjStendGlassLobby.cpp",
+      "src/pso/object/lobby/TObjSuisouLobby.cpp",
+      "src/pso/object/lobby/TObjTreeLobby.cpp",
+      "src/pso/object/lobby/TObjWeddingLobby.cpp",
+      "src/pso/object/mine/TOCapsuleMachine01.cpp",
+      "src/pso/object/mine/TOComputerMachine01.cpp",
+      "src/pso/object/mine/TODragonflyMachine01.cpp",
+      "src/pso/object/mine/TOHangerMachine01.cpp",
+      "src/pso/object/mine/TOLightMachine01.cpp",
+      "src/pso/object/mine/TOMonitorMachine01.cpp",
+      "src/pso/object/mine/TOSparkMachine01.cpp",
+      "src/pso/object/ruins/TOCapsuleAncient01.cpp",
+      "src/pso/object/ruins/TOMonumentAncient01.cpp",
+      "src/pso/object/ruins/TOMonumentAncient02.cpp",
+      "src/pso/object/seabed/TObjSuisoChip.cpp",
+      "src/pso/object/switch/TOChatSensor.cpp",
+      "src/pso/object/switch/TOSensorAncient01.cpp",
+      "src/pso/object/switch/TOSensorGeneral01.cpp",
+      "src/pso/object/switch/TOSwitchAttackSub.cpp",
+      "src/pso/object/switch/TOSwitchTimer.cpp",
+      "src/pso/object/trap/TOExplosiveMachine.cpp",
+      "src/pso/object/trap/TOMine.cpp",
+      "src/pso/object/trap/TOMineIcon02.cpp",
+      "src/pso/object/trap/TOMineIcon03.cpp",
+      "src/pso/object/trap/TOMineIcon04.cpp",
+      "src/pso/object/trap/TOTrap.cpp",
+      "src/pso/object/trap/TOTrapAncient01.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp",
+      "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+      "src/pso/object/trap/TOTrapSeabed01.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+      "src/pso/object/warp/TObjLaboMapWarp.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/object/warp/TObjWarpLobby.cpp",
+      "src/pso/object/wreck/TOWreckAncient.cpp",
+      "src/pso/player/PhotonBlastResults.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_801542CC.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801BC140.cpp",
+      "src/pso/player/TObjPlayer_801BC194.cpp",
+      "src/pso/player/TObjPlayer_801BC5D4.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/player/TObjPlayer_801D84CC.cpp",
+      "src/pso/player/TObjPlayer_802D5174.cpp",
+      "src/pso/player/TObjPlayer_80357B2C.cpp",
+      "src/pso/player/TPlayerFootStamp.cpp",
+      "src/pso/player/TPlyItem.cpp",
+      "src/pso/player/TUnk_80491460.cpp",
+      "src/pso/player/TUnk_80491478.cpp",
+      "src/pso/quest/TOQuestTalkBase.cpp",
+      "src/pso/quest/TQuestListVM.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer.cpp",
+      "src/pso/system/scene/TEndingPicStage.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/technique/TTecLuker.cpp",
+      "src/pso/ui/UISprite.cpp",
+      "src/pso/ui/charcreate/TChCrEffFade.cpp",
+      "src/pso/ui/charcreate/TChCrEffTag.cpp",
+      "src/pso/ui/charcreate/TChCrEffTagStr.cpp",
+      "src/pso/ui/charcreate/TChCrEffWall.cpp",
+      "src/pso/ui/charcreate/TObjCMIcon_80299488.cpp",
+      "src/pso/ui/charcreate/TObjCMName.cpp",
+      "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+      "src/pso/ui/frontend/TAdFadeGC.cpp",
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+      "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+      "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp",
+      "src/pso/unk/TLobby_80291D94.cpp",
+      "src/pso/unk/TUnk_8048E1A4.cpp",
+      "src/pso/unk/TUnk_804CC948.cpp",
+      "src/pso/unk/TUnk_804CC990.cpp",
+      "src/pso/unk/text_80071B30.cpp",
+      "src/pso/unk/text_8034960C.cpp",
+      "src/pso/unk/text_803626A8.cpp",
+      "src/pso/weapon/TUnk_804A4548.cpp",
+      "src/pso/weapon/TUnk_804A4D70.cpp",
+      "src/pso/weapon/TUnk_804A4F60.cpp",
+      "src/pso/weapon/TUnk_804A5838.cpp",
+      "src/pso/weapon/TUnk_804A5B20.cpp",
+      "src/pso/weapon/TUnk_804A5D28.cpp",
+      "src/pso/weapon/TUnk_804A6AD8.cpp",
+      "src/pso/weapon/TUnk_804A6BD0.cpp",
+      "src/pso/weapon/TUnk_804A6CC8.cpp",
+      "src/pso/weapon/WeaponAttackActions.cpp"
+    ],
+    "canonical_paths_absent_from_diff": [
+      "include/pso/boss/barbaray/Boss7TentacleBanks.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoTexture.h",
+      "include/pso/boss/goldragon/TBoss8Dragon_80067034.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h",
+      "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+      "include/pso/boss/olgaflow/TBoss6Tube.h",
+      "include/pso/boss/volopt/TBoss3Volopt_800D8ACC.h",
+      "include/pso/camera/TObjLiveCameraCtrl.h",
+      "include/pso/effect/GroundEffects.h",
+      "include/pso/effect/TEF_LensFlare.h",
+      "include/pso/effect/TEffClitical.h",
+      "include/pso/effect/TEffStarLight2D.h",
+      "include/pso/effect/TEffStarLightChild.h",
+      "include/pso/effect/item/TItemEffBringer.h",
+      "include/pso/effect/item/TItemEffEquip.h",
+      "include/pso/effect/item/TItemEffEquip_801088D0.h",
+      "include/pso/effect/item/TItemEffEquip_801088F8.h",
+      "include/pso/effect/photon/TDPBShower.h",
+      "include/pso/enemy/PlayerTargetCandidate.h",
+      "include/pso/enemy/TNeedleShoot.h",
+      "include/pso/enemy/TUnk_80493450.h",
+      "include/pso/enemy/TUnk_804E14E8.h",
+      "include/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h",
+      "include/pso/enemy/dellbiter/TObjEneDellBiter.h",
+      "include/pso/enemy/gee/TUnk_8049387C.h",
+      "include/pso/enemy/gyaranzo/TObjEneGyaranzo.h",
+      "include/pso/enemy/merilllia/TObjEneMerillLia.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DCEB8.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DFB74.h",
+      "include/pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h",
+      "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoaReal.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Bit.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h",
+      "include/pso/enemy/wolf/TObjEneBm5Wolf.h",
+      "include/pso/item/TItemMenuCtrl.h",
+      "include/pso/item/TItemMenuCtrl_80115AF0.h",
+      "include/pso/item/TItemSpecialEvent.h",
+      "include/pso/item/TUnk_8049F038.h",
+      "include/pso/item/mag/TItemMagSub.h",
+      "include/pso/math/MatrixCopy.h",
+      "include/pso/math/ScratchVectorStorage.h",
+      "include/pso/math/ScratchVectors.h",
+      "include/pso/math/VectorNormalize.h",
+      "include/pso/npc/NpcModelEntry.h",
+      "include/pso/npc/TObjNpcKenkyuW.h",
+      "include/pso/object/TObjChallenge4PRetry.h",
+      "include/pso/object/TObjChallengeRetry.h",
+      "include/pso/object/TObjLiveMonitor.h",
+      "include/pso/object/city/TObjCity_Season_FireWork.h",
+      "include/pso/object/door/TODoorJungleMain.h",
+      "include/pso/player/PlayerCombatConstants.h",
+      "include/pso/player/TObjPlayer_8012105C.h",
+      "include/pso/player/demo_mode.h",
+      "include/pso/render/GinjaMaterial.h",
+      "include/pso/render/GinjaModel.h",
+      "include/pso/render/TriangleFan3D.h",
+      "include/pso/system/CvFsDeviceCallbacks.h",
+      "include/pso/system/GinjaParameterHandler.h",
+      "include/pso/system/NinjaTypes.h",
+      "include/pso/system/TLanguage.h",
+      "include/pso/system/TLanguage_801E4874.h",
+      "include/pso/technique/TTecGiFoie.h",
+      "include/pso/ui/font/TFontSmallLobby.h",
+      "include/pso/ui/frontend/TAdEnterPasswordGC.h",
+      "include/pso/ui/frontend/TAdTimeSetGC.h",
+      "include/pso/ui/window/TWindowHelpItem_80255AB4.h",
+      "include/pso/ui/window/TWindowLockOn_80262C3C.h",
+      "include/pso/unk/GuildCardRecord.h",
+      "include/pso/unk/TLobby_80131794.h",
+      "include/pso/unk/TLobby_8013AD38.h",
+      "include/pso/unk/text_8007A7A0.h",
+      "include/pso/unk/text_8007A7B8.h",
+      "include/pso/unk/text_800D8830.h",
+      "include/pso/unk/text_80120150.h",
+      "include/pso/unk/text_8024AB98.h",
+      "include/pso/unk/text_8026934C.h",
+      "include/pso/weapon/TUnk_804A67D0.h",
+      "include/pso/weapon/TUnk_804E23F0.h",
+      "include/pso/weapon/WeaponCanopyScale.h",
+      "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+      "libs/dolphin/src/mtx/mtxvec.c",
+      "src/pso/boss/barbaray/TObjBoss7DustSdata2.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type2_800522CC.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+      "src/pso/camera/TCameraCtrl_803D6538.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2B.cpp",
+      "src/pso/effect/item/TItemEffEquip_80108860.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088D0.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088F8.cpp",
+      "src/pso/effect/particle/TParticleCtrl_801D6B3C.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.cpp",
+      "src/pso/enemy/canadin/CanadinData.cpp",
+      "src/pso/enemy/morfos/MorfosData.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB00.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB74.cpp",
+      "src/pso/item/TItemMenuCtrl_80115A78.cpp",
+      "src/pso/item/TItemSpecialEvent.cpp",
+      "src/pso/map/CsnResult.cpp",
+      "src/pso/math/MatrixTransforms.cpp",
+      "src/pso/math/MatrixVector.cpp",
+      "src/pso/object/lobby/TObjParticleLobby.cpp",
+      "src/pso/object/switch/TOSwitchItem.cpp",
+      "src/pso/player/PlayerSdata2Block1.cpp",
+      "src/pso/player/TObjPlayer_80011014Data.cpp",
+      "src/pso/player/TObjPlayer_80052374.cpp",
+      "src/pso/player/TObjPlayer_80055678.cpp",
+      "src/pso/player/TObjPlayer_80080750.cpp",
+      "src/pso/player/TObjPlayer_8035A630.cpp",
+      "src/pso/player/TObjPlayer_8035A740.cpp",
+      "src/pso/player/TObjPlayer_8035A778.cpp",
+      "src/pso/player/TObjPlayer_803E112C.cpp",
+      "src/pso/quest/StoryQuestProgress.cpp",
+      "src/pso/system/GbaDownloadRuntime.cpp",
+      "src/pso/system/PadRumble.cpp",
+      "src/pso/technique/TTecMegid_80235B24.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp",
+      "src/pso/ui/window/WindowSubStatusDispSdata2.cpp",
+      "src/pso/unk/TLobby_80131794.cpp",
+      "src/pso/unk/TLobby_8013AD38.cpp",
+      "src/pso/unk/TLobby_8030A834.cpp",
+      "src/pso/unk/TUnk_804CF998.cpp",
+      "src/pso/unk/TUnk_804EDAC0.cpp",
+      "src/pso/unk/TUnk_804F1C58_8035A628.cpp",
+      "src/pso/unk/text_801F3774.cpp",
+      "src/pso/unk/text_8024AB18.cpp",
+      "src/pso/unk/text_8026934C.cpp",
+      "src/pso/unk/text_8029A97C.cpp",
+      "src/pso/unk/text_8035AF18.cpp",
+      "src/pso/unk/text_803E2F28.cpp"
+    ],
+    "reviews": {
+      "standalone-native-card-save-images": {
+        "label": "saves",
+        "branch": "standalone-native-card-save-images",
+        "title": "Native memory-card save images",
+        "previous": null,
+        "direct": "3a7ed59b8ba5108112aef381e1b57b660e6c6cb5",
+        "queue": "ba311492e296eb5b8ee79fdebb019a71aa05f82f",
+        "details": "Shares the native 0x60-byte descriptor across character, guild-card, system, quest and snapshot saves and keeps the existing helper names.",
+        "standalone_files": 10,
+        "standalone_increment": 10,
+        "queue_increment": 10,
+        "shared_paths": [],
+        "validation": {
+          "report_sha256": "06e5b47910d7270550d3cf482acd2ef3a1e5c3270768a67b97824480563457d3",
+          "strict_sha256": "5fecb4a6fde4cd36a180a96ceea9244db42bbe4d5d0150719df1c7b76e5507c2",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 10
+      },
+      "standalone-actor-motion-layout": {
+        "label": "vectors",
+        "branch": "standalone-actor-motion-layout",
+        "title": "Actor body center, movement and rotation layout",
+        "previous": null,
+        "direct": "015dd577a979c2b716c20951c19267957dec104b",
+        "queue": "69de23d9f39578b46939249a737dc8fd4ff759a6",
+        "details": "Recovers the native body-center and velocity Vec fields and the signed CameraAngles record. Updates the live center synchronization, motion, projection and orientation callers.",
+        "standalone_files": 275,
+        "standalone_increment": 275,
+        "queue_increment": 288,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "src/pso/object/TObjSinBoard.cpp"
+        ],
+        "validation": {
+          "report_sha256": "906db4ae441672f13a7bf1941e48d30b4ec51a2e7d13895f61e291a86d9db2b1",
+          "strict_sha256": "af3667cd9a92b13007da829639bab02d5bcdc7857a85d7368b778ee7034054bd",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 275
+      },
+      "standalone-character-creation-actors": {
+        "label": "creation",
+        "branch": "standalone-character-creation-actors",
+        "title": "Character creation presentation and packed-color drawing",
+        "previous": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+        "review_base": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+        "direct": "64ad571ed44a2c5e026c179e19b5a260295aa11b",
+        "queue": "5214baac2bce128cdba5b3d158f69491a9bbcecd",
+        "details": "Recovers native creation fade, icon, tag and sprite owners and their shared color-strip and byte-color render operations.",
+        "standalone_files": 89,
+        "standalone_increment": 50,
+        "queue_increment": 37,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "validation": {
+          "report_sha256": "d1970f686c1375c673770241fe1d6d63478965d697c2c3289dbf313eb0e62c0f",
+          "strict_sha256": "56f7f38d555a23a6a3b575b59b3c75222ee08bf2ec592a984325b54dca1357ff",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_files": 50
+      },
+      "standalone-enemy-registration-and-formations": {
+        "label": "enemy",
+        "branch": "standalone-enemy-registration-and-formations",
+        "title": "Slime child actors and Canadin formation ownership",
+        "previous": "a9c6341c405fc7b7bfb197a3d963d7be6b8befb0",
+        "review_base": "a9c6341c405fc7b7bfb197a3d963d7be6b8befb0",
+        "direct": "4d38fbac428eac879a54e375460f5442ff8dbe5e",
+        "queue": "592a440715ef8dfa785ced443e96a07bad18af0f",
+        "details": "Recovers live Slime animation, tail and water-bomb constructors and native Canadin formation/effect operations.",
+        "standalone_files": 281,
+        "standalone_increment": 14,
+        "queue_increment": 14,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+          "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        ],
+        "validation": {
+          "report_sha256": "5103b1a05e42d170ce1e61a3db194e375f7032f6a3dc582cab1ebb2c5fe20691",
+          "strict_sha256": "4685e816610702ae76b0fca17b4fd64b87dfff1d8db28b18bfb4f866ead228c4",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_files": 14
+      }
+    }
+  },
+  "queue_validation": {
+    "report_sha256": "25ba0585d35afc04f09e4db4c75e206a89ed1afac6beef9259ff35af0a8c405b",
+    "strict_sha256": "c927e9ec82073f3cb56d0c1ba9922ad746c60f6d98826af0fa4070c0ca76b466",
+    "exact_functions": 27572,
+    "exact_linked_units": 2451,
+    "comparisons": {
+      "upstream": {
+        "baseline_report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      },
+      "historical": {
+        "baseline_report_sha256": "3e8a49928b15de9e88fa50ad9d678a440a4b3743e0bd7b53b2871d88bf17c519",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 30
+      },
+      "previous_queue": {
+        "baseline_report_sha256": "dbafea36556d4ab0abc613c598c43162a7e6d9f711ec63377194cf67c1640dea",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      }
+    }
+  },
+  "historical_rows": [
+    {
+      "row": 444,
+      "historical_path": "include/pso/enemy/SlimeAnimationState.h",
+      "historical_blob": "b7deff29449c1e0a84a3074cf1fe3c1a347b42a6",
+      "owners": {
+        "include/pso/enemy/slime/SlimeAnimationState.h": "2e75fd691ecf534235ad1d9ac361e26fa4b9039e"
+      },
+      "full": false,
+      "evidence": "Actual 0x34 animation object and 0x0C/0x14 shape and paired motion records; owner, native draw/advance/state/destructor, motion and texture pointers."
+    },
+    {
+      "row": 456,
+      "historical_path": "include/pso/enemy/TObjEneMe1Canadin.h",
+      "historical_blob": "80544948da52ffea101144e359828ca191a26a8f",
+      "owners": {
+        "include/pso/enemy/canadin/TObjEneMe1Canadin.h": "69eb3711bfafcb4134e8349fbf953973fff75e9b"
+      },
+      "full": false,
+      "evidence": "Actual placement and formation owner, target receiver, primary action and motion methods; inherited hover C ABI and departure argument remain scoped."
+    },
+    {
+      "row": 457,
+      "historical_path": "include/pso/enemy/TObjEneMe1CanadinLeader.h",
+      "historical_blob": "427cf717bc914b70bf2fc00009c879ff81d7437f",
+      "owners": {
+        "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h": "103b3263278880f88824cddcb7ea839c97e44e16"
+      },
+      "full": false,
+      "evidence": "Actual character pointer in vfunc_116, genuine follower factory and instance formation update, 0x4F8 class and +0x4D4 member array. Original pointer argument of vfunc_117 is still the prior u32 bridge in the review."
+    },
+    {
+      "row": 477,
+      "historical_path": "include/pso/enemy/TObjEneSlimeOne.h",
+      "historical_blob": "3f05537ea4d190c77d9a3a6abd6c9d63363e1bf3",
+      "owners": {
+        "include/pso/enemy/slime/TObjEneSlimeOne.h": "4f756c6b09474c3440cc577e0ead062a0898d67f"
+      },
+      "full": false,
+      "evidence": "Both constructors and typed child factories, typed parent/animation/collision pointers, real trail and direction Vecs, timer/variant and signed target bookkeeping."
+    },
+    {
+      "row": 478,
+      "historical_path": "include/pso/enemy/TObjEneSlimeOne_800EC394.h",
+      "historical_blob": "c555d77b312e5e31cc60fe6bb7947eedf47f6787",
+      "owners": {
+        "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h": "f5d8ef9e59f1de1c2926259bf1ce434a89a76787"
+      },
+      "full": false,
+      "evidence": "After paths and guard normalization, header has the same single original extern C TObjEneSlimeOne__sub_800EC470(void*) declaration and same original address."
+    },
+    {
+      "row": 479,
+      "historical_path": "include/pso/enemy/TObjEneSlimeTailAttack.h",
+      "historical_blob": "02648d3e0d34ddd49dfdb77c564b9b5aab01118b",
+      "owners": {
+        "include/pso/enemy/slime/TObjEneSlimeTailAttack.h": "11d237ba3bc8c6b6b1a718baf0ad96f93261ccff"
+      },
+      "full": false,
+      "evidence": "The 0x3CC tail has native owned position/direction, owner, activation and fade fields and its constructor and factory; existing exact typed enemy query retained."
+    },
+    {
+      "row": 480,
+      "historical_path": "include/pso/enemy/TObjEneSlimeWaterBomb.h",
+      "historical_blob": "31f4fc0202b30e378f439cb02c78f4a7cf9b9318",
+      "owners": {
+        "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h": "4529622eda142f3d9c96d22b7f7c7e586a0e4cde"
+      },
+      "full": false,
+      "evidence": "Native launch vector, particle, owner, attack power, timer, and typed ctor/dtor/factory and hit methods at original addresses."
+    },
+    {
+      "row": 589,
+      "historical_path": "src/pso/enemy/TObjEneMe1Canadin.cpp",
+      "historical_blob": "0c982ac6d9c5730b1b51fbac6f3f85392ad3f623",
+      "owners": {
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": "73557bbd17c31b3671efa4ebcd74a86d52d7348b"
+      },
+      "full": false,
+      "evidence": "Member dispatch for native follower/leader flag, ordinary flight/state/action/movement and fade transitions. Existing BML registration and typed shared calls remain. Signed data tables, full map-core/hover and departure receiver contracts remain scoped."
+    },
+    {
+      "row": 636,
+      "historical_path": "src/pso/enemy/TObjEneSlimeOne_800EC394.cpp",
+      "historical_blob": "757ff44b6a172bf787c9d36b9c9906873d75e4d6",
+      "owners": {
+        "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp": "2509631e166f71f3a607a3791102f77ea6fbe9da"
+      },
+      "full": false,
+      "evidence": "Native animation owner, two typed motion tables, render/advance/finished dispatch, state setter and exact Vec targeting. The direct BML/texture interfaces retain their older representation."
+    },
+    {
+      "row": 637,
+      "historical_path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+      "historical_blob": "45c095b94a6e7972835dc637acfa60a75423df0d",
+      "owners": {
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": "681f0488912abdd3728ecc2414be9ff46882f355"
+      },
+      "full": false,
+      "evidence": "Native SlimeOne constructors/factories and animation and parent lifecycle; spawned tail and bomb constructors/callers/hit checks. Existing projection/proximity, BML and particle entry points retained with lane-specific contracts. Entire authored source row not certified."
+    },
+    {
+      "row": 777,
+      "historical_path": "include/pso/enemy/TObjEneSlime.h",
+      "historical_blob": "1395d5a39709dacffcf8890e75162740dfe06fad",
+      "owners": {
+        "include/pso/enemy/slime/TObjEneSlime.h": "81ad35dd88f3108936a5c4a6ca1260d2b5617e58"
+      },
+      "full": false,
+      "evidence": "Native spawner, data and child-slot owner declarations, matching original 0x3D8 layout and tracked relocated include structure."
+    },
+    {
+      "row": 794,
+      "historical_path": "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+      "historical_blob": "d255f4c5ec41a270b9e3de174390866707db668a",
+      "owners": {
+        "include/pso/object/base/TObjMotion.h": "7f550949b6ba045c7fab2c6decfacb052a709b2c",
+        "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "82953afaaa3f071b03b5a65736dbc329edeff160"
+      },
+      "full": false,
+      "evidence": "Original 0x8004C1F4 copies position +0x38 into prev_position +0x44 on its shared TObjBase owner. All retail callers were updated. The independently authored cinematic/gameplay changes in the same historical source file are outside this export."
+    },
+    {
+      "row": 842,
+      "historical_path": "src/pso/boss/TObjBoss2Tunnel.cpp",
+      "historical_blob": "8760f4138328318c3ee9f70f2e4f5241d8cfbc91",
+      "owners": {
+        "include/pso/system/save/CardSaveFile.h": "f427c786d7245e9deb2eef8046d456d46131ef33",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1"
+      },
+      "full": false,
+      "evidence": "The recovered snapshot descriptor and read/write calls preserve the existing header checksum, card load and typed gameplay sound paths."
+    },
+    {
+      "row": 906,
+      "historical_path": "src/pso/boss/TBoss6PlotFalz.cpp",
+      "historical_blob": "b77e54ffbf137bc5d8a2c0af2de03da0e47b0c25",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": "9225dcb3fa5467a980ae1b01f59ccb14b51a56ee"
+      },
+      "full": false,
+      "evidence": "Former Falz hit-data call stores yaw through true TObjBase::get_rotation at 0x8004C1EC. Unrelated plot dispatch remains in this lane's parent."
+    },
+    {
+      "row": 946,
+      "historical_path": "src/pso/boss/TBoss3VoloptHiraisin.cpp",
+      "historical_blob": "2b52358a9999f730318506c80a8e8becf4feede6",
+      "owners": {
+        "include/pso/boss/volopt/TBoss3VoloptHiraisin.h": "95115d0ccd70419f232c5d77db1feadc29fe989a",
+        "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp": "ed36aea8258ea27a618e22d4318869e599306510"
+      },
+      "full": false,
+      "evidence": "The original 0x80041B08 helper copies the Vec at +0x2FC to the center at +0x74 on actual TObjChara. The native caller closure replaces the unrelated Vol Opt derived receiver, maintaining original calls in multiple boss/enemy/NPC units."
+    },
+    {
+      "row": 1154,
+      "historical_path": "src/pso/enemy/CanadinEffects.cpp",
+      "historical_blob": "4e253cf3a79bfce568194ec2676cac3c09420518",
+      "owners": {
+        "src/pso/enemy/canadin/CanadinEffects.cpp": "9fb3762e60bd25b0c92d07bb75a0ff3b254d40cd"
+      },
+      "full": false,
+      "evidence": "Discharge invokes actual Canadin member with the same +0x44 Vec; preserves the preexisting normalization and trail array scheduling."
+    },
+    {
+      "row": 2116,
+      "historical_path": "include/pso/TChCrEffFade.h",
+      "historical_blob": "f8b6ff06b26b4a5c8fac9a458f95da828ef4307e",
+      "owners": {
+        "include/pso/ui/charcreate/TChCrEffFade.h": "b7dac6663d9737a7b383536ea28bc89732d19299",
+        "src/pso/ui/charcreate/TChCrEffFade.cpp": "a306743f3d0c4bca230620ba4b1c6be601b28fd3"
+      },
+      "full": true,
+      "evidence": "Both variants have the live TObject fade actor, the constructor and native render, tick, destructor, opacity update and non-static strip operation. The five original words retain their order and upstream spellings."
+    },
+    {
+      "row": 2117,
+      "historical_path": "include/pso/TChCrEffTagStr.h",
+      "historical_blob": "a1c26511006f998c99ce7a226c3ca858d9e9fc19",
+      "owners": {
+        "include/pso/ui/charcreate/TChCrEffTagStr.h": "cad9f8b02d661e6e500370f7d77ecd2c45f81991",
+        "src/pso/ui/charcreate/TChCrEffTagStr.cpp": "9d9e022c6b5063c3c2e3c0b3fd6d349d897bc5d1"
+      },
+      "full": false,
+      "evidence": "The actual parent pointer, numeric sprite ID, state, fade and position match the authored storage. Both variants use native virtual render, tick and destructor. The historical size typedef is not in these heads."
+    },
+    {
+      "row": 2130,
+      "historical_path": "include/pso/TObjCMIcon.h",
+      "historical_blob": "1d4aee1b657986f673d9f09eb6b3c0f8d393c711",
+      "owners": {
+        "include/pso/ui/charcreate/TObjCMIcon.h": "460d01a68e785b24f409272cec711c41946b2ac9",
+        "src/pso/ui/charcreate/TObjCMIcon_80299488.cpp": "11b366541c702f431095984478ca549ed44922ed"
+      },
+      "full": false,
+      "evidence": "The native 12-byte state and 20-byte group retain typed fade, x, and sprite-array offsets. The historical standalone hidden-offset typedef is not carried. The active constructor and raw legacy factory spelling vary by owner."
+    },
+    {
+      "row": 2144,
+      "historical_path": "include/pso/misc/TChCrEffTag_8029ACA8.h",
+      "historical_blob": "0edaa146db9c012bb800fec96bd96484b7cb5398",
+      "owners": {
+        "include/pso/ui/charcreate/TChCrEffTag.h": "dc163b6a17f04bd02d59805b4ce4c49717830b05",
+        "src/pso/ui/charcreate/TChCrEffTag.cpp": "52321393a20e828df18b437c1b6c048a6cbba3ca"
+      },
+      "full": true,
+      "evidence": "The only authored declaration is the live single-parent constructor factory. The active interface expresses it with the actual TObject and TChCrEffTag pointer types."
+    },
+    {
+      "row": 2160,
+      "historical_path": "include/pso/object/TObjCMIcon_80299488.h",
+      "historical_blob": "a0f8db8499a2bc58996b3fdb6e0728c930a70798",
+      "owners": {
+        "include/pso/ui/charcreate/TObjCMIcon_80299488.h": "f56f50503b36f14901cb28adb2e3b594a871e87d",
+        "src/pso/ui/charcreate/TObjCMIcon_80299488.cpp": "11b366541c702f431095984478ca549ed44922ed"
+      },
+      "full": true,
+      "evidence": "All four original functions have their actual typed count, index, state and icon arguments, preserving C linkage and the original sprite identity return."
+    },
+    {
+      "row": 2209,
+      "historical_path": "src/pso/menu/TChCrEffWall.cpp",
+      "historical_blob": "aef6cd66ef39b44110e7d831dea7c96e589c019d",
+      "owners": {
+        "src/pso/ui/charcreate/TChCrEffWall.cpp": "e54b4bbe47a829225430c84daea3147676be3094",
+        "include/pso/ui/charcreate/TChCrEffWall.h": "eee1eeb4274ad6d262901ecf4c52049fec918f2d",
+        "src/pso/ui/UISprite.cpp": "56b4da7ffa022e54e8f84817d85410540b1e42ac"
+      },
+      "full": true,
+      "evidence": "The full render draws the six background cells and two size cells in order, applies the two native packed-color strips, and restores the viewport and depth state. The original tables, constructor, destructor, and 0x8029AE88 lifecycle factory are retained."
+    },
+    {
+      "row": 2213,
+      "historical_path": "src/pso/misc/TChCrEffFade.cpp",
+      "historical_blob": "17df37a26b6db728f7faf7249b8abf101b3f7151",
+      "owners": {
+        "src/pso/ui/charcreate/TChCrEffFade.cpp": "a306743f3d0c4bca230620ba4b1c6be601b28fd3",
+        "include/pso/ui/charcreate/TChCrEffFade.h": "b7dac6663d9737a7b383536ea28bc89732d19299",
+        "include/pso/render/ColorLineList.h": "52ead8b7065c6b0526eede058eaf97d1bff4caee"
+      },
+      "full": true,
+      "evidence": "The full historical constructor retains duration +3 clamped to 4 through 450, step initialization, fade-root parenting and task name. The updater holds opacity through frame 3. The native render preserves the plain strip and hexagon plus squared strip modes, and the task queues destruction at the original two bounds."
+    },
+    {
+      "row": 2214,
+      "historical_path": "src/pso/misc/TChCrEffTagStr.cpp",
+      "historical_blob": "5a15e8f2bfbb958eb566360db7d6c6863de19319",
+      "owners": {
+        "src/pso/ui/charcreate/TChCrEffTagStr.cpp": "9d9e022c6b5063c3c2e3c0b3fd6d349d897bc5d1",
+        "include/pso/ui/charcreate/TChCrEffTagStr.h": "cad9f8b02d661e6e500370f7d77ecd2c45f81991",
+        "src/pso/ui/UISprite.cpp": "56b4da7ffa022e54e8f84817d85410540b1e42ac"
+      },
+      "full": false,
+      "evidence": "The current unit retains the original label trigger, five floating-point call arguments including depth, fade, inverse and final constants, scale arithmetic, fade-in and fade-out constants and destruction transition. Original per-field typedef assertions are outside the pinned heads."
+    },
+    {
+      "row": 2215,
+      "historical_path": "src/pso/misc/TChCrEffTag_8029ACA8.cpp",
+      "historical_blob": "e7cb1631bd3662a98847eddadabe9fc22d85da94",
+      "owners": {
+        "src/pso/ui/charcreate/TChCrEffTag.cpp": "52321393a20e828df18b437c1b6c048a6cbba3ca",
+        "include/pso/ui/charcreate/TChCrEffTag.h": "dc163b6a17f04bd02d59805b4ce4c49717830b05"
+      },
+      "full": true,
+      "evidence": "The set operation writes the original selected heading singleton. The native factory has the same 0x2C allocation and actual parent-forwarding constructor with the original allocation-failure behavior."
+    },
+    {
+      "row": 2268,
+      "historical_path": "src/pso/object/TObjCMIcon_80299488.cpp",
+      "historical_blob": "6713651bf412a147ea97ac3014e71825a99d9e49",
+      "owners": {
+        "src/pso/ui/charcreate/TObjCMIcon_80299488.cpp": "11b366541c702f431095984478ca549ed44922ed",
+        "include/pso/ui/charcreate/TObjCMIcon_80299488.h": "f56f50503b36f14901cb28adb2e3b594a871e87d",
+        "src/pso/ui/UISprite.cpp": "56b4da7ffa022e54e8f84817d85410540b1e42ac"
+      },
+      "full": true,
+      "evidence": "All authored reset, selection, initialization, three-field state copy, identity map, paint and animation functions remain live. The original stable squared-fade ordering, integer division in depth, width plus four, preceding hidden-state decay and offset interpolation coefficients are retained."
+    },
+    {
+      "row": 2397,
+      "historical_path": "src/pso/object/TObjCMName.cpp",
+      "historical_blob": "34a30cd0a894e4fa7081cc54a8c5a9fb280c13df",
+      "owners": {
+        "src/pso/ui/charcreate/TObjCMName.cpp": "0603acbcd783fd74158bb10b973297bfad97f4d9",
+        "include/pso/ui/charcreate/TObjCMMainMenu.h": "88ec6693da8888432b584a918230c0e62bab6cb8",
+        "src/pso/ui/UISprite.cpp": "56b4da7ffa022e54e8f84817d85410540b1e42ac"
+      },
+      "full": false,
+      "evidence": "The footer, proportion overlay and hair panel use actual line-list providers and share the real signed sprite width projection. The historical unit also carries independent controller, mask and data edits outside this receipt."
+    },
+    {
+      "row": 2441,
+      "historical_path": "include/pso/TChCrEffTag.h",
+      "historical_blob": "84a63f2afdc38fedd93dc981f32b544f891b2f4d",
+      "owners": {
+        "include/pso/ui/charcreate/TChCrEffTag.h": "dc163b6a17f04bd02d59805b4ce4c49717830b05",
+        "src/pso/ui/charcreate/TChCrEffTag.cpp": "52321393a20e828df18b437c1b6c048a6cbba3ca"
+      },
+      "full": false,
+      "evidence": "The tag geometry and typed child and factory interfaces are present. The historical extern selected-heading declaration stays folded into the live defining and consuming implementation."
+    },
+    {
+      "row": 2507,
+      "historical_path": "src/pso/misc/TChCrEffTag.cpp",
+      "historical_blob": "188cf0e5ae216900e971a88bcb4df1daf85b766a",
+      "owners": {
+        "src/pso/ui/charcreate/TChCrEffTag.cpp": "52321393a20e828df18b437c1b6c048a6cbba3ca",
+        "src/pso/ui/charcreate/TChCrEffTagStr.cpp": "9d9e022c6b5063c3c2e3c0b3fd6d349d897bc5d1",
+        "include/pso/ui/charcreate/TObjCMMainMenu.h": "88ec6693da8888432b584a918230c0e62bab6cb8"
+      },
+      "full": false,
+      "evidence": "Refresh and tick use the real tag-string factory and signed sprite width. The full historical heading data linkage and parent constructor split are beyond this scoped source claim."
+    },
+    {
+      "row": 2510,
+      "historical_path": "include/pso/ui/TAdChrMoveEffectGC.h",
+      "historical_blob": "b162f7f7046351ff499fc4e976967397c1ff57da",
+      "owners": {
+        "include/pso/ui/frontend/TAdChrMoveEffectGC.h": "01ee3007872811e666dc73fd8be619edb0263d93",
+        "include/pso/render/ColorCopy.h": "7f8dc7500c7620f2aaa84e09914f0479b58fc288",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp": "4170f463e95ad287e98878d601ef80b35fd64720"
+      },
+      "full": true,
+      "evidence": "The only substantive declaration change retires the unrelated actor member and provides the actual two-argument packed-color copy at 0x80257720. The runtime roster continues to preserve the actor extent."
+    },
+    {
+      "row": 2526,
+      "historical_path": "src/pso/ui/TAdChrMoveEffectGC.cpp",
+      "historical_blob": "731a0b124643a0dc4c629b8474885dc05b8b135e",
+      "owners": {
+        "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp": "854d7071d8e531e75b0ec9082fb1103f13cd4852",
+        "include/pso/render/ColorCopy.h": "7f8dc7500c7620f2aaa84e09914f0479b58fc288"
+      },
+      "full": false,
+      "evidence": "The four render vertex colors, reset color, two setup colors and both animation endpoints call the exact packed-color provider. Motion-state declarations and table and task-name ownership retain prior lane shape."
+    },
+    {
+      "row": 2561,
+      "historical_path": "src/pso/menu/TAdPlyChrSelPlateGC.cpp",
+      "historical_blob": "c12c016cc3e1ef880359c6cc45de0c136d719657",
+      "owners": {
+        "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp": "d52897a7c24f2536e45f1539baf67228b76de5ed",
+        "include/pso/render/ColorCopy.h": "7f8dc7500c7620f2aaa84e09914f0479b58fc288"
+      },
+      "full": true,
+      "evidence": "The only authored behavioral edit is the packed-color copy into +0x3A8 from layout +8. The standalone writes those raw proven offsets and the queue uses the actual active_color and layout color members. Both retain the three owned construction and destruction entry points."
+    },
+    {
+      "row": 2632,
+      "historical_path": "src/pso/misc/TChCrEffTag_8029B098.cpp",
+      "historical_blob": "66a2881616af178a3523a0641f13093366c4a1c3",
+      "owners": {
+        "src/pso/ui/charcreate/TChCrEffTagStr.cpp": "9d9e022c6b5063c3c2e3c0b3fd6d349d897bc5d1",
+        "include/pso/ui/charcreate/TChCrEffTag.h": "dc163b6a17f04bd02d59805b4ce4c49717830b05"
+      },
+      "full": true,
+      "evidence": "The old file changed only its header path. Its live 0x30-byte object allocation and native typed parent, sprite and position call have been folded into the tag-string owner."
+    },
+    {
+      "row": 2684,
+      "historical_path": "src/pso/ui/TAdPlayerLoadGC_801E0C30.cpp",
+      "historical_blob": "670a2ec6815371b8b05bf3e647097b4f5647cc22",
+      "owners": {
+        "include/pso/system/save/CardSaveFile.h": "f427c786d7245e9deb2eef8046d456d46131ef33",
+        "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp": "1250d8eb64ff88417fce0eb82ae3620d2c77c602"
+      },
+      "full": false,
+      "evidence": "The reviewed 0x60-byte save descriptor and 0x2048-byte file header carry their native field widths. The ROM probe covers artwork, full-byte output and checksum rejection."
+    },
+    {
+      "row": 4114,
+      "historical_path": "src/pso/player/TObjPlayer_801542CC.cpp",
+      "historical_blob": "ad436d3c436baeea1730b2b3de3cacf05ed71ac3",
+      "owners": {
+        "src/pso/player/TObjPlayer_801542CC.cpp": "a52e8d2c55f80792c7ef4bf36bd18afb9b2f1cb2"
+      },
+      "full": false,
+      "evidence": "The original registry return hunk is restored on the validated source update 83decd2d24, with a TObjCollidable return and a native leaf declaration shared by callers."
+    },
+    {
+      "row": 4121,
+      "historical_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "historical_blob": "673f422b9e97567877c0834304638f6ba8d023de",
+      "owners": {
+        "src/pso/player/TObjPlayer_801AF2F0.cpp": "e01eee37f5273a860215244d18e896643b5313ec"
+      },
+      "full": false,
+      "evidence": "Current wall-response body calls real Vec helpers at 0x801B786C, 0x801B78A8 and 0x801B7930. The actual source passes typed direction, motion and result with original angle, projection, and length logic; unrelated collision/body behavior is preserved per lane."
+    },
+    {
+      "row": 4122,
+      "historical_path": "src/pso/player/TObjPlayer_801BC140.cpp",
+      "historical_blob": "a3aec01fb589c257e71aaab057cb99fe38f65b16",
+      "owners": {
+        "src/pso/player/TObjPlayer_801BC140.cpp": "ac3c7f3fc1fc9db2a307cbb760fdbe67faaf3ff7"
+      },
+      "full": true,
+      "evidence": "The only authored fork-point hunk replaces the false Falz save-position function declaration and call with the native previous-position member at the same 0x8004C1F4 address. Both canonical and these exact review lanes use this native call."
+    },
+    {
+      "row": 4409,
+      "historical_path": "src/pso/misc/TPlayerFootStamp.cpp",
+      "historical_blob": "3e3eae155cf33d0b7f94ff345a5be0d9a3f0d2d1",
+      "owners": {
+        "src/pso/player/TPlayerFootStamp.cpp": "827379453e7a4b8cf825f4128c1f351ee6d458a1"
+      },
+      "full": false,
+      "evidence": "Real native pointer and yaw read used for angle selection and draw rotation at the original call. Independent archive and ground source remains separately tracked."
+    },
+    {
+      "row": 5107,
+      "historical_path": "src/pso/misc/TLobby_801E2F94.cpp",
+      "historical_blob": "f99f52713bae7e58b4a688bdea43e58d5afa3fb4",
+      "owners": {
+        "src/pso/unk/TLobby_801E2F94.cpp": "4616d68a98826de845c8f6e0cde8a70643c4442e",
+        "include/pso/render/ColorLineList.h": "52ead8b7065c6b0526eede058eaf97d1bff4caee"
+      },
+      "full": false,
+      "evidence": "The live strip routine at 0x801E352C reads the original packed colors and restores them after rendering. It dispatches to the native 2D fan and retains the mode bit and color order. Other texture, shadow, 3D and archive portions of the old unit remain scoped."
+    },
+    {
+      "row": 5188,
+      "historical_path": "include/pso/system/AngleTypes.h",
+      "historical_blob": "c5926a712b603bfa0dd696f5309a7a51fc435ce4",
+      "owners": {
+        "include/pso/system/AngleTypes.h": "c5926a712b603bfa0dd696f5309a7a51fc435ce4"
+      },
+      "full": true,
+      "evidence": "The motion review uses the original signed three-angle subobject and retains the size and yaw and roll layout checks."
+    },
+    {
+      "row": 6747,
+      "historical_path": "src/pso/quest/TQuestListVM.cpp",
+      "historical_blob": "38a5d3d7dc2b995910a572af3fa4da6d94e9c976",
+      "owners": {
+        "include/pso/system/save/CardSaveFile.h": "f427c786d7245e9deb2eef8046d456d46131ef33",
+        "src/pso/quest/TQuestListVM.cpp": "40d6eea8c6eb2073348cefc75e2e86677ddcf2ef"
+      },
+      "full": false,
+      "evidence": "The quest loader parses the native save header and uses the active memcard file information and allocation APIs."
+    },
+    {
+      "row": 6955,
+      "historical_path": "include/pso/player/TObjChara.h",
+      "historical_blob": "3cad2798309d1a040af158ae498dd098b0e4ffda",
+      "owners": {
+        "include/pso/object/base/TObjChara.h": "95ef64f40fdf84ac223f1f47f55c3218bf66be9e"
+      },
+      "full": false,
+      "evidence": "Authentic 12-byte body center at +0x2FC and movement velocity at +0x308; accessors point to the actual Vecs and the center-copy member uses its native base. Remaining independent actor-header changes and the inherited 0x290/0x29C views are outside this review."
+    },
+    {
+      "row": 7260,
+      "historical_path": "include/pso/object/TObjMotion.h",
+      "historical_blob": "7ff6f5377ac52b4a21fad2fff7481fb19f31f9e6",
+      "owners": {
+        "include/pso/object/base/TObjMotion.h": "7f550949b6ba045c7fab2c6decfacb052a709b2c"
+      },
+      "full": false,
+      "evidence": "Native TObjBase actor angle record at +0x5C and scale at +0x68, with authentic save and get members. Broader motion and collision header changes stay attributed to independent owners."
+    }
+  ],
+  "closed_historical_rows": [],
+  "historical_comparisons_open": 713,
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "published_stage_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+  "prior_validation": "fork/notes/evidence/2026-11-20-particles-attachments-bml-and-display-packaging.json",
+  "source_receipts": {
+    "saves": {
+      "donor": "f438bf695d",
+      "function_evidence": {
+        "direct": {
+          "head": "3a7ed59b8ba5108112aef381e1b57b660e6c6cb5",
+          "checked_functions": {
+            "0x801E14E8": {
+              "symbol": "TAdPlayerLoadGC__sub_801E14E8",
+              "size": 40
+            },
+            "0x801E1538": {
+              "symbol": "TAdPlayerLoadGC__sub_801E1538",
+              "size": 108
+            },
+            "0x801E17F4": {
+              "symbol": "build_save_file_image__15TAdPlayerLoadGCFPvP18CardSaveDescriptor",
+              "size": 336
+            }
+          }
+        },
+        "queue": {
+          "head": "ba311492e296eb5b8ee79fdebb019a71aa05f82f",
+          "checked_functions": {
+            "0x801E14E8": {
+              "symbol": "TAdPlayerLoadGC__sub_801E14E8",
+              "size": 40
+            },
+            "0x801E1538": {
+              "symbol": "TAdPlayerLoadGC__sub_801E1538",
+              "size": 108
+            },
+            "0x801E17F4": {
+              "symbol": "build_save_file_image__15TAdPlayerLoadGCFPvP18CardSaveDescriptor",
+              "size": 336
+            }
+          }
+        }
+      },
+      "guarded_retail_probe": {
+        "retail": {
+          "sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "artwork_slots": 6,
+          "save_images": 15,
+          "header_reads": 30
+        },
+        "direct": {
+          "sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "artwork_slots": 6,
+          "save_images": 15,
+          "header_reads": 30
+        },
+        "retail-queue": {
+          "sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "artwork_slots": 6,
+          "save_images": 15,
+          "header_reads": 30
+        },
+        "queue": {
+          "sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "artwork_slots": 6,
+          "save_images": 15,
+          "header_reads": 30
+        }
+      }
+    },
+    "canonical_registry": {
+      "head": "83decd2d24dc6104040afd060e0cc2754b110409",
+      "owner_blobs": {
+        "src/pso/player/TObjPlayer_801542CC.cpp": "ec6546bcd2bdb54bee164284e73a127428e4f45f",
+        "include/pso/object/base/CollisionActorLookup.h": "62b6ef44d8f2300631fede83472bfcfe5bfe6001"
+      },
+      "historical_original_commit": "41ddd14415",
+      "covered_historical_row": 4114
+    },
+    "vectors": {
+      "body_audit_sha256": "04d3f8d6ac23eaa28d0e8aa7471787edc39c957aeecc01e44bbb433497f9b558",
+      "historical_layout_commits": {
+        "5d0802c2e5": "5d0802c2e53bd5bc0f5f60ed7d4be495ef87d9e5",
+        "a1776fbb96": "a1776fbb96100f831634493544078c0f3d744769",
+        "0d16f108e5": "0d16f108e5b38efe407411ff764ece402e40fa88",
+        "d6126bfac0": "d6126bfac00be406f4276287ca34bd0d232f0077",
+        "c1c22d2c43": "c1c22d2c4345a7926bb46331c81bcc293a6dc978",
+        "901ade6fb9": "901ade6fb926275e99a816f4f265ac507b3b53fd"
+      },
+      "native_helpers": {
+        "copy_body_to_center__9TObjCharaFv": "0x80041B08",
+        "save_previous_position__8TObjBaseFv": "0x8004C1F4",
+        "project_move_velocity": "0x801B786C",
+        "calculate_move_velocity": "0x801B78A8",
+        "calculate_wall_slide": "0x801B7930"
+      },
+      "newly_represented_paths": [
+        "include/pso/boss/volopt/TBoss3VoloptHiraisin.h",
+        "src/pso/effect/enemy/TEneParticleCtrl.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiterEffects.cpp",
+        "src/pso/item/armor/TItemProArmorParticle.cpp",
+        "src/pso/object/base/TObjBase.cpp",
+        "src/pso/object/base/TObjMotion.cpp",
+        "src/pso/object/switch/TOSwitchAttackSub.cpp",
+        "src/pso/player/TObjPlayer_801BC140.cpp",
+        "src/pso/system/scene/TEndingPicStage.cpp"
+      ],
+      "historical_angle_donors": [
+        "f5a6c4936c3b2030cfc3887685abd50e3aab0db9",
+        "a1776fbb96"
+      ],
+      "rotation_variants": {
+        "direct": {
+          "head": "015dd577a979c2b716c20951c19267957dec104b",
+          "tree": "99ae3acdff4ddf3caaf070cb8cd312a7f896c6f9",
+          "native_get_rotation_symbol": "get_rotation__8TObjBaseFv",
+          "angle_extension_files": 250,
+          "strict_sha256": "af3667cd9a92b13007da829639bab02d5bcdc7857a85d7368b778ee7034054bd"
+        },
+        "queue": {
+          "head": "69de23d9f39578b46939249a737dc8fd4ff759a6",
+          "tree": "7cb3275a3e164cc70452f77140ea8cdfdee3e55e",
+          "native_get_rotation_symbol": "get_rotation__8TObjBaseFv",
+          "angle_extension_files": 258,
+          "strict_sha256": "58791e5f656564a6f2b7ca38e493462f8b2d30680c4491f941db131e9a58539e"
+        }
+      },
+      "native_get_rotation_address": "0x8004C1EC",
+      "motion_audit_sha256": "85f5c1e07492bcd4c8699219b24419bd43651c9d50e8f7b21fa250140a6471a6"
+    },
+    "creation": {
+      "sha256": "1aab70ce9b2820e07c9a173b34905ca2f542dd0da105ac07185e28571d5769f3",
+      "historical_rows": 18,
+      "name_review": {
+        "retained": "Existing fade member names step, length, frame, alpha and mode; existing tag-string state and pos; existing C fn_80293D84 and draw_creation_sprite_offset linkage.",
+        "typed_roles": "Native strip and fan receivers, actual hexagon method, tag constructor and factory types, and plain packed-color copy.",
+        "standalone_prerequisite": "Build on existing e03302a703 creation review and adapt the exact native fan prerequisite f961ab63fc. Existing raw vector-copy and ruler provider spellings stay on the standalone where otherwise out of scope.",
+        "queue_boundary": "The queue already carries the native 2D fan. Keep existing actor teardown, card, BML and 3D-ruler code. Other boss and effect files change only their renderer calls and associated native packed-color arrays."
+      }
+    },
+    "enemy": {
+      "sha256": "e5b562b9d3dc391fb82ae7257ceba179c8b09e3fa9e6679d71c33265bfde1d48",
+      "historical_rows": 12,
+      "donors": [
+        "36e551a432",
+        "04ebc4b8cc",
+        "e3f662411e",
+        "ec44753d67",
+        "b752921176"
+      ],
+      "remaining_components": [
+        "Pan Arms placement/body/split-state factories and helper source",
+        "Canadin four signed battle parameter index tables",
+        "Canadin vfunc_117 pointer-typed departure argument and direct candidate collector forwarded range contract",
+        "Slime older direct BML/texture and battle-parameter APIs retain inherited boundaries"
+      ],
+      "directly_verified_owner_blobs": {
+        "include/pso/enemy/slime/SlimeAnimationState.h": "2e75fd691ecf534235ad1d9ac361e26fa4b9039e",
+        "include/pso/enemy/canadin/TObjEneMe1Canadin.h": "0f4bfebeff1c65b87b2007f93863da809e07e019",
+        "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h": "0f0f67cca28137d6be290129306de2507f123d75",
+        "include/pso/enemy/slime/TObjEneSlimeOne.h": "1ec3793f57e4ac2302c2e5ff4be3b80f3c73bb6a",
+        "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h": "f5d8ef9e59f1de1c2926259bf1ce434a89a76787",
+        "include/pso/enemy/slime/TObjEneSlimeTailAttack.h": "99127761f620535ad4126d3242b05ce6779f4829",
+        "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h": "4529622eda142f3d9c96d22b7f7c7e586a0e4cde",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": "468cc54d322019de1297ee8718b5a5161c319e29",
+        "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp": "abef921e70f18f0c575a70aa6f2d13f656f5371e",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": "16d694d459a633976794d5aac85881bbc7ea1af8",
+        "include/pso/enemy/slime/TObjEneSlime.h": "81ad35dd88f3108936a5c4a6ca1260d2b5617e58",
+        "src/pso/enemy/canadin/CanadinEffects.cpp": "079e05f6e36136dc3270b9a37d840294e72ae34f"
+      }
+    }
+  },
+  "fork_layer_validation": {
+    "base_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "active_tooling_patch_git_blob": "927ec38592d9ccb389c3431632d9f10d56ef2626",
+    "tooling_patch_sha256": "fcb6c9d2aa51c0c52d307b31e835d740f04f08e55073fc576ebe6ed67350b7a9",
+    "patch_matches_working_fork_diff": true,
+    "working_fork_overlay_paths": 131,
+    "outside_fork_layer_differences": 0,
+    "passing_layer_unit_tests": 11
+  }
+}
