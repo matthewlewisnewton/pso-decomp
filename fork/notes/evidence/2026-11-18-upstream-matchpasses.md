@@ -309,6 +309,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 85-file review build also matches retail. A separate audio source review verified the callback signatures, playback arguments and cache ranges. [Source and validation evidence](2026-11-19-audio-arena-stage-window-replay.json)
 
+## Olga Flow hazards, stage gates, saved inventory and list windows
+
+Source checkpoint `1d38f7e396` and landing checkpoint `343d27547f` carry 123 source files. The source replay restores Olga Flow hazard constructors and rock queries, typed door and fence resources and wall contact packets, saved inventory loading and rebuild, and the shared equipment and item list constructors and layout. The source audit records 95 historical files and closes 67. The ledger has 1,667 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-saved-inventory-and-equipment` | Saved character inventory, equipment records and player initialization | 23 |
+| `great-merge/current/standalone-olga-flow-arena-hazards` | Olga Flow rock radius queries, pursuit rocks, mines and sword waves | 14 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage doors, fences, resource lifetimes and Seabed wall contact packets | 51 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and item list factories, icon rows and shared window extents | 36 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 120-file review build also matches retail. Independent source reviewers checked constructor and callback contracts, resource lifetimes and native layout. [Source and validation evidence](2026-11-19-hazards-gates-inventory-list-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
