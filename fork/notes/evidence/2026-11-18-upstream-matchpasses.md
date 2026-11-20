@@ -865,9 +865,17 @@ The four updated reviews are part of the 2,039-file queue across 24 groups. The 
 
 ## Network and stage reviews open upstream
 
-The 70-file network runtime is open at [#333](https://github.com/zeroz41/pso-decomp/pull/333) with head `741fec3878`. The 462-file stage objects series is open at [#334](https://github.com/zeroz41/pso-decomp/pull/334) with head `7dad678f24`. Both target upstream `49b48c32e6`. Their individual builds and joint build at `3e45bca435` reproduce the retail GPOE8P DOL.
+The 61-file network runtime is open at [#333](https://github.com/zeroz41/pso-decomp/pull/333) with head `7301eadf78`. The 462-file stage objects series is open at [#334](https://github.com/zeroz41/pso-decomp/pull/334) with head `7dad678f24`. Both target upstream `49b48c32e6`. Their standalone builds and joint build at `8181884f24` reproduce the retail GPOE8P DOL.
+
+Keep upstream’s existing names for functions, types, and fields wherever the fork uses the same entity. Remove name-only changes during review preparation. Use the established upstream type when consolidating duplicate views and describe any resulting signature or linkage change in the PR.
 
 The player registry review follows the stage series because they share active source files. The equipment and window review follows the registry.
+
+## Quest loading, companion saves and enemy fades
+
+Source `b12c724cb3` and landing checkpoint `099f1fd992` carry 74 changed files. The quest review adds the native loader interface, particle actors, and shop callers. The saved inventory review adds the companion template and item export owners. The enemy review restores typed opacity and camera fade calls. The audit closes 29 historical comparisons and leaves 1,007 open.
+
+The 2,044-file review queue covers 24 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-quest-npc-fade-replay.json)
 
 ## Ordered upstream review candidates
 
