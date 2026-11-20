@@ -814,6 +814,21 @@ The full source, working fork and combined review each reproduce the retail DOL.
 
 The memory review extends the native array group with overlapping byte and word copies and nullable release. The gameplay random group joins the review queue. The frontend phase and typed shop updates extend existing groups, taking the combined review to 1,880 files across 21 groups. [Source and validation evidence](2026-11-20-memory-gameplay-review-replay.json)
 
+## Challenge and duel results, shop icons, enemy appearance and stage proximity
+
+Source checkpoint `f12da87ad3` and landing checkpoint `d0634238de` carry 24 changed source files. The result window retains the fork’s exact inline controls. The shop uses the native item-icon lifecycle, and its keep and deposit windows use the signed message interface. Berura and Dolm/Olm retain their real punch, fade, archive and animation fields. Room and proximity triggers use the original vectors and player calls. The audit covers 22 historical records and closes 13. The ledger has 1,059 records awaiting full comparison.
+
+The full source, working fork and combined review reproduce the retail DOL. All 90 original data ranges remain accounted for. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/challenge-and-duel-results` | Challenge and duel results, standings, action locks and shared page lifetime | 71 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy registration, formation and Berura and Dolm/Olm appearance | 217 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage doors, fences, room assignment, and area trigger checks | 462 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and item windows, shop messaging, icon ownership and inventory | 489 |
+
+The standalone Challenge and duel results branch joins the queue. The enemy, stage and item-window reviews grow in place, taking the combined review to 1,916 files across 22 groups. The standalone city door calls the area getter with its actual player. The queue retains its existing typed text, inventory, allocation and animated model registry interfaces. [Source and validation evidence](2026-11-20-results-appearance-stage-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
