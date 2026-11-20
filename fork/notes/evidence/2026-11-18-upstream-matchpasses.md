@@ -141,7 +141,18 @@ Networking adds 99 audio, disc and movie files on the existing 60-file network r
 
 The four stacks and the actor prerequisite touch 1,765 of 1,777 comparison entries, counting both names for two renamed files. This measure counts path coverage. The 12 other paths belong to the new historical source replay. The larger stacks still overlap on shared code. A cross-stack merge preview found five conflicts between networking/audio and rendering/windows and 123 between rendering/windows and world/enemy.
 
-The first cross-stack delivery branch, `great-merge/current/delivery-network-render-window`, validates 911 changed files in four commits on upstream. Start from network startup and audio at `fb53599452`, then review the 428-file renderer layer at `8b6f47db30` and the 377-file window layer at `d03395c9c3`. The renderer step resolves four overlapping include groups. The window step keeps the typed audio slot in the native status window. Both builds are retail-exact and retain the coverage of the original reviews. The next preflight found 37 conflicts with actor presentation, 126 with memory/player/spatial, and 134 with world/enemy. Great Merge's exact source is a third file version for most of those conflicts. Check the owners and callers before reusing those files.
+The exact network startup commit `d892292ba8` is the shared parent for four local delivery branches. Their file counts are relative to upstream. Review each subsystem in the order shown.
+
+| Scope | Local branch under `great-merge/current/` | Head | Changed files |
+| --- | --- | --- | ---: |
+| Network and audio, renderer, windows, then typed selection | `delivery-network-render-window` | `b34f433d1c` | 920 |
+| BML/GVM archives, stage, enemies, then native boss ownership | `delivery-network-world` | `b7a5f54d71` | 863 |
+| Allocation, player and inventory, then spatial sound and effects | `delivery-network-player-spatial` | `fc7861f446` | 781 |
+| Shared actor motion, animation and presentation | `delivery-network-actor` | `f46dbc3413` | 441 |
+
+Rendering follows audio and disc streaming. The renderer resolves four overlapping include groups. The window layer keeps the typed audio slot in the native status window. The last commit adds 12 historical selection and lobby files. The other three stacks replayed cleanly directly from the network commit. The world stack closes with the 17-file boss ownership patch. All four branches reproduce retail and preserve matched and source-linked coverage.
+
+The preview between the display and world stacks found 134 shared-file conflicts before the historical boss patch. Great Merge's exact source matches one complete input file in four cases. The preview contains 37 include-only conflicts. Among the files with shared archive or texture interfaces, resolve the typed providers and their callers together. The actor and player branches also share code with display. Each branch remains reviewable from the common network base while those overlaps are reconciled for landing.
 
 The combined source at `6cfb23a4b3` restores the full-width character-selection and lobby predicates, typed word-selection calls, Olga Flow's Tube, phase and scene ownership, and native Dark Falz and Gol Dragon model nodes. The source and working fork reproduce retail with all 27,572 functions and retain exact and linked coverage. The original 90-range ledger again yields 980 source-linked bytes and 167 alignment bytes. The separate fork layer still applies all 133 local paths and passes all 11 tests.
 
