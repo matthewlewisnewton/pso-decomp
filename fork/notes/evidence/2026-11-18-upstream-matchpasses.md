@@ -995,6 +995,19 @@ Source `a0ab810dd1` and landing checkpoint `7434799df2` carry 49 changed files. 
 
 The 2,381-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-native-selection-and-combat-replay.json)
 
+## Bulk review packaging for existing source recovery
+
+The combined review queue at `9e9fa4dda9` carries 146 changed paths for this batch. The source already reproduces retail at `a0ab810dd1`. The queue reproduces retail with 2,451 exact linked units and zero lost matched or linked coverage.
+
+| Review | Local head | Review base | Changed files |
+| --- | --- | --- | ---: |
+| NPC population constructors, models and texture lifetimes | `5caa76608e` | `49b48c32e6` | 75 |
+| Native character level tables, NPC templates and archive reads | `93e344aaab` | `49b48c32e6` | 93 |
+| Ending scene, picture transitions and Rico ring lifetimes | `91eed3bfdc` | `49b48c32e6` | 62 |
+| Native choice, message, callback and child menu windows | `55469cc402` | `e9a0de33c6` | 46 |
+
+The queue now spans 2,433 files across 35 groups. A path comparison leaves 308 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The child-window review uses the existing native equipment-window prerequisite. The source audit closes 6 historical comparisons, leaving 729 open. [Validation evidence](2026-11-20-bulk-owner-review-packaging.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
