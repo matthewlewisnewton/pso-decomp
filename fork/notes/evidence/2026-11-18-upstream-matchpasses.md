@@ -581,6 +581,21 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 Symbol Chat and shortcuts join the equipment and menu review. Vol Opt joins the enemy encounter review. Timed emitters and particle banks join the stage review. The ten groups build together across 1085 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-shortcut-volopt-particle-replay.json)
 
+## Weapon motion, action palette, Olga Flow and stage lifetimes
+
+Source checkpoint `a1b6b22247` and landing checkpoint `72a9716d9c` carry 84 changed source files. The replay recovers native weapon muzzle positions and motion, palette drawing and equipment slot ownership, Olga Flow phase and plot lifetimes, and stage container and trap receivers. The audit covers 41 historical records and closes 24. The ledger has 1,190 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage containers, traps, floor events, seasonal assets and particle emitters | 374 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment, inventory, action palette, chat and shortcuts | 317 |
+| `great-merge/current/standalone-olga-flow-cinematics` | Olga Flow arena hazards, cinematics and phase actor lifetimes | 107 |
+| `great-merge/current/standalone-weapon-factory-registry` | Weapon factories, muzzle vectors and signed clamped motion in weapons and effects | 120 |
+
+Stage and UI changes enlarge their existing reviews. Olga Flow groups arena hazards and cinematics with the phase actors. Weapon muzzle, motion and effect changes join the weapon factory review. The twelve groups build together across 1,309 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-weapon-palette-olga-stage-lifetimes-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
