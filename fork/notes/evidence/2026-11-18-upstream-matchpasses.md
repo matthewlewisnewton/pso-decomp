@@ -29,6 +29,16 @@ The complete source branch at `e235bf7e3b` and review stack at `ce9748d350` shar
 
 The working fork's regenerated retention list covers 26,957 symbols. All 133 tooling overlay paths round-trip, all 11 layer tests pass, and the layered fork differs from the source tree only under `fork/` and the fork workflow. The branch updates are local. The remaining original fork source edits are tracked in the [source review index](2026-11-18-fork-review-index.tsv).
 
+## Player inventory and Photon Blast result interfaces
+
+The 14-file combined replay at `31eaa1755f` carries the fork's saved-inventory and item-deletion interfaces into their current player, trade, and quest owners. It also makes the Photon Blast result setter take the original unsigned halfword and removes the indirect call cast. The compiler preserves the original equipment address arithmetic when the inventory slot is computed after the cast to `s32`.
+
+The standalone quest, inventory and resource-list review at `333c4490b3` spans 51 files. The Photon Blast sequence, results and summoned-effects review at `4cd09cf8af` spans 17 files. Each is one commit on upstream master `6b080e67ab`. Both standalone reviews, the combined source, and the working fork reproduce retail and pass the checker. The exact and linked coverage checks report zero loss against the historical fork. All 133 tooling overlay paths round-trip and all 11 fork-layer tests pass.
+
+The player-render comparison verifies six original function bodies, three GX binding tables, the texture object and the reload diagnostic in the consolidated source. The current owner retains 20 exact functions and 248 exact bytes of data, including the ranges previously emitted by three fork fragments. The consolidated source retains those definitions and their compiler placement.
+
+The rename-aware preview compared 206 unambiguous paths. It found 16 clean replays, three already applied, 77 with non-overlapping edits, and 110 with overlaps requiring source review. The [source review index](2026-11-18-fork-review-index.tsv) now has 1,046 entries awaiting owner comparison and 918 with partial evidence.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
