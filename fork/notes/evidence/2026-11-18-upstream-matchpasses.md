@@ -627,6 +627,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The character selection, online quest, stage, equipment window, and Olga Flow reviews include these changes. The twelve groups build together across 1,410 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-character-save-quest-stage-menu-olga-replay.json)
 
+## Item parameters, warp materials, window drawing and Dragon arena state
+
+Source checkpoint `5dc1c07425` and landing checkpoint `e4b6544f8b` carry 94 changed source files. The replay recovers shared item parameter lookups, warp material selection, window part drawing, and the Dragon arena and crater owners. The audit covers 58 historical records and closes 5. The ledger has 1,181 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-saved-inventory-and-equipment` | Saved inventory and equipment, typed item parameters and their archive owner | 72 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment, dialogue, menu layout and typed shared window-part rendering | 359 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage objects, terminals, warps, and shared Ginja material selection | 392 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formations, actor registration, Dragon arena resources, crater and floor lifetimes | 190 |
+
+The inventory, stage, equipment window and enemy encounter reviews include these changes. The twelve groups build together across 1,433 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-item-warp-window-dragon-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
