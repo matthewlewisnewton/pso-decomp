@@ -844,6 +844,10 @@ The full source, working fork and combined review reproduce the retail DOL. All 
 
 The packet and registry reviews enter the queue. The widened Vol Opt and equipment review branches use their exact native owner interfaces. The combined queue now covers 1,994 files across 25 groups. The joint status record owner uses the shared player lookup, and the working fork retains its host TCP declarations and guards in the fork layer. [Source and validation evidence](2026-11-20-datagram-registry-subsystem-replay.json)
 
+## Consolidated network runtime review
+
+The datagram and packet pool branch also carries the verified native thread dispatch. The grouped standalone review `23bb9724a5` covers 66 paths and reproduces the retail DOL. Every changed source and header blob, all 23 edited symbol locations and the force-active rename agree with the existing queue. Queue `f5a3161449` has the same source tree and covers 1,994 files across 24 review groups. [Validation evidence](2026-11-20-network-runtime-review-bundle.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
