@@ -717,6 +717,20 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The equipment window, character selection, enemy formation and stage reviews include these changes. All 15 groups build together across 1,580 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-challenge-cursor-dubchik-warp-replay.json)
 
+## Challenge4P, keyboard composition, Moja and map warp commands
+
+Source checkpoint `8263d90f97` and landing checkpoint `fb03d4417b` carry 26 changed source files. The replay restores native Challenge4P state, keyboard text and conversion state, the Moja archive and sampled punch, and the original intra-map warp command interfaces. The audit covers 18 historical records and closes 5. The ledger has 1,143 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Windows, item handling and Challenge state plus four-player Challenge and keyboard input/composition | 432 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formations, appearance and encounters plus Moja combat, resources and placement | 211 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage interactions, animated models and warp collision plus the shared intra-map warp command and callers | 441 |
+
+The equipment window review combines Challenge4P and keyboard changes. The enemy formation and stage reviews carry their additional scopes. All 15 groups build together across 1,594 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-challenge4p-keyboard-moja-warp-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
