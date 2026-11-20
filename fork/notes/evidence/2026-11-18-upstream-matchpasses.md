@@ -877,7 +877,7 @@ Keep upstream’s existing names for functions, types, and fields wherever the f
 
 The player registry review follows the stage series because they share active source files. The equipment and window review follows the registry.
 
-The #334 naming audit confirmed two warp helper renames and one field rename on the published head. The local follow-up restores both function names and the field spelling and reproduces retail with unchanged coverage and linkage. Its comparison with master reports 160 symbol changes, which still include type and owner corrections. [Naming audit](2026-11-20-stage-334-review.json)
+The #334 local follow-up at `6c325ae6ac` restores two function names and 15 field names. It reproduces retail with the same linked code and data coverage. Its comparison with master reports 160 symbol changes, which still include type and owner corrections. [Naming audit](2026-11-20-stage-334-review.json)
 
 ## Quest loading, companion saves and enemy fades
 
@@ -936,6 +936,12 @@ Source `fbb99312db` and landing checkpoint `858ca99494` carry 24 changed files. 
 The 2,141-file review queue covers 30 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-pragma-and-native-replay.json)
 
 The compiler cleanup from fork PR #622 removes 108 directives across 12 files in the review queue. Canonical source needed 23 removals across six files after earlier cleanup. Both builds reproduce retail with unchanged coverage and linkage. The wider fork cleanup is tracked by compilation unit in the validation record.
+
+## Projectile parameters and native subsystem recovery
+
+Source `bd91f0b4b6` and landing checkpoint `2cfacdae70` carry 31 changed files. This batch covers original projectile technique parameters, Barba Ray laser and tentacle ownership, native Lock-On provider and player HUD ownership, mine, placement and trap effect ownership. The audit closes 13 historical comparisons and leaves 912 open.
+
+The 2,146-file review queue covers 31 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-technique-projectile-and-native-replay.json)
 
 ## Ordered upstream review candidates
 

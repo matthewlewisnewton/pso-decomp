@@ -470,28 +470,159 @@
         "after": "get_static_field4_as_float__12TObjWarpJungFv"
       }
     ],
-    "local_candidate": "1920ce427e21a149ed52f2099c2f3d5bf66d4d29",
+    "local_candidate": "6c325ae6ac55f314df2e937fe4672892a8abb481",
     "local_symbol_changes": 160,
     "local_candidate_paths": [
       "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/olgaflow/TBoss6CrushPtcl.h",
+      "include/pso/object/TObjComputer.h",
+      "include/pso/object/TObjTombstone.h",
+      "include/pso/object/fence/TOVS2Wall01.h",
+      "include/pso/object/mine/TOLightMachine01.h",
+      "include/pso/object/warp/TObjAreaWarpEnding.h",
+      "include/pso/object/warp/TObjAreaWarpForest.h",
       "include/pso/object/warp/TObjGoalWarpAncient.h",
       "include/pso/object/warp/TObjWarpJung.h",
       "include/pso/object/warp/TObjWarpJungMain.h",
+      "include/pso/system/scene/TSceneSora.h",
+      "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/TObjTombstone.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/mine/TOLightMachine01.cpp",
       "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
       "src/pso/object/warp/TObjMapWarpAncient.cpp",
-      "src/pso/object/warp/TObjWarpJungMain.cpp"
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/unk/TLobby_80291D94.cpp"
     ],
     "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
     "strict_sha256": "188bf588a7c30639ddc09e6be722092b9ffc89cd3c573aa2e16402c42a926739",
     "report_sha256": "35a04d307b1e571f7cf5ef1a598e9b03cd0bcc71132f57c06b1ec4172796560f",
     "remaining_symbol_changes": "Includes type and owner corrections. Review remaining names without equivalent source changes.",
     "published": false,
-    "confirmed_field_rename_only": {
-      "owner": "TObjWarpJungMain",
-      "upstream": "m_c4",
-      "pr": "beam_frame",
-      "type": "f32",
-      "offset": "0xC4"
-    }
+    "confirmed_field_renames_only": [
+      {
+        "owner": "TObjWarpJungMain",
+        "upstream": "m_c4",
+        "pr": "beam_frame",
+        "type": "f32",
+        "offset": "0xC4"
+      },
+      {
+        "owner": "TObjComputer",
+        "upstream": "m_c4",
+        "pr": "uv_scroll_frame",
+        "type": "u32",
+        "offset": "0xC4",
+        "header": "include/pso/object/TObjComputer.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_94",
+        "pr": "model_radius",
+        "type": "f32",
+        "offset": "0x94",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_9c",
+        "pr": "bob_height",
+        "type": "f32",
+        "offset": "0x9C",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_a4",
+        "pr": "bob_angle_step",
+        "type": "u32",
+        "offset": "0xA4",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_a8",
+        "pr": "bob_angle",
+        "type": "u32",
+        "offset": "0xA8",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_ac",
+        "pr": "lamp_yaw",
+        "type": "u32",
+        "offset": "0xAC",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TSceneSora",
+        "upstream": "m_a0",
+        "pr": "motion_frame",
+        "type": "f32",
+        "offset": "0xA0",
+        "header": "include/pso/system/scene/TSceneSora.h"
+      },
+      {
+        "owner": "TOVS2Wall01",
+        "upstream": "m_338",
+        "pr": "model_radius",
+        "type": "f32",
+        "offset": "0x338",
+        "header": "include/pso/object/fence/TOVS2Wall01.h"
+      },
+      {
+        "owner": "TOVS2Wall01",
+        "upstream": "m_340",
+        "pr": "fade",
+        "type": "RenderFadeState",
+        "offset": "0x340",
+        "header": "include/pso/object/fence/TOVS2Wall01.h"
+      },
+      {
+        "owner": "TBoss6CrushPtcl",
+        "upstream": "m_1C",
+        "pr": "age",
+        "type": "s32",
+        "offset": "0x1C",
+        "header": "include/pso/boss/olgaflow/TBoss6CrushPtcl.h"
+      },
+      {
+        "owner": "TObjTombstoneSpot",
+        "upstream": "unk_3",
+        "pr": "reserved_03",
+        "type": "u8",
+        "offset": "0x03",
+        "header": "include/pso/object/TObjTombstone.h"
+      },
+      {
+        "owner": "TObjTombstoneRecord",
+        "upstream": "unk_4",
+        "pr": "record_count",
+        "type": "s16",
+        "offset": "0x04",
+        "header": "include/pso/object/TObjTombstone.h"
+      },
+      {
+        "owner": "TObjAreaWarpForest",
+        "upstream": "m_c4",
+        "pr": "beam_frame",
+        "type": "f32",
+        "offset": "0xC4",
+        "header": "include/pso/object/warp/TObjAreaWarpForest.h"
+      },
+      {
+        "owner": "TObjAreaWarpEnding",
+        "upstream": "m_c4",
+        "pr": "beam_frame",
+        "type": "f32",
+        "offset": "0xC4",
+        "header": "include/pso/object/warp/TObjAreaWarpEnding.h"
+      }
+    ],
+    "earlier_candidate": "1920ce427e21a149ed52f2099c2f3d5bf66d4d29"
   }
 }
