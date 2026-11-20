@@ -911,6 +911,14 @@ The 2,112-file review queue covers 27 groups. The canonical source and working f
 
 The standalone Ginja upload review covers 18 files. The direct patch retains upstream spellings and can be rebuilt with the stage changes after resolving 2 overlapping files. The wider archive and model changes remain in the combined queue.
 
+## Native archive and gameplay dispatch recovery
+
+Source `6bb217d874` and landing checkpoint `a2789f20c5` carry 51 changed files. This batch covers BML resource access and archive loading, Dark Gunner dispatch and lightning, wall collision and ground transforms, main menus, speech balloons and Word Select. The audit closes 8 historical comparisons and leaves 953 open.
+
+The 2,114-file review queue covers 28 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-archive-and-dispatch-replay.json)
+
+The local BML review covers 161 files from upstream master and retains the upstream renderer spellings. BML and Ginja uploads also form a validated 179-file loading review on upstream master. The 150-file main-menu review carries the speech-balloon and native Word Select formatter changes on the existing main-menu branch. The review restores 20 upstream spellings across the enemy, collision and menu branches.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
