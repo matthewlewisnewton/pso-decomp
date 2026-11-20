@@ -39,6 +39,24 @@ The player-render comparison verifies six original function bodies, three GX bin
 
 The rename-aware preview compared 206 unambiguous paths. It found 16 clean replays, three already applied, 77 with non-overlapping edits, and 110 with overlaps requiring source review. The [source review index](2026-11-18-fork-review-index.tsv) now has 1,046 entries awaiting owner comparison and 918 with partial evidence.
 
+## Subsystem batches and media contracts
+
+The 10-file source replay at `65ea0db603` restores native Dolphin SDK file and command-block members to the 40 DVD request records. The combined unit keeps all 15 exact functions, including open, close, polling, asynchronous reads and file-size lookup. Six ADX stream consumers now share a single declaration for the 0x64-byte retail chunk splitter. The combined and working-fork builds reproduce retail, the project checker passes, and the 133 tooling paths round-trip. All 11 fork-layer tests pass.
+
+Subsequent review builds use batches of related file changes. Resolve shared interfaces together and compare each batch against upstream and the historical fork. Keep a larger batch together when a reviewer can follow the dependency chain and split at an interface boundary when the file group needs different context.
+
+| Local review | Head | Changed files |
+| --- | --- | ---: |
+| Player, quest and item state | `30050798e0` | 132 |
+| Stage objects and world resources | `c088b7f407` | 133 |
+| Windows, camera and scene rendering | `5307cf26ef` | 87 |
+| Audio streaming, CVFS and disc archives | `5b4652af21` | 90 |
+| Enemy, boss and encounter combat | `c46c0e1730` | 247 |
+
+Each recorded head is one source-only commit on `6b080e67ab`. Each reproduces the retail executable and passes the project checker with zero matched or linked code and data loss. The larger heads include already validated standalone changes and are local review candidates. The audio review includes the existing shared CVFS callback prerequisite.
+
+The first four batches have single-file integration overlaps around the signboard, lobby archive resource handling and character preview load. Apply those shared paths once in review order. The historical source audit remains open. The [source review index](2026-11-18-fork-review-index.tsv) now has 1,042 records awaiting owner comparison and 922 with partial evidence.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
