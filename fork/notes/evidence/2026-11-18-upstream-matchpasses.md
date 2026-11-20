@@ -324,6 +324,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 120-file review build also matches retail. Independent source reviewers checked constructor and callback contracts, resource lifetimes and native layout. [Source and validation evidence](2026-11-19-hazards-gates-inventory-list-replay.json)
 
+## Inventory ownership, Dark Falz cinematics, ambient archives and frontend input
+
+Source checkpoint `496f0e0e02` and landing checkpoint `5483048ad0` carry 47 source files. The source replay restores native inventory construction and exports, typed Dark Falz cinematic owners, ambient model and texture storage, and front-end controller and input contracts. The source audit records 65 historical files and closes 42. The ledger has 1,625 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-saved-inventory-and-equipment` | Native item lists, storage and placement, saved inventory and equipment, and the inventory rebuild lifecycle | 59 |
+| `great-merge/current/standalone-dark-falz-cinematic-actors` | Dark Falz cinematic factories, camera and part layouts, emitter state and controller positions | 22 |
+| `great-merge/current/standalone-ambient-stage-archives-and-rendering` | Cave and jungle archives and sign rendering, ambient fish and grass resource lifetimes | 14 |
+| `great-merge/current/standalone-online-setup-scenes` | Serial, password, PPP and dialing callbacks and native input/display records | 13 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 104-file review build also matches retail. The inventory review combines the saved-equipment candidate and the earlier item-placement provider into one direct review on current upstream. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-19-inventory-and-scene-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
