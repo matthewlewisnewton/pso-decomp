@@ -183,7 +183,15 @@ The standings changes add 10 changed paths to the existing display review at `f8
 
 The combined source, working fork and both review branches reproduce retail. All 90 original ranges retain their 980 source-linked bytes and 167 alignment bytes. The audit fully reconciled 11 historical records, including the two Slime headers, and added evidence for nine related records that still have wider changes to compare. The working fork retains all 133 overlay paths. Its link retention check and all 11 fork-layer tests pass.
 
-Player class declaration changes still need an exact replay. The latest trial changes instruction scheduling at the original starting-inventory and level-stat initialization functions. [Source and validation evidence](2026-11-19-declaration-replay-evidence.json)
+The player class trial from this checkpoint is resolved in the following replay. [Source and validation evidence](2026-11-19-declaration-replay-evidence.json)
+
+## Camera position, color-line rendering and native owner replay
+
+The 102-file source replay `9f5ed76768` is in the local landing checkpoint `e418f8a73c`. Camera storage uses the original Vec across 33 environment and gameplay paths. Color-line rendering uses one shared descriptor across 25 paths. SlimeOne uses both native constructors, the 0x3F8 layout and original animation and effect ownership. The native TObject function compares class-name pointers through 22 translation units. Player and NPC initialization uses the original signed class byte while preserving the original loads, including the starting-inventory and level-stat functions.
+
+The local display review at `3b8fd12a2f` carries the 25 rendering paths. The world review at `4f1237edb0` carries the combined 39 camera and Slime paths. The player review at `80437bd0a1` carries the 18-path class replay. The 26-path native object lookup also has a standalone review on current upstream at `6155c67873` under `great-merge/current/standalone-object-class-name`.
+
+The combined source, working fork and all four review branches reproduce retail. All 90 historical ranges retain their 980 source-linked bytes and 167 alignment bytes. The source audit closed 15 historical records and updated evidence for 88 records in total. 1,895 remain open. The 133 fork-only overlay paths round-trip and all 11 layer tests pass. [Source and validation evidence](2026-11-19-native-subsystems-evidence.json)
 
 ## Ordered upstream review candidates
 
@@ -244,9 +252,9 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `f8fee4e3c9` | 933 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `df959f6a2f` | 885 |
-| Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `94581b29e7` | 804 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `3b8fd12a2f` | 934 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `4f1237edb0` | 894 |
+| Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `80437bd0a1` | 802 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `570ad35a4c` | 441 |
 
 Rendering follows audio and disc streaming. The renderer resolves four overlapping include groups. The window layer keeps the typed audio slot in the native status window. The selection and lobby commit adds 12 files. The window context pass adds a further 17. The other three stacks replayed cleanly directly from the network commit. The world stack closes with the boss ownership and photon commits. All four branches reproduce retail and preserve matched and source-linked coverage.
