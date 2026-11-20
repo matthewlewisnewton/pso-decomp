@@ -611,6 +611,22 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The technique, equipment window, online quest, and enemy formation reviews include these changes. The twelve groups build together across 1,352 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-photon-menu-quest-enemy-replay.json)
 
+## Saved-character lookup, quest scoring, terminals, choice rows and Olga Flow
+
+Source checkpoint `68b899d7b1` and landing checkpoint `752581cd62` carry 89 changed source files. The replay recovers saved-character lookup and its callers, typed quest scores, stage terminal owners, shared choice rows, and Olga Flow action state. The audit covers 38 historical records and closes 4. The ledger has 1,186 records awaiting full source comparison. The code-owner index also maps 46 historical rows to their current translation units by retail address.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/character-selection-plates` | Character selection and previews, memory-card windows, and its shared saved-record lookup | 127 |
+| `great-merge/current/standalone-online-quest-transfers` | Online quest transfers, native scoring, and text node ownership | 96 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage objects, terminals, contact and trap behavior, archives and UV scrolling | 387 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment windows, palette, shared menu layout and label-value choice rows | 350 |
+| `great-merge/current/standalone-olga-flow-cinematics` | Olga Flow arena, cinematics and typed Plot and form action messages | 110 |
+
+The character selection, online quest, stage, equipment window, and Olga Flow reviews include these changes. The twelve groups build together across 1,410 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-character-save-quest-stage-menu-olga-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
