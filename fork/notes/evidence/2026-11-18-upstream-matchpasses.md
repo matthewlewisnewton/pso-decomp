@@ -865,7 +865,11 @@ The four updated reviews are part of the 2,039-file queue across 24 groups. The 
 
 ## Network and stage reviews open upstream
 
-The 61-file network runtime is open at [#333](https://github.com/zeroz41/pso-decomp/pull/333) with head `7301eadf78`. The 462-file stage objects series is open at [#334](https://github.com/zeroz41/pso-decomp/pull/334) with head `7dad678f24`. Both target upstream `49b48c32e6`. Their standalone builds and joint build at `8181884f24` reproduce the retail GPOE8P DOL.
+The 61-file network runtime is open at [#333](https://github.com/zeroz41/pso-decomp/pull/333) at `7301eadf78`. [#334](https://github.com/zeroz41/pso-decomp/pull/334) is ready for review at `ec0fac8435` across 487 files. Its [match gate](https://github.com/zeroz41/pso-decomp/actions/runs/44780523263) passed at that head. A fresh joint build of the two current heads at `98cf31c3df` reproduces the retail GPOE8P DOL and passes strict coverage.
+
+The stage cleanup puts the area accessor on TObjPlayer, uses shared typed live floor-row getters and the shared player lookup declaration, and uses the Dubchik class layout for its attachment helper. The review handoff verifies the standalone against the previous PR head and upstream with 2,448 source objects linked. Its historical-fork comparison accounts for a net 2,386-byte change in the total-data diagnostic through 2,549 omitted alignment bytes and 163 bytes of added coverage. It records zero exact-function, linked-function, non-padding-data, or linked-data losses. [Validation record](2026-11-20-stage-334-review.json)
+
+Replay the stage cleanup by source owner before updating the combined queue. The Git preview found 20 overlapping paths on canonical source and 10 on the queue. Preserve the current typed player registry, floor-row, boss and stage contracts when reconciling those overlaps, then validate both combined builds.
 
 Keep upstream’s existing names for functions, types, and fields wherever the fork uses the same entity. Remove name-only changes during review preparation. Use the established upstream type when consolidating duplicate views and describe any resulting signature or linkage change in the PR.
 

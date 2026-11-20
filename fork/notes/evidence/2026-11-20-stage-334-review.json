@@ -1,0 +1,138 @@
+{
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "stage": {
+    "head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "previous": "7dad678f24aa49d3d608e7ce5e6803df206305de",
+    "files": 487,
+    "cleanup_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/volopt/TBoss3Volopt.h",
+      "include/pso/enemy/dubchik/TObjEneDubchik.h",
+      "include/pso/map/FloorPopulation.h",
+      "include/pso/player/PlayerSlots.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_801AF2F0.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_80209524.h",
+      "include/pso/unk/TLobby_8020B334.h",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp",
+      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/effect/item/TItemEffArmor.cpp",
+      "src/pso/effect/item/TItemEffShield.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/item/TItemTimerEvent.cpp",
+      "src/pso/map/TSetManager.cpp",
+      "src/pso/object/TObjRoomId.cpp",
+      "src/pso/object/city/CityDoors.cpp",
+      "src/pso/object/collision/TObjBgmColCtrl.cpp",
+      "src/pso/object/collision/TObjInfoCol.cpp",
+      "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801BDF5C.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+      "src/pso/ui/window/TWindowDD_8020C2DC.cpp",
+      "src/pso/unk/TLobby_80209524.cpp",
+      "src/pso/unk/TLobby_8020C608.cpp",
+      "src/pso/unk/TLobby_8020C8A4.cpp",
+      "src/pso/unk/TLobby_8020CB34.cpp",
+      "src/pso/unk/TLobby_8020CD44.cpp",
+      "src/pso/unk/TLobby_8020D0B0.cpp",
+      "src/pso/unk/text_8020BC50.cpp",
+      "src/pso/unk/text_8020C354.cpp",
+      "src/pso/unk/text_8020C73C.cpp",
+      "src/pso/unk/text_8020C9C8.cpp"
+    ],
+    "state": "OPEN",
+    "ready_for_review": true,
+    "url": "https://github.com/zeroz41/pso-decomp/pull/334",
+    "ci": {
+      "conclusion": "success",
+      "headSha": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "status": "completed",
+      "url": "https://github.com/zeroz41/pso-decomp/actions/runs/44780523263"
+    }
+  },
+  "review_handoff": {
+    "source_thread": "01a1f9dd-aecc-7232-98a5-790f593889e9",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_pr_baselines": [
+      "7dad678f24aa49d3d608e7ce5e6803df206305de",
+      "49b48c32e6b47afbb55426ad7ac41c0ec6633480"
+    ],
+    "linked_source_objects": 2448,
+    "earlier_joint_base": "3e45bca43548682b06348af370f92673dcf54e92",
+    "historical_comparison": {
+      "head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "lost_exact_functions": 0,
+      "lost_linked_functions": 0,
+      "lost_non_padding_data_ranges": 0,
+      "lost_linked_data_ranges": 0,
+      "omitted_alignment_padding_bytes": 2549,
+      "added_coverage_bytes": 163,
+      "net_total_data_delta": -2386
+    }
+  },
+  "current_joint_validation": {
+    "head": "98cf31c3df421015e7bdc5d86df37557dfedf8c7",
+    "parents": [
+      "7301eadf78b49e8cbe96f1e92b5543c7719eb321",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "linked_source_objects": 2448,
+    "report_sha256": "acfbdeb9b912dc2b81543c64ad48e6467982b6114db6094070c02a1079f1fef5",
+    "strict_sha256": "72188d85df33faa35806a22d8fe88f7e1e40c866b49eb7c5afa1dbddb555b8a2"
+  },
+  "fork_sync": {
+    "replay_base": "7dad678f24aa49d3d608e7ce5e6803df206305de",
+    "heads": {
+      "all-source": {
+        "head": "dbb9801fa69e8e616ad0ccd196388d0cf358dd49",
+        "conflicting_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/boss/volopt/TBoss3Volopt.h",
+          "include/pso/player/TObjPlayer.h",
+          "include/pso/player/TObjPlayer_801AF2F0.h",
+          "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+          "src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp",
+          "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+          "src/pso/boss/volopt/TBoss3Volopt.cpp",
+          "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+          "src/pso/effect/item/TItemEffArmor.cpp",
+          "src/pso/effect/item/TItemEffShield.cpp",
+          "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+          "src/pso/item/TItemTimerEvent.cpp",
+          "src/pso/object/TObjRoomId.cpp",
+          "src/pso/object/city/CityDoors.cpp",
+          "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp",
+          "src/pso/player/TObjPlayer_801C7430.cpp",
+          "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp"
+        ]
+      },
+      "upstream-review-queue": {
+        "head": "652be86d63ff6f184c41ddcc2fbbaccd8d35c80a",
+        "conflicting_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/boss/volopt/TBoss3Volopt.h",
+          "include/pso/player/TObjPlayer.h",
+          "include/pso/player/TObjPlayer_801AF2F0.h",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+          "src/pso/effect/item/TItemEffArmor.cpp",
+          "src/pso/effect/item/TItemEffShield.cpp",
+          "src/pso/object/city/CityDoors.cpp",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp",
+          "src/pso/player/TObjPlayer_801C7430.cpp"
+        ]
+      }
+    },
+    "scope": "Replay each cleanup on its actual player, floor-row, boss or stage owner. Validate the combined source and queue after preserving their existing contracts."
+  }
+}
