@@ -193,6 +193,14 @@ The local display review at `3b8fd12a2f` carries the 25 rendering paths. The wor
 
 The combined source, working fork and all four review branches reproduce retail. All 90 historical ranges retain their 980 source-linked bytes and 167 alignment bytes. The source audit closed 15 historical records and updated evidence for 88 records in total. 1,895 remain open. The 133 fork-only overlay paths round-trip and all 11 layer tests pass. [Source and validation evidence](2026-11-19-native-subsystems-evidence.json)
 
+## Menu sizing, Gryphon lightning and indirect scene effects
+
+The 79-file source replay `7368e6ed1c` is in the local landing checkpoint `cee9e7eff5`. The display review at `8d7fc86f08` assigns menu sizing to TWindowMenu, retains all 41 original calls and uses typed choice-menu storage. The world review at `b144f74c5c` joins the native Gal Gryphon lightning constructors and typed indirect scene effects across 18 changed paths.
+
+The separate compiler cleanup recovers 723 historical directive removals across 28 files. The exact build still needs the existing floating-point contraction scope in player collision and the two scheduling directives in protocol list assignment. The Gal Gryphon patch also removes 268 historical directives from its behavior owner.
+
+The combined source, working fork and both review branches reproduce retail. All 90 original ranges retain 980 source-linked bytes and 167 alignment bytes. The historical audit updated 112 records and closed 29. 1,866 remain open. All 133 fork-only paths round-trip and all 11 layer tests pass. [Source and validation evidence](2026-11-19-owner-closure-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
@@ -252,8 +260,8 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `3b8fd12a2f` | 934 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `4f1237edb0` | 894 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `8d7fc86f08` | 939 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `b144f74c5c` | 903 |
 | Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `80437bd0a1` | 802 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `570ad35a4c` | 441 |
 
