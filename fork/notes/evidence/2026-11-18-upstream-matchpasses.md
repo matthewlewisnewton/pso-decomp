@@ -973,6 +973,14 @@ The factory review directly types 64 weapon factories used by 91 table slots and
 
 The 2,312-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-item-factories-and-native-replay.json)
 
+## Actor stats, tunnel encounters, snapshot archives and stage resource lifecycles
+
+Source `cbff37c9f9` and landing checkpoint `5dc354c2d4` carry 60 changed files. This batch covers native actor HP, TP and recovery callers, tunnel phase inputs, effects and checksum contract, snapshot render and RLC motion archive ownership, stage floor manager and ARAM archive pool lifecycles. The audit closes 19 historical comparisons and leaves 765 open.
+
+The actor stat pass verifies the three signed halfword getters at their original addresses. Three legacy caller units retain the original full-register return contract.
+
+The 2,322-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-actor-stats-and-native-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
