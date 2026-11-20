@@ -642,6 +642,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The inventory, stage, equipment window and enemy encounter reviews include these changes. The twelve groups build together across 1,433 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-item-warp-window-dragon-replay.json)
 
+## Equipment checks, window lifecycle, Challenge graves and enemy archives
+
+Source checkpoint `b45ac1bec4` and landing checkpoint `c5256a3040` carry 59 changed source files. The replay recovers the original equipment check, window part updates and teardown, Challenge graves, and Mericarol and Gibbles resources. The audit covers 39 historical records and closes 4. The ledger has 1,177 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-saved-inventory-and-equipment` | Saved inventory and original weapon, armor, unit, mag and Meseta equipment requirements | 81 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and item windows with the shared part update and teardown lifecycle | 367 |
+| `great-merge/current/standalone-mericarol-and-gibbles-effects` | Shared resource and action tables, normal and low-detail models, and collision data for Mericarol and Gibbles | 23 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage doors, fences, contacts and the Challenge tombstone placement and save lifecycle | 396 |
+
+The inventory, stage, equipment window and enemy encounter reviews include these changes. All 13 groups build together across 1,447 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-equipment-layout-tombstone-enemy-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
