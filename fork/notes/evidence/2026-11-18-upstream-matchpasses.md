@@ -1103,6 +1103,12 @@ The renderer supplies the Ginja provider needed by the fork tooling patch. The r
 
 The full tool suite on the fresh workspace reports 265 failures and five errors across 285 tests. The failures are concentrated in typed BML accessors and also flag Dark Falz Zako resource and viewport contracts. Bring those source reviews into the replay and rerun the suite before fork cutover. [Build and cutover rehearsal](2026-11-20-particle-renderer-and-fork-layer.json)
 
+### Typed BML access and Dark Falz resources
+
+The BML accessor replay at `a73ba07e10` consolidates model and texture access in one typed declaration and carries it through 238 paths. The Dark Falz replay at `8b9cd6b587` restores the typed archive handle, child model setup, Zako cache, clear wrapper and shared viewport call across 17 paths. The renderer texture-list replay at `059fb5502f` carries the typed cache into the shared scene-state setter across 352 paths. The three reviews change 424 unique paths, reproduce retail and pass strict source-link checks. The combined build retains the original data inventory and all checked coverage against the older review queue, canonical source and historical fork.
+
+The fork-only workspace patch still applies across its 131 paths and reproduces retail. All 11 layer tests pass. The 290 executed tool tests report zero assertion failures and one setup error in the Dark Falz cleanup fixture, which needs the native BML destructor. The archive-lifetime review at `daa3a3af77` carries that destructor and its consumers across 230 related paths. [Build and fork layer evidence](2026-11-20-bml-zako-and-texture-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
