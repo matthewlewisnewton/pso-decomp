@@ -745,6 +745,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The texture-binding review applies the shared renderer interface across systems. The existing ADX and stage reviews include the additional sound and companion-control work. All 16 groups build together across 1,691 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-texture-binding-sound-npc-replay.json)
 
+## BML archives, window ownership, enemy models and floor transitions
+
+Source checkpoint `42a5d1f9f6` and landing checkpoint `3473e00075` carry 57 changed source files. The replay uses native BML chunk and storage types, one active window controller, typed Bringer and Canadin resource records, and one floor-transition state. The audit covers 18 historical records and closes 4. The ledger has 1,129 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/standalone-bml-model-and-texture-accessors` | Shared BML model and texture accessors and the archive chunk allocator | 161 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage and warp interactions, with shared floor-transition state and commands | 455 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and frontend windows, with active controller lifetime and child slots | 452 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy registration and formations, including Bringer and Canadin archive and render records | 214 |
+
+The BML review uses the existing texture-binding review as its prerequisite. The existing window, enemy and stage reviews carry the associated ownership changes. All 17 groups build together across 1,731 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-archive-window-enemy-floor-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
