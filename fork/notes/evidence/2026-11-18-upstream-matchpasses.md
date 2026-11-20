@@ -443,6 +443,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 212-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-dragon-falz-warps-hud-replay.json)
 
+## Olga Flow, Recon, stage containers and Short Mail
+
+Source checkpoint `667b23c5e8` and landing checkpoint `57aa0c6e81` carry 78 source files. The source replay restores Olga Flow encounter and battle-effect owners, Recon and Recobox actors, the stage container and event transport owners, and native Short Mail selection and composition. The source audit records 39 historical files and closes 25. The ledger has 1,359 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-olga-flow-arena-hazards` | Olga Flow arena hazards, Form 2 attack dispatch, possession effect and native gravity-ball lifecycle | 36 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formation and registration, Recon and Recobox effects and actor ownership, and ReconBomb hit and lifetime handling | 84 |
+| `great-merge/current/standalone-stage-containers-and-floor-events` | Jungle, Ancient, Forest, Seabed and Ido container resources, drops and floor break events across eight callers | 25 |
+| `great-merge/current/standalone-main-menu-and-child-windows` | Main menu and child windows, native Short Mail composition, queue and shared word movement | 80 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 213-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-olga-recon-containers-mail-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
