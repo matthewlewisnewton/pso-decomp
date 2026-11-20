@@ -1095,6 +1095,14 @@ Both builds reproduce retail and pass `tools/check_pr.py` with 2,448 exact linke
 
 The fork tooling patch preflight on this source reports 11 paths to refresh. Ten have overlapping changes and one is supplied by the pending Ginja provider review. Refresh the workspace patch after those providers land in the replay and check the resulting fork layer against the final source tree. [Build, overlap and fork tooling evidence](2026-11-20-prospective-actor-and-network-replay.json)
 
+### Shared particle factories, rendering callbacks and the fork layer
+
+The particle review at `227e14cd1f` uses one typed world-position factory across 182 files. It keeps the incoming member calls and the byte-offset expression required by the original switch attack. The 140-file renderer review at `a022239edb` adds typed Ginja material handlers and Ninja chunk callbacks. The combined source changes 291 paths from the actor review. Both reviews reproduce retail and pass `tools/check_pr.py` with 2,448 exact linked units. The final build preserves matched and source-linked coverage against the older queue, canonical source and historical fork. It accounts for the original 1,147 bytes across all 90 ranges.
+
+The renderer supplies the Ginja provider needed by the fork tooling patch. The rest of the tooling patch replays with the portable collision, quest, shortcut and vector fallbacks adapted to the current source. The local retention block is regenerated with 27,029 current names. The materialized tooling workspace reproduces retail and passes the strict checker. A fresh materialization reproduces all 131 workspace changes, and all 11 layer tests pass. The layer adds `fork/` and the fork-specific CI workflow.
+
+The full tool suite on the fresh workspace reports 265 failures and five errors across 285 tests. The failures are concentrated in typed BML accessors and also flag Dark Falz Zako resource and viewport contracts. Bring those source reviews into the replay and rerun the suite before fork cutover. [Build and cutover rehearsal](2026-11-20-particle-renderer-and-fork-layer.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
