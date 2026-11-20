@@ -126,6 +126,14 @@ The stage review uses the BML/GVM provider as its parent and validates the share
 
 The prepared reviews and prerequisites touch 1,660 of 1,761 combined diff paths. The remaining 101 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
 
+## Local landing checkpoint with all four subsystem histories
+
+`great-merge/current/landing-checkpoint` at `c685c00b1e` contains the four exact review branches and uses the verified Great Merge source tree at `3f3792f434`. The actor/player checkpoint `208df9435e` joins the actor fields with typed sound, particle and player calls. The display/world checkpoint `84e3194968` adds 22 ownership fixes from the remaining audit. That work restores native Berura methods, typed boss and stage resources, and shared display declarations. The shop and quest changes also pass on their narrower player review at `74e7cb1163`.
+
+The complete source tree covers 1,797 files against the pinned upstream and includes a 36-file refresh. It restores the shop and quest message arguments from `d7143585fb`, five native team-window accessors, the typed city firework position and particle handle, and native Merill Lia encounter ownership. Merill Lia keeps the exact asset bank, state dispatch and hurt behavior. The complete tree and working fork match retail and retain all 27,572 functions and the matched and source-linked coverage of both checkpoints. All 1,147 original inventory bytes are accounted for. The 133-path tooling overlay round-trips, and all 11 fork-layer tests pass.
+
+The standard Git preview of the two checkpoints found 334 overlapping paths. The assembled checkpoint uses the already validated Great Merge implementation for shared source. The dry replays found the typed firework fields as a substantive clean edit, which the refreshed source now contains. Remaining clean deltas are mostly redundant includes, an obsolete declaration, and provider comments. A retail match verifies executable behavior. The overlapping source variants and historical source mappings still need review before landing upstream. [Source audit](2026-11-19-landing-source-audit.json)
+
 ## Historical item drops, window drawing, and Barba Ray photon ownership
 
 Great Merge source `ef8b7f3c2c` combines 39 changed files. The source, review and working trees reproduce the retail executable and retain matched and source-linked coverage against upstream, the historical fork and the previous combined source. All 90 original byte ranges still account for 980 linked bytes and 167 alignment bytes. The working layer materializes 133 local paths, and all 11 fork-layer tests pass.
@@ -165,7 +173,7 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 | --- | --- | --- | ---: |
 | Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `9bc06303e4` | 922 |
 | BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `e5280c4a65` | 870 |
-| Allocation, player and inventory, spatial effects, and item drops | `delivery-network-player-spatial` | `acfcd51610` | 784 |
+| Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `74e7cb1163` | 799 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `f46dbc3413` | 441 |
 
 Rendering follows audio and disc streaming. The renderer resolves four overlapping include groups. The window layer keeps the typed audio slot in the native status window. The selection and lobby commit adds 12 files. The window context pass adds a further 17. The other three stacks replayed cleanly directly from the network commit. The world stack closes with the boss ownership and photon commits. All four branches reproduce retail and preserve matched and source-linked coverage.
