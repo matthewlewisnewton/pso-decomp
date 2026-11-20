@@ -80,6 +80,29 @@ The five current review candidates cover 665 of 1,756 source diff paths by path.
 
 The [source review index](2026-11-18-fork-review-index.tsv) records 24 additional findings. It has 1,013 records awaiting owner comparison and 946 with partial evidence.
 
+## Whole-subsystem review candidates
+
+Refreshing the older subsystem reviews in bulk puts all ten candidates below on upstream `6b080e67ab`. Each is one source commit with the source-linked build metadata it requires. Each reproduces the retail executable. Documentation and tooling live on the fork branches.
+
+| Candidate | Local head | Changed files |
+| --- | --- | ---: |
+| Shared allocation, copying and release | `7cf8dfc61c` | 257 |
+| Positional sound and particle factories | `fbe0109d70` | 342 |
+| BML, model and GVM texture resources | `d7f1fb19b2` | 488 |
+| Window framework and drawing | `1cc4a9b534` | 376 |
+| Enemy, boss and encounter combat | `ac47423607` | 279 |
+| Player, quest and item state | `4321d51c98` | 147 |
+| Stage objects and world resources | `021cdb2f6d` | 139 |
+| Window, camera and scene presentation | `230bf773d9` | 98 |
+| Audio streaming and disc archives | `5b4652af21` | 90 |
+| Network startup and packet lifetime | `d892292ba8` | 60 |
+
+Memory and spatial effects also build together as a two-review stack at `befc3255ba`. The 536-file stack resolves 19 overlapping files, mostly independent header additions. It retains the separate memory and spatial review commits and passes the retail and coverage checks. The BML/GVM and window reviews also have substantial overlaps with those providers. Their independent source reviews are available for sequencing and rebuilding on the selected base.
+
+The window review keeps upstream's native window and keyboard owners, including the original 24-byte keyboard table. It preserves all 67 audited drawing calls. Both the window and latest combined builds account for all 1,147 original inventory bytes in 90 ranges, with 980 source-linked bytes and 167 alignment bytes. The network candidate already contains the earlier DNS, DHCP, PPP and callback work under upstream's native UDP classes.
+
+The candidates touch 1,490 of 1,756 Great Merge diff paths. The remaining 266 unassigned paths are concentrated in player and enemy interfaces. This is a path count. Shared-file edits still need coverage and merge checks when sequencing the reviews. The door, fence and cave trial compiled all 44 changed object translation units and identified 19 ambient and lobby callers that depend on the same provider changes. The stage expansion needs those callers and matching linked symbol providers together.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
