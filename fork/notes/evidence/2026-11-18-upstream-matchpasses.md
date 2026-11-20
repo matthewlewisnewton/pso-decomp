@@ -488,6 +488,10 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 235-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-audio-gryphon-wreck-selection-replay.json)
 
+## Combined stage doors, weather and resource review
+
+The 128-file local stage review at `0d7017a5cf` combines the 95-file doors, fences and Seabed patch with the earlier stage weather and resource patch. The only source conflict was the Seabed wall. It keeps the native constructor, model bounds and render fields along with the named debris template and typed archive lifetime. Rain ownership consolidates two existing source units. The stage branch and the 268-file combined review build reproduce retail and pass strict linkage with all 27,572 functions and 1,758,510 data bytes accounted for. [Stage consolidation evidence](2026-11-20-stage-weather-consolidation.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

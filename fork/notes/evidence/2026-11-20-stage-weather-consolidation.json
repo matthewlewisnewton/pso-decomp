@@ -1,0 +1,97 @@
+{
+  "stage_head": "0d7017a5cf0ca36d7a4e2f2bc18e1817b53a300e",
+  "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "previous_stage_head": "bb4807631e0950c9e2aa16f83c0bd91b598e5bd5",
+  "stage_weather_input": "7cb5f8deee132f887d5acd442058217e46790cc3",
+  "combined_review_head": "47fa464c8c4ccf89b1e194708e0fc7faaf15c570",
+  "stage_files": 128,
+  "combined_review_files": 268,
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "independent_review": {
+    "reviewer": "display_batch",
+    "head": "0d7017a5cf0ca36d7a4e2f2bc18e1817b53a300e",
+    "finding": "The wall class header is unchanged from the latest wall patch. The overlap keeps typed constructor and render fields, correct model bounds and established fade callbacks. The weather side adds the same 0x4C chip template and typed archive storage and cleanup. The symbol and active link records preserve the changes from both parents."
+  },
+  "coverage": {
+    "stage-weather-combined": {
+      "metrics": {
+        "fuzzy_match_percent": 99.99999,
+        "total_code": "4353092",
+        "matched_code": "4353092",
+        "matched_code_percent": 100.0,
+        "total_data": "1758510",
+        "matched_data": "1758510",
+        "matched_data_percent": 100.0,
+        "total_functions": 27572,
+        "matched_functions": 27572,
+        "matched_functions_percent": 100.0,
+        "complete_code": "4353092",
+        "complete_code_percent": 100.0,
+        "complete_data": "1758510",
+        "complete_data_percent": 100.0,
+        "total_units": 2448,
+        "complete_units": 2448
+      },
+      "checks": {
+        "upstream": {
+          "verified_padding": 0,
+          "baseline_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14"
+        },
+        "historical": {
+          "verified_padding": 30,
+          "baseline_sha256": "3e8a49928b15de9e88fa50ad9d678a440a4b3743e0bd7b53b2871d88bf17c519"
+        },
+        "previous": {
+          "verified_padding": 0,
+          "baseline_sha256": "5cdb8c3f2eaac417e54d6310600fc21fdb9f44258f567d705db244ea7dbf9826"
+        },
+        "source": {
+          "verified_padding": 0,
+          "baseline_sha256": "163090414c3db39710346a54f32f8b47764c6fa6ddfa48e83f798fdf59185470"
+        }
+      },
+      "report_sha256": "e4030de9aa2c44c01b7b250b8db8465d9aaf46dd4bf69e87ff2e254e2f779ffe",
+      "strict_check_sha256": "099a188b42bc9e30bed9592234cd5241285267d85fa357b54f2bf3b69bf780a9"
+    },
+    "stage-weather-review-joint": {
+      "metrics": {
+        "fuzzy_match_percent": 99.99999,
+        "total_code": "4353092",
+        "matched_code": "4353092",
+        "matched_code_percent": 100.0,
+        "total_data": "1758510",
+        "matched_data": "1758510",
+        "matched_data_percent": 100.0,
+        "total_functions": 27572,
+        "matched_functions": 27572,
+        "matched_functions_percent": 100.0,
+        "complete_code": "4353092",
+        "complete_code_percent": 100.0,
+        "complete_data": "1758510",
+        "complete_data_percent": 100.0,
+        "total_units": 2448,
+        "complete_units": 2448
+      },
+      "checks": {
+        "upstream": {
+          "verified_padding": 0,
+          "baseline_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14"
+        },
+        "historical": {
+          "verified_padding": 30,
+          "baseline_sha256": "3e8a49928b15de9e88fa50ad9d678a440a4b3743e0bd7b53b2871d88bf17c519"
+        },
+        "source": {
+          "verified_padding": 0,
+          "baseline_sha256": "163090414c3db39710346a54f32f8b47764c6fa6ddfa48e83f798fdf59185470"
+        },
+        "previous-joint": {
+          "verified_padding": 0,
+          "baseline_sha256": "e14ef3b7ffd43b2925eeaaf046a043e71da7c27f97b58fbb1c1f3d7faabedab6"
+        }
+      },
+      "report_sha256": "ac4f26c76ddd4b08c124a12fdee27836710550a5d0771e8ccad5cdd97223700e",
+      "strict_check_sha256": "ae9dbb09034e96ab4faff56946cbb9c4184ad153d647c60ac848a476c05b3816"
+    }
+  }
+}
