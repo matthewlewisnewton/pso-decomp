@@ -458,6 +458,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 213-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-olga-recon-containers-mail-replay.json)
 
+## weapon projectiles, worm arenas, quests and multiplayer selection
+
+Source checkpoint `79a30b1172` and landing checkpoint `beaa4efaa7` carry 109 source files. The source replay restores the shared weapon projectile record and its collision path, De Rol Le and Barba Ray arena resources, quest task ownership, and multiplayer selection. The source audit records 51 historical files and closes 34. The ledger has 1,325 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-weapon-factory-registry` | Weapon factories and resources, the native full projectile descriptor, actor hit history and card effect targets | 86 |
+| `great-merge/current/standalone-derolle-arena-lighting` | De Rol Le and Barba Ray arena lighting, tunnel movement and projection, model and dust resources, and collision | 54 |
+| `great-merge/current/standalone-online-quest-transfers` | Quest script and VM ownership, dialogue, native NPC and collision triggers, and shared task lifecycle | 88 |
+| `great-merge/current/character-selection-plates` | Character selection plates and preview loads, multiplayer scene lifecycle and guide requests | 56 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 268-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-weapon-worm-quest-selection-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
