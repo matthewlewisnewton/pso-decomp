@@ -354,6 +354,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 166-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. The camera candidate overlaps the earlier action palette, ambient archives, and online setup review branches in one file each. Recheck the remaining candidate against the new base as each of those branches lands. [Source and validation evidence](2026-11-19-camera-creation-traps-gryphon-replay.json)
 
+## Memory-card and shop windows, Olga Flow and Seabed objects
+
+Source checkpoint `b97e35686e` and landing checkpoint `5e070f04a0` carry 115 source files. The source replay restores memory-card task and window owners, Olga Flow cinematic actors, shop and bank windows, and Seabed and lab objects. The source audit records 70 historical files and closes 42. The ledger has 1,528 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-memory-card-and-save-windows` | Memory-card checks, character saves, progress messages and backdrop lifetimes | 49 |
+| `great-merge/current/standalone-olga-flow-cinematics` | Olga Flow Type 1 and Type 2 appearance and death actors | 35 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment lists, selling, purchase, appraisal and check-room windows | 64 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage doors, fences and contacts, lab geometry and Seabed archives | 65 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 205-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-19-olga-card-shop-seabed-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
