@@ -414,6 +414,20 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 182-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-stock-mericarol-quest-selection-replay.json)
 
+## Technique effects, Sinow ground contacts, animated scenery and item help
+
+Source checkpoint `81300401f1` and landing checkpoint `8c5b201858` carry 100 source files. The source replay restores technique effect resources and shared sound pitch calls, Sinow terrain contacts and their ground query, animated stage scenery and debris, and item-help panel ownership. The source audit records 53 historical files and closes 22. The ledger has 1,408 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-technique-effects-and-sounds` | Technique BML and GVM ownership, ring-wave and lightning textures, and all sound-effect pitch callers | 43 |
+| `great-merge/current/standalone-ground-effects-and-scenery` | Cached terrain and Sinow contacts, Mericarol and Gibbles ground effects, Cave and Mine resources, and animated stage scenery | 68 |
+| `great-merge/current/standalone-action-palette-and-customization` | Action palette and customization, window lifecycle, native item status and help paging | 88 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 195-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-tech-sinow-scenery-item-help-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
