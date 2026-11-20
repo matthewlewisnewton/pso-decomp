@@ -877,7 +877,7 @@ Keep upstream’s existing names for functions, types, and fields wherever the f
 
 The player registry review follows the stage series because they share active source files. The equipment and window review follows the registry.
 
-The #334 local follow-up at `6c325ae6ac` restores two function names and 15 field names. It reproduces retail with the same linked code and data coverage. Its comparison with master reports 160 symbol changes, which still include type and owner corrections. [Naming audit](2026-11-20-stage-334-review.json)
+The #334 local follow-up at `aa70392a37` restores four function names and 15 field names. It reproduces retail with unchanged linked code and data coverage. The retained function symbol changes correct types, owners, signatures or linkage. The upstream PR still points to the ready-for-review head recorded above. [Naming audit](2026-11-20-stage-334-review.json)
 
 ## Quest loading, companion saves and enemy fades
 
@@ -958,6 +958,12 @@ Source `f13a4f3809` and landing checkpoint `ea0a460686` carry 35 changed files. 
 The 2,174-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-creation-item-and-native-replay.json)
 
 Character creation uses the six argumentless menu callbacks at their original addresses, a typed physical pad slot and its unsigned trigger fields, and one creation archive pointer through loading, motion and cleanup. The standalone retains the existing archive loader boundary while the combined source uses the BmlResource constructor.
+
+## Technique casting, ground projection, status windows and photon field tasks
+
+Source `5b16fd51a8` and landing checkpoint `d6f93ee940` carry 56 changed files. This batch covers player technique-cast state, target counts and cast packet handling, ground projection and optional surface normals, status list, shop and shortcut heading and scrollbar lifecycles, photon field weapon and visual task lifecycles. The audit closes 28 historical comparisons and leaves 826 open.
+
+The 2,197-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-technique-state-and-native-replay.json)
 
 ## Ordered upstream review candidates
 

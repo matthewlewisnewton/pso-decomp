@@ -468,13 +468,28 @@
         "address": "0x801A0324",
         "before": "get_beam_frame_count__12TObjWarpJungFv",
         "after": "get_static_field4_as_float__12TObjWarpJungFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800D8988",
+        "before": "TObjEneGibbles__sub_800D8988",
+        "after": "play_floor_area_ground_sound",
+        "evidence": "The extern C void(Vec *) provider has the same body. Preserve the shared typed declaration and upstream symbol."
+      },
+      {
+        "module": "psov3",
+        "address": "0x8020A26C",
+        "before": "free_boss4rock__6TLobbyFv",
+        "after": "release_challenge_random_state__6TLobbyFv",
+        "evidence": "The static void() wrapper performs the same teardown. Keep the typed shuffle-table destructor and restore only the wrapper spelling."
       }
     ],
-    "local_candidate": "6c325ae6ac55f314df2e937fe4672892a8abb481",
-    "local_symbol_changes": 160,
+    "local_candidate": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+    "local_symbol_changes": 158,
     "local_candidate_paths": [
       "config/GPOE8P/psov3/symbols.txt",
       "include/pso/boss/olgaflow/TBoss6CrushPtcl.h",
+      "include/pso/effect/GroundContactSound.h",
       "include/pso/object/TObjComputer.h",
       "include/pso/object/TObjTombstone.h",
       "include/pso/object/fence/TOVS2Wall01.h",
@@ -485,7 +500,12 @@
       "include/pso/object/warp/TObjWarpJung.h",
       "include/pso/object/warp/TObjWarpJungMain.h",
       "include/pso/system/scene/TSceneSora.h",
+      "include/pso/unk/TLobby.h",
       "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
       "src/pso/object/TObjComputer.cpp",
       "src/pso/object/TObjTombstone.cpp",
       "src/pso/object/fence/TOVS2Wall01.cpp",
@@ -495,12 +515,15 @@
       "src/pso/object/warp/TObjWarpJungMain.cpp",
       "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
       "src/pso/system/scene/TSceneSora.cpp",
-      "src/pso/unk/TLobby_80291D94.cpp"
+      "src/pso/unk/TLobby_801F3A24.cpp",
+      "src/pso/unk/TLobby_80209524.cpp",
+      "src/pso/unk/TLobby_80291D94.cpp",
+      "src/pso/unk/text_800D8988.cpp"
     ],
     "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
-    "strict_sha256": "188bf588a7c30639ddc09e6be722092b9ffc89cd3c573aa2e16402c42a926739",
-    "report_sha256": "35a04d307b1e571f7cf5ef1a598e9b03cd0bcc71132f57c06b1ec4172796560f",
-    "remaining_symbol_changes": "Includes type and owner corrections. Review remaining names without equivalent source changes.",
+    "strict_sha256": "f85bca28563db9ce2b070fd8933b4ea8eb79f8314ff1d882898178ee5a35a43d",
+    "report_sha256": "54f6d57ec27ed350b65ff65258b4fe43dc8a3ac31ed88f7086d121d79ab43e4a",
+    "remaining_symbol_changes": "Address, declaration and implementation audit of the 160 labels after the first cleanup found two more removable spellings. Retained changes adjust source parameter or return types, owners, signatures or linkage.",
     "published": false,
     "confirmed_field_renames_only": [
       {
@@ -623,6 +646,24 @@
         "header": "include/pso/object/warp/TObjAreaWarpEnding.h"
       }
     ],
-    "earlier_candidate": "1920ce427e21a149ed52f2099c2f3d5bf66d4d29"
+    "earlier_candidate": "1920ce427e21a149ed52f2099c2f3d5bf66d4d29",
+    "upstream_strict_sha256": "3de2b644e9c20ffb9ca9471926c0389adce6100255267126a1a0cc6b817c3c9e",
+    "additional_followup": {
+      "previous": "6c325ae6ac55f314df2e937fe4672892a8abb481",
+      "head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+      "paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/effect/GroundContactSound.h",
+        "include/pso/unk/TLobby.h",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "src/pso/unk/TLobby_801F3A24.cpp",
+        "src/pso/unk/TLobby_80209524.cpp",
+        "src/pso/unk/text_800D8988.cpp"
+      ],
+      "link_coverage_unchanged": true
+    }
   }
 }
