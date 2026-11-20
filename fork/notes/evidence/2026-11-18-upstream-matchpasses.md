@@ -126,6 +126,21 @@ The stage review uses the BML/GVM provider as its parent and validates the share
 
 The prepared reviews and prerequisites touch 1,660 of 1,761 combined diff paths. The remaining 101 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
 
+## Native matrix, encounter, and window source recovery
+
+The latest exact source is `024d7add1f` and the local landing checkpoint is `a00468dc9b`. The 51-file replay combines four independently verified batches. The common matrix-array provider now has the full SDK call signature and 24 typed callers. Item and mag visibility use vector positions. Barba Ray's Tentacle and Needle use native construction and action methods. The enemy batch restores nine owners across Epsilon, Morfos, Recon and Slime. The window batch restores the selection-bar context and the 0x2C effect-light layout.
+
+| Source batch | Component head | Files |
+| --- | --- | ---: |
+| Spatial transforms and item visibility | `ce062a88ab` | 25 |
+| Barba Ray Tentacle and Needle | `66e7d32969` | 6 |
+| Enemy state, targeting and effects | `94928d7d8f` | 12 |
+| Selection bars and window effect lights | `8e27c3a0e8` | 13 |
+
+The complete source and working fork reproduce retail and retain matched and source-linked coverage from upstream, the historical fork, and both review checkpoints. All 1,147 initial bytes remain accounted for, the 133 tooling paths round-trip, and all 11 layer tests pass.
+
+The overlap audit classifies 791 hunks from the 334 paths in the recorded checkpoint preview. It verifies both include sets in 211 hunks. Historical source replay identifies 11 complete retained deltas, and anchored comparison finds 2,839 retained code hunks across 586 source entries. Eleven of those entries retain every changed code hunk and still need include ownership checks. The remaining variants are recorded for owner review. [Source retention evidence](2026-11-19-source-retention-audit.json)
+
 ## Local landing checkpoint with all four subsystem histories
 
 `great-merge/current/landing-checkpoint` at `c685c00b1e` contains the four exact review branches and uses the verified Great Merge source tree at `3f3792f434`. The actor/player checkpoint `208df9435e` joins the actor fields with typed sound, particle and player calls. The display/world checkpoint `84e3194968` adds 22 ownership fixes from the remaining audit. That work restores native Berura methods, typed boss and stage resources, and shared display declarations. The shop and quest changes also pass on their narrower player review at `74e7cb1163`.
@@ -171,8 +186,8 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `9bc06303e4` | 922 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `e5280c4a65` | 870 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `3fc8aa0094` | 923 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `af534e381e` | 872 |
 | Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `74e7cb1163` | 799 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `f46dbc3413` | 441 |
 
