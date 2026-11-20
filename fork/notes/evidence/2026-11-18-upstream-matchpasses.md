@@ -848,6 +848,21 @@ The packet and registry reviews enter the queue. The widened Vol Opt and equipme
 
 The datagram and packet pool branch also carries the verified native thread dispatch. The grouped standalone review `23bb9724a5` covers 66 paths and reproduces the retail DOL. Every changed source and header blob, all 23 edited symbol locations and the force-active rename agree with the existing queue. Queue `f5a3161449` has the same source tree and covers 1,994 files across 24 review groups. [Validation evidence](2026-11-20-network-runtime-review-bundle.json)
 
+## Native startup, player lookup, Dark Falz and window layouts
+
+Source checkpoint `20565490cd` and landing checkpoint `1b4a9a34b4` carry 82 changed source files. Startup now calls the actual argumentless dispatcher and consistently consumes the signed result. The player registry uses the original narrowed IDs and passes the selected player to the Slime and revive state checks. Dark Falz actors share their native archive and the controller owns the Uso Tower pointer. The equipment and status review also carries the window base and derived layouts through their active owners. The audit covers 22 historical records and closes 10, leaving 1,036 awaiting full comparison.
+
+The full source, working fork and combined review reproduce the retail DOL. All 90 original data ranges remain accounted for. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment, item windows, status pages and native window layouts | 522 |
+| `great-merge/current/standalone-network-datagrams-and-packet-pool` | Network datagrams, packet pooling, thread dispatch and signed startup | 70 |
+| `great-merge/current/standalone-player-slot-registry` | Player slot registry and explicit legacy lookup callers | 167 |
+| `great-merge/current/standalone-dark-falz-cinematic-actors` | Dark Falz actors, shared archive, and Uso Tower lifetime | 51 |
+
+The four updated reviews are part of the 2,039-file queue across 24 groups. The 70-file network runtime and 462-file stage reviews also reproduce retail in a separate joint build on the current upstream base. [Source and validation evidence](2026-11-20-startup-registry-and-falz-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
