@@ -863,6 +863,12 @@ The full source, working fork and combined review reproduce the retail DOL. All 
 
 The four updated reviews are part of the 2,039-file queue across 24 groups. The 70-file network runtime and 462-file stage reviews also reproduce retail in a separate joint build on the current upstream base. [Source and validation evidence](2026-11-20-startup-registry-and-falz-replay.json)
 
+## Network and stage reviews open upstream
+
+The 70-file network runtime is open at [#333](https://github.com/zeroz41/pso-decomp/pull/333) with head `741fec3878`. The 462-file stage objects series is open at [#334](https://github.com/zeroz41/pso-decomp/pull/334) with head `7dad678f24`. Both target upstream `49b48c32e6`. Their individual builds and joint build at `3e45bca435` reproduce the retail GPOE8P DOL.
+
+The player registry review follows the stage series because they share active source files. The equipment and window review follows the registry.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
