@@ -943,6 +943,14 @@ Source `bd91f0b4b6` and landing checkpoint `2cfacdae70` carry 31 changed files. 
 
 The 2,146-file review queue covers 31 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-technique-projectile-and-native-replay.json)
 
+## Calendar, protocol and native subsystem recovery
+
+Source `58ee62fc9a` and landing checkpoint `1c715e994f` carry 34 changed files. This batch covers native calendar conversion and month records, lobby and game menu wire entry assignment, Barba Ray constructor, motion data and particle ownership, stage model-node callbacks and motion transform owners, player HUD child and information window ownership. The audit closes 17 historical comparisons and leaves 895 open.
+
+The 2,164-file review queue covers 32 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-calendar-protocol-and-native-replay.json)
+
+The protocol uses native assignment operators for both menu entry types. Their seven- and 21-instruction bodies match the retail code. Both still need their existing scheduling directives under the current compiler. The remaining inline directives for these operators were removed. The calendar conversions now share DateStamp and copy both calendar month tables through their native record.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
