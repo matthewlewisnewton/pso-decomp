@@ -1,0 +1,2166 @@
+{
+  "source": "33ae8206e0569c95343d6ffba50854d44e185d02",
+  "landing": "48370cd3527bbc484067d97a2ade2d5e987f5e85",
+  "working_fork_build": "aa8b909e662188b8e2cefb73fb8e252f6381741a",
+  "previous_source": "b45ac1bec452b864acc60443b201f7cea8834420",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 57,
+  "batches": {
+    "card-source-addresses": {
+      "head": "28530c417b3b78f74080ba43e1e0221da8e30713",
+      "files": 3,
+      "report_sha256": "57ae2e7d78e1e444b34e7c69a1c5c2847140aa6f6e14dcc093717632fcb29023"
+    },
+    "stage-source": {
+      "head": "ef6ee73713a3ba94e0ba492a92ab5ad2b4262adf",
+      "files": 16,
+      "report_sha256": "3e4c08c4203b6ebc4a93ba49d9134831406185f33e4357c7fc5422c1213267be"
+    },
+    "menu-source": {
+      "head": "b1182435ec2bc61a2d46772d94761d9530b0e82d",
+      "files": 20,
+      "report_sha256": "27f571d3a8199488a698ec25d912907b9fecab91b8a97bda235e89dabcb91adc"
+    },
+    "falz-source": {
+      "head": "ee813c43b7fbe184c45cc90beab37e9d052df68d",
+      "files": 20,
+      "report_sha256": "845e9346fc08bf6b5ab784e4ed1c0dacc115aecdc428fe30e4c30915a33e20a6"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "33ae8206e0569c95343d6ffba50854d44e185d02",
+    "previous": "b45ac1bec452b864acc60443b201f7cea8834420",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 2295,
+        "historical_path": "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+        "historical_blob": "0bd51ce1ca8899d163141148e9259b9618cfaae7",
+        "owners": {
+          "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp": "4647e7f9e9dbb698efbddd58118273620062d46c",
+          "libs/dolphin/include/dolphin/card.h": "4adb6256db96a9bc2ed26585b6007f7bec2bb38d"
+        },
+        "proofs": [
+          {
+            "group": "card-source-addresses",
+            "evidence": "Recovered the actual disc ID record and the signed-channel and unsigned-sector callback storage. Both original file-table status steps use the proven native shared BSS offsets with pointer-width integer addressing.",
+            "details": {
+              "donor": "64c78a7963",
+              "disk_scratch": "0x805A28C0",
+              "file_table": "0x805A29B0",
+              "card_status_steps": [
+                "0x803F282C",
+                "0x803F2A4C"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2714,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "historical_blob": "3e1cc1bf15dd3d958256b0b27f720b9889c5c9f6",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp": "712ab36cf50e04be706c9f981182e74850364aad",
+          "libs/dolphin/include/dolphin/card.h": "4adb6256db96a9bc2ed26585b6007f7bec2bb38d"
+        },
+        "proofs": [
+          {
+            "group": "card-source-addresses",
+            "evidence": "The two character-select callers send the actual card channel into the SDK disc-ID lookup and replace the same four game-code bytes. The standalone also carries the historical signed result and native serial storage through the related character select callers.",
+            "details": {
+              "donors": [
+                "cbceb0eb2e",
+                "8e09401bcc",
+                "5224792cd1"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 249,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp",
+        "historical_blob": "912de17f60358c652c10b97ccda2ee79653fb4dc",
+        "owners": {
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "a6ba643c12a4c70d27dc5930c3aba58eb5dd3ef5"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                74,
+                76,
+                286
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 262,
+        "historical_path": "src/pso/misc/TWindowFukidasi.cpp",
+        "historical_blob": "0666de1a4e13ff6f413caccaa5ae4344c19cb2aa",
+        "owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "ee7fb7e7ed9f93428042f148e26fe43dee059548",
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "a6ba643c12a4c70d27dc5930c3aba58eb5dd3ef5"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                231,
+                725
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          },
+          {
+            "group": "menu-source",
+            "evidence": "The popup supplies its actual embedded layout entry list to the original symbol-chat initializer at 0x80248494 after clearing it. Other source hunks retain their prior disposition.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4472,
+        "historical_path": "src/pso/unk/text_80253974.cpp",
+        "historical_blob": "91a8d6b61c8a1861276ef06762883204e42f6bd5",
+        "owners": {
+          "src/pso/unk/text_80253974.cpp": "a2a77af43c25035302f4399424e6f1534af0a985"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                25,
+                108
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5588,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_80257BC0.cpp",
+        "historical_blob": "64df118af08d4a7fd1f38d466099ff29569791bd",
+        "owners": {
+          "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp": "8934a2cb33337b69161693d4d17ac6a4d1483afe"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                102,
+                106,
+                107,
+                162,
+                270,
+                278
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5619,
+        "historical_path": "src/pso/misc/TWindowDD_80341A08.cpp",
+        "historical_blob": "745246283f8f2c4c90410b8cad77ad53a45abb6c",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80341A08.cpp": "9d2bd10c30fc8746aac4d9cceea74b32eed04a63"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                280,
+                281,
+                400,
+                401
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5636,
+        "historical_path": "src/pso/misc/TWindowDD_80342254.cpp",
+        "historical_blob": "d97682ed72a77fb4d680890c8f9f313c33432801",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80341A08.cpp": "9d2bd10c30fc8746aac4d9cceea74b32eed04a63"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                30,
+                31,
+                40,
+                44,
+                80,
+                89
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5732,
+        "historical_path": "src/pso/misc/TWindowHelpItem_8025A60C.cpp",
+        "historical_blob": "b0324fcad409a85903a1a9cfe63d06b2709c66a9",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp": "5c26fe9d4bc07044b9e75f11685cf6b191d9dcc9"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                136
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5777,
+        "historical_path": "src/pso/misc/TWindowDuelResult.cpp",
+        "historical_blob": "c88293b3a3199078bc157ba51219e63910847d87",
+        "owners": {
+          "src/pso/ui/window/TWindowDuelResult.cpp": "3ddf3fbf732f1db9f24b0699688ac730b6a68efb"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                56,
+                164,
+                196
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5780,
+        "historical_path": "src/pso/misc/TWindowSubStatusDispPages.cpp",
+        "historical_blob": "9cf515edb70946b1366ae35150d37a022b3e3989",
+        "owners": {
+          "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp": "5c872a1a156e22f94fae6943ec95e2f2b34a95b6"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                73,
+                124,
+                167,
+                287,
+                319,
+                374,
+                435,
+                477
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5788,
+        "historical_path": "src/pso/unk/text_80262C3C.cpp",
+        "historical_blob": "53f512d207aea3ac8df2fb45742ac8bddf42f68e",
+        "owners": {
+          "src/pso/ui/window/TWindowLockOn_80262C3C.cpp": "f8281b8af842d49669abbe07c6d3834d04481ed5"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                146,
+                154,
+                308,
+                319,
+                328,
+                391,
+                429
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5797,
+        "historical_path": "src/pso/misc/TWindowHelpItem_8025A12C.cpp",
+        "historical_blob": "07014e9685c5aa4486ae8a50eb49dec1f668cbee",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_8025A12C.cpp": "1f18820a62302f3a9bb3ea716d71fbb8c191e87d"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                195
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5829,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+        "historical_blob": "9eb07b0b38d68ed03fa2323258d803d9d4df08c4",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "8abc65e5eee688145ceb0ae68e34caafe10749df"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                149,
+                392
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5975,
+        "historical_path": "src/pso/misc/TWindowHelpItem_802531A0.cpp",
+        "historical_blob": "31047e93bfa0c60bdb52b690a1ad18598f6c2840",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_802531A0.cpp": "48da2a6e42170ca812c7a2366335f42df3048b61"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                47,
+                72,
+                116,
+                155,
+                170
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5992,
+        "historical_path": "src/pso/misc/TWindowHelpItem_802540AC.cpp",
+        "historical_blob": "b37ea7418a3ce43612a955dd6ccbaeb8676ea0f2",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_802540AC.cpp": "44ca6e2e37f2222bf20024c2126dd6487c6575a6"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Initializer, related table header, or native point-constructor ABI slice only.",
+            "details": {
+              "lines": [
+                231,
+                512,
+                656,
+                819
+              ],
+              "contract": {
+                "initializer": "0x80257D44 owns typed output, opaque read-only packed descriptor and signed full client word. All 24 explicit calls in ten TUs use it on each lane.",
+                "layout": "u32 columns and u32 rows occupy 8 bytes and precede one template row. Both pointer lanes keep the exact type-index cases, differing descriptor strides, array allocation, and repeats.",
+                "table_owners": [
+                  "Symbol Chat sprites",
+                  "Word Select text",
+                  "Lock-on player",
+                  "Lock-on item",
+                  "Lock-on enemy"
+                ],
+                "constructor_abis": [
+                  "0x8025A95C (type 10, 0x14 instance)",
+                  "0x8025A594 (type 11, 0x24 instance)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5248,
+        "historical_path": "src/pso/misc/TSceneSora.cpp",
+        "historical_blob": "e836f18f8848952e019b2fb698f74ebd4cb2e12c",
+        "owners": {
+          "src/pso/system/scene/TSceneSora.cpp": "e3a2eb299ff86141fd43d34d37d2fde448c76262"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "0x802071B4, 0x80207238, and the original constructor now share the real model, motion, textures, step and frame indices. Native AnimationMotion frameCount at +4 and true actor yaw replace the fake scene view. The forest-only rotation, animated loop, lookup at render, and alternate no-motion draw retain original order. The broader historic ADXF/filename changes are covered separately; direct keeps its existing initializer, filename and disc API dependencies.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6311,
+        "historical_path": "include/pso/misc/TMotorcycle_802D712C.h",
+        "historical_blob": "5998566f0802adeee6bf0f924d9b17f8cc51e723",
+        "owners": {
+          "include/pso/object/TMotorcycle.h": "c7dc8296343a69acfe501b96536e826ec87da98e"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "Historical added header contains only includes of types.h and pso/npc/NpcAnimationBinding.h; no declaration or data is lost. Native src/pso/npc/TObjNpcEnemy.cpp directly includes types.h and obtains the actual binding via TObjNpcEnemy.h and NpcModelEntry.h. The exact assignment resides next to its registry caller.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6720,
+        "historical_path": "src/pso/object/TObjBigTuitate.cpp",
+        "historical_blob": "5d7e45b5cd12c86eb459ce132baea5d53f532e1b",
+        "owners": {
+          "src/pso/object/TObjBigTuitate.cpp": "01b36556853d2e36c6e4f67caa9b168a66e8b285"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "All fork-point hunks directly checked. Both named native BML archives and their matched new/delete, paired original material getter and setter at each render, true map collision factory result in both constructors, and original fade, scale and render guards survive in the consolidated owner. The new typed archive handles strengthen the historical raw words. Direct preserves equivalent allocation and original non-member loader/free API.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6735,
+        "historical_path": "src/pso/object/TObjTank.cpp",
+        "historical_blob": "7d11e035df7976c9cbfa9c7c00ef009b5a64f394",
+        "owners": {
+          "src/pso/object/TObjTank.cpp": "ec64d402f22c2d18a580f8e6c439060c5b0ff1bb"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "400/20 visibility, actual yaw, native model and texture selection as explicit argument, separate release and free of the GVM before BML deletion, kind 5 and fs_obj_tank.GVM by actual string are verified. The old extern strings and assorted raw fields are represented by native descriptor, data and object owners. The direct review retains the standalone loader/texture boundary.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6757,
+        "historical_path": "src/pso/unk/text_8019B0D4.cpp",
+        "historical_blob": "42b8de9cd3237327654be90912846905a5b89dea",
+        "owners": {
+          "src/pso/object/TOBind.cpp": "d521fccc7b2feba4711d9489309b8827b6139fe4"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "Only original authored change is replacing manual 0x440 allocation and descriptor loader with the BML constructor. The consolidated paired Tuitate source at 0x8019B0D4 holds the native kind-1 pointer load and same symbol metadata.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6764,
+        "historical_path": "src/pso/misc/TOBind_801586B8.cpp",
+        "historical_blob": "dd328b74974cbf1e701629c0c43ac1dbd4f7ab3d",
+        "owners": {
+          "src/pso/object/TOBind_801586B8.cpp": "4ecaa2155c6e7dc194cd78a96055eb94a1489b53"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "Historical archive constructor, free, view range 400/40, frame 0 / step 1, unsigned frameCount minus one, both slots of actual Ninja model and Ginja texture, Kind 1 and motion slot 0 all retained. New fields native frame +0xB8, step +0xC0, model +0xC4, textures +0xC8 and motion +0xCC and distance +0xD0; 0xD8 total. Exact constructor/render/allocation/teardown at 0x80158890, 0x801586B8, 0x801587D8 and 0x801587A0, with native animation update 0x8015860C.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6813,
+        "historical_path": "src/pso/misc/TMotorcycle_802D712C.cpp",
+        "historical_blob": "fcee2451e2d6e9aab4de447dc6826796f5c21607",
+        "owners": {
+          "src/pso/object/TMotorcycle.cpp": "69cd3a6e245fc49bbca50ce9965fbceb2283fa75"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "The complete authored change is replacing copy_position_data with scheduled native NpcAnimationBinding assignment, already present in TObjNpcEnemy.cpp on canonical. This patch verifies that the neighboring scenery registration at 0x802D7158 uses a genuine NJS_OBJECT pointer and Ginja texture list with the original kind-2 record and resets, with seven direct callers. Standalone retains its existing whole-word Npc slot storage boundary and motion-copy helper.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6894,
+        "historical_path": "src/pso/misc/TMotorcycle.cpp",
+        "historical_blob": "539d3e784fa77ef6789d7652a13fc31864cb0512",
+        "owners": {
+          "src/pso/object/TMotorcycle.cpp": "69cd3a6e245fc49bbca50ce9965fbceb2283fa75"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "Verified all original hunks including actual original class name and string bytes, scale.x magnitude/modulo selection, real rotation, 400/50 and 16/0 tune values, BML kind 5 and GVM filename, original release/delete order, and models 0/1 registered in slots 0x3C/0x3D. Native pointer owners and the explicit model draw preserve the original addresses and results. Direct retains the existing low-level BML/GVM functions through their current standalone API.",
+            "details": {
+              "donors": {
+                "d7644b63f3": "Native BML resource lifetimes and factories",
+                "132d4899e6": "Scene resource lifetime and list-based BML initialization",
+                "d0f412ee85": "Shared BML model accessor",
+                "4a83964af2": "Current Ginja texture-list binding",
+                "f5a6c4936c": "Actor rotation data and its rendering consumers",
+                "c7470b0f0e": "Exact stage constants and data ordering",
+                "60507ced0d": "Motorcycle class name pointer"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 500,
+        "historical_path": "src/pso/boss/DarkFalzDemoConstants.cpp",
+        "historical_blob": "7ca6321d7c19028dfb799093abbff820a2c395a2",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp": "1537f018580b01cde7bb4e67c810da4bb316226f",
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp": "dc4b7e0430db3fd2437f5320cb833f3147ed78ce",
+          "src/pso/boss/darkfalz/TObjDFJisin.cpp": "62f39e9ef14eca6576d5f51317f5560d68334040"
+        },
+        "proofs": [
+          {
+            "group": "falz-source",
+            "evidence": "All five substantive original constants are C++-emitted at their original .sdata2 addresses: 1.0 and 120.0 from DemoF run, -1.0 from DemoF construction, and 0.0/1.0 from the adjoining Jisin owner. The sixth word at 0x805D8A2C is the documented zero alignment pad, present in the retail-exact linked binary. Original separate data TU is unnecessary to retain its content.",
+            "details": {
+              "donors": {
+                "3cc52f78cb": "Five Dark Falz cinematic constants and one explicit alignment pad.",
+                "7d787408f9": "Original state timer arithmetic and fade argument order, preserved with the real controller field and matched constant expressions.",
+                "9b24fcb426": "Already verified adjoining effect constants, outside the fade owner replay."
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 794,
+        "historical_path": "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+        "historical_blob": "d255f4c5ec41a270b9e3de174390866707db668a",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "23eb442adb42fbd6b60eb86aee01e2e81c8ec661",
+          "include/pso/boss/darkfalz/TBoss4DarkFalz.h": "8d9c8206cf49cdbbb65b3f2d4a692997fb4c5a71",
+          "src/pso/boss/darkfalz/TObjDFHorming.cpp": "d1e02fec534cc15ffc9fffea05325e08ffc35afb",
+          "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp": "459da50a3ab1704ac4663bd708c5ccd608187adb"
+        },
+        "proofs": [
+          {
+            "group": "falz-source",
+            "evidence": "Nine calls to 0x8004B730 now consistently carry the actual controller, s32 color and f32 alpha in original order. The native signed state timer at +0x380 serves all controller countdown/intro/cinematic call sites. Real three form pointers and genuine gaze/phase and cutscene handoff use fixed-address 0x8004C1AC\u20130x8004C1E4 and 0x8004D8C8\u20130x8004D990; other unrelated historical state-controller changes remain under review.",
+            "details": {
+              "donors": {
+                "3cc52f78cb": "Five Dark Falz cinematic constants and one explicit alignment pad.",
+                "7d787408f9": "Original state timer arithmetic and fade argument order, preserved with the real controller field and matched constant expressions.",
+                "9b24fcb426": "Already verified adjoining effect constants, outside the fade owner replay."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 798,
+        "historical_path": "src/pso/unk/text_803594EC.cpp",
+        "historical_blob": "11d6a5b5f195db893d331d1a2db6058c3eddaa9d",
+        "owners": {
+          "include/pso/boss/darkfalz/TBoss4Fade.h": "9fcf896e94fc3464a53ea4497d0de00ed8cbe035",
+          "src/pso/boss/darkfalz/TBoss4Fade.cpp": "31dd4c96e7c4e2098e5e689ad9014685914b6d4a",
+          "src/pso/npc/TObjNpcNgcBase.cpp": "6d12a4b8d0d2c5079d03b2f993b815ef49d67214",
+          "src/pso/unk/text_8035966C.cpp": "599e3eed544d577a91307060a695a52a6f0241e3"
+        },
+        "proofs": [
+          {
+            "group": "falz-source",
+            "evidence": "Native two 0xC fade records owned by TBoss4Fade at +0x20, write index +0x1C. Shared update/render and queue/free ownership carried through the actual 0x803594B4 setter, render and constructor, preserving source-active bits, color/alpha and two slot ordering. The older fullscreen primitive provider differs by upstream-native layout between variants.",
+            "details": {
+              "donors": {
+                "3cc52f78cb": "Five Dark Falz cinematic constants and one explicit alignment pad.",
+                "7d787408f9": "Original state timer arithmetic and fade argument order, preserved with the real controller field and matched constant expressions.",
+                "9b24fcb426": "Already verified adjoining effect constants, outside the fade owner replay."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 891,
+        "historical_path": "src/pso/unk/text_80050134.cpp",
+        "historical_blob": "ba5627dc307772154da76147e65579747587afdd",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp": "dc4b7e0430db3fd2437f5320cb833f3147ed78ce"
+        },
+        "proofs": [
+          {
+            "group": "falz-source",
+            "evidence": "The original DemoF starting frame is native at 0x805D8A28, and the previously verified one-shot sound remains. No claim over other original constructor hunks.",
+            "details": {
+              "donors": {
+                "3cc52f78cb": "Five Dark Falz cinematic constants and one explicit alignment pad.",
+                "7d787408f9": "Original state timer arithmetic and fade argument order, preserved with the real controller field and matched constant expressions.",
+                "9b24fcb426": "Already verified adjoining effect constants, outside the fade owner replay."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 913,
+        "historical_path": "src/pso/boss/TBoss4Type1.cpp",
+        "historical_blob": "20bf52c847ff8a08b2e488cd3006a900e316f0a0",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "23eb442adb42fbd6b60eb86aee01e2e81c8ec661",
+          "include/pso/boss/darkfalz/TBoss4Type1.h": "8905872c70f8e9c3346eb4de32d16dd729e44d8d"
+        },
+        "proofs": [
+          {
+            "group": "falz-source",
+            "evidence": "First-form state query at 0x8004C1E4 and its original cinematic transition now receive TBoss4Type1 with +0x374 state. Only the form call hunk is accounted for here; attack and effects in the original form body are separate.",
+            "details": {
+              "donors": {
+                "3cc52f78cb": "Five Dark Falz cinematic constants and one explicit alignment pad.",
+                "7d787408f9": "Original state timer arithmetic and fade argument order, preserved with the real controller field and matched constant expressions.",
+                "9b24fcb426": "Already verified adjoining effect constants, outside the fade owner replay."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      500,
+      6311,
+      6720,
+      6735,
+      6757,
+      6764,
+      6813,
+      6894
+    ],
+    "remaining": {
+      "Owner comparison required": 384,
+      "Some anchored text changes found": 785
+    }
+  },
+  "upstream_review_candidates": {
+    "character-selection-plates": {
+      "head": "e5e32bb8a408515fa71ed628f9adb5c7b25c4c14",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Character selection plates and the full memory-card load, filename, capacity, result and SDK contract",
+      "files": 137,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/system/CharacterSaveRecordLookup.h",
+        "include/pso/system/save/TCheckMemoryCard.h",
+        "include/pso/system/save/TSaveChCr.h",
+        "include/pso/ui/charcreate/CharacterAppearance.h",
+        "include/pso/ui/charcreate/CharacterLoadBuffer.h",
+        "include/pso/ui/charcreate/CharacterPreviewModels.h",
+        "include/pso/ui/charcreate/TChCrLoadAfs.h",
+        "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+        "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+        "include/pso/ui/charcreate/TChCrLoadReq.h",
+        "include/pso/ui/charcreate/TCharaMaking.h",
+        "include/pso/ui/frontend/CharacterSelectionRequest.h",
+        "include/pso/ui/frontend/TAdBackGC.h",
+        "include/pso/ui/frontend/TAdBackGC_8029A6EC.h",
+        "include/pso/ui/frontend/TAdBackGC_8029A7B0.h",
+        "include/pso/ui/frontend/TAdBackTxtGC.h",
+        "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelMovePlateGC.h",
+        "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+        "include/pso/ui/frontend/TAdGuideTxtGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.h",
+        "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+        "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+        "include/pso/ui/frontend/TAdSelectCurGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.h",
+        "include/pso/ui/frontend/TitleBackgroundStorage.h",
+        "include/pso/ui/window/ProgressMessageWindow.h",
+        "include/pso/ui/window/TWindowBase.h",
+        "include/pso/ui/window/TWindowShortListCtrl.h",
+        "include/pso/ui/window/TWindowSubComCard.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_8028D714.h",
+        "include/pso/unk/TLobby_80291D94.h",
+        "include/pso/unk/TUnk_804C2298.h",
+        "libs/dolphin/include/dolphin/card.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/camera/CreationCamera.cpp",
+        "src/pso/camera/TCameraCtrl.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/npc/TNpcPlayer_8028B810.cpp",
+        "src/pso/object/TObjWaitEntryHairMoveSim.cpp",
+        "src/pso/object/ending/TObjOnlineEnding.cpp",
+        "src/pso/player/TObjPlayer_8007B4F8.cpp",
+        "src/pso/player/TObjPlayer_801AEFFC.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/TQuestThread.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+        "src/pso/quest/challenge/ChallengeMode.cpp",
+        "src/pso/system/save/TCheckMemoryCard.cpp",
+        "src/pso/system/save/TSaveChCr.cpp",
+        "src/pso/ui/TLevelSelect.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadReq.cpp",
+        "src/pso/ui/charcreate/TCharaMaking.cpp",
+        "src/pso/ui/charcreate/TObjCMName.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+        "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+        "src/pso/ui/frontend/TAdBackTxtGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+        "src/pso/ui/frontend/TAdEp3Exist.cpp",
+        "src/pso/ui/frontend/TAdGuideTxtGC.cpp",
+        "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+        "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+        "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802B1850.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+        "src/pso/ui/frontend/TAdMultiSaveGC.cpp",
+        "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdPlayerLoadGC.cpp",
+        "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+        "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp",
+        "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+        "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+        "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+        "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80202A68.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+        "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+        "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+        "src/pso/ui/frontend/TAdWarningBaseGC.cpp",
+        "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+        "src/pso/ui/window/TObjBagWarnWin.cpp",
+        "src/pso/ui/window/TWindowCtrlMain_800FC91C.cpp",
+        "src/pso/ui/window/TWindowKeyBoardHard_801A529C.cpp",
+        "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+        "src/pso/ui/window/TWindowMessage.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "src/pso/ui/window/TWindowSubComCard_802A559C.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80071774.cpp",
+        "src/pso/unk/TLobby_8001D6A0.cpp",
+        "src/pso/unk/TLobby_8006F278.cpp",
+        "src/pso/unk/TLobby_80070A00.cpp",
+        "src/pso/unk/TLobby_801F487C.cpp",
+        "src/pso/unk/TLobby_8024A148.cpp",
+        "src/pso/unk/TLobby_80291D94.cpp",
+        "src/pso/unk/TLobby_8034C23C.cpp",
+        "src/pso/unk/TUnk_804C2298.cpp",
+        "src/pso/unk/text_80072230.cpp",
+        "src/pso/unk/text_80076BC4.cpp",
+        "src/pso/unk/text_801F43B4.cpp",
+        "src/pso/unk/text_8028EC70.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "1775af9f3fdc81202f53c168ac37073579aee3dd4ecad2c68a763ca640d02c11",
+      "check_sha256": "472c4af692258f8c4b6da560c17158bd309ca7b009ed0e8b91f277d5b54e05ab",
+      "previous": "f4f5586d72ed37b4dbe75c377cc186d2f941beaf"
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "9b0ee5a7eba58517bcbaa2dc9bf4a758de67fae6",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Equipment and item windows, shared variable-length layout initialization and symbol-chat callers",
+      "files": 370,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "configure.py",
+        "include/pso/enemy/morfos/TWindowSubTradeMain.h",
+        "include/pso/item/shop/ShopPool.h",
+        "include/pso/item/shop/ShopStock.h",
+        "include/pso/item/shop/ShopWeaponStock.h",
+        "include/pso/player/GuildCardEntry.h",
+        "include/pso/player/PlayerActionPaletteState.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_801BF6B0.h",
+        "include/pso/player/TPlyGuildCardTag_8007B7EC.h",
+        "include/pso/system/memory.h",
+        "include/pso/ui/ItemListRow.h",
+        "include/pso/ui/chat/ShortMail.h",
+        "include/pso/ui/chat/SymbolChatPreset.h",
+        "include/pso/ui/chat/TWindowChat.h",
+        "include/pso/ui/chat/TWindowChatSymbol.h",
+        "include/pso/ui/chat/TWindowChatSymbol_802486A8.h",
+        "include/pso/ui/chat/TWindowSubShortMail.h",
+        "include/pso/ui/chat/TWindowSubSymbolChat.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatHelp.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h",
+        "include/pso/ui/chat/TWindowSubSymbolChat_80076F88.h",
+        "include/pso/ui/city/TCheckRoomSequence.h",
+        "include/pso/ui/city/THunterGuildSeqOffline.h",
+        "include/pso/ui/city/THunterGuildSeqOffline_80213788.h",
+        "include/pso/ui/city/THunterGuildWarning.h",
+        "include/pso/ui/city/TShopDeleteItemWindow.h",
+        "include/pso/ui/city/TShopEquipmentSellWindow.h",
+        "include/pso/ui/city/TShopGetItemWindow.h",
+        "include/pso/ui/city/TShopKeepItemWindow.h",
+        "include/pso/ui/city/TShopWindowBase.h",
+        "include/pso/ui/font/SmallFontDrawing.h",
+        "include/pso/ui/frontend/TAdScrollWinGC.h",
+        "include/pso/ui/frontend/TAdScrollWinGC_8026A5F8.h",
+        "include/pso/ui/frontend/TAdVIConfigGC.h",
+        "include/pso/ui/hud/TMainCursor.h",
+        "include/pso/ui/hud/TMainCursor_8013E624.h",
+        "include/pso/ui/keyboard/TKeyBoardControl.h",
+        "include/pso/ui/window/ActionPaletteTag.h",
+        "include/pso/ui/window/ChatLogHistory.h",
+        "include/pso/ui/window/PageIndicator.h",
+        "include/pso/ui/window/TUnk_804CF0B8.h",
+        "include/pso/ui/window/TUnk_804D0658.h",
+        "include/pso/ui/window/TWindowActionPalette.h",
+        "include/pso/ui/window/TWindowActionPalette_801C1890.h",
+        "include/pso/ui/window/TWindowBase.h",
+        "include/pso/ui/window/TWindowCtrl.h",
+        "include/pso/ui/window/TWindowCtrl_8026AD44.h",
+        "include/pso/ui/window/TWindowDD.h",
+        "include/pso/ui/window/TWindowDD_WS_Word.h",
+        "include/pso/ui/window/TWindowDeposit.h",
+        "include/pso/ui/window/TWindowGetComCard.h",
+        "include/pso/ui/window/TWindowGetComCard_8007B54C.h",
+        "include/pso/ui/window/TWindowHelpItem.h",
+        "include/pso/ui/window/TWindowHelpItem_8025A12C.h",
+        "include/pso/ui/window/TWindowHelpItem_8025A60C.h",
+        "include/pso/ui/window/TWindowInputNumber.h",
+        "include/pso/ui/window/TWindowKeyBoardBase.h",
+        "include/pso/ui/window/TWindowKeyBoardSoft.h",
+        "include/pso/ui/window/TWindowMainMenu.h",
+        "include/pso/ui/window/TWindowMainMenu1P.h",
+        "include/pso/ui/window/TWindowMainMenu4P.h",
+        "include/pso/ui/window/TWindowMainMenu_802AD538.h",
+        "include/pso/ui/window/TWindowMakeTeam.h",
+        "include/pso/ui/window/TWindowMenu.h",
+        "include/pso/ui/window/TWindowMenuIconLine.h",
+        "include/pso/ui/window/TWindowMenuMainMenu.h",
+        "include/pso/ui/window/TWindowMessage.h",
+        "include/pso/ui/window/TWindowMessageLog.h",
+        "include/pso/ui/window/TWindowMessageLog_8026AA38.h",
+        "include/pso/ui/window/TWindowMessageYesNo.h",
+        "include/pso/ui/window/TWindowShortCut.h",
+        "include/pso/ui/window/TWindowSimpleStatus.h",
+        "include/pso/ui/window/TWindowStatus.h",
+        "include/pso/ui/window/TWindowSubComCard.h",
+        "include/pso/ui/window/TWindowSubComCardList.h",
+        "include/pso/ui/window/TWindowSubComCard_80265410.h",
+        "include/pso/ui/window/TWindowSubCustomEquip.h",
+        "include/pso/ui/window/TWindowSubCustomSelect.h",
+        "include/pso/ui/window/TWindowSubEquip.h",
+        "include/pso/ui/window/TWindowSubEquipKind.h",
+        "include/pso/ui/window/TWindowSubEquipList.h",
+        "include/pso/ui/window/TWindowSubEquip_80277E48.h",
+        "include/pso/ui/window/TWindowSubItem.h",
+        "include/pso/ui/window/TWindowSubItemList.h",
+        "include/pso/ui/window/TWindowSubLog.h",
+        "include/pso/ui/window/TWindowSubMag.h",
+        "include/pso/ui/window/TWindowSubMagPhoton.h",
+        "include/pso/ui/window/TWindowSubShortCut.h",
+        "include/pso/ui/window/TWindowSubShortCutList.h",
+        "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_80248BE8.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_802598E4.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_8025995C.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_8025B4A0.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_802671F0.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_8026F6DC.h",
+        "include/pso/ui/window/TWindowSubTrade.h",
+        "include/pso/ui/window/TWindowSubTradeMain_80330A84.h",
+        "include/pso/ui/window/TWindowSubTradeMessage.h",
+        "include/pso/ui/window/TWindowTradeRequest.h",
+        "include/pso/ui/window/TWindowUserSort.h",
+        "include/pso/ui/window/TextEntryMeasurement.h",
+        "include/pso/ui/window/WindowConfirmationMenu.h",
+        "include/pso/ui/window/WindowEntryRendering.h",
+        "include/pso/ui/window/WindowLabelValue.h",
+        "include/pso/ui/window/WindowLayout.h",
+        "include/pso/ui/window/WindowLayoutEntries.h",
+        "include/pso/ui/window/WindowMenuRows.h",
+        "include/pso/ui/window/WindowSpritePart.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_802230F8.h",
+        "include/pso/unk/TUnk_804CF918.h",
+        "include/pso/unk/TUnk_804CF930.h",
+        "include/pso/unk/TUnk_804CF948.h",
+        "include/pso/unk/TUnk_804CFA28.h",
+        "include/pso/unk/WindowLayoutRecord.h",
+        "include/pso/unk/text_8020EEFC.h",
+        "include/pso/unk/text_8026A93C.h",
+        "include/pso/unk/text_8026C7AC.h",
+        "include/pso/unk/text_80278460.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/item/shop/ShopToolStock.cpp",
+        "src/pso/item/shop/ShopWeaponStock.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/object/TObjLuker.cpp",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/object/warp/TObjWarpLobby.cpp",
+        "src/pso/player/TObjPlayer.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801D2E20.cpp",
+        "src/pso/player/TObjPlayer_802790CC.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/player/TPlyGuildCardTag_8007B7EC.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/TQuestListChallenge.cpp",
+        "src/pso/quest/TQuestListOffline.cpp",
+        "src/pso/quest/TQuestListOnline.cpp",
+        "src/pso/quest/TQuestListVM.cpp",
+        "src/pso/quest/TQuestThread.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer.cpp",
+        "src/pso/system/TLanguage_80132A5C.cpp",
+        "src/pso/system/data/pso_const_ids4.cpp",
+        "src/pso/system/save/TCheckMemoryCard.cpp",
+        "src/pso/ui/chat/ShortMail.cpp",
+        "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+        "src/pso/ui/chat/TWindowChat.cpp",
+        "src/pso/ui/chat/TWindowChatSymbol.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_802A571C.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_802838C4.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80283954.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_8013AD28.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80211614.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80222FC0.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80248A14.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+        "src/pso/ui/city/THunterGuildWarning.cpp",
+        "src/pso/ui/city/TMedicalCenterSequence.cpp",
+        "src/pso/ui/city/TShopArmorListWindow.cpp",
+        "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+        "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow_802115F4.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow_803094E8.cpp",
+        "src/pso/ui/city/TShopEquipmentSequence.cpp",
+        "src/pso/ui/city/TShopGetItemWindow.cpp",
+        "src/pso/ui/city/TShopItemListWindow.cpp",
+        "src/pso/ui/city/TShopItemTecSequence.cpp",
+        "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+        "src/pso/ui/city/TShopKeepItemWindow.cpp",
+        "src/pso/ui/font/TFontSmallHelp.cpp",
+        "src/pso/ui/font/TFontSmallTask.cpp",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiSaveGC.cpp",
+        "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdScrollWinGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+        "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC_80248B8C.cpp",
+        "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+        "src/pso/ui/hud/TMainCursor.cpp",
+        "src/pso/ui/hud/TMainCursor_801D7AC8.cpp",
+        "src/pso/ui/window/TObjBagWarnWin.cpp",
+        "src/pso/ui/window/TWindowActionPalette.cpp",
+        "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+        "src/pso/ui/window/TWindowArea.cpp",
+        "src/pso/ui/window/TWindowBreakIn.cpp",
+        "src/pso/ui/window/TWindowChallengeResult.cpp",
+        "src/pso/ui/window/TWindowChoiceSetting.cpp",
+        "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+        "src/pso/ui/window/TWindowComCard.cpp",
+        "src/pso/ui/window/TWindowCtrl.cpp",
+        "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024B558.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024C6CC.cpp",
+        "src/pso/ui/window/TWindowCtrl_8026AD44.cpp",
+        "src/pso/ui/window/TWindowDD_80246F8C.cpp",
+        "src/pso/ui/window/TWindowDD_8034055C.cpp",
+        "src/pso/ui/window/TWindowDD_80341334.cpp",
+        "src/pso/ui/window/TWindowDD_80341A08.cpp",
+        "src/pso/ui/window/TWindowDD_80342E40.cpp",
+        "src/pso/ui/window/TWindowDD_8034725C.cpp",
+        "src/pso/ui/window/TWindowDeposit.cpp",
+        "src/pso/ui/window/TWindowDuelResult.cpp",
+        "src/pso/ui/window/TWindowFukidasi.cpp",
+        "src/pso/ui/window/TWindowGetComCard.cpp",
+        "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp",
+        "src/pso/ui/window/TWindowHelpItem.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802530D0.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80253154.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802531A0.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80253630.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+        "src/pso/ui/window/TWindowHelpItem_8025A12C.cpp",
+        "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+        "src/pso/ui/window/TWindowInputNumber.cpp",
+        "src/pso/ui/window/TWindowInputNumber_802115F4.cpp",
+        "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+        "src/pso/ui/window/TWindowLoadItemTexture.cpp",
+        "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+        "src/pso/ui/window/TWindowMainMenu.cpp",
+        "src/pso/ui/window/TWindowMainMenu4P.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AE928.cpp",
+        "src/pso/ui/window/TWindowMakeTeam.cpp",
+        "src/pso/ui/window/TWindowMenuIconLine.cpp",
+        "src/pso/ui/window/TWindowMenuMainMenu.cpp",
+        "src/pso/ui/window/TWindowMenu_8013AD28.cpp",
+        "src/pso/ui/window/TWindowMeseta.cpp",
+        "src/pso/ui/window/TWindowMessage.cpp",
+        "src/pso/ui/window/TWindowMessageInfomation.cpp",
+        "src/pso/ui/window/TWindowMessageLog.cpp",
+        "src/pso/ui/window/TWindowMessageLog_8026A360.cpp",
+        "src/pso/ui/window/TWindowMessagePage.cpp",
+        "src/pso/ui/window/TWindowMessageQuest.cpp",
+        "src/pso/ui/window/TWindowMessageScroll.cpp",
+        "src/pso/ui/window/TWindowMessageYesNo.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl.cpp",
+        "src/pso/ui/window/TWindowPartyStatus.cpp",
+        "src/pso/ui/window/TWindowQuantity.cpp",
+        "src/pso/ui/window/TWindowReturnCity.cpp",
+        "src/pso/ui/window/TWindowRoom.cpp",
+        "src/pso/ui/window/TWindowShop.cpp",
+        "src/pso/ui/window/TWindowShortCut.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSimpleStatus.cpp",
+        "src/pso/ui/window/TWindowSnapShot.cpp",
+        "src/pso/ui/window/TWindowSoundBalance.cpp",
+        "src/pso/ui/window/TWindowStatus.cpp",
+        "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+        "src/pso/ui/window/TWindowSubComCard.cpp",
+        "src/pso/ui/window/TWindowSubComCardList.cpp",
+        "src/pso/ui/window/TWindowSubComCardList_802752D8.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007A810.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007B6D8.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007BD24.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80268494.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80269064.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+        "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+        "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+        "src/pso/ui/window/TWindowSubEquip.cpp",
+        "src/pso/ui/window/TWindowSubEquipKind.cpp",
+        "src/pso/ui/window/TWindowSubEquipList.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80279044.cpp",
+        "src/pso/ui/window/TWindowSubGameEnd.cpp",
+        "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubItemList.cpp",
+        "src/pso/ui/window/TWindowSubLog.cpp",
+        "src/pso/ui/window/TWindowSubMag.cpp",
+        "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+        "src/pso/ui/window/TWindowSubMag_802559F8.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+        "src/pso/ui/window/TWindowSubShortCut.cpp",
+        "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "src/pso/ui/window/TWindowSubShortCut_80246FB0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_800FBD74.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80228C30.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80249060.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8024F688.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025B4A0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80268738.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80288030.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+        "src/pso/ui/window/TWindowSubTechnique.cpp",
+        "src/pso/ui/window/TWindowSubTrade.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+        "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+        "src/pso/ui/window/TWindowTimer.cpp",
+        "src/pso/ui/window/TWindowTradeRequest_802E0170.cpp",
+        "src/pso/ui/window/TWindowUserSort.cpp",
+        "src/pso/ui/window/TextEntryMeasurement.cpp",
+        "src/pso/unk/TLobby_8001D6A0.cpp",
+        "src/pso/unk/TLobby_80070A00.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_8007B858.cpp",
+        "src/pso/unk/TLobby_800FA164.cpp",
+        "src/pso/unk/TLobby_800FA2A0.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_802230F8.cpp",
+        "src/pso/unk/TLobby_802409AC.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp",
+        "src/pso/unk/TLobby_803DE778.cpp",
+        "src/pso/unk/TUnk_804D1160.cpp",
+        "src/pso/unk/TUnk_804D1AD0.cpp",
+        "src/pso/unk/text_800FA464.cpp",
+        "src/pso/unk/text_801D7BF4.cpp",
+        "src/pso/unk/text_8020E700.cpp",
+        "src/pso/unk/text_80248994.cpp",
+        "src/pso/unk/text_8025373C.cpp",
+        "src/pso/unk/text_80253974.cpp",
+        "src/pso/unk/text_80255A38.cpp",
+        "src/pso/unk/text_8026A14C.cpp",
+        "src/pso/unk/text_8026A328.cpp",
+        "src/pso/unk/text_8026AC50.cpp",
+        "src/pso/unk/text_8026ACDC.cpp",
+        "src/pso/unk/text_8026C664.cpp",
+        "src/pso/unk/text_80275360.cpp",
+        "src/pso/unk/text_80278460.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "788600491f9ddc52ffb67a58f18a70d6530c5551f7bce061b163b8c3e3886e7e",
+      "check_sha256": "2a0fa45d78bf4d119850b55e90a1e7d5b673ecc9f8786568dff11b73cb87b55c",
+      "previous": "91e116f783414c8ddfb983463a2aa778fc0c2124"
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "906f5898b302cc05c91e9c56b5ecc9c586244563",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Stage scenery archives, Bind motion, sky scene and full Ginja object registry",
+      "files": 404,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/boss/olgaflow/TBoss6CrushPtcl.h",
+        "include/pso/boss/olgaflow/TBoss6CrushRock.h",
+        "include/pso/boss/olgaflow/TBoss6Rock.h",
+        "include/pso/effect/GroundContactSound.h",
+        "include/pso/effect/TEffIndirectCtrl.h",
+        "include/pso/effect/TEffIndirectCtrl_802A88AC.h",
+        "include/pso/effect/TUnk_804CCC68.h",
+        "include/pso/effect/particle/ParticleDefinition.h",
+        "include/pso/effect/particle/ParticleParam.h",
+        "include/pso/effect/particle/TParticleCtrl.h",
+        "include/pso/effect/particle/TParticleCtrl_800867E4.h",
+        "include/pso/enemy/TEnemyTaskList.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/gibbles/TObjEneGibbles.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h",
+        "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h",
+        "include/pso/enemy/stelth/TObjEneMe3Stelth.h",
+        "include/pso/item/TItem.h",
+        "include/pso/map/ChallengeEnemySet.h",
+        "include/pso/map/CsnGeometry.h",
+        "include/pso/map/CsnGroundCandidates.h",
+        "include/pso/map/CsnGroundQuery.h",
+        "include/pso/map/CsnQuery.h",
+        "include/pso/map/FloorPopulation.h",
+        "include/pso/map/MapSetArchive.h",
+        "include/pso/map/TMapCsnCtrl.h",
+        "include/pso/map/TObjMapCsn.h",
+        "include/pso/network/FloorEventCommand.h",
+        "include/pso/network/protocol/subcmd_6x.h",
+        "include/pso/npc/NpcAnimationBinding.h",
+        "include/pso/object/TMotorcycle.h",
+        "include/pso/object/TOBind.h",
+        "include/pso/object/TOVS2.h",
+        "include/pso/object/TOVS2Wreck01.h",
+        "include/pso/object/TOVS2Wreck02.h",
+        "include/pso/object/TOVS2Wreck03.h",
+        "include/pso/object/TOVS2Wreck04.h",
+        "include/pso/object/TOVS2Wreck05.h",
+        "include/pso/object/TOVS2Wreck06.h",
+        "include/pso/object/TObjChip.h",
+        "include/pso/object/TObjChipParams.h",
+        "include/pso/object/TObjComputer.h",
+        "include/pso/object/TObjGbAdvance.h",
+        "include/pso/object/TObjMesBase.h",
+        "include/pso/object/TObjParticle.h",
+        "include/pso/object/TObjTombstone.h",
+        "include/pso/object/ambient/TObjCGrass.h",
+        "include/pso/object/ambient/TObjFish.h",
+        "include/pso/object/ambient/TObjGrass.h",
+        "include/pso/object/ambient/TObjRain.h",
+        "include/pso/object/ambient/TObjRainCtrl.h",
+        "include/pso/object/base/ObjectSetData.h",
+        "include/pso/object/base/TObjChara.h",
+        "include/pso/object/base/TObjMotion.h",
+        "include/pso/object/cave/CaveSignRender.h",
+        "include/pso/object/city/CityTraffic.h",
+        "include/pso/object/collision/TObjRaderHideCol.h",
+        "include/pso/object/container/ContainerBreakEffects.h",
+        "include/pso/object/container/ContainerResources.h",
+        "include/pso/object/container/TObjContainerJung.h",
+        "include/pso/object/container/TObjContainerJungEnemy.h",
+        "include/pso/object/container/TObjContainerJungEx.h",
+        "include/pso/object/container/TObjContainerJungEx_8018D900.h",
+        "include/pso/object/door/TODoorAncient05.h",
+        "include/pso/object/door/TODoorAncient06.h",
+        "include/pso/object/door/TODoorAncient07.h",
+        "include/pso/object/door/TODoorAncient08.h",
+        "include/pso/object/door/TODoorAncient09.h",
+        "include/pso/object/door/TODoorCave01.h",
+        "include/pso/object/door/TODoorCave02.h",
+        "include/pso/object/door/TODoorMachine01.h",
+        "include/pso/object/door/TODoorMachine02.h",
+        "include/pso/object/door/TODoorVS2Door01.h",
+        "include/pso/object/door/TObjDoorJung.h",
+        "include/pso/object/ending/TObjOnlineEnding.h",
+        "include/pso/object/ending/TObjOnlineEndingHexLine.h",
+        "include/pso/object/ending/TObjOnlineEndingHexMove.h",
+        "include/pso/object/fence/TOBarrierEnergy01.h",
+        "include/pso/object/fence/TOFenceAncient01.h",
+        "include/pso/object/fence/TOFenceAncient02.h",
+        "include/pso/object/fence/TOFenceAncient03.h",
+        "include/pso/object/fence/TOFenceAncient04.h",
+        "include/pso/object/fence/TOVS2Wall01.h",
+        "include/pso/object/fence/TOVS2Wall01_8017BCC8.h",
+        "include/pso/object/fence/TOVS2Wall01_8017C7A4.h",
+        "include/pso/object/fence/TOVS2WallResources.h",
+        "include/pso/object/fence/TObjLazerFenceNorm.h",
+        "include/pso/object/fence/WallHitPacket.h",
+        "include/pso/object/jungle/TOJungleDesign.h",
+        "include/pso/object/key/TODummyKeyCave01.h",
+        "include/pso/object/key/TOKeyAncient03.h",
+        "include/pso/object/key/TOKeyCave01.h",
+        "include/pso/object/key/TOKeyMachine01.h",
+        "include/pso/object/lab/TObjLaboDesignBase.h",
+        "include/pso/object/lobby/TObjButterflyLobby.h",
+        "include/pso/object/lobby/TObjButterflyLobby_80350958.h",
+        "include/pso/object/lobby/TObjCityDoor_Lobby.h",
+        "include/pso/object/mine/TODragonflyMachine01.h",
+        "include/pso/object/mine/TOLightMachine01.h",
+        "include/pso/object/mine/TOSparkMachine01.h",
+        "include/pso/object/seabed/TObjSeabedSuisoBrakable.h",
+        "include/pso/object/switch/TOSensorAncient01.h",
+        "include/pso/object/switch/TOSensorGeneral01.h",
+        "include/pso/object/trap/TOMine.h",
+        "include/pso/object/trap/TOMineIcon01.h",
+        "include/pso/object/trap/TOMineIcon02.h",
+        "include/pso/object/trap/TOMineIcon03.h",
+        "include/pso/object/trap/TOMineIcon04.h",
+        "include/pso/object/trap/TOMineTrap.h",
+        "include/pso/object/trap/TOTrapAncient02R.h",
+        "include/pso/object/trap/TOTrapChainSaw.h",
+        "include/pso/object/trap/TOTrapChainSawEdge.h",
+        "include/pso/object/trap/TOTrapChainSawKey.h",
+        "include/pso/object/warp/ForestWarpResources.h",
+        "include/pso/object/warp/TObjAreaWarp.h",
+        "include/pso/object/warp/TObjAreaWarpEnding.h",
+        "include/pso/object/warp/TObjAreaWarpForest.h",
+        "include/pso/object/warp/TObjAreaWarpQuest.h",
+        "include/pso/object/warp/TObjCityAreaWarp.h",
+        "include/pso/object/warp/TObjCityMainWarp.h",
+        "include/pso/object/warp/TObjCityMainWarpChallenge.h",
+        "include/pso/object/warp/TObjCityMainWarp_80186E24.h",
+        "include/pso/object/warp/TObjGoalWarpAncient.h",
+        "include/pso/object/warp/TObjLaboMapWarp.h",
+        "include/pso/object/warp/TObjLaboMapWarp_80185248.h",
+        "include/pso/object/warp/TObjMapWarpAncient.h",
+        "include/pso/object/warp/TObjMapWarpForest.h",
+        "include/pso/object/warp/TObjWarpBase.h",
+        "include/pso/object/warp/TObjWarpBoss.h",
+        "include/pso/object/warp/TObjWarpBossMulti.h",
+        "include/pso/object/warp/TObjWarpJung.h",
+        "include/pso/object/warp/TObjWarpJungMain.h",
+        "include/pso/object/warp/TObjWarpLobby.h",
+        "include/pso/object/wreck/TOWreckAncient.h",
+        "include/pso/object/wreck/TOWreckAncientResources.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80011014.h",
+        "include/pso/player/TObjPlayer_801542CC.h",
+        "include/pso/player/TObjPlayer_802A8368.h",
+        "include/pso/player/TUnk_804B6C24.h",
+        "include/pso/render/GinjaMaterialState.h",
+        "include/pso/render/GinjaMaterialTextureSlot.h",
+        "include/pso/render/GinjaTexture.h",
+        "include/pso/render/GinjaUvScroll.h",
+        "include/pso/system/EventShuffleTable.h",
+        "include/pso/system/scene/TScene.h",
+        "include/pso/system/scene/TSceneSora.h",
+        "include/pso/ui/window/TWindowSubTradeMain_80187C98.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_80140FF4.h",
+        "include/pso/unk/TLobby_8015C944.h",
+        "include/pso/unk/TLobby_80207644.h",
+        "include/pso/unk/TLobby_80209524.h",
+        "include/pso/unk/TLobby_8020A568.h",
+        "include/pso/unk/TLobby_8020BFC4.h",
+        "include/pso/unk/TUnk_8048E728.h",
+        "include/pso/unk/TUnk_804C57F0.h",
+        "include/pso/unk/TUnk_804CCB28.h",
+        "include/pso/unk/text_80184C2C.h",
+        "include/pso/unk/text_80209584.h",
+        "include/pso/unk/text_8020A768.h",
+        "include/pso/unk/text_8020B5CC.h",
+        "include/pso/unk/text_8028A820.h",
+        "libs/dolphin/include/libc/ctype.h",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+        "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type2_80086C44.cpp",
+        "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_8028A8F8.cpp",
+        "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+        "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+        "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/effect/TEF_LensFlare.cpp",
+        "src/pso/effect/TEffIndirectCtrl.cpp",
+        "src/pso/effect/TKomorebi.cpp",
+        "src/pso/effect/TUnk_804CCC68.cpp",
+        "src/pso/effect/particle/ParticleBallistic.cpp",
+        "src/pso/effect/particle/ParticleOrbit.cpp",
+        "src/pso/effect/particle/ParticleRadial.cpp",
+        "src/pso/effect/particle/TParticleCtrl.cpp",
+        "src/pso/effect/particle/TParticleCtrl_80085EE4.cpp",
+        "src/pso/effect/particle/TParticleCtrl_80086884.cpp",
+        "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+        "src/pso/effect/particle/TParticleCtrl_801E5330.cpp",
+        "src/pso/effect/particle/TParticleCtrl_80327D30.cpp",
+        "src/pso/effect/sprite/TQuadSpriteCol.cpp",
+        "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+        "src/pso/effect/sprite/TQuadSpriteScl.cpp",
+        "src/pso/effect/sprite/TQuadSpriteSclCol.cpp",
+        "src/pso/effect/sprite/TQuadSpriteSclColRot.cpp",
+        "src/pso/enemy/TObjEnemy_8020C3E0.cpp",
+        "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+        "src/pso/item/TItem.cpp",
+        "src/pso/map/AreaEventSet.cpp",
+        "src/pso/map/CsnQuery.cpp",
+        "src/pso/map/FloorLifecycleTables.cpp",
+        "src/pso/map/TMapCsnCtrl.cpp",
+        "src/pso/map/TObjMapCsn.cpp",
+        "src/pso/map/TSetEvtDestroy.cpp",
+        "src/pso/map/TSetManager.cpp",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/npc/TObjNpcBase.cpp",
+        "src/pso/npc/TObjNpcEnemy.cpp",
+        "src/pso/object/TMotorcycle.cpp",
+        "src/pso/object/TOBind.cpp",
+        "src/pso/object/TOBind_801586B8.cpp",
+        "src/pso/object/TObjBigTuitate.cpp",
+        "src/pso/object/TObjChip.cpp",
+        "src/pso/object/TObjComputer.cpp",
+        "src/pso/object/TObjDoaEx01.cpp",
+        "src/pso/object/TObjLiveMonitor.cpp",
+        "src/pso/object/TObjMesBase.cpp",
+        "src/pso/object/TObjParticle.cpp",
+        "src/pso/object/TObjTank.cpp",
+        "src/pso/object/TObjTombstone.cpp",
+        "src/pso/object/ambient/TObjCGrass.cpp",
+        "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+        "src/pso/object/ambient/TObjFish.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/ambient/TObjRain.cpp",
+        "src/pso/object/ambient/TObjRainCtrl.cpp",
+        "src/pso/object/ambient/TObjRainCtrl_80197CE8.cpp",
+        "src/pso/object/ambient/TObjRain_801977D4.cpp",
+        "src/pso/object/base/ObjectFactoryTables.cpp",
+        "src/pso/object/cave/TOHangceilingCave01.cpp",
+        "src/pso/object/cave/TORockCave.cpp",
+        "src/pso/object/cave/TOSignCave01.cpp",
+        "src/pso/object/cave/TOSignCave02.cpp",
+        "src/pso/object/city/CityDoors.cpp",
+        "src/pso/object/city/CitySeason.cpp",
+        "src/pso/object/city/CityTraffic.cpp",
+        "src/pso/object/city/CityVerticalModel.cpp",
+        "src/pso/object/collision/TOAttackableCol.cpp",
+        "src/pso/object/collision/TObjEvtCollision.cpp",
+        "src/pso/object/collision/TObjRaderCol.cpp",
+        "src/pso/object/container/TContainerAncient01.cpp",
+        "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+        "src/pso/object/container/TObjContainerItem.cpp",
+        "src/pso/object/container/TObjContainerJung.cpp",
+        "src/pso/object/door/TODoorAncient01.cpp",
+        "src/pso/object/door/TODoorAncient03.cpp",
+        "src/pso/object/door/TODoorAncient04.cpp",
+        "src/pso/object/door/TODoorAncient05.cpp",
+        "src/pso/object/door/TODoorAncient06.cpp",
+        "src/pso/object/door/TODoorAncient07.cpp",
+        "src/pso/object/door/TODoorAncient08.cpp",
+        "src/pso/object/door/TODoorAncient09.cpp",
+        "src/pso/object/door/TODoorCave01.cpp",
+        "src/pso/object/door/TODoorCave02.cpp",
+        "src/pso/object/door/TODoorFourLightSpace.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TODoorLabo.cpp",
+        "src/pso/object/door/TODoorMachine01.cpp",
+        "src/pso/object/door/TODoorMachine02.cpp",
+        "src/pso/object/door/TODoorVS2Door01.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoorJung_8023DBEC.cpp",
+        "src/pso/object/door/TObjDoorKey.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/object/ending/TObjOnlineEndingHexLine.cpp",
+        "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+        "src/pso/object/fence/TLazerFenceSw.cpp",
+        "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "src/pso/object/fence/TOFenceAncient01.cpp",
+        "src/pso/object/fence/TOFenceAncient02.cpp",
+        "src/pso/object/fence/TOFenceAncient03.cpp",
+        "src/pso/object/fence/TOFenceAncient04.cpp",
+        "src/pso/object/fence/TOVS2Wall01.cpp",
+        "src/pso/object/fence/TObjLazerFence4.cpp",
+        "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+        "src/pso/object/jungle/TOGrassJungle.cpp",
+        "src/pso/object/jungle/TOJungleDesign.cpp",
+        "src/pso/object/jungle/TORockJungleL01.cpp",
+        "src/pso/object/key/TODummyKeyCave01.cpp",
+        "src/pso/object/key/TOKeyAncient01.cpp",
+        "src/pso/object/key/TOKeyAncient02.cpp",
+        "src/pso/object/key/TOKeyAncient03.cpp",
+        "src/pso/object/key/TOKeyCave01.cpp",
+        "src/pso/object/key/TOKeyGenericSw.cpp",
+        "src/pso/object/key/TOKeyMachine01.cpp",
+        "src/pso/object/lab/TObjLaboDesignBase.cpp",
+        "src/pso/object/lobby/LobbyGoGoBall.cpp",
+        "src/pso/object/lobby/LobbyPigeonPath.cpp",
+        "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+        "src/pso/object/mine/TOComputerMachine01_8023DD0C.cpp",
+        "src/pso/object/mine/TODragonflyMachine01.cpp",
+        "src/pso/object/mine/TOLightMachine01.cpp",
+        "src/pso/object/mine/TOSparkMachine01.cpp",
+        "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "src/pso/object/seabed/TObjSuisoChip.cpp",
+        "src/pso/object/switch/TOSensorAncient01.cpp",
+        "src/pso/object/switch/TOSensorGeneral01.cpp",
+        "src/pso/object/trap/TOMine.cpp",
+        "src/pso/object/trap/TOMineIcon01.cpp",
+        "src/pso/object/trap/TOMineIcon02.cpp",
+        "src/pso/object/trap/TOMineIcon03.cpp",
+        "src/pso/object/trap/TOMineIcon04.cpp",
+        "src/pso/object/trap/TOTrap.cpp",
+        "src/pso/object/trap/TOTrapAncient01.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+        "src/pso/object/warp/TObjCityMainWarp_80186F84.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjMapWarpAncient.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/object/warp/TObjWarpLobby.cpp",
+        "src/pso/object/wreck/TOWreckAncient.cpp",
+        "src/pso/player/PhotonBlastResults.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_800C4714.cpp",
+        "src/pso/player/TObjPlayer_801542CC.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_80357B2C.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/TOQuestTalkBase.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+        "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+        "src/pso/system/scene/TScene.cpp",
+        "src/pso/system/scene/TSceneSora.cpp",
+        "src/pso/technique/TTecRaFoie.cpp",
+        "src/pso/ui/window/TObjDeadListWin.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80187C98.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_80104374.cpp",
+        "src/pso/unk/TLobby_80140FF4.cpp",
+        "src/pso/unk/TLobby_801A3BF4.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_801F2D2C.cpp",
+        "src/pso/unk/TLobby_801F3A24.cpp",
+        "src/pso/unk/TLobby_80207644.cpp",
+        "src/pso/unk/TLobby_80207DA8.cpp",
+        "src/pso/unk/TLobby_80209524.cpp",
+        "src/pso/unk/TLobby_8020BC08.cpp",
+        "src/pso/unk/TLobby_8020BF68.cpp",
+        "src/pso/unk/TLobby_8020BFC4.cpp",
+        "src/pso/unk/TLobby_80228154.cpp",
+        "src/pso/unk/TLobby_8028A7C8.cpp",
+        "src/pso/unk/TLobby_80291D94.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp",
+        "src/pso/unk/text_80086B64.cpp",
+        "src/pso/unk/text_80086D50.cpp",
+        "src/pso/unk/text_80086E28.cpp",
+        "src/pso/unk/text_80086FE0.cpp",
+        "src/pso/unk/text_800870BC.cpp",
+        "src/pso/unk/text_800871A0.cpp",
+        "src/pso/unk/text_80087278.cpp",
+        "src/pso/unk/text_800D8988.cpp",
+        "src/pso/unk/text_80184C2C.cpp",
+        "src/pso/unk/text_801A2B38.cpp",
+        "src/pso/unk/text_801E4EB0.cpp",
+        "src/pso/unk/text_801E4F04.cpp",
+        "src/pso/unk/text_8020B5CC.cpp",
+        "src/pso/unk/text_8020BC50.cpp",
+        "src/pso/unk/text_8020BFE4.cpp",
+        "src/pso/unk/text_8020CFEC.cpp",
+        "src/pso/unk/text_8020D2B4.cpp",
+        "src/pso/unk/text_802233F8.cpp",
+        "src/pso/unk/text_8023DCB8.cpp",
+        "src/pso/unk/text_8028A714.cpp",
+        "src/pso/unk/text_8028A820.cpp",
+        "src/pso/weapon/shoot/TItemShoot.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "a3a6bf56ac3f71c5419ea1108cba981d9db2a65f720600f84e2f38f73f17c405",
+      "check_sha256": "5e1e970c333ab11e6eb2898beffeab6d0b4d0a93878fd568c2a568f6939a5c8f",
+      "previous": "71d4310943c7a19148764731cd462a85bcb7ace4"
+    },
+    "standalone-dark-falz-cinematic-actors": {
+      "head": "8d5b7beca4d9e492e5c3bb6fca598d54b461829b",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Dark Falz scene, fade and phase handoff, including the shared Olga Flow fade",
+      "files": 42,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/darkfalz/DarkFalzScenePart.h",
+        "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+        "include/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.h",
+        "include/pso/boss/darkfalz/TBoss4Fade.h",
+        "include/pso/boss/darkfalz/TBoss4Type1.h",
+        "include/pso/boss/darkfalz/TBoss4Type2.h",
+        "include/pso/boss/darkfalz/TBoss4Type3.h",
+        "include/pso/boss/darkfalz/TObjDFDemo0.h",
+        "include/pso/boss/darkfalz/TObjDFDemo1.h",
+        "include/pso/boss/darkfalz/TObjDFDemo2.h",
+        "include/pso/boss/darkfalz/TObjDFDemo3.h",
+        "include/pso/boss/darkfalz/TObjDFDemo4.h",
+        "include/pso/boss/darkfalz/TObjDFDemo5.h",
+        "include/pso/boss/darkfalz/TObjDFDemoF.h",
+        "include/pso/boss/darkfalz/TObjDFDemoF_80050134.h",
+        "include/pso/boss/darkfalz/TObjDFHorming.h",
+        "include/pso/boss/darkfalz/TObjDFTenchuFuru.h",
+        "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+        "include/pso/enemy/TUnk_80486924.h",
+        "include/pso/object/base/TObjChara.h",
+        "include/pso/unk/text_8035966C.h",
+        "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+        "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+        "src/pso/boss/darkfalz/TBoss4Fade.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemoF.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+        "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+        "src/pso/npc/TObjNpcNgcBase.cpp",
+        "src/pso/unk/text_8004D9A8.cpp",
+        "src/pso/unk/text_8035966C.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "0bd638e33d537bdbf737704267f02c88ed6acce01eb71158e844b2dc70e3a127",
+      "check_sha256": "3b72dc02b6b87aed1129f6d38a695f602537145c3417ae9b565c4a6b2ffc1149",
+      "previous": "da4fe7ef0d86a92b7544fcd64787d3da221c82be"
+    }
+  },
+  "independent_source_reviews": {
+    "character-selection-plates": {
+      "head": "e5e32bb8a408515fa71ed628f9adb5c7b25c4c14",
+      "reviewer": "display_batch",
+      "finding": "Verified original CARD disk-ID providers, callback argument sizes, aligned serial storage and the actual target open-file offsets. Standalone uses shared SDK declarations and record types for all touchpoints in the request provider."
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "9b0ee5a7eba58517bcbaa2dc9bf4a758de67fae6",
+      "reviewer": "world_batch",
+      "finding": "Verified the variable-size descriptor cursor, replayed row count and shared type-10 and type-11 point constructors. The actual symbol-chat layout object now reaches the initializer without invoking it through an unrelated window."
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "906f5898b302cc05c91e9c56b5ecc9c586244563",
+      "reviewer": "enemy_batch",
+      "finding": "Verified Bind uses a single owned BML archive, frame count at the original motion word, and the original advance and draw order. All seven Ginja registrations use real model and texture pointers with unchanged IDs, radii and offsets."
+    },
+    "standalone-dark-falz-cinematic-actors": {
+      "head": "8d5b7beca4d9e492e5c3bb6fca598d54b461829b",
+      "reviewer": "world_batch, integration",
+      "finding": "Verified native phase timers, fade buffers, three form receivers, and the original direct attack payload. The reviewed follow-up corrects the base constructor return and uses the actual pointer instance method in Zako."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "f9a2f6cb49fbc102179d2ee88ecdb20d24632273",
+    "tree": "afbc25fd9e3b8d11959d1cab337dc0d321ddef3d",
+    "previous": "4c0aedbec89cc898bc6a7bf4e374c6a12ba8fa3e",
+    "prior_inputs": {
+      "gryphon": "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "audio": "960e608d40f5594babb50c5507bdc882a0b09be9",
+      "camera": "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "weapon": "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "photon": "31821decfb414b6735a107440f3ebd5c12938f69",
+      "quest": "5764a00853c353ae4e12371958c2e9712af42798",
+      "olga": "6425ec28dcb426c89279177233edde6fafade773",
+      "inventory": "3209cc4330a26b9f88a0527e40d1582a61ae4015",
+      "registration": "d325d49446c918edda68327c95eebb732dc06798",
+      "enemy": "9bbc668b6121ceb6bc03f83427c98aaa931a0d31"
+    },
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "960e608d40f5594babb50c5507bdc882a0b09be9",
+      "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "31821decfb414b6735a107440f3ebd5c12938f69",
+      "5764a00853c353ae4e12371958c2e9712af42798",
+      "e5e32bb8a408515fa71ed628f9adb5c7b25c4c14",
+      "6425ec28dcb426c89279177233edde6fafade773",
+      "3209cc4330a26b9f88a0527e40d1582a61ae4015",
+      "906f5898b302cc05c91e9c56b5ecc9c586244563",
+      "9b0ee5a7eba58517bcbaa2dc9bf4a758de67fae6",
+      "d325d49446c918edda68327c95eebb732dc06798",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "8d5b7beca4d9e492e5c3bb6fca598d54b461829b"
+    ],
+    "files": 1491,
+    "overlap": [
+      {
+        "scope": "stage",
+        "previous": "4c0aedbec89cc898bc6a7bf4e374c6a12ba8fa3e",
+        "standalone": "906f5898b302cc05c91e9c56b5ecc9c586244563",
+        "head": "d5de006fb14cec24b0ecd8012491c18fd323febe",
+        "conflicts": [],
+        "resolved": {}
+      },
+      {
+        "scope": "menu",
+        "previous": "d5de006fb14cec24b0ecd8012491c18fd323febe",
+        "standalone": "9b0ee5a7eba58517bcbaa2dc9bf4a758de67fae6",
+        "head": "2e67ddbcc88220584130a4822fedc46422f789dd",
+        "conflicts": [],
+        "resolved": {
+          "src/pso/ui/window/TWindowHelpItem_802540AC.cpp": "d0300961d2c8611f1c73ae151660b0e8b1fb0828"
+        }
+      },
+      {
+        "scope": "selection",
+        "previous": "2e67ddbcc88220584130a4822fedc46422f789dd",
+        "standalone": "e5e32bb8a408515fa71ed628f9adb5c7b25c4c14",
+        "head": "db5fd2b644de978eeb0ddce9d9ab613f6eb2c39e",
+        "conflicts": [],
+        "resolved": {
+          "src/pso/quest/TQuestVmDownLoadServer.cpp": "e765473127a81f649eda18eb6053c7fa0739c03e"
+        }
+      },
+      {
+        "scope": "falz",
+        "previous": "db5fd2b644de978eeb0ddce9d9ab613f6eb2c39e",
+        "standalone": "8d5b7beca4d9e492e5c3bb6fca598d54b461829b",
+        "head": "f9a2f6cb49fbc102179d2ee88ecdb20d24632273",
+        "conflicts": [],
+        "resolved": {
+          "include/pso/boss/darkfalz/TObjDFDemo3.h": "917366d215c6e66e7636d9192eb326f9e4005fcd",
+          "src/pso/boss/darkfalz/TObjDFDemo3.cpp": "26dcc244e3cc900cc70521d593b2e5d7464be369",
+          "include/pso/boss/darkfalz/TObjDFDemo5.h": "bd65e0429cd7104aff36e244a33525a698fdf49e",
+          "src/pso/boss/darkfalz/TObjDFDemo5.cpp": "fbd9e9ee0c7f853016f3de02b83f13b4b8503666",
+          "include/pso/boss/olgaflow/TBoss6PlotFalz.h": "4add3880f8b41939f0a23dd28d4fe560449aafa9",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": "d852edc04daf648d6798346c42b2187c3a5de62e"
+        }
+      }
+    ],
+    "independent_overlap_review": {
+      "head": "f9a2f6cb49fbc102179d2ee88ecdb20d24632273",
+      "tree": "afbc25fd9e3b8d11959d1cab337dc0d321ddef3d",
+      "reviewer": "display_batch and world_batch",
+      "finding": "Verified the combined model capture lists and native fade and form lifetimes. Quest uses the existing shared judgment and new card capacity signatures. The help display includes both real contracts once. The final constructor and instance calls match their actual providers, and the stale Olga prototype is unused."
+    },
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      },
+      "previous-joint": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      }
+    }
+  },
+  "observed_upstream_master": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "inherited_scope": {
+    "layout_text_constructor": "The layout initializer retains the existing type-3 constructor body at its original address. The typed field rewrite changes the generated register schedule.",
+    "card_pool": "Two card status steps retain the original linker-relative addressing of the open-file pool with named offsets and pointer-width integer arithmetic."
+  }
+}

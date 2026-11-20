@@ -657,6 +657,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The inventory, stage, equipment window and enemy encounter reviews include these changes. All 13 groups build together across 1,447 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-equipment-layout-tombstone-enemy-replay.json)
 
+## Window construction, Dark Falz, stage archives and card loading
+
+Source checkpoint `33ae8206e0` and landing checkpoint `48370cd352` carry 57 changed source files. The replay restores shared window layout construction, Dark Falz form and fade ownership, stage scenery archives and memory-card loading interfaces. The audit covers 29 historical records and closes 8. The ledger has 1,169 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/character-selection-plates` | Character selection plates and the full memory-card load, filename, capacity, result and SDK contract | 137 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and item windows, shared variable-length layout initialization and symbol-chat callers | 370 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage scenery archives, Bind motion, sky scene and full Ginja object registry | 404 |
+| `great-merge/current/standalone-dark-falz-cinematic-actors` | Dark Falz scene, fade and phase handoff, including the shared Olga Flow fade | 42 |
+
+The character selection, stage, equipment window and Dark Falz reviews include these changes. All 14 groups build together across 1,491 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-window-falz-stage-card-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
