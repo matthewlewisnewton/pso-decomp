@@ -687,6 +687,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The network, stage, equipment window and enemy formation reviews include these changes. All 15 groups build together across 1,532 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-float-thread-sinow-ancient-replay.json)
 
+## Reverse Technique textures, window text entries, Gyaranzo and animated NPC models
+
+Source checkpoint `59c4b59f78` and landing checkpoint `fcd39b68df` carry 58 changed source files. The replay restores the Reverse Technique texture and picture owners, native window text-entry lifecycle, Gyaranzo missile hit routing and shared kind-1 NPC animation bindings. The audit covers 25 historical records and closes 9. The ledger has 1,156 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-technique-effects-and-sounds` | Technique effects and sound dispatch plus the Reverse Technique scene texture, child task and picture lifetime | 84 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and item windows plus the type-3 text entry, shared setter, rendering and callback lifetime | 409 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formation and appearance resources plus Gyaranzo archive, missile volley and hit routing | 199 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage interactions and resource owners plus all kind-1 and kind-3 animated model registrations | 435 |
+
+The technique, stage, equipment window and enemy formation reviews include these changes. All 15 groups build together across 1,554 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-text-gyaranzo-npc-reverse-tech-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
