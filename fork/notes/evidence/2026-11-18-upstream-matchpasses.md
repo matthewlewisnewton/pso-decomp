@@ -1048,6 +1048,20 @@ The combined review queue at `23b1198d5a` carries 144 changed paths for this bat
 
 The queue now spans 2,535 files across 44 groups. A path comparison leaves 209 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The listed review bases identify prerequisite branches. The source audit closes 7 historical comparisons, leaving 715 open. [Validation evidence](2026-11-20-quest-packets-encounter-and-menu-packaging.json)
 
+## Particle factories, native attachments and presentation reviews
+
+The combined review queue at `3f8e3a05c0` carries 438 changed paths for this batch. The source already reproduces retail at `a0ab810dd1`. The queue reproduces retail with 2,451 exact linked units and zero lost matched or linked coverage.
+
+| Review | Local head | Review base | Changed files |
+| --- | --- | --- | ---: |
+| World-position particle factories and callers | `1dfa045120` | `49b48c32e6` | 182 |
+| Rope, bone rotation and fin attachments | `c2936d95ef` | `49b48c32e6` | 17 |
+| Scripted camera playback and scene callers | `0394e28c27` | `a0ae8422d0` | 26 |
+| Window draw contexts, selection bars and clipped text | `57a10b0f98` | `540e1a91ba` | 76 |
+| Native BML lifetimes, resource descriptors and load callbacks | `fd2120f67c` | `8b4edc76eb` | 237 |
+
+The queue now spans 2,585 files across 48 groups. A path comparison leaves 159 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The listed review bases identify prerequisite branches. The source audit closes 2 historical comparisons, leaving 713 open. [Validation evidence](2026-11-20-particles-attachments-bml-and-display-packaging.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
