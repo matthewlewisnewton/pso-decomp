@@ -68,6 +68,18 @@ The 89-file source replay at `c0e4c936a1` combines four independently validated 
 
 The standalone player, quest and item review at `ce787c3349` now spans 146 files and passes the retail and coverage checks. The standalone window, camera and rendering review at `230bf773d9` now spans 98 files. The stage and world review at `021cdb2f6d` spans 139 files. Both pass the retail and coverage checks. The quest GBA filename change stays in the combined branch with its typed quest argument union. The enemy and boss review has eight overlapping files to reconcile against the collision and target replays. The [historical source review index](2026-11-18-fork-review-index.tsv) records 88 additional findings. It has 1,020 entries awaiting owner comparison and 939 with partial evidence.
 
+## Bulk subsystem replay and enemy review
+
+The 25-file replay at `7d34ce6cc5` combines independently validated changes on `6b080e67ab`. It restores the De Rol Le and Barba Ray tunnel curves, snapshot and segment calls, equipment list ownership and typed shop inventory, quest download text conversion, and typed player collision face indexing. The combined source and working fork reproduce the retail executable and preserve matched and source-linked code and data from upstream and the historical fork. The 133 tool overlay paths round-trip and all 11 layer tests pass.
+
+The 279-file enemy, boss and encounter review at `ac47423607` groups the 49-file collision and targeting replay and the eight-file tunnel replay with the existing combat changes. The eight collision and targeting overlaps took the review's native class names and layouts. The tunnel pass retained the standalone breakup allocator. Its earlier standalone head was `c46c0e1730`. The enemy audit also verified 5,572 exact source-linked bytes across 55 historical ranges. The two uncovered words are alignment padding.
+
+The 147-file player, quest and item review at `4321d51c98` includes the seven-file quest download text replay. Both reviews are single source commits on upstream `6b080e67ab`, reproduce retail, and retain upstream and historical matched and linked coverage.
+
+The five current review candidates cover 665 of 1,756 source diff paths by path. The remaining 1,091 include paths for shared interfaces and files already reconciled in Great Merge, which need review assignment. A path can have edits from several review groups. The next largest grouping is the window framework and its drawing callers. The stage object preflight found shared archive, texture, player/demo, particle and sound dependencies across the selected door, lobby, ambient, fence and cave files.
+
+The [source review index](2026-11-18-fork-review-index.tsv) records 24 additional findings. It has 1,013 records awaiting owner comparison and 946 with partial evidence.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
