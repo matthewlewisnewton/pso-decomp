@@ -399,6 +399,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 235-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-gate-volopt-guild-item-replay.json)
 
+## Shop stock, Mericarol, quest dialogue and character selection
+
+Source checkpoint `fc413ad485` and landing checkpoint `4d9227e2a7` carry 66 source files. The source replay restores typed shop stock and random pools, Jungle enemy resource and ground-effect ownership, quest dialogue and NPC callers, and character selection and preview requests. The source audit records 50 historical files and closes 26. The ledger has 1,430 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Shop tool and weapon stock, draw pools and sort operations, and related equipment and item list windows | 76 |
+| `great-merge/current/standalone-mericarol-and-gibbles-effects` | Mericarol variants, Gibbles ground effects, oriented projectile shadows and shared terrain sounds | 20 |
+| `great-merge/current/standalone-online-quest-transfers` | Online quest transfers, quest messages and scroll windows, and NPC dialogue dispatch | 44 |
+| `great-merge/current/character-selection-plates` | Character selection plates, scene and preview player ownership, AFS and model preview requests | 49 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 182-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-stock-mericarol-quest-selection-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
