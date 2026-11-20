@@ -103,6 +103,8 @@ The window review keeps upstream's native window and keyboard owners, including 
 
 The candidates touch 1,490 of 1,756 Great Merge diff paths. The remaining 266 unassigned paths are concentrated in player and enemy interfaces. This is a path count. Shared-file edits still need coverage and merge checks when sequencing the reviews. The door, fence and cave trial compiled all 44 changed object translation units and identified 19 ambient and lobby callers that depend on the same provider changes. The stage expansion needs those callers and matching linked symbol providers together.
 
+The 330-file legacy combat refresh at `9b9d8a9670` is an exact source donor for the remaining combat work. The full union with the current enemy review introduced 34 conflicting files and required separate player, actor, rendering and resource contracts. Keep the validated 279-file review as the current candidate and take the remaining combat changes by owning class, preserving the required declarations and their callers together.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
