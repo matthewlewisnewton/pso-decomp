@@ -919,6 +919,14 @@ The 2,114-file review queue covers 28 groups. The canonical source and working f
 
 The local BML review covers 161 files from upstream master and retains the upstream renderer spellings. BML and Ginja uploads also form a validated 179-file loading review on upstream master. The 150-file main-menu review carries the speech-balloon and native Word Select formatter changes on the existing main-menu branch. The review restores 20 upstream spellings across the enemy, collision and menu branches.
 
+## Stage-compatible loading and native subsystem recovery
+
+Source `081bc64d52` and landing checkpoint `d08a56367d` carry 23 changed files. This batch covers Chaos Bringer rush and effects, Ancient container spawn and effects, HUD warnings, timer and radar map. The audit closes 17 historical comparisons and leaves 936 open.
+
+The 2,128-file review queue covers 29 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-stage-load-and-native-replay.json)
+
+The 178-file loading review at `69ee8013f8` builds on the exact stage review tip. It resolves 59 overlapping paths and reproduces retail with the same linked coverage as both prior independent reviews.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
