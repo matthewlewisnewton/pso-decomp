@@ -1,0 +1,3044 @@
+{
+  "source": "64f113bad3359d16b2bb2404cc6e1536384b84c6",
+  "landing": "c9bebf2d29cda4ace98113632c97fce5eb18c674",
+  "working_fork_build": "16cbbf3e0d3de163ea202a1b7f8de14757ce09a3",
+  "previous_source": "33ae8206e0569c95343d6ffba50854d44e185d02",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 85,
+  "batches": {
+    "network-source-final": {
+      "head": "c6355458c8fcdcf462210891f25ec0895798a43a",
+      "files": 11,
+      "report_sha256": "4362c253d4fb211d4e1cbc2a7de2e0ba76c14bdafe0dd1414084cd0f51dce60c"
+    },
+    "menu-source": {
+      "head": "992229276e7635ecd39397e524c0fcde016ef55c",
+      "files": 60,
+      "report_sha256": "84f46aa1874a257602714e35399703abac681fd05d12fe9ea7e71025ab4e1e49"
+    },
+    "stage-source": {
+      "head": "58ead69f4358bec5dcd1169e248870d82fe01829",
+      "files": 7,
+      "report_sha256": "b9900693023e4f41601b58d4ada0d261212256c7ea6ddeb2d22d306d4d692bfe"
+    },
+    "enemy-source": {
+      "head": "e74f7b258b960d0012ec8ac481842e320527454b",
+      "files": 10,
+      "report_sha256": "257ec826c57b0b6092c760ab908900ed2dbd25926c342d6bde200d678a30b01c"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "64f113bad3359d16b2bb2404cc6e1536384b84c6",
+    "previous": "33ae8206e0569c95343d6ffba50854d44e185d02",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 2955,
+        "historical_path": "include/pso/protocol/ItemDropPacket.h",
+        "historical_blob": "57b7176727d9c42f0442eaebb5f4cc5eecd02048",
+        "owners": {
+          "include/pso/network/protocol/ItemDropPacket.h": "843d7ba610bb55b062f1ba680f1c049c3e98fea0"
+        },
+        "proofs": [
+          {
+            "group": "network-source-final",
+            "evidence": "The full original item-drop header is present at the moved network owner. An exact line comparison after the include move finds only two added request layout assertions. All original packet layout assertions and both conversion declarations are retained.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2956,
+        "historical_path": "include/pso/protocol/NetworkRuntime.h",
+        "historical_blob": "fd40540d536fc0f2473cdbd80f2e946f49f1714d",
+        "owners": {
+          "include/pso/network/NetworkRuntime.h": "0f7f3c5885ecabe94c39f73df2feaa51c6cbbf22",
+          "include/pso/network/NetworkRuntimeSlots.h": "40ae7d2774f3fc7d9b0901d1b97a664f95ea9e82",
+          "src/pso/network/NetworkThreadRuntime.c": "3c2b7ff200890f94463c1e1c673c545f569a5dbf"
+        },
+        "proofs": [
+          {
+            "group": "network-source-final",
+            "evidence": "The unsigned thread key and true OS callback boundary live in the shared runtime. The 0x328 native slot retains its thread, callback, stack size and stack address at offsets 8, 0x318, 0x31C and 0x320.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2980,
+        "historical_path": "src/pso/protocol/NetworkRuntime.cpp",
+        "historical_blob": "4124d3dc302aa78695bc87fe02761e5e34e6ea36",
+        "owners": {
+          "src/pso/network/NetworkThreadRuntime.c": "3c2b7ff200890f94463c1e1c673c545f569a5dbf",
+          "src/pso/network/NetworkRuntime.c": "76b952a36cc3bb7fb1c70562842135af90162ac4",
+          "src/pso/network/TLobby_803F86BC.c": "d068c712a20ddd49b924d2f86b42c08a3887142d"
+        },
+        "proofs": [
+          {
+            "group": "network-source-final",
+            "evidence": "The trampoline and worker allocation, setup and publication use the real native slot. All five callers use one shared callback contract. Other historical packet and string helpers remain separately scoped.",
+            "details": {
+              "native_addresses": [
+                "0x803F9B94",
+                "0x803F9C78"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2987,
+        "historical_path": "include/pso/network/NetworkDispatch.h",
+        "historical_blob": "2930196e49b539da5ca3e5f893c01595c1ec9915",
+        "owners": {
+          "include/pso/network/NetworkDispatch.h": "99e82e507f20a597e8d89143482a02749137c057",
+          "src/pso/network/NetDispatcher.c": "9b790bdf680072afb4c07f26de206ba005d0d502"
+        },
+        "proofs": [
+          {
+            "group": "network-source-final",
+            "evidence": "Named protocol and timer handles, the signed dispatcher result, and three original record offsets are restored. Legacy stack initialization retains its existing wrapper.",
+            "details": {
+              "donor": "7b90fea644"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3020,
+        "historical_path": "src/pso/network/NetworkDispatcher.cpp",
+        "historical_blob": "d83865b31a27aaf83a0df19a9ca29661c71da4f3",
+        "owners": {
+          "src/pso/network/NetDispatcher.c": "9b790bdf680072afb4c07f26de206ba005d0d502",
+          "src/pso/network/text_80421620.c": "feade17f54f8d38403639fa3ea73f5f636809147"
+        },
+        "proofs": [
+          {
+            "group": "network-source-final",
+            "evidence": "The native dispatcher thread handles and worker callback type preserve allocation, start, cancellation and release order. The timer and dispatch loops remain byte-exact.",
+            "details": {
+              "donor": "7b90fea644"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 157,
+        "historical_path": "config/GPOE8P/psov3/symbols.txt",
+        "historical_blob": "481b6e6cf8fed359e6de9efa5468ac9fa8fc81b4",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "7e37429dd102dfa525644c095a6a71060f5fe49d"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                2055,
+                20274
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 257,
+        "historical_path": "src/pso/misc/TWindowChat.cpp",
+        "historical_blob": "e3c4f7aea9f8214ca71a604f9d97b4f86372b2c4",
+        "owners": {
+          "src/pso/ui/chat/TWindowChat.cpp": "b3a072f318623226d39c1f8f915c2815566c8b5e"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                361,
+                373
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 287,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatPartsSet.cpp",
+        "historical_blob": "e4e631daf049a9f72e4cce7dea2b8a1b5fbcafe0",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp": "daae4925fb4c5a547e5a98511226d4f03a760d45"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                241,
+                242,
+                255,
+                256
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 293,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChat_80281814.cpp",
+        "historical_blob": "e3e69f1db6fdcaa218015ddfb51033c44efd7b0f",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChat.cpp": "a513b39f8db209aee8b2d0e5a9f123c115b09a58"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                141,
+                149,
+                558
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 842,
+        "historical_path": "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "historical_blob": "8760f4138328318c3ee9f70f2e4f5241d8cfbc91",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "ddc0ff67e76ca4cb30d1ee17f143993f6be6a3bd"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                1197
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 913,
+        "historical_path": "src/pso/boss/TBoss4Type1.cpp",
+        "historical_blob": "20bf52c847ff8a08b2e488cd3006a900e316f0a0",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4Type1.cpp": "2d8807e24c24dc3ef2f2d95fcd48f0b5066fd031"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                815,
+                824
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2207,
+        "historical_path": "src/pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp",
+        "historical_blob": "6b778c938dbbc635199f9e6ae5281f2dfde185de",
+        "owners": {
+          "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp": "f80af1c1ffc9fa58e6660872b1a24a72e9c12ee1"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                34,
+                75,
+                77,
+                78
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2218,
+        "historical_path": "src/pso/misc/TChCrTagPlGraphic.cpp",
+        "historical_blob": "00a2e00dff340f3f8a261f2e02f2e2afa3f116e0",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp": "b4d2ebf99f28ad33c9c9c5d6c3d4edf6d814dc48"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                37,
+                129
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2275,
+        "historical_path": "src/pso/ui/TAdChrSelBSlotGC_8030E354.cpp",
+        "historical_blob": "aefb94799e0b1a05c516183214f52d074c57233b",
+        "owners": {
+          "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp": "d8972b26624a5267e903a7dd8f8eeb66b850a2d6"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                66,
+                134,
+                135,
+                136,
+                137
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2350,
+        "historical_path": "src/pso/ui/TAdChrSelPlyPlateGC.cpp",
+        "historical_blob": "110d1ee77a90dbac04157a7372bd99713036b2c9",
+        "owners": {
+          "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp": "42e4b67a523f2ccd8dfd7f5015db548a385478b1"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                108,
+                213,
+                725,
+                749
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2397,
+        "historical_path": "src/pso/object/TObjCMName.cpp",
+        "historical_blob": "34a30cd0a894e4fa7081cc54a8c5a9fb280c13df",
+        "owners": {
+          "src/pso/ui/charcreate/TObjCMName.cpp": "ea01941cc025cfa5118be52b54ba352c1f939a0c"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                2027
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2409,
+        "historical_path": "src/pso/ui/TAdSelectTxtSubGC.cpp",
+        "historical_blob": "a076d85197588a6f495b223d5ee9574a032599ff",
+        "owners": {
+          "src/pso/ui/frontend/TAdSelectTxtSubGC.cpp": "510711de4165fd6554f1d391554e33003cc7b337"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                89
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2428,
+        "historical_path": "src/pso/menu/TAdTimeSetGC.cpp",
+        "historical_blob": "fdf4fafefe6342816638637d0d73a97eb1dc897c",
+        "owners": {
+          "src/pso/ui/frontend/TAdTimeSetGC.cpp": "1a9c229c32cc19d1716d15d67750fb2daea6ea04"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                226
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2438,
+        "historical_path": "src/pso/ui/TAdChrSelASlotGC.cpp",
+        "historical_blob": "43ad9084df6070c05ae1847544973cd6a2ae8b79",
+        "owners": {
+          "src/pso/ui/frontend/TAdChrSelASlotGC.cpp": "c9502b30dbd8570b4348a656953318676d145f1c"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                100,
+                109,
+                112,
+                128,
+                131,
+                147,
+                150,
+                168,
+                171,
+                186,
+                189,
+                244,
+                247,
+                329,
+                330,
+                331,
+                332,
+                335,
+                336,
+                337,
+                338,
+                339,
+                340,
+                341,
+                346,
+                347,
+                348
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2497,
+        "historical_path": "src/pso/unk/text_802AEBA8.cpp",
+        "historical_blob": "5070bc20b444d8451ff30ee0d0d70de3615de138",
+        "owners": {
+          "src/pso/ui/TLevelSelect_802AEBA8.cpp": "b666b00bd2935aba99a3d34cad1c51b546a367d9"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                40
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2526,
+        "historical_path": "src/pso/ui/TAdChrMoveEffectGC.cpp",
+        "historical_blob": "731a0b124643a0dc4c629b8474885dc05b8b135e",
+        "owners": {
+          "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp": "854d7071d8e531e75b0ec9082fb1103f13cd4852"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                60,
+                124,
+                144,
+                145,
+                148,
+                203,
+                220
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2587,
+        "historical_path": "src/pso/ui/TAdYesNoBaseGC.cpp",
+        "historical_blob": "e764179807d9eb7d35b27c98955e5b0d3cedaf9f",
+        "owners": {
+          "src/pso/ui/frontend/TAdYesNoBaseGC.cpp": "bfc9b078775dd69f0e72a1bbd2fcf7b1f4443ee8"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                52,
+                74,
+                75
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5107,
+        "historical_path": "src/pso/misc/TLobby_801E2F94.cpp",
+        "historical_blob": "f99f52713bae7e58b4a688bdea43e58d5afa3fb4",
+        "owners": {
+          "src/pso/unk/TLobby_801E2F94.cpp": "3de151516c4c4767bece522ae329d998d5a9b890"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                279,
+                280
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5526,
+        "historical_path": "src/pso/misc/TWindowArea.cpp",
+        "historical_blob": "0f4990209286f1080e14026e55f8ca244b8b1135",
+        "owners": {
+          "src/pso/ui/window/TWindowArea.cpp": "02b7e4bc14003d2b8f8d35c8aa35461f9c4c93cf"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                6,
+                22
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5528,
+        "historical_path": "src/pso/misc/TWindowCallBack.cpp",
+        "historical_blob": "49d93a733a02f0b81b62f2af1064801e445f14d0",
+        "owners": {
+          "src/pso/ui/window/TWindowCallBack.cpp": "7f611cc667ab9143f166c781adf79fa6306ba26a"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                45
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5544,
+        "historical_path": "src/pso/misc/TWindowDD_80341334.cpp",
+        "historical_blob": "7ae0e948114b8effc9a2d276936f2993e58ef5dd",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80341334.cpp": "8d8ade2ed1f428eb4513bea22f1e4885ecd9a75f"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                23,
+                36,
+                37
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5549,
+        "historical_path": "src/pso/misc/TWindowEffectLight.cpp",
+        "historical_blob": "3367459f88b91fa7873ba32f0952e5248ec4b8dc",
+        "owners": {
+          "src/pso/ui/window/TWindowEffectLight.cpp": "bb4b69fc83227de92381bef9ee15e1b3e622a7a8"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                57,
+                70
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5551,
+        "historical_path": "src/pso/misc/TWindowHelpItem_80255AB4.cpp",
+        "historical_blob": "708f2977d5d966c2573080731db2a5eba513932f",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp": "6094e413f5325612a177e8be7be8327a771dde80"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                27,
+                88
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5555,
+        "historical_path": "src/pso/misc/TWindowMainMenu_802AD538.cpp",
+        "historical_blob": "c0c7b5e5470264c1ac642d9336679b9be173a0db",
+        "owners": {
+          "src/pso/ui/window/TWindowMainMenu_802AD538.cpp": "04ee96c782260982f922b94adf84bb06a808e42d"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                29,
+                101,
+                106,
+                107
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5592,
+        "historical_path": "src/pso/misc/TWindowTimer.cpp",
+        "historical_blob": "7aa4ea9dd578d8f15c1c198b78f114895d212937",
+        "owners": {
+          "src/pso/ui/window/TWindowTimer.cpp": "81b9aeb450e8ffd6ad6af878d652348cd259ba7f"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                44
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5732,
+        "historical_path": "src/pso/misc/TWindowHelpItem_8025A60C.cpp",
+        "historical_blob": "b0324fcad409a85903a1a9cfe63d06b2709c66a9",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp": "9bb7e94bc5d142ce11ca38f816b9ec59bdcff57e"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                139
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5757,
+        "historical_path": "include/pso/misc/TWindowSubComCard_80244774.h",
+        "historical_blob": "a6c3e1fe4366eb39a6b6be677ec4ccdc99612f3f",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5a37128ea277df11eeeb6e009ec6fb2faf6f573b"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                12,
+                17,
+                18
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5773,
+        "historical_path": "src/pso/misc/TWindowSubCustomEquip.cpp",
+        "historical_blob": "f9050b3101f40dbb87f5dbb3bb7b180d2c3b6ddf",
+        "owners": {
+          "src/pso/ui/window/TWindowSubCustomEquip.cpp": "d0eee4d93c19ee4246bacc4737b78ec454aa1589"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                98,
+                99
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5787,
+        "historical_path": "src/pso/misc/TWindowDD_803411E8.cpp",
+        "historical_blob": "1cce9d546eca745d21ab06f25f3fd13f77f34ea8",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80341334.cpp": "8d8ade2ed1f428eb4513bea22f1e4885ecd9a75f"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                13,
+                21
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5790,
+        "historical_path": "src/pso/misc/TWindowSubMagPhoton.cpp",
+        "historical_blob": "f42101a1c5370ee0b22badf0dd2281cd4a92eb24",
+        "owners": {
+          "src/pso/ui/window/TWindowSubMagPhoton.cpp": "115cb947900477da6857eaccd4e80d3261d5218b"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                148
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5797,
+        "historical_path": "src/pso/misc/TWindowHelpItem_8025A12C.cpp",
+        "historical_blob": "07014e9685c5aa4486ae8a50eb49dec1f668cbee",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_8025A12C.cpp": "ab6cc4e8e4a4806a323ad3af5fb3028e313f6354"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                198
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5820,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_8025B050.cpp",
+        "historical_blob": "c8eaac7cd144e4e2ec891d505393c5ee193314c4",
+        "owners": {
+          "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp": "94b700e6c7d0c6f03f154cc6f0b3d27cda7c7c63"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                143,
+                144,
+                160,
+                161
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5829,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+        "historical_blob": "9eb07b0b38d68ed03fa2323258d803d9d4df08c4",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5a37128ea277df11eeeb6e009ec6fb2faf6f573b"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                137,
+                142,
+                143,
+                144,
+                203,
+                204,
+                208,
+                210,
+                211,
+                214,
+                216,
+                217,
+                382,
+                383
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5920,
+        "historical_path": "src/pso/misc/TWindowSubMag.cpp",
+        "historical_blob": "b14491810ea47ad0e8688ec520acc6218494f5d0",
+        "owners": {
+          "src/pso/ui/window/TWindowSubMag.cpp": "575e398772e7ea96b83d0880d266c3455dd595f4"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                217
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5941,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80271E7C.cpp",
+        "historical_blob": "9ca0d5928dfb04eb206742d708874c9f6ebf58cf",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp": "83316dcf10089db41c5b50b412bf5cdfbbbf015c"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                688,
+                1045
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5967,
+        "historical_path": "src/pso/misc/TWindowSubTradeMain_80330A84.cpp",
+        "historical_blob": "1d2ca0d54408891cd8f52e9e5e65b10faa14f204",
+        "owners": {
+          "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp": "e3369b2af91666468547ff31a3e2cda75685e1a4"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                64,
+                114
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5973,
+        "historical_path": "src/pso/misc/TWindowDD_8034725C.cpp",
+        "historical_blob": "c9a10f4d247431e984093f6157421efc745c4720",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_8034725C.cpp": "21300f362a107ce20ad3cbd86c0162235d1b534d"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Verified two-float provider, callers and their original window/position arguments. Other authored changes in the same file retain their existing ledger state.",
+            "details": {
+              "historical_lines": [
+                542
+              ],
+              "provider": {
+                "file": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+                "address": "0x80052EA0",
+                "size": "0x14",
+                "semantics": "One f32 load/store at offset 0, then one at +4. Preserve retail ordering and overlapping pair behavior.",
+                "expected_instruction_bytes": [
+                  "c0040000",
+                  "d0030000",
+                  "c0040004",
+                  "d0030004",
+                  "4e800020"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 936,
+        "historical_path": "src/pso/enemy/TObjEneMe3Stelth_802D70AC.cpp",
+        "historical_blob": "6e23e842538c74045ef6bc2a1b79f911a8d223d4",
+        "owners": {
+          "src/pso/npc/TObjNpcEnemy.cpp": "6efa102ac88a1bf0ff87582813e6cd416ca63e2f",
+          "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": "d5281d7dd92689985340f728643b1be4242b7df4"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "The one original authored hunk replaced the raw NPC motion copy with assignment of the real NpcAnimationBinding. Both lanes now use that operator at 0x802D712C for the typed registry at 0x802D70AC. Original model, texture, radius, offset, action ordering and kind 3 are unchanged.",
+            "details": {
+              "native_contract": {
+                "address": "0x802D70AC",
+                "render_kind": 3,
+                "npc_slot_size": "0x24",
+                "animation_fields_offset": "0x14",
+                "animation_size": "0x10",
+                "binding_fields_copied_bytes": "0x0E",
+                "calls": [
+                  {
+                    "slot": "0x2B",
+                    "owner": "Stelth",
+                    "default_action": 9,
+                    "mode2_action": 10,
+                    "debug_limit": 13
+                  },
+                  {
+                    "slot": "0x2D",
+                    "owner": "Stelth alternate",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 13
+                  },
+                  {
+                    "slot": "0x38",
+                    "owner": "Mine Dragonfly",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 1
+                  },
+                  {
+                    "slot": "0x3B",
+                    "owner": "Ancient container",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 3
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6678,
+        "historical_path": "src/pso/npc/TObjNpcEnemy_802D7070.cpp",
+        "historical_blob": "b4243986ebbb6ae7a6a0fb7bb2d4e39ca0a425a5",
+        "owners": {
+          "src/pso/npc/TObjNpcEnemy.cpp": "6efa102ac88a1bf0ff87582813e6cd416ca63e2f",
+          "include/pso/npc/NpcAnimationBinding.h": "def65964ea6650d086dc0ecd5bfe56a6b98e2829"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "The sole authored function migrates a fake enemy receiver to the actual 0x24 NPC slot owner. Canonical's NpcModelEntry and standalone's TObjNpcEnemyEntry both own exact reset at 0x802D7070. The same sorted insertion gap and all 16 resets call it, with the original kind 4, words, and signed shorts. Standalone retains its integer model/texture storage for existing render kinds.",
+            "details": {
+              "native_contract": {
+                "address": "0x802D70AC",
+                "render_kind": 3,
+                "npc_slot_size": "0x24",
+                "animation_fields_offset": "0x14",
+                "animation_size": "0x10",
+                "binding_fields_copied_bytes": "0x0E",
+                "calls": [
+                  {
+                    "slot": "0x2B",
+                    "owner": "Stelth",
+                    "default_action": 9,
+                    "mode2_action": 10,
+                    "debug_limit": 13
+                  },
+                  {
+                    "slot": "0x2D",
+                    "owner": "Stelth alternate",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 13
+                  },
+                  {
+                    "slot": "0x38",
+                    "owner": "Mine Dragonfly",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 1
+                  },
+                  {
+                    "slot": "0x3B",
+                    "owner": "Ancient container",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 3
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7208,
+        "historical_path": "src/pso/misc/TContainerAncient01.cpp",
+        "historical_blob": "1e629b7adfd8fe35e5d39a5dcd0f17e9dc4ec307",
+        "owners": {
+          "src/pso/object/container/TContainerAncient01.cpp": "a8dc1b822574e37fa6f43e3ed8a0e30b16605455"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "Kind-5 normal and special floor descriptors preserve effect pairs 0x45/0x46 and 0x230/0x231. Ordinary object owns its archive and mapped motion/model slots 0/1, rare owner borrows precisely the same archive and clears just its reference. Both constructor motion lists use actual BmlResource::motions at +0x430. Slot 0x3B receives live model/texture and three native action records. Existing vtable, rendering, pickup, combat and legacy source split dispositions remain scoped.",
+            "details": {
+              "native_contract": {
+                "address": "0x802D70AC",
+                "render_kind": 3,
+                "npc_slot_size": "0x24",
+                "animation_fields_offset": "0x14",
+                "animation_size": "0x10",
+                "binding_fields_copied_bytes": "0x0E",
+                "calls": [
+                  {
+                    "slot": "0x2B",
+                    "owner": "Stelth",
+                    "default_action": 9,
+                    "mode2_action": 10,
+                    "debug_limit": 13
+                  },
+                  {
+                    "slot": "0x2D",
+                    "owner": "Stelth alternate",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 13
+                  },
+                  {
+                    "slot": "0x38",
+                    "owner": "Mine Dragonfly",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 1
+                  },
+                  {
+                    "slot": "0x3B",
+                    "owner": "Ancient container",
+                    "default_action": 0,
+                    "mode2_action": 0,
+                    "debug_limit": 3
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 562,
+        "historical_path": "src/pso/enemy/SinowZoaConstants.cpp",
+        "historical_blob": "792ab121b42186aff0ad7244bc008b70fbac3bb3",
+        "owners": {
+          "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": "674d663707160c813d80e03f249aa945b31fddec"
+        },
+        "proofs": [
+          {
+            "group": "enemy-source",
+            "evidence": "All ten authored scalar values are present at their exact original 40-byte address window inside the current linked Sinow Zoa source unit. No padding or unmatched bytes are in that interval. The current upstream-shaped owning unit keeps the historical C++ content without duplicating its standalone data file.",
+            "details": {
+              "placement": {
+                "shared_copy": "0x800E80A4 exact 0x1C. Interleaved field load/store code needs the local Metrowerks scheduling directive. Unscheduled aggregate copy called an implicit assignment helper, and scheduled explicit fields reordered register usage. Caller instructions remained exact.",
+                "alternate_texture_owners": {
+                  "Shinowa Mirage": "0x80500FEC",
+                  "Sinow Zoa": "0x80542FDC",
+                  "Stelth": "0x8050110C"
+                },
+                "stelth_archive_descriptors": [
+                  "0x80497748",
+                  "0x80497790"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 778,
+        "historical_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+        "historical_blob": "8697ef118f28d96e1d89e81ce84938ab05cb452b",
+        "owners": {
+          "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": "a8ae691600ddabfb2281a9980150cddc860813fe"
+        },
+        "proofs": [
+          {
+            "group": "enemy-source",
+            "evidence": "All six historically authored Shinowa shared resource slots at 0x805D5298\u20130x805D52B0 were already present and source-linked. The new exact closure types the loaded/alternate Ginja entry lifetime, episode variant reverse texture slot direction, borrowed texture restore and real copy provider. Other authored behavior and attack source in this row remains pending.",
+            "details": {
+              "placement": {
+                "shared_copy": "0x800E80A4 exact 0x1C. Interleaved field load/store code needs the local Metrowerks scheduling directive. Unscheduled aggregate copy called an implicit assignment helper, and scheduled explicit fields reordered register usage. Caller instructions remained exact.",
+                "alternate_texture_owners": {
+                  "Shinowa Mirage": "0x80500FEC",
+                  "Sinow Zoa": "0x80542FDC",
+                  "Stelth": "0x8050110C"
+                },
+                "stelth_archive_descriptors": [
+                  "0x80497748",
+                  "0x80497790"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 814,
+        "historical_path": "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+        "historical_blob": "0a55041069ef21a8bf06622fa2696c59f98f24f2",
+        "owners": {
+          "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": "674d663707160c813d80e03f249aa945b31fddec"
+        },
+        "proofs": [
+          {
+            "group": "enemy-source",
+            "evidence": "Sinow Zoa alternate list at 0x80542FDC owns copied entries, swaps original slots 0\u20132 from 3\u20135, and uses typed entry pointers for both appearance variants and render restore. Thirteen behavior, model and callback concerns are not implied by this restricted closure.",
+            "details": {
+              "placement": {
+                "shared_copy": "0x800E80A4 exact 0x1C. Interleaved field load/store code needs the local Metrowerks scheduling directive. Unscheduled aggregate copy called an implicit assignment helper, and scheduled explicit fields reordered register usage. Caller instructions remained exact.",
+                "alternate_texture_owners": {
+                  "Shinowa Mirage": "0x80500FEC",
+                  "Sinow Zoa": "0x80542FDC",
+                  "Stelth": "0x8050110C"
+                },
+                "stelth_archive_descriptors": [
+                  "0x80497748",
+                  "0x80497790"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 958,
+        "historical_path": "src/pso/enemy/TObjEneMe3Stelth.cpp",
+        "historical_blob": "ab4dd2ee99897a7552865162aa5b20c1cbdc35d9",
+        "owners": {
+          "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": "d5281d7dd92689985340f728643b1be4242b7df4"
+        },
+        "proofs": [
+          {
+            "group": "enemy-source",
+            "evidence": "Stelth\u2019s two typed archive descriptors preserve both named archive modes, single model and eleven motions, all original string addresses and null sentinels, and explicit material color window after each polygon header. Loaded texture owner cloning, slot replacement and restore are typed. The independent kind-3 animated registry caller bodies remain in their original scope.",
+            "details": {
+              "placement": {
+                "shared_copy": "0x800E80A4 exact 0x1C. Interleaved field load/store code needs the local Metrowerks scheduling directive. Unscheduled aggregate copy called an implicit assignment helper, and scheduled explicit fields reordered register usage. Caller instructions remained exact.",
+                "alternate_texture_owners": {
+                  "Shinowa Mirage": "0x80500FEC",
+                  "Sinow Zoa": "0x80542FDC",
+                  "Stelth": "0x8050110C"
+                },
+                "stelth_archive_descriptors": [
+                  "0x80497748",
+                  "0x80497790"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      562,
+      936,
+      2955,
+      6678
+    ],
+    "remaining": {
+      "Owner comparison required": 374,
+      "Some anchored text changes found": 791
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-network-thread-dispatch": {
+      "head": "cb7d37f5a25dfec5bac94452f5b8237a893b819b",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Native network thread pool, SDK callback lifetime and all five dispatcher and transport workers",
+      "files": 11,
+      "source_paths": [
+        "include/pso/network/NetworkDispatch.h",
+        "include/pso/network/NetworkRuntime.h",
+        "include/pso/network/NetworkRuntimeSlots.h",
+        "include/pso/network/TLobby_803F86BC.h",
+        "src/pso/network/NetDispatcher.c",
+        "src/pso/network/NetworkMessageTransport.c",
+        "src/pso/network/NetworkRuntime.c",
+        "src/pso/network/NetworkThreadRuntime.c",
+        "src/pso/network/NetworkTransport.c",
+        "src/pso/network/TLobby_803F86BC.c",
+        "src/pso/network/text_80421620.c"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+      "check_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9",
+      "previous": null
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "f23685be031d693e5e2a68dba087eec3be145fdd",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Equipment and item windows plus the shared two-float copy provider and callers",
+      "files": 406,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "configure.py",
+        "include/pso/enemy/morfos/TWindowSubTradeMain.h",
+        "include/pso/item/shop/ShopPool.h",
+        "include/pso/item/shop/ShopStock.h",
+        "include/pso/item/shop/ShopWeaponStock.h",
+        "include/pso/math/CopyTwoFloats.h",
+        "include/pso/player/GuildCardEntry.h",
+        "include/pso/player/PlayerActionPaletteState.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_801BF6B0.h",
+        "include/pso/player/TPlyGuildCardTag_8007B7EC.h",
+        "include/pso/system/memory.h",
+        "include/pso/ui/ItemListRow.h",
+        "include/pso/ui/chat/ShortMail.h",
+        "include/pso/ui/chat/SymbolChatPreset.h",
+        "include/pso/ui/chat/TWindowChat.h",
+        "include/pso/ui/chat/TWindowChatSymbol.h",
+        "include/pso/ui/chat/TWindowChatSymbol_802486A8.h",
+        "include/pso/ui/chat/TWindowSubShortMail.h",
+        "include/pso/ui/chat/TWindowSubSymbolChat.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatHelp.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h",
+        "include/pso/ui/chat/TWindowSubSymbolChat_80076F88.h",
+        "include/pso/ui/city/TCheckRoomSequence.h",
+        "include/pso/ui/city/THunterGuildSeqOffline.h",
+        "include/pso/ui/city/THunterGuildSeqOffline_80213788.h",
+        "include/pso/ui/city/THunterGuildWarning.h",
+        "include/pso/ui/city/TShopDeleteItemWindow.h",
+        "include/pso/ui/city/TShopEquipmentSellWindow.h",
+        "include/pso/ui/city/TShopGetItemWindow.h",
+        "include/pso/ui/city/TShopKeepItemWindow.h",
+        "include/pso/ui/city/TShopWindowBase.h",
+        "include/pso/ui/font/SmallFontDrawing.h",
+        "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+        "include/pso/ui/frontend/TAdScrollWinGC.h",
+        "include/pso/ui/frontend/TAdScrollWinGC_8026A5F8.h",
+        "include/pso/ui/frontend/TAdVIConfigGC.h",
+        "include/pso/ui/hud/TMainCursor.h",
+        "include/pso/ui/hud/TMainCursor_8013E624.h",
+        "include/pso/ui/keyboard/TKeyBoardControl.h",
+        "include/pso/ui/window/ActionPaletteTag.h",
+        "include/pso/ui/window/ChatLogHistory.h",
+        "include/pso/ui/window/PageIndicator.h",
+        "include/pso/ui/window/TUnk_804CF0B8.h",
+        "include/pso/ui/window/TUnk_804D0658.h",
+        "include/pso/ui/window/TWindowActionPalette.h",
+        "include/pso/ui/window/TWindowActionPalette_801C1890.h",
+        "include/pso/ui/window/TWindowBase.h",
+        "include/pso/ui/window/TWindowCtrl.h",
+        "include/pso/ui/window/TWindowCtrl_8026AD44.h",
+        "include/pso/ui/window/TWindowDD.h",
+        "include/pso/ui/window/TWindowDD_WS_Word.h",
+        "include/pso/ui/window/TWindowDeposit.h",
+        "include/pso/ui/window/TWindowGetComCard.h",
+        "include/pso/ui/window/TWindowGetComCard_8007B54C.h",
+        "include/pso/ui/window/TWindowHelpItem.h",
+        "include/pso/ui/window/TWindowHelpItem_8025A12C.h",
+        "include/pso/ui/window/TWindowHelpItem_8025A60C.h",
+        "include/pso/ui/window/TWindowInputNumber.h",
+        "include/pso/ui/window/TWindowKeyBoardBase.h",
+        "include/pso/ui/window/TWindowKeyBoardSoft.h",
+        "include/pso/ui/window/TWindowMainMenu.h",
+        "include/pso/ui/window/TWindowMainMenu1P.h",
+        "include/pso/ui/window/TWindowMainMenu4P.h",
+        "include/pso/ui/window/TWindowMainMenu_802AD538.h",
+        "include/pso/ui/window/TWindowMakeTeam.h",
+        "include/pso/ui/window/TWindowMenu.h",
+        "include/pso/ui/window/TWindowMenuIconLine.h",
+        "include/pso/ui/window/TWindowMenuMainMenu.h",
+        "include/pso/ui/window/TWindowMessage.h",
+        "include/pso/ui/window/TWindowMessageLog.h",
+        "include/pso/ui/window/TWindowMessageLog_8026AA38.h",
+        "include/pso/ui/window/TWindowMessageYesNo.h",
+        "include/pso/ui/window/TWindowShortCut.h",
+        "include/pso/ui/window/TWindowSimpleStatus.h",
+        "include/pso/ui/window/TWindowStatus.h",
+        "include/pso/ui/window/TWindowSubComCard.h",
+        "include/pso/ui/window/TWindowSubComCardList.h",
+        "include/pso/ui/window/TWindowSubComCard_80244774.h",
+        "include/pso/ui/window/TWindowSubComCard_80265410.h",
+        "include/pso/ui/window/TWindowSubCustomEquip.h",
+        "include/pso/ui/window/TWindowSubCustomSelect.h",
+        "include/pso/ui/window/TWindowSubEquip.h",
+        "include/pso/ui/window/TWindowSubEquipKind.h",
+        "include/pso/ui/window/TWindowSubEquipList.h",
+        "include/pso/ui/window/TWindowSubEquip_80277E48.h",
+        "include/pso/ui/window/TWindowSubItem.h",
+        "include/pso/ui/window/TWindowSubItemList.h",
+        "include/pso/ui/window/TWindowSubLog.h",
+        "include/pso/ui/window/TWindowSubMag.h",
+        "include/pso/ui/window/TWindowSubMagPhoton.h",
+        "include/pso/ui/window/TWindowSubShortCut.h",
+        "include/pso/ui/window/TWindowSubShortCutList.h",
+        "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_80248BE8.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_802598E4.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_8025995C.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_8025B4A0.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_802671F0.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_8026F6DC.h",
+        "include/pso/ui/window/TWindowSubTrade.h",
+        "include/pso/ui/window/TWindowSubTradeMain_80330A84.h",
+        "include/pso/ui/window/TWindowSubTradeMessage.h",
+        "include/pso/ui/window/TWindowTradeRequest.h",
+        "include/pso/ui/window/TWindowUserSort.h",
+        "include/pso/ui/window/TextEntryMeasurement.h",
+        "include/pso/ui/window/WindowConfirmationMenu.h",
+        "include/pso/ui/window/WindowEntryRendering.h",
+        "include/pso/ui/window/WindowLabelValue.h",
+        "include/pso/ui/window/WindowLayout.h",
+        "include/pso/ui/window/WindowLayoutEntries.h",
+        "include/pso/ui/window/WindowMenuRows.h",
+        "include/pso/ui/window/WindowSpritePart.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_802230F8.h",
+        "include/pso/unk/TUnk_804CF918.h",
+        "include/pso/unk/TUnk_804CF930.h",
+        "include/pso/unk/TUnk_804CF948.h",
+        "include/pso/unk/TUnk_804CFA28.h",
+        "include/pso/unk/WindowLayoutRecord.h",
+        "include/pso/unk/text_8020EEFC.h",
+        "include/pso/unk/text_8026A93C.h",
+        "include/pso/unk/text_8026C7AC.h",
+        "include/pso/unk/text_80278460.h",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/item/shop/ShopToolStock.cpp",
+        "src/pso/item/shop/ShopWeaponStock.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/object/TObjLuker.cpp",
+        "src/pso/object/ending/TObjOnlineEndingHexLine.cpp",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/object/warp/TObjWarpLobby.cpp",
+        "src/pso/player/TObjPlayer.cpp",
+        "src/pso/player/TObjPlayer_80083594.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801D2E20.cpp",
+        "src/pso/player/TObjPlayer_802790CC.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/player/TPlyGuildCardTag_8007B7EC.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/TQuestListChallenge.cpp",
+        "src/pso/quest/TQuestListOffline.cpp",
+        "src/pso/quest/TQuestListOnline.cpp",
+        "src/pso/quest/TQuestListVM.cpp",
+        "src/pso/quest/TQuestThread.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer.cpp",
+        "src/pso/system/TLanguage_80132A5C.cpp",
+        "src/pso/system/data/pso_const_ids4.cpp",
+        "src/pso/system/save/TCheckMemoryCard.cpp",
+        "src/pso/ui/TLevelSelect_802AEBA8.cpp",
+        "src/pso/ui/UISprite.cpp",
+        "src/pso/ui/charcreate/TChCrEffCtrlPl_80339658.cpp",
+        "src/pso/ui/charcreate/TChCrEffFade.cpp",
+        "src/pso/ui/charcreate/TChCrEffTagStr.cpp",
+        "src/pso/ui/charcreate/TChCrTagName.cpp",
+        "src/pso/ui/charcreate/TChCrTagPlBack.cpp",
+        "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp",
+        "src/pso/ui/charcreate/TObjCMHexTile.cpp",
+        "src/pso/ui/charcreate/TObjCMIcon_80299488.cpp",
+        "src/pso/ui/charcreate/TObjCMName.cpp",
+        "src/pso/ui/chat/ShortMail.cpp",
+        "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+        "src/pso/ui/chat/TWindowChat.cpp",
+        "src/pso/ui/chat/TWindowChatSymbol.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_802A571C.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_802838C4.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80283954.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_8013AD28.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80211614.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80222FC0.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80248A14.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+        "src/pso/ui/city/THunterGuildWarning.cpp",
+        "src/pso/ui/city/TMedicalCenterSequence.cpp",
+        "src/pso/ui/city/TShopArmorListWindow.cpp",
+        "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+        "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow_802115F4.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow_803094E8.cpp",
+        "src/pso/ui/city/TShopEquipmentSequence.cpp",
+        "src/pso/ui/city/TShopGetItemWindow.cpp",
+        "src/pso/ui/city/TShopItemListWindow.cpp",
+        "src/pso/ui/city/TShopItemTecSequence.cpp",
+        "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+        "src/pso/ui/city/TShopKeepItemWindow.cpp",
+        "src/pso/ui/font/TFontSmallHelp.cpp",
+        "src/pso/ui/font/TFontSmallTask.cpp",
+        "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdGameStartGC.cpp",
+        "src/pso/ui/frontend/TAdGameStartShineGC.cpp",
+        "src/pso/ui/frontend/TAdGuideButtonGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802D50A0.cpp",
+        "src/pso/ui/frontend/TAdMultiSaveGC.cpp",
+        "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+        "src/pso/ui/frontend/TAdPlyPltAnimCtrlGC.cpp",
+        "src/pso/ui/frontend/TAdScrollWinGC.cpp",
+        "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+        "src/pso/ui/frontend/TAdSelectTxtGC.cpp",
+        "src/pso/ui/frontend/TAdSelectTxtSubGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+        "src/pso/ui/frontend/TAdSubPlyItemGC_802D6BEC.cpp",
+        "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC_80248B8C.cpp",
+        "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+        "src/pso/ui/hud/TMainCursor.cpp",
+        "src/pso/ui/hud/TMainCursor_801D7AC8.cpp",
+        "src/pso/ui/window/TObjBagWarnWin.cpp",
+        "src/pso/ui/window/TWindowActionPalette.cpp",
+        "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+        "src/pso/ui/window/TWindowArea.cpp",
+        "src/pso/ui/window/TWindowBreakIn.cpp",
+        "src/pso/ui/window/TWindowCallBack.cpp",
+        "src/pso/ui/window/TWindowChallengeResult.cpp",
+        "src/pso/ui/window/TWindowChoiceSetting.cpp",
+        "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+        "src/pso/ui/window/TWindowComCard.cpp",
+        "src/pso/ui/window/TWindowCtrl.cpp",
+        "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024B558.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024C6CC.cpp",
+        "src/pso/ui/window/TWindowCtrl_8026AD44.cpp",
+        "src/pso/ui/window/TWindowDD_80246F8C.cpp",
+        "src/pso/ui/window/TWindowDD_8034055C.cpp",
+        "src/pso/ui/window/TWindowDD_80341334.cpp",
+        "src/pso/ui/window/TWindowDD_80341A08.cpp",
+        "src/pso/ui/window/TWindowDD_80342E40.cpp",
+        "src/pso/ui/window/TWindowDD_8034725C.cpp",
+        "src/pso/ui/window/TWindowDeposit.cpp",
+        "src/pso/ui/window/TWindowDuelResult.cpp",
+        "src/pso/ui/window/TWindowEffectLight.cpp",
+        "src/pso/ui/window/TWindowEffectParty.cpp",
+        "src/pso/ui/window/TWindowFukidasi.cpp",
+        "src/pso/ui/window/TWindowGetComCard.cpp",
+        "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp",
+        "src/pso/ui/window/TWindowHelpItem.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802530D0.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80253154.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802531A0.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80253630.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+        "src/pso/ui/window/TWindowHelpItem_8025A12C.cpp",
+        "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+        "src/pso/ui/window/TWindowInputNumber.cpp",
+        "src/pso/ui/window/TWindowInputNumber_802115F4.cpp",
+        "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+        "src/pso/ui/window/TWindowLoadItemTexture.cpp",
+        "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+        "src/pso/ui/window/TWindowMainMenu.cpp",
+        "src/pso/ui/window/TWindowMainMenu4P.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AE928.cpp",
+        "src/pso/ui/window/TWindowMakeTeam.cpp",
+        "src/pso/ui/window/TWindowMenuIconLine.cpp",
+        "src/pso/ui/window/TWindowMenuMainMenu.cpp",
+        "src/pso/ui/window/TWindowMenu_8013AD28.cpp",
+        "src/pso/ui/window/TWindowMeseta.cpp",
+        "src/pso/ui/window/TWindowMessage.cpp",
+        "src/pso/ui/window/TWindowMessageInfomation.cpp",
+        "src/pso/ui/window/TWindowMessageLog.cpp",
+        "src/pso/ui/window/TWindowMessageLog_8026A360.cpp",
+        "src/pso/ui/window/TWindowMessagePage.cpp",
+        "src/pso/ui/window/TWindowMessageQuest.cpp",
+        "src/pso/ui/window/TWindowMessageScroll.cpp",
+        "src/pso/ui/window/TWindowMessageYesNo.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl.cpp",
+        "src/pso/ui/window/TWindowPartyStatus.cpp",
+        "src/pso/ui/window/TWindowQuantity.cpp",
+        "src/pso/ui/window/TWindowReturnCity.cpp",
+        "src/pso/ui/window/TWindowRoom.cpp",
+        "src/pso/ui/window/TWindowShop.cpp",
+        "src/pso/ui/window/TWindowShortCut.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSimpleStatus.cpp",
+        "src/pso/ui/window/TWindowSnapShot.cpp",
+        "src/pso/ui/window/TWindowSoundBalance.cpp",
+        "src/pso/ui/window/TWindowStatus.cpp",
+        "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+        "src/pso/ui/window/TWindowSubComCard.cpp",
+        "src/pso/ui/window/TWindowSubComCardList.cpp",
+        "src/pso/ui/window/TWindowSubComCardList_802752D8.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007A810.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007B6D8.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007BD24.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80268494.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80269064.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "src/pso/ui/window/TWindowSubComCard_802A559C.cpp",
+        "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+        "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+        "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+        "src/pso/ui/window/TWindowSubEquip.cpp",
+        "src/pso/ui/window/TWindowSubEquipKind.cpp",
+        "src/pso/ui/window/TWindowSubEquipList.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80279044.cpp",
+        "src/pso/ui/window/TWindowSubGameEnd.cpp",
+        "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubItemList.cpp",
+        "src/pso/ui/window/TWindowSubLog.cpp",
+        "src/pso/ui/window/TWindowSubMag.cpp",
+        "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+        "src/pso/ui/window/TWindowSubMag_802559F8.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+        "src/pso/ui/window/TWindowSubShortCut.cpp",
+        "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "src/pso/ui/window/TWindowSubShortCut_80246FB0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_800FBD74.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80228C30.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80249060.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8024F688.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025B4A0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80268738.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80288030.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+        "src/pso/ui/window/TWindowSubTechnique.cpp",
+        "src/pso/ui/window/TWindowSubTrade.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+        "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+        "src/pso/ui/window/TWindowTimer.cpp",
+        "src/pso/ui/window/TWindowTradeRequest_802E0170.cpp",
+        "src/pso/ui/window/TWindowUserSort.cpp",
+        "src/pso/ui/window/TextEntryMeasurement.cpp",
+        "src/pso/unk/TLobby_8001D6A0.cpp",
+        "src/pso/unk/TLobby_80070A00.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_8007B858.cpp",
+        "src/pso/unk/TLobby_800FA164.cpp",
+        "src/pso/unk/TLobby_800FA2A0.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_801E2F94.cpp",
+        "src/pso/unk/TLobby_802230F8.cpp",
+        "src/pso/unk/TLobby_802409AC.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp",
+        "src/pso/unk/TLobby_803DE778.cpp",
+        "src/pso/unk/TUnk_804D1160.cpp",
+        "src/pso/unk/TUnk_804D1AD0.cpp",
+        "src/pso/unk/text_800FA464.cpp",
+        "src/pso/unk/text_801D7BF4.cpp",
+        "src/pso/unk/text_8020E700.cpp",
+        "src/pso/unk/text_80248994.cpp",
+        "src/pso/unk/text_8025373C.cpp",
+        "src/pso/unk/text_80253974.cpp",
+        "src/pso/unk/text_80255A38.cpp",
+        "src/pso/unk/text_8026A14C.cpp",
+        "src/pso/unk/text_8026A328.cpp",
+        "src/pso/unk/text_8026AC50.cpp",
+        "src/pso/unk/text_8026ACDC.cpp",
+        "src/pso/unk/text_8026C664.cpp",
+        "src/pso/unk/text_80275360.cpp",
+        "src/pso/unk/text_80278460.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "06800cc849b60f0466945d620b44ece67ba2ec66083f0c71de38f79bde4d4bbf",
+      "check_sha256": "e4fce30c4cee74fa4a898566da03eec616939b188fef510054ee003306bf9ca3",
+      "previous": "9b0ee5a7eba58517bcbaa2dc9bf4a758de67fae6"
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "eab69510e3f2faa8b89e2624d88b8817bdf675bd",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Ancient container archives and the complete animated stage model registry",
+      "files": 408,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/boss/olgaflow/TBoss6CrushPtcl.h",
+        "include/pso/boss/olgaflow/TBoss6CrushRock.h",
+        "include/pso/boss/olgaflow/TBoss6Rock.h",
+        "include/pso/effect/GroundContactSound.h",
+        "include/pso/effect/TEffIndirectCtrl.h",
+        "include/pso/effect/TEffIndirectCtrl_802A88AC.h",
+        "include/pso/effect/TUnk_804CCC68.h",
+        "include/pso/effect/particle/ParticleDefinition.h",
+        "include/pso/effect/particle/ParticleParam.h",
+        "include/pso/effect/particle/TParticleCtrl.h",
+        "include/pso/effect/particle/TParticleCtrl_800867E4.h",
+        "include/pso/enemy/TEnemyTaskList.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/gibbles/TObjEneGibbles.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h",
+        "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h",
+        "include/pso/enemy/stelth/StelthData.h",
+        "include/pso/enemy/stelth/TObjEneMe3Stelth.h",
+        "include/pso/item/TItem.h",
+        "include/pso/map/ChallengeEnemySet.h",
+        "include/pso/map/CsnGeometry.h",
+        "include/pso/map/CsnGroundCandidates.h",
+        "include/pso/map/CsnGroundQuery.h",
+        "include/pso/map/CsnQuery.h",
+        "include/pso/map/FloorPopulation.h",
+        "include/pso/map/MapSetArchive.h",
+        "include/pso/map/TMapCsnCtrl.h",
+        "include/pso/map/TObjMapCsn.h",
+        "include/pso/network/FloorEventCommand.h",
+        "include/pso/network/protocol/subcmd_6x.h",
+        "include/pso/npc/NpcAnimationBinding.h",
+        "include/pso/npc/NpcModelRegistry.h",
+        "include/pso/npc/TObjNpcEnemy.h",
+        "include/pso/object/TMotorcycle.h",
+        "include/pso/object/TOBind.h",
+        "include/pso/object/TOVS2.h",
+        "include/pso/object/TOVS2Wreck01.h",
+        "include/pso/object/TOVS2Wreck02.h",
+        "include/pso/object/TOVS2Wreck03.h",
+        "include/pso/object/TOVS2Wreck04.h",
+        "include/pso/object/TOVS2Wreck05.h",
+        "include/pso/object/TOVS2Wreck06.h",
+        "include/pso/object/TObjChip.h",
+        "include/pso/object/TObjChipParams.h",
+        "include/pso/object/TObjComputer.h",
+        "include/pso/object/TObjGbAdvance.h",
+        "include/pso/object/TObjMesBase.h",
+        "include/pso/object/TObjParticle.h",
+        "include/pso/object/TObjTombstone.h",
+        "include/pso/object/ambient/TObjCGrass.h",
+        "include/pso/object/ambient/TObjFish.h",
+        "include/pso/object/ambient/TObjGrass.h",
+        "include/pso/object/ambient/TObjRain.h",
+        "include/pso/object/ambient/TObjRainCtrl.h",
+        "include/pso/object/base/ObjectSetData.h",
+        "include/pso/object/base/TObjChara.h",
+        "include/pso/object/base/TObjMotion.h",
+        "include/pso/object/cave/CaveSignRender.h",
+        "include/pso/object/city/CityTraffic.h",
+        "include/pso/object/collision/TObjRaderHideCol.h",
+        "include/pso/object/container/ContainerBreakEffects.h",
+        "include/pso/object/container/ContainerResources.h",
+        "include/pso/object/container/TObjContainerJung.h",
+        "include/pso/object/container/TObjContainerJungEnemy.h",
+        "include/pso/object/container/TObjContainerJungEx.h",
+        "include/pso/object/container/TObjContainerJungEx_8018D900.h",
+        "include/pso/object/door/TODoorAncient05.h",
+        "include/pso/object/door/TODoorAncient06.h",
+        "include/pso/object/door/TODoorAncient07.h",
+        "include/pso/object/door/TODoorAncient08.h",
+        "include/pso/object/door/TODoorAncient09.h",
+        "include/pso/object/door/TODoorCave01.h",
+        "include/pso/object/door/TODoorCave02.h",
+        "include/pso/object/door/TODoorMachine01.h",
+        "include/pso/object/door/TODoorMachine02.h",
+        "include/pso/object/door/TODoorVS2Door01.h",
+        "include/pso/object/door/TObjDoorJung.h",
+        "include/pso/object/ending/TObjOnlineEnding.h",
+        "include/pso/object/ending/TObjOnlineEndingHexLine.h",
+        "include/pso/object/ending/TObjOnlineEndingHexMove.h",
+        "include/pso/object/fence/TOBarrierEnergy01.h",
+        "include/pso/object/fence/TOFenceAncient01.h",
+        "include/pso/object/fence/TOFenceAncient02.h",
+        "include/pso/object/fence/TOFenceAncient03.h",
+        "include/pso/object/fence/TOFenceAncient04.h",
+        "include/pso/object/fence/TOVS2Wall01.h",
+        "include/pso/object/fence/TOVS2Wall01_8017BCC8.h",
+        "include/pso/object/fence/TOVS2Wall01_8017C7A4.h",
+        "include/pso/object/fence/TOVS2WallResources.h",
+        "include/pso/object/fence/TObjLazerFenceNorm.h",
+        "include/pso/object/fence/WallHitPacket.h",
+        "include/pso/object/jungle/TOJungleDesign.h",
+        "include/pso/object/key/TODummyKeyCave01.h",
+        "include/pso/object/key/TOKeyAncient03.h",
+        "include/pso/object/key/TOKeyCave01.h",
+        "include/pso/object/key/TOKeyMachine01.h",
+        "include/pso/object/lab/TObjLaboDesignBase.h",
+        "include/pso/object/lobby/TObjButterflyLobby.h",
+        "include/pso/object/lobby/TObjButterflyLobby_80350958.h",
+        "include/pso/object/lobby/TObjCityDoor_Lobby.h",
+        "include/pso/object/mine/TODragonflyMachine01.h",
+        "include/pso/object/mine/TOLightMachine01.h",
+        "include/pso/object/mine/TOSparkMachine01.h",
+        "include/pso/object/seabed/TObjSeabedSuisoBrakable.h",
+        "include/pso/object/switch/TOSensorAncient01.h",
+        "include/pso/object/switch/TOSensorGeneral01.h",
+        "include/pso/object/trap/TOMine.h",
+        "include/pso/object/trap/TOMineIcon01.h",
+        "include/pso/object/trap/TOMineIcon02.h",
+        "include/pso/object/trap/TOMineIcon03.h",
+        "include/pso/object/trap/TOMineIcon04.h",
+        "include/pso/object/trap/TOMineTrap.h",
+        "include/pso/object/trap/TOTrapAncient02R.h",
+        "include/pso/object/trap/TOTrapChainSaw.h",
+        "include/pso/object/trap/TOTrapChainSawEdge.h",
+        "include/pso/object/trap/TOTrapChainSawKey.h",
+        "include/pso/object/warp/ForestWarpResources.h",
+        "include/pso/object/warp/TObjAreaWarp.h",
+        "include/pso/object/warp/TObjAreaWarpEnding.h",
+        "include/pso/object/warp/TObjAreaWarpForest.h",
+        "include/pso/object/warp/TObjAreaWarpQuest.h",
+        "include/pso/object/warp/TObjCityAreaWarp.h",
+        "include/pso/object/warp/TObjCityMainWarp.h",
+        "include/pso/object/warp/TObjCityMainWarpChallenge.h",
+        "include/pso/object/warp/TObjCityMainWarp_80186E24.h",
+        "include/pso/object/warp/TObjGoalWarpAncient.h",
+        "include/pso/object/warp/TObjLaboMapWarp.h",
+        "include/pso/object/warp/TObjLaboMapWarp_80185248.h",
+        "include/pso/object/warp/TObjMapWarpAncient.h",
+        "include/pso/object/warp/TObjMapWarpForest.h",
+        "include/pso/object/warp/TObjWarpBase.h",
+        "include/pso/object/warp/TObjWarpBoss.h",
+        "include/pso/object/warp/TObjWarpBossMulti.h",
+        "include/pso/object/warp/TObjWarpJung.h",
+        "include/pso/object/warp/TObjWarpJungMain.h",
+        "include/pso/object/warp/TObjWarpLobby.h",
+        "include/pso/object/wreck/TOWreckAncient.h",
+        "include/pso/object/wreck/TOWreckAncientResources.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80011014.h",
+        "include/pso/player/TObjPlayer_801542CC.h",
+        "include/pso/player/TObjPlayer_802A8368.h",
+        "include/pso/player/TUnk_804B6C24.h",
+        "include/pso/render/GinjaMaterialState.h",
+        "include/pso/render/GinjaMaterialTextureSlot.h",
+        "include/pso/render/GinjaTexture.h",
+        "include/pso/render/GinjaUvScroll.h",
+        "include/pso/system/EventShuffleTable.h",
+        "include/pso/system/scene/TScene.h",
+        "include/pso/system/scene/TSceneSora.h",
+        "include/pso/ui/window/TWindowSubTradeMain_80187C98.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_80140FF4.h",
+        "include/pso/unk/TLobby_8015C944.h",
+        "include/pso/unk/TLobby_80207644.h",
+        "include/pso/unk/TLobby_80209524.h",
+        "include/pso/unk/TLobby_8020A568.h",
+        "include/pso/unk/TLobby_8020BFC4.h",
+        "include/pso/unk/TUnk_8048E728.h",
+        "include/pso/unk/TUnk_804C57F0.h",
+        "include/pso/unk/TUnk_804CCB28.h",
+        "include/pso/unk/text_80184C2C.h",
+        "include/pso/unk/text_80209584.h",
+        "include/pso/unk/text_8020A768.h",
+        "include/pso/unk/text_8020B5CC.h",
+        "include/pso/unk/text_8028A820.h",
+        "libs/dolphin/include/libc/ctype.h",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+        "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type2_80086C44.cpp",
+        "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_8028A8F8.cpp",
+        "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+        "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+        "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/effect/TEF_LensFlare.cpp",
+        "src/pso/effect/TEffIndirectCtrl.cpp",
+        "src/pso/effect/TKomorebi.cpp",
+        "src/pso/effect/TUnk_804CCC68.cpp",
+        "src/pso/effect/particle/ParticleBallistic.cpp",
+        "src/pso/effect/particle/ParticleOrbit.cpp",
+        "src/pso/effect/particle/ParticleRadial.cpp",
+        "src/pso/effect/particle/TParticleCtrl.cpp",
+        "src/pso/effect/particle/TParticleCtrl_80085EE4.cpp",
+        "src/pso/effect/particle/TParticleCtrl_80086884.cpp",
+        "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+        "src/pso/effect/particle/TParticleCtrl_801E5330.cpp",
+        "src/pso/effect/particle/TParticleCtrl_80327D30.cpp",
+        "src/pso/effect/sprite/TQuadSpriteCol.cpp",
+        "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+        "src/pso/effect/sprite/TQuadSpriteScl.cpp",
+        "src/pso/effect/sprite/TQuadSpriteSclCol.cpp",
+        "src/pso/effect/sprite/TQuadSpriteSclColRot.cpp",
+        "src/pso/enemy/TObjEnemy_8020C3E0.cpp",
+        "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/stelth/StelthData.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+        "src/pso/item/TItem.cpp",
+        "src/pso/map/AreaEventSet.cpp",
+        "src/pso/map/CsnQuery.cpp",
+        "src/pso/map/FloorLifecycleTables.cpp",
+        "src/pso/map/TMapCsnCtrl.cpp",
+        "src/pso/map/TObjMapCsn.cpp",
+        "src/pso/map/TSetEvtDestroy.cpp",
+        "src/pso/map/TSetManager.cpp",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/npc/TObjNpcBase.cpp",
+        "src/pso/npc/TObjNpcEnemy.cpp",
+        "src/pso/object/TMotorcycle.cpp",
+        "src/pso/object/TOBind.cpp",
+        "src/pso/object/TOBind_801586B8.cpp",
+        "src/pso/object/TObjBigTuitate.cpp",
+        "src/pso/object/TObjChip.cpp",
+        "src/pso/object/TObjComputer.cpp",
+        "src/pso/object/TObjDoaEx01.cpp",
+        "src/pso/object/TObjLiveMonitor.cpp",
+        "src/pso/object/TObjMesBase.cpp",
+        "src/pso/object/TObjParticle.cpp",
+        "src/pso/object/TObjTank.cpp",
+        "src/pso/object/TObjTombstone.cpp",
+        "src/pso/object/ambient/TObjCGrass.cpp",
+        "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+        "src/pso/object/ambient/TObjFish.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/ambient/TObjRain.cpp",
+        "src/pso/object/ambient/TObjRainCtrl.cpp",
+        "src/pso/object/ambient/TObjRainCtrl_80197CE8.cpp",
+        "src/pso/object/ambient/TObjRain_801977D4.cpp",
+        "src/pso/object/base/ObjectFactoryTables.cpp",
+        "src/pso/object/cave/TOHangceilingCave01.cpp",
+        "src/pso/object/cave/TORockCave.cpp",
+        "src/pso/object/cave/TOSignCave01.cpp",
+        "src/pso/object/cave/TOSignCave02.cpp",
+        "src/pso/object/city/CityDoors.cpp",
+        "src/pso/object/city/CitySeason.cpp",
+        "src/pso/object/city/CityTraffic.cpp",
+        "src/pso/object/city/CityVerticalModel.cpp",
+        "src/pso/object/collision/TOAttackableCol.cpp",
+        "src/pso/object/collision/TObjEvtCollision.cpp",
+        "src/pso/object/collision/TObjRaderCol.cpp",
+        "src/pso/object/container/TContainerAncient01.cpp",
+        "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+        "src/pso/object/container/TObjContainerItem.cpp",
+        "src/pso/object/container/TObjContainerJung.cpp",
+        "src/pso/object/door/TODoorAncient01.cpp",
+        "src/pso/object/door/TODoorAncient03.cpp",
+        "src/pso/object/door/TODoorAncient04.cpp",
+        "src/pso/object/door/TODoorAncient05.cpp",
+        "src/pso/object/door/TODoorAncient06.cpp",
+        "src/pso/object/door/TODoorAncient07.cpp",
+        "src/pso/object/door/TODoorAncient08.cpp",
+        "src/pso/object/door/TODoorAncient09.cpp",
+        "src/pso/object/door/TODoorCave01.cpp",
+        "src/pso/object/door/TODoorCave02.cpp",
+        "src/pso/object/door/TODoorFourLightSpace.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TODoorLabo.cpp",
+        "src/pso/object/door/TODoorMachine01.cpp",
+        "src/pso/object/door/TODoorMachine02.cpp",
+        "src/pso/object/door/TODoorVS2Door01.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoorJung_8023DBEC.cpp",
+        "src/pso/object/door/TObjDoorKey.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/object/ending/TObjOnlineEndingHexLine.cpp",
+        "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+        "src/pso/object/fence/TLazerFenceSw.cpp",
+        "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "src/pso/object/fence/TOFenceAncient01.cpp",
+        "src/pso/object/fence/TOFenceAncient02.cpp",
+        "src/pso/object/fence/TOFenceAncient03.cpp",
+        "src/pso/object/fence/TOFenceAncient04.cpp",
+        "src/pso/object/fence/TOVS2Wall01.cpp",
+        "src/pso/object/fence/TObjLazerFence4.cpp",
+        "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+        "src/pso/object/jungle/TOGrassJungle.cpp",
+        "src/pso/object/jungle/TOJungleDesign.cpp",
+        "src/pso/object/jungle/TORockJungleL01.cpp",
+        "src/pso/object/key/TODummyKeyCave01.cpp",
+        "src/pso/object/key/TOKeyAncient01.cpp",
+        "src/pso/object/key/TOKeyAncient02.cpp",
+        "src/pso/object/key/TOKeyAncient03.cpp",
+        "src/pso/object/key/TOKeyCave01.cpp",
+        "src/pso/object/key/TOKeyGenericSw.cpp",
+        "src/pso/object/key/TOKeyMachine01.cpp",
+        "src/pso/object/lab/TObjLaboDesignBase.cpp",
+        "src/pso/object/lobby/LobbyGoGoBall.cpp",
+        "src/pso/object/lobby/LobbyPigeonPath.cpp",
+        "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+        "src/pso/object/mine/TOComputerMachine01_8023DD0C.cpp",
+        "src/pso/object/mine/TODragonflyMachine01.cpp",
+        "src/pso/object/mine/TOLightMachine01.cpp",
+        "src/pso/object/mine/TOSparkMachine01.cpp",
+        "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "src/pso/object/seabed/TObjSuisoChip.cpp",
+        "src/pso/object/switch/TOSensorAncient01.cpp",
+        "src/pso/object/switch/TOSensorGeneral01.cpp",
+        "src/pso/object/trap/TOMine.cpp",
+        "src/pso/object/trap/TOMineIcon01.cpp",
+        "src/pso/object/trap/TOMineIcon02.cpp",
+        "src/pso/object/trap/TOMineIcon03.cpp",
+        "src/pso/object/trap/TOMineIcon04.cpp",
+        "src/pso/object/trap/TOTrap.cpp",
+        "src/pso/object/trap/TOTrapAncient01.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+        "src/pso/object/warp/TObjCityMainWarp_80186F84.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjMapWarpAncient.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/object/warp/TObjWarpLobby.cpp",
+        "src/pso/object/wreck/TOWreckAncient.cpp",
+        "src/pso/player/PhotonBlastResults.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_800C4714.cpp",
+        "src/pso/player/TObjPlayer_801542CC.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_80357B2C.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/TOQuestTalkBase.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+        "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+        "src/pso/system/scene/TScene.cpp",
+        "src/pso/system/scene/TSceneSora.cpp",
+        "src/pso/technique/TTecRaFoie.cpp",
+        "src/pso/ui/window/TObjDeadListWin.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80187C98.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_80104374.cpp",
+        "src/pso/unk/TLobby_80140FF4.cpp",
+        "src/pso/unk/TLobby_801A3BF4.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_801F2D2C.cpp",
+        "src/pso/unk/TLobby_801F3A24.cpp",
+        "src/pso/unk/TLobby_80207644.cpp",
+        "src/pso/unk/TLobby_80207DA8.cpp",
+        "src/pso/unk/TLobby_80209524.cpp",
+        "src/pso/unk/TLobby_8020BC08.cpp",
+        "src/pso/unk/TLobby_8020BF68.cpp",
+        "src/pso/unk/TLobby_8020BFC4.cpp",
+        "src/pso/unk/TLobby_80228154.cpp",
+        "src/pso/unk/TLobby_8028A7C8.cpp",
+        "src/pso/unk/TLobby_80291D94.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp",
+        "src/pso/unk/text_80086B64.cpp",
+        "src/pso/unk/text_80086D50.cpp",
+        "src/pso/unk/text_80086E28.cpp",
+        "src/pso/unk/text_80086FE0.cpp",
+        "src/pso/unk/text_800870BC.cpp",
+        "src/pso/unk/text_800871A0.cpp",
+        "src/pso/unk/text_80087278.cpp",
+        "src/pso/unk/text_800D8988.cpp",
+        "src/pso/unk/text_80184C2C.cpp",
+        "src/pso/unk/text_801A2B38.cpp",
+        "src/pso/unk/text_801E4EB0.cpp",
+        "src/pso/unk/text_801E4F04.cpp",
+        "src/pso/unk/text_8020B5CC.cpp",
+        "src/pso/unk/text_8020BC50.cpp",
+        "src/pso/unk/text_8020BFE4.cpp",
+        "src/pso/unk/text_8020CFEC.cpp",
+        "src/pso/unk/text_8020D2B4.cpp",
+        "src/pso/unk/text_802233F8.cpp",
+        "src/pso/unk/text_8023DCB8.cpp",
+        "src/pso/unk/text_8028A714.cpp",
+        "src/pso/unk/text_8028A820.cpp",
+        "src/pso/weapon/shoot/TItemShoot.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "0d5d789a64b215f347b12d048cc31a325822cce10dfe9598f3e3c84e630be8d4",
+      "check_sha256": "6e1d8261aa20bcd2179631dc5cc75cd573fb3a2c5fed41de4bee8a3057914e54",
+      "previous": "906f5898b302cc05c91e9c56b5ecc9c586244563"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "e3aab3d2490a6a3a14babccf3b3564534b7b1f25",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Sinow and Stelth shared texture lifetime and appearance archives",
+      "files": 195,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/dragon/ObjBoss1CommonResource.h",
+        "include/pso/boss/dragon/TBoss1Dragon.h",
+        "include/pso/boss/dragon/TObjBoss1Crater.h",
+        "include/pso/boss/dragon/TObjBoss1Crater_8002C6B4.h",
+        "include/pso/boss/dragon/TObjBoss1Floor.h",
+        "include/pso/boss/dragon/TObjBoss1MokoHill_Solo.h",
+        "include/pso/boss/dragon/TObjBoss1MokoHill_SoloM.h",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_8002CC48.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_800BB650.h",
+        "include/pso/boss/volopt/TBoss3Volopt.h",
+        "include/pso/boss/volopt/TBoss3VoloptP01.h",
+        "include/pso/boss/volopt/TObjVoloptCage.h",
+        "include/pso/boss/volopt/TObjVoloptShutter.h",
+        "include/pso/camera/TCameraCtrl_800687BC.h",
+        "include/pso/effect/BreakupModelParams.h",
+        "include/pso/effect/PositionSoundEffects.h",
+        "include/pso/effect/TBreakUpMdl.h",
+        "include/pso/enemy/EnemyMovement.h",
+        "include/pso/enemy/EnemyPlacement.h",
+        "include/pso/enemy/EnemyTargeting.h",
+        "include/pso/enemy/EnemyUnknownHooks.h",
+        "include/pso/enemy/TObjEnePanBARA.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/enemy/TUnk_804EF130.h",
+        "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+        "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+        "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+        "include/pso/enemy/darkgunner/DarkGunner.h",
+        "include/pso/enemy/darkgunner/TObjEneDarkGunCenter.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/dd/TObjEneDD_ST.h",
+        "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+        "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h",
+        "include/pso/enemy/flower/TObjEneRe2Flower.h",
+        "include/pso/enemy/flower/TObjEneRe2Flower_Bomb.h",
+        "include/pso/enemy/flower/TObjEneRe2Flower_EffCurse3.h",
+        "include/pso/enemy/morfos/TObjEneMorfos.h",
+        "include/pso/enemy/morfos/TObjEneMorfosArm.h",
+        "include/pso/enemy/panarms/TObjEnePanarms.h",
+        "include/pso/enemy/panarms/TObjEnePanarmsAtkColli.h",
+        "include/pso/enemy/recon/TObjEneRecobox.h",
+        "include/pso/enemy/recon/TObjEneRecobox_8031FCB0.h",
+        "include/pso/enemy/recon/TObjEneRecon.h",
+        "include/pso/enemy/recon/TObjEneReconBomb.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031D780.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031E574.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031F408.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031F600.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031FACC.h",
+        "include/pso/enemy/shinowa/ShinowaData.h",
+        "include/pso/math/ViewPoint.h",
+        "include/pso/object/TObjControl.h",
+        "include/pso/object/base/CollisionActorRegistry.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_800D8FDC.h",
+        "include/pso/player/TObjPlayer_801542CC.h",
+        "include/pso/player/TUnk_804928CC.h",
+        "include/pso/render/GinjaTextureEntryCopy.h",
+        "include/pso/system/MatrixVectorArray.h",
+        "include/pso/system/task/MainTaskFlags.h",
+        "include/pso/system/task/TMainTask.h",
+        "include/pso/unk/text_800C3088.h",
+        "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/barbaray/TBoss7Joint.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TBoss2Joint.cpp",
+        "src/pso/boss/derolle/TBoss2Mine.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/dragon/TBoss1DragonColli.cpp",
+        "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+        "src/pso/boss/dragon/TObjBoss1Floor.cpp",
+        "src/pso/boss/dragon/TObjBoss1Rock.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonColli.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffBreath.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3504.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3638.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F36DC.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F376C.cpp",
+        "src/pso/boss/goldragon/TObjBoss8Piller.cpp",
+        "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+        "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+        "src/pso/boss/volopt/TObjVoloptShutter.cpp",
+        "src/pso/camera/TCameraCtrl.cpp",
+        "src/pso/camera/TObjCamera.cpp",
+        "src/pso/effect/TBreakUpMdl.cpp",
+        "src/pso/effect/item/TItemEffectWeapon.cpp",
+        "src/pso/effect/photon/PhotonBlastSummon.cpp",
+        "src/pso/enemy/EnemyFactoryTables.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+        "src/pso/enemy/beast/TObjEneBeast.cpp",
+        "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/darkgunner/DarkGunner.cpp",
+        "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+        "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/lappy/TObjEneLappy_800F5DE0.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031E800.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+        "src/pso/enemy/recon/TObjEneRecon_80320350.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/enemy/shark/TObjEneShark.cpp",
+        "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+        "src/pso/object/TObjControl.cpp",
+        "src/pso/object/TObjLiveMonitor.cpp",
+        "src/pso/object/ambient/TObjFish_800E2FFC.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/city/CityDoors.cpp",
+        "src/pso/object/collision/TObjFogCollision.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_800BBE90.cpp",
+        "src/pso/player/TObjPlayer_800C4714.cpp",
+        "src/pso/player/TObjPlayer_800E80A4.cpp",
+        "src/pso/player/TObjPlayer_801542CC.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/render/GinjaTextureEntryCopy.cpp",
+        "src/pso/render/TUnk_80490470.cpp",
+        "src/pso/ui/hud/TMainCursor.cpp",
+        "src/pso/unk/TLobby_8002C140.cpp",
+        "src/pso/unk/TLobby_800F5CF0.cpp",
+        "src/pso/unk/text_800C2A88.cpp",
+        "src/pso/unk/text_800C2CE0.cpp",
+        "src/pso/unk/text_803626A8.cpp",
+        "src/pso/unk/text_803D853C.cpp",
+        "src/pso/weapon/WeaponAttackActions.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "667fbce9321126b7ebb45224a558e37dfbe2ee1bbef36e1fdb0cabed64cb00e0",
+      "check_sha256": "f74c57bdccaf5a669e339cc4edbebb71e5c4f4f8bb5c53e9b20790041f807a52",
+      "previous": "d325d49446c918edda68327c95eebb732dc06798"
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-network-thread-dispatch": {
+      "head": "cb7d37f5a25dfec5bac94452f5b8237a893b819b",
+      "reviewer": "world_batch, integration",
+      "finding": "Verified the native pool layout, pointer-valued key, actual SDK thread callback and five no-argument worker entries. All active and key writes precede the explicit resumes, and original cancel and release order is preserved. The final same-source cleanup removes two redundant includes."
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "eab69510e3f2faa8b89e2624d88b8817bdf675bd",
+      "reviewer": "enemy_batch",
+      "finding": "Verified the signed animation halfwords, actual 0x24 registry slot, and native assignment routine. The four callers preserve their original IDs, binding, model, texture and offsets. The rare Ancient container borrows its regular archive and clears only its alias."
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "e3aab3d2490a6a3a14babccf3b3564534b7b1f25",
+      "reviewer": "world_batch",
+      "finding": "Verified the three-word texture entry copy at 0x800E80A4, all three actor palette save and restore pairs, shallow array release and native Stelth archive and material readers. Its edits are disjoint from the kind-3 animated model registrations."
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "f23685be031d693e5e2a68dba087eec3be145fdd",
+      "reviewer": "world_batch",
+      "finding": "Verified the original two ordered float copies. The Yes/No menu passes its actual position and size, and the plate keeps its slot guard, actual frame targets, separate color and width fields, and destination/source order. All independently checked callers use the same provider."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "b8cefccaf91b08944cdc83b35831695abc1dcac8",
+    "tree": "b553f4e911f783cd5b6fa6784af6cbf4e2ba9d1a",
+    "previous": "f9a2f6cb49fbc102179d2ee88ecdb20d24632273",
+    "prior_inputs": {
+      "gryphon": "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "audio": "960e608d40f5594babb50c5507bdc882a0b09be9",
+      "camera": "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "weapon": "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "photon": "31821decfb414b6735a107440f3ebd5c12938f69",
+      "quest": "5764a00853c353ae4e12371958c2e9712af42798",
+      "selection": "e5e32bb8a408515fa71ed628f9adb5c7b25c4c14",
+      "olga": "6425ec28dcb426c89279177233edde6fafade773",
+      "inventory": "3209cc4330a26b9f88a0527e40d1582a61ae4015",
+      "enemy": "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "falz": "8d5b7beca4d9e492e5c3bb6fca598d54b461829b"
+    },
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "960e608d40f5594babb50c5507bdc882a0b09be9",
+      "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "31821decfb414b6735a107440f3ebd5c12938f69",
+      "5764a00853c353ae4e12371958c2e9712af42798",
+      "e5e32bb8a408515fa71ed628f9adb5c7b25c4c14",
+      "6425ec28dcb426c89279177233edde6fafade773",
+      "3209cc4330a26b9f88a0527e40d1582a61ae4015",
+      "eab69510e3f2faa8b89e2624d88b8817bdf675bd",
+      "f23685be031d693e5e2a68dba087eec3be145fdd",
+      "e3aab3d2490a6a3a14babccf3b3564534b7b1f25",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "8d5b7beca4d9e492e5c3bb6fca598d54b461829b",
+      "cb7d37f5a25dfec5bac94452f5b8237a893b819b"
+    ],
+    "files": 1532,
+    "overlap": [
+      {
+        "scope": "menu",
+        "previous": "f9a2f6cb49fbc102179d2ee88ecdb20d24632273",
+        "standalone": "f23685be031d693e5e2a68dba087eec3be145fdd",
+        "head": "ede494ed9d5bb39e8c9df98b441218760d0a21c7",
+        "conflicts": [],
+        "resolved": [
+          {
+            "path": "config/GPOE8P/psov3/symbols.txt",
+            "queue_blob": "1b4dead0f436ef59f802defd0fb118a2b5b6a358",
+            "resolved_blob": "3d26e8879bb2a0ce90c8ec4b8df77ef2b39655d7",
+            "resolution": "Rename only copy_two_floats at 0x80052EA0; the queue already carries the typed plate symbol at 0x802C4DD0."
+          },
+          {
+            "path": "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+            "queue_blob": "d4e499ca8e97643139d33c6096fc2d547bf554a2",
+            "resolved_blob": "8d8cb069f7e934362c8d467d12a6f8b37d7cf106",
+            "resolution": "Apply only the proven canonical float-copy line edits to the queue-native body, including explicit source arguments where the old receiver omitted them."
+          },
+          {
+            "path": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+            "queue_blob": "53cc205a0b63e3f9328e7d1089294bccb1fb4251",
+            "resolved_blob": "77840e117168afe12f4738cedcc593f13baa8fec",
+            "resolution": "Apply only the proven canonical float-copy line edits to the queue-native body, including explicit source arguments where the old receiver omitted them."
+          },
+          {
+            "path": "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+            "queue_blob": "07cb8e2dce8b680c026307e2a05100e7997fba9c",
+            "resolved_blob": "d8972b26624a5267e903a7dd8f8eeb66b850a2d6",
+            "resolution": "Apply only the proven canonical float-copy line edits to the queue-native body, including explicit source arguments where the old receiver omitted them."
+          },
+          {
+            "path": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+            "queue_blob": "f8a4bbe9c1e25ce5f0e49a2c21ccefdc6cf64505",
+            "resolved_blob": "66b720a04d90f49dbdc22c981e3b6707ce9c4c0f",
+            "resolution": "Apply only the proven canonical float-copy line edits to the queue-native body, including explicit source arguments where the old receiver omitted them."
+          },
+          {
+            "path": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+            "queue_blob": "2dccd7b8ac61f3122852f6e08e79817559ae33bf",
+            "resolved_blob": "7b22f8cc427d94f48c4ff4043c3745cbc98a5d33",
+            "resolution": "Apply only the proven canonical float-copy line edits to the queue-native body, including explicit source arguments where the old receiver omitted them."
+          },
+          {
+            "path": "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+            "queue_blob": "a310ad3d1c6d615b982c94008428f83494fa7fb7",
+            "resolved_blob": "fb5fb977fa5511619c8eae5d1e84496a9017fe20",
+            "resolution": "Apply only the proven canonical float-copy line edits to the queue-native body, including explicit source arguments where the old receiver omitted them."
+          },
+          {
+            "path": "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+            "queue_blob": "7ddc0d6611d11e10bfe32bc1e0a9cdfcfe41ce9d",
+            "resolved_blob": "d97c08acb02e575b31da20ae4525f879b6e57dcb",
+            "resolution": "Apply only the proven canonical float-copy line edits to the queue-native body, including explicit source arguments where the old receiver omitted them."
+          }
+        ]
+      },
+      {
+        "scope": "stage",
+        "previous": "ede494ed9d5bb39e8c9df98b441218760d0a21c7",
+        "standalone": "eab69510e3f2faa8b89e2624d88b8817bdf675bd",
+        "head": "4d9ceec9be67996723e28e9e2de9c8d05c773cd8",
+        "conflicts": [],
+        "resolved": {}
+      },
+      {
+        "scope": "registration",
+        "previous": "4d9ceec9be67996723e28e9e2de9c8d05c773cd8",
+        "standalone": "e3aab3d2490a6a3a14babccf3b3564534b7b1f25",
+        "head": "4522cc2769e5a71275956e71a9621604e88eb7b9",
+        "conflicts": [],
+        "resolved": {
+          "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": "c76f5c609918f37b5779193537a31a542ed08c72",
+          "src/pso/render/GinjaTextureEntryCopy.cpp": "8828b853d2aa83608ba0fd30b3d41379780b0c0e"
+        }
+      },
+      {
+        "scope": "network",
+        "previous": "4522cc2769e5a71275956e71a9621604e88eb7b9",
+        "standalone": "cb7d37f5a25dfec5bac94452f5b8237a893b819b",
+        "head": "b8cefccaf91b08944cdc83b35831695abc1dcac8",
+        "conflicts": [],
+        "resolved": {}
+      }
+    ],
+    "independent_overlap_review": {
+      "head": "b8cefccaf91b08944cdc83b35831695abc1dcac8",
+      "tree": "b553f4e911f783cd5b6fa6784af6cbf4e2ba9d1a",
+      "reviewer": "world_batch",
+      "finding": "Verified the eight window overlaps preserve existing typed queue owners and the actual float-copy operands. The combined Ginja attributes field is still the original +4 word and +8 texture pointer. Stelth kind-1 palette and kind-3 animation binding paths remain separate."
+    },
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      },
+      "previous-joint": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      }
+    }
+  },
+  "observed_upstream_master": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "inherited_scope": {
+    "network_stack_init": "The existing stack setup wrapper retains its previous signature edge. The shared thread lifecycle and dispatcher use the recovered native contracts.",
+    "stage_kind_one": "The existing kind-1 NPC registration wrapper remains. The complete kind-3 path uses the true binding record."
+  }
+}

@@ -672,6 +672,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The character selection, stage, equipment window and Dark Falz reviews include these changes. All 14 groups build together across 1,491 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-window-falz-stage-card-replay.json)
 
+## Float copies, network threads, Sinow textures and Ancient scenery
+
+Source checkpoint `64f113bad3` and landing checkpoint `c9bebf2d29` carry 85 changed source files. The replay restores the shared two-float routine, native network thread pool, Sinow appearance lifetimes and Ancient animated model registry. The audit covers 49 historical records and closes 4. The ledger has 1,165 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-network-thread-dispatch` | Native network thread pool, SDK callback lifetime and all five dispatcher and transport workers | 11 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and item windows plus the shared two-float copy provider and callers | 406 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Ancient container archives and the complete animated stage model registry | 408 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Sinow and Stelth shared texture lifetime and appearance archives | 195 |
+
+The network, stage, equipment window and enemy formation reviews include these changes. All 15 groups build together across 1,532 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-float-thread-sinow-ancient-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
