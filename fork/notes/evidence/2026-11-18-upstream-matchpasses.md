@@ -760,6 +760,19 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The BML review uses the existing texture-binding review as its prerequisite. The existing window, enemy and stage reviews carry the associated ownership changes. All 17 groups build together across 1,731 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-archive-window-enemy-floor-replay.json)
 
+## Native array allocation and character creation
+
+Source checkpoint `a9ac4896da` and landing checkpoint `af250600bf` carry 1 changed source files. The source removes the last retired array allocation declarations. The local review queue now uses the native storage operators across the existing callers. The audit covers 44 historical records and closes 40. The ledger has 1,089 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/standalone-native-array-runtime` | Native array allocation, release, callers and runtime destruction | 156 |
+| `great-merge/current/character-selection-plates` | Character selection previews and character creation selector, tag and backdrop actors | 182 |
+
+The character review combines selection previews with the selector, tag and backdrop actors. The array review covers both storage operators, their callers and the runtime array destructor. All 18 groups build together across 1,790 files and reproduce the retail DOL. The character reviews retain both current constructor signatures in the shared metadata. [Source and validation evidence](2026-11-20-array-character-completeness-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
