@@ -1109,6 +1109,12 @@ The BML accessor replay at `a73ba07e10` consolidates model and texture access in
 
 The fork-only workspace patch still applies across its 131 paths and reproduces retail. All 11 layer tests pass. The 290 executed tool tests report zero assertion failures and one setup error in the Dark Falz cleanup fixture, which needs the native BML destructor. The archive-lifetime review at `daa3a3af77` carries that destructor and its consumers across 230 related paths. [Build and fork layer evidence](2026-11-20-bml-zako-and-texture-replay.json)
 
+### Native BML archive lifetime and load completion
+
+The 230-file lifetime replay at `c1c25b0a46` recovers the native constructor, destructor and arena fields. It migrates the archive owners and their callers, including the consolidated lock-on source and Dark Falz cleanup. The 39-file descriptor and load completion review at `696d108dad` adds the typed descriptor copy, filename override, chunk allocator and three completion request layouts. The reviews change 237 unique paths. Each reproduces retail and passes the strict source-link check. The combined tree retains all checked code and data coverage, including the original 90 data ranges.
+
+Regenerating the fork linker retention block resolves the workspace patch's only conflict. The retained fork layer still adds only `fork/` and the fork-specific CI workflow. The workspace round trip preserves every tested file identity. All 294 fork tooling tests and 11 layer tests pass, including the four Dark Falz cleanup tests. UI has the largest concentration of canonical paths outside the prospective source diff, with equipment windows, keyboard ownership, city menus and the shared window drawing context already grouped for replay. [Build, layer and source audit](2026-11-20-bml-archive-lifetime-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
