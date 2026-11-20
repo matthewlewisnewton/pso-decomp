@@ -537,6 +537,21 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 Status display is part of the equipment and Trade review. Floor placement and decoration are part of the stage review. The saved inventory review covers its separate game-state and persistence owners. The eight review groups build together across 834 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-inventory-status-enemy-floor-placement-replay.json)
 
+## Technique parameters, message history, Dragon behavior and Challenge floors
+
+Source checkpoint `9689df28ef` and landing checkpoint `fdeba51c26` carry 94 source files. The replay recovers typed technique and power tables, native message history and window ownership, shared Dragon render and motion state, and Challenge floor flags and event storage. The source audit records 40 historical files and closes 25. The ledger has 1,241 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-technique-effects-and-sounds` | Technique casts, parameters, effects and sounds | 55 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Trade, equipment, status and message-log windows | 200 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formations, combat stats, and Dragon and Gol Dragon behavior | 132 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stages, traps, geometry, decoration and Challenge floor sync | 274 |
+
+Message history is part of the equipment and Trade review. Challenge floor sync is part of the stage review. Dragon and Gol Dragon share the enemy review. Technique calculation, positioning, effects and sound are reviewed together. The nine review groups build together across 890 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-techniques-message-log-dragon-challenge-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
