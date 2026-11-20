@@ -1,60 +1,51 @@
 {
   "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
   "stage": {
-    "head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
-    "previous": "7dad678f24aa49d3d608e7ce5e6803df206305de",
+    "head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+    "previous": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
     "files": 487,
     "cleanup_paths": [
       "config/GPOE8P/psov3/symbols.txt",
-      "include/pso/boss/volopt/TBoss3Volopt.h",
-      "include/pso/enemy/dubchik/TObjEneDubchik.h",
-      "include/pso/map/FloorPopulation.h",
-      "include/pso/player/PlayerSlots.h",
-      "include/pso/player/TObjPlayer.h",
-      "include/pso/player/TObjPlayer_801AF2F0.h",
+      "include/pso/boss/olgaflow/TBoss6CrushPtcl.h",
+      "include/pso/effect/GroundContactSound.h",
+      "include/pso/object/TObjComputer.h",
+      "include/pso/object/TObjTombstone.h",
+      "include/pso/object/fence/TOVS2Wall01.h",
+      "include/pso/object/mine/TOLightMachine01.h",
+      "include/pso/object/warp/TObjAreaWarpEnding.h",
+      "include/pso/object/warp/TObjAreaWarpForest.h",
+      "include/pso/object/warp/TObjGoalWarpAncient.h",
+      "include/pso/object/warp/TObjWarpJung.h",
+      "include/pso/object/warp/TObjWarpJungMain.h",
+      "include/pso/system/scene/TSceneSora.h",
       "include/pso/unk/TLobby.h",
-      "include/pso/unk/TLobby_80209524.h",
-      "include/pso/unk/TLobby_8020B334.h",
-      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
-      "src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp",
-      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
-      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
-      "src/pso/boss/volopt/TBoss3Volopt.cpp",
-      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
-      "src/pso/effect/item/TItemEffArmor.cpp",
-      "src/pso/effect/item/TItemEffShield.cpp",
-      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
-      "src/pso/item/TItemTimerEvent.cpp",
-      "src/pso/map/TSetManager.cpp",
-      "src/pso/object/TObjRoomId.cpp",
-      "src/pso/object/city/CityDoors.cpp",
-      "src/pso/object/collision/TObjBgmColCtrl.cpp",
-      "src/pso/object/collision/TObjInfoCol.cpp",
-      "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
-      "src/pso/player/TObjPlayer_801AF2F0.cpp",
-      "src/pso/player/TObjPlayer_801BDF5C.cpp",
-      "src/pso/player/TObjPlayer_801C7430.cpp",
-      "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
-      "src/pso/ui/window/TWindowDD_8020C2DC.cpp",
+      "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/TObjTombstone.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/mine/TOLightMachine01.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/unk/TLobby_801F3A24.cpp",
       "src/pso/unk/TLobby_80209524.cpp",
-      "src/pso/unk/TLobby_8020C608.cpp",
-      "src/pso/unk/TLobby_8020C8A4.cpp",
-      "src/pso/unk/TLobby_8020CB34.cpp",
-      "src/pso/unk/TLobby_8020CD44.cpp",
-      "src/pso/unk/TLobby_8020D0B0.cpp",
-      "src/pso/unk/text_8020BC50.cpp",
-      "src/pso/unk/text_8020C354.cpp",
-      "src/pso/unk/text_8020C73C.cpp",
-      "src/pso/unk/text_8020C9C8.cpp"
+      "src/pso/unk/TLobby_80291D94.cpp",
+      "src/pso/unk/text_800D8988.cpp"
     ],
     "state": "OPEN",
     "ready_for_review": true,
     "url": "https://github.com/zeroz41/pso-decomp/pull/334",
     "ci": {
       "conclusion": "success",
-      "headSha": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "headSha": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
       "status": "completed",
-      "url": "https://github.com/zeroz41/pso-decomp/actions/runs/44780523263"
+      "url": "https://github.com/zeroz41/pso-decomp/actions/runs/44813613964"
     }
   },
   "review_handoff": {
@@ -443,6 +434,61 @@
         "src/pso/player/TObjPlayer_801C7430.cpp": "Keeps character-save and keyboard include scopes, recovered signed/unsigned packet widths, explicit revive receiver, and camera owner. Reuses the existing typed player slot lookup directly at the revised warp sender."
       },
       "validation_evidence": "2026-11-20-stage-owner-replay.json"
+    },
+    "published_name_replays": {
+      "old_head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "published_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+      "source": "0acca92c4873d97f68b6b167506007de540af784",
+      "direct": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "queue": "5f6084eb7b5f4f71d8a5571da7827e089e80eed5"
+    },
+    "published_name_validation": {
+      "replays": {
+        "source": {
+          "head": "0acca92c4873d97f68b6b167506007de540af784",
+          "parents": [
+            "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+            "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+          ],
+          "files": 26,
+          "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "exact_linked_objects": 2449,
+          "coverage_report_sha256": "d56d42ce75af3a4ee2a867dac6056262985eb27156be2c390bafdae53e223a5b",
+          "strict_report_sha256": "66fbbc3ed2b83f05be3f39b56a3febf276842af3713944189d49f2338354aeb2"
+        },
+        "direct": {
+          "head": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+          "parents": [
+            "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+            "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+          ],
+          "files": 32,
+          "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "exact_linked_objects": 2448,
+          "coverage_report_sha256": "a51c985e655f197617c36f95dae89fbba36c9e8acf57df210b6ced508e77f934",
+          "strict_report_sha256": "fc798c743a1b159ee13380e125f585aa24d7d434b60f8cd7724dcac07618c0f1"
+        },
+        "queue": {
+          "head": "5f6084eb7b5f4f71d8a5571da7827e089e80eed5",
+          "parents": [
+            "62222c16029867cb06884695798e0b39a04f5dd4",
+            "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+          ],
+          "files": 26,
+          "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "exact_linked_objects": 2451,
+          "coverage_report_sha256": "ebeca28730ec6074e3e28e2e75ead7d24172a973d21fa2bfe89b96677c53f606",
+          "strict_report_sha256": "9a733be2c8874f8caa8a6549718c62a2ea6408209e089c8bcd184f665c6e68a4"
+        }
+      },
+      "conflict_resolutions": {
+        "Gibbles": "Keep current material-fade, ground contact and frame-action code; target sound name already restored.",
+        "Tombstone": "Keep name_lines and use record.unk_4.",
+        "light_machine": "Keep pointer argument to draw_ginja_model and apply m_9c/m_ac field names.",
+        "symbols": "Keep adjacent persistent and floor-area sound symbols as current and check all four published labels by address.",
+        "warp": "Keep BmlResource* model argument and m_c4 animation frame.",
+        "quest": "Use info->unk_4 and preserve challenge_mode_state.state.layout and .floor."
+      }
     }
   },
   "local_standalone_validation": {
@@ -524,7 +570,7 @@
     "strict_sha256": "f85bca28563db9ce2b070fd8933b4ea8eb79f8314ff1d882898178ee5a35a43d",
     "report_sha256": "54f6d57ec27ed350b65ff65258b4fe43dc8a3ac31ed88f7086d121d79ab43e4a",
     "remaining_symbol_changes": "Address, declaration and implementation audit of the 160 labels after the first cleanup found two more removable spellings. Retained changes adjust source parameter or return types, owners, signatures or linkage.",
-    "published": false,
+    "published": true,
     "confirmed_field_renames_only": [
       {
         "owner": "TObjWarpJungMain",
@@ -664,6 +710,80 @@
         "src/pso/unk/text_800D8988.cpp"
       ],
       "link_coverage_unchanged": true
+    },
+    "published_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+  },
+  "prior_accessor_review": {
+    "head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "previous": "7dad678f24aa49d3d608e7ce5e6803df206305de",
+    "files": 487,
+    "cleanup_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/volopt/TBoss3Volopt.h",
+      "include/pso/enemy/dubchik/TObjEneDubchik.h",
+      "include/pso/map/FloorPopulation.h",
+      "include/pso/player/PlayerSlots.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_801AF2F0.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_80209524.h",
+      "include/pso/unk/TLobby_8020B334.h",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp",
+      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/effect/item/TItemEffArmor.cpp",
+      "src/pso/effect/item/TItemEffShield.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/item/TItemTimerEvent.cpp",
+      "src/pso/map/TSetManager.cpp",
+      "src/pso/object/TObjRoomId.cpp",
+      "src/pso/object/city/CityDoors.cpp",
+      "src/pso/object/collision/TObjBgmColCtrl.cpp",
+      "src/pso/object/collision/TObjInfoCol.cpp",
+      "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801BDF5C.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+      "src/pso/ui/window/TWindowDD_8020C2DC.cpp",
+      "src/pso/unk/TLobby_80209524.cpp",
+      "src/pso/unk/TLobby_8020C608.cpp",
+      "src/pso/unk/TLobby_8020C8A4.cpp",
+      "src/pso/unk/TLobby_8020CB34.cpp",
+      "src/pso/unk/TLobby_8020CD44.cpp",
+      "src/pso/unk/TLobby_8020D0B0.cpp",
+      "src/pso/unk/text_8020BC50.cpp",
+      "src/pso/unk/text_8020C354.cpp",
+      "src/pso/unk/text_8020C73C.cpp",
+      "src/pso/unk/text_8020C9C8.cpp"
+    ],
+    "state": "OPEN",
+    "ready_for_review": true,
+    "url": "https://github.com/zeroz41/pso-decomp/pull/334",
+    "ci": {
+      "conclusion": "success",
+      "headSha": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "status": "completed",
+      "url": "https://github.com/zeroz41/pso-decomp/actions/runs/44780523263"
     }
+  },
+  "published_naming_cleanup": {
+    "head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+    "previous": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "function_names_restored": 4,
+    "field_names_restored": 15,
+    "labels_differing_from_master": 158,
+    "affected_files": 32,
+    "linked_source_objects": 2448,
+    "commits": [
+      "1920ce427e21a149ed52f2099c2f3d5bf66d4d29",
+      "6c325ae6ac55f314df2e937fe4672892a8abb481",
+      "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+    ],
+    "match_gate": "https://github.com/zeroz41/pso-decomp/actions/runs/44813613964"
   }
 }

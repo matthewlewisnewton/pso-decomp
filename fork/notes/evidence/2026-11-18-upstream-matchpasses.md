@@ -867,7 +867,7 @@ The four updated reviews are part of the 2,039-file queue across 24 groups. The 
 
 ## Network and stage reviews open upstream
 
-The 61-file network runtime is open at [#333](https://github.com/zeroz41/pso-decomp/pull/333) at `7301eadf78`. [#334](https://github.com/zeroz41/pso-decomp/pull/334) is ready for review at `ec0fac8435` across 487 files. Its [match gate](https://github.com/zeroz41/pso-decomp/actions/runs/44780523263) passed at that head. A fresh joint build of the two current heads at `98cf31c3df` reproduces the retail GPOE8P DOL and passes strict coverage.
+The 61-file network runtime is open at `7301eadf78`. PR #334 is ready for review at `aa70392a37` across 487 files. The earlier joint build at `98cf31c3df` reproduces retail using the network head and the stage accessor head `ec0fac8435`. [#333](https://github.com/zeroz41/pso-decomp/pull/333) [#334](https://github.com/zeroz41/pso-decomp/pull/334) [Matching CI](https://github.com/zeroz41/pso-decomp/actions/runs/44813613964)
 
 The stage cleanup puts the area accessor on TObjPlayer, uses shared typed live floor-row getters and the shared player lookup declaration, and uses the Dubchik class layout for its attachment helper. The review handoff verifies the standalone against the previous PR head and upstream with 2,448 source objects linked. Its historical-fork comparison accounts for a net 2,386-byte change in the total-data diagnostic through 2,549 omitted alignment bytes and 163 bytes of added coverage. It records zero exact-function, linked-function, non-padding-data, or linked-data losses. [Validation record](2026-11-20-stage-334-review.json)
 
@@ -877,7 +877,7 @@ Keep upstream’s existing names for functions, types, and fields wherever the f
 
 The player registry review follows the stage series because they share active source files. The equipment and window review follows the registry.
 
-The #334 local follow-up at `aa70392a37` restores four function names and 15 field names. It reproduces retail with unchanged linked code and data coverage. The retained function symbol changes correct types, owners, signatures or linkage. The upstream PR still points to the ready-for-review head recorded above. [Naming audit](2026-11-20-stage-334-review.json)
+The published #334 cleanup at `aa70392a37` restores four upstream function names and 15 field names across 32 files. It reproduces retail with 2,448 linked source objects. The comparison with master reports 158 function label changes, including corrected types and owners. [Naming audit](2026-11-20-stage-334-review.json)
 
 ## Quest loading, companion saves and enemy fades
 
@@ -980,6 +980,14 @@ Source `cbff37c9f9` and landing checkpoint `5dc354c2d4` carry 60 changed files. 
 The actor stat pass verifies the three signed halfword getters at their original addresses. Three legacy caller units retain the original full-register return contract.
 
 The 2,322-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-actor-stats-and-native-replay.json)
+
+## Weapon factories, Berura, character selection, quest transfers and published stage names
+
+Source `d25fcf8fab` and landing checkpoint `bd190e5fc1` carry 125 changed files. This batch covers remaining native weapon factory returns and dispatch, Berura battle records, attack inputs and detached-arm owners, native selector scene, slot plates and card state, native online quest selection and download records, published stage naming cleanup with current typed callers. The audit closes 16 historical comparisons and leaves 749 open.
+
+The factory review now dispatches directly to all 129 weapon factories. The combined item tables retain all 203 original entries byte for byte. The working fork now uses the same direct callback for meseta. The two prior adapter paths are shared with the source tree, and all 131 remaining fork tooling overlay paths round-trip.
+
+The 2,365-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-factory-closure-and-native-replay.json)
 
 ## Ordered upstream review candidates
 

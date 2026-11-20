@@ -1,0 +1,3463 @@
+{
+  "source": "d25fcf8fab0d42780bdcbe4523fbfcfc151737eb",
+  "previous_source": "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+  "landing": "bd190e5fc1d69a9fda4c4de1d08fc5dff1e8adbb",
+  "working_fork_build": "11b82ad8d6f524280eb4861a072dd37703cc0cee",
+  "source_files": 125,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "cef7946b649d0c5160ed5ad235324fc0a71f2e3c",
+    "tree": "ed343937a0d8366d7dc25a3ed4a7f48039a05968",
+    "previous": "62222c16029867cb06884695798e0b39a04f5dd4",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+      "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "4e93b2bb3cf2240c27977414e5bc94d71e0e860c",
+      "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+      "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "9448059d81db540704b609616e96771e90827654",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128"
+    ],
+    "files": 2365,
+    "reviews": {
+      "standalone-weapon-factory-registry": {
+        "head": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+        "previous": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 278,
+        "create": false,
+        "live_tip": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+        "queue_input": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+        "report": "/dev/shm/gm-factory-closure-and-native.T8fJvI/factory-direct-report.json.gz",
+        "strict": "/dev/shm/gm-factory-closure-and-native.T8fJvI/factory-direct-check.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+        "previous": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 266,
+        "create": false,
+        "live_tip": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+        "queue_input": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+        "report": "/dev/shm/gm-enemy-20565490-review/berura-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/berura-standalone-strict.json"
+      },
+      "character-selection-plates": {
+        "head": "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+        "previous": "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 197,
+        "create": false,
+        "live_tip": "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+        "queue_input": "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+        "report": "/dev/shm/gm-character-selection-native-20261120/direct/widen-report.json.gz",
+        "strict": "/dev/shm/gm-character-selection-native-20261120/direct/widen-strict.json"
+      },
+      "standalone-online-quest-transfers": {
+        "head": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+        "previous": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 122,
+        "create": false,
+        "live_tip": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+        "queue_input": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+        "report": "/run/user/1000/gm-quest-menu-records.plNkcP/direct-report.json.gz",
+        "strict": "/run/user/1000/gm-quest-menu-records.plNkcP/direct-native-final-check.json"
+      },
+      "standalone-stage-doors-fences-and-contacts": {
+        "head": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+        "previous": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 491,
+        "create": false,
+        "live_tip": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+        "queue_input": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+        "report": "/dev/shm/gm-enemy-20565490-review/stage334-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/stage334-standalone-strict.json"
+      }
+    },
+    "replays": {
+      "factory": {
+        "canonical": "b6485dc38be2650fb690745598a9a293eb701bfa",
+        "standalone": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+        "queue": "3e21dbf4019161a65ab77636a409d964ca97fa09"
+      },
+      "berura": {
+        "canonical": "269867d3a105b0da39efcca2cc95522f40a732d0",
+        "standalone": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+        "queue": "925af505588ebebb9c62a9e73cf6e39654740c77"
+      },
+      "selection": {
+        "canonical": "e0f22dde0ff77a8312cf4125202b4d4d93cc5ad5",
+        "standalone": "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+        "queue": "a357f02fd518051c3c28620c1a2bee312b4afcc3"
+      },
+      "quest": {
+        "canonical": "dfb145af0911c57dd43f062d1968d85621c7cbec",
+        "standalone": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+        "queue": "d164eda26fea7c458ac71ca016580a441c43dbb7"
+      },
+      "stage-names": {
+        "canonical": "0acca92c4873d97f68b6b167506007de540af784",
+        "standalone": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+        "queue": "5f6084eb7b5f4f71d8a5571da7827e089e80eed5"
+      }
+    },
+    "increment": 126
+  },
+  "reviews": {
+    "standalone-weapon-factory-registry": {
+      "head": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "previous": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 278,
+      "create": false,
+      "live_tip": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "queue_input": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "report_sha256": "5ca28b73a37459a563985c11b00dca1d9e5b10ffb3bc37e68ef2fb9115f265c2",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+      "previous": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 266,
+      "create": false,
+      "live_tip": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+      "queue_input": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+      "report_sha256": "b13e29ad63bcef59583145c7f41c9893ead888c5b84a6787815a520b80ba68e6",
+      "strict_sha256": "8fc6a402f645a08e7005714108fd7b1f9dffa11f349244b1602c01e922bca78d"
+    },
+    "character-selection-plates": {
+      "head": "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "previous": "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 197,
+      "create": false,
+      "live_tip": "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "queue_input": "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "report_sha256": "207ed5fab89fa035a5438d70659e18fefe8f116cb1c83b363310a710a09b6194",
+      "strict_sha256": "cac9d9da9be1ac54063bb078d5914c4cfabf47b4e61a5ff51bf6bb05ad5a5215"
+    },
+    "standalone-online-quest-transfers": {
+      "head": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+      "previous": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 122,
+      "create": false,
+      "live_tip": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "queue_input": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+      "report_sha256": "aa3690cc0d83f00dc43461b891d74e3ce61e1c5957b276b079a256cb168d3557",
+      "strict_sha256": "d30569faaea9b71e6190b54b9eb3289bc491c69898529d0c3ec1dd4dee5d68d1"
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "previous": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 491,
+      "create": false,
+      "live_tip": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+      "queue_input": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "report_sha256": "90821be800b597fc9d9a88a96bdc490a824ec282a0cefd3500a5b46829527068",
+      "strict_sha256": "fc798c743a1b159ee13380e125f585aa24d7d434b60f8cd7724dcac07618c0f1"
+    }
+  },
+  "source_audit": {
+    "source": "d25fcf8fab0d42780bdcbe4523fbfcfc151737eb",
+    "previous": "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3094,
+        "historical_path": "src/pso/misc/TLobby_80103F5C.cpp",
+        "historical_blob": "df19a9df1c8d9048052b6a38940dd830fc21df71",
+        "owners": {
+          "src/pso/unk/TLobby_80103F5C.cpp": "a1594325a5ea979cbf4558ccca93258dd0c9e851",
+          "src/pso/unk/TLobby_80104374.cpp": "78b635e7c17397116e78d771b46f11fdb51487af",
+          "include/pso/item/ItemCreateFunction.h": "c087e0945eb5c0a62ddfb3f68154178843884e14"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "The floor-item storage keeps all five exact array allocations and releases. Its record byte swap retains the six authored regions and the nested TItemData call. Both selectors use the corresponding typed dispatch table and original default factory.",
+            "details": {
+              "verified_fragments": {
+                "src/pso/unk/TLobby_80103F5C.cpp": [
+                  "#include \"pso/network/protocol/ItemDropPacket.h\"",
+                  "#include \"pso/system/ArrayAllocation.h\"",
+                  "::operator delete[]((void *)floor_item_next_sort_keys);",
+                  "::operator delete[]((void *)floor_item_free_id_stack);",
+                  "::operator delete[]((void *)floor_item_counts_by_floor);",
+                  "::operator delete[]((void *)floor_item_row_table);",
+                  "::operator delete[]((void *)(TLobby__floor_item_entry_pool - 0x10));",
+                  "__construct_new_array((s32)::operator new[](0x1E610), __ct__9FloorItemFv, 0, 0x24, 0xD80)",
+                  "floor_item_row_table = (Ent_801037A0 **)::operator new[](0x48);",
+                  "floor_item_counts_by_floor = (s32)::operator new[](0x48);",
+                  "floor_item_free_id_stack = (s32)::operator new[](0x40);",
+                  "floor_item_next_sort_keys = (u16 *)::operator new[](0x24);",
+                  "void bswap_item__6TLobbyFv(void *record)",
+                  "bswap_16(reinterpret_cast<u16 *>(bytes + 2));",
+                  "bswap_32(reinterpret_cast<u32 *>(bytes + 4));",
+                  "bswap_32(reinterpret_cast<u32 *>(bytes + 8));",
+                  "bswap_16(reinterpret_cast<u16 *>(bytes + 0xC));",
+                  "bswap_16(reinterpret_cast<u16 *>(bytes + 0xE));",
+                  "reinterpret_cast<TItemData *>(bytes + 0x10)->bswap();"
+                ],
+                "src/pso/unk/TLobby_80104374.cpp": [
+                  "ItemCreateFunction weapon_factory_table[170]",
+                  "ItemCreateFunction item_tool_factory_table[24]",
+                  "ItemCreateFunction TLobby__sub_8010440C(u8 *item)",
+                  "ItemCreateFunction get_weapon_factory_for_item(u8 *item)",
+                  "return create_common_weapon;",
+                  "return TItemObject::create;"
+                ],
+                "include/pso/item/ItemCreateFunction.h": [
+                  "typedef TItem *(*ItemCreateFunction)(u8 *item);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4474,
+        "historical_path": "src/pso/unk/text_80104FCC.cpp",
+        "historical_blob": "ab3cea31e2f718e21c0939bef43361ae7f485b91",
+        "owners": {
+          "src/pso/unk/TLobby_80104374.cpp": "78b635e7c17397116e78d771b46f11fdb51487af",
+          "include/pso/item/ItemCreateFunction.h": "c087e0945eb5c0a62ddfb3f68154178843884e14",
+          "src/pso/item/TItemMoney.cpp": "f82848193c37a5b4c8e2e647ae1b485f76fcc1b3"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "The six equipment, construction and item-drop functions retain every authored clause through their native types and calls. Both dispatch arrays preserve all choices. The common callback now covers the prior meseta-specific host path.",
+            "details": {
+              "source": "b6485dc38be2650fb690745598a9a293eb701bfa",
+              "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+              "historical_path": "src/pso/unk/text_80104FCC.cpp",
+              "historical_delta": "diff --git a/src/pso/unk/text_80104FCC.cpp b/src/pso/unk/text_80104FCC.cpp\nindex b389a8792a..ab3cea31e2 100644\n--- a/src/pso/unk/text_80104FCC.cpp\n+++ b/src/pso/unk/text_80104FCC.cpp\n@@ -0,0 +1 @@\n+#include \"pso/map/CsnGroundQuery.h\"\n@@ -7,0 +9,10 @@\n+#include \"pso/misc/TWindowSubStatusDisp.h\"\n+#include \"pso/player/PlayerRequirementStats.h\"\n+#include \"pso/TItemMenuCtrl.h\"\n+#include \"pso/item/TItemProArmor.h\"\n+#include \"pso/item/TItemProShield.h\"\n+#include \"pso/item/TItemProUnit.h\"\n+#include \"pso/item/TItemMag.h\"\n+#include \"pso/item/TItemObject.h\"\n+#include \"pso/item/TItemMoney.h\"\n+#include \"pso/player/TObjPlayer_80121010.h\"\n@@ -77,7 +88,4 @@ extern \"C\" {\n-typedef s32 (*Fn_8010542C)(void *);\n-extern Fn_8010542C item_create_fn_table[];\n-struct In_801054E0 { u8 pad0; u8 idx; };\n-typedef s32 (*Fn_801054E0)(In_801054E0 *);\n-struct E_801054E0 { Fn_801054E0 fn; };\n-extern E_801054E0 item_pro_create_fn_table[];\n-s32 TLobby__sub_801054E0(In_801054E0 *arg0);\n+int is_quest_active(void);\n+u8 get_technique_learn_limit(u8, u8);\n+extern ItemCreateFunction item_create_fn_table[];\n+extern ItemCreateFunction item_pro_create_fn_table[];\n@@ -90,2 +98 @@ extern s32 local_client_id;\n-int check_class_equip_permission(TObjPlayer *player, s32 perm);\n-s32 *csnVecterUnder(s32 origin, s32 mask);\n+int check_class_equip_permission(TObjPlayer *player, s16 perm);\n@@ -102 +109,224 @@ int roll_weapon_special_for_stars(void*);\n-int check_class_equip_permission(TObjPlayer *player, s32 perm) {\n+// These two factory tables precede this unit's generated restriction table.\n+ItemCreateFunction item_pro_create_fn_table[4] = {\n+    NULL, TItemProArmor::create, TItemProShield::create, TItemProUnit::create,\n+};\n+ItemCreateFunction item_create_fn_table[5] = {\n+    create_weapon_for_item,\n+    TLobby__sub_801054E0,\n+    TItemMag::create,\n+    TItemObject::create_tool,\n+    // The original callback table erases this factory's TItemData* argument\n+    // to the record's byte buffer. See equip-requirements-match.md for the\n+    // native ABI boundary; the shared factory declaration remains typed.\n+    (ItemCreateFunction)TItemMoney::create,\n+};\n+\n+// Slices of the ItemPMT record (lookup_item_pmt_record) this check loads.\n+// Weapon: class at +8, ATP/MST/ATA minimums at +0xE/+0x10/+0x12.\n+struct WeaponReqPmt {\n+    u8 pad0[8];\n+    u16 class_equip;\n+    u8 padA[4];\n+    u16 req_atp;\n+    u16 req_mst;\n+    u16 req_ata;\n+};\n+// Armor and barrier (type 1, subtype other than a unit): class at +0xE, level at +0x10.\n+struct ArmorReqPmt {\n+    u8 pad0[0xE];\n+    u16 class_equip;\n+    u8 level_req;\n+};\n+// Unit (type 1, subtype 3). restrict_index selects an android allow/deny case.\n+struct UnitReqPmt {\n+    u8 pad0[8];\n+    s16 restrict_index;\n+};\n+// Mag: class word at +0x14.\n+struct MagReqPmt {\n+    u8 pad0[0x14];\n+    u16 class_equip;\n+};\n+\n+// Permission word whose human and newman bits are clear, so only an android passes.\n+#define ANDROID_EQUIP_PERM 0xD7\n+// Meseta above this (999999) is rejected.\n+#define MESETA_EQUIP_CAP 0xF423F\n+\n+s32 check_equip_requirements(TObjPlayer *player, u8 *item, s32 *requirement) {\n+    s32 flags;\n+    PlayerRequirementStats stats;\n+\n+    if (player == NULL || item == NULL) {\n+        if (requirement != NULL) {\n+            *requirement |= 0x20;\n+        }\n+        return 0;\n+    }\n+    if (player->obj_isState3_324() != 0 || player->is_script_controlled() != 0) {\n+        if (requirement != NULL) {\n+            *requirement = 0;\n+        }\n+        return 1;\n+    }\n+    if (is_quest_active() != 0) {\n+        u32 qflag;\n+\n+        qflag = 0;\n+        switch (item[0]) {\n+        case 0:\n+            qflag = 1;\n+            break;\n+        case 1:\n+            switch (item[1]) {\n+            case 1:\n+                qflag = 2;\n+                break;\n+            case 2:\n+                qflag = 3;\n+                break;\n+            case 3:\n+                qflag = 4;\n+                break;\n+            }\n+            break;\n+        case 2:\n+            qflag = 5;\n+            break;\n+        }\n+        if (qflag != 0 && TItemMenuCtrl::query_flag(qflag) == 1) {\n+            return 0;\n+        }\n+    }\n+    flags = 0;\n+    switch (item[0]) {\n+    case 0: {\n+        WeaponReqPmt *rec;\n+\n+        rec = (WeaponReqPmt *)lookup_item_pmt_record(item);\n+        if (rec != NULL) {\n+            if (check_class_equip_permission(player, rec->class_equip) == 0) {\n+                flags |= 1;\n+            }\n+            ((TWindowSubStatusDisp *)&stats)->clear_fields();\n+            build_player_equipment_requirement_stats(player, &stats);\n+            if (stats.values[0] < rec->req_atp) {\n+                flags |= 2;\n+            }\n+            if (stats.values[3] < rec->req_ata) {\n+                flags |= 4;\n+            }\n+            if (stats.values[2] < rec->req_mst) {\n+                flags |= 8;\n+            }\n+        } else {\n+            flags |= 0x20;\n+        }\n+        break;\n+    }\n+    case 1:\n+        if (item[1] != 3) {\n+            ArmorReqPmt *rec;\n+\n+            rec = (ArmorReqPmt *)lookup_item_pmt_record(item);\n+            if (rec != NULL) {\n+                if (check_class_equip_permission(player, rec->class_equip) == 0) {\n+                    flags |= 1;\n+                }\n+                if (player->get_actor_level_index() < rec->level_req) {\n+                    flags |= 0x10;\n+                }\n+            } else {\n+                flags |= 0x20;\n+            }\n+        } else if (check_class_equip_permission(player, ANDROID_EQUIP_PERM) != 0) {\n+            UnitReqPmt *rec;\n+\n+            rec = (UnitReqPmt *)lookup_item_pmt_record(item);\n+            if (rec != NULL) {\n+                switch (rec->restrict_index) {\n+                case 0:\n+                case 2:\n+                case 3:\n+                case 4:\n+                case 6:\n+                case 7:\n+                case 8:\n+                case 9:\n+                case 10:\n+                case 11:\n+                case 12:\n+                case 13:\n+                case 14:\n+                case 15:\n+                case 17:\n+                case 19:\n+                case 20:\n+                    break;\n+                case 1:\n+                case 5:\n+                case 16:\n+                case 18:\n+                case 21:\n+                    flags |= 1;\n+                    break;\n+                }\n+            } else {\n+                flags |= 0x20;\n+            }\n+        }\n+        break;\n+    case 2: {\n+        MagReqPmt *rec;\n+\n+        rec = (MagReqPmt *)lookup_item_pmt_record(item);\n+        if (rec != NULL) {\n+            if (check_class_equip_permission(player, rec->class_equip) == 0) {\n+                flags |= 1;\n+            }\n+        } else {\n+            flags |= 0x20;\n+        }\n+        break;\n+    }\n+    case 3:\n+        switch (item[1]) {\n+        case 2: {\n+            u8 learn_limit;\n+\n+            // Widened the same way as TItemData::calc_action_flags: the u8\n+            // parameter narrows it, and that argument is evaluated first.\n+            learn_limit = get_technique_learn_limit(player->m_88d, (s16)item[4]);\n+            if (learn_limit == 0xFF || learn_limit < item[2]) {\n+                flags |= 1;\n+            }\n+            break;\n+        }\n+        case 8:\n+            if (check_class_equip_permission(player, ANDROID_EQUIP_PERM) != 0) {\n+                flags |= 1;\n+            }\n+            break;\n+        }\n+        break;\n+    case 4: {\n+        // An enum local is rematerialized as the left operand of a signed compare.\n+        enum MesetaCap { meseta_cap = MESETA_EQUIP_CAP };\n+        MesetaCap cap = meseta_cap;\n+\n+        if (cap < ((TItemData *)item)->data2.meseta) {\n+            flags |= 0x20;\n+        }\n+        break;\n+    }\n+    }\n+    if (requirement != NULL) {\n+        *requirement = flags;\n+    }\n+    if (flags == 0) {\n+        return 1;\n+    }\n+    return 0;\n+}\n+\n+int check_class_equip_permission(TObjPlayer *player, s16 perm) {\n@@ -131 +361 @@ TItem *construct_item(TItemData *data) {\n-    Fn_8010542C fn;\n+    ItemCreateFunction fn;\n@@ -140 +370,5 @@ TItem *construct_item(TItemData *data) {\n-                    return (TItem *)fn(&item);\n+#ifdef __MWERKS__\n+                    return fn((u8 *)&item);\n+#else\n+                    return invoke_item_factory(fn, (u8 *)&item, *(u8 *)src);\n+#endif\n@@ -150,5 +384,5 @@ extern \"C\" {\n-s32 TLobby__sub_801054E0(In_801054E0 *arg0) {\n-    if (arg0 != 0) {\n-        if (arg0->idx < 4) {\n-            if (item_pro_create_fn_table[arg0->idx].fn != 0) {\n-                return item_pro_create_fn_table[arg0->idx].fn(arg0);\n+TItem *TLobby__sub_801054E0(u8 *item) {\n+    if (item != 0) {\n+        if (item[1] < 4) {\n+            if (item_pro_create_fn_table[item[1]] != 0) {\n+                return item_pro_create_fn_table[item[1]](item);\n@@ -170 +404 @@ void send_6x60_standard_drop_item_request(Obj_80105538 *self) {\n-                (((TObjPlayer *)p1)->get_field_3e4() != ((TObjPlayer *)p2)->get_field_3e4() ||\n+                (((TObjPlayer *)p1)->get_floor() != ((TObjPlayer *)p2)->get_floor() ||\n@@ -188 +422 @@ void send_6x60_standard_drop_item_request(Obj_80105538 *self) {\n-                        if (csnVecterUnder((s32)&v, 1) != 0) {\n+                        if (csnVecterUnder((const Vec *)&v, 1) != 0) {\n@@ -206 +440 @@ void TObjChara::request_box_item_drop(void *unused, s16 arg2) {\n-            (((TObjPlayer *)p1)->get_field_3e4() != ((TObjPlayer *)p2)->get_field_3e4() ||\n+            (((TObjPlayer *)p1)->get_floor() != ((TObjPlayer *)p2)->get_floor() ||\n",
+              "verified": {
+                "check_equip_requirements": {
+                  "canonical_function_sha256": "ef635a7fb96b0e03041c2fd37907af2474e221244d263376f65bab0105dbe7de",
+                  "historical_function_sha256": "1886a999a8ef64e73840833df367e4728815e54ae4707b745f9861b71b313f0e",
+                  "native_owner_substitutions": [
+                    [
+                      "TObjPlayer *player, u8 *item, s32 *requirement",
+                      "TObjPlayer *player, const u8 *item, s32 *requirement"
+                    ],
+                    [
+                      "WeaponReqPmt",
+                      "const WeaponRequirementPmt"
+                    ],
+                    [
+                      "ArmorReqPmt",
+                      "const ArmorPmtEntry"
+                    ],
+                    [
+                      "UnitReqPmt",
+                      "const UnitPmtEntry"
+                    ],
+                    [
+                      "MagReqPmt",
+                      "const MagPmtRecord"
+                    ],
+                    [
+                      "rec->restrict_index",
+                      "rec->stat"
+                    ],
+                    [
+                      "meseta_cap = MESETA_EQUIP_CAP",
+                      "meseta_cap = 999999"
+                    ],
+                    [
+                      "        if (cap < ((TItemData *)item)->data2.meseta) {",
+                      "        // Item group 4 carries an actual TItemData record.\n        if (cap < reinterpret_cast<const TItemData *>(item)->data2.meseta) {"
+                    ]
+                  ]
+                },
+                "check_class_equip_permission": {
+                  "canonical_function_sha256": "3a734c7cb0c604781a9f3f91fe524c262baa442fd4f56d89be3a6036c6e4c757",
+                  "historical_function_sha256": "3a734c7cb0c604781a9f3f91fe524c262baa442fd4f56d89be3a6036c6e4c757",
+                  "native_owner_substitutions": []
+                },
+                "construct_item": {
+                  "canonical_function_sha256": "32605b7c1b22c036fbd87d20af61459757b0d5566bc63da0837c2a81ef99eb54",
+                  "historical_function_sha256": "0da1cb5f4ad7bd76c29ebed68f01aca21ee4dd357dc0bff369f57db1b0e35a15",
+                  "native_owner_substitutions": [
+                    [
+                      "#ifdef __MWERKS__\n",
+                      ""
+                    ],
+                    [
+                      "#else\n                    return invoke_item_factory(fn, (u8 *)&item, *(u8 *)src);\n#endif\n",
+                      ""
+                    ]
+                  ]
+                },
+                "TLobby__sub_801054E0": {
+                  "canonical_function_sha256": "c0d7d387e9a7d3b55497437e82e14ee6b2a07137367ae0b8deccb4ee4b3e393d",
+                  "historical_function_sha256": "c0d7d387e9a7d3b55497437e82e14ee6b2a07137367ae0b8deccb4ee4b3e393d",
+                  "native_owner_substitutions": []
+                },
+                "send_6x60_standard_drop_item_request": {
+                  "canonical_function_sha256": "a63b075c0513200ec72ed5642cc959b5a5111739c92029497633e778d0f6eda8",
+                  "historical_function_sha256": "06e38a4e863bf4bf0ef73b6285bff5208d4ad23b780ba85afc4b31ed22fc433e",
+                  "native_owner_substitutions": [
+                    [
+                      "            get_current_floor();\n            if (is_valid_drop_floor() != 0 &&",
+                      "            if (is_valid_drop_floor(get_current_floor()) != 0 &&"
+                    ],
+                    [
+                      "Vec_80105538 v;",
+                      "Vec v;"
+                    ],
+                    [
+                      "v.y = lbl_805DAAB4;",
+                      "v.y = 100.0f;"
+                    ],
+                    [
+                      "csnVecterUnder((const Vec *)&v, 1)",
+                      "csnVecterUnder(&v, 1)"
+                    ]
+                  ]
+                },
+                "TObjChara::request_box_item_drop": {
+                  "canonical_function_sha256": "cac84df3f2f1e814be8240bc8747689969de9047d1f8d248b98d359d7ff64878",
+                  "historical_function_sha256": "85adc040a0d0a6aa91f83c6dcf72c76e60fb8f6d3f8553dad5ebb81b0028b23a",
+                  "native_owner_substitutions": [
+                    [
+                      "void *unused, s16 arg2",
+                      "const Vec *, s32 random_item"
+                    ],
+                    [
+                      "    Obj_8010567C *self = (Obj_8010567C *)this;\n",
+                      ""
+                    ],
+                    [
+                      "self != 0",
+                      "this != NULL"
+                    ],
+                    [
+                      "self->f2c",
+                      "this->set_index"
+                    ],
+                    [
+                      "self->x",
+                      "position.x"
+                    ],
+                    [
+                      "self->z",
+                      "position.z"
+                    ],
+                    [
+                      "self->f28",
+                      "room"
+                    ],
+                    [
+                      "pkt.f12 = arg2",
+                      "pkt.f12 = random_item"
+                    ],
+                    [
+                      "self->f70",
+                      "scale.z"
+                    ],
+                    [
+                      "self->f88",
+                      "set_params[1]"
+                    ]
+                  ]
+                },
+                "item_pro_create_fn_table": [
+                  "0",
+                  "TItemProArmor::create",
+                  "TItemProShield::create",
+                  "TItemProUnit::create"
+                ],
+                "item_create_fn_table": [
+                  "create_weapon_for_item",
+                  "TLobby__sub_801054E0",
+                  "TItemMag::create",
+                  "TItemObject::create_tool",
+                  "TItemMoney::create"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 469,
+        "historical_path": "include/pso/enemy/TObjEneRe7Berura.h",
+        "historical_blob": "c896fdd8a99aee92d421abb4d075789aa0eef4dd",
+        "owners": {
+          "include/pso/enemy/berura/TObjEneRe7Berura.h": "85690f1a5cd1e930dcafecd0a99c05a9dde93d6c",
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6",
+          "config/GPOE8P/psov3/symbols.txt": "59a37b0d24b905b4bd02e3420395a7a3cca92f54"
+        },
+        "proofs": [
+          {
+            "group": "berura-source",
+            "evidence": "Whole owner header. All authored virtual, AI and model-tree methods are present, including the original virtual slots at 0x80092B10/0x80092C90, both node callbacks and the two-heading turn helper. Physical 0x4E4 actor, signed color word and all four authored offsets. Existing names retained, including get_field_3D4_shifted at donor fn_80094EE0; typed child pointers narrow original TObject*. A byte-for-byte three-way replay verifies the shared file across selection, quest, stage-names.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1 @@",
+                "@@ -4,0 +6 @@",
+                "@@ -5,0 +8,4 @@",
+                "@@ -7,0 +14 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -10,3 +17,3 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -19,7 +26,2 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -27,14 +29,19 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -44,0 +52 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -47,3 +55,8 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -51 +64,4 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -55 +71 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -57,2 +73,2 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -62,4 +78,3 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -67 +82,2 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -69 +85 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -71 +87 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {",
+                "@@ -76,0 +93,4 @@ struct TObjEneRe7Berura : public TObjEneDD_ST {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 470,
+        "historical_path": "include/pso/enemy/TObjEneRe7BeruraData.h",
+        "historical_blob": "ec2ddd555805fe0bf83035185bf9aa06b122d880",
+        "owners": {
+          "include/pso/enemy/berura/TObjEneRe7Berura.h": "85690f1a5cd1e930dcafecd0a99c05a9dde93d6c",
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6",
+          "include/pso/enemy/BattleParameters.h": "6013f95ec68f942029fd2064410b9f47c66c85f6"
+        },
+        "proofs": [
+          {
+            "group": "berura-source",
+            "evidence": "Whole detached-part data contract is owned by the combined actor TU/header, so a second header is unnecessary. Two 0x64 records, embedded model/origin at 0x20/0x58, both hide/show methods, eight action records, sampled points, typed battle/movement caches, matrices, camera, fades, resource, node/UV buffers and counters. The established StripBufferPair pointer further specifies the historical void*.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,53 @@"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 608,
+        "historical_path": "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "historical_blob": "ae876a8fb38bf255b59257ae781da1bb29459297",
+        "owners": {
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6",
+          "include/pso/enemy/berura/TObjEneRe7Berura.h": "85690f1a5cd1e930dcafecd0a99c05a9dde93d6c",
+          "src/pso/enemy/berura/BeruraData.cpp": "09fba625729c4009b6b883fdea33b37dc2400c0e",
+          "include/pso/enemy/BattleParameters.h": "6013f95ec68f942029fd2064410b9f47c66c85f6",
+          "config/GPOE8P/psov3/symbols.txt": "59a37b0d24b905b4bd02e3420395a7a3cca92f54"
+        },
+        "proofs": [
+          {
+            "group": "berura-source",
+            "evidence": "Native factory/lifetime, BML/model and animation resources, two 17-matrix detached arms, player scan, battle reset/reload, heading and receipt ABI, flag update, and native dispatch/attack work verified. Scoped conservatively for original 1,778 changed lines: detached-resource archive/literal placement and provenance across the consolidated units have not been certified individually. Retail .bss placement of the two attack pointers agrees with both address maps despite donor .data annotation. A byte-for-byte three-way replay verifies the shared file across selection, quest, stage-names.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,6 @@",
+                "@@ -2,0 +9 @@",
+                "@@ -3,0 +11,2 @@",
+                "@@ -5,0 +15,2 @@",
+                "@@ -7 +17,0 @@",
+                "@@ -8,0 +19 @@ extern \"C\" void *__ct__12TObjEneDD_STFP7TObject(void *);",
+                "@@ -15,5 +26,8 @@ extern \"C\" void *__ct__12TObjEneDD_STFP7TObject(void *);",
+                "@@ -29,0 +44,2 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -31,412 +46,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -445,9 +48,0 @@ extern \"C\" {",
+                "@@ -455,30 +49,0 @@ u32 csnLookAt(void *, void *);",
+                "@@ -486,21 +50,0 @@ s32 enemy_set_target_id(void *, u16);",
+                "@@ -510,9 +53,0 @@ void compose_motion_node_matrix(void *arg0);",
+                "@@ -527,6 +62 @@ extern const s32 TObjEneRe7Berura__data_80439DB8[];",
+                "@@ -539,2 +68,0 @@ extern const f32 TObjEneRe7Berura__data_805D9764;",
+                "@@ -542,19 +70,3 @@ extern s32 lbl_80439DA0[];",
+                "@@ -565,6 +77,6 @@ extern const f32 lbl_805D974C;",
+                "@@ -572,118 +84,18 @@ extern const f32 lbl_805D9788;",
+                "@@ -691,2 +103,5 @@ void *lbl_8048F66C[11] = {",
+                "@@ -694,4 +109,2 @@ __declspec(section \".data\") void *bm_ene_re7_berura_model_names[2] = {",
+                "@@ -699,2 +112,5 @@ void *bm_ene_re7_berura_motion_names[9] = {",
+                "@@ -702,9 +118,3 @@ void *ene_berura_bml_descriptor[4] = {",
+                "@@ -712,28 +122,9 @@ void *TObjEneRe7Berura__animation_definitions[32] = {",
+                "@@ -741,36 +131,0 @@ void *__vt__16TObjEneRe7Berura[107] = {",
+                "@@ -778,9 +133 @@ void TObjEneRe7Berura::state_attack(s32 arg1) {",
+                "@@ -788,41 +135 @@ void TObjEneRe7Berura::handle_message_transition(s32 msg) {",
+                "@@ -830,8 +137 @@ void TObjEneRe7Berura__vt85(s32 arg0, u32 arg1, s32 mode) {",
+                "@@ -839,9 +139,19 @@ s32 TObjEneRe7Berura::check_death_trigger() {",
+                "@@ -849,4 +159,3 @@ void TObjEneRe7Berura::play_band_sound() {",
+                "@@ -855,4 +164,3 @@ void TObjEneRe7Berura__sub_80094C68(TObjEneRe7Berura *self) {",
+                "@@ -861,2 +169,6 @@ void TObjEneRe7Berura::reload_stats_from_tables() {",
+                "@@ -863,0 +176,31 @@ void TObjEneRe7Berura::destroy_parts() {",
+                "@@ -865,4 +208,61 @@ void TObjEneRe7Berura::destroy_parts() {",
+                "@@ -872,6 +272,2 @@ void TObjEneRe7Berura::destroy_parts() {",
+                "@@ -879 +274,0 @@ void TObjEneRe7Berura__sub_80094D98(u8 *arg0) {",
+                "@@ -881,4 +276,17 @@ void TObjEneRe7Berura__sub_80094D98(u8 *arg0) {",
+                "@@ -887,4 +295,7 @@ s32 TObjEneRe7Berura__sub_80094DB4(void *arg0) {",
+                "@@ -892,5 +303,33 @@ u8 TObjEneRe7Berura::is_over_limit() {",
+                "@@ -898 +337,24 @@ u8 TObjEneRe7Berura::is_over_limit() {",
+                "@@ -901,15 +363,6 @@ u8 TObjEneRe7Berura::is_over_limit() {",
+                "@@ -917,11 +369,0 @@ s32 TObjEneRe7Berura::step_toward_target(s32 arg1, s32 arg2) {",
+                "@@ -929,10 +371,5 @@ s32 TObjEneRe7Berura::step_toward_target(s32 arg1, s32 arg2) {",
+                "@@ -941,6 +378,13 @@ s32 get_field_3D4_shifted__16TObjEneRe7BeruraFPv(void *arg0) {",
+                "@@ -949 +393 @@ void TObjEneRe7Berura::init_part(s32 arg0) {",
+                "@@ -951,4 +395 @@ void set_data_and_draw_node_tree__16TObjEneRe7BeruraFii(int a0, int a1) { (*(int",
+                "@@ -956,16 +397,8 @@ void draw_node_tree__16TObjEneRe7BeruraFPv(void *arg0) {",
+                "@@ -974,4 +407 @@ void draw_node_tree__16TObjEneRe7BeruraFPv(void *arg0) {",
+                "@@ -979,10 +409,5 @@ void apply_attack_params__16TObjEneRe7BeruraFiPv(s32 child, u8 *arg1) {",
+                "@@ -991,37 +416,2 @@ void apply_attack_params__16TObjEneRe7BeruraFiPv(s32 child, u8 *arg1) {",
+                "@@ -1030,3 +420 @@ s32 TObjEneRe7Berura::collect_node_matrices(void *arg0, int idx) {",
+                "@@ -1037 +425 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1039 +427 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1047 +434,0 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1051,2 +438,2 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1055,4 +442,4 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1060 +447 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1063 +450 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1070 +457 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1077,6 +464,2 @@ s32 TObjEneRe7Berura::acquire_target_in_view() {",
+                "@@ -1085,6 +468,46 @@ void TObjEneRe7Berura::vfunc_88() {",
+                "@@ -1093 +516,17 @@ void TObjEneRe7Berura::update_collision_center() {",
+                "@@ -1095,9 +534,3 @@ void TObjEneRe7Berura::vfunc_61() {  }",
+                "@@ -1106 +539,5 @@ void TObjEneRe7Berura::vfunc_62() {",
+                "@@ -1108 +545,3 @@ void TObjEneRe7Berura::vfunc_63() { if (this->mode != 11) { transition_enemy_sta",
+                "@@ -1110,13 +549,3 @@ void TObjEneRe7Berura::vfunc_28() {  }",
+                "@@ -1125,14 +554,15 @@ void run_task__16TObjEneRe7BeruraFv(TObjEneRe7Berura *ene_re7_berura) {",
+                "@@ -1140,7 +570,7 @@ Berura_800954E8 *__dt__16TObjEneRe7BeruraFv(Berura_800954E8 *self, s16 flag) {",
+                "@@ -1147,0 +578,3 @@ Berura_800954E8 *__dt__16TObjEneRe7BeruraFv(Berura_800954E8 *self, s16 flag) {",
+                "@@ -1149 +582 @@ Berura_800954E8 *__dt__16TObjEneRe7BeruraFv(Berura_800954E8 *self, s16 flag) {",
+                "@@ -1152,45 +585,10 @@ Berura_800954E8 *__dt__16TObjEneRe7BeruraFv(Berura_800954E8 *self, s16 flag) {",
+                "@@ -1198,14 +596 @@ void TObjEneRe7Berura::init_enemy() {",
+                "@@ -1214,11 +599,2 @@ void TObjEneRe7Berura::init_enemy() {",
+                "@@ -1227,17 +603,4 @@ void *TObjEneRe7Berura__ct(void *ene_re7_berura, void *arg1, void *arg2) {",
+                "@@ -1244,0 +608 @@ void TObjEneRe7Berura::destroy_children() {",
+                "@@ -1246,4 +610,6 @@ void TObjEneRe7Berura::destroy_children() {",
+                "@@ -1251 +616,0 @@ void *TObjEneRe7Berura::create() {",
+                "@@ -1254,3 +619,5 @@ void *TObjEneRe7Berura::create() {",
+                "@@ -1258 +625,5 @@ __declspec(section \".data\") s32 TObjEneRe7Berura__data_805007D4[2];",
+                "@@ -1260,99 +631,5 @@ Elem_800959F8 TObjEneRe7Berura__detached_part_states[2];",
+                "@@ -1360,0 +638 @@ void TObjEneRe7Berura::load_static_resources() {",
+                "@@ -1362,3 +640,6 @@ void TObjEneRe7Berura::load_static_resources() {",
+                "@@ -1367,3 +648,40 @@ void fn_80095DD0(u8 *arg0) {",
+                "@@ -1370,0 +689,9 @@ void fn_80095DF4(u8 *arg0) {",
+                "@@ -1373 +700,30 @@ void fn_80095DF4(u8 *arg0) {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 609,
+        "historical_path": "src/pso/enemy/TObjEneRe7Berura_80092CCC.cpp",
+        "historical_blob": "5695a0103406d23e52dffe5dded8ce47002ac8fd",
+        "owners": {
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6",
+          "include/pso/enemy/berura/TObjEneRe7Berura.h": "85690f1a5cd1e930dcafecd0a99c05a9dde93d6c"
+        },
+        "proofs": [
+          {
+            "group": "berura-source",
+            "evidence": "Whole render/callback and flashing state delta under combined actor. Both typed node callbacks, per-node camera pointers, direct transform, two hide/show owners, texture binding, original demo/main-phase tests, actual fade methods and both positional sounds verified.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,6 @@",
+                "@@ -20,12 +25,0 @@",
+                "@@ -225 +218,0 @@ struct VObj_18_1fdb47 : VBase_18_1fdb47 {",
+                "@@ -257 +250 @@ s32 transition_enemy_state__9TObjEneDDFl(void *, s32);",
+                "@@ -259 +251,0 @@ extern const f32 TObjEneRe7Berura__data_805D9738;",
+                "@@ -264,3 +255,0 @@ s32 get_camera_mode__11TCameraCtrlFv();",
+                "@@ -274,10 +262,0 @@ extern Vec lbl_80439EC4[];",
+                "@@ -293,2 +271,0 @@ extern const f32 lbl_805D9E88;",
+                "@@ -296 +273 @@ s32 get_camera_ctrl__9TObjEneDDFv(s32, s32);",
+                "@@ -305 +282,2 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -315 +293 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -334 +312 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -340 +318 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -344 +322 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -351 +329 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -360 +338 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -370 +348 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -376 +354 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -395 +373 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -403 +381 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -417 +395 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -431 +409 @@ void render__16TObjEneRe7BeruraFv(Berura_80092CCC *o) {",
+                "@@ -444 +422 @@ void TObjEneRe7Berura::advance_state() {",
+                "@@ -455,2 +433,2 @@ void TObjEneRe7Berura::demo_frame_callback() {",
+                "@@ -460 +438 @@ void TObjEneRe7Berura::demo_frame_callback() {",
+                "@@ -465 +443 @@ void TObjEneRe7Berura::demo_frame_callback() {",
+                "@@ -470 +448 @@ void TObjEneRe7Berura::demo_frame_callback() {",
+                "@@ -475 +453 @@ void TObjEneRe7Berura::demo_frame_callback() {",
+                "@@ -498 +476 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {",
+                "@@ -521,2 +499,2 @@ void TObjEneRe7Berura::update_death_state(s32 mode) {",
+                "@@ -528 +506 @@ void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {",
+                "@@ -531 +509 @@ void TObjEneRe7Berura__sub_80093470(Berura_80093470 *obj, s32 mode) {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 610,
+        "historical_path": "src/pso/enemy/TObjEneRe7Berura_8009358C.cpp",
+        "historical_blob": "11da51cdbcef99237c707dc21bbab0acc58d6a3a",
+        "owners": {
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6",
+          "include/pso/enemy/berura/TObjEneRe7Berura.h": "85690f1a5cd1e930dcafecd0a99c05a9dde93d6c",
+          "include/pso/unk/SampledMotionPoints.h": "b72511d5d0e7b380609810c23b20a948f3931495",
+          "include/pso/math/AngleUnits.h": "accc91e231b0debab86160ef26952371c0923e1d",
+          "include/pso/system/MatrixVectorArray.h": "560557f5af7f8d352a547e2a70e951bcef0ce7d6"
+        },
+        "proofs": [
+          {
+            "group": "berura-source",
+            "evidence": "Whole six state-handler delta: attack/patrol mode dispatch, signed turn accumulator/yaw, retained target checks, 10430.38043493439 radians conversion, trail sample through native four-Vec transform, indexed detached-part actions/frames/origin, action speed changes, positional/persistent sound and pitch arguments. get_field_3D4_shifted is the current name of 0x80094EE0.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,2 @@",
+                "@@ -2,0 +5,2 @@",
+                "@@ -152 +155,0 @@ struct Vec_80093C80 { f32 x, y, z; };",
+                "@@ -166,3 +168,0 @@ f32 atan2_float(f32 y, f32 x);",
+                "@@ -171 +171 @@ f32 cos_table_lookup(int);",
+                "@@ -178 +177,0 @@ extern const f32 lbl_805D9768;",
+                "@@ -181 +179,0 @@ f32 random_ratio__9TObjCharaFv(s32);",
+                "@@ -183 +181 @@ s32 enemy_validate_retained_target(u8 *arg0);",
+                "@@ -188 +185,0 @@ void TObjEneDD__sub_800BA378(s32 arg0, u8 *arg1);",
+                "@@ -191 +187,0 @@ s32 rotate_matrix_y(int, int);",
+                "@@ -202 +197,0 @@ struct Timers_80093888 { u8 pad[0x440]; s32 t[2]; };",
+                "@@ -204 +198,0 @@ extern const f32 lbl_805D976C;",
+                "@@ -209,2 +202,0 @@ s32 vec3_add_to(void *, void *);",
+                "@@ -213,4 +204,0 @@ extern const f32 lbl_805D975C;",
+                "@@ -330 +318,2 @@ struct V_A : Base_A {",
+                "@@ -380 +369 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {",
+                "@@ -396,2 +385,2 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {",
+                "@@ -399 +388 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {",
+                "@@ -409,2 +398,2 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {",
+                "@@ -418 +407 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {",
+                "@@ -424 +413,2 @@ void TObjEneRe7Berura::run_flash_warning_state(s32 arg1) {",
+                "@@ -441 +431 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -448 +438 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -453 +443 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -465 +455 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -468 +458 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -478 +468 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -494 +484 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -500 +490 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -531 +521,2 @@ void TObjEneRe7Berura__sub_80093888(u8 *actor, s32 arg1) {",
+                "@@ -533 +524 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -542,3 +533,3 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -550,2 +541,2 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -553,2 +544,2 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -556 +547 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -560 +551 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -597 +588 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -603 +594 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -637 +628,2 @@ void TObjEneRe7Berura__sub_80093C80(u8 *arg0, s32 arg1) {",
+                "@@ -653,2 +645,2 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -660 +652 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -679 +671 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -683 +675 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -685,3 +677,3 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -701 +693 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -703 +695 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -710 +702 @@ void TObjEneRe7Berura__sub_800940E8(TObjEneRe7Berura *arg0, s32 arg1) {",
+                "@@ -741 +733 @@ void TObjEneRe7Berura::handle_state(s32 arg1) {",
+                "@@ -781 +773,2 @@ void TObjEneRe7Berura::handle_state(s32 arg1) {",
+                "@@ -797 +790 @@ void TObjEneRe7Berura__sub_80094624(u8 *ene_re7_berura, s32 arg1) {",
+                "@@ -809 +802,2 @@ void TObjEneRe7Berura__sub_80094624(u8 *ene_re7_berura, s32 arg1) {",
+                "@@ -829 +823 @@ void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1) {",
+                "@@ -871 +865 @@ void TObjEneRe7Berura__sub_8009472C(u8 *arg0, s32 arg1) {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 654,
+        "historical_path": "src/pso/unk/text_80092B10.cpp",
+        "historical_blob": "ec907f9aea9b61fab356581271f0ea38edb5fb20",
+        "owners": {
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6",
+          "include/pso/enemy/berura/TObjEneRe7Berura.h": "85690f1a5cd1e930dcafecd0a99c05a9dde93d6c",
+          "config/GPOE8P/psov3/symbols.txt": "59a37b0d24b905b4bd02e3420395a7a3cca92f54"
+        },
+        "proofs": [
+          {
+            "group": "berura-source",
+            "evidence": "Both virtuals resolve at original addresses. vfunc_106 at 0x80092B10 binds actor texture and renders, vfunc_105 at 0x80092C90 calls the actor method at 0x80095328 only after get_target_info succeeds. Current vtable names are kept. A byte-for-byte three-way replay verifies the shared file across selection, quest, stage-names.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1 @@",
+                "@@ -25 +25,0 @@ extern \"C\" {",
+                "@@ -58 +58 @@ extern const f32 TObjEneRe7Berura__data_805D972C;",
+                "@@ -71 +71 @@ void TObjEneRe7Berura::vfunc_105() {",
+                "@@ -95 +95 @@ void TObjEneRe7Berura::vfunc_105() {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 996,
+        "historical_path": "src/pso/enemy/TObjEneRe7BeruraPunch.cpp",
+        "historical_blob": "616d7a7b2feebaee18947b70d19b7e01ea9ff0b6",
+        "owners": {
+          "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp": "114435a9b4fdd1ddf42cc583982a915fe1a9ba70",
+          "include/pso/enemy/berura/TObjEneRe7BeruraPunch.h": "9a1556ac7dee19b789644ea4891c33dc4b04e7bd",
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6",
+          "include/pso/enemy/berura/TObjEneRe7Berura.h": "85690f1a5cd1e930dcafecd0a99c05a9dde93d6c"
+        },
+        "proofs": [
+          {
+            "group": "berura-source",
+            "evidence": "Whole punch delta: typed world position and ground normal for oriented shadow and ground snap, owner-ID lookup and member dispatch on termination/hit, yaw load/fallback and all trig uses, and Csn contact point/normal.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1 @@",
+                "@@ -71 +71,0 @@ void *find_entity_by_id(u16 id);",
+                "@@ -73 +72,0 @@ s32 TObjEneRe7Berura__sub_80094D98();",
+                "@@ -114 +113 @@ void TObjEneRe7BeruraPunch::render() {",
+                "@@ -119 +118 @@ void TObjEneRe7BeruraPunch::render() {",
+                "@@ -184,2 +183,3 @@ void TObjEneRe7BeruraPunch::update_flight() {",
+                "@@ -214 +214 @@ s32 TObjEneRe7BeruraPunch::sub_80096150() {",
+                "@@ -228 +228 @@ void TObjEneRe7BeruraPunch::launch(s32 arg1, s32 arg2) {",
+                "@@ -230 +230 @@ void TObjEneRe7BeruraPunch::launch(s32 arg1, s32 arg2) {",
+                "@@ -232 +232 @@ void TObjEneRe7BeruraPunch::launch(s32 arg1, s32 arg2) {",
+                "@@ -234 +234 @@ void TObjEneRe7BeruraPunch::launch(s32 arg1, s32 arg2) {",
+                "@@ -263 +262,0 @@ extern \"C\" {",
+                "@@ -308 +307 @@ void TObjEneRe7BeruraPunch::snap_to_ground() {",
+                "@@ -312 +311 @@ void TObjEneRe7BeruraPunch::snap_to_ground() {",
+                "@@ -362 +361 @@ void TObjEneRe7BeruraPunch::run_task() {",
+                "@@ -364,2 +363,2 @@ void TObjEneRe7BeruraPunch::run_task() {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2207,
+        "historical_path": "src/pso/menu/TAdPlyChrSelPlateGC_802C4CA0.cpp",
+        "historical_blob": "6b778c938dbbc635199f9e6ae5281f2dfde185de",
+        "owners": {
+          "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp": "d52897a7c24f2536e45f1539baf67228b76de5ed",
+          "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h": "d9a2967af983cf03a8ddb27664869b8308c09c4f",
+          "src/pso/ui/frontend/TAdChrSelASlotGC.cpp": "e96581a2051be71006a5bb30911099819a85d155",
+          "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp": "7ce90fbff552edba62c09a89109edb76783df110"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The complete added plate unit lands on the native class. Render preserves the original pass/blend transitions and rendered entries, readiness uses the original 127.5 threshold, reset clears all 32 entries, append stores target and starts at the first position, and animation preserves reveal order and clamps. Both slot scenes pass actual CharacterSlotPosition records.",
+            "details": {
+              "functions": [
+                "0x802C4CA0",
+                "0x802C4D5C",
+                "0x802C4D88",
+                "0x802C4DD0",
+                "0x802C4E38"
+              ],
+              "position_layout": [
+                "drawn at +0x1C",
+                "target at +0x11C",
+                "size at +0x21C"
+              ],
+              "state_layout": [
+                "count +0x224",
+                "shown +0x228",
+                "progress +0x2A8",
+                "color +0x328",
+                "animation frame +0x3AC"
+              ],
+              "slot_position_calls": "14 A-slot calls and 4 B-slot calls use the same true two-float shape.",
+              "signature_at_0x802C4DD0": "The native method keeps the established name and accepts its actual record type."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2302,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC.cpp",
+        "historical_blob": "afc922d914593433540830df9b6ad47bc1526593",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "7487450f7bdcff1a879ea249e7f3685f4094a6da",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": "3941a9ad2ada32511bf6a8a45572d2cca68a8220",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp": "1d79a7e2203b6761098c00aec8310ad5feded970",
+          "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h": "d9a2967af983cf03a8ddb27664869b8308c09c4f"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The complete split selector tail remains at its live owner. The scene runs all 13 original state handlers, clears the frame on transition, retains original cleanup order and both guide lines, checks the selected character\u2019s original meseta threshold and resets original child/state slots. The native constructor owns the original TObject parent, constructs existing backgrounds, guide and cursor, preserves the title and title texture allocation sizes, and passes the original three positions. The destructor keeps the original child dispatch.",
+            "details": {
+              "function_addresses": [
+                "0x802D4B6C",
+                "0x802D4D9C",
+                "0x802D4E08",
+                "0x802D4F2C"
+              ],
+              "backgrounds": [
+                "TAdBackGC",
+                "TAdBackTxtGC"
+              ],
+              "slot_factory": "existing native multiplayer slot singleton",
+              "child_windows": "The existing title and title-texture allocation bridges preserve the established layouts and linked calls.",
+              "runtime_kind": "The selector\u2019s 0x60-byte scene remains distinct from archive and character-creation request carriers."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2307,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+        "historical_blob": "fbb835c1595f53127a1ae75761bfbdfe65967d27",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp": "cffd6653c0104443975e7b32809dc33f2ceebdc1",
+          "include/pso/ui/charcreate/CharacterLoadBuffer.h": "632b5346d6301c9a9e2937f93a77b8e54a2a6fc5",
+          "src/pso/ui/charcreate/TChCrLoadAfs.cpp": "17c254419555f68d616618d98e1eb682cbd7f071",
+          "include/pso/ui/charcreate/TChCrLoadAfs.h": "4ec8ef788598548b09c662c93cec2a30fa5be774",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": "bb990e934650bd127e4ac0d356213de65b28473c"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The entire added AFS and cursor-table range survives. Completion compares the native archive state, the result returns its actual +0x28 buffer, four base slots and eight extended slots use the original cursor tables, and advance/reset preserve unsigned byte addresses, 0xA000 stride and 32-byte rounding. Allocate and release preserve both original buffer sizes and lifecycle.",
+            "details": {
+              "original_bounds": "0x8028D5D4 through the original allocation helpers preceding 0x8028D8F4",
+              "physical_slots": 4,
+              "extended_slots": 8,
+              "slot_stride": "0xA000",
+              "rounding": "0x20",
+              "provider": "TChCrLoadAfs 0x38 with buffer +0x28, state +0x2C and native lifetime; previews read actual byte pointers."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2393,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.cpp",
+        "historical_blob": "987b6a319c34b9f37962aefc4562f13ea406925b",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "7487450f7bdcff1a879ea249e7f3685f4094a6da",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": "3941a9ad2ada32511bf6a8a45572d2cca68a8220",
+          "include/pso/system/ControllerInputState.h": "6ce8173d1e9ee85aac20f4fc2b189c207cb8e9da"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The complete authored scene-head split maps to the folded current owner. The original separate physical cancel bank and logical controller/keyboard contexts survive, including cancel transitions and sound. The four cursor rectangles stay at the real 0x20-byte table. The guild-card name stays at its earlier address and the original 0x38-byte fade child still queues and allocates on that same slot selection branch. The displaced constructor/task tail is separately accounted for by 2302.",
+            "details": {
+              "inputs": [
+                "first logical controller +0x20",
+                "keyboard +0x160",
+                "physical bank controller +0x20 in slot selection"
+              ],
+              "rectangle_table": "0x80472510, 32 bytes",
+              "guild_card_filename": "0x804C89BC, 120 bytes",
+              "audited_states": [
+                "handle_slot_selection",
+                "0x802D4570",
+                "0x802D4664",
+                "0x802D4730",
+                "0x802D486C"
+              ],
+              "same_entity_spellings": "Retains the current cursor, card filename and menu provider names."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2410,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_80336054.cpp",
+        "historical_blob": "9866c30c10fb1f2e9583e87b6e238fb56769a793",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": "69e7d1e3c9fdfebabb24532bcc978cedbec0d303",
+          "include/pso/ui/frontend/TitleSceneTables.h": "56c133e0dc27cfbf47965fcc7e93a6b46dccac31"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "Both authored changed blocks survive at the active title owner. The contract imports the shared title state and returns its current lobby game-mode word. The existing no-op and offline transition are retained with unchanged behavior. Canonical uses the verified transition actor for the offline setup.",
+            "details": {
+              "source_audit_only": true,
+              "state_address": "0x805D6D44",
+              "getter": "0x80336054",
+              "offline_transition": "0x80336064, 0x28 allocation with the original cleanup callback and state bits",
+              "standalone_and_queue": "Retain their established selector-labelled offline entry at the same address."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2499,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_80243218.cpp",
+        "historical_blob": "8aa5fc4820e04896e42af3aed50b1f9e940aaa49",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80243218.cpp": "3fdf69d288c7d8e5ebf0e733503d4d9f85b1c3b7",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": "3941a9ad2ada32511bf6a8a45572d2cca68a8220",
+          "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp": "1250d8eb64ff88417fce0eb82ae3620d2c77c602",
+          "include/pso/system/date.h": "7502e5eabd5ed649ec06322b21e6b9ab9fb1c940"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The complete non-include delta makes the four-argument selector write return its memory-card status. The native eight-byte timestamp preserves the original stack frame and bytes. The caller passes the original high flag word and the writer uses its original low attribute byte.",
+            "details": {
+              "write_call": "0x80243274",
+              "timestamp_provider": "0x80142108",
+              "timestamp_bytes": 8,
+              "card_attributes": [
+                "0x800000FF",
+                "0x80000000"
+              ],
+              "return": "Existing card write result reaches caller directly in r3."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2557,
+        "historical_path": "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+        "historical_blob": "d1d588bc31ed5a07dccea564b3b74f529c4a4f04",
+        "owners": {
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": "3941a9ad2ada32511bf6a8a45572d2cca68a8220",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "7487450f7bdcff1a879ea249e7f3685f4094a6da",
+          "include/pso/ui/charcreate/TChCrLoadAfs.h": "4ec8ef788598548b09c662c93cec2a30fa5be774"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The original pointer-sized load work keeps its native selector and separate preview/AFS request owners. The historical four-word write has its actual return type, the scene constructor takes a real TObject parent and the slot tables use typed buffers. The remaining mixed selector, modem and request declarations need separate owner evidence.",
+            "details": {
+              "scope": "selector construction and exact return interface",
+              "unresolved_historical_scope": "other original 16 change blocks and misattributed request members"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2577,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "historical_blob": "9e6b9d7ff9d977b83c689298e98dd683a6d55fe1",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": "b027ca75307070b42ea2d966d41ad5df2ee9fd54",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": "bb990e934650bd127e4ac0d356213de65b28473c",
+          "include/pso/ui/charcreate/TChCrLoadAfs.h": "4ec8ef788598548b09c662c93cec2a30fa5be774",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp": "cffd6653c0104443975e7b32809dc33f2ceebdc1"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "Preview callers now receive the native loaded byte buffer and use it directly through the real AFS completion state. This verifies the related preview resource boundary. The original 54-block character-creation body remains open.",
+            "details": {
+              "scope": "preview preparation and buffer lookup providers",
+              "unresolved_historical_scope": "the original character-creation shape, model, action and material changes in the large owner"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2673,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+        "historical_blob": "eeea45dc23b269b772793a1f329f936a8ef588bf",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp": "c0bf54a6d6d60c8d529fe3a1b57a74627838c14d",
+          "include/pso/system/save/CardFileInfo.h": "8fb87ec0daa93ec9dcf6a89b6eb0d7a868e31ebe"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The original authored card-flow changes are accounted for. The native card receiver gets the integer channel/capacity and the original state result. The character and Guild Card filenames stay at their original linked addresses, the three-file test retains order, the typed nullable release preserves the download lifetime and both warp/menu helpers use the original 289.0 height.",
+            "details": {
+              "source_audit_only": true,
+              "filename_addresses": [
+                "0x804C88C0",
+                "0x804C89BC"
+              ],
+              "window_height": "289.0f at both operation sites",
+              "body_deltas": [
+                "shared free call",
+                "card result types",
+                "card capacity query",
+                "same two card filenames",
+                "one/two option window layout heights",
+                "three-file existence test"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2675,
+        "historical_path": "include/pso/ui/TAdMultiPlyChrSelectGC.h",
+        "historical_blob": "4fe809ff82475f1f91d1326f902394b364ed172e",
+        "owners": {
+          "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h": "74455bdf273e02d25e4f8297e82c5d1586de4bab",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp": "1d79a7e2203b6761098c00aec8310ad5feded970",
+          "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp": "42e4b67a523f2ccd8dfd7f5015db548a385478b1",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.cpp": "7b8a3925c307ddb7cc3d6632d7603f2bcefdaf12",
+          "include/pso/ui/TUnk_804E0B28.h": "0edafe4d75832fa0ba016885a05c00b6ed52a0dc"
+        },
+        "proofs": [
+          {
+            "group": "selection-source",
+            "evidence": "The entire changed multiplayer declaration reconciles to actual owners. The real constructor takes a parent and mode, open-cell lookup is on the native player plate, and the active status-panel callback forwards the original two arguments on its transition owner.",
+            "details": {
+              "source_audit_only": true,
+              "lookup_at": "0x802C5C28",
+              "callback_at": "0x802C6FB0",
+              "native_types": [
+                "TAdMultiPlyChrSelectGC",
+                "TAdChrSelPlyPlateGC",
+                "TUnk_804E0B28"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2259,
+        "historical_path": "src/pso/misc/TQuestListOnline_802150E8.cpp",
+        "historical_blob": "1b66c01a8b92a4f21e2e252952fff182ac68277d",
+        "owners": {
+          "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp": "24d9cc8f55fece5190d4669b2908fc04dd1d397f",
+          "src/pso/network/TPlyJoinLobbyEntry.cpp": "28c83264981075a8ef976c5f25e0b491373e44fc",
+          "include/pso/quest/OnlineQuestMenuRecords.h": "62c9919e7fca81820c07397a454740ef8220e962"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "The fork-native message state, player-window suppression, allocation and cleanup calls remain in canonical. Menu copy, selected-info copy, and quest file start now receive the real existing decoder input records, with the original 0x11D4 and 0x124 allocations and copies, 0x28 filename, 0x38 file size, and original reset and release order. The separately owned download progress/barrier window globals and their legacy adapters remain unchanged. The standalone intentionally keeps its exact existing memory and window adapter providers.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6786,
+        "historical_path": "src/pso/misc/TQuestListOnline.cpp",
+        "historical_blob": "0dcf621753b4d8c7e0440a81774812149d6fadc9",
+        "owners": {
+          "src/pso/quest/TQuestListOnline.cpp": "fb1efdd9bb4ab6f9a606331fbf8f3ae1911f1835",
+          "include/pso/quest/TQuestListOnline.h": "ad44893945af425a246d04d2564a519aaeb3eeec",
+          "include/pso/quest/OnlineQuestMenuRecords.h": "62c9919e7fca81820c07397a454740ef8220e962",
+          "src/pso/ui/window/TMessageWindowController.cpp": "81477667d6879e96d9b89b3435e62ce12b011d12",
+          "src/pso/player/TPlyGuildCardTag_8013ABCC.cpp": "986ae89abfd59f16c40468ecf9c5e994e4c7d78d"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "The fork window-owner recoveries for icon rows, selection/cancel state, and closing are retained at the current owner. The original 0x70 task and window slots +0x38/+0x3C/+0x40/+0x44 now use their real window classes; the packet count and 30 0x98 rows, descriptions, and selected title are read through the shared record. The shared singleton declaration now reaches the guild-state callback. The same window provider branches and selected menu operations match retail. The separate selected-entry construction still follows the existing raw 0x1C storage and action/tag bridge; this does not close the entire historical translation unit.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      469,
+      470,
+      609,
+      610,
+      654,
+      996,
+      2207,
+      2302,
+      2307,
+      2393,
+      2410,
+      2499,
+      2673,
+      2675,
+      3094,
+      4474
+    ],
+    "remaining": {
+      "Owner comparison required": 173,
+      "Some anchored text changes found": 576
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 131,
+  "replay_validation": {
+    "factory-source": {
+      "head": "b6485dc38be2650fb690745598a9a293eb701bfa",
+      "report_sha256": "a4ca4c640d0907bef2d7519edcfa0e78ee36887b9f5d9f15acf3946349db2471",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "berura-source": {
+      "head": "269867d3a105b0da39efcca2cc95522f40a732d0",
+      "report_sha256": "a4ca4c640d0907bef2d7519edcfa0e78ee36887b9f5d9f15acf3946349db2471",
+      "strict_sha256": "a2f6dff69b5c438388afc0cbc1b889556da01056b6173afee98be28d44c3e379"
+    },
+    "selection-source": {
+      "head": "e0f22dde0ff77a8312cf4125202b4d4d93cc5ad5",
+      "report_sha256": "0a16786cee5205fb5d72810e5983b814a4b0485fc32ffdb5a6644a49400be020",
+      "strict_sha256": "cac9d9da9be1ac54063bb078d5914c4cfabf47b4e61a5ff51bf6bb05ad5a5215"
+    },
+    "quest-source": {
+      "head": "dfb145af0911c57dd43f062d1968d85621c7cbec",
+      "report_sha256": "65b1a075f86f819224040ca3272e2010800afc21d7bbc97dc221e1f722011c2c",
+      "strict_sha256": "d30569faaea9b71e6190b54b9eb3289bc491c69898529d0c3ec1dd4dee5d68d1"
+    },
+    "stage-names-source": {
+      "head": "0acca92c4873d97f68b6b167506007de540af784",
+      "report_sha256": "f97ee15cc9e3aee0810f035996811ebd77356df11c30b64c69ea026d46d662f5",
+      "strict_sha256": "66fbbc3ed2b83f05be3f39b56a3febf276842af3713944189d49f2338354aeb2"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "689db471bc1ef3c606d85dbdcd7f2655ec9dc007b854242aa47c3cd2883a16a2",
+      "strict_sha256": "af48a80cdd33795d2a58618dc7a6fe2815227ed7473c1b116ddd50ca072ba52f"
+    },
+    "direct-union": {
+      "report_sha256": "daba821de5c26579b0ae53f7ce209bd5a122d09bca06c112761626a370eda9b3",
+      "strict_sha256": "90504a57b9cc7f74b4f4d32be7a64d03a2b15df8b66c24dfe95c98595cbdeb7e"
+    },
+    "working-final": {
+      "report_sha256": "689db471bc1ef3c606d85dbdcd7f2655ec9dc007b854242aa47c3cd2883a16a2",
+      "strict_sha256": "32ad11722f05753e0adf78d052779277a63256876d4c642f7d11eb6bd04711a9"
+    }
+  },
+  "factory_dispatch": {
+    "source": {
+      "head": "b6485dc38be2650fb690745598a9a293eb701bfa",
+      "base": "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+      "paths": 71,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "entries_checked": 203,
+      "byte_matched_ranges": {
+        "weapon_factory_table": {
+          "address": "0x8049eb58",
+          "entries": 170,
+          "sha256": "95d877663d485a92fadca69257a438fad82e243c24b02fd2ec14ebc60d8a89b0"
+        },
+        "item_tool_factory_table": {
+          "address": "0x8049ee00",
+          "entries": 24,
+          "sha256": "5f23e12e495bed26c5b6d1519bbb062c589feeb8c6b0a286ddb4e7bac7ce7e40"
+        },
+        "item_pro_create_fn_table": {
+          "address": "0x8049eed8",
+          "entries": 4,
+          "sha256": "22879afbaf1743db449025c0c917ad347dcd583f245ca21ab37cb43e1dbd1efe"
+        },
+        "item_create_fn_table": {
+          "address": "0x8049eee8",
+          "entries": 5,
+          "sha256": "35c57e68933ea7b0a506e25d3460daa8f234c44b44dc1d6a4ee9469a1a6a2d3f"
+        }
+      },
+      "new_direct_weapon_slots": [
+        18,
+        19,
+        20,
+        25,
+        27,
+        30,
+        33,
+        34,
+        37,
+        40,
+        44,
+        46,
+        47,
+        48,
+        49,
+        54,
+        59,
+        60,
+        63,
+        64,
+        71,
+        74,
+        80,
+        81,
+        82,
+        83,
+        85,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        104,
+        105,
+        109,
+        112,
+        113,
+        115,
+        117,
+        118,
+        119,
+        121,
+        122,
+        124,
+        125,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        137,
+        139,
+        140,
+        141,
+        145,
+        147,
+        149,
+        150,
+        153,
+        154,
+        155,
+        158,
+        160,
+        161,
+        164,
+        166,
+        169
+      ],
+      "new_direct_weapon_factories": [
+        "TObjPlayer::create_action",
+        "TObjPlayer::create_bringer_effect",
+        "TObjPlayer::create_configured_state",
+        "TObjPlayer::create_effect_object",
+        "TObjPlayer::create_effect_state",
+        "TObjPlayer::create_enter_state_804A0BC0",
+        "TObjPlayer::create_event_callbacks_state",
+        "TObjPlayer::create_fields_state",
+        "TObjPlayer::create_gi_gue_bazooka",
+        "TObjPlayer::create_handlers_state",
+        "TObjPlayer::create_inferno_bazooka",
+        "TObjPlayer::create_init_state_2",
+        "TObjPlayer::create_mode_floats_state",
+        "TObjPlayer::create_nug2000_bazooka",
+        "TObjPlayer::create_obj_80122C2C",
+        "TObjPlayer::create_obj_80125F60",
+        "TObjPlayer::create_obj_80128580",
+        "TObjPlayer::create_obj_8012B140",
+        "TObjPlayer::create_object_by_type",
+        "TObjPlayer::create_position_state",
+        "TObjPlayer::create_rappys_fan",
+        "TObjPlayer::create_set_vtable_state",
+        "TObjPlayer::create_shoot_model_callback",
+        "TObjPlayer::create_shot_effect_state",
+        "TObjPlayer::create_shot_params_state",
+        "TObjPlayer::create_shot_state",
+        "TObjPlayer::create_srank_common_weapon",
+        "TObjPlayer::create_state",
+        "TObjPlayer::create_state_0",
+        "TObjPlayer::create_state_1536",
+        "TObjPlayer::create_state_2",
+        "TObjPlayer::create_state_34",
+        "TObjPlayer::create_state_34_alt",
+        "TObjPlayer::create_state_35",
+        "TObjPlayer::create_state_35_alt",
+        "TObjPlayer::create_state_513",
+        "TObjPlayer::create_state_80125154",
+        "TObjPlayer::create_state_8012934c",
+        "TObjPlayer::create_state_8012a418",
+        "TObjPlayer::create_state_variant",
+        "TObjPlayer::create_state_variant_a",
+        "TObjPlayer::create_state_vector_state",
+        "TObjPlayer::create_state_vt2678",
+        "TObjPlayer::create_substate",
+        "TObjPlayer::create_substate_b",
+        "TObjPlayer::create_trade_action_state",
+        "TObjPlayer::create_twin_chakram",
+        "TObjPlayer::create_variant",
+        "TObjPlayer::create_variant_2_5a28",
+        "TObjPlayer::create_variant_ct",
+        "TObjPlayer::create_vtable_1f8_state",
+        "TObjPlayer::create_vtable_804A08B8",
+        "TObjPlayer::create_vtable_804A3548",
+        "TObjPlayer::create_vtable_804A63F0",
+        "TObjPlayer::create_vtable_804a1288",
+        "TObjPlayer::create_vtable_clear_field1f8",
+        "TObjPlayer::create_vtable_variant",
+        "TObjPlayer::create_with_id_2",
+        "TObjPlayer__sub_80124708",
+        "TUnk_804E1BB0::create",
+        "TUnk_804E24F0::create",
+        "TUnk_804F0AF8::create",
+        "TUnk_804F28E0::create",
+        "create_drill_launcher",
+        "create_heaven_punisher"
+      ],
+      "native_additional_weapons": {
+        "TObjPlayer::create_action": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4748.cpp",
+          "native_allocations": [
+            "TUnk_804A4748"
+          ]
+        },
+        "TObjPlayer::create_bringer_effect": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1668.cpp",
+          "native_allocations": [
+            "TUnk_804A1668"
+          ]
+        },
+        "TObjPlayer::create_configured_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2358.cpp",
+          "native_allocations": [
+            "TUnk_804A2358"
+          ]
+        },
+        "TObjPlayer::create_effect_object": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A65E0.cpp",
+          "native_allocations": [
+            "TUnk_804A65E0"
+          ]
+        },
+        "TObjPlayer::create_effect_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2F78.cpp",
+          "native_allocations": [
+            "TUnk_804A2F78"
+          ]
+        },
+        "TObjPlayer::create_enter_state_804A0BC0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0BC0.cpp",
+          "native_allocations": [
+            "TUnk_804A0BC0"
+          ]
+        },
+        "TObjPlayer::create_event_callbacks_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A403C.cpp",
+          "native_allocations": [
+            "TUnk_804A403C"
+          ]
+        },
+        "TObjPlayer::create_fields_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A67D0.cpp",
+          "native_allocations": [
+            "TUnk_804A67D0"
+          ]
+        },
+        "TObjPlayer::create_gi_gue_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+          "native_allocations": [
+            "TUnk_804F0A00"
+          ]
+        },
+        "TObjPlayer::create_handlers_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5150.cpp",
+          "native_allocations": [
+            "TUnk_804A5150"
+          ]
+        },
+        "TObjPlayer::create_inferno_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5D28.cpp",
+          "native_allocations": [
+            "TUnk_804A5D28"
+          ]
+        },
+        "TObjPlayer::create_init_state_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5E20.cpp",
+          "native_allocations": [
+            "TUnk_804A5E20"
+          ]
+        },
+        "TObjPlayer::create_mode_floats_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED298.cpp",
+          "native_allocations": [
+            "TUnk_804ED298"
+          ]
+        },
+        "TObjPlayer::create_nug2000_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_803083B0.cpp",
+          "native_allocations": [
+            "TUnk_804E71F8"
+          ]
+        },
+        "TObjPlayer::create_obj_80122C2C": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1380.cpp",
+          "native_allocations": [
+            "TUnk_804A1380"
+          ]
+        },
+        "TObjPlayer::create_obj_80125F60": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2770.cpp",
+          "native_allocations": [
+            "TUnk_804A2770"
+          ]
+        },
+        "TObjPlayer::create_obj_80128580": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3C20.cpp",
+          "native_allocations": [
+            "TUnk_804A3C20"
+          ]
+        },
+        "TObjPlayer::create_obj_8012B140": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4C78.cpp",
+          "native_allocations": [
+            "TUnk_804A4C78"
+          ]
+        },
+        "TObjPlayer::create_object_by_type": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_802D5174.cpp",
+          "native_allocations": [
+            "TUnk_804E1F04",
+            "TUnk_804E22F4",
+            "TUnk_804E21F8",
+            "TUnk_804E2000",
+            "TUnk_804E20FC",
+            "TUnk_804E1CA8",
+            "TUnk_804E1E08"
+          ]
+        },
+        "TObjPlayer::create_position_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A64E8.cpp",
+          "native_allocations": [
+            "TUnk_804A64E8"
+          ]
+        },
+        "TObjPlayer::create_rappys_fan": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034EFDC.cpp",
+          "native_allocations": [
+            "TUnk_804F0908"
+          ]
+        },
+        "TObjPlayer::create_set_vtable_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1950.cpp",
+          "native_allocations": [
+            "TUnk_804A1950"
+          ]
+        },
+        "TObjPlayer::create_shoot_model_callback": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3D20.cpp",
+          "native_allocations": [
+            "TUnk_804A3D20"
+          ]
+        },
+        "TObjPlayer::create_shot_effect_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2E80.cpp",
+          "native_allocations": [
+            "TUnk_804A2E80"
+          ]
+        },
+        "TObjPlayer::create_shot_params_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3928.cpp",
+          "native_allocations": [
+            "TUnk_804A3928"
+          ]
+        },
+        "TObjPlayer::create_shot_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3E20.cpp",
+          "native_allocations": [
+            "TUnk_804A3E20"
+          ]
+        },
+        "TObjPlayer::create_srank_common_weapon": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4948.cpp",
+          "native_allocations": [
+            "TUnk_804A4948"
+          ]
+        },
+        "TObjPlayer::create_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1D30.cpp",
+          "native_allocations": [
+            "TUnk_804A1D30"
+          ]
+        },
+        "TObjPlayer::create_state_0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A6010.cpp",
+          "native_allocations": [
+            "TUnk_804A6010"
+          ]
+        },
+        "TObjPlayer::create_state_1536": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED0A8.cpp",
+          "native_allocations": [
+            "TUnk_804ED0A8"
+          ]
+        },
+        "TObjPlayer::create_state_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4648.cpp",
+          "native_allocations": [
+            "TUnk_804A4648"
+          ]
+        },
+        "TObjPlayer::create_state_34": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0AC4.cpp",
+          "native_allocations": [
+            "TUnk_804A0AC4"
+          ]
+        },
+        "TObjPlayer::create_state_34_alt": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_80357734.cpp",
+          "native_allocations": [
+            "TUnk_804F14A8"
+          ]
+        },
+        "TObjPlayer::create_state_35": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1858.cpp",
+          "native_allocations": [
+            "TUnk_804A1858"
+          ]
+        },
+        "TObjPlayer::create_state_35_alt": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A69DC.cpp",
+          "native_allocations": [
+            "TUnk_804A69DC"
+          ]
+        },
+        "TObjPlayer::create_state_513": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1570.cpp",
+          "native_allocations": [
+            "TUnk_804A1570"
+          ]
+        },
+        "TObjPlayer::create_state_80125154": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2260.cpp",
+          "native_allocations": [
+            "TUnk_804A2260"
+          ]
+        },
+        "TObjPlayer::create_state_8012934c": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4138.cpp",
+          "native_allocations": [
+            "TUnk_804A4138"
+          ]
+        },
+        "TObjPlayer::create_state_8012a418": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4848.cpp",
+          "native_allocations": [
+            "TUnk_804A4848"
+          ]
+        },
+        "TObjPlayer::create_state_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3830.cpp",
+          "native_allocations": [
+            "TUnk_804A3830"
+          ]
+        },
+        "TObjPlayer::create_state_variant_a": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5F18.cpp",
+          "native_allocations": [
+            "TUnk_804A5F18"
+          ]
+        },
+        "TObjPlayer::create_state_vector_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0DB0.cpp",
+          "native_allocations": [
+            "TUnk_804A0DB0"
+          ]
+        },
+        "TObjPlayer::create_state_vt2678": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2678.cpp",
+          "native_allocations": [
+            "TUnk_804A2678"
+          ]
+        },
+        "TObjPlayer::create_substate": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A09B0.cpp",
+          "native_allocations": [
+            "TUnk_804A09B0"
+          ]
+        },
+        "TObjPlayer::create_substate_b": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3450.cpp",
+          "native_allocations": [
+            "TUnk_804A3450"
+          ]
+        },
+        "TObjPlayer::create_trade_action_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A535C.cpp",
+          "native_allocations": []
+        },
+        "TObjPlayer::create_twin_chakram": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1760.cpp",
+          "native_allocations": [
+            "TUnk_804A1760"
+          ]
+        },
+        "TObjPlayer::create_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3F20.cpp",
+          "native_allocations": [
+            "TUnk_804A3F20"
+          ]
+        },
+        "TObjPlayer::create_variant_2_5a28": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5A28.cpp",
+          "native_allocations": [
+            "TUnk_804A5A28"
+          ]
+        },
+        "TObjPlayer::create_variant_ct": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5058.cpp",
+          "native_allocations": [
+            "TUnk_804A5058"
+          ]
+        },
+        "TObjPlayer::create_vtable_1f8_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED390.cpp",
+          "native_allocations": [
+            "TUnk_804ED390"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A08B8": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A08B8.cpp",
+          "native_allocations": [
+            "TUnk_804A08B8"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A3548": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3548.cpp",
+          "native_allocations": [
+            "TUnk_804A3548"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A63F0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A63F0.cpp",
+          "native_allocations": [
+            "TUnk_804A63F0"
+          ]
+        },
+        "TObjPlayer::create_vtable_804a1288": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1288.cpp",
+          "native_allocations": [
+            "TUnk_804A1288"
+          ]
+        },
+        "TObjPlayer::create_vtable_clear_field1f8": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4E68.cpp",
+          "native_allocations": [
+            "TUnk_804A4E68"
+          ]
+        },
+        "TObjPlayer::create_vtable_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ECEB8.cpp",
+          "native_allocations": [
+            "TUnk_804ECEB8"
+          ]
+        },
+        "TObjPlayer::create_with_id_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3640.cpp",
+          "native_allocations": [
+            "TUnk_804A3640"
+          ]
+        },
+        "TObjPlayer__sub_80124708": {
+          "declarations": [
+            "include/pso/weapon/SpecialProjectileWeapons.h"
+          ],
+          "implementation": "src/pso/weapon/SpecialProjectileWeapons.cpp",
+          "native_allocations": []
+        },
+        "TUnk_804E1BB0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804E1BB0.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_802D5174.cpp",
+          "native_allocations": []
+        },
+        "TUnk_804E24F0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804E24F0.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804E24F0.cpp",
+          "native_allocations": [
+            "TUnk_804E24F0"
+          ]
+        },
+        "TUnk_804F0AF8::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804F0AF8.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+          "native_allocations": [
+            "TUnk_804F0AF8"
+          ]
+        },
+        "TUnk_804F28E0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804F28E0.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804F28E0.cpp",
+          "native_allocations": [
+            "TUnk_804F28E0"
+          ]
+        },
+        "create_drill_launcher": {
+          "declarations": [
+            "include/pso/weapon/SpecialProjectileWeapons.h"
+          ],
+          "implementation": "src/pso/weapon/SpecialProjectileWeapons_80124760.cpp",
+          "native_allocations": []
+        },
+        "create_heaven_punisher": {
+          "declarations": [
+            "include/pso/unk/text_8012AE50.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4B80.cpp",
+          "native_allocations": []
+        }
+      },
+      "total_direct_weapon_factories": 129
+    },
+    "direct": {
+      "head": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "base": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "paths": 71,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "entries_checked": 203,
+      "byte_matched_ranges": {
+        "weapon_factory_table": {
+          "address": "0x8049eb58",
+          "entries": 170,
+          "sha256": "95d877663d485a92fadca69257a438fad82e243c24b02fd2ec14ebc60d8a89b0"
+        },
+        "item_tool_factory_table": {
+          "address": "0x8049ee00",
+          "entries": 24,
+          "sha256": "5f23e12e495bed26c5b6d1519bbb062c589feeb8c6b0a286ddb4e7bac7ce7e40"
+        },
+        "item_pro_create_fn_table": {
+          "address": "0x8049eed8",
+          "entries": 4,
+          "sha256": "22879afbaf1743db449025c0c917ad347dcd583f245ca21ab37cb43e1dbd1efe"
+        },
+        "item_create_fn_table": {
+          "address": "0x8049eee8",
+          "entries": 5,
+          "sha256": "35c57e68933ea7b0a506e25d3460daa8f234c44b44dc1d6a4ee9469a1a6a2d3f"
+        }
+      },
+      "new_direct_weapon_slots": [
+        18,
+        19,
+        20,
+        25,
+        27,
+        30,
+        33,
+        34,
+        37,
+        40,
+        44,
+        46,
+        47,
+        48,
+        49,
+        54,
+        59,
+        60,
+        63,
+        64,
+        71,
+        74,
+        80,
+        81,
+        82,
+        83,
+        85,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        104,
+        105,
+        109,
+        112,
+        113,
+        115,
+        117,
+        118,
+        119,
+        121,
+        122,
+        124,
+        125,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        137,
+        139,
+        140,
+        141,
+        145,
+        147,
+        149,
+        150,
+        153,
+        154,
+        155,
+        158,
+        160,
+        161,
+        164,
+        166,
+        169
+      ],
+      "new_direct_weapon_factories": [
+        "TObjPlayer::create_action",
+        "TObjPlayer::create_bringer_effect",
+        "TObjPlayer::create_configured_state",
+        "TObjPlayer::create_effect_object",
+        "TObjPlayer::create_effect_state",
+        "TObjPlayer::create_enter_state_804A0BC0",
+        "TObjPlayer::create_event_callbacks_state",
+        "TObjPlayer::create_fields_state",
+        "TObjPlayer::create_gi_gue_bazooka",
+        "TObjPlayer::create_handlers_state",
+        "TObjPlayer::create_inferno_bazooka",
+        "TObjPlayer::create_init_state_2",
+        "TObjPlayer::create_mode_floats_state",
+        "TObjPlayer::create_nug2000_bazooka",
+        "TObjPlayer::create_obj_80122C2C",
+        "TObjPlayer::create_obj_80125F60",
+        "TObjPlayer::create_obj_80128580",
+        "TObjPlayer::create_obj_8012B140",
+        "TObjPlayer::create_object_by_type",
+        "TObjPlayer::create_position_state",
+        "TObjPlayer::create_rappys_fan",
+        "TObjPlayer::create_set_vtable_state",
+        "TObjPlayer::create_shoot_model_callback",
+        "TObjPlayer::create_shot_effect_state",
+        "TObjPlayer::create_shot_params_state",
+        "TObjPlayer::create_shot_state",
+        "TObjPlayer::create_srank_common_weapon",
+        "TObjPlayer::create_state",
+        "TObjPlayer::create_state_0",
+        "TObjPlayer::create_state_1536",
+        "TObjPlayer::create_state_2",
+        "TObjPlayer::create_state_34",
+        "TObjPlayer::create_state_34_alt",
+        "TObjPlayer::create_state_35",
+        "TObjPlayer::create_state_35_alt",
+        "TObjPlayer::create_state_513",
+        "TObjPlayer::create_state_80125154",
+        "TObjPlayer::create_state_8012934c",
+        "TObjPlayer::create_state_8012a418",
+        "TObjPlayer::create_state_variant",
+        "TObjPlayer::create_state_variant_a",
+        "TObjPlayer::create_state_vector_state",
+        "TObjPlayer::create_state_vt2678",
+        "TObjPlayer::create_substate",
+        "TObjPlayer::create_substate_b",
+        "TObjPlayer::create_trade_action_state",
+        "TObjPlayer::create_twin_chakram",
+        "TObjPlayer::create_variant",
+        "TObjPlayer::create_variant_2_5a28",
+        "TObjPlayer::create_variant_ct",
+        "TObjPlayer::create_vtable_1f8_state",
+        "TObjPlayer::create_vtable_804A08B8",
+        "TObjPlayer::create_vtable_804A3548",
+        "TObjPlayer::create_vtable_804A63F0",
+        "TObjPlayer::create_vtable_804a1288",
+        "TObjPlayer::create_vtable_clear_field1f8",
+        "TObjPlayer::create_vtable_variant",
+        "TObjPlayer::create_with_id_2",
+        "TObjPlayer__sub_80124708",
+        "TUnk_804E1BB0::create",
+        "TUnk_804E24F0::create",
+        "TUnk_804F0AF8::create",
+        "TUnk_804F28E0::create",
+        "create_drill_launcher",
+        "create_heaven_punisher"
+      ],
+      "native_additional_weapons": {
+        "TObjPlayer::create_action": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4748.cpp",
+          "native_allocations": [
+            "TUnk_804A4748"
+          ]
+        },
+        "TObjPlayer::create_bringer_effect": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1668.cpp",
+          "native_allocations": [
+            "TUnk_804A1668"
+          ]
+        },
+        "TObjPlayer::create_configured_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2358.cpp",
+          "native_allocations": [
+            "TUnk_804A2358"
+          ]
+        },
+        "TObjPlayer::create_effect_object": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A65E0.cpp",
+          "native_allocations": [
+            "TUnk_804A65E0"
+          ]
+        },
+        "TObjPlayer::create_effect_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2F78.cpp",
+          "native_allocations": [
+            "TUnk_804A2F78"
+          ]
+        },
+        "TObjPlayer::create_enter_state_804A0BC0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0BC0.cpp",
+          "native_allocations": [
+            "TUnk_804A0BC0"
+          ]
+        },
+        "TObjPlayer::create_event_callbacks_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A403C.cpp",
+          "native_allocations": [
+            "TUnk_804A403C"
+          ]
+        },
+        "TObjPlayer::create_fields_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A67D0.cpp",
+          "native_allocations": [
+            "TUnk_804A67D0"
+          ]
+        },
+        "TObjPlayer::create_gi_gue_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+          "native_allocations": [
+            "TUnk_804F0A00"
+          ]
+        },
+        "TObjPlayer::create_handlers_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5150.cpp",
+          "native_allocations": [
+            "TUnk_804A5150"
+          ]
+        },
+        "TObjPlayer::create_inferno_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5D28.cpp",
+          "native_allocations": [
+            "TUnk_804A5D28"
+          ]
+        },
+        "TObjPlayer::create_init_state_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5E20.cpp",
+          "native_allocations": [
+            "TUnk_804A5E20"
+          ]
+        },
+        "TObjPlayer::create_mode_floats_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED298.cpp",
+          "native_allocations": [
+            "TUnk_804ED298"
+          ]
+        },
+        "TObjPlayer::create_nug2000_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_803083B0.cpp",
+          "native_allocations": [
+            "TUnk_804E71F8"
+          ]
+        },
+        "TObjPlayer::create_obj_80122C2C": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1380.cpp",
+          "native_allocations": [
+            "TUnk_804A1380"
+          ]
+        },
+        "TObjPlayer::create_obj_80125F60": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2770.cpp",
+          "native_allocations": [
+            "TUnk_804A2770"
+          ]
+        },
+        "TObjPlayer::create_obj_80128580": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3C20.cpp",
+          "native_allocations": [
+            "TUnk_804A3C20"
+          ]
+        },
+        "TObjPlayer::create_obj_8012B140": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4C78.cpp",
+          "native_allocations": [
+            "TUnk_804A4C78"
+          ]
+        },
+        "TObjPlayer::create_object_by_type": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_802D5174.cpp",
+          "native_allocations": [
+            "TUnk_804E1F04",
+            "TUnk_804E22F4",
+            "TUnk_804E21F8",
+            "TUnk_804E2000",
+            "TUnk_804E20FC",
+            "TUnk_804E1CA8",
+            "TUnk_804E1E08"
+          ]
+        },
+        "TObjPlayer::create_position_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A64E8.cpp",
+          "native_allocations": [
+            "TUnk_804A64E8"
+          ]
+        },
+        "TObjPlayer::create_rappys_fan": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034EFDC.cpp",
+          "native_allocations": [
+            "TUnk_804F0908"
+          ]
+        },
+        "TObjPlayer::create_set_vtable_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1950.cpp",
+          "native_allocations": [
+            "TUnk_804A1950"
+          ]
+        },
+        "TObjPlayer::create_shoot_model_callback": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3D20.cpp",
+          "native_allocations": [
+            "TUnk_804A3D20"
+          ]
+        },
+        "TObjPlayer::create_shot_effect_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2E80.cpp",
+          "native_allocations": [
+            "TUnk_804A2E80"
+          ]
+        },
+        "TObjPlayer::create_shot_params_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3928.cpp",
+          "native_allocations": [
+            "TUnk_804A3928"
+          ]
+        },
+        "TObjPlayer::create_shot_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3E20.cpp",
+          "native_allocations": [
+            "TUnk_804A3E20"
+          ]
+        },
+        "TObjPlayer::create_srank_common_weapon": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4948.cpp",
+          "native_allocations": [
+            "TUnk_804A4948"
+          ]
+        },
+        "TObjPlayer::create_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1D30.cpp",
+          "native_allocations": [
+            "TUnk_804A1D30"
+          ]
+        },
+        "TObjPlayer::create_state_0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A6010.cpp",
+          "native_allocations": [
+            "TUnk_804A6010"
+          ]
+        },
+        "TObjPlayer::create_state_1536": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED0A8.cpp",
+          "native_allocations": [
+            "TUnk_804ED0A8"
+          ]
+        },
+        "TObjPlayer::create_state_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4648.cpp",
+          "native_allocations": [
+            "TUnk_804A4648"
+          ]
+        },
+        "TObjPlayer::create_state_34": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0AC4.cpp",
+          "native_allocations": [
+            "TUnk_804A0AC4"
+          ]
+        },
+        "TObjPlayer::create_state_34_alt": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_80357734.cpp",
+          "native_allocations": [
+            "TUnk_804F14A8"
+          ]
+        },
+        "TObjPlayer::create_state_35": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1858.cpp",
+          "native_allocations": [
+            "TUnk_804A1858"
+          ]
+        },
+        "TObjPlayer::create_state_35_alt": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A69DC.cpp",
+          "native_allocations": [
+            "TUnk_804A69DC"
+          ]
+        },
+        "TObjPlayer::create_state_513": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1570.cpp",
+          "native_allocations": [
+            "TUnk_804A1570"
+          ]
+        },
+        "TObjPlayer::create_state_80125154": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2260.cpp",
+          "native_allocations": [
+            "TUnk_804A2260"
+          ]
+        },
+        "TObjPlayer::create_state_8012934c": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4138.cpp",
+          "native_allocations": [
+            "TUnk_804A4138"
+          ]
+        },
+        "TObjPlayer::create_state_8012a418": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4848.cpp",
+          "native_allocations": [
+            "TUnk_804A4848"
+          ]
+        },
+        "TObjPlayer::create_state_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3830.cpp",
+          "native_allocations": [
+            "TUnk_804A3830"
+          ]
+        },
+        "TObjPlayer::create_state_variant_a": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5F18.cpp",
+          "native_allocations": [
+            "TUnk_804A5F18"
+          ]
+        },
+        "TObjPlayer::create_state_vector_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0DB0.cpp",
+          "native_allocations": [
+            "TUnk_804A0DB0"
+          ]
+        },
+        "TObjPlayer::create_state_vt2678": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2678.cpp",
+          "native_allocations": [
+            "TUnk_804A2678"
+          ]
+        },
+        "TObjPlayer::create_substate": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A09B0.cpp",
+          "native_allocations": [
+            "TUnk_804A09B0"
+          ]
+        },
+        "TObjPlayer::create_substate_b": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3450.cpp",
+          "native_allocations": [
+            "TUnk_804A3450"
+          ]
+        },
+        "TObjPlayer::create_trade_action_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A535C.cpp",
+          "native_allocations": []
+        },
+        "TObjPlayer::create_twin_chakram": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1760.cpp",
+          "native_allocations": [
+            "TUnk_804A1760"
+          ]
+        },
+        "TObjPlayer::create_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3F20.cpp",
+          "native_allocations": [
+            "TUnk_804A3F20"
+          ]
+        },
+        "TObjPlayer::create_variant_2_5a28": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5A28.cpp",
+          "native_allocations": [
+            "TUnk_804A5A28"
+          ]
+        },
+        "TObjPlayer::create_variant_ct": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5058.cpp",
+          "native_allocations": [
+            "TUnk_804A5058"
+          ]
+        },
+        "TObjPlayer::create_vtable_1f8_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED390.cpp",
+          "native_allocations": [
+            "TUnk_804ED390"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A08B8": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A08B8.cpp",
+          "native_allocations": [
+            "TUnk_804A08B8"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A3548": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3548.cpp",
+          "native_allocations": [
+            "TUnk_804A3548"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A63F0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A63F0.cpp",
+          "native_allocations": [
+            "TUnk_804A63F0"
+          ]
+        },
+        "TObjPlayer::create_vtable_804a1288": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1288.cpp",
+          "native_allocations": [
+            "TUnk_804A1288"
+          ]
+        },
+        "TObjPlayer::create_vtable_clear_field1f8": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4E68.cpp",
+          "native_allocations": [
+            "TUnk_804A4E68"
+          ]
+        },
+        "TObjPlayer::create_vtable_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ECEB8.cpp",
+          "native_allocations": [
+            "TUnk_804ECEB8"
+          ]
+        },
+        "TObjPlayer::create_with_id_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3640.cpp",
+          "native_allocations": [
+            "TUnk_804A3640"
+          ]
+        },
+        "TObjPlayer__sub_80124708": {
+          "declarations": [
+            "include/pso/weapon/SpecialProjectileWeapons.h"
+          ],
+          "implementation": "src/pso/weapon/SpecialProjectileWeapons.cpp",
+          "native_allocations": []
+        },
+        "TUnk_804E1BB0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804E1BB0.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_802D5174.cpp",
+          "native_allocations": []
+        },
+        "TUnk_804E24F0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804E24F0.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804E24F0.cpp",
+          "native_allocations": [
+            "TUnk_804E24F0"
+          ]
+        },
+        "TUnk_804F0AF8::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804F0AF8.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+          "native_allocations": [
+            "TUnk_804F0AF8"
+          ]
+        },
+        "TUnk_804F28E0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804F28E0.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804F28E0.cpp",
+          "native_allocations": [
+            "TUnk_804F28E0"
+          ]
+        },
+        "create_drill_launcher": {
+          "declarations": [
+            "include/pso/weapon/SpecialProjectileWeapons.h"
+          ],
+          "implementation": "src/pso/weapon/SpecialProjectileWeapons_80124760.cpp",
+          "native_allocations": []
+        },
+        "create_heaven_punisher": {
+          "declarations": [
+            "include/pso/unk/text_8012AE50.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4B80.cpp",
+          "native_allocations": []
+        }
+      },
+      "total_direct_weapon_factories": 129
+    },
+    "queue": {
+      "head": "3e21dbf4019161a65ab77636a409d964ca97fa09",
+      "base": "62222c16029867cb06884695798e0b39a04f5dd4",
+      "paths": 71,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "entries_checked": 203,
+      "byte_matched_ranges": {
+        "weapon_factory_table": {
+          "address": "0x8049eb58",
+          "entries": 170,
+          "sha256": "95d877663d485a92fadca69257a438fad82e243c24b02fd2ec14ebc60d8a89b0"
+        },
+        "item_tool_factory_table": {
+          "address": "0x8049ee00",
+          "entries": 24,
+          "sha256": "5f23e12e495bed26c5b6d1519bbb062c589feeb8c6b0a286ddb4e7bac7ce7e40"
+        },
+        "item_pro_create_fn_table": {
+          "address": "0x8049eed8",
+          "entries": 4,
+          "sha256": "22879afbaf1743db449025c0c917ad347dcd583f245ca21ab37cb43e1dbd1efe"
+        },
+        "item_create_fn_table": {
+          "address": "0x8049eee8",
+          "entries": 5,
+          "sha256": "35c57e68933ea7b0a506e25d3460daa8f234c44b44dc1d6a4ee9469a1a6a2d3f"
+        }
+      },
+      "new_direct_weapon_slots": [
+        18,
+        19,
+        20,
+        25,
+        27,
+        30,
+        33,
+        34,
+        37,
+        40,
+        44,
+        46,
+        47,
+        48,
+        49,
+        54,
+        59,
+        60,
+        63,
+        64,
+        71,
+        74,
+        80,
+        81,
+        82,
+        83,
+        85,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        104,
+        105,
+        109,
+        112,
+        113,
+        115,
+        117,
+        118,
+        119,
+        121,
+        122,
+        124,
+        125,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        137,
+        139,
+        140,
+        141,
+        145,
+        147,
+        149,
+        150,
+        153,
+        154,
+        155,
+        158,
+        160,
+        161,
+        164,
+        166,
+        169
+      ],
+      "new_direct_weapon_factories": [
+        "TObjPlayer::create_action",
+        "TObjPlayer::create_bringer_effect",
+        "TObjPlayer::create_configured_state",
+        "TObjPlayer::create_effect_object",
+        "TObjPlayer::create_effect_state",
+        "TObjPlayer::create_enter_state_804A0BC0",
+        "TObjPlayer::create_event_callbacks_state",
+        "TObjPlayer::create_fields_state",
+        "TObjPlayer::create_gi_gue_bazooka",
+        "TObjPlayer::create_handlers_state",
+        "TObjPlayer::create_inferno_bazooka",
+        "TObjPlayer::create_init_state_2",
+        "TObjPlayer::create_mode_floats_state",
+        "TObjPlayer::create_nug2000_bazooka",
+        "TObjPlayer::create_obj_80122C2C",
+        "TObjPlayer::create_obj_80125F60",
+        "TObjPlayer::create_obj_80128580",
+        "TObjPlayer::create_obj_8012B140",
+        "TObjPlayer::create_object_by_type",
+        "TObjPlayer::create_position_state",
+        "TObjPlayer::create_rappys_fan",
+        "TObjPlayer::create_set_vtable_state",
+        "TObjPlayer::create_shoot_model_callback",
+        "TObjPlayer::create_shot_effect_state",
+        "TObjPlayer::create_shot_params_state",
+        "TObjPlayer::create_shot_state",
+        "TObjPlayer::create_srank_common_weapon",
+        "TObjPlayer::create_state",
+        "TObjPlayer::create_state_0",
+        "TObjPlayer::create_state_1536",
+        "TObjPlayer::create_state_2",
+        "TObjPlayer::create_state_34",
+        "TObjPlayer::create_state_34_alt",
+        "TObjPlayer::create_state_35",
+        "TObjPlayer::create_state_35_alt",
+        "TObjPlayer::create_state_513",
+        "TObjPlayer::create_state_80125154",
+        "TObjPlayer::create_state_8012934c",
+        "TObjPlayer::create_state_8012a418",
+        "TObjPlayer::create_state_variant",
+        "TObjPlayer::create_state_variant_a",
+        "TObjPlayer::create_state_vector_state",
+        "TObjPlayer::create_state_vt2678",
+        "TObjPlayer::create_substate",
+        "TObjPlayer::create_substate_b",
+        "TObjPlayer::create_trade_action_state",
+        "TObjPlayer::create_twin_chakram",
+        "TObjPlayer::create_variant",
+        "TObjPlayer::create_variant_2_5a28",
+        "TObjPlayer::create_variant_ct",
+        "TObjPlayer::create_vtable_1f8_state",
+        "TObjPlayer::create_vtable_804A08B8",
+        "TObjPlayer::create_vtable_804A3548",
+        "TObjPlayer::create_vtable_804A63F0",
+        "TObjPlayer::create_vtable_804a1288",
+        "TObjPlayer::create_vtable_clear_field1f8",
+        "TObjPlayer::create_vtable_variant",
+        "TObjPlayer::create_with_id_2",
+        "TObjPlayer__sub_80124708",
+        "TUnk_804E1BB0::create",
+        "TUnk_804E24F0::create",
+        "TUnk_804F0AF8::create",
+        "TUnk_804F28E0::create",
+        "create_drill_launcher",
+        "create_heaven_punisher"
+      ],
+      "native_additional_weapons": {
+        "TObjPlayer::create_action": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4748.cpp",
+          "native_allocations": [
+            "TUnk_804A4748"
+          ]
+        },
+        "TObjPlayer::create_bringer_effect": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1668.cpp",
+          "native_allocations": [
+            "TUnk_804A1668"
+          ]
+        },
+        "TObjPlayer::create_configured_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2358.cpp",
+          "native_allocations": [
+            "TUnk_804A2358"
+          ]
+        },
+        "TObjPlayer::create_effect_object": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A65E0.cpp",
+          "native_allocations": [
+            "TUnk_804A65E0"
+          ]
+        },
+        "TObjPlayer::create_effect_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2F78.cpp",
+          "native_allocations": [
+            "TUnk_804A2F78"
+          ]
+        },
+        "TObjPlayer::create_enter_state_804A0BC0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0BC0.cpp",
+          "native_allocations": [
+            "TUnk_804A0BC0"
+          ]
+        },
+        "TObjPlayer::create_event_callbacks_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A403C.cpp",
+          "native_allocations": [
+            "TUnk_804A403C"
+          ]
+        },
+        "TObjPlayer::create_fields_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A67D0.cpp",
+          "native_allocations": [
+            "TUnk_804A67D0"
+          ]
+        },
+        "TObjPlayer::create_gi_gue_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+          "native_allocations": [
+            "TUnk_804F0A00"
+          ]
+        },
+        "TObjPlayer::create_handlers_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5150.cpp",
+          "native_allocations": [
+            "TUnk_804A5150"
+          ]
+        },
+        "TObjPlayer::create_inferno_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5D28.cpp",
+          "native_allocations": [
+            "TUnk_804A5D28"
+          ]
+        },
+        "TObjPlayer::create_init_state_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5E20.cpp",
+          "native_allocations": [
+            "TUnk_804A5E20"
+          ]
+        },
+        "TObjPlayer::create_mode_floats_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED298.cpp",
+          "native_allocations": [
+            "TUnk_804ED298"
+          ]
+        },
+        "TObjPlayer::create_nug2000_bazooka": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_803083B0.cpp",
+          "native_allocations": [
+            "TUnk_804E71F8"
+          ]
+        },
+        "TObjPlayer::create_obj_80122C2C": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1380.cpp",
+          "native_allocations": [
+            "TUnk_804A1380"
+          ]
+        },
+        "TObjPlayer::create_obj_80125F60": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2770.cpp",
+          "native_allocations": [
+            "TUnk_804A2770"
+          ]
+        },
+        "TObjPlayer::create_obj_80128580": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3C20.cpp",
+          "native_allocations": [
+            "TUnk_804A3C20"
+          ]
+        },
+        "TObjPlayer::create_obj_8012B140": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4C78.cpp",
+          "native_allocations": [
+            "TUnk_804A4C78"
+          ]
+        },
+        "TObjPlayer::create_object_by_type": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_802D5174.cpp",
+          "native_allocations": [
+            "TUnk_804E1F04",
+            "TUnk_804E22F4",
+            "TUnk_804E21F8",
+            "TUnk_804E2000",
+            "TUnk_804E20FC",
+            "TUnk_804E1CA8",
+            "TUnk_804E1E08"
+          ]
+        },
+        "TObjPlayer::create_position_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A64E8.cpp",
+          "native_allocations": [
+            "TUnk_804A64E8"
+          ]
+        },
+        "TObjPlayer::create_rappys_fan": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034EFDC.cpp",
+          "native_allocations": [
+            "TUnk_804F0908"
+          ]
+        },
+        "TObjPlayer::create_set_vtable_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1950.cpp",
+          "native_allocations": [
+            "TUnk_804A1950"
+          ]
+        },
+        "TObjPlayer::create_shoot_model_callback": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3D20.cpp",
+          "native_allocations": [
+            "TUnk_804A3D20"
+          ]
+        },
+        "TObjPlayer::create_shot_effect_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2E80.cpp",
+          "native_allocations": [
+            "TUnk_804A2E80"
+          ]
+        },
+        "TObjPlayer::create_shot_params_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3928.cpp",
+          "native_allocations": [
+            "TUnk_804A3928"
+          ]
+        },
+        "TObjPlayer::create_shot_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3E20.cpp",
+          "native_allocations": [
+            "TUnk_804A3E20"
+          ]
+        },
+        "TObjPlayer::create_srank_common_weapon": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4948.cpp",
+          "native_allocations": [
+            "TUnk_804A4948"
+          ]
+        },
+        "TObjPlayer::create_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1D30.cpp",
+          "native_allocations": [
+            "TUnk_804A1D30"
+          ]
+        },
+        "TObjPlayer::create_state_0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A6010.cpp",
+          "native_allocations": [
+            "TUnk_804A6010"
+          ]
+        },
+        "TObjPlayer::create_state_1536": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED0A8.cpp",
+          "native_allocations": [
+            "TUnk_804ED0A8"
+          ]
+        },
+        "TObjPlayer::create_state_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4648.cpp",
+          "native_allocations": [
+            "TUnk_804A4648"
+          ]
+        },
+        "TObjPlayer::create_state_34": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0AC4.cpp",
+          "native_allocations": [
+            "TUnk_804A0AC4"
+          ]
+        },
+        "TObjPlayer::create_state_34_alt": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_80357734.cpp",
+          "native_allocations": [
+            "TUnk_804F14A8"
+          ]
+        },
+        "TObjPlayer::create_state_35": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1858.cpp",
+          "native_allocations": [
+            "TUnk_804A1858"
+          ]
+        },
+        "TObjPlayer::create_state_35_alt": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A69DC.cpp",
+          "native_allocations": [
+            "TUnk_804A69DC"
+          ]
+        },
+        "TObjPlayer::create_state_513": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1570.cpp",
+          "native_allocations": [
+            "TUnk_804A1570"
+          ]
+        },
+        "TObjPlayer::create_state_80125154": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2260.cpp",
+          "native_allocations": [
+            "TUnk_804A2260"
+          ]
+        },
+        "TObjPlayer::create_state_8012934c": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4138.cpp",
+          "native_allocations": [
+            "TUnk_804A4138"
+          ]
+        },
+        "TObjPlayer::create_state_8012a418": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4848.cpp",
+          "native_allocations": [
+            "TUnk_804A4848"
+          ]
+        },
+        "TObjPlayer::create_state_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3830.cpp",
+          "native_allocations": [
+            "TUnk_804A3830"
+          ]
+        },
+        "TObjPlayer::create_state_variant_a": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5F18.cpp",
+          "native_allocations": [
+            "TUnk_804A5F18"
+          ]
+        },
+        "TObjPlayer::create_state_vector_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A0DB0.cpp",
+          "native_allocations": [
+            "TUnk_804A0DB0"
+          ]
+        },
+        "TObjPlayer::create_state_vt2678": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A2678.cpp",
+          "native_allocations": [
+            "TUnk_804A2678"
+          ]
+        },
+        "TObjPlayer::create_substate": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A09B0.cpp",
+          "native_allocations": [
+            "TUnk_804A09B0"
+          ]
+        },
+        "TObjPlayer::create_substate_b": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3450.cpp",
+          "native_allocations": [
+            "TUnk_804A3450"
+          ]
+        },
+        "TObjPlayer::create_trade_action_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A535C.cpp",
+          "native_allocations": []
+        },
+        "TObjPlayer::create_twin_chakram": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1760.cpp",
+          "native_allocations": [
+            "TUnk_804A1760"
+          ]
+        },
+        "TObjPlayer::create_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3F20.cpp",
+          "native_allocations": [
+            "TUnk_804A3F20"
+          ]
+        },
+        "TObjPlayer::create_variant_2_5a28": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5A28.cpp",
+          "native_allocations": [
+            "TUnk_804A5A28"
+          ]
+        },
+        "TObjPlayer::create_variant_ct": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A5058.cpp",
+          "native_allocations": [
+            "TUnk_804A5058"
+          ]
+        },
+        "TObjPlayer::create_vtable_1f8_state": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ED390.cpp",
+          "native_allocations": [
+            "TUnk_804ED390"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A08B8": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A08B8.cpp",
+          "native_allocations": [
+            "TUnk_804A08B8"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A3548": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3548.cpp",
+          "native_allocations": [
+            "TUnk_804A3548"
+          ]
+        },
+        "TObjPlayer::create_vtable_804A63F0": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A63F0.cpp",
+          "native_allocations": [
+            "TUnk_804A63F0"
+          ]
+        },
+        "TObjPlayer::create_vtable_804a1288": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A1288.cpp",
+          "native_allocations": [
+            "TUnk_804A1288"
+          ]
+        },
+        "TObjPlayer::create_vtable_clear_field1f8": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4E68.cpp",
+          "native_allocations": [
+            "TUnk_804A4E68"
+          ]
+        },
+        "TObjPlayer::create_vtable_variant": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804ECEB8.cpp",
+          "native_allocations": [
+            "TUnk_804ECEB8"
+          ]
+        },
+        "TObjPlayer::create_with_id_2": {
+          "declarations": [
+            "include/pso/player/TObjPlayer.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A3640.cpp",
+          "native_allocations": [
+            "TUnk_804A3640"
+          ]
+        },
+        "TObjPlayer__sub_80124708": {
+          "declarations": [
+            "include/pso/weapon/SpecialProjectileWeapons.h"
+          ],
+          "implementation": "src/pso/weapon/SpecialProjectileWeapons.cpp",
+          "native_allocations": []
+        },
+        "TUnk_804E1BB0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804E1BB0.h"
+          ],
+          "implementation": "src/pso/player/TObjPlayer_802D5174.cpp",
+          "native_allocations": []
+        },
+        "TUnk_804E24F0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804E24F0.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804E24F0.cpp",
+          "native_allocations": [
+            "TUnk_804E24F0"
+          ]
+        },
+        "TUnk_804F0AF8::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804F0AF8.h"
+          ],
+          "implementation": "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+          "native_allocations": [
+            "TUnk_804F0AF8"
+          ]
+        },
+        "TUnk_804F28E0::create": {
+          "declarations": [
+            "include/pso/weapon/TUnk_804F28E0.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804F28E0.cpp",
+          "native_allocations": [
+            "TUnk_804F28E0"
+          ]
+        },
+        "create_drill_launcher": {
+          "declarations": [
+            "include/pso/weapon/SpecialProjectileWeapons.h"
+          ],
+          "implementation": "src/pso/weapon/SpecialProjectileWeapons_80124760.cpp",
+          "native_allocations": []
+        },
+        "create_heaven_punisher": {
+          "declarations": [
+            "include/pso/unk/text_8012AE50.h"
+          ],
+          "implementation": "src/pso/weapon/TUnk_804A4B80.cpp",
+          "native_allocations": []
+        }
+      },
+      "total_direct_weapon_factories": 129
+    }
+  },
+  "published_stage_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+}
