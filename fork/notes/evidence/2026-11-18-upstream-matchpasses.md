@@ -731,6 +731,20 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The equipment window review combines Challenge4P and keyboard changes. The enemy formation and stage reviews carry their additional scopes. All 15 groups build together across 1,594 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-challenge4p-keyboard-moja-warp-replay.json)
 
+## Texture binding, spatial sound and NPC companion control
+
+Source checkpoint `d77a1ec95f` and landing checkpoint `e6cf1dcaec` carry 45 changed source files. The replay types the guarded renderer texture setter, the spatial voice and sound-bank interfaces, and the player-owned NPC companion record. The audit covers 213 historical records and closes 10. The ledger has 1,133 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/texture-binding` | Shared Ginja texture-list binding and the null-guarded caller interface | 375 |
+| `great-merge/current/standalone-adx-streaming` | ADX streaming, sound-bank readiness and spatial voice requests | 122 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage interactions and warp commands, with player-owned NPC companion control | 446 |
+
+The texture-binding review applies the shared renderer interface across systems. The existing ADX and stage reviews include the additional sound and companion-control work. All 16 groups build together across 1,691 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-texture-binding-sound-npc-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
