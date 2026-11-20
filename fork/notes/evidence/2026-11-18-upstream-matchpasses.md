@@ -126,6 +126,18 @@ The stage review uses the BML/GVM provider as its parent and validates the share
 
 The prepared reviews and prerequisites touch 1,660 of 1,761 combined diff paths. The remaining 101 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
 
+## Historical item drops, window drawing, and Barba Ray photon ownership
+
+Great Merge source `ef8b7f3c2c` combines 39 changed files. The source, review and working trees reproduce the retail executable and retain matched and source-linked coverage against upstream, the historical fork and the previous combined source. All 90 original byte ranges still account for 980 linked bytes and 167 alignment bytes. The working layer materializes 133 local paths, and all 11 fork-layer tests pass.
+
+| Work | Exact combined-source component | Review increment |
+| --- | --- | --- |
+| Native 6x5F packet construction, 6x60 request fields, and the drop generator's `TItemData` payload | `b99dc3cd47` | `acfcd51610`, 11 files |
+| The shared draw context for text clipping and UV sprites, with native numeric glyph declarations | `a3dd561841` | `9bc06303e4`, 17 files |
+| Native Barba Ray photon pad and bullet constructors, virtual hit dispatch and the boss-owned hit-effect receiver | `993a01c2ba` | `e5280c4a65`, 13 files |
+
+The three review increments were validated independently. The player replay merged without conflicts. The display replay keeps its existing allocation and texture declarations. The world replay keeps its sound-call ABI while using the native pad constructor.
+
 ## Earlier Great Merge investigation notes
 
 The older local branch `great-merge/main` at `bc3df70d93` adds 24 investigation notes that were missing from the fork layer. They are preserved byte for byte under their original paths in `fork/notes/`. They describe earlier experiments and refer to the source layout at the time.
@@ -151,12 +163,12 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, then typed selection | `delivery-network-render-window` | `b34f433d1c` | 920 |
-| BML/GVM archives, stage, enemies, then native boss ownership | `delivery-network-world` | `b7a5f54d71` | 863 |
-| Allocation, player and inventory, then spatial sound and effects | `delivery-network-player-spatial` | `fc7861f446` | 781 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `9bc06303e4` | 922 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `e5280c4a65` | 870 |
+| Allocation, player and inventory, spatial effects, and item drops | `delivery-network-player-spatial` | `acfcd51610` | 784 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `f46dbc3413` | 441 |
 
-Rendering follows audio and disc streaming. The renderer resolves four overlapping include groups. The window layer keeps the typed audio slot in the native status window. The last commit adds 12 historical selection and lobby files. The other three stacks replayed cleanly directly from the network commit. The world stack closes with the 17-file boss ownership patch. All four branches reproduce retail and preserve matched and source-linked coverage.
+Rendering follows audio and disc streaming. The renderer resolves four overlapping include groups. The window layer keeps the typed audio slot in the native status window. The selection and lobby commit adds 12 files. The window context pass adds a further 17. The other three stacks replayed cleanly directly from the network commit. The world stack closes with the boss ownership and photon commits. All four branches reproduce retail and preserve matched and source-linked coverage.
 
 The preview between the display and world stacks found 134 shared-file conflicts before the historical boss patch. Great Merge's exact source matches one complete input file in four cases. The preview contains 37 include-only conflicts. Among the files with shared archive or texture interfaces, resolve the typed providers and their callers together. The actor and player branches also share code with display. Each branch remains reviewable from the common network base while those overlaps are reconciled for landing.
 
