@@ -149,6 +149,20 @@ The Challenge records are part of the local display review at `28c2e9303e`. The 
 
 Function-body comparison found 6,060 retained bodies across 810 historical paths awaiting source review. Of those, 980 differ from a comparable branch-point implementation, which establishes retention of a fork change. These comparisons cover function bodies and leave signatures, includes and header ownership for separate review. [Function-source evidence](2026-11-19-function-source-evidence.json)
 
+## Ordered upstream review candidates
+
+The local review sequence under `great-merge/queued/` starts on upstream `6b080e67ab`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
+
+| Scope | Local head | Files |
+| --- | --- | ---: |
+| UDP datagrams, requests and packet lifetime | `d892292ba8` | 60 |
+| Stage objects and weather | `18e59bbce0` | 37 |
+| Quest, player inventory and resource lists | `ad92039b86` | 51 |
+| Audio streaming, disc archives and movie REL lifetime | `945f268e06` | 99 |
+| Challenge and duel result windows, page indicators and record types | `f743133b55` | 51 |
+
+All five stages reproduce retail and pass the strict check against the preceding stage. The final stage preserves matched and source-linked coverage against upstream, the historical fork, and the standalone results review. The only manual overlap in the sequence is the BML archive caller, which uses the quest file-extension provider and the audio ADXF handle together. Challenge and duel results also build independently on upstream at `e287503751`. These are local branches pending upstream approval.
+
 ## Local landing checkpoint with all four subsystem histories
 
 `great-merge/current/landing-checkpoint` at `c685c00b1e` contains the four exact review branches and uses the verified Great Merge source tree at `3f3792f434`. The actor/player checkpoint `208df9435e` joins the actor fields with typed sound, particle and player calls. The display/world checkpoint `84e3194968` adds 22 ownership fixes from the remaining audit. That work restores native Berura methods, typed boss and stage resources, and shared display declarations. The shop and quest changes also pass on their narrower player review at `74e7cb1163`.
