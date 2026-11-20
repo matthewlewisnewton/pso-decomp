@@ -829,6 +829,21 @@ The full source, working fork and combined review reproduce the retail DOL. All 
 
 The standalone Challenge and duel results branch joins the queue. The enemy, stage and item-window reviews grow in place, taking the combined review to 1,916 files across 22 groups. The standalone city door calls the area getter with its actual player. The queue retains its existing typed text, inventory, allocation and animated model registry interfaces. [Source and validation evidence](2026-11-20-results-appearance-stage-replay.json)
 
+## Network datagrams, player slots and native subsystem ownership
+
+Source checkpoint `296144636a` and landing checkpoint `df41bdffe2` carry 144 changed source files. Network transport uses typed packet descriptors and the original signed socket event signatures. The player lookup shares the original twelve-slot table and rejects the sentinel and out-of-range inputs. Vol Opt uses its original model nodes, arena placement and owning actor. Challenge status pages pass the active record set and retain their native page indicators. The audit covers 18 historical records and closes 13. The ledger has 1,046 records awaiting full comparison.
+
+The full source, working fork and combined review reproduce the retail DOL. All 90 original data ranges remain accounted for. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/standalone-network-datagrams-and-packet-pool` | Network datagrams, packet pool and socket callback types | 64 |
+| `great-merge/current/standalone-player-slot-registry` | Player registry storage, lookup and compatible game callers | 110 |
+| `great-merge/current/standalone-vol-opt-components` | Vol Opt components, arena placement and model-node ownership | 39 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Item windows, status pages, indicators and Challenge record readers | 494 |
+
+The packet and registry reviews enter the queue. The widened Vol Opt and equipment review branches use their exact native owner interfaces. The combined queue now covers 1,994 files across 25 groups. The joint status record owner uses the shared player lookup, and the working fork retains its host TCP declarations and guards in the fork layer. [Source and validation evidence](2026-11-20-datagram-registry-subsystem-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
