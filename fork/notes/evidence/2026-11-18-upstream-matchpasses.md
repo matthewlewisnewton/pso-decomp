@@ -1087,6 +1087,14 @@ The verified review queue advances to `47ade105c7` with a 161-file combined repl
 
 Use the prospective baseline to reconcile related residuals, then repeat parity checks against actual upstream master after the open reviews land. Finish recovering and upstreaming the source changes before switching the fork default branch. Compare the final layered tree with upstream and prove exact retail, coverage, and fork-layer round trips before the switch. Keep the fork documentation and tooling under `fork/`.
 
+### PPP wire records and native actor layout
+
+`great-merge/incoming/replayed-source` at `9786fed299` adds 293 changed files after the validated card save replay. The 12-file PPP review at `71f9ce8177` uses native frame and wire-header records. The 281-file actor review uses typed body center and velocity vectors and the native three-angle rotation record. It keeps recovered constructors and member calls and carries the layout through callers that were added in the incoming reviews. The source declares the original actor offsets and retains the local rotation fields of the Dark Gunner's separate layout record.
+
+Both builds reproduce retail and pass `tools/check_pr.py` with 2,448 exact linked units. The combined build preserves all checked exact and linked coverage against the prior review queue, canonical source and historical fork. It verifies the original 90 ranges with 980 linked bytes and 167 bytes of alignment padding. The typed actor layout changes many shared lines, so a whole-tree merge from the older stage base still conflicts across 801 queue paths and 881 canonical paths. Use the validated replay groups when combining later work. The next particle factory group has 48 paths requiring reconciliation.
+
+The fork tooling patch preflight on this source reports 11 paths to refresh. Ten have overlapping changes and one is supplied by the pending Ginja provider review. Refresh the workspace patch after those providers land in the replay and check the resulting fork layer against the final source tree. [Build, overlap and fork tooling evidence](2026-11-20-prospective-actor-and-network-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
