@@ -903,6 +903,14 @@ Source `89b1ccecd7` and landing checkpoint `40d3c9ff83` carry 33 changed files. 
 
 The 2,106-file review queue covers 27 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-native-history-replay.json)
 
+## Resources, entity groups and window ownership
+
+Source `9a27677f86` and landing checkpoint `3986c9a808` carry 33 changed files. This batch covers Ginja texture uploads and native font state, Dark Gunner group control, the downloadable quest dictionary, speech balloons and Word Select dispatch. The audit closes 15 historical comparisons and leaves 961 open.
+
+The 2,112-file review queue covers 27 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-scoped-resource-replay.json)
+
+The standalone Ginja upload review covers 18 files. The direct patch retains upstream spellings and can be rebuilt with the stage changes after resolving 2 overlapping files. The wider archive and model changes remain in the combined queue.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
