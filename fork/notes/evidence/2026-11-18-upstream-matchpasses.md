@@ -799,6 +799,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 Two arena reviews enter the combined queue. The existing character review now also covers the related online setup scenes. All 20 groups build together across 1,848 files and reproduce the retail DOL. The shared tunnel methods and the typed pointer reset survive the arena overlap, together with the existing array, BML and renderer interfaces. [Source and validation evidence](2026-11-20-arena-frontend-ownership-replay.json)
 
+## Memory runtime, gameplay random and window ownership
+
+Source checkpoint `08d141b527` and landing checkpoint `c4320e06bd` carry 13 changed source files. The main phase dispatcher and all 66 callback slots now use the shared table types. The shop review uses the real delete, withdrawal and judgment window constructors and their typed sequence owners. The source audit covers 11 historical records and closes 9. The ledger has 1,072 records awaiting full comparison.
+
+The full source, working fork and combined review each reproduce the retail DOL. All 90 original data ranges remain accounted for. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/standalone-native-array-runtime` | Native array allocation, overlapping byte and word copies, and nullable heap release | 257 |
+| `great-merge/current/standalone-gameplay-random` | Gameplay random ratios and their real actor receivers | 29 |
+| `great-merge/current/character-selection-plates` | Character creation, character selection, online setup and the shared frontend phase table | 192 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and item windows, including the three shop constructors and two sequence owners | 455 |
+
+The memory review extends the native array group with overlapping byte and word copies and nullable release. The gameplay random group joins the review queue. The frontend phase and typed shop updates extend existing groups, taking the combined review to 1,880 files across 21 groups. [Source and validation evidence](2026-11-20-memory-gameplay-review-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
