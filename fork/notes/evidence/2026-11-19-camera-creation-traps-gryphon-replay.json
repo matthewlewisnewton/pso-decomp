@@ -1,0 +1,3058 @@
+{
+  "source": "fdc722c7098a31fc0b77e030920593149c366f01",
+  "landing": "b8856a45c9f11da9e0ecbd19cddaf94c8ef6ca08",
+  "working_fork_build": "72f55cbd34acd44ea6bde05fd31ede47bffd40ee",
+  "previous_source": "496f0e0e02dae1a8da39830283a1e6e8ca4f4763",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 71,
+  "batches": {
+    "camera": {
+      "head": "10a927e9218760df2d49436be52677272638a5ce",
+      "files": 6,
+      "report_sha256": "a4d526d5a9c1109dfb4cf9b442c4dd9604d80f226a01603a83de009ab551820f"
+    },
+    "traps": {
+      "head": "7db4d840eb183285e6947841d9827867bbaffc00",
+      "files": 17,
+      "report_sha256": "1e5c49dff79eed5abc4128c911da8cbef88813286b5756633ec8fc1fb853e6e6"
+    },
+    "boss": {
+      "head": "67db4d0fd5521720b2ff241a9ea5fe7b1dd1f4a8",
+      "files": 21,
+      "report_sha256": "fbe3d48f04f262f4f7fd3c658a5aee247850f8cce429675285d95614fc99f9b4"
+    },
+    "creation": {
+      "head": "1b80d4d9adeac1474b65334db9fb19f7657a7c15",
+      "files": 31,
+      "report_sha256": "26adad1568276a748f527f26a37b2c786099274e6a5891c3103a8c6a6c18bce3"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "fdc722c7098a31fc0b77e030920593149c366f01",
+    "previous": "496f0e0e02dae1a8da39830283a1e6e8ca4f4763",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 4898,
+        "historical_path": "src/pso/misc/TCameraCtrl_803D6538.cpp",
+        "historical_blob": "1bd4b1641480aeb824ea558d05892be62f2e2aa5",
+        "owners": {
+          "src/pso/camera/TCameraCtrl_803D6538.cpp": "f1af3eddd3e543f4830dfb843ddfbd82986e8941"
+        },
+        "proofs": [
+          {
+            "group": "camera",
+            "evidence": "All seven implemented routines retain the same state updates, view negation, look-at call, clamp and screen projection math. The three original floats remain linked in the same unit at 0x805E0E00, 0x805E0E04 and 0x805E0E08. The shared Vec replaces the old local layout and compiler pragmas preserve the same emitted instructions.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4899,
+        "historical_path": "src/pso/misc/TCameraCtrl_803D66DC.cpp",
+        "historical_blob": "c0129c3e9c87b95e3a1a6fcdc0781de3fbaeaf33",
+        "owners": {
+          "src/pso/camera/TCameraCtrl_803D66DC.cpp": "0d2a1ff7cf9b6f88f4cffccaf01ed40d25716f1c"
+        },
+        "proofs": [
+          {
+            "group": "camera",
+            "evidence": "The only implemented routine retains each projection and clip update in original order. The exact 1.0 reciprocal constant remains source linked at 0x805E0E10.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4900,
+        "historical_path": "src/pso/misc/TCameraCtrl_803D676C.cpp",
+        "historical_blob": "6f68fab03edd4b7687a0a6319035b1451845fd8d",
+        "owners": {
+          "src/pso/camera/TCameraCtrl_803D676C.cpp": "2890bcb59e382f8397c19880501d4532d15145fc",
+          "include/pso/camera/TCameraCtrl_803D676C.h": "8936520e30b66e13e74515328a848729bcd465d2"
+        },
+        "proofs": [
+          {
+            "group": "camera",
+            "evidence": "The original screen fov function retains its angle, view, projection state and clip updates. The six original constants are named with the same float and double sizes at 0x805E0E18 through 0x805E0E38.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4912,
+        "historical_path": "src/pso/unk/data_805D91D0.cpp",
+        "historical_blob": "ee3a92140435b6bd11c04afccb400f8b88671ac1",
+        "owners": {
+          "src/pso/camera/TCineCtrl.cpp": "52bcb58bd97291be8a27b24742fdb5b6b37eb420",
+          "src/pso/map/CsnQuery.cpp": "5e1d6d765efee428dfa4d608f1f93da5cbb21088"
+        },
+        "proofs": [
+          {
+            "group": "camera",
+            "evidence": "All 14 historical constants are defined in their native owners: eight named letterbox constants used by rendering and transitions, and six typed collision query constants. The complete 56-byte interval is exact and linked from source.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5037,
+        "historical_path": "src/pso/object/TObjCamera.cpp",
+        "historical_blob": "8000883dfa8e067884b457230f3b56a969e3b82d",
+        "owners": {
+          "src/pso/camera/TObjCamera.cpp": "004c250d04eed79bc72af1ab61e863429b814694",
+          "include/pso/camera/TObjCamera.h": "e100bf65a614e4106443eb544c560aed476b7ed5",
+          "include/pso/system/BmlAccessors.h": "5bd98af25852adf6a9cc95dafa43a8d51c54a7ea"
+        },
+        "proofs": [
+          {
+            "group": "camera",
+            "evidence": "The full authored archive load, destruction, texture selection, Ginja draw, motion query, eight sound events, yaw and node-to-view slot mapping are present. The archive slot is now a BmlResource pointer and each archive operation uses the existing native declaration.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5072,
+        "historical_path": "src/pso/misc/TCineCtrl.cpp",
+        "historical_blob": "8170371d63835199056e6f987f6c13d9bbe04bee",
+        "owners": {
+          "src/pso/camera/TCineCtrl.cpp": "52bcb58bd97291be8a27b24742fdb5b6b37eb420",
+          "include/pso/render/ColorLineList.h": "52ead8b7065c6b0526eede058eaf97d1bff4caee",
+          "include/pso/camera/TCineCtrl.h": "39456535ffb12e2c3d690cc96694194efe7b8253"
+        },
+        "proofs": [
+          {
+            "group": "camera",
+            "evidence": "Both authored letterbox draws call the real ColorLineList member with both original rectangles and color. The original floats and singleton storage are provided by the native controller. The complete transition and rendering code match retail.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6426,
+        "historical_path": "src/pso/misc/TOMineIcon03.cpp",
+        "historical_blob": "3ec4bfede37cc8c05c19488e50061ef9c91cfdde",
+        "owners": {
+          "src/pso/object/trap/TOMineIcon03.cpp": "b5efa0ad8e612d1f3932a91be0ee7025819cd8dc"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Native factory directly constructs MineIcon03 with the original parent and set record.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMineIcon03.cpp",
+                  "lines": [
+                    28
+                  ],
+                  "contains": "return new TOMineIcon03("
+                }
+              ],
+              "authored_blocks": 1
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6449,
+        "historical_path": "src/pso/misc/TOTrap.cpp",
+        "historical_blob": "e4d4d5ab0a768e0b9ee4cfb2dc04950d4068030c",
+        "owners": {
+          "src/pso/object/trap/TOTrap.cpp": "ef3d4d09d553a1834497c085297d76c9498aa1e3"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Original native constructor and match-equivalent scale lookup, typed yaw/texture draw, and target comparisons were already in the canonical base. The fork constructor creator was unused.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOTrap.cpp",
+                  "lines": [
+                    218
+                  ],
+                  "contains": "TOTrap::TOTrap(TObject *parent)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrap.cpp",
+                  "lines": [
+                    21
+                  ],
+                  "contains": "TOTrap::scale_by_table_value"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrap.cpp",
+                  "lines": [
+                    196
+                  ],
+                  "contains": "update_object_view_visibility(4e+02f, 2e+01f)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrap.cpp",
+                  "lines": [
+                    200
+                  ],
+                  "contains": "this->rotation.yaw"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrap.cpp",
+                  "lines": [
+                    201
+                  ],
+                  "contains": "set_current_texture_list"
+                }
+              ],
+              "authored_blocks": 8
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6450,
+        "historical_path": "src/pso/misc/TOTrapAncient01.cpp",
+        "historical_blob": "2180f25f2574a57f866442489662a92923ed291d",
+        "owners": {
+          "src/pso/object/trap/TOTrapAncient01.cpp": "867509c94e7b219482e1d6f6d9e25e40c60d99a5"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Confirms the original position/scale/collision, damage payload and four fades, native BML owner and chip callback are in current source. Broader historical TU split and resource-slot spelling remain independent.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOTrapAncient01.cpp",
+                  "lines": [
+                    79
+                  ],
+                  "contains": "TOTrapAncient01::TOTrapAncient01"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapAncient01.cpp",
+                  "lines": [
+                    285
+                  ],
+                  "contains": "receive_direct_attack(this, payload"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapAncient01.cpp",
+                  "lines": [
+                    103,
+                    268,
+                    269
+                  ],
+                  "contains": "damage_timer"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapAncient01.cpp",
+                  "lines": [
+                    140
+                  ],
+                  "contains": "delete TOTrapAncient01__bml_resource"
+                }
+              ],
+              "authored_blocks": 4
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6451,
+        "historical_path": "src/pso/misc/TOTrapAncient02.cpp",
+        "historical_blob": "afdf046415827444fa01078d0cc95d5ab28f0b93",
+        "owners": {
+          "src/pso/object/trap/TOTrapAncient02.cpp": "7015f0b56848d87bc691c0d6cf9cf37842781dd2"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "The complete earlier 72-byte descriptor array, native two constructors, typed BML model-node selection, particle path, original hold/collision conditions and current draw queue remain linked. This wave leaves the much larger original TU decomposition untouched.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOTrapAncient02.cpp",
+                  "lines": [
+                    62
+                  ],
+                  "contains": "TrapAncient02ResourceRecord trap_ancient02_resources[3]"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapAncient02.cpp",
+                  "lines": [
+                    494
+                  ],
+                  "contains": "TOTrapAncient02R::TOTrapAncient02R"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapAncient02.cpp",
+                  "lines": [
+                    343
+                  ],
+                  "contains": "send_6x2C_impose_hold"
+                }
+              ],
+              "authored_blocks": 6
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6452,
+        "historical_path": "src/pso/misc/TOTrapSeabed01.cpp",
+        "historical_blob": "e73f6eda3d027b50cf73359e7e52ab7d20a96689",
+        "owners": {
+          "src/pso/object/trap/TOTrapSeabed01.cpp": "71bb18d29d31f552de939a4f911af0c96963476b"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Earlier exact changes retain the model/archive owners, typed strike payload, GVM owner, translated transform parameters and the three draw paths. Native dispatch and phase guards remain in their exact consolidated implementation.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+                  "lines": [
+                    241
+                  ],
+                  "contains": "TOTrapSeabed01::draw_object_tree(NJS_OBJECT *object)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+                  "lines": [
+                    338
+                  ],
+                  "contains": "TOTrapSeabed01::check_hold_player()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+                  "lines": [
+                    130
+                  ],
+                  "contains": "TOTrapSeabed01::load_resources()"
+                }
+              ],
+              "authored_blocks": 4
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6546,
+        "historical_path": "src/pso/unk/text_80171A98.cpp",
+        "historical_blob": "d4ff249303ec02adba32499b98207d7c2b97a441",
+        "owners": {
+          "src/pso/object/trap/TOMineIcon03.cpp": "b5efa0ad8e612d1f3932a91be0ee7025819cd8dc"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Native MineIcon03 constructor consumes the real light model and texture fields. Original source initialization, shape, material and motion/attack scalars remain in that owner.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMineIcon03.cpp",
+                  "lines": [
+                    38
+                  ],
+                  "contains": "TOMineIcon03::TOMineIcon03"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon03.cpp",
+                  "lines": [
+                    45
+                  ],
+                  "contains": "light_model = get_bml_model(lbl_805D5A50, 2)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon03.cpp",
+                  "lines": [
+                    46
+                  ],
+                  "contains": "light_textures = get_bml_texlist(lbl_805D5A50, 2)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon03.cpp",
+                  "lines": [
+                    14,
+                    59,
+                    60
+                  ],
+                  "contains": "game_difficulty_selection"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon03.cpp",
+                  "lines": [
+                    69
+                  ],
+                  "contains": "init_collision_body_parts"
+                }
+              ],
+              "authored_blocks": 3
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6755,
+        "historical_path": "src/pso/unk/text_8016F1C0.cpp",
+        "historical_blob": "62f8f90ba461c6290f5139225e2d6d9b336a7f05",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Real 6x80 receiver and original slot are now checked. The authored owner name and trap text, typed predicates/loader, sound and state changes were already mostly mapped, while the broader legacy stand-in and layout differences remain.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1041
+                  ],
+                  "contains": "G_TriggerTrap_6x80 packet;"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    112,
+                    1049
+                  ],
+                  "contains": "handle_6x80_trigger_trap(game_command_header *command)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1073
+                  ],
+                  "contains": "p->vfunc_86()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1113
+                  ],
+                  "contains": "show_owner_message(TObjChara *player)"
+                }
+              ],
+              "authored_blocks": 9
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6760,
+        "historical_path": "include/pso/misc/TOTrap.h",
+        "historical_blob": "3ecb53474f5157e77d2b327368a7bc7f928ea160",
+        "owners": {
+          "include/pso/object/trap/TOTrap.h": "8b8f065c79343e6d3a7d7abf26ea2fbd50882e2c"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Signed visibility field and all melee, distance, accuracy and attack slot contracts are represented on current TOTrap. The historical factory argument to its base constructor was unused and the native child receives the set record.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOTrap.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOTrap(TObject *parent)"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrap.h",
+                  "lines": [
+                    47
+                  ],
+                  "contains": "s32 m_340;"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrap.h",
+                  "lines": [
+                    28
+                  ],
+                  "contains": "select_melee_contact_body"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrap.h",
+                  "lines": [
+                    29
+                  ],
+                  "contains": "calc_distance_accuracy_penalty"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrap.h",
+                  "lines": [
+                    30
+                  ],
+                  "contains": "receive_direct_attack("
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrap.h",
+                  "lines": [
+                    36
+                  ],
+                  "contains": "receive_weapon_special_attack("
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrap.h",
+                  "lines": [
+                    27
+                  ],
+                  "contains": "roll_physical_accuracy"
+                }
+              ],
+              "authored_blocks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6777,
+        "historical_path": "include/pso/misc/TOMineTrap.h",
+        "historical_blob": "3d06666c7f0d2ac77d931e42447bee3abc0695ba",
+        "owners": {
+          "include/pso/object/trap/TOMineTrap.h": "c2f5b36d67c2ed5d7fb043edc8da29c651e2c15b"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Native TOMineTrap constructor, virtual attack and targeting functions, u16 owner setter and real player flag are already reflected. The final source does not reintroduce the original separate compilation split or its three inline helper declarations.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOMineTrap.h",
+                  "lines": [
+                    13
+                  ],
+                  "contains": "TOMineTrap(TObjBase *owner"
+                },
+                {
+                  "path": "include/pso/object/trap/TOMineTrap.h",
+                  "lines": [
+                    9
+                  ],
+                  "contains": "fn_80171314(TObjPlayer *player)"
+                },
+                {
+                  "path": "include/pso/object/trap/TOMineTrap.h",
+                  "lines": [
+                    36
+                  ],
+                  "contains": "virtual f32 receive_physical_attack"
+                }
+              ],
+              "authored_blocks": 2
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6778,
+        "historical_path": "src/pso/misc/TOMineTrap_8016F6F8.cpp",
+        "historical_blob": "db170ea10ef5e694cef694018c3121761eb54234",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Native target range and hit-timer reads now use the original fields. The existing consolidated strike dispatcher retains its original player/enemy conditions. The three inline functions were authored under -inline on in the original fragment. This consolidation emits separate symbols under the existing per-unit flags, so the final source keeps branches together and preserves the original instructions.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    844
+                  ],
+                  "contains": "void TOMineTrap::run_task()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    948
+                  ],
+                  "contains": "s32 TOMineTrap::find_target_in_range()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    282,
+                    791,
+                    976,
+                    982
+                  ],
+                  "contains": "pad_34C"
+                }
+              ],
+              "authored_blocks": 19
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6785,
+        "historical_path": "src/pso/unk/text_802C9C18.cpp",
+        "historical_blob": "cf3c6ad446b08571ff3126981e0a3a7a5711b27c",
+        "owners": {
+          "src/pso/object/trap/TOTrapSeabed01.cpp": "71bb18d29d31f552de939a4f911af0c96963476b"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "The four area sound cases and both typed held-player lookup/flag paths already use the original held ID and same send and clear operations.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+                  "lines": [
+                    419,
+                    427
+                  ],
+                  "contains": "held->check_player_flag1()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+                  "lines": [
+                    420,
+                    428
+                  ],
+                  "contains": "send_code_45_1(held)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+                  "lines": [
+                    426
+                  ],
+                  "contains": "get_player_by_client_id(local_client_id)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+                  "lines": [
+                    457
+                  ],
+                  "contains": "play_sound_effect(sounds[3][which]"
+                }
+              ],
+              "authored_blocks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6803,
+        "historical_path": "src/pso/misc/TOExplosiveMachine.cpp",
+        "historical_blob": "75711245ab2d1e0240458f15fcd6aa505e845f10",
+        "owners": {
+          "src/pso/object/trap/TOExplosiveMachine.cpp": "64ecd5e2586bc9b617d11d275ecf31078ab2b7ac"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "The three explosive-machine variants already consume their corresponding native BML descriptors, both particles and every indexed model/texture lookup. The current code retains original archive destruction before nulling the same storage.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOExplosiveMachine.cpp",
+                  "lines": [
+                    83
+                  ],
+                  "contains": "new BmlResource(1, &explosive_machine_resource_desc"
+                },
+                {
+                  "path": "src/pso/object/trap/TOExplosiveMachine.cpp",
+                  "lines": [
+                    89
+                  ],
+                  "contains": "delete (BmlResource *)explosive_machine_model_archive"
+                },
+                {
+                  "path": "src/pso/object/trap/TOExplosiveMachine.cpp",
+                  "lines": [
+                    120
+                  ],
+                  "contains": "spawn_particle_effect(&position, 0x45)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOExplosiveMachine.cpp",
+                  "lines": [
+                    121
+                  ],
+                  "contains": "spawn_particle_effect(&position, 0x46)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOExplosiveMachine.cpp",
+                  "lines": [
+                    181
+                  ],
+                  "contains": "get_bml_texlist((BmlResource *)explosive_machine_model_archive, 8)"
+                }
+              ],
+              "authored_blocks": 8
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6818,
+        "historical_path": "include/pso/misc/TOMineIcon01.h",
+        "historical_blob": "1b126a87bab4ff951b11797f0a5cba448fef0f60",
+        "owners": {
+          "include/pso/object/trap/TOMineIcon01.h": "86f6bf38ef61ca0ae63825b55bafb7b2c337f8a7"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Original MineIcon01 constructor is native and declared in the current header.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOMineIcon01.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOMineIcon01(TObject *parent, void *set_data)"
+                }
+              ],
+              "authored_blocks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6819,
+        "historical_path": "include/pso/misc/TOTrapAncient01.h",
+        "historical_blob": "f7f41d69d84036b00019ae2b148452cbd60cab12",
+        "owners": {
+          "include/pso/object/trap/TOTrapAncient01.h": "6807578f9f006a2dac1c29d91f84f12dfe9e5eee"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Ancient 01 constructor, checked radius reader and attack payload/fade contracts are present, with the scalar timer words named on the existing owner.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient01.h",
+                  "lines": [
+                    9
+                  ],
+                  "contains": "TOTrapAncient01(TObject *parent, void *set_data)"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient01.h",
+                  "lines": [
+                    20
+                  ],
+                  "contains": "DirectAttackPayload payload"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient01.h",
+                  "lines": [
+                    21
+                  ],
+                  "contains": "f32 scale_step"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient01.h",
+                  "lines": [
+                    22
+                  ],
+                  "contains": "f32 damage_delay"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient01.h",
+                  "lines": [
+                    23
+                  ],
+                  "contains": "f32 damage_timer"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient01.h",
+                  "lines": [
+                    24
+                  ],
+                  "contains": "RenderFadeState fades[4]"
+                }
+              ],
+              "authored_blocks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6821,
+        "historical_path": "src/pso/misc/TOMine.cpp",
+        "historical_blob": "d20dae67f5ba8bfa668aaa54c64150affe4667a4",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Mine archive remains native C++ and now assigns its own typed archive slot. The material and initial attack fields have actual original offsets, with rotations and shared current texture binding in the display owner.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    299
+                  ],
+                  "contains": "TOMine::load_static_resource()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    300
+                  ],
+                  "contains": "lbl_805D5A50 = new BmlResource(1, &mine_resource_desc"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    330
+                  ],
+                  "contains": "set_current_texture_list(light_textures)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    285,
+                    802,
+                    953
+                  ],
+                  "contains": "m_35c = 0xFFFF;"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    286,
+                    1157
+                  ],
+                  "contains": "color.a = 0.0f"
+                }
+              ],
+              "authored_blocks": 7
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6828,
+        "historical_path": "include/pso/misc/TOMineIcon03.h",
+        "historical_blob": "5496347ecc9591a4c1e77cf2dcae1af80e3e7721",
+        "owners": {
+          "include/pso/object/trap/TOMineIcon03.h": "2d2324951f1f13aa7a651a6b9924e7e33d2d04b4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Original MineIcon03 constructor is native and declared in the current header.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOMineIcon03.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOMineIcon03(TObject *parent, void *set_data)"
+                }
+              ],
+              "authored_blocks": 1
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6829,
+        "historical_path": "include/pso/misc/TOTrapSeabed01.h",
+        "historical_blob": "87225699c00bd4508a224a4e888ec86a066c2f6d",
+        "owners": {
+          "include/pso/object/trap/TOTrapSeabed01.h": "eaee86089c3ed3e86dfe70bbe7da6d3fbd33571e"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Seabed constructor, mesh tree, hold check, virtual damage and sound functions and payload were already native source. Original timer and projection offsets are represented by the named members.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOTrapSeabed01(TObject *parent, void *set_data)"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    18
+                  ],
+                  "contains": "draw_object_tree(NJS_OBJECT *object)"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    22
+                  ],
+                  "contains": "check_hold_player()"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    12
+                  ],
+                  "contains": "receive_physical_attack(void *, f32)"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    17
+                  ],
+                  "contains": "play_sounds()"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    30
+                  ],
+                  "contains": "s32 strike_timer"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    31
+                  ],
+                  "contains": "s32 projected"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapSeabed01.h",
+                  "lines": [
+                    32
+                  ],
+                  "contains": "DirectAttackPayload payload"
+                }
+              ],
+              "authored_blocks": 1
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6831,
+        "historical_path": "src/pso/misc/TOMineDisp_8016EF68.cpp",
+        "historical_blob": "566bc0b3832eb015f5342efb8888e9bb38ee3a92",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Mine display retains original current yaw and now uses the typed player lookup, flag, position and room contract.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1169
+                  ],
+                  "contains": "void TOMineDisp::run_task()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    709,
+                    1103,
+                    1171
+                  ],
+                  "contains": "TObjPlayer *player;"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1175
+                  ],
+                  "contains": "TObjPlayer::is_locally_controlled(player)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1175
+                  ],
+                  "contains": "fn_80171314(player)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1176
+                  ],
+                  "contains": "player->position"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1177
+                  ],
+                  "contains": "player->get_room()"
+                }
+              ],
+              "authored_blocks": 3
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6837,
+        "historical_path": "include/pso/misc/TOMine.h",
+        "historical_blob": "02adb0b81d28406cf5de1d537be1a1d505a014ba",
+        "owners": {
+          "include/pso/object/trap/TOMine.h": "dff2098d67fdea927a54d5957dc122f5afaa26aa"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Canonical actor, float position vector, damage, material and override contracts are present. The underlying unused/opaque field at 0x348 remains the upstream byte range.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOMine.h",
+                  "lines": [
+                    42
+                  ],
+                  "contains": "Vec float_position"
+                },
+                {
+                  "path": "include/pso/object/trap/TOMine.h",
+                  "lines": [
+                    48
+                  ],
+                  "contains": "DirectAttackPayload attack"
+                },
+                {
+                  "path": "include/pso/object/trap/TOMine.h",
+                  "lines": [
+                    51
+                  ],
+                  "contains": "NJS_ARGB color"
+                }
+              ],
+              "authored_blocks": 4
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6838,
+        "historical_path": "include/pso/misc/TOMineIcon02.h",
+        "historical_blob": "21316d57660fdc6da1179682a127db68113c06d6",
+        "owners": {
+          "include/pso/object/trap/TOMineIcon02.h": "22d2fad06d700aaacf7511e2b718c24b7a973edb"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Original MineIcon02 constructor is native and declared in the current header.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOMineIcon02.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOMineIcon02(TObject *parent, void *set_data)"
+                }
+              ],
+              "authored_blocks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6861,
+        "historical_path": "include/pso/misc/TOMineIcon04.h",
+        "historical_blob": "2eeeede7aa2e575d028471fb077ac03e5f8e1405",
+        "owners": {
+          "include/pso/object/trap/TOMineIcon04.h": "6253d67477781ecc7bb81dddadbfb8af9c444f37"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Original MineIcon04 constructor is native and declared in the current header.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOMineIcon04.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOMineIcon04(TObject *parent, void *set_data)"
+                }
+              ],
+              "authored_blocks": 1
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6869,
+        "historical_path": "src/pso/misc/TOMineTrap.cpp",
+        "historical_blob": "bc8b17f95259f8afa7c98c66c135a9bd37419eb5",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Original typed player flag function, unsigned owner setter and two native virtual attack filters were already linked.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    294
+                  ],
+                  "contains": "fn_80171314(TObjPlayer *player)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    291
+                  ],
+                  "contains": "TOMineTrap::sub_80171348(u16 v)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    274
+                  ],
+                  "contains": "TOMineTrap::select_melee_contact_body"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    267
+                  ],
+                  "contains": "TOMineTrap::calc_distance_accuracy_penalty"
+                }
+              ],
+              "authored_blocks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6885,
+        "historical_path": "src/pso/misc/TOMineIcon01.cpp",
+        "historical_blob": "60d321f51a43a7b220467ab4993c8b1b635949b4",
+        "owners": {
+          "src/pso/object/trap/TOMineIcon01.cpp": "aad3e7a3306e4f2c7498960a7380dcfd431ea25c",
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Native MineIcon01 construction, original model and light IDs, typed motion/attack fields and both 0x8E particle sites are preserved.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMineIcon01.cpp",
+                  "lines": [
+                    32
+                  ],
+                  "contains": "TOMineIcon01::TOMineIcon01"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon01.cpp",
+                  "lines": [
+                    39
+                  ],
+                  "contains": "light_model = get_bml_model(lbl_805D5A50, 1)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon01.cpp",
+                  "lines": [
+                    40
+                  ],
+                  "contains": "light_textures = get_bml_texlist(lbl_805D5A50, 1)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1006,
+                    1007
+                  ],
+                  "contains": "0x8E"
+                }
+              ],
+              "authored_blocks": 7
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6886,
+        "historical_path": "src/pso/misc/TOMineIcon02.cpp",
+        "historical_blob": "58779855c83a3ec1e52a5c59467139d68699ba23",
+        "owners": {
+          "src/pso/object/trap/TOMineIcon02.cpp": "fadc8753e44047c648ded2fd33c90f34bfb1229d",
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Native MineIcon02 construction, original model and light IDs, typed motion/attack fields and both 0x8D particle sites are preserved.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMineIcon02.cpp",
+                  "lines": [
+                    38
+                  ],
+                  "contains": "TOMineIcon02::TOMineIcon02"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon02.cpp",
+                  "lines": [
+                    45
+                  ],
+                  "contains": "light_model = get_bml_model(lbl_805D5A50, 0)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon02.cpp",
+                  "lines": [
+                    46
+                  ],
+                  "contains": "light_textures = get_bml_texlist(lbl_805D5A50, 0)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1011,
+                    1012
+                  ],
+                  "contains": "0x8D"
+                }
+              ],
+              "authored_blocks": 6
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6934,
+        "historical_path": "include/pso/misc/TOTrapAncient02R.h",
+        "historical_blob": "b893dc0a3c19ff14ce1d3c9c354cadf4ae988231",
+        "owners": {
+          "include/pso/object/trap/TOTrapAncient02R.h": "65702f0a68f6dbce7b58974d21196b816677c12b"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Native Ancient 02R constructor, virtual slot and original four s32 fields use confirmed type and the current owner names. The inherited demo helper is already a typed TObject receiver elsewhere.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient02R.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOTrapAncient02R(TObject *parent, void *set_data)"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient02R.h",
+                  "lines": [
+                    16
+                  ],
+                  "contains": "virtual void vfunc_81()"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient02R.h",
+                  "lines": [
+                    27
+                  ],
+                  "contains": "s32 technique"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient02R.h",
+                  "lines": [
+                    28
+                  ],
+                  "contains": "s32 tech_level"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient02R.h",
+                  "lines": [
+                    29
+                  ],
+                  "contains": "s32 switch_id"
+                },
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient02R.h",
+                  "lines": [
+                    30
+                  ],
+                  "contains": "s32 hits"
+                }
+              ],
+              "authored_blocks": 3
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7042,
+        "historical_path": "include/pso/misc/TOTrapAncient02.h",
+        "historical_blob": "9fca893c10f507ff2fa5c12e256bad6d0058aacd",
+        "owners": {
+          "include/pso/object/trap/TOTrapAncient02.h": "4ce0770589bcbae60b6d31eeabafcf556414f29f"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Original Ancient 02 constructor is native, with unused parent-base argument omitted in existing source.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/object/trap/TOTrapAncient02.h",
+                  "lines": [
+                    8
+                  ],
+                  "contains": "TOTrapAncient02(TObject *parent, void *set_data)"
+                }
+              ],
+              "authored_blocks": 1
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7106,
+        "historical_path": "src/pso/misc/TOMineIcon04.cpp",
+        "historical_blob": "647fe20ae7e2bb1e56d96d299a2bf8d000b22a22",
+        "owners": {
+          "src/pso/object/trap/TOMineIcon04.cpp": "b9feae3ea9be13da2d8a26d72dfd8da4532c680d"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "MineIcon04 retains all original typed area sound and per-model/texture slots. The historical alternate manual virtual table and raw-store spellings differ from this complete native constructor.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMineIcon04.cpp",
+                  "lines": [
+                    26
+                  ],
+                  "contains": "TOMineIcon04::TOMineIcon04"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon04.cpp",
+                  "lines": [
+                    33
+                  ],
+                  "contains": "light_model = get_bml_model(lbl_805D5A50, 3)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon04.cpp",
+                  "lines": [
+                    34
+                  ],
+                  "contains": "light_textures = get_bml_texlist(lbl_805D5A50, 3)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMineIcon04.cpp",
+                  "lines": [
+                    79,
+                    84,
+                    88,
+                    93,
+                    97,
+                    101,
+                    108,
+                    111
+                  ],
+                  "contains": "play_sound_effect"
+                }
+              ],
+              "authored_blocks": 10
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7201,
+        "historical_path": "src/pso/misc/TOMineTrapDisp_8016EDC8.cpp",
+        "historical_blob": "864c13a1150e5b54435c32aef2cb1056e9ca6412",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "9e2acd8e4516fe5e90ce49bc9d3bcbd637f07fc4"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "Trap display uses typed player lookup, the shared predicate and the original player position, room and technique gates.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1230
+                  ],
+                  "contains": "void TOMineTrapDisp::run_task()"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1234
+                  ],
+                  "contains": "TObjPlayer *pl;"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1243
+                  ],
+                  "contains": "TObjPlayer::is_locally_controlled(pl)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1244
+                  ],
+                  "contains": "fn_80171314(pl)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1246
+                  ],
+                  "contains": "&pl->position"
+                },
+                {
+                  "path": "src/pso/object/trap/TOMine.cpp",
+                  "lines": [
+                    1247
+                  ],
+                  "contains": "pl->get_room()"
+                }
+              ],
+              "authored_blocks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7258,
+        "historical_path": "src/pso/misc/TOTrapChainSawEdge.cpp",
+        "historical_blob": "f612345d87b1c7a39ba6137f092c5d2e038387c3",
+        "owners": {
+          "src/pso/object/trap/TOTrapChainSawEdge.cpp": "ed51192f82bf92a28690c65ca2a3709093c5a2f6"
+        },
+        "proofs": [
+          {
+            "group": "traps",
+            "evidence": "The original all-path chainsaw GVM/current texture and area-loop/persistent sound, model/motion/archive calls and model-node placement are preserved or typed. Legacy authored receiver and compiler fragments outside those paths remain as current equivalents.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+                  "lines": [
+                    232
+                  ],
+                  "contains": "BmlResourceDescriptor bm_obj_jungle_nokogiri_resource_descriptor"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+                  "lines": [
+                    177,
+                    369
+                  ],
+                  "contains": "TParticleCtrl__sub_802C8464(NJS_OBJECT *arg0)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+                  "lines": [
+                    1091,
+                    1098
+                  ],
+                  "contains": "find_object_node(root, 3)"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+                  "lines": [
+                    1056
+                  ],
+                  "contains": "delete lbl_805D6808"
+                },
+                {
+                  "path": "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+                  "lines": [
+                    424
+                  ],
+                  "contains": "get_area_table_value__17TOTrapChainSawKeyFii(this, 2)"
+                }
+              ],
+              "authored_blocks": 17
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 428,
+        "historical_path": "include/pso/boss/TObjBoss5Ctrl.h",
+        "historical_blob": "0c4c31b26130d0e23c3a02680afe3eb0c8665ec5",
+        "owners": {
+          "include/pso/boss/galgryphon/TObjBoss5Ctrl.h": "d68aa859a50e778e1eb258a7ab95ea8988b5bbc7",
+          "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp": "291f18a6336acf238a64f0b14d4e4350f1a29a64"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The historical header replaces the standalone controller constructor declaration with the real controller header. The current header and split exact native definitions provide the typed constructor, controller instance, and lifecycle using current include paths.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/galgryphon/TObjBoss5Ctrl.h",
+                  "blob": "d68aa859a50e778e1eb258a7ab95ea8988b5bbc7",
+                  "anchors": [
+                    "TObjBoss5Ctrl(TObject *parent);",
+                    "extern TObjBoss5Ctrl *boss5_ctrl_instance;",
+                    "static TObjBoss5Ctrl *create();"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+                  "blob": "291f18a6336acf238a64f0b14d4e4350f1a29a64",
+                  "anchors": [
+                    "TObjBoss5Ctrl::TObjBoss5Ctrl(TObject *parent) : TObject(parent)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 547,
+        "historical_path": "src/pso/boss/TObjBoss5Ctrl.cpp",
+        "historical_blob": "40482d47a53104950e7b200573883b82f7b5a551",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp": "291f18a6336acf238a64f0b14d4e4350f1a29a64",
+          "src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp": "d80b68f6a2fc2278eaa701b34acad0b561ce19e2",
+          "src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp": "c5c137d9d4aafd585539b233bdb55a5ae90b241e"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All historical controller functions now have their native owners, including the two exact split units. Allocation, shared parent, room/split screen conditions, ambient sound cadence, child release order, flags, singleton reset, and the optional pillar demo are preserved. The pillar demo points to its real derived object, which invokes activation on its actual shared pillar base.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+                  "blob": "291f18a6336acf238a64f0b14d4e4350f1a29a64",
+                  "anchors": [
+                    "sound_countdown-- <= 0",
+                    "0x40033215",
+                    "rand()) + 90.0f",
+                    "pillar_demo->queue_destruction();",
+                    "pillar_controller->queue_destruction();",
+                    "floor_stone->queue_destruction();",
+                    "floor_grass->queue_destruction();",
+                    "boss5_ctrl_instance = NULL;",
+                    "is_room_enemy_set_cleared(get_current_floor(), 1) == 0",
+                    "is_split_screen() == 0",
+                    "TObjBoss5PillarCtrl::create(this)",
+                    "TObjBoss5PillarDemo::create()",
+                    "create__19TObjBoss5FloorGrassFv",
+                    "create__19TObjBoss5FloorStoneFv"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp",
+                  "blob": "d80b68f6a2fc2278eaa701b34acad0b561ce19e2",
+                  "anchors": [
+                    "controller->pillar_demo->activate();"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp",
+                  "blob": "c5c137d9d4aafd585539b233bdb55a5ae90b241e",
+                  "anchors": [
+                    "new TObjBoss5Ctrl(tl_01)",
+                    "boss5_ctrl_instance = controller;"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 648,
+        "historical_path": "src/pso/unk/data_805D8D28.cpp",
+        "historical_blob": "84d27c50a528bc0dc417e60c22c40fc036b00d60",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4Zako.cpp": "a36a9f604200a513b04973911e04ee380255210d",
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "27dd8af22ddccdcef4827007832935a73bbd8196"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All 18 historical scalar initializer values are source-linked and exact across the complete 72-byte retail sequence. The first eight values are sourced by Dark Falz Zako and the last ten by Gryphon Behavior. Both units match their current local pools, including the historical span\u2019s 18 values.",
+            "details": {
+              "anchors": [
+                {
+                  "exact_sections": [
+                    {
+                      "name": ".sdata2",
+                      "size": "392",
+                      "fuzzy_match_percent": 100.0,
+                      "metadata": {
+                        "virtual_address": "2153614664"
+                      }
+                    },
+                    {
+                      "name": ".sdata2",
+                      "size": "144",
+                      "fuzzy_match_percent": 100.0,
+                      "metadata": {
+                        "virtual_address": "2153614520"
+                      }
+                    }
+                  ],
+                  "values": [
+                    {
+                      "virtual_address": "0x805d8d28",
+                      "bytes": "41f00000",
+                      "source_value": 30.0,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d2c",
+                      "bytes": "45888800",
+                      "source_value": 4369.0,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d30",
+                      "bytes": "44888000",
+                      "source_value": 1092.0,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d34",
+                      "bytes": "45088000",
+                      "source_value": 2184.0,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d38",
+                      "bytes": "40baaaaa",
+                      "source_value": 5.833333,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d3c",
+                      "bytes": "3f155555",
+                      "source_value": 0.5833333,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d40",
+                      "bytes": "41235554",
+                      "source_value": 10.208332,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d44",
+                      "bytes": "3f82aaaa",
+                      "source_value": 1.0208333,
+                      "source_owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d48",
+                      "bytes": "40c00000",
+                      "source_value": 6.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d4c",
+                      "bytes": "43c80000",
+                      "source_value": 400.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d50",
+                      "bytes": "41a00000",
+                      "source_value": 20.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d54",
+                      "bytes": "41000000",
+                      "source_value": 8.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d58",
+                      "bytes": "40000000",
+                      "source_value": 2.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d5c",
+                      "bytes": "00000000",
+                      "source_value": 0.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d60",
+                      "bytes": "461c4000",
+                      "source_value": 10000.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d64",
+                      "bytes": "47300000",
+                      "source_value": 45056.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d68",
+                      "bytes": "46a00000",
+                      "source_value": 20480.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805d8d6c",
+                      "bytes": "42c80000",
+                      "source_value": 100.0,
+                      "source_owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 705,
+        "historical_path": "src/pso/unk/text_80325F7C.cpp",
+        "historical_blob": "b40e0d1f7e6a51c052db64ecc9b0db12956ed2bf",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp": "215f498ce2ea70c445566907dfb03db159625ca5"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete two normalization call changes and ground-query declaration now use actual Vec arguments and CsnHit at the consolidated horn owner.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp",
+                  "blob": "215f498ce2ea70c445566907dfb03db159625ca5",
+                  "anchors": [
+                    "#include \"pso/math/VectorNormalize.h\"",
+                    "normalize_vector_checked(&dir)",
+                    "normalize_vector_checked(&d) / (self->n - 1)",
+                    "hit = csnVecterUnder(&p, 0x16EF);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 750,
+        "historical_path": "src/pso/boss/TBoss5GryphonDemo.cpp",
+        "historical_blob": "d4aa69cd8f60af908014be8e711760ad02823351",
+        "owners": {
+          "include/pso/boss/galgryphon/TBoss5GryphonDemo.h": "b6d077f00f77fed23507a040862e4d325f2da138",
+          "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp": "1eb88f809b83ebf3ff59b6d054e249e18f1b8eac",
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "27dd8af22ddccdcef4827007832935a73bbd8196"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The full original camera type delta is present with native CameraPlayback run/constructor access. The active flag is now an actual signed pointer borrowed from the boss, and the original camera overlay alpha, restoration, camera mode and scene parameters are retained.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/galgryphon/TBoss5GryphonDemo.h",
+                  "blob": "b6d077f00f77fed23507a040862e4d325f2da138",
+                  "anchors": [
+                    "const s32 *active;",
+                    "offsetof(TBoss5GryphonDemo, active) == 0x24",
+                    "sizeof(TBoss5GryphonDemo) == 0x28"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+                  "blob": "1eb88f809b83ebf3ff59b6d054e249e18f1b8eac",
+                  "anchors": [
+                    "get_scripted_camera_playback();",
+                    "set_camera_capture_overlay_alpha(0x8F);",
+                    "(playback->flags & 1) || *active == 0",
+                    "restore_player_cameras();",
+                    "playback.bank = 1;",
+                    "playback.index = 0;",
+                    "playback.flags = 0;",
+                    "playback.frame = frame;",
+                    "playback.frame_step = this->frame_step;",
+                    "playback.cache_target_and_forward(0x238E);"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+                  "blob": "27dd8af22ddccdcef4827007832935a73bbd8196",
+                  "anchors": [
+                    "s32 *active = &m_6e8;",
+                    "*active = 1;",
+                    "*active = 0;",
+                    "__ct__17TBoss5GryphonDemoFP7TObjectPClf(demo, (TObject *)tl_01, active, lbl_805D8D88);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 966,
+        "historical_path": "src/pso/unk/text_803554F0.cpp",
+        "historical_blob": "90bb3026fe294547850fdb3eee9945666712b397",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp": "09cb96387f517842c9215fe37776b3247637d726"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The sole source change replaces the pseudo tunnel method with the exact checked vector normalization at the relocated tornado helper.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+                  "blob": "09cb96387f517842c9215fe37776b3247637d726",
+                  "anchors": [
+                    "#include \"pso/math/VectorNormalize.h\"",
+                    "normalize_vector_checked((Vec *)boss2_tunnel);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 967,
+        "historical_path": "src/pso/boss/TObjBoss5PillarSmoke_8028AEA4.cpp",
+        "historical_blob": "4e0c4120896f86cbb93d391bd77b86fa0e7df804",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp": "c7cf6c1a3765700a11438d511ea57c2ae623a600"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All four historical smoke array operations use the original raw operator new[] and operator delete[] at the merged native smoke owner. Reverse release order remains B then A.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+                  "blob": "c7cf6c1a3765700a11438d511ea57c2ae623a600",
+                  "anchors": [
+                    "#include \"pso/system/ArrayAllocation.h\"",
+                    "::operator delete[](((Smoke_8028AEA4 *)this)->b);",
+                    "::operator delete[](((Smoke_8028AEA4 *)this)->a);",
+                    "arg0->a = (void **)::operator new[](arg0->count * 4);",
+                    "arg0->b = (void **)::operator new[](arg0->count * 4);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 982,
+        "historical_path": "src/pso/boss/TBoss5GryphonShockWave.cpp",
+        "historical_blob": "fa06f78d4427f340dda5e8a616a6ddf7113cc4fb",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp": "6fb50fe8a0eab7fe5b7781f42a3f8eba11275aa7"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All original shockwave call changes are retained: actual archive model, texture and motion providers, Vec sound position, checked normalized path duration, exact inlined scalar defaults, and parameterless arena setup.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+                  "blob": "6fb50fe8a0eab7fe5b7781f42a3f8eba11275aa7",
+                  "anchors": [
+                    "get_bml_model(boss5_gryphon_bml_resource, 0)",
+                    "get_bml_motion(boss5_gryphon_bml_resource, 0), 0, 1.0f",
+                    "play_sound_effect(0x40033C13, (const Vec *)&this->m_2c, 0, 0);",
+                    "*(f32 *)((s8 *)this + 0x64) = 5.0f;",
+                    "0.07f * normalize_vector_checked((Vec *)sp8)",
+                    "switch (TBoss8Dragon__sub_8005D700())"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 990,
+        "historical_path": "include/pso/boss/TBoss5Gryphon.h",
+        "historical_blob": "fc65ff31ea4e3a012ec91d6a5557a702ed373c2f",
+        "owners": {
+          "include/pso/boss/galgryphon/TBoss5Gryphon.h": "057e68a1b875222060325961cd334a52d0453c01"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The full historical actor-header delta is retained. Its resource provider types, genuine action record typedef and two entries, displacement Vec, native packet handler, derived opaque starting pad and actual collider owner are in the current boss layout.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/galgryphon/TBoss5Gryphon.h",
+                  "blob": "057e68a1b875222060325961cd334a52d0453c01",
+                  "anchors": [
+                    "extern BmlResource *boss5_gryphon_bml_resource;",
+                    "extern GinjaTextureList *boss5_gryphon_texture_list;",
+                    "typedef G_GalGryphonBossAction Boss5GryphonMotionEntry;",
+                    "u8 pad_3c0[0xC0];",
+                    "Vec action_displacement;",
+                    "Boss5GryphonMotionEntry actions[2];",
+                    "void apply_remote_action(G_GalGryphonBossActions_6xA0 *cmd);",
+                    "offsetof(TBoss5Gryphon, attack_collider) == 0x57C"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 992,
+        "historical_path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+        "historical_blob": "b719d83b9fad043a50c574b38b53c31c387fe858",
+        "owners": {
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "27dd8af22ddccdcef4827007832935a73bbd8196"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The broader historical behavior row spans already-retained resources and descriptors, packet handlers, sound/vector call conversions, and state/effect machinery. The audit certifies the owning camera task, attack collider allocation and deletion, real embedded effect parent, and all attack state consumers. It does not assert the full combined source delta.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+                  "blob": "27dd8af22ddccdcef4827007832935a73bbd8196",
+                  "anchors": [
+                    "self->attack_collider->activate(&self->position, self->rotation.yaw);",
+                    "self->attack_collider->deactivate();",
+                    "delete o->attack_collider;",
+                    "__ct__7TObjectFP7TObject(&self->effect_root, 0);",
+                    "TBoss5GryphonColli__ct(collider, &self->effect_root);",
+                    "__dt__7TObjectFv(&((TBoss5Gryphon *)o)->effect_root, -1);",
+                    "void load_boss5_gryphon_resources(void)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 993,
+        "historical_path": "src/pso/boss/TBoss5GryphonSnarl.cpp",
+        "historical_blob": "2aca42496b1192763259f4ecb4a0f5b785f61c98",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp": "e4def56fc13adedb56de676569dde9cbde1ad8da"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The whole historical snarl source hunk is present at the canonical owners. The typed archive supplies the same model and texture handles, setup takes no receiver, and cleanup performs texture release, free and archive destruction in the original order.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+                  "blob": "e4def56fc13adedb56de676569dde9cbde1ad8da",
+                  "anchors": [
+                    "get_bml_model(boss5_gryphon_bml_resource, 1), (s32)boss5_gryphon_texture_list",
+                    "void TBoss5GryphonSnarl__sub_80066E88(void)",
+                    "switch (TBoss8Dragon__sub_8005D700())",
+                    "release_texture_list((void*)boss5_common_texture_list);",
+                    "safe_free((void *)boss5_common_texture_list);",
+                    "delete (BmlResource *)lbl_805D4DD8;"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 998,
+        "historical_path": "include/pso/boss/TBoss5GryphonSnarl.h",
+        "historical_blob": "85a93e6a0e05aaee1480f05808fafde5cb79e863",
+        "owners": {
+          "include/pso/boss/galgryphon/TBoss5GryphonSnarl.h": "d2a337f8a02b5b7741ec9c0890f04af144791c1e",
+          "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp": "e4def56fc13adedb56de676569dde9cbde1ad8da"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The two historical edits remove the false receiver from two declarations. The current native declaration and exact owner both take no arguments.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/galgryphon/TBoss5GryphonSnarl.h",
+                  "blob": "d2a337f8a02b5b7741ec9c0890f04af144791c1e",
+                  "anchors": [
+                    "void TBoss5GryphonSnarl__sub_80066E88(void);"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+                  "blob": "e4def56fc13adedb56de676569dde9cbde1ad8da",
+                  "anchors": [
+                    "void TBoss5GryphonSnarl__sub_80066E88(void)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1033,
+        "historical_path": "src/pso/boss/TObjBoss5PillarCtrl.cpp",
+        "historical_blob": "e7b2cd314b44e789c5b1df054e2234a1df5def98",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp": "7e4edbd109caaa76523c829ff6004ca67a4a962f",
+          "include/pso/boss/galgryphon/TObjBoss5PillarCtrl.h": "e8e79c471fb5948c10525b891f6f57e47fe94f70",
+          "src/pso/boss/galgryphon/TObjBoss5Pillar_8028B08C.cpp": "d7485a79c05e975a6f96f6b3055e62a56e45e21f",
+          "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp": "63808d6d94e1e8eb111815a6b9426913788bbe35"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete historical array and one-shot sound conversion is retained. Both array operations now use the real pillar-controller array and its element type. The source puts the sound/state transition on the actual pillar class and leaves the controller count untouched.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+                  "blob": "7e4edbd109caaa76523c829ff6004ca67a4a962f",
+                  "anchors": [
+                    "::operator delete[](pillars);",
+                    "::operator new[](controller->count * sizeof(TObjBoss5Pillar *))",
+                    "void TObjBoss5Pillar::activate()",
+                    "play_sound_effect(0x4003A819, 0, 0, 0);"
+                  ]
+                },
+                {
+                  "path": "include/pso/boss/galgryphon/TObjBoss5PillarCtrl.h",
+                  "blob": "e8e79c471fb5948c10525b891f6f57e47fe94f70",
+                  "anchors": [
+                    "s32 count;",
+                    "TObjBoss5Pillar **pillars;"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5Pillar_8028B08C.cpp",
+                  "blob": "d7485a79c05e975a6f96f6b3055e62a56e45e21f",
+                  "anchors": [
+                    "controller->pillars[i]->activate();",
+                    "placement = placement->child;",
+                    "placement = placement->sibling;"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+                  "blob": "7e4edbd109caaa76523c829ff6004ca67a4a962f",
+                  "anchors": [
+                    "models[2].model",
+                    "TObjBoss5Pillar::create(node->pos);"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp",
+                  "blob": "63808d6d94e1e8eb111815a6b9426913788bbe35",
+                  "anchors": [
+                    "models[3].model",
+                    "tl_02, model->pos)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1071,
+        "historical_path": "src/pso/boss/TBoss5GryphonTornado.cpp",
+        "historical_blob": "84b5a18b54712f932d234e6c9ed9b805353f0d10",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp": "09cb96387f517842c9215fe37776b3247637d726"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Every historical tornado edit uses the intended provider and parameters. The archive motion and model indexes and same 1.0 scale literal, CsnHit query at 0x16EF, effect owner and positional persistent sound remain exact.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+                  "blob": "09cb96387f517842c9215fe37776b3247637d726",
+                  "anchors": [
+                    "#include \"pso/map/CsnGroundQuery.h\"",
+                    "csnVecterUnder(&o->pos, 0x16EF);",
+                    "get_bml_model(boss5_gryphon_bml_resource, 0)",
+                    "get_bml_motion(boss5_gryphon_bml_resource, 0), 0, 1.0f",
+                    "play_persistent_sound(0x40032D05, o, &o->pos, 0, 0);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1072,
+        "historical_path": "src/pso/boss/TObjBoss5Pillar.cpp",
+        "historical_blob": "86535b15fb0590bad205e413a9665af519efc83a",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp": "507566b8e656eeece2f3edbe28e16357a636dece"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The sole texture call uses the true current-list provider. Both former extern const scalars are present as the 0.0f and 1.0f values compiled in the same exact pillar constructor.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp",
+                  "blob": "507566b8e656eeece2f3edbe28e16357a636dece",
+                  "anchors": [
+                    "set_current_texture_list((GinjaTextureList *)boss5_common_texture_list);",
+                    "*(f32 *)((s8 *)boss5_pillar + 0x20) = 0.0f;",
+                    "boss5_pillar->m_24 = 1.0f;"
+                  ]
+                },
+                {
+                  "exact_sections": [
+                    {
+                      "name": ".sdata2",
+                      "size": "8",
+                      "fuzzy_match_percent": 100.0,
+                      "metadata": {
+                        "virtual_address": "2153634072"
+                      }
+                    }
+                  ],
+                  "values": [
+                    {
+                      "virtual_address": "0x805dd918",
+                      "bytes": "00000000",
+                      "source_value": 0.0,
+                      "source_owner": "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp"
+                    },
+                    {
+                      "virtual_address": "0x805dd91c",
+                      "bytes": "3f800000",
+                      "source_value": 1.0,
+                      "source_owner": "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1086,
+        "historical_path": "src/pso/boss/TBoss5GryphonColli.cpp",
+        "historical_blob": "a7621e4c9076d68b1e20c6fcc8bae7d4ab154b6b",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp": "6d3f8fe9844b15e2b956ae63936d4e0fda538a12",
+          "include/pso/object/base/TObjMotion.h": "da592cc88064e72f6c11a6cdf0f4ddc1a4aabf3a"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete allocator swap is present in the attack collider child. The real CollisionBody has the same 0x2C stride, and the native type and allocation replace the old Seg and raw allocator.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp",
+                  "blob": "6d3f8fe9844b15e2b956ae63936d4e0fda538a12",
+                  "anchors": [
+                    "#include \"pso/system/ArrayAllocation.h\"",
+                    "::operator new[](body_count * sizeof(CollisionBody))",
+                    "body->flags = 0x10003;",
+                    "bodies[i].flags &= ~1;",
+                    "bodies[i].flags |= 1;"
+                  ]
+                },
+                {
+                  "path": "include/pso/object/base/TObjMotion.h",
+                  "blob": "da592cc88064e72f6c11a6cdf0f4ddc1a4aabf3a",
+                  "anchors": [
+                    "struct CollisionBody {",
+                    "f32 unk_28;",
+                    "CollisionBody *bodies;"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1119,
+        "historical_path": "include/pso/boss/Boss5GryphonBehavior.h",
+        "historical_blob": "4d4f4ad9760453600b7ad1f9d2faeaa16c25a594",
+        "owners": {
+          "include/pso/boss/galgryphon/Boss5GryphonBehavior.h": "13492c7ac2e45717b3590ae2428bfa6ea1e1b5e5",
+          "include/pso/boss/galgryphon/TBoss5Gryphon.h": "057e68a1b875222060325961cd334a52d0453c01"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The historical header removes raw remote-action declarations and introduces actual packet and object forward declarations. All active canonical declarations have the same native types.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/galgryphon/Boss5GryphonBehavior.h",
+                  "blob": "13492c7ac2e45717b3590ae2428bfa6ea1e1b5e5",
+                  "anchors": [
+                    "struct NJS_OBJECT;",
+                    "struct G_GalGryphonBossActions_6xA0;",
+                    "void TBoss8Dragon__sub_8005E17C(NJS_OBJECT *);",
+                    "void handle_6xA0_gal_gryphon_boss_actions(G_GalGryphonBossActions_6xA0 *cmd);"
+                  ]
+                },
+                {
+                  "path": "include/pso/boss/galgryphon/TBoss5Gryphon.h",
+                  "blob": "057e68a1b875222060325961cd334a52d0453c01",
+                  "anchors": [
+                    "void apply_remote_action(G_GalGryphonBossActions_6xA0 *cmd);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1127,
+        "historical_path": "src/pso/boss/TBoss5GryphonLightningEff.cpp",
+        "historical_blob": "355f2bd08824e44dcb9573b77edd6ac00bd6744f",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp": "ee8ecccceb291fa4d7bfa2d753044402f66ef2dd"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete two-call vector modernization already uses the checked real Vec API at the LightningEff owner.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+                  "blob": "ee8ecccceb291fa4d7bfa2d753044402f66ef2dd",
+                  "anchors": [
+                    "#include \"pso/math/VectorNormalize.h\"",
+                    "self->f34 = normalize_vector_checked(&self->v28);",
+                    "self->f34 += normalize_vector_checked(&v);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1190,
+        "historical_path": "src/pso/misc/TLobby_80067410.cpp",
+        "historical_blob": "ce4f256f7da1cda748ca8b1cbe585c3a120b4713",
+        "owners": {
+          "src/pso/unk/TLobby_80067410.cpp": "8d16f41138f6d668b28ecb992fe9136f7f1cf2ed"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The full historical cleanup and reinitialization hooks are present. Cleanup calls through the true controller, clears the singleton and preserves hook order; reinitialization loads the bundle, calls its four original hooks, and resets the same singleton.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/unk/TLobby_80067410.cpp",
+                  "blob": "8d16f41138f6d668b28ecb992fe9136f7f1cf2ed",
+                  "anchors": [
+                    "boss5_ctrl_instance->queue_destruction();",
+                    "boss5_ctrl_instance = NULL;",
+                    "load_boss5_common_assets(); TObjBoss5PillarDemo::update_active_pillar(); fn_802898EC(); forward_pillar_2B710__19TObjBoss5PillarCtrlFv(); TObjBoss5PillarDemo__sub_8028ACE4(); boss5_ctrl_instance = NULL;"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1192,
+        "historical_path": "include/pso/unk/text_80355A1C.h",
+        "historical_blob": "b6cafef5c567f92cdbeadc28e52a13cc45a75c21",
+        "owners": {
+          "include/pso/unk/text_80355A1C.h": "3a2b3d33b86db4d942a7d6ecbf872bd7200dad50",
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "27dd8af22ddccdcef4827007832935a73bbd8196"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Both historical declarations remove the false receiver. Current header takes no arguments and its consolidated owner and caller do the same.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/unk/text_80355A1C.h",
+                  "blob": "3a2b3d33b86db4d942a7d6ecbf872bd7200dad50",
+                  "anchors": [
+                    "void TBoss8Dragon__sub_80355A20(void);"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+                  "blob": "27dd8af22ddccdcef4827007832935a73bbd8196",
+                  "anchors": [
+                    "TBoss8Dragon__sub_80355A20();"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1193,
+        "historical_path": "src/pso/unk/text_80355A1C.cpp",
+        "historical_blob": "6cf295ba578735880262437cbdef8ea6d26211a2",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp": "09cb96387f517842c9215fe37776b3247637d726"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The entire startup body moved into the tornado owner and preserves both no-argument function signatures, the variant selector and the particle ID table assignment.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+                  "blob": "09cb96387f517842c9215fe37776b3247637d726",
+                  "anchors": [
+                    "void TBoss8Dragon__sub_80355A20(void)",
+                    "switch (TBoss8Dragon__sub_8005D700())",
+                    "gryphon_tornado_particle_id_table = gryphon_tornado_particle_ids;"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2121,
+        "historical_path": "include/pso/TChCrTagInformationStr.h",
+        "historical_blob": "4f8d56d61110866e4a55f8cdacf412f377175ab0",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrTagInformationStr.h": "16d120da029efafff647db37cac4888a7e7ce432",
+          "src/pso/ui/charcreate/TChCrTagInformationStr.cpp": "c2974117bc17b602edfaf37c1bbf1f52a9e2d911",
+          "src/pso/unk/text_80309890.cpp": "0d05e1e81edf866bbfa0240a6bd138a29080ea6e"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "The native frame, delay, opacity, text-group and first-line layout remains. Prior a408505107 carried the original linked typed factory and shared dispatcher in canonical, and this direct review carries those same source blobs.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2122,
+        "historical_path": "include/pso/TChCrTagOccHeader.h",
+        "historical_blob": "8a84e600090be21abd99f9ce3c23c3e6f650014c",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrTagOccHeader.h": "2e3133999248c93a3d2d8658f946b535da9eefae",
+          "src/pso/ui/charcreate/TChCrTagOccHeader.cpp": "02b62b630132a2475c3202b0f9bc209a8beaea96"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "All historical header operations remain at their native owner: destructor, run, render, whole-group creation and one-header creation. The original declarations now live in this actor\u2019s own header. Both factories use the existing slot layout.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2147,
+        "historical_path": "include/pso/misc/TChCrTagInformationStr.h",
+        "historical_blob": "8edf66190748def1702643bdd274601070ffc872",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrTagInformationStr.h": "16d120da029efafff647db37cac4888a7e7ce432",
+          "src/pso/ui/charcreate/TChCrTagInformationStr.cpp": "c2974117bc17b602edfaf37c1bbf1f52a9e2d911"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "Historical wrapper exposes the same declaration set as row 2121. The standalone review carries the typed actor directly.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2212,
+        "historical_path": "src/pso/misc/TChCrCharSelect_80293BEC.cpp",
+        "historical_blob": "bd265aeabe2158469117bde6267daba8a4403fbc",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrCharSelect.cpp": "e28f076748a2595a445258e44512d91f2bc8235c",
+          "include/pso/ui/charcreate/TChCrTagOccHeader.h": "2e3133999248c93a3d2d8658f946b535da9eefae"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "Initializer at 0x80293BEC calls all six original creation groups in order. The occupation-header producer is now included from the same owning header as the original reviewed source.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2215,
+        "historical_path": "src/pso/misc/TChCrEffTag_8029ACA8.cpp",
+        "historical_blob": "e7cb1631bd3662a98847eddadabe9fc22d85da94",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrEffTag.cpp": "52321393a20e828df18b437c1b6c048a6cbba3ca",
+          "include/pso/ui/charcreate/TChCrEffTag.h": "dc163b6a17f04bd02d59805b4ce4c49717830b05"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "Original 0x8029ACA8 setter selects the same heading state. Actor factory 0x8029ACB0 builds the same 0x2C-byte effect with the actual parent, using its current native constructor.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2216,
+        "historical_path": "src/pso/misc/TChCrTagInformationStr.cpp",
+        "historical_blob": "21a5474add5182110999d0f964e7dc941e7e8ad2",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrTagInformationStr.h": "16d120da029efafff647db37cac4888a7e7ce432",
+          "src/pso/ui/charcreate/TChCrTagInformationStr.cpp": "c2974117bc17b602edfaf37c1bbf1f52a9e2d911",
+          "src/pso/unk/text_80309890.cpp": "0d05e1e81edf866bbfa0240a6bd138a29080ea6e"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "The original actor factory and activation share typed parent and numeric index, preserving -1 clear and accepted 0..14 range. Direct carries the earlier validated factory + dispatcher. Broader rendering source remains as independently recovered on both bases.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2217,
+        "historical_path": "src/pso/misc/TChCrTagOccHeader.cpp",
+        "historical_blob": "c8672f1ff0549ade5ababd010dd74901eff167f0",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrTagOccHeader.cpp": "02b62b630132a2475c3202b0f9bc209a8beaea96",
+          "include/pso/ui/charcreate/TChCrTagOccHeader.h": "2e3133999248c93a3d2d8658f946b535da9eefae"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "The entire original header fragment\u2019s run, render, selection and lifecycle addresses are preserved. The renderer\u2019s +0x24, +0x30, +0x20 and +0x3C reads are native fields. Constructor and grouped creation use all 15 original numeric indices and native +0x20 field.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2218,
+        "historical_path": "src/pso/misc/TChCrTagPlGraphic.cpp",
+        "historical_blob": "00a2e00dff340f3f8a261f2e02f2e2afa3f116e0",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp": "4467596cba84e441419ba41357c3624ad3a2c0d4",
+          "include/pso/ui/charcreate/TChCrTagPlGraphic.h": "2fd66fb70ae41ead387febdb042f26754021f02d"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "Original row has six floats and twelve entries, preserving its 0x120 bytes, embedded coordinate pairs, matching-depth tags and explicit base parent/index. The standalone and canonical retain the active layout and native constructor/factory. The existing shared two-float copy helper still has broader legacy callers and is outside this proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2315,
+        "historical_path": "src/pso/unk/text_8028D8B8.cpp",
+        "historical_blob": "18013e46a3ecfdee0b472b68387967aaf3360c32",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp": "09ae3055539292a565a2a662ead8ce3507db999a",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h": "f18da2c8bf6396b70ade526626160667cf5ce88b",
+          "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp": "fc60d7e2fc32db1bd384cb01cffa9de42adad346"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "All three functions from the original fragment are source-linked. At 0x8028D8B8 allocation is still 0x28000. At 0x8028D8F4 the existing wall and heading tasks are queued in the original order. At 0x8028D940 the controller plate remains optional and the three +0/+4/+8 slots at 0x8051C070 hold actual pointers to their task classes.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2353,
+        "historical_path": "src/pso/misc/TChCrTagOccupation.cpp",
+        "historical_blob": "283057389c9183457e4d6ce3fdfdf5afe341417e",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrTagOccupation.cpp": "881cc35a9cd2454b36c2f9e5b865c5f2661a3a62",
+          "include/pso/ui/charcreate/TChCrTagOccupation.h": "1780cfed7a5019125565107f58dd4d024fd8c630"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "All original operations at 0x802A2DF4..0x802A3138 are present through the original occupation actor. The selector predicate, renderer, teardown, former handwritten ctor and factory preserve native field values, original three indices, 0x44 actor size and 0x20-byte vtable.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2426,
+        "historical_path": "src/pso/misc/TChCrTagInformation_802A1FAC.cpp",
+        "historical_blob": "ba6f172e3261ad67f0724f0d5ea2c3b890fc2dbb",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrTagInformation.cpp": "066712df112b3b494b9df6e773264cc52c0cbf08",
+          "include/pso/ui/charcreate/TChCrTagInformation.h": "4322fad6fd8d112a050b2c2d96918e8286b245ee"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "At 0x802A1FAC the native constructor uses the original task parent and numeric stored index, initializes the original four fade fields, and calls 0x803098E8. Its former handwritten vtable and base slots are represented by native construction.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2524,
+        "historical_path": "src/pso/object/TObjCMMainMenu_8028EA88.cpp",
+        "historical_blob": "821b2b453f83f5dd71c7e18588f6881dcb3589bd",
+        "owners": {
+          "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp": "fc60d7e2fc32db1bd384cb01cffa9de42adad346",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h": "f18da2c8bf6396b70ade526626160667cf5ce88b",
+          "src/pso/ui/charcreate/TChCrCharSelect_80293D58.cpp": "0355fb0b623d0bfaa1fe8cdc3a00b508dd9c114c"
+        },
+        "proofs": [
+          {
+            "group": "creation",
+            "evidence": "Main menu slot uses the actual shared effect pointer record. Its selector reinitialization passes the exact tl_03 parent through the true typed call. Prior native BML and scene work has separate proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      428,
+      547,
+      648,
+      705,
+      750,
+      966,
+      967,
+      982,
+      990,
+      993,
+      998,
+      1033,
+      1071,
+      1072,
+      1086,
+      1119,
+      1127,
+      1190,
+      1192,
+      1193,
+      2121,
+      2122,
+      2147,
+      2212,
+      2215,
+      2217,
+      2315,
+      2353,
+      2426,
+      4898,
+      4899,
+      4900,
+      4912,
+      5037,
+      5072,
+      6426,
+      6449,
+      6546,
+      6760,
+      6785,
+      6803,
+      6818,
+      6819,
+      6821,
+      6828,
+      6829,
+      6831,
+      6838,
+      6861,
+      6869,
+      6885,
+      6886,
+      6934,
+      7042,
+      7201
+    ],
+    "remaining": {
+      "Owner comparison required": 631,
+      "Some anchored text changes found": 939
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-camera-and-radar": {
+      "head": "a312082219d42e82f8f8df467502081be621c87c",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Camera views, radar, letterbox state and the shared color renderer",
+      "files": 58,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/camera/CameraViewVectors.h",
+        "include/pso/camera/RadarMapViewState.h",
+        "include/pso/camera/TCineCtrl.h",
+        "include/pso/camera/TObjCamera.h",
+        "include/pso/object/collision/TObjRaderHideCol.h",
+        "include/pso/render/ColorLineList.h",
+        "include/pso/ui/charcreate/TObjCMHairMenu.h",
+        "include/pso/ui/hud/RadarMapMarkers.h",
+        "include/pso/ui/hud/TObjRaderIcon.h",
+        "include/pso/ui/hud/TRaderMapCore.h",
+        "include/pso/unk/TLobby_801E2F94.h",
+        "include/pso/unk/TUnk_80488AD8.h",
+        "include/pso/unk/TUnk_80488B38.h",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/camera/TCameraCtrl.cpp",
+        "src/pso/camera/TCameraCtrl_80067FC0.cpp",
+        "src/pso/camera/TCameraCtrl_8006B3D8.cpp",
+        "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+        "src/pso/camera/TCameraCtrl_8006CC30.cpp",
+        "src/pso/camera/TCineCtrl.cpp",
+        "src/pso/camera/TObjCamera.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/city/CitySeason.cpp",
+        "src/pso/object/collision/TObjRaderCol.cpp",
+        "src/pso/object/door/TODoorBase.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/render/TDLGraph.cpp",
+        "src/pso/ui/charcreate/TObjCMName.cpp",
+        "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+        "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+        "src/pso/ui/frontend/TAdDialingGC.cpp",
+        "src/pso/ui/frontend/TAdFadeGC.cpp",
+        "src/pso/ui/frontend/TAdLdQuestPrtGC.cpp",
+        "src/pso/ui/frontend/TAdLoadNetworkGC.cpp",
+        "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+        "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+        "src/pso/ui/hud/TLoadingCur.cpp",
+        "src/pso/ui/hud/TNowLoading.cpp",
+        "src/pso/ui/hud/TRaderMapCore.cpp",
+        "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "src/pso/ui/window/TWindowFukidasi.cpp",
+        "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "src/pso/ui/window/TWindowSimpleStatus.cpp",
+        "src/pso/unk/TLobby_800F8AA8.cpp",
+        "src/pso/unk/TLobby_801E2F94.cpp",
+        "src/pso/unk/TUnk_80488B38.cpp",
+        "src/pso/unk/text_800F7DAC.cpp",
+        "src/pso/unk/text_801A2B38.cpp",
+        "src/pso/unk/text_8034960C.cpp",
+        "src/pso/unk/text_80349B8C.cpp",
+        "src/pso/unk/text_803D64F8.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "f64167dc65212aa5e83a52e71ef027003ad5a263dc87d2b790c7fbc60fa775cb",
+      "check_sha256": "5cbbe8359f98105f51458f821397fd1b69f0f686bfca92f41d3869221355711f",
+      "previous": "3c87e99ee84a51baa73f31910e867632a65394f7"
+    },
+    "standalone-stage-traps-and-motion": {
+      "head": "caeaef0f5f5e97218737449f217b6bf7b478d406",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Floor population, trap motion, mine packets and chainsaw resources",
+      "files": 61,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/enemy/TEnemyTaskList.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/map/FloorPopulation.h",
+        "include/pso/network/protocol/subcmd_6x.h",
+        "include/pso/object/TObjChip.h",
+        "include/pso/object/TObjChipParams.h",
+        "include/pso/object/base/TObjMotion.h",
+        "include/pso/object/trap/TOMine.h",
+        "include/pso/object/trap/TOMineIcon01.h",
+        "include/pso/object/trap/TOMineIcon02.h",
+        "include/pso/object/trap/TOMineIcon03.h",
+        "include/pso/object/trap/TOMineIcon04.h",
+        "include/pso/object/trap/TOMineTrap.h",
+        "include/pso/object/trap/TOTrapChainSawEdge.h",
+        "include/pso/object/trap/TOTrapChainSawKey.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80011014.h",
+        "include/pso/unk/TLobby.h",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/enemy/TObjEnemy_8020C3E0.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/map/TSetManager.cpp",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/npc/TObjNpcBase.cpp",
+        "src/pso/object/TObjChip.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/trap/TOMine.cpp",
+        "src/pso/object/trap/TOMineIcon01.cpp",
+        "src/pso/object/trap/TOMineIcon02.cpp",
+        "src/pso/object/trap/TOMineIcon03.cpp",
+        "src/pso/object/trap/TOMineIcon04.cpp",
+        "src/pso/object/trap/TOTrap.cpp",
+        "src/pso/object/trap/TOTrapAncient01.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/TOQuestTalkBase.cpp",
+        "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+        "src/pso/ui/window/TObjDeadListWin.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_80209524.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp",
+        "src/pso/unk/text_8020B5CC.cpp",
+        "src/pso/unk/text_8020BC50.cpp",
+        "src/pso/unk/text_8020BFE4.cpp",
+        "src/pso/unk/text_8020D2B4.cpp",
+        "src/pso/unk/text_802233F8.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "6982432800473de1eeb04d969827a4256875ec2a241bd3d00e5c6f4ef97f5587",
+      "check_sha256": "623528b7bd0c1cc67732875712499068b493bfec84707d10ca393d085ed6148c",
+      "previous": "ae786de791370e3e7b8776a6c6ea7edf725f5f91"
+    },
+    "standalone-gal-gryphon-arena-actors": {
+      "head": "ce688759b6ea698cae2f96e8bb4c64c3fa63d727",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Gal Gryphon camera, attack collider, effects and pillar actors",
+      "files": 20,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/galgryphon/TBoss5Gryphon.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonColli.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonColli_C.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonDemo.h",
+        "include/pso/boss/galgryphon/TObjBoss5Pillar.h",
+        "include/pso/boss/galgryphon/TObjBoss5PillarCtrl.h",
+        "include/pso/boss/galgryphon/TObjBoss5PillarDemo.h",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Pillar_8028B08C.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Pillar_8028B6C0.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "279f5488ff908fe7ba5584b458ff77261d4e0d2c556cabed22c3ff752a9118ab",
+      "check_sha256": "f51b945400bb99687851f65bfb1a83f1e203846d67a9095bc2978b4d84e27c68",
+      "previous": null
+    },
+    "standalone-character-creation-actors": {
+      "head": "6a134ec16567800214b3db40989db9b1f6c752dc",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Character creation tags, occupation information and scene effects",
+      "files": 35,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/ui/charcreate/TChCrCharSelect.h",
+        "include/pso/ui/charcreate/TChCrEffCtrlPl.h",
+        "include/pso/ui/charcreate/TChCrEffTag.h",
+        "include/pso/ui/charcreate/TChCrEffWall.h",
+        "include/pso/ui/charcreate/TChCrTag.h",
+        "include/pso/ui/charcreate/TChCrTagInformation.h",
+        "include/pso/ui/charcreate/TChCrTagInformationStr.h",
+        "include/pso/ui/charcreate/TChCrTagName.h",
+        "include/pso/ui/charcreate/TChCrTagOccHeader.h",
+        "include/pso/ui/charcreate/TChCrTagOccupation.h",
+        "include/pso/ui/charcreate/TChCrTagPlBack.h",
+        "include/pso/ui/charcreate/TChCrTagPlGraphic.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h",
+        "include/pso/unk/text_80309890.h",
+        "src/pso/ui/charcreate/TChCrCharSelect.cpp",
+        "src/pso/ui/charcreate/TChCrCharSelect_80293D10.cpp",
+        "src/pso/ui/charcreate/TChCrCharSelect_80293D58.cpp",
+        "src/pso/ui/charcreate/TChCrEffCtrlPl.cpp",
+        "src/pso/ui/charcreate/TChCrEffCtrlPl_80339658.cpp",
+        "src/pso/ui/charcreate/TChCrEffTag.cpp",
+        "src/pso/ui/charcreate/TChCrEffWall.cpp",
+        "src/pso/ui/charcreate/TChCrTag.cpp",
+        "src/pso/ui/charcreate/TChCrTagInformation.cpp",
+        "src/pso/ui/charcreate/TChCrTagInformationStr.cpp",
+        "src/pso/ui/charcreate/TChCrTagName.cpp",
+        "src/pso/ui/charcreate/TChCrTagOccHeader.cpp",
+        "src/pso/ui/charcreate/TChCrTagOccupation.cpp",
+        "src/pso/ui/charcreate/TChCrTagPlBack.cpp",
+        "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp",
+        "src/pso/ui/charcreate/TCharaMaking.cpp",
+        "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+        "src/pso/unk/text_80309890.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "c0e1df5c39cb0665580e04258ab415f5595f60a5dbbfaca0d699e4d8a6ac69de",
+      "check_sha256": "21a4b93bd4c4d5eee0d85666d0969e01645688b9859978f6aedc0bdee523e49e",
+      "previous": null
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-camera-and-radar": {
+      "head": "a312082219d42e82f8f8df467502081be621c87c",
+      "finding": "Independent review checked the BML lifecycle, archive arguments, registry count, conversation view and callback. The alpha conversion was corrected and revalidated. Final fan callers use actual ColorLineList descriptors. The existing strip wrapper retains the layout-compatible cast."
+    },
+    "standalone-stage-traps-and-motion": {
+      "head": "caeaef0f5f5e97218737449f217b6bf7b478d406",
+      "finding": "Independent review verified the 6x80 header, byte swaps, vtable slot, mine light slots and chainsaw archive model nodes. The mine display overlap keeps the same player locality and room checks. The inherited strike dispatch remains matched."
+    },
+    "standalone-gal-gryphon-arena-actors": {
+      "head": "ce688759b6ea698cae2f96e8bb4c64c3fa63d727",
+      "finding": "Independent review verified distinct camera and collider allocations, effect lifetime and native pillar receivers. Final review confirmed BML and NJS model traversal, original float-triplet positions, task parents and the legacy position copy boundary."
+    },
+    "standalone-character-creation-actors": {
+      "head": "6a134ec16567800214b3db40989db9b1f6c752dc",
+      "finding": "Independent review checked numeric selectors, native header layout, typed parent and range-checked index dispatch. The three effect slots preserve the original teardown treatment."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "02a1167ced437a720f3616d5e849c629ec3465b1",
+    "files": 166,
+    "inputs": [
+      "a312082219d42e82f8f8df467502081be621c87c",
+      "caeaef0f5f5e97218737449f217b6bf7b478d406",
+      "ce688759b6ea698cae2f96e8bb4c64c3fa63d727",
+      "6a134ec16567800214b3db40989db9b1f6c752dc"
+    ],
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      }
+    }
+  },
+  "previous_review_overlap": [
+    {
+      "branch": "great-merge/current/standalone-action-palette-and-customization",
+      "head": "631d5853657378741a45f381395e020c452e4ba2",
+      "camera": "a312082219d42e82f8f8df467502081be621c87c",
+      "paths": [
+        "src/pso/ui/window/TWindowFukidasi.cpp"
+      ]
+    },
+    {
+      "branch": "great-merge/current/standalone-ambient-stage-archives-and-rendering",
+      "head": "f058080dc305615251958cc6e241a8e7d1fa4654",
+      "camera": "a312082219d42e82f8f8df467502081be621c87c",
+      "paths": [
+        "src/pso/object/ambient/TObjGrass.cpp"
+      ]
+    },
+    {
+      "branch": "great-merge/current/standalone-online-setup-scenes",
+      "head": "b2ab86c9b1286645a008eaa5eefdb95eb190a0a7",
+      "camera": "a312082219d42e82f8f8df467502081be621c87c",
+      "paths": [
+        "src/pso/ui/frontend/TAdDialingGC.cpp"
+      ]
+    }
+  ]
+}
