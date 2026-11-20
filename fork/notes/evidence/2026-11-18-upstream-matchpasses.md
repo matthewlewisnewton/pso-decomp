@@ -567,6 +567,20 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 Guild and shared confirmation ownership join the window review. Flower actors join the enemy review. The ending scene, doors, warps and seasonal assets share the stage review. Camera views, radar and their targeting and draw interfaces form a separate review. The ten groups build together across 1007 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-camera-guild-flower-ending-replay.json)
 
+## Symbol shortcuts, Vol Opt and stage particle emitters
+
+Source checkpoint `061de36612` and landing checkpoint `707ba291bc` carry 60 source files. The replay recovers saved symbol shortcut and keyboard lifetimes, Vol Opt model breakup parameters and their encounter callers, and the particle parameter banks and timed factories. The source audit records 23 historical files and closes 8. The ledger has 1,214 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage objects, doors, floor events, seasonal assets and particle emitters | 355 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy and boss encounters, Flower behavior and Vol Opt model breakup | 167 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment and Trade menus, chat history, Symbol Chat and shortcuts | 245 |
+
+Symbol Chat and shortcuts join the equipment and menu review. Vol Opt joins the enemy encounter review. Timed emitters and particle banks join the stage review. The ten groups build together across 1085 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-shortcut-volopt-particle-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
