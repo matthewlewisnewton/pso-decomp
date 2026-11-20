@@ -428,6 +428,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 195-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-tech-sinow-scenery-item-help-replay.json)
 
+## Gol Dragon collision and attacks, Dark Falz phases, stage warps and combat HUD
+
+Source checkpoint `d7da794835` and landing checkpoint `93b2721592` carry 87 source files. The source replay restores Gol Dragon collision and shared attack history, Dark Falz phase dispatch, stage warp resources and the combat HUD target list and its producers. The source audit records 45 historical files and closes 24. The ledger has 1,384 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-gol-dragon-resources-and-formation` | Gol Dragon resources, clone formation, collision and attack effects, with all shared attack-history callers | 50 |
+| `great-merge/current/standalone-dark-falz-cinematic-actors` | Dark Falz cinematic actors, controller callbacks, first-form phase dispatch and shared Tenchu effects | 29 |
+| `great-merge/current/standalone-stage-transfer-and-seasonal-assets` | Stage transfers and seasonal assets, plus the Forest, Ancient, Jungle, lobby and boss warp resources | 50 |
+| `great-merge/current/standalone-camera-and-radar` | Camera and radar, combat target list creation and publishing, lock-on display and technique target copy | 91 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 212-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-dragon-falz-warps-hud-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
