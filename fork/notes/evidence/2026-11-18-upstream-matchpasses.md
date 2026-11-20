@@ -201,6 +201,14 @@ The separate compiler cleanup recovers 723 historical directive removals across 
 
 The combined source, working fork and both review branches reproduce retail. All 90 original ranges retain 980 source-linked bytes and 167 alignment bytes. The historical audit updated 112 records and closed 29. 1,866 remain open. All 133 fork-only paths round-trip and all 11 layer tests pass. [Source and validation evidence](2026-11-19-owner-closure-evidence.json)
 
+## Word Select, tunnel effects and native packet and model types
+
+The 75-file source replay `5816ff8534` is in the local landing checkpoint `cfee239994`. The 40-file display update `fddb20c8c4` moves default drawing context to TWindowBase and restores Word Select page allocation, selection and lifetime. The display port retains its existing allocation and release pair.
+
+The 36-file world update `9f6bc23b9e` joins native tunnel dust and splash layouts, the Dark Falz Zako and appearance factories, the typed 6xB2 sound packet and its dispatcher, and the shared NJS_OBJECT traversal used by Gol Dragon and Dark Falz rock rendering. Each subsystem reproduces the original executable. The world port retains tunnel normalization, the existing rock allocator and the Tenchu capture callback.
+
+All 90 original ranges retain their 980 source-linked bytes and 167 alignment bytes. The historical audit updated 109 records and closed 23. 1,843 remain open. All 133 fork-only paths round-trip and all 11 layer tests pass. [Source and validation evidence](2026-11-19-structure-replay-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
@@ -260,8 +268,8 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `8d7fc86f08` | 939 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `b144f74c5c` | 903 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `fddb20c8c4` | 939 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `9f6bc23b9e` | 920 |
 | Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `80437bd0a1` | 802 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `570ad35a4c` | 441 |
 
