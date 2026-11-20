@@ -217,6 +217,18 @@ The 18-file display update `cf8d847e24` uses a small palette state header with i
 
 The combined source, working fork and both groups reproduce the retail executable. All 90 original ranges retain 980 source-linked bytes and 167 alignment bytes. The audit updated 27 records and closed 12. 1,831 remain open. All 133 fork-only paths round-trip. The 11 layer tests and all 294 fork tool tests pass. The fork-only viewport assertion now follows the current typed Dark Falz caller. [Source and validation evidence](2026-11-19-coherent-subsystems-evidence.json)
 
+## Direct upstream review branches
+
+These local review branches each start at upstream `49b48c32e6`. Each branch and the combined 99-file preview reproduce retail and pass strict upstream comparisons across all 2,449 linked units.
+
+| Scope | Local branch | Files |
+| --- | --- | ---: |
+| Stage particles, scene refraction and Olga Flow debris | `great-merge/current/standalone-stage-particles-refraction-and-debris` | 34 |
+| Enemy registration, state, group dispatch and Dark Gunner formation | `great-merge/current/standalone-enemy-registration-and-formations` | 44 |
+| Action palette, cursor input and customization windows | `great-merge/current/standalone-action-palette-and-customization` | 24 |
+
+The review branches use the interfaces available on upstream. The verified canonical ports carry the corresponding native providers forward in the working fork. [Source and validation evidence](2026-11-19-coherent-subsystems-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
