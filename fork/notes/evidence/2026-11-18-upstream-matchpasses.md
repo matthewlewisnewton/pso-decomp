@@ -877,6 +877,14 @@ Source `b12c724cb3` and landing checkpoint `099f1fd992` carry 74 changed files. 
 
 The 2,044-file review queue covers 24 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-quest-npc-fade-replay.json)
 
+## Native platform and game source
+
+Source `dbb9801fa6` and landing checkpoint `d07c474a46` carry 51 changed files. This batch covers FlyNest placement and factory, native PPP frame and wire-header contracts, memory-card file and lobby picture contracts, multilingual Word Select and native DD widgets. The audit closes 16 historical comparisons and leaves 991 open.
+
+The PPP frame review starts from the validated #333 head and retains the existing buffer helper symbol. The standalone Word Select review covers message formatting, archive records and shared geometry. The combined queue also carries the DD widgets that depend on the equipment review’s window layout.
+
+The 2,074-file review queue covers 26 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-native-boundary-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
