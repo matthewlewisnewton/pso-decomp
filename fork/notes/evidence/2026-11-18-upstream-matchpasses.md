@@ -965,6 +965,14 @@ Source `5b16fd51a8` and landing checkpoint `d6f93ee940` carry 56 changed files. 
 
 The 2,197-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-technique-state-and-native-replay.json)
 
+## Item factories, Barba Ray, communication cards and quest companions
+
+Source `5991ac7b12` and landing checkpoint `d4f2793c65` carry 178 changed files. This batch covers tool, meseta and native weapon factory dispatch, Barba Ray crawfish, dust and encounter joints, quest companion actor ownership and previous-position readers, Guild Card display, list selection and confirmation. The audit closes 42 historical comparisons and leaves 784 open.
+
+The factory review directly types 64 weapon factories used by 91 table slots and the full tool and item-class tables. All 203 retail dispatch entries were checked byte for byte.
+
+The 2,312-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-item-factories-and-native-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
