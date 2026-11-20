@@ -57,6 +57,17 @@ Each recorded head is one source-only commit on `6b080e67ab`. Each reproduces th
 
 The first four batches have single-file integration overlaps around the signboard, lobby archive resource handling and character preview load. Apply those shared paths once in review order. The historical source audit remains open. The [source review index](2026-11-18-fork-review-index.tsv) now has 1,042 records awaiting owner comparison and 922 with partial evidence.
 
+## Parallel historical source replay
+
+The 89-file source replay at `c0e4c936a1` combines four independently validated changes on upstream `6b080e67ab`. The combined tree and working fork reproduce retail and pass the project checker. They retain matched and source-linked code and data from upstream and the historical fork. The 133 tooling overlay paths round-trip and all 11 layer tests pass.
+
+- Weapon and item effects add a checked shared descriptor and native collider model and scale in 17 files. The 13 changed compilation units retain 189 exact functions. The seven weapon factory tables already share the linked consolidated owner.
+- Enemy collision moves `update_collisions` to `TObjCollidable` and carries 95 calls across 39 files. The method keeps its retail address at `0x80156698`. The target replay types the shared `TObjChara` actor pointer and updates enemy, trap and NPC callers. The two enemy replays touch 49 unique files.
+- Rendering and character creation restore the lens flare, critical hit, indirect effect and character-info constructors and factories in 14 files. The six directly affected units retain 58 exact functions and 1,000 exact bytes of data.
+- World and quests carry typed GBA download filenames, full-width warp results and native tombstone data and fields in 11 files. The hair movement edits and quest-list storage already survive in their native owners.
+
+The standalone player, quest and item review at `ce787c3349` now spans 146 files and passes the retail and coverage checks. The standalone window, camera and rendering review at `230bf773d9` now spans 98 files. The stage and world review at `021cdb2f6d` spans 139 files. Both pass the retail and coverage checks. The quest GBA filename change stays in the combined branch with its typed quest argument union. The enemy and boss review has eight overlapping files to reconcile against the collision and target replays. The [historical source review index](2026-11-18-fork-review-index.tsv) records 88 additional findings. It has 1,020 entries awaiting owner comparison and 939 with partial evidence.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
