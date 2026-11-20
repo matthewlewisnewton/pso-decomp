@@ -785,6 +785,20 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The change extends the existing Olga Flow cinematic review. All 18 groups build together across 1,791 files and reproduce the retail DOL. The producer and consumer retain the original callback slots, transition order and linked table address. [Source and validation evidence](2026-11-20-olga-plot-dispatch-replay.json)
 
+## Arena resources and frontend ownership
+
+Source checkpoint `a34560829c` and landing checkpoint `3c36d1e4db` carry 9 changed source files. Barba Ray owns its model, texture and motion accessors. Gol Dragon uses its inherited scale in the fade path, and the frontend uses the actual load controller and its signed field. The audit covers 11 historical records and closes 7. The ledger has 1,081 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/standalone-derolle-arena-lighting` | De Rol Le and Barba Ray arena lighting, tunnel movement, collision and native archive ownership | 55 |
+| `great-merge/current/standalone-gol-dragon-resources-and-formation` | Gol Dragon arena resources, formation, targeting and inherited draw scale | 50 |
+| `great-merge/current/character-selection-plates` | Character selection, previews, creation actors and the related online setup scenes | 190 |
+
+Two arena reviews enter the combined queue. The existing character review now also covers the related online setup scenes. All 20 groups build together across 1,848 files and reproduce the retail DOL. The shared tunnel methods and the typed pointer reset survive the arena overlap, together with the existing array, BML and renderer interfaces. [Source and validation evidence](2026-11-20-arena-frontend-ownership-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
