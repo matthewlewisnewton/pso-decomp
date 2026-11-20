@@ -1034,6 +1034,20 @@ The combined review queue at `cd5eb6b631` carries 147 changed paths for this bat
 
 The queue now spans 2,505 files across 41 groups. A path comparison leaves 236 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. Technique effects and title scenes use the listed prerequisite branches. The source audit closes 2 historical comparisons, leaving 722 open. [Validation evidence](2026-11-20-technique-sound-strip-and-frontend-packaging.json)
 
+## Quest downloads, gameplay packets and subsystem reviews
+
+The combined review queue at `23b1198d5a` carries 144 changed paths for this batch. The source already reproduces retail at `a0ab810dd1`. The queue reproduces retail with 2,451 exact linked units and zero lost matched or linked coverage.
+
+| Review | Local head | Review base | Changed files |
+| --- | --- | --- | ---: |
+| Native quest download text and cache workspace | `96e12501e1` | `47ee1bbdfe` | 12 |
+| Gameplay sound and item drop packets | `d053035570` | `49b48c32e6` | 19 |
+| Native menu windows, city shops and item stock | `540e1a91ba` | `fed9cf8b71` | 46 |
+| Boss projectiles, attack geometry and raft splashes | `03eb2c367e` | `49b48c32e6` | 43 |
+| Enemy target acquisition and registered actor lookup | `a9c6341c40` | `b26cf3e04a` | 42 |
+
+The queue now spans 2,535 files across 44 groups. A path comparison leaves 209 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The listed review bases identify prerequisite branches. The source audit closes 7 historical comparisons, leaving 715 open. [Validation evidence](2026-11-20-quest-packets-encounter-and-menu-packaging.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
