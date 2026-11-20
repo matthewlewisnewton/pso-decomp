@@ -229,6 +229,23 @@ These local review branches each start at upstream `49b48c32e6`. Each branch and
 
 The review branches use the interfaces available on upstream. The verified canonical ports carry the corresponding native providers forward in the working fork. [Source and validation evidence](2026-11-19-coherent-subsystems-evidence.json)
 
+## Gameplay random state, enemy movement, trap motion, and small-font drawing
+
+The 61-file source replay `f89d3c063a` updates canonical Great Merge and landing checkpoint `d2cc747122`. It restores the actor and embedded random-state interfaces, the shared collision and movement returns, stage trap targeting and motion ownership, and the shared speech-balloon and small-font render calls.
+
+The historical audit added evidence for 42 records and closed five. The open ledger has 1,826 records. All 90 original ranges still account for 980 source-linked bytes and 167 alignment bytes. The working fork preserves all 133 fork-only paths and passes 294 tool tests and 11 layer tests.
+
+These source-only reviews start at upstream `49b48c32e6`. Each branch and the combined 129-file preview reproduce retail across all 2,449 upstream-linked units.
+
+| Scope | Local branch | Files |
+| --- | --- | ---: |
+| Enemy registration, formation and collision movement | `great-merge/current/standalone-enemy-registration-and-formations` | 53 |
+| Trap targeting, player eligibility, and motion and resource ownership | `great-merge/current/standalone-stage-traps-and-motion` | 38 |
+| Action palette, customization, speech balloons and small-font drawing | `great-merge/current/standalone-action-palette-and-customization` | 38 |
+| Gameplay random state and native actor receivers | `great-merge/current/standalone-gameplay-random` | 29 |
+
+The enemy and trap branches both edit the enemy class declaration. The combined build retains the typed state exchange from the enemy branch and removes the obsolete motion declaration from the trap branch. [Source and validation evidence](2026-11-19-native-provider-wave-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
