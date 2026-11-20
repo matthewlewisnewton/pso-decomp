@@ -1,0 +1,1231 @@
+{
+  "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+  "landing": "7434799df2bc552ed4923448b710147193dc7370",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "a023237dca86285ba13f7569a1ed3ea2202c7888",
+    "tree": "b84adf337d3a2529c05d0fcb33d62fa424d46059",
+    "previous": "9e9fa4dda9da0b632ddf653267441889ebf09397",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+      "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+      "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "93e344aaab7852228430b396e50d8175b0b69eee",
+      "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+      "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "9448059d81db540704b609616e96771e90827654",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "1e7920fdc675df08303dca4499f49020df69774d",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128",
+      "5caa76608e8ba418a516e656b24770f0a0884003",
+      "91eed3bfdcca772ee0ae616c5f972a6aefe2ba11",
+      "c5493f319d431c46557faad569d5c3b443a7c273",
+      "f3d6a88dd80ce304cb986e494d70ef63b386c985",
+      "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c"
+    ],
+    "files": 2470,
+    "incremental_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/linked_units.txt",
+      "config/GPOE8P/psov3/splits.txt",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/goldragon/TBoss8Dragon.h",
+      "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+      "include/pso/enemy/dolmolm/TObjEneDolmOlm.h",
+      "include/pso/enemy/dubchik/TObjEneDubchik.h",
+      "include/pso/enemy/epsilon/TObjEneEpsilonBody.h",
+      "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+      "include/pso/enemy/flower/TObjEneRe2Flower.h",
+      "include/pso/enemy/gee/TObjEneMe1Gee.h",
+      "include/pso/enemy/gibbles/TObjEneGibbles.h",
+      "include/pso/enemy/gibon/TObjEneBm5GibonU.h",
+      "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+      "include/pso/enemy/illgill/TObjEneIllGill.h",
+      "include/pso/enemy/mericarol/TObjEneBm9Mericarol.h",
+      "include/pso/enemy/morfos/TObjEneMorfos.h",
+      "include/pso/enemy/nanodrago/TObjEneNanoDrago.h",
+      "include/pso/enemy/recon/TObjEneRecobox.h",
+      "include/pso/enemy/recon/TObjEneRecon.h",
+      "include/pso/enemy/shark/TObjEneShark.h",
+      "include/pso/enemy/shinowa/TObjEneMe3Shinowa.h",
+      "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h",
+      "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa_800D72A4.h",
+      "include/pso/enemy/stelth/TObjEneMe3Stelth.h",
+      "include/pso/object/ambient/TObjFish.h",
+      "include/pso/object/ambient/TObjGrass.h",
+      "include/pso/player/PlayerActionPaletteState.h",
+      "include/pso/player/PlayerScaleState.h",
+      "include/pso/player/PlayerState.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_801BF548.h",
+      "include/pso/player/TObjPlayer_801BF6B0.h",
+      "include/pso/player/TObjPlayer_801BF8EC.h",
+      "include/pso/player/TObjPlayer_801BF918.h",
+      "include/pso/player/TObjPlayer_801BF978.h",
+      "include/pso/player/TObjPlayer_801BFAD4.h",
+      "include/pso/player/TObjPlayer_801BFB1C.h",
+      "include/pso/player/TObjPlayer_801BFBCC.h",
+      "include/pso/player/TObjPlayer_801BFE50.h",
+      "include/pso/player/TObjPlayer_801BFED4.h",
+      "include/pso/player/TObjPlayer_801C721C.h",
+      "include/pso/quest/TQuestThread.h",
+      "include/pso/render/GinjaTextureInput.h",
+      "include/pso/render/MaterialColorFade.h",
+      "include/pso/render/MaterialOpacityFade.h",
+      "include/pso/render/SpriteDescriptor.h",
+      "include/pso/render/TUnk_80490470.h",
+      "include/pso/render/TUnk_80494938.h",
+      "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+      "include/pso/ui/chat/TWindowChat.h",
+      "include/pso/ui/chat/TWindowSubSymbolChatFaceType_80283A70.h",
+      "include/pso/ui/chat/TWindowSubSymbolChatPartsSet_80247EFC.h",
+      "include/pso/ui/hud/TRaderMapCore.h",
+      "include/pso/ui/keyboard/TKeyBoardControl.h",
+      "include/pso/ui/keyboard/TKeyBoardControl_80131C58.h",
+      "include/pso/ui/window/TWindowEffectLight.h",
+      "include/pso/ui/window/TWindowKeyBoardBase.h",
+      "include/pso/ui/window/TWindowKeyBoardSoft.h",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/camera/CameraDistanceFade.cpp",
+      "src/pso/effect/TEffIndirectCtrl.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa_800D72A4.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/object/TObjSinBoard.cpp",
+      "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+      "src/pso/object/ambient/TObjFish.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/ambient/TObjLight.cpp",
+      "src/pso/object/ambient/TObjLight_80235C44.cpp",
+      "src/pso/object/ambient/TObjMistCtrl.cpp",
+      "src/pso/object/mine/TOComputerMachine01_8023DD0C.cpp",
+      "src/pso/player/PlayerTaskEffects.cpp",
+      "src/pso/player/TObjPlayer.cpp",
+      "src/pso/player/TObjPlayer_80083594.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801BC194.cpp",
+      "src/pso/player/TObjPlayer_801BC5D4.cpp",
+      "src/pso/player/TObjPlayer_801BC81C.cpp",
+      "src/pso/player/TObjPlayer_801BD384.cpp",
+      "src/pso/player/TObjPlayer_801BD928.cpp",
+      "src/pso/player/TObjPlayer_801BDF5C.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/player/TObjPlayer_801D2E20.cpp",
+      "src/pso/player/TObjPlayer_801D84CC.cpp",
+      "src/pso/player/TObjPlayer_8029F694.cpp",
+      "src/pso/player/TObjPlayer_802C3B14.cpp",
+      "src/pso/player/TObjPlayer_803DA204.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/quest/TQuestThread.cpp",
+      "src/pso/render/MaterialOpacityFade.cpp",
+      "src/pso/render/TUnk_80490470.cpp",
+      "src/pso/technique/TTecLuker.cpp",
+      "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+      "src/pso/ui/chat/TWindowChat.cpp",
+      "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+      "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+      "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+      "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+      "src/pso/ui/hud/TRaderMapCore.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131998.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131AA4.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131C58.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_8025CB70.cpp",
+      "src/pso/ui/window/TWindowActionPalette.cpp",
+      "src/pso/ui/window/TWindowCtrl.cpp",
+      "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+      "src/pso/ui/window/TWindowEffectLight.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+      "src/pso/ui/window/TWindowSubLog.cpp",
+      "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+      "src/pso/unk/TLobby_803382E4.cpp",
+      "src/pso/unk/text_800C2A88.cpp",
+      "src/pso/unk/text_802D1C84.cpp"
+    ],
+    "canonical_paths_absent_from_diff": [
+      "include/pso/boss/EffectGeometryParameters.h",
+      "include/pso/boss/barbaray/Boss7TentacleBanks.h",
+      "include/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.h",
+      "include/pso/boss/barbaray/TBoss7PhotonPad.h",
+      "include/pso/boss/barbaray/TObjBoss7RaftSplash.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoTexture.h",
+      "include/pso/boss/derolle/TBoss2Fin.h",
+      "include/pso/boss/derolle/TObjBoss2Dust.h",
+      "include/pso/boss/derolle/TObjBoss2DustCtrl.h",
+      "include/pso/boss/derolle/TObjBoss2RaftSplash.h",
+      "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+      "include/pso/boss/dragon/TBoss1DragonEffBreath.h",
+      "include/pso/boss/dragon/TBoss1DragonEffBullet.h",
+      "include/pso/boss/galgryphon/TObjBoss5Ctrl.h",
+      "include/pso/boss/goldragon/TBoss8Dragon_80067034.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h",
+      "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+      "include/pso/boss/olgaflow/TBoss6SwordShot.h",
+      "include/pso/boss/olgaflow/TBoss6Tube.h",
+      "include/pso/boss/volopt/TBoss3VoloptHiraisin.h",
+      "include/pso/boss/volopt/TBoss3Volopt_800D8ACC.h",
+      "include/pso/camera/CameraHelpers.h",
+      "include/pso/camera/CameraPlayback.h",
+      "include/pso/camera/TCameraCtrl_8006C254.h",
+      "include/pso/camera/TObjLiveCameraCtrl.h",
+      "include/pso/effect/GroundEffects.h",
+      "include/pso/effect/TEF_LensFlare.h",
+      "include/pso/effect/TEffClitical.h",
+      "include/pso/effect/TEffStarLight2D.h",
+      "include/pso/effect/TEffStarLightChild.h",
+      "include/pso/effect/item/TItemEffBringer.h",
+      "include/pso/effect/item/TItemEffEquip.h",
+      "include/pso/effect/item/TItemEffEquip_801088D0.h",
+      "include/pso/effect/item/TItemEffEquip_801088F8.h",
+      "include/pso/effect/item/TItemEffectWeapon.h",
+      "include/pso/effect/particle/ParticleFactory.h",
+      "include/pso/effect/photon/TDPBShower.h",
+      "include/pso/enemy/PlayerTargetCandidate.h",
+      "include/pso/enemy/TNeedleShoot.h",
+      "include/pso/enemy/TUnk_80493450.h",
+      "include/pso/enemy/TUnk_804E14E8.h",
+      "include/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h",
+      "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+      "include/pso/enemy/dd/TObjEneDD_800BB804.h",
+      "include/pso/enemy/dellbiter/TObjEneDellBiter.h",
+      "include/pso/enemy/gee/TUnk_8049387C.h",
+      "include/pso/enemy/gyaranzo/TObjEneGyaranzo.h",
+      "include/pso/enemy/merilllia/TObjEneMerillLia.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DCEB8.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DFB74.h",
+      "include/pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h",
+      "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoaReal.h",
+      "include/pso/enemy/slime/SlimeAnimationState.h",
+      "include/pso/enemy/slime/TObjEneSlime.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h",
+      "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+      "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Bit.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h",
+      "include/pso/enemy/wolf/TObjEneBm5Wolf.h",
+      "include/pso/item/TItemMenuCtrl.h",
+      "include/pso/item/TItemMenuCtrl_80115AF0.h",
+      "include/pso/item/TItemSpecialEvent.h",
+      "include/pso/item/TUnk_8049F038.h",
+      "include/pso/item/drop/TItemDrop.h",
+      "include/pso/item/mag/TItemMagSub.h",
+      "include/pso/math/MatrixCopy.h",
+      "include/pso/math/ScratchVectorStorage.h",
+      "include/pso/math/ScratchVectors.h",
+      "include/pso/math/VectorNormalize.h",
+      "include/pso/network/protocol/GameplaySoundPacket.h",
+      "include/pso/network/protocol/ItemDropPacket.h",
+      "include/pso/npc/NpcModelEntry.h",
+      "include/pso/npc/TObjNpcKenkyuW.h",
+      "include/pso/object/TObjChallenge4PRetry.h",
+      "include/pso/object/TObjChallengeRetry.h",
+      "include/pso/object/TObjEZBoneRotBase.h",
+      "include/pso/object/TObjEZBoneRotPlayer.h",
+      "include/pso/object/TObjEZBoneRotPlayer_800FE834.h",
+      "include/pso/object/TObjEZRopeBase.h",
+      "include/pso/object/TObjHMS_EZRope_Player.h",
+      "include/pso/object/TObjHMS_EZRope_Player_800FEFCC.h",
+      "include/pso/object/TObjLiveMonitor.h",
+      "include/pso/object/ambient/TObjLight_803DF220.h",
+      "include/pso/object/city/TObjCity_Season_FireWork.h",
+      "include/pso/object/door/TODoorJungleMain.h",
+      "include/pso/object/trap/TOTrapAncient01_80226534.h",
+      "include/pso/player/PlayerCombatConstants.h",
+      "include/pso/player/TObjPlayer_8012105C.h",
+      "include/pso/player/demo_mode.h",
+      "include/pso/quest/QuestDownloadText.h",
+      "include/pso/quest/QuestDownloadWorkspace.h",
+      "include/pso/render/ChunkTextureStripCollector.h",
+      "include/pso/render/ColorCopy.h",
+      "include/pso/render/GinjaMaterial.h",
+      "include/pso/render/GinjaModel.h",
+      "include/pso/render/TriangleFan3D.h",
+      "include/pso/system/AngleTypes.h",
+      "include/pso/system/BmlResourceDescriptor.h",
+      "include/pso/system/BmlResourceLoad.h",
+      "include/pso/system/BmlResourceLoader.h",
+      "include/pso/system/CvFsDeviceCallbacks.h",
+      "include/pso/system/EnemyBmlResource.h",
+      "include/pso/system/GinjaParameterHandler.h",
+      "include/pso/system/NinjaTypes.h",
+      "include/pso/system/SoundEffect.h",
+      "include/pso/system/StripBufferPair.h",
+      "include/pso/system/TLanguage.h",
+      "include/pso/system/TLanguage_801E4874.h",
+      "include/pso/system/TrailStrip.h",
+      "include/pso/system/save/CardSaveFile.h",
+      "include/pso/technique/TTecGiBarta.h",
+      "include/pso/technique/TTecGiFoie.h",
+      "include/pso/technique/TTecZonde.h",
+      "include/pso/technique/TTecZondeEff.h",
+      "include/pso/technique/TechniqueBandSound.h",
+      "include/pso/ui/UISprite.h",
+      "include/pso/ui/charcreate/TChCrEffFade.h",
+      "include/pso/ui/charcreate/TChCrEffTagStr.h",
+      "include/pso/ui/charcreate/TObjCMIcon.h",
+      "include/pso/ui/charcreate/TObjCMIcon_80299488.h",
+      "include/pso/ui/city/TShopEquipmentGearSequence.h",
+      "include/pso/ui/city/TShopEquipmentSequence.h",
+      "include/pso/ui/city/TShopItemTecSequence.h",
+      "include/pso/ui/font/TFontSmallLobby.h",
+      "include/pso/ui/frontend/TAdChrMoveEffectGC.h",
+      "include/pso/ui/frontend/TAdEnterPasswordGC.h",
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.h",
+      "include/pso/ui/frontend/TAdTimeSetGC.h",
+      "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h",
+      "include/pso/ui/frontend/TitleSceneTables.h",
+      "include/pso/ui/window/TWindowHelpItem_80255AB4.h",
+      "include/pso/ui/window/TWindowLockOn_80262C3C.h",
+      "include/pso/ui/window/TWindowSubStatusDisp_8024FBA8.h",
+      "include/pso/ui/window/WindowMenuFactory.h",
+      "include/pso/unk/GuildCardRecord.h",
+      "include/pso/unk/ModelNodeTables.h",
+      "include/pso/unk/TLobby_80131794.h",
+      "include/pso/unk/TLobby_8013AD38.h",
+      "include/pso/unk/TLobby_80335E08.h",
+      "include/pso/unk/TLobby_80335E7C.h",
+      "include/pso/unk/TLobby_803360CC.h",
+      "include/pso/unk/TUnk_80488B68.h",
+      "include/pso/unk/TUnk_804EEF64.h",
+      "include/pso/unk/text_8007A7A0.h",
+      "include/pso/unk/text_8007A7B8.h",
+      "include/pso/unk/text_80087278.h",
+      "include/pso/unk/text_800D8830.h",
+      "include/pso/unk/text_8011A780.h",
+      "include/pso/unk/text_80120150.h",
+      "include/pso/unk/text_8024AB98.h",
+      "include/pso/unk/text_8026934C.h",
+      "include/pso/unk/text_80293D84.h",
+      "include/pso/weapon/TUnk_804A67D0.h",
+      "include/pso/weapon/TUnk_804E23F0.h",
+      "include/pso/weapon/WeaponCanopyScale.h",
+      "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+      "libs/dolphin/src/mtx/mtxvec.c",
+      "src/pso/boss/TUnk_80484A94.cpp",
+      "src/pso/boss/barbaray/TBoss7LaserPtcl_8035AE54.cpp",
+      "src/pso/boss/barbaray/TObjBoss7DustSdata2.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type2_8004A978.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type2_800522CC.cpp",
+      "src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp",
+      "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+      "src/pso/boss/dragon/TBoss1DragonDemo.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffBreath.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+      "src/pso/camera/TCameraCtrl_8006C254.cpp",
+      "src/pso/camera/TCameraCtrl_803D6538.cpp",
+      "src/pso/effect/TDuelEffectCtrl.cpp",
+      "src/pso/effect/TEffGuard.cpp",
+      "src/pso/effect/TEffHit.cpp",
+      "src/pso/effect/TUnk_80494968.cpp",
+      "src/pso/effect/enemy/TEneParticleCtrl.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2B.cpp",
+      "src/pso/effect/item/TItemEffBringer.cpp",
+      "src/pso/effect/item/TItemEffEquip_80108860.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088D0.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088F8.cpp",
+      "src/pso/effect/item/TItemEffFlame.cpp",
+      "src/pso/effect/particle/TParticleCtrl_801D6B3C.cpp",
+      "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp",
+      "src/pso/effect/photon/TPhotonConcentrate.cpp",
+      "src/pso/effect/photon/TPhotonLaser.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.cpp",
+      "src/pso/enemy/canadin/CanadinData.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiterEffects.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp",
+      "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+      "src/pso/enemy/morfos/MorfosData.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB00.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB74.cpp",
+      "src/pso/item/TItemEquipBase.cpp",
+      "src/pso/item/TItemMenuCtrl_80115A78.cpp",
+      "src/pso/item/TItemSpecialEvent.cpp",
+      "src/pso/item/armor/TItemProArmorParticle.cpp",
+      "src/pso/map/CsnResult.cpp",
+      "src/pso/math/MatrixTransforms.cpp",
+      "src/pso/math/MatrixVector.cpp",
+      "src/pso/npc/TObjNpcNgcBase_80358AE8.cpp",
+      "src/pso/object/TObjEZBoneRotBase.cpp",
+      "src/pso/object/ambient/TObjLight_8022F9E8.cpp",
+      "src/pso/object/ambient/TObjLight_80236D60.cpp",
+      "src/pso/object/ambient/TObjLight_803DF220.cpp",
+      "src/pso/object/base/TObjBase.cpp",
+      "src/pso/object/base/TObjMotion.cpp",
+      "src/pso/object/lobby/TObjParticleLobby.cpp",
+      "src/pso/object/switch/TOSensor.cpp",
+      "src/pso/object/switch/TOSwitchAttackSub.cpp",
+      "src/pso/object/switch/TOSwitchAttack_801778A4.cpp",
+      "src/pso/object/switch/TOSwitchItem.cpp",
+      "src/pso/object/switch/TOSwitchTimer.cpp",
+      "src/pso/player/PlayerSdata2Block1.cpp",
+      "src/pso/player/TObjPlayer_80011014Data.cpp",
+      "src/pso/player/TObjPlayer_80052374.cpp",
+      "src/pso/player/TObjPlayer_80055678.cpp",
+      "src/pso/player/TObjPlayer_80080750.cpp",
+      "src/pso/player/TObjPlayer_800DCC90.cpp",
+      "src/pso/player/TObjPlayer_80109344.cpp",
+      "src/pso/player/TObjPlayer_801BC140.cpp",
+      "src/pso/player/TObjPlayer_8035A630.cpp",
+      "src/pso/player/TObjPlayer_8035A740.cpp",
+      "src/pso/player/TObjPlayer_8035A778.cpp",
+      "src/pso/player/TObjPlayer_803E112C.cpp",
+      "src/pso/quest/StoryQuestProgress.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+      "src/pso/render/ChunkTextureStripCollector.cpp",
+      "src/pso/system/GbaDownloadRuntime.cpp",
+      "src/pso/system/PadRumble.cpp",
+      "src/pso/system/scene/TEndingPicStage.cpp",
+      "src/pso/technique/TTecGiZonde_8023CDC4.cpp",
+      "src/pso/technique/TTecKafun.cpp",
+      "src/pso/technique/TTecMegid_80235B24.cpp",
+      "src/pso/technique/TTecSlicer.cpp",
+      "src/pso/ui/TUnk_804EE458.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow_8026CE78.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp",
+      "src/pso/ui/window/TWindowSubEquipKind_80278300.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp",
+      "src/pso/ui/window/WindowSubStatusDispSdata2.cpp",
+      "src/pso/unk/TLobby_8003A95C.cpp",
+      "src/pso/unk/TLobby_80067410.cpp",
+      "src/pso/unk/TLobby_8007340C.cpp",
+      "src/pso/unk/TLobby_80131794.cpp",
+      "src/pso/unk/TLobby_8013AD38.cpp",
+      "src/pso/unk/TLobby_8030A834.cpp",
+      "src/pso/unk/TUnk_804CC948.cpp",
+      "src/pso/unk/TUnk_804CC990.cpp",
+      "src/pso/unk/TUnk_804CF998.cpp",
+      "src/pso/unk/TUnk_804EDAC0.cpp",
+      "src/pso/unk/TUnk_804F1C58_8035A628.cpp",
+      "src/pso/unk/text_80066F10.cpp",
+      "src/pso/unk/text_800D8830.cpp",
+      "src/pso/unk/text_800DC420.cpp",
+      "src/pso/unk/text_801F3774.cpp",
+      "src/pso/unk/text_8024AB18.cpp",
+      "src/pso/unk/text_8026934C.cpp",
+      "src/pso/unk/text_8029A97C.cpp",
+      "src/pso/unk/text_802E10D8.cpp",
+      "src/pso/unk/text_8035AF18.cpp",
+      "src/pso/unk/text_803E2F28.cpp"
+    ],
+    "reviews": {
+      "standalone-player-scale-and-state": {
+        "label": "player",
+        "title": "Native player scale, shrink packets and state declarations",
+        "branch": "standalone-player-scale-and-state",
+        "previous": null,
+        "direct": "c5493f319d431c46557faad569d5c3b443a7c273",
+        "queue": "6d18a71d18592c6e351c14861d68197f73f6f603",
+        "details": {
+          "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+          "scope": "Native state and both wire-packet owners, camera offsets and consolidation of ten fragment declarations",
+          "compatibility": "The direct variant keeps the upstream slot-accessor declaration. The queue variant preserves its typed action palette and real camera-mode predicate.",
+          "instructions": {
+            "source": {
+              "commit": "a0ab810dd1684b53eac5578277c4defdb158350b",
+              "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+              "spans": {
+                "0x801bf914": {
+                  "canonical_name": "TObjPlayer__sub_801BF914",
+                  "byte_count": 4,
+                  "sha256": "f332ea5b5437103cbb6f1508679da89eec9288ad775c96c439a17fccabe3de8e"
+                },
+                "0x801bf918": {
+                  "canonical_name": "TObjPlayer__sub_801BF918",
+                  "byte_count": 20,
+                  "sha256": "e6c7347d1615854085a654ae063c8f15a50aa7c95bf2311625808f8166ce2de4"
+                },
+                "0x801bfd90": {
+                  "canonical_name": "initialize__16PlayerScaleStateFv",
+                  "byte_count": 68,
+                  "sha256": "55bf9d64f7f0ddccf5f8f53a64e02cc9ab1a265eee378e6645124d20fa43230c"
+                },
+                "0x801bfdd4": {
+                  "canonical_name": "reset__16PlayerScaleStateFv",
+                  "byte_count": 72,
+                  "sha256": "a52dea6c1ae9a0335ad1f4ce24db6813b3e020cc49c9e6e9f2476a073e593908"
+                },
+                "0x801bfe1c": {
+                  "canonical_name": "set_scalar__16PlayerScaleStateFf",
+                  "byte_count": 36,
+                  "sha256": "329d83ef56bfbd67c25cbe29065f2f4d99681a03535387070fb23b4ec53ff253"
+                },
+                "0x801bfe40": {
+                  "canonical_name": "set_model_scale__16PlayerScaleStateFf",
+                  "byte_count": 16,
+                  "sha256": "cdfefbaf10318b2b305f7ed6c4d7a71badcfb795f6187cafc3075298ca5c40cb"
+                },
+                "0x801bfe50": {
+                  "canonical_name": "clear__24PlayerScaleCameraOffsetsFv",
+                  "byte_count": 56,
+                  "sha256": "95c95678e59b5901f98d8c0fb8fd25b35098f3314264b373312eb0322d0e04a3"
+                },
+                "0x801bfe88": {
+                  "canonical_name": "clear_player_scale_camera_vector__FPf",
+                  "byte_count": 20,
+                  "sha256": "8c6c89f709ed1bb607426c84c1297af389e7a288b1bab39db43d286c0410d3a1"
+                },
+                "0x801c6650": {
+                  "canonical_name": "get_particle__20TPlayerParticleOwnerFv",
+                  "byte_count": 80,
+                  "sha256": "59ede5cfaee1989badea02c4b00242ba3f117e9b0cb0cbd584e17e8ddadf5c37"
+                },
+                "0x801c68ec": {
+                  "canonical_name": "update_player_scale_camera",
+                  "byte_count": 176,
+                  "sha256": "4b4adbb8d26e94356c4383ddcd1810c833210d7f915be6c97eecfca4b3fdf263"
+                },
+                "0x801c6a14": {
+                  "canonical_name": "clear_shrink_flag__16PlayerScaleStateFv",
+                  "byte_count": 40,
+                  "sha256": "17ffe090e340c979139ab6900a83fc18b390af2bb88b67011b62e477faf69715"
+                },
+                "0x801c6b1c": {
+                  "canonical_name": "apply_shrink__16PlayerScaleStateFf",
+                  "byte_count": 68,
+                  "sha256": "83b53715b8e3d330fb34c816292e7f93f7e26a8df91dc8aea290a7060f51fe8d"
+                },
+                "0x801c6c08": {
+                  "canonical_name": "render__18TPlayerLobbyMarkerFv",
+                  "byte_count": 296,
+                  "sha256": "db1278bd756a89093b929f864e195c77274dd1ae0fa6c21a40f3b90b1e3cdb9d"
+                },
+                "0x801c6ff0": {
+                  "canonical_name": "get_actor_id__16PlayerScaleStateFv",
+                  "byte_count": 8,
+                  "sha256": "2a8f0dbac4c6d09f376f853eb7d7d3000c3a963c1a00aa9725f79177b735acc2"
+                },
+                "0x801c72b4": {
+                  "canonical_name": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket",
+                  "byte_count": 48,
+                  "sha256": "af4136f2fed9f31b651ed39a1bb2552490fbb6f2056bef3e9be851992cacaf02"
+                },
+                "0x801c72e4": {
+                  "canonical_name": "initialize__23PlayerRestoreSizePacketFv",
+                  "byte_count": 20,
+                  "sha256": "c2df1b1701a2ea7479d3b0d47599c16029abaa4ed48d0c6563623628c8206caa"
+                },
+                "0x801c72f8": {
+                  "canonical_name": "send__23PlayerRestoreSizePacketFv",
+                  "byte_count": 52,
+                  "sha256": "2a4004a3196bcea082be3c369dff102444d0f3e59aa66596b6e9e2d48d3df756"
+                },
+                "0x801c732c": {
+                  "canonical_name": "byte_swap__18PlayerShrinkPacketFv",
+                  "byte_count": 52,
+                  "sha256": "fb393600fde711ee206a0704bb9b64ec76c68b4fd97876263b7ae0ba5d4d96e0"
+                },
+                "0x801c7360": {
+                  "canonical_name": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket",
+                  "byte_count": 60,
+                  "sha256": "f7f8dd1d69b17f708ea542f6f23d365a7652e701c78feb4ff1aa7c91481f03da"
+                },
+                "0x801c739c": {
+                  "canonical_name": "initialize__18PlayerShrinkPacketFv",
+                  "byte_count": 28,
+                  "sha256": "03c86dd591cebb415cfaf6cb6c03c500ceba7edb807421106bfabfa2af90f034"
+                },
+                "0x801c73b8": {
+                  "canonical_name": "send__18PlayerShrinkPacketFv",
+                  "byte_count": 52,
+                  "sha256": "0cd81939815dbaca384a00f931698caa2f76bd0f5c8aa953689f6c3168e82900"
+                }
+              }
+            },
+            "direct": {
+              "commit": "c5493f319d431c46557faad569d5c3b443a7c273",
+              "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+              "spans": {
+                "0x801bf914": {
+                  "canonical_name": "TObjPlayer__sub_801BF914",
+                  "byte_count": 4,
+                  "sha256": "f332ea5b5437103cbb6f1508679da89eec9288ad775c96c439a17fccabe3de8e"
+                },
+                "0x801bf918": {
+                  "canonical_name": "TObjPlayer__sub_801BF918",
+                  "byte_count": 20,
+                  "sha256": "e6c7347d1615854085a654ae063c8f15a50aa7c95bf2311625808f8166ce2de4"
+                },
+                "0x801bfd90": {
+                  "canonical_name": "initialize__16PlayerScaleStateFv",
+                  "byte_count": 68,
+                  "sha256": "55bf9d64f7f0ddccf5f8f53a64e02cc9ab1a265eee378e6645124d20fa43230c"
+                },
+                "0x801bfdd4": {
+                  "canonical_name": "reset__16PlayerScaleStateFv",
+                  "byte_count": 72,
+                  "sha256": "a52dea6c1ae9a0335ad1f4ce24db6813b3e020cc49c9e6e9f2476a073e593908"
+                },
+                "0x801bfe1c": {
+                  "canonical_name": "set_scalar__16PlayerScaleStateFf",
+                  "byte_count": 36,
+                  "sha256": "329d83ef56bfbd67c25cbe29065f2f4d99681a03535387070fb23b4ec53ff253"
+                },
+                "0x801bfe40": {
+                  "canonical_name": "set_model_scale__16PlayerScaleStateFf",
+                  "byte_count": 16,
+                  "sha256": "cdfefbaf10318b2b305f7ed6c4d7a71badcfb795f6187cafc3075298ca5c40cb"
+                },
+                "0x801bfe50": {
+                  "canonical_name": "clear__24PlayerScaleCameraOffsetsFv",
+                  "byte_count": 56,
+                  "sha256": "95c95678e59b5901f98d8c0fb8fd25b35098f3314264b373312eb0322d0e04a3"
+                },
+                "0x801bfe88": {
+                  "canonical_name": "clear_player_scale_camera_vector__FPf",
+                  "byte_count": 20,
+                  "sha256": "8c6c89f709ed1bb607426c84c1297af389e7a288b1bab39db43d286c0410d3a1"
+                },
+                "0x801c6650": {
+                  "canonical_name": "get_particle__20TPlayerParticleOwnerFv",
+                  "byte_count": 80,
+                  "sha256": "59ede5cfaee1989badea02c4b00242ba3f117e9b0cb0cbd584e17e8ddadf5c37"
+                },
+                "0x801c68ec": {
+                  "canonical_name": "update_player_scale_camera",
+                  "byte_count": 176,
+                  "sha256": "4b4adbb8d26e94356c4383ddcd1810c833210d7f915be6c97eecfca4b3fdf263"
+                },
+                "0x801c6a14": {
+                  "canonical_name": "clear_shrink_flag__16PlayerScaleStateFv",
+                  "byte_count": 40,
+                  "sha256": "17ffe090e340c979139ab6900a83fc18b390af2bb88b67011b62e477faf69715"
+                },
+                "0x801c6b1c": {
+                  "canonical_name": "apply_shrink__16PlayerScaleStateFf",
+                  "byte_count": 68,
+                  "sha256": "83b53715b8e3d330fb34c816292e7f93f7e26a8df91dc8aea290a7060f51fe8d"
+                },
+                "0x801c6c08": {
+                  "canonical_name": "render__18TPlayerLobbyMarkerFv",
+                  "byte_count": 296,
+                  "sha256": "db1278bd756a89093b929f864e195c77274dd1ae0fa6c21a40f3b90b1e3cdb9d"
+                },
+                "0x801c6ff0": {
+                  "canonical_name": "get_actor_id__16PlayerScaleStateFv",
+                  "byte_count": 8,
+                  "sha256": "2a8f0dbac4c6d09f376f853eb7d7d3000c3a963c1a00aa9725f79177b735acc2"
+                },
+                "0x801c72b4": {
+                  "canonical_name": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket",
+                  "byte_count": 48,
+                  "sha256": "af4136f2fed9f31b651ed39a1bb2552490fbb6f2056bef3e9be851992cacaf02"
+                },
+                "0x801c72e4": {
+                  "canonical_name": "initialize__23PlayerRestoreSizePacketFv",
+                  "byte_count": 20,
+                  "sha256": "c2df1b1701a2ea7479d3b0d47599c16029abaa4ed48d0c6563623628c8206caa"
+                },
+                "0x801c72f8": {
+                  "canonical_name": "send__23PlayerRestoreSizePacketFv",
+                  "byte_count": 52,
+                  "sha256": "2a4004a3196bcea082be3c369dff102444d0f3e59aa66596b6e9e2d48d3df756"
+                },
+                "0x801c732c": {
+                  "canonical_name": "byte_swap__18PlayerShrinkPacketFv",
+                  "byte_count": 52,
+                  "sha256": "fb393600fde711ee206a0704bb9b64ec76c68b4fd97876263b7ae0ba5d4d96e0"
+                },
+                "0x801c7360": {
+                  "canonical_name": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket",
+                  "byte_count": 60,
+                  "sha256": "f7f8dd1d69b17f708ea542f6f23d365a7652e701c78feb4ff1aa7c91481f03da"
+                },
+                "0x801c739c": {
+                  "canonical_name": "initialize__18PlayerShrinkPacketFv",
+                  "byte_count": 28,
+                  "sha256": "03c86dd591cebb415cfaf6cb6c03c500ceba7edb807421106bfabfa2af90f034"
+                },
+                "0x801c73b8": {
+                  "canonical_name": "send__18PlayerShrinkPacketFv",
+                  "byte_count": 52,
+                  "sha256": "0cd81939815dbaca384a00f931698caa2f76bd0f5c8aa953689f6c3168e82900"
+                }
+              }
+            },
+            "queue": {
+              "commit": "6d18a71d18592c6e351c14861d68197f73f6f603",
+              "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+              "spans": {
+                "0x801bf914": {
+                  "canonical_name": "TObjPlayer__sub_801BF914",
+                  "byte_count": 4,
+                  "sha256": "f332ea5b5437103cbb6f1508679da89eec9288ad775c96c439a17fccabe3de8e"
+                },
+                "0x801bf918": {
+                  "canonical_name": "TObjPlayer__sub_801BF918",
+                  "byte_count": 20,
+                  "sha256": "e6c7347d1615854085a654ae063c8f15a50aa7c95bf2311625808f8166ce2de4"
+                },
+                "0x801bfd90": {
+                  "canonical_name": "initialize__16PlayerScaleStateFv",
+                  "byte_count": 68,
+                  "sha256": "55bf9d64f7f0ddccf5f8f53a64e02cc9ab1a265eee378e6645124d20fa43230c"
+                },
+                "0x801bfdd4": {
+                  "canonical_name": "reset__16PlayerScaleStateFv",
+                  "byte_count": 72,
+                  "sha256": "a52dea6c1ae9a0335ad1f4ce24db6813b3e020cc49c9e6e9f2476a073e593908"
+                },
+                "0x801bfe1c": {
+                  "canonical_name": "set_scalar__16PlayerScaleStateFf",
+                  "byte_count": 36,
+                  "sha256": "329d83ef56bfbd67c25cbe29065f2f4d99681a03535387070fb23b4ec53ff253"
+                },
+                "0x801bfe40": {
+                  "canonical_name": "set_model_scale__16PlayerScaleStateFf",
+                  "byte_count": 16,
+                  "sha256": "cdfefbaf10318b2b305f7ed6c4d7a71badcfb795f6187cafc3075298ca5c40cb"
+                },
+                "0x801bfe50": {
+                  "canonical_name": "clear__24PlayerScaleCameraOffsetsFv",
+                  "byte_count": 56,
+                  "sha256": "95c95678e59b5901f98d8c0fb8fd25b35098f3314264b373312eb0322d0e04a3"
+                },
+                "0x801bfe88": {
+                  "canonical_name": "clear_player_scale_camera_vector__FPf",
+                  "byte_count": 20,
+                  "sha256": "8c6c89f709ed1bb607426c84c1297af389e7a288b1bab39db43d286c0410d3a1"
+                },
+                "0x801c6650": {
+                  "canonical_name": "get_particle__20TPlayerParticleOwnerFv",
+                  "byte_count": 80,
+                  "sha256": "59ede5cfaee1989badea02c4b00242ba3f117e9b0cb0cbd584e17e8ddadf5c37"
+                },
+                "0x801c68ec": {
+                  "canonical_name": "update_player_scale_camera",
+                  "byte_count": 176,
+                  "sha256": "4b4adbb8d26e94356c4383ddcd1810c833210d7f915be6c97eecfca4b3fdf263"
+                },
+                "0x801c6a14": {
+                  "canonical_name": "clear_shrink_flag__16PlayerScaleStateFv",
+                  "byte_count": 40,
+                  "sha256": "17ffe090e340c979139ab6900a83fc18b390af2bb88b67011b62e477faf69715"
+                },
+                "0x801c6b1c": {
+                  "canonical_name": "apply_shrink__16PlayerScaleStateFf",
+                  "byte_count": 68,
+                  "sha256": "83b53715b8e3d330fb34c816292e7f93f7e26a8df91dc8aea290a7060f51fe8d"
+                },
+                "0x801c6c08": {
+                  "canonical_name": "render__18TPlayerLobbyMarkerFv",
+                  "byte_count": 296,
+                  "sha256": "db1278bd756a89093b929f864e195c77274dd1ae0fa6c21a40f3b90b1e3cdb9d"
+                },
+                "0x801c6ff0": {
+                  "canonical_name": "get_actor_id__16PlayerScaleStateFv",
+                  "byte_count": 8,
+                  "sha256": "2a8f0dbac4c6d09f376f853eb7d7d3000c3a963c1a00aa9725f79177b735acc2"
+                },
+                "0x801c72b4": {
+                  "canonical_name": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket",
+                  "byte_count": 48,
+                  "sha256": "af4136f2fed9f31b651ed39a1bb2552490fbb6f2056bef3e9be851992cacaf02"
+                },
+                "0x801c72e4": {
+                  "canonical_name": "initialize__23PlayerRestoreSizePacketFv",
+                  "byte_count": 20,
+                  "sha256": "c2df1b1701a2ea7479d3b0d47599c16029abaa4ed48d0c6563623628c8206caa"
+                },
+                "0x801c72f8": {
+                  "canonical_name": "send__23PlayerRestoreSizePacketFv",
+                  "byte_count": 52,
+                  "sha256": "2a4004a3196bcea082be3c369dff102444d0f3e59aa66596b6e9e2d48d3df756"
+                },
+                "0x801c732c": {
+                  "canonical_name": "byte_swap__18PlayerShrinkPacketFv",
+                  "byte_count": 52,
+                  "sha256": "fb393600fde711ee206a0704bb9b64ec76c68b4fd97876263b7ae0ba5d4d96e0"
+                },
+                "0x801c7360": {
+                  "canonical_name": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket",
+                  "byte_count": 60,
+                  "sha256": "f7f8dd1d69b17f708ea542f6f23d365a7652e701c78feb4ff1aa7c91481f03da"
+                },
+                "0x801c739c": {
+                  "canonical_name": "initialize__18PlayerShrinkPacketFv",
+                  "byte_count": 28,
+                  "sha256": "03c86dd591cebb415cfaf6cb6c03c500ceba7edb807421106bfabfa2af90f034"
+                },
+                "0x801c73b8": {
+                  "canonical_name": "send__18PlayerShrinkPacketFv",
+                  "byte_count": 52,
+                  "sha256": "0cd81939815dbaca384a00f931698caa2f76bd0f5c8aa953689f6c3168e82900"
+                }
+              }
+            }
+          }
+        },
+        "standalone_files": 30,
+        "standalone_increment": 30,
+        "queue_increment": 32,
+        "shared_paths": [],
+        "validation": {
+          "report_sha256": "c9c507cad0eef295e061ae1ccb983457fe39bb6c3e2f16e32852c24c17d9f5a8",
+          "strict_sha256": "0ab02908ea571519ba725d4071b04556a418c7f3a40d418a4b08d260e32f95fe",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 30
+      },
+      "standalone-shared-material-texture-and-sprite-rendering": {
+        "label": "render",
+        "title": "Shared material, texture and sprite rendering",
+        "branch": "standalone-shared-material-texture-and-sprite-rendering",
+        "previous": null,
+        "direct": "f3d6a88dd80ce304cb986e494d70ef63b386c985",
+        "queue": "9a4e0dacb805a56c085685ed03dce369068e534c",
+        "details": {
+          "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+          "scope": "Native color and opacity state, camera fade consumers, Ginja texture input and model views, and compass sprite configuration",
+          "manifest_sha256": "20e97cb962eee597dc8d919ed6d7fa226651c2611e56e7e7124d2635955ff64b"
+        },
+        "standalone_files": 78,
+        "standalone_increment": 78,
+        "queue_increment": 83,
+        "shared_paths": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/player/TObjPlayer.h"
+        ],
+        "validation": {
+          "report_sha256": "2a6b67c545be91f67086cc80defd698e8a55387f1e00d881ececa6db36a8dce8",
+          "strict_sha256": "1906da9de32f70ccac1796a63b2ca000e646800aeaff26716b7631aa6364a5c5",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 78
+      },
+      "standalone-ambient-stage-archives-and-rendering": {
+        "label": "ambient",
+        "title": "Ambient fish, rain and stage props",
+        "branch": "standalone-ambient-stage-archives-and-rendering",
+        "previous": "f058080dc305615251958cc6e241a8e7d1fa4654",
+        "direct": "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c",
+        "queue": "92fcd59cb098c26526e96ae8962ec6b65844a781",
+        "details": {
+          "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+          "scope": "Native fish school construction and owned storage, rain and renderer lifetimes, cave and Jungle prop resources"
+        },
+        "standalone_files": 26,
+        "standalone_increment": 15,
+        "queue_increment": 7,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "validation": {
+          "report_sha256": "3a09c74d03b644b01ab843aea938d58326eef31ee071a05f52e1b8376b446128",
+          "strict_sha256": "34421865baa8fcff373f228091d4f8763be5f4479f242ff2da4bfb35dfc906f5",
+          "exact_functions": 27572,
+          "exact_linked_units": 2448
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 26
+      },
+      "standalone-equipment-and-item-list-windows": {
+        "label": "input",
+        "title": "Keyboard input, soft keyboard feedback and Symbol Chat",
+        "branch": "standalone-equipment-and-item-list-windows",
+        "previous": "55469cc402f16e274094428b0465b0e3e0bb95b8",
+        "direct": "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+        "queue": "18e513298a8776c18fd8b4abc5c5ae05e6753dd4",
+        "details": {
+          "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+          "scope": "Shared keyboard control, hard and soft window ownership, geometry and feedback, and native Symbol Chat lists"
+        },
+        "review_base": "55469cc402f16e274094428b0465b0e3e0bb95b8",
+        "standalone_files": 580,
+        "standalone_increment": 31,
+        "queue_increment": 31,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "validation": {
+          "report_sha256": "bb5b6547fa87c2a0ba668c82fec3ba2d1345f495fd478679824ef97a73914d7a",
+          "strict_sha256": "48efd350545925fc9ba86d00b54aea3693315b508d19d99c07e57ae1c2c643d2",
+          "exact_functions": 27572,
+          "exact_linked_units": 2450
+        },
+        "review_files": 31
+      }
+    }
+  },
+  "queue_validation": {
+    "report_sha256": "3c5939fb1a60d3fe066b17740f9d14b1df5cbe1a6e7141dd6f179b8d60b19f86",
+    "strict_sha256": "32205546c26258ebc9bf803709c6f8f0c253947c78fe23d948b08dd0e2559b55",
+    "exact_functions": 27572,
+    "exact_linked_units": 2451,
+    "comparisons": {
+      "upstream": {
+        "baseline_report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      },
+      "historical": {
+        "baseline_report_sha256": "3e8a49928b15de9e88fa50ad9d678a440a4b3743e0bd7b53b2871d88bf17c519",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 30
+      },
+      "previous_queue": {
+        "baseline_report_sha256": "f116a64e727cdeb4e4ecc3f36c918e3b4a667cf1affd58eb25bcc7ce49ae85dc",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      }
+    }
+  },
+  "historical_rows": [
+    {
+      "row": 3361,
+      "historical_path": "include/pso/player/PlayerState.h",
+      "historical_blob": "2c9e7cbecf9b15575ffb4b8b39ff48634950744f",
+      "full": true,
+      "owners": {
+        "include/pso/player/PlayerState.h": "87a77945a03a5f2e2db0aa13b04a22dfb8e9a4f0",
+        "src/pso/player/TObjPlayer.cpp": "2ffe6f2633a4f9361027892ea678d8d5063faee4"
+      },
+      "evidence": "The shared state header carries the live declarations of all ten original fragments. The identity helper returns its actual input. The active action palette declaration remains present on its real owner."
+    },
+    {
+      "row": 3997,
+      "historical_path": "include/pso/player/PlayerScaleState.h",
+      "historical_blob": "6e195992616112db69f6777423e75cd1c5d6e31b",
+      "full": true,
+      "owners": {
+        "include/pso/player/PlayerScaleState.h": "5bf6a417661d3068a1e2e3e883577d388e13eaf5",
+        "src/pso/player/TObjPlayer.cpp": "2ffe6f2633a4f9361027892ea678d8d5063faee4",
+        "src/pso/player/PlayerTaskEffects.cpp": "8fb896eb285ed16b207c6d8973c474b741a61049"
+      },
+      "evidence": "The original 0x30 player scale state, flag at +4 and camera subrecord at +0x18 serve the native helpers. The shrink and size-restore packets use the original 8-byte and 4-byte records."
+    },
+    {
+      "row": 4086,
+      "historical_path": "src/pso/player/PlayerTaskEffects.cpp",
+      "historical_blob": "eb3ae0be961e2ec250a82cc8ef894bbac43bd2cd",
+      "full": true,
+      "owners": {
+        "src/pso/player/PlayerTaskEffects.cpp": "8fb896eb285ed16b207c6d8973c474b741a61049",
+        "include/pso/player/PlayerScaleState.h": "5bf6a417661d3068a1e2e3e883577d388e13eaf5",
+        "include/pso/render/CurrentTextureList.h": "ced69b099a5995e16a6e70376e49c11c9a215375",
+        "include/pso/system/task/TObject.h": "d9a68cb03c206e62e5079a5d62ca296860a4f6cc"
+      },
+      "evidence": "The five authored hunks are present at the canonical owner. The lobby marker calls the typed texture-list setter. The particle owner uses the actual TObject name predicate with the original descriptor. Both camera vectors use the shared position and target subrecord with the original coefficients and argument order. All three complete function intervals are byte-exact.",
+      "historical_hunk_headers": [
+        "@@ -0,0 +1 @@",
+        "@@ -81 +82 @@ extern s32 tl_06;",
+        "@@ -711 +712 @@ void TPlayerLobbyMarker::render() {",
+        "@@ -819,3 +820,3 @@ void update_player_scale_camera(PlayerScaleState *state) {",
+        "@@ -906 +907 @@ TParticleCtrl* TPlayerParticleOwner::get_particle() {"
+      ]
+    },
+    {
+      "row": 6297,
+      "historical_path": "include/pso/TObjRain.h",
+      "historical_blob": "c852276c631e05db52c13c145c7783058c03e9df",
+      "owners": {
+        "include/pso/object/ambient/TObjRain.h": "5e9c114effc2c83631ed2d2e2f7e202d34d0ea31"
+      },
+      "full": true,
+      "evidence": "The complete native rain task declaration is present, including all original methods and each 0x20 drop field. The array begins at +0x1C, count at +0x21C and task size is 0x220."
+    },
+    {
+      "row": 6298,
+      "historical_path": "include/pso/TObjRainCtrl.h",
+      "historical_blob": "a5da83ebff3c252a8ed9de56a903c992dea1a638",
+      "owners": {
+        "include/pso/object/ambient/TObjRainCtrl.h": "ad6a96f35ad1b51cbc969d5a198c0e8ce41146ad"
+      },
+      "full": true,
+      "evidence": "The real controller retains the authored virtual destructor, scheduler and create signature. Its original +0x1C timer and 0x20 object lifetime are explicit."
+    },
+    {
+      "row": 6526,
+      "historical_path": "src/pso/object/TObjRain.cpp",
+      "historical_blob": "20e1483896497e297ab2c5a0e25af609e77c8b54",
+      "owners": {
+        "src/pso/object/ambient/TObjRain.cpp": "637540d9b37a54353e02c62c8d9188486bac7783",
+        "include/pso/object/ambient/TObjRain.h": "5e9c114effc2c83631ed2d2e2f7e202d34d0ea31"
+      },
+      "full": true,
+      "evidence": "All authored rain functions present at their native owner. Both actual vertex quantities and color words are owned by exact existing symbols with the original descriptor links. The 16-row bound, active/change test, floor threshold, camera yaw and all update/draw scheduling match."
+    },
+    {
+      "row": 6782,
+      "historical_path": "src/pso/object/TObjRainCtrl.cpp",
+      "historical_blob": "a530561b61c1b2deff7c73669b71e9f6cfc287ea",
+      "owners": {
+        "src/pso/object/ambient/TObjRainCtrl.cpp": "1a9347abb39a8d793a947293bc8b1ccef82e35f7",
+        "src/pso/object/ambient/TObjRainCtrl_80197CE8.cpp": "8bd5308aad0b73998438eff3ea74febd17277267"
+      },
+      "full": true,
+      "evidence": "Every authored native allocation hunk is present, with the same task root, Gryphon request of 36 drops, default request of 9 and real spawn count. Initialization, cadence, and single-screen gate remain exact."
+    },
+    {
+      "row": 7463,
+      "historical_path": "src/pso/object/ambient/TObjRain_801977D4.cpp",
+      "historical_blob": null,
+      "owners": {
+        "src/pso/object/ambient/TObjRain.cpp": "637540d9b37a54353e02c62c8d9188486bac7783",
+        "config/GPOE8P/psov3/splits.txt": "f7e773a97ddba905ccd482202659fc3e84444173"
+      },
+      "full": true,
+      "evidence": "The historical obsolete rain draw/update fragment was consolidated into its native owner. Its code, constants and geometry remain selected from source at original addresses. Standalone loses one source unit by consolidation with no linked function/data coverage lost."
+    },
+    {
+      "row": 6512,
+      "historical_path": "src/pso/object/TObjFish.cpp",
+      "historical_blob": "9a9272cd2d11a5be10b775df4c44e95fa7cd541e",
+      "owners": {
+        "src/pso/object/ambient/TObjFish.cpp": "2493a911e8dfc3a2072bc4d8e24145c6eac11b40",
+        "include/pso/object/ambient/TObjFish.h": "58aff786321a0375bdf68527a50cd2dc62d8b7e4"
+      },
+      "full": false,
+      "evidence": "The fish constructor, destructor, display update and shared 0x44 storage are replayed as complete functions at the original owner, plus the exact five area archive descriptors. Original actor/texture and resource providers remain available in each lane. Separately authored helper and archive interface migrations remain outside this package."
+    },
+    {
+      "row": 6779,
+      "historical_path": "include/pso/object/TObjFish.h",
+      "historical_blob": "c264155c650357c61090f6cea2f2e7d509164a63",
+      "owners": {
+        "include/pso/object/ambient/TObjFish.h": "58aff786321a0375bdf68527a50cd2dc62d8b7e4"
+      },
+      "full": false,
+      "evidence": "The native 0xA4 task, typed constructor, 0x44 record with exact offsets, count and owner radius fields are present. The direct branch preserves existing shared fish declarations that still have callers."
+    },
+    {
+      "row": 7279,
+      "historical_path": "src/pso/object/TObjLight_80235C44.cpp",
+      "historical_blob": "6c66086157117a68f0e46480dbb05bb45f0e1476",
+      "owners": {
+        "src/pso/object/ambient/TObjLight_80235C44.cpp": "54989318a6f461a0253dca8ed0281dbd2fb2fadc"
+      },
+      "full": false,
+      "evidence": "Exact camera-origin reads are carried to the current lighting owner. Unrelated actor rotation layout and technique contact query migrations remain outside the scoped ambient package."
+    },
+    {
+      "row": 7009,
+      "historical_path": "src/pso/object/TObjEnvSoundGlobal.cpp",
+      "historical_blob": "610139dee33907507e4cf77319888b109afb64f9",
+      "owners": {
+        "src/pso/object/ambient/TObjEnvSoundGlobal.cpp": "9b8160739f9982769b3900b8275017354a678578"
+      },
+      "full": false,
+      "evidence": "Exact camera-distance consumers use actual camera declarations and storage. The older persistent sound provider/caller signature is retained in both review variants pending its wider shared cohort."
+    },
+    {
+      "row": 210,
+      "historical_path": "include/pso/misc/TWindowKeyBoardBase.h",
+      "historical_blob": "892db85cd9bc4fe52f10e38ffff4150142212577",
+      "owners": {
+        "include/pso/ui/window/TWindowKeyBoardBase.h": "cccba58cd8b5c062416fb0342486ba3997945029",
+        "include/pso/ui/window/KeyboardTextBuffer.h": "838b0fa72e3b5ed7191987e207bdce5c6513204b",
+        "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp": "45f418257f929af67b0e589e0afe661be03eb561"
+      },
+      "full": true,
+      "evidence": "The complete native composer interface uses the original 0xB8 window and signed +0x65 field. The active text pointer at +0x68 references one of two native 0x18 buffers, with the second buffer and candidate at the original locations. Text input, export, mode and modifier operations remain owned by the native composer, including the new +0x60 flag clearer."
+    },
+    {
+      "row": 215,
+      "historical_path": "include/pso/misc/TWindowSubSymbolChatFaceType_80283A70.h",
+      "historical_blob": "df8c4c6d6c2dd1829512a00cf3b56c51ea9bc22c",
+      "owners": {
+        "include/pso/ui/chat/TWindowSubSymbolChatFaceType_80283A70.h": "1b863ad4c0f97ff0bdc6f858d7eab9847c387753",
+        "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h": "c2a9d3108a6cffd6342dabe286cec8081d9b1f98",
+        "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": "122db9455d241cc702a0fc708d44948753aed640"
+      },
+      "full": true,
+      "evidence": "The actual split header now retains the one existing face draw helper. The render and task slots are declared and defined on the owning class in their original native form."
+    },
+    {
+      "row": 257,
+      "historical_path": "src/pso/misc/TWindowChat.cpp",
+      "historical_blob": "e3c4f7aea9f8214ca71a604f9d97b4f86372b2c4",
+      "owners": {
+        "src/pso/ui/chat/TWindowChat.cpp": "149359a886cc44a4a5c9137160dbfe70cdb15916",
+        "include/pso/ui/chat/TWindowChat.h": "f91144b18ddb804f69e809f5f5dc3f0111e42433",
+        "src/pso/ui/window/TWindowCtrl.cpp": "d4766d9003c9c9f5cbfe806f1c5ed82b4a32783e",
+        "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "449f7086aca6f3b2d20bd79d89cb623b40003786"
+      },
+      "full": true,
+      "evidence": "The full chat-input changes survive at their real owners. The controller query reads the real composer and hard keyboard and returns the original three readiness outcomes. Submission exports current text and handles cancel, hard input and shortcut mode. Update and open paths set the original held and confirmation bits. Close queues both list children and closes the two window children. The input state machine tests original 0x200/0x400 masks, chooses soft keyboard, Word Select or Symbol Chat, and positions the composer at the original 0xB7/0xB8 locations with a three-tick tween. Original menu and player query routes stay active."
+    },
+    {
+      "row": 279,
+      "historical_path": "include/pso/misc/TKeyBoardControl_80131C58.h",
+      "historical_blob": "cfaad23e97eefb55ad7a9ce15957fd832aeb1e14",
+      "owners": {
+        "include/pso/ui/keyboard/TKeyBoardControl_80131C58.h": "4f82a87cabbfe08297f6842871c9d7817a48c4af",
+        "include/pso/ui/keyboard/KeyboardInputQueries.h": "24e8330b1e507a5d137c5859fd8c8125807c5e9a",
+        "src/pso/ui/keyboard/TKeyBoardControl_80131C58.cpp": "99a6e8868ec19aa827a4d89825ea44393ddb91e8"
+      },
+      "full": true,
+      "evidence": "The whole interface change is consolidated through KeyboardInputQueries and the active keyboard controller declarations. The stale no-op declaration is handled by its native owning unit."
+    },
+    {
+      "row": 283,
+      "historical_path": "src/pso/misc/TWindowKeyBoardSoft.cpp",
+      "historical_blob": "a9a8b126b76551f6d627caaa14f825f95f9ecff9",
+      "owners": {
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp": "c5624f4b7426dd0157e2f24aeeef18078e485754",
+        "include/pso/ui/window/TWindowKeyBoardSoft.h": "b377dd0a04ca06322d9cb15f0fd909721a7e50c4",
+        "include/pso/ui/window/TWindowEffectLight.h": "a0b042e0fc943a9084dfbea59ce50e228ce74b0b"
+      },
+      "full": false,
+      "evidence": "Actual native hit and frame geometry, textured glyph/tab/key quads, and signed light-kind spawning are in the review. The 1,012-line original soft keyboard file includes other source regions. Existing color-line and draw-context providers are retained in each variant."
+    },
+    {
+      "row": 284,
+      "historical_path": "include/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.h",
+      "historical_blob": "a7010b1d31d2ed212ecae7cc27e0652ca96d2b23",
+      "owners": {
+        "include/pso/ui/chat/TWindowSubSymbolChatPartsSet_80247EFC.h": "2f24f59dbcd68e7c50055e627d01918a99342db5",
+        "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h": "429a0a2cc2a5b98299a0d94869dd5af6b37fb8ec",
+        "src/pso/ui/chat/TWindowChatSymbol.cpp": "d2e467ae2149e10983496cd914be0c2ac910ffbb"
+      },
+      "full": true,
+      "evidence": "The original removal of the fake free-function parts lookup follows the actual member overload. Shared render and parts-set compatibility declarations that still have live callers remain present."
+    },
+    {
+      "row": 286,
+      "historical_path": "src/pso/misc/TKeyBoardControl_80131C58.cpp",
+      "historical_blob": "3c5b633db19bee9988fa6e3c87d3f0316b834eb9",
+      "owners": {
+        "src/pso/ui/keyboard/TKeyBoardControl_80131C58.cpp": "99a6e8868ec19aa827a4d89825ea44393ddb91e8",
+        "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp": "45f418257f929af67b0e589e0afe661be03eb561",
+        "include/pso/ui/window/TWindowKeyBoardBase.h": "cccba58cd8b5c062416fb0342486ba3997945029",
+        "include/pso/ui/window/TWindowKeyBoardHard.h": "c5ad831e0246ea926f1386f692694312fc82a740"
+      },
+      "full": true,
+      "evidence": "Both views retain the complete controller constructor with actual composer/hard/soft children, five original mode choices, native text state and controller input queries. Controller update uses the original client/input bank and mask, the hard keyboard reset/held state and the native soft window close. The original held, base flag and keyboard input readiness changes survive in the real method owners, including 0x801321B4. The reset entry keeps its inherited native name and compiled symbol."
+    },
+    {
+      "row": 5475,
+      "historical_path": "include/pso/misc/TWindowEffectLight.h",
+      "historical_blob": "e565173b994a579b5a0af6e0b4a5f4e5c616465d",
+      "owners": {
+        "include/pso/ui/window/TWindowEffectLight.h": "a0b042e0fc943a9084dfbea59ce50e228ce74b0b",
+        "src/pso/ui/window/TWindowEffectLight.cpp": "bb4b69fc83227de92381bef9ee15e1b3e622a7a8"
+      },
+      "full": true,
+      "evidence": "The native effect constructor and factory now take the original signed light kind and unsigned player index. The actual two position floats, age and player fields are present with original offsets and total size."
+    },
+    {
+      "row": 5549,
+      "historical_path": "src/pso/misc/TWindowEffectLight.cpp",
+      "historical_blob": "3367459f88b91fa7873ba32f0952e5248ec4b8dc",
+      "owners": {
+        "src/pso/ui/window/TWindowEffectLight.cpp": "bb4b69fc83227de92381bef9ee15e1b3e622a7a8",
+        "include/pso/ui/window/TWindowEffectLight.h": "a0b042e0fc943a9084dfbea59ce50e228ce74b0b",
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp": "c5624f4b7426dd0157e2f24aeeef18078e485754",
+        "src/pso/ui/window/TWindowActionPalette.cpp": "5ebbd5e00aacb8039437d6923f902083ba60bfb8"
+      },
+      "full": false,
+      "evidence": "The effect constructor and real feedback allocation now ship in both reviews. It preserves original split-screen adjustment, duration initialization, and input typed at both keyboard and action palette callers. Other drawing, virtual run and table storage intervals stay at the inherited providers."
+    },
+    {
+      "row": 6751,
+      "historical_path": "src/pso/quest/TQuestThread.cpp",
+      "historical_blob": "0168725a90d6ef874018987ba48712a8b804563d",
+      "owners": {
+        "src/pso/quest/TQuestThread.cpp": "309c6c6a6b2079e98f39e72dbb2e7734494ca215",
+        "include/pso/ui/keyboard/TKeyBoardControl.h": "8be25c4517adba37217815ffd3df40ad939a6e30",
+        "include/pso/ui/window/TWindowKeyBoardBase.h": "cccba58cd8b5c062416fb0342486ba3997945029",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp": "c6fe89d68e6b6e9d49cb80f26303b3d89ddac6bb"
+      },
+      "full": false,
+      "evidence": "The former generic free helper is the native controller flag operation. It reads the real composer pointer at +0x20, skips null and clears only bit 0 at composer +0x60, with the original source and compiled addresses. This verifies quest, short-mail, guild-card and connection entry callers; unrelated quest behavior in the same historical file remains inherited."
+    }
+  ],
+  "closed_historical_rows": [
+    210,
+    257,
+    284,
+    286,
+    4086
+  ],
+  "historical_comparisons_open": 724,
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "published_stage_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+  "prior_validation": "fork/notes/evidence/2026-11-20-bulk-owner-review-packaging.json",
+  "source_receipts": {
+    "ambient": {
+      "rows_sha256": "2a77ce98afd31cc8f169ae2171394e58b7f914f07d091d7eec9fcb81a6295580",
+      "full_receipt_sha256": "ad9b9d43893700273088711474e8a00445742d11a943c6b6352d319793540233"
+    },
+    "input": {
+      "rows_sha256": "2904b53acc1fe7d2fc2bc5ffdbe0ab29464390f53361c578cc8568d30242d51a",
+      "full_receipt_sha256": "026a0097252fcf0384797b1101e5998722a8fadde37b6eae9eaf9e9b6b4ca9bd"
+    }
+  }
+}

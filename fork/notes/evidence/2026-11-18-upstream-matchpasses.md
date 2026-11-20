@@ -1008,6 +1008,19 @@ The combined review queue at `9e9fa4dda9` carries 146 changed paths for this bat
 
 The queue now spans 2,433 files across 35 groups. A path comparison leaves 308 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The child-window review uses the existing native equipment-window prerequisite. The source audit closes 6 historical comparisons, leaving 729 open. [Validation evidence](2026-11-20-bulk-owner-review-packaging.json)
 
+## Player scale, input, materials and ambient scenery
+
+The combined review queue at `a023237dca` carries 148 changed paths for this batch. The source already reproduces retail at `a0ab810dd1`. The queue reproduces retail with 2,451 exact linked units and zero lost matched or linked coverage.
+
+| Review | Local head | Review base | Changed files |
+| --- | --- | --- | ---: |
+| Native player scale, shrink packets and state declarations | `c5493f319d` | `49b48c32e6` | 30 |
+| Shared material, texture and sprite rendering | `f3d6a88dd8` | `49b48c32e6` | 78 |
+| Ambient fish, rain and stage props | `6cb53ca77a` | `49b48c32e6` | 26 |
+| Keyboard input, soft keyboard feedback and Symbol Chat | `fed9cf8b71` | `55469cc402` | 31 |
+
+The queue now spans 2,470 files across 38 groups. A path comparison leaves 270 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The keyboard and chat review uses the existing native equipment-window prerequisite. The source audit closes 5 historical comparisons, leaving 724 open. [Validation evidence](2026-11-20-input-render-and-stage-packaging.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
