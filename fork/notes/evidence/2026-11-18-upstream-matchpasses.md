@@ -951,6 +951,14 @@ The 2,164-file review queue covers 32 groups. The canonical source and working f
 
 The protocol uses native assignment operators for both menu entry types. Their seven- and 21-instruction bodies match the retail code. Both still need their existing scheduling directives under the current compiler. The remaining inline directives for these operators were removed. The calendar conversions now share DateStamp and copy both calendar month tables through their native record.
 
+## Character creation, item effects and native subsystem recovery
+
+Source `f13a4f3809` and landing checkpoint `ea0a460686` carry 35 changed files. This batch covers character creation actions, pad reads and archive ownership, Epsilon body, guards and battle record ownership, native status and equipment item rows, item and boss fire-effect origins and storage. The audit closes 41 historical comparisons and leaves 854 open.
+
+The 2,174-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-creation-item-and-native-replay.json)
+
+Character creation uses the six argumentless menu callbacks at their original addresses, a typed physical pad slot and its unsigned trigger fields, and one creation archive pointer through loading, motion and cleanup. The standalone retains the existing archive loader boundary while the combined source uses the BmlResource constructor.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

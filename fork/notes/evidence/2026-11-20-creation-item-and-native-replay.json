@@ -1,0 +1,1342 @@
+{
+  "source": "f13a4f38090b439d8ecc7c6e0199b5231ab594fe",
+  "previous_source": "58ee62fc9abf7623aa467642a177869ad5702f59",
+  "landing": "ea0a4606862ce34c75dd5ae8a05f9ef97013f4ca",
+  "working_fork_build": "941d7e618b3b5de36742c898b029bc491756ea1a",
+  "source_files": 35,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "57dca1452565a2bada7c76beca1d1ef5bde6ee17",
+    "tree": "20fcc4936754f699ad6130a462d657781fc25a09",
+    "previous": "cc9bd9b57ae3393ed234a84dbc6d0ee957b37a0c",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+      "d72488f568102a7615368977506f29a45a5a2ec2",
+      "d56ff98a6fc6b860fef753a7197aa77f88e0619b",
+      "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "700cec7e47095fe0f5b530068b818dc6b974c356",
+      "26fb00044da3319be7cc6ac5e95fecd556e1bd92",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128"
+    ],
+    "files": 2174,
+    "reviews": {
+      "standalone-character-creation-actors": {
+        "head": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+        "previous": "6a134ec16567800214b3db40989db9b1f6c752dc",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 46,
+        "create": false,
+        "live_tip": "6a134ec16567800214b3db40989db9b1f6c752dc",
+        "queue_input": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+        "report": "/dev/shm/gm-creation-and-native.663eBz/creation-direct-report.json.gz",
+        "strict": "/dev/shm/gm-creation-and-native.663eBz/creation-direct-check.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "26fb00044da3319be7cc6ac5e95fecd556e1bd92",
+        "previous": "35fd79064c4690ffdc0799eaf27eeac3691b081e",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 249,
+        "create": false,
+        "live_tip": "35fd79064c4690ffdc0799eaf27eeac3691b081e",
+        "queue_input": "26fb00044da3319be7cc6ac5e95fecd556e1bd92",
+        "report": "/dev/shm/gm-enemy-20565490-review/epsilon-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/epsilon-standalone-strict.json"
+      },
+      "standalone-equipment-and-item-list-windows": {
+        "head": "700cec7e47095fe0f5b530068b818dc6b974c356",
+        "previous": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 539,
+        "create": false,
+        "live_tip": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+        "queue_input": "700cec7e47095fe0f5b530068b818dc6b974c356",
+        "report": "/dev/shm/gm-item-row-ownership-20261120/direct/ownership-report.json.gz",
+        "strict": "/dev/shm/gm-item-row-ownership-20261120/direct/ownership-strict.json"
+      },
+      "standalone-weapon-factory-registry": {
+        "head": "d72488f568102a7615368977506f29a45a5a2ec2",
+        "previous": "9a9d704b899922b8d4439be16dad34a85c23fd97",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 125,
+        "create": false,
+        "live_tip": "9a9d704b899922b8d4439be16dad34a85c23fd97",
+        "queue_input": "d72488f568102a7615368977506f29a45a5a2ec2",
+        "report": "/dev/shm/gm-item-effect-origins.cym62Y/direct-report.json.gz",
+        "strict": "/dev/shm/gm-item-effect-origins.cym62Y/direct-check.json"
+      }
+    },
+    "replays": {
+      "creation": {
+        "canonical": "fd40b1a0785aa678c57f994b7552d747d15653b3",
+        "standalone": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+        "queue": "f2acd90d2addebf70561c1b753af74245be4725a"
+      },
+      "epsilon": {
+        "canonical": "4f5cf71d3b1bb0cd57f15635ba8e69c57e717ecb",
+        "standalone": "26fb00044da3319be7cc6ac5e95fecd556e1bd92",
+        "queue": "585a6030273878c8d46ee665d1762edeea867ca3"
+      },
+      "status": {
+        "canonical": "25eb0d10ee8ce8c5394f4ee9329d49f50a0fbcb8",
+        "standalone": "700cec7e47095fe0f5b530068b818dc6b974c356",
+        "queue": "957a7635fca291dc1d6ef0f5fbe48d4d631133a5"
+      },
+      "item": {
+        "canonical": "434f78977bbdbe7337a1398b09ccf9c0e6a8a7d5",
+        "standalone": "d72488f568102a7615368977506f29a45a5a2ec2",
+        "queue": "4c14f0dc0242a8f77d27b34c380539e0816c0db3"
+      }
+    },
+    "increment": 35
+  },
+  "reviews": {
+    "standalone-character-creation-actors": {
+      "head": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+      "previous": "6a134ec16567800214b3db40989db9b1f6c752dc",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 46,
+      "create": false,
+      "live_tip": "6a134ec16567800214b3db40989db9b1f6c752dc",
+      "queue_input": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+      "report_sha256": "5e9451fb032ab34cd10b4d2bd636d02a70de40915b6eb92a62ebc639b522d584",
+      "strict_sha256": "3cee8181b0849bde36cff22eeeb72746e59e53af65269cc4a9319bdb3b96aecd"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "26fb00044da3319be7cc6ac5e95fecd556e1bd92",
+      "previous": "35fd79064c4690ffdc0799eaf27eeac3691b081e",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 249,
+      "create": false,
+      "live_tip": "35fd79064c4690ffdc0799eaf27eeac3691b081e",
+      "queue_input": "26fb00044da3319be7cc6ac5e95fecd556e1bd92",
+      "report_sha256": "f413de0729d22e68499c8fc4daf0e4e526229008e496c69afe2e4491264e35aa",
+      "strict_sha256": "fcafa68c92eb31fd92f612e8273ad15fb647dc2aed749c734a7bc64d1fc46d37"
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "700cec7e47095fe0f5b530068b818dc6b974c356",
+      "previous": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 539,
+      "create": false,
+      "live_tip": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+      "queue_input": "700cec7e47095fe0f5b530068b818dc6b974c356",
+      "report_sha256": "0cb136381a73a01adde5947cbd883532f64871212ea597bf4302fa46b621df9d",
+      "strict_sha256": "8c8fb17cc58e74e4a49e778a5e27e621ed39d1b9723681626ca520e176ef1893"
+    },
+    "standalone-weapon-factory-registry": {
+      "head": "d72488f568102a7615368977506f29a45a5a2ec2",
+      "previous": "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 125,
+      "create": false,
+      "live_tip": "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "queue_input": "d72488f568102a7615368977506f29a45a5a2ec2",
+      "report_sha256": "2217b3cd12c65e0cda56f3c13ba1ec50801b4abbf487f21156a6db8c77811e8f",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    }
+  },
+  "source_audit": {
+    "source": "f13a4f38090b439d8ecc7c6e0199b5231ab594fe",
+    "previous": "58ee62fc9abf7623aa467642a177869ad5702f59",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 2305,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_80145778.cpp",
+        "historical_blob": "b1dc138ea7f093f6d09cc3b4c71323a12d2e9588",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": "923e9ca3cb087312ab39ff22d1526b38f0e072ac",
+          "include/pso/ui/font/TNECFontEORFunction.h": "1b3e44a0db9876ac1d966e0e11d5d54ffa8182c6"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The existing menu-font owner performs the native virtual destruction, releases the typed texture list, array-deletes both glyph table and palette, and safely frees the glyph data at the same linked function.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2354,
+        "historical_path": "src/pso/object/TObjCMIcon_802999C4.cpp",
+        "historical_blob": "04bd64ef2bdac029fb05a436cf09206e8d08e6f3",
+        "owners": {
+          "src/pso/ui/charcreate/TObjCMIcon.cpp": "d4da6a13bd399a85fde764c081bd880225a5051c",
+          "include/pso/ui/charcreate/TObjCMIcon.h": "460d01a68e785b24f409272cec711c41946b2ac9"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The existing icon provider uses the real TObjCMIcon class and all seven CreationIconGroup rows, with the same 0x14 stride and linked 0x8C-byte table at 0x804DBDE0.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2397,
+        "historical_path": "src/pso/object/TObjCMName.cpp",
+        "historical_blob": "34a30cd0a894e4fa7081cc54a8c5a9fb280c13df",
+        "owners": {
+          "src/pso/ui/charcreate/TObjCMName.cpp": "0603acbcd783fd74158bb10b973297bfad97f4d9",
+          "include/pso/ui/charcreate/TObjCMMainMenu.h": "88ec6693da8888432b584a918230c0e62bab6cb8",
+          "include/pso/unk/text_801E3F24.h": "7de5d076797dae2b5ae219f024a8a024e4d84fe4"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The menu dispatch table now carries the six real argumentless member pointers. The hair renderer uses typed color words in both fill and slider paths. The wider name and creation unit still has open source comparisons.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2424,
+        "historical_path": "include/pso/misc/TLobby_803360CC.h",
+        "historical_blob": "9c62965b2555a5100a4c8f9f2ec897664438c2b9",
+        "owners": {
+          "include/pso/unk/TLobby_803360CC.h": "37ca286028ea505d72dc9c8efe91a75a09848ebf",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": "69e7d1e3c9fdfebabb24532bcc978cedbec0d303"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The historical transition declaration already uses the real TUnk_804EEF64 scene at the same linked 0x803362A4 provider and call site. One shared declaration covers the former pair.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2524,
+        "historical_path": "src/pso/object/TObjCMMainMenu_8028EA88.cpp",
+        "historical_blob": "821b2b453f83f5dd71c7e18588f6881dcb3589bd",
+        "owners": {
+          "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp": "370b6588fd6b00a6240c135ecc508fb04a5a0f86",
+          "include/pso/ui/charcreate/TObjCMMainMenu_8028EA88.h": "d8747ede0c8491d43edead482711e6e6461e82d3",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": "b027ca75307070b42ea2d966d41ad5df2ee9fd54",
+          "src/pso/unk/TLobby_8028EA28.cpp": "28ec826b3f6ecbc1f24fb614ce1579b22e177267"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The combined source uses the 0x440 BmlResource constructor and opens the original CHARA.adx literal. The allocation, motion list and teardown now share a typed archive pointer. Standalone keeps its matching lower-level loader ABI.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2555,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+        "historical_blob": "a5e16ff36b0ec5abd8150177ac81d1a69f0e6efd",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp": "720916e9fa8fa483b9411b05fc7f60fa78a39d67",
+          "include/pso/render/GinjaTextureInput.h": "ddd5fd6b1592dd499b2bc1f50a96df4486c9d035"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The current texture-wave owner retains the typed GinjaTextureInput receiver, native static allocation, and safe freeing of the original texture buffer.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2604,
+        "historical_path": "include/pso/object/TObjCMMainMenu.h",
+        "historical_blob": "0366ffd3f58108501342841e913067c00eb760c4",
+        "owners": {
+          "include/pso/ui/charcreate/TObjCMMainMenu.h": "88ec6693da8888432b584a918230c0e62bab6cb8",
+          "src/pso/ui/charcreate/TObjCMName.cpp": "0603acbcd783fd74158bb10b973297bfad97f4d9",
+          "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp": "370b6588fd6b00a6240c135ecc508fb04a5a0f86"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The original six argumentless declarations now share their real member pointer record. The same native class already uses the wide sprite return and its real destructor.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2637,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "historical_blob": "3546f0efd7657475ce25c03f4a51106af064a74b",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": "91afb243f0b97b25f153773a672916d3625315b0",
+          "include/pso/ui/charcreate/TChCrLoadGmNjReq.h": "74576d9cce55a77677452520fec35545e44ff78b",
+          "include/pso/ui/charcreate/CharacterLoadBuffer.h": "356434d358bfec55923a8012fba157dd1855bc81"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The existing preview source carries the recovered TChCrLoadGmNjReq slot claim at +0x6C and passes typed buffers to their actual owners. All successful and failure exits preserve the verified safe_free calls.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2651,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_801C50A8.cpp",
+        "historical_blob": "7320cbe9188b09f0a879ac068bbae51b3e06ec0d",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801C50A8.cpp": "d4996b8dfaf27b77d1f29fbd2aa9b5ccda90d051",
+          "include/pso/unk/TUnk_804C3E60.h": "1a6e3d372404d3c2c470ae64264df549ca117cc9"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The historical pointer reset already uses the right task type and the same linked storage at 0x805D5D90, with the established name battle_music_gain_task.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2741,
+        "historical_path": "src/pso/unk/text_801E3F24.cpp",
+        "historical_blob": "e569616ec8fbcb28eb9fd54c104ef24f52fc4ce6",
+        "owners": {
+          "src/pso/unk/TLobby_801E2F94.cpp": "4616d68a98826de845c8f6e0cde8a70643c4442e",
+          "include/pso/unk/text_801E3F24.h": "7de5d076797dae2b5ae219f024a8a024e4d84fe4",
+          "src/pso/ui/charcreate/TObjCMName.cpp": "0603acbcd783fd74158bb10b973297bfad97f4d9"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The full fork word-copy body is retained at 0x801E3F54. It takes a mutable word and a const word, returns the destination and retains all original consumers.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6507,
+        "historical_path": "src/pso/object/TObjCMNameTail.h",
+        "historical_blob": "a9bf0c2f5dcdf9dfe0660bfed00c2892878ee837",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrEffCtrlPl.cpp": "82272b4bdd4a9039c53d77289f4b455bcbf798ae",
+          "include/pso/ui/charcreate/CreationInput.h": "b31947f9a5f79f30cecc9d6c7edfdef748cce2d2",
+          "include/pso/system/ControllerInputState.h": "6ce8173d1e9ee85aac20f4fc2b189c207cb8e9da",
+          "include/pso/ui/keyboard/TKeyBoardControl_803DE9C4.h": "866674d9bb94cd5198cf75595572a9823b20c287",
+          "src/pso/ui/charcreate/TObjCMProportion.cpp": "693597e9dde7a8c1a1199b6aaab476f1bbceadc1"
+        },
+        "proofs": [
+          {
+            "group": "creation-source",
+            "evidence": "The helper added by the old inline tail is now an out-of-line typed lookup of the same four physical pad pointers. The slot width, unsigned trigger offsets and signed stick fields preserve all original loads.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 490,
+        "historical_path": "include/pso/unk/TObjEneEpsilonBody.h",
+        "historical_blob": "f6ebee6d25976b76e7bf154e7cc962f20d31bb60",
+        "owners": {
+          "include/pso/enemy/epsilon/TObjEneEpsilonBody.h": "fb2fb10b936638221f0cd51585b60237689dfeec",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "ff6ba773c65e4b1cf20b58bf8a8068d335f1570b",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "ba44114ea88b7bdfe0302c50ced398f3c05837e8"
+        },
+        "proofs": [
+          {
+            "group": "epsilon-source",
+            "evidence": "Entire authored body interface and physical layout verified: typed emitters at +430/+434, four angles and positions, current and step ARGB, fade, four guard IDs, actions/timers, fire and target vectors. The actor now owns the four-slot scan and factory with original u32 ID, signed index/yaw and const Vec; factory returns the actual guard subtype. Native constructor consumes opaque set data through the existing initialization hook. A byte-for-byte three-way replay verifies the shared file across epsilon, item.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 713,
+        "historical_path": "include/pso/enemy/TObjEneEpsilon.h",
+        "historical_blob": "877705dfe334cddf580fe04a9ebd04e59a397ac6",
+        "owners": {
+          "include/pso/enemy/epsilon/TObjEneEpsilon.h": "eb52b4e3341dfeeacd840608ac2b05955141693a",
+          "src/pso/unk/text_803626A8.cpp": "17d0571ee665b6569bfd21318b3f3e698538a708",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "ba44114ea88b7bdfe0302c50ced398f3c05837e8"
+        },
+        "proofs": [
+          {
+            "group": "epsilon-source",
+            "evidence": "Native ctor/dtor, four 0x1C camera fades beginning +0x3C0, explicit forwarding of guard/parent and 0x430 sizeof proof. Historical copy_position(void*) and update_angle(s32) occur only as declarations for Epsilon; a linked implementation for either has not been demonstrated.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 718,
+        "historical_path": "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "historical_blob": "b8da800fc6fefa240eddde457858232087fbfbe8",
+        "owners": {
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "ff6ba773c65e4b1cf20b58bf8a8068d335f1570b",
+          "include/pso/enemy/epsilon/TObjEneEpsilonBody.h": "fb2fb10b936638221f0cd51585b60237689dfeec",
+          "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h": "5e9bb06dc0a4c1069ffd5c13d4c65c94861da509",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "ba44114ea88b7bdfe0302c50ced398f3c05837e8"
+        },
+        "proofs": [
+          {
+            "group": "epsilon-source",
+            "evidence": "Four children spawn at consecutive IDs and set indices. Body owns all-gone predicate, formation, attack-mask selection, particle warp and debugging, with original table of 20 rows and four slots; guard consumes const Vec in set_target. The remaining large historical body action-source delta was not reconciled function by function. A byte-for-byte three-way replay verifies the shared file across epsilon, item.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 785,
+        "historical_path": "include/pso/enemy/TObjEneEpsilonGuard.h",
+        "historical_blob": "351ca3257f72d58988276fecbb71b86d7657f53e",
+        "owners": {
+          "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h": "5e9bb06dc0a4c1069ffd5c13d4c65c94861da509",
+          "include/pso/enemy/epsilon/TObjEneEpsilonBody.h": "fb2fb10b936638221f0cd51585b60237689dfeec",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "ff6ba773c65e4b1cf20b58bf8a8068d335f1570b",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "ba44114ea88b7bdfe0302c50ced398f3c05837e8"
+        },
+        "proofs": [
+          {
+            "group": "epsilon-source",
+            "evidence": "Header delta accounts for new base end +0x430, guard size +0x4D8, MaterialOpacityFade at +0x4BC, both NJS_OBJECT callbacks, actual separation of body and guard API. Constructor/factory, dispatch, position update and destroy are at their real owners. Source uses the matched guard fade class and the original four children. A byte-for-byte three-way replay verifies the shared file across epsilon, item.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1056,
+        "historical_path": "src/pso/enemy/TObjEneEpsilonGuard_8035DD68.cpp",
+        "historical_blob": "677fb802c15dd79cc670e06d542aa9938528a494",
+        "owners": {
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "ba44114ea88b7bdfe0302c50ced398f3c05837e8",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "ff6ba773c65e4b1cf20b58bf8a8068d335f1570b",
+          "include/pso/enemy/epsilon/TObjEneEpsilonBody.h": "fb2fb10b936638221f0cd51585b60237689dfeec",
+          "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h": "5e9bb06dc0a4c1069ffd5c13d4c65c94861da509"
+        },
+        "proofs": [
+          {
+            "group": "epsilon-source",
+            "evidence": "All authored guard TU hunk families inspected: proper material/camera fade calls and callback type, texture binding, camera point transform, demo/phase gate, sound positions, wall movement and opposite-direction path, body flags 0x20/0x800, original conversion constant and float vfunc, battle stats/reset/model and guard factory, explicit base and embedded fade constructors and destructor. Both actor and guard carry their real receivers. A byte-for-byte three-way replay verifies the shared file across epsilon, item.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1203,
+        "historical_path": "src/pso/unk/text_803626A8.cpp",
+        "historical_blob": "3c46a840fac67f56843d75d85e1541e2c76fd46e",
+        "owners": {
+          "src/pso/unk/text_803626A8.cpp": "17d0571ee665b6569bfd21318b3f3e698538a708",
+          "include/pso/enemy/epsilon/TObjEneEpsilon.h": "eb52b4e3341dfeeacd840608ac2b05955141693a",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "ff6ba773c65e4b1cf20b58bf8a8068d335f1570b",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "ba44114ea88b7bdfe0302c50ced398f3c05837e8",
+          "src/pso/weapon/TUnk_804F26E0.cpp": "d36c8522a44ef5d585f0e04c31535c6b454328cb"
+        },
+        "proofs": [
+          {
+            "group": "epsilon-source",
+            "evidence": "All authored resource/registration hunks: native base lifetime and four fades, yaw, BML archive acquisition and release, breakup models 5/6, eight typed table slots 0x23/24, all nine chunk-node color destinations, binding 0x4E with native animation record {1,0,0,0.3,0}, 3-float storage. Relocated knuckle marker retains Vec particle 0x1D0. A byte-for-byte three-way replay verifies the shared file across epsilon, item.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4151,
+        "historical_path": "src/pso/player/TObjPlayer_802790CC.cpp",
+        "historical_blob": "b7fe2ea89ccbfe2d3f16939f2f23d9f0940f6c72",
+        "owners": {
+          "src/pso/player/TObjPlayer_802790CC.cpp": "4f253e9970a69cfca383ea868990d48e5aa74e99",
+          "include/pso/ui/window/TWindowSubEquipList.h": "927f2ce1b12587953b8d6eefe286eec2fc437a30",
+          "include/pso/ui/ItemListRow.h": "442f15337232463e6c85f146c40085098198b8f4",
+          "include/pso/ui/window/TWindowSubStatusDisp_80257BC0.h": "2fbe8f7549e516e67ccf58aa8035ad88cc6b1128",
+          "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp": "99ff568f9a5835dc348ada52074587e0e188621e"
+        },
+        "proofs": [
+          {
+            "group": "status-source",
+            "evidence": "The complete equipment-list change is retained at its native owner. Both populated and empty rows follow the actual item-row initialization path. The two 18-pixel X adjustments use ItemListRow::x at +8 and the empty-row color uses category_style at +0x2C. The original slot order, armor extension count, icon choice and per-row increment remain.",
+            "details": {
+              "original": [
+                "0x802790CC",
+                "0x80279178"
+              ],
+              "empty_row": "0x80258CB8 status initializer at original linked symbol",
+              "slots": [
+                6,
+                2,
+                "signed armor slot count: i+9",
+                3,
+                1
+              ],
+              "native_row_proof": "+8 x, +0x2C category_style",
+              "historical_comparison": "The prior legacy height/color view used the same offsets. Current names describe the actual row storage."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5590,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp",
+        "historical_blob": "6bd1e6be6d1d161fa46c99ee94263f7a67eacfd1",
+        "owners": {
+          "src/pso/ui/window/TWindowShortCut.cpp": "d5132ff19bb525aeb50264e9a0d6ed1d8fc07f20",
+          "include/pso/ui/window/TWindowSubStatusDisp.h": "4998c3dc71e9e771e64e863057896605196f23a6",
+          "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp": "99ff568f9a5835dc348ada52074587e0e188621e",
+          "include/pso/ui/ItemListRow.h": "442f15337232463e6c85f146c40085098198b8f4"
+        },
+        "proofs": [
+          {
+            "group": "status-source",
+            "evidence": "The shortcut preview and item-row renderer consume the same read-only pair from the original icon-coordinate table. The shortcut label, detail and kind icons take their native coordinate pair with the original byte-selected index. The historical standalone list-window render/lifecycle slice remains scoped.",
+            "details": {
+              "table": "0x8044EE60, 51 pairs, 0x198 bytes",
+              "getter": "0x80259408, byte index and 8-byte stride",
+              "bounds": "The original table contract is retained for valid original callers; the active shortcut sentinel bypass is unchanged."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5699,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_80257784.cpp",
+        "historical_blob": "fb8781fd2f16a31d3fdda459e13af87727158d84",
+        "owners": {
+          "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp": "99ff568f9a5835dc348ada52074587e0e188621e",
+          "src/pso/unk/TUnk_804CF998.cpp": "426e6637957af25b888ef79b9501d34a89e0d575",
+          "src/pso/ui/window/WindowSubStatusDispSdata2.cpp": "501d93514da8b019bb40e91a69d4e688d4e35563",
+          "include/pso/ui/ItemListRow.h": "442f15337232463e6c85f146c40085098198b8f4",
+          "include/pso/unk/TUnk_804CF998.h": "0644b5e92517a1cc24a15d3c4ca4424a9a8d7d41",
+          "include/pso/ui/window/TWindowSubStatusDisp_80257BC0.h": "2fbe8f7549e516e67ccf58aa8035ad88cc6b1128",
+          "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp": "8934a2cb33337b69161693d4d17ac6a4d1483afe"
+        },
+        "proofs": [
+          {
+            "group": "status-source",
+            "evidence": "The complete authored status-row changes survive across the real row, rectangle and small-data owners. The actual rectangle constructors retain the original position/size data and vtable. Item/status initializers use the original icon fields and label/suffix ownership flags. Text reset, replacement and destruction keep the original allocation and release paths. The existing row drawing and icon-coordinate providers preserve the original geometry, clip, texture, label and suffix behavior and constants.",
+            "details": {
+              "historical_merge_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "rectangle_constructors": [
+                "0x802580B0",
+                "0x80258100"
+              ],
+              "rectangle_vtable": "0x804CF998, 0x18 bytes",
+              "row_layout": "+0x00 flags, +0x08 x, +0x18 item, +0x1C/+0x1D icons, +0x20 label, +0x24 suffix, +0x28\u20130x34 styles; full 0x38",
+              "row_owner_text": [
+                "0x80258194 reset",
+                "0x8025823C suffix stat line",
+                "0x80259268 replace owned string",
+                "0x8025930C width",
+                "0x80259408 coordinate lookup",
+                "0x8025941C icon",
+                "0x80259510 draw row",
+                "0x802598E4 native row constructor"
+              ],
+              "memory": [
+                "0x80147AA8 allocation",
+                "0x80147A80 release"
+              ],
+              "standalone_boundary": "Existing mem_alloc/mem_free spellings and native array operators resolve to the same original addresses in their respective validated variants.",
+              "constants": {
+                "0x805DCF18": "9.0f",
+                "0x805DCF1C": "0.00390625f",
+                "0x805DCF20": "-1.0f",
+                "0x805DCF24": "0.1495f",
+                "0x805DCF28": "100000.0f",
+                "0x805DCF2C": "0.5f"
+              },
+              "native_dispatch": "The broader legacy file was partitioned; live row and rectangle selection remain in the existing layout dispatcher."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5909,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_802671F0.cpp",
+        "historical_blob": "432a896f88d2f43feb6be3759b4279158e0a101d",
+        "owners": {
+          "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp": "76fd0a223383e8e041aeb89dce6eeb64e5d96c5f",
+          "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp": "99ff568f9a5835dc348ada52074587e0e188621e",
+          "include/pso/ui/ItemListRow.h": "442f15337232463e6c85f146c40085098198b8f4",
+          "include/pso/ui/window/TWindowSubStatusDisp_80257BC0.h": "2fbe8f7549e516e67ccf58aa8035ad88cc6b1128"
+        },
+        "proofs": [
+          {
+            "group": "status-source",
+            "evidence": "The list reset, row insertion, and status-entry initializer use the actual shared row, including horizontal position and flag writes. Existing capacity, cursor reset, icon-selection and index increment behavior survives. Other status/list routines from the original mixed unit remain scoped.",
+            "details": {
+              "reset": "TWindowMenuIconLine::reset_list resets each actual row using 0x80258194",
+              "row_insert": "push_status_disp_entry uses actual row receiver and retains capacity/increment",
+              "status_insert": "add_status_entry retains signed input flags and writes unsigned icon bytes to the actual row."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3199,
+        "historical_path": "include/pso/item/TItemEffPG_8034FF4C.h",
+        "historical_blob": "0383ae01421f4f246de67b6280fe1b9d48c54bd0",
+        "owners": {
+          "include/pso/effect/item/TItemEffPG.h": "9015686d63282974cc5abcc965d2056058095cef",
+          "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4"
+        },
+        "proofs": [
+          {
+            "group": "item-source",
+            "evidence": "Already retained at the real owner. The entire authored change was replacing manual raw constructor/destructor forward declarations with an include of the real TItemEffPG class. The forwarding header has no remaining compiled consumers, and current source exposes and calls the actual class constructor and destructor.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3518,
+        "historical_path": "src/pso/item/TItemEffPG_8034FE28.cpp",
+        "historical_blob": "2731acd7f79354b0751b83ad93eb4ef7852fa35d",
+        "owners": {
+          "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4",
+          "include/pso/effect/item/TItemEffPG.h": "9015686d63282974cc5abcc965d2056058095cef"
+        },
+        "proofs": [
+          {
+            "group": "item-source",
+            "evidence": "Already retained in the native consolidated owner. The added legacy fragment maps to its class-name object, constructor/destructor, signed TUnk_804F0C08 duration and native allocation, charge eligibility/deduction, game-join predicate, bounded radius step and hit check, teardown/fade, typed default parameter initializer and native regular factory. Actual field order and original branches remain exact; the old fragment filenames and integer overlays are unnecessary for those authored implementations.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4168,
+        "historical_path": "src/pso/player/TObjPlayer_8034EFDC.cpp",
+        "historical_blob": "84805b581d35f300daff786efe4ce8932c4462c8",
+        "owners": {
+          "src/pso/effect/item/TItemEffPG_8034EFDC.cpp": "9712c09b9b53c9c93937311836c6553775862045",
+          "src/pso/effect/item/TItemEffPG_8034F470.cpp": "7aa4bde9b05ab87bb162d0e0c46e8f20ec4e1bc0",
+          "include/pso/unk/TUnk_804CCB28.h": "8ac2ae5cac257f2d29a77618944407d2ae5c3e22",
+          "src/pso/technique/TTecRaFoie.cpp": "0cae51881acb5ba746d7b16b5431733f7de97b00"
+        },
+        "proofs": [
+          {
+            "group": "item-source",
+            "evidence": "Complete fork-point authored changes are verified across the actual EFDC/F470 owner split. Both original particle emissions are typed: the actual 0x30 animation joint sampler writes to Vec[2] for effect 0x1D0, and collision effect 0x1BF uses CollisionBody::center at +0x1C within the unchanged 0x2C stride and +0xA4/+0xA8 pointer/count guards. All 12 clamped motion calls keep their authored integer provider, amounts and limits. The weapon-specific descriptor still creates the real TUnk_804A2548 with 10 hits before the visual. This wave additionally gives the shared 0x802385EC visual initializer one correct argument/return ABI and passes the actual Vec origin at all five callers. All three item and weapon paths still use radius 10 and both enemy paths still use radius 40 and the original task parents.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4245,
+        "historical_path": "include/pso/item/TItemEffPG.h",
+        "historical_blob": "40d71e8491dc2a8a68a727e3784974b56f9bc5b4",
+        "owners": {
+          "include/pso/effect/item/TItemEffPG.h": "9015686d63282974cc5abcc965d2056058095cef",
+          "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4"
+        },
+        "proofs": [
+          {
+            "group": "item-source",
+            "evidence": "Native constructor with actual S_8035016C input and real +0xCC charge float are present. Runtime reads/spending and the separate +0xD0 visual reference are exact. The historical explicit two offsetof guards are not in the native class header, and this scoped pass leaves the existing unsigned visual storage open.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4318,
+        "historical_path": "src/pso/item/TItemEffPG.cpp",
+        "historical_blob": "b02b4efcf1b416c2bab899887002591a17280fff",
+        "owners": {
+          "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4",
+          "include/pso/effect/item/TItemEffPG.h": "9015686d63282974cc5abcc965d2056058095cef"
+        },
+        "proofs": [
+          {
+            "group": "item-source",
+            "evidence": "Already retained. The complete authored delta is represented by the shared actual texture-list binder, two model pointers at the existing Ninja object offsets, one-shot-independent persistent effect at the original source origin, and three linked exact float encodings. The obsolete manual TUnk_804F0C08 destruction and duration accessor are replaced by the native class methods, with the same original addresses and behavior.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2329,
+        "historical_path": "include/pso/ui/UISprite.h",
+        "historical_blob": "1470a33a1759d0062c728b57af517bd80a496ec3",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrEffWall.h": "eee1eeb4274ad6d262901ecf4c52049fec918f2d",
+          "src/pso/ui/UISprite.cpp": "56b4da7ffa022e54e8f84817d85410540b1e42ac"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The typed sprite declaration already exists on TChCrEffWall, and the definition owns the original 0x802910C8 body.",
+            "details": {
+              "original_blob": "5301659fc998ebd072aa50d1953275c12dae7038",
+              "historical_source_delta": [
+                "+void draw_default_sprite__12TChCrEffWallFv(s32 sprite_id, const vec2f* position, f32 depth);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3956,
+        "historical_path": "src/pso/unk/text_801BD0C0.cpp",
+        "historical_blob": "0810d0c84bb277e121ecbf9a629cb8f9292010ea",
+        "owners": {
+          "src/pso/player/TObjPlayer_801BCFBC.cpp": "5ac13834c21aa5a74429db8ce3c55e2ac3df430e",
+          "include/pso/object/base/TObjMotion.h": "3c1414d807386974c2808221904ca72a5cf03591"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The original virtual result already feeds the typed action table at the same call site.",
+            "details": {
+              "original_blob": "d017e5acd806e3ab360bdcc4a32238d3cc90e95b",
+              "historical_source_delta": [
+                "-    ((TObjMotion *)self)->set_field_d8(self->ctrl->m5(((TObjPlayer *)self)->has_valid_handle(), get_handle_value__10TObjPlayerFv(self)));",
+                "+    ((TObjMotion *)self)->set_action_table((TObjMotionAction *)(self->ctrl->m5(((TObjPlayer *)self)->has_valid_handle(), get_handle_value__10TObjPlayerFv(self))));"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4009,
+        "historical_path": "include/pso/player/TObjPlayer_801AF2F0.h",
+        "historical_blob": "9a63a3b6546c7a0e241a4bda7d480c7799755f8e",
+        "owners": {
+          "include/pso/player/TObjPlayer_801AF2F0.h": "dd7776bc7b419964767b566906a0b2c0489115b1",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp": "be91d72ebb8c0b9e2b89ade5dde3c0138a27e01f"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The existing shared hold declaration and definition agree on radius ordering, mutable position, and the two full-width integers.",
+            "details": {
+              "original_blob": "8c7a99515b27a23e1edfcd09e66b00e39a02170f",
+              "historical_source_delta": [
+                "-void send_6x2C_impose_hold(TObjPlayer *player, const Vec *pos, s16 frames, s16 arg3, f32 radius);",
+                "+void send_6x2C_impose_hold(f32 radius, TObjPlayer *player, Vec *pos, s32 frames, s32 arg3);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4075,
+        "historical_path": "src/pso/item/TItemTimerEvent.cpp",
+        "historical_blob": "b35e386ee338d56e67b4adf212e1425e715e9933",
+        "owners": {
+          "src/pso/item/TItemTimerEvent.cpp": "f9a5eaab9bcac507220b62f392dd41fab5e39cee",
+          "include/pso/player/TObjPlayer.h": "1c228e20e8c921c0ce5231882c2f1227693bb725"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The timer event already includes the real player provider and queries the current area on the player receiver.",
+            "details": {
+              "original_blob": "ba4b64ca0c05809f787acd05a2666bb282b7046b",
+              "historical_source_delta": [
+                "+#include \"pso/player/TObjPlayer.h\"",
+                "-    ((TBoss3Volopt *)(this->m_28))->get_field_3e0();",
+                "+    ((TObjPlayer *)this->m_28)->get_current_area();"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4081,
+        "historical_path": "src/pso/item/TUnk_8049FBC0.cpp",
+        "historical_blob": "cb428f01401772a44bb7720c87f799332da0dd6d",
+        "owners": {
+          "include/pso/unk/text_80104FCC.h": "2ea7ac58fb897a5a65a900bb25d1579263ccec8a",
+          "src/pso/item/TUnk_8049FBC0.cpp": "cecf19b199ffad333075891066cc3289a4c98770"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The shared equip-permission declaration has the signed halfword argument and replaces the historical local declaration at both call sites.",
+            "details": {
+              "original_blob": "fd6397076d20a38c0a806c57ff51a9d4af60f3e0",
+              "historical_source_delta": [
+                "-s32 check_class_equip_permission(void *, int);",
+                "+s32 check_class_equip_permission(void *, s16);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4122,
+        "historical_path": "src/pso/player/TObjPlayer_801BC140.cpp",
+        "historical_blob": "a3aec01fb589c257e71aaab057cb99fe38f65b16",
+        "owners": {
+          "src/pso/player/TObjPlayer_801BC140.cpp": "ac3c7f3fc1fc9db2a307cbb760fdbe67faaf3ff7",
+          "include/pso/player/TObjPlayer.h": "1c228e20e8c921c0ce5231882c2f1227693bb725"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The original previous-position call already uses the inherited native actor method.",
+            "details": {
+              "original_blob": "51879114fec5331d34126e030cfda8d37f9117f4",
+              "historical_source_delta": [
+                "-s32 save_position__14TBoss4DarkFalzFv(void *);",
+                "-    save_position__14TBoss4DarkFalzFv(this);",
+                "+    save_previous_position();"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4134,
+        "historical_path": "src/pso/player/TObjPlayer_801C00C4.cpp",
+        "historical_blob": "60417e9710f6fbe41816e1beb8710aaefbf35b85",
+        "owners": {
+          "src/pso/player/TObjPlayer_801C00C4.cpp": "a21b2b66a05bec10e70941142d1ac5cfce7b2cc3"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The native TechniqueCastState method writes the same signed halfword at +4 and preserves the 0x801C011C body.",
+            "details": {
+              "original_blob": "72e0da9acdcc347898e66c8b685c835a051991f1",
+              "historical_source_delta": [
+                "-void TObjPlayer::set_technique_id(s16 v) { this->m_flags = v; }",
+                "+void TechniqueCastState::set_technique(s16 v) { *(s16 *)((char *)this + 4) = v; }"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4143,
+        "historical_path": "src/pso/player/TObjPlayer_801D95B8.cpp",
+        "historical_blob": "27fcdb8d525774f14644fe8a6c8f034147f1da00",
+        "owners": {
+          "src/pso/player/TObjPlayer_801D95B8.cpp": "3fadc683b4ec25c79fcffb6193946a4fd36f9cfd"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The current native technique state owns the slot getter and the check_technique_level call uses the same receiver.",
+            "details": {
+              "original_blob": "b77dd0e1f03715f2f386cc2ed160ac3d865da9f7",
+              "historical_source_delta": [
+                "-u8 TObjPlayer::get_valid_technique() {",
+                "+u8 TechniqueCastState::get_valid_technique() {",
+                "-    if (TObjPlayer::check_technique_level((s32)(((Rec_801D96CC *)this)), (s32)(((Rec_801D96CC *)this)->b), (u8)a) == 0) {",
+                "+    if (((TechniqueCastState *)this)->check_technique_level((s32)(((Rec_801D96CC *)this)->b), (u8)a) == 0) {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4152,
+        "historical_path": "src/pso/player/TObjPlayer_8029EE64.cpp",
+        "historical_blob": "1cc1bed5acca125dd99f2f03f8c3eddf6cd28bce",
+        "owners": {
+          "src/pso/render/reflection.cpp": "2bb7fc4a0dbf3690a1cbdb1ba820a1cfc48f69d7"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The exact reflection scale constant already has a source definition and a local linked eight-byte range at 0x80465E18.",
+            "details": {
+              "original_blob": "018cf8ccc5eea19e8e2c12ef165cd97f46a02ae5",
+              "historical_source_delta": [
+                "-extern const f64 lbl_80465E18;",
+                "+static const f64 lbl_80465E18 = 0.0054931640625;"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4505,
+        "historical_path": "src/pso/unk/text_801D9870.cpp",
+        "historical_blob": "94d1e7ea64f121b9befeb6a9840b408c17a2285a",
+        "owners": {
+          "src/pso/unk/text_801D9870.cpp": "f18af5e8c39001ec4c9d6b6a8666cf8bc2d7fe6b"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The previous fake player receiver is already a real TechniqueCastState call with the typed level.",
+            "details": {
+              "original_blob": "5963b355b462434f6d047edd2ba8e43bd9aab68f",
+              "historical_source_delta": [
+                "-    if (TObjPlayer::check_technique_level((s32)arg0, (s32)arg1, (u8)level) == 0) {",
+                "+    if (((TechniqueCastState *)arg0)->check_technique_level((s32)arg1, (u8)level) == 0) {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6042,
+        "historical_path": "src/pso/unk/text_80275360.cpp",
+        "historical_blob": "2469895a5ea2ba61cef3149704dbe73e5177f2a3",
+        "owners": {
+          "src/pso/unk/text_80275360.cpp": "2a7c7dd800598d5047424699ce7c894d8405052d",
+          "include/pso/ui/window/TWindowSubComCardList.h": "0804963939d56511a1decafe2d694c8c4a766763"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The card list now uses the existing PageIndicator field and invokes its native get_type directly.",
+            "details": {
+              "original_blob": "72d126411ecaf909f9db9825ab2e22c632169083",
+              "historical_source_delta": [
+                "-    index = ((TWindowSubStatusDisp *)list->m_8c)->get_type();",
+                "+    index = ((PageIndicator *)list->m_8c)->get_type();"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6047,
+        "historical_path": "src/pso/unk/text_802497A8.cpp",
+        "historical_blob": "48ecdc0fce861cf08f9a1b099f351c88962f3122",
+        "owners": {
+          "src/pso/ui/window/TWindowComCard.cpp": "0268944e0978fe3aed1fb735df549af996e7b87d",
+          "include/pso/ui/window/TextEntryMeasurement.h": "10b56d3ff2c540f0342ae7bb4bfa18760c45a818"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The measurement provider is shared and the card list calls it at the original site with the actual text entry.",
+            "details": {
+              "original_blob": "b742d7d2200fe87c763ac1c8afcf90a1d91ba5a9",
+              "historical_source_delta": [
+                "+#include \"pso/misc/TextEntryMeasurement.h\"",
+                "-void refresh_status_display__9TWindowDDFv(void *);",
+                "-            refresh_status_display__9TWindowDDFv(t4);",
+                "+            measure_text_entry(t4);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 707,
+        "historical_path": "src/pso/unk/text_8035BFF8.cpp",
+        "historical_blob": "ce92ba92fe3cacd69331671cdea2d36c9db6b76c",
+        "owners": {
+          "src/pso/boss/goldragon/TObjBoss8PillerCtrl.cpp": "075f37d1f1efb85e06315875c47c3a0c25068374",
+          "config/GPOE8P/psov3/symbols.txt": "109c189f2d316a048351dae2652dfa54f0c3c0f0"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The pillar radius is already a source literal at its native comparison, with the same exact local constant at 0x805E0168.",
+            "details": {
+              "original_blob": "f5ed7039722189140e5a7ef0b74c03624ba3c13b",
+              "historical_source_delta": [
+                "-extern const f32 lbl_805E0168;",
+                "+static const f32 lbl_805E0168 = 373.0f;"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1197,
+        "historical_path": "include/pso/unk/text_803DCDFC.h",
+        "historical_blob": "4ee667a07d47f33fa714ee94022051e6d93178ec",
+        "owners": {
+          "src/pso/unk/text_803DCDFC.cpp": "1e9fd8b100fcd7d65bdb5949254d7c69c546b801",
+          "include/pso/unk/text_803DCDFC.h": "c2d201f9cd105db422ca96f199dbeca0c5bac7e7"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The historical edit changes only the declaration spelling. The current definition and shared declaration preserve the upstream symbol at 0x803DCDFC.",
+            "details": {
+              "original_blob": "c2d201f9cd105db422ca96f199dbeca0c5bac7e7",
+              "historical_source_delta": [
+                "-void func_803DCDFC__Fv(void);",
+                "+void func_803DCDFC(void);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3102,
+        "historical_path": "src/pso/unk/text_8013F810.cpp",
+        "historical_blob": "ca8233c1a140fa2d0076a19908676c5460c8fb70",
+        "owners": {
+          "src/pso/unk/text_8013F810.cpp": "509111632f7ae09cd5f323a4b83ac9736ba642ab",
+          "config/GPOE8P/psov3/symbols.txt": "109c189f2d316a048351dae2652dfa54f0c3c0f0"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The exact historical compression log format is already linked from a literal in its owning function at the same original data address.",
+            "details": {
+              "original_blob": "c97e1ffda5ec1c9e4c775988efc8232211480f1b",
+              "historical_source_delta": [
+                "-extern char lbl_8043F168[];",
+                "+extern const char lbl_8043F168[] = \"compless size  %d %d time %d\";"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4908,
+        "historical_path": "src/pso/player/TObjPlayer_800D7690.cpp",
+        "historical_blob": "525d2736689818c3a8695cf0d30635e1f197d414",
+        "owners": {
+          "src/pso/effect/TUnk_80494968.cpp": "fe38ddcf21c165e97c8a2484ce157b827d1d0b6d",
+          "include/pso/system/TrailStrip.h": "b42df0fd7236864eca0d2e4b97d82fbae6e37c5e"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The shared trail-strip interface already takes the actual vertex storage and segment count across the original call.",
+            "details": {
+              "original_blob": "72889e357d84e929560450d49ced143fa99cbe89",
+              "historical_source_delta": [
+                "+#include \"pso/system/TrailStrip.h\"",
+                "-        ((TObjPlayer *)(arg0 + 0x20))->draw_trail_strip((void *)(*(s32 *)((s8 *)arg0 + 0x1C) * 2), 1);",
+                "+        draw_trail_strip(arg0 + 0x20, *(s32 *)((s8 *)arg0 + 0x1C) * 2, 1);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5079,
+        "historical_path": "include/pso/unk/text_803E2D70.h",
+        "historical_blob": "0da04ed98e3276c832f2907353a293eef9f255a1",
+        "owners": {
+          "src/pso/unk/text_803E2F28.cpp": "3cfe944dd1cdf53daeb5b37580192e1d1a86b012"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The material dispatch already accepts the full-width type. The equivalent cached-vertex helper keeps upstream linkage.",
+            "details": {
+              "original_blob": "4c1aa6abbfcda4fd17bed388871885ff1ccb4627",
+              "historical_source_delta": [
+                "-s32 draw_chunk_vertices_cached__10TObjPlayerFPv(void *arg);",
+                "+s32 draw_chunk_vertices_cached(void *arg);",
+                "-void submit_chunk_material_color(u8 type, s16 *data);",
+                "+void submit_chunk_material_color(s32 type, s16 *data);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5223,
+        "historical_path": "include/pso/system/GslArchive.h",
+        "historical_blob": "6116b6eba2f5430cf9311d33147ad46d36084310",
+        "owners": {
+          "include/pso/system/GslArchive.h": "31c0fcbbd9f0cf420ced0fddb780c76ed902bfe7"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The shared GSL entry declaration already takes the real filename and the original second word.",
+            "details": {
+              "original_blob": "dc67b527c964098aeb1c12a8b425d4e564da6e3c",
+              "historical_source_delta": [
+                "-GslArchiveEntry *find_gsl_entry(void *name);",
+                "+GslArchiveEntry *find_gsl_entry(const void *name, s32 mode);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5228,
+        "historical_path": "src/pso/system/PadRumble.cpp",
+        "historical_blob": "93c52af9792bab298dc2160ac0d46d9a10484927",
+        "owners": {
+          "src/pso/system/PadRumble.cpp": "a8b059d670e0d00051c4c9afa02aa0837a03b12d",
+          "include/pso/math/VectorNormalize.h": "541a4c2efc41f2d1ce89429a53bf7df236423d54"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The rumble calculation already uses the shared vector length interface with the actual offset vector.",
+            "details": {
+              "original_blob": "da3407a822e750424722d1145a08b8bdeeeb985f",
+              "historical_source_delta": [
+                "+#include \"pso/math/VectorNormalize.h\"",
+                "-                    s16 felt = effect->strength - 0.1f * ((TObjBoss2Tunnel *)&offset)->update_scale();",
+                "+                    s16 felt = effect->strength - 0.1f * normalize_vector_checked((Vec *)&offset);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5306,
+        "historical_path": "src/pso/misc/TLobby_8028EA28.cpp",
+        "historical_blob": "fe4f217ed961c1f8d95c1407cb592eeef35f2df5",
+        "owners": {
+          "src/pso/unk/TLobby_8028EA28.cpp": "28ec826b3f6ecbc1f24fb614ce1579b22e177267",
+          "include/pso/ui/charcreate/TObjCMMainMenu_8028EA88.h": "d8747ede0c8491d43edead482711e6e6461e82d3"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "Creation resource teardown uses the real BmlResource pointer and destructor, then clears the same storage.",
+            "details": {
+              "original_blob": "17fc544a43a5643c2d2ac45fd69099a112928906",
+              "historical_source_delta": [
+                "+#include \"pso/system/BmlResourceClass.h\"",
+                "-int TLobby__sub_8001FE7C(void*, void*);",
+                "-void TLobby::free_all_resources() { fn_80291138(); TLobby::stop_audio_streams(); TLobby__sub_8001FE7C((void*)creation_menu_main_obj, (void*)1); creation_menu_main_obj = 0; TAdSinglePlyChrSelectGC::free_global(); TAdSinglePlyChrSelectGC::free_singleton_805D65C0(); end_creation_view(); reset__11TCameraCtrlFv(); TCameraCtrl::reset_default_view(); TWindowCtrlMain::free_all_windows(); TKeyBoardControl__sub_80131F5C(); TLobby__sub_800FC3CC(); TLobby::free_keyboard_soft_resources(); TLobby::refresh_render_state(); }",
+                "+void TLobby::free_all_resources() { fn_80291138(); TLobby::stop_audio_streams(); delete (BmlResource *)((void*)creation_menu_main_obj); creation_menu_main_obj = 0; TAdSinglePlyChrSelectGC::free_global(); TAdSinglePlyChrSelectGC::free_singleton_805D65C0(); end_creation_view(); reset__11TCameraCtrlFv(); TCameraCtrl::reset_default_view(); TWindowCtrlMain::free_all_windows(); TKeyBoardControl__sub_80131F5C(); TLobby__sub_800FC3CC(); TLobby::free_keyboard_soft_resources(); TLobby::refresh_render_state(); }"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5312,
+        "historical_path": "src/pso/unk/text_8035B750.cpp",
+        "historical_blob": "2a1a1ca2b82531a1b63f186c9d19d837678c0fdc",
+        "owners": {
+          "src/pso/unk/text_8035B750.cpp": "250de02e3f7007efa729c92c5c8a55defb251d25",
+          "include/pso/system/BmlResource.h": "9fd646fcb925b1221c64d9daab787b281434bedc"
+        },
+        "proofs": [
+          {
+            "group": "existing-equivalent-owners",
+            "evidence": "The NPC archive release already dispatches through the real BmlResource destructor and resets the original pointer.",
+            "details": {
+              "original_blob": "d829a76f3f7e8869833598feff29f07d0dbf843e",
+              "historical_source_delta": [
+                "+#include \"pso/system/BmlResourceClass.h\"",
+                "-void TLobby__sub_8001FE7C(void*, int);",
+                "-        TLobby__sub_8001FE7C((void*)lbl_805D6F50, 1);",
+                "+        delete (BmlResource *)((void*)lbl_805D6F50);"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "closed_rows": [
+      490,
+      707,
+      785,
+      1056,
+      1197,
+      1203,
+      2305,
+      2329,
+      2354,
+      2424,
+      2524,
+      2555,
+      2604,
+      2637,
+      2651,
+      2741,
+      3102,
+      3199,
+      3518,
+      3956,
+      4009,
+      4075,
+      4081,
+      4122,
+      4134,
+      4143,
+      4151,
+      4152,
+      4168,
+      4318,
+      4505,
+      4908,
+      5079,
+      5223,
+      5228,
+      5306,
+      5312,
+      5699,
+      6042,
+      6047,
+      6507
+    ],
+    "remaining": {
+      "Owner comparison required": 211,
+      "Some anchored text changes found": 643
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "creation-source": {
+      "head": "fd40b1a0785aa678c57f994b7552d747d15653b3",
+      "report_sha256": "d67a67d42569e8084b2eef8ffed847a78013b5221a4884fa67bcb158753abbaa",
+      "strict_sha256": "3cee8181b0849bde36cff22eeeb72746e59e53af65269cc4a9319bdb3b96aecd"
+    },
+    "epsilon-source": {
+      "head": "4f5cf71d3b1bb0cd57f15635ba8e69c57e717ecb",
+      "report_sha256": "7d2706090cec23217f7f92d90fc1d0fcc4413875497bbecf256b73a438789d22",
+      "strict_sha256": "fcafa68c92eb31fd92f612e8273ad15fb647dc2aed749c734a7bc64d1fc46d37"
+    },
+    "status-source": {
+      "head": "25eb0d10ee8ce8c5394f4ee9329d49f50a0fbcb8",
+      "report_sha256": "d33b26f43657fc1c30e439b8851e407b9f668099313ebf6600da9dd4d676f891",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "item-source": {
+      "head": "434f78977bbdbe7337a1398b09ccf9c0e6a8a7d5",
+      "report_sha256": "d33b26f43657fc1c30e439b8851e407b9f668099313ebf6600da9dd4d676f891",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "3e6dde004bdcce24e5d280388093e61df6c0172811e4150b84fd1a2bd6e9cd18",
+      "strict_sha256": "f9af7ad0ac00ca71ff2a916c24508544ba771c2564beb20a916980deeff8c78b"
+    },
+    "direct-union": {
+      "report_sha256": "123ccc8c16b64208fda46f405832b37e5e3892e3209615907c4a753bdda9fbde",
+      "strict_sha256": "164ba86600a8a3b528ba2b1408cd007e6ac57d41959accffa68a0b27710fa268"
+    },
+    "working-final": {
+      "report_sha256": "3e6dde004bdcce24e5d280388093e61df6c0172811e4150b84fd1a2bd6e9cd18",
+      "strict_sha256": "0b7c4698404879839c2115464402407d56ba440f2e3a8aad2cf4d86c0e922992"
+    }
+  },
+  "creation_interface": {
+    "source": "fd40b1a0785aa678c57f994b7552d747d15653b3",
+    "menu_callbacks": [
+      {
+        "module": "psov3",
+        "address": "0x8029737C",
+        "before": "confirm_selection__14TObjCMMainMenuFPv",
+        "after": "confirm_selection__14TObjCMMainMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8029742C",
+        "before": "open_name_menu__14TObjCMMainMenuFPv",
+        "after": "open_name_menu__14TObjCMMainMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8029747C",
+        "before": "open_proportion_menu__14TObjCMMainMenuFPv",
+        "after": "open_proportion_menu__14TObjCMMainMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802974CC",
+        "before": "open_auto_mk_menu__14TObjCMMainMenuFPv",
+        "after": "open_auto_mk_menu__14TObjCMMainMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8029751C",
+        "before": "open_hair_menu__14TObjCMMainMenuFPv",
+        "after": "open_hair_menu__14TObjCMMainMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8029756C",
+        "before": "open_assign_menu__14TObjCMMainMenuFPv",
+        "after": "open_assign_menu__14TObjCMMainMenuFv"
+      }
+    ],
+    "pure_name_changes": [],
+    "action_table": {
+      "address": "0x804DB9C8",
+      "size": "0xA0",
+      "row_size": "0x10",
+      "member_pointer_offset": 4
+    },
+    "word_copy_address": "0x801E3F54",
+    "physical_pad_provider_address": "0x80298F08",
+    "physical_pad_bank": "0x8050E3B8",
+    "archive_recovery": {
+      "allocation": "0x8028EA88",
+      "motion_list_offset": "0x430",
+      "standalone_allocator_size": "0x440"
+    }
+  }
+}
