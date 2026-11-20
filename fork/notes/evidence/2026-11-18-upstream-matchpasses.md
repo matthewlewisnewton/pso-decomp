@@ -1021,6 +1021,19 @@ The combined review queue at `a023237dca` carries 148 changed paths for this bat
 
 The queue now spans 2,470 files across 38 groups. A path comparison leaves 270 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. The keyboard and chat review uses the existing native equipment-window prerequisite. The source audit closes 5 historical comparisons, leaving 724 open. [Validation evidence](2026-11-20-input-render-and-stage-packaging.json)
 
+## Persistent sound, technique effects, strip rendering and title scenes
+
+The combined review queue at `cd5eb6b631` carries 147 changed paths for this batch. The source already reproduces retail at `a0ab810dd1`. The queue reproduces retail with 2,451 exact linked units and zero lost matched or linked coverage.
+
+| Review | Local head | Review base | Changed files |
+| --- | --- | --- | ---: |
+| Model texture strips, UV scrolling and trail rendering | `ede02613cc` | `49b48c32e6` | 50 |
+| Persistent positional sound requests | `bbd9564425` | `49b48c32e6` | 86 |
+| Native title and attract scenes | `86686aa676` | `f43e9408f5` | 14 |
+| Typed technique effects and shared band pitch | `1b0d09f9e0` | `b01ddac5d2` | 22 |
+
+The queue now spans 2,505 files across 41 groups. A path comparison leaves 236 canonical changed paths outside the queue diff. Those paths still need review assignment or evidence of equivalent source in another owner. Technique effects and title scenes use the listed prerequisite branches. The source audit closes 2 historical comparisons, leaving 722 open. [Validation evidence](2026-11-20-technique-sound-strip-and-frontend-packaging.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

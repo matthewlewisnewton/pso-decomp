@@ -1,0 +1,1099 @@
+{
+  "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+  "landing": "7434799df2bc552ed4923448b710147193dc7370",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "cd5eb6b63150520e7ad45b275a41ba650f9f561d",
+    "tree": "56b2395de1059e11b21dd6e3fbce3b4fd24d52cb",
+    "previous": "a023237dca86285ba13f7569a1ed3ea2202c7888",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+      "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "1b0d09f9e03c80521d1ef00e2bea567966edf697",
+      "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "93e344aaab7852228430b396e50d8175b0b69eee",
+      "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+      "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "9448059d81db540704b609616e96771e90827654",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "1e7920fdc675df08303dca4499f49020df69774d",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128",
+      "5caa76608e8ba418a516e656b24770f0a0884003",
+      "91eed3bfdcca772ee0ae616c5f972a6aefe2ba11",
+      "c5493f319d431c46557faad569d5c3b443a7c273",
+      "f3d6a88dd80ce304cb986e494d70ef63b386c985",
+      "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c",
+      "ede02613cc11ca81807ff370d7fad931c614a236",
+      "bbd95644256571c98ca6fb5d66e77d39013bbab5",
+      "86686aa676c3b7e0ad5f90d157c69cab1567af97"
+    ],
+    "files": 2505,
+    "incremental_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/derolle/TObjBoss2Dust.h",
+      "include/pso/boss/derolle/TObjBoss2DustCtrl.h",
+      "include/pso/boss/olgaflow/Boss6Type2Data.h",
+      "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "include/pso/effect/item/TItemEffectWeapon.h",
+      "include/pso/object/ambient/TObjLight_803DF220.h",
+      "include/pso/object/trap/TOTrapAncient01_80226534.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/render/ChunkTextureStripCollector.h",
+      "include/pso/system/PersistentSound.h",
+      "include/pso/system/SoundEffect.h",
+      "include/pso/system/StripBufferPair.h",
+      "include/pso/system/TrailStrip.h",
+      "include/pso/technique/TTecGiBarta.h",
+      "include/pso/technique/TTecZonde.h",
+      "include/pso/technique/TTecZondeEff.h",
+      "include/pso/technique/TechniqueBandSound.h",
+      "include/pso/technique/TechniqueParams.h",
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.h",
+      "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h",
+      "include/pso/ui/frontend/TitleSceneTables.h",
+      "include/pso/unk/ModelNodeTables.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_80335E08.h",
+      "include/pso/unk/TLobby_80335E7C.h",
+      "include/pso/unk/TLobby_803360CC.h",
+      "include/pso/unk/TUnk_804EEF64.h",
+      "src/pso/boss/TUnk_80484A94.cpp",
+      "src/pso/boss/TUnk_80484AFC.cpp",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type2_8004A978.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+      "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/effect/TUnk_80494968.cpp",
+      "src/pso/effect/item/TItemEffPG.cpp",
+      "src/pso/effect/item/TItemEffectWeapon.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonMylla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/bringer/BringerEffects.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/CanadinEffects.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/object/TObjLuker.cpp",
+      "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/ambient/TObjLight_803DF220.cpp",
+      "src/pso/object/cave/TOHangceilingCave01.cpp",
+      "src/pso/object/city/CitySeason.cpp",
+      "src/pso/object/city/CityTraffic.cpp",
+      "src/pso/object/collision/TObjFogCollision.cpp",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+      "src/pso/object/door/TODoorBase.cpp",
+      "src/pso/object/door/TODoorCave03.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/door/TObjDoor_8018E358.cpp",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp",
+      "src/pso/object/fence/TOFenceBase.cpp",
+      "src/pso/object/ruins/TOMonumentAncient02.cpp",
+      "src/pso/object/switch/TOSensor.cpp",
+      "src/pso/object/switch/TOSwitchTimer.cpp",
+      "src/pso/object/trap/TOTrapAncient01.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp",
+      "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/player/TObjPlayer_80357B2C.cpp",
+      "src/pso/render/ChunkTextureStripCollector.cpp",
+      "src/pso/technique/TTecBarta.cpp",
+      "src/pso/technique/TTecCtrl.cpp",
+      "src/pso/technique/TTecGiBarta.cpp",
+      "src/pso/technique/TTecGiZonde.cpp",
+      "src/pso/technique/TTecLuker.cpp",
+      "src/pso/technique/TTecMegid.cpp",
+      "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+      "src/pso/technique/TTecZonde.cpp",
+      "src/pso/technique/TTecZondeEff.cpp",
+      "src/pso/ui/TUnk_804EE458.cpp",
+      "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+      "src/pso/ui/hud/TLoadingCur.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp",
+      "src/pso/unk/TLobby_8003A95C.cpp",
+      "src/pso/unk/TLobby_800F5CF0.cpp",
+      "src/pso/unk/TLobby_80226070.cpp",
+      "src/pso/unk/TLobby_80335E7C.cpp",
+      "src/pso/unk/text_8004AA04.cpp",
+      "src/pso/unk/text_800D8830.cpp",
+      "src/pso/unk/text_800F5BC0.cpp",
+      "src/pso/unk/text_80184C2C.cpp",
+      "src/pso/unk/text_80357058.cpp",
+      "src/pso/weapon/TUnk_804A1098.cpp"
+    ],
+    "canonical_paths_absent_from_diff": [
+      "include/pso/boss/EffectGeometryParameters.h",
+      "include/pso/boss/barbaray/Boss7TentacleBanks.h",
+      "include/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.h",
+      "include/pso/boss/barbaray/TBoss7PhotonPad.h",
+      "include/pso/boss/barbaray/TObjBoss7RaftSplash.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoTexture.h",
+      "include/pso/boss/derolle/TBoss2Fin.h",
+      "include/pso/boss/derolle/TObjBoss2RaftSplash.h",
+      "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+      "include/pso/boss/dragon/TBoss1DragonEffBreath.h",
+      "include/pso/boss/dragon/TBoss1DragonEffBullet.h",
+      "include/pso/boss/galgryphon/TObjBoss5Ctrl.h",
+      "include/pso/boss/goldragon/TBoss8Dragon_80067034.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h",
+      "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+      "include/pso/boss/olgaflow/TBoss6SwordShot.h",
+      "include/pso/boss/olgaflow/TBoss6Tube.h",
+      "include/pso/boss/volopt/TBoss3VoloptHiraisin.h",
+      "include/pso/boss/volopt/TBoss3Volopt_800D8ACC.h",
+      "include/pso/camera/CameraHelpers.h",
+      "include/pso/camera/CameraPlayback.h",
+      "include/pso/camera/TCameraCtrl_8006C254.h",
+      "include/pso/camera/TObjLiveCameraCtrl.h",
+      "include/pso/effect/GroundEffects.h",
+      "include/pso/effect/TEF_LensFlare.h",
+      "include/pso/effect/TEffClitical.h",
+      "include/pso/effect/TEffStarLight2D.h",
+      "include/pso/effect/TEffStarLightChild.h",
+      "include/pso/effect/item/TItemEffBringer.h",
+      "include/pso/effect/item/TItemEffEquip.h",
+      "include/pso/effect/item/TItemEffEquip_801088D0.h",
+      "include/pso/effect/item/TItemEffEquip_801088F8.h",
+      "include/pso/effect/particle/ParticleFactory.h",
+      "include/pso/effect/photon/TDPBShower.h",
+      "include/pso/enemy/PlayerTargetCandidate.h",
+      "include/pso/enemy/TNeedleShoot.h",
+      "include/pso/enemy/TUnk_80493450.h",
+      "include/pso/enemy/TUnk_804E14E8.h",
+      "include/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h",
+      "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+      "include/pso/enemy/dd/TObjEneDD_800BB804.h",
+      "include/pso/enemy/dellbiter/TObjEneDellBiter.h",
+      "include/pso/enemy/gee/TUnk_8049387C.h",
+      "include/pso/enemy/gyaranzo/TObjEneGyaranzo.h",
+      "include/pso/enemy/merilllia/TObjEneMerillLia.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DCEB8.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DFB74.h",
+      "include/pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h",
+      "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoaReal.h",
+      "include/pso/enemy/slime/SlimeAnimationState.h",
+      "include/pso/enemy/slime/TObjEneSlime.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h",
+      "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+      "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Bit.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h",
+      "include/pso/enemy/wolf/TObjEneBm5Wolf.h",
+      "include/pso/item/TItemMenuCtrl.h",
+      "include/pso/item/TItemMenuCtrl_80115AF0.h",
+      "include/pso/item/TItemSpecialEvent.h",
+      "include/pso/item/TUnk_8049F038.h",
+      "include/pso/item/drop/TItemDrop.h",
+      "include/pso/item/mag/TItemMagSub.h",
+      "include/pso/math/MatrixCopy.h",
+      "include/pso/math/ScratchVectorStorage.h",
+      "include/pso/math/ScratchVectors.h",
+      "include/pso/math/VectorNormalize.h",
+      "include/pso/network/protocol/GameplaySoundPacket.h",
+      "include/pso/network/protocol/ItemDropPacket.h",
+      "include/pso/npc/NpcModelEntry.h",
+      "include/pso/npc/TObjNpcKenkyuW.h",
+      "include/pso/object/TObjChallenge4PRetry.h",
+      "include/pso/object/TObjChallengeRetry.h",
+      "include/pso/object/TObjEZBoneRotBase.h",
+      "include/pso/object/TObjEZBoneRotPlayer.h",
+      "include/pso/object/TObjEZBoneRotPlayer_800FE834.h",
+      "include/pso/object/TObjEZRopeBase.h",
+      "include/pso/object/TObjHMS_EZRope_Player.h",
+      "include/pso/object/TObjHMS_EZRope_Player_800FEFCC.h",
+      "include/pso/object/TObjLiveMonitor.h",
+      "include/pso/object/city/TObjCity_Season_FireWork.h",
+      "include/pso/object/door/TODoorJungleMain.h",
+      "include/pso/player/PlayerCombatConstants.h",
+      "include/pso/player/TObjPlayer_8012105C.h",
+      "include/pso/player/demo_mode.h",
+      "include/pso/quest/QuestDownloadText.h",
+      "include/pso/quest/QuestDownloadWorkspace.h",
+      "include/pso/render/ColorCopy.h",
+      "include/pso/render/GinjaMaterial.h",
+      "include/pso/render/GinjaModel.h",
+      "include/pso/render/TriangleFan3D.h",
+      "include/pso/system/AngleTypes.h",
+      "include/pso/system/BmlResourceDescriptor.h",
+      "include/pso/system/BmlResourceLoad.h",
+      "include/pso/system/BmlResourceLoader.h",
+      "include/pso/system/CvFsDeviceCallbacks.h",
+      "include/pso/system/EnemyBmlResource.h",
+      "include/pso/system/GinjaParameterHandler.h",
+      "include/pso/system/NinjaTypes.h",
+      "include/pso/system/TLanguage.h",
+      "include/pso/system/TLanguage_801E4874.h",
+      "include/pso/system/save/CardSaveFile.h",
+      "include/pso/technique/TTecGiFoie.h",
+      "include/pso/ui/UISprite.h",
+      "include/pso/ui/charcreate/TChCrEffFade.h",
+      "include/pso/ui/charcreate/TChCrEffTagStr.h",
+      "include/pso/ui/charcreate/TObjCMIcon.h",
+      "include/pso/ui/charcreate/TObjCMIcon_80299488.h",
+      "include/pso/ui/city/TShopEquipmentGearSequence.h",
+      "include/pso/ui/city/TShopEquipmentSequence.h",
+      "include/pso/ui/city/TShopItemTecSequence.h",
+      "include/pso/ui/font/TFontSmallLobby.h",
+      "include/pso/ui/frontend/TAdChrMoveEffectGC.h",
+      "include/pso/ui/frontend/TAdEnterPasswordGC.h",
+      "include/pso/ui/frontend/TAdTimeSetGC.h",
+      "include/pso/ui/window/TWindowHelpItem_80255AB4.h",
+      "include/pso/ui/window/TWindowLockOn_80262C3C.h",
+      "include/pso/ui/window/TWindowSubStatusDisp_8024FBA8.h",
+      "include/pso/ui/window/WindowMenuFactory.h",
+      "include/pso/unk/GuildCardRecord.h",
+      "include/pso/unk/TLobby_80131794.h",
+      "include/pso/unk/TLobby_8013AD38.h",
+      "include/pso/unk/TUnk_80488B68.h",
+      "include/pso/unk/text_8007A7A0.h",
+      "include/pso/unk/text_8007A7B8.h",
+      "include/pso/unk/text_80087278.h",
+      "include/pso/unk/text_800D8830.h",
+      "include/pso/unk/text_8011A780.h",
+      "include/pso/unk/text_80120150.h",
+      "include/pso/unk/text_8024AB98.h",
+      "include/pso/unk/text_8026934C.h",
+      "include/pso/unk/text_80293D84.h",
+      "include/pso/weapon/TUnk_804A67D0.h",
+      "include/pso/weapon/TUnk_804E23F0.h",
+      "include/pso/weapon/WeaponCanopyScale.h",
+      "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+      "libs/dolphin/src/mtx/mtxvec.c",
+      "src/pso/boss/barbaray/TBoss7LaserPtcl_8035AE54.cpp",
+      "src/pso/boss/barbaray/TObjBoss7DustSdata2.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type2_800522CC.cpp",
+      "src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp",
+      "src/pso/boss/dragon/TBoss1DragonDemo.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffBreath.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+      "src/pso/camera/TCameraCtrl_8006C254.cpp",
+      "src/pso/camera/TCameraCtrl_803D6538.cpp",
+      "src/pso/effect/TDuelEffectCtrl.cpp",
+      "src/pso/effect/TEffGuard.cpp",
+      "src/pso/effect/TEffHit.cpp",
+      "src/pso/effect/enemy/TEneParticleCtrl.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2B.cpp",
+      "src/pso/effect/item/TItemEffBringer.cpp",
+      "src/pso/effect/item/TItemEffEquip_80108860.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088D0.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088F8.cpp",
+      "src/pso/effect/item/TItemEffFlame.cpp",
+      "src/pso/effect/particle/TParticleCtrl_801D6B3C.cpp",
+      "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp",
+      "src/pso/effect/photon/TPhotonConcentrate.cpp",
+      "src/pso/effect/photon/TPhotonLaser.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.cpp",
+      "src/pso/enemy/canadin/CanadinData.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiterEffects.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp",
+      "src/pso/enemy/morfos/MorfosData.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB00.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB74.cpp",
+      "src/pso/item/TItemEquipBase.cpp",
+      "src/pso/item/TItemMenuCtrl_80115A78.cpp",
+      "src/pso/item/TItemSpecialEvent.cpp",
+      "src/pso/item/armor/TItemProArmorParticle.cpp",
+      "src/pso/map/CsnResult.cpp",
+      "src/pso/math/MatrixTransforms.cpp",
+      "src/pso/math/MatrixVector.cpp",
+      "src/pso/npc/TObjNpcNgcBase_80358AE8.cpp",
+      "src/pso/object/TObjEZBoneRotBase.cpp",
+      "src/pso/object/ambient/TObjLight_8022F9E8.cpp",
+      "src/pso/object/ambient/TObjLight_80236D60.cpp",
+      "src/pso/object/base/TObjBase.cpp",
+      "src/pso/object/base/TObjMotion.cpp",
+      "src/pso/object/lobby/TObjParticleLobby.cpp",
+      "src/pso/object/switch/TOSwitchAttackSub.cpp",
+      "src/pso/object/switch/TOSwitchAttack_801778A4.cpp",
+      "src/pso/object/switch/TOSwitchItem.cpp",
+      "src/pso/player/PlayerSdata2Block1.cpp",
+      "src/pso/player/TObjPlayer_80011014Data.cpp",
+      "src/pso/player/TObjPlayer_80052374.cpp",
+      "src/pso/player/TObjPlayer_80055678.cpp",
+      "src/pso/player/TObjPlayer_80080750.cpp",
+      "src/pso/player/TObjPlayer_800DCC90.cpp",
+      "src/pso/player/TObjPlayer_80109344.cpp",
+      "src/pso/player/TObjPlayer_801BC140.cpp",
+      "src/pso/player/TObjPlayer_8035A630.cpp",
+      "src/pso/player/TObjPlayer_8035A740.cpp",
+      "src/pso/player/TObjPlayer_8035A778.cpp",
+      "src/pso/player/TObjPlayer_803E112C.cpp",
+      "src/pso/quest/StoryQuestProgress.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+      "src/pso/system/GbaDownloadRuntime.cpp",
+      "src/pso/system/PadRumble.cpp",
+      "src/pso/system/scene/TEndingPicStage.cpp",
+      "src/pso/technique/TTecGiZonde_8023CDC4.cpp",
+      "src/pso/technique/TTecKafun.cpp",
+      "src/pso/technique/TTecMegid_80235B24.cpp",
+      "src/pso/technique/TTecSlicer.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow_8026CE78.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp",
+      "src/pso/ui/window/TWindowSubEquipKind_80278300.cpp",
+      "src/pso/ui/window/WindowSubStatusDispSdata2.cpp",
+      "src/pso/unk/TLobby_80067410.cpp",
+      "src/pso/unk/TLobby_8007340C.cpp",
+      "src/pso/unk/TLobby_80131794.cpp",
+      "src/pso/unk/TLobby_8013AD38.cpp",
+      "src/pso/unk/TLobby_8030A834.cpp",
+      "src/pso/unk/TUnk_804CC948.cpp",
+      "src/pso/unk/TUnk_804CC990.cpp",
+      "src/pso/unk/TUnk_804CF998.cpp",
+      "src/pso/unk/TUnk_804EDAC0.cpp",
+      "src/pso/unk/TUnk_804F1C58_8035A628.cpp",
+      "src/pso/unk/text_80066F10.cpp",
+      "src/pso/unk/text_800DC420.cpp",
+      "src/pso/unk/text_801F3774.cpp",
+      "src/pso/unk/text_8024AB18.cpp",
+      "src/pso/unk/text_8026934C.cpp",
+      "src/pso/unk/text_8029A97C.cpp",
+      "src/pso/unk/text_802E10D8.cpp",
+      "src/pso/unk/text_8035AF18.cpp",
+      "src/pso/unk/text_803E2F28.cpp"
+    ],
+    "reviews": {
+      "standalone-model-strip-and-trail-rendering": {
+        "label": "strip",
+        "branch": "standalone-model-strip-and-trail-rendering",
+        "title": "Model texture strips, UV scrolling and trail rendering",
+        "previous": null,
+        "direct": "ede02613cc11ca81807ff370d7fad931c614a236",
+        "queue": "fc9bf439a51d59e00461c7476a7805d6227d5fc1",
+        "details": "Recovers the model strip collector, shared trail vertices, GX strip draws, and encounter and particle consumers.",
+        "standalone_files": 50,
+        "standalone_increment": 50,
+        "queue_increment": 42,
+        "shared_paths": [],
+        "validation": {
+          "report_sha256": "54708e878b7998bd15e0e6bae74e00d0643fa66f344f98a323963c39c93e5b54",
+          "strict_sha256": "76a9b049f5f6cb11e0cc7051c0aaf4c31e107cf677d9af14db41cabeaa01c27d",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 50
+      },
+      "standalone-persistent-sound-requests": {
+        "label": "sound",
+        "branch": "standalone-persistent-sound-requests",
+        "title": "Persistent positional sound requests",
+        "previous": null,
+        "direct": "bbd95644256571c98ca6fb5d66e77d39013bbab5",
+        "queue": "a846eff46207b792e94640218139d81040ffbbf1",
+        "details": "Types 195 persistent sound calls across 82 consumer units. Keeps the existing one-shot declaration and linked labels.",
+        "standalone_files": 86,
+        "standalone_increment": 86,
+        "queue_increment": 86,
+        "shared_paths": [
+          "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+          "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "src/pso/effect/photon/TPhotonGolla.cpp",
+          "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "src/pso/effect/photon/TPhotonPilla.cpp",
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+          "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+          "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+          "src/pso/object/city/CityTraffic.cpp"
+        ],
+        "validation": {
+          "report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+          "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 86
+      },
+      "standalone-native-title-scenes": {
+        "label": "title",
+        "branch": "standalone-native-title-scenes",
+        "title": "Native title and attract scenes",
+        "previous": null,
+        "direct": "86686aa676c3b7e0ad5f90d157c69cab1567af97",
+        "queue": "80dccfc2b31bae64c5960d4c930457093cf460d6",
+        "details": "Recovers title task states, demo transition and shared resource table. Uses the existing character-selection plate review as its base.",
+        "review_base": "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+        "standalone_files": 208,
+        "standalone_increment": 208,
+        "queue_increment": 13,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/unk/TLobby.h"
+        ],
+        "validation": {
+          "report_sha256": "7fa8effbf0f76a8132676c5db880d156177208ce9acfd4ff682381656f90c2a3",
+          "strict_sha256": "ef21992fce954c85d86649577910ff5a67c9c2d2df0adb8678849d76127fb5d5",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_files": 14
+      },
+      "standalone-technique-effects-and-sounds": {
+        "label": "technique",
+        "branch": "standalone-technique-effects-and-sounds",
+        "title": "Typed technique effects and shared band pitch",
+        "previous": "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+        "review_base": "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+        "direct": "1b0d09f9e03c80521d1ef00e2bea567966edf697",
+        "queue": "733dad758c4e395ab38baba3614d36187f410bf3",
+        "details": "Models the GiBarta factories as static typed entry points, uses TTecZondeEff as the bolt receiver, and shares the Barta, GiBarta and Megid band pitch schedule. Three labels change for the recovered C++ signatures.",
+        "standalone_files": 116,
+        "standalone_increment": 22,
+        "queue_increment": 22,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+          "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+          "src/pso/object/trap/TOTrapAncient02.cpp"
+        ],
+        "validation": {
+          "report_sha256": "8fa25bb430ec7af926551b88e9c8de44a82fc2b0e65311dfffc6f4e8cdb725bb",
+          "strict_sha256": "8e84415507fbd887249d8cda27e342874a04e081845d9924d3673e2379315a82",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_files": 22
+      }
+    }
+  },
+  "queue_validation": {
+    "report_sha256": "83639de387c21caebf3de02f2cb7956495e7f9ce822556c3ae61a99051f79160",
+    "strict_sha256": "2cb748bc8a4789563c14ecffc5ba97cd959c10be48a62f86cec8122df5ada69b",
+    "exact_functions": 27572,
+    "exact_linked_units": 2451,
+    "comparisons": {
+      "upstream": {
+        "baseline_report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      },
+      "historical": {
+        "baseline_report_sha256": "3e8a49928b15de9e88fa50ad9d678a440a4b3743e0bd7b53b2871d88bf17c519",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 30
+      },
+      "previous_queue": {
+        "baseline_report_sha256": "3c5939fb1a60d3fe066b17740f9d14b1df5cbe1a6e7141dd6f179b8d60b19f86",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      }
+    }
+  },
+  "historical_rows": [
+    {
+      "row": 41,
+      "historical_path": "src/pso/misc/TOTrapAncient01_80226534.cpp",
+      "historical_blob": "99fe014d4d4e2f8e7fbcaf74baecd0bae0f17f41",
+      "owners": {
+        "src/pso/unk/TLobby_80226070.cpp": "743ae99d8da839f560639827c02622fb64f58001"
+      },
+      "full": false,
+      "evidence": "The shared persistent request and calls are retained. The broader provider and one-shot edits already accounted for on canonical are outside this direct slice."
+    },
+    {
+      "row": 50,
+      "historical_path": "include/pso/misc/PersistentSound.h",
+      "historical_blob": "62f4e2c2eb9b605a1cbda92ab7e28996ef25f030",
+      "owners": {
+        "include/pso/system/PersistentSound.h": null,
+        "include/pso/system/SoundEffect.h": "d00e7b4bc393ea07e574f2c4bf6aa23fef56de25"
+      },
+      "full": true,
+      "evidence": "The complete original C declaration retains signed ID/result/adjustment/flags, const opaque identity and const Vec position; the shared header serves all 82 consumer translation units."
+    },
+    {
+      "row": 51,
+      "historical_path": "include/pso/misc/TOTrapAncient01_80226534.h",
+      "historical_blob": "41e009a84b6f6d91e9efa6c3feb7df8f193764d2",
+      "owners": {
+        "include/pso/object/trap/TOTrapAncient01_80226534.h": "c96097ba18e834f8e123b1539c7a60700694b9c3",
+        "include/pso/system/PersistentSound.h": null,
+        "include/pso/system/SoundEffect.h": "d00e7b4bc393ea07e574f2c4bf6aa23fef56de25"
+      },
+      "full": true,
+      "evidence": "The full authored convenience-header change forwards to the common identity/position interface. Both variants retain this relationship at the existing upstream include path."
+    },
+    {
+      "row": 52,
+      "historical_path": "src/pso/unk/text_802264B8.cpp",
+      "historical_blob": "a7d022c5d0a6ad96379270a07cf551b5e4ae8ee8",
+      "owners": {
+        "src/pso/unk/TLobby_80226070.cpp": "743ae99d8da839f560639827c02622fb64f58001"
+      },
+      "full": false,
+      "evidence": "Both variants retain the original public persistent-request path into admission. The older broader admission source was already accounted for on canonical."
+    },
+    {
+      "row": 154,
+      "historical_path": "config/GPOE8P/psov3/config.yml",
+      "historical_blob": "b5620dd4c272db979b40419874ef8da863d13546",
+      "owners": {
+        "config/GPOE8P/psov3/config.yml": "24d6ce183a99a25728c47bf27743885708c59668"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 157,
+      "historical_path": "config/GPOE8P/psov3/symbols.txt",
+      "historical_blob": "481b6e6cf8fed359e6de9efa5468ac9fa8fc81b4",
+      "owners": {
+        "config/GPOE8P/psov3/symbols.txt": "e5b3fc6ff3446bcfcad4782f86c13b17d5d5bef6"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 521,
+      "historical_path": "src/pso/boss/TBoss6Type1.cpp",
+      "historical_blob": "03e7d76a5de112a47beb2df7f5dd1ce14823f9c2",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp": "d5510e406d71d7e14173f7182ac688a14c002d52"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 608,
+      "historical_path": "src/pso/enemy/TObjEneRe7Berura.cpp",
+      "historical_blob": "ae876a8fb38bf255b59257ae781da1bb29459297",
+      "owners": {
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 738,
+      "historical_path": "include/pso/boss/TBoss6Type1.h",
+      "historical_blob": "dc2101a829d5c6b5b8b87acfcc7655f81ab90839",
+      "owners": {
+        "include/pso/boss/olgaflow/TBoss6Type1.h": "8d39895e5cae80145f6e6227d9931d8ab4c85006",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp": "d5510e406d71d7e14173f7182ac688a14c002d52"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 754,
+      "historical_path": "include/pso/boss/TBoss6PlotFalz.h",
+      "historical_blob": "ee26fb13fb393eec003ad528cb9381ae0d55b497",
+      "owners": {
+        "include/pso/boss/olgaflow/TBoss6PlotFalz.h": "c9b2ab888d086edffe4704e7190cb5abe7ce5509"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 906,
+      "historical_path": "src/pso/boss/TBoss6PlotFalz.cpp",
+      "historical_blob": "b77e54ffbf137bc5d8a2c0af2de03da0e47b0c25",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": "9225dcb3fa5467a980ae1b01f59ccb14b51a56ee"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 923,
+      "historical_path": "include/pso/boss/Boss6Type2Data.h",
+      "historical_blob": "c3ce4ed87489cb705fbb1119443e819bc284a229",
+      "owners": {
+        "include/pso/boss/olgaflow/Boss6Type2Data.h": "e5caa5197081c0fb1af3d170e9a4b60c6ea34630",
+        "src/pso/boss/olgaflow/Boss6Type2Data.cpp": "68514bcc1d614979d61cdb7f6b7290d08952e529"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 986,
+      "historical_path": "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+      "historical_blob": "cf5aa0bccdb09dda9e5e33834fac1393438c7079",
+      "owners": {
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": "e7a93eeba50b7906cd2d9dd9501c1d8907e66d59"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 1064,
+      "historical_path": "include/pso/boss/TBoss6Type2.h",
+      "historical_blob": "438685b56c254a8b7759fc17991e757b8e3d045d",
+      "owners": {
+        "include/pso/boss/olgaflow/TBoss6Type2.h": "cb44608843e3591b945604f6b5b262319d7f53b5",
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp": "c1d0124067f9e9eb916bef6271561ecc8ab2522f"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 1076,
+      "historical_path": "src/pso/boss/TBoss6Type2.cpp",
+      "historical_blob": "af06166ae4643325ade2517569b67c4b636a4d42",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp": "c1d0124067f9e9eb916bef6271561ecc8ab2522f"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 1168,
+      "historical_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "historical_blob": "4f07f4646222e4b4861a3b593136463172561c37",
+      "owners": {
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": "70651518a5c979b5b7bf44a1dc7f1ac1d9369dd5"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 2401,
+      "historical_path": "src/pso/misc/TLobby_803360CC.cpp",
+      "historical_blob": "88d8294862331f10e3a0f3537765a2e21f6d76ea",
+      "owners": {
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": "69e7d1e3c9fdfebabb24532bcc978cedbec0d303",
+        "include/pso/unk/TUnk_804EEF64.h": "cce0afa25f67666f87c41414f88d3f99d3970e59",
+        "include/pso/ui/frontend/TitleSceneTables.h": "56c133e0dc27cfbf47965fcc7e93a6b46dccac31",
+        "src/pso/ui/TUnk_804EE458.cpp": "712ee9fe4c3de131a1f219be3d56d12fc348605f",
+        "src/pso/unk/TLobby_80335E7C.cpp": "a59077b622e5b7fe917fea5b7f22a233281c61ff"
+      },
+      "full": true,
+      "evidence": "The complete title transition work is folded into the active scene. It uses the real title singleton, four native pointer-to-member states, three held children, original card/direct-input/attract logic and the same cleanup, startup movie, language archive, camera and load/release calls. The native destructor lowers to the original destructor entry for the former explicit destroy body. Asset graphics, audio, particle and technique helpers are inherited from each validated base."
+    },
+    {
+      "row": 2410,
+      "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_80336054.cpp",
+      "historical_blob": "9866c30c10fb1f2e9583e87b6e238fb56769a793",
+      "owners": {
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": "69e7d1e3c9fdfebabb24532bcc978cedbec0d303",
+        "include/pso/unk/TUnk_804EEF64.h": "cce0afa25f67666f87c41414f88d3f99d3970e59"
+      },
+      "full": true,
+      "evidence": "Both authored title-state blocks are represented. The getter reads the same lobby game-mode word, and the actual title actor now owns the checked offline transition, original fade child allocation and bit 2/4 flow."
+    },
+    {
+      "row": 2424,
+      "historical_path": "include/pso/misc/TLobby_803360CC.h",
+      "historical_blob": "9c62965b2555a5100a4c8f9f2ec897664438c2b9",
+      "owners": {
+        "include/pso/unk/TLobby_803360CC.h": "37ca286028ea505d72dc9c8efe91a75a09848ebf",
+        "include/pso/unk/TUnk_804EEF64.h": "cce0afa25f67666f87c41414f88d3f99d3970e59",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": "69e7d1e3c9fdfebabb24532bcc978cedbec0d303"
+      },
+      "full": true,
+      "evidence": "The active shared declaration now takes the original native title-task receiver. The folded source retains its helper, virtual task and scene initializer contracts."
+    },
+    {
+      "row": 2513,
+      "historical_path": "include/pso/ui/TAdTrialAgreementGC_80335958.h",
+      "historical_blob": "eaba610e135d50108da3b63377a91972aad0c6d9",
+      "owners": {
+        "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h": "e625ab9e0f5a924ff24ada46d295fa4f528fc99e",
+        "src/pso/ui/TUnk_804EE458.cpp": "712ee9fe4c3de131a1f219be3d56d12fc348605f",
+        "include/pso/ui/TUnk_804EE458.h": "86d13fa173fe86304d16c0ec12287147fd1d677b"
+      },
+      "full": true,
+      "evidence": "The predicate checks state 2 on the actual controller and returns its original 0/1 register word. Cursor and destructor declarations are kept on the native owner, supplying the complete original callable interface."
+    },
+    {
+      "row": 2652,
+      "historical_path": "src/pso/ui/TAdTrialAgreementGC_8033573C.cpp",
+      "historical_blob": "8411704fccbff3172aaf98fc13c11638b675dae3",
+      "owners": {
+        "src/pso/ui/TUnk_804EE458.cpp": "712ee9fe4c3de131a1f219be3d56d12fc348605f",
+        "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h": "e625ab9e0f5a924ff24ada46d295fa4f528fc99e",
+        "src/pso/unk/TLobby_80335E7C.cpp": "a59077b622e5b7fe917fea5b7f22a233281c61ff"
+      },
+      "full": false,
+      "evidence": "The title readiness predicate and record provider now use actual scene or controller receivers. This accounts for that connection, leaving other historical trial-agreement input, prompt and rendering changes outside the replay."
+    },
+    {
+      "row": 2728,
+      "historical_path": "src/pso/misc/TLobby_80226070.cpp",
+      "historical_blob": "c5170f519c387f6934a6c450c926968603849441",
+      "owners": {
+        "src/pso/unk/TLobby_80226070.cpp": "743ae99d8da839f560639827c02622fb64f58001"
+      },
+      "full": false,
+      "evidence": "Retains the persistent-request fields, widths, sentinel, timer and dispatch. Unrelated menu and sound-output edits are outside this cohort."
+    },
+    {
+      "row": 2739,
+      "historical_path": "include/pso/misc/TUnk_804EEF64.h",
+      "historical_blob": "960c4bca86df494c600c65900267219b0307f2ac",
+      "owners": {
+        "include/pso/unk/TUnk_804EEF64.h": "cce0afa25f67666f87c41414f88d3f99d3970e59",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": "69e7d1e3c9fdfebabb24532bcc978cedbec0d303",
+        "include/pso/unk/TLobby.h": "102dc09f0dc4ddb9f055e370988846f98548ec5b"
+      },
+      "full": true,
+      "evidence": "The whole native title actor declaration, including all four implemented state handlers and allocator/destruction contract, lives on the 0x4C task. The actual title, overlay, controller, optional window and three children replace the prior raw or duplicated containers."
+    },
+    {
+      "row": 2745,
+      "historical_path": "include/pso/misc/TitleSceneTables.h",
+      "historical_blob": "26d61c787fabcecad8eb1047bf556dce59f0a99c",
+      "owners": {
+        "include/pso/ui/frontend/TitleSceneTables.h": "56c133e0dc27cfbf47965fcc7e93a6b46dccac31",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": "69e7d1e3c9fdfebabb24532bcc978cedbec0d303",
+        "src/pso/unk/TLobby_80335E7C.cpp": "a59077b622e5b7fe917fea5b7f22a233281c61ff"
+      },
+      "full": true,
+      "evidence": "All original table contracts have concrete current owners. Shared callers receive the native 8-byte 21-entry texture table and 46 sprite descriptors. Private source owns the paired four load/release stages and the four 12-byte pointer-to-member records, archive filenames, title music and particle position, all verified at original linked data offsets."
+    },
+    {
+      "row": 3456,
+      "historical_path": "include/pso/technique/TechniqueBandSound.h",
+      "historical_blob": "b4d06e2ce23a9279c6d1c855a6e96fbc67c300a4",
+      "owners": {
+        "include/pso/technique/TechniqueBandSound.h": "65762fca4b04df1f4ece969bec647378aae462d8"
+      },
+      "full": true,
+      "evidence": "The complete fork band-pitch helper is carried verbatim from the canonical source onto both review bases."
+    },
+    {
+      "row": 3998,
+      "historical_path": "include/pso/player/TObjPlayer.h",
+      "historical_blob": "55eae4b73abddd9e0bc3e78b90398d7e34196396",
+      "owners": {
+        "include/pso/player/TObjPlayer.h": "b19da428cf481bd7e2b25982de16add00de100c5"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 4376,
+      "historical_path": "src/pso/item/TItemEffectWeapon.cpp",
+      "historical_blob": "2ce68a438257c87961b071ef2f067b5787129712",
+      "owners": {
+        "src/pso/effect/item/TItemEffectWeapon.cpp": "7c7e585fc4b73a4ef3b33594060452507599b1b8"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 4473,
+      "historical_path": "src/pso/unk/text_80357058.cpp",
+      "historical_blob": "d227d37a4e201c919307d753509913605de17837",
+      "owners": {
+        "src/pso/unk/text_80357058.cpp": "0f7d891a9e18c1969d9704840730e863fb952e1c"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 4909,
+      "historical_path": "src/pso/player/TObjPlayer_801AC0D8.cpp",
+      "historical_blob": "d956df29143c2caf793124c6c3c00a429c9172b8",
+      "owners": {
+        "src/pso/effect/photon/TPhotonGolla.cpp": "1afd915c88a8cf9287349573e4cd8547c57032fb"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 4910,
+      "historical_path": "src/pso/player/TObjPlayer_801ACA6C.cpp",
+      "historical_blob": "6aeea4fa0c4413648320f374f76354933da900bb",
+      "owners": {
+        "src/pso/effect/photon/TPhotonLeilla.cpp": "2f79fc9323c5732e30e4a6e9efcc8cc293f01c9e"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 4911,
+      "historical_path": "src/pso/player/TObjPlayer_801AE48C.cpp",
+      "historical_blob": "c286e7173b132314d9e2713083248254e244e1a7",
+      "owners": {
+        "src/pso/effect/photon/TPhotonPilla.cpp": "da49df6ec2d6e8b96165185e40374efb6452be04"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 4968,
+      "historical_path": "src/pso/misc/TPhotonEstlla.cpp",
+      "historical_blob": "0620d6882a637ebcfcd925412a9daa28b837d2a5",
+      "owners": {
+        "src/pso/effect/photon/TPhotonEstlla.cpp": "e28e680a5237b4166e4e0c727de48d81294f3ea1"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 4979,
+      "historical_path": "src/pso/misc/TPhotonLeilla.cpp",
+      "historical_blob": "e0df5ec41a2ee069448a932882ad124568a80def",
+      "owners": {
+        "src/pso/effect/photon/TPhotonLeilla.cpp": "2f79fc9323c5732e30e4a6e9efcc8cc293f01c9e"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 5016,
+      "historical_path": "src/pso/misc/TPhotonPilla.cpp",
+      "historical_blob": "d06385fec926cec25c67594f32a60187f75ae251",
+      "owners": {
+        "src/pso/effect/photon/TPhotonPilla.cpp": "da49df6ec2d6e8b96165185e40374efb6452be04"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 5027,
+      "historical_path": "src/pso/misc/TPhotonFarlla.cpp",
+      "historical_blob": "9b16f391e100c6c92650c0a8dd8747a9a119b5d2",
+      "owners": {
+        "src/pso/effect/photon/TPhotonFarlla.cpp": "2919b73f7cf91a2cd56b67d657667d6648ad399f"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 5032,
+      "historical_path": "src/pso/misc/TPhotonGolla.cpp",
+      "historical_blob": "fdf024fd4f5228f63e5ec2180c36ef493e1ea2e4",
+      "owners": {
+        "src/pso/effect/photon/TPhotonGolla.cpp": "1afd915c88a8cf9287349573e4cd8547c57032fb"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 5304,
+      "historical_path": "src/pso/misc/TLobby_800F5CF0.cpp",
+      "historical_blob": "bd0cfb60a833ed76dd51d17d6c4012d8a82568a5",
+      "owners": {
+        "src/pso/unk/TLobby_800F5CF0.cpp": "ee2f4d2cd6291d835f6212bdf868e9ceb47e6855"
+      },
+      "full": true,
+      "evidence": "The complete historical owner is present. Its strip-buffer allocation uses the same 8-byte strip references and two s16 UV values per vertex through sizeof. Both exchange_object_state calls and their values are preserved."
+    },
+    {
+      "row": 5431,
+      "historical_path": "include/pso/misc/TLobby.h",
+      "historical_blob": "ca190ccbd8200a9b67e2c84df8dd28d2276602ad",
+      "owners": {
+        "include/pso/unk/TLobby.h": "102dc09f0dc4ddb9f055e370988846f98548ec5b"
+      },
+      "full": false,
+      "evidence": "The shared texture-strip or trail component is covered by the recovered typed calls. Other historical edits remain under owner comparison."
+    },
+    {
+      "row": 6020,
+      "historical_path": "src/pso/misc/TLobby_80335E7C.cpp",
+      "historical_blob": "ecdc3aa8318987f80fe847aa84b40922dceabbb1",
+      "owners": {
+        "src/pso/unk/TLobby_80335E7C.cpp": "a59077b622e5b7fe917fea5b7f22a233281c61ff",
+        "include/pso/unk/TLobby_80335E7C.h": "9c20665764c66c3ae1c624f6e7907fdceb1e3d84",
+        "include/pso/unk/TLobby_80335E08.h": "54a97befa1207a5ac1e4bbdf7e3119b85b233d38",
+        "include/pso/ui/frontend/TitleSceneTables.h": "56c133e0dc27cfbf47965fcc7e93a6b46dccac31"
+      },
+      "full": false,
+      "evidence": "The native title texture getter, bind call, sprite lookup and controller cursor read are accounted for. The existing overlay constructor, render and destructor remain inherited from each exact base."
+    },
+    {
+      "row": 7009,
+      "historical_path": "src/pso/object/TObjEnvSoundGlobal.cpp",
+      "historical_blob": "610139dee33907507e4cf77319888b109afb64f9",
+      "owners": {
+        "src/pso/object/ambient/TObjEnvSoundGlobal.cpp": "9b8160739f9982769b3900b8275017354a678578"
+      },
+      "full": true,
+      "evidence": "The complete fork-point edit removes two incompatible declarations, adds the common header, and migrates eight callers across the original Global, Ex, and object tasks."
+    }
+  ],
+  "closed_historical_rows": [
+    2401,
+    5304
+  ],
+  "historical_comparisons_open": 722,
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "published_stage_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+  "prior_validation": "fork/notes/evidence/2026-11-20-input-render-and-stage-packaging.json",
+  "source_receipts": {
+    "strip": {
+      "sha256": "a4e47e8fbe79ec8b3c0fe3944a2cca7c7b6b35e7e01b3a732664132f81b7b2bd",
+      "scoped_historical_rows": 102,
+      "formerly_unqueued_canonical_paths": [
+        "include/pso/boss/derolle/TObjBoss2Dust.h",
+        "include/pso/boss/derolle/TObjBoss2DustCtrl.h",
+        "include/pso/effect/item/TItemEffectWeapon.h",
+        "include/pso/object/ambient/TObjLight_803DF220.h",
+        "include/pso/render/ChunkTextureStripCollector.h",
+        "include/pso/system/StripBufferPair.h",
+        "include/pso/system/TrailStrip.h",
+        "include/pso/unk/ModelNodeTables.h",
+        "src/pso/boss/darkfalz/TBoss4Type2_8004A978.cpp",
+        "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+        "src/pso/effect/TUnk_80494968.cpp",
+        "src/pso/object/ambient/TObjLight_803DF220.cpp",
+        "src/pso/render/ChunkTextureStripCollector.cpp",
+        "src/pso/unk/TLobby_8003A95C.cpp"
+      ],
+      "historical_donor": "0193441fc62bfe67303a460b208aa564a4f76651",
+      "evidence": [
+        "Native strip collector, polygon walkers, node filter, buffer constructor and paired UV scrolling at 0x800F58A4\u20130x800F5D80",
+        "Native TrailStripVertex Vec and ARGB at +0xc, GX strip draw 0x803DF578/0x803DF5E4; secondary donor 76a63f14476291abdd6fe508bae7c91d5e856065",
+        "Both encounter draw slot owners at 0x8003AB00/0x802F1200 address six vertices per slot with 0x10-byte stride."
+      ]
+    },
+    "title": {
+      "sha256": "8bbc0aebeb128dc5d919e17fd563c21867ca8ce014b4f2d7fb58c43fd6c73e72",
+      "historical_rows": 8,
+      "scope": {
+        "name_and_linkage": "Retain the established signed delay field m_38. The singleton declaration, actual title receiver, sprite and table types change where data or ownership differ.",
+        "providers": "Queue retains the native TObject update flag helper and typed Ginja binding. Standalone calls the same linked 0x80080788 routine through its existing symbol and TObject receiver, and keeps its own texture binding entry point.",
+        "scope": "Title transition and its shared trial agreement data only. Word Select, renderer strips, title sound, technique effects, and unrelated character-creation stages remain on their inherited owners."
+      }
+    },
+    "technique": {
+      "typed_factory_addresses": [
+        "0x80230A98",
+        "0x80230AF0"
+      ],
+      "native_bolt_receiver_address": "0x8023DA10",
+      "historical_helper_blob": "b4d06e2ce23a9279c6d1c855a6e96fbc67c300a4",
+      "canonical_helper_blob": "65762fca4b04df1f4ece969bec647378aae462d8"
+    },
+    "sound": {
+      "sha256": "8024abe3a8296df0540df3e505230f880cb668511f69b34efcf21ee3bdcd050e",
+      "call_sites": 195,
+      "consumer_units": 82,
+      "historical_rows": [
+        {
+          "row": 41,
+          "complete": false
+        },
+        {
+          "row": 50,
+          "complete": true
+        },
+        {
+          "row": 51,
+          "complete": true
+        },
+        {
+          "row": 52,
+          "complete": false
+        },
+        {
+          "row": 2728,
+          "complete": false
+        },
+        {
+          "row": 7009,
+          "complete": true
+        }
+      ],
+      "formerly_unqueued_canonical_paths": [
+        "include/pso/object/trap/TOTrapAncient01_80226534.h",
+        "include/pso/system/SoundEffect.h",
+        "src/pso/boss/TUnk_80484A94.cpp",
+        "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+        "src/pso/object/switch/TOSensor.cpp",
+        "src/pso/object/switch/TOSwitchTimer.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp",
+        "src/pso/unk/text_800D8830.cpp"
+      ]
+    }
+  }
+}
