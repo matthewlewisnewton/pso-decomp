@@ -246,6 +246,22 @@ These source-only reviews start at upstream `49b48c32e6`. Each branch and the co
 
 The enemy and trap branches both edit the enemy class declaration. The combined build retains the typed state exchange from the enemy branch and removes the obsolete motion declaration from the trap branch. [Source and validation evidence](2026-11-19-native-provider-wave-evidence.json)
 
+## Inventory, stage population, Gol Dragon and native message windows
+
+The 59-file source replay `afcee17ce6` updates canonical Great Merge and landing checkpoint `6cac429aab`. It restores native inventory walks and placement records, shared live and archived floor layouts, Gol Dragon resource and clone ownership, and the Guild Warning and native message-window interfaces. Independent review identified a meseta caller that accepts non-player characters. The corrected declaration uses the shared character type.
+
+The historical audit added evidence for 35 records and closed 14. Five closures came from comparing the complete authored source changes against the live compiler owners. The open ledger has 1,812 records. All 90 original ranges still account for 980 source-linked bytes and 167 alignment bytes. The working fork preserves 133 fork-only paths and passes 294 tool tests and 11 layer tests.
+
+The source-only reviews start at upstream `49b48c32e6`. Each branch and their combined 124-file preview reproduce retail across all 2,449 upstream-linked units.
+
+| Scope | Local branch | Files |
+| --- | --- | ---: |
+| Guild Warning, native modal messages, palette and small-font drawing | `great-merge/current/standalone-action-palette-and-customization` | 61 |
+| Stage population, trap targeting, motion and resource ownership | `great-merge/current/standalone-stage-traps-and-motion` | 47 |
+| Gol Dragon archive resources, model cloning and clone formation | `great-merge/current/standalone-gol-dragon-resources-and-formation` | 22 |
+
+The direct inventory preview identifies the older native item-list methods and typed inventory owners as prerequisites. The exact recovered item code is already present in the working fork. [Source and validation evidence](2026-11-19-inventory-stage-window-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
