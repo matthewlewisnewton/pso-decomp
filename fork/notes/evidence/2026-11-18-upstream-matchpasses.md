@@ -167,6 +167,14 @@ Four retired source files contribute 171 exact functions to their replacement ow
 
 All four subsystem review branches, the five ordered reviews below, and the standalone Challenge review are validated on the same upstream base. The five queued patches keep their previous diffs. The original 90 ranges still account for all 1,147 bytes. All 133 fork-only tooling paths round-trip and all 11 fork-layer tests pass. [Upstream replay evidence](2026-11-19-upstream-332-replay.json)
 
+## Stage ownership, Morfos, title scene and ADX replay
+
+The 56-file combined source `75b5a6951a` is in the local landing checkpoint `eca56dcb7d`. The stage changes restore the native floor-area getter and Olga Flow player checks, together with 21 map-collision factory table entries and the laboratory caller. Morfos uses its native constructor, destructor, factory, virtual table and typed combat layout. The title scene owns its four mode handlers and transition lifetime. ADX encoding uses the shared SJ ring-buffer and decoder types.
+
+Stage and Morfos add 39 paths to the world review at `b5ff4bf24a`. The title scene adds 13 paths to the display review at `d1c26559e5`. The audio changes are in the existing queued audio review at `702c76a225`. Its following results review keeps its 51-file diff at `b65ecabf8a`.
+
+The combined source, working fork and refreshed reviews match retail without losing matched or linked coverage. All original 1,147 bytes are accounted for. Auditing 23 older data files verifies 78,944 source-linked bytes and 12 alignment bytes. Five active headers and two recovered interface entries are now fully reconciled. All 133 local paths round-trip, 11 fork-layer tests and five host smoke tests pass, and the ADX encoder compiles in 32-bit host mode. [Subsystem and historical source evidence](2026-11-19-subsystem-replay-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
@@ -176,8 +184,8 @@ The local review sequence under `great-merge/queued/` starts on upstream `49b48c
 | UDP datagrams, requests and packet lifetime | `fbfa587ae9` | 60 |
 | Stage objects and weather | `de6be2385a` | 37 |
 | Quest, player inventory and resource lists | `4624395d33` | 51 |
-| Audio streaming, disc archives and movie REL lifetime | `c206132bb8` | 99 |
-| Challenge and duel result windows, page indicators and record types | `10981dedb0` | 51 |
+| Audio streaming, disc archives and movie REL lifetime | `702c76a225` | 102 |
+| Challenge and duel result windows, page indicators and record types | `b65ecabf8a` | 51 |
 
 All five stages reproduce retail and pass the strict check against the preceding stage. The final stage preserves matched and source-linked coverage against upstream, the historical fork, and the standalone results review. The only manual overlap in the sequence is the BML archive caller, which uses the quest file-extension provider and the audio ADXF handle together. Challenge and duel results also build independently on upstream at `32719bf02d`. These are local branches pending upstream approval.
 
@@ -226,8 +234,8 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `1496234cc6` | 924 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `85b363a088` | 876 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `d1c26559e5` | 929 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `b5ff4bf24a` | 884 |
 | Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `94581b29e7` | 804 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `570ad35a4c` | 441 |
 
