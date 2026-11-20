@@ -507,6 +507,21 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 582-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-trade-actors-quest-cache-replay.json)
 
+## Terrain geometry, equipment windows, Morfos and audio streams
+
+Source checkpoint `8e7c46d463` and landing checkpoint `14cb2d035f` carry 46 source files. The source replay recovers native terrain collision, equipment and item detail windows, Morfos actors, and ADX stream file and encoder contracts. The source audit records 29 historical files and closes 16. The ledger has 1,284 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-adx-streaming` | ADX, WAVE, disc archives and movies, native stream files across playback, archive and LSC consumers, and encoder layout | 117 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy registration and formations, Bal Claw and Pan Arms, Morfos body and projectile, and the common camera capture provider | 111 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage doors, weather, fences and Seabed wrecks, and native terrain registration, collision models and ground and wall candidate queries | 199 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Main-menu and Trade lifetimes, equipment and item lists, native help snapshots, Short Mail and related child windows | 167 |
+
+The menu candidate combines the previously separate Trade and equipment reviews. Each candidate builds from current upstream with the source for its subsystem. The combined 722-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-geometry-equipment-morfos-audio-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
