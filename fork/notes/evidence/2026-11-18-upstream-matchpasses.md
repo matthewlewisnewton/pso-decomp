@@ -159,19 +159,27 @@ The source, working fork and review builds reproduce retail. The source retains 
 
 The audit closes 8 historical rows and records partial evidence for the other changed owners. The current ledger has 971 entries awaiting complete owner comparison and 957 with partial evidence. [Owner replay evidence](2026-11-19-owner-replay-evidence.json)
 
+## Great Merge on upstream Matchpassz
+
+Upstream `49b48c32e6` is the base of the local source at `4e6278824e` and landing checkpoint `4cd2081700`. The eight overlapping paths retain the fork's typed resource and drawing calls on upstream's native cursor and player owners. Dubchik keeps the three original filename definitions in its owning translation unit, and the action palette uses the original `gc_tag` resource array and lifetime.
+
+Four retired source files contribute 171 exact functions to their replacement owners. All retain their original addresses and sizes. The complete game and working fork match retail and retain all 27,572 exact functions and 1,758,510 matched and linked data bytes. The refresh adds 400 matched data bytes and 180 linked data bytes over the prior checkpoint. The 30 apparent historical data gaps are the same 164 zero-valued alignment bytes omitted by upstream's split layout.
+
+All four subsystem review branches, the five ordered reviews below, and the standalone Challenge review are validated on the same upstream base. The five queued patches keep their previous diffs. The original 90 ranges still account for all 1,147 bytes. All 133 fork-only tooling paths round-trip and all 11 fork-layer tests pass. [Upstream replay evidence](2026-11-19-upstream-332-replay.json)
+
 ## Ordered upstream review candidates
 
-The local review sequence under `great-merge/queued/` starts on upstream `6b080e67ab`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
+The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
 
 | Scope | Local head | Files |
 | --- | --- | ---: |
-| UDP datagrams, requests and packet lifetime | `d892292ba8` | 60 |
-| Stage objects and weather | `18e59bbce0` | 37 |
-| Quest, player inventory and resource lists | `ad92039b86` | 51 |
-| Audio streaming, disc archives and movie REL lifetime | `945f268e06` | 99 |
-| Challenge and duel result windows, page indicators and record types | `f743133b55` | 51 |
+| UDP datagrams, requests and packet lifetime | `fbfa587ae9` | 60 |
+| Stage objects and weather | `de6be2385a` | 37 |
+| Quest, player inventory and resource lists | `4624395d33` | 51 |
+| Audio streaming, disc archives and movie REL lifetime | `c206132bb8` | 99 |
+| Challenge and duel result windows, page indicators and record types | `10981dedb0` | 51 |
 
-All five stages reproduce retail and pass the strict check against the preceding stage. The final stage preserves matched and source-linked coverage against upstream, the historical fork, and the standalone results review. The only manual overlap in the sequence is the BML archive caller, which uses the quest file-extension provider and the audio ADXF handle together. Challenge and duel results also build independently on upstream at `e287503751`. These are local branches pending upstream approval.
+All five stages reproduce retail and pass the strict check against the preceding stage. The final stage preserves matched and source-linked coverage against upstream, the historical fork, and the standalone results review. The only manual overlap in the sequence is the BML archive caller, which uses the quest file-extension provider and the audio ADXF handle together. Challenge and duel results also build independently on upstream at `32719bf02d`. These are local branches pending upstream approval.
 
 ## Local landing checkpoint with all four subsystem histories
 
@@ -218,10 +226,10 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `ad2a91dacd` | 924 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `2715532ccc` | 877 |
-| Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `67fca574b8` | 802 |
-| Shared actor motion, animation and presentation | `delivery-network-actor` | `f46dbc3413` | 441 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `1496234cc6` | 924 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `85b363a088` | 876 |
+| Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `94581b29e7` | 804 |
+| Shared actor motion, animation and presentation | `delivery-network-actor` | `570ad35a4c` | 441 |
 
 Rendering follows audio and disc streaming. The renderer resolves four overlapping include groups. The window layer keeps the typed audio slot in the native status window. The selection and lobby commit adds 12 files. The window context pass adds a further 17. The other three stacks replayed cleanly directly from the network commit. The world stack closes with the boss ownership and photon commits. All four branches reproduce retail and preserve matched and source-linked coverage.
 
