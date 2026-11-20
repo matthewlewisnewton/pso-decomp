@@ -877,6 +877,8 @@ Keep upstream’s existing names for functions, types, and fields wherever the f
 
 The player registry review follows the stage series because they share active source files. The equipment and window review follows the registry.
 
+The #334 naming audit confirmed two warp helper renames and one field rename on the published head. The local follow-up restores both function names and the field spelling and reproduces retail with unchanged coverage and linkage. Its comparison with master reports 160 symbol changes, which still include type and owner corrections. [Naming audit](2026-11-20-stage-334-review.json)
+
 ## Quest loading, companion saves and enemy fades
 
 Source `b12c724cb3` and landing checkpoint `099f1fd992` carry 74 changed files. The quest review adds the native loader interface, particle actors, and shop callers. The saved inventory review adds the companion template and item export owners. The enemy review restores typed opacity and camera fade calls. The audit closes 29 historical comparisons and leaves 1,007 open.
@@ -926,6 +928,14 @@ Source `081bc64d52` and landing checkpoint `d08a56367d` carry 23 changed files. 
 The 2,128-file review queue covers 29 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-stage-load-and-native-replay.json)
 
 The 178-file loading review at `69ee8013f8` builds on the exact stage review tip. It resolves 59 overlapping paths and reproduces retail with the same linked coverage as both prior independent reviews.
+
+## Compiler directives and native subsystem recovery
+
+Source `fbb99312db` and landing checkpoint `858ca99494` carry 24 changed files. This batch covers redundant compiler directives, Party Status, HUD providers and player lock-on, Barba Ray actor and action packets, stage Symbol Chat presets and packet ownership. The audit closes 11 historical comparisons and leaves 925 open.
+
+The 2,141-file review queue covers 30 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-pragma-and-native-replay.json)
+
+The compiler cleanup from fork PR #622 removes 108 directives across 12 files in the review queue. Canonical source needed 23 removals across six files after earlier cleanup. Both builds reproduce retail with unchanged coverage and linkage. The wider fork cleanup is tracked by compilation unit in the validation record.
 
 ## Ordered upstream review candidates
 
