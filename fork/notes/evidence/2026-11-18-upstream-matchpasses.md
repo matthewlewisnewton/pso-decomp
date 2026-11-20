@@ -142,9 +142,9 @@ The 21-file replay at `99d8d2c898` restores the native negative fade method at `
 
 The stage review is measured against the BML/GVM provider at `d7f1fb19b2`. The rendering stack branches from upstream and validates its shared renderer, presentation, starlight, preview and scratch-vector layers together. All listed builds reproduce retail and pass the project gate. The inventory sorting and record helper probe reaches the linker and needs the project’s native array allocation and release operators from the shared memory review. Its staged source checkpoint is `11fc7dae6d`.
 
-The prepared reviews and prerequisites touch 1,762 of 1,763 combined diff paths. The 1 unassigned paths are below. Shared paths still need line-level merge validation when review groups are sequenced.
+The 277-file player review at `aa306b9e62` uses the native memory parent `7cf8dfc61c`. It includes the typed inventory header, record and sorting helpers and equipment callers. The native array operators resolve the standalone inventory link. The original 275-file player review remains available. Both variants reproduce retail.
 
-- `include/pso/unk/text_801D40D4.h`
+All 1,763 combined diff paths now have validated review assignments. The ordered file audit counts 1,765 entries when it includes both sides of the two renames. Of these, 1,095 already match a complete file in a review and 216 match after the proposed order is applied. The audit found 407 overlapping entries without an exact standalone file and 47 other entries whose clean union differs from the combined source. These entries need ownership decisions and full stack builds before publication.
 
 A raw three-way replay confirmed 12 historical source deltas already present in their mapped owners. Four historical technique resource ranges also retain all 1,596 exact source-linked bytes in the consolidated technique controller. The historical source index has 1,003 records awaiting owner comparison and 944 with partial evidence. The remaining replay candidates need source review.
 
