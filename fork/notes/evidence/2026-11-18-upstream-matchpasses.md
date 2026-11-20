@@ -702,6 +702,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The technique, stage, equipment window and enemy formation reviews include these changes. All 15 groups build together across 1,554 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-text-gyaranzo-npc-reverse-tech-replay.json)
 
+## Challenge state, frontend cursor, Dubchik and map warp destinations
+
+Source checkpoint `2e756b074f` and landing checkpoint `7ddd591097` carry 58 changed source files. The replay restores common Challenge window/state ownership, the frontend cursor contracts, Dubchik archive and lightning lifetimes, and the shared warp destination and collision records. The audit covers 18 historical records and closes 8. The ledger has 1,148 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Window and item handling plus real Challenge window, state and player record ownership | 422 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formations and appearance plus Dubchik resource, attack and lightning lifetime | 205 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage interactions and animations plus map warp destinations, collision bodies and shared contact callers | 438 |
+| `great-merge/current/character-selection-plates` | Character selection, card screens and the shared frontend cursor and controller lifetimes | 152 |
+
+The equipment window, character selection, enemy formation and stage reviews include these changes. All 15 groups build together across 1,580 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-challenge-cursor-dubchik-warp-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
