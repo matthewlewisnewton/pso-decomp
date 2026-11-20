@@ -175,6 +175,16 @@ Stage and Morfos add 39 paths to the world review at `b5ff4bf24a`. The title sce
 
 The combined source, working fork and refreshed reviews match retail without losing matched or linked coverage. All original 1,147 bytes are accounted for. Auditing 23 older data files verifies 78,944 source-linked bytes and 12 alignment bytes. Five active headers and two recovered interface entries are now fully reconciled. All 133 local paths round-trip, 11 fork-layer tests and five host smoke tests pass, and the ADX encoder compiles in 32-bit host mode. [Subsystem and historical source evidence](2026-11-19-subsystem-replay-evidence.json)
 
+## Battle standings, Slime effects and fish-school replay
+
+The 18-file source replay `5d585c5540` is in the local landing checkpoint `fff0d3a1e3`. The battle standings patch shares the original client, rank and score record between lobby and split-screen providers, duel windows and the quest score and place checks. The world patch restores the native Slime tail and water bomb classes, along with shared fish-school rendering and archive ownership.
+
+The standings changes add 10 changed paths to the existing display review at `f8fee4e3c9`. The Slime and fish-school changes add eight changed paths to the existing world review at `df959f6a2f`.
+
+The combined source, working fork and both review branches reproduce retail. All 90 original ranges retain their 980 source-linked bytes and 167 alignment bytes. The audit fully reconciled 11 historical records, including the two Slime headers, and added evidence for nine related records that still have wider changes to compare. The working fork retains all 133 overlay paths. Its link retention check and all 11 fork-layer tests pass.
+
+Player class declaration changes still need an exact replay. The latest trial changes instruction scheduling at the original starting-inventory and level-stat initialization functions. [Source and validation evidence](2026-11-19-declaration-replay-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
@@ -234,8 +244,8 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `d1c26559e5` | 929 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `b5ff4bf24a` | 884 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `f8fee4e3c9` | 933 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `df959f6a2f` | 885 |
 | Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `94581b29e7` | 804 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `570ad35a4c` | 441 |
 
