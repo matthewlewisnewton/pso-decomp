@@ -112,16 +112,19 @@ The 19-file source replay at `ec924a7a85` restores the native player action chec
 | Review | Local head | Review base | Changed files |
 | --- | --- | --- | ---: |
 | Player, quest and item state | `995e372456` | `6b080e67ab` | 173 |
-| Enemy and boss combat | `108d6eb406` | `6b080e67ab` | 282 |
+| Enemy and boss combat | `06305ec659` | `6b080e67ab` | 293 |
 | Actor motion, animation and presentation | `2485f3ffe2` | `6b080e67ab` | 383 |
-| Camera, scenes and frontend presentation | `a61eb60304` | `6b080e67ab` | 106 |
+| Camera, scenes and frontend presentation | `81da6ab6e5` | `6b080e67ab` | 145 |
+| Shared renderer and native chunk callbacks | `cff677a2aa` | `6b080e67ab` | 261 |
 | Stage and world objects | `4f59b9f427` | `d7f1fb19b2` | 153 |
 
-The player review includes typed state, scale and shrink packets, collision indexing and the action dispatch. Its standalone inventory helper uses the original ABI declaration to preserve the compiler's retail register assignments. The combined source uses the typed inventory owner. The enemy review adds native Canadin and Gee behavior around the existing combat, targeting and tunnel work. The cumulative branch already had all 58 named enemy functions, so its additional enemy changes are the linker registrations.
+The player review includes typed state, scale and shrink packets, collision indexing and the action dispatch. Its standalone inventory helper uses the original ABI declaration to preserve the compiler's retail register assignments. The combined source uses the typed inventory owner. The enemy review adds native Canadin and Gee behavior plus six shared enemy interfaces for registration, groups, state exchange, experience and drops. The cumulative branch already had all 58 named enemy functions, so its additional enemy changes are the linker registrations.
+
+The 400-file rendering stack at `6bc3dec076` validates shared renderer callbacks, frontend presentation and character creation, and then native starlight objects and their item-effect callers. The starlight patch uses the shared color-list interface from the presentation layer. Each stage reproduces the retail executable.
 
 The stage review uses the BML/GVM provider as its parent and validates the shared trail API and its seven callers alongside fence debris, ambient particles, fish placement and lobby dolphin resource access. The independent 139-file stage review remains useful for reviewing the earlier stage scope against upstream. The complete actor prerequisite also validates independently. Keep overlap checks by owning class when sequencing these groups.
 
-The prepared reviews and prerequisites touch 1,573 of 1,761 combined diff paths. The remaining 188 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
+The prepared reviews and prerequisites touch 1,660 of 1,761 combined diff paths. The remaining 101 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
 
 ## Combined great-merge on upstream master `af11a99125`
 
