@@ -12762,7 +12762,7 @@
     "olga-flow": "c4e5c94d16a595c3987929c09e966f6a4de5fa2c"
   },
   "validation": {
-    "landing": "4d2d71dd5b069ec3d85f076c47cd78b0f52b8ed9",
+    "landing": "3fbbcc50dc0f25484f0def54fee5b743502a02e8",
     "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
     "original_1147_bytes": {
       "linked": 980,
@@ -12779,7 +12779,13 @@
     },
     "delivery-network-world": {
       "old": "af534e381ee8fc028dc48b9e4db27785bb02e4a2",
-      "new": "8f3856196067dad9e9f32180253da607e00304bb"
+      "new": "1ebb4636336a0af5eb6a00d80cb53e09912cdda4",
+      "files": 22,
+      "steps": [
+        "8f3856196067dad9e9f32180253da607e00304bb",
+        "4772a264e0478469a8adb87ac9e3dfaf669ae28d",
+        "1ebb4636336a0af5eb6a00d80cb53e09912cdda4"
+      ]
     }
   }
 }

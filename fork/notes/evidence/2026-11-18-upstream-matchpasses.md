@@ -143,9 +143,9 @@ The overlap audit classifies 791 hunks from the 334 paths in the recorded checkp
 
 ## Disc streams, encounter owners and Challenge records
 
-The 24-file source wave at `5c2f0eb778` is in landing `4d2d71dd5b`. The disc patch applies the ADXF handle type to the deferred read queue and sound-bank slots. TGStream and its BML callers use the original byte-buffer API. The Challenge patch recovers the typed record rows and the original dispatch tables. The enemy patch brings back typed Fly Nest slots and the Gee child-removal virtual method. The boss patch restores Olga Flow Type 1 construction, spawn records and PlotFalz ownership.
+The 24-file source wave at `5c2f0eb778` is in landing `3fbbcc50dc`. The disc patch applies the ADXF handle type to the deferred read queue and sound-bank slots. TGStream and its BML callers use the original byte-buffer API. The Challenge patch recovers the typed record rows and the original dispatch tables. The enemy patch brings back typed Fly Nest slots and the Gee child-removal virtual method. The boss patch restores Olga Flow Type 1 construction, spawn records and PlotFalz ownership.
 
-The Challenge records are part of the local display review at `28c2e9303e`. The disc patch is part of the local world review at `8f38561960`. Both review builds, the combined source and the working fork reproduce retail. The combined build has all 27,572 functions exact and preserves exact and source-linked coverage from upstream, the historical fork and both subsystem checkpoints. All 1,147 initial bytes are accounted for, all 133 local tooling paths round-trip, and all 11 fork layer tests pass.
+The Challenge records are part of the local display review at `28c2e9303e`. The world review at `1ebb463633` keeps disc streams, Fly Nest and Gee ownership, and Olga Flow Type 1 in three commits spanning 22 paths on the existing world history. Both review builds, the combined source and the working fork reproduce retail. The combined build has all 27,572 functions exact and preserves exact and source-linked coverage from upstream, the historical fork and both subsystem checkpoints. All 1,147 initial bytes are accounted for, all 133 local tooling paths round-trip, and all 11 fork layer tests pass.
 
 Function-body comparison found 6,060 retained bodies across 810 historical paths awaiting source review. Of those, 980 differ from a comparable branch-point implementation, which establishes retention of a fork change. These comparisons cover function bodies and leave signatures, includes and header ownership for separate review. [Function-source evidence](2026-11-19-function-source-evidence.json)
 
@@ -195,7 +195,7 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
 | Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `28c2e9303e` | 924 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `8f38561960` | 876 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `1ebb463633` | 877 |
 | Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `74e7cb1163` | 799 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `f46dbc3413` | 441 |
 
