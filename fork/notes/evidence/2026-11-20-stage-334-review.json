@@ -2,6 +2,16 @@
   "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
   "stage": {
     "head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+    "current_published_head": "9f03861d413309966bb1689099353df4922302ca",
+    "attribution_update": {
+      "source_validation_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+      "published_head": "9f03861d413309966bb1689099353df4922302ca",
+      "identical_source_tree": "2d95441b0045feccdf9aee80b9724ce3e329c490",
+      "commits_with_updated_attribution": 13,
+      "source_changes": 0,
+      "previous_published_ref": "great-merge/pr334-before-attribution-cleanup",
+      "ci_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44830580667"
+    },
     "previous": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
     "files": 487,
     "cleanup_paths": [
