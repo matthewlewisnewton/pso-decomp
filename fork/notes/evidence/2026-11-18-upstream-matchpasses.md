@@ -126,6 +126,12 @@ The stage review uses the BML/GVM provider as its parent and validates the share
 
 The prepared reviews and prerequisites touch 1,660 of 1,761 combined diff paths. The remaining 101 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
 
+## Earlier Great Merge investigation notes
+
+The older local branch `great-merge/main` at `bc3df70d93` adds 24 investigation notes that were missing from the fork layer. They are preserved byte for byte under their original paths in `fork/notes/`. They describe earlier experiments and refer to the source layout at the time.
+
+The legacy source comparison against `6cfb23a4b3` covers 1,197 changed source, header, and config paths. It finds 22 already identical and 49 whose changes are already present by three-way replay. The remaining cases include moved owners and overlapping implementations. The typed Challenge event and main-menu entry layouts already exist in their current source owners. Use the older changes as evidence when checking other shared layouts and source ownership.
+
 ## Validated dependency order within four subsystem stacks
 
 These source-only stacks are based on upstream master `6b080e67ab`. The file counts describe the complete stack versus upstream. The commits within each stack retain the dependency order for review.
