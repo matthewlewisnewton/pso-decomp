@@ -492,6 +492,21 @@ Each candidate builds from current upstream with the source for its subsystem. T
 
 The 128-file local stage review at `0d7017a5cf` combines the 95-file doors, fences and Seabed patch with the earlier stage weather and resource patch. The only source conflict was the Seabed wall. It keeps the native constructor, model bounds and render fields along with the named debris template and typed archive lifetime. Rain ownership consolidates two existing source units. The stage branch and the 268-file combined review build reproduce retail and pass strict linkage with all 27,572 functions and 1,758,510 data bytes accounted for. [Stage consolidation evidence](2026-11-20-stage-weather-consolidation.json)
 
+## trade windows, linked enemy actors and downloadable quest cache
+
+Source checkpoint `c6908ed402` and landing checkpoint `13400d6a38` carry 41 source files. The source replay recovers native trade menus and request objects, linked Bal Claw and Pan Arms actors, and downloadable quest cache records. The source audit records 31 historical files and closes 8. The ledger has 1,300 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-main-menu-and-child-windows` | Main menu and Short Mail, Trade request lifecycle, three Trade child factories, confirmation dialogs and shared log teardown | 91 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy registration and Recon formations, Bal Claw split and join state, Pan Arms child placement and native attack collider | 95 |
+| `great-merge/current/standalone-online-quest-transfers` | Online quest transfers and dialogue, quest scripts and native cache slot, text and item records | 96 |
+| `great-merge/current/standalone-adx-streaming` | ADX and WAVE decoding, CVFS disc and memory devices, ADXF disc archives and movie module lifetime | 116 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 582-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-trade-actors-quest-cache-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
