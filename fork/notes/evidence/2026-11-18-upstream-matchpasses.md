@@ -126,6 +126,23 @@ The stage review uses the BML/GVM provider as its parent and validates the share
 
 The prepared reviews and prerequisites touch 1,660 of 1,761 combined diff paths. The remaining 101 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
 
+## Validated dependency order within four subsystem stacks
+
+These source-only stacks are based on upstream master `6b080e67ab`. The file counts describe the complete stack versus upstream. The commits within each stack retain the dependency order for review.
+
+| Review order | Local branch under `great-merge/current/` | Head | Changed files |
+| --- | --- | --- | ---: |
+| Network startup, packet lifetime, audio streaming, disc archives and movie lifetime | `network-audio-stack` | `fb53599452` | 157 |
+| Rendering and camera presentation, then native windows and keyboard | `render-window-stack` | `98131699ee` | 772 |
+| Allocation and memory, then player systems, then spatial sound and effects | `player-memory-spatial-stack` | `1a5ba8e2e8` | 723 |
+| BML/GVM assets, then stage objects and Challenge, then enemy and boss combat | `world-enemy-stack` | `010a80a015` | 798 |
+
+Networking adds 99 audio, disc and movie files on the existing 60-file network review. Renderer and window reconciliation resolves nine shared files while keeping the native keyboard and window owners. Memory precedes both player and spatial work so they share allocation, position and sound ownership. BML/GVM archives precede Stage and Enemy so that those callers share the native resource API. Every stack reproduces the retail executable and retains upstream, historical and component matched and source-linked coverage.
+
+The four stacks and the actor prerequisite touch 1,765 of 1,777 comparison entries, counting both names for two renamed files. This measure counts path coverage. The 12 other paths belong to the new historical source replay. The larger stacks still overlap on shared code. A cross-stack merge preview found five conflicts between networking/audio and rendering/windows and 123 between rendering/windows and world/enemy.
+
+The combined source at `6cfb23a4b3` restores the full-width character-selection and lobby predicates, typed word-selection calls, Olga Flow's Tube, phase and scene ownership, and native Dark Falz and Gol Dragon model nodes. The source and working fork reproduce retail with all 27,572 functions and retain exact and linked coverage. The original 90-range ledger again yields 980 source-linked bytes and 167 alignment bytes. The separate fork layer still applies all 133 local paths and passes all 11 tests.
+
 ## Historical fade and debris replay and review assignments
 
 The 21-file replay at `99d8d2c898` restores the native negative fade method at `0x800A0554` with all six enemy callers, and uses the fork's typed debris position and spread vectors with all known consumers. The retail executable and matched and source-linked code and data are preserved. All 90 original ranges still account for 980 source-linked bytes and 167 alignment bytes. The working fork reproduces retail, its 133 overlay paths round-trip and all eleven layer tests pass.
