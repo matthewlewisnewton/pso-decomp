@@ -294,6 +294,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 The weapon audit compares every compiled registry slot with the prior retail target. The review keeps direct callback addresses on GameCube and uses exact-type adapters in hosted builds. The direct quest review uses the upstream allocator and transfer APIs. All four direct reviews combine into a retail-exact 159-file build. [Source and validation evidence](2026-11-19-weapon-targeting-quest-replay.json)
 
+## ADX streaming, boss arenas, stage transfers and menus
+
+Source checkpoint `01d56a4e4d` and landing checkpoint `660d7c4f5b` carry 66 source files. The source replay restores native ADX callbacks and playback handles, shared light slots for De Rol Le and Barba Ray, typed player callbacks for stage transfers, and bank deposit and Mag Photon Blast window lifetimes. The source audit records 47 historical files and closes 30. The ledger has 1,734 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-adx-streaming` | ADX playback, decoder and disc streaming interfaces | 35 |
+| `great-merge/current/standalone-derolle-arena-lighting` | De Rol Le and Barba Ray arena lights and ceiling debris | 17 |
+| `great-merge/current/standalone-stage-transfer-and-seasonal-assets` | Stage transfer callbacks and seasonal and forest resource ownership | 22 |
+| `great-merge/current/standalone-main-menu-and-child-windows` | Main menu, bank deposit and Mag Photon Blast window lifetimes | 15 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 85-file review build also matches retail. A separate audio source review verified the callback signatures, playback arguments and cache ranges. [Source and validation evidence](2026-11-19-audio-arena-stage-window-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
