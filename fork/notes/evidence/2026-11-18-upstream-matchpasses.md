@@ -149,6 +149,16 @@ The Challenge records are part of the local display review at `28c2e9303e`. The 
 
 Function-body comparison found 6,060 retained bodies across 810 historical paths awaiting source review. Of those, 980 differ from a comparable branch-point implementation, which establishes retention of a fork change. These comparisons cover function bodies and leave signatures, includes and header ownership for separate review. [Function-source evidence](2026-11-19-function-source-evidence.json)
 
+## Player collision, Pan Arms, keyboard and quest download replay
+
+The 21-file replay at `ff9f043765` is in the local landing checkpoint `02c7592bb3`. The player routines use typed vectors and the original collision hit result. They share the original combat constant declarations. Pan Arms restores captured model positions and typed split-half state, including the movement method and its five callers. Soft keyboard frame and reveal drawing use the shared window context and quad. Quest downloads use the original workspace, slot and scratch layouts.
+
+The three existing subsystem reviews carry the new changes. Keyboard is in display at `ad2a91dacd`, and Pan Arms is in world at `2715532ccc`. Player and quest add 13 paths at `67fca574b8` in two commits. That review retains its current collision provider and return contract. The fully typed collision result is in the combined source.
+
+The source, working fork and review builds reproduce retail. The source retains exact and source-linked coverage from the five queued upstream reviews. The original 90 ranges still account for 980 linked bytes and 167 padding bytes. All 133 local paths round-trip. Eleven fork-layer tests and five host smoke programs pass. Both changed quest workspace files compile in 32-bit host mode. The extended 32-bit smoke programs need a 32-bit C/C++ link runtime.
+
+The audit closes 8 historical rows and records partial evidence for the other changed owners. The current ledger has 971 entries awaiting complete owner comparison and 957 with partial evidence. [Owner replay evidence](2026-11-19-owner-replay-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `6b080e67ab`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
@@ -208,9 +218,9 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `28c2e9303e` | 924 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `1ebb463633` | 877 |
-| Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `74e7cb1163` | 799 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `ad2a91dacd` | 924 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `2715532ccc` | 877 |
+| Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `67fca574b8` | 802 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `f46dbc3413` | 441 |
 
 Rendering follows audio and disc streaming. The renderer resolves four overlapping include groups. The window layer keeps the typed audio slot in the native status window. The selection and lobby commit adds 12 files. The window context pass adds a further 17. The other three stacks replayed cleanly directly from the network commit. The world stack closes with the boss ownership and photon commits. All four branches reproduce retail and preserve matched and source-linked coverage.
