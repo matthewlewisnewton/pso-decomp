@@ -869,7 +869,7 @@ The 61-file network runtime is open at [#333](https://github.com/zeroz41/pso-dec
 
 The stage cleanup puts the area accessor on TObjPlayer, uses shared typed live floor-row getters and the shared player lookup declaration, and uses the Dubchik class layout for its attachment helper. The review handoff verifies the standalone against the previous PR head and upstream with 2,448 source objects linked. Its historical-fork comparison accounts for a net 2,386-byte change in the total-data diagnostic through 2,549 omitted alignment bytes and 163 bytes of added coverage. It records zero exact-function, linked-function, non-padding-data, or linked-data losses. [Validation record](2026-11-20-stage-334-review.json)
 
-Replay the stage cleanup by source owner before updating the combined queue. The Git preview found 20 overlapping paths on canonical source and 10 on the queue. Preserve the current typed player registry, floor-row, boss and stage contracts when reconciling those overlaps, then validate both combined builds.
+The stage cleanup is replayed on canonical `195c6e16c2` and queue `6f12bb5fe8`. The 20 canonical and 10 queue overlaps were reconciled by source owner. Both trees reproduce retail and pass strict coverage. The stage receipt records the current player and floor contracts and the exact Dubchik owner.
 
 Keep upstream’s existing names for functions, types, and fields wherever the fork uses the same entity. Remove name-only changes during review preparation. Use the established upstream type when consolidating duplicate views and describe any resulting signature or linkage change in the PR.
 
@@ -888,6 +888,12 @@ Source `dbb9801fa6` and landing checkpoint `d07c474a46` carry 51 changed files. 
 The PPP frame review starts from the validated #333 head and retains the existing buffer helper symbol. The standalone Word Select review covers message formatting, archive records and shared geometry. The combined queue also carries the DD widgets that depend on the equipment review’s window layout.
 
 The 2,074-file review queue covers 26 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-native-boundary-replay.json)
+
+## Stage cleanup replay and owner corrections
+
+Source `195c6e16c2` and landing checkpoint `6664106132` carry 51 changed files. This batch covers the reviewed stage accessors and Dubchik attachment owner, equipment and Symbol Chat name restoration, GoGo Ball counter and prompt receiver. The audit closes 1 historical comparisons and leaves 990 open.
+
+The 2,085-file review queue covers 26 groups. The canonical source and working fork reproduce retail. The equipment review restores seven upstream names or linkage spellings. Compiler relocations confirm both Symbol Chat overloads. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-stage-owner-replay.json)
 
 ## Ordered upstream review candidates
 
