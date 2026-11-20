@@ -596,6 +596,21 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 Stage and UI changes enlarge their existing reviews. Olga Flow groups arena hazards and cinematics with the phase actors. Weapon muzzle, motion and effect changes join the weapon factory review. The twelve groups build together across 1,309 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-weapon-palette-olga-stage-lifetimes-replay.json)
 
+## Photon Blast resources, menu rows, quest matching and enemy registration
+
+Source checkpoint `bbd69fb8de` and landing checkpoint `029e79b51f` carry 114 changed source files. The replay recovers the shared Photon Blast archive and camera, menu row and text rendering, downloadable quest matching, and typed collision registration and actor lookup. The audit covers 98 historical records and closes 0. The ledger has 1,190 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-technique-effects-and-sounds` | Technique effects, Photon Blast sequences, archive slots and camera | 77 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formations, collisions, registration and actor lookup | 184 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment, palette, shared menu row alignment and text measurement | 337 |
+| `great-merge/current/standalone-online-quest-transfers` | Online quest transfers, download matching, scored text records and node ownership | 96 |
+
+The technique, equipment window, online quest, and enemy formation reviews include these changes. The twelve groups build together across 1,352 files and reproduce the retail DOL. Independent source reviewers checked the changed layouts, call signatures and lifetime ordering. [Source and validation evidence](2026-11-20-photon-menu-quest-enemy-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
