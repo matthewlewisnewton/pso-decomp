@@ -773,6 +773,18 @@ All 90 original data ranges remain accounted for. Source and working builds repr
 
 The character review combines selection previews with the selector, tag and backdrop actors. The array review covers both storage operators, their callers and the runtime array destructor. All 18 groups build together across 1,790 files and reproduce the retail DOL. The character reviews retain both current constructor signatures in the shared metadata. [Source and validation evidence](2026-11-20-array-character-completeness-replay.json)
 
+## Olga Flow plot state dispatch
+
+Source checkpoint `34ed7bfb29` and landing checkpoint `a91036891c` carry 3 changed source files. The producer and dispatcher now share one nine-state table with the original member-function callbacks and record layout. The audit covers 3 historical records and closes 1. The ledger has 1,088 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. Source and working builds reproduce the retail DOL and retain recorded code and data coverage. The working fork passes 294 tooling tests and 11 layer tests.
+
+| Local review branch | Scope | Files from review base |
+| --- | --- | ---: |
+| `great-merge/current/standalone-olga-flow-cinematics` | Olga Flow cinematic actors and shared plot state dispatch | 111 |
+
+The change extends the existing Olga Flow cinematic review. All 18 groups build together across 1,791 files and reproduce the retail DOL. The producer and consumer retain the original callback slots, transition order and linked table address. [Source and validation evidence](2026-11-20-olga-plot-dispatch-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
