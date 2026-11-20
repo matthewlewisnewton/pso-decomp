@@ -369,6 +369,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 205-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-19-olga-card-shop-seabed-replay.json)
 
+## Model-node capture, worm bosses, Pioneer 2 and Challenge results
+
+Source checkpoint `ac698bf3fa` and landing checkpoint `cab9f349ac` carry 70 source files. The source replay restores model-node capture and output arrays, De Rol Le and Barba Ray body and mine ownership, Pioneer 2 and lobby archives, and Challenge rewards and results windows. The source audit records 86 historical files and closes 41. The ledger has 1,487 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-olga-flow-cinematics` | Olga Flow cinematics and shared model-node capture used by Dark Falz and Pan Arms | 82 |
+| `great-merge/current/standalone-derolle-arena-lighting` | De Rol Le and Barba Ray arena lights, body joints, mines and laser handling | 34 |
+| `great-merge/current/standalone-stage-transfer-and-seasonal-assets` | Pioneer 2 and lobby archives, seasonal rendering, aircars and ambient objects | 34 |
+| `great-merge/current/challenge-and-duel-results` | Challenge and Battle results, reward ownership and player input lifetime | 71 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 210-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-19-node-worm-city-results-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
