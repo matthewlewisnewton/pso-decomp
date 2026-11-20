@@ -1,0 +1,871 @@
+{
+  "source": "f759412dff03ebc5c8f8e0f51a1ff8a994eea49b",
+  "landing": "53b78dd12ed2c9bb12d61eb1d02085e42dd63ecc",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 46,
+  "batches": {
+    "action-palette": {
+      "head": "fc883e3c30f567d4deec3ac6e9e5a98f57b4c24f",
+      "files": 17
+    },
+    "particle-definition": {
+      "head": "a48e9a420a5cce5771141228d971b28b246fe7f6",
+      "files": 18
+    },
+    "dark-gunner": {
+      "head": "a4eca4b0f93cf35b91323ba0d48e7f355a32c081",
+      "files": 5
+    },
+    "olga-rocks": {
+      "head": "97f23fa0987a333c1498fadbea54c72c908014e1",
+      "files": 7
+    }
+  },
+  "symbol_retention": 27061,
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2447,
+    "complete_units": 2447
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "coverage_comparisons": 21,
+  "fork_test_repair": {
+    "path": "tools/tests/test_viewport_scissor_interface.py",
+    "old_expected_call": "TCameraCtrl::set_viewport_scissor(2, var_r4);",
+    "current_expected_call": "TCameraCtrl::set_viewport_scissor(2, rect);",
+    "previous_source_blob": "c900b4d3252c2e1ed2b7fc8bfd8f2c7cd29ecc70",
+    "source": "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+    "reason": "Expect the current typed rectangle at the existing viewport call site."
+  },
+  "delivery": {
+    "delivery-network-render-window": {
+      "old": "fddb20c8c42db17ddc32c8f27a1f6f62da9f6ec9",
+      "head": "cf8d847e24721f8adecef6e0f539bddf56621bff",
+      "files": 18,
+      "upstream_diff_paths": 949
+    },
+    "delivery-network-world": {
+      "old": "9f6bc23b9e3fcafe691b22a31f01903cf32b0b71",
+      "head": "e80e5badf2711507bfed05cf36fc956815b187fc",
+      "files": 30,
+      "upstream_diff_paths": 930
+    }
+  },
+  "source_audit": {
+    "source": "f759412dff03ebc5c8f8e0f51a1ff8a994eea49b",
+    "base": "5816ff85346d89cdab3cf5d9729d8d1c9bc32148",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "ledger_base": "2f4ee525acd8e7517353bf9de87238f38937bfd9",
+    "closed_rows": [
+      355,
+      451,
+      518,
+      656,
+      744,
+      810,
+      955,
+      5054,
+      5057,
+      5058,
+      5094,
+      6006
+    ],
+    "remaining": {
+      "Owner comparison required": 786,
+      "Some anchored text changes found": 1045
+    },
+    "entries": [
+      {
+        "row": 6006,
+        "historical_path": "include/pso/misc/ActionPaletteTagAbi.h",
+        "historical_blob": "891db205127336183d15bae5384df956fefab38e",
+        "group": "Action palette",
+        "full": true,
+        "owners": {
+          "include/pso/ui/window/ActionPaletteTag.h": "8c903bdb07a8447521d642c9294bd4e5b053b33a",
+          "src/pso/ui/hud/TMainCursor.cpp": "120282757af6afe976a8643d51d9337299a57290"
+        },
+        "evidence": "Both original byte setters use the native four-byte tag. All active reads and writes, including the two player attack wrappers with a forwarded byte, follow the same layout. All 13 rebound symbols keep exact addresses and sizes."
+      },
+      {
+        "row": 451,
+        "historical_path": "include/pso/enemy/TObjEneDarkGunCenter.h",
+        "historical_blob": "3cd272d3352247bc4f076861a3adf1016de1c7e7",
+        "group": "Dark Gunner formation",
+        "full": true,
+        "owners": {
+          "include/pso/enemy/darkgunner/TObjEneDarkGunCenter.h": "cee9a364710092cd1ef9c51cb5f2e3ebf96e2d24"
+        },
+        "evidence": "Recovered the native 0x3A8 object shape, offsets 0x374, 0x378, 0x37C, 0x380, 0x384 and 0x3A4, and explicit receiver declaration for the demo callback."
+      },
+      {
+        "row": 583,
+        "historical_path": "src/pso/enemy/TObjEneDarkGunCenter.cpp",
+        "historical_blob": "2d06210916e5d5f4f3968dc68312e298a75a8626",
+        "group": "Dark Gunner formation",
+        "full": false,
+        "owners": {
+          "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": "ed82c18b154d7c8eae19e3c9df8f26d28095b764"
+        },
+        "evidence": "Recovered native run_task and exact factory behavior, with typed formation state, cadence, target, callbacks and rotation. The retained GC/2.6 vtable/destructor preserve original virtual and switch-table order."
+      },
+      {
+        "row": 656,
+        "historical_path": "src/pso/unk/text_800A0814.cpp",
+        "historical_blob": "f8082d65fd271d8f2cf59db141513e709cfa0066",
+        "group": "Dark Gunner formation",
+        "full": true,
+        "owners": {
+          "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": "ed82c18b154d7c8eae19e3c9df8f26d28095b764"
+        },
+        "evidence": "The relocated hide_linked_enemies function uses real count and 16 ID entries and updates state/timer through the owning class."
+      },
+      {
+        "row": 870,
+        "historical_path": "include/pso/enemy/DarkGunner.h",
+        "historical_blob": "3e6c700ede310bb03cab880b5253c32b116c4ba7",
+        "group": "Dark Gunner formation",
+        "full": false,
+        "owners": {
+          "include/pso/enemy/darkgunner/DarkGunner.h": "5a2332d5ccc38fa92a8bc0615946cc7f068cb17e"
+        },
+        "evidence": "Recovered the exact TObject-parent and set-data pointer types for the C constructor bridge."
+      },
+      {
+        "row": 1053,
+        "historical_path": "src/pso/enemy/DarkGunner.cpp",
+        "historical_blob": "4cec24062553c780dd8e544c433ab406cb6a11c6",
+        "group": "Dark Gunner formation",
+        "full": false,
+        "owners": {
+          "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": "ed82c18b154d7c8eae19e3c9df8f26d28095b764"
+        },
+        "evidence": "The relocated constructor bridge uses real actor and formation fields, including body center, flags, selection, members and empty timer. Other DarkGunner.cpp changes were outside the focus."
+      },
+      {
+        "row": 4894,
+        "historical_path": "src/pso/misc/ParticleBallistic.cpp",
+        "historical_blob": "f208523205c242b345eb1aa85929ffc635521661",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/particle/ParticleBallistic.cpp": "39c7b3ee55109295dc41738f9dc30641c5c2cd24"
+        },
+        "evidence": "Original ballistic update and draw still have broader owner and compiler-policy differences. The shared table flags, frame count, and typed texture call are verified."
+      },
+      {
+        "row": 4895,
+        "historical_path": "src/pso/misc/ParticleOrbit.cpp",
+        "historical_blob": "0e5d5753fcb0cb0ea83ded0dc1de0bb337a56afa",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/particle/ParticleOrbit.cpp": "9cfb66deeb9ecc84e60fbfcd645b8e38a0a36e67"
+        },
+        "evidence": "Original orbit lifetime, rotate and draw source still differs. The shared table flags, frame count, and typed texture call are verified."
+      },
+      {
+        "row": 4906,
+        "historical_path": "src/pso/misc/TQuadSpriteNormal.cpp",
+        "historical_blob": "58394422948b57f969aefa3dfc1a198f57391dda",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/sprite/TQuadSpriteNormal.cpp": "6caa0be51435f1382260a3bbb972c1e7be6da088"
+        },
+        "evidence": "The historical native render and constructor refactor also changes helper records, their offset assertions, and constructor declaration. This wave restores the shared descriptor used by that renderer."
+      },
+      {
+        "row": 4922,
+        "historical_path": "include/pso/effect/TEF_LensFlare.h",
+        "historical_blob": "feb50b3839c77a309a2fd144db6992004bee4697",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/TEF_LensFlare.cpp": "be943a0ad53cb4f8cd90c0d8ebe8673f138767ad"
+        },
+        "evidence": "The historical LensFlareElement pointer is present. The fork constructor declaration is absent from the public header and constructor ownership is elsewhere."
+      },
+      {
+        "row": 4932,
+        "historical_path": "src/pso/effect/TEF_LensFlare.cpp",
+        "historical_blob": "dfa1487d1fb5e3e72e82d7d72d7b6b940a1d6e1b",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/TEF_LensFlare.cpp": "be943a0ad53cb4f8cd90c0d8ebe8673f138767ad"
+        },
+        "evidence": "The typed sprite definition and camera access are present. The historical typed lens flare packing and other constructor/render implementation edits need separate source comparison."
+      },
+      {
+        "row": 4954,
+        "historical_path": "include/pso/misc/TQuadSpriteNormal.h",
+        "historical_blob": "639f263b3efdf8b42d8905ed65c8d7343ffc6e3b",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/sprite/TQuadSpriteNormal.cpp": "6caa0be51435f1382260a3bbb972c1e7be6da088"
+        },
+        "evidence": "The sole historical change is the shared typed TQuadSpriteNormal__ct declaration taking TObject * and ParticleDefinition *. Current atlas owner has a file-local extern using void * for the parent, and renderer still exposes the older argument form."
+      },
+      {
+        "row": 4977,
+        "historical_path": "src/pso/misc/ParticleRadial.cpp",
+        "historical_blob": "44939493e5be56556548c8cace4127a049c779dc",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/particle/ParticleRadial.cpp": "035d914c38fbf491e875ce7da23c520f1716c70a"
+        },
+        "evidence": "The original radial update introduces a larger typed motion and color-packing implementation. This wave restores its shared sprite-definition reads."
+      },
+      {
+        "row": 5054,
+        "historical_path": "src/pso/misc/TQuadSpriteScl.cpp",
+        "historical_blob": "fb6662ffd9aa7319ac6825489471cd43cf32d53b",
+        "group": "Particle sprite definitions",
+        "full": true,
+        "owners": {
+          "src/pso/effect/sprite/TQuadSpriteScl.cpp": "ccc235f29edd254779d18e94c52fa02cb9a792c2"
+        },
+        "evidence": "Exactly three historical hunks. The moved CurrentTextureList header and the sole typed call are present. The other hunk defines two values, 0x805DC470 = 480.0f and 0x805DC474 = -1.0f, now represented by identical source literals in the same renderer. Existing c7470b0f0e linked constant proof covers those 8 bytes. This accounts for every original added line."
+      },
+      {
+        "row": 5057,
+        "historical_path": "src/pso/misc/TQuadSpriteCol.cpp",
+        "historical_blob": "50d82e1ea76a7f3f6708385e5fe7e7939eedaa87",
+        "group": "Particle sprite definitions",
+        "full": true,
+        "owners": {
+          "src/pso/effect/sprite/TQuadSpriteCol.cpp": "6a158a7a4133bb7ec41a017ffa4e507ad31b75c7"
+        },
+        "evidence": "Exactly three historical hunks. The moved CurrentTextureList header and the sole typed call are present. The other hunk defines two values, 0x805DC450 = 480.0f and 0x805DC454 = 1.0f, now represented by identical source literals in the same renderer. Existing c7470b0f0e linked constant proof covers those 8 bytes. This accounts for every original added line."
+      },
+      {
+        "row": 5058,
+        "historical_path": "src/pso/misc/TQuadSpriteSclCol.cpp",
+        "historical_blob": "842b13d23b4a99dce8ef6502f3c0fbf67d1cfa8c",
+        "group": "Particle sprite definitions",
+        "full": true,
+        "owners": {
+          "src/pso/effect/sprite/TQuadSpriteSclCol.cpp": "e7aceec967ecd4a2832a77de498f00acf753e8bf"
+        },
+        "evidence": "Exactly three historical hunks. The moved CurrentTextureList header and the sole typed call are present. The other hunk defines two values, 0x805DC480 = 480.0f and 0x805DC484 = -1.0f, now represented by identical source literals in the same renderer. Existing c7470b0f0e linked constant proof covers those 8 bytes. This accounts for every original added line."
+      },
+      {
+        "row": 5075,
+        "historical_path": "src/pso/misc/TParticleCtrl_801E5330.cpp",
+        "historical_blob": "0c4725f8e67b6302ecc8cd76519ff2be0488322d",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "src/pso/effect/particle/TParticleCtrl_801E5330.cpp": "2d9aac1e6253c3db2e19a811f5d1fc41ad0c3755"
+        },
+        "evidence": "All atlas data, all five conditional sprite construction paths and the 0.0f/0.25f UV initialization are present. The atlas owner still declares tl_particle as void * and the Normal constructor with a void * parent, so the entire typed cross-owner contract remains open."
+      },
+      {
+        "row": 5094,
+        "historical_path": "include/pso/misc/ParticleDefinition.h",
+        "historical_blob": "22b2558a5f007df903b950d2f227f29041b8520e",
+        "group": "Particle sprite definitions",
+        "full": true,
+        "owners": {
+          "include/pso/effect/particle/ParticleDefinition.h": "220db4999dad073af4c2d531319dc2414a05bac7"
+        },
+        "evidence": "Historical addition bd98781c89. The complete source comment, all ten ordered fields, the texture-list forward declaration and the original size assertion are identical at the current tracked owner on both candidates. Extra declarations expose the existing tables and add the UV offset assertion."
+      },
+      {
+        "row": 5096,
+        "historical_path": "include/pso/misc/TUnk_8048E728.h",
+        "historical_blob": "4d0d575c75b6ea9a44842d006c6d76843009e79f",
+        "group": "Particle sprite definitions",
+        "full": false,
+        "owners": {
+          "include/pso/unk/TUnk_8048E728.h": "53adbc5cb200a1721ef0e2a11ea6bcb097bbb937"
+        },
+        "evidence": "Current named emitter and particle fields preserve the historical typed layout and later native fields. The two original ParticleParam and TUnk_8048E728 size checks remain absent, and independent heap/constructor ownership differs."
+      },
+      {
+        "row": 355,
+        "historical_path": "include/pso/TBoss6CrushRock.h",
+        "historical_blob": "4b230e6258f39a45d076fd6259126e01221512dd",
+        "group": "Olga Flow rock breakup",
+        "full": true,
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6CrushRock.h": "0330c2c8fcba54856b4c236bde3e2dcd6e6690dc"
+        },
+        "evidence": "The complete native 0x54 rock layout and the four historical field offset assertions are present. Constructor operands now use the existing TObject and Vec types."
+      },
+      {
+        "row": 518,
+        "historical_path": "src/pso/boss/TBoss6CrushRock_80359FEC.cpp",
+        "historical_blob": "b33e2919f6c4d7d54106963fa8fc3a2ae955f111",
+        "group": "Olga Flow rock breakup",
+        "full": true,
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6CrushRock.cpp": "29eabd43c70e8a5f51b982f9e9bd7fc2aa44a39c"
+        },
+        "evidence": "The exact render and physics methods use native members and typed matrix/vector interfaces. The four gravity, floor and bounce constants emit as local literals in the current unit at 0x805E00B8..0x805E00C8."
+      },
+      {
+        "row": 744,
+        "historical_path": "include/pso/TBoss6CrushPtcl.h",
+        "historical_blob": "6441e49f336b49ef7e24bbf1913f43a6e1bbd9f7",
+        "group": "Olga Flow rock breakup",
+        "full": true,
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6CrushPtcl.h": "ce4241856ef1a4fdf8ff71685daca56c7f935070"
+        },
+        "evidence": "The destructor, task, three fields, and static Vec-point factory are retained at the active header. The allocator result and emitter fields use their established pointer types."
+      },
+      {
+        "row": 810,
+        "historical_path": "src/pso/boss/TBoss6CrushPtcl.cpp",
+        "historical_blob": "95bc1467b36beee59e01f4a163914ce4e4c6dfbe",
+        "group": "Olga Flow rock breakup",
+        "full": true,
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6CrushRock.cpp": "29eabd43c70e8a5f51b982f9e9bd7fc2aa44a39c"
+        },
+        "evidence": "All four entries remain exact and retain the fork\u2019s Vec point, emitter creation and timed release. The initializer keeps the explicit virtual table write and typed factory call."
+      },
+      {
+        "row": 836,
+        "historical_path": "include/pso/boss/TBoss6Rock.h",
+        "historical_blob": "46aab5f1d1fe2839938ad0460fcb77d1c6e80a8e",
+        "group": "Olga Flow rock breakup",
+        "full": false,
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6Rock.h": "7709aab795c503ebd669b68f54855ca9b6cc1a2d"
+        },
+        "evidence": "The static rock-breakup point signature now matches the historical declaration. The model and texture callbacks use the exact native resource and texture types."
+      },
+      {
+        "row": 907,
+        "historical_path": "src/pso/boss/TBoss6Rock.cpp",
+        "historical_blob": "ed8a07e411f83b9eb4b57ce750845c1090ed0d6b",
+        "group": "Olga Flow rock breakup",
+        "full": false,
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6Rock.cpp": "0e651d646b70a54ab54132fede477b890d2becc6"
+        },
+        "evidence": "Both breakup paths pass the native position directly. Both resource accessors return their existing typed providers."
+      },
+      {
+        "row": 955,
+        "historical_path": "src/pso/boss/TBoss6CrushRock.cpp",
+        "historical_blob": "b1a333e8d6640ba2e2c5cb9a450b84d5a66fc471",
+        "group": "Olga Flow rock breakup",
+        "full": true,
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6CrushRock.cpp": "29eabd43c70e8a5f51b982f9e9bd7fc2aa44a39c"
+        },
+        "evidence": "The exact constructor and animated spawning loop retain both allocation gates, model index, native rock position, velocities, and angles. The original boss-owner lookup keeps its exact provider."
+      },
+      {
+        "row": 984,
+        "historical_path": "src/pso/boss/TBoss6RockChase.cpp",
+        "historical_blob": "48dae620851c427b969e0b94b2bce08ad2576893",
+        "group": "Olga Flow rock breakup",
+        "full": false,
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6RockChase.cpp": "4c0e9adf3c7bfb67aff4ae5c000c07aeb50701b3"
+        },
+        "evidence": "The chase rock now supplies its native position to the static breakup call and reads typed resource accessors. Other historical chase changes remain open."
+      }
+    ],
+    "dark_gunner_callback_proof": {
+      "owner": "src/pso/render/TUnk_80490470.cpp",
+      "validated_blob": "81fe2824d7163bc60137bc66290d4267768781df",
+      "addresses": [
+        "0x800A0654",
+        "0x800A06B4"
+      ],
+      "action": "Both formation callbacks accept the owning type and use its linked ID array and count directly."
+    },
+    "dark_gunner_compiler": {
+      "status": "retained explicit virtual table and destructor in exact candidate",
+      "original_virtual_table": "0x804904A0..0x804905EC",
+      "original_switch_table": "0x804905EC..0x80490608",
+      "historical_compiler": "GC/2.0",
+      "current_compiler": "GC/2.6",
+      "evidence": "In the native trial, no function report regressed and all vtable slots agreed after moving the 28-byte switch table. GC/2.6 emitted the switch table first even with original deferred ordering. The current explicit order preserves all 360 retail bytes.",
+      "trial_files": [
+        "first-delta.json",
+        "historical-order-build.log",
+        "names.txt"
+      ]
+    },
+    "olga_flow_function_proof": {
+      "0x80359E20": {
+        "name": "run_task__15TBoss6CrushPtclFv",
+        "size": 120,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x80359E98": {
+        "name": "__dt__15TBoss6CrushPtclFv",
+        "size": 88,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x80359EF0": {
+        "name": "TBoss6CrushPtcl__ct",
+        "size": 136,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x80359F78": {
+        "name": "create__15TBoss6CrushPtclFP3Vec",
+        "size": 76,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x80359FC4": {
+        "name": "is_falz_alive__15TBoss6CrushRockFv",
+        "size": 40,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x80359FEC": {
+        "name": "render__15TBoss6CrushRockFv",
+        "size": 120,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x8035A064": {
+        "name": "run_task__15TBoss6CrushRockFv",
+        "size": 232,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x8035A14C": {
+        "name": "__dt__15TBoss6CrushRockFv",
+        "size": 88,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x8035A1A4": {
+        "name": "__ct__15TBoss6CrushRockFP7TObjectPC3Vecl",
+        "size": 700,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x8035A460": {
+        "name": "spawn_crush_rocks__10TBoss6RockFP3Vecl",
+        "size": 448,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      },
+      "0x8035A620": {
+        "name": "get_hp__14TBoss6PlotFalzFv",
+        "size": 8,
+        "owner": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp"
+      }
+    },
+    "action_palette_symbol_proof": [
+      {
+        "old": "get_enabled__11TMainCursorFv",
+        "new": "get_action_palette_tag_slot",
+        "address": "0x8013DF3C",
+        "size": 8
+      },
+      {
+        "old": "get_type__11TMainCursorFv",
+        "new": "get_action_palette_tag_mode",
+        "address": "0x8013DF44",
+        "size": 8
+      },
+      {
+        "old": "set_slot__20TWindowActionPaletteFUc",
+        "new": "set_action_palette_tag_slot",
+        "address": "0x8013DF4C",
+        "size": 8
+      },
+      {
+        "old": "set_mode__20TWindowActionPaletteFUc",
+        "new": "set_action_palette_tag_mode",
+        "address": "0x8013DF54",
+        "size": 8
+      },
+      {
+        "old": "get_action_palette__11TMainCursorFUc",
+        "new": "set_cursor_palette_slot",
+        "address": "0x8013E6C0",
+        "size": 32
+      },
+      {
+        "old": "TMainCursor__sub_8013E6E0",
+        "new": "set_cursor_action_palette_mode",
+        "address": "0x8013E6E0",
+        "size": 36
+      },
+      {
+        "old": "update_action_palette__11TMainCursorFUc",
+        "new": "set_cursor_palette_mode",
+        "address": "0x8013E704",
+        "size": 32
+      },
+      {
+        "old": "update_action_palette__10TObjPlayerFv",
+        "new": "set_player_action_palette_slot",
+        "address": "0x801BF4B8",
+        "size": 36
+      },
+      {
+        "old": "set_action_palette_mode__10TObjPlayerFv",
+        "new": "set_player_action_palette_mode",
+        "address": "0x801BF4DC",
+        "size": 36
+      },
+      {
+        "old": "TObjPlayer__sub_801BF6E4",
+        "new": "get_player_action_palette_slot",
+        "address": "0x801BF6E4",
+        "size": 36
+      },
+      {
+        "old": "update_main_cursor__10TObjPlayerFv",
+        "new": "get_player_action_palette_mode",
+        "address": "0x801BF708",
+        "size": 36
+      },
+      {
+        "old": "query_field_340__10TObjPlayerFPv",
+        "new": "update_player_action_palette",
+        "address": "0x801D0FF4",
+        "size": 36
+      },
+      {
+        "old": "get_field_340__10TObjPlayerFi",
+        "new": "set_action_palette_state_mode__10TObjPlayerFUc",
+        "address": "0x801D3484",
+        "size": 36
+      }
+    ],
+    "particle_definition_row_proof": [
+      {
+        "row": 1631,
+        "fork_path": "include/pso/unk/TUnk_804C57F0.h",
+        "canonical_paths": [
+          "include/pso/unk/TUnk_804C57F0.h"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/unk/TUnk_804C57F0.h"
+      },
+      {
+        "row": 4877,
+        "fork_path": "include/pso/misc/TParticleCtrl.h",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl.cpp"
+        ],
+        "prior_status": "Unmodified source inherited at fork branch point",
+        "status": "previously_accounted",
+        "evidence": "1f2ecc1887 and 3342e42983 have the same mode and blob 7608cda6fcb3d62c13a09463e64c1a348a5e0222 at this path. No fork mainline commit changed this path. See Fork branch point in 2026-11-18-upstream-matchpasses.md."
+      },
+      {
+        "row": 4878,
+        "fork_path": "include/pso/misc/TParticleCtrl_801E5330.h",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl_801E5330.cpp"
+        ],
+        "prior_status": "Whole source matches except include paths or leading guard on upstream",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/particle/TParticleCtrl_801E5330.h"
+      },
+      {
+        "row": 4894,
+        "fork_path": "src/pso/misc/ParticleBallistic.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/ParticleBallistic.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "partially_recovered",
+        "evidence": "Original ballistic update and draw still have broader owner and compiler-policy differences. The shared table flags, frame count, and typed texture call are verified."
+      },
+      {
+        "row": 4895,
+        "fork_path": "src/pso/misc/ParticleOrbit.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/ParticleOrbit.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "partially_recovered",
+        "evidence": "Original orbit lifetime, rotate and draw source still differs. The shared table flags, frame count, and typed texture call are verified."
+      },
+      {
+        "row": 4906,
+        "fork_path": "src/pso/misc/TQuadSpriteNormal.cpp",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteNormal.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "partially_recovered",
+        "evidence": "The historical native render and constructor refactor also changes helper records, their offset assertions, and constructor declaration. This wave restores the shared descriptor used by that renderer."
+      },
+      {
+        "row": 4920,
+        "fork_path": "src/pso/unk/text_803281B8.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl_80327D30.cpp"
+        ],
+        "prior_status": "Unmodified source inherited at fork branch point",
+        "status": "previously_accounted",
+        "evidence": "1f2ecc1887 and 3342e42983 have the same mode and blob 8a95086872ccbb29f30c38fec049424858d3efa4 at this path. No fork mainline commit changed this path. See Fork branch point in 2026-11-18-upstream-matchpasses.md."
+      },
+      {
+        "row": 4922,
+        "fork_path": "include/pso/effect/TEF_LensFlare.h",
+        "canonical_paths": [
+          "src/pso/effect/TEF_LensFlare.cpp"
+        ],
+        "prior_status": "Some anchored text changes found",
+        "status": "partially_recovered",
+        "evidence": "The historical LensFlareElement pointer is present. The fork constructor declaration is absent from the public header and constructor ownership is elsewhere."
+      },
+      {
+        "row": 4932,
+        "fork_path": "src/pso/effect/TEF_LensFlare.cpp",
+        "canonical_paths": [
+          "src/pso/effect/TEF_LensFlare.cpp"
+        ],
+        "prior_status": "Some anchored text changes found",
+        "status": "partially_recovered",
+        "evidence": "The typed sprite definition and camera access are present. The historical typed lens flare packing and other constructor/render implementation edits need separate source comparison."
+      },
+      {
+        "row": 4954,
+        "fork_path": "include/pso/misc/TQuadSpriteNormal.h",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteNormal.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "partially_recovered",
+        "evidence": "The sole historical change is the shared typed TQuadSpriteNormal__ct declaration taking TObject * and ParticleDefinition *. Current atlas owner has a file-local extern using void * for the parent, and renderer still exposes the older argument form."
+      },
+      {
+        "row": 4977,
+        "fork_path": "src/pso/misc/ParticleRadial.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/ParticleRadial.cpp"
+        ],
+        "prior_status": "Some anchored text changes found",
+        "status": "partially_recovered",
+        "evidence": "The original radial update introduces a larger typed motion and color-packing implementation. This wave restores its shared sprite-definition reads."
+      },
+      {
+        "row": 4986,
+        "fork_path": "include/pso/misc/TQuadSpriteSclCol.h",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteSclCol.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/sprite/TQuadSpriteSclCol.h"
+      },
+      {
+        "row": 4989,
+        "fork_path": "include/pso/misc/TQuadSpriteCol.h",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteCol.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/sprite/TQuadSpriteCol.h"
+      },
+      {
+        "row": 4990,
+        "fork_path": "include/pso/misc/TQuadSpriteScl.h",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteScl.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/sprite/TQuadSpriteScl.h"
+      },
+      {
+        "row": 4994,
+        "fork_path": "include/pso/misc/ParticleBallistic.h",
+        "canonical_paths": [
+          "src/pso/effect/particle/ParticleBallistic.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/particle/ParticleBallistic.h"
+      },
+      {
+        "row": 4995,
+        "fork_path": "include/pso/misc/ParticleOrbit.h",
+        "canonical_paths": [
+          "src/pso/effect/particle/ParticleOrbit.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/particle/ParticleOrbit.h"
+      },
+      {
+        "row": 5003,
+        "fork_path": "include/pso/misc/TQuadSpriteSclColRot.h",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteSclColRot.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/sprite/TQuadSpriteSclColRot.h"
+      },
+      {
+        "row": 5015,
+        "fork_path": "src/pso/misc/TParticleCtrl_80327D30.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl_80327D30.cpp"
+        ],
+        "prior_status": "Complete fork interface edit retained at native callers",
+        "status": "previously_accounted",
+        "evidence": "Current texture list: 1 original source-linked call(s) verified by instruction address, enclosing function and matching typed source caller at src/pso/effect/particle/TParticleCtrl_80327D30.cpp. The fork-point diff is exactly the single-purpose interface change."
+      },
+      {
+        "row": 5023,
+        "fork_path": "include/pso/TParticleCtrl.h",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl.cpp"
+        ],
+        "prior_status": "Complete fork particle interface retained",
+        "status": "previously_accounted",
+        "evidence": "The controller initializer at 0x800883DC now takes const Vec * and returns TParticleCtrl * at its native class declaration and definition."
+      },
+      {
+        "row": 5029,
+        "fork_path": "include/pso/misc/TParticleCtrl_80327D30.h",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl_80327D30.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/particle/TParticleCtrl_80327D30.h"
+      },
+      {
+        "row": 5046,
+        "fork_path": "include/pso/misc/ParticleRadial.h",
+        "canonical_paths": [
+          "src/pso/effect/particle/ParticleRadial.cpp"
+        ],
+        "prior_status": "Tracked path change only",
+        "status": "previously_accounted",
+        "evidence": "include/pso/effect/particle/ParticleRadial.h"
+      },
+      {
+        "row": 5050,
+        "fork_path": "src/pso/misc/TParticleCtrl.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl.cpp"
+        ],
+        "prior_status": "Complete fork interface changes retained",
+        "status": "previously_accounted",
+        "evidence": "Replayed checked per-file edits from the fork point to reproduce the full final file byte for byte. Ordered first-parent changes and original call sites also matched. demo at c3a20cbbe8 with 1 call sites | texture at c851edd18d with 1 call sites"
+      },
+      {
+        "row": 5054,
+        "fork_path": "src/pso/misc/TQuadSpriteScl.cpp",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteScl.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "complete_scoped_fork_delta",
+        "evidence": "Exactly three historical hunks. The moved CurrentTextureList header and the sole typed call are present. The other hunk defines two values, 0x805DC470 = 480.0f and 0x805DC474 = -1.0f, now represented by identical source literals in the same renderer. Existing c7470b0f0e linked constant proof covers those 8 bytes. This accounts for every original added line."
+      },
+      {
+        "row": 5057,
+        "fork_path": "src/pso/misc/TQuadSpriteCol.cpp",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteCol.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "complete_scoped_fork_delta",
+        "evidence": "Exactly three historical hunks. The moved CurrentTextureList header and the sole typed call are present. The other hunk defines two values, 0x805DC450 = 480.0f and 0x805DC454 = 1.0f, now represented by identical source literals in the same renderer. Existing c7470b0f0e linked constant proof covers those 8 bytes. This accounts for every original added line."
+      },
+      {
+        "row": 5058,
+        "fork_path": "src/pso/misc/TQuadSpriteSclCol.cpp",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteSclCol.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "complete_scoped_fork_delta",
+        "evidence": "Exactly three historical hunks. The moved CurrentTextureList header and the sole typed call are present. The other hunk defines two values, 0x805DC480 = 480.0f and 0x805DC484 = -1.0f, now represented by identical source literals in the same renderer. Existing c7470b0f0e linked constant proof covers those 8 bytes. This accounts for every original added line."
+      },
+      {
+        "row": 5065,
+        "fork_path": "src/pso/misc/TParticleCtrl_80085EE4.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl_80085EE4.cpp"
+        ],
+        "prior_status": "Complete fork interface edit retained at native callers",
+        "status": "previously_accounted",
+        "evidence": "Current texture list: 2 original source-linked call(s) verified by instruction address, enclosing function and matching typed source caller at src/pso/effect/particle/TParticleCtrl_80085EE4.cpp. The fork-point diff is exactly the single-purpose interface change."
+      },
+      {
+        "row": 5071,
+        "fork_path": "src/pso/misc/TQuadSpriteSclColRot.cpp",
+        "canonical_paths": [
+          "src/pso/effect/sprite/TQuadSpriteSclColRot.cpp"
+        ],
+        "prior_status": "Complete fork interface edit retained at native callers",
+        "status": "previously_accounted",
+        "evidence": "Current texture list: 1 original source-linked call(s) verified by instruction address, enclosing function and matching typed source caller at src/pso/effect/sprite/TQuadSpriteSclColRot.cpp. The fork-point diff is exactly the single-purpose interface change."
+      },
+      {
+        "row": 5075,
+        "fork_path": "src/pso/misc/TParticleCtrl_801E5330.cpp",
+        "canonical_paths": [
+          "src/pso/effect/particle/TParticleCtrl_801E5330.cpp"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "partially_recovered",
+        "evidence": "All atlas data, all five conditional sprite construction paths and the 0.0f/0.25f UV initialization are present. The atlas owner still declares tl_particle as void * and the Normal constructor with a void * parent, so the entire typed cross-owner contract remains open."
+      },
+      {
+        "row": 5094,
+        "fork_path": "include/pso/misc/ParticleDefinition.h",
+        "canonical_paths": [
+          "include/pso/effect/particle/ParticleDefinition.h"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "fully_recovered",
+        "evidence": "Historical addition bd98781c89. The complete source comment, all ten ordered fields, the texture-list forward declaration and the original size assertion are identical at the current tracked owner on both candidates. Extra declarations expose the existing tables and add the UV offset assertion."
+      },
+      {
+        "row": 5096,
+        "fork_path": "include/pso/misc/TUnk_8048E728.h",
+        "canonical_paths": [
+          "include/pso/unk/TUnk_8048E728.h"
+        ],
+        "prior_status": "Owner comparison required",
+        "status": "partially_recovered",
+        "evidence": "Current named emitter and particle fields preserve the historical typed layout and later native fields. The two original ParticleParam and TUnk_8048E728 size checks remain absent, and independent heap/constructor ownership differs."
+      },
+      {
+        "row": 5315,
+        "fork_path": "src/pso/unk/text_801E4F04.cpp",
+        "canonical_paths": [
+          "src/pso/unk/text_801E4F04.cpp"
+        ],
+        "prior_status": "Complete fork source changes and includes retained",
+        "status": "already_complete_in_canonical_only",
+        "evidence": "Existing canonical evidence accounts for all four array allocation and release sites and the native header. Grouped world uses its established mem_alloc/mem_free spelling because it does not take the array-allocation provider dependency. This world port restores only the new typed metadata and keeps exact retail calls."
+      }
+    ]
+  }
+}

@@ -209,6 +209,14 @@ The 36-file world update `9f6bc23b9e` joins native tunnel dust and splash layout
 
 All 90 original ranges retain their 980 source-linked bytes and 167 alignment bytes. The historical audit updated 109 records and closed 23. 1,843 remain open. All 133 fork-only paths round-trip and all 11 layer tests pass. [Source and validation evidence](2026-11-19-structure-replay-evidence.json)
 
+## Action palette, particle definitions and boss encounter types
+
+The combined replay `f759412dff` carries 46 source paths into local landing checkpoint `53b78dd12e`. The action palette uses one four-byte tag for cursor, window and player reads and writes, including the two player attack wrappers. The particle renderers and emitters share the historical 0x28 definition. Dark Gunner has typed formation state, callbacks and constructor operands. Olga Flow rock breakup uses an explicit point, typed debris fields and a local pool for the four physics constants.
+
+The 18-file display update `cf8d847e24` uses a small palette state header with its current player providers. The 30-file world update `e80e5badf2` joins the particle, Dark Gunner, and Olga Flow patches. Its existing renderer, sound and allocation calls retain their exact instruction sequences. Dark Gunner keeps the explicit virtual table and destructor because the current compiler orders the native virtual table and switch table differently from retail.
+
+The combined source, working fork and both groups reproduce the retail executable. All 90 original ranges retain 980 source-linked bytes and 167 alignment bytes. The audit updated 27 records and closed 12. 1,831 remain open. All 133 fork-only paths round-trip. The 11 layer tests and all 294 fork tool tests pass. The fork-only viewport assertion now follows the current typed Dark Falz caller. [Source and validation evidence](2026-11-19-coherent-subsystems-evidence.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
@@ -268,8 +276,8 @@ The exact network startup commit `d892292ba8` is the shared parent for four loca
 
 | Scope | Local branch under `great-merge/current/` | Head | Changed files |
 | --- | --- | --- | ---: |
-| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `fddb20c8c4` | 939 |
-| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `9f6bc23b9e` | 920 |
+| Network and audio, renderer, windows, selection, and the draw context | `delivery-network-render-window` | `cf8d847e24` | 949 |
+| BML/GVM archives, stage, enemies, then native boss and photon ownership | `delivery-network-world` | `e80e5badf2` | 930 |
 | Allocation, player and inventory, spatial effects, item drops, and quest/shop messages | `delivery-network-player-spatial` | `80437bd0a1` | 802 |
 | Shared actor motion, animation and presentation | `delivery-network-actor` | `570ad35a4c` | 441 |
 
