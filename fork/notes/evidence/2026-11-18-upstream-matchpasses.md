@@ -279,6 +279,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 The inventory review stacks on the global C++ array operators. That separate review replaces upstream's placeholder allocation and release names across their shared callers. The inventory diff is measured from the prerequisite. The results review and the array-runtime stack overlap in two translation units. The detailed evidence records those paths. [Source and validation evidence](2026-11-19-inventory-radar-recon-review.json)
 
+## Weapon factories, enemy targeting, quest transfers and Symbol Chat
+
+Source checkpoint `d1cccf4e5e` and landing checkpoint `698faaffce` carry 86 source files. Great Merge now has a typed weapon factory registry, shared enemy visibility and transition interfaces, and native online quest transfer records. The Symbol Chat Parts calls use their own window type. The source audit records 74 historical files and closes 33. The ledger has 1,764 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-weapon-factory-registry` | Weapon factory table, original slot targets and typed item records | 38 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy registration, formations, Recon and Recobox, targeting and transition hooks | 83 |
+| `great-merge/current/standalone-online-quest-transfers` | Online BIN and DAT quest transfers and shared scratch-buffer callers | 22 |
+| `great-merge/current/standalone-symbol-chat-and-shortcut-preview` | Symbol Chat Parts and shortcut preview, selection and activation | 20 |
+
+The weapon audit compares every compiled registry slot with the prior retail target. The review keeps direct callback addresses on GameCube and uses exact-type adapters in hosted builds. The direct quest review uses the upstream allocator and transfer APIs. All four direct reviews combine into a retail-exact 159-file build. [Source and validation evidence](2026-11-19-weapon-targeting-quest-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
