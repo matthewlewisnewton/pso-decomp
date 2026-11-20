@@ -989,6 +989,12 @@ The factory review now dispatches directly to all 129 weapon factories. The comb
 
 The 2,365-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-factory-closure-and-native-replay.json)
 
+## Challenge selection, memory cards and combat records
+
+Source `a0ab810dd1` and landing checkpoint `7434799df2` carry 49 changed files. This batch covers BalClaw body, claw attacks and formation ownership, Photon Blast participant admission, actor queries and hold dispatch, native memory-card selection, cursor and player-load state, native Challenge quest selector, catalog and VM windows. The audit closes 14 historical comparisons and leaves 735 open.
+
+The 2,381-file review queue covers 33 groups. The canonical source and working fork reproduce retail. All 90 original data ranges are accounted for, and the fork passes 294 tooling and 11 layer tests. [Validation evidence](2026-11-20-native-selection-and-combat-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

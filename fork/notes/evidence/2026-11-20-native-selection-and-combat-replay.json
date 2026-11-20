@@ -1,0 +1,957 @@
+{
+  "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+  "previous_source": "d25fcf8fab0d42780bdcbe4523fbfcfc151737eb",
+  "landing": "7434799df2bc552ed4923448b710147193dc7370",
+  "working_fork_build": "78f01387227a1d723972b6c5cea0e6a60d78a047",
+  "source_files": 49,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "8aa864bc8e933057496bfb86841fffdadd9fd402",
+    "tree": "be08f8425670a6204e5bf44694a58638772bbe4d",
+    "previous": "cef7946b649d0c5160ed5ad235324fc0a71f2e3c",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+      "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+      "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+      "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "9448059d81db540704b609616e96771e90827654",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "1e7920fdc675df08303dca4499f49020df69774d",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128"
+    ],
+    "files": 2381,
+    "reviews": {
+      "standalone-enemy-registration-and-formations": {
+        "head": "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+        "previous": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 266,
+        "create": false,
+        "live_tip": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+        "queue_input": "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+        "report": "/dev/shm/gm-enemy-20565490-review/balclaw-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/balclaw-standalone-strict.json"
+      },
+      "standalone-technique-effects-and-sounds": {
+        "head": "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+        "previous": "4e93b2bb3cf2240c27977414e5bc94d71e0e860c",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 105,
+        "create": false,
+        "live_tip": "4e93b2bb3cf2240c27977414e5bc94d71e0e860c",
+        "queue_input": "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+        "report": "/dev/shm/gm-native-selection-and-combat.Flj7i7/photon-direct-report.json.gz",
+        "strict": "/dev/shm/gm-native-selection-and-combat.Flj7i7/photon-direct-check.json"
+      },
+      "standalone-memory-card-and-save-windows": {
+        "head": "1e7920fdc675df08303dca4499f49020df69774d",
+        "previous": "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 88,
+        "create": false,
+        "live_tip": "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+        "queue_input": "1e7920fdc675df08303dca4499f49020df69774d",
+        "report": "/dev/shm/gm-memorycard-flow-20261120/direct/widen-report.json.gz",
+        "strict": "/dev/shm/gm-memorycard-flow-20261120/direct/widen-strict.json"
+      },
+      "standalone-online-quest-transfers": {
+        "head": "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+        "previous": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 132,
+        "create": false,
+        "live_tip": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+        "queue_input": "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+        "report": "/run/user/1000/gm-challenge-select.Bjut53/direct-report.json.gz",
+        "strict": "/run/user/1000/gm-challenge-select.Bjut53/direct-native-final-check.json"
+      }
+    },
+    "replays": {
+      "balclaw": {
+        "canonical": "8f2f06ec64ac6697384c9a8754445a1e08d78ac2",
+        "standalone": "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+        "queue": "536cd5e1efc2dba622ce07590f382665314db3af"
+      },
+      "photon": {
+        "canonical": "965aa351204f0f1917ef8d84435c5e982dee8f2d",
+        "standalone": "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+        "queue": "f0424464b6f8ffbfdced4f1372071327773eead7"
+      },
+      "memory-cards": {
+        "canonical": "f840fd7e65768d4c5ccde111f7ad4dd609db2698",
+        "standalone": "1e7920fdc675df08303dca4499f49020df69774d",
+        "queue": "da96eebe67d16009252010b2df2ddae5820f2b34"
+      },
+      "challenge": {
+        "canonical": "def6cb4be75369610ef5212a4b8c1e0c5a450664",
+        "standalone": "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+        "queue": "f5fd3a6bfd20b19f515849c081e6dee0de303f2f"
+      }
+    },
+    "increment": 49
+  },
+  "reviews": {
+    "standalone-enemy-registration-and-formations": {
+      "head": "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+      "previous": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 266,
+      "create": false,
+      "live_tip": "2bb3fa5c0647e986b8da1428d08f376e7e693bf7",
+      "queue_input": "b26cf3e04adfe18843e1f7d30116e212b7caee39",
+      "report_sha256": "a58f149eaceffbcb49744250ff51bd7bc3648934991b1f53f7b0385ccbe9970d",
+      "strict_sha256": "77ceca925e8a4d23d65f3709e42d92058d0de8d2ec5fc07f743b9d53f03eb199"
+    },
+    "standalone-technique-effects-and-sounds": {
+      "head": "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+      "previous": "4e93b2bb3cf2240c27977414e5bc94d71e0e860c",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 105,
+      "create": false,
+      "live_tip": "4e93b2bb3cf2240c27977414e5bc94d71e0e860c",
+      "queue_input": "b01ddac5d2968ea8055f7dbd03705c31d7a15c45",
+      "report_sha256": "a014f2c1ced3b213c12166a532e4c66fdce19a8a5f30135524a1d68ccac6a49b",
+      "strict_sha256": "d1c977930a8779372a584c4f57beba377c7bd888ae111035a04f06637709e827"
+    },
+    "standalone-memory-card-and-save-windows": {
+      "head": "1e7920fdc675df08303dca4499f49020df69774d",
+      "previous": "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 88,
+      "create": false,
+      "live_tip": "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+      "queue_input": "1e7920fdc675df08303dca4499f49020df69774d",
+      "report_sha256": "2b626138e4e452ec31dca88a36b308bd52799235d9a77c27406731a1d70d5f2d",
+      "strict_sha256": "c2d28a1f329e0a8107dd60bcd2e47bb8782dba9d5ebff50d150870597d6a0e4e"
+    },
+    "standalone-online-quest-transfers": {
+      "head": "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+      "previous": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 132,
+      "create": false,
+      "live_tip": "560537328704af9ba826cf25cebfd7caa3cc9cfa",
+      "queue_input": "47ee1bbdfeb8557904e429938baec7e0369f0ede",
+      "report_sha256": "83e19cc802d59a9295d61c3ed6bb93aaae9ab340561a012d4f9209012520eb6f",
+      "strict_sha256": "7a28c9669f7f900b76ed877de746c5e66dc7459bce4b832e45ee1cac75d5614f"
+    }
+  },
+  "source_audit": {
+    "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+    "previous": "d25fcf8fab0d42780bdcbe4523fbfcfc151737eb",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 445,
+        "historical_path": "include/pso/enemy/TObjEneBalClawBody.h",
+        "historical_blob": "b00d7857659eddca7e00a0893e816ffcc9a35b29",
+        "owners": {
+          "include/pso/enemy/balclaw/TObjEneBalClawBody.h": "7dd46a81bca249fb7b94cc7d98d89c05f0bb48b0",
+          "include/pso/enemy/balclaw/TObjEneBalClaw.h": "b97ea2e099d96f0e3093d87fc7554a27c07e039f",
+          "include/pso/enemy/EnemyPlacement.h": "1b99e9badb22e3a3f1ea4d857c6ecebf6d676cca",
+          "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "a629626c30d671111dbc824754e4d3bc0689ad3f"
+        },
+        "proofs": [
+          {
+            "group": "balclaw-source",
+            "evidence": "All body declarations, native factory placement, virtual slots, split/merge/target phases and physical fields are represented. The 0x40 EnemyPlacement refines the historical anonymous four bytes with a child count and reserved word. Four 32-bit child slots store zero-extended entity IDs/0xffff, body count/strike counter are halfwords, effect array has four typed particles. Timer m_3d4 and no-op sub_8008FC0C retain upstream names.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -6,0 +7,16 @@",
+                "@@ -7,0 +24 @@ struct TObjEneBalClawBody : public TObjEneBalClaw {",
+                "@@ -8,0 +26,17 @@ struct TObjEneBalClawBody : public TObjEneBalClaw {",
+                "@@ -14,5 +48,3 @@ struct TObjEneBalClawBody : public TObjEneBalClaw {",
+                "@@ -20 +52,3 @@ struct TObjEneBalClawBody : public TObjEneBalClaw {"
+              ],
+              "full_by_variant": {
+                "canonical": true,
+                "standalone": true,
+                "queue": true
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 563,
+        "historical_path": "src/pso/enemy/TObjEneBalClawBody_80090178.cpp",
+        "historical_blob": "831b83a37cbabe63858b58525addae304210ee30",
+        "owners": {
+          "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "a629626c30d671111dbc824754e4d3bc0689ad3f",
+          "include/pso/enemy/balclaw/TObjEneBalClawBody.h": "7dd46a81bca249fb7b94cc7d98d89c05f0bb48b0",
+          "include/pso/enemy/balclaw/TObjEneBalClaw.h": "b97ea2e099d96f0e3093d87fc7554a27c07e039f",
+          "include/pso/enemy/EnemyPlacement.h": "1b99e9badb22e3a3f1ea4d857c6ecebf6d676cca",
+          "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": "6329f5d881135fd020754188d68188e37844063a",
+          "include/pso/player/TObjPlayer_801AF2F0.h": "dd7776bc7b419964767b566906a0b2c0489115b1"
+        },
+        "proofs": [
+          {
+            "group": "balclaw-source",
+            "evidence": "Whole control factory, constructor/destructor, action/placement/HP/TP initialization, twelve-row action table, two 28-byte movement rows with signed 16-bit fields at +0xc/+0xe, collision sphere, shared archive model selection. All eleven dispatch states, body demo and normal task, 30-frame acquisition, split at 1800 or two hits and 3600/1600/14400/10000 squared-distance bands verified. Current task submits the actual two cursor arguments and typed minimap position.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,2 @@",
+                "@@ -2 +4,8 @@",
+                "@@ -4 +13 @@",
+                "@@ -6,12 +15,22 @@ struct E_80090418 { u8 pad[8]; s32 x8; s32 xc; };",
+                "@@ -18,0 +38,15 @@ struct Body_80090178 {",
+                "@@ -20,9 +54,41 @@ struct Body_80090178 {",
+                "@@ -30,8 +96,10 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag);",
+                "@@ -39,2 +107,25 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -42,2 +133,44 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -45,2 +178,2 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -48,5 +181,25 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -53,0 +207,21 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -54,0 +229,8 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -56,3 +238,9 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -61,7 +248,0 @@ Body_80090178 *TObjEneBalClawBody__sub_80090178(Body_80090178 *self, s16 flag) {",
+                "@@ -70 +251 @@ void TObjEneBalClawClaw::sub_80090418(s32 i) {"
+              ],
+              "full_by_variant": {
+                "canonical": true,
+                "standalone": true,
+                "queue": true
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 564,
+        "historical_path": "src/pso/enemy/TObjEneBalClawClaw_8008DC18.cpp",
+        "historical_blob": "78a011d1f7b17d93eabdcc857087209359fdb813",
+        "owners": {
+          "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "a629626c30d671111dbc824754e4d3bc0689ad3f",
+          "include/pso/enemy/balclaw/TObjEneBalClaw.h": "b97ea2e099d96f0e3093d87fc7554a27c07e039f",
+          "include/pso/npc/NpcModelRegistry.h": "671b7632ba148db19415caf8ed5c56c654ec1cd4",
+          "include/pso/npc/NpcAnimationBinding.h": "def65964ea6650d086dc0ecd5bfe56a6b98e2829"
+        },
+        "proofs": [
+          {
+            "group": "balclaw-source",
+            "evidence": "The sole semantic hunk registers animated NPC kind 0x13 with model/texture index 1, the motion/action binding, collision.radius and 15.0f. Runtime definition of spawn_child_enemy sits at the beginning of the merged body unit (0x8008DC18).",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -8,0 +9 @@",
+                "@@ -21,5 +21,0 @@ struct RecoveredGlobal_8008DC18_lbl_80439B5C {",
+                "@@ -27 +23 @@ extern RecoveredGlobal_8008DC18_lbl_80439B5C lbl_80439B5C;",
+                "@@ -36 +31,0 @@ typedef char RecoveredGlobal_8008DC18_lbl_80439B5C_size[sizeof(RecoveredGlobal_8",
+                "@@ -50 +45 @@ void TObjEneBalClawClaw::spawn_child_enemy() {"
+              ],
+              "full_by_variant": {
+                "canonical": true,
+                "standalone": false,
+                "queue": true
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 645,
+        "historical_path": "src/pso/player/TObjPlayer_8008DCF0.cpp",
+        "historical_blob": "379a327a620509ed7ca37f52ee88c6d5bda129bd",
+        "owners": {
+          "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "a629626c30d671111dbc824754e4d3bc0689ad3f",
+          "include/pso/enemy/balclaw/TObjEneBalClawBody.h": "7dd46a81bca249fb7b94cc7d98d89c05f0bb48b0",
+          "include/pso/enemy/balclaw/TObjEneBalClaw.h": "b97ea2e099d96f0e3093d87fc7554a27c07e039f",
+          "config/GPOE8P/psov3/symbols.txt": "e5b3fc6ff3446bcfcad4782f86c13b17d5d5bef6"
+        },
+        "proofs": [
+          {
+            "group": "balclaw-source",
+            "evidence": "All original body reset/wander/charge/attack/death/recovery functions use their native receiver. Signed state exits, movement/gravity/collision, fade start, wall slide, 0.7 speed, attack frame 10, 0.1 chance and payload, experience/drop and sounds 0x4003B033/34, 0x4003AD37 and 0x4003B235 preserved. Donor single 0.0f .sdata2 word is at 0x805D9620, +8 within original split; both full constant sections are identical. A byte-for-byte three-way replay verifies the shared file across balclaw, photon, memory-cards, challenge.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,6 @@",
+                "@@ -160 +166 @@ s32 fn_80090464(void *, int);",
+                "@@ -162 +167,0 @@ extern const f32 lbl_805D966C;",
+                "@@ -166 +170,0 @@ void *find_entity_by_id(u16 id);",
+                "@@ -171,3 +175 @@ s32 update_enemy_wander_move(void *, Vec_8008FAD0 *, int, f32);",
+                "@@ -185 +186,0 @@ extern const f32 lbl_805D9658;",
+                "@@ -200,3 +200,0 @@ extern const f32 lbl_805D9660;",
+                "@@ -212 +210 @@ void TObjEneBalClawBody::update_dragon_boss_state() {",
+                "@@ -220 +218,2 @@ void TObjEneBalClawBody::update_dragon_boss_state() {",
+                "@@ -229 +228 @@ void TObjPlayer__sub_8008EC3C(u8 *enemy) {",
+                "@@ -233 +232 @@ void TObjPlayer__sub_8008EC3C(u8 *enemy) {",
+                "@@ -239 +238 @@ void TObjPlayer__sub_8008EC3C(u8 *enemy) {",
+                "@@ -265,3 +264,5 @@ void TObjPlayer::set_visibility_flags_by_count(void *arg0, s32 arg1) {",
+                "@@ -269,2 +270,2 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -273,6 +274,6 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -281 +282 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -285,2 +286,2 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -288,2 +289,2 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -291,5 +292,5 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -298,6 +299,6 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -308,2 +309,2 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -311,3 +312,3 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -315,5 +316,5 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -322,3 +323,3 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -326 +327 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -328,2 +329,2 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -331 +332 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -333,2 +334,2 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -341,3 +342,3 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -344,0 +346 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -348,4 +350,4 @@ void TObjPlayer__sub_8008EDE8(P_8008EDE8 *arg0) {",
+                "@@ -353 +355 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {",
+                "@@ -377 +379 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {",
+                "@@ -379 +381 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {",
+                "@@ -423 +425 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {",
+                "@@ -435 +437 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {",
+                "@@ -461 +463 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {",
+                "@@ -468 +470,3 @@ void TObjPlayer__sub_8008F1DC(void *arg0) {",
+                "@@ -472 +476 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -474 +478 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -476 +480 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -478 +482 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -489 +493 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -491 +495 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -496 +500 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -503,3 +507,3 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -510 +514 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -513 +517 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -525 +529,4 @@ void TObjPlayer::run_death_sequence() {",
+                "@@ -533 +540 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {",
+                "@@ -537 +544 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {",
+                "@@ -544 +551 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {",
+                "@@ -548,2 +555,2 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {",
+                "@@ -555 +562 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {",
+                "@@ -574 +581,2 @@ void TObjPlayer__sub_8008F910(u8 *arg0) {",
+                "@@ -592 +600 @@ void TObjPlayer__sub_8008FAD0(u8 *arg0) {",
+                "@@ -595,2 +603,2 @@ void TObjPlayer__sub_8008FAD0(u8 *arg0) {",
+                "@@ -603,2 +611,2 @@ void TObjPlayer__sub_8008FAD0(u8 *arg0) {"
+              ],
+              "full_by_variant": {
+                "canonical": true,
+                "standalone": false,
+                "queue": false
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 646,
+        "historical_path": "src/pso/player/TObjPlayer_8008DCF0_8008DCF0.cpp",
+        "historical_blob": "78a8450cb106ccb3e0b29d5fe97a8444ac84695f",
+        "owners": {
+          "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "a629626c30d671111dbc824754e4d3bc0689ad3f",
+          "include/pso/enemy/balclaw/TObjEneBalClawBody.h": "7dd46a81bca249fb7b94cc7d98d89c05f0bb48b0",
+          "include/pso/enemy/balclaw/TObjEneBalClawClaw.h": "21c6c8b0a1fe0d3360e1f145209cd23814be7a0e",
+          "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": "6329f5d881135fd020754188d68188e37844063a"
+        },
+        "proofs": [
+          {
+            "group": "balclaw-source",
+            "evidence": "Whole body reset, move return, gather/fuse/split, render and form selector. Both native model swaps, actual factory/placement, four-child cap, unsigned entity dispatch and 90-degree formation offsets. Verified 600-frame timeout, child HP sum, 0x128/0x12A emitters, 0x129 burst, 0x4003AD30 positional sound, effect lifetime, demo branch and texture-list draw.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,6 @@",
+                "@@ -199 +204,0 @@ extern const f32 lbl_805D961C;",
+                "@@ -205 +209,0 @@ void queue_destruction__7TObjectFv(void *arg0);",
+                "@@ -207 +210,0 @@ void *create_particle_emitter(void *pos, s32 id);",
+                "@@ -210,2 +212,0 @@ extern const f32 lbl_805D9638;",
+                "@@ -217 +217,0 @@ extern u8 player_attack_param_table[];",
+                "@@ -239 +239 @@ s32 defer_render__7TObjectFv(void *);",
+                "@@ -246 +246,2 @@ extern const f32 lbl_805D9640;",
+                "@@ -271 +272 @@ void TObjPlayer__sub_8008DD14(Obj_8008DD14 *self) {",
+                "@@ -282 +283 @@ void TObjPlayer__sub_8008DD14(Obj_8008DD14 *self) {",
+                "@@ -289 +290 @@ void TObjPlayer::update_move_to_target() {",
+                "@@ -317 +318 @@ void TObjPlayer::update_move_to_target() {",
+                "@@ -359 +360,2 @@ void calc_slot_offset_position__10TObjPlayerFPviPvPv(Obj_8008E18C *self, s32 slo",
+                "@@ -364,2 +366,2 @@ void TObjPlayer__sub_8008E254(void *arg0_) {",
+                "@@ -369 +371 @@ void TObjPlayer__sub_8008E254(void *arg0_) {",
+                "@@ -378 +380 @@ void TObjPlayer__sub_8008E254(void *arg0_) {",
+                "@@ -384 +386,4 @@ void TObjPlayer__sub_8008E254(void *arg0_) {",
+                "@@ -389 +394 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -391,2 +396,2 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -395,3 +400,3 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -400,6 +405,6 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -408,3 +413,3 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -414,2 +419,3 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -422 +428 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -425,3 +431,3 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -431,2 +437,2 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -435 +441 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -438,5 +444,5 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -446,5 +452,5 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -452,2 +458,2 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -455,10 +461,10 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -468,6 +474,6 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -477,3 +483,3 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -481,3 +487,3 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -489,4 +495,4 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -494,3 +500,3 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -502,2 +508,4 @@ void TObjPlayer__sub_8008E310(P_8008E310 *arg0_) {",
+                "@@ -517 +525 @@ void TObjEneBalClawBody::render() {",
+                "@@ -522 +530 @@ void TObjEneBalClawBody::render() {",
+                "@@ -526 +534 @@ void TObjEneBalClawBody::render() {",
+                "@@ -533 +541 @@ void TObjEneBalClawBody::render() {",
+                "@@ -568,2 +576,2 @@ void TObjEneBalClawBody::render() {",
+                "@@ -585 +593 @@ void TObjPlayer__sub_8008E934(void *arg0_, s32 arg1) {",
+                "@@ -592 +600 @@ void TObjPlayer__sub_8008E934(void *arg0_, s32 arg1) {"
+              ],
+              "full_by_variant": {
+                "canonical": true,
+                "standalone": false,
+                "queue": false
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 846,
+        "historical_path": "src/pso/enemy/TObjEneBalClawClaw.cpp",
+        "historical_blob": "41d9272a2bf16ef15af4c8563a51f1329c268561",
+        "owners": {
+          "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": "6329f5d881135fd020754188d68188e37844063a",
+          "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "a629626c30d671111dbc824754e4d3bc0689ad3f",
+          "include/pso/enemy/balclaw/TObjEneBalClawClaw.h": "21c6c8b0a1fe0d3360e1f145209cd23814be7a0e",
+          "include/pso/object/base/TObjChara.h": "95ef64f40fdf84ac223f1f47f55c3218bf66be9e",
+          "include/pso/npc/NpcModelRegistry.h": "671b7632ba148db19415caf8ed5c56c654ec1cd4"
+        },
+        "proofs": [
+          {
+            "group": "balclaw-source",
+            "evidence": "Both claw constructors, form-2 model/action/collision setup, entity registration, yaw/roll, per-frame body center, collision and animation owner, model texture/demo draw, wander/turn, fade, sounds, drop and vfunc_76(f32) via native vtable. NPC kind 0x14 uses claw model index 2, collision radius and 15.0f.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,4 @@",
+                "@@ -1,0 +6 @@",
+                "@@ -55 +60 @@ void spawn_lobby_npc_enemy(void) {",
+                "@@ -138 +142,0 @@ void move_along_ground_avoiding_walls__15TObjEnemyCustomF3Vecff(void *, Vec_8009",
+                "@@ -163 +167 @@ void TObjEneBalClawClaw::update_chase_state() {",
+                "@@ -166 +170 @@ void TObjEneBalClawClaw::update_chase_state() {",
+                "@@ -299 +303 @@ s32 pop_matrix();",
+                "@@ -328 +332 @@ void TObjEneBalClawClaw__sub_80090A10(u8 *ene_bal_claw_claw, u8 *arg1, s32 arg2,",
+                "@@ -372 +376 @@ void TObjEneBalClawClaw::render() {",
+                "@@ -377 +381 @@ void TObjEneBalClawClaw::render() {",
+                "@@ -380 +384 @@ void TObjEneBalClawClaw::render() {",
+                "@@ -386 +390 @@ void TObjEneBalClawClaw::render() {",
+                "@@ -447 +450,0 @@ void TObjEneBalClawClaw::sub_80090D3C() {",
+                "@@ -565 +568 @@ void TObjPlayer__sub_800A04F0(void *);",
+                "@@ -568 +571 @@ s32 check_path_obstructed(void *, void *);",
+                "@@ -586 +589 @@ s32 play_area_se_with_particle__12TBoss3VoloptFv(void *, s32);",
+                "@@ -600 +603 @@ void action__18TObjEneBalClawClawFPv(u8 *ene_bal_claw_claw) {",
+                "@@ -657 +660 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {",
+                "@@ -679 +682 @@ void TObjEneBalClawClaw__sub_80090ECC(Claw_80090ECC *self) {",
+                "@@ -685 +688 @@ void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {",
+                "@@ -689 +692 @@ void TObjEneBalClawClaw__sub_80091134(Claw_80091134 *self) {",
+                "@@ -723,2 +726,2 @@ void TObjEneBalClawClaw__sub_80091200(Claw_80091200 *self) {",
+                "@@ -760 +763 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {",
+                "@@ -766 +769 @@ void update_chase__18TObjEneBalClawClawFPv(Claw_80091354 *self) {",
+                "@@ -943 +946 @@ extern \"C\" void vfunc_77__9TObjCharaFv();",
+                "@@ -1008 +1011 @@ void *__vt__18TObjEneBalClawClaw[83] = {",
+                "@@ -1146 +1149 @@ void TObjEneBalClawClaw::run_task() {",
+                "@@ -1179,2 +1182,2 @@ void TObjEneBalClawClaw::run_task() {",
+                "@@ -1241 +1244 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {",
+                "@@ -1256,2 +1259,2 @@ s32 TObjEneBalClawClaw__ct(void *arg0) {",
+                "@@ -1270 +1273 @@ u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2,",
+                "@@ -1278 +1281 @@ u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2,",
+                "@@ -1280 +1283 @@ u8 *TObjEneBalClawClaw__sub_80091B98(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg2,",
+                "@@ -1292 +1295 @@ u8 *TObjEneBalClawClaw__sub_80091C58(u8 *ene_bal_claw_claw, s32 arg1, u8 *arg1_a"
+              ],
+              "full_by_variant": {
+                "canonical": true,
+                "standalone": false,
+                "queue": false
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3505,
+        "historical_path": "include/pso/unk/text_801A9CB8.h",
+        "historical_blob": "a76071a94a1084cecd1cdaabc0151168a9e1a9a7",
+        "owners": {
+          "include/pso/player/PhotonBlastResults.h": "fcd023e95fb8943ec5cc98037b6d4afb80b21572",
+          "include/pso/player/TObjPlayer_801542CC.h": "befe05ce505e11267df3880a3a05f417b15388e8",
+          "include/pso/player/TObjPlayer_80011014.h": "9c11f58e8504dbdc56ed701859d023e01dc3da2c",
+          "src/pso/player/PhotonBlastResults.cpp": "de69a7f8bdd6deb3f3c4631b0b50db45a74e050b"
+        },
+        "proofs": [
+          {
+            "group": "photon-source",
+            "evidence": "The five authored declarations resolve to the original actor lookup, floor and split-screen queries, entity identifier and chain query. The existing collision registry returns the actual collidable base. The chain copy retains its two four-entry arrays and separate state return.",
+            "details": {
+              "spans": {
+                "0x801a85a0": {
+                  "size": 120,
+                  "retail_sha256": "1e460a0952e5cc75f0e17f44725aaf59f8b51b1671ace4b3f909cbf866c25ffe"
+                },
+                "0x801a8618": {
+                  "size": 200,
+                  "retail_sha256": "8142e8438fb2e6d903631b1641b6245bd5cdbb62b6e65cdf57461c90e18594e8"
+                },
+                "0x801a86e0": {
+                  "size": 352,
+                  "retail_sha256": "652eed759dd19deceaff7e38bb4bc75ae6337783062e57ada63dcdf9bf39bfcc"
+                },
+                "0x801a8868": {
+                  "size": 1160,
+                  "retail_sha256": "41e648d55a8e0152856c80b7aae0b71734f9dc5801b2c58aa69ff455ed430524"
+                },
+                "0x801a9bac": {
+                  "size": 184,
+                  "retail_sha256": "7d5c9f699efcd81a6c5a073b289e9ee7ee04ac9f8830db27d14c2b9e5173b17c"
+                },
+                "0x801a9c64": {
+                  "size": 84,
+                  "retail_sha256": "a76f6086558d0e27938c974f3df64578c17d8bf596a64e2e4cb0a4c0256fb66e"
+                },
+                "0x801aa17c": {
+                  "size": 164,
+                  "retail_sha256": "d21f901f632119eeef8db5e82c0000dec41bf12555493f4b1b8ca5675d742b75"
+                },
+                "0x801cbd98": {
+                  "size": 60,
+                  "retail_sha256": "53bc3a7e24c66d2e42a19c92af321caea4c717b2e5d6436119689ad47f1bab91"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4117,
+        "historical_path": "src/pso/player/TObjPlayer_801A9BAC.cpp",
+        "historical_blob": "ef2b757a14ce95c3950d6288b402e606d125f47d",
+        "owners": {
+          "src/pso/player/PhotonBlastResults.cpp": "de69a7f8bdd6deb3f3c4631b0b50db45a74e050b",
+          "include/pso/unk/TUnk_804C349C.h": "2398d0c68f54a08389ad2fef28ec5643143ccc3d",
+          "include/pso/player/PhotonBlastResults.h": "fcd023e95fb8943ec5cc98037b6d4afb80b21572",
+          "include/pso/effect/photon/PhotonBlastSummon.h": "57171756c02219aca4f4e7f4cb3a367d80dd2cff"
+        },
+        "proofs": [
+          {
+            "group": "photon-source",
+            "evidence": "The complete authored scheduling change lives in the native sequence task. The owner pointer comes from the unsigned halfword client ID, the original animated field selects the native member step, and delayed results receive the actual task. The shared summon and delayed-support providers cover the replaced declarations. Both task methods match their entire retail address ranges.",
+            "details": {
+              "spans": {
+                "0x801a85a0": {
+                  "size": 120,
+                  "retail_sha256": "1e460a0952e5cc75f0e17f44725aaf59f8b51b1671ace4b3f909cbf866c25ffe"
+                },
+                "0x801a8618": {
+                  "size": 200,
+                  "retail_sha256": "8142e8438fb2e6d903631b1641b6245bd5cdbb62b6e65cdf57461c90e18594e8"
+                },
+                "0x801a86e0": {
+                  "size": 352,
+                  "retail_sha256": "652eed759dd19deceaff7e38bb4bc75ae6337783062e57ada63dcdf9bf39bfcc"
+                },
+                "0x801a8868": {
+                  "size": 1160,
+                  "retail_sha256": "41e648d55a8e0152856c80b7aae0b71734f9dc5801b2c58aa69ff455ed430524"
+                },
+                "0x801a9bac": {
+                  "size": 184,
+                  "retail_sha256": "7d5c9f699efcd81a6c5a073b289e9ee7ee04ac9f8830db27d14c2b9e5173b17c"
+                },
+                "0x801a9c64": {
+                  "size": 84,
+                  "retail_sha256": "a76f6086558d0e27938c974f3df64578c17d8bf596a64e2e4cb0a4c0256fb66e"
+                },
+                "0x801aa17c": {
+                  "size": 164,
+                  "retail_sha256": "d21f901f632119eeef8db5e82c0000dec41bf12555493f4b1b8ca5675d742b75"
+                },
+                "0x801cbd98": {
+                  "size": 60,
+                  "retail_sha256": "53bc3a7e24c66d2e42a19c92af321caea4c717b2e5d6436119689ad47f1bab91"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4085,
+        "historical_path": "src/pso/player/PhotonBlastResults.cpp",
+        "historical_blob": "c449ad973133f61482029c6f1855f7f903561809",
+        "owners": {
+          "src/pso/player/PhotonBlastResults.cpp": "de69a7f8bdd6deb3f3c4631b0b50db45a74e050b",
+          "include/pso/unk/TUnk_804C349C.h": "2398d0c68f54a08389ad2fef28ec5643143ccc3d",
+          "include/pso/player/PhotonBlastResults.h": "fcd023e95fb8943ec5cc98037b6d4afb80b21572",
+          "src/pso/player/TObjPlayer_801C7430.cpp": "3d736eb03aeeb67d91b3ef8ea271d91cf3aece65"
+        },
+        "proofs": [
+          {
+            "group": "photon-source",
+            "evidence": "Typed player floor and room calls, the actual admission slot stride, and the native direct-attack dispatch preserve all affected behavior. Four affected functions match their full retail ranges, including both hold branches. Other historical result and resource clauses remain scoped.",
+            "details": {
+              "spans": {
+                "0x801a85a0": {
+                  "size": 120,
+                  "retail_sha256": "1e460a0952e5cc75f0e17f44725aaf59f8b51b1671ace4b3f909cbf866c25ffe"
+                },
+                "0x801a8618": {
+                  "size": 200,
+                  "retail_sha256": "8142e8438fb2e6d903631b1641b6245bd5cdbb62b6e65cdf57461c90e18594e8"
+                },
+                "0x801a86e0": {
+                  "size": 352,
+                  "retail_sha256": "652eed759dd19deceaff7e38bb4bc75ae6337783062e57ada63dcdf9bf39bfcc"
+                },
+                "0x801a8868": {
+                  "size": 1160,
+                  "retail_sha256": "41e648d55a8e0152856c80b7aae0b71734f9dc5801b2c58aa69ff455ed430524"
+                },
+                "0x801a9bac": {
+                  "size": 184,
+                  "retail_sha256": "7d5c9f699efcd81a6c5a073b289e9ee7ee04ac9f8830db27d14c2b9e5173b17c"
+                },
+                "0x801a9c64": {
+                  "size": 84,
+                  "retail_sha256": "a76f6086558d0e27938c974f3df64578c17d8bf596a64e2e4cb0a4c0256fb66e"
+                },
+                "0x801aa17c": {
+                  "size": 164,
+                  "retail_sha256": "d21f901f632119eeef8db5e82c0000dec41bf12555493f4b1b8ca5675d742b75"
+                },
+                "0x801cbd98": {
+                  "size": 60,
+                  "retail_sha256": "53bc3a7e24c66d2e42a19c92af321caea4c717b2e5d6436119689ad47f1bab91"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2289,
+        "historical_path": "src/pso/ui/TAdMcSelectGC.cpp",
+        "historical_blob": "76353de74db8049dc0f9b21780ce64d483d99705",
+        "owners": {
+          "src/pso/ui/frontend/TAdMcSelectGC.cpp": "95c987f4e288c5e7d124ff3b4a9f619616aad430",
+          "include/pso/ui/frontend/TAdMcSelectGC.h": "f3134999c1237c4904e690a6334a4c24ed97af99",
+          "src/pso/ui/frontend/TAdChrSelSlotGC.cpp": "75cd88c780ad5bd923957478d64e00638658b6f2",
+          "include/pso/ui/frontend/TAdChrSelSlotGC.h": "b9d705c4eb83051502b115d89492adff49ace6f7",
+          "src/pso/ui/frontend/TAdMcCheckGC.cpp": "24e84001c5035cba04b6a160fbf88d7a89b89cd7",
+          "src/pso/unk/text_8033F314.cpp": "b8e07ad5f8658598d72ee38440a29258793b69d5"
+        },
+        "proofs": [
+          {
+            "group": "memory-cards-source",
+            "evidence": "All functions from the added scene unit survive. The constructor clears the same fields, builds both backdrops, the title, two line controllers, the slot pane, two icons and the cursor, then creates both per-card preflight children. The scene still gates drawing by render pass, adjusts the cursor lock and reads its selected slot, advances its first task state and clears the singleton on destruction.",
+            "details": {
+              "scene_size": "0x34",
+              "constructor": "0x80329EC8",
+              "title_index": "0xD",
+              "guide_ids": [
+                "0x16",
+                "0x17"
+              ],
+              "slot_positions": [
+                [
+                  95,
+                  118
+                ],
+                [
+                  381,
+                  118
+                ]
+              ],
+              "preflight_factory": "0x8033F314",
+              "backdrop_depths": [
+                "-160.0",
+                "0.006666667"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2291,
+        "historical_path": "src/pso/ui/TAdMcSelectMcGC.cpp",
+        "historical_blob": "0a1d4fd0ef0b1b5e2c49a3141f19bab12514cef4",
+        "owners": {
+          "src/pso/ui/frontend/TAdMcSelectMcGC.cpp": "7a8185a0220dcf6fe9cd4682f4c215f7132a31d7",
+          "include/pso/ui/frontend/TAdMcSelectMcGC.h": "25787cfeb1ed42355e99fc4114dc0fff6e3a3399",
+          "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp": "06a977b255894c5ed6781706ccb64eecb0d7c5c4",
+          "src/pso/ui/frontend/TAdMcCheckGC.cpp": "24e84001c5035cba04b6a160fbf88d7a89b89cd7"
+        },
+        "proofs": [
+          {
+            "group": "memory-cards-source",
+            "evidence": "The original card icon render, task and per-slot readiness logic stay with the icon and cursor owners. Render retains the pass, depth/alpha and textured-quad calls. The task derives the focused icon and card-warning fade from the selected physical slot and that slot\u2019s preflight task, keeping the original fade cases and update order.",
+            "details": {
+              "icon_size": "0x134",
+              "icon_slot": "+0x12C",
+              "quad_data": "+0x20",
+              "warning_fade_modes": [
+                0,
+                3,
+                4
+              ],
+              "preflight_source": "TAdMcSelectCursorGC::get_cursor_type(int)"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2294,
+        "historical_path": "src/pso/ui/TAdPlayerLoadGC.cpp",
+        "historical_blob": "a27880bc9b6c8a63f12dd472a7d077b769c0d790",
+        "owners": {
+          "src/pso/ui/frontend/TAdPlayerLoadGC.cpp": "8c28c5d17c9164d8b9a17d584d342c634d7cc5ff",
+          "include/pso/ui/frontend/TAdPlayerLoadGC.h": "b96ffb9d9c0f72c7f4492d4191d98fed48de9650",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp": "71e6bd0d672d28aedd514d96f161169245967ac0",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h": "b4e4612b66686cac25682c115d4bf9b2b99d8548",
+          "src/pso/ui/frontend/TAdSubPlyItemGC_802D6BEC.cpp": "8dd526a80078afe08be8e037d66a76f9fea13604",
+          "include/pso/ui/frontend/TAdSubPlyItemGC.h": "1c950303e587811184534187587eed8317639506",
+          "src/pso/weapon/TUnk_804E24F0.cpp": "a17e7fe08c072dce6d2a007ba175d61de751aa04"
+        },
+        "proofs": [
+          {
+            "group": "memory-cards-source",
+            "evidence": "The added mixed file splits across live native owners. The player-load task keeps the 26 polling stages, two channels, card-result comparisons and character-slot phase export, plus the original constructor, phase setter, fixed render slot, and destructor. Both single-player system checks return their real result. The four-entry label class retains its constructor, formatting, rendering, animation, text positioning and lifecycle. The misplaced weapon destructor survives at its weapon owner.",
+            "details": {
+              "poll_stages": 26,
+              "channels": [
+                0,
+                1
+              ],
+              "system_results": [
+                "0xFFFFFF83",
+                "0xFFFFFF21",
+                "0xFFFFFF05",
+                "0xFFFFFF41"
+              ],
+              "label_buffer_size": "0x40",
+              "label_format": "LV%d",
+              "label_alpha_step": "0xB",
+              "weapon_destructor": "0x802D655C"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2295,
+        "historical_path": "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+        "historical_blob": "0bd51ce1ca8899d163141148e9259b9618cfaae7",
+        "owners": {
+          "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp": "4647e7f9e9dbb698efbddd58118273620062d46c",
+          "include/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.h": "27a3c653c43467d40644557c4a4b4f66f0b322d3",
+          "include/pso/ui/frontend/CardFileEntry.h": "49d691d563759add7115bd9a603ca46e08c9f34c",
+          "include/pso/ui/frontend/TAdPlayerLoadGC.h": "b96ffb9d9c0f72c7f4492d4191d98fed48de9650"
+        },
+        "proofs": [
+          {
+            "group": "memory-cards-source",
+            "evidence": "The active card-storage provider already supplies the real disk-ID shape, typed open-file and per-slot request records, signed slot status and unsigned sector sizes. The selected scene now uses its signed status results. The complete historical 937-line asynchronous storage implementation still needs a per-operation comparison.",
+            "details": {
+              "scope": "already-present storage boundary and exact card probe results",
+              "unresolved_historical_scope": "full asynchronous delete, rename, write, create and callback state machines"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2361,
+        "historical_path": "src/pso/ui/TAdMcSelectCursorGC.cpp",
+        "historical_blob": "65d0fcc211dc0c28399f0424f64197b28f6d02d7",
+        "owners": {
+          "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp": "06a977b255894c5ed6781706ccb64eecb0d7c5c4",
+          "include/pso/ui/frontend/TAdMcSelectCursorGC.h": "371701d8dd8999e904a8bc91979633571c50ef21",
+          "include/pso/ui/frontend/TAdMcCheckGC.h": "194857c30e2a44d8502e54d629309b31252b6d28",
+          "include/pso/system/ControllerInputState.h": "6ce8173d1e9ee85aac20f4fc2b189c207cb8e9da"
+        },
+        "proofs": [
+          {
+            "group": "memory-cards-source",
+            "evidence": "The full historical render/input/lifetime change survives. The current cursor uses the Ginja texture list, the same fixed depths and rectangle constants, both physical-pad and keyboard navigation, the same fade/readiness tests and conditional singleton cleanup. Its constructor now takes the real TObject parent and initializes all eight rectangles. Factory, texture lifecycle and table lookup moved to the companion historical split and are accounted for by row 2288.",
+            "details": {
+              "cursor_layout": {
+                "lock": "+0x1C",
+                "selected_slot": "+0x20",
+                "geometry": "+0x28",
+                "size": "0x140"
+              },
+              "original_rectangle_constants": [
+                51.0,
+                286.0,
+                116.0,
+                256.0,
+                372.0
+              ],
+              "first_physical_controller": "+0x20",
+              "keyboard": "+0x160"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2400,
+        "historical_path": "src/pso/ui/TAdPlayerLoadGC_800F9EF8.cpp",
+        "historical_blob": "67d3cc70f9ac2f746d4fb6f9e956d7f0d3d459ff",
+        "owners": {
+          "src/pso/unk/TLobby_800F8AA8.cpp": "c8c83d92eaee2c023bc06c7d4874628e7e941604",
+          "include/pso/ui/frontend/TAdPlayerLoadGC.h": "b96ffb9d9c0f72c7f4492d4191d98fed48de9650"
+        },
+        "proofs": [
+          {
+            "group": "memory-cards-source",
+            "evidence": "The full changed boundary is already present at the active lobby owner. The actual fade-task getter returns TObject pointer, the resource root uses its native C++ lifetime, and the file name provider is initialized from the same static character pointer. The linked init keeps the retail registration and assignment order.",
+            "details": {
+              "source_audit_only": true,
+              "set_state": "0x800F9EF8",
+              "fade_task": "0x800F9F00",
+              "root_initialization": "0x800F9F08",
+              "resource_owner": "TUnk_8049C658 resource_load_task_root",
+              "filename_type": "const char *"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6745,
+        "historical_path": "src/pso/quest/TQuestListChallenge.cpp",
+        "historical_blob": "62e2e0da9b421701689470e391390fecfd7249b9",
+        "owners": {
+          "src/pso/quest/TQuestListChallenge.cpp": "91e7a3ca21a6f5381d7a9ec4ffdf3b2b18a5a822",
+          "include/pso/quest/TQuestListChallenge.h": "2ea7dbb758c7c7523dadc8bb02af751e00513f73",
+          "src/pso/ui/window/TMessageWindowController.cpp": "2b07cf79239904b718aafa2cc6588547998ce342"
+        },
+        "proofs": [
+          {
+            "group": "challenge-source",
+            "evidence": "Compared each authored block across the moved base and historical blobs against the canonical native body. All six affected declaration/header groups resolve to the actual existing message, base, addition and icon-line classes. All cursor reads, four owned close-and-clear branches, confirmation decided/cancelled and selected-value reads, description/detail append calls and depth/scale writes, and icon entry/content sizing are present. The canonical compiler vtable retains the original inherited display message/guild and two mapped argument-taking virtual slots. The independent review retains its equivalent existing inherited names. New source ownership is the original 0x5C constructor/destructor and virtual dispatcher, 0x10 catalog rows, shared title result and genuine two-float extent.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6747,
+        "historical_path": "src/pso/quest/TQuestListVM.cpp",
+        "historical_blob": "38a5d3d7dc2b995910a572af3fa4da6d94e9c976",
+        "owners": {
+          "src/pso/quest/TQuestListVM.cpp": "40d6eea8c6eb2073348cefc75e2e86677ddcf2ef",
+          "src/pso/ui/city/THunterGuildSeqOffline_802126C4.cpp": "894714922b7fc609a431507d7e89ee8f0a5bca2e",
+          "src/pso/ui/city/THunterGuildSeqOffline_80212644.cpp": "387c4c3691db38e2f4c3c62c1285da3e8f38ba8d",
+          "src/pso/ui/city/THunterGuildSeqOffline_8021269C.cpp": "dfd5eddd5a1701b12eb136623fbf9d3adbba244c"
+        },
+        "proofs": [
+          {
+            "group": "challenge-source",
+            "evidence": "Verified shared VM selector window lookup now uses the actual const position provider. Original description and detail window extents are true two-element float arrays, with unchanged client lookup, resource intervals and close/error/finish callbacks. Existing canonical card save, decompression and window behavior remain. The larger VM script, card and data subunit history is scoped here.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      445,
+      563,
+      564,
+      645,
+      646,
+      846,
+      2289,
+      2291,
+      2294,
+      2361,
+      2400,
+      3505,
+      4117,
+      6745
+    ],
+    "remaining": {
+      "Owner comparison required": 170,
+      "Some anchored text changes found": 565
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 131,
+  "replay_validation": {
+    "balclaw-source": {
+      "head": "8f2f06ec64ac6697384c9a8754445a1e08d78ac2",
+      "report_sha256": "f9097724291a56fbe4b3d1b2fa9f4d1c182d12593f8cebfb3af22454e3c17114",
+      "strict_sha256": "77ceca925e8a4d23d65f3709e42d92058d0de8d2ec5fc07f743b9d53f03eb199"
+    },
+    "photon-source": {
+      "head": "965aa351204f0f1917ef8d84435c5e982dee8f2d",
+      "report_sha256": "9d6a404953c61a71ae3ef86863429271860a4941a0f218fad99724efaab403ae",
+      "strict_sha256": "301fa63ec2a52124ad90cd3f3ab65977fa69c67ea6b93d55d6e58fc7874b43a5"
+    },
+    "memory-cards-source": {
+      "head": "f840fd7e65768d4c5ccde111f7ad4dd609db2698",
+      "report_sha256": "d8177aec6bd9ddfea2ca4701d183fa48cdf9765de8526ddd2ed3a7ca95c8c894",
+      "strict_sha256": "c2d28a1f329e0a8107dd60bcd2e47bb8782dba9d5ebff50d150870597d6a0e4e"
+    },
+    "challenge-source": {
+      "head": "def6cb4be75369610ef5212a4b8c1e0c5a450664",
+      "report_sha256": "14f97b90f6f04598e93da8b5022c6e7d07ab02f12ac88365d8c8e93082fd6ec2",
+      "strict_sha256": "7a28c9669f7f900b76ed877de746c5e66dc7459bce4b832e45ee1cac75d5614f"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "1b4743ff4bc36c4a9ec43b128eaa06a471730513eb28b7798e3cbaef3e18919c",
+      "strict_sha256": "b114bbd416458d084d3c172fc5772f753d19e3f2b24c470e4eefb81877277359"
+    },
+    "direct-union": {
+      "report_sha256": "12af9bf879baee5fb6f5ba67f0997c480916bf031f4bd262379b3553440c1165",
+      "strict_sha256": "a36c00ac39e3e0faac6ab2fda28126dce28fcee1a0d6cc28e2b7f05ded53f77f"
+    },
+    "working-final": {
+      "report_sha256": "1b4743ff4bc36c4a9ec43b128eaa06a471730513eb28b7798e3cbaef3e18919c",
+      "strict_sha256": "64d57e7a11bc0209812c9949e138419afeeff35074afa191bee828388659224b"
+    }
+  },
+  "published_stage_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+}
