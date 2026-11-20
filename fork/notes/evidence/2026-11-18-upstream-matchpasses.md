@@ -105,6 +105,24 @@ The candidates touch 1,490 of 1,756 Great Merge diff paths. The remaining 266 un
 
 The 330-file legacy combat refresh at `9b9d8a9670` is an exact source donor for the remaining combat work. The full union with the current enemy review introduced 34 conflicting files and required separate player, actor, rendering and resource contracts. Keep the validated 279-file review as the current candidate and take the remaining combat changes by owning class, preserving the required declarations and their callers together.
 
+## Player, actor and stage ownership replay
+
+The 19-file source replay at `ec924a7a85` restores the native player action checks and inventory dispatch, the Rico ring constructors, and the multiplayer character-selection plate layout. It also synchronizes 13 linker registrations for already-recovered Gee and swarm functions. The combined source and working fork reproduce retail and preserve matched and source-linked coverage. The 133 fork tooling paths round-trip and all 11 layer tests pass. All 1,147 original data bytes are accounted for in 90 ranges, with 980 source-linked bytes and 167 alignment bytes.
+
+| Review | Local head | Review base | Changed files |
+| --- | --- | --- | ---: |
+| Player, quest and item state | `995e372456` | `6b080e67ab` | 173 |
+| Enemy and boss combat | `108d6eb406` | `6b080e67ab` | 282 |
+| Actor motion, animation and presentation | `2485f3ffe2` | `6b080e67ab` | 383 |
+| Camera, scenes and frontend presentation | `a61eb60304` | `6b080e67ab` | 106 |
+| Stage and world objects | `4f59b9f427` | `d7f1fb19b2` | 153 |
+
+The player review includes typed state, scale and shrink packets, collision indexing and the action dispatch. Its standalone inventory helper uses the original ABI declaration to preserve the compiler's retail register assignments. The combined source uses the typed inventory owner. The enemy review adds native Canadin and Gee behavior around the existing combat, targeting and tunnel work. The cumulative branch already had all 58 named enemy functions, so its additional enemy changes are the linker registrations.
+
+The stage review uses the BML/GVM provider as its parent and validates the shared trail API and its seven callers alongside fence debris, ambient particles, fish placement and lobby dolphin resource access. The independent 139-file stage review remains useful for reviewing the earlier stage scope against upstream. The complete actor prerequisite also validates independently. Keep overlap checks by owning class when sequencing these groups.
+
+The prepared reviews and prerequisites touch 1,573 of 1,761 combined diff paths. The remaining 188 paths still need review assignment, and edits to paths shared between reviews still need merge validation. The [source review index](2026-11-18-fork-review-index.tsv) records 14 additional findings. It has 1,007 records awaiting owner comparison and 952 with partial evidence.
+
 ## Combined great-merge on upstream master `af11a99125`
 
 The combined source at `5439b74826` and the complete source snapshot at `2a2a454320` incorporate the new upstream master. The combined merge retains the prior 40 source commits in its history. It reconciles all 42 overlapping paths and updates the related declarations, constructors and callers. The replay keeps the compiler-emitted breakup and window virtual tables on upstream's new owners. The consolidated balloon unit retains 27 replayed functions, and the split status unit uses the typed draw context with the native list row.
