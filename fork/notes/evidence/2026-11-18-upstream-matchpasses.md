@@ -473,6 +473,21 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 268-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-weapon-worm-quest-selection-replay.json)
 
+## audio streaming, Gal Gryphon, stage wrecks and selection requests
+
+Source checkpoint `f4f102ed96` and landing checkpoint `a2d89da7fa` carry 63 source files. The source replay recovers native audio streaming and WAVE decoding, Gal Gryphon arena and lightning resources, Seabed wreck and collision owners, and stored selection requests and preview callers. The source audit records 35 historical files and closes 17. The ledger has 1,308 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-adx-streaming` | ADX stream files, WAVE decoding, and native file, device and error callback interfaces shared by MFS and DVD | 48 |
+| `great-merge/current/standalone-gal-gryphon-arena-actors` | Gal Gryphon actor and arena resources, captured-joint positions, body and particle archives, and native lightning constructors and hit callback | 32 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage doors and fences, placement and actual wall fade, shared contact work and Seabed wreck factories and collision models | 95 |
+| `great-merge/current/character-selection-plates` | Character selection and preview, native saved-character requests and split-screen camera consumers, and the serialized appearance display index | 67 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 235-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-audio-gryphon-wreck-selection-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

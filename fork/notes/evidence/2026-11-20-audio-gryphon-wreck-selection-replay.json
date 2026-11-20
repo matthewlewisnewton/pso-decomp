@@ -1,0 +1,1475 @@
+{
+  "source": "f4f102ed96f3d7561450e04621e2cf0358e8095d",
+  "landing": "a2d89da7fab4ce45be765de56416ae133d7a37ff",
+  "working_fork_build": "1156fdf6aec6fc0c2b86297f19ab50101c195fea",
+  "previous_source": "79a30b1172a1f86dd36fc327b8aee3a4e93d7ac6",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 63,
+  "batches": {
+    "audio": {
+      "head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+      "files": 27,
+      "report_sha256": "ccf1c36df11a50f2922601fd097fc13d63817c68984153e592d3a8a846bbe58e"
+    },
+    "gryphon": {
+      "head": "c5c9539d2b996195ce886b6176fcfc2b6c36c5c1",
+      "files": 10,
+      "report_sha256": "b8a6dc70f403f16a4f71b76d60f7c9323ee5abaa5a3e3018b2c2bf589f479ad9"
+    },
+    "wreck": {
+      "head": "075fc0839ce0f56409588e75ff2e5dc9e56f86b6",
+      "files": 12,
+      "report_sha256": "37023510a647b4d80270c33ce545991f6f00d9d770559e1cec9456a7c2b82c5c"
+    },
+    "selection": {
+      "head": "0fcf4c6b5c05c3bdf02b2f0afbf42d0071f624ec",
+      "files": 18,
+      "report_sha256": "deae7b601d020cb0bf24b2f11735fb8da13ab5864dd2c69dc0b42b85ba5ec59c"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "f4f102ed96f3d7561450e04621e2cf0358e8095d",
+    "previous": "79a30b1172a1f86dd36fc327b8aee3a4e93d7ac6",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 6,
+        "historical_path": "src/pso/system/AdxManager.cpp",
+        "historical_blob": "1e24cf100c9ad44fc22d399adee469224df6e0d5",
+        "owners": {
+          "src/pso/audio/AdxManager.cpp": "b592231ed99e6ffae0524fb19dde479a7b1e957a",
+          "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+          "src/pso/unk/text_803CE568.cpp": "26b9f6d63d981d0d9e67282c39e31c0cd0cd090d"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The real MFS and disc registration path uses the CVFS default-device function with its device text. The original thread and startup declaration blocks remain scoped.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "1e24cf100c9ad44fc22d399adee469224df6e0d5",
+              "native_anchors": {
+                "src/pso/audio/AdxManager.cpp": "b592231ed99e6ffae0524fb19dde479a7b1e957a",
+                "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+                "src/pso/unk/text_803CE568.cpp": "26b9f6d63d981d0d9e67282c39e31c0cd0cd090d"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7,
+        "historical_path": "src/pso/system/AdxStream.cpp",
+        "historical_blob": "8edc3392706b338f3816d985baf7ab35e9e809c2",
+        "owners": {
+          "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea",
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+          "include/pso/audio/AdxStream.h": "3c4afa2fbcdf5faadbc89aa4043549b09ba1d2ac",
+          "src/pso/unk/text_803CE568.cpp": "26b9f6d63d981d0d9e67282c39e31c0cd0cd090d"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The open, seek, status, sector read, stop and close sites now use the real handle. The 40-slot request pool, borrowed ring chunk and completion context carry the original scheduler thresholds, retry branches and wrap arithmetic. The larger set of historical stream declarations still needs complete comparison.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "8edc3392706b338f3816d985baf7ab35e9e809c2",
+              "native_anchors": {
+                "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea",
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+                "include/pso/audio/AdxStream.h": "3c4afa2fbcdf5faadbc89aa4043549b09ba1d2ac",
+                "src/pso/unk/text_803CE568.cpp": "26b9f6d63d981d0d9e67282c39e31c0cd0cd090d"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 10,
+        "historical_path": "src/pso/system/AdxtServer.cpp",
+        "historical_blob": "99cefc68360717fd7c599e977ead8211e28b3613",
+        "owners": {
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+          "src/pso/audio/AdxtServer.cpp": "ae0e287268eac5769fdded947450fb5e78af3e2c",
+          "include/pso/audio/AdxStreamRuntime.h": "35cf676f4ef23aa3eb3a8c87a35215d6e23b1ff9"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The ADXT scheduler registers its actual stream completion callback and context through the native record. Other historical ADXT player and mixer declaration edits remain under review.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "99cefc68360717fd7c599e977ead8211e28b3613",
+              "native_anchors": {
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+                "src/pso/audio/AdxtServer.cpp": "ae0e287268eac5769fdded947450fb5e78af3e2c",
+                "include/pso/audio/AdxStreamRuntime.h": "35cf676f4ef23aa3eb3a8c87a35215d6e23b1ff9"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 24,
+        "historical_path": "include/pso/system/AdxStreamRuntime.h",
+        "historical_blob": "225fd4374985cf3b73c5fb3ce46330aaf734199b",
+        "owners": {
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+          "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea",
+          "include/pso/audio/AdxStreamRuntime.h": "35cf676f4ef23aa3eb3a8c87a35215d6e23b1ff9"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The real ADX file slot, pending ring chunk and stream callback replace the historical erased input on active callers. The player-pool declarations and unrelated status interfaces remain separately scoped.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "225fd4374985cf3b73c5fb3ce46330aaf734199b",
+              "native_anchors": {
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+                "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea",
+                "include/pso/audio/AdxStreamRuntime.h": "35cf676f4ef23aa3eb3a8c87a35215d6e23b1ff9"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 26,
+        "historical_path": "src/pso/system/LscServer.cpp",
+        "historical_blob": "a8822db3dd943cb7c0f4f603f33a9a3d1a567de2",
+        "owners": {
+          "src/pso/audio/LscServer.cpp": "42143e3c9ac67f82606861fabe9d6842cbd9efef",
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+          "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The LSC runtime retains the original stream-file status and relative-progress sources. Its remaining repeat-mode and seek ownership blocks still require whole-row comparison.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "a8822db3dd943cb7c0f4f603f33a9a3d1a567de2",
+              "native_anchors": {
+                "src/pso/audio/LscServer.cpp": "42143e3c9ac67f82606861fabe9d6842cbd9efef",
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+                "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 27,
+        "historical_path": "src/pso/system/AdxStreamRuntime.cpp",
+        "historical_blob": "f8c734d8b58848076027feb9b3da8bb2b353b3b3",
+        "owners": {
+          "src/pso/unk/text_803C5B50.cpp": "e0453b0963a9d2b491f083e79f150845be45d97c",
+          "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03",
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The playback queue and native SjRingBuffer chunk interface are present. Current scheduler uses the actual ring chunk and availability callbacks. The remaining split-owner edits in this row stay open.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "f8c734d8b58848076027feb9b3da8bb2b353b3b3",
+              "native_anchors": {
+                "src/pso/unk/text_803C5B50.cpp": "e0453b0963a9d2b491f083e79f150845be45d97c",
+                "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03",
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 29,
+        "historical_path": "src/pso/misc/TLobby_803C4698.cpp",
+        "historical_blob": "7ff05871669d5b968065ffcfb47c9af0e521bd78",
+        "owners": {
+          "include/pso/audio/AdxHeader.h": "dd9dad5b0c4aa985839db09f586a7fa2c4328fba",
+          "src/pso/audio/AdxHeader.cpp": "43b7317d75c39866bc978d2014c8b433d5a61932"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete added declaration and definition at the native ADX header owner take the original cutoff, sample rate and two signed coefficient outputs.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "7ff05871669d5b968065ffcfb47c9af0e521bd78",
+              "native_anchors": {
+                "include/pso/audio/AdxHeader.h": "dd9dad5b0c4aa985839db09f586a7fa2c4328fba",
+                "src/pso/audio/AdxHeader.cpp": "43b7317d75c39866bc978d2014c8b433d5a61932"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 31,
+        "historical_path": "src/pso/system/LscStream.cpp",
+        "historical_blob": "98fea1c27efad84b3b9a5500524732b8746cc146",
+        "owners": {
+          "src/pso/audio/LscStream.cpp": "94976a3b08df33d45535fa128e45e116757465b6",
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+          "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete authored sector-count calculation still reads the actual file size, adds the original 0x7FF and divides by 0x800. The file backend now has its real pointer type.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "98fea1c27efad84b3b9a5500524732b8746cc146",
+              "native_anchors": {
+                "src/pso/audio/LscStream.cpp": "94976a3b08df33d45535fa128e45e116757465b6",
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+                "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 47,
+        "historical_path": "src/pso/misc/TLobby_803BFE50.cpp",
+        "historical_blob": "7cbfb4ad3fe50288047e236f502038a865b2b085",
+        "owners": {
+          "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+          "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83",
+          "src/pso/audio/AdxBsc.cpp": "227f23bdbc4897b920412257d5d71aa5e0fecf36"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The WAVE decoder initializer and ADXB dispatch now share the actual decoder record. The authored stream-source interface, mix data and queue changes outside that scope remain open.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "7cbfb4ad3fe50288047e236f502038a865b2b085",
+              "native_anchors": {
+                "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+                "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83",
+                "src/pso/audio/AdxBsc.cpp": "227f23bdbc4897b920412257d5d71aa5e0fecf36"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 48,
+        "historical_path": "include/pso/misc/TLobby_803CE478.h",
+        "historical_blob": "ea77d46c4f94d7336f2e09a1fd08f9b671f61ab2",
+        "owners": {
+          "include/pso/unk/TLobby_803CE478.h": "349c4cdc312db9e501ed397f057b9d8d3b2701c8",
+          "include/pso/unk/text_803CE568.h": "55c78ca2a66540c529c6ccdb3e65c8cf77b9d9ef",
+          "include/pso/system/CvFsDeviceCallbacks.h": "9886f4e3e8edd43e36b9b0b9dab42bcdcb494327"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The old wrapper adds only access to CVFS declarations. Its real device and error interfaces are present at their current owners.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "ea77d46c4f94d7336f2e09a1fd08f9b671f61ab2",
+              "native_anchors": {
+                "include/pso/unk/TLobby_803CE478.h": "349c4cdc312db9e501ed397f057b9d8d3b2701c8",
+                "include/pso/unk/text_803CE568.h": "55c78ca2a66540c529c6ccdb3e65c8cf77b9d9ef",
+                "include/pso/system/CvFsDeviceCallbacks.h": "9886f4e3e8edd43e36b9b0b9dab42bcdcb494327"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 57,
+        "historical_path": "include/pso/unk/text_803C1780.h",
+        "historical_blob": "c4c055eee815344c34e452ebdcf62205e2863bef",
+        "owners": {
+          "include/pso/unk/text_803C1780.h": "56f48729ba6a6c0d11fcd5ef4270b941fa2e3dff",
+          "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+          "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete authored parser declaration accepts the actual byte buffer, size, offset, signed channel and format outputs, rate and sample count. Its only decoder caller provides the corresponding typed fields.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "c4c055eee815344c34e452ebdcf62205e2863bef",
+              "native_anchors": {
+                "include/pso/unk/text_803C1780.h": "56f48729ba6a6c0d11fcd5ef4270b941fa2e3dff",
+                "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+                "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 58,
+        "historical_path": "src/pso/unk/text_803C1668.cpp",
+        "historical_blob": "e7d4258189df5941fc3c74fd1cbfaf0ea140f183",
+        "owners": {
+          "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+          "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83",
+          "src/pso/audio/AdxBsc.cpp": "227f23bdbc4897b920412257d5d71aa5e0fecf36"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The whole authored decoder handoff uses actual signed marker and sample-format fields and signed encoding in the shared ADXB record. Existing decode reset, queue state and return of the parsed payload offset remain at the original address.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "e7d4258189df5941fc3c74fd1cbfaf0ea140f183",
+              "native_anchors": {
+                "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+                "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83",
+                "src/pso/audio/AdxBsc.cpp": "227f23bdbc4897b920412257d5d71aa5e0fecf36"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 59,
+        "historical_path": "src/pso/unk/text_803C1780.cpp",
+        "historical_blob": "d9532ab2301b6e8f3ffad8ab22667fbc090a22bd",
+        "owners": {
+          "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+          "include/pso/unk/text_803C1780.h": "56f48729ba6a6c0d11fcd5ef4270b941fa2e3dff"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete original format and data chunk readers use real chunk layouts, unchanged endian conversion, validation order, payload offsets and bit-depth branches. The notification and byte-to-block tail helpers from the historical source remain in this native unit.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "d9532ab2301b6e8f3ffad8ab22667fbc090a22bd",
+              "native_anchors": {
+                "src/pso/unk/TLobby_803BFE50.cpp": "9f775e86a40b4f87a2c85d11b341c8a8a78fea25",
+                "include/pso/unk/text_803C1780.h": "56f48729ba6a6c0d11fcd5ef4270b941fa2e3dff"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 60,
+        "historical_path": "src/pso/unk/text_803CE568.cpp",
+        "historical_blob": "4731eeb494c232520c9b2de2ab76850e34aedd90",
+        "owners": {
+          "include/pso/unk/text_803CE568.h": "55c78ca2a66540c529c6ccdb3e65c8cf77b9d9ef",
+          "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+          "src/pso/unk/text_803CE568.cpp": "26b9f6d63d981d0d9e67282c39e31c0cd0cd090d",
+          "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea",
+          "src/pso/system/movie/Mfci.cpp": "89b2e6659eb84dfcbda7ae3a38be4d58d6f0979f",
+          "src/pso/unk/text_803CFEA0.cpp": "dccaa21da493e5396f28955d8ca77d4c0715104a"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "CVFS open and dispatch preserve the original handle pool, device slots, close invalidation and diagnostic branches. Both devices supply the same native callback table, and ADX receives their original error handle and message. Remaining historical optional driver and archive fields stay scoped.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "4731eeb494c232520c9b2de2ab76850e34aedd90",
+              "native_anchors": {
+                "include/pso/unk/text_803CE568.h": "55c78ca2a66540c529c6ccdb3e65c8cf77b9d9ef",
+                "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+                "src/pso/unk/text_803CE568.cpp": "26b9f6d63d981d0d9e67282c39e31c0cd0cd090d",
+                "src/pso/audio/AdxStream.cpp": "0408860bbe066525a940571a8c6266037721aaea",
+                "src/pso/system/movie/Mfci.cpp": "89b2e6659eb84dfcbda7ae3a38be4d58d6f0979f",
+                "src/pso/unk/text_803CFEA0.cpp": "dccaa21da493e5396f28955d8ca77d4c0715104a"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 83,
+        "historical_path": "include/pso/unk/text_803CC294.h",
+        "historical_blob": "e74a06c8ca2a73de5079aec0f2f592d2b4fb3bd9",
+        "owners": {
+          "include/pso/unk/text_803CC294.h": "163ea3a8be3dc026d23a196977daf76f3a6ab5c8",
+          "src/pso/unk/text_803CC294.cpp": "9cfd5f4cf7b5a3dc976f648363b62c1a49c9d9df",
+          "src/pso/unk/text_803CD99C.cpp": "d7dec5bdb8c94f3cb15c58e7f78c3562b6257ea8"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete header delta adds the ADXF include and retains the original active helper declarations at their real owners. The existing state provider uses its actual no-argument contract.",
+            "details": {
+              "verified_head": "22b7bd5721d8679c3d9b41346f83ed12f0538e9a",
+              "historical_blob": "e74a06c8ca2a73de5079aec0f2f592d2b4fb3bd9",
+              "native_anchors": {
+                "include/pso/unk/text_803CC294.h": "163ea3a8be3dc026d23a196977daf76f3a6ab5c8",
+                "src/pso/unk/text_803CC294.cpp": "9cfd5f4cf7b5a3dc976f648363b62c1a49c9d9df",
+                "src/pso/unk/text_803CD99C.cpp": "d7dec5bdb8c94f3cb15c58e7f78c3562b6257ea8"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 992,
+        "historical_path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+        "historical_blob": "b719d83b9fad043a50c574b38b53c31c387fe858",
+        "owners": {
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "a1814f6e0d379787d056a5ec5e2c965bd2670489"
+        },
+        "proofs": [
+          {
+            "group": "gryphon",
+            "evidence": "The broader historical behavior row spans already-retained resources and descriptors, packet handlers, sound/vector call conversions, and state/effect machinery. The audit certifies the owning camera task, attack collider allocation and deletion, real embedded effect parent, and all attack state consumers. It does not assert the full combined source delta.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+                  "blob": "27dd8af22ddccdcef4827007832935a73bbd8196",
+                  "anchors": [
+                    "self->attack_collider->activate(&self->position, self->rotation.yaw);",
+                    "self->attack_collider->deactivate();",
+                    "delete o->attack_collider;",
+                    "__ct__7TObjectFP7TObject(&self->effect_root, 0);",
+                    "TBoss5GryphonColli__ct(collider, &self->effect_root);",
+                    "__dt__7TObjectFv(&((TBoss5Gryphon *)o)->effect_root, -1);",
+                    "void load_boss5_gryphon_resources(void)"
+                  ]
+                }
+              ],
+              "remaining": "The original combined behavior row includes broad inherited combat/camera/event internals, the full phase state body and packet/other shared provider history. Those larger historical hunks need their own complete source proof before this row is closed."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6591,
+        "historical_path": "include/pso/map/CsnQuery.h",
+        "historical_blob": "39e9d1f1ea36af00997fc96d073bd53e79c840d0",
+        "owners": {
+          "src/pso/map/CsnQuery.cpp": "022853748962d0e69e661e9eb3b0820e7ace16be"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "Most hit/result owners already native. Some remaining original helper signature differences are open; broad source trial changed instructions and was not included.",
+            "details": {
+              "disposition": "scoped_open",
+              "anchors": {
+                "CsnHit *csnLookAt(const Vec *from, const Vec *to)": 840,
+                "WallRayResult *query_prepared_wall_polygons(WallRayQuery *query)": 816,
+                "void TObjPlayer__sub_80079110(CsnHit *hit)": 149
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6668,
+        "historical_path": "src/pso/map/CsnQuery.cpp",
+        "historical_blob": "155472bc6551880cba907ccb11d3691cdeff7c06",
+        "owners": {
+          "src/pso/map/CsnQuery.cpp": "022853748962d0e69e661e9eb3b0820e7ace16be"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "Current ground provider already uses genuine mesh, face and result storage, but still has inherited Vec/scratch wall overlays and distinct generated instruction scheduling. Full native trial withheld after exact build mismatch.",
+            "details": {
+              "disposition": "scoped_open",
+              "anchors": {
+                "s32 evaluate_ground_triangles(Vec *origin_arg": 198,
+                "CsnFace *poly;": 210,
+                "CsnContact *hits;": 211,
+                "s32 intersect_wall_triangle_one_sided": 127
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6739,
+        "historical_path": "src/pso/player/TObjPlayer_8007A7E8.cpp",
+        "historical_blob": "0e871f3c19e92294dd83eebe09050107936965a3",
+        "owners": {
+          "src/pso/map/CsnResult.cpp": "e32d07ec4fcddb778fa8b9f509cc5dad9892656e"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "The original authored contact-clear receiver is already CsnContact in canonical. Native member writes preserve the six position/normal float zeroes and flags word. The paired exact address remains 0x8007A7E8.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": {
+                "void CsnContact::clear()": 28,
+                "point.z": 29,
+                "normal.z": 30,
+                "flags = 0": 31
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6771,
+        "historical_path": "src/pso/object/TObjButterflyLobby_8007A5D8.cpp",
+        "historical_blob": "9e2a07dd0b06410ad5eb8304a2f9362cc4bc52ac",
+        "owners": {
+          "src/pso/map/CsnQuery.cpp": "022853748962d0e69e661e9eb3b0820e7ace16be"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "Canonical already uses actual array allocation/free symbols for the 0x5000-byte wall buffer. Trial of wider genuine face-buffer preparation is still open.",
+            "details": {
+              "disposition": "scoped_open",
+              "anchors": {
+                "void TObjButterflyLobby::free_singleton_805D4E6C()": 909,
+                "void TObjButterflyLobby::alloc_scene_buffer()": 916,
+                "0x5000": 916,
+                "::operator delete[](wall_query_scene_buffer)": 911
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6816,
+        "historical_path": "include/pso/misc/TOVS2Wreck01.h",
+        "historical_blob": "6f74673d617183dc0190f39290aff68676f9764a",
+        "owners": {
+          "include/pso/object/TOVS2Wreck01.h": "5fd14de0e63a7aff3a7d3d42ec39d6e33a1745e8"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "The authored header delta removes only the stale destructor shim declaration(s). The exact constructor and destructor declarations are now native, the copied duplicate declaration blocks are gone, and the same factory remains available to the stage table.",
+            "details": {
+              "disposition": "whole",
+              "anchors": {
+                "TOVS2Wreck01(void *set_data);": 8,
+                "virtual ~TOVS2Wreck01();": 9,
+                "TOVS2Wreck01__create(void *set_data)": 14
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6870,
+        "historical_path": "include/pso/misc/TOVS2Wreck02.h",
+        "historical_blob": "73688b89536ce62d0a1ed1000f63d53ebb1b2b99",
+        "owners": {
+          "include/pso/object/TOVS2Wreck02.h": "256e3c6511994620297b694166a7f944f80c654e"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "The authored header delta removes only the stale destructor shim declaration(s). The exact constructor and destructor declarations are now native, the copied duplicate declaration blocks are gone, and the same factory remains available to the stage table.",
+            "details": {
+              "disposition": "whole",
+              "anchors": {
+                "TOVS2Wreck02(void *set_data);": 8,
+                "virtual ~TOVS2Wreck02();": 9,
+                "TOVS2Wreck02__create(void *set_data)": 14
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6871,
+        "historical_path": "include/pso/misc/TOVS2Wreck03.h",
+        "historical_blob": "60b6ca69ddb1697941e975b9c0474ae61f928da9",
+        "owners": {
+          "include/pso/object/TOVS2Wreck03.h": "a2bbd1110692edf5c5a296684d6a12a2e70ad84e"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "The authored header delta removes only the stale destructor shim declaration(s). The exact constructor and destructor declarations are now native, the copied duplicate declaration blocks are gone, and the same factory remains available to the stage table.",
+            "details": {
+              "disposition": "whole",
+              "anchors": {
+                "TOVS2Wreck03(void *set_data);": 8,
+                "virtual ~TOVS2Wreck03();": 9,
+                "TOVS2Wreck03__create(void *set_data)": 14
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6872,
+        "historical_path": "include/pso/misc/TOVS2Wreck04.h",
+        "historical_blob": "82a7d9f3a40391defcbde44929f145ffe8d171da",
+        "owners": {
+          "include/pso/object/TOVS2Wreck04.h": "18c1a86c07b4873b6b077d409859dbd2e3ed3789"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "The authored header delta removes only the stale destructor shim declaration(s). The exact constructor and destructor declarations are now native, the copied duplicate declaration blocks are gone, and the same factory remains available to the stage table.",
+            "details": {
+              "disposition": "whole",
+              "anchors": {
+                "TOVS2Wreck04(void *set_data);": 8,
+                "virtual ~TOVS2Wreck04();": 9,
+                "TOVS2Wreck04__create(void *set_data)": 14
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6873,
+        "historical_path": "include/pso/misc/TOVS2Wreck05.h",
+        "historical_blob": "8c3452e2c2b929b81f06e6a695e073002b4d0e61",
+        "owners": {
+          "include/pso/object/TOVS2Wreck05.h": "43a77608d551933bda7fbbc8af6c26b5e79e3b93"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "The authored header delta removes only the stale destructor shim declaration(s). The exact constructor and destructor declarations are now native, the copied duplicate declaration blocks are gone, and the same factory remains available to the stage table.",
+            "details": {
+              "disposition": "whole",
+              "anchors": {
+                "TOVS2Wreck05(void *set_data);": 8,
+                "virtual ~TOVS2Wreck05();": 9,
+                "TOVS2Wreck05__create(void *set_data)": 14
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6874,
+        "historical_path": "include/pso/misc/TOVS2Wreck06.h",
+        "historical_blob": "ae1d050f5c0bf41ba4fe0ae206d9802bc04c4cec",
+        "owners": {
+          "include/pso/object/TOVS2Wreck06.h": "8f8d890dfcd40ce93f08fd51afa11b54c5cf3e2a"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "The authored header delta removes only the stale destructor shim declaration(s). The exact constructor and destructor declarations are now native, the copied duplicate declaration blocks are gone, and the same factory remains available to the stage table.",
+            "details": {
+              "disposition": "whole",
+              "anchors": {
+                "TOVS2Wreck06(void *set_data);": 8,
+                "virtual ~TOVS2Wreck06();": 9,
+                "TOVS2Wreck06__create(void *set_data)": 14
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7087,
+        "historical_path": "src/pso/object/TObjCollision.cpp",
+        "historical_blob": "85caa118588efa32886c3c0011b75dca0b4f2961",
+        "owners": {
+          "src/pso/object/collision/TObjCollision.cpp": "52bde16e4527359bbdff4f945b943c59459b027e"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "Only authored changes are native float constants zero and 1000 in the existing two collider functions. Canonical consumes the same zero/unit and 1000 literals inline at their old linked locations.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": {
+                "1000.0f": 60
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7132,
+        "historical_path": "include/pso/misc/TOVS2Wall01.h",
+        "historical_blob": "59d8dddb88c3138413b23bb9d18bc568212be60f",
+        "owners": {
+          "include/pso/object/fence/TOVS2Wall01.h": "fc1d710aa67b8f39592f52e410e8c3d514497d48"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "All eight authored virtual slot declarations are present, and the original RenderFadeState member replaces the raw 0x340 through 0x35B view. Current typed layout checks its 0x340 offset and 0x360 owner size.",
+            "details": {
+              "disposition": "whole",
+              "anchors": {
+                "RenderFadeState fade;": 15,
+                "select_melee_contact_body": 22,
+                "calc_distance_accuracy_penalty": 23,
+                "receive_physical_attack": 24,
+                "receive_direct_attack": 25,
+                "receive_weapon_special_attack": 26,
+                "apply_knockback_from_attacker": 27,
+                "try_start_action": 28,
+                "roll_physical_accuracy": 29
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7155,
+        "historical_path": "src/pso/misc/TOAttackableCol.cpp",
+        "historical_blob": "9cb6ae7d27f825a351cf52a1b7192f37841fff20",
+        "owners": {
+          "src/pso/object/collision/TOAttackableCol.cpp": "2f95d2945f1d1e5114bbceb214af65627c73abf6"
+        },
+        "proofs": [
+          {
+            "group": "wreck",
+            "evidence": "Authored source consists of the native named task lookup, typed particle coordinates, real demo provider and original zero/500 range thresholds. They are already represented at the exact canonical owner.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": {
+                "check_value_equals": 126,
+                "spawn_particle_effect(&this->position, 0x1D0)": 268,
+                "spawn_particle_effect(&this->position, 1)": 269,
+                "check_demo_mode()": 287,
+                "500.0f": 327
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2714,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "historical_blob": "3e1cc1bf15dd3d958256b0b27f720b9889c5c9f6",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp": "e68068cf22877e47b972cfbaeca1be38ebcbf0a4",
+          "include/pso/ui/frontend/CharacterSelectionRequest.h": "4970c49fb18f95f769197669e94d18a4e6bc488a"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "0x801FE538 copies the original character/inventory spans to the selected save slots, 0x801FE5F8 copies the native record and the reverse spans to the selected players, 0x801FE710 copies all nine original words. Both save-buffer branches and 0x805137F8 global continue to use the same indices and gates. The unrelated memory-card, quest allocation, stats and save controls in this mixed row remain separately scoped.",
+            "details": {
+              "disposition": "scoped selection request provider and callers",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+                  "canonical_blob": "e68068cf22877e47b972cfbaeca1be38ebcbf0a4",
+                  "direct_blob": "19814875007af24be45620bc1ae7b455f36bf0b5"
+                },
+                {
+                  "path": "include/pso/ui/frontend/CharacterSelectionRequest.h",
+                  "canonical_blob": "4970c49fb18f95f769197669e94d18a4e6bc488a",
+                  "direct_blob": "4970c49fb18f95f769197669e94d18a4e6bc488a"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4896,
+        "historical_path": "src/pso/misc/TCameraCtrl.cpp",
+        "historical_blob": "d30c6ae0c388de3d8d2d8f7ae19816e8f25758ac",
+        "owners": {
+          "src/pso/camera/TCameraCtrl.cpp": "4b36ae016836d1881a3133e6e35faa27cf99a524",
+          "include/pso/ui/frontend/CharacterSelectionRequest.h": "4970c49fb18f95f769197669e94d18a4e6bc488a"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Historical camera accessor and its three users all read the 0x24 selection request. 0x800688D0, 0x80068958 and 0x8006A410 use the second array at +0x10. Invalid player IDs -1 and 0xFFFF, valid-view traversal, mirroring and first-player fallback remain unchanged. The broader camera owner still needs separate audit.",
+            "details": {
+              "disposition": "scoped original split-screen camera selection request reads",
+              "anchors": [
+                {
+                  "path": "src/pso/camera/TCameraCtrl.cpp",
+                  "canonical_blob": "4b36ae016836d1881a3133e6e35faa27cf99a524",
+                  "direct_blob": "2ef0880f23c1403b9b07fc4eb1d35be7963417bc"
+                },
+                {
+                  "path": "include/pso/ui/frontend/CharacterSelectionRequest.h",
+                  "canonical_blob": "4970c49fb18f95f769197669e94d18a4e6bc488a",
+                  "direct_blob": "4970c49fb18f95f769197669e94d18a4e6bc488a"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2397,
+        "historical_path": "src/pso/object/TObjCMName.cpp",
+        "historical_blob": "34a30cd0a894e4fa7081cc54a8c5a9fb280c13df",
+        "owners": {
+          "src/pso/ui/charcreate/TObjCMName.cpp": "ebd0e41b561e00060af1638796caaafb151b8862",
+          "include/pso/ui/charcreate/CharacterAppearance.h": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+          "src/pso/ui/charcreate/TCharaMaking.cpp": "03ac14d0f661c4517434216f92c15f1d008d57db"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Assignment, hair, and auto-making each use the actual appearance buffer address, matching the old class-table lookups without creating fake TCharaMaking receivers.",
+            "details": {
+              "disposition": "scoped serialized appearance contract and actual caller",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/charcreate/TObjCMName.cpp",
+                  "canonical_blob": "ebd0e41b561e00060af1638796caaafb151b8862",
+                  "direct_blob": "12ab8c9e8b7492881beea89c292278719d33a88e"
+                },
+                {
+                  "path": "include/pso/ui/charcreate/CharacterAppearance.h",
+                  "canonical_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+                  "direct_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5"
+                },
+                {
+                  "path": "src/pso/ui/charcreate/TCharaMaking.cpp",
+                  "canonical_blob": "03ac14d0f661c4517434216f92c15f1d008d57db",
+                  "direct_blob": "bae2c14208aea6992155159fcf52b5035e04ab6e"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2577,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "historical_blob": "9e6b9d7ff9d977b83c689298e98dd683a6d55fe1",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": "db447b50a42b6e271dc539918d0d6b10b252c6e4",
+          "include/pso/ui/charcreate/CharacterAppearance.h": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+          "src/pso/ui/charcreate/TCharaMaking.cpp": "03ac14d0f661c4517434216f92c15f1d008d57db"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Six callers in shape banking, material selection, part bounds and creation-resource loading keep their real appearance input and the original display-index provider.",
+            "details": {
+              "disposition": "scoped serialized appearance contract and actual caller",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+                  "canonical_blob": "db447b50a42b6e271dc539918d0d6b10b252c6e4",
+                  "direct_blob": "3b6b423d168e7c94eb0ff9765bf9eac6454769fc"
+                },
+                {
+                  "path": "include/pso/ui/charcreate/CharacterAppearance.h",
+                  "canonical_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+                  "direct_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5"
+                },
+                {
+                  "path": "src/pso/ui/charcreate/TCharaMaking.cpp",
+                  "canonical_blob": "03ac14d0f661c4517434216f92c15f1d008d57db",
+                  "direct_blob": "bae2c14208aea6992155159fcf52b5035e04ab6e"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2637,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "historical_blob": "3546f0efd7657475ce25c03f4a51106af064a74b",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": "91afb243f0b97b25f153773a672916d3625315b0",
+          "include/pso/ui/charcreate/CharacterAppearance.h": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+          "src/pso/ui/charcreate/TCharaMaking.cpp": "03ac14d0f661c4517434216f92c15f1d008d57db"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Both preview archive and texture requests derive the class-table index from the same appearance bytes. Sized model storage and legacy archive methods elsewhere in this row remain separate.",
+            "details": {
+              "disposition": "scoped serialized appearance contract and actual caller",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+                  "canonical_blob": "91afb243f0b97b25f153773a672916d3625315b0",
+                  "direct_blob": "a03e68f61270d7bdd619089cb6706a092dab2eb4"
+                },
+                {
+                  "path": "include/pso/ui/charcreate/CharacterAppearance.h",
+                  "canonical_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+                  "direct_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5"
+                },
+                {
+                  "path": "src/pso/ui/charcreate/TCharaMaking.cpp",
+                  "canonical_blob": "03ac14d0f661c4517434216f92c15f1d008d57db",
+                  "direct_blob": "bae2c14208aea6992155159fcf52b5035e04ab6e"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2644,
+        "historical_path": "src/pso/misc/TChCrLoadReq.cpp",
+        "historical_blob": "9b795a2093ee5eea5df8f3333525a6507ddf2ed8",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrLoadReq.cpp": "83f5d74af7e0be5bfeb4e675912c5fa0a48dc10c",
+          "include/pso/ui/charcreate/CharacterAppearance.h": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+          "src/pso/ui/charcreate/TCharaMaking.cpp": "03ac14d0f661c4517434216f92c15f1d008d57db"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "The preview record reset derives the same class table entry before claiming its load slot, keeping the genuine appearance record at inputs +0x0.",
+            "details": {
+              "disposition": "scoped serialized appearance contract and actual caller",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/charcreate/TChCrLoadReq.cpp",
+                  "canonical_blob": "83f5d74af7e0be5bfeb4e675912c5fa0a48dc10c",
+                  "direct_blob": "83f5d74af7e0be5bfeb4e675912c5fa0a48dc10c"
+                },
+                {
+                  "path": "include/pso/ui/charcreate/CharacterAppearance.h",
+                  "canonical_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5",
+                  "direct_blob": "b2beb730523d128a878af1fe40aa96ef4d726bc5"
+                },
+                {
+                  "path": "src/pso/ui/charcreate/TCharaMaking.cpp",
+                  "canonical_blob": "03ac14d0f661c4517434216f92c15f1d008d57db",
+                  "direct_blob": "bae2c14208aea6992155159fcf52b5035e04ab6e"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      29,
+      31,
+      48,
+      57,
+      58,
+      59,
+      83,
+      6739,
+      6816,
+      6870,
+      6871,
+      6872,
+      6873,
+      6874,
+      7087,
+      7132,
+      7155
+    ],
+    "remaining": {
+      "Owner comparison required": 483,
+      "Some anchored text changes found": 825
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-adx-streaming": {
+      "head": "da94cfae2e3ba4647dcd029d4af4d5c30ae6231f",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "ADX stream files, WAVE decoding, and native file, device and error callback interfaces shared by MFS and DVD",
+      "files": 48,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/audio/AdxCallbacks.h",
+        "include/pso/audio/AdxEncoder.h",
+        "include/pso/audio/AdxManager.h",
+        "include/pso/audio/AdxStream.h",
+        "include/pso/audio/AdxStreamFile.h",
+        "include/pso/audio/AdxStreamRuntime.h",
+        "include/pso/audio/AdxTalk.h",
+        "include/pso/audio/AdxbDecoder.h",
+        "include/pso/audio/AdxmThreadStorage.h",
+        "include/pso/system/CvFsStreamHandle.h",
+        "include/pso/system/GcciRequests.h",
+        "include/pso/system/movie/Mfci.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_80227A2C.h",
+        "include/pso/unk/TLobby_803C1A58.h",
+        "include/pso/unk/TLobby_803CE478.h",
+        "include/pso/unk/TLobby_803D0C28.h",
+        "include/pso/unk/TLobby_803D60A8.h",
+        "include/pso/unk/text_803C1780.h",
+        "include/pso/unk/text_803CE568.h",
+        "include/pso/unk/text_803D0C34.h",
+        "include/pso/unk/text_803D31A4.h",
+        "src/musyx/runtime/musyx_runtime_b.h",
+        "src/pso/audio/AdxBsc.cpp",
+        "src/pso/audio/AdxEncoder.cpp",
+        "src/pso/audio/AdxError.cpp",
+        "src/pso/audio/AdxManager.cpp",
+        "src/pso/audio/AdxStream.cpp",
+        "src/pso/audio/AdxTalk.cpp",
+        "src/pso/audio/AdxtInit.cpp",
+        "src/pso/audio/AdxtServer.cpp",
+        "src/pso/audio/AdxtStart.cpp",
+        "src/pso/audio/LscServer.cpp",
+        "src/pso/audio/LscStream.cpp",
+        "src/pso/system/movie/Mfci.cpp",
+        "src/pso/unk/TLobby_80226C3C.cpp",
+        "src/pso/unk/TLobby_803BFE50.cpp",
+        "src/pso/unk/TLobby_803CC0B4.cpp",
+        "src/pso/unk/TLobby_803CC274.cpp",
+        "src/pso/unk/TLobby_803CE478.cpp",
+        "src/pso/unk/TLobby_803CFE68.cpp",
+        "src/pso/unk/text_803C5B50.cpp",
+        "src/pso/unk/text_803CC294.cpp",
+        "src/pso/unk/text_803CE240.cpp",
+        "src/pso/unk/text_803CE568.cpp",
+        "src/pso/unk/text_803CFEA0.cpp",
+        "src/pso/unk/text_803D31A4.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "0dd7004a577c029e32f9f1f11942b9097ba1f2ead9be409a62a274e9560a0da1",
+      "check_sha256": "a7a28706ddc792c4ab7a7519a9c71fb4782f69b8ca012740eefc03854babe508",
+      "previous": "31eae6e0afcfc321dd370eb9422867763669cd12"
+    },
+    "standalone-gal-gryphon-arena-actors": {
+      "head": "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Gal Gryphon actor and arena resources, captured-joint positions, body and particle archives, and native lightning constructors and hit callback",
+      "files": 32,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/galgryphon/Boss5GryphonBehavior.h",
+        "include/pso/boss/galgryphon/TBoss5Gryphon.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonColli.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonColli_C.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonDemo.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonLightning.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonLightningHorn.h",
+        "include/pso/boss/galgryphon/TBoss5GryphonLightningWing.h",
+        "include/pso/boss/galgryphon/TObjBoss5Pillar.h",
+        "include/pso/boss/galgryphon/TObjBoss5PillarCtrl.h",
+        "include/pso/boss/galgryphon/TObjBoss5PillarDemo.h",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonLightning.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonLightningWing.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Pillar_8028B08C.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Pillar_8028B6C0.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp",
+        "src/pso/unk/TLobby_800F795C.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "a34a9ec2ce59e7aa24648d4ec2dc27c93ef09352c620b5da69285579749b1866",
+      "check_sha256": "cd1f10ed970bb0899cb700c162e63a895a9eb2391414de2e53c0d137d36fb97e",
+      "previous": "ce688759b6ea698cae2f96e8bb4c64c3fa63d727"
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "bb4807631e0950c9e2aa16f83c0bd91b598e5bd5",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Stage doors and fences, placement and actual wall fade, shared contact work and Seabed wreck factories and collision models",
+      "files": 95,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/object/TOVS2.h",
+        "include/pso/object/TOVS2Wreck01.h",
+        "include/pso/object/TOVS2Wreck02.h",
+        "include/pso/object/TOVS2Wreck03.h",
+        "include/pso/object/TOVS2Wreck04.h",
+        "include/pso/object/TOVS2Wreck05.h",
+        "include/pso/object/TOVS2Wreck06.h",
+        "include/pso/object/door/TODoorAncient05.h",
+        "include/pso/object/door/TODoorAncient06.h",
+        "include/pso/object/door/TODoorAncient07.h",
+        "include/pso/object/door/TODoorAncient08.h",
+        "include/pso/object/door/TODoorAncient09.h",
+        "include/pso/object/door/TODoorCave01.h",
+        "include/pso/object/door/TODoorCave02.h",
+        "include/pso/object/door/TODoorMachine01.h",
+        "include/pso/object/door/TODoorMachine02.h",
+        "include/pso/object/door/TODoorVS2Door01.h",
+        "include/pso/object/door/TObjDoorJung.h",
+        "include/pso/object/fence/TOBarrierEnergy01.h",
+        "include/pso/object/fence/TOFenceAncient01.h",
+        "include/pso/object/fence/TOFenceAncient02.h",
+        "include/pso/object/fence/TOFenceAncient03.h",
+        "include/pso/object/fence/TOFenceAncient04.h",
+        "include/pso/object/fence/TOVS2Wall01.h",
+        "include/pso/object/fence/TOVS2Wall01_8017BCC8.h",
+        "include/pso/object/fence/TOVS2Wall01_8017C7A4.h",
+        "include/pso/object/fence/TObjLazerFenceNorm.h",
+        "include/pso/object/fence/WallHitPacket.h",
+        "include/pso/object/key/TODummyKeyCave01.h",
+        "include/pso/object/key/TOKeyAncient03.h",
+        "include/pso/object/key/TOKeyCave01.h",
+        "include/pso/object/key/TOKeyMachine01.h",
+        "include/pso/object/lab/TObjLaboDesignBase.h",
+        "include/pso/object/seabed/TObjSeabedSuisoBrakable.h",
+        "include/pso/object/switch/TOSensorAncient01.h",
+        "include/pso/object/switch/TOSensorGeneral01.h",
+        "include/pso/object/warp/TObjLaboMapWarp.h",
+        "include/pso/object/warp/TObjLaboMapWarp_80185248.h",
+        "include/pso/render/GinjaTexture.h",
+        "include/pso/unk/text_8028A820.h",
+        "src/pso/boss/goldragon/TBoss8Dragon_8028A8F8.cpp",
+        "src/pso/effect/TKomorebi.cpp",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/object/base/ObjectFactoryTables.cpp",
+        "src/pso/object/collision/TOAttackableCol.cpp",
+        "src/pso/object/door/TODoorAncient01.cpp",
+        "src/pso/object/door/TODoorAncient03.cpp",
+        "src/pso/object/door/TODoorAncient04.cpp",
+        "src/pso/object/door/TODoorAncient05.cpp",
+        "src/pso/object/door/TODoorAncient06.cpp",
+        "src/pso/object/door/TODoorAncient07.cpp",
+        "src/pso/object/door/TODoorAncient08.cpp",
+        "src/pso/object/door/TODoorAncient09.cpp",
+        "src/pso/object/door/TODoorCave01.cpp",
+        "src/pso/object/door/TODoorCave02.cpp",
+        "src/pso/object/door/TODoorFourLightSpace.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TODoorLabo.cpp",
+        "src/pso/object/door/TODoorMachine01.cpp",
+        "src/pso/object/door/TODoorMachine02.cpp",
+        "src/pso/object/door/TODoorVS2Door01.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoorJung_8023DBEC.cpp",
+        "src/pso/object/door/TObjDoorKey.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/object/fence/TLazerFenceSw.cpp",
+        "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "src/pso/object/fence/TOFenceAncient01.cpp",
+        "src/pso/object/fence/TOFenceAncient02.cpp",
+        "src/pso/object/fence/TOFenceAncient03.cpp",
+        "src/pso/object/fence/TOFenceAncient04.cpp",
+        "src/pso/object/fence/TOVS2Wall01.cpp",
+        "src/pso/object/fence/TObjLazerFence4.cpp",
+        "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+        "src/pso/object/key/TODummyKeyCave01.cpp",
+        "src/pso/object/key/TOKeyAncient01.cpp",
+        "src/pso/object/key/TOKeyAncient02.cpp",
+        "src/pso/object/key/TOKeyAncient03.cpp",
+        "src/pso/object/key/TOKeyCave01.cpp",
+        "src/pso/object/key/TOKeyGenericSw.cpp",
+        "src/pso/object/key/TOKeyMachine01.cpp",
+        "src/pso/object/lab/TObjLaboDesignBase.cpp",
+        "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "src/pso/object/seabed/TObjSuisoChip.cpp",
+        "src/pso/object/switch/TOSensorAncient01.cpp",
+        "src/pso/object/switch/TOSensorGeneral01.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/unk/TLobby_8028A7C8.cpp",
+        "src/pso/unk/text_8028A714.cpp",
+        "src/pso/unk/text_8028A820.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "5cdb8c3f2eaac417e54d6310600fc21fdb9f44258f567d705db244ea7dbf9826",
+      "check_sha256": "bd532c3c68b24f2cb39c05d049ae4f1b9e2f03b1c5bd76263a468342ad4541c4",
+      "previous": "30369664711762542351051a9c56b8c6cc7526b9"
+    },
+    "character-selection-plates": {
+      "head": "2d03ee13d37f1825d25758cef5486289e1fca276",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Character selection and preview, native saved-character requests and split-screen camera consumers, and the serialized appearance display index",
+      "files": 67,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/ui/charcreate/CharacterAppearance.h",
+        "include/pso/ui/charcreate/CharacterLoadBuffer.h",
+        "include/pso/ui/charcreate/CharacterPreviewModels.h",
+        "include/pso/ui/charcreate/TChCrLoadAfs.h",
+        "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+        "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+        "include/pso/ui/charcreate/TChCrLoadReq.h",
+        "include/pso/ui/charcreate/TCharaMaking.h",
+        "include/pso/ui/frontend/CharacterSelectionRequest.h",
+        "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelMovePlateGC.h",
+        "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+        "include/pso/ui/frontend/TAdGuideTxtGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.h",
+        "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+        "include/pso/ui/frontend/TAdSelectCurGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_8028D714.h",
+        "src/pso/camera/TCameraCtrl.cpp",
+        "src/pso/npc/TNpcPlayer_8028B810.cpp",
+        "src/pso/object/TObjWaitEntryHairMoveSim.cpp",
+        "src/pso/ui/TLevelSelect.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadReq.cpp",
+        "src/pso/ui/charcreate/TCharaMaking.cpp",
+        "src/pso/ui/charcreate/TObjCMName.cpp",
+        "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+        "src/pso/ui/frontend/TAdEp3Exist.cpp",
+        "src/pso/ui/frontend/TAdGuideTxtGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+        "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802B1850.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+        "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+        "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+        "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+        "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80202A68.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+        "src/pso/unk/text_8028EC70.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "9447e4a061e2d9054f1614b9bd4ee05382d55a24a94eba613538e7b4985af95b",
+      "check_sha256": "8c1e941fd56d3d33f6bb35b0e89b44e9289c0d47792a339d68aca5c82f450a74",
+      "previous": "ef8956b38f015cb32f695ddb7b45f7c7672f6f48"
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-adx-streaming": {
+      "head": "da94cfae2e3ba4647dcd029d4af4d5c30ae6231f",
+      "reviewer": "world_batch, display_batch, enemy_batch and integration",
+      "finding": "World verified original dispatch slots and 40 request records with both completion contexts. Display verified the ADXB offsets, signed WAVE return and RIFF tags. Enemy independently verified both native 0x68 device tables, typed factory registration, all active callbacks, actual file handle error payload and unchanged ADX message sink. Integration recomputed the clean merge of both reviewed extensions."
+    },
+    "standalone-gal-gryphon-arena-actors": {
+      "head": "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "reviewer": "display_batch",
+      "finding": "Verified the original native lightning constructors, four point records, horn and wing counts, particle creation and reverse teardown, 16 source joints and 10 copied effect positions, and active Gryphon lifetime around the shared impact calls. Inherited endpoint helpers remain scoped."
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "bb4807631e0950c9e2aa16f83c0bd91b598e5bd5",
+      "reviewer": "enemy_batch",
+      "finding": "Verified all six wreck factories and their original model indices, both wall placement table entries, model bounds and the RenderFadeState offset, and constructor, render and destruction order. The inherited virtual fade adapter remains scoped."
+    },
+    "character-selection-plates": {
+      "head": "2d03ee13d37f1825d25758cef5486289e1fca276",
+      "reviewer": "integration",
+      "finding": "Verified the stored 0x24 request, four card slots and four player IDs, original save copy order and validity checks, all three camera readers and actual character display byte selection for live/serialized records. The preview array traversal and remaining output storage stay open."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "cf249004088c4c3ed10ee6a6dca1801610b26346",
+    "files": 235,
+    "inputs": [
+      "da94cfae2e3ba4647dcd029d4af4d5c30ae6231f",
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "bb4807631e0950c9e2aa16f83c0bd91b598e5bd5",
+      "2d03ee13d37f1825d25758cef5486289e1fca276"
+    ],
+    "overlap": [
+      {
+        "left": "audio",
+        "right": "gryphon",
+        "shared": [
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "resolved": [],
+        "conflicts": []
+      },
+      {
+        "left": "audio",
+        "right": "wreck",
+        "shared": [
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "resolved": [],
+        "conflicts": []
+      },
+      {
+        "left": "audio",
+        "right": "selection",
+        "shared": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/unk/TLobby.h"
+        ],
+        "resolved": [],
+        "conflicts": []
+      },
+      {
+        "left": "gryphon",
+        "right": "wreck",
+        "shared": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/boss/goldragon/TBoss8Dragon.h"
+        ],
+        "resolved": [],
+        "conflicts": []
+      },
+      {
+        "left": "gryphon",
+        "right": "selection",
+        "shared": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "resolved": [],
+        "conflicts": []
+      },
+      {
+        "left": "wreck",
+        "right": "selection",
+        "shared": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "resolved": [],
+        "conflicts": []
+      }
+    ],
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      }
+    }
+  }
+}
