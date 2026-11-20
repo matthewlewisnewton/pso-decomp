@@ -522,6 +522,21 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 The menu candidate combines the previously separate Trade and equipment reviews. Each candidate builds from current upstream with the source for its subsystem. The combined 722-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-geometry-equipment-morfos-audio-replay.json)
 
+## Inventory, status displays, enemy battle stats and floor placement
+
+Source checkpoint `67c732c9bc` and landing checkpoint `0054cb35e0` carry 89 source files. The replay restores native inventory lookup and removal, screen and gauge records, enemy stat providers, and floor selection and decoration placement. The source audit records 31 historical files and closes 18. The ledger has 1,266 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-saved-inventory-and-equipment` | Saved inventory, stack lookup, item ownership and removal | 60 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Trade, equipment, status and item list windows | 183 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formations, capture, battle stats and collision bodies | 117 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage doors, traps, floor placements, scene assets and geometry | 263 |
+
+Status display is part of the equipment and Trade review. Floor placement and decoration are part of the stage review. The saved inventory review covers its separate game-state and persistence owners. The eight review groups build together across 834 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-inventory-status-enemy-floor-placement-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
