@@ -384,6 +384,21 @@ All 90 original data ranges remain accounted for. The working fork preserves 133
 
 Each candidate builds from current upstream with the source for its subsystem. The combined 210-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-19-node-worm-city-results-replay.json)
 
+## Stage gates, Vol Opt, Guild Card and item resources
+
+Source checkpoint `96b757bd02` and landing checkpoint `18dc561954` carry 116 source files. The source replay restores stage gate and sensor resources, Vol Opt component effects, Guild Card confirmation ownership, and item model and texture archives. The source audit records 52 historical files and closes 31. The ledger has 1,456 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-weapon-factory-registry` | Weapon factory registry, item model and texture archives, projectile render resources and shared Ninja chunk reader | 68 |
+| `great-merge/current/standalone-vol-opt-components` | Vol Opt component models, cage and pillars, breakup effects and positional sound | 35 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage door, fence, switch, barrier and sensor resources and collision contacts | 87 |
+| `great-merge/current/standalone-main-menu-and-child-windows` | Main menu and child windows, Guild Card receipt and saved-card queue, and shared confirmation lifecycle | 49 |
+
+Each candidate builds from current upstream with the source for its subsystem. The combined 235-file review build also matches retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-gate-volopt-guild-item-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
