@@ -552,6 +552,21 @@ All 90 original data ranges remain accounted for. The working fork preserves the
 
 Message history is part of the equipment and Trade review. Challenge floor sync is part of the stage review. Dragon and Gol Dragon share the enemy review. Technique calculation, positioning, effects and sound are reviewed together. The nine review groups build together across 890 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-techniques-message-log-dragon-challenge-replay.json)
 
+## Camera views, Hunter’s Guild menus, Flower actors and Online Ending
+
+Source checkpoint `b7f13fbe55` and landing checkpoint `4a94501005` carry 91 source files. The replay recovers camera position and target banks, shared confirmation menus and offline quest callbacks, the Flower family’s projectile and render owners, and the Online Ending scene. The source audit records 26 historical files and closes 19. The ledger has 1,222 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves the fork-only layer and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/standalone-camera-and-radar` | Camera views, radar and combat target ownership | 104 |
+| `great-merge/current/standalone-stage-doors-fences-and-contacts` | Stage objects, doors, warp, seasonal assets, Challenge floors and Online Ending | 306 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy formations, battles, Dragon and the Flower family | 151 |
+| `great-merge/current/standalone-equipment-and-item-list-windows` | Equipment, Trade, chat history, Guild menus and shared confirmations | 223 |
+
+Guild and shared confirmation ownership join the window review. Flower actors join the enemy review. The ending scene, doors, warps and seasonal assets share the stage review. Camera views, radar and their targeting and draw interfaces form a separate review. The ten groups build together across 1007 files and also match retail. Independent source reviewers checked callable signatures, real receivers, resource lifetimes and native layout. [Source and validation evidence](2026-11-20-camera-guild-flower-ending-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
