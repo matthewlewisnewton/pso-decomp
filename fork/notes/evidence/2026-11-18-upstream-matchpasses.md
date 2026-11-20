@@ -262,6 +262,23 @@ The source-only reviews start at upstream `49b48c32e6`. Each branch and their co
 
 The direct inventory preview identifies the older native item-list methods and typed inventory owners as prerequisites. The exact recovered item code is already present in the working fork. [Source and validation evidence](2026-11-19-inventory-stage-window-replay.json)
 
+## Inventory review, radar, Recon and character selection
+
+Source checkpoint `65c060f3e8` and landing checkpoint `2ad537e9a5` carry 53 source files. Great Merge now has the native radar viewport and marker interfaces, Recobox and Recon ownership, the shared character selection plate and cursor constructors, and typed inventory placement, shop, and export storage. The source audit records 38 historical files and closes 15. The ledger has 1,797 records awaiting full source comparison.
+
+All 90 original data ranges remain accounted for. The working fork preserves 133 fork-only paths and passes 294 tooling tests and 11 layer tests. Source and working builds reproduce the retail DOL and retain the recorded code and data coverage.
+
+| Local review branch | Scope | Changed files |
+| --- | --- | ---: |
+| `great-merge/current/challenge-and-duel-results` | Challenge and duel results, battle standings and quest score lookups | 57 |
+| `great-merge/current/standalone-camera-and-radar` | Camera views, radar rendering and map markers | 33 |
+| `great-merge/current/standalone-native-array-runtime` | Global C++ array allocation and release, with native call sites | 156 |
+| `great-merge/current/standalone-enemy-registration-and-formations` | Enemy registration and formations, movement, and native Recon and Recobox ownership | 65 |
+| `great-merge/current/character-selection-plates` | Character-selection plates, native cursor and multiplayer slot layout | 26 |
+| `great-merge/current/standalone-inventory-and-item-placement` | Inventory trees, native records, item placement, sorting, shop and export interfaces | 39 |
+
+The inventory review stacks on the global C++ array operators. That separate review replaces upstream's placeholder allocation and release names across their shared callers. The inventory diff is measured from the prerequisite. The results review and the array-runtime stack overlap in two translation units. The detailed evidence records those paths. [Source and validation evidence](2026-11-19-inventory-radar-recon-review.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
