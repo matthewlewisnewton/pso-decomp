@@ -3,6 +3,7 @@ original_path	git_mode	original_blob	active_blob	original_content_location	dispo
 .github/workflows/ci.yml	100644	7e523b6ac71e7dfdbb22fb43f435a689b5061a6d	9d4abf0f9820cf545b766c53a1f0f080956dd477	fork/tooling/original/.github/workflows/ci.yml	Original archived; active version differs
 .github/workflows/progress.yml	100644	b2371f1300ba5684ae799cde00a4e63916144a16	48668b7d23795df820e684b4844b3fd828a5fbc3	fork/tooling/original/.github/workflows/progress.yml	Original archived; active version differs
 .github/workflows/source-checks.yml	100644	82caf399f35c0c3339a6bd04639db687c83b03b0	dff6dae87a8abaaa154f4f30d055828657b2d1d7	fork/tooling/original/.github/workflows/source-checks.yml	Original archived; active version differs
+configure.py	100755	5dd2f5489ad7bfc60cb96c1220a898f88f0be7ab	0d43abda3501c3493b6b779af16012e0097ab7fb	fork/tooling/original/configure.py	Original archived; local workspace retains the MusyX build integration
 ports/tests/.gitignore	100644	35914c570dd2ea56838dff08acff273650d06569	35914c570dd2ea56838dff08acff273650d06569	ports/tests/.gitignore	Original file is active
 ports/tests/Makefile	100644	7007a2143fbee714c712b02a00c779a67affe51c	26d6df0f44c79d4f88656949bfd76261ae243f0a	fork/tooling/original/ports/tests/Makefile	Original archived; active version differs
 ports/tests/exi_ethernet_fallbacks.cpp	100644	472e340d0c7d49a170b7bb7ad90e7fcfd4d11d9b	472e340d0c7d49a170b7bb7ad90e7fcfd4d11d9b	ports/tests/exi_ethernet_fallbacks.cpp	Original file is active

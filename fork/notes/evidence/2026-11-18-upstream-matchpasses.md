@@ -1422,13 +1422,21 @@ All 14 current review heads are in three source batches. Each row measures the d
 
 | Order | Review scope | Covered PRs | Local head | Files |
 | ---: | --- | --- | --- | ---: |
-| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `fdfc8b3f1c` | 622 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `bf2141277f` | 674 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `33d368bf88` | 919 |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `c7dfef378c` | 626 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `50a724efc5` | 674 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `90359df012` | 919 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `23b5c0cd20`, identical to the verified Great Merge source at `00594bf9b4` across 1,676 changed files. All 52 candidate commits passed the attribution audit.
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `886ee15bd5`, identical to the verified Great Merge source at `9ff02ce4e4` across 1,679 changed files. All 55 candidate commits passed the attribution audit.
 
 The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+
+## Historical build ranges and character-selection slots
+
+The historical fork's 3,637 selected units describe 7,332 address ranges. The current 2,448 source units cover all of their code and non-padding data. The 167 omitted bytes are alignment padding. The linker and source reports also account for the historical force-active entries. Five cave archive entries now come from the exact shared resource table. The fork workspace preserves the active MusyX build integration and archives the original GC/2.0 configure script.
+
+The frontend at `c7dfef378c` uses one typed player label record for both slot screens and for the linked item label setter. Slot positions and icons use the existing classes. The setter keeps its upstream name and linked address. Each stage and the fork workspace reproduce the retail DOL. The fork workspace passes 294 tooling tests, 11 layer tests and five host checks.
+
+The historical audit resolves eight rows, leaving 662. The record includes the original split, symbol-retention and modem restore evidence. [Historical and slot audit](2026-11-20-source-split-and-slot-audit.json)
 
 ## Ordered upstream review candidates
 
