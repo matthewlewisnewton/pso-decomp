@@ -1,0 +1,992 @@
+{
+  "upstream": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "standalone_review": {
+    "branch": "great-merge/prepared/ginja-materials-and-ninja-models",
+    "head": "7af1ccc64fb772d47d6d837da15e09481b2305c8",
+    "tree": "817ba9eceb56bf1a12e77b5a2aae525e5eacfe45",
+    "parent": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "commits": [
+      "1e9ecd5dc2c346634b41866ed9947b98c690f3ae",
+      "7af1ccc64fb772d47d6d837da15e09481b2305c8"
+    ],
+    "paths": 141,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2448,
+    "check_sha256": "df6e711af0a9264b4b6ebe9771185f5594feca96b37b3beae3d963bb0a5b3dc2",
+    "report_sha256": "7fda1de44dda6633fa771dd603044e247cf5b63781ce8d40021fc10bcb8f1c68",
+    "codex_attribution_entries": 0,
+    "receiver_and_signature_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8002116C",
+        "before": "dragon_capture_node_points__Fv",
+        "after": "dragon_capture_node_points__FP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80051A18",
+        "before": "capture_matrix_by_frame__16TObjDFTenchuFuruFv",
+        "after": "capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80093180",
+        "before": "advance_state__16TObjEneRe7BeruraFv",
+        "after": "advance_state__16TObjEneRe7BeruraFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800931C8",
+        "before": "demo_frame_callback__16TObjEneRe7BeruraFv",
+        "after": "demo_frame_callback__16TObjEneRe7BeruraFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800975A8",
+        "before": "bringer_render_node_callback__Fv",
+        "after": "bringer_render_node_callback__FP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800A6BE0",
+        "before": "step_cutscene_frame__10TObjPlayerFv",
+        "after": "step_cutscene_frame__10TObjPlayerFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800ABD7C",
+        "before": "update_particle_by_phase__10TObjPlayerFv",
+        "after": "update_particle_by_phase__10TObjPlayerFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800B2948",
+        "before": "handle_attachment_sample__17TObjEneBm3FlyNestFl",
+        "after": "handle_attachment_sample__17TObjEneBm3FlyNestFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800B29B8",
+        "before": "capture_attachment__17TObjEneBm3FlyNestFPv",
+        "after": "capture_attachment__17TObjEneBm3FlyNestFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800B4D04",
+        "before": "advance_spawn_timer__14TObjEneBm5WolfFv",
+        "after": "advance_spawn_timer__14TObjEneBm5WolfFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800C25A0",
+        "before": "update_effect_sequence__10TObjPlayerFv",
+        "after": "update_effect_sequence__10TObjPlayerFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800C913C",
+        "before": "advance_camera_ctrl_step__13TObjEneMe1GeeFv",
+        "after": "advance_camera_ctrl_step__13TObjEneMe1GeeFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800CD570",
+        "before": "advance_anim_frame__16TObjEneBm5GibonUFv",
+        "after": "advance_anim_frame__16TObjEneBm5GibonUFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E2FFC",
+        "before": "draw_callback_transform_to_view__8TObjFishFv",
+        "after": "draw_callback_transform_to_view__8TObjFishFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E4D7C",
+        "before": "advance_camera_ctrl_step__23TObjEneMe3ShinowaMirageFv",
+        "after": "advance_camera_ctrl_step__23TObjEneMe3ShinowaMirageFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EDF94",
+        "before": "step_effect_sequence__18TObjEneRe4SorcererFv",
+        "after": "step_effect_sequence__18TObjEneRe4SorcererFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80114C40",
+        "before": "update_node_oscillation__11TItemMagSubFPv",
+        "after": "update_node_oscillation__11TItemMagSubFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80120150",
+        "before": "apply_weapon_node_material__Fv",
+        "after": "apply_weapon_node_material__FP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80142EEC",
+        "before": "save_joint_matrix_callback__Fv",
+        "after": "save_joint_matrix_callback__FP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A7578",
+        "before": "publish_photon_blast_joint_origins__Fv",
+        "after": "publish_photon_blast_joint_origins__FP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802CECE0",
+        "before": "update_particle_effect__19TObjEneBm9MericarolFv",
+        "after": "update_particle_effect__19TObjEneBm9MericarolFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802DB1C0",
+        "before": "gibbles_render_node_callback__Fv",
+        "after": "gibbles_render_node_callback__FP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802F45A0",
+        "before": "update_camera_script__12TBoss8DragonFv",
+        "after": "update_camera_script__12TBoss8DragonFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803020C4",
+        "before": "toggle_effect_render__14TObjEneDolmOlmFv",
+        "after": "toggle_effect_render__14TObjEneDolmOlmFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80303894",
+        "before": "step_demo_script__16TObjEneDellBiterFv",
+        "after": "step_demo_script__16TObjEneDellBiterFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8031C124",
+        "before": "advance_intro_stage__12TObjEneReconFv",
+        "after": "advance_intro_stage__12TObjEneReconFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80332B7C",
+        "before": "record_camera_path_point__13TObjEneMorfosFv",
+        "after": "record_camera_path_point__13TObjEneMorfosFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8035A628",
+        "before": "set_field_38__13TUnk_804F1C58Fl",
+        "after": "set_field_38__13TUnk_804F1C58FPFP10NJS_OBJECT_v"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8035A630",
+        "before": "process_callback_list__10TObjPlayerFl",
+        "after": "process_node_callback"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8035A778",
+        "before": "apply_with_callback__10TObjPlayerFlf",
+        "after": "apply_with_callback__13TUnk_804F1C58FP10NJS_MOTIONf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8035E374",
+        "before": "advance_camera_ctrl_step__19TObjEneEpsilonGuardFv",
+        "after": "advance_camera_ctrl_step__19TObjEneEpsilonGuardFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803601D4",
+        "before": "record_camera_angle_samples__19TObjEneEpsilonGuardFv",
+        "after": "record_camera_angle_samples__19TObjEneEpsilonGuardFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803664C0",
+        "before": "capture_effect_positions__14TObjEneIllGillFv",
+        "after": "capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DB59C",
+        "before": "set_ginja_indexed_vtx_desc__Fl",
+        "after": "set_ginja_indexed_vtx_desc__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DB734",
+        "before": "set_ginja_channel_counts__Fll",
+        "after": "set_ginja_channel_counts__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DB9A0",
+        "before": "set_ginja_material_color__FUl",
+        "after": "set_ginja_material_color__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBAF8",
+        "before": "set_global_color_rgba__10TObjPlayerFUl",
+        "after": "set_global_color_rgba__10TObjPlayerFUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBB38",
+        "before": "set_global_color_rgba_alt_b__10TObjPlayerFUl",
+        "after": "set_global_color_rgba_alt_b__10TObjPlayerFUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBB78",
+        "before": "set_ginja_blend_param__FUl",
+        "after": "set_ginja_blend_param__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBBA8",
+        "before": "ginja_set_vertex_format__FUl",
+        "after": "ginja_set_vertex_format__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBC1C",
+        "before": "ginja_load_texture_slot__FUl",
+        "after": "ginja_load_texture_slot__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBC74",
+        "before": "set_ginja_tev_order__FUl",
+        "after": "set_ginja_tev_order__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBD48",
+        "before": "set_ginja_texcoord_gen__FUl",
+        "after": "set_ginja_texcoord_gen__FUlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DBE1C",
+        "before": "apply_ginja_material_params__FP15GinjaDrawRecord",
+        "after": "apply_ginja_material_params__FPC15GinjaDrawRecord"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803E4CE0",
+        "before": "set_chunk_model_node_callback__Fl",
+        "after": "set_chunk_model_node_callback__FPFP10NJS_OBJECT_v"
+      }
+    ],
+    "merge_conflicts_on_published_heads": {
+      "347": {
+        "head": "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+        "paths": []
+      },
+      "346": {
+        "head": "8c6e2163eecaa29e63b8cf7200fa614179199fbc",
+        "paths": [
+          "config/GPOE8P/psov3/config.yml",
+          "include/pso/enemy/canadin/TObjEneMe1Canadin.h"
+        ]
+      },
+      "345": {
+        "head": "95334b8d7519c9802fea016416db22356fc284b5",
+        "paths": []
+      },
+      "344": {
+        "head": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+        "paths": []
+      },
+      "342": {
+        "head": "17d35ad696f409a696c7f94105170619d18e5106",
+        "paths": [
+          "include/pso/ui/chat/TWindowChatSymbol.h",
+          "include/pso/ui/chat/TWindowSubSymbolChatPartsSet_80247EFC.h",
+          "include/pso/ui/city/TCheckRoomSequence.h",
+          "include/pso/ui/city/TShopArmorListWindow.h",
+          "include/pso/ui/city/TShopEquipmentGearSequence.h",
+          "include/pso/ui/city/TShopEquipmentListWindow.h",
+          "include/pso/ui/city/TShopEquipmentSellWindow.h",
+          "include/pso/ui/city/TShopEquipmentSequence.h",
+          "include/pso/ui/city/TShopItemListWindow.h",
+          "include/pso/ui/city/TShopItemTecSequence.h",
+          "include/pso/ui/window/TWindowBase.h",
+          "include/pso/ui/window/TWindowChallengeResult.h",
+          "include/pso/ui/window/TWindowDD.h",
+          "include/pso/ui/window/TWindowHelpItem.h",
+          "include/pso/ui/window/TWindowInputNumber.h",
+          "include/pso/ui/window/TWindowKeyBoardBase.h",
+          "include/pso/ui/window/TWindowKeyBoardSoft.h",
+          "include/pso/ui/window/TWindowMenu.h",
+          "include/pso/ui/window/TWindowMessage.h",
+          "include/pso/ui/window/TWindowRoom.h",
+          "include/pso/ui/window/TWindowShortCut.h",
+          "include/pso/ui/window/TWindowSubComCardList.h",
+          "include/pso/ui/window/TWindowSubComCard_80265410.h",
+          "include/pso/ui/window/TWindowSubShortCutList.h",
+          "include/pso/ui/window/TWindowSubStatusDisp.h",
+          "include/pso/ui/window/WindowDrawContext.h",
+          "src/pso/network/TPlyJoinLobbyEntry.cpp",
+          "src/pso/object/TObjLuker.cpp",
+          "src/pso/object/lobby/LobbyGoGoBall.cpp",
+          "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+          "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+          "src/pso/player/TPlayerBattleCtrl4P.cpp",
+          "src/pso/quest/QuestOpcodeHandlers.cpp",
+          "src/pso/quest/TQuestThread.cpp",
+          "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+          "src/pso/system/save/TCheckMemoryCard.cpp",
+          "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+          "src/pso/ui/chat/TWindowChat.cpp",
+          "src/pso/ui/chat/TWindowChatSymbol.cpp",
+          "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+          "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+          "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+          "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+          "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+          "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "src/pso/ui/city/TShopArmorListWindow.cpp",
+          "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+          "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+          "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+          "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+          "src/pso/ui/city/TShopItemListWindow.cpp",
+          "src/pso/ui/city/TShopItemTecSequence.cpp",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+          "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+          "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+          "src/pso/ui/window/TObjNewFloorWin.cpp",
+          "src/pso/ui/window/TWindowActionPalette.cpp",
+          "src/pso/ui/window/TWindowArea.cpp",
+          "src/pso/ui/window/TWindowBreakIn.cpp",
+          "src/pso/ui/window/TWindowCallBack.cpp",
+          "src/pso/ui/window/TWindowChallengeResult.cpp",
+          "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+          "src/pso/ui/window/TWindowComCard.cpp",
+          "src/pso/ui/window/TWindowCtrl.cpp",
+          "src/pso/ui/window/TWindowDD_8034055C.cpp",
+          "src/pso/ui/window/TWindowDD_80340A78.cpp",
+          "src/pso/ui/window/TWindowDD_80341334.cpp",
+          "src/pso/ui/window/TWindowDD_80341A08.cpp",
+          "src/pso/ui/window/TWindowDeposit.cpp",
+          "src/pso/ui/window/TWindowDuelResult.cpp",
+          "src/pso/ui/window/TWindowDuelResult_801C2528.cpp",
+          "src/pso/ui/window/TWindowFukidasi.cpp",
+          "src/pso/ui/window/TWindowHelpItem_802531A0.cpp",
+          "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+          "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+          "src/pso/ui/window/TWindowHelpItem_8025A12C.cpp",
+          "src/pso/ui/window/TWindowInputNumber.cpp",
+          "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+          "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+          "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+          "src/pso/ui/window/TWindowMakeTeam.cpp",
+          "src/pso/ui/window/TWindowMessage.cpp",
+          "src/pso/ui/window/TWindowMessageInfomation.cpp",
+          "src/pso/ui/window/TWindowMessageLog.cpp",
+          "src/pso/ui/window/TWindowMessageQuest.cpp",
+          "src/pso/ui/window/TWindowOptionCtrl.cpp",
+          "src/pso/ui/window/TWindowPartyStatus.cpp",
+          "src/pso/ui/window/TWindowShortCut.cpp",
+          "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+          "src/pso/ui/window/TWindowSimpleStatus.cpp",
+          "src/pso/ui/window/TWindowSnapShot.cpp",
+          "src/pso/ui/window/TWindowSoundBalance.cpp",
+          "src/pso/ui/window/TWindowStatus.cpp",
+          "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+          "src/pso/ui/window/TWindowSubComCardList.cpp",
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+          "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+          "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+          "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+          "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+          "src/pso/ui/window/TWindowSubEquipKind_80278300.cpp",
+          "src/pso/ui/window/TWindowSubEquipList.cpp",
+          "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+          "src/pso/ui/window/TWindowSubItem.cpp",
+          "src/pso/ui/window/TWindowSubItemList.cpp",
+          "src/pso/ui/window/TWindowSubLog.cpp",
+          "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+          "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+          "src/pso/ui/window/TWindowSubShortCut.cpp",
+          "src/pso/ui/window/TWindowSubShortCutList.cpp",
+          "src/pso/ui/window/TWindowSubShortCut_80246FB0.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_8025B4A0.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+          "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+          "src/pso/ui/window/TWindowTimer.cpp",
+          "src/pso/ui/window/TWindowUserSort.cpp",
+          "src/pso/unk/TLobby_800726F0.cpp",
+          "src/pso/unk/TLobby_801C25B4.cpp",
+          "src/pso/unk/TLobby_80299C4C.cpp",
+          "src/pso/unk/text_80253974.cpp",
+          "src/pso/unk/text_8026C664.cpp",
+          "src/pso/unk/text_80278460.cpp"
+        ]
+      },
+      "341": {
+        "head": "0266af6bf4c860315be75d4785c45abf6da0a6ff",
+        "paths": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+          "include/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.h",
+          "include/pso/boss/darkfalz/TBoss4Thanks.h",
+          "include/pso/boss/darkfalz/TBoss4Type1.h",
+          "include/pso/boss/darkfalz/TBoss4Type3.h",
+          "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+          "include/pso/boss/darkfalz/TObjDFDemo1.h",
+          "include/pso/boss/darkfalz/TObjDFDemo2.h",
+          "include/pso/boss/darkfalz/TObjDFDemo3.h",
+          "include/pso/boss/darkfalz/TObjDFDemo5.h",
+          "include/pso/boss/darkfalz/TObjDFDemoF.h",
+          "include/pso/boss/darkfalz/TObjDFTenchuFuru.h",
+          "include/pso/boss/darkfalz/TObjDFUsoTower.h",
+          "include/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.h",
+          "include/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.h",
+          "include/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.h",
+          "include/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.h",
+          "include/pso/boss/olgaflow/TBoss6GravBall.h",
+          "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+          "include/pso/boss/olgaflow/TBoss6Rock.h",
+          "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+          "include/pso/boss/olgaflow/TBoss6Type1.h",
+          "include/pso/boss/olgaflow/TBoss6Type2.h",
+          "include/pso/boss/olgaflow/TBoss6Zanzo.h",
+          "include/pso/object/ambient/TObjFish.h",
+          "include/pso/object/base/TObjMotion.h",
+          "include/pso/ui/window/TWindowCallBack.h",
+          "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+          "src/pso/boss/darkfalz/TBoss4Thanks.cpp",
+          "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+          "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+          "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+          "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+          "src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp",
+          "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+          "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+          "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+          "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+          "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+          "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp",
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+          "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+          "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+          "src/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp",
+          "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp",
+          "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+          "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+          "src/pso/boss/olgaflow/TBoss6EffFlowSoul.cpp",
+          "src/pso/boss/olgaflow/TBoss6EffHyoui.cpp",
+          "src/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp",
+          "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+          "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+          "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+          "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+          "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+          "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+          "src/pso/boss/olgaflow/TBoss6Thanks.cpp",
+          "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type2_8036DC80.cpp",
+          "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+          "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+          "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+          "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+          "src/pso/unk/TLobby_801E2F94.cpp",
+          "src/pso/unk/text_8004D9A8.cpp",
+          "src/pso/unk/text_8035966C.cpp"
+        ]
+      },
+      "340": {
+        "head": "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+        "paths": [
+          "include/pso/system/ControllerInputState.h",
+          "include/pso/ui/charcreate/CharacterAppearance.h",
+          "include/pso/ui/charcreate/CreationInput.h",
+          "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+          "include/pso/ui/charcreate/TChCrLoadReq.h",
+          "include/pso/ui/charcreate/TObjCMMainMenu.h",
+          "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+          "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+          "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+          "include/pso/ui/frontend/TAdEnterSerialAccessGC.h",
+          "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+          "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.h",
+          "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+          "src/pso/network/TPlyJoinLobbyEntry.cpp",
+          "src/pso/npc/TNpcPlayer_8028B810.cpp",
+          "src/pso/object/TObjSinBoard.cpp",
+          "src/pso/object/TObjWaitEntryHairMoveSim.cpp",
+          "src/pso/player/TPlayerBattleCtrl4P.cpp",
+          "src/pso/quest/QuestOpcodeHandlers.cpp",
+          "src/pso/quest/TQuestListVM.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer.cpp",
+          "src/pso/quest/challenge/ChallengeMode.cpp",
+          "src/pso/system/save/TSaveChCr.cpp",
+          "src/pso/ui/charcreate/TChCrEffCtrlPl.cpp",
+          "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+          "src/pso/ui/charcreate/TChCrTag.cpp",
+          "src/pso/ui/charcreate/TChCrTagInformationStr.cpp",
+          "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+          "src/pso/ui/charcreate/TObjCMName.cpp",
+          "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+          "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+          "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+          "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+          "src/pso/ui/frontend/TAdDialingGC.cpp",
+          "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+          "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+          "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+          "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "src/pso/ui/frontend/TAdEp3Exist.cpp",
+          "src/pso/ui/frontend/TAdGuideTxtGC.cpp",
+          "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+          "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802B1850.cpp",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.cpp",
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+          "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+          "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+          "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+          "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+          "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+          "src/pso/ui/window/TObjBagWarnWin.cpp",
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+          "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_80071774.cpp",
+          "src/pso/unk/TLobby_8001D6A0.cpp",
+          "src/pso/unk/TLobby_80070A00.cpp",
+          "src/pso/unk/TLobby_80291D94.cpp",
+          "src/pso/unk/TLobby_80300098.cpp",
+          "src/pso/unk/text_80072230.cpp",
+          "src/pso/unk/text_80076BC4.cpp"
+        ]
+      },
+      "339": {
+        "head": "5e0a443edde59d3af778d496b8503e0b1358f5e2",
+        "paths": [
+          "include/pso/object/switch/TOChatSensor.h",
+          "include/pso/quest/QuestDownloadServer.h",
+          "include/pso/quest/TQuestListChallenge.h",
+          "include/pso/quest/TQuestListOnline.h",
+          "include/pso/quest/TQuestVmDownLoadServer.h",
+          "include/pso/ui/city/THunterGuildSeqOffline.h",
+          "include/pso/ui/frontend/TAdLdQuestPrtGC.h",
+          "include/pso/ui/frontend/TAdLoadQuestCellGC.h",
+          "include/pso/ui/frontend/TAdLoadQuestGC.h",
+          "include/pso/ui/frontend/TAdLoadQuestLineGC.h",
+          "include/pso/ui/frontend/TAdLoadQuestPrtTxtGC.h",
+          "include/pso/ui/frontend/TAdLoadQuestPrtTxtGC_8034A090.h",
+          "include/pso/ui/window/TWindowCost.h",
+          "include/pso/ui/window/TWindowMessageScroll.h",
+          "include/pso/ui/window/TWindowShortCut.h",
+          "include/pso/unk/TLobby.h",
+          "include/pso/unk/TLobby_8026B06C.h",
+          "include/pso/unk/TUnk_804C8678.h",
+          "src/pso/object/TOBind.cpp",
+          "src/pso/object/collision/TOAttackableCol.cpp",
+          "src/pso/object/quest/TObjQuestCol.cpp",
+          "src/pso/object/switch/TOChatSensor.cpp",
+          "src/pso/quest/QuestOpcodeHandlers.cpp",
+          "src/pso/quest/TQuestBgmCtrl.cpp",
+          "src/pso/quest/TQuestListChallenge.cpp",
+          "src/pso/quest/TQuestListOnline.cpp",
+          "src/pso/quest/TQuestListVM.cpp",
+          "src/pso/quest/TQuestThread.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+          "src/pso/system/TLoadCtrl.cpp",
+          "src/pso/ui/city/THunterGuildSeqOffline_8021269C.cpp",
+          "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+          "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+          "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+          "src/pso/ui/city/TShopArmorListWindow.cpp",
+          "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+          "src/pso/ui/frontend/TAdLoadQuestCellGC.cpp",
+          "src/pso/ui/frontend/TAdLoadQuestGC.cpp",
+          "src/pso/ui/frontend/TAdLoadQuestLineGC.cpp",
+          "src/pso/ui/frontend/TAdLoadQuestPrtTxtGC.cpp",
+          "src/pso/ui/frontend/TAdVIConfigGC.cpp",
+          "src/pso/ui/window/TWindowMessage.cpp",
+          "src/pso/ui/window/TWindowMessagePage.cpp",
+          "src/pso/ui/window/TWindowMessageQuest.cpp",
+          "src/pso/ui/window/TWindowShortCut.cpp",
+          "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+          "src/pso/unk/TLobby_8001EF5C.cpp",
+          "src/pso/unk/TLobby_801A2D90.cpp",
+          "src/pso/unk/TLobby_801A3C48.cpp",
+          "src/pso/unk/TLobby_801C25B4.cpp",
+          "src/pso/unk/TLobby_801F2D2C.cpp",
+          "src/pso/unk/TLobby_80207DA8.cpp",
+          "src/pso/unk/TLobby_8026B06C.cpp",
+          "src/pso/unk/TLobby_8035D540.cpp",
+          "src/pso/unk/text_801A3014.cpp",
+          "src/pso/unk/text_80269FE8.cpp"
+        ]
+      },
+      "338": {
+        "head": "2572238636c01c0f1defac4338a4df6836c18276",
+        "paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/audio/AdxManager.h",
+          "include/pso/audio/AdxStreamRuntime.h",
+          "include/pso/boss/olgaflow/TBoss6Zanzo.h",
+          "include/pso/item/TItemTexLoad.h",
+          "include/pso/system/GcciRequests.h",
+          "include/pso/system/TGStream.h",
+          "include/pso/system/movie/Mfci.h",
+          "include/pso/system/movie/TMovie.h",
+          "include/pso/ui/charcreate/TChCrLoadAfs.h",
+          "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+          "include/pso/unk/TLobby.h",
+          "include/pso/unk/TLobby_803C1A58.h",
+          "include/pso/unk/text_80320358.h",
+          "include/pso/unk/text_803C1780.h",
+          "include/pso/unk/text_803CE568.h",
+          "include/pso/unk/text_803D2F1C.h",
+          "include/pso/unk/text_803D31A4.h",
+          "src/musyx/runtime/musyx_runtime_b.h",
+          "src/pso/audio/AdxBsc.cpp",
+          "src/pso/audio/AdxError.cpp",
+          "src/pso/audio/AdxManager.cpp",
+          "src/pso/audio/AdxStream.cpp",
+          "src/pso/audio/AdxTalk.cpp",
+          "src/pso/audio/AdxtInit.cpp",
+          "src/pso/audio/AdxtServer.cpp",
+          "src/pso/audio/LscServer.cpp",
+          "src/pso/audio/LscStream.cpp",
+          "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+          "src/pso/item/TItemLoad.cpp",
+          "src/pso/item/TItemTexLoad.cpp",
+          "src/pso/player/TObjPlayer_8023E480.cpp",
+          "src/pso/system/TGStream.cpp",
+          "src/pso/system/movie/Mfci.cpp",
+          "src/pso/system/movie/TMovie.cpp",
+          "src/pso/system/scene/TSceneSora.cpp",
+          "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+          "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+          "src/pso/unk/TLobby_8001EF5C.cpp",
+          "src/pso/unk/TLobby_800FA100.cpp",
+          "src/pso/unk/TLobby_800FA164.cpp",
+          "src/pso/unk/TLobby_800FA2A0.cpp",
+          "src/pso/unk/TLobby_800FA388.cpp",
+          "src/pso/unk/TLobby_80226C3C.cpp",
+          "src/pso/unk/TLobby_8023F734.cpp",
+          "src/pso/unk/TLobby_803BFE50.cpp",
+          "src/pso/unk/TLobby_803CE478.cpp",
+          "src/pso/unk/text_800FA464.cpp",
+          "src/pso/unk/text_80320358.cpp",
+          "src/pso/unk/text_803CC134.cpp",
+          "src/pso/unk/text_803CC294.cpp",
+          "src/pso/unk/text_803CE240.cpp",
+          "src/pso/unk/text_803CE568.cpp",
+          "src/pso/unk/text_803CFEA0.cpp",
+          "src/pso/unk/text_803D2F1C.cpp",
+          "src/pso/unk/text_803D31A4.cpp",
+          "src/pso/unk/text_803D4714.cpp"
+        ]
+      },
+      "337": {
+        "head": "297a9697815b0f66207b5515fd9743bdc04c82d9",
+        "paths": [
+          "include/pso/effect/item/TItemEffArmor.h",
+          "include/pso/effect/item/TItemEffPG.h",
+          "include/pso/item/TItemTexLoad.h",
+          "include/pso/item/TUnk_804F0BF0.h",
+          "include/pso/player/TObjPlayer.h",
+          "include/pso/player/TObjPlayer_80125780.h",
+          "include/pso/unk/TLobby_801E2F94.h",
+          "include/pso/unk/text_80129AB0.h",
+          "include/pso/unk/text_80129D18.h",
+          "include/pso/weapon/TItemAttackCol.h",
+          "include/pso/weapon/TUnk_804A0EA8.h",
+          "include/pso/weapon/TUnk_804A5648.h",
+          "include/pso/weapon/TUnk_804A6200.h",
+          "include/pso/weapon/TUnk_804A66D8.h",
+          "include/pso/weapon/TUnk_804F1320.h",
+          "src/pso/effect/item/TItemEffPG.cpp",
+          "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+          "src/pso/item/TItemLoad.cpp",
+          "src/pso/item/TItemReverseTech.cpp",
+          "src/pso/item/TItemTexLoad.cpp",
+          "src/pso/player/TObjPlayer_8023E480.cpp",
+          "src/pso/player/TObjPlayer_80355A58.cpp",
+          "src/pso/player/TObjPlayer_80357B2C.cpp",
+          "src/pso/player/TUnk_804A2548.cpp",
+          "src/pso/technique/TTecRaFoie.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+          "src/pso/unk/TLobby_8001EF5C.cpp",
+          "src/pso/unk/TLobby_800F8AA8.cpp",
+          "src/pso/unk/TLobby_801E2F94.cpp",
+          "src/pso/unk/TLobby_801E43E4.cpp",
+          "src/pso/unk/text_80308294.cpp",
+          "src/pso/unk/text_80355C1C.cpp",
+          "src/pso/unk/text_803DD5E0.cpp",
+          "src/pso/weapon/SpecialProjectileWeapons_80124760.cpp",
+          "src/pso/weapon/TItemAttackCol.cpp",
+          "src/pso/weapon/TUnk_804A0AC4.cpp",
+          "src/pso/weapon/TUnk_804A0DB0.cpp",
+          "src/pso/weapon/TUnk_804A0EA8.cpp",
+          "src/pso/weapon/TUnk_804A1570.cpp",
+          "src/pso/weapon/TUnk_804A1D30.cpp",
+          "src/pso/weapon/TUnk_804A2E80.cpp",
+          "src/pso/weapon/TUnk_804A2F78.cpp",
+          "src/pso/weapon/TUnk_804A3928.cpp",
+          "src/pso/weapon/TUnk_804A3F20.cpp",
+          "src/pso/weapon/TUnk_804A403C.cpp",
+          "src/pso/weapon/TUnk_804A444C.cpp",
+          "src/pso/weapon/TUnk_804A4548.cpp",
+          "src/pso/weapon/TUnk_804A4748.cpp",
+          "src/pso/weapon/TUnk_804A4848.cpp",
+          "src/pso/weapon/TUnk_804A4B80.cpp",
+          "src/pso/weapon/TUnk_804A5248.cpp",
+          "src/pso/weapon/TUnk_804A535C.cpp",
+          "src/pso/weapon/TUnk_804A5648.cpp",
+          "src/pso/weapon/TUnk_804A5D28.cpp",
+          "src/pso/weapon/TUnk_804A6200.cpp",
+          "src/pso/weapon/TUnk_804A65E0.cpp",
+          "src/pso/weapon/TUnk_804A66D8.cpp",
+          "src/pso/weapon/TUnk_804A67D0.cpp",
+          "src/pso/weapon/TUnk_804A69DC.cpp",
+          "src/pso/weapon/TUnk_804E24F0.cpp",
+          "src/pso/weapon/TUnk_804F28E0.cpp",
+          "src/pso/weapon/WeaponAttackActions.cpp",
+          "src/pso/weapon/shoot/TItemShoot.cpp"
+        ]
+      },
+      "336": {
+        "head": "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+        "paths": [
+          "include/pso/boss/olgaflow/TBoss6Rock.h",
+          "include/pso/map/TObjMapCsn.h",
+          "include/pso/object/TOVS2.h",
+          "include/pso/object/container/TContainerAncient01.h",
+          "include/pso/object/container/TContainerAncient01R.h",
+          "include/pso/object/door/TODoorJungleMain.h",
+          "include/pso/ui/frontend/TAdRicoRingCtrl.h",
+          "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+          "src/pso/item/TItemReverseTech.cpp",
+          "src/pso/map/TObjMapCsn.cpp",
+          "src/pso/object/TObjBigTuitate.cpp",
+          "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+          "src/pso/object/ambient/TObjFish.cpp",
+          "src/pso/object/city/CitySeason.cpp",
+          "src/pso/object/container/TContainerAncient01.cpp",
+          "src/pso/object/container/TContainerAncient01_8018A55C.cpp",
+          "src/pso/object/door/TODoorJungleMain.cpp",
+          "src/pso/object/fence/TOVS2Wall01.cpp",
+          "src/pso/object/jungle/TORockJungleL01.cpp",
+          "src/pso/system/scene/TEnding.cpp",
+          "src/pso/system/scene/TEndingAB.cpp",
+          "src/pso/system/scene/TEndingPic.cpp",
+          "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+          "src/pso/ui/frontend/TAdRicoRingCtrl.cpp"
+        ]
+      }
+    },
+    "merge_conflicts_on_current_base_review_heads": {
+      "336": {
+        "head": "01ec31c94f7c487297bc9a3ced472e96df503524",
+        "paths": []
+      },
+      "337": {
+        "head": "46a0677d7fb10da1923e6dc6ed251a3d14de6564",
+        "paths": [
+          "src/pso/effect/item/TItemEffPG.cpp"
+        ]
+      },
+      "338": {
+        "head": "cc3fe0caf0b48ad3e84028be540f12a0256c074f",
+        "paths": []
+      },
+      "339": {
+        "head": "10799b0e23aee1e854a7626c51a96ce8ce9fb12f",
+        "paths": []
+      },
+      "340": {
+        "head": "19d635c87e6c0d99656f5c939ee52001e85e49f2",
+        "paths": []
+      },
+      "341": {
+        "head": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
+        "paths": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/boss/darkfalz/TObjDFTenchuFuru.h",
+          "include/pso/object/ambient/TObjFish.h",
+          "src/pso/unk/TLobby_801E2F94.cpp"
+        ]
+      },
+      "342": {
+        "head": "35fb9e4386575c4e815b8d90ff62e977e833b34c",
+        "paths": []
+      },
+      "344": {
+        "head": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+        "paths": []
+      },
+      "345": {
+        "head": "95334b8d7519c9802fea016416db22356fc284b5",
+        "paths": []
+      },
+      "346": {
+        "head": "8c6e2163eecaa29e63b8cf7200fa614179199fbc",
+        "paths": [
+          "config/GPOE8P/psov3/config.yml",
+          "include/pso/enemy/canadin/TObjEneMe1Canadin.h"
+        ]
+      },
+      "347": {
+        "head": "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+        "paths": []
+      }
+    }
+  },
+  "cumulative_source": {
+    "branch": "great-merge/incoming/osp-replayed-source",
+    "head": "9739c1febe7003891c7d42465339513ca74545b8",
+    "previous_head": "1a035e75217d6c2778095c53b093969554e619e2",
+    "paths": [
+      "include/pso/unk/TUnk_8048E728.h",
+      "include/pso/unk/TUnk_8048E778.h",
+      "include/pso/unk/TUnk_8048E790.h",
+      "include/pso/unk/text_803D8DE0.h",
+      "src/pso/object/TDeadSpot.cpp",
+      "src/pso/unk/text_803D8DE0.cpp",
+      "src/pso/unk/text_803E4CE8.cpp"
+    ],
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2448,
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "report_sha256": "51c8290e7357a45f120dea7e92f0634836a2d4633f31b20a0fc4e02640cdcdd3",
+    "fork_main_comparison_sha256": "ae589fa182505e74c06709a8f23a35cbe0a93d122dc4e44381decd36844be5a2",
+    "codex_attribution_entries": 0,
+    "native_capture_note": "The cumulative source already has ModelNodePositionCapture at 0x800E2FFC. The standalone review uses the typed callback on upstream's current provider at that address."
+  },
+  "historical_data_ranges": {
+    "address_ranges": 90,
+    "linked_bytes": 980,
+    "alignment_padding_bytes": 167
+  },
+  "fork_layer": {
+    "branch": "great-merge/incoming/osp-layered-replay",
+    "source": "9739c1febe7003891c7d42465339513ca74545b8",
+    "previous_head": "60c93eb372edb03e28caf58ed5a2f29087ae790a",
+    "materialized_tree_without_layer_paths": "e5fa7baa9a144be5472cadb6cee6233c59c88f27",
+    "overlay_sha256": "30c60cd6c85a012b4d4b566ebb4471ba4d0d550a68db5f80a5833e2f2254cb84",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+    "layer_tests": 11,
+    "tooling_tests": 294,
+    "host_checks": 5
+  },
+  "fork_index": {
+    "reviewed": 9,
+    "resolved": 6,
+    "remaining": 675,
+    "decisions_by_tsv_line": {
+      "3423": {
+        "owner": "include/pso/player/TObjPlayer_802D5174.h",
+        "disposition": "open",
+        "evidence": "The source uses the ActorBodyHit and CollisionBody offsets. Introducing the real hit and vector parameters changed the compiler's load schedule at 0x802D5B78. Neither the typed body nor the matching raw body with a typed declaration reproduced the original instructions in this unit. Keep the exact current implementation pending an object-level fix.",
+        "fork_path": "include/pso/player/TObjPlayer_802D5B78.h"
+      },
+      "4494": {
+        "owner": "include/pso/unk/text_803D8DE0.h",
+        "disposition": "resolved",
+        "evidence": "Restored the const input Vec and share the address-width matrix declaration in both TDeadSpot and TPlayerFootStamp. The original provider keeps its current-matrix fallback and allows input and output to alias.",
+        "fork_path": "include/pso/unk/text_803D8DE0.h"
+      },
+      "4865": {
+        "owner": "include/pso/render/TUnk_80494938.h",
+        "disposition": "resolved",
+        "evidence": "The historical file supplied a typedef shim spelling MaterialOpacityFade as TUnk_80494938. The current native TUnk_80494938 keeps the vtable at 0x80494938, constructor at 0x800D764C, destructor at 0x800D75F4 and start_fade_in at 0x800D758C. Keep the upstream class name.",
+        "fork_path": "include/pso/enemy/TUnk_80494938.h"
+      },
+      "4925": {
+        "owner": "include/pso/effect/TEffIndirectCtrl_802A88AC.h",
+        "disposition": "resolved",
+        "evidence": "All six declarations resolve to native providers in TEffIndirectCtrl.cpp at the original addresses. The wave helpers differ only in parameter names. The scroll amplitude is reduced to an unsigned byte before use, and the source lookup uses an address-width result where its caller addresses texture storage.",
+        "fork_path": "include/pso/effect/TEffIndirectCtrl_802A88AC.h"
+      },
+      "4985": {
+        "owner": "src/pso/render/GinjaMaterial.cpp",
+        "disposition": "open",
+        "evidence": "The typed Ginja material decoder takes a const record and uses typed parameter handlers with the value and changed-bit mask. The direct renderer review and cumulative build both verify the decoder at 0x803DBE1C. Other changes in the historical file still need individual comparison.",
+        "fork_path": "src/pso/system/GinjaMaterial.cpp"
+      },
+      "5096": {
+        "owner": "include/pso/unk/TUnk_8048E728.h",
+        "disposition": "open",
+        "evidence": "Restored the base particle size check at 0xC0. The historical parameter prefix spans the flags at 0x88. The current 0x98-byte entry includes the remaining bytes in the on-disc stride and is already checked at its owner. Heap and constructor differences remain to review.",
+        "fork_path": "include/pso/misc/TUnk_8048E728.h"
+      },
+      "5105": {
+        "owner": "src/pso/unk/text_803E4CE8.cpp",
+        "disposition": "resolved",
+        "evidence": "Restored the historical 0x10 colored vertex and 0x20 cached vertex records with layout checks. The cache uses the shared matrix function and preserves the color copy, up normal, entry stride and loop at 0x803E4CE8.",
+        "fork_path": "src/pso/unk/text_803E4CE8.cpp"
+      },
+      "5112": {
+        "owner": "include/pso/unk/TUnk_8048E778.h",
+        "disposition": "resolved",
+        "evidence": "Restored the 0xD0 size, motion-step offset 0xC0 and velocity offset 0xC4 on the native ballistic class. The old initialization declaration at 0x80089B50 resolves to its three-argument constructor. The renamed constructor receiver corresponds to the original allocation and constructor calls.",
+        "fork_path": "include/pso/misc/TUnk_8048E778.h"
+      },
+      "5113": {
+        "owner": "include/pso/unk/TUnk_8048E790.h",
+        "disposition": "resolved",
+        "evidence": "Restored the 0xE0 orbit class size check and verified motion step, orbit center, radius, height and angle at their original offsets. The historical initialization declaration at 0x8008B060 is the current four-argument constructor.",
+        "fork_path": "include/pso/misc/TUnk_8048E790.h"
+      }
+    }
+  }
+}

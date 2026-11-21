@@ -1334,6 +1334,14 @@ The source and materialized fork workspace reproduce retail with 27,572 exact fu
 
 The [original fork index](2026-11-18-fork-review-index.tsv) now points all 26 stale comparison paths to current owners. This pass resolves 32 entries, including declarations reviewed in place. The remaining 681 entries include six reviewed here that still need a field or call-site comparison.
 
+## Ginja materials and Ninja model callbacks on upstream master
+
+The standalone review at `7af1ccc64f` starts directly on master `1fd561eae2`. It recovers the Ginja material parameter and handler layouts, passes actual Ninja nodes through chunk draw callbacks, and caches colored vertices using the original 0x10-byte input and 0x20-byte output records. The two commits cover 141 files. All 45 changed linker labels follow corrected receivers or signatures. Both commits use Matt's Git identity with zero Codex attribution.
+
+The review reproduces retail and links all 2,448 source units. The matching check shows no address or coverage losses and verifies all 1,147 original data bytes. Against the current-base review heads, eight merge previews are clean. The remaining overlaps are one path with #337, five with #341 and two with #346. The candidate is local and ready for publication approval. [Review scope and overlap paths](2026-11-20-osp-renderer-review-and-layouts.json)
+
+The cumulative branch at `9739c1febe` now has the same typed color cache. It shares the const-vector transform declaration with the footprint callers and restores five layout checks on the particle classes. The source and fork workspace reproduce retail, the fork layer passes all 310 checks, and the [fork index](2026-11-18-fork-review-index.tsv) has 675 remaining decisions. The weapon-hit interface stays open because the typed version changed the original compiler's instruction schedule.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
