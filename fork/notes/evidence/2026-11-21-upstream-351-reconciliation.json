@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "135eb79203f6e9dd18f012b04cd43120b88fd535",
+  "review": "df9868bce839e3306b0081e71388031d5fe5f975",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "aedab25142fcd0d47071c45bbb998cb96651492f",
-  "review_paths": 999,
+  "review_tree": "a9c2c556e07ddd14b6827f2f94664749d0bbe9ba",
+  "review_paths": 1008,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,20 +29,20 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "15c5e8b74722f5c01d53138be3e7e99a9325d0b83cd8127ffb5628c1f62a8e9c",
+  "path_ledger_sha256": "7fa48b63f00e850caa2dd04f728277861ded8ff9ac5fc34094c8ed3e93a3e1e6",
   "path_status": {
-    "validated historical owner recovery": 182,
-    "exact prior source": 522,
-    "same change already in upstream": 870,
-    "equivalent source retained": 146,
+    "validated historical owner recovery": 192,
+    "exact prior source": 516,
+    "same change already in upstream": 869,
+    "equivalent source retained": 144,
     "validated three-way source": 11,
     "upstream names retained": 51,
     "upstream only": 7,
     "equivalent base-class call retained": 42,
-    "native archive source with existing style": 16
+    "native archive source with existing style": 15
   },
   "remaining_path_comparisons": 0,
-  "historical_fork_ledger_open": 532,
+  "historical_fork_ledger_open": 526,
   "validation": {
     "upstream": {
       "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 92,
+    "commits": 95,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -330,5 +330,6 @@
   "historical_olga_flow": "2026-11-21-historical-olga-flow.json",
   "historical_dark_falz": "2026-11-21-historical-dark-falz.json",
   "historical_photon_blast": "2026-11-21-historical-photon-blast.json",
-  "historical_status_windows": "2026-11-21-historical-status-windows.json"
+  "historical_status_windows": "2026-11-21-historical-status-windows.json",
+  "historical_world_travel": "2026-11-21-historical-world-travel.json"
 }
