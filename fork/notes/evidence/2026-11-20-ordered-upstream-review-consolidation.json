@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-actors-and-stages",
-      "head": "1f6caf91467520408e0947b83e99f393fd28d8af",
+      "ref": "great-merge/consolidated/ordered-combat-boss-ground-contacts",
+      "head": "33d368bf8860a793fbf8309ea946c09de8a8e4b3",
       "base": "bf2141277f12a682a0d5e40c0f7ffa4b80ba95b7",
-      "tree": "e8d2c01c0b5045509692e58619f4ad9ded6b2e55",
+      "tree": "1685e501898ee97f5c3381875c2feb2f9b0fd6b2",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,17 +77,17 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 19,
-      "files_changed": 917,
-      "insertions": 11008,
-      "deletions": 11630,
-      "check_sha256": "893118a7ca3be07fab772691ce7572aabef6eedff0132c9ba7034ed9b5a7ca94",
-      "function_label_changes": 291,
+      "review_commits": 20,
+      "files_changed": 919,
+      "insertions": 11042,
+      "deletions": 11667,
+      "check_sha256": "7fd513cba69a5b962a3c786028ecb3c64c0b14ed0df3e4f3e98bfdd067767b30",
+      "function_label_changes": 293,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
         "exact_functions": 27572,
         "linked_source_units": 2448,
-        "source_report_sha256": "74927c768a8073c9a74c15b421eaf0c98f3e86f566220314a051ffa9cc3251d9",
+        "source_report_sha256": "952d4f72b315f9d087c81e6e6f365e7c4bb3014ed18977241bc5c0b713608bc9",
         "original_data_inventory": {
           "ranges": 90,
           "linked": 980,
@@ -189,63 +189,37 @@
     }
   },
   "separate_network_change": {
-    "head": "d7db0734fd2c9ba8be3634e418d7a0ae4e064af0",
-    "base": "1f6caf91467520408e0947b83e99f393fd28d8af",
-    "tree": "6de4d6c8b441ed5192d9fef452fd7a13cb21f782",
+    "head": "23b5c0cd203b1e72470d28bc61c1f92b577fb495",
+    "base": "33d368bf8860a793fbf8309ea946c09de8a8e4b3",
+    "tree": "53e11b19b2cfdaf0990e0e42af9d790499b0c0c5",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "d7db0734fd2c9ba8be3634e418d7a0ae4e064af0",
-    "tree": "6de4d6c8b441ed5192d9fef452fd7a13cb21f782",
+    "head": "23b5c0cd203b1e72470d28bc61c1f92b577fb495",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "files_changed": 1675,
-    "insertions": 26124,
-    "deletions": 28745,
+    "tree": "53e11b19b2cfdaf0990e0e42af9d790499b0c0c5",
+    "files_changed": 1676,
+    "insertions": 26158,
+    "deletions": 28782,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
       "linked_source_units": 2448,
-      "check_sha256": "1e9cea5a7ac5a2e9e90c14be787032b06a36a865e69816ca484af45fdca596f6",
-      "updated_function_labels": [
-        {
-          "module": "psov3",
-          "address": "0x800D907C",
-          "before": "set_field_e4__10TObjPlayerFll",
-          "after": "spawn_dead_spot_e4"
-        },
-        {
-          "module": "psov3",
-          "address": "0x800D91B0",
-          "before": "spawn_ground_effect__10TObjPlayerFl",
-          "after": "spawn_ground_effect"
-        },
-        {
-          "module": "psov3",
-          "address": "0x800D91F4",
-          "before": "spawn_effect_at_ground__10TObjPlayerFl",
-          "after": "spawn_effect_at_ground"
-        }
-      ],
-      "ref": "great-merge/incoming/consolidated-with-ground-effects",
-      "head": "1b85ee8047c2f14ab388e30be41c4062c15f3f76",
-      "tree": "6de4d6c8b441ed5192d9fef452fd7a13cb21f782",
-      "changed_files_vs_master": 1675,
-      "commits_audited": 59,
-      "codex_attribution_entries": 0,
-      "report_sha256": "74927c768a8073c9a74c15b421eaf0c98f3e86f566220314a051ffa9cc3251d9",
+      "source_report_sha256": "952d4f72b315f9d087c81e6e6f365e7c4bb3014ed18977241bc5c0b713608bc9",
       "original_data_inventory": {
         "ranges": 90,
         "linked": 980,
         "padding": 167,
         "remaining": 0
-      }
+      },
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
     }
   },
   "commit_attribution": {
-    "audited_commits": 51,
+    "audited_commits": 52,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -253,5 +227,46 @@
     "requested_single_pr": "https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875",
     "cadence": "https://github.com/zeroz41/pso-decomp/pull/347#issuecomment-7057023338"
   },
-  "public_refs_changed": false
+  "public_refs_changed": false,
+  "boss_ground_contact_followup": {
+    "head": "33d368bf8860a793fbf8309ea946c09de8a8e4b3",
+    "cumulative_source": "00594bf9b479592635627b169f7ce55aa14144d9",
+    "changed_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+      "src/pso/object/TDeadSpot.cpp"
+    ],
+    "typed_calls": 8,
+    "original_function_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8007E44C",
+        "before": "spawn_effect__15TObjBoss2TunnelFlPvPv",
+        "after": "spawn_effect__15TObjBoss2TunnelFPC3VecP3VecP3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8007E4E0",
+        "before": "adjust_to_ground__15TObjBoss2TunnelFlPv",
+        "after": "adjust_to_ground__15TObjBoss2TunnelFPC3VecP3Vec"
+      }
+    ],
+    "fork_workspace_check_sha256": "704bca2684a89db3e5b9e8cbab4e0865519377dcbcf4e9e0126ff8767c70a1ad",
+    "fork_workspace_retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "retained_force_active_symbols": 27031,
+    "tooling_tests": 294,
+    "layer_tests": 11,
+    "host_tests": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  }
 }

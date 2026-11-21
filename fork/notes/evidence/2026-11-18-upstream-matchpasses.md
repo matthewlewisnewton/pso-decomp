@@ -1424,9 +1424,9 @@ All 14 current review heads are in three source batches. Each row measures the d
 | ---: | --- | --- | --- | ---: |
 | 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `fdfc8b3f1c` | 622 |
 | 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `bf2141277f` | 674 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `1f6caf9146` | 917 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `33d368bf88` | 919 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. The separate 12-file PPP change on top produces `d7db0734fd`, identical to the verified full source tree across 1,675 changed files. All 51 candidate commits passed the attribution audit.
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `23b5c0cd20`, identical to the verified Great Merge source at `00594bf9b4` across 1,676 changed files. All 52 candidate commits passed the attribution audit.
 
 The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
