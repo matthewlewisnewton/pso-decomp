@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "4493f2cf86de95f0ee8c2c228366387c65b77803",
+  "review": "e52570bb21464df6466ba51462484ba8bd4c4a30",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "213d65dbee37addac556ca3837a729d2a3addcb0",
-  "review_paths": 897,
+  "review_tree": "aa80273e73ba9d811c659f655154db5b6acd1774",
+  "review_paths": 903,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,20 +29,20 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "6cec8d31f5921fd19bf63722447616df0dad27688ecfd0feada1787a21898863",
+  "path_ledger_sha256": "3225bfe9c901dbfc1a1c8024ac61567ab493933959ae043cf0eedeb3ea736acb",
   "path_status": {
-    "equivalent source retained": 205,
-    "exact prior source": 578,
-    "validated historical owner recovery": 20,
+    "equivalent source retained": 173,
+    "exact prior source": 574,
+    "validated historical owner recovery": 58,
     "same change already in upstream": 899,
     "validated three-way source": 14,
-    "upstream names retained": 64,
+    "upstream names retained": 62,
     "upstream only": 7,
     "equivalent base-class call retained": 43,
     "native archive source with existing style": 17
   },
   "remaining_path_comparisons": 0,
-  "historical_fork_ledger_open": 569,
+  "historical_fork_ledger_open": 563,
   "validation": {
     "upstream": {
       "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 44,
+    "commits": 50,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -319,5 +319,6 @@
   "source_closeout": "2026-11-21-post-351-closeout.json",
   "cutover_candidate_ref": "great-merge/cutover-candidate",
   "historical_owner_recovery": "2026-11-21-historical-inventory-and-owner-review.json",
-  "historical_boss_recovery": "2026-11-21-historical-boss-owners.json"
+  "historical_boss_recovery": "2026-11-21-historical-boss-owners.json",
+  "historical_enemy_collision": "2026-11-21-historical-enemy-collision.json"
 }

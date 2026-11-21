@@ -1,0 +1,769 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "4493f2cf86de95f0ee8c2c228366387c65b77803",
+  "source": "e52570bb21464df6466ba51462484ba8bd4c4a30",
+  "source_tree": "aa80273e73ba9d811c659f655154db5b6acd1774",
+  "source_review_files": 903,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:dc9e65fc6094ba9423b45146ad0f4c8d3d6c5753",
+      "review_blob": "100644:49a109bc85da0afed5e7a4e588b938614a86766e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/enemy/gyaranzo/TObjEneGyaranzo.h",
+      "previous_blob": "100644:023868651d2e2bbd0213a4c4cef12ddc2b95064a",
+      "review_blob": "100644:f9f1b6eb602e29d4d1467c1f39a5f8082716ec90",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/enemy/gyaranzo/TObjGyaranzoMissile.h",
+      "previous_blob": "100644:87d6b458fe16f1f1bc12aa04809d4cd4eb9210c9",
+      "review_blob": "100644:77a18af412665207a6bdc3b2ac17bf8fc9ace830",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/enemy/illgill/TObjIllGillKage.h",
+      "previous_blob": "100644:9cca6bb427282ddd28f0f36c6e817b0dd973ffdd",
+      "review_blob": "100644:faeb768f6ce581e57b4e70271498da0915eb4cdb",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/enemy/sorcerer/TObjEneRe4Bit.h",
+      "previous_blob": "100644:6245ff90b60c1973b601cc8c72644e3cf63a04c8",
+      "review_blob": "100644:78fe2f7ea2691083ff5427225fe88607ec4dc511",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/TUnk_8049442C.h",
+      "previous_blob": "100644:3bc6cd641e13af6008d396ed9f5ccc5db2998b5c",
+      "review_blob": "100644:38d45aa9c868e7f551ef668a3096e994d5791027",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/base/TObjMotion.h",
+      "previous_blob": "100644:53aba3db5a9f448711b008ddc481f65b0fc91808",
+      "review_blob": "100644:c19605d185151f1741a1f4fe79974f374c3c26a8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "include/pso/player/TObjPlayer.h",
+      "previous_blob": "100644:0d7f4b45f686d3cd5816053ad3dfb2331191f36a",
+      "review_blob": "100644:2a47ba58289f90fee79e074e47f4c8f58e4393ad",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "previous_blob": "100644:74b47e29c89619c97db0c3aa569e2bfd465e5fa9",
+      "review_blob": "100644:5b03f031977be0f42dad62220d9371a6c5494e1d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "previous_blob": "100644:d4e05eff3e56733f4674aea50a612ccc681a4002",
+      "review_blob": "100644:c2ad0f9bbc04f49f427c39f1eeb5411822b25fcc",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+      "previous_blob": "100644:77117cb7ea8e0bac0cf7da26a62382d6af96310a",
+      "review_blob": "100644:583a124376e5acc075496de844c8f2ba613b197a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "previous_blob": "100644:68018ffd776f234a08c6dc1abd8d9aca41e5091f",
+      "review_blob": "100644:4f425ccdc30a457f9087953b4982b2d5cacb3e5c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+      "previous_blob": "100644:76ead7022f30fe78c19cd69fdf8b0440cdb3d005",
+      "review_blob": "100644:ffb65e90abd999b04b5979bc8121ad66a634b57a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "previous_blob": "100644:4d1bb1a6adb12e1a9251a455509db2e7ba5fa61c",
+      "review_blob": "100644:4802ad3d531204eaefaaf213f718eacd28ae38db",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "previous_blob": "100644:47a8bd59fa27b7bc384153a5845a6180d57f3427",
+      "review_blob": "100644:a4201b7b0d70d881478beda740fdf36bbf58bdb5",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "previous_blob": "100644:22fa5d9c111d156e8b573e985cf50c15c49272ff",
+      "review_blob": "100644:231d8bf9ac855a22a55f366b09b35775b567c41f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "previous_blob": "100644:58f105fa09a1f6433798f33f07d49458d5a6f5af",
+      "review_blob": "100644:ed4751bbc94f5ad970b3f0d25eb99ec8cb583e77",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "previous_blob": "100644:7e3ed53c23d30a1e726d482c5121509ad10d5c0b",
+      "review_blob": "100644:81ff7d40ae2df44d56aeff57044966df1e53b68c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "previous_blob": "100644:965d3b6579f49fc84eb01fcad95e94e2651089f3",
+      "review_blob": "100644:a5725e04b7b5742c43cef1ebbc5484c13cd0b711",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/TObjEnemyCustom.cpp",
+      "previous_blob": "100644:cd0e3fae981e54c16722c53a9eafb21cb5cca077",
+      "review_blob": "100644:c5079c1a8acf353531b2c964a9a1262ed9f4ffba",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "previous_blob": "100644:13ebc2842983ab99bf8bc882fc17d2b9f10bacc0",
+      "review_blob": "100644:94d2df63be3e38ce3ffd770239f6c83c3985b7b4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "previous_blob": "100644:3adf758070d2dcbc29dd4b18232ca87338613f5b",
+      "review_blob": "100644:9538f10dd8d1d32f9f5029ab96bee258246a472c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "previous_blob": "100644:598792dcd479eebec632ef3f6046ccbcda3ab7d1",
+      "review_blob": "100644:b784a7264703ac680aaee006a25b74b4708bf29b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "previous_blob": "100644:16e24a5babb8f0c7eba16a04c72c516c975927dd",
+      "review_blob": "100644:0837a370e7e44e174f35e7e7f7ff3882e8dd4e0d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "previous_blob": "100644:e9f484e868592ac2f874fb4fd3003063031ae012",
+      "review_blob": "100644:cdaab76fdfe6b1954a23ffd134b9c87f2ff8862a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "previous_blob": "100644:0de2fef75fd15ac8a5fd3f922df14f48ec662197",
+      "review_blob": "100644:2c46400d534d9d40ea42a135116d039b24de05bb",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "previous_blob": "100644:1221fb7a52d010222947f23034a092592d280caf",
+      "review_blob": "100644:d656515f70c2400655167c7109b95574db45694a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "previous_blob": "100644:e3064f44ac9fe0196a32c8436c8d2a4490504fda",
+      "review_blob": "100644:65ac1e442c196d6a197c2aae949f922af8aca62b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "previous_blob": "100644:8055c3c3b875ae54d48c7dd658ab53f31d5b8b95",
+      "review_blob": "100644:f3f858c095a586e0fd6aff2aff6b40dd34be2f6f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+      "previous_blob": "100644:e25201e5792c5f9cf7110f9cae6a3bdda6361be1",
+      "review_blob": "100644:f458d24ab31b3db61a3e7023c21b85887621f2f6",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+      "previous_blob": "100644:67b8153e0d4dcca21f653f254ac3815a80f7c21f",
+      "review_blob": "100644:9122062c2b2efe2b8ef143b935ab2774597d60cc",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "previous_blob": "100644:910019e91735ea7a2b5b4b827e327db170ff36d2",
+      "review_blob": "100644:b9059265fa7c1c902f5d52359aa40d2ba20f343c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+      "previous_blob": "100644:7c07929d9ec03ab86d7abb81ccb4e4a7bd07d472",
+      "review_blob": "100644:bee2674d172a56b4d8d6543445459cf93f209088",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "previous_blob": "100644:e23850be853ecc666ffe980d41fb51d8d3342f8a",
+      "review_blob": "100644:051408dd692206a074b69c4d7d4ab79ea6a036a9",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "previous_blob": "100644:0a9dfd5129b61956b7560b5f685383c6fef599e5",
+      "review_blob": "100644:5162b821d71322d2bfba7057ed822970808fdac5",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "previous_blob": "100644:8a975982ee44238206d494c596a50479106332d3",
+      "review_blob": "100644:69ebd494c95d2a0eb2abf3243bb93687f51f2f80",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "previous_blob": "100644:e6fc5dfd85ee205c08e21a4d23c4b0ecbe11dc65",
+      "review_blob": "100644:5bf32608f6c7e4f3e93b426807f599f3f8d3f9d4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "previous_blob": "100644:e9312419faac9b540e57979bdf09eb2a6dabd634",
+      "review_blob": "100644:3708f9839e4055f64a8fdae561230dc15aae92dc",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "previous_blob": "100644:6e228e25fefcc230d47ce18a3621e7ccc348629d",
+      "review_blob": "100644:8aba1574f8fc8a022ea5fdbc2518c843ce0c2eb7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "previous_blob": "100644:eea7b3d423ca81097cd9c4d86883c8cc57d517e9",
+      "review_blob": "100644:9ee717353a08e232c047c02df6b0e54cbfcbc044",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "previous_blob": "100644:111d86a62e16b45b3b1dab5ecb307b4047ee3081",
+      "review_blob": "100644:8b055d0e96fcd41f517800ff6772fe4b69077d14",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "previous_blob": "100644:b4c86459ac9dceeda9553ecce5a1c3b5c1a9ac21",
+      "review_blob": "100644:24b1ee12a15c6e1ce7c558c60b0a7214c7aa3c44",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "previous_blob": "100644:41ec83c2d18e232cd788341e53d765ba8b3567a9",
+      "review_blob": "100644:3ff92510bfa02ab13d26bc655b6bff29099a55bd",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/npc/TObjNpcBase.cpp",
+      "previous_blob": "100644:fab565092f4360ca5941f9dbb5cb9db45f72241d",
+      "review_blob": "100644:ffc651ca08c81b821b26821cf329c386ad34e35f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/object/ambient/TObjGrass.cpp",
+      "previous_blob": "100644:ee056df27cb1aaa1f4cba521f56977d72d60e65a",
+      "review_blob": "100644:34aecc982999fb3f3fc8f6b02930f74b6819d98f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801542CC.cpp",
+      "previous_blob": "100644:be894d04b5641efafbcd56eabf5290448d1ab12a",
+      "review_blob": "100644:1b5d1d81dcdc69bf4066e8da4fe78e339aaf5803",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    }
+  ],
+  "checks": {
+    "collision-owner": {
+      "head": "e9f2a05f04d24dfe457250953b4aa83378c1ab61",
+      "baseline": "4493f2cf86de95f0ee8c2c228366387c65b77803",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "4eb79c5a53f6b90dc450da953ce4663ba299a59ce2f402307d2f2a56be1fc9a5"
+    },
+    "typed-body-dispatch": {
+      "head": "268399521e67a8c5d51aba877e892219d79fc1ee",
+      "baseline": "e9f2a05f04d24dfe457250953b4aa83378c1ab61",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "illgill-shadow": {
+      "head": "275690220274b60cf93a291485e8c129cd41a881",
+      "baseline": "268399521e67a8c5d51aba877e892219d79fc1ee",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "221497307c2dbe0ed3efc9761ac598c3d036e3b84eae6dc81f03bcef9255ee07"
+    },
+    "ground-missile": {
+      "head": "da7bd0bde7f61a7cb3e3190b33200c275cb5ece7",
+      "baseline": "275690220274b60cf93a291485e8c129cd41a881",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "75565ba8018f841914df36ef393fb7e54f1975aa1b9ee97bb8a892fcd8613895"
+    },
+    "missile-volley": {
+      "head": "70ccaa80e9bc94c8eed19c442e898e428f0e2f4e",
+      "baseline": "da7bd0bde7f61a7cb3e3190b33200c275cb5ece7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "bc4602934711e23faf748f2172bc105aeea30668e7b1894852a9165005c6d5d2"
+    },
+    "enemy-hit-layout": {
+      "head": "e52570bb21464df6466ba51462484ba8bd4c4a30",
+      "baseline": "70ccaa80e9bc94c8eed19c442e898e428f0e2f4e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "full-review": {
+      "head": "e52570bb21464df6466ba51462484ba8bd4c4a30",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 306,
+      "check_sha256": "627773912a8ad7eecd85fa4107b3a1fe2abe002d49cc25e8292c4b88d200c1ee"
+    },
+    "layer": {
+      "head": "ff4ad1a8af198caa0b727e8b1a0fe9716a7a84c4",
+      "baseline": "e52570bb21464df6466ba51462484ba8bd4c4a30",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "enemy-hit-layout": {
+      "sha256": "f06e5495e76d4331d81a59ada11ae09605729405ad0bf864a01320d1dcc773cc",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "f06e5495e76d4331d81a59ada11ae09605729405ad0bf864a01320d1dcc773cc",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80156698",
+      "before": "update_collisions__10TObjPlayerFv",
+      "after": "update_collisions__14TObjCollidableFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803655F8",
+      "before": "__ct__15TObjIllGillKageFlUl",
+      "after": "__ct__15TObjIllGillKageFP7TObjectP8TObjBase"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D4110",
+      "before": "update_ground_fall__13TUnk_8049442CFPlf",
+      "after": "update_ground_fall__13TUnk_8049442CFP3Vecf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D4BD0",
+      "before": "__ct__19TObjGyaranzoMissileFPUcPUcUs",
+      "after": "__ct__19TObjGyaranzoMissileFP8TObjBaseP13Desc_800D23D4Us"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 896,
+      "fork_path": "src/pso/object/TObjIllGillKage.cpp",
+      "fork_blob": "d55e758acd4ad644624bde4713096cf61f74bea8",
+      "historical_delta_sha256": "e79af433ced777b5b6f1c3cefa02f5081cd0e522f7383001e5fd7da4aab079a6",
+      "owner": "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+      "owner_blob": "bee2674d172a56b4d8d6543445459cf93f209088",
+      "final_comparison_sha256": "4f3ed2d1a2a483225e4c60c662a4ed828aa546055a8e582aac6afb67eee67b9e",
+      "status": "Typed historical integration validated",
+      "rationale": "The shadow uses the shared player lookup and the actual player receiver for all three target gates. The constructor reads its target position and ID from TObjBase. The sound position and task name use their native fields."
+    },
+    {
+      "row": 1131,
+      "fork_path": "src/pso/object/TObjGyaranzoMissile_800D40D8.cpp",
+      "fork_blob": "8b33ec676ed2d706ca4662647ed9f5673bb48702",
+      "historical_delta_sha256": "f21a45dea78222558266fd3d8f553f8bdd5a319599c21d3eb5e3ef93957538a2",
+      "owner": "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+      "owner_blob": "9122062c2b2efe2b8ef143b935ab2774597d60cc",
+      "final_comparison_sha256": "9d0aa5863f6740fe46e74a10553d60cc3a7d634bcd36701975fac2a3f78550a1",
+      "status": "Typed historical integration validated",
+      "rationale": "The grounded projectile uses the collidable owner, the real collision body and attack receiver, native position and velocity vectors, and the archive model and texture fields at their original offsets. The output ground sample takes Vec storage and the caller paths remain exact."
+    },
+    {
+      "row": 970,
+      "fork_path": "src/pso/object/TObjGyaranzoMissile.cpp",
+      "fork_blob": "0cd62f48359277a2f84c4ee5a55c4ff5d01dcb69",
+      "historical_delta_sha256": "2f4423079580d41885b457fa66907abec28f21f9eef9b947c7e11f3c70e9cec1",
+      "owner": "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+      "owner_blob": "f458d24ab31b3db61a3e7023c21b85887621f2f6",
+      "final_comparison_sha256": "48b8b6063a596f98dc28895b43205c7c8ff21dc0160befc593b181c75116def0",
+      "status": "Typed historical integration validated",
+      "rationale": "The volley has a shared native launch record, typed target body center, direct collision and attack payloads, and typed BML texture and model arguments. Its native destructor releases the body allocation. The constructor preserves the original sensitive word reads at the new typed boundary."
+    },
+    {
+      "row": 694,
+      "fork_path": "src/pso/enemy/TObjEnemyCustom.cpp",
+      "fork_blob": "d453c80845ad2ef5cb94e4ceceabc59a1495785f",
+      "historical_delta_sha256": "c90aa9a7bd6acebb7b675082c4300d6749268f65d1ed5da125d610bc863bc736",
+      "owner": "src/pso/enemy/TObjEnemyCustom.cpp",
+      "owner_blob": "c5079c1a8acf353531b2c964a9a1262ed9f4ffba",
+      "final_comparison_sha256": "162113b96cee3f7fde21069c17efac7757bad11c6c702acf0794bcb4047116af",
+      "status": "Typed historical integration validated",
+      "rationale": "All five native collision calls are on the collidable base. The existing typed target and movement records supply the historical approach, movement damping and targeting updates. Texture binding and the demo and yaw paths use the current shared helpers with the same original addresses."
+    },
+    {
+      "row": 978,
+      "fork_path": "include/pso/enemy/TObjEneRe4Bit.h",
+      "fork_blob": "c1bcabdef5eabf5caf0a9e22f3c333c9a22f06f8",
+      "historical_delta_sha256": "9b1d17b4d2838ab421a9ea20c5490dd34b01fe0b2ce473d8caef38df964be04b",
+      "owner": "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+      "owner_blob": "95fc096c8f0080134e246eff480601144131a97f",
+      "final_comparison_sha256": "c3f9c2b6749a1fcb3bd5ba0bd452a1ec0475155d203f52b02c5b2062bda2c59d",
+      "status": "Typed historical integration validated",
+      "rationale": "The recovered assertions pin the state flags at 0x3CC and timer at 0x408 while retaining the existing field names. The retail vtable identifies inherited vfunc_83 at 0x14C, native vfunc_105 at 0x1A4, and the native dispatch_action at 0x15C."
+    },
+    {
+      "row": 783,
+      "fork_path": "src/pso/enemy/TObjEneDellBiterEffects.cpp",
+      "fork_blob": "d82ddb43ae702fe0c532ad3a0bf395dd5c24485f",
+      "historical_delta_sha256": "40ec61de694d7a48a4f7f98fc9869d9ccb61a142b72b5e500ed789bb867db24b",
+      "owner": "src/pso/enemy/dellbiter/TObjEneDellBiterEffects.cpp",
+      "owner_blob": "d53f740f51c71f30b2e4dc3396cf24d606906faf",
+      "final_comparison_sha256": "ff3b668cbb59ce73f487cef3ad9fd967b445ddd0b6cb2119f09038b99e3c0557",
+      "status": "Current native owner verified",
+      "rationale": "The current effect uses the original recipient velocity and yaw, matching float literals, named geometry and body fields, and the native attack descriptor. The historical angle constant produces the same live pitch, yaw, and roll inputs. Matching code and link coverage retain the original operands."
+    }
+  ],
+  "historical_ledger_sha256_before": "3df00026f0cb47c4972b97ce26131e1edb4330c83a16bae618b6c1971b46ff12",
+  "historical_ledger_sha256": "3e4d9d4107bbc3f31021a07dfc74a6b6d5e6e116799a431ef2fc836662ef64be",
+  "historical_rows_open": 563,
+  "partially_reconciled_collision_rows": [
+    {
+      "row": 157,
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "current_blob": "49a109bc85da0afed5e7a4e588b938614a86766e",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 521,
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "current_blob": "a4201b7b0d70d881478beda740fdf36bbf58bdb5",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 588,
+      "path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "current_blob": "f3f858c095a586e0fd6aff2aff6b40dd34be2f6f",
+      "historical_changed_lines": 4,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 4 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 591,
+      "path": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "current_blob": "65ac1e442c196d6a197c2aae949f922af8aca62b",
+      "historical_changed_lines": 10,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 10 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 597,
+      "path": "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "current_blob": "24b1ee12a15c6e1ce7c558c60b0a7214c7aa3c44",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 598,
+      "path": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "current_blob": "5162b821d71322d2bfba7057ed822970808fdac5",
+      "historical_changed_lines": 6,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 6 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 603,
+      "path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "current_blob": "3708f9839e4055f64a8fdae561230dc15aae92dc",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 604,
+      "path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "current_blob": "8aba1574f8fc8a022ea5fdbc2518c843ce0c2eb7",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 637,
+      "path": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "current_blob": "8b055d0e96fcd41f517800ff6772fe4b69077d14",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 802,
+      "path": "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "current_blob": "2c46400d534d9d40ea42a135116d039b24de05bb",
+      "historical_changed_lines": 2,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 2 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 813,
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "current_blob": "69ebd494c95d2a0eb2abf3243bb93687f51f2f80",
+      "historical_changed_lines": 3,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 3 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 814,
+      "path": "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "current_blob": "9ee717353a08e232c047c02df6b0e54cbfcbc044",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 913,
+      "path": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "current_blob": "5b03f031977be0f42dad62220d9371a6c5494e1d",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 933,
+      "path": "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "current_blob": "b784a7264703ac680aaee006a25b74b4708bf29b",
+      "historical_changed_lines": 5,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 5 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 948,
+      "path": "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "current_blob": "051408dd692206a074b69c4d7d4ab79ea6a036a9",
+      "historical_changed_lines": 5,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 5 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 956,
+      "path": "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "current_blob": "b9059265fa7c1c902f5d52359aa40d2ba20f343c",
+      "historical_changed_lines": 5,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 5 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 983,
+      "path": "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "current_blob": "4802ad3d531204eaefaaf213f718eacd28ae38db",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1015,
+      "path": "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "current_blob": "5bf32608f6c7e4f3e93b426807f599f3f8d3f9d4",
+      "historical_changed_lines": 7,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 7 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1027,
+      "path": "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "current_blob": "cdaab76fdfe6b1954a23ffd134b9c87f2ff8862a",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1051,
+      "path": "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+      "current_blob": "ffb65e90abd999b04b5979bc8121ad66a634b57a",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1052,
+      "path": "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "current_blob": "a5725e04b7b5742c43cef1ebbc5484c13cd0b711",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1053,
+      "path": "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "current_blob": "0837a370e7e44e174f35e7e7f7ff3882e8dd4e0d",
+      "historical_changed_lines": 5,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 5 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1076,
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "current_blob": "231d8bf9ac855a22a55f366b09b35775b567c41f",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1139,
+      "path": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "current_blob": "4f425ccdc30a457f9087953b4982b2d5cacb3e5c",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1149,
+      "path": "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "current_blob": "c2ad0f9bbc04f49f427c39f1eeb5411822b25fcc",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1164,
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "current_blob": "ed4751bbc94f5ad970b3f0d25eb99ec8cb583e77",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1167,
+      "path": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "current_blob": "d656515f70c2400655167c7109b95574db45694a",
+      "historical_changed_lines": 2,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 2 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1169,
+      "path": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "current_blob": "3ff92510bfa02ab13d26bc655b6bff29099a55bd",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 1171,
+      "path": "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+      "current_blob": "583a124376e5acc075496de844c8f2ba613b197a",
+      "historical_changed_lines": 3,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 3 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 4114,
+      "path": "src/pso/player/TObjPlayer_801542CC.cpp",
+      "current_blob": "1b5d1d81dcdc69bf4066e8da4fe78e339aaf5803",
+      "historical_changed_lines": 1,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 1 changed historical lines. Other parts of the row are still open."
+    },
+    {
+      "row": 6950,
+      "path": "src/pso/object/ambient/TObjGrass.cpp",
+      "current_blob": "34aecc982999fb3f3fc8f6b02930f74b6819d98f",
+      "historical_changed_lines": 5,
+      "scope": "The historical update_collisions change now uses the shared TObjCollidable owner at 0x80156698. This covers 5 changed historical lines. Other parts of the row are still open."
+    }
+  ],
+  "sorcerer_bit_vtable": {
+    "inherited_vfunc_83": {
+      "target": "0x800b9254",
+      "vtable_offset": "0x14c"
+    },
+    "native_vfunc_105": {
+      "target": "0x800eca3c",
+      "vtable_offset": "0x1a4"
+    },
+    "native_dispatch_action": {
+      "target": "0x800ed0d0",
+      "vtable_offset": "0x15c"
+    }
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "972db320f1c51cba2741f5285eb8dbd5e18453ce393138fe0de0035343b8c341",
+    "source_sha256": "6e94302eb09fe1249ccffbf368b087716d2c4ce501ceb31436089bc1131c8d3b",
+    "scope": "The collision passes exercise absent bodies, contact flags, the room filter and no-contact refresh. The Ill Gill test covers all target gates. The Gyaranzo test checks sampled positions, landing flags, and the rendered archive model and texture operands. Game callbacks are stubbed and paired-single register saves and restores are skipped."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "7afc470850e1aa5495af432bd1e0771805d136571b086c5b981fd08e7a7b3070",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "b1181fef4f6ef50c20a28e8a9a6d0d1c71e14281d6217c17bb022b4b49e894a9"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "392f17ecee476c899382be7c5eb0fcc1c218183f66d8e526a5ce3be4c6c8c97f"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 50,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}
