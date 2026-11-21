@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "0d4c0812e7f2dc93649511ae0881831305555c31",
+  "review": "0e202610a693f30f95c7643d0522523556582ab1",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "6f98d4332fb0cceaa2c210ea0718fce2bfa6d49d",
-  "review_paths": 860,
+  "review_tree": "3b1bcae4c998105e983a05a081052a0a7573d43e",
+  "review_paths": 879,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,19 +29,20 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "937c4a7311927c42dce8999ab1d084faf0d134aee033698f7aea1908634bd2d4",
+  "path_ledger_sha256": "f194bba3e33fbc53baa989e60605764446a48a7fe8e29bfac3f8d8442ae51166",
   "path_status": {
-    "remaining overlap after replay": 205,
-    "exact prior source": 558,
+    "equivalent source retained": 127,
+    "exact prior source": 585,
     "same change already in upstream": 902,
-    "pending replay": 39,
+    "pending replay": 11,
+    "remaining overlap after replay": 79,
     "validated three-way source": 14,
     "upstream names retained": 62,
     "upstream only": 7,
     "equivalent base-class call retained": 43,
     "native archive source with existing style": 17
   },
-  "remaining_path_comparisons": 244,
+  "remaining_path_comparisons": 90,
   "historical_fork_ledger_open": 590,
   "validation": {
     "upstream": {
@@ -292,7 +293,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 31,
+    "commits": 35,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -314,5 +315,6 @@
   "movement_and_phase_followup": "2026-11-21-post-351-movement.json",
   "rename_only_followup": "2026-11-21-post-351-rename-only.json",
   "window_and_inventory_followup": "2026-11-21-post-351-windows.json",
-  "actor_and_archive_followup": "2026-11-21-post-351-actor-archives.json"
+  "actor_and_archive_followup": "2026-11-21-post-351-actor-archives.json",
+  "title_and_equivalence_followup": "2026-11-21-post-351-title-and-source-equivalence.json"
 }
