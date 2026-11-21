@@ -1261,6 +1261,14 @@ The unpublished standalone review at `9081bb020c` starts on master `0fa391a887`.
 
 The cumulative replay, standalone review, and 131-path private tooling layer all reproduce the retail DOL, with 2,448 linked source objects and zero function or data coverage losses. All 305 tooling tests pass, and all 1,147 historical bytes remain accounted for. The historical path count outside the replay diff falls from 591 to 580. [Build, scope and replay evidence](2026-11-20-action-palette-and-word-select.json)
 
+### Enemy targeting, formations and Slime attack actors
+
+The 56-file replay at `9a864ea5d0` shares the typed enemy targeting and collision-actor lookup across callers. Canadin recovers its formation and action methods. Bal Claw uses its native body state handlers and child constructor. Slime uses typed child slots, animation state, tail poses, and water-bomb tasks. The existing Slime archive lifecycle and tail-hit member name are preserved.
+
+The unpublished standalone review at `72ca918dcb` starts on master `0fa391a887`. Matt authored and committed its single commit. It overlaps PR #341 in three Pan Arms sources. The cumulative replay already builds with both sets of changes. The other six published review previews and both prepared reviews are conflict-free.
+
+The replay, standalone review, and 131-path fork tooling layer reproduce the retail DOL. All 2,448 source objects link and the checks show zero function or data coverage losses. All 1,147 historical bytes remain accounted for. The 305 tooling tests pass, along with 34 enemy-state and 19 player-targeting cases on each of the four images. Four stale symbol names were corrected in the private probes at their original addresses. The historical count outside the replay diff falls from 580 to 568 paths. [Build, scope and replay evidence](2026-11-20-enemy-targeting-formations-and-slime.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
