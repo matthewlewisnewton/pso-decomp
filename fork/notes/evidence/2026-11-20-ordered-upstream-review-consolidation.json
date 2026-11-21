@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-with-symbol-chat-and-capture",
-      "head": "8df47b88222bba050bcc999dc11a1591007c2eb3",
+      "ref": "great-merge/consolidated/ordered-combat-with-symbol-chat-window-owners",
+      "head": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
       "base": "c306842e82985de65583e787f1fa0a1776b51394",
-      "tree": "e6f0c6768a9233d7a1b3ac55a4b4eb08c6d6b3b1",
+      "tree": "4aa5c13705b434b65e648df6cc7f5ab35e8110b4",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,17 +77,17 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 49,
-      "files_changed": 1033,
-      "insertions": 14293,
-      "deletions": 15370,
-      "check_sha256": "e128d76ca818d3ff5dd980a87d3ec325ea07b5b2ce7d0fd0b09cfa49066af851",
-      "function_label_changes": 386,
+      "review_commits": 50,
+      "files_changed": 1039,
+      "insertions": 14622,
+      "deletions": 15774,
+      "check_sha256": "091592beb14642b8daf330d784d23fce5eaa7f52769f98c45c8c9600eafd23fe",
+      "function_label_changes": 404,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
         "exact_functions": 27572,
         "linked_source_units": 2448,
-        "source_report_sha256": "b5a8ce45d4824c01dbff31cd65eb58e1a7ce3a73cb2d67c078b14e1cbc13db76",
+        "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
         "original_data_inventory": {
           "ranges": 90,
           "linked": 980,
@@ -189,37 +189,37 @@
     }
   },
   "separate_network_change": {
-    "head": "b6a84d2e789c897fced220a9fa8d79b05138cee3",
-    "base": "8df47b88222bba050bcc999dc11a1591007c2eb3",
-    "tree": "de63537bfdd69ed7871ac54075202734d6b47efa",
+    "head": "90b1d0bccb457f60b7b251412323bf285c19c831",
+    "base": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
+    "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "b6a84d2e789c897fced220a9fa8d79b05138cee3",
+    "head": "90b1d0bccb457f60b7b251412323bf285c19c831",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "de63537bfdd69ed7871ac54075202734d6b47efa",
-    "files_changed": 1792,
-    "insertions": 30567,
-    "deletions": 33825,
+    "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
+    "files_changed": 1794,
+    "insertions": 30891,
+    "deletions": 34224,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
       "linked_source_units": 2448,
-      "source_report_sha256": "b5a8ce45d4824c01dbff31cd65eb58e1a7ce3a73cb2d67c078b14e1cbc13db76",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
       "original_data_inventory": {
         "ranges": 90,
         "linked": 980,
         "padding": 167,
         "remaining": 0
       },
-      "check_sha256": "e128d76ca818d3ff5dd980a87d3ec325ea07b5b2ce7d0fd0b09cfa49066af851"
+      "check_sha256": "091592beb14642b8daf330d784d23fce5eaa7f52769f98c45c8c9600eafd23fe"
     }
   },
   "commit_attribution": {
-    "audited_commits": 100,
+    "audited_commits": 101,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -270,11 +270,11 @@
     ]
   },
   "single_review": {
-    "ref": "great-merge/consolidated/single-review-with-symbol-chat-and-capture",
-    "head": "eef549f7210abf2ee3313c11408ae19477a10177",
+    "ref": "great-merge/consolidated/single-review-with-symbol-chat-window-owners",
+    "head": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "de63537bfdd69ed7871ac54075202734d6b47efa",
-    "tree_equivalent_to": "b6a84d2e789c897fced220a9fa8d79b05138cee3",
+    "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
+    "tree_equivalent_to": "90b1d0bccb457f60b7b251412323bf285c19c831",
     "commits": [
       {
         "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
@@ -349,23 +349,32 @@
         "deletions": 502
       },
       {
-        "head": "eef549f7210abf2ee3313c11408ae19477a10177",
+        "head": "6c0ca96dfadbc76d9938ada24bb2ec8a2029886c",
         "base": "b382f026478786b570589c5382b5b6b69a139713",
-        "tree": "de63537bfdd69ed7871ac54075202734d6b47efa",
-        "checked_tree": "b6a84d2e789c897fced220a9fa8d79b05138cee3",
+        "tree": "4aa5c13705b434b65e648df6cc7f5ab35e8110b4",
+        "checked_tree": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
+        "base": "6c0ca96dfadbc76d9938ada24bb2ec8a2029886c",
+        "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
+        "checked_tree": "90b1d0bccb457f60b7b251412323bf285c19c831",
         "files_changed": 12,
         "insertions": 136,
         "deletions": 139
       }
     ],
     "commit_attribution": {
-      "audited_commits": 9,
+      "audited_commits": 10,
       "codex_attribution": 0,
       "coauthor_trailers": 0
     },
     "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
-    "files_changed": 1792,
-    "insertions": 30567,
-    "deletions": 33825
+    "files_changed": 1794,
+    "insertions": 30891,
+    "deletions": 34224
   }
 }

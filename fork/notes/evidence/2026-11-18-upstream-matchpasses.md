@@ -1,6 +1,6 @@
 # Upstream matchpasses
 
-Group related source recovery into fewer, larger reviews with independent matching builds. Keep upstream names where the entities have equivalent behavior, types and linkage. Include source changes that recover types, ownership, native code, or linking coverage. Keep documentation and tooling changes on the fork layer.
+Group related source recovery into fewer, larger reviews with independent matching builds. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
 
 ## Bulk replay on upstream master `6b080e67ab`
 
@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `eef549f721` uses nine commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. The independent PPP work ends the stack. Each checkpoint reproduces retail. The nine review commits and 100 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `f008850f3e` uses ten commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. The independent PPP work ends the stack. Each checkpoint reproduces retail. The ten review commits and 101 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1430,9 +1430,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `eef5
 | 6 | Shared 2D polygon and color rendering | Follow-up recovery | `bc801af727` | 38 |
 | 7 | Olga Flow tube and phase actors | Follow-up recovery | `54f1279049` | 17 |
 | 8 | Symbol Chat presets, editor and capture | Follow-up recovery | `b382f02647` | 31 |
-| 9 | PPP frame and callback interfaces | Independent network work | `eef549f721` | 12 |
+| 9 | Native Symbol Chat editor window classes | Follow-up recovery | `6c0ca96dfa` | 18 |
+| 10 | PPP frame and callback interfaces | Independent network work | `f008850f3e` | 12 |
 
-The review changes 1,792 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,794 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1549,6 +1550,12 @@ The ordered and consolidated builds and the fork workspace reproduce retail and 
 Great Merge at `111ad6f658` gives the save slots, editor, shortcut previews, stage objects, quest capture and 6x07 game message one native payload. The capture task owns its four records and expiry timers. The 31-file batch preserves all routine names. The 35 linker label changes reflect real class owners and parameter types, including the native capture constructor.
 
 The ordered and consolidated builds and the fork workspace reproduce retail and account for all 1,147 historical data bytes. The probe checks 12 save slots, clear and copy, byte order, and capture expiry on retail and both builds. The audit closes two Symbol Chat entries and retains the typed upstream quest window call, leaving 599 open. [Symbol Chat evidence](2026-11-21-symbol-chat-and-capture.json)
+
+## Symbol Chat editor window classes
+
+Great Merge at `1adaab68b2` restores C++ constructors for the parts browser and parts-set windows. The preview and cursor methods use their owning classes. The face picker and help windows use typed selection, mode and heading fields. Nineteen linker labels changed to reflect class ownership, native constructors or typed arguments. The shortcut settings and floating-point constants keep their upstream names.
+
+The ordered and consolidated review builds and the fork workspace reproduce retail and account for all 1,147 historical data bytes. The audit closes the face-picker and parts-set constructor comparisons, leaving 597 open. [Window class evidence](2026-11-21-symbol-chat-window-owners.json)
 
 ## Ordered upstream review candidates
 
