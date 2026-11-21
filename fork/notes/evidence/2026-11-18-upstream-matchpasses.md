@@ -1392,6 +1392,14 @@ The expanded combat and stage group at `e57489ffb9` includes the actor position,
 
 The source-scope comparison with `54128af4ad` leaves 124 changed paths outside the three groups and 399 differing shared paths. The remaining work includes title and Guild Card windows, resource and particle layouts, and the PPP and network runtime. The exact file lists are recorded for grouping by owning interface. Publication is still local. [Integrated build and residual source inventory](2026-11-20-consolidated-integration-with-actor-layouts.json)
 
+## Frontend titles, Guild Cards and Short Mail
+
+The expanded frontend review at `fdfc8b3f1c` covers 622 files on current upstream master. It restores the Short Mail and Guild Card record layouts, native confirmation and composer windows, and typed title sprites and scene transitions. The shared word-copy routine has explicit source and destination arguments. The Guild Card accessor keeps `get_card_id` and the typed Short Mail table keeps `lbl_80513F70`.
+
+The 84-file frontend replay on the three-review stack reproduces retail. The joined review stack at `289daa58dd` has the same tested tree and covers 1,588 files. The standalone review, joined stack and cumulative source `2ed1cfc781` each retain all 27,572 exact functions, 2,448 linked units and 1,147 historical data bytes. The cumulative and fork-layer builds retain the existing Challenge result compiler directive. The fork workspace passed all 310 checks and kept all 27,031 required symbols.
+
+The source comparison leaves 91 paths outside the reviewed changes and 350 differing shared paths. The current texture-list receiver accounts for 247 of those paths by itself. The scope and exact file lists are recorded locally. [Frontend and remaining source evidence](2026-11-20-frontend-title-and-mail-reviews.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
