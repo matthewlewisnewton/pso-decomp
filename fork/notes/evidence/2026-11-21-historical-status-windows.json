@@ -1,0 +1,481 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
+  "source": "135eb79203f6e9dd18f012b04cd43120b88fd535",
+  "source_tree": "aedab25142fcd0d47071c45bbb998cb96651492f",
+  "source_review_files": 999,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "previous_blob": "100644:19d6397d071ddc073d03c530f518160217d52793",
+      "review_blob": "100644:938fcbde1bb0fb0c870915d2797eef78bb74ef53",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:65bdbe2af2851a99cee01181bc3da7df42113fa7",
+      "review_blob": "100644:8e8a8620b696b0f09ff5ba9583c1d093eb88807e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/ui/window/TWindowInputNumber.h",
+      "previous_blob": "100644:7d780027d97f33da1d5bd7f12b4b6dd019147c03",
+      "review_blob": "100644:408e3fbc9be3100e79fdcd7e1b7c55897ab11328",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/ui/window/TWindowSubStatusDisp.h",
+      "previous_blob": "100644:22413569105d45d643edef0b25bae55cd64475b8",
+      "review_blob": "100644:95338fb23e6622f1de79374da9f0e051a786d619",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/ui/window/TWindowSubStatusDisp_80256B94.h",
+      "previous_blob": "100644:bca8902f0a46342d6d097cb64b1f47675947ed12",
+      "review_blob": "100644:b66eeac09d719dfbf773b6541c43c357e3fbc201",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/ui/window/TWindowSubStatusDisp_8025B050.h",
+      "previous_blob": "100644:ed5339360a777c09ba25fd1f78eee78fdf8a345d",
+      "review_blob": "100644:6c7d4ba9c004691b8ca320169b20dfaf8060e4a7",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/ui/window/WindowSpritePart.h",
+      "previous_blob": "100644:a838ef95f4f71f27f91ec723fbd13b556aaa7ad3",
+      "review_blob": "100644:0b33722f6cda6de782d93a84b10d87b0ea62068a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/unk/TUnk_804CF930.h",
+      "previous_blob": "100644:4b8b57f7fc46a05361af579709cc28b19c12d1cd",
+      "review_blob": "100644:cd473f8958044e19e453b48a1a2c9a62e014f713",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/TUnk_804CF948.h",
+      "previous_blob": "100644:6b36cd4d80c21aedc7bfeb30d338a7f062ad8673",
+      "review_blob": "100644:707dbea610c9c312b95085821342f72460eb253e",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/WindowLayoutRecord.h",
+      "previous_blob": "100644:ae0f60137bc9ba8eb1a40ed31ceb80dc5123c0e4",
+      "review_blob": "100644:18ed04a5f91455dea48513226267babe301f7d02",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowChatSymbol.cpp",
+      "previous_blob": "100644:fb460d71166a224cf8156f9374360d511d7179a3",
+      "review_blob": "100644:9a751deb3103040dc664e8d5fcf2127a584c58f3",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated three-way source"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+      "previous_blob": "100644:ebd28f696c8ffbf4c61c0e03f4ad03f8cb044dc6",
+      "review_blob": "100644:1793d2b9ea5f257649726628feb95eab9a38bb42",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowActionPalette.cpp",
+      "previous_blob": "100644:29b349e80a456db093508fbefa070fc87765681a",
+      "review_blob": "100644:25e9dbcc5f6e6700c2e3ca7e7b68ad6b074aa561",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowComCard.cpp",
+      "previous_blob": "100644:66768be9e271228e6b346828b154e62e42303036",
+      "review_blob": "100644:7811652e73ff06fff9c9f9838da2598d02add6e9",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowHelpItem_802531A0.cpp",
+      "previous_blob": "100644:2e0e3448eba3865478d1a59c5c230d8129f5cca5",
+      "review_blob": "100644:1a9ce29b01a625c4cf2ed5732b780f2fd5247504",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+      "previous_blob": "100644:b084e2b23ecd325594171c6a9009c125e03602a7",
+      "review_blob": "100644:7907a1249d0bc1699352f0016ab0d71c0a267c05",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowInputNumber.cpp",
+      "previous_blob": "100644:ccd5bda827a98ef21dd6990232350d1f4a18c933",
+      "review_blob": "100644:b76d3ccb9a07b83a7d3d8c913a4636af5f93df6f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowLoadItemTexture.cpp",
+      "previous_blob": "100644:dd96cad42f1a195d6f20fe1830df4665d6398c23",
+      "review_blob": "100644:4209eee0ba9516e9eee9a99439286b5bec7f555d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+      "previous_blob": "100644:1b1e580dfe46e5363b0aabb0491334dc3872a88e",
+      "review_blob": "100644:c676aff50e874218ea7acf742c9b5b4c72b1b81c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowPartyStatus.cpp",
+      "previous_blob": "100644:7e0f1be61337137e83d864642d2f5da3354605af",
+      "review_blob": "100644:cc5a089f422b592d2d340eae5c307f5c4389db35",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowShortCut.cpp",
+      "previous_blob": "100644:907ee7f4653b8ce5cca1d919c27706725bff68f2",
+      "review_blob": "100644:0363f57e1d3c63c157d9f7daf8fc35332481415a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated three-way source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "previous_blob": "100644:1f9b56d5380ca1a4f6d9476e5fb85068affd5127",
+      "review_blob": "100644:17b3c8d55e4adc93b64666d5d46eb91d83b4705a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowStatus.cpp",
+      "previous_blob": "100644:392a6b587626255ff2aeb369843f7315e482fd61",
+      "review_blob": "100644:d7a9c6194e3323bbfe4ede2503e30d8954348ac6",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+      "previous_blob": "100644:45d1bf5bd3c208942fb7bf265709b3bc7c69586a",
+      "review_blob": "100644:07d4b8faa64c546c19297e7a701f547e3cf2b408",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "previous_blob": "100644:9b43204f7b7558205666bdb9a591faee00d7d364",
+      "review_blob": "100644:b776410a237a5a69fa7b500505eb6b73481a61c2",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+      "previous_blob": "100644:256c074ff14879ab4013733c160edfa7a3a004e5",
+      "review_blob": "100644:e03ee8a9fa7aec377bf1f97bff29d444be9c6302",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+      "previous_blob": "100644:ebfe24d7fc5478957e5361ac7e980e41f712747d",
+      "review_blob": "100644:d67e5e486fcece08772ac29419ab2f70fc4a456e",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+      "previous_blob": "100644:02c1d966a7ed4708d9d555787b671eb6f82e8ea0",
+      "review_blob": "100644:122e0aa4c5925916b7f22120aeb5cb2a4382e2e1",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "previous_blob": "100644:befc878411d7d59bb1615c71685ab2528ec2a2bd",
+      "review_blob": "100644:d98419113a639bf41e965bb858182f38354e03a6",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    }
+  ],
+  "checks": {
+    "gauges": {
+      "head": "02d08fc7502f2c6a26c6ccc43ebff4b7e8b54c86",
+      "baseline": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "b8af5ff1270bb33c271a60dfa90cd71ad19d3341abb649949502a8c4a041086e"
+    },
+    "sprites": {
+      "head": "c8079da398d5e793471ce981466a11fd6ec884ba",
+      "baseline": "02d08fc7502f2c6a26c6ccc43ebff4b7e8b54c86",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 7,
+      "check_sha256": "b39a6060aafed90dc0df0af49c6d7fad0042a0fea019aaba230d4bc67b522ea9"
+    },
+    "controls": {
+      "head": "135eb79203f6e9dd18f012b04cd43120b88fd535",
+      "baseline": "c8079da398d5e793471ce981466a11fd6ec884ba",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "758a06458c4e705365e5e097657deb95841b759882486c938cf2bd9d846c26c0"
+    },
+    "full-review": {
+      "head": "135eb79203f6e9dd18f012b04cd43120b88fd535",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 406,
+      "check_sha256": "5a33b5aa7152d1c4252c633818ce661dac225e9fb53a85a53071c4a5a585f8c1"
+    },
+    "layer": {
+      "head": "c8d87e3722be420676be050a1c178e54a4254c86",
+      "baseline": "135eb79203f6e9dd18f012b04cd43120b88fd535",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "controls": {
+      "sha256": "04bd349861d73085a6a48e2e397ddc4a0de3893cfd38c2b014bc97bbf5cb1464",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "04bd349861d73085a6a48e2e397ddc4a0de3893cfd38c2b014bc97bbf5cb1464",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80256E0C",
+      "before": "draw_status_gauge_bar__13TUnk_804CF930FPvPvff",
+      "after": "draw_status_gauge_bar__13TUnk_804CF930FP17WindowDrawContextP10NJS_POINT2ff"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802572F0",
+      "before": "init_from__13TUnk_804CF930FPvi",
+      "after": "init_from__13TUnk_804CF930FP17StatusGaugeLayoutl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80257B4C",
+      "before": "init_layout_entry_copy__20TWindowSubStatusDispFPUc",
+      "after": "init_layout_entry_copy__13TUnk_804CF948FP21LayoutEntryCopyRecordl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8025B050",
+      "before": "swap_sprite_v_edges__FPUc",
+      "after": "swap_sprite_v_edges__FP16WindowSpritePart"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8025B064",
+      "before": "swap_sprite_u_edges__FPUc",
+      "after": "swap_sprite_u_edges__FP16WindowSpritePart"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8025B078",
+      "before": "set_sprite_uv_bounds__FPvffff",
+      "after": "set_sprite_uv_bounds__FP16WindowSpritePartffff"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8025B08C",
+      "before": "set_sprite_uv_from_pixels__FPUcff",
+      "after": "set_sprite_uv_from_pixels__FP16WindowSpritePartff"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8025B0C4",
+      "before": "set_sprite_dimensions__FPvff",
+      "after": "set_sprite_dimensions__FP16WindowSpritePartff"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8025B334",
+      "before": "init_part_direct__20TWindowSubStatusDispFPUcl",
+      "after": "init_part_direct__16WindowSpritePartFP28DirectSpritePartLayoutRecordl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8025B3D8",
+      "before": "init_part_scaled__20TWindowSubStatusDispFPvPvi",
+      "after": "init_part_scaled__16WindowSpritePartFP22SpritePartLayoutRecordl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802563A0",
+      "before": "draw_arrows__18TWindowInputNumberFv",
+      "after": "draw_arrows__18TWindowInputNumberFP17WindowDrawContextP13TUnk_804CF9C8i"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 5521,
+      "fork_path": "src/pso/misc/TLobby_8036DBC4.cpp",
+      "fork_blob": "2485c6667eaf10eda798d189ed3bae74712f46cf",
+      "historical_delta_sha256": "bf1bc5f3758de7199fc98ddc421c56613b9582b7a40ea63e0e44af9e8770b586",
+      "owner": "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "owner_blob": "d98419113a639bf41e965bb858182f38354e03a6",
+      "final_comparison_sha256": "ac075061b30d0250692dd0cfbab0bd1684eda2a95d965818e3c1d40b25fd7129",
+      "status": "Typed historical integration validated",
+      "rationale": "HUD texture loading and release use the original string loads, language entry and animation reset. The global is now a texture-list pointer, with the existing texture and release entry points."
+    },
+    {
+      "row": 5597,
+      "fork_path": "src/pso/unk/text_80246CE8.cpp",
+      "fork_blob": "d8e2869520413f8252d3f21b7bee32cf89e4ce8d",
+      "historical_delta_sha256": "3bf9acbcf3ee33dbd90d183f72fff14520a962bf87896caeb30db10e95643001",
+      "owner": "src/pso/ui/window/TWindowChallengeResult.cpp",
+      "owner_blob": "d44a556cf801b925a1db4652e23e65fcea163085",
+      "final_comparison_sha256": "3d25eb6365b9cb226a7c85be8b16ff6d6dece8251b3c6a098512abf78265150b",
+      "status": "Equivalent current source validated",
+      "rationale": "The native Challenge Result render method gets the actual draw context, draws the inherited frame and directly passes the entry list. This is already present in the pinned source."
+    },
+    {
+      "row": 5651,
+      "fork_path": "src/pso/misc/TWindowSubStatusDisp_8036D774.cpp",
+      "fork_blob": "6c2c7ad55674d30e61591c95d4b3f2278f21772c",
+      "historical_delta_sha256": "7d58a1e262e01e98df0ad71685af9aef2e067732fc6794ecff036be0bf9f912b",
+      "owner": "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "owner_blob": "d98419113a639bf41e965bb858182f38354e03a6",
+      "final_comparison_sha256": "f394051b20c9397848c154bb787166b9888a75e5191eca69c20ac607ce3fc43a",
+      "status": "Typed historical integration validated",
+      "rationale": "The divider draws the same native color lines and both backgrounds use the typed texture pointer and shared quad representation. Texture binding preserves the upstream name at the same address."
+    },
+    {
+      "row": 5681,
+      "fork_path": "include/pso/ui/TWindowInputNumber.h",
+      "fork_blob": "c8419b289d05ae2b0cd4dac955a12ff51c01ecbf",
+      "historical_delta_sha256": "9a43ea0fe9a7147386d7bf3947c74c48ee553ff26b39a4f3456034c0f80dc9be",
+      "owner": "src/pso/ui/window/TWindowInputNumber.cpp",
+      "owner_blob": "b76d3ccb9a07b83a7d3d8c913a4636af5f93df6f",
+      "final_comparison_sha256": "75d2527c56ed3bd6837e1adbb1c623e83bbbb3114f7396baaa78c033eb04ae79",
+      "status": "Equivalent current source validated",
+      "rationale": "The number window already inherits the actual base and declares its virtual destructor. The number window size and the inherited client index offset are asserted at their owners."
+    },
+    {
+      "row": 5733,
+      "fork_path": "src/pso/misc/TWindowInputNumber_80256170.cpp",
+      "fork_blob": "176e169d23a3f6e9a142bd3d601b60ad13b0b10a",
+      "historical_delta_sha256": "ddcadfb5289d384e3cb729961cc5281ce73949206c17255a232d3126848e7a67",
+      "owner": "src/pso/ui/window/TWindowInputNumber.cpp",
+      "owner_blob": "b76d3ccb9a07b83a7d3d8c913a4636af5f93df6f",
+      "final_comparison_sha256": "800fe86a04235350f16a7f2afe6ce8fa8174a06a32560821ca86f4bbc3021818",
+      "status": "Typed historical integration validated",
+      "rationale": "The number window uses the native base constructor, inherited client field, native destructor and render. Its decimal table already has typed entries. The arrows and layout calls now pass their actual context and digit arguments."
+    },
+    {
+      "row": 5820,
+      "fork_path": "src/pso/misc/TWindowSubStatusDisp_8025B050.cpp",
+      "fork_blob": "c8eaac7cd144e4e2ec891d505393c5ee193314c4",
+      "historical_delta_sha256": "c3f98b2bf97dbb399db67f961e9df8ec6c953cef2795981095a35a60bbe014ac",
+      "owner": "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+      "owner_blob": "122e0aa4c5925916b7f22120aeb5cb2a4382e2e1",
+      "final_comparison_sha256": "4097410ff534063184a955dc630a4be661826dad27ae40fd784a47dc2cae4187",
+      "status": "Typed historical integration validated",
+      "rationale": "Both UV-sprite constructors consume packed layout records and call the original base initializer. Rendering uses the actual sprite and draw context and invokes the existing clip and transform methods on a native quad."
+    }
+  ],
+  "historical_ledger_sha256_before": "4bbacf91d46e15d6ade5d732d1a7d8754f95d0978b1ba6301a27bfc937d6e422",
+  "historical_ledger_sha256": "4fc971e24aae36f32d5bbb6e0ccfa9f4a7121e214fd1b8e95bb93457029a5b3d",
+  "historical_rows_open": 532,
+  "partially_reconciled_rows": [
+    {
+      "row": 5587,
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+      "current_blob": "07d4b8faa64c546c19297e7a701f547e3cf2b408",
+      "scope": "The gauge initialization, animation and drawing now consume native fields and the shared draw context. The manual vtable assignment still needs comparison with the historical native constructor. The broader historical row is still open."
+    },
+    {
+      "row": 5588,
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+      "current_blob": "e03ee8a9fa7aec377bf1f97bff29d444be9c6302",
+      "scope": "The shared dispatcher now passes the real descriptor and allocated owner for base gauges, hold gauges and both sprite entry types. Other layout kinds and their old constructors remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 5760,
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "current_blob": "b776410a237a5a69fa7b500505eb6b73481a61c2",
+      "scope": "The hold gauge uses the actual width, target, timer, and draw context. Color transition and legacy base constructor forms remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 5877,
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+      "current_blob": "d67e5e486fcece08772ac29419ab2f70fc4a456e",
+      "scope": "The right-aligned measurement function now reads value, flags, width and height through the native numeric part. The remaining historical glyph interfaces are still under comparison. The broader historical row is still open."
+    }
+  ],
+  "symbol_aliases": {
+    "0x803DA798": {
+      "historical": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "compiler_sensitive_forms": {
+    "number_receiver": "Keeping an explicit typed receiver in run_task preserves the original two nonvolatile register assignments.",
+    "layout_initialization": "The legacy allocation code still sets the original vtable entries at allocation time. The packed records and concrete parts are typed."
+  },
+  "fork_shortcut_fallback": {
+    "path": "src/pso/ui/window/TWindowShortCut.cpp",
+    "old_diff_sha256": "12795ef8f71bb815463c5cd44147c09a635a0dbe0cc9d01d7fff1ff624e92b70",
+    "new_diff_sha256": "97c0993fa5052a064c29268ff92013c1ea65873069babefcc9a042d3fc59959a"
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "652bb7b7b80d5754c324271647bee0eafe61beffe8461f7f6abe53562a62c7ca",
+    "source_sha256": "349f12fb0091c9374ca669fdd7f94b86f30f320e75ed534172c6c27149f8ef33",
+    "scope": "The probe covers both gauge layouts and width settling, scaled and direct sprite UV and size setup, numeric digit count and width, and the controller and keyboard bank selection. Peripheral input queries use controlled fixtures. Unsupported paired-single stack saves and restores are skipped in two probed functions."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "b9bbf638f7cf7774bf9a9b273878d9ec342d37f06150aa29a96d54f629c57a4d",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "3dc787f7b7bca33ada42a3f58e65fafb6306b4e78871be92d852b0acb9590183"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "544889ce8631663d2c6e90b5f746435a4f776d2dc4aaaca6e3f37d2e4a876e01"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 92,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}
