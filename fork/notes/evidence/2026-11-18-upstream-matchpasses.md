@@ -1133,6 +1133,14 @@ The three commits through `8cb5f82169` update 78 paths. They share the selection
 
 The source and fork tooling workspace reproduce retail with 2,448 exact linked units, 27,572 exact functions and every previously checked code and data address retained. The workspace patch covers 131 paths and passes the 294 tooling tests and 11 layer tests. The remaining path comparison puts 1,136 canonical changes outside the replay diff, including 310 UI files. The 111-file native frame and scroll layout review has 54 overlapping paths against this checkpoint. [Build, fork layer and layout overlap evidence](2026-11-20-window-entries-replay.json)
 
+### Native window frame and scroll layout
+
+Published PR #335 head `b05988e1af` has the same tree as the previous validated local #335 merge at `b916cd59fb`. The refreshed prospective stack keeps that source and now contains the published head. [PR #335](https://github.com/zeroz41/pso-decomp/pull/335)
+
+The 115-file replay at `04e3c21a71` puts the frame and scroll fields on `TWindowBase` and `TWindowAddition`, with assertions for the original sizes and offsets. Derived windows use those fields, and specialized item rows, gauges and sprites use their own records. The only changed linker label follows `request_close` to its shared base-class owner. The cumulative window review covers 147 files from `510be1d79a`.
+
+The source and materialized tooling workspace reproduce retail and retain the checked code and data addresses. The strict check reports 2,448 exact linked units and 27,572 exact functions. The path inventory now has 1,097 canonical changes outside the prospective replay diff, including 271 UI paths. The remaining descriptor, keyboard, and city-menu batches have 17, 14, and 34 overlapping paths against this frame checkpoint. [Validation and overlap evidence](2026-11-20-native-window-frame-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
