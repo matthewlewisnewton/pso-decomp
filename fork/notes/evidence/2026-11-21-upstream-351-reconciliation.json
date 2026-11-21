@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+  "review": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "2b7816ce1ccc4b5fb31d737bef0007d3d30cf064",
-  "review_paths": 666,
+  "review_tree": "7a54a75cc202166fbd62b9abde068818bdb49759",
+  "review_paths": 787,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,17 +29,17 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "18748051d22044cb3277bd206b266d60b428cf6519645c46007eed48608ae6ce",
+  "path_ledger_sha256": "f80a57c059aa767c147a900c2358cb4ed04494dd0cbdf9a1a460a7f93bbcbb41",
   "path_status": {
-    "remaining overlap after replay": 283,
-    "exact prior source": 366,
+    "remaining overlap after replay": 286,
+    "exact prior source": 482,
     "same change already in upstream": 902,
-    "pending replay": 233,
-    "validated three-way source": 12,
+    "pending replay": 112,
+    "validated three-way source": 14,
     "upstream names retained": 44,
     "upstream only": 7
   },
-  "remaining_path_comparisons": 516,
+  "remaining_path_comparisons": 398,
   "historical_fork_ledger_open": 590,
   "validation": {
     "upstream": {
@@ -290,7 +290,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 15,
+    "commits": 22,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -310,5 +310,6 @@
   "initial_rebased_review": "b65d1cc9cb1bcc3445ea27df81bb66611311eafe",
   "actor_and_inventory_followup": "2026-11-21-post-351-actors.json",
   "movement_and_phase_followup": "2026-11-21-post-351-movement.json",
-  "rename_only_followup": "2026-11-21-post-351-rename-only.json"
+  "rename_only_followup": "2026-11-21-post-351-rename-only.json",
+  "window_and_inventory_followup": "2026-11-21-post-351-windows.json"
 }
