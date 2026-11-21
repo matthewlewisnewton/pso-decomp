@@ -1159,6 +1159,12 @@ The 71-file replay at `4d72d5f097` recovers typed menu factories, native shop an
 
 The 131-path tooling patch round-trips over the new replay, reproduces retail, and passes 305 tooling and layer tests. The historical path inventory has 1,073 canonical paths outside the active replay diff. [Build and review evidence](2026-11-20-city-menu-and-upstream-replay.json)
 
+### Native title scenes and compiler directives
+
+The title-scene replay at `39e8ea07de` assigns scene state, child ownership, and callback dispatch to the title task and types the sprite tables. Its six changed linker labels follow those methods to the owning class. The 12-file cleanup from fork PR #622 removes 108 compiler directives and four adjacent blank lines. It keeps the live NPC and renderer signatures and changes zero linker labels. The combined source at `67daa1efc4` reproduces retail with 2,448 exact linked units and retains all checked code and data coverage. The 131-path fork tooling patch reproduces the tested workspace and passes 305 tests.
+
+A replay preview checked 59 previous review tips. The leaf changes for particle factory callers, network datagrams and PPP frames are already present on the city baseline. The historical path inventory still has 1,058 canonical paths outside the active replay diff, including 86 also outside the earlier review queue. The preview identifies the stage archives and scenery, stage containers, and stage transfer and ending-scene groups for the next related batches. [Replay and validation evidence](2026-11-20-title-scenes-and-compiler-cleanup.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
