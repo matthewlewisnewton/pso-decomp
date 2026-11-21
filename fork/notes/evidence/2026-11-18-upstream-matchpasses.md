@@ -1318,6 +1318,14 @@ This tree and the materialized fork tooling both reproduce the retail DOL. The s
 
 The latest historical comparison resolves 626 paths to the checkpoint. Of the 16 proposed edits, 15 repeat declarations or includes and one restores a superseded renderer cast. Another 110 paths need owner comparison and 12 have different candidate versions. The disc-error compiler cleanup passed separately at `252ba20838`, with no address or linkage changes. Against current master, every expanded review-sized batch still has conflicts. Open PRs #336–342 have separately tested updates awaiting publication. [Validation and remaining paths](2026-11-20-osp-expanded-source-and-fork-layer.json)
 
+## Historical cumulative source replay complete
+
+`great-merge/incoming/osp-replayed-source` at `27a9916d9e` accounts for the 122 remaining paths from the earlier cumulative snapshot. The replay reconciles 32 of those paths in source and retains the current owner for the other 90. The saved Guild Card slots, Short Mail recipient lookup, shop quantity factory, title sprite accessor, BML consumers and chunk callback now use their actual types. The title accessor keeps its original `int` argument and linker symbol. The shops narrow the client ID at their call sites, and the Dark Falz Zako initializer keeps both original archive lookups.
+
+The source and fork workspace reproduce retail and pass the strict checker with 27,572 exact functions and 2,448 linked source units. The comparison with fork main keeps every exact and linked function and every non-padding and linked data range. The aggregate extent diagnostic is 2,549 alignment bytes omitted and 163 bytes newly covered. The 90 original ranges still account for all 1,147 bytes. There are zero Codex attribution entries in the 68 commits ahead of upstream. The fork workspace passes all 294 tooling tests, 11 layer tests and five host checks. Its overlay is byte-identical to the preceding snapshot. [Path decisions and validation](2026-11-20-osp-historical-source-closure.json)
+
+The older fork review index covers additional work beyond the cumulative snapshot. Its 713 partially reviewed or unreviewed entries still need disposition. The initial rescan on the current source found 682 changed bodies, 26 entries whose previously recorded owner path moved, and five build or other non-source entries. The upstream refreshes for #336–342 still await publication. The newer batches still need independent upstream bases before review.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
