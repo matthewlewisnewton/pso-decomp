@@ -1,0 +1,1832 @@
+{
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source": "234101fad4f13effe00c002e03e309e93191a9f1",
+  "previous": "fe698010e80d051edb12365044e82541f3d8ff32",
+  "source_paths": 1022,
+  "changed_since_previous": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/barbaray/TObjBoss7Tunnel.h",
+    "include/pso/boss/derolle/TBoss2Tentacle.h",
+    "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+    "include/pso/object/ambient/TObjFish.h",
+    "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+    "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+    "src/pso/effect/TBreakUpMdl.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp"
+  ],
+  "source_attribution": {
+    "author": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "source_comparison": {
+    "previous_record": "2026-11-21-upstream-358-overlap-followup.json",
+    "previous_record_sha256": "3e83dd21f9d098c22479bd65ce1a69131b0c911901d14cfff4844cf83ce73ffe",
+    "closed_here": 56,
+    "open": 0,
+    "total_closed": 142,
+    "paths": {
+      "config/GPOE8P/psov3/config.yml": {
+        "prior_fork_blob": "7467d4ec07d795090ef26756a72d9448a8aa6bc8",
+        "replay_blob": "4b716e30dbcecd6703778f4504925ff73a4ecc63",
+        "source_comparison": "All 43 prior force-active edits are generated labels with recoverable symbol addresses. The materialized workspace regenerates the list from the exact objects and passes the stale and missing name check."
+      },
+      "config/GPOE8P/psov3/symbols.txt": {
+        "prior_fork_blob": "760993191945f8b483523669d937ad51bdc09107",
+        "replay_blob": "c85b25c26f92a54d7d311c5d29df7f93564d7302",
+        "source_comparison": "All 436 edited addresses retain symbol coverage and matching attributes. Eight use upstream names for the same ranges and types."
+      },
+      "include/pso/boss/derolle/TBoss2Tentacle.h": {
+        "prior_fork_blob": "8415df6031022d021a2737e277dd32f48965147d",
+        "replay_blob": "777a8df37a371cc0c13c9b21e12f11ecb90d61d1",
+        "source_comparison": "The matching class already has the typed joint matrix, target Vec, state, and 14 segment records. All earlier layout assertions are now supplied with the upstream member names."
+      },
+      "include/pso/boss/derolle/TObjBoss2Tunnel.h": {
+        "prior_fork_blob": "47f3d6a449c692f6862e9758fa8666ea67c91c8a",
+        "replay_blob": "4635b5758faf3d7969eb940e24b899cf5147053a",
+        "source_comparison": "The unified PiecewiseCurve uses upstream member functions for initialization, current speed, sampling and advancement. The tunnel ground and particle entry points take the native Vec and TParticleCtrl arguments. Duplicate forward declarations are removed."
+      },
+      "include/pso/object/ambient/TObjFish.h": {
+        "prior_fork_blob": "7ae524ac614e8bb28d882cb048d6d04adeedf7e8",
+        "replay_blob": "7ec6b008578e2a3cbac59f1b8c571c1e3fa6cbae",
+        "source_comparison": "The old declarations represent functions now owned by the Barba Ray tunnel and raft splash, the Olga Flow wait task, and the shared texture setter. The two older unused declarations are removed, and both tunnel particle entry points use typed Vec arguments."
+      },
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp": {
+        "prior_fork_blob": "647b4a35e34d47380deefed92824e57e8d4d343c",
+        "replay_blob": "90c3c8e1894705a620e7abfd896e4323d9865d66",
+        "source_comparison": "The native object passes its rotation and own movement_velocity, calls model drawing from its owner, loads animation and motions through the shared resource and binds native battle params for both variants."
+      },
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": {
+        "prior_fork_blob": "966d46239ae4f958af3bb31e15b59961fad8b738",
+        "replay_blob": "5b84e1ae29b6775f5e1618f45a3811065d120a28",
+        "source_comparison": "Typed BML animations and stats are live. The particle and offset spawn paths call the typed tunnel owner, the camera data uses RadarMapViewState, and the rotation updates and capture texture draw use the native fields."
+      },
+      "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp": {
+        "prior_fork_blob": "c7dc977ae1318d5bc49c51b8520a901a2225181c",
+        "replay_blob": "6cc7bd441138972850289f54fc019d82dd18577f",
+        "source_comparison": "The constructor, splash position, emitter and detach calls use native objects. The two existing tunnel methods now take const Vec positions."
+      },
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp": {
+        "prior_fork_blob": "e6daab52787c62b89d5ae16e7f711a1b8d6220ba",
+        "replay_blob": "5ab21c6ca2351ee5e406a1130a68f7b0a5282eba",
+        "source_comparison": "The landed C++ owns the BML model, textures and motion handles, link-time cleanup, combat records, joint matrices, native tentacle and mine creation, particle entries and rotation fields. The historical hand-written wrappers and constructor declarations have C++ definitions at the same addresses."
+      },
+      "src/pso/boss/derolle/TBoss2Fin.cpp": {
+        "prior_fork_blob": "04bd35fa346bf6f6073b87fafea1a68c14f2ca2e",
+        "replay_blob": "2ade03908661e03d95bab9d56cddb786747d95b3",
+        "source_comparison": "The animation and render path uses TObjEZRopeSegment and assigns typed BML model pointers to its body and tip. The shared texture-list setter receives the De Rol Le resource entry."
+      },
+      "src/pso/boss/derolle/TBoss2Joint.cpp": {
+        "prior_fork_blob": "af615b74d03a55d046d77035294fafa5b0acfa30",
+        "replay_blob": "bf084b3fa9a94a98df0a8417e9664c56ec8077fb",
+        "source_comparison": "Native joint methods call the existing particle spawn function, use typed combat records in initialization and shell-break reload, and use the original owner and spawn positions."
+      },
+      "src/pso/boss/derolle/TBoss2Mine.cpp": {
+        "prior_fork_blob": "bd4cb439452461b7f82630b21ade01d2174e14f6",
+        "replay_blob": "2039a9fd8e5de7b3b43e311b765faf2d8c60979f",
+        "source_comparison": "The landed mine uses native BML and stats, takes both Vec launch arguments and preserves typed body-center, target, throw direction, speed and tilt fields across the state handler."
+      },
+      "src/pso/boss/derolle/TBoss2Tentacle.cpp": {
+        "prior_fork_blob": "5f7c428fc226e872da2e39efdf477481df9ba4ab",
+        "replay_blob": "5cd9040111c99b1416327019368be47d652e7095",
+        "source_comparison": "The state machine and segment motion use the named native layout. The landed render and arc implementations keep the constants, segments and state transitions. The resource handles now use the native BML motion and GinjaTextureList pointers. The byte-step expression in the arc preserves retail compiler output."
+      },
+      "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp": {
+        "prior_fork_blob": "fbfce0d33ceaf83bfee61003c5fd18c2dab2586a",
+        "replay_blob": "9f117a0858442808609c73e67dfd6ebe7b1940c4",
+        "source_comparison": "The dropped debris uses the native state, velocity, kind, bounce timer, ground normal and alpha. Its collisions, material color, exact bounce and shrink constants, and cleanup retain the previous behavior."
+      },
+      "src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp": {
+        "prior_fork_blob": "9a8e21b46e5616eeb68d3d30901dc6b568bef314",
+        "replay_blob": "25f4707ee0a6ed17d5df02f531e8ae2887ad3c8f",
+        "source_comparison": "The constructor takes the native Vec, and the resource and rendering texture are typed and loaded/freed through the landed owners."
+      },
+      "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp": {
+        "prior_fork_blob": "54317cc246ef34395deaddc4226c0e92774c0547",
+        "replay_blob": "7f2ae66b16c40a8ac0d97c51eb255b5ffa031ac2",
+        "source_comparison": "Both splash and tunnel effect entries use native positions and TParticleCtrl and detach or release children through their actual owner."
+      },
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": {
+        "prior_fork_blob": "d903b08865fe85f431b299bca479e18ff73137d7",
+        "replay_blob": "c1a142bcd5c4d2b12c0177267de53103bd3e2070",
+        "source_comparison": "The ground, camera transform and area sound paths use native arguments. PiecewiseCurve::init, speed_at, current_speed, sample and advance are the live implementations with the original constants and values."
+      },
+      "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp": {
+        "prior_fork_blob": "ef72f2fc3a2a1961744ec5f4fb697610be792929",
+        "replay_blob": "2be307c0ba1d6bb7c729158f847404201cf105af",
+        "source_comparison": "The landed tunnel uses PiecewiseCurve sway, typed NJS_OBJECT and BML nodes, TParticleCtrl and Ginja texture entries. The render restores the original entry pointer after the draw and uses the earlier model order."
+      },
+      "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": {
+        "prior_fork_blob": "2231549acc67133c1c5e2cb8f0bdf5109ee70354",
+        "replay_blob": "ee2c5b784774d31050c208b92a2d5bc116186d33",
+        "source_comparison": "The Barba Ray tunnel holds and queries its native PiecewiseCurve. The mode changes use the live methods, and the render supplies the native texture resource."
+      },
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": {
+        "prior_fork_blob": "56058e256f4f1e2ff7614308ae72ecf72afbf2ac",
+        "replay_blob": "d746eedeb87c9363d3602d975af9eac7cbf32300",
+        "source_comparison": "The turn, takeoff and root motion use typed yaw and destination vectors. The animated child call is on the typed child."
+      },
+      "src/pso/boss/olgaflow/TBoss6MagMine.cpp": {
+        "prior_fork_blob": "71bdee8eaec86d704a0591f464af4f3ca86a804f",
+        "replay_blob": "7ee416a19032bc52a9c812a55bac3dad2a114a7d",
+        "source_comparison": "The constructor now uses the native travel velocity, position and emitter members. Vector addition uses its shared declaration."
+      },
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp": {
+        "prior_fork_blob": "a5725e04b7b5742c43cef1ebbc5484c13cd0b711",
+        "replay_blob": "5ed295c001266d5431763c027115b21929713cac",
+        "source_comparison": "The breakup and event use the native typed texture, position and yaw, and the remaining body effects read the shared Vec."
+      },
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp": {
+        "prior_fork_blob": "ab33a206684ca6343c2dc1fa334b89e58161a496",
+        "replay_blob": "73d43fa558123d64f672e3c5774e3c1bb0979348",
+        "source_comparison": "The breakup, event and three player-target calculations use native body-center positions, yaw and the typed resource."
+      },
+      "src/pso/effect/TBreakUpMdl.cpp": {
+        "prior_fork_blob": "080b9a916aec1c1aac60149d304014cf9274cf14",
+        "replay_blob": "f8c6e9a6e4bdf56fd6b21fecdc36a1123e15d4a9",
+        "source_comparison": "The matrix calls now use their shared typed declarations. Node locations and velocities use the typed breakup records and the transform uses the native position input."
+      },
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": {
+        "prior_fork_blob": "94d2df63be3e38ce3ffd770239f6c83c3985b7b4",
+        "replay_blob": "a8c964d212e1be23ddd8055786a86d44cad20c10",
+        "source_comparison": "The landed body reaction, cursor and offset calculations use native body-center and collider members. Target lookup, velocities, wall motion, attack range, position markers and particles use the recovered actor and vector fields."
+      },
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": {
+        "prior_fork_blob": "9538f10dd8d1d32f9f5029ab96bee258246a472c",
+        "replay_blob": "9bd6e4282d83ec53fc45e605270dbe85d8e00bc2",
+        "source_comparison": "The landed claw uses the native body-center and body layout, photon reset, velocity, and typed target vectors for its wall motion and attack direction."
+      },
+      "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp": {
+        "prior_fork_blob": "216101850d9d457de43e5b1bc1e0c6a9d9ecc995",
+        "replay_blob": "48f96f98ce7d0c117f6f23b15767c312f50a49f3",
+        "source_comparison": "The original death transition is present at the current virtual name; target pursuit and positioning use the native target and body-center vectors."
+      },
+      "src/pso/enemy/dd/TObjEneDD.cpp": {
+        "prior_fork_blob": "81f0c74207ada8303cdb6f9f612a2466bae7b326",
+        "replay_blob": "a4258a564c2c75d2584c75fc11c840f1cc3ca399",
+        "source_comparison": "The photon reset now calls the inherited owner directly. The initializer uses the complete native velocity and body-center members. Turning and shot positioning already use the actual yaw and class method."
+      },
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": {
+        "prior_fork_blob": "681a7a2e8c1995b51194ac8dc24c967a77d4e00b",
+        "replay_blob": "711d112d69c52924e481aae1f6eba683e31668aa",
+        "source_comparison": "The states use the native destination direction and distance, body-center and yaw, turn the part rotation and emit the typed position effects through the actual setters."
+      },
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": {
+        "prior_fork_blob": "03430b2027844035cbdb56b3b79333487d653c20",
+        "replay_blob": "4f13cc8c86e4fc92436d29132f7e2088fc8d91f7",
+        "source_comparison": "The breakup and collider updates use native body-center and typed texture inputs. All four emitter position calls and the guards' collider offset use the native Vec."
+      },
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": {
+        "prior_fork_blob": "3041b4c514d13eadbd32a4078e3459e30283472c",
+        "replay_blob": "04a5a3f043b3856c32ce5eb739207d5415be4471",
+        "source_comparison": "The typed target direction, state fields, emitter ownership, body-center effects and debug line are present."
+      },
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp": {
+        "prior_fork_blob": "c324f4b298c614ead409b88f93f06a6bac295b56",
+        "replay_blob": "f822fb5d5f6764b923584193304ad790865f5254",
+        "source_comparison": "The handlers retain their native child flags, action fields, body and ground update calls. The target setter call takes the typed actor."
+      },
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": {
+        "prior_fork_blob": "f9ec31b6b1c19da2244865979fb1cb38f6e96ac7",
+        "replay_blob": "77892c662d31e82ff78290c5263a584465807b99",
+        "source_comparison": "The constructor and drawing use typed motion and texture data, and the shadow and collider methods read the native body-center."
+      },
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp": {
+        "prior_fork_blob": "4b809abf8acf3e8511b62fd493197f761329da55",
+        "replay_blob": "53f36ee3ed7066d1c09b1c555832c9bc355b3dfa",
+        "source_comparison": "The direction and sound updates use the live yaw, destination and body-center fields."
+      },
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": {
+        "prior_fork_blob": "d656515f70c2400655167c7109b95574db45694a",
+        "replay_blob": "adcdda00a341aeeb100c97c4858b8b913ccbab00",
+        "source_comparison": "The target attack tests and spell inputs use typed attack params and current_target. The heading, movement direction and collision probes use native layout members."
+      },
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": {
+        "prior_fork_blob": "a8d0e6850a683e454b0b5a7b5494e9518fe8a569",
+        "replay_blob": "98e0b6b82aadc42fb640b8ec34f8cb2d31fa962b",
+        "source_comparison": "The live movement, attack and placement routines use native target and body vectors, matrix calls and typed actor fields."
+      },
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp": {
+        "prior_fork_blob": "b034a2b7a9013843d62ae1b4ad8511a9eae03702",
+        "replay_blob": "180bc5e53e4f269e129c0af09401df58679f28ca",
+        "source_comparison": "The attack and steering calculations, typed target, cut and motion vectors, effect positions and actor refresh still use the native body and position members."
+      },
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": {
+        "prior_fork_blob": "cbd0af1e965b931bccd3cd4ca1ee2253db1ca9e2",
+        "replay_blob": "ce29a6c427ba35868dc96a37fc103e64cc5a7872",
+        "source_comparison": "All four remaining turn spans match after using upstream's rotation.yaw field and formatting."
+      },
+      "src/pso/enemy/moja/TObjEneMoja.cpp": {
+        "prior_fork_blob": "69ebd494c95d2a0eb2abf3243bb93687f51f2f80",
+        "replay_blob": "b7bdb8e3d8a79c70d1d4991e36a8ec4c5703a3fc",
+        "source_comparison": "The path, distance, damage radius and effect cases use native body-center and typed attack params."
+      },
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp": {
+        "prior_fork_blob": "bf1520e44bad230075356f009b7e0e177c7346a4",
+        "replay_blob": "8846c17035a74d9aad7c737a0fb0ab49f3da9409",
+        "source_comparison": "The native body-center assertion, fly height, render fade, movement velocity and obstacle path probes remain."
+      },
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp": {
+        "prior_fork_blob": "6f19cda4c3104510b81df65cb4a80a12ed320e0a",
+        "replay_blob": "37f0645c11259b34c6cd93a88cb4415b7b434273",
+        "source_comparison": "The native split parts use the correct track and yaw, named death reaction and native actor position for offset and draw."
+      },
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp": {
+        "prior_fork_blob": "a57d2470c62044b112a201031a0b436177db060f",
+        "replay_blob": "690adb818ca9f8fb9bdc5cd520e83773b5a7a181",
+        "source_comparison": "The motion logic uses the native ground-query member, visibility state, captured draw position and shadow height. The unused C shape and position offset casts are removed."
+      },
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": {
+        "prior_fork_blob": "4980348160518c265622912ff5cb188132c66638",
+        "replay_blob": "fed6433679baa47635b7341a34f223a20cf82c5b",
+        "source_comparison": "The seven remaining turn and collision spans use native destination_direction, destination_distance, current_target and rotation.yaw."
+      },
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": {
+        "prior_fork_blob": "9ee717353a08e232c047c02df6b0e54cbfcbc044",
+        "replay_blob": "26f3c130b5019c8ec5e8b25b8791e7304fc45ad8",
+        "source_comparison": "The target relative turn and attack threshold use current_target and typed attack data. Movement and collision calculations use native destination and rotation members."
+      },
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": {
+        "prior_fork_blob": "4b647cf84756f2dd143ab379bc46f35d750d9694",
+        "replay_blob": "d74d352cdcd79d48dd3d0087608d43ea0e5cd04d",
+        "source_comparison": "All seven emitter calls supply the live body_center Vec."
+      },
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": {
+        "prior_fork_blob": "8c18e211200d73c4178f012c0c22aaccfbb58d35",
+        "replay_blob": "372cbcd85c2eef61aac566668226dc6eb5699b56",
+        "source_comparison": "The distance and sight checks use native body-center and the turn handlers use the existing target direction and yaw fields."
+      },
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": {
+        "prior_fork_blob": "24b1ee12a15c6e1ce7c558c60b0a7214c7aa3c44",
+        "replay_blob": "298fcaaa3fc1c4746b36e0bd59fa97cc423ccab5",
+        "source_comparison": "The state functions use native direction and distance fields, the typed current_target, native actor angles and typed attack params."
+      },
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": {
+        "prior_fork_blob": "3ff92510bfa02ab13d26bc655b6bff29099a55bd",
+        "replay_blob": "dce8b5dfef6c4dc6a874fd7989eb78bd44538bef",
+        "source_comparison": "The wolf's movement and target yaw use the landed typed direction fields. Both debug lines read native body-center vectors."
+      },
+      "src/pso/npc/TNpcPlayer.cpp": {
+        "prior_fork_blob": "fea8075bce630b53410bf2b6fa0c4787bba5a0ca",
+        "replay_blob": "6007b4ff5477d7c77a8ab4e03e386696155b62f4",
+        "source_comparison": "All ten body-center spans, including both route and clip calls, use the native field from the typed actor."
+      },
+      "src/pso/object/ambient/TObjFish.cpp": {
+        "prior_fork_blob": "eb3922a7a54dcabbb2d7860471384bcc6720136f",
+        "replay_blob": "fcfb5ca6749c75233d46584188dc2489bb46387a",
+        "source_comparison": "All six rendering calls supply the typed BML texture list to the shared setter."
+      },
+      "src/pso/player/TObjPlayer_80011014.cpp": {
+        "prior_fork_blob": "b0ef153b293f16ef94fc9a4a2e0197cffb96b4f8",
+        "replay_blob": "207c23d20ad9a728c22a749e9bfa8fcaa7611365",
+        "source_comparison": "The shared entity lookup header supplies the typed lookup. The four collision, movement and emitter sites read the native body-center."
+      },
+      "src/pso/player/TObjPlayer_8002E784.cpp": {
+        "prior_fork_blob": "1365146b9bfc9f71c669d8da51df03195e0f6c65",
+        "replay_blob": "490c8fce035e55aa37bc46d9563e6978fc1689bb",
+        "source_comparison": "The breakup and draw paths use the native De Rol Le BML resource, its typed NJS objects, mesh child and Ginja texture data."
+      },
+      "src/pso/player/TObjPlayer_801542CC.cpp": {
+        "prior_fork_blob": "fa2f0faf35c300b6b606667282d0a783b5d664b6",
+        "replay_blob": "30a08497b030e8c7e23c9000fd917ba6043a82f6",
+        "source_comparison": "The temporary fake contact layouts and duplicate registry declaration are absent. The shared registry uses a TObjCollidable pointer array and caller data is typed at its true owner."
+      },
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp": {
+        "prior_fork_blob": "473cc76f26e1534763119fae511457251acd0c9a",
+        "replay_blob": "31827cf9c4bbcfebefd535fd856f6828347f3a94",
+        "source_comparison": "The source uses the common texture-list header and all three remaining calls use the typed setter."
+      },
+      "src/pso/ui/hud/TRaderMapCore.cpp": {
+        "prior_fork_blob": "991db59228782eaf21d650c28f973f22f590fe17",
+        "replay_blob": "43fbbee932c94d0bb714e99aa3ef111f97f39eb3",
+        "source_comparison": "The render uses the shared texture setter. The remaining camera position access uses the RadarMapViewState member."
+      },
+      "src/pso/unk/text_802F190C.cpp": {
+        "prior_fork_blob": "aa63d1680d3044b3892271106611a54476533180",
+        "replay_blob": "0affc51d8bb41368635937295dbe9b28f5720c41",
+        "source_comparison": "Both tunnel child traversal functions use the real particle holder, typed Vec step and real parent task for reattachment."
+      }
+    }
+  },
+  "config": {
+    "formerly_changed_symbol_addresses": 436,
+    "identical_entries": 428,
+    "upstream_label_at_matching_address_and_attributes": [
+      {
+        "address": ".text:0x8007DD70",
+        "prior_upstream": {
+          "advance_phase__15TObjBoss2TunnelFPf": "type:function size:0x40"
+        },
+        "prior_review": {
+          "advance_phase__14PiecewiseCurveFPf": "type:function size:0x40"
+        },
+        "replay": {
+          "advance__14PiecewiseCurveFPf": "type:function size:0x40"
+        },
+        "category": "different label, same attributes"
+      },
+      {
+        "address": ".text:0x8007DE5C",
+        "prior_upstream": {
+          "update_position__15TObjBoss2TunnelFv": "type:function size:0x24"
+        },
+        "prior_review": {
+          "update_position__14PiecewiseCurveFv": "type:function size:0x24"
+        },
+        "replay": {
+          "current_speed__14PiecewiseCurveFv": "type:function size:0x24"
+        },
+        "category": "different label, same attributes"
+      },
+      {
+        "address": ".text:0x8007DE80",
+        "prior_upstream": {
+          "eval_piecewise_curve__15TObjBoss2TunnelFf": "type:function size:0x64"
+        },
+        "prior_review": {
+          "eval_piecewise_curve__14PiecewiseCurveFf": "type:function size:0x64"
+        },
+        "replay": {
+          "speed_at__14PiecewiseCurveFf": "type:function size:0x64"
+        },
+        "category": "different label, same attributes"
+      },
+      {
+        "address": ".text:0x8009B274",
+        "prior_upstream": {
+          "vfunc_117__23TObjEneMe1CanadinLeaderFUl": "type:function size:0x14C"
+        },
+        "prior_review": {
+          "vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin": "type:function size:0x14C"
+        },
+        "replay": {
+          "remove_member__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin": "type:function size:0x14C"
+        },
+        "category": "different label, same attributes"
+      },
+      {
+        "address": ".text:0x8009E2FC",
+        "prior_upstream": {
+          "vfunc_117__17TObjEneMe1CanadinFUl": "type:function size:0x4"
+        },
+        "prior_review": {
+          "vfunc_117__17TObjEneMe1CanadinFP17TObjEneMe1Canadin": "type:function size:0x4"
+        },
+        "replay": {
+          "remove_member__17TObjEneMe1CanadinFP17TObjEneMe1Canadin": "type:function size:0x4"
+        },
+        "category": "different label, same attributes"
+      },
+      {
+        "address": ".text:0x802F178C",
+        "prior_upstream": {
+          "spawn_default_particle__8TObjFishFll": "type:function size:0x24"
+        },
+        "prior_review": {
+          "spawn_default_particle__8TObjFishFPC3Vecl": "type:function size:0x24"
+        },
+        "replay": {
+          "create_particle__15TObjBoss7TunnelFPC3Vecl": "type:function size:0x24"
+        },
+        "category": "different label, same attributes"
+      },
+      {
+        "address": ".text:0x802F17B0",
+        "prior_upstream": {
+          "create_splash_particle__8TObjFishFlll": "type:function size:0x98"
+        },
+        "prior_review": {
+          "create_splash_particle__8TObjFishFPC3VeclPC3Vec": "type:function size:0x98"
+        },
+        "replay": {
+          "spawn_splash__19TObjBoss7RaftSplashFPC3VeclPC3Vec": "type:function size:0x98"
+        },
+        "category": "different label, same attributes"
+      },
+      {
+        "address": ".text:0x802F1848",
+        "prior_upstream": {
+          "spawn_particle__8TObjFishFllf": "type:function size:0xA0"
+        },
+        "prior_review": {
+          "spawn_particle__8TObjFishFPC3Veclf": "type:function size:0xA0"
+        },
+        "replay": {
+          "create_particle_effect__15TObjBoss7TunnelFPC3Veclf": "type:function size:0xA0"
+        },
+        "category": "different label, same attributes"
+      }
+    ],
+    "historical_force_active_address_correspondence": [
+      [
+        "clear_unread__14ShortMailEntryFv",
+        ".text:0x80225C8C",
+        {
+          "clear_unread__14ShortMailEntryFv": "type:function size:0x10"
+        }
+      ],
+      [
+        "vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin",
+        ".text:0x8009B274",
+        {
+          "remove_member__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin": "type:function size:0x14C"
+        }
+      ],
+      [
+        "sub_8009EB14__17TObjEneMe1CanadinFf",
+        ".text:0x8009EB14",
+        {
+          "sub_8009EB14__17TObjEneMe1CanadinFf": "type:function size:0x58"
+        }
+      ],
+      [
+        "sub_8009EB98__17TObjEneMe1CanadinFf",
+        ".text:0x8009EB98",
+        {
+          "sub_8009EB98__17TObjEneMe1CanadinFf": "type:function size:0x68"
+        }
+      ],
+      [
+        "__ct__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue",
+        ".text:0x80325BCC",
+        {
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue": "type:function size:0xF4"
+        }
+      ],
+      [
+        "__ct__15TObjEneMe1GiGueFP7TObjectPv",
+        ".text:0x802CD7F8",
+        {
+          "__ct__15TObjEneMe1GiGueFP7TObjectPv": "type:function size:0x2BC"
+        }
+      ],
+      [
+        "sub_802CB03C__15TObjEneMe1GiGueFv",
+        ".text:0x802CB03C",
+        {
+          "sub_802CB03C__15TObjEneMe1GiGueFv": "type:function size:0xD0"
+        }
+      ],
+      [
+        "sub_802CB10C__15TObjEneMe1GiGueFv",
+        ".text:0x802CB10C",
+        {
+          "sub_802CB10C__15TObjEneMe1GiGueFv": "type:function size:0x64"
+        }
+      ],
+      [
+        "sub_802CB378__15TObjEneMe1GiGueFv",
+        ".text:0x802CB378",
+        {
+          "sub_802CB378__15TObjEneMe1GiGueFv": "type:function size:0x228"
+        }
+      ],
+      [
+        "sub_802CB824__15TObjEneMe1GiGueFl",
+        ".text:0x802CB824",
+        {
+          "sub_802CB824__15TObjEneMe1GiGueFl": "type:function size:0xCC"
+        }
+      ],
+      [
+        "sub_802CC45C__15TObjEneMe1GiGueFv",
+        ".text:0x802CC45C",
+        {
+          "sub_802CC45C__15TObjEneMe1GiGueFv": "type:function size:0x1B8"
+        }
+      ],
+      [
+        "sub_802CC614__15TObjEneMe1GiGueFv",
+        ".text:0x802CC614",
+        {
+          "sub_802CC614__15TObjEneMe1GiGueFv": "type:function size:0x2EC"
+        }
+      ],
+      [
+        "sub_802CC900__15TObjEneMe1GiGueFv",
+        ".text:0x802CC900",
+        {
+          "sub_802CC900__15TObjEneMe1GiGueFv": "type:function size:0x2AC"
+        }
+      ],
+      [
+        "sub_802CCBAC__15TObjEneMe1GiGueFv",
+        ".text:0x802CCBAC",
+        {
+          "sub_802CCBAC__15TObjEneMe1GiGueFv": "type:function size:0x2A4"
+        }
+      ],
+      [
+        "open_recipient_search__19TWindowSubShortMailFv",
+        ".text:0x8027E620",
+        {
+          "open_recipient_search__19TWindowSubShortMailFv": "type:function size:0x3C"
+        }
+      ],
+      [
+        "set_replied__14ShortMailEntryFv",
+        ".text:0x8027FAD0",
+        {
+          "set_replied__14ShortMailEntryFv": "type:function size:0x20"
+        }
+      ],
+      [
+        "__ct__14TObjWarpStringFP7TObjectPCcUs",
+        ".text:0x8019B854",
+        {
+          "__ct__14TObjWarpStringFP7TObjectPCcUs": "type:function size:0x84"
+        }
+      ],
+      [
+        "action__15TObjEneMe1GiGueFv",
+        ".text:0x802CC350",
+        {
+          "action__15TObjEneMe1GiGueFv": "type:function size:0x10C"
+        }
+      ],
+      [
+        "check_finished__10MovieStateFv",
+        ".text:0x80143ECC",
+        {
+          "check_finished__10MovieStateFv": "type:function size:0x30"
+        }
+      ],
+      [
+        "collect_plist_strips_by_texture__FP15StripBufferPairPsl",
+        ".text:0x800F591C",
+        {
+          "collect_plist_strips_by_texture__FP15StripBufferPairPsl": "type:function size:0x134"
+        }
+      ],
+      [
+        "copy__14MovieFrameInfoFPC14MovieFrameInfo",
+        ".text:0x80144250",
+        {
+          "copy__14MovieFrameInfoFPC14MovieFrameInfo": "type:function size:0x84"
+        }
+      ],
+      [
+        "count_plist_strips_by_texture__FP15StripBufferPairPsl",
+        ".text:0x800F5AC8",
+        {
+          "count_plist_strips_by_texture__FP15StripBufferPairPsl": "type:function size:0xF8"
+        }
+      ],
+      [
+        "damage_players_near_point__FP11TObjDFJisinP3Vec",
+        ".text:0x80050D74",
+        {
+          "damage_players_near_point__FP11TObjDFJisinP3Vec": "type:function size:0xF0"
+        }
+      ],
+      [
+        "__dt__15TObjEneMe1GiGueFv",
+        ".text:0x802CD780",
+        {
+          "__dt__15TObjEneMe1GiGueFv": "type:function size:0x78"
+        }
+      ],
+      [
+        "draw_arrows__18TWindowInputNumberFP17WindowDrawContextP13TUnk_804CF9C8i",
+        ".text:0x802563A0",
+        {
+          "draw_arrows__18TWindowInputNumberFP17WindowDrawContextP13TUnk_804CF9C8i": "type:function size:0x278"
+        }
+      ],
+      [
+        "draw_object_tree__11TObjDoaEx01FP10NJS_OBJECT",
+        ".text:0x8018DD0C",
+        {
+          "draw_object_tree__11TObjDoaEx01FP10NJS_OBJECT": "type:function size:0x104"
+        }
+      ],
+      [
+        "enter_chg_game_mode__13TUnk_804EEF64Fv",
+        ".text:0x8033627C",
+        {
+          "enter_chg_game_mode__13TUnk_804EEF64Fv": "type:function size:0x28"
+        }
+      ],
+      [
+        "enter_game_mode_change__13TUnk_804EEF64Fv",
+        ".text:0x80336254",
+        {
+          "enter_game_mode_change__13TUnk_804EEF64Fv": "type:function size:0x28"
+        }
+      ],
+      [
+        "fade_and_destroy__14TObjWarpStringFv",
+        ".text:0x8019B6E4",
+        {
+          "fade_and_destroy__14TObjWarpStringFv": "type:function size:0x44"
+        }
+      ],
+      [
+        "find_open_direction__15TObjEneMe1GiGueFP3Vec",
+        ".text:0x802CAD98",
+        {
+          "find_open_direction__15TObjEneMe1GiGueFP3Vec": "type:function size:0x18C"
+        }
+      ],
+      [
+        "get_flags__14ShortMailEntryFv",
+        ".text:0x8027FAF8",
+        {
+          "get_flags__14ShortMailEntryFv": "type:function size:0x8"
+        }
+      ],
+      [
+        "get_body__14ShortMailEntryFv",
+        ".text:0x8027FAF0",
+        {
+          "get_body__14ShortMailEntryFv": "type:function size:0x8"
+        }
+      ],
+      [
+        "init__15TObjEneMe1GiGueFv",
+        ".text:0x802CB274",
+        {
+          "init__15TObjEneMe1GiGueFv": "type:function size:0x104"
+        }
+      ],
+      [
+        "is_active__14ShortMailEntryFv",
+        ".text:0x80225C9C",
+        {
+          "is_active__14ShortMailEntryFv": "type:function size:0xC"
+        }
+      ],
+      [
+        "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot",
+        ".text:0x801A8618",
+        {
+          "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot": "type:function size:0xC8"
+        }
+      ],
+      [
+        "__vt__15TObjEneMe1GiGue",
+        ".data:0x804E135C",
+        {
+          "__vt__15TObjEneMe1GiGue": "type:object size:0x14C"
+        }
+      ],
+      [
+        "open_keyboard__13TUnk_804EEF64Fv",
+        ".text:0x80336200",
+        {
+          "open_keyboard__13TUnk_804EEF64Fv": "type:function size:0x2C"
+        }
+      ],
+      [
+        "refill_gstream_buffer__FP10AdxfHandle",
+        ".text:0x800FE0C8",
+        {
+          "refill_gstream_buffer__FP10AdxfHandle": "type:function size:0x8C"
+        }
+      ],
+      [
+        "request_change_game_mode__13TUnk_804EEF64Fv",
+        ".text:0x8033622C",
+        {
+          "request_change_game_mode__13TUnk_804EEF64Fv": "type:function size:0x28"
+        }
+      ],
+      [
+        "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB",
+        ".text:0x8009E474",
+        {
+          "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB": "type:function size:0x38"
+        }
+      ],
+      [
+        "set_flag_and_clear_download__13TUnk_804EEF64Fv",
+        ".text:0x803361C4",
+        {
+          "set_flag_and_clear_download__13TUnk_804EEF64Fv": "type:function size:0x38"
+        }
+      ],
+      [
+        "stop_if_advanced__10MovieStateFv",
+        ".text:0x80143E90",
+        {
+          "stop_if_advanced__10MovieStateFv": "type:function size:0x3C"
+        }
+      ],
+      [
+        "update_fade_in__14TObjWarpStringFv",
+        ".text:0x8019B744",
+        {
+          "update_fade_in__14TObjWarpStringFv": "type:function size:0x38"
+        }
+      ]
+    ]
+  },
+  "historical_comparisons": {
+    "open": 511,
+    "comparison_merge_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+    "formerly_unmatched_additions": 145,
+    "predecessor_candidates": 93,
+    "exact_translation_unit_range_matches": 17,
+    "split_folded_or_new": 52,
+    "addition_lineage": {
+      "230": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowKeyBoardBase.cpp",
+        "current_path": "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "predecessor": "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "base_blob": "81872cb4ad8868fcb9957b88243f2c9a7188dcbd"
+      },
+      "232": {
+        "type": "unique common ancestor basename",
+        "fork_path": "src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp",
+        "current_path": "src/pso/ui/window/WindowDrawContext.cpp",
+        "predecessor": "src/pso/ui/window/TWindowKeyBoardSoft_8024E68C.cpp",
+        "base_blob": "633480bcc81dc25cdc9b556e407a3a1c97ab5b96"
+      },
+      "404": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/boss/TBoss7DeRolLeC.h",
+        "current_path": "include/pso/boss/barbaray/TBoss7DeRolLeC.h",
+        "predecessor": "include/pso/boss/barbaray/TBoss7DeRolLeC.h",
+        "base_blob": "4236fcbc4f1b3a9f4d8345c1e66342d2e33cd93e"
+      },
+      "424": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/boss/TObjBoss2Tunnel.h",
+        "current_path": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "predecessor": "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+        "base_blob": "b459c66d035c23c64ede1e008555f5fdac22c1bd"
+      },
+      "447": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/enemy/TObjEneBm3FlyNest.h",
+        "current_path": "include/pso/enemy/fly/TObjEneBm3FlyNest.h",
+        "predecessor": "include/pso/enemy/fly/TObjEneBm3FlyNest.h",
+        "base_blob": "c6de1fe5fca1f8931fde466a945fb789c361dce2"
+      },
+      "453": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/enemy/TObjEneGibbles.h",
+        "current_path": "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "predecessor": "include/pso/enemy/gibbles/TObjEneGibbles.h",
+        "base_blob": "74362894573a3e5491d5ff0e46b98058b00a1bd7"
+      },
+      "456": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/enemy/TObjEneMe1Canadin.h",
+        "current_path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "predecessor": "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+        "base_blob": "1476bbbc210c26450043638f5b059783d3d98e42"
+      },
+      "458": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/enemy/TObjEneMe1Gee.h",
+        "current_path": "include/pso/enemy/gee/TObjEneMe1Gee.h",
+        "predecessor": "include/pso/enemy/gee/TObjEneMe1Gee.h",
+        "base_blob": "538ace86f53424e2bc9dc39bf29c2a3c73fc005a"
+      },
+      "459": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/enemy/TObjEneMe1GiGue.h",
+        "current_path": "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+        "predecessor": "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+        "base_blob": "8a1cf2d7f201ea7bbb1ec976fca2f0084c70a4bd"
+      },
+      "463": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/enemy/TObjEneMorfos.h",
+        "current_path": "include/pso/enemy/morfos/TObjEneMorfos.h",
+        "predecessor": "include/pso/enemy/morfos/TObjEneMorfos.h",
+        "base_blob": "35a52dec92d9e75de1d8c99a179ef277b9ef425f"
+      },
+      "467": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/enemy/TObjEneRe2Flower.h",
+        "current_path": "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+        "predecessor": "include/pso/enemy/flower/TObjEneRe2Flower.h",
+        "base_blob": "c1ad4ada369ff6cef53820c408501b682fa25cac"
+      },
+      "476": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/enemy/TObjEneShark.h",
+        "current_path": "src/pso/enemy/shark/TObjEneShark.cpp",
+        "predecessor": "include/pso/enemy/shark/TObjEneShark.h",
+        "base_blob": "89f913549680be7c4f0295730022a66364f556ba"
+      },
+      "520": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/boss/TBoss6PlotFalz_802B0228.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+        "predecessor": "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+        "base_blob": "b838be09dea66e2f822fc134ea560dd36bb865ae"
+      },
+      "521": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/boss/TBoss6Type1.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "predecessor": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "base_blob": "d55aef06b60671121ab659e907c837e077220d99"
+      },
+      "522": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/boss/TBoss6Type1_802B20C0.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+        "predecessor": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+        "base_blob": "6f5bfab3a34637bab75a7597f766a42666220ba2"
+      },
+      "531": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/boss/TBoss8Dragon_8002CC48.cpp",
+        "current_path": "src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp",
+        "predecessor": "src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp",
+        "base_blob": "317e04add7df3473db7edb537f1343971ca5e178"
+      },
+      "540": {
+        "type": "unique common ancestor basename",
+        "fork_path": "src/pso/boss/TBoss8Dragon_802FDDD4.cpp",
+        "current_path": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "predecessor": "src/pso/boss/goldragon/TBoss8Dragon_802FDDD4.cpp",
+        "base_blob": "63618eec7278e19c738cae2df9fcece47fd0b6a1"
+      },
+      "565": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+        "current_path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "predecessor": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "base_blob": "f7847fac207188376994dd966b4e0bfaa42b0f3a"
+      },
+      "586": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+        "current_path": "src/pso/enemy/dd/TObjEneDD.cpp",
+        "predecessor": null
+      },
+      "587": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneGibbles.cpp",
+        "current_path": "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "predecessor": "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "base_blob": "58cdd9f32eda5fffb0ea3b5ea887431ba5ce6637"
+      },
+      "588": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneGyaranzo.cpp",
+        "current_path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+        "predecessor": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+        "base_blob": "f0826f4966ec6ca3f93c8faa725a92ec341a2077"
+      },
+      "589": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneMe1Canadin.cpp",
+        "current_path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "predecessor": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "base_blob": "db5ca4dc97f8411ad34ad3f2d4b53a7db0234955"
+      },
+      "590": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneMe1Gee.cpp",
+        "current_path": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "predecessor": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "base_blob": "b517c930ae6a227d056a64f0f810db9137340205"
+      },
+      "591": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneMe1GiGue.cpp",
+        "current_path": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+        "predecessor": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+        "base_blob": "a0f30ccff0569a02900895ad31f1c42e8d3e7a63"
+      },
+      "597": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/enemy/TObjEneMe3Stelth_800F0EC4.cpp",
+        "current_path": "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "predecessor": null
+      },
+      "598": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneMerillLia.cpp",
+        "current_path": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "predecessor": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "base_blob": "dd489de0c459087d326a5865afae554de0163faa"
+      },
+      "599": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneMorfos.cpp",
+        "current_path": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "predecessor": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "base_blob": "3753cfbacd29d50a53bc15e167a039665b5edfa0"
+      },
+      "603": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEnePanarms.cpp",
+        "current_path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "predecessor": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "base_blob": "3e9ed2b7c1baddf10b8900840461a727795f40de"
+      },
+      "604": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp",
+        "current_path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+        "predecessor": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+        "base_blob": "9595d7e27849f999454be9658dd32b52d75821e7"
+      },
+      "607": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/enemy/TObjEneRe2Flower_800C3E14.cpp",
+        "current_path": "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+        "predecessor": "src/pso/enemy/flower/TObjEneRe2Flower_800C3E14.cpp",
+        "base_blob": "f50322d3966abb0c570880449115f974b7ee2049"
+      },
+      "608": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "current_path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+        "predecessor": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+        "base_blob": "9b261c760d7038a9185a2ed3c8cac558784024b3"
+      },
+      "621": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+        "current_path": "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "predecessor": null
+      },
+      "629": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/enemy/TObjEneRecon_8031DFD0.cpp",
+        "current_path": "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "predecessor": null
+      },
+      "635": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneShark.cpp",
+        "current_path": "src/pso/enemy/shark/TObjEneShark.cpp",
+        "predecessor": "src/pso/enemy/shark/TObjEneShark.cpp",
+        "base_blob": "ba252a80b12be595bf59a2767dad8d7b129d64d2"
+      },
+      "636": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/enemy/TObjEneSlimeOne_800EC394.cpp",
+        "current_path": "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+        "predecessor": "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+        "base_blob": "40356ad8011893ab5947c3eeda0482b754fa0376"
+      },
+      "637": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+        "current_path": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "predecessor": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "base_blob": "5d356800706b82104f4a4cdaec50b0371a6f3a88"
+      },
+      "652": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_8002E174.cpp",
+        "current_path": "src/pso/boss/dragon/TObjBoss1Rock.cpp",
+        "predecessor": null
+      },
+      "2114": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/TAdTimeSetGC.h",
+        "current_path": "include/pso/ui/frontend/TAdTimeSetGC.h",
+        "predecessor": "include/pso/ui/frontend/TAdTimeSetGC.h",
+        "base_blob": "a35c1a2713aab679b2b6b1bffc1e57acb5f41fdc"
+      },
+      "2166": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/ui/TAdChrSelPlyPlateGC.h",
+        "current_path": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+        "predecessor": "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+        "base_blob": "8b5cdf5fa0cbfcd755aefeda2e34438f2a1c0eb4"
+      },
+      "2170": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/ui/TAdEnterPasswordGC.h",
+        "current_path": "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+        "predecessor": "include/pso/ui/frontend/TAdEnterPasswordGC.h",
+        "base_blob": "49424caa17b3bcbe92a54da68dea56ad3ed36cb4"
+      },
+      "2208": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/menu/TAdRicoRing.cpp",
+        "current_path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+        "predecessor": null
+      },
+      "2216": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TChCrTagInformationStr.cpp",
+        "current_path": "src/pso/ui/charcreate/TChCrTagInformationStr.cpp",
+        "predecessor": "src/pso/ui/charcreate/TChCrTagInformationStr.cpp",
+        "base_blob": "45cc166d6f9a47ecddce14d5aa1472509d161274"
+      },
+      "2218": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TChCrTagPlGraphic.cpp",
+        "current_path": "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp",
+        "predecessor": "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp",
+        "base_blob": "dae21580229c649304a10bf1bd80a187dc440f9b"
+      },
+      "2229": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TLockOnCursor_8013D91C.cpp",
+        "current_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "predecessor": null
+      },
+      "2259": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TQuestListOnline_802150E8.cpp",
+        "current_path": "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "predecessor": null
+      },
+      "2262": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TShopSequence.cpp",
+        "current_path": "src/pso/ui/city/TShopSequence.cpp",
+        "predecessor": "src/pso/ui/city/TShopSequence.cpp",
+        "base_blob": "57e17553c44503dec92ce30f611cb86d4cdef396"
+      },
+      "2269": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/player/THunterGuildSeqOnlineTask.cpp",
+        "current_path": "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "predecessor": "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "base_blob": "333b346e1eb752b56d91598fd5ce9d9b04b24ee7"
+      },
+      "2275": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/ui/TAdChrSelBSlotGC_8030E354.cpp",
+        "current_path": "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+        "predecessor": null
+      },
+      "2295": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+        "current_path": "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp",
+        "predecessor": "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp",
+        "base_blob": "2aeac29ce3227ea049b5643e2041e6fa3af09d19"
+      },
+      "2296": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/ui/TAdPlyPltAnimGC.cpp",
+        "current_path": "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp",
+        "predecessor": "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp",
+        "base_blob": "e167db1fd25e17bc86d093b88f9b7693167411ac"
+      },
+      "2317": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_8029A6EC.cpp",
+        "current_path": "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+        "predecessor": null
+      },
+      "2323": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_803367F4.cpp",
+        "current_path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+        "predecessor": null
+      },
+      "2728": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TLobby_80226070.cpp",
+        "current_path": "src/pso/unk/TLobby_80226070.cpp",
+        "predecessor": "src/pso/unk/TLobby_80226070.cpp",
+        "base_blob": "eb191720c3ea3712bd301d7d650b496456a33a5f"
+      },
+      "2936": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/misc/TLobby_80428374.h",
+        "current_path": "src/pso/network/TLobby_80428374.c",
+        "predecessor": "include/pso/network/TLobby_80428374.h",
+        "base_blob": "ef9d7c249fd0111b761fb94ac4fc68adb2f2a321"
+      },
+      "2943": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/network/DhcpClient.h",
+        "current_path": "include/pso/network/NetDhcp.h",
+        "predecessor": null
+      },
+      "2948": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/network/NetworkReceiveCallback.h",
+        "current_path": "include/pso/network/UdpRuntime.h",
+        "predecessor": null
+      },
+      "2959": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/protocol/PppConfigure.h",
+        "current_path": "include/pso/network/TLobby_803FC178.h",
+        "predecessor": null
+      },
+      "2960": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/protocol/PppControlRuntime.h",
+        "current_path": "include/pso/network/PppFsm.h",
+        "predecessor": null
+      },
+      "2962": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TLobby_803F8794.cpp",
+        "current_path": "src/pso/network/TLobby_803F86BC.c",
+        "predecessor": null
+      },
+      "2963": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TLobby_803FAEA0.cpp",
+        "current_path": "src/pso/network/TLobby_803FAEA0.c",
+        "predecessor": "src/pso/network/TLobby_803FAEA0.c",
+        "base_blob": "f0ae97ae881058f21921c77e2ada48982a5c3b0f"
+      },
+      "2964": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TLobby_803FC178.cpp",
+        "current_path": "src/pso/network/PppIpcp.c",
+        "predecessor": null
+      },
+      "2965": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TLobby_804048E8.cpp",
+        "current_path": "src/pso/network/TLobby_804048E8.c",
+        "predecessor": "src/pso/network/TLobby_804048E8.c",
+        "base_blob": "e3f5753ca5417e0cb365e09754211443db1c047d"
+      },
+      "2966": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TLobby_804050DC.cpp",
+        "current_path": "src/pso/network/NetDns.c",
+        "predecessor": null
+      },
+      "2967": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TLobby_8040FF0C.cpp",
+        "current_path": "src/pso/network/NetIpv6.c",
+        "predecessor": null
+      },
+      "2968": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TLobby_8041112C.cpp",
+        "current_path": "src/pso/network/TLobby_8041112C.c",
+        "predecessor": "src/pso/network/TLobby_8041112C.c",
+        "base_blob": "9f10193bec265427af5d91906688a692a9c81e30"
+      },
+      "2969": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TLobby_80428374.cpp",
+        "current_path": "src/pso/network/TLobby_80428374.c",
+        "predecessor": null
+      },
+      "2974": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/network/NetUdp.cpp",
+        "current_path": "src/pso/network/NetUdp.c",
+        "predecessor": null
+      },
+      "2975": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/network/NetworkConfigLifecycle.cpp",
+        "current_path": "src/pso/unk/text_803F3BF8.cpp",
+        "predecessor": null
+      },
+      "2976": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/network/NetworkMessageTransport.cpp",
+        "current_path": "src/pso/network/NetworkMessageTransport.c",
+        "predecessor": null
+      },
+      "2977": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/network/NetworkTransport.cpp",
+        "current_path": "src/pso/network/NetworkTransport.c",
+        "predecessor": null
+      },
+      "2978": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/network/SocketProtocolRuntime.cpp",
+        "current_path": "src/pso/network/SocketProtocolRuntime.c",
+        "predecessor": null
+      },
+      "2979": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/network/TcpProtocol.cpp",
+        "current_path": "src/pso/network/NetTcp.c",
+        "predecessor": "src/pso/network/NetTcp.c",
+        "base_blob": "e86d0a27920994163ecadd718541e6acf3d280bd"
+      },
+      "2980": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/protocol/NetworkRuntime.cpp",
+        "current_path": "src/pso/network/NetworkThreadRuntime.c",
+        "predecessor": null
+      },
+      "2981": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_80421620.cpp",
+        "current_path": "src/pso/network/text_80421620.c",
+        "predecessor": null
+      },
+      "3088": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_801036CC.cpp",
+        "current_path": "src/pso/unk/TLobby_80103F5C.cpp",
+        "predecessor": null
+      },
+      "3090": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/misc/LobbyNetworkInternal.h",
+        "current_path": "include/pso/network/NetworkRuntime.h",
+        "predecessor": null
+      },
+      "3093": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TLobby_8011B010.cpp",
+        "current_path": "src/pso/unk/text_8011A780.cpp",
+        "predecessor": "src/pso/unk/TLobby_8011B010.cpp",
+        "base_blob": "ddc5f9200421ee69ef585a1d00bac387a1a062f4"
+      },
+      "3181": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/TItemList.h",
+        "current_path": "src/pso/player/TPlyItem.cpp",
+        "predecessor": "include/pso/item/TItemList.h",
+        "base_blob": "e114edf33c4585ad93fbfe1118e080a95652ddfc"
+      },
+      "3423": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/player/TObjPlayer_802D5B78.h",
+        "current_path": "include/pso/player/TObjPlayer_802D5174.h",
+        "predecessor": null
+      },
+      "3600": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/item/TItemList_801D3780.cpp",
+        "current_path": "src/pso/player/TPlyItem.cpp",
+        "predecessor": null
+      },
+      "3632": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TCameraCtrl_80082FCC.cpp",
+        "current_path": "src/pso/player/TObjPlayer_80083594.cpp",
+        "predecessor": null
+      },
+      "3637": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp",
+        "current_path": "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "predecessor": null
+      },
+      "3648": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/player/TItemWeaponFist.cpp",
+        "current_path": "src/pso/weapon/TItemWeaponFist.cpp",
+        "predecessor": "src/pso/weapon/TItemWeaponFist.cpp",
+        "base_blob": "c984202fb9d922d30109176fe526ea2f1de70967"
+      },
+      "3653": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/player/TObjPlayer_80083B38.cpp",
+        "current_path": "src/pso/player/TObjPlayer_80083594.cpp",
+        "predecessor": null
+      },
+      "3682": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/player/TObjPlayer_801225F8.cpp",
+        "current_path": "src/pso/weapon/TUnk_804A1098.cpp",
+        "predecessor": null
+      },
+      "3818": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/player/TObjPlayer_801BE1C0.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801BDF5C.cpp",
+        "predecessor": null
+      },
+      "3821": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/player/TObjPlayer_801BE778.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801BDF5C.cpp",
+        "predecessor": null
+      },
+      "3829": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/player/TObjPlayer_803E1A58.cpp",
+        "current_path": "src/pso/player/TObjPlayer_803E1A58.cpp",
+        "predecessor": null
+      },
+      "3846": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_80120568.cpp",
+        "current_path": "src/pso/weapon/WeaponAttackActions.cpp",
+        "predecessor": null
+      },
+      "3951": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_80130368.cpp",
+        "current_path": "src/pso/weapon/TUnk_804A69DC.cpp",
+        "predecessor": null
+      },
+      "3963": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_801D40D4.cpp",
+        "current_path": "src/pso/player/TPlyItem.cpp",
+        "predecessor": null
+      },
+      "3965": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_802D5F44.cpp",
+        "current_path": "src/pso/player/TObjPlayer_802D5174.cpp",
+        "predecessor": null
+      },
+      "3966": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_802E4A4C.cpp",
+        "current_path": "src/pso/weapon/TItemAttackCol.cpp",
+        "predecessor": null
+      },
+      "4475": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/unk/text_803D8910.cpp",
+        "current_path": "src/pso/unk/text_803D853C.cpp",
+        "predecessor": null
+      },
+      "4861": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/TObjLiveCameraCtrl.h",
+        "current_path": "include/pso/camera/TObjLiveCameraCtrl.h",
+        "predecessor": "include/pso/camera/TObjLiveCameraCtrl.h",
+        "base_blob": "fbf609c53b0ec7336b7e058d71a1bd69f09d2dfb"
+      },
+      "4873": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/misc/PhotonBlastSummon.h",
+        "current_path": "include/pso/effect/photon/PhotonBlastSummon.h",
+        "predecessor": "include/pso/effect/photon/PhotonBlastSummon.h",
+        "base_blob": "6b07e35e8b3ab8206e18c67bcf5b2e64e3995191"
+      },
+      "4894": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/ParticleBallistic.cpp",
+        "current_path": "src/pso/effect/particle/ParticleBallistic.cpp",
+        "predecessor": "src/pso/effect/particle/ParticleBallistic.cpp",
+        "base_blob": "66c418af352b9244b7bcbca6ec51ed814df2950b"
+      },
+      "4895": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/ParticleOrbit.cpp",
+        "current_path": "src/pso/effect/particle/ParticleOrbit.cpp",
+        "predecessor": "src/pso/effect/particle/ParticleOrbit.cpp",
+        "base_blob": "94a04e368dd7feb69fce4a08253bd21261b76fe3"
+      },
+      "4896": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TCameraCtrl.cpp",
+        "current_path": "src/pso/camera/TCameraCtrl.cpp",
+        "predecessor": "src/pso/camera/TCameraCtrl.cpp",
+        "base_blob": "67507fead6aca849b6b0ff89223bec1030ebe72c"
+      },
+      "4897": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TCameraCtrl_8006BA68.cpp",
+        "current_path": "src/pso/camera/TCameraCtrl_8006B3D8.cpp",
+        "predecessor": null
+      },
+      "4901": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TDLGraph.cpp",
+        "current_path": "src/pso/render/TDLGraph.cpp",
+        "predecessor": "src/pso/render/TDLGraph.cpp",
+        "base_blob": "6e61168546d700b5856120543008e0fb1effca7f"
+      },
+      "4903": {
+        "type": "unique common ancestor basename",
+        "fork_path": "src/pso/misc/TDuelEffectNumber_80080290.cpp",
+        "current_path": "src/pso/effect/TDuelEffectString.cpp",
+        "predecessor": "src/pso/effect/TDuelEffectNumber_80080290.cpp",
+        "base_blob": "bb29b68ea8f59d2b2098955c1118623c23f276d2"
+      },
+      "4906": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TQuadSpriteNormal.cpp",
+        "current_path": "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+        "predecessor": "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+        "base_blob": "56c1670f2d29a0264e09502efcd4c09b41370b20"
+      },
+      "5325": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TLobby_800FA164.cpp",
+        "current_path": "src/pso/unk/TLobby_800FA164.cpp",
+        "predecessor": "src/pso/unk/TLobby_800FA164.cpp",
+        "base_blob": "7086e47bb1dedfe74771448d415cf5dc66ccffd2"
+      },
+      "5326": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TLobby_800FA2A0.cpp",
+        "current_path": "src/pso/unk/TLobby_800FA2A0.cpp",
+        "predecessor": "src/pso/unk/TLobby_800FA2A0.cpp",
+        "base_blob": "d2def246f16d1dde10af5674b9ee93cfa03564c1"
+      },
+      "5328": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TLobby_8001EF5C.cpp",
+        "current_path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "predecessor": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "base_blob": "ca1fd4643e5ebf9be2b4655802f13e503af1d8d1"
+      },
+      "5340": {
+        "type": "unique common ancestor basename",
+        "fork_path": "include/pso/misc/TLobby_800FA2A0.h",
+        "current_path": "src/pso/unk/TLobby_800FA2A0.cpp",
+        "predecessor": "include/pso/unk/TLobby_800FA2A0.h",
+        "base_blob": "1b6002bf1e552e0971c1aa83729c43ed633afee9"
+      },
+      "5446": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/misc/TUnk_804CE7E8.h",
+        "current_path": "include/pso/ui/window/TUnk_804CE7E8.h",
+        "predecessor": "include/pso/ui/window/TUnk_804CE7E8.h",
+        "base_blob": "f78596fea87616d0af32ac3dbb528ff3efa39199"
+      },
+      "5524": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowActionPalette.cpp",
+        "current_path": "src/pso/ui/window/TWindowActionPalette.cpp",
+        "predecessor": "src/pso/ui/window/TWindowActionPalette.cpp",
+        "base_blob": "a3c39b98702228be1da4fc72d334d56b10cb6224"
+      },
+      "5527": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowBreakIn.cpp",
+        "current_path": "src/pso/ui/window/TWindowBreakIn.cpp",
+        "predecessor": "src/pso/ui/window/TWindowBreakIn.cpp",
+        "base_blob": "1086398483d29400f27ff67aa1dc8f4bf58ba3a4"
+      },
+      "5528": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowCallBack.cpp",
+        "current_path": "src/pso/ui/window/TWindowCallBack.cpp",
+        "predecessor": "src/pso/ui/window/TWindowCallBack.cpp",
+        "base_blob": "44e21faae31ff87fb91c0eff65dc79dac060be5c"
+      },
+      "5533": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowCtrlMain.cpp",
+        "current_path": "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "predecessor": "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "base_blob": "25698f7f908752f79464647b3d1c97ca9efec8b5"
+      },
+      "5534": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TWindowCtrlMain_8024C820.cpp",
+        "current_path": "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "predecessor": null
+      },
+      "5542": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowDD.cpp",
+        "current_path": "src/pso/ui/window/TWindowDD.cpp",
+        "predecessor": "src/pso/ui/window/TWindowDD.cpp",
+        "base_blob": "a04ad2f34eaa2b6828006d1084db42ca1482f3f4"
+      },
+      "5545": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowDD_803430BC.cpp",
+        "current_path": "src/pso/ui/window/TWindowDD_803430BC.cpp",
+        "predecessor": "src/pso/ui/window/TWindowDD_803430BC.cpp",
+        "base_blob": "a5791ca67a27f817314999ca65d54c22d4e8886c"
+      },
+      "5549": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowEffectLight.cpp",
+        "current_path": "src/pso/ui/window/TWindowEffectLight.cpp",
+        "predecessor": "src/pso/ui/window/TWindowEffectLight.cpp",
+        "base_blob": "53fb035aaddf7939c8061a7bfdfbfad42bd82ed5"
+      },
+      "5551": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowHelpItem_80255AB4.cpp",
+        "current_path": "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+        "predecessor": "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+        "base_blob": "17420816b05d76433583eeab02bf17db97e59c19"
+      },
+      "5555": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowMainMenu_802AD538.cpp",
+        "current_path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "predecessor": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "base_blob": "2f8589d47fcc95f11476b7e68a559c460071c083"
+      },
+      "5559": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowMeseta.cpp",
+        "current_path": "src/pso/ui/window/TWindowMeseta.cpp",
+        "predecessor": "src/pso/ui/window/TWindowMeseta.cpp",
+        "base_blob": "34236d2cfec6ff6c2fc51cc48556fe110a429206"
+      },
+      "5565": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowQuantity.cpp",
+        "current_path": "src/pso/ui/window/TWindowQuantity.cpp",
+        "predecessor": "src/pso/ui/window/TWindowQuantity.cpp",
+        "base_blob": "df5abb7b78d675158e99b7b9044318639f569f99"
+      },
+      "5568": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowShortListCtrl_8026E7DC.cpp",
+        "current_path": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "predecessor": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "base_blob": "60cefb55b1b1d6243bde7a5f88d292baa67c1258"
+      },
+      "5578": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TWindowSubEquip_80263AB0.cpp",
+        "current_path": "src/pso/ui/window/TWindowMainMenu.cpp",
+        "predecessor": "src/pso/ui/window/TWindowSubEquip_80263AB0.cpp",
+        "base_blob": "e6cee05dd6f532b7755a067f8f0a4a04cf1c4d39"
+      },
+      "5579": {
+        "type": "unique common ancestor basename",
+        "fork_path": "src/pso/misc/TWindowSubEquip_80275C0C.cpp",
+        "current_path": "src/pso/unk/TUnk_804D1160.cpp",
+        "predecessor": "src/pso/ui/window/TWindowSubEquip_80275C0C.cpp",
+        "base_blob": "42fb56f1bfbc4923628c590e33dfdfab215d047b"
+      },
+      "5581": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TWindowSubMag_802627D8.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubMag_802627D8.cpp",
+        "predecessor": "src/pso/ui/window/TWindowSubMag_802627D8.cpp",
+        "base_blob": "d509a07c59356e0898145fee8d7597083b60471f"
+      },
+      "5583": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowSubShortCutList.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "predecessor": "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "base_blob": "904873124b385652043ef80d4213bea484c79594"
+      },
+      "5587": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowSubStatusDisp_80256B94.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+        "predecessor": "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+        "base_blob": "43be7a890296edb51ab385f55c2a219fa9799b8d"
+      },
+      "5588": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowSubStatusDisp_80257BC0.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+        "predecessor": "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+        "base_blob": "3da696c18029db9f46c75f1529022f82b0ceabb0"
+      },
+      "5592": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TWindowTimer.cpp",
+        "current_path": "src/pso/ui/window/TWindowTimer.cpp",
+        "predecessor": "src/pso/ui/window/TWindowTimer.cpp",
+        "base_blob": "650af9bf51b680e60f0fa82b881ed803e117b079"
+      },
+      "5596": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/ui/TWindowRoom.cpp",
+        "current_path": "src/pso/ui/window/TWindowRoom.cpp",
+        "predecessor": "src/pso/ui/window/TWindowRoom.cpp",
+        "base_blob": "addadf6d97cc3ae9895dae6395098552e3d47d21"
+      },
+      "6014": {
+        "type": "same translation unit ranges",
+        "fork_path": "src/pso/misc/TLobby_80228154.cpp",
+        "current_path": "src/pso/unk/TLobby_80228154.cpp",
+        "predecessor": "src/pso/unk/TLobby_80228154.cpp",
+        "base_blob": "9864d1c6d7534e06bf284e8020c0751f85df40bc"
+      },
+      "6421": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TOContainerAncientEnemy.cpp",
+        "current_path": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "predecessor": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "base_blob": "51eab46799818257abf192cd7ed05d17be5c4524"
+      },
+      "6450": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TOTrapAncient01.cpp",
+        "current_path": "src/pso/object/trap/TOTrapAncient01.cpp",
+        "predecessor": "src/pso/object/trap/TOTrapAncient01.cpp",
+        "base_blob": "35c9046f3851e035cf28eae09cc706d1d63bed0f"
+      },
+      "6451": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TOTrapAncient02.cpp",
+        "current_path": "src/pso/object/trap/TOTrapAncient02.cpp",
+        "predecessor": "src/pso/object/trap/TOTrapAncient02.cpp",
+        "base_blob": "1bfa58c7ca427fd041f22c2a5978adb0ebfc84fa"
+      },
+      "6452": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TOTrapSeabed01.cpp",
+        "current_path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "predecessor": "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "base_blob": "5cc9feb449b1d04a88a27e0d85f6e36dd4cfb4cc"
+      },
+      "6480": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp",
+        "current_path": "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+        "predecessor": "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+        "base_blob": "d0e0015325dddf48eb90c83e3b1f62a92c7ea2f4"
+      },
+      "6481": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp",
+        "current_path": "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+        "predecessor": "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+        "base_blob": "6e461c17f992b3d550bba1e271d3cad90e51d155"
+      },
+      "6482": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+        "current_path": "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+        "predecessor": null
+      },
+      "6483": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp",
+        "current_path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+        "predecessor": null
+      },
+      "6489": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/npc/TObjNpcEnemy_803D8090.cpp",
+        "current_path": "src/pso/unk/text_803D853C.cpp",
+        "predecessor": null
+      },
+      "6512": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/object/TObjFish.cpp",
+        "current_path": "src/pso/object/ambient/TObjFish.cpp",
+        "predecessor": "src/pso/object/ambient/TObjFish.cpp",
+        "base_blob": "63a19a772faa0624e8285abd9ae34e0efc9b490e"
+      },
+      "7299": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/misc/QuestDownloadInternal.h",
+        "current_path": "include/pso/quest/QuestDownloadServer.h",
+        "predecessor": null
+      },
+      "7309": {
+        "type": "split, folded or added owner",
+        "fork_path": "src/pso/misc/TCameraCtrl_native.h",
+        "current_path": "src/pso/camera/TCameraCtrl.cpp",
+        "predecessor": null
+      },
+      "7312": {
+        "type": "same basename at live path",
+        "fork_path": "include/pso/misc/TUnk_804C3248.h",
+        "current_path": "include/pso/unk/TUnk_804C3248.h",
+        "predecessor": "include/pso/unk/TUnk_804C3248.h",
+        "base_blob": "43b490fb432032e8fb569976d5c6d4f03e5e119f"
+      },
+      "7315": {
+        "type": "split, folded or added owner",
+        "fork_path": "include/pso/misc/QuestDownloadRecords.h",
+        "current_path": "include/pso/quest/QuestDownloadServer.h",
+        "predecessor": null
+      },
+      "7348": {
+        "type": "same basename at live path",
+        "fork_path": "src/pso/misc/TLobby_80228818.cpp",
+        "current_path": "src/pso/unk/TLobby_80228818.cpp",
+        "predecessor": "src/pso/unk/TLobby_80228818.cpp",
+        "base_blob": "6ace62de79b4b8c74c4ad875105782e08ef07baa"
+      }
+    }
+  },
+  "validation": {
+    "source-final": {
+      "baseline": "fe698010e80d051edb12365044e82541f3d8ff32",
+      "matched_functions": 27572,
+      "linked_units": 2446,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": 2,
+      "check_sha256": "05d228de9a97c4a60b13887d94e3131efc995ceb199756b7093e22ae4183cb02",
+      "linker_label_details": [
+        {
+          "module": "psov3",
+          "address": "0x802F178C",
+          "before": "create_particle__15TObjBoss7TunnelFPCvl",
+          "after": "create_particle__15TObjBoss7TunnelFPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802F1848",
+          "before": "create_particle_effect__15TObjBoss7TunnelFPCvlf",
+          "after": "create_particle_effect__15TObjBoss7TunnelFPC3Veclf"
+        }
+      ],
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "report_sha256": "dccec3a1528f049130f57fc4f99a9fcc62af0eb87d48972dd0850c008fd650cf"
+    },
+    "layer": {
+      "baseline": "234101fad4f13effe00c002e03e309e93191a9f1",
+      "matched_functions": 27572,
+      "linked_units": 2446,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": 0,
+      "check_sha256": "f9f07eeb13176e3415769f8f95caf5c118300d400d2e587d5122242426f24e3e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "report_sha256": "dccec3a1528f049130f57fc4f99a9fcc62af0eb87d48972dd0850c008fd650cf"
+    },
+    "foldpass": {
+      "baseline": "73c0ea04c69e7b27c9c02d1032b03ed23bcf6e8b",
+      "matched_functions": 27572,
+      "linked_units": 2446,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": 578,
+      "check_sha256": "74a71643cc45e8d5b0388c1b4f512a7d44b5b83c0a3e3f2ffb19a88a46de14f2"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_sha256": "f8af20137bc5c501904e8197db814505ee4530a8fb3ed622df5b887c618ce0e3",
+    "force_active_names": 27033,
+    "retagged_force_active_names": 1
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "9a3cb0c1333584469cdb274d7f518b23535b0b16136444385b0d1abe96a62999"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "918b58734f4c031d5796697d5dadb3a5449961b83e797096e6d5ee7d2fb33b8d"
+    },
+    "host": {
+      "checks": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "runtime_probes": {
+    "actor": {
+      "result": "Actor proportions view and local entity lookup passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "cadb6a4a3cc45a3f84a7c2d5e269b446c42a75319da5dce0832f9ffe12b2bf76"
+    },
+    "movie": {
+      "result": "Movie frame handoff, loader tasks, archive bounds and scene textures passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "586e1f4069f42cb0ed93aa0f4c71b84d7ad11ac74b82b90e76a39876cb619d74"
+    },
+    "task": {
+      "result": "Task name identity, logo lifecycle and duel countdown passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "32e2afea5d59725a908b2b5f501466f337ba4a05bb74ec1d8f251586fb640001"
+    }
+  }
+}
