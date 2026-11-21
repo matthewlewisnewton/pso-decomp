@@ -1400,6 +1400,14 @@ The 84-file frontend replay on the three-review stack reproduces retail. The joi
 
 The source comparison leaves 91 paths outside the reviewed changes and 350 differing shared paths. The current texture-list receiver accounts for 247 of those paths by itself. The scope and exact file lists are recorded locally. [Frontend and remaining source evidence](2026-11-20-frontend-title-and-mail-reviews.json)
 
+## Typed renderer texture lists and network frames
+
+The resource review at `e6aca7b1bf` covers 674 files on current master and matches retail independently. The renderer's `set_global_param` now takes `GinjaTextureList *` and writes the typed scene-state member at its original address, `0x803DA798`. The source keeps upstream's function name. The receiver change updates 599 calls across the build. The combined texture-list replay at `74655b1000` matches retail and incorporates the standalone resource branch. Its 247 texture-only paths now match the cumulative source.
+
+The 12-file PPP component at `925fa3bbd9` uses shared frame declarations and typed IPv4 and TCP records with the original entry-point names. It matches retail independently. The integrated source at `1b4a1c5af3` matches retail across 1,655 changed files, preserves all 27,572 exact functions and 2,448 linked source units, and accounts for all 1,147 original data bytes. The reviewed histories have zero Codex attribution. The component is staged locally with the larger reviews.
+
+Cumulative Great Merge at `404d82cfd2` and its private tooling workspace match retail. The fork-only Zako texture-slot test uses the restored setter name. The workspace retains all 27,031 symbols and passes all 310 checks. The remaining source comparison has 180 paths, including 24 outside the integrated reviews and 156 shared paths with further differences. [Build and remaining source evidence](2026-11-20-texture-lists-and-network-frames.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
