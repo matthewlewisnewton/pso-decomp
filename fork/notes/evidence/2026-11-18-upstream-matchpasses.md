@@ -1211,6 +1211,16 @@ The standalone review `great-merge/prepared/character-frontend-and-card-saves` a
 
 The 131-path fork tooling patch round-trips over the replay and passes 305 tests. The repaired private save-image probe checks artwork, 15 save images and 30 header reads on retail and the three rebuilt images. The historical inventory falls from 739 to 656 paths outside the active replay diff. [Build, scope and replay evidence](2026-11-20-character-frontend-and-card-saves.json)
 
+### Dark Falz scenes, Zako drawing and Olga Flow trails
+
+The 69-file replay at `417985bccc` recovers the real Dark Falz form actors for phase and cutscene handoff. It gives the cinematic objects native C++ factories, shared archive and fade records, and typed direct-attack calls. The Zako renderer uses a shared draw buffer. Olga Flow afterimages use typed frames and the same triangle-fan interface as their other callers.
+
+The 76-file review `great-merge/prepared/dark-falz-scenes-and-boss-trails` at `117e4f7411` starts directly from master `0fa391a887` and uses its existing archive, texture, and REL entry points. The source audit retained the existing story-flag setter, tower setter, 2D polygon draw, trail draw and vector copy labels. The remaining symbol differences reflect class ownership and callable types.
+
+The replay, standalone review and fork build reproduce retail with all 2,448 source objects linked. Address-based checks found zero function or data coverage losses, and all 90 historical ranges still account for 980 linked bytes and 167 alignment bytes. The 131-path fork tooling patch round-trips and passes all 305 tests. The Olga Flow probe passed on retail and all three rebuilds.
+
+The historical inventory falls from 656 to 633 paths outside the replay diff. Olga Flow phase scenes and hazards are the next related group. The projectiles, arena geometry and splashes form a separate group around shared collision and draw calls. [Build, scope and replay evidence](2026-11-20-dark-falz-scenes-and-boss-trails.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
