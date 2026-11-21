@@ -1,0 +1,309 @@
+{
+  "source": "c68aa1945fe041a0da5456919741ca5ab3c41f98",
+  "previous_source": "3d313456cb3805cee4952ef4f25fcf93f724a9dd",
+  "single_review_candidate": "364805820ac20981efaf21b81fe5963e2627a4ee",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/BattleParameters.h",
+    "include/pso/enemy/TObjEnemy.h",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/object/base/TObjMotion.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8001D6A0.h",
+    "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/barbaray/TBoss7Joint.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TBoss2Joint.cpp",
+    "src/pso/boss/derolle/TBoss2Mine.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonMylla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/effect/photon/TPhotonYoulla.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/object/ambient/TObjCGrass.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/base/TObjMotion.cpp",
+    "src/pso/object/container/TContainerAncient01.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BCFBC.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlyCharData_801E0A04.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/unk/TLobbyBattleParamData.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp"
+  ],
+  "source_fixes": [
+    "The live battle bank and file use the original four sets of 96 native records, with the four difficulty entries checked at compile time by size.",
+    "The original TLobby lookup names and linker labels expose the actual movement, base, attack and resistance types.",
+    "The three existing actor stat methods accept the shared record pointers. The 124 migrated calls pass those types, and the binder reads the original fields through the record layouts.",
+    "The two existing actor motion setters accept action and motion records. All 116 callers pass those pointer types, including native Recon and Recobox motion and stat storage."
+  ],
+  "code_generation_decisions": [
+    "The table loader retains the original offset-based address evaluation with offsetof and sizeof. Direct multidimensional indexing changed the retail register allocation.",
+    "Existing integer and raw pointer storage still uses explicit casts at the remaining callers. The typed interfaces preserve the original addresses, compiler profiles and behavior."
+  ],
+  "historical_rows_closed": {
+    "1115": {
+      "historical_path": "src/pso/enemy/TObjEneRecon_8031FCB0.cpp",
+      "owner": "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "owner_blob": "98bb2dcba8e4fb756291de2abc70b2e617d7d88d",
+      "decision": "The live Recobox owns the typed opacity fade, action and motion lists, and native stat records. The loader uses the shared archive records, and the exact destructor, model binding and actor calls remain linked at their retail addresses. The four stat lookup names follow upstream."
+    }
+  },
+  "historical_rows_with_added_evidence": {
+    "157": "The three actor stat bind/reset/reload labels and the two motion setter labels now encode their real parameter types. The four TLobby lookups keep their original labels and addresses.",
+    "621": "Recon uses the shared movement table, including the original floating-point and integer fields, under the existing movement resource name.",
+    "629": "Recon passes actual player_stats, AttackParams and ActorParamBlock pointers, and its action and motion setters take their real table types. The previously recorded parent, fade and emitter evidence remains valid.",
+    "854": "Kakusan receives its two movement records from the now-typed upstream lookup. Its separate hazard state and collision deltas still need review.",
+    "917": "De Rol Le's joint constructor and stat reload pass the native battle records directly from the original lookup methods.",
+    "1164": "The Olga Flow Mag caller uses the typed battle record lookup where it reads movement tuning. Other hazard and rendering ownership requires separate comparison.",
+    "1171": "The Dark Falz actor stat seeding uses typed battle table returns under the existing lookup names.",
+    "5431": "The four TLobby table lookup declarations return their native typed records under the upstream names. The larger TLobby header still requires owner comparison.",
+    "6723": "The native stat binding owns three typed inputs and reads the original health, attack and resistance fields."
+  },
+  "historical_rows_open": 644,
+  "validation": {
+    "combat": {
+      "check_sha256": "860419d584a8a835c126edd411a1ff5cf06a5c005554d2d8353eb18e811953ac",
+      "source_report_sha256": "469e8927dfe8d86b9e953cee64540d63477bdef9083c20494709b9fe947575c7",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8002AE7C",
+          "before": "set_field_dc__10TObjMotionFl",
+          "after": "set_field_dc__10TObjMotionFP14BmlMotionEntry"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002AE84",
+          "before": "set_field_d8__10TObjMotionFl",
+          "after": "set_field_d8__10TObjMotionFP16TObjMotionAction"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9E84",
+          "before": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+          "after": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9ED0",
+          "before": "reset_hp__9TObjEneDDFPUcPUcPUc",
+          "after": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7478",
+          "before": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "after": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock"
+        }
+      ]
+    },
+    "full": {
+      "check_sha256": "860419d584a8a835c126edd411a1ff5cf06a5c005554d2d8353eb18e811953ac",
+      "source_report_sha256": "469e8927dfe8d86b9e953cee64540d63477bdef9083c20494709b9fe947575c7",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8002AE7C",
+          "before": "set_field_dc__10TObjMotionFl",
+          "after": "set_field_dc__10TObjMotionFP14BmlMotionEntry"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002AE84",
+          "before": "set_field_d8__10TObjMotionFl",
+          "after": "set_field_d8__10TObjMotionFP16TObjMotionAction"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9E84",
+          "before": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+          "after": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9ED0",
+          "before": "reset_hp__9TObjEneDDFPUcPUcPUc",
+          "after": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7478",
+          "before": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "after": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock"
+        }
+      ]
+    },
+    "layer": {
+      "check_sha256": "247cea66ab0689edbf2bc98b72d95f70517e6281ef73f42911d6923d78efb11e",
+      "source_report_sha256": "469e8927dfe8d86b9e953cee64540d63477bdef9083c20494709b9fe947575c7",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8002AE7C",
+          "before": "set_field_dc__10TObjMotionFl",
+          "after": "set_field_dc__10TObjMotionFP14BmlMotionEntry"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002AE84",
+          "before": "set_field_d8__10TObjMotionFl",
+          "after": "set_field_d8__10TObjMotionFP16TObjMotionAction"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9E84",
+          "before": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+          "after": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9ED0",
+          "before": "reset_hp__9TObjEneDDFPUcPUcPUc",
+          "after": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7478",
+          "before": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "after": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock"
+        }
+      ]
+    }
+  },
+  "runtime_battle_probe": {
+    "retail": {
+      "lookups": 384,
+      "file_loads": 32,
+      "release": "pass",
+      "log_sha256": "ab3b26e68d0ae052fa7dcbe82d40e233ad21914d5d8a0a9d25d8e134adf8aedd"
+    },
+    "combat": {
+      "lookups": 384,
+      "file_loads": 32,
+      "release": "pass",
+      "log_sha256": "036145a49bc264f21d95ad391552f9d1b9148302543abbe22b5acee94c6a4ac7"
+    },
+    "full": {
+      "lookups": 384,
+      "file_loads": 32,
+      "release": "pass",
+      "log_sha256": "036145a49bc264f21d95ad391552f9d1b9148302543abbe22b5acee94c6a4ac7"
+    },
+    "layer": {
+      "lookups": 384,
+      "file_loads": 32,
+      "release": "pass",
+      "log_sha256": "036145a49bc264f21d95ad391552f9d1b9148302543abbe22b5acee94c6a4ac7"
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "af9fe8946a391b9c5b74dbdc87b60a61c9f08239c4af98ad8f26e60cac2a4d37",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "commit_attribution": {
+    "audited_commits": 85,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}
