@@ -1,0 +1,345 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_local_source": "7f63315ddb4541fe88a0f2320264cc7639d1f405",
+  "source": "fb5ecf1bc2a9f30cb4d4c9071fc80c9a0e9e363f",
+  "source_tree": "ce0f0fc1d8fc1c7eb3dd8139a7ddff2885a9cd6f",
+  "source_review_files": 891,
+  "source_changes": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:441c2794d8339eff54a97103e7fbcbeb7de687f5",
+      "review_blob": "100644:05ff60b1f24a41923fd8584598712a7d2b27f019",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "include/pso/player/TPlyItem.h",
+      "previous_blob": "100644:a3177d2c5663af26390e66ed2ead5138cb91b8de",
+      "review_blob": "100644:a3b222e189152b22716ff1ce085f7c6d23f6b7d1",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/unk/text_8026934C.h",
+      "previous_blob": "100644:ebc956391c419136850f1610ba28cc5053410c70",
+      "review_blob": "100644:d834810dcfbbd844453ca70ae2b5422cf1984dc5",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_80278AB4.cpp",
+      "previous_blob": "100644:4527d48a1ba186ff9cbea20324251ee35e207d17",
+      "review_blob": "100644:5c069bd01c47bc0824fbdfb07fc3ce4e06479580",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/player/TPlyItem.cpp",
+      "previous_blob": "100644:440fb1de7d2776aabe2952080ac23a62f804f11f",
+      "review_blob": "100644:97707cd7b80cc0816603a09a9b8f2ae0e217b620",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+      "previous_blob": "100644:999632609608e8c7461bde36c01668120100fbc3",
+      "review_blob": "100644:f7a1fd34df602dc2cb21b306545a9668504ae56c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/ui/city/TJudgmentSequence.cpp",
+      "previous_blob": "100644:a2997ba2d0ae2518ea7c80b2dad384b7bf9fcdd0",
+      "review_blob": "100644:b9c362a2a1bb2bd34212487c39251b63acead18b",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/city/TMedicalCenterSequence.cpp",
+      "previous_blob": "100644:216651d95018f97b02b309be19475e891a52191a",
+      "review_blob": "100644:45ac01ef16fa9457d97dd91d87eaca7e70a6e7b7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+      "previous_blob": "100644:0573e16c3719e999f7125cfbd3b5fbc001c3c10f",
+      "review_blob": "100644:5f27add3b6929341649e58965a15f14319632bfd",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/ui/city/TShopEquipmentSequence.cpp",
+      "previous_blob": "100644:0eb9c95c95f5835eac3252967672dfa3e3f4fc3f",
+      "review_blob": "100644:4def2592833fb30c08bd14de00fb6b23108bcf7b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/ui/city/TShopItemTecSequence.cpp",
+      "previous_blob": "100644:ba914d0bd32c56204791480ce1fdd45b8f6d3860",
+      "review_blob": "100644:d9b9716cac38161e87ce1078a664a091a503b450",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubItem.cpp",
+      "previous_blob": "100644:31b96c9ed2b840d551307739d7a5ef424bc3b1c0",
+      "review_blob": "100644:a2d03e83544289e2e56f8d73ce30a26df8782644",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/unk/TLobby_802D1EFC.cpp",
+      "previous_blob": "100644:a9bba7a346c60fc952ccc87c204fdf0decddb191",
+      "review_blob": "100644:114e8558d1c0bbbaa7887aa941fb00ee463df1c0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/unk/text_8026934C.cpp",
+      "previous_blob": "100644:6283d44d157e8953c06646117286d2e4ee4c2722",
+      "review_blob": "100644:33a1cc417c041e5e19088085b49671e9500db784",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/text_802787F0.cpp",
+      "previous_blob": "100644:690404335b66375bc2fc071116ebfed202ba3db1",
+      "review_blob": "100644:d3fe152e804a1ecc3bb678947d4983427508d4b5",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/text_802789E0.cpp",
+      "previous_blob": "100644:e8cf8bf1b00072c55fcd2cb682cb823517f3d3d1",
+      "review_blob": "100644:b57a0f90be2b4c458a9b2b0c420d1a0e88cd2607",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/text_80278BD8.cpp",
+      "previous_blob": "100644:4ab6a9bd12018690c1c97d5d1621f4cbf9fc689c",
+      "review_blob": "100644:69743ce34710f764ab5aeb9eac91dbe424d9570b",
+      "in_previous_replay_ledger": false
+    }
+  ],
+  "checks": {
+    "inventory": {
+      "head": "2d5a40a8c07430bf9811db7066818271623a384e",
+      "baseline": "7f63315ddb4541fe88a0f2320264cc7639d1f405",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "591b2465adee5658b9792e4fff7eb9539e82a212732f2321d60171444174a49a",
+      "label_count": 1
+    },
+    "meseta": {
+      "head": "fb5ecf1bc2a9f30cb4d4c9071fc80c9a0e9e363f",
+      "baseline": "2d5a40a8c07430bf9811db7066818271623a384e",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "label_count": 0
+    },
+    "stock": {
+      "head": "fb5ecf1bc2a9f30cb4d4c9071fc80c9a0e9e363f",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "6d190efd2b762ded79a945030439288bca379842d0460c37094a71de95b2ca87",
+      "label_count": 300
+    },
+    "fork": {
+      "head": "a4eb3d787c32a0fa942a47299fd8538ff276ffc3",
+      "baseline": "fb5ecf1bc2a9f30cb4d4c9071fc80c9a0e9e363f",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b",
+      "label_count": 0
+    }
+  },
+  "original_data_coverage": {
+    "older-stock": {
+      "report_sha256": "c676f8aac5e361c4539b8e73307221c1ac148cb46dceec2ca9afb9ce988943ab",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "older-layer": {
+      "report_sha256": "c676f8aac5e361c4539b8e73307221c1ac148cb46dceec2ca9afb9ce988943ab",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "changed_inventory_label": {
+    "module": "psov3",
+    "address": "0x801D4890",
+    "before": "run_and_get_result__8TPlyItemFi",
+    "after": "run_and_get_result__8TPlyItemFPl"
+  },
+  "historical_rows_closed": [
+    {
+      "row": 231,
+      "fork_path": "src/pso/misc/TWindowKeyBoardHard_8025EB68.cpp",
+      "fork_blob": "816a239a88a0bba8e5d12494fdca14fe0b4c7fcd",
+      "owner": "src/pso/ui/window/TWindowKeyBoardHard_8025EB68.cpp",
+      "owner_blob": "f614b75d8a12251b572924a8be98d22ee36a92d6",
+      "status": "Upstream names retained",
+      "rationale": "The four keyboard card queries use the same client word and the same decimal masks 128, 64, 32 and 16. Their four original addresses and types agree. The current keyboard class header carries these declarations.",
+      "diff_sha256": "4fdce303f47f9db7939382fb79e38ba1d3c99a4e429dee64ef28dcbad5631fb9"
+    },
+    {
+      "row": 5083,
+      "fork_path": "include/pso/misc/TUnk_80488A28.h",
+      "fork_blob": "f46b4b285685f1536c158dce2f98aa368a1a7b4d",
+      "owner": "include/pso/unk/TUnk_80488A28.h",
+      "owner_blob": "44409dc96f9a10790d8c88dd7909e10173ea71db",
+      "status": "Current native owner verified",
+      "rationale": "The current camera target layout has the native address and yaw fields at offsets 0x1C and 0x30. set_target uses the same address type. The active virtual declaration, reset_state, is already implemented.",
+      "diff_sha256": "8e19dd48c19a2b023177c29b46d827b53f90cd0eca566e1668364bda67ac31f8"
+    },
+    {
+      "row": 4206,
+      "fork_path": "include/pso/player/TUnk_804E1F04.h",
+      "fork_blob": "74690115fdf8b55dce8bd48515b977567fe29114",
+      "owner": "include/pso/weapon/TUnk_804E1F04.h",
+      "owner_blob": "9280fb5f80df18cb8e4081e5c4ef637bd2b70179",
+      "status": "Current native owner verified",
+      "rationale": "The current weapon header declares the native constructor with its actual parent and item arguments. The constructor implementation supplies the class initialization. It covers the historical vtable initializer.",
+      "diff_sha256": "63cf627cbc07a116e31af358d3f43e0389268da352743ad2d53f0d5e5696f9a0"
+    },
+    {
+      "row": 6004,
+      "fork_path": "src/pso/unk/text_803D647C.cpp",
+      "fork_blob": "6593a0b74f333d01f3bc588913a8d4f12a04e224",
+      "owner": "src/pso/unk/text_803D647C.cpp",
+      "owner_blob": "28a4eb7ed925810289b294955c82e2c91ba51ded",
+      "status": "Equivalent source verified",
+      "rationale": "The current unit uses the shared SinCosPair declaration from AngleLookup.h. The original float at 0x805E0DE8 is 0.0f, matching the literal in the current rounding routine. The retail binary confirms both lookups and rounding.",
+      "diff_sha256": "486ae08c7be275787805434a9b6ef5bab7bd174fe5d17d80856a89620a988b84"
+    },
+    {
+      "row": 5310,
+      "fork_path": "src/pso/unk/text_802E10D8.cpp",
+      "fork_blob": "c7da45a1fe95f5214a7e579803ec39b16c812ea7",
+      "owner": "src/pso/unk/text_802E10D8.cpp",
+      "owner_blob": "fe4312c0b09d59b08f855e125ba47d6b5ac51c36",
+      "status": "Equivalent source verified",
+      "rationale": "The current character creation archive uses the native BmlResource and descriptor headers. The allocation takes the same descriptor and arguments. It assigns the address directly with the same target integer type.",
+      "diff_sha256": "64def0f4093562e1f67ba188eaf939aef323d939711e834411a707d3689f11cd"
+    },
+    {
+      "row": 4983,
+      "fork_path": "include/pso/misc/TPhotonMagicSquare.h",
+      "fork_blob": "e18ec2e7daa2deee18fbb072f9e7620b8927670f",
+      "owner": "include/pso/effect/photon/TPhotonMagicSquare.h",
+      "owner_blob": "68c3125e882302f1fa02e76e4505218aaf7d6f32",
+      "status": "Current native owner verified",
+      "rationale": "The native TPhotonMagicSquare constructor takes the owner ID as a u16 and preserves the total size check at 0xD0. The original constructor shim and typedef size assertion are covered by the current constructor and layout assertion.",
+      "diff_sha256": "f36711296903d4a08b15ef92aad4ae6613fa062a4a0e966cc3440876e7d211a4"
+    },
+    {
+      "row": 5335,
+      "fork_path": "src/pso/misc/TLobby_803DE778.cpp",
+      "fork_blob": "0d125b5b6d84e19322d9b5d10226a9a59198357d",
+      "owner": "src/pso/unk/TLobby_803DE778.cpp",
+      "owner_blob": "812303adf97ab0059fd5b695f7cbd1b3dd42cbef",
+      "status": "Equivalent source verified",
+      "rationale": "The current provider uses the standard memmove declaration and forwards the same byte count computed from count times sizeof(u32). The source retains the move_words name and the existing compiler settings.",
+      "diff_sha256": "ae22bb77bb15519abd16f45090709aba9b87bb695a4dbf4df65f556e87316e49"
+    },
+    {
+      "row": 4497,
+      "fork_path": "src/pso/unk/text_802787F0.cpp",
+      "fork_blob": "d8a56f64662f5573e987f040db0169b7e237094e",
+      "owner": "src/pso/unk/text_802787F0.cpp",
+      "owner_blob": "d3fe152e804a1ecc3bb678947d4983427508d4b5",
+      "status": "Typed historical integration validated",
+      "rationale": "The shop list fetches the live player through the shared lookup, uses the inventory member at 0xD00 and supplies the native s32 item ID buffer. Item lookup, counts, and row insertion retain their matching code.",
+      "diff_sha256": "b7786e0317bc2ff7fbd983ec8a0ec1ac6df5c303218970e598bff041550b8929"
+    },
+    {
+      "row": 4498,
+      "fork_path": "src/pso/unk/text_802789E0.cpp",
+      "fork_blob": "4c262389a8bb1747eebf71d160df88dd52c758f2",
+      "owner": "src/pso/unk/text_802789E0.cpp",
+      "owner_blob": "b57a0f90be2b4c458a9b2b0c420d1a0e88cd2607",
+      "status": "Typed historical integration validated",
+      "rationale": "The shop judgment list uses the live player inventory member and s32 item IDs. The same IDs and quantities reach the original item tests and row construction.",
+      "diff_sha256": "5ca569fe9fb60e46e9b1395ad1b4fcd31cb5b0c84c3249bc085c9d1a9646b93c"
+    },
+    {
+      "row": 4495,
+      "fork_path": "src/pso/unk/text_803D8DE0.cpp",
+      "fork_blob": "bb9286d4a8f4d241de299927139a69ee0dad639c",
+      "owner": "src/pso/unk/text_803D8DE0.cpp",
+      "owner_blob": "de3df4ac40a432d5c76e4961eef884c79982cabf",
+      "status": "Equivalent source verified",
+      "rationale": "The current matrix helper uses the supplied native address or current_matrix when zero. This is the same branch and operand as in the fork version. The current function avoids the two extra temporaries and type-punning load.",
+      "diff_sha256": "b96b02aeccc66c8b5b2aee18de13059adb53804f68efc8da72a774637a955254"
+    },
+    {
+      "row": 6016,
+      "fork_path": "src/pso/unk/text_8026934C.cpp",
+      "fork_blob": "c7786211c6efd6063d8b566f01d45f260afc1016",
+      "owner": "src/pso/unk/text_8026934C.cpp",
+      "owner_blob": "33a1cc417c041e5e19088085b49671e9500db784",
+      "status": "Typed historical integration validated",
+      "rationale": "The window factory declares and returns the native TWindowMeseta pointer. It gets the 0x28 layout entry and 0x82 status text. Shop callers share the declaration and preserve their existing unsigned client conversions.",
+      "diff_sha256": "ea61953ec5039bce1a992c561b289ff8fc30d112c4968d23fd82df540d8001e8"
+    },
+    {
+      "row": 5311,
+      "fork_path": "src/pso/unk/text_802F0E24.cpp",
+      "fork_blob": "7bedcd865eaab3c19b89098bafdc77c097a111f8",
+      "owner": "src/pso/unk/text_802F0E24.cpp",
+      "owner_blob": "45bf807c412d7dea54e50d0a2745f531024119fc",
+      "status": "Current native owner verified",
+      "rationale": "The current boss tunnel resource loader uses the native BmlResource class and descriptor, its texture field and the same archive. The particle heap receives the same 0x50000 size through its correct signature. The current scroll-speed constant is independent.",
+      "diff_sha256": "626ad818ad32eb45f962b8ba57c000d426970b0f65ca1761abe67a18e08b7703"
+    },
+    {
+      "row": 5856,
+      "fork_path": "src/pso/misc/TWindowSubStatusDisp_803DEE6C.cpp",
+      "fork_blob": "de6674b4ddcb69ebef1e420869f1300f089c2aeb",
+      "owner": "src/pso/ui/window/TWindowSubStatusDisp_803DEE6C.cpp",
+      "owner_blob": "b8f8c559474c8bf8b2169e458b54984f85a3ba12",
+      "status": "Current native owner verified",
+      "rationale": "The renderer uses the typed coordinate array and shared global material color. The original constant at 0x805E0FC8 is -1.0f, matching both current division sites. The matching build confirms the original rendered coordinate and texture inputs.",
+      "diff_sha256": "241919daa85c619c25506f428dbf6f0386070fdeb6f1356cdbe95c78ce175c91"
+    }
+  ],
+  "prior_historical_rows_open": 590,
+  "historical_rows_open": 577,
+  "historical_ledger_sha256_before": "6fff9c1184db0b83cf2271d72d47ac0d5b94240d2a326457d8333118bab34cc1",
+  "historical_ledger_sha256": "1a9309c77214ef301c50241c98d1a10e20fa4fbaf0e89500f390396dd7194a36",
+  "owner_trial_pending": {
+    "row": 3423,
+    "address": "0x802D5B78",
+    "reason": "The typed hit-position trial changes PowerPC instruction scheduling and fails the retail hash."
+  },
+  "tool_overlay_sha256": "d9ea5c6f60a8a1c752d9050b1549cb61c68c67da3cd7bedcb567167d69209014",
+  "tool_overlay_paths": 130,
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "df3a62ca195715abd7d374ee85ad39ffcb16742aa29d639cc0a8bd7442cabc2b"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "6bbd3092f7d61661b9a6558f7a3611333f39d0cd2451a8f9df81c30010947546"
+    },
+    "host": {
+      "names": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "title_slot_probe_sha256": "aa5f166944d381e1de95508e9bded98f101172c847f8e52ff652b8ca3bf51db0",
+  "review_commit_attribution": {
+    "commits": 40,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}
