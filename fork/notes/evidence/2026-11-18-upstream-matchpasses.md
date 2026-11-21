@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `1fff8a4bec` uses five commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups. The radar recovery follows the combat changes it uses, and the independent PPP work ends the stack. Each checkpoint uses a verified source tree. The five review commits and 93 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `6be15e734d` uses six commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups. The radar and 2D renderer commits follow the combat changes they use. The independent PPP work ends the stack. Each checkpoint uses a verified source tree. The six review commits and 94 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1426,9 +1426,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `1fff
 | 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `6329e26030` | 679 |
 | 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `ece831cbb5` | 969 |
 | 4 | Radar, compass and shared camera view | Follow-up recovery | `acf253728a` | 24 |
-| 5 | PPP frame and callback interfaces | Independent network work | `1fff8a4bec` | 12 |
+| 5 | Shared 2D polygon and color rendering | Follow-up recovery | `29ade702bb` | 38 |
+| 6 | PPP frame and callback interfaces | Independent network work | `6be15e734d` | 12 |
 
-The review changes 1,755 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,771 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1517,6 +1518,12 @@ The consolidated review and layered fork reproduce retail. A fresh fork material
 Great Merge at `58df2eb791` gives the radar and its camera, HUD and world consumers the same native 0x28 view record. The radar owns three typed view entries, model pointers and its texture-list lifetime. The compass and lobby render through the actual sprite descriptor. The 24-file recovery preserves existing function names. Nine linker labels change with the recovered C++ types.
 
 The combat checkpoint, consolidated review and fork workspace reproduce retail and retain all 1,147 original bytes. The 130-path fork overlay passes its 310 workspace checks. The historical comparison closes 6 rows and adds evidence to 11 others, leaving 612 open. [Radar and camera evidence](2026-11-21-radar-and-camera-owners.json)
+
+## Shared 2D polygon and color rendering
+
+Great Merge at `17b19caeb1` uses one typed descriptor for 2D positions, packed colors and vertex counts. The strip swap has its real receiver, and the four-byte copy takes packed-color inputs directly. The 38-file recovery preserves `draw_polygon_2d`, `draw_strip_swap_color` and `copy4`. Three linker labels change with their actual C++ types.
+
+The ordered build, consolidated review and fork workspace reproduce retail and retain all 1,147 original bytes. The 130-path fork overlay preserves its host byte-order adaptation and passes 310 workspace checks. The historical audit closes 6 entries and adds evidence to 14 others, leaving 606 open. [Rendering and color evidence](2026-11-21-color-line-owners.json)
 
 ## Ordered upstream review candidates
 
