@@ -1221,6 +1221,14 @@ The replay, standalone review and fork build reproduce retail with all 2,448 sou
 
 The historical inventory falls from 656 to 633 paths outside the replay diff. Olga Flow phase scenes and hazards are the next related group. The projectiles, arena geometry and splashes form a separate group around shared collision and draw calls. [Build, scope and replay evidence](2026-11-20-dark-falz-scenes-and-boss-trails.json)
 
+### Olga Flow phases, arena hazards and model-node capture
+
+The 83-file replay at `72e8ab2910` recovers the nine-entry Plot Falz phase table, the native battle-action records and the appearance and death actors. It brings back typed rock, mine, sword-wave and gravity-ball lifetimes. The shared model-node capture now serves Olga Flow, Dark Falz and Pan Arms. The replay keeps the existing camera helpers, Pan Arms factory and Type 2 field names.
+
+The two-commit review at `0266af6bf4` combines this change with Dark Falz and boss trail rendering across 136 files. It starts from upstream master `0fa391a887` and uses the archive, texture and scene interfaces available there. The replay, complete review and 131-path fork tooling layer reproduce retail with 2,448 source objects linked and zero lost code or data coverage. All 1,147 historical bytes remain accounted for. All 305 tests pass, and the trail and model-node capture probes pass on retail and each rebuilt image.
+
+The historical inventory falls from 633 to 610 paths outside the replay diff. The next boss projectile and raft effect previews overlap on the De Rol Le tunnel and linker metadata. [Build, scope and replay evidence](2026-11-20-olga-flow-phases-and-hazards.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
