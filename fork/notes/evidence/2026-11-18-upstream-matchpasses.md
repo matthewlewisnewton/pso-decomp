@@ -1424,9 +1424,9 @@ All 14 current review heads are in three source batches. Each row measures the d
 | ---: | --- | --- | --- | ---: |
 | 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `5e80a99c7b` | 658 |
 | 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `ebd5955737` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `f52ee276eb` | 952 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `956c6b296e` | 969 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `364805820a`, identical to the verified Great Merge source at `c68aa1945f` across 1,736 changed files. All 85 candidate commits passed the attribution audit.
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `091564ea3a`, identical to the verified Great Merge source at `34231780b6` across 1,748 changed files. All 88 candidate commits passed the attribution audit.
 
 The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
@@ -1493,6 +1493,12 @@ The updated combat review, consolidated candidate and fork workspace reproduce r
 Great Merge at `c68aa1945f` gives the active battle bank and four difficulty tables their native record layouts. The TLobby lookups, the three enemy stat methods, and the actor action and motion setters retain their upstream names. The 98-file batch migrates 124 stat calls and 116 motion calls to the shared types. Five linker labels change to reflect parameter types.
 
 The updated combat review, consolidated candidate, and fork workspace reproduce retail and retain all 1,147 original bytes. The battle-table probe passes 384 address lookups, 32 file loads, and the release check on retail and on each build. The 130-path fork overlay round-trips and passes 310 checks. The historical audit closes the Recobox constructor and loader row, leaving 644 entries open. [Battle and motion evidence](2026-11-21-battle-and-actor-motion.json)
+
+## Actor stat storage and equipment previews
+
+Great Merge at `34231780b6` gives actors the native base and attack pointers and gives players their embedded base, attack, and resistance records. Actor and NPC stat initialization, equipment previews, trade and status display use their shared fields. The 54-file batch preserves existing function names and updates the two stat initializer linker labels to reflect their actual parameter types.
+
+The combat review, consolidated candidate, and fork workspace reproduce retail and account for all 1,147 historical data bytes. The actor probe verifies stat initialization and retained HP and TP, four meseta cases, and eleven preview values on retail, the candidate and the layered fork. The battle-table probe and 310 workspace checks pass. The historical audit closes ten entries and leaves 634 open. [Actor stat and historical comparison evidence](2026-11-21-actor-stat-storage.json)
 
 ## Ordered upstream review candidates
 
