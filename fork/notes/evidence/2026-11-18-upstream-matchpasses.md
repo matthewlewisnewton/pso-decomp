@@ -1269,6 +1269,14 @@ The unpublished standalone review at `72ca918dcb` starts on master `0fa391a887`.
 
 The replay, standalone review, and 131-path fork tooling layer reproduce the retail DOL. All 2,448 source objects link and the checks show zero function or data coverage losses. All 1,147 historical bytes remain accounted for. The 305 tooling tests pass, along with 34 enemy-state and 19 player-targeting cases on each of the four images. Four stale symbol names were corrected in the private probes at their original addresses. The historical count outside the replay diff falls from 580 to 568 paths. [Build, scope and replay evidence](2026-11-20-enemy-targeting-formations-and-slime.json)
 
+### Main menu controller and trade windows
+
+The 69-file replay at `7016e40009` recovers the main menu controller fields, single-player camera backdrop and player-window callbacks. The trade request owns its dialog, and the main menu constructs its three trade subwindows directly. The Yes/No and menu flag setters use their actual receiver types. The resize and slide methods use the child menu's height at `0x3C` and tween state at `0x50`.
+
+The unpublished standalone review at `8e9e9ffd42` starts from master `0fa391a887`. Matt authored and committed its single commit. Its merge preview with PR #342 overlaps in 17 files. The prepared enemy-formation review overlaps on the linker retention list. The cumulative replay builds with all three sets of changes.
+
+The replay, standalone review and 131-path private tooling layer each reproduce the retail DOL with all 2,448 source objects linked, zero coverage losses, and all 1,147 historical data bytes accounted for. The 305 tooling tests pass. Twelve resize and nine trade lifecycle cases pass on retail and all three rebuilt images. The historical path count outside the replay diff falls from 568 to 542. [Build, scope and replay evidence](2026-11-20-main-menu-and-trade.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
