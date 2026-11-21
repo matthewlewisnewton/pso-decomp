@@ -1141,6 +1141,12 @@ The 115-file replay at `04e3c21a71` puts the frame and scroll fields on `TWindow
 
 The source and materialized tooling workspace reproduce retail and retain the checked code and data addresses. The strict check reports 2,448 exact linked units and 27,572 exact functions. The path inventory now has 1,097 canonical changes outside the prospective replay diff, including 271 UI paths. The remaining descriptor, keyboard, and city-menu batches have 17, 14, and 34 overlapping paths against this frame checkpoint. [Validation and overlap evidence](2026-11-20-native-window-frame-replay.json)
 
+### Window descriptors, keyboard input and Symbol Chat
+
+The 32-file descriptor replay at `9cdd31b823` uses the shared clipping context for inner bounds and returns entry pointers from the window accessor. The clean rebuild included six conversions at callers that still use integer addresses. The 52-file keyboard and Symbol Chat replay at `c5a12df954` recovers typed keyboard receivers, dismissal and input flags, child drawing and scroll construction. Both clean source builds reproduce retail, pass the strict link check and retain all checked code and data addresses. Linker label changes follow the recovered receivers, constructor or parameter types.
+
+The combined replay changes 80 files, bringing the cumulative UI review to 189 paths from `510be1d79a`. The path inventory now has 1,079 canonical changes outside the prospective replay diff, including 255 UI paths. The next city shops, menu windows and item stock review has 34 overlapping paths on the new source. [Build, fork layer and overlap evidence](2026-11-20-window-interface-and-keyboard-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
