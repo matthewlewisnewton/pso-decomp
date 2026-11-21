@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `c3df972918` uses seventeen commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The seventeen review commits and 109 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `165784f35f` uses eighteen commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The eighteen review commits and 110 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1438,9 +1438,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `c3df
 | 14 | Gi Gue actor and child ownership and Gibbles resource and combat tables | Follow-up recovery | `be1d9b2284` | 10 |
 | 15 | Character level tables, starting inventory and companion initialization | Follow-up recovery | `b64574a02d` | 22 |
 | 16 | NPC visual archives and character inventory ownership | Follow-up recovery | `87322be0f8` | 32 |
-| 17 | PPP frame and callback interfaces | Independent network work | `c3df972918` | 12 |
+| 17 | Character selection actors and title texture ownership | Follow-up recovery | `716c3c34e8` | 25 |
+| 18 | PPP frame and callback interfaces | Independent network work | `165784f35f` | 12 |
 
-The review changes 1,833 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,840 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1605,6 +1606,12 @@ The 22-file batch reproduces retail in the ordered review, the consolidated revi
 Great Merge at `488d22e136` uses native 0x50-byte companion visual records and shares the async file-read record between its producer and dispatcher. Both companion builders retain their original fallback equipment choices. Six NPC variants own typed REL model pointers and GVM texture lists. Saved character and multiplayer exports use the original inventory accessor on the actual TPlyInventory class.
 
 The 32-file batch reproduces retail in the ordered review, the consolidated review and the fork workspace. The probe verifies load failure and success, the companion archive and appearance override, the original inventory accessor offset and release of both resources for each NPC variant. The two changed linker labels reflect genuine type or owner changes. Four historical rows gained source evidence and 592 remain open. [NPC visual and inventory evidence](2026-11-21-companion-visuals.json)
+
+## Character selection actors and title textures
+
+Great Merge at `82ef099ef2` restores the native title texture constructor and the original 0x9C-byte layout across eight frontend scenes. Single and multiplayer selectors use the A-slot, B-slot, selection cursor and displayed player classes directly. Confirmation uses the same player preview interface. Each of the 13 changed linker labels follows a corrected owner or call signature, and the existing function names remain in use.
+
+The 25-file batch reproduces retail in the ordered review, the consolidated review and the fork workspace. The probe checks slots, cursor commands, preview status callbacks, title attachment to its parent and the animation through its final frame. Two historical comparisons are resolved, four gain source evidence and 590 remain open. [Character selection evidence](2026-11-21-selector-owners.json)
 
 ## Ordered upstream review candidates
 
