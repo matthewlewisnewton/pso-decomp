@@ -1181,6 +1181,14 @@ The expanded local review `great-merge/prepared/window-layout-keyboard-and-resul
 
 The historical inventory has 1,039 canonical paths outside the active replay diff, including 82 also outside the older queue. The next weapon registry and projectile interface preview spans 278 paths with 27 overlaps. The three-commit factory tail alone produces more overlap because it assumes the earlier projectile and item contracts. [Build, inventory and review evidence](2026-11-20-challenge-duel-and-page-indicators.json)
 
+### Item factories and weapon projectile interfaces
+
+The 272-file replay at `dca722cfd2` gives the item registry one native factory signature and has weapon factories call their constructors directly. Item archives return typed models, textures and motions. Projectile and effect callers use their actual owners, descriptors and collision records, and weapon models use typed muzzle vectors and motion fields.
+
+The standalone review `great-merge/prepared/weapon-registry-and-projectiles` at `297a969781` starts directly from master `0fa391a887`. Both versions keep the upstream clamp helpers, Ninja reader name, texture entry field and shot-model helpers. Their 45 changed linker labels follow recovered receivers, constructors or parameter types. Clean builds reproduce retail with all 2,448 source objects linked and zero lost code or data addresses. Both builds account for all 1,147 original bytes. The fork-only tooling patch round-trips across 131 paths and passes 305 tests.
+
+The historical inventory falls from 1,039 to 842 paths outside the active replay diff. A one-shot replay of the older review queue has 1,062 overlapping paths. The narrower previews identify online quest transfer and ADX streaming as separate 134- and 122-path groups, with 40 and 41 overlaps respectively. [Build, naming and overlap evidence](2026-11-20-weapon-factories-and-projectile-interfaces.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
