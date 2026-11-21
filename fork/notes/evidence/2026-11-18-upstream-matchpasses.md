@@ -1253,6 +1253,14 @@ The standalone branch `great-merge/prepared/boss-projectiles-and-raft-effects` a
 
 The replay, standalone review and 131-path fork tooling layer reproduce the retail DOL, with all 2,448 source objects linked and zero function or data coverage losses. All 1,147 historical bytes are accounted for. The 305 tooling tests pass. The raft dust and strip animation probes pass on retail and each rebuilt image. The historical path count outside the replay diff falls from 610 to 591. [Build, scope and replay evidence](2026-11-20-boss-projectiles-and-raft-effects.json)
 
+### Action-palette controls and Word Select
+
+The 35-file replay at `d8d3d927b7` shares the action-palette tag across cursor, player, and customization code, and restores the Custom Select constructor and Custom Equip rendering. The Word Select formatters share a 12-byte message record, and the rendering callers use the original 24-byte vertex layout. The Word Select replay preserves every existing function label. The palette changes correct helper receivers, constructor and argument types, and ownership.
+
+The unpublished standalone review at `9081bb020c` starts on master `0fa391a887`. Matt authored and committed its single commit. It overlaps PR #342 in four window files, already resolved on the cumulative replay. Merge previews with the other six published reviews and with the boss-projectile review are clean.
+
+The cumulative replay, standalone review, and 131-path private tooling layer all reproduce the retail DOL, with 2,448 linked source objects and zero function or data coverage losses. All 305 tooling tests pass, and all 1,147 historical bytes remain accounted for. The historical path count outside the replay diff falls from 591 to 580. [Build, scope and replay evidence](2026-11-20-action-palette-and-word-select.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
