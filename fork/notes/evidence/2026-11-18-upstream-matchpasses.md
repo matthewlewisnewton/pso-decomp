@@ -2,6 +2,14 @@
 
 Group related source recovery into fewer, larger reviews with independent matching builds. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
 
+## Replay after upstream PR #351
+
+Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. 765 path comparisons remain open on the new base. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
+
+The local review `b65d1cc9cb` starts on that master. Its six verified commits cover character selection and title textures, character level and inventory records, PPP, Ginja texture lists, the radar and camera view, and shared 2D color lists. The 445-file review uses upstream’s `draw_dialing_rectangle` and `draw_selection_plate` names. Each checkpoint reproduces retail, all 2,448 source units remain linked, and all 1,147 original fork data bytes remain accounted for.
+
+Fork main is still `3342e42983`. The preceding full cutover preview is `e4135b0c55`. The 130-path tool overlay replays onto the new review with one conflict in the linker configuration. Regenerate that configuration against the completed source tree before materializing the final fork. [Matching and replay evidence](2026-11-21-upstream-351-reconciliation.json)
+
 ## Bulk replay on upstream master `6b080e67ab`
 
 The new upstream build reproduces the retail SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` and passes the project checker. The [90-range data ledger](2026-11-18-fork-data-ranges.tsv) records 980 source-linked bytes and 167 bytes of alignment padding. Upstream links the final 24-byte keyboard table at `0x804D0004`. The address comparison with the historical retail-matched fork build reports zero exact or source-linked losses.
