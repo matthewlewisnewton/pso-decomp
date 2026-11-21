@@ -1189,6 +1189,12 @@ The standalone review `great-merge/prepared/weapon-registry-and-projectiles` at 
 
 The historical inventory falls from 1,039 to 842 paths outside the active replay diff. A one-shot replay of the older review queue has 1,062 overlapping paths. The narrower previews identify online quest transfer and ADX streaming as separate 134- and 122-path groups, with 40 and 41 overlaps respectively. [Build, naming and overlap evidence](2026-11-20-weapon-factories-and-projectile-interfaces.json)
 
+### ADX streaming, disc reads and callback contracts
+
+The 89-file replay at `bb96c19268` carries typed ADX stream requests through playback, decoding and completion. Disc archive callers use the opaque ADXF file handle. CVFS and the movie memory device share a callback table, and ADXF owns the command history and sequence counters. The replay keeps the existing sound-pitch calls, cache-invalidation helper and stream-range method. The relocated-module accessor now belongs to the translation unit that loads and destroys the module buffers.
+
+The standalone review `great-merge/prepared/adx-streaming-and-disc-reads` at `2572238636` starts directly from master `0fa391a887`. Both clean builds reproduce retail and retain every checked code and data address with 2,448 source objects linked. The 131-path fork tooling patch round-trips over the replay and passes all 305 tests. The historical inventory falls from 842 to 790 paths outside the active replay diff. [Build and replay evidence](2026-11-20-adx-streaming-and-disc-reads.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
