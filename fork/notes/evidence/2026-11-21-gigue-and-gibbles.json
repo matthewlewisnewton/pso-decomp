@@ -1,0 +1,609 @@
+{
+  "source": "f4d20593293329012001ba1af455f241a9bf59cc",
+  "previous_source": "65829c84195481960d626dc00a6b2c1be96a5a7c",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-gigue-and-gibbles",
+    "head": "9bf422ff197bffcb75ce64ab2e71b2aeab44169f",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "05a26ea72f202c2c77c31cf8e32cf51c0d01e4a9",
+    "tree_equivalent_to": "f49cd6430b5d15527249e9bbd67bd2925827b9a8",
+    "commits": [
+      {
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
+      },
+      {
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
+      },
+      {
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "cba6fc1eb860a10cd0e81264e1a3994ba723f0d3",
+        "checked_tree": "5170c577c9ddd200b1558955af9437e4dc5216c6",
+        "files_changed": 11,
+        "insertions": 318,
+        "deletions": 625
+      },
+      {
+        "head": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "base": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "tree": "941e046ad88cc148c2cc6baaf061eb6a584e4756",
+        "checked_tree": "46ad4c3f09c07623550c12f043fcca2994853cbd",
+        "files_changed": 14,
+        "insertions": 258,
+        "deletions": 255
+      },
+      {
+        "head": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "base": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "tree": "0221d12c79686fe75aa75a54b8d28567542d45c7",
+        "checked_tree": "e22f99703c7d168dfc509cf6b02a66ae32481956",
+        "files_changed": 19,
+        "insertions": 161,
+        "deletions": 128
+      },
+      {
+        "head": "be1d9b228473ad65248d3e4d9dee3c262dc27f08",
+        "base": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "tree": "424ead57e2e709837d9f0abac905a4b4c97a92bd",
+        "checked_tree": "510df145dedd057291f46c6f7a35caae16e3c086",
+        "files_changed": 10,
+        "insertions": 308,
+        "deletions": 429
+      },
+      {
+        "head": "9bf422ff197bffcb75ce64ab2e71b2aeab44169f",
+        "base": "be1d9b228473ad65248d3e4d9dee3c262dc27f08",
+        "tree": "05a26ea72f202c2c77c31cf8e32cf51c0d01e4a9",
+        "checked_tree": "f49cd6430b5d15527249e9bbd67bd2925827b9a8",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 15,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1817,
+    "insertions": 32336,
+    "deletions": 36060
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/gibbles/TObjEneGibbles.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGueBarrier.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGueMissile.h",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp"
+  ],
+  "patch_sha256": "e9b64d06ba9ef9c994f1d735519738ad3b435d81a6806a9ceb0afe680f64c970",
+  "checked_original_functions": [
+    "TObjEneMe1GiGue::dispatch_state",
+    "TObjEneMe1GiGueMissile::create",
+    "TObjEneGibbles::sub_802DBC94"
+  ],
+  "retail_gibbles_data_layout": {
+    "action_table": [
+      2152605872,
+      160
+    ],
+    "movement_table": [
+      2152606032,
+      28
+    ],
+    "collision_bodies": [
+      2152606060,
+      132
+    ]
+  },
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "35b1f072373547e3d637a2473e7dd84ceae3163ed1aab11c2e245065cd900c0a",
+      "source_report_sha256": "f242fe04a5ec0b9f4c04389183cff6b1ca1a14d4f5bec6b85ce7f83132c5d8ae",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802CAD98",
+          "find_open_direction__15TObjEneMe1GiGueFPvPv",
+          "find_open_direction__15TObjEneMe1GiGueFP3Vec"
+        ],
+        [
+          "0x802CB03C",
+          "TObjEneMe1GiGue__sub_802CB03C",
+          "sub_802CB03C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB10C",
+          "TObjEneMe1GiGue__sub_802CB10C",
+          "sub_802CB10C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB274",
+          "init__15TObjEneMe1GiGueFPv",
+          "init__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB378",
+          "TObjEneMe1GiGue__sub_802CB378",
+          "sub_802CB378__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB824",
+          "TObjEneMe1GiGue__sub_802CB824",
+          "sub_802CB824__15TObjEneMe1GiGueFl"
+        ],
+        [
+          "0x802CB8F0",
+          "move_around_center__15TObjEneMe1GiGueFPvf",
+          "move_around_center__15TObjEneMe1GiGueFP3Vecf"
+        ],
+        [
+          "0x802CC350",
+          "action__15TObjEneMe1GiGueFPv",
+          "action__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC45C",
+          "TObjEneMe1GiGue__sub_802CC45C",
+          "sub_802CC45C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC614",
+          "TObjEneMe1GiGue__sub_802CC614",
+          "sub_802CC614__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC900",
+          "TObjEneMe1GiGue__sub_802CC900",
+          "sub_802CC900__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CCBAC",
+          "TObjEneMe1GiGue__sub_802CCBAC",
+          "sub_802CCBAC__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD780",
+          "deleting_dtor__15TObjEneMe1GiGueFPvs",
+          "__dt__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD7F8",
+          "TObjEneMe1GiGue__ct",
+          "__ct__15TObjEneMe1GiGueFP7TObjectPv"
+        ],
+        [
+          "0x802CE220",
+          "create__22TObjEneMe1GiGueMissileFlllff",
+          "create__22TObjEneMe1GiGueMissileFP15TObjEneMe1GiGueP3VecP3Vecff"
+        ],
+        [
+          "0x80325BCC",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectPv",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ],
+        [
+          "0x80325CC4",
+          "create__22TObjEneMe1GiGueBarrierFPvPv",
+          "create__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "35b1f072373547e3d637a2473e7dd84ceae3163ed1aab11c2e245065cd900c0a",
+      "source_report_sha256": "f242fe04a5ec0b9f4c04389183cff6b1ca1a14d4f5bec6b85ce7f83132c5d8ae",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802CAD98",
+          "find_open_direction__15TObjEneMe1GiGueFPvPv",
+          "find_open_direction__15TObjEneMe1GiGueFP3Vec"
+        ],
+        [
+          "0x802CB03C",
+          "TObjEneMe1GiGue__sub_802CB03C",
+          "sub_802CB03C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB10C",
+          "TObjEneMe1GiGue__sub_802CB10C",
+          "sub_802CB10C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB274",
+          "init__15TObjEneMe1GiGueFPv",
+          "init__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB378",
+          "TObjEneMe1GiGue__sub_802CB378",
+          "sub_802CB378__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB824",
+          "TObjEneMe1GiGue__sub_802CB824",
+          "sub_802CB824__15TObjEneMe1GiGueFl"
+        ],
+        [
+          "0x802CB8F0",
+          "move_around_center__15TObjEneMe1GiGueFPvf",
+          "move_around_center__15TObjEneMe1GiGueFP3Vecf"
+        ],
+        [
+          "0x802CC350",
+          "action__15TObjEneMe1GiGueFPv",
+          "action__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC45C",
+          "TObjEneMe1GiGue__sub_802CC45C",
+          "sub_802CC45C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC614",
+          "TObjEneMe1GiGue__sub_802CC614",
+          "sub_802CC614__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC900",
+          "TObjEneMe1GiGue__sub_802CC900",
+          "sub_802CC900__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CCBAC",
+          "TObjEneMe1GiGue__sub_802CCBAC",
+          "sub_802CCBAC__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD780",
+          "deleting_dtor__15TObjEneMe1GiGueFPvs",
+          "__dt__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD7F8",
+          "TObjEneMe1GiGue__ct",
+          "__ct__15TObjEneMe1GiGueFP7TObjectPv"
+        ],
+        [
+          "0x802CE220",
+          "create__22TObjEneMe1GiGueMissileFlllff",
+          "create__22TObjEneMe1GiGueMissileFP15TObjEneMe1GiGueP3VecP3Vecff"
+        ],
+        [
+          "0x80325BCC",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectPv",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ],
+        [
+          "0x80325CC4",
+          "create__22TObjEneMe1GiGueBarrierFPvPv",
+          "create__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "35b1f072373547e3d637a2473e7dd84ceae3163ed1aab11c2e245065cd900c0a",
+      "source_report_sha256": "f242fe04a5ec0b9f4c04389183cff6b1ca1a14d4f5bec6b85ce7f83132c5d8ae",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802CAD98",
+          "find_open_direction__15TObjEneMe1GiGueFPvPv",
+          "find_open_direction__15TObjEneMe1GiGueFP3Vec"
+        ],
+        [
+          "0x802CB03C",
+          "TObjEneMe1GiGue__sub_802CB03C",
+          "sub_802CB03C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB10C",
+          "TObjEneMe1GiGue__sub_802CB10C",
+          "sub_802CB10C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB274",
+          "init__15TObjEneMe1GiGueFPv",
+          "init__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB378",
+          "TObjEneMe1GiGue__sub_802CB378",
+          "sub_802CB378__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB824",
+          "TObjEneMe1GiGue__sub_802CB824",
+          "sub_802CB824__15TObjEneMe1GiGueFl"
+        ],
+        [
+          "0x802CB8F0",
+          "move_around_center__15TObjEneMe1GiGueFPvf",
+          "move_around_center__15TObjEneMe1GiGueFP3Vecf"
+        ],
+        [
+          "0x802CC350",
+          "action__15TObjEneMe1GiGueFPv",
+          "action__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC45C",
+          "TObjEneMe1GiGue__sub_802CC45C",
+          "sub_802CC45C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC614",
+          "TObjEneMe1GiGue__sub_802CC614",
+          "sub_802CC614__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC900",
+          "TObjEneMe1GiGue__sub_802CC900",
+          "sub_802CC900__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CCBAC",
+          "TObjEneMe1GiGue__sub_802CCBAC",
+          "sub_802CCBAC__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD780",
+          "deleting_dtor__15TObjEneMe1GiGueFPvs",
+          "__dt__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD7F8",
+          "TObjEneMe1GiGue__ct",
+          "__ct__15TObjEneMe1GiGueFP7TObjectPv"
+        ],
+        [
+          "0x802CE220",
+          "create__22TObjEneMe1GiGueMissileFlllff",
+          "create__22TObjEneMe1GiGueMissileFP15TObjEneMe1GiGueP3VecP3Vecff"
+        ],
+        [
+          "0x80325BCC",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectPv",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ],
+        [
+          "0x80325CC4",
+          "create__22TObjEneMe1GiGueBarrierFPvPv",
+          "create__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "a944d37576a89f002dc0a16d4e7f78c46a56a33251e2e804fe6460d1d28877be",
+      "source_report_sha256": "f242fe04a5ec0b9f4c04389183cff6b1ca1a14d4f5bec6b85ce7f83132c5d8ae",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802CAD98",
+          "find_open_direction__15TObjEneMe1GiGueFPvPv",
+          "find_open_direction__15TObjEneMe1GiGueFP3Vec"
+        ],
+        [
+          "0x802CB03C",
+          "TObjEneMe1GiGue__sub_802CB03C",
+          "sub_802CB03C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB10C",
+          "TObjEneMe1GiGue__sub_802CB10C",
+          "sub_802CB10C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB274",
+          "init__15TObjEneMe1GiGueFPv",
+          "init__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB378",
+          "TObjEneMe1GiGue__sub_802CB378",
+          "sub_802CB378__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CB824",
+          "TObjEneMe1GiGue__sub_802CB824",
+          "sub_802CB824__15TObjEneMe1GiGueFl"
+        ],
+        [
+          "0x802CB8F0",
+          "move_around_center__15TObjEneMe1GiGueFPvf",
+          "move_around_center__15TObjEneMe1GiGueFP3Vecf"
+        ],
+        [
+          "0x802CC350",
+          "action__15TObjEneMe1GiGueFPv",
+          "action__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC45C",
+          "TObjEneMe1GiGue__sub_802CC45C",
+          "sub_802CC45C__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC614",
+          "TObjEneMe1GiGue__sub_802CC614",
+          "sub_802CC614__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CC900",
+          "TObjEneMe1GiGue__sub_802CC900",
+          "sub_802CC900__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CCBAC",
+          "TObjEneMe1GiGue__sub_802CCBAC",
+          "sub_802CCBAC__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD780",
+          "deleting_dtor__15TObjEneMe1GiGueFPvs",
+          "__dt__15TObjEneMe1GiGueFv"
+        ],
+        [
+          "0x802CD7F8",
+          "TObjEneMe1GiGue__ct",
+          "__ct__15TObjEneMe1GiGueFP7TObjectPv"
+        ],
+        [
+          "0x802CE220",
+          "create__22TObjEneMe1GiGueMissileFlllff",
+          "create__22TObjEneMe1GiGueMissileFP15TObjEneMe1GiGueP3VecP3Vecff"
+        ],
+        [
+          "0x80325BCC",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectPv",
+          "__ct__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ],
+        [
+          "0x80325CC4",
+          "create__22TObjEneMe1GiGueBarrierFPvPv",
+          "create__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "4ead51184601c8c1e4bda97f940e3f332404444a4d83fd924dc9de0059a76891",
+    "review": "4ead51184601c8c1e4bda97f940e3f332404444a4d83fd924dc9de0059a76891",
+    "layer": "4ead51184601c8c1e4bda97f940e3f332404444a4d83fd924dc9de0059a76891"
+  },
+  "overlay_sha256": "a3f3b26b7e93cc634e69eb9a55ac6ea75a222e47cf3eb5a3b5a480d39c5d079c",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {},
+  "historical_rows_with_added_evidence": {
+    "453": "The live actor has the typed attack collider and opacity and camera fades at the original offsets. The native lifecycle and vtable still need reconciliation with the current shared actor interfaces",
+    "459": "The native constructor, destructor, and flight, landing, search, and attack methods now belong to their original receiver. The vector and factory declarations use native argument types and retain the existing names. The remaining source comparison covers tuning accessors and state contracts",
+    "587": "The two BML descriptors, live resource pointer, model selection, AI fields, movement constants, attack-parameter entries and three collision bodies use typed records. Attack-position lookup consumes the actual collider and the constructor bridge calls the actual fade members. The bulk native actor conversion remains open",
+    "591": "Gi Gue uses its native constructor and destructor with the compiler-provided virtual table. The flight, search, needle, missile and technique states call actual actor methods. Missile and barrier factories take the actor and vector arguments with their original roles. The remaining targeting and combat-source differences still need review"
+  },
+  "existing_upstream_interfaces_kept": {},
+  "historical_rows_open": 592,
+  "public_refs_changed": false
+}
