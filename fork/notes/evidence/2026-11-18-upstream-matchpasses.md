@@ -1350,6 +1350,14 @@ The archive review and renderer review reproduce retail together at `c7a5af7abf`
 
 The cumulative branch at `45f6c97c98` restores the Vol Opt rock model and texture arrays, checks the archive request layouts and removes the obsolete lobby declarations. Both source and fork workspace reproduce retail with all 2,448 source objects linked and preserve all 1,147 historical data bytes. All 310 fork workspace checks pass, and 672 entries remain in the [fork source index](2026-11-18-fork-review-index.tsv).
 
+## Particle factories and native sprite definitions on upstream master
+
+The standalone review at `6d9f7bffe5` starts directly on upstream master `1fd561eae2`. Both particle factories use the shared world-position vector and return the native particle pointer. The atlas passes its task parent and sprite definition through the base and five quad constructors. The 191-file review matches the retail DOL with all 2,448 source units linked. The only six changed linker labels follow the constructor signatures, and the commit has zero Codex attribution.
+
+The three local reviews reproduce retail together at `aa3fa4b709` across 480 paths. The particle change merges cleanly with the renderer alone. Combining it with the archive and renderer work resolved 39 shared paths, including one Gryphon shockwave that uses both recovered interfaces. The standalone candidate is local and ready for publication approval. [Build and overlap evidence](2026-11-20-osp-particle-review-and-actor-layouts.json)
+
+Great Merge at `26fdc8afcf` also restores the native actor position initializer and word-sized action mask. The initializer retains the upstream name, uses `TObjChara` as its receiver and keeps the originally linked address. Twelve actor layout checks and the 66 updated callers pass the exact build. The fork workspace reproduces retail and passes all 310 checks. The [fork index](2026-11-18-fork-review-index.tsv) still has 670 open entries.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
