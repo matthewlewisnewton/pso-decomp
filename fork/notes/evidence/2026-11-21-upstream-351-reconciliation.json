@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "e52570bb21464df6466ba51462484ba8bd4c4a30",
+  "review": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "aa80273e73ba9d811c659f655154db5b6acd1774",
-  "review_paths": 903,
+  "review_tree": "361603052f3ebe35e7a1228b04012cf59ab703b3",
+  "review_paths": 918,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,20 +29,20 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "3225bfe9c901dbfc1a1c8024ac61567ab493933959ae043cf0eedeb3ea736acb",
+  "path_ledger_sha256": "eb59463968bbb2df4eb96c1c667907dfa425e17c2b26d258298141a6b98d681e",
   "path_status": {
-    "equivalent source retained": 173,
-    "exact prior source": 574,
-    "validated historical owner recovery": 58,
-    "same change already in upstream": 899,
+    "equivalent source retained": 167,
+    "exact prior source": 570,
+    "validated historical owner recovery": 75,
+    "same change already in upstream": 894,
     "validated three-way source": 14,
     "upstream names retained": 62,
     "upstream only": 7,
-    "equivalent base-class call retained": 43,
-    "native archive source with existing style": 17
+    "equivalent base-class call retained": 42,
+    "native archive source with existing style": 16
   },
   "remaining_path_comparisons": 0,
-  "historical_fork_ledger_open": 563,
+  "historical_fork_ledger_open": 562,
   "validation": {
     "upstream": {
       "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 50,
+    "commits": 56,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -320,5 +320,6 @@
   "cutover_candidate_ref": "great-merge/cutover-candidate",
   "historical_owner_recovery": "2026-11-21-historical-inventory-and-owner-review.json",
   "historical_boss_recovery": "2026-11-21-historical-boss-owners.json",
-  "historical_enemy_collision": "2026-11-21-historical-enemy-collision.json"
+  "historical_enemy_collision": "2026-11-21-historical-enemy-collision.json",
+  "historical_ground_and_body": "2026-11-21-historical-ground-and-body.json"
 }

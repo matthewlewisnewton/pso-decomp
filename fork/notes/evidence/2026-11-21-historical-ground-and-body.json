@@ -1,0 +1,627 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "e52570bb21464df6466ba51462484ba8bd4c4a30",
+  "source": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
+  "source_tree": "361603052f3ebe35e7a1228b04012cf59ab703b3",
+  "source_review_files": 918,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:49a109bc85da0afed5e7a4e588b938614a86766e",
+      "review_blob": "100644:75149629f637e1717fd1383ecaf2bb500cc112a0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/collision/ActorBodyContact.h",
+      "previous_blob": "100644:b97df72d77fe468a0e2d4ca44a0f90049f53f380",
+      "review_blob": "100644:56ea2d1a10a534c22bc4140717dbac534693abb2",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/collision/ActorGroundQuery.h",
+      "previous_blob": "",
+      "review_blob": "100644:429f31fe08a322e9b824d3acc14523120ba4ae58",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/effect/TUnk_804CCC68.h",
+      "previous_blob": "100644:8d71f29fc1cb97c91cec4ee7a7c2f9043590e5ce",
+      "review_blob": "100644:3d97df9deb024e57ce03cd59bb08719460fcb99c",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/enemy/TNeedleShoot.h",
+      "previous_blob": "100644:58940b228421967f44e71805c5a6bf7d29bd6fee",
+      "review_blob": "100644:db902977d3f888cc97f91d38ad5f23d5e9476417",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/item/TUnk_804E355C.h",
+      "previous_blob": "100644:36917744658688910f636a2d54741b393a91958c",
+      "review_blob": "100644:f2f14fdd021f88156b569805b0044328f7c3e89d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/object/base/CollisionActorRegistry.h",
+      "previous_blob": "",
+      "review_blob": "100644:87fc03124fbd03943b1fc4ee2c40785b89772711",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/base/CollisionBodySet.h",
+      "previous_blob": "100644:91ebcc2d6cac77becead8bec74b9e554a700d4ec",
+      "review_blob": "100644:3d4998458d32cf275c13b1e11656899a6a004358",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/base/TObjMotion.h",
+      "previous_blob": "100644:c19605d185151f1741a1f4fe79974f374c3c26a8",
+      "review_blob": "100644:250b50ca40b609cc087cf0530c2613c9eeaea253",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/player/TObjPlayer_801542CC.h",
+      "previous_blob": "100644:2a9d6014135ceac07e1a93b1f78906c9f9d001d6",
+      "review_blob": "100644:4662c6e30a5781b9dd583a589fa211cd68bc4224",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/technique/TTecBarta.h",
+      "previous_blob": "100644:dcb85ba17117a8fc5e191b9d9bce256ab35d67da",
+      "review_blob": "100644:3dc3ee500b0982039f707111374825841fc80f1d",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/technique/TechniqueContact.h",
+      "previous_blob": "100644:a8b2f7ab49662bd4fd739d7fcdec8087ca329490",
+      "review_blob": "100644:17607da9ae61902e9131cac12288dcfa700f9732",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+      "previous_blob": "100644:bb0898ba72801bad8c2e6ca8da565c89f63b5b6c",
+      "review_blob": "100644:c67b0562b9582724b61391caabd9c5046678b9af",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "previous_blob": "100644:5b03f031977be0f42dad62220d9371a6c5494e1d",
+      "review_blob": "100644:baeb02e9d54adfcf2ebd2b53faa1316bda5f9689",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp",
+      "previous_blob": "100644:01ebcad182b4a2256045b8797b17608391b4a487",
+      "review_blob": "100644:00aeb7b749bf2f09628a08da183263fdf9d57fd9",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+      "previous_blob": "100644:7de77eb15e207e786a27ef3ce3d68eed7613bdc3",
+      "review_blob": "100644:4794da13aa70596584ff14f4df8044a1eb6ab9b4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "previous_blob": "100644:4802ad3d531204eaefaaf213f718eacd28ae38db",
+      "review_blob": "100644:ac5010599a39363c7719a580f30c4d810ce3fd1c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "previous_blob": "100644:a4201b7b0d70d881478beda740fdf36bbf58bdb5",
+      "review_blob": "100644:7144a899e87f5ad3e06e2c5547f2c06443adcb1a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "previous_blob": "100644:231d8bf9ac855a22a55f366b09b35775b567c41f",
+      "review_blob": "100644:38a9588650c7d25867ec28355ebf149f31dc200e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "previous_blob": "100644:ed4751bbc94f5ad970b3f0d25eb99ec8cb583e77",
+      "review_blob": "100644:0be4634130d235039f18067664eb6441ab5a7dba",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/TObjEnemyCustom.cpp",
+      "previous_blob": "100644:c5079c1a8acf353531b2c964a9a1262ed9f4ffba",
+      "review_blob": "100644:1e61b373fe400968866a1388d755dd63c6f3aed4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "previous_blob": "100644:b784a7264703ac680aaee006a25b74b4708bf29b",
+      "review_blob": "100644:216101850d9d457de43e5b1bc1e0c6a9d9ecc995",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "previous_blob": "100644:0837a370e7e44e174f35e7e7f7ff3882e8dd4e0d",
+      "review_blob": "100644:34e41ba83858335a39984ab33d6c084bc42b4e0c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "previous_blob": "100644:cdaab76fdfe6b1954a23ffd134b9c87f2ff8862a",
+      "review_blob": "100644:aa891c46e1968d6242be1a19766de69cda0f557f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "previous_blob": "100644:253e5844ca0a6e054d4fbe288f739b399d7b17bc",
+      "review_blob": "100644:3041b4c514d13eadbd32a4078e3459e30283472c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "previous_blob": "100644:65ac1e442c196d6a197c2aae949f922af8aca62b",
+      "review_blob": "100644:a8d0e6850a683e454b0b5a7b5494e9518fe8a569",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+      "previous_blob": "100644:f458d24ab31b3db61a3e7023c21b85887621f2f6",
+      "review_blob": "100644:1b5988b1281d894ee41401548f666d602d9d89da",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+      "previous_blob": "100644:9122062c2b2efe2b8ef143b935ab2774597d60cc",
+      "review_blob": "100644:a479d84297f301ab1c2e8cbd0ec1022532f9f214",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "previous_blob": "100644:b9059265fa7c1c902f5d52359aa40d2ba20f343c",
+      "review_blob": "100644:b034a2b7a9013843d62ae1b4ad8511a9eae03702",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "previous_blob": "100644:051408dd692206a074b69c4d7d4ab79ea6a036a9",
+      "review_blob": "100644:ad054cb25ca6c6cbec72fafb3c14dc594f4225d1",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "previous_blob": "100644:5162b821d71322d2bfba7057ed822970808fdac5",
+      "review_blob": "100644:f6ea7d56f6171f188f868fcbfd2df748d682deab",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "previous_blob": "100644:5bf32608f6c7e4f3e93b426807f599f3f8d3f9d4",
+      "review_blob": "100644:bf1520e44bad230075356f009b7e0e177c7346a4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/nanodrago/TObjEneNanoDrago_800D9BBC.cpp",
+      "previous_blob": "100644:b85a9df9e7456086a921d8aa0fec8200f1c048c2",
+      "review_blob": "100644:6eff04028c3170cb09e27df8cf44e25cede00a8c",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "previous_blob": "100644:3708f9839e4055f64a8fdae561230dc15aae92dc",
+      "review_blob": "100644:6f19cda4c3104510b81df65cb4a80a12ed320e0a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "previous_blob": "100644:8aba1574f8fc8a022ea5fdbc2518c843ce0c2eb7",
+      "review_blob": "100644:a57d2470c62044b112a201031a0b436177db060f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "previous_blob": "100644:7ad3975de6b207bbbfc60d61f7f9f940ad432616",
+      "review_blob": "100644:0d624447ce224a6390b4eeecead237352898729d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+      "previous_blob": "100644:0039eed4ecf7beb9e18597c2209da3fd091c5899",
+      "review_blob": "100644:1d39002e197eb7464d5c0f905cdcbe636df34a54",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "previous_blob": "100644:8b055d0e96fcd41f517800ff6772fe4b69077d14",
+      "review_blob": "100644:4b647cf84756f2dd143ab379bc46f35d750d9694",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/npc/TNpcPlayer.cpp",
+      "previous_blob": "100644:f2daa1c9c93a62212db9b877fe5eb1e609c2ac81",
+      "review_blob": "100644:fea8075bce630b53410bf2b6fa0c4787bba5a0ca",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/npc/TObjNpcKenkyuW.cpp",
+      "previous_blob": "100644:d4d628bb856d89565654850089d4fa671fd2bec1",
+      "review_blob": "100644:849599ef2f4762519a0052c492822870ea5dd1d8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent base-class call retained"
+    },
+    {
+      "path": "src/pso/object/TObjControl.cpp",
+      "previous_blob": "100644:72ff7dd9f35fe09629154887415f5277bfcccb4b",
+      "review_blob": "100644:f9d615621529fb061f1305532fe1ec6582101e58",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/object/TObjTombstone.cpp",
+      "previous_blob": "100644:cdb318f2058f83fead96708bb051e7ba81e64960",
+      "review_blob": "100644:772507f9990dff072a957fa2c165730c6af5c7a9",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "native archive source with existing style"
+    },
+    {
+      "path": "src/pso/object/ambient/TObjGrass.cpp",
+      "previous_blob": "100644:34aecc982999fb3f3fc8f6b02930f74b6819d98f",
+      "review_blob": "100644:8a28de601cf7e1441daa67f7e647852cacae7c2d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/object/ambient/TObjLight_80235C44.cpp",
+      "previous_blob": "100644:677bb695d3d1fbf72ce6c68da74f7fd778854cc4",
+      "review_blob": "100644:2def78e9ce6369d0b8d2cf56bd989d4d2b9566f2",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+      "previous_blob": "100644:e9586d6415a2fc380826be8c4af41869d97c50bf",
+      "review_blob": "100644:179c836ffc6adef8a0277f4e20f700aaad707194",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_80011014.cpp",
+      "previous_blob": "100644:7869e5ff8f90e3314b1ead4fdc995926b2597336",
+      "review_blob": "100644:b0ef153b293f16ef94fc9a4a2e0197cffb96b4f8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801542CC.cpp",
+      "previous_blob": "100644:1b5d1d81dcdc69bf4066e8da4fe78e339aaf5803",
+      "review_blob": "100644:fa2f0faf35c300b6b606667282d0a783b5d664b6",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "previous_blob": "100644:a6c2fe70e6ad6310ad2201c7a43d0d033632a65c",
+      "review_blob": "100644:bc4b49133386a1275c28b6b23c355e86c841e706",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/player/TUnk_80491478.cpp",
+      "previous_blob": "100644:ab1ee9a21977886f4dc7585414877161817bd5df",
+      "review_blob": "100644:bb37fe44f63385f1d10fe72f4c5a860f24fdd622",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/weapon/TItemAttackCol.cpp",
+      "previous_blob": "100644:d2d560148eff065bb92c0c95a9c062b201b95a7b",
+      "review_blob": "100644:a95dd481a3c5749795f53003e852ff78de69727e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    }
+  ],
+  "checks": {
+    "project-ground": {
+      "head": "4d0f1f25147eea68575c98df39950622ab8a8a50",
+      "baseline": "e52570bb21464df6466ba51462484ba8bd4c4a30",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "body-contact": {
+      "head": "de14aab897160176d4002555bbb067d62213d523",
+      "baseline": "4d0f1f25147eea68575c98df39950622ab8a8a50",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "0c8284d7224c26d2f606cf4e98c782a6d82d84b9004bb76dfc4dbc1e55f8f965"
+    },
+    "contact-response": {
+      "head": "5bb4b204033b7c8a9e8bc1633d953195a24e8cec",
+      "baseline": "de14aab897160176d4002555bbb067d62213d523",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "040c7bff8d4c2fb6df7c24004e29ac92eb1a5544886d0dfc1c7197f378e04498"
+    },
+    "actor-body-state": {
+      "head": "eb1af69c155484f775cfeafd483ee407872f0b2d",
+      "baseline": "5bb4b204033b7c8a9e8bc1633d953195a24e8cec",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "actor-registry": {
+      "head": "ff7bb83a914ab3f8bfcdaa3cadeeab38e8379731",
+      "baseline": "eb1af69c155484f775cfeafd483ee407872f0b2d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "0a0ec46d9c34ec7106fe71148edbf67b77abdcf4657cf6cd570d9efd2ce3da27"
+    },
+    "collision-set": {
+      "head": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
+      "baseline": "ff7bb83a914ab3f8bfcdaa3cadeeab38e8379731",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "full-review": {
+      "head": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 311,
+      "check_sha256": "2301b115fd8c0153b3b0d07a1da9c7662c11c93af4e8c73e240613fe1003ba9f"
+    },
+    "layer": {
+      "head": "7de68bc0ffb50e64832b2f9814f6aea23341c69d",
+      "baseline": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "collision-set": {
+      "sha256": "44afe8dfc6e013ceea7eff0965f16e681df363b65bf1f90b2e1c002136a1782f",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "44afe8dfc6e013ceea7eff0965f16e681df363b65bf1f90b2e1c002136a1782f",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80155FBC",
+      "before": "find_actor_body_contact__14TObjCollidableFPUcf",
+      "after": "find_actor_body_contact__14TObjCollidableFP14TObjCollidablef"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801550DC",
+      "before": "resolve_actor_sphere_contact__FPUcll",
+      "after": "resolve_actor_sphere_contact__FP14TObjCollidableP14TObjCollidableP13CollisionBody"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80155294",
+      "before": "resolve_player_box_contact__FPUcPUcPUc",
+      "after": "resolve_player_box_contact__FP14TObjCollidableP14TObjCollidableP13CollisionBody"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801557BC",
+      "before": "respond_to_body_contact__FPUcUlPUc",
+      "after": "respond_to_body_contact__FP14TObjCollidableP14TObjCollidableP13CollisionBody"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80156268",
+      "before": "check_actor_body_contact__14TObjCollidableFPvf",
+      "after": "check_actor_body_contact__14TObjCollidableFP14TObjCollidablef"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 4114,
+      "fork_path": "src/pso/player/TObjPlayer_801542CC.cpp",
+      "fork_blob": "ad436d3c436baeea1730b2b3de3cacf05ed71ac3",
+      "historical_delta_sha256": "dd57009dda085af22dfbddb98d137d54e644d6b659a519c6fedc58fbba66813c",
+      "owner": "src/pso/player/TObjPlayer_801542CC.cpp",
+      "owner_blob": "fa2f0faf35c300b6b606667282d0a783b5d664b6",
+      "final_comparison_sha256": "324b6489a994b054a352e62e17cf5c0284ed1e95c118bfa533b6462d094c7f20",
+      "status": "Typed historical integration validated",
+      "rationale": "The shared collision unit uses native actor, body, set, sphere, box and hit records for the live owner, overlap, response, allocation, registry and ground paths. The typed registry and ground headers preserve the existing entity lookup and ground function names. Pool constants match retail at their linked addresses. The current pointers in the unique-pair table, scoped compiler settings, vector declaration and matching allocator entry points account for the remaining historical differences."
+    }
+  ],
+  "historical_ledger_sha256_before": "3e4d9d4107bbc3f31021a07dfc74a6b6d5e6e116799a431ef2fc836662ef64be",
+  "historical_ledger_sha256": "9826ff367e50c2b3eded9ae1853b68987e044b294502f3379b441930ce082eb6",
+  "historical_rows_open": 562,
+  "partially_reconciled_collision_rows": [
+    {
+      "row": 604,
+      "path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "current_blob": "a57d2470c62044b112a201031a0b436177db060f",
+      "scope": "The Pan Arms ground query passes the native ground normal and writes through the shared interface. The broader historical row is still open."
+    },
+    {
+      "row": 621,
+      "path": "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "current_blob": "0d624447ce224a6390b4eeecead237352898729d",
+      "scope": "Recon passes its native ground normal and body owner to the shared projection. The broader historical row is still open."
+    },
+    {
+      "row": 933,
+      "path": "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "current_blob": "216101850d9d457de43e5b1bc1e0c6a9d9ecc995",
+      "scope": "The Beast slope path passes real Vec storage for its sampled position and normal. The broader historical row is still open."
+    },
+    {
+      "row": 956,
+      "path": "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "current_blob": "b034a2b7a9013843d62ae1b4ad8511a9eae03702",
+      "scope": "Ill Gill consumes a typed body from the shared contact query and uses its native actor for ground projection. The broader historical row is still open."
+    },
+    {
+      "row": 4089,
+      "path": "src/pso/player/TObjPlayer_80011014.cpp",
+      "current_blob": "b0ef153b293f16ef94fc9a4a2e0197cffb96b4f8",
+      "scope": "The player ground path uses the common Vec interface for its sampled position and optional normal. The broader historical row is still open."
+    },
+    {
+      "row": 6697,
+      "path": "src/pso/npc/TObjNpcKenkyuW.cpp",
+      "current_blob": "849599ef2f4762519a0052c492822870ea5dd1d8",
+      "scope": "The member collector and two helper queries use native collision body results, which the needle attack consumes. The broader historical row is still open."
+    },
+    {
+      "row": 6950,
+      "path": "src/pso/object/ambient/TObjGrass.cpp",
+      "current_blob": "8a28de601cf7e1441daa67f7e647852cacae7c2d",
+      "scope": "Grass uses a typed body contact query for its existing hit test and the shared Vec ground query in movement. The broader historical row is still open."
+    }
+  ],
+  "collision_float_pool": {
+    "0x804400F0": {
+      "bytes": "40c45f30b21788bb",
+      "historical_literal": 10430.38043493439,
+      "matches_retail": true
+    },
+    "0x805DB270": {
+      "bytes": "00000000",
+      "historical_literal": 0.0,
+      "matches_retail": true
+    },
+    "0x805DB274": {
+      "bytes": "471c4000",
+      "historical_literal": 40000.0,
+      "matches_retail": true
+    },
+    "0x805DB278": {
+      "bytes": "42480000",
+      "historical_literal": 50.0,
+      "matches_retail": true
+    },
+    "0x805DB27C": {
+      "bytes": "2edbe6fe",
+      "historical_literal": 9.9999994e-11,
+      "matches_retail": true
+    },
+    "0x805DB280": {
+      "bytes": "3e800000",
+      "historical_literal": 0.25,
+      "matches_retail": true
+    },
+    "0x805DB284": {
+      "bytes": "3727c5ac",
+      "historical_literal": 1e-05,
+      "matches_retail": true
+    },
+    "0x805DB288": {
+      "bytes": "3dcccccd",
+      "historical_literal": 0.1,
+      "matches_retail": true
+    },
+    "0x805DB28C": {
+      "bytes": "bdcccccd",
+      "historical_literal": -0.1,
+      "matches_retail": true
+    },
+    "0x805DB290": {
+      "bytes": "bc23d70b",
+      "historical_literal": -0.010000001,
+      "matches_retail": true
+    },
+    "0x805DB294": {
+      "bytes": "3c23d70b",
+      "historical_literal": 0.010000001,
+      "matches_retail": true
+    },
+    "0x805DB298": {
+      "bytes": "461c4000",
+      "historical_literal": 10000.0,
+      "matches_retail": true
+    },
+    "0x805DB29C": {
+      "bytes": "42c80000",
+      "historical_literal": 100.0,
+      "matches_retail": true
+    },
+    "0x805DB2A0": {
+      "bytes": "41200000",
+      "historical_literal": 10.0,
+      "matches_retail": true
+    }
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "b39d61069996e127c7877c57a3f6fc60d5b7b3195b59b7eec7f8e2fc9a819f5b",
+    "source_sha256": "80cbd0e87cab3242afdae895f4930f35351f8cebbcf1072b5674e1f9f0d5ca19",
+    "scope": "The probes check cached and uncached ground, the entity ID mask and optional normal, both contact range conventions and flags, sphere and box dispatch, collision body allocation and free, and insertion, lookup and removal in the sorted actor registry. External callbacks are stubbed and paired-single register saves and restores are skipped."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "8212fc1e8f11227464f7e67b1a19709285333da8e2d7e63ccd6985f7eccb50a3",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "1d9ee0dd8624516aa5260bfb240fab65e0ff6cf55b95a984e999a43158f0ec36"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "598acaaec7fb8c7b78f68caf390e844d471feb500ecd3ace77cde0ceb0dabe6e"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 56,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}
