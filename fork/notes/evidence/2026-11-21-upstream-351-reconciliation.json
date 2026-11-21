@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "df9868bce839e3306b0081e71388031d5fe5f975",
+  "review": "0a6ad394941d2f3101b601df36eccd1403326608",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "a9c2c556e07ddd14b6827f2f94664749d0bbe9ba",
-  "review_paths": 1008,
+  "review_tree": "174ce1e2f5ddde98882db74ccd5fd96cb8fcb2d4",
+  "review_paths": 1020,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,20 +29,20 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "7fa48b63f00e850caa2dd04f728277861ded8ff9ac5fc34094c8ed3e93a3e1e6",
+  "path_ledger_sha256": "b9f98f98d0e02dec27275da608b4bc2e05155687bb48b3741ebe4c7dc1f90f4b",
   "path_status": {
-    "validated historical owner recovery": 192,
-    "exact prior source": 516,
-    "same change already in upstream": 869,
-    "equivalent source retained": 144,
+    "validated historical owner recovery": 202,
+    "exact prior source": 514,
+    "same change already in upstream": 864,
+    "equivalent source retained": 143,
     "validated three-way source": 11,
-    "upstream names retained": 51,
+    "upstream names retained": 49,
     "upstream only": 7,
     "equivalent base-class call retained": 42,
     "native archive source with existing style": 15
   },
   "remaining_path_comparisons": 0,
-  "historical_fork_ledger_open": 526,
+  "historical_fork_ledger_open": 514,
   "validation": {
     "upstream": {
       "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 95,
+    "commits": 99,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -331,5 +331,6 @@
   "historical_dark_falz": "2026-11-21-historical-dark-falz.json",
   "historical_photon_blast": "2026-11-21-historical-photon-blast.json",
   "historical_status_windows": "2026-11-21-historical-status-windows.json",
-  "historical_world_travel": "2026-11-21-historical-world-travel.json"
+  "historical_world_travel": "2026-11-21-historical-world-travel.json",
+  "historical_scene_playback": "2026-11-21-historical-scene-playback.json"
 }
