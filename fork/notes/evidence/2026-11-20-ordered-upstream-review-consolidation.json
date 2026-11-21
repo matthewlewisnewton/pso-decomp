@@ -34,10 +34,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-resources-slot-types",
-      "head": "50a724efc58a6ab33e93b95f08a86a31948788ce",
+      "ref": "great-merge/consolidated/ordered-resources-with-audio",
+      "head": "4820d4689f60f300f923c00611816294d8f86285",
       "base": "c7dfef378c020b99d931fb1b5fc4b2e38e26e07e",
-      "tree": "7a6d2e6ee80051db6d6624b4ff472097ee559898",
+      "tree": "18a640557fe092f3332fd095f105c235b84800fc",
       "scope": "Resource loading, streaming and rendering",
       "published_review_heads_included": {
         "349": "abb5022ed6179626aae2de1cf42a23c6c09bf96f",
@@ -45,17 +45,17 @@
         "348": "7af1ccc64fb772d47d6d837da15e09481b2305c8",
         "350": "6d9f7bffe56d8670e798dc613287ef9415983ce2"
       },
-      "review_commits": 12,
-      "files_changed": 674,
-      "insertions": 5662,
-      "deletions": 6195,
-      "check_sha256": "42f230b3aa7a999ce1cef09b6e3c58ca2b4e6cbb3992da07b9ed3dbd148fd42b",
-      "function_label_changes": 109,
+      "review_commits": 13,
+      "files_changed": 679,
+      "insertions": 5762,
+      "deletions": 6298,
+      "check_sha256": "8c623d240d7d7f28a2170d117503081d5a450afa3ed8bb6edc3656bfc892e553",
+      "function_label_changes": 112,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
         "exact_functions": 27572,
         "linked_source_units": 2448,
-        "source_report_sha256": "2b310a243dd82483b4ce3bd1266f58c86d510063cd416280cbefe98351beae52",
+        "source_report_sha256": "221c5a65244ffd1878b5b24b714450a1e7d1049487ca438f083e8047f1b9c236",
         "original_data_inventory": {
           "ranges": 90,
           "linked": 980,
@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-slot-types",
-      "head": "90359df012537e14ed8cde52b65e06580f54a9de",
-      "base": "50a724efc58a6ab33e93b95f08a86a31948788ce",
-      "tree": "4f57c069a745e79a0537ed2e4610a61c76fd5a91",
+      "ref": "great-merge/consolidated/ordered-combat-with-audio",
+      "head": "3c60a3e48318f5836ce3a75341c85e74485d3412",
+      "base": "4820d4689f60f300f923c00611816294d8f86285",
+      "tree": "7eef06aca333c37ef3fa0224f3c7eca85c6bb4d8",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,17 +77,17 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 22,
-      "files_changed": 919,
-      "insertions": 11042,
-      "deletions": 11667,
-      "check_sha256": "53023f171c7701537d4fd39da89845c8d3d57fe1da21c0c1dcb25f8dee5196f7",
-      "function_label_changes": 293,
+      "review_commits": 23,
+      "files_changed": 928,
+      "insertions": 11104,
+      "deletions": 11718,
+      "check_sha256": "dc80d105e9110d635250b42e8dcfe5f3c869b16b07fabe9c87adeb0534cf751b",
+      "function_label_changes": 294,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
         "exact_functions": 27572,
         "linked_source_units": 2448,
-        "source_report_sha256": "8ab7c5fe431c10dc45377a9d5dc380f73f1ac9a1057691dabbb7b79ae5b90e2d",
+        "source_report_sha256": "44587f91913935e21de43bb104a1316e82ee4f7c48d7afd1dd2dfa23d70bf11b",
         "original_data_inventory": {
           "ranges": 90,
           "linked": 980,
@@ -189,37 +189,37 @@
     }
   },
   "separate_network_change": {
-    "head": "886ee15bd5e9f95f2801d0df84ec809ccef9873e",
-    "base": "90359df012537e14ed8cde52b65e06580f54a9de",
-    "tree": "fe4d19064211ee6e236add74bf079be79911532c",
+    "head": "d49c2b851116712ffcba5785bf928839d1581bc6",
+    "base": "3c60a3e48318f5836ce3a75341c85e74485d3412",
+    "tree": "1d2ae18af8cc01767533765e7d22f552ea354684",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "886ee15bd5e9f95f2801d0df84ec809ccef9873e",
+    "head": "d49c2b851116712ffcba5785bf928839d1581bc6",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "fe4d19064211ee6e236add74bf079be79911532c",
-    "files_changed": 1679,
-    "insertions": 26216,
-    "deletions": 28843,
+    "tree": "1d2ae18af8cc01767533765e7d22f552ea354684",
+    "files_changed": 1690,
+    "insertions": 26378,
+    "deletions": 28997,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
       "linked_source_units": 2448,
-      "source_report_sha256": "8ab7c5fe431c10dc45377a9d5dc380f73f1ac9a1057691dabbb7b79ae5b90e2d",
+      "source_report_sha256": "44587f91913935e21de43bb104a1316e82ee4f7c48d7afd1dd2dfa23d70bf11b",
       "original_data_inventory": {
         "ranges": 90,
         "linked": 980,
         "padding": 167,
         "remaining": 0
       },
-      "check_sha256": "756c67a08a19084487240a402a996676d623e6cf8de4b353a5efe1e8a4b465bd"
+      "check_sha256": "93aee949420a577d34679e345d2a9b6f4e2278fc5dce702490b0a690ca66c728"
     }
   },
   "commit_attribution": {
-    "audited_commits": 55,
+    "audited_commits": 57,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
