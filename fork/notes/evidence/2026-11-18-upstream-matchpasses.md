@@ -1416,6 +1416,20 @@ The ground-effect recovery at `1b85ee8047` gives the two emitters actual positio
 
 Applying the 146-file follow-up directly to the earlier standalone combat branch produces 98 conflicts, mostly where the branch lacks the resource and frontend interfaces already present in the combined build. The current frontend and resource branches have 22 overlapping paths when merged first. The older historical ledger still needs owner comparisons. [Scope, build and fork-layer evidence](2026-11-20-audited-combat-and-ground-effects.json)
 
+## Consolidated reviews in landing order
+
+All 14 current review heads are in three source batches. Each row measures the diff against the preceding row, starting at upstream master `1fd561eae2`. Each batch reproduces the retail executable and passes the strict coverage check. All 27,572 functions, 2,448 source units and 1,147 historical data bytes are preserved.
+
+| Order | Review scope | Covered PRs | Local head | Files |
+| ---: | --- | --- | --- | ---: |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `fdfc8b3f1c` | 622 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `bf2141277f` | 674 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `1f6caf9146` | 917 |
+
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. The separate 12-file PPP change on top produces `d7db0734fd`, identical to the verified full source tree across 1,675 changed files. All 51 candidate commits passed the attribution audit.
+
+The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

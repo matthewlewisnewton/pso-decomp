@@ -1,0 +1,257 @@
+{
+  "upstream_master": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "release_order": [
+    {
+      "ref": "great-merge/consolidated/frontend-quests-and-mail",
+      "head": "fdfc8b3f1c4acf4f811cf952772617adc56d9b92",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "049652cf0bcbd4d2db379ed923698cbc185a66b5",
+      "scope": "Frontend windows, character saves and quest transfers",
+      "published_review_heads_included": {
+        "347": "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+        "339": "10799b0e23aee1e854a7626c51a96ce8ce9fb12f",
+        "340": "19d635c87e6c0d99656f5c939ee52001e85e49f2",
+        "342": "35fb9e4386575c4e815b8d90ff62e977e833b34c",
+        "345": "95334b8d7519c9802fea016416db22356fc284b5"
+      },
+      "review_commits": 18,
+      "files_changed": 622,
+      "insertions": 9984,
+      "deletions": 11447,
+      "check_sha256": "0a2237f51b5d829b1edeca90a0f33b6960ac9a1d6825e14530dc9de4fc8cf75c",
+      "function_label_changes": 257,
+      "build": {
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "exact_functions": 27572,
+        "linked_source_units": 2448,
+        "source_report_sha256": "69de369b61ff597e4a85c9e8adf4ce37258d9dc2c41d8225e90ba7bd5f6f379d",
+        "original_data_inventory": {
+          "ranges": 90,
+          "linked": 980,
+          "padding": 167,
+          "remaining": 0
+        }
+      }
+    },
+    {
+      "ref": "great-merge/consolidated/ordered-frontend-and-resources",
+      "head": "bf2141277f12a682a0d5e40c0f7ffa4b80ba95b7",
+      "base": "fdfc8b3f1c4acf4f811cf952772617adc56d9b92",
+      "tree": "475513d9289495eea4a1a0684a29cb127031b369",
+      "scope": "Resource loading, streaming and rendering",
+      "published_review_heads_included": {
+        "349": "abb5022ed6179626aae2de1cf42a23c6c09bf96f",
+        "338": "cc3fe0caf0b48ad3e84028be540f12a0256c074f",
+        "348": "7af1ccc64fb772d47d6d837da15e09481b2305c8",
+        "350": "6d9f7bffe56d8670e798dc613287ef9415983ce2"
+      },
+      "review_commits": 12,
+      "files_changed": 674,
+      "insertions": 5662,
+      "deletions": 6195,
+      "check_sha256": "42f230b3aa7a999ce1cef09b6e3c58ca2b4e6cbb3992da07b9ed3dbd148fd42b",
+      "function_label_changes": 109,
+      "build": {
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "exact_functions": 27572,
+        "linked_source_units": 2448,
+        "source_report_sha256": "dc51109d8b2e9bba8032c25862e112f4ff7394c5180caf01fd2442233ee28472",
+        "original_data_inventory": {
+          "ranges": 90,
+          "linked": 980,
+          "padding": 167,
+          "remaining": 0
+        }
+      }
+    },
+    {
+      "ref": "great-merge/consolidated/ordered-combat-actors-and-stages",
+      "head": "1f6caf91467520408e0947b83e99f393fd28d8af",
+      "base": "bf2141277f12a682a0d5e40c0f7ffa4b80ba95b7",
+      "tree": "e8d2c01c0b5045509692e58619f4ad9ded6b2e55",
+      "scope": "Combat, actor layouts and stage objects",
+      "published_review_heads_included": {
+        "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
+        "336": "01ec31c94f7c487297bc9a3ced472e96df503524",
+        "337": "46a0677d7fb10da1923e6dc6ed251a3d14de6564",
+        "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+        "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
+      },
+      "review_commits": 19,
+      "files_changed": 917,
+      "insertions": 11008,
+      "deletions": 11630,
+      "check_sha256": "893118a7ca3be07fab772691ce7572aabef6eedff0132c9ba7034ed9b5a7ca94",
+      "function_label_changes": 291,
+      "build": {
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "exact_functions": 27572,
+        "linked_source_units": 2448,
+        "source_report_sha256": "74927c768a8073c9a74c15b421eaf0c98f3e86f566220314a051ffa9cc3251d9",
+        "original_data_inventory": {
+          "ranges": 90,
+          "linked": 980,
+          "padding": 167,
+          "remaining": 0
+        }
+      }
+    }
+  ],
+  "resource_integration": {
+    "conflict_hunk_decisions": {
+      "config/GPOE8P/psov3/config.yml": [
+        "keep the recovered character and archive symbols"
+      ],
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/npc/TObjNpcBase.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/object/TObjSinBoard.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/object/collision/TOAttackableCol.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp": [
+        "use recovered renderer, stream or archive call",
+        "use recovered renderer, stream or archive call",
+        "use recovered renderer, stream or archive call"
+      ],
+      "src/pso/object/warp/TObjWarpLobby.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/ui/charcreate/TChCrLoadAfs.cpp": [
+        "non-overlapping token changes",
+        "non-overlapping token changes",
+        "use recovered renderer, stream or archive call"
+      ],
+      "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp": [
+        "include both shared interfaces",
+        "delete the typed character archive",
+        "retain the typed request and pointer-width model result",
+        "delete the typed character archive"
+      ],
+      "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp": [
+        "delete the typed character archive"
+      ],
+      "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp": [
+        "non-overlapping token changes"
+      ],
+      "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp": [
+        "retain typed UI rows and pass the texture pointer directly"
+      ],
+      "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp": [
+        "retain typed UI rows and pass the texture pointer directly"
+      ],
+      "src/pso/ui/frontend/TAdPlyStatusGC.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": [
+        "include both shared interfaces",
+        "non-overlapping token changes"
+      ],
+      "src/pso/ui/window/TWindowActionPalette.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/ui/window/TWindowDD_80340A78.cpp": [
+        "non-overlapping token changes"
+      ],
+      "src/pso/unk/TLobby_8001EF5C.cpp": [
+        "non-overlapping token changes",
+        "non-overlapping token changes",
+        "non-overlapping token changes",
+        "non-overlapping token changes",
+        "use recovered renderer, stream or archive call",
+        "use recovered renderer, stream or archive call",
+        "non-overlapping token changes",
+        "non-overlapping token changes",
+        "non-overlapping token changes"
+      ],
+      "src/pso/unk/TLobby_800FA164.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/unk/TLobby_800FA2A0.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/unk/text_800FA464.cpp": [
+        "include both shared interfaces"
+      ],
+      "src/pso/unk/text_802AE978.cpp": [
+        "include both shared interfaces",
+        "retain typed UI rows and pass the texture pointer directly"
+      ]
+    },
+    "also_checked_against_standalone_resources": {
+      "check_sha256": "0a2237f51b5d829b1edeca90a0f33b6960ac9a1d6825e14530dc9de4fc8cf75c",
+      "function_label_changes": 257
+    }
+  },
+  "separate_network_change": {
+    "head": "d7db0734fd2c9ba8be3634e418d7a0ae4e064af0",
+    "base": "1f6caf91467520408e0947b83e99f393fd28d8af",
+    "tree": "6de4d6c8b441ed5192d9fef452fd7a13cb21f782",
+    "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
+    "files_changed": 12,
+    "insertions": 136,
+    "deletions": 139
+  },
+  "full_source": {
+    "head": "d7db0734fd2c9ba8be3634e418d7a0ae4e064af0",
+    "tree": "6de4d6c8b441ed5192d9fef452fd7a13cb21f782",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "files_changed": 1675,
+    "insertions": 26124,
+    "deletions": 28745,
+    "matching_tree_validation": {
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_source_units": 2448,
+      "check_sha256": "1e9cea5a7ac5a2e9e90c14be787032b06a36a865e69816ca484af45fdca596f6",
+      "updated_function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x800D907C",
+          "before": "set_field_e4__10TObjPlayerFll",
+          "after": "spawn_dead_spot_e4"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D91B0",
+          "before": "spawn_ground_effect__10TObjPlayerFl",
+          "after": "spawn_ground_effect"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D91F4",
+          "before": "spawn_effect_at_ground__10TObjPlayerFl",
+          "after": "spawn_effect_at_ground"
+        }
+      ],
+      "ref": "great-merge/incoming/consolidated-with-ground-effects",
+      "head": "1b85ee8047c2f14ab388e30be41c4062c15f3f76",
+      "tree": "6de4d6c8b441ed5192d9fef452fd7a13cb21f782",
+      "changed_files_vs_master": 1675,
+      "commits_audited": 59,
+      "codex_attribution_entries": 0,
+      "report_sha256": "74927c768a8073c9a74c15b421eaf0c98f3e86f566220314a051ffa9cc3251d9",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    }
+  },
+  "commit_attribution": {
+    "audited_commits": 51,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "upstream_feedback": {
+    "requested_single_pr": "https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875",
+    "cadence": "https://github.com/zeroz41/pso-decomp/pull/347#issuecomment-7057023338"
+  },
+  "public_refs_changed": false
+}
