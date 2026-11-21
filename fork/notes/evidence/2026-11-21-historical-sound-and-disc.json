@@ -1,0 +1,1166 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "7b8b4a2d487847463fbc81581f1224fe1ebb1aeb",
+  "source": "8d87793c326b83149da3783f00090b750bffdd86",
+  "source_tree": "c80c0f5e1433d95dd74bd3b60cfc1681e65d9b52",
+  "source_review_files": 940,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:e7b8422c22d19de3ed1c98e53d5a44e5a8cd874f",
+      "review_blob": "100644:8ded1cf3208d73c193a301656a036261ceccc050",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/audio/AdxExpand.h",
+      "previous_blob": "100644:7537363b2d5a4ef8b471324d54fa8435070d380f",
+      "review_blob": "100644:cadef411dca8f58254a9589a4198eb4a9b4f97ad",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/audio/AdxStreamRuntime.h",
+      "previous_blob": "100644:ff5d27fffde263a87c9ce57fe91b9c5259750ee7",
+      "review_blob": "100644:f237c70823640b79a2010bfce1160201dc658854",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/audio/AdxbDecoder.h",
+      "previous_blob": "100644:9b2bb5ece245d5b267b9c99265364ad6b85f9a48",
+      "review_blob": "100644:994790879b4455283dc9467bd59077aac1f1fe17",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/audio/SoundRequestVoice.h",
+      "previous_blob": "100644:a9ec80f75298476d49aaf707cd6cef167cae9681",
+      "review_blob": "100644:fabede33c79eeab127c20ea0a5ed77e48ac0d3d5",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/unk/TLobby.h",
+      "previous_blob": "100644:890d4188bf04ab997c009111e75ed0fa0df38e34",
+      "review_blob": "100644:72a1a8ca61330a67005bfa04d7e34e9da388191a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "include/pso/unk/TLobby_80227A2C.h",
+      "previous_blob": "100644:62aa59eed5d04ce640b2185ecade070b777f46df",
+      "review_blob": "100644:d79bbe78686a08710ea233839abafbdf600fc9f5",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/unk/TLobby_80227AA0.h",
+      "previous_blob": "100644:baa1a784e495415575cc2b40e9b5bbd2c2052d69",
+      "review_blob": "100644:aab56743701d5fba8cd4ae6a47d35248de970943",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/unk/TLobby_8023F734.h",
+      "previous_blob": "100644:2d9620d801bec25f7838cc4843695d4843113ec3",
+      "review_blob": "100644:46f646eed254ed17377af70bf188880f081ba877",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/audio/AdxAiff.cpp",
+      "previous_blob": "100644:b0347ecd8a65bceed68598394ca191f9c4b6caae",
+      "review_blob": "100644:067ff07890a8f70fe7c768f8d1beea296162f10d",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/audio/AdxAu.cpp",
+      "previous_blob": "100644:7b2bd47390f0d99a0f5f9a7ec0bfd284a875a2fa",
+      "review_blob": "100644:ecd91d51e06e7832f92a5150bd736ee2ced38325",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/audio/AdxBsc.cpp",
+      "previous_blob": "100644:28e34308b4e10325418faa273643ac15400fb8d4",
+      "review_blob": "100644:664614568b10820a2267de42d8675b526e7fdada",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/audio/AdxExpand.cpp",
+      "previous_blob": "100644:5c2ad030268a807b589ced0a29e1ab03e9960c1f",
+      "review_blob": "100644:b345d1bf1f428b3e328092e26bfbed9b7017780a",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/network/TPlyJoinLobbyEntry.cpp",
+      "previous_blob": "100644:201f685d5030e429eb06e07e9dceefa4a21c486c",
+      "review_blob": "100644:3f9993c9e80dd983c9d499c09eec011c8c0bb17a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/system/TGStream.cpp",
+      "previous_blob": "100644:1128227cd617dcd8c0984e46f92ece7da9c5936f",
+      "review_blob": "100644:f4d7d603858634b33efa16bd1dd038cc90c00730",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+      "previous_blob": "100644:55c5667371a23c4838d7375184aee6213c971db4",
+      "review_blob": "100644:10a02c993cde36cc498a0edc52f9925b0ae0ff98",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800F8AA8.cpp",
+      "previous_blob": "100644:e865a5ed23a38df05bd0f79a90000ea4280e692f",
+      "review_blob": "100644:95c908ad2b1a368a0e8cbff7703fe2146090ab90",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/unk/TLobby_80227AA0.cpp",
+      "previous_blob": "100644:b348db9a570dc3cf482b62269e23bf60e5578a32",
+      "review_blob": "100644:2b1896c073f3b44f91425251f5958977f44e5b36",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/unk/TLobby_8023F734.cpp",
+      "previous_blob": "100644:5acbbe2a678300a8c0e03c1e16ee6d5c595b4231",
+      "review_blob": "100644:17c176be55fdd35804d428148cad783a4003d656",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/unk/TLobby_802409AC.cpp",
+      "previous_blob": "100644:c697d97520b4a8a2cd04a5807f0660053239f7a5",
+      "review_blob": "100644:35207277b9e8c3be393e88513f0a35980473daba",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/unk/TLobby_803BFE50.cpp",
+      "previous_blob": "100644:623aae6a955bd4c96a282532380babc7e1843e0c",
+      "review_blob": "100644:221c8cfbe14711134e7eda09aa2fcae58296faad",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/unk/text_803CE568.cpp",
+      "previous_blob": "100644:2ced4f7e80dc077b296dbc73c71d6f273d7cc216",
+      "review_blob": "100644:21f9ee4b29068ee35cca4adb9ab9ae6bab4ad687",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    }
+  ],
+  "checks": {
+    "adx-channel": {
+      "head": "fb75e3eb785cfffc532ee8348661b31eae2565ca",
+      "baseline": "7b8b4a2d487847463fbc81581f1224fe1ebb1aeb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 11,
+      "check_sha256": "eae1535403e8512c7a747d75b97e71e7cea18c9b7474daddd026ddb731a1579b"
+    },
+    "sound-owner": {
+      "head": "128d4498e703077b4047b634fb94d95b42fb63ab",
+      "baseline": "fb75e3eb785cfffc532ee8348661b31eae2565ca",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 10,
+      "check_sha256": "f8a9772b6b21a5f611d3e41c1203837f7002749726835a05a8de0fbcfed31d1d"
+    },
+    "sound-voice": {
+      "head": "7f9e22df6469ed010a788c803709d27ec6dd5dca",
+      "baseline": "128d4498e703077b4047b634fb94d95b42fb63ab",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 8,
+      "check_sha256": "9bf202d0e969d05880cd2412de531d5c3e632fa9a718b73ca41fb82949df6034"
+    },
+    "audio-read-boundaries": {
+      "head": "7fa366a210952f3ff53d7597283978137f51106d",
+      "baseline": "7f9e22df6469ed010a788c803709d27ec6dd5dca",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "checked-reads": {
+      "head": "4d50f4c207509cfe9efa33ffa59223b1e2922548",
+      "baseline": "7fa366a210952f3ff53d7597283978137f51106d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "44180e5f24328fe9f95f6fdab27f4d43897b7c551650465edab4ad6721935d28"
+    },
+    "user-answer": {
+      "head": "8d87793c326b83149da3783f00090b750bffdd86",
+      "baseline": "4d50f4c207509cfe9efa33ffa59223b1e2922548",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "full-review": {
+      "head": "8d87793c326b83149da3783f00090b750bffdd86",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 358,
+      "check_sha256": "831e5484f4871b7c331f4c2c4b1c3d06cfb9f14e0bd8fcca4fba32e97caf8b42"
+    },
+    "layer": {
+      "head": "cc3d8629e79d671855c335a77180b5b0e5a70f8f",
+      "baseline": "8d87793c326b83149da3783f00090b750bffdd86",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "user-answer": {
+      "sha256": "14682810459e67ea4e09590cbcc44d6c75a0d3a77b0cacee4d34cd974c1ec465",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "14682810459e67ea4e09590cbcc44d6c75a0d3a77b0cacee4d34cd974c1ec465",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x803C3E3C",
+      "before": "clear_record__6TLobbyFv",
+      "after": "clear_record__11AdxbDecoderFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB384",
+      "before": "update_receive_check__6TLobbyFv",
+      "after": "update_receive_check__17AdxDecoderChannelFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB450",
+      "before": "get_size__6TLobbyFv",
+      "after": "get_size__17AdxDecoderChannelFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB458",
+      "before": "reset_field_0C__6TLobbyFv",
+      "after": "reset_field_0C__17AdxDecoderChannelFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB470",
+      "before": "reset_client_state__6TLobbyFv",
+      "after": "reset_client_state__17AdxDecoderChannelFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB4C4",
+      "before": "post_request__6TLobbyFllll",
+      "after": "post_request__17AdxDecoderChannelFPSclPsPs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB4F8",
+      "before": "try_post_command__6TLobbyFlll",
+      "after": "try_post_command__17AdxDecoderChannelFPSclPs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB530",
+      "before": "get_client_count__6TLobbyFv",
+      "after": "get_client_count__17AdxDecoderChannelFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB538",
+      "before": "clear_record_data__6TLobbyFv",
+      "after": "clear_record_data__17AdxDecoderChannelFP17AdxDecoderChannel"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB594",
+      "before": "calc_adx_coeffs_at_offset__6TLobbyFPvl",
+      "after": "calc_adx_coeffs_at_offset__17AdxDecoderChannelFll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CB71C",
+      "before": "clear_buffer_340__6TLobbyFv",
+      "after": "clear_buffer_340__17AdxDecoderChannelFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023F734",
+      "before": "advance_rng__6TLobbyFv",
+      "after": "advance_rng__17SoundControlStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023F7C4",
+      "before": "get_field_2a4__6TLobbyFv",
+      "after": "get_field_2a4__17SoundControlStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023F7CC",
+      "before": "get_field_0x280__6TLobbyFv",
+      "after": "get_field_0x280__17SoundControlStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023F7D4",
+      "before": "set_menu_index__6TLobbyFl",
+      "after": "set_menu_index__17SoundControlStateFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023F858",
+      "before": "set_clamped_field27c__6TLobbyFf",
+      "after": "set_clamped_field27c__17SoundControlStateFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80240310",
+      "before": "reset_sound_state__6TLobbyFv",
+      "after": "reset_sound_state__17SoundControlStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802405B0",
+      "before": "pop_sound_groups__6TLobbyFPvl",
+      "after": "pop_sound_groups__17SoundControlStateFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8024074C",
+      "before": "validate_and_set_selection__6TLobbyFl",
+      "after": "validate_and_set_selection__17SoundControlStateFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802409AC",
+      "before": "set_field0__6TLobbyFPv",
+      "after": "set_field0__17SoundRequestVoiceFP17SoundControlState"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8024219C",
+      "before": "get_field_308__6TLobbyFv",
+      "after": "get_field_308__17SoundControlStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023F944",
+      "before": "alloc_looping_sound_slot__FUllPCvll",
+      "after": "alloc_looping_sound_slot__FUllPC3Vecll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023FA8C",
+      "before": "alloc_one_shot_sound_slot__FUlPCvll",
+      "after": "alloc_one_shot_sound_slot__FUlPC3Vecll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802409B4",
+      "before": "clamp_field9c__6TLobbyFf",
+      "after": "clamp_field9c__17SoundRequestVoiceFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80240B40",
+      "before": "set_voice_pitch_slide__FPUcll",
+      "after": "set_voice_pitch_slide__FP17SoundRequestVoicell"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80240E8C",
+      "before": "update_random_flip_flag__6TLobbyFv",
+      "after": "update_random_flip_flag__17SoundRequestVoiceFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80241AD8",
+      "before": "send_voice_controller_updates__FPUc",
+      "after": "send_voice_controller_updates__FP17SoundRequestVoice"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80241BA8",
+      "before": "clamp_params__6TLobbyFv",
+      "after": "clamp_params__17SoundRequestVoiceFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80242058",
+      "before": "init_sound_voice__6TLobbyFllll",
+      "after": "init_sound_voice__17SoundRequestVoiceFllll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F8DA0",
+      "before": "set_entry_params__6TLobbyFlll",
+      "after": "set_entry_params__6TLobbyFPP10AdxfHandlellPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F8DC8",
+      "before": "set_read_params__6TLobbyFPvii",
+      "after": "set_read_params__6TLobbyFPP10AdxfHandlelPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800FDF7C",
+      "before": "read_data_sync__6TLobbyFlll",
+      "after": "read_data_sync__6TLobbyFP10AdxfHandlelPv"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 28,
+      "fork_path": "src/pso/misc/TLobby_803C1A58.cpp",
+      "fork_blob": "3d5a649ae1501c77f401795380a117cdc493a30a",
+      "historical_delta_sha256": "18e963de5881610fed5755904ee3baa0d7673c83d4bc585317a1c1e31ffbe061",
+      "owner": "src/pso/audio/AdxBsc.cpp",
+      "owner_blob": "664614568b10820a2267de42d8675b526e7fdada",
+      "final_comparison_sha256": "1a29d9cf23ca532816c3364e82f02b5a118a459a7f52d81f8ac8755df8efb3d8",
+      "status": "Typed historical integration validated",
+      "rationale": "The shared AdxbDecoder holds the complete transfer layout, audited callback offsets and the native channel pointer. Mono and stereo requests use typed block and PCM operands. AIFF and AU retain the signed result with defined unsigned byte shifts. The 256-entry mu-law table matches at 0x804F9B80 in the linked AU unit."
+    },
+    {
+      "row": 74,
+      "fork_path": "include/pso/misc/TLobby_8023F734.h",
+      "fork_blob": "6deb60701311cc59de28b335fe162700cf2a2e05",
+      "historical_delta_sha256": "c2b514d55d6474a2f6b106a0bbef4d0481616fb948ba470fc3474eb1e2bebb2b",
+      "owner": "src/pso/unk/TLobby_8023F734.cpp",
+      "owner_blob": "17c176be55fdd35804d428148cad783a4003d656",
+      "final_comparison_sha256": "1a1b7f17b1f724338cd57f113e2a5b90bcc4bafc5930f6a8e95625c3efc8349b",
+      "status": "Typed historical integration validated",
+      "rationale": "The no-op entry retains its compiled address with the sound controller receiver. The older reset and delete wrappers at 0x80240858 and 0x80240808 are the native sound state constructor and destructor. The guild-card reply uses the native TUserAns callback at registration and dispatch."
+    },
+    {
+      "row": 75,
+      "fork_path": "src/pso/misc/TLobby_8023F734.cpp",
+      "fork_blob": "3ce8466ab8ceb61d821259fcfb9f095195090626",
+      "historical_delta_sha256": "481e0e0679633fb2c6787a21bd1cf97e4223fb3e901ed75c0304ad5efbf5952c",
+      "owner": "src/pso/unk/TLobby_8023F734.cpp",
+      "owner_blob": "17c176be55fdd35804d428148cad783a4003d656",
+      "final_comparison_sha256": "268a4fbe08bcc83d7222a2143d801a3d4ecf384fa8496c6c8320820055b9192f",
+      "status": "Typed historical integration validated",
+      "rationale": "The sound bank state uses native voice owners, ADXF handles and pointer slots, buffer pointers, status and sector counts across initial reads, deferred retries and group cleanup. The sound-control constructor and destructor preserve the original work buffers and state fields."
+    },
+    {
+      "row": 79,
+      "fork_path": "src/pso/misc/TLobby_80227AA0.cpp",
+      "fork_blob": "2c14a47edeeb2466e5751633e71473bc12dd66e5",
+      "historical_delta_sha256": "f3f8fa3a93c4a07d672f721dd49db44ae5852c15e0c66c75bcb190a42ceef1c9",
+      "owner": "src/pso/unk/TLobby_80227AA0.cpp",
+      "owner_blob": "2b1896c073f3b44f91425251f5958977f44e5b36",
+      "final_comparison_sha256": "d7404462bcc284a8f4a59e7632f79fa1107ca2a0ca3594b420c92629b6ac1412",
+      "status": "Typed historical integration validated",
+      "rationale": "The current 6xB2 handler uses the typed sound packet and the selected player position. Menu, readiness, reverb and bank calls use the native controller. The older split already holds the 0x1B0 area table and 0x28 floor-transition instance in their native scene owners. The original sound controller constructor and destructor replace the historical raw initialization wrappers."
+    }
+  ],
+  "historical_ledger_sha256_before": "21b4af148f20b1378c50b87bfdf567753d0e274cd4b8ecfca01162f2ff758c86",
+  "historical_ledger_sha256": "33849569692d5a48fad5e33e310b232af173d30674535af65bbfb7a442db0361",
+  "historical_rows_open": 553,
+  "partially_reconciled_audio_rows": [
+    {
+      "row": 39,
+      "path": "src/pso/unk/TLobby_802409AC.cpp",
+      "current_blob": "35207277b9e8c3be393e88513f0a35980473daba",
+      "scope": "Spatial math, reverb, pitch and voice setup use the native controller and Vec inputs, and the guild-card reply has a typed callback. The guild-card record copy still has a local overlay. The broader historical row is still open."
+    },
+    {
+      "row": 60,
+      "path": "src/pso/unk/text_803CE568.cpp",
+      "current_blob": "21f9ee4b29068ee35cca4adb9ab9ae6bab4ad687",
+      "scope": "The current CVFS device interface supplies typed file queries, open and close, and the source-linked data contains all 86 historical diagnostics. The const path-helper and typed allocator-return trials changed the emitted instructions. The exact implementation retains its casts. The broader historical row is still open."
+    }
+  ],
+  "historical_audio_data": {
+    "cvfs": {
+      "owner": "psov3/pso/unk/text_803CE568",
+      "strings": [
+        {
+          "name": "cvfs_version",
+          "addresses": [
+            "0x8047CF30"
+          ],
+          "size": 46
+        },
+        {
+          "name": "cvfs_set_def_vol_error_1",
+          "addresses": [
+            "0x8047CF60"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_set_def_vol_error_2",
+          "addresses": [
+            "0x8047CF88"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_set_def_vol_error_3",
+          "addresses": [
+            "0x8047CFB0"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_get_volume_info_error_1",
+          "addresses": [
+            "0x8047CFD4"
+          ],
+          "size": 41
+        },
+        {
+          "name": "cvfs_get_volume_info_error_2",
+          "addresses": [
+            "0x8047D000"
+          ],
+          "size": 41
+        },
+        {
+          "name": "cvfs_get_volume_info_error_3",
+          "addresses": [
+            "0x8047D02C"
+          ],
+          "size": 38
+        },
+        {
+          "name": "cvfs_del_volume_error_1",
+          "addresses": [
+            "0x8047D054"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_del_volume_error_2",
+          "addresses": [
+            "0x8047D07C"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_del_volume_error_3",
+          "addresses": [
+            "0x8047D0A4"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_add_volume_error_1",
+          "addresses": [
+            "0x8047D0C8"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_add_volume_error_2",
+          "addresses": [
+            "0x8047D0F0"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_add_volume_error_3",
+          "addresses": [
+            "0x8047D118"
+          ],
+          "size": 38
+        },
+        {
+          "name": "cvfs_add_volume_error_3_device_not_found",
+          "addresses": [
+            "0x8047D140"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_set_cur_volume_error_1",
+          "addresses": [
+            "0x8047D164"
+          ],
+          "size": 40
+        },
+        {
+          "name": "cvfs_set_cur_volume_error_2",
+          "addresses": [
+            "0x8047D18C"
+          ],
+          "size": 41
+        },
+        {
+          "name": "cvfs_set_cur_volume_error_3",
+          "addresses": [
+            "0x8047D1B8"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_opt_fn2_error_1",
+          "addresses": [
+            "0x8047D1E0"
+          ],
+          "size": 27
+        },
+        {
+          "name": "cvfs_opt_fn2_error_2",
+          "addresses": [
+            "0x8047D1FC"
+          ],
+          "size": 25
+        },
+        {
+          "name": "cvfs_opt_fn1_error_1",
+          "addresses": [
+            "0x8047D218"
+          ],
+          "size": 27
+        },
+        {
+          "name": "cvfs_opt_fn1_error_2",
+          "addresses": [
+            "0x8047D234"
+          ],
+          "size": 25
+        },
+        {
+          "name": "cvfs_get_dev_name_error_1",
+          "addresses": [
+            "0x8047D250"
+          ],
+          "size": 29
+        },
+        {
+          "name": "cvfs_delete_file_error_1",
+          "addresses": [
+            "0x8047D270"
+          ],
+          "size": 36
+        },
+        {
+          "name": "cvfs_delete_file_error_2",
+          "addresses": [
+            "0x8047D294"
+          ],
+          "size": 38
+        },
+        {
+          "name": "cvfs_delete_file_error_3",
+          "addresses": [
+            "0x8047D2BC"
+          ],
+          "size": 35
+        },
+        {
+          "name": "cvfs_delete_file_error_4",
+          "addresses": [
+            "0x8047D2E0"
+          ],
+          "size": 29
+        },
+        {
+          "name": "cvfs_remove_dir_error_1",
+          "addresses": [
+            "0x8047D300"
+          ],
+          "size": 40
+        },
+        {
+          "name": "cvfs_remove_dir_error_2",
+          "addresses": [
+            "0x8047D328"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_remove_dir_error_3",
+          "addresses": [
+            "0x8047D350"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_remove_dir_error_4",
+          "addresses": [
+            "0x8047D374"
+          ],
+          "size": 28
+        },
+        {
+          "name": "cvfs_make_dir_error_1",
+          "addresses": [
+            "0x8047D390"
+          ],
+          "size": 38
+        },
+        {
+          "name": "cvfs_make_dir_error_2",
+          "addresses": [
+            "0x8047D3B8"
+          ],
+          "size": 35
+        },
+        {
+          "name": "cvfs_make_dir_error_3",
+          "addresses": [
+            "0x8047D3DC"
+          ],
+          "size": 32
+        },
+        {
+          "name": "cvfs_make_dir_error_4",
+          "addresses": [
+            "0x8047D3FC"
+          ],
+          "size": 26
+        },
+        {
+          "name": "cvfs_get_max_byte_rate_error_1",
+          "addresses": [
+            "0x8047D418"
+          ],
+          "size": 35
+        },
+        {
+          "name": "cvfs_get_max_byte_rate_error_2",
+          "addresses": [
+            "0x8047D43C"
+          ],
+          "size": 33
+        },
+        {
+          "name": "cvfs_is_exist_file_error_2",
+          "addresses": [
+            "0x8047D460"
+          ],
+          "size": 39
+        },
+        {
+          "name": "cvfs_is_exist_file_error_1",
+          "addresses": [
+            "0x8047D488"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_is_exist_file_error_3",
+          "addresses": [
+            "0x8047D4B0"
+          ],
+          "size": 36
+        },
+        {
+          "name": "cvfs_is_exist_file_error_4",
+          "addresses": [
+            "0x8047D4D4"
+          ],
+          "size": 30
+        },
+        {
+          "name": "cvfs_change_dir_error_1",
+          "addresses": [
+            "0x8047D4F4"
+          ],
+          "size": 40
+        },
+        {
+          "name": "cvfs_change_dir_error_2",
+          "addresses": [
+            "0x8047D51C"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_change_dir_error_3",
+          "addresses": [
+            "0x8047D544"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_change_dir_error_4",
+          "addresses": [
+            "0x8047D568"
+          ],
+          "size": 28
+        },
+        {
+          "name": "cvfs_get_num_tr_error_1",
+          "addresses": [
+            "0x8047D584"
+          ],
+          "size": 29
+        },
+        {
+          "name": "cvfs_get_num_tr_error_2",
+          "addresses": [
+            "0x8047D5A4"
+          ],
+          "size": 27
+        },
+        {
+          "name": "cvfs_set_sct_len_error_3",
+          "addresses": [
+            "0x8047D5C0"
+          ],
+          "size": 30
+        },
+        {
+          "name": "cvfs_set_sct_len_error_4",
+          "addresses": [
+            "0x8047D5E0"
+          ],
+          "size": 28
+        },
+        {
+          "name": "cvfs_get_sct_len_error_1",
+          "addresses": [
+            "0x8047D5FC"
+          ],
+          "size": 30
+        },
+        {
+          "name": "cvfs_get_sct_len_error_2",
+          "addresses": [
+            "0x8047D61C"
+          ],
+          "size": 28
+        },
+        {
+          "name": "cvfs_get_free_size_error_5",
+          "addresses": [
+            "0x8047D638"
+          ],
+          "size": 36
+        },
+        {
+          "name": "cvfs_get_free_size_error_6",
+          "addresses": [
+            "0x8047D65C"
+          ],
+          "size": 30
+        },
+        {
+          "name": "cvfs_get_file_size_ex_error_1",
+          "addresses": [
+            "0x8047D67C"
+          ],
+          "size": 39
+        },
+        {
+          "name": "cvfs_get_file_size_ex_error_2",
+          "addresses": [
+            "0x8047D6A4"
+          ],
+          "size": 41
+        },
+        {
+          "name": "cvfs_get_file_size_ex_error_3",
+          "addresses": [
+            "0x8047D6D0"
+          ],
+          "size": 38
+        },
+        {
+          "name": "cvfs_get_file_size_ex_error_4",
+          "addresses": [
+            "0x8047D6F8"
+          ],
+          "size": 32
+        },
+        {
+          "name": "cvfs_get_file_size_error_1",
+          "addresses": [
+            "0x8047D718"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_get_file_size_error_2",
+          "addresses": [
+            "0x8047D740"
+          ],
+          "size": 39
+        },
+        {
+          "name": "cvfs_get_file_size_error_3",
+          "addresses": [
+            "0x8047D768"
+          ],
+          "size": 36
+        },
+        {
+          "name": "cvfs_get_file_size_error_4",
+          "addresses": [
+            "0x8047D78C"
+          ],
+          "size": 30
+        },
+        {
+          "name": "cvfs_get_stat_error_1",
+          "addresses": [
+            "0x8047D7AC"
+          ],
+          "size": 28
+        },
+        {
+          "name": "cvfs_get_stat_error_2",
+          "addresses": [
+            "0x8047D7C8"
+          ],
+          "size": 26
+        },
+        {
+          "name": "cvfs_stop_tr_error_1",
+          "addresses": [
+            "0x8047D7E4"
+          ],
+          "size": 27
+        },
+        {
+          "name": "cvfs_stop_tr_error_2",
+          "addresses": [
+            "0x8047D800"
+          ],
+          "size": 25
+        },
+        {
+          "name": "cvfs_req_wr_error_1",
+          "addresses": [
+            "0x8047D81C"
+          ],
+          "size": 26
+        },
+        {
+          "name": "cvfs_req_wr_error_2",
+          "addresses": [
+            "0x8047D838"
+          ],
+          "size": 24
+        },
+        {
+          "name": "cvfs_req_rd_error_1",
+          "addresses": [
+            "0x8047D850"
+          ],
+          "size": 26
+        },
+        {
+          "name": "cvfs_req_rd_error_2",
+          "addresses": [
+            "0x8047D86C"
+          ],
+          "size": 24
+        },
+        {
+          "name": "cvfs_seek_error_1",
+          "addresses": [
+            "0x8047D884"
+          ],
+          "size": 25
+        },
+        {
+          "name": "cvfs_seek_error_2",
+          "addresses": [
+            "0x8047D8A0"
+          ],
+          "size": 23
+        },
+        {
+          "name": "cvfs_tell_error_1",
+          "addresses": [
+            "0x8047D8B8"
+          ],
+          "size": 25
+        },
+        {
+          "name": "cvfs_tell_error_2",
+          "addresses": [
+            "0x8047D8D4"
+          ],
+          "size": 23
+        },
+        {
+          "name": "cvfs_close_error_1",
+          "addresses": [
+            "0x8047D8EC"
+          ],
+          "size": 26
+        },
+        {
+          "name": "cvfs_close_error_2",
+          "addresses": [
+            "0x8047D908"
+          ],
+          "size": 24
+        },
+        {
+          "name": "cvfs_open_error_1",
+          "addresses": [
+            "0x8047D920"
+          ],
+          "size": 30
+        },
+        {
+          "name": "cvfs_open_error_3",
+          "addresses": [
+            "0x8047D940"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_open_error_2",
+          "addresses": [
+            "0x8047D964"
+          ],
+          "size": 32
+        },
+        {
+          "name": "cvfs_open_error_4",
+          "addresses": [
+            "0x8047D984"
+          ],
+          "size": 29
+        },
+        {
+          "name": "cvfs_open_error_5",
+          "addresses": [
+            "0x8047D9A4"
+          ],
+          "size": 23
+        },
+        {
+          "name": "cvfs_open_error_6",
+          "addresses": [
+            "0x8047D9BC"
+          ],
+          "size": 24
+        },
+        {
+          "name": "cvfs_set_def_dev_error_1",
+          "addresses": [
+            "0x8047D9D4"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_set_def_dev_error_2",
+          "addresses": [
+            "0x8047D9FC"
+          ],
+          "size": 37
+        },
+        {
+          "name": "cvfs_del_dev_error_1",
+          "addresses": [
+            "0x8047DA24"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_add_dev_error_1",
+          "addresses": [
+            "0x8047DA48"
+          ],
+          "size": 34
+        },
+        {
+          "name": "cvfs_add_dev_error_2",
+          "addresses": [
+            "0x8047DA6C"
+          ],
+          "size": 36
+        },
+        {
+          "name": "cvfs_add_dev_error_3",
+          "addresses": [
+            "0x8047DA90"
+          ],
+          "size": 36
+        }
+      ],
+      "missing": []
+    },
+    "mu_law": {
+      "owner": "psov3/pso/audio/AdxAu",
+      "address": "0x804F9B80",
+      "entries": 256,
+      "size": 512,
+      "sha256": "080f35de1bab772bcd7b3e293041aa9014b51e7b6d4e98844885ba106ec0dee9"
+    }
+  },
+  "equivalent_native_owners": [
+    {
+      "address": "0x80240808",
+      "size": "0x50",
+      "historical": "TLobby__sub_80240808",
+      "native": "__dt__17SoundControlStateFv"
+    },
+    {
+      "address": "0x80240858",
+      "size": "0x48",
+      "historical": "reset_sound_owner_state",
+      "native": "__ct__17SoundControlStateFv"
+    }
+  ],
+  "compiler_sensitive_source": {
+    "adx_history": "The history initializer keeps the original two loads of the second left sample and its store order.",
+    "cvfs_path": "Const-correct path threading and the typed allocator return changed file query and open instructions, so the current exact forms are retained.",
+    "guild_card_reply": "The typed callback keeps the original byte-based destination calculation with sizeof(GuildCardRecord). Typed array indexing changed register selection at 0x8024273C."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "38bc254bcb2d6cb0fec14bf22e234f406e92c26e721a77c9cb9cc95f8cc51575",
+    "source_sha256": "b4d4734970b7dcf5200e4eb36b91648f5974e60c3fc00dc80b69a25c69fa951f",
+    "scope": "The probes exercise mono and stereo channel registration and completion, history clearing, voice and reverb controls, deferred and indexed read retries, and CVFS device lookup and handle creation. Substitute decode, read and CVFS driver callbacks supply controlled results."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "52543c0f1ecb8890beb300878152cd1ab9b1ba27b4c514a12340fa1489ff16a3",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "f0316d46e51622c465c4feb3c95a96e149cb0a832b38db23e6e09e390aa9be52"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "2e784dd8ae1d0d50d5628469e81131b4e130aa69b7ba2870c8a77a63e9d583d8"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 70,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}
