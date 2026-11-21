@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `89a757eb27` uses eleven commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The eleven review commits and 103 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `079a8157ab` uses twelve commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The twelve review commits and 104 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1432,9 +1432,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `89a7
 | 8 | Symbol Chat presets, editor and capture | Follow-up recovery | `ce6336208b` | 31 |
 | 9 | Native Symbol Chat editor window classes | Follow-up recovery | `be4ac3f8f4` | 18 |
 | 10 | Pan Arms coordination and shared Bal Claw placement | Follow-up recovery | `75396834cd` | 18 |
-| 11 | PPP frame and callback interfaces | Independent network work | `89a757eb27` | 12 |
+| 11 | Dark Gunner formation, movement and projectile ownership | Follow-up recovery | `ecae8df53c` | 11 |
+| 12 | PPP frame and callback interfaces | Independent network work | `079a8157ab` | 12 |
 
-The review changes 1,799 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,803 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1563,6 +1564,12 @@ The ordered and consolidated review builds and the fork workspace reproduce reta
 Great Merge at `865dfa4b44` uses one typed placement record for enemy set data and the Pan Arms and Bal Claw constructors. The floor tables call the native factory methods. The Pan Arms body and both halves use typed links and call the half state checks directly. The arm attacks construct colliders from captured model node positions.
 
 The 18-file batch changes linker labels only for native owners and typed signatures. The ordered and consolidated source and fork workspace reproduce retail and account for all 1,147 historical data bytes. A probe checks reciprocal links, split state and HP gates, placement field transfer and factory table entries against retail and both builds. The audit closes the body and half header comparisons and leaves 595 historical comparisons open. [Pan Arms and Bal Claw evidence](2026-11-21-pan-arms-and-bal-claw.json)
+
+## Dark Gunner formation and projectile ownership
+
+Great Merge at `ec6c29f954` constructs the group controller as a native class and uses its typed 16-enemy formation. The gunner owns its movement, hide and shadow methods. Its projectile constructor takes the actual shooter and the two launch vectors. The shared BML record and battle parameter types describe the resource traversal and movement data.
+
+The ordered and consolidated source and fork workspace reproduce retail across the 11-file batch. Twelve linker labels change with their owners or signatures. The probe checks group filtering, sorted selection including an absent gunner, attack dispatch and movement parameters. Four historical records were reconfirmed and one gained implementation evidence. The full historical audit has 595 open comparisons. [Dark Gunner evidence](2026-11-21-dark-gunner.json)
 
 ## Ordered upstream review candidates
 
