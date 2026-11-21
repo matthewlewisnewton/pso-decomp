@@ -1,0 +1,268 @@
+{
+  "source": "206cf1ff39fc2eebeaefb19361dffd35bcf690ac",
+  "previous_source": "2677953d7cebb697998096544ddfce82b3eb9296",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source_paths": 1092,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/item/TItemReverseTech.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/map/TSetManager.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjHMS_EZRope_Player.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/object/TObjTank.cpp",
+    "src/pso/object/ambient/TObjFish.cpp",
+    "src/pso/object/ambient/TObjLight_80133568.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/jungle/TOGrassJungle.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/player/TObjPlayer_8023E480.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestListVM_8007EAF8.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/render/BlobShadow.cpp",
+    "src/pso/system/TGStream.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobbyEventTheme.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_8002C140.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_800FA73C.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_801F3A24.cpp",
+    "src/pso/unk/TLobby_80207DA8.cpp",
+    "src/pso/unk/TLobby_80209524.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_8028A7C8.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_801A5778.cpp",
+    "src/pso/unk/text_8020B5CC.cpp",
+    "src/pso/unk/text_802A1020.cpp"
+  ],
+  "safe_free_call_sites": 192,
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "historical_comparison": {
+    "fork_pr_375": "f9d8799e6126f14fefffff8a35329e7bc05742ff",
+    "prior_open_rows": 506,
+    "open_rows": 502,
+    "closed_rows": {
+      "5063": "Both class strings remain at their retail addresses under upstream's descriptive names. The linked texture storage has pointer type and the existing set_global_param call. Cleanup releases the texture, frees the allocation and clears the slot.",
+      "5296": "Font loading passes a native byte pointer from the scratch buffer to the existing font helpers and releases it by name. Alphabet texture cleanup uses safe_free's pointer contract. The original font texture bind keeps upstream's begin_render name.",
+      "5330": "The GVM file loader shares the byte-pointer contract across the request buffer, sector read, texture loader and release. The same extension lookup and file-size call remain through the current TGStream owner.",
+      "6747": "The native constructor retains the parent, owner and player arguments. Both scratch requests, the card buffer release, confirmation window size and vfunc_6 forwarding are present at their current owners."
+    },
+    "closed_blob_ids": {
+      "5063": {
+        "ancestor_blob": "9a83643006fa569c19e82021f4f9b034d3cb26b8",
+        "fork_blob": "db172b02dc3480103902c49d55013cfaf7cc91f5",
+        "current_path": "src/pso/effect/TBGLightningCtrl.cpp",
+        "current_blob": "43c7662f37eacaf7310bff1b8548cca8ba9c124e"
+      },
+      "5296": {
+        "ancestor_blob": "4f0c44a9961c32e59be656edd54d6a20f44827cb",
+        "fork_blob": "60e3e94fc6eac8106215a51f9ecdd7eda503a453",
+        "current_path": "src/pso/system/TLanguage_80132A5C.cpp",
+        "current_blob": "a14fda603d9a6937cd6ee5b95718e21592c15241"
+      },
+      "5330": {
+        "ancestor_blob": "26eae19db78d33264b1a5a36993a8aae25dbe9f5",
+        "fork_blob": "d53c95190dee1e746c44690d9694539f2ea8a485",
+        "current_path": "src/pso/unk/TLobby_801E43E4.cpp",
+        "current_blob": "4bb2bd29a0c44385c14be454133fc5fed8198140"
+      },
+      "6747": {
+        "ancestor_blob": "c5015b542f3bb3cc71a14911922ccd720ef8a8d0",
+        "fork_blob": "38a5d3d7dc2b995910a572af3fa4da6d94e9c976",
+        "current_path": "src/pso/quest/TQuestListVM.cpp",
+        "current_blob": "288be7f6b2bd4d2261aa9b96b52707a855e1e929"
+      }
+    },
+    "partial_rows": {
+      "157": "The safe_free label changes at the original address for its pointer argument. Both BML getters keep upstream names at their original addresses.",
+      "2557": "The shared character selector declaration exposes the native heap release pointer. Other selector source changes still need comparison.",
+      "273": "All four folded hardware-keyboard calls pass the actual allocation to the typed release interface.",
+      "2436": "Character creation uses the shared pointer interface for its failed buffer request and indexed archive buffer.",
+      "2474": "Texture requests pass the selected archive buffer to the typed heap release.",
+      "2523": "The two model-part assignments use the shared typed BML model and texture getters. Persistent audio and other historical provider details remain open.",
+      "4325": "Photon Chair uses the shared typed BML getter at the original texture index. The wider controller delta remains open.",
+      "4409": "The footstamp retains the GVM texture list as a pointer through load, binding and release. Older grounded movement changes remain open.",
+      "5106": "The effect entries still use the shared BML texture getter with the original index at the current owner.",
+      "5237": "The language archive frees both dynamically allocated buffers through the pointer interface at the folded owner.",
+      "5329": "The folded stream and resource owner passes the allocations to the pointer release interface. Wider stream lifecycle changes remain open.",
+      "6736": "The tombstone accesses its typed archive through get_bml_texlist and keeps the original index.",
+      "6794": "The live monitor keeps the shared BML getter and stores its returned texture at the original field.",
+      "7310": "The freeze-shell draw and particle call both use the shared BML texture getter at the original index.",
+      "7343": "The lobby task passes the two original allocation addresses to pointer release. Other session plumbing remains open."
+    },
+    "retained_targets": [
+      {
+        "fork_name": "TObjFish__sub_8001EDB0",
+        "upstream_name": "get_bml_texlist",
+        "address": "0x8001EDB0"
+      },
+      {
+        "fork_name": "bind_small_font_texture_list",
+        "upstream_name": "begin_render__20TWindowSubStatusDispFv",
+        "address": "0x800FC400"
+      },
+      {
+        "fork_name": "set_current_texture_list",
+        "upstream_name": "set_global_param",
+        "address": "0x803DA798"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "2677953d7cebb697998096544ddfce82b3eb9296",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8007EBB4",
+          "before": "safe_free__23TAdSinglePlyChrSelectGCFUl",
+          "after": "safe_free__23TAdSinglePlyChrSelectGCFPv"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "3ff5a2e3ce1f136d293ead3be978233845533fa2aff5bdfab1fdf4c27e00e794",
+      "report_sha256": "7c8a436eda33e5ea26c35734358ddaaf42c69f75f8d559bc9ac7f2040e9d6731"
+    },
+    "workspace": {
+      "baseline": "206cf1ff39fc2eebeaefb19361dffd35bcf690ac",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "7c8a436eda33e5ea26c35734358ddaaf42c69f75f8d559bc9ac7f2040e9d6731"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "63fa556c0f82cbd0df317ed95a59cacffd1dbc60cec4d53884e88e019268bb41"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "96cb9fa89ea5d32703e8d25bf62d7d0fbf73afb841e4a1d1bb0cb194f131a504"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    },
+    "resource_lifetime": {
+      "result": "Heap null checks, typed BML slots and texture release order passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "56d28c19f86cb4b6de028364e1e2427eab7b7b194156a6702f0211d0e28f4cda"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "907ca75f10af4626511281e617bc06b306967cc8122eb5a72378ec442128d494",
+    "force_active_names": 27033,
+    "changed_overlay_paths": 0
+  }
+}
