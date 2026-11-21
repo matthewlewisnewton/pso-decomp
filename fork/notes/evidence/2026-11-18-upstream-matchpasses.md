@@ -1422,11 +1422,11 @@ All 14 current review heads are in three source batches. Each row measures the d
 
 | Order | Review scope | Covered PRs | Local head | Files |
 | ---: | --- | --- | --- | ---: |
-| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `c7dfef378c` | 626 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `4820d4689f` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `3c60a3e483` | 928 |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `04667f245d` | 637 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `d543396f29` | 679 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `c84895257b` | 929 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `d49c2b8511`, identical to the verified Great Merge source at `bc3d32eb3f` across 1,690 changed files. All 57 candidate commits passed the attribution audit.
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `d927f13d14`, identical to the verified Great Merge source at `7b3da3891a` across 1,701 changed files. All 60 candidate commits passed the attribution audit.
 
 The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
@@ -1443,6 +1443,12 @@ The historical audit resolves eight rows, leaving 662. The record includes the o
 Great Merge at `bc3d32eb3f` restores the ADX player receiver for creation, playback, state and queue access. The GCRNA volume call uses the signed argument and the actual stream receiver at offset 0xC. The resource batch and the combat batch match in landing order. The gameplay sender and receiver share the 12-byte sound command, and the voice binding uses the native position member at offset 0x88.
 
 The historical audio audit closes three entries, leaving 659. The materialized fork matches retail and passes 294 tooling tests, 11 layer tests, and five host checks. [Audio ownership and build evidence](2026-11-21-adx-player-and-gameplay-sound.json)
+
+## Restored card, Photon Blast and Bal Claw interfaces
+
+Comparing the earlier verified source at `a0ab810dd1` with the replay on current upstream identified three recoveries that needed to be carried forward. The card selector now constructs its real cursor, icon, title and warning tasks. Photon Blast uses typed participant records and the existing virtual direct-attack interface. Bal Claw uses the shared task parent, target cursor and minimap interfaces.
+
+The revised review stages and the combined source reproduce retail at `7b3da3891a`. The fork workspace passes all 310 checks with its generated retention list refreshed. The audit updates 11 supporting records. 659 historical comparisons remain open. The older Challenge and guild selector differences still need a source comparison. [Recovery and validation evidence](2026-11-21-card-cursor-photon-and-balclaw.json)
 
 ## Ordered upstream review candidates
 
