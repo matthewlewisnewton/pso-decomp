@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "0e202610a693f30f95c7643d0522523556582ab1",
+  "review": "7f63315ddb4541fe88a0f2320264cc7639d1f405",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "3b1bcae4c998105e983a05a081052a0a7573d43e",
-  "review_paths": 879,
+  "review_tree": "244c008688cc861b482bde62805c00b8c28f2fe7",
+  "review_paths": 881,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,20 +29,18 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "f194bba3e33fbc53baa989e60605764446a48a7fe8e29bfac3f8d8442ae51166",
+  "path_ledger_sha256": "054b9171c67fc355319658831915bc3e9ebd84c55e87c3136e69ca213065530d",
   "path_status": {
-    "equivalent source retained": 127,
-    "exact prior source": 585,
+    "equivalent source retained": 212,
+    "exact prior source": 588,
     "same change already in upstream": 902,
-    "pending replay": 11,
-    "remaining overlap after replay": 79,
     "validated three-way source": 14,
-    "upstream names retained": 62,
+    "upstream names retained": 64,
     "upstream only": 7,
     "equivalent base-class call retained": 43,
     "native archive source with existing style": 17
   },
-  "remaining_path_comparisons": 90,
+  "remaining_path_comparisons": 0,
   "historical_fork_ledger_open": 590,
   "validation": {
     "upstream": {
@@ -293,7 +291,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 35,
+    "commits": 38,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -316,5 +314,7 @@
   "rename_only_followup": "2026-11-21-post-351-rename-only.json",
   "window_and_inventory_followup": "2026-11-21-post-351-windows.json",
   "actor_and_archive_followup": "2026-11-21-post-351-actor-archives.json",
-  "title_and_equivalence_followup": "2026-11-21-post-351-title-and-source-equivalence.json"
+  "title_and_equivalence_followup": "2026-11-21-post-351-title-and-source-equivalence.json",
+  "source_closeout": "2026-11-21-post-351-closeout.json",
+  "cutover_candidate_ref": "great-merge/cutover-candidate"
 }
