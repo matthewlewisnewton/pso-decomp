@@ -1,0 +1,348 @@
+{
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source": "0f4a66c99a5c238ab664b9109ff25c36f5616402",
+  "previous_source": "12a04e0138e0ac289463491fcdb93eca2ecc8d62",
+  "source_paths": 1057,
+  "changed_source_paths": [
+    "config/GPOE8P/psov3/linked_units.txt",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TUnk_804EFBAC.h",
+    "include/pso/ui/window/TWindowDD.h",
+    "include/pso/ui/window/TWindowDD_80341334.h",
+    "include/pso/ui/window/TWindowDD_80341A08.h",
+    "include/pso/ui/window/TWindowDD_WS_ScrollBar.h",
+    "include/pso/ui/window/TWindowDD_WS_String.h",
+    "include/pso/ui/window/TWindowDD_WS_Word.h",
+    "src/pso/ui/window/TWindowDDEntryTable.cpp",
+    "src/pso/ui/window/TWindowDD_8034055C.cpp",
+    "src/pso/ui/window/TWindowDD_80340A78.cpp",
+    "src/pso/ui/window/TWindowDD_80341334.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_803430BC.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp"
+  ],
+  "combined_window_paths": [
+    "config/GPOE8P/psov3/linked_units.txt",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TUnk_804CE964.h",
+    "include/pso/ui/window/TUnk_804EFBAC.h",
+    "include/pso/ui/window/TWindowComCard.h",
+    "include/pso/ui/window/TWindowDD.h",
+    "include/pso/ui/window/TWindowDD_80341334.h",
+    "include/pso/ui/window/TWindowDD_80341A08.h",
+    "include/pso/ui/window/TWindowDD_WS_ScrollBar.h",
+    "include/pso/ui/window/TWindowDD_WS_String.h",
+    "include/pso/ui/window/TWindowDD_WS_Word.h",
+    "include/pso/ui/window/TWindowDeposit.h",
+    "include/pso/ui/window/TWindowFukidasi.h",
+    "include/pso/ui/window/TWindowPartyStatus.h",
+    "include/pso/ui/window/TWindowSimpleStatus.h",
+    "include/pso/ui/window/TWindowStatus.h",
+    "include/pso/ui/window/TWindowSubComCard_80244774.h",
+    "include/pso/ui/window/TWindowSubMagPhoton.h",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249610.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowDDEntryTable.cpp",
+    "src/pso/ui/window/TWindowDD_8034055C.cpp",
+    "src/pso/ui/window/TWindowDD_80340A78.cpp",
+    "src/pso/ui/window/TWindowDD_80341334.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_803430BC.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp",
+    "src/pso/ui/window/TWindowDeposit.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowPartyStatus.cpp",
+    "src/pso/ui/window/TWindowSimpleStatus.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubMag.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "word_select_lifetimes": {
+    "0x803409A4": {
+      "role": "Menu constructor",
+      "label": "__ct__13TUnk_804EFBACFv"
+    },
+    "0x80340EA8": {
+      "role": "Scrollbar destructor",
+      "label": "__dt__22TWindowDD_WS_ScrollBarFv"
+    },
+    "0x80340F00": {
+      "role": "Scrollbar constructor",
+      "label": "__ct__22TWindowDD_WS_ScrollBarFv"
+    },
+    "0x8034138C": {
+      "role": "String constructor",
+      "label": "__ct__19TWindowDD_WS_StringFPfPfUll"
+    },
+    "0x8034227C": {
+      "role": "Word page destructor",
+      "label": "__dt__17TWindowDD_WS_WordFv"
+    },
+    "0x803422F0": {
+      "role": "Word page constructor",
+      "label": "__ct__17TWindowDD_WS_WordFll"
+    }
+  },
+  "entry_table": {
+    "owner": "src/pso/ui/window/TWindowDDEntryTable.cpp",
+    "start": "0x804EFCA8",
+    "end_exclusive": "0x804EFD50",
+    "bytes": 168,
+    "changed_contents": 0
+  },
+  "historical_comparison": {
+    "partial_rows": {
+      "157": "The 18 Word Select linker labels follow native lifetimes, typed window arguments or corrected method and vtable ownership.",
+      "5619": "The word page owns its controller update, buffer, layout and scrolling. The original table keeps the same bytes in its own linked unit. Broader historical drawing and interface changes still need source comparison.",
+      "5636": "The native word page constructor and destructor replace the manual vtable and allocation wrappers. Static initialization and the factory keep their original addresses. The selected-token declaration in the adjacent source still needs comparison."
+    },
+    "open_rows": 507
+  },
+  "validation": {
+    "source": {
+      "baseline": "12a04e0138e0ac289463491fcdb93eca2ecc8d62",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "512874a0804685f53686dc4ee3574db503c732c4940e03c68f9ce8d75f8aaa86",
+      "report_sha256": "e853609c32842957829701e9484f1f7d2cd2d6cc9c10db4ad7f14a7fa51682db",
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8034055C",
+          "before": "TWindowDD__sub_8034055C",
+          "after": "render__13TUnk_804EFBACFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803407BC",
+          "before": "update_draw__9TWindowDDFPv",
+          "after": "run_task__13TUnk_804EFBACFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803409A4",
+          "before": "construct_variant_a__9TWindowDDFPv",
+          "after": "__ct__13TUnk_804EFBACFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80340A78",
+          "before": "TWindowDD__sub_80340A78",
+          "after": "render__22TWindowDD_WS_ScrollBarFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80340DEC",
+          "before": "init__9TWindowDDFv",
+          "after": "run_task__22TWindowDD_WS_ScrollBarFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80340EA8",
+          "before": "dt__22TWindowDD_WS_ScrollBarFs",
+          "after": "__dt__22TWindowDD_WS_ScrollBarFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80340F00",
+          "before": "construct_variant_b__9TWindowDDFPv",
+          "after": "__ct__22TWindowDD_WS_ScrollBarFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8034138C",
+          "before": "TWindowDD__sub_8034138C",
+          "after": "__ct__19TWindowDD_WS_StringFPfPfUll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80341B28",
+          "before": "handle_scroll_input__9TWindowDDFv",
+          "after": "run_task__17TWindowDD_WS_WordFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80341EB8",
+          "before": "init_and_mark_field8C__9TWindowDDFv",
+          "after": "init_and_mark_field8C__17TWindowDD_WS_WordFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80341EF4",
+          "before": "free_child__9TWindowDDFv",
+          "after": "free_child__17TWindowDD_WS_WordFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80341F48",
+          "before": "init_child__9TWindowDDFPv",
+          "after": "init_child__17TWindowDD_WS_WordFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80341F9C",
+          "before": "init_layout_entries__9TWindowDDFv",
+          "after": "init_layout_entries__17TWindowDD_WS_WordFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80341FD8",
+          "before": "reset_fields__9TWindowDDFv",
+          "after": "reset_fields__17TWindowDD_WS_WordFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80341FFC",
+          "before": "load_element_list__9TWindowDDFv",
+          "after": "load_element_list__17TWindowDD_WS_WordFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80342220",
+          "before": "add_scroll_offset__9TWindowDDFi",
+          "after": "add_scroll_offset__17TWindowDD_WS_WordFi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8034227C",
+          "before": "destroy__17TWindowDD_WS_WordFs",
+          "after": "__dt__17TWindowDD_WS_WordFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803422F0",
+          "before": "TWindowDD__sub_803422F0",
+          "after": "__ct__17TWindowDD_WS_WordFll"
+        }
+      ]
+    },
+    "workspace": {
+      "baseline": "0f4a66c99a5c238ab664b9109ff25c36f5616402",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "e853609c32842957829701e9484f1f7d2cd2d6cc9c10db4ad7f14a7fa51682db",
+      "linker_label_changes": []
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "597dc2e437816a164e834d67a89087ffd37711cda5e27d94ac598b5125ebc588"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "8b513d56d5bf3d90a3fc0701b21bfa9e24b0ebc6f415e0ae12070d23ac45d06a"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    },
+    "word-select": {
+      "result": "Word Select constructors, virtual slots and scroll dispatch passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "4b8c1725a34ba77e1d588eb6cfedf4a3c7537ae9acdce2720fea35b77fbad45e"
+    },
+    "overlap": {
+      "result": "Eight balloon overlap cases passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "455897f6dec27adb0cacc209f9634987544a801eaf91d3cfe906ede69784bdcb"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "907ca75f10af4626511281e617bc06b306967cc8122eb5a72378ec442128d494",
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - TWindowDD__sub_8034055C",
+      "-  - TWindowDD__sub_80340A78",
+      "-  - TWindowDD__sub_8034138C",
+      "-  - TWindowDD__sub_803422F0",
+      "+  - __ct__13TUnk_804EFBACFv",
+      "+  - __ct__17TWindowDD_WS_WordFll",
+      "+  - __ct__19TWindowDD_WS_StringFPfPfUll",
+      "+  - __ct__22TWindowDD_WS_ScrollBarFv",
+      "+  - __dt__17TWindowDD_WS_WordFv",
+      "+  - __dt__22TWindowDD_WS_ScrollBarFv",
+      "+  - __vt__13TUnk_804EFBAC",
+      "+  - __vt__17TWindowDD_WS_Word",
+      "+  - __vt__22TWindowDD_WS_ScrollBar",
+      "-  - add_scroll_offset__9TWindowDDFi",
+      "+  - add_scroll_offset__17TWindowDD_WS_WordFi",
+      "-  - construct_variant_a__9TWindowDDFPv",
+      "-  - construct_variant_b__9TWindowDDFPv",
+      "-  - destroy__17TWindowDD_WS_WordFs",
+      "-  - dt__22TWindowDD_WS_ScrollBarFs",
+      "-  - handle_scroll_input__9TWindowDDFv",
+      "-  - init__9TWindowDDFv",
+      "-  - init_layout_entries__9TWindowDDFv",
+      "+  - init_layout_entries__17TWindowDD_WS_WordFv",
+      "-  - lbl_804EFBAC",
+      "-  - lbl_804EFBE4",
+      "-  - lbl_804EFC90",
+      "-  - load_element_list__9TWindowDDFv",
+      "+  - load_element_list__17TWindowDD_WS_WordFv",
+      "+  - render__13TUnk_804EFBACFv",
+      "+  - render__22TWindowDD_WS_ScrollBarFv",
+      "-  - reset_fields__9TWindowDDFv",
+      "+  - reset_fields__17TWindowDD_WS_WordFv",
+      "+  - run_task__13TUnk_804EFBACFv",
+      "+  - run_task__17TWindowDD_WS_WordFv",
+      "+  - run_task__22TWindowDD_WS_ScrollBarFv",
+      "-  - update_draw__9TWindowDDFPv"
+    ]
+  }
+}

@@ -28,6 +28,10 @@ The 21-path window batch at `12a04e0138` restores native construction for Guild 
 
 The audit confirms 67 existing native lifetimes and recovers eight more at their original addresses. Six Word Select lifetimes still need source comparison. Seven historical file records gain partial evidence, leaving 507 records open. The stock and fork workspace builds match retail and link all 2,446 units. Both preserve all 1,147 starting data bytes. The 310 workspace tests pass, and eight balloon-overlap cases agree across retail and both builds. [Window lifetime and placement validation](2026-11-21-historical-window-lifetimes.json)
 
+The Word Select replay at `0f4a66c99a` accounts for the remaining six window lifetimes. The menu and scrollbar own their render and update slots, the string uses a native constructor, and the word page owns its scrolling and child lifecycle. The original 168-byte entry table keeps its address and contents in a linked data unit. The combined window review touches 37 paths and keeps existing upstream field names, draw helpers and compiler configuration.
+
+Both builds reproduce retail with 27,572 exact functions and 2,447 linked source units. All 1,147 starting data bytes remain accounted for, and the 310 workspace checks pass. The constructor, virtual dispatch, scrolling and balloon-overlap probes agree with retail. Three older file records gain partial evidence, leaving 507 open. [Word Select matching evidence](2026-11-21-historical-word-select-lifetimes.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
