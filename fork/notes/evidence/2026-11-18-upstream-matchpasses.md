@@ -1,6 +1,6 @@
 # Upstream matchpasses
 
-Group related source recovery into matchpass-sized reviews. Use upstream names wherever the corresponding entities have equivalent behavior, types and linkage. Keep documentation and tooling changes on the fork layer.
+Group related source recovery into fewer, larger reviews with independent matching builds. Keep upstream names where the entities have equivalent behavior, types and linkage. Include source changes that recover types, ownership, native code, or linking coverage. Keep documentation and tooling changes on the fork layer.
 
 ## Bulk replay on upstream master `6b080e67ab`
 
@@ -1369,6 +1369,20 @@ All three source reviews are open against upstream master at `1fd561eae2`. The b
 | [#350](https://github.com/zeroz41/pso-decomp/pull/350) | Particle factories and sprite definitions | `6d9f7bffe5` | 191 |
 
 The seven refreshed heads for #336–342 fast-forwarded to the locally tested commits listed above. All 14 open reviews were ready for review and mergeable against master at publication. The GitHub-visible commit audit checked 29 author and committer identities and all commit messages. It found zero Codex attribution and zero co-author trailers. The ten updated or newly opened reviews queued GitHub matching checks for their published heads. [Publication and commit audit](2026-11-20-upstream-publication-348-350.json)
+
+## Consolidated source reviews
+
+The 14 open reviews fit into three locally validated source batches on master `1fd561eae2`. Each batch contains the published source commits for its group and passes the retail DOL, linker and coverage checks independently.
+
+| Group | Open reviews included | Local head | Files |
+| --- | --- | --- | ---: |
+| Resource loading, streaming and rendering | #338, #348–350 | `6109209848` | 562 |
+| Frontend windows, character saves and quest transfers | #339, #340, #342, #345, #347 | `1de8691e80` | 588 |
+| Combat, boss encounters and stage objects | #336, #337, #341, #344, #346 | `0bf3d567f9` | 531 |
+
+The combined frontend and combat build at `ceedccb08a` matches retail after reconciling five overlapping files. The resource batch has nine conflicting files with the frontend and 87 with combat, concentrated in shared model, effect and archive callers. The first two groups together have 94 overlapping files with the resource batch. The actor movement component `45da070185` independently matches retail across 329 files. It restores the actor position and velocity vectors and shared rotation storage and is available for a related batch.
+
+Great Merge at `54128af4ad` keeps the existing BML allocator and release names, ADX status and sector-size names, and the three player movement helper names. The implementations still use recovered receivers and typed arguments. The fork workspace matches retail, keeps all 27,031 required symbols, and passes 294 tooling tests, 11 layer tests and five host checks. The candidate source histories had zero Codex author, committer or co-author entries. The existing public reviews remain open. [Validation, attribution and overlap evidence](2026-11-20-consolidated-source-reviews.json)
 
 ## Ordered upstream review candidates
 
