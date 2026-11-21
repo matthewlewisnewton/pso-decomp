@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `9bf422ff19` uses fifteen commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The fifteen review commits and 107 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `6a274579f2` uses sixteen commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The sixteen review commits and 108 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1436,9 +1436,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `9bf4
 | 12 | Morfos arms and projectiles and Epsilon guard formation | Follow-up recovery | `10708892f5` | 14 |
 | 13 | Sinow textures, movement, factories and Canadin formation | Follow-up recovery | `b5448eb0bd` | 19 |
 | 14 | Gi Gue actor and child ownership and Gibbles resource and combat tables | Follow-up recovery | `be1d9b2284` | 10 |
-| 15 | PPP frame and callback interfaces | Independent network work | `9bf422ff19` | 12 |
+| 15 | Character level tables, starting inventory and companion initialization | Follow-up recovery | `b64574a02d` | 22 |
+| 16 | PPP frame and callback interfaces | Independent network work | `6a274579f2` | 12 |
 
-The review changes 1,817 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,827 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1591,6 +1592,12 @@ The 19-file batch reproduces retail on the ordered and consolidated source and i
 Great Merge at `f4d2059329` restores Gi Gue's compiler-generated constructor, destructor and virtual table, native flight and attack methods, and typed missile and barrier factories. Gibbles uses typed BML descriptors and model selection, AI and movement parameters, combat tables and collision bodies. Its attack collider and fade records use the actual members at their retail offsets. The Gibbles lifecycle bridge remains open.
 
 The 10-file batch reproduces retail in the ordered review, the consolidated review and the fork workspace. The emulator validates the four Gi Gue state dispatches and missile construction arguments, Gibbles model and texture selection, and its movement and collision constants. The matching build retains all existing code and data addresses. Four historical rows gained source evidence and 592 remain open. [Gi Gue and Gibbles evidence](2026-11-21-gigue-and-gibbles.json)
+
+## Character level growth and companion inventory
+
+Great Merge at `1ab814ad95` uses typed character level rows and starting inventory across character selection, level growth, battle reset and companion creation. The companion sender takes a character record, an inventory record pointer and the original full-width arguments. The selective template copy keeps the existing destination presence bytes at offsets 2 and 3. The experience path preserves its original signed-byte class lookup.
+
+The 22-file batch reproduces retail in the ordered review, the consolidated review and the fork workspace. The probe checks level and class bounds, experience thresholds, stat caps, inventory copy boundaries and companion arguments. Three linker labels change with their signatures. Four historical rows gained source evidence and 592 remain open. [Character growth and companion evidence](2026-11-21-character-growth.json)
 
 ## Ordered upstream review candidates
 
