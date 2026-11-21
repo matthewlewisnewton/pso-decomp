@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+  "review": "0d4c0812e7f2dc93649511ae0881831305555c31",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "7a54a75cc202166fbd62b9abde068818bdb49759",
-  "review_paths": 787,
+  "review_tree": "6f98d4332fb0cceaa2c210ea0718fce2bfa6d49d",
+  "review_paths": 860,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,17 +29,19 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "f80a57c059aa767c147a900c2358cb4ed04494dd0cbdf9a1a460a7f93bbcbb41",
+  "path_ledger_sha256": "937c4a7311927c42dce8999ab1d084faf0d134aee033698f7aea1908634bd2d4",
   "path_status": {
-    "remaining overlap after replay": 286,
-    "exact prior source": 482,
+    "remaining overlap after replay": 205,
+    "exact prior source": 558,
     "same change already in upstream": 902,
-    "pending replay": 112,
+    "pending replay": 39,
     "validated three-way source": 14,
-    "upstream names retained": 44,
-    "upstream only": 7
+    "upstream names retained": 62,
+    "upstream only": 7,
+    "equivalent base-class call retained": 43,
+    "native archive source with existing style": 17
   },
-  "remaining_path_comparisons": 398,
+  "remaining_path_comparisons": 244,
   "historical_fork_ledger_open": 590,
   "validation": {
     "upstream": {
@@ -290,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 22,
+    "commits": 31,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -311,5 +313,6 @@
   "actor_and_inventory_followup": "2026-11-21-post-351-actors.json",
   "movement_and_phase_followup": "2026-11-21-post-351-movement.json",
   "rename_only_followup": "2026-11-21-post-351-rename-only.json",
-  "window_and_inventory_followup": "2026-11-21-post-351-windows.json"
+  "window_and_inventory_followup": "2026-11-21-post-351-windows.json",
+  "actor_and_archive_followup": "2026-11-21-post-351-actor-archives.json"
 }
