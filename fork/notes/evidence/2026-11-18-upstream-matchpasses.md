@@ -2,6 +2,14 @@
 
 Group related source recovery into fewer, larger reviews with independent matching builds. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
 
+## Replay after upstream PR #358
+
+Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
+
+The clean source and materialized fork overlay reproduce the retail DOL with 27,572 exact functions. The checker reports zero code or data coverage losses against both previous source and current master. Upstream folds two source units into their owners, leaving all 2,446 units linked. All 1,147 originally tracked data bytes, 310 workspace checks and the actor, playback and task probes pass. The 130-path tooling overlay stays under `fork/` with the private documentation. [Validation evidence](2026-11-21-upstream-358-reconciliation.json)
+
+There are 142 replay paths where a source comparison is still needed to establish that meaningful fork changes survived the overlap. The older ledger still has 511 open records. The previously audited cutover at `a2dfaa0230` remains available while the new replay receives that review.
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
