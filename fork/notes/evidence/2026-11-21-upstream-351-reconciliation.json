@@ -6,9 +6,9 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "4c69e4ea062122cfa46bc7b1f4274a13d99c3394",
+  "review": "e0d56360b14fdf5d32872443123b9035d63b331d",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "92f155cc8ee2953a0a416b290ece38edd49e9926",
+  "review_tree": "66c43d49d4fc34716a59eb73ff15ee5223feb7eb",
   "review_paths": 948,
   "published_groups_in_upstream": [
     336,
@@ -29,7 +29,7 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "e1fab0e6f3c228af5c0399f07c61d7f3545463519a458d2c76257daec4843d2e",
+  "path_ledger_sha256": "51bcfc8654c726f22435d50c0a70bde20da918c6a31df0e886bd243c18ebd17c",
   "path_status": {
     "equivalent source retained": 162,
     "exact prior source": 546,
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 74,
+    "commits": 75,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -324,5 +324,6 @@
   "historical_ground_and_body": "2026-11-21-historical-ground-and-body.json",
   "historical_derolle_and_barbaray": "2026-11-21-historical-derolle-and-barbaray.json",
   "historical_sound_and_disc": "2026-11-21-historical-sound-and-disc.json",
-  "historical_guild_card_and_short_mail": "2026-11-21-historical-guild-card-and-short-mail.json"
+  "historical_guild_card_and_short_mail": "2026-11-21-historical-guild-card-and-short-mail.json",
+  "upstream_name_retention": "2026-11-21-upstream-name-retention.json"
 }
