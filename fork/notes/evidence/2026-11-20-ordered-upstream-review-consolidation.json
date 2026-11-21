@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-with-trade-inventory",
-      "head": "e3ff156ccf5dbf74ae4d7f9c9ab6215d809e3cce",
+      "ref": "great-merge/consolidated/ordered-combat-with-flower-dragon",
+      "head": "fa5b89a7c31b8c39e22259821e4ab189d1f3eabd",
       "base": "b4c38736e2942c91262bdf58e7322b24af9b1331",
-      "tree": "7a862493f45c44fa77c063c812f87d928e03270c",
+      "tree": "87dd87b0deef2b867666566b89c84e11a4bda8a8",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,17 +77,17 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 27,
-      "files_changed": 929,
-      "insertions": 11206,
-      "deletions": 11847,
-      "check_sha256": "21af337d3a0b5cd14046f1b8cbc9349dfad353ccc8003e9a0b23eff516790ca7",
-      "function_label_changes": 298,
+      "review_commits": 30,
+      "files_changed": 936,
+      "insertions": 11359,
+      "deletions": 12013,
+      "check_sha256": "5087a5738c2379679c7591e56436fccd4f6208e9eb127d8bdbcadacf88134eb5",
+      "function_label_changes": 306,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
         "exact_functions": 27572,
         "linked_source_units": 2448,
-        "source_report_sha256": "a286541ed7031111274469c171d385bd87ab9886d355ab1ecbb699fdc4d43991",
+        "source_report_sha256": "0bbff8e0ce66e26123809d06f90bcfdfe904f088c5bc738b00748b09ba29c5e8",
         "original_data_inventory": {
           "ranges": 90,
           "linked": 980,
@@ -189,37 +189,37 @@
     }
   },
   "separate_network_change": {
-    "head": "a58926e81e62f1ce7e591b2c1a8ef3b3b0b293f5",
-    "base": "e3ff156ccf5dbf74ae4d7f9c9ab6215d809e3cce",
-    "tree": "b7d426f5c468f52da02336b3ff20803162e75959",
+    "head": "840aab2754ca3eec1b864182f4e78043f8636d91",
+    "base": "fa5b89a7c31b8c39e22259821e4ab189d1f3eabd",
+    "tree": "8b05d92b1947cc6fac912ae4b0eb33b3fcda08c6",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "a58926e81e62f1ce7e591b2c1a8ef3b3b0b293f5",
+    "head": "840aab2754ca3eec1b864182f4e78043f8636d91",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "b7d426f5c468f52da02336b3ff20803162e75959",
-    "files_changed": 1719,
-    "insertions": 27287,
-    "deletions": 30001,
+    "tree": "8b05d92b1947cc6fac912ae4b0eb33b3fcda08c6",
+    "files_changed": 1724,
+    "insertions": 27440,
+    "deletions": 30167,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
       "linked_source_units": 2448,
-      "source_report_sha256": "a286541ed7031111274469c171d385bd87ab9886d355ab1ecbb699fdc4d43991",
+      "source_report_sha256": "0bbff8e0ce66e26123809d06f90bcfdfe904f088c5bc738b00748b09ba29c5e8",
       "original_data_inventory": {
         "ranges": 90,
         "linked": 980,
         "padding": 167,
         "remaining": 0
       },
-      "check_sha256": "21af337d3a0b5cd14046f1b8cbc9349dfad353ccc8003e9a0b23eff516790ca7"
+      "check_sha256": "5087a5738c2379679c7591e56436fccd4f6208e9eb127d8bdbcadacf88134eb5"
     }
   },
   "commit_attribution": {
-    "audited_commits": 72,
+    "audited_commits": 75,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },

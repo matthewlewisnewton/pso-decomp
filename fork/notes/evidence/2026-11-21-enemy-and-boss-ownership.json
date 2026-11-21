@@ -1,0 +1,263 @@
+{
+  "source": "ac294e34fbc336ca3db3ca96d149a9d59a9971ea",
+  "previous_source": "645e26ce0321a8dfdb128e9f1e7066b372a9270b",
+  "single_review_candidate": "840aab2754ca3eec1b864182f4e78043f8636d91",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/dragon/TBoss1Dragon.h",
+    "include/pso/boss/dragon/TObjBoss1MokoHill_SoloM.h",
+    "include/pso/boss/goldragon/TBoss8Dragon.h",
+    "include/pso/boss/goldragon/TBoss8Dragon_8002CC48.h",
+    "include/pso/boss/olgaflow/Boss6Type2Data.h",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/enemy/flower/TObjEneRe2Flower.h",
+    "include/pso/unk/text_800C3088.h",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp"
+  ],
+  "source_fixes": [
+    "Four Flower actions take the native TObjEneRe2Flower receiver and use the actual motion and particle fields.",
+    "The Dragon owns a typed trail task pointer. The native trail task owns its creation and state methods and describes the position and height fields.",
+    "The Olga Flow default parameters retain a 0x3C source layout assertion. The old overlapping strip descriptor declaration is redundant."
+  ],
+  "rejected_nonmatching_change": "The Dragon mode helper retains its existing return declaration and exact retail implementation.",
+  "historical_rows_closed": {
+    "918": {
+      "historical_path": "src/pso/boss/TObjBoss8Piller.cpp",
+      "owner": "src/pso/boss/goldragon/TObjBoss8Piller.cpp",
+      "owner_blob": "3ce39cbf09364bde79a8190411279969db54b20e",
+      "decision": "The live provider uses the native BmlResource constructor and destructor, with the same rand call and three float values in its exact .sdata2 extent."
+    },
+    "923": {
+      "historical_path": "include/pso/boss/Boss6Type2Data.h",
+      "owner": "include/pso/boss/olgaflow/Boss6Type2Data.h",
+      "owner_blob": "0a8c2a4d2aa7506d570f72f13224fe48a24ef69a",
+      "decision": "The live table declarations use ModelNodePositionEntry[20], Boss6StripDesc[2], and Vec. The parameter layout has a 0x3C compile-time assertion. The existing data names link to the same exact retail table addresses."
+    },
+    "1030": {
+      "historical_path": "include/pso/enemy/TObjEneRe4Sorcerer.h",
+      "owner": "include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h",
+      "owner_blob": "02e9fb431cf4afca57120aef954b5e776cd856cb",
+      "decision": "The native declaration, definition and model callback share the NJS_OBJECT* parameter. Current typed fields describe the bytes replaced by the earlier opaque block, with the original layout enforced."
+    },
+    "1166": {
+      "historical_path": "src/pso/misc/TNeedleShoot_802A4540.cpp",
+      "owner": "src/pso/enemy/TNeedleShoot.cpp",
+      "owner_blob": "0034dc49e4056f83a8cc4c41b2e506e3a5a2ba86",
+      "decision": "The native render method supplies the same position and 10.0f to the debug sphere. The exact .sdata2 section contains the four-byte value at 0x805DDF68."
+    }
+  },
+  "historical_rows_with_added_evidence": {
+    "456": "The existing native Canadin owner and layout retain the formation and movement recovery from 519d62273c.",
+    "467": "Four Flower action handlers now use their native receiver and the existing particle controller type.",
+    "589": "The existing Canadin movement and formation calls retain the native receivers from 519d62273c.",
+    "701": "The active Flower source contains the recovered action handlers and typed emitter. The broader earlier helper delta still needs comparison.",
+    "1064": "The existing m_378 array retains all 32 action-history entries without a field rename.",
+    "1076": "The native Hyoui and Plot receivers and their action-history operations from 2505c63d7a are already present.",
+    "1158": "The trail field m_6d8 uses its actual task pointer. The earlier target vector layout remains a separate owner comparison."
+  },
+  "historical_rows_open": 647,
+  "validation": {
+    "combat": {
+      "check_sha256": "5087a5738c2379679c7591e56436fccd4f6208e9eb127d8bdbcadacf88134eb5",
+      "source_report_sha256": "0bbff8e0ce66e26123809d06f90bcfdfe904f088c5bc738b00748b09ba29c5e8",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8002D308",
+          "before": "is_dragon_trail_damaging__FPUc",
+          "after": "is_dragon_trail_damaging__FPC23TObjBoss1MokoHill_SoloM"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D324",
+          "before": "set_field_3c__12TBoss8DragonFv",
+          "after": "set_field_3c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D358",
+          "before": "set_field_1c__12TBoss8DragonFv",
+          "after": "set_field_1c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D364",
+          "before": "spawn_child_object__12TBoss8DragonFv",
+          "after": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__9TObjEneDDFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        }
+      ]
+    },
+    "full": {
+      "check_sha256": "5087a5738c2379679c7591e56436fccd4f6208e9eb127d8bdbcadacf88134eb5",
+      "source_report_sha256": "0bbff8e0ce66e26123809d06f90bcfdfe904f088c5bc738b00748b09ba29c5e8",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8002D308",
+          "before": "is_dragon_trail_damaging__FPUc",
+          "after": "is_dragon_trail_damaging__FPC23TObjBoss1MokoHill_SoloM"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D324",
+          "before": "set_field_3c__12TBoss8DragonFv",
+          "after": "set_field_3c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D358",
+          "before": "set_field_1c__12TBoss8DragonFv",
+          "after": "set_field_1c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D364",
+          "before": "spawn_child_object__12TBoss8DragonFv",
+          "after": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__9TObjEneDDFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        }
+      ]
+    },
+    "layer": {
+      "check_sha256": "535fc0122687fa804637e3f0022793f461dc436ec698141675cef165ba7f58f0",
+      "source_report_sha256": "0bbff8e0ce66e26123809d06f90bcfdfe904f088c5bc738b00748b09ba29c5e8",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8002D308",
+          "before": "is_dragon_trail_damaging__FPUc",
+          "after": "is_dragon_trail_damaging__FPC23TObjBoss1MokoHill_SoloM"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D324",
+          "before": "set_field_3c__12TBoss8DragonFv",
+          "after": "set_field_3c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D358",
+          "before": "set_field_1c__12TBoss8DragonFv",
+          "after": "set_field_1c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D364",
+          "before": "spawn_child_object__12TBoss8DragonFv",
+          "after": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__9TObjEneDDFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        }
+      ]
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "0fa4a62efe364f27a2a091264b698d77f91a2d50d3955d9cbf566feec8eddaa1",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "commit_attribution": {
+    "audited_commits": 75,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}
