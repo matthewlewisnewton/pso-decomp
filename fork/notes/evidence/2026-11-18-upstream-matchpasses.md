@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `392a019e0f` uses thirteen commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The thirteen review commits and 105 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `e8af99b02a` uses fourteen commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The fourteen review commits and 106 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1434,9 +1434,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `392a
 | 10 | Pan Arms coordination and shared Bal Claw placement | Follow-up recovery | `75396834cd` | 18 |
 | 11 | Dark Gunner formation, movement and projectile ownership | Follow-up recovery | `ecae8df53c` | 11 |
 | 12 | Morfos arms and projectiles and Epsilon guard formation | Follow-up recovery | `10708892f5` | 14 |
-| 13 | PPP frame and callback interfaces | Independent network work | `392a019e0f` | 12 |
+| 13 | Sinow textures, movement, factories and Canadin formation | Follow-up recovery | `b5448eb0bd` | 19 |
+| 14 | PPP frame and callback interfaces | Independent network work | `e8af99b02a` | 12 |
 
-The review changes 1,808 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,814 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1577,6 +1578,12 @@ The ordered and consolidated source and fork workspace reproduce retail across t
 Great Merge at `ed739d9a01` uses typed placements and archives for the Morfos body and arm. The two captured node positions drive its arm and projectile. The projectile owns the original floor query. Epsilon's body owns guard creation, child checks, guard targeting, attack-pattern selection and warp state.
 
 The ordered and consolidated source and the fork workspace reproduce retail across the 14-file batch. The probe checks Morfos node capture and ground snap, Epsilon guard iteration, constructor arguments and target flags. Two historical comparisons are closed and 593 remain open. [Morfos and Epsilon evidence](2026-11-21-morfos-and-epsilon.json)
+
+## Sinow textures and Canadin formation
+
+Great Merge at `65829c8419` uses actual Ginja texture entries for loading and rendering the Shinowa, Sinow Zoa and Stelth variants. Each variant retains its original alternate texture slots. Sinow Zoa uses native movement, collision and factory methods. Canadin's existing formation slot takes the concrete member pointer and hover runs through the native actor methods.
+
+The 19-file batch reproduces retail on the ordered and consolidated source and in the fork workspace. The probe checks that the texture-entry copy preserves neighboring data, Canadin removes the selected member and updates hover state, and Sinow Zoa forwards placement and the constructed actor through its factory. Twelve linker labels move with their new types or owners. The existing action and callback names stay in use where the interfaces agree. One historical comparison is closed and 592 remain open. [Sinow and Canadin evidence](2026-11-21-sinow-and-canadin.json)
 
 ## Ordered upstream review candidates
 
