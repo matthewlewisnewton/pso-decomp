@@ -1195,6 +1195,14 @@ The 89-file replay at `bb96c19268` carries typed ADX stream requests through pla
 
 The standalone review `great-merge/prepared/adx-streaming-and-disc-reads` at `2572238636` starts directly from master `0fa391a887`. Both clean builds reproduce retail and retain every checked code and data address with 2,448 source objects linked. The 131-path fork tooling patch round-trips over the replay and passes all 305 tests. The historical inventory falls from 842 to 790 paths outside the active replay diff. [Build and replay evidence](2026-11-20-adx-streaming-and-disc-reads.json)
 
+### Online quest transfers, cache and selection windows
+
+The 133-file replay at `74b91cd5c7` carries typed download headers from the packet receiver to file assembly and gives quest cache records, text nodes and workspace slots shared layouts. Quest threads use their actual script managers. Challenge and guild selection use native window callbacks, and quest dialogue uses the existing native constructors. The replay reuses the shared object-set layout and preserves the original initializer and warp helper symbols.
+
+The standalone review `great-merge/prepared/online-quest-transfers` at `5e0a443edd` starts directly from master `0fa391a887` and keeps its archive and menu interfaces. Both clean builds reproduce retail and retain every checked code and data address. The 131-path tooling patch uses the shared quest slot type for its host test and updates the private cache probe's symbol references. All 305 tests pass. The cache probe also verifies all 128 slots, ten pages, 80 buckets and 512 free-list nodes, plus file reads and page eviction, on retail and all three rebuilds.
+
+The historical inventory falls from 790 to 739 paths outside the active replay diff. [Build and replay evidence](2026-11-20-online-quest-transfers-and-cache.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
