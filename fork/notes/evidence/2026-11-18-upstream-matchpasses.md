@@ -1326,6 +1326,14 @@ The source and fork workspace reproduce retail and pass the strict checker with 
 
 The older fork review index covers additional work beyond the cumulative snapshot. Its 713 partially reviewed or unreviewed entries still need disposition. The initial rescan on the current source found 682 changed bodies, 26 entries whose previously recorded owner path moved, and five build or other non-source entries. The upstream refreshes for #336–342 still await publication. The newer batches still need independent upstream bases before review.
 
+## Relocated owners in the original fork index
+
+`great-merge/incoming/osp-replayed-source` at `1a035e7521` restores the modem launch layout assertions and gives the equipment and shop windows shared typed declarations. Experience distribution, drop requests, group lookup, last-child transfer and actor registration now belong to `TObjEnemy`. Five linker labels follow those receiver changes at their original addresses. The four commits span 64 paths.
+
+The source and materialized fork workspace reproduce retail with 27,572 exact functions and all 2,448 source objects linked. The strict checks show zero code or non-padding data coverage losses, and all 1,147 original data bytes are accounted for. There are zero Codex attribution entries in the 72 commits ahead of upstream. The fork tooling overlay round-trips byte for byte and passes 294 tooling tests, 11 layer tests and five host checks. [Owner decisions and validation](2026-11-20-osp-moved-source-owners.json)
+
+The [original fork index](2026-11-18-fork-review-index.tsv) now points all 26 stale comparison paths to current owners. This pass resolves 32 entries, including declarations reviewed in place. The remaining 681 entries include six reviewed here that still need a field or call-site comparison.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

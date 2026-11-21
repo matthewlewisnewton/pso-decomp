@@ -1,0 +1,492 @@
+{
+  "upstream": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_cumulative_source": "27a9916d9ed94be5c95df655321cdc90278422a7",
+  "source": {
+    "branch": "great-merge/incoming/osp-replayed-source",
+    "head": "1a035e75217d6c2778095c53b093969554e619e2",
+    "tree": "edff1196d286f0a7da05c2aef3712b4dad77d9f4",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "exact_linked_units": 2448,
+    "paths_changed_in_this_step": 64,
+    "commits_ahead_of_upstream": 72,
+    "codex_attribution_entries": 0,
+    "receiver_symbol_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8003F0E8",
+        "before": "reset_photon_effect__12TBoss3VoloptFv",
+        "after": "register_by_id__9TObjEnemyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800F6B14",
+        "before": "refresh_lobby_state__10TObjPlayerFv",
+        "after": "distribute_experience_and_request_drop__9TObjEnemyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800F6B48",
+        "before": "query_lobby_state__10TObjPlayerFv",
+        "after": "request_standard_drop__9TObjEnemyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800F6E2C",
+        "before": "link_chain_nodes__10TObjPlayerFPvPvPv",
+        "after": "link_last_group_child__9TObjEnemyFP9TObjEnemyP9TObjEnemy"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800F7428",
+        "before": "is_action_available__10TObjPlayerFv",
+        "after": "has_group__9TObjEnemyFv"
+      }
+    ],
+    "strict_check_sha256": "45dd4bb6a453bf37fba0520157235a66789d10caa54aa700a9753ca6c2440cef",
+    "report_sha256": "51c8290e7357a45f120dea7e92f0634836a2d4633f31b20a0fc4e02640cdcdd3"
+  },
+  "fork_main_comparison": {
+    "lost_exact_functions": 0,
+    "lost_linked_functions": 0,
+    "lost_non_padding_data_ranges": 0,
+    "lost_linked_data_ranges": 0,
+    "added_exact_functions": 7,
+    "omitted_alignment_padding_bytes": 2549,
+    "added_coverage_bytes": 163,
+    "aggregate_data_extent_delta": -2386,
+    "report_delta_sha256": "ae589fa182505e74c06709a8f23a35cbe0a93d122dc4e44381decd36844be5a2"
+  },
+  "historical_data_ranges": {
+    "address_ranges": 90,
+    "linked_bytes": 980,
+    "alignment_padding_bytes": 167
+  },
+  "fork_layer": {
+    "branch": "great-merge/incoming/osp-layered-replay",
+    "previous_head": "2c380d6948fcc530d2de0a937f8b4eabfdc835f3",
+    "source_base": "1a035e75217d6c2778095c53b093969554e619e2",
+    "materialized_tree_without_layer_paths": "d0f141e9eec2e912ba6772937e9d5ca02d555e9f",
+    "workspace_patch_sha256": "30c60cd6c85a012b4d4b566ebb4471ba4d0d550a68db5f80a5833e2f2254cb84",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "strict_check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+    "fork_layer_tests_passed": 11,
+    "tooling_tests_passed": 294,
+    "host_port_checks_passed": 5
+  },
+  "older_fork_review_index": {
+    "reviewed_this_step": 38,
+    "stale_owner_paths_remapped": 26,
+    "resolved_this_step": 32,
+    "reviewed_and_still_open": 6,
+    "left_to_review": 681,
+    "remaining_by_status": {
+      "Owner comparison required": 138,
+      "Some anchored text changes found": 543
+    },
+    "decisions_by_tsv_line": {
+      "53": {
+        "fork_path": "include/pso/misc/TLobby_80227A2C.h",
+        "previous_comparison_path": "src/pso/unk/TLobby_80227A2C.cpp",
+        "current_comparison_path": "src/pso/unk/TLobby_80227AA0.cpp",
+        "related_paths": [
+          "src/pso/unk/TLobby_80226C3C.cpp",
+          "src/pso/unk/TLobby_80228154.cpp",
+          "src/pso/unk/TLobby_80228818.cpp",
+          "include/pso/unk/TLobby_80227AA0.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The declarations split across the lobby sound and floor scene units. The mapped historical symbols retain their addresses, including the startup objects at 0x80227A94 and 0x80228118, and B2 dispatch at 0x80227B70."
+      },
+      "202": {
+        "fork_path": "include/pso/misc/SoftKeyboardWindowDescriptor.h",
+        "previous_comparison_path": "include/pso/misc/SoftKeyboardWindowDescriptor.h",
+        "current_comparison_path": "include/pso/unk/WindowLayoutRecord.h",
+        "related_paths": [
+          "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The soft keyboard uses WindowDescriptor. Its size is 0x14, with the layout pointer at 0xC and flags at 0x10. Restored the historical assertions on the shared descriptor."
+      },
+      "244": {
+        "fork_path": "include/pso/misc/TWindowKeyBoardHard_802601D4.h",
+        "previous_comparison_path": "include/pso/misc/TWindowKeyBoardHard_802601D4.h",
+        "current_comparison_path": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+        "related_paths": [
+          "include/pso/ui/window/TWindowKeyBoardHard.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The virtual destructor generates __dt__19TWindowKeyBoardHardFv at 0x802602AC. The obsolete header contained only duplicate declarations of that generated entry."
+      },
+      "306": {
+        "fork_path": "include/pso/misc/CharacterSaveFlagQueries.h",
+        "previous_comparison_path": "include/pso/misc/CharacterSaveFlagQueries.h",
+        "current_comparison_path": "include/pso/ui/window/TWindowKeyBoardHard.h",
+        "related_paths": [
+          "src/pso/ui/window/TWindowKeyBoardHard_8025EB68.cpp",
+          "src/pso/ui/keyboard/TKeyBoardControl_8025CB70.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "All four wrappers take the client and forward masks 16, 32, 64 and 128 to test_card_flag. Keep the current test_keyboard_card_flag names and typed client arguments."
+      },
+      "640": {
+        "fork_path": "src/pso/enemy/panarms/TObjMotionMethods.h",
+        "previous_comparison_path": "src/pso/enemy/panarms/TObjMotionMethods.h",
+        "current_comparison_path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "related_paths": [
+          "include/pso/object/base/TObjMotion.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The Pan Arms unit already defines clear_motion_flags on TObjMotion. Its bit clear reads and writes motion_flags at 0xB0 with the passed mask."
+      },
+      "676": {
+        "fork_path": "include/pso/enemy/TObjEnemy.h",
+        "previous_comparison_path": "src/pso/enemy/TObjEnemy.cpp",
+        "current_comparison_path": "include/pso/enemy/TObjEnemy.h",
+        "related_paths": [
+          "src/pso/object/TObjControl.cpp",
+          "src/pso/boss/volopt/TBoss3Volopt.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "Restored the actual TObjEnemy receivers and checked the four group pointer offsets. The experience and drop pair, tail transfer, group query and entity registration use the original entry points in all boss and regular enemy callers."
+      },
+      "2330": {
+        "fork_path": "include/pso/unk/text_8042EAD4.h",
+        "previous_comparison_path": "src/pso/ui/frontend/TAdTrialModemChkGC_8042E9FC.cpp",
+        "current_comparison_path": "include/pso/unk/text_8042EAD4.h",
+        "related_paths": [
+          "src/pso/ui/frontend/TAdTrialModemChkGC_8042E9FC.cpp",
+          "src/pso/system/SwitcherLaunch.cpp"
+        ],
+        "source_comparison": "Some anchored text changes found",
+        "evidence": "All four modem switcher functions remain at their original addresses. The public header uses DolHeader for the image. SwitcherLaunch still supplies two arguments to a function whose current implementation takes none. The conflicting declarations need call-site review."
+      },
+      "2740": {
+        "fork_path": "include/pso/unk/text_801E3F24.h",
+        "previous_comparison_path": "src/pso/unk/text_801E3F24.cpp",
+        "current_comparison_path": "include/pso/unk/text_801E3F24.h",
+        "related_paths": [
+          "src/pso/unk/TLobby_801E2F94.cpp",
+          "src/pso/network/TGameProtocol.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "All eight public declarations survive in this relocated header. Three parameter names differ. The first four providers retain 0x801E3F24 through 0x801E3F54, and the named subcommand handlers use the protocol owner."
+      },
+      "2744": {
+        "fork_path": "include/pso/misc/TLobby_801E2F94.h",
+        "previous_comparison_path": "src/pso/unk/TLobby_801E2F94.cpp",
+        "current_comparison_path": "include/pso/unk/TLobby_801E2F94.h",
+        "related_paths": [
+          "include/pso/system/NinjaChunk.h",
+          "src/pso/unk/TLobby_801E2F94.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "Seven public declarations survive unchanged. The archive lookup takes a byte buffer and uses typed offset, type and size outputs at 0x801E38A0. The two audio wrappers use address-width arguments at 0x801E3E24 and 0x801E3E9C."
+      },
+      "2747": {
+        "fork_path": "include/pso/misc/TEndingAB_8008CE08.h",
+        "previous_comparison_path": "include/pso/misc/TEndingAB_8008CE08.h",
+        "current_comparison_path": "include/pso/system/scene/TEndingAB.h",
+        "related_paths": [],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The old file only included TEndingAB. Its declarations now live in the scene header used by the ending units."
+      },
+      "2762": {
+        "fork_path": "include/pso/unk/text_80309890.h",
+        "previous_comparison_path": "src/pso/unk/text_80309890.cpp",
+        "current_comparison_path": "include/pso/unk/text_80309890.h",
+        "related_paths": [
+          "src/pso/unk/text_80309890.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The single historical declaration still has C linkage and takes TObject * and s32 at 0x80309890. The parameter names are object and index."
+      },
+      "2935": {
+        "fork_path": "include/pso/misc/TLobby_80426CAC.h",
+        "previous_comparison_path": "src/pso/network/TLobby_80426CAC.c",
+        "current_comparison_path": "include/pso/network/TLobby_80426CAC.h",
+        "related_paths": [
+          "src/pso/network/TLobby_80426CAC.c"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "All three declarations resolve to the discovery client. The helper at 0x80427240 takes the current PppoeSlot, advances the write cursor and retains the write_empty_tlv_header name. The two 0x80428358 and 0x80428360 providers are still declared."
+      },
+      "2937": {
+        "fork_path": "include/pso/misc/TLobby_80429598.h",
+        "previous_comparison_path": "src/pso/network/TLobby_80429598.c",
+        "current_comparison_path": "include/pso/network/TLobby_80429598.h",
+        "related_paths": [
+          "src/pso/network/TLobby_80429598.c"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "All eight historical declarations resolve to the EXI adapter driver. Three driver-private operations are declared by the provider, the initializer retains its actual name at 0x8042AAA0, and the adapter type list at 0x8042BA48 is typed as u16 * with a count."
+      },
+      "2946": {
+        "fork_path": "include/pso/network/ModemLaunchContext.h",
+        "previous_comparison_path": "include/pso/network/ModemLaunchContext.h",
+        "current_comparison_path": "include/pso/unk/SharedMemory.h",
+        "related_paths": [
+          "src/pso/unk/text_8042E8C4.cpp",
+          "src/pso/ui/frontend/TAdTrialModemChkGC_8042E9FC.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The existing LaunchDolContext, DolHeader and SharedMemory cover the fork's modem records. Restored their image, options, messages, entry point and preserved-memory offset checks on those types. LaunchDol remains at 0x8042E8C4."
+      },
+      "2960": {
+        "fork_path": "include/pso/protocol/PppControlRuntime.h",
+        "previous_comparison_path": "include/pso/protocol/PppControlRuntime.h",
+        "current_comparison_path": "include/pso/network/PppFsm.h",
+        "related_paths": [
+          "include/pso/network/NetworkRuntime.h",
+          "include/pso/network/PppIpcp.h",
+          "include/pso/network/PppLcp.h",
+          "src/pso/network/PppPap.c",
+          "include/pso/network/TLobby_804048E8.h"
+        ],
+        "source_comparison": "Some anchored text changes found",
+        "evidence": "Mapped the old PPP entry points by address. The typed frame, IPv4 writer and the PPP handlers have current owners. The older connection record and callback declarations still need field-level comparison."
+      },
+      "2991": {
+        "fork_path": "include/pso/network/NetworkTransport.h",
+        "previous_comparison_path": "src/pso/network/NetworkTransport.c",
+        "current_comparison_path": "include/pso/network/NetworkTransport.h",
+        "related_paths": [
+          "include/pso/network/TLobby_80428374.h",
+          "src/pso/network/NetworkTransport.c",
+          "src/pso/network/TLobby_80428374.c"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The transport owner retains all three operations. Its modem option routine at 0x803F7E50 takes a signed address for the command list, and the modem-session C header declares init_modem_session_config with no arguments."
+      },
+      "3057": {
+        "fork_path": "include/pso/network/TcpProtocolState.h",
+        "previous_comparison_path": "include/pso/network/TcpProtocolState.h",
+        "current_comparison_path": "include/pso/network/NetTcpState.h",
+        "related_paths": [
+          "include/pso/network/TcpSendQueue.h",
+          "src/pso/network/NetTcp.c"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The current TcpTcb preserves its 0x544 stride, 0x204 flag byte, callback slots and 32 reassembly entries. TcpState preserves its 0xA8 extent. The ring counters, completion callbacks and sequence wrapping have explicit current types; signed differences compare the same 32-bit sequence numbers."
+      },
+      "3090": {
+        "fork_path": "include/pso/misc/LobbyNetworkInternal.h",
+        "previous_comparison_path": "include/pso/misc/LobbyNetworkInternal.h",
+        "current_comparison_path": "include/pso/network/NetworkRuntime.h",
+        "related_paths": [
+          "src/pso/network/NetworkTransport.c",
+          "src/pso/network/NetworkThreadRuntime.c",
+          "src/pso/network/TLobby_803F86BC.c",
+          "src/pso/network/PppFsm.c"
+        ],
+        "source_comparison": "Some anchored text changes found",
+        "evidence": "Routed the transport, memory, PPP, timer and network-buffer functions to their current units by linked address. The old umbrella header also has packet tables and global storage views whose individual owners still need confirmation."
+      },
+      "3095": {
+        "fork_path": "src/pso/misc/TLobby_802409AC_tail.h",
+        "previous_comparison_path": "src/pso/misc/TLobby_802409AC_tail.h",
+        "current_comparison_path": "src/pso/unk/TLobby_802409AC.cpp",
+        "related_paths": [
+          "include/pso/unk/GuildCardRecord.h",
+          "src/pso/unk/text_80077AA4.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "GuildCardRecord constructs the original tag array through the provider at 0x80077AA4. The serial getter and saved-card count remain at 0x802428F8 and 0x80242900."
+      },
+      "3362": {
+        "fork_path": "include/pso/player/PlayerWallResponse.h",
+        "previous_comparison_path": "include/pso/player/PlayerWallResponse.h",
+        "current_comparison_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "related_paths": [
+          "src/pso/player/TObjPlayer.cpp",
+          "src/pso/object/trap/TOTrapAncient01.cpp",
+          "src/pso/math/MatrixVector.cpp",
+          "include/pso/unk/text_803D853C.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The move projection, velocity and wall slide functions use explicit vector arguments at 0x801B786C, 0x801B78A8 and 0x801B7930. The remaining ray, state and vector declarations match the current trap, player and math providers."
+      },
+      "3423": {
+        "fork_path": "include/pso/player/TObjPlayer_802D5B78.h",
+        "previous_comparison_path": "src/pso/player/TObjPlayer_802D5174.cpp",
+        "current_comparison_path": "include/pso/player/TObjPlayer_802D5174.h",
+        "related_paths": [
+          "src/pso/player/TObjPlayer_802D5174.cpp"
+        ],
+        "source_comparison": "Some anchored text changes found",
+        "evidence": "The collision-vector provider still lives at 0x802D5B78. The old header identifies the output and direction as Vec pointers, while the shared declaration exposes three opaque pointers. Review the affected caller types together."
+      },
+      "3452": {
+        "fork_path": "include/pso/player/TechniqueCastAliases.h",
+        "previous_comparison_path": "include/pso/player/TechniqueCastAliases.h",
+        "current_comparison_path": "include/pso/player/TObjPlayer.h",
+        "related_paths": [
+          "src/pso/player/TObjPlayer_801C7430.cpp",
+          "src/pso/player/TObjPlayer_801D9A04.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "All 12 macros redirected original labels to the same linked functions. Keep the current labels at their original addresses and the current owned technique declarations."
+      },
+      "4494": {
+        "fork_path": "include/pso/unk/text_803D8DE0.h",
+        "previous_comparison_path": "src/pso/unk/text_803D8DE0.cpp",
+        "current_comparison_path": "include/pso/unk/text_803D8DE0.h",
+        "related_paths": [
+          "src/pso/unk/text_803D8DE0.cpp"
+        ],
+        "source_comparison": "Some anchored text changes found",
+        "evidence": "The batch vector transform retains the original address and an address-width matrix argument. The historical input Vec uses const, so the current declaration and callers need a const-correctness check."
+      },
+      "4868": {
+        "fork_path": "include/pso/math/NewtonSqrtInline.h",
+        "previous_comparison_path": "include/pso/math/NewtonSqrtInline.h",
+        "current_comparison_path": "src/pso/player/TObjPlayer_80011014.cpp",
+        "related_paths": [
+          "include/pso/player/TObjPlayer_80011014.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The provider at 0x8001978C uses the same positive-value guard, three Newton steps and volatile single-precision rounding. Its two constants and original call sites remain in the exact build."
+      },
+      "4892": {
+        "fork_path": "src/pso/effect/TEffIndirectCtrl_802A9284.cpp",
+        "previous_comparison_path": "src/pso/effect/TEffIndirectCtrl_802A9284.cpp",
+        "current_comparison_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+        "related_paths": [
+          "include/pso/effect/TEffIndirectCtrl_802A9284.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The merged indirect-effect unit retains the source loader and free paths, eight 0x1020 allocations and the 0x8100 file check. It uses typed TEffIndirectSource pointers with the current file and memory providers."
+      },
+      "4931": {
+        "fork_path": "include/pso/unk/text_8007ECF0.h",
+        "previous_comparison_path": "src/pso/render/TDLGraph.cpp",
+        "current_comparison_path": "include/pso/render/TDLGraph.h",
+        "related_paths": [
+          "src/pso/render/TDLGraph.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "Both declarations now use the TDLGraph receiver. Its set_progress retains 0x8007ECF0 with the two signed operands. The right-aligned outlined string method takes the original coordinates and string."
+      },
+      "5097": {
+        "fork_path": "include/pso/misc/TScene_802A8140.h",
+        "previous_comparison_path": "include/pso/misc/TScene_802A8140.h",
+        "current_comparison_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+        "related_paths": [],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The native effect destructor generates __dt__13TUnk_804DDF04Fv at 0x802A81B8, preserving the only declaration in the old header."
+      },
+      "5109": {
+        "fork_path": "src/pso/unk/text_802A9568.cpp",
+        "previous_comparison_path": "src/pso/unk/text_802A9568.cpp",
+        "current_comparison_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+        "related_paths": [
+          "include/pso/effect/TEffIndirectCtrl.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The indirect recipe lookup remains at 0x802A9568. It keeps the 0x40 bound and eight-byte stride using the shared TEffIndirectRecipe type."
+      },
+      "5110": {
+        "fork_path": "src/pso/misc/TScene_802A8140.cpp",
+        "previous_comparison_path": "src/pso/misc/TScene_802A8140.cpp",
+        "current_comparison_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+        "related_paths": [],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The indirect reset, active-slot draw and deleting destructor now use the actual effect owner at 0x802A8140, 0x802A8188 and 0x802A81B8. Their calls and data inputs retain retail behavior."
+      },
+      "5603": {
+        "fork_path": "include/pso/unk/text_801C23A8.h",
+        "previous_comparison_path": "src/pso/ui/window/TWindowDuelResult_801C2528.cpp",
+        "current_comparison_path": "include/pso/unk/text_801C23A8.h",
+        "related_paths": [
+          "src/pso/ui/window/TWindowDuelResult_801C2528.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The only declaration resolves to show_duel_result_window at 0x801C23A8. The body still accepts gain and duration and uses them in the same order when creating or updating the result window."
+      },
+      "5664": {
+        "fork_path": "include/pso/misc/TWindowSubStatusDisp_803DEE6C.h",
+        "previous_comparison_path": "src/pso/ui/window/TWindowSubStatusDisp_803DEE6C.cpp",
+        "current_comparison_path": "include/pso/ui/window/TWindowSubStatusDisp_803DEE6C.h",
+        "related_paths": [
+          "src/pso/ui/window/TWindowSubStatusDisp_803DEE6C.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The reorganized header keeps five original declarations. The sixth passes quad vertices as an f32 pointer to draw_textured_quad_at_depth, whose provider uses the same depth and float vertex reads."
+      },
+      "5812": {
+        "fork_path": "include/pso/misc/TWindowSubStatusDisp_80144B14.h",
+        "previous_comparison_path": "src/pso/ui/window/TWindowSubStatusDisp_80144B14.cpp",
+        "current_comparison_path": "include/pso/ui/window/TWindowSubStatusDisp_80144B14.h",
+        "related_paths": [
+          "src/pso/ui/font/TNECFontEORFunction.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The relocated header still declares all 12 font operations. The scale and end-render methods use their current native owner signatures at 0x8014544C and 0x80145508. Glyph construction and cache helpers remain in the font unit."
+      },
+      "5996": {
+        "fork_path": "include/pso/misc/TUnk_804D0618.h",
+        "previous_comparison_path": "include/pso/misc/TUnk_804D0618.h",
+        "current_comparison_path": "include/pso/ui/window/TWindowMenuIconLine.h",
+        "related_paths": [
+          "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The 0x88-byte icon-list class owns the inherited virtual table, cursor, scroll bar, status and list fields at the historical offsets. Current declarations use TWindowMenuIconLine and the typed window support."
+      },
+      "6022": {
+        "fork_path": "include/pso/unk/text_803DE8BC.h",
+        "previous_comparison_path": "src/pso/unk/text_803DE8BC.cpp",
+        "current_comparison_path": "include/pso/unk/text_803DE8BC.h",
+        "related_paths": [
+          "src/pso/unk/text_803DE7E0.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "All four declarations remain in the header and their implementations are in the rejoined memory unit. The reallocator name and size argument remain at 0x803DE960."
+      },
+      "6026": {
+        "fork_path": "include/pso/misc/TLobby_8013AD38.h",
+        "previous_comparison_path": "src/pso/unk/TLobby_8013AD38.cpp",
+        "current_comparison_path": "include/pso/unk/TLobby_8013AD38.h",
+        "related_paths": [
+          "src/pso/unk/TLobby_8013AD38.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "Both input state declarations remain in the relocated header. Its connection-message accessor at 0x8013ADBC returns the original string address with the shared signed address type."
+      },
+      "6029": {
+        "fork_path": "include/pso/misc/TUnk_804CE018.h",
+        "previous_comparison_path": "include/pso/misc/TUnk_804CE018.h",
+        "current_comparison_path": "include/pso/ui/window/TWindowBase.h",
+        "related_paths": [
+          "include/pso/ui/window/WindowLayoutEntries.h"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The current 0x60 base window exposes the same position, size, flags, depth, tick and layout fields. Its draw-context members now use the shared window draw and layout types."
+      },
+      "6049": {
+        "fork_path": "include/pso/unk/text_80278E48.h",
+        "previous_comparison_path": "src/pso/unk/text_80278E48.cpp",
+        "current_comparison_path": "include/pso/ui/window/TWindowSubEquipKind.h",
+        "related_paths": [
+          "src/pso/ui/window/TWindowSubEquipKind.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp"
+        ],
+        "source_comparison": "Complete historical source retained at native owners",
+        "evidence": "The factory at 0x80278E48 now uses one declaration for the layout address, NJS_POINT2 size, client and equipment-window result. All quest, shortcut, mag, trade and equipment callers use it."
+      },
+      "7309": {
+        "fork_path": "src/pso/misc/TCameraCtrl_native.h",
+        "previous_comparison_path": "src/pso/misc/TCameraCtrl_native.h",
+        "current_comparison_path": "src/pso/camera/TCameraCtrl.cpp",
+        "related_paths": [
+          "include/pso/camera/TCameraCtrl.h",
+          "src/pso/camera/TCameraCtrl_80067654.cpp",
+          "src/pso/camera/TCameraCtrl_80067FC0.cpp"
+        ],
+        "source_comparison": "Some anchored text changes found",
+        "evidence": "Mapped camera control, shake, pose, obstruction and rendering methods to the current camera units at the original addresses. The old private header's combined storage and additional declarations still need individual comparison."
+      }
+    }
+  }
+}
