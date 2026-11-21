@@ -1229,6 +1229,22 @@ The two-commit review at `0266af6bf4` combines this change with Dark Falz and bo
 
 The historical inventory falls from 633 to 610 paths outside the replay diff. The next boss projectile and raft effect previews overlap on the De Rol Le tunnel and linker metadata. [Build, scope and replay evidence](2026-11-20-olga-flow-phases-and-hazards.json)
 
+### Published source reviews
+
+Seven reviews are open against master `0fa391a887`. GitHub shows the seven validated heads and attributes all ten commits to `matthewlewisnewton`. The published histories contain zero Codex authors, committers or co-author trailers.
+
+| PR | Scope | Published head |
+| --- | --- | --- |
+| [#336](https://github.com/zeroz41/pso-decomp/pull/336) | Stage objects, map collision and ending scenes | `ec81bd9ce7` |
+| [#337](https://github.com/zeroz41/pso-decomp/pull/337) | Item factories and shared projectile interfaces | `297a969781` |
+| [#338](https://github.com/zeroz41/pso-decomp/pull/338) | ADX streaming, disc reads and callback contracts | `2572238636` |
+| [#339](https://github.com/zeroz41/pso-decomp/pull/339) | Online quest transfers, cache records and selection windows | `5e0a443edd` |
+| [#340](https://github.com/zeroz41/pso-decomp/pull/340) | Character selection, card saves and creation actors | `d6e66ef2a8` |
+| [#341](https://github.com/zeroz41/pso-decomp/pull/341) | Dark Falz and Olga Flow phases, hazards and drawing | `0266af6bf4` |
+| [#342](https://github.com/zeroz41/pso-decomp/pull/342) | Window layout, keyboard input and Challenge results | `17d35ad696` |
+
+The final window head keeps its compiler directive in `TWindowChallengeResult.cpp`, which reproduces retail and passes the same linkage checks. The record includes the published commits and GitHub matching jobs. [Publication and commit audit](2026-11-20-upstream-publication-336-342.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
