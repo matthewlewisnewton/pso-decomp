@@ -1,0 +1,342 @@
+{
+  "source": "3b67303c098269414ec73cdfd271ada8182e0574",
+  "previous_source": "17b19caeb1f00ecf7031116e5fb47db363b141cf",
+  "combat_ref": "great-merge/consolidated/ordered-combat-with-olga-phase-owners",
+  "combat_review": "ec655eed52a2fe5c74819eb69e23b339f8fd896a",
+  "full_ref": "great-merge/consolidated/ordered-full-with-olga-phase-owners",
+  "full_review": "d19d1dfaea324d38319886a27761dd64bb14256c",
+  "single_review": {
+    "ref": "great-merge/consolidated/single-review-with-olga-phase-owners",
+    "head": "0b28ef78a52b521bcb0b99a9b96e9cfee1569a3e",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "6a774492255e43ac4658afd1c777e6d8872fae46",
+    "tree_equivalent_to": "d19d1dfaea324d38319886a27761dd64bb14256c",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "6329e26030728a01a738ace16e508e695d54e358",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "45fa96298115b9562d192a314385cf2bd8a571a7",
+        "checked_tree": "f5f594cd647fb33b063f2571ede16a0a95249741",
+        "files_changed": 679,
+        "insertions": 5762,
+        "deletions": 6298
+      },
+      {
+        "head": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "base": "6329e26030728a01a738ace16e508e695d54e358",
+        "tree": "1d6aa0c3d829cd5727261129dd530ea4d0929c0d",
+        "checked_tree": "c2a19c01fd8c17f858fd056d2b0a701d7d2775e5",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "acf253728a1db1b8e7c30d0bcb900144a776118d",
+        "base": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "tree": "c00afacf3ba5a5c639f291d61e73ef50ee4d312a",
+        "checked_tree": "ee4f9c055c4dbe46dbc02c1f5fc4c824459b1e70",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "29ade702bb003eccc22e9540951a4299121f4a74",
+        "base": "acf253728a1db1b8e7c30d0bcb900144a776118d",
+        "tree": "f98b61ead346348e9c50413b875851a0e08c6881",
+        "checked_tree": "32abb51b376787fcc5624f0c2b54861fafa50987",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "1373d7671f9bd167546424987f374c89f9c1434c",
+        "base": "29ade702bb003eccc22e9540951a4299121f4a74",
+        "tree": "387d668d1f7afb6280c3934a0b974fbb7d400ed7",
+        "checked_tree": "ec655eed52a2fe5c74819eb69e23b339f8fd896a",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "0b28ef78a52b521bcb0b99a9b96e9cfee1569a3e",
+        "base": "1373d7671f9bd167546424987f374c89f9c1434c",
+        "tree": "6a774492255e43ac4658afd1c777e6d8872fae46",
+        "checked_tree": "d19d1dfaea324d38319886a27761dd64bb14256c",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 7,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1777,
+    "insertions": 29736,
+    "deletions": 32859
+  },
+  "historical_donors": [
+    "55375ff331",
+    "c731f1f00d"
+  ],
+  "source_fixes": [
+    "The Tube methods use their real receiver rather than the inert EmptyWarp layout. Plot owns the Tube at 0x384 and the point cursor at 0x3C8.",
+    "Both phase factories use an explicit spawn record with the same plot pointer and set entry. The actor IDs and set index offsets remain 0x200 and 0x1FF.",
+    "The Type 1 factory and constructor use native C++ allocation, base construction, virtual set-data dispatch and typed member initialization. Both live phase instances are typed across callers.",
+    "Eight linker labels change with the real C++ owners or signatures. The existing routine names and symbol addresses are retained."
+  ],
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/Boss6PhaseSpawn.h",
+    "include/pso/boss/olgaflow/TBoss6EmptyWarp.h",
+    "include/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h",
+    "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+    "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+    "include/pso/boss/olgaflow/TBoss6Tube.h",
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "src/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp",
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+  ],
+  "patch_sha256": "58bed4dcdb80de42647d87a660f39e9c37b55d67639e4b86e0fadfdf09f610d4",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matched_functions": 27572,
+  "compiled_source_units": 2448,
+  "historical_rows_closed": {
+    "763": "The existing EmptyWarp name, 640-by-480 quad and mutable colors are preserved. The camera exit uses its native call, and both tube state writes are on the Tube receiver at their original addresses. The live sound declaration is shared."
+  },
+  "historical_rows_with_added_evidence": {
+    "520": "The phase clock uses the native signed field, and the phase-two query uses the real boss instance without a pointer cast",
+    "521": "Type 1 now constructs through TObjEnemy and TObjControl, passes the typed spawn record, uses the plot receiver, and initializes its native position, motion, collision and capture state",
+    "738": "The Type 1 constructor and factory now share the actual spawn record. The owner, history, flags and initial position writes have native storage",
+    "754": "The native 0x384 Tube pointer and signed point cursor at 0x3C8 are asserted at their original offsets",
+    "906": "Phase spawning now uses one typed plot owner and set entry, and position reads and lifecycle calls target the active Type 1 and Type 2 receivers. The tube and point cursor use native Plot storage",
+    "1051": "The Mag Mine phase lookup uses the real Type 2 pointer and preserves the original linked getter and call site",
+    "1064": "Phase 2 construction and its factory share the same typed plot owner and set entry as Phase 1",
+    "1076": "The constructor uses the real plot owner and signed variant byte from the shared set entry, with unchanged flag and segment initialization"
+  },
+  "historical_rows_open": 605,
+  "validation": {
+    "combat": {
+      "check_sha256": "25ea229d05905e55983aeea21146ac650b08b031924627a5408d243dff0fb5a7",
+      "source_report_sha256": "efc04ba763f431dd39eec7e9d1650fd75744aa82f77941b0ac957b839de08ec0",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x802B0FC8",
+          "before": "activate_warp__15TBoss6EmptyWarpFv",
+          "after": "activate_warp__10TBoss6TubeFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B1004",
+          "before": "TBoss6EmptyWarp__sub_802B1004",
+          "after": "sub_802B1004__10TBoss6TubeFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B1654",
+          "before": "__ct__10TBoss6TubeFP7TObject",
+          "after": "__ct__10TBoss6TubeFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B16BC",
+          "before": "create__10TBoss6TubeFPv",
+          "after": "create__10TBoss6TubeFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B93C4",
+          "before": "TBoss6Type1__ct",
+          "after": "__ct__11TBoss6Type1FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B96DC",
+          "before": "create__11TBoss6Type1Fl",
+          "after": "create__11TBoss6Type1FP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE0D4",
+          "before": "__ct__11TBoss6Type2FP7TObjectPl",
+          "after": "__ct__11TBoss6Type2FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE504",
+          "before": "create__11TBoss6Type2Fl",
+          "after": "create__11TBoss6Type2FP15Boss6PhaseSpawn"
+        }
+      ]
+    },
+    "full": {
+      "check_sha256": "25ea229d05905e55983aeea21146ac650b08b031924627a5408d243dff0fb5a7",
+      "source_report_sha256": "efc04ba763f431dd39eec7e9d1650fd75744aa82f77941b0ac957b839de08ec0",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x802B0FC8",
+          "before": "activate_warp__15TBoss6EmptyWarpFv",
+          "after": "activate_warp__10TBoss6TubeFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B1004",
+          "before": "TBoss6EmptyWarp__sub_802B1004",
+          "after": "sub_802B1004__10TBoss6TubeFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B1654",
+          "before": "__ct__10TBoss6TubeFP7TObject",
+          "after": "__ct__10TBoss6TubeFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B16BC",
+          "before": "create__10TBoss6TubeFPv",
+          "after": "create__10TBoss6TubeFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B93C4",
+          "before": "TBoss6Type1__ct",
+          "after": "__ct__11TBoss6Type1FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B96DC",
+          "before": "create__11TBoss6Type1Fl",
+          "after": "create__11TBoss6Type1FP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE0D4",
+          "before": "__ct__11TBoss6Type2FP7TObjectPl",
+          "after": "__ct__11TBoss6Type2FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE504",
+          "before": "create__11TBoss6Type2Fl",
+          "after": "create__11TBoss6Type2FP15Boss6PhaseSpawn"
+        }
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "efc04ba763f431dd39eec7e9d1650fd75744aa82f77941b0ac957b839de08ec0",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": []
+    },
+    "layer": {
+      "check_sha256": "5624168150b19624f2a9809942d647b795a07380660e7a2aa0845a7f808ce85c",
+      "source_report_sha256": "efc04ba763f431dd39eec7e9d1650fd75744aa82f77941b0ac957b839de08ec0",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x802B0FC8",
+          "before": "activate_warp__15TBoss6EmptyWarpFv",
+          "after": "activate_warp__10TBoss6TubeFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B1004",
+          "before": "TBoss6EmptyWarp__sub_802B1004",
+          "after": "sub_802B1004__10TBoss6TubeFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B1654",
+          "before": "__ct__10TBoss6TubeFP7TObject",
+          "after": "__ct__10TBoss6TubeFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B16BC",
+          "before": "create__10TBoss6TubeFPv",
+          "after": "create__10TBoss6TubeFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B93C4",
+          "before": "TBoss6Type1__ct",
+          "after": "__ct__11TBoss6Type1FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B96DC",
+          "before": "create__11TBoss6Type1Fl",
+          "after": "create__11TBoss6Type1FP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE0D4",
+          "before": "__ct__11TBoss6Type2FP7TObjectPl",
+          "after": "__ct__11TBoss6Type2FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE504",
+          "before": "create__11TBoss6Type2Fl",
+          "after": "create__11TBoss6Type2FP15Boss6PhaseSpawn"
+        }
+      ]
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "b3be58fdb3f418776daf46deb55eb01d208d682b248522117ca26b9ddb377782",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "public_refs_changed": false
+}
