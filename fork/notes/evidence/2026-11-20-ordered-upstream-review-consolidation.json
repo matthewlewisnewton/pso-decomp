@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-with-actor-stat-storage",
-      "head": "956c6b296e4cc4c674c44cc9c7b3862500a86c25",
+      "ref": "great-merge/consolidated/ordered-combat-with-actor-targets",
+      "head": "3ce39ea509af5a91e5bb42c108ddd43818f84d22",
       "base": "ebd59557370b60b3306b7497aa240f95373797c8",
-      "tree": "a0892c733d33577db7d1d315430503e1ffee5592",
+      "tree": "c2ae6dcfea4a985ec408f3d358730bb8d3581e2d",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,11 +77,11 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 41,
+      "review_commits": 42,
       "files_changed": 969,
-      "insertions": 12442,
-      "deletions": 13253,
-      "check_sha256": "e4f0356611734040747ac0f9ff8dd42bde0b2afd959f28db4a69bb47be3f55ee",
+      "insertions": 12609,
+      "deletions": 13420,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
       "function_label_changes": 331,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
@@ -189,21 +189,21 @@
     }
   },
   "separate_network_change": {
-    "head": "091564ea3a408c5c853a6cac0fbc1554bf5b8288",
-    "base": "956c6b296e4cc4c674c44cc9c7b3862500a86c25",
-    "tree": "cda9854c627538b9c9240ba28ca7da5bd7acea36",
+    "head": "049a88d6b6bffdc3164d7f134a44be2a08422d5c",
+    "base": "3ce39ea509af5a91e5bb42c108ddd43818f84d22",
+    "tree": "dfab8483cbae4d60d1d6567319fae33b8483a68c",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "091564ea3a408c5c853a6cac0fbc1554bf5b8288",
+    "head": "049a88d6b6bffdc3164d7f134a44be2a08422d5c",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "cda9854c627538b9c9240ba28ca7da5bd7acea36",
+    "tree": "dfab8483cbae4d60d1d6567319fae33b8483a68c",
     "files_changed": 1748,
-    "insertions": 28500,
-    "deletions": 31384,
+    "insertions": 28667,
+    "deletions": 31551,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
@@ -215,11 +215,11 @@
         "padding": 167,
         "remaining": 0
       },
-      "check_sha256": "e4f0356611734040747ac0f9ff8dd42bde0b2afd959f28db4a69bb47be3f55ee"
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
     }
   },
   "commit_attribution": {
-    "audited_commits": 88,
+    "audited_commits": 89,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },

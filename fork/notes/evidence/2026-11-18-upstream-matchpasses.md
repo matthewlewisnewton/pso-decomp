@@ -1500,6 +1500,12 @@ Great Merge at `34231780b6` gives actors the native base and attack pointers and
 
 The combat review, consolidated candidate, and fork workspace reproduce retail and account for all 1,147 historical data bytes. The actor probe verifies stat initialization and retained HP and TP, four meseta cases, and eleven preview values on retail, the candidate and the layered fork. The battle-table probe and 310 workspace checks pass. The historical audit closes ten entries and leaves 634 open. [Actor stat and historical comparison evidence](2026-11-21-actor-stat-storage.json)
 
+## Character targets and combat contacts
+
+Great Merge at `ce21d8fc43` gives `TObjChara` a native actor pointer in its existing target slot. The 23-file batch replaces raw position, state and collision reads with actor members across enemy pursuit, Vol Opt, NPCs and traps. Vol Opt uses the shared typed player lookup. The consolidation records zero function label changes.
+
+The combat review at `3ce39ea509`, the combined review at `049a88d6b6`, and the fork workspace all reproduce retail and retain all 1,147 original data bytes. The 130-path overlay round-trips and passes 310 workspace checks. The character layout comparison is complete, with 633 historical entries still open. [Character target evidence](2026-11-21-actor-target-pointers.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
