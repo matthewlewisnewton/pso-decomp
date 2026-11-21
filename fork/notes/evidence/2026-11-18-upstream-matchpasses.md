@@ -1121,6 +1121,12 @@ Published head `98923bc837` has the same tree as the previous head `1157670533`.
 
 The canonical source changes 2,742 paths from the pinned master. Of these, 260 have identical content in the replay, 1,334 differ where both trees changed the path, and 1,148 lie outside the replay's diff against master. These counts guide subsystem review and include moves and alternate implementations. The largest groups outside the replay diff are UI (321), uncategorized `pso/unk` (167), weapons (142), bosses (107), enemies (76), player (66), and items (49). Reconcile the UI drawing and layout contracts with their callers, then use the existing review groups to separate equivalent source from changes that still need replay. Keep coverage as a separate check alongside the source comparison.
 
+### Typed window draw setup
+
+The 43-file replay at `f60f17d429` shares the original draw context return type and recovers `draw_default_entry` as a `TWindowBase` member with the real receiver. The source keeps the existing name. Its only linker label change from the previous replay follows the recovered receiver. The build reproduces retail and passes the strict source-link check with 2,448 exact linked units, 27,572 exact functions, and zero losses of exact or source-linked code and data coverage.
+
+The path inventory now has 1,145 canonical changes outside the prospective replay diff. Of these, 86 also lie outside the earlier verified review queue. The largest groups in that intersection include shared and equipment effects, player code, and enemy code. The ledger records the paths for assignment to their owners. For the wider UI replay, 180 of the 318 UI paths outside the diff are under `ui/window`. The existing work on content frames, selection bars, clipped text, and menu layouts supplies the next related changes. [Build, fork layer and residual inventory](2026-11-20-native-window-draw-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
