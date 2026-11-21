@@ -1115,6 +1115,12 @@ The 230-file lifetime replay at `c1c25b0a46` recovers the native constructor, de
 
 Regenerating the fork linker retention block resolves the workspace patch's only conflict. The retained fork layer still adds only `fork/` and the fork-specific CI workflow. The workspace round trip preserves every tested file identity. All 294 fork tooling tests and 11 layer tests pass, including the four Dark Falz cleanup tests. UI has the largest concentration of canonical paths outside the prospective source diff, with equipment windows, keyboard ownership, city menus and the shared window drawing context already grouped for replay. [Build, layer and source audit](2026-11-20-bml-archive-lifetime-replay.json)
 
+### PR #335 history update and remaining source
+
+Published head `98923bc837` has the same tree as the previous head `1157670533`. The local three-review baseline at `69d2b0ad0e` and replay source at `510be1d79a` now contain the published heads of #333, #334 and #335. Both preserve their previously validated trees byte for byte. The fork layer retains its tested tooling patch. [PR #335](https://github.com/zeroz41/pso-decomp/pull/335) [History and path audit](2026-11-20-pr-335-history-refresh.json)
+
+The canonical source changes 2,742 paths from the pinned master. Of these, 260 have identical content in the replay, 1,334 differ where both trees changed the path, and 1,148 lie outside the replay's diff against master. These counts guide subsystem review and include moves and alternate implementations. The largest groups outside the replay diff are UI (321), uncategorized `pso/unk` (167), weapons (142), bosses (107), enemies (76), player (66), and items (49). Reconcile the UI drawing and layout contracts with their callers, then use the existing review groups to separate equivalent source from changes that still need replay. Keep coverage as a separate check alongside the source comparison.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
