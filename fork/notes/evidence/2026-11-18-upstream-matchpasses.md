@@ -1290,6 +1290,24 @@ Four more source reviews are open and mergeable against master. Each branch was 
 
 The upstream portability merge advanced master from `0fa391a887` to `1fd561eae2` during publication and changed 2,960 paths. Master and all four tested review trees reproduce the retail DOL, with 2,448 source units linked and zero function or data coverage loss. The boss projectile patch now types the existing model field on the Barba Ray tentacle. The action palette patch uses upstream's address-width field type for the action table. The new master introduces 773 conflicts against cumulative source `7016e40009`. The older open review previews #336–342 also need reconciliation against this base. [Upstream #343](https://github.com/zeroz41/pso-decomp/pull/343) [Publication, validation and conflict inventory](2026-11-20-upstream-publication-344-347.json)
 
+### Combined reviews on the portability baseline
+
+The seven older reviews have local refresh branches under `great-merge/upstream-refresh/` on master `1fd561eae2`. The reconciliation covers 485 conflicting paths counted per review. Each branch preserves the published commits and has a fast-forward update ready with Matt as author and committer. Each tested tree reproduces the retail DOL and passes the strict linker and address-coverage checks independently.
+
+| PR | Local refresh | Changed files |
+| --- | --- | ---: |
+| [#336](https://github.com/zeroz41/pso-decomp/pull/336) | `01ec31c94f` | 40 |
+| [#337](https://github.com/zeroz41/pso-decomp/pull/337) | `46a0677d7f` | 271 |
+| [#338](https://github.com/zeroz41/pso-decomp/pull/338) | `cc3fe0caf0` | 89 |
+| [#339](https://github.com/zeroz41/pso-decomp/pull/339) | `10799b0e23` | 133 |
+| [#340](https://github.com/zeroz41/pso-decomp/pull/340) | `19d635c87e` | 194 |
+| [#341](https://github.com/zeroz41/pso-decomp/pull/341) | `dbe8717a52` | 134 |
+| [#342](https://github.com/zeroz41/pso-decomp/pull/342) | `35fb9e4386` | 262 |
+
+`great-merge/incoming/osp-reviewed-source` at `8854019965` combines these seven refreshes with the four published heads #344–347 across 1,171 files. The overlap fixes share the typed ADX and texture archive calls, the recovered boss receiver and trail layouts, the menu geometry and callbacks, and the character save and preview providers. The combined build matches 27,572 functions and links all 2,448 exact source objects. Coverage is preserved against master and the previous cumulative source. The original 90 ranges still account for 980 linked bytes and 167 alignment bytes.
+
+The full cumulative replay still needs to carry the other source changes and the private tooling workspace. Comparing the earlier cumulative source `7016e40009` directly with the new checkpoint yields 740 conflicting paths. For the 773 paths that originally conflicted against master, the review transitions supply a single candidate for 345 paths. Of those, 294 already match the built checkpoint and the other 51 need a combined build. Another 428 paths still need resolution or a choice between different candidate contents. [Validation and replay evidence](2026-11-20-osp-combined-source-reviews.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.

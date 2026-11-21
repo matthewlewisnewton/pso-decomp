@@ -1,0 +1,310 @@
+{
+  "upstream_master": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "portability_merge_pr": "https://github.com/zeroz41/pso-decomp/pull/343",
+  "combined_checkpoint": {
+    "branch": "great-merge/incoming/osp-reviewed-source",
+    "head": "88540199652f7bfb73f404bbccd0a34b29c9d347",
+    "tree": "200244388991c7b6cff4d35d360d711e35b48a5f",
+    "changed_source_paths": 1171,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_linked_source_units": 2448,
+    "matched_functions": 27572,
+    "coverage_losses_against_master": 0,
+    "coverage_losses_against_previous_cumulative_source": 0,
+    "check_sha256": "5c485792089d80a8d09190f0f2f463a602510447b5374ea3138593ae8cc918db",
+    "previous_source_comparison_sha256": "bbf6fb000fdb2d4332eeaaec6ade2d383b47d8be2fa8d0c41335ea608c35de95",
+    "report_sha256": "b562cae78fecc9ae5cacdc618b3b4003f2aec032a9ed9cf325a0c52d4fdc9270",
+    "codex_attribution_entries": 0
+  },
+  "historical_data_ranges": {
+    "upstream_master": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "combined_checkpoint": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "reviews": [
+    {
+      "number": 336,
+      "branch": "recover-native-stage-objects-and-ending-scenes",
+      "published_original_head": "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+      "tested_head": "32c319b08b39d9292c80c1a50118011355c4ab37",
+      "head": "01ec31c94f7c487297bc9a3ced472e96df503524",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "a15a7fc8bb070f31802f440b6c21b8b33b776036",
+      "pr_commits": [
+        "01ec31c94f7c487297bc9a3ced472e96df503524",
+        "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "d9e339b89855ad149aba480b642d1cf0a26c056aeb3ff09af3e4eb53510a0b08",
+      "report_sha256": "218bd7a8db5f9536d91509182cdbadc298ed61c5e731d8c4961f840fe08a2a37",
+      "files": 40,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 26,
+      "validated_tip_published": false
+    },
+    {
+      "number": 337,
+      "branch": "recover-native-weapon-factories-and-projectiles",
+      "published_original_head": "297a9697815b0f66207b5515fd9743bdc04c82d9",
+      "tested_head": "30493cbfc432eb72a67b8749d391db85cdb5c78a",
+      "head": "46a0677d7fb10da1923e6dc6ed251a3d14de6564",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "b0759c63c2adc11775f114140303eeb32c94d6ef",
+      "pr_commits": [
+        "46a0677d7fb10da1923e6dc6ed251a3d14de6564",
+        "297a9697815b0f66207b5515fd9743bdc04c82d9"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "31a01544a896fa10454869095837a0a418a6b86b1e8ac7b1f5f8a54fa90859f7",
+      "report_sha256": "35a496beb3c675ce9e679c4f96c5459e227b9797d6ab6952bf321a70a2b8faa8",
+      "files": 271,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [
+        "include/pso/item/TItemTexLoad.h"
+      ],
+      "original_osp_conflict_paths": 64,
+      "validated_tip_published": false
+    },
+    {
+      "number": 338,
+      "branch": "recover-native-adx-streaming-and-disc-reads",
+      "published_original_head": "2572238636c01c0f1defac4338a4df6836c18276",
+      "tested_head": "f4ad1e864f01d6745f8bb703f1f82e5d1618daf0",
+      "head": "cc3fe0caf0b48ad3e84028be540f12a0256c074f",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "00db49658bc7a4ca6577c1a840e05f11e3361c97",
+      "pr_commits": [
+        "cc3fe0caf0b48ad3e84028be540f12a0256c074f",
+        "2572238636c01c0f1defac4338a4df6836c18276"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "97c796d189ace626bbfaf3997516ce2c2c3ba33e783158a3c40463142fd36754",
+      "report_sha256": "47ec9ce8578ec4db3909dde419f42ba994884dcb2ab48df7b8f29bfb44e941aa",
+      "files": 89,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 57,
+      "validated_tip_published": false
+    },
+    {
+      "number": 339,
+      "branch": "recover-native-online-quest-transfers",
+      "published_original_head": "5e0a443edde59d3af778d496b8503e0b1358f5e2",
+      "tested_head": "9a14b4feb36bf7cfd9e91b332ad1823918b79cdf",
+      "head": "10799b0e23aee1e854a7626c51a96ce8ce9fb12f",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "04d969b0ab95b9b8804b1048d88364f353f8b6cd",
+      "pr_commits": [
+        "10799b0e23aee1e854a7626c51a96ce8ce9fb12f",
+        "5e0a443edde59d3af778d496b8503e0b1358f5e2"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "8ac663e88b884a6d7aeca0ea17d0e1dbb09cfcf281eaf9d81fa10d33b5eae11a",
+      "report_sha256": "83a726e4dc1ee67de7d3d3be751a56ecc3a005961b4d669757042762cc86f460",
+      "files": 133,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 61,
+      "validated_tip_published": false
+    },
+    {
+      "number": 340,
+      "branch": "recover-native-character-selection-and-card-saves",
+      "published_original_head": "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+      "tested_head": "78f4c935cfc523c6d897f60726c00a9783263582",
+      "head": "19d635c87e6c0d99656f5c939ee52001e85e49f2",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "80d44c9f0a0e622e9a4d66f6032c8f4f80919e96",
+      "pr_commits": [
+        "19d635c87e6c0d99656f5c939ee52001e85e49f2",
+        "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+        "bbec0f3f2c8cef5253947ec8c0704bc639cddc3a"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "4837ed3bd6037dad4a648cbc51e94f967e114e45dc7dcd349fb04c3f71f2347d",
+      "report_sha256": "9bc094faf6c1057f97d3ae0e4f50d9cf43f727e3c834c0b6e59cabcfcb62cf1b",
+      "files": 194,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 71,
+      "validated_tip_published": false
+    },
+    {
+      "number": 341,
+      "branch": "recover-dark-falz-and-olga-flow",
+      "published_original_head": "0266af6bf4c860315be75d4785c45abf6da0a6ff",
+      "tested_head": "f4c0c11657236d51246caeeae2f6f66a7ca2d1fc",
+      "head": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "2d471c0b37dca4fca563033ddd6024b23e88e166",
+      "pr_commits": [
+        "dbe8717a524311abbe4a239f82089cd9867c3e9d",
+        "0266af6bf4c860315be75d4785c45abf6da0a6ff",
+        "117e4f7411c75761bda6dad27742016554597e40"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "378f8032d39f3f85ee1aa4e6ca72563f0ba38e032c0269d87b956eaeac1a28b6",
+      "report_sha256": "456a91ea9e6551817c214964d7643f33db71614410c0d132787cd4c5adbe1815",
+      "files": 134,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [
+        "include/pso/object/ambient/TObjFish_800E2FFC.h",
+        "src/pso/object/ambient/TObjFish_800E2FFC.cpp"
+      ],
+      "original_osp_conflict_paths": 74,
+      "validated_tip_published": false
+    },
+    {
+      "number": 342,
+      "branch": "recover-native-window-layout-and-results",
+      "published_original_head": "17d35ad696f409a696c7f94105170619d18e5106",
+      "tested_head": "923eceb20e2a3958995e5ce0eef8ebd54a3ca051",
+      "head": "35fb9e4386575c4e815b8d90ff62e977e833b34c",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "188e0da80c6baf9cf45a6c7b83890d281712fee3",
+      "pr_commits": [
+        "35fb9e4386575c4e815b8d90ff62e977e833b34c",
+        "17d35ad696f409a696c7f94105170619d18e5106",
+        "0157762a98ffc35ce4d30cd88e7a47a07e7f8524"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "81f7cba4df3275cce3738b3d8b884797f745467e68ae1f08eb842cc1c9641fea",
+      "report_sha256": "7211953f169b3e5b18ea219ea2d9f1bfb9bfa0c3c8320b67032292b421424634",
+      "files": 262,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 132,
+      "validated_tip_published": false
+    },
+    {
+      "number": 344,
+      "branch": "recover-boss-projectiles-and-raft-effects",
+      "published_original_head": "98b8dc9b749921f22ae2256890e22dca8be9e01f",
+      "tested_head": "a5ed79a515af6181cb70070d12c0323d152ecd8d",
+      "head": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "7bdfc4d0a9a066868cb60c8e5f425beead39c184",
+      "pr_commits": [
+        "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+        "98b8dc9b749921f22ae2256890e22dca8be9e01f"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "78d8640dc68b74ad76894e1e261923d0309c234292d6bc24566ae44b43283378",
+      "report_sha256": "9877c86df3368ea5cf37b6977beaa7daaa1beaf6d28fe2490dbc22f4b71d63fe",
+      "files": 59,
+      "paths_added_to_scope": [
+        "include/pso/boss/barbaray/TBoss7Tentacle.h"
+      ],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 28,
+      "validated_tip_published": true
+    },
+    {
+      "number": 345,
+      "branch": "recover-action-palette-and-word-select",
+      "published_original_head": "9081bb020ce98ca2fb4e48c9eacaa609b3db6ae6",
+      "tested_head": "95334b8d7519c9802fea016416db22356fc284b5",
+      "head": "95334b8d7519c9802fea016416db22356fc284b5",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "59cc2676a1370fda0dc27521d8f5fb602ec29d2d",
+      "pr_commits": [
+        "95334b8d7519c9802fea016416db22356fc284b5",
+        "9081bb020ce98ca2fb4e48c9eacaa609b3db6ae6"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "15d69327981e99b7f9a5deed9d1b533d61f5a4e1915c8fd9b3f11d3c0fe53ce3",
+      "report_sha256": "cccf9762f2bf2d860f0a65b48e8c679757b81a55d3e7dad9dc618948e653cddc",
+      "files": 35,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 10,
+      "validated_tip_published": true
+    },
+    {
+      "number": 346,
+      "branch": "recover-enemy-targeting-formations-and-slime",
+      "published_original_head": "72ca918dcb77c677de46932d60cd3cdf32390505",
+      "tested_head": "6ec29b836b7ecc373c673463656f72f8c70b05d8",
+      "head": "8c6e2163eecaa29e63b8cf7200fa614179199fbc",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "b46ee03ed3c4e7a7dd1f0bda9d309b0ac6583968",
+      "pr_commits": [
+        "8c6e2163eecaa29e63b8cf7200fa614179199fbc",
+        "72ca918dcb77c677de46932d60cd3cdf32390505"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "b6d8e34daaf20e96c6cc0cb68ef73ae86f26eb8365d6a1b5aa4cb7418308b550",
+      "report_sha256": "c75ca3f35c9708ef80c8a106e21d8275c6d05b2bd2beef142bc90499343c9ebb",
+      "files": 56,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 22,
+      "validated_tip_published": true
+    },
+    {
+      "number": 347,
+      "branch": "recover-main-menu-and-trade",
+      "published_original_head": "8e9e9ffd4227f9acaa6bbde0cdf92d4a2e9c13d0",
+      "tested_head": "499e18cc317801c4db71a24edbdf6318027fcd77",
+      "head": "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "b5aac2d77025d2ee1ddb2e1c0914f45be943cdb2",
+      "pr_commits": [
+        "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+        "8e9e9ffd4227f9acaa6bbde0cdf92d4a2e9c13d0"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "2d88df41fd7781b5c1c64e3c2d29a127ebffbfe235736e85bc9716c2a2c36f29",
+      "report_sha256": "d4abe6dbd659eec3bc656909a07a04a0ce4189e451580c3a58c8aacf5963d6f9",
+      "files": 69,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "original_osp_conflict_paths": 34,
+      "validated_tip_published": true
+    }
+  ],
+  "full_cumulative_source_replay": {
+    "previous_cumulative_head": "7016e4000959122cf8ab3a52538a3bc93555feb6",
+    "conflicting_paths_against_new_checkpoint": 740,
+    "original_master_conflicting_paths": 773,
+    "review_transition_previews": {
+      "projected": 345,
+      "unresolved": 427,
+      "multiple_variants": 1
+    },
+    "projected_paths_identical_to_checkpoint": 294,
+    "available_projection_sha256": "ef7b18da3b946aa389a29fb7bfcef112e2d55ef45f9411b8a84c9e3c298f400b"
+  }
+}
