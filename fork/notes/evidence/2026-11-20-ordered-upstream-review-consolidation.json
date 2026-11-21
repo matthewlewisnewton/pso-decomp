@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-with-upstream-names",
-      "head": "416241ebb7678c50a0bab86b51efaa96dca0ff81",
+      "ref": "great-merge/consolidated/ordered-combat-with-pan-arms-and-bal-claw",
+      "head": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
       "base": "c306842e82985de65583e787f1fa0a1776b51394",
-      "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+      "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,17 +77,17 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 51,
-      "files_changed": 1044,
-      "insertions": 14670,
-      "deletions": 15821,
-      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
-      "function_label_changes": 404,
+      "review_commits": 52,
+      "files_changed": 1051,
+      "insertions": 15105,
+      "deletions": 16256,
+      "check_sha256": "410723002b07c96f57989582886e9c95221301bb89b523dd166e91d2092bd6b1",
+      "function_label_changes": 440,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
         "exact_functions": 27572,
         "linked_source_units": 2448,
-        "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+        "source_report_sha256": "05c55d363774dcbd875df3fdeb89d519900d7e5f6f4f31c2820b67450078d1a3",
         "original_data_inventory": {
           "ranges": 90,
           "linked": 980,
@@ -189,37 +189,37 @@
     }
   },
   "separate_network_change": {
-    "head": "9ee16f936620807cbd042df96900b4d91789bc58",
-    "base": "416241ebb7678c50a0bab86b51efaa96dca0ff81",
-    "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
+    "head": "d195ce47f20f96c9f00ce6fb8398f2acb4af47a1",
+    "base": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+    "tree": "659bcbca72f6bb584190e1ab1bff2b42bb429748",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "9ee16f936620807cbd042df96900b4d91789bc58",
+    "head": "d195ce47f20f96c9f00ce6fb8398f2acb4af47a1",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
-    "files_changed": 1792,
-    "insertions": 30915,
-    "deletions": 34247,
+    "tree": "659bcbca72f6bb584190e1ab1bff2b42bb429748",
+    "files_changed": 1799,
+    "insertions": 31350,
+    "deletions": 34682,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
       "linked_source_units": 2448,
-      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "source_report_sha256": "05c55d363774dcbd875df3fdeb89d519900d7e5f6f4f31c2820b67450078d1a3",
       "original_data_inventory": {
         "ranges": 90,
         "linked": 980,
         "padding": 167,
         "remaining": 0
       },
-      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+      "check_sha256": "410723002b07c96f57989582886e9c95221301bb89b523dd166e91d2092bd6b1"
     }
   },
   "commit_attribution": {
-    "audited_commits": 102,
+    "audited_commits": 103,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -270,11 +270,11 @@
     ]
   },
   "single_review": {
-    "ref": "great-merge/consolidated/single-review-with-upstream-names",
-    "head": "7212821b7af16348b4894caf53809d3c80e8bab7",
+    "ref": "great-merge/consolidated/single-review-with-pan-arms-and-bal-claw",
+    "head": "89a757eb2758a58973b5e2dbfa707d2c3829222e",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
-    "tree_equivalent_to": "9ee16f936620807cbd042df96900b4d91789bc58",
+    "tree": "659bcbca72f6bb584190e1ab1bff2b42bb429748",
+    "tree_equivalent_to": "d195ce47f20f96c9f00ce6fb8398f2acb4af47a1",
     "commits": [
       {
         "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
@@ -358,23 +358,32 @@
         "deletions": 416
       },
       {
-        "head": "7212821b7af16348b4894caf53809d3c80e8bab7",
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
         "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
-        "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
-        "checked_tree": "7212821b7af16348b4894caf53809d3c80e8bab7",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "89a757eb2758a58973b5e2dbfa707d2c3829222e",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "659bcbca72f6bb584190e1ab1bff2b42bb429748",
+        "checked_tree": "d195ce47f20f96c9f00ce6fb8398f2acb4af47a1",
         "files_changed": 12,
         "insertions": 136,
         "deletions": 139
       }
     ],
     "commit_attribution": {
-      "audited_commits": 10,
+      "audited_commits": 11,
       "codex_attribution": 0,
       "coauthor_trailers": 0
     },
     "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
-    "files_changed": 1792,
-    "insertions": 30915,
-    "deletions": 34247
+    "files_changed": 1799,
+    "insertions": 31350,
+    "deletions": 34682
   }
 }

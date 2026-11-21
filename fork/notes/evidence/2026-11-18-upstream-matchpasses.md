@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `7212821b7a` uses ten commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. The independent PPP work ends the stack. Each checkpoint reproduces retail. The ten review commits and 102 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `89a757eb27` uses eleven commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The eleven review commits and 103 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1431,13 +1431,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `7212
 | 7 | Olga Flow tube and phase actors | Follow-up recovery | `176bfd4225` | 17 |
 | 8 | Symbol Chat presets, editor and capture | Follow-up recovery | `ce6336208b` | 31 |
 | 9 | Native Symbol Chat editor window classes | Follow-up recovery | `be4ac3f8f4` | 18 |
-| 10 | PPP frame and callback interfaces | Independent network work | `7212821b7a` | 12 |
+| 10 | Pan Arms coordination and shared Bal Claw placement | Follow-up recovery | `75396834cd` | 18 |
+| 11 | PPP frame and callback interfaces | Independent network work | `89a757eb27` | 12 |
 
-The review changes 1,792 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
-
-## Upstream field names in the consolidated review
-
-The consolidated review at `7212821b7a` keeps seven upstream field names in the recovered weapon, slime, short mail, quest transfer and character selection code. It drops a whitespace-only frontend edit. These corrections are folded into the ten existing review commits. Each commit was rebuilt and reproduces retail. The final address and linkage comparison shows no differences from the preceding candidate. [Naming audit](2026-11-21-upstream-names.json)
+The review changes 1,799 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1560,6 +1557,12 @@ The ordered and consolidated builds and the fork workspace reproduce retail and 
 Great Merge at `1adaab68b2` restores C++ constructors for the parts browser and parts-set windows. The preview and cursor methods use their owning classes. The face picker and help windows use typed selection, mode and heading fields. Nineteen linker labels changed to reflect class ownership, native constructors or typed arguments. The shortcut settings and floating-point constants keep their upstream names.
 
 The ordered and consolidated review builds and the fork workspace reproduce retail and account for all 1,147 historical data bytes. The audit closes the face-picker and parts-set constructor comparisons, leaving 597 open. [Window class evidence](2026-11-21-symbol-chat-window-owners.json)
+
+## Pan Arms coordination and Bal Claw placement
+
+Great Merge at `865dfa4b44` uses one typed placement record for enemy set data and the Pan Arms and Bal Claw constructors. The floor tables call the native factory methods. The Pan Arms body and both halves use typed links and call the half state checks directly. The arm attacks construct colliders from captured model node positions.
+
+The 18-file batch changes linker labels only for native owners and typed signatures. The ordered and consolidated source and fork workspace reproduce retail and account for all 1,147 historical data bytes. A probe checks reciprocal links, split state and HP gates, placement field transfer and factory table entries against retail and both builds. The audit closes the body and half header comparisons and leaves 595 historical comparisons open. [Pan Arms and Bal Claw evidence](2026-11-21-pan-arms-and-bal-claw.json)
 
 ## Ordered upstream review candidates
 
