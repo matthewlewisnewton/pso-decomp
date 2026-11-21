@@ -1165,6 +1165,14 @@ The title-scene replay at `39e8ea07de` assigns scene state, child ownership, and
 
 A replay preview checked 59 previous review tips. The leaf changes for particle factory callers, network datagrams and PPP frames are already present on the city baseline. The historical path inventory still has 1,058 canonical paths outside the active replay diff, including 86 also outside the earlier review queue. The preview identifies the stage archives and scenery, stage containers, and stage transfer and ending-scene groups for the next related batches. [Replay and validation evidence](2026-11-20-title-scenes-and-compiler-cleanup.json)
 
+### Stage objects, map collision and ending scenes
+
+The 40-file replay at `57b732df94` recovers the native fish constructor and destructor, reads ambient camera fields through the controller, and gives each Ancient container class its own typed effect positions. The ending scenes own their picture and wall rectangles. Rico rings use native constructors and retain their shared renderer and fades. City fireworks keep a typed particle handle, and the native map collision factory supplies the Jungle door, wrecks, lab props, boss actors and object factory tables.
+
+The standalone review `great-merge/prepared/stage-objects-and-ending-scenes` at `ec81bd9ce7` applies the same recovery directly to master `0fa391a887` using its renderer and archive signatures. The replay keeps the upstream warp identifiers, floor-event senders and container archive implementations. All 15 changed linker labels follow corrected receivers, constructors or parameter types. Both builds reproduce retail with 2,448 exact linked units and zero lost code or data coverage. The 90 starting ranges account for 980 source-linked bytes and 167 alignment bytes on master and on both builds. All 305 tooling and layer tests pass on the 131-path fork workspace. [Source, inventory and fork layer evidence](2026-11-20-stage-collision-and-ending-scenes.json)
+
+The historical inventory has 1,048 canonical paths outside the active replay diff, including 84 also outside the older queue. Challenge results, retry state and item-help and status windows are ready for reconciliation on this head. The results preview has 26 overlapping paths across 49 changed files.
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
