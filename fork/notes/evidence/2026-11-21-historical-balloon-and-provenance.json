@@ -1,0 +1,3643 @@
+{
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source": "0aeee8021bb29edf09e0f0bfcc0d3162f4356566",
+  "previous_source": "234101fad4f13effe00c002e03e309e93191a9f1",
+  "source_paths": 1034,
+  "changed_source_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TUnk_804CF0B8.h",
+    "include/pso/ui/window/TWindowCtrl.h",
+    "include/pso/ui/window/TWindowCtrl_8024A1A8.h",
+    "include/pso/ui/window/TWindowDD.h",
+    "include/pso/ui/window/TWindowFukidasi.h",
+    "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+    "src/pso/object/lobby/LobbyGoGoBall.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/ui/window/TWindowCtrl.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024B1A0.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024B558.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024B5E0.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024C598.cpp",
+    "src/pso/ui/window/TWindowDD_803471C0.cpp",
+    "src/pso/ui/window/TWindowDD_80348BF4.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/unk/text_80076BC4.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "historical_comparison": {
+    "prior_open_rows": 511,
+    "open_rows": 507,
+    "closed_rows": {
+      "5678": "The balloon height and name lookup takes an unsigned speaker ID, reads typed player proportions and uses four real slots. The already recovered callback records and typed chat checks remain. The current owner has the shared capture and dispatch declarations.",
+      "5710": "The folded controller uses the typed per-client visibility and menu queries, the native trade and request fields, and clears the actual balloon entries by speaker ID. The controller guard and request-close calls remain at their original matching functions.",
+      "5859": "The controller header exposes the real typed balloon pointers at 0x84 and the unsigned anchor, find, acquire and open declarations. The per-client callbacks use the typed static methods. The old flag accessor now belongs to the balloon object.",
+      "6032": "The local chat call uses the unsigned get_entity_id result directly. The original identity return at 0x80076BC4 remains, with a char pointer for the text. Live headers supply the existing window, local input and lobby declarations."
+    },
+    "partial_rows": {
+      "262": "The exact native balloon initializer and constructor take the unsigned speaker ID and word-sized client value. The prior full window render and placement delta still needs comparison.",
+      "5545": "The shared word-select display receives the unsigned speaker ID at the native TWindowDD::open entry point. The wider editor source comparison remains open.",
+      "5619": "The last fork source change at 004ec5ff24 matches the current code in src/pso/ui/window/TWindowDD_80341A08.cpp. The earlier source changes and include ownership still need comparison.",
+      "4376": "The last fork source change at 209b405e16 matches the current code in src/pso/effect/item/TItemEffectWeapon.cpp. The earlier source changes and include ownership still need comparison.",
+      "4473": "The last fork source change at 209b405e16 matches the current code in src/pso/unk/text_80357058.cpp. The earlier source changes and include ownership still need comparison.",
+      "4360": "The last fork source change at 6c8a453356 matches the current code in src/pso/player/TObjPlayer_801BC194.cpp. The earlier source changes and include ownership still need comparison.",
+      "281": "The last fork source change at 14c61a95d3 matches the current code in src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp. The earlier source changes and include ownership still need comparison.",
+      "520": "The last fork source change at e82f2afb53 matches the current code in src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp. The earlier source changes and include ownership still need comparison.",
+      "3648": "The last fork source change at 0a3bc13060 matches the current code in src/pso/weapon/TItemWeaponFist.cpp. The earlier source changes and include ownership still need comparison."
+    },
+    "last_first_parent_touch_by_commit": {
+      "34120b34d9fae0160ad2ae5aef325ac20e2255b4": {
+        "subject": "Merge pull request #457 from matthewlewisnewton/codex/fork-socket-protocol-runtime",
+        "final_fork_blobs": [
+          {
+            "row": 2978,
+            "path": "src/pso/network/SocketProtocolRuntime.cpp",
+            "blob": "16b66a9b9c94494105cd38165107a8b9e14a6adc"
+          },
+          {
+            "row": 2979,
+            "path": "src/pso/network/TcpProtocol.cpp",
+            "blob": "8dce006dd761842b64af1c5b5028b85062a1f071"
+          },
+          {
+            "row": 2981,
+            "path": "src/pso/unk/text_80421620.cpp",
+            "blob": "a578129c046eb642e93ac2e4d78768666282922f"
+          }
+        ]
+      },
+      "bfb43745975ab5bbdc6caa4e54b9a6f08f120730": {
+        "subject": "Link the Gyaranzo constant pool from C++",
+        "final_fork_blobs": [
+          {
+            "row": 157,
+            "path": "config/GPOE8P/psov3/symbols.txt",
+            "blob": "481b6e6cf8fed359e6de9efa5468ac9fa8fc81b4"
+          },
+          {
+            "row": 588,
+            "path": "src/pso/enemy/TObjEneGyaranzo.cpp",
+            "blob": "6ea3736dde15a461c23095d0cf5173be88cf7b4f"
+          }
+        ]
+      },
+      "961fc67a41fb46b32bce2ac92fe16c83045fe4c0": {
+        "subject": "Merge pull request #645 from matthewlewisnewton/codex/upstream-data-warp-tables",
+        "final_fork_blobs": [
+          {
+            "row": 7071,
+            "path": "src/pso/object/TObjAreaWarpEndingJung.cpp",
+            "blob": "d57191c0ec107b004fe7fbbd256c7b4fdd645f2b"
+          },
+          {
+            "row": 6848,
+            "path": "src/pso/object/TObjCityMainWarpChallenge.cpp",
+            "blob": "10c48859c18e3d807510615864b0714c6d0e11cb"
+          },
+          {
+            "row": 7213,
+            "path": "src/pso/object/TObjWarpBossMulti.cpp",
+            "blob": "913975de8fe94b1cffd880800dd837990cca7b9d"
+          }
+        ]
+      },
+      "00126ff6200f303d07f2b62cb5629203cdb61422": {
+        "subject": "Merge pull request #644 from matthewlewisnewton/codex/upstream-data-technique-tables",
+        "final_fork_blobs": [
+          {
+            "row": 4398,
+            "path": "src/pso/misc/TTecCtrl.cpp",
+            "blob": "10a6018bc267e519d17112a904823a278c211c6f"
+          },
+          {
+            "row": 7030,
+            "path": "src/pso/object/LobbyPigeonPath.cpp",
+            "blob": "ba14a76274bcbd9f82ccdfb0ba074330bf2078dc"
+          }
+        ]
+      },
+      "f27ea7d134a8fa363406d0e49e74e67acd2f398f": {
+        "subject": "Merge pull request #642 from matthewlewisnewton/codex/upstream-data-object-tables",
+        "final_fork_blobs": [
+          {
+            "row": 6777,
+            "path": "include/pso/misc/TOMineTrap.h",
+            "blob": "3d06666c7f0d2ac77d931e42447bee3abc0695ba"
+          },
+          {
+            "row": 6778,
+            "path": "src/pso/misc/TOMineTrap_8016F6F8.cpp",
+            "blob": "db170ea10ef5e694cef694018c3121761eb54234"
+          }
+        ]
+      },
+      "8e04cd8ec16dbd9b6a99ac5664aa6c5489d72e96": {
+        "subject": "Merge pull request #638 from matthewlewisnewton/codex/fork-semantic-ipv4-arp",
+        "final_fork_blobs": [
+          {
+            "row": 3090,
+            "path": "include/pso/misc/LobbyNetworkInternal.h",
+            "blob": "1a2192b25232de320256c63912691e00d6f84ba9"
+          },
+          {
+            "row": 2962,
+            "path": "src/pso/misc/TLobby_803F8794.cpp",
+            "blob": "f11f4e312d1ee168413b6fb26b182e01f7f25933"
+          },
+          {
+            "row": 2963,
+            "path": "src/pso/misc/TLobby_803FAEA0.cpp",
+            "blob": "df4adc7d6cbde48463f6038df710e5b354047e1e"
+          },
+          {
+            "row": 2964,
+            "path": "src/pso/misc/TLobby_803FC178.cpp",
+            "blob": "6d5066f8c3854ac2fe00cd596cf3405dc7056511"
+          },
+          {
+            "row": 2965,
+            "path": "src/pso/misc/TLobby_804048E8.cpp",
+            "blob": "2a2b51835b53b81dd1cb47a4f07f416d2e255e05"
+          },
+          {
+            "row": 2966,
+            "path": "src/pso/misc/TLobby_804050DC.cpp",
+            "blob": "39f8666b6dd7912c13739633efdc8e673ac6216f"
+          }
+        ]
+      },
+      "372a8e7b8ec27928982e650df21bc104bc6ba29a": {
+        "subject": "Merge pull request #635 from matthewlewisnewton/codex/upstream-code-player-render",
+        "final_fork_blobs": [
+          {
+            "row": 2974,
+            "path": "src/pso/network/NetUdp.cpp",
+            "blob": "bbf7110e228444edcdab05e2504d144834fc0094"
+          },
+          {
+            "row": 3829,
+            "path": "src/pso/player/TObjPlayer_803E1A58.cpp",
+            "blob": "3e419f6f66e1350fef01e26c84b6a211e45cb268"
+          }
+        ]
+      },
+      "0b92f5adaa9cb955248b1820599bf98af655a87e": {
+        "subject": "Merge pull request #627 from matthewlewisnewton/codex/fork-upstream-data-linkage",
+        "final_fork_blobs": [
+          {
+            "row": 7299,
+            "path": "include/pso/misc/QuestDownloadInternal.h",
+            "blob": "cbf412c0287664815abbcb7c7648784d197d1d92"
+          },
+          {
+            "row": 3998,
+            "path": "include/pso/player/TObjPlayer.h",
+            "blob": "55eae4b73abddd9e0bc3e78b90398d7e34196396"
+          },
+          {
+            "row": 4030,
+            "path": "include/pso/player/TUnk_804B6C24.h",
+            "blob": "4695a888d2c9d75f8d5956167eb28677395ab4ac"
+          },
+          {
+            "row": 4224,
+            "path": "include/pso/player/TUnk_804E21F8.h",
+            "blob": "12572dbf93e54193163308061081eb145280abde"
+          },
+          {
+            "row": 907,
+            "path": "src/pso/boss/TBoss6Rock.cpp",
+            "blob": "ed8a07e411f83b9eb4b57ce750845c1090ed0d6b"
+          },
+          {
+            "row": 1076,
+            "path": "src/pso/boss/TBoss6Type2.cpp",
+            "blob": "af06166ae4643325ade2517569b67c4b636a4d42"
+          },
+          {
+            "row": 874,
+            "path": "src/pso/boss/TBoss8Dragon.cpp",
+            "blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8"
+          },
+          {
+            "row": 540,
+            "path": "src/pso/boss/TBoss8Dragon_802FDDD4.cpp",
+            "blob": "ca803328680ea985982c5016975c0799d3626164"
+          },
+          {
+            "row": 958,
+            "path": "src/pso/enemy/TObjEneMe3Stelth.cpp",
+            "blob": "ab4dd2ee99897a7552865162aa5b20c1cbdc35d9"
+          },
+          {
+            "row": 597,
+            "path": "src/pso/enemy/TObjEneMe3Stelth_800F0EC4.cpp",
+            "blob": "9c56c099d6f60e57c7aadb1ae17cfef028f776bb"
+          },
+          {
+            "row": 6841,
+            "path": "src/pso/item/TObjContainerItem.cpp",
+            "blob": "b6a54681ce629a629932b93164b736b3322195a1"
+          },
+          {
+            "row": 6842,
+            "path": "src/pso/item/TObjContainerJung.cpp",
+            "blob": "5eabba31a56853231285a468e4d2ceef27cce6d1"
+          },
+          {
+            "row": 6421,
+            "path": "src/pso/misc/TOContainerAncientEnemy.cpp",
+            "blob": "14de2f178144064ed2349b7b41fc535396eab872"
+          },
+          {
+            "row": 6481,
+            "path": "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp",
+            "blob": "ab19d65d94760b812553182cb3ad21aed175a76d"
+          },
+          {
+            "row": 6482,
+            "path": "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+            "blob": "aaf8907f2b5d613ec2085c8195a8d37262117ea7"
+          },
+          {
+            "row": 4158,
+            "path": "src/pso/player/TObjPlayer_802D5174.cpp",
+            "blob": "6dfa07d5f33b679216e69dc278a23c7a822cbd85"
+          },
+          {
+            "row": 4160,
+            "path": "src/pso/player/TObjPlayer_802D5C0C.cpp",
+            "blob": "ed2af37bebaa58db52f70e62ffceeb9d0d8019a4"
+          },
+          {
+            "row": 3965,
+            "path": "src/pso/unk/text_802D5F44.cpp",
+            "blob": "bd10eade2ee939574cc4982173f290902b59fd6d"
+          }
+        ]
+      },
+      "14acccf1a7ca34f5e2841c20b53a1a94a5ec6126": {
+        "subject": "Merge pull request #637 from matthewlewisnewton/codex/fork-semantic-ppp",
+        "final_fork_blobs": [
+          {
+            "row": 2969,
+            "path": "src/pso/misc/TLobby_80428374.cpp",
+            "blob": "16e93ea2df4b209746e18cb771f14c86a500c910"
+          }
+        ]
+      },
+      "5a7a047c3e6b8f8310066e517cbaf2e19df1f105": {
+        "subject": "Merge pull request #636 from matthewlewisnewton/codex/fork-semantic-names",
+        "final_fork_blobs": [
+          {
+            "row": 6480,
+            "path": "src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp",
+            "blob": "385a2d2f403da2497bf7c9a9d762a79c235145ba"
+          },
+          {
+            "row": 6483,
+            "path": "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp",
+            "blob": "2d1824f011b2c6977219935d4e0a71e7d6cac98a"
+          }
+        ]
+      },
+      "af53bd674251aba7c41aca96e922f1bb2c65b657": {
+        "subject": "Merge pull request #640 from matthewlewisnewton/codex/fork-player-source-units",
+        "final_fork_blobs": [
+          {
+            "row": 4087,
+            "path": "src/pso/player/TObjPlayer.cpp",
+            "blob": "9f40ae9f937505e816b98d6859687a5087b213c3"
+          },
+          {
+            "row": 4121,
+            "path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+            "blob": "673f422b9e97567877c0834304638f6ba8d023de"
+          },
+          {
+            "row": 4129,
+            "path": "src/pso/player/TObjPlayer_801BD384.cpp",
+            "blob": "fc8ef314059907861c7093ea1bcdc611417dda6c"
+          },
+          {
+            "row": 6742,
+            "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+            "blob": "b95d80ecbc55b798587960ae438fbc39ee3ae447"
+          }
+        ]
+      },
+      "c3cdaf8950028756f3b20f478a8968cd54063b55": {
+        "subject": "Merge pull request #630 from matthewlewisnewton/codex/fork-keyboard-fade",
+        "final_fork_blobs": [
+          {
+            "row": 232,
+            "path": "src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp",
+            "blob": "ff0e329298c76653a27af890729aea4642b66841"
+          }
+        ]
+      },
+      "d595d7a421fca66d86d895cfbfdab50aa6d3b2a2": {
+        "subject": "Merge pull request #629 from matthewlewisnewton/codex/fork-moja-clamp",
+        "final_fork_blobs": [
+          {
+            "row": 813,
+            "path": "src/pso/enemy/TObjEneMoja.cpp",
+            "blob": "f997b12f82f3d9ceb40f1c3eb5346285dee7f87b"
+          }
+        ]
+      },
+      "46cca2e5418e972d585ae3a59ca78a6f77c0d7ae": {
+        "subject": "Link the Dubchik lightning projectile from C++",
+        "final_fork_blobs": [
+          {
+            "row": 4103,
+            "path": "src/pso/player/TObjPlayer_800AAFBC.cpp",
+            "blob": "2df9873106d15a27a5dd07a9f50960926f5a0f03"
+          }
+        ]
+      },
+      "bd0d2ccb2a493b4f032be727f5734be698680e5a": {
+        "subject": "Link the camera look-at up vector from C++",
+        "final_fork_blobs": [
+          {
+            "row": 4962,
+            "path": "src/pso/misc/TCameraCtrl_8006BCD8.cpp",
+            "blob": "6acea509d4f2fc22b153ced292ecf0796697cbea"
+          }
+        ]
+      },
+      "a17faa1d77eea942a5fe7f5388661c3c9a6efbbf": {
+        "subject": "Link the camera mode float pool from C++",
+        "final_fork_blobs": [
+          {
+            "row": 4896,
+            "path": "src/pso/misc/TCameraCtrl.cpp",
+            "blob": "d30c6ae0c388de3d8d2d8f7ae19816e8f25758ac"
+          },
+          {
+            "row": 7309,
+            "path": "src/pso/misc/TCameraCtrl_native.h",
+            "blob": "e4b9cec17857c24533fdd4429ade274421726ce5"
+          }
+        ]
+      },
+      "3d353c394b4f2f859f27190051d5487f48f7e1c2": {
+        "subject": "Recover the Morfos angle conversion constant",
+        "final_fork_blobs": [
+          {
+            "row": 599,
+            "path": "src/pso/enemy/TObjEneMorfos.cpp",
+            "blob": "768319f3b722b583e6a4016b4278ddb12d08c931"
+          }
+        ]
+      },
+      "a93d6a1711a24df25402651dcc6fe25c9c2b1777": {
+        "subject": "Merge pull request #622 from matthewlewisnewton/codex/fork-retire-312-pragma-cleanup",
+        "final_fork_blobs": [
+          {
+            "row": 992,
+            "path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+            "blob": "b719d83b9fad043a50c574b38b53c31c387fe858"
+          },
+          {
+            "row": 951,
+            "path": "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+            "blob": "101ce307c7730b02596b27649a0873dd5cfb920e"
+          },
+          {
+            "row": 1084,
+            "path": "src/pso/boss/TBoss1Dragon.cpp",
+            "blob": "c5ac33f0c8bc0acc80c24571faba9ee1211434a6"
+          },
+          {
+            "row": 1125,
+            "path": "src/pso/boss/TBoss2DeRolLe.cpp",
+            "blob": "fb49c878e64df0ff527025e88fd0aa7b832d2d99"
+          },
+          {
+            "row": 917,
+            "path": "src/pso/boss/TBoss2Joint.cpp",
+            "blob": "790a503dd32c4aa9b44ee6e2941a1f97fb91c6b7"
+          },
+          {
+            "row": 913,
+            "path": "src/pso/boss/TBoss4Type1.cpp",
+            "blob": "20bf52c847ff8a08b2e488cd3006a900e316f0a0"
+          },
+          {
+            "row": 531,
+            "path": "src/pso/boss/TBoss8Dragon_8002CC48.cpp",
+            "blob": "13d950bc235a4983b51f346d376799f808408bde"
+          },
+          {
+            "row": 1143,
+            "path": "src/pso/enemy/TObjEneDubchik.cpp",
+            "blob": "f063b5be6c24defac0ce643388fd0221f33ded15"
+          },
+          {
+            "row": 718,
+            "path": "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp",
+            "blob": "b8da800fc6fefa240eddde457858232087fbfbe8"
+          },
+          {
+            "row": 637,
+            "path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+            "blob": "45c095b94a6e7972835dc637acfa60a75423df0d"
+          },
+          {
+            "row": 6668,
+            "path": "src/pso/map/CsnQuery.cpp",
+            "blob": "155472bc6551880cba907ccb11d3691cdeff7c06"
+          },
+          {
+            "row": 4939,
+            "path": "src/pso/math/MatrixTransforms.cpp",
+            "blob": "ef79ada6d8907b47344be56bc2d7102710ab9f64"
+          },
+          {
+            "row": 2428,
+            "path": "src/pso/menu/TAdTimeSetGC.cpp",
+            "blob": "fdf4fafefe6342816638637d0d73a97eb1dc897c"
+          },
+          {
+            "row": 4894,
+            "path": "src/pso/misc/ParticleBallistic.cpp",
+            "blob": "f208523205c242b345eb1aa85929ffc635521661"
+          },
+          {
+            "row": 4895,
+            "path": "src/pso/misc/ParticleOrbit.cpp",
+            "blob": "0e5d5753fcb0cb0ea83ded0dc1de0bb337a56afa"
+          },
+          {
+            "row": 4977,
+            "path": "src/pso/misc/ParticleRadial.cpp",
+            "blob": "44939493e5be56556548c8cace4127a049c779dc"
+          },
+          {
+            "row": 5011,
+            "path": "src/pso/misc/TCameraCtrl_803D6960.cpp",
+            "blob": "14b30e17f9cd87ac182ff02a6421364e28e0232f"
+          },
+          {
+            "row": 5014,
+            "path": "src/pso/misc/TCameraCtrl_803D749C.cpp",
+            "blob": "8a116ca2e94465cf678cb593b733ba56023a95bb"
+          },
+          {
+            "row": 4967,
+            "path": "src/pso/misc/TDuelEffectNumber_80080460.cpp",
+            "blob": "a9d519161ba1356c79fff11aad368b339c87e2b2"
+          },
+          {
+            "row": 268,
+            "path": "src/pso/misc/TKeyBoardControl.cpp",
+            "blob": "a43ef1941e770275170d7fc0b959355380c44712"
+          },
+          {
+            "row": 5339,
+            "path": "src/pso/misc/TLobby_800F8AA8.cpp",
+            "blob": "81cf78d392976d0913f8ea6cb5c524dfa911f0be"
+          },
+          {
+            "row": 6014,
+            "path": "src/pso/misc/TLobby_80228154.cpp",
+            "blob": "3a03f94da1045d264762b3cabaa04a1ce362ffd2"
+          },
+          {
+            "row": 39,
+            "path": "src/pso/misc/TLobby_802409AC.cpp",
+            "blob": "ff1e452f312287097126116f95f7a825296176d8"
+          },
+          {
+            "row": 3023,
+            "path": "src/pso/misc/TLobby_80426CAC.cpp",
+            "blob": "5d57620b138b0ef068b811f3291a4975d317bcc6"
+          },
+          {
+            "row": 3021,
+            "path": "src/pso/misc/TLobby_80429598.cpp",
+            "blob": "84afca6ae4c8da26da4680294b37b15d7c261137"
+          },
+          {
+            "row": 7277,
+            "path": "src/pso/misc/TNpcPlayer.cpp",
+            "blob": "af8ffa0c288430271ddec1c532f6b22c861af154"
+          },
+          {
+            "row": 5542,
+            "path": "src/pso/misc/TWindowDD.cpp",
+            "blob": "63b6cd1bab9a3e1a0d760d5ceef0d98eb4f8a7de"
+          },
+          {
+            "row": 2999,
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "blob": "1ba084cdce03ab9cf00cc3c21d01fc77ae2c5482"
+          },
+          {
+            "row": 3004,
+            "path": "src/pso/network/TProtocol.cpp",
+            "blob": "f03efb9cc468093e5e6cb5307111fd74346be536"
+          },
+          {
+            "row": 2397,
+            "path": "src/pso/object/TObjCMName.cpp",
+            "blob": "34a30cd0a894e4fa7081cc54a8c5a9fb280c13df"
+          },
+          {
+            "row": 6512,
+            "path": "src/pso/object/TObjFish.cpp",
+            "blob": "9a9272cd2d11a5be10b775df4c44e95fa7cd541e"
+          },
+          {
+            "row": 4138,
+            "path": "src/pso/player/TObjPlayer_801C7430.cpp",
+            "blob": "8774ee999d0c7ef266bf7578575368480b02c07a"
+          },
+          {
+            "row": 4179,
+            "path": "src/pso/player/TObjPlayer_803DF7A8.cpp",
+            "blob": "9a7a511be3eb711d09cd502c14b280c8d2582e17"
+          },
+          {
+            "row": 2980,
+            "path": "src/pso/protocol/NetworkRuntime.cpp",
+            "blob": "4124d3dc302aa78695bc87fe02761e5e34e6ea36"
+          },
+          {
+            "row": 5042,
+            "path": "src/pso/system/ChunkMaterialState.cpp",
+            "blob": "1793e06210642e3f972a26f617734d365a3985a5"
+          },
+          {
+            "row": 4985,
+            "path": "src/pso/system/GinjaMaterial.cpp",
+            "blob": "206ee255b9408c9da8b1e09bd29ba1f365b7a893"
+          },
+          {
+            "row": 2295,
+            "path": "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+            "blob": "0bd51ce1ca8899d163141148e9259b9618cfaae7"
+          },
+          {
+            "row": 2577,
+            "path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+            "blob": "9e6b9d7ff9d977b83c689298e98dd683a6d55fe1"
+          },
+          {
+            "row": 6023,
+            "path": "src/pso/unk/text_803D96A8.cpp",
+            "blob": "304b1b7eb2cc7e0f04a7ca3c57295acb50737d5d"
+          },
+          {
+            "row": 4478,
+            "path": "src/pso/unk/text_803E2D70.cpp",
+            "blob": "a75378400c545b7a63ba7156a4d57e7551b34baf"
+          }
+        ]
+      },
+      "dd335a2d316af391f9133835db17e2875fb4ed56": {
+        "subject": "Merge pull request #602 from matthewlewisnewton/codex/review-lobby-network-804050dc",
+        "final_fork_blobs": [
+          {
+            "row": 5431,
+            "path": "include/pso/misc/TLobby.h",
+            "blob": "ca190ccbd8200a9b67e2c84df8dd28d2276602ad"
+          },
+          {
+            "row": 2997,
+            "path": "include/pso/network/UdpRuntime.h",
+            "blob": "970155bc2a0e13dfb4015784c7fb2abdcccc334a"
+          },
+          {
+            "row": 2960,
+            "path": "include/pso/protocol/PppControlRuntime.h",
+            "blob": "73840b15d607bbb7ecdfa94c82145e0e442da593"
+          },
+          {
+            "row": 2967,
+            "path": "src/pso/misc/TLobby_8040FF0C.cpp",
+            "blob": "dc9a0d0420270cea12a6368ebea22cbf7541b61a"
+          },
+          {
+            "row": 2968,
+            "path": "src/pso/misc/TLobby_8041112C.cpp",
+            "blob": "916a8f8416c9159d2da6ddad3109bbc023bb8d44"
+          },
+          {
+            "row": 2977,
+            "path": "src/pso/network/NetworkTransport.cpp",
+            "blob": "5aeb05acbdaaf73805157c79df1c2a7a92932ef5"
+          }
+        ]
+      },
+      "296081bae44cf0f0ace6eb72cf3937e88fd4f2d7": {
+        "subject": "Merge pull request #624 from matthewlewisnewton/codex/fork-matchpass-frontend-resources",
+        "final_fork_blobs": [
+          {
+            "row": 6020,
+            "path": "src/pso/misc/TLobby_80335E7C.cpp",
+            "blob": "ecdc3aa8318987f80fe847aa84b40922dceabbb1"
+          },
+          {
+            "row": 2466,
+            "path": "src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp",
+            "blob": "9524e258a5826fb38a9c625c0074dfe50102479b"
+          },
+          {
+            "row": 2323,
+            "path": "src/pso/unk/text_803367F4.cpp",
+            "blob": "079bdcbeb79aa7e4e747a5812c5741c1a38b22f7"
+          }
+        ]
+      },
+      "53a63efa198350d15bb27be918bf4c5c2c21c064": {
+        "subject": "Recover the quest, Mericarol and main-menu data pools",
+        "final_fork_blobs": [
+          {
+            "row": 934,
+            "path": "src/pso/enemy/TObjEneBm9Mericarol.cpp",
+            "blob": "4e1f60595200e1c8508abe7e9265eeb101a87887"
+          },
+          {
+            "row": 1058,
+            "path": "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp",
+            "blob": "26fdccf8e9563ebf979a3ad112ca8325a8cf9154"
+          },
+          {
+            "row": 987,
+            "path": "src/pso/unk/text_802CE68C.cpp",
+            "blob": "cf301483a2ace46627e4027cdcebbc886c474f7a"
+          }
+        ]
+      },
+      "e621d6a52833ab4a92930b4acbf29c2fa205e752": {
+        "subject": "Link the TLoadCtrl vtable and state from C++",
+        "final_fork_blobs": [
+          {
+            "row": 7316,
+            "path": "src/pso/misc/TLobby_800F9DA0.cpp",
+            "blob": "c651240ba6ad32aee8a696134819f048d7477246"
+          }
+        ]
+      },
+      "88a1d084afd55db8f63ab88252970baadcad4ab2": {
+        "subject": "Link the GX startup lighting pool from C++",
+        "final_fork_blobs": [
+          {
+            "row": 277,
+            "path": "src/pso/misc/TKeyBoardControl_8000F764.cpp",
+            "blob": "1a47385bd7c9897db001e5d67082bb1d2b4b8485"
+          }
+        ]
+      },
+      "c22f3db157e0e260729dcce5989ac3812e06ffea": {
+        "subject": "Merge pull request #564 from matthewlewisnewton/split/403-window-callback-contracts",
+        "final_fork_blobs": [
+          {
+            "row": 289,
+            "path": "include/pso/misc/TWindowSubSymbolChat.h",
+            "blob": "113d49977d7bcb34e99b97b800a870d680e04ba5"
+          },
+          {
+            "row": 5528,
+            "path": "src/pso/misc/TWindowCallBack.cpp",
+            "blob": "49d93a733a02f0b81b62f2af1064801e445f14d0"
+          },
+          {
+            "row": 293,
+            "path": "src/pso/misc/TWindowSubSymbolChat_80281814.cpp",
+            "blob": "e3e69f1db6fdcaa218015ddfb51033c44efd7b0f"
+          },
+          {
+            "row": 2559,
+            "path": "src/pso/ui/TAdAgreementBaseGC.cpp",
+            "blob": "d2facf4b8f85d386de7d8099af704782797afbb2"
+          },
+          {
+            "row": 2552,
+            "path": "src/pso/ui/TAdChrSelSlotGC.cpp",
+            "blob": "05a0fa75800268f2a01889970b23da164d2379d7"
+          },
+          {
+            "row": 2623,
+            "path": "src/pso/ui/TAdEnterSerialAccessGC.cpp",
+            "blob": "88660c23ff499517ad3f73723a9469361b84818c"
+          },
+          {
+            "row": 2574,
+            "path": "src/pso/ui/TAdEnterSerialAccessGC_8032AD30.cpp",
+            "blob": "e9a3a05ef04f96d46cf4c8e531e0207d6f78bf88"
+          },
+          {
+            "row": 2634,
+            "path": "src/pso/ui/TAdEp3Exist.cpp",
+            "blob": "88e582ec5823899cdfcef1f17984aa076f02fbd8"
+          },
+          {
+            "row": 2685,
+            "path": "src/pso/ui/TAdPlyStatusGC.cpp",
+            "blob": "8d332bef2f55e25787cc7b2781354c1168ebf5cf"
+          }
+        ]
+      },
+      "004ec5ff24294a95580732541e26e99682a58946": {
+        "subject": "Merge pull request #563 from matthewlewisnewton/split/403-keyboard-composer-contracts",
+        "final_fork_blobs": [
+          {
+            "row": 253,
+            "path": "include/pso/misc/TWindowKeyBoardHard.h",
+            "blob": "71d6046a31ee8a64b5e9546a5a3ea39e2182a591"
+          },
+          {
+            "row": 5830,
+            "path": "include/pso/misc/TWindowSubStatusDisp.h",
+            "blob": "ab3cbb9204bdf3b584dec81b906f675a81ae5fdc"
+          },
+          {
+            "row": 264,
+            "path": "src/pso/misc/TKeyBoardControl_8025EC04.cpp",
+            "blob": "8c82c62d48b9d480d63548115c4f885c027d2694"
+          },
+          {
+            "row": 5619,
+            "path": "src/pso/misc/TWindowDD_80341A08.cpp",
+            "blob": "745246283f8f2c4c90410b8cad77ad53a45abb6c"
+          },
+          {
+            "row": 230,
+            "path": "src/pso/misc/TWindowKeyBoardBase.cpp",
+            "blob": "131034a1d578f2b9c04e61050ee3b4be812bfe56"
+          },
+          {
+            "row": 5819,
+            "path": "src/pso/misc/TWindowSubStatusDisp_8024FBA8.cpp",
+            "blob": "cbaf83132fd94b09ffe5ecd3f96fc18e0b95cbb6"
+          }
+        ]
+      },
+      "4959835fff69c793c73f11cb45e72ba349452246": {
+        "subject": "Merge pull request #562 from matthewlewisnewton/split/403-window-native-lifetime",
+        "final_fork_blobs": [
+          {
+            "row": 282,
+            "path": "include/pso/misc/TKeyBoardControl.h",
+            "blob": "0e30761b8d939ac18033cc4e6a0e170f55da052c"
+          },
+          {
+            "row": 5446,
+            "path": "include/pso/misc/TUnk_804CE7E8.h",
+            "blob": "f96afdc666b3d7eb3bb7ce06bcbf8aafa6519a5c"
+          },
+          {
+            "row": 5859,
+            "path": "include/pso/misc/TWindowCtrl.h",
+            "blob": "db4ef29f36c094959aeda1f57ae5dcd041661875"
+          },
+          {
+            "row": 5878,
+            "path": "include/pso/misc/TWindowDD.h",
+            "blob": "d3306de077b03a6f641a429cd6e7dcdf52cf5131"
+          },
+          {
+            "row": 5693,
+            "path": "include/pso/misc/TWindowHelpItem.h",
+            "blob": "95a2019c6675c4f39a3bf5e9f63d7f7b568a0132"
+          },
+          {
+            "row": 256,
+            "path": "include/pso/misc/TWindowKeyBoardSoft.h",
+            "blob": "107369b9add7a2498098b6c43091764f69b0f7cb"
+          },
+          {
+            "row": 5717,
+            "path": "include/pso/misc/TWindowMakeTeam.h",
+            "blob": "79bf6b278a115e1ad60e1e4f65d51d6f58682573"
+          },
+          {
+            "row": 5604,
+            "path": "include/pso/unk/text_80249004.h",
+            "blob": "5a930ffb0bc9814905bd1fdf9993891883d7def1"
+          },
+          {
+            "row": 2699,
+            "path": "src/pso/misc/TCheckRoomSequence.cpp",
+            "blob": "dff77eb43b5b12ece16950a5f1632fa0e3e638ed"
+          },
+          {
+            "row": 2610,
+            "path": "src/pso/misc/TJudgmentSequence.cpp",
+            "blob": "beb17adafcb123644aadcf2f9b0fd553025db509"
+          },
+          {
+            "row": 4510,
+            "path": "src/pso/misc/TLobby_801C25B4.cpp",
+            "blob": "c8c66fad059158c53efc5740eeb39b4f8634365e"
+          },
+          {
+            "row": 2693,
+            "path": "src/pso/misc/TMedicalCenterSequence.cpp",
+            "blob": "30c07b2348dae953cb17697e08e3fc5f80ad37a9"
+          },
+          {
+            "row": 4212,
+            "path": "src/pso/misc/TPlayerBattleCtrl4P_8031012C.cpp",
+            "blob": "57c2631c4b19e1f22d732cf44bab42e730b3af76"
+          },
+          {
+            "row": 3061,
+            "path": "src/pso/misc/TPlyJoinLobbyEntry.cpp",
+            "blob": "e753f17955f735bb409bfdf5d97a18c7d87407f4"
+          },
+          {
+            "row": 5958,
+            "path": "src/pso/misc/TShopArmorListWindow.cpp",
+            "blob": "1453728fb452859c6b6dadcfb94b53c99f9b3798"
+          },
+          {
+            "row": 2498,
+            "path": "src/pso/misc/TShopEquipmentGearSequence_8021B438.cpp",
+            "blob": "394f2bd69585438be44e19e0987a52bd889cee91"
+          },
+          {
+            "row": 5959,
+            "path": "src/pso/misc/TShopEquipmentListWindow.cpp",
+            "blob": "94afc7286a92f450447d3348f904f60c9c096ad7"
+          },
+          {
+            "row": 5803,
+            "path": "src/pso/misc/TShopEquipmentSellWindow.cpp",
+            "blob": "af4163456a61e90980389456a42e749d5f9bad01"
+          },
+          {
+            "row": 2646,
+            "path": "src/pso/misc/TShopEquipmentSequence.cpp",
+            "blob": "bfcf23ff7870c1bb9ba6008cde1bf845b2d8d43b"
+          },
+          {
+            "row": 2647,
+            "path": "src/pso/misc/TShopItemTecSequence.cpp",
+            "blob": "0223894c7d2aa8a2c7566e966bc15811e26f2475"
+          },
+          {
+            "row": 5524,
+            "path": "src/pso/misc/TWindowActionPalette.cpp",
+            "blob": "c6e161fefbf9fb10fbf281732d8c5595f278e5be"
+          },
+          {
+            "row": 5842,
+            "path": "src/pso/misc/TWindowActionPalette_801C1890.cpp",
+            "blob": "f4d648a425dbdc663afec0ad83ae63314b56d7be"
+          },
+          {
+            "row": 5527,
+            "path": "src/pso/misc/TWindowBreakIn.cpp",
+            "blob": "5d51388b748a148ace79e4d3b09a31b05d7a96d2"
+          },
+          {
+            "row": 5672,
+            "path": "src/pso/misc/TWindowChoiceSetting.cpp",
+            "blob": "b288f6f8e1bbae5a0a80cd1a409a473b91b9051e"
+          },
+          {
+            "row": 5533,
+            "path": "src/pso/misc/TWindowCtrlMain.cpp",
+            "blob": "0a3364b84c930f1761e14e2b334866d63a2f0c86"
+          },
+          {
+            "row": 5678,
+            "path": "src/pso/misc/TWindowCtrl_8024A1A8.cpp",
+            "blob": "8dd84bcbf0ba2cc269b0d1ac91c15fe0377cdeb9"
+          },
+          {
+            "row": 5710,
+            "path": "src/pso/misc/TWindowCtrl_8024B7D4.cpp",
+            "blob": "543d5ba89e7bcd7745b99e28b640aa3aae9f1659"
+          },
+          {
+            "row": 5636,
+            "path": "src/pso/misc/TWindowDD_80342254.cpp",
+            "blob": "d97682ed72a77fb4d680890c8f9f313c33432801"
+          },
+          {
+            "row": 5545,
+            "path": "src/pso/misc/TWindowDD_803430BC.cpp",
+            "blob": "33c667897a802d86624e86beda57db175789228b"
+          },
+          {
+            "row": 5973,
+            "path": "src/pso/misc/TWindowDD_8034725C.cpp",
+            "blob": "c9a10f4d247431e984093f6157421efc745c4720"
+          },
+          {
+            "row": 5549,
+            "path": "src/pso/misc/TWindowEffectLight.cpp",
+            "blob": "3367459f88b91fa7873ba32f0952e5248ec4b8dc"
+          },
+          {
+            "row": 262,
+            "path": "src/pso/misc/TWindowFukidasi.cpp",
+            "blob": "0666de1a4e13ff6f413caccaa5ae4344c19cb2aa"
+          },
+          {
+            "row": 5992,
+            "path": "src/pso/misc/TWindowHelpItem_802540AC.cpp",
+            "blob": "b37ea7418a3ce43612a955dd6ccbaeb8676ea0f2"
+          },
+          {
+            "row": 5551,
+            "path": "src/pso/misc/TWindowHelpItem_80255AB4.cpp",
+            "blob": "708f2977d5d966c2573080731db2a5eba513932f"
+          },
+          {
+            "row": 5797,
+            "path": "src/pso/misc/TWindowHelpItem_8025A12C.cpp",
+            "blob": "07014e9685c5aa4486ae8a50eb49dec1f668cbee"
+          },
+          {
+            "row": 263,
+            "path": "src/pso/misc/TWindowKeyBoardBase_8008102C.cpp",
+            "blob": "56a250de2b147588b2be12efde5f0eaba5ceea97"
+          },
+          {
+            "row": 283,
+            "path": "src/pso/misc/TWindowKeyBoardSoft.cpp",
+            "blob": "a9a8b126b76551f6d627caaa14f825f95f9ecff9"
+          },
+          {
+            "row": 5674,
+            "path": "src/pso/misc/TWindowMainMenu.cpp",
+            "blob": "cdda1e869c568cbff743896e6921e8ca3fd1c5b8"
+          },
+          {
+            "row": 5555,
+            "path": "src/pso/misc/TWindowMainMenu_802AD538.cpp",
+            "blob": "c0c7b5e5470264c1ac642d9336679b9be173a0db"
+          },
+          {
+            "row": 5771,
+            "path": "src/pso/misc/TWindowMakeTeam_80264DF4.cpp",
+            "blob": "3f0b3a46469624f547372afd18f35e6215070341"
+          },
+          {
+            "row": 5559,
+            "path": "src/pso/misc/TWindowMeseta.cpp",
+            "blob": "877510c2bef54f83c09ace71e4c43af65b90f289"
+          },
+          {
+            "row": 5818,
+            "path": "src/pso/misc/TWindowMessage.cpp",
+            "blob": "cc4d0847bafe017f9ccfb1a218f55099758bbdda"
+          },
+          {
+            "row": 5565,
+            "path": "src/pso/misc/TWindowQuantity.cpp",
+            "blob": "52f3b17abfaafcdba6354b348ead3a3ad5924c5b"
+          },
+          {
+            "row": 5568,
+            "path": "src/pso/misc/TWindowShortListCtrl_8026E7DC.cpp",
+            "blob": "68fe4d017b9272498229330b98129a7feae87b9a"
+          },
+          {
+            "row": 5656,
+            "path": "src/pso/misc/TWindowSoundBalance.cpp",
+            "blob": "383a2d04a69107c413857cdefb8bc8c34a1d12e8"
+          },
+          {
+            "row": 5631,
+            "path": "src/pso/misc/TWindowSubAreaMapDisp.cpp",
+            "blob": "4b779b42609974611a9bed89e099910a9a788e19"
+          },
+          {
+            "row": 5829,
+            "path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+            "blob": "9eb07b0b38d68ed03fa2323258d803d9d4df08c4"
+          },
+          {
+            "row": 5854,
+            "path": "src/pso/misc/TWindowSubComCard_80265410.cpp",
+            "blob": "7f28b6c73aaa8cfbb044ac0788331406e2723f9a"
+          },
+          {
+            "row": 5941,
+            "path": "src/pso/misc/TWindowSubComCard_80271E7C.cpp",
+            "blob": "9ca0d5928dfb04eb206742d708874c9f6ebf58cf"
+          },
+          {
+            "row": 5773,
+            "path": "src/pso/misc/TWindowSubCustomEquip.cpp",
+            "blob": "f9050b3101f40dbb87f5dbb3bb7b180d2c3b6ddf"
+          },
+          {
+            "row": 5690,
+            "path": "src/pso/misc/TWindowSubCustomSelect.cpp",
+            "blob": "b2e710408f22b1c0f65d5192b14f02e7ee03e9b6"
+          },
+          {
+            "row": 5579,
+            "path": "src/pso/misc/TWindowSubEquip_80275C0C.cpp",
+            "blob": "ce2da0effccba08de5bd9273302a6d15cfd04f3d"
+          },
+          {
+            "row": 5903,
+            "path": "src/pso/misc/TWindowSubInformationBoard.cpp",
+            "blob": "ba87fd20acbddb4a2c658082bf286a27b2637ed2"
+          },
+          {
+            "row": 5956,
+            "path": "src/pso/misc/TWindowSubItem.cpp",
+            "blob": "258ee8d5f65954de05b26c7e477db478f8257c57"
+          },
+          {
+            "row": 5920,
+            "path": "src/pso/misc/TWindowSubMag.cpp",
+            "blob": "b14491810ea47ad0e8688ec520acc6218494f5d0"
+          },
+          {
+            "row": 5790,
+            "path": "src/pso/misc/TWindowSubMagPhoton.cpp",
+            "blob": "f42101a1c5370ee0b22badf0dd2281cd4a92eb24"
+          },
+          {
+            "row": 5581,
+            "path": "src/pso/misc/TWindowSubMag_802627D8.cpp",
+            "blob": "65d138086cd764118aad7660ae9c6ce10c7869c0"
+          },
+          {
+            "row": 5680,
+            "path": "src/pso/misc/TWindowSubQuestBoardSelect.cpp",
+            "blob": "3a133a7516b340ae660ace711e99cb0aa6b28d24"
+          },
+          {
+            "row": 5875,
+            "path": "src/pso/misc/TWindowSubShortCut.cpp",
+            "blob": "c3291dd420088e96f5bb39e46cd657c878346e42"
+          },
+          {
+            "row": 5583,
+            "path": "src/pso/misc/TWindowSubShortCutList.cpp",
+            "blob": "7185f9a3e20f67652daeaff09371a365a9a66b21"
+          },
+          {
+            "row": 292,
+            "path": "src/pso/misc/TWindowSubShortMail_8027E620.cpp",
+            "blob": "e29e89be2f179127d6cf19d6857ab083c007294c"
+          },
+          {
+            "row": 5752,
+            "path": "src/pso/misc/TWindowSubStatusDisp_80248BE8.cpp",
+            "blob": "dae107c459833f40704fda158b28cf0f94713395"
+          },
+          {
+            "row": 255,
+            "path": "src/pso/misc/TWindowSubSymbolChatHelp.cpp",
+            "blob": "a294c652737f388dbaa962204c5f356e3efa40b7"
+          },
+          {
+            "row": 254,
+            "path": "src/pso/misc/TWindowSubSymbolChatParts.cpp",
+            "blob": "c90f4ddcf0f12af227fadf4553217ea9afe438fd"
+          },
+          {
+            "row": 249,
+            "path": "src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp",
+            "blob": "912de17f60358c652c10b97ccda2ee79653fb4dc"
+          },
+          {
+            "row": 5592,
+            "path": "src/pso/misc/TWindowTimer.cpp",
+            "blob": "7aa4ea9dd578d8f15c1c198b78f114895d212937"
+          },
+          {
+            "row": 5652,
+            "path": "src/pso/misc/TWindowUserSort.cpp",
+            "blob": "f6b0047ed87c9da5423766412f2109d5c41ca9d5"
+          },
+          {
+            "row": 4089,
+            "path": "src/pso/player/TObjPlayer_80011014.cpp",
+            "blob": "fbf22f3f6c3e2cd97cac0128f9986e7b2b4bf06c"
+          },
+          {
+            "row": 6751,
+            "path": "src/pso/quest/TQuestThread.cpp",
+            "blob": "0168725a90d6ef874018987ba48712a8b804563d"
+          },
+          {
+            "row": 2658,
+            "path": "src/pso/ui/TAdEnterPPPPassGC.cpp",
+            "blob": "ef6ede73e464b1351aef3600d04d1dcb000a07c9"
+          },
+          {
+            "row": 2598,
+            "path": "src/pso/ui/TAdEnterPasswordGC.cpp",
+            "blob": "f9a42997bce9a1d0d32ebf6a29857c0234207673"
+          },
+          {
+            "row": 2714,
+            "path": "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+            "blob": "3e1cc1bf15dd3d958256b0b27f720b9889c5c9f6"
+          },
+          {
+            "row": 5596,
+            "path": "src/pso/ui/TWindowRoom.cpp",
+            "blob": "7123b588a7b84d027ad36c191b891c935d26f018"
+          },
+          {
+            "row": 6032,
+            "path": "src/pso/unk/text_80076BC4.cpp",
+            "blob": "763b528d683d811bf25043bac3ea0e92ce516adf"
+          },
+          {
+            "row": 5607,
+            "path": "src/pso/unk/text_801C23A8.cpp",
+            "blob": "26ea02d8abf3f76ec1e97c1703dec7f6b4e0a722"
+          },
+          {
+            "row": 5609,
+            "path": "src/pso/unk/text_80249004.cpp",
+            "blob": "24938ca803aab2599e5fbf8d228e1d9eae43bf93"
+          }
+        ]
+      },
+      "dbbed3a5653f4bff1139624481e2f668daef2fbd": {
+        "subject": "Share the typed LaunchDol declaration",
+        "final_fork_blobs": [
+          {
+            "row": 2344,
+            "path": "src/pso/unk/text_8042EAD4.cpp",
+            "blob": "bf0c778b8d2fe508e74eb0f825e43ca46e55d1d7"
+          }
+        ]
+      },
+      "585dcbb4aedf9ecac717d03c5d3855967a77a69c": {
+        "subject": "Link the MSL character and C locale units",
+        "final_fork_blobs": [
+          {
+            "row": 2633,
+            "path": "src/pso/menu/TAdEndText.cpp",
+            "blob": "8491a27c5403bbd1202db3f5bb9ec4d40661660f"
+          }
+        ]
+      },
+      "7d787408f9bb2dcbd334a2d744e0a330c91fb679": {
+        "subject": "Recover the Dark Falz state constant pool",
+        "final_fork_blobs": [
+          {
+            "row": 794,
+            "path": "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+            "blob": "d255f4c5ec41a270b9e3de174390866707db668a"
+          }
+        ]
+      },
+      "d5aaa294537bd999f4ab85e95919dae68217f152": {
+        "subject": "Merge pull request #600 from matthewlewisnewton/codex/complete-unit-01a1ebae",
+        "final_fork_blobs": [
+          {
+            "row": 762,
+            "path": "src/pso/boss/TBoss1DragonEffTail.cpp",
+            "blob": "76df9fc6e09432d4e03ae8a1b205eb49efbb9a41"
+          },
+          {
+            "row": 734,
+            "path": "src/pso/boss/TObjBoss1Crater.cpp",
+            "blob": "c285e7dca6901a5f1b7b4f6c50b883ac2b229118"
+          }
+        ]
+      },
+      "9b24fcb426eae72e8d50569f583699b66cc88271": {
+        "subject": "Link the Dark Falz effect constant pool from C++",
+        "final_fork_blobs": [
+          {
+            "row": 1069,
+            "path": "src/pso/ui/TObjDFJisin.cpp",
+            "blob": "fc01b1d18149bb230443949b469a832b8e0fe3a3"
+          }
+        ]
+      },
+      "22b509a66534a2073d8b0bba939ff82c91261d57": {
+        "subject": "Merge pull request #592 from matthewlewisnewton/codex/link-download-graph-coordinates",
+        "final_fork_blobs": [
+          {
+            "row": 4901,
+            "path": "src/pso/misc/TDLGraph.cpp",
+            "blob": "cca4f50ea8e83db5ebd57e03bc3a119acb39b6f2"
+          }
+        ]
+      },
+      "03bfcdebe7e5531e4501ddd867b0b5743eab4c96": {
+        "subject": "Link Sinow Zoa scalar constant unit",
+        "final_fork_blobs": [
+          {
+            "row": 814,
+            "path": "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+            "blob": "0a55041069ef21a8bf06622fa2696c59f98f24f2"
+          }
+        ]
+      },
+      "63f6515a321072cc0e3e3c207825269d8f2cec44": {
+        "subject": "Link the complete Df2 Bringer scalar constant unit",
+        "final_fork_blobs": [
+          {
+            "row": 986,
+            "path": "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+            "blob": "cf5aa0bccdb09dda9e5e33834fac1393438c7079"
+          }
+        ]
+      },
+      "c7d835cf0e33d7a098a34d1b1f3618af53c57a49": {
+        "subject": "Own enemy resource state and DellBiter effect constants",
+        "final_fork_blobs": [
+          {
+            "row": 1114,
+            "path": "src/pso/enemy/TObjEneBm3Fly.cpp",
+            "blob": "e3935c2f0347368fb245b0e5c2d8c510a8475574"
+          },
+          {
+            "row": 589,
+            "path": "src/pso/enemy/TObjEneMe1Canadin.cpp",
+            "blob": "0c982ac6d9c5730b1b51fbac6f3f85392ad3f623"
+          }
+        ]
+      },
+      "f3b2c7c9e523cb5c62bf6b8d800a7034d9219667": {
+        "subject": "Complete TQuadSpriteNormal renderer and owned data",
+        "final_fork_blobs": [
+          {
+            "row": 4906,
+            "path": "src/pso/misc/TQuadSpriteNormal.cpp",
+            "blob": "58394422948b57f969aefa3dfc1a198f57391dda"
+          }
+        ]
+      },
+      "8b79a4a46a3b2a7b7366ee14bd6676d2849d557c": {
+        "subject": "Merge pull request #576 from matthewlewisnewton/codex/data-ownership-part4-shop-20261116",
+        "final_fork_blobs": [
+          {
+            "row": 4387,
+            "path": "src/pso/misc/TShopGenerator.cpp",
+            "blob": "643d4b657631ebaa155c530f2065d457f20de191"
+          }
+        ]
+      },
+      "2edcf46223c138485af4e62f198618d75d8cef80": {
+        "subject": "Merge pull request #574 from matthewlewisnewton/codex/fork-complete-player-801af2f0-20261116",
+        "final_fork_blobs": [
+          {
+            "row": 3818,
+            "path": "src/pso/player/TObjPlayer_801BE1C0.cpp",
+            "blob": "bbce91fd32608d78a24a0395782cd80310dda60b"
+          },
+          {
+            "row": 3821,
+            "path": "src/pso/player/TObjPlayer_801BE778.cpp",
+            "blob": "de4b0d65d17c8fc68ae4b626b6840ae425c281ec"
+          },
+          {
+            "row": 4142,
+            "path": "src/pso/player/TObjPlayer_801D84CC.cpp",
+            "blob": "2761c0648d601fbeb6e6b23dfe107b7892e8f1f1"
+          },
+          {
+            "row": 4490,
+            "path": "src/pso/unk/text_801D94C8.cpp",
+            "blob": "b1961db9bb58379d7d45903e046c13d090be2c60"
+          }
+        ]
+      },
+      "209b405e16fe1b902d07ce8be5e07685c064f17c": {
+        "subject": "Recover the complete Boss 7 dust controller and scalar pool",
+        "final_fork_blobs": [
+          {
+            "row": 4376,
+            "path": "src/pso/item/TItemEffectWeapon.cpp",
+            "blob": "2ce68a438257c87961b071ef2f067b5787129712"
+          },
+          {
+            "row": 4473,
+            "path": "src/pso/unk/text_80357058.cpp",
+            "blob": "d227d37a4e201c919307d753509913605de17837"
+          }
+        ]
+      },
+      "55b291610c6f35632243b520b4d1c732447da3e4": {
+        "subject": "Recover and link the complete Rico ring unit",
+        "final_fork_blobs": [
+          {
+            "row": 2208,
+            "path": "src/pso/menu/TAdRicoRing.cpp",
+            "blob": "e765f696655a5f254ac41ac805980e0277d8b0aa"
+          }
+        ]
+      },
+      "77e3ecc8ce242e4a329b16f2c7216ee85814dfd3": {
+        "subject": "Merge pull request #539 from matthewlewisnewton/codex/fork-semantic-technique-sound",
+        "final_fork_blobs": [
+          {
+            "row": 4326,
+            "path": "src/pso/misc/TTecBarta.cpp",
+            "blob": "bdbec13e4ea3ef5abd55928622a45f6faf41bec0"
+          },
+          {
+            "row": 4286,
+            "path": "src/pso/misc/TTecGiBarta.cpp",
+            "blob": "a1084122bb00057f71cab50f897d9dea4b1b00ba"
+          },
+          {
+            "row": 4388,
+            "path": "src/pso/misc/TTecMegid.cpp",
+            "blob": "8087a5a9dd8132254ef1ee7667ccca5bc57342ae"
+          }
+        ]
+      },
+      "b6c0091f1d91f3f3dc48b71ed071ee79de8da843": {
+        "subject": "Merge pull request #534 from matthewlewisnewton/codex/fork-semantic-window-dispatch",
+        "final_fork_blobs": [
+          {
+            "row": 6058,
+            "path": "src/pso/misc/TLobby_800726F0.cpp",
+            "blob": "a04272b79619b702896b0ed12d841c2207ab86cd"
+          },
+          {
+            "row": 6061,
+            "path": "src/pso/misc/TLobby_80299A60.cpp",
+            "blob": "0766843ced525af865d493b153f9cbdc4732448d"
+          },
+          {
+            "row": 3637,
+            "path": "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp",
+            "blob": "72ea0153fd4c31f93fba6286203ffa242c5c755f"
+          },
+          {
+            "row": 2259,
+            "path": "src/pso/misc/TQuestListOnline_802150E8.cpp",
+            "blob": "1b66c01a8b92a4f21e2e252952fff182ac68277d"
+          },
+          {
+            "row": 2262,
+            "path": "src/pso/misc/TShopSequence.cpp",
+            "blob": "33c7158d610c48ad5b44a039b0293d9d8c91a27e"
+          },
+          {
+            "row": 2269,
+            "path": "src/pso/player/THunterGuildSeqOnlineTask.cpp",
+            "blob": "3c13027d2ed37f2675b55eabed32b4bfb47684f3"
+          },
+          {
+            "row": 4184,
+            "path": "src/pso/unk/text_801A9CB8.cpp",
+            "blob": "fe5a28453359b06503463770caf65cb44e1eaca4"
+          },
+          {
+            "row": 6055,
+            "path": "src/pso/unk/text_802233F8.cpp",
+            "blob": "7110a118749129e9f06e89e2456d60e617bdfdd4"
+          }
+        ]
+      },
+      "0519528f068369f40b79889d42ab13cfd9eae601": {
+        "subject": "Merge pull request #560 from matthewlewisnewton/codex/data-float-publish-v2-interface-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 2728,
+            "path": "src/pso/misc/TLobby_80226070.cpp",
+            "blob": "c5170f519c387f6934a6c450c926968603849441"
+          },
+          {
+            "row": 5844,
+            "path": "src/pso/misc/TWindowSubStatusDisp_80338740.cpp",
+            "blob": "53d0de8c6dad30a341ada0c7c14a391746b875a8"
+          }
+        ]
+      },
+      "c5af7314cae29509d74e1935486f3be199b80825": {
+        "subject": "Share PPP configure records and option mapping",
+        "final_fork_blobs": [
+          {
+            "row": 2959,
+            "path": "include/pso/protocol/PppConfigure.h",
+            "blob": "d615bb15c8dbc5a859ef4df0e1f4be8262df465a"
+          }
+        ]
+      },
+      "50968f7c39024a7437087909cbc839f6f962f09f": {
+        "subject": "Expose shared scalar clamped-step functions",
+        "final_fork_blobs": [
+          {
+            "row": 4165,
+            "path": "src/pso/player/TObjPlayer_80326578.cpp",
+            "blob": "a40a44499d076e98ba22149bf2e20c6674d56570"
+          },
+          {
+            "row": 4172,
+            "path": "src/pso/player/TObjPlayer_80357734.cpp",
+            "blob": "a7764ef6e3cddf0813d6d015ccfbc68150500c42"
+          }
+        ]
+      },
+      "2844a6975d96ed931564b16027cdf166fd9fd6f0": {
+        "subject": "Merge pull request #558 from matthewlewisnewton/codex/data-float-publish-v2-world-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 1185,
+            "path": "src/pso/misc/TCameraCtrl_8006782C.cpp",
+            "blob": "7f822627df2ce5fb8b5fc774e17e288256793389"
+          },
+          {
+            "row": 5111,
+            "path": "src/pso/misc/TCameraCtrl_80067CE8.cpp",
+            "blob": "8e4cc83005d4fd7d8aed1b482c5558b9695995e9"
+          },
+          {
+            "row": 5103,
+            "path": "src/pso/misc/TCameraCtrl_8006C8E4.cpp",
+            "blob": "d2c520c24d14a0acfc600c5643ec99b9bf0329ed"
+          },
+          {
+            "row": 3632,
+            "path": "src/pso/misc/TCameraCtrl_80082FCC.cpp",
+            "blob": "032c77a865365dcc6879ed1910fd7e4b72e736a8"
+          },
+          {
+            "row": 6697,
+            "path": "src/pso/npc/TObjNpcKenkyuW.cpp",
+            "blob": "360eea38855d8f9f94d775b22dd5f1b36068a53f"
+          },
+          {
+            "row": 7085,
+            "path": "src/pso/object/TObjBase.cpp",
+            "blob": "17cfcb45579396b09daa4700b7429a46df2fba88"
+          },
+          {
+            "row": 6723,
+            "path": "src/pso/object/TObjControl.cpp",
+            "blob": "3e7cf10fbf6db18ba0737872ec1e7c5719722ac2"
+          }
+        ]
+      },
+      "40da6942792cff09e6567522b0f7a0048dba84c9": {
+        "subject": "Recover shared boss action packet ownership",
+        "final_fork_blobs": [
+          {
+            "row": 743,
+            "path": "include/pso/boss/TBoss8Dragon.h",
+            "blob": "11c11480a361683d3ed37b1ff37d00d165155121"
+          }
+        ]
+      },
+      "7fb30679530ab8abb13f5124befc48e5a3d80462": {
+        "subject": "Merge pull request #556 from matthewlewisnewton/codex/data-float-publish-menus-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 2458,
+            "path": "src/pso/menu/TAdMultiOkGC.cpp",
+            "blob": "b3162fcc215c506026d42e26e5f98710ae7f3fd1"
+          },
+          {
+            "row": 2399,
+            "path": "src/pso/misc/TChCrTag.cpp",
+            "blob": "93fdfa88e4b46a7f16dbb440f0e7de0b95686301"
+          },
+          {
+            "row": 2216,
+            "path": "src/pso/misc/TChCrTagInformationStr.cpp",
+            "blob": "21a5474add5182110999d0f964e7dc941e7e8ad2"
+          },
+          {
+            "row": 2517,
+            "path": "src/pso/misc/TChCrTagPlBack.cpp",
+            "blob": "b7410e2468f50fc73696020b62b54e432e1d6a16"
+          },
+          {
+            "row": 2218,
+            "path": "src/pso/misc/TChCrTagPlGraphic.cpp",
+            "blob": "00a2e00dff340f3f8a261f2e02f2e2afa3f116e0"
+          },
+          {
+            "row": 2484,
+            "path": "src/pso/misc/TMainCursor.cpp",
+            "blob": "9b9ff55eccd8efd5563fe567cef0b8867084dbdd"
+          },
+          {
+            "row": 2438,
+            "path": "src/pso/ui/TAdChrSelASlotGC.cpp",
+            "blob": "43ad9084df6070c05ae1847544973cd6a2ae8b79"
+          },
+          {
+            "row": 2350,
+            "path": "src/pso/ui/TAdChrSelPlyPlateGC.cpp",
+            "blob": "110d1ee77a90dbac04157a7372bd99713036b2c9"
+          },
+          {
+            "row": 2351,
+            "path": "src/pso/ui/TAdGameStartLineGC.cpp",
+            "blob": "060ad4b6117e16018230ae392fce9be4f5e50eb2"
+          },
+          {
+            "row": 2296,
+            "path": "src/pso/ui/TAdPlyPltAnimGC.cpp",
+            "blob": "13795f7266f0a45019be72cc587ede2f43284934"
+          },
+          {
+            "row": 2414,
+            "path": "src/pso/ui/TAdSEGAlogo_8001BF4C.cpp",
+            "blob": "ae22daaa48c4c0496338d9cef5e3fc9041795975"
+          },
+          {
+            "row": 2409,
+            "path": "src/pso/ui/TAdSelectTxtSubGC.cpp",
+            "blob": "a076d85197588a6f495b223d5ee9574a032599ff"
+          },
+          {
+            "row": 2587,
+            "path": "src/pso/ui/TAdYesNoBaseGC.cpp",
+            "blob": "e764179807d9eb7d35b27c98955e5b0d3cedaf9f"
+          },
+          {
+            "row": 2317,
+            "path": "src/pso/unk/text_8029A6EC.cpp",
+            "blob": "0edd465b451250bb3dfa5c7c772ec71927a802ac"
+          }
+        ]
+      },
+      "d93950192836d7697fb9dba4c12578efb0771448": {
+        "subject": "Merge pull request #551 from matthewlewisnewton/codex/data-r3-batch-enemy-boss-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 1053,
+            "path": "src/pso/enemy/DarkGunner.cpp",
+            "blob": "4cec24062553c780dd8e544c433ab406cb6a11c6"
+          },
+          {
+            "row": 1116,
+            "path": "src/pso/enemy/SaverLifecycle.cpp",
+            "blob": "9b93715c06d40111f6e840a5990c2cca6223a41c"
+          },
+          {
+            "row": 1167,
+            "path": "src/pso/enemy/TObjEneBm5GibonU.cpp",
+            "blob": "4d5d56979e94408e4295f269d67f027493758b30"
+          },
+          {
+            "row": 895,
+            "path": "src/pso/enemy/TObjEneDellBiter.cpp",
+            "blob": "70b5246189af3644d537175fee37370e88288a08"
+          },
+          {
+            "row": 587,
+            "path": "src/pso/enemy/TObjEneGibbles.cpp",
+            "blob": "8ecc03c535278f7145e7287561c0843630c081e1"
+          },
+          {
+            "row": 956,
+            "path": "src/pso/enemy/TObjEneIllGill.cpp",
+            "blob": "1a8dd20059a86c4193c758cd520f6d36f5b1c4bb"
+          },
+          {
+            "row": 948,
+            "path": "src/pso/enemy/TObjEneLappy.cpp",
+            "blob": "9e1eda396ee1c70e8ea5d0cd08b3d4b2513c0655"
+          },
+          {
+            "row": 591,
+            "path": "src/pso/enemy/TObjEneMe1GiGue.cpp",
+            "blob": "7dd40a4be413aebf2c1586cc0ea3d5d8a76924c7"
+          },
+          {
+            "row": 778,
+            "path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+            "blob": "8697ef118f28d96e1d89e81ce84938ab05cb452b"
+          },
+          {
+            "row": 598,
+            "path": "src/pso/enemy/TObjEneMerillLia.cpp",
+            "blob": "fa20f8e7140153e46010214c05a5c69d119c932b"
+          },
+          {
+            "row": 1015,
+            "path": "src/pso/enemy/TObjEneNanoDrago.cpp",
+            "blob": "3ba453e699bded654706ace7b9bf222202fe8e5b"
+          },
+          {
+            "row": 1168,
+            "path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+            "blob": "4f07f4646222e4b4861a3b593136463172561c37"
+          }
+        ]
+      },
+      "af7d414957b93aebdec13a141aa47be858131101": {
+        "subject": "Merge pull request #559 from matthewlewisnewton/codex/data-float-publish-v2-combat-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 3600,
+            "path": "src/pso/item/TItemList_801D3780.cpp",
+            "blob": "4a0dae25b4590763e8bf01967d532385d5b02638"
+          },
+          {
+            "row": 4074,
+            "path": "src/pso/item/TItemTimer.cpp",
+            "blob": "dc05892033bee9bff71f2e62af34e5c7e0ce022f"
+          },
+          {
+            "row": 4244,
+            "path": "src/pso/misc/TTecGiFoie.cpp",
+            "blob": "c9626629cb44adf2413ffd5cc9e0ea56ce2017d6"
+          },
+          {
+            "row": 4302,
+            "path": "src/pso/misc/TTecGiZonde.cpp",
+            "blob": "b36f239c07169e429f4bc3c294f072af1a1fc175"
+          },
+          {
+            "row": 4417,
+            "path": "src/pso/misc/TTecLuker.cpp",
+            "blob": "e2a939247e89ff8100f52530109415e14d95a0ea"
+          },
+          {
+            "row": 4327,
+            "path": "src/pso/misc/TTecZonde.cpp",
+            "blob": "65a77e934feef6facc751b60247abc756a3f9fc9"
+          },
+          {
+            "row": 4085,
+            "path": "src/pso/player/PhotonBlastResults.cpp",
+            "blob": "c449ad973133f61482029c6f1855f7f903561809"
+          },
+          {
+            "row": 4104,
+            "path": "src/pso/player/TObjPlayer_800BBE90.cpp",
+            "blob": "a346365487bdd3ec6f25976fd43054ea8b1a752c"
+          },
+          {
+            "row": 698,
+            "path": "src/pso/player/TObjPlayer_800D8FDC.cpp",
+            "blob": "9b641ea59daae6c2f85754922810c4808295af8f"
+          },
+          {
+            "row": 4106,
+            "path": "src/pso/player/TObjPlayer_800DCC90.cpp",
+            "blob": "e762f265703e3943d594f0a115e6fdc6079a96a1"
+          },
+          {
+            "row": 4113,
+            "path": "src/pso/player/TObjPlayer_8011C000.cpp",
+            "blob": "b9030514bd797400394418e4c982d3c4edfa7571"
+          },
+          {
+            "row": 3018,
+            "path": "src/pso/player/TObjPlayer_80309D80.cpp",
+            "blob": "039aa8084e9cf70acbd9e83829f194d0b3d2eebe"
+          },
+          {
+            "row": 4167,
+            "path": "src/pso/player/TObjPlayer_8033E910.cpp",
+            "blob": "b0c47f784d68d1465a092761986119c44ef28478"
+          },
+          {
+            "row": 5116,
+            "path": "src/pso/unk/text_800DC420.cpp",
+            "blob": "a1b563c2e6e151c7ff98023f1d95d9f6b2f91b72"
+          },
+          {
+            "row": 4515,
+            "path": "src/pso/unk/text_8022BE64.cpp",
+            "blob": "9e1c0cae34c2f8dc69e17da14609f47eab67289a"
+          }
+        ]
+      },
+      "87350c6fd6365a6ab784e968aca42a7262f0e03b": {
+        "subject": "Merge pull request #557 from matthewlewisnewton/codex/data-float-publish-v2-actors-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 995,
+            "path": "src/pso/boss/TBoss6SwordShot.cpp",
+            "blob": "a7b1a55cacadc16b677a73a24b55e14f405545c2"
+          },
+          {
+            "row": 521,
+            "path": "src/pso/boss/TBoss6Type1.cpp",
+            "blob": "03e7d76a5de112a47beb2df7f5dd1ce14823f9c2"
+          },
+          {
+            "row": 843,
+            "path": "src/pso/boss/TBoss8DragonEffTail.cpp",
+            "blob": "3a8399460a8aa65c9256f159b1ad8373ad8f8126"
+          },
+          {
+            "row": 586,
+            "path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+            "blob": "821cef564d0f9fa8e44b7e09ae822515a9e32b91"
+          },
+          {
+            "row": 604,
+            "path": "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp",
+            "blob": "8144757b5ddecc5d9ffa25bca48d4808e347fab9"
+          },
+          {
+            "row": 608,
+            "path": "src/pso/enemy/TObjEneRe7Berura.cpp",
+            "blob": "ae876a8fb38bf255b59257ae781da1bb29459297"
+          },
+          {
+            "row": 621,
+            "path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+            "blob": "7d38c5df45683dd460878ad403b8640d1d3960e9"
+          },
+          {
+            "row": 629,
+            "path": "src/pso/enemy/TObjEneRecon_8031DFD0.cpp",
+            "blob": "7c54c032c4cea20d94c41b0c7d82a25d24e74d11"
+          },
+          {
+            "row": 4980,
+            "path": "src/pso/misc/TEneEffHamon.cpp",
+            "blob": "32fa0aa44082b701177c8f648daaa3f4d19f9091"
+          },
+          {
+            "row": 701,
+            "path": "src/pso/unk/text_800C3088.cpp",
+            "blob": "67d96c6c80423daa4b519bb701ea7317999e23c6"
+          }
+        ]
+      },
+      "80c841fffb763db04961f50ab07adb95352fc5cc": {
+        "subject": "Merge pull request #552 from matthewlewisnewton/codex/data-r3-batch-interface-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 842,
+            "path": "src/pso/boss/TObjBoss2Tunnel.cpp",
+            "blob": "8760f4138328318c3ee9f70f2e4f5241d8cfbc91"
+          },
+          {
+            "row": 2229,
+            "path": "src/pso/misc/TLockOnCursor_8013D91C.cpp",
+            "blob": "6864c0e71c970c2f32cd74c055e2a7fd33e8934b"
+          },
+          {
+            "row": 2681,
+            "path": "src/pso/ui/TAdMultiChgGameModeGC_8023EAC4.cpp",
+            "blob": "07513c966a1eb016bb56f51fb64cbc0164727bad"
+          }
+        ]
+      },
+      "2f7662f765725b98e31028e6ac10ef130365e5eb": {
+        "subject": "Merge pull request #550 from matthewlewisnewton/codex/data-r3-batch-world-objects-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 6451,
+            "path": "src/pso/misc/TOTrapAncient02.cpp",
+            "blob": "afdf046415827444fa01078d0cc95d5ab28f0b93"
+          },
+          {
+            "row": 6452,
+            "path": "src/pso/misc/TOTrapSeabed01.cpp",
+            "blob": "e73f6eda3d027b50cf73359e7e52ab7d20a96689"
+          }
+        ]
+      },
+      "c57bf1285f367e458f61ed73b9626c5ff476097d": {
+        "subject": "Merge pull request #546 from matthewlewisnewton/codex/data-r3-batch-resource-loading-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 5328,
+            "path": "src/pso/misc/TLobby_8001EF5C.cpp",
+            "blob": "1a190efb09543834a02b379bec0449dc9ccbc625"
+          },
+          {
+            "row": 5332,
+            "path": "src/pso/unk/text_800FA464.cpp",
+            "blob": "e1a51dd7225aef368535e9cffabf0d5e53da6666"
+          }
+        ]
+      },
+      "d2310aa8ad48c618309531516d48c87872b1c102": {
+        "subject": "Merge pull request #549 from matthewlewisnewton/codex/data-r3-batch-network-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 308,
+            "path": "src/pso/misc/TLobby_801461EC.cpp",
+            "blob": "1f39e3da33f38b4677c002fbcb780a91e1d31a96"
+          },
+          {
+            "row": 5087,
+            "path": "src/pso/misc/TLobby_803382E4.cpp",
+            "blob": "7250f2b2e897e6682c664111a44280c0706f4108"
+          },
+          {
+            "row": 2976,
+            "path": "src/pso/network/NetworkMessageTransport.cpp",
+            "blob": "02e0268851d3acc6cbcded991c72d9305350c224"
+          }
+        ]
+      },
+      "822f03515b1d482e99d1f0ac29be6bbe9546c0d2": {
+        "subject": "Merge pull request #547 from matthewlewisnewton/codex/data-r3-batch-quests-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 6027,
+            "path": "src/pso/misc/TLobby_80207DA8.cpp",
+            "blob": "b9046111f3a26b621237f041da76d19926230ff8"
+          },
+          {
+            "row": 7259,
+            "path": "src/pso/misc/TQuestVmDownLoadServer.cpp",
+            "blob": "00f14842754842baec632e077873c97b0b02879f"
+          }
+        ]
+      },
+      "8bcf9412113e44360967996be67fbf7b5f7fdb8b": {
+        "subject": "Merge pull request #555 from matthewlewisnewton/codex/data-r3-batch-gameplay-state-20261114",
+        "final_fork_blobs": [
+          {
+            "row": 4964,
+            "path": "src/pso/misc/PhotonBlastSummon.cpp",
+            "blob": "7beb1d4e3329b3e3657a45b1c626e23e33f72bd6"
+          }
+        ]
+      },
+      "f5e2d8431a9941cad7af49585c234c39b89ee018": {
+        "subject": "Recover text_801036CC string ownership",
+        "final_fork_blobs": [
+          {
+            "row": 3088,
+            "path": "src/pso/unk/text_801036CC.cpp",
+            "blob": "35c26b76373a2d82cec86a1f1714f3f605f2be32"
+          }
+        ]
+      },
+      "0dab6285d3325fd8b27c30bf297b2da86720ef16": {
+        "subject": "Recover item drop cache state scalars",
+        "final_fork_blobs": [
+          {
+            "row": 4424,
+            "path": "src/pso/item/TItemDrop_80105D0C.cpp",
+            "blob": "5da37b564e0cb0fa99fef5bb9a6d133bf5941a4c"
+          }
+        ]
+      },
+      "8695395927072c1459eb9d7cbd1b53f337ad6621": {
+        "subject": "Own default fog parameter storage",
+        "final_fork_blobs": [
+          {
+            "row": 5039,
+            "path": "src/pso/misc/TFogCtrl.cpp",
+            "blob": "f511193e163a8037d3ed942bebfa1bd639702b9b"
+          }
+        ]
+      },
+      "8ea73579a6f728d471531820a778c93ab148727c": {
+        "subject": "Recover debug float formatting text",
+        "final_fork_blobs": [
+          {
+            "row": 1183,
+            "path": "src/pso/unk/text_803D8098.cpp",
+            "blob": "01cb209f1e087a8f3d5a07e108c083128af87819"
+          }
+        ]
+      },
+      "5c3ca01d689b680db465cc8c2d0207a505468401": {
+        "subject": "Recover radar projection scalars",
+        "final_fork_blobs": [
+          {
+            "row": 2602,
+            "path": "src/pso/misc/TRaderMapCore.cpp",
+            "blob": "c27af0443118ad9c7dfb819dbf776518aa3fd830"
+          }
+        ]
+      },
+      "6751ab2252ef2a42618ff0449f781eb33bb190a9": {
+        "subject": "Recover rendering state scalars",
+        "final_fork_blobs": [
+          {
+            "row": 5107,
+            "path": "src/pso/misc/TLobby_801E2F94.cpp",
+            "blob": "f99f52713bae7e58b4a688bdea43e58d5afa3fb4"
+          }
+        ]
+      },
+      "c93a2fe09c8f6b71b8edbcc834a7b6fb903cdec4": {
+        "subject": "Recover TPhotonPilla adjacent string ownership",
+        "final_fork_blobs": [
+          {
+            "row": 5016,
+            "path": "src/pso/misc/TPhotonPilla.cpp",
+            "blob": "d06385fec926cec25c67594f32a60187f75ae251"
+          }
+        ]
+      },
+      "4ad61599eeacfab62c20486d27a9133022c92202": {
+        "subject": "Recover TPhotonGolla adjacent string ownership",
+        "final_fork_blobs": [
+          {
+            "row": 5032,
+            "path": "src/pso/misc/TPhotonGolla.cpp",
+            "blob": "fdf024fd4f5228f63e5ec2180c36ef493e1ea2e4"
+          }
+        ]
+      },
+      "02180f71a34cb6c23d692febe9b788228c75a9ba": {
+        "subject": "Recover TPhotonFarlla adjacent string ownership",
+        "final_fork_blobs": [
+          {
+            "row": 5027,
+            "path": "src/pso/misc/TPhotonFarlla.cpp",
+            "blob": "9b16f391e100c6c92650c0a8dd8747a9a119b5d2"
+          }
+        ]
+      },
+      "8bc2c53321dd60d8631be12bba5eb853a6dc401d": {
+        "subject": "Recover TPhotonEstlla adjacent string ownership",
+        "final_fork_blobs": [
+          {
+            "row": 4968,
+            "path": "src/pso/misc/TPhotonEstlla.cpp",
+            "blob": "0620d6882a637ebcfcd925412a9daa28b837d2a5"
+          }
+        ]
+      },
+      "34a8d639e6a1a22f620b5faa2af4932d346cf2b5": {
+        "subject": "Recover typed creation-menu icon animation interfaces",
+        "final_fork_blobs": [
+          {
+            "row": 2507,
+            "path": "src/pso/misc/TChCrEffTag.cpp",
+            "blob": "188cf0e5ae216900e971a88bcb4df1daf85b766a"
+          }
+        ]
+      },
+      "4adc98a477864d16fe662245e029ab91587fc7ca": {
+        "subject": "Recover camera capture state with natural effect alignment tail",
+        "final_fork_blobs": [
+          {
+            "row": 3653,
+            "path": "src/pso/player/TObjPlayer_80083B38.cpp",
+            "blob": "16d4fc5b063e497356a90a6ddf29293058389796"
+          }
+        ]
+      },
+      "97fefaad657658df4e71eee3227da364b48c2cda": {
+        "subject": "Recover light count storage",
+        "final_fork_blobs": [
+          {
+            "row": 7282,
+            "path": "src/pso/object/TObjLight_80133568.cpp",
+            "blob": "0d412eea6474b731944dc61df7b6d4f5b521e28e"
+          }
+        ]
+      },
+      "4ab13a87f96c988f32001bc2bac3d2fbe1981d8d": {
+        "subject": "Recover TObjEneBeast resource filename strings",
+        "final_fork_blobs": [
+          {
+            "row": 1026,
+            "path": "src/pso/enemy/TObjEneBeast.cpp",
+            "blob": "24ab3132c879b3a97efe943c387b83213191decf"
+          }
+        ]
+      },
+      "b60acb462802468cf7783e3cceb0d42ab4dbd31b": {
+        "subject": "Own Dimedian resource and draw tick arrays",
+        "final_fork_blobs": [
+          {
+            "row": 1055,
+            "path": "src/pso/enemy/TObjEneDimedian.cpp",
+            "blob": "64a00550db8820c2ed1edcfb530dd6461946b433"
+          }
+        ]
+      },
+      "6c26280584c7a3229b326bcbec32e10de8fe7a75": {
+        "subject": "Merge pull request #519 from matthewlewisnewton/codex/fork-complete-photon-leilla",
+        "final_fork_blobs": [
+          {
+            "row": 4873,
+            "path": "include/pso/misc/PhotonBlastSummon.h",
+            "blob": "71628ee5d8fdfe6426af23e32bf9924eed8f0252"
+          },
+          {
+            "row": 4979,
+            "path": "src/pso/misc/TPhotonLeilla.cpp",
+            "blob": "e0df5ec41a2ee069448a932882ad124568a80def"
+          },
+          {
+            "row": 5033,
+            "path": "src/pso/misc/TPhotonMylla.cpp",
+            "blob": "61ca6a926668e2e5193b1a2be4de6b7fc080de52"
+          },
+          {
+            "row": 4966,
+            "path": "src/pso/misc/TPhotonYoulla.cpp",
+            "blob": "ae1b3a1ccfd8160a15ecf15c043b404a26f9afbb"
+          }
+        ]
+      },
+      "8ec3197050d27d8d40925229da238b5a4bb16dae": {
+        "subject": "Merge pull request #456 from matthewlewisnewton/codex/fork-complete-boss7-behavior",
+        "final_fork_blobs": [
+          {
+            "row": 404,
+            "path": "include/pso/boss/TBoss7DeRolLeC.h",
+            "blob": "79dae8b9a561625d1130eaa42d9f23383cfe724b"
+          },
+          {
+            "row": 6779,
+            "path": "include/pso/object/TObjFish.h",
+            "blob": "c264155c650357c61090f6cea2f2e7d509164a63"
+          }
+        ]
+      },
+      "6c8a4533565ff9621a3a4770cc1de11365d23654": {
+        "subject": "Merge pull request #446 from matthewlewisnewton/codex/fork-complete-unit-01a1c945",
+        "final_fork_blobs": [
+          {
+            "row": 4236,
+            "path": "include/pso/misc/TTecRaFoie.h",
+            "blob": "949d28ea91cf4bcc287626d66ee4d4f3108a1cac"
+          },
+          {
+            "row": 1139,
+            "path": "src/pso/boss/TBoss4Zanzo.cpp",
+            "blob": "fd511daf20f97080605aa30193864dec5526d394"
+          },
+          {
+            "row": 906,
+            "path": "src/pso/boss/TBoss6PlotFalz.cpp",
+            "blob": "b77e54ffbf137bc5d8a2c0af2de03da0e47b0c25"
+          },
+          {
+            "row": 4382,
+            "path": "src/pso/misc/TTecRaFoie.cpp",
+            "blob": "96f4878defecdbf739d4f2e86b639d6ebb133c67"
+          },
+          {
+            "row": 944,
+            "path": "src/pso/object/TObjDFHorming.cpp",
+            "blob": "d85122d26042e7f00fa6bc2172dc5d922c9d607c"
+          },
+          {
+            "row": 4360,
+            "path": "src/pso/unk/text_801BC194.cpp",
+            "blob": "9deee066e9f6622124f0d9b96a36475382dbc166"
+          }
+        ]
+      },
+      "98934aba0cfc88621cd68f12988ddf6ff3e36345": {
+        "subject": "Complete equipment menu helper scalar ownership",
+        "final_fork_blobs": [
+          {
+            "row": 5578,
+            "path": "src/pso/misc/TWindowSubEquip_80263AB0.cpp",
+            "blob": "b71321bfbddd15312e13c7f922cceffe19c7aed6"
+          }
+        ]
+      },
+      "c62451872486bf9812d1fa348f0e83cdf8bd9468": {
+        "subject": "Complete idle-update constant pool ownership",
+        "final_fork_blobs": [
+          {
+            "row": 3682,
+            "path": "src/pso/player/TObjPlayer_801225F8.cpp",
+            "blob": "4a2ef1f18e609ee02e1178f81d6f830c71ca407e"
+          }
+        ]
+      },
+      "bfec2fbc194de67580d35d48e2fa67c1d2f1fae4": {
+        "subject": "Merge pull request #485 from matthewlewisnewton/codex/fork-complete-native-unit-01a1d328",
+        "final_fork_blobs": [
+          {
+            "row": 3846,
+            "path": "src/pso/unk/text_80120568.cpp",
+            "blob": "3d78cd07b6be1585292089c3b6538c710f896332"
+          }
+        ]
+      },
+      "87f31a3790a06879b78ce096efd27571421c56d7": {
+        "subject": "Merge pull request #486 from matthewlewisnewton/codex/complete-unit-01a1d326",
+        "final_fork_blobs": [
+          {
+            "row": 4933,
+            "path": "src/pso/effect/TEffClitical.cpp",
+            "blob": "19b187087bea1f92b77ad68489fbdb1be2f0d858"
+          }
+        ]
+      },
+      "433d737d5c30a6ba2c0f949776216071c719b95f": {
+        "subject": "Complete TChCrEffWall data and typed sprite forwarding",
+        "final_fork_blobs": [
+          {
+            "row": 2751,
+            "path": "src/pso/unk/text_8029A97C.cpp",
+            "blob": "29ef9044460f2c15c227edc3e33df59d38d0c79a"
+          }
+        ]
+      },
+      "3717ee6db22cfd788f3555ef851b1dc18b3a0d35": {
+        "subject": "Recover native camera unit and source-link its vtable",
+        "final_fork_blobs": [
+          {
+            "row": 5026,
+            "path": "src/pso/misc/TCameraCtrl_8006B3D8.cpp",
+            "blob": "36f62917eb4d8b8cf171cbf8e706fd1eebe38995"
+          },
+          {
+            "row": 4897,
+            "path": "src/pso/misc/TCameraCtrl_8006BA68.cpp",
+            "blob": "bc993111d7cfe5f0f4d2e8df82cfb8bce9417092"
+          }
+        ]
+      },
+      "ba7e6b5ff3e6aa8814aa8d838dff1577cf9da3e6": {
+        "subject": "Merge pull request #467 from matthewlewisnewton/codex/complete-unit-01a1cc58",
+        "final_fork_blobs": [
+          {
+            "row": 7195,
+            "path": "include/pso/misc/TQuestVmDownLoadServer.h",
+            "blob": "4e0556e4208cb08535c1e50d4d1df7847c7e381d"
+          }
+        ]
+      },
+      "e84492aa75d70b1414bbd773d156745221629161": {
+        "subject": "Recover genuine Zako draw-buffer and producer vector types",
+        "final_fork_blobs": [
+          {
+            "row": 1171,
+            "path": "src/pso/boss/TBoss4Zako.cpp",
+            "blob": "164b95fba2effd645705b70d6d752d92c9c6551f"
+          }
+        ]
+      },
+      "83f33bda0e496b16132bab650d459d83c870f846": {
+        "subject": "Merge pull request #463 from matthewlewisnewton/codex/complete-unit-01a1cc57",
+        "final_fork_blobs": [
+          {
+            "row": 424,
+            "path": "include/pso/boss/TObjBoss2Tunnel.h",
+            "blob": "94a60a77897cb50e43c55c32921abf66e03996a7"
+          },
+          {
+            "row": 3999,
+            "path": "include/pso/player/TObjPlayer_80011014.h",
+            "blob": "bb068148fb9536caa434583f8c33946db62a09d7"
+          }
+        ]
+      },
+      "9ce6cb9e86b57031323473e32685e13a5df35b4a": {
+        "subject": "Complete and link the draw-line component",
+        "final_fork_blobs": [
+          {
+            "row": 2372,
+            "path": "src/pso/ui/TAdChrSelBSlotGC_8030ED88.cpp",
+            "blob": "5e7d2e7bb0bab55b993a064b2176e2e37d4d713b"
+          },
+          {
+            "row": 2483,
+            "path": "src/pso/ui/TAdSelectGameModeGC_802C4748.cpp",
+            "blob": "573843713e7505bd921ee02dd3a3b96e90103843"
+          }
+        ]
+      },
+      "f9d8799e6126f14fefffff8a35329e7bc05742ff": {
+        "subject": "Merge pull request #375 from matthewlewisnewton/codex/fork-fish-gap-20261109",
+        "final_fork_blobs": [
+          {
+            "row": 2557,
+            "path": "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+            "blob": "d1d588bc31ed5a07dccea564b3b74f529c4a4f04"
+          },
+          {
+            "row": 1129,
+            "path": "src/pso/boss/TBoss3Volopt.cpp",
+            "blob": "4cd2a25feaa5d69405638c20abe6a12bc2b29310"
+          },
+          {
+            "row": 1052,
+            "path": "src/pso/boss/TBoss3VoloptP01.cpp",
+            "blob": "8b3f50c4772ac1a673f343b855dd5a5e770be1f1"
+          },
+          {
+            "row": 1025,
+            "path": "src/pso/boss/TBoss3VoloptP02.cpp",
+            "blob": "4c850697eae08e1f20a18d497dd34edace844e78"
+          },
+          {
+            "row": 2523,
+            "path": "src/pso/boss/TBoss4Type2_80340160.cpp",
+            "blob": "a184def4c20b14a7ec53a9bc2a410784bf442987"
+          },
+          {
+            "row": 1149,
+            "path": "src/pso/boss/TBoss4Type3.cpp",
+            "blob": "ce7ee49a559ebc1d6e0e35f5b43ce0de27ffd5d4"
+          },
+          {
+            "row": 983,
+            "path": "src/pso/boss/TBoss6Mine.cpp",
+            "blob": "b4ec14c2a0ea000309dbc6c2621bf4cb6e1c96ef"
+          },
+          {
+            "row": 1164,
+            "path": "src/pso/boss/TBoss6Type2_8032E708.cpp",
+            "blob": "517c2dffe343a7542194479dca59f264936c8440"
+          },
+          {
+            "row": 689,
+            "path": "src/pso/boss/TUnk_80484AFC.cpp",
+            "blob": "ec1c016c7312dcb0a79543045f2390547e9f0fe5"
+          },
+          {
+            "row": 565,
+            "path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+            "blob": "c382ce1e7b7b40fc5ec8944ad476bd58503f88fa"
+          },
+          {
+            "row": 1027,
+            "path": "src/pso/enemy/TObjEneDelDepth.cpp",
+            "blob": "38e2a47ff4dd6b433197b7a36d5635d6d05f936e"
+          },
+          {
+            "row": 590,
+            "path": "src/pso/enemy/TObjEneMe1Gee.cpp",
+            "blob": "9196707382ae02c44b15f0ff7145d25daadb779c"
+          },
+          {
+            "row": 603,
+            "path": "src/pso/enemy/TObjEnePanarms.cpp",
+            "blob": "6bcff19609be0996994ea806e6deb15d3f9b2abe"
+          },
+          {
+            "row": 607,
+            "path": "src/pso/enemy/TObjEneRe2Flower_800C3E14.cpp",
+            "blob": "c307dc03f29a223a8c5b49f9046ee578754cf3d1"
+          },
+          {
+            "row": 635,
+            "path": "src/pso/enemy/TObjEneShark.cpp",
+            "blob": "64f23b7403dfc72eb1e2d85522bac1ec3509e2a0"
+          },
+          {
+            "row": 636,
+            "path": "src/pso/enemy/TObjEneSlimeOne_800EC394.cpp",
+            "blob": "757ff44b6a172bf787c9d36b9c9906873d75e4d6"
+          },
+          {
+            "row": 5063,
+            "path": "src/pso/misc/TBGLightningCtrl.cpp",
+            "blob": "db172b02dc3480103902c49d55013cfaf7cc91f5"
+          },
+          {
+            "row": 2436,
+            "path": "src/pso/misc/TChCrLoadAfs.cpp",
+            "blob": "8f724e0c7d5390418d0b7814936b47c14789442d"
+          },
+          {
+            "row": 2474,
+            "path": "src/pso/misc/TChCrLoadAfsTextureReq.cpp",
+            "blob": "e46b6e65a4632d110193ebc62b012d38652f9b95"
+          },
+          {
+            "row": 7208,
+            "path": "src/pso/misc/TContainerAncient01.cpp",
+            "blob": "1e629b7adfd8fe35e5d39a5dcd0f17e9dc4ec307"
+          },
+          {
+            "row": 4987,
+            "path": "src/pso/misc/TKomorebi.cpp",
+            "blob": "0cbb5d37d0b81a96303472c3babbe71aa2c1fb23"
+          },
+          {
+            "row": 5237,
+            "path": "src/pso/misc/TLanguage_801E4874.cpp",
+            "blob": "4e3086f13c25798d6be0fed0271658e38de5cbfc"
+          },
+          {
+            "row": 5329,
+            "path": "src/pso/misc/TLobby_800F9690.cpp",
+            "blob": "81b3ee507a482c1415ce42bf61c2f8b6f78a3778"
+          },
+          {
+            "row": 5330,
+            "path": "src/pso/misc/TLobby_801E43E4.cpp",
+            "blob": "d53c95190dee1e746c44690d9694539f2ea8a485"
+          },
+          {
+            "row": 7343,
+            "path": "src/pso/misc/TLobby_801F3A24.cpp",
+            "blob": "66be452222e98d6fef95d678c33eb5aaf88fd58d"
+          },
+          {
+            "row": 6450,
+            "path": "src/pso/misc/TOTrapAncient01.cpp",
+            "blob": "2180f25f2574a57f866442489662a92923ed291d"
+          },
+          {
+            "row": 4409,
+            "path": "src/pso/misc/TPlayerFootStamp.cpp",
+            "blob": "3e3eae155cf33d0b7f94ff345a5be0d9a3f0d2d1"
+          },
+          {
+            "row": 4325,
+            "path": "src/pso/misc/TPlyPhotonChair.cpp",
+            "blob": "b8a8e2583b281558f85335e73d6d8e454d18c5e9"
+          },
+          {
+            "row": 273,
+            "path": "src/pso/misc/TWindowKeyBoardHard_801FBA48.cpp",
+            "blob": "7a1125a03c0cc3dd1614d0a30885eec6bfdcf9c1"
+          },
+          {
+            "row": 6722,
+            "path": "src/pso/object/TObjComputer.cpp",
+            "blob": "bb33834d5795bac179cc4d555628169ce7fa9151"
+          },
+          {
+            "row": 6736,
+            "path": "src/pso/object/TObjTombstone.cpp",
+            "blob": "8fa62694708bc6839e1f9801dc321dbbd78a5a92"
+          },
+          {
+            "row": 932,
+            "path": "src/pso/object/TObjVoloptCage.cpp",
+            "blob": "5a4c32d39dc14909d25e885680c1df926d96eef6"
+          },
+          {
+            "row": 6747,
+            "path": "src/pso/quest/TQuestListVM.cpp",
+            "blob": "38a5d3d7dc2b995910a572af3fa4da6d94e9c976"
+          },
+          {
+            "row": 5296,
+            "path": "src/pso/ui/TLanguage_80132A5C.cpp",
+            "blob": "60e3e94fc6eac8106215a51f9ecdd7eda503a453"
+          },
+          {
+            "row": 6794,
+            "path": "src/pso/ui/TObjLiveMonitor.cpp",
+            "blob": "22b5689298d991b9caf8966bd9af0b00b860d2d4"
+          },
+          {
+            "row": 5106,
+            "path": "src/pso/unk/text_8004D9A8.cpp",
+            "blob": "70654e781a31eb6167eb268f4917f464d794956f"
+          },
+          {
+            "row": 7310,
+            "path": "src/pso/unk/text_80081BB0.cpp",
+            "blob": "0e2d1a636a78836be0c8f1b6ab456d7a5f83895a"
+          },
+          {
+            "row": 2732,
+            "path": "src/pso/unk/text_802A1020.cpp",
+            "blob": "3ada44e686ebaa595832d40f80f52c63437fd43f"
+          }
+        ]
+      },
+      "7fb7131b2cfe44ed605fb106a1ca10a723fd0e6b": {
+        "subject": "Merge pull request #452 from matthewlewisnewton/codex/fork-link-character-creation",
+        "final_fork_blobs": [
+          {
+            "row": 5534,
+            "path": "src/pso/misc/TWindowCtrlMain_8024C820.cpp",
+            "blob": "6e601569ce39e20368551ef4dabf137122ab93a3"
+          },
+          {
+            "row": 4943,
+            "path": "src/pso/unk/text_8007ECF0.cpp",
+            "blob": "0f571d688ceb1835a51df68ac8a898564a56e641"
+          },
+          {
+            "row": 6012,
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "blob": "b6802d332bdfd8802809855f90fab01e8710881a"
+          }
+        ]
+      },
+      "345ac133c05f9f825331c770d42b2c537a958d71": {
+        "subject": "Merge pull request #437 from matthewlewisnewton/codex/pr303-character-load-contract",
+        "final_fork_blobs": [
+          {
+            "row": 2644,
+            "path": "src/pso/misc/TChCrLoadReq.cpp",
+            "blob": "9b795a2093ee5eea5df8f3333525a6507ddf2ed8"
+          }
+        ]
+      },
+      "53a59ba1968466e588057295d0d0051294d8f655": {
+        "subject": "Merge pull request #438 from matthewlewisnewton/codex/pr303-sdk-thread-queues",
+        "final_fork_blobs": [
+          {
+            "row": 3019,
+            "path": "src/pso/network/NetworkPacketRuntime.cpp",
+            "blob": "c5258cfd6f669604da2754b607b8850bb7c127a9"
+          }
+        ]
+      },
+      "73532a6a8408d4a0e41ca468d07b779eb28d6c26": {
+        "subject": "Merge pull request #441 from matthewlewisnewton/codex/pr303-dhcp-receive-refresh",
+        "final_fork_blobs": [
+          {
+            "row": 2943,
+            "path": "include/pso/network/DhcpClient.h",
+            "blob": "de47916be1f7c699968fc62e4e53a315d77a540d"
+          },
+          {
+            "row": 2948,
+            "path": "include/pso/network/NetworkReceiveCallback.h",
+            "blob": "c67e476f8a128c9daf7b0cd07b0bd6eaad1b91d2"
+          }
+        ]
+      },
+      "eef2806e17f2a5aaa291dc504213ff078ae43cb1": {
+        "subject": "Merge pull request #436 from matthewlewisnewton/codex/fork-bml-contract-20261111",
+        "final_fork_blobs": [
+          {
+            "row": 4366,
+            "path": "src/pso/misc/TTecRaBarta.cpp",
+            "blob": "2cca6549a59d8b189d17192fe6b27a987a05a35b"
+          },
+          {
+            "row": 4512,
+            "path": "src/pso/unk/TUnk_804CC870.cpp",
+            "blob": "c6f9071cb7fc0493222aaeca9dad926a56f76138"
+          }
+        ]
+      },
+      "2ef6927c901cd7329eaadceb5e2a748049d3fbb5": {
+        "subject": "Merge pull request #432 from matthewlewisnewton/codex/fork-float-runtime-data-20261111",
+        "final_fork_blobs": [
+          {
+            "row": 4942,
+            "path": "src/pso/render/render_util_tail.cpp",
+            "blob": "600e17e90a7263e0f356c55140354a7830e11f72"
+          }
+        ]
+      },
+      "369ec5af1d673584fae610d26028621f753c41e8": {
+        "subject": "Merge pull request #402 from matthewlewisnewton/codex/guildwarning-focused-20261110",
+        "final_fork_blobs": [
+          {
+            "row": 6786,
+            "path": "src/pso/misc/TQuestListOnline.cpp",
+            "blob": "0dcf621753b4d8c7e0440a81774812149d6fadc9"
+          },
+          {
+            "row": 5923,
+            "path": "src/pso/misc/TWindowSubTechnique.cpp",
+            "blob": "438abaab2f2dccc7368b61cc811a405719ff288c"
+          }
+        ]
+      },
+      "1b43a2deec8837c23c889e9c859855cc1fd455df": {
+        "subject": "Recover and link the complete speech-balloon unit",
+        "final_fork_blobs": [
+          {
+            "row": 5799,
+            "path": "src/pso/misc/TWindowSubStatusDisp_800FC3E0.cpp",
+            "blob": "13405544bbca4d2c034e5394d6fc758da2526fcf"
+          },
+          {
+            "row": 5877,
+            "path": "src/pso/misc/TWindowSubStatusDisp_8025995C.cpp",
+            "blob": "656be46628bcf21e6e07b696b62210903caafb16"
+          }
+        ]
+      },
+      "96fda4ceb06c7668891008d4d962568d86211ea0": {
+        "subject": "Merge pull request #415 from matthewlewisnewton/codex/link-shortcut-preview-8026dfe8",
+        "final_fork_blobs": [
+          {
+            "row": 4472,
+            "path": "src/pso/unk/text_80253974.cpp",
+            "blob": "91a8d6b61c8a1861276ef06762883204e42f6bd5"
+          }
+        ]
+      },
+      "baa0b4e482921446c794fcbb2ccb798d2d05a7fa": {
+        "subject": "Merge pull request #366 from matthewlewisnewton/decomp/quest-download-search-exact",
+        "final_fork_blobs": [
+          {
+            "row": 7315,
+            "path": "include/pso/misc/QuestDownloadRecords.h",
+            "blob": "78849626074366ee1c27b237ec554a5a1b3de428"
+          }
+        ]
+      },
+      "c1fb4aa044610f568de381fa07620689896646e6": {
+        "subject": "Merge pull request #413 from matthewlewisnewton/codex/recover-modem-runtime-20261110",
+        "final_fork_blobs": [
+          {
+            "row": 2986,
+            "path": "include/pso/network/ModemRuntime.h",
+            "blob": "d4ca2694152c77fe8e701a485eee41b920872164"
+          }
+        ]
+      },
+      "b5ee45d3cc57000b31f6c55dd40ae06b44f6881a": {
+        "subject": "Merge pull request #421 from matthewlewisnewton/codex/recover-cvfs-803ce568-20261110",
+        "final_fork_blobs": [
+          {
+            "row": 5222,
+            "path": "include/pso/system/GcciRequests.h",
+            "blob": "5fc9eb7594ff29a0483a2b35ac82b66ec7127717"
+          },
+          {
+            "row": 60,
+            "path": "src/pso/unk/text_803CE568.cpp",
+            "blob": "4731eeb494c232520c9b2de2ab76850e34aedd90"
+          }
+        ]
+      },
+      "4ab0773146417ce50814e5ee755e1a832d6ba3f6": {
+        "subject": "Merge pull request #410 from matthewlewisnewton/codex/link-char-select-initializer-802e34ac",
+        "final_fork_blobs": [
+          {
+            "row": 2114,
+            "path": "include/pso/TAdTimeSetGC.h",
+            "blob": "3527ee24d2f8c6a7141827337844abb082d6e0ec"
+          }
+        ]
+      },
+      "429adf7441d7a9b404b3c37251d5a8d50cad6a15": {
+        "subject": "Merge pull request #408 from matthewlewisnewton/codex/link-item-attack-col-20261110",
+        "final_fork_blobs": [
+          {
+            "row": 3966,
+            "path": "src/pso/unk/text_802E4A4C.cpp",
+            "blob": "a805551f9557ced9f42ee96fc0fc176ba144eba9"
+          }
+        ]
+      },
+      "00c484c57b38bc7f112016860e9faa628c7b49e9": {
+        "subject": "Merge pull request #412 from matthewlewisnewton/codex/link-particle-radial-8008b478",
+        "final_fork_blobs": [
+          {
+            "row": 5096,
+            "path": "include/pso/misc/TUnk_8048E728.h",
+            "blob": "4d0d575c75b6ea9a44842d006c6d76843009e79f"
+          }
+        ]
+      },
+      "7529667802789eb37495d465363bd4ffded4b80d": {
+        "subject": "Merge pull request #399 from matthewlewisnewton/codex/link-photon-blast-sequence-801a9cb8",
+        "final_fork_blobs": [
+          {
+            "row": 5041,
+            "path": "src/pso/misc/TPhotonMagicSquare_801ACE1C.cpp",
+            "blob": "468b07f713f2247c9ca123a614556874498f6b71"
+          },
+          {
+            "row": 4477,
+            "path": "src/pso/unk/text_80312C50.cpp",
+            "blob": "f0c08d2c59a198f40538fd46fadb1d23bee0ae5d"
+          }
+        ]
+      },
+      "61d8bc9ff0d69e119ff3756c257adf66b9b3ad37": {
+        "subject": "Merge pull request #395 from matthewlewisnewton/codex/link-player-load-803f339c",
+        "final_fork_blobs": [
+          {
+            "row": 2975,
+            "path": "src/pso/network/NetworkConfigLifecycle.cpp",
+            "blob": "90523c93d7f46fd652a38a96fad54e41e36a2bb3"
+          },
+          {
+            "row": 3092,
+            "path": "src/pso/unk/text_80145A94.cpp",
+            "blob": "12b8caa51cc9c795826e9a308822716b394d4887"
+          }
+        ]
+      },
+      "1fb8e86d3bf534c779d40682dba7e21f4fb24e52": {
+        "subject": "Recover and link the Gal Gryphon resource loader",
+        "final_fork_blobs": [
+          {
+            "row": 1184,
+            "path": "src/pso/misc/TLobby_800F795C.cpp",
+            "blob": "1a06a88aae2adf68b0fdfd3643e72c07f4d0e3f0"
+          }
+        ]
+      },
+      "c23374fb7a9606faf337b52bb4251e752c5c5c46": {
+        "subject": "Recover and link the multiplayer character-select plate",
+        "final_fork_blobs": [
+          {
+            "row": 2166,
+            "path": "include/pso/ui/TAdChrSelPlyPlateGC.h",
+            "blob": "c505293ce68bbcdd8c4d731f9d1637fe1bc5c160"
+          },
+          {
+            "row": 2695,
+            "path": "src/pso/ui/TAdMultiPlyChrSelectGC_802DEF54.cpp",
+            "blob": "ae539a23ef337783b8e007a854219b036ebaa264"
+          }
+        ]
+      },
+      "1ebc176ccda91d6de7999634640bc2a79d70ce26": {
+        "subject": "Recover and link the Canadin resource loader",
+        "final_fork_blobs": [
+          {
+            "row": 456,
+            "path": "include/pso/enemy/TObjEneMe1Canadin.h",
+            "blob": "80544948da52ffea101144e359828ca191a26a8f"
+          }
+        ]
+      },
+      "65340308bcc43498706b82e7188a65f1c35e1a02": {
+        "subject": "Merge pull request #376 from matthewlewisnewton/codex/fork-dispatcher-gap-20261109",
+        "final_fork_blobs": [
+          {
+            "row": 3020,
+            "path": "src/pso/network/NetworkDispatcher.cpp",
+            "blob": "d83865b31a27aaf83a0df19a9ca29661c71da4f3"
+          }
+        ]
+      },
+      "8180274c47142b16949e0aa4beedfa54eb2ca304": {
+        "subject": "Merge pull request #373 from matthewlewisnewton/codex/fork-technique-gap-20261109",
+        "final_fork_blobs": [
+          {
+            "row": 4489,
+            "path": "src/pso/unk/text_80236EE8.cpp",
+            "blob": "341321700ca2e635867df2544afb8446460addea"
+          }
+        ]
+      },
+      "7d20a0e818ef6c8aae1c7c03dfa44e48933bcae1": {
+        "subject": "Recover and link the DHCP client unit from the existing draft",
+        "final_fork_blobs": [
+          {
+            "row": 3010,
+            "path": "src/pso/network/TTcpSocket.cpp",
+            "blob": "c6631677764a0b4ceb90f58f5cb32598b8d1bc39"
+          }
+        ]
+      },
+      "2bd086674b8d638095d503b7361abc1508ba05f5": {
+        "subject": "Merge pull request #308 from matthewlewisnewton/upstream-matchpass-185-gap",
+        "final_fork_blobs": [
+          {
+            "row": 7344,
+            "path": "include/pso/misc/TLobby_801F3A24.h",
+            "blob": "a07f29ce0ee4f4167769a957f0ff2bc1e984c2e9"
+          },
+          {
+            "row": 5293,
+            "path": "src/pso/misc/GbaDownloadRuntime.cpp",
+            "blob": "4bebba038edf7f3892169efdc52363111b6a3bdc"
+          },
+          {
+            "row": 4945,
+            "path": "src/pso/misc/TCameraCtrl_8006C254.cpp",
+            "blob": "095ff672ac710f4e31ab1736cf268974bbe0749d"
+          },
+          {
+            "row": 5325,
+            "path": "src/pso/misc/TLobby_800FA164.cpp",
+            "blob": "9a5415826f295c172b2acc4a6ad251c34413ba8e"
+          },
+          {
+            "row": 5326,
+            "path": "src/pso/misc/TLobby_800FA2A0.cpp",
+            "blob": "287e3b12f21e858eb4a5883ad0a0cf92637dbec8"
+          },
+          {
+            "row": 5827,
+            "path": "src/pso/misc/TWindowCtrlMain_8024674C.cpp",
+            "blob": "b3ac6b333f82b71e91ded5896f7ad34f6b8b1fba"
+          },
+          {
+            "row": 5334,
+            "path": "src/pso/unk/text_8007F8D0.cpp",
+            "blob": "5c746d98783c25a972659e68e8fa797afd349236"
+          }
+        ]
+      },
+      "c647866bb371578fc7052c90588bfc5a69950f7c": {
+        "subject": "Merge pull request #368 from matthewlewisnewton/codex/fork-upstream-footstamp-20261109",
+        "final_fork_blobs": [
+          {
+            "row": 4220,
+            "path": "include/pso/TPlayerFootStamp.h",
+            "blob": "cc053ec0269b6ed3529928612c35b1afe28e3401"
+          }
+        ]
+      },
+      "cbdd57d9ed8d40fd72b7433c38008111e67daa2a": {
+        "subject": "Merge pull request #319 from matthewlewisnewton/decomp-equip-requirements",
+        "final_fork_blobs": [
+          {
+            "row": 4044,
+            "path": "src/pso/item/TItemData.cpp",
+            "blob": "46dec7ca28f1f872ffb53a0f75ab98aeed8d9469"
+          }
+        ]
+      },
+      "efcad7fe9e3db8709c9ef661430244d826a26670": {
+        "subject": "Merge pull request #128 from matthewlewisnewton/decomp/vec3-dot",
+        "final_fork_blobs": [
+          {
+            "row": 4475,
+            "path": "src/pso/unk/text_803D8910.cpp",
+            "blob": "1f9b53267e56cb7423e0b875e4ffd46acbd7119f"
+          }
+        ]
+      },
+      "58a8665c6555f85b7a30862c583f8a894e698689": {
+        "subject": "Merge pull request #225 from matthewlewisnewton/codex/fork-boss6-zanzo-recovery-20261102",
+        "final_fork_blobs": [
+          {
+            "row": 5760,
+            "path": "src/pso/misc/TWindowSubStatusDisp_8025737C.cpp",
+            "blob": "e23d01c496333002cb28813bbba37b8934c9dd34"
+          }
+        ]
+      },
+      "8ccffb6c4e0e614c390637512edaf6d84a6a0e0f": {
+        "subject": "Merge pull request #221 from matthewlewisnewton/codex/fork-ancient-base-e8a",
+        "final_fork_blobs": [
+          {
+            "row": 2170,
+            "path": "include/pso/ui/TAdEnterPasswordGC.h",
+            "blob": "01928f30c3a8d98dfdb70d0b9c75ce807ed9579f"
+          },
+          {
+            "row": 933,
+            "path": "src/pso/enemy/TObjEneBeast_800C4E08.cpp",
+            "blob": "27f971a5219896da9baf7c191d1eea3f3a78f80a"
+          },
+          {
+            "row": 802,
+            "path": "src/pso/enemy/TObjEneDolmOlm.cpp",
+            "blob": "b9249b8add1b43bc791eb0364945d96687db8a58"
+          },
+          {
+            "row": 4042,
+            "path": "src/pso/item/TItem.cpp",
+            "blob": "d1735437a9b3e04255056dcaf96f68574480e5ce"
+          },
+          {
+            "row": 4049,
+            "path": "src/pso/item/TItemList.cpp",
+            "blob": "61f833cc697bed485df88dfcacbe8f494ebba89d"
+          },
+          {
+            "row": 767,
+            "path": "src/pso/misc/TOCtrlDubchik_8015CA74.cpp",
+            "blob": "308e6a5a34a04fe11c8ca9d4e0963863e16d8f05"
+          },
+          {
+            "row": 4378,
+            "path": "src/pso/misc/TTecRaZonde_80238C6C.cpp",
+            "blob": "f9cfa3aed6f38e6a43b27054291fe63932a9da40"
+          },
+          {
+            "row": 4430,
+            "path": "src/pso/misc/TTecZondeEff.cpp",
+            "blob": "bd89e4872dd22e0584fee2fa4dc368e7c8a5a5d8"
+          },
+          {
+            "row": 6950,
+            "path": "src/pso/object/TObjGrass.cpp",
+            "blob": "f1642978006be983cef15930adf0e2773e78261a"
+          },
+          {
+            "row": 6728,
+            "path": "src/pso/object/TObjLuker.cpp",
+            "blob": "8e74baed09b47410bf7bdcb21dcf65a45d92022b"
+          }
+        ]
+      },
+      "14c61a95d3d3154b92968eec981e28611b91e867": {
+        "subject": "Merge pull request #354 from matthewlewisnewton/upstream-pr-190-merge",
+        "final_fork_blobs": [
+          {
+            "row": 281,
+            "path": "src/pso/player/TObjPlayer_801A5AEC.cpp",
+            "blob": "0b24c5092e03d3ee74eb2672b9086a6dc5e16898"
+          }
+        ]
+      },
+      "df76b9dc57b17b60f04cce550109e61a847e8af2": {
+        "subject": "Merge pull request #302 from matthewlewisnewton/upstream-pr-191-tboss8dragon-802f4380",
+        "final_fork_blobs": [
+          {
+            "row": 4861,
+            "path": "include/pso/TObjLiveCameraCtrl.h",
+            "blob": "2f9cb861752326b6bdffd2b1470c2d9adaaf5bf6"
+          },
+          {
+            "row": 3071,
+            "path": "include/pso/protocol/subcmd_6x.h",
+            "blob": "c3958d399e63cca242cfe4edd6707824394cb760"
+          }
+        ]
+      },
+      "a850cc7d6543ad4fdf0212f01245e1203b985cbd": {
+        "subject": "Merge pull request #360 from matthewlewisnewton/upstream-pr-192-merge",
+        "final_fork_blobs": [
+          {
+            "row": 7348,
+            "path": "src/pso/misc/TLobby_80228818.cpp",
+            "blob": "ea474d2d04d276841759a0602ab1defc2e191e48"
+          }
+        ]
+      },
+      "e72980762073f73864b97f8b3cf65e886a20efad": {
+        "subject": "Upstream #171 NetworkPacketRuntime / TObjPlayer_801542CC (#305)",
+        "final_fork_blobs": [
+          {
+            "row": 4019,
+            "path": "include/pso/player/TObjPlayer_803DF7A8.h",
+            "blob": "58943b5ffce593785354a8cf4d72e00b409c0e8f"
+          }
+        ]
+      },
+      "188de8846c39e6a594c1e283a52cf35617faad96": {
+        "subject": "Merge pull request #322 from matthewlewisnewton/pr240-gauge-substatus",
+        "final_fork_blobs": [
+          {
+            "row": 5340,
+            "path": "include/pso/misc/TLobby_800FA2A0.h",
+            "blob": "92af83c063a0a2bb904b9b07d9a75b83af4f9489"
+          },
+          {
+            "row": 2382,
+            "path": "include/pso/misc/TShopSequence.h",
+            "blob": "a8951303298ff32c9de9025d93d0b1df48b47c0b"
+          },
+          {
+            "row": 4936,
+            "path": "src/pso/effect/TEffIndirectCtrl.cpp",
+            "blob": "523c86e66e78bd7a3cb81dbc4fac240039b0f020"
+          },
+          {
+            "row": 4399,
+            "path": "src/pso/item/TItemAttacker.cpp",
+            "blob": "707c6ae051830694d96fe11758312fdec3b6d696"
+          },
+          {
+            "row": 6028,
+            "path": "src/pso/misc/TLobby_8013AD38.cpp",
+            "blob": "12de5c4d279d105ab3b320ce547b8364d6b2430e"
+          },
+          {
+            "row": 4500,
+            "path": "src/pso/misc/TLobby_802D1EFC.cpp",
+            "blob": "05e09a96a4962ebbf53acd6d2bf69e6bf1755ad7"
+          },
+          {
+            "row": 5732,
+            "path": "src/pso/misc/TWindowHelpItem_8025A60C.cpp",
+            "blob": "b0324fcad409a85903a1a9cfe63d06b2709c66a9"
+          },
+          {
+            "row": 5917,
+            "path": "src/pso/misc/TWindowMakeTeam.cpp",
+            "blob": "f9543fb0e1a4d6246bf3adc5945a81b781cf3357"
+          },
+          {
+            "row": 5711,
+            "path": "src/pso/misc/TWindowMakeTeam_80265298.cpp",
+            "blob": "cd4a8bbead149c223261d2091a5d35331925d6c8"
+          },
+          {
+            "row": 5751,
+            "path": "src/pso/misc/TWindowSubCustomEquip_80275D9C.cpp",
+            "blob": "d626af7d65fcc3cb06fb70b586ce5866fef84de3"
+          },
+          {
+            "row": 5587,
+            "path": "src/pso/misc/TWindowSubStatusDisp_80256B94.cpp",
+            "blob": "cb27ab37ff7dd13cec364bab65d5e82b987e54d0"
+          },
+          {
+            "row": 5588,
+            "path": "src/pso/misc/TWindowSubStatusDisp_80257BC0.cpp",
+            "blob": "64df118af08d4a7fd1f38d466099ff29569791bd"
+          },
+          {
+            "row": 4144,
+            "path": "src/pso/player/TObjPlayer_801D9A04.cpp",
+            "blob": "e3b0e3fcc59a5201d43ccf4a1f93d26f7e1555ef"
+          },
+          {
+            "row": 4150,
+            "path": "src/pso/player/TObjPlayer_80278AB4.cpp",
+            "blob": "9f165a86c36ab7e420f332a6d9e70c993b30d282"
+          },
+          {
+            "row": 2275,
+            "path": "src/pso/ui/TAdChrSelBSlotGC_8030E354.cpp",
+            "blob": "aefb94799e0b1a05c516183214f52d074c57233b"
+          },
+          {
+            "row": 2542,
+            "path": "src/pso/ui/TAdWarningBaseGC.cpp",
+            "blob": "07024ee1e12ec2aa7e5967ba69d02f7d2f9f1946"
+          },
+          {
+            "row": 2730,
+            "path": "src/pso/unk/text_801A4D30.cpp",
+            "blob": "ffbd6f31689a1dca3261be0b6465db1f0122da51"
+          },
+          {
+            "row": 4499,
+            "path": "src/pso/unk/text_80278BD8.cpp",
+            "blob": "eb3c773136eed7aee76e8bf27d930b0e758f48ca"
+          }
+        ]
+      },
+      "98d4c9a1d9dc6ca467b89a5261e0fd8ce8d5849c": {
+        "subject": "Merge pull request #304 from matthewlewisnewton/upstream-link-text-801d40d4",
+        "final_fork_blobs": [
+          {
+            "row": 3181,
+            "path": "include/pso/TItemList.h",
+            "blob": "2766e24e22d032b3ff98a002c47bbf877c5052d9"
+          },
+          {
+            "row": 4120,
+            "path": "src/pso/player/TObjPlayer_801AEFFC.cpp",
+            "blob": "4db307f8817a7de7faffbfd2876db2758ffc69b5"
+          },
+          {
+            "row": 4183,
+            "path": "src/pso/player/TPlyItem.cpp",
+            "blob": "b891d94b0c2bb6a74691c9ad6ea96bd75c0230e3"
+          },
+          {
+            "row": 3963,
+            "path": "src/pso/unk/text_801D40D4.cpp",
+            "blob": "07828d656128d027de5426d67559199dbb5d9006"
+          }
+        ]
+      },
+      "c65d4a6412f7ed2bf6bfb96e1a2fd33968d6a833": {
+        "subject": "Merge pull request #289 from matthewlewisnewton/upstream-matchpass-180-tboss6type1",
+        "final_fork_blobs": [
+          {
+            "row": 738,
+            "path": "include/pso/boss/TBoss6Type1.h",
+            "blob": "dc2101a829d5c6b5b8b87acfcc7655f81ab90839"
+          },
+          {
+            "row": 522,
+            "path": "src/pso/boss/TBoss6Type1_802B20C0.cpp",
+            "blob": "64219f76492efede21345e934d3c1ddea61b4b51"
+          },
+          {
+            "row": 4381,
+            "path": "src/pso/item/TItemEffArmor.cpp",
+            "blob": "8794a4fe3f5cf1680d2ae1303d99008151649bd7"
+          },
+          {
+            "row": 4110,
+            "path": "src/pso/player/TObjPlayer_8010A050.cpp",
+            "blob": "e19de198d952dc81d0609eac18e13d86de15f914"
+          }
+        ]
+      },
+      "d0e5a82f0a73291606a6f8468b98080fefdd178a": {
+        "subject": "Merge pull request #299 from matthewlewisnewton/upstream-matchpass-183-tboss7tentacleneedle",
+        "final_fork_blobs": [
+          {
+            "row": 4161,
+            "path": "src/pso/player/TObjPlayer_802E6CA8.cpp",
+            "blob": "f6abff50062df2d3465b2efb367f691a83c9539a"
+          }
+        ]
+      },
+      "3e1e25f0534bb1f427a3855a8f455f2d87557216": {
+        "subject": "Merge pull request #290 from matthewlewisnewton/upstream-matchpass-185-tobjboss2tunnel",
+        "final_fork_blobs": [
+          {
+            "row": 5221,
+            "path": "include/pso/system/ControllerInputState.h",
+            "blob": "eea7812ded5d1d053159dabd5efc7eefbd57f2a9"
+          }
+        ]
+      },
+      "695a9efd2e425c2d8dbfb03db5222b4d0605202e": {
+        "subject": "Merge pull request #161 from matthewlewisnewton/codex/fork-indirect-dispatch-continuation",
+        "final_fork_blobs": [
+          {
+            "row": 4924,
+            "path": "include/pso/effect/TEffIndirectCtrl.h",
+            "blob": "b0807712f08e82f2cb1ad3bf0d6d80bbe9e1c9f1"
+          }
+        ]
+      },
+      "e5a25eb70bf24382dc08278006210137cd776017": {
+        "subject": "Merge pull request #311 from matthewlewisnewton/upstream-pr-190-matchpass-lane9",
+        "final_fork_blobs": [
+          {
+            "row": 2936,
+            "path": "include/pso/misc/TLobby_80428374.h",
+            "blob": "d27aee7af30f73894db08ea0c144c6bfa022931a"
+          }
+        ]
+      },
+      "0d3446e92a3bb7a526d6065ca304c42b8b9573f6": {
+        "subject": "Merge pull request #272 from matthewlewisnewton/codex/fork-lens-flare-native-linked-20261102",
+        "final_fork_blobs": [
+          {
+            "row": 4932,
+            "path": "src/pso/effect/TEF_LensFlare.cpp",
+            "blob": "dfa1487d1fb5e3e72e82d7d72d7b6b940a1d6e1b"
+          }
+        ]
+      },
+      "e82f2afb53e5bccec7cf0561b72ab0b01b3785ad": {
+        "subject": "Merge pull request #278 from matthewlewisnewton/codex/fork-falz-plot-table-20261102",
+        "final_fork_blobs": [
+          {
+            "row": 520,
+            "path": "src/pso/boss/TBoss6PlotFalz_802B0228.cpp",
+            "blob": "79ed3ed246e7fd39552924b17593ff0d5b0fcdae"
+          }
+        ]
+      },
+      "535c0cbd2253d873b2373ebaa81c9c33b7093d0d": {
+        "subject": "Merge pull request #296 from matthewlewisnewton/upstream-matchpass-180-text-803d853c",
+        "final_fork_blobs": [
+          {
+            "row": 5123,
+            "path": "include/pso/unk/text_803D853C.h",
+            "blob": "462a62f94b7c217c7e108701b92b6827688852b5"
+          },
+          {
+            "row": 6489,
+            "path": "src/pso/npc/TObjNpcEnemy_803D8090.cpp",
+            "blob": "4553e30ab7e5803d6d5e481d20885426a9b47991"
+          }
+        ]
+      },
+      "772d9f1fb15868f08b5ede1a08d86ec784ac1739": {
+        "subject": "Merge pull request #255 from matthewlewisnewton/codex/allocator-array-abi-current-20261102",
+        "final_fork_blobs": [
+          {
+            "row": 947,
+            "path": "src/pso/enemy/TObjEneRe2Flower_800C4B78.cpp",
+            "blob": "c944ee9354b542db631f76ddf93f94577ae34a66"
+          },
+          {
+            "row": 3093,
+            "path": "src/pso/misc/TLobby_8011B010.cpp",
+            "blob": "00cf38eba8c0aefe6e2d956680b7b863392ea8ea"
+          },
+          {
+            "row": 5321,
+            "path": "src/pso/misc/TLobby_8033ECB0.cpp",
+            "blob": "c053b6edae8ab33d69b3c2c89c310d4beb04dac5"
+          },
+          {
+            "row": 2671,
+            "path": "src/pso/ui/TAdMultiConfirmGC_802E03D0.cpp",
+            "blob": "e38b584f14ecccc98e6491be78fd299e1344492a"
+          },
+          {
+            "row": 5318,
+            "path": "src/pso/unk/text_802D1C84.cpp",
+            "blob": "298a1cb0a78dfbf086b6cbac4f8d2c2987412a46"
+          }
+        ]
+      },
+      "20662930dc9809521ce9d8968f3a4df28ae5f80d": {
+        "subject": "Recover plate and slot factory contracts",
+        "final_fork_blobs": [
+          {
+            "row": 2519,
+            "path": "include/pso/ui/TAdChrSelASlotGC.h",
+            "blob": "997b2b181ef587f4593d32da4eeb3f31843ddff7"
+          }
+        ]
+      },
+      "d4705aa8b4efa299d9a0ca4c387517f3b181d270": {
+        "subject": "Share typed player hit-vector boundary on current main",
+        "final_fork_blobs": [
+          {
+            "row": 3423,
+            "path": "include/pso/player/TObjPlayer_802D5B78.h",
+            "blob": "7460b6702430571c978cdfe75087b96e9a1a067a"
+          },
+          {
+            "row": 4159,
+            "path": "src/pso/player/TObjPlayer_802D5B78.cpp",
+            "blob": "837f5da0079935e7278ebf6d14aa87e740ded34b"
+          }
+        ]
+      },
+      "0d07e00cb058bce183a44fdc3509732ada1d8755": {
+        "subject": "Correct window sound pitch argument forwarding",
+        "final_fork_blobs": [
+          {
+            "row": 6919,
+            "path": "src/pso/object/TObjLight_8022F34C.cpp",
+            "blob": "b4dfb89aa7b1ca30c117ebcbf02e0365549fa014"
+          },
+          {
+            "row": 3951,
+            "path": "src/pso/unk/text_80130368.cpp",
+            "blob": "87fe8f7fc4ace0cb2cbb57aca21ec65434a8734f"
+          }
+        ]
+      },
+      "4ca4eb157f2087da303e0387a489bbbdca5e0e2c": {
+        "subject": "Copy packet headers through their object representation",
+        "final_fork_blobs": [
+          {
+            "row": 2386,
+            "path": "src/pso/misc/TFontSmallLobby_801C013C.cpp",
+            "blob": "94205dfdbcce4737b4a127fc64710d83bcabda9c"
+          }
+        ]
+      },
+      "8593f73663674cd2ab467c760dc6ff71f04c8ed6": {
+        "subject": "Repair item-drop packet and payload lifetimes",
+        "final_fork_blobs": [
+          {
+            "row": 3079,
+            "path": "src/pso/unk/text_8011A780.cpp",
+            "blob": "b7ac029da7120fed9986cd7025e64c7d46d4e632"
+          }
+        ]
+      },
+      "0a3bc130601435d2108cca9afc5d6df69c4ee64a": {
+        "subject": "Sync upstream data recovery and keyboard source linkage (#226)",
+        "final_fork_blobs": [
+          {
+            "row": 3648,
+            "path": "src/pso/player/TItemWeaponFist.cpp",
+            "blob": "c3c79aedaf69eb4be99a815d4ceb7c6491d54bf1"
+          },
+          {
+            "row": 2650,
+            "path": "src/pso/ui/TAdRayGC.cpp",
+            "blob": "cea100ca7bca0a6ec1798f9ea02051cfaa3d6ce8"
+          }
+        ]
+      },
+      "180dd2c052e3e9305b25136b7222b85cc3423078": {
+        "subject": "Recover and link modem launch records",
+        "final_fork_blobs": [
+          {
+            "row": 2330,
+            "path": "include/pso/unk/text_8042EAD4.h",
+            "blob": "ff7c2ad6b261da0eff6ebe5d78b9b2e3fe90286a"
+          },
+          {
+            "row": 2345,
+            "path": "src/pso/unk/text_8042EE4C.cpp",
+            "blob": "2b9d06a31553d269c44c969de86cfa12fed5f88b"
+          }
+        ]
+      },
+      "69f851967629bd06e11d4f76d9577523bd5ac465": {
+        "subject": "Merge reviewed fork PR #191",
+        "final_fork_blobs": [
+          {
+            "row": 7312,
+            "path": "include/pso/misc/TUnk_804C3248.h",
+            "blob": "df0d305789f41548661124370d32050cd8530e4f"
+          },
+          {
+            "row": 1169,
+            "path": "src/pso/enemy/TObjEneBm5Wolf.cpp",
+            "blob": "cbba29e84410f4173b28c0342d2ed9e6990355cf"
+          },
+          {
+            "row": 833,
+            "path": "src/pso/enemy/TObjEneRe4Bit.cpp",
+            "blob": "f5dec85c6e1694d058ca7e07dadf5aa20791bb71"
+          }
+        ]
+      },
+      "e9357f61b43f2f542feb9ec66126f54ccbaf4390": {
+        "subject": "Merge reviewed fork PR #198",
+        "final_fork_blobs": [
+          {
+            "row": 4903,
+            "path": "src/pso/misc/TDuelEffectNumber_80080290.cpp",
+            "blob": "b3cec2c48416e2407b1d11ba45890815f16001d0"
+          }
+        ]
+      },
+      "2f813155fdc7366579f5dd7489ac35f242eae6cd": {
+        "subject": "Merge reviewed fork PR #141",
+        "final_fork_blobs": [
+          {
+            "row": 1020,
+            "path": "include/pso/enemy/TObjEneBm3Fly.h",
+            "blob": "b842a084e026d104076f200046b8092882aaa97a"
+          }
+        ]
+      },
+      "d63ec2f5dfdda58cbcae0dd5f589d998cec96618": {
+        "subject": "Merge pull request #100 from matthewlewisnewton/codex/fork-held-consumers-composition",
+        "final_fork_blobs": [
+          {
+            "row": 447,
+            "path": "include/pso/enemy/TObjEneBm3FlyNest.h",
+            "blob": "6a99b99405c5a3718d4b4418e0dcde445b4d4acd"
+          },
+          {
+            "row": 463,
+            "path": "include/pso/enemy/TObjEneMorfos.h",
+            "blob": "f15271fff07045ac43e96ffd394afff12cd7159f"
+          }
+        ]
+      },
+      "39676ea2638bb21f45ad79afcc544307ecee64ab": {
+        "subject": "Merge pull request #72 from matthewlewisnewton/codex/fork-gee-native-reapply",
+        "final_fork_blobs": [
+          {
+            "row": 458,
+            "path": "include/pso/enemy/TObjEneMe1Gee.h",
+            "blob": "433ec2e93635233a4980b9032a4db68a2725888e"
+          }
+        ]
+      },
+      "3abe2591eb67fd12cb8f1fb58c45007ba5b0562d": {
+        "subject": "Merge pull request #99 from matthewlewisnewton/codex/fork-combined-reviewed-families",
+        "final_fork_blobs": [
+          {
+            "row": 453,
+            "path": "include/pso/enemy/TObjEneGibbles.h",
+            "blob": "cf91058a3d5ef34d0b6a2b85c09bb9615ff63bbe"
+          },
+          {
+            "row": 715,
+            "path": "include/pso/enemy/TObjEneMe3Shinowa.h",
+            "blob": "3be0481d547170b545bf7a8fcb4f38c6d30f7377"
+          },
+          {
+            "row": 727,
+            "path": "include/pso/enemy/TObjEneMe3SinowZoa.h",
+            "blob": "05d630c683ddce73dd7df83de12d9cc1e244f0f2"
+          },
+          {
+            "row": 467,
+            "path": "include/pso/enemy/TObjEneRe2Flower.h",
+            "blob": "395ca497f1fff7e9dd31d871587a558f494ac422"
+          },
+          {
+            "row": 971,
+            "path": "src/pso/enemy/TObjEnePanarmsAtkColli.cpp",
+            "blob": "6f3cf342b62c9a90cf454aed2101e10598a5be9e"
+          }
+        ]
+      },
+      "64fa1c7e6f6a1399e26fe93690a2d40ad5c51ff7": {
+        "subject": "Merge pull request #98 from matthewlewisnewton/codex/fork-gigue-continuation",
+        "final_fork_blobs": [
+          {
+            "row": 459,
+            "path": "include/pso/enemy/TObjEneMe1GiGue.h",
+            "blob": "9ddca8a98139c3a7ac8f15b862306e49671dc28e"
+          }
+        ]
+      },
+      "43082211853f4a2d7ff7896ff9dcc4814e5292fd": {
+        "subject": "Merge pull request #88 from matthewlewisnewton/codex/fork-shared-empty-hooks",
+        "final_fork_blobs": [
+          {
+            "row": 1200,
+            "path": "src/pso/unk/text_800C2A88.cpp",
+            "blob": "73eb61f82bc5a769ca0b451249e2eca438889d93"
+          }
+        ]
+      },
+      "7e498cb8c3fb485258fbe5c80f0406929f91f9d4": {
+        "subject": "Merge pull request #85 from matthewlewisnewton/codex/fork-shared-matrix",
+        "final_fork_blobs": [
+          {
+            "row": 4173,
+            "path": "src/pso/player/TObjPlayer_8035A630.cpp",
+            "blob": "085add9428cbb6e5ce52405ffc43593bfc0260d8"
+          },
+          {
+            "row": 652,
+            "path": "src/pso/unk/text_8002E174.cpp",
+            "blob": "95bf9f9e9ee3cb5eef12c68226bc4f28c0c888a0"
+          }
+        ]
+      },
+      "b7a5f2b05dfd2d01bb78b3316b470a512f90c3ef": {
+        "subject": "Merge pull request #68 from matthewlewisnewton/codex/fork-shared-draw",
+        "final_fork_blobs": [
+          {
+            "row": 4181,
+            "path": "src/pso/player/TObjPlayer_803E4954.cpp",
+            "blob": "59d83f38e05c794c159a9a4958960064a3f09b0f"
+          }
+        ]
+      },
+      "b4ac5f8d828dd2575a641b8b0b73e843ccf63c59": {
+        "subject": "Merge pull request #66 from matthewlewisnewton/codex/fork-shared-chunk",
+        "final_fork_blobs": [
+          {
+            "row": 476,
+            "path": "include/pso/enemy/TObjEneShark.h",
+            "blob": "f47f7b5a5f75cc022f597667ba3f483088e9b88b"
+          }
+        ]
+      }
+    },
+    "last_touch_code_comparisons": {
+      "attempted": 499,
+      "found": [
+        {
+          "row": 5619,
+          "historical_change": "004ec5ff24294a95580732541e26e99682a58946",
+          "current_owner": "src/pso/ui/window/TWindowDD_80341A08.cpp",
+          "context": [
+            {
+              "fork_context_lines": [
+                34,
+                36
+              ],
+              "replay_context_lines": [
+                32,
+                34
+              ]
+            }
+          ],
+          "fork_blob": "745246283f8f2c4c90410b8cad77ad53a45abb6c",
+          "same_code_in_fork_ancestor_and_last_parent": false
+        },
+        {
+          "row": 4376,
+          "historical_change": "209b405e16fe1b902d07ce8be5e07685c064f17c",
+          "current_owner": "src/pso/effect/item/TItemEffectWeapon.cpp",
+          "context": [
+            {
+              "fork_context_lines": [
+                47,
+                51
+              ],
+              "replay_context_lines": [
+                34,
+                38
+              ]
+            },
+            {
+              "fork_context_lines": [
+                147,
+                151
+              ],
+              "replay_context_lines": [
+                134,
+                138
+              ]
+            }
+          ],
+          "fork_blob": "2ce68a438257c87961b071ef2f067b5787129712",
+          "same_code_in_fork_ancestor_and_last_parent": false
+        },
+        {
+          "row": 4473,
+          "historical_change": "209b405e16fe1b902d07ce8be5e07685c064f17c",
+          "current_owner": "src/pso/unk/text_80357058.cpp",
+          "context": [
+            {
+              "fork_context_lines": [
+                205,
+                209
+              ],
+              "replay_context_lines": [
+                193,
+                197
+              ]
+            }
+          ],
+          "fork_blob": "d227d37a4e201c919307d753509913605de17837",
+          "same_code_in_fork_ancestor_and_last_parent": false
+        },
+        {
+          "row": 4360,
+          "historical_change": "6c8a4533565ff9621a3a4770cc1de11365d23654",
+          "current_owner": "src/pso/player/TObjPlayer_801BC194.cpp",
+          "context": [
+            {
+              "fork_context_lines": [
+                75,
+                79
+              ],
+              "replay_context_lines": [
+                67,
+                71
+              ]
+            }
+          ],
+          "fork_blob": "9deee066e9f6622124f0d9b96a36475382dbc166",
+          "same_code_in_fork_ancestor_and_last_parent": false
+        },
+        {
+          "row": 281,
+          "historical_change": "14c61a95d3d3154b92968eec981e28611b91e867",
+          "current_owner": "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+          "context": [
+            {
+              "fork_context_lines": [
+                246,
+                250
+              ],
+              "replay_context_lines": [
+                284,
+                288
+              ]
+            }
+          ],
+          "fork_blob": "0b24c5092e03d3ee74eb2672b9086a6dc5e16898",
+          "same_code_in_fork_ancestor_and_last_parent": false
+        },
+        {
+          "row": 520,
+          "historical_change": "e82f2afb53e5bccec7cf0561b72ab0b01b3785ad",
+          "current_owner": "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+          "context": [
+            {
+              "fork_context_lines": [
+                252,
+                256
+              ],
+              "replay_context_lines": [
+                236,
+                240
+              ]
+            }
+          ],
+          "fork_blob": "79ed3ed246e7fd39552924b17593ff0d5b0fcdae",
+          "same_code_in_fork_ancestor_and_last_parent": false
+        },
+        {
+          "row": 3648,
+          "historical_change": "0a3bc130601435d2108cca9afc5d6df69c4ee64a",
+          "current_owner": "src/pso/weapon/TItemWeaponFist.cpp",
+          "context": [
+            {
+              "fork_context_lines": [
+                205,
+                212
+              ],
+              "replay_context_lines": [
+                101,
+                108
+              ]
+            }
+          ],
+          "fork_blob": "c3c79aedaf69eb4be99a815d4ceb7c6491d54bf1",
+          "same_code_in_fork_ancestor_and_last_parent": false
+        }
+      ]
+    }
+  },
+  "validation": {
+    "source": {
+      "baseline": "234101fad4f13effe00c002e03e309e93191a9f1",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2446,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "67df5a1c7f1bc73dca7be0540078f50e79986373300c6a4b4fc09ba681a6a1ec",
+      "report_sha256": "c579a9007d0fee4d0d848c8ff8b68d418ce7c1b114b9891b9733cf90e45f5feb",
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8024A5AC",
+          "before": "get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv",
+          "after": "get_speaker_balloon_anchor__11TWindowCtrlFUsPfPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024A714",
+          "before": "find_farthest_balloon_slot__11TWindowCtrlFPvUs",
+          "after": "find_farthest_balloon_slot__11TWindowCtrlFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024A800",
+          "before": "acquire_balloon_slot__11TWindowCtrlFPviiPv",
+          "after": "acquire_balloon_slot__11TWindowCtrlFUsll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024A928",
+          "before": "show_chat_balloon__11TWindowCtrlFllPvPv",
+          "after": "show_chat_balloon__11TWindowCtrlFUslPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024B558",
+          "before": "open__11TWindowCtrlFlll",
+          "after": "open__11TWindowCtrlFUsll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024B5E0",
+          "before": "open_default__11TWindowCtrlFll",
+          "after": "open_default__11TWindowCtrlFUsl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024C5E8",
+          "before": "get_flags__11TWindowCtrlFv",
+          "after": "get_speaker_id__13TUnk_804CF0B8Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80251DF0",
+          "before": "sub_80251DF0__13TUnk_804CF0B8Fslsf",
+          "after": "sub_80251DF0__13TUnk_804CF0B8FUsllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80252B74",
+          "before": "TWindowFukidasi__sub_80252B74",
+          "after": "__ct__13TUnk_804CF0B8FUsllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803471C0",
+          "before": "open__9TWindowDDFll",
+          "after": "open__9TWindowDDFPvUs"
+        }
+      ]
+    },
+    "workspace": {
+      "baseline": "0aeee8021bb29edf09e0f0bfcc0d3162f4356566",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2446,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "f9f07eeb13176e3415769f8f95caf5c118300d400d2e587d5122242426f24e3e",
+      "report_sha256": "c579a9007d0fee4d0d848c8ff8b68d418ce7c1b114b9891b9733cf90e45f5feb",
+      "linker_label_changes": []
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "4ccab471f5899a99333ccdf90dd0b6ee7d0804aa1f10b13a913ee59e800ae398"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "0d7bcac8a4938c99942b145f8fdbc7f6eae3b41b53571581a75b657a23e3444d"
+    },
+    "host": {
+      "checks": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    },
+    "balloon_runtime_probe": {
+      "result": "Unsigned speaker IDs, empty anchors, full slots and default balloon dispatch passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "23c3a8328b212472a5cf2d00874b8e0ee65471efe8f0949b3c43f26bb7c022fd"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "fe5c563c7985825374276eb41add371e9df5b117c3f299b8b8269a30dd3cab39",
+    "force_active_names": 27033,
+    "retagged_force_active_names": 3
+  }
+}
