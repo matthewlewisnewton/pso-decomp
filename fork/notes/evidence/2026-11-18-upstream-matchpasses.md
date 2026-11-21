@@ -24,6 +24,10 @@ The historical speech-balloon replay at `0aeee8021b` restores the native constru
 
 All 511 previously open records now have a verified last source-changing fork commit. They span 148 commits. The tip blob matches at each recorded path. The new batch closes four full historical comparisons and records nine partial comparisons, leaving 507 open. The last-commit lookup records partial evidence where earlier fork edits still need review. [Balloon validation and historical provenance](2026-11-21-historical-balloon-and-provenance.json)
 
+The 21-path window batch at `12a04e0138` restores native construction for Guild Card, its follower, bank deposit, Simple Status, Status, Mag Photon Blast and Party Status. The follower owns its selection and column methods, and its native destructor emits the original vtable. Balloon placement uses typed geometry and keeps upstream's `draw_resolved_window` name. The 15 changed linker labels follow recovered types, constructors, destructor or class ownership.
+
+The audit confirms 67 existing native lifetimes and recovers eight more at their original addresses. Six Word Select lifetimes still need source comparison. Seven historical file records gain partial evidence, leaving 507 records open. The stock and fork workspace builds match retail and link all 2,446 units. Both preserve all 1,147 starting data bytes. The 310 workspace tests pass, and eight balloon-overlap cases agree across retail and both builds. [Window lifetime and placement validation](2026-11-21-historical-window-lifetimes.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)

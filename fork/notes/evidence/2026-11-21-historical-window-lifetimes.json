@@ -1,0 +1,1056 @@
+{
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source": "12a04e0138e0ac289463491fcdb93eca2ecc8d62",
+  "previous_source": "0aeee8021bb29edf09e0f0bfcc0d3162f4356566",
+  "source_paths": 1045,
+  "changed_source_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TUnk_804CE964.h",
+    "include/pso/ui/window/TWindowComCard.h",
+    "include/pso/ui/window/TWindowDeposit.h",
+    "include/pso/ui/window/TWindowFukidasi.h",
+    "include/pso/ui/window/TWindowPartyStatus.h",
+    "include/pso/ui/window/TWindowSimpleStatus.h",
+    "include/pso/ui/window/TWindowStatus.h",
+    "include/pso/ui/window/TWindowSubComCard_80244774.h",
+    "include/pso/ui/window/TWindowSubMagPhoton.h",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249610.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowDeposit.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowPartyStatus.cpp",
+    "src/pso/ui/window/TWindowSimpleStatus.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubMag.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "historical_comparison": {
+    "first_parent_window_fold": "4959835fff69c793c73f11cb45e72ba349452246",
+    "window_lifetimes_by_address": [
+      {
+        "address": "0x801C2528",
+        "current": "__ct__13TUnk_804C3E60FP7TObjectll",
+        "old": "init__17TWindowDuelResultFPvPvPv",
+        "original": "__ct__13TUnk_804C3E60FP7TObjectll",
+        "owner": "src/pso/ui/window/TWindowDuelResult_801C2528.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__13TUnk_804C3E60FP7TObjectll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80244108",
+        "current": "__ct__20TWindowActionPaletteFl",
+        "old": "TWindowActionPalette__ct",
+        "original": "__ct__20TWindowActionPaletteFl",
+        "owner": "src/pso/ui/window/TWindowActionPalette.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__20TWindowActionPaletteFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802443F0",
+        "current": "__dt__15TWindowAdditionFv",
+        "old": "destroy_window__15TWindowAdditionFs",
+        "original": "__dt__15TWindowAdditionFv",
+        "owner": "src/pso/ui/window/TWindowArea.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__15TWindowAdditionFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80244448",
+        "current": "__ct__15TWindowAdditionFPUcsPUc",
+        "old": "construct_with_parent__15TWindowAdditionFPv",
+        "original": "__ct__15TWindowAdditionFPUcsPUc",
+        "owner": "src/pso/ui/window/TWindowArea.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__15TWindowAdditionFPUcsPUc",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8024470C",
+        "current": "__ct__11TWindowAreaFv",
+        "old": "TWindowArea__ct",
+        "original": "__ct__11TWindowAreaFv",
+        "owner": "src/pso/ui/window/TWindowArea.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__11TWindowAreaFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80246674",
+        "current": "__dt__11TWindowBaseFv",
+        "old": "destroy_window_base__9TWindowDDFs",
+        "original": "__dt__11TWindowBaseFv",
+        "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__11TWindowBaseFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802466E0",
+        "current": "__ct__11TWindowBaseFPUcsPUc",
+        "old": "construct_base__9TWindowDDFPUcsPUc",
+        "original": "__ct__11TWindowBaseFPUcsPUc",
+        "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__11TWindowBaseFPUcsPUc",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80246C58",
+        "current": "__ct__14TWindowBreakInFv",
+        "old": "TWindowBreakIn__ct",
+        "original": "__ct__14TWindowBreakInFv",
+        "owner": "src/pso/ui/window/TWindowBreakIn.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__14TWindowBreakInFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80246D74",
+        "current": "__dt__22TWindowChallengeResultFv",
+        "old": "dt__22TWindowChallengeResultFPvs",
+        "original": "__dt__22TWindowChallengeResultFv",
+        "owner": "src/pso/ui/window/TWindowChallengeResult.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__22TWindowChallengeResultFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80246DCC",
+        "current": "__ct__22TWindowChallengeResultFPCcll",
+        "old": "TWindowChallengeResult__ct",
+        "original": "__ct__22TWindowChallengeResultFlll",
+        "owner": "src/pso/ui/window/TWindowChallengeResult.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__22TWindowChallengeResultFPCcll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80248700",
+        "current": "__ct__17TWindowChatSymbolFll",
+        "old": "TWindowChatSymbol__ct",
+        "original": "__ct__17TWindowChatSymbolFPvPv",
+        "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__17TWindowChatSymbolFll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80249004",
+        "current": "__ct__15TWindowCheckBoxFPUcl",
+        "old": "fn_80249004",
+        "original": "__ct__13TUnk_804CE7E8FPvl",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "__ct__15TWindowCheckBoxFPUcl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802495B0",
+        "current": "__ct__20TWindowChoiceSettingFPvl",
+        "old": "TWindowChoiceSetting__ct",
+        "original": "__ct__20TWindowChoiceSettingFPvUl",
+        "owner": "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__20TWindowChoiceSettingFPvl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80249BA8",
+        "current": "TWindowComCard__ct",
+        "old": "TWindowComCard__ct",
+        "original": "__ct__14TWindowComCardFPvl",
+        "owner": "src/pso/ui/window/TWindowComCard.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__ct__14TWindowComCardFPvPv",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x80249E80",
+        "current": "TWindowComCard__sub_80249E80",
+        "old": "TWindowComCard__sub_80249E80",
+        "original": "__dt__13TUnk_804CE964Fv",
+        "owner": "src/pso/ui/window/TWindowComCard.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__dt__13TUnk_804CE964Fv",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x80249ED8",
+        "current": "TWindowComCard__sub_80249ED8",
+        "old": "TWindowComCard__sub_80249ED8",
+        "original": "__ct__13TUnk_804CE964FP11TWindowBaseP19ComCardWindowOffsetlll",
+        "owner": "src/pso/ui/window/TWindowComCard.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__ct__13TUnk_804CE964FP11TWindowBaseP10NJS_POINT2lll",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x8024E548",
+        "current": "TWindowDeposit__ct",
+        "old": "TWindowDeposit__ct",
+        "original": "__ct__14TWindowDepositFs",
+        "owner": "src/pso/ui/window/TWindowDeposit.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__ct__14TWindowDepositFs",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x8024F548",
+        "current": "__dt__17TWindowDuelResultFv",
+        "old": "destroy__17TWindowDuelResultFPvs",
+        "original": "__dt__17TWindowDuelResultFv",
+        "owner": "src/pso/ui/window/TWindowDuelResult.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__17TWindowDuelResultFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8024F5B0",
+        "current": "__ct__17TWindowDuelResultFl",
+        "old": "TWindowDuelResult__ct",
+        "original": "__ct__17TWindowDuelResultFl",
+        "owner": "src/pso/ui/window/TWindowDuelResult.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__17TWindowDuelResultFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80252B74",
+        "current": "__ct__13TUnk_804CF0B8FUsllf",
+        "old": "TWindowFukidasi__sub_80252B74",
+        "original": "__ct__13TUnk_804CF0B8FUsllf",
+        "owner": "src/pso/ui/window/TWindowFukidasi.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "__ct__13TUnk_804CF0B8FUsllf",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80255C64",
+        "current": "__dt__15TWindowHelpItemFv",
+        "old": "dt__15TWindowHelpItemFs",
+        "original": "__dt__15TWindowHelpItemFv",
+        "owner": "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__15TWindowHelpItemFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8025E9E4",
+        "current": "__ct__19TWindowKeyBoardBaseFv",
+        "old": "TWindowKeyBoardBase__ct",
+        "original": "__ct__19TWindowKeyBoardBaseFv",
+        "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowKeyBoardBaseFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80260304",
+        "current": "__ct__19TWindowKeyBoardHardFP19TWindowKeyBoardBase",
+        "old": "TWindowKeyBoardHard__ct",
+        "original": "__ct__19TWindowKeyBoardHardFP19TWindowKeyBoardBase",
+        "owner": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowKeyBoardHardFP19TWindowKeyBoardBase",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80262740",
+        "current": "__ct__19TWindowKeyBoardSoftFP19TWindowKeyBoardBasel",
+        "old": "TWindowKeyBoardSoft__ct",
+        "original": "__ct__19TWindowKeyBoardSoftFP19TWindowKeyBoardBasel",
+        "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowKeyBoardSoftFP19TWindowKeyBoardBasel",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80262B2C",
+        "current": "__ct__22TWindowLoadItemTextureFPUcPvl",
+        "old": "TWindowLoadItemTexture__ct",
+        "original": "__ct__22TWindowLoadItemTextureFPvPvl",
+        "owner": "src/pso/ui/window/TWindowLoadItemTexture.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__22TWindowLoadItemTextureFPUcPvl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80263944",
+        "current": "__ct__13TWindowLockOnFlUs",
+        "old": "TWindowLockOn__ct",
+        "original": "__ct__13TWindowLockOnFlUs",
+        "owner": "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__13TWindowLockOnFlUs",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80266A48",
+        "current": "__ct__11TWindowMenuFUlll",
+        "old": "TWindowMenu__ct",
+        "original": "__ct__11TWindowMenuFUllPv",
+        "owner": "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__11TWindowMenuFUlll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80268310",
+        "current": "__dt__19TWindowMenuIconLineFv",
+        "old": "destroy_item_list_resources__20TWindowSubStatusDispFs",
+        "original": "__dt__19TWindowMenuIconLineFv",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__19TWindowMenuIconLineFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80268384",
+        "current": "__ct__19TWindowMenuIconLineFPUcUlsPUc",
+        "old": "fn_80268384",
+        "original": "__ct__19TWindowMenuIconLineFPUcUlsPUc",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowMenuIconLineFPUcUlsPUc",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802683F4",
+        "current": "__ct__19TWindowMenuIconLineFPUcUls",
+        "old": "fn_802683F4",
+        "original": "__ct__19TWindowMenuIconLineFPUcUls",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowMenuIconLineFPUcUls",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80268F90",
+        "current": "__dt__13TUnk_804D0658Fv",
+        "old": "destroy_children__13TUnk_804D0658Fs",
+        "original": "__dt__13TUnk_804D0658Fv",
+        "owner": "src/pso/ui/window/TWindowChoiceSetting.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__13TUnk_804D0658Fv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80269004",
+        "current": "__ct__13TUnk_804D0658FPvl",
+        "old": "fn_80269004",
+        "original": "__ct__13TUnk_804D0658FPvUl",
+        "owner": "src/pso/ui/window/TWindowChoiceSetting.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__13TUnk_804D0658FPvl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80269244",
+        "current": "__ct__13TWindowMesetaFlll",
+        "old": "TWindowMeseta__ct",
+        "original": "__ct__13TWindowMesetaFPvll",
+        "owner": "src/pso/ui/window/TWindowMeseta.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__13TWindowMesetaFlll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80269EFC",
+        "current": "__ct__14TWindowMessageFlUll",
+        "old": "TWindowMessage__ct",
+        "original": "__ct__14TWindowMessageFlUll",
+        "owner": "src/pso/ui/window/TWindowMessage.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__14TWindowMessageFlUll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026A100",
+        "current": "__ct__24TWindowMessageInfomationFll",
+        "old": "TWindowMessageInfomation__ct",
+        "original": "__ct__24TWindowMessageInfomationFll",
+        "owner": "src/pso/ui/window/TWindowMessageInfomation.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__24TWindowMessageInfomationFll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026ABA8",
+        "current": "__ct__17TWindowMessageLogFll",
+        "old": "TWindowMessageLog__ct",
+        "original": "__ct__17TWindowMessageLogFll",
+        "owner": "src/pso/ui/window/TWindowMessageLog.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__17TWindowMessageLogFll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026B014",
+        "current": "__ct__18TWindowMessagePageFlll",
+        "old": "TWindowMessagePage__ct",
+        "original": "__ct__18TWindowMessagePageFlll",
+        "owner": "src/pso/ui/window/TWindowMessagePage.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__18TWindowMessagePageFlll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026B260",
+        "current": "__ct__19TWindowMessageQuestFl",
+        "old": "TWindowMessageQuest__ct",
+        "original": "__ct__19TWindowMessageQuestFl",
+        "owner": "src/pso/ui/window/TWindowMessageQuest.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowMessageQuestFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026CB44",
+        "current": "__ct__13PageIndicatorFScScl",
+        "old": "init__21TWindowSubComCardListFiii",
+        "original": "__ct__13PageIndicatorFScScl",
+        "owner": "src/pso/unk/text_8026C664.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__13PageIndicatorFScScl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026D000",
+        "current": "__ct__15TWindowQuantityFl",
+        "old": "TWindowQuantity__ct",
+        "original": "__ct__15TWindowQuantityFl",
+        "owner": "src/pso/ui/window/TWindowQuantity.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__15TWindowQuantityFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026DA0C",
+        "current": "__ct__15Scroll_8026D790FPv",
+        "old": "reset_selection__20TWindowSubStatusDispFv",
+        "original": "__ct__15Scroll_8026D790FPv",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__15Scroll_8026D790FPv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026E0B8",
+        "current": "__dt__11TWindowShopFv",
+        "old": "deleting_dtor__20TWindowSubStatusDispFs",
+        "original": "__dt__13TUnk_804D0948Fv",
+        "owner": "src/pso/ui/window/TWindowShop.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "__dt__11TWindowShopFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026E110",
+        "current": "__ct__11TWindowShopFPUclUlPUc",
+        "old": "ct_helper__20TWindowSubStatusDispFllll",
+        "original": "__ct__13TUnk_804D0948FPvlUlPUc",
+        "owner": "src/pso/ui/window/TWindowShop.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "__ct__11TWindowShopFPUclUlPUc",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026E168",
+        "current": "__ct__11TWindowShopFlUll",
+        "old": "construct_item_list__20TWindowSubStatusDispFlls",
+        "original": "__ct__13TUnk_804D0948FlUll",
+        "owner": "src/pso/ui/window/TWindowShop.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "__ct__11TWindowShopFlUll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8026E728",
+        "current": "__ct__15TWindowShortCutFllPl",
+        "old": "TWindowShortCut__ct",
+        "original": "__ct__15TWindowShortCutFPvlPv",
+        "owner": "src/pso/ui/window/TWindowShortCut.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__15TWindowShortCutFllPl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80270668",
+        "current": "TWindowSimpleStatus__ct",
+        "old": "TWindowSimpleStatus__ct",
+        "original": "__ct__19TWindowSimpleStatusFPvlPUc",
+        "owner": "src/pso/ui/window/TWindowSimpleStatus.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__ct__19TWindowSimpleStatusFPvlPUc",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x80270DCC",
+        "current": "__ct__19TWindowSoundBalanceFl",
+        "old": "TWindowSoundBalance__ct",
+        "original": "__ct__19TWindowSoundBalanceFPv",
+        "owner": "src/pso/ui/window/TWindowSoundBalance.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowSoundBalanceFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802713BC",
+        "current": "TWindowStatus__ct",
+        "old": "TWindowStatus__ct",
+        "original": "__ct__13TWindowStatusFPvlPUc",
+        "owner": "src/pso/ui/window/TWindowStatus.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__ct__13TWindowStatusFPvlPUc",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x80271D00",
+        "current": "__ct__21TWindowSubAreaMapDispFv",
+        "old": "TWindowSubAreaMapDisp__ct",
+        "original": "__ct__21TWindowSubAreaMapDispFv",
+        "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__21TWindowSubAreaMapDispFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80275694",
+        "current": "__ct__21TWindowSubComCardListFPv",
+        "old": "TWindowSubComCardList__ct",
+        "original": "__ct__21TWindowSubComCardListFPv",
+        "owner": "src/pso/ui/window/TWindowSubComCardList.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__21TWindowSubComCardListFPv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802757AC",
+        "current": "__ct__21TWindowSubComCardListFPvlll",
+        "old": "TWindowSubComCardList__sub_802757AC",
+        "original": "__ct__21TWindowSubComCardListFPvlll",
+        "owner": "src/pso/ui/window/TWindowSubComCardList.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__21TWindowSubComCardListFPvlll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802771C0",
+        "current": "__ct__21TWindowSubCustomEquipFl",
+        "old": "TWindowSubCustomEquip__ct",
+        "original": "__ct__21TWindowSubCustomEquipFl",
+        "owner": "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__21TWindowSubCustomEquipFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80277AEC",
+        "current": "__ct__22TWindowSubCustomSelectFl",
+        "old": "TWindowSubCustomSelect__ct",
+        "original": "__ct__22TWindowSubCustomSelectFl",
+        "owner": "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__22TWindowSubCustomSelectFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80278FE0",
+        "current": "__ct__19TWindowSubEquipKindFPUcl",
+        "old": "TWindowSubEquipKind__ct",
+        "original": "__ct__19TWindowSubEquipKindFPvl",
+        "owner": "src/pso/ui/window/TWindowSubEquipKind.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowSubEquipKindFPUcl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802793E4",
+        "current": "__ct__19TWindowSubEquipListFPUcl",
+        "old": "TWindowSubEquipList__ct",
+        "original": "__ct__19TWindowSubEquipListFPvl",
+        "owner": "src/pso/ui/window/TWindowSubEquipList.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowSubEquipListFPUcl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8027AEDC",
+        "current": "__ct__18TWindowSubItemListFPUcl",
+        "old": "TWindowSubItemList__ct",
+        "original": "__ct__18TWindowSubItemListFPvl",
+        "owner": "src/pso/ui/window/TWindowSubItemList.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__18TWindowSubItemListFPUcl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8027C6B4",
+        "current": "TWindowSubMagPhoton__ct",
+        "old": "TWindowSubMagPhoton__ct",
+        "original": "__ct__19TWindowSubMagPhotonFlll",
+        "owner": "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__ct__19TWindowSubMagPhotonFPvll",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x8027DA14",
+        "current": "__ct__26TWindowSubQuestBoardSelectFv",
+        "old": "TWindowSubQuestBoardSelect__ct",
+        "original": "__ct__26TWindowSubQuestBoardSelectFv",
+        "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__26TWindowSubQuestBoardSelectFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8027E558",
+        "current": "__ct__22TWindowSubShortCutListFPUcl",
+        "old": "TWindowSubShortCutList__ct",
+        "original": "__ct__22TWindowSubShortCutListFPvl",
+        "owner": "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__22TWindowSubShortCutListFPUcl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802816F8",
+        "current": "__dt__20TWindowSubStatusDispFv",
+        "old": "dt__20TWindowSubStatusDispFs",
+        "original": "__dt__20TWindowSubStatusDispFv",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__20TWindowSubStatusDispFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80281760",
+        "current": "__ct__20TWindowSubStatusDispFl",
+        "old": "TWindowSubStatusDisp__ct",
+        "original": "__ct__20TWindowSubStatusDispFl",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__20TWindowSubStatusDispFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802841FC",
+        "current": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc",
+        "old": "TWindowSubSymbolChatFaceType__ct",
+        "original": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc",
+        "owner": "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80284B84",
+        "current": "__ct__24TWindowSubSymbolChatHelpFPScPl",
+        "old": "TWindowSubSymbolChatHelp__ct",
+        "original": "__ct__24TWindowSubSymbolChatHelpFPScPl",
+        "owner": "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__24TWindowSubSymbolChatHelpFPScPl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80285D38",
+        "current": "__ct__25TWindowSubSymbolChatPartsFPvPlPl",
+        "old": "TWindowSubSymbolChatParts__ct",
+        "original": "__ct__25TWindowSubSymbolChatPartsFPvPlPl",
+        "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__25TWindowSubSymbolChatPartsFPvPlPl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802869BC",
+        "current": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl",
+        "old": "TWindowSubSymbolChatPartsSet__ct",
+        "original": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl",
+        "owner": "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80287FBC",
+        "current": "__ct__12TWindowTimerFv",
+        "old": "TWindowTimer__ct",
+        "original": "__ct__12TWindowTimerFv",
+        "owner": "src/pso/ui/window/TWindowTimer.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__12TWindowTimerFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80288380",
+        "current": "__ct__15TWindowUserSortFlP15GuildCardRecord",
+        "old": "TWindowUserSort__ct",
+        "original": "__ct__15TWindowUserSortFPvl",
+        "owner": "src/pso/ui/window/TWindowUserSort.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__15TWindowUserSortFlP15GuildCardRecord",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802A80A0",
+        "current": "__ct__15TWindowSnapShotFl",
+        "old": "TWindowSnapShot__ct",
+        "original": "__ct__15TWindowSnapShotFPv",
+        "owner": "src/pso/ui/window/TWindowSnapShot.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__15TWindowSnapShotFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802ACE84",
+        "current": "__ct__15TWindowCallBackFlPUcl",
+        "old": "TWindowCallBack__ct",
+        "original": "__ct__15TWindowCallBackFPUcPUcl",
+        "owner": "src/pso/ui/window/TWindowCallBack.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__15TWindowCallBackFlPUcl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x802AE864",
+        "current": "__ct__19TWindowMenuMainMenuFls",
+        "old": "TWindowMenuMainMenu__ct",
+        "original": "__ct__19TWindowMenuMainMenuFPvl",
+        "owner": "src/pso/ui/window/TWindowMenuMainMenu.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__19TWindowMenuMainMenuFls",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x80309598",
+        "current": "__ct__11TWindowCostFPvll",
+        "old": "TWindowCost__ct",
+        "original": "__ct__11TWindowCostFPvll",
+        "owner": "src/pso/ui/window/TWindowCost.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__11TWindowCostFPvll",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8030C2D8",
+        "current": "TWindowPartyStatus__ct",
+        "old": "TWindowPartyStatus__ct",
+        "original": "__ct__18TWindowPartyStatusFlPUc",
+        "owner": "src/pso/ui/window/TWindowPartyStatus.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "__ct__18TWindowPartyStatusFlPUc",
+        "status": "C++ lifetime recovered"
+      },
+      {
+        "address": "0x80338F3C",
+        "current": "__ct__21TWindowMenuTeamStatusFl",
+        "old": "fn_80338F3C",
+        "original": "__ct__13TUnk_804EF4E0Fl",
+        "owner": "src/pso/unk/TLobby_80338E9C.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "__ct__21TWindowMenuTeamStatusFl",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x803409A4",
+        "current": "construct_variant_a__9TWindowDDFPv",
+        "old": "construct_variant_a__9TWindowDDFPv",
+        "original": "__ct__13TUnk_804EFBACFv",
+        "owner": "src/pso/ui/window/TWindowDD_8034055C.cpp",
+        "previous_status": "trace owner",
+        "verified_label": "construct_variant_a__9TWindowDDFPv",
+        "status": "Word Select lifetime pending source comparison"
+      },
+      {
+        "address": "0x80340EA8",
+        "current": "dt__22TWindowDD_WS_ScrollBarFs",
+        "old": "dt__22TWindowDD_WS_ScrollBarFs",
+        "original": "__dt__22TWindowDD_WS_ScrollBarFv",
+        "owner": "src/pso/ui/window/TWindowDD_80340A78.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "dt__22TWindowDD_WS_ScrollBarFs",
+        "status": "Word Select lifetime pending source comparison"
+      },
+      {
+        "address": "0x80340F00",
+        "current": "construct_variant_b__9TWindowDDFPv",
+        "old": "construct_variant_b__9TWindowDDFPv",
+        "original": "__ct__22TWindowDD_WS_ScrollBarFv",
+        "owner": "src/pso/ui/window/TWindowDD_80340A78.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "construct_variant_b__9TWindowDDFPv",
+        "status": "Word Select lifetime pending source comparison"
+      },
+      {
+        "address": "0x80341334",
+        "current": "__dt__19TWindowDD_WS_StringFv",
+        "old": "__dt__9TWindowDDFPvs",
+        "original": "__dt__19TWindowDD_WS_StringFv",
+        "owner": "src/pso/ui/window/TWindowDD_80341334.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__dt__19TWindowDD_WS_StringFv",
+        "status": "C++ lifetime present"
+      },
+      {
+        "address": "0x8034138C",
+        "current": "TWindowDD__sub_8034138C",
+        "old": "TWindowDD__sub_8034138C",
+        "original": "__ct__19TWindowDD_WS_StringFPvPvll",
+        "owner": "src/pso/ui/window/TWindowDD_80341334.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "TWindowDD__sub_8034138C",
+        "status": "Word Select lifetime pending source comparison"
+      },
+      {
+        "address": "0x8034227C",
+        "current": "destroy__17TWindowDD_WS_WordFs",
+        "old": "destroy__17TWindowDD_WS_WordFs",
+        "original": "__dt__17TWindowDD_WS_WordFv",
+        "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "destroy__17TWindowDD_WS_WordFs",
+        "status": "Word Select lifetime pending source comparison"
+      },
+      {
+        "address": "0x803422F0",
+        "current": "TWindowDD__sub_803422F0",
+        "old": "TWindowDD__sub_803422F0",
+        "original": "__ct__17TWindowDD_WS_WordFll",
+        "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp",
+        "previous_status": "raw ABI",
+        "verified_label": "TWindowDD__sub_803422F0",
+        "status": "Word Select lifetime pending source comparison"
+      },
+      {
+        "address": "0x8035D694",
+        "current": "__ct__20TWindowMessageScrollFlPl",
+        "old": "TWindowMessageScroll__ct",
+        "original": "__ct__20TWindowMessageScrollFlPl",
+        "owner": "src/pso/ui/window/TWindowMessageScroll.cpp",
+        "previous_status": "C++ lifetime present",
+        "verified_label": "__ct__20TWindowMessageScrollFlPl",
+        "status": "C++ lifetime present"
+      }
+    ],
+    "open_rows": 507,
+    "partial_rows": {
+      "157": "Fifteen linker labels at their original addresses now describe typed arguments, native lifetimes or corrected owners.",
+      "262": "The typed balloon chain and placement use the original target, frame and viewport fields. Wider render and layout changes remain open.",
+      "2699": "The deposit dialog uses the native s16 constructor. Other bank room sequence changes remain open.",
+      "5790": "The Mag Photon Blast constructor, destructor, layout and typed render are live. The historical shared sound declaration still needs comparison.",
+      "5827": "The folded owner has the typed viewport root, balloon-list traversal and overlap helper. The rest of the historical file still needs comparison.",
+      "5829": "The balloon overlap helpers use typed position, size and exclusion fields in the current owner. Other Guild Card and drawing changes remain open.",
+      "5920": "The Mag menu allocates the native Photon Blast child and retains the same selected state and client. The sound and other child call sites still need comparison."
+    }
+  },
+  "validation": {
+    "source": {
+      "baseline": "0aeee8021bb29edf09e0f0bfcc0d3162f4356566",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2446,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "7a1e4ede5d91808c33f9240cbe8276ba3a36bd7c39f9d962ca81a6cf10d4fe24",
+      "report_sha256": "da4ae862b512bcff25881dd8195d97d666b0c80d60f8b4d28ec6d05a2cbbdb36",
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80244D70",
+          "before": "is_balloon_overlapping__FPUcPUcPUc",
+          "after": "is_balloon_overlapping__FPC15TWindowFukidasiPCfPCf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80244DFC",
+          "before": "find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv",
+          "after": "find_overlapping_balloon__15TWindowFukidasiFPCfPCfP15TWindowFukidasi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80244F00",
+          "before": "find_balloon_overlap_for__15TWindowFukidasiFl",
+          "after": "find_balloon_overlap_for__15TWindowFukidasiFP15TWindowFukidasi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024961C",
+          "before": "draw_resolved_window__15TWindowFukidasiFllll",
+          "after": "draw_resolved_window__15TWindowFukidasiFPCfPCfl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80249BA8",
+          "before": "TWindowComCard__ct",
+          "after": "__ct__14TWindowComCardFPvPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80249D34",
+          "before": "set_selected_index__14TWindowComCardFl",
+          "after": "set_selected_index__13TUnk_804CE964Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80249D7C",
+          "before": "TWindowComCard__sub_80249D7C",
+          "after": "sub_80249D7C__13TUnk_804CE964Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80249E80",
+          "before": "TWindowComCard__sub_80249E80",
+          "after": "__dt__13TUnk_804CE964Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80249ED8",
+          "before": "TWindowComCard__sub_80249ED8",
+          "after": "__ct__13TUnk_804CE964FP11TWindowBaseP10NJS_POINT2lll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024E548",
+          "before": "TWindowDeposit__ct",
+          "after": "__ct__14TWindowDepositFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80270668",
+          "before": "TWindowSimpleStatus__ct",
+          "after": "__ct__19TWindowSimpleStatusFPvlPUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802706F0",
+          "before": "create__19TWindowSimpleStatusFPv",
+          "after": "create__19TWindowSimpleStatusFPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802713BC",
+          "before": "TWindowStatus__ct",
+          "after": "__ct__13TWindowStatusFPvlPUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027C6B4",
+          "before": "TWindowSubMagPhoton__ct",
+          "after": "__ct__19TWindowSubMagPhotonFPvll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8030C2D8",
+          "before": "TWindowPartyStatus__ct",
+          "after": "__ct__18TWindowPartyStatusFlPUc"
+        }
+      ]
+    },
+    "workspace": {
+      "baseline": "12a04e0138e0ac289463491fcdb93eca2ecc8d62",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2446,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "f9f07eeb13176e3415769f8f95caf5c118300d400d2e587d5122242426f24e3e",
+      "report_sha256": "da4ae862b512bcff25881dd8195d97d666b0c80d60f8b4d28ec6d05a2cbbdb36",
+      "linker_label_changes": []
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "dfff0e60a2582ca8bc946c2d4534a4599fa9675b35a23d3c456b9287f8562aeb"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "17e6a41967ab2118b16979e9cb185bdac6d8c352632c6a4f064eb699b12f6aa8"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    },
+    "overlap": {
+      "result": "Eight balloon overlap cases passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "455897f6dec27adb0cacc209f9634987544a801eaf91d3cfe906ede69784bdcb"
+    },
+    "speaker": {
+      "result": "Unsigned speaker IDs, empty anchors, full slots and default balloon dispatch passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "23c3a8328b212472a5cf2d00874b8e0ee65471efe8f0949b3c43f26bb7c022fd"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "891f4c54dbd152d5e3866a30ef5cae8e263d837c093e6c715ccf413be197e236",
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - TWindowComCard__ct",
+      "-  - TWindowComCard__sub_80249E80",
+      "-  - TWindowPartyStatus__ct",
+      "-  - TWindowStatus__ct",
+      "+  - __ct__13TWindowStatusFPvlPUc",
+      "+  - __ct__14TWindowComCardFPvPv",
+      "+  - __ct__18TWindowPartyStatusFlPUc",
+      "+  - __dt__13TUnk_804CE964Fv",
+      "+  - __vt__13TUnk_804CE964",
+      "-  - is_balloon_overlapping__FPUcPUcPUc",
+      "+  - is_balloon_overlapping__FPC15TWindowFukidasiPCfPCf",
+      "-  - lbl_804CE964"
+    ]
+  }
+}
