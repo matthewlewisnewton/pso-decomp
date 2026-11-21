@@ -1,0 +1,354 @@
+{
+  "source": "58df2eb79101047c00f43a0bb084e8e53511c0cc",
+  "previous_source": "91d8ae494d82afebd8f2880d6f3e4d21a9929bcf",
+  "combat_ref": "great-merge/consolidated/ordered-combat-with-radar-owners",
+  "combat_review": "ee4f9c055c4dbe46dbc02c1f5fc4c824459b1e70",
+  "full_ref": "great-merge/consolidated/ordered-full-with-radar-owners",
+  "full_review": "6c521820564288c962250bff8d5869bfc3cccf2c",
+  "single_review": {
+    "ref": "great-merge/consolidated/single-review-with-radar-owners",
+    "head": "1fff8a4bec10d3586b3fdccb4db0cdae2d419167",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "25943877dfd1929bd06fe5cf04bee38ca33d4520",
+    "tree_equivalent_to": "6c521820564288c962250bff8d5869bfc3cccf2c",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "6329e26030728a01a738ace16e508e695d54e358",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "45fa96298115b9562d192a314385cf2bd8a571a7",
+        "checked_tree": "f5f594cd647fb33b063f2571ede16a0a95249741",
+        "files_changed": 679,
+        "insertions": 5762,
+        "deletions": 6298
+      },
+      {
+        "head": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "base": "6329e26030728a01a738ace16e508e695d54e358",
+        "tree": "1d6aa0c3d829cd5727261129dd530ea4d0929c0d",
+        "checked_tree": "c2a19c01fd8c17f858fd056d2b0a701d7d2775e5",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "acf253728a1db1b8e7c30d0bcb900144a776118d",
+        "base": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "tree": "c00afacf3ba5a5c639f291d61e73ef50ee4d312a",
+        "checked_tree": "ee4f9c055c4dbe46dbc02c1f5fc4c824459b1e70",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "1fff8a4bec10d3586b3fdccb4db0cdae2d419167",
+        "base": "acf253728a1db1b8e7c30d0bcb900144a776118d",
+        "tree": "25943877dfd1929bd06fe5cf04bee38ca33d4520",
+        "checked_tree": "6c521820564288c962250bff8d5869bfc3cccf2c",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 5,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1755,
+    "insertions": 28859,
+    "deletions": 31808
+  },
+  "historical_donor": "65c060f3e88928c0f8597680d442639684461131",
+  "source_fixes": [
+    "Store the three radar views and shared camera view using the confirmed 0x28 record and its native copy operation.",
+    "Pass the actual mode, scissor rectangle, projection and model arguments through the C++ owning methods.",
+    "Use the typed resource lifetime and shared SpriteDescriptor in both radar and lobby rendering.",
+    "Keep existing function names. Nine linker labels reflect parameter types or the owning C++ type."
+  ],
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+    "include/pso/camera/RadarMapViewState.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/ui/hud/TRaderMapCore.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/camera/TCameraCtrl.cpp",
+    "src/pso/camera/TCameraCtrl_80067FC0.cpp",
+    "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+    "src/pso/camera/TCameraCtrl_8006CC30.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/city/CitySeason.cpp",
+    "src/pso/object/mine/TOComputerMachine01_8023DD0C.cpp",
+    "src/pso/ui/frontend/TAdLdQuestPrtGC.cpp",
+    "src/pso/ui/frontend/TAdLoadNetworkGC.cpp",
+    "src/pso/ui/hud/TLoadingCur.cpp",
+    "src/pso/ui/hud/TNowLoading.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_803D64F8.cpp"
+  ],
+  "patch_sha256": "0718b40917587dadf56fa9ea5d1e0aa4530a831300bae0a3042c815aab92b394",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matched_functions": 27572,
+  "compiled_source_units": 2448,
+  "historical_rows_closed": {
+    "2260": "Frame model construction, texture load and texture and model teardown use the BmlResource and Ginja texture-list pointers. The native calls cover 0x801FB8AC and 0x801FB904.",
+    "2515": "The header declares the live scissor rectangle, single view mode, projection record, const delay and model pointer returns. The recovered draw_compass method uses the existing name.",
+    "2531": "The original model accessor at 0x801FB9A4 returns NJS_OBJECT * and accepts the read-only delay. The resource is owned as a BmlResource pointer.",
+    "2601": "The loading cursor uses a typed three-word rotation block at 0x804349FC, reads the shared camera direction and position, and retains the two verified sound calls and existing class-name string.",
+    "2614": "The native radar constructor stores the three typed model pointers and initializes all three 0x28 view records with the original position, direction and rotation fields.",
+    "2615": "The resource loader retains the original r.rel suffix and shared texture loader. The compass method at 0x801FB874 accepts the read-only delay and uses the native texture-list setter with its upstream name."
+  },
+  "historical_rows_with_added_evidence": {
+    "424": "The shared camera-vector transform declaration takes a source and destination Vec pointer",
+    "842": "The camera transform at 0x8007E884 uses typed Vec arguments with the original name and owner",
+    "951": "The tunnel effect reads the same typed camera direction as De Rol Le and the renderer",
+    "956": "The ambient effect callers pass the shared camera record and their native Vec pointers",
+    "1116": "The Saver transform shares the camera record and original native vector interface",
+    "1125": "The tunnel effect direction comes from the shared camera record",
+    "2602": "The radar composes three typed view records with shared scissor, projection, sprite and region model interfaces",
+    "4896": "The world camera storage is the same 0x28 type as the radar view, with typed position, direction and initialization",
+    "4962": "The scripted projection writes the existing camera position fields through the shared record",
+    "5087": "The lobby stores its sprite and all three frames in their native types and calls the shared sprite owner",
+    "6950": "The Grass camera-vector calculations use the confirmed shared camera record and typed vector inputs"
+  },
+  "historical_rows_open": 612,
+  "validation": {
+    "combat": {
+      "check_sha256": "b364bca4a6e32a5841e86eb39b16a0b912d11a63b57a0ef6e92be56fb6e9a906",
+      "source_report_sha256": "d4e639ca6e1213c5cf35609c8dda6b31f64c1d92aa0391d91071c1060274b513",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8007E884",
+          "before": "transform_vec_by_camera__15TObjBoss2TunnelFlll",
+          "after": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801F9228",
+          "before": "set_view_scissor__13TRaderMapCoreFPviPv",
+          "after": "set_view_scissor__13TRaderMapCoreFiPC13Rect_801F9228"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801F9314",
+          "before": "setup_overhead_projection__13TRaderMapCoreFv",
+          "after": "setup_overhead_projection__13TRaderMapCoreFP17RadarMapViewState"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FA678",
+          "before": "copy_transform__13TRaderMapCoreFPv",
+          "after": "copy_transform__17RadarMapViewStateFPC17RadarMapViewState"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FA9D8",
+          "before": "begin_map_view__13TRaderMapCoreFii",
+          "after": "begin_map_view__13TRaderMapCoreFi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FAAEC",
+          "before": "render_region_records__13TRaderMapCoreFPv",
+          "after": "render_region_records__13TRaderMapCoreFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FB874",
+          "before": "apply_compass_param__13TRaderMapCoreFPl",
+          "after": "apply_compass_param__13TRaderMapCoreFPCl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FB9A4",
+          "before": "init_map_ptr__13TRaderMapCoreFPll",
+          "after": "init_map_ptr__13TRaderMapCoreFPCll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023E0FC",
+          "before": "draw_compass_sprite__10TObjPlayerFlllf",
+          "after": "draw_compass_sprite__16SpriteDescriptorFlllf"
+        }
+      ]
+    },
+    "full": {
+      "check_sha256": "b364bca4a6e32a5841e86eb39b16a0b912d11a63b57a0ef6e92be56fb6e9a906",
+      "source_report_sha256": "d4e639ca6e1213c5cf35609c8dda6b31f64c1d92aa0391d91071c1060274b513",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8007E884",
+          "before": "transform_vec_by_camera__15TObjBoss2TunnelFlll",
+          "after": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801F9228",
+          "before": "set_view_scissor__13TRaderMapCoreFPviPv",
+          "after": "set_view_scissor__13TRaderMapCoreFiPC13Rect_801F9228"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801F9314",
+          "before": "setup_overhead_projection__13TRaderMapCoreFv",
+          "after": "setup_overhead_projection__13TRaderMapCoreFP17RadarMapViewState"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FA678",
+          "before": "copy_transform__13TRaderMapCoreFPv",
+          "after": "copy_transform__17RadarMapViewStateFPC17RadarMapViewState"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FA9D8",
+          "before": "begin_map_view__13TRaderMapCoreFii",
+          "after": "begin_map_view__13TRaderMapCoreFi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FAAEC",
+          "before": "render_region_records__13TRaderMapCoreFPv",
+          "after": "render_region_records__13TRaderMapCoreFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FB874",
+          "before": "apply_compass_param__13TRaderMapCoreFPl",
+          "after": "apply_compass_param__13TRaderMapCoreFPCl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FB9A4",
+          "before": "init_map_ptr__13TRaderMapCoreFPll",
+          "after": "init_map_ptr__13TRaderMapCoreFPCll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023E0FC",
+          "before": "draw_compass_sprite__10TObjPlayerFlllf",
+          "after": "draw_compass_sprite__16SpriteDescriptorFlllf"
+        }
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "d4e639ca6e1213c5cf35609c8dda6b31f64c1d92aa0391d91071c1060274b513",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": []
+    },
+    "layer": {
+      "check_sha256": "68c69fa7f470f33d26a4293e424bb7271b78c71c8112e07e34386e692204025b",
+      "source_report_sha256": "d4e639ca6e1213c5cf35609c8dda6b31f64c1d92aa0391d91071c1060274b513",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8007E884",
+          "before": "transform_vec_by_camera__15TObjBoss2TunnelFlll",
+          "after": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801F9228",
+          "before": "set_view_scissor__13TRaderMapCoreFPviPv",
+          "after": "set_view_scissor__13TRaderMapCoreFiPC13Rect_801F9228"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801F9314",
+          "before": "setup_overhead_projection__13TRaderMapCoreFv",
+          "after": "setup_overhead_projection__13TRaderMapCoreFP17RadarMapViewState"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FA678",
+          "before": "copy_transform__13TRaderMapCoreFPv",
+          "after": "copy_transform__17RadarMapViewStateFPC17RadarMapViewState"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FA9D8",
+          "before": "begin_map_view__13TRaderMapCoreFii",
+          "after": "begin_map_view__13TRaderMapCoreFi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FAAEC",
+          "before": "render_region_records__13TRaderMapCoreFPv",
+          "after": "render_region_records__13TRaderMapCoreFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FB874",
+          "before": "apply_compass_param__13TRaderMapCoreFPl",
+          "after": "apply_compass_param__13TRaderMapCoreFPCl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FB9A4",
+          "before": "init_map_ptr__13TRaderMapCoreFPll",
+          "after": "init_map_ptr__13TRaderMapCoreFPCll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023E0FC",
+          "before": "draw_compass_sprite__10TObjPlayerFlllf",
+          "after": "draw_compass_sprite__16SpriteDescriptorFlllf"
+        }
+      ]
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "73f6116aab782d75e2e4b30c51063290d4c0a11547f1410806add520bfa2e76e",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "public_refs_changed": false
+}

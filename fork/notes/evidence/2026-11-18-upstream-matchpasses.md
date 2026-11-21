@@ -1418,16 +1418,17 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `fcf2642728` uses four commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups and the fourth covers the independent PPP work. Each commit produces the same source tree as the corresponding verified checkpoint. The 4-commit history and the 92-commit integration history both pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `1fff8a4bec` uses five commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups. The radar recovery follows the combat changes it uses, and the independent PPP work ends the stack. Each checkpoint uses a verified source tree. The five review commits and 93 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
 | 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `8890b7fd8b` | 655 |
 | 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `6329e26030` | 679 |
 | 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `ece831cbb5` | 969 |
-| 4 | PPP frame and callback interfaces | Independent network work | `fcf2642728` | 12 |
+| 4 | Radar, compass and shared camera view | Follow-up recovery | `acf253728a` | 24 |
+| 5 | PPP frame and callback interfaces | Independent network work | `1fff8a4bec` | 12 |
 
-The review changes 1,745 files. The four ordered builds and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,755 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1510,6 +1511,12 @@ The combat review at `3ce39ea509`, the combined review at `049a88d6b6`, and the 
 Great Merge at `91d8ae494d` uses the established `m_20`, `m_2c` and `m_5c` names on the recovered window base and `m_54` on the main menu. The fields retain their shared ownership and layout assertions. The review diff drops three files and 250 changed lines.
 
 The consolidated review and layered fork reproduce retail. A fresh fork materialization reproduces the same 130-path overlay and its 310 workspace checks pass. The historical audit closes 15 entries and leaves 618 open. [Window names and historical comparison evidence](2026-11-21-upstream-window-field-names.json)
+
+## Radar, compass and camera view ownership
+
+Great Merge at `58df2eb791` gives the radar and its camera, HUD and world consumers the same native 0x28 view record. The radar owns three typed view entries, model pointers and its texture-list lifetime. The compass and lobby render through the actual sprite descriptor. The 24-file recovery preserves existing function names. Nine linker labels change with the recovered C++ types.
+
+The combat checkpoint, consolidated review and fork workspace reproduce retail and retain all 1,147 original bytes. The 130-path fork overlay passes its 310 workspace checks. The historical comparison closes 6 rows and adds evidence to 11 others, leaving 612 open. [Radar and camera evidence](2026-11-21-radar-and-camera-owners.json)
 
 ## Ordered upstream review candidates
 
