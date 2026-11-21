@@ -1173,6 +1173,14 @@ The standalone review `great-merge/prepared/stage-objects-and-ending-scenes` at 
 
 The historical inventory has 1,048 canonical paths outside the active replay diff, including 84 also outside the older queue. Challenge results, retry state and item-help and status windows are ready for reconciliation on this head. The results preview has 26 overlapping paths across 49 changed files.
 
+### Challenge and duel results, retry windows, and page indicators
+
+The 37-file replay at `4da1fa300a` gives the result windows native constructors and virtual methods. Both Challenge retry variants own their menu handles and countdown. The duel, card, shortcut, item-help, and status windows share one typed page indicator. The status records use typed text entries, and the item-help window uses its native descriptor and summary fields. The replay keeps the existing text-width helper and equivalent method names. Thirteen linker labels change with the recovered receivers, constructors, virtual methods, or parameter types.
+
+The expanded local review `great-merge/prepared/window-layout-keyboard-and-results` at `8464cb68fb` adds this recovery to the existing window, keyboard, Symbol Chat, and city group. Its two commits cover 263 files directly on master `0fa391a887`. Both clean builds reproduce retail, link all 2,448 exact units, and preserve every checked code and data address. Both account for the full original 1,147-byte inventory. The 131-path fork tooling patch reproduces its tested workspace and passes 305 tests.
+
+The historical inventory has 1,039 canonical paths outside the active replay diff, including 82 also outside the older queue. The next weapon registry and projectile interface preview spans 278 paths with 27 overlaps. The three-commit factory tail alone produces more overlap because it assumes the earlier projectile and item contracts. [Build, inventory and review evidence](2026-11-20-challenge-duel-and-page-indicators.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
