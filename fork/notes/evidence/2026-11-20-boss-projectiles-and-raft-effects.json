@@ -1,0 +1,548 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donors": [
+    {
+      "scope": "Boss projectile lifetimes and attack geometry",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "commit": "03eb2c367e070700af46456703e5a656ade68310",
+      "paths": 42,
+      "overlaps": 26
+    },
+    {
+      "scope": "Raft dust and the shared trail renderer",
+      "base": "c572111ed626b8cb1a3f36d934f655c3476e0c45",
+      "commit": "2032c512f92bf69051c09df3c9ac0be6a503eb00",
+      "paths": 20,
+      "overlaps": 2
+    }
+  ],
+  "scope": [
+    "Recover the native Dragon and Gol Dragon fireballs, Barba Ray photon pad and bullet, and Olga Flow sword shot.",
+    "Share a typed attack descriptor between Dragon, Gol Dragon, and Gal Gryphon.",
+    "Recover the tunnel dust and raft-splash layouts, and use the actual shared trail renderer and its vertex record.",
+    "Fix ownership of Barba Ray archive access and hit effects. Keep the upstream get_boss7_motion name and the existing dust constant owners."
+  ],
+  "replay_base": "72e8ab29100327fcab1f4eb5034071a743b02660",
+  "replay_head": "7eb2bdf853b77f385ae057b6f2c32c65f5c4ea4a",
+  "replay_tree": "83bb8a19cf9e43b11d1799aff9bdeab446f68e2c",
+  "replay_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/DragonAttackParams.h",
+    "include/pso/boss/barbaray/TBoss7DeRolLeC.h",
+    "include/pso/boss/barbaray/TBoss7Joint.h",
+    "include/pso/boss/barbaray/TBoss7PhotonBullet.h",
+    "include/pso/boss/barbaray/TBoss7PhotonPad.h",
+    "include/pso/boss/barbaray/TObjBoss7Dust.h",
+    "include/pso/boss/barbaray/TObjBoss7DustCtrl.h",
+    "include/pso/boss/barbaray/TObjBoss7RaftSplash.h",
+    "include/pso/boss/derolle/TObjBoss2Dust.h",
+    "include/pso/boss/derolle/TObjBoss2DustCtrl.h",
+    "include/pso/boss/derolle/TObjBoss2RaftSplash.h",
+    "include/pso/boss/dragon/TBoss1DragonEffBreath.h",
+    "include/pso/boss/dragon/TBoss1DragonEffBullet.h",
+    "include/pso/boss/galgryphon/TObjBoss5Ctrl.h",
+    "include/pso/boss/galgryphon/TObjBoss5PillarDemo.h",
+    "include/pso/boss/goldragon/TBoss8DragonEffBreath.h",
+    "include/pso/boss/goldragon/TBoss8DragonEffBullet.h",
+    "include/pso/boss/olgaflow/TBoss6SwordShot.h",
+    "include/pso/effect/item/TItemEffectWeapon.h",
+    "include/pso/object/ambient/TObjLight_803DF220.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TUnk_804928CC.h",
+    "include/pso/system/TrailStrip.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/barbaray/TBoss7LaserPtcl.cpp",
+    "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+    "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+    "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+    "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/dragon/TBoss1DragonEffBreath.cpp",
+    "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp",
+    "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/effect/TUnk_80494968.cpp",
+    "src/pso/effect/item/TItemEffectWeapon.cpp",
+    "src/pso/enemy/bringer/BringerEffects.cpp",
+    "src/pso/enemy/canadin/CanadinEffects.cpp",
+    "src/pso/object/ambient/TObjLight_803DF220.cpp",
+    "src/pso/player/TObjPlayer_800BBE90.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/unk/TLobby_8003A95C.cpp",
+    "src/pso/unk/TLobby_80067410.cpp",
+    "src/pso/unk/text_80357058.cpp"
+  ],
+  "replay_checks": {
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "matched_code_bytes": 4353092,
+    "matched_data_bytes": 1758510,
+    "compiled_source_units": 2448,
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    },
+    "function_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8002BC30",
+        "before": "__ct__21TBoss1DragonEffBulletFP7TObjectP3VecP3Vec",
+        "after": "__ct__21TBoss1DragonEffBulletFP7TObjectPC3VecPC3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8003AB00",
+        "before": "boss2_dust_draw_at__FPll",
+        "after": "boss2_dust_draw_at__FPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800672BC",
+        "before": "TObjBoss5Ctrl__ct",
+        "after": "__ct__13TObjBoss5CtrlFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802E8078",
+        "before": "queue_boss_effect__10TObjPlayerFPv",
+        "after": "get_archive_model__14TBoss7DeRolLeCFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802E80A0",
+        "before": "TObjPlayer__sub_802E80A0",
+        "after": "get_archive_textures__14TBoss7DeRolLeCFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802ED54C",
+        "before": "emit_hit_effect__18TBoss7PhotonBulletFPv",
+        "after": "emit_hit_effect__14TBoss7DeRolLeCFPC3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802EF514",
+        "before": "__ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePvPvf",
+        "after": "__ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePC3VecPC3Vecf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802EF74C",
+        "before": "__ct__15TBoss7PhotonPadFllll",
+        "after": "__ct__15TBoss7PhotonPadFP7TObjectPC3VecPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802F1200",
+        "before": "boss7_dust_draw_at__FPll",
+        "after": "boss7_dust_draw_at__FPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802F16CC",
+        "before": "__ct__19TObjBoss7RaftSplashFP7TObjectPUcPUcl",
+        "after": "__ct__19TObjBoss7RaftSplashFP7TObjectPC3VecPC3VecPf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802FE378",
+        "before": "__ct__21TBoss8DragonEffBulletFP7TObjectP3VecP3VeclUs",
+        "after": "__ct__21TBoss8DragonEffBulletFP7TObjectPC3VecPC3VeclUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803561C4",
+        "before": "damage_players_in_radius__FPUc",
+        "after": "damage_players_in_radius__15TBoss6SwordShotFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80356374",
+        "before": "TBoss6SwordShot__ct",
+        "after": "__ct__15TBoss6SwordShotFP7TObjectPC3Veclf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8035648C",
+        "before": "fn_8035648C",
+        "after": "create__15TBoss6SwordShotFP7TObjectPC3Veclf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DF578",
+        "before": "draw_trail_strip__10TObjPlayerFPvl",
+        "after": "draw_trail_strip"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DF5E4",
+        "before": "draw_untextured_trail_strip__FPvPv",
+        "after": "draw_untextured_trail_strip__FPvi"
+      }
+    ],
+    "report_sha256": "c8ec4d7d30eb1386b04734f6168c2d2f9601cb876aff00e2cb0695248992240b",
+    "check_sha256": "78d8640dc68b74ad76894e1e261923d0309c234292d6bc24566ae44b43283378"
+  },
+  "standalone_review": {
+    "branch": "great-merge/prepared/boss-projectiles-and-raft-effects",
+    "head": "98b8dc9b749921f22ae2256890e22dca8be9e01f",
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "tree": "b4a2b01e4eb074a4c1e528922876a7c02aaf9147",
+    "paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/DragonAttackParams.h",
+      "include/pso/boss/barbaray/TBoss7DeRolLeC.h",
+      "include/pso/boss/barbaray/TBoss7Joint.h",
+      "include/pso/boss/barbaray/TBoss7PhotonBullet.h",
+      "include/pso/boss/barbaray/TBoss7PhotonPad.h",
+      "include/pso/boss/barbaray/TObjBoss7Dust.h",
+      "include/pso/boss/barbaray/TObjBoss7DustCtrl.h",
+      "include/pso/boss/barbaray/TObjBoss7RaftSplash.h",
+      "include/pso/boss/derolle/TObjBoss2Dust.h",
+      "include/pso/boss/derolle/TObjBoss2DustCtrl.h",
+      "include/pso/boss/derolle/TObjBoss2RaftSplash.h",
+      "include/pso/boss/dragon/TBoss1DragonEffBreath.h",
+      "include/pso/boss/dragon/TBoss1DragonEffBullet.h",
+      "include/pso/boss/galgryphon/TObjBoss5Ctrl.h",
+      "include/pso/boss/galgryphon/TObjBoss5PillarDemo.h",
+      "include/pso/boss/goldragon/TBoss8DragonEffBreath.h",
+      "include/pso/boss/goldragon/TBoss8DragonEffBullet.h",
+      "include/pso/boss/olgaflow/TBoss6SwordShot.h",
+      "include/pso/effect/item/TItemEffectWeapon.h",
+      "include/pso/object/ambient/TObjLight_803DF220.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TUnk_804928CC.h",
+      "include/pso/system/TrailStrip.h",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/barbaray/TBoss7LaserPtcl.cpp",
+      "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+      "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+      "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+      "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+      "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+      "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffBreath.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp",
+      "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/effect/TUnk_80494968.cpp",
+      "src/pso/effect/item/TItemEffectWeapon.cpp",
+      "src/pso/enemy/bringer/BringerEffects.cpp",
+      "src/pso/enemy/canadin/CanadinEffects.cpp",
+      "src/pso/object/ambient/TObjLight_803DF220.cpp",
+      "src/pso/player/TObjPlayer_800BBE90.cpp",
+      "src/pso/player/TObjPlayer_802E6CA8.cpp",
+      "src/pso/unk/TLobby_8003A95C.cpp",
+      "src/pso/unk/TLobby_80067410.cpp",
+      "src/pso/unk/text_80357058.cpp"
+    ],
+    "existing_upstream_interfaces": [
+      "BML archive access and release",
+      "particle spawning",
+      "player activity",
+      "texture-list setter"
+    ],
+    "checks": {
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "matched_code_bytes": 4353092,
+      "matched_data_bytes": 1758510,
+      "compiled_source_units": 2448,
+      "coverage_losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "data_regressions": 0,
+        "data_coverage_lost": 0,
+        "linked_data_lost": 0
+      },
+      "function_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8002BC30",
+          "before": "__ct__21TBoss1DragonEffBulletFP7TObjectP3VecP3Vec",
+          "after": "__ct__21TBoss1DragonEffBulletFP7TObjectPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8003AB00",
+          "before": "boss2_dust_draw_at__FPll",
+          "after": "boss2_dust_draw_at__FPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800672BC",
+          "before": "TObjBoss5Ctrl__ct",
+          "after": "__ct__13TObjBoss5CtrlFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802E8078",
+          "before": "queue_boss_effect__10TObjPlayerFPv",
+          "after": "get_archive_model__14TBoss7DeRolLeCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802E80A0",
+          "before": "TObjPlayer__sub_802E80A0",
+          "after": "get_archive_textures__14TBoss7DeRolLeCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802ED54C",
+          "before": "emit_hit_effect__18TBoss7PhotonBulletFPv",
+          "after": "emit_hit_effect__14TBoss7DeRolLeCFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802EF514",
+          "before": "__ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePvPvf",
+          "after": "__ct__18TBoss7PhotonBulletFP7TObjectP8TObjBasePC3VecPC3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802EF74C",
+          "before": "__ct__15TBoss7PhotonPadFllll",
+          "after": "__ct__15TBoss7PhotonPadFP7TObjectPC3VecPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802F1200",
+          "before": "boss7_dust_draw_at__FPll",
+          "after": "boss7_dust_draw_at__FPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802F16CC",
+          "before": "__ct__19TObjBoss7RaftSplashFP7TObjectPUcPUcl",
+          "after": "__ct__19TObjBoss7RaftSplashFP7TObjectPC3VecPC3VecPf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802FE378",
+          "before": "__ct__21TBoss8DragonEffBulletFP7TObjectP3VecP3VeclUs",
+          "after": "__ct__21TBoss8DragonEffBulletFP7TObjectPC3VecPC3VeclUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803561C4",
+          "before": "damage_players_in_radius__FPUc",
+          "after": "damage_players_in_radius__15TBoss6SwordShotFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356374",
+          "before": "TBoss6SwordShot__ct",
+          "after": "__ct__15TBoss6SwordShotFP7TObjectPC3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035648C",
+          "before": "fn_8035648C",
+          "after": "create__15TBoss6SwordShotFP7TObjectPC3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803DF578",
+          "before": "draw_trail_strip__10TObjPlayerFPvl",
+          "after": "draw_trail_strip"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803DF5E4",
+          "before": "draw_untextured_trail_strip__FPvPv",
+          "after": "draw_untextured_trail_strip__FPvi"
+        }
+      ],
+      "report_sha256": "d28ff6f5d2fbe82506d0d0153e942df5a018c97087a2e6147256ea9f5537b386",
+      "check_sha256": "78d8640dc68b74ad76894e1e261923d0309c234292d6bc24566ae44b43283378"
+    },
+    "author_and_committer": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+    "codex_attribution_entries": 0,
+    "published": false
+  },
+  "published_pr_merge_previews": [
+    {
+      "pr": 336,
+      "head": "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 337,
+      "head": "297a9697815b0f66207b5515fd9743bdc04c82d9",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 338,
+      "head": "2572238636c01c0f1defac4338a4df6836c18276",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 339,
+      "head": "5e0a443edde59d3af778d496b8503e0b1358f5e2",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 340,
+      "head": "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 341,
+      "head": "0266af6bf4c860315be75d4785c45abf6da0a6ff",
+      "conflicting_paths": [
+        "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+      ]
+    },
+    {
+      "pr": 342,
+      "head": "17d35ad696f409a696c7f94105170619d18e5106",
+      "conflicting_paths": []
+    }
+  ],
+  "historical_ranges": {
+    "upstream_master": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "great_merge_replay": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "standalone_review": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "fork_tooling": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "28b77139b15514314433cb8491cde8634485c843b937707624c12cd64a756703",
+    "materialized_tree": "fe5655fe2ebc8eb73832ec20c0fc6ec663662af6",
+    "round_trip_listing_sha256": "06378c13b6d372a5aeb0c050c32623f634d34dd9b5f38f9ead4b10abd68df246",
+    "force_active": "force_active: 27031 listed, +0 unreferenced symbol(s) in linked units, -0 stale",
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    },
+    "probes": {
+      "images": [
+        "retail",
+        "great_merge_replay",
+        "standalone_review",
+        "fork_tooling"
+      ],
+      "raft_dust": [
+        "both slot rings",
+        "20 rendered strips",
+        "10 lifetime cases"
+      ],
+      "strip_animation": [
+        "strip selection",
+        "both winding signs",
+        "scrolling",
+        "release"
+      ]
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 610,
+    "outside_replay_after": 591,
+    "outside_both_replay_and_queue": 82,
+    "paths_newly_in_replay_diff": [
+      "include/pso/boss/barbaray/TBoss7Joint.h",
+      "include/pso/boss/barbaray/TBoss7PhotonPad.h",
+      "include/pso/boss/barbaray/TObjBoss7Dust.h",
+      "include/pso/boss/derolle/TObjBoss2Dust.h",
+      "include/pso/boss/dragon/TBoss1DragonEffBreath.h",
+      "include/pso/boss/galgryphon/TObjBoss5Ctrl.h",
+      "include/pso/boss/galgryphon/TObjBoss5PillarDemo.h",
+      "include/pso/boss/olgaflow/TBoss6SwordShot.h",
+      "include/pso/effect/item/TItemEffectWeapon.h",
+      "include/pso/object/ambient/TObjLight_803DF220.h",
+      "include/pso/system/TrailStrip.h",
+      "src/pso/boss/dragon/TBoss1DragonEffBreath.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5Ctrl_80067124.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5Ctrl_800673D0.cpp",
+      "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp",
+      "src/pso/object/ambient/TObjLight_803DF220.cpp",
+      "src/pso/unk/TLobby_8003A95C.cpp",
+      "src/pso/unk/TLobby_80067410.cpp"
+    ],
+    "remaining_by_owner": {
+      "ui": 161,
+      "unk": 93,
+      "enemy": 73,
+      "boss": 57,
+      "player": 51,
+      "item": 25,
+      "effect": 21,
+      "object": 21,
+      "camera": 16,
+      "system": 15,
+      "render": 15,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "map": 4,
+      "quest": 4,
+      "weapon": 3,
+      "npc": 2,
+      "libs/PowerPC_EABI_Support": 2,
+      "audio": 2,
+      "collision": 1,
+      "animation": 1,
+      "libs/dolphin": 1
+    },
+    "method": "Compare changed path sets with rename detection disabled. An intersecting path can still contain unreplayed hunks."
+  }
+}

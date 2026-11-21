@@ -1245,6 +1245,14 @@ Seven reviews are open against master `0fa391a887`. GitHub shows the seven valid
 
 The final window head keeps its compiler directive in `TWindowChallengeResult.cpp`, which reproduces retail and passes the same linkage checks. The record includes the published commits and GitHub matching jobs. [Publication and commit audit](2026-11-20-upstream-publication-336-342.json)
 
+### Boss projectiles, raft splashes and dust trails
+
+The 58-file replay at `7eb2bdf853` recovers the typed lifetimes of Dragon and Gol Dragon fireballs, Barba Ray photon shots, and Olga Flow sword shots. Dragon, Gol Dragon, and Gal Gryphon share the attack descriptor. De Rol Le and Barba Ray restore native dust and raft-splash fields and use the trail renderer's actual arguments. The replay keeps the existing `get_boss7_motion` name and dust constant owners.
+
+The standalone branch `great-merge/prepared/boss-projectiles-and-raft-effects` at `98b8dc9b74` uses the archive, particle and player interfaces on master `0fa391a887`. Matt is the author and committer of its single review commit. The unpublished review overlaps PR #341 in two Olga Flow callers. The cumulative replay already carries those changes together. Merge previews with the six other published reviews are clean.
+
+The replay, standalone review and 131-path fork tooling layer reproduce the retail DOL, with all 2,448 source objects linked and zero function or data coverage losses. All 1,147 historical bytes are accounted for. The 305 tooling tests pass. The raft dust and strip animation probes pass on retail and each rebuilt image. The historical path count outside the replay diff falls from 610 to 591. [Build, scope and replay evidence](2026-11-20-boss-projectiles-and-raft-effects.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
