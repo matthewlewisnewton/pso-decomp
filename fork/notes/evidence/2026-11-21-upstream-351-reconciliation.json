@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "2d27c63ae464190d23f314303d7ea52d19565c2b",
+  "review": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "10fb39aeacb901dc5b672bc3cdff05f2f0ccd5a1",
-  "review_paths": 604,
+  "review_tree": "2b7816ce1ccc4b5fb31d737bef0007d3d30cf064",
+  "review_paths": 666,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,16 +29,16 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "a5187d1a651013c2982662ac858869d25adcbd29162c7dd956c2acb2e87b7bdc",
+  "path_ledger_sha256": "ef5f971756ad18968d7931d42b6163b151e4cf43aa837da126f5e1fafdbf406f",
   "path_status": {
-    "remaining overlap after replay": 366,
-    "exact prior source": 236,
+    "remaining overlap after replay": 298,
+    "exact prior source": 366,
     "same change already in upstream": 902,
-    "pending replay": 324,
+    "pending replay": 262,
     "validated three-way source": 12,
     "upstream only": 7
   },
-  "remaining_path_comparisons": 690,
+  "remaining_path_comparisons": 560,
   "historical_fork_ledger_open": 590,
   "validation": {
     "upstream": {
@@ -289,7 +289,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 12,
+    "commits": 15,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -307,5 +307,6 @@
   },
   "public_refs_changed": false,
   "initial_rebased_review": "b65d1cc9cb1bcc3445ea27df81bb66611311eafe",
-  "actor_and_inventory_followup": "2026-11-21-post-351-actors.json"
+  "actor_and_inventory_followup": "2026-11-21-post-351-actors.json",
+  "movement_and_phase_followup": "2026-11-21-post-351-movement.json"
 }
