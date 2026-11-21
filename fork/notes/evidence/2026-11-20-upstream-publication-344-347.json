@@ -1,0 +1,301 @@
+{
+  "base_at_local_validation": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "published_base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "upstream_portability_pr": "https://github.com/zeroz41/pso-decomp/pull/343",
+  "upstream_portability_paths_changed": 2960,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "upstream_master_report_sha256": "1c66abd16c5688e99c105408f585e7cb40ca0cf983e66b437ea80e436a12d0fa",
+  "compiled_source_units": 2448,
+  "exact_functions": 27572,
+  "published": [
+    {
+      "number": 344,
+      "branch": "recover-boss-projectiles-and-raft-effects",
+      "published_original_head": "98b8dc9b749921f22ae2256890e22dca8be9e01f",
+      "tested_head": "a5ed79a515af6181cb70070d12c0323d152ecd8d",
+      "head": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "7bdfc4d0a9a066868cb60c8e5f425beead39c184",
+      "pr_commits": [
+        "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+        "98b8dc9b749921f22ae2256890e22dca8be9e01f"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "78d8640dc68b74ad76894e1e261923d0309c234292d6bc24566ae44b43283378",
+      "report_sha256": "9877c86df3368ea5cf37b6977beaa7daaa1beaf6d28fe2490dbc22f4b71d63fe",
+      "files": 59,
+      "paths_added_to_scope": [
+        "include/pso/boss/barbaray/TBoss7Tentacle.h"
+      ],
+      "paths_removed_from_scope": [],
+      "url": "https://github.com/zeroz41/pso-decomp/pull/344",
+      "title": "Recover native boss projectiles and raft effects",
+      "state": "open",
+      "ready_for_review": true,
+      "mergeable": true,
+      "initial_matching_check_on_refreshed_head": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "detailsUrl": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671691/job/136725570529",
+          "name": "match-gate",
+          "startedAt": "2026-11-21T04:09:20Z",
+          "status": "QUEUED",
+          "workflowName": "CI"
+        }
+      ],
+      "resolved_conflicting_paths": [
+        "include/pso/boss/barbaray/TBoss7PhotonPad.h",
+        "include/pso/boss/derolle/TObjBoss2RaftSplash.h",
+        "include/pso/boss/dragon/TBoss1DragonEffBullet.h",
+        "include/pso/boss/goldragon/TBoss8DragonEffBreath.h",
+        "include/pso/boss/goldragon/TBoss8DragonEffBullet.h",
+        "include/pso/player/TUnk_804928CC.h",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+        "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+        "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+        "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+        "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+        "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/dragon/TBoss1DragonEffBreath.cpp",
+        "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp",
+        "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "src/pso/object/ambient/TObjLight_803DF220.cpp",
+        "src/pso/player/TObjPlayer_802E6CA8.cpp",
+        "src/pso/unk/TLobby_8003A95C.cpp",
+        "src/pso/unk/TLobby_80067410.cpp"
+      ]
+    },
+    {
+      "number": 345,
+      "branch": "recover-action-palette-and-word-select",
+      "published_original_head": "9081bb020ce98ca2fb4e48c9eacaa609b3db6ae6",
+      "tested_head": "95334b8d7519c9802fea016416db22356fc284b5",
+      "head": "95334b8d7519c9802fea016416db22356fc284b5",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "59cc2676a1370fda0dc27521d8f5fb602ec29d2d",
+      "pr_commits": [
+        "95334b8d7519c9802fea016416db22356fc284b5",
+        "9081bb020ce98ca2fb4e48c9eacaa609b3db6ae6"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "15d69327981e99b7f9a5deed9d1b533d61f5a4e1915c8fd9b3f11d3c0fe53ce3",
+      "report_sha256": "cccf9762f2bf2d860f0a65b48e8c679757b81a55d3e7dad9dc618948e653cddc",
+      "files": 35,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "url": "https://github.com/zeroz41/pso-decomp/pull/345",
+      "title": "Recover native action-palette controls and Word Select records",
+      "state": "open",
+      "ready_for_review": true,
+      "mergeable": true,
+      "initial_matching_check_on_refreshed_head": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "detailsUrl": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671336/job/136725568754",
+          "name": "match-gate",
+          "startedAt": "2026-11-21T04:09:19Z",
+          "status": "QUEUED",
+          "workflowName": "CI"
+        }
+      ],
+      "resolved_conflicting_paths": [
+        "include/pso/ui/hud/TMainCursor.h",
+        "include/pso/ui/window/TWindowDD_8034435C.h",
+        "include/pso/ui/window/TWindowDD_803488A8.h",
+        "include/pso/ui/window/TWindowSubCustomEquip.h",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+        "src/pso/ui/window/TWindowDD_8034055C.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+        "src/pso/ui/window/TWindowSubCustomSelect.cpp"
+      ]
+    },
+    {
+      "number": 346,
+      "branch": "recover-enemy-targeting-formations-and-slime",
+      "published_original_head": "72ca918dcb77c677de46932d60cd3cdf32390505",
+      "tested_head": "6ec29b836b7ecc373c673463656f72f8c70b05d8",
+      "head": "8c6e2163eecaa29e63b8cf7200fa614179199fbc",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "b46ee03ed3c4e7a7dd1f0bda9d309b0ac6583968",
+      "pr_commits": [
+        "8c6e2163eecaa29e63b8cf7200fa614179199fbc",
+        "72ca918dcb77c677de46932d60cd3cdf32390505"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "b6d8e34daaf20e96c6cc0cb68ef73ae86f26eb8365d6a1b5aa4cb7418308b550",
+      "report_sha256": "c75ca3f35c9708ef80c8a106e21d8275c6d05b2bd2beef142bc90499343c9ebb",
+      "files": 56,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "url": "https://github.com/zeroz41/pso-decomp/pull/346",
+      "title": "Recover native enemy targeting, formations, and Slime attacks",
+      "state": "open",
+      "ready_for_review": true,
+      "mergeable": true,
+      "initial_matching_check_on_refreshed_head": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "detailsUrl": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671168/job/136725568372",
+          "name": "match-gate",
+          "startedAt": "2026-11-21T04:09:21Z",
+          "status": "IN_PROGRESS",
+          "workflowName": "CI"
+        }
+      ],
+      "resolved_conflicting_paths": [
+        "include/pso/enemy/TObjEnePanBARA.h",
+        "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+        "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+        "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+        "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+        "include/pso/enemy/panarms/TObjEnePanarms.h",
+        "include/pso/enemy/slime/TObjEneSlimeOne.h",
+        "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+        "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+        "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/deldepth/DelDepthMotion.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+        "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+        "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+      ]
+    },
+    {
+      "number": 347,
+      "branch": "recover-main-menu-and-trade",
+      "published_original_head": "8e9e9ffd4227f9acaa6bbde0cdf92d4a2e9c13d0",
+      "tested_head": "499e18cc317801c4db71a24edbdf6318027fcd77",
+      "head": "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+      "tree": "b5aac2d77025d2ee1ddb2e1c0914f45be943cdb2",
+      "pr_commits": [
+        "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+        "8e9e9ffd4227f9acaa6bbde0cdf92d4a2e9c13d0"
+      ],
+      "author_and_committer": "matthewlewisnewton",
+      "codex_attribution_entries": 0,
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "2d88df41fd7781b5c1c64e3c2d29a127ebffbfe235736e85bc9716c2a2c36f29",
+      "report_sha256": "d4abe6dbd659eec3bc656909a07a04a0ce4189e451580c3a58c8aacf5963d6f9",
+      "files": 69,
+      "paths_added_to_scope": [],
+      "paths_removed_from_scope": [],
+      "url": "https://github.com/zeroz41/pso-decomp/pull/347",
+      "title": "Recover native main menu controls and trade windows",
+      "state": "open",
+      "ready_for_review": true,
+      "mergeable": true,
+      "initial_matching_check_on_refreshed_head": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "detailsUrl": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671858/job/136725570514",
+          "name": "match-gate",
+          "startedAt": "2026-11-21T04:09:20Z",
+          "status": "QUEUED",
+          "workflowName": "CI"
+        }
+      ],
+      "resolved_conflicting_paths": [
+        "include/pso/enemy/morfos/TWindowSubTradeMain.h",
+        "include/pso/ui/window/TWindowCtrl.h",
+        "include/pso/ui/window/TWindowCtrl_8024A1A8.h",
+        "include/pso/ui/window/TWindowMainMenu1P.h",
+        "include/pso/ui/window/TWindowMessageYesNo.h",
+        "include/pso/ui/window/TWindowSubLog.h",
+        "include/pso/ui/window/TWindowSubTrade.h",
+        "include/pso/ui/window/TWindowSubTradeMain_80330A84.h",
+        "include/pso/ui/window/TWindowTradeRequest.h",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/window/TWindowCtrl.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024ADAC.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024AEAC.cpp",
+        "src/pso/ui/window/TWindowCtrl_8024B054.cpp",
+        "src/pso/ui/window/TWindowMainMenu.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+        "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+        "src/pso/ui/window/TWindowSubLog.cpp",
+        "src/pso/ui/window/TWindowSubShortCut.cpp",
+        "src/pso/ui/window/TWindowSubTechnique.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+        "src/pso/ui/window/TWindowTradeRequest_802E0170.cpp",
+        "src/pso/unk/TUnk_804D1AD0.cpp",
+        "src/pso/unk/text_8024AB54.cpp",
+        "src/pso/unk/text_8024AB98.cpp",
+        "src/pso/unk/text_8024AC64.cpp",
+        "src/pso/unk/text_8024ACA8.cpp",
+        "src/pso/unk/text_8024ACEC.cpp",
+        "src/pso/unk/text_8024AD30.cpp"
+      ]
+    }
+  ],
+  "codex_commit_identities": 0,
+  "cumulative_source_needing_replay": "7016e4000959122cf8ab3a52538a3bc93555feb6",
+  "cumulative_conflicting_paths": 773,
+  "prior_review_conflicts": [
+    {
+      "pr": 336,
+      "path_count": 26
+    },
+    {
+      "pr": 337,
+      "path_count": 64
+    },
+    {
+      "pr": 338,
+      "path_count": 57
+    },
+    {
+      "pr": 339,
+      "path_count": 61
+    },
+    {
+      "pr": 340,
+      "path_count": 71
+    },
+    {
+      "pr": 341,
+      "path_count": 74
+    },
+    {
+      "pr": 342,
+      "path_count": 132
+    }
+  ]
+}

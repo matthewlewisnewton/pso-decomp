@@ -1277,6 +1277,19 @@ The unpublished standalone review at `8e9e9ffd42` starts from master `0fa391a887
 
 The replay, standalone review and 131-path private tooling layer each reproduce the retail DOL with all 2,448 source objects linked, zero coverage losses, and all 1,147 historical data bytes accounted for. The 305 tooling tests pass. Twelve resize and nine trade lifecycle cases pass on retail and all three rebuilt images. The historical path count outside the replay diff falls from 568 to 542. [Build, scope and replay evidence](2026-11-20-main-menu-and-trade.json)
 
+### Four follow-up reviews and the upstream portability merge
+
+Four more source reviews are open and mergeable against master. Each branch was fast-forwarded to its tested reconciliation after the upstream portability merge. GitHub attributes the eight PR commits to Matt as author and committer, with zero Codex author, committer, or co-author entries.
+
+| PR | Scope | Published head | Files reconciled after #343 |
+| --- | --- | --- | ---: |
+| [#344](https://github.com/zeroz41/pso-decomp/pull/344) | Boss projectiles and raft effects | `45a7ef21ae` | 28 |
+| [#345](https://github.com/zeroz41/pso-decomp/pull/345) | Action-palette controls and Word Select | `95334b8d75` | 10 |
+| [#346](https://github.com/zeroz41/pso-decomp/pull/346) | Enemy targeting, formations and Slime attacks | `8c6e2163ee` | 22 |
+| [#347](https://github.com/zeroz41/pso-decomp/pull/347) | Main menu controls and trade windows | `63636bea0a` | 34 |
+
+The upstream portability merge advanced master from `0fa391a887` to `1fd561eae2` during publication and changed 2,960 paths. Master and all four tested review trees reproduce the retail DOL, with 2,448 source units linked and zero function or data coverage loss. The boss projectile patch now types the existing model field on the Barba Ray tentacle. The action palette patch uses upstream's address-width field type for the action table. The new master introduces 773 conflicts against cumulative source `7016e40009`. The older open review previews #336–342 also need reconciliation against this base. [Upstream #343](https://github.com/zeroz41/pso-decomp/pull/343) [Publication, validation and conflict inventory](2026-11-20-upstream-publication-344-347.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
