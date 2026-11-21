@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-with-symbol-chat-window-owners",
-      "head": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
+      "ref": "great-merge/consolidated/ordered-combat-with-upstream-names",
+      "head": "416241ebb7678c50a0bab86b51efaa96dca0ff81",
       "base": "c306842e82985de65583e787f1fa0a1776b51394",
-      "tree": "4aa5c13705b434b65e648df6cc7f5ab35e8110b4",
+      "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,11 +77,11 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 50,
-      "files_changed": 1039,
-      "insertions": 14622,
-      "deletions": 15774,
-      "check_sha256": "091592beb14642b8daf330d784d23fce5eaa7f52769f98c45c8c9600eafd23fe",
+      "review_commits": 51,
+      "files_changed": 1044,
+      "insertions": 14670,
+      "deletions": 15821,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
       "function_label_changes": 404,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
@@ -189,21 +189,21 @@
     }
   },
   "separate_network_change": {
-    "head": "90b1d0bccb457f60b7b251412323bf285c19c831",
-    "base": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
-    "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
+    "head": "9ee16f936620807cbd042df96900b4d91789bc58",
+    "base": "416241ebb7678c50a0bab86b51efaa96dca0ff81",
+    "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "90b1d0bccb457f60b7b251412323bf285c19c831",
+    "head": "9ee16f936620807cbd042df96900b4d91789bc58",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
-    "files_changed": 1794,
-    "insertions": 30891,
-    "deletions": 34224,
+    "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
+    "files_changed": 1792,
+    "insertions": 30915,
+    "deletions": 34247,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
@@ -215,11 +215,11 @@
         "padding": 167,
         "remaining": 0
       },
-      "check_sha256": "091592beb14642b8daf330d784d23fce5eaa7f52769f98c45c8c9600eafd23fe"
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
     }
   },
   "commit_attribution": {
-    "audited_commits": 101,
+    "audited_commits": 102,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -270,98 +270,98 @@
     ]
   },
   "single_review": {
-    "ref": "great-merge/consolidated/single-review-with-symbol-chat-window-owners",
-    "head": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
+    "ref": "great-merge/consolidated/single-review-with-upstream-names",
+    "head": "7212821b7af16348b4894caf53809d3c80e8bab7",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
-    "tree_equivalent_to": "90b1d0bccb457f60b7b251412323bf285c19c831",
+    "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
+    "tree_equivalent_to": "9ee16f936620807cbd042df96900b4d91789bc58",
     "commits": [
       {
-        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
         "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
-        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
-        "files_changed": 655,
-        "insertions": 10713,
-        "deletions": 12247
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
       },
       {
-        "head": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
-        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
-        "tree": "d3ef9a7185166805dc73c3217b00d16301c820ae",
-        "checked_tree": "e586ff8f927d627b7e933e44223a816febdfea5e",
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
         "files_changed": 679,
         "insertions": 5760,
         "deletions": 6296
       },
       {
-        "head": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
-        "base": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
-        "tree": "d8f9f298e8e085493b9ae008c37ca520b7b0296d",
-        "checked_tree": "c306842e82985de65583e787f1fa0a1776b51394",
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
         "files_changed": 21,
         "insertions": 372,
         "deletions": 480
       },
       {
-        "head": "018464722d369c4481854eb77fa67f81c3e869be",
-        "base": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
-        "tree": "115ec496fc647c2aebcf55956d23052ee4368977",
-        "checked_tree": "018464722d369c4481854eb77fa67f81c3e869be",
-        "files_changed": 969,
-        "insertions": 12609,
-        "deletions": 13420
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
       },
       {
-        "head": "10c466c8e9407af9b1109bec3f36273b69a880f6",
-        "base": "018464722d369c4481854eb77fa67f81c3e869be",
-        "tree": "9e60f5d9462f65b9e62ce7b592013f06ad8ed930",
-        "checked_tree": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
         "files_changed": 24,
         "insertions": 331,
         "deletions": 396
       },
       {
-        "head": "bc801af727e83a81b62ca552b25456671c8723f7",
-        "base": "10c466c8e9407af9b1109bec3f36273b69a880f6",
-        "tree": "5da2f03826a0aae2bed5042ecb19260b5087494a",
-        "checked_tree": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
         "files_changed": 38,
         "insertions": 646,
         "deletions": 735
       },
       {
-        "head": "54f12790491275d41d4c96d1760e323fa2884066",
-        "base": "bc801af727e83a81b62ca552b25456671c8723f7",
-        "tree": "f4d94d9370fa61cbbab9355f3e70ced8bc0b9dd7",
-        "checked_tree": "e3819bb0cb6a8e7df497c88475177d94df4750db",
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
         "files_changed": 17,
         "insertions": 256,
         "deletions": 341
       },
       {
-        "head": "b382f026478786b570589c5382b5b6b69a139713",
-        "base": "54f12790491275d41d4c96d1760e323fa2884066",
-        "tree": "e6f0c6768a9233d7a1b3ac55a4b4eb08c6d6b3b1",
-        "checked_tree": "8df47b88222bba050bcc999dc11a1591007c2eb3",
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
         "files_changed": 31,
         "insertions": 475,
         "deletions": 502
       },
       {
-        "head": "6c0ca96dfadbc76d9938ada24bb2ec8a2029886c",
-        "base": "b382f026478786b570589c5382b5b6b69a139713",
-        "tree": "4aa5c13705b434b65e648df6cc7f5ab35e8110b4",
-        "checked_tree": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
         "files_changed": 18,
         "insertions": 341,
         "deletions": 416
       },
       {
-        "head": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
-        "base": "6c0ca96dfadbc76d9938ada24bb2ec8a2029886c",
-        "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
-        "checked_tree": "90b1d0bccb457f60b7b251412323bf285c19c831",
+        "head": "7212821b7af16348b4894caf53809d3c80e8bab7",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
+        "checked_tree": "7212821b7af16348b4894caf53809d3c80e8bab7",
         "files_changed": 12,
         "insertions": 136,
         "deletions": 139
@@ -373,8 +373,8 @@
       "coauthor_trailers": 0
     },
     "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
-    "files_changed": 1794,
-    "insertions": 30891,
-    "deletions": 34224
+    "files_changed": 1792,
+    "insertions": 30915,
+    "deletions": 34247
   }
 }

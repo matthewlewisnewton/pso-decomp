@@ -1418,22 +1418,26 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `f008850f3e` uses ten commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. The independent PPP work ends the stack. Each checkpoint reproduces retail. The ten review commits and 101 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `7212821b7a` uses ten commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. The independent PPP work ends the stack. Each checkpoint reproduces retail. The ten review commits and 102 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
-| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `8890b7fd8b` | 655 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `c42e3238ac` | 679 |
-| 3 | ADXF archive directories and native ADX decoding | Follow-up recovery | `c0206129d9` | 21 |
-| 4 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `018464722d` | 969 |
-| 5 | Radar, compass and shared camera view | Follow-up recovery | `10c466c8e9` | 24 |
-| 6 | Shared 2D polygon and color rendering | Follow-up recovery | `bc801af727` | 38 |
-| 7 | Olga Flow tube and phase actors | Follow-up recovery | `54f1279049` | 17 |
-| 8 | Symbol Chat presets, editor and capture | Follow-up recovery | `b382f02647` | 31 |
-| 9 | Native Symbol Chat editor window classes | Follow-up recovery | `6c0ca96dfa` | 18 |
-| 10 | PPP frame and callback interfaces | Independent network work | `f008850f3e` | 12 |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `2e33ab4cdd` | 654 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `1cc9300b67` | 679 |
+| 3 | ADXF archive directories and native ADX decoding | Follow-up recovery | `a2b4e66a56` | 21 |
+| 4 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `351a101687` | 968 |
+| 5 | Radar, compass and shared camera view | Follow-up recovery | `5bf970f9cc` | 24 |
+| 6 | Shared 2D polygon and color rendering | Follow-up recovery | `2cd01e8214` | 38 |
+| 7 | Olga Flow tube and phase actors | Follow-up recovery | `176bfd4225` | 17 |
+| 8 | Symbol Chat presets, editor and capture | Follow-up recovery | `ce6336208b` | 31 |
+| 9 | Native Symbol Chat editor window classes | Follow-up recovery | `be4ac3f8f4` | 18 |
+| 10 | PPP frame and callback interfaces | Independent network work | `7212821b7a` | 12 |
 
-The review changes 1,794 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,792 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+
+## Upstream field names in the consolidated review
+
+The consolidated review at `7212821b7a` keeps seven upstream field names in the recovered weapon, slime, short mail, quest transfer and character selection code. It drops a whitespace-only frontend edit. These corrections are folded into the ten existing review commits. Each commit was rebuilt and reproduces retail. The final address and linkage comparison shows no differences from the preceding candidate. [Naming audit](2026-11-21-upstream-names.json)
 
 ## Historical build ranges and character-selection slots
 
