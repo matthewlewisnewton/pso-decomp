@@ -1147,6 +1147,18 @@ The 32-file descriptor replay at `9cdd31b823` uses the shared clipping context f
 
 The combined replay changes 80 files, bringing the cumulative UI review to 189 paths from `510be1d79a`. The path inventory now has 1,079 canonical changes outside the prospective replay diff, including 255 UI paths. The next city shops, menu windows and item stock review has 34 overlapping paths on the new source. [Build, fork layer and overlap evidence](2026-11-20-window-interface-and-keyboard-replay.json)
 
+### Landed upstream baseline
+
+Upstream master `0fa391a887` includes the squash merges of #335 and #333. Its tree is identical to the validated prospective three-review tree at `28bfbe9f17`. The #335 squash at `7f4e8cd295` also has the same tree as the previously validated #335 merge. The local Great Merge replay at `74c19e2002` now descends from actual master and preserves the previous replay tree. A clean build of upstream master reproduces retail with 2,448 exact linked units. [PR #335](https://github.com/zeroz41/pso-decomp/pull/335) [PR #333](https://github.com/zeroz41/pso-decomp/pull/333)
+
+### City menus and shop stock
+
+The 71-file replay at `4d72d5f097` recovers typed menu factories, native shop and window ownership, and typed item stock and prices. Five linker labels change as the menu methods move to their owning class. The clean source build reproduces retail and passes the strict linkage check against master.
+
+`great-merge/prepared/window-drawing-keyboard-and-city` at `0157762a98` groups window layout, drawing, keyboard input, Symbol Chat, and city menus into a 247-file review directly on `0fa391a887`. It preserves the renderer and resource calls from master. The independent clean build also reproduces retail, links all 2,448 exact units, and retains all checked code and data addresses.
+
+The 131-path tooling patch round-trips over the new replay, reproduces retail, and passes 305 tooling and layer tests. The historical path inventory has 1,073 canonical paths outside the active replay diff. [Build and review evidence](2026-11-20-city-menu-and-upstream-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
