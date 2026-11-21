@@ -10,6 +10,8 @@ The clean source and materialized fork overlay reproduce the retail DOL with 27,
 
 There are 142 replay paths where a source comparison is still needed to establish that meaningful fork changes survived the overlap. The older ledger still has 511 open records. The previously audited cutover at `a2dfaa0230` remains available while the new replay receives that review.
 
+The reviewed-name merges through PR #352 advance master to `5a4e7ced56`. The replay at `52f013f817` carries those names through the 1,018-file source review. The eight overlaps use the landed identifiers with the recovered declarations and bodies. The source comparison verifies that the update changes identifiers in 128 files and retains one empty upstream header. Both builds reproduce retail, preserve the 1,147 data bytes, and pass 310 workspace checks and the actor, movie and task probes. The same 142 earlier overlaps still need source comparison. [Reviewed-name evidence](2026-11-21-reviewed-upstream-names.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
