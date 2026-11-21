@@ -1127,6 +1127,12 @@ The 43-file replay at `f60f17d429` shares the original draw context return type 
 
 The path inventory now has 1,145 canonical changes outside the prospective replay diff. Of these, 86 also lie outside the earlier verified review queue. The largest groups in that intersection include shared and equipment effects, player code, and enemy code. The ledger records the paths for assignment to their owners. For the wider UI replay, 180 of the 318 UI paths outside the diff are under `ui/window`. The existing work on content frames, selection bars, clipped text, and menu layouts supplies the next related changes. [Build, fork layer and residual inventory](2026-11-20-native-window-draw-replay.json)
 
+### Window content drawing and layout entries
+
+The three commits through `8cb5f82169` update 78 paths. They share the selection bar and text clipping context, recover `get_draw_context` on `TWindowAddition`, and use one `WindowLayoutEntries` declaration for initialization, updates, drawing and destruction. Entry dispatch now uses the native part class. The four linker label changes from the preceding replay reflect the recovered receiver, parameter types or owner. The cumulative window draw review spans 86 files from `510be1d79a`.
+
+The source and fork tooling workspace reproduce retail with 2,448 exact linked units, 27,572 exact functions and every previously checked code and data address retained. The workspace patch covers 131 paths and passes the 294 tooling tests and 11 layer tests. The remaining path comparison puts 1,136 canonical changes outside the replay diff, including 310 UI files. The 111-file native frame and scroll layout review has 54 overlapping paths against this checkpoint. [Build, fork layer and layout overlap evidence](2026-11-20-window-entries-replay.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
