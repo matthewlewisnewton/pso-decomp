@@ -1422,11 +1422,11 @@ All 14 current review heads are in three source batches. Each row measures the d
 
 | Order | Review scope | Covered PRs | Local head | Files |
 | ---: | --- | --- | --- | ---: |
-| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `0375275fad` | 659 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `b4c38736e2` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `fa5b89a7c3` | 936 |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `5e80a99c7b` | 658 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `ebd5955737` | 679 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `622160abd1` | 936 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `840aab2754`, identical to the verified Great Merge source at `ac294e34fb` across 1,724 changed files. All 75 candidate commits passed the attribution audit.
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `5e5bcbffb0`, identical to the verified Great Merge source at `5689ad0d35` across 1,723 changed files. All 78 candidate commits passed the attribution audit.
 
 The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
@@ -1479,6 +1479,8 @@ Great Merge at `ac294e34fb` restores the native Flower receiver for four actions
 The 12-file batch keeps all existing base function names. Eight linker labels change with the real owners or parameter types. The combat stage, consolidated source and fork workspace reproduce retail and retain all 27,572 functions, 2,448 linked units and 1,147 historical bytes. The 130-path fork overlay passes 310 checks and retains all 27,031 required symbols.
 
 The historical comparison closes four entries and leaves 647 open. Canadin formation and Olga Flow action-history recovery were already present. [Enemy and boss evidence](2026-11-21-enemy-and-boss-ownership.json)
+
+The frontend follow-up at `5689ad0d35` restores the upstream names for the dialing rectangle and character selection plate helpers. The correction changes those two identifiers in eight files and preserves the typed callers. All three review stages, the consolidated candidate and the layered fork reproduce retail, with zero lost exact or linked functions or data ranges.
 
 ## Ordered upstream review candidates
 

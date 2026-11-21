@@ -259,5 +259,62 @@
     "audited_commits": 75,
     "codex_attribution": 0,
     "coauthor_trailers": 0
+  },
+  "frontend_naming_followup": {
+    "source": "5689ad0d356b30b12202f4551bf5bc865c1df72c",
+    "previous_source": "ac294e34fbc336ca3db3ca96d149a9d59a9971ea",
+    "single_review_candidate": "5e5bcbffb0df4fdc4034e6bffed685f48ff9aa06",
+    "restored_upstream_names": [
+      {
+        "module": "psov3",
+        "address": "0x802C4B64",
+        "before": "draw_selection_plate",
+        "after": "TAdEnterSerialAccessGC__sub_802C4B64"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80328B24",
+        "before": "draw_dialing_rectangle",
+        "after": "TAdDialingGC__sub_80328B24"
+      }
+    ],
+    "changed_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/ui/frontend/TAdDialingGC_80328B20.h",
+      "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+      "src/pso/ui/frontend/TAdDialingGC.cpp",
+      "src/pso/ui/frontend/TAdDialingMessageWindow.cpp",
+      "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+      "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+      "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp"
+    ],
+    "validation": {
+      "frontend": {
+        "check_sha256": "a13f34b09390b9abc702de5a59a1d8820904094983106fe45985d4a9696bcbf7",
+        "source_report_sha256": "b6b75dcb195a3a2ace2c3586eb0c05977064d701eae8f389e43acd2e82783d37"
+      },
+      "resources": {
+        "check_sha256": "a13f34b09390b9abc702de5a59a1d8820904094983106fe45985d4a9696bcbf7",
+        "source_report_sha256": "ee8e25b7f85874c65b46e14db927225e4e5e45cb245fec04bdf3971d8bb82042"
+      },
+      "combat": {
+        "check_sha256": "a13f34b09390b9abc702de5a59a1d8820904094983106fe45985d4a9696bcbf7",
+        "source_report_sha256": "ec0d8ea55daff26fe090d76e4910bc2337c33019f9af2125a97857b01e9f8cad"
+      },
+      "full": {
+        "check_sha256": "a13f34b09390b9abc702de5a59a1d8820904094983106fe45985d4a9696bcbf7",
+        "source_report_sha256": "ec0d8ea55daff26fe090d76e4910bc2337c33019f9af2125a97857b01e9f8cad"
+      },
+      "fork": {
+        "check_sha256": "654920f2d49fa9cc79a017fe7eee329103e6ead65c425532aab2191ddd6a5e11",
+        "source_report_sha256": "ec0d8ea55daff26fe090d76e4910bc2337c33019f9af2125a97857b01e9f8cad"
+      }
+    },
+    "fork_overlay_sha256": "0fa4a62efe364f27a2a091264b698d77f91a2d50d3955d9cbf566feec8eddaa1",
+    "commit_attribution": {
+      "audited_commits": 78,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    }
   }
 }
