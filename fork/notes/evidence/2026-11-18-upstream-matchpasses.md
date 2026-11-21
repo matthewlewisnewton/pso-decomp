@@ -1316,7 +1316,7 @@ This tree and the materialized fork tooling both reproduce the retail DOL. The s
 
 `great-merge/incoming/osp-layered-replay` uses that source with the fork documentation and tooling overlay. The overlay reproduces the validated tree on reapplication, adds only fork-layer paths to the repository, and passes 294 tooling tests, 11 layer tests, and all five host port checks. The port callback fixture follows the shared byte-buffer signature now used by the native meseta factory. The layer records 27,031 retained symbols with zero missing or stale entries.
 
-The latest historical comparison resolves 626 paths to the checkpoint. Of the 16 proposed edits, 15 repeat declarations or includes and one restores a superseded renderer cast. Another 110 paths need owner comparison and 12 have different candidate versions. The disc-error compiler cleanup passed separately at `252ba20838`, with no address or linkage changes. Against current master, every expanded review-sized batch still has conflicts. Open PRs #336–342 have separately tested updates awaiting publication. [Validation and remaining paths](2026-11-20-osp-expanded-source-and-fork-layer.json)
+The latest historical comparison resolves 626 paths to the checkpoint. Of the 16 proposed edits, 15 repeat declarations or includes and one restores a superseded renderer cast. Another 110 paths need owner comparison and 12 have different candidate versions. The disc-error compiler cleanup passed separately at `252ba20838`, with no address or linkage changes. Against current master, every expanded review-sized batch still has conflicts. Open PRs #336–342 had separately tested updates, now published in the batch below. [Validation and remaining paths](2026-11-20-osp-expanded-source-and-fork-layer.json)
 
 ## Historical cumulative source replay complete
 
@@ -1324,7 +1324,7 @@ The latest historical comparison resolves 626 paths to the checkpoint. Of the 16
 
 The source and fork workspace reproduce retail and pass the strict checker with 27,572 exact functions and 2,448 linked source units. The comparison with fork main keeps every exact and linked function and every non-padding and linked data range. The aggregate extent diagnostic is 2,549 alignment bytes omitted and 163 bytes newly covered. The 90 original ranges still account for all 1,147 bytes. There are zero Codex attribution entries in the 68 commits ahead of upstream. The fork workspace passes all 294 tooling tests, 11 layer tests and five host checks. Its overlay is byte-identical to the preceding snapshot. [Path decisions and validation](2026-11-20-osp-historical-source-closure.json)
 
-The older fork review index covers additional work beyond the cumulative snapshot. Its 713 partially reviewed or unreviewed entries still need disposition. The initial rescan on the current source found 682 changed bodies, 26 entries whose previously recorded owner path moved, and five build or other non-source entries. The upstream refreshes for #336–342 still await publication. The newer batches still need independent upstream bases before review.
+The older fork review index covers additional work beyond the cumulative snapshot. Its 713 partially reviewed or unreviewed entries still need disposition. The initial rescan on the current source found 682 changed bodies, 26 entries whose previously recorded owner path moved, and five build or other non-source entries. The upstream refreshes for #336–342 are recorded with the publication below. The newer batches still need independent upstream bases before review.
 
 ## Relocated owners in the original fork index
 
@@ -1338,7 +1338,7 @@ The [original fork index](2026-11-18-fork-review-index.tsv) now points all 26 st
 
 The standalone review at `7af1ccc64f` starts directly on master `1fd561eae2`. It recovers the Ginja material parameter and handler layouts, passes actual Ninja nodes through chunk draw callbacks, and caches colored vertices using the original 0x10-byte input and 0x20-byte output records. The two commits cover 141 files. All 45 changed linker labels follow corrected receivers or signatures. Both commits use Matt's Git identity with zero Codex attribution.
 
-The review reproduces retail and links all 2,448 source units. The matching check shows no address or coverage losses and verifies all 1,147 original data bytes. Against the current-base review heads, eight merge previews are clean. The remaining overlaps are one path with #337, five with #341 and two with #346. The candidate is local and ready for publication approval. [Review scope and overlap paths](2026-11-20-osp-renderer-review-and-layouts.json)
+The review reproduces retail and links all 2,448 source units. The matching check shows no address or coverage losses and verifies all 1,147 original data bytes. Against the current-base review heads, eight merge previews are clean. The remaining overlaps are one path with #337, five with #341 and two with #346. The standalone review is open as [#348](https://github.com/zeroz41/pso-decomp/pull/348). [Review scope and overlap paths](2026-11-20-osp-renderer-review-and-layouts.json)
 
 The cumulative branch at `9739c1febe` now has the same typed color cache. It shares the const-vector transform declaration with the footprint callers and restores five layout checks on the particle classes. The source and fork workspace reproduce retail, the fork layer passes all 310 checks, and the [fork index](2026-11-18-fork-review-index.tsv) has 675 remaining decisions. The weapon-hit interface stays open because the typed version changed the original compiler's instruction schedule.
 
@@ -1346,7 +1346,7 @@ The cumulative branch at `9739c1febe` now has the same typed color cache. It sha
 
 The standalone archive review at `abb5022ed6` starts directly on master `1fd561eae2` and spans 317 files. It recovers the `BmlResource` constructor and destructor, the arena allocator, descriptor copies and the native load callback records. The callers share the model and texture pointer declarations. The 12 changed linker labels follow the restored receivers and signatures. The single review commit uses Matt's Git identity with zero Codex attribution.
 
-The archive review and renderer review reproduce retail together at `c7a5af7abf` across 382 paths. The combination uses both shared interfaces in the live monitor. The archive still overlaps with the refreshed #341 in 31 files, primarily boss resource and draw code. The other current-base review overlaps are listed by path. The archive candidate is local and ready for publication approval. [Builds and overlap paths](2026-11-20-osp-archive-review-and-layouts.json)
+The archive review and renderer review reproduce retail together at `c7a5af7abf` across 382 paths. The combination uses both shared interfaces in the live monitor. The archive still overlaps with the refreshed #341 in 31 files, primarily boss resource and draw code. The other current-base review overlaps are listed by path. The standalone review is open as [#349](https://github.com/zeroz41/pso-decomp/pull/349). [Builds and overlap paths](2026-11-20-osp-archive-review-and-layouts.json)
 
 The cumulative branch at `45f6c97c98` restores the Vol Opt rock model and texture arrays, checks the archive request layouts and removes the obsolete lobby declarations. Both source and fork workspace reproduce retail with all 2,448 source objects linked and preserve all 1,147 historical data bytes. All 310 fork workspace checks pass, and 672 entries remain in the [fork source index](2026-11-18-fork-review-index.tsv).
 
@@ -1354,9 +1354,21 @@ The cumulative branch at `45f6c97c98` restores the Vol Opt rock model and textur
 
 The standalone review at `6d9f7bffe5` starts directly on upstream master `1fd561eae2`. Both particle factories use the shared world-position vector and return the native particle pointer. The atlas passes its task parent and sprite definition through the base and five quad constructors. The 191-file review matches the retail DOL with all 2,448 source units linked. The only six changed linker labels follow the constructor signatures, and the commit has zero Codex attribution.
 
-The three local reviews reproduce retail together at `aa3fa4b709` across 480 paths. The particle change merges cleanly with the renderer alone. Combining it with the archive and renderer work resolved 39 shared paths, including one Gryphon shockwave that uses both recovered interfaces. The standalone candidate is local and ready for publication approval. [Build and overlap evidence](2026-11-20-osp-particle-review-and-actor-layouts.json)
+The three local reviews reproduce retail together at `aa3fa4b709` across 480 paths. The particle change merges cleanly with the renderer alone. Combining it with the archive and renderer work resolved 39 shared paths, including one Gryphon shockwave that uses both recovered interfaces. The standalone review is open as [#350](https://github.com/zeroz41/pso-decomp/pull/350). [Build and overlap evidence](2026-11-20-osp-particle-review-and-actor-layouts.json)
 
 Great Merge at `26fdc8afcf` also restores the native actor position initializer and word-sized action mask. The initializer retains the upstream name, uses `TObjChara` as its receiver and keeps the originally linked address. Twelve actor layout checks and the 66 updated callers pass the exact build. The fork workspace reproduces retail and passes all 310 checks. The [fork index](2026-11-18-fork-review-index.tsv) still has 670 open entries.
+
+## Renderer, archive and particle publication
+
+All three source reviews are open against upstream master at `1fd561eae2`. The branches keep their independently validated trees.
+
+| PR | Scope | Published head | Changed files |
+| --- | --- | --- | ---: |
+| [#348](https://github.com/zeroz41/pso-decomp/pull/348) | Ginja materials and Ninja model callbacks | `7af1ccc64f` | 141 |
+| [#349](https://github.com/zeroz41/pso-decomp/pull/349) | BML archive lifetimes and load requests | `abb5022ed6` | 317 |
+| [#350](https://github.com/zeroz41/pso-decomp/pull/350) | Particle factories and sprite definitions | `6d9f7bffe5` | 191 |
+
+The seven refreshed heads for #336–342 fast-forwarded to the locally tested commits listed above. All 14 open reviews were ready for review and mergeable against master at publication. The GitHub-visible commit audit checked 29 author and committer identities and all commit messages. It found zero Codex attribution and zero co-author trailers. The ten updated or newly opened reviews queued GitHub matching checks for their published heads. [Publication and commit audit](2026-11-20-upstream-publication-348-350.json)
 
 ## Ordered upstream review candidates
 
