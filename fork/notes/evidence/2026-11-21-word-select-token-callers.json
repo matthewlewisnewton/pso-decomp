@@ -1,0 +1,133 @@
+{
+  "source": "2677953d7cebb697998096544ddfce82b3eb9296",
+  "previous_source": "0f4a66c99a5c238ab664b9109ff25c36f5616402",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "changed_paths": [
+    "include/pso/ui/window/TWindowDD.h",
+    "include/pso/ui/window/TWindowDD_80341A08.h",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_80342428.cpp",
+    "src/pso/ui/window/TWindowDD_803426CC.cpp",
+    "src/pso/ui/window/TWindowDD_80342AA0.cpp",
+    "src/pso/ui/window/TWindowDD_80342E40.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp"
+  ],
+  "combined_window_paths": 41,
+  "source_paths": 1061,
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "historical_comparison": {
+    "prior_open_rows": 507,
+    "open_rows": 506,
+    "closed_rows": {
+      "5636": "The full historical word-page construction and selection change survives in the native page and its adjacent caller. The compiler supplies the destructor, virtual slots and descriptor startup. The factory sets the row count and constructs the page. The adjacent selection branch uses the shared typed lookup with the original s16 comparison."
+    },
+    "partial_rows": {
+      "5619": "All selected-token callers use the same typed declaration. The word page and range helper preserve signed token behavior. Wider historical display code still needs comparison."
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "0f4a66c99a5c238ab664b9109ff25c36f5616402",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "changed_linker_labels": 0,
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "e853609c32842957829701e9484f1f7d2cd2d6cc9c10db4ad7f14a7fa51682db"
+    },
+    "workspace": {
+      "baseline": "2677953d7cebb697998096544ddfce82b3eb9296",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "changed_linker_labels": 0,
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "e853609c32842957829701e9484f1f7d2cd2d6cc9c10db4ad7f14a7fa51682db"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "bd2910d28009fd3b93fe418774074edcd5c731d1c160d8ec0d150e392524b72d"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "f37a54a5ba2d72d636b99806c4e2c75a9c502cfc3f8832abacb346a8e7a8b995"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    },
+    "word-select": {
+      "result": "Word Select constructors, virtual slots and scroll dispatch passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "4b8c1725a34ba77e1d588eb6cfedf4a3c7537ae9acdce2720fea35b77fbad45e"
+    },
+    "word-token": {
+      "result": "Word Select token selection, signed extension and range boundaries passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "611032c86112a5a083c30583ceed50696bd53372b6eb3a2a6d8340f1356ffba0"
+    },
+    "overlap": {
+      "result": "Eight balloon overlap cases passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "455897f6dec27adb0cacc209f9634987544a801eaf91d3cfe906ede69784bdcb"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "907ca75f10af4626511281e617bc06b306967cc8122eb5a72378ec442128d494",
+    "force_active_names": 27033,
+    "changed_overlay_paths": 0
+  }
+}

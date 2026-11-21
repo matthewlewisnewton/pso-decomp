@@ -32,6 +32,8 @@ The Word Select replay at `0f4a66c99a` accounts for the remaining six window lif
 
 Both builds reproduce retail with 27,572 exact functions and 2,447 linked source units. All 1,147 starting data bytes remain accounted for, and the 310 workspace checks pass. The constructor, virtual dispatch, scrolling and balloon-overlap probes agree with retail. Three older file records gain partial evidence, leaving 507 open. [Word Select matching evidence](2026-11-21-historical-word-select-lifetimes.json)
 
+The window batch at `2677953d7c` also gives Word Select callers one typed declaration for `TWindowDD__sub_80342158`. It preserves signed conversion at the two ID comparisons and in the range helper. The retail probe agrees for an empty list, negative tokens, and both range boundaries. This closes one historical record and leaves 506 open. The combined batch touches 41 paths. Both builds retain all 2,447 linked units and all 27,572 exact functions, with all 1,147 starting data bytes accounted for. The 310 fork workspace checks pass. [Typed token validation](2026-11-21-word-select-token-callers.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
