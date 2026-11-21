@@ -1,0 +1,1034 @@
+{
+  "source": "e6fd736c174757890fda2ea8ee171b89366fe64d",
+  "previous_source": "206cf1ff39fc2eebeaefb19361dffd35bcf690ac",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source_paths": 1094,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/dragon/TBoss1Dragon.h",
+    "include/pso/boss/goldragon/TBoss8Dragon.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_802D5174.h",
+    "include/pso/player/TUnk_804B6C24.h",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/player/TObjPlayer_802D5174.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "historical_comparison": {
+    "prior_open_rows": 502,
+    "open_rows": 496,
+    "closed_rows": {
+      "540": "The clone uses the shared Ninja node and state pointers, and the relocated status, packet and compiler startup functions retain their original addresses. The sound names and scalar pool stay linked in the folded owner.",
+      "3965": "The folded native factory covers all six specified variants and the default. Its seven destructors, switch table and weapon vtables expand to the original ranges in the current unit.",
+      "4030": "The common container owns render, const vfunc_79 and the original melee test virtual. The shared CameraDistanceFade is asserted at 0x340. The old standalone helper declarations are retired.",
+      "4158": "The weapon constructors install the original hit and wall callbacks and seed their descriptor values. Action 447 and the two item effect callers pass real position pointers. The native vfunc_57 and the inherited destructor and descriptor dispatch survive in the folded owner.",
+      "4160": "The common weapon class keeps its native initialization, descriptor writes, marker dispatch, attack-state test and draw methods. The original three-float display offset remains compiler-owned at its retail address.",
+      "4224": "The native weapon overrides vfunc_57, the descriptor initializer and the Vec-taking vfunc_62. Its shared base and typed node array cover the original class fields, including the region beginning at 0x20C."
+    },
+    "closed_blob_ids": {
+      "540": {
+        "ancestor_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "fork_blob": "ca803328680ea985982c5016975c0799d3626164",
+        "current_path": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "current_blob": "9ae0feeb0f21090a7ce612b9a9c62da154a6c2c5"
+      },
+      "3965": {
+        "ancestor_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "fork_blob": "bd10eade2ee939574cc4982173f290902b59fd6d",
+        "current_path": "src/pso/player/TObjPlayer_802D5174.cpp",
+        "current_blob": "0761bd31e1cf3f0910238277fe48fffe4fb7ee12"
+      },
+      "4030": {
+        "ancestor_blob": "136f0b1d7f2d097ac43a3de6ca0fc912fc3da08b",
+        "fork_blob": "4695a888d2c9d75f8d5956167eb28677395ab4ac",
+        "current_path": "include/pso/player/TUnk_804B6C24.h",
+        "current_blob": "5a4147bf1344f1c5cfe4bc8c51cea2e524455c0f"
+      },
+      "4158": {
+        "ancestor_blob": "05ac63ccac11eaaf11ba132045acd7c177e5484c",
+        "fork_blob": "6dfa07d5f33b679216e69dc278a23c7a822cbd85",
+        "current_path": "src/pso/player/TObjPlayer_802D5174.cpp",
+        "current_blob": "0761bd31e1cf3f0910238277fe48fffe4fb7ee12"
+      },
+      "4160": {
+        "ancestor_blob": "4ebbb92aaf1118970c959f2b6eafa2ac1581ecd5",
+        "fork_blob": "ed2af37bebaa58db52f70e62ffceeb9d0d8019a4",
+        "current_path": "src/pso/player/TObjPlayer_802D5174.cpp",
+        "current_blob": "0761bd31e1cf3f0910238277fe48fffe4fb7ee12"
+      },
+      "4224": {
+        "ancestor_blob": "94981f071a2dbc3fa388d711263121b4b9f3e280",
+        "fork_blob": "12572dbf93e54193163308061081eb145280abde",
+        "current_path": "include/pso/weapon/TUnk_804E21F8.h",
+        "current_blob": "2867251981f26f13df61260f8ea33aa7e0b6a831"
+      }
+    },
+    "partial_rows": {
+      "157": "Nine linker labels correspond to native Ninja node and hit argument types or removal of an artificial player receiver.",
+      "907": "The Olga Flow rock arena centre is provided by the exact source-linked type-2 data unit. Other rock declaration, render and motion changes still need review.",
+      "1076": "The type-2 resource scalar and centre definitions both link exactly at their original configured ranges. The historical encounter source comparison remains open.",
+      "874": "Gol Dragon now owns the actual BML archive, typed model entries, and the allocated Ninja node hierarchy. The resource descriptors and state tables are source-linked. Other encounter changes remain open.",
+      "958": "The three-quarter-kilobyte Stelth data unit is linked as current source at its original range. Wider enemy and shared ABI changes remain open.",
+      "597": "The folded Stelth owner and its exact linked data provider retain the resource pool. Older movement and dispatch comparisons remain open.",
+      "6481": "The 912-byte quest character table links from the native quest owner. Earlier quest pool and text-processing code remains open.",
+      "6482": "The original quest table and reassigned code ranges link from the current quest owners. Older queue and matching changes still need source comparison.",
+      "7299": "Character tables keep the recorded source owner. The historical quest pool header and allocation changes remain open."
+    }
+  },
+  "fork_pr_627_linkage": {
+    "fork": "0b92f5adaa9cb955248b1820599bf98af655a87e",
+    "baseline": "ba7c0cc86f21695d122ae6cd36776f15dcdef3b4",
+    "current": "e6fd736c174757890fda2ea8ee171b89366fe64d",
+    "linked_on_fork": [
+      "pso/boss/Boss6Type2Data.cpp",
+      "pso/boss/GolDragonResources.cpp",
+      "pso/enemy/StelthData.cpp",
+      "pso/misc/LobbyAudioStreamBuffers.cpp",
+      "pso/misc/QuestDownloadCharTables.c",
+      "pso/misc/ShopWeaponTables.cpp",
+      "pso/player/TObjPlayer_803E18C0.cpp"
+    ],
+    "folded_on_fork": [
+      "pso/misc/TOContainerAncientEnemyCommon.cpp",
+      "pso/misc/TOContainerAncientEnemyRare.cpp",
+      "pso/misc/TOContainerAncientItemCommon.cpp",
+      "pso/misc/TOContainerAncientItemNone.cpp",
+      "pso/misc/TOContainerAncientItemNone_8015BF38.cpp",
+      "pso/misc/TOContainerAncientItemRare.cpp",
+      "pso/player/TObjPlayer_8015C4CC.cpp",
+      "pso/unk/text_8015C048.cpp",
+      "pso/unk/text_8015C534.cpp",
+      "pso/unk/text_8015C680.cpp"
+    ],
+    "ranges": [
+      {
+        "fork_owner": "pso/enemy/StelthData.cpp",
+        "section": ".rodata",
+        "start": "0x8043d450",
+        "end": "0x8043d750",
+        "size": 768,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/enemy/stelth/StelthData.cpp",
+            "start": "0x8043d450",
+            "end": "0x8043d750",
+            "size": 768,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TOContainerAncientEnemy.cpp",
+        "section": ".text",
+        "start": "0x8015b714",
+        "end": "0x8015c8d8",
+        "size": 4548,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+            "start": "0x8015b714",
+            "end": "0x8015c8d8",
+            "size": 4548,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TOContainerAncientEnemy.cpp",
+        "section": ".rodata",
+        "start": "0x80440508",
+        "end": "0x80440940",
+        "size": 1080,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+            "start": "0x80440508",
+            "end": "0x80440940",
+            "size": 1080,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TOContainerAncientEnemy.cpp",
+        "section": ".data",
+        "start": "0x804b0068",
+        "end": "0x804b0a08",
+        "size": 2464,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+            "start": "0x804b0068",
+            "end": "0x804b0a08",
+            "size": 2464,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TOContainerAncientEnemy.cpp",
+        "section": ".sdata",
+        "start": "0x805d2ef0",
+        "end": "0x805d2f14",
+        "size": 36,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+            "start": "0x805d2ef0",
+            "end": "0x805d2f14",
+            "size": 36,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TOContainerAncientEnemy.cpp",
+        "section": ".sdata2",
+        "start": "0x805db398",
+        "end": "0x805db39c",
+        "size": 4,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+            "start": "0x805db398",
+            "end": "0x805db39c",
+            "size": 4,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_80184C2C.cpp",
+        "section": ".rodata",
+        "start": "0x80444268",
+        "end": "0x80444720",
+        "size": 1208,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_80184C2C.cpp",
+            "start": "0x80444268",
+            "end": "0x80444720",
+            "size": 1208,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_80184C2C.cpp",
+        "section": ".data",
+        "start": "0x804b5e80",
+        "end": "0x804b5ff4",
+        "size": 372,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_80184C2C.cpp",
+            "start": "0x804b5e80",
+            "end": "0x804b5ff4",
+            "size": 372,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_80184C2C.cpp",
+        "section": ".bss",
+        "start": "0x8050dc20",
+        "end": "0x8050dc68",
+        "size": 72,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_80184C2C.cpp",
+            "start": "0x8050dc20",
+            "end": "0x8050dc68",
+            "size": 72,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_80184C2C.cpp",
+        "section": ".sdata",
+        "start": "0x805d3290",
+        "end": "0x805d32a4",
+        "size": 20,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_80184C2C.cpp",
+            "start": "0x805d3290",
+            "end": "0x805d32a4",
+            "size": 20,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_80184C2C.cpp",
+        "section": ".sbss",
+        "start": "0x805d5b30",
+        "end": "0x805d5b4c",
+        "size": 28,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_80184C2C.cpp",
+            "start": "0x805d5b30",
+            "end": "0x805d5b4c",
+            "size": 28,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/item/TObjContainerItem.cpp",
+        "section": ".rodata",
+        "start": "0x80444b90",
+        "end": "0x80444f58",
+        "size": 968,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TObjContainerItem.cpp",
+            "start": "0x80444b90",
+            "end": "0x80444f58",
+            "size": 968,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/item/TObjContainerItem.cpp",
+        "section": ".data",
+        "start": "0x804b6338",
+        "end": "0x804b6d70",
+        "size": 2616,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TObjContainerItem.cpp",
+            "start": "0x804b6338",
+            "end": "0x804b6d70",
+            "size": 2616,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/item/TObjContainerItem.cpp",
+        "section": ".sbss",
+        "start": "0x805d5b78",
+        "end": "0x805d5b90",
+        "size": 24,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TObjContainerItem.cpp",
+            "start": "0x805d5b78",
+            "end": "0x805d5b90",
+            "size": 24,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/item/TObjContainerJung.cpp",
+        "section": ".rodata",
+        "start": "0x80445148",
+        "end": "0x80445450",
+        "size": 776,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TObjContainerJung.cpp",
+            "start": "0x80445148",
+            "end": "0x80445450",
+            "size": 776,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/item/TObjContainerJung.cpp",
+        "section": ".data",
+        "start": "0x804b7120",
+        "end": "0x804b7578",
+        "size": 1112,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TObjContainerJung.cpp",
+            "start": "0x804b7120",
+            "end": "0x804b7578",
+            "size": 1112,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/item/TObjContainerJung.cpp",
+        "section": ".sdata",
+        "start": "0x805d3310",
+        "end": "0x805d3324",
+        "size": 20,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TObjContainerJung.cpp",
+            "start": "0x805d3310",
+            "end": "0x805d3324",
+            "size": 20,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/item/TObjContainerJung.cpp",
+        "section": ".sbss",
+        "start": "0x805d5ba0",
+        "end": "0x805d5bac",
+        "size": 12,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/object/container/TObjContainerJung.cpp",
+            "start": "0x805d5ba0",
+            "end": "0x805d5bac",
+            "size": 12,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/ShopWeaponTables.cpp",
+        "section": ".rodata",
+        "start": "0x8044c488",
+        "end": "0x8044c7b8",
+        "size": 816,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/item/shop/ShopWeaponTables.cpp",
+            "start": "0x8044c488",
+            "end": "0x8044c7b8",
+            "size": 816,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/LobbyAudioStreamBuffers.cpp",
+        "section": ".sbss",
+        "start": "0x805d62d8",
+        "end": "0x805d62e0",
+        "size": 8,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/TLobby_80226C3C.cpp",
+            "start": "0x805d62d8",
+            "end": "0x805d62e0",
+            "size": 8,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TLobby_802268F4.cpp",
+        "section": ".rodata",
+        "start": "0x8044c860",
+        "end": "0x8044c890",
+        "size": 48,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/TLobby_80226C3C.cpp",
+            "start": "0x8044c860",
+            "end": "0x8044c890",
+            "size": 48,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TLobby_802268F4.cpp",
+        "section": ".data",
+        "start": "0x804cb838",
+        "end": "0x804cbe98",
+        "size": 1632,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/TLobby_80226C3C.cpp",
+            "start": "0x804cb838",
+            "end": "0x804cbe98",
+            "size": 1632,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TLoadCtrl_80227390.cpp",
+        "section": ".rodata",
+        "start": "0x8044c890",
+        "end": "0x8044c8d0",
+        "size": 64,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/TLobby_80226C3C.cpp",
+            "start": "0x8044c890",
+            "end": "0x8044c8d0",
+            "size": 64,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TWindowMainMenu1P.cpp",
+        "section": ".data",
+        "start": "0x804d3078",
+        "end": "0x804d30a0",
+        "size": 40,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/ui/window/TWindowMainMenu1P.cpp",
+            "start": "0x804d3078",
+            "end": "0x804d30a0",
+            "size": 40,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TWindowMainMenu1P.cpp",
+        "section": ".sdata2",
+        "start": "0x805dd8a0",
+        "end": "0x805dd8dc",
+        "size": 60,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/ui/window/TWindowMainMenu1P.cpp",
+            "start": "0x805dd8a0",
+            "end": "0x805dd8dc",
+            "size": 60,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/boss/Boss6Type2Data.cpp",
+        "section": ".rodata",
+        "start": "0x80471050",
+        "end": "0x80471350",
+        "size": 768,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/boss/olgaflow/Boss6Type2Data.cpp",
+            "start": "0x80471050",
+            "end": "0x80471350",
+            "size": 768,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/boss/Boss6Type2Data.cpp",
+        "section": ".sdata",
+        "start": "0x805d3eb8",
+        "end": "0x805d3ebc",
+        "size": 4,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/boss/olgaflow/Boss6Type2Data.cpp",
+            "start": "0x805d3eb8",
+            "end": "0x805d3ebc",
+            "size": 4,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/player/TObjPlayer_802D5C0C.cpp",
+        "section": ".rodata",
+        "start": "0x80472590",
+        "end": "0x8047259c",
+        "size": 12,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/player/TObjPlayer_802D5174.cpp",
+            "start": "0x80472590",
+            "end": "0x8047259c",
+            "size": 12,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/player/TObjPlayer_802D5C0C.cpp",
+        "section": ".sdata2",
+        "start": "0x805de7a0",
+        "end": "0x805de7a4",
+        "size": 4,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/player/TObjPlayer_802D5174.cpp",
+            "start": "0x805de7a0",
+            "end": "0x805de7a4",
+            "size": 4,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_802D5F44.cpp",
+        "section": ".data",
+        "start": "0x804e1bb0",
+        "end": "0x804e24ec",
+        "size": 2364,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/player/TObjPlayer_802D5174.cpp",
+            "start": "0x804e1bb0",
+            "end": "0x804e24ec",
+            "size": 2364,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/boss/GolDragonResources.cpp",
+        "section": ".rodata",
+        "start": "0x804744a8",
+        "end": "0x80474b04",
+        "size": 1628,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+            "start": "0x804744a8",
+            "end": "0x80474b04",
+            "size": 1628,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/boss/GolDragonResources.cpp",
+        "section": ".sdata",
+        "start": "0x805d4008",
+        "end": "0x805d400c",
+        "size": 4,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+            "start": "0x805d4008",
+            "end": "0x805d400c",
+            "size": 4,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/boss/GolDragonResources.cpp",
+        "section": ".sbss",
+        "start": "0x805d6980",
+        "end": "0x805d6988",
+        "size": 8,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+            "start": "0x805d6980",
+            "end": "0x805d6988",
+            "size": 8,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/boss/TBoss8Dragon_802FDDD4.cpp",
+        "section": ".rodata",
+        "start": "0x80474b18",
+        "end": "0x80474b4c",
+        "size": 52,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+            "start": "0x80474b18",
+            "end": "0x80474b4c",
+            "size": 52,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/boss/TBoss8Dragon_802FDDD4.cpp",
+        "section": ".sdata2",
+        "start": "0x805deeb0",
+        "end": "0x805deeec",
+        "size": 60,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+            "start": "0x805deeb0",
+            "end": "0x805deeec",
+            "size": 60,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_803CC294.cpp",
+        "section": ".rodata",
+        "start": "0x8047c818",
+        "end": "0x8047cf30",
+        "size": 1816,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_803CC294.cpp",
+            "start": "0x8047c818",
+            "end": "0x8047cf30",
+            "size": 1816,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_803CC294.cpp",
+        "section": ".sbss",
+        "start": "0x805d75e8",
+        "end": "0x805d75f0",
+        "size": 8,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_803CC294.cpp",
+            "start": "0x805d75e8",
+            "end": "0x805d75f0",
+            "size": 8,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/unk/text_803CC294.cpp",
+        "section": ".sdata2",
+        "start": "0x805e0d88",
+        "end": "0x805e0d8c",
+        "size": 4,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/unk/text_803CC294.cpp",
+            "start": "0x805e0d88",
+            "end": "0x805e0d8c",
+            "size": 4,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/QuestDownloadCharTables.c",
+        "section": ".rodata",
+        "start": "0x8047e698",
+        "end": "0x8047ea28",
+        "size": 912,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/quest/QuestDownloadCharTables.c",
+            "start": "0x8047e698",
+            "end": "0x8047ea28",
+            "size": 912,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/player/TObjPlayer_803E18C0.cpp",
+        "section": ".text",
+        "start": "0x803e18c0",
+        "end": "0x803e1a58",
+        "size": 408,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/player/TObjPlayer_803E18C0.cpp",
+            "start": "0x803e18c0",
+            "end": "0x803e1a58",
+            "size": 408,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/player/TObjPlayer_803E18C0.cpp",
+        "section": ".sdata2",
+        "start": "0x805e1020",
+        "end": "0x805e1038",
+        "size": 24,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/player/TObjPlayer_803E18C0.cpp",
+            "start": "0x805e1020",
+            "end": "0x805e1038",
+            "size": 24,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      },
+      {
+        "fork_owner": "pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+        "section": ".rodata",
+        "start": "0x8047f0f8",
+        "end": "0x8047f8b8",
+        "size": 1984,
+        "complete_exact_linked": true,
+        "owners": [
+          {
+            "owner": "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+            "start": "0x8047f0f8",
+            "end": "0x8047f8b8",
+            "size": 1984,
+            "match_percent": 100.0
+          }
+        ],
+        "unverified_start": null
+      }
+    ],
+    "bytes": {
+      "initialized_data": 23740,
+      "code": 4956,
+      "zero_initialized_storage": 160
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "206cf1ff39fc2eebeaefb19361dffd35bcf690ac",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8002AC4C",
+          "before": "cloneModelHierarchy__12TBoss1DragonFP15DragonModelNodeP15DragonModelNodePv",
+          "after": "cloneModelHierarchy__12TBoss1DragonFP10NJS_OBJECTP10NJS_OBJECTPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002AD54",
+          "before": "countModelNodes__12TBoss1DragonFP15DragonModelNode",
+          "after": "countModelNodes__12TBoss1DragonFP10NJS_OBJECT"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802D52C4",
+          "before": "do_action_447__10TObjPlayerFv",
+          "after": "do_action_447__FPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802D52E8",
+          "before": "do_action_447_from_packet__10TObjPlayerFPvPvPv",
+          "after": "do_action_447_from_packet__10TObjPlayerFlPC12ActorBodyHitP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802D5478",
+          "before": "spawn_hit_particles__10TObjPlayerFiPv",
+          "after": "spawn_hit_particles__FPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802D551C",
+          "before": "spawn_hit_particles_at_vec__10TObjPlayerFlll",
+          "after": "spawn_hit_particles_at_vec__10TObjPlayerFlPC3VecP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802D5558",
+          "before": "spawn_hit_particles_at__10TObjPlayerFlll",
+          "after": "spawn_hit_particles_at__10TObjPlayerFlPC12ActorBodyHitP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802D5B00",
+          "before": "spawn_item__10TObjPlayerFv",
+          "after": "spawn_item__FPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802FDDD4",
+          "before": "clone_node_tree__12TBoss8DragonFPvPvi",
+          "after": "clone_node_tree__12TBoss8DragonFP10NJS_OBJECTP10NJS_OBJECTP20Boss8DragonNodeState"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "2669831642feaf578d152d7606f2ba67fa073e18a7e38e8926504379db214d06",
+      "report_sha256": "958d9e96d0eb341bc84273d91fa8eb085dd5e709d166f2ddba198cef7d54dcd8"
+    },
+    "workspace": {
+      "baseline": "e6fd736c174757890fda2ea8ee171b89366fe64d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "958d9e96d0eb341bc84273d91fa8eb085dd5e709d166f2ddba198cef7d54dcd8"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "c7466ca7d8fdd9ebc2c207b2c807689bdf5918832ba6fa90a25b7aaff6eae55f"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "2ca05db4492cae1e2bad8db4d8fdc13f5da843b0bacc19d26b728370cfbe8eb1"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    },
+    "node_and_hit": {
+      "result": "Ninja node traversal, collision hits and particle placement passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "b7001135dffda5bb4afe1898daecfafcef33389e022ebf4a4b8192f0bd1fc550"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "ef3c9287e95f2a3f51a1d89f9a8769a7c34a61073d70d2145f9ca04502873ac6",
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - cloneModelHierarchy__12TBoss1DragonFP15DragonModelNodeP15DragonModelNodePv",
+      "-  - clone_node_tree__12TBoss8DragonFPvPvi",
+      "+  - cloneModelHierarchy__12TBoss1DragonFP10NJS_OBJECTP10NJS_OBJECTPv",
+      "+  - clone_node_tree__12TBoss8DragonFP10NJS_OBJECTP10NJS_OBJECTP20Boss8DragonNodeState",
+      "-  - countModelNodes__12TBoss1DragonFP15DragonModelNode",
+      "+  - countModelNodes__12TBoss1DragonFP10NJS_OBJECT",
+      "-  - do_action_447__10TObjPlayerFv",
+      "-  - do_action_447_from_packet__10TObjPlayerFPvPvPv",
+      "+  - do_action_447__FPC3Vec",
+      "+  - do_action_447_from_packet__10TObjPlayerFlPC12ActorBodyHitP3Vec",
+      "-  - spawn_hit_particles__10TObjPlayerFiPv",
+      "-  - spawn_hit_particles_at__10TObjPlayerFlll",
+      "-  - spawn_hit_particles_at_vec__10TObjPlayerFlll",
+      "+  - spawn_hit_particles__FPC3VecPC3Vec",
+      "+  - spawn_hit_particles_at__10TObjPlayerFlPC12ActorBodyHitP3Vec",
+      "+  - spawn_hit_particles_at_vec__10TObjPlayerFlPC3VecP3Vec",
+      "-  - spawn_item__10TObjPlayerFv",
+      "+  - spawn_item__FPC3Vec"
+    ]
+  }
+}
