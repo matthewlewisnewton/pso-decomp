@@ -29,16 +29,17 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "ef5f971756ad18968d7931d42b6163b151e4cf43aa837da126f5e1fafdbf406f",
+  "path_ledger_sha256": "18748051d22044cb3277bd206b266d60b428cf6519645c46007eed48608ae6ce",
   "path_status": {
-    "remaining overlap after replay": 298,
+    "remaining overlap after replay": 283,
     "exact prior source": 366,
     "same change already in upstream": 902,
-    "pending replay": 262,
+    "pending replay": 233,
     "validated three-way source": 12,
+    "upstream names retained": 44,
     "upstream only": 7
   },
-  "remaining_path_comparisons": 560,
+  "remaining_path_comparisons": 516,
   "historical_fork_ledger_open": 590,
   "validation": {
     "upstream": {
@@ -308,5 +309,6 @@
   "public_refs_changed": false,
   "initial_rebased_review": "b65d1cc9cb1bcc3445ea27df81bb66611311eafe",
   "actor_and_inventory_followup": "2026-11-21-post-351-actors.json",
-  "movement_and_phase_followup": "2026-11-21-post-351-movement.json"
+  "movement_and_phase_followup": "2026-11-21-post-351-movement.json",
+  "rename_only_followup": "2026-11-21-post-351-rename-only.json"
 }
