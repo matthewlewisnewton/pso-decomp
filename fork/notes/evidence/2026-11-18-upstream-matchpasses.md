@@ -1418,7 +1418,7 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `079a8157ab` uses twelve commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The twelve review commits and 104 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `392a019e0f` uses thirteen commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The Symbol Chat recovery follows the stage objects it uses. Pan Arms and Bal Claw share the native enemy placement record. The independent PPP work ends the stack. Each checkpoint reproduces retail. The thirteen review commits and 105 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
@@ -1433,9 +1433,10 @@ The upstream maintainer asked for one consolidated PR. The local review at `079a
 | 9 | Native Symbol Chat editor window classes | Follow-up recovery | `be4ac3f8f4` | 18 |
 | 10 | Pan Arms coordination and shared Bal Claw placement | Follow-up recovery | `75396834cd` | 18 |
 | 11 | Dark Gunner formation, movement and projectile ownership | Follow-up recovery | `ecae8df53c` | 11 |
-| 12 | PPP frame and callback interfaces | Independent network work | `079a8157ab` | 12 |
+| 12 | Morfos arms and projectiles and Epsilon guard formation | Follow-up recovery | `10708892f5` | 14 |
+| 13 | PPP frame and callback interfaces | Independent network work | `392a019e0f` | 12 |
 
-The review changes 1,803 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,808 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1570,6 +1571,12 @@ The 18-file batch changes linker labels only for native owners and typed signatu
 Great Merge at `ec6c29f954` constructs the group controller as a native class and uses its typed 16-enemy formation. The gunner owns its movement, hide and shadow methods. Its projectile constructor takes the actual shooter and the two launch vectors. The shared BML record and battle parameter types describe the resource traversal and movement data.
 
 The ordered and consolidated source and fork workspace reproduce retail across the 11-file batch. Twelve linker labels change with their owners or signatures. The probe checks group filtering, sorted selection including an absent gunner, attack dispatch and movement parameters. Four historical records were reconfirmed and one gained implementation evidence. The full historical audit has 595 open comparisons. [Dark Gunner evidence](2026-11-21-dark-gunner.json)
+
+## Morfos arms and projectiles and Epsilon guards
+
+Great Merge at `ed739d9a01` uses typed placements and archives for the Morfos body and arm. The two captured node positions drive its arm and projectile. The projectile owns the original floor query. Epsilon's body owns guard creation, child checks, guard targeting, attack-pattern selection and warp state.
+
+The ordered and consolidated source and the fork workspace reproduce retail across the 14-file batch. The probe checks Morfos node capture and ground snap, Epsilon guard iteration, constructor arguments and target flags. Two historical comparisons are closed and 593 remain open. [Morfos and Epsilon evidence](2026-11-21-morfos-and-epsilon.json)
 
 ## Ordered upstream review candidates
 

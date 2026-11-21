@@ -1,0 +1,546 @@
+{
+  "source": "ed739d9a017f451cff130b340263be672889e170",
+  "previous_source": "ec6c29f95412fc1e94fe8063798d69078dc634dd",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-morfos-and-epsilon",
+    "head": "392a019e0f38432e4fd5c60e38ceaa2bc97c64ca",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "c06733af51d40b1ebda3dfefcb4fc0df447c45ad",
+    "tree_equivalent_to": "5ee0342a458d92f64f6f2f669b9ab8eb46689b4c",
+    "commits": [
+      {
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
+      },
+      {
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
+      },
+      {
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "cba6fc1eb860a10cd0e81264e1a3994ba723f0d3",
+        "checked_tree": "5170c577c9ddd200b1558955af9437e4dc5216c6",
+        "files_changed": 11,
+        "insertions": 318,
+        "deletions": 625
+      },
+      {
+        "head": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "base": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "tree": "941e046ad88cc148c2cc6baaf061eb6a584e4756",
+        "checked_tree": "46ad4c3f09c07623550c12f043fcca2994853cbd",
+        "files_changed": 14,
+        "insertions": 258,
+        "deletions": 255
+      },
+      {
+        "head": "392a019e0f38432e4fd5c60e38ceaa2bc97c64ca",
+        "base": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "tree": "c06733af51d40b1ebda3dfefcb4fc0df447c45ad",
+        "checked_tree": "5ee0342a458d92f64f6f2f669b9ab8eb46689b4c",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 13,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1808,
+    "insertions": 31883,
+    "deletions": 35519
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/TUnk_804EF130.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilon.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilonBody.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+    "include/pso/enemy/morfos/TObjEneMorfos.h",
+    "include/pso/enemy/morfos/TObjEneMorfosArm.h",
+    "src/pso/enemy/EnemyFactoryTables.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp",
+    "src/pso/unk/text_803626A8.cpp"
+  ],
+  "patch_sha256": "791795e1d6663a6109b4837141f8c48b17631eb69e0c3970ae5df337723198d9",
+  "checked_original_functions": [
+    "TObjEneMorfos::record_camera_path_point",
+    "TObjEneMorfos::get_arm_position",
+    "TUnk_804EF130::snap_to_ground",
+    "TObjEneEpsilonBody::all_children_gone",
+    "TObjEneEpsilonBody::create_guard",
+    "TObjEneEpsilonGuard::set_target"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "58da429fdcdeaca60fa6a72fc27577013db06bbbd80b3a6d885f1dc1b7d1dbf6",
+      "source_report_sha256": "b9275d8eb592fd52a021f23a350dcb18108569289eedff765354baca151e156e",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803326B4",
+          "TObjEneMorfosArm__sub_803326B4",
+          "get_arm_position__13TObjEneMorfosFv"
+        ],
+        [
+          "0x803326BC",
+          "TObjEneMorfosArm__sub_803326BC",
+          "get_heading__13TObjEneMorfosFv"
+        ],
+        [
+          "0x80334F88",
+          "__ct__13TObjEneMorfosFP7TObjectPv",
+          "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80335060",
+          "create__13TObjEneMorfosFv",
+          "create__13TObjEneMorfosFPv"
+        ],
+        [
+          "0x80335354",
+          "__ct__16TObjEneMorfosArmFP7TObjectPv",
+          "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x80335430",
+          "create__16TObjEneMorfosArmFPvPv",
+          "create__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x803375F0",
+          "snap_to_ground__13TObjEneMorfosFll",
+          "snap_to_ground__13TUnk_804EF130FP3Vec"
+        ],
+        [
+          "0x80337824",
+          "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "__ct__13TUnk_804EF130FPC3VeclP9TObjChara"
+        ],
+        [
+          "0x8035DEF8",
+          "set_target__19TObjEneEpsilonGuardFlll",
+          "set_target__19TObjEneEpsilonGuardFPC3Vecll"
+        ],
+        [
+          "0x8035F1C8",
+          "create__19TObjEneEpsilonGuardFPvPvPvPv",
+          "create_guard__18TObjEneEpsilonBodyFUllPC3Vecl"
+        ],
+        [
+          "0x8035F970",
+          "assign_guard_targets__19TObjEneEpsilonGuardFv",
+          "assign_guard_targets__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FC8C",
+          "all_children_gone__19TObjEneEpsilonGuardFv",
+          "all_children_gone__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FFA8",
+          "update_attack_pattern__19TObjEneEpsilonGuardFPv",
+          "update_attack_pattern__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360638",
+          "draw_debug_line__19TObjEneEpsilonGuardFv",
+          "draw_debug_line__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360D9C",
+          "handle_warp_state__19TObjEneEpsilonGuardFl",
+          "handle_warp_state__18TObjEneEpsilonBodyFl"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "58da429fdcdeaca60fa6a72fc27577013db06bbbd80b3a6d885f1dc1b7d1dbf6",
+      "source_report_sha256": "b9275d8eb592fd52a021f23a350dcb18108569289eedff765354baca151e156e",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803326B4",
+          "TObjEneMorfosArm__sub_803326B4",
+          "get_arm_position__13TObjEneMorfosFv"
+        ],
+        [
+          "0x803326BC",
+          "TObjEneMorfosArm__sub_803326BC",
+          "get_heading__13TObjEneMorfosFv"
+        ],
+        [
+          "0x80334F88",
+          "__ct__13TObjEneMorfosFP7TObjectPv",
+          "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80335060",
+          "create__13TObjEneMorfosFv",
+          "create__13TObjEneMorfosFPv"
+        ],
+        [
+          "0x80335354",
+          "__ct__16TObjEneMorfosArmFP7TObjectPv",
+          "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x80335430",
+          "create__16TObjEneMorfosArmFPvPv",
+          "create__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x803375F0",
+          "snap_to_ground__13TObjEneMorfosFll",
+          "snap_to_ground__13TUnk_804EF130FP3Vec"
+        ],
+        [
+          "0x80337824",
+          "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "__ct__13TUnk_804EF130FPC3VeclP9TObjChara"
+        ],
+        [
+          "0x8035DEF8",
+          "set_target__19TObjEneEpsilonGuardFlll",
+          "set_target__19TObjEneEpsilonGuardFPC3Vecll"
+        ],
+        [
+          "0x8035F1C8",
+          "create__19TObjEneEpsilonGuardFPvPvPvPv",
+          "create_guard__18TObjEneEpsilonBodyFUllPC3Vecl"
+        ],
+        [
+          "0x8035F970",
+          "assign_guard_targets__19TObjEneEpsilonGuardFv",
+          "assign_guard_targets__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FC8C",
+          "all_children_gone__19TObjEneEpsilonGuardFv",
+          "all_children_gone__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FFA8",
+          "update_attack_pattern__19TObjEneEpsilonGuardFPv",
+          "update_attack_pattern__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360638",
+          "draw_debug_line__19TObjEneEpsilonGuardFv",
+          "draw_debug_line__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360D9C",
+          "handle_warp_state__19TObjEneEpsilonGuardFl",
+          "handle_warp_state__18TObjEneEpsilonBodyFl"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "58da429fdcdeaca60fa6a72fc27577013db06bbbd80b3a6d885f1dc1b7d1dbf6",
+      "source_report_sha256": "b9275d8eb592fd52a021f23a350dcb18108569289eedff765354baca151e156e",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803326B4",
+          "TObjEneMorfosArm__sub_803326B4",
+          "get_arm_position__13TObjEneMorfosFv"
+        ],
+        [
+          "0x803326BC",
+          "TObjEneMorfosArm__sub_803326BC",
+          "get_heading__13TObjEneMorfosFv"
+        ],
+        [
+          "0x80334F88",
+          "__ct__13TObjEneMorfosFP7TObjectPv",
+          "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80335060",
+          "create__13TObjEneMorfosFv",
+          "create__13TObjEneMorfosFPv"
+        ],
+        [
+          "0x80335354",
+          "__ct__16TObjEneMorfosArmFP7TObjectPv",
+          "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x80335430",
+          "create__16TObjEneMorfosArmFPvPv",
+          "create__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x803375F0",
+          "snap_to_ground__13TObjEneMorfosFll",
+          "snap_to_ground__13TUnk_804EF130FP3Vec"
+        ],
+        [
+          "0x80337824",
+          "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "__ct__13TUnk_804EF130FPC3VeclP9TObjChara"
+        ],
+        [
+          "0x8035DEF8",
+          "set_target__19TObjEneEpsilonGuardFlll",
+          "set_target__19TObjEneEpsilonGuardFPC3Vecll"
+        ],
+        [
+          "0x8035F1C8",
+          "create__19TObjEneEpsilonGuardFPvPvPvPv",
+          "create_guard__18TObjEneEpsilonBodyFUllPC3Vecl"
+        ],
+        [
+          "0x8035F970",
+          "assign_guard_targets__19TObjEneEpsilonGuardFv",
+          "assign_guard_targets__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FC8C",
+          "all_children_gone__19TObjEneEpsilonGuardFv",
+          "all_children_gone__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FFA8",
+          "update_attack_pattern__19TObjEneEpsilonGuardFPv",
+          "update_attack_pattern__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360638",
+          "draw_debug_line__19TObjEneEpsilonGuardFv",
+          "draw_debug_line__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360D9C",
+          "handle_warp_state__19TObjEneEpsilonGuardFl",
+          "handle_warp_state__18TObjEneEpsilonBodyFl"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "90ccf7863b2178ff3e9cc8824951f0d38e0acb8624d3eb21970417a6daa18f52",
+      "source_report_sha256": "b9275d8eb592fd52a021f23a350dcb18108569289eedff765354baca151e156e",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803326B4",
+          "TObjEneMorfosArm__sub_803326B4",
+          "get_arm_position__13TObjEneMorfosFv"
+        ],
+        [
+          "0x803326BC",
+          "TObjEneMorfosArm__sub_803326BC",
+          "get_heading__13TObjEneMorfosFv"
+        ],
+        [
+          "0x80334F88",
+          "__ct__13TObjEneMorfosFP7TObjectPv",
+          "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80335060",
+          "create__13TObjEneMorfosFv",
+          "create__13TObjEneMorfosFPv"
+        ],
+        [
+          "0x80335354",
+          "__ct__16TObjEneMorfosArmFP7TObjectPv",
+          "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x80335430",
+          "create__16TObjEneMorfosArmFPvPv",
+          "create__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        ],
+        [
+          "0x803375F0",
+          "snap_to_ground__13TObjEneMorfosFll",
+          "snap_to_ground__13TUnk_804EF130FP3Vec"
+        ],
+        [
+          "0x80337824",
+          "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "__ct__13TUnk_804EF130FPC3VeclP9TObjChara"
+        ],
+        [
+          "0x8035DEF8",
+          "set_target__19TObjEneEpsilonGuardFlll",
+          "set_target__19TObjEneEpsilonGuardFPC3Vecll"
+        ],
+        [
+          "0x8035F1C8",
+          "create__19TObjEneEpsilonGuardFPvPvPvPv",
+          "create_guard__18TObjEneEpsilonBodyFUllPC3Vecl"
+        ],
+        [
+          "0x8035F970",
+          "assign_guard_targets__19TObjEneEpsilonGuardFv",
+          "assign_guard_targets__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FC8C",
+          "all_children_gone__19TObjEneEpsilonGuardFv",
+          "all_children_gone__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x8035FFA8",
+          "update_attack_pattern__19TObjEneEpsilonGuardFPv",
+          "update_attack_pattern__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360638",
+          "draw_debug_line__19TObjEneEpsilonGuardFv",
+          "draw_debug_line__18TObjEneEpsilonBodyFv"
+        ],
+        [
+          "0x80360D9C",
+          "handle_warp_state__19TObjEneEpsilonGuardFl",
+          "handle_warp_state__18TObjEneEpsilonBodyFl"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "1842d93ea3b9244cff91839fb154286d0fc0350b43593a39d6b42ca1f68f053d",
+    "review": "ce4c14539d21b45f34139aff1f5a740c6d4328a3ea66cf1577331e49c526a132",
+    "layer": "5d60e25c2ae838841b6e447ea3ef872dcb028426df37db5e9f62f2c4e220dac3"
+  },
+  "overlay_sha256": "4d714c2e5bcdd9ad99145aebd28b1a6cc54218b445eb92f18040c41e9101bf15",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {
+    "602": "Compared the full historical projectile implementation. The projectile owns the original floor query and uses a const start vector and typed shooter. Movement, the five-frame floor refresh, lifetime, wall test and target height test retain the original code and data. The current owner lookup and attack payload cover the original semantics with their existing names",
+    "713": "Reviewed the complete historical base declaration against the native 0x430 Epsilon class and constructor in text_803626A8.cpp. The four fades follow the common enemy state. The historical copy_position and update_angle additions have no linked definitions, so the current interface omits the unused declarations"
+  },
+  "historical_rows_with_added_evidence": {
+    "463": "The typed placement constructor, static body factory, archive pointer, captured pair of node positions and arm/heading accessors now exist in the current native class. Further body state storage, fade and movement comparisons remain open",
+    "599": "The current Morfos body uses the shared typed archive and arm factories. The original capture callback uses a native Vec cursor for the projectile and arm positions. Additional state and fade behavior still needs source comparison",
+    "718": "The current body owns the original factory, child check, target assignment, attack-pattern, debug drawing and warp methods. Guard target coordinates use const Vec data and both actors share their typed battle tables. The guard construction bridge and other source changes remain under review"
+  },
+  "existing_upstream_interfaces_kept": {},
+  "historical_rows_open": 593,
+  "public_refs_changed": false
+}
