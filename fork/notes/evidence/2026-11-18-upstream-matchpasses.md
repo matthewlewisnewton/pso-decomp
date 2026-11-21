@@ -1316,7 +1316,7 @@ This tree and the materialized fork tooling both reproduce the retail DOL. The s
 
 `great-merge/incoming/osp-layered-replay` uses that source with the fork documentation and tooling overlay. The overlay reproduces the validated tree on reapplication, adds only fork-layer paths to the repository, and passes 294 tooling tests, 11 layer tests, and all five host port checks. The port callback fixture follows the shared byte-buffer signature now used by the native meseta factory. The layer records 27,031 retained symbols with zero missing or stale entries.
 
-The latest historical comparison yields 613 paths that resolve to the checkpoint, 123 still awaiting owner comparison, and nine with different candidate versions. A 19-path merge preview contains repeated declarations and includes, a superseded renderer cast, and the disc-error compiler cleanup. Review those source decisions before cutover. The expanded batches build on the combined local queue. Opened PRs #336–342 have separately tested updates awaiting publication. [Validation and remaining paths](2026-11-20-osp-expanded-source-and-fork-layer.json)
+The latest historical comparison resolves 626 paths to the checkpoint. Of the 16 proposed edits, 15 repeat declarations or includes and one restores a superseded renderer cast. Another 110 paths need owner comparison and 12 have different candidate versions. The disc-error compiler cleanup passed separately at `252ba20838`, with no address or linkage changes. Against current master, every expanded review-sized batch still has conflicts. Open PRs #336–342 have separately tested updates awaiting publication. [Validation and remaining paths](2026-11-20-osp-expanded-source-and-fork-layer.json)
 
 ## Ordered upstream review candidates
 

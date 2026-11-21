@@ -642,7 +642,9 @@
     "linker_retention_entries": 27031,
     "fork_layer_tests_passed": 11,
     "tool_tests_passed": 294,
-    "host_port_checks": "make -C ports/tests run"
+    "host_port_checks": "make -C ports/tests run",
+    "published_local_layer_head": "85fc0aba1a69929106a20f13a930b324b8d7a08d",
+    "normal_materialization_reproduced_the_tested_tree": true
   },
   "historical_replay_preview": {
     "base": "f44293104a1516bf4eaa7993d9c98612411b0c2e",
@@ -657,27 +659,35 @@
     "combined_result": "ed48d6fc3a6bf433181df8ab0538f86ea005cf57"
   },
   "next_historical_replay_preview": {
-    "base": "ed48d6fc3a6bf433181df8ab0538f86ea005cf57",
-    "preview_tree": "e5336a0884e4e9e87ba1345f636b66b521fecb8a",
+    "base": "252ba20838ab16c3792d91a0fa727cdf197389da",
+    "disc_error_cleanup_branch": "great-merge/incoming/osp-batches/disc-error-cleanup",
+    "disc_error_cleanup_check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "source_tree_preview": "b32c2d5dc213dc229f9ab6925dfd4f2d15abe557",
     "summary": {
-      "unresolved": 123,
-      "same_as_validated_checkpoint": 613,
-      "multiple_candidates": 9,
-      "merged_with_review_base": 7
+      "same_as_validated_checkpoint": 626,
+      "unresolved": 110,
+      "multiple_candidates": 12,
+      "merged_with_review_base": 4
     },
+    "preview_redundant_declaration_paths": [
+      "include/pso/boss/darkfalz/TBoss4Uro.h",
+      "include/pso/boss/darkfalz/TObjDFTenchuFuru.h",
+      "include/pso/object/base/ObjectSetData.h",
+      "include/pso/system/save/TCheckMemoryCard.h",
+      "include/pso/unk/TUnk_804C3E60.h",
+      "include/pso/unk/TUnk_804C8678.h",
+      "include/pso/unk/TUnk_804CCB28.h",
+      "include/pso/unk/TUnk_804EEF64.h",
+      "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+      "src/pso/boss/olgaflow/TBoss6Thanks.cpp",
+      "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp",
+      "src/pso/unk/TLobby_803382E4.cpp"
+    ],
+    "preview_superseded_renderer_cast_path": "src/pso/effect/TBreakUpMdl.cpp",
     "outstanding_paths": {
-      "config/GPOE8P/psov3/config.yml": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "b77e6f998331992cecb8f30f103bb52c3e7d5242"
-      },
-      "include/pso/player/TObjPlayer.h": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "c6d206d15d546543c5a5bebc52fa88135cb74321"
-      },
       "include/pso/ui/window/TWindowShortCut.h": {
         "status": "unresolved",
         "review_candidates": [],
@@ -887,14 +897,6 @@
         "exact_review_ancestors": [],
         "candidate_blob": "a6def434518a20cc0eb4eda591ada9578717acad"
       },
-      "src/pso/boss/olgaflow/TBoss6Thanks.cpp": {
-        "status": "merged_with_review_base",
-        "review_candidates": [
-          341
-        ],
-        "exact_review_ancestors": [],
-        "candidate_blob": "13c7ffb1c29775c022eb023c328525de5779952e"
-      },
       "src/pso/boss/olgaflow/TBoss6Type1.cpp": {
         "status": "unresolved",
         "review_candidates": [],
@@ -936,12 +938,6 @@
         "review_candidates": [],
         "exact_review_ancestors": [],
         "candidate_blob": "27bf22f74b877ae40240544dc4848c995896c1e1"
-      },
-      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "d20534542197c28005accde18404ff739ffbbd4b"
       },
       "src/pso/enemy/deldepth/DelDepthMotion.cpp": {
         "status": "unresolved",
@@ -1067,18 +1063,6 @@
         ],
         "candidate_blob": "7734dcef214dd9ef502f12335ee32e60b9d46542"
       },
-      "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "feab3f40cee2e9272b6139bbd4eca0bcacdcb3c9"
-      },
-      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "8dbd4263f2e03bd5a5fad0a8b9becac394d34527"
-      },
       "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": {
         "status": "unresolved",
         "review_candidates": [],
@@ -1117,18 +1101,6 @@
         "exact_review_ancestors": [],
         "candidate_blob": "df5bb76fe9b8554f0c5691b19a2762ba7aa1df8c"
       },
-      "src/pso/network/PppFsm.c": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "2e777b3f96c6521535be37468b37b0e1b645a427"
-      },
-      "src/pso/network/PppLcp.c": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "80c6237e588c701b344c55287f28835aac90de7b"
-      },
       "src/pso/network/TPlyJoinLobbyEntry.cpp": {
         "status": "unresolved",
         "review_candidates": [],
@@ -1147,12 +1119,6 @@
         "exact_review_ancestors": [],
         "candidate_blob": "89cffe80df496859259fe7c1d2d5717d05e54762"
       },
-      "src/pso/object/ambient/TObjFish.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "42b14b0c0a88cbb662e732c005456eba8c8614f4"
-      },
       "src/pso/object/lobby/LobbyGoGoBall.cpp": {
         "status": "unresolved",
         "review_candidates": [],
@@ -1165,25 +1131,14 @@
         "exact_review_ancestors": [],
         "candidate_blob": "0b7aec5cc60e4f4f0e5f212099c2d6f9733fd521"
       },
-      "src/pso/object/warp/TObjLaboMapWarp.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "61303cafecd7e8eb50c49e77516ae4fbe8f67f33"
-      },
       "src/pso/object/warp/TObjWarpBossMulti.cpp": {
-        "status": "merged_with_review_base",
+        "status": "multiple_candidates",
         "review_candidates": [
-          342
+          342,
+          "city-menus"
         ],
         "exact_review_ancestors": [],
-        "candidate_blob": "4c8aac210ba66fd9b127b1055d6f66a0bd3b87ee"
-      },
-      "src/pso/object/warp/TObjWarpJungMain.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "c7e98efd28701ad5b37d4db0627220552c9e1706"
+        "candidate_blob": "35894100c626c7b249f947a70d2ca0ea80c43583"
       },
       "src/pso/player/TObjPlayer_8023E480.cpp": {
         "status": "unresolved",
@@ -1228,12 +1183,15 @@
         "candidate_blob": "41d170315d29ce63dd5792124fceb10862b5917a"
       },
       "src/pso/system/scene/TEndingPic.cpp": {
-        "status": "merged_with_review_base",
+        "status": "multiple_candidates",
         "review_candidates": [
-          336
+          336,
+          "ending"
         ],
-        "exact_review_ancestors": [],
-        "candidate_blob": "8c1e74e90476c53aadae0b98a9516a176746a4c0"
+        "exact_review_ancestors": [
+          "ending"
+        ],
+        "candidate_blob": "2103010ee818be7df1414c2aeedd83abbe1a0bd7"
       },
       "src/pso/system/scene/TSceneSora.cpp": {
         "status": "unresolved",
@@ -1289,14 +1247,6 @@
         "exact_review_ancestors": [],
         "candidate_blob": "8c57e3e9c5bee52a8459184bab8bc9812b6ca27e"
       },
-      "src/pso/ui/frontend/TAdPlyStatusGC.cpp": {
-        "status": "merged_with_review_base",
-        "review_candidates": [
-          340
-        ],
-        "exact_review_ancestors": [],
-        "candidate_blob": "5ba82ec9b84838967472a0a9b048484df412dc26"
-      },
       "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp": {
         "status": "unresolved",
         "review_candidates": [],
@@ -1340,12 +1290,15 @@
         "candidate_blob": "bb541a2e184df82d911dd4f05c336206327c257e"
       },
       "src/pso/ui/window/TWindowActionPalette.cpp": {
-        "status": "merged_with_review_base",
+        "status": "multiple_candidates",
         "review_candidates": [
-          342
+          342,
+          "action-palette"
         ],
-        "exact_review_ancestors": [],
-        "candidate_blob": "051c9dce0b0a742317a592f6b5dcd690af953eb3"
+        "exact_review_ancestors": [
+          "action-palette"
+        ],
+        "candidate_blob": "7791edb41dc22dbbbe6c352c2a7fc9c94229adf4"
       },
       "src/pso/ui/window/TWindowCtrl.cpp": {
         "status": "unresolved",
@@ -1411,18 +1364,6 @@
         "exact_review_ancestors": [],
         "candidate_blob": "9f49e78ed7ad51ad9ee8148e46cfd8defcace4d8"
       },
-      "src/pso/ui/window/TWindowSubCustomEquip.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "25161a02c9527d29ff4a089251411bde86ba9f1a"
-      },
-      "src/pso/ui/window/TWindowSubCustomSelect.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "816660cdc3c31dd771d13e0ac1ae3f0f4057ba05"
-      },
       "src/pso/ui/window/TWindowSubInformationBoard.cpp": {
         "status": "unresolved",
         "review_candidates": [],
@@ -1479,14 +1420,6 @@
         "exact_review_ancestors": [],
         "candidate_blob": "f2c0e959e90d8a720ce25f629d577a2e8eacf814"
       },
-      "src/pso/unk/TLobby_800F8AA8.cpp": {
-        "status": "merged_with_review_base",
-        "review_candidates": [
-          337
-        ],
-        "exact_review_ancestors": [],
-        "candidate_blob": "eba9779ef04445f8b6be149cfdc82ad0055b26a0"
-      },
       "src/pso/unk/TLobby_801C25B4.cpp": {
         "status": "unresolved",
         "review_candidates": [],
@@ -1510,20 +1443,6 @@
         "review_candidates": [],
         "exact_review_ancestors": [],
         "candidate_blob": "4ee0e4fcf519acee10222fe9c2e038763a6104e9"
-      },
-      "src/pso/unk/TLobby_80335E7C.cpp": {
-        "status": "unresolved",
-        "review_candidates": [],
-        "exact_review_ancestors": [],
-        "candidate_blob": "89c406dd2a5557218f9d37465bd9c0f15b88f566"
-      },
-      "src/pso/unk/TLobby_803382E4.cpp": {
-        "status": "merged_with_review_base",
-        "review_candidates": [
-          337
-        ],
-        "exact_review_ancestors": [],
-        "candidate_blob": "9617404c94d6401bdc5b1b457f7ee0ce6222ff94"
       },
       "src/pso/unk/text_8004D9A8.cpp": {
         "status": "unresolved",
@@ -1555,5 +1474,57 @@
         "candidate_blob": "45996f871a54641bc30430e5e1cb0157f59ff682"
       }
     }
-  }
+  },
+  "upstream_master_batch_preview": [
+    {
+      "scope": "actor-motion",
+      "source_paths": 279,
+      "conflicting_paths": 19
+    },
+    {
+      "scope": "bml-resource-accessors",
+      "source_paths": 234,
+      "conflicting_paths": 34
+    },
+    {
+      "scope": "bml-resource-lifecycle",
+      "source_paths": 310,
+      "conflicting_paths": 42
+    },
+    {
+      "scope": "bml-resource-ownership",
+      "source_paths": 316,
+      "conflicting_paths": 48
+    },
+    {
+      "scope": "current-texture-list",
+      "source_paths": 352,
+      "conflicting_paths": 237
+    },
+    {
+      "scope": "ginja-materials-and-chunk-callbacks",
+      "source_paths": 140,
+      "conflicting_paths": 8
+    },
+    {
+      "scope": "mail-and-guild-cards",
+      "source_paths": 51,
+      "conflicting_paths": 20
+    },
+    {
+      "scope": "stage-archive-consumers",
+      "source_paths": 17,
+      "conflicting_paths": 0
+    },
+    {
+      "scope": "volopt-and-model-breakup",
+      "source_paths": 31,
+      "conflicting_paths": 2
+    },
+    {
+      "scope": "world-position-particles",
+      "source_paths": 182,
+      "conflicting_paths": 53
+    }
+  ]
 }
