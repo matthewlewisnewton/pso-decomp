@@ -1342,6 +1342,14 @@ The review reproduces retail and links all 2,448 source units. The matching chec
 
 The cumulative branch at `9739c1febe` now has the same typed color cache. It shares the const-vector transform declaration with the footprint callers and restores five layout checks on the particle classes. The source and fork workspace reproduce retail, the fork layer passes all 310 checks, and the [fork index](2026-11-18-fork-review-index.tsv) has 675 remaining decisions. The weapon-hit interface stays open because the typed version changed the original compiler's instruction schedule.
 
+## BML archive lifetimes and load requests on upstream master
+
+The standalone archive review at `abb5022ed6` starts directly on master `1fd561eae2` and spans 317 files. It recovers the `BmlResource` constructor and destructor, the arena allocator, descriptor copies and the native load callback records. The callers share the model and texture pointer declarations. The 12 changed linker labels follow the restored receivers and signatures. The single review commit uses Matt's Git identity with zero Codex attribution.
+
+The archive review and renderer review reproduce retail together at `c7a5af7abf` across 382 paths. The combination uses both shared interfaces in the live monitor. The archive still overlaps with the refreshed #341 in 31 files, primarily boss resource and draw code. The other current-base review overlaps are listed by path. The archive candidate is local and ready for publication approval. [Builds and overlap paths](2026-11-20-osp-archive-review-and-layouts.json)
+
+The cumulative branch at `45f6c97c98` restores the Vol Opt rock model and texture arrays, checks the archive request layouts and removes the obsolete lobby declarations. Both source and fork workspace reproduce retail with all 2,448 source objects linked and preserve all 1,147 historical data bytes. All 310 fork workspace checks pass, and 672 entries remain in the [fork source index](2026-11-18-fork-review-index.tsv).
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
