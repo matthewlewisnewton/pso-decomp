@@ -1,0 +1,110 @@
+{
+  "source": "86578b66cc8c999f2870e6724cfb595ae2c8b841",
+  "previous_source": "7b3da3891a91c483ae3f96150579589f13bffb92",
+  "earlier_verified_source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+  "single_review_candidate": "ae2be8a82277bd24d8b8ba8b0fb7a2a30a99495d",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "include/pso/ui/city/THunterGuildSeqOffline.h",
+    "include/pso/ui/city/THunterGuildSeqOffline_80213788.h",
+    "include/pso/ui/window/TWindowSubComCard_80265410.h",
+    "include/pso/ui/window/WindowMenuFactory.h",
+    "src/pso/quest/TQuestListChallenge.cpp",
+    "src/pso/quest/TQuestListOffline.cpp",
+    "src/pso/quest/TQuestListOnline.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+    "src/pso/ui/city/TMedicalCenterSequence.cpp",
+    "src/pso/ui/city/TShopArmorListWindow.cpp",
+    "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+    "src/pso/ui/city/TShopGetItemWindow.cpp",
+    "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+    "src/pso/ui/city/TShopKeepItemWindow.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubComCard_802A5748.cpp"
+  ],
+  "source_fixes": [
+    "The existing yes/no factory has a shared declaration with a typed layout point, text pointers and a TWindowMenu result.",
+    "Offline and online Hunter Guild sequences store typed menu and quest-thread pointers in their existing fields.",
+    "The server confirmation callback uses the actual server object and the offline callback uses the quest result table directly."
+  ],
+  "historical_rows_refreshed": {
+    "2605": "The current 0x3C offline owner also uses a TWindowMenu pointer at +0x2C and a TQuestThread pointer at +0x34.",
+    "2692": "The current source uses the typed offline window and quest thread fields on cancellation, close and completion. The callback table is indexed directly.",
+    "2700": "The current offline owner uses the final menu and thread types while retaining the existing scale call and state transitions.",
+    "2701": "The online client and server menu and thread members now use the native pointer types. The server confirmation callback uses the actual owner fields.",
+    "6745": "The current Challenge selector uses the shared typed confirmation factory while keeping the existing scale call and window lifetime."
+  },
+  "historical_rows_open": 659,
+  "validation": {
+    "frontend": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "function_label_changes_from_previous_tree": 0,
+      "source_report_sha256": "d16fec580ed8c4739d431beb50a603e9ce462d5eefa819ae4c4cea9c33b2e299",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "resources": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "function_label_changes_from_previous_tree": 0,
+      "source_report_sha256": "1ac98ca3e4372952165c0eca94b7453a29f06a5c209965f8c15ebc6cbd55685a",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "combat": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "function_label_changes_from_previous_tree": 0,
+      "source_report_sha256": "23f4486837987e1fa46eae32df38023dd35e371319659dd42ae8cf168a36c8af",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "function_label_changes_from_previous_tree": 0,
+      "source_report_sha256": "23f4486837987e1fa46eae32df38023dd35e371319659dd42ae8cf168a36c8af",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "fork": {
+      "check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+      "function_label_changes_from_previous_tree": 0
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "4631372b7d3e664a37022644013f3d6e9d6c6dcb82e582cbf505df4abf869e69",
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "commit_attribution": {
+    "audited_commits": 63,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}

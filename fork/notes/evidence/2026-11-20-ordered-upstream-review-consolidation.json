@@ -2,10 +2,10 @@
   "upstream_master": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
   "release_order": [
     {
-      "ref": "great-merge/consolidated/ordered-frontend-with-card-recovery",
-      "head": "04667f245da4670b70c0270dfbd25e833a0379c4",
+      "ref": "great-merge/consolidated/ordered-frontend-with-guild-recovery",
+      "head": "c0d40651c0d3dc999648bab440614fab7bfaf3c6",
       "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-      "tree": "f566e53cba46eaaf9b1e174a858340bfb201df83",
+      "tree": "54bdfc795665cb1a4b82323d36b0ab929a411df3",
       "scope": "Frontend windows, character saves and quest transfers",
       "published_review_heads_included": {
         "347": "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
@@ -14,11 +14,11 @@
         "342": "35fb9e4386575c4e815b8d90ff62e977e833b34c",
         "345": "95334b8d7519c9802fea016416db22356fc284b5"
       },
-      "review_commits": 20,
-      "files_changed": 637,
-      "insertions": 10306,
-      "deletions": 11826,
-      "check_sha256": "6ee0333ee4501a7f250491c4444510b23a85c9d51219ed1b1b1e153b412059ef",
+      "review_commits": 21,
+      "files_changed": 641,
+      "insertions": 10415,
+      "deletions": 11934,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
       "function_label_changes": 266,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
@@ -34,10 +34,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-resources-with-card-recovery",
-      "head": "d543396f2999060ff1d58186eb06ac16feaf6b0a",
-      "base": "04667f245da4670b70c0270dfbd25e833a0379c4",
-      "tree": "f3775f6bce12fc06687ce91d03e533fb1cc8cec3",
+      "ref": "great-merge/consolidated/ordered-resources-with-guild-recovery",
+      "head": "aec86ecd201a745abd19bf07177c3165c3fed006",
+      "base": "c0d40651c0d3dc999648bab440614fab7bfaf3c6",
+      "tree": "4d5ab281e15b1786cff17aa8b49866031e5401d4",
       "scope": "Resource loading, streaming and rendering",
       "published_review_heads_included": {
         "349": "abb5022ed6179626aae2de1cf42a23c6c09bf96f",
@@ -45,11 +45,11 @@
         "348": "7af1ccc64fb772d47d6d837da15e09481b2305c8",
         "350": "6d9f7bffe56d8670e798dc613287ef9415983ce2"
       },
-      "review_commits": 14,
+      "review_commits": 15,
       "files_changed": 679,
       "insertions": 5762,
       "deletions": 6298,
-      "check_sha256": "8c623d240d7d7f28a2170d117503081d5a450afa3ed8bb6edc3656bfc892e553",
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
       "function_label_changes": 112,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
@@ -65,10 +65,10 @@
       }
     },
     {
-      "ref": "great-merge/consolidated/ordered-combat-with-native-recovery",
-      "head": "c84895257b8c49c9b260b44fc0a3a6995238b988",
-      "base": "d543396f2999060ff1d58186eb06ac16feaf6b0a",
-      "tree": "2c8ba3dbbd10a5420557780a217ee93d603d26c0",
+      "ref": "great-merge/consolidated/ordered-combat-with-guild-recovery",
+      "head": "8469956a6644c400169f9a2c23fad19970122597",
+      "base": "aec86ecd201a745abd19bf07177c3165c3fed006",
+      "tree": "240fa866cc915692f5ea07ce7f86efa6e479a1a7",
       "scope": "Combat, actor layouts and stage objects",
       "published_review_heads_included": {
         "341": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
@@ -77,11 +77,11 @@
         "344": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
         "346": "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
       },
-      "review_commits": 24,
+      "review_commits": 25,
       "files_changed": 929,
       "insertions": 11206,
       "deletions": 11847,
-      "check_sha256": "b4a8a5d9029491cb56cfee25827eac96ef7b65a6e5b323ebcc8baf396d661768",
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
       "function_label_changes": 298,
       "build": {
         "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
@@ -189,21 +189,21 @@
     }
   },
   "separate_network_change": {
-    "head": "d927f13d1490c03e7e62a9589a35c0182a111497",
-    "base": "c84895257b8c49c9b260b44fc0a3a6995238b988",
-    "tree": "021de72324144d78eb3de1ad7e3b6bf255bc5659",
+    "head": "ae2be8a82277bd24d8b8ba8b0fb7a2a30a99495d",
+    "base": "8469956a6644c400169f9a2c23fad19970122597",
+    "tree": "127b089caf785a70de54634116ebaac9996a9d08",
     "standalone": "925fa3bbd916637bda5d396a2405cdc38cfa62a8",
     "files_changed": 12,
     "insertions": 136,
     "deletions": 139
   },
   "full_source": {
-    "head": "d927f13d1490c03e7e62a9589a35c0182a111497",
+    "head": "ae2be8a82277bd24d8b8ba8b0fb7a2a30a99495d",
     "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
-    "tree": "021de72324144d78eb3de1ad7e3b6bf255bc5659",
-    "files_changed": 1701,
-    "insertions": 26744,
-    "deletions": 29444,
+    "tree": "127b089caf785a70de54634116ebaac9996a9d08",
+    "files_changed": 1705,
+    "insertions": 26853,
+    "deletions": 29552,
     "matching_tree_validation": {
       "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
       "exact_functions": 27572,
@@ -219,7 +219,7 @@
     }
   },
   "commit_attribution": {
-    "audited_commits": 60,
+    "audited_commits": 63,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },

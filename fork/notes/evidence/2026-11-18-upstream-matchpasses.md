@@ -1422,11 +1422,11 @@ All 14 current review heads are in three source batches. Each row measures the d
 
 | Order | Review scope | Covered PRs | Local head | Files |
 | ---: | --- | --- | --- | ---: |
-| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `04667f245d` | 637 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `d543396f29` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `c84895257b` | 929 |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `c0d40651c0` | 641 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `aec86ecd20` | 679 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `8469956a66` | 929 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `d927f13d14`, identical to the verified Great Merge source at `7b3da3891a` across 1,701 changed files. All 60 candidate commits passed the attribution audit.
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `ae2be8a822`, identical to the verified Great Merge source at `86578b66cc` across 1,705 changed files. All 63 candidate commits passed the attribution audit.
 
 The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
@@ -1448,7 +1448,13 @@ The historical audio audit closes three entries, leaving 659. The materialized f
 
 Comparing the earlier verified source at `a0ab810dd1` with the replay on current upstream identified three recoveries that needed to be carried forward. The card selector now constructs its real cursor, icon, title and warning tasks. Photon Blast uses typed participant records and the existing virtual direct-attack interface. Bal Claw uses the shared task parent, target cursor and minimap interfaces.
 
-The revised review stages and the combined source reproduce retail at `7b3da3891a`. The fork workspace passes all 310 checks with its generated retention list refreshed. The audit updates 11 supporting records. 659 historical comparisons remain open. The older Challenge and guild selector differences still need a source comparison. [Recovery and validation evidence](2026-11-21-card-cursor-photon-and-balclaw.json)
+The revised review stages and the combined source reproduce retail at `7b3da3891a`. The fork workspace passes all 310 checks with its generated retention list refreshed. The audit updates 11 supporting records. 659 historical comparisons remain open. [Recovery and validation evidence](2026-11-21-card-cursor-photon-and-balclaw.json)
+
+## Typed Challenge and Hunter Guild menu interfaces
+
+Great Merge at `86578b66cc` gives the existing yes/no factory a shared declaration for its layout point, text and menu result. The offline and online Hunter Guild sequences use typed menu and quest-thread owners at their existing offsets. Offline result handling indexes the callback table directly, and the server confirmation callback uses the native server fields. The replay preserves the upstream symbols and field names.
+
+All three stages, the combined candidate and the materialized fork reproduce retail. The 20-file update changes zero linked function labels and keeps all 1,147 historical data bytes accounted for. The fork workspace passes all 310 checks. Five historical entries gained source evidence and 659 comparisons remain open. [Challenge and Guild evidence](2026-11-21-challenge-and-guild-types.json)
 
 ## Ordered upstream review candidates
 
