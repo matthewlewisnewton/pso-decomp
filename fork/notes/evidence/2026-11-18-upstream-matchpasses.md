@@ -1418,17 +1418,16 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-All 14 current review heads are in three source batches. Each row measures the diff against the preceding row, starting at upstream master `1fd561eae2`. Each batch reproduces the retail executable and passes the strict coverage check. All 27,572 functions, 2,448 source units and 1,147 historical data bytes are preserved.
+The upstream maintainer asked for one consolidated PR. The local review at `fcf2642728` uses four commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups and the fourth covers the independent PPP work. Each commit produces the same source tree as the corresponding verified checkpoint. The 4-commit history and the 92-commit integration history both pass the attribution audit.
 
-| Order | Review scope | Covered PRs | Local head | Files |
+| Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
-| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `5e80a99c7b` | 658 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `ebd5955737` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `956c6b296e` | 969 |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `8890b7fd8b` | 655 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `6329e26030` | 679 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `ece831cbb5` | 969 |
+| 4 | PPP frame and callback interfaces | Independent network work | `fcf2642728` | 12 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `091564ea3a`, identical to the verified Great Merge source at `34231780b6` across 1,748 changed files. All 88 candidate commits passed the attribution audit.
-
-The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,745 files. The four ordered builds and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1505,6 +1504,12 @@ The combat review, consolidated candidate, and fork workspace reproduce retail a
 Great Merge at `ce21d8fc43` gives `TObjChara` a native actor pointer in its existing target slot. The 23-file batch replaces raw position, state and collision reads with actor members across enemy pursuit, Vol Opt, NPCs and traps. Vol Opt uses the shared typed player lookup. The consolidation records zero function label changes.
 
 The combat review at `3ce39ea509`, the combined review at `049a88d6b6`, and the fork workspace all reproduce retail and retain all 1,147 original data bytes. The 130-path overlay round-trips and passes 310 workspace checks. The character layout comparison is complete, with 633 historical entries still open. [Character target evidence](2026-11-21-actor-target-pointers.json)
+
+## Shared window field names
+
+Great Merge at `91d8ae494d` uses the established `m_20`, `m_2c` and `m_5c` names on the recovered window base and `m_54` on the main menu. The fields retain their shared ownership and layout assertions. The review diff drops three files and 250 changed lines.
+
+The consolidated review and layered fork reproduce retail. A fresh fork materialization reproduces the same 130-path overlay and its 310 workspace checks pass. The historical audit closes 15 entries and leaves 618 open. [Window names and historical comparison evidence](2026-11-21-upstream-window-field-names.json)
 
 ## Ordered upstream review candidates
 
