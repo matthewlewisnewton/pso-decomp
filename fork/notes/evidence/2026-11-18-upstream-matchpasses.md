@@ -1418,19 +1418,20 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `a33f8972e0` uses seven commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups. The radar, 2D renderer and Olga Flow commits follow the combat changes they use. The independent PPP work ends the stack. Each checkpoint uses a verified source tree. The seven review commits and 97 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `43c3a0ca21` uses eight commits on upstream master `1fd561eae2`. It contains the 14 published review groups. The audio recovery follows its existing resource interfaces, and the radar, 2D renderer and Olga Flow commits follow their combat dependencies. The independent PPP work ends the stack. Each checkpoint reproduces retail. The eight review commits and 99 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
 | 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `8890b7fd8b` | 655 |
 | 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `c42e3238ac` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `69e75b4302` | 969 |
-| 4 | Radar, compass and shared camera view | Follow-up recovery | `c55572e5a8` | 24 |
-| 5 | Shared 2D polygon and color rendering | Follow-up recovery | `6eb8a5635e` | 38 |
-| 6 | Olga Flow tube and phase actors | Follow-up recovery | `b9caadf69e` | 17 |
-| 7 | PPP frame and callback interfaces | Independent network work | `a33f8972e0` | 12 |
+| 3 | ADXF archive directories and native ADX decoding | Follow-up recovery | `c0206129d9` | 21 |
+| 4 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `018464722d` | 969 |
+| 5 | Radar, compass and shared camera view | Follow-up recovery | `10c466c8e9` | 24 |
+| 6 | Shared 2D polygon and color rendering | Follow-up recovery | `bc801af727` | 38 |
+| 7 | Olga Flow tube and phase actors | Follow-up recovery | `54f1279049` | 17 |
+| 8 | PPP frame and callback interfaces | Independent network work | `43c3a0ca21` | 12 |
 
-The review changes 1,777 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
+The review changes 1,779 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
 ## Historical build ranges and character-selection slots
 
@@ -1535,6 +1536,12 @@ The ordered build, consolidated review and fork workspace reproduce retail and r
 ## Movie REL function names
 
 Great Merge at `4afc3ef4d0` uses upstream’s `fn_80320358` and `fn_803204B0` names. The local correction is folded into the resource commit in the single-review history. The shared REL structures and typed movie callers reproduce retail at the resource and combat checkpoints, consolidated review, and fork workspace. The fork probe was updated for the restored names and passes against retail, the consolidated build and the fork build. [Movie REL naming evidence](2026-11-21-movie-rel-upstream-names.json)
+
+## ADXF partitions and native ADX stream decoding
+
+Great Merge at `55d610acfa` gives AFS lookups and the asynchronous reader one archive directory. The item, character-creation, music, and sound callers share the loader declaration. The decoder, callback harness and PCM paths use the real decoder and ring buffer types. The 21-file source batch retains the existing function names. Fourteen linker labels encode the recovered types or owners.
+
+The ordered and consolidated builds and the fork workspace reproduce retail and retain all 1,147 historical data bytes. The fork ADXF probe now covers sparse patch entries and base-directory fallback. The ADXF and decoder probes pass on retail, the consolidated candidate and the fork build. The historical audit closes three entries and leaves 602 open. [Archive and decoder evidence](2026-11-21-adxf-partitions-and-decoder.json)
 
 ## Ordered upstream review candidates
 
