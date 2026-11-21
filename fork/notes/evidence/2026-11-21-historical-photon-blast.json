@@ -1,0 +1,498 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "3316bed6684957ca0e3937ca486ca32743454775",
+  "source": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
+  "source_tree": "d92f5598f9c56ec1c410ceeccd37cedd4a3c304c",
+  "source_review_files": 988,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "previous_blob": "100644:d7f138ecbb08c75e34cca572f0760a5e5e672488",
+      "review_blob": "100644:19d6397d071ddc073d03c530f518160217d52793",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:96c5fb3af9ec3db22e8fbe9b63300e0baffaaeb9",
+      "review_blob": "100644:65bdbe2af2851a99cee01181bc3da7df42113fa7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/effect/photon/PhotonBlastSummon.h",
+      "previous_blob": "100644:cb94550c94d2791ef921ac279c1c4d4d10fe44cb",
+      "review_blob": "100644:a20af18a49fe0e0609fe7e0d002732d625f92884",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+      "previous_blob": "100644:68c3125e882302f1fa02e76e4505218aaf7d6f32",
+      "review_blob": "100644:ef879ca0792a009f7a72e4108624f89c4e777033",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/effect/photon/TPhotonRainbow.h",
+      "previous_blob": "100644:9ea5b2d3d677b515635a8a0780a4e27a3edfdc89",
+      "review_blob": "100644:9cdca36ac59d9ddae3898c66c7539cab4dd4660c",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/effect/photon/TPhotonYoulla.h",
+      "previous_blob": "100644:a1e03f94315e2c39bfe8e0bcebebfde32b125885",
+      "review_blob": "100644:622598f1dfc6f608af72b08e92ae72a3f85ba503",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/render/ChunkTextureStripCollector.h",
+      "previous_blob": "100644:4415fa6b352b302c54638ef2295a8dd20a0a102a",
+      "review_blob": "100644:fbf550ea768143000d273bfffea9798623265ec1",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/render/StripBufferPair.h",
+      "previous_blob": "",
+      "review_blob": "100644:171ec3190059d6e01c2535905a5a40fd1a4564bb",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/TLobby.h",
+      "previous_blob": "100644:058b8737b69ec2c772dbbab3e086e074cbf0b651",
+      "review_blob": "100644:5a8ce1c2a91b7d94a9c0f4e178165a36689aa785",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/unk/TUnk_804C3248.h",
+      "previous_blob": "100644:eb70773aae9f7e6d559cd63b63d72b54eeddb205",
+      "review_blob": "100644:050d77328836091e3d716f364538179401d62ed4",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "previous_blob": "100644:a71ce9c24700d57c2bd26cd1904b9e22382821ad",
+      "review_blob": "100644:238d8ac621ebcdb0f85d95abd758ce903f9597ec",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+      "previous_blob": "100644:f8d8b871e9b0f22c7ce64450fd393e120a93276d",
+      "review_blob": "100644:c133eca97933d7d95c29c41ee86522ba7151e94a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "previous_blob": "100644:2e0a8fa659365a55bf4ca3d2fa3ba7cbbc2a0105",
+      "review_blob": "100644:de70b571aaced62509b5039e7b5bbf8f34d43de0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "previous_blob": "100644:d5dc77928ae23713fa863c80d86778e83d080f4e",
+      "review_blob": "100644:b2ed851c3fb95b72683758f0b32bfbed7ec0142e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+      "previous_blob": "100644:7d454511bc5be92af7a6b139913a4c09a2452c62",
+      "review_blob": "100644:9aa2efd35af9d607b4e35d13f27eb6b8a2966cf4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "previous_blob": "100644:25628cd45c751d9a3139a1196092596202baeb2d",
+      "review_blob": "100644:6bab7b97a16e1303efaf6679e9f40f7dda09ddd5",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+      "previous_blob": "100644:f104ad8c3ce0d9fe0ad9f1f7444f07cf22fd45a0",
+      "review_blob": "100644:a1b989a26466be630c3b53f66f168fcf4f583be2",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+      "previous_blob": "100644:5aebf0812d00eff183ddb1c9fafe0c2e1b007700",
+      "review_blob": "100644:94bf8516915ebbc0e3daf26aa6b5211c79244218",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonPilla.cpp",
+      "previous_blob": "100644:73791ed5a97e00ef4efe2a576c36b73fe9479bee",
+      "review_blob": "100644:c78c594ede19af589af7aef2c5e65bcb31d929ab",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+      "previous_blob": "100644:265339923b5b5af5ab6d9483f51da6e4945f56a2",
+      "review_blob": "100644:56b3353e406d094745cd7c2533aa937a93978d19",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/effect/photon/TPhotonYoulla.cpp",
+      "previous_blob": "100644:1d04d734ab10cff58d83996eb0f20e6ed8244f50",
+      "review_blob": "100644:e7de0a036ae6e20a39e4aa5799fe8f07301fa213",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "previous_blob": "100644:2abf2d143c9e2c40a603c9eade4ba368b1c85be4",
+      "review_blob": "100644:8804ea02099e03b3fb7afb9abd4744c2ac5701e0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "previous_blob": "100644:d688a9e3a455a3b00667607ff7bb94adfbad153a",
+      "review_blob": "100644:f9c9edf6e398e89c2ba285cb2cb3ac1ffcd3c603",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "previous_blob": "100644:0566d612f76b219ce5f7bc36fea333e853c15701",
+      "review_blob": "100644:8c18e211200d73c4178f012c0c22aaccfbb58d35",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/object/city/CityTraffic.cpp",
+      "previous_blob": "100644:79df80a31bf7aa09b8f757c935426c52fc115c4d",
+      "review_blob": "100644:5951a7d3f867d21ed7c7e0ce00d93936eebbea5d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/player/PhotonBlastResults.cpp",
+      "previous_blob": "100644:5ca7fe3609c960aed8791e570325ecb157e9493f",
+      "review_blob": "100644:ce9a27778da1a1d944e7821a29768fa79f4b8f72",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/render/ChunkTextureStripCollector.cpp",
+      "previous_blob": "100644:63a00e55caaff251a45cdd1ebed78c605745bb17",
+      "review_blob": "100644:3412ab2ff3161e8b3d937a26319c66abcda8a881",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/TLobby_800F5CF0.cpp",
+      "previous_blob": "100644:0fe41da2c34d0bff55822f26eae41fd3ff297f58",
+      "review_blob": "100644:98a803b0b260ccfd5a060c8bbe868faac687334a",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/text_8004AA04.cpp",
+      "previous_blob": "100644:bab0a48cf714b31ea257411105448d9ccfaee37b",
+      "review_blob": "100644:d45f62deb087beb7f27b83a77074741fde860ab0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/unk/text_800F5BC0.cpp",
+      "previous_blob": "100644:5fa1223c6f918d1a247b79ba85fa2d88547b74e8",
+      "review_blob": "100644:80ab1341e0eb8ced1a91ad58552dd7df6906c020",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/text_80184C2C.cpp",
+      "previous_blob": "100644:02963945280ac862e0d014346a1d3b8c9c889dfe",
+      "review_blob": "100644:b226b61f25fc6f8a431137f8514ca86dd666aadd",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    }
+  ],
+  "checks": {
+    "summon": {
+      "head": "cf8a91160237d3f61e9e2722b7dde85f78932326",
+      "baseline": "3316bed6684957ca0e3937ca486ca32743454775",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "4d20b7053eb550d95b09a2c6a52048fb54c97d09424e4bc2a1f7f9bac907caa1"
+    },
+    "resources": {
+      "head": "01ce4c820eaffd8d1d039948ad59e13f1a3ec460",
+      "baseline": "cf8a91160237d3f61e9e2722b7dde85f78932326",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "strips": {
+      "head": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
+      "baseline": "01ce4c820eaffd8d1d039948ad59e13f1a3ec460",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "c63f41e114621f14c80eb0d8403c7d90ab83690ceb1114bdeba4410cd99f0067"
+    },
+    "full-review": {
+      "head": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 395,
+      "check_sha256": "7081bbcd75a12ff03e01897e3b24acc424c699dfd90c19b34ce8edb60d11d342"
+    },
+    "layer": {
+      "head": "620474197735a442a10ba53d239655c3a63fa15d",
+      "baseline": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "strips": {
+      "sha256": "9e59201854d0612e9a94fd7fea45bf1f41dcb87b5da8af318ee3d243aef3c8b9",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "9e59201854d0612e9a94fd7fea45bf1f41dcb87b5da8af318ee3d243aef3c8b9",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x801A7150",
+      "before": "queue_deferred_photon_blast_hit__FUlll",
+      "after": "queue_deferred_photon_blast_hit__FUlllf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A72EC",
+      "before": "queue_photon_blast_support__Fv",
+      "after": "queue_photon_blast_support__FUlll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A753C",
+      "before": "copy_effect_params__FPUcPUc",
+      "after": "copy_effect_params__FP19PhotonOpeningEffectP19PhotonOpeningEffect"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F591C",
+      "before": "collect_plist_strips_by_texture__FPvPsl",
+      "after": "collect_plist_strips_by_texture__FP15StripBufferPairPsl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F5AC8",
+      "before": "count_plist_strips_by_texture__FPvPvPv",
+      "after": "count_plist_strips_by_texture__FP15StripBufferPairPsl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F5CF0",
+      "before": "alloc_tables__6TLobbyFll",
+      "after": "alloc_tables__15StripBufferPairFP10NJS_OBJECTl"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 4905,
+      "fork_path": "src/pso/misc/TPhotonRainbow.cpp",
+      "fork_blob": "c9f169df5338d3c9450d500fdac9487eff20c7d7",
+      "historical_delta_sha256": "7099ecc308d4f1c09b8324df6aeaa7a6571cb04c33324ff47fd527e174db83b7",
+      "owner": "src/pso/effect/photon/TPhotonRainbow.cpp",
+      "owner_blob": "56b3353e406d094745cd7c2533aa937a93978d19",
+      "final_comparison_sha256": "d0126441ded28de582b0da5bf9f674ab3e2e91d25f7d08009886900d4819af5c",
+      "status": "Typed historical integration validated",
+      "rationale": "The two rotor draw passes use the native typed model and texture slots, the upstream texture binding, the shared camera position and the inherited angle. The angle step and draw sequence preserve the original entry points."
+    },
+    {
+      "row": 4909,
+      "fork_path": "src/pso/player/TObjPlayer_801AC0D8.cpp",
+      "fork_blob": "d956df29143c2caf793124c6c3c00a429c9172b8",
+      "historical_delta_sha256": "50153bef186e2404df5eae9f1e749a15821a0c9fe4ae098e7cb09cc941e38585",
+      "owner": "src/pso/effect/photon/TPhotonGolla.cpp",
+      "owner_blob": "9aa2efd35af9d607b4e35d13f27eb6b8a2966cf4",
+      "final_comparison_sha256": "8a2904fb627cb0b417144d002d4140306b713530b96ed41967eeaff5be8dc466",
+      "status": "Typed historical integration validated",
+      "rationale": "Golla allocates the 0x14-byte strip-buffer owner for archive model 4, collects texture 0, releases through the same destructor entry and clears the static pointer."
+    },
+    {
+      "row": 4910,
+      "fork_path": "src/pso/player/TObjPlayer_801ACA6C.cpp",
+      "fork_blob": "6aeea4fa0c4413648320f374f76354933da900bb",
+      "historical_delta_sha256": "41f75e1076e34807c3cae7d0526c1914b8904e8663a46716894531e6ff8e74ed",
+      "owner": "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "owner_blob": "6bab7b97a16e1303efaf6679e9f40f7dda09ddd5",
+      "final_comparison_sha256": "4c8a40e06cf7ed2b909eb0858d0976470f2663e790719a67d45cabf0e2c52898",
+      "status": "Typed historical integration validated",
+      "rationale": "Leilla allocates the native strip buffer for the child of archive model 0, collects texture 0 and releases the static buffer through the existing entry point."
+    },
+    {
+      "row": 4911,
+      "fork_path": "src/pso/player/TObjPlayer_801AE48C.cpp",
+      "fork_blob": "c286e7173b132314d9e2713083248254e244e1a7",
+      "historical_delta_sha256": "ee8fb4ba5fe5a42ff808c785be7c0c12267eabe22bebccf804e86f2897875028",
+      "owner": "src/pso/effect/photon/TPhotonPilla.cpp",
+      "owner_blob": "c78c594ede19af589af7aef2c5e65bcb31d929ab",
+      "final_comparison_sha256": "58b117e1760ccbee2429571641d1d937376e2a02f37f664bbaa8e821e38bcd07",
+      "status": "Typed historical integration validated",
+      "rationale": "Pilla uses the same native strip-buffer layout and archive child as Leilla, preserving texture 0 and the original release and pointer clear."
+    },
+    {
+      "row": 4978,
+      "fork_path": "include/pso/misc/TPhotonYoulla.h",
+      "fork_blob": "6c35873cd9bfdc197f3587b6e35796c1032207f7",
+      "historical_delta_sha256": "0b928e5868325a7a695bb80d0ad4c33ec5132475676aa6e23e4e6e3808b59e8b",
+      "owner": "src/pso/effect/photon/TPhotonYoulla.cpp",
+      "owner_blob": "e7de0a036ae6e20a39e4aa5799fe8f07301fa213",
+      "final_comparison_sha256": "5dcf8c236ec6874820e7a4ebdc87d6b062e14ff96165eff23313be92d5baa6c3",
+      "status": "Typed historical integration validated",
+      "rationale": "The color occupies the native 16-byte NJS_ARGB field. Initialization, rendering and alpha fade use that field. The class and methods retain their upstream locations and signatures."
+    }
+  ],
+  "historical_ledger_sha256_before": "e5b0a7066fdaa61afa4466916eaebb97837a022a92f8a21a0a6062911388cbf2",
+  "historical_ledger_sha256": "4bbacf91d46e15d6ade5d732d1a7d8754f95d0978b1ba6301a27bfc937d6e422",
+  "historical_rows_open": 538,
+  "partially_reconciled_rows": [
+    {
+      "row": 4085,
+      "path": "src/pso/player/PhotonBlastResults.cpp",
+      "current_blob": "ce9a27778da1a1d944e7821a29768fa79f4b8f72",
+      "scope": "Results dispatch passes the actual player ID, hit kind and duplicate flag. The effect loader and destructor hold the BML archive in its true type. Other result and dispatch changes remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 4873,
+      "path": "include/pso/effect/photon/PhotonBlastSummon.h",
+      "current_blob": "a20af18a49fe0e0609fe7e0d002732d625f92884",
+      "scope": "The shared header declares the caller arguments, the actual hit and attachment records and the BML archive. Historical wrapper linkage and remaining helper arguments still need comparison. The broader historical row is still open."
+    },
+    {
+      "row": 4964,
+      "path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+      "current_blob": "c133eca97933d7d95c29c41ee86522ba7151e94a",
+      "scope": "The camera paths use the live position and target vectors. Attachment spawn, join and update operate on the same particle records, the opening effect has a typed copy, and the hit queue supports its full call signatures. The historical scene and fog wrappers remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 4966,
+      "path": "src/pso/effect/photon/TPhotonYoulla.cpp",
+      "current_blob": "e7de0a036ae6e20a39e4aa5799fe8f07301fa213",
+      "scope": "Youlla binds the true BML model and motion and reads the native color during rendering and fade. Remaining effect and constructor changes stay open. The broader historical row is still open."
+    },
+    {
+      "row": 4968,
+      "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "current_blob": "de70b571aaced62509b5039e7b5bbf8f34d43de0",
+      "scope": "Estlla uses the native archive and child strip buffer. Its line spawn record and other effect changes remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 4979,
+      "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "current_blob": "6bab7b97a16e1303efaf6679e9f40f7dda09ddd5",
+      "scope": "Leilla assigns the native archive inputs and the child strip buffer. Its own emitters and timing changes remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 5016,
+      "path": "src/pso/effect/photon/TPhotonPilla.cpp",
+      "current_blob": "c78c594ede19af589af7aef2c5e65bcb31d929ab",
+      "scope": "Pilla assigns the native archive inputs and the child strip buffer. Its packet and effect update remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 5027,
+      "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "current_blob": "b2ed851c3fb95b72683758f0b32bfbed7ec0142e",
+      "scope": "Farlla assigns the native archive inputs and the root strip buffer, and the Estlla child strip recovery lives in its own owner. The remaining mixed effect changes stay open. The broader historical row is still open."
+    },
+    {
+      "row": 5032,
+      "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+      "current_blob": "9aa2efd35af9d607b4e35d13f27eb6b8a2966cf4",
+      "scope": "Golla reads the same attachment slot through the shared record, and the native Golla and Farlla strip buffers live in their own owners. The broader launch and effect changes stay open. The broader historical row is still open."
+    },
+    {
+      "row": 5033,
+      "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+      "current_blob": "94bf8516915ebbc0e3daf26aa6b5211c79244218",
+      "scope": "Mylla assigns the native archive model, texture and motion. Material color and other remaining effect work stay open. The broader historical row is still open."
+    },
+    {
+      "row": 5041,
+      "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+      "current_blob": "a1b989a26466be630c3b53f66f168fcf4f583be2",
+      "scope": "All three magic square creation paths bind the real model and motion and read the frame count from the motion. The complete rendering and constructor comparison stays open. The broader historical row is still open."
+    }
+  ],
+  "symbol_aliases": {
+    "0x800F5CF0": {
+      "historical": "__ct__15StripBufferPairFll",
+      "current": "alloc_tables__15StripBufferPairFP10NJS_OBJECTl",
+      "size": "0x90"
+    },
+    "0x800F5C8C": {
+      "historical": "destroy_buffer_pair__FPvs",
+      "current": "destroy_buffer_pair__FPvs",
+      "size": "0x64"
+    },
+    "0x803DA798": {
+      "historical": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "compiler_sensitive_forms": {
+    "opening_vector": "The typed effect record copies three raw vector words. Direct Vec assignment emits floating-point load and store instructions.",
+    "rainbow_camera": "The two coordinates read the camera instance separately. A cached local pointer removes a retail global load.",
+    "strip_buffer": "The historical constructor address uses the recovered strip-buffer receiver with the upstream alloc_tables name."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "b089e691104f3c254bb996cc3420800a8191e09370d8cff036fec806f05d223c",
+    "source_sha256": "f345e86c23ced9efd088bb6456a4227240894ee243c1f3bdb522f9b92897ab6a",
+    "scope": "The probe covers clearing, deduplication, duplicate allowance and capacity in both hit queues, a byte-for-byte effect record copy, active camera pose publication, and texture strip collection and UV scrolling. Camera interpolation and strip allocation use controlled fixtures."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "502cadd6b2b30daa22ace65036a17e38db66c5b44be71faa87643efee802bae1",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "e3c4d205e124d8a419cf43a6ab80c401da3bb6655a6782878448783b1aa6dc94"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "9f5feabf00c355faff762b01185552700349f4f56a1b988e8e70179941e17a94"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 89,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

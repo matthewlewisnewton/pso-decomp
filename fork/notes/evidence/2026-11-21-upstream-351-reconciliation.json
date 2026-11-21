@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "3316bed6684957ca0e3937ca486ca32743454775",
+  "review": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "aebeec719c5e52f91add01f941d847f4801e0ef4",
-  "review_paths": 977,
+  "review_tree": "d92f5598f9c56ec1c410ceeccd37cedd4a3c304c",
+  "review_paths": 988,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,12 +29,12 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "e5bef50be97d136f7c354cb6f19e097776cbc9a1d46630fab71514c0561649a1",
+  "path_ledger_sha256": "a2b9b3dbc10a0036bcede3febc406a40b774c002942148521f44c8feeca29d51",
   "path_status": {
-    "validated historical owner recovery": 143,
-    "exact prior source": 541,
-    "same change already in upstream": 875,
-    "equivalent source retained": 151,
+    "validated historical owner recovery": 161,
+    "exact prior source": 529,
+    "same change already in upstream": 873,
+    "equivalent source retained": 147,
     "validated three-way source": 13,
     "upstream names retained": 59,
     "upstream only": 7,
@@ -42,7 +42,7 @@
     "native archive source with existing style": 16
   },
   "remaining_path_comparisons": 0,
-  "historical_fork_ledger_open": 543,
+  "historical_fork_ledger_open": 538,
   "validation": {
     "upstream": {
       "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 86,
+    "commits": 89,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -328,5 +328,6 @@
   "upstream_name_retention": "2026-11-21-upstream-name-retention.json",
   "historical_controller_and_keyboard": "2026-11-21-historical-controller-and-keyboard.json",
   "historical_olga_flow": "2026-11-21-historical-olga-flow.json",
-  "historical_dark_falz": "2026-11-21-historical-dark-falz.json"
+  "historical_dark_falz": "2026-11-21-historical-dark-falz.json",
+  "historical_photon_blast": "2026-11-21-historical-photon-blast.json"
 }
