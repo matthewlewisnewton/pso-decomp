@@ -264,5 +264,49 @@
     "overlay_patch_sha256": "907ca75f10af4626511281e617bc06b306967cc8122eb5a72378ec442128d494",
     "force_active_names": 27033,
     "changed_overlay_paths": 0
+  },
+  "standalone_review": {
+    "local_branch": "great-merge/review-resource-lifetimes",
+    "base": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+    "source": "2b5db20830782c0dd4b84246de546f5bf6de73d6",
+    "paths": 93,
+    "reconciled_overlap_paths": [
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+      "src/pso/effect/TBGLightningCtrl.cpp",
+      "src/pso/npc/TObjNpcHFW00.cpp",
+      "src/pso/npc/TObjNpcHFW01.cpp",
+      "src/pso/npc/TObjNpcNFM00.cpp",
+      "src/pso/npc/TObjNpcNFM01.cpp",
+      "src/pso/npc/TObjNpcNFW00.cpp",
+      "src/pso/npc/TObjNpcNFW01.cpp",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp",
+      "src/pso/player/TPlayerFootStamp.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+      "src/pso/ui/hud/TRaderMapCore.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp"
+    ],
+    "base_retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "source_retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "linked_units": 2446,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "linker_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8007EBB4",
+        "before": "safe_free__23TAdSinglePlyChrSelectGCFUl",
+        "after": "safe_free__23TAdSinglePlyChrSelectGCFPv"
+      }
+    ],
+    "pr_check_sha256": "e45211cd8f8db20c9903dda5c176abd8f11a660ea58eac40ff28d4e51434c95e",
+    "runtime_probe_sha256": "65252437314bbd08d41ecd63b4858338c30a60f7339164fe4c1fd5ffa08945c1"
   }
 }

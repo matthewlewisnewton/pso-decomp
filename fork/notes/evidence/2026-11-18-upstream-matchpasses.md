@@ -38,6 +38,8 @@ The 93-path resource batch at `206cf1ff39` restores the heap pointer contract fo
 
 The stock and fork workspace builds reproduce retail and link 2,447 exact source units. All 27,572 functions match and all 1,147 starting data bytes remain accounted for. The 310 workspace checks pass. Runtime probes agree with retail on null heap release, BML model and texture fields, two GVM release paths and conditional alphabet texture release. Four complete historical records close, leaving 502 open. [Resource lifetime validation](2026-11-21-resource-lifetime-pointers.json)
 
+The local resource review `great-merge/review-resource-lifetimes` at `2b5db20830` starts directly on upstream master `5a4e7ced56`. Its 93 paths include the pointer provider, its current callers and the texture and buffer owners. Fourteen overlapping files retain the surrounding upstream code and names. Both the actual upstream base and the review reproduce retail with all 27,572 functions and 2,446 source units. The PR coverage check and runtime resource probe pass. [Standalone resource review evidence](2026-11-21-resource-lifetime-pointers.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
