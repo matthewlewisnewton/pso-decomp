@@ -1203,6 +1203,14 @@ The standalone review `great-merge/prepared/online-quest-transfers` at `5e0a443e
 
 The historical inventory falls from 790 to 739 paths outside the active replay diff. [Build and replay evidence](2026-11-20-online-quest-transfers-and-cache.json)
 
+### Character selection, card saves and creation actors
+
+The 191-file replay at `fef0ba0180` gives single- and multiplayer selection their native scene, cursor and plate owners. The preview loader uses typed appearance requests, model records and archive buffers. Card callers share the full-width character save lookup and the SDK card state. Creation-menu callbacks use their actual receiver and argument types. The replay keeps the existing controller-query, card-delete, serial-input and renderer interfaces where their behavior already matches.
+
+The standalone review `great-merge/prepared/character-frontend-and-card-saves` at `d6e66ef2a8` starts from master `0fa391a887`. Its first commit carries the native card-save descriptor and its second adds the frontend replay. Together they change 194 paths. Both clean builds reproduce retail, link all 2,448 source objects and retain every checked code and data address.
+
+The 131-path fork tooling patch round-trips over the replay and passes 305 tests. The repaired private save-image probe checks artwork, 15 save images and 30 header reads on retail and the three rebuilt images. The historical inventory falls from 739 to 656 paths outside the active replay diff. [Build, scope and replay evidence](2026-11-20-character-frontend-and-card-saves.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
