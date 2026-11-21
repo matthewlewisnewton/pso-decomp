@@ -1422,11 +1422,11 @@ All 14 current review heads are in three source batches. Each row measures the d
 
 | Order | Review scope | Covered PRs | Local head | Files |
 | ---: | --- | --- | --- | ---: |
-| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `eb7cb1a1ea` | 649 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `139544d996` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `626f831042` | 929 |
+| 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `0375275fad` | 659 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `b4c38736e2` | 679 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `e3ff156ccf` | 929 |
 
-The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `9a3b2715c5`, identical to the verified Great Merge source at `7286601fc8` across 1,713 changed files. All 67 candidate commits passed the attribution audit.
+The resource review reconciles 39 overlapping hunks in 22 files with the frontend batch. The combat batch uses the already validated actor, stage and effect implementations on the combined frontend and resource base. It also restores the typed position, ground contact and normal vectors in De Rol Le, Barba Ray, Vol Opt and Challenge. Both upstream method names are preserved. The separate 12-file PPP change on top produces `a58926e81e`, identical to the verified Great Merge source at `645e26ce03` across 1,719 changed files. All 72 candidate commits passed the attribution audit.
 
 The upstream maintainer asked for one consolidated PR. The full source is available as a single candidate, and the three tested increments are available for sequential review. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
@@ -1463,6 +1463,14 @@ Great Merge at `7286601fc8` restores typed ownership of the six player HUD child
 The 17-file recovery changes one linker label, from the handwritten four-player warning constructor to the native constructor taking its parent. The three review stages, consolidated source and fork workspace reproduce retail with all 27,572 functions, 2,448 linked units and 1,147 historical bytes accounted for. The fork retains all 27,031 required symbols and passes all 310 checks.
 
 The owner comparison closes four historical entries for mag oscillation, the character preview loader, the Seabed wreck collision object, and actor lights. The open ledger now has 655 rows. The broader token comparison found 215 partial matches to guide the remaining source-owner checks. [HUD and historical audit evidence](2026-11-21-native-hud-and-warning-windows.json)
+
+## Typed trade and inventory interfaces
+
+Great Merge at `645e26ce03` restores one typed meseta interface for the trade session, shops, quests and combat. The call continues to accept the shared character receiver. Inventory owners and shop lists use real item pointers, and the save and companion exports write the native 0x1C inventory record. The trade partner list, message, and question prompt use the actual window types. Trade widgets retain their original allocation and initialization calls.
+
+The 24-file batch preserves existing function names. Four linker labels change with the inventory parameter types. The review stages, combined source and fork workspace reproduce retail and retain all 27,572 functions, 2,448 linked units and 1,147 historical bytes. The fork passes 310 checks, with 27,031 retained symbols and a verified 130-path tooling overlay.
+
+The historical comparison resolves four entries and leaves 651 open. The trade checks verify the original four-byte window constant, with all six references preserved by the matching build. [Trade and inventory evidence](2026-11-21-trade-and-inventory-types.json)
 
 ## Ordered upstream review candidates
 
