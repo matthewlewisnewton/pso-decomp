@@ -1308,6 +1308,16 @@ The seven older reviews have local refresh branches under `great-merge/upstream-
 
 The full cumulative replay still needs to carry the other source changes and the private tooling workspace. Comparing the earlier cumulative source `7016e40009` directly with the new checkpoint yields 740 conflicting paths. For the 773 paths that originally conflicted against master, the review transitions supply a single candidate for 345 paths. Of those, 294 already match the built checkpoint and the other 51 need a combined build. Another 428 paths still need resolution or a choice between different candidate contents. [Validation and replay evidence](2026-11-20-osp-combined-source-reviews.json)
 
+## Expanded source replay after upstream portability
+
+`great-merge/incoming/osp-replayed-source` at `ed48d6fc3a` carries 724 changed paths past the eleven-review checkpoint. It combines actor movement, world-position particles, Vol Opt and shared breakup effects, BML archive ownership, Ginja materials and texture lists, Short Mail and Guild Cards, and later cumulative changes to title scenes and PPP. The shared Ginja setter is used at all 599 audited call sites. The Zako cleanup and archive lookup use their shared declarations, and the PPP length comparison preserves the retail code's 16-bit width.
+
+This tree and the materialized fork tooling both reproduce the retail DOL. The source retains all 27,572 exact functions and 2,448 exact linked source units. There are zero code or non-padding data coverage losses against the prior cumulative source. The 90 original ranges still account for all 1,147 bytes. An attribution audit over the 61 commits ahead of current master found zero Codex author, committer, or co-author entries.
+
+`great-merge/incoming/osp-layered-replay` uses that source with the fork documentation and tooling overlay. The overlay reproduces the validated tree on reapplication, adds only fork-layer paths to the repository, and passes 294 tooling tests, 11 layer tests, and all five host port checks. The port callback fixture follows the shared byte-buffer signature now used by the native meseta factory. The layer records 27,031 retained symbols with zero missing or stale entries.
+
+The latest historical comparison yields 613 paths that resolve to the checkpoint, 123 still awaiting owner comparison, and nine with different candidate versions. A 19-path merge preview contains repeated declarations and includes, a superseded renderer cast, and the disc-error compiler cleanup. Review those source decisions before cutover. The expanded batches build on the combined local queue. Opened PRs #336–342 have separately tested updates awaiting publication. [Validation and remaining paths](2026-11-20-osp-expanded-source-and-fork-layer.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
