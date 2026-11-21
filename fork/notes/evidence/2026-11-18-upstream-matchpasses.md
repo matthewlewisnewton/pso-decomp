@@ -1418,17 +1418,17 @@ Applying the 146-file follow-up directly to the earlier standalone combat branch
 
 ## Consolidated reviews in landing order
 
-The upstream maintainer asked for one consolidated PR. The local review at `0b28ef78a5` uses seven commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups. The radar, 2D renderer and Olga Flow commits follow the combat changes they use. The independent PPP work ends the stack. Each checkpoint uses a verified source tree. The seven review commits and 95 integration commits pass the attribution audit.
+The upstream maintainer asked for one consolidated PR. The local review at `a33f8972e0` uses seven commits on upstream master `1fd561eae2`. The first three checkpoints contain all 14 published review groups. The radar, 2D renderer and Olga Flow commits follow the combat changes they use. The independent PPP work ends the stack. Each checkpoint uses a verified source tree. The seven review commits and 97 integration commits pass the attribution audit.
 
 | Order | Scope | Covered PRs | Review commit | Changed files |
 | ---: | --- | --- | --- | ---: |
 | 1 | Frontend windows, character saves and quest transfers | #347, #339, #340, #342, #345 | `8890b7fd8b` | 655 |
-| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `6329e26030` | 679 |
-| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `ece831cbb5` | 969 |
-| 4 | Radar, compass and shared camera view | Follow-up recovery | `acf253728a` | 24 |
-| 5 | Shared 2D polygon and color rendering | Follow-up recovery | `29ade702bb` | 38 |
-| 6 | Olga Flow tube and phase actors | Follow-up recovery | `1373d7671f` | 17 |
-| 7 | PPP frame and callback interfaces | Independent network work | `0b28ef78a5` | 12 |
+| 2 | Resource loading, streaming and rendering | #349, #338, #348, #350 | `c42e3238ac` | 679 |
+| 3 | Combat, actor layouts and stage objects | #341, #336, #337, #344, #346 | `69e75b4302` | 969 |
+| 4 | Radar, compass and shared camera view | Follow-up recovery | `c55572e5a8` | 24 |
+| 5 | Shared 2D polygon and color rendering | Follow-up recovery | `6eb8a5635e` | 38 |
+| 6 | Olga Flow tube and phase actors | Follow-up recovery | `b9caadf69e` | 17 |
+| 7 | PPP frame and callback interfaces | Independent network work | `a33f8972e0` | 12 |
 
 The review changes 1,777 files. The ordered checkpoint trees and the single-review tip reproduce retail, retain all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 historical data bytes. Publication and supersession are pending. [Maintainer feedback](https://github.com/zeroz41/pso-decomp/pull/341#issuecomment-7056770875) · [Matching build and review audit](2026-11-20-ordered-upstream-review-consolidation.json)
 
@@ -1531,6 +1531,10 @@ The ordered build, consolidated review and fork workspace reproduce retail and r
 Great Merge at `3b67303c09` restores the Tube as the receiver for the warp state methods and gives the plot its native Tube pointer and point cursor. The two phase actors use a shared spawn record, and Type 1 now constructs through its C++ base class with typed members and live actor pointers. The 17-file batch changes eight linker labels with the recovered class owners and signatures.
 
 The ordered build, consolidated review and fork workspace reproduce retail and retain all 1,147 original bytes. The 130-path fork overlay retains 27,031 force-active symbols and passes 310 workspace checks. The historical audit closes the EmptyWarp source row and records evidence for eight related entries, leaving 605 open. [Olga Flow evidence](2026-11-21-olga-tube-and-phase-owners.json)
+
+## Movie REL function names
+
+Great Merge at `4afc3ef4d0` uses upstream’s `fn_80320358` and `fn_803204B0` names. The local correction is folded into the resource commit in the single-review history. The shared REL structures and typed movie callers reproduce retail at the resource and combat checkpoints, consolidated review, and fork workspace. The fork probe was updated for the restored names and passes against retail, the consolidated build and the fork build. [Movie REL naming evidence](2026-11-21-movie-rel-upstream-names.json)
 
 ## Ordered upstream review candidates
 

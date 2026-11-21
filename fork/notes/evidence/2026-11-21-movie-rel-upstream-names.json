@@ -1,0 +1,245 @@
+{
+  "source": "4afc3ef4d0ca07871e9351699b05c078ff744b0f",
+  "previous_source": "3b67303c098269414ec73cdfd271ada8182e0574",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-upstream-rel-names",
+    "head": "a33f8972e0b9bcd61b0858f9168ddfc3343e712f",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "af1e95a6ea8db2662b40c2db8b20d7e8b65cecae",
+    "tree_equivalent_to": "a0e2e0b34192394cdbd3f1d72db88caba14ce187",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "d3ef9a7185166805dc73c3217b00d16301c820ae",
+        "checked_tree": "e586ff8f927d627b7e933e44223a816febdfea5e",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "69e75b43021a0946131959125fef20685bda1a56",
+        "base": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "tree": "972035935a285d21e47016fc01c3185dc5c05981",
+        "checked_tree": "69e75b43021a0946131959125fef20685bda1a56",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "c55572e5a86564bc8815e5cd3a88098821778238",
+        "base": "69e75b43021a0946131959125fef20685bda1a56",
+        "tree": "a7db42e178721d6c9cd957dd253b89053de34aba",
+        "checked_tree": "c55572e5a86564bc8815e5cd3a88098821778238",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "6eb8a5635e743fb882e4e183ffef16f372bfa22f",
+        "base": "c55572e5a86564bc8815e5cd3a88098821778238",
+        "tree": "fe5f8e8af61c0ecb4aec3979c0a3ac6cd5eada99",
+        "checked_tree": "6eb8a5635e743fb882e4e183ffef16f372bfa22f",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "b9caadf69ef07eaf31632bb39b0015257d08a632",
+        "base": "6eb8a5635e743fb882e4e183ffef16f372bfa22f",
+        "tree": "b402dc90a7fe7a51d0fc22ebaf72f0c8317cfadf",
+        "checked_tree": "c10767bcfd2209f7a3b8eec7ff615b9ba42e7085",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "a33f8972e0b9bcd61b0858f9168ddfc3343e712f",
+        "base": "b9caadf69ef07eaf31632bb39b0015257d08a632",
+        "tree": "af1e95a6ea8db2662b40c2db8b20d7e8b65cecae",
+        "checked_tree": "a0e2e0b34192394cdbd3f1d72db88caba14ce187",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 7,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1777,
+    "insertions": 29734,
+    "deletions": 32857
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/system/RelModuleBuffer.h",
+    "src/pso/system/movie/TMovie.cpp",
+    "src/pso/unk/text_80320358.cpp"
+  ],
+  "restored_upstream_function_names": [
+    [
+      "0x80320358",
+      "destroy_rel_module",
+      "fn_80320358"
+    ],
+    [
+      "0x803204B0",
+      "get_rel_module_image",
+      "fn_803204B0"
+    ]
+  ],
+  "typed_REL_layout_preserved": true,
+  "patch_sha256": "78acdc8d0a3f463e148725c5e50a1d3b203576135600d56443820095336a9b42",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "resources": {
+      "check_sha256": "8efb46d99898004dc4ddc2c84e6026550b114cfd25d1d69eee3160d85c47bffc",
+      "source_report_sha256": "f44dcd7c5a096a72359f6dc5bec6929a1ff7037ffe1ccabf9f79d652dca1171b",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "restored_labels": [
+        [
+          "0x80320358",
+          "destroy_rel_module",
+          "fn_80320358"
+        ],
+        [
+          "0x803204B0",
+          "get_rel_module_image",
+          "fn_803204B0"
+        ]
+      ]
+    },
+    "combat": {
+      "check_sha256": "8efb46d99898004dc4ddc2c84e6026550b114cfd25d1d69eee3160d85c47bffc",
+      "source_report_sha256": "8d673b7eb8797c603dfecf35e9c23010f7a2cad13a759c48085a3b372ca2ff1c",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "restored_labels": [
+        [
+          "0x80320358",
+          "destroy_rel_module",
+          "fn_80320358"
+        ],
+        [
+          "0x803204B0",
+          "get_rel_module_image",
+          "fn_803204B0"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "8efb46d99898004dc4ddc2c84e6026550b114cfd25d1d69eee3160d85c47bffc",
+      "source_report_sha256": "8d673b7eb8797c603dfecf35e9c23010f7a2cad13a759c48085a3b372ca2ff1c",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "restored_labels": [
+        [
+          "0x80320358",
+          "destroy_rel_module",
+          "fn_80320358"
+        ],
+        [
+          "0x803204B0",
+          "get_rel_module_image",
+          "fn_803204B0"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "8efb46d99898004dc4ddc2c84e6026550b114cfd25d1d69eee3160d85c47bffc",
+      "source_report_sha256": "8d673b7eb8797c603dfecf35e9c23010f7a2cad13a759c48085a3b372ca2ff1c",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "restored_labels": [
+        [
+          "0x80320358",
+          "destroy_rel_module",
+          "fn_80320358"
+        ],
+        [
+          "0x803204B0",
+          "get_rel_module_image",
+          "fn_803204B0"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "038a8d4510ccc350f585f7d00d3ec8a1344788e99345214c4a4a2fd0cd6db19f",
+      "source_report_sha256": "8d673b7eb8797c603dfecf35e9c23010f7a2cad13a759c48085a3b372ca2ff1c",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "restored_labels": [
+        [
+          "0x80320358",
+          "destroy_rel_module",
+          "fn_80320358"
+        ],
+        [
+          "0x803204B0",
+          "get_rel_module_image",
+          "fn_803204B0"
+        ]
+      ]
+    }
+  },
+  "intermediate_checkpoints": {
+    "linear-3": {
+      "head": "69e75b43021a0946131959125fef20685bda1a56",
+      "check_sha256": "30aa3f07a2ea45f36dba6ec9b3d8818ad7e63345f7dc66d9bf2de52e374bed37",
+      "source_report_sha256": "53429e73159e36a1ffa93c3591824743856471275788c0f1e114ac60f5aa1732"
+    },
+    "linear-4": {
+      "head": "c55572e5a86564bc8815e5cd3a88098821778238",
+      "check_sha256": "09396db73db1cc12c26f92d7cf6383d0d9c9dce8e4c4ac5a9f496b156a8b9823",
+      "source_report_sha256": "292223bfc8516edc1e2d9ff7f8f82d0564573c24ed8f9306df41baa1a93b13c0"
+    },
+    "linear-5": {
+      "head": "6eb8a5635e743fb882e4e183ffef16f372bfa22f",
+      "check_sha256": "a0f954da74601948d252eddd5e4fba48d07b97b279a5bd89a5946ab90a469b7c",
+      "source_report_sha256": "84131ecfd654b83ae98e8c17c45aa04cfbc801a694a39043a21684c9acd592a0"
+    }
+  },
+  "movie_rel_probes": {
+    "retail": "764d0d7e604fad28bc487223dcf93dbc7692a6c714208a1cad6bc2c3c672e32d",
+    "review": "764d0d7e604fad28bc487223dcf93dbc7692a6c714208a1cad6bc2c3c672e32d",
+    "layer": "764d0d7e604fad28bc487223dcf93dbc7692a6c714208a1cad6bc2c3c672e32d"
+  },
+  "overlay_sha256": "8578a31adf95763a541c819f98767ae86f71c01f8ed78dc413cafffe0e06fd35",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "public_refs_changed": false
+}
