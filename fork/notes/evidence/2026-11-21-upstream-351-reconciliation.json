@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "e0d56360b14fdf5d32872443123b9035d63b331d",
+  "review": "9735e0a125393c53a8fc8dceb8151f901e8f2bb9",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "66c43d49d4fc34716a59eb73ff15ee5223feb7eb",
-  "review_paths": 948,
+  "review_tree": "467412160bd631a035003a6625a7e6ca9eb23ec3",
+  "review_paths": 958,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,12 +29,12 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "51bcfc8654c726f22435d50c0a70bde20da918c6a31df0e886bd243c18ebd17c",
+  "path_ledger_sha256": "98ce01c5be8f0309290f19fe1f94711400a3466280e6de70d8774fdff577d708",
   "path_status": {
     "equivalent source retained": 162,
-    "exact prior source": 546,
-    "validated historical owner recovery": 117,
-    "same change already in upstream": 885,
+    "exact prior source": 544,
+    "validated historical owner recovery": 122,
+    "same change already in upstream": 882,
     "validated three-way source": 13,
     "upstream names retained": 59,
     "upstream only": 7,
@@ -42,7 +42,7 @@
     "native archive source with existing style": 16
   },
   "remaining_path_comparisons": 0,
-  "historical_fork_ledger_open": 551,
+  "historical_fork_ledger_open": 548,
   "validation": {
     "upstream": {
       "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 75,
+    "commits": 79,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -325,5 +325,6 @@
   "historical_derolle_and_barbaray": "2026-11-21-historical-derolle-and-barbaray.json",
   "historical_sound_and_disc": "2026-11-21-historical-sound-and-disc.json",
   "historical_guild_card_and_short_mail": "2026-11-21-historical-guild-card-and-short-mail.json",
-  "upstream_name_retention": "2026-11-21-upstream-name-retention.json"
+  "upstream_name_retention": "2026-11-21-upstream-name-retention.json",
+  "historical_controller_and_keyboard": "2026-11-21-historical-controller-and-keyboard.json"
 }
