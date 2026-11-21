@@ -16,6 +16,8 @@ The audit closed 44 additional paths where substituting known identifiers gives 
 
 The UI review at `4edf25aead` adds seven commits for the player HUD and warning windows, native window sizes and equipment factories, Challenge and Hunter Guild menus, Symbol Chat, Short Mail, Guild Card slots, and trade and shop inventory inputs. It changes 147 files and resolves 118 path comparisons. The full source review changes 787 files starting at current master. The replay keeps existing spellings for members of `TWindowBase`, as well as `get_card_id` and the Short Mail backing array. Retail probes agree with the review and fork workspace on Symbol Chat selection, signed cursor coordinates and help flags, Guild Card bounds and ID lookup, and Short Mail flags. [UI replay evidence](2026-11-21-post-351-windows.json)
 
+The 41-file audio checkpoint at `9c7bd5ddd6` is based on that UI review. It restores typed ADX archive partitions and decoder access, native stream player fields, and typed gameplay sound dispatch. Its two commits reproduce retail and retain the existing `ADXF_GetStat` and `ADXF_GetFsizeSct` names. Decoder progress and mono and stereo callback probes agree with retail. [Audio checkpoint validation](2026-11-21-post-351-windows.json)
+
 The regenerated 130-path tool overlay retains 27,033 linker symbols and reproduces retail on that source. It passes 294 tooling tests, 11 fork-layer tests and 5 host checks. The local fork workspace packages the tools and documentation. Fork main is at `3342e42983` and the preceding full cutover preview is at `e4135b0c55`. [Matching and replay evidence](2026-11-21-upstream-351-reconciliation.json)
 
 ## Bulk replay on upstream master `6b080e67ab`

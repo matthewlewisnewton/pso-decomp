@@ -2129,5 +2129,73 @@
   },
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "existing_full_cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "public_refs_changed": false
+  "public_refs_changed": false,
+  "validated_audio_followup": {
+    "ref": "great-merge/incoming/post-351-audio-contracts",
+    "head": "9c7bd5ddd6fe2d266a0813d92052b661e6a3e68d",
+    "base": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+    "stages": {
+      "adx": {
+        "head": "edd5b63d54fe3cdd2507f78a699d591e6fa7000c",
+        "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+        "changed_function_labels": 14
+      },
+      "gameplay-sound": {
+        "head": "9c7bd5ddd6fe2d266a0813d92052b661e6a3e68d",
+        "check_sha256": "c8429bbca82750544a75d6a3ca779aae0431f2e10b7b21f2d5be1213533058b9",
+        "changed_function_labels": 18
+      }
+    },
+    "paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/audio/AdxStreamRuntime.h",
+      "include/pso/audio/AdxTalk.h",
+      "include/pso/audio/AdxbDecoder.h",
+      "include/pso/audio/AdxfInternal.h",
+      "include/pso/audio/AdxfPartition.h",
+      "include/pso/audio/GcrnaStream.h",
+      "include/pso/audio/SoundRequestVoice.h",
+      "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+      "include/pso/network/protocol/GameplaySoundPacket.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_801E2F94.h",
+      "include/pso/unk/TLobby_80227A2C.h",
+      "include/pso/unk/TLobby_80227AA0.h",
+      "include/pso/unk/TLobby_8023F734.h",
+      "include/pso/unk/TLobby_803BFE50.h",
+      "include/pso/unk/TLobby_803C1A58.h",
+      "include/pso/unk/text_803C1780.h",
+      "include/pso/unk/text_803C5B50.h",
+      "src/pso/audio/AdxBsc.cpp",
+      "src/pso/audio/AdxTalk.cpp",
+      "src/pso/audio/AdxtServer.cpp",
+      "src/pso/audio/AdxtStart.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "src/pso/item/TItemLoad.cpp",
+      "src/pso/item/TItemTexLoad.cpp",
+      "src/pso/network/TGameProtocol.cpp",
+      "src/pso/ui/charcreate/TCharaMaking.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp",
+      "src/pso/unk/TLobby_80226070.cpp",
+      "src/pso/unk/TLobby_80226C3C.cpp",
+      "src/pso/unk/TLobby_80227AA0.cpp",
+      "src/pso/unk/TLobby_8023F734.cpp",
+      "src/pso/unk/TLobby_803BFE50.cpp",
+      "src/pso/unk/TLobby_803CBF50.cpp",
+      "src/pso/unk/text_8023F660.cpp",
+      "src/pso/unk/text_803C5B50.cpp",
+      "src/pso/unk/text_803CC134.cpp",
+      "src/pso/unk/text_803CC294.cpp",
+      "src/pso/unk/text_803CE240.cpp",
+      "src/pso/unk/text_803D4448.cpp"
+    ],
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "linked_source_units": 2448,
+    "exact_functions": 27572,
+    "decoder_probe_sha256": "b03cc06c0b3b15a0a8496ee80b3348d87a8a36dfb33ef7d7bc6944a800793a17",
+    "probe_scope": [
+      "decoder progress",
+      "mono and stereo stream callbacks"
+    ]
+  }
 }
