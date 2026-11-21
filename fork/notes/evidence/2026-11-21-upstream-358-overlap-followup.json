@@ -9750,11 +9750,23 @@
       }
     },
     "manual": {
+      "include/pso/boss/derolle/TBoss2DeRolLe.h": {
+        "current_blob": "b96b64cd9777333acb4af7a332464e5cbea93283",
+        "previous_review_blob": "930501bf9183c04b75c2e71d68e99219d67ed1d7",
+        "contextual_hunks": 0,
+        "comparison": "The particle callback at 0x80033A80 now has its actual member receiver and TParticleCtrl parameter. The ceiling debris and offset-particle calls have typed class declarations."
+      },
       "include/pso/boss/derolle/TBoss2Mine.h": {
         "current_blob": "cb82517f43593fd5ed2226dd6bb07362d2eee231",
         "previous_review_blob": "04b73c8641c679d3f476836345cb1ae06905fe07",
         "contextual_hunks": 0,
         "comparison": "The mine launch declaration and implementation take two const Vec pointers. The upstream parameter spelling start is retained."
+      },
+      "include/pso/boss/derolle/TObjBoss2CeilJunk.h": {
+        "current_blob": "e4a8670f6cc2479ee4c9f5f0c0c359bb00f7fc2d",
+        "previous_review_blob": "c503b276a90b807c76a76bfc6dc113ebf4f15058",
+        "contextual_hunks": 1,
+        "comparison": "The class has real Vec fields at 0x90 and 0x9C, signed state, kind and fade timer and the typed create and particle entries. Layout assertions cover all offsets."
       },
       "include/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.h": {
         "current_blob": "467376eb93721f504f60822f652022974dd27206",
@@ -9816,6 +9828,24 @@
         "contextual_hunks": 6,
         "comparison": "The steering calculation copies the player body_center Vec directly."
       },
+      "src/pso/boss/barbaray/TBoss7Joint.cpp": {
+        "current_blob": "97a40529a93d09b1e33c7c86a82ccd99fd34b2e7",
+        "previous_review_blob": "2f672e88e2941aa22c0aa32feaa7395c06a9c3da",
+        "contextual_hunks": 0,
+        "comparison": "Both stat refresh calls pass stat, attack and resistance records through the native pointer types. The casts are to the implemented argument types."
+      },
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp": {
+        "current_blob": "24d6ea75a6e65f3e7bbe9cb2c4aeb59abfb03f78",
+        "previous_review_blob": "e08eefcefd31622ab2c90b2f8bf9390ec7b5534e",
+        "contextual_hunks": 33,
+        "comparison": "The shared ground query owns the declaration and the position copy uses the native body_center."
+      },
+      "src/pso/boss/darkfalz/TBoss4Type3.cpp": {
+        "current_blob": "dc66c2bdbd21d5848095daab598a13ddd8e39590",
+        "previous_review_blob": "824e124558d85aa194b9ec6ec306f2ce4e1663ca",
+        "contextual_hunks": 27,
+        "comparison": "The temporary o macro is gone and both radar markers read body_center directly."
+      },
       "src/pso/boss/darkfalz/TBoss4Zanzo.cpp": {
         "current_blob": "f061f89d5dbd80420d4195c6b84c7116e06493b0",
         "previous_review_blob": "e129fe3edfc9bc00085dffb0d431862d69df33b7",
@@ -9828,11 +9858,29 @@
         "contextual_hunks": 45,
         "comparison": "The typed emitter overload receives the native body_center Vec."
       },
+      "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp": {
+        "current_blob": "793ef80435833109491a496a11ae74a6869c18d4",
+        "previous_review_blob": "00aeb7b749bf2f09628a08da183263fdf9d57fd9",
+        "contextual_hunks": 1,
+        "comparison": "The ground query uses the real object position and shadow_pos fields and the shared typed declaration."
+      },
+      "src/pso/boss/derolle/TObjBoss2Tunnel_8003B1FC.cpp": {
+        "current_blob": "6982e5da91477ca4c7ee8d9f24be08390e5e8d7e",
+        "previous_review_blob": "35ea262d982a8971f9e7478c4a25b53e710eb498",
+        "contextual_hunks": 0,
+        "comparison": "Typed particle and offset inputs reach both methods. The original child travel fields use the existing TUnk_8048E728 owner and its Vec step member."
+      },
       "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": {
         "current_blob": "0273eab3f43956895256f54803562abc40380c29",
         "previous_review_blob": "49899c3fd00d339b92cb81a395d77e89d525d750",
         "contextual_hunks": 68,
         "comparison": "The vector copy reads the exact body_center member at 0x2FC."
+      },
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
+        "current_blob": "0f76c320f53968b3fdc6c700395abcc80d19fb23",
+        "previous_review_blob": "3d5bb4ed80468d3b2a42577ad38d757a6106d15d",
+        "contextual_hunks": 53,
+        "comparison": "The copy uses body_center and the target turn uses the recovered destination_direction.z and rotation.yaw at that call."
       },
       "src/pso/boss/olgaflow/TBoss6RockChase.cpp": {
         "current_blob": "1d78d47d052a8c3e5cd92845cbb804b19ca7029c",
@@ -9888,11 +9936,23 @@
         "contextual_hunks": 17,
         "comparison": "The native body_center Vec supplies the wander destination through the typed target member."
       },
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp": {
+        "current_blob": "59904e8b2489fa06d2de063487779a55c26ead9c",
+        "previous_review_blob": "8804ea02099e03b3fb7afb9abd4744c2ac5701e0",
+        "contextual_hunks": 34,
+        "comparison": "The emitter and fade read body_center and the shared texture setter receives GinjaTextureList."
+      },
       "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": {
         "current_blob": "f5c835deaa8e14205331f9028c60492abc267f2f",
         "previous_review_blob": "f9fe1f23dab48b00646adeefb228c464a81233eb",
         "contextual_hunks": 49,
         "comparison": "The removal virtual and both call sites take the restored member pointer. The typed destination direction, const render color parameters, native yaw and body center are present under upstream declarations."
+      },
+      "src/pso/enemy/darkgunner/DarkGunner.cpp": {
+        "current_blob": "8668742aeea0e0b9c29f73eb997744d00b7bb1c1",
+        "previous_review_blob": "8ffb2702590fa5614e0e5c00e1a10c80f317da4d",
+        "contextual_hunks": 88,
+        "comparison": "The native Dark Gun Center constructor lives at the actual class. The local obsolete constructor and wrong Lappy receiver declarations are gone."
       },
       "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": {
         "current_blob": "2dda48cc57df66bfdc0842dc5bffa60e30419dda",
@@ -9900,11 +9960,23 @@
         "contextual_hunks": 20,
         "comparison": "The typed fn_800A0798 body is present and calls upstream run_attack_action."
       },
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp": {
+        "current_blob": "d8b32ad5a7cfd91d954b5e48d5b1a39ed82a86b8",
+        "previous_review_blob": "aa891c46e1968d6242be1a19766de69cda0f557f",
+        "contextual_hunks": 27,
+        "comparison": "The code uses the body_center Vec in both copy and minimap calls and writes the shared movement_velocity Vec."
+      },
       "src/pso/enemy/dubchik/TObjEneDubchik.cpp": {
         "current_blob": "78d3f5d81ff2c1e5f6e3bd6463828e12f366a6dd",
         "previous_review_blob": "f56d92607d511f1257444afeaa54d63b51165c2b",
         "contextual_hunks": 15,
         "comparison": "The event call receives the typed actor body_center."
+      },
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp": {
+        "current_blob": "2d8bd6ca81a0bfe0878674482b0d1c5151d79bea",
+        "previous_review_blob": "201069d4675d4b31c21c4af1f0e6c4392b72adec",
+        "contextual_hunks": 26,
+        "comparison": "The emitter reads the native body_center and the attack method reads the typed AttackParams member. Its cast names the same declared type."
       },
       "src/pso/enemy/gibbles/TObjEneGibbles.cpp": {
         "current_blob": "53893114506b8000707aa843175b68104b896cde",
@@ -9912,11 +9984,23 @@
         "contextual_hunks": 73,
         "comparison": "The target copies use the native body_center Vec on both actors."
       },
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": {
+        "current_blob": "03e765ab171971bd8ca63c5c39db0d2196fcdee3",
+        "previous_review_blob": "f3f858c095a586e0fd6aff2aff6b40dd34be2f6f",
+        "contextual_hunks": 44,
+        "comparison": "The BML motion accessor is shared. The trigger and distance calculations read the native body_center."
+      },
       "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp": {
         "current_blob": "cd4821ad87c709ebaf53ae83a54b378a3bd25828",
         "previous_review_blob": "1b5988b1281d894ee41401548f666d602d9d89da",
         "contextual_hunks": 29,
         "comparison": "The local draw_chunk_object declaration is supplied by text_803E2F28.h, and the typed BML accessor feeds it."
+      },
+      "src/pso/enemy/lappy/TObjEneLappy.cpp": {
+        "current_blob": "0034a87a66fe174af233e3bbab9d0b27e141dfd2",
+        "previous_review_blob": "ad054cb25ca6c6cbec72fafb3c14dc594f4225d1",
+        "contextual_hunks": 37,
+        "comparison": "The probe uses body_center and movement_velocity at the original offsets."
       },
       "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp": {
         "current_blob": "484710499c6f2e847b8b0e376f63253ae8544745",
@@ -9960,6 +10044,18 @@
         "contextual_hunks": 39,
         "comparison": "The experience calculation reads m_2b0->exp through player_stats, and the typed combat halfwords remain."
       },
+      "src/pso/object/ambient/TObjGrass.cpp": {
+        "current_blob": "5f5f6aa8642f0a6c8778e556f584f89c3d894689",
+        "previous_review_blob": "8a28de601cf7e1441daa67f7e647852cacae7c2d",
+        "contextual_hunks": 40,
+        "comparison": "Both proximity calculations use the native body_center, including the target actor's typed field."
+      },
+      "src/pso/object/trap/TOTrapAncient02.cpp": {
+        "current_blob": "759f80e00d6e87d3a507e6dff66826343aceebc6",
+        "previous_review_blob": "5f58997addf4d925ab65fef39a5ef9b4f14fd2af",
+        "contextual_hunks": 18,
+        "comparison": "The target snapshot, Foie and Megid launches read the actual actor body_center."
+      },
       "src/pso/player/TObjPlayer_801AF2F0.cpp": {
         "current_blob": "d44f99a364f8a73db5ae6cff3e5e2b64f8d41d5a",
         "previous_review_blob": "72512bd0aac5a5a304bf1f01727974ad4c42ac40",
@@ -9972,11 +10068,29 @@
         "contextual_hunks": 2,
         "comparison": "The shared CurrentTextureList.h include is present."
       },
+      "src/pso/technique/TTecRaFoie.cpp": {
+        "current_blob": "b2d5d0f63f973c8f2c520b5be9a3c8127454f496",
+        "previous_review_blob": "d03dfca3a62bfee6fceeccffe1d65cc68b95fabc",
+        "contextual_hunks": 1,
+        "comparison": "The native body_center feeds the hit point and detonation, and the texture setter comes from its shared header."
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+        "current_blob": "397185f22fde7c0c22e37d856d278468cd96889c",
+        "previous_review_blob": "38b61d973594bacf86273924dad6483b223c147e",
+        "contextual_hunks": 5,
+        "comparison": "The three calls all use the shared typed GinjaTextureList setter."
+      },
       "src/pso/ui/window/TWindowFukidasi.cpp": {
         "current_blob": "a828253bc86e2c732fb9fa770b0ac6198629a00a",
         "previous_review_blob": "c5969d6f18fb74f90799fbd5a870242961dd4684",
         "contextual_hunks": 6,
         "comparison": "The shared CurrentTextureList.h include is present."
+      },
+      "src/pso/unk/TLobby_803382E4.cpp": {
+        "current_blob": "04a13f651b434caa3f60533ca976d698bc7e85a4",
+        "previous_review_blob": "fa8576a495bb4649a7c11e238b9329ef950e0bf9",
+        "contextual_hunks": 10,
+        "comparison": "The compass data uses the shared SpriteDescriptor type and the former local effect layout is gone."
       },
       "src/pso/unk/TUnk_804CC990.cpp": {
         "current_blob": "46cb44e4afee9db0f14be8e1e33d13d23891e0b4",
@@ -10002,24 +10116,6 @@
         "previous_review_blob": "760993191945f8b483523669d937ad51bdc09107",
         "unresolved_hunks": null
       },
-      "include/pso/boss/derolle/TBoss2DeRolLe.h": {
-        "current_blob": "b96b64cd9777333acb4af7a332464e5cbea93283",
-        "previous_review_blob": "930501bf9183c04b75c2e71d68e99219d67ed1d7",
-        "unresolved_hunks": [
-          [
-            7,
-            7
-          ],
-          [
-            103,
-            103
-          ],
-          [
-            153,
-            152
-          ]
-        ]
-      },
       "include/pso/boss/derolle/TBoss2Tentacle.h": {
         "current_blob": "86e46924a77cdce018bda4687365e931461093d2",
         "previous_review_blob": "8415df6031022d021a2737e277dd32f48965147d",
@@ -10039,24 +10135,6 @@
           [
             48,
             55
-          ]
-        ]
-      },
-      "include/pso/boss/derolle/TObjBoss2CeilJunk.h": {
-        "current_blob": "e4a8670f6cc2479ee4c9f5f0c0c359bb00f7fc2d",
-        "previous_review_blob": "c503b276a90b807c76a76bfc6dc113ebf4f15058",
-        "unresolved_hunks": [
-          [
-            12,
-            16
-          ],
-          [
-            18,
-            20
-          ],
-          [
-            23,
-            28
           ]
         ]
       },
@@ -10184,20 +10262,6 @@
           ]
         ]
       },
-      "src/pso/boss/barbaray/TBoss7Joint.cpp": {
-        "current_blob": "97a40529a93d09b1e33c7c86a82ccd99fd34b2e7",
-        "previous_review_blob": "2f672e88e2941aa22c0aa32feaa7395c06a9c3da",
-        "unresolved_hunks": [
-          [
-            25,
-            25
-          ],
-          [
-            143,
-            143
-          ]
-        ]
-      },
       "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp": {
         "current_blob": "b3e0ac89f4b54bddd768e6e662ab3254774eae9f",
         "previous_review_blob": "c7dc977ae1318d5bc49c51b8520a901a2225181c",
@@ -10237,38 +10301,6 @@
           [
             83,
             83
-          ]
-        ]
-      },
-      "src/pso/boss/darkfalz/TBoss4Type1.cpp": {
-        "current_blob": "24d6ea75a6e65f3e7bbe9cb2c4aeb59abfb03f78",
-        "previous_review_blob": "e08eefcefd31622ab2c90b2f8bf9390ec7b5534e",
-        "unresolved_hunks": [
-          [
-            209,
-            208
-          ],
-          [
-            666,
-            666
-          ]
-        ]
-      },
-      "src/pso/boss/darkfalz/TBoss4Type3.cpp": {
-        "current_blob": "dc66c2bdbd21d5848095daab598a13ddd8e39590",
-        "previous_review_blob": "824e124558d85aa194b9ec6ec306f2ce4e1663ca",
-        "unresolved_hunks": [
-          [
-            841,
-            840
-          ],
-          [
-            1382,
-            1382
-          ],
-          [
-            1384,
-            1384
           ]
         ]
       },
@@ -10633,20 +10665,6 @@
           [
             751,
             753
-          ]
-        ]
-      },
-      "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp": {
-        "current_blob": "793ef80435833109491a496a11ae74a6869c18d4",
-        "previous_review_blob": "00aeb7b749bf2f09628a08da183263fdf9d57fd9",
-        "unresolved_hunks": [
-          [
-            77,
-            76
-          ],
-          [
-            200,
-            200
           ]
         ]
       },
@@ -11290,24 +11308,6 @@
           ]
         ]
       },
-      "src/pso/boss/derolle/TObjBoss2Tunnel_8003B1FC.cpp": {
-        "current_blob": "6982e5da91477ca4c7ee8d9f24be08390e5e8d7e",
-        "previous_review_blob": "35ea262d982a8971f9e7478c4a25b53e710eb498",
-        "unresolved_hunks": [
-          [
-            12,
-            13
-          ],
-          [
-            17,
-            21
-          ],
-          [
-            25,
-            29
-          ]
-        ]
-      },
       "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": {
         "current_blob": "ee2c5b784774d31050c208b92a2d5bc116186d33",
         "previous_review_blob": "2231549acc67133c1c5e2cb8f0bdf5109ee70354",
@@ -11409,20 +11409,6 @@
           [
             5201,
             5201
-          ]
-        ]
-      },
-      "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
-        "current_blob": "0f76c320f53968b3fdc6c700395abcc80d19fb23",
-        "previous_review_blob": "3d5bb4ed80468d3b2a42577ad38d757a6106d15d",
-        "unresolved_hunks": [
-          [
-            1772,
-            1772
-          ],
-          [
-            5197,
-            5197
           ]
         ]
       },
@@ -11720,38 +11706,6 @@
           ]
         ]
       },
-      "src/pso/enemy/berura/TObjEneRe7Berura.cpp": {
-        "current_blob": "59904e8b2489fa06d2de063487779a55c26ead9c",
-        "previous_review_blob": "8804ea02099e03b3fb7afb9abd4744c2ac5701e0",
-        "unresolved_hunks": [
-          [
-            4,
-            4
-          ],
-          [
-            1046,
-            1046
-          ],
-          [
-            1471,
-            1472
-          ]
-        ]
-      },
-      "src/pso/enemy/darkgunner/DarkGunner.cpp": {
-        "current_blob": "8668742aeea0e0b9c29f73eb997744d00b7bb1c1",
-        "previous_review_blob": "8ffb2702590fa5614e0e5c00e1a10c80f317da4d",
-        "unresolved_hunks": [
-          [
-            261,
-            260
-          ],
-          [
-            262,
-            261
-          ]
-        ]
-      },
       "src/pso/enemy/dd/TObjEneDD.cpp": {
         "current_blob": "036e1f376adf3ea6fd54a026b8b83f9d116051b3",
         "previous_review_blob": "81f0c74207ada8303cdb6f9f612a2466bae7b326",
@@ -11767,20 +11721,6 @@
           [
             1597,
             1597
-          ]
-        ]
-      },
-      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp": {
-        "current_blob": "d8b32ad5a7cfd91d954b5e48d5b1a39ed82a86b8",
-        "previous_review_blob": "aa891c46e1968d6242be1a19766de69cda0f557f",
-        "unresolved_hunks": [
-          [
-            305,
-            308
-          ],
-          [
-            358,
-            358
           ]
         ]
       },
@@ -11933,20 +11873,6 @@
           [
             796,
             798
-          ]
-        ]
-      },
-      "src/pso/enemy/fly/TObjEneBm3Fly.cpp": {
-        "current_blob": "2d8bd6ca81a0bfe0878674482b0d1c5151d79bea",
-        "previous_review_blob": "201069d4675d4b31c21c4af1f0e6c4392b72adec",
-        "unresolved_hunks": [
-          [
-            219,
-            219
-          ],
-          [
-            401,
-            401
           ]
         ]
       },
@@ -12106,24 +12032,6 @@
           ]
         ]
       },
-      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": {
-        "current_blob": "03e765ab171971bd8ca63c5c39db0d2196fcdee3",
-        "previous_review_blob": "f3f858c095a586e0fd6aff2aff6b40dd34be2f6f",
-        "unresolved_hunks": [
-          [
-            380,
-            379
-          ],
-          [
-            1191,
-            1191
-          ],
-          [
-            1459,
-            1459
-          ]
-        ]
-      },
       "src/pso/enemy/illgill/TObjEneIllGill.cpp": {
         "current_blob": "180bc5e53e4f269e129c0af09401df58679f28ca",
         "previous_review_blob": "b034a2b7a9013843d62ae1b4ad8511a9eae03702",
@@ -12199,20 +12107,6 @@
           [
             1242,
             1242
-          ]
-        ]
-      },
-      "src/pso/enemy/lappy/TObjEneLappy.cpp": {
-        "current_blob": "0034a87a66fe174af233e3bbab9d0b27e141dfd2",
-        "previous_review_blob": "ad054cb25ca6c6cbec72fafb3c14dc594f4225d1",
-        "unresolved_hunks": [
-          [
-            490,
-            491
-          ],
-          [
-            493,
-            493
           ]
         ]
       },
@@ -12630,38 +12524,6 @@
           ]
         ]
       },
-      "src/pso/object/ambient/TObjGrass.cpp": {
-        "current_blob": "5f5f6aa8642f0a6c8778e556f584f89c3d894689",
-        "previous_review_blob": "8a28de601cf7e1441daa67f7e647852cacae7c2d",
-        "unresolved_hunks": [
-          [
-            719,
-            719
-          ],
-          [
-            1135,
-            1136
-          ]
-        ]
-      },
-      "src/pso/object/trap/TOTrapAncient02.cpp": {
-        "current_blob": "759f80e00d6e87d3a507e6dff66826343aceebc6",
-        "previous_review_blob": "5f58997addf4d925ab65fef39a5ef9b4f14fd2af",
-        "unresolved_hunks": [
-          [
-            609,
-            609
-          ],
-          [
-            638,
-            638
-          ],
-          [
-            644,
-            644
-          ]
-        ]
-      },
       "src/pso/player/TObjPlayer_80011014.cpp": {
         "current_blob": "207c23d20ad9a728c22a749e9bfa8fcaa7611365",
         "previous_review_blob": "b0ef153b293f16ef94fc9a4a2e0197cffb96b4f8",
@@ -12756,24 +12618,6 @@
           ]
         ]
       },
-      "src/pso/technique/TTecRaFoie.cpp": {
-        "current_blob": "b2d5d0f63f973c8f2c520b5be9a3c8127454f496",
-        "previous_review_blob": "d03dfca3a62bfee6fceeccffe1d65cc68b95fabc",
-        "unresolved_hunks": [
-          [
-            2,
-            2
-          ],
-          [
-            143,
-            143
-          ],
-          [
-            416,
-            416
-          ]
-        ]
-      },
       "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp": {
         "current_blob": "31827cf9c4bbcfebefd535fd856f6828347f3a94",
         "previous_review_blob": "473cc76f26e1534763119fae511457251acd0c9a",
@@ -12796,24 +12640,6 @@
           ]
         ]
       },
-      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
-        "current_blob": "397185f22fde7c0c22e37d856d278468cd96889c",
-        "previous_review_blob": "38b61d973594bacf86273924dad6483b223c147e",
-        "unresolved_hunks": [
-          [
-            683,
-            683
-          ],
-          [
-            691,
-            691
-          ],
-          [
-            701,
-            701
-          ]
-        ]
-      },
       "src/pso/ui/hud/TRaderMapCore.cpp": {
         "current_blob": "697bc56f3ecc0f161429042dc886a42295166da0",
         "previous_review_blob": "991db59228782eaf21d650c28f973f22f590fe17",
@@ -12825,20 +12651,6 @@
           [
             1253,
             1253
-          ]
-        ]
-      },
-      "src/pso/unk/TLobby_803382E4.cpp": {
-        "current_blob": "04a13f651b434caa3f60533ca976d698bc7e85a4",
-        "previous_review_blob": "fa8576a495bb4649a7c11e238b9329ef950e0bf9",
-        "unresolved_hunks": [
-          [
-            5,
-            5
-          ],
-          [
-            28,
-            27
           ]
         ]
       },
@@ -12879,8 +12691,8 @@
     },
     "count": {
       "contextual": 27,
-      "manual": 40,
-      "open": 75
+      "manual": 59,
+      "open": 56
     }
   },
   "historical_rows_still_open": 511,
