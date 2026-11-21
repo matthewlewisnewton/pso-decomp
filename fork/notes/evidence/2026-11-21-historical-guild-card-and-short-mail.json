@@ -1,0 +1,342 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "8d87793c326b83149da3783f00090b750bffdd86",
+  "source": "4c69e4ea062122cfa46bc7b1f4274a13d99c3394",
+  "source_tree": "92f155cc8ee2953a0a416b290ece38edd49e9926",
+  "source_review_files": 948,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:8ded1cf3208d73c193a301656a036261ceccc050",
+      "review_blob": "100644:1853287fbc98c9b9eb58cd017668cbfdc3d0279e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/ui/window/TWindowChoiceSetting.h",
+      "previous_blob": "100644:409cba6a4b7222b2b605acb825e46ed9d992c946",
+      "review_blob": "100644:9fa2c57fa8bf0cbc16ed9a26b0a2ad6fb77dc0c6",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/ui/window/TWindowSubComCard.h",
+      "previous_blob": "100644:42a8b40202e41507863667b0290ec68db1801d88",
+      "review_blob": "100644:6328ec8badbbcbc7177a8fb43660b102d73bcd54",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/ui/window/TWindowSubStatusDisp.h",
+      "previous_blob": "100644:e85d9640409c64ecabba53232f0bb5b1b20352f0",
+      "review_blob": "100644:22413569105d45d643edef0b25bae55cd64475b8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/ui/window/TWindowUserSort.h",
+      "previous_blob": "100644:f3ef782664dc0a23f701470ecc3e84b8d087e146",
+      "review_blob": "100644:c7b22c294dd8c922313f00aeb57ea5e4222b3d33",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/unk/GuildCardRecord.h",
+      "previous_blob": "100644:33fb8fb8c584fbf38fb1cba320ea89ede589965e",
+      "review_blob": "100644:bb7b64f37497d30aea0d44feac561882a6377759",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/TLobby.h",
+      "previous_blob": "100644:72a1a8ca61330a67005bfa04d7e34e9da388191a",
+      "review_blob": "100644:058b8737b69ec2c772dbbab3e086e074cbf0b651",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/unk/TLobby_8023F734.h",
+      "previous_blob": "100644:46f646eed254ed17377af70bf188880f081ba877",
+      "review_blob": "100644:792d40994e35e8128db47210f4c0a85215784ca7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowChoiceSetting.cpp",
+      "previous_blob": "100644:c331687e2f1e5beedfaf3bf60cbbfc0e3371762b",
+      "review_blob": "100644:48bf71e5bb8105ec86feb04cf8185e44d35d4d15",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated three-way source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+      "previous_blob": "100644:25719c27f912676883351cb80647d4ce1722886f",
+      "review_blob": "100644:03b51f61bb9eaf020ab71d6648e90a19932aa4db",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+      "previous_blob": "100644:728bbf51db9c8c017653dd68fb558e98bf495576",
+      "review_blob": "100644:8af38dc97bc87b8578aa9978de81b977d578d20d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80288030.cpp",
+      "previous_blob": "100644:c2ffc1cfad9870bc94b595e4a71014228927d657",
+      "review_blob": "100644:3e16ee3050f220c469ee5526846b009c6d1e2974",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/window/TWindowUserSort.cpp",
+      "previous_blob": "100644:a716fb59cd8c53d1dfe86dbfaa99e9c974e6e467",
+      "review_blob": "100644:bfa9168cb0ad65323c283f0beda92cb6c216fc1f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/unk/TLobby_802409AC.cpp",
+      "previous_blob": "100644:35207277b9e8c3be393e88513f0a35980473daba",
+      "review_blob": "100644:f546edb90b3d0294e6e7e1823c9a5b0ceca84725",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    }
+  ],
+  "checks": {
+    "guild-record": {
+      "head": "14d7ab9617f9bd75d33f2fa01289423bfd033cd6",
+      "baseline": "8d87793c326b83149da3783f00090b750bffdd86",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "e75d664dd0f6d55b8e04c4c24980472ffe6dcfe6510bcce771924d96e1d2eaf7"
+    },
+    "guild-card-windows": {
+      "head": "465ea2865554ff6c0a406356de17a906269ebca5",
+      "baseline": "14d7ab9617f9bd75d33f2fa01289423bfd033cd6",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 7,
+      "check_sha256": "e9d2e2395bef44489263b43db0d3c872e45db969ab3b9bc7d8ed67e2bd81036e"
+    },
+    "choice-setting": {
+      "head": "a22930235968bfef4d3973440c90e68b511451d1",
+      "baseline": "465ea2865554ff6c0a406356de17a906269ebca5",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "card-keyboard": {
+      "head": "4c69e4ea062122cfa46bc7b1f4274a13d99c3394",
+      "baseline": "a22930235968bfef4d3973440c90e68b511451d1",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "full-review": {
+      "head": "4c69e4ea062122cfa46bc7b1f4274a13d99c3394",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 366,
+      "check_sha256": "0a155eafff55345986463b59a5a15ba94e3c44cea3bcf670e0d2500c4c68c7df"
+    },
+    "layer": {
+      "head": "bd5a6b6e0f39d81f583204508ef9a83dd3afc43e",
+      "baseline": "4c69e4ea062122cfa46bc7b1f4274a13d99c3394",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "card-keyboard": {
+      "sha256": "7ebdfcec723089b8770fdb4ae05e68f929a98a8907f9e5fb9e0ae6ca3e484591",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "7ebdfcec723089b8770fdb4ae05e68f929a98a8907f9e5fb9e0ae6ca3e484591",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80242380",
+      "before": "copy_com_card_entry__6TLobbyFPvPv",
+      "after": "copy_com_card_entry__15GuildCardRecordFP15GuildCardRecord"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80242908",
+      "before": "get_sub_disp_ptr__20TWindowSubStatusDispFv",
+      "after": "get_sub_disp_ptr__15GuildCardRecordFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80242910",
+      "before": "get_id__6TLobbyFv",
+      "after": "get_id__15GuildCardRecordFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80275234",
+      "before": "get_card_data_ptr__17TWindowSubComCardFv",
+      "after": "get_card_data_ptr__15GuildCardRecordFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80275244",
+      "before": "get_name__17TWindowSubComCardFv",
+      "after": "get_name__15GuildCardRecordFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8027524C",
+      "before": "get_sub_obj__17TWindowSubComCardFv",
+      "after": "get_sub_obj__15GuildCardRecordFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80288104",
+      "before": "fill_card_text_entries__20TWindowSubStatusDispFl",
+      "after": "fill_card_text_entries__20TWindowSubStatusDispFP15GuildCardRecord"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80288380",
+      "before": "__ct__15TWindowUserSortFll",
+      "after": "__ct__15TWindowUserSortFlP15GuildCardRecord"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 5543,
+      "fork_path": "src/pso/misc/TWindowDD_8024662C.cpp",
+      "fork_blob": "f809fcdaf6cdf804549fff8c0f0929f13fa3546c",
+      "historical_delta_sha256": "987cd6a8deac552645aac2e29d2a6eb8c404081aa2bc4711c4e8430dc4ca4ca5",
+      "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "owner_blob": "6fb91faa20e1d5b3794eb427e28337dede98da7f",
+      "final_comparison_sha256": "298d4d978a6647317e2da3e5dc960f2179c2bbb5d9dae8668daaf14f2e993261",
+      "status": "Typed historical integration validated",
+      "rationale": "The shared source already provides all six original routines at identical names, addresses and sizes. The constructor calls the native TObject base and the typed window initializer, and the destructor destroys items on the shared WindowLayoutEntries before releasing the layout. The theme update takes no arguments. The historical extra vtable view is redundant."
+    },
+    {
+      "row": 5722,
+      "fork_path": "src/pso/misc/TWindowSubComCard_80249120.cpp",
+      "fork_blob": "54e1aeb6d5a9a1eaff434b1d9a194e21b09be059",
+      "historical_delta_sha256": "6947903ea61401c118e81713c5074ac0ce82b1b6bb6a788d3b6dba7646fbe7d1",
+      "owner": "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+      "owner_blob": "03b51f61bb9eaf020ab71d6648e90a19932aa4db",
+      "final_comparison_sha256": "ba212935302582a06a3d07c3c24aa52ebe838f1722a7bb0826348d6edf069c22",
+      "status": "Typed historical integration validated",
+      "rationale": "Both Guild Card choice callers now pass the actual NJS_POINT2 extent and row count into the factory and its shared layout helper. The information counter uses the same helper with its own native extent. The derived allocation, constructor, C call labels, and both original register arguments are preserved."
+    }
+  ],
+  "historical_ledger_sha256_before": "33849569692d5a48fad5e33e310b232af173d30674535af65bbfb7a442db0361",
+  "historical_ledger_sha256": "d61be10541d14e7e8707a8af592515653b683785cfda2314a63a9b7a0b7a8215",
+  "historical_rows_open": 551,
+  "partially_reconciled_rows": [
+    {
+      "row": 39,
+      "path": "src/pso/unk/TLobby_802409AC.cpp",
+      "current_blob": "f546edb90b3d0294e6e7e1823c9a5b0ceca84725",
+      "scope": "The native 0xBC Guild Card record now owns the exact copy, lookup and ID access. The selected-card consumer forwards the real record into the join path, and the typed TUserAns callback is already present. The mixed lobby row still includes legacy receive and parser interfaces. The broader historical row is still open."
+    },
+    {
+      "row": 292,
+      "path": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+      "current_blob": "d6e6d031aa7eae911aa730af7c7c792da5c47f5e",
+      "scope": "Short Mail already uses the native keyboard and 0xD0 records. A runtime check verifies the actual recipient, buffer cleanup at the shared 0x80147A80 routine, and a reply-flag write only on the matching sequence. The five window constants have their original values. Other modal and wire changes still require review. The broader historical row is still open."
+    },
+    {
+      "row": 5941,
+      "path": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+      "current_blob": "8af38dc97bc87b8578aa9978de81b977d578d20d",
+      "scope": "The selected card keeps its upstream accessor and passes the native record into UserSort, status display, lookup and send flows. Both keyboard factories return TKeyBoardControl, and the keyboard slot at 0x80 shares the typed Short Mail constructor and controller operations. The other lifecycle and prompt hunks still require review. The broader historical row is still open."
+    }
+  ],
+  "existing_window_base_functions": {
+    "0x8024662C": [
+      "update_com_card__9TWindowDDFv",
+      "0x20"
+    ],
+    "0x8024664C": [
+      "initialize_subwindow__9TWindowDDFv",
+      "0x20"
+    ],
+    "0x8024666C": [
+      "render__11TWindowBaseFv",
+      "0x4"
+    ],
+    "0x80246670": [
+      "run_task__11TWindowBaseFv",
+      "0x4"
+    ],
+    "0x80246674": [
+      "__dt__11TWindowBaseFv",
+      "0x6C"
+    ],
+    "0x802466E0": [
+      "__ct__11TWindowBaseFPUcsPUc",
+      "0x6C"
+    ]
+  },
+  "short_mail_buffer_release": {
+    "address": "0x80147A80",
+    "historical": "__dla__FPv",
+    "retained": "mem_free"
+  },
+  "short_mail_geometry": {
+    "first_address": "0x805DD6C8",
+    "values": [
+      206.0,
+      140.0,
+      205.0,
+      179.0,
+      202.0
+    ]
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "73d162f6ef229b3c0e920f72c100847d172c52ee9a7f16c21e9f02ea03a6cf7a",
+    "source_sha256": "5a776e014670fe8174f8aada48e05cad2fb51e618c52d9511d43c8430016cff2",
+    "scope": "The probes check complete Guild Card copy, lookup hit and miss, selection and all five display fields, the two-float choice extent and row count before construction, send and release in Guild Card and Short Mail, and reply flags on the selected mail sequence. Allocator, constructor, text filter and network collaborators return controlled results."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "c388d438bb743126752c2936747c25f3c46f1fbc6a80daf0ed6bc90db925b917",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "bc069e25f6dfd9daef5303175564bd1e763ad3d93491d6b8f09e1345489bf78f"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "e614b6db4073f0bfe554506fdd88e6d5d735228e19a4ce97944c2b89271c31a5"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 74,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

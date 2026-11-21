@@ -6,10 +6,10 @@
   "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
   "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
-  "review": "8d87793c326b83149da3783f00090b750bffdd86",
+  "review": "4c69e4ea062122cfa46bc7b1f4274a13d99c3394",
   "review_ref": "great-merge/consolidated/after-upstream-351",
-  "review_tree": "c80c0f5e1433d95dd74bd3b60cfc1681e65d9b52",
-  "review_paths": 940,
+  "review_tree": "92f155cc8ee2953a0a416b290ece38edd49e9926",
+  "review_paths": 948,
   "published_groups_in_upstream": [
     336,
     337,
@@ -29,20 +29,20 @@
   "initial_different_paths": 945,
   "initial_merge_conflicts": 404,
   "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
-  "path_ledger_sha256": "a919dfeb1074167f2f553422f2a6f9c70a8ae4b9413c01be61c9702e8e513790",
+  "path_ledger_sha256": "e1fab0e6f3c228af5c0399f07c61d7f3545463519a458d2c76257daec4843d2e",
   "path_status": {
     "equivalent source retained": 162,
-    "exact prior source": 548,
-    "validated historical owner recovery": 110,
-    "same change already in upstream": 888,
-    "validated three-way source": 14,
-    "upstream names retained": 60,
+    "exact prior source": 546,
+    "validated historical owner recovery": 117,
+    "same change already in upstream": 885,
+    "validated three-way source": 13,
+    "upstream names retained": 59,
     "upstream only": 7,
     "equivalent base-class call retained": 42,
     "native archive source with existing style": 16
   },
   "remaining_path_comparisons": 0,
-  "historical_fork_ledger_open": 553,
+  "historical_fork_ledger_open": 551,
   "validation": {
     "upstream": {
       "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
@@ -292,7 +292,7 @@
     }
   ],
   "review_commit_attribution": {
-    "commits": 70,
+    "commits": 74,
     "codex_attribution": 0,
     "coauthor_trailers": 0
   },
@@ -323,5 +323,6 @@
   "historical_enemy_collision": "2026-11-21-historical-enemy-collision.json",
   "historical_ground_and_body": "2026-11-21-historical-ground-and-body.json",
   "historical_derolle_and_barbaray": "2026-11-21-historical-derolle-and-barbaray.json",
-  "historical_sound_and_disc": "2026-11-21-historical-sound-and-disc.json"
+  "historical_sound_and_disc": "2026-11-21-historical-sound-and-disc.json",
+  "historical_guild_card_and_short_mail": "2026-11-21-historical-guild-card-and-short-mail.json"
 }
