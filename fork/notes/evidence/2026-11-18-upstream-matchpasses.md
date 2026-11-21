@@ -1384,6 +1384,14 @@ The combined frontend and combat build at `ceedccb08a` matches retail after reco
 
 Great Merge at `54128af4ad` keeps the existing BML allocator and release names, ADX status and sector-size names, and the three player movement helper names. The implementations still use recovered receivers and typed arguments. The fork workspace matches retail, keeps all 27,031 required symbols, and passes 294 tooling tests, 11 layer tests and five host checks. The candidate source histories had zero Codex author, committer or co-author entries. The existing public reviews remain open. [Validation, attribution and overlap evidence](2026-11-20-consolidated-source-reviews.json)
 
+## Integrated review stack with actor movement
+
+The resource, frontend and combat groups reproduce retail together at `4421f385ee` across 1,504 files. The resource merge reconciles 94 files using the shared BML, ADX, particle and model-capture interfaces.
+
+The expanded combat and stage group at `e57489ffb9` includes the actor position, velocity and rotation layouts across 779 files. It passes independently. The three groups with that expanded combat branch reproduce retail together at `909e18e6a4` across 1,556 files. The stack includes all 14 public review heads, keeps all 27,572 exact functions and 2,448 linked source units, and accounts for all 1,147 original data bytes. It loses no linked or exact coverage against cumulative Great Merge. The older fish callback fragment keeps upstream's source because the linker uses the recovered `ModelNodePositionCapture` owner.
+
+The source-scope comparison with `54128af4ad` leaves 124 changed paths outside the three groups and 399 differing shared paths. The remaining work includes title and Guild Card windows, resource and particle layouts, and the PPP and network runtime. The exact file lists are recorded for grouping by owning interface. Publication is still local. [Integrated build and residual source inventory](2026-11-20-consolidated-integration-with-actor-layouts.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
