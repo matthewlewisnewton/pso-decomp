@@ -1408,6 +1408,14 @@ The 12-file PPP component at `925fa3bbd9` uses shared frame declarations and typ
 
 Cumulative Great Merge at `404d82cfd2` and its private tooling workspace match retail. The fork-only Zako texture-slot test uses the restored setter name. The workspace retains all 27,031 symbols and passes all 310 checks. The remaining source comparison has 180 paths, including 24 outside the integrated reviews and 156 shared paths with further differences. [Build and remaining source evidence](2026-11-20-texture-lists-and-network-frames.json)
 
+## Audited boss effects, enemy ownership and ground effects
+
+The remaining 180 paths from the prior cumulative source have a recorded decision. The replay at `31d3096942` carries native model breakup, enemy group and drop ownership, typed archive calls, and stage-object layouts in 146 files. It keeps the existing version on 34 paths with incidental casts, include order, compiler directives or obsolete retention entries. The model-breakup and group transfer helpers keep the upstream names `create_breakup_mdl`, `copy` and `link_chain_nodes` with their recovered types and owners.
+
+The ground-effect recovery at `1b85ee8047` gives the two emitters actual position vectors and gives the Challenge dead-spot wrapper its explicit radius. All 15 ground-effect calls use the typed position interface. The full source and private tooling workspace match retail, preserve all 27,572 exact functions and 2,448 linked source units, and account for all 1,147 original data bytes. The combined source has zero Codex attribution. Cumulative Great Merge at `8140509c22` uses the exact tested source tree. The fork workspace passes all 310 checks and retains all 27,031 required symbols.
+
+Applying the 146-file follow-up directly to the earlier standalone combat branch produces 98 conflicts, mostly where the branch lacks the resource and frontend interfaces already present in the combined build. The current frontend and resource branches have 22 overlapping paths when merged first. The older historical ledger still needs owner comparisons. [Scope, build and fork-layer evidence](2026-11-20-audited-combat-and-ground-effects.json)
+
 ## Ordered upstream review candidates
 
 The local review sequence under `great-merge/queued/` starts on upstream `49b48c32e6`. Each row is the diff from the previous row. The existing source landing and working-fork builds remain separate from this submission sequence.
