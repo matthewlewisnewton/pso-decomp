@@ -140,6 +140,12 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 exact linked uni
 
 The current fork checkpoint adds files only under `fork/`. It preserves the previous GitHub workflow verbatim under `fork/tooling/workflows/`. GitHub runs workflows from the top-level `.github/workflows/` directory, so the archived fork workflow is inactive. The upstream workflows and all other files outside `fork/` match the source checkpoint. The 130-path local tooling archive still reproduces the validated workspace. [Choice windows and fork layer validation](2026-11-21-native-choice-windows-replay.json)
 
+The 28-file flight and ground-movement batch at `48fb8d6639` restores the Fly Nest's signed placement cap, child factory and carrier arguments. The Gee base owns the existing color sequence and unsigned flags. Gi Gue owns both native tuning accessors. The shared movement wrappers take the actual actor, own the full destination vector and return the virtual ground contact to Fly and Recon. The movement callers include Canadin, Gee, Gibon, Sinow, Wolf, Epsilon Guard, Dragon, Gol Dragon and Gryphon. The 13 label changes follow class ownership or typed signatures, and the existing method spellings remain.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units, and all 1,147 historical data bytes accounted for. The 310 tool and host checks and runtime probes pass. The fork tooling archive reconstructs the checked workspace with ten updated retention labels. The committed layer remains confined to `fork/`.
+
+Four historical source comparisons close, leaving 415 open. [Flight and ground movement validation](2026-11-21-flight-and-ground-movement-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
