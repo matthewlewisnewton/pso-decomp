@@ -12,6 +12,10 @@ The 60-path network review `7f33369109` on `6aee940eca` preserves the upstream s
 
 The 228-path memory review `4fc1ed7afe` moves the nullable release helper into the shared memory interface, carries 192 call sites and removes 66 character-selection header dependencies. All 27,572 functions and 1,147 original data bytes remain accounted for. The replay previews now measure the remaining eight groups on this source. No additional historical records closed, leaving 261. [Network, memory and fork workspace validation](2026-11-22-upstream-367-network-memory-validation.json)
 
+The tested fork workspace now uses the shared-memory source `4fc1ed7afe`. The 130-path archive carries the same host edits and updates their context in three files. The game build matches retail, all 310 workspace checks pass, and the memory and footprint probes agree across retail, source, and materialized fork builds.
+
+The scene-fade component at `5438eb321d` matches retail with typed fade and deferred-render callbacks. Its runtime checks cover fade transitions, logo callbacks, packed quad color, and all five queue outcomes. Carry it with the camera and scene review. [Workspace and scene validation](2026-11-22-upstream-367-memory-workspace-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
