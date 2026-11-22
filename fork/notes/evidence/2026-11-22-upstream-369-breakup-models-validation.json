@@ -1,0 +1,306 @@
+{
+  "upstream": "1698caaa1941302ed6dfc60d886d041bae272e0e",
+  "previous_upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "previous_replay": "10ca214f4e7a4b529ab0b10be4496343c8728574",
+  "rebased_replay": "88edb68c5c624d1e26705bf0bd08c89ab51f9b8a",
+  "rebased_commits": {
+    "1484889e3b9d6136312eaf74267b3ff9035a7766": "717dfedd37bbe9e207552eba8d4e9d21c90a3ba0",
+    "c02dcaa95d6959a338fc74d66544c4811f9fc8c5": "4823f9dad4b059dd5249b2b90f0fce40cdaa98a3",
+    "4fc1ed7afe9483df05b68f2dc6aec746edf05ec3": "3be249fee2a014c66f23433ef959d3f7da329625",
+    "5438eb321db26f2cc4f0bab9d41789d5a1b21d5f": "6b9a7d80bab42d90abce43364f903f4fd0efb1bf",
+    "cff7e3c35c40fb45ec943c20e415e8932f8ba19a": "f20dad62c4afbf9b9702cde35bf0f8e5863da39d",
+    "45ab56c73905f87d45e3765d9ba4d0299446857b": "bbdeb086f5749f0ccb4c42579bba7d292a25ba47",
+    "acc863b16da43a4e7a05e1082ff8a4aa1a6075ea": "0b711fe135ec11b15f5b40c03580d21fecd3abe0",
+    "dd8bbb24297db27d06b85264d3d0ba40824ef0a8": "c3dcfe9788e8a9716883a2553c518b3889939274",
+    "ff25e1ed6670c95d6fcd64fa507a2339940788e6": "1daad5eec81ab92e1e6a1fa848a63d710623def2",
+    "bff0a1a6efe02277ae65f2fcb3720a655321bf1d": "7b44ed6206f631f7baeda553a8c7456dc7aead06",
+    "94a740fac5b88b4a6c62cd7ba18d8061ca0b1abf": "9b849319ce084cafb38d7fc8578fc4704e72b07c",
+    "a76a50c665bac0bfcb84042dac88e4e5016499d1": "1cd3d66904eaaa8e23a1716f1a910007d75f4845",
+    "233f036b09be9f52dd7ae75069acdc768fcc4c3b": "590911b994a7a899d0b427dc5e78862f9a650ebb",
+    "630ba942768fd37899c560ef96dc43a9d1a02a8a": "03963c7451db7ec6a12d1cd5242755f26e0c332c",
+    "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8": "93cbeea19003b519cae2a410d814db6d220dae1a",
+    "25d14badb4e43f13105492b4eec959ffa05e4349": "eb3bca4cc3d8962548b3343f608a3d1f7b97124b",
+    "5cc86457276baf2957f6c927bfe77858c86afbe4": "3e1a328c7a23d13f9df22643f5ec0c64fbcd5187",
+    "2967ef0c7868447949abf680dc6848fe1a28465f": "3b776e1618dea9f6f0e93951257264579ac81e04",
+    "a3dc5d074e398689a6245e23c8d68624b84c75fb": "055c91deaff95f2e96ac0b7e0bc1659113bd61ba",
+    "a69aba3b196d2b0a8f4f44223287c64a2c2ca81b": "1d48498a6b2f16a65053e04ba5d036cfb6335178",
+    "7532966bcf28367c015d49217ad5974207edf0a5": "fd17e226484374de89400fbea6231fd2b994bc10",
+    "34ad1fb875f86d39a84bfd1ca5c5c377f6f19824": "fb7f182ed53c3d5ee0a7c36c2a0a85136b9ad511",
+    "98865a1351252050ca41f19ccfc3bd1d247f812b": "f6ca048801f1568d7f76f419162c32bd93c43879",
+    "6713e1f36fa999e7606677ff5874c496f2b590c9": "2ec59f98847052dd38932a8fade294b095dd3554",
+    "b0d7fc4eaf368d0ec66da0ce248ce38e721fa3cd": "1e0681add0a3e53123730419eb0026c3e6c38fd6",
+    "c02a1fcb0f3b0e896d25d5b623a8235cba0ed3c6": "0749a394010446864d3ff92e7bee82d2c2f79783",
+    "10ca214f4e7a4b529ab0b10be4496343c8728574": "88edb68c5c624d1e26705bf0bd08c89ab51f9b8a"
+  },
+  "upstream_paths": [
+    "M\t.github/workflows/ci-comment.yml",
+    "M\tCONTRIBUTING.md",
+    "M\tconfig/GPOE8P/psov3/config.yml",
+    "M\tconfig/GPOE8P/psov3/symbols.txt",
+    "M\tinclude/pso/ui/hud/TLockOnCursor.h",
+    "D\tinclude/pso/ui/hud/TLockOnCursor_8013E0D0.h",
+    "M\tinclude/pso/ui/hud/TLockOnCursor_8013EB80.h",
+    "M\tinclude/pso/ui/hud/TMainCursor.h",
+    "D\tinclude/pso/ui/hud/TMainCursor_8013E17C.h",
+    "M\tinclude/pso/ui/hud/TMainCursor_8013E1C8.h",
+    "M\tsrc/pso/ui/hud/TMainCursor.cpp",
+    "M\ttools/ci_comment.py",
+    "A\ttools/source_quality.py"
+  ],
+  "rebase_coverage": {
+    "result": "pass",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "function_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8013E0AC",
+        "before": "destroy_lock_on__11TMainCursorFl",
+        "after": "set_list_clear_task__13TLockOnCursorFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E0D0",
+        "before": "TLockOnCursor__sub_8013E0D0",
+        "after": "set_list_clear_task__13TUnk_8013F08CFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E134",
+        "before": "publish_nearest_target__11TMainCursorFv",
+        "after": "publish__13TUnk_8013EF0CFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E17C",
+        "before": "TMainCursor__sub_8013E17C",
+        "after": "set_published_target_dist__13TUnk_8013EF0CFf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E184",
+        "before": "TMainCursor__sub_8013E184",
+        "after": "get_candidate_target_dist__13TUnk_8013EF0CFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E18C",
+        "before": "TMainCursor__sub_8013E18C",
+        "after": "set_published_target_id__13TUnk_8013EF0CFUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E194",
+        "before": "TMainCursor__sub_8013E194",
+        "after": "get_candidate_target_id__13TUnk_8013EF0CFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E19C",
+        "before": "set_target__11TMainCursorFl",
+        "after": "set_end_task__13TLockOnCursorFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E1C0",
+        "before": "TMainCursor__sub_8013E1C0",
+        "after": "set_end_task__13TUnk_8013F08CFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E240",
+        "before": "reset_nearest_target_record__FPv",
+        "after": "reset__13TUnk_8013EF0CFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E26C",
+        "before": "set_sub_cursor_value__11TMainCursorFl",
+        "after": "set_start_task__13TLockOnCursorFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E290",
+        "before": "TMainCursor__sub_8013E290",
+        "after": "set_start_task__13TUnk_8013F08CFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013EB98",
+        "before": "release_target__13TLockOnCursorFv",
+        "after": "get_list_clear_task__13TLockOnCursorFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013EBBC",
+        "before": "TLockOnCursor__sub_8013EBBC",
+        "after": "get_list_clear_task__13TUnk_8013F08CFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013EBC4",
+        "before": "cleanup_field__13TLockOnCursorFv",
+        "after": "get_end_task__13TLockOnCursorFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013EBE8",
+        "before": "TLockOnCursor__sub_8013EBE8",
+        "after": "get_end_task__13TUnk_8013F08CFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013EBF0",
+        "before": "cleanup_field_3c__13TLockOnCursorFv",
+        "after": "get_start_task__13TLockOnCursorFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013EC14",
+        "before": "TLockOnCursor__sub_8013EC14",
+        "after": "get_start_task__13TUnk_8013F08CFv"
+      }
+    ]
+  },
+  "source": "1082b180a6ea5cb947911be1bf9d91c0daee6778",
+  "source_base": "88edb68c5c624d1e26705bf0bd08c89ab51f9b8a",
+  "source_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/volopt/TBoss3Volopt.h",
+    "include/pso/boss/volopt/TBoss3VoloptP01.h",
+    "include/pso/boss/volopt/TObjVoloptCage.h",
+    "include/pso/effect/TBreakUpMdl.h",
+    "include/pso/enemy/shinowa/ShinowaData.h",
+    "include/pso/enemy/sinowzoa/SinowZoaData.h",
+    "include/pso/enemy/stelth/StelthData.h",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/effect/TBreakUpMdl.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/shinowa/ShinowaData.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/SinowZoaData.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/StelthData.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+  ],
+  "source_coverage": {
+    "result": "pass",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "function_labels": [
+      {
+        "module": "psov3",
+        "address": "0x800970C4",
+        "before": "copy__11TBreakUpMdlFPv",
+        "after": "copy__25TBoss3VoloptBreakupParamsFPC25TBoss3VoloptBreakupParams"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800D8ACC",
+        "before": "create_breakup_mdl__12TBoss3VoloptFlllll",
+        "after": "create_breakup_mdl"
+      }
+    ]
+  },
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_quality": {
+    "net": -51,
+    "removed": 56,
+    "added": 5,
+    "renames_flagged": 0
+  },
+  "runtime": {
+    "summary": "failed allocation, default and custom breakup parameters, and original constructor inputs passed.",
+    "images": [
+      "retail",
+      "source"
+    ],
+    "probe_sha256": "00f58c61df8cc596284ac9ee7ec2ae0f98bbbdd1af5e358084023d8ea8b0d120",
+    "log_sha256": "e46a5d5e24b40b5f7333779086952a4458747464a0474810c83fdd567fbf6187"
+  },
+  "matching_note": "The typed breakup parameter copy needs instruction scheduling disabled for MWCC to preserve the retail load and store order. The constructor keeps the branch-local parameter copy.",
+  "fork_workspace": {
+    "parent": "1082b180a6ea5cb947911be1bf9d91c0daee6778",
+    "previous_workspace": "8d630e2a2586b3767cfd4f83621de1c862b1126a",
+    "overlay_paths": 130,
+    "retained_linker_labels": 26965,
+    "updated_linker_labels": {
+      "TLockOnCursor__sub_8013E0D0": "set_list_clear_task__13TUnk_8013F08CFP7TObject",
+      "TLockOnCursor__sub_8013EBBC": "get_list_clear_task__13TUnk_8013F08CFv",
+      "TLockOnCursor__sub_8013EBE8": "get_end_task__13TUnk_8013F08CFv",
+      "TLockOnCursor__sub_8013EC14": "get_start_task__13TUnk_8013F08CFv",
+      "TMainCursor__sub_8013E17C": "set_published_target_dist__13TUnk_8013EF0CFf",
+      "TMainCursor__sub_8013E184": "get_candidate_target_dist__13TUnk_8013EF0CFv",
+      "TMainCursor__sub_8013E18C": "set_published_target_id__13TUnk_8013EF0CFUs",
+      "TMainCursor__sub_8013E194": "get_candidate_target_id__13TUnk_8013EF0CFv",
+      "TMainCursor__sub_8013E1C0": "set_end_task__13TUnk_8013F08CFP7TObject",
+      "TMainCursor__sub_8013E290": "set_start_task__13TUnk_8013F08CFP7TObject",
+      "cleanup_field_3c__13TLockOnCursorFv": "get_start_task__13TLockOnCursorFv",
+      "cleanup_field__13TLockOnCursorFv": "get_end_task__13TLockOnCursorFv",
+      "copy__11TBreakUpMdlFPv": "copy__25TBoss3VoloptBreakupParamsFPC25TBoss3VoloptBreakupParams",
+      "create_particle_effect__15TObjBoss2TunnelFPCvlf": "create_particle_effect__15TObjBoss2TunnelFPC3Veclf",
+      "create_particle_effect__15TObjBoss7TunnelFPCvlf": "create_particle_effect__15TObjBoss7TunnelFPC3Veclf",
+      "destroy_lock_on__11TMainCursorFl": "set_list_clear_task__13TLockOnCursorFP7TObject",
+      "publish_nearest_target__11TMainCursorFv": "publish__13TUnk_8013EF0CFv",
+      "release_target__13TLockOnCursorFv": "get_list_clear_task__13TLockOnCursorFv",
+      "reset_nearest_target_record__FPv": "reset__13TUnk_8013EF0CFv",
+      "set_sub_cursor_value__11TMainCursorFl": "set_start_task__13TLockOnCursorFP7TObject",
+      "set_target__11TMainCursorFl": "set_end_task__13TLockOnCursorFP7TObject"
+    },
+    "materialized_tree_before_notes_update": "74f2824125e6771dca863fb8fa67cb76c8a5e4e0",
+    "archive_sha256": "2a04d318128e6d88a759b6e16f7a894f360352b2c635a76fb55b40e528958118",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "pass",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "test_log_sha256": {
+      "fork": "dfbe6d5bec82ad91b61e22494445028e8cb2bf2b08767b8fd1342a66e5e0a46e",
+      "tool": "d708cd119736b981fc07ecec422a62a6dfc87703c3dc053d9e512b9f1bf67a3f",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}
