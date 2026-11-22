@@ -1,0 +1,111 @@
+{
+  "upstream": "1698caaa1941302ed6dfc60d886d041bae272e0e",
+  "source_base": "1082b180a6ea5cb947911be1bf9d91c0daee6778",
+  "source": "0ba3f0c4ae1955484af2185a589c481895cb5345",
+  "last_validated_fork_workspace": "abfcc6496ae57c96d055e0d1aaa2c3397d7104d9",
+  "paths": [
+    "M\tconfig/GPOE8P/psov3/linked_units.txt",
+    "M\tconfig/GPOE8P/psov3/splits.txt",
+    "M\tconfig/GPOE8P/psov3/symbols.txt",
+    "M\tinclude/pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h",
+    "M\tinclude/pso/player/TObjPlayer.h",
+    "A\tinclude/pso/render/GinjaTextureEntryCopy.h",
+    "M\tsrc/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "M\tsrc/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "M\tsrc/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "D\tsrc/pso/player/TObjPlayer_800E80A4.cpp",
+    "A\tsrc/pso/render/GinjaTextureEntryCopy.cpp",
+    "M\tsrc/pso/unk/TLobby_800F795C.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "function_labels": [
+    {
+      "module": "psov3",
+      "address": "0x800E7B94",
+      "before": "load_shinowa_mirage_resources",
+      "after": "load_shinowa_mirage_resources__23TObjEneMe3ShinowaMirageFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800E80A4",
+      "before": "copy_vec3__10TObjPlayerFPv",
+      "after": "copy_ginja_texture_entry"
+    }
+  ],
+  "linked_texture_copy": {
+    "name": "copy_ginja_texture_entry",
+    "size": "28",
+    "fuzzy_match_percent": 100.0,
+    "metadata": {
+      "virtual_address": "2148434084"
+    },
+    "address": "0"
+  },
+  "runtime": {
+    "summary": "Ginja entry copies, five archive paths, native factory and action dispatch, and Ill Gill shadow inputs passed.",
+    "images": [
+      "retail",
+      "source"
+    ],
+    "probe_sha256": "f49f79954c0d95ccecac2efa8b001dd062aa3cfd8a84285a68f87afc25540280",
+    "log_sha256": "7602b30db1e24cb11a487053d0bf0dc3669a459c569fc0c497feb6db3bb852d7"
+  },
+  "probe_symbol_aliases": [
+    [
+      "create__22TObjEneMe3SinowZoaRealFPv",
+      ".text:0x8031B220",
+      "0x20",
+      "TObjEneMe3SinowZoaReal__create"
+    ],
+    [
+      "__ct__15TObjIllGillKageFP7TObjectP8TObjBase",
+      ".text:0x803655F8",
+      "0x90",
+      "__ct__15TObjIllGillKageFlUl"
+    ],
+    [
+      "lbl_80500FEC",
+      ".bss:0x80500FEC",
+      "0x8",
+      "TObjEneMe3ShinowaMirage__alternate_texture_list"
+    ],
+    [
+      "sub_80316C3C__18TObjEneMe3SinowZoaFl",
+      ".text:0x80316C3C",
+      "0x4B4",
+      "state_cast_barta__18TObjEneMe3SinowZoaFl"
+    ],
+    [
+      "sub_803170F0__18TObjEneMe3SinowZoaFl",
+      ".text:0x803170F0",
+      "0x164",
+      "state_stealth_off__18TObjEneMe3SinowZoaFl"
+    ],
+    [
+      "sub_80317254__18TObjEneMe3SinowZoaFl",
+      ".text:0x80317254",
+      "0x17C",
+      "state_stealth_on__18TObjEneMe3SinowZoaFl"
+    ]
+  ],
+  "replay_decisions": {
+    "owned": "The shared render function copies Ginja entries for Shinowa Mirage, Sinow Zoa, and Stelth. The Shinowa Mirage class owns its existing load callback in all three resource tables.",
+    "retained": "Keep upstream enemy state names and typed Pan Arms floor and collider methods. The current enemy lifecycle already has native Gibbles, Gyaranzo, Morfos, and Epsilon constructors."
+  }
+}

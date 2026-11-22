@@ -12,6 +12,8 @@ The retail build is byte-for-byte exact. All 90 ranges and 1,147 initial data by
 
 The fork workspace on the breakup checkpoint round-trips the 130-path tooling overlay. It updates 21 of its 26,965 retained linker labels for the cursor, tunnel and breakup interfaces. The materialized fork reproduces retail and passes all 310 workspace and host checks.
 
+The enemy resource replay at `0ba3f0c4ae` types the alternate Ginja texture lists for Shinowa Mirage, Sinow Zoa and Stelth. The texture-entry copy moves to its render unit, and the existing Shinowa Mirage load callback belongs to the same class as its release callback. The retail DOL matches with all starting data and linkage preserved. The runtime probe covers overlapping and in-place copies, five archive paths, factory and action dispatch, and Ill Gill shadow inputs. The fork archive remains at the preceding breakup checkpoint. [Enemy resource validation](2026-11-22-upstream-369-stealth-resources-validation.json)
+
 ## Replay after upstream PR #367
 
 Upstream PR #367 advanced master to `6aee940eca`. The first local review is window, character selection and chat at `1484889e3b` on that revision. It covers 358 paths. The shared memory review will carry the 195 release-related edits removed from this candidate. Three remaining merge conflicts were resolved using the upstream controller and trade field names and the existing model loader’s writable pointer array. [Merged PR #367](https://github.com/zeroz41/pso-decomp/pull/367)
