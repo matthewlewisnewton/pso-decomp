@@ -58,6 +58,10 @@ The 97-path sound replay at `7133dc1ac5` uses one persistent sound declaration a
 
 The clean and fork workspace builds reproduce the retail binary, retain all 2,447 linked units and account for the original 1,147 data bytes. The 310 workspace checks and the slot, voice and 36-floor probes pass. The committed overlay includes the locally updated probe and linker list. The Vol Opt phase one source comparison closes, leaving 491 historical records open. [Persistent and floor sound evidence](2026-11-21-persistent-and-floor-sound-replay.json)
 
+The 24-path scripted camera replay at `3fb65f36aa` puts pose and playback state on the native camera class. The camera banks and motion samplers use checked layouts and typed channels. Boss and cutscene callers share the pose and completion declarations, and four resource owners share the REL loader signature. Existing source names are retained. Four linker labels change because their C++ types change.
+
+The clean source and fork workspace reproduce the retail DOL and retain all 2,447 linked units. Runtime probes cover pose, bank selection, stops, loops, the 5,000-frame cap, and REL loading on the retail and both rebuilt images. All 310 workspace checks pass. The scripted camera task and setup, Vol Opt phase two, and Dark Falz cutscene records close, leaving 487 historical records open. [Scripted camera motion evidence](2026-11-21-scripted-camera-motion-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)

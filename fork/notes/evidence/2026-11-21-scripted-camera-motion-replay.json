@@ -1,0 +1,247 @@
+{
+  "source": "3fb65f36aac3814d2d5e217a055eefa6508431b0",
+  "previous_source": "7133dc1ac51518f9631b24cbf2c9ba949c75a631",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1133,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/camera/CameraHelpers.h",
+    "include/pso/camera/TCameraCtrl_8006C254.h",
+    "include/pso/camera/TCameraCtrl_803D6538.h",
+    "include/pso/item/drop/TItemDrop_800F93F0.h",
+    "include/pso/system/ResourceFile.h",
+    "include/pso/unk/TUnk_80488B68.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonDemo.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+    "src/pso/camera/TCameraCtrl_8006C254.cpp",
+    "src/pso/camera/TCameraCtrl_803D6960.cpp",
+    "src/pso/camera/TCameraCtrl_803D749C.cpp",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_80207DA8.cpp",
+    "src/pso/unk/text_8004D9A8.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "donor": "0394e28c275546fc002b9269980a9e1fe048ab92",
+  "historical_comparison": {
+    "prior_open_rows": 491,
+    "open_rows": 487,
+    "closed_rows": [
+      {
+        "row": 1025,
+        "description": "Vol Opt phase two uses the shared pose, playback, sound and player interfaces. The camera call preserves the timer decrement and stop-bit test. Native model-node lookup, position and yaw, target selection, breakup, battle parameters and death callbacks account for the other authored changes at their original addresses.",
+        "historical_path": "src/pso/boss/TBoss3VoloptP02.cpp",
+        "current_path": "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+        "fork_blob": "4c850697eae08e1f20a18d497dd34edace844e78",
+        "current_blob": "ef5ec596169ddf76ed6c5ce4af414eecf79f7a37",
+        "authored_diff_sha256": "55ea0dbb0920a7c0ce6aa0613962b4b48ca185fca3dc4f0b6a5e72285a3dd0aa"
+      },
+      {
+        "row": 4945,
+        "description": "The native object owns the pose, motion, mode and playback state, with checked offsets. The task, constructor and destructor retain their original implementations at the same addresses. The REL loader and file size use the shared declarations and the live bank directory.",
+        "historical_path": "src/pso/misc/TCameraCtrl_8006C254.cpp",
+        "current_path": "src/pso/camera/TCameraCtrl_8006C254.cpp",
+        "fork_blob": "095ff672ac710f4e31ab1736cf268974bbe0749d",
+        "current_blob": "f4dbb60d93a85be00a8d5c6d6e1a08bf420c6de0",
+        "authored_diff_sha256": "9d6b4d0a0d02429dec44577f50c8d6518964afa0476c7032fa7d4cb829d0dff3"
+      },
+      {
+        "row": 4962,
+        "description": "The pose, playback copy, floor mode and motion lookup use the native camera and bank types. The view update uses native position and target fields and retains the existing owner, direction math and both linked constants.",
+        "historical_path": "src/pso/misc/TCameraCtrl_8006BCD8.cpp",
+        "current_path": "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+        "fork_blob": "6acea509d4f2fc22b153ced292ecf0796697cbea",
+        "current_blob": "da58423d47d06f1d4e5195473bbea3eb2efb89bb",
+        "authored_diff_sha256": "e766c995ef76a04beace8bb90b3ecd68bd120f999eb57d04b766982e07031035"
+      },
+      {
+        "row": 5106,
+        "description": "The cutscene now shares the typed pose, playback, BML model, texture and motion accessors, and particle and sound declarations. It keeps the existing texture setter and publishes the original position, angles and playback values.",
+        "historical_path": "src/pso/unk/text_8004D9A8.cpp",
+        "current_path": "src/pso/unk/text_8004D9A8.cpp",
+        "fork_blob": "70654e781a31eb6167eb268f4917f464d794956f",
+        "current_blob": "b27e8849e02866d99dddf8ff1e35a4f2e808a484",
+        "authored_diff_sha256": "99003d241e7b0c18ae555d967939fa56e698117d8aa45ec0084d8016e32a8cc5"
+      }
+    ],
+    "partial_rows": {
+      "5011": "The motion sampler takes the shared NJS_MOTION and typed outputs. Other channel interpolation changes remain under review.",
+      "5014": "The motion selector and channel binding consume the shared NJS_MOTION metadata directly. Other interpolation routines remain under review."
+    },
+    "same_address_names": {
+      "0x80041B08": [
+        "copy_body_to_center__9TObjCharaFv",
+        "copy_position__9TObjCharaFv"
+      ],
+      "0x8006C03C": [
+        "apply_look_at_from_target__11TCameraCtrlFv",
+        "post_update_view__13TUnk_80488B68Fv"
+      ],
+      "0x8006C580": [
+        "__dt__13TUnk_80488B68Fv",
+        "__dt__13TUnk_80488B68Fv"
+      ],
+      "0x8009705C": [
+        "init_from_model__11TBreakUpMdlFl",
+        "__ct__13TUnk_8048FA00Fl"
+      ],
+      "0x800D9168": [
+        "trigger_dell_biter_events__10TObjPlayerFv",
+        "trigger_dell_biter_events"
+      ],
+      "0x800F6B14": [
+        "distribute_experience_and_request_drop__9TObjEnemyFv",
+        "refresh_lobby_state__9TObjEnemyFv"
+      ],
+      "0x800F9D80": [
+        "update_lobby_scene__6TSceneFPCv",
+        "get_resource_file_size"
+      ],
+      "0x803DA798": [
+        "set_current_texture_list",
+        "set_global_param"
+      ]
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "7133dc1ac51518f9631b24cbf2c9ba949c75a631",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8006C140",
+          "before": "configure_scripted_camera_playback__FPUcl",
+          "after": "configure_scripted_camera_playback__FP14CameraPlaybackl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D6960",
+          "before": "sample_camera_motion__FPUclPUcf",
+          "after": "sample_camera_motion__FPCUcPC10NJS_MOTIONPC20CameraMotionChannelsf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D77C0",
+          "before": "select_motion_sampler__FPlf",
+          "after": "select_motion_sampler__FPC10NJS_MOTIONf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D7BB0",
+          "before": "bind_motion_channel_samplers__Fif",
+          "after": "bind_motion_channel_samplers__FPC10NJS_MOTIONf"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "373bd512071504bbea14ddfe95339323d8923435c0d11d4b35e39f893a05917f",
+      "report_sha256": "b358def1afee990d1f45c80953327b370b991ad901148eaea4f2c243200f1620"
+    },
+    "workspace": {
+      "baseline": "3fb65f36aac3814d2d5e217a055eefa6508431b0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "b358def1afee990d1f45c80953327b370b991ad901148eaea4f2c243200f1620"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "20e2625538a37f93e274c114242279348cf088f3f093fa6b158b3b5dcc9238db"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "893ce88de04fd0becb3d3f70a271a0e867784094bc2b9cf6a61d7249b1b6c36b"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "camera": {
+      "result": "Actor orientation, position copies and scripted camera playback passed.",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "81e40aea8d2e15d512e959f5a24124c9c5d50bf27c195a1643df067fe0eb59d1"
+    },
+    "rel": {
+      "result": "REL filename, caller buffer, relocated root and failed reads passed.",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "4fe12033528a2beac699d4353e68e376cc16f137a49d5bd5140df30d15a9563f"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "b5ceb3e23d45f88e3040fc2d18c70df76e7041439a848e799676f6a3a3d0eb8e",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "tools/probes/check_actor_camera_angles.py"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - bind_motion_channel_samplers__Fif",
+      "+  - bind_motion_channel_samplers__FPC10NJS_MOTIONf",
+      "-  - configure_scripted_camera_playback__FPUcl",
+      "+  - configure_scripted_camera_playback__FP14CameraPlaybackl"
+    ],
+    "archive_test_head": "bb47aeb5800cf912aa5cf8269d4927a63b30833b",
+    "tested_materialized_tree": "9f03bc336fdfb3ce37c9810e96ef96d7d38702de"
+  }
+}
