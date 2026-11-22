@@ -1,0 +1,228 @@
+{
+  "source": "ec10df9687713e7f228d69dd6149ec8257ef9308",
+  "previous_source": "1ed779d8c4391f2361943e2d72a6319f0466642b",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/linked_units.txt",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoaReal.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/render/GinjaTextureEntryCopy.h",
+    "src/pso/enemy/EnemyFactoryTables.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/player/TObjPlayer_800E80A4.cpp",
+    "src/pso/render/GinjaTextureEntryCopy.cpp",
+    "src/pso/unk/TLobby_800F795C.cpp"
+  ],
+  "combined_paths_from_upstream": 1333,
+  "validation": {
+    "source": {
+      "baseline": "1ed779d8c4391f2361943e2d72a6319f0466642b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800E7B94",
+          "before": "load_shinowa_mirage_resources",
+          "after": "load_shinowa_mirage_resources__23TObjEneMe3ShinowaMirageFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E80A4",
+          "before": "copy_vec3__10TObjPlayerFPv",
+          "after": "copy_ginja_texture_entry"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80316B20",
+          "before": "check_move_collision__18TObjEneMe3SinowZoaFPvPv",
+          "after": "check_move_collision__18TObjEneMe3SinowZoaFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80316C3C",
+          "before": "TObjEneMe3SinowZoa__sub_80316C3C",
+          "after": "sub_80316C3C__18TObjEneMe3SinowZoaFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803170F0",
+          "before": "TObjEneMe3SinowZoa__sub_803170F0",
+          "after": "sub_803170F0__18TObjEneMe3SinowZoaFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80317254",
+          "before": "TObjEneMe3SinowZoa__sub_80317254",
+          "after": "sub_80317254__18TObjEneMe3SinowZoaFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031B220",
+          "before": "TObjEneMe3SinowZoaReal__create",
+          "after": "create__22TObjEneMe3SinowZoaRealFPv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "e029765fedaa2ff979477adfa7764242f69f0e039771dd0ad9fc4c708f1f179e",
+      "report_sha256": "63abfc49293bd2499b4022c63a0c0ba34821fcbb6c12b698b97888635d8e51f9"
+    },
+    "layer": {
+      "baseline": "ec10df9687713e7f228d69dd6149ec8257ef9308",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "63abfc49293bd2499b4022c63a0c0ba34821fcbb6c12b698b97888635d8e51f9"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "02c65ee811a5b73c24f7e7683d91a9df1db8fedd880f8a7c63a0d96e90ccf0dc"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "bf392e16ca97e5cca4237a8e557b69c41505c09bd59683c03386fe790a44c937"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "pso/render/GinjaTextureEntryCopy": 1,
+    "pso/enemy/shinowa/TObjEneMe3Shinowa": 89,
+    "pso/enemy/sinowzoa/TObjEneMe3SinowZoa": 73,
+    "pso/enemy/stelth/TObjEneMe3Stelth": 75,
+    "pso/enemy/illgill/TObjIllGillKage": 7,
+    "pso/enemy/illgill/TObjEneIllGill": 31,
+    "pso/ui/hud/TMainCursor": 213,
+    "pso/ui/frontend/TAdYesNoBaseGC": 6,
+    "pso/ui/window/TWindowUserSort": 8
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "stealth": {
+        "probe_sha256": "f49f79954c0d95ccecac2efa8b001dd062aa3cfd8a84285a68f87afc25540280",
+        "log_sha256": "c16321b85e3e4aec7c154bfed4debf3c822b4ec52565b8727f564083ce0e25e6"
+      },
+      "archives": {
+        "probe_sha256": "1c5d74bc67906fb54300e64ef841f177266d0b66c7cbcb693448a879a1415546",
+        "log_sha256": "d3a090b801472179b75deaed05280fe36124aab71f3a8e156027e9c7a9c9c65b"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "2229": {
+        "path": "src/pso/ui/hud/TMainCursor.cpp",
+        "reason": "The existing lock-on loader allocates the native BML archive and reads the two cursor models through the shared getter. The original teardown deletes the archive and clears the owner."
+      },
+      "2587": {
+        "path": "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+        "reason": "The existing yes/no owner appends to the message window, polls and reads the typed menu decision, and closes both window objects. The six original float words remain at their retail addresses."
+      },
+      "5652": {
+        "path": "src/pso/ui/window/TWindowUserSort.cpp",
+        "reason": "The user-sort window retains its native constructor, destructor, render method and 24-byte virtual table. Its typed Guild Card record reaches the original row-population call, and drawing passes the native frame context and live entry list."
+      }
+    },
+    "yes_no_constants": {
+      "0x805df788": 470.0,
+      "0x805df78c": 4.5,
+      "0x805df790": 46.0,
+      "0x805df794": 131.0,
+      "0x805df798": 548.0,
+      "0x805df79c": 220.0
+    },
+    "scoped": {
+      "727": "The originally declared collision check and three movement handlers now have native matching definitions and calls. The existing melee virtual name remains in use.",
+      "778": "The Mirage archive load and release use the same class and the original floor callback pairs. The render path uses the Ginja entries to save and restore the material variant.",
+      "814": "The native factory, movement collision and three movement states use their original addresses. The loader uses typed chunk nodes, and the Ginja list carries the original alternate texture slots.",
+      "956": "Ill Gill's shadow construction passes the real task parent and target receiver. The shadow stores the target's position and entity ID in the native base layout.",
+      "958": "Both Stelth archive descriptors and all alternate texture allocation, copy, render and release code use their existing native layouts."
+    },
+    "open_rows": 272,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "f5fea1e5c5732ece619709a897a86420fe7b5d51",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [
+      {
+        "module": "psov3",
+        "address": "0x80316B20",
+        "before": "check_move_collision__18TObjEneMe3SinowZoaFPvPv",
+        "after": "check_move_collision__18TObjEneMe3SinowZoaFPC3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80316C3C",
+        "before": "TObjEneMe3SinowZoa__sub_80316C3C",
+        "after": "sub_80316C3C__18TObjEneMe3SinowZoaFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803170F0",
+        "before": "TObjEneMe3SinowZoa__sub_803170F0",
+        "after": "sub_803170F0__18TObjEneMe3SinowZoaFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80317254",
+        "before": "TObjEneMe3SinowZoa__sub_80317254",
+        "after": "sub_80317254__18TObjEneMe3SinowZoaFl"
+      }
+    ],
+    "materialized_tree": "3614c985d1004f6d718c53c904645ec41072df8d",
+    "archive_sha256": "08b5af6ebfe5e014b0c84065f7c2c7202df268e07aa3acde84862bafb3feb076"
+  }
+}
