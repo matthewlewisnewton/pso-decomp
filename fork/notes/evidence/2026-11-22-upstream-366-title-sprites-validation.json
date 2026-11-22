@@ -159,5 +159,35 @@
     "keep_list_updates": [],
     "materialized_tree": "59e8fab4ff9193c71e5a90bfe90e0280799d1e5a",
     "archive_sha256": "08b5af6ebfe5e014b0c84065f7c2c7202df268e07aa3acde84862bafb3feb076"
+  },
+  "equipment_menu_audit": {
+    "historical_row": 5578,
+    "historical_fork_blob": "b71321bfbddd15312e13c7f922cceffe19c7aed6",
+    "owner": "src/pso/ui/window/TWindowMainMenu.cpp",
+    "exact_functions": {
+      "open_submenu__15TWindowSubEquipFll": {
+        "address": "0x80263B34",
+        "bytes": 60
+      },
+      "set_scale_f__15TWindowMainMenuFv": {
+        "address": "0x80263B28",
+        "bytes": 12
+      },
+      "TWindowSubEquip__sub_80263AF8": {
+        "address": "0x80263AF8",
+        "bytes": 48
+      },
+      "TWindowSubEquip__sub_80263AF4": {
+        "address": "0x80263AF4",
+        "bytes": 4
+      },
+      "call_if_split_screen": {
+        "address": "0x80263AB0",
+        "bytes": 68
+      }
+    },
+    "probe_sha256": "94c9e758cd14a97eae05ec8e16d9fe0dd6ef56f6382979cc3e29e1dcd70d7612",
+    "log_sha256": "2d0ca15ca6656561bf804db7ddc13c8dd16f0fa788b1ffc06533a03511fdea71",
+    "open_rows_after_audit": 269
   }
 }

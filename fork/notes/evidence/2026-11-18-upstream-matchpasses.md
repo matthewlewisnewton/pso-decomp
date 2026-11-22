@@ -25,6 +25,8 @@ The 12-path title sprite replay at `4380b86c89` restores the native Ginja textur
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Runtime probes cover all 46 title records, texture binding, sprite geometry, camera order, overlay destruction and floor dispatch. All 310 workspace checks pass and the same 130-path tooling archive round-trips. The cumulative source changes 1,203 paths. Two historical comparisons close, leaving 270 open. [Title sprite and lifetime validation](2026-11-22-upstream-366-title-sprites-validation.json)
 
+The equipment submenu audit closes one more comparison on `4380b86c89`, leaving 269 open. The original split-screen guard, unsigned depth conversion, scale store and submenu replacement are already in the native main-menu owner. Runtime checks agree across retail and both builds.
+
 ## Replay after upstream PR #365
 
 Upstream master advanced from `5a4e7ced56` to `b2d2912058` by 45 commits across 1,947 paths. The pinned matching checkpoint `1e41348776` shares 782 changed paths with the new master. The three-way merge preview has 459 conflicts. The path index records the old, landed, local and preview entries for each changed path. [Upstream PR #365](https://github.com/zeroz41/pso-decomp/pull/365) · [Replay index](2026-11-21-upstream-365-replay-index.tsv)
