@@ -210,6 +210,10 @@ The 11-path technique replay at `3326f576bc` passes the native caster, cast posi
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Twenty-two factory, bolt and emitter cases pass per image, along with the earlier resource and sound probes. All 310 workspace checks pass and the 130-path tooling archive round-trips. Six historical records close, leaving 288 open. [Technique ownership validation](2026-11-22-upstream-365-technique-owners-validation.json)
 
+The 13-path actor record replay at `0eda118d1d` puts Canadin trail appends and alpha decay on the light and trail point, types the Gee swarm member, and restores the Gi Gue sound receiver. Morfos reads the shared ground contact and owns its charge emitter, burst fields and movement vector. The six linker label changes follow the corrected receivers and parameters. Five of those labels are present in the fork tooling keep-list.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Twenty-one actor cases pass per image, all 310 workspace checks pass and the 130-path tooling archive round-trips. Three historical declarations close, and five records receive scoped evidence. The ledger has 285 open. [Actor record validation](2026-11-22-upstream-365-actor-records-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
