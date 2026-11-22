@@ -42,6 +42,7 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 | Techniques, effects and player state | `a5d9b6d322` | Inventory review | 118 |
 | Saves, quests and asset loading | `773c658ecc` | Technique review | 172 |
 | Positional sound, voice slots and sound balance | `a94738117b` | Save and quest review | 166 |
+| Shared allocation, copy and release | `848e38d367` | Sound review | 227 |
 
 The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
@@ -62,6 +63,8 @@ The review, consolidated source and reconstructed fork workspace match retail wi
 The 166-path sound review at `a94738117b` restores typed positional and one-shot requests, native voice slot inputs, and the original floor-dependent return values. Five Olga Flow calls pass the typed position. Sound balance uses the shared draw context and passes two label pointers explicitly to text measurement. The consolidated source is `15201748bd`, and the 381-path replay at `b92f41bf71` reconstructs it exactly above the review.
 
 The review, consolidated source and reconstructed fork workspace match retail with all 1,147 original data bytes. All 310 workspace checks pass, and the 130-path tooling archive round-trips. The lobby sound source comparison closes, leaving 262 open. [Sound review](2026-11-22-next-upstream-positional-and-one-shot-sound.md) · [Validation](2026-11-22-upstream-366-sound-review-validation.json)
+
+The 227-path memory review at `848e38d367` gives allocation, release and byte and word moves a shared header. Callers release nullable allocations through the shared memory helper, and the footprint still releases the texture list before its allocation. The only linker label change follows the helper's move out of character selection. The review reproduces retail with all 1,147 original data bytes. The replay at `32a1d705d3` reconstructs consolidated source `15201748bd` from the 202 paths still outside the review stack. [Memory review](2026-11-22-next-upstream-shared-memory-operations.md) · [Validation](2026-11-22-upstream-366-shared-memory-review-validation.json)
 
 ## Replay after upstream PR #365
 
