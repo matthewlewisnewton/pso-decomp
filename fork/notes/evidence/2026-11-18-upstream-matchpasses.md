@@ -234,6 +234,10 @@ The seven-path Pan Arms replay at `a19b741e05` restores the native body warp, gr
 
 Both builds reproduce retail with 27,572 matched functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 28 movement and contact cases and 23 earlier fade cases pass on each image. All 310 workspace checks pass, and the 130-path tooling archive round-trips. The collider comparison closes and 281 full historical comparisons remain. [Pan Arms validation](2026-11-22-upstream-365-panarms-contacts-validation.json)
 
+The eight-path Morfos and Epsilon replay at `544f0644c9` gives the arm factory and projectile effects native arguments. The Epsilon body creates guards and handles their formation and warp. The guards take a typed position when they receive a target. Five linkage labels follow the native owners or signatures.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The enemy ownership and Pan Arms contact probes pass on retail and both builds. All 310 workspace checks pass, and the 130-path tooling archive round-trips. The existing debug-text owner accounts for the historical changes from the fork's split source. 280 historical comparisons remain open. [Morfos and Epsilon validation](2026-11-22-upstream-365-enemy-parts-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
