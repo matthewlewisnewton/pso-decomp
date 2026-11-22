@@ -2,7 +2,15 @@
 
 Submit one larger, related source review at a time with an independent matching build. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
 
+Upstream’s source-quality flags are advisory. Keep flagged symbols when they are needed for the recovery or clearing the flag would cause substantial extra work or churn. Explain each retained flag in the PR description, with its symbol or address and the source evidence for keeping it.
+
+Use upstream’s established types and members when they already describe the data. Review the old and new fields when substituting a shared record. Keep known pointer types and fields unless source evidence establishes a correction. This includes checking for weaker field types, unknown-field names, and casts between the shared record and the actual callee type. Retail matching and the symbol-label benchmark do not check these source-level changes.
+
 ## Current upstream review
+
+The 12-path window layout replay `6c18d0b12a` uses typed item stars, HUD texture and viewport records, shared equipment cursor rendering, and explicit font-width inputs. Five linker labels follow the changed cursor signatures. Four are updated in the 130-path fork overlay. All 310 checks pass and both builds reproduce retail with all 1,147 original bytes accounted for. Runtime probes cover the open gate, rarity colors, minimum background, clipping, cursor frame wrapping and texture binding. Nine comparisons close, leaving 226. [Window layout and workspace validation](2026-11-22-upstream-370-window-layouts-validation.json)
+
+PR #371 was opened on upstream master `d8c0a969d2`. The published head `5cd8d9c8e9` matches the independently validated review and passed GitHub’s matching check. The PR is in draft while the typed polygon fields and their callers are audited. Fork main was `3342e42983` at submission. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Passing CI on the initial head](https://github.com/zeroz41/pso-decomp/actions/runs/45077563135/job/137378100605)
 
 The window, character selection and chat review at `5cd8d9c8e9` resolves all 39 address-based label flags. Upstream’s benchmark reports 2,497 fewer findings and no newly stale retention entries. The cumulative source `e6707bb890` keeps typed model animation and the existing sound declarations across three overlapping files. The review, cumulative source and fork workspace all reproduce retail and preserve the 90 original data ranges. The 130-path fork overlay rekeys 67 retained labels and passes 310 checks. There are 235 historical comparisons open. [Window symbol and workspace validation](2026-11-22-upstream-370-window-symbol-validation.json)
 

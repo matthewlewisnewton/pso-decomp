@@ -1,6 +1,6 @@
 # Recover native window, character selection, and chat interfaces
 
-The current local review is `great-merge/review/after-370/window-character-chat` at `5cd8d9c8e9`. Its single commit on upstream `d8c0a969d2` covers 377 paths. It reproduces retail with all 27,572 functions exact, 2,417 linked units and all 1,147 original data bytes accounted for. Title, status, and lifetime probes pass. [Current validation](2026-11-22-upstream-370-window-symbol-validation.json)
+Upstream PR #371 is in draft at `5cd8d9c8e9` from `matthewlewisnewton:recover-native-window-character-chat` to `master` while the typed polygon fields are audited. The local ref `great-merge/review/after-370/window-character-chat` points to the same commit. Its single commit on upstream `d8c0a969d2` covers 377 paths. It reproduces retail with all 27,572 functions exact, 2,417 linked units and all 1,147 original data bytes accounted for. Title, status, and lifetime probes pass. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Validation at the published head](2026-11-22-upstream-370-window-symbol-validation.json)
 
 Upstream’s `tools/source_quality.py` at `d8c0a969d2` finds **2,497 fewer findings** across 373 source files, with 3,082 removed and 585 added. Separate ownership diagnostics fall by 101. The first review on this base, `0f8ed70741`, had 39 flagged symbol labels and 41 newly stale retention entries. The revised review has zero in both categories. It changes 247 labels overall, including 79 additional mangled labels for members sharing the recovered class owners. [Upstream benchmark](https://github.com/zeroz41/pso-decomp/blob/d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571/tools/source_quality.py) · [Upstream CI workflow](https://github.com/zeroz41/pso-decomp/blob/d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571/.github/workflows/ci-comment.yml)
 
@@ -59,6 +59,8 @@ Recover the C++ interfaces shared by front-end scenes, lobby windows, and chat. 
 - Word Select, Symbol Chat, Short Mail, and Guild Card windows use native constructors and records. The Word Select table keeps its 168-byte extent and original address in a dedicated data unit.
 
 Start with the interfaces in `include/pso/ui/window/TWindowMakeTeam.h`, `include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h`, and `include/pso/ui/chat/ShortMail.h`, then follow the callers. Linker label changes follow native C++ owners, constructors, or typed function declarations.
+
+The live task-name strings establish `TAdChrSelPlayerGC`, `TWindowFukidasi` and `TWindowMenuInfomation`. The title scene, card follower, Word Select mode indicator, and gauge names describe roles established by their constructors and callers. Symbols for members of those classes use the recovered owner in their mangled names.
 
 ### Validation
 
