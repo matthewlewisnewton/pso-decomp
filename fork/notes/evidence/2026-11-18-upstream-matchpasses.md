@@ -134,6 +134,12 @@ Both builds reproduce retail and retain all 1,147 historical data bytes, 27,572 
 
 Eleven historical comparisons close, leaving 424 open. The Information Counter label helper still needs its receiver audited separately. [Lobby, readout and item preview validation](2026-11-21-window-readouts-replay.json)
 
+The 15-file lobby and Guild Card choice-window batch at `ca5a3f1e2d` puts entry selection, insertion, enable and disable, label editing, and menu flags on the shared choice-window base. The concrete selector owns its original scroll height and tween. The team window uses native menu, keyboard and text fields. The checkbox and Break In windows use their actual draw context and entry list. Ten linker labels change class ownership and retain the existing method spellings.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 exact linked units and all 1,147 historical data bytes. Both runtime suites and all 310 tool and host tests pass. Five historical comparisons close, leaving 419 open.
+
+The current fork checkpoint adds files only under `fork/`. It preserves the previous GitHub workflow verbatim under `fork/tooling/workflows/`. GitHub runs workflows from the top-level `.github/workflows/` directory, so the archived fork workflow is inactive. The upstream workflows and all other files outside `fork/` match the source checkpoint. The 130-path local tooling archive still reproduces the validated workspace. [Choice windows and fork layer validation](2026-11-21-native-choice-windows-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
