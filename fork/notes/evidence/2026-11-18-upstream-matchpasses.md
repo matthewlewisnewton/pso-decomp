@@ -32,6 +32,12 @@ The 197-path sound review at `91b3288a4d` shares the typed persistent and one-sh
 
 The 14-path actor component at `25d14badb4` gives Morfos, Gibbles, and Gyaranzo typed enemy placement inputs. Morfos uses a native factory and stat tables, its arm receives the actual parent and owner, and its projectile owns the floor query. The source keeps the current Morfos field and state names. Both runtime suites agree with retail. Keep the component with the broader actor review. [Sound, fork workspace, and enemy spawn validation](2026-11-22-upstream-367-sound-and-spawn-validation.json)
 
+The inventory and equipment checkpoint at `2967ef0c78` covers 70 paths above enemy spawns. It restores typed character growth and companion initialization, inventory sorting and export, saved equipment, item drops and telepipe placement, and native shop and judgment lists. The 41 linker labels follow changed types and class ownership. All six runtime suites agree between the retail and local executables.
+
+The save and quest component at `a3dc5d074e` adds 54 paths above inventory. It restores the memory-card selection and status records, the Hunter Guild callbacks and download windows, and signed quest file handles and native ARAM requests. Card, quest selection, cache, and ARAM probes agree between both executables. The quest selection probe uses a local alias for the shared free function at its retail address.
+
+The two components cover 119 distinct paths. Both builds reproduce retail with 27,572 exact functions and all 2,417 source units linked. Coverage checks pass and all 1,147 original data bytes remain accounted for. Actor stat storage has 32 overlapping paths to resolve against inventory. Asset loading and footprints have 32 overlaps with the current stack, and techniques have 37. Keep the validated components with their larger subsystem reviews. [Inventory, save, and quest validation](2026-11-22-upstream-367-inventory-saves-and-quests-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.

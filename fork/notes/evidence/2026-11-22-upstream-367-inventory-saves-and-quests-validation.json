@@ -1,0 +1,446 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "inventory_and_equipment": {
+    "head": "2967ef0c7868447949abf680dc6848fe1a28465f",
+    "base": "25d14badb4e43f13105492b4eec959ffa05e4349",
+    "tree": "5933b3df53339d42603a2e1849c11eab5c6daa07",
+    "paths": 69,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "original_data_ranges": 90,
+    "original_data_bytes": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "changed_linker_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8010834C",
+        "before": "__ct__15TItemEffBringerFv",
+        "after": "__ct__15TItemEffBringerFPvPC3VecPC3Vecf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80108A20",
+        "before": "TItemEffEquip__ct",
+        "after": "__ct__13TItemEffEquipFP7TObjectUslll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80108AFC",
+        "before": "create__13TItemEffEquipFPvPvPvPvPv",
+        "after": "create__13TItemEffEquipFP7TObjectUslll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80108C90",
+        "before": "__ct__13TUnk_8049F038FP7TObjectsl",
+        "after": "__ct__13TUnk_8049F038FP7TObjectUsl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B0A90",
+        "before": "check_switch_available__6TLobbyFPvi",
+        "after": "check_switch_available__10TObjPlayerFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B811C",
+        "before": "equip_saved_item_if_slot_empty__10TObjPlayerFPvPv",
+        "after": "equip_saved_item_if_slot_empty__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B81E8",
+        "before": "bind_saved_inventory_equipment__10TObjPlayerFPvPvi",
+        "after": "bind_saved_inventory_equipment__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItemi"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B9D50",
+        "before": "unequip_item__10TObjPlayerFiPv",
+        "after": "unequip_item__10TObjPlayerFP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B9EDC",
+        "before": "send_6x26_unequip_item__10TObjPlayerFPvUl",
+        "after": "send_6x26_unequip_item__10TObjPlayerFP10TObjPlayerUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B9F40",
+        "before": "equip_item_to_slot__10TObjPlayerFPvl",
+        "after": "equip_item_to_slot__10TObjPlayerFP5TIteml"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801C2060",
+        "before": "set_field4__10TObjPlayerFl",
+        "after": "set_field4__12Unk_801C2068Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D3554",
+        "before": "insert_item_node__10TObjPlayerFiiiii",
+        "after": "insert_item_node__10TObjPlayerFP13TUnk_804C445CP3VecP10TObjPlayerP9TItemDatal"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D3728",
+        "before": "start_placement_search__Flll",
+        "after": "start_placement_search__FP13TUnk_804C4450P3VecP8TObjBase"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4308",
+        "before": "export_inventory_entry__10TObjPlayerFiPv",
+        "after": "export_inventory_entry__5TItemFP17TPlyInventoryItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4678",
+        "before": "TObjPlayer__sub_801D4678",
+        "after": "__dt__13List_801D4744Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D46D4",
+        "before": "TObjPlayer__sub_801D46D4",
+        "after": "__ct__13List_801D4744Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4730",
+        "before": "TObjPlayer__sub_801D4730",
+        "after": "__ct__12Ent_801D4744Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4744",
+        "before": "sort_by_key__10TObjPlayerFv",
+        "after": "sort_by_key__13List_801D4744Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D47D8",
+        "before": "TObjPlayer__sub_801D47D8",
+        "after": "__as__12Ent_801D4744FR12Ent_801D4744"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4890",
+        "before": "run_and_get_result__8TPlyItemFl",
+        "after": "run_and_get_result__8TPlyItemFPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D48C4",
+        "before": "run_state_query__8TPlyItemFi",
+        "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D48F8",
+        "before": "update_inventory_item__8TPlyItemFlllll",
+        "after": "update_inventory_item__8TPlyItemFP10TObjPlayerlPfll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4A6C",
+        "before": "remove_equipped_item__8TPlyItemFlPv",
+        "after": "remove_equipped_item__8TPlyItemFP10TObjPlayerP9TItemList"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4AEC",
+        "before": "reduce_item_amount__6TLobbyFlll",
+        "after": "reduce_item_amount__8TPlyItemFP10TObjPlayerP9TItemListl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4BB0",
+        "before": "use_item__6TLobbyFlll",
+        "after": "use_item__8TPlyItemFP10TObjPlayerll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4C58",
+        "before": "set_globals_and_update__6TLobbyFii",
+        "after": "set_globals_and_update__8TPlyItemFP10TObjPlayeri"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4C84",
+        "before": "set_globals_and_notify__6TLobbyFP10TObjPlayerPv",
+        "after": "set_globals_and_notify__8TPlyItemFP10TObjPlayerP12Unk_801C2068"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4CB8",
+        "before": "count_matching_items__8TPlyItemFPv",
+        "after": "count_matching_items__8TPlyItemFPP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4CEC",
+        "before": "apply_shop_judgment__8TPlyItemFPv",
+        "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4D20",
+        "before": "set_flag_and_update__8TPlyItemFi",
+        "after": "set_flag_and_update__8TPlyItemFP10TObjPlayer"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4D48",
+        "before": "count_items_by_id__8TPlyItemFl",
+        "after": "count_items_by_id__8TPlyItemFPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4DE8",
+        "before": "find_first_inventory_entry__8TPlyItemFi",
+        "after": "find_first_inventory_entry__8TPlyItemFPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4E38",
+        "before": "destroy_subobjects__8TPlyItemFi",
+        "after": "destroy_subobjects__8TPlyItemFP10TObjPlayer"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D5004",
+        "before": "reduce_owner_matched_items__6TLobbyFv",
+        "after": "reduce_owner_matched_items__9TItemListFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D50E0",
+        "before": "reduce_child_item_amounts__6TLobbyFv",
+        "after": "reduce_child_item_amounts__9TItemListFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D57A8",
+        "before": "set_field_1c__9TItemListFl",
+        "after": "set_field_1c__9TItemListFP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D5814",
+        "before": "copy_item_data__9TItemListFv",
+        "after": "copy_item_data__12Unk_801C2068FP9TItemData"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D5ABC",
+        "before": "is_item_valid__9TItemListFl",
+        "after": "is_item_valid__9TItemListFP9TItemList"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D91F8",
+        "before": "get_current_state_field__10TObjPlayerFScl",
+        "after": "get_current_state_field__10TObjPlayerFll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D9250",
+        "before": "get_ply_level_table_row__FScl",
+        "after": "get_ply_level_table_row__Fll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802C3CD0",
+        "before": "send_command__10TNpcPlayerFlScllPSc",
+        "after": "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+      }
+    ],
+    "probes": {
+      "growth": {
+        "result": [
+          "Level lookup and growth caps, selective inventory copy, and companion initialization passed",
+          "Level lookup and growth caps, selective inventory copy, and companion initialization passed"
+        ],
+        "log_sha256": "db9c82fd62bf06b724675f8d6d062e9c362c52bbaa29e680f93287c28a84f7bd"
+      },
+      "companions": {
+        "result": [
+          "Companion archive and fallback records, buffer release, and sender arguments passed",
+          "Companion archive and fallback records, buffer release, and sender arguments passed"
+        ],
+        "log_sha256": "8eba93de04753d3f95372633956d9ae99811ac91149a441ea41636469acb0c2e"
+      },
+      "sort": {
+        "result": [
+          "PsoV3.dol: inventory ordering, stable ties, allocation release and record export passed.",
+          "psov3.dol: inventory ordering, stable ties, allocation release and record export passed."
+        ],
+        "log_sha256": "195a6d05ae93fee6a96e58c454e2b2be5f0ebeaf3d46225303e25f324b92f1bf"
+      },
+      "equipment": {
+        "result": [
+          "PsoV3.dol: equip and unequip frames, loadout iteration and effect lifecycle passed.",
+          "psov3.dol: equip and unequip frames, loadout iteration and effect lifecycle passed."
+        ],
+        "log_sha256": "2b062e70b7a183b4ff3985a83669d641505b72b0c733f91526cfb8408ba5485c"
+      },
+      "storage": {
+        "result": [
+          "PsoV3.dol: drop placement, occupied slots, telepipe search, inventory traversal and saved records passed.",
+          "psov3.dol: drop placement, occupied slots, telepipe search, inventory traversal and saved records passed."
+        ],
+        "log_sha256": "cae7a28e4262ffbb9fc0f5525d65287b4f81722ef8d148acc3bacc85cff39713"
+      },
+      "shop": {
+        "result": [
+          "PsoV3.dol: 12 shop cases passed across weapon, armor, mag and judgment lists.",
+          "psov3.dol: 12 shop cases passed across weapon, armor, mag and judgment lists."
+        ],
+        "log_sha256": "dcb48ea0c472d10f703983e3320271dd4dd15a3df0cca771a7cf7ecd5cdff1be"
+      }
+    }
+  },
+  "save_and_quest_loading": {
+    "head": "a3dc5d074e398689a6245e23c8d68624b84c75fb",
+    "base": "2967ef0c7868447949abf680dc6848fe1a28465f",
+    "tree": "41e0a399b2541eebf8e8ba3c75d630d9951f5614",
+    "paths": 54,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "original_data_ranges": 90,
+    "original_data_bytes": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "changed_linker_labels": [
+      {
+        "module": "psov3",
+        "address": "0x802C74AC",
+        "before": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+        "after": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802C7560",
+        "before": "init_slot__15TAdChrSelSlotGCFlPv",
+        "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032A0A4",
+        "before": "create__13TAdMcSelectGCFPv",
+        "after": "create__13TAdMcSelectGCFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803E8790",
+        "before": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+        "after": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803F0AB8",
+        "before": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+        "after": "aram_dma_read__22TQuestVmDownLoadServerFlPvl"
+      }
+    ],
+    "probes": {
+      "card-selection": {
+        "result": [
+          "PsoV3.dol: load status, slot geometry, warnings, card polling and file metadata passed.",
+          "psov3.dol: load status, slot geometry, warnings, card polling and file metadata passed."
+        ],
+        "log_sha256": "9465ab550e36a5e4ac0cf9c314375789dac6ba664ecfcb0e418efa25858c2625"
+      },
+      "quest-selection": {
+        "result": [
+          "PsoV3.dol: Challenge and online titles, complete entry traversal, callbacks and release passed.",
+          "psov3.dol: Challenge and online titles, complete entry traversal, callbacks and release passed."
+        ],
+        "log_sha256": "7110b73f6b79e5ec97e532b5db64b378f896a84a76e0f8aa57c10599a6399612"
+      },
+      "quest-cache": {
+        "result": [
+          "orig/GPOE8P/files/PsoV3.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+          "build/GPOE8P/psov3.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed"
+        ],
+        "log_sha256": "fae97a725ebe216900f2879cad3959f1b1fafa0ce0aad866f51a86eb8557182b"
+      },
+      "aram": {
+        "result": [
+          "orig/GPOE8P/files/PsoV3.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+          "build/GPOE8P/psov3.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed"
+        ],
+        "log_sha256": "3649ea0a7999bc429d7b905b3b60810de44b8e3b81326c46306f65c49843b715"
+      }
+    }
+  },
+  "local_commits": [
+    "5cc86457276baf2957f6c927bfe77858c86afbe4",
+    "2967ef0c7868447949abf680dc6848fe1a28465f",
+    "a3dc5d074e398689a6245e23c8d68624b84c75fb"
+  ],
+  "combined_paths_since_enemy_spawns": 119,
+  "inventory_replay": {
+    "donor_base": "d9fe83c3b98e0558870ffd19bc1b8a723a5fa128",
+    "inventory_donor": "925735eb2a98e51128e16220fa23c18bfc26be65",
+    "shop_donor": "51dcfa48517072596f00ff88b6705642a0caf4dc",
+    "conflicting_paths_resolved": 15,
+    "resolution": [
+      "Keep the current battle, sound and enemy attachment interfaces around the typed inventory operations.",
+      "Use the shared entity-ID declaration and the native array allocation callback signature.",
+      "Carry the selected player’s inventory owner through the shop lists."
+    ]
+  },
+  "save_and_quest_replay": {
+    "donor_base": "0883eb0aa9b0371bdbb18c429af0bf98025993ba",
+    "saves_and_quests_donor": "ba670059d0f5e8851c6cb0b2f3d7d0e4e94bc663",
+    "conflicting_paths_resolved": 3,
+    "resolution": "Use the current system memory and sound headers with the shared card file record.",
+    "probe_symbol_alias": "safe_free__23TAdSinglePlyChrSelectGCFPv = .text:0x8007EBB4; // type:function size:0x28",
+    "probe_symbol_target": "safe_free__FPv at 0x8007EBB4"
+  },
+  "remaining_replay_previews": {
+    "actor-stats": {
+      "base": "2967ef0c7868447949abf680dc6848fe1a28465f",
+      "paths": 58,
+      "conflicting_paths": 32
+    },
+    "asset-load-and-footprints": {
+      "base": "a3dc5d074e398689a6245e23c8d68624b84c75fb",
+      "paths": 119,
+      "conflicting_paths": 32
+    },
+    "techniques": {
+      "base": "a3dc5d074e398689a6245e23c8d68624b84c75fb",
+      "paths": 113,
+      "conflicting_paths": 37
+    }
+  },
+  "review_attribution": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>"
+}
