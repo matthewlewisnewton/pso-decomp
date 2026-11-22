@@ -188,6 +188,10 @@ The three-path network initialization replay at `71531f4dfd` uses native alarm, 
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probe checks seven cases per image, including missing pools, all 64 alarm queue arguments and each initialization failure. The 130-path tooling archive round-trips and all 310 workspace checks pass. The network runtime and transport comparisons close, leaving 307 open. [Network runtime slot validation](2026-11-22-upstream-365-network-slots-validation.json)
 
+The four-path protocol list replay at `74571468c8` restores both native entry assignment operators and keeps their existing linker labels. The room, game, text and directory packet receivers assign the native entries. The lobby menu handlers use the live protocol list, count and tags. The shared packet-specialization trial remains open because typed arrays in the copy constructors emit extra default construction.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 15-case probe covers direct assignment, self-assignment, legacy room limits, and native room, game, text and directory receives. The 130-path tooling archive round-trips and all 310 workspace checks pass. One historical comparison closes and another gains scoped evidence, leaving 306 open. [Protocol list validation](2026-11-22-upstream-365-protocol-lists-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
