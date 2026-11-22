@@ -230,6 +230,10 @@ The 27-file material fade and Flower replay at `15c165cf89` moves seven misplace
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 23 fade and Flower cases and 23 earlier Gyaranzo and Fly Nest cases pass per image. All 310 workspace checks pass, and the 130-path tooling archive round-trips byte for byte. The Flower callback comparison closes, keeping 282 full historical comparisons open. [Material fade validation](2026-11-22-upstream-365-material-fade-validation.json)
 
+The seven-path Pan Arms replay at `a19b741e05` restores the native body warp, ground path, model capture, and separated-half detour and state methods. The attack collider uses the shared direct-hit payload and knockback methods. Player and enemy contact caches retain their original offsets. Radius and segment scans use the same destinations and masks. Fourteen function labels follow native owners or the corrected attack receiver type.
+
+Both builds reproduce retail with 27,572 matched functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 28 movement and contact cases and 23 earlier fade cases pass on each image. All 310 workspace checks pass, and the 130-path tooling archive round-trips. The collider comparison closes and 281 full historical comparisons remain. [Pan Arms validation](2026-11-22-upstream-365-panarms-contacts-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
