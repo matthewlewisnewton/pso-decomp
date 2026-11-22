@@ -40,6 +40,10 @@ The footprint component at `a69aba3b19` carries the native texture pointer throu
 
 The three components cover 119 distinct paths. All three builds reproduce retail with 27,572 exact functions and all 2,417 source units linked. Coverage checks pass and all 1,147 original data bytes remain accounted for. Actor stat storage has 32 overlapping paths to resolve against inventory. Asset loading has 32 overlaps with the footprint checkpoint, and techniques have 37 with the save and quest checkpoint. Keep the validated components with their larger subsystem reviews. [Inventory, save, and quest validation](2026-11-22-upstream-367-inventory-saves-and-quests-validation.json)
 
+The actor-stat replay at `7532966bcf` applies the shared base stat, attack and resistance records across 49 paths. It preserves the upstream combat field names and follows the new pointer types through equipment, combat, shops, trade, quests and footprints. The two linker labels follow the typed motion and combat parameters. The cumulative build matches retail, and both executables pass the actor-stat runtime probe.
+
+The complete inventory and equipment review is `61a66013a1` on the enemy-spawn checkpoint. Its three commits cover 110 paths across character growth, companion initialization, equipment, inventory storage and traversal, shop lists, and the shared actor stats. The same stat patch applies directly to that review base. The review builds byte for byte and passes seven runtime suites. All 27,572 functions are exact, all 2,417 units link, and all 1,147 original data bytes are accounted for. [Inventory review and actor-stat validation](2026-11-22-upstream-367-inventory-actor-stats-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
