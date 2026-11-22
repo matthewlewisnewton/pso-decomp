@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+Upstream master `8441b1b4fe` updates the file rankings in its source-quality report. All 34 local source commits replay as `00b762454b` with attribution, timestamps and messages preserved. The independent 358-path window, character selection and chat review replays as `e800f61553`. Only the upstream report tool changes between the old and replayed trees. The cumulative source and materialized fork reproduce retail with all 27,572 functions exact, all 1,147 starting data bytes accounted for, and all 310 workspace checks passing. The tooling archive is byte-identical. There are 256 historical entries left. [Current upstream replay validation](2026-11-22-upstream-8441-replay-validation.json)
+
+
 Upstream PR #369 advanced master to `1698caaa19`. It moves the lock-on cursor and nearest-target accessors to their native owners and adds source-quality reporting to CI. The 27 local commits through the tunnel effects replay apply cleanly as `88edb68c5c` with their messages and attribution preserved. Relative to the previous replay, the tree changes only the 13 upstream paths and adopts its cursor symbols. The replay reproduces retail with all 27,572 functions exact and all 2,417 source units linked. [Upstream PR #369](https://github.com/zeroz41/pso-decomp/pull/369)
 
 The shared breakup-model replay at `1082b180a6` covers 30 paths. Vol Opt and its enemy callers pass the native model, texture and position pointers and share one `TBoss3VoloptBreakupParams` layout. The model constructor reads the real node records. The original copy order needs one scoped scheduling pragma. Two linker labels follow the owner and signature changes. The upstream quality tool records 56 findings removed and five added.
