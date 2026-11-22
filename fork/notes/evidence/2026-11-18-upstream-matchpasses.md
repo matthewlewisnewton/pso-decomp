@@ -192,6 +192,10 @@ The four-path protocol list replay at `74571468c8` restores both native entry as
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 15-case probe covers direct assignment, self-assignment, legacy room limits, and native room, game, text and directory receives. The 130-path tooling archive round-trips and all 310 workspace checks pass. One historical comparison closes and another gains scoped evidence, leaving 306 open. [Protocol list validation](2026-11-22-upstream-365-protocol-lists-validation.json)
 
+The 17-path receive and DHCP replay at `abc227b796` shares the native record prefix and callback across raw IPv4, raw IPv6 and UDP. The three DHCP builders use the original BOOTP fields, and the lobby caller shares the three borrowed word outputs. The UDP socket callback keeps its function name. Its argument type changes one linker label in both keep-lists.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 15 linked cases cover receive tags, two-phase dispatch and length clamping, DHCP wire builders, reply filtering and typed outputs. The 130-path tooling archive round-trips and all 310 workspace checks pass. Three historical comparisons close and two gain scoped evidence, leaving 303 open. [Receive and DHCP validation](2026-11-22-upstream-365-typed-receive-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
