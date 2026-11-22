@@ -1,0 +1,252 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "sound_base": "630ba942768fd37899c560ef96dc43a9d1a02a8a",
+  "sound_head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+  "enemy_component_head": "25d14badb4e43f13105492b4eec959ffa05e4349",
+  "sound_paths": 197,
+  "enemy_component_paths": 14,
+  "validation": {
+    "sound": {
+      "head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2417,
+      "coverage_losses": {
+        "regressions": [],
+        "data_regressions": [],
+        "linked_functions_lost": [],
+        "linked_data_lost": [],
+        "data_coverage_lost": [],
+        "padding_coverage_lost": []
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80226534",
+          "before": "check_trigger_flag__15TOTrapAncient01Fll",
+          "after": "check_trigger_flag__15TOTrapAncient01FPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227D5C",
+          "before": "normalize_sound_request__FUlllll",
+          "after": "normalize_sound_request__FUlPCvPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023F944",
+          "before": "alloc_looping_sound_slot__FUllPCvll",
+          "after": "alloc_looping_sound_slot__FUlPCvPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023FA8C",
+          "before": "alloc_one_shot_sound_slot__FUlPCvll",
+          "after": "alloc_one_shot_sound_slot__FUlPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80270860",
+          "before": "apply_balance__19TWindowSoundBalanceFPv",
+          "after": "apply_balance__19TWindowSoundBalanceFP17WindowDrawContext"
+        }
+      ],
+      "check_sha256": "d1b775455ed3d0c343ff4539f5c8ef4e56ff340eabee474dbba695a35d8ca8c4",
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "report_sha256": "5a91ecc893d6393558526d3977ef012d828ebcb22704d0ad5e08b74e7903e191"
+    },
+    "enemy": {
+      "head": "25d14badb4e43f13105492b4eec959ffa05e4349",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2417,
+      "coverage_losses": {
+        "regressions": [],
+        "data_regressions": [],
+        "linked_functions_lost": [],
+        "linked_data_lost": [],
+        "data_coverage_lost": [],
+        "padding_coverage_lost": []
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800D3ED8",
+          "before": "__ct__15TObjEneGyaranzoFP7TObjectPv",
+          "after": "__ct__15TObjEneGyaranzoFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802DBA18",
+          "before": "__ct__14TObjEneGibblesFP7TObjectPv",
+          "after": "__ct__14TObjEneGibblesFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80334F88",
+          "before": "__ct__13TObjEneMorfosFP7TObjectPv",
+          "after": "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80335060",
+          "before": "create__13TObjEneMorfosFv",
+          "after": "create__13TObjEneMorfosFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80335354",
+          "before": "__ct__16TObjEneMorfosArmFP7TObjectPv",
+          "after": "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80335430",
+          "before": "create__16TObjEneMorfosArmFPvPv",
+          "after": "create__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803375F0",
+          "before": "snap_to_ground__13TObjEneMorfosFll",
+          "after": "snap_to_ground__13TUnk_804EF130FP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337824",
+          "before": "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "after": "__ct__13TUnk_804EF130FPC3VeclP9TObjChara"
+        }
+      ],
+      "check_sha256": "f7f37d3d74f9fe55fc01a01a58922f392494cffb3a25827078cd94586104d1b2",
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "report_sha256": "0a6dfc5656be1caa936770180f0ad41df1da4fddeacfafcc8803f7973529be0d"
+    },
+    "workspace": {
+      "head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2417,
+      "coverage_losses": {
+        "regressions": [],
+        "data_regressions": [],
+        "linked_functions_lost": [],
+        "linked_data_lost": [],
+        "data_coverage_lost": [],
+        "padding_coverage_lost": []
+      },
+      "linker_label_changes": [],
+      "check_sha256": "3736861716902f640eba40abe737d0e9b32271a30a348403144a2566c25fb913"
+    }
+  },
+  "runtime": {
+    "persistent": {
+      "head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+      "outcome": "persistent slot checks and four dispatch routines on all 36 floors passed",
+      "images": [
+        "retail",
+        "source"
+      ],
+      "log_sha256": "e8dba2813bad3fd73c34002b1e809616ea4dfe79d882de9006e296c65d257733"
+    },
+    "voice": {
+      "head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+      "outcome": "voice reuse, distinct identity and full-pool rejection passed",
+      "images": [
+        "retail",
+        "source"
+      ],
+      "log_sha256": "5d4dea6be298f878fd5732f3d6ccf7f3f7236ac9a85eb422a76749c3bbe36658"
+    },
+    "floor": {
+      "head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+      "outcome": "recent one-shot reuse, new position, and full-pool rejection passed.",
+      "images": [
+        "retail",
+        "source"
+      ],
+      "log_sha256": "02ebc3c606a32fe1e5fb89a2987d85b00b33abd1e059289159d65ee02eb71fc2"
+    },
+    "one-shot": {
+      "head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+      "outcome": "8 one-shot sound cases passed",
+      "images": [
+        "retail",
+        "source"
+      ],
+      "log_sha256": "876e1bcf1cafe73ec02cd415de772d03cd95f83e42fcd06364f8bc0bbaf8be18"
+    },
+    "audio-owner": {
+      "head": "91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8",
+      "outcome": "lobby gain, slot pitch, sound balance draw and text calls passed",
+      "images": [
+        "retail",
+        "source"
+      ],
+      "log_sha256": "aec7c652ea3b3a56bb91696b478c8f58e1d8e320f5b3316131a37f1cea33e36f"
+    },
+    "enemy-spawns": {
+      "head": "25d14badb4e43f13105492b4eec959ffa05e4349",
+      "outcome": "Morfos node capture and floor hit, and 6 Morfos, arm and Gibbles factory cases passed.",
+      "images": [
+        "retail",
+        "source"
+      ],
+      "log_sha256": "75750e623cafab8f640ab3add18a8d5d00c5665cfb7c8d92fcb760f061c41145"
+    },
+    "gyaranzo-spawn": {
+      "head": "25d14badb4e43f13105492b4eec959ffa05e4349",
+      "outcome": "23 Gyaranzo and Fly Nest cases passed.",
+      "images": [
+        "retail",
+        "source"
+      ],
+      "log_sha256": "14800ce7320859535d5eaba7452197f339f579ddf36524704528b91b03537521"
+    }
+  },
+  "sound_direct_calls": {
+    "0x80226578": {
+      "entry": "play_persistent_sound",
+      "count": 195,
+      "sha256": "52b50721738810914b99b7e79f4a75ed0d5349744d0d16c257e553abad5541ee"
+    },
+    "0x8022675C": {
+      "entry": "play_sound_effect",
+      "count": 1198,
+      "sha256": "9bb937d3ee072fddafdbd87e87e468ae612a4f3e5eb7947a21283532b6ead432"
+    }
+  },
+  "probe_only_alias": "init_sound_voice__17SoundRequestVoiceFllll = .text:0x80242058; // type:function size:0xF0",
+  "workspace_parent": "be02daf8dd13af0c1d175ececa4aa82cd1963ea8",
+  "workspace_tests": {
+    "fork": {
+      "count": 11,
+      "log_sha256": "cd808b52d951deccd7743c19048b97bed3f77fd0ffb60751408851fd3223c8fb"
+    },
+    "tool": {
+      "count": 294,
+      "log_sha256": "0ed36b7f561368826da126988eba10197e9bc3d41f893023803a6f21ed16d72c"
+    },
+    "host": {
+      "count": 5,
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "workspace_patch_sha256": "6f1719e1ae4f11412bc0fd73c31542326c59161c1e9178a382ea9585b9826ba8",
+  "workspace_tree": "f6e360004df9035acde568a1396003c1844cc062",
+  "overlay_paths": 130,
+  "retention_labels": {
+    "check_trigger_flag__15TOTrapAncient01Fll": "check_trigger_flag__15TOTrapAncient01FPC3Vecl",
+    "apply_balance__19TWindowSoundBalanceFPv": "apply_balance__19TWindowSoundBalanceFP17WindowDrawContext"
+  }
+}

@@ -1,13 +1,13 @@
 # Recover native positional and one-shot sound interfaces
 
-The local review `great-merge/review/after-366/positional-and-one-shot-sound` is at `a94738117b5df43522088adc726ffb98bd82644f` above the saves, quests and asset-loading review `773c658eccd69066f6592db2bc4cfc6add2fbb02`. Its four commits touch 166 paths. [Validation and component records](2026-11-22-upstream-366-sound-review-validation.json)
+The local review `great-merge/review/after-367/positional-and-one-shot-sound` is at `91b3288a4dc2a0b7f510f7799f2bd13627c9b8b8` above the actor foundation `630ba942768fd37899c560ef96dc43a9d1a02a8a`. The source change spans 197 paths. [Validation](2026-11-22-upstream-367-sound-and-spawn-validation.json)
 
 ## Proposed PR description
 
-Recover the sound request contracts shared by the lobby mixer, sound slots, actor effects and option window.
+Recover the native sound request interfaces shared by the mixer, voice slots, actor effects, and options window.
 
-- Persistent sound requests keep the source identity and native position while the mixer updates or reuses a slot. The floor-dependent dispatch passes through the original return value.
-- One-shot callers share the declaration and pass their actual position. Olga Flow uses its native position in five calls.
-- Sound balance uses the shared window draw context and passes the actual label to both text-width calls.
+- Persistent sounds retain the actual source identity and position while the mixer allocates and reuses slots. Floor-dependent dispatch passes through the original result.
+- One-shot callers use one shared declaration and pass the original position.
+- Sound balance draws with the shared window context and passes the actual labels to text measurement.
 
-The three linker label changes follow the corrected signatures. All 27,572 functions match retail, 2,447 units link from source, and all 1,147 original data bytes are accounted for. The probes cover four dispatch routines on all 36 floors, voice allocation and reuse, eight one-shot cases, and sound-balance drawing and text. The 195 direct persistent-sound calls and 1,198 direct one-shot calls retain their addresses.
+The five linker-label changes follow the corrected signatures. The GPOE8P binary matches retail and `tools/check_pr.py` reports zero coverage or linkage losses. Runtime checks cover all 36 floor choices, slot allocation and reuse, lobby gain, pitch, and sound balance. All 195 persistent and 1,198 one-shot call sites retain the same compiled addresses.

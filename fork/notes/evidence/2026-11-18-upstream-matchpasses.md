@@ -28,6 +28,10 @@ The local actor foundation at `630ba94276` combines six commits across 126 paths
 
 The source matches retail with 27,572 exact functions, 2,417 linked units, and all 1,147 original data bytes accounted for. Coverage checks pass, and retail and local probes agree on battle loads, actor initialization, both tentacles, Photon Blast and ground contact. The 130-path fork archive round-trips with 12 updated retention labels and passes all 310 workspace checks. The broader actor review still needs the remaining native boss and enemy owners. The replay map records their overlap with the current stack and identifies Olga Flow paths for its dedicated group. [Actor foundation and fork workspace validation](2026-11-22-upstream-367-actor-foundation-validation.json)
 
+The 197-path sound review at `91b3288a4d` shares the typed persistent and one-shot sound interfaces, keeps voice identity and positions typed, and passes the native draw context and labels through sound balance. It preserves all 195 persistent and 1,198 one-shot call addresses. The source and materialized fork reproduce retail. Five sound probe suites pass, and the reconstructed 130-path fork archive passes all 310 workspace checks after two retention label updates.
+
+The 14-path actor component at `25d14badb4` gives Morfos, Gibbles, and Gyaranzo typed enemy placement inputs. Morfos uses a native factory and stat tables, its arm receives the actual parent and owner, and its projectile owns the floor query. The source keeps the current Morfos field and state names. Both runtime suites agree with retail. Keep the component with the broader actor review. [Sound, fork workspace, and enemy spawn validation](2026-11-22-upstream-367-sound-and-spawn-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
