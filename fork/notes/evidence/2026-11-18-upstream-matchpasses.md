@@ -44,6 +44,12 @@ The actor-stat replay at `7532966bcf` applies the shared base stat, attack and r
 
 The complete inventory and equipment review is `61a66013a1` on the enemy-spawn checkpoint. Its three commits cover 110 paths across character growth, companion initialization, equipment, inventory storage and traversal, shop lists, and the shared actor stats. The same stat patch applies directly to that review base. The review builds byte for byte and passes seven runtime suites. All 27,572 functions are exact, all 2,417 units link, and all 1,147 original data bytes are accounted for. [Inventory review and actor-stat validation](2026-11-22-upstream-367-inventory-actor-stats-validation.json)
 
+The asset-loading replay at `34ad1fb875` shares the original file-request layout, including the completion pointer, eight-word callback context and request links. GVM loading takes a filename and returns the native texture list. Both BML construction paths use the existing resource record with typed archive entries and callbacks. The replay spans 121 paths and preserves the current memory helpers and enemy and boss resource owners.
+
+The combined save, quest and asset-loading review at `6077e29d1c` covers 174 paths directly above the inventory and equipment review. Its two commits reproduce the validated cumulative source tree. Both coverage comparisons pass with 27,572 exact functions, all 2,417 units linked and all 1,147 original data bytes accounted for. All seven runtime suites agree with retail. [Save, quest and asset validation](2026-11-22-upstream-367-saves-quests-and-assets-validation.json)
+
+The fork workspace on the asset checkpoint preserves the 130-path tooling overlay and updates 26 of its 26,963 retained linker labels. The materialized fork reproduces retail and passes all 310 workspace and host checks. The archive lives under `fork/` with the documentation and its materialization tools.
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
