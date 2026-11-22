@@ -1,0 +1,997 @@
+{
+  "source": "b8b528134c9bb02114e776ed83607accb5e43746",
+  "previous_source": "0eda118d1d33aca37fba31a5bd0f951465df1c95",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/gibbles/TObjEneGibbles.h",
+    "include/pso/enemy/morfos/TObjEneMorfos.h",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp"
+  ],
+  "combined_paths_from_upstream": 1318,
+  "validation": {
+    "source": {
+      "baseline": "0eda118d1d33aca37fba31a5bd0f951465df1c95",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x802D7ED4",
+          "before": "render_and_get_joint_pos__14TObjEneGibblesFPvii",
+          "after": "render_and_get_joint_pos__14TObjEneGibblesFP3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803326B4",
+          "before": "TObjEneMorfosArm__sub_803326B4",
+          "after": "get_arm_position__13TObjEneMorfosFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803326BC",
+          "before": "TObjEneMorfosArm__sub_803326BC",
+          "after": "get_heading__13TObjEneMorfosFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80332DBC",
+          "before": "TObjEneMorfos__sub_80332DBC",
+          "after": "sub_80332DBC__13TObjEneMorfosFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80332FD4",
+          "before": "TObjEneMorfos__sub_80332FD4",
+          "after": "sub_80332FD4__13TObjEneMorfosFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80333690",
+          "before": "TObjEneMorfos__sub_80333690",
+          "after": "sub_80333690__13TObjEneMorfosFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80333AD0",
+          "before": "TObjEneMorfos__sub_80333AD0",
+          "after": "sub_80333AD0__13TObjEneMorfosFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80333E48",
+          "before": "TObjEneMorfos__sub_80333E48",
+          "after": "sub_80333E48__13TObjEneMorfosFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80334030",
+          "before": "TObjEneMorfos__sub_80334030",
+          "after": "sub_80334030__13TObjEneMorfosFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803342B8",
+          "before": "TObjEneMorfos__sub_803342B8",
+          "after": "sub_803342B8__13TObjEneMorfosFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80334704",
+          "before": "TObjEneMorfos__sub_80334704",
+          "after": "get_parameters__13TObjEneMorfosFv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "7d6929fc815fe664bff2c31af2eabe65fb01e261c59f4d34f159ef933a701c9b",
+      "report_sha256": "7a906172792aa68311288004ec2b5a6cd7bfb93dd30ea2c02349826c7371e1d7"
+    },
+    "layer": {
+      "baseline": "b8b528134c9bb02114e776ed83607accb5e43746",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "7a906172792aa68311288004ec2b5a6cd7bfb93dd30ea2c02349826c7371e1d7"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "79f78db0d455d2692ef4f81567304ef63ac9ca79eea4e23bc310c852280e13df"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "48dd934a42985b7591151f8d544c3afc4f183f334cd7254fafe3539a990e2fa3"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "exact_providers_at_historical_addresses": {
+    "Gibbles": [
+      {
+        "historical": "set_min_clamped_entry_value__14TObjEneGibblesFlf",
+        "current": "set_min_clamped_entry_value__14TObjEneGibblesFllf",
+        "address": "0x802D7A2C",
+        "size": 40,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "fn_802D7A54__14TObjEneGibblesFv",
+        "current": "TObjEneGibbles__sub_802D7A54",
+        "address": "0x802D7A54",
+        "size": 120,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "spawn_ground_impact_effects__14TObjEneGibblesFPC3Vecf",
+        "current": "spawn_ground_impact_effects__14TObjEneGibblesFPC3Vecf",
+        "address": "0x802D7ACC",
+        "size": 276,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "spawn_ground_contact_effect__14TObjEneGibblesFv",
+        "current": "spawn_ground_contact_effect__14TObjEneGibblesFv",
+        "address": "0x802D7BE0",
+        "size": 152,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "play_distance_sound__14TObjEneGibblesFv",
+        "current": "play_distance_sound__14TObjEneGibblesFv",
+        "address": "0x802D7C78",
+        "size": 308,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "play_ground_contact_sound__14TObjEneGibblesFv",
+        "current": "play_ground_contact_sound__14TObjEneGibblesFv",
+        "address": "0x802D7DAC",
+        "size": 144,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "fn_802D7E3C__14TObjEneGibblesFv",
+        "current": "TObjEneGibbles__sub_802D7E3C",
+        "address": "0x802D7E3C",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_shadow_height__14TObjEneGibblesFv",
+        "current": "update_shadow_height__14TObjEneGibblesFv",
+        "address": "0x802D7E40",
+        "size": 24,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_position__14TObjEneGibblesFv",
+        "current": "update_position__14TObjEneGibblesFv",
+        "address": "0x802D7E58",
+        "size": 124,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "render_and_get_joint_pos__14TObjEneGibblesFP3Vecl",
+        "current": "render_and_get_joint_pos__14TObjEneGibblesFP3Vecl",
+        "address": "0x802D7ED4",
+        "size": 192,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "resolve_sound_id__14TObjEneGibblesFUl",
+        "current": "resolve_sound_id__14TObjEneGibblesFUl",
+        "address": "0x802D7F94",
+        "size": 160,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "fn_802D8034__14TObjEneGibblesFv",
+        "current": "TObjEneGibbles__sub_802D8034",
+        "address": "0x802D8034",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "sync_state__14TObjEneGibblesFv",
+        "current": "sync_state__14TObjEneGibblesFv",
+        "address": "0x802D8038",
+        "size": 116,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_move_state__14TObjEneGibblesFv",
+        "current": "update_move_state__14TObjEneGibblesFv",
+        "address": "0x802D80AC",
+        "size": 148,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "sub_802D8140__14TObjEneGibblesFv",
+        "current": "sub_802D8140__14TObjEneGibblesFv",
+        "address": "0x802D8140",
+        "size": 308,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "vfunc_63__14TObjEneGibblesFv",
+        "current": "run_death_reaction__14TObjEneGibblesFv",
+        "address": "0x802D8274",
+        "size": 100,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_action_state__14TObjEneGibblesFv",
+        "current": "update_action_state__14TObjEneGibblesFv",
+        "address": "0x802D82D8",
+        "size": 396,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "vfunc_62__14TObjEneGibblesFv",
+        "current": "run_hit_reaction__14TObjEneGibblesFv",
+        "address": "0x802D8464",
+        "size": 284,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "fn_802D8580__14TObjEneGibblesFv",
+        "current": "sub_802D8580__14TObjEneGibblesFv",
+        "address": "0x802D8580",
+        "size": 600,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "vfunc_61__14TObjEneGibblesFv",
+        "current": "run_miss_reaction__14TObjEneGibblesFv",
+        "address": "0x802D87D8",
+        "size": 80,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "test_flag_256__14TObjEneGibblesFv",
+        "current": "test_flag_256__14TObjEneGibblesFv",
+        "address": "0x802D8828",
+        "size": 348,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "sub_802D8984__14TObjEneGibblesFv",
+        "current": "sub_802D8984__14TObjEneGibblesFv",
+        "address": "0x802D8984",
+        "size": 1288,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "fn_802D8E8C__14TObjEneGibblesFv",
+        "current": "TObjEneGibbles__sub_802D8E8C",
+        "address": "0x802D8E8C",
+        "size": 644,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "fn_802D9110__14TObjEneGibblesFv",
+        "current": "TObjEneGibbles__sub_802D9110",
+        "address": "0x802D9110",
+        "size": 1332,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "attack_from_joint_31__14TObjEneGibblesFlf",
+        "current": "TObjEneGibbles__sub_802D9644",
+        "address": "0x802D9644",
+        "size": 480,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "attack_from_joint_53__14TObjEneGibblesFlf",
+        "current": "TObjEneGibbles__sub_802D9824",
+        "address": "0x802D9824",
+        "size": 480,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "apply_landing_area_attack__14TObjEneGibblesFv",
+        "current": "TObjEneGibbles__sub_802D9A04",
+        "address": "0x802D9A04",
+        "size": 380,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "slam_damage_players__14TObjEneGibblesFl",
+        "current": "slam_damage_players__14TObjEneGibblesFl",
+        "address": "0x802D9B80",
+        "size": 484,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "vfunc_60__14TObjEneGibblesFv",
+        "current": "run_attack_action__14TObjEneGibblesFv",
+        "address": "0x802D9D64",
+        "size": 336,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "is_target_in_attack_range__14TObjEneGibblesFv",
+        "current": "is_target_in_attack_range__14TObjEneGibblesFv",
+        "address": "0x802D9EB4",
+        "size": 520,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "sub_802DA0BC__14TObjEneGibblesFv",
+        "current": "sub_802DA0BC__14TObjEneGibblesFv",
+        "address": "0x802DA0BC",
+        "size": 728,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_death_sequence__14TObjEneGibblesFv",
+        "current": "update_death_sequence__14TObjEneGibblesFv",
+        "address": "0x802DA394",
+        "size": 484,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_spawn_state__14TObjEneGibblesFv",
+        "current": "update_spawn_state__14TObjEneGibblesFv",
+        "address": "0x802DA578",
+        "size": 212,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "vfunc_59__14TObjEneGibblesFv",
+        "current": "run_move_action__14TObjEneGibblesFv",
+        "address": "0x802DA64C",
+        "size": 344,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "sub_802DA7A4__14TObjEneGibblesFv",
+        "current": "sub_802DA7A4__14TObjEneGibblesFv",
+        "address": "0x802DA7A4",
+        "size": 456,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_wander__14TObjEneGibblesFv",
+        "current": "update_wander__14TObjEneGibblesFv",
+        "address": "0x802DA96C",
+        "size": 252,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "init_state__14TObjEneGibblesFv",
+        "current": "init_state__14TObjEneGibblesFv",
+        "address": "0x802DAA68",
+        "size": 96,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "vfunc_58__14TObjEneGibblesFv",
+        "current": "run_idle_action__14TObjEneGibblesFv",
+        "address": "0x802DAAC8",
+        "size": 264,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_movement_status__14TObjEneGibblesFv",
+        "current": "update_movement_status__14TObjEneGibblesFv",
+        "address": "0x802DABD0",
+        "size": 192,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "update_action_hold_status__14TObjEneGibblesFv",
+        "current": "update_action_hold_status__14TObjEneGibblesFv",
+        "address": "0x802DAC90",
+        "size": 192,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "vfunc_28__14TObjEneGibblesFv",
+        "current": "update_target__14TObjEneGibblesFPv",
+        "address": "0x802DAD50",
+        "size": 932,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "turn_toward_target__14TObjEneGibblesFv",
+        "current": "turn_toward_target__14TObjEneGibblesFv",
+        "address": "0x802DB0F4",
+        "size": 124,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "clamp_angle__14TObjEneGibblesFl",
+        "current": "clamp_angle__14TObjEneGibblesFl",
+        "address": "0x802DB170",
+        "size": 80,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "gibbles_render_node_callback__FP10NJS_OBJECT",
+        "current": "gibbles_render_node_callback__FP10NJS_OBJECT",
+        "address": "0x802DB1C0",
+        "size": 64,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "render__14TObjEneGibblesFv",
+        "current": "render__14TObjEneGibblesFv",
+        "address": "0x802DB200",
+        "size": 780,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "run_task__14TObjEneGibblesFv",
+        "current": "run_task__14TObjEneGibblesFv",
+        "address": "0x802DB50C",
+        "size": 356,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "init_params__14TObjEneGibblesFv",
+        "current": "init_params__14TObjEneGibblesFv",
+        "address": "0x802DB670",
+        "size": 152,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "create__14TObjEneGibblesFPv",
+        "current": "create__14TObjEneGibblesFPv",
+        "address": "0x802DB708",
+        "size": 104,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "free_static__14TObjEneGibblesFv",
+        "current": "free_static__14TObjEneGibblesFv",
+        "address": "0x802DB770",
+        "size": 80,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "load_resources__14TObjEneGibblesFv",
+        "current": "load_resources__14TObjEneGibblesFv",
+        "address": "0x802DB7C0",
+        "size": 352,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "__dt__14TObjEneGibblesFv",
+        "current": "TObjEneGibbles__sub_802DB920",
+        "address": "0x802DB920",
+        "size": 248,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "__ct__14TObjEneGibblesFP7TObjectPv",
+        "current": "TObjEneGibbles__ct",
+        "address": "0x802DBA18",
+        "size": 628,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "get_center__14TObjEneGibblesFv",
+        "current": "get_center__14TObjEneGibblesFv",
+        "address": "0x802DBC8C",
+        "size": 8,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      },
+      {
+        "historical": "sub_802DBC94__14TObjEneGibblesFl",
+        "current": "sub_802DBC94__14TObjEneGibblesFl",
+        "address": "0x802DBC94",
+        "size": 48,
+        "provider": "psov3/pso/enemy/gibbles/TObjEneGibbles"
+      }
+    ],
+    "Morfos": [
+      {
+        "historical": "render_demo__13TObjEneMorfosFv",
+        "current": "render_demo__13TObjEneMorfosFv",
+        "address": "0x803323D8",
+        "size": 384,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "update_demo__13TObjEneMorfosFv",
+        "current": "run_demo_task__13TObjEneMorfosFv",
+        "address": "0x80332558",
+        "size": 60,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "update_ground_probe__13TObjEneMorfosFv",
+        "current": "update_ground_probe__13TObjEneMorfosFv",
+        "address": "0x80332594",
+        "size": 168,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "crosses_heading__13TObjEneMorfosFlll",
+        "current": "check_value_in_range__13TObjEneMorfosFPvUsUsUs",
+        "address": "0x8033263C",
+        "size": 120,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_arm_position__13TObjEneMorfosFv",
+        "current": "get_arm_position__13TObjEneMorfosFv",
+        "address": "0x803326B4",
+        "size": 8,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_heading__13TObjEneMorfosFv",
+        "current": "get_heading__13TObjEneMorfosFv",
+        "address": "0x803326BC",
+        "size": 8,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_resources__13TObjEneMorfosFv",
+        "current": "get_instance__13TObjEneMorfosFv",
+        "address": "0x803326C4",
+        "size": 8,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "draw_guard_wall__13TObjEneMorfosFv",
+        "current": "draw_body__13TObjEneMorfosFv",
+        "address": "0x803326CC",
+        "size": 228,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "render_reflection__13TObjEneMorfosFv",
+        "current": "render_model_if_visible__13TObjEneMorfosFv",
+        "address": "0x803327B0",
+        "size": 160,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "render__13TObjEneMorfosFv",
+        "current": "render__13TObjEneMorfosFv",
+        "address": "0x80332850",
+        "size": 404,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "render_with_camera_fade__13TObjEneMorfosFll",
+        "current": "render_part__13TObjEneMorfosFll",
+        "address": "0x803329E4",
+        "size": 408,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "record_model_node_position__13TObjEneMorfosFP10NJS_OBJECT",
+        "current": "record_camera_path_point__13TObjEneMorfosFP10NJS_OBJECT",
+        "address": "0x80332B7C",
+        "size": 124,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_death__13TObjEneMorfosFl",
+        "current": "state_death__13TObjEneMorfosFl",
+        "address": "0x80332BF8",
+        "size": 452,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_damaged__13TObjEneMorfosFl",
+        "current": "sub_80332DBC__13TObjEneMorfosFl",
+        "address": "0x80332DBC",
+        "size": 280,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_patrol__13TObjEneMorfosFl",
+        "current": "state_patrol__13TObjEneMorfosFl",
+        "address": "0x80332ED4",
+        "size": 256,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_melee_attack__13TObjEneMorfosFl",
+        "current": "sub_80332FD4__13TObjEneMorfosFl",
+        "address": "0x80332FD4",
+        "size": 700,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_rotating_projectile_burst__13TObjEneMorfosFl",
+        "current": "state_rotating_projectile_burst__13TObjEneMorfosFl",
+        "address": "0x80333290",
+        "size": 1024,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_projectile_attack__13TObjEneMorfosFl",
+        "current": "sub_80333690__13TObjEneMorfosFl",
+        "address": "0x80333690",
+        "size": 1088,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_move__13TObjEneMorfosFl",
+        "current": "sub_80333AD0__13TObjEneMorfosFl",
+        "address": "0x80333AD0",
+        "size": 888,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_disappear__13TObjEneMorfosFl",
+        "current": "sub_80333E48__13TObjEneMorfosFl",
+        "address": "0x80333E48",
+        "size": 488,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_hidden__13TObjEneMorfosFl",
+        "current": "sub_80334030__13TObjEneMorfosFl",
+        "address": "0x80334030",
+        "size": 244,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_appear__13TObjEneMorfosFl",
+        "current": "state_appear__13TObjEneMorfosFl",
+        "address": "0x80334124",
+        "size": 404,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_fade_in__13TObjEneMorfosFl",
+        "current": "sub_803342B8__13TObjEneMorfosFl",
+        "address": "0x803342B8",
+        "size": 304,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "handle_event_transition__13TObjEneMorfosFl",
+        "current": "handle_event_transition__13TObjEneMorfosFl",
+        "address": "0x803343E8",
+        "size": 64,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "dispatch_action__13TObjEneMorfosFUll",
+        "current": "dispatch_action__13TObjEneMorfosFUll",
+        "address": "0x80334428",
+        "size": 200,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "fn_803344F0__13TObjEneMorfosFv",
+        "current": "TObjEneMorfos__sub_803344F0",
+        "address": "0x803344F0",
+        "size": 52,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "play_frame_sounds__13TObjEneMorfosFv",
+        "current": "play_sound_in_band__13TObjEneMorfosFv",
+        "address": "0x80334524",
+        "size": 100,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "select_target_in_view__13TObjEneMorfosFv",
+        "current": "select_target_in_view__13TObjEneMorfosFv",
+        "address": "0x80334588",
+        "size": 380,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_parameters__13TObjEneMorfosFv",
+        "current": "get_parameters__13TObjEneMorfosFv",
+        "address": "0x80334704",
+        "size": 24,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "initialize_behavior_parameters__13TObjEneMorfosFv",
+        "current": "init_target_offsets__13TObjEneMorfosFv",
+        "address": "0x8033471C",
+        "size": 136,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_88__13TObjEneMorfosFv",
+        "current": "update_body_colliders__13TObjEneMorfosFv",
+        "address": "0x803347A4",
+        "size": 24,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "update_body_center__13TObjEneMorfosFv",
+        "current": "set_hover_target_position__13TObjEneMorfosFv",
+        "address": "0x803347BC",
+        "size": 76,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "turn_toward_angle__13TObjEneMorfosFll",
+        "current": "approach_value__13TObjEneMorfosFll",
+        "address": "0x80334808",
+        "size": 124,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "try_enter_low_hp_state__13TObjEneMorfosFv",
+        "current": "try_enter_low_hp_state__13TObjEneMorfosFv",
+        "address": "0x80334884",
+        "size": 108,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "check_low_hp_trigger__13TObjEneMorfosFv",
+        "current": "check_low_hp_trigger__13TObjEneMorfosFv",
+        "address": "0x803348F0",
+        "size": 120,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_61__13TObjEneMorfosFv",
+        "current": "run_miss_reaction__13TObjEneMorfosFv",
+        "address": "0x80334968",
+        "size": 4,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_62__13TObjEneMorfosFv",
+        "current": "run_hit_reaction__13TObjEneMorfosFv",
+        "address": "0x8033496C",
+        "size": 224,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "receive_physical_attack__13TObjEneMorfosFPvf",
+        "current": "receive_physical_attack__13TObjEneMorfosFPvf",
+        "address": "0x80334A4C",
+        "size": 280,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_63__13TObjEneMorfosFv",
+        "current": "run_death_reaction__13TObjEneMorfosFv",
+        "address": "0x80334B64",
+        "size": 48,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_28__13TObjEneMorfosFv",
+        "current": "refresh_target__13TObjEneMorfosFv",
+        "address": "0x80334B94",
+        "size": 4,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "run_task__13TObjEneMorfosFv",
+        "current": "run_task__13TObjEneMorfosFv",
+        "address": "0x80334B98",
+        "size": 304,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "__dt__13TObjEneMorfosFv",
+        "current": "__dt__13TObjEneMorfosFv",
+        "address": "0x80334CC8",
+        "size": 172,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "init_instance__13TObjEneMorfosFv",
+        "current": "init_instance__13TObjEneMorfosFv",
+        "address": "0x80334D74",
+        "size": 532,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "__ct__13TObjEneMorfosFP7TObjectPv",
+        "current": "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement",
+        "address": "0x80334F88",
+        "size": 156,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "unload_static_data__13TObjEneMorfosFv",
+        "current": "unload_static_data__13TObjEneMorfosFv",
+        "address": "0x80335024",
+        "size": 60,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "create__13TObjEneMorfosFPv",
+        "current": "create__13TObjEneMorfosFPv",
+        "address": "0x80335060",
+        "size": 76,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "load_resources__13TObjEneMorfosFv",
+        "current": "TObjEneMorfos__sub_803350AC",
+        "address": "0x803350AC",
+        "size": 364,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      }
+    ],
+    "Morfos arm": [
+      {
+        "historical": "render__16TObjEneMorfosArmFv",
+        "current": "render__16TObjEneMorfosArmFv",
+        "address": "0x80335218",
+        "size": 112,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfosArm"
+      },
+      {
+        "historical": "run_task__16TObjEneMorfosArmFv",
+        "current": "run_task__16TObjEneMorfosArmFv",
+        "address": "0x80335288",
+        "size": 116,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfosArm"
+      },
+      {
+        "historical": "__dt__16TObjEneMorfosArmFv",
+        "current": "__dt__16TObjEneMorfosArmFv",
+        "address": "0x803352FC",
+        "size": 88,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfosArm"
+      },
+      {
+        "historical": "TObjEneMorfosArm__ct",
+        "current": "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos",
+        "address": "0x80335354",
+        "size": 216,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfosArm"
+      },
+      {
+        "historical": "unload_static_data__16TObjEneMorfosArmFv",
+        "current": "TObjEneMorfosArm__sub_8033542C",
+        "address": "0x8033542C",
+        "size": 4,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfosArm"
+      },
+      {
+        "historical": "create__16TObjEneMorfosArmFPvPv",
+        "current": "create__16TObjEneMorfosArmFPvPv",
+        "address": "0x80335430",
+        "size": 80,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfosArm"
+      },
+      {
+        "historical": "init_global__16TObjEneMorfosArmFv",
+        "current": "init_global__16TObjEneMorfosArmFv",
+        "address": "0x80335480",
+        "size": 36,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfosArm"
+      }
+    ]
+  },
+  "runtime": {
+    "cases_per_image": 22,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "probe_sha256": "0fb1cb8483264bd934093c36bacf9088617fc2e90d7e5ecb303b067875262cc4",
+    "log_sha256": "cfe78751793e89f872db5610ab3fb97d0aeba463f9690963f70ce5426f64e8f4"
+  },
+  "historical": {
+    "scoped": {
+      "453": "The native attack-body and fade fields retain their offsets. The flags offset, typed joint result and parameter layouts are checked. The full header comparison still includes the Gibbles lifecycle and targeting declarations.",
+      "463": "Seven native action handlers and the movement and probability fields are restored. The arm point, heading and parameter accessors have their typed returns. The full declaration comparison still includes the confusion predicate and remaining helper declarations.",
+      "587": "Both Gibbles archives use typed descriptors, the three collision templates and movement profile retain their byte layouts, and the native joint result flows into both attack bodies and both slam callers. The full source comparison still includes the lifecycle and targeting.",
+      "599": "The matching state dispatcher routes all twelve modes and the original events to the native Morfos methods. The active tuning block supplies signed steps and delays. Arm placement and rotation read the native owner. The broader source comparison remains open."
+    },
+    "open_rows": 285,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "7ce500ca5deea172c3a954864e7e877c6364ed7a",
+    "overlay_paths": 130,
+    "updated_keep_list_symbols": [
+      {
+        "module": "psov3",
+        "address": "0x802D7ED4",
+        "before": "render_and_get_joint_pos__14TObjEneGibblesFPvii",
+        "after": "render_and_get_joint_pos__14TObjEneGibblesFP3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80332DBC",
+        "before": "TObjEneMorfos__sub_80332DBC",
+        "after": "sub_80332DBC__13TObjEneMorfosFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80332FD4",
+        "before": "TObjEneMorfos__sub_80332FD4",
+        "after": "sub_80332FD4__13TObjEneMorfosFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80333690",
+        "before": "TObjEneMorfos__sub_80333690",
+        "after": "sub_80333690__13TObjEneMorfosFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80333AD0",
+        "before": "TObjEneMorfos__sub_80333AD0",
+        "after": "sub_80333AD0__13TObjEneMorfosFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80333E48",
+        "before": "TObjEneMorfos__sub_80333E48",
+        "after": "sub_80333E48__13TObjEneMorfosFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80334030",
+        "before": "TObjEneMorfos__sub_80334030",
+        "after": "sub_80334030__13TObjEneMorfosFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803342B8",
+        "before": "TObjEneMorfos__sub_803342B8",
+        "after": "sub_803342B8__13TObjEneMorfosFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80334704",
+        "before": "TObjEneMorfos__sub_80334704",
+        "after": "get_parameters__13TObjEneMorfosFv"
+      }
+    ],
+    "archive_sha256": "7dd9a6cc7f130ba36614f1c934dd3884fd02f166b6a1beae88865374e6551408",
+    "materialized_tree": "10897c844154ad1e4c2cf29d3f06a2907eeb7b9a",
+    "force_active": 27029
+  }
+}
