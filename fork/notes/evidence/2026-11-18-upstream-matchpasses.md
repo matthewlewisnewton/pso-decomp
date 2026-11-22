@@ -24,6 +24,10 @@ The fork tooling archive round-trips on the complete camera source. The retail D
 
 The first actor component at `ff25e1ed66` recovers the shared Photon Blast model, motion, summon, and damage interfaces across 30 paths. It uses the current ATP and EVP getters and the recovered strip allocator. The build matches retail and its probes cover the Rainbow variants, magic-square setup, summon dispatch, and Mylla’s Youlla packet. The replay evidence measures the remaining actor overlaps by donor commit. [Camera workspace and Photon Blast validation](2026-11-22-upstream-367-camera-workspace-photon-validation.json)
 
+The local actor foundation at `630ba94276` combines six commits across 126 paths. It carries the Photon Blast records, typed battle-file banks and combat stat bindings, typed action and motion inputs, both tentacle matrix and attack interfaces, and shared ground movement. Ground moves preserve the original coordinate access order when the destination aliases position. The snap method keeps the upstream byte-pointer argument and returns a typed hit.
+
+The source matches retail with 27,572 exact functions, 2,417 linked units, and all 1,147 original data bytes accounted for. Coverage checks pass, and retail and local probes agree on battle loads, actor initialization, both tentacles, Photon Blast and ground contact. The 130-path fork archive round-trips with 12 updated retention labels and passes all 310 workspace checks. The broader actor review still needs the remaining native boss and enemy owners. The replay map records their overlap with the current stack and identifies Olga Flow paths for its dedicated group. [Actor foundation and fork workspace validation](2026-11-22-upstream-367-actor-foundation-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
