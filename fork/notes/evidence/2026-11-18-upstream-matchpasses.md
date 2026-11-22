@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 33-path hit eligibility replay `221bda5174` gives the shared predicate the native collision object at each call site and restores its halfword field. Both Gibbles joint attacks are native methods. Each reproduces its original 480 bytes, and two linker labels follow the class methods. The runtime cases cover hit eligibility, target filtering, physical and direct attacks, knockback and armor recharge. The fork tooling archive updates both retained labels. Both builds reproduce retail, account for all 1,147 original data bytes and pass all 310 workspace checks. The broader actor target comparison remains among the 245 open records. [Hit eligibility and workspace validation](2026-11-22-upstream-8441-hit-eligibility-validation.json)
+
+
 The 32-path animated NPC resource replay `616e0968a2` gives the chunk registry typed model and texture arguments across its callers. Mericarol and Gibbles share typed archive and motion rows. Mericarol uses the native render texture entries and vectors, and Rappy and the seabed dolphin own typed resource pointers. The single changed linker label follows the registry signature. Both builds reproduce retail and all 310 workspace checks pass. Runtime checks cover archive variants, registry slot writes, texture restoration and repeated dolphin cleanup. The complete Mericarol render comparison closes, leaving 245 historical records. [Enemy resource and workspace validation](2026-11-22-upstream-8441-enemy-model-resources-validation.json)
 
 

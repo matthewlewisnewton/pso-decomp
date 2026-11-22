@@ -1,0 +1,129 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "221bda51746436239659b5a19eefd56fabf82605",
+  "source_base": "616e0968a25f87e9e9a39cc5c9b877ad17ef133a",
+  "source_commits": 48,
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/gibbles/TObjEneGibbles.h",
+    "include/pso/object/base/HitEligibility.h",
+    "include/pso/object/base/TObjMotion.h",
+    "include/pso/player/TObjPlayer_80011014.h",
+    "src/pso/boss/TUnk_80484A94.cpp",
+    "src/pso/boss/TUnk_80484AFC.cpp",
+    "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+    "src/pso/enemy/TUnk_804909C4.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/npc/TObjNpcKenkyuW.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight_80235C44.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_800BBE90.cpp",
+    "src/pso/player/TObjPlayer_800C4714.cpp",
+    "src/pso/player/TObjPlayer_801542CC.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+    "src/pso/weapon/TItemAttackCol.cpp",
+    "src/pso/weapon/TUnk_804A2960.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x802D9644",
+      "before": "TObjEneGibbles__sub_802D9644",
+      "after": "attack_from_joint_31__14TObjEneGibblesFlf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802D9824",
+      "before": "TObjEneGibbles__sub_802D9824",
+      "after": "attack_from_joint_53__14TObjEneGibblesFlf"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "031552cf23cd427e97c425756dc22e1f34d5d9093fcda015b3c8e890b1a6c7a6",
+      "observations": [
+        "Seven eligibility states, seven guarded reads, null handling and both halfword writes passed",
+        "Sixteen joint attack cases covered frame cadence, collision flags, active slots, damage dispatch, knockback and armor recharge and passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "031552cf23cd427e97c425756dc22e1f34d5d9093fcda015b3c8e890b1a6c7a6",
+      "observations": [
+        "Seven eligibility states, seven guarded reads, null handling and both halfword writes passed",
+        "Sixteen joint attack cases covered frame cadence, collision flags, active slots, damage dispatch, knockback and armor recharge and passed"
+      ]
+    },
+    "paired_single_scope": "Gibbles joint probes skip the two paired-single FPR save and restore operations and execute the original scalar equivalents. The complete build and retail comparison preserve both paired operations."
+  },
+  "historical_audit": {
+    "open_before": 245,
+    "open_after": 245,
+    "restored_joint_attacks": [
+      "0x802D9644",
+      "0x802D9824"
+    ],
+    "updated_rows": [
+      "src/pso/enemy/TObjEneGibbles.cpp",
+      "include/pso/enemy/TObjEneGibbles.h",
+      "src/pso/enemy/TObjEneBm9Mericarol_Bomb.cpp",
+      "src/pso/player/TObjPlayer_800C4714.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp"
+    ],
+    "gibbles_function_extents": {
+      "matched_address_and_extent": 54,
+      "matched_bytes": 17048,
+      "mangling_or_upstream_name_differences": 20
+    }
+  },
+  "fork_workspace": {
+    "parent": "221bda51746436239659b5a19eefd56fabf82605",
+    "previous_workspace": "5474c0377fd2e9171ffc4994244f786670e65872",
+    "overlay_paths": 130,
+    "updated_linker_labels": 2,
+    "materialized_tree_before_notes_update": "ea5e2712c43b66caabb39bd14b2892cf6dc2b920",
+    "archive_sha256": "b077f8faa1585f1bc6bc86e207f92c793efd4f539a3915e56f25b73d14815fe0",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}
