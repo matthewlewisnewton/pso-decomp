@@ -132,6 +132,10 @@ The 25-path positional sound replay at `648050122c` uses native positions throug
 
 Both builds match retail with 27,572 exact functions, 2,447 linked units and all 1,147 starting bytes accounted for. All 310 workspace checks pass. The three emulator probes cover floor dispatch, slot admission, request identity, recent one-shot reuse, position publication and saturation. Six historical comparisons close, leaving 346 open. [Positional sound validation](2026-11-22-upstream-365-positional-sound-validation.json)
 
+The 24-path player interaction replay at `96d68f7de8` shares the native hold and release interfaces across the trap, NPC, boss, quest, and window callers. The hold sender accepts the full timer and mode words and packs their low halfwords. It keeps the original X and Z and squared radius. The shared argument order also removes the trap's former function-pointer cast. The release sender takes a player pointer and retains its existing function name. The castable-level check calls the current technique owner directly.
+
+Both builds match retail with 27,572 exact functions, 2,447 linked units and all 1,147 starting bytes accounted for. The 130-path tooling archive reconstructs the tested fork workspace and the 310 workspace checks pass. Both probes agree on retail and both builds. The source audit closes the model draw and window reset records and leaves 344 comparisons open. [Player interaction validation](2026-11-22-upstream-365-player-interactions-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
