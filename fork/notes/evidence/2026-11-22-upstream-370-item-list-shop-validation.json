@@ -1,0 +1,169 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "dfbd286d6b3b1a6d1a40a13487a58783d9b46b78",
+  "source": "4a16f9abb7a7b04c5e90268de4d7b74b1710985e",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x8021B268",
+          "before": "set_position__6TLobbyFff",
+          "after": "set_position__15TWindowHelpItemFff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80266CF8",
+          "before": "clamp_selection_to_valid_entry__20TShopArmorListWindowFv",
+          "after": "clamp_selection_to_valid_entry__19TWindowMenuIconLineFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80266D78",
+          "before": "save_cursor_selection__20TShopArmorListWindowFv",
+          "after": "save_cursor_selection__19TWindowMenuIconLineFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027AA3C",
+          "before": "reset_selected__14TWindowSubItemFv",
+          "after": "reset_selected__18TWindowSubItemListFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027AA48",
+          "before": "set_field_74__14TWindowSubItemFs",
+          "after": "set_field_74__18TWindowSubItemListFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027AA50",
+          "before": "get_selected_entry__14TWindowSubItemFv",
+          "after": "get_selected_entry__18TWindowSubItemListFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027AA80",
+          "before": "gray_out_unusable_entries__14TWindowSubItemFv",
+          "after": "gray_out_unusable_entries__18TWindowSubItemListFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027ABA8",
+          "before": "refresh__14TWindowSubItemFv",
+          "after": "refresh__18TWindowSubItemListFv"
+        }
+      ]
+    },
+    "layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 160375,
+      "head": 160345,
+      "added": 12,
+      "removed": 42
+    },
+    "flagged_symbol_labels": 0,
+    "newly_stale_force_active": [],
+    "added_findings": {
+      "offset_member": 12
+    },
+    "separate_ownership_diagnostics": {
+      "this_cast": {
+        "added": 17,
+        "removed": 24
+      }
+    },
+    "reason_for_added_findings": "The actual members retain their existing names. Legacy wrapper units now cast their item-list receivers to the shared list class, matching their adjacent reset and rendering calls. The wrappers still need independent owner review."
+  },
+  "runtime_probes": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork layer"
+    ],
+    "result": "item-list cursor save, clamp and reset, and shop help-window draw scales passed."
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/city/TShopArmorListWindow.h",
+    "include/pso/ui/window/TWindowHelpItem.h",
+    "include/pso/ui/window/TWindowMenuIconLine.h",
+    "include/pso/ui/window/TWindowSubItem.h",
+    "include/pso/ui/window/TWindowSubItemList.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/city/TShopArmorListWindow.cpp",
+    "src/pso/ui/city/TShopArmorListWindow_802785FC.cpp",
+    "src/pso/ui/city/TShopArmorListWindow_8027870C.cpp",
+    "src/pso/ui/city/TShopArmorListWindow_802787AC.cpp",
+    "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+    "src/pso/ui/city/TShopGetItemWindow.cpp",
+    "src/pso/ui/city/TShopItemListWindow.cpp",
+    "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+    "src/pso/ui/city/TShopKeepItemWindow.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl.cpp",
+    "src/pso/ui/window/TWindowSubEquip_80279044.cpp",
+    "src/pso/ui/window/TWindowSubItem.cpp",
+    "src/pso/ui/window/TWindowSubItemList.cpp",
+    "src/pso/ui/window/TWindowSubMag_80278760.cpp",
+    "src/pso/ui/window/TWindowSubShortCutList.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubTradeMain_802785B0.cpp",
+    "src/pso/unk/TLobby_8021B268.cpp"
+  ],
+  "closed_source_comparisons": [
+    "src/pso/misc/TWindowSubItem.cpp",
+    "src/pso/misc/TShopArmorListWindow.cpp",
+    "src/pso/misc/TShopEquipmentListWindow.cpp",
+    "src/pso/misc/TShopEquipmentSequence.cpp",
+    "src/pso/misc/TWindowSubShortCut.cpp"
+  ],
+  "remaining_source_comparisons": 214,
+  "workspace": {
+    "materialized_tree": "562a627a2ad16de726fba0ade826de156c5d6364",
+    "overlay_paths": 130,
+    "updated_retention_labels": {
+      "get_selected_entry__14TWindowSubItemFv": "get_selected_entry__18TWindowSubItemListFv",
+      "gray_out_unusable_entries__14TWindowSubItemFv": "gray_out_unusable_entries__18TWindowSubItemListFv",
+      "refresh__14TWindowSubItemFv": "refresh__18TWindowSubItemListFv",
+      "set_field_74__14TWindowSubItemFs": "set_field_74__18TWindowSubItemListFs"
+    },
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "6378ba3c40b486fff256007643e583c86c3b5a48955cabeaea2f20f5fffba712"
+  }
+}
