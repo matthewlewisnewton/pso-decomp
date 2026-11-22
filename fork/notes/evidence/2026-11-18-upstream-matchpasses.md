@@ -58,6 +58,12 @@ The Olga Flow replay at `6713e1f36f` and the local review at `c4f687452c` share 
 
 All eight encounter suites agree between retail and the replay. The DOL matches with 27,572 exact functions, all 2,417 units linked and all 1,147 original data bytes accounted for. The ten linker labels follow typed signatures. The replay previews carry the remaining boss and enemy actors, lifecycle, and population work forward to this checkpoint. [Olga Flow validation](2026-11-22-upstream-367-olga-flow-validation.json)
 
+The population and encounter review at `93772a11ff` and cumulative replay at `c02a1fcb0f` share one validated tree. The review adds two commits above the Olga Flow replay across 56 paths. The shared `TObjChara` method owns position copies, and NPC archive callers pass typed REL models and textures. The Flower bomb owns its movement, floor contact, attack state and particles. The Shark action, movement and collision data now have separate ranges under the existing names.
+
+The replay matches retail with 27,572 exact functions and all 2,417 source units linked. All 90 ranges and 1,147 original data bytes are accounted for. All four runtime suites agree across retail and the replay. The next three-way previews track 193 overlaps in the broader boss and enemy actor group and 54 in enemy lifecycle. [Population and encounter validation](2026-11-22-upstream-367-actor-positions-and-population-validation.json)
+
+The fork workspace on the population checkpoint preserves the 130-path tooling overlay. It updates 22 linker labels and retains the two newly separated Shark tables. The materialized fork reproduces retail, and all 310 workspace and host checks pass. The archive round-trips from `fork/tooling/`.
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.

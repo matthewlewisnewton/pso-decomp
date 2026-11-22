@@ -1,13 +1,11 @@
 # Recover actor positions, population and encounter setup
 
-The local review `great-merge/review/after-366/actor-positions-and-population` is at `0a8586d2fe82628319f89e4f1b1d2fba88520d90` above the camera and scene review `a3cd2e2647cfa0885abc15cf9d7be86a6929e9ea`. Its six commits touch 107 paths. [Validation](2026-11-22-upstream-366-actor-positions-review-validation.json)
+The local review `great-merge/review/after-367/actor-positions-and-population` is at `93772a11ffb81be3ee592432feac3a4fe70c2c66` above the Olga Flow replay. Its two commits cover 56 paths. [Validation](2026-11-22-upstream-367-actor-positions-and-population-validation.json)
 
 ## Proposed PR description
 
-Carry the native actor records from population and spawn through movement, attack selection and resource release.
+Use the shared character layout to copy actor centers across bosses, enemies, NPCs, and the player. Pass filenames and resource pointers through the typed REL loader and preserve the native NPC model and texture lifetimes.
 
-- Actor position initialization and copies use their shared character owner. Movement and contact routines receive their original destinations.
-- NPC population uses its native records and the typed REL loader. Enemy battle setup uses typed stats, motion and attack inputs.
-- Sharks use native construction and resource ownership. Fly, Flower and Recon use their original factory, attack and encounter records.
+Recover the Flower bomb's typed movement, floor contact, attack state and particle effect. Its owner keeps the current action handlers and reads the technique level from the battle movement record. The Shark action, movement and collision tables each use their own range in the linker map.
 
-The review matches retail with 27,572 exact functions, 2,447 source-linked units and all 1,147 original data bytes accounted for. Runtime probes cover 384 battle table entries, 32 complete loads, 56 NPC archive lifecycle cases, Shark constructors and lifetimes, flight and ground movement, and Flower and Recobox behavior.
+The retail build matches byte for byte with 27,572 exact functions, 2,417 linked source units, and all 1,147 starting data bytes accounted for. Runtime probes cover 56 NPC archive lifecycle cases, actor position copies, Shark subtype and resource setup, Flower melee and bomb setup, Recobox parameters, and movement and flight factories.
