@@ -2,6 +2,12 @@
 
 Group related source recovery into fewer, larger reviews with independent matching builds. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
 
+## Replay after upstream PR #365
+
+Upstream master advanced from `5a4e7ced56` to `b2d2912058` by 45 commits across 1,947 paths. The pinned matching checkpoint `1e41348776` shares 782 changed paths with the new master. The three-way merge preview has 459 conflicts. The path index records the old, landed, local and preview entries for each changed path. [Upstream PR #365](https://github.com/zeroz41/pso-decomp/pull/365) · [Replay index](2026-11-21-upstream-365-replay-index.tsv)
+
+Keep upstream's identifiers and class owners as the starting point. Its shared `CsnHit` wall probe covers the corresponding local edit. The remaining typed movement destinations and hit propagation need to be carried into the new owners. Use the path index to replay clean paths together and compare overlapping hunks in related groups. Rebuild the source and the materialized fork workspace against the new master before using either for cutover.
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
@@ -145,6 +151,10 @@ The 28-file flight and ground-movement batch at `48fb8d6639` restores the Fly Ne
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units, and all 1,147 historical data bytes accounted for. The 310 tool and host checks and runtime probes pass. The fork tooling archive reconstructs the checked workspace with ten updated retention labels. The committed layer remains confined to `fork/`.
 
 Four historical source comparisons close, leaving 415 open. [Flight and ground movement validation](2026-11-21-flight-and-ground-movement-replay.json)
+
+The 24-file collision and movement batch at `1e41348776` uses the shared collision record and real movement vectors through wall, shot and ground paths. Ground movement uses the original virtual slot and records the native hit, position and normal. Canadin, Gee and Sorcerer keep their contact flags. The eight linker labels follow corrected types. All eight retain the existing function names.
+
+The source build and materialized fork workspace reproduce retail with 27,572 exact functions, all 2,447 units linked, and all 1,147 historical data bytes accounted for. The 310 workspace checks and contact probes pass. The overlay preserves 27,033 retention entries with four updated labels. Seven historical records receive partial evidence, and 415 remain open. [Collision and movement validation](2026-11-21-wall-queries-and-ground-contacts-replay.json)
 
 ## Replay after upstream PR #351
 

@@ -1,0 +1,427 @@
+{
+  "source": "1e4134877655a114ffe50ef2b20edd8772be5582",
+  "previous_source": "48fb8d663982d4c8eaca8626db11c0d84b46ba07",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1267,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+    "include/pso/enemy/dd/EnemyGroundMovement.h",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/enemy/dd/TObjEneDD_800BABA4.h",
+    "include/pso/enemy/gee/TObjEneMe1Gee.h",
+    "include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "individually_checked_objects": {
+    "Boss5GryphonBehavior": {
+      "functions": 170,
+      "objdiff_sha256": "d907fcc7652f843ada47f312516ab2e3f8a5fad94a521cdbd70b0548794f15c6"
+    },
+    "TBoss1Dragon": {
+      "functions": 180,
+      "objdiff_sha256": "6ebc487ad5247ca639937bb74b0197d2951dcb5e1717bfa79f7c4863142b6d9a"
+    },
+    "TBoss8Dragon": {
+      "functions": 165,
+      "objdiff_sha256": "618e26b3b961dc65a8d3041be559de95bae5b8637b46feba430de542740262f8"
+    },
+    "TObjEneBm5GibonU": {
+      "functions": 86,
+      "objdiff_sha256": "696b331575875ad37de5a03cbca906ea1e482dfdd94e4a91a75bae954097ba2a"
+    },
+    "TObjEneBm5Wolf": {
+      "functions": 77,
+      "objdiff_sha256": "a015e9c5049826ce08b29333d559891957471a7485475c24cd70d123865ece92"
+    },
+    "TObjEneBm9Mericarol": {
+      "functions": 42,
+      "objdiff_sha256": "f0a2f46932cbecc43c72e7dc9ef9f2a3f0db1533c534017e8ab7c18b06ec4a44"
+    },
+    "TObjEneDD": {
+      "functions": 152,
+      "objdiff_sha256": "95adf2670bb02413b258d3786baa2657468d35ba0f0e334a8a6c98418865e6f9"
+    },
+    "TObjEneDellBiter": {
+      "functions": 51,
+      "objdiff_sha256": "2a3b08c11d8008a673f567844db0f088e348a9079eaec3203724607a9d4fc2b4"
+    },
+    "TObjEneDf2Bringer": {
+      "functions": 43,
+      "objdiff_sha256": "e5ffb5dc96a06b88ba06d38bd8b0933b5d9f086daf72984702abb21e8be6df0d"
+    },
+    "TObjEneEpsilonGuard_8035DD68": {
+      "functions": 39,
+      "objdiff_sha256": "aaf4ddb66d5d5d3b8f6ea470e5806350722283a4cfc46f609bdfaee3a699cf0e"
+    },
+    "TObjEneMe1Canadin": {
+      "functions": 101,
+      "objdiff_sha256": "57d5984ee3aac2e38947d5a393f9a6e3d65d3c35c0b8ea10425ff540e2da9f4d"
+    },
+    "TObjEneMe1Gee": {
+      "functions": 102,
+      "objdiff_sha256": "ccfcaf4a4700cac76371244315fd479c64914ef6fa6231a6fcfdd383869ad76c"
+    },
+    "TObjEneMe3Shinowa": {
+      "functions": 89,
+      "objdiff_sha256": "41ca5edb2b397c03f53038ab86cc6b3db033aaa0e7379274247d4f0528fcf61d"
+    },
+    "TObjEneMorfos": {
+      "functions": 47,
+      "objdiff_sha256": "0f32496cf6a2926b82ea775af24c0a648b29112f56fa5daeefa96501f71a1ed3"
+    },
+    "TObjEneRe4Bit": {
+      "functions": 50,
+      "objdiff_sha256": "78c1b705a0beeaddc48ae143778f52bf2d00ff67c630d2cec3395c719f2b6b08"
+    },
+    "TObjEneRe4Sorcerer_800EDB98": {
+      "functions": 50,
+      "objdiff_sha256": "d6b2078caef546f27904b68746901b61b4a411708e3c1c62fe28f08c2841419e"
+    },
+    "TObjEneRecobox_8031F800": {
+      "functions": 38,
+      "objdiff_sha256": "1313517b8f04128bb3b4a2ea2ffc7e608c60589d22ebf2352a0221963d99e75d"
+    }
+  },
+  "source_changes": [
+    "Native collision results and contact fields for wall and ground queries",
+    "Actual Vec destinations and virtual dispatch replace scalar stack placeholders and a local shadow vtable",
+    "Three derived enemies return the original contact pointer and retain their hit flags",
+    "Existing base names at all eight affected linker labels",
+    "Ground-snap input keeps the original byte-pointer signature and load ordering for CodeWarrior"
+  ],
+  "historical_comparison": {
+    "prior_open_rows": 415,
+    "open_rows": 415,
+    "touched_rows": [
+      {
+        "row": 589,
+        "description": "Canadin uses a shared typed movement destination and sets its original flag from the native contact result.",
+        "historical_path": "src/pso/enemy/TObjEneMe1Canadin.cpp",
+        "current_path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "fork_blob": "0c982ac6d9c5730b1b51fbac6f3f85392ad3f623",
+        "current_blob": "a3693a59fa2335836b571f694ed9e7282a2c088f",
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 590,
+        "description": "Gee passes the Vec destination to the native base and sets its ground flag from the hit result.",
+        "historical_path": "src/pso/enemy/TObjEneMe1Gee.cpp",
+        "current_path": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "fork_blob": "9196707382ae02c44b15f0ff7145d25daadb779c",
+        "current_blob": "390872e5ea8e5a71e9cc2ef70a3dcd6f222ed5bb",
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 778,
+        "description": "Shinowa uses the shared wall probe with its native collision return.",
+        "historical_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+        "current_path": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+        "fork_blob": "8697ef118f28d96e1d89e81ce84938ab05cb452b",
+        "current_blob": "3b6bffcf28540f3b11baf0e76034885b1332ee05",
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 874,
+        "description": "Gol Dragon wraps ground snapping and movement with the actual collision result and Vec destination.",
+        "historical_path": "src/pso/boss/TBoss8Dragon.cpp",
+        "current_path": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "fork_blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8",
+        "current_blob": "a023a229547c2d86980f0f2a4433184f526bb21b",
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 895,
+        "description": "Dellbiter's wall probe uses the native collision contract.",
+        "historical_path": "src/pso/enemy/TObjEneDellBiter.cpp",
+        "current_path": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "fork_blob": "70b5246189af3644d537175fee37370e88288a08",
+        "current_blob": "a5e20aec3eba57dc9cceb00c2465cb1871d26e15",
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 986,
+        "description": "The Bringer charge wall test uses the native collision contract.",
+        "historical_path": "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+        "current_path": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+        "fork_blob": "cf5aa0bccdb09dda9e5e33834fac1393438c7079",
+        "current_blob": "1e6101974ef3d9648eb2c03895b685ba319cd018",
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1168,
+        "description": "The Sorcerer passes the hit through its move and update-ground virtuals and preserves contact flags.",
+        "historical_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "current_path": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "fork_blob": "4f07f4646222e4b4861a3b593136463172561c37",
+        "current_blob": "68f3f529f027f16475fb6d6a685d8e6c4a569f8c",
+        "status": "Some anchored text changes found"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "48fb8d663982d4c8eaca8626db11c0d84b46ba07",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8009EC00",
+          "before": "move_xz_on_ground__17TObjEneMe1CanadinFPUc",
+          "after": "move_xz_on_ground__17TObjEneMe1CanadinFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800BADDC",
+          "before": "move_xz_on_ground__9TObjEneDDFPUc",
+          "after": "move_xz_on_ground__9TObjEneDDFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800BAE74",
+          "before": "try_move_actor_xz_on_ground__9TObjEneDDFPUc",
+          "after": "try_move_actor_xz_on_ground__9TObjEneDDFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800BAF1C",
+          "before": "calc_wall_clamped_destination__FPvPvfff",
+          "after": "calc_wall_clamped_destination__FP9TObjEneDDP3Vecfff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800BB000",
+          "before": "calc_wall_slide_destination__FPvPvfff",
+          "after": "calc_wall_slide_destination__FP9TObjEneDDP3Vecfff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800BB158",
+          "before": "calc_shot_position__9TObjEneDDFPUcfff",
+          "after": "calc_shot_position__9TObjEneDDFP3Vecfff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800CBFC0",
+          "before": "move_xz_on_ground__13TObjEneMe1GeeFPUc",
+          "after": "move_xz_on_ground__13TObjEneMe1GeeFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EFDE0",
+          "before": "move_xz_on_ground__18TObjEneRe4SorcererFPUc",
+          "after": "move_xz_on_ground__18TObjEneRe4SorcererFPC3Vec"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "ee00739fca6ff09a533256aa91d217c717b321aae316c811f81f6d6b63fc033f",
+      "report_sha256": "b6ad78bcf6b6d7e59ec7bb4a73d66cc1ca5c8d149d9513a30fc88a38eac3b4d8"
+    },
+    "workspace": {
+      "baseline": "1e4134877655a114ffe50ef2b20edd8772be5582",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "b6ad78bcf6b6d7e59ec7bb4a73d66cc1ca5c8d149d9513a30fc88a38eac3b4d8"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "446a5013e323d29d8d427ff1067a1881f3075bbda80a09edb52f15b53afc7d0d"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "e9254382b2096af0a0811e4273d68a99cac611a510122708dde54b8bad0536c9"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "contact_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Ground masks and contact height",
+        "Strict and permissive movement on hit and miss",
+        "Aliased destination and position",
+        "Tiny step, obstruction flags, blocked and clear wall destinations",
+        "Inherited ground hit and flags for Canadin, Gee and Sorcerer"
+      ],
+      "emulator_adaptation": "Verified redundant paired-single spill and reload instructions are skipped in the emulator copy. The original scalar saves and restores run.",
+      "log_sha256": "3f1ab5db609a35bc7b93400e34263339ee573094617de73bbb38f5adb45a34db",
+      "probe_sha256": "9178a969e37f523dcb872c1acbb882874306adf921fd5ab2e6c7762dec4e9489"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "d63d353b5ad30a0d133910773b2bdb757bfbf5b3bd2115f9862e95dd986c3b27",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active": {
+      "mappings": {
+        "move_xz_on_ground__17TObjEneMe1CanadinFPUc": "move_xz_on_ground__17TObjEneMe1CanadinFPC3Vec",
+        "calc_wall_slide_destination__FPvPvfff": "calc_wall_slide_destination__FP9TObjEneDDP3Vecfff",
+        "move_xz_on_ground__13TObjEneMe1GeeFPUc": "move_xz_on_ground__13TObjEneMe1GeeFPC3Vec",
+        "move_xz_on_ground__18TObjEneRe4SorcererFPUc": "move_xz_on_ground__18TObjEneRe4SorcererFPC3Vec"
+      },
+      "listed": 27033,
+      "previous_config_sha256": "771073661ebed59f2ab0daf1ddb77813cb889a262725748c1856f41579be0db3",
+      "current_config_sha256": "ba2671f6abbda07ce79ea781a82e5cf459cca84bb6b7c4b295970dd5eea8c926"
+    },
+    "archive_test_head": "2084ca8e75a5523bf4366a8b0e38dc99fd06f45f",
+    "tested_materialized_tree": "37bae982c3ec981b54250c52c8e8d13453b66477",
+    "only_added_directory": "fork/",
+    "non_layer_differences": 0,
+    "workflow_blob": "a65a054c88a2f51f97588206106e6ff86f374652"
+  },
+  "upstream_transition": {
+    "new_upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+    "new_commits": 45,
+    "upstream_changed_paths": 1947,
+    "overlapping_paths": 782,
+    "upstream_only_paths": 1165,
+    "local_only_paths": 485,
+    "merge_preview_tree": "1796be4a17fc59d16140a60f69069f0b05fc2c83",
+    "merge_preview_conflicts": 459,
+    "conflict_subsystems": {
+      "config": 1,
+      "boss": 53,
+      "camera": 5,
+      "enemy": 69,
+      "object": 36,
+      "player": 31,
+      "quest": 8,
+      "system": 9,
+      "technique": 11,
+      "ui": 153,
+      "unk": 48,
+      "audio": 2,
+      "effect": 13,
+      "item": 2,
+      "network": 7,
+      "npc": 9,
+      "render": 1,
+      "weapon": 1
+    },
+    "path_dispositions": {
+      "Clean merge with overlap": 321,
+      "Clean local delta": 485,
+      "Merge conflict": 459,
+      "Upstream-only delta": 1165,
+      "Merge preview matches upstream": 2
+    },
+    "contact_paths_overlapping": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+      "include/pso/enemy/dd/TObjEneDD.h",
+      "include/pso/enemy/dd/TObjEneDD_800BABA4.h",
+      "include/pso/enemy/gee/TObjEneMe1Gee.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+    ],
+    "contact_conflicts": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/enemy/dd/TObjEneDD.h",
+      "include/pso/enemy/dd/TObjEneDD_800BABA4.h",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+    ],
+    "path_index": "2026-11-21-upstream-365-replay-index.tsv",
+    "path_index_sha256": "f625d969903fd908b7d93031f220a7d4a8c7b4dc2217a951bcb45c9dfae48a7b",
+    "already_present": "Upstream uses the shared CsnHit return on enemy_probe_wall_ahead and types csnVector.",
+    "local_replay_pending": "Upstream retains the byte-pointer movement virtual and scalar placeholders. Adapt the contact and Vec changes to upstream names and owners."
+  }
+}
