@@ -92,6 +92,8 @@ The SDK queue replay at `f74ecdc8c5` gives network transport three native queue 
 
 Both builds reproduce retail with 27,572 exact functions and 2,447 linked units. All 1,147 original data bytes remain accounted for, and the 130-path fork workspace passes 310 checks. Runtime probes match queue post, receive and completion, startup and shutdown, and the packet pool and card requests. The historical lifecycle comparison closes and two records gain scoped evidence, leaving 393 open. [Network transport validation](2026-11-22-upstream-365-network-transport-validation.json)
 
+The next local review at `ebd31cec2b` combines window, character selection and chat in one 422-path batch on the published renderer head. It builds independently of the collision replay, reproduces retail with 27,572 exact functions and 2,447 linked units, and preserves the 1,147 historical data bytes. Four companion probe suites agree with retail. The standalone record includes the proposed PR description. [Window, character selection and chat review](2026-11-22-next-upstream-window-character-chat.md)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
