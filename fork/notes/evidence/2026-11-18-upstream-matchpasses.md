@@ -184,6 +184,10 @@ The 11-path PPP callback replay at `20d13be55e` shares transition, packet builde
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probe checks 55 callback slots and 13 cases per image. The 130-path tooling archive round-trips and all 310 workspace checks pass. Two historical records gain scoped evidence and 309 remain open. [PPP callback and IPv6CP validation](2026-11-22-upstream-365-ppp-callbacks-validation.json)
 
+The three-path network initialization replay at `71531f4dfd` uses native alarm, mutex, message queue and buffer slots. The three adjacent tables share the original BSS base, and their offsets come from the native record sizes. The original linker names are retained.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probe checks seven cases per image, including missing pools, all 64 alarm queue arguments and each initialization failure. The 130-path tooling archive round-trips and all 310 workspace checks pass. The network runtime and transport comparisons close, leaving 307 open. [Network runtime slot validation](2026-11-22-upstream-365-network-slots-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
