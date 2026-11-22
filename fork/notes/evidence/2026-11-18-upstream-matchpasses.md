@@ -38,6 +38,10 @@ The 262-path boss and enemy replay at `d92b462b97` recovers boss phase and proje
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 historical data bytes accounted for. The 130-path tooling archive reconstructs the tested fork workspace, which passes 310 checks. The Pan Arms and Canadin probes pass on retail and both builds. The cumulative source changes 881 paths and adds scoped evidence to 83 historical records. The 415 full historical comparisons remain open. [Boss and enemy validation](2026-11-21-upstream-365-boss-and-enemy-validation.json)
 
+The 30-path Photon Blast replay at `c298d767f2` recovers the shared summon packet, camera vectors, typed joint attachment records and BML inputs. The sequence owns its damage calculation and passes typed admission records and hold arguments. The attachment fields keep their existing upstream names. Ten linker labels follow corrected types or owners.
+
+Both builds reproduce retail with all 27,572 exact functions and 2,447 linked units. The 1,147 starting data bytes remain accounted for. The 130-path tooling archive reconstructs the verified fork workspace, which passes all 310 checks. The Photon Blast probes agree across retail and both builds. The cumulative source changes 898 paths, and the ledger gains scoped evidence on six records. The 415 full historical comparisons remain open. [Photon Blast validation](2026-11-21-upstream-365-photon-blast-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)

@@ -1,0 +1,300 @@
+{
+  "source": "c298d767f25772e4dbc9f486c44be2fdbcd7a5eb",
+  "previous_source": "d92b462b9774774c58583fca17e19455ca33c3a3",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/photon/PhotonBlastSummon.h",
+    "include/pso/effect/photon/TPhotonEstlla.h",
+    "include/pso/effect/photon/TPhotonLeilla.h",
+    "include/pso/effect/photon/TPhotonMagicSquare.h",
+    "include/pso/effect/photon/TPhotonMagicSquare_801ACE1C.h",
+    "include/pso/effect/photon/TPhotonMylla.h",
+    "include/pso/effect/photon/TPhotonRainbow.h",
+    "include/pso/effect/photon/TPhotonRainbow_801AE640.h",
+    "include/pso/effect/photon/TPhotonYoulla.h",
+    "include/pso/player/PhotonBlastResults.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/unk/TUnk_804C3248.h",
+    "include/pso/unk/TUnk_804C349C.h",
+    "include/pso/unk/text_801AB370.h",
+    "include/pso/unk/text_801ABE14.h",
+    "include/pso/unk/text_801AE1F8.h",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+    "src/pso/effect/photon/TPhotonMylla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/effect/photon/TPhotonRainbow.cpp",
+    "src/pso/effect/photon/TPhotonYoulla.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp"
+  ],
+  "combined_paths_from_upstream": 898,
+  "historical_basis": {
+    "pre_feature": "5a4e7ced56",
+    "matching_replay": "1e41348776",
+    "prior_photon_review": "3f8b2039e18b698df4cf35ddabeda9b9fa13ff32",
+    "prior_sequence_review": "6db60a1081"
+  },
+  "source_scope": [
+    "typed summon arguments, joint attachments and camera vectors",
+    "sequence-owned power calculation, admission slots and hold dispatch",
+    "BML models, construction and strip-buffer caller inputs"
+  ],
+  "linker_label_address_and_size_audit": [
+    {
+      "address": "0x801a7150",
+      "old": "queue_deferred_photon_blast_hit__FUlll",
+      "new": "queue_deferred_photon_blast_hit__FUlllf",
+      "size": 188
+    },
+    {
+      "address": "0x801a72ec",
+      "old": "queue_photon_blast_support__Fv",
+      "new": "queue_photon_blast_support__FUlll",
+      "size": 36
+    },
+    {
+      "address": "0x801a753c",
+      "old": "copy_effect_params__FPUcPUc",
+      "new": "copy_effect_params__FP19PhotonOpeningEffectP19PhotonOpeningEffect",
+      "size": 60
+    },
+    {
+      "address": "0x801a826c",
+      "old": "calc_photon_blast_power__10TObjPlayerFlf",
+      "new": "calc_photon_blast_power__13TUnk_804C349CFlf",
+      "size": 820
+    },
+    {
+      "address": "0x801a8618",
+      "old": "is_photon_blast_presentation_admitted__FUlPv",
+      "new": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot",
+      "size": 200
+    },
+    {
+      "address": "0x801a86e0",
+      "old": "apply_photon_blast_action_hold__Flll",
+      "new": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll",
+      "size": 352
+    },
+    {
+      "address": "0x801a8868",
+      "old": "admit_photon_blast_sequence__FPUcPv",
+      "new": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase",
+      "size": 1160
+    },
+    {
+      "address": "0x801a9e10",
+      "old": "__ct__13TUnk_804C349CFlPUcPlll",
+      "new": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll",
+      "size": 876
+    },
+    {
+      "address": "0x801aab74",
+      "old": "__ct__13TPhotonEstllaFPUc",
+      "new": "__ct__13TPhotonEstllaFP18PhotonSummonParams",
+      "size": 628
+    },
+    {
+      "address": "0x801ad218",
+      "old": "construct_photon_magic_square_normal__FPUcllll",
+      "new": "construct_photon_magic_square_normal__FP18TPhotonMagicSquareP7TObjectlPC3Vecl",
+      "size": 280
+    }
+  ],
+  "validation": {
+    "source": {
+      "baseline": "d92b462b9774774c58583fca17e19455ca33c3a3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801A7150",
+          "before": "queue_deferred_photon_blast_hit__FUlll",
+          "after": "queue_deferred_photon_blast_hit__FUlllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A72EC",
+          "before": "queue_photon_blast_support__Fv",
+          "after": "queue_photon_blast_support__FUlll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A753C",
+          "before": "copy_effect_params__FPUcPUc",
+          "after": "copy_effect_params__FP19PhotonOpeningEffectP19PhotonOpeningEffect"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A826C",
+          "before": "calc_photon_blast_power__10TObjPlayerFlf",
+          "after": "calc_photon_blast_power__13TUnk_804C349CFlf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801AAB74",
+          "before": "__ct__13TPhotonEstllaFPUc",
+          "after": "__ct__13TPhotonEstllaFP18PhotonSummonParams"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801AD218",
+          "before": "construct_photon_magic_square_normal__FPUcllll",
+          "after": "construct_photon_magic_square_normal__FP18TPhotonMagicSquareP7TObjectlPC3Vecl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "f8f7355b2d743e5369fff0e06f45ccf71793f37f16deb8968f666f0dbba51cc8",
+      "report_sha256": "53f673b232e0427552f4223b350de03d90d0912b80baebdd1f09ddddab5e56de"
+    },
+    "layer": {
+      "baseline": "c298d767f25772e4dbc9f486c44be2fdbcd7a5eb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "53f673b232e0427552f4223b350de03d90d0912b80baebdd1f09ddddab5e56de"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "92fede0f77891540ae941b3433d27601060f3e90f3717b9a8e8e03e2ac8fa905"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "2a9355b8548939818251aa822611a2b9d4e8a8937310bdfc9b5e950656e7e0bc"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "coverage": [
+      "rainbow model selection",
+      "both magic-square constructors",
+      "six summon kinds",
+      "Mylla dispatches a typed Youlla packet"
+    ],
+    "probe_sha256": "e729e279f45ecb5b80a1b42e8c9f74518af258e45e5dc4e16fce15e47e757a75",
+    "log_sha256": "ebaa7592f149bd992946056f8dd03cf0f344876320156ed1001eb6a4330afd7d"
+  },
+  "historical": {
+    "open_rows": 415,
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4085,
+        "src/pso/player/PhotonBlastResults.cpp",
+        "src/pso/player/PhotonBlastResults.cpp"
+      ],
+      [
+        4138,
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp"
+      ],
+      [
+        4184,
+        "src/pso/unk/text_801A9CB8.cpp",
+        "src/pso/player/PhotonBlastResults.cpp"
+      ],
+      [
+        7312,
+        "include/pso/misc/TUnk_804C3248.h",
+        "include/pso/unk/TUnk_804C3248.h"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "f1fa265f6dd2a69902050c95e109839f3df6ba6b",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "40521f6c8970110fc0cefb224a07166a020c00bc79919d7562447e8f52b1db66",
+    "materialized_tree": "6043febbf0ccbcf853d6de2bbe6071701346d6fb",
+    "force_active": 27027
+  }
+}
