@@ -1,0 +1,156 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "24380ad7fb886aafca04e6740a1ca97f3ac31b68",
+  "source": "16d656e439fd1f5cbdafa7fbce48163a7893a874",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x8002B058",
+          "before": "copy_header__6TLobbyFPv",
+          "after": "copy_header__16EnemyStateRecordFPC16EnemyStateRecord"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6E2C",
+          "before": "link_chain_nodes__10TObjPlayerFPvPvPv",
+          "after": "link_chain_nodes__9TObjEnemyFP9TObjEnemyP9TObjEnemy"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7428",
+          "before": "is_action_available__10TObjPlayerFv",
+          "after": "has_group__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F78C8",
+          "before": "apply_by_index__9TObjEnemyFs",
+          "after": "apply_by_index__9TObjEnemyFsPC16EnemyStateRecord"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80105B28",
+          "before": "process_and_dispatch_packet__6TLobbyFv",
+          "after": "send__35G_SpecializableItemDropRequest_6xA2Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80105B5C",
+          "before": "bswap_6xa2_fields__6TLobbyFv",
+          "after": "bswap__35G_SpecializableItemDropRequest_6xA2Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80105BA8",
+          "before": "build_6x06_guild_card_packet__6TLobbyFv",
+          "after": "init__35G_SpecializableItemDropRequest_6xA2Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8011A868",
+          "before": "handle_box_drop_directive__FPv",
+          "after": "handle_box_drop_directive__FP35G_SpecializableItemDropRequest_6xA2"
+        }
+      ]
+    },
+    "layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 160286,
+      "head": 160151,
+      "added": 3,
+      "removed": 138
+    },
+    "flagged_symbol_labels": 0,
+    "newly_stale_force_active": [],
+    "added_findings": {
+      "local_decl": 2,
+      "local_class": 1
+    },
+    "separate_ownership_diagnostics": {},
+    "reason_for_added_findings": "Two existing local declarations now describe the real enemy-state table. Other declarations of the same table still need migration. BoxDropParameters models the temporary layout the item decoder consumes and replaces a raw record. The copy uses volatile-qualified views to match retail field access sequencing."
+  },
+  "runtime_probes": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork layer"
+    ],
+    "result": "dispatcher setup and unwind, item-drop request routing, and enemy-state copy passed."
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/TObjEnemy.h",
+    "include/pso/enemy/TUnk_80493450.h",
+    "include/pso/network/NetworkDispatch.h",
+    "include/pso/network/NetworkRuntime.h",
+    "include/pso/network/NetworkRuntimeSlots.h",
+    "include/pso/network/protocol/ItemDropPacket.h",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/network/NetDispatcher.c",
+    "src/pso/network/NetHandlerTable.c",
+    "src/pso/network/NetworkPacketRuntime.c",
+    "src/pso/network/NetworkRuntime.c",
+    "src/pso/network/NetworkTransport.c",
+    "src/pso/network/TLobby_80428374.c",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/unk/TLobby_80104374.cpp",
+    "src/pso/unk/text_8011A780.cpp"
+  ],
+  "closed_source_comparisons": [
+    "src/pso/network/NetworkDispatcher.cpp",
+    "include/pso/protocol/subcmd_6x.h",
+    "src/pso/unk/text_8011A780.cpp",
+    "src/pso/enemy/TObjEneBeast_800C4E08.cpp"
+  ],
+  "remaining_source_comparisons": 205,
+  "workspace": {
+    "materialized_tree": "55f00bec4fcdca026022a022c46a2968269c996f",
+    "overlay_paths": 130,
+    "updated_retention_labels": {
+      "build_6x06_guild_card_packet__6TLobbyFv": "init__35G_SpecializableItemDropRequest_6xA2Fv",
+      "handle_box_drop_directive__FPv": "handle_box_drop_directive__FP35G_SpecializableItemDropRequest_6xA2",
+      "process_and_dispatch_packet__6TLobbyFv": "send__35G_SpecializableItemDropRequest_6xA2Fv"
+    },
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "53b54b8c2f90204a8974e4efcc7a49726eb677bc8d8e0b3a2eba7e66e0044828"
+  }
+}
