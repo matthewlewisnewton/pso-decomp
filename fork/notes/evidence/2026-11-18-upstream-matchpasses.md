@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The gameplay packet replay `87e6918ced` follows the 6x5F and 6x60 recovery with the shared 6xB2 layout, snapshot sender and typed command-table receiver. The wire round trip, signed floor check and guarded local player playback match retail. The original receiver reads the client field as a signed halfword. The archive is byte-identical to the tested item packet workspace and all 310 checks pass. Rechecking earlier source evidence confirms the native tentacle banks and two empty callbacks and reopens the Moja parameter banks, leaving 253 entries open. [Gameplay packet and historical audit](2026-11-22-upstream-8441-gameplay-sound-validation.json)
+
+
 The item packet replay `1084e7c2bf` restores live 6x5F and 6x60 records, native drop generator payloads, and both 12-client item counter banks. Both wire versions, the legacy and extended routing paths and the allocation and release call sites reproduce retail. Four linker labels track three packet owners and the enemy drop's original 32-bit area argument. The fork-only tooling archive keeps its 130 paths and passes 310 checks. The complete historical item packet and counter owner audit leaves 252 entries open. [Item packet and workspace validation](2026-11-22-upstream-8441-item-packets-validation.json)
 
 
