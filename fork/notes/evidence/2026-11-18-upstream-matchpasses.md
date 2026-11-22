@@ -41,6 +41,7 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 | Character growth, inventory and equipment | `50664446c4` | Stack through network | 117 |
 | Techniques, effects and player state | `a5d9b6d322` | Inventory review | 118 |
 | Saves, quests and asset loading | `773c658ecc` | Technique review | 172 |
+| Positional sound, voice slots and sound balance | `a94738117b` | Save and quest review | 166 |
 
 The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
@@ -57,6 +58,10 @@ The review, consolidated source and reconstructed fork workspace match retail wi
 The 172-path save, quest and asset review at `773c658ecc` combines memory-card records, Hunter Guild menus, quest caching and the shared file, BML and GVM interfaces. Footprint loading, drawing and teardown share the real Ginja texture pointer. Its constructor uses the player's original rotation record. The consolidated source is `28b1b83ec0`, and the 482-path replay at `fffe22a377` reconstructs it exactly above the review.
 
 The review, consolidated source and reconstructed fork workspace match retail with all 1,147 starting data bytes. All 310 workspace checks pass and the 130-path tooling archive round-trips. The footprint source comparison closes, leaving 263 open. [Save and quest review](2026-11-22-next-upstream-saves-quests-and-asset-loading.md) · [Validation](2026-11-22-upstream-366-saves-quests-and-assets-validation.json)
+
+The 166-path sound review at `a94738117b` restores typed positional and one-shot requests, native voice slot inputs, and the original floor-dependent return values. Five Olga Flow calls pass the typed position. Sound balance uses the shared draw context and passes two label pointers explicitly to text measurement. The consolidated source is `15201748bd`, and the 381-path replay at `b92f41bf71` reconstructs it exactly above the review.
+
+The review, consolidated source and reconstructed fork workspace match retail with all 1,147 original data bytes. All 310 workspace checks pass, and the 130-path tooling archive round-trips. The lobby sound source comparison closes, leaving 262 open. [Sound review](2026-11-22-next-upstream-positional-and-one-shot-sound.md) · [Validation](2026-11-22-upstream-366-sound-review-validation.json)
 
 ## Replay after upstream PR #365
 
