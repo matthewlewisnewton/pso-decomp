@@ -116,6 +116,12 @@ Both builds reproduce retail, preserve all 1,147 original data bytes, and pass t
 
 The technique state declaration and native short setter records close, leaving 447 open. The broader technique controller, player action and NPC source comparisons remain open. [Technique state, target and packet evidence](2026-11-21-technique-targets-replay.json)
 
+The 38-file technique effects replay at `491cc9fed0` restores the aimed and facing Gi-Barta factories, native lightning construction, and shared Barta, Gi-Barta and Megid pitch code. All 45 factory and constructor call sites use the recovered interfaces. Three linker labels follow the corrected owners or argument types at the original addresses. The work retains upstream's operation, allocation and texture-table names.
+
+The native BML resource owner, 37 source-defined archive and charge-light constants, and original ring-wave names and descriptor use shared types across the controller, lightning effects and resource callers. Both builds reproduce retail, preserve all 1,147 original data bytes, and pass the 310 tool and host checks. Runtime probes verify the factories, texture records, nine charge-light branches and band pitch schedule. The fork tooling archive replays byte for byte.
+
+Four historical source records close, leaving 443 open. The broader technique, actor and player records retain partial evidence. [Technique effects and resource validation](2026-11-21-technique-effects-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
