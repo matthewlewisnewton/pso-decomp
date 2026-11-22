@@ -206,6 +206,10 @@ The eight-path native layout replay at `400f9f254f` checks the startup scene, ch
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Ten linked cases pass on each image. The host copy passes 64 alignment cases with address and undefined-behavior sanitizers. The 130-path tooling archive round-trips and all 310 workspace checks pass. Six historical comparisons close and 294 remain open. [Native layout and packet copy validation](2026-11-22-upstream-365-native-layouts-validation.json)
 
+The 11-path technique replay at `3326f576bc` passes the native caster, cast positions and signed level through the Rafoie factory and all three Dark Falz and Stelth callers. Gibarta uses its native projectile and emitter fields. Zonde uses shared vectors and actor positions, and Gizonde reads its native target list. The one linker label change follows the corrected factory signature. The function name remains `create`.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Twenty-two factory, bolt and emitter cases pass per image, along with the earlier resource and sound probes. All 310 workspace checks pass and the 130-path tooling archive round-trips. Six historical records close, leaving 288 open. [Technique ownership validation](2026-11-22-upstream-365-technique-owners-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
