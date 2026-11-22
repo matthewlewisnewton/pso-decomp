@@ -45,6 +45,7 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 | Shared allocation, copy and release | `848e38d367` | Sound review | 227 |
 | Camera playback, scenes and rendering | `a3cd2e2647` | Memory review | 60 |
 | Actor positions, population and encounter setup | `0a8586d2fe` | Camera and scene review | 107 |
+| Olga Flow phases, Mag and attack handlers | `315777bbb1` | Actor positions review | 35 |
 
 The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
@@ -71,6 +72,8 @@ The 227-path memory review at `848e38d367` gives allocation, release and byte an
 The 60-path camera and scene review at `a3cd2e2647` carries native camera playback, motion channels and view transforms. It also carries the texture-strip buffers, live scene storage, fade callbacks and deferred render queue. The exact build and runtime probes pass with all 1,147 original data bytes accounted for. The replay at `d0c6ba2e28` reconstructs source `15201748bd` from the 153 paths still outside the review stack. [Camera and scene review](2026-11-22-next-upstream-camera-scenes-and-rendering.md) · [Validation](2026-11-22-upstream-366-camera-scene-review-validation.json)
 
 The 107-path actor position and population review at `0a8586d2fe` recovers native placement and motion, spawn and attack parameters, and the resource lifetimes that use them. It keeps the native Gibbles constructor and update method, and makes their position calls use the shared character methods. The review reproduces retail with all 1,147 original data bytes accounted for. The replay at `de3c84b726` reconstructs the consolidated source from the 51 paths still outside the review stack. [Actor position and population review](2026-11-22-next-upstream-actor-positions-and-population.md) · [Validation](2026-11-22-upstream-366-actor-positions-review-validation.json)
+
+The 35-path Olga Flow review at `315777bbb1` restores native phase construction, Mag actions and attacks, typed mines and sword waves, and the shared attack-credit and scrolling-strip inputs. The review matches retail with all 1,147 original data bytes accounted for and passes eight runtime probe suites. The replay at `2e513f2fa7` reconstructs the consolidated source from the 16 paths outside the review stack. [Olga Flow review](2026-11-22-next-upstream-olga-flow.md) · [Validation](2026-11-22-upstream-366-olga-flow-review-validation.json)
 
 ## Replay after upstream PR #365
 
