@@ -94,6 +94,10 @@ Both builds reproduce retail with 27,572 exact functions and 2,447 linked units.
 
 The next local review at `ebd31cec2b` combines window, character selection and chat in one 422-path batch on the published renderer head. It builds independently of the collision replay, reproduces retail with 27,572 exact functions and 2,447 linked units, and preserves the 1,147 historical data bytes. Four companion probe suites agree with retail. The standalone record includes the proposed PR description. [Window, character selection and chat review](2026-11-22-next-upstream-window-character-chat.md)
 
+The lobby buffer replay at `6f14c086f0` gives the network configuration buffer a native pointer type from allocation through startup and passes the computed size to the declared allocator. The stock and reconstructed fork builds match all 27,572 functions and link all 2,447 units, with all 1,147 historical data bytes accounted for. All 310 fork workspace checks and twelve allocation cases pass.
+
+The first-parent source review closes 15 historical rows across Dragon effects, camera and front-end constants, character selection, and network and quest setup. It verifies 51 historical scalar values at their addresses within the exact compiled units. 378 historical comparisons remain open. The typed matrix copy and concatenation contract remains a shared follow-up for the Dragon breakup callers. [Lobby buffer and historical owner validation](2026-11-22-upstream-365-lobby-buffer-and-owner-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)

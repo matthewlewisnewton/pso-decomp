@@ -1,0 +1,576 @@
+{
+  "source": "6f14c086f033ab892c428a38a54914f6e85b8bce",
+  "previous_source": "f74ecdc8c5bdd1876a5e1795f27cc22edf702973",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "src/pso/unk/TLobby_801461EC.cpp",
+    "src/pso/unk/text_80145A94.cpp"
+  ],
+  "combined_paths_from_upstream": 1058,
+  "validation": {
+    "source": {
+      "baseline": "f74ecdc8c5bdd1876a5e1795f27cc22edf702973",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    },
+    "layer": {
+      "baseline": "6f14c086f033ab892c428a38a54914f6e85b8bce",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "0e3850536631591e76b4171dbf1e338317365ab8201278c87f4571213b1658e3"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "66c16f63a64cc56fc60f3732dd3af7f3569a928904042d424af44d4c532c18c6"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "probe_sha256": "0d499af06bb7f87c0d5cc6a45c880bedc190226392b80396d088bbf820e8e716",
+    "results": {
+      "buffer_cases": 12,
+      "call_trace": [
+        "size",
+        "allocate",
+        "load"
+      ]
+    }
+  },
+  "owner_review": {
+    "historical_fork": "3342e42983",
+    "first_parent_baseline": "1f2ecc1887",
+    "ledger_comparison_base": "fba9382235",
+    "triage_sha256": "966f71f8a0e303ee5c1f9a01084eb26868ae5f22891ffcb52470acecdf20b5d7",
+    "original_open_rows": 393,
+    "remaining_rows": 378,
+    "verified_scalar_addresses": 51,
+    "closed_rows": [
+      {
+        "row": 734,
+        "fork_path": "src/pso/boss/TObjBoss1Crater.cpp",
+        "current_owner": "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+        "current_units": [
+          "src/pso/boss/dragon/TObjBoss1Crater.cpp"
+        ],
+        "first_parent_edit_blocks": 4,
+        "evidence": "The crater has the typed texture binding, the same upstream yaw field and the original 65536.0f and 1.0f / 32768.0f constructor factors at 0x805D8160 and 0x805D8164.",
+        "constants": [
+          {
+            "address": "0x805d8160",
+            "source_value": "65536.0",
+            "retail_bytes": "47800000"
+          },
+          {
+            "address": "0x805d8164",
+            "source_value": "3.0517578125e-05",
+            "retail_bytes": "38000000"
+          }
+        ],
+        "fork_blob": "c285e7dca6901a5f1b7b4f6c50b883ac2b229118",
+        "checked_owner_blob": "2b08bebe26c99e840a8bc82539b7975872675815"
+      },
+      {
+        "row": 762,
+        "fork_path": "src/pso/boss/TBoss1DragonEffTail.cpp",
+        "current_owner": "src/pso/boss/dragon/TBoss1DragonEffTail.cpp",
+        "current_units": [
+          "src/pso/boss/dragon/TBoss1DragonEffTail.cpp"
+        ],
+        "first_parent_edit_blocks": 10,
+        "evidence": "The tail uses the native yaw field, the position vector's tail component and the original 0.5f, 30.0f, 5.0f, 0.0f and 1.0f values in its exact unit, including the collider hit scale.",
+        "constants": [
+          {
+            "address": "0x805d8148",
+            "source_value": "0.5",
+            "retail_bytes": "3f000000"
+          },
+          {
+            "address": "0x805d814c",
+            "source_value": "30.0",
+            "retail_bytes": "41f00000"
+          },
+          {
+            "address": "0x805d8150",
+            "source_value": "5.0",
+            "retail_bytes": "40a00000"
+          },
+          {
+            "address": "0x805d8154",
+            "source_value": "0.0",
+            "retail_bytes": "00000000"
+          },
+          {
+            "address": "0x805d8158",
+            "source_value": "1.0",
+            "retail_bytes": "3f800000"
+          }
+        ],
+        "fork_blob": "76df9fc6e09432d4e03ae8a1b205eb49efbb9a41",
+        "checked_owner_blob": "3a959f2753fcf467e7c4a55b6c78b5310789df23"
+      },
+      {
+        "row": 843,
+        "fork_path": "src/pso/boss/TBoss8DragonEffTail.cpp",
+        "current_owner": "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+        "current_units": [
+          "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp"
+        ],
+        "first_parent_edit_blocks": 5,
+        "evidence": "The tail's BML resource is a BmlResource pointer and uses its native destructor. The GVM allocation still uses the shared safe_free call. All four fork constants are generated in the exact original unit.",
+        "constants": [
+          {
+            "address": "0x805def08",
+            "source_value": "0.5",
+            "retail_bytes": "3f000000"
+          },
+          {
+            "address": "0x805def0c",
+            "source_value": "30.0",
+            "retail_bytes": "41f00000"
+          },
+          {
+            "address": "0x805def10",
+            "source_value": "5.0",
+            "retail_bytes": "40a00000"
+          },
+          {
+            "address": "0x805def14",
+            "source_value": "0.0",
+            "retail_bytes": "00000000"
+          }
+        ],
+        "fork_blob": "3a8399460a8aa65c9256f159b1ad8373ad8f8126",
+        "checked_owner_blob": "686ff7fd13e352929e8e0d3e5b0c6b44d8df8a6d"
+      },
+      {
+        "row": 1185,
+        "fork_path": "src/pso/misc/TCameraCtrl_8006782C.cpp",
+        "current_owner": "src/pso/unk/TUnk_804887F8.cpp",
+        "current_units": [
+          "src/pso/unk/TUnk_804887F8.cpp"
+        ],
+        "first_parent_edit_blocks": 2,
+        "evidence": "All 10 historical constant edits are initializer definitions. The current source uses the same local values and emits their exact bytes in its linked data ranges.",
+        "constants": [
+          {
+            "address": "0x805d8f38",
+            "source_value": "0.0f",
+            "retail_bytes": "00000000"
+          },
+          {
+            "address": "0x805d8f4c",
+            "source_value": "100.0f",
+            "retail_bytes": "42c80000"
+          },
+          {
+            "address": "0x805d8f50",
+            "source_value": "1.65f",
+            "retail_bytes": "3fd33333"
+          },
+          {
+            "address": "0x805d8f54",
+            "source_value": "0.7f",
+            "retail_bytes": "3f333333"
+          },
+          {
+            "address": "0x805d8f58",
+            "source_value": "19.8f",
+            "retail_bytes": "419e6666"
+          },
+          {
+            "address": "0x805d8f5c",
+            "source_value": "-5.0f",
+            "retail_bytes": "c0a00000"
+          },
+          {
+            "address": "0x805d8f3c",
+            "source_value": "50.0f",
+            "retail_bytes": "42480000"
+          },
+          {
+            "address": "0x805d8f40",
+            "source_value": "60.0f",
+            "retail_bytes": "42700000"
+          },
+          {
+            "address": "0x805d8f44",
+            "source_value": "45.42f",
+            "retail_bytes": "4235ae14"
+          },
+          {
+            "address": "0x805d8f48",
+            "source_value": "15.0f",
+            "retail_bytes": "41700000"
+          }
+        ],
+        "fork_blob": "7f822627df2ce5fb8b5fc774e17e288256793389",
+        "checked_owner_blob": "fb6af8243e2e64757f06f1e30b763304108a6935"
+      },
+      {
+        "row": 2351,
+        "fork_path": "src/pso/ui/TAdGameStartLineGC.cpp",
+        "current_owner": "src/pso/ui/frontend/TAdGameStartLineGC.cpp",
+        "current_units": [
+          "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+        ],
+        "first_parent_edit_blocks": 2,
+        "evidence": "All 14 historical constant edits are initializer definitions. The current source uses the same local values and emits their exact bytes in its linked data ranges.",
+        "constants": [
+          {
+            "address": "0x805df4a0",
+            "source_value": "3.0f",
+            "retail_bytes": "40400000"
+          },
+          {
+            "address": "0x805df4ac",
+            "source_value": "384.0f",
+            "retail_bytes": "43c00000"
+          },
+          {
+            "address": "0x805df4b0",
+            "source_value": "640.0f",
+            "retail_bytes": "44200000"
+          },
+          {
+            "address": "0x805df4b4",
+            "source_value": "0.5f",
+            "retail_bytes": "3f000000"
+          },
+          {
+            "address": "0x805df4b8",
+            "source_value": "27.0f",
+            "retail_bytes": "41d80000"
+          },
+          {
+            "address": "0x805df4bc",
+            "source_value": "191.0f",
+            "retail_bytes": "433f0000"
+          },
+          {
+            "address": "0x805df4c0",
+            "source_value": "613.0f",
+            "retail_bytes": "44194000"
+          },
+          {
+            "address": "0x805df4c4",
+            "source_value": "289.0f",
+            "retail_bytes": "43908000"
+          },
+          {
+            "address": "0x805df4c8",
+            "source_value": "128.0f",
+            "retail_bytes": "43000000"
+          },
+          {
+            "address": "0x805df4cc",
+            "source_value": "0.0f",
+            "retail_bytes": "00000000"
+          },
+          {
+            "address": "0x805df4d0",
+            "source_value": "0.75f",
+            "retail_bytes": "3f400000"
+          },
+          {
+            "address": "0x805df4d4",
+            "source_value": "1.0f",
+            "retail_bytes": "3f800000"
+          },
+          {
+            "address": "0x805df4a4",
+            "source_value": "0.2f",
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "address": "0x805df4a8",
+            "source_value": "64.0f",
+            "retail_bytes": "42800000"
+          }
+        ],
+        "fork_blob": "060ad4b6117e16018230ae392fce9be4f5e50eb2",
+        "checked_owner_blob": "f4288fdc35acab0d21c99b7212858528c67a5a4e"
+      },
+      {
+        "row": 2399,
+        "fork_path": "src/pso/misc/TChCrTag.cpp",
+        "current_owner": "src/pso/ui/charcreate/TChCrTag.cpp",
+        "current_units": [
+          "src/pso/ui/charcreate/TChCrTag.cpp"
+        ],
+        "first_parent_edit_blocks": 3,
+        "evidence": "All 4 historical constant edits are initializer definitions. The current source uses the same local values and emits their exact bytes in its linked data ranges.",
+        "constants": [
+          {
+            "address": "0x805dde00",
+            "source_value": "1.0f",
+            "retail_bytes": "3f800000"
+          },
+          {
+            "address": "0x805dde04",
+            "source_value": "0.0f",
+            "retail_bytes": "00000000"
+          },
+          {
+            "address": "0x805dde08",
+            "source_value": "0.13333334f",
+            "retail_bytes": "3e088889"
+          },
+          {
+            "address": "0x805dde0c",
+            "source_value": "-0.13333334f",
+            "retail_bytes": "be088889"
+          }
+        ],
+        "fork_blob": "93fdfa88e4b46a7f16dbb440f0e7de0b95686301",
+        "checked_owner_blob": "244965c7ec6dc08bfee16f80e3f7bc5d33cc9e07"
+      },
+      {
+        "row": 2409,
+        "fork_path": "src/pso/ui/TAdSelectTxtSubGC.cpp",
+        "current_owner": "src/pso/ui/frontend/TAdSelectTxtSubGC.cpp",
+        "current_units": [
+          "src/pso/ui/frontend/TAdSelectTxtSubGC.cpp"
+        ],
+        "first_parent_edit_blocks": 1,
+        "evidence": "All 1 historical constant edits are initializer definitions. The current source uses the same local values and emits their exact bytes in its linked data ranges.",
+        "constants": [
+          {
+            "address": "0x805ddf54",
+            "source_value": "28.0f",
+            "retail_bytes": "41e00000"
+          }
+        ],
+        "fork_blob": "a076d85197588a6f495b223d5ee9574a032599ff",
+        "checked_owner_blob": "149c6d76cbe67dc0238b90a969b9b94bdd1626e4"
+      },
+      {
+        "row": 2507,
+        "fork_path": "src/pso/misc/TChCrEffTag.cpp",
+        "current_owner": "src/pso/ui/charcreate/TChCrEffTag.cpp",
+        "current_units": [
+          "src/pso/ui/charcreate/TChCrEffTag.cpp"
+        ],
+        "first_parent_edit_blocks": 5,
+        "evidence": "The file shares the native TObjCMMainMenu declaration and calls get_creation_sprite_id directly. The selected heading initializes to -1 in the current owner. The redundant local externs are absent.",
+        "constants": [],
+        "fork_blob": "188cf0e5ae216900e971a88bcb4df1daf85b766a",
+        "checked_owner_blob": "86c50d579eff3349c935c2b56cebac3439209f38"
+      },
+      {
+        "row": 2681,
+        "fork_path": "src/pso/ui/TAdMultiChgGameModeGC_8023EAC4.cpp",
+        "current_owner": "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+        "current_units": [
+          "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp"
+        ],
+        "first_parent_edit_blocks": 5,
+        "evidence": "The owning mode dispatcher includes TAdSinglePlyChrSelectGC.h and constructs the scene with the native TObject parent. The default audio case uses the same nine-byte advr.adx literal.",
+        "constants": [],
+        "fork_blob": "07513c966a1eb016bb56f51fb64cbc0164727bad",
+        "checked_owner_blob": "1192ee788d61baf84b7ca0efa977a9aa65cd82ad"
+      },
+      {
+        "row": 3092,
+        "fork_path": "src/pso/unk/text_80145A94.cpp",
+        "current_owner": "src/pso/unk/text_80145A94.cpp",
+        "current_units": [
+          "src/pso/unk/text_80145A94.cpp",
+          "src/pso/unk/TLobby_801461EC.cpp"
+        ],
+        "first_parent_edit_blocks": 4,
+        "evidence": "The network-info caller receives the actual allocated pointer through the shared lifecycle and request declarations. The lobby writer passes the computed byte count to the native xmalloc. The original load path and twelve allocation cases agree across retail and both builds.",
+        "constants": [],
+        "fork_blob": "12b8caa51cc9c795826e9a308822716b394d4887",
+        "checked_owner_blob": "efd82d762b5ef3540f566300c7f15db256afc837"
+      },
+      {
+        "row": 3632,
+        "fork_path": "src/pso/misc/TCameraCtrl_80082FCC.cpp",
+        "current_owner": "src/pso/player/TObjPlayer_80083594.cpp",
+        "current_units": [
+          "src/pso/player/TObjPlayer_80083594.cpp"
+        ],
+        "first_parent_edit_blocks": 3,
+        "evidence": "The camera render target passes its texture-list pointer at offset 0x1C through the native setter. The projection call retains its 21000.0f far-plane argument at the original float address.",
+        "constants": [
+          {
+            "address": "0x805d9410",
+            "source_value": "21000.0",
+            "retail_bytes": "46a41000"
+          }
+        ],
+        "fork_blob": "032c77a865365dcc6879ed1910fd7e4b72e736a8",
+        "checked_owner_blob": "52de5679ccd3bf83027f1cc60b7e3b2dfb16ce04"
+      },
+      {
+        "row": 4515,
+        "fork_path": "src/pso/unk/text_8022BE64.cpp",
+        "current_owner": "src/pso/unk/text_8022BE64.cpp",
+        "current_units": [
+          "src/pso/unk/text_8022BE64.cpp"
+        ],
+        "first_parent_edit_blocks": 2,
+        "evidence": "All 6 historical constant edits are initializer definitions. The current source uses the same local values and emits their exact bytes in its linked data ranges.",
+        "constants": [
+          {
+            "address": "0x805dc7b0",
+            "source_value": "2.75f",
+            "retail_bytes": "40300000"
+          },
+          {
+            "address": "0x805dc7b4",
+            "source_value": "0.0f",
+            "retail_bytes": "00000000"
+          },
+          {
+            "address": "0x805dc7b8",
+            "source_value": "1.0f",
+            "retail_bytes": "3f800000"
+          },
+          {
+            "address": "0x805dc7bc",
+            "source_value": "0.2f",
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "address": "0x805dc7c0",
+            "source_value": "3.0f",
+            "retail_bytes": "40400000"
+          },
+          {
+            "address": "0x805dc7c4",
+            "source_value": "150.0f",
+            "retail_bytes": "43160000"
+          }
+        ],
+        "fork_blob": "9e1c0cae34c2f8dc69e17da14609f47eab67289a",
+        "checked_owner_blob": "0cbcb1efcee48da4dd12ddfb7eee31cd59b55552"
+      },
+      {
+        "row": 5103,
+        "fork_path": "src/pso/misc/TCameraCtrl_8006C8E4.cpp",
+        "current_owner": "src/pso/unk/TUnk_80488DA0.cpp",
+        "current_units": [
+          "src/pso/unk/TUnk_80488DA0.cpp"
+        ],
+        "first_parent_edit_blocks": 1,
+        "evidence": "All 2 historical constant edits are initializer definitions. The current source uses the same local values and emits their exact bytes in its linked data ranges.",
+        "constants": [
+          {
+            "address": "0x80438510",
+            "source_value": "1.0",
+            "retail_bytes": "3ff0000000000000"
+          },
+          {
+            "address": "0x80438518",
+            "source_value": "0.0054931640625",
+            "retail_bytes": "3f76800000000000"
+          }
+        ],
+        "fork_blob": "d2c520c24d14a0acfc600c5643ec99b9bf0329ed",
+        "checked_owner_blob": "820fdbea0aa6ce23822d7b055ec2a81464c70634"
+      },
+      {
+        "row": 5111,
+        "fork_path": "src/pso/misc/TCameraCtrl_80067CE8.cpp",
+        "current_owner": "src/pso/unk/TUnk_80488838.cpp",
+        "current_units": [
+          "src/pso/unk/TUnk_80488838.cpp"
+        ],
+        "first_parent_edit_blocks": 2,
+        "evidence": "All 2 historical constant edits are initializer definitions. The current source uses the same local values and emits their exact bytes in its linked data ranges.",
+        "constants": [
+          {
+            "address": "0x805d8f78",
+            "source_value": "10.0f",
+            "retail_bytes": "41200000"
+          },
+          {
+            "address": "0x805d8f74",
+            "source_value": "0.0f",
+            "retail_bytes": "00000000"
+          }
+        ],
+        "fork_blob": "8e4cc83005d4fd7d8aed1b482c5558b9695995e9",
+        "checked_owner_blob": "46afed6460b0930bca9cbdc5139e1fa4b8b1c429"
+      },
+      {
+        "row": 7344,
+        "fork_path": "include/pso/misc/TLobby_801F3A24.h",
+        "current_owner": "src/pso/unk/TLobby_801F3A24.cpp",
+        "current_units": [
+          "src/pso/unk/TLobby_801F3A24.cpp"
+        ],
+        "first_parent_edit_blocks": 3,
+        "evidence": "The two startup and refresh declarations use const char * in the shared TLobby class and their exact definitions and dispatch callers. The duplicate opaque refresh declaration is superseded.",
+        "constants": [],
+        "fork_blob": "a07f29ce0ee4f4167769a957f0ff2bc1e984c2e9",
+        "checked_owner_blob": "eab3fc41934c4774f0ee214c9bb10a1c3acd8d9e"
+      }
+    ],
+    "retained_matrix_contract_gap": "The Dragon breakup files use the original call addresses, but still pass matrices to the integer-address copy and concat methods. Audit the shared matrix API and its callers together."
+  },
+  "fork_workspace": {
+    "trial": "342058756321bc090dacd00b4787ff0acd2ed2aa",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "c5a20c5bee4db520087ead94090ea8b8dd312aa218d9cfc56f08263e2128c3ac",
+    "materialized_tree": "0eb4e3c1efeec049544c176076c96d3830024fbc",
+    "force_active": 27027
+  }
+}
