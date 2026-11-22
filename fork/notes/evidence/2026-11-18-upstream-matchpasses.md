@@ -1,6 +1,10 @@
 # Upstream matchpasses
 
-Group related source recovery into fewer, larger reviews with independent matching builds. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
+Submit one larger, related source review at a time with an independent matching build. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
+
+## Next upstream review
+
+The next review is the 360-path renderer and BML recovery at `927d57da60`, directly on `b2d2912058`. The texture interface and its callers travel together. The review branch reproduces retail and passes the standalone coverage and runtime checks. The window and chat replay stays in local validation for a later review. [Review branch evidence and description](2026-11-21-next-upstream-renderer-and-bml.md)
 
 ## Replay after upstream PR #365
 
