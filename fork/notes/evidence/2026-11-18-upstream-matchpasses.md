@@ -172,6 +172,10 @@ The four-path dial-script replay at `609e152b65` uses the real modem configurati
 
 Both builds reproduce retail with all 27,572 functions exact, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probes agree on 13 script cases per image. The 130-path tooling archive round-trips and all 310 workspace checks pass. The modem script and compressed frame comparisons close three historical records, leaving 312 open. [Modem script and frame validation](2026-11-22-upstream-365-modem-script-validation.json)
 
+The 14-path network startup and PPP replay at `5dd3a4a299` gives the UDP and IPv4 socket setup and the handler table their native records. Lobby connection status reads the typed IPv4 and IPv6 option records, and the callers share the LCP packet and signed authentication wait declarations. The original linker names are retained.
+
+Both builds reproduce retail with all 27,572 functions exact, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probe checks 20 cases per image across startup records, status copies, interface identifiers, connection outcomes and authentication waits. The 130-path tooling archive round-trips, and all 310 workspace checks pass. Two historical comparisons close, leaving 310 open. [Network startup and PPP validation](2026-11-22-upstream-365-network-startup-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)

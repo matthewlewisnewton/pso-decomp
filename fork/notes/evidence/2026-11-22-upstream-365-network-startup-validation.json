@@ -1,0 +1,280 @@
+{
+  "source": "5dd3a4a299f0fb6078f9c03961a37a67fba1e23d",
+  "initial_source": "d4c0f719a5f39e5645b7bc793af4344ca2926b9d",
+  "previous_source": "609e152b653f2ac4ec23c18bc1d76e472224d634",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/NetworkRuntime.h",
+    "include/pso/network/TLobby_803FAEA0.h",
+    "include/pso/network/TLobby_803FC178.h",
+    "include/pso/network/UdpRuntime.h",
+    "include/pso/network/netcfg.h",
+    "src/pso/network/NetHandlerTable.c",
+    "src/pso/network/NetIpv4.c",
+    "src/pso/network/NetUdp.c",
+    "src/pso/network/NetworkThreadRuntime.c",
+    "src/pso/network/PppControl.c",
+    "src/pso/network/PppPap.c",
+    "src/pso/network/TLobby_803F86BC.c",
+    "src/pso/network/TLobby_803FAEA0.c",
+    "src/pso/network/TLobby_803FC178.c"
+  ],
+  "combined_paths_from_upstream": 1287,
+  "validation": {
+    "source": {
+      "baseline": "d4c0f719a5f39e5645b7bc793af4344ca2926b9d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    },
+    "layer": {
+      "baseline": "5dd3a4a299f0fb6078f9c03961a37a67fba1e23d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "ed9c99089a2c372917b12463b220ff32b6e2ce611c74a79939e7df268b8ae255"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "32fd2c95100c60a0e6f794220e035f3bb507000948b964c4395ff3e13a09ca90"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "initial_source_check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+  "runtime": {
+    "cases_per_image": 20,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "cases": {
+      "record_initialization": 7,
+      "status_copy": 4,
+      "interface_identifiers": 2,
+      "connection_paths": 4,
+      "authentication_wait": 3
+    },
+    "probe_sha256": "2f20cfc10be3c4a71291ce2c130e6f49ef6ff7f52bf4586a8dbd901fe0e4d805",
+    "log_sha256": "882f6738284eca2dd22784bd036b30dcccf279eeebadc8f14d9ce807253f864b"
+  },
+  "matching_units": {
+    "src/pso/network/NetArp.c": {
+      "functions": 21,
+      "code": "5108",
+      "data": "40"
+    },
+    "src/pso/network/NetHandlerTable.c": {
+      "functions": 23,
+      "code": "2984",
+      "data": "8"
+    },
+    "src/pso/network/NetIpv4.c": {
+      "functions": 7,
+      "code": "4032",
+      "data": "40"
+    },
+    "src/pso/network/NetUdp.c": {
+      "functions": 10,
+      "code": "2500",
+      "data": "16"
+    },
+    "src/pso/network/NetworkThreadRuntime.c": {
+      "functions": 40,
+      "code": "5864",
+      "data": "232"
+    },
+    "src/pso/network/PppControl.c": {
+      "functions": 12,
+      "code": "2128",
+      "data": "160"
+    },
+    "src/pso/network/PppPap.c": {
+      "functions": 12,
+      "code": "2972",
+      "data": "456"
+    },
+    "src/pso/network/TLobby_803F86BC.c": {
+      "functions": 34,
+      "code": "1868",
+      "data": "61968"
+    },
+    "src/pso/network/TLobby_803FAEA0.c": {
+      "functions": 16,
+      "code": "4824",
+      "data": "568"
+    },
+    "src/pso/network/TLobby_803FC178.c": {
+      "functions": 11,
+      "code": "3532",
+      "data": "464"
+    },
+    "src/pso/network/TLobby_804048E8.c": {
+      "functions": 3,
+      "code": "2036",
+      "data": "4632"
+    }
+  },
+  "original_addresses": {
+    "0x803F87C8": {
+      "fork_name": "TLobby__sub_803F87C8",
+      "current_name": "TLobby__sub_803F87C8",
+      "section": "text",
+      "size": 20
+    },
+    "0x803F8930": {
+      "fork_name": "TLobby__sub_803F8930",
+      "current_name": "TLobby__sub_803F8930",
+      "section": "text",
+      "size": 40
+    },
+    "0x803F8AA0": {
+      "fork_name": "TLobby__sub_803F8AA0",
+      "current_name": "TLobby__sub_803F8AA0",
+      "section": "text",
+      "size": 24
+    },
+    "0x803FB358": {
+      "fork_name": "TLobby__sub_803FB358",
+      "current_name": "TLobby__sub_803FB358",
+      "section": "text",
+      "size": 340
+    },
+    "0x803FB7A4": {
+      "fork_name": "TLobby__sub_803FB7A4",
+      "current_name": "TLobby__sub_803FB7A4",
+      "section": "text",
+      "size": 2452
+    },
+    "0x803FC138": {
+      "fork_name": "get_remaining__6TLobbyFl",
+      "current_name": "get_remaining",
+      "section": "text",
+      "size": 12
+    },
+    "0x80403864": {
+      "fork_name": "negotiate_ipcp_and_ipv6cp",
+      "current_name": "negotiate_ipcp_and_ipv6cp",
+      "section": "text",
+      "size": 144
+    },
+    "0x804039C8": {
+      "fork_name": "ipcp_configure_all_options",
+      "current_name": "ipcp_configure_all_options",
+      "section": "text",
+      "size": 316
+    },
+    "0x80403C60": {
+      "fork_name": "lcp_connect",
+      "current_name": "lcp_connect",
+      "section": "text",
+      "size": 200
+    },
+    "0x805B54BC": {
+      "fork_name": "lbl_805B54BC",
+      "current_name": "lbl_805B54BC",
+      "section": "bss",
+      "size": 16384
+    },
+    "0x805B94BC": {
+      "fork_name": "lbl_805B94BC",
+      "current_name": "lbl_805B94BC",
+      "section": "bss",
+      "size": 120
+    },
+    "0x805B9534": {
+      "fork_name": "lbl_805B9534",
+      "current_name": "lbl_805B9534",
+      "section": "bss",
+      "size": 4236
+    },
+    "0x805BA5C0": {
+      "fork_name": "lbl_805BA5C0",
+      "current_name": "lbl_805BA5C0",
+      "section": "bss",
+      "size": 12460
+    }
+  },
+  "historical": {
+    "first_parent": "1f2ecc1887",
+    "closed": [
+      {
+        "row": 2962,
+        "fork_path": "src/pso/misc/TLobby_803F8794.cpp",
+        "owner": "src/pso/network/TLobby_803F86BC.c",
+        "owner_blob": "71a1d669a0f572f0995c2d0faecd3dca72daf714",
+        "detail": "The native startup owners cover all first-parent declarations and data. Room timeout and player/socket/handler initialization write the original typed fields. NetPacketPool and NetBufferPool retain the same record counts, backings and addresses. The native DNS, IPv4, IPv6, ARP, Ethernet and loopback initializers own their existing records.",
+        "first_parent_blocks": 30,
+        "first_parent_blocks_sha256": "d866575047c5469c1f99f89528a8964f7559f7546e551dcfeeb0eccbae63f350"
+      },
+      {
+        "row": 2963,
+        "fork_path": "src/pso/misc/TLobby_803FAEA0.cpp",
+        "owner": "src/pso/network/TLobby_803FAEA0.c",
+        "owner_blob": "4605de95bc4da5df454eca3205f64c02bbd74fa5",
+        "detail": "The native lobby retains the original PPP status words, configuration flow, carrier and timeout paths, authentication, and connection callbacks. It shares the actual LCP settings and IPCP and IPv6CP options. PAP and CHAP read the original signed return through one declaration. The native compressed-frame and ARP providers cover the former duplicated declarations.",
+        "first_parent_blocks": 35,
+        "first_parent_blocks_sha256": "9bdeb9ff571c01f9f25cc5cbd3a6242df59f1e6ac790da630f8bcd835555961c"
+      }
+    ],
+    "scoped": {
+      "2960": "The caller now shares the native PPP negotiation and LCP record declarations. The broader historical PPP frame and callback typing remains open."
+    },
+    "open_rows": 310
+  },
+  "fork_workspace": {
+    "trial": "50589e8a4bf5d59866fd52bf35e3002f7f338da0",
+    "overlay_paths": 130,
+    "archive_sha256": "8a11c6ff1dbfeda0779bd33cb8e9d55c708414d562815c877d548734a338e683",
+    "materialized_tree": "fa578126ce9b091fc29340e8af5ca8b3f336fa23",
+    "force_active": 27029
+  }
+}
