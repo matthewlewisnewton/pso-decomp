@@ -36,7 +36,9 @@ The inventory and equipment checkpoint at `2967ef0c78` covers 70 paths above ene
 
 The save and quest component at `a3dc5d074e` adds 54 paths above inventory. It restores the memory-card selection and status records, the Hunter Guild callbacks and download windows, and signed quest file handles and native ARAM requests. Card, quest selection, cache, and ARAM probes agree between both executables. The quest selection probe uses a local alias for the shared free function at its retail address.
 
-The two components cover 119 distinct paths. Both builds reproduce retail with 27,572 exact functions and all 2,417 source units linked. Coverage checks pass and all 1,147 original data bytes remain accounted for. Actor stat storage has 32 overlapping paths to resolve against inventory. Asset loading and footprints have 32 overlaps with the current stack, and techniques have 37. Keep the validated components with their larger subsystem reviews. [Inventory, save, and quest validation](2026-11-22-upstream-367-inventory-saves-and-quests-validation.json)
+The footprint component at `a69aba3b19` carries the native texture pointer through binding and release and reads yaw from the typed player rotation record. Retail and local probes agree on the GVM load, culling, texture binding and release order. The current loader interface and linker label stay in place for the broader asset-loading replay.
+
+The three components cover 119 distinct paths. All three builds reproduce retail with 27,572 exact functions and all 2,417 source units linked. Coverage checks pass and all 1,147 original data bytes remain accounted for. Actor stat storage has 32 overlapping paths to resolve against inventory. Asset loading has 32 overlaps with the footprint checkpoint, and techniques have 37 with the save and quest checkpoint. Keep the validated components with their larger subsystem reviews. [Inventory, save, and quest validation](2026-11-22-upstream-367-inventory-saves-and-quests-validation.json)
 
 ## Replay after upstream PR #366
 

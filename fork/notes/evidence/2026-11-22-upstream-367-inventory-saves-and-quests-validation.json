@@ -403,7 +403,8 @@
   "local_commits": [
     "5cc86457276baf2957f6c927bfe77858c86afbe4",
     "2967ef0c7868447949abf680dc6848fe1a28465f",
-    "a3dc5d074e398689a6245e23c8d68624b84c75fb"
+    "a3dc5d074e398689a6245e23c8d68624b84c75fb",
+    "a69aba3b196d2b0a8f4f44223287c64a2c2ca81b"
   ],
   "combined_paths_since_enemy_spawns": 119,
   "inventory_replay": {
@@ -431,16 +432,45 @@
       "paths": 58,
       "conflicting_paths": 32
     },
-    "asset-load-and-footprints": {
-      "base": "a3dc5d074e398689a6245e23c8d68624b84c75fb",
-      "paths": 119,
-      "conflicting_paths": 32
-    },
     "techniques": {
       "base": "a3dc5d074e398689a6245e23c8d68624b84c75fb",
       "paths": 113,
       "conflicting_paths": 37
+    },
+    "asset-load": {
+      "base": "a69aba3b196d2b0a8f4f44223287c64a2c2ca81b",
+      "paths": 119,
+      "conflicting_paths": 32
     }
   },
-  "review_attribution": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>"
+  "review_attribution": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+  "native_footprint": {
+    "head": "a69aba3b196d2b0a8f4f44223287c64a2c2ca81b",
+    "base": "a3dc5d074e398689a6245e23c8d68624b84c75fb",
+    "path": "src/pso/player/TPlayerFootStamp.cpp",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "original_data_bytes": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "changed_linker_labels": [],
+    "probe_symbol_alias": "load_gvm_texture_file__FPCc = .text:0x801E4874; // type:function size:0x1D0",
+    "probe_symbol_target": "load_gvm_texture_file__Fl at 0x801E4874",
+    "runtime": [
+      "PsoV3.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+      "psov3.dol: footprint GVM load, culling, texture binding and ordered release passed."
+    ],
+    "runtime_log_sha256": "baf56c191c207c5648803656a9854761b233004c957f88f2231360b784e12ee8"
+  }
 }
