@@ -196,6 +196,10 @@ The 17-path receive and DHCP replay at `abc227b796` shares the native record pre
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 15 linked cases cover receive tags, two-phase dispatch and length clamping, DHCP wire builders, reply filtering and typed outputs. The 130-path tooling archive round-trips and all 310 workspace checks pass. Three historical comparisons close and two gain scoped evidence, leaving 303 open. [Receive and DHCP validation](2026-11-22-upstream-365-typed-receive-validation.json)
 
+The eight-path socket handoff replay at `cda3481cb0` uses native TCP fragment fields, a typed UDP header buffer, shared UDP input and DNS timer declarations, and the actual BOOTP reply record. The legacy integer widths remain where matching callers and callees use different declarations.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Ten linked handoff cases pass on each image. Each build passes 786 reassembly comparisons, 12 out-of-order receives, 2,528 gathers and 1,600 acknowledgements against retail. The 130-path tooling archive round-trips and all 310 workspace checks pass. Three historical comparisons close and 300 remain open. [Socket handoff validation](2026-11-22-upstream-365-socket-handoffs-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
