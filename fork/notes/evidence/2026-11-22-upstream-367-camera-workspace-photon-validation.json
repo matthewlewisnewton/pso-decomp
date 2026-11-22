@@ -1,0 +1,167 @@
+{
+  "camera_source": "dd8bbb24297db27d06b85264d3d0ba40824ef0a8",
+  "photon_source": "ff25e1ed6670c95d6fcd64fa507a2339940788e6",
+  "workspace_parent": "25837dac4e3b4f2e2ce1ae5470476a11334d7810",
+  "workspace_patch_sha256": "83d2e773c3e6ba066e42f26a2ffdbb9a9f34b366a903f20908410cbfa0fcfa93",
+  "materialized_tree": "84270322950763900a2fe26684b08b42153ced47",
+  "overlay_paths": 130,
+  "force_active_count": 26963,
+  "retention_labels": {
+    "configure_scripted_camera_playback__FPUcl": "configure_scripted_camera_playback__FP14CameraPlaybackl",
+    "collect_plist_strips_by_texture__FPvPsl": "collect_plist_strips_by_texture__FP15StripBufferPairPsl",
+    "count_plist_strips_by_texture__FPvPvPv": "count_plist_strips_by_texture__FP15StripBufferPairPsl",
+    "update_camera__15TObjLiveMonitorFv": "update_camera__18TObjLiveCameraCtrlFv",
+    "bind_motion_channel_samplers__FP10NJS_MOTIONf": "bind_motion_channel_samplers__FPC10NJS_MOTIONf"
+  },
+  "checkpoints": {
+    "camera-layer": {
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2417,
+      "coverage_losses": {
+        "regressions": [],
+        "data_regressions": [],
+        "linked_functions_lost": [],
+        "linked_data_lost": [],
+        "data_coverage_lost": [],
+        "padding_coverage_lost": []
+      },
+      "linker_label_changes": [],
+      "check_sha256": "3736861716902f640eba40abe737d0e9b32271a30a348403144a2566c25fb913"
+    },
+    "photon": {
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2417,
+      "coverage_losses": {
+        "regressions": [],
+        "data_regressions": [],
+        "linked_functions_lost": [],
+        "linked_data_lost": [],
+        "data_coverage_lost": [],
+        "padding_coverage_lost": []
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801A7150",
+          "before": "queue_deferred_photon_blast_hit__FUlll",
+          "after": "queue_deferred_photon_blast_hit__FUlllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A72EC",
+          "before": "queue_photon_blast_support__Fv",
+          "after": "queue_photon_blast_support__FUlll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A753C",
+          "before": "copy_effect_params__FPUcPUc",
+          "after": "copy_effect_params__FP19PhotonOpeningEffectP19PhotonOpeningEffect"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A826C",
+          "before": "calc_photon_blast_power__10TObjPlayerFlf",
+          "after": "calc_photon_blast_power__13TUnk_804C349CFlf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801AAB74",
+          "before": "__ct__13TPhotonEstllaFPUc",
+          "after": "__ct__13TPhotonEstllaFP18PhotonSummonParams"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801AD218",
+          "before": "construct_photon_magic_square_normal__FPUcllll",
+          "after": "construct_photon_magic_square_normal__FP18TPhotonMagicSquareP7TObjectlPC3Vecl"
+        }
+      ],
+      "check_sha256": "62a39b498a48cd5e3c29f9a20872d7c91d0f515d8b274ce0e29613b9df8bfaff",
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "report_sha256": "e05a48eae3ec8a5fc39dd1a20bc731a21ae15854bc1ea51bd80e455f02f5f51d"
+    }
+  },
+  "workspace_tests": {
+    "fork": {
+      "count": 11,
+      "log_sha256": "760820d2880994d06f402136c3eca8abf07a27bab2b60681be31dbdbaf1bdd90"
+    },
+    "tool": {
+      "count": 294,
+      "log_sha256": "40aaeb032fa64db8e3336cf9fe20034a72dc820fca2d72241947bea10177773b"
+    },
+    "host": {
+      "count": 5,
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "photon_runtime": {
+    "cases": "Rainbow variants, magic-square setup, six summon dispatches and Mylla's Youlla packet passed.",
+    "log_sha256": "d0fd64e03aef0d93b64597dd9ac7f49e43d8ac005efde3b75cb53564763dda3e",
+    "probe_only_alias": "set_field_dc__10TObjMotionFP14BmlMotionEntry = .text:0x8002AE7C; // type:function size:0x8"
+  },
+  "actor_replay_previews": [
+    {
+      "donor": "1621f5fa1ae1d21dc2e651dec1da9cfda64e982f",
+      "subject": "Recover shared collision contacts and native boss and enemy actors",
+      "conflicts_at_camera_checkpoint": 166
+    },
+    {
+      "donor": "2b61d3c984d43f19aaf65c8c921244f15e42018f",
+      "subject": "Recover typed Photon Blast model, motion, and summon interfaces",
+      "conflicts_at_camera_checkpoint": 8
+    },
+    {
+      "donor": "3f6275ac14cd7aebe4be7fecd75d3001c8320f8e",
+      "subject": "Carry native battle parameters through enemy statistics and actor motion",
+      "conflicts_at_camera_checkpoint": 67
+    },
+    {
+      "donor": "e2ce6682dd437bfa400b9ba7f7f279015470d5f3",
+      "subject": "Recover typed matrices and camera projection",
+      "conflicts_at_camera_checkpoint": 4
+    },
+    {
+      "donor": "98f59b5733bf3c44b2b775cc548688e468509ab1",
+      "subject": "Pass typed matrices and attack targets through both tentacles",
+      "conflicts_at_camera_checkpoint": 3
+    },
+    {
+      "donor": "7f94ea840878a6744570f3468509d436aa8126c2",
+      "subject": "Recover native enemy lifecycle, resource ownership and combat interfaces",
+      "conflicts_at_camera_checkpoint": 55
+    }
+  ]
+}

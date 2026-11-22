@@ -20,6 +20,10 @@ The camera, scene, and rendering review at `dd8bbb2429` spans 102 paths above sh
 
 The review reproduces retail with 27,572 exact functions and 2,417 linked units. All 1,147 original data bytes remain accounted for. Six runtime suites match retail. Seven source groups still need replay validation on this base. [Camera, scene, and rendering validation](2026-11-22-upstream-367-camera-scenes-validation.json)
 
+The fork tooling archive round-trips on the complete camera source. The retail DOL matches and all 310 workspace checks pass. The archive keeps 130 paths and updates five of the 26,963 retained linker labels.
+
+The first actor component at `ff25e1ed66` recovers the shared Photon Blast model, motion, summon, and damage interfaces across 30 paths. It uses the current ATP and EVP getters and the recovered strip allocator. The build matches retail and its probes cover the Rainbow variants, magic-square setup, summon dispatch, and Mylla’s Youlla packet. The replay evidence measures the remaining actor overlaps by donor commit. [Camera workspace and Photon Blast validation](2026-11-22-upstream-367-camera-workspace-photon-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
