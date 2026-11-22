@@ -1,0 +1,1268 @@
+{
+  "source": "7a642c8396bbd4ab01bd4bb67c0b0170e6ee9d66",
+  "previous_source": "0a60c76d145ef9f95d28d295d0428e62addb486c",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/TUnk_804999E8.h",
+    "include/pso/ui/frontend/TAdEnterPasswordGC.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TUnk_80499970.h",
+    "include/pso/unk/TUnk_804999B8.h",
+    "include/pso/unk/TUnk_804999D0.h",
+    "include/pso/unk/TUnk_804EDAC0.h",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+    "src/pso/unk/TLobby_8007B858.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TUnk_804EDAC0.cpp",
+    "src/pso/unk/text_800F7DAC.cpp",
+    "src/pso/unk/text_8029A97C.cpp"
+  ],
+  "combined_paths_from_upstream": 1270,
+  "validation": {
+    "source": {
+      "baseline": "0a60c76d145ef9f95d28d295d0428e62addb486c",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800F8090",
+          "before": "init_fadeout_state__6TLobbyFl",
+          "after": "init_fadeout_state__6TLobbyFPFv_v"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F8144",
+          "before": "set_fade_params__6TLobbyFl",
+          "after": "set_fade_params__6TLobbyFPFv_v"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032BCBC",
+          "before": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+          "after": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "ff38b0fc0150e4dafe1db790d83eca92230bd7ce579ed0dd648a203afd77835f",
+      "report_sha256": "51f0a3f805591f00d4eedcaf01c17d6e045510a97bc3cff9a42785d50ad92e16"
+    },
+    "layer": {
+      "baseline": "7a642c8396bbd4ab01bd4bb67c0b0170e6ee9d66",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "51f0a3f805591f00d4eedcaf01c17d6e045510a97bc3cff9a42785d50ad92e16"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "0ef3b0710aa45b7302bafb6ead37ff996009306e33fdcfb5c627c51f5d985986"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "a0e20382df54e490b616b15ce9501cf045bca76c9e2f3a46f04845a456cd725f"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "program_sha256": "958acf56ab21384bc5f31f28ff127ec87f5b468059ea9ed43f95e019675c891b",
+    "logs": {
+      "source": "2910759c75fa395332c330685b2cdd18403ff459097cfdbdfc11cd2bb10b0984",
+      "workspace": "687c0e57b36e864f19f3df3e27ac64d3b8372f1cb997940f2030e798d182dc68"
+    },
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "cases": {
+      "fade_transitions": 2,
+      "logo_initializers": 2,
+      "logo_callbacks": 2,
+      "quad_color_and_alpha": 4,
+      "queue_outcomes": 5
+    }
+  },
+  "units": {
+    "src/pso/effect/TDuelEffectString.cpp": {
+      "functions": 9,
+      "code": "1112",
+      "data": "184"
+    },
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": {
+      "functions": 75,
+      "code": "19800",
+      "data": "1744"
+    },
+    "src/pso/object/trap/TOTrapAncient02.cpp": {
+      "functions": 34,
+      "code": "6132",
+      "data": "1224"
+    },
+    "src/pso/object/trap/TOTrapSeabed01.cpp": {
+      "functions": 21,
+      "code": "3692",
+      "data": "980"
+    },
+    "src/pso/player/TPlayerBattleCtrl4P.cpp": {
+      "functions": 76,
+      "code": "11044",
+      "data": "1944"
+    },
+    "src/pso/quest/QuestOpcodeHandlers.cpp": {
+      "functions": 550,
+      "code": "51176",
+      "data": "2320"
+    },
+    "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp": {
+      "functions": 7,
+      "code": "656",
+      "data": "316"
+    },
+    "src/pso/ui/frontend/TAdEnterPasswordGC.cpp": {
+      "functions": 10,
+      "code": "1636",
+      "data": "228"
+    },
+    "src/pso/ui/frontend/TAdSEGAlogo.cpp": {
+      "functions": 6,
+      "code": "488",
+      "data": "692"
+    },
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp": {
+      "functions": 22,
+      "code": "2080",
+      "data": "3312"
+    },
+    "src/pso/ui/frontend/TAdTrialModemChkGC_8042E9FC.cpp": {
+      "functions": 17,
+      "code": "1856",
+      "data": "936"
+    },
+    "src/pso/ui/window/TWindowDuelResult_801C2528.cpp": {
+      "functions": 5,
+      "code": "524",
+      "data": "48"
+    },
+    "src/pso/unk/TLobby_8007B858.cpp": {
+      "functions": 10,
+      "code": "1228",
+      "data": "264"
+    },
+    "src/pso/unk/TLobby_801C25B4.cpp": {
+      "functions": 54,
+      "code": "10684",
+      "data": "816"
+    },
+    "src/pso/unk/TUnk_804EDAC0.cpp": {
+      "functions": 10,
+      "code": "608",
+      "data": "28"
+    },
+    "src/pso/unk/text_800F7DAC.cpp": {
+      "functions": 26,
+      "code": "3168",
+      "data": "204"
+    },
+    "src/pso/unk/text_8029A97C.cpp": {
+      "functions": 2,
+      "code": "184",
+      "data": "32"
+    }
+  },
+  "title_initializer_hashes": {
+    "title_texture_entries": "d9d91a62f1b313a151188d484c34ff122185cd2b66fee4bdbb4dcc03e6cd6a9d",
+    "lobby_load_callback_table": "069c7ae48360788820f1e18926ec9317561033c35c69c5f42b252d9c3cf5bafd",
+    "TLobby__state_handler_pmf_table": "debe5c4e94f714d827277c97fc32aa064ebdd3b03c634b8f1036b84d5172cb74",
+    "title_sprite_frames": "82047a4d2e0055fe48177ace934eaef5823a3ad1e15b54957325bcac4ccf24fa",
+    "lobby_record_table": "781d7dafe59c2d72989756cd28f317ff454e0774f35ee16aef51a9686face04d",
+    "title_texture_filename_table": "086d964ed3b81f392432d295c7edbc6090ff917f7df9365c8e26f0ea0b32feda"
+  },
+  "queue_direct_branches": [
+    "0x800f1da8",
+    "0x8017b41c",
+    "0x802ca58c"
+  ],
+  "original_constants": {
+    "title_particle_position": {
+      "address": "0x80477818",
+      "bytes": "0000000000000000c23c0000"
+    },
+    "title_music_filename": {
+      "address": "0x80477824",
+      "bytes": "7469746c652e61647800"
+    }
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 2170,
+        "fork_path": "include/pso/ui/TAdEnterPasswordGC.h",
+        "owner": "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+        "detail": "The native password window has the five state methods and inherits the three original fields from TAdEnterBaseGC. The deferred-render dispatch now takes TObject and lives on the queue that actually owns it.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              4,
+              3
+            ],
+            "fork_lines": [
+              4,
+              17
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "class TObject ;",
+              "struct TAdEnterPasswordGC {",
+              "virtual void m0 ( ) ;",
+              "char pad [ 0x18 ] ;",
+              "s32 state ;",
+              "s32 f20 ;",
+              "s32 f24 ;",
+              "void open_keyboard_window ( void * ) ;",
+              "void update_password_input ( void * ) ;",
+              "void request_transition ( void * ) ;",
+              "void set_multi_chg_game_mode_0x14 ( void * ) ;",
+              "void close_window_and_destroy ( void * ) ;",
+              "static s32 dispatch_input_to_instance ( TObject * object ) ;",
+              "} ;"
+            ]
+          },
+          {
+            "old_lines": [
+              6,
+              6
+            ],
+            "fork_lines": [
+              20,
+              20
+            ],
+            "result": "compare",
+            "old": [
+              "void sub_8032BC94__13TUnk_804EDAC0FP7TObject ( u8 * arg0 , s32 arg1 ) ;"
+            ],
+            "fork": [
+              "void sub_8032BC94__13TUnk_804EDAC0FP7TObject ( u8 * arg0 , TObject * arg1 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              9,
+              9
+            ],
+            "fork_lines": [
+              23,
+              22
+            ],
+            "result": "compare",
+            "old": [
+              "s32 dispatch_input_to_instance__18TAdEnterPasswordGCFi ( s32 arg0 ) ;"
+            ],
+            "fork": []
+          }
+        ],
+        "owner_blob": "a55e56c66f2f8a92bfe0f87ccaadc91b0a5e3bbe"
+      },
+      {
+        "row": 2317,
+        "fork_path": "src/pso/unk/text_8029A6EC.cpp",
+        "owner": "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+        "detail": "The character-select background passes a real NJS_POINT2COL to the same renderer at 0x801E35C4. Its four vertices, color words, and depth bias are retained.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              1
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/render/ColorLineList.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              5,
+              8
+            ],
+            "fork_lines": [
+              6,
+              9
+            ],
+            "result": "compare",
+            "old": [
+              "extern const f32 lbl_805DDC58 ;",
+              "extern const f32 lbl_805DDC5C ;",
+              "extern const f32 lbl_805DDC60 ;",
+              "extern const f32 lbl_805DDC64 ;"
+            ],
+            "fork": [
+              "static const f32 lbl_805DDC58 = 0.0f ;",
+              "static const f32 lbl_805DDC5C = 479.0f ;",
+              "static const f32 lbl_805DDC60 = 639.0f ;",
+              "static const f32 lbl_805DDC64 = 0.01f ;"
+            ]
+          },
+          {
+            "old_lines": [
+              29,
+              29
+            ],
+            "fork_lines": [
+              30,
+              30
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TObjCMHairMenu * ) & fan ) -> draw_tri_fan_2d ( 4 , 3 , * ( f32 * ) ( ( u8 * ) this + 0x1C ) - lbl_805DDC64 ) ;"
+            ],
+            "fork": [
+              "( ( ColorLineList * ) & fan ) -> draw_tri_fan_2d ( 4 , 3 , * ( f32 * ) ( ( u8 * ) this + 0x1C ) - lbl_805DDC64 ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "37ff2c024f777c8d31c3967ba3603debc7bcf69e"
+      },
+      {
+        "row": 2323,
+        "fork_path": "src/pso/unk/text_803367F4.cpp",
+        "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+        "detail": "All 21 texture entries, eight load and release callbacks, four state handlers, 46 frames, 46 descriptors, language archives, particle coordinates and music string are retained by the native title unit.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              2,
+              1
+            ],
+            "fork_lines": [
+              2,
+              144
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/ui/frontend/TitleSceneTables.h\"",
+              "# include \"pso/unk/TLobby_80335E08.h\"",
+              "# include \"pso/misc/TLobby_80336E00.h\"",
+              "void clear_lobby_global_flags ( ) ;",
+              "extern \"C\" {",
+              "NJS_TEXNAME title_texture_entries [ 21 ] = {",
+              "{ ( void * ) \"f256_ad\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_psotitle\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_psotitle02\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha01\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha02\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha03\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha04\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha05\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha06\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha07\" , 0 , 0 } ,",
+              "{ ( void * ) \"f256_titlealpha08\" , 0 , 0 } ,",
+              "{ ( void * ) \"f512_mahoujin\" , 0 , 0 } ,",
+              "{ ( void * ) \"f512_mahoujin_b\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title01\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title02\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title03\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title04\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title05\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title06\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title07\" , 0 , 0 } ,",
+              "{ ( void * ) \"s256_1st_title08\" , 0 , 0 } ,",
+              "} ;",
+              "NJS_TEXLIST title_texture_list = { title_texture_entries , 21 } ;",
+              "void ( * lobby_load_callback_table [ 8 ] ) ( ) = {",
+              "TLobby__sub_80335E78 , TLobby__sub_80335E74 ,",
+              "clear_lobby_global_flags , TLobby__sub_80336E44 ,",
+              "TLobby__sub_80335FE4 , TLobby__sub_80335FE0 ,",
+              "TLobby__sub_80336E68 , TLobby__sub_80336E64",
+              "} ;",
+              "TitleStateHandler TLobby__state_handler_pmf_table [ 4 ] = {",
+              "& TUnk_804EEF64 :: enter_chg_game_mode ,",
+              "& TUnk_804EEF64 :: enter_game_mode_change ,",
+              "& TUnk_804EEF64 :: request_change_game_mode ,",
+              "& TUnk_804EEF64 :: open_keyboard",
+              "} ;",
+              "static SpriteFrame title_sprite_frames [ 46 ] = {",
+              "{ 256 , 256 , 0 , 0 , 0 , 0 , 256 , 256 , 0 , 0 } ,",
+              "{ 256 , 256 , 0 , 0 , 0 , 0 , 256 , 256 , 1 , 0 } ,",
+              "{ 256 , 256 , 0 , 0 , 0 , 0 , 256 , 256 , 2 , 0 } ,",
+              "{ 256 , 256 , 0 , 0 , 0 , 0 , 256 , 256 , 3 , 0 } ,",
+              "{ 128 , 128 , 0 , 0 , 0 , 0 , 256 , 256 , 4 , 0 } ,",
+              "{ 128 , 128 , 0 , 0 , 0 , 0 , 256 , 256 , 5 , 0 } ,",
+              "{ 128 , 128 , 0 , 0 , 0 , 0 , 256 , 256 , 6 , 0 } ,",
+              "{ 128 , 128 , 0 , 0 , 0 , 0 , 256 , 256 , 7 , 0 } ,",
+              "{ 256 , 96 , 0 , 0 , 0 , 0 , 255 , 95 , 8 , 0 } ,",
+              "{ 256 , 160 , 0 , 0 , 0 , 96 , 255 , 255 , 8 , 0 } ,",
+              "{ 256 , 32 , 0 , 0 , 0 , 0 , 255 , 31 , 0 , 0 } ,",
+              "{ 256 , 32 , 0 , 0 , 0 , 32 , 255 , 63 , 0 , 0 } ,",
+              "{ 256 , 32 , 0 , 0 , 0 , 64 , 255 , 95 , 0 , 0 } ,",
+              "{ 256 , 32 , 0 , 0 , 0 , 96 , 255 , 127 , 0 , 0 } ,",
+              "{ 256 , 32 , 0 , 0 , 0 , 128 , 255 , 159 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 0 , 224 , 15 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 0 , 224 , 15 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 0 , 224 , 15 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 0 , 224 , 15 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 16 , 224 , 31 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 16 , 224 , 31 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 16 , 224 , 31 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 16 , 224 , 31 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 32 , 224 , 47 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 32 , 224 , 47 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 32 , 224 , 47 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 32 , 224 , 47 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 49 , 224 , 64 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 49 , 224 , 64 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 49 , 224 , 64 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 49 , 224 , 64 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 65 , 224 , 80 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 65 , 224 , 80 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 65 , 224 , 80 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 65 , 224 , 80 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 81 , 224 , 96 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 81 , 224 , 96 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 81 , 224 , 96 , 241 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 81 , 224 , 96 , 241 , 0 , 0 } ,",
+              "{ 128 , 24 , 0 , 0 , 0 , 128 , 127 , 151 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 128 , 32 , 144 , 50 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 144 , 32 , 160 , 50 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 160 , 32 , 176 , 50 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 49 , 224 , 55 , 242 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 55 , 224 , 71 , 242 , 0 , 0 } ,",
+              "{ 16 , 18 , 0 , 0 , 87 , 224 , 103 , 242 , 0 , 0 } ,",
+              "} ;",
+              "SpriteDescriptor lobby_record_table [ 46 ] = {",
+              "{ 0.0f , - 16.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 0.0f , 240.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 256.0f , - 16.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 256.0f , 240.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 512.0f , - 16.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 512.0f , 112.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 512.0f , 240.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 512.0f , 368.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 96.0f , 172.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 352.0f , 172.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 193.0f , 338.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 193.0f , 300.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 193.0f , 332.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 193.0f , 364.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 193.0f , 396.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 308.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 340.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 372.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 404.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 308.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 340.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 372.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 404.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 308.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 340.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 372.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 404.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 308.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 340.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 372.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 404.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 308.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 340.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 372.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 404.0f , 0.0f , 14.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 308.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 340.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 372.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 404.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 259.0f , 415.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 418.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 224.0f , 418.0f , 0.0f , 12.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 416.0f , 418.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 192.0f , 418.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 208.0f , 418.0f , 0.0f , 12.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "{ 432.0f , 418.0f , 0.0f , 1.0f , 1.0f , 0 , & title_texture_list , title_sprite_frames } ,",
+              "} ;",
+              "const TitleTextureFilenameTable title_texture_filename_table = {",
+              "{ \"Title\" , \"Title_eng\" , \"Title_eng\" , \"Title_eng\" , \"Title_eng\" } ,",
+              "} ;",
+              "const NJS_POINT3 title_particle_position = { 0.0f , 0.0f , - 47.0f } ;",
+              "const char lobby_title_music_name_title [ ] = \"title.adx\" ;",
+              "}"
+            ]
+          }
+        ],
+        "owner_blob": "7949e396f624ab261fec3a4824f8ff9ed2d3aa18"
+      },
+      {
+        "row": 2344,
+        "fork_path": "src/pso/unk/text_8042EAD4.cpp",
+        "owner": "src/pso/ui/frontend/TAdTrialModemChkGC_8042E9FC.cpp",
+        "detail": "The native SharedMemory and LaunchDolContext recover the same argument storage, initialization flag, launch image and size, option and disc-message pointers, sentinel and strings. The caller prototype comparison remains tracked separately.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              1
+            ],
+            "fork_lines": [
+              1,
+              0
+            ],
+            "result": "compare",
+            "old": [
+              "# include \"types.h\""
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              3,
+              7
+            ],
+            "fork_lines": [
+              2,
+              4
+            ],
+            "result": "compare",
+            "old": [
+              "struct Ctx_8042EBA4 { u8 pad [ 0x100 ] ; s32 f100 ; s32 f104 ; s32 f108 ; } ;",
+              "typedef struct Ctx_8042ED98 {",
+              "u8 pad [ 0x8c ] ;",
+              "char name [ 5 ] [ 0x100 ] ;",
+              "} Ctx_8042ED98 ;"
+            ],
+            "fork": [
+              "# include \"pso/unk/text_8042EE4C.h\"",
+              "# include \"pso/network/ModemLaunchContext.h\"",
+              "# include \"pso/network/ModemRuntime.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              10,
+              12
+            ],
+            "fork_lines": [
+              7,
+              6
+            ],
+            "result": "compare",
+            "old": [
+              "void fn_8042E8C4 ( Ctx_8042EBA4 * ) ;",
+              "extern char lbl_80480404 [ ] ;",
+              "extern Ctx_8042EBA4 * lbl_805D7CB0 ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              16,
+              18
+            ],
+            "fork_lines": [
+              10,
+              14
+            ],
+            "result": "compare",
+            "old": [
+              "extern s32 lbl_805D7CA8 ;",
+              "extern Ctx_8042ED98 * lbl_805D7CB8 ;",
+              "extern u8 * lbl_805D7CC0 ;"
+            ],
+            "fork": [
+              "int sprintf ( char * , const char * , . . . ) ;",
+              "extern const char lbl_80480404 [ ] ;",
+              "extern const char lbl_80480240 [ ] ;",
+              "extern const u32 ntutl_version ;",
+              "}"
+            ]
+          },
+          {
+            "old_lines": [
+              30,
+              30
+            ],
+            "fork_lines": [
+              26,
+              26
+            ],
+            "result": "compare",
+            "old": [
+              "dst = lbl_805D7CC0 + 0x6020 ;"
+            ],
+            "fork": [
+              "dst = lbl_805D7CC0 -> arguments ;"
+            ]
+          },
+          {
+            "old_lines": [
+              34,
+              35
+            ],
+            "fork_lines": [
+              30,
+              31
+            ],
+            "result": "compare",
+            "old": [
+              "* ( u32 * ) ( ( s8 * ) lbl_805D7CC0 + 0x14 ) = arg1 ;",
+              "* ( s32 * ) ( ( s8 * ) lbl_805D7CC0 + 4 ) = ( s32 ) ( * ( s32 * ) ( ( s8 * ) lbl_805D7CC0 + 4 ) | 1 ) ;"
+            ],
+            "fork": [
+              "lbl_805D7CC0 -> argument_size = arg1 ;",
+              "lbl_805D7CC0 -> flags | = 1 ;"
+            ]
+          },
+          {
+            "old_lines": [
+              42,
+              46
+            ],
+            "fork_lines": [
+              38,
+              42
+            ],
+            "result": "compare",
+            "old": [
+              "strcpy ( ( char * ) lbl_805D7CB0 , lbl_80480404 ) ;",
+              "lbl_805D7CB0 -> f100 = arg1 ;",
+              "lbl_805D7CB0 -> f104 = arg0 ;",
+              "lbl_805D7CB0 -> f108 = 0x8000 ;",
+              "fn_8042E8C4 ( lbl_805D7CB0 ) ;"
+            ],
+            "fork": [
+              "strcpy ( lbl_805D7CB0 -> path , lbl_80480404 ) ;",
+              "lbl_805D7CB0 -> field_100 = arg1 ;",
+              "lbl_805D7CB0 -> field_104 = reinterpret_cast < DolImageHeader * > ( arg0 ) ;",
+              "lbl_805D7CB0 -> payload_size = 0x8000 ;",
+              "LaunchDol ( lbl_805D7CB0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              51,
+              51
+            ],
+            "fork_lines": [
+              47,
+              87
+            ],
+            "result": "compare",
+            "old": [
+              "s32 fn_8042ED98 ( s32 arg0 , const char * arg1 ) {"
+            ],
+            "fork": [
+              "extern \"C\" void TAdTrialModemChkGC__sub_8042EC14 ( void ) {",
+              "const char * strings = lbl_80480240 ;",
+              "lbl_805D7CB4 = ntutl_version ;",
+              "if ( lbl_805D7CA8 == 0 ) {",
+              "lbl_805D7CB0 = reinterpret_cast < ModemLaunchContext * > ( fn_8042E8B8 ( ) ) ;",
+              "lbl_805D7CA8 = 1 ;",
+              "lbl_805D7CC0 = reinterpret_cast < ModemLaunchData * > ( lbl_805D7CB0 -> data ) ;",
+              "lbl_805D7CC4 = & lbl_805D7CC0 -> options ;",
+              "lbl_805D7CBC = lbl_805D7CC0 -> region_6820 ;",
+              "lbl_805D7CB8 = & lbl_805D7CC0 -> parameters ;",
+              "if ( lbl_805D7CC0 -> signature != 0x53454741 ) {",
+              "memset ( lbl_805D7CC0 , 0 , 0x8000 ) ;",
+              "lbl_805D7CC0 -> signature = 0x53454741 ;",
+              "lbl_805D7CC0 -> flags = 0x40 ;",
+              "if ( lbl_805D7CA8 != 0 ) {",
+              "memset ( & lbl_805D7CC0 -> options , 0 , 0x800 ) ;",
+              "lbl_805D7CC0 -> options_size = 0x674 ;",
+              "sprintf ( lbl_805D7CC4 -> text , strings + 0x30 ) ;",
+              "TAdPlayerLoadGC__sub_8042F108 ( 0 ) ;",
+              "TAdTrialModemChkGC__sub_8042F0D4 ( 3 ) ;",
+              "set_modem_trial_param ( 1 ) ;",
+              "TAdTrialModemChkGC__sub_8042F080 ( 3 ) ;",
+              "set_modem_check_param ( 3 ) ;",
+              "set_modem_flag ( 1 ) ;",
+              "set_modem_check_char ( 1 ) ;",
+              "set_modem_param ( 5 ) ;",
+              "set_modem_check_param_360 ( 0 ) ;",
+              "lbl_805D7CC0 -> flags & = ~ 0x800U ;",
+              "}",
+              "fn_8042ED98 ( 0 , strings + 0x1D0 ) ;",
+              "fn_8042ED98 ( 1 , strings + 0x220 ) ;",
+              "fn_8042ED98 ( 2 , strings + 0x25C ) ;",
+              "fn_8042ED98 ( 3 , strings + 0x2E0 ) ;",
+              "fn_8042ED98 ( 4 , strings + 0x324 ) ;",
+              "}",
+              "}",
+              "}",
+              "# pragma pop",
+              "# pragma push",
+              "# pragma optimize_for_size off",
+              "s32 fn_8042ED98 ( int arg0 , const char * arg1 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              67,
+              67
+            ],
+            "fork_lines": [
+              103,
+              102
+            ],
+            "result": "compare",
+            "old": [
+              "}"
+            ],
+            "fork": []
+          }
+        ],
+        "owner_blob": "e26a1f1f3a86172417b4e2f33a2dd4c6c494037a"
+      },
+      {
+        "row": 2414,
+        "fork_path": "src/pso/ui/TAdSEGAlogo_8001BF4C.cpp",
+        "owner": "src/pso/ui/frontend/TAdSEGAlogo.cpp",
+        "detail": "All 24 texture entries and the native descriptor are retained. The matching render and task use the original depth and delay.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              4,
+              3
+            ],
+            "fork_lines": [
+              4,
+              36
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/system/NinjaTypes.h\"",
+              "# pragma push",
+              "# pragma readonly_strings on",
+              "# pragma const_strings off",
+              "NJS_TEXNAME lbl_80480A70 [ 24 ] = {",
+              "{ \"gc_adx01\" , 0 , 0 } ,",
+              "{ \"gc_adx02\" , 0 , 0 } ,",
+              "{ \"gc_adx03\" , 0 , 0 } ,",
+              "{ \"gc_adx04\" , 0 , 0 } ,",
+              "{ \"gc_adx05\" , 0 , 0 } ,",
+              "{ \"gc_adx06\" , 0 , 0 } ,",
+              "{ \"gc_adx07\" , 0 , 0 } ,",
+              "{ \"gc_adx08\" , 0 , 0 } ,",
+              "{ \"sega_logo_e01\" , 0 , 0 } ,",
+              "{ \"sega_logo_e02\" , 0 , 0 } ,",
+              "{ \"sega_logo_e03\" , 0 , 0 } ,",
+              "{ \"sega_logo_e04\" , 0 , 0 } ,",
+              "{ \"sega_logo_e05\" , 0 , 0 } ,",
+              "{ \"sega_logo_e06\" , 0 , 0 } ,",
+              "{ \"sega_logo_e07\" , 0 , 0 } ,",
+              "{ \"sega_logo_e08\" , 0 , 0 } ,",
+              "{ \"st_logo01\" , 0 , 0 } ,",
+              "{ \"st_logo02\" , 0 , 0 } ,",
+              "{ \"st_logo03\" , 0 , 0 } ,",
+              "{ \"st_logo04\" , 0 , 0 } ,",
+              "{ \"st_logo05\" , 0 , 0 } ,",
+              "{ \"st_logo06\" , 0 , 0 } ,",
+              "{ \"st_logo07\" , 0 , 0 } ,",
+              "{ \"st_logo08\" , 0 , 0 } ,",
+              "} ;",
+              "__declspec ( section \".data\" ) NJS_TEXLIST texture_logo_e_descriptor = { lbl_80480A70 , 24 } ;",
+              "const char * TAdSEGAlogo__class_name = \"TAdSEGAlogo\" ;",
+              "# pragma pop"
+            ]
+          },
+          {
+            "old_lines": [
+              8,
+              8
+            ],
+            "fork_lines": [
+              41,
+              41
+            ],
+            "result": "compare",
+            "old": [
+              "extern const f32 lbl_805D7E70 ;"
+            ],
+            "fork": [
+              "static const f32 lbl_805D7E70 = - 150.0f ;"
+            ]
+          },
+          {
+            "old_lines": [
+              11,
+              11
+            ],
+            "fork_lines": [
+              44,
+              44
+            ],
+            "result": "compare",
+            "old": [
+              "extern const f32 lbl_805D7E74 ;"
+            ],
+            "fork": [
+              "static const f32 lbl_805D7E74 = 60.0f ;"
+            ]
+          }
+        ],
+        "owner_blob": "2667849d628917439ba7560dd6005adba5d3bd34"
+      },
+      {
+        "row": 2751,
+        "fork_path": "src/pso/unk/text_8029A97C.cpp",
+        "owner": "src/pso/unk/text_8029A97C.cpp",
+        "detail": "Both sprite draws take native vec2f pointers and use the shared declaration. The tag draw reads its real width member.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              5,
+              8
+            ],
+            "fork_lines": [
+              5,
+              4
+            ],
+            "result": "compare",
+            "old": [
+              "struct Stack_8029A97C {",
+              "f32 sp8 ;",
+              "f32 spC ;",
+              "} ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              11,
+              11
+            ],
+            "fork_lines": [
+              7,
+              6
+            ],
+            "result": "compare",
+            "old": [
+              "s32 draw_default_sprite__12TChCrEffWallFlPC5vec2ff ( s32 , f32 * , f32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              21,
+              24
+            ],
+            "fork_lines": [
+              16,
+              19
+            ],
+            "result": "compare",
+            "old": [
+              "Stack_8029A97C stack ;",
+              "stack . sp8 = lbl_805DDC70 ;",
+              "stack . spC = lbl_805DDC74 ;",
+              "draw_default_sprite__12TChCrEffWallFlPC5vec2ff ( 0x36 , & stack . sp8 , lbl_805DDC78 ) ;"
+            ],
+            "fork": [
+              "vec2f stack ;",
+              "stack . x = lbl_805DDC70 ;",
+              "stack . y = lbl_805DDC74 ;",
+              "draw_default_sprite__12TChCrEffWallFlPC5vec2ff ( 0x36 , & stack , lbl_805DDC78 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              40,
+              40
+            ],
+            "fork_lines": [
+              35,
+              35
+            ],
+            "result": "compare",
+            "old": [
+              "draw_default_sprite__12TChCrEffWallFlPC5vec2ff ( 0x35 , & sp10 . x , lbl_805DDC8C ) ;"
+            ],
+            "fork": [
+              "draw_default_sprite__12TChCrEffWallFlPC5vec2ff ( 0x35 , & sp10 , lbl_805DDC8C ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "bb25d95c6d2e481da551a0fe136dafe159ef4783"
+      },
+      {
+        "row": 4903,
+        "fork_path": "src/pso/misc/TDuelEffectNumber_80080290.cpp",
+        "owner": "src/pso/effect/TDuelEffectString.cpp",
+        "detail": "The duel glyph draw takes typed effect and quad inputs, computes the camera-relative depth, and submits the original eight coordinates through its shared draw call.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              3,
+              2
+            ],
+            "fork_lines": [
+              3,
+              4
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/camera/TCameraCtrl.h\"",
+              "# include \"pso/ui/window/TWindowSubStatusDisp_803DEE6C.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              9,
+              9
+            ],
+            "fork_lines": [
+              11,
+              12
+            ],
+            "result": "compare",
+            "old": [
+              "void TDuelEffectNumber__sub_800802F8 ( void * , void * , f32 ) ;"
+            ],
+            "fork": [
+              "void TDuelEffectNumber__sub_800802F8 ( void * , const void * , f32 ) ;",
+              "f32 get_scale__15TWindowCtrlMainFv ( s32 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              21,
+              20
+            ],
+            "fork_lines": [
+              24,
+              46
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# pragma push",
+              "# pragma fp_contract on",
+              "void TDuelEffectNumber__sub_800802F8 ( void * object , const void * layout , f32 scale ) {",
+              "f32 depth ;",
+              "f32 quad [ 8 ] ;",
+              "const f32 * src = ( const f32 * ) layout ;",
+              "f32 * position = ( f32 * ) ( ( u8 * ) object + 0x1C ) ;",
+              "depth = - 1.0f / get_scale__15TWindowCtrlMainFv ( TCameraCtrl :: get_camera_no ( ) ) ;",
+              "quad [ 0 ] = src [ 0 ] * scale + position [ 0 ] ;",
+              "quad [ 1 ] = src [ 1 ] * scale + position [ 1 ] ;",
+              "quad [ 2 ] = scale * ( src [ 0 ] + src [ 2 ] ) + position [ 0 ] ;",
+              "quad [ 3 ] = scale * ( src [ 1 ] + src [ 3 ] ) + position [ 1 ] ;",
+              "quad [ 4 ] = src [ 4 ] ;",
+              "quad [ 5 ] = src [ 5 ] ;",
+              "quad [ 6 ] = src [ 4 ] + src [ 2 ] ;",
+              "quad [ 7 ] = src [ 5 ] + src [ 3 ] ;",
+              "quad [ 4 ] * = 0.00390625f ;",
+              "quad [ 5 ] * = 0.00390625f ;",
+              "quad [ 6 ] * = 0.00390625f ;",
+              "quad [ 7 ] * = 0.00390625f ;",
+              "draw_textured_quad_at_depth ( quad , depth ) ;",
+              "}",
+              "# pragma pop"
+            ]
+          }
+        ],
+        "owner_blob": "4429b71e3beda0939c2f5b0f317bf7938a518221"
+      },
+      {
+        "row": 5607,
+        "fork_path": "src/pso/unk/text_801C23A8.cpp",
+        "owner": "src/pso/ui/window/TWindowDuelResult_801C2528.cpp",
+        "detail": "The native duel overlay owns the timer and score delta, allocates with the existing task parent, updates the active object in place, and clears its singleton on destruction.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              6,
+              10
+            ],
+            "fork_lines": [
+              6,
+              5
+            ],
+            "result": "compare",
+            "old": [
+              "# include \"pso/ui/window/TWindowDuelResult.h\"",
+              "struct RecoveredGlobal_801C241C_lbl_804C3E60 {",
+              "s32 value ;",
+              "u8 remaining [ 0x14 ] ;",
+              "} ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              13,
+              25
+            ],
+            "fork_lines": [
+              8,
+              13
+            ],
+            "result": "compare",
+            "old": [
+              "u8 * __nw__7TObjectFUl ( s32 ) ;",
+              "extern u8 * duel_result_window ;",
+              "extern s32 tl_00 ;",
+              "u8 * __dt__7TObjectFv ( void * , s16 ) ;",
+              "void __dl__7TObjectFPv ( s32 ) ;",
+              "extern RecoveredGlobal_801C241C_lbl_804C3E60 duel_result_window_dispatch_table ;",
+              "void show_duel_result_window ( s32 arg0 , s32 arg1 ) {",
+              "u8 * window_duel_result ;",
+              "u8 * var_r0 ;",
+              "if ( ( void * ) duel_result_window != NULL ) {",
+              "* ( s32 * ) ( ( s8 * ) duel_result_window + 0x1C ) = arg1 ;",
+              "* ( s32 * ) ( ( s8 * ) duel_result_window + 0x20 ) = arg0 ;",
+              "TLobby :: set_and_notify ( arg0 ) ;"
+            ],
+            "fork": [
+              "extern TObject * tl_00 ;",
+              "void show_duel_result_window ( s32 gain , s32 duration ) {",
+              "if ( lbl_805D5D90 != NULL ) {",
+              "lbl_805D5D90 -> countdown = duration ;",
+              "lbl_805D5D90 -> gain_offset = gain ;",
+              "TLobby :: set_and_notify ( gain ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              28,
+              31
+            ],
+            "fork_lines": [
+              16,
+              16
+            ],
+            "result": "compare",
+            "old": [
+              "window_duel_result = ( u8 * ) ( __nw__7TObjectFUl ( 0x24 ) ) ;",
+              "var_r0 = window_duel_result ;",
+              "if ( var_r0 != NULL ) {",
+              "var_r0 = ( u8 * ) ( ( ( TWindowDuelResult * ) window_duel_result ) -> init ( ( void * ) tl_00 , ( void * ) arg0 , ( void * ) arg1 ) ) ;"
+            ],
+            "fork": [
+              "lbl_805D5D90 = new TUnk_804C3E60 ( tl_00 , gain , duration ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              33,
+              45
+            ],
+            "fork_lines": [
+              18,
+              19
+            ],
+            "result": "compare",
+            "old": [
+              "duel_result_window = var_r0 ;",
+              "}",
+              "typedef char RecoveredGlobal_801C241C_lbl_804C3E60_size [ sizeof ( RecoveredGlobal_801C241C_lbl_804C3E60 ) == 0x18 ? 1 : - 1 ] ;",
+              "u8 * __dt__13TUnk_804C3E60Fv ( u8 * arg0 , s16 arg1 ) {",
+              "if ( arg0 != NULL ) {",
+              "* ( s32 * * ) ( ( s8 * ) arg0 + 0x18 ) = & duel_result_window_dispatch_table . value ;",
+              "( * ( s32 * ) & duel_result_window ) = 0 ;",
+              "__dt__7TObjectFv ( arg0 , 0 ) ;",
+              "if ( arg1 > 0 ) {",
+              "__dl__7TObjectFPv ( ( s32 ) arg0 ) ;",
+              "}",
+              "}",
+              "return arg0 ;"
+            ],
+            "fork": [
+              "TUnk_804C3E60 :: ~ TUnk_804C3E60 ( ) {",
+              "lbl_805D5D90 = NULL ;"
+            ]
+          }
+        ],
+        "owner_blob": "97ebc0530894c391772e428cad679f83ac9af1b3"
+      },
+      {
+        "row": 6012,
+        "fork_path": "src/pso/unk/text_800F7DAC.cpp",
+        "owner": "src/pso/unk/text_800F7DAC.cpp",
+        "detail": "Both screen fades use the native polygon and packed color records. The actual fade task stores the completion callback and starts at the original opacity.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              1
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/render/ColorLineList.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              151,
+              151
+            ],
+            "fork_lines": [
+              152,
+              152
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TObjCMHairMenu * ) ( & q ) ) -> draw_tri_fan_2d ( 4 , 0x16 , ( - 1e + 01f ) ) ;"
+            ],
+            "fork": [
+              "( ( ColorLineList * ) ( & q ) ) -> draw_tri_fan_2d ( 4 , 0x16 , ( - 1e + 01f ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              404,
+              405
+            ],
+            "fork_lines": [
+              405,
+              406
+            ],
+            "result": "compare",
+            "old": [
+              "* ( void * * ) ( ( s8 * ) this + 0x24 ) = arg2 ;",
+              "* ( f32 * ) & this -> m_38 = ( 0.0f ) ;"
+            ],
+            "fork": [
+              "this -> player = ( TObjPlayer * ) arg2 ;",
+              "this -> field_1c = 0.0f ;"
+            ]
+          },
+          {
+            "old_lines": [
+              437,
+              437
+            ],
+            "fork_lines": [
+              438,
+              438
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TObjCMHairMenu * ) ( & q ) ) -> draw_tri_fan_2d ( 4 , 0x16 , ( - 1e + 01f ) ) ;"
+            ],
+            "fork": [
+              "( ( ColorLineList * ) ( & q ) ) -> draw_tri_fan_2d ( 4 , 0x16 , ( - 1e + 01f ) ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "f44446ba224bc4b1894d23c69591c4a3a05e2898"
+      }
+    ],
+    "scoped_rows": [
+      {
+        "row": 597,
+        "fork_path": "src/pso/enemy/TObjEneMe3Stelth_800F0EC4.cpp",
+        "owner": "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      },
+      {
+        "row": 958,
+        "fork_path": "src/pso/enemy/TObjEneMe3Stelth.cpp",
+        "owner": "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      },
+      {
+        "row": 2598,
+        "fork_path": "src/pso/ui/TAdEnterPasswordGC.cpp",
+        "owner": "src/pso/unk/TUnk_804EDAC0.cpp"
+      },
+      {
+        "row": 3637,
+        "fork_path": "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp",
+        "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      },
+      {
+        "row": 4212,
+        "fork_path": "src/pso/misc/TPlayerBattleCtrl4P_8031012C.cpp",
+        "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      },
+      {
+        "row": 4510,
+        "fork_path": "src/pso/misc/TLobby_801C25B4.cpp",
+        "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+      },
+      {
+        "row": 6451,
+        "fork_path": "src/pso/misc/TOTrapAncient02.cpp",
+        "owner": "src/pso/object/trap/TOTrapAncient02.cpp"
+      },
+      {
+        "row": 6452,
+        "fork_path": "src/pso/misc/TOTrapSeabed01.cpp",
+        "owner": "src/pso/object/trap/TOTrapSeabed01.cpp"
+      },
+      {
+        "row": 6742,
+        "fork_path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "owner": "src/pso/quest/QuestOpcodeHandlers.cpp"
+      }
+    ],
+    "open_rows": 318,
+    "switcher_declaration_trial": {
+      "row": 2330,
+      "result": "changed retail instruction order",
+      "retained": "preceding declarations"
+    }
+  },
+  "fork_workspace": {
+    "trial": "987281545d05568b6452173d2a43ca671dfa2890",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "1c0b8f15b1378feacf21b2043cd9f524caf033f379caa40b1f17489136a0b5c6",
+    "materialized_tree": "18d42d962dec25b719ac1b19f1c0fa1c0c5a8044",
+    "force_active": 27029
+  }
+}

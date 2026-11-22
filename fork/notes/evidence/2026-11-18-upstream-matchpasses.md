@@ -160,6 +160,10 @@ The eight-path Flower and Recon replay at `0a60c76d14` uses native receivers for
 
 Both builds match retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Flower action entry, all three melee outcomes, bomb initialization and the two Recobox accessors agree with retail. All 310 workspace checks pass and the 130-path archive reconstructs the tested fork workspace. Two historical comparisons close and 2 gain source evidence, leaving 327 open. [Flower and Recon validation](2026-11-22-upstream-365-flower-recon-validation.json)
 
+The 19-path scene replay at `7a642c8396` types screen fade completion callbacks and packed polygon colors, recovers the character-select background and tag draw inputs, and puts the deferred-render dispatch on its own queue. Three linker label changes follow the recovered callback and receiver types.
+
+Both builds match retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The fade transitions, logo callback arguments, quad colors and queue outcomes agree with retail. The 130-path archive reconstructs the tested fork workspace and all 310 checks pass. Nine historical comparisons close, leaving 318 open. The switcher declaration trial remains open because it changes retail register order. [Scene fade validation](2026-11-22-upstream-365-scene-fades-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
