@@ -27,6 +27,10 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 
 The equipment submenu audit closes one more comparison on `4380b86c89`, leaving 269 open. The original split-screen guard, unsigned depth conversion, scale store and submenu replacement are already in the native main-menu owner. Runtime checks agree across retail and both builds.
 
+The 13-path status-window replay at `156e375c1c` uses the real item row, draw context and glyph declarations. Item and detail icons pass the same position and clipping records. The eleven bit-4 calls keep the upstream function name and use the native window entry base. The single linker-label change follows that owner.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The runtime probe checks the status flag, proportional and fixed number widths, both numeric draw modes, icon clipping and the detail row's five columns. All 310 workspace checks pass and the 130-path tooling archive round-trips. The cumulative source changes 1,209 paths. Two historical comparisons close, leaving 267 open. [Status-window validation](2026-11-22-upstream-366-status-windows-validation.json)
+
 ## Replay after upstream PR #365
 
 Upstream master advanced from `5a4e7ced56` to `b2d2912058` by 45 commits across 1,947 paths. The pinned matching checkpoint `1e41348776` shares 782 changed paths with the new master. The three-way merge preview has 459 conflicts. The path index records the old, landed, local and preview entries for each changed path. [Upstream PR #365](https://github.com/zeroz41/pso-decomp/pull/365) · [Replay index](2026-11-21-upstream-365-replay-index.tsv)
