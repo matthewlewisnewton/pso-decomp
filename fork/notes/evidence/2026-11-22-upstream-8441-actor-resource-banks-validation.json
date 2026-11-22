@@ -1,0 +1,105 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "bb390c834f552e4309ac902e415719b850b8904b",
+  "source_base": "87e6918ced826b069b902378b3264e54913fd81d",
+  "source_commits": 39,
+  "paths": [
+    "include/pso/enemy/moja/MojaResourceState.h",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/npc/TObjNpcMoja.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "8fe017ae663e690575b0ccab8049a76e32cac2a1c8376f2e8d281ed372321501",
+      "observations": [
+        "PsoV3.dol: six Moja, Merill Lia and Shark archive paths, all battle rows, appearance bindings and repeated release passed",
+        "psov3.dol: six Moja, Merill Lia and Shark archive paths, all battle rows, appearance bindings and repeated release passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "8fe017ae663e690575b0ccab8049a76e32cac2a1c8376f2e8d281ed372321501",
+      "observations": [
+        "PsoV3.dol: six Moja, Merill Lia and Shark archive paths, all battle rows, appearance bindings and repeated release passed",
+        "psov3.dol: six Moja, Merill Lia and Shark archive paths, all battle rows, appearance bindings and repeated release passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 253,
+    "open_after": 252,
+    "restored_header": "include/pso/enemy/moja/MojaResourceState.h",
+    "resource_symbols": [
+      {
+        "address": "0x805D50C8",
+        "name": "moja_boss_stats_handles",
+        "bytes": 4
+      },
+      {
+        "address": "0x805D50CC",
+        "name": "moja_attack_params",
+        "bytes": 4
+      },
+      {
+        "address": "0x805D50D0",
+        "name": "moja_object_handles",
+        "bytes": 4
+      },
+      {
+        "address": "0x805D50D4",
+        "name": "moja_behavior_params",
+        "bytes": 4
+      },
+      {
+        "address": "0x805D50D8",
+        "name": "moja_bml_resource",
+        "bytes": 4
+      },
+      {
+        "address": "0x805D50DC",
+        "name": "moja_punch_points",
+        "bytes": 4
+      }
+    ]
+  },
+  "fork_workspace": {
+    "parent": "bb390c834f552e4309ac902e415719b850b8904b",
+    "previous_workspace": "77e7573f1b27e497ee178fba0c1f0f5f93270b57",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "materialized_tree_before_notes_update": "2df1295f3ba9ab85be17a933bcb1a92fda92bdd5",
+    "archive_sha256": "ac0ce573813ffba1bfef079b412f2f96c65a085d5b10d987140c50de94d53575",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

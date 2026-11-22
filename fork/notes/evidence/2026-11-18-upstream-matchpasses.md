@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The actor resource replay `bb390c834f` restores 11 typed battle parameter banks for Moja, Merill Lia and Shark. Moja's enemy and NPC callers share the BML declaration and use the native appearance records. All six archive branches, the battle row loads and release, the NPC bindings and repeated teardown pass against retail. The build retains the same linker names and all 1,147 starting data bytes. The byte-identical tooling archive passes all 310 checks, and the six-declaration Moja header audit leaves 252 historical entries open. [Actor resource and fork workspace validation](2026-11-22-upstream-8441-actor-resource-banks-validation.json)
+
+
 The gameplay packet replay `87e6918ced` follows the 6x5F and 6x60 recovery with the shared 6xB2 layout, snapshot sender and typed command-table receiver. The wire round trip, signed floor check and guarded local player playback match retail. The original receiver reads the client field as a signed halfword. The archive is byte-identical to the tested item packet workspace and all 310 checks pass. Rechecking earlier source evidence confirms the native tentacle banks and two empty callbacks and reopens the Moja parameter banks, leaving 253 entries open. [Gameplay packet and historical audit](2026-11-22-upstream-8441-gameplay-sound-validation.json)
 
 
