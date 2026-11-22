@@ -1,0 +1,186 @@
+{
+  "source": "1ea79cb8f26f6a74645c21766ffcec43fc30165a",
+  "previous_source": "f36ec2ba511cc1d01bac263efbd751f94c881940",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/PppBuffer.h",
+    "include/pso/network/TLobby_803FC178.h",
+    "include/pso/network/TLobby_804048E8.h",
+    "src/pso/network/NetworkThreadRuntime.c",
+    "src/pso/network/PppBuffer.c",
+    "src/pso/network/PppFsm.c",
+    "src/pso/network/PppIpcp.c",
+    "src/pso/network/PppLcp.c",
+    "src/pso/network/PppPap.c",
+    "src/pso/network/PppVj.c",
+    "src/pso/network/TLobby_804048E8.c",
+    "src/pso/network/TLobby_804050DC.c"
+  ],
+  "combined_paths_from_upstream": 1054,
+  "historical_donors": {
+    "ppp-and-ipv4-headers": "925fa3bbd9",
+    "shared-request-owners": "ebe7edd892",
+    "transport-and-packet-pool": "26184e69dd"
+  },
+  "preview": {
+    "unique_paths": 70,
+    "comparison_sha256": "40f13e28b764a048dec8ae14d187a8b66e5a936154d24ac207f40011d4eec9e8"
+  },
+  "source_scope": [
+    "share the native PPP frame pointer for buffer allocation and length reads",
+    "use typed IPv4 and decoded TCP header records and preserve caller comparison widths",
+    "retain upstream's thread, protocol and socket names and existing pointer types"
+  ],
+  "linked_functions_by_affected_unit": {
+    "src/pso/network/NetworkThreadRuntime.c": 40,
+    "src/pso/network/PppFsm.c": 18,
+    "src/pso/network/PppIpcp.c": 24,
+    "src/pso/network/PppLcp.c": 18,
+    "src/pso/network/PppBuffer.c": 9,
+    "src/pso/network/PppPap.c": 12,
+    "src/pso/network/PppVj.c": 2,
+    "src/pso/network/TLobby_804048E8.c": 3,
+    "src/pso/network/TLobby_804050DC.c": 31
+  },
+  "retained_symbol_names_by_address": {
+    "0x8040DB34": [
+      "NetIsMulticastAddress",
+      "is_multicast_address"
+    ],
+    "0x8040DBFC": [
+      "NetCompareAddresses",
+      "compare_sockaddr"
+    ],
+    "0x80420DE4": [
+      "udp_input__6TLobbyFPvPvPvi",
+      "udp_input"
+    ],
+    "0x80421DEC": [
+      "TUdpSocket__sub_80421DEC",
+      "udp_open"
+    ]
+  },
+  "validation": {
+    "source": {
+      "baseline": "f36ec2ba511cc1d01bac263efbd751f94c881940",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    },
+    "layer": {
+      "baseline": "1ea79cb8f26f6a74645c21766ffcec43fc30165a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "7fce4ea13f5aa068655f5cd3589d4220089fc4cfb338f60df9889731f798bca1"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "488d147aae34c2df450cbcdbd798ae01c50f33a2c8abeb4a41c5bafeed786cca"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "coverage": "PPP frame length and headroom, IPv4 options, and TCP header fields passed",
+    "probe_sha256": "c8b98f15c434a8a9daf2878834d93d40e1f1de6b7c318e58c0ff1ad3fd83bc08",
+    "log_sha256": "5f94d1d8d2101f04452ec27ba3996af327b89573d7956fe48dab27612bededc1"
+  },
+  "historical": {
+    "open_rows": 394,
+    "closed_rows": [
+      [
+        2959,
+        "include/pso/protocol/PppConfigure.h",
+        "include/pso/network/TLobby_803FC178.h"
+      ],
+      [
+        2997,
+        "include/pso/network/UdpRuntime.h",
+        "include/pso/network/UdpRuntime.h"
+      ],
+      [
+        3010,
+        "src/pso/network/TTcpSocket.cpp",
+        "src/pso/network/TTcpSocket.cpp"
+      ]
+    ],
+    "scoped_rows": [
+      [
+        2964,
+        "src/pso/misc/TLobby_803FC178.cpp",
+        "src/pso/network/PppIpcp.c"
+      ],
+      [
+        2965,
+        "src/pso/misc/TLobby_804048E8.cpp",
+        "src/pso/network/TLobby_804048E8.c"
+      ],
+      [
+        2980,
+        "src/pso/protocol/NetworkRuntime.cpp",
+        "src/pso/network/NetworkThreadRuntime.c"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "ca1fc5f7aa5780cf651eec101482ac774dcc6c5d",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "c5a20c5bee4db520087ead94090ea8b8dd312aa218d9cfc56f08263e2128c3ac",
+    "materialized_tree": "510549cab3273721294396e7662927763a29486e",
+    "force_active": 27027
+  }
+}
