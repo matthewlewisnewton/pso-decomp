@@ -40,6 +40,7 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 | Network runtime | `72703eff0b` | Upstream master | 55 |
 | Character growth, inventory and equipment | `50664446c4` | Stack through network | 117 |
 | Techniques, effects and player state | `a5d9b6d322` | Inventory review | 118 |
+| Saves, quests and asset loading | `773c658ecc` | Technique review | 172 |
 
 The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
@@ -52,6 +53,10 @@ The review, consolidated source and reconstructed fork workspace all match retai
 The 118-path technique and player-state review at `a5d9b6d322` combines casts, effect resources and construction, hold and release, and the native scale and shrink state. The critical-hit effect and ring-wave caller share a typed texture frame and Ginja lists. The new linker labels follow the position pointer used by the constructor and factory. The consolidated source is `aa4478e754`, and the 552-path replay at `5d009609c6` reconstructs it exactly above the review.
 
 The review, consolidated source and reconstructed fork workspace match retail with all 1,147 starting data bytes. The 130-path fork tooling archive updates one constructor label and round-trips, and all 310 workspace checks pass. The critical-hit source comparison closes, leaving 264 open. [Technique review](2026-11-22-next-upstream-techniques-effects-and-player-state.md) · [Validation](2026-11-22-upstream-366-technique-review-validation.json)
+
+The 172-path save, quest and asset review at `773c658ecc` combines memory-card records, Hunter Guild menus, quest caching and the shared file, BML and GVM interfaces. Footprint loading, drawing and teardown share the real Ginja texture pointer. Its constructor uses the player's original rotation record. The consolidated source is `28b1b83ec0`, and the 482-path replay at `fffe22a377` reconstructs it exactly above the review.
+
+The review, consolidated source and reconstructed fork workspace match retail with all 1,147 starting data bytes. All 310 workspace checks pass and the 130-path tooling archive round-trips. The footprint source comparison closes, leaving 263 open. [Save and quest review](2026-11-22-next-upstream-saves-quests-and-asset-loading.md) · [Validation](2026-11-22-upstream-366-saves-quests-and-assets-validation.json)
 
 ## Replay after upstream PR #365
 
