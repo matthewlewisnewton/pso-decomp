@@ -152,6 +152,10 @@ The 80-path population REL replay at `3a37da8ef6` gives the 66 character callers
 
 Both builds match retail with 27,572 exact functions, 2,447 linked units, and all 1,147 starting bytes accounted for. The position, REL relocation and 56 NPC archive lifecycle cases agree across both builds and retail. All 310 workspace checks pass, and the 130-path tooling archive round-trips. Three historical comparisons close and 21 gain source evidence, leaving 331 open. [Population REL validation](2026-11-22-upstream-365-population-rel-validation.json)
 
+The 29-path Shark replay at `e1941011ea` restores the native subclass, constructor, destructor and vtable. The action table, collision bodies, battle parameter banks and BML handles use typed records. The body-center copy now belongs to TObjChara and keeps all 33 original call sites. The two linker label changes follow the recovered constructor and the shared receiver.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The Shark translation unit matches all 20 functions and 1,472 data bytes. The position-copy, subtype, model binding and resource lifecycle probes agree across both builds and retail. All 310 workspace checks pass and the 130-path tooling archive reconstructs the tested fork. Two historical comparisons close and 17 gain source evidence, leaving 329 open. [Shark and shared position validation](2026-11-22-upstream-365-shark-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
