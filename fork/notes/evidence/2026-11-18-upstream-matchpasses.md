@@ -8,6 +8,10 @@ Upstream PR #367 advanced master to `6aee940eca`. The first local review is wind
 
 The stock upstream build and the new review reproduce retail. Each accounts for all 1,147 starting data bytes and all 27,572 functions. The 12-byte data coverage difference from the assembled queue before #367 is alignment padding. The first review links 2,417 units and passes the title, status and lifetime probes. [Window review validation](2026-11-22-upstream-367-window-review-validation.json)
 
+The 60-path network review `7f33369109` on `6aee940eca` preserves the upstream socket event and send options and carries typed receive callbacks, PPP options, DHCP records and modem timeout data. It combines with the current window review at `c02dcaa95d`. Both reproduce retail and pass the network, packet-list and UDP slot probes. The rebuilt fork layer on that combined source reproduces retail and keeps its 130-path tooling archive. Three Zako tests now follow the native release method and shared draw and initializer unit in #367. All 310 workspace checks pass.
+
+The 228-path memory review `4fc1ed7afe` moves the nullable release helper into the shared memory interface, carries 192 call sites and removes 66 character-selection header dependencies. All 27,572 functions and 1,147 original data bytes remain accounted for. The replay previews now measure the remaining eight groups on this source. No additional historical records closed, leaving 261. [Network, memory and fork workspace validation](2026-11-22-upstream-367-network-memory-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.

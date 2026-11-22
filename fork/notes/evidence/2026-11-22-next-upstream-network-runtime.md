@@ -1,5 +1,7 @@
 # Recover native PPP, modem, and packet receive interfaces
 
+The standalone network review is now `7f33369109` on upstream `6aee940eca`. It passes the full matching build, 11 network suites, and the list, packet copy, and UDP callback probes. The same source applies cleanly above the window review and matches retail at `c02dcaa95d`. [Current validation](2026-11-22-upstream-367-network-memory-validation.json)
+
 The 60-path review `3d2429fcbd` on `2ea1c02d4c` also restores native game and lobby list assignment and copies the packet header as bytes. Its exact build, 15 protocol-list cases and 10 packet copy and collision checks pass. The next revision is being replayed onto upstream PR #367. [Assembled queue validation](2026-11-22-upstream-366-assembled-queue-validation.json)
 
 The current standalone review is `great-merge/review/after-366/network-runtime` at `72703eff0b` on upstream `2ea1c02d4c`. Applying that same patch above the expanded window and combined actor reviews yields `8b22ee1626`. The stacked build matches retail, passes the coverage comparison, and passes all eleven network probes. [Current validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
