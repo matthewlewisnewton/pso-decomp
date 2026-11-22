@@ -1,0 +1,281 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_review": "0f8ed7074122761fb431b0ba64631e2887aac863",
+  "review": "5cd8d9c8e9156bba623119d93af0da951962cf3b",
+  "review_paths": 377,
+  "previous_cumulative_source": "ffd0d98e4cc725fd4f46ae3df29334c853fb6c10",
+  "cumulative_source": "e6707bb89091075117a34c24140815bcd8fb3470",
+  "cumulative_overlap_resolutions": [
+    "Keep typed BmlMotionEntry and apply recovered method owner in TAdMultiConfirmGC_802E03D0.cpp",
+    "Keep SoundEffect.h and use the recovered layout entry declaration in TWindowSubItem.cpp",
+    "Keep SoundEffect.h and use the recovered layout entry declaration in TWindowSubStatusDisp_802671F0.cpp"
+  ],
+  "quality": {
+    "total": {
+      "base": 167998,
+      "head": 165501,
+      "added": 585,
+      "removed": 3082
+    },
+    "ownership": {
+      "base": 2614,
+      "head": 2513,
+      "added": 55,
+      "removed": 156
+    },
+    "source_files": 373,
+    "flagged_labels": 0,
+    "new_stale_retention_entries": 0,
+    "total_label_changes": 247,
+    "additional_labels_from_recovered_class_owners": 79,
+    "benchmark_json_sha256": "2c0a20f0d98efa006a8c637c7e593434927a646872fb322bfdc120d0f5089c2c",
+    "resolved_diagnostics": [
+      {
+        "address": "0x80249060",
+        "original": "is_flag_4_set__13TUnk_804CF918CFv",
+        "final": "is_flag_4_set__18TWindowLayoutEntryCFv"
+      },
+      {
+        "address": "0x80249D34",
+        "original": "set_selected_index__13TUnk_804CE964Fl",
+        "final": "set_selected_index__22TWindowComCardFollowerFl"
+      },
+      {
+        "address": "0x80249D7C",
+        "original": "sub_80249D7C__13TUnk_804CE964Fl",
+        "final": "set_column__22TWindowComCardFollowerFl"
+      },
+      {
+        "address": "0x80249E80",
+        "original": "__dt__13TUnk_804CE964Fv",
+        "final": "__dt__22TWindowComCardFollowerFv"
+      },
+      {
+        "address": "0x80249ED8",
+        "original": "__ct__13TUnk_804CE964FP11TWindowBaseP10NJS_POINT2lll",
+        "final": "__ct__22TWindowComCardFollowerFP11TWindowBaseP10NJS_POINT2lll"
+      },
+      {
+        "address": "0x8024C5E8",
+        "original": "get_speaker_id__13TUnk_804CF0B8Fv",
+        "final": "get_speaker_id__15TWindowFukidasiFv"
+      },
+      {
+        "address": "0x80251DF0",
+        "original": "sub_80251DF0__13TUnk_804CF0B8FUsllf",
+        "final": "init_balloon__15TWindowFukidasiFUsllf"
+      },
+      {
+        "address": "0x80252B74",
+        "original": "__ct__13TUnk_804CF0B8FUsllf",
+        "final": "__ct__15TWindowFukidasiFUsllf"
+      },
+      {
+        "address": "0x80256E0C",
+        "original": "draw_status_gauge_bar__13TUnk_804CF930FP17WindowDrawContextP10NJS_POINT2ff",
+        "final": "draw_status_gauge_bar__18TWindowStatusGaugeFP17WindowDrawContextP10NJS_POINT2ff"
+      },
+      {
+        "address": "0x802572F0",
+        "original": "init_from__13TUnk_804CF930FP17StatusGaugeLayoutl",
+        "final": "init_from__18TWindowStatusGaugeFP17StatusGaugeLayoutl"
+      },
+      {
+        "address": "0x80257B4C",
+        "original": "init_layout_entry_copy__13TUnk_804CF948FP21LayoutEntryCopyRecordl",
+        "final": "init_layout_entry_copy__26TWindowStatusGaugeFeedbackFP21LayoutEntryCopyRecordl"
+      },
+      {
+        "address": "0x8025E148",
+        "original": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUl",
+        "final": "draw_composition_background__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUl"
+      },
+      {
+        "address": "0x8025E530",
+        "original": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUll",
+        "final": "layout_wrapped_glyphs__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUll"
+      },
+      {
+        "address": "0x8025E6DC",
+        "original": "sub_8025E6DC__19TWindowKeyBoardBaseFP17WindowDrawContext",
+        "final": "draw_input_text__19TWindowKeyBoardBaseFP17WindowDrawContext"
+      },
+      {
+        "address": "0x8026543C",
+        "original": "get_flag__13TUnk_804D0658Fv",
+        "final": "get_flag__21TWindowMenuInfomationFv"
+      },
+      {
+        "address": "0x80265448",
+        "original": "clear_flag_and_release2__13TUnk_804D0658Fv",
+        "final": "clear_flag_and_release2__21TWindowMenuInfomationFv"
+      },
+      {
+        "address": "0x80268494",
+        "original": "update_selected_entry__13TUnk_804D0658Fv",
+        "final": "update_selected_entry__21TWindowMenuInfomationFv"
+      },
+      {
+        "address": "0x802684BC",
+        "original": "find_entry_value_by_id__13TUnk_804D0658Fl",
+        "final": "find_entry_value_by_id__21TWindowMenuInfomationFl"
+      },
+      {
+        "address": "0x8026853C",
+        "original": "mark_entry_by_id__13TUnk_804D0658Fl",
+        "final": "mark_entry_by_id__21TWindowMenuInfomationFl"
+      },
+      {
+        "address": "0x802685C4",
+        "original": "disable_entry_by_id__13TUnk_804D0658Fl",
+        "final": "disable_entry_by_id__21TWindowMenuInfomationFl"
+      },
+      {
+        "address": "0x80268650",
+        "original": "set_entry_string_by_id__13TUnk_804D0658FPvl",
+        "final": "set_entry_string_by_id__21TWindowMenuInfomationFPvl"
+      },
+      {
+        "address": "0x802686D4",
+        "original": "update_next_entry__13TUnk_804D0658Flll",
+        "final": "update_next_entry__21TWindowMenuInfomationFlll"
+      },
+      {
+        "address": "0x80275290",
+        "original": "set_flag_10__13TUnk_804D0658Fv",
+        "final": "set_flag_10__21TWindowMenuInfomationFv"
+      },
+      {
+        "address": "0x802C6FB0",
+        "original": "update_transition_anim_if_active__13TUnk_804E0B28FPvPv",
+        "final": "update_transition_anim_if_active"
+      },
+      {
+        "address": "0x802D50B0",
+        "original": "set_field_100__13TUnk_804E3008Fl",
+        "final": "set_field_100__17TAdChrSelPlayerGCFl"
+      },
+      {
+        "address": "0x802E0C28",
+        "original": "set_status_value__13TUnk_804E3008Fl",
+        "final": "set_status_value__17TAdChrSelPlayerGCFl"
+      },
+      {
+        "address": "0x802E0C68",
+        "original": "set_index_and_close_status__13TUnk_804E3008Fl",
+        "final": "set_index_and_close_status__17TAdChrSelPlayerGCFl"
+      },
+      {
+        "address": "0x802E0CB0",
+        "original": "sub_802E0CB0__13TUnk_804E3008Fl",
+        "final": "place_model_for_mode__17TAdChrSelPlayerGCFl"
+      },
+      {
+        "address": "0x80336064",
+        "original": "start_offline_seq__13TUnk_804EEF64Fv",
+        "final": "start_offline_seq__11TTitleSceneFv"
+      },
+      {
+        "address": "0x803361C4",
+        "original": "set_flag_and_clear_download__13TUnk_804EEF64Fv",
+        "final": "set_flag_and_clear_download__11TTitleSceneFv"
+      },
+      {
+        "address": "0x80336200",
+        "original": "open_keyboard__13TUnk_804EEF64Fv",
+        "final": "open_keyboard__11TTitleSceneFv"
+      },
+      {
+        "address": "0x8033622C",
+        "original": "request_change_game_mode__13TUnk_804EEF64Fv",
+        "final": "request_change_game_mode__11TTitleSceneFv"
+      },
+      {
+        "address": "0x80336254",
+        "original": "enter_game_mode_change__13TUnk_804EEF64Fv",
+        "final": "enter_game_mode_change__11TTitleSceneFv"
+      },
+      {
+        "address": "0x8033627C",
+        "original": "enter_chg_game_mode__13TUnk_804EEF64Fv",
+        "final": "enter_chg_game_mode__11TTitleSceneFv"
+      },
+      {
+        "address": "0x8034055C",
+        "original": "render__13TUnk_804EFBACFv",
+        "final": "render__21TWindowWordSelectModeFv"
+      },
+      {
+        "address": "0x803407BC",
+        "original": "run_task__13TUnk_804EFBACFv",
+        "final": "run_task__21TWindowWordSelectModeFv"
+      },
+      {
+        "address": "0x803409A4",
+        "original": "__ct__13TUnk_804EFBACFv",
+        "final": "__ct__21TWindowWordSelectModeFv"
+      },
+      {
+        "address": "0x804CE964",
+        "original": "__vt__13TUnk_804CE964",
+        "final": "__vt__22TWindowComCardFollower"
+      },
+      {
+        "address": "0x804EFBAC",
+        "original": "__vt__13TUnk_804EFBAC",
+        "final": "__vt__21TWindowWordSelectMode"
+      }
+    ]
+  },
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "original_data_bytes": 1147,
+  "losses": {
+    "review-check.json": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "check.json": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "layer-check.json": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    }
+  },
+  "runtime_probes": [
+    "PsoV3.dol: 46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+    "PsoV3.dol: overlay destruction, global construction, and both area dispatch paths passed.",
+    "PsoV3.dol: status flags, numeric glyphs, icon clipping and status detail rows passed."
+  ],
+  "historical_comparisons_open": 235,
+  "fork_workspace": {
+    "previous": "38f1e4a32ec36a3afc9988073eb9477285dc10cd",
+    "overlay_paths": 130,
+    "updated_retained_labels": 67,
+    "materialized_tree": "c9cd439a73e689174db8a75bc7dbb6f8fb39dab1",
+    "archive_sha256": "11029f6ea03a323caa65309b4c3fa8b9029acf62efffc3ed8f6324c6769c4faf",
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  }
+}

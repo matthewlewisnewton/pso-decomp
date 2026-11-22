@@ -4,6 +4,8 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The window, character selection and chat review at `5cd8d9c8e9` resolves all 39 address-based label flags. Upstream’s benchmark reports 2,497 fewer findings and no newly stale retention entries. The cumulative source `e6707bb890` keeps typed model animation and the existing sound declarations across three overlapping files. The review, cumulative source and fork workspace all reproduce retail and preserve the 90 original data ranges. The 130-path fork overlay rekeys 67 retained labels and passes 310 checks. There are 235 historical comparisons open. [Window symbol and workspace validation](2026-11-22-upstream-370-window-symbol-validation.json)
+
 The 16-path front-end replay `ffd0d98e4c` restores the native classification map, serial keyboard input, status texture list, character plate point, judgment window construction and Word Select payload. The single linker label follows the typed formatting signature. Both builds reproduce retail, account for all 1,147 original data bytes and pass all 310 checks. The 130-path fork overlay keeps the same edits and refreshes the shortcut source blob IDs. The original source comparisons close for six frontend and city owners, the two status and Word Select owners, and the keyboard controller declarations. The audit verifies all 28 keyboard entry points and leaves 235 historical comparisons. [Front-end source and workspace validation](2026-11-22-upstream-370-frontend-records-validation.json)
 
 
