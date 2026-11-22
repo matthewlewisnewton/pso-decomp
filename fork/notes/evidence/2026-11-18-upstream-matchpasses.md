@@ -140,6 +140,10 @@ The 30-path player scale replay at `dc19499a31` gives the 0x30-byte scale state,
 
 Both builds match retail with 27,572 exact functions, 2,447 linked units, and all 1,147 starting bytes accounted for. The camera, scale, and wire-packet probe agrees across all three images. The 130-path tooling archive reconstructs the tested workspace and all 310 checks pass. The constructor and area-entry comparisons close, leaving 342 open. [Player scale validation](2026-11-22-upstream-365-player-scale-validation.json)
 
+The 148-path one-shot sound replay at `a16cfb5321` shares the signed request handle and read-only world-position declaration across 1,190 direct source calls in 287 paths. It removes 80 local declarations and 49 function pointer casts while preserving all 1,198 original direct branches and the existing linker names.
+
+Both builds match retail with 27,572 exact functions, 2,447 linked units, and all 1,147 starting bytes accounted for. The eight one-shot sound cases agree across the three images and the 310 workspace checks pass. The tooling archive round-trips all 130 paths. The warning window and telepipe sound comparisons close, and 109 additional rows gain sound evidence, leaving 340 comparisons open. [One-shot sound validation](2026-11-22-upstream-365-one-shot-sound-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
