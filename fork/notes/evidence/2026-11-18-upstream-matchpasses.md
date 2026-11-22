@@ -110,6 +110,12 @@ Both builds reproduce retail, preserve all 1,147 original data bytes and pass th
 
 The native level check and player window dispatch records close. Two earlier technique records reopen because the current source was missing the full native setter and target interface validated in an earlier snapshot. Restoring the layout accounts for part of that work, and the count remains 449. [Player interaction and technique evidence](2026-11-21-player-interaction-replay.json)
 
+The 16-path technique replay at `da7c2eaa97` restores the native setters, target records, and shared 6x47 cast packet from the earlier matching work. The player and NPC senders, player receiver, technique controller, and validator use the actual state and packet layouts. Fifteen linker labels follow the recovered owners and parameter types at their original addresses and sizes. The functions retain their upstream names.
+
+Both builds reproduce retail, preserve all 1,147 original data bytes, and pass the 310 tool and host checks. Runtime probes verify signed target values, packet size and send bytes, and validation traversal. The fork tooling archive carries two updated force-active entries, and it replays to the tested fork workspace.
+
+The technique state declaration and native short setter records close, leaving 447 open. The broader technique controller, player action and NPC source comparisons remain open. [Technique state, target and packet evidence](2026-11-21-technique-targets-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)

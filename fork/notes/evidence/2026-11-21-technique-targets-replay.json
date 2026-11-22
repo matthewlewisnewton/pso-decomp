@@ -1,0 +1,331 @@
+{
+  "source": "da7c2eaa9775c3ae90ae9c25fceb96dde4327878",
+  "previous_source": "21be236e7fdb45a0195dba9651fb75b54762f48f",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1199,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/network/protocol/subcommand_validation.h",
+    "include/pso/npc/TNpcPlayer.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TechniqueCastState.h",
+    "include/pso/unk/text_8036BDA0.h",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C00C4.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TObjPlayer_801D95B8.cpp",
+    "src/pso/player/TObjPlayer_801D9B18.cpp",
+    "src/pso/player/TObjPlayer_801D9CE0.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/unk/text_8036BDA0.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "player_technique_state_offset": 1064,
+    "technique_state_size": 132,
+    "level_offset": 0,
+    "technique_offset": 4,
+    "state_count_offset": 6,
+    "state_targets_offset": 32,
+    "target_size": 4,
+    "target_capacity": 10,
+    "packet_size": 48,
+    "packet_count_offset": 6,
+    "packet_targets_offset": 8
+  },
+  "historical_comparison": {
+    "prior_verified_source": "bdc5b56af7b3c73e91fad1276ef7ffa427ecf903",
+    "prior_open_rows": 449,
+    "open_rows": 447,
+    "closed": [
+      3453,
+      4134
+    ],
+    "touched_rows": [
+      {
+        "row": 3098,
+        "description": "The shared typed validation declaration is restored and the complete 0x30 frame is declared in the protocol header.",
+        "historical_path": "include/pso/unk/text_8036BDA0.h",
+        "current_path": "include/pso/unk/text_8036BDA0.h",
+        "fork_blob": "7e1c3c0ad5a88b168640fb54d9c5796064b179cd",
+        "current_blob": "75456834699f0024d62c861ba0e30ed599f0442a",
+        "previous_status": "Complete fork technique packet declarations retained",
+        "current_status": "Complete fork technique packet declarations retained"
+      },
+      {
+        "row": 3099,
+        "description": "The 6x47 validator traverses the shared header, signed parameters and four-byte target entries at their original offsets.",
+        "historical_path": "src/pso/unk/text_8036BDA0.cpp",
+        "current_path": "src/pso/unk/text_8036BDA0.cpp",
+        "fork_blob": "cf259810c0a9e2b90d14f618c17ec9bf41ca1030",
+        "current_blob": "3e56bf4d4c074f525645eecef2c09d92b621f02a",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3453,
+        "description": "The state owns the recovered short ID, byte level, slot and count accessors. Its ten four-byte targets use the original unsigned entity ID and signed second halfword.",
+        "historical_path": "include/pso/player/TechniqueCastState.h",
+        "current_path": "include/pso/player/TechniqueCastState.h",
+        "fork_blob": "e4fd4b1d1d2e9c40b4b89389910025f176acf267",
+        "current_blob": "ccdb92ef4e4281c0cb404f08168351664a217809",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native technique state declarations historical source reconciled"
+      },
+      {
+        "row": 3998,
+        "description": "The embedded cast state now owns its native accessors. The remaining historical player header edits are still under review.",
+        "historical_path": "include/pso/player/TObjPlayer.h",
+        "current_path": "include/pso/player/TObjPlayer.h",
+        "fork_blob": "55eae4b73abddd9e0bc3e78b90398d7e34196396",
+        "current_blob": "875d470b01ee4a2dba60fd9ce242acd17867a669",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4134,
+        "description": "The setter at 0x801C011C takes TechniqueCastState and writes the signed halfword at +4. Both the signed and byte overloads retain upstream's set_technique_id name.",
+        "historical_path": "src/pso/player/TObjPlayer_801C00C4.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801C00C4.cpp",
+        "fork_blob": "60417e9710f6fbe41816e1beb8710aaefbf35b85",
+        "current_blob": "dd834681ebb857e9cc963f88899c14bae5921c94",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native short technique setter historical source reconciled"
+      },
+      {
+        "row": 4138,
+        "description": "The live 6x47 receive path reads the shared packet fields and copies typed targets into the player's cast state. Other historical action edits remain open.",
+        "historical_path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "fork_blob": "8774ee999d0c7ef266bf7578575368480b02c07a",
+        "current_blob": "59e78aca3fa32216fcbd05ffc4d7d1e5f97f48ad",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4143,
+        "description": "The slot and section checks, technique initialization and castable-level getter again use the native state receiver.",
+        "historical_path": "src/pso/player/TObjPlayer_801D95B8.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801D95B8.cpp",
+        "fork_blob": "27fcdb8d525774f14644fe8a6c8f034147f1da00",
+        "current_blob": "ee86e8b101093b1e68d0d3fdeee4503889468803",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4398,
+        "description": "Target collection and technique-effect dispatch use the native TechniqueTarget array and typed count and record access. Broader technique controller changes remain open.",
+        "historical_path": "src/pso/misc/TTecCtrl.cpp",
+        "current_path": "src/pso/technique/TTecCtrl.cpp",
+        "fork_blob": "10a6018bc267e519d17112a904823a278c211c6f",
+        "current_blob": "c4bb6fdb27a51f335f8c0e241e5b771880c1c6e0",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 7277,
+        "description": "The NPC sender and 6x47 packet construction, size, byte order and send code now use the recovered frame and target owners. The wider NPC review remains open.",
+        "historical_path": "src/pso/misc/TNpcPlayer.cpp",
+        "current_path": "src/pso/npc/TNpcPlayer.cpp",
+        "fork_blob": "af8ffa0c288430271ddec1c532f6b22c861af154",
+        "current_blob": "2181d7251d27dc9965b63225fe8c7b9325a43a49",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "21be236e7fdb45a0195dba9651fb75b54762f48f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80152C48",
+          "before": "finalize_and_send_packet__10TNpcPlayerFv",
+          "after": "finalize_and_send_packet__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152C8C",
+          "before": "byteswap_positions__10TNpcPlayerFv",
+          "after": "byteswap_positions__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152CE8",
+          "before": "get_6x47_cast_packet_size__FPUc",
+          "after": "get_6x47_cast_packet_size__FP20G_CastTechnique_6x47"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152D04",
+          "before": "init_cast_technique_cmd__10TNpcPlayerFv",
+          "after": "init_cast_technique_cmd__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152EB4",
+          "before": "byteswap_pos__10TNpcPlayerFv",
+          "after": "byteswap_pos__15TechniqueTargetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C011C",
+          "before": "set_technique_id__10TObjPlayerFs",
+          "after": "set_technique_id__18TechniqueCastStateFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801CC7E4",
+          "before": "copy_tech_params__10TObjPlayerFPvPv",
+          "after": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D2C7C",
+          "before": "set_technique_id__10TObjPlayerFUc",
+          "after": "set_technique_id__18TechniqueCastStateFUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D2CCC",
+          "before": "get_technique_data__10TObjPlayerFPv",
+          "after": "get_technique_data__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D95B8",
+          "before": "get_section_clamped__10TObjPlayerFv",
+          "after": "get_section_clamped__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D95DC",
+          "before": "get_or_init_field_4__10TObjPlayerFv",
+          "after": "get_or_init_field_4__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D968C",
+          "before": "get_valid_technique__10TObjPlayerFv",
+          "after": "get_valid_technique__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D96CC",
+          "before": "get_castable_technique_level__10TObjPlayerFv",
+          "after": "get_castable_technique_level__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D9B18",
+          "before": "set_tech_level__10TObjPlayerFs",
+          "after": "set_tech_level__18TechniqueCastStateFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036BDA0",
+          "before": "validate_6x47_cast_technique__FPUc",
+          "after": "validate_6x47_cast_technique__FP20G_CastTechnique_6x47"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "40af895e628647d53731afc75b52c95055a75a21fca36d00c6d9151f06a4c247",
+      "report_sha256": "637e4dd2c4419d700c36e0748d25507801fc2afe2f88f99cde9aff2f6d224afd"
+    },
+    "workspace": {
+      "baseline": "da7c2eaa9775c3ae90ae9c25fceb96dde4327878",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "637e4dd2c4419d700c36e0748d25507801fc2afe2f88f99cde9aff2f6d224afd"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "093d12c121129c631e9c9a1a229525ecec3aaab68841a622ec27e0c4323b2480"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "3a5341a200f7a6d6c853193d04a5a9a75c3abda179cd9cf6923dc04ad248ec7d"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "technique_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Native technique and level setters, slot selection and target-count limits",
+        "Four-byte target copy and byte order, including the signed second halfword",
+        "Initialization of ten target records, four packet sizes and actual send bytes",
+        "Validator argument addresses, full traversal and early target rejection",
+        "Prior technique range and player hold, release and window dispatch checks"
+      ],
+      "emulation": "The harness runs actual PowerPC code and observes the send call and validation delegates.",
+      "log_sha256": "a32da797d5a9b6f44131f30ed70206f029ae6223f0393799c5d4041d8fd0827f",
+      "regression_log_sha256": "57714af05e28cbcecdde3a1d078bbc273a81a389ebf4940f13eb4cfdfaee7ad4",
+      "probe_sha256": "aa5b95334166f77ec8411b45802a7cbd15367da736e3363b5e5a1a6af125f28f"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "bf42af4a2009898692443593c3a8841e0b2ab477c141180ffa6e41a798793d12",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active_names": 27033,
+    "archive_test_head": "268f28295ccbbe061725c78c455cd5dcea8c1573",
+    "tested_materialized_tree": "cba2652a30284878e7b69e7a3c146a1a4c84844e"
+  }
+}
