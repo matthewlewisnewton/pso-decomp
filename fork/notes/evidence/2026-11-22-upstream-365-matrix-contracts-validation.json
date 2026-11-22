@@ -1,0 +1,273 @@
+{
+  "source": "a52954285fbb393cf1816beb007b2bc9080822e7",
+  "previous_source": "6f14c086f033ab892c428a38a54914f6e85b8bce",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/camera/TCameraCtrl.h",
+    "include/pso/camera/TCameraCtrl_800687BC.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/unk/TUnk_80482090.h",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+    "src/pso/camera/TCameraCtrl.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/math/MatrixTransforms.cpp",
+    "src/pso/object/TObjEZBoneRotBase.cpp",
+    "src/pso/player/TObjPlayer_8002E784.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/player/TObjPlayer_8035A630.cpp",
+    "src/pso/system/ModelNodePositionCapture.cpp",
+    "src/pso/unk/text_803D96A8.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp"
+  ],
+  "combined_paths_from_upstream": 1069,
+  "historical_replay": {
+    "donor": "ae12ac4f522e8658af565f799a90663c65a310f8",
+    "three_way_conflicts": 56,
+    "three_way_clean": 5,
+    "remapped_existing_helpers": {
+      "normalize_vector_checked": "normalize_vector_safe__FP3Vec",
+      "transform_point_to_view": "forward_transform_to_view"
+    },
+    "retained_matching_source": "The Thunder effect has three exact calls through the original local declaration. Using the floating return declaration reordered its first loop. Five source variants did not match, so the validated replay leaves that caller intact.",
+    "thunder_mismatch_sha256": "4e0a50d463acd2407b70fa94c0cc26cd7c4da16f3f63d58b11dd67bd1abad7a5"
+  },
+  "validation": {
+    "source": {
+      "baseline": "6f14c086f033ab892c428a38a54914f6e85b8bce",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8002E62C",
+          "before": "__ct__13TUnk_80482090FP7TObjectUl",
+          "after": "__ct__13TUnk_80482090FP7TObjectPA4_Cf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80069148",
+          "before": "transform_to_view__11TCameraCtrlFii",
+          "after": "transform_to_view__11TCameraCtrlFPC3VecP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D9324",
+          "before": "copy_matrix__10TObjPlayerFUlUl",
+          "after": "copy_matrix__10TObjPlayerFPA4_fPA4_Cf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D9730",
+          "before": "concat_matrix__10TObjPlayerFUlUl",
+          "after": "concat_matrix__10TObjPlayerFPA4_fPA4_Cf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D976C",
+          "before": "concat_matrix__11TCameraCtrlFUlUl",
+          "after": "concat_matrix__11TCameraCtrlFPA4_fPA4_Cf"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "6c278d58245a348b0548427fd548fc41148ff314633a77003512886f22933994",
+      "report_sha256": "484ee83e6ddde9718dfdf3bdaa9f2ea340d1589d5e38e0e4c551a161de4c2736"
+    },
+    "layer": {
+      "baseline": "a52954285fbb393cf1816beb007b2bc9080822e7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "484ee83e6ddde9718dfdf3bdaa9f2ea340d1589d5e38e0e4c551a161de4c2736"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "8260c395e6b476fc751e6d6d0c5ce8c7140432fa970cff984dab04bcffacf948"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "ede5bc9dbe18d61bf25e352ed682159a4e121ab791f38f2dba6198e285f2bd3c"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "probe_sha256": "30116da0a4a678ba1861dc65747ffd544fac5ded5696ce9405c8267ec6fcd4ae",
+    "results": {
+      "matrix_cases": 27,
+      "view_cases": 16
+    },
+    "result_sha256": "fd96296d833e998e23ef4b2c04bfd94318895afe2a604712b8d6fe7a5adb149c",
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "linked_calls": {
+    "branch_sha256": "ed186670b0408ad62798eb61689738468b85437f68a07f11509e0ff429da52aa",
+    "counts": {
+      "__ct__13TUnk_80482090FP7TObjectPA4_Cf": 1,
+      "concat_matrix__10TObjPlayerFPA4_fPA4_Cf": 20,
+      "concat_matrix__11TCameraCtrlFPA4_fPA4_Cf": 8,
+      "copy_matrix__10TObjPlayerFPA4_fPA4_Cf": 3,
+      "forward_transform_to_view": 18,
+      "get_view_matrix__11TCameraCtrlFv": 3,
+      "normalize_vector_safe__FP3Vec": 47,
+      "transform_to_view__11TCameraCtrlFPC3VecP3Vec": 5
+    }
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 652,
+        "historical_file": "src/pso/unk/text_8002E174.cpp",
+        "compiled_owners": [
+          "src/pso/player/TObjPlayer_8002E784.cpp",
+          "src/pso/boss/dragon/TObjBoss1Rock.cpp"
+        ],
+        "first_parent_edit_blocks": 4,
+        "evidence": "The moved breakup renderer and constructor both call typed matrix concatenation using their actual matrix field. The renderer uses the typed upstream texture-list setter. The changed calls occur at their original sites in the two native De Rol Le functions."
+      },
+      {
+        "row": 3846,
+        "historical_file": "src/pso/unk/text_80120568.cpp",
+        "compiled_owners": [
+          "src/pso/weapon/WeaponAttackActions.cpp"
+        ],
+        "first_parent_edit_blocks": 7,
+        "evidence": "The owning attack action uses the shared equip factory and sound interfaces. Both equip effects carry the typed entity ID and original effect codes. The one-shot launch passes the actor's position and the pitch request retains 0x300 and channel zero."
+      },
+      {
+        "row": 4939,
+        "historical_file": "src/pso/math/MatrixTransforms.cpp",
+        "compiled_owners": [
+          "src/pso/math/MatrixTransforms.cpp"
+        ],
+        "first_parent_edit_blocks": 13,
+        "evidence": "The shared copy routine now accepts native matrix pointers and keeps the upstream C++ name. The exact rotate helper uses the historical radians-per-turn expression, and subtract_vector retains the paired-single implementation. The original null fallback and argument order still match."
+      }
+    ],
+    "scoped_rows": [
+      [
+        424,
+        "include/pso/boss/TObjBoss2Tunnel.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        608,
+        "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+      ],
+      [
+        637,
+        "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+      ],
+      [
+        842,
+        "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        1125,
+        "src/pso/boss/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4161,
+        "src/pso/player/TObjPlayer_802E6CA8.cpp",
+        "src/pso/player/TObjPlayer_802E6CA8.cpp"
+      ],
+      [
+        4173,
+        "src/pso/player/TObjPlayer_8035A630.cpp",
+        "src/pso/player/TObjPlayer_8035A630.cpp"
+      ],
+      [
+        4896,
+        "src/pso/misc/TCameraCtrl.cpp",
+        "src/pso/camera/TCameraCtrl.cpp"
+      ],
+      [
+        6023,
+        "src/pso/unk/text_803D96A8.cpp",
+        "src/pso/unk/text_803D96A8.cpp"
+      ],
+      [
+        7309,
+        "src/pso/misc/TCameraCtrl_native.h",
+        "src/pso/camera/TCameraCtrl.cpp"
+      ]
+    ],
+    "open_rows": 375
+  },
+  "fork_workspace": {
+    "trial": "877b0ae81b52729ce8ddd39a85143d2e1de27aca",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "src/pso/unk/text_803D96A8.cpp"
+    ],
+    "archive_sha256": "1981bb9e90ef03a7051006e33a10eae3ece40516f90be27ac375a0ea2b91d1c3",
+    "materialized_tree": "1a711f495e99d74c65caee06e4a1711d0e931908",
+    "force_active": 27027
+  }
+}
