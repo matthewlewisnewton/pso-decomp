@@ -4,7 +4,7 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
-Upstream PR #366 landed at `2ea1c02d4c`. Its tree is identical to the reviewed renderer head `927d57da60`. The next candidate is the 422-file window, character selection and chat review at `e5ec2c019b` on current master. [Merged PR #366](https://github.com/zeroz41/pso-decomp/pull/366) · [Window review evidence](2026-11-22-next-upstream-window-character-chat.md)
+Upstream PR #366 landed at `2ea1c02d4c`. Its tree is identical to the reviewed renderer head `927d57da60`. The next candidate is the 435-file window, character selection and chat review at `7e38bacd3a` on current master. It now includes the title sprite and status-window changes. [Merged PR #366](https://github.com/zeroz41/pso-decomp/pull/366) · [Window review evidence](2026-11-22-next-upstream-window-character-chat.md)
 
 ## Replay after upstream PR #366
 
