@@ -1,0 +1,253 @@
+{
+  "source": "f74ecdc8c5bdd1876a5e1795f27cc22edf702973",
+  "previous_source": "1ea79cb8f26f6a74645c21766ffcec43fc30165a",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/NetworkMessageTransport.h",
+    "src/pso/network/NetworkMessageTransport.c"
+  ],
+  "combined_paths_from_upstream": 1056,
+  "matched_transport_functions": 26,
+  "queue_layouts": [
+    {
+      "address": "0x805CF240",
+      "message_slots": 32,
+      "size": 160
+    },
+    {
+      "address": "0x805CF2E0",
+      "message_slots": 32,
+      "size": 160
+    },
+    {
+      "address": "0x805CF380",
+      "message_slots": 10,
+      "size": 72
+    }
+  ],
+  "startup_comparison": {
+    "donor": "2f060fcbb8",
+    "paths": 32,
+    "retained_symbol_names_by_address": {
+      "0x803F86C0": [
+        "NetInitNetworkConfig",
+        "init_net_config"
+      ],
+      "0x803F87E0": [
+        "NetInitIpv6InterfaceConfig",
+        "init_ipv6_interface_config"
+      ],
+      "0x803F8868": [
+        "NetInitIpv6RoutingState",
+        "init_udp_socket_config"
+      ],
+      "0x803F88E4": [
+        "NetInitIpv6NeighborDiscovery",
+        "init_buffer_descriptor_b"
+      ],
+      "0x803F895C": [
+        "NetInitIpv4RoutingState",
+        "init_buffer_descriptor_a"
+      ],
+      "0x803F8A28": [
+        "NetInitNetworkBufferConfig",
+        "init_net_buffer_config"
+      ],
+      "0x803F8AD8": [
+        "NetInitFunctionTable",
+        "init_net_func_table"
+      ],
+      "0x803F8B7C": [
+        "NetInitReceiveDescriptor",
+        "init_net_recv_desc"
+      ],
+      "0x804072C4": [
+        "NetReleasePacket",
+        "release_entry"
+      ],
+      "0x8040DB34": [
+        "NetIsMulticastAddress",
+        "is_multicast_address"
+      ],
+      "0x8040DBFC": [
+        "NetCompareAddresses",
+        "compare_sockaddr"
+      ],
+      "0x803F3DD4": [
+        "request_network_info_load",
+        "request_network_info_load__FlPv"
+      ]
+    },
+    "automatic_audit_sha256": "faf504e3208376e2c9650777f3a8650a9afc1cca71c41f54f0747ab8c71385fa",
+    "manual_hunks": [
+      [
+        "include/pso/network/NetworkInfoRequests.h",
+        "af6fb323b19f402f12fef8430351e7f862849192d7a56182148278914b2db70c"
+      ],
+      [
+        "include/pso/network/TLobby_804050DC.h",
+        "f4a485b25dc76d0d815f3f90233b7c00b894e882660f8a52e3dc0182b7cb5261"
+      ],
+      [
+        "src/pso/network/NetworkInfoRequests.cpp",
+        "5c614de23e143a4d43bc1fe6557a4e01d9bdbdeb658c8e9b4d1c3199561dca4f"
+      ],
+      [
+        "src/pso/network/NetworkInfoRequests.cpp",
+        "a0a35d395dc303889856d04efc0b2570f864042d89becf1da09214cc961128ec"
+      ],
+      [
+        "src/pso/network/TLobby_804050DC.c",
+        "03a9eb706b455e15f1d4a54c2648808da598921936db82cc2f8ff0bcacf2a44c"
+      ],
+      [
+        "src/pso/network/TLobby_804050DC.c",
+        "e7ad0f33cae277d75d2a6d522c138041c2f6cd936c6ae089fb2dd505a3a152f6"
+      ]
+    ],
+    "resolution": "Keep the typed multicast parameter and same-address packet-release definition under upstream names, and the native C++ card-request linkage with its existing case order."
+  },
+  "validation": {
+    "source": {
+      "baseline": "1ea79cb8f26f6a74645c21766ffcec43fc30165a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    },
+    "layer": {
+      "baseline": "f74ecdc8c5bdd1876a5e1795f27cc22edf702973",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "44db510e9b4ae76352a25afc2806ee5c3dee395b3b3b9d08dd854c27ba5b1da4"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "ca20926861314e3758dd42ca92ed913d89677199d561f1791060cbebfa77b99f"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "network": {
+      "probe_sha256": "046900bbac560e7970f02d2748cfc6c469368d137199425a4dfcb63ed8fd6f3e",
+      "result_sha256": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050",
+      "branches": {
+        "compare_sockaddr": 7,
+        "init_buffer_descriptor_a": 1,
+        "init_buffer_descriptor_b": 1,
+        "init_ipv6_interface_config": 1,
+        "init_net_buffer_config": 1,
+        "init_net_config": 1,
+        "init_net_func_table": 1,
+        "init_net_recv_desc": 1,
+        "init_udp_socket_config": 1,
+        "is_multicast_address": 3,
+        "release_entry": 41,
+        "request_network_info_load__FlPv": 1
+      },
+      "headers": 5,
+      "initializers": 8,
+      "poll_cases": 36,
+      "pool_cases": 140,
+      "request_cases": 42
+    },
+    "queue": {
+      "probe_sha256": "ed90ded6d9abadd5f381b21fcc344029dd93c919ad14f0442e7b8246c12393a7",
+      "result_sha256": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+      "completion_cases": 4,
+      "post_cases": 8,
+      "receive_cases": 8,
+      "shutdown_cases": 8,
+      "startup_cases": 12,
+      "update_cases": 12
+    }
+  },
+  "historical": {
+    "open_rows": 393,
+    "closed_rows": [
+      [
+        2975,
+        "src/pso/network/NetworkConfigLifecycle.cpp",
+        "src/pso/unk/text_803F3BF8.cpp"
+      ]
+    ],
+    "scoped_rows": [
+      [
+        2976,
+        "src/pso/network/NetworkMessageTransport.cpp",
+        "src/pso/network/NetworkMessageTransport.c"
+      ],
+      [
+        3092,
+        "src/pso/unk/text_80145A94.cpp",
+        "src/pso/unk/text_80145A94.cpp"
+      ]
+    ]
+  },
+  "pending_matching": {
+    "topic": "Keyboard buffer ownership and OSMessage receive temporaries",
+    "expanded_preview": "The four-path trial missed the retail hash. The validated two-path queue patch is the current source.",
+    "preview_patch_sha256": "17e0f5fc6829668ab990b5c056238b8df908063dd1f0fde9594bdd83b27728ce"
+  },
+  "fork_workspace": {
+    "trial": "1226dee3d0520dfe82685c5d3cd5e13984750ffb",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "c5a20c5bee4db520087ead94090ea8b8dd312aa218d9cfc56f08263e2128c3ac",
+    "materialized_tree": "53ced96ae11fc579ef3c76863e078b62b7f66f28",
+    "force_active": 27027
+  }
+}
