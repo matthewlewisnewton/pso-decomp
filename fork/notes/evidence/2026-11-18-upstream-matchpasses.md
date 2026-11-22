@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 14-path Photon Blast replay `618d324851` restores the native four-slot registry and shared slot layouts across admission, lookup, result delivery, and reset. IDs use the original unsigned halfword storage and kinds keep their signed values. Sixteen linker labels follow changed owners or signatures, and two carry through the 130-path fork archive. Both builds reproduce retail with all 1,147 starting data bytes and 310 checks pass. The probes cover full and empty queues, reuse, release, allocation failure, and the party effect's original 10.0 strength. The complete request comparison closes, leaving 248. [Photon Blast request and fork workspace validation](2026-11-22-upstream-8441-photon-requests-validation.json)
+
+
 The 14-path starlight and item-menu replay `5e22b4e749` restores the native light constructors, parameter owner, and typed factory callers. The menu constructor, setter, query and close path use the actual FlagWord. The compiler keeps the original field-copy order with one scoped scheduling directive. Six linker labels follow typed signatures or ownership, and three are updated in the 130-path fork archive. Both builds reproduce retail and all 310 checks pass. The runtime cases verify split-screen and allocation behavior, child geometry and lifetime, rendering order, and menu flag bounds. The reopened menu comparison closes, leaving 249. [Starlight and menu validation](2026-11-22-upstream-8441-starlight-validation.json)
 
 
