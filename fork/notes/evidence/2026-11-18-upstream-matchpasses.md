@@ -168,6 +168,10 @@ The seven-path modem and lobby replay at `026e0e3daf` shares the SDK callback si
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units, and all 1,147 original data bytes accounted for. The linked probes agree on transfer setup, nullable status, dial commands, and send-ring geometry. The 130-path fork tooling archive reconstructs the tested workspace and all 310 checks pass. Three historical comparisons close, leaving 315 open. The switcher return declaration remains open because the matching register sequence has yet to be recovered. [Modem and lobby validation](2026-11-22-upstream-365-modem-abi-validation.json)
 
+The four-path dial-script replay at `609e152b65` uses the real modem configuration and a union for the script’s text and numeric fields. The send, dial, wait and result readers use typed state, and the delay handler shares the request and signed return type with its caller. The replay retains the original function names.
+
+Both builds reproduce retail with all 27,572 functions exact, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probes agree on 13 script cases per image. The 130-path tooling archive round-trips and all 310 workspace checks pass. The modem script and compressed frame comparisons close three historical records, leaving 312 open. [Modem script and frame validation](2026-11-22-upstream-365-modem-script-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
