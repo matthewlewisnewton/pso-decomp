@@ -176,6 +176,10 @@ The 14-path network startup and PPP replay at `5dd3a4a299` gives the UDP and IPv
 
 Both builds reproduce retail with all 27,572 functions exact, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probe checks 20 cases per image across startup records, status copies, interface identifiers, connection outcomes and authentication waits. The 130-path tooling archive round-trips, and all 310 workspace checks pass. Two historical comparisons close, leaving 310 open. [Network startup and PPP validation](2026-11-22-upstream-365-network-startup-validation.json)
 
+The 17-path PPP frame replay at `41095fa09e` shares native frame and header types through the send, timer, LCP, PAP and CHAP paths. IPCP now holds the native compression state pointer, and the two 16-entry tables retain their original storage and links. The original linker names are retained.
+
+Both builds reproduce retail with all 27,572 functions exact, 2,447 linked units and all 1,147 original data bytes accounted for. The linked probe checks 28 cases per image, and all 310 workspace checks pass with the 130-path fork tooling archive. All 25 historical PPP header entry points have exact providers, so that record closes and 309 remain open. [PPP frame and compression validation](2026-11-22-upstream-365-ppp-frames-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
