@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The modem launch replay `3cdbfc8652` shares the native declarations across the switcher and trial modem code. The connection and disc-message offsets have layout checks. The historical O2 scope reproduces the disc-message call sequence with the shared signatures. The existing typed status probe and all ten setters retain their original flags, cache behavior and entry points. Both builds match retail, all 1,147 starting bytes remain accounted for and the byte-identical 130-path tooling archive passes all 310 checks. Two complete historical comparisons close, leaving 246. [Modem launch and status validation](2026-11-22-upstream-8441-modem-launch-validation.json)
+
+
 The 10-path Photon Line and Leilla replay `677fef25b2` restores the line's native collision and hit state, typed Leilla construction, and the summon words read by the scene restore gate. Runtime cases cover obstruction, duplicate hits, the ninth target cutoff, and Leilla's boss-floor rainbow and audio paths. The two changed linker labels describe the typed constructor and color reset call. The 130-path archive retains the same tooling changes, with updated source context in its linker configuration. Both builds reproduce retail with all 1,147 starting data bytes and all 310 checks pass. The previous Golla and Estlla source comparisons are confirmed. [Photon Line and Leilla validation](2026-11-22-upstream-8441-photon-effects-validation.json)
 
 
