@@ -1,0 +1,1014 @@
+{
+  "source": "3a37da8ef627cf1d50ef4bfd16b8f528fccc922f",
+  "previous_source": "6475f5efcd3851b926c96866f42e045366302e0d",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/unk/text_800F9B84.h",
+    "src/pso/effect/TEffect.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/item/shop/ShopToolStock.cpp",
+    "src/pso/item/shop/ShopWeaponStock.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcBringer.cpp",
+    "src/pso/npc/TObjNpcCloakroomBase.cpp",
+    "src/pso/npc/TObjNpcConnoisseur.cpp",
+    "src/pso/npc/TObjNpcEnemy.cpp",
+    "src/pso/npc/TObjNpcExpertBase.cpp",
+    "src/pso/npc/TObjNpcFemaleBase.cpp",
+    "src/pso/npc/TObjNpcFemaleChild.cpp",
+    "src/pso/npc/TObjNpcFemaleDwarf.cpp",
+    "src/pso/npc/TObjNpcFemaleFat.cpp",
+    "src/pso/npc/TObjNpcFemaleMacho.cpp",
+    "src/pso/npc/TObjNpcFemaleOld.cpp",
+    "src/pso/npc/TObjNpcFemaleTall.cpp",
+    "src/pso/npc/TObjNpcGovernorBase.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcHosa.cpp",
+    "src/pso/npc/TObjNpcHosa2.cpp",
+    "src/pso/npc/TObjNpcKenkyu.cpp",
+    "src/pso/npc/TObjNpcKenkyu2.cpp",
+    "src/pso/npc/TObjNpcKenkyuW.cpp",
+    "src/pso/npc/TObjNpcLappy.cpp",
+    "src/pso/npc/TObjNpcMaleBase.cpp",
+    "src/pso/npc/TObjNpcMaleChild.cpp",
+    "src/pso/npc/TObjNpcMaleDwarf.cpp",
+    "src/pso/npc/TObjNpcMaleFat.cpp",
+    "src/pso/npc/TObjNpcMaleMacho.cpp",
+    "src/pso/npc/TObjNpcMaleOld.cpp",
+    "src/pso/npc/TObjNpcMaleTall.cpp",
+    "src/pso/npc/TObjNpcMoja.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/npc/TObjNpcNgcBase.cpp",
+    "src/pso/npc/TObjNpcNurseBase.cpp",
+    "src/pso/npc/TObjNpcSecretaryBase.cpp",
+    "src/pso/npc/TObjNpcSoldierBase.cpp",
+    "src/pso/npc/TObjNpcSoldierMacho.cpp",
+    "src/pso/npc/TObjNpcSoutokufu.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOMineIcon01.cpp",
+    "src/pso/object/trap/TOMineIcon02.cpp",
+    "src/pso/object/trap/TOMineIcon03.cpp",
+    "src/pso/object/trap/TOMineIcon04.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/player/TObjPlayer_80092A7C.cpp",
+    "src/pso/player/TObjPlayer_801D84CC.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+    "src/pso/ui/frontend/TAdEndText.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/text_8020E700.cpp",
+    "src/pso/unk/text_80222C28.cpp"
+  ],
+  "combined_paths_from_upstream": 1256,
+  "validation": {
+    "source": {
+      "baseline": "6475f5efcd3851b926c96866f42e045366302e0d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80092A94",
+          "before": "init_position_vectors__10TObjPlayerFv",
+          "after": "init_position_vectors__9TObjCharaFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F9AE8",
+          "before": "create_named_object__Fl",
+          "after": "create_named_object__FPCc"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "1a0483fcd32c8316defc2d0c5caf36612a869d1fb36a7a8dd39f025966aa59f6",
+      "report_sha256": "b2711dfd51ce2e2fc6acd8c865314132dd88726b84651fbd2f029f26ec617407"
+    },
+    "layer": {
+      "baseline": "3a37da8ef627cf1d50ef4bfd16b8f528fccc922f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "b2711dfd51ce2e2fc6acd8c865314132dd88726b84651fbd2f029f26ec617407"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "1509a2de4d128e10dc1d825ba9de843620da4de5093163cf73f0fb6cbb4e7038"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "c1c43f14a95ef8715446d52dd426c5b8240899997bbb4043da91f4b69d1ed150"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "program_sha256": "e3591e040daca2b75a01edb29e44660df3c025146daf0f83989f254132c1303e",
+    "logs_sha256": {
+      "source": "abdec6646222d357cda3b5732029a8205d24f0f369cfbce01f516d6202a031f5",
+      "workspace": "d3766254465935d590a98319ce90a985c56fa5992a4307aca5afb7c0ca127d92"
+    },
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "cases": {
+      "positions": 2,
+      "load_failures": 2,
+      "relocated_image": 1,
+      "npc_resource_lifecycles": 56
+    }
+  },
+  "layout_proof": {
+    "program_sha256": "6a680c41ee308a53d4f3e98a4f3e27cc858af389963f2de4b512a977e073e3b7",
+    "object_sha256": "4add0aa50245658ef5ca442f8bb5e0052fd0792a96c5c9f8eef6da065c0a2802",
+    "actor_assertions": 4,
+    "photon_assertions": 8,
+    "debug_text_assertions": 1
+  },
+  "population_owners": {
+    "src/pso/npc/TObjNpcAHM01.cpp": {
+      "model_global": "TObjNpcAHM01__shared_object",
+      "texture_global": "TObjNpcAHM01__texture_handle",
+      "rel": "\"npc_c01_data.rel\"",
+      "gvm": "\"n_c01_e_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcARM00.cpp": {
+      "model_global": "TObjNpcARM00__model_resource",
+      "texture_global": "TObjNpcARM00__texture_list",
+      "rel": "\"npc_e00_data.rel\"",
+      "gvm": "\"n_e00_w_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcARW00.cpp": {
+      "model_global": "TObjNpcARW00__static_model",
+      "texture_global": "TObjNpcARW00__gvm_texture_handle",
+      "rel": "\"npc_f00_data.rel\"",
+      "gvm": "\"n_f00_w_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcHFW00.cpp": {
+      "model_global": "TObjNpcHFW00__shared_resource_obj",
+      "texture_global": "TObjNpcHFW00__texture_handle",
+      "rel": "\"npc_g00_data.rel\"",
+      "gvm": "\"n_g00_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcHFW01.cpp": {
+      "model_global": "TObjNpcHFW01__resource_node",
+      "texture_global": "TObjNpcHFW01__texture_handle",
+      "rel": "\"npc_g01_data.rel\"",
+      "gvm": "\"n_g01_e_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcHHM00.cpp": {
+      "model_global": "TObjNpcHHM00__model_object",
+      "texture_global": "TObjNpcHHM00__body_texture_gvm_handle",
+      "rel": "\"npc_a00_data.rel\"",
+      "gvm": "\"n_a00_w_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcHRM00.cpp": {
+      "model_global": "TObjNpcHRM00__named_object_resource",
+      "texture_global": "TObjNpcHRM00__body_texture_gvm",
+      "rel": "\"npc_d00_data.rel\"",
+      "gvm": "\"n_d00_w_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcHRM01.cpp": {
+      "model_global": "TObjNpcHRM01__shared_object_resource",
+      "texture_global": "TObjNpcHRM01__body_texture_gvm_handle",
+      "rel": "\"npc_d01_data.rel\"",
+      "gvm": "\"n_d01_e_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcNFM00.cpp": {
+      "model_global": "TObjNpcNFM00__shared_named_model_object",
+      "texture_global": "TObjNpcNFM00__texture_gvm_handle",
+      "rel": "\"npc_h00_data.rel\"",
+      "gvm": "\"n_h00_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcNFM01.cpp": {
+      "model_global": "TObjNpcNFM01__model_object",
+      "texture_global": "TObjNpcNFM01__texture_handle",
+      "rel": "\"npc_h01_data.rel\"",
+      "gvm": "\"n_h01_e_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcNFW00.cpp": {
+      "model_global": "TObjNpcNFW00__named_object_resource",
+      "texture_global": "TObjNpcNFW00__texture_gvm_handle",
+      "rel": "\"npc_i00_data.rel\"",
+      "gvm": "\"n_i00_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcNFW01.cpp": {
+      "model_global": "TObjNpcNFW01__shared_object_resource",
+      "texture_global": "TObjNpcNFW01__texture_gvm",
+      "rel": "\"npc_i01_data.rel\"",
+      "gvm": "\"n_i01_e_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcNHW00.cpp": {
+      "model_global": "TObjNpcNHW00__shared_named_model_object",
+      "texture_global": "TObjNpcNHW00__texture_gvm_handle",
+      "rel": "\"npc_b00_data.rel\"",
+      "gvm": "\"n_b00_body.gvm\""
+    },
+    "src/pso/npc/TObjNpcNHW01.cpp": {
+      "model_global": "TObjNpcNHW01__model_object",
+      "texture_global": "TObjNpcNHW01__texture_handle",
+      "rel": "\"npc_b01_data.rel\"",
+      "gvm": "\"n_b01_e_body.gvm\""
+    }
+  },
+  "retail_branch_addresses": {
+    "actor_position_initialization": [
+      "0x8009284c",
+      "0x800a74f4",
+      "0x800a85a8",
+      "0x800ac728",
+      "0x800af920",
+      "0x800bf980",
+      "0x800d7034",
+      "0x80147c64",
+      "0x80147e78",
+      "0x80148084",
+      "0x8014957c",
+      "0x8014982c",
+      "0x80149a28",
+      "0x80149c00",
+      "0x80149ed4",
+      "0x8014a0ac",
+      "0x8014a284",
+      "0x8014a45c",
+      "0x8014a634",
+      "0x8014a80c",
+      "0x8014a9e4",
+      "0x8014acb8",
+      "0x8014ae98",
+      "0x8014b06c",
+      "0x8014b240",
+      "0x8014b414",
+      "0x8014b5e8",
+      "0x8014b754",
+      "0x8014ba98",
+      "0x8014bc70",
+      "0x8014be48",
+      "0x8014c020",
+      "0x8014c1f8",
+      "0x8014c3d0",
+      "0x8014c5a8",
+      "0x8014c7d0",
+      "0x8014ca20",
+      "0x8014cbf4",
+      "0x8014cdc8",
+      "0x8014cf9c",
+      "0x8014d170",
+      "0x8014d344",
+      "0x8014d510",
+      "0x8014d6e8",
+      "0x8014d8c0",
+      "0x8014da98",
+      "0x8015d418",
+      "0x80170108",
+      "0x80171534",
+      "0x8017180c",
+      "0x80171ae4",
+      "0x80171ec8",
+      "0x80179fac",
+      "0x8017ab7c",
+      "0x8017b724",
+      "0x802894f4",
+      "0x802896cc",
+      "0x802a3b4c",
+      "0x802a3d24",
+      "0x802d78ec",
+      "0x802dba90",
+      "0x802febcc",
+      "0x802feda4",
+      "0x80302b38",
+      "0x80359470",
+      "0x80368608"
+    ],
+    "named_rel_load": [
+      "0x8001b39c",
+      "0x80082abc",
+      "0x80147b98",
+      "0x80147dac",
+      "0x80147fb8",
+      "0x8014adcc",
+      "0x8014afa0",
+      "0x8014b174",
+      "0x8014b348",
+      "0x8014b51c",
+      "0x8014c954",
+      "0x8014cb28",
+      "0x8014ccfc",
+      "0x8014ced0",
+      "0x8014d0a4",
+      "0x8014d278",
+      "0x801d88b0",
+      "0x801fb7e0",
+      "0x8020ee44",
+      "0x80215b88",
+      "0x80222d94",
+      "0x802245cc",
+      "0x802256fc",
+      "0x80225710",
+      "0x80225724",
+      "0x80225738",
+      "0x8022574c"
+    ],
+    "enemy_position_initialization": [
+      "0x80029ec4",
+      "0x800356fc",
+      "0x80036ec4",
+      "0x80038bc0",
+      "0x8006583c",
+      "0x800955fc",
+      "0x8009981c",
+      "0x8009f028",
+      "0x800b1f9c",
+      "0x800b3f1c",
+      "0x800b82a8",
+      "0x800c4174",
+      "0x800cc454",
+      "0x800d1540",
+      "0x800e78a8",
+      "0x800ed818",
+      "0x800f0134",
+      "0x800f5148",
+      "0x802d0de4",
+      "0x802edf90",
+      "0x802eeb9c",
+      "0x802fd55c",
+      "0x80306484",
+      "0x8031afac",
+      "0x8031e358",
+      "0x8031ff04",
+      "0x80334d90",
+      "0x8035f310",
+      "0x803623e4"
+    ]
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 6489,
+        "fork_path": "src/pso/npc/TObjNpcEnemy_803D8090.cpp",
+        "owner": "src/pso/unk/text_803D853C.cpp",
+        "detail": "The retired NPC unit's debug functions are retained in the shared renderer at both original addresses. They write the typed 16-byte record and keep the original text pool and sign constants.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              2,
+              3
+            ],
+            "fork_lines": [
+              2,
+              1
+            ],
+            "result": "compare",
+            "old": [
+              "# include \"pso/npc/TObjNpcEnemy_803D8090.h\"",
+              "# include \"pso/enemy/gee/TObjEneMe1Gee.h\""
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              5,
+              5
+            ],
+            "fork_lines": [
+              3,
+              2
+            ],
+            "result": "compare",
+            "old": [
+              "struct Rec_803D8098 { s16 x ; s16 y ; s16 z ; s16 pad ; s32 f8 ; char * name ; } ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              7,
+              11
+            ],
+            "fork_lines": [
+              4,
+              3
+            ],
+            "result": "compare",
+            "old": [
+              "char * strncpy ( char * , const char * , unsigned long ) ;",
+              "unsigned long strlen ( const char * ) ;",
+              "extern char * debug_text_pool_cursor ;",
+              "extern Rec_803D8098 * debug_text_record_cursor ;",
+              "extern f32 debug_text_scale ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              13,
+              16
+            ],
+            "fork_lines": [
+              5,
+              4
+            ],
+            "result": "compare",
+            "old": [
+              "int sprintf ( char * , const char * , . . . ) ;",
+              "extern char lbl_805D46A0 [ 6 ] ;",
+              "extern const f32 lbl_805E0EB8 ;",
+              "extern const f32 lbl_805E0EBC ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              20,
+              36
+            ],
+            "fork_lines": [
+              8,
+              7
+            ],
+            "result": "compare",
+            "old": [
+              "void TObjEneMe1Gee :: queue_debug_text ( s32 arg0 , char * arg1 ) {",
+              "s16 len ;",
+              "s16 x ;",
+              "f32 scale ;",
+              "Rec_803D8098 * r ;",
+              "strlen ( arg1 ) ;",
+              "x = ( s16 ) ( ( s16 ) ( arg0 >> 16 ) * ( scale = debug_text_scale ) ) ;",
+              "len = strlen ( arg1 ) ;",
+              "r = debug_text_record_cursor ++ ;",
+              "r -> x = x ;",
+              "r -> y = ( s16 ) ( ( s16 ) ( arg0 & 0xFFFF ) * scale ) ;",
+              "r -> z = ( s16 ) debug_text_scale ;",
+              "r -> f8 = debug_text_global_count ;",
+              "r -> name = debug_text_pool_cursor ;",
+              "strncpy ( debug_text_pool_cursor , arg1 , len ) ;",
+              "debug_text_pool_cursor [ len ] = 0 ;",
+              "debug_text_pool_cursor += len + 1 ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              38,
+              82
+            ],
+            "fork_lines": [
+              9,
+              8
+            ],
+            "result": "compare",
+            "old": [
+              "}",
+              "void print_float_padded ( s32 arg0 , s32 prec , f32 val ) {",
+              "char buf [ 24 ] ;",
+              "s16 y ;",
+              "f32 scale ;",
+              "Rec_803D8098 * r ;",
+              "char * p ;",
+              "s32 n ;",
+              "s32 i ;",
+              "s32 pad ;",
+              "s32 total ;",
+              "s32 j ;",
+              "y = ( s16 ) ( ( s16 ) ( arg0 & 0xFFFF ) * ( scale = debug_text_scale ) ) ;",
+              "r = debug_text_record_cursor ++ ;",
+              "r -> x = ( s16 ) ( ( s16 ) ( arg0 >> 16 ) * scale ) ;",
+              "r -> y = y ;",
+              "r -> z = ( s16 ) debug_text_scale ;",
+              "r -> f8 = debug_text_global_count ;",
+              "r -> name = debug_text_pool_cursor ;",
+              "p = debug_text_pool_cursor ;",
+              "if ( val < lbl_805E0EB8 ) {",
+              "* p ++ = '-' ;",
+              "val * = lbl_805E0EBC ;",
+              "}",
+              "sprintf ( buf , lbl_805D46A0 , 5 , val ) ;",
+              "n = strlen ( buf ) ;",
+              "for ( i = 0 ; i < n ; i ++ ) {",
+              "if ( buf [ i ] == '.' ) {",
+              "break ;",
+              "}",
+              "}",
+              "pad = prec - i ;",
+              "total = n + pad ;",
+              "for ( j = total ; j >= pad ; j -- ) {",
+              "buf [ j ] = buf [ n -- ] ;",
+              "}",
+              "for ( j = 0 ; j < pad ; j ++ ) {",
+              "buf [ j ] = '0' ;",
+              "}",
+              "for ( j = 0 ; j < total ; j ++ ) {",
+              "* p ++ = buf [ j ] ;",
+              "}",
+              "debug_text_pool_cursor [ total ] = 0 ;",
+              "debug_text_pool_cursor += total + 1 ;",
+              "}"
+            ],
+            "fork": []
+          }
+        ],
+        "owner_blob": "146e6f919d7a4de52d51026bb99397d4741d907e"
+      },
+      {
+        "row": 7310,
+        "fork_path": "src/pso/unk/text_80081BB0.cpp",
+        "owner": "src/pso/unk/TUnk_8048E1A4.cpp",
+        "detail": "The freeze-shell effects use the shared particle and BML declarations, original two spawn positions, and existing yaw field. The renderer consumes the same typed texture list and original scale value.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              4
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/system/BmlTextureList.h\"",
+              "# include \"pso/system/BmlResource.h\"",
+              "# include \"pso/effect/particle/ParticleFactory.h\"",
+              "# include \"pso/system/CurrentTextureList.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              45,
+              47
+            ],
+            "fork_lines": [
+              49,
+              48
+            ],
+            "result": "compare",
+            "old": [
+              "s32 get_bml_texlist ( s32 , s32 ) ;",
+              "s32 get_bml_model ( s32 , s32 ) ;",
+              "void * spawn_particle_effect ( void * pos , s32 id ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              55,
+              55
+            ],
+            "fork_lines": [
+              56,
+              55
+            ],
+            "result": "retained",
+            "old": [
+              "s32 set_global_param__8TObjFishFl ( ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              67,
+              67
+            ],
+            "fork_lines": [
+              67,
+              67
+            ],
+            "result": "compare",
+            "old": [
+              "this -> rotation_y += 0x10 ;"
+            ],
+            "fork": [
+              "this -> rotation . yaw += 0x10 ;"
+            ]
+          },
+          {
+            "old_lines": [
+              74,
+              74
+            ],
+            "fork_lines": [
+              74,
+              74
+            ],
+            "result": "compare",
+            "old": [
+              "p = ( s32 ) spawn_particle_effect ( ( u8 * ) this + 0x35C , 0x153 ) ;"
+            ],
+            "fork": [
+              "p = ( s32 ) spawn_particle_effect ( ( const Vec * ) ( ( u8 * ) this + 0x35C ) , 0x153 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              76,
+              76
+            ],
+            "fork_lines": [
+              76,
+              76
+            ],
+            "result": "compare",
+            "old": [
+              "attach_particle_model ( ( u8 * ) p , ( s32 ) ( get_bml_model ( technique_effect_bml , 5 ) ) , ( s32 ) lbl_805D63B0 , 0 , 0 , ( f32 ) lbl_805D9384 ) ;"
+            ],
+            "fork": [
+              "attach_particle_model ( ( u8 * ) p , ( s32 ) ( ( s32 ) get_bml_model ( ( BmlResource * ) technique_effect_bml , 5 ) ) , ( s32 ) lbl_805D63B0 , 0 , 0 , ( f32 ) lbl_805D9384 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              78,
+              78
+            ],
+            "fork_lines": [
+              78,
+              78
+            ],
+            "result": "compare",
+            "old": [
+              "p = ( s32 ) spawn_particle_effect ( ( u8 * ) this + 0x38 , 0x33 ) ;"
+            ],
+            "fork": [
+              "p = ( s32 ) spawn_particle_effect ( ( const Vec * ) ( ( u8 * ) this + 0x38 ) , 0x33 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              80,
+              80
+            ],
+            "fork_lines": [
+              80,
+              80
+            ],
+            "result": "compare",
+            "old": [
+              "attach_particle_model ( ( u8 * ) p , ( s32 ) ( get_bml_model ( freeze_shell_bml_resource , 0 ) ) , ( s32 ) ( get_bml_texlist ( freeze_shell_bml_resource , 1 ) ) , ( s32 ) ( get_bml_motion ( freeze_shell_bml_resource , 0 ) ) , 0 , ( f32 ) lbl_805D9384 ) ;"
+            ],
+            "fork": [
+              "attach_particle_model ( ( u8 * ) p , ( s32 ) ( ( s32 ) get_bml_model ( ( BmlResource * ) freeze_shell_bml_resource , 0 ) ) , ( s32 ) ( ( s32 ) get_bml_texlist ( ( BmlResource * ) freeze_shell_bml_resource , 1 ) ) , ( s32 ) ( get_bml_motion ( freeze_shell_bml_resource , 0 ) ) , 0 , ( f32 ) lbl_805D9384 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              92,
+              92
+            ],
+            "fork_lines": [
+              92,
+              92
+            ],
+            "result": "compare",
+            "old": [
+              "this -> rotation_y = ( this -> rotation_y + 0x1000 ) ;"
+            ],
+            "fork": [
+              "this -> rotation . yaw = ( this -> rotation . yaw + 0x1000 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              106,
+              106
+            ],
+            "fork_lines": [
+              106,
+              106
+            ],
+            "result": "compare",
+            "old": [
+              "rotate_matrix_y ( 0 , ( int ) ( this -> rotation_y * 2 ) ) ;"
+            ],
+            "fork": [
+              "rotate_matrix_y ( 0 , ( int ) ( this -> rotation . yaw * 2 ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              156,
+              157
+            ],
+            "fork_lines": [
+              156,
+              156
+            ],
+            "result": "compare",
+            "old": [
+              "get_bml_texlist ( ( s32 ) ( ( void * ) freeze_shell_bml_resource ) , 1 ) ;",
+              "set_global_param__8TObjFishFl ( ) ;"
+            ],
+            "fork": [
+              "set_global_param__8TObjFishFP16GinjaTextureList ( ( get_bml_texlist ( ( BmlResource * ) freeze_shell_bml_resource , 1 ) ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              160,
+              160
+            ],
+            "fork_lines": [
+              159,
+              159
+            ],
+            "result": "compare",
+            "old": [
+              "rotate_matrix_y ( 0 , this -> rotation_y ) ;"
+            ],
+            "fork": [
+              "rotate_matrix_y ( 0 , this -> rotation . yaw ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "4f8b2dcaf2637e7f2b5975ed90d703df8c8b696f"
+      },
+      {
+        "row": 7312,
+        "fork_path": "include/pso/misc/TUnk_804C3248.h",
+        "owner": "include/pso/unk/TUnk_804C3248.h",
+        "detail": "The summon class and shared attachment header retain the four camera vectors, count and typed attachment table. The game's compiler verifies the 0x158-byte owner and 0x20-byte attachment layout.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              5,
+              4
+            ],
+            "fork_lines": [
+              5,
+              15
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "class TParticleCtrl ;",
+              "struct PhotonAttachment {",
+              "TParticleCtrl * particle ;",
+              "Vec position ;",
+              "s32 joint_index ;",
+              "s32 rotation [ 3 ] ;",
+              "} ;",
+              "typedef char PhotonAttachment_size [ sizeof ( PhotonAttachment ) == 0x20 ? 1 : - 1 ] ;",
+              "typedef char PhotonAttachment_position_offset [ offsetof ( PhotonAttachment , position ) == 0x4 ? 1 : - 1 ] ;",
+              "typedef char PhotonAttachment_joint_offset [ offsetof ( PhotonAttachment , joint_index ) == 0x10 ? 1 : - 1 ] ;",
+              "typedef char PhotonAttachment_rotation_offset [ offsetof ( PhotonAttachment , rotation ) == 0x14 ? 1 : - 1 ] ;"
+            ]
+          },
+          {
+            "old_lines": [
+              18,
+              29
+            ],
+            "fork_lines": [
+              29,
+              32
+            ],
+            "result": "compare",
+            "old": [
+              "u8 unk_104 [ 0x4 ] ;",
+              "f32 m_108 ;",
+              "u8 unk_10C [ 0x4 ] ;",
+              "f32 m_110 ;",
+              "u8 unk_114 [ 0x4 ] ;",
+              "f32 m_118 ;",
+              "u8 unk_11C [ 0x4 ] ;",
+              "f32 m_120 ;",
+              "u8 unk_124 [ 0x4 ] ;",
+              "f32 m_128 ;",
+              "u8 unk_12C [ 0x4 ] ;",
+              "f32 m_130 ;"
+            ],
+            "fork": [
+              "Vec camera_target ;",
+              "Vec camera_position ;",
+              "Vec camera_destination_target ;",
+              "Vec camera_destination_position ;"
+            ]
+          },
+          {
+            "old_lines": [
+              35,
+              35
+            ],
+            "fork_lines": [
+              38,
+              38
+            ],
+            "result": "compare",
+            "old": [
+              "s32 m_148 ;"
+            ],
+            "fork": [
+              "PhotonAttachment * m_148 ;"
+            ]
+          },
+          {
+            "old_lines": [
+              40,
+              39
+            ],
+            "fork_lines": [
+              43,
+              45
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "typedef char PhotonSummon_size [ sizeof ( TUnk_804C3248 ) == 0x158 ? 1 : - 1 ] ;",
+              "typedef char PhotonSummon_count_offset [ offsetof ( TUnk_804C3248 , m_100 ) == 0x100 ? 1 : - 1 ] ;",
+              "typedef char PhotonSummon_attachments_offset [ offsetof ( TUnk_804C3248 , m_148 ) == 0x148 ? 1 : - 1 ] ;"
+            ]
+          }
+        ],
+        "owner_blob": "241b227add5dca890906ac562ffa88dce5f5a0c7"
+      }
+    ],
+    "scoped_rows": [
+      {
+        "row": 453,
+        "fork_path": "include/pso/enemy/TObjEneGibbles.h",
+        "owner": "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+      },
+      {
+        "row": 476,
+        "fork_path": "include/pso/enemy/TObjEneShark.h",
+        "owner": "src/pso/enemy/shark/TObjEneShark.cpp"
+      },
+      {
+        "row": 587,
+        "fork_path": "src/pso/enemy/TObjEneGibbles.cpp",
+        "owner": "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+      },
+      {
+        "row": 598,
+        "fork_path": "src/pso/enemy/TObjEneMerillLia.cpp",
+        "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+      },
+      {
+        "row": 635,
+        "fork_path": "src/pso/enemy/TObjEneShark.cpp",
+        "owner": "src/pso/enemy/shark/TObjEneShark.cpp"
+      },
+      {
+        "row": 767,
+        "fork_path": "src/pso/misc/TOCtrlDubchik_8015CA74.cpp",
+        "owner": "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp"
+      },
+      {
+        "row": 802,
+        "fork_path": "src/pso/enemy/TObjEneDolmOlm.cpp",
+        "owner": "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+      },
+      {
+        "row": 813,
+        "fork_path": "src/pso/enemy/TObjEneMoja.cpp",
+        "owner": "src/pso/enemy/moja/TObjEneMoja.cpp"
+      },
+      {
+        "row": 956,
+        "fork_path": "src/pso/enemy/TObjEneIllGill.cpp",
+        "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+      },
+      {
+        "row": 1026,
+        "fork_path": "src/pso/enemy/TObjEneBeast.cpp",
+        "owner": "src/pso/enemy/beast/TObjEneBeast.cpp"
+      },
+      {
+        "row": 1055,
+        "fork_path": "src/pso/enemy/TObjEneDimedian.cpp",
+        "owner": "src/pso/enemy/dimedian/TObjEneDimedian.cpp"
+      },
+      {
+        "row": 1116,
+        "fork_path": "src/pso/enemy/SaverLifecycle.cpp",
+        "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+      },
+      {
+        "row": 2602,
+        "fork_path": "src/pso/misc/TRaderMapCore.cpp",
+        "owner": "src/pso/ui/hud/TRaderMapCore.cpp"
+      },
+      {
+        "row": 2633,
+        "fork_path": "src/pso/menu/TAdEndText.cpp",
+        "owner": "src/pso/ui/frontend/TAdEndText.cpp"
+      },
+      {
+        "row": 3998,
+        "fork_path": "include/pso/player/TObjPlayer.h",
+        "owner": "include/pso/player/TObjPlayer.h"
+      },
+      {
+        "row": 6450,
+        "fork_path": "src/pso/misc/TOTrapAncient01.cpp",
+        "owner": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "row": 6451,
+        "fork_path": "src/pso/misc/TOTrapAncient02.cpp",
+        "owner": "src/pso/object/trap/TOTrapAncient02.cpp"
+      },
+      {
+        "row": 6697,
+        "fork_path": "src/pso/npc/TObjNpcKenkyuW.cpp",
+        "owner": "src/pso/npc/TObjNpcKenkyuW.cpp"
+      },
+      {
+        "row": 6777,
+        "fork_path": "include/pso/misc/TOMineTrap.h",
+        "owner": "src/pso/object/trap/TOMine.cpp"
+      },
+      {
+        "row": 6778,
+        "fork_path": "src/pso/misc/TOMineTrap_8016F6F8.cpp",
+        "owner": "src/pso/object/trap/TOMine.cpp"
+      },
+      {
+        "row": 6950,
+        "fork_path": "src/pso/object/TObjGrass.cpp",
+        "owner": "src/pso/object/ambient/TObjGrass.cpp"
+      }
+    ],
+    "open_rows": 331,
+    "verified_constant_bytes": {
+      "0x805d9384": "3f800000",
+      "0x805e0eb8": "00000000",
+      "0x805e0ebc": "bf800000"
+    }
+  },
+  "fork_workspace": {
+    "trial": "6e35ae3e717b28e0c4166ceae302f985e836346c",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "ec6fdeeb390f43fea408ea2b2ea71b0cf984b1d14e3d4f1385ddd03deb033a69",
+    "materialized_tree": "b38d20c5193aa025c3e01e1694b81538309c4f99",
+    "force_active": 27027
+  }
+}
