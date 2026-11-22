@@ -1,0 +1,160 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "source": "1044ba9c90144d5247d783044dde556d80c8f7a7",
+  "source_base": "862e5a6b5d09449026a0c3435763acbd3e8ecfd4",
+  "source_commits": 49,
+  "paths": [
+    "include/pso/npc/TNpcPlayer_800D87A8.h",
+    "include/pso/object/TObjControl.h",
+    "include/pso/object/base/TObjChara.h",
+    "src/pso/boss/goldragon/TBoss8DragonEffBreath.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/enemy/TObjEnemyCustom.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/npc/TNpcPlayer_800D87A8.cpp",
+    "src/pso/npc/TNpcPlayer_8014DADC.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/object/TObjLiveMonitor.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOTrap.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/player/TObjPlayer_800DCC90.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "ef6fd237fd15b8dfcb867bda8ff2090d7323fceac0afc242d9af2c4f6b1adcc3",
+      "observations": [
+        "Nineteen roster and active-entity lookup cases passed",
+        "Six Gibbles targeting cases passed for hiding, cadence, class preference, near range, obstruction and enemy slots",
+        "Three mine following cases passed for unavailable and valid character targets"
+      ]
+    },
+    "workspace": {
+      "sha256": "ef6fd237fd15b8dfcb867bda8ff2090d7323fceac0afc242d9af2c4f6b1adcc3",
+      "observations": [
+        "Nineteen roster and active-entity lookup cases passed",
+        "Six Gibbles targeting cases passed for hiding, cadence, class preference, near range, obstruction and enemy slots",
+        "Three mine following cases passed for unavailable and valid character targets"
+      ]
+    },
+    "resource_observations": [
+      "Four resource cases preserved archive selection, phase/attack banks, model registration and sampled trail nodes",
+      "Three Mericarol color variants drew the original shadow and restored the live texture entries",
+      "Animated registry preserved prepared-slot writes and the rejected-slot no-op",
+      "Dolphin archive allocation, registration, release order and repeated cleanup passed"
+    ],
+    "simulator_scope": "Skip paired FPR save/restore halves in Gibbles and substitute scalar vector operations for the VM\u2019s unsupported paired-single helpers. All affected code remains in the exact retail builds."
+  },
+  "historical_audit": {
+    "open_before": 245,
+    "open_after": 244,
+    "resolved": [
+      "src/pso/enemy/TObjEneGibbles.cpp"
+    ],
+    "refreshed": [
+      "src/pso/enemy/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/SaverLifecycle.cpp",
+      "src/pso/enemy/TObjEneIllGill.cpp",
+      "src/pso/object/TObjGrass.cpp"
+    ],
+    "gibbles_function_count": 54,
+    "gibbles_function_bytes": 17048,
+    "source_contracts": {
+      "resource": [
+        "new BmlResource(1, &bm_ene_gibbles_low_resource_descriptor",
+        "NpcModelRegistry::register_animated_chunk(0x44",
+        "AttackParams **gibbles_combat_stat_entries;",
+        "gibbles_combat_stat_entries[2] = TLobby::dispatch_shared_handler_b(0x3E);",
+        "mem_alloc(0xC)",
+        "mem_free(gibbles_combat_stat_entries)"
+      ],
+      "lifecycle": [
+        "TObjEneGibbles::TObjEneGibbles(TObject *parent, EnemyPlacement *setData)",
+        "TObjEneGibbles::~TObjEneGibbles()",
+        "return new TObjEneGibbles(parent, static_cast<EnemyPlacement *>(setData));",
+        "attack_colliders[0] = new TObjCollidable(NULL);",
+        "attack_colliders[1] = new TObjCollidable(NULL);"
+      ],
+      "render": [
+        "void gibbles_render_node_callback(NJS_OBJECT *)",
+        "TObjEneGibbles__render_node_index == 0x18",
+        "set_chunk_model_node_callback(gibbles_render_node_callback)",
+        "set_chunk_model_node_callback(NULL)",
+        "TObjEneGibbles__render_rotation_x"
+      ],
+      "combat": [
+        "attack_from_joint_31(s32 trigger_hit_reaction, f32 power)",
+        "attack_from_joint_53(s32 trigger_hit_reaction, f32 power)",
+        "TObjEneGibbles::landing_damage_players()",
+        "TObjEneGibbles::spawn_ground_contact_effect()",
+        "TObjEneGibbles::spawn_ground_impact_effects("
+      ],
+      "targeting": [
+        "TObjEneGibbles::refresh_target()",
+        "target = get_enemy_entity(tid);",
+        "p->class_flags & target_class_mask",
+        "chased = target;",
+        "target->body_center"
+      ]
+    }
+  },
+  "fork_workspace": {
+    "parent": "1044ba9c90144d5247d783044dde556d80c8f7a7",
+    "previous_workspace": "c7f723ec042f8f3273a3504b0652f383b4639515",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "materialized_tree_before_notes_update": "df4b5cd097f48c57c11c3e9534e979850b4545f3",
+    "archive_sha256": "b077f8faa1585f1bc6bc86e207f92c793efd4f539a3915e56f25b73d14815fe0",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

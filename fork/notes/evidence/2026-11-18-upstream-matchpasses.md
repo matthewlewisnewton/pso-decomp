@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 36-path character targeting replay `1044ba9c90` gives the native target field and shared lookup results their original class types. NPC partner attacks retain their 16-bit IDs. Mine following and enemy chase paths read positions from the typed character. The 28 runtime cases verify roster boundaries, active state, target selection and mine following. Both builds reproduce retail, account for all 1,147 original data bytes and pass all 310 workspace checks with the byte-identical fork overlay. The complete Gibbles comparison closes, leaving 244 historical records. [Character target and workspace validation](2026-11-22-upstream-370-character-targets-validation.json)
+
+
 Upstream PR #370 advanced master to `d8c0a969d2`. All 48 local source commits replay as `862e5a6b5d`, with the typed camera projection kept in the overlapping node-capture hunk. The independent 358-path window, character selection and chat review is `0f8ed70741`. Both source builds and the materialized fork reproduce retail with all 27,572 functions exact and all 1,147 original data bytes accounted for. The byte-identical fork overlay passes all 310 checks. There are 245 historical comparisons. [Upstream replay validation](2026-11-22-upstream-370-replay-validation.json)
 
 
