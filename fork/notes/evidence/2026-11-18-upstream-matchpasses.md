@@ -4,7 +4,22 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
-Upstream PR #366 contains the 360-path renderer and BML recovery at `927d57da60`, directly on `b2d2912058`. The texture interface and its callers travel together. The review branch reproduces retail and passes the standalone coverage and runtime checks. The window and chat replay stays in local validation for a later review. [Upstream PR #366](https://github.com/zeroz41/pso-decomp/pull/366) · [Review branch evidence and description](2026-11-21-next-upstream-renderer-and-bml.md)
+Upstream PR #366 landed at `2ea1c02d4c`. Its tree is identical to the reviewed renderer head `927d57da60`. The next candidate is the 422-file window, character selection and chat review at `e5ec2c019b` on current master. [Merged PR #366](https://github.com/zeroz41/pso-decomp/pull/366) · [Window review evidence](2026-11-22-next-upstream-window-character-chat.md)
+
+## Replay after upstream PR #366
+
+The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
+
+| Local review | Head | Base | Files |
+| --- | --- | --- | ---: |
+| Window, character selection and chat | `e5ec2c019b` | Upstream master | 422 |
+| Actors, boss encounters and battle interfaces | `688f231369` | Window review | 321 |
+| Enemy lifecycle, assets and combat | `5db0dc93ed` | Actor review | 66 |
+| Network runtime | `72703eff0b` | Upstream master | 55 |
+
+The enemy review combines nine validated changes. Gibbles and Gyaranzo own their lifecycle and combat methods. Morfos, Epsilon, and the Sinow variants use native resource, factory, and state methods. Canadin, Gee and Gi Gue use their actual formation, color, and sound interfaces. Pan Arms uses its native movement, floor contact and collider methods. The net review applies cleanly above the combined actor and enemy stack in a three-way preview. [Enemy review evidence](2026-11-22-next-upstream-enemy-lifecycle-and-resources.md)
+
+Every listed source build, the cumulative build and the materialized fork build reproduce retail. All 1,147 original data bytes are accounted for, and all 310 workspace checks pass. The 130-path fork tooling archive round-trips on the new base. The ledger has 272 open comparisons. [Rebase, review and workspace validation](2026-11-22-upstream-366-reconciliation.json)
 
 ## Replay after upstream PR #365
 

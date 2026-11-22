@@ -1,5 +1,7 @@
 # Recover native window, character selection, and chat interfaces
 
+The current review is `great-merge/review/after-366/window-character-chat` at `e5ec2c019bfa452cf0a4f85fc465b41a1176f013` on upstream master `2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e`. Its source tree is identical to the validated candidate below. A fresh build and coverage comparison passed on the landed base. [Current validation](2026-11-22-upstream-366-reconciliation.json)
+
 The local review is `great-merge/review/window-character-chat` at `ebd31cec2b8fcffad5dfb01f5fbdeb54cf6c23a2`, one commit on the published renderer head `927d57da604a6be2583457cac6363ae99556c91b`. It changes 422 source and build-metadata paths, with 5,081 insertions and 5,350 deletions. The branch combines these three checkpoints.
 
 - `dc12657265` [Component validation](2026-11-21-upstream-365-window-and-lobby-choices-validation.json)
@@ -10,7 +12,7 @@ The three-way replay applies cleanly and puts the window changes on the renderer
 
 The 163 linker-label changes are the exact address and name pairs already present in the three component checks. Of these, 129 keep the same leading function name or constructor/destructor marker. The other 34 include restoring constructors, moving member functions to their native record or window, and giving the old Short Mail lookup a typed record return. The build accounts for all 1,147 historical data bytes across 90 ranges, including 167 bytes of original alignment.
 
-Re-pin and revalidate this candidate against upstream master after the renderer review lands. [Published renderer review](https://github.com/zeroz41/pso-decomp/pull/366)
+The renderer review landed with the same source tree as the original parent. [Merged renderer review](https://github.com/zeroz41/pso-decomp/pull/366)
 
 | Evidence | SHA-256 |
 | --- | --- |
