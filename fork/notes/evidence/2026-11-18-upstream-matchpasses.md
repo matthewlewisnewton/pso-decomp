@@ -62,6 +62,10 @@ The 24-path scripted camera replay at `3fb65f36aa` puts pose and playback state 
 
 The clean source and fork workspace reproduce the retail DOL and retain all 2,447 linked units. Runtime probes cover pose, bank selection, stops, loops, the 5,000-frame cap, and REL loading on the retail and both rebuilt images. All 310 workspace checks pass. The scripted camera task and setup, Vol Opt phase two, and Dark Falz cutscene records close, leaving 487 historical records open. [Scripted camera motion evidence](2026-11-21-scripted-camera-motion-replay.json)
 
+The 24-path Photon Blast replay at `3f8b2039e1` shares a checked 36-byte record from the sequence task through all seven summon constructors. Leilla and Mylla use their native setup and material records. Estlla publishes the original line parameters from the current owner and position. The magic square and rainbow use typed parent and position arguments. Two linker labels follow the corrected argument types, and existing source names are retained.
+
+The stock and fork builds reproduce the retail DOL with all 27,572 exact functions, 2,447 linked units and 1,147 historical data bytes accounted for. The 310 fork checks pass. Emulator checks cover both square constructors, rainbow model selection, six sequence dispatches and Mylla's Youlla packet on all three images. The committed fork tooling overlay applies byte for byte. Ten historical comparisons close, leaving 477 records open. [Photon Blast summon evidence](2026-11-21-photon-summon-interfaces-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
