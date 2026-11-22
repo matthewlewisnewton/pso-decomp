@@ -58,6 +58,10 @@ The 30-path equipment and inventory replay at `1dc6c702b1` restores typed equipm
 
 Both builds reproduce retail with all 27,572 exact functions, 2,447 linked units and 1,147 historical data bytes. The reconstructed 130-path fork workspace passes all 310 checks. The runtime probe covers both 12-byte equipment frames, loadout record iteration and the particle timers and allocation failure. The ledger gains scoped evidence on 16 records. The 415 full historical comparisons remain open. [Equipment validation](2026-11-21-upstream-365-equipment-validation.json)
 
+The 25-path inventory storage and item placement replay at `17c5d34a22` restores native item placement records, typed inventory slot and item owners, shop result arrays and shared saved-record and trade operations. The twenty-two linker labels follow corrected owners or signatures. The cumulative replay changes 986 paths from upstream.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 historical data bytes accounted for. The reconstructed 130-path fork workspace passes all 310 checks. The runtime probe covers drop placement, blocked slots, telepipe search, nested inventory walks, shop filters and saved-record compaction. Three historical comparisons close and eleven gain scoped evidence. 412 remain open. [Inventory storage and placement validation](2026-11-21-upstream-365-inventory-storage-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)

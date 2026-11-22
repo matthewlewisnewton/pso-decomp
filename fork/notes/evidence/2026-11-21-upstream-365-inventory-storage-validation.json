@@ -1,0 +1,379 @@
+{
+  "source": "17c5d34a22fa16098466275c9d795adbbf4c20e1",
+  "previous_source": "1dc6c702b1075cae098c979ac2594bf25a2b77c7",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/item/TItemList.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801D3554.h",
+    "include/pso/player/TPlyItem.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/text_801D40D4.h",
+    "src/pso/network/TradeSession.cpp",
+    "src/pso/npc/TNpcPlayer_802C3CD0.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C1FF8.cpp",
+    "src/pso/player/TObjPlayer_801D3554.cpp",
+    "src/pso/player/TObjPlayer_801D84CC.cpp",
+    "src/pso/player/TObjPlayer_80278AB4.cpp",
+    "src/pso/player/TObjPlayer_802C422C.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/technique/TTecLuker.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+    "src/pso/ui/city/TShopItemListWindow.cpp",
+    "src/pso/ui/city/TShopKeepItemWindow.cpp",
+    "src/pso/ui/window/TWindowSubItem.cpp",
+    "src/pso/unk/TLobby_802D1EFC.cpp",
+    "src/pso/unk/text_802787F0.cpp",
+    "src/pso/unk/text_802789E0.cpp",
+    "src/pso/unk/text_80278BD8.cpp"
+  ],
+  "combined_paths_from_upstream": 986,
+  "historical_basis": {
+    "inventory_donor": "fc03c6205edca44c42b0830c131e7c11d072e7e9",
+    "placement_checkpoint": "4aea147d382e868a975a3a62ca085b71edb05837",
+    "fork_delta_base": "1f2ecc18875d34bdcd37e5509d85fd1f0b9a97d5",
+    "fork_delta_head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "linked_inventory_symbols": {
+      "0x805dc3c8": {
+        "size": 4,
+        "kind": "OBJECT",
+        "name": "@657"
+      },
+      "0x805dc3cc": {
+        "size": 4,
+        "kind": "OBJECT",
+        "name": "@658"
+      },
+      "0x805dc3d0": {
+        "size": 4,
+        "kind": "OBJECT",
+        "name": "@678"
+      },
+      "0x8003f3c8": {
+        "size": 20,
+        "kind": "FUNC",
+        "name": "check_value_equals__13TUnk_804B6C24CFl"
+      },
+      "0x801d5abc": {
+        "size": 84,
+        "kind": "FUNC",
+        "name": "is_item_valid__9TItemListFP9TItemList"
+      },
+      "0x804c442c": {
+        "size": 24,
+        "kind": "OBJECT",
+        "name": "__vt__9TItemList"
+      },
+      "0x801d5d54": {
+        "size": 88,
+        "kind": "FUNC",
+        "name": "__dt__9TItemListFv"
+      }
+    }
+  },
+  "source_scope": [
+    "native placement record and shared drop, death drop and telepipe pool access",
+    "typed inventory slot links, owners, traversal, matching and quantity updates",
+    "typed shop item arrays, saved-item export, selection and record compaction"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "1dc6c702b1075cae098c979ac2594bf25a2b77c7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801C2060",
+          "before": "set_field4__10TObjPlayerFl",
+          "after": "set_field4__12Unk_801C2068Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D3554",
+          "before": "insert_item_node__10TObjPlayerFiiiii",
+          "after": "insert_item_node__10TObjPlayerFP13TUnk_804C445CP3VecP10TObjPlayerP9TItemDatal"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D3728",
+          "before": "start_placement_search__Flll",
+          "after": "start_placement_search__FP13TUnk_804C4450P3VecP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4890",
+          "before": "run_and_get_result__8TPlyItemFi",
+          "after": "run_and_get_result__8TPlyItemFPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D48C4",
+          "before": "run_state_query__8TPlyItemFi",
+          "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D48F8",
+          "before": "update_inventory_item__8TPlyItemFlllll",
+          "after": "update_inventory_item__8TPlyItemFP10TObjPlayerlPfll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4A6C",
+          "before": "remove_equipped_item__8TPlyItemFlPv",
+          "after": "remove_equipped_item__8TPlyItemFP10TObjPlayerP9TItemList"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4AEC",
+          "before": "reduce_item_amount__6TLobbyFlll",
+          "after": "reduce_item_amount__8TPlyItemFP10TObjPlayerP9TItemListl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4BB0",
+          "before": "use_item__6TLobbyFlll",
+          "after": "use_item__8TPlyItemFP10TObjPlayerll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4C58",
+          "before": "set_globals_and_update__6TLobbyFii",
+          "after": "set_globals_and_update__8TPlyItemFP10TObjPlayeri"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4C84",
+          "before": "set_globals_and_notify__6TLobbyFii",
+          "after": "set_globals_and_notify__8TPlyItemFP10TObjPlayerP12Unk_801C2068"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFPv",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFPv",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4D20",
+          "before": "set_flag_and_update__8TPlyItemFi",
+          "after": "set_flag_and_update__8TPlyItemFP10TObjPlayer"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4D48",
+          "before": "count_items_by_id__8TPlyItemFl",
+          "after": "count_items_by_id__8TPlyItemFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4DE8",
+          "before": "find_first_inventory_entry__8TPlyItemFi",
+          "after": "find_first_inventory_entry__8TPlyItemFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4E38",
+          "before": "destroy_subobjects__8TPlyItemFi",
+          "after": "destroy_subobjects__8TPlyItemFP10TObjPlayer"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D5004",
+          "before": "reduce_owner_matched_items__6TLobbyFv",
+          "after": "reduce_owner_matched_items__9TItemListFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D50E0",
+          "before": "reduce_child_item_amounts__6TLobbyFv",
+          "after": "reduce_child_item_amounts__9TItemListFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D5814",
+          "before": "copy_item_data__9TItemListFv",
+          "after": "copy_item_data__12Unk_801C2068FP9TItemData"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D5ABC",
+          "before": "is_item_valid__9TItemListFl",
+          "after": "is_item_valid__9TItemListFP9TItemList"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b2e8905e069218110c5e08ccd3700cebaabefed2e7b5d0f4f50b13b09cc4ad43",
+      "report_sha256": "53dbce3d9a48e897d5be5f160db8945fade914a66f4dc8199fc48667ac602f50"
+    },
+    "layer": {
+      "baseline": "17c5d34a22fa16098466275c9d795adbbf4c20e1",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "53dbce3d9a48e897d5be5f160db8945fade914a66f4dc8199fc48667ac602f50"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "ed468fc749b9806db3c22f878f8371154a4e37d3e50e33abb6397963311b9510"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "65c62c2cd1e3728ed0d9aae2fcd0485ac4ee3e903bba8814e9e236adf8c5e69f"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "probe_sha256": "ad41fcc9818a9420772485063c9255e897b6c79531741e9e1fdf12efe5b4ad68",
+    "log_sha256": "5442b00c7485af41d542177ed371ea1ac2271f6dd85622392438314a207b5ae5",
+    "coverage": "drop placement, occupied slots, telepipe search, inventory traversal and saved records passed.",
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "historical": {
+    "open_rows": 412,
+    "closed_rows": [
+      [
+        3181,
+        "include/pso/TItemList.h",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3600,
+        "src/pso/item/TItemList_801D3780.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        4049,
+        "src/pso/item/TItemList.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ]
+    ],
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        3963,
+        "src/pso/unk/text_801D40D4.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4150,
+        "src/pso/player/TObjPlayer_80278AB4.cpp",
+        "src/pso/player/TObjPlayer_80278AB4.cpp"
+      ],
+      [
+        4183,
+        "src/pso/player/TPlyItem.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        4417,
+        "src/pso/misc/TTecLuker.cpp",
+        "src/pso/technique/TTecLuker.cpp"
+      ],
+      [
+        4499,
+        "src/pso/unk/text_80278BD8.cpp",
+        "src/pso/unk/text_80278BD8.cpp"
+      ],
+      [
+        4500,
+        "src/pso/misc/TLobby_802D1EFC.cpp",
+        "src/pso/unk/TLobby_802D1EFC.cpp"
+      ],
+      [
+        5803,
+        "src/pso/misc/TShopEquipmentSellWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+      ],
+      [
+        5956,
+        "src/pso/misc/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "d2ddf33d6c30bc652c12b0e5102f03df1e4527ac",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "e057f5883179989d0c4640ad49a91b37d8ce357ed6b09828a968e41a5043603c",
+    "materialized_tree": "4af2d61d0c2af32aedd22467e376a6f4c064085b",
+    "force_active": 27027
+  }
+}
