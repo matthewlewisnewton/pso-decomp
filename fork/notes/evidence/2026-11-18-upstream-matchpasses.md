@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+Upstream PR #370 advanced master to `d8c0a969d2`. All 48 local source commits replay as `862e5a6b5d`, with the typed camera projection kept in the overlapping node-capture hunk. The independent 358-path window, character selection and chat review is `0f8ed70741`. Both source builds and the materialized fork reproduce retail with all 27,572 functions exact and all 1,147 original data bytes accounted for. The byte-identical fork overlay passes all 310 checks. There are 245 historical comparisons. [Upstream replay validation](2026-11-22-upstream-370-replay-validation.json)
+
+
 The 33-path hit eligibility replay `221bda5174` gives the shared predicate the native collision object at each call site and restores its halfword field. Both Gibbles joint attacks are native methods. Each reproduces its original 480 bytes, and two linker labels follow the class methods. The runtime cases cover hit eligibility, target filtering, physical and direct attacks, knockback and armor recharge. The fork tooling archive updates both retained labels. Both builds reproduce retail, account for all 1,147 original data bytes and pass all 310 workspace checks. The broader actor target comparison remains among the 245 open records. [Hit eligibility and workspace validation](2026-11-22-upstream-8441-hit-eligibility-validation.json)
 
 

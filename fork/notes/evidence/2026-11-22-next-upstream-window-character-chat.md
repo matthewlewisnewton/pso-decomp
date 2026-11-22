@@ -1,5 +1,7 @@
 # Recover native window, character selection, and chat interfaces
 
+The independently validated review at `0f8ed70741` covers 358 paths on upstream `d8c0a969d2` (PR #370). It reproduces retail with all 27,572 functions exact, 2,417 linked units and all 1,147 original data bytes accounted for. [Current build and replay](2026-11-22-upstream-370-replay-validation.json)
+
 The independently validated review is `great-merge/review/after-369/window-character-chat` at `717dfedd37bbe9e207552eba8d4e9d21c90a3ba0` directly above upstream `1698caaa1941302ed6dfc60d886d041bae272e0e`. It changes 358 paths. The retail DOL matches and all 1,147 original data bytes are accounted for. The title, status and lifetime probes pass, and the single commit uses the configured fork identity. Its function-label changes alter receivers, signatures, linkage or the constructor and destructor forms. The upstream quality report flags existing address-derived names among those changes. [Current validation](2026-11-22-upstream-369-window-review-validation.json)
 
 Upstream PR #367 advanced master to `6aee940eca`. The first local review is window, character selection and chat at `1484889e3b` on that revision. It covers 358 paths. The shared memory review will carry the 195 release-related edits removed from this candidate. Three remaining merge conflicts were resolved using the upstream controller and trade field names and the existing model loader’s writable pointer array. [Merged PR #367](https://github.com/zeroz41/pso-decomp/pull/367)
