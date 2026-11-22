@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 16-path front-end replay `ffd0d98e4c` restores the native classification map, serial keyboard input, status texture list, character plate point, judgment window construction and Word Select payload. The single linker label follows the typed formatting signature. Both builds reproduce retail, account for all 1,147 original data bytes and pass all 310 checks. The 130-path fork overlay keeps the same edits and refreshes the shortcut source blob IDs. The original source comparisons close for six frontend and city owners, the two status and Word Select owners, and the keyboard controller declarations. The audit verifies all 28 keyboard entry points and leaves 235 historical comparisons. [Front-end source and workspace validation](2026-11-22-upstream-370-frontend-records-validation.json)
+
+
 The 36-path character targeting replay `1044ba9c90` gives the native target field and shared lookup results their original class types. NPC partner attacks retain their 16-bit IDs. Mine following and enemy chase paths read positions from the typed character. The 28 runtime cases verify roster boundaries, active state, target selection and mine following. Both builds reproduce retail, account for all 1,147 original data bytes and pass all 310 workspace checks with the byte-identical fork overlay. The complete Gibbles comparison closes, leaving 244 historical records. [Character target and workspace validation](2026-11-22-upstream-370-character-targets-validation.json)
 
 
