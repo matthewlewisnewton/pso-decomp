@@ -1,0 +1,376 @@
+{
+  "source": "9e37da8aea965cdcdeec264e7d89375af0c4e16d",
+  "previous_source": "4e29e9daf84a6c698b9ae82df62529941fa09b7e",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/system/save/CardFileInfo.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdMcSelectGC.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+    "include/pso/unk/text_802432F0.h",
+    "include/pso/unk/text_8033F314.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/item/shop/TShopGenerator.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/system/save/TCheckMemoryCard.cpp",
+    "src/pso/system/save/TSaveChCr.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+    "src/pso/ui/frontend/TAdTrialAgreementGC.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+    "src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp",
+    "src/pso/unk/TLobby_801A3C48.cpp",
+    "src/pso/unk/text_802432F0.cpp",
+    "src/pso/unk/text_8033F314.cpp"
+  ],
+  "combined_paths_from_upstream": 1018,
+  "historical_basis": {
+    "card_selection_donor": "f840fd7e65768d4c5ccde111f7ad4dd609db2698",
+    "card_preflight_donor": "5b5193243525c0370e5357ed7753ba86f9f14cd2",
+    "card_file_status_donor": "b7cbb5bc91203daaadabdc92ef91905a7425088c",
+    "fork_delta_base": "1f2ecc18875d34bdcd37e5509d85fd1f0b9a97d5",
+    "fork_delta_head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "native_card_backend_functions": {
+      "0x803F18B8": {
+        "size": 72,
+        "name": "get_or_set_channel_flag__15TAdPlayerLoadGCFll"
+      },
+      "0x803F1900": {
+        "size": 8,
+        "name": "get_load_state__15TAdPlayerLoadGCFv"
+      },
+      "0x803F1908": {
+        "size": 956,
+        "name": "TAdPlayerLoadGC__sub_803F1908"
+      },
+      "0x803F1CC4": {
+        "size": 460,
+        "name": "step_set_attributes__15TAdPlayerLoadGCFl"
+      },
+      "0x803F1E90": {
+        "size": 456,
+        "name": "update_card_delete__15TAdPlayerLoadGCFl"
+      },
+      "0x803F2058": {
+        "size": 488,
+        "name": "update_card_rename__15TAdPlayerLoadGCFl"
+      },
+      "0x803F2240": {
+        "size": 976,
+        "name": "TAdPlayerLoadGC__sub_803F2240"
+      },
+      "0x803F2610": {
+        "size": 540,
+        "name": "TAdPlayerLoadGC__sub_803F2610"
+      },
+      "0x803F282C": {
+        "size": 544,
+        "name": "TAdPlayerLoadGC__sub_803F282C"
+      },
+      "0x803F2A4C": {
+        "size": 644,
+        "name": "TAdPlayerLoadGC__sub_803F2A4C"
+      },
+      "0x803F2CD0": {
+        "size": 80,
+        "name": "TAdPlayerLoadGC__sub_803F2CD0"
+      },
+      "0x803F2D20": {
+        "size": 508,
+        "name": "TAdPlayerLoadGC__sub_803F2D20"
+      },
+      "0x803F2F1C": {
+        "size": 672,
+        "name": "TAdPlayerLoadGC__sub_803F2F1C"
+      },
+      "0x803F31BC": {
+        "size": 28,
+        "name": "TAdPlayerLoadGC__sub_803F31BC"
+      },
+      "0x803F31D8": {
+        "size": 204,
+        "name": "TAdPlayerLoadGC__sub_803F31D8"
+      },
+      "0x803F32A4": {
+        "size": 132,
+        "name": "reset_slot_entry__15TAdPlayerLoadGCFl"
+      },
+      "0x803F3328": {
+        "size": 116,
+        "name": "close_card_slot__15TAdPlayerLoadGCFl"
+      }
+    },
+    "linked_data_for_closed_rows": {
+      "0x805dc6e8": {
+        "size": 4,
+        "name": "@27"
+      },
+      "0x805dc6ec": {
+        "size": 4,
+        "name": "@93"
+      },
+      "0x804758e8": {
+        "size": 32,
+        "name": "lbl_804758E8"
+      },
+      "0x80513ed0": {
+        "size": 16,
+        "name": "TShopGenerator__slot_active_table"
+      },
+      "0x80542e78": {
+        "size": 20,
+        "name": "chr_select_b_slot_entry"
+      },
+      "0x805a28c0": {
+        "size": 32,
+        "name": "card_disk_id"
+      },
+      "0x805a28e0": {
+        "size": 208,
+        "name": "TAdPlayerLoadGC__load_request_slots"
+      },
+      "0x805a29b0": {
+        "size": 13600,
+        "name": "card_open_files"
+      },
+      "0x805a5ed0": {
+        "size": 48,
+        "name": "card_slot_info"
+      },
+      "0x805d7948": {
+        "size": 4,
+        "name": "card_attach_callback"
+      },
+      "0x805d794c": {
+        "size": 4,
+        "name": "card_detach_callback"
+      }
+    }
+  },
+  "source_scope": [
+    "typed character slot geometry and memory-card selector construction",
+    "typed cache and allocation of the per-slot preflight task",
+    "shared signed load statuses and file metadata across existing callers",
+    "full historical comparison of the already linked native card backend"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "4e29e9daf84a6c698b9ae82df62529941fa09b7e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x802C74AC",
+          "before": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+          "after": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__15TAdChrSelSlotGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A0A4",
+          "before": "create__13TAdMcSelectGCFPv",
+          "after": "create__13TAdMcSelectGCFP7TObject"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "5f6455e18ece985385a974bbfb24295cc6f06e95620a50fb5043c3e1eecc832a",
+      "report_sha256": "40dc6b7389cf9cbecf72d2dd0abd92c631b6e7234b719075f94abd7e9585d861"
+    },
+    "layer": {
+      "baseline": "9e37da8aea965cdcdeec264e7d89375af0c4e16d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "40dc6b7389cf9cbecf72d2dd0abd92c631b6e7234b719075f94abd7e9585d861"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "839f4e321581daff69018e51ea09945b0f4d452fe300964c024291c8de25f2ea"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "9b32cf6d74a716521a3b1a4142618c78d4cb5f27d1e70b0d960f8ee666203f31"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "probe_sha256": "77a757dad9d01ad53f3745fa65ce17da19b74c82d2105b0b4ea402660ed9ec02",
+    "log_sha256": "18ecc52c0dca347e93668e73afcb3f55eb32bd0d2f2946b0ea3bdb8e81034bac",
+    "coverage": "load status, slot geometry, warnings, card polling and file metadata passed.",
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "historical": {
+    "open_rows": 403,
+    "closed_rows": [
+      [
+        2275,
+        "src/pso/ui/TAdChrSelBSlotGC_8030E354.cpp",
+        "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp"
+      ],
+      [
+        2295,
+        "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+        "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp"
+      ],
+      [
+        2372,
+        "src/pso/ui/TAdChrSelBSlotGC_8030ED88.cpp",
+        "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp"
+      ],
+      [
+        2519,
+        "include/pso/ui/TAdChrSelASlotGC.h",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+      ],
+      [
+        4387,
+        "src/pso/misc/TShopGenerator.cpp",
+        "src/pso/item/shop/TShopGenerator.cpp"
+      ]
+    ],
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        424,
+        "include/pso/boss/TObjBoss2Tunnel.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        842,
+        "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        2428,
+        "src/pso/menu/TAdTimeSetGC.cpp",
+        "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+      ],
+      [
+        2438,
+        "src/pso/ui/TAdChrSelASlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+      ],
+      [
+        2466,
+        "src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp"
+      ],
+      [
+        2557,
+        "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp"
+      ],
+      [
+        2699,
+        "src/pso/misc/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp"
+      ],
+      [
+        2714,
+        "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp"
+      ],
+      [
+        3061,
+        "src/pso/misc/TPlyJoinLobbyEntry.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp"
+      ],
+      [
+        3963,
+        "src/pso/unk/text_801D40D4.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4183,
+        "src/pso/player/TPlyItem.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "109e78d1dfe39fc9577614cc4dbad3df3478de90",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "e057f5883179989d0c4640ad49a91b37d8ce357ed6b09828a968e41a5043603c",
+    "materialized_tree": "e38acdfdfee07247802f7414334530bd66cda1fd",
+    "force_active": 27027
+  }
+}
