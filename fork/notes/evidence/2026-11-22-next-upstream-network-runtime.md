@@ -1,6 +1,8 @@
 # Recover native PPP, modem, and packet receive interfaces
 
-The local review branch `great-merge/review/network-runtime` ends at `3dd55d81fcb82618a032de944c152d5aa842597b` and starts directly on upstream master `b2d2912058829d0f0c9260f6272dc2a303c90110`. The diff contains 55 source, header and configuration paths with 1,153 insertions and 1,131 deletions. All three commits use the configured fork author and committer.
+The current standalone review is `great-merge/review/after-366/network-runtime` at `72703eff0b` on upstream `2ea1c02d4c`. Applying that same patch above the expanded window and combined actor reviews yields `8b22ee1626`. The stacked build matches retail, passes the coverage comparison, and passes all eleven network probes. [Current validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
+
+The previous standalone review branch `great-merge/review/network-runtime` ends at `3dd55d81fcb82618a032de944c152d5aa842597b` and starts directly on upstream master `b2d2912058829d0f0c9260f6272dc2a303c90110`. The diff contains 55 source, header and configuration paths with 1,153 insertions and 1,131 deletions. All three commits use the configured fork author and committer.
 
 The same patch applies cleanly after the local window and actor reviews. The queue application was checked against `5c9df48dbc73d4d930271b895172e983d42c1a70`. The build and runtime results below cover the branch on upstream master.
 

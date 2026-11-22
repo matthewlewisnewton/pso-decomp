@@ -1,6 +1,8 @@
 # Recover native enemy lifecycle, assets, and combat interfaces
 
-The local review is `great-merge/review/after-366/enemy-lifecycle-and-resources` at `5db0dc93ed1e80eda57825a1852dbce705f0c648` on the queued actor branch `688f231369208dfde04906467b470ea4606ea5ac`. It changes 66 files with 2,419 insertions and 3,287 deletions. The source combines nine matched parts of the cumulative replay. [Validation and component records](2026-11-22-upstream-366-reconciliation.json)
+This component is included in the 339-file actor and boss review at `6fef559bb1`. [Combined review](2026-11-22-next-upstream-actor-battle-interfaces.md) · [Current validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
+
+The earlier component review is `great-merge/review/after-366/enemy-lifecycle-and-resources` at `5db0dc93ed1e80eda57825a1852dbce705f0c648` on the queued actor branch `688f231369208dfde04906467b470ea4606ea5ac`. It changes 66 files with 2,419 insertions and 3,287 deletions. The source combines nine matched parts of the cumulative replay. [Validation and component records](2026-11-22-upstream-366-reconciliation.json)
 
 ## Proposed PR description
 

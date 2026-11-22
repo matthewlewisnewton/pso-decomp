@@ -31,6 +31,18 @@ The 13-path status-window replay at `156e375c1c` uses the real item row, draw co
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The runtime probe checks the status flag, proportional and fixed number widths, both numeric draw modes, icon clipping and the detail row's five columns. All 310 workspace checks pass and the 130-path tooling archive round-trips. The cumulative source changes 1,209 paths. Two historical comparisons close, leaving 267 open. [Status-window validation](2026-11-22-upstream-366-status-windows-validation.json)
 
+### Current review stack
+
+| Local review | Head | Review base | Files |
+| --- | --- | --- | ---: |
+| Window, character selection and chat | `7e38bacd3a` | Upstream master | 435 |
+| Actors, bosses, enemy lifecycle and combat | `6fef559bb1` | Expanded window review | 339 |
+| Network runtime | `72703eff0b` | Upstream master | 55 |
+
+The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
+
+The replay at `2bbf3682d6` reconstructs the consolidated source `156e375c1c` on the local review stack. The remaining diff covers 680 paths. The queued stack and consolidated source share 529 identical path changes. Of the remaining paths, 403 change only in the consolidated source and 277 have edits in both trees. The index connects these paths to their most recent source commit and 169 of the 267 open historical comparisons. [Remaining source index](2026-11-22-upstream-366-remaining-source.tsv)
+
 ## Replay after upstream PR #365
 
 Upstream master advanced from `5a4e7ced56` to `b2d2912058` by 45 commits across 1,947 paths. The pinned matching checkpoint `1e41348776` shares 782 changed paths with the new master. The three-way merge preview has 459 conflicts. The path index records the old, landed, local and preview entries for each changed path. [Upstream PR #365](https://github.com/zeroz41/pso-decomp/pull/365) · [Replay index](2026-11-21-upstream-365-replay-index.tsv)

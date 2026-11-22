@@ -1,6 +1,8 @@
 # Recover native actors, boss encounters, and battle interfaces
 
-The local review is `great-merge/review/actor-battle-interfaces` at `5c9df48dbc73d4d930271b895172e983d42c1a70`. Its five commits follow the local window and chat candidate at `ebd31cec2b8fcffad5dfb01f5fbdeb54cf6c23a2`. The review changes 321 paths with 4,666 insertions and 4,445 deletions. Each commit has the configured fork attribution. [Window, character selection and chat candidate](2026-11-22-next-upstream-window-character-chat.md)
+The current review is `great-merge/review/after-366/actors-bosses-and-enemies` at `6fef559bb1293e2d14ff158822b96779199a95d1` above the expanded window review `7e38bacd3a3be70b715037db837d5366763d4502`. It groups the five actor and battle commits with the enemy lifecycle, assets and combat commit. The diff changes 339 files and the coverage comparison reports 217 linker labels from the existing owner and signature fixes. Both the actor build and the combined network build match retail. [Current validation](2026-11-22-upstream-366-actor-and-network-review-validation.json) · [Enemy component details](2026-11-22-next-upstream-enemy-lifecycle-and-resources.md)
+
+The original actor review is `great-merge/review/actor-battle-interfaces` at `5c9df48dbc73d4d930271b895172e983d42c1a70`. Its five commits follow the local window and chat candidate at `ebd31cec2b8fcffad5dfb01f5fbdeb54cf6c23a2`. The review changes 321 paths with 4,666 insertions and 4,445 deletions. Each commit has the configured fork attribution. [Window, character selection and chat candidate](2026-11-22-next-upstream-window-character-chat.md)
 
 The motion API changes overlap seven Photon Blast actors. The candidate includes the typed Photon Blast resources so all seven callers use the native actions and motion entries. The only overlap after bringing in those actors was a header include. The candidate takes the matrix types and the already-present player declarations on the window base.
 
@@ -14,7 +16,7 @@ The 146 linker changes exactly equal the original address and label pairs in the
 - [Matrices and camera](2026-11-22-upstream-365-matrix-contracts-validation.json)
 - [Tentacles](2026-11-22-upstream-365-encounter-contracts-validation.json)
 
-The branch stays local behind the window and chat candidate in the review queue.
+The combined review stays local behind the window and chat candidate in the review queue.
 
 | Evidence | SHA-256 |
 | --- | --- |
@@ -38,6 +40,8 @@ Recover native C++ ownership and types across shared actor movement and boss and
 - Enemy and boss actors use their native fields and lifecycle methods, including Pan Arms parts, Canadin membership, and the De Rol Le and Barba Ray tentacles.
 - The lobby loads typed battle tables. Enemy stats, shared actor animation, and Photon Blast summons use their actual parameter and motion records.
 - Matrix copy, concatenation, and camera projection take pointers to the data they read. Both tentacles borrow the matrices allocated by their enclosing boss, and Barba Ray passes a typed attack position.
+
+- Gibbles and Gyaranzo use native lifecycle and battle methods. Pan Arms uses its native ground, movement, and contact methods. Morfos, Epsilon, the Sinow variants and Ill Gill use typed asset, factory, and state interfaces.
 
 The commit sequence starts with actor owners and movement, then follows the resource, battle data, camera, and encounter callers. The linker label changes follow recovered native methods, constructors, or argument types.
 
