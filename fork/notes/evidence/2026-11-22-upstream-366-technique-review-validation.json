@@ -1,0 +1,605 @@
+{
+  "source": "aa4478e754d63f737cd14166871b8c23d0a698c3",
+  "previous_source": "0bc02e7707ae6a0c9f2c46dbe83ef2e2313c17cf",
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/TEffClitical.h",
+    "src/pso/effect/TEffClitical.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/unk/TUnk_804CC870.cpp"
+  ],
+  "technique_review": {
+    "head": "a5d9b6d32225e338cfe71cdcff5184520c9667cd",
+    "base": "50664446c4e459629362ea6aaedee37b460c4d8b",
+    "paths": 118,
+    "commits": [
+      "85693d59e2cee4dcda6015377fcd2c496617443d",
+      "f3d33225acb191d19f6ac90a5fd5d5a50d339468",
+      "fdc5ef44a6cf50759f88347b6723f341094aebdb",
+      "1aeeefd5f7d9b01373787c7933e532021b9c8978",
+      "dd86966cf0d7af81de250ed91846871573582931",
+      "0b89edc161f109a8a467fe841937e7954f2fb66c",
+      "a5d9b6d32225e338cfe71cdcff5184520c9667cd"
+    ],
+    "replay_map": [
+      {
+        "donor": "cebaf20ce2987be4060c7b0f17dbadb0f0f62b07",
+        "head": "85693d59e2cee4dcda6015377fcd2c496617443d",
+        "tree": "c4ffbb38fe6022b61f038b97d48cf3ef82b5d56f"
+      },
+      {
+        "donor": "91482b91d16ef108f8f03d7c1534ff0b4c35c9cf",
+        "head": "f3d33225acb191d19f6ac90a5fd5d5a50d339468",
+        "tree": "793d10ff6005f2a639384539909decf23183e3d2"
+      },
+      {
+        "donor": "a9817e5dc2c3dddfba0bb7f21ec38636ca644348",
+        "head": "fdc5ef44a6cf50759f88347b6723f341094aebdb",
+        "tree": "11d17aa295626c6ba388cfcd9c7a11b00f574af3"
+      },
+      {
+        "donor": "d3c4e134de0a160d46b9d0a51181b85dcfb187db",
+        "head": "1aeeefd5f7d9b01373787c7933e532021b9c8978",
+        "tree": "f588a94cf35d9442e84c05103791c555c54899d9"
+      },
+      {
+        "donor": "4d39378aad277426b86c16db24c21c0889831831",
+        "head": "dd86966cf0d7af81de250ed91846871573582931",
+        "tree": "394a2117bcd91eba97bc3d5e83433cfecc314ddb"
+      },
+      {
+        "donor": "6610d34cc8e1b569248bd5754818bc22ee7e6843",
+        "head": "0b89edc161f109a8a467fe841937e7954f2fb66c",
+        "tree": "49bf81007df48e0326c4b433dea5ccc45d25c6e8"
+      }
+    ],
+    "components": [
+      "2026-11-21-upstream-365-technique-casts-and-effects-validation.json",
+      "2026-11-22-upstream-365-scene-storage-validation.json",
+      "2026-11-22-upstream-365-player-interactions-validation.json",
+      "2026-11-22-upstream-365-player-scale-validation.json",
+      "2026-11-22-upstream-365-technique-owners-validation.json"
+    ],
+    "runtime": {
+      "probe-technique-targets": {
+        "results": [
+          "psov3.dol: state setters, target records, packet size, send bytes and validation passed."
+        ],
+        "log_sha256": "c80fe2c34ad8ddeed7f3c1bace06e0cca14ef4a65892b71576e1882d639ac8f4"
+      },
+      "probe-technique-effects": {
+        "results": [
+          "psov3.dol: resource records, lightning and Gi-Barta construction, and band sound passed."
+        ],
+        "log_sha256": "4d6f5dda0449f6b4a9c76265af82dcccd04dbc50f0fb54836d553e987886508c"
+      },
+      "technique-probe": {
+        "results": [
+          "psov3.dol: 22 technique cases passed."
+        ],
+        "log_sha256": "878951d597018857e27be33d25407eaad4434235fc694425bf8bbb9c888a9074"
+      },
+      "hold-packet-probe": {
+        "results": [
+          "psov3.dol: hold packet halfwords, X and Z, squared radius, null target, and state gate passed."
+        ],
+        "log_sha256": "4e4f963b0b7896070854d113facc476a32f62682927d97b4d0984e99f65c84e1"
+      },
+      "player-scale-probe": {
+        "results": [
+          "psov3.dol: scale state, position access, camera offsets, wire packets, and shrink and restore gates passed."
+        ],
+        "log_sha256": "b462496e6bf40434a9d668b1e98048304a395468eb28d89d93571969b8760361"
+      },
+      "probe-critical-review": {
+        "results": [
+          "PsoV3.dol: critical-hit allocation, state, particles, and texture frame passed.",
+          "psov3.dol: critical-hit allocation, state, particles, and texture frame passed."
+        ],
+        "log_sha256": "3d9fe7a19fd9c9420e82e31764ba476328320c4ee1678e16e7f167fd7ef3c683"
+      }
+    },
+    "vector_helper": "The typed vector argument trial produced different instructions; the existing matching helper signature remains."
+  },
+  "residual": {
+    "rehearsal_head": "5d009609c647c6539852c130dc117e3553a7ef09",
+    "before": 627,
+    "after": 552,
+    "newly_identical_paths": [
+      "include/pso/boss/darkfalz/TBoss4Type1.h",
+      "include/pso/network/protocol/subcmd_6x.h",
+      "include/pso/network/protocol/subcommand_validation.h",
+      "include/pso/npc/TNpcPlayer.h",
+      "include/pso/object/ambient/TObjFish_8001ED90.h",
+      "include/pso/player/PlayerHoldPacket.h",
+      "include/pso/player/PlayerScaleState.h",
+      "include/pso/player/PlayerState.h",
+      "include/pso/player/TObjPlayer_801AF2F0.h",
+      "include/pso/player/TObjPlayer_801BF548.h",
+      "include/pso/player/TObjPlayer_801BF6B0.h",
+      "include/pso/player/TObjPlayer_801BF8EC.h",
+      "include/pso/player/TObjPlayer_801BF918.h",
+      "include/pso/player/TObjPlayer_801BF978.h",
+      "include/pso/player/TObjPlayer_801BFAD4.h",
+      "include/pso/player/TObjPlayer_801BFB1C.h",
+      "include/pso/player/TObjPlayer_801BFBCC.h",
+      "include/pso/player/TObjPlayer_801BFE50.h",
+      "include/pso/player/TObjPlayer_801BFED4.h",
+      "include/pso/player/TObjPlayer_801C721C.h",
+      "include/pso/player/TechniqueCastState.h",
+      "include/pso/render/TFogCtrl.h",
+      "include/pso/system/BmlAccessors.h",
+      "include/pso/technique/TTecGiBarta.h",
+      "include/pso/technique/TTecRaFoie.h",
+      "include/pso/technique/TTecZonde.h",
+      "include/pso/technique/TTecZondeEff.h",
+      "include/pso/technique/TechniqueBandSound.h",
+      "include/pso/technique/TechniqueResources.h",
+      "include/pso/unk/text_8036BDA0.h",
+      "src/pso/effect/TEffClitical.cpp",
+      "src/pso/effect/TKomorebi.cpp",
+      "src/pso/effect/enemy/TEneEffHamon.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEff.cpp",
+      "src/pso/item/armor/TItemProUnit.cpp",
+      "src/pso/npc/TNpcPlayer.cpp",
+      "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+      "src/pso/object/TOHealGeneral.cpp",
+      "src/pso/object/TObjLuker.cpp",
+      "src/pso/object/trap/TOTrap.cpp",
+      "src/pso/object/warp/TObjCityMainWarp_80186C44.cpp",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "src/pso/player/PhotonBlastResults.cpp",
+      "src/pso/player/PlayerTaskEffects.cpp",
+      "src/pso/player/TObjPlayer.cpp",
+      "src/pso/player/TObjPlayer_801BC194.cpp",
+      "src/pso/player/TObjPlayer_801BC5D4.cpp",
+      "src/pso/player/TObjPlayer_801BC81C.cpp",
+      "src/pso/player/TObjPlayer_801BD384.cpp",
+      "src/pso/player/TObjPlayer_801BD928.cpp",
+      "src/pso/player/TObjPlayer_801BDF5C.cpp",
+      "src/pso/player/TObjPlayer_801C00C4.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/player/TObjPlayer_801D95B8.cpp",
+      "src/pso/player/TObjPlayer_801D9A04.cpp",
+      "src/pso/player/TObjPlayer_801D9B18.cpp",
+      "src/pso/player/TObjPlayer_801D9CE0.cpp",
+      "src/pso/player/TObjPlayer_802C3B14.cpp",
+      "src/pso/player/TObjPlayer_80357B2C.cpp",
+      "src/pso/player/TPlyPhotonChair.cpp",
+      "src/pso/quest/TOQuestTalkBase.cpp",
+      "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+      "src/pso/render/render_util.cpp",
+      "src/pso/technique/TTecGiZonde.cpp",
+      "src/pso/technique/TTecRaFoie.cpp",
+      "src/pso/technique/TTecZonde.cpp",
+      "src/pso/technique/TTecZondeEff.cpp",
+      "src/pso/technique/TechniqueRingwaveList.cpp",
+      "src/pso/technique/TechniqueRingwaveNames.cpp",
+      "src/pso/unk/TUnk_8048E1A4.cpp",
+      "src/pso/unk/text_801D9870.cpp",
+      "src/pso/unk/text_802233F8.cpp",
+      "src/pso/unk/text_8022F258.cpp",
+      "src/pso/unk/text_8036BDA0.cpp",
+      "src/pso/weapon/TUnk_804A1098.cpp"
+    ]
+  },
+  "combined_paths_from_upstream": 1210,
+  "validation": {
+    "source": {
+      "baseline": "0bc02e7707ae6a0c9f2c46dbe83ef2e2313c17cf",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800825B4",
+          "before": "__ct__12TEffCliticalFPv",
+          "after": "__ct__12TEffCliticalFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80082634",
+          "before": "create__12TEffCliticalFv",
+          "after": "create__12TEffCliticalFPC3Vec"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "06d457f73618f9f94b9da73bdd454f32afc5d6e601690c7faab3930e2b72ec24",
+      "report_sha256": "a7b37de363a8f44007bc7aaee2b9fb5bc0fbea8cef4ce2db6b0a6c9dd6969ca6"
+    },
+    "layer": {
+      "baseline": "aa4478e754d63f737cd14166871b8c23d0a698c3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "a7b37de363a8f44007bc7aaee2b9fb5bc0fbea8cef4ce2db6b0a6c9dd6969ca6"
+    },
+    "review-final": {
+      "baseline": "50664446c4e459629362ea6aaedee37b460c4d8b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800825B4",
+          "before": "__ct__12TEffCliticalFPv",
+          "after": "__ct__12TEffCliticalFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80082634",
+          "before": "create__12TEffCliticalFv",
+          "after": "create__12TEffCliticalFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152C48",
+          "before": "finalize_and_send_packet__10TNpcPlayerFv",
+          "after": "finalize_and_send_packet__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152C8C",
+          "before": "byteswap_positions__10TNpcPlayerFv",
+          "after": "byteswap_positions__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152CE8",
+          "before": "get_6x47_cast_packet_size__FPUc",
+          "after": "get_6x47_cast_packet_size__FP20G_CastTechnique_6x47"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152D04",
+          "before": "init_cast_technique_cmd__10TNpcPlayerFv",
+          "after": "init_cast_technique_cmd__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152EB4",
+          "before": "byteswap_pos__10TNpcPlayerFv",
+          "after": "byteswap_pos__15TechniqueTargetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B5200",
+          "before": "send_code_45_1__10TObjPlayerFl",
+          "after": "send_code_45_1__10TObjPlayerFP10TObjPlayer"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B53BC",
+          "before": "play_effect__10TObjPlayerFlll",
+          "after": "play_effect__10TObjPlayerFP10TObjPlayerll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B5408",
+          "before": "play_effect_default__10TObjPlayerFii",
+          "after": "play_effect_default__10TObjPlayerFP10TObjPlayerl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFD90",
+          "before": "init_subobjects__10TObjPlayerFv",
+          "after": "initialize__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFDD4",
+          "before": "init_player_scale_state__FP10TObjPlayer",
+          "after": "reset__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFE1C",
+          "before": "set_speed__10TObjPlayerFf",
+          "after": "set_scalar__16PlayerScaleStateFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFE40",
+          "before": "set_scale_xyz__10TObjPlayerFf",
+          "after": "set_model_scale__16PlayerScaleStateFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFE50",
+          "before": "init_pair__10TObjPlayerFv",
+          "after": "clear__24PlayerScaleCameraOffsetsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C011C",
+          "before": "set_technique_id__10TObjPlayerFs",
+          "after": "set_technique_id__18TechniqueCastStateFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C6A14",
+          "before": "clear_shrink_flag__10TObjPlayerFv",
+          "after": "clear_shrink_flag__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C6B1C",
+          "before": "handle_6x87_shrink__10TObjPlayerFf",
+          "after": "apply_shrink__16PlayerScaleStateFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C6FF0",
+          "before": "get_obj_type__10TObjPlayerFv",
+          "after": "get_actor_id__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C72B4",
+          "before": "restore_shrunken_font__10TObjPlayerFv",
+          "after": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C72E4",
+          "before": "init_6x88_packet__10TObjPlayerFv",
+          "after": "initialize__23PlayerRestoreSizePacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C72F8",
+          "before": "send_font_update_60__10TObjPlayerFv",
+          "after": "send__23PlayerRestoreSizePacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C732C",
+          "before": "bswap_shrink__10TObjPlayerFv",
+          "after": "byte_swap__18PlayerShrinkPacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C7360",
+          "before": "TObjPlayer__sub_801C7360",
+          "after": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C739C",
+          "before": "init_shrink_effect__10TObjPlayerFv",
+          "after": "initialize__18PlayerShrinkPacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C73B8",
+          "before": "update_and_send_60__10TObjPlayerFv",
+          "after": "send__18PlayerShrinkPacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801CC7E4",
+          "before": "copy_tech_params__10TObjPlayerFPvPv",
+          "after": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D2C7C",
+          "before": "set_technique_id__10TObjPlayerFUc",
+          "after": "set_technique_id__18TechniqueCastStateFUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D2CCC",
+          "before": "get_technique_data__10TObjPlayerFPv",
+          "after": "get_technique_data__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D95B8",
+          "before": "get_section_clamped__10TObjPlayerFv",
+          "after": "get_section_clamped__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D95DC",
+          "before": "get_or_init_field_4__10TObjPlayerFv",
+          "after": "get_or_init_field_4__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D968C",
+          "before": "get_valid_technique__10TObjPlayerFv",
+          "after": "get_valid_technique__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D96CC",
+          "before": "get_castable_technique_level__10TObjPlayerFv",
+          "after": "get_castable_technique_level__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D9A44",
+          "before": "check_technique_level__10TObjPlayerFllUc",
+          "after": "check_technique_level__18TechniqueCastStateFlUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D9B18",
+          "before": "set_tech_level__10TObjPlayerFs",
+          "after": "set_tech_level__18TechniqueCastStateFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80230A98",
+          "before": "create__11TTecGiBartaFPvPvPvl",
+          "after": "create__11TTecGiBartaFPvP3VecP3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80230AF0",
+          "before": "create_ex__11TTecGiBartaFPvPvll",
+          "after": "create_ex__11TTecGiBartaFPvP3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802389E0",
+          "before": "create__10TTecRaFoieFPvPvPv",
+          "after": "create__10TTecRaFoieFP7TObjectP3VecP3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023DA10",
+          "before": "construct_bolt_effect__9TTecZondeFPUcPUcPUcllff",
+          "after": "construct_bolt_effect__12TTecZondeEffFP7TObjectPC3VecPC3Vecllff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036BDA0",
+          "before": "validate_6x47_cast_technique__FPUc",
+          "after": "validate_6x47_cast_technique__FP20G_CastTechnique_6x47"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "1efbd94901e325eb2f14fbff400bb52da60854c1d2ff480a51f6060e3af1329e",
+      "report_sha256": "f5131dbf019478f690e86b8c67372323c038fd8e29c01bb387a0f71f3b028027"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "e486a4579372bd7672cbdcb6d2f33c6555b61b33179662567998f8f31fb2a31a"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "0975f59bbf8a90fbd3b2f850faf4f4bd6c08c7fd8c17e252139e228eb617cb25"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "source": {
+      "pso/effect/TEffClitical": {
+        "functions": 7,
+        "data_bytes": 116
+      },
+      "pso/unk/TUnk_804CC870": {
+        "functions": 8,
+        "data_bytes": 696
+      }
+    },
+    "layer": {
+      "pso/effect/TEffClitical": {
+        "functions": 7,
+        "data_bytes": 116
+      },
+      "pso/unk/TUnk_804CC870": {
+        "functions": 8,
+        "data_bytes": 696
+      }
+    },
+    "review-final": {
+      "pso/effect/TEffClitical": {
+        "functions": 7,
+        "data_bytes": 116
+      },
+      "pso/unk/TUnk_804CC870": {
+        "functions": 8,
+        "data_bytes": 696
+      }
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "critical-effect": {
+        "probe_sha256": "7634f69d13c5faf692e274838a39595fcc84f6eaaad62756620a89b96937358f",
+        "log_sha256": "a00f846e3675784f78044b4d46ff899de7289cad8ee960ca8bcccc676e92cb3e"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "4933": {
+        "path": "src/pso/effect/TEffClitical.cpp",
+        "reason": "The native critical-hit effect keeps its original frame index and spawn flag. It constructs through a typed position and uses the shared texture frame and Ginja lists for drawing. The matching unit preserves the particle sequence, fade, destruction and initialization, including the original data bytes."
+      }
+    },
+    "scoped": {},
+    "open_rows": 264,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "710fde2efa16ef048fadf95fdeee20902fe4ed24",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [
+      {
+        "module": "psov3",
+        "address": "0x800825B4",
+        "before": "__ct__12TEffCliticalFPv",
+        "after": "__ct__12TEffCliticalFPC3Vec"
+      }
+    ],
+    "materialized_tree": "e0b210ffdbf1b82d0069b023fc687b4c6ec38efc",
+    "archive_sha256": "49fdafb0bbe0341b7ce71d15bfcdf068f0a9e6501602ded3b9d0701d73c23a89"
+  }
+}

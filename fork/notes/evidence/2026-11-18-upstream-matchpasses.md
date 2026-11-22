@@ -39,6 +39,7 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 | Actors, bosses, enemy lifecycle and combat | `6fef559bb1` | Expanded window review | 339 |
 | Network runtime | `72703eff0b` | Upstream master | 55 |
 | Character growth, inventory and equipment | `50664446c4` | Stack through network | 117 |
+| Techniques, effects and player state | `a5d9b6d322` | Inventory review | 118 |
 
 The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
@@ -47,6 +48,10 @@ The replay at `2bbf3682d6` reconstructs the consolidated source `156e375c1c` on 
 The 117-path character, inventory and equipment review at `50664446c4` carries the related growth, companion, combat stat, packet, item and save interfaces above the actor and network stack. The Gibon call keeps the existing technique factory and reads the typed attack record. The consolidated source `0bc02e7707` also picks up the native inventory and equipment receivers for the shop and judgment lists. The replay at `824c47a913` reconstructs that source exactly, with 627 paths still outside the review stack.
 
 The review, consolidated source and reconstructed fork workspace all match retail. The 130-path tooling archive round-trips and all 310 workspace checks pass. Two shop comparisons close, leaving 265 open. [Inventory review](2026-11-22-next-upstream-character-inventory-and-equipment.md) · [Validation](2026-11-22-upstream-366-inventory-review-validation.json)
+
+The 118-path technique and player-state review at `a5d9b6d322` combines casts, effect resources and construction, hold and release, and the native scale and shrink state. The critical-hit effect and ring-wave caller share a typed texture frame and Ginja lists. The new linker labels follow the position pointer used by the constructor and factory. The consolidated source is `aa4478e754`, and the 552-path replay at `5d009609c6` reconstructs it exactly above the review.
+
+The review, consolidated source and reconstructed fork workspace match retail with all 1,147 starting data bytes. The 130-path fork tooling archive updates one constructor label and round-trips, and all 310 workspace checks pass. The critical-hit source comparison closes, leaving 264 open. [Technique review](2026-11-22-next-upstream-techniques-effects-and-player-state.md) · [Validation](2026-11-22-upstream-366-technique-review-validation.json)
 
 ## Replay after upstream PR #365
 
