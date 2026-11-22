@@ -1,0 +1,499 @@
+{
+  "review": {
+    "head": "0a8586d2fe82628319f89e4f1b1d2fba88520d90",
+    "base": "a3cd2e2647cfa0885abc15cf9d7be86a6929e9ea",
+    "paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/volopt/TBoss3VoloptHiraisin.h",
+      "include/pso/enemy/dd/TObjEneDD_ST.h",
+      "include/pso/enemy/flower/TObjEneRe2Flower_Bomb.h",
+      "include/pso/enemy/fly/TObjEneBm3Fly.h",
+      "include/pso/enemy/gee/TObjEneMe1Gee.h",
+      "include/pso/enemy/recon/TObjEneRecon.h",
+      "include/pso/enemy/shark/TObjEneShark.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/unk/text_800C3088.h",
+      "include/pso/unk/text_800F9B84.h",
+      "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/boss/volopt/TObjVoloptCage.cpp",
+      "src/pso/effect/TEffect.cpp",
+      "src/pso/enemy/beast/TObjEneBeast.cpp",
+      "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/item/shop/ShopToolStock.cpp",
+      "src/pso/item/shop/ShopWeaponStock.cpp",
+      "src/pso/npc/TObjNpcAHM01.cpp",
+      "src/pso/npc/TObjNpcARM00.cpp",
+      "src/pso/npc/TObjNpcARW00.cpp",
+      "src/pso/npc/TObjNpcBase.cpp",
+      "src/pso/npc/TObjNpcBringer.cpp",
+      "src/pso/npc/TObjNpcCloakroomBase.cpp",
+      "src/pso/npc/TObjNpcConnoisseur.cpp",
+      "src/pso/npc/TObjNpcEnemy.cpp",
+      "src/pso/npc/TObjNpcExpertBase.cpp",
+      "src/pso/npc/TObjNpcFemaleBase.cpp",
+      "src/pso/npc/TObjNpcFemaleChild.cpp",
+      "src/pso/npc/TObjNpcFemaleDwarf.cpp",
+      "src/pso/npc/TObjNpcFemaleFat.cpp",
+      "src/pso/npc/TObjNpcFemaleMacho.cpp",
+      "src/pso/npc/TObjNpcFemaleOld.cpp",
+      "src/pso/npc/TObjNpcFemaleTall.cpp",
+      "src/pso/npc/TObjNpcGovernorBase.cpp",
+      "src/pso/npc/TObjNpcHFW00.cpp",
+      "src/pso/npc/TObjNpcHFW01.cpp",
+      "src/pso/npc/TObjNpcHHM00.cpp",
+      "src/pso/npc/TObjNpcHRM00.cpp",
+      "src/pso/npc/TObjNpcHRM01.cpp",
+      "src/pso/npc/TObjNpcHosa.cpp",
+      "src/pso/npc/TObjNpcHosa2.cpp",
+      "src/pso/npc/TObjNpcKenkyu.cpp",
+      "src/pso/npc/TObjNpcKenkyu2.cpp",
+      "src/pso/npc/TObjNpcKenkyuW.cpp",
+      "src/pso/npc/TObjNpcLappy.cpp",
+      "src/pso/npc/TObjNpcMaleBase.cpp",
+      "src/pso/npc/TObjNpcMaleChild.cpp",
+      "src/pso/npc/TObjNpcMaleDwarf.cpp",
+      "src/pso/npc/TObjNpcMaleFat.cpp",
+      "src/pso/npc/TObjNpcMaleMacho.cpp",
+      "src/pso/npc/TObjNpcMaleOld.cpp",
+      "src/pso/npc/TObjNpcMaleTall.cpp",
+      "src/pso/npc/TObjNpcMoja.cpp",
+      "src/pso/npc/TObjNpcNFM00.cpp",
+      "src/pso/npc/TObjNpcNFM01.cpp",
+      "src/pso/npc/TObjNpcNFW00.cpp",
+      "src/pso/npc/TObjNpcNFW01.cpp",
+      "src/pso/npc/TObjNpcNHW00.cpp",
+      "src/pso/npc/TObjNpcNHW01.cpp",
+      "src/pso/npc/TObjNpcNgcBase.cpp",
+      "src/pso/npc/TObjNpcNurseBase.cpp",
+      "src/pso/npc/TObjNpcSecretaryBase.cpp",
+      "src/pso/npc/TObjNpcSoldierBase.cpp",
+      "src/pso/npc/TObjNpcSoldierMacho.cpp",
+      "src/pso/npc/TObjNpcSoutokufu.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/trap/TOMine.cpp",
+      "src/pso/object/trap/TOMineIcon01.cpp",
+      "src/pso/object/trap/TOMineIcon02.cpp",
+      "src/pso/object/trap/TOMineIcon03.cpp",
+      "src/pso/object/trap/TOMineIcon04.cpp",
+      "src/pso/object/trap/TOTrapAncient01.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp",
+      "src/pso/player/TObjPlayer_80092A7C.cpp",
+      "src/pso/player/TObjPlayer_800C4714.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801D84CC.cpp",
+      "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+      "src/pso/ui/frontend/TAdEndText.cpp",
+      "src/pso/ui/hud/TRaderMapCore.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp",
+      "src/pso/unk/text_8020E700.cpp",
+      "src/pso/unk/text_80222C28.cpp"
+    ],
+    "components": [
+      "2026-11-21-upstream-365-contact-validation.json",
+      "2026-11-22-upstream-365-battle-motion-validation.json",
+      "2026-11-22-upstream-365-flight-actors-validation.json",
+      "2026-11-22-upstream-365-flower-recon-validation.json",
+      "2026-11-22-upstream-365-population-rel-validation.json",
+      "2026-11-22-upstream-365-shark-validation.json"
+    ],
+    "replay_map": [
+      {
+        "donor": "d41b8cd452358de7dbe23ca3f3181ebf553f2bbe",
+        "head": "9f041b69c7684d9338269fbc68b869d773ef3b01",
+        "tree": "6c676791b895a969771bbc3126e8697eddab75dc"
+      },
+      {
+        "donor": "77347118c9727876de280b3100272a88a0a96871",
+        "head": "8ba29ecec6190c1674a09ae12ee35476c77ad1a4",
+        "tree": "6c676791b895a969771bbc3126e8697eddab75dc"
+      },
+      {
+        "donor": "322e741a84ddefeb25c71f6c259856f104f88a3b",
+        "head": "6c8f46f1e6ac887a2807dd8ef9a83735a0cd4b7d",
+        "tree": "4c42d9dbd61611d2116887d98a5e42c1084c6406"
+      },
+      {
+        "donor": "dfb48c771795f2cea08ecd70eaaad0881baf11bf",
+        "head": "0ecae9be8499449d84aed6c95d740be12bca7f0f",
+        "tree": "53f11e1576784f8f0ac39d39fbf4685091dba13e"
+      },
+      {
+        "donor": "f927f2cfb6adae42e669d19574812d4c4c7bf987",
+        "head": "5c20fa525510372d41f56bc5438fdcc8ff900c01",
+        "tree": "e9c1c9ef60677037941cf0fc47041dde2d02a53f"
+      },
+      {
+        "donor": "17da9b510aba57898391c0d20bdbd31163f56d3d",
+        "head": "0a8586d2fe82628319f89e4f1b1d2fba88520d90",
+        "tree": "9c491b032c24dab60fb1a7f4e5d4da837dd45209"
+      }
+    ],
+    "overlapping_paths": {
+      "wall and ground contacts": [
+        "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+      ],
+      "battle tables": [
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "src/pso/unk/text_803626A8.cpp"
+      ],
+      "position initialization": [
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+      ],
+      "position copy": [
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+      ]
+    }
+  },
+  "review_validation": {
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2447,
+    "linker_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x80041B08",
+        "before": "copy_position__20TBoss3VoloptHiraisinFv",
+        "after": "copy_position__9TObjCharaFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80092A94",
+        "before": "init_position_vectors__10TObjPlayerFv",
+        "after": "init_position_vectors__9TObjCharaFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800AC6B0",
+        "before": "TObjEneShark__ct",
+        "after": "__ct__12TObjEneSharkFP7TObjectPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800B225C",
+        "before": "create__13TObjEneBm3FlyFllPC3VecPC3Vec",
+        "after": "create__13TObjEneBm3FlyFP17TObjEneBm3FlyNestllPC3VecPC3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800B93C4",
+        "before": "fire_attack_a__12TObjEneDD_STFllf",
+        "after": "fire_attack_a__12TObjEneDD_STFP3Veclf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800B9434",
+        "before": "fire_attack_b__12TObjEneDD_STFllf",
+        "after": "fire_attack_b__12TObjEneDD_STFP3Veclf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800B94A4",
+        "before": "fire_attack_c__12TObjEneDD_STFllf",
+        "after": "fire_attack_c__12TObjEneDD_STFP3Veclf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800CB5A0",
+        "before": "sub_800CB5A0__13TObjEneMe1GeeFl",
+        "after": "sub_800CB5A0__13TObjEneMe1GeeFUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800F9AE8",
+        "before": "create_named_object__Fl",
+        "after": "create_named_object__FPCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8031E7F0",
+        "before": "get_field_4d4__12TObjEneReconFv",
+        "after": "get_field_4d4__14TObjEneRecoboxFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8031E7F8",
+        "before": "get_field_4d0__12TObjEneReconFv",
+        "after": "get_field_4d0__14TObjEneRecoboxFv"
+      }
+    ],
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "report_sha256": "29bbc1ef61a6dd8a5c147bbdc7ce5f8da7e42e35d31a095047741f2b0eba299e",
+    "check_sha256": "ac9a749646959c1d75b43939984247303a1c50159ca61518709b976f616941c8",
+    "data_inventory": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "residual": {
+    "rehearsal_head": "de3c84b726078491915b14a22754614c3aac91de",
+    "before": 153,
+    "after": 51,
+    "newly_identical_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "include/pso/boss/volopt/TBoss3VoloptHiraisin.h",
+      "include/pso/enemy/dd/TObjEneDD_ST.h",
+      "include/pso/enemy/flower/TObjEneRe2Flower_Bomb.h",
+      "include/pso/enemy/fly/TObjEneBm3Fly.h",
+      "include/pso/enemy/gee/TObjEneMe1Gee.h",
+      "include/pso/enemy/recon/TObjEneRecon.h",
+      "include/pso/enemy/shark/TObjEneShark.h",
+      "include/pso/unk/text_800C3088.h",
+      "include/pso/unk/text_800F9B84.h",
+      "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/boss/volopt/TObjVoloptCage.cpp",
+      "src/pso/effect/TEffect.cpp",
+      "src/pso/enemy/beast/TObjEneBeast.cpp",
+      "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/item/shop/ShopToolStock.cpp",
+      "src/pso/item/shop/ShopWeaponStock.cpp",
+      "src/pso/npc/TObjNpcAHM01.cpp",
+      "src/pso/npc/TObjNpcARM00.cpp",
+      "src/pso/npc/TObjNpcARW00.cpp",
+      "src/pso/npc/TObjNpcBase.cpp",
+      "src/pso/npc/TObjNpcBringer.cpp",
+      "src/pso/npc/TObjNpcCloakroomBase.cpp",
+      "src/pso/npc/TObjNpcConnoisseur.cpp",
+      "src/pso/npc/TObjNpcEnemy.cpp",
+      "src/pso/npc/TObjNpcExpertBase.cpp",
+      "src/pso/npc/TObjNpcFemaleBase.cpp",
+      "src/pso/npc/TObjNpcFemaleChild.cpp",
+      "src/pso/npc/TObjNpcFemaleDwarf.cpp",
+      "src/pso/npc/TObjNpcFemaleFat.cpp",
+      "src/pso/npc/TObjNpcFemaleMacho.cpp",
+      "src/pso/npc/TObjNpcFemaleOld.cpp",
+      "src/pso/npc/TObjNpcFemaleTall.cpp",
+      "src/pso/npc/TObjNpcGovernorBase.cpp",
+      "src/pso/npc/TObjNpcHFW00.cpp",
+      "src/pso/npc/TObjNpcHFW01.cpp",
+      "src/pso/npc/TObjNpcHHM00.cpp",
+      "src/pso/npc/TObjNpcHRM00.cpp",
+      "src/pso/npc/TObjNpcHRM01.cpp",
+      "src/pso/npc/TObjNpcHosa.cpp",
+      "src/pso/npc/TObjNpcHosa2.cpp",
+      "src/pso/npc/TObjNpcKenkyu.cpp",
+      "src/pso/npc/TObjNpcKenkyu2.cpp",
+      "src/pso/npc/TObjNpcKenkyuW.cpp",
+      "src/pso/npc/TObjNpcLappy.cpp",
+      "src/pso/npc/TObjNpcMaleBase.cpp",
+      "src/pso/npc/TObjNpcMaleChild.cpp",
+      "src/pso/npc/TObjNpcMaleDwarf.cpp",
+      "src/pso/npc/TObjNpcMaleFat.cpp",
+      "src/pso/npc/TObjNpcMaleMacho.cpp",
+      "src/pso/npc/TObjNpcMaleOld.cpp",
+      "src/pso/npc/TObjNpcMaleTall.cpp",
+      "src/pso/npc/TObjNpcMoja.cpp",
+      "src/pso/npc/TObjNpcNFM00.cpp",
+      "src/pso/npc/TObjNpcNFM01.cpp",
+      "src/pso/npc/TObjNpcNFW00.cpp",
+      "src/pso/npc/TObjNpcNFW01.cpp",
+      "src/pso/npc/TObjNpcNHW00.cpp",
+      "src/pso/npc/TObjNpcNHW01.cpp",
+      "src/pso/npc/TObjNpcNgcBase.cpp",
+      "src/pso/npc/TObjNpcNurseBase.cpp",
+      "src/pso/npc/TObjNpcSecretaryBase.cpp",
+      "src/pso/npc/TObjNpcSoldierBase.cpp",
+      "src/pso/npc/TObjNpcSoldierMacho.cpp",
+      "src/pso/npc/TObjNpcSoutokufu.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/trap/TOMine.cpp",
+      "src/pso/object/trap/TOMineIcon01.cpp",
+      "src/pso/object/trap/TOMineIcon02.cpp",
+      "src/pso/object/trap/TOMineIcon03.cpp",
+      "src/pso/object/trap/TOMineIcon04.cpp",
+      "src/pso/object/trap/TOTrapAncient01.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp",
+      "src/pso/player/TObjPlayer_80092A7C.cpp",
+      "src/pso/player/TObjPlayer_800C4714.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801D84CC.cpp",
+      "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+      "src/pso/ui/frontend/TAdEndText.cpp",
+      "src/pso/ui/hud/TRaderMapCore.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp",
+      "src/pso/unk/text_8020E700.cpp",
+      "src/pso/unk/text_80222C28.cpp"
+    ],
+    "remaining_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/olgaflow/TBoss6Mine.h",
+      "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+      "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h",
+      "include/pso/boss/olgaflow/TBoss6Type2_8036A92C.h",
+      "include/pso/effect/particle/ParticleParam.h",
+      "include/pso/network/TProtocol.h",
+      "include/pso/network/protocol/packet_classes.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_80011014.h",
+      "include/pso/player/TObjPlayer_803E112C.h",
+      "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+      "include/pso/ui/frontend/TAdTimeSetGC.h",
+      "include/pso/ui/window/TWindowHelpItem.h",
+      "include/pso/unk/TUnk_8048E728.h",
+      "include/pso/unk/text_800F5BC0.h",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+      "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+      "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+      "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_803309D8.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+      "src/pso/network/TPlyJoinLobbyEntry.cpp",
+      "src/pso/network/TProtocol.cpp",
+      "src/pso/object/TObjControl.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_802C422C.cpp",
+      "src/pso/ui/font/TFontSmallLobby_801C013C.cpp",
+      "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp"
+    ]
+  },
+  "runtime": {
+    "battle-motion": {
+      "cases": [
+        "384 table lookups, 32 full-file loads and release passed",
+        "typed motion fields and HP/TP reload and reset passed"
+      ],
+      "images": [
+        "retail",
+        "review"
+      ],
+      "log_sha256": "dbd8680887e0e1992debf318722c65245a806306d8e4bff0fa61a8788fcf02ab",
+      "probe_sha256": "28df671ae554796d2e2b373a37cf1367d65ea24ac8a8408622e547aaff524073"
+    },
+    "population-rel": {
+      "cases": [
+        "native position copies, REL relocation and load failures, and 56 NPC archive lifecycle cases passed."
+      ],
+      "images": [
+        "retail",
+        "review"
+      ],
+      "log_sha256": "abdec6646222d357cda3b5732029a8205d24f0f369cfbce01f516d6202a031f5",
+      "probe_sha256": "e3591e040daca2b75a01edb29e44660df3c025146daf0f83989f254132c1303e"
+    },
+    "shark": {
+      "cases": [
+        "2 actor copy cases, 5 Shark subtype cases, typed table records, and both Shark resource lifecycles passed."
+      ],
+      "images": [
+        "retail",
+        "review"
+      ],
+      "log_sha256": "65041256e2a64dbd248c77cd92cd62ce56d277c7ad42d8c44b67ea634ce88543",
+      "probe_sha256": "d7167fc12c60b5b5e9d7aed59ae8169d5790fb4daba9d641bbc26423b81bbd35"
+    },
+    "flower-recon": {
+      "cases": [
+        "Flower action entry, 3 melee outcomes, bomb initialization and 2 Recobox parameters passed."
+      ],
+      "images": [
+        "retail",
+        "review"
+      ],
+      "log_sha256": "7d881b902b787a9276fdc936e03cee29a4c7f822785e211c0ef7ece818ea886d",
+      "probe_sha256": "8341f631ea6350ea50caa8c00884d883f62f358ad6120985b91f1d9f2723584d"
+    },
+    "flight-actors": {
+      "cases": [
+        "movement destinations, Fly family lifecycle, Gee color state and Gi Gue parameters passed."
+      ],
+      "images": [
+        "retail",
+        "review"
+      ],
+      "log_sha256": "6a7492c14b0a6124eadc866f247f22c38736d0a37f0665800b60aac635238148",
+      "probe_sha256": "a144c67dd17d8e4606db608d7731a8c9cfa8e743891dcf2248e98db283534132"
+    }
+  },
+  "probe_symbol_aliases": [
+    "move_xz_on_ground__9TObjEneDDFPUc = .text:0x800BADDC; // type:function size:0x98",
+    "try_move_actor_xz_on_ground__9TObjEneDDFPUc = .text:0x800BAE74; // type:function size:0xA8",
+    "get_gigue_float_parameter__15TObjEneMe1GiGueFl = .text:0x802CDAD8; // type:function size:0x10",
+    "get_gigue_int_parameter__15TObjEneMe1GiGueFl = .text:0x802CDAC4; // type:function size:0x14"
+  ],
+  "retained_existing_call": {
+    "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "detail": "The existing stat, attack and actor-record pointers already match reset_hp. The historical casts were omitted before the final build."
+  },
+  "source": "15201748bd3a0450053d84001294eca3e6de3a01",
+  "fork_workspace": "a5ce12dbe240e1616223c4e9d92a65d7a9d9f3ae",
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "historical_comparisons_open": 262
+}

@@ -44,6 +44,7 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 | Positional sound, voice slots and sound balance | `a94738117b` | Save and quest review | 166 |
 | Shared allocation, copy and release | `848e38d367` | Sound review | 227 |
 | Camera playback, scenes and rendering | `a3cd2e2647` | Memory review | 60 |
+| Actor positions, population and encounter setup | `0a8586d2fe` | Camera and scene review | 107 |
 
 The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
@@ -68,6 +69,8 @@ The review, consolidated source and reconstructed fork workspace match retail wi
 The 227-path memory review at `848e38d367` gives allocation, release and byte and word moves a shared header. Callers release nullable allocations through the shared memory helper, and the footprint still releases the texture list before its allocation. The only linker label change follows the helper's move out of character selection. The review reproduces retail with all 1,147 original data bytes. The replay at `32a1d705d3` reconstructs consolidated source `15201748bd` from the 202 paths still outside the review stack. [Memory review](2026-11-22-next-upstream-shared-memory-operations.md) · [Validation](2026-11-22-upstream-366-shared-memory-review-validation.json)
 
 The 60-path camera and scene review at `a3cd2e2647` carries native camera playback, motion channels and view transforms. It also carries the texture-strip buffers, live scene storage, fade callbacks and deferred render queue. The exact build and runtime probes pass with all 1,147 original data bytes accounted for. The replay at `d0c6ba2e28` reconstructs source `15201748bd` from the 153 paths still outside the review stack. [Camera and scene review](2026-11-22-next-upstream-camera-scenes-and-rendering.md) · [Validation](2026-11-22-upstream-366-camera-scene-review-validation.json)
+
+The 107-path actor position and population review at `0a8586d2fe` recovers native placement and motion, spawn and attack parameters, and the resource lifetimes that use them. It keeps the native Gibbles constructor and update method, and makes their position calls use the shared character methods. The review reproduces retail with all 1,147 original data bytes accounted for. The replay at `de3c84b726` reconstructs the consolidated source from the 51 paths still outside the review stack. [Actor position and population review](2026-11-22-next-upstream-actor-positions-and-population.md) · [Validation](2026-11-22-upstream-366-actor-positions-review-validation.json)
 
 ## Replay after upstream PR #365
 
