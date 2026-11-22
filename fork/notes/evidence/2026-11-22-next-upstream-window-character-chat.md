@@ -2,6 +2,8 @@
 
 The independently validated review at `0f8ed70741` covers 358 paths on upstream `d8c0a969d2` (PR #370). It reproduces retail with all 27,572 functions exact, 2,417 linked units and all 1,147 original data bytes accounted for. [Current build and replay](2026-11-22-upstream-370-replay-validation.json)
 
+Upstream’s `tools/source_quality.py` at `d8c0a969d2` scores this exact candidate across 355 source files. It removes 2,717 findings and adds 646, reducing total source debt from 167,998 to 165,927 (−2,071). The largest reductions include 636 numbered parameters, 439 byte-pointer offsets, 281 address-named types, and 155 `extern "C"` declarations. Offset-named fields rise by 226 as the patch introduces typed layouts. The separate ownership checks show 57 fewer findings. The checker also reports 168 symbol label changes, 39 with address-based naming flags. [Upstream benchmark](https://github.com/zeroz41/pso-decomp/blob/d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571/tools/source_quality.py) · [Upstream CI workflow](https://github.com/zeroz41/pso-decomp/blob/d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571/.github/workflows/ci-comment.yml)
+
 The independently validated review is `great-merge/review/after-369/window-character-chat` at `717dfedd37bbe9e207552eba8d4e9d21c90a3ba0` directly above upstream `1698caaa1941302ed6dfc60d886d041bae272e0e`. It changes 358 paths. The retail DOL matches and all 1,147 original data bytes are accounted for. The title, status and lifetime probes pass, and the single commit uses the configured fork identity. Its function-label changes alter receivers, signatures, linkage or the constructor and destructor forms. The upstream quality report flags existing address-derived names among those changes. [Current validation](2026-11-22-upstream-369-window-review-validation.json)
 
 Upstream PR #367 advanced master to `6aee940eca`. The first local review is window, character selection and chat at `1484889e3b` on that revision. It covers 358 paths. The shared memory review will carry the 195 release-related edits removed from this candidate. Three remaining merge conflicts were resolved using the upstream controller and trade field names and the existing model loader’s writable pointer array. [Merged PR #367](https://github.com/zeroz41/pso-decomp/pull/367)
@@ -59,5 +61,6 @@ Start with the interfaces in `include/pso/ui/window/TWindowMakeTeam.h`, `include
 ### Validation
 
 - GPOE8P reproduces retail DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
-- `tools/check_pr.py` passes against upstream master `2ea1c02d4c` with all 27,572 functions exact, 2,447 units linked, and zero code or data coverage losses.
-- Runtime probes agree with retail for choice selection, status rendering, character slot labels, controller repeat, Word Select, Guild Card accessors, radar data, title sprite and camera routing, and numeric glyph rendering.
+- `tools/check_pr.py` passes against upstream master `d8c0a969d2` with all 27,572 functions exact, 2,417 units linked, and zero code or data coverage losses.
+- Upstream’s source-quality benchmark reports 2,071 fewer findings overall, including 439 fewer byte-pointer offsets and 115 fewer hand-mangled member names. Typed layouts add a net 226 offset-named fields.
+- Component runtime probes agree with retail for choice selection, status rendering, character slot labels, controller repeat, Word Select, Guild Card accessors, radar data, title sprite and camera routing, and numeric glyph rendering.
