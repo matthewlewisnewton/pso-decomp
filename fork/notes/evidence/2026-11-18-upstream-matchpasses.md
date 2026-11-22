@@ -4,7 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
-Upstream PR #366 landed at `2ea1c02d4c`. Its tree is identical to the reviewed renderer head `927d57da60`. The next candidate is the 435-file window, character selection and chat review at `7e38bacd3a` on current master. It now includes the title sprite and status-window changes. [Merged PR #366](https://github.com/zeroz41/pso-decomp/pull/366) · [Window review evidence](2026-11-22-next-upstream-window-character-chat.md)
+Upstream PR #367 advanced master to `6aee940eca`. The first local review is window, character selection and chat at `1484889e3b` on that revision. It covers 358 paths. The shared memory review will carry the 195 release-related edits removed from this candidate. Three remaining merge conflicts were resolved using the upstream controller and trade field names and the existing model loader’s writable pointer array. [Merged PR #367](https://github.com/zeroz41/pso-decomp/pull/367)
+
+The stock upstream build and the new review reproduce retail. Each accounts for all 1,147 starting data bytes and all 27,572 functions. The 12-byte data coverage difference from the assembled queue before #367 is alignment padding. The first review links 2,417 units and passes the title, status and lifetime probes. [Window review validation](2026-11-22-upstream-367-window-review-validation.json)
 
 ## Replay after upstream PR #366
 

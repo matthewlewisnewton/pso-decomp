@@ -1,0 +1,1183 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "review": {
+    "ref": "great-merge/review/after-367/window-character-chat",
+    "head": "1484889e3b9d6136312eaf74267b3ff9035a7766",
+    "previous_review": "c55003f5b9845bb2ce0cefb013f2d7cc6067b550",
+    "scoped_previous": "d37502ffa7368aa3be5cc7c641e499b6f40f0918",
+    "paths": 358,
+    "resolved_paths": [
+      "include/pso/system/ControllerInputState.h",
+      "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+      "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp"
+    ],
+    "deferred_shared_release_paths": {
+      "config/GPOE8P/psov3/symbols.txt": 1,
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": 1,
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": 1,
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": 1,
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": 1,
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp": 1,
+      "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp": 1,
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": 1,
+      "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp": 1,
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp": 1,
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp": 1,
+      "src/pso/effect/TBGLightningCtrl.cpp": 1,
+      "src/pso/effect/particle/TParticleCtrl_800874F4.cpp": 1,
+      "src/pso/enemy/lappy/TObjEneLappy.cpp": 1,
+      "src/pso/item/TItemReverseTech.cpp": 1,
+      "src/pso/item/drop/TItemDrop_80105D0C.cpp": 2,
+      "src/pso/map/TSetManager.cpp": 6,
+      "src/pso/npc/TObjNpcAHM01.cpp": 1,
+      "src/pso/npc/TObjNpcARM00.cpp": 1,
+      "src/pso/npc/TObjNpcARW00.cpp": 1,
+      "src/pso/npc/TObjNpcHFW00.cpp": 1,
+      "src/pso/npc/TObjNpcHFW01.cpp": 1,
+      "src/pso/npc/TObjNpcHHM00.cpp": 1,
+      "src/pso/npc/TObjNpcHRM00.cpp": 1,
+      "src/pso/npc/TObjNpcHRM01.cpp": 1,
+      "src/pso/npc/TObjNpcNFM00.cpp": 1,
+      "src/pso/npc/TObjNpcNFM01.cpp": 1,
+      "src/pso/npc/TObjNpcNFW00.cpp": 1,
+      "src/pso/npc/TObjNpcNFW01.cpp": 1,
+      "src/pso/npc/TObjNpcNHW00.cpp": 1,
+      "src/pso/npc/TObjNpcNHW01.cpp": 1,
+      "src/pso/object/TMotorcycle.cpp": 1,
+      "src/pso/object/TObjComputer.cpp": 1,
+      "src/pso/object/TObjHMS_EZRope_Player.cpp": 4,
+      "src/pso/object/TObjSinBoard.cpp": 3,
+      "src/pso/object/TObjTank.cpp": 1,
+      "src/pso/object/ambient/TObjFish.cpp": 1,
+      "src/pso/object/ambient/TObjLight_80133568.cpp": 1,
+      "src/pso/object/city/CityDoors.cpp": 1,
+      "src/pso/object/collision/TOSymbolchatColli.cpp": 1,
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": 1,
+      "src/pso/object/container/TObjContainerItem.cpp": 2,
+      "src/pso/object/door/TODoorJungleMain.cpp": 1,
+      "src/pso/object/door/TODoorLabo.cpp": 8,
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp": 1,
+      "src/pso/object/jungle/TOGrassJungle.cpp": 1,
+      "src/pso/object/jungle/TORockJungleL01.cpp": 1,
+      "src/pso/object/lobby/LobbyPigeonPath.cpp": 4,
+      "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp": 1,
+      "src/pso/object/trap/TOTrapSeabed01.cpp": 1,
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp": 1,
+      "src/pso/player/TObjPlayer_8023E480.cpp": 3,
+      "src/pso/player/TPlayerFootStamp.cpp": 1,
+      "src/pso/quest/TQuestListVM.cpp": 1,
+      "src/pso/quest/TQuestListVM_8007EAF8.cpp": 1,
+      "src/pso/quest/TQuestThread.cpp": 1,
+      "src/pso/quest/TQuestVmDownLoadServer.cpp": 21,
+      "src/pso/render/BlobShadow.cpp": 1,
+      "src/pso/system/TGStream.cpp": 1,
+      "src/pso/system/TLanguage_80132A5C.cpp": 1,
+      "src/pso/system/scene/TScene.cpp": 6,
+      "src/pso/technique/TTecCtrl.cpp": 1,
+      "src/pso/ui/charcreate/TChCrLoadAfs.cpp": 2,
+      "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp": 1,
+      "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp": 1,
+      "src/pso/ui/city/TCheckRoomSequence.cpp": 1,
+      "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp": 2,
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": 1,
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp": 1,
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp": 26,
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": 4,
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp": 2,
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": 1,
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp": 1,
+      "src/pso/ui/hud/TRaderMapCore.cpp": 1,
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp": 1,
+      "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp": 4,
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp": 1,
+      "src/pso/unk/TLobbyEventTheme.cpp": 1,
+      "src/pso/unk/TLobby_8001EF5C.cpp": 6,
+      "src/pso/unk/TLobby_8002C140.cpp": 1,
+      "src/pso/unk/TLobby_800F8AA8.cpp": 5,
+      "src/pso/unk/TLobby_800FA73C.cpp": 1,
+      "src/pso/unk/TLobby_801E43E4.cpp": 4,
+      "src/pso/unk/TLobby_801F3A24.cpp": 2,
+      "src/pso/unk/TLobby_80207DA8.cpp": 1,
+      "src/pso/unk/TLobby_80209524.cpp": 4,
+      "src/pso/unk/TLobby_80226C3C.cpp": 1,
+      "src/pso/unk/TLobby_8028A7C8.cpp": 1,
+      "src/pso/unk/TLobby_803382E4.cpp": 2,
+      "src/pso/unk/text_801A5778.cpp": 1,
+      "src/pso/unk/text_8020B5CC.cpp": 2,
+      "src/pso/unk/text_802A1020.cpp": 2
+    },
+    "linker_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8001C19C",
+        "before": "request_exit__5TLogoFv",
+        "after": "request_exit__5TLogoFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80077108",
+        "before": "find_free_entry__20TWindowSubSymbolChatFl",
+        "after": "find_free_entry__16SymbolChatPresetFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8007737C",
+        "before": "update_selected_symbol__20TWindowSubSymbolChatFv",
+        "after": "update_selected_symbol__16SymbolChatPresetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80077408",
+        "before": "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+        "after": "get_symbol_chat_data__16SymbolChatPresetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8007763C",
+        "before": "get_data_ptr__20TWindowSubSymbolChatFv",
+        "after": "get_data_ptr__16SymbolChatPresetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80077720",
+        "before": "is_initialized__20TWindowSubSymbolChatFv",
+        "after": "is_initialized__16SymbolChatPresetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8007B5A0",
+        "before": "remove_entry__17TWindowGetComCardFlll",
+        "after": "remove_entry__17TWindowGetComCardFlP14GuildCardEntryl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8007B6D8",
+        "before": "get_card_id__17TWindowSubComCardFv",
+        "after": "get_card_id__14GuildCardEntryCFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8007B6E0",
+        "before": "is_active__17TWindowSubComCardFv",
+        "after": "is_active__14GuildCardEntryCFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013AD50",
+        "before": "TLobby__sub_8013AD50",
+        "after": "test_flag_1d_bit1__15TWindowMakeTeamFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013AD5C",
+        "before": "TLobby__sub_8013AD5C",
+        "after": "get_field_20__15TWindowMakeTeamFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013AD64",
+        "before": "get_mode__6TLobbyFv",
+        "after": "get_mode__15TWindowMakeTeamFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013AD6C",
+        "before": "TLobby__sub_8013AD6C",
+        "after": "read_mode__15TWindowMakeTeamFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013AD74",
+        "before": "TLobby__sub_8013AD74",
+        "after": "test_flag_1d_bit0__15TWindowMakeTeamFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A594C",
+        "before": "read_input__16TKeyBoardControlFl",
+        "after": "read_input__16TKeyBoardControlFUc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A5A40",
+        "before": "check_input_angle__16TKeyBoardControlFv",
+        "after": "check_input_angle__19StickEscapeDetectorFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A5AC8",
+        "before": "init_stick_escape_detector__FPvPv",
+        "after": "init_stick_escape_detector__FP19StickEscapeDetectorPC22ControllerInputContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A5AEC",
+        "before": "reset_fields__10TObjPlayerFv",
+        "after": "reset_fields__19StickEscapeDetectorFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A6910",
+        "before": "poll_key_state__16TKeyBoardControlFv",
+        "after": "poll_key_state__22ControllerInputContextFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A69E4",
+        "before": "accumulate_key_bits__FlPl",
+        "after": "accumulate_key_bits__FlPUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E2F94",
+        "before": "draw_with_camera__6TLobbyFlllf",
+        "after": "draw_with_camera__6TLobbyFP16SpriteDescriptorllf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E352C",
+        "before": "draw_strip_swap_color__15TWindowCtrlMainFllf",
+        "after": "draw_strip_swap_color__13ColorLineListFllf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801FA678",
+        "before": "copy_transform__13TRaderMapCoreFPv",
+        "after": "copy_transform__17RadarMapViewStateFPC17RadarMapViewState"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801FAAEC",
+        "before": "render_region_records__13TRaderMapCoreFPv",
+        "after": "render_region_records__13TRaderMapCoreFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801FB874",
+        "before": "apply_compass_param__13TRaderMapCoreFPl",
+        "after": "apply_compass_param__13TRaderMapCoreFPCl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802183BC",
+        "before": "clear_flag_and_release__17TWindowSubComCardFv",
+        "after": "clear_flag_and_release__11TWindowMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8022598C",
+        "before": "TLobby__sub_8022598C",
+        "after": "get_short_mail_entry__Fi"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80225BC8",
+        "before": "fill_list_entry__6TLobbyFPUc",
+        "after": "fill_from_packet__14ShortMailEntryFPUc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80225C84",
+        "before": "get_com_card_list__6TLobbyFv",
+        "after": "get_name__14GuildCardEntryFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80225C8C",
+        "before": "TLobby__sub_80225C8C",
+        "after": "clear_unread__14ShortMailEntryFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80225C9C",
+        "before": "is_flag_set__6TLobbyFPv",
+        "after": "is_active__14ShortMailEntryFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80225CA8",
+        "before": "get_lobby_id__6TLobbyFv",
+        "after": "get_id__14ShortMailEntryFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80242908",
+        "before": "get_sub_disp_ptr__20TWindowSubStatusDispFv",
+        "after": "get_sub_disp_ptr__15GuildCardRecordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80242910",
+        "before": "get_id__6TLobbyFv",
+        "after": "get_id__15GuildCardRecordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80244D70",
+        "before": "is_balloon_overlapping__FPUcPUcPUc",
+        "after": "is_balloon_overlapping__FPC15TWindowFukidasiPCfPCf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80244DFC",
+        "before": "find_overlapping_balloon__15TWindowFukidasiFPvPvPvPv",
+        "after": "find_overlapping_balloon__15TWindowFukidasiFPCfPCfP15TWindowFukidasi"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80244F00",
+        "before": "find_balloon_overlap_for__15TWindowFukidasiFl",
+        "after": "find_balloon_overlap_for__15TWindowFukidasiFP15TWindowFukidasi"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802484C0",
+        "before": "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+        "after": "update_visibility__17TWindowChatSymbolFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80248534",
+        "before": "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+        "after": "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80248564",
+        "before": "set_from_key__20TWindowSubSymbolChatFl",
+        "after": "set_from_key__17TWindowChatSymbolFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80249060",
+        "before": "is_flag_4_set__20TWindowSubStatusDispFv",
+        "after": "is_flag_4_set__13TUnk_804CF918CFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80249120",
+        "before": "begin_scroll__17TWindowSubComCardFf",
+        "after": "begin_scroll__20TWindowChoiceSettingFf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024961C",
+        "before": "draw_resolved_window__15TWindowFukidasiFllll",
+        "after": "draw_resolved_window__15TWindowFukidasiFPCfPCfl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80249BA8",
+        "before": "TWindowComCard__ct",
+        "after": "__ct__14TWindowComCardFPvPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80249D34",
+        "before": "set_selected_index__14TWindowComCardFl",
+        "after": "set_selected_index__13TUnk_804CE964Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80249D7C",
+        "before": "TWindowComCard__sub_80249D7C",
+        "after": "sub_80249D7C__13TUnk_804CE964Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80249E80",
+        "before": "TWindowComCard__sub_80249E80",
+        "after": "__dt__13TUnk_804CE964Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80249ED8",
+        "before": "TWindowComCard__sub_80249ED8",
+        "after": "__ct__13TUnk_804CE964FP11TWindowBaseP10NJS_POINT2lll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024A5AC",
+        "before": "get_speaker_balloon_anchor__11TWindowCtrlFPviPvPv",
+        "after": "get_speaker_balloon_anchor__11TWindowCtrlFUsPfPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024A714",
+        "before": "find_farthest_balloon_slot__11TWindowCtrlFPvUs",
+        "after": "find_farthest_balloon_slot__11TWindowCtrlFUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024A800",
+        "before": "acquire_balloon_slot__11TWindowCtrlFPviiPv",
+        "after": "acquire_balloon_slot__11TWindowCtrlFUsll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024A928",
+        "before": "show_chat_balloon__11TWindowCtrlFllPvPv",
+        "after": "show_chat_balloon__11TWindowCtrlFUslPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024B558",
+        "before": "open__11TWindowCtrlFlll",
+        "after": "open__11TWindowCtrlFUsll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024B5E0",
+        "before": "open_default__11TWindowCtrlFll",
+        "after": "open_default__11TWindowCtrlFUsl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024C5E8",
+        "before": "get_flags__11TWindowCtrlFv",
+        "after": "get_speaker_id__13TUnk_804CF0B8Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024E434",
+        "before": "render_status__14TWindowDepositFl",
+        "after": "render_status__14TWindowDepositFP17WindowDrawContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8024FBA8",
+        "before": "set_input_mode__20TWindowSubStatusDispFUc",
+        "after": "set_input_mode__19TWindowKeyBoardBaseFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80251DF0",
+        "before": "sub_80251DF0__13TUnk_804CF0B8Fslsf",
+        "after": "sub_80251DF0__13TUnk_804CF0B8FUsllf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80252B74",
+        "before": "TWindowFukidasi__sub_80252B74",
+        "after": "__ct__13TUnk_804CF0B8FUsllf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80252FCC",
+        "before": "TWindowGetComCard__ct",
+        "after": "__ct__17TWindowGetComCardFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802563A0",
+        "before": "draw_arrows__18TWindowInputNumberFv",
+        "after": "draw_arrows__18TWindowInputNumberFP17WindowDrawContextP13TUnk_804CF9C8i"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80256E0C",
+        "before": "draw_status_gauge_bar__13TUnk_804CF930FPvPvff",
+        "after": "draw_status_gauge_bar__13TUnk_804CF930FP17WindowDrawContextP10NJS_POINT2ff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802572F0",
+        "before": "init_from__13TUnk_804CF930FPvi",
+        "after": "init_from__13TUnk_804CF930FP17StatusGaugeLayoutl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80257720",
+        "before": "copy4__18TAdChrMoveEffectGCFPv",
+        "after": "copy4__FPvPCv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80257B4C",
+        "before": "init_layout_entry_copy__20TWindowSubStatusDispFPUc",
+        "after": "init_layout_entry_copy__13TUnk_804CF948FP21LayoutEntryCopyRecordl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025B050",
+        "before": "swap_sprite_v_edges__FPUc",
+        "after": "swap_sprite_v_edges__FP16WindowSpritePart"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025B064",
+        "before": "swap_sprite_u_edges__FPUc",
+        "after": "swap_sprite_u_edges__FP16WindowSpritePart"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025B078",
+        "before": "set_sprite_uv_bounds__FPvffff",
+        "after": "set_sprite_uv_bounds__FP16WindowSpritePartffff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025B08C",
+        "before": "set_sprite_uv_from_pixels__FPUcff",
+        "after": "set_sprite_uv_from_pixels__FP16WindowSpritePartff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025B0C4",
+        "before": "set_sprite_dimensions__FPvff",
+        "after": "set_sprite_dimensions__FP16WindowSpritePartff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025B334",
+        "before": "init_part_direct__20TWindowSubStatusDispFPUcl",
+        "after": "init_part_direct__16WindowSpritePartFP28DirectSpritePartLayoutRecordl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025B3D8",
+        "before": "init_part_scaled__20TWindowSubStatusDispFPvPvi",
+        "after": "init_part_scaled__16WindowSpritePartFP22SpritePartLayoutRecordl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025DECC",
+        "before": "draw_text_glyphs__19TWindowKeyBoardBaseFPvPv",
+        "after": "draw_text_glyphs__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025E148",
+        "before": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUl",
+        "after": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025E350",
+        "before": "draw_wrapped_text__19TWindowKeyBoardBaseFPvPv",
+        "after": "draw_wrapped_text__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025E530",
+        "before": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUll",
+        "after": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8025E6DC",
+        "before": "sub_8025E6DC__19TWindowKeyBoardBaseFPUc",
+        "after": "sub_8025E6DC__19TWindowKeyBoardBaseFP17WindowDrawContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80260020",
+        "before": "draw_status_text__19TWindowKeyBoardHardFPv",
+        "after": "draw_status_text__19TWindowKeyBoardHardFP17WindowDrawContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80262814",
+        "before": "set_mag_slot_state__13TWindowSubMagFl",
+        "after": "set_mag_slot_state__22TWindowLoadItemTextureFP9TItemData"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8026297C",
+        "before": "create__22TWindowLoadItemTextureFPv",
+        "after": "create__22TWindowLoadItemTextureFPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80262B2C",
+        "before": "__ct__22TWindowLoadItemTextureFPUcPvl",
+        "after": "__ct__22TWindowLoadItemTextureFPvPfl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8026534C",
+        "before": "TWindowMakeTeam__ct",
+        "after": "__ct__15TWindowMakeTeamFP7TObjectl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8026543C",
+        "before": "get_flag__17TWindowSubComCardFv",
+        "after": "get_flag__13TUnk_804D0658Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80265448",
+        "before": "clear_flag_and_release2__17TWindowSubComCardFv",
+        "after": "clear_flag_and_release2__13TUnk_804D0658Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80268494",
+        "before": "update_selected_entry__17TWindowSubComCardFv",
+        "after": "update_selected_entry__13TUnk_804D0658Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802684BC",
+        "before": "find_entry_value_by_id__17TWindowSubComCardFl",
+        "after": "find_entry_value_by_id__13TUnk_804D0658Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8026853C",
+        "before": "mark_entry_by_id__17TWindowSubComCardFl",
+        "after": "mark_entry_by_id__13TUnk_804D0658Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802685C4",
+        "before": "disable_entry_by_id__17TWindowSubComCardFl",
+        "after": "disable_entry_by_id__13TUnk_804D0658Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80268650",
+        "before": "set_entry_string_by_id__15TWindowMakeTeamFPvl",
+        "after": "set_entry_string_by_id__13TUnk_804D0658FPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802686D4",
+        "before": "update_next_entry__17TWindowSubComCardFlll",
+        "after": "update_next_entry__13TUnk_804D0658Flll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80269100",
+        "before": "draw_value__13TWindowMesetaFl",
+        "after": "draw_value__13TWindowMesetaFP17WindowDrawContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80269244",
+        "before": "__ct__13TWindowMesetaFlll",
+        "after": "__ct__13TWindowMesetaFPvll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8026CEEC",
+        "before": "set_position__15TWindowQuantityFl",
+        "after": "set_position__15TWindowQuantityFP17WindowDrawContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8026D564",
+        "before": "draw_tab__11TWindowRoomFPv",
+        "after": "draw_tab__11TWindowRoomFP17WindowDrawContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80270668",
+        "before": "TWindowSimpleStatus__ct",
+        "after": "__ct__19TWindowSimpleStatusFPvlPUc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802706F0",
+        "before": "create__19TWindowSimpleStatusFPv",
+        "after": "create__19TWindowSimpleStatusFPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802713BC",
+        "before": "TWindowStatus__ct",
+        "after": "__ct__13TWindowStatusFPvlPUc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80275234",
+        "before": "get_card_data_ptr__17TWindowSubComCardFv",
+        "after": "get_card_data_ptr__15GuildCardRecordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80275244",
+        "before": "get_name__17TWindowSubComCardFv",
+        "after": "get_name__15GuildCardRecordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8027524C",
+        "before": "get_sub_obj__17TWindowSubComCardFv",
+        "after": "get_sub_obj__15GuildCardRecordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80275254",
+        "before": "destroy_keyboard__17TWindowSubComCardFv",
+        "after": "set_soft_flag60_bit1__16TKeyBoardControlFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80275290",
+        "before": "set_flag_10__17TWindowSubComCardFv",
+        "after": "set_flag_10__13TUnk_804D0658Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80281814",
+        "before": "close_child__20TWindowSubSymbolChatFv",
+        "after": "close_child__20TWindowSubSymbolChatFPvPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802838C4",
+        "before": "set_flag_bit2__20TWindowSubSymbolChatFPl",
+        "after": "set_flag_bit2__16SymbolChatPresetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802838D4",
+        "before": "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+        "after": "clear_flag_bit2__16SymbolChatPresetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802838E4",
+        "before": "get_cursor_pos__20TWindowSubSymbolChatFv",
+        "after": "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802838EC",
+        "before": "get_cursor_x__20TWindowSubSymbolChatFv",
+        "after": "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8028390C",
+        "before": "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+        "after": "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8028391C",
+        "before": "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+        "after": "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8028392C",
+        "before": "set_pos_and_flag__20TWindowSubSymbolChatFll",
+        "after": "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80283954",
+        "before": "set_flag60_bit1__20TWindowSubSymbolChatFv",
+        "after": "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80283964",
+        "before": "set_flag60_bit2__20TWindowSubSymbolChatFv",
+        "after": "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802841FC",
+        "before": "__ct__28TWindowSubSymbolChatFaceTypeFll",
+        "after": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80284B84",
+        "before": "__ct__24TWindowSubSymbolChatHelpFll",
+        "after": "__ct__24TWindowSubSymbolChatHelpFPScPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80284D68",
+        "before": "select_index_and_scroll__20TWindowSubSymbolChatFl",
+        "after": "select_index_and_scroll__25TWindowSubSymbolChatPartsFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802859A8",
+        "before": "update_height__20TWindowSubSymbolChatFv",
+        "after": "update_height__25TWindowSubSymbolChatPartsFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802859E8",
+        "before": "open__20TWindowSubSymbolChatFl",
+        "after": "open__25TWindowSubSymbolChatPartsFPSc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80285E10",
+        "before": "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+        "after": "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80285FF4",
+        "before": "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+        "after": "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80286028",
+        "before": "init_symbol_layout__20TWindowSubSymbolChatFPl",
+        "after": "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802869BC",
+        "before": "TWindowSubSymbolChatPartsSet__ct",
+        "after": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80287DD8",
+        "before": "draw_tab__12TWindowTimerFll",
+        "after": "draw_tab__12TWindowTimerFP17WindowDrawContext"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80288104",
+        "before": "fill_card_text_entries__20TWindowSubStatusDispFl",
+        "after": "fill_card_text_entries__20TWindowSubStatusDispFP15GuildCardRecord"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80288380",
+        "before": "__ct__15TWindowUserSortFll",
+        "after": "__ct__15TWindowUserSortFlP15GuildCardRecord"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802ACDA8",
+        "before": "set_field_60__15TWindowCallBackFPvi",
+        "after": "set_field_60__15TWindowCallBackFPFPvPv_v"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802ACE84",
+        "before": "__ct__15TWindowCallBackFlPUcl",
+        "after": "__ct__15TWindowCallBackFPUcPUcPFPvPv_v"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802ACF04",
+        "before": "create_callback__22TAdEnterSerialAccessGCFPvPvPv",
+        "after": "create_callback__22TAdEnterSerialAccessGCFPvPvPFPvPv_v"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802C6FB0",
+        "before": "update_transition_anim_if_active__13TUnk_804E0B28Fv",
+        "after": "update_transition_anim_if_active__13TUnk_804E0B28FPvPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802D50B0",
+        "before": "set_field_100__22TAdMultiPlyChrSelectGCFl",
+        "after": "set_field_100__13TUnk_804E3008Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802E0C28",
+        "before": "set_status_value__22TAdMultiPlyChrSelectGCFl",
+        "after": "set_status_value__13TUnk_804E3008Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802E0C68",
+        "before": "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+        "after": "set_index_and_close_status__13TUnk_804E3008Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802E0CB0",
+        "before": "sub_802E0CB0__13TUnk_804E3008Fv",
+        "after": "sub_802E0CB0__13TUnk_804E3008Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8030C2D8",
+        "before": "TWindowPartyStatus__ct",
+        "after": "__ct__18TWindowPartyStatusFlPUc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803296E8",
+        "before": "draw_agreement_text__18TAdAgreementBaseGCFv",
+        "after": "draw_agreement_text__18TAdAgreementBaseGCFPvPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032A610",
+        "before": "get_instance__19TAdMcSelectCursorGCFl",
+        "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80336064",
+        "before": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+        "after": "start_offline_seq__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803361C4",
+        "before": "set_flag_and_clear_download__6TLobbyFv",
+        "after": "set_flag_and_clear_download__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80336200",
+        "before": "open_keyboard__6TLobbyFv",
+        "after": "open_keyboard__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8033622C",
+        "before": "request_change_game_mode__6TLobbyFv",
+        "after": "request_change_game_mode__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80336254",
+        "before": "enter_game_mode_change__6TLobbyFv",
+        "after": "enter_game_mode_change__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8033627C",
+        "before": "enter_chg_game_mode__6TLobbyFv",
+        "after": "enter_chg_game_mode__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8033F2A4",
+        "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+        "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8034055C",
+        "before": "TWindowDD__sub_8034055C",
+        "after": "render__13TUnk_804EFBACFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803407BC",
+        "before": "update_draw__9TWindowDDFPv",
+        "after": "run_task__13TUnk_804EFBACFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803409A4",
+        "before": "construct_variant_a__9TWindowDDFPv",
+        "after": "__ct__13TUnk_804EFBACFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80340A78",
+        "before": "TWindowDD__sub_80340A78",
+        "after": "render__22TWindowDD_WS_ScrollBarFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80340DEC",
+        "before": "init__9TWindowDDFv",
+        "after": "run_task__22TWindowDD_WS_ScrollBarFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80340EA8",
+        "before": "dt__22TWindowDD_WS_ScrollBarFs",
+        "after": "__dt__22TWindowDD_WS_ScrollBarFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80340F00",
+        "before": "construct_variant_b__9TWindowDDFPv",
+        "after": "__ct__22TWindowDD_WS_ScrollBarFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8034138C",
+        "before": "TWindowDD__sub_8034138C",
+        "after": "__ct__19TWindowDD_WS_StringFPfPfUll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80341B28",
+        "before": "handle_scroll_input__9TWindowDDFv",
+        "after": "run_task__17TWindowDD_WS_WordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80341EB8",
+        "before": "init_and_mark_field8C__9TWindowDDFv",
+        "after": "init_and_mark_field8C__17TWindowDD_WS_WordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80341EF4",
+        "before": "free_child__9TWindowDDFv",
+        "after": "free_child__17TWindowDD_WS_WordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80341F48",
+        "before": "init_child__9TWindowDDFPv",
+        "after": "init_child__17TWindowDD_WS_WordFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80341F9C",
+        "before": "init_layout_entries__9TWindowDDFv",
+        "after": "init_layout_entries__17TWindowDD_WS_WordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80341FD8",
+        "before": "reset_fields__9TWindowDDFv",
+        "after": "reset_fields__17TWindowDD_WS_WordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80341FFC",
+        "before": "load_element_list__9TWindowDDFv",
+        "after": "load_element_list__17TWindowDD_WS_WordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80342220",
+        "before": "add_scroll_offset__9TWindowDDFi",
+        "after": "add_scroll_offset__17TWindowDD_WS_WordFi"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8034227C",
+        "before": "destroy__17TWindowDD_WS_WordFs",
+        "after": "__dt__17TWindowDD_WS_WordFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803422F0",
+        "before": "TWindowDD__sub_803422F0",
+        "after": "__ct__17TWindowDD_WS_WordFll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803471C0",
+        "before": "open__9TWindowDDFll",
+        "after": "open__9TWindowDDFPvUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8036EFBC",
+        "before": "draw_message_window__11TAdEp3ExistFl",
+        "after": "draw_message_window__11TAdEp3ExistFPvPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DA204",
+        "before": "set_render_rect__10TObjPlayerFllll",
+        "after": "set_render_rect__17GinjaTextureInputFPvlll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803DE7BC",
+        "before": "move_words__6TLobbyFPUll",
+        "after": "move_words__FPvPCvl"
+      }
+    ]
+  },
+  "validation": {
+    "upstream": {
+      "head": "6aee940ecaf4775ef71659a74534127a49cf9412",
+      "linked_units": 2416,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "functions": 27572,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "report_sha256": "4c487014bfca27fe41dc9353fe91be6ffd1172522187b306cdbfe27b7a54cd1d",
+      "check_sha256": "bf0f37294c65034eb3d33bae06c99f55b2ebe625569097ba12a1bd90385e0c52"
+    },
+    "review": {
+      "head": "1484889e3b9d6136312eaf74267b3ff9035a7766",
+      "linked_units": 2417,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "functions": 27572,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "report_sha256": "e446e21eae123d875445ae12500270ad1003134cf2db72bba8843926af993f1d",
+      "check_sha256": "c60496863ec71a0049e375440aa8c71fea47389d27d92b99962b164fc8625dce"
+    }
+  },
+  "runtime": {
+    "title": {
+      "checks": "46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+      "probe_sha256": "474a1ce7713db7554a866505c28b8a85ec5f0bd0efb0644e13c2821eaf7979b5",
+      "log_sha256": "f12583c3bd6497d532d2e6c7c3dbcc8dd561424b49bf35e3a23cd9de25df2d5d"
+    },
+    "status": {
+      "checks": "status flags, numeric glyphs, icon clipping and status detail rows passed.",
+      "probe_sha256": "964ef4f032c1344aaca8b9df8690b12107f8cedaf48b70bb6814b3e787e1c5cf",
+      "log_sha256": "e29d93761bfee0bd12f3c4dd431f1cff8754d8dc6ed474e00b4b8409ea6315c3"
+    },
+    "lifetimes": {
+      "checks": "overlay destruction, global construction, and both area dispatch paths passed.",
+      "probe_sha256": "1e6ac33c16444ad7c15243a9b4d0405b71b7cb17dd2185cf63e37f83f6e3fafb",
+      "log_sha256": "52b8e2081ca9e41d9411d24d40a2baea0279131badd704ee567d8c2a56c97290"
+    }
+  },
+  "new_upstream_coverage": {
+    "compared_to": "730b1add256f1b8ff6f06fcbe3a2953bcb53a7a3",
+    "omitted_alignment": [
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805D9954",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DEC84",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DF2E4",
+        "size": 4
+      }
+    ],
+    "comparison_sha256": "cc12eace50e86b0ed944d6995e11b898a57ae74465abe2da20c793eda08cf8ab"
+  }
+}
