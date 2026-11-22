@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The player status replay `dd8c8901f1` restores the actual return types for the 0x800000 and 0x01000000 predicates. The render, technique and support callers use the class declarations and keep all linked names. Both executables pass the two mask and return tests, the four support-effect gates and the movement and water cases. The byte-identical fork tooling archive passes all 310 checks. The complete support and movement caller comparison closes, leaving 250 open. [Player status and fork workspace validation](2026-11-22-upstream-8441-player-status-validation.json)
+
+
 The 48-path weapon animation replay `44c5eccf97` restores the shared canopy transitions, signed animation fields, typed trail-joint writes and matrix-copy owner. The shared clamp operations keep their upstream names and serve the weapon, tunnel and effect callers. Three emitted labels follow the common helpers. Both builds match retail with all 1,147 starting data bytes. Runtime checks cover 96 canopy frames, lifetime paths, signed steps, trail writes and matrix-copy arguments. The byte-identical 130-path tooling archive passes 310 checks. The matrix declarations close and the starlight factory and menu flag setter comparison reopens, leaving 251. [Weapon animation and fork workspace validation](2026-11-22-upstream-8441-weapon-animation-validation.json)
 
 

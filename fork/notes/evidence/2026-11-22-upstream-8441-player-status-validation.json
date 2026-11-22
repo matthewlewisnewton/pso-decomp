@@ -1,0 +1,75 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "dd8c8901f1cba744258198696c292215144952ef",
+  "source_base": "44c5eccf9710fe54f823eadb855a32f58a6cd973",
+  "source_commits": 42,
+  "paths": [
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/player/TObjPlayer_801AEFFC.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "085ad5091b2737fbf8674ab57a7aaaddf79dc05296b259ccd84c21a283714b38",
+      "observations": [
+        "PsoV3.dol: both mask and return contracts, 16 support effects and nine movement cases passed",
+        "psov3.dol: both mask and return contracts, 16 support effects and nine movement cases passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "085ad5091b2737fbf8674ab57a7aaaddf79dc05296b259ccd84c21a283714b38",
+      "observations": [
+        "PsoV3.dol: both mask and return contracts, 16 support effects and nine movement cases passed",
+        "psov3.dol: both mask and return contracts, 16 support effects and nine movement cases passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 251,
+    "open_after": 250,
+    "resolved": [
+      "src/pso/player/TObjPlayer_801AEFFC.cpp"
+    ],
+    "partial": [
+      "src/pso/player/TObjPlayer_801AF2F0.cpp"
+    ]
+  },
+  "fork_workspace": {
+    "parent": "dd8c8901f1cba744258198696c292215144952ef",
+    "previous_workspace": "a28fc8dc78d77b6a65d2fa0b700be15c1768be83",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "materialized_tree_before_notes_update": "e7125238067a574c46e63ab86859b0e96da23ae1",
+    "archive_sha256": "8f893c3e8f0d18deb473844d6bcb7cfd63268bd7138368431b748a23ef2a953f",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}
