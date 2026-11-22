@@ -1,0 +1,176 @@
+{
+  "source": "20d13be55e88f146733f10231e7473d0600eb63f",
+  "previous_source": "41095fa09ef1468c91dc94659c2585bdfe5f39ed",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/NetworkRuntime.h",
+    "include/pso/network/PppFsm.h",
+    "include/pso/network/PppIpcp.h",
+    "include/pso/network/TLobby_803FC178.h",
+    "include/pso/network/TLobby_803FCF44.h",
+    "src/pso/network/NetworkThreadRuntime.c",
+    "src/pso/network/PppFsm.c",
+    "src/pso/network/PppIpcp.c",
+    "src/pso/network/PppLcp.c",
+    "src/pso/network/PppPap.c",
+    "src/pso/network/TLobby_803FC178.c"
+  ],
+  "combined_paths_from_upstream": 1293,
+  "validation": {
+    "source": {
+      "baseline": "41095fa09ef1468c91dc94659c2585bdfe5f39ed",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    },
+    "layer": {
+      "baseline": "20d13be55e88f146733f10231e7473d0600eb63f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "a3b4681eb2ec168a4539f8ed5449a386871a04eac33d35861ff2180a42a90804"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "415bc3c7397713d33f0fa9502e55a0790b69823839696a2632aa165936f0adb0"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "cases_per_image": 13,
+    "checked_callback_slots_per_image": 55,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "cases": {
+      "protocol_initialization": 5,
+      "duplicate_authentication_initialization": 2,
+      "ipv6cp_options": 6
+    },
+    "probe_sha256": "89b11ef200288902d2b2c1b9f5085a02ee2fd63d0bc9008d2dc4f61dc52a5349",
+    "log_sha256": "39025cd72da6ba5d3dda084640e0b98c01cc955d9eb6f979dfa01d97c45c3db3"
+  },
+  "matching_units": {
+    "src/pso/network/NetworkThreadRuntime.c": {
+      "functions": 40,
+      "code": "5864",
+      "data": "232"
+    },
+    "src/pso/network/PppFsm.c": {
+      "functions": 18,
+      "code": "5860",
+      "data": "648"
+    },
+    "src/pso/network/PppIpcp.c": {
+      "functions": 24,
+      "code": "5988",
+      "data": "288"
+    },
+    "src/pso/network/PppLcp.c": {
+      "functions": 18,
+      "code": "5516",
+      "data": "264"
+    },
+    "src/pso/network/PppPap.c": {
+      "functions": 12,
+      "code": "2972",
+      "data": "456"
+    },
+    "src/pso/network/TLobby_803FC178.c": {
+      "functions": 11,
+      "code": "3532",
+      "data": "464"
+    }
+  },
+  "protocol_storage": {
+    "lbl_805C0400": {
+      "address": "0x805c0400",
+      "bytes": 168
+    },
+    "lbl_805C04D8": {
+      "address": "0x805c04d8",
+      "bytes": 328
+    },
+    "lbl_805C0620": {
+      "address": "0x805c0620",
+      "bytes": 24
+    },
+    "lbl_805C0180": {
+      "address": "0x805c0180",
+      "bytes": 336
+    },
+    "lbl_805C0328": {
+      "address": "0x805c0328",
+      "bytes": 216
+    },
+    "ppp_ipv6cp_protocol_state": {
+      "address": "0x805bfec0",
+      "bytes": 168
+    }
+  },
+  "historical": {
+    "closed": [],
+    "scoped": {
+      "2964": "IPCP and the other protocols now use shared typed transition, builder, configure and timer callbacks. The remaining historical connection and buffer edits still need comparison at their native owners.",
+      "2980": "The IPv6CP table and option parser use the native state, frame and local and peer option records. The linked probe checks all eleven callbacks and six option cases. The historical alarm and mutex initialization still uses raw offsets in the current owner."
+    },
+    "open_rows": 309
+  },
+  "fork_workspace": {
+    "trial": "07ed3cb9f270e88bbc5deb1d779a505a1a150ffb",
+    "overlay_paths": 130,
+    "archive_sha256": "8a11c6ff1dbfeda0779bd33cb8e9d55c708414d562815c877d548734a338e683",
+    "materialized_tree": "4672b1bc23a345f29648565a908b05aef11e43ff",
+    "force_active": 27029
+  }
+}
