@@ -1,0 +1,638 @@
+{
+  "source": "0a60c76d145ef9f95d28d295d0428e62addb486c",
+  "previous_source": "e1941011ea7775c27217e85ee7d67ed62b76142c",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/flower/TObjEneRe2Flower_Bomb.h",
+    "include/pso/enemy/recon/TObjEneRecon.h",
+    "include/pso/unk/text_800C3088.h",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/player/TObjPlayer_800C4714.cpp"
+  ],
+  "combined_paths_from_upstream": 1261,
+  "validation": {
+    "source": {
+      "baseline": "e1941011ea7775c27217e85ee7d67ed62b76142c",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "76f83b54123ec5087b8171d2c637a7d1e35520ef9af77d712e3398158d0a7d58",
+      "report_sha256": "d7af5646a0b44ecfbe20fd8b71179288acb0fa656cbf54a5e8a8345798f586ad"
+    },
+    "layer": {
+      "baseline": "0a60c76d145ef9f95d28d295d0428e62addb486c",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "d7af5646a0b44ecfbe20fd8b71179288acb0fa656cbf54a5e8a8345798f586ad"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "6a1257dca8602e0e0785b21644f61a69c9b057f21438148b173f3ade97130121"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "c8c746befad382842bbae4ddd2c13f5ca408da9178ad4ef8b86faf3672c09aa6"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "program_sha256": "8341f631ea6350ea50caa8c00884d883f62f358ad6120985b91f1d9f2723584d",
+    "log_sha256": "92e7e259d2cb39f882d270b0ea4ae44bf8121ce045bf5d39a758458c00802c4b",
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "cases_per_image": {
+      "action_entry": 1,
+      "melee_outcomes": 3,
+      "bomb_initialization": 1,
+      "recobox_parameters": 2
+    },
+    "emulator": {
+      "paired_single_instructions_skipped": [
+        "0x800c4a6c",
+        "0x800c4b5c"
+      ],
+      "reason": "These instructions preserve the paired half of f31. Assertions verify their exact opcodes and the adjacent scalar f31 saves used by this scalar routine."
+    }
+  },
+  "units": {
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp": {
+      "functions": 29,
+      "code": "5412",
+      "data": "960"
+    },
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp": {
+      "functions": 38,
+      "code": "6852",
+      "data": "1712"
+    },
+    "src/pso/enemy/recon/TObjEneRecon.cpp": {
+      "functions": 54,
+      "code": "11080",
+      "data": "888"
+    },
+    "src/pso/player/TObjPlayer_800C4714.cpp": {
+      "functions": 5,
+      "code": "1484",
+      "data": "188"
+    }
+  },
+  "original_constants": {
+    "Flower yaw": {
+      "address": "0x8043bbd8",
+      "bytes": "40c45f30b21788bb"
+    },
+    "Recon emitter displacement": {
+      "address": "0x805df428",
+      "bytes": "c0400000"
+    },
+    "Recon starting height": {
+      "address": "0x805df42c",
+      "bytes": "42340000"
+    },
+    "Recon height scaling": {
+      "address": "0x805df430",
+      "bytes": "40000000"
+    },
+    "Recon maximum height": {
+      "address": "0x805df434",
+      "bytes": "42480000"
+    }
+  },
+  "original_dispatch": {
+    "melee_base": [
+      "0x80016454",
+      "0x80014108",
+      "0x8001401c"
+    ],
+    "melee_player": [
+      "0x80016454",
+      "0x801afc68",
+      "0x8001401c"
+    ],
+    "recon_photon_and_state_slots": [
+      "0x80010ec4",
+      "0x80010ec0",
+      "0x80010ebc",
+      "0x800bb90c"
+    ]
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 629,
+        "fork_path": "src/pso/enemy/TObjEneRecon_8031DFD0.cpp",
+        "owner": "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "detail": "The typed emitter updates use the existing yaw and body-center fields, and the fade cleans up as a real C++ member. The exact unit retains the four constants, typed reset_hp and motion calls, and both Photon Blast slots at their original vtable addresses.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              3
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/player/demo_mode.h\"",
+              "# include \"pso/misc/MaterialOpacityFade.h\"",
+              "# include \"pso/render/RenderFadeState.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              18,
+              23
+            ],
+            "fork_lines": [
+              21,
+              20
+            ],
+            "result": "compare",
+            "old": [
+              "struct VBase_14_2f517b { char pad [ 0x14 ] ; } ;",
+              "struct VObj_14_2f517b : VBase_14_2f517b {",
+              "virtual void m0 ( ) ;",
+              "virtual void m1 ( ) ;",
+              "virtual s32 m2 ( ) ;",
+              "} ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              117,
+              117
+            ],
+            "fork_lines": [
+              114,
+              114
+            ],
+            "result": "compare",
+            "old": [
+              "s32 reset_hp__9TObjEneDDFPUcPUcPUc ( void * , void * , int , void * ) ;"
+            ],
+            "fork": [
+              "s32 reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock ( void * , void * , int , void * ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              121,
+              121
+            ],
+            "fork_lines": [
+              118,
+              117
+            ],
+            "result": "compare",
+            "old": [
+              "void * __dt__13TUnk_80494938Fv ( void * arg0 , s16 arg1 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              148,
+              151
+            ],
+            "fork_lines": [
+              144,
+              147
+            ],
+            "result": "compare",
+            "old": [
+              "extern const f32 lbl_805DF428 ;",
+              "extern const f32 lbl_805DF42C ;",
+              "extern const f32 lbl_805DF430 ;",
+              "extern const f32 lbl_805DF434 ;"
+            ],
+            "fork": [
+              "static const f32 lbl_805DF428 = - 3.0f ;",
+              "static const f32 lbl_805DF42C = 45.0f ;",
+              "static const f32 lbl_805DF430 = 2.0f ;",
+              "static const f32 lbl_805DF434 = 50.0f ;"
+            ]
+          },
+          {
+            "old_lines": [
+              220,
+              220
+            ],
+            "fork_lines": [
+              216,
+              216
+            ],
+            "result": "compare",
+            "old": [
+              "extern \"C\" void vfunc_76__9TObjCharaFv ( ) ;"
+            ],
+            "fork": [
+              "extern \"C\" void spend_photon_blast_charge__9TObjCharaFf ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              287,
+              287
+            ],
+            "fork_lines": [
+              283,
+              283
+            ],
+            "result": "compare",
+            "old": [
+              "( void * ) & vfunc_76__9TObjCharaFv , ( void * ) & gain_photon_blast_chain_charge__9TObjCharaFv , ( void * ) & vfunc_78__9TObjCharaFl , ( void * ) & apply_enemy_state__9TObjEneDDFPl ,"
+            ],
+            "fork": [
+              "( void * ) & spend_photon_blast_charge__9TObjCharaFf , ( void * ) & gain_photon_blast_chain_charge__9TObjCharaFv , ( void * ) & vfunc_78__9TObjCharaFl , ( void * ) & apply_enemy_state__9TObjEneDDFPl ,"
+            ]
+          },
+          {
+            "old_lines": [
+              339,
+              339
+            ],
+            "fork_lines": [
+              335,
+              335
+            ],
+            "result": "compare",
+            "old": [
+              "if ( TObjPlayer :: check_demo_mode ( ) != 0 ) {"
+            ],
+            "fork": [
+              "if ( check_demo_mode ( ) != 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              379,
+              383
+            ],
+            "fork_lines": [
+              375,
+              379
+            ],
+            "result": "compare",
+            "old": [
+              "temp_f31 = var_f30 * cos_table_lookup ( ene_recon -> rotation_y ) ;",
+              "temp_f2 = var_f30 * - sin_table_lookup ( ene_recon -> rotation_y ) ;",
+              "* ( f32 * ) ( ( s8 * ) ( * ( u8 * * ) ( ( s8 * ) ene_recon + 0x478 ) ) + 0x60 ) = ( f32 ) ( ene_recon -> m_2fc + temp_f31 ) ;",
+              "* ( f32 * ) ( ( s8 * ) ( * ( u8 * * ) ( ( s8 * ) ene_recon + 0x478 ) ) + 0x64 ) = ( f32 ) ( lbl_805DF424 + ene_recon -> m_300 ) ;",
+              "* ( f32 * ) ( ( s8 * ) ( * ( u8 * * ) ( ( s8 * ) ene_recon + 0x478 ) ) + 0x68 ) = ( f32 ) ( ene_recon -> m_304 + temp_f2 ) ;"
+            ],
+            "fork": [
+              "temp_f31 = var_f30 * cos_table_lookup ( ene_recon -> rotation . yaw ) ;",
+              "temp_f2 = var_f30 * - sin_table_lookup ( ene_recon -> rotation . yaw ) ;",
+              "* ( f32 * ) ( ( s8 * ) ( * ( u8 * * ) ( ( s8 * ) ene_recon + 0x478 ) ) + 0x60 ) = ( f32 ) ( ene_recon -> body_center_position . x + temp_f31 ) ;",
+              "* ( f32 * ) ( ( s8 * ) ( * ( u8 * * ) ( ( s8 * ) ene_recon + 0x478 ) ) + 0x64 ) = ( f32 ) ( lbl_805DF424 + ene_recon -> body_center_position . y ) ;",
+              "* ( f32 * ) ( ( s8 * ) ( * ( u8 * * ) ( ( s8 * ) ene_recon + 0x478 ) ) + 0x68 ) = ( f32 ) ( ene_recon -> body_center_position . z + temp_f2 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              403,
+              403
+            ],
+            "fork_lines": [
+              399,
+              399
+            ],
+            "result": "compare",
+            "old": [
+              "__dt__13TUnk_80494938Fv ( ( s8 * ) arg0 + 0x480 , - 1 ) ;"
+            ],
+            "fork": [
+              "( ( TObjEneRecon * ) arg0 ) -> fade . MaterialOpacityFade :: ~ MaterialOpacityFade ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              421,
+              422
+            ],
+            "fork_lines": [
+              417,
+              418
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TObjMotion * ) arg0 ) -> set_field_d8 ( ( s32 ) ( ( void * ) TObjEneRecon__animation_entries ) ) ;",
+              "( ( TObjMotion * ) arg0 ) -> set_field_dc ( ( int ) ( * ( s32 * ) ( ( s8 * ) TObjEneRecon__recobox_static_instance + 0x430 ) ) ) ;"
+            ],
+            "fork": [
+              "( ( TObjMotion * ) arg0 ) -> set_action_table ( ( TObjMotionAction * ) ( ( s32 ) ( ( void * ) TObjEneRecon__animation_entries ) ) ) ;",
+              "( ( TObjMotion * ) arg0 ) -> set_motion_list ( ( BmlMotionEntry * ) ( ( int ) ( * ( s32 * ) ( ( s8 * ) TObjEneRecon__recobox_static_instance + 0x430 ) ) ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              426,
+              426
+            ],
+            "fork_lines": [
+              422,
+              422
+            ],
+            "result": "compare",
+            "old": [
+              "reset_hp__9TObjEneDDFPUcPUcPUc ( ( void * ) arg0 , ( void * ) lbl_805D6AF0 , ( int ) TObjEneRecon__attack_params , ( void * ) TObjEneRecon__resistance_params ) ;"
+            ],
+            "fork": [
+              "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock ( ( void * ) arg0 , ( void * ) lbl_805D6AF0 , ( int ) TObjEneRecon__attack_params , ( void * ) TObjEneRecon__resistance_params ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              450,
+              450
+            ],
+            "fork_lines": [
+              446,
+              446
+            ],
+            "result": "compare",
+            "old": [
+              "( ( VObj_14_2f517b * ) ( arg0 + ( 1152 ) ) ) -> m2 ( ) ;"
+            ],
+            "fork": [
+              "( ( TObjEneRecon * ) arg0 ) -> fade . reset_color ( ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "1155d8561efe01e1624522bee8c44152467943ce"
+      },
+      {
+        "row": 701,
+        "fork_path": "src/pso/unk/text_800C3088.cpp",
+        "owner": "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+        "detail": "Flower's three attacks use typed actor, motion, sound, and projectile arguments. The yaw constant and target-validation call at 0x800B9578 retain their original values and addresses under upstream names.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              1
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/system/SoundEffect.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              150,
+              150
+            ],
+            "fork_lines": [
+              151,
+              150
+            ],
+            "result": "compare",
+            "old": [
+              "s32 play_sound_effect ( void * , void * , int , int ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              209,
+              209
+            ],
+            "fork_lines": [
+              209,
+              209
+            ],
+            "result": "compare",
+            "old": [
+              "play_sound_effect ( ( void * ) remap_sound_for_variant ( ( s32 ) arg0 , 0x4003A814 ) , arg0 + 0x38 , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "play_sound_effect ( ( s32 ) ( ( void * ) remap_sound_for_variant ( ( s32 ) arg0 , 0x4003A814 ) ) , ( const Vec * ) ( arg0 + 0x38 ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              271,
+              271
+            ],
+            "fork_lines": [
+              271,
+              271
+            ],
+            "result": "compare",
+            "old": [
+              "TTecMegid :: create_ex ( ( s32 ) owner , ( s32 ) ( ( void * ) & stack . sp8 ) , ( s32 ) ( ( int ) ( ( ( TObjEneRe2Flower * ) owner ) -> rotation_y ) ) , ( s32 ) ( ( int ) ( TObjEneDD :: clamp_frame_index ( ( int ) ( * ( s32 * ) ( ( s8 * ) re2_flower_movement_params + 0x18 ) ) ) ) ) ) ;"
+            ],
+            "fork": [
+              "TTecMegid :: create_ex ( ( s32 ) owner , ( s32 ) ( ( void * ) & stack . sp8 ) , ( s32 ) ( ( int ) ( ( ( TObjEneRe2Flower * ) owner ) -> rotation . yaw ) ) , ( s32 ) ( ( int ) ( TObjEneDD :: clamp_frame_index ( ( int ) ( * ( s32 * ) ( ( s8 * ) re2_flower_movement_params + 0x18 ) ) ) ) ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              275,
+              278
+            ],
+            "fork_lines": [
+              275,
+              278
+            ],
+            "result": "compare",
+            "old": [
+              "TObjPlayer__sub_800C4A5C ( temp_r3_3 , owner , & stack . sp8 , ( int ) ( ( ( TObjEneRe2Flower * ) owner ) -> rotation_y ) ) ;",
+              "}",
+              "}",
+              "play_sound_effect ( ( void * ) ( remap_sound_for_variant ( ( s32 ) owner , 0x4003A10E ) ) , owner + 0x3DC , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "TObjPlayer__sub_800C4A5C ( temp_r3_3 , owner , & stack . sp8 , ( int ) ( ( ( TObjEneRe2Flower * ) owner ) -> rotation . yaw ) ) ;",
+              "}",
+              "}",
+              "play_sound_effect ( ( s32 ) ( ( void * ) ( remap_sound_for_variant ( ( s32 ) owner , 0x4003A10E ) ) ) , ( const Vec * ) ( owner + 0x3DC ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              411,
+              411
+            ],
+            "fork_lines": [
+              411,
+              411
+            ],
+            "result": "compare",
+            "old": [
+              "extern const f64 lbl_8043BBD8 ;"
+            ],
+            "fork": [
+              "static const f64 lbl_8043BBD8 = 10430.38043493439 ;"
+            ]
+          },
+          {
+            "old_lines": [
+              437,
+              437
+            ],
+            "fork_lines": [
+              437,
+              437
+            ],
+            "result": "compare",
+            "old": [
+              "play_sound_effect ( ( void * ) 0x4003A840 , ( u8 * ) & this -> position , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "play_sound_effect ( ( s32 ) ( ( void * ) 0x4003A840 ) , ( const Vec * ) ( ( u8 * ) & this -> position ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              446,
+              446
+            ],
+            "fork_lines": [
+              446,
+              446
+            ],
+            "result": "compare",
+            "old": [
+              "t = angle_difference_abs ( this -> rotation_y , * ( s32 * ) ( ( s8 * ) arg0 + 0x420 ) ) ;"
+            ],
+            "fork": [
+              "t = angle_difference_abs ( this -> rotation . yaw , * ( s32 * ) ( ( s8 * ) arg0 + 0x420 ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              470,
+              470
+            ],
+            "fork_lines": [
+              470,
+              470
+            ],
+            "result": "compare",
+            "old": [
+              "} else if ( ( ( TObjEneEpsilon * ) arg0 ) -> update_death_check ( ) == 0 ) {"
+            ],
+            "fork": [
+              "} else if ( ( ( TObjEneDD_ST * ) arg0 ) -> check_target_validity ( ) == 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              477,
+              478
+            ],
+            "fork_lines": [
+              477,
+              478
+            ],
+            "result": "compare",
+            "old": [
+              "this -> rotation_y = approach_angle_limited ( this -> rotation_y , * ( s32 * ) ( ( s8 * ) arg0 + 0x420 ) , * ( void * * ) ( ( s8 * ) this -> movementParameters + 8 ) ) ;",
+              "this -> rotation_y = ( s16 ) this -> rotation_y ;"
+            ],
+            "fork": [
+              "this -> rotation . yaw = approach_angle_limited ( this -> rotation . yaw , * ( s32 * ) ( ( s8 * ) arg0 + 0x420 ) , * ( void * * ) ( ( s8 * ) this -> movementParameters + 8 ) ) ;",
+              "this -> rotation . yaw = ( s16 ) this -> rotation . yaw ;"
+            ]
+          }
+        ],
+        "owner_blob": "8138f0671a9508864008c01aa46fa1ed071036db"
+      }
+    ],
+    "scoped_rows": [
+      {
+        "row": 607,
+        "fork_path": "src/pso/enemy/TObjEneRe2Flower_800C3E14.cpp",
+        "owner": "src/pso/enemy/flower/TObjEneRe2Flower.cpp"
+      },
+      {
+        "row": 621,
+        "fork_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+        "owner": "src/pso/enemy/recon/TObjEneRecon.cpp"
+      }
+    ],
+    "open_rows": 327
+  },
+  "fork_workspace": {
+    "trial": "a1b39087b0798b0a2e5536daa872bfaa082554e7",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "1c0b8f15b1378feacf21b2043cd9f524caf033f379caa40b1f17489136a0b5c6",
+    "materialized_tree": "689f533261f40bb2b006fd7b6eae66564d8c1f49",
+    "force_active": 27029
+  }
+}
