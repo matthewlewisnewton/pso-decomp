@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The Dragon and De Rol Le archive replay `c8ca48d818` uses the native BML model, texture and motion rows. Both Dragon versions read their expected archive, 30 fall and landing keys retain their values, and De Rol Le builds the same 14-node tentacle. The camera replay `27a1646b0a` restores the previously validated four-player view banks, second-controller orbit and conversation camera vectors. It retains the existing linked names and the original view pointer reads. Both builds reproduce retail. Complete camera, room and keyboard audits resolve three historical entries, leaving 253 open. The local fork workspace retains the byte-identical 130-path tooling archive and passes all 310 checks. [Motion, camera and window validation](2026-11-22-upstream-8441-motion-camera-validation.json)
+
+
 Upstream master `8441b1b4fe` updates the file rankings in its source-quality report. All 34 local source commits replay as `00b762454b` with attribution, timestamps and messages preserved. The independent 358-path window, character selection and chat review replays as `e800f61553`. Only the upstream report tool changes between the old and replayed trees. The cumulative source and materialized fork reproduce retail with all 27,572 functions exact, all 1,147 starting data bytes accounted for, and all 310 workspace checks passing. The tooling archive is byte-identical. There are 256 historical entries left. [Current upstream replay validation](2026-11-22-upstream-8441-replay-validation.json)
 
 
