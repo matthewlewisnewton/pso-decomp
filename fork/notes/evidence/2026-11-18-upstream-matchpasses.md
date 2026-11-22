@@ -106,6 +106,8 @@ The encounter replay at `2b2b2d3b36` passes De Rol Le and Barba Ray's native joi
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 historical data bytes accounted for. The fork workspace passes 310 checks. The arena, particle, debris, mine and curve probes pass, along with eight constructor and 48 tentacle attack cases. The Barba Ray header comparison closes, leaving 374 historical comparisons open. [Encounter validation](2026-11-22-upstream-365-encounter-contracts-validation.json)
 
+The next larger actor review at `5c9df48dbc` combines the wall and ground contacts, enemy and boss owners, battle tables, Photon Blast motion callers, matrix and camera interfaces, and tentacle recovery. It changes 321 paths on the local window and chat head. The standalone source matches retail with 27,572 exact functions and all 1,147 historical data bytes. The seven probe suites pass, and all 146 linker label changes are accounted for by the previously validated components. [Actor and battle review](2026-11-22-next-upstream-actor-battle-interfaces.md)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
