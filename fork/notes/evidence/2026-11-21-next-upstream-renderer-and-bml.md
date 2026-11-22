@@ -2,6 +2,8 @@
 
 The standalone review is `great-merge/review/renderer-and-bml` at `927d57da604a6be2583457cac6363ae99556c91b`, one commit directly on upstream `b2d2912058829d0f0c9260f6272dc2a303c90110`. Its stable patch ID matches the original rendering replay at `ffc356db09`. The source diff spans 360 paths with 647 insertions and 651 deletions. The review history uses the configured fork author and committer and has no co-author trailers.
 
+Published as upstream PR #366 at the validated head. GitHub shows one commit with the configured fork attribution. [Upstream PR #366](https://github.com/zeroz41/pso-decomp/pull/366)
+
 The standalone build accounts for all 1,147 historical data bytes across 90 ranges. Linked data accounts for 980 bytes and original alignment accounts for 167. The sole linker label change at `0x803DA798` follows the pointer argument to the existing setter.
 
 | Evidence | SHA-256 |

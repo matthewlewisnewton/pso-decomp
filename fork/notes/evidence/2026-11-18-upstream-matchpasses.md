@@ -2,9 +2,9 @@
 
 Submit one larger, related source review at a time with an independent matching build. Keep upstream names where the entities have equivalent behavior, types and linkage. Skip historical edits that only rename an existing entity. Include source changes that recover types, ownership, native code, or linking coverage. When those changes affect a linker label, record the source change that requires it. Keep documentation and tooling changes on the fork layer.
 
-## Next upstream review
+## Current upstream review
 
-The next review is the 360-path renderer and BML recovery at `927d57da60`, directly on `b2d2912058`. The texture interface and its callers travel together. The review branch reproduces retail and passes the standalone coverage and runtime checks. The window and chat replay stays in local validation for a later review. [Review branch evidence and description](2026-11-21-next-upstream-renderer-and-bml.md)
+Upstream PR #366 contains the 360-path renderer and BML recovery at `927d57da60`, directly on `b2d2912058`. The texture interface and its callers travel together. The review branch reproduces retail and passes the standalone coverage and runtime checks. The window and chat replay stays in local validation for a later review. [Upstream PR #366](https://github.com/zeroz41/pso-decomp/pull/366) · [Review branch evidence and description](2026-11-21-next-upstream-renderer-and-bml.md)
 
 ## Replay after upstream PR #365
 
@@ -33,6 +33,10 @@ The cumulative replay changes 572 paths on `b2d2912058`. Both builds reproduce r
 The 191-path window and chat replay at `54384a64aa` recovers native Word Select constructors and layouts, typed Symbol Chat and Short Mail records, Guild Card accessors, status sprites and gauges, and the packed controller and radar fields. The Word Select entry table retains its 168 bytes at the original address with its own data-only unit so the native page vtable keeps its retail position. The 103 function label changes follow native owners or corrected signatures. The replay skips equal or identifier-only edits from five candidate paths.
 
 The cumulative replay changes 727 paths on `b2d2912058`. Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 historical data bytes accounted for. The Word Select, controller repeat, stick escape, overlapping word copy, Guild Card and radar probes pass on retail and both builds. The fork workspace passes 310 checks and reconstructs from the 130-path archive. The archive updates 37 retention entries and carries the existing host shortcut guard over the new source. The source ledger gains scoped evidence for 18 records. 415 full historical comparisons remain open. [Window and chat validation](2026-11-21-upstream-365-window-widgets-and-chat-validation.json)
+
+The 262-path boss and enemy replay at `d92b462b97` recovers boss phase and projectile interfaces, Pan Arms parent and sibling access, Canadin member handling, and the typed combat-stat, persistent-sound and position-effect contracts used by those actors. The 116 function label changes follow corrected owners or signatures. Eight equal or identifier-only paths were skipped.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 historical data bytes accounted for. The 130-path tooling archive reconstructs the tested fork workspace, which passes 310 checks. The Pan Arms and Canadin probes pass on retail and both builds. The cumulative source changes 881 paths and adds scoped evidence to 83 historical records. The 415 full historical comparisons remain open. [Boss and enemy validation](2026-11-21-upstream-365-boss-and-enemy-validation.json)
 
 ## Replay after upstream PR #358
 
