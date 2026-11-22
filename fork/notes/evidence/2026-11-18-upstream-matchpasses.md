@@ -122,6 +122,12 @@ The native BML resource owner, 37 source-defined archive and charge-light consta
 
 Four historical source records close, leaving 443 open. The broader technique, actor and player records retain partial evidence. [Technique effects and resource validation](2026-11-21-technique-effects-replay.json)
 
+The 28-file keyboard and Symbol Chat replay at `cbc93216bb` restores typed composer state, caret and glyph positions, the actual hardware status context, and the original window fade expression. The three Parts methods take the native editor child, and shared window callbacks receive the borrowed window and frame context across the editor and frontend. Seventeen linker labels follow corrected C++ owners or parameter types. Upstream names remain in place for equivalent calls, including hardware modes, card calls and the callback factory.
+
+Both builds reproduce retail and retain all 19 linked draw-context functions and the 1,147 historical data bytes. The 310 tool and host checks and runtime probes pass. The fork overlay carries 11 updated retention names and reconstructs the tested workspace.
+
+Eight historical comparisons close, leaving 435 open. [Keyboard composer, Parts and callback validation](2026-11-21-keyboard-composer-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
