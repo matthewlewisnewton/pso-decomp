@@ -128,6 +128,12 @@ Both builds reproduce retail and retain all 19 linked draw-context functions and
 
 Eight historical comparisons close, leaving 435 open. [Keyboard composer, Parts and callback validation](2026-11-21-keyboard-composer-replay.json)
 
+The 31-file lobby and readout replay at `32e60b52cc` restores the native team window constructor and state accessors. The meseta, quantity and timer windows use their live base fields and typed draw context. Related tab callers share the same draw contract. The native item preview uses the actual icon loader and texture-list slot, and keeps the existing set_mag_slot_state name. All 15 linker label changes come from corrected C++ owners or argument types.
+
+Both builds reproduce retail and retain all 1,147 historical data bytes, 27,572 exact functions and 2,447 linked units. The 310 tool and host checks pass, along with PowerPC probes on retail and both builds. The fork tooling archive recreates the tested overlay with six corrected retention labels.
+
+Eleven historical comparisons close, leaving 424 open. The Information Counter label helper still needs its receiver audited separately. [Lobby, readout and item preview validation](2026-11-21-window-readouts-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
