@@ -1,0 +1,943 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "a4ff1e6d23e057871481721ae43aa8f8a013b021",
+  "source": "e75108dcfe5b47d9d8941e31864e0350d8492994",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    },
+    "layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 160064,
+      "head": 160064,
+      "added": 1,
+      "removed": 1
+    },
+    "flagged_symbol_labels": 0,
+    "newly_stale_force_active": []
+  },
+  "historical_cleanup": "2f05eb7b2e522dca70b6d319722cd9ecda014fa8",
+  "historical_directives_by_source": {
+    "src/musyx/runtime/Chorus/chorus_fx.c": {
+      "historical_directives": 6,
+      "owners": {
+        "src/musyx/runtime/Chorus/chorus_fx.c": 3
+      }
+    },
+    "src/musyx/runtime/StdReverb/reverb.c": {
+      "historical_directives": 3,
+      "owners": {
+        "src/musyx/runtime/StdReverb/reverb.c": 3
+      }
+    },
+    "src/pso/boss/Boss5GryphonBehavior.cpp": {
+      "historical_directives": 289,
+      "owners": {
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": 0
+      }
+    },
+    "src/pso/boss/Boss7DeRolLeCBehavior.cpp": {
+      "historical_directives": 13,
+      "owners": {
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": 1
+      }
+    },
+    "src/pso/boss/TBoss1Dragon.cpp": {
+      "historical_directives": 28,
+      "owners": {
+        "src/pso/boss/dragon/TBoss1Dragon.cpp": 0
+      }
+    },
+    "src/pso/boss/TBoss2DeRolLe.cpp": {
+      "historical_directives": 21,
+      "owners": {
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp": 0
+      }
+    },
+    "src/pso/boss/TBoss2Joint.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/boss/derolle/TBoss2Joint.cpp": 0
+      }
+    },
+    "src/pso/boss/TBoss4Type1.cpp": {
+      "historical_directives": 6,
+      "owners": {
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp": 0
+      }
+    },
+    "src/pso/boss/TBoss6Type2.cpp": {
+      "historical_directives": 265,
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp": 0
+      }
+    },
+    "src/pso/boss/TBoss6Type2_802BE588.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp": 0
+      }
+    },
+    "src/pso/boss/TBoss8Dragon.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp": 1
+      }
+    },
+    "src/pso/boss/TBoss8Dragon_8002CC48.cpp": {
+      "historical_directives": 6,
+      "owners": {}
+    },
+    "src/pso/effect/TEffStarLight2D_Base.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/effect/TEffStarLight2D_Base.cpp": 3
+      }
+    },
+    "src/pso/enemy/TObjEneDubchik.cpp": {
+      "historical_directives": 2,
+      "owners": {
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp": 0
+      }
+    },
+    "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {
+      "historical_directives": 11,
+      "owners": {
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": 2
+      }
+    },
+    "src/pso/enemy/TObjEneGyaranzo.cpp": {
+      "historical_directives": 9,
+      "owners": {
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": 1
+      }
+    },
+    "src/pso/enemy/TObjEneSlimeTailAttack.cpp": {
+      "historical_directives": 107,
+      "owners": {
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": 0
+      }
+    },
+    "src/pso/map/CsnQuery.cpp": {
+      "historical_directives": 7,
+      "owners": {
+        "src/pso/map/CsnQuery.cpp": 4
+      }
+    },
+    "src/pso/math/MatrixTransforms.cpp": {
+      "historical_directives": 6,
+      "owners": {
+        "src/pso/math/MatrixTransforms.cpp": 1
+      }
+    },
+    "src/pso/math/MatrixVector.cpp": {
+      "historical_directives": 12,
+      "owners": {
+        "src/pso/math/MatrixVector.cpp": 4
+      }
+    },
+    "src/pso/menu/TAdTimeSetGC.cpp": {
+      "historical_directives": 2,
+      "owners": {
+        "src/pso/ui/frontend/TAdTimeSetGC.cpp": 0
+      }
+    },
+    "src/pso/misc/ParticleBallistic.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/effect/particle/ParticleBallistic.cpp": 0
+      }
+    },
+    "src/pso/misc/ParticleOrbit.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/effect/particle/ParticleOrbit.cpp": 0
+      }
+    },
+    "src/pso/misc/ParticleRadial.cpp": {
+      "historical_directives": 49,
+      "owners": {
+        "src/pso/effect/particle/ParticleRadial.cpp": 0
+      }
+    },
+    "src/pso/misc/TCameraCtrl.cpp": {
+      "historical_directives": 291,
+      "owners": {
+        "src/pso/camera/TCameraCtrl.cpp": 0
+      }
+    },
+    "src/pso/misc/TCameraCtrl_803D6538.cpp": {
+      "historical_directives": 10,
+      "owners": {
+        "src/pso/camera/TCameraCtrl_803D6538.cpp": 10
+      }
+    },
+    "src/pso/misc/TCameraCtrl_803D66DC.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/camera/TCameraCtrl_803D66DC.cpp": 1
+      }
+    },
+    "src/pso/misc/TCameraCtrl_803D676C.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/camera/TCameraCtrl_803D676C.cpp": 1
+      }
+    },
+    "src/pso/misc/TCameraCtrl_803D6960.cpp": {
+      "historical_directives": 15,
+      "owners": {
+        "src/pso/camera/TCameraCtrl_803D6960.cpp": 10
+      }
+    },
+    "src/pso/misc/TCameraCtrl_803D749C.cpp": {
+      "historical_directives": 25,
+      "owners": {
+        "src/pso/camera/TCameraCtrl_803D749C.cpp": 19
+      }
+    },
+    "src/pso/misc/TDuelEffectNumber_80080460.cpp": {
+      "historical_directives": 4,
+      "owners": {
+        "src/pso/effect/TDuelEffectString.cpp": 0
+      }
+    },
+    "src/pso/misc/TKeyBoardControl.cpp": {
+      "historical_directives": 18,
+      "owners": {
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp": 3
+      }
+    },
+    "src/pso/misc/TLobby_800F8AA8.cpp": {
+      "historical_directives": 4,
+      "owners": {
+        "src/pso/unk/TLobby_800F8AA8.cpp": 4
+      }
+    },
+    "src/pso/misc/TLobby_80228154.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/unk/TLobby_80228154.cpp": 0
+      }
+    },
+    "src/pso/misc/TLobby_8023F734.cpp": {
+      "historical_directives": 12,
+      "owners": {
+        "src/pso/unk/TLobby_8023F734.cpp": 10
+      }
+    },
+    "src/pso/misc/TLobby_802409AC.cpp": {
+      "historical_directives": 4,
+      "owners": {
+        "src/pso/unk/TLobby_802409AC.cpp": 2
+      }
+    },
+    "src/pso/misc/TLobby_803C1A58.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/audio/AdxBsc.cpp": 0
+      }
+    },
+    "src/pso/misc/TLobby_803FAEA0.cpp": {
+      "historical_directives": 82,
+      "owners": {
+        "src/pso/network/TLobby_803FAEA0.c": 0
+      }
+    },
+    "src/pso/misc/TLobby_804050DC.cpp": {
+      "historical_directives": 77,
+      "owners": {
+        "src/pso/network/NetDns.c": 0
+      }
+    },
+    "src/pso/misc/TLobby_80426CAC.cpp": {
+      "historical_directives": 15,
+      "owners": {
+        "src/pso/network/TLobby_80426CAC.c": 1
+      }
+    },
+    "src/pso/misc/TLobby_80429598.cpp": {
+      "historical_directives": 2,
+      "owners": {
+        "src/pso/network/TLobby_80429598.c": 0
+      }
+    },
+    "src/pso/misc/TNpcPlayer.cpp": {
+      "historical_directives": 10,
+      "owners": {
+        "src/pso/npc/TNpcPlayer.cpp": 7
+      }
+    },
+    "src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp": 1
+      }
+    },
+    "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp": {
+      "historical_directives": 8,
+      "owners": {
+        "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp": 1
+      }
+    },
+    "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp": {
+      "historical_directives": 2,
+      "owners": {
+        "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp": 1
+      }
+    },
+    "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp": {
+      "historical_directives": 9,
+      "owners": {
+        "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp": 0
+      }
+    },
+    "src/pso/misc/TSetManager_8020D918.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/map/TSetManager.cpp": 3
+      }
+    },
+    "src/pso/misc/TTecCtrl.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/technique/TTecCtrl.cpp": 0
+      }
+    },
+    "src/pso/misc/TWindowDD.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/ui/window/TWindowDD.cpp": 0
+      }
+    },
+    "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/ui/window/TWindowShop.cpp": 0
+      }
+    },
+    "src/pso/misc/pso_date.cpp": {
+      "historical_directives": 6,
+      "owners": {
+        "src/pso/system/data/pso_date.cpp": 0
+      }
+    },
+    "src/pso/network/ModemRuntime.cpp": {
+      "historical_directives": 4,
+      "owners": {
+        "src/pso/network/ModemRuntime.cpp": 3
+      }
+    },
+    "src/pso/network/TProtocol.cpp": {
+      "historical_directives": 4,
+      "owners": {
+        "src/pso/network/TProtocol.cpp": 0
+      }
+    },
+    "src/pso/network/TcpProtocol.cpp": {
+      "historical_directives": 22,
+      "owners": {
+        "src/pso/network/NetTcp.c": 0
+      }
+    },
+    "src/pso/object/TObjCMName.cpp": {
+      "historical_directives": 14,
+      "owners": {
+        "src/pso/ui/charcreate/TObjCMName.cpp": 1
+      }
+    },
+    "src/pso/object/TObjChip.cpp": {
+      "historical_directives": 2,
+      "owners": {
+        "src/pso/object/TObjChip.cpp": 2
+      }
+    },
+    "src/pso/object/TObjEZRopeSimulation.cpp": {
+      "historical_directives": 5,
+      "owners": {
+        "src/pso/object/TObjHMS_EZRope_Player.cpp": 0
+      }
+    },
+    "src/pso/object/TObjFish.cpp": {
+      "historical_directives": 2,
+      "owners": {
+        "src/pso/object/ambient/TObjFish.cpp": 2
+      }
+    },
+    "src/pso/object/TObjLight_803DF220.cpp": {
+      "historical_directives": 8,
+      "owners": {
+        "src/pso/object/ambient/TObjLight_803DF220.cpp": 7
+      }
+    },
+    "src/pso/object/TObjResultWin.cpp": {
+      "historical_directives": 2,
+      "owners": {
+        "src/pso/ui/window/TObjResultWin.cpp": 2
+      }
+    },
+    "src/pso/player/TObjPlayer_800ACA60.cpp": {
+      "historical_directives": 4,
+      "owners": {}
+    },
+    "src/pso/player/TObjPlayer_801542CC.cpp": {
+      "historical_directives": 7,
+      "owners": {
+        "src/pso/player/TObjPlayer_801542CC.cpp": 4
+      }
+    },
+    "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+      "historical_directives": 39,
+      "owners": {
+        "src/pso/player/TObjPlayer_801AF2F0.cpp": 0
+      }
+    },
+    "src/pso/player/TObjPlayer_801C7430.cpp": {
+      "historical_directives": 848,
+      "owners": {
+        "src/pso/player/TObjPlayer_801C7430.cpp": 540
+      }
+    },
+    "src/pso/player/TObjPlayer_803DF7A8.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/player/TObjPlayer_803DF7A8.cpp": 0
+      }
+    },
+    "src/pso/player/TObjPlayer_803E21B8.cpp": {
+      "historical_directives": 17,
+      "owners": {
+        "src/pso/player/TObjPlayer_803E21B8.cpp": 17
+      }
+    },
+    "src/pso/protocol/NetworkRuntime.cpp": {
+      "historical_directives": 13,
+      "owners": {
+        "src/pso/network/NetworkThreadRuntime.c": 0
+      }
+    },
+    "src/pso/quest/QuestOpcodeHandlers.cpp": {
+      "historical_directives": 11,
+      "owners": {
+        "src/pso/quest/QuestOpcodeHandlers.cpp": 3
+      }
+    },
+    "src/pso/system/ChunkMaterialState.cpp": {
+      "historical_directives": 11,
+      "owners": {
+        "src/pso/render/ChunkMaterialState.cpp": 10
+      }
+    },
+    "src/pso/system/GinjaMaterial.cpp": {
+      "historical_directives": 44,
+      "owners": {
+        "src/pso/render/GinjaMaterial.cpp": 22
+      }
+    },
+    "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp": {
+      "historical_directives": 5,
+      "owners": {
+        "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp": 1
+      }
+    },
+    "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+      "historical_directives": 13,
+      "owners": {
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": 13
+      }
+    },
+    "src/pso/unk/text_802EDE90.cpp": {
+      "historical_directives": 1,
+      "owners": {
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": 0
+      }
+    },
+    "src/pso/unk/text_803D96A8.cpp": {
+      "historical_directives": 23,
+      "owners": {
+        "src/pso/unk/text_803D96A8.cpp": 16
+      }
+    },
+    "src/pso/unk/text_803E2D70.cpp": {
+      "historical_directives": 38,
+      "owners": {
+        "src/pso/unk/text_803E2D70.cpp": 0,
+        "src/pso/unk/text_803E2F28.cpp": 29
+      }
+    },
+    "src/pso/unk/text_80421620.cpp": {
+      "historical_directives": 3,
+      "owners": {
+        "src/pso/network/text_80421620.c": 0
+      }
+    }
+  },
+  "compiled_units": {
+    "src/musyx/runtime/Chorus/chorus_fx.c": {
+      "removed_directives": 3,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "4484b6e5c4bda1ab5ec857b52c2a059d7d5483a3cd7370ed6fbc4836257e070b"
+      ],
+      "historical_sources": [
+        "src/musyx/runtime/Chorus/chorus_fx.c"
+      ]
+    },
+    "src/musyx/runtime/StdReverb/reverb.c": {
+      "removed_directives": 3,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "1c161f0ba640ef9ae0e40c362286da7ea0c072d02aaa1b0694f481089d7745ff"
+      ],
+      "historical_sources": [
+        "src/musyx/runtime/StdReverb/reverb.c"
+      ]
+    },
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "d4c2fe0ba7f996798ef4269e131f3f29aabcba0e17ae39588ae1e254d2d35330"
+      ],
+      "historical_sources": [
+        "src/pso/boss/Boss7DeRolLeCBehavior.cpp"
+      ]
+    },
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "d5c7d71bed8d48810c7c44a3bff86ecd92c7efa74e1be1c33c80e67a7601a847"
+      ],
+      "historical_sources": [
+        "src/pso/boss/TBoss8Dragon.cpp"
+      ]
+    },
+    "src/pso/effect/TEffStarLight2D_Base.cpp": {
+      "removed_directives": 3,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "93dc322d397168fd3528b7ff26c47c41365cee13bfbbd7116acea2282f1ba573"
+      ],
+      "historical_sources": [
+        "src/pso/effect/TEffStarLight2D_Base.cpp"
+      ]
+    },
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": {
+      "removed_directives": 2,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "80c52da6e7304fae9e24a6b85e126dc14ef3cecc9c2a38f862e88845217650dc"
+      ],
+      "historical_sources": [
+        "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp"
+      ]
+    },
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "a57120acbd046e89510a18fa4ad354183a1194c0e5ef6bed6162e823c04a7411"
+      ],
+      "historical_sources": [
+        "src/pso/enemy/TObjEneGyaranzo.cpp"
+      ]
+    },
+    "src/pso/map/CsnQuery.cpp": {
+      "removed_directives": 4,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "2e3cba56d3d457b951f94fd21862ce41a35f14c85acbeaa5fc8fa05c05bf8ae1"
+      ],
+      "historical_sources": [
+        "src/pso/map/CsnQuery.cpp"
+      ]
+    },
+    "src/pso/math/MatrixTransforms.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "05824678dc930cc76ee4a5eecb560885d8f581d0c781478ba22863eac7bf6904"
+      ],
+      "historical_sources": [
+        "src/pso/math/MatrixTransforms.cpp"
+      ]
+    },
+    "src/pso/math/MatrixVector.cpp": {
+      "removed_directives": 4,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "58c4ff0a9ddf23ddd67f0682763d70335c5d0b72f53ca52cb152a2f4b5e67c47"
+      ],
+      "historical_sources": [
+        "src/pso/math/MatrixVector.cpp"
+      ]
+    },
+    "src/pso/camera/TCameraCtrl_803D6538.cpp": {
+      "removed_directives": 10,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "515f2a35923c978aa3b56224e7f53413e13522874b185ab9490cdb7fe118fabf"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TCameraCtrl_803D6538.cpp"
+      ]
+    },
+    "src/pso/camera/TCameraCtrl_803D66DC.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "065d2d4f06c88a7efde06e6edc80a32722f49c21c125aac0971c0e430facd969"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TCameraCtrl_803D66DC.cpp"
+      ]
+    },
+    "src/pso/camera/TCameraCtrl_803D676C.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "b7f94ac45642b9d6e585440d1be955b43071eefa7bd850aded980391c1664da5"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TCameraCtrl_803D676C.cpp"
+      ]
+    },
+    "src/pso/camera/TCameraCtrl_803D6960.cpp": {
+      "removed_directives": 10,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "c13b89ff1ace516714e8f4ea4f4cb1c162f33f9907e476c8afe4b884b559b050"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TCameraCtrl_803D6960.cpp"
+      ]
+    },
+    "src/pso/camera/TCameraCtrl_803D749C.cpp": {
+      "removed_directives": 19,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "c8f7270f53acd3009848394b9e74f31a634ffe4c8e36bc27304b2983a8906df2"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TCameraCtrl_803D749C.cpp"
+      ]
+    },
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp": {
+      "removed_directives": 3,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "595967eda4e42c68342b7cdb0046c41784eb7af15fb2411243295c0954955c3f"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TKeyBoardControl.cpp"
+      ]
+    },
+    "src/pso/unk/TLobby_800F8AA8.cpp": {
+      "removed_directives": 4,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "e239cf0304172f9b85f74772d64fc207571a20e42e43238d24fec40b2350563f"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TLobby_800F8AA8.cpp"
+      ]
+    },
+    "src/pso/unk/TLobby_8023F734.cpp": {
+      "removed_directives": 10,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "f5be2072688a8a49a204d373dd2dbfb0d8ae5bf6c3ebac53d3c2d4af0bdab73f"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TLobby_8023F734.cpp"
+      ]
+    },
+    "src/pso/unk/TLobby_802409AC.cpp": {
+      "removed_directives": 2,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "9cc5612eef6b9445bd78f4f0728f52232a9721e1c5b94ff04535cce5f5b89f39"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TLobby_802409AC.cpp"
+      ]
+    },
+    "src/pso/network/TLobby_80426CAC.c": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "4dcdf1d1b9aeb474fa0ea5e68e258171fdb325f43c69b107f5b7e4904979f975"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TLobby_80426CAC.cpp"
+      ]
+    },
+    "src/pso/npc/TNpcPlayer.cpp": {
+      "removed_directives": 7,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "8e66b9dcc67a9a0dd3aff351823803d1d35c87f4a59f292a2c83164da5569a7a"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TNpcPlayer.cpp"
+      ]
+    },
+    "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "ee63f5e3dee6b75491e02a163fe486ec944124dfd1defcaad387d348465bc9d0"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp"
+      ]
+    },
+    "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp": {
+      "removed_directives": 1,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "f8c058aeda180a9bca7ced54b24c59a6b5d37213edd85b8ee4043ede004e642f"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp"
+      ]
+    },
+    "src/pso/map/TSetManager.cpp": {
+      "removed_directives": 3,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "508870ae1908a6c5589a2313d003dc59def8ae4daaa4b71b0d78fac72da22775"
+      ],
+      "historical_sources": [
+        "src/pso/misc/TSetManager_8020D918.cpp"
+      ]
+    },
+    "src/pso/network/ModemRuntime.cpp": {
+      "removed_directives": 3,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "83250143c051a69389e5191c89a15f58eacfbe1c2419ae55fc37faa214ba0dd0"
+      ],
+      "historical_sources": [
+        "src/pso/network/ModemRuntime.cpp"
+      ]
+    },
+    "src/pso/object/TObjChip.cpp": {
+      "removed_directives": 2,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "52c28646c493a38e1249a85301bdbac82698dc06fa01ca637949e5b35a1f464c"
+      ],
+      "historical_sources": [
+        "src/pso/object/TObjChip.cpp"
+      ]
+    },
+    "src/pso/object/ambient/TObjFish.cpp": {
+      "removed_directives": 2,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "841119c76fe375d04c3595b81f53d09faeea52b5338c48eddd492c5ad2282486"
+      ],
+      "historical_sources": [
+        "src/pso/object/TObjFish.cpp"
+      ]
+    },
+    "src/pso/object/ambient/TObjLight_803DF220.cpp": {
+      "removed_directives": 7,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "1170f884d9f5ece7d881b25fc626e1f6f995e27deb00f20f26b1f3601872aeb0"
+      ],
+      "historical_sources": [
+        "src/pso/object/TObjLight_803DF220.cpp"
+      ]
+    },
+    "src/pso/ui/window/TObjResultWin.cpp": {
+      "removed_directives": 2,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "1e61239f842c49a3cfbb5bb36fa741ca91189d770c9ba0c6f64b0d1ce7d04606"
+      ],
+      "historical_sources": [
+        "src/pso/object/TObjResultWin.cpp"
+      ]
+    },
+    "src/pso/player/TObjPlayer_801542CC.cpp": {
+      "removed_directives": 4,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "824cddb48d40b506ba6f0891cd969a417cbc936891e62433d9d72f76426e2eb3"
+      ],
+      "historical_sources": [
+        "src/pso/player/TObjPlayer_801542CC.cpp"
+      ]
+    },
+    "src/pso/player/TObjPlayer_801C7430.cpp": {
+      "removed_directives": 540,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "37de8c885650cba26ba96377e4ba625b26a7c9c040ea2e770b8c771299ee3a27"
+      ],
+      "historical_sources": [
+        "src/pso/player/TObjPlayer_801C7430.cpp"
+      ]
+    },
+    "src/pso/player/TObjPlayer_803E21B8.cpp": {
+      "removed_directives": 17,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "fe462627af956643235760c68abc11335df82bf090eb2e2e5d85bd3d89582103"
+      ],
+      "historical_sources": [
+        "src/pso/player/TObjPlayer_803E21B8.cpp"
+      ]
+    },
+    "src/pso/quest/QuestOpcodeHandlers.cpp": {
+      "removed_directives": 3,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "d63fbd21c41d8130e5bfe0e015cba28e5d0b329a54714cc71d5a58c744de9e39"
+      ],
+      "historical_sources": [
+        "src/pso/quest/QuestOpcodeHandlers.cpp"
+      ]
+    },
+    "src/pso/render/ChunkMaterialState.cpp": {
+      "removed_directives": 10,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "e049dca54306dc59f787f64288ec3101520d6861ccff8f3460d5372dc5405667"
+      ],
+      "historical_sources": [
+        "src/pso/system/ChunkMaterialState.cpp"
+      ]
+    },
+    "src/pso/render/GinjaMaterial.cpp": {
+      "removed_directives": 22,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "cb946a630af0f795addc088dd482ad08966f9644056b421a344d9f7bff11649b"
+      ],
+      "historical_sources": [
+        "src/pso/system/GinjaMaterial.cpp"
+      ]
+    },
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+      "removed_directives": 13,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "68133944fbf6d6fae92ec5d7e087358b65caecda85b33da86f9a3ee8544a3273"
+      ],
+      "historical_sources": [
+        "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+      ]
+    },
+    "src/pso/unk/text_803D96A8.cpp": {
+      "removed_directives": 16,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "2f9c35610041511b29475a7f4c9e606802ab9ef278863c3f71cd0960a988b2dd"
+      ],
+      "historical_sources": [
+        "src/pso/unk/text_803D96A8.cpp"
+      ]
+    },
+    "src/pso/unk/text_803E2F28.cpp": {
+      "removed_directives": 29,
+      "attempts": 2,
+      "byte_identical_objects_sha256": [
+        "05f7420be96e0a01dabd9d00772a7fe4d266fa02157c143048fb5a7cd651c2f4"
+      ],
+      "historical_sources": [
+        "src/pso/unk/text_803E2D70.cpp"
+      ]
+    }
+  },
+  "directives_retained_after_compile": {
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp": [
+      {
+        "current_line": 763,
+        "fork_path": "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp",
+        "fork_line": 700,
+        "directive": "#pragma dont_inline off"
+      }
+    ],
+    "src/pso/ui/charcreate/TObjCMName.cpp": [
+      {
+        "current_line": 2005,
+        "fork_path": "src/pso/object/TObjCMName.cpp",
+        "fork_line": 2233,
+        "directive": "#pragma fp_contract on"
+      }
+    ],
+    "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp": [
+      {
+        "current_line": 432,
+        "fork_path": "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+        "fork_line": 473,
+        "directive": "#pragma opt_propagation off"
+      }
+    ]
+  },
+  "successful_directive_removals": 766,
+  "source_files_changed": 38,
+  "open_comparisons_annotated": 20,
+  "remaining_source_comparisons": 202,
+  "whole_source_checks": {
+    "method": "Direct source comparisons and bidirectional three-way merge after established include moves",
+    "candidate_pairs": 220,
+    "newly_equivalent": 0
+  },
+  "upstream_replay_preview": {
+    "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571": [
+      "src/pso/network/ModemRuntime.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/unk/TLobby_8023F734.cpp"
+    ],
+    "6da1100681dc984ae71e1972190739d40b61021c": [
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/unk/TLobby_8023F734.cpp"
+    ]
+  },
+  "workspace": {
+    "materialized_tree": "221e34ad35f3c0b34006ca2142c3c54e89c52557",
+    "overlay_paths": 130,
+    "updated_retention_labels": {},
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "a4797dcee026a881a29cad65aefea277224fa7bc766ae2380b69c6174f905451",
+    "normalized_overlay_edits_sha256": "cf145f1b072c58a198a78fadf07136d8527ac3d1f61ae61122c689c390ca0fdf"
+  }
+}
