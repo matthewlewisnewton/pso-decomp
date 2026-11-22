@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 17-path node-cache replay `ce44868a80` restores the native recorder for Barba Ray and shared matrix concatenation for the renderer and breakup callers. It passes the original per-node matrix offsets and preserves the visibility and recursion flags. The four linker labels follow the cache owner, the typed constructor and the shared matrix interface. The retail probes cover construction, bounded capture, draw order and the null matrix arguments. A separate attack audit checks the already-native virtual defaults and return. The fork tooling patch keeps the same 130 paths and edits and passes all 310 checks. Two comparisons close, and the remaining matrix-copy owner reopens one, leaving 251. [Node cache and matrix validation](2026-11-22-upstream-8441-node-matrix-cache-validation.json)
+
+
 The actor resource replay `bb390c834f` restores 11 typed battle parameter banks for Moja, Merill Lia and Shark. Moja's enemy and NPC callers share the BML declaration and use the native appearance records. All six archive branches, the battle row loads and release, the NPC bindings and repeated teardown pass against retail. The build retains the same linker names and all 1,147 starting data bytes. The byte-identical tooling archive passes all 310 checks, and the six-declaration Moja header audit leaves 252 historical entries open. [Actor resource and fork workspace validation](2026-11-22-upstream-8441-actor-resource-banks-validation.json)
 
 
