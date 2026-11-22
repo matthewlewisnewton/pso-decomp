@@ -8,6 +8,12 @@ Upstream master advanced from `5a4e7ced56` to `b2d2912058` by 45 commits across 
 
 Keep upstream's identifiers and class owners as the starting point. Its shared `CsnHit` wall probe covers the corresponding local edit. The remaining typed movement destinations and hit propagation need to be carried into the new owners. Use the path index to replay clean paths together and compare overlapping hunks in related groups. Rebuild the source and the materialized fork workspace against the new master before using either for cutover.
 
+The first matching source batch on `b2d2912058` is `ea682bf048`. It replays collision and ground movement across 19 paths and retains the landed wall probe. The eight linker labels change only for corrected types. Both stock upstream and the replay reproduce retail with 27,572 exact functions, all 2,446 units linked, and all 1,147 starting data bytes accounted for. The replay also passes the collision runtime probe.
+
+The 806-path automatic replay draft `72ff910366` keeps upstream's files on the 459 conflicts. Its full build reports 462 failed compile targets, including 54 that stop at two shared UI headers. Resolve shared owners and declarations with their callers before layering subsystems together. [Upstream base and collision validation](2026-11-21-upstream-365-contact-validation.json)
+
+The adapted 130-path tooling overlay also reproduces retail. It keeps the modern upstream source and adds the existing compatibility paths for host builds. The retention list was regenerated for this base with 27027 entries. The 11 fork-layer tests and five host test executables pass. The tooling suite still reports two Dark Falz fixture setup errors and two BML declaration-check failures because those source changes are pending replay. The tooling tests stay in place as migration checks. The archived layer remains under `fork/`.
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
