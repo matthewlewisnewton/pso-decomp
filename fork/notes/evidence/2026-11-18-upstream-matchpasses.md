@@ -128,6 +128,10 @@ The 119-path asset replay at `fb452dd842` combines the queued file reader, GVM l
 
 Both builds match retail with 27,572 exact functions, 2,447 linked units and all 1,147 starting bytes accounted for. The 310 workspace checks and both emulator suites pass. All 153 GVM branches, 267 BML constructor branches, three model-list initializer branches and 20 texture-input branches keep their original addresses. The FootStamp header comparison closes and 16 records gain scoped evidence, leaving 352 open. [Asset and texture validation](2026-11-22-upstream-365-asset-io-validation.json)
 
+The 25-path positional sound replay at `648050122c` uses native positions through both voice allocators and the spatial mixer. The two allocator labels follow the corrected pointer types. The floor one-shot helper returns the handle on the supported areas and the area on the remaining paths. Ten callers use existing position members, and the shared persistent entry retains all 195 branch sites across 82 source callers.
+
+Both builds match retail with 27,572 exact functions, 2,447 linked units and all 1,147 starting bytes accounted for. All 310 workspace checks pass. The three emulator probes cover floor dispatch, slot admission, request identity, recent one-shot reuse, position publication and saturation. Six historical comparisons close, leaving 346 open. [Positional sound validation](2026-11-22-upstream-365-positional-sound-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
