@@ -1,0 +1,282 @@
+{
+  "source": "1dc6c702b1075cae098c979ac2594bf25a2b77c7",
+  "previous_source": "aa20e169de480faf9805f8404f7f452cd688b9ec",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/item/TItemEffBringer.h",
+    "include/pso/effect/item/TItemEffEquip.h",
+    "include/pso/item/TUnk_8049F038.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801AF2F0.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/effect/item/TItemEffBringer.cpp",
+    "src/pso/effect/item/TItemEffEquip.cpp",
+    "src/pso/effect/item/TItemEffEquip_80108860.cpp",
+    "src/pso/effect/item/TItemEffEquip_801088F8.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/mag/TItemMag.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BCDC4.cpp",
+    "src/pso/player/TObjPlayer_801BCF04.cpp",
+    "src/pso/player/TObjPlayer_801D84A8.cpp",
+    "src/pso/player/TObjPlayer_801D84CC.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/ui/city/TShopArmorListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+    "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl_80277D3C.cpp",
+    "src/pso/ui/window/TWindowSubItem.cpp",
+    "src/pso/unk/TLobby_80104374.cpp",
+    "src/pso/unk/text_801A3014.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp"
+  ],
+  "combined_paths_from_upstream": 976,
+  "historical_basis": {
+    "effect_donor": "8230aed0c4",
+    "equipment_packets_checkpoint": "a11564ec1fba6274c58f76db6e00c1bc164d3a43",
+    "saved_equipment_checkpoint": "375ace876a3a342b14e9241b781fd896dac7c6d7"
+  },
+  "source_scope": [
+    "typed equipment checks and equip/unequip calls with both 12-byte wire layouts covered",
+    "typed saved equipment records, loadout binding and inventory rebuild",
+    "native Bringer and equipment particle constructors and the joint attachment"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "aa20e169de480faf9805f8404f7f452cd688b9ec",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8010834C",
+          "before": "__ct__15TItemEffBringerFv",
+          "after": "__ct__15TItemEffBringerFPvPC3VecPC3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80108A20",
+          "before": "TItemEffEquip__ct",
+          "after": "__ct__13TItemEffEquipFP7TObjectUslll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80108AFC",
+          "before": "create__13TItemEffEquipFPvPvPvPvPv",
+          "after": "create__13TItemEffEquipFP7TObjectUslll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80108C90",
+          "before": "__ct__13TUnk_8049F038FP7TObjectsl",
+          "after": "__ct__13TUnk_8049F038FP7TObjectUsl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B0A90",
+          "before": "check_switch_available__6TLobbyFPvi",
+          "after": "check_switch_available__10TObjPlayerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B811C",
+          "before": "equip_saved_item_if_slot_empty__10TObjPlayerFPvPv",
+          "after": "equip_saved_item_if_slot_empty__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B81E8",
+          "before": "bind_saved_inventory_equipment__10TObjPlayerFPvPvi",
+          "after": "bind_saved_inventory_equipment__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItemi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B9D50",
+          "before": "unequip_item__10TObjPlayerFiPv",
+          "after": "unequip_item__10TObjPlayerFP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B9EDC",
+          "before": "send_6x26_unequip_item__10TObjPlayerFPvUl",
+          "after": "send_6x26_unequip_item__10TObjPlayerFP10TObjPlayerUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B9F40",
+          "before": "equip_item_to_slot__10TObjPlayerFPvl",
+          "after": "equip_item_to_slot__10TObjPlayerFP5TIteml"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "fc47ee07a604c33a6c3282f5ba057dc097151cf02ac8cfdd9ad2134eee38d179",
+      "report_sha256": "2cf8502152b6efa9c617aea805d3d9f1ac26113a6442f69c8d17cf6ff8389b3e"
+    },
+    "layer": {
+      "baseline": "1dc6c702b1075cae098c979ac2594bf25a2b77c7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "2cf8502152b6efa9c617aea805d3d9f1ac26113a6442f69c8d17cf6ff8389b3e"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "3807122f7420ce22051400c604b71a25e718929528a250ae7d47159632ec1c4a"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "61e8d8a1ed6aeaeaa00ef4e58ba91c40c367c0e39907c210e3da1450d4099bc6"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "probe_sha256": "30e8d61d5a7d87b6019f7ea8b32de2c7e25791d91dc5c9110856f9bbe23e1800",
+    "log_sha256": "d44daf72b4e06be39a678b1003afddefb2c8c93319e775369c15a1395427bb3c",
+    "coverage": "equip and unequip frames, loadout iteration and effect lifecycle passed.",
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "historical": {
+    "open_rows": 415,
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        597,
+        "src/pso/enemy/TObjEneMe3Stelth_800F0EC4.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      ],
+      [
+        814,
+        "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp"
+      ],
+      [
+        958,
+        "src/pso/enemy/TObjEneMe3Stelth.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      ],
+      [
+        986,
+        "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+      ],
+      [
+        3181,
+        "include/pso/TItemList.h",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3600,
+        "src/pso/item/TItemList_801D3780.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3846,
+        "src/pso/unk/text_80120568.cpp",
+        "src/pso/weapon/WeaponAttackActions.cpp"
+      ],
+      [
+        3963,
+        "src/pso/unk/text_801D40D4.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4049,
+        "src/pso/item/TItemList.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4183,
+        "src/pso/player/TPlyItem.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        5956,
+        "src/pso/misc/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp"
+      ],
+      [
+        5958,
+        "src/pso/misc/TShopArmorListWindow.cpp",
+        "src/pso/ui/city/TShopArmorListWindow.cpp"
+      ],
+      [
+        5959,
+        "src/pso/misc/TShopEquipmentListWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentListWindow.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "458c4ba2dbdbe0a14731dd08b8d7ea969c289d63",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "e574c05fc873536d81d297571b54e0b34f5265693234c8d9582580be391c9ee1",
+    "materialized_tree": "77c81cf4daa48c29f45a0285bcf71054ce873ebc",
+    "force_active": 27027
+  }
+}
