@@ -1,0 +1,163 @@
+{
+  "source": "4380b86c891257a6c4eb88f6bc7aa0019dbfe0a4",
+  "previous_source": "a6e029faaea752fdb92bdfae2d3b394f27b24f2f",
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/frontend/TitleSceneTables.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_80228154.h",
+    "include/pso/unk/TLobby_80335E08.h",
+    "include/pso/unk/TLobby_80335E7C.h",
+    "src/pso/ui/TUnk_804EE458.cpp",
+    "src/pso/ui/UISprite.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_80228154.cpp",
+    "src/pso/unk/TLobby_80335E7C.cpp"
+  ],
+  "combined_paths_from_upstream": 1203,
+  "validation": {
+    "source": {
+      "baseline": "a6e029faaea752fdb92bdfae2d3b394f27b24f2f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801E2F94",
+          "before": "draw_with_camera__6TLobbyFlllf",
+          "after": "draw_with_camera__6TLobbyFP16SpriteDescriptorllf"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0c2032868fd59607398d467e46db4eff1aedc34151bf21db85af02b24d915e45",
+      "report_sha256": "cfbb895019c90b1560f68ef7545af3a7ee7707c1e310951784173eb0c6484869"
+    },
+    "layer": {
+      "baseline": "4380b86c891257a6c4eb88f6bc7aa0019dbfe0a4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "cfbb895019c90b1560f68ef7545af3a7ee7707c1e310951784173eb0c6484869"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "332bdadae18b0b1cf586ffbe082da8a248a148324a9352305912d7f0e0852dc5"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "f919facf62262c886058b4c13de74a5e923406c005178bbfc67b4c396c34a97a"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "pso/unk/TLobby_801E2F94": {
+      "functions": 30,
+      "data_bytes": 68
+    },
+    "pso/unk/TLobby_80228154": {
+      "functions": 8,
+      "data_bytes": 868
+    },
+    "pso/ui/UISprite": {
+      "functions": 12,
+      "data_bytes": 5944
+    },
+    "pso/ui/TUnk_804EE458": {
+      "functions": 11,
+      "data_bytes": 52
+    },
+    "pso/unk/TLobby_80335E7C": {
+      "functions": 10,
+      "data_bytes": 56
+    },
+    "pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054": {
+      "functions": 22,
+      "data_bytes": 3312
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "title-sprites": {
+        "probe_sha256": "474a1ce7713db7554a866505c28b8a85ec5f0bd0efb0644e13c2821eaf7979b5",
+        "log_sha256": "9a00b3631d43934e3e76e1b8e9927ee1911e7c95229670028bb839dcfa99a97c"
+      },
+      "title-lifetimes": {
+        "probe_sha256": "1e6ac33c16444ad7c15243a9b4d0405b71b7cb17dd2185cf63e37f83f6e3fafb",
+        "log_sha256": "04a091b4aff073de8f5f249efd919a001b11f495a084fd67b188aef2f86c91c5"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "6014": {
+        "path": "src/pso/unk/TLobby_80228154.cpp",
+        "reason": "The sprite renderer uses the shared sprite, frame and texture records with the original geometry and flag operations. The native floor-transition owner retains the ready and next-floor fields, both paths through the three area dispatch calls, and the generated initializer at 0x802287F0 for the original 40-byte state object."
+      },
+      "6020": {
+        "path": "src/pso/unk/TLobby_80335E7C.cpp",
+        "reason": "The shared title tables replace the local stand-ins at their original addresses. The record accessor, texture bind and cursor bridge use their actual types. The native C++ overlay destructor at 0x80335F44 resets the vtable, invokes the base destructor and handles conditional release."
+      }
+    },
+    "scoped": {
+      "5107": "The camera draw wrapper keeps the original camera calls and takes the native sprite pointer. The full rendering and archive comparison remains open."
+    },
+    "open_rows": 270,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "c1ccc75f8c36932d7e94991a37a16d93ae717805",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [],
+    "materialized_tree": "59e8fab4ff9193c71e5a90bfe90e0280799d1e5a",
+    "archive_sha256": "08b5af6ebfe5e014b0c84065f7c2c7202df268e07aa3acde84862bafb3feb076"
+  }
+}
