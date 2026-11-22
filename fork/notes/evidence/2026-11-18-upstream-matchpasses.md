@@ -136,6 +136,10 @@ The 24-path player interaction replay at `96d68f7de8` shares the native hold and
 
 Both builds match retail with 27,572 exact functions, 2,447 linked units and all 1,147 starting bytes accounted for. The 130-path tooling archive reconstructs the tested fork workspace and the 310 workspace checks pass. Both probes agree on retail and both builds. The source audit closes the model draw and window reset records and leaves 344 comparisons open. [Player interaction validation](2026-11-22-upstream-365-player-interactions-validation.json)
 
+The 30-path player scale replay at `dc19499a31` gives the 0x30-byte scale state, camera offsets, and the 6x87 and 6x88 packets their native receivers. The two player constructors initialize the native member, and the quest and packet handlers share its declarations. One state header carries 39 declarations, and the shared position accessor returns the original vector pointer. The 15 changed linker labels follow the typed receivers and packet parameters. The scale camera vector helper retains its current C label.
+
+Both builds match retail with 27,572 exact functions, 2,447 linked units, and all 1,147 starting bytes accounted for. The camera, scale, and wire-packet probe agrees across all three images. The 130-path tooling archive reconstructs the tested workspace and all 310 checks pass. The constructor and area-entry comparisons close, leaving 342 open. [Player scale validation](2026-11-22-upstream-365-player-scale-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
