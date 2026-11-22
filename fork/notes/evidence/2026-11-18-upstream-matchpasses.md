@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 14-path starlight and item-menu replay `5e22b4e749` restores the native light constructors, parameter owner, and typed factory callers. The menu constructor, setter, query and close path use the actual FlagWord. The compiler keeps the original field-copy order with one scoped scheduling directive. Six linker labels follow typed signatures or ownership, and three are updated in the 130-path fork archive. Both builds reproduce retail and all 310 checks pass. The runtime cases verify split-screen and allocation behavior, child geometry and lifetime, rendering order, and menu flag bounds. The reopened menu comparison closes, leaving 249. [Starlight and menu validation](2026-11-22-upstream-8441-starlight-validation.json)
+
+
 The player status replay `dd8c8901f1` restores the actual return types for the 0x800000 and 0x01000000 predicates. The render, technique and support callers use the class declarations and keep all linked names. Both executables pass the two mask and return tests, the four support-effect gates and the movement and water cases. The byte-identical fork tooling archive passes all 310 checks. The complete support and movement caller comparison closes, leaving 250 open. [Player status and fork workspace validation](2026-11-22-upstream-8441-player-status-validation.json)
 
 
