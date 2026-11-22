@@ -22,6 +22,10 @@ The first standalone review on current master is window, character selection and
 
 The fork workspace on the enemy startup checkpoint round-trips the 130-path tooling overlay. It updates 5 of the 26,965 retained linker labels for the latest asset and startup interfaces. The materialized fork reproduces retail and passes all 310 workspace and host checks.
 
+The model hierarchy replay `d26db618a1` shares `NJS_OBJECT` across Dragon, Gol Dragon, both tentacle loaders and the three Ancient doors. The model copy preserves retail instruction scheduling with a single scoped pragma. Both Dragon hierarchy routines keep their names and acquire the native parameter types. Copy, traversal, recursive cloning and the in-place copy probes pass.
+
+The actor ground replay `e4f26f2957` uses the shared collision hit and contact records, removes 28 redundant cache casts, and preserves the existing query and caller names. All 16 cache, room mask, hit and optional normal combinations, cache reset and movement probes match retail. The collision-bounds audit closes one historical owner entry, leaving 259 open. The local fork workspace on this source keeps the 130-path overlay. Its two updated linker entries track the Dragon node signatures. All 1,147 starting bytes and 27,572 functions remain accounted for, and the materialized fork passes 310 checks. [Model, ground and fork workspace validation](2026-11-22-upstream-369-model-nodes-and-ground-validation.json)
+
 ## Replay after upstream PR #367
 
 Upstream PR #367 advanced master to `6aee940eca`. The first local review is window, character selection and chat at `1484889e3b` on that revision. It covers 358 paths. The shared memory review will carry the 195 release-related edits removed from this candidate. Three remaining merge conflicts were resolved using the upstream controller and trade field names and the existing model loader’s writable pointer array. [Merged PR #367](https://github.com/zeroz41/pso-decomp/pull/367)
