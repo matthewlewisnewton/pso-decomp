@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 48-path weapon animation replay `44c5eccf97` restores the shared canopy transitions, signed animation fields, typed trail-joint writes and matrix-copy owner. The shared clamp operations keep their upstream names and serve the weapon, tunnel and effect callers. Three emitted labels follow the common helpers. Both builds match retail with all 1,147 starting data bytes. Runtime checks cover 96 canopy frames, lifetime paths, signed steps, trail writes and matrix-copy arguments. The byte-identical 130-path tooling archive passes 310 checks. The matrix declarations close and the starlight factory and menu flag setter comparison reopens, leaving 251. [Weapon animation and fork workspace validation](2026-11-22-upstream-8441-weapon-animation-validation.json)
+
+
 The 17-path node-cache replay `ce44868a80` restores the native recorder for Barba Ray and shared matrix concatenation for the renderer and breakup callers. It passes the original per-node matrix offsets and preserves the visibility and recursion flags. The four linker labels follow the cache owner, the typed constructor and the shared matrix interface. The retail probes cover construction, bounded capture, draw order and the null matrix arguments. A separate attack audit checks the already-native virtual defaults and return. The fork tooling patch keeps the same 130 paths and edits and passes all 310 checks. Two comparisons close, and the remaining matrix-copy owner reopens one, leaving 251. [Node cache and matrix validation](2026-11-22-upstream-8441-node-matrix-cache-validation.json)
 
 
