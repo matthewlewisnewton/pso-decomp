@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 32-path animated NPC resource replay `616e0968a2` gives the chunk registry typed model and texture arguments across its callers. Mericarol and Gibbles share typed archive and motion rows. Mericarol uses the native render texture entries and vectors, and Rappy and the seabed dolphin own typed resource pointers. The single changed linker label follows the registry signature. Both builds reproduce retail and all 310 workspace checks pass. Runtime checks cover archive variants, registry slot writes, texture restoration and repeated dolphin cleanup. The complete Mericarol render comparison closes, leaving 245 historical records. [Enemy resource and workspace validation](2026-11-22-upstream-8441-enemy-model-resources-validation.json)
+
+
 The modem launch replay `3cdbfc8652` shares the native declarations across the switcher and trial modem code. The connection and disc-message offsets have layout checks. The historical O2 scope reproduces the disc-message call sequence with the shared signatures. The existing typed status probe and all ten setters retain their original flags, cache behavior and entry points. Both builds match retail, all 1,147 starting bytes remain accounted for and the byte-identical 130-path tooling archive passes all 310 checks. Two complete historical comparisons close, leaving 246. [Modem launch and status validation](2026-11-22-upstream-8441-modem-launch-validation.json)
 
 
