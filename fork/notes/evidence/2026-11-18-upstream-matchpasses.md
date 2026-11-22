@@ -218,6 +218,10 @@ The seven-path enemy replay at `b8b528134c` restores seven native Morfos state h
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. Twenty-two dispatch, arm, tuning, resource and joint cases pass on each image. All 310 workspace checks pass, and the 130-path tooling archive round-trips. Four historical records gain scoped evidence and 285 remain open. [Enemy state and resource validation](2026-11-22-upstream-365-enemy-states-validation.json)
 
+The seven-path enemy lifecycle replay at `57f9fc8f00` restores the Gibbles constructor, destructor, targeting override, state helpers and both joint attack methods. Typed fields replace the state storage overlays. Deferred code generation puts the native 83-entry virtual table ahead of the dispatch tables at its original address. Morfos owns its confusion predicate and the lobby resource callback. Fourteen function labels and the Gibbles virtual table label follow the recovered C++ providers.
+
+Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 original data bytes accounted for. The 17 lifecycle cases and 22 earlier enemy state cases pass on each image. All 310 checks pass, and the 130-path fork tooling archive round-trips. The keep-list adds the separately named movement and collision records. Two header comparisons close, leaving 283 records open. [Enemy lifecycle validation](2026-11-22-upstream-365-enemy-lifecycle-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
