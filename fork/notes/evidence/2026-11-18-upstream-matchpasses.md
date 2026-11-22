@@ -104,6 +104,12 @@ Both builds reproduce retail and account for the original 1,147 data bytes. The 
 
 The bulk comparison tested 452 of the 453 open records against the current source using include lineage and linked symbol identities. Nine had close candidates at their recorded paths. Direct review closed the city shop declarations, the frontend ray texture and depth calls, and the checkbox header under the existing class name. The recovered motion block closes the phase-one header comparison. The audit now has 449 open records. [Motion state and historical comparison evidence](2026-11-21-olga-flow-motion-state-replay.json)
 
+The 33-path player interaction replay at `21be236e7f` restores the embedded technique state and its native level check. The hold and release methods now take player pointers through the menu, trap, warp and other interaction callers. The three linker label changes follow those interfaces. The two dispatch scans use their original menu targets and retain upstream names. The compiler-sensitive const collision trial stays open.
+
+Both builds reproduce retail, preserve all 1,147 original data bytes and pass the 310 tool and host checks. Runtime probes verify technique limits, hold and release arguments, and the camera and split-screen gates on menu dispatch. The fork tooling archive replays byte for byte.
+
+The native level check and player window dispatch records close. Two earlier technique records reopen because the current source was missing the full native setter and target interface validated in an earlier snapshot. Restoring the layout accounts for part of that work, and the count remains 449. [Player interaction and technique evidence](2026-11-21-player-interaction-replay.json)
+
 ## Replay after upstream PR #351
 
 Upstream master `859acff683` includes 14 published recovery groups. It exactly incorporates 902 paths from the previous Great Merge source. Comparing the two trees finds 945 differing paths and a direct three-way merge reports 404 conflicts. The replay index records exact Git blobs for the old base, current master, previous Great Merge and current review. All 1,847 replay paths now have a disposition. [Replay index](2026-11-21-upstream-351-reconciliation.tsv) · [Upstream consolidation](https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029)
