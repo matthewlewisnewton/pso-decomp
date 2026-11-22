@@ -1,5 +1,7 @@
 # Recover native PPP, modem, and packet receive interfaces
 
+The 60-path review `3d2429fcbd` on `2ea1c02d4c` also restores native game and lobby list assignment and copies the packet header as bytes. Its exact build, 15 protocol-list cases and 10 packet copy and collision checks pass. The next revision is being replayed onto upstream PR #367. [Assembled queue validation](2026-11-22-upstream-366-assembled-queue-validation.json)
+
 The current standalone review is `great-merge/review/after-366/network-runtime` at `72703eff0b` on upstream `2ea1c02d4c`. Applying that same patch above the expanded window and combined actor reviews yields `8b22ee1626`. The stacked build matches retail, passes the coverage comparison, and passes all eleven network probes. [Current validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
 The previous standalone review branch `great-merge/review/network-runtime` ends at `3dd55d81fcb82618a032de944c152d5aa842597b` and starts directly on upstream master `b2d2912058829d0f0c9260f6272dc2a303c90110`. The diff contains 55 source, header and configuration paths with 1,153 insertions and 1,131 deletions. All three commits use the configured fork author and committer.

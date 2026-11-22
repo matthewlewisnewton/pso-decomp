@@ -75,6 +75,12 @@ The 107-path actor position and population review at `0a8586d2fe` recovers nativ
 
 The 35-path Olga Flow review at `315777bbb1` restores native phase construction, Mag actions and attacks, typed mines and sword waves, and the shared attack-credit and scrolling-strip inputs. The review matches retail with all 1,147 original data bytes accounted for and passes eight runtime probe suites. The replay at `2e513f2fa7` reconstructs the consolidated source from the 16 paths outside the review stack. [Olga Flow review](2026-11-22-next-upstream-olga-flow.md) · [Validation](2026-11-22-upstream-366-olga-flow-review-validation.json)
 
+The assembled source at `730b1add25` folds the last 14 substantive paths into their owner reviews. The window candidate gains character, item-help and calendar layout checks. The network candidate gains native list assignments and the byte-safe packet header copy. Particle tasks, collision spheres and two actor call sites carry their native layouts and arguments. The source keeps the earlier equivalent include order and pointer qualifiers at the two remaining paths.
+
+The combined build, the 439-path window review `c55003f5b9`, the 60-path standalone network review `3d2429fcbd`, and the reconstructed fork workspace reproduce retail with all 1,147 original bytes accounted for. All 310 workspace checks pass and the documentation and tooling archive round-trips. The historical ledger has 261 open comparisons. [Assembled queue validation](2026-11-22-upstream-366-assembled-queue-validation.json)
+
+Upstream PR #367 advanced master to `6aee940eca`. The first window review overlaps 59 paths and has 11 merge conflicts. The combined queue overlaps 412 paths and has 302 conflicts. The build evidence above is pinned to the preceding upstream revision. [Merged PR #367](https://github.com/zeroz41/pso-decomp/pull/367)
+
 ## Replay after upstream PR #365
 
 Upstream master advanced from `5a4e7ced56` to `b2d2912058` by 45 commits across 1,947 paths. The pinned matching checkpoint `1e41348776` shares 782 changed paths with the new master. The three-way merge preview has 459 conflicts. The path index records the old, landed, local and preview entries for each changed path. [Upstream PR #365](https://github.com/zeroz41/pso-decomp/pull/365) · [Replay index](2026-11-21-upstream-365-replay-index.tsv)

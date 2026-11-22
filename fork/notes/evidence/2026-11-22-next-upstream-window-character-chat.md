@@ -1,5 +1,7 @@
 # Recover native window, character selection, and chat interfaces
 
+The 439-path review `c55003f5b9` on `2ea1c02d4c` includes the native character selection, calendar and item-help layout checks. Its exact build and title and status-window probes pass. The next revision is being replayed onto upstream PR #367. [Assembled queue validation](2026-11-22-upstream-366-assembled-queue-validation.json)
+
 The current review is `great-merge/review/after-366/window-character-chat-expanded` at `7e38bacd3a3be70b715037db837d5366763d4502` on upstream master `2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e`. It changes 435 paths (+5,208/−5,550). The added title sprite and status-window commit changes 24 paths from the original candidate. The two new linker labels follow the sprite pointer on the camera draw call and the native owner of the existing window-entry flag check. Both commits use the configured fork author and committer. [Title sprite validation](2026-11-22-upstream-366-title-sprites-validation.json) · [Status-window validation](2026-11-22-upstream-366-status-windows-validation.json)
 
 The expanded review builds against the current upstream master, with all 27,572 functions exact, 2,447 units linked, and all 1,147 original data bytes accounted for. The title and status runtime checks pass on the review build. The same patch applies cleanly to the queued actor and enemy heads, yielding trees `0457264fa5` and `2258dff4ab`. Those are merge previews.
