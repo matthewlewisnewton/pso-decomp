@@ -16,6 +16,10 @@ The tested fork workspace now uses the shared-memory source `4fc1ed7afe`. The 13
 
 The scene-fade component at `5438eb321d` matches retail with typed fade and deferred-render callbacks. Its runtime checks cover fade transitions, logo callbacks, packed quad color, and all five queue outcomes. Carry it with the camera and scene review. [Workspace and scene validation](2026-11-22-upstream-367-memory-workspace-validation.json)
 
+The camera, scene, and rendering review at `dd8bbb2429` spans 102 paths above shared memory. It combines scripted and live playback, native matrix and view inputs, the strip allocator and traversal, typed fog and light storage, player effect inputs, and the tested fade callbacks and deferred queue. Four boss call sites already use the shared types on upstream. The matrix and scene-storage changes move here from earlier groups in the previous queue.
+
+The review reproduces retail with 27,572 exact functions and 2,417 linked units. All 1,147 original data bytes remain accounted for. Six runtime suites match retail. Seven source groups still need replay validation on this base. [Camera, scene, and rendering validation](2026-11-22-upstream-367-camera-scenes-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
