@@ -1,0 +1,95 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "initial_review": "5cd8d9c8e9156bba623119d93af0da951962cf3b",
+  "review": "084cec228c06a73ea36333f383419b4ed4f7bfc2",
+  "pull_request": "https://github.com/zeroz41/pso-decomp/pull/371",
+  "matching_ci": "https://github.com/zeroz41/pso-decomp/actions/runs/45079322229/job/137383670517",
+  "previous_source": "6c18d0b12a862b208c3548d88e133a854229501d",
+  "cumulative_source": "0370f8f6cd323b1c50b78d1aa6256024a52d4339",
+  "corrected_files": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/render/SpriteDescriptor.h",
+    "include/pso/ui/frontend/TitleSceneTables.h",
+    "include/pso/ui/window/TWindowMakeTeam.h",
+    "include/pso/ui/window/TWindowMeseta.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_80228154.h",
+    "src/pso/effect/TEffStarLight2D_Base.cpp",
+    "src/pso/ui/UISprite.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/ui/frontend/TAdDialingGC.cpp",
+    "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowMeseta.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80269064.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_80228154.cpp",
+    "src/pso/unk/TLobby_80335E7C.cpp"
+  ],
+  "source_quality": {
+    "base": 167998,
+    "head": 165438,
+    "added": 530,
+    "removed": 3090
+  },
+  "ownership_quality": {
+    "base": 2614,
+    "head": 2513,
+    "added": 55,
+    "removed": 156
+  },
+  "flagged_labels": 0,
+  "new_stale_retention_entries": 0,
+  "benchmark_json_sha256": "d0ac41c91674e9fb6e54756fdef1f7d6475c593bc77c2c10954bc100b671b7d1",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage": {
+    "review-check.json": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "check.json": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "layer-check.json": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    }
+  },
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "original_data_bytes": 1147,
+  "runtime_probes": [
+    "PsoV3.dol: 46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+    "PsoV3.dol: overlay destruction, global construction, and both area dispatch paths passed.",
+    "PsoV3.dol: status flags, numeric glyphs, icon clipping and status detail rows passed."
+  ],
+  "workspace": {
+    "overlay_paths": 130,
+    "updated_retention_labels": {},
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "materialized_tree": "47b1795ea567b6813ae15b1086e181f03cde98d2",
+    "archive_sha256": "285b1a35386698ce2c795d4abd0bd586f89a268508e714cb588ed819c412890a"
+  }
+}

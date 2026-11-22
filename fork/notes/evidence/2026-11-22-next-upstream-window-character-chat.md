@@ -1,6 +1,8 @@
 # Recover native window, character selection, and chat interfaces
 
-Upstream PR #371 is in draft at `5cd8d9c8e9` from `matthewlewisnewton:recover-native-window-character-chat` to `master` while the typed polygon fields are audited. The local ref `great-merge/review/after-370/window-character-chat` points to the same commit. Its single commit on upstream `d8c0a969d2` covers 377 paths. It reproduces retail with all 27,572 functions exact, 2,417 linked units and all 1,147 original data bytes accounted for. Title, status, and lifetime probes pass. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Validation at the published head](2026-11-22-upstream-370-window-symbol-validation.json)
+PR #371 is ready for review at `084cec228c` from `matthewlewisnewton:recover-native-window-character-chat` to upstream `master`. The follow-up preserves the established polygon, sprite, team and Meseta fields. It reproduces retail with zero coverage losses. The upstream benchmark reports 2,560 fewer findings, zero flagged symbol labels and zero newly stale retention entries. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Passing CI](https://github.com/zeroz41/pso-decomp/actions/runs/45079322229/job/137383670517) · [Field audit validation](2026-11-22-upstream-371-field-audit-validation.json)
+
+The initial review went into draft at `5cd8d9c8e9` from `matthewlewisnewton:recover-native-window-character-chat` to `master` while the typed polygon fields are audited. The original single-commit review was built on the same upstream revision. Its single commit on upstream `d8c0a969d2` covers 377 paths. It reproduces retail with all 27,572 functions exact, 2,417 linked units and all 1,147 original data bytes accounted for. Title, status, and lifetime probes pass. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Validation at the published head](2026-11-22-upstream-370-window-symbol-validation.json)
 
 Upstream’s `tools/source_quality.py` at `d8c0a969d2` finds **2,497 fewer findings** across 373 source files, with 3,082 removed and 585 added. Separate ownership diagnostics fall by 101. The first review on this base, `0f8ed70741`, had 39 flagged symbol labels and 41 newly stale retention entries. The revised review has zero in both categories. It changes 247 labels overall, including 79 additional mangled labels for members sharing the recovered class owners. [Upstream benchmark](https://github.com/zeroz41/pso-decomp/blob/d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571/tools/source_quality.py) · [Upstream CI workflow](https://github.com/zeroz41/pso-decomp/blob/d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571/.github/workflows/ci-comment.yml)
 
@@ -47,7 +49,7 @@ The renderer review landed with the same source tree as the original parent. [Me
 | Runtime probes for choice-windows | `1e8dd6a82f54813ff0f4d19cf4cfa89c56d92adab7ab20ab152a81c4314aaa32` |
 | Runtime probes for window-readouts | `214547f33a5a30b7583f3388283519e896f7b6d126179606d3ce5b287637de9b` |
 
-## Proposed PR description
+## Published PR description
 
 ### Summary
 
@@ -62,9 +64,13 @@ Start with the interfaces in `include/pso/ui/window/TWindowMakeTeam.h`, `include
 
 The live task-name strings establish `TAdChrSelPlayerGC`, `TWindowFukidasi` and `TWindowMenuInfomation`. The title scene, card follower, Word Select mode indicator, and gauge names describe roles established by their constructors and callers. Symbols for members of those classes use the recovered owner in their mangled names.
 
+### Preserved upstream declarations
+
+The selection plate, dialing dialog, and character-proportion preview keep `NJS_POINT2COL`, `NJS_POINT2`, and `NJS_COLOR`, including the existing texture pointer and point count. The selection plate uses the recovered color-copy helper. Sprite rendering uses the existing `NJS_SPRITE` and `NJS_TEXANIM` declarations, including the texture ID and attributes. The table and renderer convert the texture-list type at the Ninja and Ginja boundaries. The team and Meseta records keep their established field names on the recovered owners.
+
 ### Validation
 
 - GPOE8P reproduces retail DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3`.
 - `tools/check_pr.py` passes against upstream master `d8c0a969d2` with all 27,572 functions exact, 2,417 units linked, and zero code or data coverage losses.
-- Upstream’s source-quality benchmark reports 2,497 fewer findings overall, zero flagged symbol names and zero newly stale retention entries.
+- Upstream’s source-quality benchmark reports 2,560 fewer findings overall, zero flagged symbol names and zero newly stale retention entries.
 - Component runtime probes agree with retail for choice selection, status rendering, character slot labels, controller repeat, Word Select, Guild Card accessors, radar data, title sprite and camera routing, and numeric glyph rendering.
