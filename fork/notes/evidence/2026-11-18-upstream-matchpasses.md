@@ -50,6 +50,10 @@ The combined save, quest and asset-loading review at `6077e29d1c` covers 174 pat
 
 The fork workspace on the asset checkpoint preserves the 130-path tooling overlay and updates 26 of its 26,963 retained linker labels. The materialized fork reproduces retail and passes all 310 workspace and host checks. The archive lives under `fork/` with the documentation and its materialization tools.
 
+The technique and player-state review at `a27e2abd33` covers 109 paths directly above the save, quest and asset-loading review. The replay shares cast targets and the 6x47 packet, types technique effect and particle construction, and recovers the hold and shrink packet owners. Charge lights use the current native constructor with the original color and direction records. Scale camera offsets keep their existing Vec fields.
+
+The cumulative source at `98865a1351` has the same source tree. It matches retail with 27,572 exact functions and all 2,417 units linked. All 1,147 original data bytes remain accounted for. All six runtime suites agree with retail. The 38 linker labels follow the recovered types and owners. The next replay previews measure the remaining boss, enemy lifecycle, population and Olga Flow overlaps on this source. [Technique and player-state validation](2026-11-22-upstream-367-techniques-and-player-state-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
