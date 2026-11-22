@@ -4,6 +4,9 @@ Submit one larger, related source review at a time with an independent matching 
 
 ## Current upstream review
 
+The 10-path Photon Line and Leilla replay `677fef25b2` restores the line's native collision and hit state, typed Leilla construction, and the summon words read by the scene restore gate. Runtime cases cover obstruction, duplicate hits, the ninth target cutoff, and Leilla's boss-floor rainbow and audio paths. The two changed linker labels describe the typed constructor and color reset call. The 130-path archive retains the same tooling changes, with updated source context in its linker configuration. Both builds reproduce retail with all 1,147 starting data bytes and all 310 checks pass. The previous Golla and Estlla source comparisons are confirmed. [Photon Line and Leilla validation](2026-11-22-upstream-8441-photon-effects-validation.json)
+
+
 The 14-path Photon Blast replay `618d324851` restores the native four-slot registry and shared slot layouts across admission, lookup, result delivery, and reset. IDs use the original unsigned halfword storage and kinds keep their signed values. Sixteen linker labels follow changed owners or signatures, and two carry through the 130-path fork archive. Both builds reproduce retail with all 1,147 starting data bytes and 310 checks pass. The probes cover full and empty queues, reuse, release, allocation failure, and the party effect's original 10.0 strength. The complete request comparison closes, leaving 248. [Photon Blast request and fork workspace validation](2026-11-22-upstream-8441-photon-requests-validation.json)
 
 

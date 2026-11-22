@@ -1,0 +1,109 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "677fef25b2928a088924bde21522ebde1da7e879",
+  "source_base": "618d324851a92e3e814e85f4e9f17d539c936a83",
+  "source_commits": 45,
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/photon/PhotonBlastSummon.h",
+    "include/pso/effect/photon/TPhotonLeilla.h",
+    "include/pso/effect/photon/TPhotonLine.h",
+    "include/pso/unk/TUnk_804C3248.h",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonLine.cpp",
+    "src/pso/player/PhotonBlastResults.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x801AC444",
+      "before": "sub_801AC444__13TPhotonLeillaFv",
+      "after": "sub_801AC444__13TPhotonLeillaFUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801AC808",
+      "before": "TPhotonLeilla__ct",
+      "after": "__ct__13TPhotonLeillaFP18PhotonSummonParams"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "4dc242856430140e49e27cf64c057ed0f41523f7ab3127f1472cae84e06e759c",
+      "cases": {
+        "line_constructors": 8,
+        "line_motion_and_hits": 16,
+        "leilla_setup": 20
+      },
+      "observations": [
+        "PsoV3.dol: Photon Line motion and contact limits and Leilla floor, archive and audio paths passed",
+        "psov3.dol: Photon Line motion and contact limits and Leilla floor, archive and audio paths passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "4dc242856430140e49e27cf64c057ed0f41523f7ab3127f1472cae84e06e759c",
+      "cases": {
+        "line_constructors": 8,
+        "line_motion_and_hits": 16,
+        "leilla_setup": 20
+      },
+      "observations": [
+        "PsoV3.dol: Photon Line motion and contact limits and Leilla floor, archive and audio paths passed",
+        "psov3.dol: Photon Line motion and contact limits and Leilla floor, archive and audio paths passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 248,
+    "open_after": 248,
+    "confirmed": [
+      "include/pso/effect/photon/TPhotonLine.h",
+      "src/pso/effect/photon/TPhotonLine.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "include/pso/unk/TUnk_804C3248.h",
+      "src/pso/effect/photon/PhotonBlastSummon.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp"
+    ]
+  },
+  "fork_workspace": {
+    "parent": "677fef25b2928a088924bde21522ebde1da7e879",
+    "previous_workspace": "ce8a2d01c050156540b5fa7af444966958f9afe1",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "rebased_source_context": "config/GPOE8P/psov3/config.yml",
+    "materialized_tree_before_notes_update": "3a987dca886b8ae9875d4aac059c96bae357cde2",
+    "archive_sha256": "8fcebede89bc141f6f496711a5212b23dfd3b5c4cf51e081b71a7d78accdad20",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}
