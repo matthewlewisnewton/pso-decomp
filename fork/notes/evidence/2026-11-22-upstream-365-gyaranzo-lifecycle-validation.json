@@ -1,0 +1,285 @@
+{
+  "source": "7dac72568843efc0ea3a4213099e560a1d7fb48d",
+  "previous_source": "57f9fc8f008d04d7a2cc5895aaeaa0d2ea45b507",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/gibon/TObjEneBm5GibonU.h",
+    "include/pso/enemy/gyaranzo/TObjEneGyaranzo.h",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp"
+  ],
+  "combined_paths_from_upstream": 1320,
+  "validation": {
+    "source": {
+      "baseline": "57f9fc8f008d04d7a2cc5895aaeaa0d2ea45b507",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800D1D80",
+          "before": "clear_flag_and_update__16TObjEneBm5GibonUFv",
+          "after": "cancel_fade_state__15TObjEneGyaranzoFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D1DBC",
+          "before": "check_and_update__16TObjEneBm5GibonUFv",
+          "after": "update_movement_status__15TObjEneGyaranzoFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D1E04",
+          "before": "try_activate__16TObjEneBm5GibonUFv",
+          "after": "update_shock_clock__15TObjEneGyaranzoFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D3E54",
+          "before": "fn_800D3E54",
+          "after": "__dt__15TObjEneGyaranzoFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D3ED8",
+          "before": "TObjEneGyaranzo__ct",
+          "after": "__ct__15TObjEneGyaranzoFP7TObjectPv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "75186277a849e677e9f5b190bb26207692de8dc93b32275d3d075bca055db56e",
+      "report_sha256": "56da45c435c3f0771a462b60010b6a5dd7d5ee011080d59c1de5ebbc45f3eaeb"
+    },
+    "layer": {
+      "baseline": "7dac72568843efc0ea3a4213099e560a1d7fb48d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "56da45c435c3f0771a462b60010b6a5dd7d5ee011080d59c1de5ebbc45f3eaeb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "058712685cd8b11e3d3f33ce043f9054dc04ea6d95864e025d80414c2794889b"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "1d96000005d92baf2f74e661b3f261545da98b65c748a54c04fc84f1a3c547dd"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "units": {
+    "TObjEneGyaranzo": {
+      "functions": 29,
+      "data_sections": [
+        {
+          "name": ".bss",
+          "size": 176,
+          "address": "2152730320"
+        },
+        {
+          "name": ".data",
+          "size": 756,
+          "address": "2152284424"
+        },
+        {
+          "name": ".rodata",
+          "size": 832,
+          "address": "2151923968"
+        },
+        {
+          "name": ".sbss",
+          "size": 48,
+          "address": "2153599456"
+        },
+        {
+          "name": ".sdata",
+          "size": 8,
+          "address": "2153589368"
+        },
+        {
+          "name": ".sdata2",
+          "size": 72,
+          "address": "2153620056"
+        }
+      ]
+    },
+    "TObjEneBm5GibonU": {
+      "functions": 83,
+      "data_sections": [
+        {
+          "name": ".bss",
+          "size": 88,
+          "address": "2152730232"
+        },
+        {
+          "name": ".ctors",
+          "size": 4,
+          "address": "2151890780"
+        },
+        {
+          "name": ".data",
+          "size": 1124,
+          "address": "2152283296"
+        },
+        {
+          "name": ".rodata",
+          "size": 432,
+          "address": "2151923536"
+        },
+        {
+          "name": ".sbss",
+          "size": 16,
+          "address": "2153599440"
+        },
+        {
+          "name": ".sdata",
+          "size": 8,
+          "address": "2153589360"
+        },
+        {
+          "name": ".sdata2",
+          "size": 256,
+          "address": "2153619800"
+        }
+      ]
+    },
+    "TObjEneBm3FlyNest": {
+      "functions": 42,
+      "data_sections": [
+        {
+          "name": ".bss",
+          "size": 64,
+          "address": "2152729344"
+        },
+        {
+          "name": ".data",
+          "size": 816,
+          "address": "2152275360"
+        },
+        {
+          "name": ".rodata",
+          "size": 648,
+          "address": "2151919904"
+        },
+        {
+          "name": ".sbss",
+          "size": 36,
+          "address": "2153599224"
+        },
+        {
+          "name": ".sdata",
+          "size": 8,
+          "address": "2153589272"
+        },
+        {
+          "name": ".sdata2",
+          "size": 120,
+          "address": "2153618680"
+        }
+      ]
+    }
+  },
+  "gyaranzo_native_vtable": {
+    "module": "psov3",
+    "address": "0x80494288",
+    "before": "gyaranzo_actor_vtable_ops",
+    "after": "__vt__15TObjEneGyaranzo",
+    "entries": 83,
+    "bytes": 332,
+    "sha256": "1f518b36812eb2bcb361c5462eda398f5e4630ba0d45090c4e70fc47995f5b7e"
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "spawn-owners": {
+        "cases_per_image": 23,
+        "probe_sha256": "1bacef8863edaf108201a18ca5e5fc1e9b574683be7ff2b36b1fcf8776746c9d",
+        "log_sha256": "42225e11e9fb4d014f6d87d1f5e14d30b810aba39453cd811064768aec8d2aba"
+      },
+      "enemy-lifecycle": {
+        "cases_per_image": 17,
+        "probe_sha256": "24f26655fa49b718bb73959129c342432df063923ca3a73e3c4d26e54ab150d9",
+        "log_sha256": "9de3add7be9986a5ccab499a0c000471bf591d82932640f20c63daf9e2a0f029"
+      }
+    }
+  },
+  "historical": {
+    "scoped": {
+      "565": "The placement count, native child factory and carry-fly constructor retain their types. The attack-slot lookup now reads the child through the native Fly type. Six checks cover its V1 and V2 limits.",
+      "588": "The actor owns its constructor, destructor, and both status overrides. The compiler emits all 83 virtual slots at the original address. Chase and volley fields share typed storage, and the resource loader uses the BML records and the native breakup-model destructor.",
+      "1167": "Three functions labeled as Gibon methods moved across the split boundary to their Gyaranzo class. All 83 functions within the resulting Gibon unit still match at their original addresses."
+    },
+    "open_rows": 283,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "8958974aaacf4b075d254610942c7b492bcc62b4",
+    "overlay_paths": 130,
+    "removed_keep_list_entries": [
+      "TObjEneGyaranzo__ct",
+      "clear_flag_and_update__16TObjEneBm5GibonUFv",
+      "fn_800D3E54",
+      "gyaranzo_actor_vtable_ops"
+    ],
+    "added_keep_list_entries": [
+      "__ct__15TObjEneGyaranzoFP7TObjectPv",
+      "__dt__15TObjEneGyaranzoFv",
+      "__vt__15TObjEneGyaranzo",
+      "cancel_fade_state__15TObjEneGyaranzoFv",
+      "update_movement_status__15TObjEneGyaranzoFv",
+      "update_shock_clock__15TObjEneGyaranzoFv"
+    ],
+    "force_active_count": 27033,
+    "materialized_tree": "8188c2f23c58e9700677932261b2dd43201bb305",
+    "archive_sha256": "db2587a7b4fba6880a4b26629c79df0f9c3b28b06a790297049b13f313ae2dbb"
+  }
+}
