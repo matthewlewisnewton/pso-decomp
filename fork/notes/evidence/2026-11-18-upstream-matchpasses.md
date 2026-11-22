@@ -54,6 +54,10 @@ The technique and player-state review at `a27e2abd33` covers 109 paths directly 
 
 The cumulative source at `98865a1351` has the same source tree. It matches retail with 27,572 exact functions and all 2,417 units linked. All 1,147 original data bytes remain accounted for. All six runtime suites agree with retail. The 38 linker labels follow the recovered types and owners. The next replay previews measure the remaining boss, enemy lifecycle, population and Olga Flow overlaps on this source. [Technique and player-state validation](2026-11-22-upstream-367-techniques-and-player-state-validation.json)
 
+The Olga Flow replay at `6713e1f36f` and the local review at `c4f687452c` share one validated tree across 23 paths above techniques. Both body factories use the plot owner, shared set entry and variant. The first phase copies its native 64-byte motion record. Sword waves, photon showers, rock setup and scrolling strips use their native inputs, and experience uses the shared attack-credit slots. The replay retains the current Mag class and boss action handlers.
+
+All eight encounter suites agree between retail and the replay. The DOL matches with 27,572 exact functions, all 2,417 units linked and all 1,147 original data bytes accounted for. The ten linker labels follow typed signatures. The replay previews carry the remaining boss and enemy actors, lifecycle, and population work forward to this checkpoint. [Olga Flow validation](2026-11-22-upstream-367-olga-flow-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
