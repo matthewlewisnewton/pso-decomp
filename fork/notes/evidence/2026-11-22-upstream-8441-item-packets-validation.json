@@ -1,0 +1,155 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "1084e7c2bf54823e758082eed257f863f7bb8a5f",
+  "source_base": "27a1646b0a679a59b9f7116ad719bfb83d936e5d",
+  "donor": "acfcd516101bae55a49c4282e967c8f9d48c0952",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/item/TItemIdCounters.h",
+    "include/pso/item/drop/TItemDrop.h",
+    "include/pso/network/protocol/ItemDropPacket.h",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/text_8011A780.h",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/item/item_pmt.cpp",
+    "src/pso/unk/TLobby_80103F5C.cpp",
+    "src/pso/unk/TLobby_80104374.cpp",
+    "src/pso/unk/text_8011A780.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8011AB64",
+      "before": "process_enemy_drop_request__FScsisiff",
+      "after": "process_enemy_drop_request__Flsisiff"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8011B0C8",
+      "before": "send_item_packet__6TLobbyFv",
+      "after": "send__24G_DropItem_PC_V3_BB_6x5FFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8011B130",
+      "before": "init_header_packet__6TLobbyFv",
+      "after": "__ct__24G_DropItem_PC_V3_BB_6x5FFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8011B188",
+      "before": "init_header__6TLobbyFv",
+      "after": "__ct__18G_DropItem_DC_6x5FFv"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "b9d79a9b47d7ce625cce3deae0ac943565f74b9ad480aa74d69464bf142e5b7b",
+      "observations": [
+        "PsoV3.dol: both 6x5F packet formats, wire round trip, five 6x60 routes and both 12-client counter banks passed",
+        "psov3.dol: both 6x5F packet formats, wire round trip, five 6x60 routes and both 12-client counter banks passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "b9d79a9b47d7ce625cce3deae0ac943565f74b9ad480aa74d69464bf142e5b7b",
+      "observations": [
+        "PsoV3.dol: both 6x5F packet formats, wire round trip, five 6x60 routes and both 12-client counter banks passed",
+        "psov3.dol: both 6x5F packet formats, wire round trip, five 6x60 routes and both 12-client counter banks passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 253,
+    "open_after": 252,
+    "resolved": "src/pso/misc/TLobby_8011B010.cpp",
+    "native_owner": "src/pso/unk/text_8011A780.cpp",
+    "routines": {
+      "0x8011b010": {
+        "name": "__dt__15TItemIdCountersFv",
+        "size": 100
+      },
+      "0x8011b074": {
+        "name": "__ct__15TItemIdCountersFv",
+        "size": 84
+      },
+      "0x8011b0c8": {
+        "name": "send__24G_DropItem_PC_V3_BB_6x5FFv",
+        "size": 52
+      },
+      "0x8011b0fc": {
+        "name": "bswap_item_packet__6TLobbyFv",
+        "size": 52
+      },
+      "0x8011b130": {
+        "name": "__ct__24G_DropItem_PC_V3_BB_6x5FFv",
+        "size": 88
+      },
+      "0x8011b188": {
+        "name": "__ct__18G_DropItem_DC_6x5FFv",
+        "size": 68
+      },
+      "0x8011b1cc": {
+        "name": "bswap_packet__6TLobbyFv",
+        "size": 60
+      },
+      "0x8011b208": {
+        "name": "apply_table_entry__6TLobbyFsPv",
+        "size": 68
+      },
+      "0x8011b24c": {
+        "name": "copy_short_fields__6TLobbyFPv",
+        "size": 20
+      }
+    },
+    "restored_historical_header": "include/pso/network/protocol/ItemDropPacket.h"
+  },
+  "fork_workspace": {
+    "parent": "1084e7c2bf54823e758082eed257f863f7bb8a5f",
+    "previous_workspace": "790039031ef830336d2d1aaf0b6d3ed84e61fe3e",
+    "overlay_paths": 130,
+    "materialized_tree_before_notes_update": "5ae8b32eb1867d35995b17d0398d6a93363a021d",
+    "updated_linker_labels": {
+      "init_header__6TLobbyFv": "__ct__18G_DropItem_DC_6x5FFv",
+      "init_header_packet__6TLobbyFv": "__ct__24G_DropItem_PC_V3_BB_6x5FFv",
+      "process_enemy_drop_request__FScsisiff": "process_enemy_drop_request__Flsisiff",
+      "send_item_packet__6TLobbyFv": "send__24G_DropItem_PC_V3_BB_6x5FFv"
+    },
+    "archive_sha256": "ac0ce573813ffba1bfef079b412f2f96c65a085d5b10d987140c50de94d53575",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ],
+    "test_log_sha256": {
+      "tool": "bd52cf927aaed2594efe363e2e7e0342a4cb7ae742f37235c5ab6c267d0b3c2b",
+      "fork": "dbe86f1272d713a82634b72812b08d25df064486834c71852ed5761ca39a1fdd",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  }
+}
