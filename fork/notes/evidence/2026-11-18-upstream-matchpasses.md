@@ -38,10 +38,15 @@ Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and
 | Window, character selection and chat | `7e38bacd3a` | Upstream master | 435 |
 | Actors, bosses, enemy lifecycle and combat | `6fef559bb1` | Expanded window review | 339 |
 | Network runtime | `72703eff0b` | Upstream master | 55 |
+| Character growth, inventory and equipment | `50664446c4` | Stack through network | 117 |
 
 The actor review now includes the enemy lifecycle, assets and combat work. Its six commits retain their attribution and review boundaries. The independent network patch applies on top at `8b22ee1626`. Both builds match retail, retain all 1,147 original data bytes, and pass their coverage and runtime checks. [Actor and network validation](2026-11-22-upstream-366-actor-and-network-review-validation.json)
 
 The replay at `2bbf3682d6` reconstructs the consolidated source `156e375c1c` on the local review stack. The remaining diff covers 680 paths. The queued stack and consolidated source share 529 identical path changes. Of the remaining paths, 403 change only in the consolidated source and 277 have edits in both trees. The index connects these paths to their most recent source commit and 169 of the 267 open historical comparisons. [Remaining source index](2026-11-22-upstream-366-remaining-source.tsv)
+
+The 117-path character, inventory and equipment review at `50664446c4` carries the related growth, companion, combat stat, packet, item and save interfaces above the actor and network stack. The Gibon call keeps the existing technique factory and reads the typed attack record. The consolidated source `0bc02e7707` also picks up the native inventory and equipment receivers for the shop and judgment lists. The replay at `824c47a913` reconstructs that source exactly, with 627 paths still outside the review stack.
+
+The review, consolidated source and reconstructed fork workspace all match retail. The 130-path tooling archive round-trips and all 310 workspace checks pass. Two shop comparisons close, leaving 265 open. [Inventory review](2026-11-22-next-upstream-character-inventory-and-equipment.md) · [Validation](2026-11-22-upstream-366-inventory-review-validation.json)
 
 ## Replay after upstream PR #365
 
