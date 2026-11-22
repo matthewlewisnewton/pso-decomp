@@ -1,0 +1,260 @@
+{
+  "source": "c3577e29c8f746a2f92d3cfd4acb5c19e8e775b2",
+  "previous_source": "9e37da8aea965cdcdeec264e7d89375af0c4e16d",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/quest/OnlineQuestMenuRecords.h",
+    "include/pso/quest/TQuestListOnline.h",
+    "src/pso/quest/TQuestListOnline.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp"
+  ],
+  "combined_paths_from_upstream": 1020,
+  "historical_basis": {
+    "challenge_selector_donor": "79e811c7b69804e2dd310ab723f80f741c70e36f",
+    "online_selection_donor": "75e49d2a8368b35c4092031f8329d0c930d91f2c",
+    "online_entry_array_donor": "9ff0035781f6cee6051f2bf241979be8c1d4f38e",
+    "online_singleton_donor": "dfb145af0911c57dd43f062d1968d85621c7cbec",
+    "single_player_selection_donor": "e0f22dde0ff77a8312cf4125202b4d4d93cc5ad5",
+    "fork_delta_base": "1f2ecc18875d34bdcd37e5509d85fd1f0b9a97d5",
+    "fork_delta_head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "exact_functions_by_unit": {
+      "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp": {
+        "0x80214B3C": "__ct__28THunterGuildSeqOnline_ServerFP7TObjectP10TObjPlayer",
+        "0x80214A84": "__dt__28THunterGuildSeqOnline_ServerFv",
+        "0x80214A5C": "zero_four_slots__22THunterGuildSeqOfflineFv",
+        "0x80214A34": "clear_slot_flags__22THunterGuildSeqOfflineFv",
+        "0x80214978": "vfunc_11__28THunterGuildSeqOnline_ServerFv",
+        "0x80214930": "restore_player_state__28THunterGuildSeqOnline_ServerFv",
+        "0x8021488C": "init_window__28THunterGuildSeqOnline_ServerFv",
+        "0x802145F8": "sub_802145F8__28THunterGuildSeqOnline_ServerFv",
+        "0x80214544": "update_confirm_input__28THunterGuildSeqOnline_ServerFv",
+        "0x80214490": "update__28THunterGuildSeqOnline_ServerFv",
+        "0x802143AC": "create_judgment_item_window__28THunterGuildSeqOnline_ServerFv",
+        "0x80214254": "sub_80214254__28THunterGuildSeqOnline_ServerFv",
+        "0x80214104": "close_window__28THunterGuildSeqOnline_ServerFv",
+        "0x80214058": "sub_80214058__28THunterGuildSeqOnline_ServerFv",
+        "0x80213FD0": "confirm_and_close_if_valid__28THunterGuildSeqOnline_ServerFv",
+        "0x80213F78": "THunterGuildSeqOffline__sub_80213F78",
+        "0x80213F14": "reset_quest_list_vm__22THunterGuildSeqOfflineFv",
+        "0x80213EBC": "THunterGuildSeqOffline__sub_80213EBC",
+        "0x80213E64": "THunterGuildSeqOffline__sub_80213E64",
+        "0x80213E38": "set_random_enemies_mode__Fv",
+        "0x80213E0C": "reset_random_enemies_mode",
+        "0x80213D84": "__ct__28THunterGuildSeqOnline_ClientFP7TObjectP10TObjPlayer",
+        "0x80213CCC": "__dt__28THunterGuildSeqOnline_ClientFv",
+        "0x80213CA4": "THunterGuildSeqOffline__sub_80213CA4",
+        "0x80213C7C": "clear_slots__22THunterGuildSeqOfflineFv",
+        "0x80213BE0": "vfunc_11__28THunterGuildSeqOnline_ClientFv",
+        "0x80213B98": "restore_player_state__28THunterGuildSeqOnline_ClientFv",
+        "0x80213B18": "sub_80213B18__28THunterGuildSeqOnline_ClientFv",
+        "0x80213980": "sub_80213980__28THunterGuildSeqOnline_ClientFv",
+        "0x802138F0": "handle_close__28THunterGuildSeqOnline_ClientFv",
+        "0x8021383C": "update_close_shop__28THunterGuildSeqOnline_ClientFv",
+        "0x80213788": "update_shop_close__28THunterGuildSeqOnline_ClientFv"
+      },
+      "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp": {
+        "0x80214BC4": "run_task__25THunterGuildSeqOnlineTaskFv",
+        "0x80214C40": "__dt__25THunterGuildSeqOnlineTaskFv",
+        "0x80214C98": "__ct__25THunterGuildSeqOnlineTaskFP7TObject",
+        "0x80214CDC": "handle_6x73_exit_quest__Fv",
+        "0x80214D18": "close_windows_and_reset__16TQuestListOnlineFv",
+        "0x80214E08": "handle_quest_ready__16TQuestListOnlineFv",
+        "0x80214F80": "handle_quest_download_chunk__6TLobbyFv",
+        "0x802150E8": "begin_file_download__16TQuestListOnlineFR17TRecvDownloadHead",
+        "0x80215380": "receive_quest_info__16TQuestListOnlineFR13TPlyText<288>",
+        "0x80215458": "copy_quest_list_data__16TQuestListOnlineFv",
+        "0x80215498": "release_resources__16TQuestListOnlineFv",
+        "0x802155B4": "init_download_buffers__16TQuestListOnlineFv",
+        "0x80215634": "reset_globals"
+      },
+      "src/pso/quest/TQuestListOnline.cpp": {
+        "0x80218310": "TQuestListOnline__ct",
+        "0x8021824C": "__dt__16TQuestListOnlineFv",
+        "0x802181B0": "vfunc_11__16TQuestListOnlineFv",
+        "0x80218160": "request_menu__16TQuestListOnlineFv",
+        "0x80217F88": "build_list_window__16TQuestListOnlineFv",
+        "0x80217EC4": "show_info_window__16TQuestListOnlineFv",
+        "0x80217C1C": "handle_list_selection__16TQuestListOnlineFv",
+        "0x80217BF8": "begin_buffer_request__16TQuestListOnlineFv",
+        "0x80217BA8": "request_download_buffer__16TQuestListOnlineFv",
+        "0x80217B30": "decompress_quest_list_buffers__16TQuestListOnlineFv",
+        "0x802178E4": "handle_quest_confirm__16TQuestListOnlineFv",
+        "0x802178A0": "invoke_callback_30_and_queue_destruction__16TQuestListOnlineFv",
+        "0x8021786C": "ensure_online_quests_loaded__16TQuestListOnlineFv",
+        "0x80217828": "invoke_callback_28_and_queue_destruction__16TQuestListOnlineFv",
+        "0x802177E4": "invoke_callback_34_and_queue_destruction__16TQuestListOnlineFv",
+        "0x802177A0": "invoke_callback_2c_and_queue_destruction__16TQuestListOnlineFv",
+        "0x80217754": "init__16TQuestListOnlineFv",
+        "0x80217714": "decompress_quest_buffer__16TQuestListOnlineFPCUcl",
+        "0x802176DC": "TQuestListOnline__sub_802176DC",
+        "0x80217654": "close_windows__16TQuestListOnlineFv",
+        "0x8021758C": "get_unlocked_tier__16TQuestListOnlineFv",
+        "0x80217560": "get_selected_quest_id__16TQuestListOnlineFv",
+        "0x80217504": "get_selected_entry__16TQuestListOnlineFv",
+        "0x80217464": "get_list_state__16TQuestListOnlineFv"
+      },
+      "src/pso/quest/TQuestListChallenge.cpp": {
+        "0x80288B04": "get_selected_quest_text__19TQuestListChallengeFv",
+        "0x80288B5C": "close_windows__19TQuestListChallengeFv",
+        "0x80288BE4": "sub_80288BE4__19TQuestListChallengeFv",
+        "0x80288BE8": "invoke_callback_and_destroy__19TQuestListChallengeFv",
+        "0x80288C30": "destroy__19TQuestListChallengeFv",
+        "0x80288C78": "handle_confirm_select__19TQuestListChallengeFv",
+        "0x80288DA4": "update_selection__19TQuestListChallengeFv",
+        "0x80288FDC": "create_quest_list_window__19TQuestListChallengeFv",
+        "0x802890AC": "vfunc_11__19TQuestListChallengeFv",
+        "0x80289198": "__dt__19TQuestListChallengeFv",
+        "0x80289200": "__ct__19TQuestListChallengeFP7TObjectP15TShopWindowBaseP8TObjBase",
+        "0x80289338": "reset_globals__19TQuestListChallengeFv",
+        "0x8028934C": "reset_globals2__19TQuestListChallengeFv",
+        "0x80289360": "TObjNpcKenkyu__create"
+      }
+    },
+    "alias_labels_at_common_addresses": {
+      "0x80147A80": [
+        "__dla__FPv",
+        "mem_free"
+      ],
+      "0x80147AA8": [
+        "__nwa__FUl",
+        "mem_alloc"
+      ],
+      "0x8024AEAC": [
+        "suppress_player_window",
+        "suppress_slot__11TWindowCtrlFl"
+      ],
+      "0x8024AEF0": [
+        "unsuppress_player_window",
+        "unsuppress_slot__11TWindowCtrlFl"
+      ],
+      "0x8044BEB0": [
+        "lbl_8044BEB0",
+        "online_tmp_buf_owner_name"
+      ]
+    }
+  },
+  "source_scope": [
+    "current master already carries the Challenge selector, the online menu array and singleton, and the native single-player constructor and input handling",
+    "the online selector uses the actual Hunter Guild sequence, player owner and callback types",
+    "the transfer and barrier windows share the native message window type across the provider, callers and cleanup"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "9e37da8aea965cdcdeec264e7d89375af0c4e16d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "40dc6b7389cf9cbecf72d2dd0abd92c631b6e7234b719075f94abd7e9585d861"
+    },
+    "layer": {
+      "baseline": "c3577e29c8f746a2f92d3cfd4acb5c19e8e775b2",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "40dc6b7389cf9cbecf72d2dd0abd92c631b6e7234b719075f94abd7e9585d861"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "e5a5ec4cdb295c4d5be8f3e323f9f7975b3a61e26d710c545f6954d2b9f74730"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "6ff4dd5cfb4468e6c920c74bfc7f1493dace089cec0d799a5ad029d6867ae0c8"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "probe_sha256": "f58d2d52918c1d1d4c344d125df5cae0d8d39390be1d3da08db091890419d74b",
+    "log_sha256": "e39acf3032f4303d164de4aeb3053dc6dfb4532fac5876f718d5cf271fe33bfb",
+    "coverage": "Challenge and online titles, complete entry traversal, callbacks and release passed.",
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "historical": {
+    "open_rows": 400,
+    "closed_rows": [
+      [
+        2259,
+        "src/pso/misc/TQuestListOnline_802150E8.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp"
+      ],
+      [
+        2269,
+        "src/pso/player/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp"
+      ],
+      [
+        6786,
+        "src/pso/misc/TQuestListOnline.cpp",
+        "src/pso/quest/TQuestListOnline.cpp"
+      ]
+    ],
+    "scoped_rows": [
+      [
+        2557,
+        "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp"
+      ],
+      [
+        3061,
+        "src/pso/misc/TPlyJoinLobbyEntry.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "90a0b74891d03ad2d00b7c4824f5f4a8557e9710",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "e057f5883179989d0c4640ad49a91b37d8ce357ed6b09828a968e41a5043603c",
+    "materialized_tree": "ba7cb795db475afd34240efb10f86e989ea3ccf0",
+    "force_active": 27027
+  }
+}

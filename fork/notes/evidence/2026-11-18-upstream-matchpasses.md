@@ -70,6 +70,10 @@ The 37-path memory card replay at `9e37da8aea` ties together slot geometry, pref
 
 Both builds reproduce retail with 27,572 exact functions, 2,447 linked units and all 1,147 historical data bytes accounted for. The 130-path fork workspace passes all 310 checks. The runtime probe covers slot geometry, warnings, load codes, card attach and detach, and filename and date metadata. Five full historical comparisons close and 13 gain scoped evidence. 403 remain open. [Memory card validation](2026-11-22-upstream-365-card-load-validation.json)
 
+The Hunter Guild quest replay at `c3577e29c8` uses native sequence and player pointers, typed callbacks, and shared download window declarations across five paths. Current master already carries the native Challenge selector, the full online menu entry array, and the single-player selector construction and input changes. The cumulative replay covers 1,020 paths and this batch changes zero linker labels.
+
+Both builds reproduce retail with 27,572 exact functions and 2,447 linked units. All 1,147 original data bytes are accounted for. The reconstructed 130-path fork workspace passes all 310 checks. The runtime probe covers Challenge and online titles, all 30 online menu entries, callback order, and resource release. Three historical comparisons close and two gain scoped evidence. 400 remain open. [Quest selection validation](2026-11-22-upstream-365-quest-selection-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
