@@ -112,6 +112,10 @@ The 28-path scene storage replay at `470bf2bf24` uses native pointers for fog ro
 
 Both builds match retail with 27,572 exact functions and 2,447 linked units. All 1,147 historical data bytes remain accounted for. The reconstructed fork workspace passes 310 checks. Runtime probes cover the 128 fog rows, light file load and release, both light selections, BML reload, float fallbacks, and twenty player-effect calls. The source comparison closes eleven historical records and leaves 363 open. [Scene storage and effect validation](2026-11-22-upstream-365-scene-storage-validation.json)
 
+The 25-path camera replay at `8c249664a9` restores typed scripted playback, motion channels and the shared REL loader, then gives the live-camera controller its own shot, target, orbit and update method. The five linker labels preserve the function names and follow typed arguments or the corrected member owner. The cumulative replay covers 1,094 paths.
+
+Both builds match retail with 27,572 exact functions and 2,447 linked units. All 1,147 starting bytes remain accounted for. The fork workspace passes 310 checks. The scripted playback, REL loading and live-camera state probes agree on retail and both builds. The live-camera header and monitor comparisons close, leaving 361 historical records open. [Camera state validation](2026-11-22-upstream-365-camera-state-validation.json)
+
 ## Replay after upstream PR #358
 
 Upstream master `73c0ea04c6` carries the 466-file enemy and boss foldpass. The matching local source replay `d5e9284fbe` has that commit as its parent and changes 1,018 files. The old comparison stays available at `9aab8ef9db`. The three-way preview reported 157 conflicts. The replay keeps the landed names for shared actor fields such as `body_center` and `attacker_id`. It restores independently recovered types and retains the six folded headers’ declarations through their current owners. [Upstream PR #358](https://github.com/zeroz41/pso-decomp/pull/358) · [Replay index](2026-11-21-upstream-358-reconciliation.tsv)
