@@ -64,6 +64,10 @@ The replay matches retail with 27,572 exact functions and all 2,417 source units
 
 The fork workspace on the population checkpoint preserves the 130-path tooling overlay. It updates 22 linker labels and retains the two newly separated Shark tables. The materialized fork reproduces retail, and all 310 workspace and host checks pass. The archive round-trips from `fork/tooling/`.
 
+The first boss component `10ca214f4e` carries typed De Rol Le and Barba Ray tunnel effect positions across twelve paths. Ceiling debris construction returns its native type, and launch, breakup and camera callers use the original vectors. The existing particle child type and Dark Falz form and packet types already carry their historical ownership changes.
+
+The component matches retail with all 27,572 functions, 2,417 linked source units and all 1,147 original data bytes accounted for. The arena probe agrees on model flags, particle paths, debris, tentacle and mine targets, and the motion curves. [Tunnel effect validation](2026-11-22-upstream-367-tunnel-effects-validation.json)
+
 ## Replay after upstream PR #366
 
 The cumulative source at `a6e029faae` preserves the tested source tree from `ec10df9687`. The wall and ground-contact replay is now its first local commit on master. The 64 later source commits keep their trees, messages and attribution. The cumulative diff from master contains 1,198 paths counting both sides of moves.
