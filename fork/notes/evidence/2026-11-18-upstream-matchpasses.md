@@ -12,7 +12,15 @@ The retail build is byte-for-byte exact. All 90 ranges and 1,147 initial data by
 
 The fork workspace on the breakup checkpoint round-trips the 130-path tooling overlay. It updates 21 of its 26,965 retained linker labels for the cursor, tunnel and breakup interfaces. The materialized fork reproduces retail and passes all 310 workspace and host checks.
 
-The enemy resource replay at `0ba3f0c4ae` types the alternate Ginja texture lists for Shinowa Mirage, Sinow Zoa and Stelth. The texture-entry copy moves to its render unit, and the existing Shinowa Mirage load callback belongs to the same class as its release callback. The retail DOL matches with all starting data and linkage preserved. The runtime probe covers overlapping and in-place copies, five archive paths, factory and action dispatch, and Ill Gill shadow inputs. The fork archive remains at the preceding breakup checkpoint. [Enemy resource validation](2026-11-22-upstream-369-stealth-resources-validation.json)
+The enemy resource replay at `0ba3f0c4ae` types the alternate Ginja texture lists for Shinowa Mirage, Sinow Zoa and Stelth. The texture-entry copy moves to its render unit, and the existing Shinowa Mirage load callback belongs to the same class as its release callback. The retail DOL matches with all starting data and linkage preserved. The runtime probe covers overlapping and in-place copies, five archive paths, factory and action dispatch, and Ill Gill shadow inputs. The fork archive at this stage was on the preceding breakup checkpoint. [Enemy resource validation](2026-11-22-upstream-369-stealth-resources-validation.json)
+
+The enemy startup replay `5d6d72e42e` covers 59 paths. Bal Claw body and claw read the native wave number, the Fly nest reads the placement child count, and Pan Arms passes the same placement record through both half constructors. Across enemies and bosses, 57 battle parameter storage locations keep the lobby's typed rows through construction and state reloads. The shared registration method now belongs to `TObjEnemy`, and the former Vol Opt casts are gone.
+
+The build reproduces retail with 27,572 exact functions, 2,417 linked units and all 1,147 original data bytes accounted for. Placement, battle-table and registration probes agree with retail. The complete Dark Falz minion audit closes one historical record, leaving 260 open. [Enemy startup and historical audit](2026-11-22-upstream-369-enemy-startup-validation.json)
+
+The first standalone review on current master is window, character selection and chat at `717dfedd37`. It rebuilds independently across 358 paths, with all 27,572 functions exact and all 1,147 original data bytes accounted for. Title, status and lifetime probes pass. [Standalone window review validation](2026-11-22-upstream-369-window-review-validation.json)
+
+The fork workspace on the enemy startup checkpoint round-trips the 130-path tooling overlay. It updates 5 of the 26,965 retained linker labels for the latest asset and startup interfaces. The materialized fork reproduces retail and passes all 310 workspace and host checks.
 
 ## Replay after upstream PR #367
 

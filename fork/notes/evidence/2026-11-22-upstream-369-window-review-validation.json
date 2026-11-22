@@ -1,0 +1,485 @@
+{
+  "upstream": "1698caaa1941302ed6dfc60d886d041bae272e0e",
+  "review": "717dfedd37bbe9e207552eba8d4e9d21c90a3ba0",
+  "previous_review": "1484889e3b9d6136312eaf74267b3ff9035a7766",
+  "paths": 358,
+  "insertions": 5024,
+  "deletions": 5350,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "renaming_review": {
+    "same_mangled_owner_and_signature_identifier_changes": 0,
+    "changed_function_labels": 164,
+    "introduced_native_vtable_labels": 4,
+    "address_derived_names_flagged": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80249060",
+        "type": "function",
+        "old": "is_flag_4_set__20TWindowSubStatusDispFv",
+        "new": "is_flag_4_set__13TUnk_804CF918CFv",
+        "flags": [
+          "member of TUnk_804CF918, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80249D34",
+        "type": "function",
+        "old": "set_selected_index__14TWindowComCardFl",
+        "new": "set_selected_index__13TUnk_804CE964Fl",
+        "flags": [
+          "member of TUnk_804CE964, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80249D7C",
+        "type": "function",
+        "old": "TWindowComCard__sub_80249D7C",
+        "new": "sub_80249D7C__13TUnk_804CE964Fl",
+        "flags": [
+          "named after its address",
+          "member of TUnk_804CE964, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80249E80",
+        "type": "function",
+        "old": "TWindowComCard__sub_80249E80",
+        "new": "__dt__13TUnk_804CE964Fv",
+        "flags": [
+          "member of TUnk_804CE964, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80249ED8",
+        "type": "function",
+        "old": "TWindowComCard__sub_80249ED8",
+        "new": "__ct__13TUnk_804CE964FP11TWindowBaseP10NJS_POINT2lll",
+        "flags": [
+          "member of TUnk_804CE964, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8024C5E8",
+        "type": "function",
+        "old": "get_flags__11TWindowCtrlFv",
+        "new": "get_speaker_id__13TUnk_804CF0B8Fv",
+        "flags": [
+          "member of TUnk_804CF0B8, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80251DF0",
+        "type": "function",
+        "old": "sub_80251DF0__13TUnk_804CF0B8Fslsf",
+        "new": "sub_80251DF0__13TUnk_804CF0B8FUsllf",
+        "flags": [
+          "named after its address",
+          "member of TUnk_804CF0B8, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80252B74",
+        "type": "function",
+        "old": "TWindowFukidasi__sub_80252B74",
+        "new": "__ct__13TUnk_804CF0B8FUsllf",
+        "flags": [
+          "member of TUnk_804CF0B8, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80256E0C",
+        "type": "function",
+        "old": "draw_status_gauge_bar__13TUnk_804CF930FPvPvff",
+        "new": "draw_status_gauge_bar__13TUnk_804CF930FP17WindowDrawContextP10NJS_POINT2ff",
+        "flags": [
+          "member of TUnk_804CF930, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802572F0",
+        "type": "function",
+        "old": "init_from__13TUnk_804CF930FPvi",
+        "new": "init_from__13TUnk_804CF930FP17StatusGaugeLayoutl",
+        "flags": [
+          "member of TUnk_804CF930, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80257B4C",
+        "type": "function",
+        "old": "init_layout_entry_copy__20TWindowSubStatusDispFPUc",
+        "new": "init_layout_entry_copy__13TUnk_804CF948FP21LayoutEntryCopyRecordl",
+        "flags": [
+          "member of TUnk_804CF948, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8025E148",
+        "type": "function",
+        "old": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUl",
+        "new": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUl",
+        "flags": [
+          "named after its address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8025E530",
+        "type": "function",
+        "old": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUll",
+        "new": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUll",
+        "flags": [
+          "named after its address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8025E6DC",
+        "type": "function",
+        "old": "sub_8025E6DC__19TWindowKeyBoardBaseFPUc",
+        "new": "sub_8025E6DC__19TWindowKeyBoardBaseFP17WindowDrawContext",
+        "flags": [
+          "named after its address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8026543C",
+        "type": "function",
+        "old": "get_flag__17TWindowSubComCardFv",
+        "new": "get_flag__13TUnk_804D0658Fv",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80265448",
+        "type": "function",
+        "old": "clear_flag_and_release2__17TWindowSubComCardFv",
+        "new": "clear_flag_and_release2__13TUnk_804D0658Fv",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80268494",
+        "type": "function",
+        "old": "update_selected_entry__17TWindowSubComCardFv",
+        "new": "update_selected_entry__13TUnk_804D0658Fv",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802684BC",
+        "type": "function",
+        "old": "find_entry_value_by_id__17TWindowSubComCardFl",
+        "new": "find_entry_value_by_id__13TUnk_804D0658Fl",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8026853C",
+        "type": "function",
+        "old": "mark_entry_by_id__17TWindowSubComCardFl",
+        "new": "mark_entry_by_id__13TUnk_804D0658Fl",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802685C4",
+        "type": "function",
+        "old": "disable_entry_by_id__17TWindowSubComCardFl",
+        "new": "disable_entry_by_id__13TUnk_804D0658Fl",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80268650",
+        "type": "function",
+        "old": "set_entry_string_by_id__15TWindowMakeTeamFPvl",
+        "new": "set_entry_string_by_id__13TUnk_804D0658FPvl",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802686D4",
+        "type": "function",
+        "old": "update_next_entry__17TWindowSubComCardFlll",
+        "new": "update_next_entry__13TUnk_804D0658Flll",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80275290",
+        "type": "function",
+        "old": "set_flag_10__17TWindowSubComCardFv",
+        "new": "set_flag_10__13TUnk_804D0658Fv",
+        "flags": [
+          "member of TUnk_804D0658, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C6FB0",
+        "type": "function",
+        "old": "update_transition_anim_if_active__13TUnk_804E0B28Fv",
+        "new": "update_transition_anim_if_active__13TUnk_804E0B28FPvPv",
+        "flags": [
+          "member of TUnk_804E0B28, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802D50B0",
+        "type": "function",
+        "old": "set_field_100__22TAdMultiPlyChrSelectGCFl",
+        "new": "set_field_100__13TUnk_804E3008Fl",
+        "flags": [
+          "member of TUnk_804E3008, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802E0C28",
+        "type": "function",
+        "old": "set_status_value__22TAdMultiPlyChrSelectGCFl",
+        "new": "set_status_value__13TUnk_804E3008Fl",
+        "flags": [
+          "member of TUnk_804E3008, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802E0C68",
+        "type": "function",
+        "old": "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+        "new": "set_index_and_close_status__13TUnk_804E3008Fl",
+        "flags": [
+          "member of TUnk_804E3008, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802E0CB0",
+        "type": "function",
+        "old": "sub_802E0CB0__13TUnk_804E3008Fv",
+        "new": "sub_802E0CB0__13TUnk_804E3008Fl",
+        "flags": [
+          "named after its address",
+          "member of TUnk_804E3008, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80336064",
+        "type": "function",
+        "old": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+        "new": "start_offline_seq__13TUnk_804EEF64Fv",
+        "flags": [
+          "member of TUnk_804EEF64, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803361C4",
+        "type": "function",
+        "old": "set_flag_and_clear_download__6TLobbyFv",
+        "new": "set_flag_and_clear_download__13TUnk_804EEF64Fv",
+        "flags": [
+          "member of TUnk_804EEF64, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80336200",
+        "type": "function",
+        "old": "open_keyboard__6TLobbyFv",
+        "new": "open_keyboard__13TUnk_804EEF64Fv",
+        "flags": [
+          "member of TUnk_804EEF64, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8033622C",
+        "type": "function",
+        "old": "request_change_game_mode__6TLobbyFv",
+        "new": "request_change_game_mode__13TUnk_804EEF64Fv",
+        "flags": [
+          "member of TUnk_804EEF64, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80336254",
+        "type": "function",
+        "old": "enter_game_mode_change__6TLobbyFv",
+        "new": "enter_game_mode_change__13TUnk_804EEF64Fv",
+        "flags": [
+          "member of TUnk_804EEF64, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8033627C",
+        "type": "function",
+        "old": "enter_chg_game_mode__6TLobbyFv",
+        "new": "enter_chg_game_mode__13TUnk_804EEF64Fv",
+        "flags": [
+          "member of TUnk_804EEF64, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8034055C",
+        "type": "function",
+        "old": "TWindowDD__sub_8034055C",
+        "new": "render__13TUnk_804EFBACFv",
+        "flags": [
+          "member of TUnk_804EFBAC, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803407BC",
+        "type": "function",
+        "old": "update_draw__9TWindowDDFPv",
+        "new": "run_task__13TUnk_804EFBACFv",
+        "flags": [
+          "member of TUnk_804EFBAC, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803409A4",
+        "type": "function",
+        "old": "construct_variant_a__9TWindowDDFPv",
+        "new": "__ct__13TUnk_804EFBACFv",
+        "flags": [
+          "member of TUnk_804EFBAC, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".data",
+        "address": "0x804CE964",
+        "type": "object",
+        "old": "lbl_804CE964",
+        "new": "__vt__13TUnk_804CE964",
+        "flags": [
+          "member of TUnk_804CE964, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".data",
+        "address": "0x804EFBAC",
+        "type": "object",
+        "old": "lbl_804EFBAC",
+        "new": "__vt__13TUnk_804EFBAC",
+        "flags": [
+          "member of TUnk_804EFBAC, a class named after an address"
+        ]
+      }
+    ],
+    "tree_quality": {
+      "base": 167998,
+      "head": 165927,
+      "added": 646,
+      "removed": 2717
+    }
+  },
+  "runtime": {
+    "title": {
+      "coverage": "46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+      "sha256": "f12583c3bd6497d532d2e6c7c3dbcc8dd561424b49bf35e3a23cd9de25df2d5d"
+    },
+    "status": {
+      "coverage": "status flags, numeric glyphs, icon clipping and status detail rows passed.",
+      "sha256": "e29d93761bfee0bd12f3c4dd431f1cff8754d8dc6ed474e00b4b8409ea6315c3"
+    },
+    "lifetimes": {
+      "coverage": "overlay destruction, global construction, and both area dispatch paths passed.",
+      "sha256": "52b8e2081ca9e41d9411d24d40a2baea0279131badd704ee567d8c2a56c97290"
+    }
+  },
+  "attribution": "The only commit above upstream uses the configured fork author and committer."
+}
