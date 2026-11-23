@@ -1,0 +1,1133 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "actor_review_base": "5ed9ddfd771f5a2ad450b0619c6204f4bcbca2af",
+  "technique_review": "505569de5eb0f3ae147121af9a6941cfa91ffce9",
+  "previous_cumulative": "5aef5f28b718de5d313b04758c01f1c909731a1f",
+  "cumulative": "a49e3322fd8941df0e70b7a1700aa365141d1b98",
+  "review_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/darkfalz/TBoss4Type1.h",
+    "include/pso/effect/TEffClitical.h",
+    "include/pso/effect/particle/ParticleParam.h",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/network/protocol/subcommand_validation.h",
+    "include/pso/npc/TNpcPlayer.h",
+    "include/pso/object/ambient/TObjFish_8001ED90.h",
+    "include/pso/player/PlayerHoldPacket.h",
+    "include/pso/player/PlayerScaleState.h",
+    "include/pso/player/PlayerState.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801AF2F0.h",
+    "include/pso/player/TObjPlayer_801BF548.h",
+    "include/pso/player/TObjPlayer_801BF6B0.h",
+    "include/pso/player/TObjPlayer_801BF8EC.h",
+    "include/pso/player/TObjPlayer_801BF918.h",
+    "include/pso/player/TObjPlayer_801BF978.h",
+    "include/pso/player/TObjPlayer_801BFAD4.h",
+    "include/pso/player/TObjPlayer_801BFB1C.h",
+    "include/pso/player/TObjPlayer_801BFBCC.h",
+    "include/pso/player/TObjPlayer_801BFE50.h",
+    "include/pso/player/TObjPlayer_801BFED4.h",
+    "include/pso/player/TObjPlayer_801C721C.h",
+    "include/pso/player/TechniqueCastState.h",
+    "include/pso/system/BmlAccessors.h",
+    "include/pso/technique/TTecGiBarta.h",
+    "include/pso/technique/TTecRaFoie.h",
+    "include/pso/technique/TTecZonde.h",
+    "include/pso/technique/TTecZondeEff.h",
+    "include/pso/technique/TechniqueBandSound.h",
+    "include/pso/technique/TechniqueResources.h",
+    "include/pso/unk/TLobby_8001EF5C.h",
+    "include/pso/unk/TUnk_8048E728.h",
+    "include/pso/unk/text_8036BDA0.h",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/effect/TEffClitical.cpp",
+    "src/pso/effect/enemy/TeneFakeTecThunderEff.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/item/armor/TItemProUnit.cpp",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TOHealGeneral.cpp",
+    "src/pso/object/TObjDoaEx01.cpp",
+    "src/pso/object/TObjLuker.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/trap/TOTrap.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjCityMainWarp_80186C44.cpp",
+    "src/pso/object/warp/TObjWarpBossMulti.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/PlayerTaskEffects.cpp",
+    "src/pso/player/TObjPlayer.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BC194.cpp",
+    "src/pso/player/TObjPlayer_801BC5D4.cpp",
+    "src/pso/player/TObjPlayer_801BC81C.cpp",
+    "src/pso/player/TObjPlayer_801BD384.cpp",
+    "src/pso/player/TObjPlayer_801BD928.cpp",
+    "src/pso/player/TObjPlayer_801BDF5C.cpp",
+    "src/pso/player/TObjPlayer_801C00C4.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TObjPlayer_801D84CC.cpp",
+    "src/pso/player/TObjPlayer_801D95B8.cpp",
+    "src/pso/player/TObjPlayer_801D9A04.cpp",
+    "src/pso/player/TObjPlayer_801D9B18.cpp",
+    "src/pso/player/TObjPlayer_801D9CE0.cpp",
+    "src/pso/player/TObjPlayer_802C3B14.cpp",
+    "src/pso/player/TObjPlayer_80357B2C.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/player/TPlyPhotonChair.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TOQuestTalkBase.cpp",
+    "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+    "src/pso/technique/TTecBarta.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecGiZonde.cpp",
+    "src/pso/technique/TTecLuker.cpp",
+    "src/pso/technique/TTecMegid.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaFoie.cpp",
+    "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+    "src/pso/technique/TTecZonde.cpp",
+    "src/pso/technique/TTecZondeEff.cpp",
+    "src/pso/technique/TechniqueRingwaveList.cpp",
+    "src/pso/technique/TechniqueRingwaveNames.cpp",
+    "src/pso/unk/TLobby_800726F0.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_80299C4C.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp",
+    "src/pso/unk/TUnk_804CC870.cpp",
+    "src/pso/unk/text_801D9870.cpp",
+    "src/pso/unk/text_802233F8.cpp",
+    "src/pso/unk/text_8036BDA0.cpp",
+    "src/pso/weapon/TUnk_804A1098.cpp"
+  ],
+  "cumulative_paths": [
+    "include/pso/player/TechniqueCastState.h",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/technique/TTecCtrl.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "technique-check.json": "d9d341fae5a514bf06bc3256782859d834e9707f05b3f94c93be0624a0fb9430",
+    "technique-source-check.json": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "technique-private-check.json": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "quality": {
+    "total": {
+      "base": 157111,
+      "head": 156639,
+      "added": 94,
+      "removed": 566
+    },
+    "label_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800825B4",
+        "type": "function",
+        "old": "__ct__12TEffCliticalFPv",
+        "new": "__ct__12TEffCliticalFPC3Vec",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80082634",
+        "type": "function",
+        "old": "create__12TEffCliticalFv",
+        "new": "create__12TEffCliticalFPC3Vec",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80152C48",
+        "type": "function",
+        "old": "finalize_and_send_packet__10TNpcPlayerFv",
+        "new": "finalize_and_send_packet__20G_CastTechnique_6x47Fv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80152C8C",
+        "type": "function",
+        "old": "byteswap_positions__10TNpcPlayerFv",
+        "new": "byteswap_positions__20G_CastTechnique_6x47Fv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80152CE8",
+        "type": "function",
+        "old": "get_6x47_cast_packet_size__FPUc",
+        "new": "get_6x47_cast_packet_size__FP20G_CastTechnique_6x47",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80152D04",
+        "type": "function",
+        "old": "init_cast_technique_cmd__10TNpcPlayerFv",
+        "new": "init_cast_technique_cmd__20G_CastTechnique_6x47Fv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80152EB4",
+        "type": "function",
+        "old": "byteswap_pos__10TNpcPlayerFv",
+        "new": "byteswap_pos__15TechniqueTargetFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B5200",
+        "type": "function",
+        "old": "send_code_45_1__10TObjPlayerFl",
+        "new": "send_code_45_1__10TObjPlayerFP10TObjPlayer",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B53BC",
+        "type": "function",
+        "old": "play_effect__10TObjPlayerFlll",
+        "new": "play_effect__10TObjPlayerFP10TObjPlayerll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B5408",
+        "type": "function",
+        "old": "play_effect_default__10TObjPlayerFli",
+        "new": "play_effect_default__10TObjPlayerFP10TObjPlayerl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801BFD90",
+        "type": "function",
+        "old": "init_subobjects__10TObjPlayerFv",
+        "new": "initialize__16PlayerScaleStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801BFDD4",
+        "type": "function",
+        "old": "init_player_scale_state__FP10TObjPlayer",
+        "new": "reset__16PlayerScaleStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801BFE1C",
+        "type": "function",
+        "old": "set_speed__10TObjPlayerFf",
+        "new": "set_scalar__16PlayerScaleStateFf",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801BFE40",
+        "type": "function",
+        "old": "set_scale_xyz__10TObjPlayerFf",
+        "new": "set_model_scale__16PlayerScaleStateFf",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801BFE50",
+        "type": "function",
+        "old": "init_pair__10TObjPlayerFv",
+        "new": "clear__24PlayerScaleCameraOffsetsFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C011C",
+        "type": "function",
+        "old": "set_technique_id__10TObjPlayerFs",
+        "new": "set_technique_id__18TechniqueCastStateFs",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C6A14",
+        "type": "function",
+        "old": "clear_shrink_flag__10TObjPlayerFv",
+        "new": "clear_shrink_flag__16PlayerScaleStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C6B1C",
+        "type": "function",
+        "old": "handle_6x87_shrink__10TObjPlayerFf",
+        "new": "apply_shrink__16PlayerScaleStateFf",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C6FF0",
+        "type": "function",
+        "old": "get_obj_type__10TObjPlayerFv",
+        "new": "get_actor_id__16PlayerScaleStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C72B4",
+        "type": "function",
+        "old": "restore_shrunken_font__10TObjPlayerFv",
+        "new": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C72E4",
+        "type": "function",
+        "old": "init_6x88_packet__10TObjPlayerFv",
+        "new": "initialize__23PlayerRestoreSizePacketFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C72F8",
+        "type": "function",
+        "old": "send_font_update_60__10TObjPlayerFv",
+        "new": "send__23PlayerRestoreSizePacketFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C732C",
+        "type": "function",
+        "old": "bswap_shrink__10TObjPlayerFv",
+        "new": "byte_swap__18PlayerShrinkPacketFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C7360",
+        "type": "function",
+        "old": "TObjPlayer__sub_801C7360",
+        "new": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C739C",
+        "type": "function",
+        "old": "init_shrink_effect__10TObjPlayerFv",
+        "new": "initialize__18PlayerShrinkPacketFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C73B8",
+        "type": "function",
+        "old": "update_and_send_60__10TObjPlayerFv",
+        "new": "send__18PlayerShrinkPacketFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801CC7E4",
+        "type": "function",
+        "old": "copy_tech_params__10TObjPlayerFPvPv",
+        "new": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D2C7C",
+        "type": "function",
+        "old": "set_technique_id__10TObjPlayerFUc",
+        "new": "set_technique_id__18TechniqueCastStateFUc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D2CCC",
+        "type": "function",
+        "old": "get_technique_data__10TObjPlayerFPv",
+        "new": "get_technique_data__18TechniqueCastStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D95B8",
+        "type": "function",
+        "old": "get_section_clamped__10TObjPlayerFv",
+        "new": "get_section_clamped__18TechniqueCastStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D95DC",
+        "type": "function",
+        "old": "get_or_init_field_4__10TObjPlayerFv",
+        "new": "get_or_init_field_4__18TechniqueCastStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D968C",
+        "type": "function",
+        "old": "get_valid_technique__10TObjPlayerFv",
+        "new": "get_valid_technique__18TechniqueCastStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D96CC",
+        "type": "function",
+        "old": "get_castable_technique_level__10TObjPlayerFv",
+        "new": "get_castable_technique_level__18TechniqueCastStateFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D9A44",
+        "type": "function",
+        "old": "check_technique_level__10TObjPlayerFllUc",
+        "new": "check_technique_level__18TechniqueCastStateFlUc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D9B18",
+        "type": "function",
+        "old": "set_tech_level__10TObjPlayerFs",
+        "new": "set_tech_level__18TechniqueCastStateFs",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80230A98",
+        "type": "function",
+        "old": "create__11TTecGiBartaFPvPvPvl",
+        "new": "create__11TTecGiBartaFPvP3VecP3Vecl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80230AF0",
+        "type": "function",
+        "old": "create_ex__11TTecGiBartaFPvPvll",
+        "new": "create_ex__11TTecGiBartaFPvP3Vecll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802389E0",
+        "type": "function",
+        "old": "create__10TTecRaFoieFPvPvl",
+        "new": "create__10TTecRaFoieFP7TObjectP3VecP3Vecl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8023DA10",
+        "type": "function",
+        "old": "construct_bolt_effect__9TTecZondeFPUcPUcPUcllff",
+        "new": "construct_bolt_effect__12TTecZondeEffFP7TObjectPC3VecPC3Vecllff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8036BDA0",
+        "type": "function",
+        "old": "validate_6x47_cast_technique__FPUc",
+        "new": "validate_6x47_cast_technique__FP20G_CastTechnique_6x47",
+        "flags": []
+      }
+    ],
+    "remaining_on_changed_lines": [
+      {
+        "key": "offset_member",
+        "path": "include/pso/player/TObjPlayer.h",
+        "line": 269,
+        "text": "m_84c"
+      },
+      {
+        "key": "offset_member",
+        "path": "include/pso/player/TechniqueCastState.h",
+        "line": 20,
+        "text": "unk_02"
+      },
+      {
+        "key": "offset_member",
+        "path": "include/pso/player/TechniqueCastState.h",
+        "line": 23,
+        "text": "unk_08"
+      },
+      {
+        "key": "address_type",
+        "path": "include/pso/technique/TechniqueBandSound.h",
+        "line": 9,
+        "text": "TUnk_804CCC68"
+      },
+      {
+        "key": "local_class",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 94,
+        "text": "struct Base1"
+      },
+      {
+        "key": "local_class",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 96,
+        "text": "struct VObj1"
+      },
+      {
+        "key": "local_virtual",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 97,
+        "text": "    virtual void m0();"
+      },
+      {
+        "key": "local_virtual",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 98,
+        "text": "    virtual void m1();"
+      },
+      {
+        "key": "local_virtual",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 99,
+        "text": "    virtual void m2();"
+      },
+      {
+        "key": "local_virtual",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 100,
+        "text": "    virtual void m3();"
+      },
+      {
+        "key": "local_virtual",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 101,
+        "text": "    virtual s32 m4();"
+      },
+      {
+        "key": "local_virtual",
+        "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "line": 102,
+        "text": "    virtual void m5();"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/player/PlayerTaskEffects.cpp",
+        "line": 525,
+        "text": "m_84c"
+      },
+      {
+        "key": "this_cast",
+        "path": "src/pso/player/PlayerTaskEffects.cpp",
+        "line": 1162,
+        "text": "PlayerShrinkPacket: (G_ClientIDHeader *)this"
+      },
+      {
+        "key": "extern_c",
+        "path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "line": 1252,
+        "text": "extern \"C\" check_flag_100__10TObjPlayerFPv"
+      },
+      {
+        "key": "mangled_member",
+        "path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "line": 1252,
+        "text": "check_flag_100__10TObjPlayerFPv"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "line": 3082,
+        "text": "m_84c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "line": 3094,
+        "text": "m_84c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/player/TObjPlayer_801BD384.cpp",
+        "line": 139,
+        "text": "m_84c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/player/TObjPlayer_801BD384.cpp",
+        "line": 184,
+        "text": "m_84c"
+      },
+      {
+        "key": "fp_cast",
+        "path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "line": 4360,
+        "text": "(void (*)(TObjPlayer *, u8, s32))c"
+      },
+      {
+        "key": "fp_cast",
+        "path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "line": 4401,
+        "text": "(void (*)(s32, void *))c"
+      },
+      {
+        "key": "extern_c",
+        "path": "src/pso/technique/TTecBarta.cpp",
+        "line": 121,
+        "text": "extern \"C\" collect_body_contacts_for_target__10TObjPlayerFl"
+      },
+      {
+        "key": "mangled_member",
+        "path": "src/pso/technique/TTecBarta.cpp",
+        "line": 121,
+        "text": "collect_body_contacts_for_target__10TObjPlayerFl"
+      },
+      {
+        "key": "address_type",
+        "path": "src/pso/technique/TTecBarta.cpp",
+        "line": 121,
+        "text": "List_8022BD74"
+      },
+      {
+        "key": "address_type",
+        "path": "src/pso/technique/TTecBarta.cpp",
+        "line": 121,
+        "text": "Tec_8022BD74"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 110,
+        "text": "lbl_8044CDF8"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 111,
+        "text": "lbl_8044CE10"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 112,
+        "text": "lbl_8044CE24"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 113,
+        "text": "lbl_8044CE38"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 114,
+        "text": "lbl_8044CE4C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 115,
+        "text": "lbl_8044CE60"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 116,
+        "text": "lbl_8044CE74"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 117,
+        "text": "lbl_8044CE88"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 118,
+        "text": "lbl_8044CE9C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 119,
+        "text": "lbl_8044CEB0"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 120,
+        "text": "lbl_8044CEC8"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 121,
+        "text": "lbl_8044CEDC"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 122,
+        "text": "lbl_8044CEEC"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 123,
+        "text": "lbl_8044CF04"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 124,
+        "text": "lbl_8044CF1C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 125,
+        "text": "lbl_8044CF30"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 126,
+        "text": "lbl_8044CF48"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 127,
+        "text": "lbl_8044CF60"
+      },
+      {
+        "key": "flat_name",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 128,
+        "text": "TTecCtrl__class_name_string"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 131,
+        "text": "lbl_8044CF8C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 133,
+        "text": "lbl_8044CFA8"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 134,
+        "text": "lbl_8044CFB4"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 135,
+        "text": "lbl_8044CFC4"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 137,
+        "text": "lbl_8044CFE0"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 139,
+        "text": "lbl_8044CFFC"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 141,
+        "text": "lbl_8044D018"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 143,
+        "text": "lbl_8044D034"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 145,
+        "text": "lbl_8044D050"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 147,
+        "text": "lbl_8044D06C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 151,
+        "text": "lbl_8044CDF8"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 152,
+        "text": "lbl_8044CE10"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 153,
+        "text": "lbl_8044CE24"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 154,
+        "text": "lbl_8044CE38"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 155,
+        "text": "lbl_8044CE4C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 156,
+        "text": "lbl_8044CE60"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 157,
+        "text": "lbl_8044CE74"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 158,
+        "text": "lbl_8044CE88"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 159,
+        "text": "lbl_8044CE9C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 160,
+        "text": "lbl_8044CEB0"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 161,
+        "text": "lbl_8044CEC8"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 162,
+        "text": "lbl_8044CEDC"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 166,
+        "text": "lbl_8044CEEC"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 167,
+        "text": "lbl_8044CF04"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 168,
+        "text": "lbl_8044CF1C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 169,
+        "text": "lbl_8044CF30"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 170,
+        "text": "lbl_8044CF48"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 174,
+        "text": "lbl_8044CF60"
+      },
+      {
+        "key": "flat_name",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 198,
+        "text": "TTecCtrl__class_name_string"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 774,
+        "text": "lbl_8044CF8C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 778,
+        "text": "lbl_8044CFA8"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 782,
+        "text": "lbl_8044CFB4"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 782,
+        "text": "lbl_8044CFC4"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 785,
+        "text": "lbl_8044CFE0"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 790,
+        "text": "lbl_8044CFFC"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 796,
+        "text": "lbl_8044D018"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 802,
+        "text": "lbl_8044D034"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 805,
+        "text": "lbl_8044D050"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecCtrl.cpp",
+        "line": 808,
+        "text": "lbl_8044D06C"
+      },
+      {
+        "key": "data_label",
+        "path": "src/pso/technique/TTecGiBarta.cpp",
+        "line": 175,
+        "text": "lbl_8044D288"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 3,
+        "text": "extern const char lbl_8044D5D0[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 4,
+        "text": "extern const char lbl_8044D5E4[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 5,
+        "text": "extern const char lbl_8044D5F0[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 6,
+        "text": "extern const char lbl_8044D5FC[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 7,
+        "text": "extern const char lbl_8044D608[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 8,
+        "text": "extern const char lbl_8044D614[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 9,
+        "text": "extern const char lbl_8044D620[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 10,
+        "text": "extern const char lbl_8044D62C[]"
+      },
+      {
+        "key": "local_decl",
+        "path": "src/pso/technique/TechniqueRingwaveList.cpp",
+        "line": 11,
+        "text": "extern const char lbl_8044D638[]"
+      },
+      {
+        "key": "fp_cast",
+        "path": "src/pso/unk/text_801D9870.cpp",
+        "line": 18,
+        "text": "(s32 (*)(TechniqueCastState *, s32))g"
+      }
+    ],
+    "stale_force_active": [],
+    "sha256": "8f4b391cab400432ec8ff4dbd28510c5c2befe86c243e00782bba3acd331cad1"
+  },
+  "probes": {
+    "targets": {
+      "retail": "PsoV3.dol: state setters, target records, packet size, send bytes and validation passed.",
+      "review": "psov3.dol: state setters, target records, packet size, send bytes and validation passed.",
+      "sha256": "ed4a143cef01495082a92a9fb3242f76ae3ee64fcfec48acdbbbbbc8f7ebd01c"
+    },
+    "effects": {
+      "retail": "PsoV3.dol: resource records, lightning and Gi-Barta construction, and band sound passed.",
+      "review": "psov3.dol: resource records, lightning and Gi-Barta construction, and band sound passed.",
+      "sha256": "9e836f74fdef940593effbe85f2db931c87e8c495333780a0ac24c8eba2e72ca"
+    },
+    "owners": {
+      "retail": "PsoV3.dol: 22 technique cases passed.",
+      "review": "psov3.dol: 22 technique cases passed.",
+      "sha256": "aee306f5c1ff843b58dd158f5da36e53cd666a36d28d8e4b5669153f35662bc8"
+    },
+    "hold": {
+      "retail": "PsoV3.dol: hold packet halfwords, X and Z, squared radius, null target, and state gate passed.",
+      "review": "psov3.dol: hold packet halfwords, X and Z, squared radius, null target, and state gate passed.",
+      "sha256": "1216d38ea2adb3453717ef62471e51709dcdc7f4d3db6e5b905e6378b4f30642"
+    },
+    "scale": {
+      "retail": "PsoV3.dol: scale state, position access, camera offsets, wire packets, and shrink and restore gates passed.",
+      "review": "psov3.dol: scale state, position access, camera offsets, wire packets, and shrink and restore gates passed.",
+      "sha256": "c57fe0f335e9f0192b7f5a88822c7e9add0627dcc776857e795349d09a3c5cf5"
+    },
+    "critical": {
+      "retail": "PsoV3.dol: critical-hit allocation, state, particles, and texture frame passed.",
+      "review": "psov3.dol: critical-hit allocation, state, particles, and texture frame passed.",
+      "sha256": "3d9fe7a19fd9c9420e82e31764ba476328320c4ee1678e16e7f167fd7ef3c683"
+    }
+  },
+  "workspace": {
+    "overlay_count": 130,
+    "materialized_tree": "f2695a13060a0de789ba867595b123454abd6721",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  },
+  "preserved_source": [
+    "The native technique target retains the upstream node member used by targeting, cursor lookup and packet byteswapping.",
+    "The critical-hit renderer uses the upstream camera yaw and typed texture list.",
+    "The Dolphin motion paths keep the native BML archive, and the lock-on cursor retains its established pointer type.",
+    "Original player effect labels encode the integer arguments. The linked labels now use the recovered typed receiver signatures, preserving both call targets."
+  ]
+}
