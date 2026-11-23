@@ -1,0 +1,479 @@
+{
+  "purpose": "Recover native model trees, NPC model registration, and archive texture entries together.",
+  "standalone": {
+    "branch": "great-merge/review/after-376/model-and-npc-resources",
+    "base": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "head": "fcc786270283565a13530c56f75f55b1ea617f4c",
+    "tree": "831548987d19423bc1880403fec2e426ecf019c8",
+    "path_count": 61,
+    "author": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+    "committer": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "pass",
+    "coverage_regressions": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "failures": 0
+    },
+    "source_benchmark": {
+      "base": 147293,
+      "head": 147260,
+      "added": 0,
+      "removed": 33
+    },
+    "flagged_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "validation_sha256": {
+      "check.json": "81be320bd725b83ebca39b919b9fd43893d2add4829a12a938a646efe3b7954a",
+      "report.json": "28a6448a9dcafe44f0ecb3db1e24a5e229c6e63c2ef81a2db78d67cac2331ee0",
+      "source-quality.json": "6bb1ba7570bee1cbbaeb65a0255eade48ff826e1fa597e0f5ee054f9e760edba",
+      "ranges.json": "cec3382ea630abc0f46eb728d3ec3b1f625426c362da4fefbdb771ca3d73b836",
+      "probes.log": "279ad354aaecfa59ae7d4815f13ef6f262365174a497ba886f57dec9764616b8"
+    }
+  },
+  "inventory_and_saves_preview": {
+    "branch": "great-merge/rehearsal/after-376/model-and-npc-resources-with-inventory-and-saves",
+    "base": "8594730e1491dd15d9b8b164fcbf6f70c4148202",
+    "head": "4c25ce43caf1b1a1964ca3e0e3f6ee359d0bf79a",
+    "tree": "0c96385198d35e162f9d481529e6e09241bb44e6",
+    "path_count": 61,
+    "author": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+    "committer": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "pass",
+    "coverage_regressions": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "failures": 0
+    },
+    "source_benchmark": {
+      "base": 145501,
+      "head": 145468,
+      "added": 0,
+      "removed": 33
+    },
+    "flagged_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "validation_sha256": {
+      "check.json": "81be320bd725b83ebca39b919b9fd43893d2add4829a12a938a646efe3b7954a",
+      "report.json": "050f223e438bb53ada35c8d1c91b0fa8c82fa76d6761db0a7c7ca030c63c540c",
+      "source-quality.json": "b72402de4a7009262dad501397896df6fd0f44180727d6169f55b58ce3115d73",
+      "ranges.json": "cec3382ea630abc0f46eb728d3ec3b1f625426c362da4fefbdb771ca3d73b836",
+      "probes.log": "3c04685c9a5952633cf69e7c6f36c8d4a3cbc55eb19eab8eda0e2b2feed1d276"
+    }
+  },
+  "paths": [
+    "config/GPOE8P/psov3/linked_units.txt",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/volopt/TBoss3VoloptP01.h",
+    "include/pso/enemy/slime/TObjEneSlime.h",
+    "include/pso/npc/NpcModelRegistry.h",
+    "include/pso/npc/TObjNpcEnemy.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TUnk_80491478.h",
+    "include/pso/render/GinjaTextureEntryCopy.h",
+    "include/pso/render/NinjaUtil.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClaw.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/npc/TObjNpcEnemy.cpp",
+    "src/pso/object/ambient/TObjCGrass.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/player/TObjPlayer_800E80A4.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/player/TUnk_80491478.cpp",
+    "src/pso/render/GinjaTextureEntryCopy.cpp",
+    "src/pso/render/NinjaUtil.cpp",
+    "src/pso/unk/text_8004AA04.cpp",
+    "src/pso/unk/text_8035B6B0.cpp",
+    "src/pso/unk/text_8035B750.cpp"
+  ],
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "historical_source_comparisons_remaining": 123,
+  "symbol_changes": [
+    {
+      "file": "config/GPOE8P/psov3/symbols.txt",
+      "section": ".text",
+      "address": "0x800E80A4",
+      "type": "function",
+      "old": "copy_vec3__10TObjPlayerFPv",
+      "new": "copy_ginja_texture_entry",
+      "flags": []
+    },
+    {
+      "file": "config/GPOE8P/psov3/symbols.txt",
+      "section": ".text",
+      "address": "0x80131700",
+      "type": "function",
+      "old": "find_model_node__FUll",
+      "new": "find_model_node__FP10NJS_OBJECTl",
+      "flags": []
+    },
+    {
+      "file": "config/GPOE8P/psov3/symbols.txt",
+      "section": ".text",
+      "address": "0x802D71E0",
+      "type": "function",
+      "old": "register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff",
+      "new": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListPC19NpcAnimationBindingff",
+      "flags": []
+    },
+    {
+      "file": "config/GPOE8P/psov3/symbols.txt",
+      "section": ".text",
+      "address": "0x802D7260",
+      "type": "function",
+      "old": "spawn_child__12TObjEneSlimeFsllff",
+      "new": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListff",
+      "flags": []
+    }
+  ],
+  "symbol_change_evidence": {
+    "0x800E80A4": "The copy reads and stores a GinjaTextureEntry in original instruction order. It uses the render owner and has no player receiver.",
+    "0x80131700": "The existing depth-first lookup consumes and returns Ninja object nodes.",
+    "0x802D71E0": "The existing animated chunk registry accepts its actual model and texture-list pointers through its 45 callers.",
+    "0x802D7260": "The helper creates an unanimated registry entry. Native model and texture pointers come from the Slime and Morfos model entries."
+  },
+  "matching_constraints": [
+    "Keep Vol Opt's live and breakup model roots distinct.",
+    "Keep the archive-selected NPC models, texture slots, numeric IDs, animation bindings, and floats unchanged.",
+    "Keep the Lappy variants and dolphin texture list typed at stored uses. The standalone review adapts the three calls at the current upstream GVM loader interface. The preview uses its typed loader.",
+    "The standalone review leaves Shinowa on its existing battle-row interface until the typed battle parameter review."
+  ],
+  "upstream_effects_review": {
+    "merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+    "shared_paths": [
+      "config/GPOE8P/psov3/linked_units.txt",
+      "config/GPOE8P/psov3/splits.txt",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/player/TObjPlayer.h",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/object/ambient/TObjCGrass.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/player/TObjPlayer_802E6CA8.cpp",
+      "src/pso/player/TUnk_80491478.cpp",
+      "src/pso/unk/text_8004AA04.cpp",
+      "src/pso/unk/text_8035B6B0.cpp"
+    ],
+    "edited_lines_from_effects_merge": {
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": [
+        {
+          "line": 761,
+          "upstream": "t = (NJS_OBJECT *)find_model_node((uaddr)get_bml_model((BmlResource *)h, r->model), r->node);"
+        }
+      ],
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": [
+        {
+          "line": 1163,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x13, reinterpret_cast<void *>(balclaw_bml_resource->models[1].model), reinterpret_cast<void *>(balclaw_bml_resource->models[1].texlist), &params,"
+        }
+      ],
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": [
+        {
+          "line": 720,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x14, reinterpret_cast<void *>(models[2].model), reinterpret_cast<void *>(models[2].texlist), &binding,"
+        }
+      ],
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp": [
+        {
+          "line": 258,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x15, reinterpret_cast<void *>(TObjEneRe7Berura__shared_resource->models->model), reinterpret_cast<void *>(TObjEneRe7Berura__shared_resource->models->texlist), &atk, 8.0f, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": [
+        {
+          "line": 179,
+          "upstream": "NpcModelRegistry::register_animated_chunk(ids[i], reinterpret_cast<void *>(bm_ene_me1_mb_resource->models[i].model), reinterpret_cast<void *>(bm_ene_me1_mb_resource->models[1].texlist), &params, 8.0f, 15.0f);"
+        }
+      ],
+      "src/pso/enemy/darkgunner/DarkGunner.cpp": [
+        {
+          "line": 367,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x19, reinterpret_cast<void *>(TObjEneDarkGunner::bml_resource->models[1].model), reinterpret_cast<void *>(TObjEneDarkGunner::bml_resource->models[1].texlist), &atk, 10.0f, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp": [
+        {
+          "line": 178,
+          "upstream": "NpcModelRegistry::register_animated_chunk((s16)0x47, reinterpret_cast<void *>(TObjEneDelDepth__shared_resource->models[0].model), reinterpret_cast<void *>(TObjEneDelDepth__shared_resource->models[0].texlist), &info, TObjEneDelDepth_collision_body_parts[0].radius, 0.0f);"
+        },
+        {
+          "line": 183,
+          "upstream": "NpcModelRegistry::register_animated_chunk((s16)0x48, reinterpret_cast<void *>(TObjEneDelDepth__shared_resource->models[1].model), reinterpret_cast<void *>(TObjEneDelDepth__shared_resource->models[1].texlist), &info, TObjEneDelDepth_collision_body_parts[0].radius, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": [
+        {
+          "line": 172,
+          "upstream": "NpcModelRegistry::register_animated_chunk((s16)0x46, reinterpret_cast<void *>(resource->models->model), reinterpret_cast<void *>(resource->models->texlist),"
+        }
+      ],
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp": [
+        {
+          "line": 160,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x37, reinterpret_cast<void *>(models->model), reinterpret_cast<void *>(models->texlist), &binding, lbl_805D9FBC, lbl_805D9FAC);"
+        }
+      ],
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp": [
+        {
+          "line": 86,
+          "upstream": "NpcModelRegistry::register_animated_chunk(7, reinterpret_cast<void *>(bm3_fly_nest_resources->models[0].model), reinterpret_cast<void *>(bm3_fly_nest_resources->models[0].texlist), &binding, bm3_fly_collider_params[0].radius, 15.0f);"
+        }
+      ],
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": [
+        {
+          "line": 253,
+          "upstream": "NpcModelRegistry::register_animated_chunk(8, reinterpret_cast<void *>(models[1].model), reinterpret_cast<void *>(models[0].texlist), &anim, bm3_flynest_collider_params[0].radius, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp": [
+        {
+          "line": 162,
+          "upstream": "NpcModelRegistry::register_animated_chunk((s16)0x10, reinterpret_cast<void *>(TObjEneMe1Gee__resource_bundle->models->model), reinterpret_cast<void *>(TObjEneMe1Gee__resource_bundle->models->texlist), &params, 8.0f, 15.0f);"
+        }
+      ],
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": [
+        {
+          "line": 1983,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0xE, reinterpret_cast<void *>(m->models[0].model), reinterpret_cast<void *>(m->models[0].texlist), &sp, gibon_collision_body_templates[0].radius, 0.0f);"
+        },
+        {
+          "line": 1984,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0xF, reinterpret_cast<void *>(TObjEneBm5GibonU__model_archive->models[1].model), reinterpret_cast<void *>(TObjEneBm5GibonU__model_archive->models[1].texlist), &sp, gibon_collision_body_templates[1].radius, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": [
+        {
+          "line": 249,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x41, reinterpret_cast<void *>(gigue_resource->models->model), reinterpret_cast<void *>(gigue_resource->models->texlist), &binding, gigue_collision_bodies[0].radius, 15.0f);"
+        }
+      ],
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp": [
+        {
+          "line": 141,
+          "upstream": "NpcModelRegistry::register_animated_chunk((s16)0x43, reinterpret_cast<void *>(resource->models->model), reinterpret_cast<void *>(((saddr)resource->models->texlist)), &pos, illGillCollisionBody.radius, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/lappy/TObjEneLappy.cpp": [
+        {
+          "line": 995,
+          "upstream": "rappy_alternate_texture_list = (uaddr)rappy_bml_resource->models[1].texlist;"
+        }
+      ],
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": [
+        {
+          "line": 164,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x42, reinterpret_cast<void *>(mericarol_bml->models[0].model), reinterpret_cast<void *>(mericarol_bml->models[0].texlist), &params,"
+        }
+      ],
+      "src/pso/enemy/moja/TObjEneMoja.cpp": [
+        {
+          "line": 253,
+          "upstream": "NpcModelRegistry::register_animated_chunk(ids[i], reinterpret_cast<void *>(moja_bml_resource->models[i].model), reinterpret_cast<void *>(moja_bml_resource->models[i].texlist),"
+        }
+      ],
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp": [
+        {
+          "line": 243,
+          "upstream": "NpcModelRegistry::register_animated_chunk((s16)(0x22), reinterpret_cast<void *>(modelEntries[0].model), reinterpret_cast<void *>(modelEntries[0].texlist), &binding, (f32)(15.0f), (f32)(0.0f));"
+        }
+      ],
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp": [
+        {
+          "line": 1366,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x24, reinterpret_cast<void *>(models[1].model), reinterpret_cast<void *>(models[1].texlist), &binding_a, 7.5f, 0.0f);"
+        },
+        {
+          "line": 1368,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x25, reinterpret_cast<void *>(models[2].model), reinterpret_cast<void *>(models[2].texlist), &binding_b, 7.5f, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp": [
+        {
+          "line": 241,
+          "upstream": "reinterpret_cast<void *>(resource->models[0].texlist), &binding, 12.5f, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": [
+        {
+          "line": 162,
+          "upstream": "src = (NJS_TEXLIST *)TObjEneMe3ShinowaMirage__bml_resource->models->texlist;"
+        },
+        {
+          "line": 250,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x26, reinterpret_cast<void *>(TObjEneMe3ShinowaMirage__bml_resource->models->model), reinterpret_cast<void *>(TObjEneMe3ShinowaMirage__bml_resource->models->texlist), &binding, 8.0f, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": [
+        {
+          "line": 177,
+          "upstream": "src = (NJS_TEXLIST *)TObjEneMe3SinowZoa__bml_resource->models->texlist;"
+        },
+        {
+          "line": 233,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x49, reinterpret_cast<void *>(TObjEneMe3SinowZoa__bml_resource->models->model), reinterpret_cast<void *>(TObjEneMe3SinowZoa__bml_resource->models->texlist), &info, 12.0f, 0.0f);"
+        },
+        {
+          "line": 235,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x4B, reinterpret_cast<void *>(TObjEneMe3SinowZoa__bml_resource->models->model), reinterpret_cast<void *>(TObjEneMe3SinowZoa__bml_resource->models->texlist), &info_b, 12.0f, 0.0f);"
+        }
+      ],
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": [
+        {
+          "line": 268,
+          "upstream": "NpcModelRegistry::register_animated_chunk((s16)0x2A, reinterpret_cast<void *>(sorcerer_bml_resource->models->model), reinterpret_cast<void *>(sorcerer_bml_resource->models->texlist), &p, re4_sorcerer_collision_body_part_table[0].radius, 15.0f);"
+        }
+      ],
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": [
+        {
+          "line": 194,
+          "upstream": "src = (NJS_TEXLIST *)TObjEneMe3Stelth__bml_resource->models->texlist;"
+        }
+      ],
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": [
+        {
+          "line": 232,
+          "upstream": "NpcModelRegistry::register_animated_chunk(9, reinterpret_cast<void *>(TObjEneBm5Wolf__bml_resource->models[1].model), reinterpret_cast<void *>(TObjEneBm5Wolf__bml_resource->models[0].texlist), &sp, TObjEneBm5Wolf__collider_params[0].radius, 0.0f);"
+        },
+        {
+          "line": 233,
+          "upstream": "NpcModelRegistry::register_animated_chunk(10, reinterpret_cast<void *>(TObjEneBm5Wolf__bml_resource->models[0].model), reinterpret_cast<void *>(TObjEneBm5Wolf__bml_resource->models[0].texlist), &sp, TObjEneBm5Wolf__collider_params[0].radius, 0.0f);"
+        }
+      ],
+      "src/pso/object/ambient/TObjCGrass.cpp": [
+        {
+          "line": 127,
+          "upstream": "NpcModelRegistry::register_animated_chunk(0x36, reinterpret_cast<void *>(model->model), reinterpret_cast<void *>(model->texlist), &binding, 2.0f, 0.0f);"
+        }
+      ],
+      "src/pso/object/ambient/TObjGrass.cpp": [
+        {
+          "line": 492,
+          "upstream": "reinterpret_cast<void *>(TObjGrass__resource_bundle->models[0].texlist), &binding, 10.0f, 0.0f);"
+        }
+      ],
+      "src/pso/unk/text_8004AA04.cpp": [
+        {
+          "line": 44,
+          "upstream": "t = (NJS_OBJECT *)find_model_node((saddr)get_bml_model(h, r->model), r->node);"
+        }
+      ],
+      "src/pso/unk/text_8035B6B0.cpp": [
+        {
+          "line": 35,
+          "upstream": "NpcModelRegistry::register_animated_chunk(11, reinterpret_cast<void *>(resource->models->model), reinterpret_cast<void *>(resource->models->texlist), &binding, 5.0f, 0.0f);"
+        }
+      ]
+    },
+    "reconciliation": "The follow-up passes the model and texture pointers directly and preserves model indices, texture slots, action tables, registry IDs, and strip construction. Both exact tested baselines contain the merged effects and HUD source."
+  },
+  "runtime": {
+    "cases_per_image": {
+      "model_node_traversal": 8,
+      "alternate_archive_textures": 5,
+      "npc_registry": 12
+    },
+    "images": [
+      "retail",
+      "standalone review",
+      "inventory and saves preview"
+    ],
+    "registry_cases": "Chunk, animated chunk, and animated Ginja registration with field checks, duplicate rejection, sorted insertion, and a full table.",
+    "probe_sha256": {
+      "probe-model-lookup.py": "85bc388bbfc82f98309cfc993b4a43aeae1ac1d27decacf4726625022b9b9312",
+      "probe-npc-registry.py": "6dacff361be0ff1a67c81f075a65352f8d84b92f8ed695e80c3a68c7440df136"
+    }
+  },
+  "historical_actor_review": {
+    "head": "6fef559bb1293e2d14ff158822b96779199a95d1",
+    "paths": 339,
+    "three_way_conflicts_on_current_queue": 226,
+    "whole_file_trial_compile_failures": 291,
+    "status": "Model and registry component recut and validated. Remaining actor contact, combat, and battle parameter work still needs independent review batches."
+  }
+}
