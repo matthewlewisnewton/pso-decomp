@@ -1,0 +1,270 @@
+{
+  "builds": {
+    "source": {
+      "head": "0eb9a4f0baa466b7065ddd2d2e17156e50544e75",
+      "tree": "f3ca22a0056834d2eea0b00f0299bc57310f1f8c",
+      "coverage_baseline": "7695eb36d3bfc474997abf6a696769edb52a8e9d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21281a3959c9b312d15c02cedea6c4c0d356dbb6f6aba661e1f2405c9c610e23",
+        "source-check.json": "b5b456feb9eb074e8c329e93175bdc12a44a7343a1ed24929e918caefa544db4",
+        "source-quality.json": "66e2190575fc57d145afcd302a70646470310575e9d780d1926a6defd1caadb9"
+      },
+      "quality": {
+        "removed": 36,
+        "added": 3,
+        "changed_labels": 4,
+        "flagged_labels": 0,
+        "newly_stale_retention": 0,
+        "findings": [
+          {
+            "key": "mangled_member",
+            "path": "include/pso/player/TObjPlayer_801BDF5C.h",
+            "line": 41,
+            "text": "construct_player_instance__10TObjPlayerFlllP12TPlyCharData"
+          },
+          {
+            "key": "mangled_member",
+            "path": "src/pso/player/TObjPlayer_801BDDDC.cpp",
+            "line": 16,
+            "text": "construct_player_instance__10TObjPlayerFlllP12TPlyCharData"
+          },
+          {
+            "key": "mangled_member",
+            "path": "src/pso/player/TObjPlayer_801BDF5C.cpp",
+            "line": 42,
+            "text": "construct_player_instance__10TObjPlayerFlllP12TPlyCharData"
+          }
+        ]
+      }
+    },
+    "inventory": {
+      "head": "9589a617bea819ad462ad592073a80ffb4785526",
+      "tree": "3de1785756bc0bca7850a070eaf03a3af012eeb2",
+      "coverage_baseline": "d8ae552bd4df1241701006d00ad5f20c26e9ae71",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "inventory-report.json": "6786204f15a8369319f24af43291cff5b6762051e5fca39722caf38ce32a554c",
+        "inventory-check.json": "b5b456feb9eb074e8c329e93175bdc12a44a7343a1ed24929e918caefa544db4"
+      }
+    },
+    "queue": {
+      "head": "b8e66fbf4c5556b09dbf51ef7befb84e4647f05b",
+      "tree": "287f8d93f4fa3e76ddf6792f19ae3f748fc1de79",
+      "coverage_baseline": "5a98123bb6b30ff8953328302d549e3ea99e703a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "1d925756d3ac784f12fad446526620d6358257a0100cb096d428d787b309748d",
+        "queue-check.json": "b5b456feb9eb074e8c329e93175bdc12a44a7343a1ed24929e918caefa544db4"
+      }
+    },
+    "ave": {
+      "head": "c5efbf0513a74831845a4359331ef906b8752127",
+      "tree": "376bf351977858456dd01ee54985fd9bee8f9637",
+      "coverage_baseline": "f6d24f7b19ba254dbe588cd6958149d90bfe3c1e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-report.json": "0e24d31fc43335f983cc2dca441a9627133c5b1de4679a4721da477763f0f9d3",
+        "ave-check.json": "b5b456feb9eb074e8c329e93175bdc12a44a7343a1ed24929e918caefa544db4"
+      }
+    },
+    "private": {
+      "head": "2ec9b917e75314586bcd1c3acf94e44641dbe24e",
+      "tree": "6aa2ef70451d90b87d6f1af52713a0021c0b8a30",
+      "coverage_baseline": "064f695c2dbd20cf8f1af48861e829dd7fca3bed",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21281a3959c9b312d15c02cedea6c4c0d356dbb6f6aba661e1f2405c9c610e23",
+        "private-check.json": "1619b9d192faebe771c83593176513a0209b5f71304e6177c8692c481b856909"
+      }
+    },
+    "ave-private": {
+      "head": "0934871062d52fb4c79bc4ea8c3dc7aad8aac783",
+      "tree": "45381546195f0af44728ff7edc47e235b5c41d8c",
+      "coverage_baseline": "789eb92328cee0a11bdfb2a57e2e30c66787a16e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-private-report.json": "0e24d31fc43335f983cc2dca441a9627133c5b1de4679a4721da477763f0f9d3",
+        "ave-private-check.json": "1619b9d192faebe771c83593176513a0209b5f71304e6177c8692c481b856909"
+      }
+    }
+  },
+  "review_after_inventory": {
+    "head": "9589a617bea819ad462ad592073a80ffb4785526",
+    "comparison_base": "97711798d9db2f80908909f5eea7f55da3747ce5",
+    "inventory_review": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+    "paths": 218,
+    "quality_removed": 1067,
+    "quality_added": 26,
+    "changed_labels": 40,
+    "flagged_labels": 0,
+    "newly_stale_retention": 0,
+    "reports_sha256": {
+      "inventory-quality.json": "b69d2f8749adafb4f3f8cd392f29a42663c99f44ac87239e001920a678b49ab3"
+    }
+  },
+  "standalone_saves_review": "d9537252e154ef0055cfe0d2d51ecb85f6c71086",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap": {
+    "shared_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/player/TObjPlayer.h",
+      "src/pso/player/TObjPlayer_801C1FF8.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp"
+    ],
+    "effects_added_lines_removed_by_this_patch": 0
+  },
+  "historical_source": {
+    "path": "src/pso/unk/text_801D40D4.cpp",
+    "current_path": "src/pso/player/TPlyItem.cpp",
+    "exact_linked_functions": [
+      {
+        "address": "0x801d40d4",
+        "label": "fn_801D40D4",
+        "bytes": 136
+      },
+      {
+        "address": "0x801d415c",
+        "label": "check_player_action_allowed",
+        "bytes": 88
+      },
+      {
+        "address": "0x801d41b4",
+        "label": "remove_list_entry_by_id__Fl",
+        "bytes": 188
+      },
+      {
+        "address": "0x801d4270",
+        "label": "fn_801D4270",
+        "bytes": 112
+      },
+      {
+        "address": "0x801d42e0",
+        "label": "reset",
+        "bytes": 40
+      },
+      {
+        "address": "0x801d4308",
+        "label": "export_inventory_entry__5TItemFP17TPlyInventoryItem",
+        "bytes": 96
+      },
+      {
+        "address": "0x801d4368",
+        "label": "TObjPlayer__sub_801D4368",
+        "bytes": 584
+      },
+      {
+        "address": "0x801d45b0",
+        "label": "TObjPlayer__sub_801D45B0",
+        "bytes": 200
+      },
+      {
+        "address": "0x801d4678",
+        "label": "__dt__19InventorySortBufferFv",
+        "bytes": 92
+      },
+      {
+        "address": "0x801d46d4",
+        "label": "__ct__19InventorySortBufferFl",
+        "bytes": 92
+      },
+      {
+        "address": "0x801d4730",
+        "label": "__ct__18InventorySortEntryFv",
+        "bytes": 20
+      },
+      {
+        "address": "0x801d4744",
+        "label": "sort_by_key__19InventorySortBufferFv",
+        "bytes": 148
+      },
+      {
+        "address": "0x801d47d8",
+        "label": "__as__18InventorySortEntryFR18InventorySortEntry",
+        "bytes": 20
+      },
+      {
+        "address": "0x801d47ec",
+        "label": "TObjPlayer__sub_801D47EC",
+        "bytes": 164
+      }
+    ],
+    "open_comparisons": 110
+  },
+  "runtime": {
+    "factory_and_saved_state_cases": 8,
+    "selector_and_character_field_cases": 19,
+    "images": 7,
+    "evidence_sha256": {
+      "probe-wiring.py": "589a4fd7cfb277175aca6c9ebf7f9e2d5d8370ef2bdb935b9dbc28ce7bb2cfa5",
+      "all-probes.log": "b8c9a51d919a3092414637c109d088f0061f458642b1d455aaae121eef12a197",
+      "selector-probes.log": "4d57375e11928e26cd84d680f1f6cc61870bbb6ee600e2cb28e2bedca11a739a"
+    }
+  },
+  "fork_tooling": {
+    "patched_paths": 130,
+    "retention_entries": 27007,
+    "tests": 310,
+    "evidence_sha256": {
+      "private-overlay.patch": "765a274e1b96a5ca5dcd4c6a5a441cede24374c418f9c79464655b816aa0c31b",
+      "ave-private-overlay.patch": "2989b62b45c2839fb3a0767ebc3a205ee25dd049cf961aa21ad3358c652d7897",
+      "ave-private-fork-tests.log": "127050d380de8ad58dfb8863a9c60e1ef883bf1755fb39e1ed09e1e81b204533",
+      "ave-private-tool-tests.log": "c08946edd9cc4322c8ec5fd58e20665bd7fbe4f3663a61468ccf7c90b0349299",
+      "ave-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc"
+    }
+  },
+  "source_decisions": [
+    "The saved-character getter and the inventory accessor return named records. The accessor takes the actual inventory receiver at the start of the record.",
+    "The two saved-player callers share a constructor declaration with a 16-bit slot argument. The C++ member-call form changed instruction order in two exact retail functions. The shared typed declaration matches both callers and preserves slot truncation.",
+    "The public factory and character-state methods take TPlyCharData pointers. The packet and legacy scratch buffers retain their byte layouts.",
+    "The older inventory sort buffer uses native entry records and exact runtime allocation calls. The older new-array code and offset-named owner fields remain part of the historical source comparison."
+  ]
+}

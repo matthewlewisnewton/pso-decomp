@@ -1,5 +1,7 @@
 # Recover native save, quest, and asset-loading interfaces
 
+The 218-path review preview `9589a617bea819ad462ad592073a80ffb4785526` builds on the already validated #377 merge preview `97711798d9`. It adds native player creation and saved inventory access to the save, quest and asset batch. The matching build and coverage pass, and the benchmark removes 1,067 findings and adds 26 with zero flagged labels. Three added mangled-name occurrences share one typed constructor declaration across two saved-player callers because the direct C++ member form changes retail instruction order. [Validation](2026-11-23-native-player-construction-validation.json)
+
 The current standalone review is `d9537252e154ef0055cfe0d2d51ecb85f6c71086` on upstream master `63ba63fe8b`. Inventory preview `d8ae552bd4` and the actor and AVE-TCP preview `5a98123bb6` also match retail. [Current validation](2026-11-23-native-character-records-validation.json)
 
 The earlier standalone review is `cad627125653e8bb70c3b7ebe3b3a74e7eb21b76` on upstream master `63ba63fe8b`. Inventory preview `45c84c3028` and the actor and AVE-TCP preview `857b515781` also match retail. [Current validation](2026-11-23-native-bank-window-validation.json)
