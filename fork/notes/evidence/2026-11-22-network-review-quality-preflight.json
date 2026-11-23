@@ -123,5 +123,43 @@
     "window_network_and_stage": "abaa32dec2f7bedc7edb9fe8dcdd2ae6fecbc711"
   },
   "cumulative_candidate": "75698e7def081b950ea2acc8b35927ff90343800",
-  "cumulative_build_status": "Pending. CodeWarrior validation stopped when the host filesystem filled."
+  "cumulative_validation": {
+    "previous": "f0b9616c07ad7c0f23e66b97893a2acdf7ffc41c",
+    "published_window_head": "9c2674671acfe4dc2107303e10fee39d568034b5",
+    "merge": "4b889483d93064465eb1d0f728eb91db53539583",
+    "source": "75698e7def081b950ea2acc8b35927ff90343800",
+    "published_window_ci": "https://github.com/zeroz41/pso-decomp/actions/runs/45094064297/job/137429824317",
+    "published_window_quality": {
+      "base": 161684,
+      "head": 158724,
+      "added": 197,
+      "removed": 3157
+    },
+    "published_window_objects_byte_identical": 126,
+    "coverage_report_sha256": {
+      "source": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+      "private": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+    },
+    "historical_data": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "private_workspace": {
+      "paths": 130,
+      "materialized_tree": "431dd3b10df7daca047a499f480bfdca940b4e5e",
+      "tests": {
+        "fork": 11,
+        "tool": 294,
+        "host": 5
+      },
+      "patch_sha256": "e4577ef7dd6e8eb3e2dfba5346132b66207679104c8d3077b2755eedfc6dd479"
+    },
+    "typed_window_calls_preserved": [
+      "Symbol Chat scrollbar",
+      "memory-card cursor table",
+      "gauge constructor and colors"
+    ]
+  }
 }
