@@ -1,0 +1,61 @@
+{
+  "upstream_master": "5cf9da024a0d526227c07273f045ebe71e146496",
+  "window_review_head_in_queue": "ecb8ec30ef7d4d68110643edc6651e94517fc649",
+  "previous_cumulative_source": "a770050d2a32c95aab319b7cc216aeb5ef5543f9",
+  "cumulative_source": "f0b9616c07ad7c0f23e66b97893a2acdf7ffc41c",
+  "changed_paths": [
+    "include/pso/unk/text_8024AB98.h",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+    "src/pso/ui/window/TWindowTradeRequest_802E0170.cpp",
+    "src/pso/unk/TLobby_800726F0.cpp",
+    "src/pso/unk/TLobby_80299C4C.cpp",
+    "src/pso/unk/text_802233F8.cpp",
+    "src/pso/unk/text_8024AB98.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_reports_sha256": {
+    "cumulative_source": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "materialized_workspace": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+  },
+  "historical_fork_data": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "source_quality": {
+    "total": {
+      "base": 153824,
+      "head": 153764,
+      "added": 0,
+      "removed": 60
+    },
+    "label_changes": 0,
+    "new_stale_force_active": 0,
+    "report_sha256": "364f1ff6fa8b49a3c785330b2dd4383bb3cac0cd6ea203de425cec0f0617bce0"
+  },
+  "retry_routing": {
+    "cases": 9,
+    "source_and_retail_sha256": "f3bf4c42cd886c3f3f554a2048e9be81a878c23ea0c7255260e3190acd03a7ce",
+    "materialized_workspace_sha256": "dff861b6992db491e682996ec7e4c3dae315e5a89b71bd2326a7c09aa26684ea"
+  },
+  "fork_workspace": {
+    "paths": 130,
+    "materialized_tree": "5becebe7d89b2e7959733bb628a4ec1e446a137d",
+    "overlay_sha256": "c954ed61bfe19ad3fef5075f2ea29c51a337e6ffbbc03898d27cef7bd2e0a878",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  },
+  "historical_owners_closed": [
+    "src/pso/misc/TLobby_800726F0.cpp",
+    "src/pso/misc/TLobby_80299A60.cpp"
+  ],
+  "historical_records_remaining": 195
+}
