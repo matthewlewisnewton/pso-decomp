@@ -1,0 +1,1234 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "824906c09f7e26f084f074fff04a1dbdac1610ce",
+  "updated_paths": [
+    "include/pso/item/drop/TItemDrop.h",
+    "include/pso/item/drop/TItemDrop_80105D0C.h",
+    "include/pso/object/base/CollisionBodySet.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TPlayerBattleCtrl4P.h",
+    "src/pso/item/drop/TItemDrop.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/item/item_pmt.cpp",
+    "src/pso/map/TSetEvtDestroy.cpp",
+    "src/pso/player/TObjPlayer_801542CC.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/unk/TLobby_80209524.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TPlayerBattleCtrl4P.h",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "84c3cbb7f1906a50c400888a3520949433c9d902",
+      "tree": "bb98c565ab4d85f7597fd81c490faaca093897ba",
+      "coverage_baseline": "824906c09f7e26f084f074fff04a1dbdac1610ce",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "queue": {
+      "head": "04e67422f9580614835f65a3a0fc0a8b02c96e9a",
+      "tree": "4d6c24272332aa0d703bf5af9baff7f4ec5d3c4d",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "queue-check.json": "70df1f97f1477075ecad076c58d30d563c10fbd98e6d69ba1ce01cd29f03a9bb"
+      }
+    },
+    "private": {
+      "head": "96b6b89a1a8e38870f896d13b245828708c2b283",
+      "tree": "723821271d42e159da945ba334ff929c071fcbfd",
+      "coverage_baseline": "84c3cbb7f1906a50c400888a3520949433c9d902",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "source_build_tree_was_tested_at": "bb05c24c7b3084940799cd93b0bbbdfa50c66d9b",
+  "whole_historical_comparisons_closed": {
+    "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp": {
+      "historical_row": 3637,
+      "fork_blob": "72ea0153fd4c31f93fba6286203ffa242c5c755f",
+      "historical_source_sha256": "30e340977d4fcd1b664d7232e48125be24515c6ababcfec027050559c8183537",
+      "source_resolution": "The consolidated split-screen controller preserves the separate results, rematch, return and reload phases. Window close, score publication and the player input handoff stay in the original phases. The live task uses the opened result-window slots.",
+      "exact_linked_functions": 15,
+      "exact_non_text_sections": {},
+      "canonical_blobs": {
+        "src/pso/player/TPlayerBattleCtrl4P.cpp": "b85424dd58f4ca6e17b203bf139170cf2fae4b3d"
+      },
+      "matched_examples": {
+        "0x80311894": {
+          "old": "finish_battle_reload__19TPlayerBattleCtrl4PFv",
+          "current": "finish_battle_reload__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x803118e4": {
+          "old": "begin_battle_reload_fade__19TPlayerBattleCtrl4PFv",
+          "current": "begin_battle_reload_fade__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80311958": {
+          "old": "begin_battle_reload__19TPlayerBattleCtrl4PFv",
+          "current": "begin_battle_reload__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x803119bc": {
+          "old": "close_battle_results__19TPlayerBattleCtrl4PFv",
+          "current": "close_battle_results__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80311a64": {
+          "old": "record_battle_results_after_delay__19TPlayerBattleCtrl4PFv",
+          "current": "record_battle_results_after_delay__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80311b20": {
+          "old": "wait_for_rematch_menu_button__19TPlayerBattleCtrl4PFv",
+          "current": "wait_for_rematch_menu_button__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80311d78": {
+          "old": "wait_for_result_window_close__19TPlayerBattleCtrl4PFv",
+          "current": "wait_for_result_window_close__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80311dc8": {
+          "old": "open_result_windows__19TPlayerBattleCtrl4PFv",
+          "current": "open_result_windows__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        }
+      }
+    },
+    "src/pso/unk/text_801D40D4.cpp": {
+      "historical_row": 3963,
+      "fork_blob": "07828d656128d027de5426d67559199dbb5d9006",
+      "historical_source_sha256": "81d5aee5d373d0f2de6ed552cd44fda6e0a056c07894b2980e30a44fd2456f8f",
+      "source_resolution": "The current inventory owner includes the historical export and sort split. The item exports TPlyInventoryItem, both sort record classes use the native constructors, and the buffer uses the original sort key, entry copy, storage and teardown.",
+      "exact_linked_functions": 14,
+      "exact_non_text_sections": {},
+      "canonical_blobs": {
+        "src/pso/player/TPlyItem.cpp": "9fdba60fe2d1faf61cf93bdc1aab83e0c74c9d78"
+      },
+      "matched_examples": {
+        "0x801d4308": {
+          "old": "export_inventory_entry__5TItemFP17TPlyInventoryItem",
+          "current": "export_inventory_entry__5TItemFP17TPlyInventoryItem",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d4678": {
+          "old": "__dt__13List_801D4744Fv",
+          "current": "__dt__19InventorySortBufferFv",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d46d4": {
+          "old": "__ct__13List_801D4744Fl",
+          "current": "__ct__19InventorySortBufferFl",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d4730": {
+          "old": "__ct__12Ent_801D4744Fv",
+          "current": "__ct__18InventorySortEntryFv",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d4744": {
+          "old": "sort_by_key__13List_801D4744Fv",
+          "current": "sort_by_key__19InventorySortBufferFv",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d47d8": {
+          "old": "__as__12Ent_801D4744FR12Ent_801D4744",
+          "current": "__as__18InventorySortEntryFR18InventorySortEntry",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        }
+      }
+    },
+    "include/pso/player/TObjPlayer.h": {
+      "historical_row": 3998,
+      "fork_blob": "55eae4b73abddd9e0bc3e78b90398d7e34196396",
+      "historical_source_sha256": "a254849be86405c940ff30710991e6e4822c539a92596afcacc4db64d394cee7",
+      "source_resolution": "The current declaration retains the real player virtual slots and collision, area and destination fields. The movement destination uses move_target at the original location. The active TechniqueCastState, inventory and combat declarations use native providers. The wall response now declares its actual CsnHit result, and the generic actor meseta operation is declared on TObjChara.",
+      "exact_linked_functions": 0,
+      "exact_non_text_sections": {},
+      "canonical_blobs": {
+        "include/pso/player/TObjPlayer.h": "a578e41e2b40e4fe6784b9ad5de07f608db57053"
+      },
+      "matched_examples": {},
+      "historical_diff_sha256": "fd8354df30911bc4481cbc6eef0bd91f7b15a3517097794327125154753aca91"
+    },
+    "src/pso/player/PhotonBlastResults.cpp": {
+      "historical_row": 4085,
+      "fork_blob": "c449ad973133f61482029c6f1855f7f903561809",
+      "historical_source_sha256": "0497cc9cceae82ee5770c110902632f88785dabb1c2ee4383a65e4ffe7fa65b0",
+      "source_resolution": "Photon Blast power and both result paths belong to the sequence and use the typed owner and request. The linked admission, hit and result-state routines retain the chain order, archive and effect presentation. The original sound calls take the typed position.",
+      "exact_linked_functions": 9,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/player/PhotonBlastResults.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 160,
+          "exact_bytes": 160,
+          "owners": [
+            "src/pso/player/PhotonBlastResults.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 40,
+          "exact_bytes": 40,
+          "owners": [
+            "src/pso/player/PhotonBlastResults.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/PhotonBlastResults.cpp": "15b96d0f53af72b3690bf390cfbf21cb3ba729f6"
+      },
+      "matched_examples": {
+        "0x801a826c": {
+          "old": "calc_photon_blast_power__13TUnk_804C349CFlf",
+          "current": "calc_photon_blast_power__13TUnk_804C349CFlf",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        },
+        "0x801a8618": {
+          "old": "is_photon_blast_presentation_admitted__FUlPv",
+          "current": "is_photon_blast_presentation_admitted__FUlP18PhotonBlastRequest",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        },
+        "0x801a86e0": {
+          "old": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll",
+          "current": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        },
+        "0x801a8840": {
+          "old": "clear_photon_blast_donations__Fv",
+          "current": "clear_photon_blast_donations__Fv",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        },
+        "0x801a8868": {
+          "old": "admit_photon_blast_sequence__FPUcPv",
+          "current": "admit_photon_blast_sequence__FP18PhotonBlastRequestP10TObjPlayer",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        },
+        "0x801a8cf0": {
+          "old": "deliver_photon_blast_results_animated",
+          "current": "deliver_photon_blast_results_animated__13TUnk_804C349CFv",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        },
+        "0x801a92b0": {
+          "old": "deliver_photon_blast_results_delayed",
+          "current": "deliver_photon_blast_results_delayed__13TUnk_804C349CFv",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        },
+        "0x801a9870": {
+          "old": "step_photon_blast_sequence",
+          "current": "step_photon_blast_sequence__13TUnk_804C349CFv",
+          "owner": "src/pso/player/PhotonBlastResults.cpp"
+        }
+      },
+      "historical_diff_sha256": "9ab7909516f11aa7b2dc81f2cf2897583f3f2dde048e6d02444b1d1baed66672"
+    },
+    "src/pso/player/TObjPlayer.cpp": {
+      "historical_row": 4087,
+      "fork_blob": "9f40ae9f937505e816b98d6859687a5087b213c3",
+      "historical_source_sha256": "18251d39da0ad176bcea0117c42f2d221e85e0425b73521f50a090a625012fe2",
+      "source_resolution": "The scale and camera initialization, reset and updates use PlayerScaleState and PlayerScaleCameraOffsets. The action-palette helpers use the shared player palette record. The original hold, flag word, state setup and timer functions keep their byte widths and ordering.",
+      "exact_linked_functions": 154,
+      "exact_non_text_sections": {
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/player/TObjPlayer.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TObjPlayer.cpp": "95008c6f7187cdb24f7507d8f822e595629937ec"
+      },
+      "matched_examples": {
+        "0x801bf4b8": {
+          "old": "update_action_palette__10TObjPlayerFv",
+          "current": "set_player_action_palette_slot",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bf708": {
+          "old": "update_main_cursor__10TObjPlayerFv",
+          "current": "get_player_action_palette_mode",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bf94c": {
+          "old": "get_lock_timer__10TObjPlayerFv",
+          "current": "get_lock_timer__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bfd90": {
+          "old": "initialize__16PlayerScaleStateFv",
+          "current": "initialize__16PlayerScaleStateFv",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bfdd4": {
+          "old": "reset__16PlayerScaleStateFv",
+          "current": "reset__16PlayerScaleStateFv",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bfe1c": {
+          "old": "set_scalar__16PlayerScaleStateFf",
+          "current": "set_scalar__16PlayerScaleStateFf",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bfe40": {
+          "old": "set_model_scale__16PlayerScaleStateFf",
+          "current": "set_model_scale__16PlayerScaleStateFf",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bfe50": {
+          "old": "clear__24PlayerScaleCameraOffsetsFv",
+          "current": "clear__24PlayerScaleCameraOffsetsFv",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bfee0": {
+          "old": "setup_state__10TObjPlayerFv",
+          "current": "setup_state__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        },
+        "0x801bffa8": {
+          "old": "copy_hold_params__10TObjPlayerFPUc",
+          "current": "copy_hold_params__10TObjPlayerFPUc",
+          "owner": "src/pso/player/TObjPlayer.cpp"
+        }
+      },
+      "historical_diff_sha256": "09943831d7ac79b7822745948dac67b488ac200a421fcc59b963c71e2d0446b8"
+    },
+    "src/pso/player/TObjPlayer_80011014.cpp": {
+      "historical_row": 4089,
+      "fork_blob": "fbf22f3f6c3e2cd97cac0128f9986e7b2b4bf06c",
+      "historical_source_sha256": "8499e85b46cadaba9229d97c937fe798b915feaccc48d7cf46df8b093d394fb0",
+      "source_resolution": "The current actor owns the random and meseta methods, shared terrain contact and position updates. The native actor pointers, body-center proportions, shared motion and sound calls, and heading and target calculations retain their linked providers.",
+      "exact_linked_functions": 226,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 80,
+          "exact_bytes": 80,
+          "owners": [
+            "src/pso/player/TObjPlayer_80011014.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 516,
+          "exact_bytes": 516,
+          "owners": [
+            "src/pso/player/TObjPlayer_80011014.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 180,
+          "exact_bytes": 180,
+          "owners": [
+            "src/pso/player/TObjPlayer_80011014.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TObjPlayer_80011014.cpp": "f4404420fa483dd4f1352dae7f440ab8ec85117b"
+      },
+      "matched_examples": {
+        "0x80011014": {
+          "old": "random_ratio__9TObjCharaFv",
+          "current": "random_ratio__9TObjCharaFv",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x80011138": {
+          "old": "try_spend_actor_meseta",
+          "current": "try_spend_actor_meseta",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x80014840": {
+          "old": "get_anim_node_position__9TObjCharaFlP3Vec",
+          "current": "get_anim_node_position__9TObjCharaFlP3Vec",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x8001806c": {
+          "old": "enemy_set_heading_velocity",
+          "current": "enemy_set_heading_velocity__FfP9TObjEnemyl",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x80018520": {
+          "old": "copy_position_if_valid__10TObjPlayerFii",
+          "current": "copy_position_if_valid",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x800185f0": {
+          "old": "turn_toward_direction__9TObjEnemyFlP3Vec",
+          "current": "turn_toward_direction__9TObjEnemyFlP3Vec",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x80018660": {
+          "old": "enemy_turn_toward_dest",
+          "current": "enemy_turn_toward_dest__9TObjEnemyFl",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x80018e6c": {
+          "old": "vfunc_18__9TObjCharaFPUc",
+          "current": "update_actor_ground_y_at__9TObjCharaFP3Vec",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x80018ee4": {
+          "old": "update_actor_ground_y__9TObjCharaFv",
+          "current": "update_actor_ground_y__9TObjCharaFv",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        },
+        "0x800196a4": {
+          "old": "calc_random_ratio__10TObjPlayerFv",
+          "current": "calc_random_ratio__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+        }
+      },
+      "historical_diff_sha256": "002d74714e9845eaf95a87713f7f5c983d630a54ecea2abaa162f2664f27e553"
+    },
+    "src/pso/player/TObjPlayer_800AAFBC.cpp": {
+      "historical_row": 4103,
+      "fork_blob": "2df9873106d15a27a5dd07a9f50960926f5a0f03",
+      "historical_source_sha256": "758f2a15ee502e31eaac02cc526c6138e1c01299e94eff61ef0cc82b4916be66",
+      "source_resolution": "The carrying effect is a native task, with the actual Dubchik pointer, fading state and texture interfaces. Its movement, draw, cancel, priority and destruction use the matching task layout and original archive and shadow texture calls.",
+      "exact_linked_functions": 6,
+      "exact_non_text_sections": {
+        ".sdata2": {
+          "source_bytes": 56,
+          "exact_bytes": 56,
+          "owners": [
+            "src/pso/player/TUnk_80491478.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TUnk_80491478.cpp": "55f93367f26b7fb0dd214e99786fe8c7df365e9a"
+      },
+      "matched_examples": {
+        "0x800ab418": {
+          "old": "cancel_action__10TObjPlayerFv",
+          "current": "cancel_action__13TUnk_80491478Fv",
+          "owner": "src/pso/player/TUnk_80491478.cpp"
+        },
+        "0x800ab464": {
+          "old": "get_action_priority__10TObjPlayerFv",
+          "current": "get_action_priority__13TUnk_80491478Fv",
+          "owner": "src/pso/player/TUnk_80491478.cpp"
+        },
+        "0x800ab478": {
+          "old": "draw_model_no_fog__10TObjPlayerFv",
+          "current": "render__13TUnk_80491478Fv",
+          "owner": "src/pso/player/TUnk_80491478.cpp"
+        },
+        "0x800ab4f4": {
+          "old": "run_task__13TUnk_80491478Fv",
+          "current": "run_task__13TUnk_80491478Fv",
+          "owner": "src/pso/player/TUnk_80491478.cpp"
+        },
+        "0x800ab72c": {
+          "old": "destroy_with_particle_cleanup__13TUnk_80491478Fs",
+          "current": "__dt__13TUnk_80491478Fv",
+          "owner": "src/pso/player/TUnk_80491478.cpp"
+        },
+        "0x800ab7a0": {
+          "old": "TObjPlayer__sub_800AB7A0",
+          "current": "__ct__13TUnk_80491478FlP14TObjEneDubchikP11NJS_TEXLISTP3Vec",
+          "owner": "src/pso/player/TUnk_80491478.cpp"
+        }
+      },
+      "historical_diff_sha256": "efec49c5cf0d17270bbdee3e2ee26bfc9bc289194709bce963aa18ffcc36313c"
+    },
+    "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+      "historical_row": 4121,
+      "fork_blob": "673f422b9e97567877c0834304638f6ba8d023de",
+      "historical_source_sha256": "e2878399b0aefb7a0cdf6637c12d67ade404be538964ff4096cdac14ac7c6a8f",
+      "source_resolution": "The active unit retains the native player construction, player control and slot setup, action-palette dispatch, position history, target and collision fields, and item equip, death-drop and inventory request paths. It keeps the original controller, packet, status effect and sound routes. The recovered player wall routine returns CsnHit and the blocking move uses the real actor velocity and CollisionBody record.",
+      "exact_linked_functions": 379,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/player/TObjPlayer_801AF2F0.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 656,
+          "exact_bytes": 656,
+          "owners": [
+            "src/pso/player/TObjPlayer_801AF2F0.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 56,
+          "exact_bytes": 56,
+          "owners": [
+            "src/pso/player/PlayerSdata2Block1.cpp",
+            "src/pso/player/TObjPlayer_801AF2F0Data.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TObjPlayer_801AF2F0.cpp": "1c70115c72d41b02a0226ec8931a0f81d243ab86"
+      },
+      "matched_examples": {
+        "0x801b1050": {
+          "old": "clear_stealth_suit_flags__10TObjPlayerFv",
+          "current": "clear_stealth_suit_flags__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b31d8": {
+          "old": "prepare_hospital_return__10TObjPlayerFv",
+          "current": "prepare_hospital_return__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b58dc": {
+          "old": "has_action_palette_entry__10TObjPlayerFv",
+          "current": "has_action_palette_entry__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b59f8": {
+          "old": "set_action_palette_entry__10TObjPlayerFlllll",
+          "current": "set_action_palette_entry__10TObjPlayerFlllll",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b5ac4": {
+          "old": "get_action_palette_entry__10TObjPlayerFl",
+          "current": "get_action_palette_entry__10TObjPlayerFl",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b5ddc": {
+          "old": "check_actor_blocking_move__10TObjPlayerFv",
+          "current": "check_actor_blocking_move__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b5ea4": {
+          "old": "resolve_move_collision__10TObjPlayerFv",
+          "current": "resolve_move_collision__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b7298": {
+          "old": "apply_wall_response__10TObjPlayerFv",
+          "current": "apply_wall_response__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b849c": {
+          "old": "request_inventory_item__10TObjPlayerFP9TItemData",
+          "current": "request_inventory_item__10TObjPlayerFP9TItemData",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801b864c": {
+          "old": "drop_items_on_death__10TObjPlayerFv",
+          "current": "drop_items_on_death__10TObjPlayerFv",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801bba8c": {
+          "old": "setup_fresh_player_state__10TObjPlayerFPUc",
+          "current": "setup_fresh_player_state__10TObjPlayerFPUc",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        },
+        "0x801bbbd0": {
+          "old": "init_action_palette_defaults__10TObjPlayerFl",
+          "current": "init_action_palette_defaults__10TObjPlayerFl",
+          "owner": "src/pso/player/TObjPlayer_801AF2F0.cpp"
+        }
+      },
+      "historical_diff_sha256": "864a07a10dc31bcf6d150989d89a8b4a98aea937b05cdf8aa6c7621d83b6204e"
+    },
+    "src/pso/player/TObjPlayer_801C7430.cpp": {
+      "historical_row": 4138,
+      "fork_blob": "8774ee999d0c7ef266bf7578575368480b02c07a",
+      "historical_source_sha256": "cb80c6d0ded515bb797cc92be5db209f34d173242a2becc667689d825518c7bb",
+      "source_resolution": "The 6x47 casting and 6x48 completion requests use the active packet records and the native TechniqueCastState setters and targets. The shared palette and hold interfaces, persistent sound and movement calls retain the original fields across the consolidated player and neighboring hold unit.",
+      "exact_linked_functions": 567,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/player/TObjPlayer_801C7430.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 928,
+          "exact_bytes": 928,
+          "owners": [
+            "src/pso/player/TObjPlayer_801C7430.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/player/TObjPlayer_801C7430.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TObjPlayer_801C7430.cpp": "a303582b8480a72e4cf1bcf85ddf2e1ddcf45dc8",
+        "src/pso/player/TObjPlayer_801D2E20.cpp": "afa9d5c49c670724f64833216d77a8e5b0f38de4"
+      },
+      "matched_examples": {
+        "0x801cc7e4": {
+          "old": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget",
+          "current": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget",
+          "owner": "src/pso/player/TObjPlayer_801C7430.cpp"
+        },
+        "0x801ccd38": {
+          "old": "handle_6x48_cast_technique_complete",
+          "current": "handle_6x48_cast_technique_complete",
+          "owner": "src/pso/player/TObjPlayer_801C7430.cpp"
+        },
+        "0x801cd550": {
+          "old": "handle_6x47_cast_technique",
+          "current": "handle_6x47_cast_technique",
+          "owner": "src/pso/player/TObjPlayer_801C7430.cpp"
+        },
+        "0x801d0ff4": {
+          "old": "query_field_340__10TObjPlayerFPv",
+          "current": "update_player_action_palette",
+          "owner": "src/pso/player/TObjPlayer_801C7430.cpp"
+        },
+        "0x801d2134": {
+          "old": "copy_6x48_cast_technique_complete_packet__10TObjPlayerFPv",
+          "current": "copy_6x48_cast_technique_complete_packet__10TObjPlayerFPv",
+          "owner": "src/pso/player/TObjPlayer_801C7430.cpp"
+        },
+        "0x801d3484": {
+          "old": "get_field_340__10TObjPlayerFi",
+          "current": "set_action_palette_state_mode__10TObjPlayerFUc",
+          "owner": "src/pso/player/TObjPlayer_801D2E20.cpp"
+        }
+      },
+      "historical_diff_sha256": "303c81bea6c88e4f52191e69ba6c405d5d6dd442420853b9078cedcde01d01c4"
+    },
+    "src/pso/player/TObjPlayer_80357734.cpp": {
+      "historical_row": 4172,
+      "fork_blob": "a7764ef6e3cddf0813d6d015ccfbc68150500c42",
+      "historical_source_sha256": "716c733d4434d885955d70927c1ad11d99c7950fdf3f8c481a62e16802266ab4",
+      "source_resolution": "The active player-effect and weapon-special splits retain the typed particle factory, Zonde constructor and original strike positions, launch directions, effect IDs and scale. Timed weapon emitters now pass the existing native TParticleCtrl pointer to attach_particle_model.",
+      "exact_linked_functions": 38,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/player/TObjPlayer_80357B2C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 36,
+          "exact_bytes": 36,
+          "owners": [
+            "src/pso/player/TObjPlayer_80357734.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TObjPlayer_80357734.cpp": "5f4254dcd9c89a46ffa68da46c4b96057657dbda",
+        "src/pso/player/TObjPlayer_80357B2C.cpp": "388211cd39e091c1acc2fbac2f1fa3ec5612a9a3"
+      },
+      "matched_examples": {
+        "0x80357ad4": {
+          "old": "create_state_34_alt__10TObjPlayerFv",
+          "current": "create_state_34_alt__10TObjPlayerFPUc",
+          "owner": "src/pso/player/TObjPlayer_80357734.cpp"
+        },
+        "0x80357b2c": {
+          "old": "spawn_scattered_lightning_strikes__FPUcl",
+          "current": "spawn_scattered_lightning_strikes__FPUcl",
+          "owner": "src/pso/player/TObjPlayer_80357B2C.cpp"
+        },
+        "0x8035862c": {
+          "old": "weapon_special_lightning_bolt_effect__FPvlll",
+          "current": "weapon_special_lightning_bolt_effect__FP10TObjPlayerP8TObjBaseP3Vecl",
+          "owner": "src/pso/player/TObjPlayer_80357B2C.cpp"
+        },
+        "0x8035886c": {
+          "old": "weapon_fire_explosion_effect__Fllll",
+          "current": "weapon_fire_explosion_effect__FP10TObjPlayerP8TObjBaseP3Vecl",
+          "owner": "src/pso/player/TObjPlayer_80357B2C.cpp"
+        }
+      },
+      "historical_diff_sha256": "249000ad04269f47b56d3553aef51375a07731ab80dbca05d31d6a3740f0a65f"
+    },
+    "src/pso/player/TObjPlayer_803DF7A8.cpp": {
+      "historical_row": 4179,
+      "fork_blob": "9a7a511be3eb711d09cd502c14b280c8d2582e17",
+      "historical_source_sha256": "aa205c12ccd666536e67c1fba2b806ff994c517f017a0677ad25d9dbca591b05",
+      "source_resolution": "The geometry unit retains the typed projected points and the three plane projections of the quad. The staged float rounding, reciprocal-root steps and tolerance checks in the area and edge tests remain on the exact original paths.",
+      "exact_linked_functions": 6,
+      "exact_non_text_sections": {
+        ".sdata2": {
+          "source_bytes": 40,
+          "exact_bytes": 40,
+          "owners": [
+            "src/pso/player/TObjPlayer_803DF7A8.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TObjPlayer_803DF7A8.cpp": "387451ba055b1dac0dfbeb8daa2a878d3c6e7f84"
+      },
+      "matched_examples": {
+        "0x803df7a8": {
+          "old": "test_aabb_overlap__10TObjPlayerFPUcPUcPUc",
+          "current": "test_aabb_overlap",
+          "owner": "src/pso/player/TObjPlayer_803DF7A8.cpp"
+        },
+        "0x803df840": {
+          "old": "TObjPlayer__sub_803DF840",
+          "current": "triangle_area",
+          "owner": "src/pso/player/TObjPlayer_803DF7A8.cpp"
+        },
+        "0x803df9d0": {
+          "old": "TObjPlayer__sub_803DF9D0",
+          "current": "quad_corner_inside",
+          "owner": "src/pso/player/TObjPlayer_803DF7A8.cpp"
+        },
+        "0x803dfb1c": {
+          "old": "TObjPlayer__sub_803DFB1C",
+          "current": "quads_touch",
+          "owner": "src/pso/player/TObjPlayer_803DF7A8.cpp"
+        },
+        "0x803e0cc8": {
+          "old": "__SITransfer",
+          "current": "quad_projection_overlap_mask",
+          "owner": "src/pso/player/TObjPlayer_803DF7A8.cpp"
+        },
+        "0x803e0ed4": {
+          "old": "test_box_overlap__10TObjPlayerFPvPv",
+          "current": "test_box_overlap",
+          "owner": "src/pso/player/TObjPlayer_803DF7A8.cpp"
+        }
+      },
+      "historical_diff_sha256": "e41cd7729bcfdb7d75663e5147fc8e22259a6b4dc8f489ee96085d061803d612"
+    },
+    "src/pso/player/TPlyItem.cpp": {
+      "historical_row": 4183,
+      "fork_blob": "b891d94b0c2bb6a74691c9ad6ea96bd75c0230e3",
+      "historical_source_sha256": "1af7a9c8162afdb6e62b03ff41e8aecb806a7310abc12038b0681d0a77372d7d",
+      "source_resolution": "The player inventory owns the original construction and destruction and traverses native TItemList children. It translates stack and single-item reductions using native amount and type access and exports original owner IDs. The linked floor-drop path keeps the typed slot, player room and item state.",
+      "exact_linked_functions": 5,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/player/TPlyItem.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TPlyItem.cpp": "9fdba60fe2d1faf61cf93bdc1aab83e0c74c9d78"
+      },
+      "matched_examples": {
+        "0x801d4f44": {
+          "old": "__dt__8TPlyItemFv",
+          "current": "__dt__8TPlyItemFv",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d4fac": {
+          "old": "__ct__8TPlyItemFP7TObject",
+          "current": "__ct__8TPlyItemFP7TObject",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d5004": {
+          "old": "reduce_owner_matched_items__9TItemListFv",
+          "current": "reduce_owner_matched_items__9TItemListFv",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d50e0": {
+          "old": "reduce_child_item_amounts__9TItemListFv",
+          "current": "reduce_child_item_amounts__9TItemListFv",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        },
+        "0x801d51a0": {
+          "old": "collect_owner_fields_recursive__9TItemListFv",
+          "current": "collect_owner_fields_recursive__9TItemListFv",
+          "owner": "src/pso/player/TPlyItem.cpp"
+        }
+      },
+      "historical_diff_sha256": "1de06043a49a868ba053263ac2d2c2fb405381e68fc878d28389a521718d37c4"
+    },
+    "src/pso/misc/TPlayerBattleCtrl4P_8031012C.cpp": {
+      "historical_row": 4212,
+      "fork_blob": "57c2631c4b19e1f22d732cf44bab42e730b3af76",
+      "historical_source_sha256": "056dcc34f671e597e300990f21fa27c20bc9c12740bbf1123da517ff15ce0ecd",
+      "source_resolution": "The native controller carries the player result windows, live flags, timed event state, spawn order and start and reset phases. It uses the actual typed windows, signed event bytes and unsigned player-order slots. The original timer and loadout rules read the same records as before consolidation.",
+      "exact_linked_functions": 37,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/player/TPlayerBattleCtrl4P.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/player/TPlayerBattleCtrl4P.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/player/TPlayerBattleCtrl4P.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/player/TPlayerBattleCtrl4P.cpp": "b85424dd58f4ca6e17b203bf139170cf2fae4b3d"
+      },
+      "matched_examples": {
+        "0x8031012c": {
+          "old": "close_windows_on_button__19TPlayerBattleCtrl4PFv",
+          "current": "close_windows_on_button__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x803101d4": {
+          "old": "close_player_windows__19TPlayerBattleCtrl4PFv",
+          "current": "close_player_windows__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80310230": {
+          "old": "create_result_windows__19TPlayerBattleCtrl4PFv",
+          "current": "create_result_windows__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x803102c8": {
+          "old": "is_battle_mode_active__19TPlayerBattleCtrl4PFv",
+          "current": "is_battle_mode_active__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x803104cc": {
+          "old": "update_player_alive_flags__19TPlayerBattleCtrl4PFv",
+          "current": "update_player_alive_flags__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80310910": {
+          "old": "update_timed_events__19TPlayerBattleCtrl4PFl",
+          "current": "update_timed_events__19TPlayerBattleCtrl4PFl",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80311380": {
+          "old": "reset_players__19TPlayerBattleCtrl4PFv",
+          "current": "reset_players__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        },
+        "0x80311618": {
+          "old": "start_duel__19TPlayerBattleCtrl4PFv",
+          "current": "start_duel__19TPlayerBattleCtrl4PFv",
+          "owner": "src/pso/player/TPlayerBattleCtrl4P.cpp"
+        }
+      },
+      "historical_diff_sha256": "cbe3efdec9dd8740d7b6495c075129b0d00b60678e4bcab7ffd8c7e7597cc3af"
+    },
+    "src/pso/item/TItemDrop_80105D0C.cpp": {
+      "historical_row": 4424,
+      "fork_blob": "5da37b564e0cb0fa99fef5bb9a6d133bf5941a4c",
+      "historical_source_sha256": "78c0890c3212e02d7a107b1c534a944443ccf4ff7d2668becc0b22fd2e0b91e0",
+      "source_resolution": "The archive, rare and common drop tables, unit allocation, type selectors and final item and meseta writes retain their linked owners. The constructor creates 17 SubtractiveRng objects, ordinary channels use their own entries and every index from 16 up uses the fallback. The ratio ABI now declares its actual floating result.",
+      "exact_linked_functions": 50,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/item/drop/TItemDrop_80105D0C.cpp": "7be2e976305656f61d0a035ce434f95ec891ae72"
+      },
+      "matched_examples": {
+        "0x8010619c": {
+          "old": "set_drop_index__9TItemDropFPvPv",
+          "current": "set_drop_index__9TItemDropFPvPv",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x80106354": {
+          "old": "init_drop_table__9TItemDropFv",
+          "current": "init_drop_table__9TItemDropFv",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x80106498": {
+          "old": "run_task__9TItemDropFv",
+          "current": "free_unit_star_tables__9TItemDropFv",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x801064d4": {
+          "old": "__dt__9TItemDropFv",
+          "current": "alloc_unit_star_tables__9TItemDropFv",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x801065b4": {
+          "old": "roll_table_ratio__9TItemDropFPvUi",
+          "current": "roll_table_ratio__9TItemDropFPvUi",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x801065f8": {
+          "old": "roll_channel_below__9TItemDropFPviUi",
+          "current": "roll_channel_below__9TItemDropFlUl",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x80106e04": {
+          "old": "roll_weapon_special__9TItemDropFiPvi",
+          "current": "roll_weapon_special__9TItemDropFiPvi",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x801075b4": {
+          "old": "roll_meseta_range__9TItemDropFPviiii",
+          "current": "roll_meseta_range__9TItemDropFllll",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x80107840": {
+          "old": "TItemDrop__sub_80107840",
+          "current": "__dt__9TItemDropFv",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        },
+        "0x80107900": {
+          "old": "TItemDrop__ct",
+          "current": "__ct__9TItemDropFP7TObjectSc",
+          "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+        }
+      },
+      "historical_diff_sha256": "48c59276c8e588412e4484c28a8a7f779814bd449be8073a4811d0c45728f6b4"
+    },
+    "src/pso/unk/text_803E2D70.cpp": {
+      "historical_row": 4478,
+      "fork_blob": "a75378400c545b7a63ba7156a4d57e7551b34baf",
+      "historical_source_sha256": "82d2219374adf78803d74362286e5e1243ba70c0c011fcf8e49db5cab0e951ea",
+      "source_resolution": "The active chunk-renderer splits keep the source-owned 3x3 matrix view, native vertex job, shared transform callback, material and GX setup, and typed polygon and vertex strip dispatch. The historical textured and colored strip formats retain their command path, buffer and count.",
+      "exact_linked_functions": 29,
+      "exact_non_text_sections": {
+        ".bss": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/unk/text_803E2F28.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 20,
+          "exact_bytes": 20,
+          "owners": [
+            "src/pso/unk/text_803E2F28.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/unk/text_803E2D70.cpp": "3bfbe21e2894112f263870722f71ea6f6fee9b32",
+        "src/pso/unk/text_803E2F28.cpp": "edc7943fb6f227cfc9b8c6a12899f41a83f3d9bc"
+      },
+      "matched_examples": {
+        "0x803e2f28": {
+          "old": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFv",
+          "current": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFPA3_A4_Cf",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e2f78": {
+          "old": "transform_chunk_object_tree",
+          "current": "transform_chunk_object_tree",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e3110": {
+          "old": "GXSetVtxAttrFmtv",
+          "current": "transform_chunk_vertices_weighted",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e3390": {
+          "old": "transform_chunk_vertices_pos_normal",
+          "current": "transform_chunk_vertices_pos_normal",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e352c": {
+          "old": "draw_chunk_textured_strips",
+          "current": "draw_chunk_textured_strips",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e37a8": {
+          "old": "submit_chunk_material_color__FlPs",
+          "current": "submit_chunk_material_color__FlPs",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e3914": {
+          "old": "apply_chunk_texture_command__Fll",
+          "current": "apply_chunk_texture_command__Fll",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e3f2c": {
+          "old": "dispatch_chunk_polygon_list",
+          "current": "dispatch_chunk_polygon_list__FPsl",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e4230": {
+          "old": "dispatch_chunk_vertex_list__FPUll",
+          "current": "dispatch_chunk_vertex_list__FPUll",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        },
+        "0x803e4468": {
+          "old": "end_chunk_draw__10TObjPlayerFv",
+          "current": "end_chunk_draw__10TObjPlayerFv",
+          "owner": "src/pso/unk/text_803E2F28.cpp"
+        }
+      },
+      "historical_diff_sha256": "03ba3ab86c56adbf9fa717cc0de350a146c3e2f5fc0ec0e8185d642bc738fac1"
+    },
+    "src/pso/misc/TLobby_801C25B4.cpp": {
+      "historical_row": 4510,
+      "fork_blob": "c8c66fad059158c53efc5740eeb39b4f8634365e",
+      "historical_source_sha256": "3c424aa5039d46f76be6401530f1afdea24df4ffd78d2c45d569408113c0669d",
+      "source_resolution": "The native lobby battle state and controller retain the battle sync and score packets, duel cue, record and result-window paths. The input suppression follows the current window controller and the character array keeps the original allocation, per-slot construction and destruction.",
+      "exact_linked_functions": 54,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 160,
+          "exact_bytes": 160,
+          "owners": [
+            "src/pso/unk/TLobby_801C25B4.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 164,
+          "exact_bytes": 164,
+          "owners": [
+            "src/pso/unk/TLobby_801C25B4.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 344,
+          "exact_bytes": 344,
+          "owners": [
+            "src/pso/unk/TLobby_801C25B4.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/unk/TLobby_801C25B4.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/unk/TLobby_801C25B4.cpp": "dc2bb962f6a999d05c7177f1f25061d59e0e5aee"
+      },
+      "matched_examples": {
+        "0x801c25b4": {
+          "old": "check_all_battle_flags__6TLobbyFv",
+          "current": "check_all_battle_flags__6TLobbyFPv",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c2898": {
+          "old": "update_battle_sync__6TLobbyFl",
+          "current": "update_battle_sync__6TLobbyFl",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c29f0": {
+          "old": "send_battle_mode_state__6TLobbyFPv",
+          "current": "send_battle_mode_state__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c2f40": {
+          "old": "start_duel_battle__6TLobbyFv",
+          "current": "start_duel_battle__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c3030": {
+          "old": "init_battle_round__17TPlayerBattleCtrlFv",
+          "current": "init_battle_round__17TPlayerBattleCtrlFv",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c327c": {
+          "old": "send_neg50__6TLobbyFPvPv",
+          "current": "play_duel_result_stream__FPCcl",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c32b4": {
+          "old": "record_local_battle_placement",
+          "current": "record_local_battle_placement",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c3700": {
+          "old": "handle_6x7F_battle_scores",
+          "current": "handle_6x7F_battle_scores",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c374c": {
+          "old": "handle_6x7D_set_battle_mode_data",
+          "current": "handle_6x7D_set_battle_mode_data",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        },
+        "0x801c39c8": {
+          "old": "init_battle_ctrl__6TLobbyFii",
+          "current": "init_battle_ctrl__6TLobbyFll",
+          "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+        }
+      },
+      "historical_diff_sha256": "b1da49e49ab8d2c7b12ab538be70c770596066acd14ca0d83599fe020ccf1000"
+    }
+  },
+  "whole_historical_comparisons_remaining": 47,
+  "player_combat_techniques_and_items_comparisons_remaining": 0,
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "cases_per_image": {
+      "battle_controller": 12,
+      "item_drop_rng": 13,
+      "actor_contact": 5,
+      "leilla_setup": 20,
+      "line_constructors": 8,
+      "line_motion_and_hits": 16
+    },
+    "technique_suite": "state setters, target records, packet size, send bytes and validation passed.",
+    "probe_scope": "Controller and RNG cases run stock functions with controlled inputs. Actor blocking uses a mock overlap and dot-product hook. The existing technique and Photon suites exercise their native record and presentation paths.",
+    "photon_probe_aliases_at_original_addresses": [
+      "TPhotonRainbow__ct = .text:0x801AE640; // type:function size:0xE4",
+      "__ct__13TUnk_804C3248Fv = .text:0x801A7D98; // type:function size:0xA8",
+      "begin_photon_summon_camera__13TUnk_804C3248FSc = .text:0x801A7310; // type:function size:0xA0",
+      "construct_photon_leilla = .text:0x801AC808; // type:function size:0x264",
+      "construct_photon_magic_square_normal__FPUcllll = .text:0x801AD218; // type:function size:0x118",
+      "play_cue_stream_file = .text:0x8022727C; // type:function size:0x38",
+      "set_field_b8__10TObjMotionFs = .text:0x8002AE74; // type:function size:0x8",
+      "spawn_particle_effect = .text:0x80087350; // type:function size:0xCC",
+      "spawn_photon_blast_attachment_effects__13TUnk_804C3248Fl = .text:0x801A7748; // type:function size:0x1D0"
+    ]
+  },
+  "source_quality": {
+    "removed": 143,
+    "added": 1,
+    "symbol_label_changes": 0,
+    "newly_stale_retention": 0,
+    "advisory": "The shared RNG initialization declaration uses the existing run_step__9TItemDropFl linker label. Its provider now takes the actual seed and RNG pointer, and returns the pointer. The legacy label keeps all existing callers and retention intact."
+  },
+  "compiler_constraints": {
+    "battle_state": "The timed event byte is signed and player order is unsigned, preserving the signed condition and unsigned halfword load.",
+    "wall_response": "CsnHit is the first member of WallRayResult. Returning the prefix by pointer conversion preserves null without the extra branch CodeWarrior emitted for a conditional member address."
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "9e87a09390f4d6f71feaa12a5b34049791490812b99dde645f4fbc23a05a1d11",
+    "address-ownership.json": "9e014c3f444d12df862d63befc65290e58117bf18d9c7ed004e649733c57f48d",
+    "final-quality.json": "a3bc7d629fb74d7d06948ee2cf62e5e021419c50f6320285cfedc78cdbe73cc3",
+    "fork-main-coverage.json": "1a226ee42b9acb87613c1dfd23a35d3de31ca004bb9b089ea436caca3284ef33",
+    "probe-battle-drop.py": "a5787076bf863a0df61680580630f46836368b734f7b817df2868a3797f485dc",
+    "probe-battle-drop.log": "e6f1ddc2243a6c4d388c2c50050a29dfc165d3bdaffa9413f57b0778e751440d",
+    "probe-technique.log": "3ed875b30395e769da5d13f9c2e6a754de2fd1d934af2b1cbc477dfbe7d236e3",
+    "probe-photon.log": "bcb8b0024e8940fe204d7545a8d04f2fc90d900ca72555924a7ecad9caed0407",
+    "photon-aliases.log": "e525ffa2396f5167fbd6803aa9700f2c05fa881d16a8d91f31ecadb074acd48f",
+    "tool-overlay.patch": "d93d879f1cd3c199a515f8c3518b452d719a7113f7f7556fc7f06c7aa1ce45c3"
+  }
+}
