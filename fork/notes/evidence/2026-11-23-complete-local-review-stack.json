@@ -1,0 +1,1100 @@
+{
+  "comparison_to_current_master_sha256": "fd966bef138a040c3eb949530830c9a32c06b2cbabdc21fbead6a113c9401679",
+  "comparison_to_previous_final_source_sha256": "82f218c2bd81f4e8bfb40bbd671942c0dcbae2b931924c4f0698b2a88d0e579c",
+  "final_review": {
+    "base": "3101817acc4c8b0e430a78822de084988283c924",
+    "benchmark": {
+      "added": 61,
+      "base": 140724,
+      "head": 140065,
+      "removed": 720
+    },
+    "categories": [
+      {
+        "added": 1,
+        "base": 7171,
+        "category": "Linkage",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "head": 7138,
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "removed": 34
+      },
+      {
+        "added": 0,
+        "base": 1505,
+        "category": "Linkage",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "head": 1496,
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "removed": 9
+      },
+      {
+        "added": 10,
+        "base": 6689,
+        "category": "Linkage",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "head": 6696,
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "removed": 3
+      },
+      {
+        "added": 0,
+        "base": 285,
+        "category": "Linkage",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "head": 260,
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "removed": 25
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Linkage",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "head": 0,
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 10689,
+        "category": "Linkage",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "head": 10689,
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "removed": 0
+      },
+      {
+        "added": 1,
+        "base": 8936,
+        "category": "Layout",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "head": 8797,
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "removed": 140
+      },
+      {
+        "added": 0,
+        "base": 844,
+        "category": "Layout",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "head": 835,
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "removed": 9
+      },
+      {
+        "added": 0,
+        "base": 1960,
+        "category": "Layout",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "head": 1945,
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "removed": 15
+      },
+      {
+        "added": 5,
+        "base": 14102,
+        "category": "Layout",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "head": 14051,
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "removed": 56
+      },
+      {
+        "added": 0,
+        "base": 2061,
+        "category": "Types",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "head": 2050,
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "removed": 11
+      },
+      {
+        "added": 0,
+        "base": 24,
+        "category": "Types",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "head": 24,
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Types",
+        "example": "undefined4",
+        "group": "types",
+        "head": 0,
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "removed": 0
+      },
+      {
+        "added": 36,
+        "base": 14259,
+        "category": "Types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "head": 14149,
+        "key": "address_type",
+        "name": "Address-named types",
+        "removed": 146
+      },
+      {
+        "added": 0,
+        "base": 39,
+        "category": "Types",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "head": 39,
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 10964,
+        "category": "Decompiler output",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "head": 10927,
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "removed": 37
+      },
+      {
+        "added": 0,
+        "base": 2205,
+        "category": "Decompiler output",
+        "example": "sp1C",
+        "group": "decompiler",
+        "head": 2205,
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 24424,
+        "category": "Decompiler output",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "head": 24252,
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "removed": 172
+      },
+      {
+        "added": 0,
+        "base": 26,
+        "category": "Decompiler output",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "head": 26,
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Decompiler output",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "head": 0,
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 255,
+        "category": "Decompiler output",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "head": 255,
+        "key": "address_comment",
+        "name": "Address comments",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 10334,
+        "category": "Names",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "head": 10334,
+        "key": "data_label",
+        "name": "Address-named data",
+        "removed": 0
+      },
+      {
+        "added": 8,
+        "base": 12809,
+        "category": "Names",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "head": 12807,
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "removed": 10
+      },
+      {
+        "added": 0,
+        "base": 23,
+        "category": "Names",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "head": 23,
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 294,
+        "category": "Vtables",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "head": 294,
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 22,
+        "category": "Vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "head": 22,
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 66,
+        "category": "Vtables",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "head": 66,
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1483,
+        "category": "Vtables",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "head": 1483,
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 4182,
+        "category": "Vtables",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "head": 4176,
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "removed": 6
+      },
+      {
+        "added": 0,
+        "base": 1145,
+        "category": "Units and classes",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "head": 1145,
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 3755,
+        "category": "Units and classes",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "head": 3708,
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "removed": 47
+      },
+      {
+        "added": 0,
+        "base": 151,
+        "category": "Units and classes",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "head": 151,
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 22,
+        "category": "Assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "head": 22,
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1850,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "head": 1810,
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "removed": 40
+      },
+      {
+        "added": 0,
+        "base": 99,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "head": 99,
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "removed": 0
+      }
+    ],
+    "flagged_labels": 5,
+    "head": "f273a58d6aae78d8051c9d66aa25781e3ad73c79",
+    "newly_stale_retention_entries": 0,
+    "paths": 216,
+    "symbol_changes": [
+      {
+        "address": "0x80017E6C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "move_with_wall_slide__FP9TObjChara",
+        "old": "move_with_wall_slide__FPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8009705C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__15TBreakUpMdlDataFP10NJS_OBJECT",
+        "old": "__ct__15TBreakUpMdlDataFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BB804",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_common_from__9TObjEneDDFP8TObjBase",
+        "old": "init_common_from__9TObjEneDDFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F8090",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_fadeout_state__6TLobbyFPFv_v",
+        "old": "init_fadeout_state__6TLobbyFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F8144",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_fade_params__6TLobbyFPFv_v",
+        "old": "set_fade_params__6TLobbyFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F8754",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804999B8, a class named after an address"
+        ],
+        "new": "init_fade__13TUnk_804999B8FPvPFP7TObject_v",
+        "old": "init_fade__6TLobbyFPvPv",
+        "rationale": "The fade-in initializer now owns its alpha, color, and completion callback on the existing fade task.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F8878",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804999D0, a class named after an address"
+        ],
+        "new": "init__13TUnk_804999D0FPvPFP7TObject_v",
+        "old": "init__22THunterGuildSeqOfflineFPvPv",
+        "rationale": "The fade-out initializer now owns its alpha, color, and completion callback on the existing fade task.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802B9F3C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "aim_toward_point__11TBoss6Type2FPC3Vec",
+        "old": "aim_toward_point__11TBoss6Type2FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802BB920",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "push_players_away__11TBoss6Type2FPC3Vecf",
+        "old": "push_players_away__11TBoss6Type2FPvf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802CB5A0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "remap_sound_id__15TObjEneMe1GiGueFl",
+        "old": "remap_sound_id__15TObjEneMe1GiGueFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802CB8F0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "move_around_center__15TObjEneMe1GiGueFPC3Vecf",
+        "old": "move_around_center__15TObjEneMe1GiGueFPvf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802E6F10",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E3BA8, a class named after an address"
+        ],
+        "new": "init_breakup_pieces__13TUnk_804E3BA8FPvPA4_Cf",
+        "old": "init_breakup_pieces__10TObjPlayerFPvl",
+        "rationale": "The breakup actor initializes its own pieces from a typed readonly matrix.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802E7474",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E3BD8, a class named after an address"
+        ],
+        "new": "alloc_breakup_model__13TUnk_804E3BD8FP10NJS_OBJECT",
+        "old": "alloc_breakup_model__13TUnk_804E3BD8Fl",
+        "rationale": "The breakup allocator receives the native Ninja node.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802E7568",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E3BD8, a class named after an address"
+        ],
+        "new": "init_zeroed_object__13TUnk_804E3BD8Fv",
+        "old": "init_zeroed_object__10TObjPlayerFv",
+        "rationale": "The existing breakup object owns the initialized fields.",
+        "section": ".text",
+        "type": "function"
+      }
+    ]
+  },
+  "historical_fork_data_bytes": {
+    "ranges": {
+      "0x80434090": {
+        "linked": 48,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x80439568": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x8044BAC8": {
+        "linked": 32,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x80479C3C": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CC800": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CE000": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CE7E8": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CE808": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF0B8": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF8B0": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF900": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF918": {
+        "linked": 48,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0004": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0618": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0658": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D08F0": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0948": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D1148": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D15B8": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D15D8": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D1688": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D1A20": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D2B20": {
+        "linked": 40,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804E079C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x804EF4E0": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D2608": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D35AC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D3718": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D416C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D4454": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4B4C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D4BA8": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4C00": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4DE0": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4EDC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D4F10": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D5324": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D5FA8": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D6C3D": {
+        "linked": 0,
+        "padding": 3,
+        "remaining": 0
+      },
+      "0x805D7940": {
+        "linked": 20,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D7A70": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D7D00": {
+        "linked": 20,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D7DDC": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D815C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8564": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D85B0": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D85B8": {
+        "linked": 20,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D8A2C": {
+        "linked": 8,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8ADC": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D8AE0": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D8EF4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8F1C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8F64": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8FA4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D93B4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D9524": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D9554": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D99F0": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D9E5C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D9E7C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DAFEC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBACC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBB9C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBECC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBF9C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DC1DC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DC278": {
+        "linked": 56,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DC374": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DC46C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DC73C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DCB74": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DCDC4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DCE00": {
+        "linked": 16,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DCF18": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DD9FC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DDDC4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DDDFC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DE134": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DE7BC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DEBA4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DEC70": {
+        "linked": 20,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DF6FC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DFCD0": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DFCFC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DFECC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DFF2C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805E043C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805E0E0C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805E0E14": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805E0F38": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      }
+    },
+    "totals": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "historical_source_rows": 7495,
+  "live_fork_main_at_preflight": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "live_upstream_master_at_preflight": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "private_tests": {
+    "fork_tools": 11,
+    "host_suites": 5,
+    "tools": 294
+  },
+  "retail_and_coverage": {
+    "final": {
+      "check_sha256": "d22718c465793a3a216b18bafd5b05817803d1cb9097ab3663a868813eb51231",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "f273a58d6aae78d8051c9d66aa25781e3ad73c79",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "ad65a1362b65602af9b422800f5d4050987b30789b65bee556fe0b9119ca1599",
+      "tree": "80184c16e22b10854679da8bfce3e9cd08426e24"
+    },
+    "final-private": {
+      "check_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "6b19c130ac3adcb946f37be09498083b1517c8ed",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "ad65a1362b65602af9b422800f5d4050987b30789b65bee556fe0b9119ca1599",
+      "tree": "3dc6af7cff53aef3652b9552a1ebe461e5959933"
+    }
+  },
+  "reviews_in_order": [
+    {
+      "head": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+      "title": "Recover native character saves, quest and asset-loading interfaces",
+      "tree": "3e76f954f923ab927eaca4f900db0705d7590223"
+    },
+    {
+      "head": "8b985966132b918f3e7daaccfbfe25dd436dda2e",
+      "title": "Recover native actor motion, battle and model resource records",
+      "tree": "72fe8629343ea89b1dd74efee2fa354a524d65c7"
+    },
+    {
+      "head": "e514a054a05b6191d42d1c1505d9d2da1fcd7b83",
+      "title": "Recover native window, chat and frontend interfaces",
+      "tree": "56cf88a778fec0b6d8acce3d9d8a718293bc4d76"
+    },
+    {
+      "head": "6e64253b42307a9ea82494d16f27beb0928cd213",
+      "title": "Recover native gameplay sound positions and request state",
+      "tree": "0196c2febeef5e89a510264b65c5e99264a4f6d9"
+    },
+    {
+      "head": "c3b0000bea8218676b3e1667eeb19bbda8174f19",
+      "title": "Recover world object and shared resource ownership",
+      "tree": "7c7d172417e951b5e7a77733681af87fa23bc74b"
+    },
+    {
+      "head": "3101817acc4c8b0e430a78822de084988283c924",
+      "title": "Recover player combat, technique effects, and shared actor state",
+      "tree": "2e7332538adc3037fedfb121b7ed96c5d7f21cb3"
+    },
+    {
+      "head": "f273a58d6aae78d8051c9d66aa25781e3ad73c79",
+      "title": "Finish native actor, resource, and client interfaces",
+      "tree": "80184c16e22b10854679da8bfce3e9cd08426e24"
+    }
+  ],
+  "runtime_probes": [
+    "final.dol: 10 distance inputs and 36 Gifoie cleanup cases passed",
+    "final.dol: startup, 32 contacts, three constructors, six radial selection cases passed",
+    "final.dol: 39 ground query and effect cases passed",
+    "final.dol: 18 clamp cases, 96 animation frames, eight draw modes, 16 lifetime cases and five trail writes passed",
+    "Photon Blast hit queues, camera pose, effect records and available strip-buffer probes passed",
+    "final.dol: shrink and restore packet layout and byte order passed",
+    "final.dol: both fade initializers and their callback boundaries passed"
+  ],
+  "source_paths_after_assumed_exact_review_merges": 0,
+  "source_paths_ahead_of_live_master": 1203,
+  "source_rehearsal": {
+    "head": "c31e5acffcf4e1bd9438808b117a538a71d0ea0e",
+    "previous_source_delta_paths": 24,
+    "private_tooling_overlay_paths": 130,
+    "private_tooling_overlay_sha256": "31f3e363c624bd930d23e302fc04f682df73a7a9835f10e5e8fec10af6b6839a",
+    "tree": "80184c16e22b10854679da8bfce3e9cd08426e24"
+  },
+  "upstream_pr_375": {
+    "contained": true,
+    "merge": "72029bba4d78953c3e329e60426305cdfdf7dee8"
+  },
+  "workflow": {
+    "first_upstream_review_waiting_for_confirmation": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+    "post_merge_action": "Fetch the actual upstream tree and reconcile any review changes before requesting fork main cutover approval.",
+    "publication_and_cutover_complete": false
+  }
+}
