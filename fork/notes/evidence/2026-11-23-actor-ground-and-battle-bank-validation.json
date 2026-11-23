@@ -1,0 +1,317 @@
+{
+  "source": {
+    "head": "363303e1df4d332853f69a0ed7a7bb2b6027cd73",
+    "tree": "29a08a3cd37cb915312d048b4a6bccacc861a703",
+    "coverage_baseline": "358486b4681e6f7794552268f987f7df893a8e20",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "source-report.json": "eb36b3ca43e007cb9e92246de0fb3f297d7005cefd0275bdd72f23f9ca718cb6",
+      "source-check.json": "d90708ba93316e287008b5efa84733dc0d7ca9523913739f7cd462f03c9b1f91",
+      "source-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "source-quality.json": "253139ddfe083b301e3f3054fac888019e2fe93d90f2cf458b83e589dfaa6835"
+    },
+    "source_quality": {
+      "benchmark_base": "358486b4681e6f7794552268f987f7df893a8e20",
+      "additions": 0,
+      "removals": 17,
+      "changed_labels": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA838",
+          "type": "function",
+          "old": "update_collider_contact_by_height__FPUcf",
+          "new": "update_collider_contact_by_height__FP13CollisionBodyf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA870",
+          "type": "function",
+          "old": "set_collider_contact_low__FPUc",
+          "new": "set_collider_contact_low__FP13CollisionBody",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA88C",
+          "type": "function",
+          "old": "set_collider_contact_high__FPUc",
+          "new": "set_collider_contact_high__FP13CollisionBody",
+          "flags": []
+        }
+      ],
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "categories_with_additions": {}
+    },
+    "paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/enemy/dd/TObjEneDD.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/player/TObjPlayer.h",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/dragon/TBoss1DragonEffTail.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp"
+    ]
+  },
+  "materialized_fork": {
+    "head": "d7c169d2f04b225fcd56463bcb829960f298c33c",
+    "tree": "084b0fb06d34beddc9ae48b0ac81a4da14e888d8",
+    "coverage_baseline": "363303e1df4d332853f69a0ed7a7bb2b6027cd73",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "private-report.json": "eb36b3ca43e007cb9e92246de0fb3f297d7005cefd0275bdd72f23f9ca718cb6",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "private-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-tests.log": "3284993ca5242db657615c6641ab7ffb96eb87b5c4683f4532710787e1f17cd5",
+      "private-tool-tests.log": "0afe8951df7ca26cf961004e6a39da94f0085de1c10ff617fada36dea3948183",
+      "private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "overlay-before.patch": "e21778cab51106a4432d577587a17fbe30d5516fc5570315ec7ab968e615f011"
+    },
+    "overlay_paths": 130,
+    "tests": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    }
+  },
+  "independent_actor_review": {
+    "head": "293fe2cc2fc46ab1326a3df3d1617e9f738f6db5",
+    "tree": "07830645421758b899309ff98e39d78fc237682b",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "bank-direct-report.json": "3ce18685b833a1359841da012fb8a1a6eb194cfaef63af3d461d6267f8635438",
+      "bank-direct-check.json": "35c35364a08000b6215d41f658578821a3c86a7802eb6772fcbb41b260add735",
+      "bank-direct-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "bank-direct-quality.json": "433c72e378c2a72f47e4eb4be686fd1edf7acc12b8068d09fa757d719a05d737"
+    },
+    "source_quality": {
+      "benchmark_base": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+      "additions": 2,
+      "removals": 132,
+      "changed_labels": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E41C",
+          "type": "function",
+          "old": "swap_endian__6TLobbyFv",
+          "new": "swap_endian__15ActorParamBlockFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E498",
+          "type": "function",
+          "old": "byteswap_packet__6TLobbyFv",
+          "new": "byteswap_packet__12AttackParamsFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9E84",
+          "type": "function",
+          "old": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+          "new": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9ED0",
+          "type": "function",
+          "old": "reset_hp__9TObjEneDDFPUcPUcPUc",
+          "new": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800E80A4",
+          "type": "function",
+          "old": "copy_vec3__10TObjPlayerFPv",
+          "new": "copy_ginja_texture_entry",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F7478",
+          "type": "function",
+          "old": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "new": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80131700",
+          "type": "function",
+          "old": "find_model_node__FUll",
+          "new": "find_model_node__FP10NJS_OBJECTl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D71E0",
+          "type": "function",
+          "old": "register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff",
+          "new": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListPC19NpcAnimationBindingff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D7260",
+          "type": "function",
+          "old": "spawn_child__12TObjEneSlimeFsllff",
+          "new": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListff",
+          "flags": []
+        }
+      ],
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "categories_with_additions": {
+        "offset_member": {
+          "key": "offset_member",
+          "name": "Offset-named fields",
+          "example": "unk_30, m_c, field_96, set_field_378",
+          "group": "layout",
+          "category": "Layout",
+          "base": 14459,
+          "head": 14461,
+          "added": 2,
+          "removed": 0
+        }
+      }
+    },
+    "paths_in_full_review": 103,
+    "paths_in_followup": [
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp"
+    ],
+    "previous_head": "323ae890a82ffc0515553f102c5def2b31bf1cda"
+  },
+  "actor_review_with_inventory_and_saves": {
+    "head": "d6e2eacc812ab42fc77e6aaf29627fa8c0819210",
+    "tree": "66aa0055cd7e2918ff436f10bebb4af175f5402d",
+    "coverage_baseline": "419733d89afb9656c5dbbd8efe35e630285d8cba",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "bank-queue-report.json": "18199ff31a18204e709c5c1798ae485ec50f8d136c5c8ad9fd1e2949078a8fd7",
+      "bank-queue-check.json": "46b28b38e073bc21fc8abf0c9e4c5ae92e4c9f8574ea31a17fa0531708b5b1a4",
+      "bank-queue-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "bank-queue-quality.json": "7558550e3a97d7ad79b6eb460b5c9975901a6f17f5a9978c1e1ec7a75cef4328"
+    },
+    "source_quality": {
+      "benchmark_base": "419733d89afb9656c5dbbd8efe35e630285d8cba",
+      "additions": 0,
+      "removals": 0,
+      "changed_labels": [],
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "categories_with_additions": {}
+    },
+    "paths_in_followup": [
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp"
+    ],
+    "previous_head": "419733d89afb9656c5dbbd8efe35e630285d8cba",
+    "inventory_head": "39848c3108c370a24eff842e241a1ea0d70a2da8"
+  },
+  "upstream_effects": {
+    "merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+    "shared_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/player/TObjPlayer.h",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp"
+    ],
+    "resolution": "The effects squash is already in all tested histories. The collision and sound changes use the existing typed paths in the cumulative replay."
+  },
+  "inventory": {
+    "shared_paths_with_cumulative_component": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/player/TObjPlayer.h",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp"
+    ],
+    "resolution": "The typed battle tables apply cleanly to the actor review with inventory and saves. Keep the ground and collision changes in the cumulative replay while the inventory review is open."
+  },
+  "ground_signature_decision": "Three proposed argument type changes alter the load and store scheduling of otherwise equivalent probes. Retain the existing argument signatures. The native CsnHit return and player proportions access match.",
+  "runtime": {
+    "collision_cases": 5,
+    "ground_cases": 8,
+    "camera_sound_cases": 3,
+    "battle_table_lookups": 384,
+    "full_file_loads": 32,
+    "hp_tp_and_quest_cases": "Actor HP/TP reload and reset, quest attack and resistance record exchanges, and missing labels.",
+    "sound_probe_scope": "The probe hooks the vector arithmetic and checks the camera field, sound projection fraction, and aliased input and output.",
+    "probe_sha256": {
+      "probe-native-contact.py": "1504792924a6411c22aa434011916acb042fddb4c18dac7f20855cb4b72f0677",
+      "contact-probes.log": "3e1b49d18c582b82e8b5390cbf57b138e590c9ddec362b04efada13d0286f735",
+      "battle-probes.log": "a4eff0034b0b0494c50483edfb2a4e27ee898f7b724ef973073fdbd475e6dadb",
+      "bank-review-probes.log": "b0455c8622a9ef5c1da16e35d1efcc623813dd16a0eaac0fd9cd05a20cffd5d6"
+    }
+  },
+  "historical_fork_data": {
+    "base": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "historical_source_comparisons": {
+    "scoped_evidence": {
+      "src/pso/boss/TBoss8Dragon.cpp": "The Gol Dragon callers pass the native collision body and camera sound vectors through the existing branches.",
+      "src/pso/boss/Boss7DeRolLeCBehavior.cpp": "The camera sound caller passes the native source and destination vectors at the original site.",
+      "src/pso/boss/Boss5GryphonBehavior.cpp": "The native bank keeps its one base, five attack and one resistance row pointers. The boss uses the shared CollisionBody contact selector and Vec sound projection.",
+      "src/pso/boss/TBoss1Dragon.cpp": "The Dragon callers pass the native collision body and camera sound vectors through the existing branches.",
+      "src/pso/enemy/SaverLifecycle.cpp": "The native bank keeps the base and resistance rows and the three allocated attack-row pointers. It preserves the original 0, 2, 1 assignment order and 12-byte allocation.",
+      "src/pso/boss/TBoss2DeRolLe.cpp": "The native bank keeps the base, three attack and resistance table pointers at their original addresses. The camera-projection calls pass Vec pointers.",
+      "src/pso/player/TObjPlayer_80011014.cpp": "The character virtuals return the native hit record and use the original position and battle-record fields.",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp": "The player ground virtuals return the native hit record and use the actual proportions field. The player keeps its own ground normal, cache and hit masks."
+    },
+    "remaining": 119
+  }
+}
