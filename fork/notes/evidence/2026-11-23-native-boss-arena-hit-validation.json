@@ -1,0 +1,1725 @@
+{
+  "source": {
+    "head": "d6a2b3ffc4ec60ded15ce8799a6994fdff95ccd0",
+    "tree": "6a796620e21319551acaf932c6c4dd51ce1cfbd1",
+    "coverage_baseline": "c4471e43e458012a52500823bcf282e91605330b",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "source-report.json": "40de40175fbd79854ea6e2e483ff50ca7a28aa854f6e692148180459e2f9e787",
+      "source-check.json": "463a3703b14788f50c902e5adc1b4aba524f5edc0aee8dfa91fd218ce3cbc2ca",
+      "source-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "source-quality.json": "ac4297b1beb5220d5a61be1ec84147aa0f8b8f76bb8e6c0bfb3cf48beff055af"
+    },
+    "source_quality": {
+      "total": {
+        "base": 141601,
+        "head": 141444,
+        "added": 0,
+        "removed": 157
+      },
+      "function_label_changes": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80027514",
+          "type": "function",
+          "old": "setup_v2_instance__12TBoss1DragonFP3VecPUcl",
+          "new": "setup_v2_instance__12TBoss1DragonFPC3VecP18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80027590",
+          "type": "function",
+          "old": "emit_v2_effect_at_position__12TBoss1DragonFPv",
+          "new": "emit_v2_effect_at_position__12TBoss1DragonFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800275BC",
+          "type": "function",
+          "old": "emit_v2_enemy_effect__12TBoss1DragonFP3VecPUcP17AreaAttackHistory",
+          "new": "emit_v2_enemy_effect__12TBoss1DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80063C1C",
+          "type": "function",
+          "old": "spawn_switch_attack__12TBoss8DragonFv",
+          "new": "spawn_switch_attack__12TBoss8DragonFPC3Vec",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80063C7C",
+          "type": "function",
+          "old": "spawn_attack_effect__12TBoss8DragonFv",
+          "new": "spawn_attack_effect__12TBoss8DragonFPC3Vec",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80066FEC",
+          "type": "function",
+          "old": "render_impl__19TObjBoss5FloorStoneFPv",
+          "new": "render_impl__19TObjBoss5FloorStoneFP16GinjaTextureListP10NJS_OBJECT",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80067034",
+          "type": "function",
+          "old": "is_within_xz_distance__12TBoss8DragonFPUcf",
+          "new": "is_within_xz_distance__12TBoss8DragonFPC3VecPC10NJS_OBJECTf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80067064",
+          "type": "function",
+          "old": "calc_sq_offset__12TBoss8DragonFf",
+          "new": "calc_sq_offset__12TBoss8DragonFPC18DragonAttackParamsf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA498",
+          "type": "function",
+          "old": "emit_effect_at_position__9TObjEneDDFPv",
+          "new": "emit_effect_at_position__9TObjEneDDFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA4C4",
+          "type": "function",
+          "old": "emit_effect__9TObjEneDDFPvll",
+          "new": "emit_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA4E8",
+          "type": "function",
+          "old": "emit_enemy_effect__9TObjEneDDFPvPvPUcPv",
+          "new": "emit_enemy_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80289710",
+          "type": "function",
+          "old": "trigger_switches_in_range__12TBoss8DragonFPvPvPv",
+          "new": "trigger_switches_in_range__12TBoss8DragonFP7TObjectPC3VecPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802FB170",
+          "type": "function",
+          "old": "get_state_flags__12TBoss8DragonFPv",
+          "new": "get_state_flags__12TBoss8DragonFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802FB190",
+          "type": "function",
+          "old": "emit_effect__12TBoss8DragonFPvPvP17AreaAttackHistory",
+          "new": "emit_effect__12TBoss8DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        }
+      ],
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "additions": []
+    }
+  },
+  "materialized_fork": {
+    "head": "c41cdbb7ee5a35516acbef9111f7c8858add9d6f",
+    "tree": "58c3ec876cbdbb97924ddc5f968dc651e2eb2100",
+    "coverage_baseline": "d6a2b3ffc4ec60ded15ce8799a6994fdff95ccd0",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "private-report.json": "40de40175fbd79854ea6e2e483ff50ca7a28aa854f6e692148180459e2f9e787",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "private-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-tests.log": "47cabf23a8ad4e1b84d40f9f8ea3a8fb04dab7c33733f5a55b25060200430abb",
+      "private-tool-tests.log": "dfc8c1d9e0af7a4ab9fced85f8880b78a1aa83dd82b25cd42ec27521efd3997f",
+      "private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "overlay-before.patch": "e21778cab51106a4432d577587a17fbe30d5516fc5570315ec7ab968e615f011",
+      "overlay-after.patch": "8fc57e3331d9c54db932ff5cfe9be948c8296f1d871ea0bfad6a6198b50c4c95"
+    },
+    "tests": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    }
+  },
+  "independent_actor_review": {
+    "head": "c48dff6ea46086b9402fe6b500b51524633e1e47",
+    "tree": "3339af3d3f68d8f22d737d634935dad792b4153a",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "direct-report.json": "7d2f823c23e4aa0536ccac9e1b33aa62b44624fa110d596508305df44af6e028",
+      "direct-check.json": "69118001b435725a401dfd0b5f8a65ed4fb49e47c1a4248dbad1310fc4b8cc35",
+      "direct-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "direct-quality.json": "bb615a52752be872c62b111ee17de301479fca0c690826e8eddde298c73aba7a"
+    },
+    "source_quality": {
+      "total": {
+        "base": 147293,
+        "head": 146877,
+        "added": 4,
+        "removed": 420
+      },
+      "function_label_changes": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E41C",
+          "type": "function",
+          "old": "swap_endian__6TLobbyFv",
+          "new": "swap_endian__15ActorParamBlockFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E498",
+          "type": "function",
+          "old": "byteswap_packet__6TLobbyFv",
+          "new": "byteswap_packet__12AttackParamsFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80027514",
+          "type": "function",
+          "old": "setup_v2_instance__12TBoss1DragonFP3VecPUcl",
+          "new": "setup_v2_instance__12TBoss1DragonFPC3VecP18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80027590",
+          "type": "function",
+          "old": "emit_v2_effect_at_position__12TBoss1DragonFPv",
+          "new": "emit_v2_effect_at_position__12TBoss1DragonFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800275BC",
+          "type": "function",
+          "old": "emit_v2_enemy_effect__12TBoss1DragonFP3VecPUcP17AreaAttackHistory",
+          "new": "emit_v2_enemy_effect__12TBoss1DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80063C1C",
+          "type": "function",
+          "old": "spawn_switch_attack__12TBoss8DragonFv",
+          "new": "spawn_switch_attack__12TBoss8DragonFPC3Vec",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80063C7C",
+          "type": "function",
+          "old": "spawn_attack_effect__12TBoss8DragonFv",
+          "new": "spawn_attack_effect__12TBoss8DragonFPC3Vec",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80066FEC",
+          "type": "function",
+          "old": "render_impl__19TObjBoss5FloorStoneFPv",
+          "new": "render_impl__19TObjBoss5FloorStoneFP16GinjaTextureListP10NJS_OBJECT",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80067034",
+          "type": "function",
+          "old": "is_within_xz_distance__12TBoss8DragonFPUcf",
+          "new": "is_within_xz_distance__12TBoss8DragonFPC3VecPC10NJS_OBJECTf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80067064",
+          "type": "function",
+          "old": "calc_sq_offset__12TBoss8DragonFf",
+          "new": "calc_sq_offset__12TBoss8DragonFPC18DragonAttackParamsf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9E84",
+          "type": "function",
+          "old": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+          "new": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9ED0",
+          "type": "function",
+          "old": "reset_hp__9TObjEneDDFPUcPUcPUc",
+          "new": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA498",
+          "type": "function",
+          "old": "emit_effect_at_position__9TObjEneDDFPv",
+          "new": "emit_effect_at_position__9TObjEneDDFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA4C4",
+          "type": "function",
+          "old": "emit_effect__9TObjEneDDFPvll",
+          "new": "emit_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA4E8",
+          "type": "function",
+          "old": "emit_enemy_effect__9TObjEneDDFPvPvPUcPv",
+          "new": "emit_enemy_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800E80A4",
+          "type": "function",
+          "old": "copy_vec3__10TObjPlayerFPv",
+          "new": "copy_ginja_texture_entry",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F7478",
+          "type": "function",
+          "old": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "new": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80131700",
+          "type": "function",
+          "old": "find_model_node__FUll",
+          "new": "find_model_node__FP10NJS_OBJECTl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80289710",
+          "type": "function",
+          "old": "trigger_switches_in_range__12TBoss8DragonFPvPvPv",
+          "new": "trigger_switches_in_range__12TBoss8DragonFP7TObjectPC3VecPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D71E0",
+          "type": "function",
+          "old": "register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff",
+          "new": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListPC19NpcAnimationBindingff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D7260",
+          "type": "function",
+          "old": "spawn_child__12TObjEneSlimeFsllff",
+          "new": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802FB170",
+          "type": "function",
+          "old": "get_state_flags__12TBoss8DragonFPv",
+          "new": "get_state_flags__12TBoss8DragonFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802FB190",
+          "type": "function",
+          "old": "emit_effect__12TBoss8DragonFPvPvP17AreaAttackHistory",
+          "new": "emit_effect__12TBoss8DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8032537C",
+          "type": "function",
+          "old": "__ct__25TBoss5GryphonLightningEffFP7TObjectP29TBoss5GryphonLightningSegmentifff",
+          "new": "__ct__25TBoss5GryphonLightningEffFP7TObjectP14CurvePathPointifff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8034D500",
+          "type": "function",
+          "old": "eval_bezier_curve__12TBoss8DragonFPviiPvf",
+          "new": "eval_bezier_curve__12TBoss8DragonFP14CurvePathPointiiP3Vecf",
+          "flags": []
+        }
+      ],
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "additions": [
+        {
+          "key": "slot_name",
+          "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+          "line": 120,
+          "text": "vfunc_16"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 356,
+          "text": "m_2f6"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 358,
+          "text": "m_2fa"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/player/TObjPlayer_800C4714.cpp",
+          "line": 205,
+          "text": "Hit_800C4A5C"
+        }
+      ],
+      "advisory_explanations": {
+        "vfunc_16": "The Mericarol bomb keeps the original virtual contact slot.",
+        "m_2f6 and m_2fa": "The two existing resistance members replace address arithmetic in the typed actor.",
+        "Hit_800C4A5C": "The Flower bomb keeps the existing local hit record in its native factory and contact call."
+      }
+    },
+    "paths": 144
+  },
+  "actor_with_inventory_and_saves": {
+    "head": "4998e1ccf03f65d3c918240860cefec918781194",
+    "tree": "ee7a9a90ddfab5410ea250b0265b1e7c9052d48b",
+    "coverage_baseline": "01887140e5c37f568006221458421c430509368d",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "queue-report.json": "e0ca2cd301cdcbabe4dd45c7e2110e005708e3e58714b5c0433e3b14113c9b50",
+      "queue-check.json": "463a3703b14788f50c902e5adc1b4aba524f5edc0aee8dfa91fd218ce3cbc2ca",
+      "queue-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c"
+    }
+  },
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/dragon/TBoss1Dragon.h",
+    "include/pso/boss/galgryphon/TObjBoss5Ctrl.h",
+    "include/pso/boss/galgryphon/TObjBoss5FloorStone.h",
+    "include/pso/boss/galgryphon/TObjBoss5PillarDemo.h",
+    "include/pso/boss/goldragon/TBoss8Dragon.h",
+    "include/pso/boss/goldragon/TBoss8Dragon_80067034.h",
+    "include/pso/boss/goldragon/TBoss8Dragon_8028A8F8.h",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/unk/text_80066F10.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TBoss2Mine.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5FloorGrass.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5FloorStone.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarDemo.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5Pillar_8028B08C.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_80067034.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_8028A8F8.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/npc/TObjNpcSoutokufu.cpp",
+    "src/pso/unk/text_80066F10.cpp",
+    "src/pso/unk/text_80066F5C.cpp",
+    "src/pso/unk/text_8028A998.cpp"
+  ],
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_shared_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TBoss2Mine.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+  ],
+  "inventory_shared_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp"
+  ],
+  "matching": "The mine retains the original five-word copy in the native DragonAttackParams record. The shared hitbox stores the flags before rereading the radius for the large-area dispatch. The three retail retained V2 symbols and the fork-generated retention entries follow their typed signatures.",
+  "runtime": {
+    "hitbox_cases": 5,
+    "arena_cases": 5,
+    "shared_contact_cases": 60,
+    "sha256": {
+      "probe-boss-hit.py": "dfc92b0e90c7d414a9b787f9599d70fa2273ced2b1438c79ba7711142bce6d69",
+      "all-probes.log": "040fa604b6bac1f4b138ab435a382cec8caf997f2d8fe89ffda8e6e3ce75ef49",
+      "shared-contact-probe.log": "280cc1191fbb31fa03db278ec1c30f08cae8c26c882de7296f52dcd7f88d8ebe"
+    }
+  },
+  "historical_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "historical_source": {
+    "closed": {
+      "include/pso/boss/TBoss8Dragon.h": {
+        "analysis": "The 0x8A4 Gol Dragon retains its 0x3C0 actor base, motion and hit modes, task owner, two native acceleration curves, four fade slots at 0x6DC, and player-control state at 0x74C. Its original task, attack, packet and model callbacks resolve to the checked native class or the helper that owns the data. The derived attack part remains a TBoss8Dragon with its own constructor, destructor and task slot. The arena branch uses a Vec origin, native Ninja nodes, and the DragonAttackParams radius.",
+        "exact_functions": {
+          "0x8002AE38": {
+            "historical": "test_card_flag_2__12TBoss8DragonFv",
+            "current": "test_card_flag_2__19TWindowKeyBoardHardFl",
+            "size": 36,
+            "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+          },
+          "0x8002CD2C": {
+            "historical": "get_state__12TBoss8DragonFv",
+            "current": "get_source_position__22TObjBoss1MokoHill_SoloFv",
+            "size": 8,
+            "owner": "src/pso/boss/dragon/TObjBoss1MokoHill.cpp"
+          },
+          "0x8002D580": {
+            "historical": "free_resources__12TBoss8DragonFv",
+            "current": "free_resources__23TObjBoss1MokoHill_SoloMFv",
+            "size": 120,
+            "owner": "src/pso/boss/dragon/TObjBoss1MokoHill.cpp"
+          },
+          "0x8002DB10": {
+            "historical": "destroy__12TBoss8DragonFPvs",
+            "current": "__dt__12Unk_8002DB7CFv",
+            "size": 108,
+            "owner": "src/pso/boss/dragon/TObjBoss1MokoHill.cpp"
+          },
+          "0x8002DB7C": {
+            "historical": "init_grid_mesh__12TBoss8DragonFPviiiPv",
+            "current": "__ct__12Unk_8002DB7CFlllPs",
+            "size": 568,
+            "owner": "src/pso/boss/dragon/TObjBoss1MokoHill.cpp"
+          },
+          "0x8005D6F4": {
+            "historical": "get_flag_bit6__12TBoss8DragonFv",
+            "current": "get_flag_bit6__13TBoss5GryphonFv",
+            "size": 12,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_8005D6F4.cpp"
+          },
+          "0x8005E868": {
+            "historical": "get_random_sign__12TBoss8DragonFiPvi",
+            "current": "get_random_sign__13TBoss5GryphonFP22Boss5GryphonActionStepl",
+            "size": 140,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005E8F4": {
+            "historical": "calc_product__12TBoss8DragonFiiii",
+            "current": "calc_product__13TBoss5GryphonFP22Boss5GryphonActionStepll",
+            "size": 80,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005E944": {
+            "historical": "rand_scaled_offset__12TBoss8DragonFiii",
+            "current": "rand_scaled_offset__13TBoss5GryphonFll",
+            "size": 148,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005E9E8": {
+            "historical": "random_in_table_range__12TBoss8DragonFiii",
+            "current": "random_in_table_range__13TBoss5GryphonFP22Boss5GryphonActionStepl",
+            "size": 116,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005EA5C": {
+            "historical": "random_in_range__12TBoss8DragonFff",
+            "current": "random_in_range__13TBoss5GryphonFff",
+            "size": 116,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005EB00": {
+            "historical": "set_random_param__12TBoss8DragonFPUc",
+            "current": "set_random_param__13TBoss5GryphonFP23Boss5GryphonMotionEntry",
+            "size": 108,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005EB6C": {
+            "historical": "calc_attack_params__12TBoss8DragonFPvl",
+            "current": "calc_attack_params__13TBoss5GryphonFP23Boss5GryphonMotionEntryP22Boss5GryphonActionStep",
+            "size": 112,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005EBDC": {
+            "historical": "fn_8005EBDC__12TBoss8DragonFPUcPUc",
+            "current": "calc_move_params__13TBoss5GryphonFP23Boss5GryphonMotionEntryP22Boss5GryphonActionStep",
+            "size": 276,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005ECF0": {
+            "historical": "calc_params__12TBoss8DragonFPvl",
+            "current": "calc_params__13TBoss5GryphonFP23Boss5GryphonMotionEntryP22Boss5GryphonActionStep",
+            "size": 124,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005ED6C": {
+            "historical": "calc_product_and_ratio__12TBoss8DragonFPvl",
+            "current": "calc_product_and_ratio__13TBoss5GryphonFP23Boss5GryphonMotionEntryP22Boss5GryphonActionStep",
+            "size": 88,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005EDC4": {
+            "historical": "copy_angle_state__12TBoss8DragonFPvPvPv",
+            "current": "copy_angle_state__13TBoss5GryphonFP23Boss5GryphonMotionEntryP22Boss5GryphonActionStep",
+            "size": 64,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005EE04": {
+            "historical": "fn_8005EE04__12TBoss8DragonFPsPUl",
+            "current": "run_action_script_step__13TBoss5GryphonFP23Boss5GryphonMotionEntryP22Boss5GryphonActionStep",
+            "size": 692,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F50C": {
+            "historical": "update_target_from_state__12TBoss8DragonFv",
+            "current": "update_target_from_state__13TBoss5GryphonFv",
+            "size": 108,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F578": {
+            "historical": "play_animation_index__12TBoss8DragonFl",
+            "current": "play_animation_index__13TBoss5GryphonFl",
+            "size": 104,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F5E0": {
+            "historical": "set_animation_by_state__12TBoss8DragonFPv",
+            "current": "set_animation_by_state__13TBoss5GryphonFv",
+            "size": 128,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F660": {
+            "historical": "init_state_zero__12TBoss8DragonFPv",
+            "current": "init_state_zero__13TBoss5GryphonFv",
+            "size": 36,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F71C": {
+            "historical": "trigger_effect__12TBoss8DragonFPvi",
+            "current": "init_packet_motion__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0",
+            "size": 36,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F740": {
+            "historical": "flush_pending_effect__12TBoss8DragonFv",
+            "current": "flush_pending_effect__13TBoss5GryphonFv",
+            "size": 124,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F834": {
+            "historical": "scale_size__12TBoss8DragonFfff",
+            "current": "scale_size__13TBoss5GryphonFfff",
+            "size": 104,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005F89C": {
+            "historical": "fire_at_angle__12TBoss8DragonFl",
+            "current": "fire_at_angle__13TBoss5GryphonFl",
+            "size": 104,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8005FA08": {
+            "historical": "update_facing__12TBoss8DragonFf",
+            "current": "update_facing__13TBoss5GryphonFf",
+            "size": 112,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80063C1C": {
+            "historical": "spawn_switch_attack__12TBoss8DragonFv",
+            "current": "spawn_switch_attack__12TBoss8DragonFPC3Vec",
+            "size": 96,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80063C7C": {
+            "historical": "spawn_attack_effect__12TBoss8DragonFv",
+            "current": "spawn_attack_effect__12TBoss8DragonFPC3Vec",
+            "size": 96,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80064764": {
+            "historical": "run_default_state__12TBoss8DragonFv",
+            "current": "run_default_state__13TBoss5GryphonFv",
+            "size": 52,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80064798": {
+            "historical": "update_state_3__12TBoss8DragonFv",
+            "current": "update_state_3__13TBoss5GryphonFv",
+            "size": 36,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x800647BC": {
+            "historical": "set_state_2__12TBoss8DragonFv",
+            "current": "set_state_2__13TBoss5GryphonFv",
+            "size": 36,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x800647E0": {
+            "historical": "attack_default__12TBoss8DragonFv",
+            "current": "attack_default__13TBoss5GryphonFv",
+            "size": 36,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80064804": {
+            "historical": "query_default__12TBoss8DragonFv",
+            "current": "query_default__13TBoss5GryphonFv",
+            "size": 36,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80064A60": {
+            "historical": "copy_spawn_params__12TBoss8DragonFP28G_GalGryphonBossActions_6xA0",
+            "current": "copy_spawn_params__13TBoss5GryphonFP28G_GalGryphonBossActions_6xA0",
+            "size": 80,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80064DA0": {
+            "historical": "set_flag_4e4__12TBoss8DragonFPv",
+            "current": "enter_flight_mode__13TBoss5GryphonFv",
+            "size": 12,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80064EC0": {
+            "historical": "spawn_ancient_trap__12TBoss8DragonFii",
+            "current": "spawn_ancient_trap__13TBoss5GryphonFl",
+            "size": 56,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80065DB4": {
+            "historical": "fill_follow_camera_params__12TBoss8DragonFPUcPUc",
+            "current": "fill_follow_camera_params__13TBoss5GryphonFP3VecP3Vec",
+            "size": 236,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80065EA0": {
+            "historical": "get_follow_camera_offsets__12TBoss8DragonFPUc",
+            "current": "get_gryphon_follow_camera_offsets__FP3VecP3Vec",
+            "size": 104,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80065F14": {
+            "historical": "get_instance_count__12TBoss8DragonFv",
+            "current": "get_instance__13TBoss5GryphonFv",
+            "size": 8,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x8006602C": {
+            "historical": "send_boss_actions__12TBoss8DragonFv",
+            "current": "send__28G_GalGryphonBossActions_6x9FFv",
+            "size": 52,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80066060": {
+            "historical": "bswap_boss_actions__12TBoss8DragonFv",
+            "current": "bswap__28G_GalGryphonBossActions_6x9FFv",
+            "size": 68,
+            "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          },
+          "0x80066A50": {
+            "historical": "set_default_on_state0__12TBoss8DragonFv",
+            "current": "select_particle_table__22TBoss5GryphonShockWaveFv",
+            "size": 56,
+            "owner": "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp"
+          },
+          "0x80289710": {
+            "historical": "trigger_switches_in_range__12TBoss8DragonFPvPvPv",
+            "current": "trigger_switches_in_range__12TBoss8DragonFP7TObjectPC3VecPC18DragonAttackParams",
+            "size": 192,
+            "owner": "src/pso/npc/TObjNpcSoutokufu.cpp"
+          },
+          "0x8028A8F8": {
+            "historical": "get_instance__12TBoss8DragonFv",
+            "current": "get_green_door_textures",
+            "size": 8,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_8028A8F8.cpp"
+          },
+          "0x802F2E30": {
+            "historical": "update_colli_parts__12TBoss8DragonFv",
+            "current": "disable_blocking_bodies__17TBoss8DragonColliFv",
+            "size": 76,
+            "owner": "src/pso/boss/goldragon/TBoss8DragonDemo.cpp"
+          },
+          "0x802F3388": {
+            "historical": "get_global_part_count__12TBoss8DragonFl",
+            "current": "get_part_entity_id__12TBoss8DragonFl",
+            "size": 64,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F33C8": {
+            "historical": "place_parts_in_ring__12TBoss8DragonFll",
+            "current": "place_parts_in_ring__12TBoss8DragonFlll",
+            "size": 316,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F3504": {
+            "historical": "find_target_enemy__12TBoss8DragonFv",
+            "current": "find_target_enemy__12TBoss8DragonFv",
+            "size": 108,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F3570": {
+            "historical": "is_any_part_alive__12TBoss8DragonFv",
+            "current": "is_any_part_alive__12TBoss8DragonFv",
+            "size": 108,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F35DC": {
+            "historical": "update_all_parts__12TBoss8DragonFv",
+            "current": "update_all_parts__12TBoss8DragonFv",
+            "size": 92,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F36DC": {
+            "historical": "has_enough_enemies__12TBoss8DragonFv",
+            "current": "has_enough_enemies__12TBoss8DragonFv",
+            "size": 144,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F376C": {
+            "historical": "is_closest_part__12TBoss8DragonFv",
+            "current": "is_closest_part__12TBoss8DragonFv",
+            "size": 268,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F3878": {
+            "historical": "push_apart_from_parts__12TBoss8DragonFv",
+            "current": "push_apart_from_parts__12TBoss8DragonFv",
+            "size": 252,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F3974": {
+            "historical": "is_near_other_part__12TBoss8DragonFv",
+            "current": "is_near_other_part__12TBoss8DragonFv",
+            "size": 212,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp"
+          },
+          "0x802F3CA0": {
+            "historical": "set_mode_params__12TBoss8DragonFSc",
+            "current": "set_mode_params__12TBoss8DragonFSc",
+            "size": 120,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F3D18": {
+            "historical": "receive_direct_attack__12TBoss8DragonFPv19DirectAttackPayloadPvll",
+            "current": "receive_direct_attack__12TBoss8DragonFPv19DirectAttackPayloadPvll",
+            "size": 84,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F3D6C": {
+            "historical": "draw_motion_model__12TBoss8DragonFv",
+            "current": "draw_motion_model__12TBoss8DragonFv",
+            "size": 376,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F3EE4": {
+            "historical": "render_nodes_flagged__12TBoss8DragonFv",
+            "current": "render_nodes_flagged__12TBoss8DragonFv",
+            "size": 60,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4098": {
+            "historical": "sub_802F4098__12TBoss8DragonFP3Vec",
+            "current": "get_render_position__12TBoss8DragonFP3Vec",
+            "size": 124,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4114": {
+            "historical": "draw_with_fade__12TBoss8DragonFP3Vecl",
+            "current": "draw_with_fade__12TBoss8DragonFP3Vecl",
+            "size": 396,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F42A0": {
+            "historical": "draw__12TBoss8DragonFv",
+            "current": "draw__12TBoss8DragonFv",
+            "size": 132,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4324": {
+            "historical": "render_shadows__12TBoss8DragonFv",
+            "current": "render_shadows__12TBoss8DragonFv",
+            "size": 60,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4360": {
+            "historical": "vfunc_105__12TBoss8DragonFv",
+            "current": "run_demo_task__12TBoss8DragonFv",
+            "size": 32,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4380": {
+            "historical": "render__12TBoss8DragonFv",
+            "current": "render__12TBoss8DragonFv",
+            "size": 256,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4480": {
+            "historical": "copy_vectors__12TBoss8DragonFv",
+            "current": "copy_vectors__12TBoss8DragonFv",
+            "size": 88,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F44D8": {
+            "historical": "render_body_model__12TBoss8DragonFv",
+            "current": "render_body_model__12TBoss8DragonFv",
+            "size": 200,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F45A0": {
+            "historical": "update_camera_script__12TBoss8DragonFP10NJS_OBJECT",
+            "current": "capture_node_points__12TBoss8DragonFP10NJS_OBJECT",
+            "size": 244,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4694": {
+            "historical": "hasActiveRenderFade__12TBoss8DragonFv",
+            "current": "hasActiveRenderFade__12TBoss8DragonFv",
+            "size": 96,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F481C": {
+            "historical": "apply_ground_movement__12TBoss8DragonFPvPv",
+            "current": "apply_ground_movement__12TBoss8DragonFP3Vec",
+            "size": 192,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4990": {
+            "historical": "update_movement__12TBoss8DragonFPv",
+            "current": "update_movement__12TBoss8DragonFv",
+            "size": 512,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4B90": {
+            "historical": "fn_802F4B90__12TBoss8DragonFUl",
+            "current": "update_parts_burrow_state__12TBoss8DragonFl",
+            "size": 368,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4D00": {
+            "historical": "action__12TBoss8DragonFUl",
+            "current": "wait_for_players__12TBoss8DragonFl",
+            "size": 212,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F4DD4": {
+            "historical": "fn_802F4DD4__12TBoss8DragonFUl",
+            "current": "update_appearance_state__12TBoss8DragonFl",
+            "size": 872,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F513C": {
+            "historical": "update_wander_state__12TBoss8DragonFUl",
+            "current": "update_wander_state__12TBoss8DragonFl",
+            "size": 160,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F51DC": {
+            "historical": "fn_802F51DC__12TBoss8DragonFUl",
+            "current": "update_appear_walk_state__12TBoss8DragonFl",
+            "size": 600,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F5434": {
+            "historical": "fn_802F5434__12TBoss8DragonFUl",
+            "current": "update_vanish_walk_state__12TBoss8DragonFl",
+            "size": 528,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F5644": {
+            "historical": "fn_802F5644__12TBoss8DragonFUl",
+            "current": "handle_fall_state__12TBoss8DragonFl",
+            "size": 416,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F57E4": {
+            "historical": "fn_802F57E4__12TBoss8DragonFUl",
+            "current": "state_circle_flight__12TBoss8DragonFl",
+            "size": 428,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F5990": {
+            "historical": "handle_walk_state__12TBoss8DragonFUl",
+            "current": "handle_walk_state__12TBoss8DragonFl",
+            "size": 528,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F5BA0": {
+            "historical": "fn_802F5BA0__12TBoss8DragonFUl",
+            "current": "update_controlled_burrow_state__12TBoss8DragonFl",
+            "size": 296,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F5CC8": {
+            "historical": "fn_802F5CC8__12TBoss8DragonFUl",
+            "current": "update_controlled_flight_state__12TBoss8DragonFl",
+            "size": 668,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F5F64": {
+            "historical": "fn_802F5F64__12TBoss8DragonFUl",
+            "current": "update_controlled_hover_state__12TBoss8DragonFl",
+            "size": 424,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F610C": {
+            "historical": "fn_802F610C__12TBoss8DragonFUl",
+            "current": "update_controlled_walk_state__12TBoss8DragonFl",
+            "size": 848,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F645C": {
+            "historical": "fn_802F645C__12TBoss8DragonFUl",
+            "current": "update_controlled_stand_state__12TBoss8DragonFl",
+            "size": 444,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F6618": {
+            "historical": "fn_802F6618__12TBoss8DragonFUl",
+            "current": "update_fade_out_state__12TBoss8DragonFl",
+            "size": 240,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F6708": {
+            "historical": "fn_802F6708__12TBoss8DragonFUl",
+            "current": "update_fade_state__12TBoss8DragonFl",
+            "size": 304,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F6838": {
+            "historical": "fn_802F6838__12TBoss8DragonFUl",
+            "current": "update_death_state__12TBoss8DragonFl",
+            "size": 1252,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F6D1C": {
+            "historical": "handle_leap_state__12TBoss8DragonFUl",
+            "current": "handle_leap_state__12TBoss8DragonFl",
+            "size": 1420,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F72A8": {
+            "historical": "handle_spiral_state__12TBoss8DragonFUl",
+            "current": "handle_spiral_state__12TBoss8DragonFl",
+            "size": 800,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F75C8": {
+            "historical": "fn_802F75C8__12TBoss8DragonFUl",
+            "current": "update_burrow_outward_run__12TBoss8DragonFl",
+            "size": 576,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F7B28": {
+            "historical": "action_17__12TBoss8DragonFUl",
+            "current": "update_burrow_repeat_run__12TBoss8DragonFl",
+            "size": 36,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F7B4C": {
+            "historical": "fn_802F7B4C__12TBoss8DragonFUl",
+            "current": "update_burrow_first_run__12TBoss8DragonFl",
+            "size": 36,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F7B70": {
+            "historical": "fn_802F7B70__12TBoss8DragonFUl",
+            "current": "update_dive_state__12TBoss8DragonFl",
+            "size": 1236,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F8044": {
+            "historical": "state_roar__12TBoss8DragonFUl",
+            "current": "state_roar__12TBoss8DragonFl",
+            "size": 268,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F8150": {
+            "historical": "fn_802F8150__12TBoss8DragonFUl",
+            "current": "update_stretch_state__12TBoss8DragonFl",
+            "size": 288,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F8270": {
+            "historical": "fn_802F8270__12TBoss8DragonFUl",
+            "current": "update_head_down_attack_state__12TBoss8DragonFl",
+            "size": 776,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F8578": {
+            "historical": "fn_802F8578__12TBoss8DragonFUl",
+            "current": "update_fall_state__12TBoss8DragonFl",
+            "size": 628,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F87EC": {
+            "historical": "fn_802F87EC__12TBoss8DragonFUl",
+            "current": "update_appear_fall_state__12TBoss8DragonFl",
+            "size": 524,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F89F8": {
+            "historical": "fn_802F89F8__12TBoss8DragonFUl",
+            "current": "update_spinning_projectile_attack__12TBoss8DragonFl",
+            "size": 1424,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F8F88": {
+            "historical": "fn_802F8F88__12TBoss8DragonFUl",
+            "current": "update_air_fire_state__12TBoss8DragonFl",
+            "size": 1428,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F951C": {
+            "historical": "state_turn_and_charge__12TBoss8DragonFUl",
+            "current": "state_turn_and_charge__12TBoss8DragonFl",
+            "size": 820,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F9850": {
+            "historical": "fn_802F9850__12TBoss8DragonFUl",
+            "current": "update_lift_state__12TBoss8DragonFl",
+            "size": 508,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F9A4C": {
+            "historical": "fn_802F9A4C__12TBoss8DragonFUl",
+            "current": "update_vanish_lift_state__12TBoss8DragonFl",
+            "size": 320,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F9B8C": {
+            "historical": "handle_tail_attack_state__12TBoss8DragonFUl",
+            "current": "handle_tail_attack_state__12TBoss8DragonFl",
+            "size": 380,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802F9D08": {
+            "historical": "state_breath_attack__12TBoss8DragonFUl",
+            "current": "state_breath_attack__12TBoss8DragonFl",
+            "size": 1124,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FA16C": {
+            "historical": "fn_802FA16C__12TBoss8DragonFUl",
+            "current": "update_walking_state__12TBoss8DragonFl",
+            "size": 520,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FA374": {
+            "historical": "fn_802FA374__12TBoss8DragonFUl",
+            "current": "update_stand_state__12TBoss8DragonFl",
+            "size": 260,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FA478": {
+            "historical": "fn_802FA478__12TBoss8DragonFUl",
+            "current": "update_idle_state__12TBoss8DragonFl",
+            "size": 108,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FA4E4": {
+            "historical": "dispatch_action__12TBoss8DragonFUll",
+            "current": "dispatch_action__12TBoss8DragonFUll",
+            "size": 1484,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAAB0": {
+            "historical": "mask_flags__12TBoss8DragonFiii",
+            "current": "mask_flags__12TBoss8DragonFll",
+            "size": 88,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAB08": {
+            "historical": "calc_velocity_from_angle__12TBoss8DragonFv",
+            "current": "calc_velocity_from_angle__12TBoss8DragonFv",
+            "size": 80,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAB58": {
+            "historical": "check_attack_ready__12TBoss8DragonFPv",
+            "current": "check_can_attack__12TBoss8DragonFv",
+            "size": 92,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAC08": {
+            "historical": "clamp_step_in_radius__12TBoss8DragonFfff",
+            "current": "clamp_step_in_radius__12TBoss8DragonFfff",
+            "size": 112,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAC78": {
+            "historical": "release_grabbed_player__12TBoss8DragonFPv",
+            "current": "release_grabbed_player__12TBoss8DragonFv",
+            "size": 508,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAE74": {
+            "historical": "freeze_player_at_self__12TBoss8DragonFv",
+            "current": "freeze_player_at_self__12TBoss8DragonFv",
+            "size": 164,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAF18": {
+            "historical": "select_freeze_target__12TBoss8DragonFv",
+            "current": "select_freeze_target__12TBoss8DragonFv",
+            "size": 192,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FAFD8": {
+            "historical": "find_player_on_floor__12TBoss8DragonFPv",
+            "current": "find_player_on_floor__12TBoss8DragonFv",
+            "size": 196,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB0DC": {
+            "historical": "spawn_ground_effect__12TBoss8DragonFv",
+            "current": "spawn_ground_effect__12TBoss8DragonFv",
+            "size": 116,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB150": {
+            "historical": "setup_instance__12TBoss8DragonFiPvi",
+            "current": "setup_instance__12TBoss8DragonFP3VecP18DragonAttackParamsP17AreaAttackHistory",
+            "size": 32,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB170": {
+            "historical": "get_state_flags__12TBoss8DragonFPv",
+            "current": "get_state_flags__12TBoss8DragonFPC18DragonAttackParams",
+            "size": 32,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB190": {
+            "historical": "emit_effect__12TBoss8DragonFPv",
+            "current": "emit_effect__12TBoss8DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+            "size": 32,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB290": {
+            "historical": "setup_breath_instance__12TBoss8DragonFPviUli",
+            "current": "setup_breath_instance__12TBoss8DragonFP3VecUlP17AreaAttackHistory",
+            "size": 112,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB304": {
+            "historical": "emit_body_effects__12TBoss8DragonFv",
+            "current": "sweep_death_body_attack__12TBoss8DragonFv",
+            "size": 316,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB440": {
+            "historical": "init_state__12TBoss8DragonFl",
+            "current": "apply_ground_impact_attack__12TBoss8DragonFv",
+            "size": 68,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB4B0": {
+            "historical": "update_pos_from_data__12TBoss8DragonFv",
+            "current": "sweep_head_fall_spheres_early__12TBoss8DragonFv",
+            "size": 44,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB4DC": {
+            "historical": "draw_beam_segments__12TBoss8DragonFPvfff",
+            "current": "sweep_body_attack_spheres__12TBoss8DragonFfff",
+            "size": 560,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB7E0": {
+            "historical": "set_state_1__12TBoss8DragonFPv",
+            "current": "apply_foot_attack_pair_1__12TBoss8DragonFv",
+            "size": 36,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB804": {
+            "historical": "check_condition_default__12TBoss8DragonFPv",
+            "current": "apply_foot_attack_pair_0__12TBoss8DragonFv",
+            "size": 36,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB920": {
+            "historical": "spawn_effect__12TBoss8DragonFv",
+            "current": "start_rumble__12TBoss8DragonFv",
+            "size": 44,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB94C": {
+            "historical": "calc_step_value__12TBoss8DragonFv",
+            "current": "calc_step_value__12TBoss8DragonFv",
+            "size": 56,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FB98C": {
+            "historical": "check_damage_reaction__12TBoss8DragonFv",
+            "current": "check_damage_reaction__12TBoss8DragonFv",
+            "size": 144,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBA84": {
+            "historical": "pick_next_action__12TBoss8DragonFv",
+            "current": "pick_next_action__12TBoss8DragonFv",
+            "size": 208,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBB54": {
+            "historical": "copy_pos_to_field688__12TBoss8DragonFPv",
+            "current": "copy_pos_to_field688__12TBoss8DragonFv",
+            "size": 20,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBB68": {
+            "historical": "set_speed__12TBoss8DragonFl",
+            "current": "setDestinationX__12TBoss8DragonFl",
+            "size": 56,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBBA0": {
+            "historical": "save_position__12TBoss8DragonFv",
+            "current": "save_position__12TBoss8DragonFv",
+            "size": 20,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBBB4": {
+            "historical": "restore_target_pos__12TBoss8DragonFPv",
+            "current": "restore_target_pos__12TBoss8DragonFv",
+            "size": 20,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBBE8": {
+            "historical": "sync_target_pos__12TBoss8DragonFPv",
+            "current": "sync_target_pos__12TBoss8DragonFv",
+            "size": 20,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBBFC": {
+            "historical": "send_action_packet__12TBoss8DragonFPvi",
+            "current": "send_action_packet__12TBoss8DragonFi",
+            "size": 192,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBCBC": {
+            "historical": "send_6xA8_action__12TBoss8DragonFv",
+            "current": "send_6xA8_action__12TBoss8DragonFv",
+            "size": 172,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBD68": {
+            "historical": "apply_6xA8_action__12TBoss8DragonFPvPv",
+            "current": "apply_6xA8_action__12TBoss8DragonFP27G_GolDragonBossActions_6xA8",
+            "size": 144,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBF0C": {
+            "historical": "reset_tail_hp__12TBoss8DragonFv",
+            "current": "reset_tail_hp__12TBoss8DragonFv",
+            "size": 52,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FBF40": {
+            "historical": "reload_boss_stats__12TBoss8DragonFv",
+            "current": "reload_boss_stats__12TBoss8DragonFv",
+            "size": 100,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC164": {
+            "historical": "check_hit_result__12TBoss8DragonFll",
+            "current": "set_air_turn_direction__12TBoss8DragonFll",
+            "size": 80,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC1B4": {
+            "historical": "reset_action__12TBoss8DragonFv",
+            "current": "reset_action__12TBoss8DragonFv",
+            "size": 24,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC1CC": {
+            "historical": "activate_attack__12TBoss8DragonFv",
+            "current": "activate_attack__12TBoss8DragonFv",
+            "size": 24,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC1E4": {
+            "historical": "set_active_flag__12TBoss8DragonFv",
+            "current": "set_active_flag__12TBoss8DragonFv",
+            "size": 24,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC1FC": {
+            "historical": "set_action_state__12TBoss8DragonFv",
+            "current": "set_action_state__12TBoss8DragonFv",
+            "size": 12,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC208": {
+            "historical": "set_state__12TBoss8DragonFv",
+            "current": "set_state__12TBoss8DragonFv",
+            "size": 12,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC214": {
+            "historical": "reset_timer__12TBoss8DragonFv",
+            "current": "reset_timer__12TBoss8DragonFv",
+            "size": 12,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC220": {
+            "historical": "spawn_effect_if_in_band__12TBoss8DragonFi",
+            "current": "spawn_effect_if_in_band__12TBoss8DragonFv",
+            "size": 72,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC268": {
+            "historical": "play_sound_if_in_band__12TBoss8DragonFv",
+            "current": "play_sound_if_in_band__12TBoss8DragonFv",
+            "size": 92,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC2C4": {
+            "historical": "try_spawn_trap__12TBoss8DragonFv",
+            "current": "try_spawn_trap__12TBoss8DragonFv",
+            "size": 80,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC314": {
+            "historical": "spawn_trap__12TBoss8DragonFii",
+            "current": "spawn_trap__12TBoss8DragonFl",
+            "size": 56,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC34C": {
+            "historical": "spawn_effect__12TBoss8DragonFii",
+            "current": "play_effect_sound__12TBoss8DragonFl",
+            "size": 52,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC380": {
+            "historical": "select_target_in_front__12TBoss8DragonFPv",
+            "current": "select_target_in_front__12TBoss8DragonFv",
+            "size": 384,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC8AC": {
+            "historical": "is_health_low__12TBoss8DragonFPv",
+            "current": "is_primary_sequence__12TBoss8DragonFv",
+            "size": 32,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC8CC": {
+            "historical": "set_damage_phase_value__12TBoss8DragonFl",
+            "current": "select_sequence__12TBoss8DragonFl",
+            "size": 32,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC8EC": {
+            "historical": "init_default__12TBoss8DragonFPv",
+            "current": "restart_primary_sequence__12TBoss8DragonFv",
+            "size": 36,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC910": {
+            "historical": "is_near_target__12TBoss8DragonFv",
+            "current": "is_near_target__12TBoss8DragonFv",
+            "size": 104,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FC978": {
+            "historical": "calc_orbit_xz__12TBoss8DragonFPfPf",
+            "current": "calc_forward_point__12TBoss8DragonFPfPf",
+            "size": 96,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCA34": {
+            "historical": "update_linked_position__12TBoss8DragonFv",
+            "current": "update_linked_position__12TBoss8DragonFv",
+            "size": 36,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCA58": {
+            "historical": "vfunc_88__12TBoss8DragonFv",
+            "current": "update_body_colliders__12TBoss8DragonFv",
+            "size": 548,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCC7C": {
+            "historical": "store_position__12TBoss8DragonFv",
+            "current": "update_position_history__12TBoss8DragonFv",
+            "size": 64,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCCD0": {
+            "historical": "set_state_22__12TBoss8DragonFv",
+            "current": "set_state_22__12TBoss8DragonFv",
+            "size": 48,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCD00": {
+            "historical": "vfunc_61__12TBoss8DragonFv",
+            "current": "run_miss_reaction__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCD04": {
+            "historical": "vfunc_62__12TBoss8DragonFv",
+            "current": "run_hit_reaction__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCD08": {
+            "historical": "vfunc_63__12TBoss8DragonFv",
+            "current": "run_death_reaction__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCD0C": {
+            "historical": "vfunc_28__12TBoss8DragonFv",
+            "current": "refresh_target__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCD10": {
+            "historical": "check_death__12TBoss8DragonFv",
+            "current": "check_death__12TBoss8DragonFv",
+            "size": 168,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCDB8": {
+            "historical": "select_next_action__12TBoss8DragonFv",
+            "current": "select_next_action__12TBoss8DragonFv",
+            "size": 328,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FCF00": {
+            "historical": "run_task__12TBoss8DragonFv",
+            "current": "run_task__12TBoss8DragonFv",
+            "size": 1108,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FD354": {
+            "historical": "__dt__12TBoss8DragonFv",
+            "current": "__dt__12TBoss8DragonFv",
+            "size": 296,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FD47C": {
+            "historical": "__ct__12TBoss8DragonFP7TObjectPv",
+            "current": "__ct__12TBoss8DragonFP7TObjectPv",
+            "size": 1364,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FD9DC": {
+            "historical": "free_static__12TBoss8DragonFv",
+            "current": "free_static__12TBoss8DragonFv",
+            "size": 80,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDA2C": {
+            "historical": "create__12TBoss8DragonFPv",
+            "current": "create__12TBoss8DragonFPv",
+            "size": 76,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDC1C": {
+            "historical": "get_camera_offsets__12TBoss8DragonFPvPv",
+            "current": "get_camera_offsets__12TBoss8DragonFP3VecP3Vec",
+            "size": 440,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDDD4": {
+            "historical": "clone_node_tree__12TBoss8DragonFPvPvi",
+            "current": "clone_node_tree__12TBoss8DragonFP10NJS_OBJECTP10NJS_OBJECTP13NJS_CNK_MODEL",
+            "size": 148,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDE68": {
+            "historical": "apply_poison_status__12TBoss8DragonFv",
+            "current": "apply_poison_status__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDE6C": {
+            "historical": "apply_paralysis__12TBoss8DragonFv",
+            "current": "apply_paralysis__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDE70": {
+            "historical": "apply_slow_status__12TBoss8DragonFv",
+            "current": "apply_slow_status__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDE74": {
+            "historical": "apply_confusion_status__12TBoss8DragonFv",
+            "current": "apply_confusion_status__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDE78": {
+            "historical": "apply_movement_ailment__12TBoss8DragonFl",
+            "current": "apply_movement_ailment__12TBoss8DragonFl",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDE7C": {
+            "historical": "apply_shock_status__12TBoss8DragonFv",
+            "current": "apply_shock_status__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x802FDE80": {
+            "historical": "clear_harmful_statuses__12TBoss8DragonFv",
+            "current": "clear_harmful_statuses__12TBoss8DragonFv",
+            "size": 4,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          },
+          "0x80324D3C": {
+            "historical": "copy_position__12TBoss8DragonFl",
+            "current": "get_start_position__22TBoss5GryphonLightningFP3Vec",
+            "size": 44,
+            "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightning.cpp"
+          },
+          "0x80325D38": {
+            "historical": "queue_destruction__12TBoss8DragonFv",
+            "current": "queue_destruction__26TBoss5GryphonLightningHornFv",
+            "size": 32,
+            "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp"
+          },
+          "0x803263A4": {
+            "historical": "spawn_ground_lightning__12TBoss8DragonFP7TObjectPC3Vecl",
+            "current": "spawn_ground_lightning__26TBoss5GryphonLightningHornFP7TObjectP3Vecl",
+            "size": 172,
+            "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp"
+          },
+          "0x8034D500": {
+            "historical": "eval_bezier_curve__12TBoss8DragonFPviiPvf",
+            "current": "eval_bezier_curve__12TBoss8DragonFP14CurvePathPointiiP3Vecf",
+            "size": 656,
+            "owner": "src/pso/unk/text_8034D3D0.cpp"
+          },
+          "0x80351CF0": {
+            "historical": "spawn_lightning_wing__12TBoss8DragonFiiiiii",
+            "current": "spawn__26TBoss5GryphonLightningWingFP7TObjectP3VecP3VecP3Vecll",
+            "size": 184,
+            "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightningWing.cpp"
+          },
+          "0x80359A7C": {
+            "historical": "run_task__13TUnk_804F1A78Fv",
+            "current": "run_task__13TUnk_804F1A78Fv",
+            "size": 752,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp"
+          },
+          "0x80359D6C": {
+            "historical": "__dt__13TUnk_804F1A78Fv",
+            "current": "__dt__13TUnk_804F1A78Fv",
+            "size": 88,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp"
+          },
+          "0x80359DC4": {
+            "historical": "__ct__13TUnk_804F1A78FP7TObjectPvl",
+            "current": "__ct__13TUnk_804F1A78FP7TObjectPvl",
+            "size": 92,
+            "owner": "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp"
+          },
+          "0x803D6214": {
+            "historical": "calc_binomial_coefficient__12TBoss8DragonFll",
+            "current": "calc_binomial_coefficient__12TBoss8DragonFll",
+            "size": 244,
+            "owner": "src/pso/unk/text_803D619C.cpp"
+          }
+        },
+        "exact_vtables": [
+          "0x804E5534",
+          "0x804F1A78"
+        ]
+      }
+    },
+    "remaining": 117
+  }
+}
