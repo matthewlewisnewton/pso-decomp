@@ -1,0 +1,374 @@
+{
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "network_pr": {
+    "number": 376,
+    "state": "merged",
+    "head": "67618d4db8a2f0d4d1d746dc2dc14f1235f9d55c"
+  },
+  "inventory_pr": {
+    "number": 377,
+    "state": "open",
+    "head": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+    "merge_conflicts": 0,
+    "merge_preview": "97711798d9db2f80908909f5eea7f55da3747ce5",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "result": "pass",
+    "checks": {
+      "report_delta": true,
+      "link_units": true
+    },
+    "coverage_sha256": "85d8d27b5183584f4638941185dfdb163bb62dd6dd8b81237eb4cc8472dfa7d7",
+    "report_sha256": "907996b699b58b40cd8725965b955470b0eaa7f2070e0ff51fe54c17017062f2"
+  },
+  "peer_reviews": {
+    "373": {
+      "state": "closed after incorporation into #375",
+      "maintainer_comment": "https://github.com/zeroz41/pso-decomp/pull/373#issuecomment-7091923264"
+    },
+    "374": {
+      "state": "closed after incorporation into #375",
+      "maintainer_comment": "https://github.com/zeroz41/pso-decomp/pull/374#issuecomment-7091927162"
+    }
+  },
+  "origin_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "queue": {
+    "previous": "d709c27e833f56cc8a783ea960709cf1b9d9e75b",
+    "current": "e13dbc1699804f3b23fdd014311015661ac9f62e",
+    "tree": "3037e96dac6d25358ce7aba43cb77d1088f046ff",
+    "note": "The post-network replay has the identical tree previously tested with effects, network, inventory, saves, memory, character preview and sound."
+  },
+  "exact_functions": 27572,
+  "source_linked_units": 2368,
+  "original_data_ranges": {
+    "master": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "hud": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "expanded": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "private": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    }
+  },
+  "hud": {
+    "head": "ed1b0d390bb078e63148a703956b2e3e82c9532f",
+    "paths_on_queue": 53,
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "result": "pass",
+    "checks": {
+      "report_delta": true,
+      "link_units": true
+    },
+    "coverage_sha256": "49b343d94ba3a9d35afb7715a8799882d30223b0570f2379ab1d4cd83d959df4",
+    "report_sha256": "d7d3e4b8503724e00c60548f9cc57b875e533644c8afdf9146dc8943adcbba08",
+    "source_quality": {
+      "base": 145265,
+      "head": 145216,
+      "added": 0,
+      "removed": 49,
+      "renamed_symbols": 1,
+      "flagged_labels": [],
+      "stale_force_active": [],
+      "sha256": "e3206ca5b7b5c4c055f27284c643aef956d1fe348c6cc6b438695fc9dee9c358"
+    }
+  },
+  "expanded_queue": {
+    "head": "88caa2061c61ab040d1fe3465318f3fc1a467bea",
+    "changed_paths_on_queue": 87,
+    "changed_paths_on_upstream": 658,
+    "source_paths_in_original_overlap_set": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/unk/TLobby.h",
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp",
+      "src/pso/effect/TDuelEffectNumber.cpp",
+      "src/pso/effect/TDuelEffectString.cpp",
+      "src/pso/player/TObjPlayer_80083594.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/ui/chat/TWindowChatSymbol.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+      "src/pso/ui/window/TWindowActionPalette.cpp",
+      "src/pso/ui/window/TWindowBreakIn.cpp",
+      "src/pso/ui/window/TWindowComCard.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowDD_8034055C.cpp",
+      "src/pso/ui/window/TWindowDD_80340A78.cpp",
+      "src/pso/ui/window/TWindowDD_80341A08.cpp",
+      "src/pso/ui/window/TWindowDD_8034725C.cpp",
+      "src/pso/ui/window/TWindowDuelResult.cpp",
+      "src/pso/ui/window/TWindowEffectLight.cpp",
+      "src/pso/ui/window/TWindowFukidasi.cpp",
+      "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+      "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+      "src/pso/ui/window/TWindowInputNumber.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+      "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+      "src/pso/ui/window/TWindowPartyStatus.cpp",
+      "src/pso/ui/window/TWindowShortCut.cpp",
+      "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "src/pso/ui/window/TWindowSnapShot.cpp",
+      "src/pso/ui/window/TWindowStatus.cpp",
+      "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+      "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+      "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+      "src/pso/unk/TLobby_8002C140.cpp",
+      "src/pso/unk/TLobby_801A3C48.cpp",
+      "src/pso/unk/TLobby_803382E4.cpp",
+      "src/pso/unk/text_8026C664.cpp",
+      "src/pso/unk/text_802A1020.cpp"
+    ],
+    "changes": [
+      "Shared native HUD textures and typed sprite references retain hud_texlist.",
+      "Source labels follow the AttackParams and ActorParamBlock endian methods and the typed Word Select texture parameter.",
+      "The shared reset declaration preserves the signed-byte tests in callers.",
+      "The Dragon arena holds a typed texture list through load, use and release."
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "result": "pass",
+    "checks": {
+      "report_delta": true,
+      "link_units": true
+    },
+    "coverage_sha256": "44d3d3aa98ca0286b670d108f9d2d5e3d5b865484f96858de199137908b5cd5d",
+    "report_sha256": "e19c97b1dc31a5339ee488d5bec82caa761ff4f6e68b51a08167512f5afeda67",
+    "quality_against_validated_queue": {
+      "base": 145265,
+      "head": 145149,
+      "added": 28,
+      "removed": 144,
+      "renamed_symbols": 3,
+      "flagged_labels": [],
+      "stale_force_active": [],
+      "sha256": "aa1468ec819f0a3cb32b31ba483a10495bfd7402bb282fc72c1d67e23369510c"
+    },
+    "quality_against_upstream": {
+      "base": 147293,
+      "head": 145149,
+      "added": 149,
+      "removed": 2293,
+      "renamed_symbols": 97,
+      "flagged_labels": [],
+      "stale_force_active": [],
+      "sha256": "fc0351393a84c34acc1041b53d4a362a53ccff45ce137f8b4e3638b902efd671"
+    },
+    "runtime_probes": {
+      "controller_and_dragon": {
+        "runs": [
+          {
+            "image": "/tmp/gm-city-and-upstream.B2hwFR/upstream-build/orig/GPOE8P/files/PsoV3.dol",
+            "reset_cases": 40,
+            "dragon_lifetimes": 2
+          },
+          {
+            "image": "/tmp/gm-city-and-upstream.B2hwFR/upstream-build/build/GPOE8P/psov3.dol",
+            "reset_cases": 40,
+            "dragon_lifetimes": 2
+          }
+        ],
+        "sha256": "72ca1cd723c24b3fba63ebb07cd1c6986fcb45cb64aa467359e9bd6b662f0ba2"
+      },
+      "hud_and_render": {
+        "runs": [
+          {
+            "image": "/tmp/gm-city-and-upstream.B2hwFR/upstream-build/orig/GPOE8P/files/PsoV3.dol",
+            "surface_ids": 4,
+            "hud_lifetimes": 1,
+            "quad_renderers": 5
+          },
+          {
+            "image": "/tmp/gm-city-and-upstream.B2hwFR/upstream-build/build/GPOE8P/psov3.dol",
+            "surface_ids": 4,
+            "hud_lifetimes": 1,
+            "quad_renderers": 5
+          }
+        ],
+        "sha256": "a11a542446dc67bc30f6b7762adc363ea4de38a916e4c588794ff8fdff516cbb"
+      }
+    }
+  },
+  "source_replay_trial": {
+    "last_validated_full_source": "3eecd531ce49ddd056509904c7c895e0b03e7d87",
+    "head": "2e868e7a997fbef41c2cc7153db37769bf1aad01",
+    "raw_conflicts_on_master": 260,
+    "raw_conflicts_on_review_queue": 332,
+    "initial_compile_failures": 152,
+    "remaining_compile_failures": 98,
+    "failures_by_subsystem": {
+      "boss": 9,
+      "effect": 17,
+      "enemy": 19,
+      "item": 3,
+      "npc": 4,
+      "object": 3,
+      "player": 11,
+      "render": 1,
+      "technique": 5,
+      "ui": 18,
+      "unk": 5,
+      "weapon": 3
+    },
+    "failure_units": [
+      "pso/boss/TUnk_80484A94.cpp",
+      "pso/boss/TUnk_80484AFC.cpp",
+      "pso/boss/volopt/TObjVoloptCage.cpp",
+      "pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "pso/effect/TEffClitical.cpp",
+      "pso/boss/dragon/TBoss1Dragon.cpp",
+      "pso/ui/window/TWindowKeyBoardBase_8008102C.cpp",
+      "pso/effect/particle/ParticleOrbit.cpp",
+      "pso/effect/particle/ParticleBallistic.cpp",
+      "pso/effect/TBreakUpMdl.cpp",
+      "pso/enemy/saver/SaverLifecycle.cpp",
+      "pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "pso/enemy/moja/TObjEneMoja.cpp",
+      "pso/enemy/shinowa/ShinowaData.cpp",
+      "pso/player/TObjPlayer_800C4714.cpp",
+      "pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "pso/enemy/lappy/TObjEneLappy.cpp",
+      "pso/render/ChunkTextureStripCollector.cpp",
+      "pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+      "pso/enemy/stelth/StelthData.cpp",
+      "pso/effect/item/TItemEffEquip.cpp",
+      "pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "pso/item/TItemMenuCtrl_80115AF0.cpp",
+      "pso/object/TObjControl.cpp",
+      "pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "pso/npc/TObjNpcHFW00.cpp",
+      "pso/npc/TObjNpcAHM01.cpp",
+      "pso/effect/photon/PhotonBlastSummon.cpp",
+      "pso/weapon/WeaponAttackActions.cpp",
+      "pso/effect/photon/TPhotonEstlla.cpp",
+      "pso/unk/text_8011A780.cpp",
+      "pso/npc/TObjNpcARW00.cpp",
+      "pso/effect/photon/TPhotonGolla.cpp",
+      "pso/npc/TObjNpcHFW01.cpp",
+      "pso/effect/photon/TPhotonFarlla.cpp",
+      "pso/effect/photon/TPhotonLaser.cpp",
+      "pso/effect/photon/TPhotonLeilla.cpp",
+      "pso/effect/photon/TPhotonLine.cpp",
+      "pso/effect/photon/TPhotonPilla.cpp",
+      "pso/effect/photon/TPhotonRainbow.cpp",
+      "pso/effect/photon/TPhotonMylla.cpp",
+      "pso/player/TObjPlayer_801542CC.cpp",
+      "pso/player/PhotonBlastResults.cpp",
+      "pso/effect/photon/TPhotonYoulla.cpp",
+      "pso/effect/particle/TParticleCtrl_801D6B3C.cpp",
+      "pso/technique/TTecBarta.cpp",
+      "pso/player/TObjPlayer_801BC81C.cpp",
+      "pso/item/shop/ShopWeaponStock.cpp",
+      "pso/item/shop/ShopToolStock.cpp",
+      "pso/technique/TTecGiBarta.cpp",
+      "pso/technique/TTecMegid.cpp",
+      "pso/ui/city/TShopEquipmentSellWindow.cpp",
+      "pso/unk/TUnk_804CC870.cpp",
+      "pso/player/PlayerTaskEffects.cpp",
+      "pso/technique/TTecCtrl.cpp",
+      "pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+      "pso/technique/TTecLuker.cpp",
+      "pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+      "pso/player/TObjPlayer_801C7430.cpp",
+      "pso/player/TPlyItem.cpp",
+      "pso/player/TObjPlayer_801AF2F0.cpp",
+      "pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+      "pso/ui/window/TWindowChoiceSetting.cpp",
+      "pso/ui/window/TWindowShop.cpp",
+      "pso/ui/window/TWindowSubComCard_80265410.cpp",
+      "pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+      "pso/ui/window/TWindowMessageLog.cpp",
+      "pso/ui/window/TWindowSubEquipKind.cpp",
+      "pso/ui/window/TWindowSubItemList.cpp",
+      "pso/ui/window/TWindowSubCustomSelect.cpp",
+      "pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+      "pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+      "pso/ui/window/TWindowSubItem.cpp",
+      "pso/unk/text_802A1020.cpp",
+      "pso/player/TObjPlayer_802C3B14.cpp",
+      "pso/player/TObjPlayer_802E6CA8.cpp",
+      "pso/enemy/sinowzoa/SinowZoaData.cpp",
+      "pso/object/trap/TOTrapSeabed01.cpp",
+      "pso/unk/text_80312C50.cpp",
+      "pso/object/lobby/LobbyPigeonPath.cpp",
+      "pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "pso/player/TObjPlayer_803130BC.cpp",
+      "pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+      "pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "pso/unk/text_8035B750.cpp",
+      "pso/enemy/recon/TObjEneRecon.cpp",
+      "pso/ui/window/TWindowDD_8034725C.cpp",
+      "pso/weapon/TUnk_804F0908.cpp",
+      "pso/weapon/TUnk_804F0AF8.cpp",
+      "pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+    ],
+    "status": "Trial, pending source conflict review and exact build. The cumulative source ref still points to the last complete matching source."
+  },
+  "private_layer": {
+    "archive": "f0b3471ed7f86484841b59483438a1d5ee63065b",
+    "materialized_commit": "7d0eebbcf94b911072ac23ff1f2897dafbca63ee",
+    "materialized_proof_tree": "814eb213817f951d5a03c331f365b0814f1ef51d",
+    "overlay_sha256": "fef07b03de9b07b9b2bf29d063384e3d3620221a2ccf56afdd85c6975ab3d820",
+    "overlay_paths": 130,
+    "tests": {
+      "layer": 11,
+      "tools": 294,
+      "host": 5
+    },
+    "tests_sha256": {
+      "layer": "f2440654d2c228e93204dc70d46fe60356f72d188f12e769b562b6267cd9d666",
+      "tools": "aba0319a629ae6c6d9126d805a0b4ed3abe498a52f431614ac6a044604d6296c",
+      "host": "dd6d759850ca47be26fffffe2df2588b20bb388007dd93c1ed2bc02428eaa87e"
+    },
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "result": "pass",
+    "checks": {
+      "report_delta": true,
+      "link_units": true,
+      "force_active": true
+    },
+    "coverage_sha256": "b209427462dc874359c49976accda4f22561e06905f61f432a1e3756babd1697",
+    "report_sha256": "f496cd02a64bbe92c6ddb921c05b022d4d6d4205864038566b66003ec004d40e"
+  },
+  "build_cleanup": {
+    "root_display_before": "466 GiB available at 74% used",
+    "root_display_after": "465 GiB available at 74% used",
+    "checkpoints_mount_mode": "read-only",
+    "objects_found_in_network_review_build_paths": 0,
+    "removed": 0
+  }
+}
