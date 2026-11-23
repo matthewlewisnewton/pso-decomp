@@ -1,0 +1,795 @@
+{
+  "cumulative_rehearsal": {
+    "additional_source_paths_after_assumed_world_merge": 568,
+    "head": "a2d5f12cd57df6312e14a1c1a15d59a9fd91769b",
+    "overlaps_with_validated_source": {
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "fe2e763b47301b402d723d55c712e480b8ccb5766e8b6f80f7a12f273db35538",
+        "validated_source_blob": "66c6a480287b443c026452c17cc76012a680cc88"
+      },
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "df131072a11daabae9e47b492bc96121f933db1125e79d521c8484c484a1ca05",
+        "validated_source_blob": "178d67c665e3bfd06100b63c2c8e554bda1f8609"
+      },
+      "src/pso/boss/volopt/TBoss3Volopt.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "57257313dc595fdbae4601e590d5ae600153c7a4c12c1bacccf28a178f4a0abe",
+        "validated_source_blob": "69517c352e13b8f83b17809c2b006d49e8483331"
+      },
+      "src/pso/item/drop/TItemDrop_80105D0C.cpp": {
+        "hunks": 2,
+        "patch_hunks_sha256": "e7c2ea8c2aa788b8bef009f7d5521f66289a9b9c2c2053253e7356fe7f2bce1f",
+        "validated_source_blob": "7be2e976305656f61d0a035ce434f95ec891ae72"
+      },
+      "src/pso/object/lobby/LobbyPigeonPath.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "3154ac17a9153793998625148c624489f5c8a1746ea0b9b84eed0399a237ac2c",
+        "validated_source_blob": "0846f2c3567a664b793f6b0565106b584ccd3429"
+      },
+      "src/pso/object/trap/TOTrapSeabed01.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "15f7dfa374dee57c73457449d8265ff4401f1b0faa1b436e7f7bc48e319b74ae",
+        "validated_source_blob": "f6c7106ec7cb49972c4ff370f59e25c4b7378c52"
+      },
+      "src/pso/player/TObjPlayer_801D84CC.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "d6d0192198bdc679243e97412ab92b846601f0ca5a2d0c3cef63a17018874b07",
+        "validated_source_blob": "cce6f5bf62734a6f346216471375cf56723d7dd2"
+      },
+      "src/pso/quest/QuestOpcodeHandlers.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "18b66482c406fed3a476ab10f59059bae4375857148595837a0a2229a6945a4c",
+        "validated_source_blob": "8ebc2841b860bca3c85592739d5593057e0cb0a6"
+      },
+      "src/pso/technique/TTecCtrl.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "719331522a467d7f8259134d988ad89055e8feab7111cb819a85c7b658bbeb07",
+        "validated_source_blob": "23d8745e205ce0f6b62d745261922fb9732b8cda"
+      },
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "873f24201b80d11ede3998a5b19adb2b5772939d6d232a319085d95c8512764e",
+        "validated_source_blob": "001bb9a84246c7742cd6a80d9aeebd8ff2e066c8"
+      },
+      "src/pso/unk/TLobby_801E2F94.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "0bf2ccd14f26bcce8de782db64cc4cc0d0aeba95b871104285ede036b8fb5309",
+        "validated_source_blob": "04b2264b443bf201b04f39568bdf4022e9e82d1f"
+      },
+      "src/pso/unk/text_803D96A8.cpp": {
+        "hunks": 1,
+        "patch_hunks_sha256": "dfb79fea657b09ce17426755bab2ba2d12e26fd193aaa0eb5f5ca2a6de1b9bf7",
+        "validated_source_blob": "5dacedd7ee396e4ec72cd30e1b594e8c27f552d4"
+      }
+    },
+    "prior_head": "93b4567e8c201b2ee15cc979b153843c03d9c6d8",
+    "private_head": "b0109907ad9afea3ffbce1f02fd897fa71ad6e09",
+    "private_patch_sha256": "31f3e363c624bd930d23e302fc04f682df73a7a9835f10e5e8fec10af6b6839a",
+    "reason": "Preserve native loader, item-drop RNG, enemy/NPC owners, and typed Ginja trap receiver and existing includes.",
+    "redundant_paths": [
+      "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+      "src/pso/npc/TObjNpcARM00.cpp",
+      "src/pso/npc/TObjNpcBringer.cpp",
+      "src/pso/npc/TObjNpcEnemy.cpp",
+      "src/pso/npc/TObjNpcLappy.cpp",
+      "src/pso/npc/TObjNpcMoja.cpp",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp"
+    ]
+  },
+  "current_fork_cutover_candidate": "aa50b74f1922e940e821e6824e991f24a43600fa",
+  "current_upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "first_unpublished_review": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "next_replay": {
+    "auto_applied_paths": 405,
+    "base": "c3b0000bea8218676b3e1667eeb19bbda8174f19",
+    "historical_combat_tip": "ac527c58211903ee21810aac6b0a97f839554b1b",
+    "overlapping_paths": 69
+  },
+  "previous_private_tests_reused_by_tree": {
+    "fork_tools": 11,
+    "host_suites": 5,
+    "tools": 294
+  },
+  "retail_and_coverage": {
+    "private": {
+      "check_pr_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "commit": "b0109907ad9afea3ffbce1f02fd897fa71ad6e09",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "b220a2c5263829c4cb318b65dd1c37679e7e2f73b0979e452aa2a2525575a0c8",
+      "tree": "945eaf8c64bca3ca9efb23f1d1fe41b6067f3e32",
+      "validated_identical_tree_at": "1fd9fb664547faffc77a720e8f13a39c852b3733"
+    },
+    "source": {
+      "check_pr_sha256": "b8f5806ea5490460e86fc0c91a54d9d0961902e63ea87a4d82d7e3f55b9eced9",
+      "commit": "a2d5f12cd57df6312e14a1c1a15d59a9fd91769b",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "b220a2c5263829c4cb318b65dd1c37679e7e2f73b0979e452aa2a2525575a0c8",
+      "tree": "832717566b716c1a21917517dcb8c63f7d4ea8bb"
+    },
+    "world": {
+      "check_pr_sha256": "6e2dbf63529d18f571823cbdef814f90df88eaebbec94548dd32db9965c0479b",
+      "commit": "c3b0000bea8218676b3e1667eeb19bbda8174f19",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "22854bd6a26175e907cc7fcf65602ee3f59dcd38ae386aa8c60735c8031d7e5c",
+      "tree": "7c7d172417e951b5e7a77733681af87fa23bc74b"
+    }
+  },
+  "runtime_probes": {
+    "source": [
+      "source.dol: 10 resource lifecycle calls, 4 factories, 6 fish areas, 3 path samples and 3 fish school cases passed",
+      "source.dol: strip selection, both winding signs, scrolling and release passed",
+      "Heap release, data-file cleanup and scalar allocation passed.",
+      "source.dol: overlapping byte and word moves, raw allocation, and nullable releases passed.",
+      "BML initialization, named requests, archive reads, completion and cancellation passed.",
+      "Texture input layout and both entry flag paths passed."
+    ],
+    "world": [
+      "world.dol: 10 resource lifecycle calls, 4 factories, 6 fish areas, 3 path samples and 3 fish school cases passed",
+      "world.dol: strip selection, both winding signs, scrolling and release passed",
+      "Heap release, data-file cleanup and scalar allocation passed.",
+      "world.dol: overlapping byte and word moves, raw allocation, and nullable releases passed.",
+      "BML initialization, named requests, archive reads, completion and cancellation passed.",
+      "Texture input layout and both entry flag paths passed."
+    ]
+  },
+  "upstream_pr_375": {
+    "already_ancestor": true,
+    "merged_at": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+    "shared_paths": 93
+  },
+  "world_review": {
+    "base": "6e64253b42307a9ea82494d16f27beb0928cd213",
+    "benchmark": {
+      "added": 67,
+      "base": 142754,
+      "head": 142461,
+      "removed": 360
+    },
+    "branch": "great-merge/review/after-sound/world-objects-and-resources",
+    "by_category": [
+      {
+        "added": 0,
+        "base": 7394,
+        "category": "Linkage",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "head": 7359,
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "removed": 35
+      },
+      {
+        "added": 0,
+        "base": 1520,
+        "category": "Linkage",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "head": 1515,
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "removed": 5
+      },
+      {
+        "added": 0,
+        "base": 6846,
+        "category": "Linkage",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "head": 6829,
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "removed": 17
+      },
+      {
+        "added": 0,
+        "base": 304,
+        "category": "Linkage",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "head": 304,
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Linkage",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "head": 0,
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 10689,
+        "category": "Linkage",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "head": 10688,
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 9176,
+        "category": "Layout",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "head": 9154,
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "removed": 22
+      },
+      {
+        "added": 0,
+        "base": 890,
+        "category": "Layout",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "head": 890,
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 2070,
+        "category": "Layout",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "head": 2045,
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "removed": 25
+      },
+      {
+        "added": 0,
+        "base": 14176,
+        "category": "Layout",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "head": 14152,
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "removed": 24
+      },
+      {
+        "added": 0,
+        "base": 2135,
+        "category": "Types",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "head": 2105,
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "removed": 30
+      },
+      {
+        "added": 0,
+        "base": 49,
+        "category": "Types",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "head": 25,
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "removed": 24
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Types",
+        "example": "undefined4",
+        "group": "types",
+        "head": 0,
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "removed": 0
+      },
+      {
+        "added": 67,
+        "base": 14463,
+        "category": "Types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "head": 14470,
+        "key": "address_type",
+        "name": "Address-named types",
+        "removed": 60
+      },
+      {
+        "added": 0,
+        "base": 39,
+        "category": "Types",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "head": 39,
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 11102,
+        "category": "Decompiler output",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "head": 11076,
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "removed": 26
+      },
+      {
+        "added": 0,
+        "base": 2223,
+        "category": "Decompiler output",
+        "example": "sp1C",
+        "group": "decompiler",
+        "head": 2211,
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "removed": 12
+      },
+      {
+        "added": 0,
+        "base": 24912,
+        "category": "Decompiler output",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "head": 24857,
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "removed": 55
+      },
+      {
+        "added": 0,
+        "base": 26,
+        "category": "Decompiler output",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "head": 26,
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Decompiler output",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "head": 0,
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 258,
+        "category": "Decompiler output",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "head": 258,
+        "key": "address_comment",
+        "name": "Address comments",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 10334,
+        "category": "Names",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "head": 10334,
+        "key": "data_label",
+        "name": "Address-named data",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 12910,
+        "category": "Names",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "head": 12901,
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "removed": 9
+      },
+      {
+        "added": 0,
+        "base": 23,
+        "category": "Names",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "head": 23,
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 295,
+        "category": "Vtables",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "head": 295,
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 23,
+        "category": "Vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "head": 23,
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 66,
+        "category": "Vtables",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "head": 66,
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1485,
+        "category": "Vtables",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "head": 1485,
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 4192,
+        "category": "Vtables",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "head": 4192,
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1145,
+        "category": "Units and classes",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "head": 1145,
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 3833,
+        "category": "Units and classes",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "head": 3818,
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "removed": 15
+      },
+      {
+        "added": 0,
+        "base": 154,
+        "category": "Units and classes",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "head": 154,
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 22,
+        "category": "Assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "head": 22,
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1936,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "head": 1928,
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "removed": 8
+      },
+      {
+        "added": 0,
+        "base": 105,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "head": 105,
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "removed": 0
+      }
+    ],
+    "excluded_historical_changes": [
+      "Existing matrix interfaces remain in use on this review base. The later native matrix series supplies the corrected definitions and their callers.",
+      "The item-drop loader retains its current exact implementation. The typed relocation loader is already present in the cumulative tree.",
+      "Enemy header ownership, NPC position ownership and targeting, and the unrelated math declarations remain outside this review. The cumulative tree carries their existing resolutions."
+    ],
+    "flagged_labels": 14,
+    "head": "c3b0000bea8218676b3e1667eeb19bbda8174f19",
+    "label_changes": [
+      {
+        "address": "0x8007EBB4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "safe_free__FPv",
+        "old": "safe_free__23TAdSinglePlyChrSelectGCFUl",
+        "rationale": "Use the shared nullable release function with a pointer to the allocation.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F591C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "collect_plist_strips_by_texture__FP15StripBufferPairPsl",
+        "old": "collect_plist_strips_by_texture__FPvPsl",
+        "rationale": "The collector consumes the shared StripBufferPair.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F5AC8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "count_plist_strips_by_texture__FP15StripBufferPairPsl",
+        "old": "count_plist_strips_by_texture__FPvPvPv",
+        "rationale": "The count query consumes the shared StripBufferPair and its typed count.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F9AE8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_named_object__FPCc",
+        "old": "create_named_object__Fl",
+        "rationale": "The named object loader consumes a string filename.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C09A8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0898, a class named after an address"
+        ],
+        "new": "release_resources__13TUnk_804E0898Fv",
+        "old": "free_static_instance__10TObjPlayerFv",
+        "rationale": "The lobby pigeon factory and resource lifecycle use the existing TUnk_804E0898 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C09E0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0898, a class named after an address"
+        ],
+        "new": "load_lobby_pigeon_resource__13TUnk_804E0898Fv",
+        "old": "load_lobby_pigeon_resource__10TObjPlayerFv",
+        "rationale": "The lobby pigeon factory and resource lifecycle use the existing TUnk_804E0898 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C1324",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E08D4, a class named after an address"
+        ],
+        "new": "create__13TUnk_804E08D4FPv",
+        "old": "create_child_object__10TObjPlayerFPv",
+        "rationale": "The seaside bird factory and resource lifecycle use the existing TUnk_804E08D4 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C1370",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E08D4, a class named after an address"
+        ],
+        "new": "release_resources__13TUnk_804E08D4Fv",
+        "old": "destroy_instance__10TObjPlayerFv",
+        "rationale": "The seaside bird factory and resource lifecycle use the existing TUnk_804E08D4 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C13C8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E08D4, a class named after an address"
+        ],
+        "new": "load_kamome_resources__13TUnk_804E08D4Fv",
+        "old": "load_kamome_resources__10TObjPlayerFv",
+        "rationale": "The seaside bird factory and resource lifecycle use the existing TUnk_804E08D4 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C1AF8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0910, a class named after an address"
+        ],
+        "new": "create__13TUnk_804E0910FPv",
+        "old": "create__10TObjPlayerFPv",
+        "rationale": "The Jungle bird factory and resource lifecycle use the existing TUnk_804E0910 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C1B44",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0910, a class named after an address"
+        ],
+        "new": "release_resources__13TUnk_804E0910Fv",
+        "old": "free_statics__10TObjPlayerFv",
+        "rationale": "The Jungle bird factory and resource lifecycle use the existing TUnk_804E0910 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C1B9C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0910, a class named after an address"
+        ],
+        "new": "load_jungle_bird_resources__13TUnk_804E0910Fv",
+        "old": "load_jungle_bird_resources__10TObjPlayerFv",
+        "rationale": "The Jungle bird factory and resource lifecycle use the existing TUnk_804E0910 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C21A0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E094C, a class named after an address"
+        ],
+        "new": "create__13TUnk_804E094CFPv",
+        "old": "create_path_obj__10TObjPlayerFPv",
+        "rationale": "The Jungle shrimp factory and resource lifecycle use the existing TUnk_804E094C class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C21EC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E094C, a class named after an address"
+        ],
+        "new": "release_resources__13TUnk_804E094CFv",
+        "old": "free_chr_select__10TObjPlayerFv",
+        "rationale": "The Jungle shrimp factory and resource lifecycle use the existing TUnk_804E094C class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C2244",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E094C, a class named after an address"
+        ],
+        "new": "load_jungle_ebi_resources__13TUnk_804E094CFv",
+        "old": "load_jungle_ebi_resources__10TObjPlayerFv",
+        "rationale": "The Jungle shrimp factory and resource lifecycle use the existing TUnk_804E094C class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C28B4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0988, a class named after an address"
+        ],
+        "new": "create__13TUnk_804E0988FPv",
+        "old": "TObjPlayer__sub_802C28B4",
+        "rationale": "The Seabed dolphin factory and resource lifecycle use the existing TUnk_804E0988 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C2900",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0988, a class named after an address"
+        ],
+        "new": "release_resources__13TUnk_804E0988Fv",
+        "old": "TObjPlayer__sub_802C2900",
+        "rationale": "The Seabed dolphin factory and resource lifecycle use the existing TUnk_804E0988 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C2958",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804E0988, a class named after an address"
+        ],
+        "new": "load_seabed_dolphin__13TUnk_804E0988Fv",
+        "old": "load_seabed_dolphin__10TObjPlayerFv",
+        "rationale": "The Seabed dolphin factory and resource lifecycle use the existing TUnk_804E0988 class that owns the model and textures.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C2FBC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "draw_line_strip__11TObjPathObjFP10NJS_OBJECTP15AnimationMotionf",
+        "old": "draw_line_strip__10TObjPlayerFPviif",
+        "rationale": "The existing path object draws with its typed Ninja node and animation motion.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C3088",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "sample_clamped_path_position__11TObjPathObjFP10NJS_OBJECTP15AnimationMotionP3Vecf",
+        "old": "sample_clamped_path_position__FPvlPvlf",
+        "rationale": "The existing path object samples the typed Ninja node and animation motion into a Vec.",
+        "section": ".text",
+        "type": "function"
+      }
+    ],
+    "paths": 235,
+    "preliminary_replay": {
+      "applied_without_conflict": 194,
+      "unresolved_files": 30
+    },
+    "retention_warnings": 0
+  }
+}
