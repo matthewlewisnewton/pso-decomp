@@ -1,0 +1,498 @@
+{
+  "previous_source": "69b1e6c949e4fd7fa359b7fa55f94569d39e381c",
+  "previous_workspace": "cb3b7e9ea627bc813ffc48db393607219f716af9",
+  "lens_and_color": "02115bceef5129c7a8fa261fcb04f00989640d7b",
+  "source": "5ba1925a109f566b2a04031b03e67386f64d6abd",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_source_units": 2394,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/TEF_LensFlare.h",
+    "include/pso/item/TItem.h",
+    "src/pso/effect/TEF_LensFlare.cpp",
+    "src/pso/effect/particle/ParticleBallistic.cpp",
+    "src/pso/effect/particle/ParticleOrbit.cpp",
+    "src/pso/effect/particle/ParticleRadial.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/item/mag/TItemMagSub.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase_8008102C.cpp"
+  ],
+  "coverage": {
+    "final": {
+      "losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "report_sha256": "4781967d97c7e359dc1fd003ce56b7bddf8f1f08945e7a27b10902de0c9ad71e"
+    },
+    "layer": {
+      "losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "report_sha256": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+    }
+  },
+  "units": {
+    "pso/camera/TCameraConversation": {
+      "exact_functions": 18,
+      "sections": [
+        {
+          "name": ".data",
+          "size": "96",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2152237784"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "496",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151907808"
+          }
+        },
+        {
+          "name": ".sbss",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153598480"
+          }
+        },
+        {
+          "name": ".sdata2",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153615352"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "1804",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2147922904"
+          }
+        }
+      ]
+    },
+    "pso/ui/window/TWindowKeyBoardBase_8008102C": {
+      "exact_functions": 5,
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151910952"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "588",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148012076"
+          }
+        }
+      ]
+    },
+    "pso/effect/TEF_LensFlare": {
+      "exact_functions": 6,
+      "sections": [
+        {
+          "name": ".data",
+          "size": "292",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2152259648"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151910960"
+          }
+        },
+        {
+          "name": ".sdata",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153588976"
+          }
+        },
+        {
+          "name": ".sdata2",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153616184"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "1796",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148012664"
+          }
+        }
+      ]
+    },
+    "pso/effect/particle/ParticleBallistic": {
+      "exact_functions": 8,
+      "sections": [
+        {
+          "name": ".data",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2152261496"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151912680"
+          }
+        },
+        {
+          "name": ".sdata2",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153616632"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "6144",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148042620"
+          }
+        }
+      ]
+    },
+    "pso/effect/particle/ParticleOrbit": {
+      "exact_functions": 8,
+      "sections": [
+        {
+          "name": ".data",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2152261520"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151912752"
+          }
+        },
+        {
+          "name": ".sdata2",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153616680"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "5372",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148048764"
+          }
+        }
+      ]
+    },
+    "pso/effect/particle/ParticleRadial": {
+      "exact_functions": 9,
+      "sections": [
+        {
+          "name": ".data",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2152261544"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151912768"
+          }
+        },
+        {
+          "name": ".sdata2",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153616728"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "4220",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148054136"
+          }
+        }
+      ]
+    },
+    "pso/item/TItem": {
+      "exact_functions": 177,
+      "sections": [
+        {
+          "name": ".ctors",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151890804"
+          }
+        },
+        {
+          "name": ".data",
+          "size": "584",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2152327416"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "200",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151931744"
+          }
+        },
+        {
+          "name": ".sbss",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153599976"
+          }
+        },
+        {
+          "name": ".sdata",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153589600"
+          }
+        },
+        {
+          "name": ".sdata2",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153622144"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "13232",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148531740"
+          }
+        }
+      ]
+    },
+    "pso/item/mag/TItemMagSub": {
+      "exact_functions": 36,
+      "sections": [
+        {
+          "name": ".data",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2152330632"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151933288"
+          }
+        },
+        {
+          "name": ".sbss",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153600184"
+          }
+        },
+        {
+          "name": ".sdata",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153589768"
+          }
+        },
+        {
+          "name": ".sdata2",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153622464"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "4764",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2148615980"
+          }
+        }
+      ]
+    },
+    "pso/animation/MotionSampling": {
+      "exact_functions": 12,
+      "sections": [
+        {
+          "name": ".sdata2",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2153647696"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "2876",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "2151508320"
+          }
+        }
+      ]
+    }
+  },
+  "original_data_inventory": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "source_quality": {
+    "total": {
+      "base": 154067,
+      "head": 154040,
+      "added": 0,
+      "removed": 27
+    },
+    "labels": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800818D8",
+        "type": "function",
+        "old": "TEF_LensFlare__ct",
+        "new": "__ct__13TEF_LensFlareFP7TObjectPv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80100A40",
+        "type": "function",
+        "old": "is_point_on_screen__FPCfff",
+        "new": "is_point_on_screen__FPC3Vecff",
+        "flags": []
+      }
+    ],
+    "stale_force_active": [],
+    "report_sha256": "46113667ef7cce94e4624fb60f357b809663a5f1cf2afcaf64207a1fe3b3292d"
+  },
+  "duplicate_compiler_directives_removed": {
+    "inline_depth(1)": 45,
+    "auto_inline off": 45,
+    "dont_inline off": 45
+  },
+  "runtime_probes": {
+    "lens": {
+      "rows": [
+        "PsoV3.dol: split-view gate, allocation failure, native lens construction, and the player-position threshold passed",
+        "psov3.dol: split-view gate, allocation failure, native lens construction, and the player-position threshold passed"
+      ],
+      "log_sha256": "9815dcec2346d3519043d0bc4c645233d976edf3b780e355116c3d8aea4525a6"
+    },
+    "particle-factory": {
+      "rows": [
+        "/tmp/gm-stage-archive-replay.PGoFTj/upstream-review/orig/GPOE8P/files/PsoV3.dol: 30 particle factory cases passed",
+        "/tmp/gm-stage-archive-replay.PGoFTj/upstream-review/build/GPOE8P/psov3.dol: 30 particle factory cases passed"
+      ],
+      "log_sha256": "0f6ab2009dfd1637890f5af8c2481a41c517c6b64ee1a9eb83d6475a6d5966e7"
+    },
+    "visibility": {
+      "rows": [
+        "PsoV3.dol: six item visibility cases cover the view-depth and screen-edge limits",
+        "psov3.dol: six item visibility cases cover the view-depth and screen-edge limits"
+      ],
+      "log_sha256": "ba5e7fd9ed68096ca9e1c9eb4108bbbb6f0af1feb1f7c632d8f19cb8412fe83b"
+    }
+  },
+  "historical_comparisons_resolved": {
+    "src/pso/effect/TEF_LensFlare.cpp": [
+      "Complete historical lens flare recovery retained",
+      "The native constructor and caller follow 73b9d33d67. The current owner uses the established camera and particle-definition records, the same reflected element table, byte-safe tint and glare copies, and the same scoped propagation setting. All six functions and all four data sections match."
+    ],
+    "src/pso/item/TItem.cpp": [
+      "Complete historical item source reconciled",
+      "The current owner keeps named orientation fields, the shared ground query, matching memory and particle APIs, the native actor HP getter, typed Ginja resources and the complete Vec visibility input. The item and Mag callers pass their actual world positions. All 177 functions in the item unit and its data sections match."
+    ],
+    "src/pso/misc/TCameraCtrl_8006B3D8.cpp": [
+      "Complete historical conversation and fixed camera changes retained at native owners",
+      "The authored split-view vectors at 0x8006BAB4 and 0x8006BAC8 return Vec fields directly. TCameraConversation reads these banks, TCameraFixed emits the native vtable at 0x80488B08, and the original 480-byte destination table stays at 0x804381E0. The current unit covers the historical text extent and all functions and data match."
+    ],
+    "src/pso/misc/TCameraCtrl_803D6960.cpp": [
+      "Complete historical motion sampling changes retained at native owner",
+      "MotionSampling.cpp uses the shared Ninja key records and named camera input and output records. It covers 0x803D6960 through 0x803D749C, retains the zero Z component of XY samples and removes the former redundant declarations and interpolation scope directives while matching each function and data section."
+    ]
+  },
+  "remaining_historical_comparisons": 197,
+  "workspace": {
+    "overlay_paths": 130,
+    "overlay_sha256": "c954ed61bfe19ad3fef5075f2ea29c51a337e6ffbbc03898d27cef7bd2e0a878",
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "retention": "force_active: 26990 listed, +0 unreferenced symbol(s) in linked units, -0 stale",
+    "manifest_tree": "53da81e9e49ad6596c49a6251862ff3301f479e7"
+  }
+}
