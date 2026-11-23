@@ -1,8 +1,10 @@
 # Recover native PPP, modem, and packet receive interfaces
 
-The current 63-file standalone review is `great-merge/review/after-370/network-runtime` at `93e3933edb` on upstream master `d8c0a969d2`. It also builds cleanly above PR #371 at `6da1100681`. Both builds reproduce retail, preserve all 27,572 exact functions, and account for the original 1,147 data bytes. The benchmark reports 483 fewer findings and zero flagged symbol labels in both builds. The standalone revision passes 14 runtime suites. [Validation for both builds](2026-11-22-upstream-370-network-review-validation.json)
+The current standalone network review is `great-merge/review/after-372/network-runtime` at `7b66b623b1` on upstream master `5cf9da024a`. The 63-path change reproduces retail with all 27,572 exact functions and all 1,147 original data bytes accounted for. Fourteen runtime suites pass. The upstream benchmark reports 483 fewer findings, zero flagged symbol labels and zero newly stale retention entries. [Validation on upstream PR #372](2026-11-22-upstream-372-network-review-validation.json)
 
 ## Previous validations
+
+The current 63-file standalone review is `great-merge/review/after-370/network-runtime` at `93e3933edb` on upstream master `d8c0a969d2`. It also builds cleanly above PR #371 at `6da1100681`. Both builds reproduce retail, preserve all 27,572 exact functions, and account for the original 1,147 data bytes. The benchmark reports 483 fewer findings and zero flagged symbol labels in both builds. The standalone revision passes 14 runtime suites. [Validation for both builds](2026-11-22-upstream-370-network-review-validation.json)
 
 The standalone network review is now `7f33369109` on upstream `6aee940eca`. It passes the full matching build, 11 network suites, and the list, packet copy, and UDP callback probes. The same source applies cleanly above the window review and matches retail at `c02dcaa95d`. [Current validation](2026-11-22-upstream-367-network-memory-validation.json)
 
@@ -54,6 +56,6 @@ Start with `NetworkDispatch.h`, `NetworkRuntimeSlots.h`, `PppFsm.h` and `Network
 ### Validation
 
 - GPOE8P reproduces retail DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` with 27,572 exact functions.
-- `tools/check_pr.py` passes with zero code or data coverage loss. The standalone build links 2,416 exact units and retains all 1,147 original fork data bytes.
+- `tools/check_pr.py` passes with zero code or data coverage loss. The standalone build links 2,393 exact units and retains all 1,147 original fork data bytes.
 - The source-quality benchmark reports 483 fewer findings overall, zero flagged symbol labels and zero newly stale retention entries.
 - Fourteen runtime suites pass. Coverage includes dispatcher startup failures and message layout, SDK queues, modem scripts, PPP frames and negotiation, UDP callbacks, DHCP and TCP queue behavior.
