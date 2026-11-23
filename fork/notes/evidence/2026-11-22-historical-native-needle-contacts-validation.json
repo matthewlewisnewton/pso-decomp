@@ -1,0 +1,264 @@
+{
+  "source_head": "5f517498ef8408319cf20e29df36c130c3e4da6e",
+  "source_tree": "466782c45a02fe25edc3b8d5e7eeb34fd34c9476",
+  "previous_cumulative": "48d7dc5012777f44f656f21fc74f170a0f8a4267",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/base/TObjMotion.h",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight_80235C44.cpp"
+  ],
+  "source_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/collision/ActorBodyContact.h",
+    "include/pso/enemy/TNeedleShoot.h",
+    "include/pso/enemy/gee/TObjEneMe1Gee_NEEDLE.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGueMissile.h",
+    "include/pso/npc/TObjNpcKenkyuW.h",
+    "include/pso/object/base/TObjMotion.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/technique/TechniqueContact.h",
+    "src/pso/enemy/TNeedleShoot.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee_NEEDLE_802A4A44.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/npc/TObjNpcKenkyuW.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight_80235C44.cpp",
+    "src/pso/player/TObjPlayer_801542CC.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142549,
+      "head": 142435,
+      "added": 0,
+      "removed": 114
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80155FBC",
+        "type": "function",
+        "old": "find_actor_body_contact__14TObjCollidableFPUcf",
+        "new": "find_actor_body_contact__14TObjCollidableFP14TObjCollidablef",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A3D68",
+        "type": "function",
+        "old": "clear_technique_contacts__10TObjPlayerFv",
+        "new": "clear_technique_contacts__12TNeedleShootFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A3DAC",
+        "type": "function",
+        "old": "is_hit_receivable_target__10TObjPlayerFlUl",
+        "new": "is_hit_receivable_target__12TNeedleShootFP14TObjCollidable",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A3DE8",
+        "type": "function",
+        "old": "TObjPlayer__sub_802A3DE8",
+        "new": "collect_technique_contacts_default__12TNeedleShootFP8TObjBase",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A3FDC",
+        "type": "function",
+        "old": "TObjPlayer__sub_802A3FDC",
+        "new": "collect_technique_contacts_mode_two__12TNeedleShootFP8TObjBase",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A41CC",
+        "type": "function",
+        "old": "collect_technique_contacts__10TObjPlayerFPv",
+        "new": "collect_technique_contacts__12TNeedleShootFP8TObjBase",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A47C8",
+        "type": "function",
+        "old": "__ct__12TNeedleShootFlP3VecP3Vec",
+        "new": "__ct__12TNeedleShootFP8TObjBaseP3VecP3Vec",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A4A40",
+        "type": "function",
+        "old": "on_target_hit__12TNeedleShootFPv",
+        "new": "on_target_hit__12TNeedleShootFP14TObjCollidable",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A4AEC",
+        "type": "function",
+        "old": "on_target_hit__20TObjEneMe1Gee_NEEDLEFPv",
+        "new": "on_target_hit__20TObjEneMe1Gee_NEEDLEFP14TObjCollidable",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802A4CC4",
+        "type": "function",
+        "old": "__ct__20TObjEneMe1Gee_NEEDLEFP7TObjectP3VecP3Vecff",
+        "new": "__ct__20TObjEneMe1Gee_NEEDLEFP8TObjBaseP3VecP3Vecff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802CE1E8",
+        "type": "function",
+        "old": "on_target_hit__22TObjEneMe1GiGueMissileFPv",
+        "new": "on_target_hit__22TObjEneMe1GiGueMissileFP14TObjCollidable",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802CE220",
+        "type": "function",
+        "old": "create__22TObjEneMe1GiGueMissileFlllff",
+        "new": "create__22TObjEneMe1GiGueMissileFP8TObjBaseP3VecP3Vecff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802CE428",
+        "type": "function",
+        "old": "__ct__22TObjEneMe1GiGueMissileFlP3VecP3Vecff",
+        "new": "__ct__22TObjEneMe1GiGueMissileFP8TObjBaseP3VecP3Vecff",
+        "flags": []
+      }
+    ],
+    "newly_stale_retention_entries": 0
+  },
+  "matching_constraint": "The local source in the default dispatch and the explicit pointer expression in the hit callback preserve the original instruction order and stack frame.",
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "collision_gates": 10,
+    "collector_filters": 9,
+    "dispatch_cases": 6,
+    "scope": "The solver retains pointer and flag gates and forwards typed body sets. The collectors test distinct actor rules, midpoint and rotation fields and the contact cap. The dispatch uses the original case, eligibility check and virtual callback slots.",
+    "intercepts": "The harness substitutes geometry, actor lookup, slot registration and virtual callback endpoints. The surrounding gate, collection and dispatch instructions execute from each image."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/npc/TObjNpcKenkyuW.cpp": {
+        "historical_functions": 10,
+        "exact_data_bytes": 8,
+        "source_evidence": "The native NPC constructor and BML resource lifetime retain the original archive, texture and model. TNeedleShoot owns the three collectors, eligibility check and list reset. The projectile, source actor, collision actor, and returned body or position use the native types. The original per-mode selection, owner exclusion, wall result and hit cap are preserved."
+      },
+      "src/pso/object/TObjControl.cpp": {
+        "historical_functions": 24,
+        "exact_data_bytes": 52,
+        "source_evidence": "The demo predicate, synchronized object exchange, attack and defense conversion constants, body-center adjustment, and experience and drop sequence are retained. The established chain helper moves the last child with the same empty-destination and linked-destination behavior, and has_group tests the native group root."
+      },
+      "src/pso/object/TObjCityMainWarpChallenge.cpp": {
+        "historical_functions": 9,
+        "exact_data_bytes": 120,
+        "source_evidence": "The typed native warp retains the model frames, the camera range check, both confirmation paths, and the player roster. TWindowCtrl::suppress_slot retains the original linked entry 0x8024AEAC, with the separate keyboard hold at its original address."
+      },
+      "src/pso/object/TObjWarpBossMulti.cpp": {
+        "historical_functions": 42,
+        "exact_data_bytes": 252,
+        "source_evidence": "The native BmlResource, model, motion and texture fields keep the default, Ancient and Jungle choices, resource lifetime, the transfer confirmation and floor-leader checks, the warp sound, flag checks and player packet handoff. Window suppress and restore use the existing TWindowCtrl owners at 0x8024AEAC and 0x8024AEF0."
+      },
+      "src/pso/misc/TNpcPlayer.cpp": {
+        "historical_functions": 106,
+        "exact_data_bytes": 16596,
+        "source_evidence": "The native constructor section entry, 64 visual records at 0x50 bytes per record, endian conversion, inventory rows and character data assignment are retained. The existing typed cast-technique packet preserves construction, position swapping, size and send, along with the original health and obstacle comparisons."
+      }
+    },
+    "remaining": 143
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "9c802351fa21afdfe394a82e6e5f835c773a9bda43a11b1cb417f73d4871af32",
+    "delta-03.json": "bdeffa5b22a49ab1a81a2838cb1b46d430913da028bb22355a3930535d8b4604",
+    "quality.json": "60a48687929231daede5e8388c0eba9fe2e4d76930a5eff780e85456525d39d8",
+    "probe-native-needle.py": "45cf3f7bdc52159e26400d84bedd2dc135828280b77cca0cbf35b050b7b6046f",
+    "probe-needle.log": "cf8e1df6a88f7a478eb6947cac7d8fd483b5e8cb3b62b9297da1c22710b54e04",
+    "source-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714"
+  },
+  "materialized_fork": {
+    "tree": "e88e95a727e1f7dd8480f61bcfe506cf059ed627",
+    "retention_entries": 27007,
+    "retention_names_updated": {
+      "clear_technique_contacts__10TObjPlayerFv": "clear_technique_contacts__12TNeedleShootFv",
+      "is_hit_receivable_target__10TObjPlayerFlUl": "is_hit_receivable_target__12TNeedleShootFP14TObjCollidable",
+      "TObjPlayer__sub_802A3DE8": "collect_technique_contacts_default__12TNeedleShootFP8TObjBase",
+      "TObjPlayer__sub_802A3FDC": "collect_technique_contacts_mode_two__12TNeedleShootFP8TObjBase",
+      "collect_technique_contacts__10TObjPlayerFPv": "collect_technique_contacts__12TNeedleShootFP8TObjBase",
+      "__ct__22TObjEneMe1GiGueMissileFlP3VecP3Vecff": "__ct__22TObjEneMe1GiGueMissileFP8TObjBaseP3VecP3Vecff",
+      "on_target_hit__12TNeedleShootFPv": "on_target_hit__12TNeedleShootFP14TObjCollidable",
+      "on_target_hit__20TObjEneMe1Gee_NEEDLEFPv": "on_target_hit__20TObjEneMe1Gee_NEEDLEFP14TObjCollidable",
+      "on_target_hit__22TObjEneMe1GiGueMissileFPv": "on_target_hit__22TObjEneMe1GiGueMissileFP14TObjCollidable"
+    },
+    "newly_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714",
+      "fork-tests.log": "f919facf62262c886058b4c13de74a5e923406c005178bbfc67b4c396c34a97a",
+      "tool-tests.log": "fb9fb113cdde02bacb55515eecd319e985b2f1f95e8653e77d5886107bd0bd75",
+      "host-tests.log": "fa2ed3633f5246c020bfac1a9d6a5519127ca72d1559493a113e12822b12513d"
+    }
+  }
+}
