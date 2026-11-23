@@ -1,0 +1,464 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "7edf92fc22b3ab5422fc01453c534f1877832506",
+  "updated_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "15680e919cedff9a5458b07ba047c9d261ee2c23",
+      "tree": "793a7142818cd7208bdff85b8c755f39ce2a562e",
+      "coverage_baseline": "7edf92fc22b3ab5422fc01453c534f1877832506",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "ee802a8d5f13a7f5ac653683cc34d6fafe69139f6d39bfb4d790f1a9a67279d0",
+        "source-check.json": "6003ff762655ccaf0a358e3f55519bf60feedb1179102deeca6d0e9090f6cf45"
+      }
+    },
+    "queue": {
+      "head": "ecf7e8b4b1a282cb45154c6f5595225e307b9611",
+      "tree": "790eba9546b57b826fa12888e5ae70a9b7a40d6b",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "ee802a8d5f13a7f5ac653683cc34d6fafe69139f6d39bfb4d790f1a9a67279d0",
+        "queue-check.json": "66acc82e6ba134aed81d35fdddd8644369bde3b7750725a1c428ad57eba8d2fa"
+      }
+    },
+    "private": {
+      "head": "620cc5d4b1f769fd8c95f8a3cc54f6819d53ae79",
+      "tree": "14ded64cbbb7058b2b09af71a54b6960b2788627",
+      "coverage_baseline": "15680e919cedff9a5458b07ba047c9d261ee2c23",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "ee802a8d5f13a7f5ac653683cc34d6fafe69139f6d39bfb4d790f1a9a67279d0",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "source_build_tree_was_tested_at": "0c8fd2f0e7320472a5758583264effe9d44da7f6",
+  "whole_historical_comparisons_closed": {
+    "src/pso/boss/TObjBoss2Tunnel.cpp": {
+      "historical_row": 842,
+      "fork_blob": "8760f4138328318c3ee9f70f2e4f5241d8cfbc91",
+      "historical_diff_sha256": "e8437bf32762f5afb454b663a7e00fc85af999eae76312613ee9c6104900afca",
+      "source_resolution": "Shared vectors, camera matrix storage, ground-hit records, curve receivers, and the sound packet use native declarations. The signed disc-size check, card buffer and checksum paths use the native ScreenSnapshot size and checksum field. Capture preserves the retail pointer walk, while using the existing pixel and name extents. The card flag, CRC and error return keep their original widths.",
+      "exact_linked_functions": 49,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 136,
+          "exact_bytes": 136,
+          "owners": [
+            "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "66c6a480287b443c026452c17cc76012a680cc88"
+      },
+      "matched_examples": {
+        "0x8007cb50": {
+          "old": "verify_snapshot_checksum__15TObjBoss2TunnelFv",
+          "current": "verify_snapshot_checksum__15TObjBoss2TunnelFv",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+        },
+        "0x8007ccd0": {
+          "old": "save_snapshot_to_card__15TObjBoss2TunnelFv",
+          "current": "save_snapshot_to_card__15TObjBoss2TunnelFv",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+        },
+        "0x8007d1d0": {
+          "old": "TObjBoss2Tunnel__sub_8007D1D0",
+          "current": "take_snapshot__Fv",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+        },
+        "0x8007de5c": {
+          "old": "update_position__15TObjBoss2TunnelFP14PiecewiseCurve",
+          "current": "current_speed__14PiecewiseCurveFv",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+        },
+        "0x8007e884": {
+          "old": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec",
+          "current": "transform_vec_by_camera__FP10NJS_CAMERAPC3VecP3Vec",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+        },
+        "0x8007ea74": {
+          "old": "finalize_and_send_60__15TObjBoss2TunnelFP16G_PlaySound_6xB2",
+          "current": "send_6xB2_play_sound__FP16G_PlaySound_6xB2",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+        }
+      }
+    },
+    "src/pso/boss/TBoss4Type1.cpp": {
+      "historical_row": 913,
+      "fork_blob": "20bf52c847ff8a08b2e488cd3006a900e316f0a0",
+      "historical_diff_sha256": "7d4f4e648c9f2b2d532fdade3c3ffd2ed1f6bf8235e1a3ee55a5e1ac7a6b3a60",
+      "source_resolution": "The 33 state helpers belong to the real first-form receiver. Native BML model and motion slots, battle rows, player camera offsets, capture nodes, collider vectors and Tenchu targets cover the historical layout and call-site recovery. Attack selection uses the typed weight and action arrays. The typed table keeps the original data-relative base load. The map-position setter uses the existing Vec interface.",
+      "exact_linked_functions": 60,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 2192,
+          "exact_bytes": 2192,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 768,
+          "exact_bytes": 768,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp": "28cf132d7d98002eb230180ac5415e9931a6e7c2"
+      },
+      "matched_examples": {
+        "0x800535a8": {
+          "old": "TBoss4Type2__sub_800535A8",
+          "current": "choose_next_attack__11TBoss4Type1Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+        },
+        "0x800531c8": {
+          "old": "update_follow_camera_offsets__11TBoss4Type1Fv",
+          "current": "update_follow_camera_offsets__11TBoss4Type1Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+        },
+        "0x80053a88": {
+          "old": "set_map_position__11TBoss4Type1FPv",
+          "current": "set_map_position__11TBoss4Type1FP3Vec",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+        },
+        "0x8005455c": {
+          "old": "update_boss4_phase_timer__11TBoss4Type1Fv",
+          "current": "update_boss4_phase_timer__11TBoss4Type1Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+        },
+        "0x80054a1c": {
+          "old": "__ct__11TBoss4Type1FP7TObjectPl",
+          "current": "__ct__11TBoss4Type1FP7TObjectP17TBoss4FormSetData",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+        }
+      }
+    },
+    "src/pso/boss/TBoss6Type2.cpp": {
+      "historical_row": 1076,
+      "fork_blob": "af06166ae4643325ade2517569b67c4b636a4d42",
+      "historical_diff_sha256": "d1ea182fdeb98cbba794321bc66d2ce1566fb80ac93df58a3577e05b329e8894",
+      "source_resolution": "The boss uses native BML handles, action and motion tracks, packet fields, render captures, and shared battle records. Both manual target point overlays now receive const Vec pointers. The rock-contact mask and packet state limits retain their original semantics. Captured model pointers, particle positions and the camera offset scalars use the same source-owned slots and exact addresses.",
+      "exact_linked_functions": 135,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 36,
+          "exact_bytes": 36,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 232,
+          "exact_bytes": 232,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp": "e33f38695a0079a9fdbb9cbe39fbcf83067edfff"
+      },
+      "matched_examples": {
+        "0x802b9f3c": {
+          "old": "aim_toward_point__11TBoss6Type2FPv",
+          "current": "aim_toward_point__11TBoss6Type2FPC3Vec",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+        },
+        "0x802bb920": {
+          "old": "push_players_away__11TBoss6Type2FPvf",
+          "current": "push_players_away__11TBoss6Type2FPC3Vecf",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+        },
+        "0x802bb1e0": {
+          "old": "request_player_camera_offsets__11TBoss6Type2FPvff",
+          "current": "request_player_camera_offsets__11TBoss6Type2Fff",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+        },
+        "0x802bd4e8": {
+          "old": "TBoss6Type2__vt20",
+          "current": "receive_physical_attack__11TBoss6Type2FPvf",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+        }
+      }
+    },
+    "src/pso/boss/TBoss2DeRolLe.cpp": {
+      "historical_row": 1125,
+      "fork_blob": "fb49c878e64df0ff527025e88fd0aa7b832d2d99",
+      "historical_diff_sha256": "706a2c076d4aaa223eb4061912921328da4e19a586a6863063dd0d9d5b1f3a3e",
+      "source_resolution": "The battle and archive providers use the native resource and parameter records. The two scalar movement profiles own their initialization and advance calls. Tunnels, tentacles, the ground query and the fin breakup use their original vectors, arrays and resource pointers through the existing typed interfaces. The death state uses ScriptedCameraPlayback and the typed camera origin call. Both action packets preserve original fields, entry order and widths.",
+      "exact_linked_functions": 110,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 2400,
+          "exact_bytes": 2400,
+          "owners": [
+            "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 808,
+          "exact_bytes": 808,
+          "owners": [
+            "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 12,
+          "exact_bytes": 12,
+          "owners": [
+            "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 12,
+          "exact_bytes": 12,
+          "owners": [
+            "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 460,
+          "exact_bytes": 460,
+          "owners": [
+            "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp": "b3b75c913edc8b1fc3c9ee65b591aa17e8ccdebc"
+      },
+      "matched_examples": {
+        "0x8002f7c4": {
+          "old": "handle_death_state__13TBoss2DeRolLeFPvPv",
+          "current": "handle_death_state__13TBoss2DeRolLeFUl",
+          "owner": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+        },
+        "0x80032e38": {
+          "old": "TBoss2DeRolLe__sub_80032E38",
+          "current": "handle_intro_camera_state__13TBoss2DeRolLeFUl",
+          "owner": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+        },
+        "0x80035fcc": {
+          "old": "advance_scalar_motion_profile",
+          "current": "advance__13TUnk_80036250Fv",
+          "owner": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+        },
+        "0x80036160": {
+          "old": "set_move_params__13TBoss2DeRolLeFPvffff",
+          "current": "set_move_params__13TUnk_80036250Fffff",
+          "owner": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+        },
+        "0x800361a4": {
+          "old": "init_params__13TBoss2DeRolLeFPvfff",
+          "current": "init_params__13TUnk_80036250Ffff",
+          "owner": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+        },
+        "0x80036324": {
+          "old": "send_6x13__13TBoss2DeRolLeFPv",
+          "current": "send_6x13__13TBoss2DeRolLeFP19DeRolLeActionPacket",
+          "owner": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+        }
+      }
+    }
+  },
+  "whole_historical_comparisons_remaining": 95,
+  "compiler_constraints": {
+    "attack_table": "Addressing the table symbol directly changes the branch-specific loads. Referencing the original first data object and typing the already present displacement produces the original object.",
+    "snapshot_staging": "Using direct fields throughout the outer capture routine changes the register allocation. The original capture pointer walk stays in place. The typed pixel and name extents, saved checksum, and the independently matching typed file and CRC paths are retained."
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "focused_cases_per_image": {
+      "checksum_cases": 4,
+      "snapshot_load_cases": 5,
+      "weighted_attack_cases": 6
+    },
+    "existing_suites": {
+      "falz": "Dark Falz action encoding, spawn record and first-form motion transitions",
+      "olga": "Olga Flow arena distance, phase timers, packet width, showers and beam setup",
+      "tunnel": "Tunnel model flags, particle paths, debris, tentacle and mine targets, and shared motion curves"
+    }
+  },
+  "source_quality": {
+    "removed": 4,
+    "added": 0,
+    "typed_linker_label_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802B9F3C",
+        "type": "function",
+        "old": "aim_toward_point__11TBoss6Type2FPv",
+        "new": "aim_toward_point__11TBoss6Type2FPC3Vec",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802BB920",
+        "type": "function",
+        "old": "push_players_away__11TBoss6Type2FPvf",
+        "new": "push_players_away__11TBoss6Type2FPC3Vecf",
+        "flags": []
+      }
+    ],
+    "stale_retention": 0
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "b76ebdfe2ec1fee7a5dffdcdf5c00c22e86d3e35c69ff36013019ef6af97edaa",
+    "address-ownership.json": "8b0928c5a8ed8841187d39cbd82cfd1a8b859aee5758132952cafd2ee83ae0f5",
+    "final-quality.json": "52e52d1f3431ad0ec185045d2b2ab2961cd2a78dacc5967d1cfd742c15277ca1",
+    "fork-main-coverage.json": "e9f156651a9cb28979eae6a2503a541dffafc272f30edfe9a9b50a0414c4582b",
+    "probe-new.log": "00360cff7446ee78dcd722f29ec11311c1ab247c739b111e8274b575d6181215",
+    "probe-falz.log": "fb14c5964f0c159d4141db5c45dec76f75df37c2cd194a4532158a95eef1226a",
+    "probe-olga.log": "2546423072e729b15df05417b5941d0c10f37cfa9971e716e0d5d039ea7c53f7",
+    "probe-tunnel.log": "d018b9d5dfda1df6aecc08256e652f9ed52492eeeab9d0c95bc61bfbb57e6635",
+    "tool-overlay.patch": "371144eb21ccec55352b42f942e01a47ce68055754cafe251bcb340eb87476ef"
+  }
+}
