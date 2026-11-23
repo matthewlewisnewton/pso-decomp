@@ -1,0 +1,600 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "cd9c88f756b8cea302976d1fccabe81243f661f5",
+  "updated_paths": [
+    "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+    "include/pso/boss/darkfalz/TBoss4Zanzo.h",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type2_8004A978.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+    "src/pso/unk/TLobby_8004A90C.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type2_8004A978.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "7edf92fc22b3ab5422fc01453c534f1877832506",
+      "tree": "4d30580157de4c5e8efcaca0e1836f13d6f1e814",
+      "coverage_baseline": "cd9c88f756b8cea302976d1fccabe81243f661f5",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "queue": {
+      "head": "f19190c19aff7784b6e5e8e4c4f6aa15923e75bb",
+      "tree": "4bc3203e30b1b5b4cf4f1c18e5d941404024fa8e",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "queue-check.json": "1d8d2a4d792c5545664baac1f21116c8fd3419978d7dd6b02b94b64c18a02f95"
+      }
+    },
+    "private": {
+      "head": "4585a02bb9d161fe76dfa0a089f923e6170ca4bb",
+      "tree": "0ebc8b48cb55061dbfd15b5b17a5605493e3362b",
+      "coverage_baseline": "7edf92fc22b3ab5422fc01453c534f1877832506",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "whole_historical_comparisons_closed": {
+    "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp": {
+      "historical_row": 794,
+      "fork_blob": "d255f4c5ec41a270b9e3de174390866707db668a",
+      "historical_diff_sha256": "3abb9f3d50967ffde896c8bbdae6fbd1e96a44fd90f397ce907ce3dd26f031b4",
+      "source_resolution": "The three form factories receive the native 0x44-byte spawn record. Cinematic and defeat transitions use the phase owners, named controller fields, and the tower fade method. The 16 state rows dispatch through native member pointers. The packet methods belong to G_DarkFalzActions_6x19, and the live actor position method calls the shared VecCopy declaration.",
+      "exact_linked_functions": 56,
+      "non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 184,
+          "exact_bytes": 184,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1288,
+          "exact_bytes": 1288,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "4e42f7bed77b8688c62650844b091f8a6661e341",
+        "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp": "1a2c3b2eb51bd3108dfd241d525e06857c3e15d9"
+      },
+      "matched_examples": {
+        "0x8004c1ac": {
+          "old": "TBoss4DarkFalz__sub_8004C1AC",
+          "current": "get_type3_instance__14TBoss4DarkFalzFv",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+        },
+        "0x8004c1b4": {
+          "old": "TBoss4DarkFalz__sub_8004C1B4",
+          "current": "get_type2_instance__14TBoss4DarkFalzFv",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+        },
+        "0x8004c220": {
+          "old": "set_position_from__8TObjBaseFPv",
+          "current": "set_position_from__8TObjBaseFPv",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+        },
+        "0x8004c244": {
+          "old": "swap_and_send__14TBoss4DarkFalzFv",
+          "current": "send__22G_DarkFalzActions_6x19Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+        },
+        "0x8004c278": {
+          "old": "swap_bytes__14TBoss4DarkFalzFv",
+          "current": "bswap__22G_DarkFalzActions_6x19Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+        },
+        "0x8004c2c4": {
+          "old": "set_code_25_4__14TBoss4DarkFalzFv",
+          "current": "init__22G_DarkFalzActions_6x19Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+        },
+        "0x8004cd08": {
+          "old": "spawn_type1__14TBoss4DarkFalzFv",
+          "current": "spawn_type1__14TBoss4DarkFalzFv",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+        }
+      }
+    },
+    "src/pso/object/TObjDFHorming.cpp": {
+      "historical_row": 944,
+      "fork_blob": "d85122d26042e7f00fa6bc2172dc5d922c9d607c",
+      "historical_diff_sha256": "1f105cf57786abebd09c19271bcee69b86c08893a0dc63a17f8253583b9ec662",
+      "source_resolution": "The controller operates on typed states and packets. Native ownership covers destruction, resource loading, all three form pointers, and the level caps. Defeat, ring placement and equipment refresh use the live actor fields and virtual calls. The minion threshold uses the shared battle row and the active controller uses one native pointer declaration.",
+      "exact_linked_functions": 38,
+      "non_text_sections": {
+        ".rodata": {
+          "source_bytes": 2584,
+          "exact_bytes": 2584,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 568,
+          "exact_bytes": 568,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp": "09dc63dec97b0600c7e87ff439d5827bd39c35ef"
+      },
+      "matched_examples": {
+        "0x8004b20c": {
+          "old": "change_state__14TBoss4DarkFalzFl",
+          "current": "change_state__14TBoss4DarkFalzFl",
+          "owner": "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+        },
+        "0x8004b354": {
+          "old": "is_timer_expired__14TBoss4DarkFalzFv",
+          "current": "is_timer_expired__14TBoss4DarkFalzFv",
+          "owner": "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+        },
+        "0x8004b4f0": {
+          "old": "TBoss4DarkFalz__sub_8004B4F0",
+          "current": "copy_set_entry",
+          "owner": "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+        },
+        "0x8004b77c": {
+          "old": "refresh_player_equipment__14TBoss4DarkFalzFPv",
+          "current": "refresh_player_equipment__14TBoss4DarkFalzFv",
+          "owner": "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+        },
+        "0x8004ba18": {
+          "old": "end_player_camera_pans__14TBoss4DarkFalzFPv",
+          "current": "end_player_camera_pans__14TBoss4DarkFalzFv",
+          "owner": "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+        }
+      }
+    },
+    "src/pso/ui/TObjDFJisin.cpp": {
+      "historical_row": 1069,
+      "fork_blob": "fc01b1d18149bb230443949b469a832b8e0fe3a3",
+      "historical_diff_sha256": "64ecc1063acf78178409b2baf45f72530ea3d49a7f915341db02c9fc6196173f",
+      "source_resolution": "Native Homing and Jisin use typed actor and projectile storage with shared particle and direct-attack APIs. The 0x38 movement row supplies integer damage and float homing rate. Tenchu uses its actual parent and Vec constructor arguments and Ninja model-node callback. Recover ball and beam cursor use native lifetime and motion fields. The local pool covers the same addresses as the historical literal declarations.",
+      "exact_linked_functions": 31,
+      "non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 436,
+          "exact_bytes": 436,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 120,
+          "exact_bytes": 120,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 20,
+          "exact_bytes": 20,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/darkfalz/TObjDFJisin.cpp": "a864f9c154a64e62d78658f18f154682e1b8c264"
+      },
+      "matched_examples": {
+        "0x80050af8": {
+          "old": "TObjDFHorming__ct",
+          "current": "__ct__13TObjDFHormingFP7TObjectPC3VecUs",
+          "owner": "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+        },
+        "0x80050d74": {
+          "old": "damage_players_near_point",
+          "current": "damage_players_near_point__11TObjDFJisinFP3Vec",
+          "owner": "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+        },
+        "0x80051a18": {
+          "old": "capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT",
+          "current": "capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT",
+          "owner": "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+        },
+        "0x80051ad0": {
+          "old": "transform_node_tree__16TObjDFTenchuFuruFv",
+          "current": "transform_node_tree__16TObjDFTenchuFuruFP10NJS_OBJECT",
+          "owner": "src/pso/boss/darkfalz/TObjDFJisin.cpp"
+        }
+      }
+    },
+    "src/pso/boss/TBoss4Zanzo.cpp": {
+      "historical_row": 1139,
+      "fork_blob": "fd511daf20f97080605aa30193864dec5526d394",
+      "historical_diff_sha256": "a5405c769352b21bade615c86d960b5488c873f9787abaa4cf456a020f724f74",
+      "source_resolution": "The second form uses the shared 0x37 move and Resta fields and the native player HP interface. Archive lookup, texture binding, model-node capture and collision use the real types. The afterimage keeps its original resource slots and borrowed model, motion and texture pointers. The hit reaction calls the 4-argument sound interface directly. The attack code still uses the original technique, sound and particle receivers.",
+      "exact_linked_functions": 64,
+      "non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 288,
+          "exact_bytes": 288,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1460,
+          "exact_bytes": 1460,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 144,
+          "exact_bytes": 144,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp": "fb0832addb557b4dd1fda376371a029509aac3cc"
+      },
+      "matched_examples": {
+        "0x8005569c": {
+          "old": "render__11TBoss4ZanzoFv",
+          "current": "render__11TBoss4ZanzoFv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+        },
+        "0x8005586c": {
+          "old": "fn_8005586C",
+          "current": "copy_zanzo_params",
+          "owner": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+        },
+        "0x8005676c": {
+          "old": "spawn_afterimages__11TBoss4Type2Fv",
+          "current": "spawn_afterimages__11TBoss4Type2Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+        },
+        "0x80056938": {
+          "old": "apply_resta_heal__11TBoss4Type2Fv",
+          "current": "apply_resta_heal__11TBoss4Type2Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+        },
+        "0x80057894": {
+          "old": "vfunc_62__13TUnk_80486924Fv",
+          "current": "run_hit_reaction__11TBoss4Type2Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+        },
+        "0x800579a0": {
+          "old": "TBoss4Type2__ct",
+          "current": "__ct__11TBoss4Type2FP7TObjectP17TBoss4FormSetData",
+          "owner": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+        }
+      }
+    },
+    "src/pso/boss/TBoss4Type3.cpp": {
+      "historical_row": 1149,
+      "fork_blob": "ce7ee49a559ebc1d6e0e35f5b43ce0de27ffd5d4",
+      "historical_diff_sha256": "133f6becd09e98e2a1bfaec098c4ba1912caa103082b7a4964ec05a9de3dd38e",
+      "source_resolution": "The third form has native hit and death reactions in the original slots, owns the model capture resources, and uses the actual actor rotation fields. The 0x38 row supplies the Grants and Megid levels, projectile count and hidden radius through the shared integer columns. The existing effects keep their position vectors, capture ordering, player targeting and packed animation arguments.",
+      "exact_linked_functions": 82,
+      "non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 320,
+          "exact_bytes": 320,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 2168,
+          "exact_bytes": 2168,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 136,
+          "exact_bytes": 136,
+          "owners": [
+            "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp": "f9a99f56be2fad1c91faab49517f332272cb3609"
+      },
+      "matched_examples": {
+        "0x800584e4": {
+          "old": "update_capture__11TBoss4Type3Fv",
+          "current": "update_capture__11TBoss4Type3Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+        },
+        "0x80058754": {
+          "old": "advance_capture__11TBoss4Type3Fv",
+          "current": "advance_capture__11TBoss4Type3Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+        },
+        "0x8005acbc": {
+          "old": "reset_action_to_3__11TBoss4Type3FPv",
+          "current": "run_death_reaction__11TBoss4Type3Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+        },
+        "0x8005ad04": {
+          "old": "init_effect__11TBoss4Type3FPv",
+          "current": "run_hit_reaction__11TBoss4Type3Fv",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+        },
+        "0x8005ae60": {
+          "old": "TBoss4Type3__ct",
+          "current": "__ct__11TBoss4Type3FP7TObjectP17TBoss4FormSetData",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+        }
+      }
+    }
+  },
+  "whole_historical_comparisons_remaining": 99,
+  "first_form_still_under_review": {
+    "fork_path": "src/pso/boss/TBoss4Type1.cpp",
+    "exact_linked_functions": 60,
+    "scope": "Remaining resource-slot, attack movement and camera callback source comparison.",
+    "validated_here": "Uro limit uses the correct 0x39 integer column, independent of the 0x36 technique-level record."
+  },
+  "same_address_names": {
+    "get_battle_movement_params": {
+      "current": "dispatch_shared_handler_a__6TLobbyFl",
+      "address": "0x8001E1D8",
+      "section": ".text",
+      "size": "0x28"
+    },
+    "get_battle_resistance_params": {
+      "current": "register_object__6TLobbyFl",
+      "address": "0x8001E210",
+      "section": ".text",
+      "size": "0x28"
+    },
+    "get_battle_attack_params": {
+      "current": "dispatch_shared_handler_b__6TLobbyFl",
+      "address": "0x8001E248",
+      "section": ".text",
+      "size": "0x28"
+    },
+    "get_battle_base_stats": {
+      "current": "register_boss__6TLobbyFl",
+      "address": "0x8001E280",
+      "section": ".text",
+      "size": "0x28"
+    },
+    "TObjFish__sub_8001EDB0": {
+      "current": "get_bml_texlist",
+      "address": "0x8001EDB0",
+      "section": ".text",
+      "size": "0x14"
+    },
+    "lbl_804371BC": {
+      "current": "dark_falz_player_ring_center_origin",
+      "address": "0x804371BC",
+      "section": ".rodata",
+      "size": "0xC"
+    },
+    "lbl_804374F0": {
+      "current": "lbl_804374F0",
+      "address": "0x804374F0",
+      "section": ".rodata",
+      "size": "0x8"
+    },
+    "TBoss4DarkFalz__data_804FF1E8": {
+      "current": "dark_falz_set_entry",
+      "address": "0x804FF1E8",
+      "section": ".bss",
+      "size": "0x40"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "state_suite": "Action header and byte order, both outbound packets, entry copy, first-form spawn record, and all three motion transition modes.",
+    "parameter_and_resource_cases_per_image": {
+      "afterimage_cases": 4,
+      "controller_phase_cases": 7,
+      "hit_reaction_cases": 1,
+      "minion_threshold_cases": 8,
+      "position_copy_cases": 1
+    },
+    "emulator_adjustment": "The probe verifies and bypasses the two paired-single register spill instructions in the afterimage renderer. It executes the fade, texture and model decisions. The original instructions are present in all validated executables."
+  },
+  "source_quality": {
+    "removed": 7,
+    "added": 0,
+    "changed_symbol_labels": 0,
+    "stale_retention": 0
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "372fedc58988fc735a9e9897638653c42e227cfa30f176c3adf6d0bf13064b53",
+    "address-ownership.json": "2be8bcaf2a20d0d243008e147539ca848ad061388bddc258c6e55ce5969ede01",
+    "final-quality.json": "d3751b551fe50bbfc7457f8dd86a9b55bbfaa6f74ece335e72bbd8830a060166",
+    "fork-main-coverage.json": "e53b3cb1d5810e287dce5fbf8aba6ae662703a882fa6ec46cdf65574b970b9c6",
+    "probe-states.log": "fb14c5964f0c159d4141db5c45dec76f75df37c2cd194a4532158a95eef1226a",
+    "probe-resources.log": "2d875f5c825b33ae1a33a6965afc02869b624eb6486a4bf003c4a4222e6f8323",
+    "tool-overlay.patch": "32e7cfec77f9cc3a65b59bba32a068f3c759f6d4d4b19314ebf531707cb7006a"
+  }
+}
