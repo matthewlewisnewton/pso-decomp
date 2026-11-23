@@ -1,0 +1,173 @@
+{
+  "master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "stage_base": "6f4dd7a7314d8b67834e44cbf6473398a9af7b10",
+  "actor_review": "a7820050d6c05f751d1065ab38dbdfbaf2aa9fa1",
+  "previous_cumulative": "d5c714f3265bf07ebdd05d7f7f10cbdea8940ed9",
+  "cumulative": "37981a598fd09df33d880ddc9b0cfc9c7b97b2d3",
+  "changed_paths": {
+    "actor": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+      "include/pso/enemy/slime/TObjEneSlime.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne.h",
+      "include/pso/npc/NpcModelRegistry.h",
+      "include/pso/npc/TObjNpcEnemy.h",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/deldepth/DelDepthMotion.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/npc/TObjNpcEnemy.cpp",
+      "src/pso/object/ambient/TObjCGrass.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp",
+      "src/pso/unk/text_8035B6B0.cpp",
+      "src/pso/unk/text_8035B750.cpp"
+    ],
+    "cumulative": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/unk/text_8035B750.cpp"
+    ]
+  },
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "actor": "225b431b1c329ab2c9e3cc2aa20ecc745e2e469c8b5e0ae56dc4b486cad7b7c3",
+    "cumulative": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "private": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "source_quality": {
+    "total": {
+      "base": 157974,
+      "head": 157953,
+      "added": 6,
+      "removed": 27
+    },
+    "remaining_findings": [
+      {
+        "key": "offset_member",
+        "path": "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+        "line": 1165,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+        "line": 720,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+        "line": 264,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "line": 181,
+        "text": "m_c"
+      },
+      {
+        "key": "flat_name",
+        "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "line": 81,
+        "text": "TObjEneBm9Mericarol__class_name_string"
+      },
+      {
+        "key": "flat_name",
+        "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "line": 142,
+        "text": "TObjEneBm9Mericarol__class_name_string"
+      }
+    ],
+    "labels": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802D71E0",
+        "type": "function",
+        "old": "register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff",
+        "new": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListPC19NpcAnimationBindingff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802D7260",
+        "type": "function",
+        "old": "spawn_child__12TObjEneSlimeFsllff",
+        "new": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".rodata",
+        "address": "0x80472490",
+        "type": "object",
+        "old": "lbl_80472490",
+        "new": "mericarol_render_shadow_scale",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".rodata",
+        "address": "0x8047249C",
+        "type": "object",
+        "old": "lbl_8047249C",
+        "new": "mericarol_variant_shadow_scale",
+        "flags": []
+      }
+    ],
+    "stale_force_active": [],
+    "report_sha256": "70aa48288e80e36b1b68811c6f61b22ba1f2e3e37f685066be3b864e13d3fb5e"
+  },
+  "runtime_logs_sha256": {
+    "actor-probes.log": "021572015912a070d394593a69de7eb4fa7db8cee73b1f012fd57e7788082023",
+    "nights-probes.log": "feab243384ccd28f04d52ad2b2d73fa3d90de3ae238d6e9eae17cd0944cff27c",
+    "actors-cumulative-probes.log": "b599e801693f01f5a17cd3baaee3756b4ebc5187e64ad8ef08327e156f6b314b",
+    "nights-cumulative-probes.log": "0f5bc1a4da60f475448a4a2425a482fa85f12c5c4c176ca16f067ee90a38eb3e"
+  },
+  "private_workspace": {
+    "paths": 130,
+    "materialized_tree": "aff7f0e84a9eb1dc931320e5558acfec54d2afaa",
+    "patch_sha256": "e4577ef7dd6e8eb3e2dfba5346132b66207679104c8d3077b2755eedfc6dd479",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  }
+}
