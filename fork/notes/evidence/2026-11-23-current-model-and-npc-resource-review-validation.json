@@ -182,7 +182,7 @@
     "0x800E80A4": "The copy reads and stores a GinjaTextureEntry in original instruction order. It uses the render owner and has no player receiver.",
     "0x80131700": "The existing depth-first lookup consumes and returns Ninja object nodes.",
     "0x802D71E0": "The existing animated chunk registry accepts its actual model and texture-list pointers through its 45 callers.",
-    "0x802D7260": "The helper creates an unanimated registry entry. Native model and texture pointers come from the Slime and Morfos model entries."
+    "0x802D7260": "The helper creates an unanimated registry entry. Its two Slime callers pass the native model and texture pointers from BML slots 4 and 5."
   },
   "matching_constraints": [
     "Keep Vol Opt's live and breakup model roots distinct.",
