@@ -1,6 +1,8 @@
 # Recover native save, quest, and asset-loading interfaces
 
-The current 218-path candidate is `06f05041eba0f87c018fd20e2e4d947b96d4f6ba` directly on upstream `31bb8ea5f01b0e02b609fb59411f4805308106bf`. It includes #375 and upstream’s UI, weapon and quest naming passes through #381. The retail DOL, coverage, original data ranges and focused save, quest and asset probes pass. [Exact-head validation](2026-11-23-upstream-381-rebase-and-cutover-validation.json)
+The current 103-path review `93230626dd25d745c2caca42f5c1d5a5797fb375` follows upstream master `435fe611ce7da26174186621a089e5299d4e6199`, which includes #375, #383 and #384. The rebased source preserves the quality pass, including upstream’s Ninja texture records, native player constructor, and quest argument names. The exact head passes the retail match, coverage, original data range checks and runtime probes. [Validation](2026-11-23-upstream-384-save-quest-asset-validation.json)
+
+The previous 218-path candidate is `06f05041eba0f87c018fd20e2e4d947b96d4f6ba` directly on upstream `31bb8ea5f01b0e02b609fb59411f4805308106bf`. It includes #375 and upstream’s UI, weapon and quest naming passes through #381. The retail DOL, coverage, original data ranges and focused save, quest and asset probes pass. [Exact-head validation](2026-11-23-upstream-381-rebase-and-cutover-validation.json)
 
 The 218-path review preview `9589a617bea819ad462ad592073a80ffb4785526` builds on the already validated #377 merge preview `97711798d9`. It adds native player creation and saved inventory access to the save, quest and asset batch. The matching build and coverage pass, and the benchmark removes 1,067 findings and adds 26 with zero flagged labels. Three added mangled-name occurrences share one typed constructor declaration across two saved-player callers because the direct C++ member form changes retail instruction order. [Validation](2026-11-23-native-player-construction-validation.json)
 
@@ -18,24 +20,16 @@ The local review `great-merge/review/after-367/saves-quests-and-asset-loading` i
 
 ## Proposed PR description
 
-Recover the types used to load save data, quest entries, and assets, and carry those declarations through their existing callers.
+Recover the types used to load character saves, quest text, and assets, and carry those declarations through their existing callers.
 
-- Memory-card selection and preflight use the original slot, load-result, and file records.
-- Character selection, save validation and lobby entry share the native character record. Preview and status callers read its typed appearance and stats.
-- The Hunter Guild uses typed quest callbacks and download windows. The cache passes the signed handle and native ARAM request through reads and completion, using the original records and buffers.
-- Shared file requests keep their callback, completion pointer, and list links through cancellation and release. Texture and model callers pass the native GVM and BML records.
-- The bank uses the native deposit window and the item selection callbacks on their actual window classes.
-- The footprint effect uses a typed texture pointer from load through drawing and release, and reads yaw from the player's rotation record.
+- Memory-card callers share file metadata, status and card records. Character selection and player creation use the native character and inventory records.
+- Online quests use the window and guild sequence types that own their callbacks. The quest download cache uses signed ARAM handles, typed DMA requests and native lookup and text records.
+- File requests keep typed callbacks, completion pointers, destinations and list links through completion and cancellation. BML traversal uses the archive header and entries, and GVM and GBA readers keep typed buffers.
+- Footprint loading, drawing and release share the native texture list. The effect reads yaw from the player's rotation record.
 
-The 40 changed linker labels follow the recovered owners and argument types. Direct comparisons with upstream and fork main preserve all previously matched and linked code and data. The retail DOL matches byte for byte with all 27,572 functions exact, 2,368 linked units and all 1,147 original data bytes accounted for. The targeted checks cover card metadata, quest ARAM completion and timeouts, compressed and uncompressed BML headers, archive callbacks and texture handling.
+The retail DOL matches byte for byte. All 27,572 functions and 2,297 linked units remain exact. Address comparisons preserve code and non-padding data coverage against upstream master and fork main. All 1,147 original data bytes are accounted for. Focused probes pass for card metadata, quest selection and ARAM, file requests, BML, GVM, GBA and footprints.
 
-The source-quality benchmark removes 1,053 findings and adds 26, with zero flagged symbol labels or newly stale retention entries.
+Upstream’s source-quality analysis removes 526 findings and adds seven. There are zero flagged symbol labels and zero newly stale retention entries. The 37 label changes follow recovered types or ownership, including the archive-header data pointer.
 
-- Six file-local types describe storage used only by the owning translation unit, including the ARAM DMA buffer and request extent, the adjacent card-save records, and the on-disc BML header and entry.
-- The existing ARAM DMA storage has C linkage. The offsetof and ATTRIBUTE_ALIGN results are macro tokens reported as declarations.
-- The two online quest callers now use the existing TShopWindowBase virtual slot also used by the offline and Challenge lists.
-- lbl_805D4AE0 retains the existing BML header pointer label. Its declaration now uses the actual archive header type.
-- Three typed BML callers use the existing BmlModelEntry::m_0 field for texture completion, failure and initialization.
-- The bank delete and get windows use their four existing callback fields in place of byte-offset overlays. The deposit window uses the existing number-entry class for its horizontal position. The three shop item allocators keep explicit constructor calls to preserve CodeWarrior’s retail callback address loads.
-- Two references use the existing file-local slot type to locate the character within the secondary-card record.
-- Three references share the typed saved-player constructor declaration and preserve the retail instruction order across its two callers.
+- Six file-local types describe implementation details used solely by their owning source file. These are the ARAM file and DMA buffer, quest request storage extent, adjacent card metadata block, and BML archive entry and header.
+- The ARAM DMA buffer retains its existing C-linkage symbol.
