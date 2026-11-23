@@ -12,7 +12,11 @@ After each confirmed upstream merge, review the checkouts and build fixtures we 
 
 Check the host for active builds before moving any files. Start with old untracked object files under `build/GPOE8P/obj` and `build/GPOE8P/src` in idle checkouts. On dreams1, copy candidates to `/media/matt/Checkpoints` under their workspace-relative paths, verify the copies against a SHA-256 manifest, and confirm the checkout is still idle before removing the verified originals. Keep Git worktrees, source, original inputs, tooling, and validation evidence in place. Record the checkpoint path and root-disk space before and after cleanup.
 
+Stage the reviewed paths explicitly and inspect added files against upstream before pushing. Reused build fixtures can leave generated linkage diagnostics under the platform configuration directory.
+
 ## Current upstream review
+
+The inventory, equipment and item-drop batch is open upstream as PR #377 at `39848c3108`. Its standalone build retains 27,572 exact functions and 2,394 linked units. Eight runtime suites pass. GitHub matching passed. The benchmark removes 1,123 findings and adds 102, with zero flagged labels or stale retention entries. The exact Git merge with PR #375 at `8dcc7ef892` matches retail and passes coverage. The Git merge with PR #376 is clean. Great Merge `fef51af69a` carries the 17-path inventory quality update and matches retail in both the source and materialized fork builds. The private layer passes 310 checks. [PR #377](https://github.com/zeroz41/pso-decomp/pull/377) · [Validation](2026-11-22-upstream-377-inventory-validation.json)
 
 The network batch is open upstream as PR #376 at `67618d4db8`. GitHub matching passed with 27,572 exact functions and 2,394 linked units. Fourteen runtime suites and the benchmark pass with 664 source-quality findings removed, zero added, zero flagged labels, and zero newly stale retention entries. The final patch merges cleanly with PR #375 at `8dcc7ef892`. Great Merge source `5caa0255a7` and the materialized fork both match retail and pass coverage. The private layer passes 310 checks. [PR #376](https://github.com/zeroz41/pso-decomp/pull/376) · [Validation](2026-11-22-upstream-376-network-validation.json)
 

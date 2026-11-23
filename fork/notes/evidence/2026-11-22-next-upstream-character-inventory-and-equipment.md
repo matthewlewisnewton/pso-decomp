@@ -1,5 +1,9 @@
 # Recover native character growth, inventory, and equipment interfaces
 
+Upstream PR #377 is open at `39848c3108` on master `e39eb9e138`. The 106-path review uses native inventory, placement, equipment and item-drop records. It preserves the shared unequip entry points and leaves equipment effects to PR #375. Eight runtime suites and the standalone and combined #375 retail and coverage checks pass. GitHub matching passed. The source-quality benchmark removes 1,123 findings and adds 102, with zero flagged labels or newly stale retention entries. [PR #377](https://github.com/zeroz41/pso-decomp/pull/377) · [Validation](2026-11-22-upstream-377-inventory-validation.json)
+
+## Earlier fork replay
+
 The local review `great-merge/review/after-367/character-inventory-and-equipment` is at `61a66013a179485ff5923b6248c8b2b2d4b6de60` above the validated enemy-spawn checkpoint `25d14badb4e43f13105492b4eec959ffa05e4349`. Its three commits touch 110 paths and use the configured fork author and committer. [Validation and component records](2026-11-22-upstream-367-inventory-actor-stats-validation.json)
 
 ## Proposed PR description
