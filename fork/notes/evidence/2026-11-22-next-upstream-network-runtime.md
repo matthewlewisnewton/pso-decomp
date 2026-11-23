@@ -1,6 +1,6 @@
 # Recover native PPP, modem, and packet receive interfaces
 
-The current standalone network review is `great-merge/review/after-372/network-runtime` at `7b66b623b1` on upstream master `5cf9da024a`. The 63-path change reproduces retail with all 27,572 exact functions and all 1,147 original data bytes accounted for. Fourteen runtime suites pass. The upstream benchmark reports 483 fewer findings, zero flagged symbol labels and zero newly stale retention entries. [Validation on upstream PR #372](2026-11-22-upstream-372-network-review-validation.json)
+Upstream PR #376 is open for review at `67618d4db8` on master `e39eb9e138`. The patch shares the timer return type between DNS and the dispatcher, uses native PPP records, and names PAP and CHAP credentials and VJ compression state from their callers. All 14 runtime suites, retail matching, and the coverage and matching gates pass. The benchmark removes 664 findings and adds zero, with zero flagged labels or stale retention entries. The tree merges cleanly with PR #375 at `8dcc7ef892`. [PR #376](https://github.com/zeroz41/pso-decomp/pull/376) · [Validation](2026-11-22-upstream-376-network-validation.json)
 
 ## Previous validations
 
@@ -39,23 +39,3 @@ All three commits reproduce the retail executable byte-for-byte. The final build
 | Review build report | `eec6186c3dcfd28129c217b1a84ab505f48987d14acfbb637032bfbb64f02ca6` |
 | Results for all 11 runtime suites | `0b44145a4a77a90cfb3c758ce359e995bdb857256e9ee9bb7504d735f74001b6` |
 | Retail hashes for each commit | `2ec0eedf623a7e3bd879a51b3eb6fdc2df846ef3461d4080e13c03de354821d7` |
-
-## Proposed PR description
-
-### Summary
-
-Recover the native network interfaces for dispatcher setup, transport, modem commands, PPP negotiation, and packet delivery. The existing C and C++ callers share typed SDK records and callback declarations.
-
-- The dispatcher uses the SDK queue, mutex, alarm and thread records and posts the native 12-byte protocol message. Queue and thread handles use the original SDK types.
-- LCP, IPCP, PAP, CHAP and IPv6CP share typed configuration, timer and frame callbacks. The IPCP path uses the original compression state.
-- Raw IPv4, raw IPv6 and UDP delivery share the socket, length and buffer prefix. UDP retains its source, destination and port fields. TCP uses the original send fragments, and DHCP builders and reply paths use typed messages.
-- The modem uses its real EXI wake and reset callbacks, editable command storage and typed status output.
-
-Start with `NetworkDispatch.h`, `NetworkRuntimeSlots.h`, `PppFsm.h` and `NetworkReceiveCallback.h`. The four linker label changes follow the shared receive prefix, the EXI and SDK reset callback signatures, and the typed modem output. The recovered declarations retain existing address-named types and globals. PPP callback slots use their original offsets and typed members, and two context reads still use the corresponding byte offsets.
-
-### Validation
-
-- GPOE8P reproduces retail DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` with 27,572 exact functions.
-- `tools/check_pr.py` passes with zero code or data coverage loss. The standalone build links 2,393 exact units and retains all 1,147 original fork data bytes.
-- The source-quality benchmark reports 483 fewer findings overall, zero flagged symbol labels and zero newly stale retention entries.
-- Fourteen runtime suites pass. Coverage includes dispatcher startup failures and message layout, SDK queues, modem scripts, PPP frames and negotiation, UDP callbacks, DHCP and TCP queue behavior.
