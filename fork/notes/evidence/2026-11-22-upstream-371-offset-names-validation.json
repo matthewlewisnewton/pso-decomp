@@ -1,0 +1,66 @@
+{
+  "upstream_master": "5cf9da024a0d526227c07273f045ebe71e146496",
+  "previous_published_head": "eaafb9f81054d8deb72dfbc590cd1ada235f4c48",
+  "published_head": "ecb8ec30ef7d4d68110643edc6651e94517fc649",
+  "matching_ci": "https://github.com/zeroz41/pso-decomp/actions/runs/45092462857/job/137424871916",
+  "patch_sha256": "1b7c6da3b9a3b3afb99c06aea6da9c4b7c9205f10a9507347d7d1547dd7dfaab",
+  "published_unit_object_checks": 28,
+  "published_quality": {
+    "total": {
+      "base": 161684,
+      "head": 158883,
+      "added": 301,
+      "removed": 3102
+    },
+    "flagged_labels": 0,
+    "new_stale_force_active": 0,
+    "report_sha256": "738e7b2bc4bf18ee96623e04f2b9ebf2805d710883bd40560d35487f90432f5b"
+  },
+  "previous_cumulative_source": "5ba1925a109f566b2a04031b03e67386f64d6abd",
+  "cumulative_source": "a770050d2a32c95aab319b7cc216aeb5ef5543f9",
+  "changed_paths": [
+    "include/pso/ui/frontend/TAdMcSelectCursorGC.h",
+    "include/pso/ui/window/TWindowDD_WS_Word.h",
+    "include/pso/ui/window/TWindowKeyBoardBase.h",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectMcGC.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase_8025B85C.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_reports_sha256": {
+    "source": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "materialized": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+  },
+  "runtime_probes": {
+    "keyboard": {
+      "results": [
+        "Pad routing, keyboard polling, stick escape and text export passed",
+        "Pad routing, keyboard polling, stick escape and text export passed"
+      ],
+      "log_sha256": "dddf8a2406a979ff3f797f0f1f73295c3aee19d81459a273d574a19e5353d859"
+    },
+    "title": {
+      "results": [
+        "PsoV3.dol: 46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+        "psov3.dol: 46 title records, texture binding, cursor and camera routing, and sprite geometry passed."
+      ],
+      "log_sha256": "f12583c3bd6497d532d2e6c7c3dbcc8dd561424b49bf35e3a23cd9de25df2d5d"
+    }
+  },
+  "workspace": {
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "paths": 130,
+    "materialized_tree": "37f4ce2789a41004fe99673b40a9a6243022e302",
+    "overlay_sha256": "c954ed61bfe19ad3fef5075f2ea29c51a337e6ffbbc03898d27cef7bd2e0a878"
+  },
+  "network_preview_tree": "c7dcff18ddc95702636dc4c8744e66cda1160a0f"
+}
