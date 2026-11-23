@@ -1,0 +1,1145 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "origin_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "cumulative_parent": "790ca692c90a2ec965a240ba23681ce1143734b9",
+  "cumulative": "92674f03b5f15ece465abeff1d4b84b988b4ee45",
+  "review_parent": "81bf9735c5c33db02ef783d7f47223adeb7816da",
+  "review": "14951bf3bf332483ebd678e749385086be8436ca",
+  "review_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/darkfalz/TOBoss4Rock.h",
+    "include/pso/system/memory.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/unk/TLobby_803DE778.h",
+    "include/pso/weapon/TItemAttacker.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/darkfalz/TOBoss4.cpp",
+    "src/pso/boss/darkfalz/TOBoss4Rock.cpp",
+    "src/pso/boss/darkfalz/TOBoss4Rock_8035A7FC.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/dragon/TBoss1DragonColli.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonColli.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/item/TItemEffectWeapon.cpp",
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/enemy/TEnemyTaskList.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/canadin/CanadinEffects.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/item/TItemBuff.cpp",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/item/TItemLockCountCtrl.cpp",
+    "src/pso/item/TItemReverseTech.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/item/shop/ShopToolStock.cpp",
+    "src/pso/item/shop/ShopWeaponStock.cpp",
+    "src/pso/map/AreaEventSet.cpp",
+    "src/pso/map/CsnQuery.cpp",
+    "src/pso/map/TSetManager.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjHMS_EZRope_Player.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/object/TObjTank.cpp",
+    "src/pso/object/ambient/TObjCGrass.cpp",
+    "src/pso/object/ambient/TObjFish.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight_80133568.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/door/TODoorAncient01.cpp",
+    "src/pso/object/door/TODoorAncient03.cpp",
+    "src/pso/object/door/TODoorAncient04.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/object/door/TODoorAncient08.cpp",
+    "src/pso/object/door/TODoorAncient09.cpp",
+    "src/pso/object/door/TODoorCave01.cpp",
+    "src/pso/object/door/TODoorCave02.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/door/TODoorMachine01.cpp",
+    "src/pso/object/door/TODoorMachine02.cpp",
+    "src/pso/object/door/TODoorVS2Door01.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceAncient01.cpp",
+    "src/pso/object/fence/TOFenceAncient02.cpp",
+    "src/pso/object/fence/TOFenceAncient03.cpp",
+    "src/pso/object/fence/TOFenceAncient04.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/jungle/TOGrassJungle.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/key/TOKeyAncient01.cpp",
+    "src/pso/object/key/TOKeyAncient02.cpp",
+    "src/pso/object/key/TOKeyAncient03.cpp",
+    "src/pso/object/key/TOKeyCave01.cpp",
+    "src/pso/object/key/TOKeyGenericSw.cpp",
+    "src/pso/object/key/TOKeyMachine01.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/switch/TOChatSensor.cpp",
+    "src/pso/object/switch/TOSensorAncient01.cpp",
+    "src/pso/object/switch/TOSensorGeneral01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/player/TObjPlayer_801542CC.cpp",
+    "src/pso/player/TObjPlayer_8023E480.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/player/TObjPlayer_8033E910.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestListVM_8007EAF8.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/render/BlobShadow.cpp",
+    "src/pso/render/ChunkMaterialState.cpp",
+    "src/pso/render/TFogCtrl.cpp",
+    "src/pso/system/TGStream.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/technique/TTecBarta.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/technique/TTecFoie.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecGiFoie.cpp",
+    "src/pso/technique/TTecMegid.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdChrSelPlayerGC.cpp",
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_80131BC4.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_803430BC.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801A529C.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowMessage.cpp",
+    "src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp",
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+    "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobbyEventTheme.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_8002C140.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_800FA73C.cpp",
+    "src/pso/unk/TLobby_80103F5C.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_801F3A24.cpp",
+    "src/pso/unk/TLobby_80207DA8.cpp",
+    "src/pso/unk/TLobby_80209524.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_8028A7C8.cpp",
+    "src/pso/unk/TLobby_802A7290.cpp",
+    "src/pso/unk/TLobby_80328F7C.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/TLobby_8036B204.cpp",
+    "src/pso/unk/TLobby_803DE778.cpp",
+    "src/pso/unk/TUnk_804CC870.cpp",
+    "src/pso/unk/TUnk_804DDD28.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_80103674.cpp",
+    "src/pso/unk/text_801A5778.cpp",
+    "src/pso/unk/text_801E4F04.cpp",
+    "src/pso/unk/text_8020B5CC.cpp",
+    "src/pso/unk/text_8020E700.cpp",
+    "src/pso/unk/text_802A1020.cpp",
+    "src/pso/unk/text_802D1C84.cpp",
+    "src/pso/unk/text_803D96A8.cpp",
+    "src/pso/unk/text_803DA798.cpp",
+    "src/pso/unk/text_803DAFA8.cpp",
+    "src/pso/unk/text_803DD5E0.cpp",
+    "src/pso/unk/text_803DE7E0.cpp",
+    "src/pso/weapon/TItemAttacker.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "review": "bbb9c71b0b830fc224756eabbde6745c2a23cac2dd2294dd5cbcc07d3b0db369",
+    "cumulative": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "private": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132",
+    "373": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "ranges": 90,
+    "remaining": 0
+  },
+  "source_replay": {
+    "overlapping_paths": 35,
+    "resolved_sections": 36,
+    "resolutions_sha256": "f8c85d7998fdbdfafdec465f444424b3f31ac6bd036ee926ff983c9261e30ef7",
+    "cast_audit": {
+      "review": {
+        "removed": 105,
+        "retained": 84,
+        "sha256": "7591d93092ab77641453e01a15993cd4b3ff7cf8db67faed4624ca4f905b12f6"
+      },
+      "cumulative": {
+        "removed": 102,
+        "retained": 64,
+        "sha256": "65f62c0debe1ff7115109aaa83e8494ac96b1a584b9196d77f6a01aae19e842f"
+      }
+    }
+  },
+  "benchmark": {
+    "total": {
+      "base": 155785,
+      "head": 155746,
+      "added": 0,
+      "removed": 39
+    },
+    "categories": [
+      {
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 8137,
+        "head": 8112,
+        "added": 0,
+        "removed": 25
+      },
+      {
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 1676,
+        "head": 1674,
+        "added": 0,
+        "removed": 2
+      },
+      {
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 7381,
+        "head": 7381,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 328,
+        "head": 328,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 11038,
+        "head": 11038,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "category": "Layout",
+        "base": 10030,
+        "head": 10030,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "category": "Layout",
+        "base": 951,
+        "head": 951,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "category": "Layout",
+        "base": 2297,
+        "head": 2293,
+        "added": 0,
+        "removed": 4
+      },
+      {
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "category": "Layout",
+        "base": 16634,
+        "head": 16633,
+        "added": 0,
+        "removed": 1
+      },
+      {
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "category": "Types",
+        "base": 2194,
+        "head": 2194,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "category": "Types",
+        "base": 176,
+        "head": 176,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "example": "undefined4",
+        "group": "types",
+        "category": "Types",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_type",
+        "name": "Address-named types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "category": "Types",
+        "base": 16345,
+        "head": 16343,
+        "added": 0,
+        "removed": 2
+      },
+      {
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "category": "Types",
+        "base": 39,
+        "head": 39,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 12037,
+        "head": 12037,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "example": "sp1C",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 2515,
+        "head": 2515,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 27325,
+        "head": 27321,
+        "added": 0,
+        "removed": 4
+      },
+      {
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 26,
+        "head": 26,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_comment",
+        "name": "Address comments",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 269,
+        "head": 269,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "data_label",
+        "name": "Address-named data",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "category": "Names",
+        "base": 11082,
+        "head": 11082,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "category": "Names",
+        "base": 13297,
+        "head": 13297,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "category": "Names",
+        "base": 23,
+        "head": 23,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 363,
+        "head": 363,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 26,
+        "head": 26,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 66,
+        "head": 66,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 1498,
+        "head": 1498,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 4429,
+        "head": 4429,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 1184,
+        "head": 1184,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 4233,
+        "head": 4232,
+        "added": 0,
+        "removed": 1
+      },
+      {
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 164,
+        "head": 164,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "category": "Assembly",
+        "base": 22,
+        "head": 22,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "category": "Members in the wrong class (not in the total)",
+        "base": 2229,
+        "head": 2229,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "category": "Members in the wrong class (not in the total)",
+        "base": 102,
+        "head": 102,
+        "added": 0,
+        "removed": 0
+      }
+    ],
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8007EBB4",
+        "type": "function",
+        "old": "safe_free__23TAdSinglePlyChrSelectGCFUl",
+        "new": "safe_free__FPv",
+        "flags": []
+      }
+    ],
+    "stale_force_active": [],
+    "sha256": "5aca0da8d52336c06f0290efecc8f1afb1507672c69a2c2ed5a364d3469adc18"
+  },
+  "probes": {
+    "memory": {
+      "images": 4,
+      "sha256": "962c0c9718c49536f69c36d1b4d8b45296ebab02cae9972231047d5959e4eb28",
+      "verified": "overlapping byte and word moves, raw allocation, and nullable releases passed."
+    },
+    "footstamp": {
+      "images": 4,
+      "sha256": "35227e42bd5f6bf00a5d2eec0e3d35e639c9b4c98239d5c231056383aa54f478",
+      "verified": "footprint GVM load, culling, texture binding and ordered release passed."
+    },
+    "item-buffer": {
+      "images": 4,
+      "sha256": "a3a580e097dc9e3ed46a9eea98b974f0a16af5387c7576fb0f4f13f03bbba5e6",
+      "verified": "five item buffer allocation and three release cases passed."
+    }
+  },
+  "fork_workspace": {
+    "paths": 130,
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "materialized_tree": "4a66d2ddefc23da02e0041ab5e91d8d4e359dc41",
+    "overlay_sha256": "aa5be924255ea42a43d3175b720d653a567f1a0466b154831a349a84b6f7d096"
+  },
+  "upstream_373_preview": {
+    "upstream_head": "6d8e64a1eb7ab032b514ffa0c33a86fc6456bc0f",
+    "base": "18a623466335c4afe8aac964c2d5cdb092e566c8",
+    "head": "8f3038d85f96cdfeff6594211491a0a7510368f1",
+    "paths": [
+      "src/pso/unk/text_803C5B50.cpp",
+      "src/pso/unk/text_803CD99C.cpp",
+      "src/pso/unk/text_803CE1D8.cpp",
+      "src/pso/unk/text_803CE1F4.cpp",
+      "src/pso/unk/text_803CE240.cpp",
+      "src/pso/unk/text_803D2F1C.cpp",
+      "src/pso/unk/text_803D4418.cpp",
+      "src/pso/unk/text_803D4448.cpp",
+      "src/pso/unk/text_803D4714.cpp",
+      "src/pso/unk/text_803D8DE0.cpp",
+      "src/pso/unk/text_803DA798.cpp",
+      "src/pso/unk/text_803DAFA8.cpp",
+      "src/pso/unk/text_803DD5E0.cpp"
+    ]
+  },
+  "historical_index": {
+    "open": 181,
+    "by_subsystem": {
+      "Audio and disc streaming": 2,
+      "Build, verification and automation": 1,
+      "Chat and text entry": 10,
+      "Enemy and boss behavior": 55,
+      "Front-end scenes and UI": 22,
+      "Network and protocol": 9,
+      "Player combat, techniques and items": 26,
+      "Rendering, camera and effects": 7,
+      "Shared ABI declarations by owning caller": 1,
+      "Window layout, menus and results": 21,
+      "World objects, NPCs and quests": 27
+    },
+    "previous_sha256": "4899deb9543abf4ee1adbd590bf438c7bb0bac08f4b3e4d940540e03317b188c",
+    "sha256": "e6201a45909778fa4dedeb87a62b7aa3189ba817a3cd24531dede30b5dd6fae1",
+    "closed_source_owners": {
+      "src/pso/item/TItemAttacker.cpp": {
+        "historical_blob": "707c6ae051830694d96fe11758312fdec3b6d696",
+        "native_blobs": {
+          "src/pso/weapon/TItemAttacker.cpp": "7673d82667960da4d4a8b5953579ddb2e01cce4c"
+        },
+        "source_review": "The scratch owner passes its TItemBuff name directly, and the raw allocation and release share native pointer storage with buffer initialization. The historical array allocation aliases and current memory functions occupy the same two retail addresses. Item target lookup uses the declared provider and the original squared distance cutoff remains 64.0f.",
+        "original_exact_functions": [
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "deliver_delayed_weapon_hit__FPUc",
+            "historical": "deliver_delayed_weapon_hit",
+            "address": "0x801031cc",
+            "size": "256"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "spawn_item_attacker__FlUllPUc",
+            "historical": "spawn_item_attacker__FlUllPUc",
+            "address": "0x801032cc",
+            "size": "156"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "__ct__13TItemAttackerFllll",
+            "historical": "__ct__13TItemAttackerFllll",
+            "address": "0x80103368",
+            "size": "164"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "copy_from__13TItemAttackerFPv",
+            "historical": "copy_from__13TItemAttackerFPv",
+            "address": "0x8010340c",
+            "size": "60"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "spawn_item_timer__13TItemAttackerFP7TObjectPFP7TObject_vl",
+            "historical": "spawn_item_timer__13TItemAttackerFP7TObjectPFP7TObject_vl",
+            "address": "0x80103448",
+            "size": "84"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "TItemAttacker__sub_8010349C",
+            "historical": "TItemAttacker__sub_8010349C",
+            "address": "0x8010349c",
+            "size": "40"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "__dt__13TItemAttackerFv",
+            "historical": "__dt__13TItemAttackerFv",
+            "address": "0x801034c4",
+            "size": "88"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "run_task__13TItemAttackerFv",
+            "historical": "run_task__13TItemAttackerFv",
+            "address": "0x8010351c",
+            "size": "44"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "get_item_chunk_buffer__Fi",
+            "historical": "get_item_chunk_buffer",
+            "address": "0x80103548",
+            "size": "20"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "TItemBuff__ct",
+            "historical": "TItemBuff__ct",
+            "address": "0x8010355c",
+            "size": "80"
+          },
+          {
+            "path": "src/pso/weapon/TItemAttacker.cpp",
+            "current": "create_item_buff__Fl",
+            "historical": "create_item_buff__Fl",
+            "address": "0x801035ac",
+            "size": "112"
+          }
+        ]
+      },
+      "src/pso/player/TObjPlayer_80083B38.cpp": {
+        "historical_blob": "16d4fc5b063e497356a90a6ddf29293058389796",
+        "native_blobs": {
+          "src/pso/player/TObjPlayer_80083594.cpp": "4096ab311c5888e996d298095695fd9fa40a77dd"
+        },
+        "source_review": "The two recovered Ginja inputs use the native set_render_rect member at the original address. The shadow and viewport routes bind their native texture lists and retain the pixel and surface fields, texture dimensions and original capture flag storage.",
+        "original_exact_functions": [
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "draw_if_all_ready__10TObjPlayerFv",
+            "historical": "draw_if_all_ready__10TObjPlayerFv",
+            "address": "0x80083b38",
+            "size": "84"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "end_shadow_map_pass__Fv",
+            "historical": "end_shadow_map_pass__Fv",
+            "address": "0x80083b8c",
+            "size": "352"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "is_in_shadow_range",
+            "historical": "is_in_shadow_range",
+            "address": "0x80083cec",
+            "size": "104"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "begin_shadow_map_pass__Fv",
+            "historical": "begin_shadow_map_pass__Fv",
+            "address": "0x80083d54",
+            "size": "432"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "TObjPlayer__sub_80083F04",
+            "historical": "TObjPlayer__sub_80083F04",
+            "address": "0x80083f04",
+            "size": "52"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "TObjPlayer__sub_80083F38",
+            "historical": "TObjPlayer__sub_80083F38",
+            "address": "0x80083f38",
+            "size": "100"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "TObjPlayer__sub_80083F9C",
+            "historical": "TObjPlayer__sub_80083F9C",
+            "address": "0x80083f9c",
+            "size": "8"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "TObjPlayer__sub_80083FA4",
+            "historical": "TObjPlayer__sub_80083FA4",
+            "address": "0x80083fa4",
+            "size": "12"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "TObjPlayer__sub_80083FB0",
+            "historical": "TObjPlayer__sub_80083FB0",
+            "address": "0x80083fb0",
+            "size": "12"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "check_all_players_ready__10TObjPlayerFv",
+            "historical": "check_all_players_ready__10TObjPlayerFv",
+            "address": "0x80083fbc",
+            "size": "124"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "draw_screen_quad__10TObjPlayerFUllf",
+            "historical": "draw_screen_quad__10TObjPlayerFUllf",
+            "address": "0x80084038",
+            "size": "620"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "draw_textured_screen_quad__10TObjPlayerFUlPfPfl",
+            "historical": "draw_textured_screen_quad__10TObjPlayerFUlPfPfl",
+            "address": "0x800842a4",
+            "size": "604"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "TObjPlayer__sub_80084500",
+            "historical": "TObjPlayer__sub_80084500",
+            "address": "0x80084500",
+            "size": "60"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "capture_viewport_texture__Fv",
+            "historical": "capture_viewport_texture__Fv",
+            "address": "0x8008453c",
+            "size": "188"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "get_capture_texture_pixels",
+            "historical": "TObjPlayer__sub_800845F8",
+            "address": "0x800845f8",
+            "size": "28"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "reset_and_release_capture_texture",
+            "historical": "TObjPlayer__sub_80084614",
+            "address": "0x80084614",
+            "size": "40"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "reset_and_init_capture_texture",
+            "historical": "TObjPlayer__sub_8008463C",
+            "address": "0x8008463c",
+            "size": "44"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "reset_movie_state__10TObjPlayerFv",
+            "historical": "reset_movie_state__10TObjPlayerFv",
+            "address": "0x80084668",
+            "size": "44"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "release_shared_capture_texture",
+            "historical": "TObjPlayer__sub_80084694",
+            "address": "0x80084694",
+            "size": "52"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "init_capture_texture__Fl",
+            "historical": "init_capture_texture__Fl",
+            "address": "0x800846c8",
+            "size": "124"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "clear_camera_capture_flags_bit2",
+            "historical": "TObjPlayer__sub_80084744",
+            "address": "0x80084744",
+            "size": "16"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "set_camera_capture_flags_bit2",
+            "historical": "TObjPlayer__sub_80084754",
+            "address": "0x80084754",
+            "size": "16"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "clear_camera_flag",
+            "historical": "TObjPlayer__sub_80084764",
+            "address": "0x80084764",
+            "size": "16"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "get_camera_flag__10TObjPlayerFv",
+            "historical": "get_camera_flag__10TObjPlayerFv",
+            "address": "0x80084774",
+            "size": "12"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "set_camera_capture_flags_bit0",
+            "historical": "TObjPlayer__sub_80084780",
+            "address": "0x80084780",
+            "size": "16"
+          },
+          {
+            "path": "src/pso/player/TObjPlayer_80083594.cpp",
+            "current": "disable_camera_capture_overlay__Fv",
+            "historical": "disable_camera_capture_overlay__Fv",
+            "address": "0x80084790",
+            "size": "24"
+          }
+        ]
+      },
+      "src/pso/item/TItemTimer.cpp": {
+        "historical_blob": "dc05892033bee9bff71f2e62af34e5c7e0ce022f",
+        "native_blobs": {
+          "src/pso/item/TItemTimer.cpp": "7d534fb7aff7ef76c9cce652a72d0d0b591da2ac",
+          "src/pso/item/TItemTimerEvent.cpp": "435c13bf4164885f23a38e68b279d7e506bb2868"
+        },
+        "source_review": "The timer and its event handlers retain the original callback, area checks and spell gates. The native player area and movement methods replace the fork\u2019s slot overlays. The compiler keeps the original random multiplier and zero in the pool, and the particle factory uses the declared position and event flags.",
+        "original_exact_functions": [
+          {
+            "path": "src/pso/item/TItemTimer.cpp",
+            "current": "run_task__10TItemTimerFv",
+            "historical": "run_task__10TItemTimerFv",
+            "address": "0x8011d414",
+            "size": "108"
+          },
+          {
+            "path": "src/pso/item/TItemTimer.cpp",
+            "current": "__dt__10TItemTimerFv",
+            "historical": "__dt__10TItemTimerFv",
+            "address": "0x8011d480",
+            "size": "88"
+          },
+          {
+            "path": "src/pso/item/TItemTimer.cpp",
+            "current": "__ct__10TItemTimerFP7TObjectll",
+            "historical": "TItemTimer__ct",
+            "address": "0x8011d4d8",
+            "size": "140"
+          },
+          {
+            "path": "src/pso/item/TItemTimer.cpp",
+            "current": "invoke_callback__10TItemTimerFv",
+            "historical": "invoke_callback__10TItemTimerFv",
+            "address": "0x8011d564",
+            "size": "52"
+          },
+          {
+            "path": "src/pso/item/TItemTimer.cpp",
+            "current": "TItemTimer__sub_8011D598",
+            "historical": "TItemTimer__sub_8011D598",
+            "address": "0x8011d598",
+            "size": "12"
+          },
+          {
+            "path": "src/pso/item/TItemTimer.cpp",
+            "current": "reset_fields__10TItemTimerFv",
+            "historical": "reset_fields__10TItemTimerFv",
+            "address": "0x8011d5a4",
+            "size": "16"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A0568Fv",
+            "historical": "vfunc_6__13TUnk_804A0568Fv",
+            "address": "0x8011d5b4",
+            "size": "184"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A0588Fv",
+            "historical": "vfunc_6__13TUnk_804A0588Fv",
+            "address": "0x8011d66c",
+            "size": "184"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A05A8Fv",
+            "historical": "vfunc_6__13TUnk_804A05A8Fv",
+            "address": "0x8011d724",
+            "size": "184"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A05C8Fv",
+            "historical": "vfunc_6__13TUnk_804A05C8Fv",
+            "address": "0x8011d7dc",
+            "size": "160"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A05E8Fv",
+            "historical": "vfunc_6__13TUnk_804A05E8Fv",
+            "address": "0x8011d87c",
+            "size": "208"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A0608Fv",
+            "historical": "vfunc_6__13TUnk_804A0608Fv",
+            "address": "0x8011d94c",
+            "size": "84"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A0628Fv",
+            "historical": "vfunc_6__13TUnk_804A0628Fv",
+            "address": "0x8011d9a0",
+            "size": "72"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A0648Fv",
+            "historical": "vfunc_6__13TUnk_804A0648Fv",
+            "address": "0x8011d9e8",
+            "size": "72"
+          },
+          {
+            "path": "src/pso/item/TItemTimerEvent.cpp",
+            "current": "vfunc_6__13TUnk_804A0668Fv",
+            "historical": "vfunc_6__13TUnk_804A0668Fv",
+            "address": "0x8011da30",
+            "size": "108"
+          }
+        ]
+      }
+    }
+  },
+  "cutover_rehearsal": {
+    "first_parent": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "source": "92674f03b5f15ece465abeff1d4b84b988b4ee45",
+    "branch": "great-merge/rehearsal/fork-cutover-current"
+  },
+  "build_cleanup": {
+    "duplicate_baselines_removed": 7,
+    "allocated_bytes_reclaimed": 52375552,
+    "cast_audit_objects_retained": 81,
+    "cast_audit_object_bytes": 1830912,
+    "checkpoint_mount": "Read-only at the cleanup check."
+  }
+}

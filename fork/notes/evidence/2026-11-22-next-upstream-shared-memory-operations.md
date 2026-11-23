@@ -1,5 +1,7 @@
 # Share the allocation, copy and release interfaces
 
+The current local review is `14951bf3bf` on the sound review `81bf9735c5`. The 224-path batch covers shared memory declarations, nullable release and typed item-buffer storage. Retail, coverage and the allocation, copy, footprint and item-buffer probes pass. The source-quality benchmark removes 39 findings and flags no labels. [Current validation](2026-11-22-upstream-371-shared-memory-and-item-buffer.json)
+
 The local memory review is `4fc1ed7afe` above the current window and network checkpoint `c02dcaa95d`. It gives allocation and copy their shared declarations and moves nullable release into the memory owner. The build matches retail and the allocator, release and overlapping copy probes pass. [Current validation](2026-11-22-upstream-367-network-memory-validation.json)
 
 The local review `great-merge/review/after-366/shared-memory-operations` is at `848e38d3679eb90d80c35f80e25f83bf3da4ad0c` above the sound review `a94738117b5df43522088adc726ffb98bd82644f`. Its single commit touches 227 paths. [Validation](2026-11-22-upstream-366-shared-memory-review-validation.json)
