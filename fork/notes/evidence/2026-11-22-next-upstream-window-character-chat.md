@@ -1,6 +1,18 @@
 # Recover native window, character selection, and chat interfaces
 
-PR #371 is ready for review at `084cec228c` from `matthewlewisnewton:recover-native-window-character-chat` to upstream `master`. The follow-up preserves the established polygon, sprite, team and Meseta fields. It reproduces retail with zero coverage losses. The upstream benchmark reports 2,560 fewer findings, zero flagged symbol labels and zero newly stale retention entries. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Passing CI](https://github.com/zeroz41/pso-decomp/actions/runs/45079322229/job/137383670517) · [Field audit validation](2026-11-22-upstream-371-field-audit-validation.json)
+## Follow-up after the #371 merge
+
+The local review `great-merge/review/after-376/window-chat-and-frontend` is `48aef1e61204584ab5cabc02ff2e2a40d0b14f39` on `d188731c39`, the validated inventory, saves, actor and AVE-TCP queue. It covers 223 paths and matches retail with zero coverage regressions. [Validation](2026-11-23-combined-window-chat-frontend-validation.json)
+
+- Use the native window draw and scroll records in the main menu, item lists, status gauges and Guild Card UI. Menu rows track selection and disable confirmation through their actual fields.
+- Pass native Ninja polygons and sprites to the renderer and share the Ginja HUD texture pointer with the radar, Symbol Chat and lobby overlay.
+- Use the real character preview and input records in the frontend. Keep the queued release and sound signatures while the shared memory and sound changes follow their own reviews.
+
+The benchmark removes 1,461 findings and adds 82, with one label advisory and no newly stale retention entries. At `0x8032BCBC`, the typed deferred-render entry moves from the password scene to the existing `TUnk_804EDAC0` task. The task retains its upstream name. The receipt lists the remaining source-quality findings.
+
+## Earlier window reviews
+
+An earlier review of PR #371 was ready at `084cec228c` from `matthewlewisnewton:recover-native-window-character-chat` to upstream `master`. The follow-up preserves the established polygon, sprite, team and Meseta fields. It reproduces retail with zero coverage losses. The upstream benchmark reports 2,560 fewer findings, zero flagged symbol labels and zero newly stale retention entries. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Passing CI](https://github.com/zeroz41/pso-decomp/actions/runs/45079322229/job/137383670517) · [Field audit validation](2026-11-22-upstream-371-field-audit-validation.json)
 
 The initial review went into draft at `5cd8d9c8e9` from `matthewlewisnewton:recover-native-window-character-chat` to `master` while the typed polygon fields are audited. The original single-commit review was built on the same upstream revision. Its single commit on upstream `d8c0a969d2` covers 377 paths. It reproduces retail with all 27,572 functions exact, 2,417 linked units and all 1,147 original data bytes accounted for. Title, status, and lifetime probes pass. [Upstream PR #371](https://github.com/zeroz41/pso-decomp/pull/371) · [Validation at the published head](2026-11-22-upstream-370-window-symbol-validation.json)
 

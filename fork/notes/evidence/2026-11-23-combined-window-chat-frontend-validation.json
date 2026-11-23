@@ -1,0 +1,893 @@
+{
+  "builds": {
+    "queue": {
+      "head": "48aef1e61204584ab5cabc02ff2e2a40d0b14f39",
+      "tree": "0269fbcbe65f777ea7efd4f1e986abeae0703cb9",
+      "coverage_baseline": "d188731c39143af0e758673b68f8f760a96f4f67",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "5a84f39e7a7b6b3cde5cdc08426ff62a37ccf3dcfe29deb025c5660bb35dfa96",
+        "queue-check.json": "daf561ddd75a8cc4e8d09b92127a5ca1e46ada63b7b01ac6042ae423a3baf635"
+      },
+      "quality": {
+        "removed": 1461,
+        "added": 82,
+        "changed_labels": 78,
+        "flagged_labels": [
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x8032BCBC",
+            "type": "function",
+            "old": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+            "new": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject",
+            "flags": [
+              "member of TUnk_804EDAC0, a class named after an address"
+            ]
+          }
+        ],
+        "newly_stale_retention": 0,
+        "findings_by_kind": {
+          "offset_member": 48,
+          "address_type": 6,
+          "function_placeholder": 9,
+          "this_cast": 18,
+          "punned_deref": 1,
+          "data_label": 3,
+          "local_class": 2,
+          "extern_c": 8,
+          "mangled_member": 4,
+          "local_decl": 1
+        },
+        "findings": [
+          {
+            "key": "offset_member",
+            "path": "include/pso/ui/window/TWindowMenuMainMenu.h",
+            "line": 80,
+            "text": "m_62"
+          },
+          {
+            "key": "offset_member",
+            "path": "include/pso/ui/window/TWindowSubCustomSelect.h",
+            "line": 21,
+            "text": "m_7c"
+          },
+          {
+            "key": "offset_member",
+            "path": "include/pso/ui/window/TWindowSubCustomSelect.h",
+            "line": 22,
+            "text": "m_80"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+            "line": 1595,
+            "text": "TUnk_804EDAC0"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/trap/TOTrapAncient02.cpp",
+            "line": 223,
+            "text": "TUnk_804EDAC0"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+            "line": 209,
+            "text": "TUnk_804EDAC0"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/TLogo.cpp",
+            "line": 124,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+            "line": 225,
+            "text": "G_802156E0"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/city/TShopArmorListWindow_802785FC.cpp",
+            "line": 9,
+            "text": "TShopArmorListWindow: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/city/TShopArmorListWindow_802785FC.cpp",
+            "line": 9,
+            "text": "TShopArmorListWindow: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/city/TShopArmorListWindow_802785FC.cpp",
+            "line": 9,
+            "text": "TShopArmorListWindow: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/city/TShopArmorListWindow_8027870C.cpp",
+            "line": 9,
+            "text": "TShopArmorListWindow: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/city/TShopArmorListWindow_8027870C.cpp",
+            "line": 9,
+            "text": "TShopArmorListWindow: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/frontend/TAdDialingGC.cpp",
+            "line": 417,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/frontend/TAdEndText_80307A34.cpp",
+            "line": 34,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+            "line": 543,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "punned_deref",
+            "path": "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+            "line": 280,
+            "text": "*(s32 *)(TAdMultiPlyChrSelectGC__resource_bundle + 0x430)"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+            "line": 172,
+            "text": "lbl_80478408"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+            "line": 236,
+            "text": "lbl_80478408"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+            "line": 2040,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+            "line": 2071,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+            "line": 2125,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+            "line": 422,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "local_class",
+            "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+            "line": 105,
+            "text": "struct RadarScissorRect"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+            "line": 429,
+            "text": "m_90"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+            "line": 752,
+            "text": "RadarViewRect_801FA9D8"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 147,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 187,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 188,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 191,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 213,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 214,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 216,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 223,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 224,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 225,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 229,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 229,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 229,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 231,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 231,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 231,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 234,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 235,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 244,
+            "text": "m_1c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+            "line": 245,
+            "text": "m_1c"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 29,
+            "text": "extern \"C\" test_flag_4c__23TAdSinglePlyChrSelectGCFv"
+          },
+          {
+            "key": "mangled_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 29,
+            "text": "test_flag_4c__23TAdSinglePlyChrSelectGCFv"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 30,
+            "text": "extern \"C\" apply_choice__20TWindowChoiceSettingFllll"
+          },
+          {
+            "key": "mangled_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 30,
+            "text": "apply_choice__20TWindowChoiceSettingFllll"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 31,
+            "text": "extern \"C\" TWindowSubComCard__sub_80244784"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 31,
+            "text": "TWindowSubComCard__sub_80244784"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 32,
+            "text": "extern \"C\" is_window_reveal_complete__11TWindowBaseFv"
+          },
+          {
+            "key": "mangled_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 32,
+            "text": "is_window_reveal_complete__11TWindowBaseFv"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 33,
+            "text": "extern \"C\" sub_80246948__11TWindowBaseFv"
+          },
+          {
+            "key": "mangled_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 33,
+            "text": "sub_80246948__11TWindowBaseFv"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 34,
+            "text": "extern \"C\" begin_screen_draw"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 35,
+            "text": "extern \"C\" draw_textured_quad_at_depth"
+          },
+          {
+            "key": "extern_c",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 36,
+            "text": "extern \"C\" set_draw_texture_and_color"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 152,
+            "text": "m_62"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 174,
+            "text": "m_62"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 180,
+            "text": "m_62"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 309,
+            "text": "m_62"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+            "line": 450,
+            "text": "TWindowMenuMainMenu: (TWindowSubComCard *)this"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowMenuMainMenu.cpp",
+            "line": 59,
+            "text": "m_62"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowShortListCtrl.cpp",
+            "line": 10,
+            "text": "TWindowShortListCtrl: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowShortListCtrl.cpp",
+            "line": 10,
+            "text": "TWindowShortListCtrl: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowShortListCtrl.cpp",
+            "line": 10,
+            "text": "TWindowShortListCtrl: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowShortListCtrl.cpp",
+            "line": 12,
+            "text": "TWindowShortListCtrl: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowShortListCtrl.cpp",
+            "line": 12,
+            "text": "TWindowShortListCtrl: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowShortListCtrl.cpp",
+            "line": 12,
+            "text": "TWindowShortListCtrl: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+            "line": 991,
+            "text": "extern NJS_TEXLIST f256_hyouji_texlist"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+            "line": 736,
+            "text": "m_72"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+            "line": 671,
+            "text": "m_78"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+            "line": 153,
+            "text": "m_61"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+            "line": 153,
+            "text": "m_62"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+            "line": 164,
+            "text": "m_66"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+            "line": 74,
+            "text": "m_7c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+            "line": 92,
+            "text": "m_80"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+            "line": 206,
+            "text": "m_80"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowSubEquip_80279044.cpp",
+            "line": 12,
+            "text": "TWindowSubEquip: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowSubEquip_80279044.cpp",
+            "line": 12,
+            "text": "TWindowSubEquip: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubItem.cpp",
+            "line": 111,
+            "text": "m_8c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubItem.cpp",
+            "line": 112,
+            "text": "m_8c"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubItem.cpp",
+            "line": 175,
+            "text": "m_88"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubItem.cpp",
+            "line": 180,
+            "text": "m_88"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowSubMag_80278760.cpp",
+            "line": 10,
+            "text": "TWindowSubMag: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowSubMag_80278760.cpp",
+            "line": 10,
+            "text": "TWindowSubMag: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+            "line": 96,
+            "text": "m_78"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+            "line": 100,
+            "text": "m_78"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+            "line": 102,
+            "text": "m_78"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+            "line": 102,
+            "text": "m_78"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+            "line": 103,
+            "text": "m_78"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowSubTradeMain_802785B0.cpp",
+            "line": 10,
+            "text": "TWindowSubTradeMain: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/ui/window/TWindowSubTradeMain_802785B0.cpp",
+            "line": 10,
+            "text": "TWindowSubTradeMain: (TWindowMenuIconLine *)this"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/TLobby_8021B268.cpp",
+            "line": 6,
+            "text": "m_a8"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/TLobby_8021B268.cpp",
+            "line": 7,
+            "text": "m_ac"
+          },
+          {
+            "key": "local_class",
+            "path": "src/pso/unk/TLobby_803382E4.cpp",
+            "line": 29,
+            "text": "struct LobbyOverlayData"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/unk/TLobby_803382E4.cpp",
+            "line": 86,
+            "text": "lbl_804EF3E0"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/unk/TUnk_804EDAC0.cpp",
+            "line": 34,
+            "text": "TUnk_804EDAC0"
+          }
+        ],
+        "evidence_sha256": {
+          "queue-quality.json": "249b7d0092cc1926ffa6a80d845904903ac25c65a11c7706c9f76ad2dd6c27a8",
+          "queue-master-coverage.json": "7fcf696183639745a7b137ffb8918a7d24f44d1f353df5ef4bf313dc1d0e8b96"
+        }
+      }
+    },
+    "source": {
+      "head": "a7ab85081fd5b56e8d4b615068bab9c9e5ec7be9",
+      "tree": "ce7db313022ee1b2f8f578bedcaaef4a16dc1a1c",
+      "coverage_baseline": "82f1ed395fd3a271876030107538f1d24463eafd",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "ba9b31ad68ddaf1cbe91575ca1df36f72a87e134feddd9d268405e2e76f31c5e",
+        "source-check.json": "c3a210893d05cbb253eaa76dd0c257147333885695ac9cb14d27501e998df865",
+        "source-quality.json": "40925dbee92e9b3e00fc298a27121510003a3a2655e515b458c4b2e95817f7fb"
+      },
+      "quality": {
+        "removed": 25,
+        "added": 0,
+        "changed_labels": 3,
+        "flagged_labels": 0,
+        "newly_stale_retention": 0,
+        "findings": []
+      }
+    },
+    "ave": {
+      "head": "74888c261a610f1656206e73b9a92ce433b23dcf",
+      "tree": "9cf1d15e779998b91fd5ea57a4cd2adc5ed4348c",
+      "coverage_baseline": "3a74a88c0019fa13062cd2c6f042fb1776fccf43",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "ave-check.json": "c3a210893d05cbb253eaa76dd0c257147333885695ac9cb14d27501e998df865"
+      }
+    },
+    "private": {
+      "head": "a18b6bcfe76a3ba540ee3dda7b514dffe51c5a35",
+      "tree": "cec27660a155481d0248d74d3421422df8c41236",
+      "coverage_baseline": "fde8138e490f2943d67ca27875b6f26481c2ce1a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "ba9b31ad68ddaf1cbe91575ca1df36f72a87e134feddd9d268405e2e76f31c5e",
+        "private-check.json": "edeabeb984fbe19c5353e9c460310013730a28e73c760ba931d69df8380fad8a"
+      }
+    },
+    "ave-private": {
+      "head": "c550f29a82f2f299bafbfcde01cb80857ac121c1",
+      "tree": "1caf3caeeaf911da90e28f57eaabbd242558550d",
+      "coverage_baseline": "0476425d05e16dc7c2c49726efa6aaf35d4ae1d7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-private-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "ave-private-check.json": "edeabeb984fbe19c5353e9c460310013730a28e73c760ba931d69df8380fad8a"
+      }
+    }
+  },
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_reconciliation": {
+    "shared_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "configure.py",
+      "include/pso/effect/TEF_LensFlare.h",
+      "include/pso/ui/window/TWindowMenu.h",
+      "include/pso/ui/window/TWindowMenuIconLine.h",
+      "include/pso/ui/window/TWindowSubStatusDisp.h",
+      "include/pso/ui/window/WindowScrollBar.h",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp",
+      "src/pso/ui/TLogo.cpp",
+      "src/pso/ui/charcreate/TObjCMName.cpp",
+      "src/pso/ui/chat/TWindowChatSymbol.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+      "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+      "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+      "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+      "src/pso/ui/frontend/TAdFadeGC.cpp",
+      "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+      "src/pso/ui/hud/TMainCursor.cpp",
+      "src/pso/ui/window/TWindowActionPalette.cpp",
+      "src/pso/ui/window/TWindowBreakIn.cpp",
+      "src/pso/ui/window/TWindowChoiceSetting.cpp",
+      "src/pso/ui/window/TWindowComCard.cpp",
+      "src/pso/ui/window/TWindowComCardFollower.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowDD_8034055C.cpp",
+      "src/pso/ui/window/TWindowDD_80340A78.cpp",
+      "src/pso/ui/window/TWindowDD_80341A08.cpp",
+      "src/pso/ui/window/TWindowDD_8034725C.cpp",
+      "src/pso/ui/window/TWindowDuelResult.cpp",
+      "src/pso/ui/window/TWindowEffectLight.cpp",
+      "src/pso/ui/window/TWindowFukidasi.cpp",
+      "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+      "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+      "src/pso/ui/window/TWindowInputNumber.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase_8008102C.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+      "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+      "src/pso/ui/window/TWindowMessageLog.cpp",
+      "src/pso/ui/window/TWindowPartyStatus.cpp",
+      "src/pso/ui/window/TWindowShortCut.cpp",
+      "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "src/pso/ui/window/TWindowSnapShot.cpp",
+      "src/pso/ui/window/TWindowStatus.cpp",
+      "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+      "src/pso/ui/window/TWindowSubComCardList.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+      "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+      "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+      "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "src/pso/unk/TLobby_803382E4.cpp"
+    ],
+    "added_lines_refined": 109,
+    "overlap_receipt_sha256": {
+      "effects-overlap.tsv": "11c2fe72e9a86106cef796f51bf0da0cefa8e84b45138fb7fdd460f4763e309b"
+    },
+    "summary": "Uses the established hud_texlist name through its native Ginja texture-list pointer, puts scroll-bar state on WindowScrollBar, and uses the #375 native lens-flare constructor."
+  },
+  "source_review": {
+    "label_advisory": "The deferred-render entry moves from the password scene to the existing TUnk_804EDAC0 task. The task keeps its upstream name.",
+    "legacy_release": "The window queue uses the existing nullable release and positional sound entry points so the separate memory and sound changes can use their own reviews.",
+    "protected_ninja_interfaces": [
+      "draw_selection_plate",
+      "draw_dialing_rectangle",
+      "draw_with_camera"
+    ]
+  },
+  "runtime": {
+    "images": 6,
+    "menu_disable_flags": 256,
+    "menu_slots": 8,
+    "radar": 12,
+    "mag_help_flags": 256,
+    "photon_blast": 12,
+    "shortcut_render": 4,
+    "shortcut_factory_and_caller": 9,
+    "evidence_sha256": {
+      "probe-menu-selection.py": "0601bf3a5cf9b60d5d00c6c6693e516eb82810313e3e7cd5a9b92c160de6b30d",
+      "probe-radar.py": "6e28210fd017a117ea27aba2767f73abc5b8dbcf9469eb2312d5c9b08670891d",
+      "menu-probes.log": "5b4dbd6d683f77d09881307097eb121984daf6219e90667b65f81d98882e4496",
+      "radar-probes.log": "adf882e1be08eb62f09c3bd5e0d587fbe5834f1ce6d73c9846e4c802400e5dfa",
+      "shortcut-probes.log": "97c7f6d9b7e70586cbd41e8c359d352e0462d78f55b295931557515bb08dea56"
+    }
+  },
+  "fork_tooling": {
+    "patched_paths": 130,
+    "retention_entries": 27007,
+    "tests": 310,
+    "evidence_sha256": {
+      "private-overlay.patch": "d883a1572cd41c5496fda78efa2439a1675f249155783be1c7b1ba13d990e8a1",
+      "ave-private-overlay.patch": "0bd3996a436b55eef52ab396b181747d1fe07caf074365db292fb8374ed867a8",
+      "ave-private-fork-tests.log": "f3f0ec1eeb8f0f225643f82a48b9d8eeb3788a5a534f196d8bd0563cb24ee868",
+      "ave-private-tool-tests.log": "920412c34f56600aba2f4964254fd45a4c246c882c1bc1ab1eca5ffc7994662a",
+      "ave-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc"
+    }
+  },
+  "remaining_tree_difference": {
+    "base": "48aef1e61204584ab5cabc02ff2e2a40d0b14f39",
+    "head": "74888c261a610f1656206e73b9a92ce433b23dcf",
+    "paths": 811,
+    "ui_paths": [
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+      "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+      "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+      "src/pso/ui/city/TCheckRoomSequence.cpp",
+      "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+      "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+      "src/pso/ui/frontend/TAdEndText.cpp",
+      "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+      "src/pso/ui/hud/TLoadingCur.cpp",
+      "src/pso/ui/hud/TMainCursor.cpp",
+      "src/pso/ui/hud/TRaderMapCore.cpp",
+      "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+      "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp"
+    ],
+    "previous_paths": 1006,
+    "previous_ui_paths": 199
+  }
+}
