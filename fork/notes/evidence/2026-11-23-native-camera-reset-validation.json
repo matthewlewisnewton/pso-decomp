@@ -1,0 +1,658 @@
+{
+  "cumulative_source": {
+    "head": "0fb594fe92b966e1c36cc46fb9959231d19b43c8",
+    "tree": "1e5265c2d3018e67c0a1f4225ad2c38323d38bb6",
+    "coverage_baseline": "aeef41111024361e5ba652197c854eefe345652c",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "evidence_sha256": {
+      "source-report.json": "e3fbbd2aef5e0d5b8f716515b965ee19de3562a0f4ce27b39568e4a4042df4a4",
+      "source-check.json": "08dd11a74fdca4ad01203992d66c0ef28895e76d3b39ed19132780105eab4993",
+      "source-quality.json": "1a29073015b6001ffdf4a20f8d837fc51947e20078dd90500d2b005cd72ef3a4"
+    },
+    "source_quality": {
+      "total": {
+        "base": 141391,
+        "head": 141369,
+        "added": 0,
+        "removed": 22
+      },
+      "function_label_changes": 2,
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "additions": []
+    }
+  },
+  "materialized_fork": {
+    "head": "ebf5a3623017d50398a42dc2ddc70e318dc7030b",
+    "tree": "60b98e9f96a659fcb4ee9d6dda2e86cf3805cb60",
+    "coverage_baseline": "0fb594fe92b966e1c36cc46fb9959231d19b43c8",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "evidence_sha256": {
+      "private-report.json": "e3fbbd2aef5e0d5b8f716515b965ee19de3562a0f4ce27b39568e4a4042df4a4",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-tests.log": "3d6a63dbcdae2013bdcda0ca36ba2bf7ec89c0eed7c9130bfc8f9a4a04b9e00c",
+      "private-tool-tests.log": "1ca2acd656082749ff0eb6afe122eb7fe5d544edd8da25a89212cb765912a074",
+      "private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "overlay-after.patch": "2f9f86d25351dedee637ae8bb699182a7305762be3786c974100bdc813787b5d"
+    },
+    "tooling_tests": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    }
+  },
+  "independent_actor_review": {
+    "head": "41db0911ec9636e49a8af652cd2b9221950c0cd8",
+    "tree": "42f825ae3bad9782dc792e83275be6e9cdb439a7",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "evidence_sha256": {
+      "direct-report.json": "8a8cac12cc99f4b5eb78846cde2f81ec630362acb570dfd4fac4f9209fd212ac",
+      "direct-check.json": "92e04c616d6029e5fe18ad6b208b66eceadc30b8dccf33763b5025d1492dd596",
+      "direct-quality.json": "45b6d760bea0e556dff5fbf68cfd17079c1f8b394971661a4bc506b44f941b73"
+    },
+    "source_quality": {
+      "total": {
+        "base": 147293,
+        "head": 146802,
+        "added": 5,
+        "removed": 496
+      },
+      "function_label_changes": 37,
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "additions": [
+        {
+          "key": "slot_name",
+          "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+          "line": 120,
+          "text": "vfunc_16"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 356,
+          "text": "m_2f6"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 358,
+          "text": "m_2fa"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/player/TObjPlayer_800C4714.cpp",
+          "line": 205,
+          "text": "Hit_800C4A5C"
+        },
+        {
+          "key": "local_decl",
+          "path": "src/pso/player/TObjPlayer_8035A778.cpp",
+          "line": 11,
+          "text": "extern GC_Mtx *node_matrix_array_base"
+        }
+      ],
+      "advisory_explanations": {
+        "vfunc_16": "The Mericarol bomb uses the existing virtual contact slot.",
+        "m_2f6 and m_2fa": "The two established resistance fields replace address arithmetic.",
+        "Hit_800C4A5C": "The original Flower bomb factory and contact path share this local hit record.",
+        "node_matrix_array_base": "The existing model-capture callback declaration carries the native buffer type used by its owner and caller."
+      }
+    },
+    "paths": 177
+  },
+  "actor_with_inventory_and_saves": {
+    "head": "77b449105051a32128d73765cafaee27719d38c6",
+    "tree": "4782199f19fe72018442db2526ed70650a38ffc1",
+    "coverage_baseline": "871867b6df8d60e0eb30733abeeddfd3fe90938d",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "evidence_sha256": {
+      "queue-report.json": "1ff354e67e9868ed6828f4139b070b24ba6f4c30fb44fd0009ce769c2a124ed3",
+      "queue-check.json": "08dd11a74fdca4ad01203992d66c0ef28895e76d3b39ed19132780105eab4993"
+    }
+  },
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/camera/TCameraCtrl.h",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/camera/TCameraCtrl.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BC194.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp"
+  ],
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_shared_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/camera/TCameraCtrl.h",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp"
+  ],
+  "inventory_shared_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/camera/TCameraCtrl.h",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp"
+  ],
+  "runtime": {
+    "default_view_cases": 4,
+    "player_reset_cases": 4,
+    "evidence_sha256": {
+      "probe-camera-routing.py": "ec5afd54467f6b73ef6c07e45c4b46a1acb81df96ec87bb3788a758005dc768d",
+      "all-probes.log": "f8b90ed541f61dfcba16f8be5cde9afb76b3177fa73fda431ff0ad6ed922f8b2"
+    }
+  },
+  "historical_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "historical_source": {
+    "camera_functions": {
+      "0x800687BC": {
+        "historical_label": "run_task__13TUnk_80488A28Fv",
+        "current_label": "run_task__17TCameraControllerFv",
+        "size": 4,
+        "owner": "src/pso/camera/TCameraController.cpp"
+      },
+      "0x800687C0": {
+        "historical_label": "get_target_ptr__11TCameraCtrlFv",
+        "current_label": "get_prev_position_ptr__10TObjPlayerFv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraController.cpp"
+      },
+      "0x800687C8": {
+        "historical_label": "TCameraCtrl__sub_800687C8",
+        "current_label": "reset_up_vector__11TCameraCtrlFv",
+        "size": 28,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800687E4": {
+        "historical_label": "copy_vec_to_default__11TCameraCtrlFPUc",
+        "current_label": "copy_vec_to_default__11TCameraCtrlFPC3Vec",
+        "size": 44,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068810": {
+        "historical_label": "sync_split_view_slots__11TCameraCtrlFll",
+        "current_label": "sync_split_view_slots__11TCameraCtrlFll",
+        "size": 192,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800688D0": {
+        "historical_label": "get_split_screen_view_index__11TCameraCtrlFUs",
+        "current_label": "get_split_screen_view_index__11TCameraCtrlFUs",
+        "size": 136,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068958": {
+        "historical_label": "get_nth_view_player_id__11TCameraCtrlFl",
+        "current_label": "get_nth_view_player_id__11TCameraCtrlFl",
+        "size": 144,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800689E8": {
+        "historical_label": "TCameraCtrl__sub_800689E8",
+        "current_label": "clear_pose_snap_flags__11TCameraCtrlFv",
+        "size": 12,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800689F4": {
+        "historical_label": "TCameraCtrl__sub_800689F4",
+        "current_label": "is_view_offset__11TCameraCtrlFv",
+        "size": 16,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068A04": {
+        "historical_label": "TCameraCtrl__sub_80068A04",
+        "current_label": "get_split_offset_x__11TCameraCtrlFl",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068A0C": {
+        "historical_label": "get_split_offset__11TCameraCtrlFl",
+        "current_label": "get_split_offset__11TCameraCtrlFl",
+        "size": 92,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068A68": {
+        "historical_label": "set_fullscreen_viewport__11TCameraCtrlFv",
+        "current_label": "set_fullscreen_viewport__11TCameraCtrlFv",
+        "size": 204,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068B34": {
+        "historical_label": "set_split_viewport__11TCameraCtrlFll",
+        "current_label": "set_split_viewport__11TCameraCtrlFll",
+        "size": 812,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068E60": {
+        "historical_label": "get_fov__11TCameraCtrlFv",
+        "current_label": "get_fov__11TCameraCtrlFv",
+        "size": 72,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068EA8": {
+        "historical_label": "get_view_scale__11TCameraCtrlFv",
+        "current_label": "get_view_scale__11TCameraCtrlFv",
+        "size": 72,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068EF0": {
+        "historical_label": "TCameraCtrl__sub_80068EF0",
+        "current_label": "restore_saved_view__11TCameraCtrlFv",
+        "size": 220,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80068FCC": {
+        "historical_label": "copy_view_state__11TCameraCtrlFl",
+        "current_label": "copy_view_state__16CameraViewParamsFPC16CameraViewParams",
+        "size": 88,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069024": {
+        "historical_label": "restore_full_screen_view__11TCameraCtrlFv",
+        "current_label": "restore_full_screen_view__11TCameraCtrlFv",
+        "size": 112,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069094": {
+        "historical_label": "get_camera_target_id__11TCameraCtrlFl",
+        "current_label": "get_camera_target_id__11TCameraCtrlFl",
+        "size": 180,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069148": {
+        "historical_label": "transform_to_view__11TCameraCtrlFii",
+        "current_label": "transform_to_view__11TCameraCtrlFPC3VecP3Vec",
+        "size": 128,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800691C8": {
+        "historical_label": "apply_split_screen_view_matrix__11TCameraCtrlFv",
+        "current_label": "apply_split_screen_view_matrix__11TCameraCtrlFv",
+        "size": 144,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069258": {
+        "historical_label": "get_view_matrix__11TCameraCtrlFv",
+        "current_label": "get_view_matrix__11TCameraCtrlFv",
+        "size": 120,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800692D0": {
+        "historical_label": "create__11TCameraCtrlFv",
+        "current_label": "create__11TCameraCtrlFv",
+        "size": 52,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069304": {
+        "historical_label": "TCameraCtrl__sub_80069304",
+        "current_label": "is_view_override_active__11TCameraCtrlFv",
+        "size": 20,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069318": {
+        "historical_label": "reset_default_view__11TCameraCtrlFv",
+        "current_label": "reset_default_view__11TCameraCtrlFv",
+        "size": 220,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800693F4": {
+        "historical_label": "init_default_view__11TCameraCtrlFv",
+        "current_label": "init_default_view__11TCameraCtrlFv",
+        "size": 180,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800694A8": {
+        "historical_label": "end_view_override__Fv",
+        "current_label": "end_view_override__Fv",
+        "size": 140,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069534": {
+        "historical_label": "reset_viewport_scissor__11TCameraCtrlFv",
+        "current_label": "reset_viewport_scissor__11TCameraCtrlFv",
+        "size": 108,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800695A0": {
+        "historical_label": "begin_override__16CameraViewParamsFv",
+        "current_label": "begin_override__16CameraViewParamsFv",
+        "size": 72,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800695E8": {
+        "historical_label": "apply_if_overridden__16CameraViewParamsFv",
+        "current_label": "apply_if_overridden__16CameraViewParamsFv",
+        "size": 52,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006961C": {
+        "historical_label": "apply__16CameraViewParamsFv",
+        "current_label": "apply__16CameraViewParamsFv",
+        "size": 172,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800696C8": {
+        "historical_label": "get_target__11TCameraCtrlFv",
+        "current_label": "get_target__11TCameraCtrlFv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800696D0": {
+        "historical_label": "resolve_anchor_obstruction__11TCameraCtrlFv",
+        "current_label": "resolve_anchor_obstruction__11TCameraCtrlFP17TCameraController",
+        "size": 504,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x800698C8": {
+        "historical_label": "clamp_to_target_obstruction__11TCameraCtrlFv",
+        "current_label": "clamp_to_target_obstruction__11TCameraCtrlFP17TCameraController",
+        "size": 420,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069A6C": {
+        "historical_label": "update_target_smoothing__11TCameraCtrlFv",
+        "current_label": "update_target_smoothing__11TCameraCtrlFv",
+        "size": 204,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069B38": {
+        "historical_label": "update_position__11TCameraCtrlFv",
+        "current_label": "update_position__11TCameraCtrlFv",
+        "size": 160,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069BD8": {
+        "historical_label": "update_pose_smoothing__11TCameraCtrlFv",
+        "current_label": "update_pose_smoothing__11TCameraCtrlFv",
+        "size": 188,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069C94": {
+        "historical_label": "set_active_camera_pose",
+        "current_label": "set_active_camera_pose",
+        "size": 112,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069D04": {
+        "historical_label": "set_active_camera_pose_from_params",
+        "current_label": "set_active_camera_pose_from_params",
+        "size": 120,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069D7C": {
+        "historical_label": "release_photon_blast_camera__11TCameraCtrlFv",
+        "current_label": "release_photon_blast_camera__11TCameraCtrlFv",
+        "size": 44,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069DA8": {
+        "historical_label": "restore_player_cameras",
+        "current_label": "restore_player_cameras",
+        "size": 212,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069E7C": {
+        "historical_label": "activate_camera_mode",
+        "current_label": "activate_camera_mode",
+        "size": 164,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x80069F20": {
+        "historical_label": "reset_view_flags__11TCameraCtrlFv",
+        "current_label": "reset_view_flags__11TCameraCtrlFv",
+        "size": 284,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A03C": {
+        "historical_label": "get_params__11TCameraCtrlFv",
+        "current_label": "get_params__11TCameraCtrlFv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A044": {
+        "historical_label": "TCameraCtrl__sub_8006A044",
+        "current_label": "start_camera_shake",
+        "size": 68,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A088": {
+        "historical_label": "set_shake_preset__11TCameraCtrlFl",
+        "current_label": "set_shake_preset__11TCameraCtrlFl",
+        "size": 180,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A13C": {
+        "historical_label": "cycle_spectate_target__11TCameraCtrlFv",
+        "current_label": "cycle_spectate_target__11TCameraCtrlFv",
+        "size": 480,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A31C": {
+        "historical_label": "reset__11TCameraCtrlFv",
+        "current_label": "reset__11TCameraCtrlFv",
+        "size": 64,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A35C": {
+        "historical_label": "reset_view_state__11TCameraCtrlFv",
+        "current_label": "reset_view_state__11TCameraCtrlFv",
+        "size": 180,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A410": {
+        "historical_label": "reset_cameras_to_actor__FPvl",
+        "current_label": "reset_cameras_to_actor__FP10TObjPlayerl",
+        "size": 460,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A5DC": {
+        "historical_label": "TCameraCtrl__sub_8006A5DC",
+        "current_label": "get_active_controller__11TCameraCtrlFv",
+        "size": 16,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A5EC": {
+        "historical_label": "select_active_controller__11TCameraCtrlFSc",
+        "current_label": "select_active_controller__11TCameraCtrlFSc",
+        "size": 216,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A6C4": {
+        "historical_label": "update_shake__11TCameraCtrlFv",
+        "current_label": "update_shake__11TCameraCtrlFv",
+        "size": 196,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A788": {
+        "historical_label": "select_camera_controller__Fl",
+        "current_label": "select_camera_controller__Fl",
+        "size": 80,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A7D8": {
+        "historical_label": "update_active_controller__11TCameraCtrlFv",
+        "current_label": "update_active_controller__11TCameraCtrlFv",
+        "size": 536,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006A9F0": {
+        "historical_label": "update_target_from_state__11TCameraCtrlFv",
+        "current_label": "update_target_from_state__11TCameraCtrlFv",
+        "size": 160,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006AA90": {
+        "historical_label": "TCameraCtrl__sub_8006AA90",
+        "current_label": "__dt__11TCameraCtrlFv",
+        "size": 188,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006AB4C": {
+        "historical_label": "render__11TCameraCtrlFv",
+        "current_label": "render__11TCameraCtrlFv",
+        "size": 96,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006ABAC": {
+        "historical_label": "calc_axes_from_angles__11TCameraCtrlFlll",
+        "current_label": "calc_axes_from_angles__11TCameraCtrlFlll",
+        "size": 196,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006AC70": {
+        "historical_label": "calc_rotated_axes__11TCameraCtrlFv",
+        "current_label": "calc_rotated_axes__11TCameraCtrlFv",
+        "size": 196,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006AD34": {
+        "historical_label": "run_task__11TCameraCtrlFv",
+        "current_label": "run_task__11TCameraCtrlFv",
+        "size": 576,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006AF74": {
+        "historical_label": "copy_view_params__11TCameraCtrlFii",
+        "current_label": "copy_view_params__11TCameraCtrlFP12CameraMatrixPC12CameraMatrix",
+        "size": 40,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006AF9C": {
+        "historical_label": "setup_default_view__11TCameraCtrlFPv",
+        "current_label": "setup_default_view__11TCameraCtrlFP3Vec",
+        "size": 312,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B0D4": {
+        "historical_label": "TCameraCtrl__ct",
+        "current_label": "__ct__11TCameraCtrlFP7TObject",
+        "size": 592,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B324": {
+        "historical_label": "get_character_select_request_buffer",
+        "current_label": "get_character_select_request_buffer",
+        "size": 12,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B330": {
+        "historical_label": "get_instance__11TCameraCtrlFv",
+        "current_label": "get_view_count__11TCameraCtrlFv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B338": {
+        "historical_label": "get_camera_id__11TCameraCtrlFv",
+        "current_label": "get_camera_id__11TCameraCtrlFv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B340": {
+        "historical_label": "set_target__11TCameraCtrlFii",
+        "current_label": "set_target__11TCameraCtrlFii",
+        "size": 12,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B34C": {
+        "historical_label": "set_target_coords__11TCameraCtrlFii",
+        "current_label": "set_target_coords__11TCameraCtrlFii",
+        "size": 12,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B358": {
+        "historical_label": "TCameraCtrl__sub_8006B358",
+        "current_label": "get_actor_id__17TCameraControllerFv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B360": {
+        "historical_label": "get_mode__11TCameraCtrlFPv",
+        "current_label": "get_task_flags__9TMainTaskFv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B368": {
+        "historical_label": "is_quest_active",
+        "current_label": "is_quest_active__Fv",
+        "size": 8,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B370": {
+        "historical_label": "TCameraCtrl__sub_8006B370",
+        "current_label": "is_float_nonfinite__Ff",
+        "size": 40,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B398": {
+        "historical_label": "reset_battle_camera__11TCameraCtrlFv",
+        "current_label": "reset_battle_camera__11TCameraCtrlFv",
+        "size": 32,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      },
+      "0x8006B3B8": {
+        "historical_label": "TCameraCtrl__sub_8006B3B8",
+        "current_label": "set_fixed_camera__FPC3VecPC3Vec",
+        "size": 32,
+        "owner": "src/pso/camera/TCameraCtrl.cpp"
+      }
+    },
+    "open_comparisons": 116
+  },
+  "source_decisions": [
+    "The optional view offset uses Vec*. The const-qualified alternative changed CodeWarrior's instruction order. The native non-const signature preserves all 312 original instruction bytes.",
+    "Vol Opt's entity-position message keeps the general collidable update. Only the local player branch uses the native player camera interface.",
+    "The battle controller and teleport packet still use the project's existing legacy player-lookup ABI before calling the typed interface."
+  ],
+  "signature_changes": [
+    {
+      "file": "config/GPOE8P/psov3/symbols.txt",
+      "section": ".text",
+      "address": "0x8006A410",
+      "type": "function",
+      "old": "reset_cameras_to_actor__FPvl",
+      "new": "reset_cameras_to_actor__FP10TObjPlayerl",
+      "flags": []
+    },
+    {
+      "file": "config/GPOE8P/psov3/symbols.txt",
+      "section": ".text",
+      "address": "0x8006AF9C",
+      "type": "function",
+      "old": "setup_default_view__11TCameraCtrlFPv",
+      "new": "setup_default_view__11TCameraCtrlFP3Vec",
+      "flags": []
+    }
+  ]
+}
