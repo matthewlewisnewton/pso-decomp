@@ -1,0 +1,219 @@
+{
+  "source_head": "ab5f72541fcdb9ba20acdff6480182a163214cc9",
+  "source_tree": "df5b78e9a6fc2911486eb380347753725481fa3f",
+  "previous_cumulative": "5f517498ef8408319cf20e29df36c130c3e4da6e",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp"
+  ],
+  "source_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/map/CsnGroundQuery.h",
+    "include/pso/map/CsnQuery.h",
+    "include/pso/map/TObjMapCsn.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/unk/text_8007A7A0.h",
+    "include/pso/unk/text_8007A7B8.h",
+    "src/pso/map/CsnQuery.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142435,
+      "head": 142310,
+      "added": 1,
+      "removed": 126
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80079F58",
+        "type": "function",
+        "old": "prepare_wall_query_polygons__FPvfl",
+        "new": "prepare_wall_query_polygons__FPC3VecfUl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8007A0E4",
+        "type": "function",
+        "old": "copy_wall_polygon__10TObjPlayerFPUc",
+        "new": "copy_wall_polygon__11WallPolygonFPC7CsnFace",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8007A2D0",
+        "type": "function",
+        "old": "query_prepared_wall_polygons__FPv",
+        "new": "query_prepared_wall_polygons__FP12WallRayQuery",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8007A730",
+        "type": "function",
+        "old": "init__10TObjMapCsnFv",
+        "new": "init__13WallRayResultFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8007A770",
+        "type": "function",
+        "old": "init_and_return__10TObjMapCsnFl",
+        "new": "init_and_return__6CsnHitFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8007A7E8",
+        "type": "function",
+        "old": "clear_velocity_vectors__10TObjPlayerFv",
+        "new": "reset__10CsnContactFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B786C",
+        "type": "function",
+        "old": "calc_move__10TObjPlayerFPvPv",
+        "new": "calc_move__FPC3VecPC3VecP3Vec",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B78A8",
+        "type": "function",
+        "old": "calc_move_velocity__10TObjPlayerFPvPvf",
+        "new": "calc_move_velocity",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B7930",
+        "type": "function",
+        "old": "calc_wall_slide_point__10TObjPlayerFPvPv",
+        "new": "calc_wall_slide_point__FPC3VecPC3VecP3Vec",
+        "flags": []
+      }
+    ],
+    "newly_stale_retention_entries": 0
+  },
+  "matching_constraints": [
+    "The scoped volatile geometry reads keep the center and origin load order in the original two staging loops.",
+    "Copy the two initial vertex IDs as one aligned word and the two vectors as words. The local VecWords record is the single added benchmark finding.",
+    "The scoped scheduling setting keeps the original order of the three projected vector component stores."
+  ],
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "wall_staging_cases": 5,
+    "contact_initialization_cases": 2,
+    "ray_selection_cases": 4,
+    "movement_cases": 4,
+    "intercepts": "Collision groups and individual ray outcomes are injected. The emulator substitutes math helpers and skips redundant Gekko second-lane stack saves. Both images execute the record copy, result selection and movement formulas."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/map/CsnQuery.cpp": {
+        "source_evidence": "The ground-triangle loop uses the native CsnFace, CsnModel and CsnContact layouts, shared ctype table, original acceptance thresholds, special-surface contacts and shared scratch vectors. Wall staging, selection and initialization now carry their own typed records and the fork overlay retains the separate host debug-contact initialization.",
+        "historical_functions": 27,
+        "exact_data_bytes": 24
+      },
+      "include/pso/misc/TOMineTrap.h": {
+        "source_evidence": "The 0x384 native type preserves the constructor parameters, overrides, signed state, u16 owner setter and C-linked player flag check. The two inherited slots at 0x374 and 0x378 hold typed model and texture pointers. The three old inline strike declarations correspond to the consolidated attack branches of run_task."
+      },
+      "src/pso/misc/TOMineTrap_8016F6F8.cpp": {
+        "source_evidence": "The live TOMine unit retains the trap's height updates, timeout, player/room/owner filtering, attacker fallback, radius, attack-state dispatch and packet, and the player, enemy and nearby-trap handling. The owner message, attack source and body center use their native records.",
+        "historical_functions": 38,
+        "exact_data_bytes": 360
+      },
+      "src/pso/item/TObjContainerItem.cpp": {
+        "source_evidence": "The native container variants retain their manual and empty virtual slots, item/enemy dispatch, shape and mode fields, and debug path. The forest, seabed, online and offline resource selections, release order, and model/texture/debris values feed the same functions. The old spawn_item wrapper at 0x80189C90 uses the native container and its typed drop position.",
+        "historical_functions": 58,
+        "exact_data_bytes": 3648
+      },
+      "src/pso/item/TObjContainerJung.cpp": {
+        "source_evidence": "The Jungle, Jungle Ex and enemy container class constructors, registration and teardown are present. The native archive and texture lists retain each model row and draw mode. The drop request, actor flags and particle IDs 0x45 and 0x46 are retained through the original break path.",
+        "historical_functions": 28,
+        "exact_data_bytes": 1928
+      },
+      "src/pso/object/TObjAreaWarpEndingJung.cpp": {
+        "source_evidence": "The current base, map, forest, quest, ending, force and Jungle classes retain typed destructors, controller gate, dialog creation, terrain/quest state, warp transfer, cutscene sound, native forest resources and debug destination lines. The original target and model fields feed their current typed render operations.",
+        "historical_functions": 70,
+        "exact_data_bytes": 836
+      }
+    },
+    "remaining": 137
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "d00e8b4be5c96b5a49322fd8387bff441d60deb52cda5150b0f084ac8661547a",
+    "delta-03.json": "560fedcb8b30c6993eebda151847410c8a00276a79c2843777fa0035b6a9ad74",
+    "quality.json": "e4feec2a7b408f69d817fa76d0514d7edd1544ffeb70b43b9039288938efb3fc",
+    "probe-native-wall-query.py": "9231959a19832fb20f09d13584d203b371efa37bf8f6a2c8ddc8596624f57d7d",
+    "wall-probe.log": "149c6266de827764fc239a8ec476b74b973753a0b1f425590072f574b0818101",
+    "source-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714"
+  },
+  "materialized_fork": {
+    "tree": "e7be8f8728bea5834d54fe7b68786e3dba4d5d98",
+    "retention_entries": 27007,
+    "retention_names_updated": {
+      "prepare_wall_query_polygons__FPvfl": "prepare_wall_query_polygons__FPC3VecfUl",
+      "copy_wall_polygon__10TObjPlayerFPUc": "copy_wall_polygon__11WallPolygonFPC7CsnFace",
+      "init__10TObjMapCsnFv": "init__13WallRayResultFv",
+      "init_and_return__10TObjMapCsnFl": "init_and_return__6CsnHitFv",
+      "clear_velocity_vectors__10TObjPlayerFv": "reset__10CsnContactFv",
+      "calc_wall_slide_point__10TObjPlayerFPvPv": "calc_wall_slide_point__FPC3VecPC3VecP3Vec",
+      "calc_move_velocity__10TObjPlayerFPvPvf": "calc_move_velocity",
+      "calc_move__10TObjPlayerFPvPv": "calc_move__FPC3VecPC3VecP3Vec"
+    },
+    "newly_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714",
+      "fork-tests.log": "203028683f1d2036cae58c7c29dc591869aa567c6106c157c1cfd4039826a419",
+      "tool-tests.log": "e3ba77d0a3496452173748da5d19d22add6081e07809694fe8db1ea46999b0a3",
+      "host-tests.log": "c420abda19af93e83a29e2516df2dab515ac5ba75bfdbb73aeb01655d8f599f7"
+    }
+  }
+}
