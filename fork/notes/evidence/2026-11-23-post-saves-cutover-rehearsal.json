@@ -1,0 +1,419 @@
+{
+  "upstream_master_when_rehearsed": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "pr_candidate": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+  "expected_upstream_tree": "3e76f954f923ab927eaca4f900db0705d7590223",
+  "candidate_changed_paths": 218,
+  "clean_paths_already_in_great_merge": 162,
+  "overlap_files": 56,
+  "overlap_hunks": 74,
+  "resolved_files": {
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 2,
+      "hunks_sha256": "f2a68cae1843bf500e52c253cd4570215fbff3aae5d417fcdb68f886cfe5819c",
+      "resolved_blob": "66c6a480287b443c026452c17cc76012a680cc88"
+    },
+    "src/pso/boss/dragon/TObjBoss1Crater.cpp": {
+      "decision": "Keep typed BML descriptors and Ginja texture-list results in both Dragon ground branches.",
+      "hunks": 1,
+      "hunks_sha256": "b8ded97e5852078438f3acb5475710b2874a30c4faa9f5ae622ad1f075e9a3e8",
+      "resolved_blob": "9df4f93e646407bada3cdec5d6f312bb087f672b"
+    },
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "1ed79a472ce4400a9228f9fe948afa474f1832b1a7ab025711edbf9552351df8",
+      "resolved_blob": "86071e0116f231c02e8707a8861fb12ecf0ab679"
+    },
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "07f7c0fcdedb0ad486397cccdc60ba5c1d1a82b63084b33003f91ff094f00994",
+      "resolved_blob": "1346e6a0fceee2c9b0178b109157506bfce6711d"
+    },
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "853dfd26cf6e17673ddf1c15afaf03c598f59b5952f6a72dffad92ccff6b21b6",
+      "resolved_blob": "b7047be5bdad0f0b3ea33441fd8381a3150f5bbf"
+    },
+    "src/pso/enemy/darkgunner/DarkGunner.cpp": {
+      "decision": "Assign the returned Ginja list directly in the existing Dark Gunner effect loader.",
+      "hunks": 1,
+      "hunks_sha256": "8ee2179851cde032e26f8ceae2afe71d39fe18cacc5d7cf4cd2c32dfcdb71557",
+      "resolved_blob": "b97fa9cbaac7a7398319f7c09774185397d5dcdc"
+    },
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "981d2331d852e97e49e37c81dd5d57de512607b8a27a1bce7c4f865a9529c335",
+      "resolved_blob": "677dd30e37f2e95da3f38992b31fbea62cff60f3"
+    },
+    "src/pso/enemy/lappy/TObjEneLappy.cpp": {
+      "decision": "Keep the persistent sound declaration and native alternate Ginja lists for both Rappy colors.",
+      "hunks": 2,
+      "hunks_sha256": "25491fc2250a075d8fdb035f31d52f13000ceec62ed10ba2becf984409926f06",
+      "resolved_blob": "7967937209310d4fb39b6c3244c7b30e53c58fd0"
+    },
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "52484cf4c26228ded1edd11ae017ace663db14dbb86b764a46fcac5a28ac6582",
+      "resolved_blob": "7be2e976305656f61d0a035ce434f95ec891ae72"
+    },
+    "src/pso/npc/TObjNpcAHM01.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "738bf416b2a9a593b019878aba2614d8aa5d98a3d2cec856184e43799e712083",
+      "resolved_blob": "2766746fd67595d297cb3d5df9fc0c9d8147f1a6"
+    },
+    "src/pso/npc/TObjNpcARM00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "f3ab6608c0c51be4bc242c43118cc35fd3eca2090bb20659345bc8d64a261bc9",
+      "resolved_blob": "97f4f9160aad41cafb72c91abb724b778d138244"
+    },
+    "src/pso/npc/TObjNpcARW00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "710cfeafdb3a12ba0e17f72b4a391da45a4dbdaea03e69a9ed8a489681396866",
+      "resolved_blob": "5e41c78adef2f7b3eb7eed14fb57c30ded19e531"
+    },
+    "src/pso/npc/TObjNpcHFW00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "9112643ae47060a2b701f06db94aa3b08a1e94612d20aa00bc41961e410f948e",
+      "resolved_blob": "c22b6e664bea94e8ccb676a97d7aceaebc055277"
+    },
+    "src/pso/npc/TObjNpcHFW01.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "cfbf711b702cd1fa042149533a08d149d499c31cdbc1cf5516f230fda6b06462",
+      "resolved_blob": "b9186eec8626e65a93f5516d501492251ce93e16"
+    },
+    "src/pso/npc/TObjNpcHHM00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "f5b49caf06713c9f7663ff8852699e6e46bc10e3e4d77b5b9e9df7d69d024b97",
+      "resolved_blob": "c88ccac2fa557e0d3344e836c98bf40d043b1ce7"
+    },
+    "src/pso/npc/TObjNpcHRM00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "ec2ac09ae40b50d9bf3cf3107787280ef485032da7f2596e824abe55b67e3f35",
+      "resolved_blob": "8ed4b98d76c9413b0c758821e3116daa63cd22e4"
+    },
+    "src/pso/npc/TObjNpcHRM01.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "3c30e98232bcf9fe285819aa7e5aa282fadc836f85ccf4f1b9af8381b3d5a717",
+      "resolved_blob": "5003a1cf21f1e352e085523647275a9f0f41d6df"
+    },
+    "src/pso/npc/TObjNpcNFM00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "f34b80ca4b5273ac7aded92616a37e59bc9ed5f82ad916e8aa853c1547139bf0",
+      "resolved_blob": "a77081f75407c4dd7fb66de217885602faa76901"
+    },
+    "src/pso/npc/TObjNpcNFM01.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "40bb148d40f35bc57a06f6c3f1c1042ba2d8cd867757eee45dbbb686ae8d4321",
+      "resolved_blob": "21e63c463a9483fbc175722cf8b53971343d9ac7"
+    },
+    "src/pso/npc/TObjNpcNFW00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "703697e836fe478a69570a5bc4878c8c82401e31bdaa8de3bb9d94ca4703934d",
+      "resolved_blob": "09c7076d8dd29ae065cbbacae1ec04aa648a06fe"
+    },
+    "src/pso/npc/TObjNpcNFW01.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "cc90ffdf7fc2bc8f0426e645a31b9cf44670fb7c3eda68236c48cda4bd3eb176",
+      "resolved_blob": "838bdc533e84047b535f87df41a36bd70f616957"
+    },
+    "src/pso/npc/TObjNpcNHW00.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "13eeb7187759fd4eadd424f2e85e5ec79ef3758022a110d6befa17c73a8ed476",
+      "resolved_blob": "7fdd33ed30e9764a4cc40553d80b609842335d16"
+    },
+    "src/pso/npc/TObjNpcNHW01.cpp": {
+      "decision": "Keep the NPC owner\u2019s native REL model pointer and Ginja texture pointer for the same archive names.",
+      "hunks": 1,
+      "hunks_sha256": "5eaab372dccb2d1f4fdd70b58f1fd05980d95662ce9fc3d9408f1da67659880d",
+      "resolved_blob": "054d8e2b515c282212afc3ffa7f70c766a6d0e02"
+    },
+    "src/pso/object/TObjComputer.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "fbb4fe2a03beed6648264e6e5753b062bafbbc12003dad7c54e197a557861f45",
+      "resolved_blob": "6ccdd96eb99d0b31657fbef38daf8a00f847dc90"
+    },
+    "src/pso/object/city/CityDoors.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "8a645c409559b5ade5054a2a74701e1964096e03407194abc7a465d2820146ed",
+      "resolved_blob": "1b3af28d9b5609430d4f55a858add42713807751"
+    },
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "404661d829ad7e254baf0cb84bc0d81a1781062f679f1ccb8260fc4d44e623fb",
+      "resolved_blob": "4c9bbfda7f5afe553c63865094040f7eebcbe819"
+    },
+    "src/pso/object/door/TODoorJungleMain.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "01356c43454ab9ea4a4bce7115783dcc9ebe00fe540f166c28f3feead4ec9902",
+      "resolved_blob": "1cef89469d2ba7ae75931e88a788aaac1d800a6f"
+    },
+    "src/pso/object/door/TODoorLabo.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "b08503bbdc8806f5abb97e4ebe0502bf46d4032fdb582b9494c18349815d31ed",
+      "resolved_blob": "03e0c6dc48a50405959a207a96a81eb462b4143e"
+    },
+    "src/pso/object/door/TObjDoor_8018E358.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "0949527f9a29e6cf63316598089e7343fefc9d79026153974a771de9fa375c25",
+      "resolved_blob": "ce2fc14cf247bd64411a8911c7e56b836a094bd8"
+    },
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "90ef5217f19e3ce22e4837cb1a4aef92331c2f08fb700383d56fe5327c67b74b",
+      "resolved_blob": "90dd392e7ea5e01836487a0fa6826306d71741e7"
+    },
+    "src/pso/object/lobby/LobbyPigeonPath.cpp": {
+      "decision": "Keep the four recovered NPC and ambient owners. The dolphin, shrimp, jungle bird and gull save native BML and Ginja pointers.",
+      "hunks": 5,
+      "hunks_sha256": "937b13a4efd48934a8befedc1c186a20db854a65bb91e4bfefe9e46eed9b32a0",
+      "resolved_blob": "0846f2c3567a664b793f6b0565106b584ccd3429"
+    },
+    "src/pso/object/trap/TOTrapSeabed01.cpp": {
+      "decision": "Keep the typed Seabed trap texture and Ginja model with the same archive entry and node index.",
+      "hunks": 1,
+      "hunks_sha256": "2631af6c90fa9de2720a0d6d9fee8ac4c55c6bfdd891cbe31d20f2cf4fe81dec",
+      "resolved_blob": "f6c7106ec7cb49972c4ff370f59e25c4b7378c52"
+    },
+    "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "1472685169bee43c0f2cb4edaf5f3c38804bba832e88a4df9b7df960fd3a9c27",
+      "resolved_blob": "1c70115c72d41b02a0226ec8931a0f81d243ab86"
+    },
+    "src/pso/player/TObjPlayer_801BD928.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "409ee8daca724a168301a148cc5675688de3344e6bb24ed0ee9ad05f8ee98a99",
+      "resolved_blob": "a141647fac03317c22b697673cbfdf1168657293"
+    },
+    "src/pso/player/TObjPlayer_801C1FF8.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "f5df53abab805ae994e616147bb8775a3ef00ec7098198999c54f1b4f305a5ce",
+      "resolved_blob": "2a19ad562e97826905af993a97f09a6e10f6920c"
+    },
+    "src/pso/player/TObjPlayer_802C3B14.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "115f8a55db77898222825db0f90b9d919944ca12f4079e60aa3e6f496d51bffb",
+      "resolved_blob": "689235496206c8995a7eaefefa520b931a8fca4b"
+    },
+    "src/pso/player/TPlayerFootStamp.cpp": {
+      "decision": "Keep the shared pointer release contract for the foot-stamp texture.",
+      "hunks": 1,
+      "hunks_sha256": "c4682d2984f3598d4624bcfc79ba7d4d50626b80f54d40116ece2101d423de77",
+      "resolved_blob": "9841487df37775257fd4b0f573b219f96ade1549"
+    },
+    "src/pso/quest/QuestOpcodeHandlers.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "2ec41785e1c38b35300a9fcb5ab91d6f0838c10b387565e79f18a12513c62a89",
+      "resolved_blob": "8ebc2841b860bca3c85592739d5593057e0cb0a6"
+    },
+    "src/pso/system/TLanguage_80132A5C.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "6c79c50de6ddf7c2474cfea3ae0b6b316a5764240967dd9f95a8983c7275597e",
+      "resolved_blob": "5fa6b128c76bd84fd73c27bcc69b325c37aa48da"
+    },
+    "src/pso/technique/TTecCtrl.cpp": {
+      "decision": "Pass the native technique ring-wave texture list directly to the resource binder.",
+      "hunks": 1,
+      "hunks_sha256": "c170cf86354d6ea7dd56ea9d3b45048c8a0a14026e87be601e0a7f9ae2b1dfcd",
+      "resolved_blob": "23d8745e205ce0f6b62d745261922fb9732b8cda"
+    },
+    "src/pso/ui/charcreate/TChCrCharSelect.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "2554bc98258c0a820001bdadc37636c1a184c85c8b856274e9e601bede80810a",
+      "resolved_blob": "2e509d3e35d307e1348ed7b9905241688ad5bafc"
+    },
+    "src/pso/ui/charcreate/TObjCMName.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "b438e71e48255b138f8f7d7a785d07b943c054998e972d3c71b9f5b5e4e99a38",
+      "resolved_blob": "443129fc3d3df7d635dc493021d7c8a3c693803a"
+    },
+    "src/pso/ui/city/TCheckRoomSequence.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "d1e92698d792aa752f8562c6e8478ff5f03e44d56f550e7d14729d23eaa33a56",
+      "resolved_blob": "0bbaa40c13c323aae470f7ae5ebcbdbf86977a8c"
+    },
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp": {
+      "decision": "Keep all four typed character-preview allocations and their native size.",
+      "hunks": 5,
+      "hunks_sha256": "9ad20ca25acba42d0168ae2fe2992fe213184289c3cb418a93b149a5c715ad4c",
+      "resolved_blob": "309e76b6428571907fa3f68be57ff2a3355bf9dd"
+    },
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 2,
+      "hunks_sha256": "8bbd52f24805d92a3129eaca1c637dd4342a1f0b690850878a67724763843a05",
+      "resolved_blob": "5780031d2886932cd13b99c7bb2d6292795cae00"
+    },
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "76c6327dccea83febc979a296b4d1007f5145bff28b12ed2b36ab7aa575251b3",
+      "resolved_blob": "71e1717c6942ec2e5a8ae38a30cb1f796d4f767b"
+    },
+    "src/pso/ui/hud/TRaderMapCore.cpp": {
+      "decision": "Keep typed radar BML and Ginja resources and original descriptor and archive.",
+      "hunks": 1,
+      "hunks_sha256": "2ee56f9de5fb10b6dfa687bfc88d960403618f0b4c085475fe2bc07cb684433f",
+      "resolved_blob": "4b7777f7a5f0ce85b12dfb504911aa7708a33709"
+    },
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "0ac57035005902de34fda89d5f5c1d2a71caf5ab02f33ce426e090d9e064dd47",
+      "resolved_blob": "c35f1be0330991d1074b73abae9ba872f4e9f273"
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "af25925c99046e49624e2c6d6cb8f048e48be4b314b6dab75889b3a38bbb7e43",
+      "resolved_blob": "8656d3692bbaf2f0cd82b59e303326381e8d0558"
+    },
+    "src/pso/unk/TLobby_8001EF5C.cpp": {
+      "decision": "Use shared nullable pointer release for the four archive paths. Both forms take the address of the same model entry.",
+      "hunks": 5,
+      "hunks_sha256": "23673c3628d2f6803cc286585f4dc9ecfe24947c20fe6f4310247d9701bbfb56",
+      "resolved_blob": "a0b2966291b7a98e756d16c7b20eafb803471b6f"
+    },
+    "src/pso/unk/TLobby_800FA73C.cpp": {
+      "decision": "Keep shared pointer release for the async file read buffer during heap teardown.",
+      "hunks": 2,
+      "hunks_sha256": "3785fdfd244d4506692640b514165a7a13bb3a7eda7fa355047b1a3322df4b48",
+      "resolved_blob": "e7f85c83d12ff6536c2300bd9a68b94327062a30"
+    },
+    "src/pso/unk/TLobby_801A3C48.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "10f2a1067f17463830ca322917007457aa5c537a17e13062bb6a6f9a56e009f5",
+      "resolved_blob": "ec60afc32561f3cf12e1009ae2543271bcd1f64e"
+    },
+    "src/pso/unk/TLobby_801E43E4.cpp": {
+      "decision": "Keep shared pointer release for the two localized-data cleanup paths.",
+      "hunks": 2,
+      "hunks_sha256": "2957cb19bf1e3542a10733abdaf4fee84b9bd72802b74b3d6d596464f7aa5d3d",
+      "resolved_blob": "853411b2b18a460903fabf7aea9ea4c80033c10e"
+    },
+    "src/pso/unk/TLobby_803382E4.cpp": {
+      "decision": "Keep established HUD and memory headers plus the live Ginja info-icon pointer.",
+      "hunks": 2,
+      "hunks_sha256": "daff29041d17d4d2079ab7d4ae0fa7bde72ad26e5e9e547137b5b1843c4d8651",
+      "resolved_blob": "8291d7fffb65d4c7c9dcd975252fb2a355b84e05"
+    },
+    "src/pso/unk/text_80066F10.cpp": {
+      "decision": "Assign the same Gal Gryphon BML resource through the typed global.",
+      "hunks": 1,
+      "hunks_sha256": "2d4fcd47aa7f21b61192d2802f8e2ae4b4f01d31504c1961e96063e18b43a5b0",
+      "resolved_blob": "404299d39ad295b188767e2d39af0ce9af2ea526"
+    },
+    "src/pso/unk/text_800FA464.cpp": {
+      "decision": "Keep current includes and established shared declarations from the combined recovery.",
+      "hunks": 1,
+      "hunks_sha256": "c1e1f33dc3f501d1e06853613e9d1bf0eadda7b9dd5a797c47a51018d7c7b19b",
+      "resolved_blob": "cafa87f08a8e6d537b6a325131acc6f84a3946a8"
+    }
+  },
+  "source_paths_after_assumed_merge": 1112,
+  "builds": {
+    "source": {
+      "head": "0f9ba012c19780a2cb088f272f2547d3091f2461",
+      "tree": "07762c847dc2569d4d434225c64a66d751a591ed",
+      "baseline": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2368,
+      "check_pr": "PASS",
+      "report_sha256": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e"
+    },
+    "private": {
+      "head": "4d0786e799aa5d49a756343fa3b1d5f35614764f",
+      "tree": "582e285b2eec22c29c18a77055f4f490285c7c00",
+      "baseline": "0f9ba012c19780a2cb088f272f2547d3091f2461",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2368,
+      "check_pr": "PASS",
+      "report_sha256": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e"
+    },
+    "actors": {
+      "head": "8b985966132b918f3e7daaccfbfe25dd436dda2e",
+      "tree": "72fe8629343ea89b1dd74efee2fa354a524d65c7",
+      "baseline": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2368,
+      "check_pr": "PASS",
+      "report_sha256": "9762dd00f997e0ab580afb8cf160702bf6a399772da7a34ca8cf190616dc3ea5"
+    }
+  },
+  "actual_cutover_candidate_at_rehearsal": "aa50b74f1922e940e821e6824e991f24a43600fa",
+  "historical_inventory_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "source_and_private_trees_equal_current_checkpoints": true,
+  "retarget_condition": "Check the landed upstream tree against expected_upstream_tree. If equal, build the same source tree with the actual upstream commit replacing the candidate parent. Reconcile a different landed tree before using the preview.",
+  "actor_follow_up": {
+    "base": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+    "head": "8b985966132b918f3e7daaccfbfe25dd436dda2e",
+    "paths": 195,
+    "merge_conflicts": [
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/object/TObjControl.cpp",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp",
+      "src/pso/player/TObjPlayer_801BCDC4.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+      "src/pso/unk/text_80066F10.cpp"
+    ],
+    "cases_by_suite": {
+      "model-lookup": 13,
+      "npc-registry": 12,
+      "area-attack-contact": 60
+    },
+    "source_quality": {
+      "removed": 461,
+      "added": 3,
+      "labels_with_verified_ownership_or_signature_changes": 39,
+      "flagged": 0,
+      "stale_retention_entries": 0
+    },
+    "advisories": [
+      "The Flower bomb uses the existing vfunc_16 slot for its typed contact; the inherited slot retains its established name.",
+      "The Flower bomb keeps Hit_800C4A5C for the existing local impact record; the contact is passed through the original slot.",
+      "The capture consumer declares the shared GC_Mtx pointer where it writes the callback state."
+    ]
+  }
+}
