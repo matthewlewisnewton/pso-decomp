@@ -1,0 +1,258 @@
+{
+  "review": {
+    "head": "991ae618f9a8ec08e906a809280386438f6946b1",
+    "tree": "d588b8d4cc1fe395546b5b1f1bf82d686e8857ad",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "review-report.json": "03a672abb0b20b054af7e2eada63e0cef41be32af6089b831e886cf3d2cb9117",
+      "review-check.json": "0844910487e4d57efd41d27f8a1d72a9b1d625c6307ab3f05186d11e927234b3",
+      "review-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "review-quality.json": "b5607e28b632e58c310499225ff522ee5b684495eafb7cf43186c143f60ad40c"
+    },
+    "source_quality": {
+      "before_cleanup": {
+        "added": 20,
+        "removed": 792
+      },
+      "current": {
+        "base": 147293,
+        "head": 146510,
+        "added": 15,
+        "removed": 798
+      },
+      "changed_function_labels": 35,
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "advisories": {
+        "local_class": {
+          "why": "Six file-local types describe storage used only by the owning translation unit, including the ARAM DMA buffer and request extent, the adjacent card-save records, and the on-disc BML header and entry.",
+          "observations": [
+            {
+              "key": "local_class",
+              "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+              "line": 10,
+              "text": "struct QuestDownloadAramFile"
+            },
+            {
+              "key": "local_class",
+              "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+              "line": 28,
+              "text": "struct QuestDownloadAramDmaBuffer"
+            },
+            {
+              "key": "local_class",
+              "path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+              "line": 2226,
+              "text": "struct QuestDownloadRequestStorage"
+            },
+            {
+              "key": "local_class",
+              "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+              "line": 3077,
+              "text": "struct CardSaveMetadataBlock"
+            },
+            {
+              "key": "local_class",
+              "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+              "line": 49,
+              "text": "struct BmlArchiveEntry"
+            },
+            {
+              "key": "local_class",
+              "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+              "line": 58,
+              "text": "struct BmlArchiveHeader"
+            }
+          ]
+        },
+        "extern_c": {
+          "why": "The existing ARAM DMA storage has C linkage. The offsetof and ATTRIBUTE_ALIGN results are macro tokens reported as declarations.",
+          "observations": [
+            {
+              "key": "extern_c",
+              "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+              "line": 39,
+              "text": "extern \"C\" quest_download_aram_dma_buffer"
+            },
+            {
+              "key": "extern_c",
+              "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+              "line": 3086,
+              "text": "extern \"C\" offsetof"
+            },
+            {
+              "key": "extern_c",
+              "path": "src/pso/unk/text_803CE568.cpp",
+              "line": 23,
+              "text": "extern \"C\" ATTRIBUTE_ALIGN"
+            }
+          ]
+        },
+        "slot_name": {
+          "why": "The two online quest callers now use the existing TShopWindowBase virtual slot also used by the offline and Challenge lists.",
+          "observations": [
+            {
+              "key": "slot_name",
+              "path": "src/pso/quest/TQuestListOnline.cpp",
+              "line": 145,
+              "text": "vfunc_10"
+            },
+            {
+              "key": "slot_name",
+              "path": "src/pso/quest/TQuestListOnline.cpp",
+              "line": 206,
+              "text": "vfunc_10"
+            }
+          ]
+        },
+        "data_label": {
+          "why": "lbl_805D4AE0 retains the existing BML header pointer label. Its declaration now uses the actual archive header type.",
+          "observations": [
+            {
+              "key": "data_label",
+              "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+              "line": 81,
+              "text": "lbl_805D4AE0"
+            }
+          ]
+        },
+        "offset_member": {
+          "why": "Three typed BML callers use the existing BmlModelEntry::m_0 field for texture completion, failure and initialization.",
+          "observations": [
+            {
+              "key": "offset_member",
+              "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+              "line": 366,
+              "text": "m_0"
+            },
+            {
+              "key": "offset_member",
+              "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+              "line": 388,
+              "text": "m_0"
+            },
+            {
+              "key": "offset_member",
+              "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+              "line": 839,
+              "text": "m_0"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "inventory_preview": {
+    "head": "fbd1e87d5b2f535e5b88368b4eb124e04141eb83",
+    "tree": "5e6885485169309da56fbd6bbf9df6b0e91e1f5f",
+    "coverage_baseline": "8594730e1491dd15d9b8b164fcbf6f70c4148202",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "preview-report.json": "96357c6865d33e964cfc7d9bed962ad9eafcba735e59595ca10de795fb159296",
+      "preview-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+      "preview-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c"
+    }
+  },
+  "both_open_reviews": {
+    "head": "259ed12ee16506983caced00f73c4e20c5d71e76",
+    "tree": "4ec12e204fd10b6df8b67580f6ba3b0d20a88959",
+    "coverage_baseline": "fbd1e87d5b2f535e5b88368b4eb124e04141eb83",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "combined-report.json": "0c024b3f62ceaab34c186d24c15c0d41f4fece2d4c9e72d959765c360e6c1d29",
+      "combined-check.json": "c40b1e005da0dd9aa8d6f1363a9d0aae4489a7308a46c8cd5990611637fc330d",
+      "combined-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c"
+    }
+  },
+  "source": {
+    "head": "36044bbb3fe7f67a31b335dfe1aeefbd10c3e4ce",
+    "tree": "d9465a5c2e36139977b3530355f9cab19fa82c06",
+    "coverage_baseline": "363303e1df4d332853f69a0ed7a7bb2b6027cd73",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "source-report.json": "eb36b3ca43e007cb9e92246de0fb3f297d7005cefd0275bdd72f23f9ca718cb6",
+      "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+      "source-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c"
+    }
+  },
+  "materialized_fork": {
+    "head": "5910260301bc9dc7bb1f00d5a77cb4d12c573ed1",
+    "tree": "a223c46523b3a7dd7b262a79b92c3b3c99060260",
+    "coverage_baseline": "36044bbb3fe7f67a31b335dfe1aeefbd10c3e4ce",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "private-report.json": "eb36b3ca43e007cb9e92246de0fb3f297d7005cefd0275bdd72f23f9ca718cb6",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "private-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c"
+    },
+    "tests": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    },
+    "overlay_paths": 130
+  },
+  "cleanup_paths": [
+    "include/pso/quest/QuestDownloadServer.h",
+    "include/pso/system/save/CardFileInfo.h",
+    "src/pso/quest/QuestDownloadAramFile.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp"
+  ],
+  "compatibility": {
+    "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+    "effects_path_shared_with_cleanup": "src/pso/unk/TLobby_8001EF5C.cpp",
+    "inventory_pr_head": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+    "inventory_github_preview": "e5cdcdc56e2a50346fe748cb56686e6b7b1fd05b",
+    "inventory_recomputed_on_current_master": "97711798d9db2f80908909f5eea7f55da3747ce5",
+    "inventory_cleanup_shared_paths": [],
+    "avetcp_pr_head": "5cdc5937e9dc917c26d4429734184e47855d3fc4",
+    "avetcp_merge_preview": "9fe0b1afe490369ceed09b362916563a5565e24b",
+    "avetcp_paths_preserved_in_combined_build": 32
+  },
+  "matching_constraint": "Direct signed storage generates cmpwi in the ARAM poll. The original routine uses cmplwi. The u32 flag preserves the exact comparison and extent and removes the u32 pointer cast.",
+  "runtime": {
+    "card_reader_cases": 4,
+    "card_writer_cases": 4,
+    "bml_header_cases": 3,
+    "aram_scope": "Callback ownership, DMA length, end-of-file and timeout cleanup.",
+    "bml_scope": "Archive initialization, resource callbacks, completion, cancellation and two texture flags.",
+    "tested_images": [
+      "retail",
+      "standalone review",
+      "inventory preview",
+      "both open reviews",
+      "cumulative source",
+      "fork tooling"
+    ],
+    "sha256": {
+      "probe-card-archive.py": "6acda891cc97363fdc36563692f921e4df739b240811247edfa442524e5d2cbe",
+      "card-archive-probe.log": "32897f79e4a9840c4b05fc60625bc99ad76e05712b0230962042dd696cf20cd3",
+      "card-writer-probe.log": "ce044e10612d13bea36b5d0e6aae35c152bfecc142e48c361e2e555b0ce50809",
+      "aram-probe.log": "a2a035237a0ab1cc906dcd51f0528125283a88602bf2dfbaa67eddaadf7b9bff",
+      "bml-probe.log": "840ac9b63c3c8bbbe707491138c0e316df891e1e7fa1dd203160c6bf0299e98d"
+    }
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  }
+}
