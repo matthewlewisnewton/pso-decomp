@@ -6,7 +6,15 @@ Upstream’s source-quality flags are advisory. Keep flagged symbols when they a
 
 Use upstream’s established types and members when they already describe the data. Review the old and new fields when substituting a shared record. Keep known pointer types and fields unless source evidence establishes a correction. This includes checking for weaker field types, unknown-field names, and casts between the shared record and the actual callee type. Retail matching and the symbol-label benchmark do not check these source-level changes.
 
+## Build output cleanup
+
+After each confirmed upstream merge, review the checkouts and build fixtures we created for that PR. After each completed local build pass, check the preceding passes for output that the next pass no longer uses. Keep the current build and a receipt for each validated head, including the retail hash, coverage report, benchmark, and probe results.
+
+Check the host for active builds before moving any files. Start with old untracked object files under `build/GPOE8P/obj` and `build/GPOE8P/src` in idle checkouts. On dreams1, copy candidates to `/media/matt/Checkpoints` under their workspace-relative paths, verify the copies against a SHA-256 manifest, and confirm the checkout is still idle before removing the verified originals. Keep Git worktrees, source, original inputs, tooling, and validation evidence in place. Record the checkpoint path and root-disk space before and after cleanup.
+
 ## Current upstream review
+
+Great Merge at `5aef5f28b7` shares one controller reset declaration and keeps the Dragon arena texture list typed through loading, rendering and release. The retail return stays in its original register form and callers keep the signed-byte test. Both builds reproduce retail. The benchmark removes 60 findings and adds 28, with zero changed labels or newly stale retention entries. The controller and keyboard probes, 40 reset cases, both Dragon asset lifetimes and all 310 private checks pass. The ledger now points to the live controller, Moko Hill and motion context owners, accounting for 86 exact functions and leaving 192 historical comparisons open. [Validation](2026-11-22-current-controller-dragon-motion-owners.json)
 
 The 112-path Photon Blast and motion recovery `5ed9ddfd77` matches retail above the battle parameter review. It passes typed actor action and BML motion pointers through their callers, puts strip allocation on the buffer, and uses native Photon Blast request slots, summons and effect parameters. Four runtime suites cover request lifetime and party selection, Photon Line and Leilla, and battle tables and motion. The actor archives, battle records and motion changes are a single 148-path review above stage debris. Its benchmark removes 954 findings and adds 91. Two label advisories follow corrected signatures on the existing `TUnk_804C349C` class. The cumulative source `98acbeca97` uses the native Estlla constructor and names Leilla’s color initialization. Both it and the materialized private workspace reproduce retail, with all 310 private checks passing. [Validation](2026-11-22-upstream-371-photon-motion-validation.json)
 
