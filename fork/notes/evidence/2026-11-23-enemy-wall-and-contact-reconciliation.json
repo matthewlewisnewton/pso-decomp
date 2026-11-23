@@ -1,0 +1,769 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "861f9ab4942aad438af97ab3faa7d3c400d24615",
+  "updated_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/enemy/morfos/TObjEneMorfos.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/TObjPlayer_80011014.h",
+    "src/pso/enemy/TObjEnemyCustom.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "58493957c756d5c97d221d02cfdaf78e2380e2c3",
+      "tree": "826bd1b51a8842f64a3f4c296f7792ea3cfaa8bb",
+      "coverage_baseline": "861f9ab4942aad438af97ab3faa7d3c400d24615",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "source-check.json": "962e27f33be473a662a54231f05e50ade1c5a6f6e52b97a38a3d7cdbd5559770"
+      }
+    },
+    "queue": {
+      "head": "7dca499e790dc3a5d5d09409ff1af648226e9526",
+      "tree": "fcdebe8ec92b50f0c52e15c5affdf6ac84203c8d",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "queue-check.json": "70df1f97f1477075ecad076c58d30d563c10fbd98e6d69ba1ce01cd29f03a9bb"
+      }
+    },
+    "private": {
+      "head": "985fc0c3bfd87d328e8276f9ad1b82ab35bc15a3",
+      "tree": "49130f3a88088cbc664018f818edaf2a1bb9af94",
+      "coverage_baseline": "58493957c756d5c97d221d02cfdaf78e2380e2c3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "source_build_tree_was_tested_at": "12d53ece456944bc40a07982988f8209f90f9e2f",
+  "whole_historical_comparisons_closed": {
+    "src/pso/enemy/TObjEneMerillLia.cpp": {
+      "historical_row": 598,
+      "fork_blob": "fa20f8e7140153e46010214c05a5c69d119c932b",
+      "historical_source_sha256": "3e0a9b663d18409a553672cf8556d63f299b7c4406be97312d18e2925332a421",
+      "source_resolution": "Merillia retains its shared typed wall-slide and target movement, native action dispatch, Kafun effects, and ground and loot queries. The archive keeps its model and typed animation binding.",
+      "exact_linked_functions": 37,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 56,
+          "exact_bytes": 56,
+          "owners": [
+            "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1124,
+          "exact_bytes": 1124,
+          "owners": [
+            "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp": "6fd373c3861b1152255782d0bf14606b4cd84892"
+      },
+      "matched_examples": {
+        "0x800d4d74": {
+          "old": "spawn_ground_effect__16TObjEneMerillLiaFv",
+          "current": "spawn_ground_effect__16TObjEneMerillLiaFv",
+          "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+        },
+        "0x800d51c8": {
+          "old": "vfunc_59__16TObjEneMerillLiaFv",
+          "current": "run_move_action__16TObjEneMerillLiaFv",
+          "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+        },
+        "0x800d5614": {
+          "old": "search_target__16TObjEneMerillLiaFv",
+          "current": "search_target__16TObjEneMerillLiaFv",
+          "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+        },
+        "0x800d57c8": {
+          "old": "update_kafun_attack__16TObjEneMerillLiaFv",
+          "current": "update_kafun_attack__16TObjEneMerillLiaFv",
+          "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+        },
+        "0x800d6d64": {
+          "old": "TObjEneMerillLia__sub_800D6D64",
+          "current": "load_resources__16TObjEneMerillLiaFv",
+          "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+        },
+        "0x800d7274": {
+          "old": "load_entry_params__16TObjEneMerillLiaFl",
+          "current": "select_model_record__16TObjEneMerillLiaFl",
+          "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+        }
+      }
+    },
+    "src/pso/enemy/TObjEneMorfos.cpp": {
+      "historical_row": 599,
+      "fork_blob": "768319f3b722b583e6a4016b4278ddb12d08c931",
+      "historical_source_sha256": "616effa035e5492bf097f98385c47ace8c5548896c8473004e274ae8374898f9",
+      "source_resolution": "Morfos retains native orbit, ground contact, body and projectile receivers. Movement reads the existing wall reach member. The float initialization keeps the existing member offset, and the firing, reaction and part-rendering paths retain their native owners.",
+      "exact_linked_functions": 47,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 344,
+          "exact_bytes": 344,
+          "owners": [
+            "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 748,
+          "exact_bytes": 748,
+          "owners": [
+            "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 76,
+          "exact_bytes": 76,
+          "owners": [
+            "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp": "0dceda82fa31256fb125abd6ad462dab8c18918b"
+      },
+      "matched_examples": {
+        "0x80332594": {
+          "old": "update_ground_probe__13TObjEneMorfosFv",
+          "current": "update_ground_probe__13TObjEneMorfosFv",
+          "owner": "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+        },
+        "0x803329e4": {
+          "old": "render_with_camera_fade__13TObjEneMorfosFll",
+          "current": "render_part__13TObjEneMorfosFll",
+          "owner": "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+        },
+        "0x80333290": {
+          "old": "state_rotating_projectile_burst__13TObjEneMorfosFl",
+          "current": "state_rotating_projectile_burst__13TObjEneMorfosFl",
+          "owner": "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+        },
+        "0x80334428": {
+          "old": "dispatch_action__13TObjEneMorfosFUll",
+          "current": "dispatch_action__13TObjEneMorfosFUll",
+          "owner": "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+        },
+        "0x8033471c": {
+          "old": "initialize_behavior_parameters__13TObjEneMorfosFv",
+          "current": "init_target_offsets__13TObjEneMorfosFv",
+          "owner": "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+        },
+        "0x80334b64": {
+          "old": "vfunc_63__13TObjEneMorfosFv",
+          "current": "run_death_reaction__13TObjEneMorfosFv",
+          "owner": "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+        }
+      }
+    },
+    "src/pso/enemy/TObjEnePanarms.cpp": {
+      "historical_row": 603,
+      "fork_blob": "6bcff19609be0996994ea806e6deb15d3f9b2abe",
+      "historical_source_sha256": "a26220db02f81c7c6aeb2751cf9b720f8ee5c811f0432c4da7f28b70ec13aed3",
+      "source_resolution": "The native parent and halves keep construction, target selection, attack sockets, sibling and parent pointers, state timers and merge dispatch. Animation registration uses the shared BML motion entry and preserves both model paths.",
+      "exact_linked_functions": 72,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 176,
+          "exact_bytes": 176,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1576,
+          "exact_bytes": 1576,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 128,
+          "exact_bytes": 128,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp": "ea99060556fb1aa3c646b38f006c6170440c3c2b"
+      },
+      "matched_examples": {
+        "0x800dfc18": {
+          "old": "spawn_npc_pair__14TObjEnePanarmsFv",
+          "current": "spawn_npc_pair__14TObjEnePanarmsFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+        },
+        "0x800e06dc": {
+          "old": "update_chase_target__14TObjEnePanBARAFv",
+          "current": "update_chase_target__14TObjEnePanBARAFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+        },
+        "0x800e14a0": {
+          "old": "init_split__14TObjEnePanBARAFv",
+          "current": "init_split__14TObjEnePanBARAFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+        },
+        "0x800e1608": {
+          "old": "attack_target_player__14TObjEnePanBARAFl",
+          "current": "attack_target_player__14TObjEnePanBARAFl",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+        },
+        "0x800e1d94": {
+          "old": "fn_800E1D94__14TObjEnePanBARAFv",
+          "current": "start_merge__14TObjEnePanBARAFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+        },
+        "0x800e2f6c": {
+          "old": "find_nearest_enemy_with_flag_alt_target__14TObjEnePanBARAFP3Vecf",
+          "current": "find_nearest_enemy_with_flag_alt_target__14TObjEnePanBARAFP3Vecf",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+        },
+        "0x800e2fd8": {
+          "old": "clear__24ModelNodePositionCaptureFv",
+          "current": "clear__24ModelNodePositionCaptureFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+        }
+      }
+    },
+    "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp": {
+      "historical_row": 604,
+      "fork_blob": "8144757b5ddecc5d9ffa25bca48d4808e347fab9",
+      "historical_source_sha256": "f84c435c02f007e21494f8ea886d9ef2e6cd447a7cf100a2bfebab91ca1bc974",
+      "source_resolution": "The base owner keeps split and merge transitions, native body position, effect attachment, and construction and teardown. The original ground masks and blocked-move branches are retained, along with the typed motion binding for the NPC archive.",
+      "exact_linked_functions": 53,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1496,
+          "exact_bytes": 1496,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 144,
+          "exact_bytes": 144,
+          "owners": [
+            "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp": "49de45f7a72160de3362e669f548d99664430b07"
+      },
+      "matched_examples": {
+        "0x800dd080": {
+          "old": "update_timed_action__14TObjEnePanarmsFv",
+          "current": "update_merge__14TObjEnePanarmsFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        },
+        "0x800dd124": {
+          "old": "merge_halves__14TObjEnePanarmsFv",
+          "current": "enter_merge__14TObjEnePanarmsFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        },
+        "0x800dd41c": {
+          "old": "update_hit_effect__14TObjEnePanarmsFv",
+          "current": "update_split__14TObjEnePanarmsFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        },
+        "0x800dd488": {
+          "old": "fn_800DD488__14TObjEnePanarmsFv",
+          "current": "enter_split__14TObjEnePanarmsFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        },
+        "0x800de430": {
+          "old": "fn_800DE430__14TObjEnePanarmsFll",
+          "current": "spawn_split_effect__14TObjEnePanarmsFll",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        },
+        "0x800de6a8": {
+          "old": "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff",
+          "current": "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        },
+        "0x800decc4": {
+          "old": "snap_to_ground__14TObjEnePanarmsFv",
+          "current": "snap_to_ground__14TObjEnePanarmsFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        },
+        "0x800df634": {
+          "old": "load_and_spawn_npc__14TObjEnePanarmsFv",
+          "current": "load_and_spawn_npc__14TObjEnePanarmsFv",
+          "owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+        }
+      }
+    },
+    "src/pso/enemy/TObjEneRe7Berura.cpp": {
+      "historical_row": 608,
+      "fork_blob": "ae876a8fb38bf255b59257ae781da1bb29459297",
+      "historical_source_sha256": "228e805f0c5407e16b31b2d557584d48654acbd853ec75f576e39396da5cb584",
+      "source_resolution": "Berura retains approach and target dispatch, collision center and death reactions. Its model tree, detached part matrix and normal and Ultimate archives use the native types and retain the original model and motion slots.",
+      "exact_linked_functions": 37,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 736,
+          "exact_bytes": 736,
+          "owners": [
+            "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 220,
+          "exact_bytes": 220,
+          "owners": [
+            "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 76,
+          "exact_bytes": 76,
+          "owners": [
+            "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "ba6b6cf8b72a6104f42545ad6f37d7862ed317be"
+      },
+      "matched_examples": {
+        "0x80094adc": {
+          "old": "dispatch_action__16TObjEneRe7BeruraFUll",
+          "current": "dispatch_action__16TObjEneRe7BeruraFUll",
+          "owner": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+        },
+        "0x80094dec": {
+          "old": "turn_toward_heading__16TObjEneRe7BeruraFll",
+          "current": "step_toward_target__16TObjEneRe7BeruraFll",
+          "owner": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+        },
+        "0x800951ac": {
+          "old": "acquire_target_in_view__16TObjEneRe7BeruraFv",
+          "current": "acquire_target_in_view__16TObjEneRe7BeruraFv",
+          "owner": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+        },
+        "0x80095344": {
+          "old": "update_collision_center__16TObjEneRe7BeruraFv",
+          "current": "update_collision_center__16TObjEneRe7BeruraFv",
+          "owner": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+        },
+        "0x800953f8": {
+          "old": "vfunc_63__16TObjEneRe7BeruraFv",
+          "current": "run_death_reaction__16TObjEneRe7BeruraFv",
+          "owner": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+        },
+        "0x800959f8": {
+          "old": "load_static_resources__16TObjEneRe7BeruraFv",
+          "current": "load_static_resources__16TObjEneRe7BeruraFv",
+          "owner": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+        }
+      }
+    },
+    "src/pso/enemy/TObjEneBm9Mericarol.cpp": {
+      "historical_row": 934,
+      "fork_blob": "4e1f60595200e1c8508abe7e9265eeb101a87887",
+      "historical_source_sha256": "fb9245e7b37a7c7cbb73936546b4c82401b5329bc3a7230394cc1730aa56db1a",
+      "source_resolution": "Mericarol retains the native BML descriptor and both archive variants, all eight motion slots, and typed collision and attack records. The actor owner keeps the original target, reaction, dispatch and construction paths.",
+      "exact_linked_functions": 20,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 860,
+          "exact_bytes": 860,
+          "owners": [
+            "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "5db1b42049de0a3a7256d007324763fa3df891fb"
+      },
+      "matched_examples": {
+        "0x802d0854": {
+          "old": "find_nearby_target__19TObjEneBm9MericarolFv",
+          "current": "find_nearby_target__19TObjEneBm9MericarolFv",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802d09b0": {
+          "old": "vfunc_62__19TObjEneBm9MericarolFv",
+          "current": "run_hit_reaction__19TObjEneBm9MericarolFv",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802d0a2c": {
+          "old": "vfunc_28__19TObjEneBm9MericarolFv",
+          "current": "refresh_target__19TObjEneBm9MericarolFv",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802d0a30": {
+          "old": "dispatch_state_handler__19TObjEneBm9MericarolFiUii",
+          "current": "dispatch_action__19TObjEneBm9MericarolFUll",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802d1130": {
+          "old": "TBoss4Type3__sub_802D1130",
+          "current": "load_resources__19TObjEneBm9MericarolFv",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        }
+      },
+      "historical_diff_sha256": "280c323d77ffc4c1e49e055405df94c6893b67df3e1fe858dc5b3383287f1ec3"
+    },
+    "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp": {
+      "historical_row": 1058,
+      "fork_blob": "26fdccf8e9563ebf979a3ad112ca8325a8cf9154",
+      "historical_source_sha256": "8222ae91a9d480c079d273717a2beaaf5625e0b678ea9d9ff28d1e10b81345f4",
+      "source_resolution": "The consolidated Mericarol owner preserves ground shadow and color variants, motion samples, direct and recoil payloads, target lifetimes, and the original sound and effect parameters.",
+      "exact_linked_functions": 15,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 432,
+          "exact_bytes": 432,
+          "owners": [
+            "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "5db1b42049de0a3a7256d007324763fa3df891fb"
+      },
+      "matched_examples": {
+        "0x802cece0": {
+          "old": "update_particle_effect__19TObjEneBm9MericarolFP10NJS_OBJECT",
+          "current": "update_particle_effect__19TObjEneBm9MericarolFP10NJS_OBJECT",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802ced50": {
+          "old": "get_clamped_level__19TObjEneBm9MericarolFv",
+          "current": "get_clamped_level__19TObjEneBm9MericarolFv",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802cf368": {
+          "old": "TObjEneBm9Mericarol__sub_802CF368",
+          "current": "state_damaged__19TObjEneBm9MericarolFl",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802cf4f8": {
+          "old": "TObjEneBm9Mericarol__sub_802CF4F8",
+          "current": "state_curse__19TObjEneBm9MericarolFl",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802cf7b4": {
+          "old": "TObjEneDD__sub_802CF7B4",
+          "current": "state_rush__19TObjEneBm9MericarolFl",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        },
+        "0x802d01d8": {
+          "old": "TObjEneBm9Mericarol__sub_802D01D8",
+          "current": "state_chase_target__19TObjEneBm9MericarolFl",
+          "owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+        }
+      },
+      "historical_diff_sha256": "410f8d6a8edb8cc1d59eba92dc28de6ca7116166fe25271ff442e648cdda52ca"
+    }
+  },
+  "whole_historical_comparisons_remaining": 82,
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "focused_cases_per_image": {
+      "target_range_cases": 5,
+      "wall_slide_cases": 7
+    },
+    "wall_slide_probe_scope": "Executes the image code with controlled scene segment and ground queries and stubs for two paired-single vector helpers.",
+    "retained_suites": {
+      "flower": "Flower action entry, 3 melee outcomes, bomb initialization and 2 Recobox parameters passed.",
+      "panarms": "28 Pan Arms contact and movement cases passed."
+    },
+    "probe_labels_at_original_addresses": {
+      "flower": [
+        "Alias fn_800C3088 => state_attack__16TObjEneRe2FlowerFl ('.text:0x800C3088', 'function', '0x254')",
+        "Alias get_field_4d0__14TObjEneRecoboxFv => get_recon_offset_max__14TObjEneRecoboxFv ('.text:0x8031E7F8', 'function', '0x8')",
+        "Alias get_field_4d4__14TObjEneRecoboxFv => get_recon_rotate_rad__14TObjEneRecoboxFv ('.text:0x8031E7F0', 'function', '0x8')",
+        "Alias remap_sound_for_variant => remap_sound_for_variant__16TObjEneRe2FlowerFl ('.text:0x800C3A60', 'function', '0x120')"
+      ],
+      "panarms": [
+        "Alias check_radius_collisions => check_radius_collisions__22TObjEnePanarmsAtkColliFv ('.text:0x800E35C8', 'function', '0xA8')",
+        "Alias find_nearest_hittable_enemy__10TObjPlayerFiPvf => find_nearest_hittable_enemy__FP8TObjBaseP3Vecf ('.text:0x800114D8', 'function', '0xEC')",
+        "Alias fn_800E322C => hit_enemy_near__22TObjEnePanarmsAtkColliFP3Vec ('.text:0x800E322C', 'function', '0x94')",
+        "Alias fn_800E3374 => hit_player__22TObjEnePanarmsAtkColliFP9TObjChara ('.text:0x800E3374', 'function', '0xB4')",
+        "Alias sub_800E32C0__22TObjEnePanarmsAtkColliFP9TObjChara => hit_enemy__22TObjEnePanarmsAtkColliFP9TObjChara ('.text:0x800E32C0', 'function', '0xB4')",
+        "Alias sweep_segment_collisions => sweep_segment_collisions__22TObjEnePanarmsAtkColliFv ('.text:0x800E3428', 'function', '0x1A0')",
+        "Alias update_collisions__10TObjPlayerFv => update_collisions__14TObjCollidableFv ('.text:0x80156698', 'function', '0x34')"
+      ]
+    }
+  },
+  "source_quality": {
+    "removed": 38,
+    "added": 1,
+    "typed_linker_label_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80017E6C",
+        "type": "function",
+        "old": "move_with_wall_slide__FPUc",
+        "new": "move_with_wall_slide__FP9TObjChara",
+        "flags": []
+      }
+    ],
+    "stale_retention": 0,
+    "advisory": "The established Morfos member unk_4C8 changes to float storage, with float initialization. Its existing name stays until evidence supports a more specific name."
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "875c49400ebe2c73659765dd77851da1dec77984aa99811707c8a46c1a0c5acd",
+    "address-ownership.json": "e832d2590991be37d014088e88570c56907b91199a910e2f69009e0e3f8a1a29",
+    "final-quality.json": "b6a115ad962cb738f05ec36d81d0e6e5ea0f2363cf17d3cd9104680f842336e4",
+    "fork-main-coverage.json": "1a226ee42b9acb87613c1dfd23a35d3de31ca004bb9b089ea436caca3284ef33",
+    "probe-wall.log": "33a3440d82aebef79d6aca430a481af37f59acc398678ca5d996609d7ea955eb",
+    "probe-flower.log": "dc150f119f4b1aae4626e08b800af6e8c6511d3cd2f9faf91ba64b23a12c6d2f",
+    "probe-panarms.log": "07903b8b0447dbc899f4c8db8a12c68f3fe995bf079d8b3fd0d86af76920d48e",
+    "flower-aliases.log": "454bdefce5ad8544f24c146d922de1de477efa946a4399e265a4a023a44c0c39",
+    "panarms-aliases.log": "315ccf3d62124d8c355a9e8fcd1cc5543b3957e56ebd0d97cfbd14c70503e532",
+    "tool-overlay.patch": "d93d879f1cd3c199a515f8c3518b452d719a7113f7f7556fc7f06c7aa1ce45c3"
+  }
+}
