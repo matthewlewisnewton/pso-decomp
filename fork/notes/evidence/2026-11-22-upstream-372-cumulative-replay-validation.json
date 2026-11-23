@@ -1,0 +1,589 @@
+{
+  "upstream_master": "5cf9da024a0d526227c07273f045ebe71e146496",
+  "previous_cumulative_source": "04dcce065b5b748ee382035bf25d310a492f5837",
+  "source_branch": "great-merge/rehearsal/after-372/cumulative-source",
+  "source": "69b1e6c949e4fd7fa359b7fa55f94569d39e381c",
+  "published_review": {
+    "url": "https://github.com/zeroz41/pso-decomp/pull/371",
+    "head": "eaafb9f81054d8deb72dfbc590cd1ada235f4c48",
+    "matching_check": "https://github.com/zeroz41/pso-decomp/actions/runs/45090559488/job/137418993355"
+  },
+  "changed_paths_vs_upstream": 1252,
+  "initial_queue_conflict_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+    "include/pso/camera/CameraHelpers.h",
+    "include/pso/camera/TCameraCtrl.h",
+    "include/pso/camera/TCameraCtrl_800687BC.h",
+    "include/pso/camera/TCameraCtrl_8006C254.h",
+    "include/pso/camera/TCameraCtrl_803D6538.h",
+    "include/pso/camera/TObjLiveCameraCtrl.h",
+    "include/pso/object/TObjLiveMonitor.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801AF2F0.h",
+    "include/pso/system/ControllerInputState.h",
+    "include/pso/system/NinjaTypes.h",
+    "include/pso/ui/keyboard/TKeyBoardControl_801A57C4.h",
+    "include/pso/ui/window/TWindowChoiceSetting.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "include/pso/unk/TUnk_80488AD8.h",
+    "include/pso/unk/TUnk_80488B38.h",
+    "include/pso/unk/TUnk_80488B68.h",
+    "include/pso/unk/TUnk_804C3248.h",
+    "include/pso/unk/text_801A6A5C.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/camera/TCameraCtrl.cpp",
+    "src/pso/camera/TCameraCtrl_8006B3D8.cpp",
+    "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+    "src/pso/camera/TCameraCtrl_8006C254.cpp",
+    "src/pso/camera/TCameraCtrl_803D6538.cpp",
+    "src/pso/camera/TCameraCtrl_803D66DC.cpp",
+    "src/pso/camera/TCameraCtrl_803D676C.cpp",
+    "src/pso/camera/TCameraCtrl_803D6960.cpp",
+    "src/pso/camera/TCameraCtrl_803D749C.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/TEffClitical.cpp",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonRainbow.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/shop/TShopGenerator.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/object/TObjLiveMonitor.cpp",
+    "src/pso/object/TObjLuker.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/lobby/LobbyGoGoBall.cpp",
+    "src/pso/object/quest/TObjQuestCol.cpp",
+    "src/pso/player/PlayerTaskEffects.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/system/scene/OfflineGameScene.cpp",
+    "src/pso/ui/charcreate/TChCrEffWall.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMultiOkGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+    "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+    "src/pso/ui/frontend/TAdWarningBaseGC.cpp",
+    "src/pso/ui/hud/TLoadingCur.cpp",
+    "src/pso/ui/hud/TMainCursor.cpp",
+    "src/pso/ui/hud/TNowLoading.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024B1A0.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024B558.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowGetComCard.cpp",
+    "src/pso/ui/window/TWindowInputNumber.cpp",
+    "src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp",
+    "src/pso/ui/window/TWindowSoundBalance.cpp",
+    "src/pso/ui/window/TWindowSubAreaMap.cpp",
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubItem.cpp",
+    "src/pso/ui/window/TWindowSubLog.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubTrade.cpp",
+    "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+    "src/pso/ui/window/WindowDrawContext.cpp",
+    "src/pso/unk/TLobby_8007B858.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_801F3A24.cpp",
+    "src/pso/unk/TLobby_802409AC.cpp",
+    "src/pso/unk/TLobby_80291D94.cpp",
+    "src/pso/unk/TUnk_80488B38.cpp",
+    "src/pso/unk/text_8004D9A8.cpp",
+    "src/pso/unk/text_80071B30.cpp",
+    "src/pso/unk/text_8011A780.cpp",
+    "src/pso/unk/text_801A6A28.cpp",
+    "src/pso/unk/text_8026C664.cpp",
+    "src/pso/unk/text_803D96A8.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_source_units": 2394,
+  "original_fork_data": {
+    "bytes": 1147,
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "cumulative-final": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "padding_coverage_delta": [
+        {
+          "module": "psov3",
+          "section": ".rodata",
+          "address": "0x8047E3D4",
+          "size": 4
+        }
+      ],
+      "report_sha256": "2a8e597886cbdd429894d9fc730db0dcfb2bc741650350b230c103fc971617da"
+    },
+    "layer": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "padding_coverage_delta": [],
+      "report_sha256": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 161684,
+      "head": 154067,
+      "added": 1021,
+      "removed": 8638
+    },
+    "symbol_label_changes": 534,
+    "flagged_labels": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8002E62C",
+        "type": "function",
+        "old": "__ct__13TUnk_80482090FP7TObjectUl",
+        "new": "__ct__13TUnk_80482090FP7TObjectPA4_Cf",
+        "flags": [
+          "member of TUnk_80482090, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800D80E4",
+        "type": "function",
+        "old": "__ct__13TUnk_80494A10FP7TObjectP3VecPvllf",
+        "new": "__ct__13TUnk_80494A10FP7TObjectPC3VecP16GinjaTextureListllf",
+        "flags": [
+          "member of TUnk_80494A10, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80108C90",
+        "type": "function",
+        "old": "__ct__13TUnk_8049F038FP7TObjectsl",
+        "new": "__ct__13TUnk_8049F038FP7TObjectUsl",
+        "flags": [
+          "member of TUnk_8049F038, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801A826C",
+        "type": "function",
+        "old": "calc_photon_blast_power__10TObjPlayerFlf",
+        "new": "calc_photon_blast_power__13TUnk_804C349CFlf",
+        "flags": [
+          "member of TUnk_804C349C, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801A9E10",
+        "type": "function",
+        "old": "__ct__13TUnk_804C349CFlPUcPlll",
+        "new": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll",
+        "flags": [
+          "member of TUnk_804C349C, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801AC444",
+        "type": "function",
+        "old": "sub_801AC444__13TPhotonLeillaFv",
+        "new": "sub_801AC444__13TPhotonLeillaFUc",
+        "flags": [
+          "named after its address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C2060",
+        "type": "function",
+        "old": "set_field4__10TObjPlayerFl",
+        "new": "set_field4__12Unk_801C2068Fl",
+        "flags": [
+          "member of Unk_801C2068, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4678",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D4678",
+        "new": "__dt__13List_801D4744Fv",
+        "flags": [
+          "member of List_801D4744, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D46D4",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D46D4",
+        "new": "__ct__13List_801D4744Fl",
+        "flags": [
+          "member of List_801D4744, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4730",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D4730",
+        "new": "__ct__12Ent_801D4744Fv",
+        "flags": [
+          "member of Ent_801D4744, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4744",
+        "type": "function",
+        "old": "sort_by_key__10TObjPlayerFv",
+        "new": "sort_by_key__13List_801D4744Fv",
+        "flags": [
+          "member of List_801D4744, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D47D8",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D47D8",
+        "new": "__as__12Ent_801D4744FR12Ent_801D4744",
+        "flags": [
+          "named after its address",
+          "member of Ent_801D4744, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4C84",
+        "type": "function",
+        "old": "set_globals_and_notify__6TLobbyFP10TObjPlayerPv",
+        "new": "set_globals_and_notify__8TPlyItemFP10TObjPlayerP12Unk_801C2068",
+        "flags": [
+          "named after its address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D5814",
+        "type": "function",
+        "old": "copy_item_data__9TItemListFv",
+        "new": "copy_item_data__12Unk_801C2068FP9TItemData",
+        "flags": [
+          "member of Unk_801C2068, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8026D9C0",
+        "type": "function",
+        "old": "increment_counter__20TWindowSubStatusDispFv",
+        "new": "increment_counter__15Scroll_8026D790Fv",
+        "flags": [
+          "member of Scroll_8026D790, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8032BCBC",
+        "type": "function",
+        "old": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+        "new": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject",
+        "flags": [
+          "member of TUnk_804EDAC0, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803375F0",
+        "type": "function",
+        "old": "snap_to_ground__13TObjEneMorfosFll",
+        "new": "snap_to_ground__13TUnk_804EF130FP3Vec",
+        "flags": [
+          "member of TUnk_804EF130, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80337824",
+        "type": "function",
+        "old": "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+        "new": "__ct__13TUnk_804EF130FPC3VeclP9TObjChara",
+        "flags": [
+          "member of TUnk_804EF130, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8035A69C",
+        "type": "function",
+        "old": "draw_node_tree__10TObjPlayerFPv",
+        "new": "draw_node_tree__13TUnk_804F1C58FP10NJS_OBJECT",
+        "flags": [
+          "member of TUnk_804F1C58, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8035A740",
+        "type": "function",
+        "old": "draw_node_tree_if_visible__10TObjPlayerFv",
+        "new": "draw_node_tree_if_visible__13TUnk_804F1C58Fv",
+        "flags": [
+          "member of TUnk_804F1C58, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8035A860",
+        "type": "function",
+        "old": "__ct__13TUnk_804F1C58FP7TObjectPv",
+        "new": "__ct__13TUnk_804F1C58FP7TObjectP10NJS_OBJECT",
+        "flags": [
+          "member of TUnk_804F1C58, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E8B1C",
+        "type": "function",
+        "old": "lookup_name_entry__22TQuestVmDownLoadServerFsP12Out_803E8C2C",
+        "new": "lookup_name_entry__22TQuestVmDownLoadServerFPcsP12Out_803E8C2C",
+        "flags": [
+          "named after its address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E92C0",
+        "type": "function",
+        "old": "calc_text_length__22TQuestVmDownLoadServerFv",
+        "new": "calc_text_length__12Req_803EEF2CCFv",
+        "flags": [
+          "member of Req_803EEF2C, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E9348",
+        "type": "function",
+        "old": "calc_message_length__22TQuestVmDownLoadServerFv",
+        "new": "calc_message_length__12Req_803EEF2CCFv",
+        "flags": [
+          "member of Req_803EEF2C, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803F0138",
+        "type": "function",
+        "old": "find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138",
+        "new": "find_symbol_entry__22TQuestVmDownLoadServerFPCcsP13Info_803F0138",
+        "flags": [
+          "named after its address"
+        ]
+      }
+    ],
+    "new_stale_force_active": [],
+    "report_sha256": "6ac80347b58fd3f6893c81a18a4c59270474d532506272eb02a3c48eaf0c0316"
+  },
+  "runtime_probes": {
+    "sdk-queues": {
+      "probe_sha256": "ed90ded6d9abadd5f381b21fcc344029dd93c919ad14f0442e7b8246c12393a7",
+      "log_sha256": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+      "results": [
+        "{\"completion_cases\": 4, \"post_cases\": 8, \"receive_cases\": 8, \"shutdown_cases\": 8, \"startup_cases\": 12, \"update_cases\": 12}"
+      ]
+    },
+    "stack-lifecycle": {
+      "probe_sha256": "046900bbac560e7970f02d2748cfc6c469368d137199425a4dfcb63ed8fd6f3e",
+      "log_sha256": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050",
+      "results": [
+        "{\"branches\": {\"compare_sockaddr\": 7, \"init_buffer_descriptor_a\": 1, \"init_buffer_descriptor_b\": 1, \"init_ipv6_interface_config\": 1, \"init_net_buffer_config\": 1, \"init_net_config\": 1, \"init_net_func_table\": 1, \"init_net_recv_desc\": 1, \"init_udp_socket_config\": 1, \"is_multicast_address\": 3, \"release_entry\": 41, \"request_network_info_load__FlPv\": 1}, \"headers\": 5, \"initializers\": 8, \"poll_cases\": 36, \"pool_cases\": 140, \"request_cases\": 42}"
+      ]
+    },
+    "modem-transport": {
+      "probe_sha256": "657831b542faf37b6a8ecabe573bade97f4c85ddb3a64f9a505a1be86fdef85e",
+      "log_sha256": "8f589e1b9c7c9a56ebb93d97008f8af82570d153727e7ea141d62607702e8705",
+      "results": [
+        "PsoV3.dol: modem send, status, command filters, dialing and four ring cases passed.",
+        "network.dol: modem send, status, command filters, dialing and four ring cases passed."
+      ]
+    },
+    "modem-dial-script": {
+      "probe_sha256": "1fd32ba7c01a06a0125c768f99ef4215063467696bb56cf6e32e681d3c575221",
+      "log_sha256": "04d1b3c9391f7826a63a3e7ffc7d1010c9569692ddedd4cd7a016447dac18cec",
+      "results": [
+        "PsoV3.dol: 13 modem script cases passed.",
+        "network.dol: 13 modem script cases passed."
+      ]
+    },
+    "network-startup": {
+      "probe_sha256": "2f20cfc10be3c4a71291ce2c130e6f49ef6ff7f52bf4586a8dbd901fe0e4d805",
+      "log_sha256": "1cbb4cc4c1e6d57226eb268bed08707f1d032ece54dda121c16ec0684192ff17",
+      "results": [
+        "PsoV3.dol: 20 network startup and PPP cases passed.",
+        "network.dol: 20 network startup and PPP cases passed."
+      ]
+    },
+    "ppp-frames": {
+      "probe_sha256": "9660b2b4490e1623008049b8afb52517686e1dad6bd7447cac4ab8ff4858a983",
+      "log_sha256": "1055052946c8b013f3010646aeaa6022d423868a42185b53640e67723efc7433",
+      "results": [
+        "PsoV3.dol: 28 PPP frame, dispatch, and compression cases passed.",
+        "network.dol: 28 PPP frame, dispatch, and compression cases passed."
+      ]
+    },
+    "ppp-callbacks": {
+      "probe_sha256": "89b11ef200288902d2b2c1b9f5085a02ee2fd63d0bc9008d2dc4f61dc52a5349",
+      "log_sha256": "ac344fd789c173415cd46f0f8e6c24ee6c2fd5aa79c84697e65dff39130dbe09",
+      "results": [
+        "PsoV3.dol: 13 PPP callback-table and IPv6CP option cases passed.",
+        "network.dol: 13 PPP callback-table and IPv6CP option cases passed."
+      ]
+    },
+    "runtime-slots": {
+      "probe_sha256": "8924a82c94c2c4cbc11c45f957fc89693e859fbeb5a386d517d5702e9a68c083",
+      "log_sha256": "b4fccd09650143e9b72e96cdfb28d19587b53f23b24f35d931317b72f2f8c513",
+      "results": [
+        "PsoV3.dol: seven network slot initialization cases passed.",
+        "network.dol: seven network slot initialization cases passed."
+      ]
+    },
+    "packet-receive-and-dhcp": {
+      "probe_sha256": "5587c776da77526c1746783b6e1abffe4d1c1816087e3bff12034d958e88578d",
+      "log_sha256": "448051f4b689b3056beeccd47ede6336dfd7fe7afa0b290b628518ce402d215c",
+      "results": [
+        "PsoV3.dol: 15 receive and DHCP record cases passed.",
+        "network.dol: 15 receive and DHCP record cases passed."
+      ]
+    },
+    "socket-and-dhcp-handoffs": {
+      "probe_sha256": "e4c444684b3e527d1ab4baee37a321b795e15df7ed23e8b6eceabd623a3ead57",
+      "log_sha256": "70ab6be85d41570008e69b80385dc3677c361a7e84309d516cec5f460a618fef",
+      "results": [
+        "PsoV3.dol: 10 socket timer, send handoff and DHCP option cases passed.",
+        "network.dol: 10 socket timer, send handoff and DHCP option cases passed."
+      ]
+    },
+    "socket-queues": {
+      "probe_sha256": "0de4e9dbf95a835be9ea646541e5abda11115c6f0008d3c1ea5d859a7fc3b12f",
+      "log_sha256": "701852d4f7fe7a41d7ee822cef1724c0c0378c07d2f3b6e0d1022465ffb69cd6",
+      "results": [
+        "786 reassembly comparisons and 12 out-of-order receive cases passed.",
+        "2,528 gathers and 1,600 ACKs passed, including 1766 completion events."
+      ]
+    },
+    "probe-status-windows": {
+      "result": "status flags, numeric glyphs, icon clipping and status detail rows passed.",
+      "log_sha256": "e29d93761bfee0bd12f3c4dd431f1cff8754d8dc6ed474e00b4b8409ea6315c3"
+    },
+    "probe-title-lifetimes": {
+      "result": "overlay destruction, global construction, and both area dispatch paths passed.",
+      "log_sha256": "52b8e2081ca9e41d9411d24d40a2baea0279131badd704ee567d8c2a56c97290"
+    },
+    "verify-controller-and-keyboard": {
+      "result": "Pad routing, keyboard polling, stick escape and text export passed",
+      "log_sha256": "dddf8a2406a979ff3f797f0f1f73295c3aee19d81459a273d574a19e5353d859"
+    },
+    "verify-title-sprites": {
+      "result": "46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+      "log_sha256": "f12583c3bd6497d532d2e6c7c3dbcc8dd561424b49bf35e3a23cd9de25df2d5d"
+    },
+    "probe-stage-chips": {
+      "result": "debris copy guards, three stage fragments, and Mine and Tombstone resource lifetimes passed",
+      "log_sha256": "8f6fa0b20d2dd877d8dd1847ffa2bed57015c855c052989dcd4fd040d71e5b63"
+    },
+    "probe-dispatcher": {
+      "result": "dispatcher initialization, all unwind paths, and message layout passed.",
+      "log_sha256": "ce6d2688bc0470684b6fc9b5b72715e62e0dcd70db23b8b263bd98d70570aff3"
+    },
+    "probe-udp-callbacks": {
+      "result": "typed UDP connect, independent event and receive slots, duplicate rejection and close passed.",
+      "log_sha256": "3de69068ce09fae9d5bb6de2d3a5978dbef7fc27d641636e92520cfe6bdb5c92"
+    },
+    "probe-frame-layouts": {
+      "result": "PPP frame length and headroom, IPv4 options, and TCP header fields passed",
+      "log_sha256": "200a6684c2a0f5d9e36491246fb540ae5d3aba3eac6a4c897dff10994458d04c"
+    }
+  },
+  "workspace": {
+    "overlay_paths": 130,
+    "retained_label_name_updates": 138,
+    "retention_check": "force_active: 26990 listed, +0 unreferenced symbol(s) in linked units, -0 stale",
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "materialized_tree": "43840759bf38cd2e53475ffc075f4fb1d9994a43",
+    "overlay_sha256": "c954ed61bfe19ad3fef5075f2ea29c51a337e6ffbbc03898d27cef7bd2e0a878"
+  },
+  "source_report_sha256": "68d364b3d271cc61590fc7d5ee9ade30831f600c43e3df7712560ab4cef2efe6"
+}
