@@ -1,5 +1,7 @@
 # Share the allocation, copy and release interfaces
 
+The 229-path review `34db28e7c7` has its own build and validation directly on upstream master. The allocation, copy, footprint cleanup and both item-buffer allocation modes pass their runtime probes. The benchmark removes 39 findings, adds zero and flags no symbols. The one changed label moves the nullable release function to its shared owner. The combined review `dad6841b5c` matches retail over the effects, inventory and save replay, with the same benchmark results. [Validation](2026-11-22-independent-memory-and-character-preview-validation.json)
+
 The current local review is `14951bf3bf` on the sound review `81bf9735c5`. The 224-path batch covers shared memory declarations, nullable release and typed item-buffer storage. Retail, coverage and the allocation, copy, footprint and item-buffer probes pass. The source-quality benchmark removes 39 findings and flags no labels. [Current validation](2026-11-22-upstream-371-shared-memory-and-item-buffer.json)
 
 The local memory review is `4fc1ed7afe` above the current window and network checkpoint `c02dcaa95d`. It gives allocation and copy their shared declarations and moves nullable release into the memory owner. The build matches retail and the allocator, release and overlapping copy probes pass. [Current validation](2026-11-22-upstream-367-network-memory-validation.json)
