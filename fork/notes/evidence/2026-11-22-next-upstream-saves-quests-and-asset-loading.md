@@ -27,7 +27,7 @@ Recover the types used to load save data, quest entries, and assets, and carry t
 - The bank uses the native deposit window and the item selection callbacks on their actual window classes.
 - The footprint effect uses a typed texture pointer from load through drawing and release, and reads yaw from the player's rotation record.
 
-The 40 changed linker labels follow the recovered owners and argument types. The retail DOL matches byte for byte with all 27,572 functions exact, 2,368 linked units and all 1,147 original data bytes accounted for. The targeted checks cover card metadata, quest ARAM completion and timeouts, compressed and uncompressed BML headers, archive callbacks and texture handling.
+The 40 changed linker labels follow the recovered owners and argument types. Direct comparisons with upstream and fork main preserve all previously matched and linked code and data. The retail DOL matches byte for byte with all 27,572 functions exact, 2,368 linked units and all 1,147 original data bytes accounted for. The targeted checks cover card metadata, quest ARAM completion and timeouts, compressed and uncompressed BML headers, archive callbacks and texture handling.
 
 The source-quality benchmark removes 1,053 findings and adds 26, with zero flagged symbol labels or newly stale retention entries.
 

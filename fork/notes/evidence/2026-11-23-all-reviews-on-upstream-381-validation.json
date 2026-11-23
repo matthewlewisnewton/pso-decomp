@@ -1,4 +1,126 @@
 {
+  "direct_baseline_comparisons": {
+    "fork_main": {
+      "data_diagnostic_explanation": "The reduction of 2,406 bytes consists of 2,565 bytes of omitted alignment padding and 159 bytes of newly covered data, with no previously exact or linked data lost.",
+      "live_head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "measured_head": "34120b34d9fae0160ad2ae5aef325ac20e2255b4",
+      "paths_between_live_and_measured_heads": [
+        "README.md"
+      ],
+      "report_sha256": "3e8a49928b15de9e88fa50ad9d678a440a4b3743e0bd7b53b2871d88bf17c519",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+    },
+    "stages": {
+      "actors": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "d38ae59512c6c406ab4d0c99695bf2128bdcee1fe60440fceb3d8d3afca86811",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "558251bd9023ac69829cfc063e651397e881642e",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "f3c58b7b398734a1845180dd0c2be9ff1a8cc5f356757285b9c2d6c725231c8e"
+      },
+      "combat": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "e0728b347b4bd5b3b10df13fd19eaab4f9109ee70c1a7e8069b8c328065ee06f",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "c68a75607e3452c1436fd76fca3b0d371d7dd763",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "e3e0d16a39954a76f0ab18a442600bf8787b9938fa05c223d800488ee383ec45"
+      },
+      "final": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "6687976b2adec0896efd0a9e0e7b066f30a83b518f1ed0a6b911cd1ad94a0b3d",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "332630f2e69a454e94718e8627c606bf83643ce7",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "fd966bef138a040c3eb949530830c9a32c06b2cbabdc21fbead6a113c9401679"
+      },
+      "private": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "6687976b2adec0896efd0a9e0e7b066f30a83b518f1ed0a6b911cd1ad94a0b3d",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "4b0981ad665f0c63edd33e2e8ca976360a284712",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "fd966bef138a040c3eb949530830c9a32c06b2cbabdc21fbead6a113c9401679"
+      },
+      "saves": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "d0baa48ad77a2039ab5eb058f0b7a4b9e571e41b8e2983cc737085d72f6a1dc0",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "a4633dbc86e406adec10be7d78995da118f2723fac2fa7b6a854ab74363e53c1"
+      },
+      "sound": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "8c32e2bf2a494025f0dc6bce50dd03bd71a79f389dcaac1d95239b5fefbfd818",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "0d4cc1a00b14893f655ecb7f33214a27cd2eb0e0",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "40f60c2701d341d80ad7cd38c5f49dbd41b483522cec309157d23eba916d2ee4"
+      },
+      "ui": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "49d42070451fcecbcae846d6be62eb650067f400e5eaa5a1e75e851292d47dcc",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "3c3421d7b8c3ce551db539cc98c6020b861fac83",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "c5d10c2ccbb5b2d2b77aadcbb8e59000bc2fdb4e22b5c643993ce5e79d0a1d39"
+      },
+      "world": {
+        "data_coverage_bytes_added": 159,
+        "fork_main_comparison_sha256": "b5d6df86b188e0e4d53efb3adae3aa7f138246cf64b897ec3289cefebfdadd87",
+        "fork_main_data_total_delta": -2406,
+        "fork_main_padding_bytes_omitted": 2565,
+        "fork_main_tool_diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "head": "c5ef6c12967bea7d5bc8aa8c02303f0ed41da260",
+        "new_exact_functions_compared_to_fork_main": 7,
+        "no_matched_or_linked_coverage_loss": true,
+        "upstream_comparison_sha256": "b208f615d37136b15a0ee2d16d791f099f7ebafc345ace708193eb8a829b687b"
+      }
+    },
+    "upstream_master": {
+      "head": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+      "report_sha256": "264430a6624dfcf855e8292e73fbd3f196d7376e63a76a299de778acb0cbf5da"
+    }
+  },
   "first_review_pending_approval": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
   "fork_main_at_preflight": "3342e42983535b393148deb5b719202b9bf4b7d8",
   "historical_original_data_bytes": {
@@ -60,6 +182,13 @@
   "private_tooling": {
     "check_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
     "head": "4b0981ad665f0c63edd33e2e8ca976360a284712",
+    "link_gpoe8p_elf_inputs": {
+      "compiled_source_objects": 2368,
+      "dol_sha256": "1f80fb82b41c05b26b6d0545b1ba9c0aa60b52e6589cf32fbb2ffe644692a61a",
+      "extracted_objects": 0,
+      "head": "4b0981ad665f0c63edd33e2e8ca976360a284712",
+      "ninja_object_list_sha256": "65031bc899481b59156ac0db33266fc5dd121b3161a96f88066a5bb067ff44b0"
+    },
     "linked_units": 2368,
     "matched_functions": 27572,
     "regressions": 0,
