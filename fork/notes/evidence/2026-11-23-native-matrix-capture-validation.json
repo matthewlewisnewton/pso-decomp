@@ -1,0 +1,680 @@
+{
+  "source": {
+    "head": "aeef41111024361e5ba652197c854eefe345652c",
+    "tree": "b6493db0d8b743541521907df31abe09b9534469",
+    "coverage_baseline": "d6a2b3ffc4ec60ded15ce8799a6994fdff95ccd0",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "source-report.json": "2fa854f5e8261976bb5ae6e99c93a7028ca5403272bc9135a7e171177b0db682",
+      "source-check.json": "803bcdbe4a141635680a8b93775402d38f9c060c49ea961933f8074a95f35e34",
+      "source-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "source-quality.json": "dd6462d6dffa70a2f149c4565060ccf546fa3962f19176810cc9270041c0b39a"
+    },
+    "source_quality": {
+      "total": {
+        "base": 141444,
+        "head": 141391,
+        "added": 0,
+        "removed": 53
+      },
+      "function_label_changes": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80094F40",
+          "type": "function",
+          "old": "draw_saved_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPUc",
+          "new": "draw_saved_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80101894",
+          "type": "function",
+          "old": "draw_model_nodes__5TItemFPUc",
+          "new": "draw_model_nodes__5TItemFPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801018E4",
+          "type": "function",
+          "old": "apply_sign_effect__5TItemFPUc",
+          "new": "apply_sign_effect__5TItemFPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80101934",
+          "type": "function",
+          "old": "visit_model_nodes__5TItemFPUc",
+          "new": "visit_model_nodes__5TItemFPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80121160",
+          "type": "function",
+          "old": "get_model_joint_matrix__FPvi",
+          "new": "get_model_joint_matrix__FP10TObjPlayeri",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D898C",
+          "type": "function",
+          "old": "get_current_matrix__FPv",
+          "new": "get_current_matrix__FPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D89E8",
+          "type": "function",
+          "old": "invert_matrix_in_place__10TObjPlayerFUl",
+          "new": "invert_matrix_in_place__10TObjPlayerFPA4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D8A6C",
+          "type": "function",
+          "old": "rotate_matrix_zyx__FPvlll",
+          "new": "rotate_matrix_zyx__FPA4_flll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D8AE4",
+          "type": "function",
+          "old": "rotate_matrix_yxz__Fllll",
+          "new": "rotate_matrix_yxz__FPA4_flll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803E2F28",
+          "type": "function",
+          "old": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFv",
+          "new": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFPA3_A4_Cf",
+          "flags": []
+        }
+      ],
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "additions": []
+    }
+  },
+  "materialized_fork": {
+    "head": "b783aa42a1dd1e01d3c38f4a3dec8cb133040357",
+    "tree": "f4b0092e24dfbe0a86ef3906c60cf8f61d798895",
+    "coverage_baseline": "aeef41111024361e5ba652197c854eefe345652c",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "private-report.json": "2fa854f5e8261976bb5ae6e99c93a7028ca5403272bc9135a7e171177b0db682",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "private-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-tests.log": "0af86341fcd4656dbc6bb78d8fcb634da31c19f372b0186ef9eed3fea32d8e99",
+      "private-tool-tests.log": "210d4ebf0409a06cb8cc7a28d0b0cdc29fa2f18a36387c5d274f0643f43d3ebd",
+      "private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "overlay-before.patch": "8fc57e3331d9c54db932ff5cfe9be948c8296f1d871ea0bfad6a6198b50c4c95",
+      "overlay-after.patch": "2f9f86d25351dedee637ae8bb699182a7305762be3786c974100bdc813787b5d"
+    },
+    "tests": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    }
+  },
+  "independent_actor_review": {
+    "head": "8688e4782b3462689ad49358ea583be6f7596cd5",
+    "tree": "919cf0096c6c4d64d16434000ba2e77c07affca7",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "direct-report.json": "b0c284b486eba7f0319d486d466ef7763ebe539f4a2c563056282671a81f1708",
+      "direct-check.json": "452c131358a19dc57491b40782ac221622d838974736dcfa2a91820257f1fe9f",
+      "direct-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "direct-quality.json": "ba9712a76264150f318b73fa83e7167ec269bb3b9ba3deff6360c5ced5cbb091"
+    },
+    "source_quality": {
+      "total": {
+        "base": 147293,
+        "head": 146824,
+        "added": 5,
+        "removed": 474
+      },
+      "function_label_changes": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E41C",
+          "type": "function",
+          "old": "swap_endian__6TLobbyFv",
+          "new": "swap_endian__15ActorParamBlockFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E498",
+          "type": "function",
+          "old": "byteswap_packet__6TLobbyFv",
+          "new": "byteswap_packet__12AttackParamsFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80027514",
+          "type": "function",
+          "old": "setup_v2_instance__12TBoss1DragonFP3VecPUcl",
+          "new": "setup_v2_instance__12TBoss1DragonFPC3VecP18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80027590",
+          "type": "function",
+          "old": "emit_v2_effect_at_position__12TBoss1DragonFPv",
+          "new": "emit_v2_effect_at_position__12TBoss1DragonFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800275BC",
+          "type": "function",
+          "old": "emit_v2_enemy_effect__12TBoss1DragonFP3VecPUcP17AreaAttackHistory",
+          "new": "emit_v2_enemy_effect__12TBoss1DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80063C1C",
+          "type": "function",
+          "old": "spawn_switch_attack__12TBoss8DragonFv",
+          "new": "spawn_switch_attack__12TBoss8DragonFPC3Vec",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80063C7C",
+          "type": "function",
+          "old": "spawn_attack_effect__12TBoss8DragonFv",
+          "new": "spawn_attack_effect__12TBoss8DragonFPC3Vec",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80066FEC",
+          "type": "function",
+          "old": "render_impl__19TObjBoss5FloorStoneFPv",
+          "new": "render_impl__19TObjBoss5FloorStoneFP16GinjaTextureListP10NJS_OBJECT",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80067034",
+          "type": "function",
+          "old": "is_within_xz_distance__12TBoss8DragonFPUcf",
+          "new": "is_within_xz_distance__12TBoss8DragonFPC3VecPC10NJS_OBJECTf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80067064",
+          "type": "function",
+          "old": "calc_sq_offset__12TBoss8DragonFf",
+          "new": "calc_sq_offset__12TBoss8DragonFPC18DragonAttackParamsf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80094F40",
+          "type": "function",
+          "old": "draw_saved_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPUc",
+          "new": "draw_saved_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9E84",
+          "type": "function",
+          "old": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+          "new": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9ED0",
+          "type": "function",
+          "old": "reset_hp__9TObjEneDDFPUcPUcPUc",
+          "new": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA498",
+          "type": "function",
+          "old": "emit_effect_at_position__9TObjEneDDFPv",
+          "new": "emit_effect_at_position__9TObjEneDDFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA4C4",
+          "type": "function",
+          "old": "emit_effect__9TObjEneDDFPvll",
+          "new": "emit_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800BA4E8",
+          "type": "function",
+          "old": "emit_enemy_effect__9TObjEneDDFPvPvPUcPv",
+          "new": "emit_enemy_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800E80A4",
+          "type": "function",
+          "old": "copy_vec3__10TObjPlayerFPv",
+          "new": "copy_ginja_texture_entry",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F7478",
+          "type": "function",
+          "old": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "new": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80101894",
+          "type": "function",
+          "old": "draw_model_nodes__5TItemFPUc",
+          "new": "draw_model_nodes__5TItemFPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801018E4",
+          "type": "function",
+          "old": "apply_sign_effect__5TItemFPUc",
+          "new": "apply_sign_effect__5TItemFPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80101934",
+          "type": "function",
+          "old": "visit_model_nodes__5TItemFPUc",
+          "new": "visit_model_nodes__5TItemFPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80121160",
+          "type": "function",
+          "old": "get_model_joint_matrix__FPvi",
+          "new": "get_model_joint_matrix__FP10TObjPlayeri",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80131700",
+          "type": "function",
+          "old": "find_model_node__FUll",
+          "new": "find_model_node__FP10NJS_OBJECTl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80289710",
+          "type": "function",
+          "old": "trigger_switches_in_range__12TBoss8DragonFPvPvPv",
+          "new": "trigger_switches_in_range__12TBoss8DragonFP7TObjectPC3VecPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D71E0",
+          "type": "function",
+          "old": "register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff",
+          "new": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListPC19NpcAnimationBindingff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D7260",
+          "type": "function",
+          "old": "spawn_child__12TObjEneSlimeFsllff",
+          "new": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802FB170",
+          "type": "function",
+          "old": "get_state_flags__12TBoss8DragonFPv",
+          "new": "get_state_flags__12TBoss8DragonFPC18DragonAttackParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802FB190",
+          "type": "function",
+          "old": "emit_effect__12TBoss8DragonFPvPvP17AreaAttackHistory",
+          "new": "emit_effect__12TBoss8DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8032537C",
+          "type": "function",
+          "old": "__ct__25TBoss5GryphonLightningEffFP7TObjectP29TBoss5GryphonLightningSegmentifff",
+          "new": "__ct__25TBoss5GryphonLightningEffFP7TObjectP14CurvePathPointifff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8034D500",
+          "type": "function",
+          "old": "eval_bezier_curve__12TBoss8DragonFPviiPvf",
+          "new": "eval_bezier_curve__12TBoss8DragonFP14CurvePathPointiiP3Vecf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D898C",
+          "type": "function",
+          "old": "get_current_matrix__FPv",
+          "new": "get_current_matrix__FPA3_A4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D89E8",
+          "type": "function",
+          "old": "invert_matrix_in_place__10TObjPlayerFUl",
+          "new": "invert_matrix_in_place__10TObjPlayerFPA4_f",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D8A6C",
+          "type": "function",
+          "old": "rotate_matrix_zyx__FPvlll",
+          "new": "rotate_matrix_zyx__FPA4_flll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803D8AE4",
+          "type": "function",
+          "old": "rotate_matrix_yxz__Fllll",
+          "new": "rotate_matrix_yxz__FPA4_flll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803E2F28",
+          "type": "function",
+          "old": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFv",
+          "new": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFPA3_A4_Cf",
+          "flags": []
+        }
+      ],
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "additions": [
+        {
+          "key": "slot_name",
+          "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+          "line": 120,
+          "text": "vfunc_16"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 356,
+          "text": "m_2f6"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 358,
+          "text": "m_2fa"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/player/TObjPlayer_800C4714.cpp",
+          "line": 205,
+          "text": "Hit_800C4A5C"
+        },
+        {
+          "key": "local_decl",
+          "path": "src/pso/player/TObjPlayer_8035A778.cpp",
+          "line": 11,
+          "text": "extern GC_Mtx *node_matrix_array_base"
+        }
+      ],
+      "advisory_explanations": {
+        "vfunc_16": "The Mericarol bomb uses the existing virtual contact slot.",
+        "m_2f6 and m_2fa": "The two established resistance fields replace address arithmetic.",
+        "Hit_800C4A5C": "The original Flower bomb factory and contact path share this local hit record.",
+        "node_matrix_array_base": "The existing model-capture callback declaration now carries the native buffer type used by its owner and caller."
+      }
+    },
+    "paths": 169
+  },
+  "actor_with_inventory_and_saves": {
+    "head": "871867b6df8d60e0eb30733abeeddfd3fe90938d",
+    "tree": "14b98166077d2fc5dad6f4066caf7980fd356695",
+    "coverage_baseline": "4998e1ccf03f65d3c918240860cefec918781194",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "queue-report.json": "ee88b9e4e88772c0d1bcd845e35cfb07f2aad8e5236413374f140d6690c8b4ac",
+      "queue-check.json": "803bcdbe4a141635680a8b93775402d38f9c060c49ea961933f8074a95f35e34",
+      "queue-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c"
+    }
+  },
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/berura/TObjEneRe7Berura.h",
+    "include/pso/item/TItem.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_8012105C.h",
+    "include/pso/unk/text_803D853C.h",
+    "src/pso/boss/barbaray/TObjBoss7Tunnel.cpp",
+    "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjChip.cpp",
+    "src/pso/player/PlayerSharedSbss.cpp",
+    "src/pso/player/TObjPlayer_801BC688.cpp",
+    "src/pso/player/TObjPlayer_801BCDC4.cpp",
+    "src/pso/player/TObjPlayer_801BCF04.cpp",
+    "src/pso/player/TObjPlayer_801BDF5C.cpp",
+    "src/pso/player/TObjPlayer_8035A630.cpp",
+    "src/pso/render/ModelDrawContext.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/unk/text_803D853C.cpp",
+    "src/pso/unk/text_803E2F28.cpp",
+    "src/pso/weapon/TItemWeapon.cpp",
+    "src/pso/weapon/TUnk_804A5058.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp"
+  ],
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_shared_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/berura/TObjEneRe7Berura.h",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/unk/text_803E2F28.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp"
+  ],
+  "inventory_shared_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/item/TItem.h",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/player/TObjPlayer_801BCDC4.cpp",
+    "src/pso/player/TObjPlayer_801BCF04.cpp",
+    "src/pso/player/TObjPlayer_801BDF5C.cpp"
+  ],
+  "layout": {
+    "matrix_size": 48,
+    "matrices_per_player": 32,
+    "player_slots": 12,
+    "pool_bytes": 18432,
+    "item_matrix_pointer_offset": "0xDB4",
+    "note": "The inherited skeleton joint buffer and equipped-item node buffer retain their distinct members."
+  },
+  "runtime": {
+    "matrix_helper_cases": 9,
+    "player_and_weapon_cases": 9,
+    "sha256": {
+      "probe-matrix-routing.py": "d32f49112074ec109c426bc0f1d779d2587c997804aa259e32eb6ca1e8506049",
+      "all-probes.log": "9cdbe6a4c21db176b703db6cf8a1eff470cb08e2dfe9ba881e17c9103a9aa216"
+    }
+  },
+  "historical_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "historical_source": {
+    "closed": {
+      "src/pso/unk/text_803D8910.cpp": {
+        "analysis": "All ten functions from the original split retain exact linked bodies. The vector, dot, and cross functions keep the original paired-single routines under CodeWarrior and the tested scalar port implementations. Matrix point and array transforms retain the current-matrix fallback. Matrix copy and inverse preserve the null and alias cases. The matrix rotations keep the original axis order and skip zero angles. The native 3-by-4 matrix type carries the same contiguous rows and storage size through the relocated active owner.",
+        "exact_functions": {
+          "0x803D8910": {
+            "historical_label": "vec3_add_to",
+            "current_label": "vec3_add_to",
+            "size": 36,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D8934": {
+            "historical_label": "matrix_mult_vec",
+            "current_label": "matrix_mult_vec",
+            "size": 44,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D8960": {
+            "historical_label": "matrix_mult_vec_array",
+            "current_label": "matrix_mult_vec_array",
+            "size": 44,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D898C": {
+            "historical_label": "get_current_matrix__FPv",
+            "current_label": "get_current_matrix__FPA3_A4_f",
+            "size": 52,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D89C0": {
+            "historical_label": "vec3_dot",
+            "current_label": "vec3_dot",
+            "size": 40,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D89E8": {
+            "historical_label": "invert_matrix_in_place__10TObjPlayerFUl",
+            "current_label": "invert_matrix_in_place__10TObjPlayerFPA4_f",
+            "size": 48,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D8A18": {
+            "historical_label": "vec3_cross",
+            "current_label": "vec3_cross",
+            "size": 84,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D8A6C": {
+            "historical_label": "rotate_matrix_zyx",
+            "current_label": "rotate_matrix_zyx__FPA4_flll",
+            "size": 120,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D8AE4": {
+            "historical_label": "rotate_matrix_yxz__Fllll",
+            "current_label": "rotate_matrix_yxz__FPA4_flll",
+            "size": 120,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          },
+          "0x803D8B5C": {
+            "historical_label": "scale_matrix",
+            "current_label": "scale_matrix",
+            "size": 80,
+            "owner": "src/pso/unk/text_803D853C.cpp"
+          }
+        }
+      }
+    },
+    "remaining": 116
+  }
+}
