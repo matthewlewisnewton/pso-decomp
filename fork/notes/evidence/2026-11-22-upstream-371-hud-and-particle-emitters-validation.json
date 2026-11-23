@@ -1,0 +1,729 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "previous_cumulative": "60f088a4168206749f53e1a58fa0d915f77c0102",
+  "cumulative": "75401ed3f1f95efb46320a9eecd5ea4837928726",
+  "review_parent": "505569de5eb0f3ae147121af9a6941cfa91ffce9",
+  "review": "b30a7d327553a594979aef3ea1ea12f7c5970ce1",
+  "review_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/particle/ParticleParam.h",
+    "include/pso/ui/window/TWindowCtrlMain_8024674C.h",
+    "include/pso/ui/window/TWindowDD.h",
+    "include/pso/ui/window/WindowSpritePart.h",
+    "include/pso/unk/TUnk_8048E728.h",
+    "include/pso/unk/TUnk_804C57F0.h",
+    "include/pso/unk/WindowLayoutRecord.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp",
+    "src/pso/effect/TDuelEffectNumber.cpp",
+    "src/pso/effect/TDuelEffectString.cpp",
+    "src/pso/effect/particle/ParticleBallistic.cpp",
+    "src/pso/effect/particle/ParticleOrbit.cpp",
+    "src/pso/effect/particle/ParticleRadial.cpp",
+    "src/pso/effect/particle/TParticleCtrl_80085EE4.cpp",
+    "src/pso/effect/particle/TParticleCtrl_801E4E7C.cpp",
+    "src/pso/effect/sprite/TQuadSpriteCol.cpp",
+    "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+    "src/pso/effect/sprite/TQuadSpriteScl.cpp",
+    "src/pso/effect/sprite/TQuadSpriteSclCol.cpp",
+    "src/pso/effect/sprite/TQuadSpriteSclColRot.cpp",
+    "src/pso/player/TObjPlayer_80083594.cpp",
+    "src/pso/ui/chat/TWindowChatSymbol.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/window/TWindowActionPalette.cpp",
+    "src/pso/ui/window/TWindowBreakIn.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowDD_8034055C.cpp",
+    "src/pso/ui/window/TWindowDD_80340A78.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp",
+    "src/pso/ui/window/TWindowDuelResult.cpp",
+    "src/pso/ui/window/TWindowEffectLight.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+    "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+    "src/pso/ui/window/TWindowInputNumber.cpp",
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+    "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+    "src/pso/ui/window/TWindowPartyStatus.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowSimpleStatus.cpp",
+    "src/pso/ui/window/TWindowSnapShot.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+    "src/pso/ui/window/TWindowSubMag_802627D8.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_801E4EB0.cpp",
+    "src/pso/unk/text_801E4F04.cpp",
+    "src/pso/unk/text_8026C664.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "cumulative": "17fcedc5bf32cc528f37c36f2e7d0fc6104a4d6e389e94cc1b95911070f7ffa6",
+    "review": "705a5a28dda068ca0f7de25d7d4b956711f149d35059c55bb321ac82935db200",
+    "private": "cef96ea34cdd1b47e62b3d7c655c231782f29bf1c11a29498fbcd4e62e287370"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "ranges": 90,
+    "remaining": 0
+  },
+  "historical_ledger_previous": "9d826597394f1d232ea10f8501ce0f46921af318a47b6523bfdba8961e39f00b",
+  "historical_ledger": "4899deb9543abf4ee1adbd590bf438c7bb0bac08f4b3e4d940540e03317b188c",
+  "historical_comparisons_remaining": 184,
+  "source_owners": {
+    "src/pso/misc/ParticleBallistic.cpp": {
+      "path": "src/pso/effect/particle/ParticleBallistic.cpp",
+      "fork_blob": "f208523205c242b345eb1aa85929ffc635521661",
+      "current_blob": "e8a4dcee6cf8df261a6ccb43027079b22ad3c754",
+      "source_review": "Native constructors keep the two spawn routes, shifts, fixed or randomized vertical placement, signed target and lifetime values. The task keeps its motion, gravity, tint, frame and retirement paths. The render uses the existing position, velocity, matrix, material and depth contracts, and the actual quad receiver queues the same node.",
+      "exact_data_bytes": "140",
+      "original_exact_functions": [
+        {
+          "address": "0x8008877c",
+          "size": 112,
+          "historical": "create_ballistic_particle",
+          "current": "create_ballistic_particle"
+        },
+        {
+          "address": "0x800887ec",
+          "size": 88,
+          "historical": "create_random_spread__13TParticleCtrlFPvPvPv",
+          "current": "create_random_spread__13TParticleCtrlFPvPvPv"
+        },
+        {
+          "address": "0x80088844",
+          "size": 164,
+          "historical": "retire_ballistic_particle_if_done__13TUnk_8048E778Fv",
+          "current": "retire_ballistic_particle_if_done__13TUnk_8048E778Fv"
+        },
+        {
+          "address": "0x800888e8",
+          "size": 2060,
+          "historical": "run_task__13TUnk_8048E778Fv",
+          "current": "run_task__13TUnk_8048E778Fv"
+        },
+        {
+          "address": "0x800890f4",
+          "size": 1432,
+          "historical": "render__13TUnk_8048E778Fv",
+          "current": "render__13TUnk_8048E778Fv"
+        },
+        {
+          "address": "0x8008968c",
+          "size": 88,
+          "historical": "__dt__13TUnk_8048E778Fv",
+          "current": "__dt__13TUnk_8048E778Fv"
+        },
+        {
+          "address": "0x800896e4",
+          "size": 1132,
+          "historical": "construct_ballistic_particle__FPvPvPvPvlUss",
+          "current": "__ct__13TUnk_8048E778FPvPvPvlUss"
+        },
+        {
+          "address": "0x80089b50",
+          "size": 1068,
+          "historical": "init_particle_random_spread__13TUnk_8048E778FPvPvPv",
+          "current": "__ct__13TUnk_8048E778FPvPvPv"
+        }
+      ]
+    },
+    "src/pso/misc/ParticleOrbit.cpp": {
+      "path": "src/pso/effect/particle/ParticleOrbit.cpp",
+      "fork_blob": "0e5d5753fcb0cb0ea83ded0dc1de0bb337a56afa",
+      "current_blob": "948d3f9d60361d747693fff48fb41162419fa0d3",
+      "source_review": "Both native constructors keep the explicit and default orbit particles, signed target and direction and the same center, radius, angular values and lifetime. Update and render keep frame, color, offset and attachment behavior. The alternate sprite bank uses the same 54-entry stride.",
+      "exact_data_bytes": "84",
+      "original_exact_functions": [
+        {
+          "address": "0x80089f7c",
+          "size": 112,
+          "historical": "create_orbit_particle",
+          "current": "create_orbit_particle"
+        },
+        {
+          "address": "0x80089fec",
+          "size": 96,
+          "historical": "alloc_child_particle__13TParticleCtrlFPvPvPv",
+          "current": "alloc_child_particle__13TParticleCtrlFPvPvPvPv"
+        },
+        {
+          "address": "0x8008a04c",
+          "size": 52,
+          "historical": "retire_orbit_particle__13TUnk_8048E790Fv",
+          "current": "retire_orbit_particle__13TUnk_8048E790Fv"
+        },
+        {
+          "address": "0x8008a080",
+          "size": 2220,
+          "historical": "run_task__13TUnk_8048E790Fv",
+          "current": "run_task__13TUnk_8048E790Fv"
+        },
+        {
+          "address": "0x8008a92c",
+          "size": 672,
+          "historical": "render__13TUnk_8048E790Fv",
+          "current": "render__13TUnk_8048E790Fv"
+        },
+        {
+          "address": "0x8008abcc",
+          "size": 88,
+          "historical": "__dt__13TUnk_8048E790Fv",
+          "current": "__dt__13TUnk_8048E790Fv"
+        },
+        {
+          "address": "0x8008ac24",
+          "size": 1084,
+          "historical": "init_orbit_sprite_particle__FPUcPUcPUcPUclUss",
+          "current": "__ct__13TUnk_8048E790FPUcPUcPUclUss"
+        },
+        {
+          "address": "0x8008b060",
+          "size": 1048,
+          "historical": "init_random_particle__13TUnk_8048E790FPvPvPvPv",
+          "current": "__ct__13TUnk_8048E790FPvPvPvPv"
+        }
+      ]
+    },
+    "src/pso/misc/ParticleRadial.cpp": {
+      "path": "src/pso/effect/particle/ParticleRadial.cpp",
+      "fork_blob": "44939493e5be56556548c8cace4127a049c779dc",
+      "current_blob": "fe807a88ad03bdc89b6aadf2007741b5558e9ac9",
+      "source_review": "The two native spawn routes keep their typed origin, speed, draw size, frame count, signed target and optional indirect request. The task keeps its approach and retire paths and the renderer uses its resolved model and texture list. The keyboard-destruction route keeps its original task, phase and audio calls.",
+      "exact_data_bytes": "88",
+      "original_exact_functions": [
+        {
+          "address": "0x8008b478",
+          "size": 104,
+          "historical": "create_radial_particle",
+          "current": "create_radial_particle"
+        },
+        {
+          "address": "0x8008b4e0",
+          "size": 88,
+          "historical": "create_random_particle__FPvPvPv",
+          "current": "create_random_particle__FPvPvPv"
+        },
+        {
+          "address": "0x8008b538",
+          "size": 88,
+          "historical": "check_radial_particle_retire__13TUnk_8048E7A8Fv",
+          "current": "check_radial_particle_retire__13TUnk_8048E7A8Fv"
+        },
+        {
+          "address": "0x8008b590",
+          "size": 1384,
+          "historical": "run_task__13TUnk_8048E7A8Fv",
+          "current": "run_task__13TUnk_8048E7A8Fv"
+        },
+        {
+          "address": "0x8008baf8",
+          "size": 1032,
+          "historical": "render__13TUnk_8048E7A8Fv",
+          "current": "render__13TUnk_8048E7A8Fv"
+        },
+        {
+          "address": "0x8008bf00",
+          "size": 88,
+          "historical": "__dt__13TUnk_8048E7A8Fv",
+          "current": "__dt__13TUnk_8048E7A8Fv"
+        },
+        {
+          "address": "0x8008bf58",
+          "size": 708,
+          "historical": "construct_radial_particle__FPUcPUcPUclUss",
+          "current": "__ct__13TUnk_8048E7A8FPUcPUclUss"
+        },
+        {
+          "address": "0x8008c21c",
+          "size": 672,
+          "historical": "init_random_particle__13TParticleCtrlFPUcPUcl",
+          "current": "__ct__13TUnk_8048E7A8FPvPvPv"
+        },
+        {
+          "address": "0x8008c4bc",
+          "size": 56,
+          "historical": "destroy_keyboard_objects",
+          "current": "destroy_keyboard_objects__FPv"
+        }
+      ]
+    }
+  },
+  "benchmark": {
+    "total": {
+      "base": 156639,
+      "head": 155899,
+      "added": 69,
+      "removed": 809
+    },
+    "categories": [
+      {
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 8263,
+        "head": 8223,
+        "added": 0,
+        "removed": 40
+      },
+      {
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 1691,
+        "head": 1676,
+        "added": 1,
+        "removed": 16
+      },
+      {
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 7395,
+        "head": 7381,
+        "added": 0,
+        "removed": 14
+      },
+      {
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 328,
+        "head": 328,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 11038,
+        "head": 11038,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "category": "Layout",
+        "base": 10052,
+        "head": 10034,
+        "added": 0,
+        "removed": 18
+      },
+      {
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "category": "Layout",
+        "base": 961,
+        "head": 961,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "category": "Layout",
+        "base": 2299,
+        "head": 2297,
+        "added": 0,
+        "removed": 2
+      },
+      {
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "category": "Layout",
+        "base": 17011,
+        "head": 16634,
+        "added": 68,
+        "removed": 445
+      },
+      {
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "category": "Types",
+        "base": 2194,
+        "head": 2194,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "category": "Types",
+        "base": 176,
+        "head": 176,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "example": "undefined4",
+        "group": "types",
+        "category": "Types",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_type",
+        "name": "Address-named types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "category": "Types",
+        "base": 16489,
+        "head": 16345,
+        "added": 0,
+        "removed": 144
+      },
+      {
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "category": "Types",
+        "base": 39,
+        "head": 39,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 12041,
+        "head": 12037,
+        "added": 0,
+        "removed": 4
+      },
+      {
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "example": "sp1C",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 2515,
+        "head": 2515,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 27367,
+        "head": 27338,
+        "added": 0,
+        "removed": 29
+      },
+      {
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 26,
+        "head": 26,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_comment",
+        "name": "Address comments",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 269,
+        "head": 269,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "data_label",
+        "name": "Address-named data",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "category": "Names",
+        "base": 11125,
+        "head": 11082,
+        "added": 0,
+        "removed": 43
+      },
+      {
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "category": "Names",
+        "base": 13297,
+        "head": 13297,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "category": "Names",
+        "base": 23,
+        "head": 23,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 363,
+        "head": 363,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 26,
+        "head": 26,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 66,
+        "head": 66,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 1498,
+        "head": 1498,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 4429,
+        "head": 4429,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 1184,
+        "head": 1184,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 4285,
+        "head": 4234,
+        "added": 0,
+        "removed": 51
+      },
+      {
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 167,
+        "head": 164,
+        "added": 0,
+        "removed": 3
+      },
+      {
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "category": "Assembly",
+        "base": 22,
+        "head": 22,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "category": "Members in the wrong class (not in the total)",
+        "base": 2275,
+        "head": 2229,
+        "added": 0,
+        "removed": 46
+      },
+      {
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "category": "Members in the wrong class (not in the total)",
+        "base": 102,
+        "head": 102,
+        "added": 0,
+        "removed": 0
+      }
+    ],
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801E4E7C",
+        "type": "function",
+        "old": "append_node_to_tail__13TParticleCtrlFPvPv",
+        "new": "append_node_to_tail__13TUnk_804C57F0FP14QuadSpriteNode",
+        "flags": [
+          "member of TUnk_804C57F0, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80348AE8",
+        "type": "function",
+        "old": "get_draw_count__9TWindowDDFPPv",
+        "new": "get_draw_count__9TWindowDDFP16GinjaTextureList",
+        "flags": []
+      }
+    ],
+    "added_findings": {
+      "offset_member": 68,
+      "local_decl": 1
+    },
+    "stale_force_active": [],
+    "sha256": "e2f9d07bd0bca68024a106045f77548c800f55a79b1abd7190532eb00278cae4"
+  },
+  "benchmark_advisories": [
+    "0x801E4E7C moves the append operation to its actual quad sprite receiver and takes a typed QuadSpriteNode pointer. The existing owner name TUnk_804C57F0 remains.",
+    "The remaining 68 reported offset names refer to established particle fields used by the recovered native expression. The HUD loader declares the externally owned Ninja texture list in its original section."
+  ],
+  "probes": {
+    "particles": {
+      "bucket_cases": 3,
+      "constructors": 6,
+      "constructor_cases": 12,
+      "images": 4,
+      "sha256": "6721efef390c4df0fa73d16446b5f78fbb8861bbf6393a9f8e0de10fffed87fc"
+    },
+    "render": {
+      "surface_ids": 4,
+      "hud_lifetimes": 1,
+      "quad_renderers": 5,
+      "images": 4,
+      "sha256": "9e826352a0895b64a2dd6d74799cabbc44d92f3190fdcc23f8449981804d7d71"
+    }
+  },
+  "fork_workspace": {
+    "paths": 130,
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "materialized_tree": "cdd74e48d4d2fd623e6a39e801f97abe9498021c",
+    "overlay_sha256": "aa5be924255ea42a43d3175b720d653a567f1a0466b154831a349a84b6f7d096"
+  },
+  "build_cleanup": {
+    "duplicate_baselines_removed": 3,
+    "allocated_bytes_reclaimed": 22458368
+  }
+}
