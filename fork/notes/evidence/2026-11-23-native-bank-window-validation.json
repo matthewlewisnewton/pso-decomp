@@ -1,0 +1,884 @@
+{
+  "cumulative": {
+    "head": "89dbb03806f7fe1918c56d7373734c9627b05614",
+    "tree": "37ac541b422dedb19a3fd03d53efe474f4e5a839",
+    "coverage_baseline": "0fb594fe92b966e1c36cc46fb9959231d19b43c8",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "source-report.json": "515851d914c4ece6cbf934f5c9ac9a4833b8a7bda316c4485f468710a2518ecf",
+      "source-check.json": "9253fba3df6f94493d04503ac43d9a05aea61ad70d83d2133d798967359e97ad",
+      "source-quality.json": "022353b586da3dd4baea3946b19219298f06cc2457dd886ac5640f7df5848463"
+    },
+    "source_quality": {
+      "removed": 147,
+      "added": 6,
+      "label_changes": 1,
+      "flagged_labels": 0,
+      "stale_retention": 0,
+      "additions": [
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 239,
+          "text": "m_28"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 240,
+          "text": "m_2c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 253,
+          "text": "m_60"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 254,
+          "text": "m_64"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/window/TWindowDeposit.cpp",
+          "line": 69,
+          "text": "TUnk_804CF9C8"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/window/TWindowDeposit.cpp",
+          "line": 69,
+          "text": "TUnk_804CF9C8"
+        }
+      ],
+      "advisories": {
+        "existing_callback_offsets": "The delete and get windows now use their four existing callback fields in place of private overlays.",
+        "TUnk_804CF9C8": "The width-dependent placement sets x on the native number-entry class."
+      }
+    }
+  },
+  "independent_saves_review": {
+    "head": "cad627125653e8bb70c3b7ebe3b3a74e7eb21b76",
+    "tree": "1a0d334d8ff6c75de1864d6ba7104186811c489d",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "direct-report.json": "735b4c5e6a41ba98db1d913204f7749b951cf4c4812bf36d9a69a1c814018663",
+      "direct-check.json": "30828168da0bf969859b524df0664de00cbb30ed42cc443890024f192fb652b0",
+      "direct-quality.json": "73b5f56061d8d9747b05ae94a630944070f48bb0bc92c1491574f09c376aa5b2"
+    },
+    "source_quality": {
+      "removed": 945,
+      "added": 21,
+      "label_changes": 36,
+      "flagged_labels": 0,
+      "stale_retention": 0,
+      "additions": [
+        {
+          "key": "local_class",
+          "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+          "line": 10,
+          "text": "struct QuestDownloadAramFile"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+          "line": 28,
+          "text": "struct QuestDownloadAramDmaBuffer"
+        },
+        {
+          "key": "extern_c",
+          "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+          "line": 39,
+          "text": "extern \"C\" quest_download_aram_dma_buffer"
+        },
+        {
+          "key": "slot_name",
+          "path": "src/pso/quest/TQuestListOnline.cpp",
+          "line": 145,
+          "text": "vfunc_10"
+        },
+        {
+          "key": "slot_name",
+          "path": "src/pso/quest/TQuestListOnline.cpp",
+          "line": 206,
+          "text": "vfunc_10"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+          "line": 2226,
+          "text": "struct QuestDownloadRequestStorage"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 240,
+          "text": "m_28"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 241,
+          "text": "m_2c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 254,
+          "text": "m_60"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 255,
+          "text": "m_64"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 3077,
+          "text": "struct CardSaveMetadataBlock"
+        },
+        {
+          "key": "extern_c",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 3086,
+          "text": "extern \"C\" offsetof"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/window/TWindowDeposit.cpp",
+          "line": 69,
+          "text": "TUnk_804CF9C8"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/window/TWindowDeposit.cpp",
+          "line": 69,
+          "text": "TUnk_804CF9C8"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 49,
+          "text": "struct BmlArchiveEntry"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 58,
+          "text": "struct BmlArchiveHeader"
+        },
+        {
+          "key": "data_label",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 81,
+          "text": "lbl_805D4AE0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 366,
+          "text": "m_0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 388,
+          "text": "m_0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 839,
+          "text": "m_0"
+        },
+        {
+          "key": "extern_c",
+          "path": "src/pso/unk/text_803CE568.cpp",
+          "line": 23,
+          "text": "extern \"C\" ATTRIBUTE_ALIGN"
+        }
+      ]
+    },
+    "paths": 185
+  },
+  "saves_with_inventory": {
+    "head": "45c84c302812ff817c3cbe228c8081108693c4a8",
+    "tree": "9861112df4ba18c2fbe4d6b682612ef69747e927",
+    "coverage_baseline": "fbd1e87d5b2f535e5b88368b4eb124e04141eb83",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "inventory-report.json": "81758b0fe198504f962c3b5f643072ce0d37d7f1b3f48c561b11efb11dfb2d80",
+      "inventory-check.json": "9253fba3df6f94493d04503ac43d9a05aea61ad70d83d2133d798967359e97ad"
+    }
+  },
+  "actors_saves_inventory_and_avetcp": {
+    "head": "857b51578190107ff66f7a5b349379773efb220d",
+    "tree": "bcfbfbec4778964c267b95eba885c17362c28409",
+    "coverage_baseline": "ef324afa73ae0084d47529f5a7322053d9a99c4e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "queue-report.json": "d89d3b653352acdb61e1385ffa802f279ed954eea79a69afa37b5e83ea1a49c6",
+      "queue-check.json": "9253fba3df6f94493d04503ac43d9a05aea61ad70d83d2133d798967359e97ad"
+    }
+  },
+  "cumulative_avetcp": {
+    "head": "6c0fe3dbc19078914a12955e93ddb3c8fc2fd82e",
+    "tree": "ffd41b80a60ef3617e3b120f4c832905413314f3",
+    "coverage_baseline": "e2913472a9a6404e69b95a43c4a761486a927037",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "ave-report.json": "dd30e3e81ebdd845045e7f1b97c56b2159481b45786b20aea70f2f37d5a30b89",
+      "ave-check.json": "9253fba3df6f94493d04503ac43d9a05aea61ad70d83d2133d798967359e97ad"
+    }
+  },
+  "materialized_fork": {
+    "head": "c8b6b709d301e877ab03834cf80b2017dd2bab8e",
+    "tree": "f2435ee2c64bf4eb8957033c12d70de01fca426b",
+    "coverage_baseline": "89dbb03806f7fe1918c56d7373734c9627b05614",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "private-report.json": "515851d914c4ece6cbf934f5c9ac9a4833b8a7bda316c4485f468710a2518ecf",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+    }
+  },
+  "materialized_fork_with_avetcp": {
+    "head": "5e00e17b5f272eac3a1beaba80a0af606a298af3",
+    "tree": "1b166940c12bb64c9ad50a8a81b2fc48ff6c3d7e",
+    "coverage_baseline": "92ba8383bad44724c23bd72be1a0ac23dc25158c",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "ave-private-report.json": "dd30e3e81ebdd845045e7f1b97c56b2159481b45786b20aea70f2f37d5a30b89",
+      "ave-private-check.json": "1fb92525135d0ba6c93b33c6715183dbe05ddde5f462bc009d72877d0924c5f2"
+    }
+  },
+  "historical_source": {
+    "historical_check_room_paths": [
+      "src/pso/misc/TCheckRoomSequence.cpp",
+      "src/pso/ui/city/TCheckRoomSequence.cpp"
+    ],
+    "historical_gear_paths": [
+      "src/pso/misc/TShopEquipmentGearSequence_8021B438.cpp",
+      "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+    ],
+    "exact_check_room_functions": 53,
+    "exact_gear_functions": 9,
+    "exact_gear_adjacent_functions": 4,
+    "checked_symbols": {
+      "0x8020F034": {
+        "fork_label": "check_room_ready__18TCheckRoomSequenceFv",
+        "current_label": "check_room_ready__18TCheckRoomSequenceFv",
+        "size": 60,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F070": {
+        "fork_label": "close_window__18TCheckRoomSequenceFPv",
+        "current_label": "close_window__18TCheckRoomSequenceFPv",
+        "size": 68,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F0B4": {
+        "fork_label": "init_check_params__18TCheckRoomSequenceFUi",
+        "current_label": "init_check_params__18TCheckRoomSequenceFUi",
+        "size": 60,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F0F0": {
+        "fork_label": "finish_room_check__18TCheckRoomSequenceFPv",
+        "current_label": "finish_room_check__18TCheckRoomSequenceFPv",
+        "size": 92,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F14C": {
+        "fork_label": "init_check__18TCheckRoomSequenceFUi",
+        "current_label": "init_check__18TCheckRoomSequenceFUi",
+        "size": 60,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F188": {
+        "fork_label": "notify_quest_list_vm__18TCheckRoomSequenceFPv",
+        "current_label": "notify_quest_list_vm__18TCheckRoomSequenceFPv",
+        "size": 84,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F1DC": {
+        "fork_label": "sub_8020F1DC__18TCheckRoomSequenceFv",
+        "current_label": "sub_8020F1DC__18TCheckRoomSequenceFv",
+        "size": 4,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F1E0": {
+        "fork_label": "handle_error_ack__18TCheckRoomSequenceFPv",
+        "current_label": "handle_error_ack__18TCheckRoomSequenceFPv",
+        "size": 136,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F268": {
+        "fork_label": "open_delete_item_window__18TCheckRoomSequenceFPv",
+        "current_label": "open_delete_item_window__18TCheckRoomSequenceFPv",
+        "size": 112,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F2D8": {
+        "fork_label": "open_get_item_window__18TCheckRoomSequenceFPv",
+        "current_label": "open_get_item_window__18TCheckRoomSequenceFPv",
+        "size": 112,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F348": {
+        "fork_label": "accept_meseta_withdrawal__18TCheckRoomSequenceFPv",
+        "current_label": "accept_meseta_withdrawal__18TCheckRoomSequenceFPv",
+        "size": 304,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F478": {
+        "fork_label": "begin_meseta_withdrawal__18TCheckRoomSequenceFPv",
+        "current_label": "begin_meseta_withdrawal__18TCheckRoomSequenceFPv",
+        "size": 392,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F600": {
+        "fork_label": "accept_meseta_deposit__18TCheckRoomSequenceFPv",
+        "current_label": "accept_meseta_deposit__18TCheckRoomSequenceFPv",
+        "size": 304,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F730": {
+        "fork_label": "begin_meseta_deposit__18TCheckRoomSequenceFPv",
+        "current_label": "begin_meseta_deposit__18TCheckRoomSequenceFPv",
+        "size": 400,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F8C0": {
+        "fork_label": "open_deposit_item_window__18TCheckRoomSequenceFv",
+        "current_label": "open_deposit_item_window__18TCheckRoomSequenceFv",
+        "size": 216,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F998": {
+        "fork_label": "set_quest_list_mode_19__18TCheckRoomSequenceFPv",
+        "current_label": "set_quest_list_mode_19__18TCheckRoomSequenceFPv",
+        "size": 36,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020F9BC": {
+        "fork_label": "handle_withdraw_choice__18TCheckRoomSequenceFv",
+        "current_label": "handle_withdraw_choice__18TCheckRoomSequenceFv",
+        "size": 492,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020FBA8": {
+        "fork_label": "handle_deposit_choice__18TCheckRoomSequenceFv",
+        "current_label": "handle_deposit_choice__18TCheckRoomSequenceFv",
+        "size": 492,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8020FD94": {
+        "fork_label": "handle_root_choice__18TCheckRoomSequenceFv",
+        "current_label": "handle_root_choice__18TCheckRoomSequenceFv",
+        "size": 868,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802100F8": {
+        "fork_label": "sub_802100F8__18TCheckRoomSequenceFv",
+        "current_label": "sub_802100F8__18TCheckRoomSequenceFv",
+        "size": 4,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802100FC": {
+        "fork_label": "sub_802100FC__18TCheckRoomSequenceFv",
+        "current_label": "sub_802100FC__18TCheckRoomSequenceFv",
+        "size": 4,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210100": {
+        "fork_label": "TCheckRoomSequence__vt11",
+        "current_label": "close_window__18TCheckRoomSequenceFv",
+        "size": 152,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210198": {
+        "fork_label": "open_bank__18TCheckRoomSequenceFv",
+        "current_label": "open_bank__18TCheckRoomSequenceFv",
+        "size": 244,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8021028C": {
+        "fork_label": "TCheckRoomSequence__vt10",
+        "current_label": "restore_player_state__18TCheckRoomSequenceFv",
+        "size": 68,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802102D0": {
+        "fork_label": "TCheckRoomSequence__vt9",
+        "current_label": "vfunc_11__18TCheckRoomSequenceFv",
+        "size": 848,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210620": {
+        "fork_label": "__dt__18TCheckRoomSequenceFv",
+        "current_label": "__dt__18TCheckRoomSequenceFv",
+        "size": 308,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210754": {
+        "fork_label": "TCheckRoomSequence__ct",
+        "current_label": "__ct__18TCheckRoomSequenceFP7TObjectP10TObjPlayer",
+        "size": 188,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210810": {
+        "fork_label": "reset_slot_state__18TCheckRoomSequenceFv",
+        "current_label": "reset_slot_state__18TCheckRoomSequenceFv",
+        "size": 80,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210860": {
+        "fork_label": "reset_slots__18TCheckRoomSequenceFv",
+        "current_label": "reset_slots__18TCheckRoomSequenceFv",
+        "size": 80,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802108B0": {
+        "fork_label": "bank_has_free_row__Fl",
+        "current_label": "bank_has_free_row__Fl",
+        "size": 48,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802108E0": {
+        "fork_label": "get_bank_meseta_capacity__Fl",
+        "current_label": "get_bank_meseta_capacity__Fl",
+        "size": 36,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210904": {
+        "fork_label": "compact_items__18TCheckRoomSequenceFi",
+        "current_label": "compact_items__18TCheckRoomSequenceFi",
+        "size": 160,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802109A4": {
+        "fork_label": "sort_bank_items",
+        "current_label": "sort_bank_items",
+        "size": 96,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210A04": {
+        "fork_label": "get_bank_deposit_capacity_for_item",
+        "current_label": "get_bank_deposit_capacity_for_item",
+        "size": 304,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210B34": {
+        "fork_label": "TCheckRoomSequence__sub_80210B34",
+        "current_label": "TCheckRoomSequence__sub_80210B34",
+        "size": 412,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210CD0": {
+        "fork_label": "bank_debit_meseta__Fll",
+        "current_label": "bank_debit_meseta__Fll",
+        "size": 76,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210D1C": {
+        "fork_label": "bank_credit_meseta__Fll",
+        "current_label": "bank_credit_meseta__Fll",
+        "size": 40,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210D44": {
+        "fork_label": "TCheckRoomSequence__sub_80210D44",
+        "current_label": "TCheckRoomSequence__delete_bank_item",
+        "size": 228,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210E28": {
+        "fork_label": "remove_bank_item_amount__18TCheckRoomSequenceFiii",
+        "current_label": "remove_bank_item_amount__18TCheckRoomSequenceFiii",
+        "size": 336,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80210F78": {
+        "fork_label": "copy_bank_item_with_stack_limit",
+        "current_label": "copy_bank_item_with_stack_limit",
+        "size": 188,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211034": {
+        "fork_label": "copy_item_record__18TCheckRoomSequenceFiPvi",
+        "current_label": "copy_item_record__18TCheckRoomSequenceFiPvi",
+        "size": 128,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802110B4": {
+        "fork_label": "store_item_in_bank",
+        "current_label": "store_item_in_bank",
+        "size": 216,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8021118C": {
+        "fork_label": "copy_bank_to_card_window",
+        "current_label": "copy_bank_to_card_window",
+        "size": 132,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211210": {
+        "fork_label": "copy_bank_from_card_window__Fl",
+        "current_label": "copy_bank_from_card_window__Fl",
+        "size": 116,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211284": {
+        "fork_label": "TCheckRoomSequence__sub_80211284",
+        "current_label": "TCheckRoomSequence__free_bank_item_records",
+        "size": 160,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211324": {
+        "fork_label": "alloc_item_buffers__18TCheckRoomSequenceFv",
+        "current_label": "alloc_item_buffers__18TCheckRoomSequenceFv",
+        "size": 228,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211408": {
+        "fork_label": "init_item_entry__18TCheckRoomSequenceFPv",
+        "current_label": "init_item_entry__18TCheckRoomSequenceFPv",
+        "size": 60,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211444": {
+        "fork_label": "copy_data__18TCheckRoomSequenceFPvPv",
+        "current_label": "copy_data__18TCheckRoomSequenceFPvPv",
+        "size": 144,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802114D4": {
+        "fork_label": "copy_item_to_bank_entry__18TCheckRoomSequenceFPvPv",
+        "current_label": "copy_item_to_bank_entry__18TCheckRoomSequenceFPvPv",
+        "size": 160,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211574": {
+        "fork_label": "is_item_record_empty",
+        "current_label": "is_item_record_empty",
+        "size": 16,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x80211584": {
+        "fork_label": "init_item_entry__23TAdSinglePlyChrSelectGCFv",
+        "current_label": "init_item_entry__23TAdSinglePlyChrSelectGCFv",
+        "size": 60,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802115C0": {
+        "fork_label": "TAdSinglePlyChrSelectGC__sub_802115C0",
+        "current_label": "TAdSinglePlyChrSelectGC__sub_802115C0",
+        "size": 48,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x802115F0": {
+        "fork_label": "vfunc_6__15TShopWindowBaseFll",
+        "current_label": "display_shop_message__15TShopWindowBaseFll",
+        "size": 4,
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      "0x8021B438": {
+        "fork_label": "open_sell_window__26TShopEquipmentGearSequenceFv",
+        "current_label": "open_sell_window__26TShopEquipmentGearSequenceFv",
+        "size": 120,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B4B0": {
+        "fork_label": "open_armor_list_window__26TShopEquipmentGearSequenceFv",
+        "current_label": "open_armor_list_window__26TShopEquipmentGearSequenceFv",
+        "size": 104,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B518": {
+        "fork_label": "update_buy_sell_choice__26TShopEquipmentGearSequenceFPv",
+        "current_label": "update_buy_sell_choice__26TShopEquipmentGearSequenceFPv",
+        "size": 400,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B6A8": {
+        "fork_label": "open_greeting__26TShopEquipmentGearSequenceFv",
+        "current_label": "open_greeting__26TShopEquipmentGearSequenceFv",
+        "size": 156,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B744": {
+        "fork_label": "vfunc_11__26TShopEquipmentGearSequenceFv",
+        "current_label": "vfunc_11__26TShopEquipmentGearSequenceFv",
+        "size": 140,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B7D0": {
+        "fork_label": "__dt__26TShopEquipmentGearSequenceFv",
+        "current_label": "__dt__26TShopEquipmentGearSequenceFv",
+        "size": 204,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B89C": {
+        "fork_label": "TShopEquipmentGearSequence__ct",
+        "current_label": "__ct__26TShopEquipmentGearSequenceFP7TObjectP10TObjPlayer",
+        "size": 136,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B924": {
+        "fork_label": "clear_window_slots__26TShopEquipmentGearSequenceFv",
+        "current_label": "clear_window_slots__26TShopEquipmentGearSequenceFv",
+        "size": 40,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B94C": {
+        "fork_label": "clear_window_slot_table__26TShopEquipmentGearSequenceFv",
+        "current_label": "clear_window_slot_table__26TShopEquipmentGearSequenceFv",
+        "size": 40,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B288": {
+        "fork_label": "open_gear_shop__26TShopEquipmentGearSequenceFv",
+        "current_label": "open_gear_shop__26TShopEquipmentGearSequenceFP15TShopWindowBase",
+        "size": 96,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B2E8": {
+        "fork_label": "enter_quest_list__26TShopEquipmentGearSequenceFv",
+        "current_label": "enter_quest_list__26TShopEquipmentGearSequenceFP15TShopWindowBase",
+        "size": 80,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B338": {
+        "fork_label": "handle_confirm__26TShopEquipmentGearSequenceFv",
+        "current_label": "handle_confirm__26TShopEquipmentGearSequenceFv",
+        "size": 136,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8021B3C0": {
+        "fork_label": "try_close__26TShopEquipmentGearSequenceFv",
+        "current_label": "try_close__26TShopEquipmentGearSequenceFv",
+        "size": 120,
+        "owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp"
+      },
+      "0x8024E548": {
+        "fork_label": "__ct__14TWindowDepositFs",
+        "current_label": "__ct__14TWindowDepositFs",
+        "size": 324,
+        "owner": "src/pso/ui/window/TWindowDeposit.cpp"
+      },
+      "0x80147A80": {
+        "fork_label": "__dla__FPv",
+        "current_label": "mem_free",
+        "size": 40,
+        "owner": "src/pso/boss/darkfalz/TOBoss4Rock.cpp"
+      },
+      "0x80147AA8": {
+        "fork_label": "__nwa__FUl",
+        "current_label": "mem_alloc",
+        "size": 32,
+        "owner": "src/pso/boss/darkfalz/TOBoss4Rock.cpp"
+      },
+      "0x8021EE58": {
+        "fork_label": "TShopGetItemWindow__ct",
+        "current_label": "__ct__18TShopGetItemWindowFPvPvPv",
+        "size": 140,
+        "owner": "src/pso/ui/city/TShopGetItemWindow.cpp"
+      },
+      "0x802222D4": {
+        "fork_label": "TShopKeepItemWindow__ct",
+        "current_label": "__ct__19TShopKeepItemWindowFPvPvPv",
+        "size": 152,
+        "owner": "src/pso/ui/city/TShopKeepItemWindow.cpp"
+      },
+      "0x80338258": {
+        "fork_label": "TShopDeleteItemWindow__ct",
+        "current_label": "__ct__21TShopDeleteItemWindowFPvPvPv",
+        "size": 140,
+        "owner": "src/pso/ui/city/TShopDeleteItemWindow.cpp"
+      }
+    },
+    "calls": {
+      "bank_array_release": [
+        [
+          "0x802112D0",
+          "0x80147A80",
+          "mem_free"
+        ]
+      ],
+      "bank_array_allocate": [
+        [
+          "0x80211398",
+          "0x80147AA8",
+          "mem_alloc"
+        ],
+        [
+          "0x802113B0",
+          "0x80396920",
+          "__construct_new_array"
+        ],
+        [
+          "0x802113D4",
+          "0x80147AA8",
+          "mem_alloc"
+        ],
+        [
+          "0x802113EC",
+          "0x80396920",
+          "__construct_new_array"
+        ]
+      ],
+      "open_bank": [
+        [
+          "0x802101FC",
+          "0x8026934C",
+          "create_meseta_window"
+        ],
+        [
+          "0x8021022C",
+          "0x8024E548",
+          "__ct__14TWindowDepositFs"
+        ]
+      ],
+      "open_delete": [
+        [
+          "0x8020F298",
+          "0x80338258",
+          "__ct__21TShopDeleteItemWindowFPvPvPv"
+        ]
+      ],
+      "open_withdraw": [
+        [
+          "0x8020F308",
+          "0x8021EE58",
+          "__ct__18TShopGetItemWindowFPvPvPv"
+        ]
+      ],
+      "open_deposit": [
+        [
+          "0x8020F958",
+          "0x802222D4",
+          "__ct__19TShopKeepItemWindowFPvPvPv"
+        ]
+      ],
+      "bank_writeback": [
+        [
+          "0x802111F8",
+          "0x803DE778",
+          "move_data"
+        ]
+      ],
+      "bank_restore": [
+        [
+          "0x8021126C",
+          "0x803DE778",
+          "move_data"
+        ]
+      ]
+    },
+    "room_class_label": {
+      "0x805D3640": "TCheckRoomSequence__name"
+    },
+    "gear_greeting_float_literals": {
+      "0x805DC6C8": 332.0,
+      "0x805DC6CC": 80.0
+    },
+    "room_disposition": [
+      "The get, keep and delete paths construct real shop window classes and store callbacks on their declared members. All three retain explicit allocation and the existing constructor calls. Native new expressions changed the callback address load order.",
+      "The bank opener calls the native deposit constructor and uses the declared meseta, deposit and camera members. The constructor preserves the shared width calculations, selected-camera scaling and text layout.",
+      "The typed meseta spend and shared safe-free and copy providers retain their original call targets. The deposit and withdraw card-window transfers keep their directions and the 0x12C0 extent.",
+      "The historical operator new[] and delete[] forms call the same raw allocation and free functions. The source keeps the established mem_alloc and mem_free names and the original 0x10 array header and 200 element records.",
+      "The class-name label and three constructor labels use the live named owners. The two-argument shop-message virtual slot has its established name and body."
+    ],
+    "gear_disposition": [
+      "The relocated greeting uses the original position floats, client selection and camera mode. The active code keeps the meseta window through its declared owner.",
+      "The sell window uses its native constructor with the three original pointers and selector 0x2A. Both callback stores and the state transition remain intact.",
+      "The four functions moved out of the historical split are still linked at their original addresses. The active gear owner carries the confirmation values, close behavior, and quest and gear continuations."
+    ]
+  },
+  "open_source_comparisons": 112,
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "inventory_review": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+  "avetcp_review": "5cdc5937e9dc917c26d4429734184e47855d3fc4",
+  "runtime": {
+    "selection": 5,
+    "deposit_layout": 2,
+    "images": 7,
+    "evidence_sha256": {
+      "probe-bank-windows.py": "b7e7189d0903ba0b105c5f23c37e6a17ea46668f373757fec97f55648db2bdf7",
+      "all-probes.log": "3ae6cfae5edcc6026f0193355321afce2af6a36312588fccb2f583c519274899"
+    }
+  },
+  "tooling": {
+    "patch_paths": 130,
+    "tests": 310,
+    "evidence_sha256": {
+      "ave-private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "ave-private-fork-tests.log": "3cc9cb77fa1e4b20fa3a9cf38e9a4b63a870b60b5eaa29efc254f41e345e1929",
+      "ave-private-tool-tests.log": "729b49a6da975e22351497418876d0769144ba0138a66f34ad549b71cc29e355",
+      "ave-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "private-overlay.patch": "2f9f86d25351dedee637ae8bb699182a7305762be3786c974100bdc813787b5d",
+      "ave-private-overlay.patch": "f0da9a744c37bdf835f6f9bc2da1ed577dda80b93a013742395860b7c42e0c55"
+    }
+  }
+}
