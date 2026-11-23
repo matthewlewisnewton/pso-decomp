@@ -1,0 +1,130 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "squash_tree": "6da56e49847749c119ff45b01bac17680861ddc5",
+  "previous_published_window_head": "9c2674671acfe4dc2107303e10fee39d568034b5",
+  "network_review": "66c239908aab1a908e278fbb818f234d1dadfc89",
+  "stage_review": "6f4dd7a7314d8b67834e44cbf6473398a9af7b10",
+  "cumulative": "d5c714f3265bf07ebdd05d7f7f10cbdea8940ed9",
+  "cumulative_before_sync": "75698e7def081b950ea2acc8b35927ff90343800",
+  "changed_paths": {
+    "network": 63,
+    "stage": 28,
+    "cumulative": 13
+  },
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "network": "65e9ba1df40878ef201902cf6f82ef3c7f2202e0aafc51fd1d92430fb02e4237",
+    "stage": "e1cede7d651ed9e11de251b3f2bbce25b8d831bdec36a5889a614948372d839c",
+    "cumulative": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "private": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+  },
+  "source_quality": {
+    "network": {
+      "total": {
+        "base": 158724,
+        "head": 158122,
+        "added": 31,
+        "removed": 633
+      },
+      "flagged_labels": 0,
+      "stale_force_active": 0,
+      "report_sha256": "320011db430790abd014f301f75b136750c77c4f256ab062545a0f7edc49d468"
+    },
+    "stage": {
+      "total": {
+        "base": 158122,
+        "head": 157974,
+        "added": 1,
+        "removed": 149
+      },
+      "flagged_labels": 0,
+      "stale_force_active": 0,
+      "report_sha256": "5ffe42bb6e545be34bb20d6569cd2df7853baed383b7f2e9646a407801a23bd0"
+    }
+  },
+  "retail_data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "verified_stage_data_objects": {
+    "TOTrapAncient01__bml_resource": {
+      "address": "0x805d5ad0",
+      "size": 4
+    },
+    "TOTrapSeabed01__bml_resource": {
+      "address": "0x805d6810",
+      "size": 4
+    },
+    "TOTrapSeabed01__texture_file": {
+      "address": "0x805d6814",
+      "size": 4
+    },
+    "TOTrapSeabed01__transform_params": {
+      "address": "0x80472044",
+      "size": 76
+    },
+    "TOWreckAncientBrakable__debris_param_table": {
+      "address": "0x804435c8",
+      "size": 76
+    },
+    "TObjTombstone__shared_resource_object": {
+      "address": "0x805d4e48",
+      "size": 4
+    },
+    "container_jung_debris_desc": {
+      "address": "0x8044523c",
+      "size": 76
+    },
+    "explosive_machine_model_archive": {
+      "address": "0x805d59a8",
+      "size": 4
+    },
+    "forest_box_break_params": {
+      "address": "0x804b63e8",
+      "size": 304
+    },
+    "lbl_805D5A50": {
+      "address": "0x805d5a50",
+      "size": 4
+    },
+    "vs2_wall_debris_desc": {
+      "address": "0x8044311c",
+      "size": 76
+    },
+    "__vt__8TObjChip": {
+      "address": "0x804b58d0",
+      "size": 56
+    }
+  },
+  "network_runtime_logs_sha256": {
+    "modem-dial-script": "04d1b3c9391f7826a63a3e7ffc7d1010c9569692ddedd4cd7a016447dac18cec",
+    "modem-transport": "8f589e1b9c7c9a56ebb93d97008f8af82570d153727e7ea141d62607702e8705",
+    "network-startup": "1cbb4cc4c1e6d57226eb268bed08707f1d032ece54dda121c16ec0684192ff17",
+    "packet-receive-and-dhcp": "448051f4b689b3056beeccd47ede6336dfd7fe7afa0b290b628518ce402d215c",
+    "ppp-callbacks": "ac344fd789c173415cd46f0f8e6c24ee6c2fd5aa79c84697e65dff39130dbe09",
+    "ppp-frames": "1055052946c8b013f3010646aeaa6022d423868a42185b53640e67723efc7433",
+    "probe-dispatcher": "ce6d2688bc0470684b6fc9b5b72715e62e0dcd70db23b8b263bd98d70570aff3",
+    "probe-frame-layouts": "200a6684c2a0f5d9e36491246fb540ae5d3aba3eac6a4c897dff10994458d04c",
+    "probe-udp-callbacks": "3de69068ce09fae9d5bb6de2d3a5978dbef7fc27d641636e92520cfe6bdb5c92",
+    "runtime-slots": "b4fccd09650143e9b72e96cdfb28d19587b53f23b24f35d931317b72f2f8c513",
+    "sdk-queues": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+    "socket-and-dhcp-handoffs": "70ab6be85d41570008e69b80385dc3677c361a7e84309d516cec5f460a618fef",
+    "socket-queues": "701852d4f7fe7a41d7ee822cef1724c0c0378c07d2f3b6e0d1022465ffb69cd6",
+    "stack-lifecycle": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050"
+  },
+  "stage_runtime_log_sha256": "76b4b455a925bba768b4f588b04e03afb1116c58503ca0dc0da03ebf38ea147d",
+  "private_workspace": {
+    "paths": 130,
+    "patch_sha256": "e4577ef7dd6e8eb3e2dfba5346132b66207679104c8d3077b2755eedfc6dd479",
+    "materialized_tree": "feaec3dadb30b2aae840d87b3ce7acbdf215282f",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  }
+}
