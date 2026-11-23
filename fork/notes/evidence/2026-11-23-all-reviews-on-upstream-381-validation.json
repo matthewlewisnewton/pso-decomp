@@ -1,0 +1,709 @@
+{
+  "first_review_pending_approval": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+  "fork_main_at_preflight": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "historical_original_data_bytes": {
+    "actors": {
+      "head": "558251bd9023ac69829cfc063e651397e881642e",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "combat": {
+      "head": "c68a75607e3452c1436fd76fca3b0d371d7dd763",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "final": {
+      "head": "332630f2e69a454e94718e8627c606bf83643ce7",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "private": {
+      "head": "4b0981ad665f0c63edd33e2e8ca976360a284712",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "saves": {
+      "head": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "sound": {
+      "head": "0d4cc1a00b14893f655ecb7f33214a27cd2eb0e0",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "ui": {
+      "head": "3c3421d7b8c3ce551db539cc98c6020b861fac83",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "world": {
+      "head": "c5ef6c12967bea7d5bc8aa8c02303f0ed41da260",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "historical_source_rows": 7495,
+  "private_tests": {
+    "fork_tools": 11,
+    "host_suites": 5,
+    "tools": 294
+  },
+  "private_tooling": {
+    "check_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+    "head": "4b0981ad665f0c63edd33e2e8ca976360a284712",
+    "linked_units": 2368,
+    "matched_functions": 27572,
+    "regressions": 0,
+    "report_sha256": "ac3f6156481899d89e790b2d59560ceeb80275e3c777a42fc0e1ce8f7c8ee465",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "tree": "cb5068a42152f2fbc99305a019c2586fac74a12e"
+  },
+  "publication_and_cutover_complete": false,
+  "reviews_in_order": [
+    {
+      "base": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+      "benchmark": {
+        "added": 26,
+        "base": 144316,
+        "head": 143289,
+        "removed": 1053
+      },
+      "branch": "great-merge/review/after-381/saves-quests-and-assets",
+      "flagged_labels": [],
+      "head": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+      "label_changes": 40,
+      "newly_stale_retention_entries": 0,
+      "overlaps_on_replay": {},
+      "paths_changed": 218,
+      "retail_and_coverage": {
+        "check_sha256": "a0ca125a83d7bc469a8af9e487c40b7a927f359549396aa150bcffdb972d96ae",
+        "head": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+        "linked_units": 2368,
+        "matched_functions": 27572,
+        "regressions": 0,
+        "report_sha256": "f226992b4bc759d52d5dfe587ea5cfb32c43fdc227d6ddf88042467afa086135",
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "tree": "a0c2e7b84f444e6384136f772eb7bda172183ad1"
+      },
+      "runtime_probes": [
+        "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+        "GBA filename and destination dispatch at the original size limit passed.",
+        "BML initialization, named requests, archive reads, completion and cancellation passed.",
+        "Texture input layout and both entry flag paths passed.",
+        "saves.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+        "saves.dol: load status, slot geometry, warnings, card polling and file metadata passed.",
+        "saves.dol: Challenge and online titles, complete entry traversal, callbacks and release passed.",
+        "saves.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+        "saves.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+        "saves.dol: name lookup boundaries, mixed-width request counts, four number formats and closed-handle gating passed"
+      ],
+      "source_quality_sha256": "0dbd4a4f330180340d41a82a3f1b2c7347c5015e4679a5b3b086e89b6c036b48",
+      "stage": "saves",
+      "title": "Recover native character saves, quest and asset-loading interfaces",
+      "tree": "a0c2e7b84f444e6384136f772eb7bda172183ad1"
+    },
+    {
+      "base": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+      "benchmark": {
+        "added": 3,
+        "base": 143289,
+        "head": 142831,
+        "removed": 461
+      },
+      "branch": "great-merge/review/after-381/actor-model-and-battle-parameters",
+      "flagged_labels": [],
+      "head": "558251bd9023ac69829cfc063e651397e881642e",
+      "label_changes": 39,
+      "newly_stale_retention_entries": 0,
+      "overlaps_on_replay": {},
+      "paths_changed": 195,
+      "retail_and_coverage": {
+        "check_sha256": "1568e954cdbe02871bb1ba768d2c4f8b16229c88bf371571c8581d0d3525fb20",
+        "head": "558251bd9023ac69829cfc063e651397e881642e",
+        "linked_units": 2368,
+        "matched_functions": 27572,
+        "regressions": 0,
+        "report_sha256": "f9b66b45f1b1d32587ddb48182e800f1661e6d19ed6bb40772827370750a3e58",
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "tree": "8f3f484d36e13148f5aa8d1676551aeadac3a374"
+      },
+      "runtime_probes": [
+        "actors.dol: eight model-node searches and five archive cases passed",
+        "actors.dol: 12 NPC registry cases passed",
+        "actors.dol: 60 area contact cases passed"
+      ],
+      "source_quality_sha256": "9efc0df8822ed71b65abf063ed310a096f5518324f28da8f6c1140318bc8bc5e",
+      "stage": "actors",
+      "title": "Recover native actor motion, battle and model resource records",
+      "tree": "8f3f484d36e13148f5aa8d1676551aeadac3a374"
+    },
+    {
+      "base": "558251bd9023ac69829cfc063e651397e881642e",
+      "benchmark": {
+        "added": 196,
+        "base": 142831,
+        "head": 141216,
+        "removed": 1811
+      },
+      "branch": "great-merge/review/after-381/window-chat-and-frontend",
+      "flagged_labels": [
+        {
+          "address": "0x8032BCBC",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804EDAC0, a class named after an address"
+          ],
+          "new": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject",
+          "old": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+          "rationale": "The floor lifecycle creates and clears this deferred-render task. The call takes the actual TObject queued by the existing task at the same address. The task retains its established class name.",
+          "section": ".text",
+          "type": "function"
+        }
+      ],
+      "head": "3c3421d7b8c3ce551db539cc98c6020b861fac83",
+      "label_changes": 78,
+      "newly_stale_retention_entries": 0,
+      "overlaps_on_replay": {
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp": {
+          "conflict_sha256": "44184026957834189d17e032adb1df62879f3327c1eb843aa35e7a79dce1ec10",
+          "hunks": 1,
+          "resolution": "Keep upstream\u2019s game-start member and the typed position accepted by the existing plate constructor."
+        }
+      },
+      "paths_changed": 229,
+      "retail_and_coverage": {
+        "check_sha256": "daf561ddd75a8cc4e8d09b92127a5ca1e46ada63b7b01ac6042ae423a3baf635",
+        "head": "3c3421d7b8c3ce551db539cc98c6020b861fac83",
+        "linked_units": 2368,
+        "matched_functions": 27572,
+        "regressions": 0,
+        "report_sha256": "fbf9ee4128440fd38bbe099f577b862b9fb84000dc7582cc58d4d7a1b5b3f0d5",
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "tree": "34a9deda2d44c67682e8b8b7c995269072d4cfb9"
+      },
+      "runtime_probes": [
+        "ui.dol: 11 show and refresh cases, seven Word Select cursor cases and six message reveal cases passed.",
+        "ui.dol: 256 choice flag cases and eight menu slot cases pass",
+        "ui.dol: 12 viewport, scissor, region and marker cases passed",
+        "ui.dol: 12 confirmation cases, four keyboard cases, 256 mail flags and three balloon widths passed.",
+        "ui.dol: five deferred-render dispatch cases passed."
+      ],
+      "source_quality_sha256": "8247490a9314e614d9371fd391f7c5adb7ce82a4bf0a58338109e67367fbc6d5",
+      "stage": "ui",
+      "title": "Recover native window, chat and frontend interfaces",
+      "tree": "34a9deda2d44c67682e8b8b7c995269072d4cfb9"
+    },
+    {
+      "base": "3c3421d7b8c3ce551db539cc98c6020b861fac83",
+      "benchmark": {
+        "added": 0,
+        "base": 141216,
+        "head": 140970,
+        "removed": 246
+      },
+      "branch": "great-merge/review/after-381/gameplay-sound-and-requests",
+      "flagged_labels": [],
+      "head": "0d4cc1a00b14893f655ecb7f33214a27cd2eb0e0",
+      "label_changes": 12,
+      "newly_stale_retention_entries": 0,
+      "overlaps_on_replay": {},
+      "paths_changed": 216,
+      "retail_and_coverage": {
+        "check_sha256": "381bd2e286b7bab2f2f1e9dc67b6336ca326eb5216d8e65865066089e528dbf2",
+        "head": "0d4cc1a00b14893f655ecb7f33214a27cd2eb0e0",
+        "linked_units": 2368,
+        "matched_functions": 27572,
+        "regressions": 0,
+        "report_sha256": "04f8415b38404e1de2ed0ea9cbfd6376c9d1b3e94bef732a6e2b17b804263ded",
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "tree": "0138e347788dc4606f2dd5159ee582ac68a1a27d"
+      },
+      "runtime_probes": [
+        "sound.dol: 8 one-shot sound cases passed",
+        "sound.dol: persistent slot checks and four dispatch routines on all 36 floors passed",
+        "sound.dol: voice reuse, distinct identity and full-pool rejection passed",
+        "sound.dol: 13 voice cases, three Guild Card replies, four text cases and three PPPoE name cases passed."
+      ],
+      "source_quality_sha256": "dbe8ab4eba33cf283b066c2247ca0fe0f1a9bd2addf463dc018ec38d55bbd087",
+      "stage": "sound",
+      "title": "Recover native gameplay sound positions and request state",
+      "tree": "0138e347788dc4606f2dd5159ee582ac68a1a27d"
+    },
+    {
+      "base": "0d4cc1a00b14893f655ecb7f33214a27cd2eb0e0",
+      "benchmark": {
+        "added": 67,
+        "base": 140970,
+        "head": 140679,
+        "removed": 358
+      },
+      "branch": "great-merge/review/after-381/world-objects-and-resources",
+      "flagged_labels": [
+        {
+          "address": "0x802C09A8",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0898, a class named after an address"
+          ],
+          "new": "release_resources__13TUnk_804E0898Fv",
+          "old": "free_static_instance__10TObjPlayerFv",
+          "rationale": "The lobby pigeon factory and resource lifecycle use the existing TUnk_804E0898 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C09E0",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0898, a class named after an address"
+          ],
+          "new": "load_lobby_pigeon_resource__13TUnk_804E0898Fv",
+          "old": "load_lobby_pigeon_resource__10TObjPlayerFv",
+          "rationale": "The lobby pigeon factory and resource lifecycle use the existing TUnk_804E0898 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C1324",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E08D4, a class named after an address"
+          ],
+          "new": "create__13TUnk_804E08D4FPv",
+          "old": "create_child_object__10TObjPlayerFPv",
+          "rationale": "The seaside bird factory and resource lifecycle use the existing TUnk_804E08D4 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C1370",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E08D4, a class named after an address"
+          ],
+          "new": "release_resources__13TUnk_804E08D4Fv",
+          "old": "destroy_instance__10TObjPlayerFv",
+          "rationale": "The seaside bird factory and resource lifecycle use the existing TUnk_804E08D4 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C13C8",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E08D4, a class named after an address"
+          ],
+          "new": "load_kamome_resources__13TUnk_804E08D4Fv",
+          "old": "load_kamome_resources__10TObjPlayerFv",
+          "rationale": "The seaside bird factory and resource lifecycle use the existing TUnk_804E08D4 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C1AF8",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0910, a class named after an address"
+          ],
+          "new": "create__13TUnk_804E0910FPv",
+          "old": "create__10TObjPlayerFPv",
+          "rationale": "The Jungle bird factory and resource lifecycle use the existing TUnk_804E0910 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C1B44",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0910, a class named after an address"
+          ],
+          "new": "release_resources__13TUnk_804E0910Fv",
+          "old": "free_statics__10TObjPlayerFv",
+          "rationale": "The Jungle bird factory and resource lifecycle use the existing TUnk_804E0910 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C1B9C",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0910, a class named after an address"
+          ],
+          "new": "load_jungle_bird_resources__13TUnk_804E0910Fv",
+          "old": "load_jungle_bird_resources__10TObjPlayerFv",
+          "rationale": "The Jungle bird factory and resource lifecycle use the existing TUnk_804E0910 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C21A0",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E094C, a class named after an address"
+          ],
+          "new": "create__13TUnk_804E094CFPv",
+          "old": "create_path_obj__10TObjPlayerFPv",
+          "rationale": "The Jungle shrimp factory and resource lifecycle use the existing TUnk_804E094C class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C21EC",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E094C, a class named after an address"
+          ],
+          "new": "release_resources__13TUnk_804E094CFv",
+          "old": "free_chr_select__10TObjPlayerFv",
+          "rationale": "The Jungle shrimp factory and resource lifecycle use the existing TUnk_804E094C class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C2244",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E094C, a class named after an address"
+          ],
+          "new": "load_jungle_ebi_resources__13TUnk_804E094CFv",
+          "old": "load_jungle_ebi_resources__10TObjPlayerFv",
+          "rationale": "The Jungle shrimp factory and resource lifecycle use the existing TUnk_804E094C class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C28B4",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0988, a class named after an address"
+          ],
+          "new": "create__13TUnk_804E0988FPv",
+          "old": "TObjPlayer__sub_802C28B4",
+          "rationale": "The Seabed dolphin factory and resource lifecycle use the existing TUnk_804E0988 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C2900",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0988, a class named after an address"
+          ],
+          "new": "release_resources__13TUnk_804E0988Fv",
+          "old": "TObjPlayer__sub_802C2900",
+          "rationale": "The Seabed dolphin factory and resource lifecycle use the existing TUnk_804E0988 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802C2958",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E0988, a class named after an address"
+          ],
+          "new": "load_seabed_dolphin__13TUnk_804E0988Fv",
+          "old": "load_seabed_dolphin__10TObjPlayerFv",
+          "rationale": "The Seabed dolphin factory and resource lifecycle use the existing TUnk_804E0988 class that owns the model and textures.",
+          "section": ".text",
+          "type": "function"
+        }
+      ],
+      "head": "c5ef6c12967bea7d5bc8aa8c02303f0ed41da260",
+      "label_changes": 20,
+      "newly_stale_retention_entries": 0,
+      "overlaps_on_replay": {
+        "src/pso/quest/TQuestVmDownLoadServer.cpp": {
+          "conflict_sha256": "fccd474870e5704a801adc4a584aa9beb90d4318578eb66e2168cd83566a4fbc",
+          "hunks": 1,
+          "resolution": "Keep upstream\u2019s named checksum values and use the shared memory release."
+        },
+        "src/pso/weapon/TItemAttacker.cpp": {
+          "conflict_sha256": "0c6017c475a56df4c680d8ce3f9dd13b446739c28ce015cdc9331d46427d0956",
+          "hunks": 3,
+          "resolution": "Keep upstream\u2019s position and temporary-memory names and the native allocation pointer."
+        }
+      },
+      "paths_changed": 235,
+      "retail_and_coverage": {
+        "check_sha256": "6e2dbf63529d18f571823cbdef814f90df88eaebbec94548dd32db9965c0479b",
+        "head": "c5ef6c12967bea7d5bc8aa8c02303f0ed41da260",
+        "linked_units": 2368,
+        "matched_functions": 27572,
+        "regressions": 0,
+        "report_sha256": "068282b2df5c663ef94d2c3f5715483dfdc265a958e2da472025b12b7348f816",
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "tree": "b9296a53bf5659fbf5d76749e82b1db126625bda"
+      },
+      "runtime_probes": [
+        "world.dol: 10 resource lifecycle calls, 4 factories, 6 fish areas, 3 path samples and 3 fish school cases passed",
+        "world.dol: strip selection, both winding signs, scrolling and release passed",
+        "Heap release, data-file cleanup and scalar allocation passed.",
+        "world.dol: overlapping byte and word moves, raw allocation, and nullable releases passed.",
+        "BML initialization, named requests, archive reads, completion and cancellation passed.",
+        "Texture input layout and both entry flag paths passed."
+      ],
+      "source_quality_sha256": "0257b3b64eb92c65345b4267df5ff415719accb3ede53cb23be3acbe6df4d2ed",
+      "stage": "world",
+      "title": "Recover world object and shared resource ownership",
+      "tree": "b9296a53bf5659fbf5d76749e82b1db126625bda"
+    },
+    {
+      "base": "c5ef6c12967bea7d5bc8aa8c02303f0ed41da260",
+      "benchmark": {
+        "added": 65,
+        "base": 140679,
+        "head": 138946,
+        "removed": 1798
+      },
+      "branch": "great-merge/review/after-381/combat-techniques-and-player-state",
+      "flagged_labels": [
+        {
+          "address": "0x8002E62C",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_80482090, a class named after an address"
+          ],
+          "new": "__ct__13TUnk_80482090FP7TObjectPA4_Cf",
+          "old": "__ct__13TUnk_80482090FP7TObjectUl",
+          "rationale": "The breakup piece takes a read-only 3-by-4 matrix in its existing constructor.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x800D80E4",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_80494A10, a class named after an address"
+          ],
+          "new": "__ct__13TUnk_80494A10FP7TObjectPC3VecP16GinjaTextureListllf",
+          "old": "__ct__13TUnk_80494A10FP7TObjectP3VecPvllf",
+          "rationale": "The ground spot constructor takes a read-only position and the native Ginja texture list.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x803375F0",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804EF130, a class named after an address"
+          ],
+          "new": "snap_to_ground__13TUnk_804EF130FP3Vec",
+          "old": "snap_to_ground__13TObjEneMorfosFll",
+          "rationale": "Ground snapping belongs to the Morfos appendage object and accepts its Vec.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x80337824",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804EF130, a class named after an address"
+          ],
+          "new": "__ct__13TUnk_804EF130FPC3VeclP9TObjChara",
+          "old": "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "rationale": "The appendage constructor takes a read-only Vec and its base character owner.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x8035A69C",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804F1C58, a class named after an address"
+          ],
+          "new": "draw_node_tree__13TUnk_804F1C58FP10NJS_OBJECT",
+          "old": "draw_node_tree__10TObjPlayerFPv",
+          "rationale": "The node recording task owns the draw callback and receives a native Ninja object.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x8035A740",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804F1C58, a class named after an address"
+          ],
+          "new": "draw_node_tree_if_visible__13TUnk_804F1C58Fv",
+          "old": "draw_node_tree_if_visible__10TObjPlayerFv",
+          "rationale": "The node task owns the visibility-checked draw callback.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x8035A860",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804F1C58, a class named after an address"
+          ],
+          "new": "__ct__13TUnk_804F1C58FP7TObjectP10NJS_OBJECT",
+          "old": "__ct__13TUnk_804F1C58FP7TObjectPv",
+          "rationale": "The node task constructor receives a native Ninja object.",
+          "section": ".text",
+          "type": "function"
+        }
+      ],
+      "head": "c68a75607e3452c1436fd76fca3b0d371d7dd763",
+      "label_changes": 175,
+      "newly_stale_retention_entries": 0,
+      "overlaps_on_replay": {
+        "src/pso/weapon/SpecialProjectileWeapons.cpp": {
+          "conflict_sha256": "d2212599b34206e214851a944d008c17bed3cd34ba637731d77fcb06a81242a8",
+          "hunks": 2,
+          "resolution": "Keep upstream\u2019s named follower fields and pass native vectors and effect parameters."
+        }
+      },
+      "paths_changed": 463,
+      "retail_and_coverage": {
+        "check_sha256": "8e41f5bde87e11f471827f5ac3ea9217b1b1d0ab6b034350afd66995eabc4af6",
+        "head": "c68a75607e3452c1436fd76fca3b0d371d7dd763",
+        "linked_units": 2368,
+        "matched_functions": 27572,
+        "regressions": 0,
+        "report_sha256": "d30677ed299f7ddba80263c3f266adefb41c6d162a084f06e21087b267a62889",
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "tree": "614af9f32689a7cf3615ce31d2b7a34a7ea3a246"
+      },
+      "runtime_probes": [
+        "combat.dol: 10 distance inputs and 36 Gifoie cleanup cases passed",
+        "combat.dol: startup, 32 contacts, three constructors, six radial selection cases passed",
+        "combat.dol: 39 ground query and effect cases passed",
+        "combat.dol: 18 clamp cases, 96 animation frames, eight draw modes, 16 lifetime cases and five trail writes passed",
+        "Photon Blast hit queues, camera pose, effect records and available strip-buffer probes passed",
+        "combat.dol: shrink and restore packet layout and byte order passed"
+      ],
+      "source_quality_sha256": "d397af6d8085f30cc5fd6b3d597e148bbd6690b5eea85c660f38765ee258c88f",
+      "stage": "combat",
+      "title": "Recover player combat, technique effects, and shared actor state",
+      "tree": "614af9f32689a7cf3615ce31d2b7a34a7ea3a246"
+    },
+    {
+      "base": "c68a75607e3452c1436fd76fca3b0d371d7dd763",
+      "benchmark": {
+        "added": 61,
+        "base": 138946,
+        "head": 138309,
+        "removed": 698
+      },
+      "branch": "great-merge/review/after-381/native-client-and-actor-interfaces",
+      "flagged_labels": [
+        {
+          "address": "0x800F8754",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804999B8, a class named after an address"
+          ],
+          "new": "init_fade__13TUnk_804999B8FPvPFP7TObject_v",
+          "old": "init_fade__6TLobbyFPvPv",
+          "rationale": "The fade-in initializer now owns its alpha, color, and completion callback on the existing fade task.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x800F8878",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804999D0, a class named after an address"
+          ],
+          "new": "init__13TUnk_804999D0FPvPFP7TObject_v",
+          "old": "init__22THunterGuildSeqOfflineFPvPv",
+          "rationale": "The fade-out initializer now owns its alpha, color, and completion callback on the existing fade task.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802E6F10",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E3BA8, a class named after an address"
+          ],
+          "new": "init_breakup_pieces__13TUnk_804E3BA8FPvPA4_Cf",
+          "old": "init_breakup_pieces__10TObjPlayerFPvl",
+          "rationale": "The breakup actor initializes its own pieces from a typed readonly matrix.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802E7474",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E3BD8, a class named after an address"
+          ],
+          "new": "alloc_breakup_model__13TUnk_804E3BD8FP10NJS_OBJECT",
+          "old": "alloc_breakup_model__13TUnk_804E3BD8Fl",
+          "rationale": "The breakup allocator receives the native Ninja node.",
+          "section": ".text",
+          "type": "function"
+        },
+        {
+          "address": "0x802E7568",
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "flags": [
+            "member of TUnk_804E3BD8, a class named after an address"
+          ],
+          "new": "init_zeroed_object__13TUnk_804E3BD8Fv",
+          "old": "init_zeroed_object__10TObjPlayerFv",
+          "rationale": "The existing breakup object owns the initialized fields.",
+          "section": ".text",
+          "type": "function"
+        }
+      ],
+      "head": "332630f2e69a454e94718e8627c606bf83643ce7",
+      "label_changes": 14,
+      "newly_stale_retention_entries": 0,
+      "overlaps_on_replay": {
+        "src/pso/ui/font/TNECFontEORFunction.cpp": {
+          "conflict_sha256": "fc48312709ba7ac413770f7d6c289515a1d47c37b3facac8193b65eeae646e86",
+          "hunks": 5,
+          "resolution": "Keep upstream\u2019s control-code parameter names and the shared quad and const text types."
+        }
+      },
+      "paths_changed": 216,
+      "retail_and_coverage": {
+        "check_sha256": "d22718c465793a3a216b18bafd5b05817803d1cb9097ab3663a868813eb51231",
+        "head": "332630f2e69a454e94718e8627c606bf83643ce7",
+        "linked_units": 2368,
+        "matched_functions": 27572,
+        "regressions": 0,
+        "report_sha256": "ac3f6156481899d89e790b2d59560ceeb80275e3c777a42fc0e1ce8f7c8ee465",
+        "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "tree": "a0ad3ba04ff28a2ebbe168fa4c30f6eb56878f1d"
+      },
+      "runtime_probes": [
+        "final.dol: 10 distance inputs and 36 Gifoie cleanup cases passed",
+        "final.dol: startup, 32 contacts, three constructors, six radial selection cases passed",
+        "final.dol: 39 ground query and effect cases passed",
+        "final.dol: 18 clamp cases, 96 animation frames, eight draw modes, 16 lifetime cases and five trail writes passed",
+        "Photon Blast hit queues, camera pose, effect records and available strip-buffer probes passed",
+        "final.dol: shrink and restore packet layout and byte order passed",
+        "final.dol: both fade initializers and their callback boundaries passed"
+      ],
+      "source_quality_sha256": "7a24cb45b328fab1c5f92c80e7b6c157bfe1589d707ad5e770a513ff1b8de3e6",
+      "stage": "final",
+      "title": "Finish native actor, resource, and client interfaces",
+      "tree": "a0ad3ba04ff28a2ebbe168fa4c30f6eb56878f1d"
+    }
+  ],
+  "source_rehearsal": {
+    "coverage_comparison_sha256": "fd966bef138a040c3eb949530830c9a32c06b2cbabdc21fbead6a113c9401679",
+    "expected_paths_left_after_exact_series": 0,
+    "fork_only_overlay_paths": 130,
+    "fork_only_overlay_sha256": "d4db82b0f565c1611b9ec4ca97c2712da538bd3df27d10eca22c052f0cefaff3",
+    "head": "f1a56c028058c5e96ba67f7b689485c9643d48de",
+    "only_prior_source_delta": "Remove trailing blank line from src/pso/item/TItemMenuCtrl.cpp.",
+    "prior_source": "d3599c2228d6b51bc6f344791a02465cd50cfe39",
+    "source_paths_ahead_of_current_master": 1202,
+    "source_quality_net": -6007,
+    "tree": "a0ad3ba04ff28a2ebbe168fa4c30f6eb56878f1d"
+  },
+  "upstream_master_at_preflight": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+  "upstream_pr_375": "72029bba4d78953c3e329e60426305cdfdf7dee8"
+}
