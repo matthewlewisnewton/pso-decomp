@@ -1,6 +1,8 @@
 # Recover native actor models, battle parameters and camera interfaces
 
-The 177-path standalone review is `41db0911ec9636e49a8af652cd2b9221950c0cd8` on master `63ba63fe8b`. The inventory-and-saves preview is `77b449105051a32128d73765cafaee27719d38c6`. Saves, quests and assets still has the next review slot. [Camera reset and actor batch validation](2026-11-23-native-camera-reset-validation.json)
+The 195-path standalone review is `1d9d60ce82b7307903fe4b0cdd72d2d7dd9d240e` on master `63ba63fe8b`. The combined inventory, saves and AVE-TCP preview is `d188731c39143af0e758673b68f8f760a96f4f67`. Saves, quests and assets still has the next review slot. [Actor motion validation](2026-11-23-native-actor-motion-validation.json)
+
+The previous 177-path standalone review was `41db0911ec9636e49a8af652cd2b9221950c0cd8` on master `63ba63fe8b`. The inventory-and-saves preview is `77b449105051a32128d73765cafaee27719d38c6`. Saves, quests and assets still has the next review slot. [Camera reset and actor batch validation](2026-11-23-native-camera-reset-validation.json)
 
 ## Proposed PR description
 
@@ -11,14 +13,16 @@ Recover the native records used by actor model lookup, battle parameter loading 
 - Use typed model and texture entries in enemy archives and the NPC model registry. Pass native matrices through model capture, weapon drawing and player joints.
 - Recover the active battle parameter bank and its actor stat bindings. Use typed rows in De Rol Le, Gal Gryphon and Saver.
 - Share native arena, hit and curve records across the affected encounters and quest path opcodes.
+- Recover the typed action- and motion-list setters and use the existing action record in 63 Gal Gryphon, Slime, Pan Arms and character-creation entries. Keep the #375 action selections and table addresses.
 - Pass the native player to camera reset and the native optional vector to the fallback view. Preserve split-screen slot selection and camera pose updates.
 
 ### Validation
 
 - GPOE8P matches retail DOL SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` in the standalone review and combined preview.
 - The coverage check passes against master with 27,572 exact functions, 2,368 linked units and zero regressions.
+- Targeted motion cases verify 63 action records, two Pan Arms table pointers, and both setters with pointer and null inputs.
 - Targeted camera cases cover null and live follow targets, compact split-screen slots, boss and ordinary settings, and vertical and zero-direction fallback views.
-- The source-quality benchmark removes 496 findings and adds five. All 37 changed function labels follow recovered owners or signatures, with zero flagged labels and zero newly stale retention entries.
+- The source-quality benchmark removes 503 findings and adds five. All 39 changed function labels follow recovered owners or signatures, with zero flagged labels and zero newly stale retention entries.
 
 ### Remaining benchmark findings
 
