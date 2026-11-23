@@ -1,6 +1,6 @@
 # Recover native save, quest, and asset-loading interfaces
 
-The current standalone candidate is `740c6fbfb076baadbe20e5f07bf71ea636f6f039` on upstream `412b3b3cf562c5cb4b4655b747ff328777b32969`. It reapplies cleanly above #375, #377 and #378. The exact retail match and coverage check pass. The nine save, quest and asset suites pass, as do all 44 Photon Line and Leilla cases. [Validation](2026-11-23-upstream-378-merge-and-cutover-validation.json)
+The current 218-path candidate is `06f05041eba0f87c018fd20e2e4d947b96d4f6ba` directly on upstream `31bb8ea5f01b0e02b609fb59411f4805308106bf`. It includes #375 and upstream’s UI, weapon and quest naming passes through #381. The retail DOL, coverage, original data ranges and focused save, quest and asset probes pass. [Exact-head validation](2026-11-23-upstream-381-rebase-and-cutover-validation.json)
 
 The 218-path review preview `9589a617bea819ad462ad592073a80ffb4785526` builds on the already validated #377 merge preview `97711798d9`. It adds native player creation and saved inventory access to the save, quest and asset batch. The matching build and coverage pass, and the benchmark removes 1,067 findings and adds 26 with zero flagged labels. Three added mangled-name occurrences share one typed constructor declaration across two saved-player callers because the direct C++ member form changes retail instruction order. [Validation](2026-11-23-native-player-construction-validation.json)
 
@@ -29,7 +29,7 @@ Recover the types used to load save data, quest entries, and assets, and carry t
 
 The 40 changed linker labels follow the recovered owners and argument types. The retail DOL matches byte for byte with all 27,572 functions exact, 2,368 linked units and all 1,147 original data bytes accounted for. The targeted checks cover card metadata, quest ARAM completion and timeouts, compressed and uncompressed BML headers, archive callbacks and texture handling.
 
-The source-quality benchmark removes 1,067 findings and adds 26, with zero flagged symbol labels or newly stale retention entries.
+The source-quality benchmark removes 1,053 findings and adds 26, with zero flagged symbol labels or newly stale retention entries.
 
 - Six file-local types describe storage used only by the owning translation unit, including the ARAM DMA buffer and request extent, the adjacent card-save records, and the on-disc BML header and entry.
 - The existing ARAM DMA storage has C linkage. The offsetof and ATTRIBUTE_ALIGN results are macro tokens reported as declarations.
