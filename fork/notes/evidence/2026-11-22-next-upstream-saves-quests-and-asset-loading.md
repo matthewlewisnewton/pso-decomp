@@ -1,5 +1,7 @@
 # Recover native save, quest, and asset-loading interfaces
 
+The current standalone candidate is `740c6fbfb076baadbe20e5f07bf71ea636f6f039` on upstream `412b3b3cf562c5cb4b4655b747ff328777b32969`. It reapplies cleanly above #375, #377 and #378. The exact retail match and coverage check pass. The nine save, quest and asset suites pass, as do all 44 Photon Line and Leilla cases. [Validation](2026-11-23-upstream-378-merge-and-cutover-validation.json)
+
 The 218-path review preview `9589a617bea819ad462ad592073a80ffb4785526` builds on the already validated #377 merge preview `97711798d9`. It adds native player creation and saved inventory access to the save, quest and asset batch. The matching build and coverage pass, and the benchmark removes 1,067 findings and adds 26 with zero flagged labels. Three added mangled-name occurrences share one typed constructor declaration across two saved-player callers because the direct C++ member form changes retail instruction order. [Validation](2026-11-23-native-player-construction-validation.json)
 
 The current standalone review is `d9537252e154ef0055cfe0d2d51ecb85f6c71086` on upstream master `63ba63fe8b`. Inventory preview `d8ae552bd4` and the actor and AVE-TCP preview `5a98123bb6` also match retail. [Current validation](2026-11-23-native-character-records-validation.json)
@@ -25,9 +27,9 @@ Recover the types used to load save data, quest entries, and assets, and carry t
 - The bank uses the native deposit window and the item selection callbacks on their actual window classes.
 - The footprint effect uses a typed texture pointer from load through drawing and release, and reads yaw from the player's rotation record.
 
-The 36 changed linker labels follow the recovered owners and argument types. The retail DOL matches byte for byte with all 27,572 functions exact, 2,368 linked units and all 1,147 original data bytes accounted for. The targeted checks cover card metadata, quest ARAM completion and timeouts, compressed and uncompressed BML headers, archive callbacks and texture handling.
+The 40 changed linker labels follow the recovered owners and argument types. The retail DOL matches byte for byte with all 27,572 functions exact, 2,368 linked units and all 1,147 original data bytes accounted for. The targeted checks cover card metadata, quest ARAM completion and timeouts, compressed and uncompressed BML headers, archive callbacks and texture handling.
 
-The source-quality benchmark removes 1,032 findings and adds 23, with zero flagged symbol labels or newly stale retention entries.
+The source-quality benchmark removes 1,067 findings and adds 26, with zero flagged symbol labels or newly stale retention entries.
 
 - Six file-local types describe storage used only by the owning translation unit, including the ARAM DMA buffer and request extent, the adjacent card-save records, and the on-disc BML header and entry.
 - The existing ARAM DMA storage has C linkage. The offsetof and ATTRIBUTE_ALIGN results are macro tokens reported as declarations.
@@ -36,3 +38,4 @@ The source-quality benchmark removes 1,032 findings and adds 23, with zero flagg
 - Three typed BML callers use the existing BmlModelEntry::m_0 field for texture completion, failure and initialization.
 - The bank delete and get windows use their four existing callback fields in place of byte-offset overlays. The deposit window uses the existing number-entry class for its horizontal position. The three shop item allocators keep explicit constructor calls to preserve CodeWarrior’s retail callback address loads.
 - Two references use the existing file-local slot type to locate the character within the secondary-card record.
+- Three references share the typed saved-player constructor declaration and preserve the retail instruction order across its two callers.
