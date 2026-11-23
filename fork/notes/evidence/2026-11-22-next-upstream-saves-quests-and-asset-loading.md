@@ -1,5 +1,7 @@
 # Recover native save, quest, and asset-loading interfaces
 
+The current local review is `e0d6a26efd` on `14951bf3bf`. The 179-path batch matches retail, retains coverage, and passes nine runtime suites. It preserves the existing typed BML callback parameters and uses the recovered name and symbol lookup fields. The two remaining label advisories follow the decoded length methods onto the existing address-named request record. [Current validation](2026-11-22-upstream-371-saves-quests-and-assets-validation.json)
+
 The local review `great-merge/review/after-367/saves-quests-and-asset-loading` is at `6077e29d1cedfbbba0565de112f08aa67bbe6270` above the inventory review `61a66013a179485ff5923b6248c8b2b2d4b6de60`. Its two commits touch 174 paths and reproduce the validated cumulative source tree. [Validation and component records](2026-11-22-upstream-367-saves-quests-and-assets-validation.json)
 
 ## Proposed PR description

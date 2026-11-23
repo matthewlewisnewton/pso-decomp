@@ -1,0 +1,1368 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "origin_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "cumulative_parent": "92674f03b5f15ece465abeff1d4b84b988b4ee45",
+  "cumulative": "496ea1d0543745152b8017e869435c27a533b693",
+  "review_parent": "14951bf3bf332483ebd678e749385086be8436ca",
+  "review": "e0d6a26efd5cad8dd4099f7aded812aec20e7f05",
+  "review_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/npc/TNpcPlayer.h",
+    "include/pso/quest/OnlineQuestMenuRecords.h",
+    "include/pso/quest/QuestDownloadRecords.h",
+    "include/pso/quest/QuestDownloadServer.h",
+    "include/pso/quest/QuestDownloadText.h",
+    "include/pso/quest/TQuestListOnline.h",
+    "include/pso/quest/TQuestVmDownLoadServer.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E5668.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+    "include/pso/system/BmlResource.h",
+    "include/pso/system/GbaDownloadRuntime.h",
+    "include/pso/system/ResourceFile.h",
+    "include/pso/system/TLanguage.h",
+    "include/pso/system/TLanguage_801E4874.h",
+    "include/pso/system/save/CardFileInfo.h",
+    "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdMcSelectGC.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8001EF5C.h",
+    "include/pso/unk/TLobby_800FA2A0.h",
+    "include/pso/unk/TLobby_800FA848.h",
+    "include/pso/unk/text_800FA464.h",
+    "include/pso/unk/text_802432F0.h",
+    "include/pso/unk/text_8033F314.h",
+    "libs/dolphin/include/dolphin/ar.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/item/shop/TShopGenerator.cpp",
+    "src/pso/map/AreaEventSet.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/npc/TNpcPlayer_80190E64.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/object/TObjTank.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/door/TODoorAncient01.cpp",
+    "src/pso/object/door/TODoorAncient03.cpp",
+    "src/pso/object/door/TODoorAncient04.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/object/door/TODoorAncient08.cpp",
+    "src/pso/object/door/TODoorAncient09.cpp",
+    "src/pso/object/door/TODoorCave01.cpp",
+    "src/pso/object/door/TODoorCave02.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/door/TODoorMachine01.cpp",
+    "src/pso/object/door/TODoorMachine02.cpp",
+    "src/pso/object/door/TODoorVS2Door01.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/object/fence/TLazerFenceSw.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceAncient01.cpp",
+    "src/pso/object/fence/TOFenceAncient02.cpp",
+    "src/pso/object/fence/TOFenceAncient03.cpp",
+    "src/pso/object/fence/TOFenceAncient04.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/jungle/TOGrassJungle.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/key/TOKeyAncient01.cpp",
+    "src/pso/object/key/TOKeyAncient02.cpp",
+    "src/pso/object/key/TOKeyAncient03.cpp",
+    "src/pso/object/key/TOKeyCave01.cpp",
+    "src/pso/object/key/TOKeyGenericSw.cpp",
+    "src/pso/object/key/TOKeyMachine01.cpp",
+    "src/pso/object/lobby/LobbyGoGoBall.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/switch/TOSensorAncient01.cpp",
+    "src/pso/object/switch/TOSensorGeneral01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/object/warp/TObjMapWarpAncient.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_803DA204.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/QuestDownloadAramFile.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestListOnline.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+    "src/pso/render/BlobShadow.cpp",
+    "src/pso/system/GbaDownloadRuntime.cpp",
+    "src/pso/system/SwitcherLaunch.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/system/save/TCheckMemoryCard.cpp",
+    "src/pso/system/save/TSaveChCr.cpp",
+    "src/pso/system/scene/TSceneSora.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+    "src/pso/ui/frontend/TAdTrialAgreementGC.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+    "src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobbyEventTheme.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800FA044.cpp",
+    "src/pso/unk/TLobby_800FA0A4.cpp",
+    "src/pso/unk/TLobby_800FA12C.cpp",
+    "src/pso/unk/TLobby_800FA164.cpp",
+    "src/pso/unk/TLobby_800FA2A0.cpp",
+    "src/pso/unk/TLobby_800FA388.cpp",
+    "src/pso/unk/TLobby_800FA73C.cpp",
+    "src/pso/unk/TLobby_800FA774.cpp",
+    "src/pso/unk/TLobby_800FA848.cpp",
+    "src/pso/unk/TLobby_801A3C48.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_801F3A24.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_80066F10.cpp",
+    "src/pso/unk/text_800F9FD0.cpp",
+    "src/pso/unk/text_800FA260.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_800FA7E0.cpp",
+    "src/pso/unk/text_802432F0.cpp",
+    "src/pso/unk/text_8028A820.cpp",
+    "src/pso/unk/text_802D1C84.cpp",
+    "src/pso/unk/text_8033F314.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "review": "f4319c6e1a6c93f0e689d80bfa4b12c9db0c54f481044bcd36d2839da0439cbe",
+    "cumulative": "bcdecf752788887552c6bfa16d831c61e7fa7e7d8701b82025f00df954406b7f",
+    "private": "2471b16e73293e19655cb3478ac7dcb87bcb24bf9bbc5dac509a40b306b013c2"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "ranges": 90,
+    "remaining": 0
+  },
+  "source_replay": {
+    "overlapping_paths": 10,
+    "resolved_sections": 11,
+    "resolutions_sha256": "71f05f58527913a3c5c384f475625666288646123b203742f4d2ed1d480cd4aa",
+    "quest_text_replay": "Clean.",
+    "npc_buffer": "64 native character records of 0x50 bytes.",
+    "async_callbacks": "The two named-file registrations bridge from each existing typed callback to the generic queue ABI."
+  },
+  "benchmark": {
+    "total": {
+      "base": 155746,
+      "head": 155049,
+      "added": 29,
+      "removed": 726
+    },
+    "categories": [
+      {
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 8112,
+        "head": 8050,
+        "added": 3,
+        "removed": 65
+      },
+      {
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 1674,
+        "head": 1644,
+        "added": 0,
+        "removed": 30
+      },
+      {
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 7381,
+        "head": 7337,
+        "added": 0,
+        "removed": 44
+      },
+      {
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 328,
+        "head": 328,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "category": "Linkage",
+        "base": 11038,
+        "head": 11038,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "category": "Layout",
+        "base": 10030,
+        "head": 9994,
+        "added": 0,
+        "removed": 36
+      },
+      {
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "category": "Layout",
+        "base": 951,
+        "head": 951,
+        "added": 2,
+        "removed": 2
+      },
+      {
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "category": "Layout",
+        "base": 2293,
+        "head": 2280,
+        "added": 0,
+        "removed": 13
+      },
+      {
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "category": "Layout",
+        "base": 16633,
+        "head": 16635,
+        "added": 14,
+        "removed": 12
+      },
+      {
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "category": "Types",
+        "base": 2194,
+        "head": 2192,
+        "added": 0,
+        "removed": 2
+      },
+      {
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "category": "Types",
+        "base": 176,
+        "head": 81,
+        "added": 0,
+        "removed": 95
+      },
+      {
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "example": "undefined4",
+        "group": "types",
+        "category": "Types",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_type",
+        "name": "Address-named types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "category": "Types",
+        "base": 16343,
+        "head": 16247,
+        "added": 3,
+        "removed": 99
+      },
+      {
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "category": "Types",
+        "base": 39,
+        "head": 39,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 12037,
+        "head": 11955,
+        "added": 0,
+        "removed": 82
+      },
+      {
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "example": "sp1C",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 2515,
+        "head": 2510,
+        "added": 0,
+        "removed": 5
+      },
+      {
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 27321,
+        "head": 27135,
+        "added": 0,
+        "removed": 186
+      },
+      {
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 26,
+        "head": 26,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 0,
+        "head": 0,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "address_comment",
+        "name": "Address comments",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "category": "Decompiler output",
+        "base": 269,
+        "head": 268,
+        "added": 0,
+        "removed": 1
+      },
+      {
+        "key": "data_label",
+        "name": "Address-named data",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "category": "Names",
+        "base": 11082,
+        "head": 11082,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "category": "Names",
+        "base": 13297,
+        "head": 13294,
+        "added": 0,
+        "removed": 3
+      },
+      {
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "category": "Names",
+        "base": 23,
+        "head": 23,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 363,
+        "head": 363,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 26,
+        "head": 26,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 66,
+        "head": 66,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 1498,
+        "head": 1500,
+        "added": 2,
+        "removed": 0
+      },
+      {
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "category": "Vtables",
+        "base": 4429,
+        "head": 4403,
+        "added": 0,
+        "removed": 26
+      },
+      {
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 1184,
+        "head": 1184,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 4232,
+        "head": 4212,
+        "added": 5,
+        "removed": 25
+      },
+      {
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "category": "Units and classes",
+        "base": 164,
+        "head": 164,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "category": "Assembly",
+        "base": 22,
+        "head": 22,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "category": "Members in the wrong class (not in the total)",
+        "base": 2229,
+        "head": 2219,
+        "added": 0,
+        "removed": 10
+      },
+      {
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "category": "Members in the wrong class (not in the total)",
+        "base": 102,
+        "head": 102,
+        "added": 0,
+        "removed": 0
+      }
+    ],
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8001F018",
+        "type": "function",
+        "old": "load_texture_sub__11BmlResourceFPvl",
+        "new": "load_texture_sub__11BmlResourceFPCcl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8001F128",
+        "type": "function",
+        "old": "load_bml_exec__6TLobbyFPUcPUc",
+        "new": "load_bml_exec__6TLobbyFP11BmlResourcePCc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8001FCC4",
+        "type": "function",
+        "old": "load_bin_motion__11BmlResourceFPvl",
+        "new": "load_bin_motion__11BmlResourceFPCcl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8001FD98",
+        "type": "function",
+        "old": "load_bin_model__11BmlResourceFPvl",
+        "new": "load_bin_model__11BmlResourceFPCcl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80020004",
+        "type": "function",
+        "old": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+        "new": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800FA044",
+        "type": "function",
+        "old": "add_named_entry__6TLobbyFll",
+        "new": "add_named_entry__6TLobbyFP11BmlResourcePCc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800FA164",
+        "type": "function",
+        "old": "create_file_load_entry__6TLobbyFllUllPPv",
+        "new": "create_file_load_entry__6TLobbyFPCcP16GinjaTextureListPFPv_vPCvPPv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800FA2A0",
+        "type": "function",
+        "old": "create_named_entry__6TLobbyFiiUiiPv",
+        "new": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800FA388",
+        "type": "function",
+        "old": "request_file_read__6TLobbyFllPlPPv",
+        "new": "request_file_read__6TLobbyFPCcPvPlPPv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800FA7E0",
+        "type": "function",
+        "old": "pop_stack_entry__6TLobbyFs",
+        "new": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800FA848",
+        "type": "function",
+        "old": "link_into_list__FPv",
+        "new": "link_into_list__FP20AsyncFileReadRequest",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801E4874",
+        "type": "function",
+        "old": "load_gvm_texture_file__Fl",
+        "new": "load_gvm_texture_file__FPCc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801E4A44",
+        "type": "function",
+        "old": "read_file_header__9TLanguageFiPv",
+        "new": "read_file_header__9TLanguageFPUcP13GvmFileHeader",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801E4AB0",
+        "type": "function",
+        "old": "read_into_buffer__9TLanguageFll",
+        "new": "read_into_buffer__9TLanguageFPvl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80208D98",
+        "type": "function",
+        "old": "add_player__6TLobbyFlll",
+        "new": "add_player__6TLobbyFlPCUcl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C74AC",
+        "type": "function",
+        "old": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+        "new": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C7560",
+        "type": "function",
+        "old": "init_slot__15TAdChrSelSlotGCFlPv",
+        "new": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8032A0A4",
+        "type": "function",
+        "old": "create__13TAdMcSelectGCFPv",
+        "new": "create__13TAdMcSelectGCFP7TObject",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8032C854",
+        "type": "function",
+        "old": "send_data__6TLobbyFl",
+        "new": "send_data__6TLobbyFPCc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E7E3C",
+        "type": "function",
+        "old": "has_name_mismatch__22TQuestVmDownLoadServerFPUc",
+        "new": "has_name_mismatch__22TQuestVmDownLoadServerFlPUc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E7EE4",
+        "type": "function",
+        "old": "find_name_index__22TQuestVmDownLoadServerFv",
+        "new": "find_name_index__22TQuestVmDownLoadServerFPCc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E8004",
+        "type": "function",
+        "old": "is_char_allowed__22TQuestVmDownLoadServerFs",
+        "new": "is_char_allowed__22TQuestVmDownLoadServerFPCUcs",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E875C",
+        "type": "function",
+        "old": "set_file_info_name__22TQuestVmDownLoadServerFv",
+        "new": "set_file_info_name__22TQuestVmDownLoadServerFPCc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E8790",
+        "type": "function",
+        "old": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+        "new": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E8B1C",
+        "type": "function",
+        "old": "lookup_name_entry__22TQuestVmDownLoadServerFsP12Out_803E8C2C",
+        "new": "lookup_name_entry__22TQuestVmDownLoadServerFPcsP21QuestNameLookupResult",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E90A8",
+        "type": "function",
+        "old": "append_message_text__22TQuestVmDownLoadServerFlP12Req_803EEF2CUc",
+        "new": "append_message_text__22TQuestVmDownLoadServerFPUclP12Req_803EEF2CUc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E9190",
+        "type": "function",
+        "old": "build_message_packet__22TQuestVmDownLoadServerFPviPvUc",
+        "new": "build_message_packet__22TQuestVmDownLoadServerFPUclP12Req_803EEF2CUc",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E92C0",
+        "type": "function",
+        "old": "calc_text_length__22TQuestVmDownLoadServerFv",
+        "new": "calc_text_length__12Req_803EEF2CCFv",
+        "flags": [
+          "member of Req_803EEF2C, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E9348",
+        "type": "function",
+        "old": "calc_message_length__22TQuestVmDownLoadServerFv",
+        "new": "calc_message_length__12Req_803EEF2CCFv",
+        "flags": [
+          "member of Req_803EEF2C, a class named after an address"
+        ]
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E9DE0",
+        "type": "function",
+        "old": "find_longest_match_entry__22TQuestVmDownLoadServerFPviPv",
+        "new": "find_longest_match_entry__22TQuestVmDownLoadServerFPUclPl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803EBD38",
+        "type": "function",
+        "old": "build_text_node_chain__22TQuestVmDownLoadServerFPvPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+        "new": "build_text_node_chain__22TQuestVmDownLoadServerFP23QuestDownloadTextRecordPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803EEB10",
+        "type": "function",
+        "old": "format_number_text__22TQuestVmDownLoadServerFiiPvi",
+        "new": "format_number_text__22TQuestVmDownLoadServerFPCUclP23QuestDownloadTextRecordl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803EFBDC",
+        "type": "function",
+        "old": "find_insert_position__22TQuestVmDownLoadServerFlll",
+        "new": "find_insert_position__22TQuestVmDownLoadServerFPUclll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803F0138",
+        "type": "function",
+        "old": "find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138",
+        "new": "find_symbol_entry__22TQuestVmDownLoadServerFPCcsP23QuestSymbolLookupResult",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803F0AB8",
+        "type": "function",
+        "old": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+        "new": "aram_dma_read__22TQuestVmDownLoadServerFlPvl",
+        "flags": []
+      }
+    ],
+    "additions": [
+      {
+        "key": "address_type",
+        "path": "include/pso/quest/TQuestVmDownLoadServer.h",
+        "line": 151,
+        "text": "Req_803EEF2C"
+      },
+      {
+        "key": "address_type",
+        "path": "include/pso/quest/TQuestVmDownLoadServer.h",
+        "line": 152,
+        "text": "Req_803EEF2C"
+      },
+      {
+        "key": "offset_member",
+        "path": "include/pso/system/save/CardFileInfo.h",
+        "line": 10,
+        "text": "field_06"
+      },
+      {
+        "key": "offset_member",
+        "path": "include/pso/system/save/CardFileInfo.h",
+        "line": 11,
+        "text": "field_07"
+      },
+      {
+        "key": "offset_member",
+        "path": "include/pso/system/save/CardFileInfo.h",
+        "line": 12,
+        "text": "field_08"
+      },
+      {
+        "key": "local_class",
+        "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+        "line": 10,
+        "text": "struct QuestDownloadAramFile"
+      },
+      {
+        "key": "local_class",
+        "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+        "line": 28,
+        "text": "struct QuestDownloadAramDmaBuffer"
+      },
+      {
+        "key": "extern_c",
+        "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+        "line": 39,
+        "text": "extern \"C\" quest_download_aram_dma_buffer"
+      },
+      {
+        "key": "slot_name",
+        "path": "src/pso/quest/TQuestListOnline.cpp",
+        "line": 145,
+        "text": "vfunc_10"
+      },
+      {
+        "key": "slot_name",
+        "path": "src/pso/quest/TQuestListOnline.cpp",
+        "line": 206,
+        "text": "vfunc_10"
+      },
+      {
+        "key": "address_type",
+        "path": "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+        "line": 330,
+        "text": "Req_803EEF2C"
+      },
+      {
+        "key": "local_class",
+        "path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+        "line": 2226,
+        "text": "struct QuestDownloadRequestStorage"
+      },
+      {
+        "key": "extern_c",
+        "path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+        "line": 2230,
+        "text": "extern \"C\" LAYOUT_ASSERT"
+      },
+      {
+        "key": "extern_c",
+        "path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+        "line": 2231,
+        "text": "extern \"C\" LAYOUT_ASSERT"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+        "line": 777,
+        "text": "field_06"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+        "line": 778,
+        "text": "field_07"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+        "line": 779,
+        "text": "field_08"
+      },
+      {
+        "key": "local_class",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 47,
+        "text": "struct BmlArchiveEntry"
+      },
+      {
+        "key": "local_class",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 56,
+        "text": "struct BmlArchiveHeader"
+      },
+      {
+        "key": "offset_cast",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 218,
+        "text": "(BmlArchiveEntry *) (bml_load_buffer + 0x40)"
+      },
+      {
+        "key": "offset_cast",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 310,
+        "text": "(BmlArchiveEntry *) (lbl_805D4AE0 + 0x40)"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 342,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 363,
+        "text": "m_0"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 384,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 385,
+        "text": "m_0"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 516,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 525,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 836,
+        "text": "m_0"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "line": 838,
+        "text": "m_c"
+      }
+    ],
+    "stale_force_active": [],
+    "sha256": "95366fb7aa61f412218b57d86f47107a1e5373a9038579c14b63c0f8233bdf91"
+  },
+  "retained_label_advisories": {
+    "0x803E92C0": "The string length reads the decoded request fields. Its native owner keeps the existing Req_803EEF2C type tag used by the append and packet routines.",
+    "0x803E9348": "The packet length reads the same request plus its name and header size. It keeps that same public type tag."
+  },
+  "probes": {
+    "resources": {
+      "images": 4,
+      "sha256": "aadb9044b9e4d70e48fc6a2cd8aa8a164b67491adc5e6f09749fd887b2071c53",
+      "verified": "File queue lifecycle, sector tails and both GVM buffer paths passed."
+    },
+    "bml": {
+      "images": 4,
+      "sha256": "cfc7487378269720f418dd0abce2914638ff11258352d8c2fffcbdc9d5f63bd1",
+      "verified": "BML initialization, named requests, archive reads, completion and cancellation passed."
+    },
+    "footstamp": {
+      "images": 4,
+      "sha256": "35227e42bd5f6bf00a5d2eec0e3d35e639c9b4c98239d5c231056383aa54f478",
+      "verified": "footprint GVM load, culling, texture binding and ordered release passed."
+    },
+    "card": {
+      "images": 4,
+      "sha256": "df36452df98e9f4ee9ae89ba971c58a06780209d657c3c3e7c2cc423eeda1d0c",
+      "verified": "load status, slot geometry, warnings, card polling and file metadata passed."
+    },
+    "quest": {
+      "images": 4,
+      "sha256": "5cad73136948de19ff47bb35d61bbaa7fcd137b9d4b492ec6e8431fb23fd5c61",
+      "verified": "Challenge and online titles, complete entry traversal, callbacks and release passed."
+    },
+    "cache": {
+      "images": 4,
+      "sha256": "b7232a389d392652559e260fc7ce84b61194a3528098eb960d05e9bf64aa4994",
+      "verified": "128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed"
+    },
+    "aram": {
+      "images": 4,
+      "sha256": "eb8cbbdf868225e6a809536aad158de507aed154ce4b7ba467fceff295be538c",
+      "verified": "signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed"
+    },
+    "text": {
+      "images": 4,
+      "sha256": "1a0c5b0bc882b76a188b2c8a46f28fd7a03def545d032690fbd746275592f3c1",
+      "verified": "name lookup boundaries, mixed-width request counts, four number formats and closed-handle gating passed"
+    },
+    "lookups": {
+      "images": 4,
+      "sha256": "cafab188c99d36ade0101461d82b13ddf5114d4ae2d2edf108abe135d8708cef",
+      "verified": "seven typed quest lookup result cases passed."
+    }
+  },
+  "fork_workspace": {
+    "paths": 130,
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "materialized_tree": "/tmp/gm-stage-archive-replay.PGoFTj/upstream-review/orig/GPOE8P/files/PsoV3.dol",
+    "overlay_sha256": "08069b6527d9a3e1d594afb9d6469f127218018920e885eccede88873e2a3817",
+    "updated_retention_labels": 3
+  },
+  "historical_index": {
+    "open": 179,
+    "by_subsystem": {
+      "Audio and disc streaming": 2,
+      "Build, verification and automation": 1,
+      "Chat and text entry": 10,
+      "Enemy and boss behavior": 55,
+      "Front-end scenes and UI": 22,
+      "Network and protocol": 9,
+      "Player combat, techniques and items": 26,
+      "Rendering, camera and effects": 7,
+      "Shared ABI declarations by owning caller": 1,
+      "Window layout, menus and results": 21,
+      "World objects, NPCs and quests": 25
+    },
+    "previous_sha256": "e6201a45909778fa4dedeb87a62b7aa3189ba817a3cd24531dede30b5dd6fae1",
+    "sha256": "e14354182719893191b3c8064f783d88b6ed36b9c989b7176c756995520ff12c",
+    "closed_source_owners": {
+      "src/pso/misc/TLobby_801F3A24.cpp": {
+        "path": "src/pso/unk/TLobby_801F3A24.cpp",
+        "fork_blob": "66be452222e98d6fef95d678c33eb5aaf88fd58d",
+        "current_blob": "a56ef7a9a19fbece85f1cbd0e1edfa56958e0fcd",
+        "source_review": "Quest refresh and session open pass the source path into the same size provider at 0x800F9D80, allocator and file reader. The restored quest DAT accessor feeds the same update path. The floor record payload keeps its byte pointer through add_player, and the 20-entry signed floor-designation storage keeps its address and original update limits.",
+        "original_exact_functions": [
+          {
+            "address": "0x801f3a24",
+            "size": "92",
+            "historical": "refresh_quest_list__6TLobbyFi",
+            "current": "refresh_quest_list__6TLobbyFPCc"
+          },
+          {
+            "address": "0x801f3a80",
+            "size": "88",
+            "historical": "bswap_enemy_set_rows__6TLobbyFUl",
+            "current": "bswap_enemy_set_rows__6TLobbyFUl"
+          },
+          {
+            "address": "0x801f3ad8",
+            "size": "88",
+            "historical": "convert_quest_object_rows",
+            "current": "convert_quest_object_rows"
+          },
+          {
+            "address": "0x801f3b30",
+            "size": "148",
+            "historical": "init_floor_encounter_sections__6TLobbyFv",
+            "current": "init_floor_encounter_sections__6TLobbyFv"
+          },
+          {
+            "address": "0x801f3bc4",
+            "size": "96",
+            "historical": "handle_msg_type1_for_idle_slots__6TLobbyFv",
+            "current": "handle_msg_type1_for_idle_slots__6TLobbyFv"
+          },
+          {
+            "address": "0x801f3c24",
+            "size": "76",
+            "historical": "rebuild_all__6TLobbyFi",
+            "current": "rebuild_all__6TLobbyFPUc"
+          },
+          {
+            "address": "0x801f3c70",
+            "size": "204",
+            "historical": "set_quest_floor_designation_ex__Fsllll",
+            "current": "set_quest_floor_designation_ex__Fsllll"
+          },
+          {
+            "address": "0x801f3d3c",
+            "size": "176",
+            "historical": "set_quest_floor_designation__Fslll",
+            "current": "set_quest_floor_designation__Fslll"
+          },
+          {
+            "address": "0x801f3dec",
+            "size": "48",
+            "historical": "clear_quest_floor_designations__Fv",
+            "current": "clear_quest_floor_designations__Fv"
+          },
+          {
+            "address": "0x801f3e1c",
+            "size": "292",
+            "historical": "populate_quest_floor_sets__Fv",
+            "current": "populate_quest_floor_sets__Fv"
+          },
+          {
+            "address": "0x801f3f40",
+            "size": "188",
+            "historical": "load_quest_encounter_section__Fl",
+            "current": "load_quest_encounter_section__Fl"
+          },
+          {
+            "address": "0x801f3ffc",
+            "size": "236",
+            "historical": "handle_msg_type2__6TLobbyFl",
+            "current": "handle_msg_type2__6TLobbyFl"
+          },
+          {
+            "address": "0x801f40e8",
+            "size": "236",
+            "historical": "handle_msg_type1__6TLobbyFl",
+            "current": "handle_msg_type1__6TLobbyFl"
+          },
+          {
+            "address": "0x801f41d4",
+            "size": "200",
+            "historical": "setup_quest_list__6TLobbyFv",
+            "current": "setup_quest_list__6TLobbyFv"
+          },
+          {
+            "address": "0x801f429c",
+            "size": "56",
+            "historical": "update_and_reset__6TLobbyFi",
+            "current": "update_and_reset__6TLobbyFPUc"
+          },
+          {
+            "address": "0x801f42d4",
+            "size": "108",
+            "historical": "open_session__6TLobbyFi",
+            "current": "open_session__6TLobbyFPCc"
+          },
+          {
+            "address": "0x801f4340",
+            "size": "88",
+            "historical": "init_id_tables__6TLobbyFv",
+            "current": "init_id_tables__6TLobbyFv"
+          }
+        ]
+      },
+      "src/pso/object/TObjComputer.cpp": {
+        "path": "src/pso/object/TObjComputer.cpp",
+        "fork_blob": "bb33834d5795bac179cc4d555628169ce7fa9151",
+        "current_blob": "139473fb846a866822bc1a6720198c8886d33533",
+        "source_review": "Both stage terminal variants use their actual BML resource descriptors and bind the native Ginja list. The model and texture pointers keep their original storage, and release still removes the texture list before freeing it and deleting the archive. The neighboring Abe container handler has its own original native source owner.",
+        "original_exact_functions": [
+          {
+            "address": "0x8018807c",
+            "size": "344",
+            "historical": "draw_model__12TObjComputerFv",
+            "current": "draw_model__12TObjComputerFv"
+          },
+          {
+            "address": "0x801881d4",
+            "size": "80",
+            "historical": "render__12TObjComputerFv",
+            "current": "render__12TObjComputerFv"
+          },
+          {
+            "address": "0x80188224",
+            "size": "60",
+            "historical": "clear_ref_if_destroyed__12TObjComputerFv",
+            "current": "clear_ref_if_destroyed__12TObjComputerFv"
+          },
+          {
+            "address": "0x80188260",
+            "size": "84",
+            "historical": "vfunc_14__12TObjComputerFv",
+            "current": "vfunc_14__12TObjComputerFv"
+          },
+          {
+            "address": "0x801882b4",
+            "size": "76",
+            "historical": "create__12TObjComputerFv",
+            "current": "create_stage_computer"
+          },
+          {
+            "address": "0x80188300",
+            "size": "88",
+            "historical": "free_resources__12TObjComputerFv",
+            "current": "free_resources__12TObjComputerFv"
+          },
+          {
+            "address": "0x80188358",
+            "size": "224",
+            "historical": "load_computer_resources__Fv",
+            "current": "load_computer_resources__Fv"
+          },
+          {
+            "address": "0x80188438",
+            "size": "104",
+            "historical": "__dt__12TObjComputerFv",
+            "current": "__dt__12TObjComputerFv"
+          },
+          {
+            "address": "0x801884a0",
+            "size": "228",
+            "historical": "TObjComputer__ct",
+            "current": "__ct__12TObjComputerFP7TObjectP13ObjectSetData"
+          }
+        ]
+      }
+    }
+  },
+  "cutover_rehearsal": {
+    "first_parent": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "source": "496ea1d0543745152b8017e869435c27a533b693",
+    "branch": "great-merge/rehearsal/fork-cutover-current"
+  },
+  "build_cleanup": {
+    "duplicate_baselines_removed": 3,
+    "allocated_bytes_reclaimed": 22446080
+  }
+}
