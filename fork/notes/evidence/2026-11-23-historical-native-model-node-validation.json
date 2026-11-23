@@ -1,0 +1,173 @@
+{
+  "source_head": "da1fa02d0029de331a9089d19af4db25cf11a38f",
+  "source_tree": "066f3d95164695f8143ffb1a525468bc06b880bf",
+  "previous_cumulative": "e70fd0190e942298d82fef37482c9eb5a308254f",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/player/TUnk_80491478.cpp",
+    "src/pso/unk/text_8004AA04.cpp"
+  ],
+  "effects_reconciliation": "The loader added in #375 keeps the same BML lookup and strip-buffer construction. Its one model-node call adopts the native signature. The #375 Stelth registration lines are retained.",
+  "source_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/volopt/TBoss3VoloptP01.h",
+    "include/pso/player/TUnk_80491478.h",
+    "include/pso/render/NinjaUtil.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/player/TUnk_80491478.cpp",
+    "src/pso/render/NinjaUtil.cpp",
+    "src/pso/unk/text_8004AA04.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 141960,
+      "head": 141950,
+      "added": 1,
+      "removed": 11
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80131700",
+        "type": "function",
+        "old": "find_model_node__FUll",
+        "new": "find_model_node__FP10NJS_OBJECTl",
+        "flags": []
+      }
+    ],
+    "flagged_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "added_finding": "The file-local Shinowa battle record preserves the offsets of the three typed arrays."
+  },
+  "matching_constraint": "Vol Opt derives the breakup and render node trees from separate BML model slots. Keeping the two native roots distinct preserves the original registers and the exact loader.",
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "cases_per_image": 13,
+    "coverage": "Depth-first root, child, sibling, missing-node and repeated traversal, plus the five Shinowa, Sinow Zoa and Stelth archive paths."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/enemy/TObjEneGyaranzo.cpp": {
+        "source_evidence": "The constructor, destructor and original 83-slot vtable use the native actor. The BML loader, word-sized volley timer, both broken nodes, breakup model and original constant pool are retained. The two model-node arrays and both registry slots are filled from the original BML trees through their native types.",
+        "historical_functions": 29,
+        "exact_data_bytes": 1452
+      },
+      "src/pso/enemy/TObjEneMe3Stelth_800F0EC4.cpp": {
+        "source_evidence": "All four original functions now live on the Stelth actor. The direct hit retains its native payload and base dispatch. The collision probe takes the actual Vec, the attack state uses the real origin, destination and technique factories, and the visible-state transition retains its fade, statuses and sound.",
+        "historical_functions": 4,
+        "exact_data_bytes": 0
+      },
+      "include/pso/enemy/TObjEneMe3SinowZoa.h": {
+        "source_evidence": "The native header retains the 0x45C actor and fade at offset 0x414, direct-attack payload, collision query and three recovered state handlers. The fade operations reside on the shared fade record and the native virtual slots preserve dispatch."
+      },
+      "src/pso/enemy/TObjEneMe3Shinowa.cpp": {
+        "source_evidence": "The normal and Mirage construction and battle bindings keep their native actors. The loader selects its original archive and motion entries, copies and retargets the three alternate textures, and initializes node-color, breakup and sampled-trail state. The typed model traversal and battle-table records keep the original offsets, and the initializer reads native base, attack and resistance arrays.",
+        "historical_functions": 88,
+        "exact_data_bytes": 2048
+      },
+      "src/pso/enemy/TObjEneMe3SinowZoa.cpp": {
+        "source_evidence": "The Seabed factory, original terrain and movement checks, stealth and casting states, battle parameter arrays and model actions are present. Both archives retain their original selection, texture-slot substitutions, three material nodes and four NPC registry slots. The loader uses the native Ninja node and chunk record with the original color word.",
+        "historical_functions": 70,
+        "exact_data_bytes": 1580
+      },
+      "src/pso/enemy/TObjEneMe3Stelth.cpp": {
+        "source_evidence": "The actor uses its native movement, texture, fade and state interfaces. Both archive descriptors and alternate texture tables preserve their original bindings, including the split-screen breakup constructor and the original action, BML and material nodes. The existing animation, callback and sound routes remain linked.",
+        "historical_functions": 61,
+        "exact_data_bytes": 1092
+      }
+    },
+    "partial": {
+      "src/pso/enemy/TObjEneMe1Canadin.cpp": "The live loader and discard path retain both archive model roots and their four diffuse-word pointers through the shared native model lookup.",
+      "src/pso/enemy/TObjEneRe7Berura.cpp": "The detached arm and UV paths recover the original BML node links through native Ninja nodes.",
+      "src/pso/enemy/TObjEneLappy.cpp": "The shared lookup and visibility writes address the actual Ninja node and evalflags."
+    },
+    "remaining": 123
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "e05d7cfce6cf3fc4b8022742927d3ff9283602b00d19b2a4346e9950fc808036",
+    "delta-05.json": "85081852bf2a78e6d5683cb650853da42d3c84ae17acf91695bb1c50d5e199ff",
+    "final-quality.json": "c6b20560811c31a29741be153cab217f41589f22e1ca3c693ad6f79a00e7482d",
+    "probe-model-lookup.py": "f01da5e09500efa0aa51d58cd849d39544353c1aabde23f0f671905edae73fc0",
+    "model-probe.log": "797b256dd356222ac4215571bee2f0b7a097dc247aee6c96dfbac3a1cb53a0f9",
+    "source-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3",
+    "volopt-variants.log": "749125dc673ddddfb46b5ee07468985204b9a345795a5bbe9606d263fd663675"
+  },
+  "materialized_fork": {
+    "tree": "695d3f30918ea759b5803f41af79321451e65c1b",
+    "retention_entries": 27007,
+    "newly_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "final-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "final-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3",
+      "final-fork-tests.log": "8bc653d257e44adb07c7ac090fb34a3a7cf40d014253eff78a71196868189856",
+      "final-tool-tests.log": "4f1959a05297230385682e9a14380f252a09d35cf198e5128b8ec4f3bf99ce81",
+      "final-host-tests.log": "ce500420c90d28391c8a47725a6954fabe5fed317eba1db44e60bc428d7f221a"
+    }
+  }
+}
