@@ -1,0 +1,484 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "e75108dcfe5b47d9d8941e31864e0350d8492994",
+  "source": "507e578a137e47d02db536d633114c45eea43ead",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x802D7260",
+          "before": "spawn_child__12TObjEneSlimeFsllff",
+          "after": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListff"
+        }
+      ]
+    },
+    "layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 160064,
+      "head": 160059,
+      "added": 2,
+      "removed": 7
+    },
+    "flagged_symbol_labels": 0,
+    "newly_stale_force_active": [],
+    "added_findings": [
+      {
+        "key": "offset_member",
+        "path": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "line": 209,
+        "text": "m_c"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "line": 280,
+        "text": "m_c"
+      }
+    ],
+    "reason_for_added_findings": "Both added references preserve the established BmlModelEntry::m_c texture pointer.",
+    "label_change_reason": "The static chunk registration helper belongs to NpcModelRegistry and takes the model and texture pointers from the original archive."
+  },
+  "typed_battle_table_owners": {
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": {
+      "bringer_boss_stats_handle": "player_stats",
+      "bringer_boss_stats_ptr_b": "AttackParams",
+      "bringer_object_handle": "ActorParamBlock"
+    },
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": {
+      "canadin_boss_stat_handle_table": "player_stats",
+      "canadin_object_handle_table": "ActorParamBlock",
+      "canadin_shared_handler_b_table": "AttackParams"
+    },
+    "src/pso/enemy/darkgunner/DarkGunner.cpp": {
+      "TObjEneDarkGunner__attack_params_by_variant": "AttackParams",
+      "TObjEneDarkGunner__base_params_by_variant": "player_stats",
+      "TObjEneDarkGunner__resistance_params_by_variant": "ActorParamBlock"
+    },
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp": {
+      "gee_boss_stat_handle_table": "player_stats",
+      "gee_object_handle_table": "ActorParamBlock",
+      "gee_shared_handler_b_table": "AttackParams"
+    },
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": {
+      "ene_me1_gigue_boss_id": "player_stats",
+      "gigue_attack_params": "AttackParams",
+      "gigue_resistance_params": "ActorParamBlock"
+    },
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": {
+      "gyaranzo_boss_stats_handle": "player_stats",
+      "gyaranzo_boss_stats_ptr_b": "AttackParams",
+      "gyaranzo_object_handle": "ActorParamBlock"
+    },
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp": {
+      "TObjEneIllGill__boss_registration_id": "player_stats",
+      "TObjEneIllGill__resistance_params": "ActorParamBlock"
+    },
+    "src/pso/enemy/lappy/TObjEneLappy.cpp": {
+      "lappy_boss_stats_handles": "player_stats",
+      "lappy_boss_stats_ptrs_b": "AttackParams",
+      "lappy_object_handles": "ActorParamBlock"
+    },
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp": {
+      "nano_drago_attack_params": "AttackParams",
+      "nano_drago_base_params": "player_stats",
+      "nano_drago_resistance_params": "ActorParamBlock"
+    },
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp": {
+      "TObjEneRecobox__shared_object_handle": "ActorParamBlock",
+      "recobox_attack_params": "AttackParams",
+      "recobox_boss_register_id": "player_stats"
+    },
+    "src/pso/enemy/recon/TObjEneRecon.cpp": {
+      "TObjEneRecon__attack_params": "AttackParams",
+      "TObjEneRecon__base_params": "player_stats",
+      "TObjEneRecon__resistance_params": "ActorParamBlock"
+    },
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": {
+      "TObjEneMe3ShinowaMirage__attack_params_by_variant": "AttackParams",
+      "TObjEneMe3ShinowaMirage__base_params_by_variant": "player_stats",
+      "TObjEneMe3ShinowaMirage__resistance_params_by_variant": "ActorParamBlock"
+    },
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": {
+      "TObjEneMe3Stelth__attack_params_by_variant": "AttackParams",
+      "TObjEneMe3Stelth__base_params_by_variant": "player_stats",
+      "TObjEneMe3Stelth__resistance_params_by_variant": "ActorParamBlock"
+    },
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": {
+      "dellbiter_boss_stat_handle": "player_stats",
+      "TObjEneDellBiter__shared_handler_param": "AttackParams",
+      "dellbiter_object_stat_handle": "ActorParamBlock"
+    }
+  },
+  "verified_data_objects": {
+    "TObjEneDarkGunner__attack_params_by_variant": {
+      "address": "0x805d4ffc",
+      "size": 4
+    },
+    "TObjEneDarkGunner__base_params_by_variant": {
+      "address": "0x805d4ff8",
+      "size": 4
+    },
+    "TObjEneDarkGunner__resistance_params_by_variant": {
+      "address": "0x805d5000",
+      "size": 4
+    },
+    "TObjEneDellBiter__shared_handler_param": {
+      "address": "0x805d6a24",
+      "size": 4
+    },
+    "TObjEneDellBiter__shared_model_resource": {
+      "address": "0x805d6a30",
+      "size": 4
+    },
+    "TObjEneIllGill__boss_registration_id": {
+      "address": "0x805d6fd4",
+      "size": 4
+    },
+    "TObjEneIllGill__resistance_params": {
+      "address": "0x805d6fd8",
+      "size": 4
+    },
+    "TObjEneMe3ShinowaMirage__attack_params_by_variant": {
+      "address": "0x80500fd4",
+      "size": 8
+    },
+    "TObjEneMe3ShinowaMirage__base_params_by_variant": {
+      "address": "0x80500fcc",
+      "size": 8
+    },
+    "TObjEneMe3ShinowaMirage__resistance_params_by_variant": {
+      "address": "0x80500fdc",
+      "size": 8
+    },
+    "TObjEneMe3Stelth__attack_params_by_variant": {
+      "address": "0x805010f4",
+      "size": 8
+    },
+    "TObjEneMe3Stelth__base_params_by_variant": {
+      "address": "0x805010ec",
+      "size": 8
+    },
+    "TObjEneMe3Stelth__resistance_params_by_variant": {
+      "address": "0x805010fc",
+      "size": 8
+    },
+    "TObjEneRecobox__shared_object_handle": {
+      "address": "0x805d6b18",
+      "size": 4
+    },
+    "TObjEneRecon__attack_params": {
+      "address": "0x805d6af4",
+      "size": 4
+    },
+    "TObjEneRecon__base_params": {
+      "address": "0x805d6af0",
+      "size": 4
+    },
+    "TObjEneRecon__resistance_params": {
+      "address": "0x805d6af8",
+      "size": 4
+    },
+    "TObjNpcEnemy__entry_table": {
+      "address": "0x80540ff0",
+      "size": 576
+    },
+    "bm4_ps_ma_body_motion_names": {
+      "address": "0x80496314",
+      "size": 60
+    },
+    "bringer_boss_stats_handle": {
+      "address": "0x805d4fa8",
+      "size": 4
+    },
+    "bringer_boss_stats_ptr_b": {
+      "address": "0x805d4fac",
+      "size": 4
+    },
+    "bringer_object_handle": {
+      "address": "0x805d4fb0",
+      "size": 4
+    },
+    "canadin_boss_stat_handle_table": {
+      "address": "0x80500930",
+      "size": 12
+    },
+    "canadin_object_handle_table": {
+      "address": "0x80500948",
+      "size": 12
+    },
+    "canadin_shared_handler_b_table": {
+      "address": "0x8050093c",
+      "size": 12
+    },
+    "dellbiter_boss_stat_handle": {
+      "address": "0x805d6a20",
+      "size": 4
+    },
+    "dellbiter_object_stat_handle": {
+      "address": "0x805d6a28",
+      "size": 4
+    },
+    "ene_me1_gigue_boss_id": {
+      "address": "0x805d6828",
+      "size": 4
+    },
+    "gee_boss_stat_handle_table": {
+      "address": "0x80500e38",
+      "size": 12
+    },
+    "gee_object_handle_table": {
+      "address": "0x80500e50",
+      "size": 12
+    },
+    "gee_shared_handler_b_table": {
+      "address": "0x80500e44",
+      "size": 12
+    },
+    "gigue_attack_params": {
+      "address": "0x805d682c",
+      "size": 4
+    },
+    "gigue_resistance_params": {
+      "address": "0x805d6830",
+      "size": 4
+    },
+    "gyaranzo_boss_stats_handle": {
+      "address": "0x805d51e0",
+      "size": 4
+    },
+    "gyaranzo_boss_stats_ptr_b": {
+      "address": "0x805d51e4",
+      "size": 4
+    },
+    "gyaranzo_object_handle": {
+      "address": "0x805d51e8",
+      "size": 4
+    },
+    "lappy_boss_stats_handles": {
+      "address": "0x80500be0",
+      "size": 8
+    },
+    "lappy_boss_stats_ptrs_b": {
+      "address": "0x80500be8",
+      "size": 8
+    },
+    "lappy_object_handles": {
+      "address": "0x80500bf0",
+      "size": 8
+    },
+    "nano_drago_attack_params": {
+      "address": "0x805d524c",
+      "size": 4
+    },
+    "nano_drago_base_params": {
+      "address": "0x805d5248",
+      "size": 4
+    },
+    "nano_drago_resistance_params": {
+      "address": "0x805d5250",
+      "size": 4
+    },
+    "recobox_attack_params": {
+      "address": "0x805d6b14",
+      "size": 4
+    },
+    "recobox_boss_register_id": {
+      "address": "0x805d6b10",
+      "size": 4
+    },
+    "slime_bml_resource": {
+      "address": "0x805d52b0",
+      "size": 4
+    },
+    "slime_model_name_ptr_table": {
+      "address": "0x804962f8",
+      "size": 28
+    },
+    "slime_pair_resource_descriptor": {
+      "address": "0x80496350",
+      "size": 16
+    }
+  },
+  "historical_slime_functions": {
+    "0x800ec394": {
+      "historical": "get_attack_target__15TObjEneSlimeOneFv",
+      "current": "get_attack_target__15TObjEneSlimeOneFv",
+      "length": 8
+    },
+    "0x800ec39c": {
+      "historical": "is_in_water_bomb_states__15TObjEneSlimeOneFv",
+      "current": "is_in_water_bomb_states__15TObjEneSlimeOneFv",
+      "length": 44
+    },
+    "0x800ec3c8": {
+      "historical": "get_instance__15TObjEneSlimeOneFv",
+      "current": "get_instance__15TObjEneSlimeOneFv",
+      "length": 8
+    },
+    "0x800ec3d0": {
+      "historical": "find_nearest_enemy_masked__21TObjEneSlimeWaterBombFf",
+      "current": "find_nearest_enemy_masked__21TObjEneSlimeWaterBombFf",
+      "length": 76
+    },
+    "0x800ec41c": {
+      "historical": "is_timer_active__15TObjEneSlimeOneFv",
+      "current": "is_timer_active__15TObjEneSlimeOneFv",
+      "length": 12
+    },
+    "0x800ec428": {
+      "historical": "find_nearest_enemy_with_flag__15TObjEneSlimeOneFlf",
+      "current": "find_nearest_enemy_with_flag__15TObjEneSlimeOneFP3Vecf",
+      "length": 72
+    },
+    "0x800ec470": {
+      "historical": "TObjEneSlimeOne__sub_800EC470",
+      "current": "clear_parent_slime__15TObjEneSlimeOneFv",
+      "length": 12
+    },
+    "0x800ec47c": {
+      "historical": "check_player_field_7cc__15TObjEneSlimeOneFv",
+      "current": "get_attack_stage__10TObjPlayerFv",
+      "length": 36
+    },
+    "0x800ec4a0": {
+      "historical": "draw__19SlimeAnimationStateFl",
+      "current": "draw__19SlimeAnimationStateFl",
+      "length": 560
+    },
+    "0x800ec6d0": {
+      "historical": "advance__19SlimeAnimationStateFv",
+      "current": "advance__19SlimeAnimationStateFv",
+      "length": 188
+    },
+    "0x800ec78c": {
+      "historical": "is_finished__19SlimeAnimationStateFv",
+      "current": "is_finished__19SlimeAnimationStateFv",
+      "length": 104
+    },
+    "0x800ec7f4": {
+      "historical": "set_state__19SlimeAnimationStateFl",
+      "current": "set_state__19SlimeAnimationStateFl",
+      "length": 504
+    },
+    "0x800ec9ec": {
+      "historical": "__dt__19SlimeAnimationStateFv",
+      "current": "__dt__19SlimeAnimationStateFv",
+      "length": 60
+    },
+    "0x800eca28": {
+      "historical": "__ct__19SlimeAnimationStateFP15TObjEneSlimeOne",
+      "current": "__ct__19SlimeAnimationStateFP15TObjEneSlimeOne",
+      "length": 16
+    },
+    "0x800eca38": {
+      "historical": "vfunc_106__13TObjEneRe4BitFv",
+      "current": "render_demo__13TObjEneRe4BitFv",
+      "length": 4
+    },
+    "0x800eca3c": {
+      "historical": "vfunc_83__13TObjEneRe4BitFv",
+      "current": "run_demo_task__13TObjEneRe4BitFv",
+      "length": 4
+    }
+  },
+  "runtime_probes": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork layer"
+    ],
+    "result": "Slime registry lifetime, Deldepth motion rows, and Dell Biter archive and battle outputs passed"
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+    "include/pso/enemy/slime/TObjEneSlime.h",
+    "include/pso/enemy/slime/TObjEneSlimeOne.h",
+    "include/pso/npc/NpcModelRegistry.h",
+    "include/pso/npc/TObjNpcEnemy.h",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/deldepth/DelDepthMotion.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/npc/TObjNpcEnemy.cpp"
+  ],
+  "closed_source_comparisons": [
+    "src/pso/enemy/TObjEneSlimeOne_800EC394.cpp"
+  ],
+  "open_comparisons_annotated": [
+    "src/pso/enemy/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/TObjEnePanarms.cpp",
+    "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+    "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/TObjEneDellBiter.cpp",
+    "src/pso/enemy/TObjEneLappy.cpp",
+    "src/pso/enemy/TObjEneIllGill.cpp",
+    "src/pso/enemy/TObjEneMe3Stelth.cpp",
+    "src/pso/enemy/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/TObjEneDelDepth.cpp",
+    "src/pso/enemy/DarkGunner.cpp"
+  ],
+  "remaining_source_comparisons": 201,
+  "workspace": {
+    "materialized_tree": "abeaf9765b94a5f1520f7c6507e10584405dfc81",
+    "overlay_paths": 130,
+    "updated_retention_labels": {},
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "a4797dcee026a881a29cad65aefea277224fa7bc766ae2380b69c6174f905451",
+    "normalized_overlay_edits_sha256": "cf145f1b072c58a198a78fadf07136d8527ac3d1f61ae61122c689c390ca0fdf"
+  }
+}
